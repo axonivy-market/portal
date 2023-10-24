@@ -76,7 +76,6 @@ function initStatistics() {
             let multipleKPI = renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol);
             $(chart).html(multipleKPI);
             chartData = $(chart);
-            resizeNumberChart();
         }
 
         function renderPieChart() {
@@ -228,7 +227,6 @@ function initStatistics() {
 
             multipleKPI = renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol);
             $(chartData).html(multipleKPI);
-            resizeNumberChart();
         }
     }
 }
@@ -267,14 +265,14 @@ function renderChartCanvas(chartId) {
 function renderNumberChartHtml(label, number) {
     let html = `
             <div class="u-text-align-center chart-content-card">
-                <div class="chart-icon-font-size">
+                <div class="chart-icon-font-size chart-number-animation">
                     <i class="fa-solid fa-chart-line"></i>
                 </div>
                 <div>
-                    <span class="card-number chart-number-font-size">${number}</span>
+                    <span class="card-number chart-number-font-size chart-number-animation">${number}</span>
                 </div>
                 <div>
-                    <span class="card-name chart-name-font-size">${label}</span>
+                    <span class="card-name chart-name-font-size chart-number-animation">${label}</span>
                 </div>
             </div>
         `;
@@ -293,29 +291,6 @@ function renderMultipleNumberChartInHTML(result, suffixSymbold){
         multipleNumberChartInHTML = renderNumberChartHtml('', '0' + suffixSymbold);
     }
     return multipleNumberChartInHTML;
-}
-
-function resizeNumberChart() {
-    let chartNumber = $('.chart-number-font-size');
-    let chartName = $('.chart-name-font-size');
-    let chartIcon = $('.chart-icon-font-size');
-    const NUMBER_SCALE_RATIO = 1;
-    const NAME_SCALE_RATIO = 0.25;
-    const ICON_SCALE_RATIO = 0.5;
-
-    handleItemFontSizeForNumberChart(chartNumber, NUMBER_SCALE_RATIO);
-    handleItemFontSizeForNumberChart(chartName, NAME_SCALE_RATIO);
-    handleItemFontSizeForNumberChart(chartIcon, ICON_SCALE_RATIO);
-}
-
-function handleItemFontSizeForNumberChart(chartItem, fontSizeScaleRatio){
-    if (!chartItem.length || chartItem.length < 0) {
-      return;
-    }
-    for(item of chartItem) {
-      let fs = getFontSizeRatio(item, fontSizeScaleRatio);
-      item.style.fontSize = fs + '%';
-    };
 }
 
 function getChartFilters(data){

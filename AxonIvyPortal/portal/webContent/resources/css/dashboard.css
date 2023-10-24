@@ -1682,26 +1682,70 @@ body .ui-widget.new-widget-dialog__introduction {
   max-height: fit-content;
 }
 
+.card-widget__content {
+  container-type: inline-size;
+}
+
+.chart-number-animation {
+  -webkit-transition: font-size .3s ease;
+  -moz-transition: font-size .3s ease;
+  transition: font-size .3s ease;
+}
+
 .chart-number-font-size {
-  font-size: 22px;
   font-weight: bolder;
-  -webkit-transition: all .3s ease;
-  -moz-transition: all .3s ease;
-  transition: all .3s ease;
+  font-size: 30px;
 }
 .chart-name-font-size {
-  font-size: 5px;
-  -webkit-transition: all .3s ease;
-  -moz-transition: all .3s ease;
-  transition: all .3s ease;
+  font-size: 20px;
 }
 
 .chart-icon-font-size {
-  font-size: 10px;
-  -webkit-transition: all .3s ease;
-  -moz-transition: all .3s ease;
-  transition: all .3s ease;
+  font-size: 20px;
 }
+
+@container (min-width: 200px) {
+  .chart-content-card .chart-icon-font-size {
+    font-size: 50px;
+  }
+
+  .chart-content-card .chart-name-font-size {
+    font-size: 40px;
+  }
+
+  .chart-content-card .chart-number-font-size {
+    font-size: 80px;
+  }
+}
+
+@container (min-width: 800px) {
+  .chart-content-card .chart-icon-font-size {
+    font-size: 70px;
+  }
+
+  .chart-content-card .chart-name-font-size {
+    font-size: 50px;
+  }
+
+  .chart-content-card .chart-number-font-size {
+    font-size: 100px;
+  }
+}
+
+@container (min-width: 1200px) {
+  .chart-content-card .chart-icon-font-size {
+    font-size: 90px;
+  }
+
+  .chart-content-card .chart-name-font-size {
+    font-size: 70px;
+  }
+
+  .chart-content-card .chart-number-font-size {
+    font-size: 120px;
+  }
+}
+
 
 .chart-content-card {
   position: relative;
