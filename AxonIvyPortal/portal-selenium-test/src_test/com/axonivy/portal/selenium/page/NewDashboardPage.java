@@ -69,7 +69,7 @@ public class NewDashboardPage extends TemplatePage {
     clickByJavaScript(findElementById("user-settings-menu"));
     waitForElementDisplayed(By.id(menuItemSelector), true);
     clickByJavaScript(findElementById(menuItemSelector));
-    WaitHelper.assertTrueWithWait(() -> !findElementById("user-setting-container").isDisplayed());
+    WaitHelper.assertTrueWithWait(() -> !$("#user-setting-container").isDisplayed());
   }
   public ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration() {
     var configurationPage = openDashboardConfigurationPage();

@@ -487,4 +487,29 @@ public class TaskWidgetPage extends TemplatePage {
     destroyDialog.shouldBe(appear, DEFAULT_TIMEOUT).$("[id='task-widget:confirm-destruction']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     destroyDialog.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
+
+  public boolean isTaskDelegateOptionDisable(String taskName) {
+    int index = 1;
+    List<SelenideElement> taskElements = $$("span[id$=':task-item:task-name-component:task-name']");
+    for (int i = 0; i < taskElements.size(); i++) {
+      if (taskElements.get(i).getText().equals(taskName)) {
+        index = i;
+        break;
+      }
+    }
+
+    return isTaskDelegateOptionDisable(index);
+  }
+
+  public boolean isTaskDelegateOptionDisable(int index) {
+    sideStepMenuOnActionButton(index);
+    waitForElementDisplayed(By.id(taskWidgetId + ":task-list-scroller:" + index + ":task-item:task-action:additional-options:task-delegate-command"), true);
+    SelenideElement delegateButton = findElementById(taskWidgetId + ":task-list-scroller:" + index + ":task-item:task-action:additional-options:task-delegate-command");
+    return delegateButton.getAttribute(CLASS).contains("ui-state-disabled");
+  }
+
+  public String getNameOfTaskAt(int index) {
+    SelenideElement name = findElementByCssSelector(ID_END + index + ":task-item:task-name-component:task-name']");
+    return name.getText();
+  }
 }

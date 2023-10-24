@@ -358,6 +358,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
         TEST_FOR_IVYPORTAL_3369);
 
     backToNewDashboardPage();
+    newDashboardPage.waitPageLoaded();
     newDashboardPage.expandCombindedModeProcess();
     newDashboardPage.openCombinedModeProcessFirstCase();
 

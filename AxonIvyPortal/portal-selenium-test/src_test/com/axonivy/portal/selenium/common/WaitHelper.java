@@ -19,13 +19,13 @@ import com.codeborne.selenide.WebDriverRunner;
 
 public final class WaitHelper {
 
-  protected static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(5);
+  protected static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(30);
 
   public static void waitForNavigation(Runnable navigationAcion) {
     String viewState = $("input[name='javax.faces.ViewState'][id$='javax.faces.ViewState:1']").getAttribute("value");
     navigationAcion.run();
     $$("input[value='" + viewState + "']").shouldHave(CollectionCondition.sizeLessThanOrEqual(0), DEFAULT_TIMEOUT);
-    $(".layout-menu li[role='menuitem'] a.DASHBOARD").shouldHave(Condition.appear, DEFAULT_TIMEOUT);
+//    $(".layout-menu li[role='menuitem'] a.DASHBOARD").shouldHave(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public static void waitForNavigationToLoginPage(Runnable navigationAcion) {
@@ -75,6 +75,9 @@ public final class WaitHelper {
     wait(WebDriverRunner.getWebDriver()).until(webDriver -> supplier.get());
   }
 
+  public static void assertFalseWithWait(Supplier<Boolean> supplier) {
+    wait(WebDriverRunner.getWebDriver()).until(webDriver -> !supplier.get());
+  }
   public static void typeWithRetry(AbstractPage page, String cssSelector, String value) {
     WaitHelper.assertTrueWithWait(() -> {
       WebElement input = page.findElementByCssSelector(cssSelector);

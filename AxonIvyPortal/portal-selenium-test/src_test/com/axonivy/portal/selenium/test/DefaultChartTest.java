@@ -1,7 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
+import static com.codeborne.selenide.Selenide.$;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Set;
@@ -63,12 +63,12 @@ public class DefaultChartTest extends BaseTest {
 
     WebElement taskByExpiryChartName3 = null ;
     try {
-      taskByExpiryChartName3 = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:2:chart-name");
+      taskByExpiryChartName3 = $("[id='statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:2:chart-name']");
     } catch (Exception ex) {
     }
-    
+
     assertEquals(DEFAULT_CHART, statisticWidgetPage.getChartName(0));
-    assertFalse(taskByExpiryChartName3.isDisplayed());
+    assertEquals(false, taskByExpiryChartName3.isDisplayed());
   }
   
   private void grantPermissionToCreateChart() {
