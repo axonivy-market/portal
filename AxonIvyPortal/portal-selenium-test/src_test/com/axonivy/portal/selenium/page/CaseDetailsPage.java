@@ -73,7 +73,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void addNote(String noteContent) {
-    $("a[id$=':case-histories:add-note-command']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("a[id$=':case-histories:add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id$=':case-histories:add-note-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("div[id$=':case-histories:add-note-dialog']").find("textarea").sendKeys(noteContent);
     $("button[id$=':case-histories:add-note-form:save-add-note-command']").click();
@@ -432,7 +432,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public CaseDetailsPage openBusinessCaseFromTechnicalCase() {
-    caseItem.findElement(By.cssSelector("a[id$='related-business-case']")).click();
+    waitForElementClickableThenClick(caseItem.$(By.cssSelector("a[id$='related-business-case']")));
     waitForElementDisplayed(By.cssSelector("div[id$='business-case-information']"), false);
     return new CaseDetailsPage();
   }
@@ -601,8 +601,13 @@ public class CaseDetailsPage extends TemplatePage {
     columnCheckbox.click();
   }
 
-  public boolean isRelatedTaskListColumnExist(String columnClass) {
-    return $(".case-details-related-task-table th." + columnClass).isDisplayed();
+  public void relatedTaskListColumnShouldBeExist(String columnClass, boolean expected) {
+    if (expected) {
+      $(".case-details-related-task-table th." + columnClass).shouldBe(appear, DEFAULT_TIMEOUT);
+    } else {
+      $(".case-details-related-task-table th." + columnClass).shouldNot(appear, DEFAULT_TIMEOUT);
+    }
+
   }
 
   public void clickRelatedTaskDefaultCheckbox() {
@@ -612,7 +617,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void clickRelatedTaskColumnsButton() {
-    $("a[id$='task-config-command']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    $("a[id$='task-config-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     waitForElementClickableThenClick("a[id$='task-config-command']");
     waitForElementDisplayed($("label[for$='task-widget:task-columns-configuration:select-columns-form:columns-checkbox:5']"), true);
   }
@@ -722,7 +727,8 @@ public class CaseDetailsPage extends TemplatePage {
 
   public String getResponsibleOfRelatedTaskAt(String taskName) {
     List<SelenideElement> taskRows = $$("tr.ui-widget-content");
-    return taskRows.stream().filter(row -> row.$(".task-name-value").getText().equals(taskName)).map(row -> row.$(".name-after-avatar").getText()).findAny().get();
+    String responsible = taskRows.stream().filter(row -> row.$(".task-name-value").getText().equals(taskName)).map(row -> row.$(".name-after-avatar").getText()).findAny().get();
+    return responsible;
   }
 
   public void openTaskDelegateDialog(String taskName) {
@@ -756,9 +762,7 @@ public class CaseDetailsPage extends TemplatePage {
     if (isRole) {
       waitForElementDisplayed(By.cssSelector("[id$=':task-delegate-form:activator-type-select']"), true);
       waitForElementEnabled(By.cssSelector("[id$=':task-delegate-form:activator-type-select:1']"), true);
-      waitForElementClickable($(By.cssSelector("[id$=':task-delegate-form:activator-type-select:1']")));
       waitForElementClickableThenClick($("[for$=':task-delegate-form:activator-type-select:1']"));
-//      waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
       waitAjaxIndicatorDisappear();
       waitForElementDisplayed(By.cssSelector("input[id$='group-activator-select_input']"), true);
       $(By.cssSelector("input[id$='group-activator-select_input']")).sendKeys(responsibleName);
@@ -772,7 +776,6 @@ public class CaseDetailsPage extends TemplatePage {
       List<SelenideElement> foundUsers = $$("span[id$='user-activator-select_panel'] .name-after-avatar");
       foundUsers.get(0).click();
     }
-//    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     waitAjaxIndicatorDisappear();
     waitForElementClickableThenClick($(By.cssSelector("button[id$='proceed-task-delegate-command']")));
     waitForElementDisplayed(By.cssSelector("div[id$='task-delegate-dialog']"), false);
@@ -788,12 +791,10 @@ public class CaseDetailsPage extends TemplatePage {
     WebElement confirmButton = $(destroyCaseDialogId).$("[id$='task-widget:confirm-destruction']");
     confirmButton.click();
     waitAjaxIndicatorDisappear();
-    // waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public void destroyTask(String taskName) {
     findDestroyCommand(taskName).click();
-//    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     waitAjaxIndicatorDisappear();
   }
 
@@ -884,6 +885,7 @@ public class CaseDetailsPage extends TemplatePage {
     ElementsCollection breadcrumbs = $("[id='breadcrumb-container']").shouldBe(appear, DEFAULT_TIMEOUT).$("ol.ui-breadcrumb-items").$$("li");
     return breadcrumbs.get(breadcrumbs.size() - 1).is(Condition.text("Case: " + name));
   }
+
   public void clickCaseListBreadCrumb() {
     waitForElementClickableThenClick($((By.cssSelector(".portal-breadcrumb ol li:nth-of-type(2) .ui-menuitem-link"))));
   }
@@ -954,5 +956,6 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void waitRelatedTasks() {
     $("[id='case-details-relatedTask-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    waitAjaxIndicatorDisappear();
   }
 }

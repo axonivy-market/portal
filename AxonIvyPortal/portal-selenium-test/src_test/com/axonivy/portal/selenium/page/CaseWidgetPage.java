@@ -112,7 +112,7 @@ public class CaseWidgetPage extends TemplatePage {
 
   public String getCaseNameAt(int index) {
     waitForElementDisplayed(By.className("js-case-list"), true);
-    WebElement name = $("[id$='case-list-scroller:" + index + ":case-item:case-name-component:case-header-name-cell']");
+    SelenideElement name = $("[id$='case-list-scroller:" + index + ":case-item:case-name-component:case-header-name-cell']");
     return name.getText();
   }
 
@@ -259,6 +259,7 @@ public class CaseWidgetPage extends TemplatePage {
       }
     });
   }
+
   public void removeResponsibleFilter() {
     waitForElementClickableThenClick($("button[id$='creator-filter:filter-open-form:advanced-filter-command']"));
     waitForElementDisplayed(By.cssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']"), true);
@@ -307,7 +308,6 @@ public class CaseWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.id(destroyCaseDialogId), true);
     $(By.id(destroyCaseDialogId)).$(By.id(caseWidgetId + ":confirm-destruction")).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
-
 
   public boolean isCaseListColumnExist(String columnHeaderText) {
     WebElement taskListHeader = findElementById(caseWidgetId + ":widget-column-header");
@@ -431,4 +431,12 @@ public class CaseWidgetPage extends TemplatePage {
     throw new NoSuchElementException("Cannot find case has name " + caseName);
   }
 
+  public int getNumberOfCases() {
+    List<SelenideElement> caseItems = $$(CASE_ITEM_LIST_SELECTOR);
+    return caseItems.size();
+  }
+
+  public boolean isEmpty() {
+    return isElementDisplayed(By.id("search-results-tabview:case-results:case-empty-message"));
+  }
 }

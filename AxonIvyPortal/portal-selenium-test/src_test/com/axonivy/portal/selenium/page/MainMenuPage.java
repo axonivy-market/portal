@@ -27,7 +27,7 @@ public class MainMenuPage extends TemplatePage {
   public TaskWidgetPage openTaskList() {
     waitLeftMenuReady();
     WaitHelper.waitForNavigation(() -> {
-      clickByJavaScript($(".layout-menu li[role='menuitem'] a.TASK").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()));
+      clickByJavaScript($(".layout-menu li[role='menuitem'] a.TASK").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT));
     });
     return new TaskWidgetPage();
   }
@@ -45,6 +45,7 @@ public class MainMenuPage extends TemplatePage {
     WaitHelper.waitForNavigation(() -> {
       clickByJavaScript($(".layout-menu li[role='menuitem'] a.PROCESS").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()));
     });
+    waitPageLoaded();
     return new ProcessWidgetPage();
   }
 
@@ -53,6 +54,7 @@ public class MainMenuPage extends TemplatePage {
     WaitHelper.waitForNavigation(() -> {
       clickByJavaScript($(".layout-menu li[role='menuitem'] a.STATISTICS").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()));
     });
+
     return new StatisticWidgetPage();
   }
 

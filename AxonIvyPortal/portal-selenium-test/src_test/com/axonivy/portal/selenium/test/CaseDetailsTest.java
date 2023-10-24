@@ -13,11 +13,13 @@ import org.apache.commons.lang.StringUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.CaseState;
+import com.axonivy.portal.selenium.common.ScreenshotUtil;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.TestRole;
 import com.axonivy.portal.selenium.common.Variable;
@@ -85,7 +87,6 @@ public class CaseDetailsTest extends BaseTest {
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
     caseDetailsPage.getRelatedCasesComponents().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
-    caseDetailsPage.onClickHistoryIcon();
     caseDetailsPage.addNote(NOTE_BUSINESS_CASE);
     caseDetailsPage.getNotesWithContent(NOTE_BUSINESS_CASE).shouldHave(size(1));
     caseDetailsPage.gotoTaskDetailsPageOfRelatedTask(ORDER_PIZZA);
@@ -105,7 +106,6 @@ public class CaseDetailsTest extends BaseTest {
     caseDetailsPage.getRelatedCasesComponents().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
-    caseDetailsPage.onClickHistoryIcon();
     caseDetailsPage.addNote(NOTE_TECHNICAL_CASE);
     caseDetailsPage.getNotesWithContent(NOTE_TECHNICAL_CASE).shouldHave(size(1));
     caseDetailsPage.gotoTaskDetailsPageOfRelatedTask(TAKE_ORDER);
@@ -202,6 +202,7 @@ public class CaseDetailsTest extends BaseTest {
   public void testShowBusinessCaseInTechnicalCase() {
     redirectToRelativeLink(createTestingCaseMapUrl);
     login(TestAccount.DEMO_USER);
+    newDashboardPage.waitPageLoaded();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openCaseDetailsFromActionMenuByCaseName(BUSINESS_CASE_MAP_LEAVE_REQUEST);
@@ -230,8 +231,8 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testRelatedTaskStartButtonStatus() {
     createTestingTask();
-    assertFalse(detailsPage.isRelatedTaskStartEnabled(ANNUAL_LEAVE_REQUEST_TASK));
-    assertTrue(detailsPage.isRelatedTaskStartEnabled(SICK_LEAVE_REQUEST_TASK));
+    WaitHelper.assertFalseWithWait(() -> detailsPage.isRelatedTaskStartEnabled(ANNUAL_LEAVE_REQUEST_TASK));
+    WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedTaskStartEnabled(SICK_LEAVE_REQUEST_TASK));
   }
 
   @Test
@@ -327,7 +328,9 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testRelatedCaseSideSteps() {
     redirectToRelativeLink(createTestingCaseMapUrl);
+    newDashboardPage.waitPageLoaded();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
+    mainMenuPage.waitPageLoaded();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName(BUSINESS_CASE_MAP_LEAVE_REQUEST);
     assertEquals(1, detailsPage.countRelatedCases());
@@ -379,20 +382,21 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testRelatedTaskEnableAndDisableColumns() {
     createTestingTask();
-    assertTrue(detailsPage.isRelatedTaskListColumnExist(RELATED_TASK_EXPIRY_COLUMN));
-    assertTrue(detailsPage.isRelatedTaskListColumnExist(RELATED_TASK_STATE_COLUMN));
+    ScreenshotUtil.resizeBrowser(new Dimension(2560, 1440));
+    detailsPage.relatedTaskListColumnShouldBeExist(RELATED_TASK_EXPIRY_COLUMN, true);
+    detailsPage.relatedTaskListColumnShouldBeExist(RELATED_TASK_STATE_COLUMN, true);
     detailsPage.clickRelatedTaskColumnsButton();
     detailsPage.clickRelatedTaskDefaultCheckbox();
     detailsPage.clickRelatedTaskColumnCheckbox(6);
     detailsPage.clickRelatedTaskApplyButton();
-    WaitHelper.assertTrueWithWait(() -> !detailsPage.isRelatedTaskListColumnExist(RELATED_TASK_EXPIRY_COLUMN));
-    WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedTaskListColumnExist(RELATED_TASK_STATE_COLUMN));
+    detailsPage.relatedTaskListColumnShouldBeExist(RELATED_TASK_EXPIRY_COLUMN, false);
+    detailsPage.relatedTaskListColumnShouldBeExist(RELATED_TASK_STATE_COLUMN, true);
     detailsPage.clickRelatedTaskColumnsButton();
     detailsPage.clickRelatedTaskColumnCheckbox(6);
     detailsPage.clickRelatedTaskColumnCheckbox(8);
     detailsPage.clickRelatedTaskApplyButton();
-    WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedTaskListColumnExist(RELATED_TASK_EXPIRY_COLUMN));
-    WaitHelper.assertTrueWithWait(() -> !detailsPage.isRelatedTaskListColumnExist(RELATED_TASK_STATE_COLUMN));
+    detailsPage.relatedTaskListColumnShouldBeExist(RELATED_TASK_EXPIRY_COLUMN, true);
+    detailsPage.relatedTaskListColumnShouldBeExist(RELATED_TASK_STATE_COLUMN, false);
   }
 
   @Test
@@ -406,6 +410,7 @@ public class CaseDetailsTest extends BaseTest {
   public void testHistoryShowDoneTasks() {
     redirectToRelativeLink(createTestingCaseMapUrl);
     login(TestAccount.DEMO_USER);
+    newDashboardPage.waitPageLoaded();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openCaseDetailsFromActionMenuByCaseName(BUSINESS_CASE_MAP_LEAVE_REQUEST);
