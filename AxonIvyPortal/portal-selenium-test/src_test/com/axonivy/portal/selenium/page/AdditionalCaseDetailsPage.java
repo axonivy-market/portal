@@ -1,18 +1,13 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.codeborne.selenide.Selenide.$;
-
 import org.openqa.selenium.By;
-
-import com.codeborne.selenide.Condition;
 
 public class AdditionalCaseDetailsPage extends TemplatePage {
 
   private static final String TABLE_ROWS_PATH = "div[id$='additional-case-detail-table'] tbody>tr";
 
   public int countFields() {
-    // switchToIFrameOfTask();
-    $("[id='additional-case-detail-table']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    switchToIFrameOfTask();
     return driver.findElements(By.cssSelector(TABLE_ROWS_PATH)).size();
   }
 

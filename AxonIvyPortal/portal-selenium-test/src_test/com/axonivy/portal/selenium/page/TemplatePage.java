@@ -178,6 +178,11 @@ public abstract class TemplatePage extends AbstractPage {
     switchToIframeWithId("iFrame");
   }
 
+  public void switchToIFrameOfTask2() {
+    driver.switchTo().defaultContent();
+    WaitHelper.waitForIFrameAvailable(driver, "iFrame");
+  }
+
   public void switchBackToParent() {
     WebDriverRunner.getWebDriver().switchTo().parentFrame();
   }
@@ -316,6 +321,7 @@ public abstract class TemplatePage extends AbstractPage {
     public SearchResultPage inputSearchKeyword(String keyword) {
       waitForElementDisplayed(By.cssSelector(".topbar-item.search-item"), true);
       waitForElementClickableThenClick("a[id$='global-search-item']");
+      Sleeper.sleep(500);
       waitForElementDisplayed(By.cssSelector("input[id$='global-search-component:global-search-data']"), true);
       $(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR)).click();
       $(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR)).sendKeys(keyword);

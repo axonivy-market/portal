@@ -6,11 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.SearchResultPage;
 import com.axonivy.portal.selenium.page.TemplatePage.GlobalSearch;
 
+@IvyWebTest
 public class SearchTaskTest extends BaseTest {
   private NewDashboardPage newDashboardPage;
 
