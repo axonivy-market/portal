@@ -33,7 +33,7 @@ public class SearchResultPage extends TemplatePage {
   public void startProcess(String name) {
     ProcessWidgetPage processWidgetPage = getProcessWidget();
     if (processWidgetPage.isImageModeActivated()) {
-      SelenideElement processListElement = $("#search-results-tabview:process-results");
+      SelenideElement processListElement = $("[id='search-results-tabview:process-results']");
       SelenideElement processItemElement = processWidgetPage.getStartImageProcess(name, processListElement);
       processItemElement.click();
       return;

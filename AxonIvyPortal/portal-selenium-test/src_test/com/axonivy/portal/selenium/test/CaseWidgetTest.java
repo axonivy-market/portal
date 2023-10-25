@@ -26,7 +26,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 import com.codeborne.selenide.WebDriverRunner;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class CaseWidgetTest extends BaseTest {
 
   private static final String INVESTMENT_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME = "Create Investment";
@@ -66,7 +66,6 @@ public class CaseWidgetTest extends BaseTest {
     assertFalse(casePage.isCaseDisplayed("Repair Computer"));
   }
 
-  @SuppressWarnings("deprecation")
   @Test
   public void testDestroyCaseWithPermission() {
     initNewDashboardPage(TestAccount.ADMIN_USER);
@@ -153,6 +152,7 @@ public class CaseWidgetTest extends BaseTest {
     caseDetailsPage.openAdditionalCaseDetailsPage();
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((webDriver) -> newDashboardPage.countBrowserTab() > 1);
     newDashboardPage.switchLastBrowserTab();
+    mainMenuPage.waitPageLoaded();
   }
   
   private void validateAdditionalCaseDetailsPage(int expectedNumberOfFields, String expectedFirstFieldValue){

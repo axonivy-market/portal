@@ -318,6 +318,7 @@ public abstract class TemplatePage extends AbstractPage {
       waitForElementClickableThenClick("a[id$='global-search-item']");
       waitForElementDisplayed(By.cssSelector("input[id$='global-search-component:global-search-data']"), true);
       $(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR)).click();
+      $(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR)).sendKeys(keyword);
       getSearchInput().sendKeys(Keys.ENTER.toString());
       try {
         waitForElementDisplayed(By.id("search-results-tabview"), true);
