@@ -2,3 +2,5 @@ ExampleHomePageData #class
 com.axonivy.portal.userexamples.ExampleHomePage #namespace
 process ch.ivy.addon.portalkit.configuration.UserProcess #field
 process PERSISTENT #fieldModifier
+state com.axonivy.portal.userexamples.enums.RequestState #field
+state PERSISTENT #fieldModifier
