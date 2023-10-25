@@ -15,6 +15,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -215,25 +216,6 @@ public class CaseDetailsPage extends TemplatePage {
     $("[id$='document:document-upload-dialog_title']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
-//  public SelenideElement getAddAttachmentDialog() {
-//    return $("[id$='document:document-upload-dialog']");
-//  }
-
-//  public void uploadDocumentWithoutError(String pathToFile) {
-//    Sleeper.sleep(500);
-//    uploadDocumentByPath(pathToFile);
-//    $("span[class$='ui-messages-info-summary']").shouldBe(appear, DEFAULT_TIMEOUT);
-//    $("button[id$=':document-upload-close-command']").shouldBe(getClickableCondition()).click();
-//  }
-
-  private void uploadDocumentByPath(String path) {
-    $("input[id$='document-upload-panel_input']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).sendKeys(path);
-  }
-//
-//  public void closeUploadDocumentDialog() {
-//    $(By.cssSelector("button[id$='document:document-upload-close-command']")).shouldBe(getClickableCondition()).click();
-//  }
-
   public SelenideElement getDocumentBox() {
     return $("[id$='case-details-document-card']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
@@ -247,10 +229,6 @@ public class CaseDetailsPage extends TemplatePage {
     $(By.cssSelector("div[id$='document-deletion-dialog']")).shouldBe(appear, DEFAULT_TIMEOUT);
     return $("div[id$='document-deletion-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-//
-//  public void showNoteHistory() {
-//    $("a[id$='show-more-note-link']").shouldBe(getClickableCondition()).click();
-//  }
 
   public void waitForShowNoteHistory() {
     $(".note-history-container").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
@@ -416,6 +394,9 @@ public class CaseDetailsPage extends TemplatePage {
     return findElementByCssSelector("span[id$='general-information:case-id']").getText();
   }
 
+  public String getCaseUuid() {
+    return findElementByCssSelector("a[id$='show-more-note-link']").getAttribute("href").split("uuid=")[1];
+  }
   public void clickRelatedCaseActionButton(int index) {
     WebElement element = $$(".related-cases .more-column .action-link").get(index);
     element.click();
@@ -892,9 +873,8 @@ public class CaseDetailsPage extends TemplatePage {
 
   public boolean isRelatedCaseListColumnExist(String columnClass) {
     try {
-      $(By.cssSelector(".related-cases-container th." + columnClass)).shouldBe(exist, DEFAULT_TIMEOUT);
-      return true;
-    } catch (Exception e) {
+      return $(By.cssSelector(".related-cases-container th." + columnClass)).shouldBe(exist, DEFAULT_TIMEOUT).isDisplayed();
+    } catch (NoSuchElementException e) {
       return false;
     }
   }

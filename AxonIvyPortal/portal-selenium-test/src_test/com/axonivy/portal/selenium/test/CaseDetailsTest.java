@@ -144,6 +144,7 @@ public class CaseDetailsTest extends BaseTest {
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     newDashboardPage.waitPageLoaded();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
+    mainMenuPage.waitPageLoaded();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName(LEAVE_REQUEST_CASE_NAME);
     detailsPage.waitPageLoaded();

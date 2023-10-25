@@ -3,6 +3,7 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -12,7 +13,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
 public class TaskTemplatePage extends TemplatePage {
-
+  private static final String CASE_INFO_IFRAME_ID = "i-frame-case-details";
   @Override
   protected String getLoadedLocator() {
     return "#content-container";
@@ -30,7 +31,33 @@ public class TaskTemplatePage extends TemplatePage {
     return $("span[id='title']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  public void openCaseInfo() {
+    waitForElementClickableThenClick("[id='horizontal-case-info']");
+    waitForElementDisplayed(By.cssSelector("[id$='i-frame-case-details']"), true);
+    driver.switchTo().defaultContent();
+  }
 
+  public void switchToCaseInfoIframe() {
+    WaitHelper.waitForIFrameAvailable(driver, CASE_INFO_IFRAME_ID);
+  }
+  public void addNewNote(String content) {
+    switchToCaseInfoIframe();
+    waitForElementClickableThenClick("a[id$='add-note-command']");
+    waitForElementDisplayed(By.cssSelector("div[id$='add-note-dialog']"), true);
+    findElementByCssSelector("textarea[id$='note-content']").sendKeys(content);
+    int beginCounts = countNoteItems();
+    waitForElementClickableThenClick("button[id$='save-add-note-command']");
+    WaitHelper.assertTrueWithWait(() -> countNoteItems() != beginCounts);
+  }
+
+  public int countNoteItems() {
+    return $$("a[id$=':note-link']").size();
+  }
+
+  public String getCaseName() {
+    driver.switchTo().defaultContent();
+    return findElementByCssSelector("span[id$='case-info-dialog_title']").getText().split(":")[1].trim();
+  }
   public SelenideElement getElementInPortalIFramTask(String cssSelector) {
     WaitHelper.waitForIFrameAvailable(WebDriverRunner.getWebDriver(), "iFrame");
     return $(cssSelector);
