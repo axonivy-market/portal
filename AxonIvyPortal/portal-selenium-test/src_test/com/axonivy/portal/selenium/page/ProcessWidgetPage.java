@@ -41,7 +41,7 @@ public class ProcessWidgetPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return ".view-mode-text";
+    return "[id$=':process-list']";
   }
 
   public class AddNewExternalLinkDialog {
@@ -251,8 +251,8 @@ public class ProcessWidgetPage extends TemplatePage {
     SelenideElement startProcessItemElement = null;
     List<SelenideElement> processItems = processListElement.$$(".js-process-start-list-item");
     for (SelenideElement process : processItems) {
-      SelenideElement processNameElement = process.$(".js-process-start-list-item-name").shouldBe(appear, DEFAULT_TIMEOUT);
-      if (processName.equalsIgnoreCase(processNameElement.getText())) {
+      SelenideElement processNameElement = process.$(".js-process-start-list-item-name");
+      if (processNameElement.isDisplayed() && processName.equalsIgnoreCase(processNameElement.getText())) {
         startProcessItemElement = process.$("[id$=':process-item:start-button']");
         break;
       }
