@@ -103,12 +103,12 @@ public class AdminSettingsPage extends TemplatePage {
 
   public boolean isWarningDialogShowWhenTimeoutIsLosing() {
     waitForElementDisplayed(By.cssSelector("div[id$=':timeout-warning-dialog']"), true, 121);
-    return isElementDisplayed(By.cssSelector("div[id$=':timeout-warning-dialog']"));
+    return $(By.cssSelector("div[id$=':timeout-warning-dialog']")).shouldBe(Condition.appear, DEFAULT_TIMEOUT).isDisplayed();
   }
 
   public boolean isInformDialogShowAfterTimeout() {
     waitForElementDisplayed(By.id("warning-before-lost-session:timeout-dialog"), true, 181);
-    return isElementDisplayed(By.id("warning-before-lost-session:timeout-dialog"));
+    return $(By.id("warning-before-lost-session:timeout-dialog")).shouldBe(Condition.appear, DEFAULT_TIMEOUT).isDisplayed();
   }
 
   public AnnouncementPage openAnnouncementTab() {

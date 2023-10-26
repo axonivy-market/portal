@@ -873,6 +873,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public boolean isRelatedCaseListColumnExist(String columnClass) {
     try {
+      waitPageLoaded();
       return $(By.cssSelector(".related-cases-container th." + columnClass)).shouldBe(exist, DEFAULT_TIMEOUT).isDisplayed();
     } catch (NoSuchElementException e) {
       return false;

@@ -36,6 +36,7 @@ public class ClientSideTimeoutTest extends BaseTest {
   
   private AdminSettingsPage setupClientSideTimeout2Minutes() {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitPageLoaded();
     AdminSettingsPage adminSettingPage = newDashboardPage.openAdminSettings();
     adminSettingPage.setClientSideTimeout("2");
     refreshPage();
