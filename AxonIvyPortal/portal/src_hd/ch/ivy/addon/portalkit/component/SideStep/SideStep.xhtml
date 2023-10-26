@@ -58,13 +58,13 @@
       styleClass="option-item" onstart="event.stopPropagation();"
       oncomplete="#{cc.attrs.onDelegateComplete}" global="false"
       actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
-      update="@parent #{cc.attrs.componentToUpdate} @widgetVar(task-delegate-dialog)" process="@this">
+      update="@parent  @widgetVar(task-delegate-dialog)" process="@this">
       <i class="option-action-icon si si-road-sign-u-turn-right" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}</span>
     </p:commandLink>
 
     <p:commandLink id="task-reserve-command" disabled="#{!taskActionBean.canPark(task)}" rendered="#{taskActionBean.showReserveTask}" onstart="event.stopPropagation();"
-      styleClass="option-item" actionListener="#{logic.parkTask(task)}" update="@parent #{cc.attrs.componentToUpdate}">
+      styleClass="option-item" actionListener="#{logic.parkTask(task)}" update="@parent">
       <i class="option-action-icon si si-navigation-right-circle" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}</span>
     </p:commandLink>
@@ -82,7 +82,7 @@
     </p:commandLink>
     
     <p:commandLink id="task-destroy-command" disabled="#{!taskActionBean.canDestroyTask(task)}" rendered="#{taskActionBean.showDestroyTask}"
-      styleClass="option-item" update="@parent #{cc.attrs.componentToUpdate}"
+      styleClass="option-item" update="@parent"
       actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
       oncomplete="#{cc.attrs.onDestroyComplete}" process="@this" global="false">
       <i class="option-action-icon si si-remove" />
