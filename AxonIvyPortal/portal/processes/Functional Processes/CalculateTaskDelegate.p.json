@@ -70,7 +70,7 @@
             "params.put(\"task\", in.task);",
             "",
             "List result = IvyAdapterService.startSubProcessesInSecurityContext(PortalCustomSignature.DELEGATE.getSignature(), params);",
-            "in.hasCustomProcess = result != null;",
+            "in.hasCustomProcess = #result is initialized;",
             "",
             "if (in.hasCustomProcess) {",
             "",
