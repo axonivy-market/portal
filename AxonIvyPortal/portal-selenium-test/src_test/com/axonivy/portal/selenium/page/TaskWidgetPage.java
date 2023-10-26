@@ -30,6 +30,7 @@ public class TaskWidgetPage extends TemplatePage {
   private static final String ID_END = "*[id$='";
   private static final String TASK_STATE_COMPONENT_ID = "task-widget:task-list-scroller:%d:task-item:task-state-component:task-state";
   private static final String TASK_ACTION = "horizontal-task-actions";
+
   public TaskWidgetPage() {
     this("task-widget");
   }
@@ -113,9 +114,8 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void waitTillNameOfFirstTaskToBe(String name) {
-    $("div[id$='task-widget:task-view-container']").shouldBe(appear, DEFAULT_TIMEOUT)
-      .$("[id='task-widget:task-list-scroller:0:task-item:task-name-component:task-name']")
-      .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(Condition.text(name), DEFAULT_TIMEOUT);
+    $("div[id$='task-widget:task-view-container']").shouldBe(appear, DEFAULT_TIMEOUT).$("[id='task-widget:task-list-scroller:0:task-item:task-name-component:task-name']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldBe(Condition.text(name), DEFAULT_TIMEOUT);
   }
 
   public void clickOnTaskActionLink(int taskIndex) {
@@ -412,7 +412,9 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public CaseDetailsPage openRelatedCaseOfTask() {
-    WaitHelper.waitForNavigation(() -> {$("a[id$='related-case']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();});
+    WaitHelper.waitForNavigation(() -> {
+      $("a[id$='related-case']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    });
     return new CaseDetailsPage();
   }
 
@@ -425,8 +427,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public String getReserveTaskLinkSelector(int taskId) {
-    String reserveCommandButton = String.format(
-        "task-widget:task-list-scroller:%d:task-item:task-action:additional-options:task-reserve-command", taskId);
+    String reserveCommandButton = String.format("task-widget:task-list-scroller:%d:task-item:task-action:additional-options:task-reserve-command", taskId);
     return "[id='" + reserveCommandButton + "']";
   }
 
@@ -451,8 +452,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   private SelenideElement getStartTaskElement(int index) {
-    String startCommandButton =
-        String.format("task-widget:task-list-scroller:%d:task-item:task-action:task-action-component", index);
+    String startCommandButton = String.format("task-widget:task-list-scroller:%d:task-item:task-action:task-action-component", index);
     return $("[id='" + startCommandButton + "']");
   }
 

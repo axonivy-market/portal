@@ -257,6 +257,7 @@ public abstract class TemplatePage extends AbstractPage {
 
   public MainMenuPage openMainMenu() {
     if (!isMainMenuOpen()) {
+      waitForElementDisplayed(By.id("left-menu"), true);
       $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover();
       Sleeper.sleep(500);
       waitForElementClickableThenClick($(By.id("user-menu-required-login:toggle-menu")));
