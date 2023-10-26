@@ -36,6 +36,11 @@ public abstract class AbstractProcessBean implements Serializable {
 
   private static final long serialVersionUID = -8450309463672220642L;
   protected static final String SLASH = "/";
+  protected static final String UNDERSCORE_BLANK = "_blank";
+  protected static final String UNDERSCORE_SELF  = "_self";
+  protected static final String DOT_ICM  = ".icm";
+  protected static final String CUSTOM_FIELD_ADDITIONAL_INFO = "additionalInfo";
+  protected static final String CUSTOM_FIELD_OVERRIDEN_TEMPLATE = "overridenTemplate";
   private List<Process> portalProcesses;
 
   public synchronized void init() {
@@ -123,11 +128,11 @@ public abstract class AbstractProcessBean implements Serializable {
   }
 
   public boolean isCaseMap(Process process) {
-    return !Objects.isNull(process) && process.getStartLink().endsWith(".icm");
+    return !Objects.isNull(process) && process.getStartLink().endsWith(DOT_ICM);
   }
 
   public String targetToStartProcess(Process process) {
-    return process.getType() == ProcessType.EXTERNAL_LINK ? "_blank" : "_self";
+    return process.getType() == ProcessType.EXTERNAL_LINK ? UNDERSCORE_BLANK : UNDERSCORE_SELF;
   }
 
   public String getDisplayProcessCategory(Process process) {
@@ -148,12 +153,18 @@ public abstract class AbstractProcessBean implements Serializable {
     Boolean hasProcessInfo = false;
     List<ProcessStep> processSteps = null;
     Object nestedProcess = process.getProcess();
+    String additionalInfo = null;
+    String overridenTemplate = null;
+    Boolean isCustomFieldsExist = false;
     if (nestedProcess instanceof IWebStartable) {
       processSteps = ProcessStepUtils.findProcessStepsOfProcess(UserProcessMapper.toUserProcess(((IWebStartable) nestedProcess)));
+      additionalInfo = ((IWebStartable) nestedProcess).customFields().value(CUSTOM_FIELD_ADDITIONAL_INFO);
+      overridenTemplate = ((IWebStartable) nestedProcess).customFields().value(CUSTOM_FIELD_OVERRIDEN_TEMPLATE);
+      isCustomFieldsExist = StringUtils.isNotEmpty(overridenTemplate) || StringUtils.isNotEmpty(additionalInfo);
     } else if (nestedProcess instanceof DashboardProcess) {
       processSteps = ProcessStepUtils.findProcessStepsOfProcess(UserProcessMapper.toUserProcess(((DashboardProcess) nestedProcess)));
     }
-    hasProcessInfo = processSteps != null && processSteps.size() > 0;
+    hasProcessInfo = (processSteps != null && processSteps.size() > 0) || isCustomFieldsExist;
     return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_PROCESS_INFORMATION) && hasProcessInfo;
   }
 }
