@@ -76,8 +76,8 @@
             "for (IWebStartable process : in.userProcesses) {",
             "  if (process.getId().contentEquals(in.processId)) {",
             "    in.setSelectedProcess(UserProcessMapper.toUserProcess(process));",
-            "    in.additionalInfo = process.customFields().value(\"additionalInfo\");",
-            "    in.overridenTemplate = process.customFields().value(\"overridenTemplate\");",
+            "    in.additionalInfo = HtmlParser.sanitizeHTML(process.customFields().value(\"additionalInfo\"));",
+            "    in.overridenTemplate = HtmlParser.sanitizeHTML(process.customFields().value(\"overridenTemplate\"));",
             "  }",
             "}"
           ]
