@@ -45,6 +45,7 @@ public class MenuTest extends BaseTest {
   public void testKeepOpenStateWhenNavigateToAnotherPage() {
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitPageLoaded();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     TaskWidgetPage taskWidgetPage = mainMenuPage.selectTaskMenu();
     assertTrue(taskWidgetPage.isMainMenuOpen());
@@ -54,6 +55,7 @@ public class MenuTest extends BaseTest {
   public void testKeepClosedStateWhenNavigateToAnotherPage() {
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitPageLoaded();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     StatisticWidgetPage dashboardPage = mainMenuPage.selectStatisticDashboard();
     dashboardPage.waitForPageLoad();
@@ -71,6 +73,7 @@ public class MenuTest extends BaseTest {
     // to refresh cache
     login(TestAccount.ADMIN_USER);
     NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitPageLoaded();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     mainMenuPage.clickThirdPartyApp();
 
