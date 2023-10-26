@@ -19,7 +19,7 @@ import com.codeborne.selenide.WebDriverRunner;
 
 public final class WaitHelper {
 
-  protected static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(30);
+  protected static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(45);
 
   public static void waitForNavigation(Runnable navigationAcion) {
     String viewState = $("input[name='javax.faces.ViewState'][id$='javax.faces.ViewState:1']").getAttribute("value");

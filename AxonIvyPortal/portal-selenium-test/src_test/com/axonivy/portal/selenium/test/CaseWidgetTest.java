@@ -300,13 +300,13 @@ public class CaseWidgetTest extends BaseTest {
     detailsPage.clickRelatedCaseDefaultCheckbox();
     detailsPage.clickRelatedCaseColumnCheckbox(4);
     detailsPage.clickRelatedCaseApplyButton();
-    WaitHelper.assertTrueWithWait(() -> !detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_CREATED_COLUMN));
+    WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedCaseListColumnNotExist(RELATED_CASE_CREATED_COLUMN));
     WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_STATE_COLUMN));
     detailsPage.clickRelatedCaseColumnsButton();
     detailsPage.clickRelatedCaseColumnCheckbox(4);
     detailsPage.clickRelatedCaseColumnCheckbox(6);
     detailsPage.clickRelatedCaseApplyButton();
     WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_CREATED_COLUMN));
-    WaitHelper.assertTrueWithWait(() -> !detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_STATE_COLUMN));
+    WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedCaseListColumnNotExist(RELATED_CASE_STATE_COLUMN));
   }
 }
