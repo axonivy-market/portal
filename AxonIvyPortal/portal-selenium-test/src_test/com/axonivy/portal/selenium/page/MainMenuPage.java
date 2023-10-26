@@ -117,6 +117,7 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public void clickThirdPartyApp() {
+    waitForElementDisplayed($(By.id("user-menu-required-login:toggle-menu")), true);
     waitForElementDisplayed(By.cssSelector("li[class*='thirdparty-menu-item'] > a"), true);
     waitForElementClickableThenClick($("li[class*='thirdparty-menu-item'] > a"));
   }
