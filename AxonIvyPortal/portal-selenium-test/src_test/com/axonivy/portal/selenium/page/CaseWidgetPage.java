@@ -297,7 +297,7 @@ public class CaseWidgetPage extends TemplatePage {
     try {
       openActionStepMenu();
       waitForElementDisplayed(By.cssSelector("div[id$='action-steps-panel']"), true);
-      return isElementDisplayed(By.cssSelector("a[id$='destroy-case'"));
+      return !$$(By.cssSelector("a[id$='destroy-case'")).isEmpty();
     } catch (Exception ex) {
       return false;
     }
