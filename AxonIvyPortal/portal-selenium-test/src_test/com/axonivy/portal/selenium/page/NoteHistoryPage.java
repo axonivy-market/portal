@@ -42,6 +42,7 @@ public class NoteHistoryPage extends TemplatePage {
 
   public String getNoteContentOfRow(int index) {
     WebElement firstRow = WebDriverRunner.getWebDriver().findElements(By.cssSelector(TABLE_ROWS_PATH)).get(index);
+    SelenideElement element = $$(By.cssSelector(TABLE_ROWS_PATH)).get(index);
     return firstRow.findElements(By.xpath("td")).get(0).getText();
   }
 
