@@ -109,13 +109,13 @@ public class CaseWidgetTest extends BaseTest {
   @Test
   public void testOpenAdditionalCaseDetailsPage() throws Exception {
     openAdditionalCaseDetailsPage(createTestingCaseUrlForDefaultAdditionalCaseDetails, LEAVE_REQUEST_DEFAULT_CASE_DETAILS_PAGE_CASE_NAME);
-    validateAdditionalCaseDetailsPage(13, "Customer name");
+    validateAdditionalCaseDetailsPage(13, "Customer name", false);
   }
   
   @Test
   public void testOpenCustomizationAdditionalCaseDetailsPage() throws Exception {
     openAdditionalCaseDetailsPage(createTestingCaseUrlForCustomizationAdditionalCaseDetails, INVESTMENT_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME);
-    validateAdditionalCaseDetailsPage(4, "Apartment A");
+    validateAdditionalCaseDetailsPage(4, "Apartment A", true);
   }
   
   @Test
@@ -155,10 +155,14 @@ public class CaseWidgetTest extends BaseTest {
     mainMenuPage.waitPageLoaded();
   }
   
-  private void validateAdditionalCaseDetailsPage(int expectedNumberOfFields, String expectedFirstFieldValue){
+  private void validateAdditionalCaseDetailsPage(int expectedNumberOfFields, String expectedFirstFieldValue, boolean isIframe) {
     int numberOfFields;
     try {
-      numberOfFields = additionalCaseDetailsPage.countFields();
+      if (isIframe) {
+        numberOfFields = additionalCaseDetailsPage.countFieldsInIframe();
+      } else {
+        numberOfFields = additionalCaseDetailsPage.countFields();
+      }
     } catch (TimeoutException e) { // sometimes session is destroyed (don't know reason why!!!) so we cannot reach the page
         System.out.println("Stop testOpenCustomizationAdditionalCaseDetailsPage test here because session is destroyed");
         return ;
@@ -287,6 +291,7 @@ public class CaseWidgetTest extends BaseTest {
   public void testRelatedCaseEnableAndDisableColumns() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitPageLoaded();
     CaseWidgetPage casePage = newDashboardPage.openCaseList();
     CaseDetailsPage detailsPage = casePage.openDetailsOfCaseHasName(ORDER_PIZZA);
     assertTrue(detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_CREATED_COLUMN));

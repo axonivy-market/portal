@@ -144,7 +144,7 @@ public abstract class TemplatePage extends AbstractPage {
   public boolean isElementDisplayed(By element) {
     try {
       waitPageLoaded();
-      return $(element).isDisplayed();
+      return $(element).shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
     } catch (Exception e) {
       return false;
     }
