@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -708,8 +709,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public String getResponsibleOfRelatedTaskAt(String taskName) {
-    String responsible = $$("tr.ui-widget-content").asFixedIterable().stream().filter(row -> row.$(".task-name-value").getText().equals(taskName)).map(row -> row.$(".name-after-avatar").getText()).findAny().get();
-    return responsible;
+    Optional<SelenideElement> responsible = $$("tr.ui-widget-content").asFixedIterable().stream().filter(row -> row.$(".task-name-value").getText().equals(taskName)).findFirst();
+    return responsible.get().$(".name-after-avatar").getText();
   }
 
   public void openTaskDelegateDialog(String taskName) {
@@ -720,7 +721,6 @@ public class CaseDetailsPage extends TemplatePage {
     }
 
     waitForElementDisplayed(By.cssSelector("a[id$='\\:task-delegate-command']"), true);
-//    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> findElementByCssSelector("a[id$='\\:task-delegate-command']").isDisplayed());
     waitForElementClickableThenClick($("a[id$='\\:task-delegate-command']"));
     waitForElementDisplayed(By.cssSelector("div[id$='task-delegate-dialog']"), true);
   }
@@ -875,8 +875,14 @@ public class CaseDetailsPage extends TemplatePage {
     WebElement column = findElementByCssSelector(".related-cases-container th." + columnClass);
     return column != null && column.isDisplayed();
   }
+
+  public boolean isRelatedCaseListColumnNotExist(String columnClass) {
+    WebElement column = $(".related-cases-container th." + columnClass);
+    return column != null && column.isDisplayed();
+  }
   public void clickRelatedCaseColumnsButton() {
-    waitForElementClickableThenClick($(("a[id$='case-config-button']")));
+    $("a[id$='case-config-button']").shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick($("a[id$='case-config-button']"));
     waitForElementDisplayed($("label[for$='related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox:3']"), true);
   }
 
