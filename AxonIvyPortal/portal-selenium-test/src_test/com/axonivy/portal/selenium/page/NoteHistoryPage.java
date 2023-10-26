@@ -15,7 +15,7 @@ import com.codeborne.selenide.WebDriverRunner;
 public class NoteHistoryPage extends TemplatePage {
 
   private static final String TABLE_ROWS_PATH = "div[id*='notes-table'] table>tbody>tr";
-  
+
   @Override
   protected String getLoadedLocator() {
     return "[id='form:notes-table']";
@@ -42,7 +42,6 @@ public class NoteHistoryPage extends TemplatePage {
 
   public String getNoteContentOfRow(int index) {
     WebElement firstRow = WebDriverRunner.getWebDriver().findElements(By.cssSelector(TABLE_ROWS_PATH)).get(index);
-    SelenideElement element = $$(By.cssSelector(TABLE_ROWS_PATH)).get(index);
     return firstRow.findElements(By.xpath("td")).get(0).getText();
   }
 
@@ -53,14 +52,13 @@ public class NoteHistoryPage extends TemplatePage {
   public String getCaseState() {
     return findElementById("form:case-state:case-state-cell").getText();
   }
-  
+
   public String getCaseId() {
     return findElementById("form:case-id").getText();
   }
-  
+
   public List<String> getNoteAuthors() {
-    List<SelenideElement> noteAuthorElements =
-        $$("td.note-history-fullname-column .name-after-avatar");
+    List<SelenideElement> noteAuthorElements = $$("td.note-history-fullname-column .name-after-avatar");
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
 

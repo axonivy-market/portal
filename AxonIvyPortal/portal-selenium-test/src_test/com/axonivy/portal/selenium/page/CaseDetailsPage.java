@@ -74,11 +74,15 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void addNote(String noteContent) {
-    $("a[id$=':case-histories:add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("div[id$=':case-histories:add-note-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
-    $("div[id$=':case-histories:add-note-dialog']").find("textarea").sendKeys(noteContent);
-    $("button[id$=':case-histories:add-note-form:save-add-note-command']").click();
-    $("div[id$=':case-histories:add-note-form:save-add-note-command']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    onClickHistoryIcon();
+    waitAjaxIndicatorDisappear();
+
+    waitForElementDisplayed(By.cssSelector("div.ui-dialog[aria-hidden='false']"), true);
+    SelenideElement addNoteDialog = findElementByCssSelector("div.ui-dialog[aria-hidden='false']");
+    waitForElementDisplayed(By.cssSelector("div.ui-dialog[aria-hidden='false']"), true);
+    addNoteDialog.findElement(By.cssSelector("textarea[id$='note-content']")).sendKeys(noteContent);
+    waitForElementClickableThenClick(addNoteDialog.$(By.cssSelector("button[id$='save-add-note-command']")));
+    waitAjaxIndicatorDisappear();
   }
 
   public ElementsCollection getNotesWithContent(String content) {
@@ -877,12 +881,13 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public boolean isRelatedCaseListColumnNotExist(String columnClass) {
-    WebElement column = $(".related-cases-container th." + columnClass);
-    return column != null && column.isDisplayed();
+    List<SelenideElement> columns = $$(".related-cases-container th." + columnClass);
+    return !columns.isEmpty() && !columns.get(0).isDisplayed();
   }
+
   public void clickRelatedCaseColumnsButton() {
-    $("a[id$='case-config-button']").shouldBe(appear, DEFAULT_TIMEOUT);
-    waitForElementClickableThenClick($("a[id$='case-config-button']"));
+    $("a[id$='case-config-button']").shouldBe(Condition.exist, DEFAULT_TIMEOUT);
+    clickByJavaScript($("a[id$='case-config-button']"));
     waitForElementDisplayed($("label[for$='related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox:3']"), true);
   }
 

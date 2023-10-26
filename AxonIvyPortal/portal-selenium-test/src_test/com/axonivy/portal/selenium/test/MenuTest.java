@@ -44,6 +44,7 @@ public class MenuTest extends BaseTest {
   @Test
   public void testKeepOpenStateWhenNavigateToAnotherPage() {
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    login(TestAccount.ADMIN_USER);
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitPageLoaded();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
@@ -54,6 +55,7 @@ public class MenuTest extends BaseTest {
   @Test
   public void testKeepClosedStateWhenNavigateToAnotherPage() {
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    login(TestAccount.ADMIN_USER);
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitPageLoaded();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
