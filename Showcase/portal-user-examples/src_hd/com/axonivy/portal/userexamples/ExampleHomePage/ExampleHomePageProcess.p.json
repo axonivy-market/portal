@@ -13,10 +13,12 @@
         "callSignature" : "start",
         "result" : {
           "params" : [
-            { "name" : "state", "type" : "com.axonivy.portal.userexamples.enums.RequestState" }
+            { "name" : "state", "type" : "com.axonivy.portal.userexamples.enums.RequestState" },
+            { "name" : "process", "type" : "ch.ivy.addon.portalkit.configuration.UserProcess" }
           ],
           "map" : {
-            "result.state" : "in.state"
+            "result.state" : "in.state",
+            "result.process" : "in.process"
           }
         },
         "guid" : "1723A6F02AC488D2"
