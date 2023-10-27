@@ -89,14 +89,17 @@ public class UserFilterCollection implements Serializable {
   public void updateUserFilterOptionValue(DashboardWidget widget) {
     latestFilterOption = new WidgetFilterModel(widget.getName(), widget.getType());
     List<ColumnModel> columns = new ArrayList<>();
-    if (DashboardWidgetType.TASK == widget.getType()) {
-      columns = ((TaskDashboardWidget) widget).getFilterableColumns();
-    } else if (DashboardWidgetType.CASE == widget.getType()) {
-      columns = ((CaseDashboardWidget) widget).getFilterableColumns();
-    } else if (DashboardWidgetType.PROCESS == widget.getType()) {
-      columns = ((CompactProcessDashboardWidget) widget).getFilterableColumns();
+
+    if (widget.getType() == DashboardWidgetType.CASE) {
+      latestFilterOption.setUserFilters(((CaseDashboardWidget) widget).getUserFilters());
+    } else {
+      if (DashboardWidgetType.TASK == widget.getType()) {
+        columns = ((TaskDashboardWidget) widget).getFilterableColumns();
+      } else if (DashboardWidgetType.PROCESS == widget.getType()) {
+        columns = ((CompactProcessDashboardWidget) widget).getFilterableColumns();
+      }
+      latestFilterOption.addFilterableColumns(columns);
     }
-    latestFilterOption.addFilterableColumns(columns);
     setSelectedWidgetFilterIds(ListUtilities.transformList(getSelectedWidgetFilters(), WidgetFilterModel::getId));
   }
 

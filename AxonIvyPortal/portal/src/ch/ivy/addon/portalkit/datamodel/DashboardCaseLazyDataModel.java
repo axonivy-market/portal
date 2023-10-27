@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -88,6 +89,11 @@ public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
       IvyThreadContext.reset();
     });
     isFirstTime = true;
+  }
+
+  public void reload() {
+    Optional.ofNullable(cases).ifPresent(List::clear);
+    loadFirstTime();
   }
 
   @Override

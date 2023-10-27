@@ -52,4 +52,7 @@ public class NewsDashboardWidget extends DashboardWidget implements Serializable
   public void setNewsList(List<News> newsList) {
     this.newsList = newsList;
   }
+
+  @Override
+  public void cancelUserFilter() {}
 }

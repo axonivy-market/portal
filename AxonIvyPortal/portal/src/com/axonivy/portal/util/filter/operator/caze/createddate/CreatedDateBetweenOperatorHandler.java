@@ -21,8 +21,8 @@ public class CreatedDateBetweenOperatorHandler extends AbstractFilterOperatorHan
 
   
   public CaseQuery buildBetweenQuery(DashboardFilter filter) {
-    Date from = PortalDateUtils.getStartOfDate(filter.getFrom());
-    Date to = PortalDateUtils.getEndOfDate(filter.getTo());
+    Date from = PortalDateUtils.getStartOfDate(filter.getFromDate());
+    Date to = PortalDateUtils.getEndOfDate(filter.getToDate());
 
     if (from == null && to == null) {
       return null;
@@ -40,8 +40,8 @@ public class CreatedDateBetweenOperatorHandler extends AbstractFilterOperatorHan
   }
 
   public CaseQuery buildNotBetweenQuery(DashboardFilter filter) {
-    Date from = PortalDateUtils.getStartOfDate(filter.getFrom());
-    Date to = PortalDateUtils.getEndOfDate(filter.getTo());
+    Date from = PortalDateUtils.getStartOfDate(filter.getFromDate());
+    Date to = PortalDateUtils.getEndOfDate(filter.getToDate());
 
     CaseQuery subQuery = CaseQuery.create();
     if (from != null && to != null) {

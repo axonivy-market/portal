@@ -17,6 +17,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.service.DeepLTranslationService;
 
 import ch.addon.portal.generic.menu.MenuView;
@@ -316,12 +317,25 @@ public class DashboardBean implements Serializable {
       widget.getUserFilterCollection().getSelectedWidgetFilters().add(filter);
     }
 
+    if (widget.getType() == DashboardWidgetType.CASE) {
+      CaseDashboardWidget caseWidget = ((CaseDashboardWidget) widget);
+
+      if (CollectionUtils.isEmpty(caseWidget.getUserFilters())) {
+        caseWidget.setUserFilters(new ArrayList<>());
+      }
+
+      List<DashboardFilter> savedFilters = caseWidget.getUserFilterCollection()
+          .getSelectedWidgetFilters().stream()
+          .map(WidgetFilterModel::getUserFilters)
+          .filter(list -> CollectionUtils.isNotEmpty(list))
+          .collect(ArrayList::new, List::addAll, List::addAll);
+      caseWidget.setUserFilters(savedFilters);
+      return;
+    }
+
     var filterableColumns = new ArrayList<ColumnModel>();
     if (DashboardWidgetType.TASK == widget.getType()) {
       filterableColumns.addAll(((TaskDashboardWidget) widget).getFilterableColumns());
-    }
-    if (DashboardWidgetType.CASE == widget.getType()) {
-      filterableColumns.addAll(((CaseDashboardWidget) widget).getFilterableColumns());
     }
     if (DashboardWidgetType.PROCESS == widget.getType()) {
       filterableColumns.addAll(((CompactProcessDashboardWidget) widget).getFilterableColumns());

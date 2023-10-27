@@ -6,8 +6,6 @@ import java.util.List;
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.migration.common.AbstractJsonConverterFactory;
 import com.axonivy.portal.migration.common.IJsonConverter;
-import com.axonivy.portal.migration.dashboardfilter.converter.v112.DashboardCaseWidgetFilterConverter;
-import com.axonivy.portal.migration.dashboardfilter.converter.v112.DashboardTaskWidgetFilterConverter;
 
 public class JsonDashboardFilterConverterFactory extends AbstractJsonConverterFactory {
 
@@ -18,12 +16,17 @@ public class JsonDashboardFilterConverterFactory extends AbstractJsonConverterFa
   }
 
   private static final List<IJsonConverter> LE112 = List.of(
-      new DashboardCaseWidgetFilterConverter(),
-      new DashboardTaskWidgetFilterConverter()
+      new com.axonivy.portal.migration.dashboardfilter.converter.v112.DashboardCaseWidgetFilterConverter(),
+      new com.axonivy.portal.migration.dashboardfilter.converter.v112.DashboardTaskWidgetFilterConverter()
+    );
+
+  private static final List<IJsonConverter> LE113 = List.of(
+      new com.axonivy.portal.migration.dashboardfilter.converter.v113.DashboardCaseWidgetFilterConverter()
     );
 
   static {
     CONVERTERS.addAll(LE112);
+    CONVERTERS.addAll(LE113);
   }
 
   

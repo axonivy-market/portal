@@ -1767,15 +1767,15 @@ Labels:
     DashboardStandardCaseColumn:
       ACTIONS: Actions
       APPLICATION: Application
-      CATEGORY: Category
-      CREATED: Created Date
-      CREATOR: Creator
+      CATEGORY: Catégorie
+      CREATED: Date de création
+      CREATOR: Créateur
       DESCRIPTION: Description
-      FINISHED: Finished Date
+      FINISHED: Date d'achèvement
       ID: Id
-      NAME: name
-      OWNER: Case Owner
-      STATE: State
+      NAME: Nom
+      OWNER: Propriétaire du dossier
+      STATE: État
     FilterOperator:
       AFTER: Est après
       BEFORE: Est avant

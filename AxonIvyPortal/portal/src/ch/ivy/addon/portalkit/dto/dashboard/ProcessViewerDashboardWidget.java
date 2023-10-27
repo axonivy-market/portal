@@ -82,4 +82,6 @@ public class ProcessViewerDashboardWidget extends DashboardWidget {
     return process != null ? process.getStartLink() : "";
   }
 
+  @Override
+  public void cancelUserFilter() {}
 }
