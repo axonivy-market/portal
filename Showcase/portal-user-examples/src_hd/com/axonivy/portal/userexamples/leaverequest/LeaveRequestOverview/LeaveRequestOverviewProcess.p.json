@@ -11,12 +11,12 @@
       "name" : "start()",
       "config" : {
         "signature" : "start",
-        "input" : {
+        "result" : {
           "params" : [
-            { "name" : "userProcess", "type" : "ch.ivy.addon.portalkit.configuration.UserProcess", "desc" : "" }
+            { "name" : "state", "type" : "com.axonivy.portal.userexamples.enums.RequestState", "desc" : "" }
           ],
           "map" : {
-            "out.userProcess" : "param.userProcess"
+            "result.state" : "in.state"
           }
         },
         "guid" : "172591B4F815A757"
@@ -90,7 +90,13 @@
       "type" : "HtmlDialogEventStart",
       "name" : "cancel",
       "config" : {
-        "guid" : "17298017D25BAF7E"
+        "guid" : "17298017D25BAF7E",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.state" : "com.axonivy.portal.userexamples.enums.RequestState.CANCEL"
+          }
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 256 },
@@ -101,14 +107,9 @@
       ]
     }, {
       "id" : "f9",
-      "type" : "DialogCall",
-      "name" : "ExampleHomePage",
-      "config" : {
-        "dialog" : "com.axonivy.portal.userexamples.ExampleHomePage:start()"
-      },
+      "type" : "HtmlDialogExit",
       "visual" : {
-        "at" : { "x" : 224, "y" : 256 },
-        "size" : { "width" : 128, "height" : 60 }
+        "at" : { "x" : 224, "y" : 256 }
       }
     } ]
 }
