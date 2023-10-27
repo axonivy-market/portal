@@ -261,6 +261,11 @@ public abstract class DashboardWidget implements Serializable {
     this.userFilterCollection = userFilterCollection;
   }
 
+  @JsonIgnore
+  public Integer[] loadingItems() {
+    return new Integer[5];
+  }
+
   @Override
   public int hashCode() {
     final int prime = 31;
