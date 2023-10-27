@@ -5,9 +5,11 @@ import static ch.ivy.addon.portalkit.constant.DashboardConstants.REMOTE_COMMAND_
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.SortMeta;
 
@@ -152,7 +154,13 @@ public class CaseDashboardWidget extends DashboardWidget {
   @JsonIgnore
   @Override
   public void onApplyUserFilters() {
-    this.getUserFilters().forEach(filter -> filter.setTemp(false));
+    setUserFilters(this.getUserFilters().stream()
+      .filter(Objects::nonNull)
+      .filter(filter -> StringUtils.isNotBlank(filter.getField()))
+      .collect(Collectors.toList()));
+
+    getUserFilters().forEach(filter -> filter.setTemp(false));
+
     var filterService = WidgetFilterService.getInstance();
     userFilterCollection.updateUserFilterOptionValue(this);
     filterService.storeUserSelectedFiltersToSession(id, getType(), userFilterCollection);
