@@ -1,0 +1,59 @@
+{
+  "format" : "10.0.0",
+  "id" : "15F6AF4140FEAD47",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portal.generic.ProcessNavigator.ProcessNavigatorData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start()",
+      "config" : {
+        "callSignature" : "start",
+        "guid" : "15F6AF414726293F"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "HtmlDialogEventStart",
+      "name" : "openProcess",
+      "config" : {
+        "guid" : "15F6AF4C4B321D1E"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 144 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portal.generic.navigation.PortalNavigator;",
+            "PortalNavigator.navigateToPortalProcess();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 144 }
+      },
+      "connect" : { "id" : "f7", "to" : "f5" }
+    }, {
+      "id" : "f5",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 144 }
+      }
+    } ]
+}
