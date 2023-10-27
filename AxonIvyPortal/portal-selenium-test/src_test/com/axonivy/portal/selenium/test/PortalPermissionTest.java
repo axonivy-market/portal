@@ -68,18 +68,18 @@ public class PortalPermissionTest extends BaseTest{
     createTestingTasks();
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.waitPageLoaded();
-    assertFalse(taskWidgetPage.isTaskResetDisplayed());
-    assertFalse(taskWidgetPage.isTaskDelegateDisplayed());
-    assertFalse(taskWidgetPage.isTaskReserverDisplayed());
-    assertFalse(taskWidgetPage.isAdhocSideStepDisplayed());
+    assertTrue(taskWidgetPage.isTaskResetDisplayed(false));
+    assertTrue(taskWidgetPage.isTaskDelegateDisplayed(false));
+    assertTrue(taskWidgetPage.isTaskReserverDisplayed(false));
+    assertTrue(taskWidgetPage.isAdhocSideStepDisplayed(false));
     
     grantTaskActionsPermissions();
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.sideStepMenuOnActionButton(0);
-    assertTrue(taskWidgetPage.isTaskResetDisplayed());
-    assertTrue(taskWidgetPage.isTaskDelegateDisplayed());
-    assertTrue(taskWidgetPage.isTaskReserverDisplayed());
-    assertTrue(taskWidgetPage.isAdhocSideStepDisplayed());
+    assertTrue(taskWidgetPage.isTaskResetDisplayed(true));
+    assertTrue(taskWidgetPage.isTaskDelegateDisplayed(true));
+    assertTrue(taskWidgetPage.isTaskReserverDisplayed(true));
+    assertTrue(taskWidgetPage.isAdhocSideStepDisplayed(true));
   }
   
   @Test
@@ -92,27 +92,27 @@ public class PortalPermissionTest extends BaseTest{
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
-    assertFalse(caseDetailsPage.isAddNoteButtonDisplayed());
-    assertFalse(caseDetailsPage.isShowMoreNoteButtonDisplayed());
-    assertFalse(caseDetailsPage.isAddDocumentLinkDisplayed());
+    assertTrue(caseDetailsPage.isAddNoteButtonDisplayed(false));
+    assertTrue(caseDetailsPage.isShowMoreNoteButtonDisplayed(false));
+    assertTrue(caseDetailsPage.isAddDocumentLinkDisplayed(false));
     TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
     TaskDetailsPage taskDetailsPage = taskWidgetPage.openTaskDetails(0);
-    assertFalse(taskDetailsPage.isAddNoteButtonDisplayed());
-    assertFalse(taskDetailsPage.isShowMoreNoteButtonDisplayed());
-    assertFalse(taskDetailsPage.isAddDocumentLinkDisplayed());
+    assertTrue(taskDetailsPage.isAddNoteButtonDisplayed(false));
+    assertTrue(taskDetailsPage.isShowMoreNoteButtonDisplayed(false));
+    assertTrue(taskDetailsPage.isAddDocumentLinkDisplayed(false));
     
     grantShowHideNotePermissions();
     grantDocumentOfInvolvedCaseWritePemissionToCurrentUser();
     mainMenuPage.openCaseList();
     caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
-    assertTrue(caseDetailsPage.isAddNoteButtonDisplayed());
-    assertTrue(caseDetailsPage.isShowMoreNoteButtonDisplayed());
-    assertTrue(caseDetailsPage.isAddDocumentLinkDisplayed());
+    assertTrue(caseDetailsPage.isAddNoteButtonDisplayed(true));
+    assertTrue(caseDetailsPage.isShowMoreNoteButtonDisplayed(true));
+    assertTrue(caseDetailsPage.isAddDocumentLinkDisplayed(true));
     mainMenuPage.openTaskList();
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
-    assertTrue(taskDetailsPage.isAddNoteButtonDisplayed());
-    assertTrue(taskDetailsPage.isShowMoreNoteButtonDisplayed());
-    assertTrue(taskDetailsPage.isAddDocumentLinkDisplayed());
+    assertTrue(taskDetailsPage.isAddNoteButtonDisplayed(true));
+    assertTrue(taskDetailsPage.isShowMoreNoteButtonDisplayed(true));
+    assertTrue(taskDetailsPage.isAddDocumentLinkDisplayed(true));
   }
   
   @Test
@@ -122,7 +122,7 @@ public class PortalPermissionTest extends BaseTest{
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
-    assertFalse(caseDetailsPage.isShowDetailsDisplayed());
+    assertTrue(caseDetailsPage.isShowDetailsNotDisplayed());
     
     grantCasePermissions();
     mainMenuPage.openCaseList();

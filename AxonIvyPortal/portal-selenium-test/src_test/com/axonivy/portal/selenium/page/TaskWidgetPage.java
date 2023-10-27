@@ -350,24 +350,24 @@ public class TaskWidgetPage extends TemplatePage {
     return true;
   }
 
-  private boolean isTaskActionDisplayed(String action, int taskIndex) {
-    return isElementDisplayedById(String.format("task-widget:task-list-scroller:%d:task-item:task-action:additional-options:%s", taskIndex, action));
+  private boolean isTaskActionDisplayed(String action, int taskIndex, boolean expected) {
+    return isElementDisplayed(By.id(String.format("task-widget:task-list-scroller:%d:task-item:task-action:additional-options:%s", taskIndex, action)), expected);
   }
 
-  public boolean isTaskResetDisplayed() {
-    return isTaskActionDisplayed("task-reset-command", 0);
+  public boolean isTaskResetDisplayed(boolean expected) {
+    return isTaskActionDisplayed("task-reset-command", 0, expected);
   }
 
-  public boolean isTaskDelegateDisplayed() {
-    return isTaskActionDisplayed("task-delegate-command", 0);
+  public boolean isTaskDelegateDisplayed(boolean expected) {
+    return isTaskActionDisplayed("task-delegate-command", 0, expected);
   }
 
-  public boolean isTaskReserverDisplayed() {
-    return isTaskActionDisplayed("task-reserve-command", 0);
+  public boolean isTaskReserverDisplayed(boolean expected) {
+    return isTaskActionDisplayed("task-reserve-command", 0, expected);
   }
 
-  public boolean isAdhocSideStepDisplayed() {
-    return isElementDisplayed(By.cssSelector("a[id$='adhoc-side-step-item']"));
+  public boolean isAdhocSideStepDisplayed(boolean expected) {
+    return isElementDisplayed(By.cssSelector("a[id$='adhoc-side-step-item']"), expected);
   }
 
   public void sideStepMenuOnActionButton(int index) {
