@@ -425,6 +425,7 @@ public class CaseWidgetPage extends TemplatePage {
     for (SelenideElement caseItem : caseItems) {
       if (caseItem.$(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText().equals(caseName)) {
         caseItem.$(By.cssSelector("span[id*='case-info-row']")).click();
+        waitPageDisappear();
         return new CaseDetailsPage();
       }
     }
@@ -438,5 +439,17 @@ public class CaseWidgetPage extends TemplatePage {
 
   public boolean isEmpty() {
     return isElementDisplayed(By.id("search-results-tabview:case-results:case-empty-message"));
+  }
+
+  public int countSideStepItems() {
+    SelenideElement actionsPanel = getMoreActionsPanel();
+    return actionsPanel.findElements(By.cssSelector("a[id$='side-step-item']")).size();
+  }
+
+  private SelenideElement getMoreActionsPanel() {
+    openActionStepMenu();
+    waitForElementDisplayed(By.cssSelector("div[id$='action-steps-panel']"), true);
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((driver) -> findElementByCssSelector("div[id$='action-steps-panel']").isDisplayed());
+    return findElementByCssSelector("div[id$='action-steps-panel']");
   }
 }

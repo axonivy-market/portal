@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -117,6 +118,9 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public void clickThirdPartyApp() {
+    waitForElementDisplayed(By.id("left-menu"), true);
+    $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover();
+    Sleeper.sleep(500);
     waitForElementDisplayed($(By.id("user-menu-required-login:toggle-menu")), true);
     waitForElementDisplayed(By.cssSelector("li[class*='thirdparty-menu-item'] > a"), true);
     waitForElementClickableThenClick($("li[class*='thirdparty-menu-item'] > a"));

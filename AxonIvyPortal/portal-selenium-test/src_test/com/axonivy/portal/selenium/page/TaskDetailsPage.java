@@ -263,12 +263,12 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void waitForIFrameWidgetLoad() {
-//    driver.switchTo().frame("custom-widget-iframe");
-//    WaitHelper.assertTrueWithWait(() -> findElementByCssSelector(".container.frame").isDisplayed());
-
-//    $("[name='custom-widget-iframe']").shouldBe(appear, DEFAULT_TIMEOUT);
     switchToIframeWithNameOrId("custom-widget-iframe");
     $(".container.frame").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
     switchBackToParent();
+  }
+
+  public String getTaskUuid() {
+    return $("a[id$='show-more-note-link']").getAttribute("href").split("uuid=")[1];
   }
 }
