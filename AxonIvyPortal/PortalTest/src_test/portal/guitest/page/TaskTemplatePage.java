@@ -98,6 +98,7 @@ public class TaskTemplatePage extends TemplatePage {
     click(findElementByClassName("side-step-item"));
     waitForElementDisplayed(By.id("sidestep-task-reset-confirmation-dialog"), true);
     click(findElementById("side-step-start-ok"));
+    new NewDashboardPage();
   }
 
   public int countSideSteps() {
