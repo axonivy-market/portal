@@ -15,6 +15,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.LinkNavigator;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -33,6 +34,7 @@ public class NewDashboardPage extends TemplatePage {
 
   public final static String PORTAL_EXAMPLES_EMPLOYEE_SEARCH = "portal-developer-examples/180D50804A2BF9E9/employeeSearch.ivp";
   public final static String PORTAL_HOME_PAGE_URL = "portal/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
+
   @Override
   protected String getLoadedLocator() {
     return ".js-dashboard__wrapper";
@@ -70,6 +72,7 @@ public class NewDashboardPage extends TemplatePage {
     clickByJavaScript(findElementById(menuItemSelector));
     WaitHelper.assertTrueWithWait(() -> !$("#user-setting-container").isDisplayed());
   }
+
   public ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration() {
     var configurationPage = openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
@@ -108,6 +111,17 @@ public class NewDashboardPage extends TemplatePage {
     var widget = $$(".process-viewer-widget-panel").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT).get(index).shouldBe(appear, DEFAULT_TIMEOUT);
     waitForProcessViewerLoading(widget);
     return widget.ancestor(".grid-stack-item");
+  }
+
+  public MainMenuPage openMainMenu() {
+    $(".ui-datatable-scrollable-body").shouldBe(appear, DEFAULT_TIMEOUT);
+    if (!isMainMenuOpen()) {
+      waitForElementDisplayed(By.id("left-menu"), true);
+      $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover();
+      Sleeper.sleep(500);
+      waitForElementClickableThenClick($(By.id("user-menu-required-login:toggle-menu")));
+    }
+    return new MainMenuPage();
   }
 
   public WebElement waitAndGetStatisticChart(int index) {
@@ -799,7 +813,6 @@ public class NewDashboardPage extends TemplatePage {
     widgetFilterPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
-
   public WebElement openWidgetInformation(int index) {
     String widgetInfo = String.format("button[id$=':info-sidebar-link-%d']", index);
     $(widgetInfo).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
@@ -903,6 +916,5 @@ public class NewDashboardPage extends TemplatePage {
   public TaskWidgetPage openTaskList() {
     return openMainMenu().selectTaskMenu();
   }
-
 
 }
