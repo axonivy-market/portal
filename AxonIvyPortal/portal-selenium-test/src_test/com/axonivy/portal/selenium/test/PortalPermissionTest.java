@@ -122,13 +122,13 @@ public class PortalPermissionTest extends BaseTest{
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
-    assertTrue(caseDetailsPage.isShowDetailsNotDisplayed());
+    assertTrue(caseDetailsPage.isShowDetailsDisplayed(false));
     
     grantCasePermissions();
     mainMenuPage.openCaseList();
     caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
     caseDetailsPage.openActionMenu();
-    assertTrue(caseDetailsPage.isShowDetailsDisplayed());
+    assertTrue(caseDetailsPage.isShowDetailsDisplayed(true));
   }
   
   private void grantAccessFullListPermissions() {

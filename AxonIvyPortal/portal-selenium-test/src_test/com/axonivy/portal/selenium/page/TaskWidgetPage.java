@@ -423,7 +423,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public boolean isReserveLinkDisabled(int taskId) {
-    return $(getReserveTaskLinkSelector(taskId)).shouldBe(appear, DEFAULT_TIMEOUT).is(Condition.disabled);
+    return !$(getReserveTaskLinkSelector(taskId)).isDisplayed();
   }
 
   public String getReserveTaskLinkSelector(int taskId) {

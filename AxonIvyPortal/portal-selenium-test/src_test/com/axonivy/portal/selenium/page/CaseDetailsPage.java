@@ -715,7 +715,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public String getResponsibleOfRelatedTaskAt(String taskName) {
     Optional<SelenideElement> responsible = $$("tr.ui-widget-content").asFixedIterable().stream().filter(row -> row.$(".task-name-value").getText().equals(taskName)).findFirst();
-    return responsible.get().$(".name-after-avatar").getText();
+    return responsible.get().$(".name-after-avatar").shouldBe(appear, DEFAULT_TIMEOUT).getText();
   }
 
   public void openTaskDelegateDialog(String taskName) {
@@ -924,12 +924,8 @@ public class CaseDetailsPage extends TemplatePage {
     return isElementDisplayed(By.cssSelector("a[id$='case-histories:show-more-note-link']"), false);
   }
 
-  public boolean isShowDetailsDisplayed() {
-    return isElementDisplayed(By.cssSelector("a[id$='show-additional-case-details-link']"));
-  }
-
-  public boolean isShowDetailsNotDisplayed() {
-    return isElementDisplayed(By.cssSelector("a[id$='show-additional-case-details-link']"));
+  public boolean isShowDetailsDisplayed(boolean expected) {
+    return isElementDisplayed(By.cssSelector("a[id$='show-additional-case-details-link']"), expected);
   }
 
   public boolean isAddDocumentLinkDisplayed(boolean expected) {
@@ -959,7 +955,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public TaskDetailsPage openTasksOfCasePage(String taskName) {
-    caseItem.findElement(By.cssSelector("div[id$='related-tasks']")).findElements(By.cssSelector("td.related-task-name-column")).stream().filter(element -> element.getText().equals(taskName)).findFirst().get().click();
+    caseItem.$(By.cssSelector("div[id$='related-tasks']")).$$(By.cssSelector("td.related-task-name-column")).asFixedIterable().stream().filter(element -> element.getText().equals(taskName)).findFirst().get().click();
     return new TaskDetailsPage();
   }
 
