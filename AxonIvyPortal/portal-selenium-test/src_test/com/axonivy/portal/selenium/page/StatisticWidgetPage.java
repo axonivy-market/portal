@@ -34,8 +34,7 @@ public class StatisticWidgetPage extends TemplatePage {
   }
 
   public TaskAnalysisWidgetPage navigateToTaskAnalysisPage() {
-    var taskAnalysLink = $("a[id='statistics-widget:task-analysis-page-navigation-link']")
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition());
+    var taskAnalysLink = $("a[id='statistics-widget:task-analysis-page-navigation-link']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition());
     WaitHelper.waitForNavigation(() -> taskAnalysLink.click());
     $("[id='task-widget']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return new TaskAnalysisWidgetPage();
@@ -50,23 +49,97 @@ public class StatisticWidgetPage extends TemplatePage {
     return findElementByCssSelector("span[id$='restore-default-chart-link-label']").getText();
   }
 
-//  public void switchCreateMode() {
-//    waitForElementClickableThenClick($("a[id$='create-chart-link']"));
-//    waitForElementDisplayed(By.cssSelector("a[id$='statistics-widget:back-from-chart-creation']"), true);
-//  }
-//
-//  public void backToDashboard() {
-//    waitForElementClickableThenClick($("a[id$='back-from-chart-creation']"));
-//    waitForElementDisplayed(By.cssSelector("a[id$='create-chart-link']"), true);
-//  }
+  public boolean hasCreateChartsLink() {
+    return isElementPresent(By.id("statistics-widget:create-chart-link-label"));
+  }
+
+  private boolean isCompactMode() {
+    waitPageLoaded();
+    waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
+    WebElement statisticContainer = findElementById("statistics-widget:widget-container");
+    return statisticContainer.getAttribute(CLASS_PROPERTY).contains("compact-mode");
+  }
+
+  public boolean isFullMode() {
+    return !isCompactMode();
+  }
+
+  public void createCaseByStateChart() {
+    waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-state-link"), true, 30);
+    SelenideElement createCaseByStateLink = findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-state-link");
+    waitForElementClickableThenClick(createCaseByStateLink);
+    waitAjaxIndicatorDisappear();
+
+    waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
+
+    inputNameForSupportedLanguages(CASE_BY_STATE_CHART_NAME);
+    waitForElementClickableThenClick("button[id$='chart-save-command']");
+
+    waitAjaxIndicatorDisappear();
+    waitForElementExisted(By.cssSelector("span[class='ui-growl-title']"), true);
+  }
+
+  public void createCaseByFinishTime() {
+    waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-finished-time-link"), true, 30);
+    SelenideElement createCaseByFinishedTaskLink = findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-finished-time-link");
+    waitForElementClickableThenClick(createCaseByFinishedTaskLink);
+    waitAjaxIndicatorDisappear();
+
+    waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
+    inputNameForSupportedLanguages(CASE_BY_FINISHED_TIME_CHART_NAME);
+    waitForElementClickableThenClick("button[id$='chart-save-command']");
+
+    waitAjaxIndicatorDisappear();
+    waitForElementExisted(By.cssSelector("span[class='ui-growl-title']"), true);
+  }
+
+  public void createTaskByPriorityChartMultiLanguage() {
+    waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-task-by-priority-link"), true, 30);
+    waitForElementClickableThenClick($(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-task-by-priority-link")));
+    waitAjaxIndicatorDisappear();
+
+    waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
+
+    findElementByCssSelector("input[id$='0:chart-name-input']").sendKeys(TASK_BY_PRIORITY_CHART_NAME.concat(" English"));
+    findElementByCssSelector("input[id$='1:chart-name-input']").sendKeys(TASK_BY_PRIORITY_CHART_NAME.concat(" French"));
+    findElementByCssSelector("input[id$='2:chart-name-input']").sendKeys(TASK_BY_PRIORITY_CHART_NAME.concat(" German"));
+    findElementByCssSelector("input[id$='3:chart-name-input']").sendKeys(TASK_BY_PRIORITY_CHART_NAME.concat(" Spanish"));
+
+    waitForElementClickableThenClick("button[id$='chart-save-command']");
+    waitAjaxIndicatorDisappear();
+    waitForElementExisted(By.cssSelector("span[class='ui-growl-title']"), true);
+  }
+
+  public void createCasesByCategory() {
+    waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-cases-by-category-link"), true, 30);
+    SelenideElement createCaseByFinishedTaskLink = findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-cases-by-category-link");
+    waitForElementClickableThenClick(createCaseByFinishedTaskLink);
+
+    waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
+    inputNameForSupportedLanguages(CASES_BY_CATEGORY_CHART_NAME);
+    waitForElementClickableThenClick("button[id$='chart-save-command']");
+
+    waitForElementExisted(By.cssSelector("span[class='ui-growl-title']"), true);
+  }
+
+  public void createElapsedTimeChart() {
+    waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-elapsed-time-link"), true, 30);
+    SelenideElement createElapsedTimeLink = findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-elapsed-time-link");
+    waitForElementClickableThenClick(createElapsedTimeLink);
+    waitAjaxIndicatorDisappear();
+
+    waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
+    inputNameForSupportedLanguages(ELAPSED_TIME_CHART_NAME);
+    waitForElementClickableThenClick("button[id$='chart-save-command']");
+
+    waitAjaxIndicatorDisappear();
+    waitForElementExisted(By.cssSelector("span[class='ui-growl-title']"), true);
+  }
 
   public void createCaseByFinishedTask() {
     var caseByFinishedTaskSelector = "button[id$=':chart-management-form:create-case-by-finished-task-link']";
-//    waitForElementDisplayed(By.cssSelector(caseByFinishedTaskSelector), true);
-//    clickByCssSelector(caseByFinishedTaskSelector);
     waitForElementClickableThenClick($(caseByFinishedTaskSelector));
     waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
-//    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "statistics-widget\\:chart-creation-widget\\:add-statistic-form\\:chart-name-list\\:0\\:chart-name-input", CLASS_PROPERTY);
 
     inputNameForSupportedLanguages(CASE_BY_FINISHED_TASK_CHART_NAME);
     waitForElementClickableThenClick($(By.cssSelector("button[id$='chart-save-command']")));
@@ -74,13 +147,6 @@ public class StatisticWidgetPage extends TemplatePage {
     waitForElementExisted(By.cssSelector("span[class='ui-growl-title']"), true);
   }
 
-//  private void inputNameForSupportedLanguages(String value) {
-//    for (int i = 0; i < 4; i++) {
-//      findElementByCssSelector("input[id$='" + i + ":chart-name-input']").sendKeys(value);
-//    }
-//  }
-
-  @SuppressWarnings("deprecation")
   public void restoreDefaultCharts() {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((webDriver) -> {
       WebElement restoreDefault = findElementByCssSelector("span[id$='restore-default-chart-link-label']");
@@ -117,7 +183,7 @@ public class StatisticWidgetPage extends TemplatePage {
   }
 
   public void waitForAllChartLoaded() {
-    Sleeper.sleep(5000);//wait for last chart animation finish
+    Sleeper.sleep(5000);// wait for last chart animation finish
   }
 
   public void createTaskByPriorityChart() {
@@ -136,8 +202,7 @@ public class StatisticWidgetPage extends TemplatePage {
   }
 
   public void createTaskByExpiryChart() {
-    $("[id='statistics-widget:chart-creation-widget:chart-management-form:create-task-by-expiry-link']")
-      .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='statistics-widget:chart-creation-widget:chart-management-form:create-task-by-expiry-link']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
 
     $("div[id$='add-chart-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     inputNameForSupportedLanguages(TASK_BY_EXPIRY_CHART_NAME);
@@ -155,8 +220,7 @@ public class StatisticWidgetPage extends TemplatePage {
   }
 
   public WebElement getCaseByFinishedTaskCreationDialog() {
-    $("[id='statistics-widget:chart-creation-widget:chart-management-form:create-case-by-finished-task-link']")
-      .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='statistics-widget:chart-creation-widget:chart-management-form:create-case-by-finished-task-link']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id$='add-chart-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
 
     inputNameForSupportedLanguages(CASE_BY_FINISHED_TASK_CHART_NAME);
@@ -181,8 +245,8 @@ public class StatisticWidgetPage extends TemplatePage {
   }
 
   public WebElement getChartInfoDialogOfChart(int chartIndex) {
-    $("[id='" + String.format("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:%d:chart-name-container", chartIndex) + "']")
-      .shouldBe(appear, DEFAULT_TIMEOUT).$("a.chart-info").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='" + String.format("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:%d:chart-name-container", chartIndex) + "']").shouldBe(appear, DEFAULT_TIMEOUT).$("a.chart-info")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return $("[id='statistics-widget:statistic-dashboard-widget:chart-details-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 }
