@@ -11,12 +11,6 @@ import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
@@ -67,30 +61,30 @@ public class TaskDetailsPage extends TemplatePage {
   public SelenideElement getInformationPanel() {
     return $("div[id$='task-details-information-panel'").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
-  
+
   public void openActionPanel() {
     $("[id$=':additional-options:task-detail-more-step']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("[id$=':additional-options:side-steps-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
-  
+
   private void openTriggerEscalationDialog() {
     $("a[id$='\\:task-trigger-escalation-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("div[id$='\\:escalation-task-confirmation-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
-  
+
   public void triggerEscalation() {
     openTriggerEscalationDialog();
     $("button[id$='\\:confirm-escalation']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
-  
+
   public SelenideElement getPriorityOfTask() {
     return $("span[id$='task-priority']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("i[class*='priority']").closest("span");
   }
-  
+
   public SelenideElement getStateOfTask() {
     return $("[id$=':general-information:task-detail-state']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("i[class*='task-state']").closest("span");
   }
-  
+
   public void back() {
     $("[id$=':task-detail-title-form:back-to-previous-page']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
@@ -98,7 +92,7 @@ public class TaskDetailsPage extends TemplatePage {
   public SelenideElement getResponsibleAvatar() {
     return $(".security-member-container > .has-avatar > .ui-avatar").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-  
+
   public SelenideElement getShareButton() {
     return $("button[id$=':share-page-button']");
   }
@@ -121,16 +115,16 @@ public class TaskDetailsPage extends TemplatePage {
     return actionPanel.findElements(By.cssSelector("a[class*='option-item']")).stream().map(WebElement::getText).collect(Collectors.toList());
   }
 
-  public boolean isAddNoteButtonDisplayed() {
-    return isElementDisplayed(By.cssSelector("[id$=':task-notes:add-note-command']"));
+  public boolean isAddNoteButtonDisplayed(boolean expected) {
+    return isElementDisplayed(By.cssSelector("[id$=':task-notes:add-note-command']"), expected);
   }
 
-  public boolean isShowMoreNoteButtonDisplayed() {
-    return isElementDisplayed(By.cssSelector("[id$=':task-notes:show-more-note-link']"));
+  public boolean isAddDocumentLinkDisplayed(boolean expected) {
+    return isElementDisplayed(By.cssSelector("[id$=':task-documents:add-document-command']"), expected);
   }
 
-  public boolean isAddDocumentLinkDisplayed() {
-    return isElementDisplayed(By.cssSelector("[id$=':task-documents:add-document-command']"));
+  public boolean isShowMoreNoteButtonDisplayed(boolean expected) {
+    return isElementDisplayed(By.cssSelector("[id$=':task-notes:show-more-note-link']"), expected);
   }
 
   public SelenideElement getSharePageButtonElement() {

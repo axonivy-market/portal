@@ -211,8 +211,7 @@ public class RoleManagementPage extends TemplatePage {
 
   private void removeUserOfRole(int index) {
     waitForElementDisplayed(By.cssSelector("[id$=':manage-role-details-form:users-of-role-table_data']"), true);
-    if (isElementDisplayed(By.cssSelector("a[id$=':delete-user-link']"))
-        && isElementEnabled(By.cssSelector("a[id$=':delete-user-link']"))) {
+    if ($(By.cssSelector("a[id$=':delete-user-link']")).isDisplayed()) {
       $$("a[id$=':delete-user-link']").get(index).click();
       removeUserOfRole(0);
     }
