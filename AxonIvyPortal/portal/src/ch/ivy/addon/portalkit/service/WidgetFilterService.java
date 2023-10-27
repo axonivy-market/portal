@@ -222,9 +222,6 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
       case TASK:
         filterableColumns = ((TaskDashboardWidget) widget).getFilterableColumns();
         break;
-      case CASE:
-        filterableColumns = ((CaseDashboardWidget) widget).getFilterableColumns();
-        break;
       case PROCESS:
         filterableColumns = ((CompactProcessDashboardWidget) widget).getFilterableColumns();
         break;
