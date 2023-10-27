@@ -60,8 +60,8 @@
           <div class="new-widget-dialog__item card js-widget">
 
             <div class="new-widget-dialog__item-title">
-              <h:outputText id="widget-name" value="#{widget.name}" styleClass="new-widget-dialog__widget-name"/>
-              <p:tooltip id="widget-name-tooltip" for="widget-name" value="#{widget.name}" trackMouse="true" />
+              <h:outputText id="statistic-widget-name" value="#{widget.name}" styleClass="new-widget-dialog__widget-name"/>
+              <p:tooltip id="statistic-widget-name-tooltip" for="statistic-widget-name" value="#{widget.name}" trackMouse="true" />
             </div>
 
             <div class="new-widget-dialog__item-details">
@@ -70,7 +70,8 @@
               </h:panelGroup>
 
               <h:panelGroup layout="block" styleClass="ui-panelgrid-blank new-widget-dialog__item-content">
-                <h:outputText value="#{widget.description}" styleClass="new-widget-dialog__introduction"/>
+                <h:outputText id="statistic-widget-description" value="#{widget.description}" styleClass="new-widget-dialog__introduction"/>
+                <p:tooltip id="statistic-widget-description-tooltip" for="statistic-widget-description" value="#{widget.description}" trackMouse="true" />
 
                 <p:commandButton id="add-widget" styleClass="new-widget-dialog__add-widget-button"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"

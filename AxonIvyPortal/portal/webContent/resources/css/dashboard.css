@@ -796,6 +796,14 @@ span.new-widget-dialog__icon.si {
   flex-direction: column;
 }
 
+.new-widget-dialog__item-content .new-widget-dialog__introduction {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .new-widget-dialog__widget-name {
   font-weight: var(--new-widget-dialog-title-font-weight);
   font-style: var(--new-widget-dialog-title-font-style);
