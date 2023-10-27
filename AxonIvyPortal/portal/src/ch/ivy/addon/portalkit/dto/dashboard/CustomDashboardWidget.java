@@ -166,4 +166,7 @@ public class CustomDashboardWidget extends DashboardWidget {
   public void setErrorIcon(String errorIcon) {
     this.errorIcon = errorIcon;
   }
+
+  @Override
+  public void cancelUserFilter() {}
 }

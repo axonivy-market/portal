@@ -24,7 +24,7 @@
         dynamic="true" forceSelection="true" styleClass="case-configuration__creators">
         <p:column>
           <pc:securityMemberNameAndAvatar
-            displayName="#{dashboardCaseFilterBean.formatName(creator)}" securityMember="#{creator}">
+            displayName="#{caseWidgetConfigurationFilterBean.formatName(creator)}" securityMember="#{creator}">
             <f:facet name="alternativeAvatar">
               <h:outputText  rendered="#{not avatarBean.isShowAvatar()}" styleClass="si #{creator.isUser() ? 'si-single-neutral-actions' : 'si-multiple-neutral-1'} u-mar-right-5" />
             </f:facet>

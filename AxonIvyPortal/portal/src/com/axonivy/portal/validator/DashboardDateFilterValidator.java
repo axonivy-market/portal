@@ -44,7 +44,7 @@ public class DashboardDateFilterValidator implements Validator {
     }
 
     if (component.getId().contentEquals("to-date")) {
-      FacesMessage error = validateFromToValues(filter.getFrom(), value, filter.getField(), filterIndex);
+      FacesMessage error = validateFromToValues(filter.getFromDate(), value, filter.getField(), filterIndex);
       if (error != null) {
         context.addMessage(MESSAGES_COMPONENT_ID, error);
         invalidate(context, component);

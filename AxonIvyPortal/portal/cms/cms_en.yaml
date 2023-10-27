@@ -1779,7 +1779,7 @@ Labels:
       DESCRIPTION: Description
       FINISHED: Finished Date
       ID: Id
-      NAME: name
+      NAME: Name
       OWNER: Case Owner
       STATE: State
     FilterOperator:
