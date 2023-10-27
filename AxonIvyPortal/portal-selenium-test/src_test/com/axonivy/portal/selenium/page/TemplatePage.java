@@ -150,6 +150,14 @@ public abstract class TemplatePage extends AbstractPage {
     }
   }
 
+  public boolean isElementDisplayed(By element, boolean expected) {
+    if (expected) {
+      return isElementDisplayed(element);
+    } else {
+      return !$(element).isDisplayed();
+    }
+  }
+
   public boolean isElementEnabled(By element) {
     return $(element).shouldBe(appear, DEFAULT_TIMEOUT).isEnabled();
   }

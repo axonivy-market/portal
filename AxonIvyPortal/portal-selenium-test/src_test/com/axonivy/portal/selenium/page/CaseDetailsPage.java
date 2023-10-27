@@ -52,6 +52,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public CaseDetailsPage() {
     this.caseItem = findElementByCssSelector("#main-area-panel");
+    waitPageLoaded();
   }
 
   public void waitForTechnicalCaseDisplay() {
@@ -905,23 +906,34 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void clickRelatedCaseApplyButton() {
     waitForElementClickableThenClick($(By.cssSelector("button[id$='related-cases-widget:case-columns-configuration:select-columns-form:update-command']")));
-//    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
-  public boolean isAddNoteButtonDisplayed() {
-    return isElementDisplayed(By.cssSelector("a[id$='case-histories:add-note-command']"));
+  public boolean isAddDocumentLinkNotDisplayed() {
+    return isElementDisplayed(By.cssSelector("a[id$='document:add-document-command']"), false);
   }
 
-  public boolean isShowMoreNoteButtonDisplayed() {
-    return isElementDisplayed(By.cssSelector("a[id$='case-histories:show-more-note-link']"));
+  public boolean isAddNoteButtonDisplayed(boolean expected) {
+    return isElementDisplayed(By.cssSelector("a[id$='case-histories:add-note-command']"), expected);
+  }
+
+  public boolean isShowMoreNoteButtonDisplayed(boolean expected) {
+    return isElementDisplayed(By.cssSelector("a[id$='case-histories:show-more-note-link']"), expected);
+  }
+
+  public boolean isShowMoreNoteButtonNotDisplayed() {
+    return isElementDisplayed(By.cssSelector("a[id$='case-histories:show-more-note-link']"), false);
   }
 
   public boolean isShowDetailsDisplayed() {
     return isElementDisplayed(By.cssSelector("a[id$='show-additional-case-details-link']"));
   }
 
-  public boolean isAddDocumentLinkDisplayed() {
-    return isElementDisplayed(By.cssSelector("a[id$='document:add-document-command']"));
+  public boolean isShowDetailsNotDisplayed() {
+    return isElementDisplayed(By.cssSelector("a[id$='show-additional-case-details-link']"));
+  }
+
+  public boolean isAddDocumentLinkDisplayed(boolean expected) {
+    return isElementDisplayed(By.cssSelector("a[id$='document:add-document-command']"), expected);
   }
 
   public void openProcessOverviewPage() {
