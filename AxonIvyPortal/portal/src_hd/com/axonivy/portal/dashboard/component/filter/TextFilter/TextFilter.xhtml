@@ -8,14 +8,16 @@
   <cc:attribute name="filter" type="com.axonivy.portal.dto.dashboard.filter.DashboardFilter" />
   <cc:attribute name="componentToUpdate" required="true" />
   <cc:attribute name="filterIndex" />
+  <cc:attribute name="readOnly" default="false" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="filter" value="#{cc.attrs.filter}" />
+  <c:set var="readOnly" value="#{cc.attrs.readOnly}" />
 
   <h:panelGroup id="text-filter-operator-panel" layout="block"
-    styleClass="ui-fluid md-inputfield filter-operator-panel">
-      <p:selectOneMenu id="operator-selection" value="#{filter.operator}">
+    styleClass="ui-fluid md-inputfield">
+      <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
         <f:selectItems value="#{widgetTextFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
           <p:ajax event="itemSelect" listener="#{widgetTextFilterBean.onChangeOperator(filter)}"
@@ -27,7 +29,10 @@
   <h:panelGroup id="text-list-panel" layout="block"
     styleClass="ui-fluid md-inputfield"
     rendered="#{widgetTextFilterBean.isShowTextListPanel(filter)}">
-    <p:chips value="#{filter.texts}" unique="true" addOnPaste="true" />
+    <p:chips value="#{filter.texts}" unique="true" addOnPaste="true" disabled="#{readOnly}">
+      <p:ajax event="change" process="@(this)" update="@(this)" partialSubmit="true" global="false" />
+      <f:param name="skipValidator" value="true" />
+    </p:chips>
   </h:panelGroup>
 </cc:implementation>
 

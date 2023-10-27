@@ -1,27 +1,39 @@
 package com.axonivy.portal.dto.dashboard.filter;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
 import com.axonivy.portal.enums.dashboard.filter.FilterType;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+
+import ch.ivy.addon.portalkit.service.exception.PortalException;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class DashboardFilter implements Serializable {
   private static final long serialVersionUID = -2098346832426240167L;
 
+  @JsonIgnore
+  public static final String DATE_FORMAT = "MM/dd/yyyy";
+
   private String field;
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
-  private Date from;
+  @JsonIgnore
+  private Date fromDate;
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
-  private Date to;
+  @JsonIgnore
+  private Date toDate;
+
+  private String from;
+
+  private String to;
 
   private FilterType type;
 
@@ -32,6 +44,9 @@ public class DashboardFilter implements Serializable {
   private FilterPeriodType periodType;
 
   private List<String> texts;
+
+  @JsonIgnore
+  private boolean isTemp;
 
   @JsonIgnore
   public boolean isDate() {
@@ -46,22 +61,6 @@ public class DashboardFilter implements Serializable {
   @JsonIgnore
   public boolean isText() {
     return this.type == FilterType.TEXT;
-  }
-
-  public Date getFrom() {
-    return from;
-  }
-
-  public void setFrom(Date from) {
-    this.from = from;
-  }
-
-  public Date getTo() {
-    return to;
-  }
-
-  public void setTo(Date to) {
-    this.to = to;
   }
 
   public FilterType getType() {
@@ -110,5 +109,65 @@ public class DashboardFilter implements Serializable {
 
   public void setTexts(List<String> texts) {
     this.texts = texts;
+  }
+
+  @JsonIgnore
+  public boolean isTemp() {
+    return isTemp;
+  }
+
+  @JsonIgnore
+  public void setTemp(boolean isTemp) {
+    this.isTemp = isTemp;
+  }
+
+  @JsonIgnore
+  public Date getFromDate() {
+    if (fromDate == null && StringUtils.isNotBlank(from)) {
+      try {
+        fromDate = DateUtils.parseDate(from, DATE_FORMAT);
+      } catch (ParseException e) {
+        throw new PortalException("Cannot parse date " + from, e);
+      }
+    }
+    return fromDate;
+  }
+
+  @JsonIgnore
+  public void setFromDate(Date fromDate) {
+    this.fromDate = fromDate;
+  }
+
+  @JsonIgnore
+  public Date getToDate() {
+    if (toDate == null && StringUtils.isNotBlank(to)) {
+      try {
+        toDate = DateUtils.parseDate(to, DATE_FORMAT);
+      } catch (ParseException e) {
+        throw new PortalException("Cannot parse date " + to, e);
+      }
+    }
+    return toDate;
+  }
+
+  @JsonIgnore
+  public void setToDate(Date toDate) {
+    this.toDate = toDate;
+  }
+
+  public String getFrom() {
+    return from;
+  }
+
+  public void setFrom(String from) {
+    this.from = from;
+  }
+
+  public String getTo() {
+    return to;
+  }
+
+  public void setTo(String to) {
+    this.to = to;
   }
 }

@@ -23,7 +23,7 @@ public class CreatedDateBeforeOperatorHandler extends AbstractFilterOperatorHand
     }
 
     CaseQuery query = CaseQuery.create();
-    query.where().startTimestamp().isLowerThan(PortalDateUtils.getStartOfDate(filter.getFrom()));
+    query.where().startTimestamp().isLowerThan(PortalDateUtils.getStartOfDate(filter.getFromDate()));
 
     return query;
   }

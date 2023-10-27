@@ -42,6 +42,7 @@ public class DashboardCaseSearchCriteria {
   private static final String LIKE_FORMAT = "%%%s%%";
   private List<CaseColumnModel> columns;
   private List<DashboardFilter> filters;
+  private List<DashboardFilter> userFilters;
   private String sortField;
   private boolean sortDescending;
   private boolean isInConfiguration;
@@ -73,12 +74,12 @@ public class DashboardCaseSearchCriteria {
     }
   }
 
-  private void queryComplexFilter(CaseQuery query) {
-    if (CollectionUtils.isEmpty(filters)) {
+  private void queryComplexFilter(CaseQuery query, List<DashboardFilter> filterList) {
+    if (CollectionUtils.isEmpty(filterList)) {
       return;
     }
 
-    for (DashboardFilter filter : filters) {
+    for (DashboardFilter filter : filterList) {
       DashboardStandardCaseColumn fieldEnum  = DashboardStandardCaseColumn.findBy(filter.getField());
 
       if (Optional.ofNullable(filter).map(DashboardFilter::getOperator).isEmpty()) {
@@ -200,67 +201,76 @@ public class DashboardCaseSearchCriteria {
   
   private void queryFilters(CaseQuery query) {
     if (CollectionUtils.isNotEmpty(filters)) {
-      queryComplexFilter(query);
+      queryComplexFilter(query, filters);
+    }
+
+    if (CollectionUtils.isNotEmpty(userFilters)) {
+      queryComplexFilter(query, userFilters);
+    }
+
+    if (CollectionUtils.isNotEmpty(filters) || CollectionUtils.isNotEmpty(filters)) {
       return;
     }
 
-    var states = new ArrayList<CaseBusinessState>();
-    for (ColumnModel column : columns) {
-      String field = column.getField();
-      String configuredFilter = column.getFilter();
-      List<String> configuredFilterList = column.getFilterList();
-      String configuredFilterFrom = column.getFilterFrom();
-      String configuredFilterTo = column.getFilterTo();
-      
-      String userFilter = column.getUserFilter();
-      List<String> userFilterList = column.getUserFilterList();
-      String userFilterFrom = column.getUserFilterFrom();
-      String userFilterTo = column.getUserFilterTo();
-      
-      List<String> filterList = CollectionUtils.isNotEmpty(userFilterList) && !isInConfiguration ? userFilterList : configuredFilterList;
-      String filterFrom = StringUtils.isNotBlank(userFilterFrom) && !isInConfiguration ? userFilterFrom : configuredFilterFrom;
-      String filterTo = StringUtils.isNotBlank(userFilterTo) && !isInConfiguration ? userFilterTo : configuredFilterTo;
-      
-      if (equals(DashboardStandardCaseColumn.NAME, column)) {
-        queryName(query, configuredFilter);
-        if (!isInConfiguration) {
-          queryName(query, userFilter);
-        }
-      } else if (equals(DashboardStandardCaseColumn.DESCRIPTION, column)) {
-        queryDescription(query, configuredFilter);
-        if (!isInConfiguration) {
-          queryDescription(query, userFilter);
-        }
-      } else if (equals(DashboardStandardCaseColumn.STATE, column)) {
-        for (String state : filterList) {
-          states.add(CaseBusinessState.valueOf(state.toUpperCase()));
-        }
-      } else if (equals(DashboardStandardCaseColumn.CREATOR, column)) {
-        queryCreator(query, filterList);
-      } else if (equals(DashboardStandardCaseColumn.OWNER, column)) {
-        queryOwner(query, filterList);
-      } else if (equals(DashboardStandardCaseColumn.CATEGORY, column)) {
-        queryCategory(query, filterList);
-      } else if (equals(DashboardStandardCaseColumn.CREATED, column)) {
-        Date from = Dates.parse(filterFrom);
-        Date to = Dates.parse(filterTo);
-        queryCreatedDate(query, from, to);
-      } else if (equals(DashboardStandardCaseColumn.FINISHED, column)) {
-        Date from = Dates.parse(filterFrom);
-        Date to = Dates.parse(filterTo);
-        queryFinishedDate(query, from, to);
-      } else if (equals(DashboardStandardCaseColumn.APPLICATION, column)) {
-        queryApplications(query, filterList);
-      } else if (column.getFilterType() == DashboardFilterType.SELECTION || CollectionUtils.isNotEmpty(filterList)) {
-        queryCustomFieldSelection(query, field, filterList);
-      } else {
-        if (StringUtils.isNotBlank(configuredFilter) || StringUtils.isNotBlank(userFilter) || StringUtils.isNotBlank(filterFrom) || StringUtils.isNotBlank(filterTo)) {
-          CaseQuery subQuery = applyFilter(column, field, configuredFilter, userFilter, filterFrom, filterTo);
-          query.where().and(subQuery);
+    else {
+      var states = new ArrayList<CaseBusinessState>();
+      for (ColumnModel column : columns) {
+        String field = column.getField();
+        String configuredFilter = column.getFilter();
+        List<String> configuredFilterList = column.getFilterList();
+        String configuredFilterFrom = column.getFilterFrom();
+        String configuredFilterTo = column.getFilterTo();
+        
+        String userFilter = column.getUserFilter();
+        List<String> userFilterList = column.getUserFilterList();
+        String userFilterFrom = column.getUserFilterFrom();
+        String userFilterTo = column.getUserFilterTo();
+        
+        List<String> filterList = CollectionUtils.isNotEmpty(userFilterList) && !isInConfiguration ? userFilterList : configuredFilterList;
+        String filterFrom = StringUtils.isNotBlank(userFilterFrom) && !isInConfiguration ? userFilterFrom : configuredFilterFrom;
+        String filterTo = StringUtils.isNotBlank(userFilterTo) && !isInConfiguration ? userFilterTo : configuredFilterTo;
+        
+        if (equals(DashboardStandardCaseColumn.NAME, column)) {
+          queryName(query, configuredFilter);
+          if (!isInConfiguration) {
+            queryName(query, userFilter);
+          }
+        } else if (equals(DashboardStandardCaseColumn.DESCRIPTION, column)) {
+          queryDescription(query, configuredFilter);
+          if (!isInConfiguration) {
+            queryDescription(query, userFilter);
+          }
+        } else if (equals(DashboardStandardCaseColumn.STATE, column)) {
+          for (String state : filterList) {
+            states.add(CaseBusinessState.valueOf(state.toUpperCase()));
+          }
+        } else if (equals(DashboardStandardCaseColumn.CREATOR, column)) {
+          queryCreator(query, filterList);
+        } else if (equals(DashboardStandardCaseColumn.OWNER, column)) {
+          queryOwner(query, filterList);
+        } else if (equals(DashboardStandardCaseColumn.CATEGORY, column)) {
+          queryCategory(query, filterList);
+        } else if (equals(DashboardStandardCaseColumn.CREATED, column)) {
+          Date from = Dates.parse(filterFrom);
+          Date to = Dates.parse(filterTo);
+          queryCreatedDate(query, from, to);
+        } else if (equals(DashboardStandardCaseColumn.FINISHED, column)) {
+          Date from = Dates.parse(filterFrom);
+          Date to = Dates.parse(filterTo);
+          queryFinishedDate(query, from, to);
+        } else if (equals(DashboardStandardCaseColumn.APPLICATION, column)) {
+          queryApplications(query, filterList);
+        } else if (column.getFilterType() == DashboardFilterType.SELECTION || CollectionUtils.isNotEmpty(filterList)) {
+          queryCustomFieldSelection(query, field, filterList);
+        } else {
+          if (StringUtils.isNotBlank(configuredFilter) || StringUtils.isNotBlank(userFilter) || StringUtils.isNotBlank(filterFrom) || StringUtils.isNotBlank(filterTo)) {
+            CaseQuery subQuery = applyFilter(column, field, configuredFilter, userFilter, filterFrom, filterTo);
+            query.where().and(subQuery);
+          }
         }
       }
+      queryStates(query, states);
     }
-    queryStates(query, states);
   }
 
   private boolean equals(DashboardStandardCaseColumn caseColumn, ColumnModel column) {
@@ -482,5 +492,13 @@ public class DashboardCaseSearchCriteria {
 
   public void setFilters(List<DashboardFilter> filters) {
     this.filters = filters;
+  }
+
+  public List<DashboardFilter> getUserFilters() {
+    return userFilters;
+  }
+
+  public void setUserFilters(List<DashboardFilter> userFilters) {
+    this.userFilters = userFilters;
   }
 }

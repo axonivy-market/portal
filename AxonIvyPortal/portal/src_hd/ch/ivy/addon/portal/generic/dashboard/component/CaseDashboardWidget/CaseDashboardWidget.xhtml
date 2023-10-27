@@ -1,60 +1,77 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
-  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="index" required="true" />
-  <cc:attribute name="widget" required="true" />
-  <cc:attribute name="isReadOnlyMode" default="false"/>
+	<cc:attribute name="index" required="true" />
+	<cc:attribute name="widget" required="true" />
+	<cc:attribute name="isReadOnlyMode" default="false" />
 </cc:interface>
 
 <cc:implementation>
-  <c:set var="index" value="#{cc.attrs.index}" />
-  <c:set var="widget" value="#{cc.attrs.widget}" />
-  <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}"/>
+	<c:set var="index" value="#{cc.attrs.index}" />
+	<c:set var="widget" value="#{cc.attrs.widget}" />
+	<c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
 
-  <ui:decorate template="/layouts/restricted/decorator/TableWidget.xhtml">
-    <ui:param name="index" value="#{index}" />
-    <ui:param name="widget" value="#{widget}" />
-    <ui:param name="panelId" value="case-panel-group-#{index}" />
-    <ui:param name="panelStyleClass" value="case-dashboard-widget__panel" />
-    <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}" />
-    <ui:param name="onStatisticTabShow" value="handleFilterCategoryHeight(this);"/>
-    <ui:param name="componentToProcessOnApplyFilter" value="filter-container" />
-    <ui:param name="componentToUpdateOnApplyFilter" value="#{component.parent.namingContainer.clientId}:case-component:dashboard-cases #{component.parent.namingContainer.clientId}:case-component:empty-message-container" />
-    <ui:param name="componentToUpdateOnResetFilter" value="#{cc.clientId}:case-component:dashboard-cases #{cc.clientId}:case-component:empty-message-container" />
-    <ui:param name="onCompleteApplyFilters" value="PF('dashboard-cases-#{widget.id}').filter()" />
-    <ui:param name="isRenderExpandCollapse" value="true" />
-    <ui:param name="widgetContentStyleClass" value="case-widget" />
+	<ui:decorate template="/layouts/restricted/decorator/TableWidget.xhtml">
+		<ui:param name="index" value="#{index}" />
+		<ui:param name="widget" value="#{widget}" />
+		<ui:param name="panelId" value="case-panel-group-#{index}" />
+		<ui:param name="panelStyleClass" value="case-dashboard-widget__panel" />
+		<ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}" />
+		<ui:param name="onStatisticTabShow"
+			value="handleFilterCategoryHeight(this);" />
+		<ui:param name="componentToProcessOnApplyFilter"
+			value="filter-container" />
+		<ui:param name="componentToUpdateOnApplyFilter"
+			value="#{component.parent.namingContainer.clientId}:case-component:dashboard-cases #{component.parent.namingContainer.clientId}:case-component:empty-message-container" />
+		<ui:param name="componentToUpdateOnResetFilter"
+			value="#{cc.clientId}:case-component:dashboard-cases #{cc.clientId}:case-component:empty-message-container" />
+		<ui:param name="onCompleteApplyFilters"
+			value="PF('dashboard-cases-#{widget.id}').filter()" />
+		<ui:param name="isRenderExpandCollapse" value="true" />
+		<ui:param name="widgetContentStyleClass" value="case-widget" />
 
-    <ui:define name="widgetInformationContent">
-      <ui:include src="CaseInfo.xhtml">
-        <ui:param name="widget" value="#{widget}" />
-      </ui:include>
-    </ui:define>
+		<ui:define name="widgetInformationContent">
+			<ui:include src="CaseInfo.xhtml">
+				<ui:param name="widget" value="#{widget}" />
+			</ui:include>
+		</ui:define>
 
-    <ui:define name="widgetFilterContent">
-      <ui:include src="CaseFilter.xhtml">
-        <ui:param name="widget" value="#{widget}" />
-      </ui:include>
-    </ui:define>
+		<ui:define name="widgetFilterContent">
+			<ui:include src="CaseFilter.xhtml">
+				<ui:param name="widget" value="#{widget}" />
+				<ui:param name="index" value="#{index}" />
+			</ui:include>
+		</ui:define>
 
-    <ui:define name="widgetContent">
-      <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidget id="case-component" caseWidget="#{widget}" isReadOnlyMode="#{isReadOnlyMode}" componentToUpdateCaseWidget="@widgetVar(dashboard-cases-#{widget.id})"/>
-    </ui:define>
+		<ui:define name="widgetContent">
+			<ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidget
+				id="case-component" caseWidget="#{widget}"
+				isReadOnlyMode="#{isReadOnlyMode}"
+				componentToUpdateCaseWidget="@widgetVar(dashboard-cases-#{widget.id})" />
+		</ui:define>
 
-    <ui:define name="statisticPanelOtherAction">
-      <h:form id="export-to-excel-form-#{index}" styleClass="dashboard-excel-export-form">
-        <p:commandLink ajax="false" id="export-to-excel-#{index}"
-          onclick="PrimeFaces.monitorDownload(startDownload, stopDownload);">
-          <i class="si si-office-file-xls-1 u-mar-right-5" />
-          <span class="link-text">
-            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
-          </span>
-          <p:fileDownload value="#{logic.getExportedFileForCaseWidget(widget)}" />
-        </p:commandLink>
-      </h:form>
-    </ui:define>
-  </ui:decorate>
+		<ui:define name="statisticPanelOtherAction">
+			<h:form id="export-to-excel-form-#{index}"
+				styleClass="dashboard-excel-export-form">
+				<p:commandLink ajax="false" id="export-to-excel-#{index}"
+					onclick="PrimeFaces.monitorDownload(startDownload, stopDownload);">
+					<i class="si si-office-file-xls-1 u-mar-right-5" />
+					<span class="link-text"> <h:outputText
+							value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
+					</span>
+					<p:fileDownload
+						value="#{logic.getExportedFileForCaseWidget(widget)}" />
+				</p:commandLink>
+			</h:form>
+		</ui:define>
+	</ui:decorate>
 
 </cc:implementation>
 </html>
