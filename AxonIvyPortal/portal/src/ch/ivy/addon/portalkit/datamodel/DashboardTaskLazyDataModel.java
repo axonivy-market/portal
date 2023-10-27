@@ -63,7 +63,7 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
         }
       }
       foundTasks = DashboardTaskService.getInstance().findByTaskQuery(query, first, pageSize);
-      tasks.addAll(foundTasks);
+      addDistict(tasks, foundTasks);
       mapTasks.putAll(foundTasks.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
     }
 
@@ -83,11 +83,18 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
     future = CompletableFuture.runAsync(() -> {
       IvyThreadContext.restoreFromMemento(memento);
       foundTasks = DashboardTaskService.getInstance().findByTaskQuery(query, 0, 25);
-      tasks.addAll(foundTasks);
+      addDistict(tasks, foundTasks);
       mapTasks.putAll(foundTasks.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
       IvyThreadContext.reset();
     });
     isFirstTime = true;
+  }
+
+  private void addDistict(List<ITask> tasks, List<ITask> foundTasks) {
+    for (ITask found : foundTasks) {
+      tasks.removeIf(task -> task.getId() == found.getId());
+    }
+    tasks.addAll(foundTasks);
   }
 
   @Override
