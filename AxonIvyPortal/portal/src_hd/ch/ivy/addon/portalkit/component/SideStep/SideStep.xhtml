@@ -49,7 +49,7 @@
     </p:commandLink>
 
     <p:commandLink id="task-reset-command" onstart="event.stopPropagation();" rendered="#{taskActionBean.showResetTask}" disabled="#{!taskActionBean.canReset(task)}"
-      styleClass="option-item" actionListener="#{logic.resetTask(task)}" update="@parent">
+      styleClass="option-item" actionListener="#{logic.resetTask(task)}" update="@parent #{cc.attrs.componentToUpdate}">
       <i class="option-action-icon si si-road-sign-u-turn-left" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}</span>
     </p:commandLink>
@@ -58,31 +58,31 @@
       styleClass="option-item" onstart="event.stopPropagation();"
       oncomplete="#{cc.attrs.onDelegateComplete}" global="false"
       actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
-      update="@parent  @widgetVar(task-delegate-dialog)" process="@this">
+      update="@parent #{cc.attrs.componentToUpdate} @widgetVar(task-delegate-dialog)" process="@this">
       <i class="option-action-icon si si-road-sign-u-turn-right" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}</span>
     </p:commandLink>
 
     <p:commandLink id="task-reserve-command" disabled="#{!taskActionBean.canPark(task)}" rendered="#{taskActionBean.showReserveTask}" onstart="event.stopPropagation();"
-      styleClass="option-item" actionListener="#{logic.parkTask(task)}" update="@parent">
+      styleClass="option-item" actionListener="#{logic.parkTask(task)}" update="@parent #{cc.attrs.componentToUpdate}">
       <i class="option-action-icon si si-navigation-right-circle" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}</span>
     </p:commandLink>
     
     <p:commandLink id="task-clear-delay-command" disabled="#{!taskActionBean.canChangeDelayTimestamp(task)}" rendered="#{taskActionBean.showClearDelayTime(task)}"
-      styleClass="option-item" actionListener="#{logic.clearDelay(task)}" update="@parent">
+      styleClass="option-item" actionListener="#{logic.clearDelay(task)}" update="@parent #{cc.attrs.componentToUpdate}">
       <i class="option-action-icon si si-button-refresh-arrows" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/clearDelay')}</span>
     </p:commandLink>
     
     <p:commandLink id="task-clear-expiry-command" disabled="#{!taskActionBean.canChangeExpiry(task)}" rendered="#{taskActionBean.showClearExpiryTime(task)}"
-      styleClass="option-item" actionListener="#{logic.clearExpiryTime(task)}" update="@parent ">
+      styleClass="option-item" actionListener="#{logic.clearExpiryTime(task)}" update="@parent #{cc.attrs.componentToUpdate}">
       <i class="option-action-icon si si-button-refresh-arrows" />
       <span class="option-item-label option-item-long-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/clearExpiry')}</span>
     </p:commandLink>
     
     <p:commandLink id="task-destroy-command" disabled="#{!taskActionBean.canDestroyTask(task)}" rendered="#{taskActionBean.showDestroyTask}"
-      styleClass="option-item" update="@parent"
+      styleClass="option-item" update="@parent #{cc.attrs.componentToUpdate}"
       actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
       oncomplete="#{cc.attrs.onDestroyComplete}" process="@this" global="false">
       <i class="option-action-icon si si-remove" />
@@ -90,7 +90,7 @@
     </p:commandLink>
     
     <p:commandLink id="task-trigger-escalation-command" disabled="#{!taskActionBean.canExpiry(task)}"
-      styleClass="option-item" update="@parent"
+      styleClass="option-item" update="@parent #{cc.attrs.componentToUpdate}"
       actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
       oncomplete="#{cc.attrs.onEscalationComplete}" process="@this" global="false">
       <i class="option-action-icon si si-synchronize-arrow-clock" />
@@ -99,7 +99,7 @@
     
     <p:commandLink id="task-workflow-event-command" disabled="#{!taskActionBean.canReadWorkflowEventTask()}" rendered="#{taskActionBean.showReadWorkflowEvent}"
       styleClass="option-item" onstart="event.stopPropagation();" process="@this"
-      update="@parent @widgetVar(workflow-events-dialog)"
+      update="@parent #{cc.attrs.componentToUpdate} @widgetVar(workflow-events-dialog)"
       actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
       oncomplete="#{cc.attrs.onWorkflowEventComplete}" global="false" >
       <i class="option-action-icon si si-business-contract-handshake-sign" />
