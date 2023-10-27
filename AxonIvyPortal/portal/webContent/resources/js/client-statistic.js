@@ -16,7 +16,7 @@ function formatISODate(dt) {
     let year = dt.getFullYear();
     let month = dt.getMonth() < 10 ? '0' + dt.getMonth() : dt.getMonth();
     let date = dt.getDate() < 10 ? '0' + dt.getDate() : dt.getDate();
-    return `${year}-${month}-${date}`;
+    return year + '-' + month + '-' + date;
 }
 
 $(document).ready(function () {
@@ -178,7 +178,7 @@ function initStatistics() {
 
     function updateTitle(chartId, chartType, title) {
         $('.dashboard__widget').each(function () {
-            if ($(this).find(`div[${DATA_CHART_ID}='${chartId}']`).length 
+            if ($(this).find('div[' + DATA_CHART_ID + '=' + chartId + ']').length 
                 && 'number' !== chartType) {
                 $(this).find(WIDGET_HEADER_TITLE).text(title);
                 return;
@@ -238,45 +238,42 @@ function renderEmptyStatistics(chart, additionalConfig) {
             emptyChartDataMessage = item.emptyChartDataMessage;
         }
     });
-    let emptyChartHtml = `
-           <div class="empty-message-container">
-               <i class="si si-analytics-pie-2 empty-message-icon"></i>
-               <p class="empty-message-text">` + emptyChartDataMessage + `</p>
-           </div>
-       `;
+    let emptyChartHtml = 
+           '<div class="empty-message-container">' +
+           '    <i class="si si-analytics-pie-2 empty-message-icon"></i>' +
+           '    <p class="empty-message-text">' + emptyChartDataMessage + '</p>' +
+           '</div>';
     $(chart).html(emptyChartHtml);
 }
 
 function renderNoPermissionStatistics(chart, noPermissionChartMessage) {
-    let noPermissionChartHtml = `
-           <div class="process-dashboard-widget__empty-process empty-message-container">
-               <i class="si si-lock-1 empty-message-icon"></i>
-               <br><span class="empty-message-text">` + noPermissionChartMessage + `</span>
-           </div>
-       `;
+    let noPermissionChartHtml = 
+           '<div class="process-dashboard-widget__empty-process empty-message-container">' +
+           '    <i class="si si-lock-1 empty-message-icon"></i>' +
+           '    <br><span class="empty-message-text">' + noPermissionChartMessage + '</span>' +
+           '</div>';
     $(chart).html(noPermissionChartHtml);
 }
 
 function renderChartCanvas(chartId) {
-    let html = `<canvas id="${chartId}" />`;
+    let html = '<canvas id="' + chartId + '" />';
     return html;
 };
 
 function renderNumberChartHtml(label, number, suffixSymbol) {
-    let html = `
-            <div class="u-text-align-center chart-content-card">
-                <div class="chart-icon-font-size chart-number-animation">
-                    <i class="fa-solid fa-chart-line"></i>
-                </div>
-                <div>
-                    <span class="card-number chart-number-font-size chart-number-animation">${number}</span>
-                    <i class="card-number chart-number-font-size chart-number-animation ${suffixSymbol}"></i>
-                </div>
-                <div>
-                    <span class="card-name chart-name-font-size chart-number-animation">${label}</span>
-                </div>
-            </div>
-        `;
+    let html = 
+            '<div class="u-text-align-center chart-content-card">' +
+            '    <div class="chart-icon-font-size chart-number-animation">' +
+            '        <i class="fa-solid fa-chart-line"></i>' +
+            '    </div>' +
+            '    <div>' +
+            '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
+            '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +
+            '    </div>' +
+            '    <div>' +
+            '        <span class="card-name chart-name-font-size chart-number-animation">' +  label + '</span>' +
+            '    </div>' +
+            '</div>';
     return html;
 };
 
@@ -297,7 +294,7 @@ function renderMultipleNumberChartInHTML(result, suffixSymbold){
 function getChartFilters(data){
     const EMPTY_SPACE = '';
     const WHITE_SPACE = ' ';
-    let filters = data.chartConfig.filter?.replace(`${data.chartConfig.aggregates}:`, EMPTY_SPACE);
+    let filters = data.chartConfig.filter?.replace(data.chartConfig.aggregates + ':', EMPTY_SPACE);
     filters = filters.split(WHITE_SPACE);
 
     return filters;
