@@ -217,13 +217,14 @@ public class DashboardWidgetConfigurationDialogPage extends TemplatePage {
 
   public void openMultiLanguageDialog() {
     clickByCssSelector("button[id$=':add-language-button']");
-    waitForElementDisplayed(
+    waitForElementReallyDisplayed(
         By.cssSelector(
             "div[id$='widget-configuration-form:new-widget-configuration-component:title-language-config:multiple-languages-dialog']"),
         true);
   }
 
   public void clickOkMultiLanguageDialog() {
+    waitForElementReallyDisplayed(By.cssSelector("button[id$='widget-configuration-form:new-widget-configuration-component:title-language-config:add-language-detail-form:multi-language-ok-button']"), true);
     clickByCssSelector(
         "button[id$='widget-configuration-form:new-widget-configuration-component:title-language-config:add-language-detail-form:multi-language-ok-button']");
   }
