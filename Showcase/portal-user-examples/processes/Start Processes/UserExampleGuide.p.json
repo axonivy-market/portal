@@ -126,6 +126,7 @@
             "output" : {
               "map" : {
                 "out" : "in",
+                "out.process" : "result.process",
                 "out.state" : "result.state"
               }
             }
@@ -261,7 +262,10 @@
             "call" : {
               "params" : [
                 { "name" : "userProcess", "type" : "ch.ivy.addon.portalkit.configuration.UserProcess" }
-              ]
+              ],
+              "map" : {
+                "param.userProcess" : "in.process"
+              }
             }
           },
           "visual" : {
