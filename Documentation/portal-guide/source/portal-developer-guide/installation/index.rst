@@ -129,7 +129,7 @@ Migrate 10.0.12 To 10.0.13
 - Override HTML dialog ``PageHeader`` and ``PageFooter`` are no longer supported, use callable instead.
 
 Migrate 10.0.11 To 10.0.12
------------------------
+--------------------------
 
 1. Portal no longer supports the override process approach for some subprocesses. Please follow the guidelines below to migrate your override subprocesses.
 
