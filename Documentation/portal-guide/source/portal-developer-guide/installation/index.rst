@@ -72,7 +72,7 @@ Setup Portal multi applications
 
    This is used to display common task lists for each user in several applications. The Task/Case lists of all applications installed in a security context are displayed by the Portal running in this security context.
 
-All applications are in the same security context and the **portal-components** should be the only part being deployed in the other applications. See :ref:`multi-app-structure` overview.
+All applications are in the same security context and the **portal-components** should be the only part being deployed in the other applications. See :ref:`The Portal multi applications <multi-app-structure>` overview.
 
 -  Create a new application. Deploy Portal (portal, portal-components, optionally AxonIvyExpress) to this application.
 
