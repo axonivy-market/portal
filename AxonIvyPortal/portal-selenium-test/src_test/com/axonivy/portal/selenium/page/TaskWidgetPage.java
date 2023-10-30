@@ -436,7 +436,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public boolean isResetLinkDisabled(int taskId) {
-    return $(getResetTaskLinkSelector(taskId)).shouldBe(appear, DEFAULT_TIMEOUT).is(Condition.disabled);
+    return !$(getResetTaskLinkSelector(taskId)).isDisplayed();
   }
 
   private String getResetTaskLinkSelector(int taskId) {
