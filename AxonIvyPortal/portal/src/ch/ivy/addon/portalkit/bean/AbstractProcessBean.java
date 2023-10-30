@@ -21,6 +21,7 @@ import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.bo.ProcessStep;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
+import ch.ivy.addon.portalkit.constant.CustomFields;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.ProcessType;
@@ -39,8 +40,6 @@ public abstract class AbstractProcessBean implements Serializable {
   protected static final String UNDERSCORE_BLANK = "_blank";
   protected static final String UNDERSCORE_SELF  = "_self";
   protected static final String DOT_ICM  = ".icm";
-  protected static final String CUSTOM_FIELD_ADDITIONAL_INFO = "additionalInfo";
-  protected static final String CUSTOM_FIELD_OVERRIDEN_TEMPLATE = "overridenTemplate";
   private List<Process> portalProcesses;
 
   public synchronized void init() {
@@ -153,17 +152,16 @@ public abstract class AbstractProcessBean implements Serializable {
     Boolean hasProcessInfo = false;
     List<ProcessStep> processSteps = null;
     Object nestedProcess = process.getProcess();
-    String additionalInfo = null;
-    String overridenTemplate = null;
+    String portalProcessInformation = null;
     Boolean isCustomFieldsExist = false;
     if (nestedProcess instanceof IWebStartable) {
       processSteps = ProcessStepUtils.findProcessStepsOfProcess(UserProcessMapper.toUserProcess(((IWebStartable) nestedProcess)));
-      additionalInfo = ((IWebStartable) nestedProcess).customFields().value(CUSTOM_FIELD_ADDITIONAL_INFO);
-      overridenTemplate = ((IWebStartable) nestedProcess).customFields().value(CUSTOM_FIELD_OVERRIDEN_TEMPLATE);
-      isCustomFieldsExist = StringUtils.isNotEmpty(overridenTemplate) || StringUtils.isNotEmpty(additionalInfo);
+      portalProcessInformation  = ((IWebStartable) nestedProcess).customFields().value(CustomFields.PROCESS_INFORMATION);
     } else if (nestedProcess instanceof DashboardProcess) {
       processSteps = ProcessStepUtils.findProcessStepsOfProcess(UserProcessMapper.toUserProcess(((DashboardProcess) nestedProcess)));
+      portalProcessInformation = ((DashboardProcess) nestedProcess).getPortalProcessInformation();
     }
+    isCustomFieldsExist =  StringUtils.isNotEmpty(portalProcessInformation);
     hasProcessInfo = (processSteps != null && processSteps.size() > 0) || isCustomFieldsExist;
     return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_PROCESS_INFORMATION) && hasProcessInfo;
   }
