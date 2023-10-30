@@ -74,6 +74,7 @@ public class MenuTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     // to refresh cache
     login(TestAccount.ADMIN_USER);
+    refreshPage();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitPageLoaded();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();

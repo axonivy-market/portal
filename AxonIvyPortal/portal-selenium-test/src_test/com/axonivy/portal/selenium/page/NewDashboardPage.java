@@ -114,7 +114,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public MainMenuPage openMainMenu() {
-    $(".ui-datatable-scrollable-body").shouldBe(appear, DEFAULT_TIMEOUT);
+    $(".dashboard-cases-container").shouldBe(appear, DEFAULT_TIMEOUT);
     if (!isMainMenuOpen()) {
       waitForElementDisplayed(By.id("left-menu"), true);
       $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover();

@@ -715,7 +715,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public String getResponsibleOfRelatedTaskAt(String taskName) {
     Optional<SelenideElement> responsible = $$("tr.ui-widget-content").asFixedIterable().stream().filter(row -> row.$(".task-name-value").getText().equals(taskName)).findFirst();
-    return responsible.get().$(".name-after-avatar").shouldBe(appear, DEFAULT_TIMEOUT).getText();
+    return responsible.get().$(".name-after-avatar").shouldBe(Condition.exist, DEFAULT_TIMEOUT).getText();
   }
 
   public void openTaskDelegateDialog(String taskName) {
@@ -955,7 +955,12 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public TaskDetailsPage openTasksOfCasePage(String taskName) {
-    caseItem.$(By.cssSelector("div[id$='related-tasks']")).$$(By.cssSelector("td.related-task-name-column")).asFixedIterable().stream().filter(element -> element.getText().equals(taskName)).findFirst().get().click();
+    SelenideElement task = caseItem.$(By.cssSelector("div[id$='related-tasks']"));
+
+    Optional<SelenideElement> optionalEle = task.$$(By.cssSelector("td.related-task-name-column")).asFixedIterable().stream().filter(element -> element.getText().equals(taskName)).findFirst();
+    if (optionalEle.isPresent()) {
+      optionalEle.get().click();
+    }
     return new TaskDetailsPage();
   }
 
