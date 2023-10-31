@@ -66,9 +66,9 @@ Engine With License (Production Mode)
 The engine does not deploy anything, you need to deploy and configure the Portal
 application manually.
 
-Install Dashboard congfiguration file to engine (Production Mode)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-To install Dashboard json configuration file to the Axon Ivy Engine, you can choose 1 of these ways
+Install Dashboard configuration file to engine (Production Mode)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+To install Dashboard JSON configuration file to the Axon Ivy Engine, you can choose 1 of these ways
 
 - Include the Dashboard.json file in the app.zip under ``<app.zip>/config/variables/Portal.Dashboard.json`` as the structure shown below
 
@@ -83,7 +83,7 @@ To install Dashboard json configuration file to the Axon Ivy Engine, you can cho
       ├── portal-components.iar    
    ..
 
-   The Json file name must be Portal.Dashboard.json. Refer to :dev-url:`Engine Deployment</doc/|version|/engine-guide/deployment/index.html>` 
+   The JSON file name must be Portal.Dashboard.json. Refer to :dev-url:`Engine Deployment</doc/|version|/engine-guide/deployment/index.html>` 
 - Copy the Dashboard.json file directly into the engine folder ``<engine>/configuration/applications/<application>``. The Json file name must be named ``variables.Portal.Dashboard.json``
 
 - Use the import dashboard feature of the Portal. Refer to :ref:`howto-import-your-public-dashboards`
