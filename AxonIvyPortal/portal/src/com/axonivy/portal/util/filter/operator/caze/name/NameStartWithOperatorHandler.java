@@ -6,40 +6,40 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-public class NameContainsOperatorHandler {
+public class NameStartWithOperatorHandler {
 
-  private static final String LIKE_FORMAT = "%%%s%%";
+  private static final String START_WTIH_FORMAT = "%s%%";
 
-  private static NameContainsOperatorHandler instance;
+  private static NameStartWithOperatorHandler instance;
 
-  public static NameContainsOperatorHandler getInstance() {
+  public static NameStartWithOperatorHandler getInstance() {
     if (instance == null) {
-      instance = new NameContainsOperatorHandler();
+      instance = new NameStartWithOperatorHandler();
     }
     return instance;
   }
 
-  public CaseQuery buildContainsQuery(DashboardFilter filter) {
+  public CaseQuery buildStartWithQuery(DashboardFilter filter) {
     if (CollectionUtils.isEmpty(filter.getTexts())) {
       return null;
     }
     CaseQuery query = CaseQuery.create();
     filter.getTexts().forEach(text -> {
       CaseQuery subQuery = CaseQuery.create();
-      subQuery.where().name().isLikeIgnoreCase(String.format(LIKE_FORMAT, text.toLowerCase()));
+      subQuery.where().name().isLikeIgnoreCase(String.format(START_WTIH_FORMAT, text.toLowerCase()));
       query.where().or(subQuery);
     });
     return query;
   }
 
-  public CaseQuery buildNotContainsQuery(DashboardFilter filter) {
+  public CaseQuery buildNotStartWithQuery(DashboardFilter filter) {
     if (CollectionUtils.isEmpty(filter.getTexts())) {
       return null;
     }
     CaseQuery query = CaseQuery.create();
     filter.getTexts().forEach(text -> {
       CaseQuery subQuery = CaseQuery.create();
-      subQuery.where().name().isNotLikeIgnoreCase(String.format(LIKE_FORMAT, text.toLowerCase()));
+      subQuery.where().name().isNotLikeIgnoreCase(String.format(START_WTIH_FORMAT, text.toLowerCase()));
       query.where().and(subQuery);
     });
     return query;

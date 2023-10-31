@@ -34,12 +34,32 @@ public class DashboardCaseWidgetFilterConverter implements IJsonConverter {
       .type(DashboardWidgetType.CASE.name())
       .findFilterableColumns().ifPresent(columns -> {
           columns.elements().forEachRemaining(col -> {
-          if (col.get("field").asText().contentEquals(DashboardStandardCaseColumn.CREATED.getField())) {
-              convertCreatedDateFilters(initFilterNode(jsonNode), col.get("userFilterFrom"), col.get("userFilterTo"));
+            DashboardStandardCaseColumn field = DashboardStandardCaseColumn.findBy(col.get("field").asText());
+            switch (field) {
+            case CREATED -> {
+              convertDateFilters(initFilterNode(jsonNode),
+                  col.get("userFilterFrom"),
+                  col.get("userFilterTo"),
+                  DashboardStandardCaseColumn.CREATED.getField());
             }
-            if (col.get("field").asText().contentEquals(DashboardStandardCaseColumn.NAME.getField())) {
-              convertNameFilters(initFilterNode(jsonNode), col.get("userFilter"));
+            case FINISHED -> {
+              convertDateFilters(initFilterNode(jsonNode),
+                  col.get("userFilterFrom"),
+                  col.get("userFilterTo"),
+                  DashboardStandardCaseColumn.FINISHED.getField());
             }
+            case NAME -> {
+              convertStringFilters(initFilterNode(jsonNode),
+                  col.get("userFilter"),
+                  DashboardStandardCaseColumn.NAME.getField());
+            }
+            case DESCRIPTION -> {
+              convertStringFilters(initFilterNode(jsonNode),
+                  col.get("userFilter"),
+                  DashboardStandardCaseColumn.DESCRIPTION.getField());
+            }
+            default -> {}
+          }
           });
         columns.removeAll();
       });
@@ -53,7 +73,7 @@ public class DashboardCaseWidgetFilterConverter implements IJsonConverter {
     return matches;
   }
 
-  private void convertCreatedDateFilters(ArrayNode filters, JsonNode filterFrom, JsonNode filterTo) {
+  private void convertDateFilters(ArrayNode filters, JsonNode filterFrom, JsonNode filterTo, String field) {
     boolean isEmptyFilterFrom = filterFrom == null || StringUtils.isBlank(filterFrom.asText());
     boolean isEmptyFilterTo = filterTo == null || StringUtils.isBlank(filterTo.asText());
 
@@ -62,13 +82,13 @@ public class DashboardCaseWidgetFilterConverter implements IJsonConverter {
     }
 
     filters.elements().forEachRemaining(filter -> {
-      if (filter.get("field").asText().contentEquals(DashboardStandardCaseColumn.CREATED.getField())) {
+      if (filter.get("field").asText().contentEquals(field)) {
         return;
       }
     });
 
     ObjectNode newFilterNode = filters.addObject();
-    newFilterNode.set("field", new TextNode(DashboardStandardCaseColumn.CREATED.getField()));
+    newFilterNode.set("field", new TextNode(field));
     newFilterNode.set("type", new TextNode(FilterType.DATE.name()));
     newFilterNode.set("operator", new TextNode(FilterOperator.BETWEEN.name()));
 
@@ -81,19 +101,19 @@ public class DashboardCaseWidgetFilterConverter implements IJsonConverter {
     }
   }
 
-  private void convertNameFilters(ArrayNode filters, JsonNode filterText) {
+  private void convertStringFilters(ArrayNode filters, JsonNode filterText, String field) {
     if (filterText == null || StringUtils.isBlank(filterText.asText())) {
       return;
     }
 
     filters.elements().forEachRemaining(filter -> {
-      if (filter.get("field").asText().contentEquals(DashboardStandardCaseColumn.NAME.getField())) {
+      if (filter.get("field").asText().contentEquals(field)) {
         return;
       }
     });
 
     ObjectNode newFilterNode = filters.addObject();
-    newFilterNode.set("field", new TextNode(DashboardStandardCaseColumn.NAME.getField()));
+    newFilterNode.set("field", new TextNode(field));
     newFilterNode.set("type", new TextNode(FilterType.TEXT.name()));
     newFilterNode.set("operator", new TextNode(FilterOperator.CONTAINS.name()));
 
