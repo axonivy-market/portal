@@ -403,4 +403,33 @@ public class ProcessWidgetPage extends TemplatePage {
   private void loadLiveSearchTextField() {
     liveSearchTextField = findElementById(processWidgetId + ":process-search:non-ajax-keyword-filter");
   }
+  public ExpressProcessPage editExpressWF(String wfName) {
+    int numberOfRefesh = 5;
+    for (int i = 0; i < numberOfRefesh; i++) {
+      waitForElementDisplayed(By.id(processWidgetId + ":process-search:non-ajax-keyword-filter"), true);
+      enterSearchKeyword(wfName);
+      if (isImageModeActivated()) {
+        SelenideElement processForm = $("form.image-view-form.is-express");
+        var processFormID = processForm.getAttribute("id");
+        waitForElementClickableThenClick("[id$='" + processFormID + ":image-process-action-component:process-action-button']");
+        waitForElementDisplayed(By.cssSelector(".process-action-menu.ui-connected-overlay-enter-done"), true);
+        if (isElementDisplayed(By.cssSelector("div[id$='"+ processFormID + ":image-process-action-component:process-action-menu']"))) {
+          SelenideElement actionMenu = $("div[id$='"+ processFormID + ":image-process-action-component:process-action-menu']");
+          SelenideElement icon = actionMenu.$("a[id$=':process-item:image-process-action-component:edit-process']");
+          icon.click();
+          waitForElementDisplayed(By.cssSelector("[id$='process-widget:edit-process-dialog']"), true);
+          waitForElementClickableThenClick("a[id$='process-widget:edit-process-form:edit-express-workflow']");
+          break;
+        }
+      } else {
+        if (isElementDisplayed(By.cssSelector("[id$='edit-express-workflow']"))) {
+          waitForElementClickableThenClick($("[id$='edit-express-workflow']"));
+          break;
+        }
+      }
+
+//      refresh();
+    }
+    return new ExpressProcessPage();
+  }
 }

@@ -446,4 +446,9 @@ public class CaseWidgetPage extends TemplatePage {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((driver) -> findElementByCssSelector("div[id$='action-steps-panel']").isDisplayed());
     return findElementByCssSelector("div[id$='action-steps-panel']");
   }
+
+  public String getCreatorAt(int index) {
+    List<SelenideElement> creators = $$(".case-header-creator-cell .name-after-avatar");
+    return creators.get(index).getText();
+  }
 }

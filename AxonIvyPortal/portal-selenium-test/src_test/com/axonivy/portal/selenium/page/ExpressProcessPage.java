@@ -126,4 +126,16 @@ public class ExpressProcessPage extends TemplatePage {
   public String getProcessName() {
     return findElementById("form:process-name").getAttribute("value");
   }
+
+  public String getProcessOwnerNames() {
+    return findElementById("form:process-owner-link").getText();
+  }
+
+  public String getAbleToStartNames() {
+    return getResponsiblesOfTask(0);
+  }
+
+  public String getResponsiblesOfTask(int taskIndex) {
+    return findElementById(String.format("form:defined-tasks-list:%d:task-responsible-link", taskIndex)).getText();
+  }
 }
