@@ -18,6 +18,7 @@
     <ui:param name="managedBean" value="#{cc.attrs.managedBean}" />
     <ui:param name="onCompletePreviewAction" value="PF('dashboard-cases-#{cc.attrs.caseWidget.id}').filter()" />
     <ui:param name="filterContainerStyleClass" value="case-widget-filter" />
+    <ui:param name="filterContainerStyleClass" value="filter-messages #{widget.id}-predefined-filter" />
 
     <ui:define name="widgetFilterContent">
       <div class="ui-g-12 u-padding-0">
