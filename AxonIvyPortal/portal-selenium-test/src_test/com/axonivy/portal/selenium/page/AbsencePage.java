@@ -13,6 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -42,7 +43,7 @@ public class AbsencePage extends TemplatePage {
   }
 
   public void showAbsencesInThePast(boolean shown) {
-    WebElement checkBox = $("input[id*='show-absence-in-the-past']");
+    SelenideElement checkBox = $("input[id*='show-absence-in-the-past']");
     boolean checkBoxSelected = checkBox.isSelected();
     if (checkBoxSelected != shown) {
       waitForElementClickableThenClick("div[id*='show-absence-in-the-past'] div.ui-chkbox-box");
@@ -50,6 +51,7 @@ public class AbsencePage extends TemplatePage {
   }
 
   public String getMyDeputy(int deputyRoleIndex) {
+    waitAjaxIndicatorDisappear();
     String deputiesSelector = String.format("a[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
     return $(deputiesSelector).shouldBe(appear, DEFAULT_TIMEOUT).getText();
   }
@@ -69,7 +71,7 @@ public class AbsencePage extends TemplatePage {
     List<SelenideElement> elements = $$(deputyRoleTypeSelector);
     if (CollectionUtils.isNotEmpty(elements)) {
       for (int index = 0; index < elements.size(); index++) {
-        WebElement element = elements.get(index);
+        SelenideElement element = elements.get(index);
         String deputyRoleTypeValue = element.getAttribute("deputy-role-type");
         if (deputyRoleTypeValue != null && deputyRoleTypeValue.equals(String.valueOf(deputyRoleType))) {
           return index;
@@ -92,11 +94,7 @@ public class AbsencePage extends TemplatePage {
   }
 
   public void setDeputy(List<String> fullNames, int deputyRoleIndex, boolean saveSelectedDeputies) {
-    try {
-      clickSelectedDeputiesLink(deputyRoleIndex);
-    } catch (Exception e) {
-      clickSelectedDeputiesLink(deputyRoleIndex);
-    }
+    clickSelectedDeputiesLink(deputyRoleIndex);
     for (String fullName : fullNames) {
       selectDeputy(fullName);
     }
@@ -133,7 +131,7 @@ public class AbsencePage extends TemplatePage {
 
   public void setSubstitutedByAdmin(String substitutedUser) {
     String selectedUserInput = "input[id$=':user-absence-selection-component:user-absence_input']";
-    WebElement substituted = $(selectedUserInput).shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement substituted = $(selectedUserInput).shouldBe(appear, DEFAULT_TIMEOUT);
     substituted.clear();
     substituted.sendKeys(substitutedUser);
     waitAjaxIndicatorDisappear();
@@ -141,8 +139,7 @@ public class AbsencePage extends TemplatePage {
   }
 
   public String getSubstitutedByAdmin(int rowIndex) {
-    WebElement deputyForTable = $("[id$=':substitution-table']");
-    WebElement deputyFor = deputyForTable.findElements(By.cssSelector(".name-after-avatar")).get(rowIndex);
+    SelenideElement deputyFor = $("[id$=':substitution-table']").$$(By.cssSelector(".name-after-avatar")).shouldBe(CollectionCondition.size(1)).get(rowIndex);
     return deputyFor.getText();
   }
 
@@ -160,7 +157,7 @@ public class AbsencePage extends TemplatePage {
   }
 
   public void waitForAbsencesGrowlMessageDisplay() {
-    WebElement growlMessage = $("div[id$='absences-management-form:absences-management-info_container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement growlMessage = $("div[id$='absences-management-form:absences-management-info_container']").shouldBe(appear, DEFAULT_TIMEOUT);
     $(growlMessage.findElement(By.className("ui-growl-item-container"))).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
