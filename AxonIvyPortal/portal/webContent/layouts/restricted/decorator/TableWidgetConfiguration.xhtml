@@ -51,7 +51,8 @@
         <p:commandButton id="preview-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}"
           styleClass="Fright preview-button u-hidden-sm-down" icon="si si-search"
-          onclick="reloadCaseWidget#{widget.id}()" />
+          onclick="reloadCaseWidget#{widget.id}()"
+          update="filter-messages #{widget.id}-predefined-filter" />
       </div>
     </div>
 
