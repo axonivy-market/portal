@@ -9,11 +9,15 @@
 }
 
 .process-viewer-information {
-  height: 60px;
+  height: fit-content;
 }
 
 .process-viewer-information .process-information-title {
   font-weight: bold;
+}
+
+.process-viewer-fit-content {
+  min-width: fit-content;
 }
 
 .process-details-column-title {
@@ -61,7 +65,7 @@
 }
 
 .process-viewer-diagram {
-  height: calc(100% - 60px);
+  height: calc(100% - 78px);
 }
 
 .process-viewer-frame {
