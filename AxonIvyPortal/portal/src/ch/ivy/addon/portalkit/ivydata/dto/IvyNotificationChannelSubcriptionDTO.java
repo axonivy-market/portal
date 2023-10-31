@@ -9,8 +9,7 @@ public class IvyNotificationChannelSubcriptionDTO extends AbstractResultDTO {
   private String icon;
   private String title;
 
-  public IvyNotificationChannelSubcriptionDTO(NotificationSubscription.State state,
-      boolean isSubscribedByDefault) {
+  public IvyNotificationChannelSubcriptionDTO(NotificationSubscription.State state, boolean isSubscribedByDefault) {
     this.state = State.fromDbState(state);
     this.isSubscribedByDefault = isSubscribedByDefault;
   }

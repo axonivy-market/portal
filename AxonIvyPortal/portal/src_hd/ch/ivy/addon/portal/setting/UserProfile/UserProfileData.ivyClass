@@ -36,5 +36,3 @@ queryLanguage String #field
 queryLanguage PERSISTENT #fieldModifier
 formatLanguages java.util.List<javax.faces.model.SelectItem> #field
 formatLanguages PERSISTENT #fieldModifier
-notificationChannelService ch.ivy.addon.portalkit.ivydata.service.impl.NotificationChannelService #field
-notificationChannelService PERSISTENT #fieldModifier

@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.notification.channel.NotificationChannel;
 import ch.ivyteam.ivy.notification.channel.NotificationSubscription;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -14,7 +13,7 @@ public class IvyNotificationChannelDTO extends AbstractResultDTO {
 
   private final NotificationChannel channel;
   private final Map<String, IvyNotificationChannelSubcriptionDTO> subscriptions;
-
+  
   private IvyNotificationChannelDTO(NotificationChannel channel,
       Map<String, IvyNotificationChannelSubcriptionDTO> subscriptions) {
     this.channel = channel;
@@ -72,7 +71,5 @@ public class IvyNotificationChannelDTO extends AbstractResultDTO {
 
     subscription.setIcon(icon.toString());
     subscription.setTitle(iconTitle.toString());
-
-    Ivy.log().error(subscription.getIcon());
   }
 }

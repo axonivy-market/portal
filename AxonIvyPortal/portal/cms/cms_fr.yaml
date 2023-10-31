@@ -186,6 +186,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     TaskList: Liste des tâches
     defaultOption: Par défaut ({0})
     defaultViewMode: Mode de vue par défaut
+    event: Événement
     notificationChannels: Canaux de notification
     showTutorial: Spectacle de bienvenue
   PortalManagement:

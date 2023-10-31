@@ -51,7 +51,7 @@
           "parentConnector" : "f9"
         } ],
       "visual" : {
-        "at" : { "x" : 672, "y" : 280 }
+        "at" : { "x" : 640, "y" : 280 }
       },
       "connect" : [
         { "id" : "f9", "to" : "S00" }
@@ -113,7 +113,7 @@
           "parentConnector" : "f5"
         } ],
       "visual" : {
-        "at" : { "x" : 512, "y" : 280 },
+        "at" : { "x" : 456, "y" : 280 },
         "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : [
@@ -190,7 +190,7 @@
           "parentConnector" : "f26"
         } ],
       "visual" : {
-        "at" : { "x" : 888, "y" : 144 }
+        "at" : { "x" : 832, "y" : 144 }
       },
       "connect" : [
         { "id" : "f26", "to" : "f8" }
@@ -317,7 +317,7 @@
           "parentConnector" : "f20"
         } ],
       "visual" : {
-        "at" : { "x" : 696, "y" : 144 }
+        "at" : { "x" : 624, "y" : 144 }
       },
       "connect" : [
         { "id" : "f20", "to" : "S60" }
@@ -407,7 +407,7 @@
           }
         } ],
       "visual" : {
-        "at" : { "x" : 536, "y" : 144 }
+        "at" : { "x" : 416, "y" : 144 }
       },
       "connect" : [
         { "id" : "f4", "to" : "S20" }
@@ -553,7 +553,7 @@
           "parentConnector" : "f11"
         } ],
       "visual" : {
-        "at" : { "x" : 216, "y" : 280 }
+        "at" : { "x" : 248, "y" : 280 }
       },
       "connect" : [
         { "id" : "f11", "to" : "S70" }
@@ -568,7 +568,7 @@
       "id" : "f8",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 1040, "y" : 144 }
+        "at" : { "x" : 1016, "y" : 144 }
       }
     }, {
       "id" : "f12",
@@ -674,7 +674,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1040, "y" : 280 }
+        "at" : { "x" : 1024, "y" : 280 }
       },
       "connect" : [
         { "id" : "f3", "to" : "f42" }
@@ -721,7 +721,7 @@
           ]
         } ],
       "visual" : {
-        "at" : { "x" : 864, "y" : 280 },
+        "at" : { "x" : 840, "y" : 280 },
         "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : [
@@ -791,54 +791,5 @@
       "visual" : {
         "at" : { "x" : 496, "y" : 512 }
       }
-    }, {
-      "id" : "f13",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "resetNotification(NotificationChannelService)",
-      "config" : {
-        "signature" : "resetNotification",
-        "input" : {
-          "params" : [
-            { "name" : "notificationChannelService", "type" : "ch.ivy.addon.portalkit.ivydata.service.impl.NotificationChannelService", "desc" : "" }
-          ],
-          "map" : {
-            "out.notificationChannelService" : "param.notificationChannelService"
-          }
-        },
-        "guid" : "18B46A9E37B84689"
-      },
-      "visual" : {
-        "at" : { "x" : 88, "y" : 616 },
-        "labelOffset" : { "x" : 24, "y" : 35 }
-      },
-      "connect" : [
-        { "id" : "f31", "to" : "f24" }
-      ]
-    }, {
-      "id" : "f18",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 528, "y" : 616 }
-      }
-    }, {
-      "id" : "f24",
-      "type" : "Script",
-      "name" : "reset action",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portal.generic.bean.UserProfileBean;",
-            "",
-            "UserProfileBean userProfileBean = new UserProfileBean(in.notificationChannelService);",
-            "userProfileBean.notificationChannelService.reset();"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 304, "y" : 616 }
-      },
-      "connect" : [
-        { "id" : "f30", "to" : "f18" }
-      ]
     } ]
 }

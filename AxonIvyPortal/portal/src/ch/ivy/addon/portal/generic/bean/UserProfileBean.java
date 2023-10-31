@@ -1,13 +1,16 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -16,11 +19,15 @@ import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.SortDirection;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
-import ch.ivy.addon.portalkit.ivydata.service.impl.NotificationChannelService;
+import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelDTO;
+import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelSubcriptionDTO;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.notification.channel.NotificationSubscription;
+import ch.ivyteam.ivy.notification.event.NotificationEvent;
 import ch.ivyteam.ivy.security.ISecurityContext;
+import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 
 @ManagedBean
@@ -29,15 +36,21 @@ public class UserProfileBean implements Serializable {
   private static final String DEFAULT_OPTION = "/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption";
   private static final long serialVersionUID = 4952280551311826903L;
   private static final String DEFAULT = UserSettingService.DEFAULT;
-  private NotificationChannelService notificationChannelService;
+
+  public UserProfileBean() {}
+
+  private ISecurityMember subscriber;
   private ISecurityContext securityContext;
-  private IUser user;
-  
+
+  private List<String> events;
+  private List<IvyNotificationChannelDTO> channels;
+
   public void init() {
+    subscriber = Ivy.session().getSessionUser();
     securityContext = ISecurityContext.current();
-    user = Ivy.session().getSessionUser();
-    notificationChannelService = NotificationChannelService.instance(user, securityContext);
+    onload();
   }
+
   public void saveHomepage(String homepageName) {
     IUser user = Ivy.session().getSessionUser();
     if (StringUtils.isBlank(homepageName)) {
@@ -45,15 +58,18 @@ public class UserProfileBean implements Serializable {
     }
     user.setProperty(UserProperty.HOMEPAGE, homepageName);
   }
-  
+
   public String getDisplayNameOfTaskSortField(String sortField) {
     List<String> sortFieldNames = Stream.of(TaskSortField.values()).map(Enum::name).collect(Collectors.toList());
 
     if (StringUtils.equals(sortField, DEFAULT)) {
       GlobalSettingService globalSettingService = new GlobalSettingService();
-      String defaultSortField = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_FIELD_OF_TASK_LIST).getValue();
+      String defaultSortField = globalSettingService
+          .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_FIELD_OF_TASK_LIST).getValue();
 
-      String displaySortField = sortFieldNames.contains(defaultSortField) ? TaskSortField.valueOf(defaultSortField).getLabel() : defaultSortField;
+      String displaySortField =
+          sortFieldNames.contains(defaultSortField) ? TaskSortField.valueOf(defaultSortField).getLabel()
+              : defaultSortField;
       return getDefaultSelection(displaySortField);
     }
 
@@ -64,9 +80,12 @@ public class UserProfileBean implements Serializable {
     List<String> sortFieldNames = Stream.of(CaseSortField.values()).map(Enum::name).collect(Collectors.toList());
     if (StringUtils.equals(sortField, DEFAULT)) {
       GlobalSettingService globalSettingService = new GlobalSettingService();
-      String defaultSortField = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_FIELD_OF_CASE_LIST).getValue();
+      String defaultSortField = globalSettingService
+          .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_FIELD_OF_CASE_LIST).getValue();
 
-      String displaySortField = sortFieldNames.contains(defaultSortField) ? CaseSortField.valueOf(defaultSortField).getLabel() : defaultSortField;
+      String displaySortField =
+          sortFieldNames.contains(defaultSortField) ? CaseSortField.valueOf(defaultSortField).getLabel()
+              : defaultSortField;
       return getDefaultSelection(displaySortField);
     }
 
@@ -77,9 +96,11 @@ public class UserProfileBean implements Serializable {
     List<String> sortDirectionNames = Stream.of(SortDirection.values()).map(Enum::name).collect(Collectors.toList());
     if (StringUtils.equals(sortDirection, DEFAULT)) {
       GlobalSettingService globalSettingService = new GlobalSettingService();
-      String defaultDirection = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST).getValue();
+      String defaultDirection = globalSettingService
+          .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST).getValue();
 
-      String displayDirection = sortDirectionNames.contains(defaultDirection) ? SortDirection.valueOf(defaultDirection).getLabel() : "";
+      String displayDirection =
+          sortDirectionNames.contains(defaultDirection) ? SortDirection.valueOf(defaultDirection).getLabel() : "";
       return getDefaultSelection(displayDirection);
     }
 
@@ -90,13 +111,15 @@ public class UserProfileBean implements Serializable {
     List<String> sortDirectionNames = Stream.of(SortDirection.values()).map(Enum::name).collect(Collectors.toList());
     if (StringUtils.equals(sortDirection, DEFAULT)) {
       GlobalSettingService globalSettingService = new GlobalSettingService();
-      String defaultDirection = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST).getValue();
-      
-      String displayDirection = sortDirectionNames.contains(defaultDirection) ? SortDirection.valueOf(defaultDirection).getLabel() : "";
+      String defaultDirection = globalSettingService
+          .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST).getValue();
+
+      String displayDirection =
+          sortDirectionNames.contains(defaultDirection) ? SortDirection.valueOf(defaultDirection).getLabel() : "";
       return getDefaultSelection(displayDirection);
     }
 
-    
+
     return sortDirectionNames.contains(sortDirection) ? SortDirection.valueOf(sortDirection).getLabel() : "";
   }
 
@@ -104,15 +127,44 @@ public class UserProfileBean implements Serializable {
     return Ivy.cms().co(DEFAULT_OPTION, Arrays.asList(sortFieldName));
   }
 
-  public NotificationChannelService getNotificationChannelService() {
-    return notificationChannelService;
+  public void onload() {
+    events = new ArrayList<>(NotificationEvent.allAsString());
+    channels = IvyNotificationChannelDTO.all(subscriber, securityContext, events);
   }
 
-  public void setNotificationChannelService(NotificationChannelService notificationChannelService) {
-    this.notificationChannelService = notificationChannelService;
+  public void reset() {
+    channels.forEach(this::resetChannel);
+    onload();
+    addMessage("Notification Channels reset");
   }
 
-  public UserProfileBean(NotificationChannelService notificationChannelService) {
-    this.notificationChannelService = notificationChannelService;
+  private void resetChannel(IvyNotificationChannelDTO channel) {
+    channel.getSubscriptions().forEach(
+        (event, subscription) -> subscription.setState(IvyNotificationChannelSubcriptionDTO.State.USE_DEFAULT));
+    saveChannel(channel);
   }
+
+  public void save() {
+    channels.forEach(this::saveChannel);
+  }
+
+  private void saveChannel(IvyNotificationChannelDTO channel) {
+    channel.getSubscriptions().entrySet().forEach(eventSubscription -> {
+      var subscription = NotificationSubscription.of(subscriber, channel.getChannel(), eventSubscription.getKey());
+      subscription.state(eventSubscription.getValue().getState().toDbState());
+    });
+  }
+
+  private void addMessage(String msg) {
+    FacesContext.getCurrentInstance().addMessage("notification-Message", new FacesMessage(msg));
+  }
+
+  public List<IvyNotificationChannelDTO> getChannels() {
+    return channels;
+  }
+
+  public List<String> getEvents() {
+    return events;
+  }
+
 }
