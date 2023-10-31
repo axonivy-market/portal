@@ -71,9 +71,10 @@
         window.processSteps = "#{fn:join(data.steps.toArray(), ',')}";
         //window.processSteps = "Create Investment Request1,Approve Investment Request";
         //window.processSteps = ["Create Investment Request","Approve Investment Request"];
+        window.processStepIcons = ["si si-check-1", "si si-expand-1", "si si-folder-search" ];
         window.currentProcessStep = 0;
-        window.processChainDirection = "VERTICAL";
-        window.processChainShape = "LINE";
+//         window.processChainDirection = "VERTICAL";
+        window.processChainShape = "ICON";
         window.viewName = "TASK_DETAIL";
       </script>
     </ui:define>

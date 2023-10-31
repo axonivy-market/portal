@@ -105,10 +105,10 @@
             <ui:insert name="processChainArea">
               <ic:com.axonivy.portal.components.ProcessChain id="process-chain-component"
                 startMethod="start" componentId="process-chain-component-id"
-                shape="#{processChainShape eq 'LINE' ? 'LINE' : 'CIRCLE'}"
+                shape="#{processChainShape}"
                 direction="#{processChainDirection eq 'VERTICAL' ? 'VERTICAL' : 'HORIZONTAL'}" 
                 isShowAllSteps="#{isShowAllSteps}"
-                actualStepIndex="#{actualStepIndex}" steps="#{steps}" stepIndexes="#{stepIndexes}"
+                actualStepIndex="#{actualStepIndex}" steps="#{steps}" stepIcons="#{stepIcons}" stepIndexes="#{stepIndexes}"
                 currentIndex="#{abstractTaskTemplateBean.getIndexOfCurrentStage(case)}"
                 stages="#{abstractTaskTemplateBean.getStagesBaseOnCurrentStage(case, steps)}" />
             </ui:insert>
