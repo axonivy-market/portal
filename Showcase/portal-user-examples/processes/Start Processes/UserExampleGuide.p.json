@@ -122,13 +122,20 @@
           "name" : "ExampleHomePage",
           "config" : {
             "dialogId" : "com.axonivy.portal.userexamples.ExampleHomePage",
-            "startMethod" : "start()"
+            "startMethod" : "start()",
+            "output" : {
+              "map" : {
+                "out" : "in",
+                "out.process" : "result.process",
+                "out.state" : "result.state"
+              }
+            }
           },
           "visual" : {
-            "at" : { "x" : 272, "y" : 160 },
+            "at" : { "x" : 224, "y" : 160 },
             "size" : { "width" : 128, "height" : 60 }
           },
-          "connect" : { "id" : "S31-f1", "to" : "S31-g1" }
+          "connect" : { "id" : "S31-f4", "to" : "S31-f2" }
         }, {
           "id" : "S31-g0",
           "type" : "EmbeddedStart",
@@ -144,10 +151,193 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 464, "y" : 160 },
+            "at" : { "x" : 456, "y" : 232 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f8"
+        }, {
+          "id" : "S31-f2",
+          "type" : "Alternative",
+          "name" : "Action?",
+          "visual" : {
+            "at" : { "x" : 456, "y" : 160 },
+            "labelOffset" : { "x" : -16, "y" : 32 }
+          },
+          "connect" : [
+            { "id" : "S31-f22", "to" : "S31-f21", "label" : {
+                "name" : "Leave request"
+              }, "condition" : "com.axonivy.portal.userexamples.enums.RequestState.SUBMIT == in.state" },
+            { "id" : "S31-f16", "to" : "S31-f5", "label" : {
+                "name" : "Lending overview"
+              }, "condition" : "com.axonivy.portal.userexamples.enums.RequestState.SUBMIT2 == in.state" },
+            { "id" : "S31-f1", "to" : "S31-g1" }
+          ]
+        }, {
+          "id" : "S31-f5",
+          "type" : "Alternative",
+          "visual" : {
+            "at" : { "x" : 632, "y" : 160 }
+          },
+          "connect" : [
+            { "id" : "S31-f8", "to" : "S31-f7" }
+          ]
+        }, {
+          "id" : "S31-f9",
+          "type" : "Alternative",
+          "name" : "Action?",
+          "visual" : {
+            "at" : { "x" : 880, "y" : 160 },
+            "labelOffset" : { "x" : -16, "y" : 32 }
+          },
+          "connect" : [
+            { "id" : "S31-f14", "to" : "S31-f12", "label" : {
+                "name" : "Cancel"
+              }, "condition" : "com.axonivy.portal.userexamples.enums.RequestState.CANCEL == in.state" },
+            { "id" : "S31-f17", "to" : "S31-f10", "label" : {
+                "name" : "Lending detail"
+              } }
+          ]
+        }, {
+          "id" : "S31-f13",
+          "type" : "Alternative",
+          "name" : "Action?",
+          "visual" : {
+            "at" : { "x" : 1192, "y" : 160 },
+            "labelOffset" : { "x" : -16, "y" : 32 }
+          },
+          "connect" : [
+            { "id" : "S31-f25", "to" : "S31-f12", "via" : [ { "x" : 1280, "y" : 160 }, { "x" : 1280, "y" : 280 } ], "label" : {
+                "name" : "Cancel",
+                "segment" : 2.18
+              }, "condition" : "com.axonivy.portal.userexamples.enums.RequestState.CANCEL == in.state" },
+            { "id" : "S31-f28", "to" : "S31-f5", "via" : [ { "x" : 1192, "y" : 80 }, { "x" : 632, "y" : 80 } ], "label" : {
+                "name" : "Lending overview",
+                "segment" : 1.86,
+                "offset" : { "x" : 277, "y" : 69 }
+              }, "condition" : "com.axonivy.portal.userexamples.enums.RequestState.SUBMIT == in.state" },
+            { "id" : "S31-f27", "to" : "S31-f10", "via" : [ { "x" : 1192, "y" : 240 }, { "x" : 1072, "y" : 240 } ], "label" : {
+                "name" : "Next/Previous step",
+                "segment" : 2.03,
+                "offset" : { "x" : 120, "y" : -24 }
+              } }
+          ]
+        }, {
+          "id" : "S31-f6",
+          "type" : "Alternative",
+          "name" : "Action?",
+          "visual" : {
+            "at" : { "x" : 328, "y" : 32 },
+            "labelOffset" : { "x" : -16, "y" : 32 }
+          },
+          "connect" : [
+            { "id" : "S31-f18", "to" : "S31-f3", "via" : [ { "x" : 224, "y" : 32 } ], "label" : {
+                "name" : "Cancel",
+                "segment" : 1.21,
+                "offset" : { "x" : 49, "y" : -20 }
+              }, "condition" : "com.axonivy.portal.userexamples.enums.RequestState.CANCEL == in.state" },
+            { "id" : "S31-f20", "to" : "S31-f19" }
+          ]
+        }, {
+          "id" : "S31-f19",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 328, "y" : 96 }
+          }
+        }, {
+          "id" : "S31-f21",
+          "type" : "DialogCall",
+          "name" : [
+            "Leave Request",
+            "Overview"
+          ],
+          "config" : {
+            "dialogId" : "com.axonivy.portal.userexamples.leaverequest.LeaveRequestOverview",
+            "startMethod" : "start(ch.ivy.addon.portalkit.configuration.UserProcess)",
+            "output" : {
+              "map" : {
+                "out" : "in",
+                "out.state" : "result.state"
+              }
+            },
+            "call" : {
+              "params" : [
+                { "name" : "userProcess", "type" : "ch.ivy.addon.portalkit.configuration.UserProcess" }
+              ],
+              "map" : {
+                "param.userProcess" : "in.process"
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 456, "y" : 32 }
+          },
+          "connect" : { "id" : "S31-f15", "to" : "S31-f6" }
+        }, {
+          "id" : "S31-f7",
+          "type" : "DialogCall",
+          "name" : "Lending overview",
+          "config" : {
+            "dialogId" : "com.axonivy.portal.userexamples.credit.LendingOverview",
+            "startMethod" : "start(ch.ivy.addon.portalkit.configuration.UserProcess)",
+            "output" : {
+              "map" : {
+                "out" : "in",
+                "out.caseMapDetail" : "result.caseMapDetail",
+                "out.stageIndex" : "result.stageIndex",
+                "out.state" : "result.state"
+              }
+            },
+            "call" : {
+              "params" : [
+                { "name" : "userProcess", "type" : "ch.ivy.addon.portalkit.configuration.UserProcess" }
+              ],
+              "map" : {
+                "param.userProcess" : "in.process"
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 736, "y" : 160 }
+          },
+          "connect" : { "id" : "S31-f11", "to" : "S31-f9" }
+        }, {
+          "id" : "S31-f10",
+          "type" : "DialogCall",
+          "name" : "LendingDetail",
+          "config" : {
+            "dialogId" : "com.axonivy.portal.userexamples.credit.LendingDetail",
+            "startMethod" : "start(ch.ivy.addon.portalkit.bo.CaseMapDetail,Integer)",
+            "output" : {
+              "map" : {
+                "out" : "in",
+                "out.stageIndex" : "result.stageIndex",
+                "out.state" : "result.state"
+              }
+            },
+            "call" : {
+              "params" : [
+                { "name" : "caseMapDetail", "type" : "ch.ivy.addon.portalkit.bo.CaseMapDetail" },
+                { "name" : "index", "type" : "Integer" }
+              ],
+              "map" : {
+                "param.caseMapDetail" : "in.caseMapDetail",
+                "param.index" : "in.stageIndex"
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 1072, "y" : 160 }
+          },
+          "connect" : { "id" : "S31-f24", "to" : "S31-f13" }
+        }, {
+          "id" : "S31-f12",
+          "type" : "Alternative",
+          "visual" : {
+            "at" : { "x" : 880, "y" : 280 }
+          },
+          "connect" : [
+            { "id" : "S31-f23", "to" : "S31-f3", "via" : [ { "x" : 224, "y" : 280 } ] }
+          ]
         } ],
       "visual" : {
         "at" : { "x" : 408, "y" : 480 },
