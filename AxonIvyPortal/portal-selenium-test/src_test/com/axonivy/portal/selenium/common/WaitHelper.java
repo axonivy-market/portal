@@ -25,7 +25,6 @@ public final class WaitHelper {
     String viewState = $("input[name='javax.faces.ViewState'][id$='javax.faces.ViewState:1']").getAttribute("value");
     navigationAcion.run();
     $$("input[value='" + viewState + "']").shouldHave(CollectionCondition.sizeLessThanOrEqual(0), DEFAULT_TIMEOUT);
-//    $(".layout-menu li[role='menuitem'] a.DASHBOARD").shouldHave(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public static void waitForNavigationToLoginPage(Runnable navigationAcion) {

@@ -243,7 +243,6 @@ public class CaseWidgetPage extends TemplatePage {
         $(By.id("case-widget:filter-selection-form:filter-name-overlay-panel")).shouldBe(appear, DEFAULT_TIMEOUT);
         filter.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
         $(".filter-name").shouldHave(Condition.text(filterName), DEFAULT_TIMEOUT);
-//        WaitHelper.assertTrueWithWait(() -> findElementByCssSelector(".filter-name").getText().equals(filterName));
         return;
       }
     }
@@ -290,17 +289,12 @@ public class CaseWidgetPage extends TemplatePage {
   public void openActionStepMenu() {
     waitForElementDisplayed(By.cssSelector("[id$=':case-item:case-item-action-form']"), true);
     waitForElementClickableThenClick($(("a[id$='action-steps-menu']")));
-//    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public boolean isDestroyButtonVisible() {
-    try {
-      openActionStepMenu();
-      waitForElementDisplayed(By.cssSelector("div[id$='action-steps-panel']"), true);
-      return !$$(By.cssSelector("a[id$='destroy-case'")).isEmpty();
-    } catch (Exception ex) {
-      return false;
-    }
+    openActionStepMenu();
+    waitForElementDisplayed(By.cssSelector("div[id$='action-steps-panel']"), true);
+    return !$$(By.cssSelector("a[id$='destroy-case'")).isEmpty();
   }
 
   public void confimDestruction() {

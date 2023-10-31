@@ -187,7 +187,6 @@ public class CaseWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$='" + caseWidgetId + ":filter-add-form:filter-selection']"), true);
     WebElement filterSelectionElement = findElementById(caseWidgetId + ":filter-add-form:filter-selection");
 
-    System.out.println(filterSelectionElement.getTagName());
     List<WebElement> elements = findChildElementsByTagName(filterSelectionElement, "LABEL");
     for (WebElement element : elements) {
       if (element.getText().equals(filterName)) {

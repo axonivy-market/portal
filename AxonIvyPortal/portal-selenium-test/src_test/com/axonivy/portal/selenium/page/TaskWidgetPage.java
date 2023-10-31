@@ -123,7 +123,6 @@ public class TaskWidgetPage extends TemplatePage {
     $(String.format("div[id$=':%d:task-item:task-action:additional-options:side-steps-panel']", taskIndex)).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  @SuppressWarnings("deprecation")
   public TaskTemplatePage clickOnSideStepAction(int taskIndex, int sideStepIndex) {
     String sideStepsId = String.format("task-widget:task-list-scroller:%d:task-item:task-action:additional-options:task-additional-actions", taskIndex);
     SelenideElement sideStepPanel = $("[id$='" + sideStepsId + "']");
@@ -246,7 +245,6 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void reserveTask(int taskId) {
     String reserveCommandButton = String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-action:additional-options:task-reserve-command", taskId);
-//    waitForElementDisplayed(By.id(reserveCommandButton), true);
     waitForElementClickableThenClick($(By.id(reserveCommandButton)));
   }
 
@@ -261,8 +259,6 @@ public class TaskWidgetPage extends TemplatePage {
     waitForElementClickableThenClick($(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']")));
     $("input[id$='responsible-filter:filter-input-form:responsible_input']").sendKeys(text);
     waitAjaxIndicatorDisappear();
-//    waitForElementDisplayed($("span[id$='responsible-filter:filter-input-form:responsible_panel'] .gravatar"), true);
-//    click(By.cssSelector("span[id$='responsible-filter:filter-input-form:responsible_panel'] .gravatar"));
     waitForElementClickableThenClick($("span[id$='responsible-filter:filter-input-form:responsible_panel'] .gravatar"));
     waitAjaxIndicatorDisappear();
     waitForElementClickableThenClick($(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']")));
@@ -294,8 +290,6 @@ public class TaskWidgetPage extends TemplatePage {
     });
     List<SelenideElement> checkBoxList = getStateFilterPanel().$$(By.cssSelector("table[id$=':filter-input-form:state-selection'] div.ui-chkbox-box.ui-state-default"));
     statesSelectedIndex.forEach(index -> {
-//      waitForAjaxStatusPositionDisappear();
-//      checkBoxList.get(index).click();
       waitForElementClickableThenClick(checkBoxList.get(index));
     });
     waitForAjaxStatusPositionDisappear();
@@ -385,8 +379,6 @@ public class TaskWidgetPage extends TemplatePage {
   public TaskDetailsPage openTaskDetailsFromActionMenu(int index) {
     sideStepMenuOnActionButton(index);
     String detailOptionCssSelector = "a[id$='additional-options:task-open-detail-command']";
-//    waitForElementDisplayed(By.cssSelector(detailOptionCssSelector), true);
-//    click(By.cssSelector(detailOptionCssSelector));
     waitForElementClickableThenClick(detailOptionCssSelector);
     return new TaskDetailsPage();
   }
@@ -511,5 +503,22 @@ public class TaskWidgetPage extends TemplatePage {
   public String getNameOfTaskAt(int index) {
     SelenideElement name = findElementByCssSelector(ID_END + index + ":task-item:task-name-component:task-name']");
     return name.getText();
+  }
+
+  public void clickOnStartTaskLink(int index) {
+    String startLinkId = String.format("a[id$='task-list-scroller:%d:task-item:task-action:task-action-component']", index);
+    refreshAndWaitElement(startLinkId);
+    waitForElementClickableThenClick(findElementByCssSelector(startLinkId));
+  }
+
+  public void resetFilter() {
+    waitForElementClickableThenClick("[id$='task-widget:filter-reset-action']");
+    waitAjaxIndicatorDisappear();
+    waitForElementClickableThenClick("[id$='task-widget:filter-reset-command']");
+    waitForElementDisplayed(By.id("task-widget:reset-filter-set-dialog"), false);
+  }
+
+  public void waitForActionGroupDisplay() {
+    waitForElementDisplayed(By.cssSelector("div[class='action-container']"), true);
   }
 }
