@@ -5712,6 +5712,19 @@ border-top: 0.14rem dashed;
   line-height: 1.5;
 }
 
+.header-process-name {
+  height: 98px;
+  display: flex;
+  align-items: center;
+}
+
+.header-process-name h2 {
+  margin: 0;
+}
+.process-info-description{
+  padding: 0.5em 0 !important;
+}
+
 @media screen and (min-width: 90.063em) {
   .process-group.image-process-container .image-process-item,
   .process-group.grid-process-container .process-grid-item {
