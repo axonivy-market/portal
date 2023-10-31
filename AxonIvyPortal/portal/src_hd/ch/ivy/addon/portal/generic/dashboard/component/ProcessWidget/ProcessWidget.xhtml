@@ -31,17 +31,17 @@
       rendered="#{displayMode eq 'IMAGE_MODE' or displayMode eq 'FULL_MODE'}"
       styleClass="js-loading-#{widget.id} ui-g-12">
       <p:skeleton styleClass="MarTop20" height="50%" />
-      <div class="image-mode-loading-description ui-g-12">
+      <div class="process-widget-loading-description ui-g-12">
         <p:skeleton styleClass="MarTop5" height="50%" />
       </div>
-      <div class="image-mode-loading-button ui-g-12">
+      <div class="process-widget-loading-button  ui-g-12">
         <p:skeleton styleClass="MarTop5" width="10rem" height="4rem"
           borderRadius="16px" />
       </div>
     </h:panelGroup>
     <h:panelGroup layout="block"
       rendered="#{displayMode eq 'COMBINED_MODE'}"
-      styleClass="js-loading-#{widget.id} ui-g-12">
+      styleClass="js-loading-#{widget.id} combined-mode-loading-container ui-g-12">
       <div class="combined-mode-left-container ui-g-4">
         <p:skeleton styleClass="MarTop20" height="50%" />
         <p:skeleton styleClass="MarTop20" height="10rem" />

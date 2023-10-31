@@ -6034,3 +6034,7 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
   justify-content: center;
   align-items: center;
 }
+
+.combined-mode-loading-container {
+  overflow: hidden;
+}
