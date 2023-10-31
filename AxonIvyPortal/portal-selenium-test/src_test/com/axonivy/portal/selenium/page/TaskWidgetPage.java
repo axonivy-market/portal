@@ -521,4 +521,14 @@ public class TaskWidgetPage extends TemplatePage {
   public void waitForActionGroupDisplay() {
     waitForElementDisplayed(By.cssSelector("div[class='action-container']"), true);
   }
+
+  public String getFilterValue(String filterId) {
+    $("[id$='" + filterId + ":advanced-filter-component']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    return $("button[id$='" + filterId + ":filter-open-form:advanced-filter-command']").shouldBe(appear, DEFAULT_TIMEOUT).getText();
+  }
+
+  public String getResponsibleOfTaskAt(int index) {
+    List<SelenideElement> responsibles = $$(".responsible-cell .name-after-avatar");
+    return responsibles.get(index).getText();
+  }
 }
