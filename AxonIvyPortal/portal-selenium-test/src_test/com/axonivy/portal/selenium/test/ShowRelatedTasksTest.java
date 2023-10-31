@@ -9,11 +9,14 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.Variable;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.NoteHistoryPage;
+import com.axonivy.portal.selenium.page.TaskDetailsPage;
 
 @IvyWebTest
 public class ShowRelatedTasksTest extends BaseTest {
@@ -66,16 +69,15 @@ public class ShowRelatedTasksTest extends BaseTest {
     assertFalse(detailsPage.hasDoneTask());
   }
 
-//  @Test
-//  public void testRelatedTasksWhenClickingRelatedTask() {
-//    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
-//    grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
-//    openCaseDetail();
-//    detailsPage.waitPageLoaded();
-//    TaskDetailsPage taskDetailsPage = detailsPage.openTasksOfCasePage("Sick Leave Request");
-//    detailsPage.waitPageDisappear();
-//    taskDetailsPage.waitPageLoaded();
-//    assertEquals("Task Details", taskDetailsPage.getPageTitle());
-//  }
-//  
+  @Test
+  public void testRelatedTasksWhenClickingRelatedTask() {
+    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
+    grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
+    openCaseDetail();
+    detailsPage.waitPageLoaded();
+    WaitHelper.waitForNavigation(() -> detailsPage.openTasksOfCasePage("Sick Leave Request"));
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
+    WaitHelper.assertTrueWithWait(() -> "Task Details".equals(taskDetailsPage.getPageTitle()));
+  }
+
 }

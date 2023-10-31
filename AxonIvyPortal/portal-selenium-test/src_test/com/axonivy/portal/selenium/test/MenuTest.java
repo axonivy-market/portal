@@ -63,23 +63,5 @@ public class MenuTest extends BaseTest {
     assertFalse(newDashboardPage.isMainMenuOpen());
   }
 
-//  @Test
-//  public void testNavigateToThirdPartyApp() {
-//    createThirdPartyApp();
-//    login(TestAccount.DEMO_USER);
-//    // to refresh cache
-//    login(TestAccount.ADMIN_USER);
-//    refreshPage();
-//    NewDashboardPage newDashboardPage = new NewDashboardPage();
-//    newDashboardPage.waitPageLoaded();
-//    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
-//    mainMenuPage.clickThirdPartyApp();
-//
-//    WebDriver driver = WebDriverRunner.getWebDriver();
-//    WaitHelper.assertTrueWithWait(() -> driver.getWindowHandles().size() > 1);
-//    ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
-//    driver.switchTo().window(tabs.get(1));
-//    WaitHelper.assertTrueWithWait(() -> "Google".equals(driver.getTitle()));
-//    assertEquals("https://www.google.com/", driver.getCurrentUrl());
-//  }
+
 }

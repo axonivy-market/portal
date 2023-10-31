@@ -274,6 +274,7 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testRelatedTaskDelegateTask() {
     createTestingTask();
+    ScreenshotUtil.resizeBrowser(new Dimension(1920, 1080));
     assertEquals(TestRole.EVERYBODY_ROLE, detailsPage.getResponsibleOfRelatedTaskAt(SICK_LEAVE_REQUEST_TASK));
 
     detailsPage.openTaskDelegateDialog(SICK_LEAVE_REQUEST_TASK);
@@ -355,7 +356,7 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
     int index = detailsPage.getTaskRowIndexFromDetailPage(SICK_LEAVE_REQUEST_TASK);
     detailsPage.openRelatedTaskWorkflowEvents(index);
-    assertTrue(detailsPage.isRelatedTaskWorkflowEventsOpened());
+    WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedTaskWorkflowEventsOpened());
   }
 
   @Test
@@ -523,8 +524,6 @@ public class CaseDetailsTest extends BaseTest {
   public void testShowRelatedCaseInfoByConfigInCaseHistory() {
     updateGlobalVariable(Variable.HIDE_RELATED_CASE_INFO_FROM_HISTORY.getKey(), "false");
     createTestingCaseContainTechnicalCases();
-    // ScreenshotUtil.executeDecorateJs("window.scrollTo(0,
-    // document.body.scrollHeight)");
     assertTrue(detailsPage.isShowRelatedCaseCheckbox());
     detailsPage.clickOnRelatedCaseCheckbox(true);
     assertTrue(detailsPage.isRelatedCaseInfoColumnIsDisplay());

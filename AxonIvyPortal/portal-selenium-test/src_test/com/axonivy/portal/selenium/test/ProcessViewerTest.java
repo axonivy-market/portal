@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
+import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -103,23 +104,23 @@ public class ProcessViewerTest extends BaseTest {
     assertTrue(!detailPageSteps.contains(PROCESS_VIEWER), PROCESS_VIEWER_IS_FOUND_ON_CASE_DETAILS_PAGE);
   }
 
-//  @Test
-//  public void testNotShowProcessViewerForExpressCase() {
-//    login(TestAccount.ADMIN_USER);
-//    var expressManagementTest = new ExpressManagementTest();
-//    expressManagementTest.prepareExpressWorkflowStep();
-//    expressManagementTest.executePromoteResourceTask();
-//    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
-//    gotoCaseList();
-//    caseWidgetPage.openActionStepMenu();
-//    var steps = caseWidgetPage.getAvailableActionSteps();
-//    assertTrue(PROCESS_VIEWER_IS_FOUND_IN_CASE_LIST, !steps.contains(PROCESS_VIEWER));
-//
-//    var caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Request new Resources - Express process");
-//    caseDetailsPage.openActionMenu();
-//    var detailPageSteps = caseDetailsPage.getAvailableActionSteps();
-//    assertTrue(PROCESS_VIEWER_IS_FOUND_ON_CASE_DETAILS_PAGE, !detailPageSteps.contains(PROCESS_VIEWER));
-//  }
+  @Test
+  public void testNotShowProcessViewerForExpressCase() {
+    login(TestAccount.ADMIN_USER);
+    var expressManagementTest = new ExpressManagementTest();
+    expressManagementTest.prepareExpressWorkflowStep();
+    expressManagementTest.executePromoteResourceTask();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    gotoCaseList();
+    caseWidgetPage.openActionStepMenu();
+    var steps = caseWidgetPage.getAvailableActionSteps();
+    assertTrue(!steps.contains(PROCESS_VIEWER), PROCESS_VIEWER_IS_FOUND_IN_CASE_LIST);
+
+    var caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Request new Resources - Express process");
+    caseDetailsPage.openActionMenu();
+    var detailPageSteps = caseDetailsPage.getAvailableActionSteps();
+    assertTrue(!detailPageSteps.contains(PROCESS_VIEWER), PROCESS_VIEWER_IS_FOUND_ON_CASE_DETAILS_PAGE);
+  }
 
   @Test
   public void testCanSeeProcessViewerInTaskAction() {
