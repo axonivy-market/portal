@@ -1,4 +1,4 @@
-package com.axonivy.portal.validator;
+package com.axonivy.portal.validator.filter;
 
 import java.util.Date;
 import java.util.Optional;
@@ -20,50 +20,50 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class DashboardDateFilterValidator implements Validator {
 
   private static final String MESSAGE_PREFIX_PATTERN = "%s(%d)";
-  private static final String MESSAGES_COMPONENT_ID = "widget-configuration-form:new-widget-configuration-component:filter-messages";
 
   public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
   
     DashboardFilter filter = (DashboardFilter) component.getAttributes().get("filter");
     Integer filterIndex = Optional.ofNullable((Integer)component.getAttributes().get("filterIndex")).orElse(0);
+    String messageComponentId = Optional.ofNullable((String)component.getAttributes().get("messageId")).orElse(null);
 
     switch (filter.getOperator()) {
-      case BETWEEN -> validateBetweenOperator((Date)value, filter, filterIndex, context, component);
-      case NOT_BETWEEN -> validateBetweenOperator((Date)value, filter, filterIndex, context, component);
-      default -> validateDefaultOperator((Date)value, filter, filterIndex, context, component);
+      case BETWEEN -> validateBetweenOperator((Date)value, filter, filterIndex, component, messageComponentId);
+      case NOT_BETWEEN -> validateBetweenOperator((Date)value, filter, filterIndex, component, messageComponentId);
+      default -> validateDefaultOperator((Date)value, filter, filterIndex, component, messageComponentId);
     };
   }
 
-  private void validateBetweenOperator(Date value, DashboardFilter filter, int filterIndex, FacesContext context, UIComponent component) {
+  private void validateBetweenOperator(Date value, DashboardFilter filter, int filterIndex, UIComponent component, String messageComponentId) {
     if (value == null) {
-      context.addMessage(
-          MESSAGES_COMPONENT_ID,
+      FacesContext.getCurrentInstance().addMessage(
+          messageComponentId,
           new FacesMessage(FacesMessage.SEVERITY_ERROR, getRequiredMessage(filter.getField(), filterIndex), null));
-      invalidate(context, component);
+      invalidate(component);
       return;
     }
 
     if (component.getId().contentEquals("to-date")) {
       FacesMessage error = validateFromToValues(filter.getFromDate(), value, filter.getField(), filterIndex);
       if (error != null) {
-        context.addMessage(MESSAGES_COMPONENT_ID, error);
-        invalidate(context, component);
+        FacesContext.getCurrentInstance().addMessage(messageComponentId, error);
+        invalidate(component);
         return;
       }
     }
   }
 
-  private void validateDefaultOperator(Date value, DashboardFilter filter, int filterIndex, FacesContext context, UIComponent component) {
+  private void validateDefaultOperator(Date value, DashboardFilter filter, int filterIndex, UIComponent component, String messageComponentId) {
     if (value == null) {
-      context.addMessage(
-          MESSAGES_COMPONENT_ID,
+      FacesContext.getCurrentInstance().addMessage(
+          messageComponentId,
           new FacesMessage(FacesMessage.SEVERITY_ERROR, getRequiredMessage(filter.getField(), filterIndex), null));
-      invalidate(context, component);
+      invalidate(component);
     }
   }
 
-  private void invalidate(FacesContext context, UIComponent component) {
-    context.validationFailed();
+  private void invalidate(UIComponent component) {
+    FacesContext.getCurrentInstance().validationFailed();
     UIInput input = (UIInput) component;
     input.setValid(false);
   }
