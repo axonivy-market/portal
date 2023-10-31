@@ -1,4 +1,4 @@
-package com.axonivy.portal.util.filter.operator.caze.createddate;
+package com.axonivy.portal.util.filter.operator.caze.finisheddate;
 
 import java.util.Date;
 
@@ -6,12 +6,12 @@ import com.axonivy.portal.util.PortalDateUtils;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-public class CreatedDateYesterdayOperatorHandler {
-  private static CreatedDateYesterdayOperatorHandler instance;
+public class FinishedDateYesterdayOperatorHandler {
+  private static FinishedDateYesterdayOperatorHandler instance;
 
-  public static CreatedDateYesterdayOperatorHandler getInstance() {
+  public static FinishedDateYesterdayOperatorHandler getInstance() {
     if (instance == null) {
-      instance = new CreatedDateYesterdayOperatorHandler();
+      instance = new FinishedDateYesterdayOperatorHandler();
     }
     return instance;
   }
@@ -26,8 +26,8 @@ public class CreatedDateYesterdayOperatorHandler {
 
   private void buildQuery(CaseQuery query, Date from, Date to) {;
     CaseQuery subQuery = CaseQuery.create();
-    subQuery.where().startTimestamp().isGreaterOrEqualThan(from);
-    subQuery.where().startTimestamp().isLowerOrEqualThan(to);
+    subQuery.where().endTimestamp().isGreaterOrEqualThan(from);
+    subQuery.where().endTimestamp().isLowerOrEqualThan(to);
     query.where().and(subQuery);
   }
 }

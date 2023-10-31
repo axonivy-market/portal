@@ -1,4 +1,4 @@
-package com.axonivy.portal.util.filter.operator.caze.createddate;
+package com.axonivy.portal.util.filter.operator.caze.finisheddate;
 
 import java.util.Date;
 
@@ -8,13 +8,13 @@ import com.axonivy.portal.util.PortalDateUtils;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-public class CreatedDateCurrentPeriodOperatorHandler {
+public class FinishedDateCurrentPeriodOperatorHandler {
 
-  private static CreatedDateCurrentPeriodOperatorHandler instance;
+  private static FinishedDateCurrentPeriodOperatorHandler instance;
 
-  public static CreatedDateCurrentPeriodOperatorHandler getInstance() {
+  public static FinishedDateCurrentPeriodOperatorHandler getInstance() {
     if (instance == null) {
-      instance = new CreatedDateCurrentPeriodOperatorHandler();
+      instance = new FinishedDateCurrentPeriodOperatorHandler();
     }
     return instance;
   }
@@ -28,8 +28,8 @@ public class CreatedDateCurrentPeriodOperatorHandler {
   }
 
   private void buildQuery(CaseQuery query, Date from, Date to) {;
-    query.where().startTimestamp().isGreaterOrEqualThan(from);
-    query.where().startTimestamp().isLowerOrEqualThan(to);
+    query.where().endTimestamp().isGreaterOrEqualThan(from);
+    query.where().endTimestamp().isLowerOrEqualThan(to);
   }
 
   private CaseQuery queryCreatedDateByPeriod(FilterPeriodType dateFilterPeriodType) {

@@ -12,5 +12,11 @@ times Integer #field
 times PERSISTENT #fieldModifier
 createdDate Integer #field
 createdDate PERSISTENT #fieldModifier
-date Date #field
+date java.util.Date #field
 date PERSISTENT #fieldModifier
+cases List<ch.ivyteam.ivy.workflow.ICase> #field
+cases PERSISTENT #fieldModifier
+count Integer #field
+count PERSISTENT #fieldModifier
+workingCase ch.ivyteam.ivy.workflow.ICase #field
+workingCase PERSISTENT #fieldModifier

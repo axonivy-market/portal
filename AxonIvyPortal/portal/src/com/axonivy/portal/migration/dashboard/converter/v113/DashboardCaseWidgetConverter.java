@@ -37,14 +37,33 @@ public class DashboardCaseWidgetConverter implements IJsonConverter {
       ArrayNode columns = Optional.ofNullable(caseWidget.get("columns")).filter(JsonNode::isArray).map(ArrayNode.class::cast).get();
 
       columns.elements().forEachRemaining(col -> {
-        if (col.get("field").asText().contentEquals(DashboardStandardCaseColumn.CREATED.getField())) {
-          convertCreatedDateFilters(initFilterNode(caseWidget), col.get("filterFrom"), col.get("filterTo"));
-          removeOldFiltersFields(col);
+        DashboardStandardCaseColumn field = DashboardStandardCaseColumn.findBy(col.get("field").asText());
+        switch (field) {
+          case CREATED -> {
+            convertDateFilters(initFilterNode(caseWidget),
+                col.get("filterFrom"),
+                col.get("filterTo"),
+                DashboardStandardCaseColumn.CREATED.getField());
+          }
+          case FINISHED -> {
+            convertDateFilters(initFilterNode(caseWidget),
+                col.get("filterFrom"),
+                col.get("filterTo"),
+                DashboardStandardCaseColumn.FINISHED.getField());
+          }
+          case NAME -> {
+            convertStringFilters(initFilterNode(caseWidget),
+                col.get("filter"),
+                DashboardStandardCaseColumn.NAME.getField());
+          }
+          case DESCRIPTION -> {
+            convertStringFilters(initFilterNode(caseWidget),
+                col.get("filter"),
+                DashboardStandardCaseColumn.DESCRIPTION.getField());
+          }
+          default -> {}
         }
-        if (col.get("field").asText().contentEquals(DashboardStandardCaseColumn.NAME.getField())) {
-          convertNameFilters(initFilterNode(caseWidget), col.get("filter"));
-          removeOldFiltersFields(col);
-        }
+        removeOldFiltersFields(col);
       });
     }
   }
@@ -57,7 +76,7 @@ public class DashboardCaseWidgetConverter implements IJsonConverter {
     return matches;
   }
 
-  private void convertCreatedDateFilters(ArrayNode filters, JsonNode filterFrom, JsonNode filterTo) {
+  private void convertDateFilters(ArrayNode filters, JsonNode filterFrom, JsonNode filterTo, String field) {
     boolean isEmptyFilterFrom = filterFrom == null || StringUtils.isBlank(filterFrom.asText());
     boolean isEmptyFilterTo = filterTo == null || StringUtils.isBlank(filterTo.asText());
 
@@ -66,13 +85,13 @@ public class DashboardCaseWidgetConverter implements IJsonConverter {
     }
 
     filters.elements().forEachRemaining(filter -> {
-      if (filter.get("field").asText().contentEquals(DashboardStandardCaseColumn.CREATED.getField())) {
+      if (filter.get("field").asText().contentEquals(field)) {
         return;
       }
     });
 
     ObjectNode newFilterNode = filters.addObject();
-    newFilterNode.set("field", new TextNode(DashboardStandardCaseColumn.CREATED.getField()));
+    newFilterNode.set("field", new TextNode(field));
     newFilterNode.set("type", new TextNode(FilterType.DATE.name()));
     newFilterNode.set("operator", new TextNode(FilterOperator.BETWEEN.name()));
 
@@ -85,19 +104,19 @@ public class DashboardCaseWidgetConverter implements IJsonConverter {
     }
   }
 
-  private void convertNameFilters(ArrayNode filters, JsonNode filterText) {
+  private void convertStringFilters(ArrayNode filters, JsonNode filterText, String field) {
     if (filterText == null || StringUtils.isBlank(filterText.asText())) {
       return;
     }
 
     filters.elements().forEachRemaining(filter -> {
-      if (filter.get("field").asText().contentEquals(DashboardStandardCaseColumn.NAME.getField())) {
+      if (filter.get("field").asText().contentEquals(field)) {
         return;
       }
     });
 
     ObjectNode newFilterNode = filters.addObject();
-    newFilterNode.set("field", new TextNode(DashboardStandardCaseColumn.NAME.getField()));
+    newFilterNode.set("field", new TextNode(field));
     newFilterNode.set("type", new TextNode(FilterType.TEXT.name()));
     newFilterNode.set("operator", new TextNode(FilterOperator.CONTAINS.name()));
 
