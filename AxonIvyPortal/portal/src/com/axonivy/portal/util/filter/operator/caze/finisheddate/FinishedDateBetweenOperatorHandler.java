@@ -1,4 +1,4 @@
-package com.axonivy.portal.util.filter.operator.caze.createddate;
+package com.axonivy.portal.util.filter.operator.caze.finisheddate;
 
 import java.util.Date;
 
@@ -7,13 +7,13 @@ import com.axonivy.portal.util.PortalDateUtils;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-public class CreatedDateBetweenOperatorHandler {
+public class FinishedDateBetweenOperatorHandler {
 
-  private static CreatedDateBetweenOperatorHandler instance;
+  private static FinishedDateBetweenOperatorHandler instance;
 
-  public static CreatedDateBetweenOperatorHandler getInstance() {
+  public static FinishedDateBetweenOperatorHandler getInstance() {
     if (instance == null) {
-      instance = new CreatedDateBetweenOperatorHandler();
+      instance = new FinishedDateBetweenOperatorHandler();
     }
     return instance;
   }
@@ -29,11 +29,11 @@ public class CreatedDateBetweenOperatorHandler {
 
     CaseQuery subQuery = CaseQuery.create();
     if (from != null) {
-      subQuery.where().startTimestamp().isGreaterOrEqualThan(from);
+      subQuery.where().endTimestamp().isGreaterOrEqualThan(from);
     }
 
     if (to != null) {
-      subQuery.where().startTimestamp().isLowerOrEqualThan(to);
+      subQuery.where().endTimestamp().isLowerOrEqualThan(to);
     }
     return subQuery;
   }
@@ -44,17 +44,17 @@ public class CreatedDateBetweenOperatorHandler {
 
     CaseQuery subQuery = CaseQuery.create();
     if (from != null && to != null) {
-      subQuery.where().startTimestamp().isLowerThan(from).or().startTimestamp().isGreaterThan(to);
+      subQuery.where().endTimestamp().isLowerThan(from).or().endTimestamp().isGreaterThan(to);
       return subQuery;
     }
 
     if (from != null) {
-      subQuery.where().startTimestamp().isLowerThan(from);
+      subQuery.where().endTimestamp().isLowerThan(from);
       return subQuery;
     }
 
     if (to != null) {
-      subQuery.where().startTimestamp().isGreaterThan(to);
+      subQuery.where().endTimestamp().isGreaterThan(to);
       return subQuery;
     }
 
