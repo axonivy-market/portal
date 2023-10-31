@@ -186,13 +186,6 @@ function initStatistics() {
         });
     }
 
-    function formatChartLabel(label) {
-        if (isNumeric((new Date(label)).getTime())) {
-            return formatISODate(new Date(label));
-        }
-        return label
-    }
-
     function initRefresh(refreshInfos) {
         for (let i = 0; i < refreshInfos.length; i++) {
             let refreshInfo = refreshInfos[i];
@@ -231,6 +224,14 @@ function initStatistics() {
     }
 }
 
+function formatChartLabel(label) {
+    if (isNumeric((new Date(label)).getTime())) {
+        return formatISODate(new Date(label));
+    }
+    return label
+}
+
+
 function renderEmptyStatistics(chart, additionalConfig) {
     let emptyChartDataMessage;
     additionalConfig.find(function (item) {
@@ -261,6 +262,7 @@ function renderChartCanvas(chartId) {
 };
 
 function renderNumberChartHtml(label, number, suffixSymbol) {
+    label = formatChartLabel(label);
     let html = 
             '<div class="u-text-align-center chart-content-card">' +
             '    <div class="chart-icon-font-size chart-number-animation">' +
@@ -271,17 +273,26 @@ function renderNumberChartHtml(label, number, suffixSymbol) {
             '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +
             '    </div>' +
             '    <div>' +
-            '        <span class="card-name chart-name-font-size chart-number-animation">' +  label + '</span>' +
+            '        <span class="card-name chart-name-font-size chart-number-animation">' +  normalizeLabel(label) + '</span>' +
             '    </div>' +
             '</div>';
     return html;
 };
+
+function normalizeLabel(label){
+    if(label == 'IN_PROGRESS'){
+        return 'In Progress';
+    }
+
+    return label.charAt(0) + label.slice(1).toLowerCase();
+}
 
 function renderMultipleNumberChartInHTML(result, suffixSymbold){
     let multipleNumberChartInHTML = '';
 
     if (result.length > 0) {
         for (item of result) {
+            console.log("I think we should formatChartLabel here");
             let htmlString = renderNumberChartHtml(item.key, item.count, suffixSymbold);
             multipleNumberChartInHTML += htmlString;
         };

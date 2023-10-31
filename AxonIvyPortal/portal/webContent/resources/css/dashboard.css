@@ -1697,7 +1697,7 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .chart-content-card .chart-icon-font-size {
-  font-size: max(1.5rem, 1rem + 10cqh);
+  font-size: max(2rem, 1.5rem + 10cqh);
 }
 
 .chart-content-card .chart-name-font-size {
@@ -1705,12 +1705,12 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .chart-content-card .chart-number-font-size {
-  font-size: max(1.5rem, 1rem + 10cqh);
+    font-size: max(2rem, 1.5rem + 10cqh);
 }
 
 @container (max-width: 200px) {
   .chart-content-card .chart-icon-font-size {
-    font-size: max(1.5rem, 1rem + 10cqw);
+    font-size: max(2rem, 1.5rem + 10cqh);
   }
 
   .chart-content-card .chart-name-font-size {
@@ -1718,7 +1718,7 @@ body .ui-widget.new-widget-dialog__introduction {
   }
 
   .chart-content-card .chart-number-font-size {
-    font-size: max(1.5rem, 1rem + 10cqw);
+    font-size: max(2rem, 1.5rem + 10cqh);
   }
 }
 
