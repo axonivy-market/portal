@@ -15,12 +15,15 @@ import java.util.stream.IntStream;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
+import com.axonivy.portal.selenium.common.ScreenshotUtil;
 import com.axonivy.portal.selenium.common.WaitHelper;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -270,15 +273,6 @@ public class CaseDetailsPage extends TemplatePage {
     return $("[id$=':reset-details-settings-button']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
   }
 
-//  public void switchToEditMode() {
-//    $(By.cssSelector("[id$=':switch-to-edit-mode-button']")).shouldBe(getClickableCondition()).click();
-//    $("[id$='case-details-information-panel']").shouldBe(Condition.visible, DEFAULT_TIMEOUT).shouldHave(Condition.attribute(CLASS_PROPERTY, "grid-stack-item ui-draggable ui-resizable ui-resizable-autohide"));
-//  }
-//
-//  public void waitForSaveButtonDisplayed() {
-//    $(By.cssSelector("[id$=':switch-to-view-mode-button']")).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
-//  }
-
   public void drapAndDropWidgets(String sourceName, String destinationName) {
     $(By.cssSelector(String.format("[id='case-details-%s-panel']", sourceName))).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
     SelenideElement sourceElement = $(String.format("[id='case-details-%s-panel']", sourceName)).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
@@ -289,14 +283,6 @@ public class CaseDetailsPage extends TemplatePage {
     moveWidget.perform();
     $("[id$=':case-details-container:case-details-widgets']").shouldBe(Condition.visible, DEFAULT_TIMEOUT).$(".ui-droppable-over").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
-//
-//  public void saveAndSwitchToViewMode() {
-//    $(By.cssSelector("[id$=':switch-to-view-mode-button']")).shouldBe(getClickableCondition()).click();
-//  }
-//
-//  public void resetToDefault() {
-//    $(By.cssSelector("[id$=':reset-details-settings-button']")).shouldBe(getClickableCondition()).click();
-//  }
 
   public boolean isCaseDescriptionChangeComponentPresented(int caseIndex) {
     return isElementPresent(By.id(String.format("case-widget:case-list-scroller:%d:case-item:case-body:case-description-input", caseIndex)));
@@ -427,11 +413,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public boolean isShowRelatedCaseCheckbox() {
     waitForElementDisplayed(By.cssSelector("[id$=':history-container']"), true);
-    try {
-      return $("[id$=':case-histories:related-case-checkbox']").isDisplayed();
-    } catch (Exception e) {
-      return false;
-    }
+    return $("[id$=':case-histories:related-case-checkbox']").isDisplayed();
   }
 
   public void clickOnRelatedCaseCheckbox(boolean checkboxShouldBeChecked) {
@@ -451,11 +433,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public boolean isRelatedCaseInfoColumnIsDisplay() {
     waitForElementDisplayed(By.cssSelector("[id$=':history-container']"), true);
-    try {
-      return $("th.history-related-case").isDisplayed();
-    } catch (Exception e) {
-      return false;
-    }
+    return $("th.history-related-case").isDisplayed();
   }
 
   public String getCaseName() {
@@ -487,13 +465,11 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':reset-details-settings-button']"), true);
     $(By.cssSelector("[id$=':reset-details-settings-button']")).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
 
-//    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public void confirmResetToDefault() {
     waitForElementDisplayed(By.cssSelector("[id$=':reset-to-default-case-form:confirm-destruction']"), true);
     $(By.cssSelector("[id$=':reset-to-default-case-form:confirm-destruction']")).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    // waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public void switchToEditMode() {
@@ -513,7 +489,6 @@ public class CaseDetailsPage extends TemplatePage {
   public void saveAndSwitchToViewMode() {
     waitForElementDisplayed(By.cssSelector("[id$=':switch-to-view-mode-button']"), true);
     $(By.cssSelector("[id$=':switch-to-view-mode-button']")).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    // waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public void waitForResetButtonDisplayed() {
@@ -680,12 +655,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public boolean isRelatedTaskWorkflowEventsOpened() {
-    try {
-      waitForElementDisplayed(By.cssSelector("div[id$='task-widget:workflow-event-component:workflow-events-dialog']"), true);
-      return true;
-    } catch (Exception e) {
-      return false;
-    }
+    return $(By.cssSelector("div[id$='task-widget:workflow-event-component:workflow-events-dialog']")).isDisplayed();
   }
 
   public NewDashboardPage clickRelatedCaseUploadAdditionalDocument(int index) {
@@ -714,17 +684,14 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public String getResponsibleOfRelatedTaskAt(String taskName) {
-    Optional<SelenideElement> responsible = $$("tr.ui-widget-content").asFixedIterable().stream().filter(row -> row.$(".task-name-value").getText().equals(taskName)).findFirst();
+    $$("tr.ui-widget-content").shouldHave(CollectionCondition.sizeNotEqual(0));
+    Optional<SelenideElement> responsible = $("[id$=':task-widget:related-tasks_data']").$$("tr.ui-widget-content").asFixedIterable().stream()
+        .filter(row -> row.$(".task-name-value").getText().equals(taskName)).findFirst();
     return responsible.get().$(".name-after-avatar").shouldBe(Condition.exist, DEFAULT_TIMEOUT).getText();
   }
 
   public void openTaskDelegateDialog(String taskName) {
-    try {
-      clickRelatedTaskActionButton(taskName);
-    } catch (Exception e) {
-      clickRelatedTaskActionButton(taskName);
-    }
-
+    clickRelatedTaskActionButton(taskName);
     waitForElementDisplayed(By.cssSelector("a[id$='\\:task-delegate-command']"), true);
     waitForElementClickableThenClick($("a[id$='\\:task-delegate-command']"));
     waitForElementDisplayed(By.cssSelector("div[id$='task-delegate-dialog']"), true);
@@ -956,7 +923,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public TaskDetailsPage openTasksOfCasePage(String taskName) {
     SelenideElement task = caseItem.$(By.cssSelector("div[id$='related-tasks']"));
-
+    ScreenshotUtil.resizeBrowser(new Dimension(2560, 1440));
     Optional<SelenideElement> optionalEle = task.$$(By.cssSelector("td.related-task-name-column")).asFixedIterable().stream().filter(element -> element.getText().equals(taskName)).findFirst();
     if (optionalEle.isPresent()) {
       optionalEle.get().click();

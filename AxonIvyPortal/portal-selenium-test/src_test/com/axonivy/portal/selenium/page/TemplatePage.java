@@ -196,7 +196,6 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void openUserSettingMenu() {
-    // waitForGrowlMessageDisappear();
     waitForElementDisplayed(By.id("user-settings-menu"), true);
     clickByJavaScript(findElementById("user-settings-menu"));
     $("[id='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT);
@@ -232,14 +231,6 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   private void clickUserMenuItem(String menuItemSelector) {
-//    waitForElementClickableThenClick("[id='user-settings-menu']");
-//    waitAjaxIndicatorDisappear();
-//    waitForGrowlTitleDisappear();
-//    $(".topbar-item user-profile setting-container").shouldBe(appear, DEFAULT_TIMEOUT).click();
-//    $(By.id(menuItemSelector)).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-//    waitAjaxIndicatorDisappear();
-//    $(By.id("user-setting-container")).shouldBe(disappear, DEFAULT_TIMEOUT);
-    // waitForPageLoad();
     waitForElementDisplayed(By.id("user-settings-menu"), true);
     clickByJavaScript(findElementById("user-settings-menu"));
     waitForElementDisplayed(By.id(menuItemSelector), true);
@@ -256,11 +247,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public boolean isElementDisplayedById(String id) {
-    try {
-      return $(String.format("[id$='%s']", id)).isDisplayed();
-    } catch (org.openqa.selenium.NoSuchElementException e) {
-      return false;
-    }
+    return $(String.format("[id$='%s']", id)).isDisplayed();
   }
 
   public MainMenuPage openMainMenu() {
@@ -365,11 +352,6 @@ public abstract class TemplatePage extends AbstractPage {
     }
     return result;
 
-  }
-
-  private WebElement getSearchInput() {
-    waitForElementDisplayed(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR), true);
-    return findElementByCssSelector(GLOBAL_SEARCH_INPUT_SELECTOR);
   }
 
   public TaskWidgetPage selectTaskMenu() {

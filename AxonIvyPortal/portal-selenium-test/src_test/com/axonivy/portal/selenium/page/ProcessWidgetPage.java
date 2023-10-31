@@ -16,6 +16,7 @@ import com.axonivy.portal.selenium.common.FileHelper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+
 public class ProcessWidgetPage extends TemplatePage {
   public static final String IMAGE_MODE = "IMAGE";
   public static final String GRID_MODE = "GRID";
@@ -36,8 +37,6 @@ public class ProcessWidgetPage extends TemplatePage {
     this.processWidgetId = processWidgetId;
     processWidget = findElementById(this.processWidgetId);
   }
-
-
 
   @Override
   protected String getLoadedLocator() {
@@ -92,7 +91,6 @@ public class ProcessWidgetPage extends TemplatePage {
     public void submitForm() {
       SelenideElement submitButton = findElementByCssSelector(ADD_EXTERNAL_LINK_BUTTON_INPUT_CSS_SELECTOR);
       waitForElementClickableThenClick(submitButton);
-//      waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     }
   }
 
@@ -147,19 +145,9 @@ public class ProcessWidgetPage extends TemplatePage {
     return $(".js-process-nav-item.js-process-starts-with-" + character).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
 
-//  public void clickMoreButtonOfFirstImageProcess() {
-//    $(String.format(MORE_ACTION_BUTTON, 0, 0)).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-//    $(String.format(ACTION_DIALOG, 0, 0)).shouldBe(appear, DEFAULT_TIMEOUT);
-//  }
-
   public SelenideElement getProcessEditMenu(int index) {
     return $(String.format(IMAGE_EDIT_PROCESS_LINK, 0, index)).shouldBe(appear, DEFAULT_TIMEOUT);
   }
-//
-//  public void clickOnProcessEditMenu(int index) {
-//    getProcessEditMenu(index).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-//    $("[id$='process-widget:edit-process-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-//  }
 
   public WebElement getEditProcessDialog() {
     return $("[id$='process-widget:edit-process-dialog']");
@@ -186,20 +174,9 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public void waitUntilProcessDisplayed(String name) {
-    $("[id='process-widget:process-list']").shouldBe(appear, DEFAULT_TIMEOUT).$$(".js-process-start-list-item-name").asFixedIterable()
-      .stream().filter(WebElement::isDisplayed).filter(process -> process.getText().contentEquals(name))
-      .findFirst().get().shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id='process-widget:process-list']").shouldBe(appear, DEFAULT_TIMEOUT).$$(".js-process-start-list-item-name").asFixedIterable().stream().filter(WebElement::isDisplayed)
+        .filter(process -> process.getText().contentEquals(name)).findFirst().get().shouldBe(appear, DEFAULT_TIMEOUT);
   }
-
-//  public void clickMoreInformationLink(String processName) {
-//    getProcessItem(processName).$(".process-more-info-link")
-//      .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-//  }
-//
-//  public SelenideElement getProcessItem(String processName) {
-//    return $$(".js-process-start-list-item").asFixedIterable().stream().filter(WebElement::isDisplayed).filter(process ->
-//      process.$(".js-process-start-list-item-name").shouldBe(appear, DEFAULT_TIMEOUT).getText().contentEquals(processName)).findFirst().get();
-//  }
 
   public SelenideElement getFilterTextfield() {
     return $("[id='process-widget:process-search:non-ajax-keyword-filter']").shouldBe(appear, DEFAULT_TIMEOUT);
@@ -292,7 +269,6 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public String getCurrentViewMode() {
     waitForElementDisplayed(By.cssSelector("[id$=':process-view-mode:view-mode-selection'] div.ui-button.ui-button-text-only.ui-state-active"), true);
-//    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "process-widget\\\\:process-view-mode\\\\:view-mode-selection", ID_PROPERTY);
     return findElementByCssSelector(ACTIVE_MODE_SELECTOR).getText();
   }
 
@@ -341,9 +317,7 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public void saveEditProcessDialog() {
     waitForElementClickableThenClick($("[id$='process-widget:save-process-command']"));
-    ;
     waitForElementDisplayed(By.cssSelector("[id$='process-widget:edit-process-dialog']"), false);
-//    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public void deleteGridProcess(int index) {
@@ -375,8 +349,6 @@ public class ProcessWidgetPage extends TemplatePage {
   public AddNewExternalLinkDialog openNewExternalLinkDialog() {
     waitForElementDisplayed(By.id(processWidgetId + ":add-external-link-command"), true);
     waitForElementClickableThenClick($(By.id("process-widget:add-external-link-command")));
-//    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-//    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "process-widget\\\\:add-external-link-form\\\\:external-link-name", ID_PROPERTY);
     waitAjaxIndicatorDisappear();
     return new AddNewExternalLinkDialog();
   }
@@ -406,6 +378,7 @@ public class ProcessWidgetPage extends TemplatePage {
     }
     return processItemElement;
   }
+
   public void clickMoreButtonOfGridProcess(String processName) {
     var processItem = getProcessItemForm(processName);
     var actionButtonID = processItem.getAttribute(ID_PROPERTY).concat(":grid-process-action-component:process-action-button");
@@ -422,16 +395,12 @@ public class ProcessWidgetPage extends TemplatePage {
     waitForElementClickableThenClick(String.format(GRID_ACTION_BUTTON, 0, 0));
   }
 
-//  public WebElement getStartImageProcess(String processName, SelenideElement processListElement) {
-//    SelenideElement startProcessItemElement = null;
-//    List<SelenideElement> processItems = processListElement.$(".js-process-start-list-item");
-//    for (SelenideElement process : processItems) {
-//      SelenideElement processNameElement = process.$(".js-process-start-list-item-name");
-//      if (processNameElement.getText().equalsIgnoreCase(processName)) {
-//        startProcessItemElement = process.$("[id$=':process-item:start-button']");
-//        break;
-//      }
-//    }
-//    return startProcessItemElement;
-//  }
+  public boolean isExpandedMode() {
+    loadLiveSearchTextField();
+    return liveSearchTextField.isDisplayed();
+  }
+
+  private void loadLiveSearchTextField() {
+    liveSearchTextField = findElementById(processWidgetId + ":process-search:non-ajax-keyword-filter");
+  }
 }
