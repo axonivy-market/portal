@@ -9,12 +9,14 @@
   <cc:attribute name="componentToUpdate" required="true" />
   <cc:attribute name="filterIndex" />
   <cc:attribute name="readOnly" default="false" />
+  <cc:attribute name="messageId" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="filter" value="#{cc.attrs.filter}" />
   <c:set var="filterIndex" value="#{cc.attrs.filterIndex}" />
   <c:set var="readOnly" value="#{cc.attrs.readOnly}" />
+  <c:set var="messageId" value="#{cc.attrs.messageId}" />
 
   <h:panelGroup id="date-filter-operator-panel" layout="block"
     styleClass="ui-fluid md-inputfield">
@@ -37,6 +39,7 @@
       <f:attribute name="filter" value="#{filter}" />
       <f:attribute name="filterIndex" value="#{filterIndex}" />
       <f:attribute name="locale" value="#{localeBean.locale}" />
+      <f:attribute name="messageId" value="#{messageId}" />
     </p:datePicker>
   </h:panelGroup>
 
@@ -50,6 +53,7 @@
       <f:attribute name="filter" value="#{filter}" />
       <f:attribute name="filterIndex" value="#{filterIndex}" />
       <f:attribute name="locale" value="#{localeBean.locale}" />
+      <f:attribute name="messageId" value="#{messageId}" />
     </p:datePicker>
   </h:panelGroup>
 
@@ -63,6 +67,7 @@
       <f:attribute name="filter" value="#{filter}" />
       <f:attribute name="filterIndex" value="#{filterIndex}" />
       <f:attribute name="locale" value="#{localeBean.locale}" />
+      <f:attribute name="messageId" value="#{messageId}" />
     </p:datePicker>
   </h:panelGroup>
 
@@ -76,6 +81,7 @@
       <f:attribute name="filter" value="#{filter}" />
       <f:attribute name="filterIndex" value="#{filterIndex}" />
       <f:attribute name="locale" value="#{localeBean.locale}" />
+      <f:attribute name="messageId" value="#{messageId}" />
     </p:datePicker>
   </h:panelGroup>
 
@@ -90,6 +96,7 @@
       <f:attribute name="filter" value="#{filter}" />
       <f:attribute name="filterIndex" value="#{filterIndex}" />
       <f:attribute name="locale" value="#{localeBean.locale}" />
+      <f:attribute name="messageId" value="#{messageId}" />
     </p:datePicker>
   </h:panelGroup>
 
@@ -109,6 +116,7 @@
       <f:attribute name="filter" value="#{filter}" />
       <f:attribute name="filterIndex" value="#{filterIndex}" />
       <f:attribute name="locale" value="#{localeBean.locale}" />
+      <f:attribute name="messageId" value="#{messageId}" />
     </p:datePicker>
   </h:panelGroup>
 
