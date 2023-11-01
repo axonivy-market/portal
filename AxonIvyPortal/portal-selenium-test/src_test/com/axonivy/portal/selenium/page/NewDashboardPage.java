@@ -688,15 +688,17 @@ public class NewDashboardPage extends TemplatePage {
 
   public SelenideElement getConfigureDashboardMenu() {
     $("#user-settings-menu").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    Sleeper.sleep(500);
     $("#user-setting-container").shouldBe(Condition.exist, DEFAULT_TIMEOUT).shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a#user-profile").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(),
         DEFAULT_TIMEOUT);
-    return $("#dashboard-configuration");
+    return $("#dashboard-configuration").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
 
   public DashboardConfigurationPage openDashboardConfigurationPage() {
     if ($("div[id='portal-global-growl_container']").is(appear)) {
       waitForGrowlMessageDisappear();
     }
+    waitPageLoaded();
     SelenideElement configureButton = getConfigureDashboardMenu();
     configureButton.click();
     return new DashboardConfigurationPage();
@@ -709,7 +711,7 @@ public class NewDashboardPage extends TemplatePage {
       Sleeper.sleep(500);
       waitForElementClickableThenClick($(By.id("user-menu-required-login:toggle-menu")));
     }
-    return $(".layout-menu").shouldBe(appear, DEFAULT_TIMEOUT).$$("li.menu-item-dashboard a.DASHBOARD");
+    return $(".layout-menu").shouldBe(appear, DEFAULT_TIMEOUT).$$("li.menu-item-dashboard a.DASHBOARD").shouldHave(CollectionCondition.sizeGreaterThan(0));
   }
 
   public SelenideElement getDashboardActive() {
