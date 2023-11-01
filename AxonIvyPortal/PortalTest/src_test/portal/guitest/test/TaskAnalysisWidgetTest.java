@@ -15,15 +15,15 @@ import org.openqa.selenium.WebElement;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.Variable;
-import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.StatisticWidgetPage;
 import portal.guitest.page.TaskAnalysisWidgetPage;
 
 public class TaskAnalysisWidgetTest extends BaseTest {
 
   private static final String ENABLE_CASE_OWNER_SETTING = Variable.ENABLE_CASE_OWNER.getKey();
-  private HomePage homePage;
+  private NewDashboardPage newDashboardPage;
   private StatisticWidgetPage statisticWidgetPage;
   private MainMenuPage mainMenuPage;
 
@@ -35,8 +35,8 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     createTestData();
     login(TestAccount.ADMIN_USER);
     grantPermissionOfPortal();
-    homePage = new HomePage();
-    mainMenuPage = homePage.openMainMenu();
+    newDashboardPage = new NewDashboardPage();
+    mainMenuPage = newDashboardPage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
   }
 
@@ -58,7 +58,6 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     assertTrue(statisticWidgetPage.isDisplayed());
   }
 
-  @SuppressWarnings("deprecation")
   @Test
   public void testAddColumns() {
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
@@ -80,7 +79,6 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     assertEquals(numberOfColumns, numberOfCheckboxes);
   }
 
-  @SuppressWarnings("deprecation")
   @Test
   public void testRemoveColumns() {
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
@@ -184,8 +182,8 @@ public class TaskAnalysisWidgetTest extends BaseTest {
   public void testApplyCaseOwnerFilter() {
     updatePortalSetting(ENABLE_CASE_OWNER_SETTING, "true");
     redirectToRelativeLink(userIsOwnerUrl);
-    homePage = new HomePage();
-    mainMenuPage = homePage.openMainMenu();
+    newDashboardPage = new NewDashboardPage();
+    mainMenuPage = newDashboardPage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
     taskAnalysisWidgetPage.filterByOwner("Demo");
@@ -200,8 +198,8 @@ public class TaskAnalysisWidgetTest extends BaseTest {
   @Test
   public void testAddCaseOwnerColumn() {
     updatePortalSetting(ENABLE_CASE_OWNER_SETTING, "true");
-    homePage = new HomePage();
-    mainMenuPage = homePage.openMainMenu();
+    newDashboardPage = new NewDashboardPage();
+    mainMenuPage = newDashboardPage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
 

@@ -4,7 +4,7 @@
 
 <h:body>
   <ui:composition>
-    <ui:param name="unreadNotificationsId" value="#{p:resolveFirstComponentWithId('topbar-unread-notifications', view).clientId}" />
+    <ui:param name="unreadNotificationsId" value="#{p:resolveFirstComponentWithId('topbar-unread-notifications-container', view).clientId}" />
     <ui:param name="notificationScrollerId" value="#{p:resolveFirstComponentWithId('notifications-scroller', view).clientId}" />
 
     <h:panelGroup id="notification-form">
@@ -20,7 +20,7 @@
                 <span class="notifications-title-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationTitle')}</span>
                   
                   <div class="p-d-flex">
-                    <p:selectBooleanCheckbox value="#{notificationBean.dataModel.onlyUnread}" disabled="#{!notificationBean.hasUnreadNotifications()}" 
+                    <p:selectBooleanCheckbox id="notifications-only-unread" value="#{notificationBean.onlyUnread}"
                       itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/onlyUnread')}" styleClass="notification-checkbox" >
                       <p:ajax listener="#{notificationBean.dataModel.onSelectedFilter()}" oncomplete="Portal.updateLayoutContent()"
                       update="#{unreadNotificationsId}, #{notificationScrollerId}" global="false" partialSubmit="true"/>
@@ -54,6 +54,7 @@
                 </h:panelGroup>
                 
                 <h:panelGroup id="has-notifications" rendered="#{notificationBean.hasNotifications()}">
+                  <h:outputText styleClass="#{notificationBean.render ? 'u-hidden' : ''}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
                   <h:form id="notificationForm" onmouseover="Portal.updateLayoutContent()">
                     <p:dataScroller id="notifications-scroller" lazy="true" styleClass="notification-scroll" value="#{notificationBean.dataModel}" var="notification"
                       rendered="#{notificationBean.render}" chunkSize="20" mode="inline" widgetVar="notifications-scroller">
@@ -62,12 +63,15 @@
                       <div class="#{notification.style} notifications-container-top">
                         <div class="p-d-flex">
                           <div class="p-d-flex">
-                            <p:commandLink id="notificationMarkAsRead" process="@this"
+                            <p:commandLink id="notificationMarkAsRead"
                               actionListener="#{notificationBean.markAsRead(notification)}"
+                              process="@this"
+                              partialSubmit="true"
                               global="false"
-                              oncomplete="Portal.updateLayoutContent()"
-                              update="#{unreadNotificationsId}, #{notificationScrollerId}">
-                              <i class="notifications-button fa #{notification.read ? 'fa-circle-thin': 'fa-circle'}" />
+                              onclick="markAsRead('#{notification.id}')"
+                              oncomplete="Portal.updateLayoutContent();"
+                              update="#{unreadNotificationsId}">
+                              <i class="notifications-button fa #{notification.read ? 'fa-circle-thin': 'fa-circle'}" id="#{notification.id}" />
                             </p:commandLink>
                             <p:tooltip for="notificationMarkAsRead" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
                           </div>
