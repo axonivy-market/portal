@@ -86,7 +86,7 @@ To install Dashboard JSON configuration file to the Axon Ivy Engine, you can cho
    The JSON file name has to be Portal.Dashboard.json. Refer to :dev-url:`Engine Deployment</doc/|version|/engine-guide/deployment/index.html>` 
 - Copy the Dashboard.json file directly into the engine folder ``<engine>/configuration/applications/<application>``. The Json file name has to be named ``variables.Portal.Dashboard.json``
 
-- Use the import dashboard feature of the Portal. Refer to :ref:`howto-import-your-public-dashboards`
+- Use the import dashboard feature of the Portal. Refer to :ref:`How to import your public dashboards<howto-import-your-public-dashboards>`
 
 Setup Portal multi applications
 """""""""""""""""""""""""""""""
