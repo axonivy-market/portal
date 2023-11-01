@@ -17,8 +17,6 @@ Portal.ClientSideTimeout,0,"| Client side timeout in minutes. Has to be more tha
 | Default value is 0, which means that the default client side timeout is applied.
 | Default client side timeout is server side timeout minus 3 minutes."
 Portal.Dashboard.HideStatisticWidget,FALSE,"If true, hide Statistic widget from homepage and application menu."
-Portal.Dashboard.ShowUserFavorites,TRUE,"If true, display user favorites section of process list in Portal home."
-Portal.Dashboard.ShowUserGuide,TRUE,"If true, show interactive user guide ""first steps"" in the portal at first login."
 Portal.DateTimeFormat.DateFilterWithTime,FALSE,"Set to true to enable date filtering with time. This setting affects on task list, case list, and statistics."
 Portal.DateTimeFormat.HideTime,FALSE,Set to true to hide hours and minutes next to date.
 Portal.DateTimeFormat.HideYear,FALSE,"Set to true, year will be hidden, otherwise it will be shown."

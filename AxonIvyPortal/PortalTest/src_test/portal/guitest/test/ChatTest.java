@@ -12,11 +12,12 @@ import org.junit.Test;
 
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.ChatPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
@@ -45,10 +46,10 @@ public class ChatTest extends BaseTest {
     createChatGroup(TestAccount.DEMO_USER);
     joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
     chatMessageInGroup(TestAccount.DEMO_USER, CHAT_MESSAGE_USER_DEMO);
-    launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    launchBrowserAndGotoRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPage2 = chatMessageInGroup(TestAccount.ADMIN_USER, CHAT_MESSAGE_USER_ADMIN);
 
-    launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    launchBrowserAndGotoRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     createChatGroup(TestAccount.GUEST_USER, chatUser1, chatGroupEveryBody);
 
 
@@ -62,7 +63,7 @@ public class ChatTest extends BaseTest {
     createChatGroup(TestAccount.DEMO_USER);
     joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
     chatMessageInGroup(TestAccount.DEMO_USER, CHAT_MESSAGE_USER_DEMO);
-    launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    launchBrowserAndGotoRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPage2 = chatMessageInGroup(TestAccount.ADMIN_USER, CHAT_MESSAGE_USER_ADMIN);
     chatPage2.closeChatMessageList();
     chatPage.sendMessage("from 1 to 2");
@@ -76,7 +77,7 @@ public class ChatTest extends BaseTest {
   @Test
   public void chatDisplay() {
     enableChatGroup();
-    assertTrue("Chat Shown", new HomePage().isChatDisplayed());
+    assertTrue("Chat Shown", new NewDashboardPage().isChatDisplayed());
   }
 
   @Test
@@ -86,7 +87,7 @@ public class ChatTest extends BaseTest {
     chatPage.sendMessage(CHAT_MESSAGE_USER_ADMIN);
 
     login(TestAccount.DEMO_USER);
-    new HomePage().getChat();
+    new NewDashboardPage().getChat();
     chatPage.selectChatUser("admin");
     chatPage.sendMessage(CHAT_MESSAGE_USER_DEMO);
   }
@@ -103,7 +104,7 @@ public class ChatTest extends BaseTest {
     assertContainMessage(chatPage, CHAT_MESSAGE_USER_ADMIN);
 
     login(TestAccount.DEMO_USER);
-    WaitHelper.assertTrueWithWait(() -> new HomePage().getChat().isNotificationContactChat());
+    WaitHelper.assertTrueWithWait(() -> new NewDashboardPage().getChat().isNotificationContactChat());
   }
 
   @Test
@@ -111,12 +112,12 @@ public class ChatTest extends BaseTest {
     enableChatGroup();
     createChatGroup(TestAccount.DEMO_USER);
     ChatPage chatPageDemo1 = new ChatPage();
-    launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    launchBrowserAndGotoRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPageDemo2 = openChatGroup(TestAccount.DEMO_USER);
-    launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    launchBrowserAndGotoRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
     ChatPage chatPageAdmin1 = new ChatPage();
-    launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    launchBrowserAndGotoRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPageAdmin2 = openChatGroup(TestAccount.ADMIN_USER);
     chatPageAdmin1.closeChatMessageList();
     chatPageAdmin2.closeChatMessageList();
@@ -144,9 +145,9 @@ public class ChatTest extends BaseTest {
     assertContainMessage(chatPageDemo2, ADMIN1_1);
 
     // demo1, demo2, demo3, demo4, admin2 with group opened, admin2 with group closed, admin1 sends message
-    launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    launchBrowserAndGotoRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPageDemo3 = openChatGroup(TestAccount.DEMO_USER);
-    launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    launchBrowserAndGotoRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPageDemo4 = openChatGroup(TestAccount.DEMO_USER);
     chatPageAdmin1.sendMessage(ADMIN1_2);
     //TODO need to be fixed - Workaround for wait message render
@@ -174,8 +175,8 @@ public class ChatTest extends BaseTest {
 
   private ChatPage openChatGroup(TestAccount chatUser) {
     login(chatUser);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    ChatPage chatPage = new HomePage().getChat();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    ChatPage chatPage = new NewDashboardPage().getChat();
     chatPage.openFirstGroupChat();
     return chatPage;
   }
@@ -183,10 +184,10 @@ public class ChatTest extends BaseTest {
   private ChatPage createChatGroup(TestAccount creatorChatGroup, ExpressResponsible ...participants) {
     redirectToRelativeLink(createTestingCaseUrlForDefaultAdditionalCaseDetails);
     login(creatorChatGroup);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    ChatPage chatPage = new HomePage().getChat();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    ChatPage chatPage = new NewDashboardPage().getChat();
     // Create chat group via task
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.clickChatGroup();
@@ -199,8 +200,8 @@ public class ChatTest extends BaseTest {
 
   private void joinChatGroupWhichAlreadyHadChatGroup(TestAccount userJoined) {
     login(userJoined);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    taskWidgetPage.filterTasksInExpandedModeBy("Sick Leave Request Default Case Details Page");
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.clickChatGroup();
@@ -216,7 +217,7 @@ public class ChatTest extends BaseTest {
   private ChatPage enableChatPrivate() {
     updatePortalSetting(ENABLE_PRIVATE_CHAT_SETTING, "true");
     login(TestAccount.ADMIN_USER);
-    new HomePage().getChat();
+    new NewDashboardPage().getChat();
     return new ChatPage();
   }
 

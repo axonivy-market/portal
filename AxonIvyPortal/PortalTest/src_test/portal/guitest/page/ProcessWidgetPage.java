@@ -7,8 +7,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
@@ -141,13 +139,6 @@ public class ProcessWidgetPage extends TemplatePage {
     List<WebElement> indexGroup = findListElementsByXpath("//legend[@class='ui-fieldset-legend ui-corner-all ui-state-default']");
     return indexGroup.stream().anyMatch(item -> processGroupCharacter.equals(item.getText()));
   }
-  
-  public String getProcessNameFromFavoriteProcessList(int index) {
-    String id = index + ":process-item-form:process-name";
-    WebElement favoriteProcessList = findElementById(processWidgetId + ":process-list");
-    String name = findChildElementByCssSelector(favoriteProcessList, "span[id*='" + id + "']").getText();
-    return name;
-  }
 
   public String getProcessNameFromDefaultProcessList(int index) {
     WebElement defaultProcessList = findElementById(processWidgetId + ":user-default-process-list");
@@ -156,27 +147,18 @@ public class ProcessWidgetPage extends TemplatePage {
     return name;
   }
 
-  @SuppressWarnings("deprecation")
   public void clickEditSwitchLink() {
     waitForElementDisplayed(By.cssSelector("[id$='editing-switch-command']"), true, DEFAULT_TIMEOUT);
     click(findElementByCssSelector("[id$='editing-switch-command']"));
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
-  @SuppressWarnings("deprecation")
   public void clickSaveProcess() {
     WebElement deleteProcessLink = findChildElementByCssSelector(processWidget, "[id$='save-process-command']");
     click(deleteProcessLink);
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
-  @SuppressWarnings("deprecation")
-  public UserFavoriteProcessPage openNewProcessDialog() {
-    click(findChildElementByCssSelector(processWidget, "[id$='show-adding-dialog-commmand']"));
-    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-    return new UserFavoriteProcessPage();
-  }
-  
   public AddNewExternalLinkDialog openNewExternalLinkDialog() {
     waitForElementDisplayed(By.id(processWidgetId + ":add-external-link-command"), true);
     click(By.id("process-widget:add-external-link-command"));
@@ -200,7 +182,6 @@ public class ProcessWidgetPage extends TemplatePage {
     return styleClass.contains("si-undo");
   }
 
-  @SuppressWarnings("deprecation")
   public void checkDeleteItem(int itemIndex) {
     List<WebElement> deleteCheckboxes = findDeleteIcons();
     WebElement checkBox = deleteCheckboxes.get(itemIndex);
@@ -208,20 +189,6 @@ public class ProcessWidgetPage extends TemplatePage {
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
-  public int getNumberOfFavoriteUserProcesses() {
-    WebElement favoriteProcessList = findElementById(processWidgetId + ":process-list");
-    List<WebElement> processes = findChildElementsByCssSelector(favoriteProcessList, "form[id*='process-item-form']");
-    return processes.size();
-  }
-
-  @SuppressWarnings("deprecation")
-  public void clickSortFavoriteProcessByName() {
-    waitForElementDisplayed(By.cssSelector("[id$='name-sort-command']"), true, DEFAULT_TIMEOUT);
-    click(findElementByCssSelector("[id$='name-sort-command']"));
-    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-  }
-
-  @SuppressWarnings("deprecation")
   public void clickSortDefaultProcessByName() {
     waitForElementDisplayed(By.cssSelector("[id$='default-process-name-sort-command']"), true, DEFAULT_TIMEOUT);
     click(findElementByCssSelector("[id$='default-process-name-sort-command']"));
@@ -243,7 +210,6 @@ public class ProcessWidgetPage extends TemplatePage {
     return !findElements.isEmpty();
   }
 
-  @SuppressWarnings("deprecation")
   public void expand() {
     loadSwitchModeButton();
     click(switchModeButton);
@@ -263,17 +229,6 @@ public class ProcessWidgetPage extends TemplatePage {
   public void enterSearchKeyword(String keyword) {
     liveSearchTextField = findElementById(processWidgetId + ":process-search:non-ajax-keyword-filter");
     type(liveSearchTextField, keyword);
-  }
-  
-  public void moveFavoriteProcess(int processToMoveIndex, int destinationProcessIndex) {
-    WebElement editProcesses = findElementByCssSelector("form[id$=':edit-process-item-form']");
-    List<WebElement> processItems = findChildElementsByCssSelector(editProcesses, ".ui-orderlist-list .ui-orderlist-item");
-    WebElement processToMove = processItems.get(processToMoveIndex - 1);
-    WebElement destinationProcess = processItems.get(destinationProcessIndex - 1);
-
-    Actions builder = new Actions(driver);
-    Action moveProcessSequence = builder.dragAndDrop(processToMove, destinationProcess).build();
-    moveProcessSequence.perform();
   }
   
   public class AddNewExternalLinkDialog {
@@ -373,10 +328,6 @@ public class ProcessWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.id("process-widget"), true);
     waitForElementDisplayed(By.className("js-loading-process-list"), false);
     waitForElementDisplayed(By.className("js-process-start-list-container"), true);
-  }
-  
-  public void waitUtilProcessWidgetUserFavoriteDisplayed() {
-    waitForElementDisplayed(By.id("process-widget:user-process-container"), true);
   }
 
   public String getCurrentViewMode() {

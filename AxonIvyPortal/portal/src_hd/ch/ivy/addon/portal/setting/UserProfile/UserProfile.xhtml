@@ -33,12 +33,6 @@
                           itemLabel="#{homepage.label}" />
                       </p:selectOneMenu>
                     </div>
-                    <h:panelGroup layout="block" styleClass="ui-g-6 ui-sm-12 display-flex-center" rendered="#{menuView.isShowLegacyUI()}">
-                      <p:selectBooleanCheckbox id="general-show-tutorial"
-                        itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/showTutorial')}"
-                        value="#{data.showTutorial}" disabled="#{data.disableShowTutorial}"
-                        styleClass="show-tutorial #{data.disableShowTutorial ? 'ui-state-disabled' : ''}" />
-                    </h:panelGroup>
                   </div>
                 </div>
               </div>

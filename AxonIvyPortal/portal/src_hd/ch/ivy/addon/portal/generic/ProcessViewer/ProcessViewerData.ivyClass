@@ -6,3 +6,7 @@ selectedCase ch.ivyteam.ivy.workflow.ICase #field
 selectedCase PERSISTENT #fieldModifier
 processId String #field
 processId PERSISTENT #fieldModifier
+taskId Long #field
+taskId PERSISTENT #fieldModifier
+selectedTask ch.ivyteam.ivy.workflow.ITask #field
+selectedTask PERSISTENT #fieldModifier

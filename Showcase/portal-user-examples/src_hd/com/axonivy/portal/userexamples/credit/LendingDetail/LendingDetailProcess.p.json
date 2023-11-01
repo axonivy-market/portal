@@ -21,6 +21,16 @@
             "out.stageIndex" : "param.index"
           }
         },
+        "result" : {
+          "params" : [
+            { "name" : "state", "type" : "com.axonivy.portal.userexamples.enums.RequestState", "desc" : "" },
+            { "name" : "stageIndex", "type" : "Integer", "desc" : "" }
+          ],
+          "map" : {
+            "result.state" : "in.state",
+            "result.stageIndex" : "in.stageIndex"
+          }
+        },
         "guid" : "1725FB50A476B54F"
       },
       "visual" : {
@@ -34,7 +44,7 @@
       "id" : "f1",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 312, "y" : 64 }
+        "at" : { "x" : 296, "y" : 64 }
       }
     }, {
       "id" : "f3",
@@ -53,7 +63,7 @@
       "id" : "f4",
       "type" : "HtmlDialogExit",
       "visual" : {
-        "at" : { "x" : 224, "y" : 160 }
+        "at" : { "x" : 296, "y" : 160 }
       }
     }, {
       "id" : "f7",
@@ -61,6 +71,11 @@
       "name" : "navigateToOverviewPage()",
       "config" : {
         "signature" : "navigateToOverviewPage",
+        "input" : {
+          "map" : {
+            "out.state" : "com.axonivy.portal.userexamples.enums.RequestState.SUBMIT"
+          }
+        },
         "guid" : "1726DF016BB85891"
       },
       "visual" : {
@@ -68,39 +83,8 @@
         "labelOffset" : { "x" : 53, "y" : 35 }
       },
       "connect" : [
-        { "id" : "f13", "to" : "f12" }
+        { "id" : "f18", "to" : "f13" }
       ]
-    }, {
-      "id" : "f8",
-      "type" : "DialogCall",
-      "name" : "LendingOverview",
-      "config" : {
-        "dialog" : "com.axonivy.portal.userexamples.credit.LendingOverview:start(ch.ivy.addon.portalkit.configuration.UserProcess)",
-        "call" : {
-          "map" : {
-            "param.userProcess" : "in.userProcess"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 464, "y" : 352 }
-      }
-    }, {
-      "id" : "f10",
-      "type" : "DialogCall",
-      "name" : "LendingDetail",
-      "config" : {
-        "dialog" : "com.axonivy.portal.userexamples.credit.LendingDetail:start(ch.ivy.addon.portalkit.bo.CaseMapDetail,Integer)",
-        "call" : {
-          "map" : {
-            "param.caseMapDetail" : "in.caseMapDetail",
-            "param.index" : "in.stageIndex"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 352, "y" : 256 }
-      }
     }, {
       "id" : "f6",
       "type" : "HtmlDialogMethodStart",
@@ -114,7 +98,8 @@
           ],
           "map" : {
             "out.caseMapDetail" : "param.caseMapDetail",
-            "out.stageIndex" : "param.stageIndex"
+            "out.stageIndex" : "param.stageIndex",
+            "out.state" : "com.axonivy.portal.userexamples.enums.RequestState.SUBMIT2"
           }
         },
         "guid" : "1726DEFF21B6E30F"
@@ -124,38 +109,20 @@
         "labelOffset" : { "x" : 73, "y" : 35 }
       },
       "connect" : [
-        { "id" : "f11", "to" : "f10" }
-      ]
-    }, {
-      "id" : "f12",
-      "type" : "Script",
-      "name" : "create user process",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.configuration.UserProcess;",
-            "",
-            "in.userProcess = new UserProcess();",
-            "in.userProcess.setLink(in.caseMapDetail.startLink);",
-            "in.userProcess.setIcon(in.caseMapDetail.icon);",
-            "in.userProcess.setProcessName(in.caseMapDetail.getName());",
-            "in.userProcess.setDescription(in.caseMapDetail.getDescription());"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 304, "y" : 352 },
-        "size" : { "width" : 128, "height" : 60 }
-      },
-      "connect" : [
-        { "id" : "f9", "to" : "f8" }
+        { "id" : "f17", "to" : "f11" }
       ]
     }, {
       "id" : "f14",
       "type" : "HtmlDialogEventStart",
       "name" : "cancel",
       "config" : {
-        "guid" : "17297FBEEBF8A2C6"
+        "guid" : "17297FBEEBF8A2C6",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.state" : "com.axonivy.portal.userexamples.enums.RequestState.CANCEL"
+          }
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 448 },
@@ -166,14 +133,21 @@
       ]
     }, {
       "id" : "f15",
-      "type" : "DialogCall",
-      "name" : "ExampleHomePage",
-      "config" : {
-        "dialog" : "com.axonivy.portal.userexamples.ExampleHomePage:start()"
-      },
+      "type" : "HtmlDialogExit",
       "visual" : {
-        "at" : { "x" : 224, "y" : 448 },
-        "size" : { "width" : 128, "height" : 60 }
+        "at" : { "x" : 296, "y" : 448 }
+      }
+    }, {
+      "id" : "f11",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 296, "y" : 256 }
+      }
+    }, {
+      "id" : "f13",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 296, "y" : 352 }
       }
     } ]
 }

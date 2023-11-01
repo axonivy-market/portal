@@ -238,7 +238,6 @@ public class StatisticWidgetPage extends TemplatePage {
     waitForElementExisted("span[class='ui-growl-title']", true, DEFAULT_TIMEOUT);
   }
   
-  @SuppressWarnings("deprecation")
   public void createCasesByCategory() {
 	    waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-cases-by-category-link"), true, 30);
 	    WebElement createCaseByFinishedTaskLink
@@ -283,7 +282,6 @@ public class StatisticWidgetPage extends TemplatePage {
     return findElementByCssSelector(String.format("span[id$='%d:chart-panel']", index));
   }
   
-  @SuppressWarnings("deprecation")
   public WebElement getChartInfoDialogOfChart(int chartIndex) {
     List<WebElement> chartInfoIcons = findListElementsByClassName("chart-info"); 
     click(chartInfoIcons.get(chartIndex));

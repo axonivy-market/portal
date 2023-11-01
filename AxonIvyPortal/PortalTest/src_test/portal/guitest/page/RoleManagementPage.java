@@ -47,7 +47,6 @@ public class RoleManagementPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':role-management-component:role-management-message_container']"), false);
   }
 
-  @SuppressWarnings("deprecation")
   public void createNewRoleWithData(String parentRole, String roleName, String roleDisplayName, String roleDescription,
       List<String> members) {
     waitForElementDisplayed(By.cssSelector("[id$=':role-management-component:manage-role-details-form']"), true);
@@ -93,7 +92,6 @@ public class RoleManagementPage extends TemplatePage {
     return findActionForRoleByName(roleName, "delete-role-link");
   }
 
-  @SuppressWarnings("deprecation")
   public void deleteRole(String roleName) {
     var deleteLink = getDeleteActionEnableForRole(roleName);
     click(deleteLink);
@@ -108,7 +106,6 @@ public class RoleManagementPage extends TemplatePage {
     return findActionForRoleByName(roleName, "edit-role-link");
   }
 
-  @SuppressWarnings("deprecation")
   public void clickOnEditRole(String roleName) {
     var editLink = getEditActionEnableForRole(roleName);
     click(editLink);
@@ -159,7 +156,6 @@ public class RoleManagementPage extends TemplatePage {
     roleDescriptionInput.sendKeys(roleDescription);
   }
 
-  @SuppressWarnings("deprecation")
   public void clickOnAssignUsersToRole(String roleName) {
     var assignUsersLink = getAssigningUsersActionEnableForRole(roleName);
     click(assignUsersLink);
@@ -171,7 +167,6 @@ public class RoleManagementPage extends TemplatePage {
     assignUsersToRole(members);
   }
 
-  @SuppressWarnings("deprecation")
   private void assignUsersToRole(List<String> members) {
     for (var userName : members) {
       var usersAssignmentInput = findElementByCssSelector("[id$=':manage-role-details-form:user-assignment-selection:user-selection_input']");
@@ -210,7 +205,6 @@ public class RoleManagementPage extends TemplatePage {
     removeUserOfRole(0);
   }
 
-  @SuppressWarnings("deprecation")
   private void removeUserOfRole(int index) {
     waitForElementDisplayed(By.cssSelector("[id$=':manage-role-details-form:users-of-role-table_data']"), true);
     if (isElementDisplayed(By.cssSelector("a[id$=':delete-user-link']"))
