@@ -21,10 +21,6 @@
     update="dashboard-cases-container" global="false" async="true" process="@this"
     oncomplete="loadWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); PF('dashboard-cases-#{caseWidget.id}').init(PF('dashboard-cases-#{caseWidget.id}').cfg); #{cc.attrs.onCompleteLoadWidget}" />
 
-  <p:remoteCommand name="reloadCaseWidget#{caseWidget.id}" actionListener="#{caseWidget.dataModel.reload()}"
-    update="dashboard-cases-container" global="false" async="true" process="@this"
-    oncomplete="loadWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); PF('dashboard-cases-#{caseWidget.id}').init(PF('dashboard-cases-#{caseWidget.id}').cfg); #{cc.attrs.onCompleteLoadWidget}" />
-
   <div class="ui-g">
     <h:outputText id="loading" styleClass="js-loading-#{caseWidget.id} case-dashboard-widget__loading-message" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
 
