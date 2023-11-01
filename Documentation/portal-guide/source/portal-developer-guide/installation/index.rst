@@ -86,7 +86,7 @@ To install Dashboard JSON configuration file to the Axon Ivy Engine, you can cho
    The JSON file name must be Portal.Dashboard.json. Refer to :dev-url:`Engine Deployment</doc/|version|/engine-guide/deployment/index.html>` 
 - Copy the Dashboard.json file directly into the engine folder ``<engine>/configuration/applications/<application>``. The Json file name must be named ``variables.Portal.Dashboard.json``
 
-- Use the import dashboard feature of the Portal. Refer to :ref:`howto-import-your-public-dashboards`
+- Use the import dashboard feature of the Portal. Refer to :ref:`How to import your public dashboards<howto-import-your-public-dashboards>`
 
 
 
@@ -152,16 +152,13 @@ Migrate 10.0.12 To 10.0.13
 
 - Override HTML dialog ``PageHeader`` and ``PageFooter`` are no longer supported, use callable instead.
 
-Migrate 10.0 To 10.0.12
------------------------
+Migrate 10.0.11 To 10.0.12
+--------------------------
 
-Portal no longer supports the override process approach for some subprocesses.
-Please follow the guidelines below to migrate your override subprocesses.
+1. Portal no longer supports the override process approach for some subprocesses. Please follow the guidelines below to migrate your override subprocesses.
 
-#. :ref:`Customize Forgot Password <customization-forgot-password>`
-
+   - :ref:`Customize Forgot Password <customization-forgot-password>`
       - Remove subprocess override of ``ResetPassword`` and ``SendPasswordResetEmail``` from your project.
-
       - Change the signature of your callable start as described below.
 
          +-------------------------+-------------------------------+
@@ -172,11 +169,8 @@ Please follow the guidelines below to migrate your override subprocesses.
          | SendPasswordResetEmail  | portalSendPasswordResetEmail  |
          +-------------------------+-------------------------------+
 
-#. :ref:`Document processes <customization-document-processes>`
-
-      - Remove subprocess override of ``GetDocumentList``, ``UploadDocument``,
-        ``DeleteDocument``, and ``DownloadDocument`` from your project.
-
+   - :ref:`Document processes <customization-document-processes>`
+      - Remove subprocess override of ``GetDocumentList``, ``UploadDocument``, ``DeleteDocument``, and ``DownloadDocument`` from your project.
       - Change the signature of your callable starts as described below.
 
          +----------------------+----------------------------+
@@ -191,10 +185,8 @@ Please follow the guidelines below to migrate your override subprocesses.
          | DownloadDocument     | portalDownloadDocument     |
          +----------------------+----------------------------+
 
-#. :ref:`Customize Logout Process <customization-logout>`
-
+   - :ref:`Customize Logout Process <customization-logout>`
       - Remove subprocess override of ``LogoutPage`` and ``Logout`` from your project.
-
       - Change the signature of your callable start as described below.
 
          +----------------------+----------------------------+
@@ -205,10 +197,8 @@ Please follow the guidelines below to migrate your override subprocesses.
          | Logout               | portalLogout               |
          +----------------------+----------------------------+
 
-#. :ref:`Customize Change Password Process <customization-change-password-process>`
-
+   - :ref:`Customize Change Password Process <customization-change-password-process>`
       - Remove subprocess override of ``ChangePassword`` from your project.
-
       - Change the signature of your callable start as described below.
 
          +----------------------+----------------------------+
@@ -217,10 +207,8 @@ Please follow the guidelines below to migrate your override subprocesses.
          | ChangePassword       | portalChangePassword       |
          +----------------------+----------------------------+
 
-#. :ref:`Customize Menu Items <customization-menu-customization>`
-
+   - :ref:`Customize Menu Items <customization-menu-customization>`
       - Remove subprocess override of ``LoadSubMenuItems`` from your project.
-
       - Change the signature of your callable start as described below.
 
          +-------------------------+-------------------------------+
@@ -228,18 +216,12 @@ Please follow the guidelines below to migrate your override subprocesses.
          +=========================+===============================+
          | LoadSubMenuItems        | portalLoadSubMenuItems        |
          +-------------------------+-------------------------------+
-
       - To hide default menu items, you can utilize variables. Here's a link :ref:`Show/hide default menu items <customization-menu-hide-default-menu-item>` that provides instructions on how to do so.
-
       - Update ``index`` for each custom menu item.
-
       - Refer to process ``CustomLoadSubMenuItems`` in the project ``portal-developer-examples`` for an example of how to create custom menu items.
 
-#. :ref:`Task Delegation <customization-task-delegation>`
-
-
+   - :ref:`Task Delegation <customization-task-delegation>`
       - Remove subprocess override of ``CalculateTaskDelegate`` from your project.
-
       - Change the signature of your callable start as described below.
 
          +-------------------------+-------------------------------+
@@ -247,6 +229,8 @@ Please follow the guidelines below to migrate your override subprocesses.
          +=========================+===============================+
          | CalculateTaskDelegate   | portalCalculateTaskDelegate   |
          +-------------------------+-------------------------------+
+
+2. We change the **External Link** configuration for the field ``imageContent``, refer to :ref:`Portal Processes External Links <portal-process-external-link>` for more information. Basically, you do not need any migration on your engine. Just in case, you override variable `Portal.Processes.ExternalLinks` by deployment, update the field ``imageContent`` by removing the prefix like `data:image/jpeg;base64,` in your JSON variable `Portal.Processes.ExternalLinks` file.
 
 Migrate 10.0 To 10.0.7
 ----------------------

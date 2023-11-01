@@ -8,6 +8,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.map.HashedMap;
+import org.primefaces.PrimeFaces;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.SortMeta;
 
@@ -40,6 +41,9 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
 
   @Override
   public List<ITask> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
+    if (first == 0) {
+      PrimeFaces.current().executeScript("resizeTableBody();");
+    }
     if (isFirstTime) {
       isFirstTime = false;
       if (future != null) {
