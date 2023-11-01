@@ -100,7 +100,7 @@ A table of private dashboards is shown with the following information:
 .. _howto-reorder-your-dashboards:
 
 How to: reorder private dashboards
-===============================
+==================================
 
 You re-arrange dashboards by drag and drop using |move-expand-vertical| Reorder.
 
