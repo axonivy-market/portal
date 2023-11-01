@@ -23,6 +23,7 @@ import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityContext;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
 
@@ -38,7 +39,7 @@ public class ProcessStartUtils {
   }
 
   public static IProcessStart findProcessStartByUserFriendlyRequestPath(String requestPath) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IProcessStart processStart = null;
       processStart = findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, Ivy.request().getProcessModelVersion());
       if (processStart != null) {
@@ -109,14 +110,14 @@ public class ProcessStartUtils {
   }
 
   public static String findFriendlyRequestPathContainsKeyword(String keyword){
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       Object portalStartPmvId = Ivy.session().getAttribute(SessionAttribute.PORTAL_START_PMV_ID.toString());
       return ProcessStartCollector.getInstance().findFriendlyRequestPathContainsKeyword(keyword, portalStartPmvId);
     });
   }
 
   public static String findFriendlyRequestPathContainsKeywordInPMV(String keyword, IProcessModelVersion processModelVersion){
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return ProcessStartCollector.getInstance().findFriendlyRequestPathContainsKeyword(keyword, processModelVersion);
     });
   }

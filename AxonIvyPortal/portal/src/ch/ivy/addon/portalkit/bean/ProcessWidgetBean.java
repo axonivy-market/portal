@@ -49,10 +49,10 @@ import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 import ch.ivyteam.util.Pair;
@@ -390,7 +390,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   public String getCreateExpessWorkflowLink() {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return (createExpressWorkflowProcessStart != null) ? createExpressWorkflowProcessStart.getLink().getRelative()
           : StringUtils.EMPTY;
     });
