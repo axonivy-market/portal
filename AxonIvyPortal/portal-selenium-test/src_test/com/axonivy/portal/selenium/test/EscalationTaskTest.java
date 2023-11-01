@@ -11,6 +11,7 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
@@ -87,7 +88,8 @@ public class EscalationTaskTest extends BaseTest {
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
     CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
-    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(TRIGGER_ESCALATION_CASE);
+    CaseDetailsPage caseDetailsPage = new CaseDetailsPage();
+    WaitHelper.waitForNavigation(() -> caseWidgetPage.openCase(TRIGGER_ESCALATION_CASE));
     caseDetailsPage.getNameOfRelatedTask(1).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
     caseDetailsPage.clickRelatedTaskActionButton(1);
     caseDetailsPage.triggerEscalationTask(1);
