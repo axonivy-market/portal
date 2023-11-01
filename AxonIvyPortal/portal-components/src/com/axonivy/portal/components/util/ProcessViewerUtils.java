@@ -21,6 +21,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.model.value.WebLink;
 import ch.ivyteam.ivy.process.viewer.api.ProcessViewer;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.businesscase.IBusinessCase;
 import ch.ivyteam.ivy.workflow.start.ICaseMapWebStartable;
 import ch.ivyteam.ivy.workflow.start.IProcessWebStartable;
@@ -30,25 +31,37 @@ public class ProcessViewerUtils {
 
   private static List<IWebStartable> webStartables;
 
-  public static ProcessViewerDTO initProcessViewer(Long caseId, String processLink) {
+  public static ProcessViewerDTO initProcessViewer(Long taskId, Long caseId, String processLink) {
     boolean isViewerAllowed = false;
     IWebStartable webStartable = null;
     WebLink webLink = null;
     boolean isError = false;
     String errorMessage = "";
     String errorIcon = "";
-    if (caseId != 0 || StringUtils.isNotBlank(processLink)) {
+    if (taskId != 0 || caseId != 0 || StringUtils.isNotBlank(processLink)) {
       // init data using caseId
-      ICase selectedCase = CaseUtils.findCase(caseId);
-      isViewerAllowed = isViewerAllowed(selectedCase);
+      ITask selectedTask = TaskUtils.findTaskById(taskId);
+      isViewerAllowed = isViewerAllowed(selectedTask);
       if (isViewerAllowed) {
-        ICaseMap caseMap = findCaseMapByCase(selectedCase);
+        webLink = ProcessViewer.of(selectedTask).url().toWebLink();
+        ICaseMap caseMap = findCaseMapByCase(selectedTask.getCase());
         if (!Objects.isNull(caseMap)) {
           webStartable = findWebStartable(caseMap);
-          webLink = CaseMapViewer.of(caseMap).url().toWebLink();
         } else {
-          webStartable = findWebStartable(selectedCase.getProcessStart().getLink().getRelative());
-          webLink = ProcessViewer.of(selectedCase).url().toWebLink();
+          webStartable = findWebStartable(selectedTask.getCase().getProcessStart().getLink().getRelative());
+        }
+      } else {
+        ICase selectedCase = CaseUtils.findCase(caseId);
+        isViewerAllowed = isViewerAllowed(selectedCase);
+        if (isViewerAllowed) {
+          ICaseMap caseMap = findCaseMapByCase(selectedCase);
+          if (!Objects.isNull(caseMap)) {
+            webStartable = findWebStartable(caseMap);
+            webLink = CaseMapViewer.of(caseMap).url().toWebLink();
+          } else {
+            webStartable = findWebStartable(selectedCase.getProcessStart().getLink().getRelative());
+            webLink = ProcessViewer.of(selectedCase).url().toWebLink();
+          }
         }
       }
 
@@ -150,6 +163,13 @@ public class ProcessViewerUtils {
       return true;
     } 
     return ProcessViewer.of(caze).isViewAllowed();
+  }
+
+  public static boolean isViewerAllowed(ITask task) {
+    if (task == null) {
+      return false;
+    }
+    return ProcessViewer.of(task).isViewAllowed();
   }
 
   public static boolean isViewerAllowed(IWebStartable webStartable) {

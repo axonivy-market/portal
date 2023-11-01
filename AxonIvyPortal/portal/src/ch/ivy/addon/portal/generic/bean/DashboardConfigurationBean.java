@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;
 
@@ -28,7 +29,10 @@ public class DashboardConfigurationBean implements Serializable {
   public void initConfigurationBean() {
     initPermissions();
     resetAllIndicators();
+    isPublicDashboard = Attrs.currentContext().getAttribute("#{data.isPublicDashboard}", Boolean.class);
     isSelectingAction = true;
+    this.isEditingDashboard = true;
+    this.isPublicDashboard = false;
   }
 
   private void initPermissions() {

@@ -59,12 +59,8 @@ function TaskWidget() {
         }
 
         if (!!availableHeight) {
-          if ($('.js-task-start-list').hasClass("js-is-guide")) {
-            container.outerHeight('auto');
-          } else {
-            availableHeight = availableHeight - PortalLayout.getYPaddingLayoutContent();
-            container.outerHeight(availableHeight);
-          }
+          availableHeight = availableHeight - PortalLayout.getYPaddingLayoutContent();
+          container.outerHeight(availableHeight);
           if (container.outerHeight(true) > availableHeight) {
             var taskStartItemMarginRight = $('.task-start-list-item').css("margin-right");
             var scrollbarWidth = container.width() - container.find('.ui-datascroller-list').outerWidth(true);

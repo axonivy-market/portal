@@ -205,7 +205,7 @@ public class DashboardConfigurationTest extends BaseTest {
   @Test
   public void testEditPrivateDashboardInfo() {
     redirectToRelativeLink(createSampleDashboardUrl);
-    DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(false);
+    var modificationPage = navigateToConfigurationAndOpenDashboardModificationPage();
     modificationPage.clickEditDashboardByName(PRIVATE_1);
     modificationPage.editPrivateDashboardInfo(EDITED_PRIVATE_DASHBOARD_1, DASHBOARD_1_DESCRIPTION);
     SelenideElement dashboard = modificationPage.getDashboardRowByName(EDITED_PRIVATE_DASHBOARD_1);
@@ -217,7 +217,7 @@ public class DashboardConfigurationTest extends BaseTest {
   @Test
   public void testDeletePrivateDashboard() {
     redirectToRelativeLink(createSampleDashboardUrl);
-    DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(false);
+    var modificationPage = navigateToConfigurationAndOpenDashboardModificationPage();
     modificationPage.clickDeleteDashboardByName(PRIVATE_1);
     modificationPage.getDashboardRows().shouldHave(size(1));
   }
@@ -261,7 +261,7 @@ public class DashboardConfigurationTest extends BaseTest {
   @Test
   public void testDeleteTaskWidgetForPrivateDashboard() {
     testAddPrivateDashboardUseTemplate();
-    DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(false);
+    var modificationPage = navigateToConfigurationAndOpenDashboardModificationPage();
     modificationPage.navigateToEditDashboardDetailsByName(NEW_PRIVATE_DASHBOARD);
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.deleteTaskWidget();
@@ -273,7 +273,7 @@ public class DashboardConfigurationTest extends BaseTest {
   @Test
   public void testDeleteCaseWidgetForPrivateDashboard() {
     testAddPrivateDashboardUseTemplate();
-    DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(false);
+    var modificationPage = navigateToConfigurationAndOpenDashboardModificationPage();
     modificationPage.navigateToEditDashboardDetailsByName(NEW_PRIVATE_DASHBOARD);
 
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
@@ -286,7 +286,7 @@ public class DashboardConfigurationTest extends BaseTest {
   @Test
   public void testDeleteProcessesWidgetForPrivateDashboard() {
     testAddPrivateDashboardUseTemplate();
-    DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(false);
+    var modificationPage = navigateToConfigurationAndOpenDashboardModificationPage();
     modificationPage.navigateToEditDashboardDetailsByName(NEW_PRIVATE_DASHBOARD);
 
     ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget(YOUR_PROCESS_WIDGET);
@@ -302,8 +302,7 @@ public class DashboardConfigurationTest extends BaseTest {
     createPublicDashboardUseTemplate();
     redirectToRelativeLink(grantDashboardExportOwnPermissionUrl);
     redirectToRelativeLink(denyDashboardExportPublicPermissionUrl);
-    LinkNavigator.redirectToPortalDashboardConfiguration();
-    var configurationPage = new DashboardConfigurationPage();
+    var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     configurationPage.openEditPublicDashboardsPage().getDashboardExportButtonOfDashboard("New public dashboard").shouldBe(Condition.disappear);
     configurationPage.openEditPrivateDashboardsPage().getDashboardExportButtonOfDashboard("New private dashboard").shouldBe(Condition.appear);
   }
@@ -314,10 +313,14 @@ public class DashboardConfigurationTest extends BaseTest {
     createPublicDashboardUseTemplate();
     redirectToRelativeLink(denyDashboardExportOwnPermissionUrl);
     redirectToRelativeLink(grantDashboardExportPublicPermissionUrl);
-    LinkNavigator.redirectToPortalDashboardConfiguration();
-    var configurationPage = new DashboardConfigurationPage();
+    var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     configurationPage.openEditPublicDashboardsPage().getDashboardExportButtonOfDashboard("New public dashboard").shouldBe(Condition.appear);
     configurationPage.openEditPrivateDashboardsPage().getDashboardExportButtonOfDashboard("New private dashboard").shouldBe(Condition.disappear);
+  }
+
+  private DashboardModificationPage navigateToConfigurationAndOpenDashboardModificationPage() {
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    return new DashboardModificationPage();
   }
 
   private DashboardModificationPage navigateToConfigurationAndEditDashboards(boolean isPublicDashboard) {
@@ -353,7 +356,7 @@ public class DashboardConfigurationTest extends BaseTest {
     String icon = "fa-coffee";
     String description = "New private dashboard description";
 
-    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardConfigurationPage configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     configurationPage.openCreatePrivateDashboardMenu();
     configurationPage.createPrivateDashboardFromTemplate(name, icon, description, 0);
   }
@@ -365,11 +368,32 @@ public class DashboardConfigurationTest extends BaseTest {
     List<String> permissions = new ArrayList<>();
     permissions.add("Cost Object (CostObject)");
 
-    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardConfigurationPage configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     configurationPage.openCreatePublicDashboardMenu();
     configurationPage.createPublicDashboardFromTemplate(name, icon, description, permissions, 0);
   }
   
+  
+  @Test
+  public void testVisibleSharingDashboardButton() {
+    redirectToRelativeLink(denyDashboardShareLinkPermissionUrl);
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(true);
+    modificationPage.getDashboardShareLinkButton().shouldBe(Condition.disappear);
+    
+    redirectToRelativeLink(grantDashboardShareLinkPermissionUrl);
+    refreshPage();
+    DashboardModificationPage modificationPage2 = navigateToConfigurationAndEditDashboards(true);
+    modificationPage2.getDashboardShareLinkButton().shouldBe(Condition.appear);
+  }
+  
+  @Test
+  public void testSharingDashboard() {
+    redirectToRelativeLink(grantDashboardShareLinkPermissionUrl);
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(true);
+    modificationPage.getDashboardShareLinkDialog();
+  }
   @Test
   public void testImportOnlyPublicDashboards() {
     redirectToRelativeLink(grantDashboardImportPublicPermissionUrl);
@@ -378,6 +402,7 @@ public class DashboardConfigurationTest extends BaseTest {
     var configurationPage = new DashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
     configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    configurationPage.closeAddDashboardDialog();
     configurationPage.openCreatePrivateDashboardMenu();
     configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
@@ -390,6 +415,7 @@ public class DashboardConfigurationTest extends BaseTest {
     var configurationPage = new DashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
     configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    configurationPage.closeAddDashboardDialog();
     configurationPage.openCreatePrivateDashboardMenu();
     configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
@@ -420,7 +446,9 @@ public class DashboardConfigurationTest extends BaseTest {
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.getImportDashboardDialog().find("button[id$=':dashboard-detail-save-button']").shouldBe(Condition.disabled, DEFAULT_TIMEOUT);
+    configurationPage.getImportDashboardDialog()
+        .find("button[id$=':dashboard-import-component:dashboard-detail-save-button']")
+        .shouldBe(Condition.disabled, DEFAULT_TIMEOUT);
     configurationPage.getDashboardImportSaveButton().shouldBe(Condition.disabled, DEFAULT_TIMEOUT);
     
     configurationPage.uploadFile("Dashboard_Dashboard_Export.json");
@@ -435,26 +463,5 @@ public class DashboardConfigurationTest extends BaseTest {
     permissions.add("Everybody");
     
     configurationPage.saveImportDashboard(name, newGermanName, description, icon, permissions);
-  }
-  
-  @Test
-  public void testVisibleSharingDashboardButton() {
-    redirectToRelativeLink(denyDashboardShareLinkPermissionUrl);
-    LinkNavigator.redirectToPortalDashboardConfiguration();
-    DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(true);
-    modificationPage.getDashboardShareLinkButton().shouldBe(Condition.disappear);
-    
-    redirectToRelativeLink(grantDashboardShareLinkPermissionUrl);
-    refreshPage();
-    DashboardModificationPage modificationPage2 = navigateToConfigurationAndEditDashboards(true);
-    modificationPage2.getDashboardShareLinkButton().shouldBe(Condition.appear);
-  }
-  
-  @Test
-  public void testSharingDashboard() {
-    redirectToRelativeLink(grantDashboardShareLinkPermissionUrl);
-    LinkNavigator.redirectToPortalDashboardConfiguration();
-    DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(true);
-    modificationPage.getDashboardShareLinkDialog();
   }
 }

@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.service;
 import static java.util.stream.Collectors.toList;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -10,8 +11,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.configuration.GlobalSetting;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.enums.ProcessMode;
-import ch.ivy.addon.portalkit.enums.GlobalVariable.Option;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
@@ -31,6 +30,10 @@ public class GlobalSettingService {
   public String findGlobalSettingValue(GlobalVariable variable) {
     String key = variable.getKey();
     return Ivy.var().get(key);
+  }
+
+  public boolean findBooleanGlobalSettingValue(GlobalVariable variable) {
+    return Optional.ofNullable(Ivy.var().get(variable.getKey())).map(Boolean::parseBoolean).orElse(false);
   }
 
   /**
@@ -80,20 +83,6 @@ public class GlobalSettingService {
       sessionUser().setProperty(entity.getKey(), entity.getValue());
     }
     return entity;
-  }
-
-  public GlobalSetting updateRelatedGlobalSettingByGlobalSetting(GlobalSetting entity) {
-    GlobalSetting relatedSetting = null;
-    String relatedSettingValue = null;
-    if (GlobalVariable.SHOW_LEGACY_UI.getKey().equals(entity.getKey())) {
-      relatedSettingValue =
-          Option.TRUE.toString().equals(entity.getValue()) ? ProcessMode.COMPACT.name() : ProcessMode.IMAGE.name();
-      relatedSetting = new GlobalSetting(GlobalVariable.DEFAULT_PROCESS_MODE.getKey(), relatedSettingValue);
-    }
-    if (relatedSetting != null) {
-      relatedSetting = save(relatedSetting);
-    }
-    return relatedSetting;
   }
 
   public List<GlobalSetting> findAll() {

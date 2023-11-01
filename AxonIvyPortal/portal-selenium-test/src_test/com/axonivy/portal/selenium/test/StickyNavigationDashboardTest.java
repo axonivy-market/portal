@@ -41,6 +41,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"));
     newDashboardPage.selectDashboard(1);
+    newDashboardPage.waitForTaskListDisplay();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"));
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget("Your Tasks");
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
@@ -57,7 +58,6 @@ public class StickyNavigationDashboardTest extends BaseTest {
     configurationPage.reorderPublicDashboard();
     ReorderDashboardPage reorderDashboardPage = new ReorderDashboardPage();
     reorderDashboardPage.reorderPublicDashboard("New public dashboard 1", "New public dashboard");
-    reorderDashboardPage.saveSetting();
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"));
@@ -85,10 +85,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
     newDashboardPage.selectDashboard(1);
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"));
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
-    configurationPage.reorderPrivateDashboard();
-    ReorderDashboardPage reorderDashboardPage = new ReorderDashboardPage();
-    reorderDashboardPage.toggleVisibility("New public dashboard 1");
-    reorderDashboardPage.saveSetting();
+    configurationPage.reorderPublicDashboard();
     newDashboardPage = configurationPage.backToHomePage();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"));
   }
@@ -103,7 +100,6 @@ public class StickyNavigationDashboardTest extends BaseTest {
     ProcessWidgetNewDashBoardPage processWidget = new ProcessWidgetNewDashBoardPage();
     processWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     processWidget.startProcessByName("Categoried Leave Request");
-    newDashboardPage.waitForDashboardPageAvailable();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"));
   }
 

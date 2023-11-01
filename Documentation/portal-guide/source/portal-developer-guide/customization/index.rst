@@ -15,9 +15,9 @@ You find ``portal-developer-examples`` in the engine demo mode or import them in
    portal-style-customization-logos-colors-date-patterns
    forgot-password
    menu
+   task-delegation
    task-item-details
    case-item-details
-   default-user-process
    default-chart
    default-chart-colors
    change-password-process

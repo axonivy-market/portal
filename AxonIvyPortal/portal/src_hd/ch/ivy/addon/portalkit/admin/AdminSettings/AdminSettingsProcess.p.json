@@ -741,10 +741,7 @@
             "}",
             "",
             "GlobalSettingService globalSettingService= new GlobalSettingService();",
-            "in.selectedSetting = globalSettingService.save(in.selectedSetting) as GlobalSetting;",
-            "",
-            "// update related Setting",
-            "globalSettingService.updateRelatedGlobalSettingByGlobalSetting(in.selectedSetting);"
+            "in.selectedSetting = globalSettingService.save(in.selectedSetting) as GlobalSetting;"
           ]
         }
       },
@@ -860,10 +857,7 @@
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
             "GlobalSettingService globalSettingService = new GlobalSettingService();",
             "globalSettingService.resetGlobalSetting(in.selectedSetting.getKey());",
-            "in.selectedSetting.setValueToDefault();",
-            "",
-            "// update related Setting",
-            "globalSettingService.updateRelatedGlobalSettingByGlobalSetting(in.selectedSetting);"
+            "in.selectedSetting.setValueToDefault();"
           ]
         }
       },

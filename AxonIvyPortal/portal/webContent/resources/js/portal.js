@@ -38,21 +38,7 @@ var Portal = {
       resizeTimer = setTimeout(function() {
         responsiveToolkit.updateLayoutWithoutAnimation();
       }, 250);
-      Portal.updateGuide();
     });
-  },
-  
-  updateGuide : function() {
-    var $guidePanel = $('.guide-panel:visible');
-    if ($guidePanel.length > 0) {
-      var id = $guidePanel.attr('id');
-      if (id !== undefined) {
-        var guidePanelObject = window[id.substring(id.lastIndexOf(':') + 1)];
-        if (guidePanelObject !== undefined) {
-          guidePanelObject.show();
-        }
-      }
-    }
   },
   
   updateLayoutContent : function() {
@@ -90,6 +76,20 @@ var Portal = {
       const chatPanelTop = (headerHeight + layoutTopbarHeight) + 'px';
       chatPanel.css({'height': chatPanelHeight, 'top': chatPanelTop, 'bottom': footerHeight + 'px'});
     }
+
+    let notificationPanel = $('.js-notifications-panel');
+    let notificationContentHeight = $('.notifications-item-list').outerHeight();
+    if (notificationPanel.length > 0) {
+      const notificationPanelHeight = 'calc(100% - ' + (headerFooterHeight + layoutTopbarHeight + envHeight) + 'px)';
+      const notificationPanelTop = (headerHeight + layoutTopbarHeight) + 'px';
+      notificationPanel.css({
+        'height': notificationPanelHeight,
+        'top': notificationPanelTop,
+        'bottom': footerHeight + 'px'
+      });
+      $('.notification-scroll .ui-datascroller-content').outerHeight(notificationContentHeight * 0.95 + 'px')
+    }
+    
     $portalHeader.removeClass('u-invisibility');
     $layoutMain.removeClass('u-invisibility');
     $portalFooter.removeClass('u-invisibility');

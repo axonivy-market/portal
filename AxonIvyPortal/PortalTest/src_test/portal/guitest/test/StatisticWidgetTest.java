@@ -19,7 +19,7 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.StatisticWidgetPage;
 import portal.guitest.page.UserProfilePage;
@@ -28,7 +28,7 @@ public class StatisticWidgetTest extends BaseTest {
   private static final String TASK_BY_PRIORITY_DEFAULT_CHART_NAME = "Tasks by Priority";
 
 
-  private HomePage homePage;
+  private NewDashboardPage newDashboardPage;
   private StatisticWidgetPage statisticWidgetPage;
   private MainMenuPage mainMenuPage;
 
@@ -39,7 +39,7 @@ public class StatisticWidgetTest extends BaseTest {
     Sleeper.sleep(2000); // To make Firefox test more stable, make business data updated correctly
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
-    homePage = new HomePage();
+    newDashboardPage = new NewDashboardPage();
   }
 
   @After
@@ -50,7 +50,7 @@ public class StatisticWidgetTest extends BaseTest {
   @Test
   public void testNavigateToChartFromMenu() {
     grantPermissionToCreateChart();
-    mainMenuPage = homePage.openMainMenu();
+    mainMenuPage = newDashboardPage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     assertTrue(statisticWidgetPage.isFullMode());
@@ -60,7 +60,7 @@ public class StatisticWidgetTest extends BaseTest {
   public void testNavigateToChartWithoutPermissionFromMenu() {
     String denyPortalPermissionsURL = "portalKitTestHelper/14DE09882B540AD5/denyPortalPermission.ivp";
     redirectToRelativeLink(denyPortalPermissionsURL);
-    mainMenuPage = homePage.openMainMenu();
+    mainMenuPage = newDashboardPage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     assertEquals(false, statisticWidgetPage.hasCreateChartsLink());
     String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
@@ -70,7 +70,7 @@ public class StatisticWidgetTest extends BaseTest {
   @Test
   public void testCreateCharts() {
     grantPermissionToCreateChart();
-    mainMenuPage = homePage.openMainMenu();
+    mainMenuPage = newDashboardPage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     statisticWidgetPage.switchCreateMode();
@@ -97,7 +97,7 @@ public class StatisticWidgetTest extends BaseTest {
   @Test
   public void testBreadCrumb() {
     grantPermissionToCreateChart();
-    mainMenuPage = homePage.openMainMenu();
+    mainMenuPage = newDashboardPage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     assertEquals("Statistics", statisticWidgetPage.getTextOfCurrentBreadcrumb());
@@ -106,8 +106,8 @@ public class StatisticWidgetTest extends BaseTest {
     assertEquals("Statistics", statisticWidgetPage.getTextOfCurrentBreadcrumb());
 
     statisticWidgetPage.goToHomeFromBreadcrumb();
-    homePage = new HomePage();
-    assertEquals(true, homePage.isDisplayed());
+    newDashboardPage = new NewDashboardPage();
+    assertEquals(true, newDashboardPage.isDisplayed());
   }
 
   private void grantPermissionToCreateChart() {
@@ -119,7 +119,7 @@ public class StatisticWidgetTest extends BaseTest {
   public void testChartNameMultiLanguage() {
     resetLanguageOfCurrentUser();
     grantPermissionToCreateChart();
-    mainMenuPage = homePage.openMainMenu();
+    mainMenuPage = newDashboardPage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
 
@@ -131,9 +131,9 @@ public class StatisticWidgetTest extends BaseTest {
 
     UserProfilePage userProfilePage = statisticWidgetPage.openMyProfilePage();
     userProfilePage.selectLanguage(3);
-    homePage = userProfilePage.save();
+    newDashboardPage = userProfilePage.save();
 
-    mainMenuPage = homePage.openMainMenu();
+    mainMenuPage = newDashboardPage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='1:chart-name-container'] .chart-name").getText().equals("Task by priority chart German"));
   }

@@ -15,8 +15,8 @@ import org.openqa.selenium.WebElement;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
-import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.StatisticWidgetPage;
 
 public class DefaultChartTest extends BaseTest {
@@ -31,7 +31,6 @@ public class DefaultChartTest extends BaseTest {
     Sleeper.sleep(2000); // To make Firefox test more stable, make business data updated correctly 
     login(TestAccount.ADMIN_USER);
     grantPermissionToCreateChart();
-    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
   }
 
   @After
@@ -41,9 +40,7 @@ public class DefaultChartTest extends BaseTest {
 
   @Test
   public void testCreateDefaultChart() {
-    HomePage home = new HomePage();
-    home.waitForStatisticRendered();
-
+    new NewDashboardPage();
     MainMenuPage mainMenuPage = new MainMenuPage();
     StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
