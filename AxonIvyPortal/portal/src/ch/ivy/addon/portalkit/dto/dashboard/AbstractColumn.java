@@ -40,10 +40,6 @@ public abstract class AbstractColumn implements Serializable {
   public static final String NORMAL_WIDTH = "width: 120px";
   @JsonIgnore
   public static final String EXTRA_WIDTH = "width: 150px";
-  @JsonIgnore
-  public static final String ICON_ATTRIBUTE = "Icon";
-  @JsonIgnore
-  public static final String IS_CUSTOM_ACTION_ATTRIBUTE = "IsCustomAction";
 
   @Deprecated(since = "10.0", forRemoval = true)
   @JsonProperty(access = Access.WRITE_ONLY)
@@ -66,6 +62,9 @@ public abstract class AbstractColumn implements Serializable {
   protected Boolean sorted;
   protected Boolean sortDescending;
   protected DashboardColumnType type;
+  protected Boolean isCustomAction;
+  protected String icon;
+  protected String description;
 
   protected String userFilter;
   protected List<String> userFilterList;
@@ -416,5 +415,32 @@ public abstract class AbstractColumn implements Serializable {
     setUserFilterTo(StringUtils.EMPTY);
     setUserDateFilterFrom(null);
     setUserDateFilterTo(null);
+  }
+
+  @JsonIgnore
+  public Boolean getIsCustomAction() {
+    return isCustomAction;
+  }
+
+  public void setIsCustomAction(Boolean isCustomAction) {
+    this.isCustomAction = isCustomAction;
+  }
+
+  @JsonIgnore
+  public String getIcon() {
+    return icon;
+  }
+
+  public void setIcon(String icon) {
+    this.icon = icon;
+  }
+
+  @JsonIgnore
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 }

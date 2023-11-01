@@ -73,6 +73,9 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class DashboardWidgetUtils {
 
+  public static final String ICON_ATTRIBUTE = "Icon";
+  public static final String IS_CUSTOM_ACTION_ATTRIBUTE = "IsCustomAction";
+
   public static DashboardWidget buildWidgetColumns(DashboardWidget widget) {
     return switch (widget.getType()) {
       case TASK -> buildTaskColumns((TaskDashboardWidget) widget);
@@ -169,6 +172,13 @@ public class DashboardWidgetUtils {
     if (fieldMeta.isPresent()) {
       column.setHeader(fieldMeta.get().label());
       column.setFormat(DashboardColumnFormat.valueOf(fieldMeta.get().type().name()));
+      column.setIsCustomAction(Boolean.valueOf(fieldMeta.get().attribute(IS_CUSTOM_ACTION_ATTRIBUTE)));
+      column.setIcon(fieldMeta.get().attribute(ICON_ATTRIBUTE));
+      column.setDescription(fieldMeta.get().description());
+      if (column.getIsCustomAction()) {
+        column.setSortable(false);
+        column.setStyle(AbstractColumn.EXTRA_WIDTH);
+      }
     } else if (StringUtils.isBlank(column.getHeader())) {
       column.setHeader(field);
     }

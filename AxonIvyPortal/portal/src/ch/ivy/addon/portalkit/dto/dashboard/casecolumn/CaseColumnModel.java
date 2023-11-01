@@ -7,6 +7,7 @@ import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
+import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
@@ -56,19 +57,9 @@ public class CaseColumnModel extends ColumnModel {
     return column;
   }
 
-  public Boolean isCustomAction(ICase caze) {
+  public Boolean caseWithCustomAction(ICase caze) {
     ICustomFieldMeta metaData = caze.customFields().all().stream().filter(f -> f.name().equals(field)).map(f -> f.meta()).findFirst().orElse(null);
-    return Objects.nonNull(metaData) ? Boolean.valueOf(metaData.attribute(IS_CUSTOM_ACTION_ATTRIBUTE)) : false;
-  }
-
-  public String getIcon(ICase caze) {
-    ICustomFieldMeta metaData = caze.customFields().all().stream().filter(f -> f.name().equals(field)).map(f -> f.meta()).findFirst().orElse(null);
-    return Objects.nonNull(metaData) ? metaData.attribute(ICON_ATTRIBUTE) : "";
-  }
-
-  public String getDesCription(ICase caze) {
-    ICustomFieldMeta metaData = caze.customFields().all().stream().filter(f -> f.name().equals(field)).map(f -> f.meta()).findFirst().orElse(null);
-    return Objects.nonNull(metaData) ? metaData.description() : "";
+    return Objects.nonNull(metaData) ? Boolean.valueOf(metaData.attribute(DashboardWidgetUtils.IS_CUSTOM_ACTION_ATTRIBUTE)) : false;
   }
 
   public String getCustomProcessPath(ICase caze) {
