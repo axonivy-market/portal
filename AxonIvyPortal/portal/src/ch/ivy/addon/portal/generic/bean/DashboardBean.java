@@ -77,7 +77,8 @@ public class DashboardBean implements Serializable {
   private TaskEmptyMessage noTasksMessage;
   private List<DashboardTemplate> dashboardTemplates;
   protected String dashboardUrl;
-  
+  protected List<Dashboard> importedDashboards;
+
   @PostConstruct
   public void init() {
     currentDashboardIndex = 0;
@@ -189,7 +190,7 @@ public class DashboardBean implements Serializable {
       navigateToSelectedTaskDetails(task);
     }
   }
-  
+
   public void handleStartTask(ITask task) throws IOException {
     selectedTask = task;
     TaskUtils.handleStartTask(task, PortalPage.HOME_PAGE, PortalConstants.RESET_TASK_CONFIRMATION_DIALOG);
@@ -226,11 +227,11 @@ public class DashboardBean implements Serializable {
   public String createExtractedTextFromHtml(String text) {
     return HtmlParser.extractTextFromHtml(text);
   }
-  
+
   public String createParseTextFromHtml (String text) {
 	  return HtmlParser.parseTextFromHtml(text);
   }
-  
+
   public int getCurrentTabIndex() {
     return dashboards.indexOf(getSelectedDashboard());
   }
@@ -266,7 +267,7 @@ public class DashboardBean implements Serializable {
   protected String translate(String cms) {
     return Ivy.cms().co(cms);
   }
-  
+
   protected String translate(String cms, List<Object> params) {
     return Ivy.cms().co(cms, params);
   }
@@ -377,15 +378,15 @@ public class DashboardBean implements Serializable {
   public void setDashboardTemplates(List<DashboardTemplate> dashboardTemplates) {
     this.dashboardTemplates = dashboardTemplates;
   }
-  
+
   private String readDashboardFromSession() {
     return (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString());
   }
-  
+
   private void storeDashboardInSession(String id) {
     Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), id);
   }
-  
+
   private int findIndexOfDashboardById(String selectedDashboardId) {
     int currentDashboardIndex = 0;
     if(StringUtils.isNotBlank(selectedDashboardId)) {
@@ -414,12 +415,21 @@ public class DashboardBean implements Serializable {
   public void setDashboardUrl(String dashboardUrl) {
     this.dashboardUrl = dashboardUrl;
   }
-  
+
   public void initShareDashboardLink(Dashboard dashboard) {
     setDashboardUrl(UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId()));
   }
-  
+
   public boolean isShowShareButtonOnDashboard() {
     return PermissionUtils.hasShareDashboardPermission() && selectedDashboard != null && !getIsEditMode() && selectedDashboard.getIsPublic();
   }
+
+  public List<Dashboard> getImportedDashboards() {
+    return importedDashboards;
+  }
+
+  public void setImportedDashboards(List<Dashboard> importedDashboards) {
+    this.importedDashboards = importedDashboards;
+  }
+
 }

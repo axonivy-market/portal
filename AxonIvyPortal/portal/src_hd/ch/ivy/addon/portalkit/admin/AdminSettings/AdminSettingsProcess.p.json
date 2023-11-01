@@ -53,7 +53,6 @@
           "code" : [
             "import ch.ivy.addon.portalkit.configuration.Application;",
             "import ch.ivy.addon.portalkit.enums.ApplicationType;",
-            "import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;",
             "",
             "in.selectedApp = new Application();",
             "if (in.applicationList.size() > 0) {",
@@ -120,11 +119,12 @@
           "code" : [
             "import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;",
             "import java.util.Locale;",
+            "import com.axonivy.portal.components.util.Locales;",
             "",
             "in.isAddMode = false;",
             "in.dialogTitle = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/editApplication\");",
             "",
-            "Locale currentLocale = ivy.session.getContentLocale();",
+            "Locale currentLocale = new Locales().getCurrentLocale();",
             "DisplayNameAdaptor displayNameAdaptor = new DisplayNameAdaptor(in.selectedApp.displayName, currentLocale);",
             "in.displayNameInCurrentLanguage = displayNameAdaptor.getDisplayNameAsString();",
             "in.supportedLanguages = new List();",
@@ -133,7 +133,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 376, "y" : 544 }
+        "at" : { "x" : 376, "y" : 592 }
       },
       "connect" : { "id" : "f11", "to" : "f45" }
     }, {
@@ -382,6 +382,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.dto.DisplayName;",
             "import ch.ivy.addon.portalkit.util.DisplayNameConvertor;",
+            "import com.axonivy.portal.components.util.Locales;",
             "",
             "if (!in.languages.isEmpty()){",
             "  DisplayNameConvertor displayNameConvertor = new DisplayNameConvertor();",
@@ -390,7 +391,7 @@
             "    displayNameConvertor.add(displayName.locale, displayName.value);",
             "  }",
             "  in.selectedApp.displayName = displayNameConvertor.toJson();",
-            "  in.displayNameInCurrentLanguage = displayNameConvertor.toString(ivy.session.getContentLocale());",
+            "  in.displayNameInCurrentLanguage = displayNameConvertor.toString(new Locales().getCurrentLocale());",
             "}"
           ]
         }
@@ -409,6 +410,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.loader.ApplicationMultiLanguageNameLoader;",
             "import ch.ivy.addon.portalkit.dto.DisplayName;",
+            "import com.axonivy.portal.components.util.Locales;",
             "import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;",
             "",
             "if(in.isAddMode){",
@@ -417,7 +419,7 @@
             "                                                   .supportedLanguages(in.languages)",
             "                                                   .load();",
             "} else {",
-            "  java.util.Locale currentLocale = ivy.session.getContentLocale();",
+            "  java.util.Locale currentLocale = new Locales().getCurrentLocale();",
             "  DisplayNameAdaptor displayNameAdaptor = new DisplayNameAdaptor(in.selectedApp.displayName, currentLocale);",
             "  java.util.Map displayNames = displayNameAdaptor.getDisplayNameAsMap();",
             "  in.supportedLanguages = new ApplicationMultiLanguageNameLoader().currentDisplayName(in.displayNameInCurrentLanguage)",
@@ -473,6 +475,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.Locales;",
             "import ch.ivy.addon.portalkit.dto.DisplayName;",
             "import java.util.Map;",
             "import java.util.Locale;",
@@ -486,7 +489,7 @@
             "      convertor.add(Locale.forLanguageTag(language),in.displayNameInCurrentLanguage);",
             "    }",
             "  }else {",
-            "    convertor.add(ivy.session.getContentLocale(), in.displayNameInCurrentLanguage);",
+            "    convertor.add(new Locales().getCurrentLocale(),in.displayNameInCurrentLanguage);",
             "  }",
             "  ",
             "}else {",
@@ -538,9 +541,10 @@
             "import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;",
             "import java.util.Map;",
             "import java.util.Locale;",
+            "import com.axonivy.portal.components.util.Locales;",
             "import ch.ivy.addon.portalkit.util.DisplayNameConvertor;",
             "",
-            "Locale currentLocale = ivy.session.getContentLocale();",
+            "Locale currentLocale = new Locales().getCurrentLocale();",
             "DisplayNameAdaptor displayNameAdaptor = new DisplayNameAdaptor(in.selectedApp.displayName,currentLocale);",
             "Map displayNameMap = displayNameAdaptor.getDisplayNameAsMap();",
             "",
@@ -1040,7 +1044,7 @@
       "id" : "f45",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 376, "y" : 640 }
+        "at" : { "x" : 376, "y" : 744 }
       }
     }, {
       "id" : "f48",

@@ -21,13 +21,13 @@ import com.axonivy.portal.components.dto.UserDTO;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 
 public class UserUtils {
 
-  private UserUtils() {
-  }
+  private UserUtils() {}
 
   public static String getSessionUserName() {
     return getIvySession().getSessionUserName();
@@ -46,6 +46,7 @@ public class UserUtils {
 
   /**
    * Finds the users who have the given roles in current application.
+   * 
    * @param query
    * @param startIndex index of the first record is 0
    * @param count use -1 to return all beginning from the startIndex
@@ -54,16 +55,12 @@ public class UserUtils {
    * @return user list
    */
   @SuppressWarnings("unchecked")
-  public static List<UserDTO> findUsers(String query, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
-    return IvyExecutor.executeAsSystem(() -> {
-      return SubProcessCall.withPath(PortalComponentConstants.SECURITY_SERVICE_CALLABLE)
-          .withStartName("findUsers")
-          .withParam("query", query)
-          .withParam("startIndex", startIndex)
-          .withParam("count", count)
-          .withParam("fromRoles", fromRoles)
-          .withParam("excludedUsernames", excludedUsernames)
-          .call()
+  public static List<UserDTO> findUsers(String query, int startIndex, int count, List<String> fromRoles,
+      List<String> excludedUsernames) {
+    return Sudo.get(() -> {
+      return SubProcessCall.withPath(PortalComponentConstants.SECURITY_SERVICE_CALLABLE).withStartName("findUsers")
+          .withParam("query", query).withParam("startIndex", startIndex).withParam("count", count)
+          .withParam("fromRoles", fromRoles).withParam("excludedUsernames", excludedUsernames).call()
           .get("users", List.class);
     });
   }
@@ -80,6 +77,7 @@ public class UserUtils {
     }
     return languageTag;
   }
+  
   public static String getUserLanguage() {
     return loadLanguage(IUser::getLanguage);
   }

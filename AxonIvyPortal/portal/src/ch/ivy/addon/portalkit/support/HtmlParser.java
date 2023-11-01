@@ -30,7 +30,7 @@ public class HtmlParser {
     return doc.body().text();
   }
 
-  private static String sanitize(String text) {
+  public static String sanitize(String text) {
     return Jsoup.clean(text, Safelist.relaxed().addAttributes(":all", "style"));
   }
 }
