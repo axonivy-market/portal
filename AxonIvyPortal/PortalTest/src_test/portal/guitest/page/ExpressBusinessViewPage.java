@@ -21,10 +21,9 @@ public class ExpressBusinessViewPage extends TaskTemplatePage {
     return message.getText();
   }
 
-  @SuppressWarnings("deprecation")
-  public HomePage clickOnCloseButton() {
+  public NewDashboardPage clickOnCloseButton() {
     click(findElementByCssSelector("[id$='express-view-form:cancel-btn']"));
-    return new HomePage();
+    return new NewDashboardPage();
   }
   
   public WebElement getLegendFisnishedTaskFieldset(int index) {
@@ -40,7 +39,6 @@ public class ExpressBusinessViewPage extends TaskTemplatePage {
     return approvalResult.getText();
   }
   
-  @SuppressWarnings("deprecation")
   public void clickOnLegendOfFieldset(int index) {
     click(getLegendFisnishedTaskFieldset(index));
   }

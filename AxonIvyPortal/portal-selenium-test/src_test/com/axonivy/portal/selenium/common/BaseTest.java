@@ -1,6 +1,6 @@
 package com.axonivy.portal.selenium.common;
 
-import static com.axonivy.portal.selenium.common.Variable.SHOW_USER_GUIDE;
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.refresh;
 
@@ -11,6 +11,7 @@ import java.time.Duration;
 import org.junit.jupiter.api.AfterEach;
 
 import com.axonivy.ivy.webtest.engine.EngineUrl;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -26,7 +27,7 @@ public class BaseTest {
   private final static String LOGIN_URL_PATTERN = "/PortalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
   protected final static String PORTAL_HOME_PAGE_URL = "/portal/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
   protected final static Duration DEFAULT_TIMEOUT = Duration.ofSeconds(45);
-  
+
   public BaseTest() {}
 
   @AfterEach
@@ -54,7 +55,6 @@ public class BaseTest {
   protected String createNewPaymentUrl = "portal-developer-examples/162511D2577DBA88/createNewPayment.ivp";
   protected String documentTableComponentUrl = "portal-components-examples/1818938E7EBC9329/showCustomizedDocumentTableExample.ivp";
   protected String cleanUpAbsencesAndSubstituesLink = "portalKitTestHelper/1511A66AF619A768/cleanAbsencesAndSubstitues.ivp";
-  protected String createUserFavoriteProcess = "portalKitTestHelper/153CACC26D0D4C3D/createTestUserFavoriteProcess.ivp";
   protected String createCasesForCaseListCustomization = "portal-developer-examples/162511D2577DBA88/createCasesForCaseListCustomization.ivp";
   protected String processChainShowcaseUrl = "portal-components-examples/181897243F2BFDD3/showProcessChainExamples.ivp";
   protected String userSelectionComponentShowcaseUrl = "portal-components-examples/18189AF10B521DF4/showUserSelectionExamples.ivp";
@@ -91,10 +91,12 @@ public class BaseTest {
   protected String denyShareLinkCaseDetailsPermission = "PortalKitTestHelper/14DE09882B540AD5/denyCaseDetailsShareLinkPermission.ivp";
   protected String grantShareLinkTaskDetailsPermission = "PortalKitTestHelper/14DE09882B540AD5/grantTaskDetailsShareLinkPermission.ivp";
   protected String denyShareLinkTaskDetailsPermission = "PortalKitTestHelper/14DE09882B540AD5/denyTaskDetailsShareLinkPermission.ivp";
+  protected String createSampleProcesses = "portalKitTestHelper/153CACC26D0D4C3D/createSampleProcesses.ivp";
   protected String showProcessViewerUrl = "portal/1549F58C18A6C562/PortalProcessViewer.ivp?caseId=%s&processKey=%s";
   protected String processViewerExampleInFrameUrl = "portal-components-examples/1821592826979C20/showProcessViewerOfLeaveRequestUsingProcessLink.ivp";
   protected String securityMemberNameAndAvatarExampleInFrameUrl = "/portal-components-examples/182A5FCAF7FC6B1A/showSecurityMemberNameAndAvatarExamples.ivp?embedInFrame";
   protected String templateInFrameExampleInFrameUrl = "/portal-developer-examples/162511D2577DBA88/createTaskWithFrameTemplate.ivp?embedInFrame";
+  protected String createEventTestUrl ="portal-developer-examples/17A2C6D73AB4186E/CreateEventTest.ivp";
 
 
   protected void redirectToNewDashBoard() {
@@ -107,7 +109,6 @@ public class BaseTest {
    */
   public void setup() {
     launchBrowserAndGotoRelativeLink(cleanupDataLink);
-    updatePortalSetting(SHOW_USER_GUIDE.getKey(), "false");
     createJSonFile("default-dashboard.json", PortalVariable.DASHBOARD.key);
   }
   
@@ -212,7 +213,12 @@ public class BaseTest {
     try {
       username = URLEncoder.encode(testAccount.getUsername(), "UTF-8");
       password = URLEncoder.encode(testAccount.getPassword(), "UTF-8");
-      open(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
+      try {
+        open(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
+        $(".js-dashboard__wrapper").shouldBe(Condition.exist);
+      } catch (Error e) {
+        open(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
+      }
     } catch (UnsupportedEncodingException e) {
       throw new PortalGUITestException(e);
     }
@@ -260,7 +266,6 @@ public class BaseTest {
   }
   
   protected void showNewDashboard() {
-    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "false");
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
   }
   

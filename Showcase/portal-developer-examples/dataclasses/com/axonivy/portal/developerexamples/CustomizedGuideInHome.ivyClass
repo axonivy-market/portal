@@ -1,4 +1,0 @@
-CustomizedGuideInHome #class
-com.axonivy.portal.developerexamples #namespace
-dataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
-taskView ch.ivy.addon.portal.generic.view.TaskView #field

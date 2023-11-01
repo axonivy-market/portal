@@ -109,7 +109,7 @@ public final class WaitHelper {
   }
   
   public static WebDriverWait wait(WebDriver driver) {
-    return new WebDriverWait(driver, 45);
+    return new WebDriverWait(driver, 9L);
   }
   
   public static void waitForPresenceOfElementLocatedInFrame(WebDriver driver, String cssSelector) {

@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
@@ -216,9 +217,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
   public void testAddNewCaseList() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
-    redirectToNewDashBoard();
-
-    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
@@ -236,6 +235,8 @@ public class DashboardCaseWidgetTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
+    NewDashboardPage homePage = new NewDashboardPage();
+    homePage.waitForCaseWidgetLoaded();
 
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();

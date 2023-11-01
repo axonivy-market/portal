@@ -1,2 +1,6 @@
 UserExampleGuideData #class
 com.axonivy.portal.userexamples #namespace
+state com.axonivy.portal.userexamples.enums.RequestState #field
+process ch.ivy.addon.portalkit.configuration.UserProcess #field
+caseMapDetail ch.ivy.addon.portalkit.bo.CaseMapDetail #field
+stageIndex Integer #field

@@ -1,0 +1,8 @@
+PageHeaderAndFooterData #class
+portalkit #namespace
+pageHeader String #field
+pageHeader PERSISTENT #fieldModifier
+pageFooter String #field
+pageFooter PERSISTENT #fieldModifier
+hasCustomProcess Boolean #field
+hasCustomProcess PERSISTENT #fieldModifier
