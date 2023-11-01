@@ -8,6 +8,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.primefaces.PrimeFaces;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.SortMeta;
 
@@ -40,6 +41,9 @@ public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
 
   @Override
   public List<ICase> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
+    if (first == 0) {
+      PrimeFaces.current().executeScript("resizeTableBody();");
+    }
     if (isFirstTime) {
       isFirstTime = false;
       if (future != null) {
