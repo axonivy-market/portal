@@ -203,7 +203,7 @@
                                     <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/notificationChannels')}</h2>
                                  </div>
                                  <p:commandButton id="reset"
-                                    actionListener="#{userProfileBean.reset}"
+                                    actionListener="#{userProfileBean.resetAllChannel}"
                                     title="Reset to default"
                                     icon="si si-undo"
                                     styleClass="p-col-fixed p-ml-auto ui-button-danger rounded-button"
@@ -264,7 +264,7 @@
                   <p:commandButton id="save-settings"
                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
                      icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
-                     actionListener="#{userProfileBean.save}"
+                     actionListener="#{userProfileBean.saveAllChannel}"
                      action="#{logic.save}"
                      update="errors-message" />
                </div>

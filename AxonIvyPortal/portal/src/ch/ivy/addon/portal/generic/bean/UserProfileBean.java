@@ -48,7 +48,7 @@ public class UserProfileBean implements Serializable {
   public void init() {
     subscriber = Ivy.session().getSessionUser();
     securityContext = ISecurityContext.current();
-    onload();
+    onloadChannel();
   }
 
   public void saveHomepage(String homepageName) {
@@ -127,14 +127,14 @@ public class UserProfileBean implements Serializable {
     return Ivy.cms().co(DEFAULT_OPTION, Arrays.asList(sortFieldName));
   }
 
-  public void onload() {
+  public void onloadChannel() {
     events = new ArrayList<>(NotificationEvent.allAsString());
     channels = IvyNotificationChannelDTO.all(subscriber, securityContext, events);
   }
 
-  public void reset() {
+  public void resetAllChannel() {
     channels.forEach(this::resetChannel);
-    onload();
+    onloadChannel();
     addMessage("Notification Channels reset");
   }
 
@@ -144,7 +144,7 @@ public class UserProfileBean implements Serializable {
     saveChannel(channel);
   }
 
-  public void save() {
+  public void saveAllChannel() {
     channels.forEach(this::saveChannel);
   }
 
