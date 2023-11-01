@@ -34,6 +34,7 @@ import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
+import ch.addon.portal.generic.menu.MenuView;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
@@ -41,6 +42,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -150,7 +152,6 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
   /**
    * Remove the image of welcome widget from CMS
-   * 
    */
   private void removeWelcomeWidgetImage(DashboardWidget selectedWidget) {
     WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) selectedWidget;
@@ -166,6 +167,9 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     } else {
       currentUser().setProperty(PortalVariable.DASHBOARD.key, dashboardJson);
     }
+
+    MenuView menuView = (MenuView) ManagedBeans.get("menuView");
+    menuView.updateDashboardCache(dashboards);
   }
 
   private List<Dashboard> getVisibleDashboards(String dashboardJson) {
@@ -178,6 +182,14 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
   public void navigateToDashboardDetailsPage(String dashboardId) {
     PortalNavigator.navigateToDashboardDetailsPage(dashboardId, isPublicDashboard);
+  }
+
+  public void navigateToPublicDashBoardListPage() {
+    PortalNavigator.navigateToDashboardConfigurationEditPageUrl(isPublicDashboard);
+  }
+
+  public void navigateToPrivateDashboardPage() {
+    PortalNavigator.navigateToDashboardConfigurationEditPageUrl(isPublicDashboard);
   }
 
   public void onSelectedDeleteDashboard(Dashboard dashboard) {
@@ -198,6 +210,11 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     collectDashboardsForManagement();
     saveDashboardDetail();
     navigateToDashboardDetailsPage(this.selectedDashboard.getId());
+  }
+
+  public void createDashboards() {
+    collectDashboardsForManagement();
+    saveDashboardDetail();
   }
 
   public boolean isPublicDashboard() {
@@ -296,7 +313,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     return isPublicDashboard ?
         PermissionUtils.hasDashboardExportPublicPermission() : PermissionUtils.hasDashboardExportOwnPermission();
   }
-  
+
   public boolean hasImportDashboardPermission(boolean isPublicDashboard) {
     return isPublicDashboard ?
         PermissionUtils.hasDashboardImportPublicPermission() : PermissionUtils.hasDashboardImportOwnPermission();
@@ -318,7 +335,11 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
         }
       });
 
-    var inputStream = new ByteArrayInputStream(BusinessEntityConverter.prettyPrintEntityToJsonValue(dashboard).getBytes(StandardCharsets.UTF_8));
+    List<Dashboard> dashboardList = new ArrayList<>();
+    dashboardList.add(dashboard);
+
+    var inputStream = new ByteArrayInputStream(
+        BusinessEntityConverter.prettyPrintEntityToJsonValue(dashboardList).getBytes(StandardCharsets.UTF_8));
     return DefaultStreamedContent
         .builder()
         .stream(() -> inputStream)
@@ -343,8 +364,41 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   private String getFileName(String dashboardName) {
     return dashboardName + JSON_FILE_SUFFIX;
   }
-  
+
   public boolean isShowShareButtonOnConfig(boolean isPublicDashboard) {
     return isPublicDashboard && PermissionUtils.hasShareDashboardPermission();
-  }  
+  }
+
+  public void saveArrangment() {
+    if (isPublicDashboard) {
+      savePublicArrangement();
+    } else {
+      savePrivateArrangement();
+    }
+  }
+
+  public void savePublicArrangement() {
+    List<Dashboard> dashboards = DashboardUtils.getPublicDashboards();
+    for (Dashboard dashboard : dashboards) {
+      if (dashboard.getId() == null) {
+        dashboard.setId(DashboardUtils.generateId());
+      }
+    }
+
+    Map<String, Dashboard> idToDashboard = DashboardUtils.createMapIdToDashboard(dashboards);
+    List<Dashboard> newDashboards = new ArrayList<>();
+    for (Dashboard dashboardOrder : this.dashboards) {
+      if (idToDashboard.containsKey(dashboardOrder.getId())) {
+        newDashboards.add(idToDashboard.remove(dashboardOrder.getId()));
+      }
+    }
+    newDashboards.addAll(idToDashboard.values());
+    String dashboardsAsSJSON = BusinessEntityConverter.entityToJsonValue(newDashboards);
+    Ivy.var().set(PortalVariable.DASHBOARD.key, dashboardsAsSJSON);
+  }
+
+  public void savePrivateArrangement() {
+    String dashboardJson = BusinessEntityConverter.entityToJsonValue(this.dashboards);
+    Ivy.session().getSessionUser().setProperty(PortalVariable.DASHBOARD.key, dashboardJson);
+  }
 }

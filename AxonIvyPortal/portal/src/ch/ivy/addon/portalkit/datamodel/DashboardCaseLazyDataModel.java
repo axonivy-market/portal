@@ -8,6 +8,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.primefaces.PrimeFaces;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.SortMeta;
 
@@ -40,6 +41,9 @@ public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
 
   @Override
   public List<ICase> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
+    if (first == 0) {
+      PrimeFaces.current().executeScript("resizeTableBody();");
+    }
     if (isFirstTime) {
       isFirstTime = false;
       if (future != null) {
@@ -63,7 +67,7 @@ public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
         }
       }
       foundCases = DashboardCaseService.getInstance().findByCaseQuery(query, first, pageSize);
-      cases.addAll(foundCases);
+      addDistict(cases, foundCases);
       mapCases.putAll(foundCases.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
     }
 
@@ -83,11 +87,18 @@ public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
     future = CompletableFuture.runAsync(() -> {
       IvyThreadContext.restoreFromMemento(memento);
       foundCases = DashboardCaseService.getInstance().findByCaseQuery(query, 0, 25);
-      cases.addAll(foundCases);
+      addDistict(cases, foundCases);
       mapCases.putAll(foundCases.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
       IvyThreadContext.reset();
     });
     isFirstTime = true;
+  }
+
+  private void addDistict(List<ICase> cases, List<ICase> foundCases) {
+    for (ICase found : foundCases) {
+      cases.removeIf(task -> task.getId() == found.getId());
+    }
+    cases.addAll(foundCases);
   }
 
   @Override

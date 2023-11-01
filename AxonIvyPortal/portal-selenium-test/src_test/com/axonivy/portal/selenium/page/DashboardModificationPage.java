@@ -4,9 +4,13 @@ import static com.codeborne.selenide.Selenide.$;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
+
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 
 public class DashboardModificationPage extends TemplatePage {
 
@@ -36,7 +40,7 @@ public class DashboardModificationPage extends TemplatePage {
   public NewDashboardDetailsEditPage navigateToEditDashboardDetailsByName(String dashboardName) {
     SelenideElement dashboardRow = getDashboardRowByName(dashboardName);
     if (dashboardRow != null) {
-      dashboardRow.$("[id$=':configure-dashboard']").click();
+      dashboardRow.$("button[id$='dashboard-modification-component:dashboard-table:0:configure-dashboard']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
       NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
       return newDashboardDetailsEditPage;
     }
@@ -72,8 +76,7 @@ public class DashboardModificationPage extends TemplatePage {
     }
 
     editDashboardDialog.$("div[id$=':dashboard-permission']").$("button.ui-autocomplete-dropdown").click();
-    
-    $("span[id$=':dashboard-permission_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    WaitHelper.waitNumberOfElementsToBe(WebDriverRunner.getWebDriver(), By.cssSelector("span[id$=':dashboard-permission_panel']"), 1);
     $("span[id$=':dashboard-permission_panel']").$$("tr.ui-autocomplete-item").asDynamicIterable().forEach(item -> {
       for(String permissionName : permissions) {
         if (item.$("td").getText().contains(permissionName)) {

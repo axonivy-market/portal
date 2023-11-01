@@ -211,7 +211,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     params.put(TASK_QUERY, taskQuery);
 
     Map<String, Object> response =
-        IvyAdapterService.startSubProcessInProject("analyzePriorityStatistic(ch.ivyteam.ivy.workflow.query.TaskQuery)", params);
+        IvyAdapterService.startSubProcessInProjectAndAllRequired("analyzePriorityStatistic(ch.ivyteam.ivy.workflow.query.TaskQuery)", params);
     return (PriorityStatistic) response.get(RESULT);
   }
 
@@ -226,7 +226,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     params.put(TASK_QUERY, taskQuery);
 
     Map<String, Object> response =
-        IvyAdapterService.startSubProcessInProject("analyzeExpiryStatistic(ch.ivyteam.ivy.workflow.query.TaskQuery)", params);
+        IvyAdapterService.startSubProcessInProjectAndAllRequired("analyzeExpiryStatistic(ch.ivyteam.ivy.workflow.query.TaskQuery)", params);
     return (ExpiryStatistic) response.get(RESULT);
   }
 
@@ -241,7 +241,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     params.put(CASE_QUERY, caseQuery);
 
     Map<String, Object> response =
-        IvyAdapterService.startSubProcessInProject("analyzeCaseStateStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery)", params);
+        IvyAdapterService.startSubProcessInProjectAndAllRequired("analyzeCaseStateStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery)", params);
     return (CaseStateStatistic) response.get(RESULT);
   }
 
@@ -256,7 +256,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     params.put(CASE_QUERY, caseQuery);
 
     Map<String, Object> response =
-        IvyAdapterService.startSubProcessInProject("analyzeElapsedTimeStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery)", params);
+        IvyAdapterService.startSubProcessInProjectAndAllRequired("analyzeElapsedTimeStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery)", params);
     return (ElapsedTimeStatistic) response.get(RESULT);
   }
   
@@ -272,7 +272,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     params.put(CASE_QUERY, caseQuery);
     params.put(SELECTED_CATEGORIES, categoryNodes);
     Map<String, Object> response =
-        IvyAdapterService.startSubProcessInProject("analyzeCasesByCategoryStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery,java.util.List<String>)", params);
+        IvyAdapterService.startSubProcessInProjectAndAllRequired("analyzeCasesByCategoryStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery,java.util.List<String>)", params);
     return (CaseCategoryStatistic) response.get(RESULT);
   }
   
@@ -281,7 +281,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     params.put(CASE_QUERY, caseQuery);
     params.put(SELECTED_CATEGORY, categoryNode);
     Map<String, Object> response =
-        IvyAdapterService.startSubProcessInProject("analyzeCasesByCategoryDrilldownStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery,String)", params);
+        IvyAdapterService.startSubProcessInProjectAndAllRequired("analyzeCasesByCategoryDrilldownStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery,String)", params);
     return (CaseCategoryStatistic) response.get(RESULT);
   }
 

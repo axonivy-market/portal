@@ -116,18 +116,18 @@ body .keypad-popup .keypad-special.ui-state-active {
 
 /*Style For Logos --------------------------------------------------------------------------------------*/
 body .layout-wrapper .menu-wrapper .sidebar-logo .portal-home-logo-small img {
-  width: var(--small-home-logo-width); 
+  width: var(--small-home-logo-width);
   height: var(--home-logo-height);}
 
 .login-body .login-panel .login-panel-header img {
   height: var(--login-logo-height); }
 
 .login-body .login-panel .login-oauth-providers ul {
-  list-style-type: none; 
+  list-style-type: none;
   padding-left: 0px; }
 
 .login-body .login-panel .login-oauth-providers span {
-  position: relative; 
+  position: relative;
   bottom: 5px; }
 
 /*Style For Color Header --------------------------------------------------------------------------------------*/
@@ -284,12 +284,12 @@ body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
   color: var(--task-state-waiting-color);}
 
 .task-state-reserved {
-  color: var(--task-state-reserved-color); 
+  color: var(--task-state-reserved-color);
   font-size: var(--task-state-reserved-font-size) !important;
 }
 
 .task-state-system {
-  color: var(--task-state-system-color); 
+  color: var(--task-state-system-color);
   font-size: var(--task-state-system-font-size) !important;
 }
 
@@ -715,7 +715,7 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 .state-column .open-case-state,
 .state-column .open-task-state{
   background: var(--task-state-suspended-background);
-  border-color: var(--task-state-suspended-background); 
+  border-color: var(--task-state-suspended-background);
   color: var(--task-state-suspended-color); }
 
 .state-cell .error-task-state,
@@ -831,7 +831,7 @@ body .ui-inputfield.case-detail-name-input {
   border-bottom: 1px solid var(--case-widget-column-header-border-bottom); }
 
 .case-header-name-desc-cell .case-header-desc-cell {
-  color: var(--case-item-description-cell); 
+  color: var(--case-item-description-cell);
   font-size: var(--case-item-description-font-size);
   line-height: var(--case-item-description-line-height); }
 
@@ -1119,7 +1119,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   background: var(--ivy-primary-color-white);
 }
 
-.available-elements-action-btn button:hover, .available-elements-action-btn button:focus, .express-add-option-panel button:hover, .express-add-option-panel button:focus {	
+.available-elements-action-btn button:hover, .available-elements-action-btn button:focus, .express-add-option-panel button:hover, .express-add-option-panel button:focus {
   background-color:transparent;}
 
 .task-responsible-label.ui-state-error {
@@ -1348,7 +1348,7 @@ ul.users-in-role {
   .import-express-dialog .import-status.Warning {
     color: var(--express-import-status-warning); }
   .import-express-dialog .import-status.Failed {
-    color: var(--express-import-status-failed); }	
+    color: var(--express-import-status-failed); }
 
 .express-workflow-summary-table .ui-paginator.ui-paginator-top {
   background-color: var(--express-import-paginator-background-color);
@@ -1391,7 +1391,7 @@ color: var(--ivy-primary-color-black);
 }
 
 .case-map-stage .line-right:after, .case-map-stage .line-left:before {
-border-top: 0.2rem solid var(--primary-color);   
+border-top: 0.2rem solid var(--primary-color);
 }
 .case-map-stage .square {
 background-color: var(--primary-color);
@@ -1401,7 +1401,7 @@ background-color:var(--primary-color);
 color:var(--ivy-primary-color-white);
 }
 .case-stage-detail{
-background-color:var(--ivy-primary-color-white);	
+background-color:var(--ivy-primary-color-white);
 }
 .case-stage{
 background-color:var(--primary-color);
@@ -1602,4 +1602,130 @@ body.in-dialog .ui-widget-overlay {
 .dashboard-excel-export-form {
   float: left;
   display: inline;
+}
+
+/* Notifications */
+.notifications-badge {
+  width:24px;
+  height:22px;
+  font-weight: var(--notifications-title-header-font-weight);
+  font-size: var(--notification-label-font-size);
+  color: white;
+  position:absolute; bottom:30px; left:20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius:50%;
+  background-color:var(--ivy-primary-color);
+}
+.notifications-button.si {
+  font-size: var(--default-font-size);
+}
+
+.notifications-button.fa {
+  font-size: var(--default-font-size);
+  padding-right: 5px;
+}
+.notifications-container-top {
+  padding:10px;
+  padding-left:0px;
+  padding-right:0px;
+  margin-bottom:0.15em;
+  border-radius: 6px;
+}
+body .notification-scroll>.ui-datascroller-content  {
+  border: 0px;
+  padding: 2px;
+}
+body .notification-scroll>.ui-datascroller-content::-webkit-scrollbar {
+  display: none;
+}
+body .notification-checkbox .ui-chkbox-box {
+  width: 1rem;
+  height: 1rem;
+}
+.notification-checkbox .ui-chkbox-label {
+  var(--notification-label-font-size);
+}
+.notifications-item-container {
+  padding: 20px 10px 5px 10px;
+  display: block;
+  overflow: hidden;
+  background-color: var(--notification-title-color)
+}
+
+.notifications-icon {
+  display: inline-flex;
+  justify-content: center;
+  height: auto;
+  width: auto;
+  align-items: center;
+  padding-right: 5px;
+}
+.notifications-panel {
+  background: var(--notification-panel-color);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: all .3s;
+  -ms-transition: all 0s;
+  display: flex;
+  align-items: stretch;
+  /* set it in front of top-layout */
+  z-index: 999;
+  box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+}
+.notifications-panel.active {
+  width: 400px;
+  visibility: visible;
+  opacity: 1;
+}
+.notifications-item-list {
+  width: 400px;
+  position: relative;
+  z-index: 999;
+  text-align: left;
+  min-width: 200px;
+}
+
+.notifications-item-time-since {
+  font-size: var(--notification-label-item-font-size);
+  padding-left: 1.3rem;
+}
+.notifications-title-header {
+  flex: 1;
+  font-weight: var(--notifications-title-header-font-weight);
+  font-size: var(--process-icon-font-size);
+  display: contents;
+}
+
+.notifications-group-name {
+  position: relative;
+  display: block;
+}
+
+.notifications-group-name:after {
+  position: absolute;
+  content: "";
+  height: 1px;
+  background-color: var(--ivy-primary-color-black);
+  width: 100%;
+  margin-left: 15px;
+  top: 50%;
+}
+
+i.dashboard-icon-drag-drop {
+    border: 1px solid var(--ivy-primary-color);
+    color: var(--ivy-primary-color);
+    width: 2.357rem;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 2.257rem;
+    vertical-align: unset;
+    cursor: move
+
 }

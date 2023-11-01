@@ -10,8 +10,6 @@ ch.ivy.addon.portal.generic:
     noCaseId: No case-Id specified
     requestTabTitle: Request
     statusTabTitle: Case Information
-  CustomLinkGenerator:
-    myTasks: My Tasks
   OpenTaskTemplate:
     adhocHistory: Adhoc history
     adhocHistoryTooltip: Show adhoc history
@@ -23,22 +21,6 @@ ch.ivy.addon.portal.generic:
     resultFromAdhocProcess: Results from the Ad-Hoc Process
     startAdHoc: Start Adhoc
     startAdHocTooltip: Reroute this process using ad-hoc steps
-  PortalCaseMenu:
-    AllCases: All cases
-    MyCases: My cases
-  PortalTaskMenu:
-    AllTasks: All tasks
-    GroupTasks: Group tasks
-    PersonalTasks: '{0}''''s tasks'
-  TaskMail:
-    dailyTaskSummaryIntro: 'The following tasks are waiting to be processed:'
-    dailyTaskSummaryTitle: Daily task summary
-    newTaskIntro: 'The following task has been assigned to you:'
-    newTaskTitle: New Task assigned
-    taskResume: Run
-ch.ivy.addon.portalkit:
-  variables:
-    portalkit_serveradress: PORTALKIT_SERVERADRESS
 ch.ivy.addon.portalkit.ui.jsf:
   AbsenceAndDeputy:
     Messages:
@@ -85,14 +67,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskState: Task state
   CaseDocuments:
     CaseDocumentsPageTitle: Case Documents
-  CaseStatusInformation:
-    CurrentTasks:
-      currentTasks: Current tasks
-      noTasksFound: No tasks found.
-    GeneralInformation:
-      processVersion: Process version
-      removeDelayConfirm: This will remove the delay setting of the task. Are you sure?
-      showNow: Show now
   Enums:
     BasicDocumentType:
       CONTRACT: Contract
@@ -154,15 +128,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     DateFormat: Date Format
     General: General
     Homepage: Homepage
-    HomepageSelection:
-      fullTaskList: Full Task list
     ProcessList: Process list
     SortFieldSelections:
       defaultSortFieldLabel: Default sort field
     TaskList: Task list
     defaultOption: Default ({0})
     defaultViewMode: Default view mode
-    showTutorial: Show Welcome Tour
   PortalManagement:
     AdminSetting: Admin settings
   ProcessViewer:
@@ -229,7 +200,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       enablePrivateChat: Set this property to true to enable private chat function
       enableProcessViewer: Set this property to true to enable process viewer option in Task/Case actions
       enableScriptCheckingForUploadedDocumentNote: Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
-      enableUserFavorites: If this property is disabled, do not display user favorites section of process list in Portal home.
       enableVirusScannerForUploadedDocumentNote: Set to true to enable virus scanner for uploaded document. Currently this function is using API VIRUSTOTAL.
       expressEndPageNote: Display the custom end page at the end of each Express process.
       hideCaseDocument: Set to true, the document section in case detail page will be hidden, otherwise it will be shown.
@@ -249,13 +219,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       refreshTaskListIntervalNote: Task list refresh interval in seconds.
       showButtonIcon: For switch on/off the display icons in button.
       showCaseDurationTime: For switch on/off the display of the duration time in case details page.
-      showEnvironmentInfoNote: For switch on/off the display of environment information.
       showErrorLogToConsole: Set to true to enable write error log to browser console
       showGlobalSearch: For switch on/off the display of the global search.
-      showLegacyUI: For switch on/off the display of the legacy UI.
       showProcessInformation: Set to false to disable link to Show Information of process on Processes page (grid mode) and Case Details.
       showTaskDurationTime: For switch on/off the display of the duration time in task details page.
-      showUserGuide: 'Activates the interactive user guide "first steps" in the portal at first login. '
       statisticChartScalingInterval: Interval in seconds to do periodic statistic chart scaling requests. If the interval value is less than 10, periodic statistic chart scaling is disabled.
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
     key: Key
@@ -361,8 +328,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     OPEN: Open
     OPEN_UPPERCASE: OPEN
     RUNNING: In progress
-  caseTreeTable:
-    caseState: Case state
   chat:
     chatAssigneeDialogHeader: Add users to chat
     chatAssigneeDialogHint: 'Please select the relevant users and groups which should be added to your process related chat:'
@@ -580,9 +545,6 @@ ch.ivy.addon.portalkit.ui.jsf:
         <ul class="tooltip-body {1}">{2}</ul>
       tooltipHelper: Click to show all users which own this role directly or indirectly
       userOfRoleTitle: User of {0} group
-    compactProcessWidget:
-      selectedProcess: Selected process
-      settingFavoriteProcessName: Favorite process name definition
     expressManagement:
       deployButton: Deploy
       deployMessage: 'Deploying processes  ... '
@@ -622,27 +584,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       importHeaderTitle: 'List of Express processes will be exported:'
       processCount: process(es)
       waitingMessage: 'Data is collecting ... '
-    guide:
-      dontShowAgain: Don't show again
-      mainMenu:
-        content: In this menu you can navigate to the different areas processes, tasks, cases and statistics.
-        title: Main Menu
-      process:
-        content: In this area you can define your own favorites and see standard processes of the application. Just click on it and the process will start.
-        title: Processes
-      statistic:
-        content: In this area you will find all different kind of existing statistics. Click for more details.
-        title: Statistics
-      task:
-        content: In this area you will find all open tasks. Just click on it to work on a task.
-        title: Tasks
-      username:
-        content: Clicking on the user name you can define absences, language, Email settings, etc.
-        title: Username
-      welcome:
-        content: 'We want to support you having a good start with the portal. For that we want to guide you through the first actions you can do. In addition, you can find an extended user documentation including "How-to-Guide" here: <a href="{0}"  target="_blank">PortalGuide</a>'
-        mobileContent: 'You can access directly to your tasks in this page or navigate to other areas using <span class="{0}"></span>. You can find an extended user documetation here: <a href="{1}"  target="_blank">PortalGuide</a>'
-        title: Welcome to the Axon Ivy Portal
     processChain:
       currentStepIsNotDefined: Current step ({0}) of process chain is not defined
     statisticWidget:
@@ -742,8 +683,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     createdFrom: Created From
     createdTo: Created To
     customFieldType: Custom Field Type
-    customWidget: Custom Widget
-    customWidgetIntroduction: This widget can display an ivy process or an external webpage.
     dashboardManagement:
       CreateDashboard: Create Dashboard
       addDashboard: Add dashboard
@@ -888,10 +827,6 @@ ch.ivy.addon.portalkit.ui.jsf:
   iconselection:
     iconSelectionDialogHeader: Selecting icon
     seachIconByNamePlaceHolder: Search icon by name
-  languageSetting:
-    cannotSetEmailLanguage: Language cannot be set as email notification language.
-    languageSetting: Language settings
-    saveLanguageHasWSErrors: Language save error.
   login:
     login: Login
     loginErrorMessage: You are not logged in or your username is not known by this application. Please consult your system administrator.
@@ -936,8 +871,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewProcess: Add new process
     addNewProcessDialogHeader: Add new user process
     backToOverview: Back to overview
-    brokenLinkProcess: The process link is broken. Please update your favorites or contact the administrator
-    defaultProcesses: Application Favorites
     deleteExpressWorkflowTooltip: Delete Express Workflow
     deleteExternalLinkTooltip: Delete external link
     deleteProcess: Delete Process
@@ -954,12 +887,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     expressWorkflow: Express workflow
     externalLink: External link
     externalLinkVisibility: Visibility
-    favoriteProcesses: User Favorites
     goTo: 'Go to: '
     icon: Icon
     isRequiredMessage: has to be set
     linkDescription: Link description
-    noFavoriteProcess: You have not defined any favorites.
     noProcess: There are no processes.
     noProcesses: There are no processes.
     processFilterPlaceHolder: Name, Description, Category
@@ -1313,7 +1244,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskNotFound: The task does not exist or you have insufficient rights to see this task.
   userProfile:
     myProfileTitle: My profile
-    saveUserSettingsSuccessfully: User settings saved successfully.
   warningBeforeLostSession:
     extend: Extend
     warningMessage: Your session will expire in 1 minute. Would you like to extend it?
@@ -1404,11 +1334,17 @@ Dialogs:
         portal:
           generic:
             dashboard:
+              PortalDashboardConfiguration:
+                NewDashboard: New Dashboard
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Could not find the linked process!
+                ProcessWidgetConfiguration:
+                  DragAndDropToChangeOrder: Drag and drop to change the order.
         portalkit:
           component:
+            CaseItemDetails:
+              ShareCaseDetails: Share case details
             CaseWidget:
               CaseCategory: Case Category
               CaseDetail:
@@ -1422,6 +1358,8 @@ Dialogs:
               defaultEmptyMessage: There are no cases
             IconSelection:
               IconLinkTooltip: Click to change icon
+            TaskItemDetails:
+              ShareTaskDetails: Share task details
   com:
     axonivy:
       portal:
@@ -1556,6 +1494,7 @@ Labels:
   AdhocWorkflow: Describe your Workflow
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
+  CreateNewDashboard: Create new dashboard
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
   Task: Task

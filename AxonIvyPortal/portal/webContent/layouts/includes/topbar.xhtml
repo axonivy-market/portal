@@ -30,7 +30,6 @@
               task="#{task}" case="#{case}" />
           </h:panelGroup>
         </li>
-
         <li class="topbar-item search-item" jsf:rendered="#{showGlobalSearch}">
             
           <a href="#" id="global-search-item">
@@ -39,7 +38,6 @@
           <ic:ch.ivy.addon.portal.generic.GlobalSearch id="global-search-component"
             isWorkingOnATask="#{isWorkingOnATask}" case="#{case}" />
         </li>
-
         <li class="topbar-item themeswitch-item">
           <p:commandLink id="theme-switcher" disabled="#{!themeBean.enableSwitchThemeButton}"
             onclick="PrimeFaces.FreyaConfigurator.changeLayout('ivy', '#{ivyFreyaTheme.mode == 'light' ? 'dark' : 'light'}');Portal.changePortalVariableTheme('#{ivyFreyaTheme.mode == 'light' ? 'dark' : 'light'}');">
@@ -48,7 +46,17 @@
               listener="#{themeBean.toggleTheme()}" update="theme-switcher" />
           </p:commandLink>
         </li>
-
+        <li class="topbar-item">
+          <p:commandLink id="open-notifications-panel" global="false" update="#{p:resolveFirstComponentWithId('has-notifications', view).clientId}"
+          actionListener="#{notificationBean.setRender(true)}" onclick="openNotificationPanel()" >
+            <i class="topbar-icon pi pi-bell" />
+            <h:panelGroup class="notifications-badge" id="topbar-unread-notifications-container">
+              <h:outputText id="topbar-unread-notifications"
+                value="#{notificationBean.getUnreadNotifications()}" />
+              <input type="hidden" id="notifications-badge-value" value="#{notificationBean.countUnread}"/>  
+            </h:panelGroup>
+          </p:commandLink>
+        </li>
         <li jsf:rendered="#{chatRendererBean.isChatRendered}" class="topbar-item chat-item">
           <p:commandLink id="toggle-chat-panel-command" global="false" styleClass="notification-badge mod-chat-menu">
             <i class="topbar-icon si si-messages-bubble" />
@@ -64,7 +72,7 @@
                actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}" />
              </li>
 
-            <li jsf:rendered="#{userMenuBean.showDashboardConfigurationMenu and !menuView.isShowLegacyUI()}">
+            <li jsf:rendered="#{userMenuBean.showDashboardConfigurationMenu}">
               <p:commandLink id="dashboard-configuration"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}"
                 actionListener="#{userMenuBean.navigateToDashboardConfigurationOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"/>
@@ -108,15 +116,6 @@
         <div class="third-header-bar" />
       </div>
 
-      <ui:insert name="userSettingsGuide">
-        <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="setting-container-guide-component" targetComponent="setting-container"
-          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/username/title')}" 
-          content="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/username/content')}"
-          targetCssSelector=".setting-container" iconClass="si si-single-neutral-actions" onNext="PF('statistic-widget-container-guide').show()"
-          my="right bottom-30" at="right top" arrowPosition="top right" onShow="showUsernameGuide()" onHide="hideUsernameGuide()"
-          updatedComponentAfterGuide="#{updatedComponentAfterGuide}" rendered="#{guideBean.isGuideShown}" />
-      </ui:insert>
-
       <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" width="50%" closeOnEscape="true"
         widgetVar="changePasswordDialog" id="change-password-dialog" resizable="false" modal="true" draggable="false" appendTo="@(body)" dynamic="true"
         styleClass="change-password-dialog" responsive="true">
@@ -145,5 +144,6 @@
   <c:if test="#{chatRendererBean.isChatRendered}">
     <ui:include src="/layouts/includes/chat.xhtml" />
   </c:if>
+  <ui:include src="/layouts/includes/notification.xhtml" />
   <!-- TOPBAR END -->
 </ui:composition>

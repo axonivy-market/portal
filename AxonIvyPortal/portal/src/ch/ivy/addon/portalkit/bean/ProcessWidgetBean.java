@@ -76,14 +76,12 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   private List<SecurityMemberDTO> selectedSecurityMemberDTOsWhenEditingExternalLink;
   private List<String> selectedPermissionsWhenEditingExternalLink;
   private List<String> selectedPermissionsForSavingEditedExternalLink;
-  private boolean isShowInformationLink;
   private IProcessStart createExpressWorkflowProcessStart;
   private Map<String, List<Process>> processesByAlphabet;
 
   public void initConfiguration() {
     initProcessViewMode();
     createExpressWorkflowProcessStart = ProcessStartCollector.getInstance().findExpressCreationProcess();
-    isShowInformationLink = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_PROCESS_INFORMATION);
   }
 
   public void initProcesses() {
@@ -561,9 +559,5 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   public void setSelectedPermissionsWhenEditingExternalLink(List<String> selectedPermissionsWhenEditingExternalLink) {
     this.selectedPermissionsWhenEditingExternalLink = new ArrayList<>(selectedPermissionsWhenEditingExternalLink);
-  }
-
-  public boolean isShowInformationLink() {
-    return isShowInformationLink;
   }
 }

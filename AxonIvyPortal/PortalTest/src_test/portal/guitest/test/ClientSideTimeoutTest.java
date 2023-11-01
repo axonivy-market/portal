@@ -9,7 +9,7 @@ import org.junit.Test;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 
 public class ClientSideTimeoutTest extends BaseTest {
   
@@ -17,7 +17,7 @@ public class ClientSideTimeoutTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
-    setupWithAlternativeLinkAndAccount(HomePage.PORTAL_HOME_PAGE_URL, TestAccount.ADMIN_USER);
+    setupWithAlternativeLinkAndAccount(NewDashboardPage.PORTAL_HOME_PAGE_URL, TestAccount.ADMIN_USER);
   }
   
   @Test
@@ -33,8 +33,8 @@ public class ClientSideTimeoutTest extends BaseTest {
   }
   
   private AdminSettingsPage setupClientSideTimeout2Minutes() {
-    HomePage homePage = new HomePage();
-    AdminSettingsPage adminSettingPage = homePage.openAdminSettings();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    AdminSettingsPage adminSettingPage = newDashboardPage.openAdminSettings();
     adminSettingPage.setClientSideTimeout("2");
     refreshPage();
     return adminSettingPage;

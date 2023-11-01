@@ -5,7 +5,7 @@ Case Item Details
 
 CaseItemDetails is a built-in component of the Portal that contains the case
 information which users can interact with. To show additional required case
-information, the Portal supports overriding the CaseItemDetails.
+information, the Portal supports customizing the CaseItemDetails.
 
 Each CaseItemDetails contains
 
