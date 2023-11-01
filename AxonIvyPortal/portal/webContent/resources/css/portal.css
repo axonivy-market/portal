@@ -498,22 +498,6 @@ body .portal-cancel-button.ui-widget.ui-button .ui-icon,
 .line-process-chain .line-vertical-process-step {
   font-size: var(--small-font-size); }
 
-.process-step-icon.si{
-  font-size: var(--portal-icon-ui-icon-font-size);
-}
-
-.process-step-icon.si.visited{
-  color: var(--ivy-primary-color);
-}
-
-.process-step-icon.si.process-step-icon-vertical {
-  float: left;
-}
-
-.circle-process-chain .circle-vertical-step-title.process-step-icon-text-vertical {
-  padding-top: 0;
-}
-
 /*Style for announcement*/
 .announcement-message-customizable {
   background-color: var(--announcement-background-color);

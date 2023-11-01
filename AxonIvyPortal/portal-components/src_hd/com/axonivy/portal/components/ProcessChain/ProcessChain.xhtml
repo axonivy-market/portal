@@ -116,11 +116,14 @@
               <c:if test="#{isDirectionHorizontal}">
                 <span class="circle-horizontal-step-title">${stepName}</span>
               </c:if>
-              <h:panelGroup layout="block" id="step-icon-container-#{counter.index}"
-                styleClass="#{cc.attrs.stepIcons[counter.index]} process-step-icon #{isCurrentStep or isVisitedStep ? 'visited' : 'ui-state-disabled'} #{isDirectionHorizontal ? '' : 'process-step-icon-vertical'} ">
+              <h:panelGroup layout="block" id="step-count-icon-container-#{counter.index}"
+                styleClass="#{cc.attrs.stepIcons[counter.index]} process-step-icon #{isDirectionHorizontal ? 'circle-horizontal-step-container' : 'circle-vertical-step-container'} cicrle-step-container ">
+                <div class="step-number-container">
+                  <h:outputText value="" />
+                </div>
               </h:panelGroup>
               <c:if test="#{!isDirectionHorizontal}">
-                <h:outputText styleClass="circle-vertical-step-title #{isDirectionHorizontal ? '' : 'process-step-icon-text-vertical'}" value="${stepName}" />
+                <h:outputText styleClass="circle-vertical-step-title" value="${stepName}" />
               </c:if>
             </h:panelGroup>
           </c:if>
@@ -163,6 +166,19 @@
 
         <h:panelGroup id="step-after" layout="block" rendered="#{!isHideRightSteps}"
           styleClass="line-horizontal-process-step hide-right-steps" />
+      </c:if>
+
+      <c:if test="#{shape eq 'ICON'}">
+        <h:panelGroup layout="block" id="step-info-mobile-#{currentIndex}"
+          styleClass="circle-horizontal-process-step #{isHideLeftSteps ? '':'left-steps'} #{isHideRightSteps ? '':'right-steps'}">
+          <h:outputText value="${stepName}" styleClass="circle-horizontal-step-title ui-sm-hidden" />
+          <h:panelGroup layout="block" id="step-count-mobile-container-#{currentIndex}"
+            styleClass="#{cc.attrs.stepIcons[currentIndex]} process-step-icon circle-horizontal-step-container #{isHideLeftSteps ? '':'left-steps'} #{isHideRightSteps ? '':'right-steps'} cicrle-step-container">
+            <div class="step-number-container">
+              <h:outputText value="" />
+            </div>
+          </h:panelGroup>
+        </h:panelGroup>
       </c:if>
 
     </h:panelGroup>
