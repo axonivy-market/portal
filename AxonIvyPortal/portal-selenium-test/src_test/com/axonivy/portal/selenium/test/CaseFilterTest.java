@@ -157,6 +157,7 @@ public class CaseFilterTest extends BaseTest {
   @Test
   public void testDefaultFilter() {
     MainMenuPage mainMenuPage = new MainMenuPage();
+    mainMenuPage.waitPageLoaded();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     assertTrue(casePage.getFilterName().contains("Default filter"));
   }
