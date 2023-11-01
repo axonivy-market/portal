@@ -8,7 +8,7 @@ Process Image
 Introduction
 ------------
 
-To customize the process image, follow this section to override the process
+Follow this section to customize the process
 image of Portal.
 
 .. _customization-process-image-customization:

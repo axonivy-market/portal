@@ -3,7 +3,7 @@
   "id" : "1657E6622F0C0122",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "_com.axonivy.portal.developerexamples.CustomLoadSubMenuItemsData"
+    "data" : "com.axonivy.portal.developerexamples.CustomLoadSubMenuItemsData"
   },
   "elements" : [ {
       "id" : "f0",

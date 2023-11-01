@@ -6,3 +6,5 @@ stageIndex Integer #field
 stageIndex PERSISTENT #fieldModifier
 userProcess ch.ivy.addon.portalkit.configuration.UserProcess #field
 userProcess PERSISTENT #fieldModifier
+state com.axonivy.portal.userexamples.enums.RequestState #field
+state PERSISTENT #fieldModifier

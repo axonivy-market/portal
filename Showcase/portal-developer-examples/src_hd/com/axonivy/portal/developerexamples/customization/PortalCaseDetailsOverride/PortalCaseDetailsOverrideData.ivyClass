@@ -1,8 +1,0 @@
-PortalCaseDetailsOverrideData #class
-com.axonivy.portal.developerexamples.customization.PortalCaseDetailsOverride #namespace
-caseInfo ch.ivyteam.ivy.workflow.ICase #field
-caseInfo PERSISTENT #fieldModifier
-isShowBackButton Boolean #field
-isShowBackButton PERSISTENT #fieldModifier
-isTaskStartedInDetails Boolean #field
-isTaskStartedInDetails PERSISTENT #fieldModifier
