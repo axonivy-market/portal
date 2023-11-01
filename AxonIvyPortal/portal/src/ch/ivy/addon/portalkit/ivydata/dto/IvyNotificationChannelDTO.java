@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.notification.channel.NotificationChannel;
 import ch.ivyteam.ivy.notification.channel.NotificationSubscription;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -50,6 +51,7 @@ public class IvyNotificationChannelDTO extends AbstractResultDTO {
 
   public void setSubscriptionIconAndTitle(String event) {
     var subscription = subscriptions.get(event);
+    if (subscription != null) {
     var state = subscription.getState();
     boolean subscribedByUser = IvyNotificationChannelSubcriptionDTO.State.SUBSCRIBED.equals(state);
     boolean useDefault = IvyNotificationChannelSubcriptionDTO.State.USE_DEFAULT.equals(state);
@@ -58,18 +60,19 @@ public class IvyNotificationChannelDTO extends AbstractResultDTO {
 
     if (subscribedByUser || (useDefault && subscription.isSubscribedByDefault())) {
       icon.append("check-circle-1 state-active");
-      iconTitle.append("Subscribed");
+      iconTitle.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/subscribed"));
     } else {
       icon.append("remove-circle state-inactive");
-      iconTitle.append("Not subscribed");
+      iconTitle.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/notSubscribed"));
     }
 
     if (useDefault) {
       icon.append(" light");
-      iconTitle.append(" by default");
+      iconTitle.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/byDefault"));
     }
 
     subscription.setIcon(icon.toString());
     subscription.setTitle(iconTitle.toString());
+    }
   }
 }

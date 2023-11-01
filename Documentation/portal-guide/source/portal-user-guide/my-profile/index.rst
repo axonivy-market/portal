@@ -101,15 +101,14 @@ Portal:
    still be shown in English.    
 
 Notification Channels
-
---------------
+---------------------
 
 **Notification Channels** allows you to configure your
 manage subscriptions of the different kinds of notification channels in 
 the |ivy| Engine.
 
-The table :guilabel:`Notification Channels` show you all the available 
-event that can be subscribe or unsubscribe.
+The table :guilabel:`Notification Channels` displays all the available 
+events that can either be subscribed or unsubscribed.
 
 The checkbox in each event column allow you to specify 
 three state of event: subscribed by default, subscribe, unsubscribe.

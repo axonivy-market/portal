@@ -156,10 +156,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     SortFieldSelections:
       defaultSortFieldLabel: Orden predeterminado
     TaskList: Lista de tareas
+    byDefault: ' por defecto'
     defaultOption: Predeterminado ({0})
     defaultViewMode: Modo predeterminado
     event: Evento
+    notSubscribed: No suscrito
     notificationChannels: Canales de notificación
+    notificationChannelsReset: Restablecimiento de los canales de notificación
+    subscribed: suscrito
   PortalManagement:
     AdminSetting: Configuración de administrador
   ProcessViewer:

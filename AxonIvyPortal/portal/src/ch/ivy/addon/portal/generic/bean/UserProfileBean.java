@@ -135,7 +135,7 @@ public class UserProfileBean implements Serializable {
   public void resetAllChannel() {
     channels.forEach(this::resetChannel);
     onloadChannel();
-    addMessage("Notification Channels reset");
+    addMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/notificationChannelsReset"));
   }
 
   private void resetChannel(IvyNotificationChannelDTO channel) {
