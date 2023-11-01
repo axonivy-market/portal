@@ -72,7 +72,7 @@ public class DashboardConfigurationTest extends BaseTest {
     redirectToRelativeLink(denyDashboardWriteOwnPermissionUrl);
     redirectToRelativeLink(denyDashboardWritePublicPermissionUrl);
     newDashboardPage = new NewDashboardPage();
-    newDashboardPage.getConfigureDashboardMenu().shouldBe(Condition.disappear);
+    newDashboardPage.getDashboardConfigurationMenu().shouldBe(Condition.disappear);
   }
 
   @Test
