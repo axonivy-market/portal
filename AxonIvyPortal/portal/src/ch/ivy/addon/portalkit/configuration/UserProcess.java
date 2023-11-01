@@ -63,7 +63,7 @@ public class UserProcess {
   }
 
   private String getActiveDisplayName() {
-    Locale currentLocale = new Locales().getCurrentLocale();
+    Locale currentLocale = Ivy.session().getContentLocale();
     return names.stream().filter(displayName -> displayName.getLocale().equals(currentLocale))
         .map(DisplayName::getValue).findFirst().orElse(getDisplayNameWithCms());
   }

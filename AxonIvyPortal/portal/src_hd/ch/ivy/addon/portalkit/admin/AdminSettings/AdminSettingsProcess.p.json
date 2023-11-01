@@ -68,7 +68,7 @@
             "in.isAddMode = true;",
             "in.dialogTitle = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addNewApplication\");",
             "",
-            "in.languages = ApplicationMultiLanguage.getThirdPartySupportedLanguage();",
+            "in.languages = new List();",
             "",
             "in.displayNameInCurrentLanguage = null;",
             "in.supportedLanguages = new List();"
@@ -567,8 +567,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;",
             "",
-            "",
-            "in.languages = ApplicationMultiLanguage.getThirdPartySupportedLanguage();"
+            "in.languages = new List();"
           ]
         }
       },
