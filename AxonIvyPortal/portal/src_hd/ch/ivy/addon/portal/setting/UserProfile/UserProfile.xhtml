@@ -35,33 +35,18 @@
                            <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/General')}</h2>
                         </div>
 
-                        <div class="ui-g-12 u-no-padding-top">
-                           <span class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage')}</span>
-                           <div class="ui-g ui-g-12 u-padding-0">
-                              <div class="ui-g-6 ui-sm-12 ui-fluid">
-                                 <p:selectOneMenu id="homepage"
-                                    value="#{data.selectedHomepage}"
-                                    converter="pojoConverter">
-                                    <f:selectItems
-                                       value="#{data.homepages}"
-                                       var="homepage"
-                                       itemValue="#{homepage}"
-                                       itemLabel="#{homepage.label}" />
-                                 </p:selectOneMenu>
-                              </div>
-                              <h:panelGroup layout="block"
-                                 styleClass="ui-g-6 ui-sm-12 display-flex-center"
-                                 rendered="#{menuView.isShowLegacyUI()}">
-                                 <p:selectBooleanCheckbox
-                                    id="general-show-tutorial"
-                                    itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/showTutorial')}"
-                                    value="#{data.showTutorial}"
-                                    disabled="#{data.disableShowTutorial}"
-                                    styleClass="show-tutorial #{data.disableShowTutorial ? 'ui-state-disabled' : ''}" />
-                              </h:panelGroup>
-                           </div>
-                        </div>
-                     </div>
+                <div class="ui-g-12 u-no-padding-top">
+                  <span class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage')}</span>
+                  <div class="ui-g ui-g-12 u-padding-0">
+                    <div class="ui-g-6 ui-sm-12 ui-fluid">
+                      <p:selectOneMenu id="homepage" value="#{data.selectedHomepage}" converter="pojoConverter">
+                        <f:selectItems value="#{data.homepages}" var="homepage" itemValue="#{homepage}"
+                          itemLabel="#{homepage.label}" />
+                      </p:selectOneMenu>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
                      <!-- Process List Setting -->
                      <div class="ui-g-12">

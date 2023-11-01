@@ -63,19 +63,12 @@
       "elements" : [ {
           "id" : "S70-f28",
           "type" : "Script",
-          "name" : [
-            "update show user guide",
-            "and selected homepage"
-          ],
+          "name" : "update selected homepage",
           "config" : {
             "output" : {
               "code" : [
                 "import ch.ivy.addon.portal.generic.bean.UserProfileBean;",
-                "import ch.ivy.addon.portalkit.bean.GuideBean;",
                 "import ch.ivy.addon.portalkit.jsf.ManagedBeans;",
-                "",
-                "GuideBean guideBean =  ManagedBeans.get(\"guideBean\") as GuideBean;",
-                "guideBean.setDontShowAgain(!in.showTutorial);",
                 "",
                 "UserProfileBean userProfileBean =  ManagedBeans.get(\"userProfileBean\") as UserProfileBean;",
                 "userProfileBean.saveHomepage(in.selectedHomepage.getName());"
@@ -327,33 +320,6 @@
       "type" : "EmbeddedProcess",
       "name" : "Init General Setting",
       "elements" : [ {
-          "id" : "S40-f11",
-          "type" : "Script",
-          "name" : "Init User Guide",
-          "config" : {
-            "output" : {
-              "code" : [
-                "import ch.ivy.addon.portalkit.constant.UserProperty;",
-                "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
-                "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
-                "import ch.ivy.addon.portalkit.bo.Guide;",
-                "",
-                "// Find Global setting for SHOW_USER_GUIDE",
-                "GlobalSettingService globalSettingService = new GlobalSettingService();",
-                "in.disableShowTutorial = !Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_USER_GUIDE));",
-                "",
-                "// Get isShowGuide from IUser",
-                "in.showTutorial = Boolean.valueOf(ivy.session.getSessionUser().getProperty(UserProperty.SHOW_GUIDE));"
-              ]
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 232, "y" : 160 }
-          },
-          "connect" : [
-            { "id" : "S40-f2", "to" : "S40-f4" }
-          ]
-        }, {
           "id" : "S40-g0",
           "type" : "EmbeddedStart",
           "name" : "in 1",
@@ -363,7 +329,7 @@
           },
           "parentConnector" : "f10",
           "connect" : [
-            { "id" : "S40-f0", "to" : "S40-f11" }
+            { "id" : "S40-f0", "to" : "S40-f4" }
           ]
         }, {
           "id" : "S40-g1",

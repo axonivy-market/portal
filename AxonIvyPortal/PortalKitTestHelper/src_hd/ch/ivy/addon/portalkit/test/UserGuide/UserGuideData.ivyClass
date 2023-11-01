@@ -1,6 +1,0 @@
-UserGuideData #class
-ch.ivy.addon.portalkit.test.UserGuide #namespace
-users java.util.List<internaltest.UserForGuide> #field
-users PERSISTENT #fieldModifier
-user internaltest.UserForGuide #field
-user PERSISTENT #fieldModifier

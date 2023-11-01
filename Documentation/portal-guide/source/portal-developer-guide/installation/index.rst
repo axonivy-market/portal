@@ -66,15 +66,37 @@ Engine With License (Production Mode)
 The engine does not deploy anything, you need to deploy and configure the Portal
 application manually.
 
+Install Dashboard configuration file to engine (Production Mode)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+To install Dashboard JSON configuration file to the Axon Ivy Engine, you can choose 1 of these ways
+
+- Include the Dashboard.json file in the app.zip under ``<app.zip>/config/variables/Portal.Dashboard.json`` as shown in the structure below
+
+   .. code-block:: 
+
+      app.zip
+      ├── config
+      │   └── app.yaml
+      |   └── variables
+      |       └── Portal.Dashboard.json
+      ├── portal.iar
+      ├── portal-components.iar    
+   ..
+
+   The JSON file name has to be Portal.Dashboard.json. Refer to :dev-url:`Engine Deployment</doc/|version|/engine-guide/deployment/index.html>` 
+- Copy the Dashboard.json file directly into the engine folder ``<engine>/configuration/applications/<application>``. The Json file name has to be named ``variables.Portal.Dashboard.json``
+
+- Use the import dashboard feature of the Portal. Refer to :ref:`howto-import-your-public-dashboards`
+
 Setup Portal multi applications
 """""""""""""""""""""""""""""""
 .. important::
 
-   This is used to display common task lists of users in several applications. Task/Case list of application named ``Portal`` would display all tasks/cases of applications using the Portal running in the same security context.
+   This is used to display common task lists for each user in several applications. The Task/Case lists of all applications installed in a security context are displayed by the Portal running in this security context.
 
-All applications are in the same security context and the **portal-components** should be the only part being deployed in the other applications. See :ref:`multi-app-structure` overview.
+All applications are in the same security context and the **portal-components** should be the only part being deployed in the other applications. See :ref:`The Portal multi applications <multi-app-structure>` overview.
 
--  Create a new application named ``Portal``. Deploy Portal (portal, portal-components, optionally AxonIvyExpress) to this application.
+-  Create a new application. Deploy Portal (portal, portal-components, optionally AxonIvyExpress) to this application.
 
 -  Create new applications: App 1, App 2,... Deploy your projects to the new applications.
 
@@ -484,6 +506,7 @@ Changes in 11.2.0
 - The ``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` class is removed and no longer supported, use ``com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI`` instead.
 - Introduced the sort feature for the process dashboard widget. User can sort the processes by index, alphabetical order or by custom order.
 - Introduced the ``taskId`` param for the component ``ic:com.axonivy.portal.components.ProcessViewer`` to highlight the current step in the Process Viewer.
+- Portal Legacy dashboard has been removed.
 
 Changes in 10
 -------------
