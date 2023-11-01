@@ -5713,7 +5713,7 @@ border-top: 0.14rem dashed;
 }
 
 .header-process-name {
-  height: 98px;
+  height: 7rem;
   display: flex;
   align-items: center;
 }
@@ -5721,8 +5721,8 @@ border-top: 0.14rem dashed;
 .header-process-name h2 {
   margin: 0;
 }
-.process-info-description{
-  padding: 0.5em 0 !important;
+.process-info-description.ui-g-12{
+  padding: 0.5em 0;
 }
 
 @media screen and (min-width: 90.063em) {

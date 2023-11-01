@@ -21,5 +21,4 @@ CustomFields:
       Description: Set to 'true' to mark this start can be used as a Custom widget on the Portal dashboard
     portalProcessInfo:
       Label: Custom process information
-      Description: Predefined template for overriding process information of a process
-    
+      Description: Set content (HTML tags are supported) to this custom field to override Process Information Page of a process
