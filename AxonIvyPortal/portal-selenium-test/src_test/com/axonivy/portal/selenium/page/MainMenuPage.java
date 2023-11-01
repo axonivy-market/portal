@@ -93,6 +93,8 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public CaseWidgetPage selectCaseMenu() {
+    $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover();
+    Sleeper.sleep(500);
     WaitHelper.waitForNavigation(() -> $(By.cssSelector(".layout-menu li.sub-menu-item-case")).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
     return new CaseWidgetPage();
   }
