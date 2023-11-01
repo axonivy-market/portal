@@ -51,17 +51,27 @@
       "visual" : {
         "at" : { "x" : 93, "y" : 145 }
       },
-      "connect" : { "id" : "f7", "to" : "f32" }
+      "connect" : { "id" : "f8", "to" : "f7" }
     }, {
-      "id" : "f32",
-      "type" : "DialogCall",
-      "name" : "Statistic",
+      "id" : "f7",
+      "type" : "Script",
       "config" : {
-        "dialogId" : "ch.ivy.addon.portal.generic.admin.PortalDashBoard",
-        "startMethod" : "start()"
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portal.generic.navigation.PortalNavigator;",
+            "PortalNavigator.navigateToPortalStatistic();"
+          ]
+        }
       },
       "visual" : {
-        "at" : { "x" : 238, "y" : 144 }
+        "at" : { "x" : 285, "y" : 145 }
+      },
+      "connect" : { "id" : "f10", "to" : "f9" }
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 477, "y" : 145 }
       }
     } ]
 }

@@ -136,13 +136,18 @@ public class DashboardConfigurationPage extends TemplatePage {
     clickByCssSelector("a[id$=':import-dashboard']");
     waitForElementDisplayed(By.cssSelector("div[id$=':dashboard-import-dialog']"), true);
     findElementByCssSelector("[id$=':dashboard-upload_input']").sendKeys(FileHelper.getAbsolutePathToTestFile("Dashboard_Dashboard_Export.json"));
-    waitForElementDisplayed(By.cssSelector("input[id$=':import-dashboard-form:import-dashboard-title']"), true);    
+    waitForElementDisplayed(By.cssSelector(
+        "input[id$='dashboard-template-selection-component:dashboard-import-component:import-dashboard-form:dashboards-information-form:0:import-dashboard-title']"),
+        true);
   }
 
   
   public WebElement getImportDashboardDialog() {
-    mouseOver(findElementByCssSelector("input[id$=':import-dashboard-form:import-dashboard-title']"));
-    waitForElementDisplayed(By.cssSelector("input[id$=':import-dashboard-form:import-dashboard-title']"), true);
+    mouseOver(findElementByCssSelector(
+        "input[id$='dashboard-template-selection-component:dashboard-import-component:import-dashboard-form:dashboards-information-form:0:import-dashboard-title']"));
+    waitForElementDisplayed(By.cssSelector(
+        "input[id$='dashboard-template-selection-component:dashboard-import-component:import-dashboard-form:dashboards-information-form:0:import-dashboard-title']"),
+        true);
     return findElementByCssSelector("div[id$=':dashboard-import-dialog']");
   }
   

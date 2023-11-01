@@ -4,9 +4,13 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
+import org.openqa.selenium.By;
+
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 
 public class NewDashboardDetailsEditPage extends TemplatePage {
 
@@ -45,6 +49,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   private void addWidgetByName(String name) {
+    WaitHelper.waitNumberOfElementsToBe(WebDriverRunner.getWebDriver(), By.cssSelector("div[id$='new-widget-dialog_content']"), 1);
     $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("div.new-widget-dialog__item").filter(text(name)).first().$("tr.ui-widget-content")
         .$("button[id^='new-widget-dialog-content']").shouldBe(getClickableCondition()).click();

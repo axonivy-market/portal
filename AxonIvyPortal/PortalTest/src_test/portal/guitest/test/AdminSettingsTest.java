@@ -7,13 +7,12 @@ import static portal.guitest.common.Variable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST
 import static portal.guitest.common.Variable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST;
 import static portal.guitest.common.Variable.DEFAULT_SORT_FIELD_OF_CASE_LIST;
 import static portal.guitest.common.Variable.DEFAULT_SORT_FIELD_OF_TASK_LIST;
-import static portal.guitest.common.Variable.SHOW_ENVIRONMENT_INFO;
+import static portal.guitest.common.Variable.GLOBAL_FOOTER_INFO;
 
 import org.junit.Test;
 
 import ch.ivy.addon.portalkit.enums.SortDirection;
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.SystemProperties;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseWidgetPage;
@@ -26,42 +25,42 @@ import portal.guitest.page.TaskWidgetPage;
 public class AdminSettingsTest extends BaseTest {
 
   @Test
-	public void whenLoginAsAdminThenAdminMenuItemDisplayed() {
-		login(TestAccount.ADMIN_USER);
-		HomePage homePage = new HomePage();
-		assertTrue("Admin Settings menu item is not displayed", homePage.isAdminSettingsMenuItemPresent());
-		AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
-		assertTrue("Admin Settings dialog is not displayed", adminSettingsPage.isDisplayed());
-	}
+  public void whenLoginAsAdminThenAdminMenuItemDisplayed() {
+    login(TestAccount.ADMIN_USER);
+    HomePage homePage = new HomePage();
+    assertTrue("Admin Settings menu item is not displayed", homePage.isAdminSettingsMenuItemPresent());
+    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
+    assertTrue("Admin Settings dialog is not displayed", adminSettingsPage.isDisplayed());
+  }
 
-	@Test
-	public void whenLoginAsNonAdminThenAdminMenuItemNotDisplayed() {
-		HomePage homePage = new HomePage();
-		assertFalse("Admin Settings menu item is displayed", homePage.isAdminSettingsMenuItemPresent());
-	}
+  @Test
+  public void whenLoginAsNonAdminThenAdminMenuItemNotDisplayed() {
+    HomePage homePage = new HomePage();
+    assertFalse("Admin Settings menu item is displayed", homePage.isAdminSettingsMenuItemPresent());
+  }
 
-	@Test
-	public void testDefaultEnvironmentInfo() {
+  @Test
+  public void testDefaultEnvironmentInfo() {
     login(TestAccount.ADMIN_USER);
     HomePage homePage = new HomePage();
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
-    adminSettingsPage.setEnviromentInfo();
-    assertTrue(homePage.getEnviromentInfo().contains("Host: " + SystemProperties.getServerName() + " Env:Default"));
-	}
-	
-	@Test
-	public void testCustomizedEnvironmentInfo() {
-    updatePortalSetting(SHOW_ENVIRONMENT_INFO.getKey(), "true");
-		login(TestAccount.ADMIN_USER);
-		HomePage homePage = new HomePage();
-		//Customize environment info in portal example 
-		redirectToRelativeLinkWithEmbedInFrame(HomePage.PORTAL_EXAMPLES_EMPLOYEE_SEARCH);
-		
-		assertTrue(homePage.getEnviromentInfo().contains("Dev Team: Wawa, Env: Dev"));
-	}
+    adminSettingsPage.setGlobalFooterInfo();
+    assertTrue(homePage.getGlobalFooterInfo().contains("Wawa"));
+  }
 
-	@Test
-	public void testDefaultSortOptionsForTaskList() {
+  @Test
+  public void testCustomizedEnvironmentInfo() {
+    updatePortalSetting(GLOBAL_FOOTER_INFO.getKey(), "Dev Team: Wawa, Env: Dev");
+    login(TestAccount.ADMIN_USER);
+    HomePage homePage = new HomePage();
+    // Customize environment info in portal example
+    redirectToRelativeLinkWithEmbedInFrame(HomePage.PORTAL_EXAMPLES_EMPLOYEE_SEARCH);
+
+    assertTrue(homePage.getGlobalFooterInfo().contains("Wawa"));
+  }
+
+  @Test
+  public void testDefaultSortOptionsForTaskList() {
     updatePortalSetting(DEFAULT_SORT_FIELD_OF_TASK_LIST.getKey(), "PRIORITY");
     updatePortalSetting(DEFAULT_SORT_DIRECTION_OF_TASK_LIST.getKey(), SortDirection.ASC.name());
     redirectToRelativeLink(cleanSessionCacheUrl);
@@ -72,19 +71,19 @@ public class AdminSettingsTest extends BaseTest {
     taskWidgetPage.expand();
     assertEquals("high", taskWidgetPage.getPriorityOfTask(0));
     assertEquals("low", taskWidgetPage.getPriorityOfTask(taskWidgetPage.countTasks() - 1));
-	}
+  }
 
-	 @Test
-	  public void testDefaultSortOptionsForCaseList() {
-	   redirectToRelativeLink(create12CasesWithCategoryUrl); 
-     updatePortalSetting(DEFAULT_SORT_FIELD_OF_CASE_LIST.getKey(), "NAME");
-     updatePortalSetting(DEFAULT_SORT_DIRECTION_OF_CASE_LIST.getKey(), SortDirection.DESC.name());
-     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-	   TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-	   MainMenuPage mainMenuPage = taskWidgetPage.openMainMenu();
-	   CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
-	   assertEquals("TestCase", caseWidgetPage.getCaseNameAt(0));
-	  }
+  @Test
+  public void testDefaultSortOptionsForCaseList() {
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    updatePortalSetting(DEFAULT_SORT_FIELD_OF_CASE_LIST.getKey(), "NAME");
+    updatePortalSetting(DEFAULT_SORT_DIRECTION_OF_CASE_LIST.getKey(), SortDirection.DESC.name());
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    MainMenuPage mainMenuPage = taskWidgetPage.openMainMenu();
+    CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
+    assertEquals("TestCase", caseWidgetPage.getCaseNameAt(0));
+  }
 
     @Test
     public void testShowLegacyUISetting() {

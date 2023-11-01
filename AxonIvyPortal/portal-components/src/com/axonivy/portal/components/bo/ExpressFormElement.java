@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Deprecated(forRemoval = true, since = "10.0.13")
 public class ExpressFormElement implements Serializable {
 
     private static final long serialVersionUID = -1048666544578490353L;

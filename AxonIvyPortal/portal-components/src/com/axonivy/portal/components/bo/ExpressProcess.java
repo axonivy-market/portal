@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import ch.ivyteam.ivy.security.IUser;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Deprecated(forRemoval = true, since = "10.0.13")
 public class ExpressProcess extends AbstractConfiguration implements Serializable {
 
     private static final long serialVersionUID = -7412792174579848169L;
