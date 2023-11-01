@@ -453,6 +453,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   width: calc(100% - 470px);
   align-items: flex-start;
   align-self: stretch;
+  margin-bottom: 0;
 }
 
 .widget-preview .expand-link {
@@ -1697,6 +1698,9 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .dashboard-widget-filter__main-panel {
   width: 100%;
+  overflow: auto;
+  max-height: 30vh;
+  padding: 0.5em;
 }
 
 .dashboard-widget-filter__read-only-panel .dashboard-widget-filter__filter-panel:last-child {

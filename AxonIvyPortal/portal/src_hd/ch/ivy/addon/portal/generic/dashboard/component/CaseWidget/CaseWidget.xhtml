@@ -41,8 +41,8 @@
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-cases--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and caseWidget.caseCount lt 1 ? 'u-display-none' : ''}"
         rowStyleClass="dashboard-table--row-style"
-        emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" >
-        
+        emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
+        disabledSelection="#{isPreviewMode}">
         <p:ajax event="rowSelect" listener="#{dashboardBean.navigateToSelectedCaseDetails}" disabled="#{!isReadOnlyMode}" />
         <p:ajax event="sort" update="dashboard-cases" onstart="liveScroll()" />
 
