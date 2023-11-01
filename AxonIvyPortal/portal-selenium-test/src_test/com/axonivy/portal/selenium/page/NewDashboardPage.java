@@ -687,20 +687,22 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getConfigureDashboardMenu() {
+    waitPageLoaded();
     $("#user-settings-menu").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     Sleeper.sleep(500);
-    $("#user-setting-container").shouldBe(Condition.exist, DEFAULT_TIMEOUT).shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a#user-profile").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(),
-        DEFAULT_TIMEOUT);
-    return $("#dashboard-configuration").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    $("#user-setting-container").shouldBe(Condition.exist, DEFAULT_TIMEOUT).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $("#dashboard-configuration").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
 
+  public SelenideElement getDashboardConfigurationMenu() {
+    return $("#dashboard-configuration");
+  }
   public DashboardConfigurationPage openDashboardConfigurationPage() {
     if ($("div[id='portal-global-growl_container']").is(appear)) {
       waitForGrowlMessageDisappear();
     }
     waitPageLoaded();
-    SelenideElement configureButton = getConfigureDashboardMenu();
-    configureButton.click();
+    WaitHelper.waitForNavigation(() -> getConfigureDashboardMenu().click());
     return new DashboardConfigurationPage();
   }
 
