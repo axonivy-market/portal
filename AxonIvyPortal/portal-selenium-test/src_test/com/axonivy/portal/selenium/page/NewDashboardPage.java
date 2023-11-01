@@ -2,16 +2,24 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.editable;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
+import com.axonivy.portal.selenium.common.LinkNavigator;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 
 public class NewDashboardPage extends TemplatePage {
   private static final String IVY_PROCESS = "IVY_PROCESS";
@@ -40,10 +48,13 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void waitForAbsencesGrowlMessageDisplay() {
-    $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-growl-message")
-        .shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  public void waitForTaskListDisplay() {
+    $("div[id='task-task_1:widget-content']").shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-growl-message")
+        .shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
   public ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration() {
     var configurationPage = openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
@@ -69,8 +80,47 @@ public class NewDashboardPage extends TemplatePage {
     $("div#remove-widget-dialog").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
+  public void waitForProcessViewerLoading(SelenideElement processViewer) {
+    processViewer.$("[id$='loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    WebDriver driver = WebDriverRunner.getWebDriver();
+    processViewer.$("iframe").shouldBe(appear, DEFAULT_TIMEOUT);
+    switchToIframeWithId("process-viewer");
+    $("svg.sprotty-graph").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    driver.switchTo().defaultContent();
+    waitForWidgetLoadedByExpandThenCollapse(processViewer);
+  }
+
+  public WebElement waitAndGetProcessViewerWidget(int index) {
+    var widget = $$(".process-viewer-widget-panel").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT)
+        .get(index).shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForProcessViewerLoading(widget);
+    return widget.ancestor(".grid-stack-item");
+  }
+
+  public WebElement waitAndGetStatisticChart(int index) {
+    var widget = $$(".statistic-chart-widget").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT)
+        .get(index).shouldBe(appear, DEFAULT_TIMEOUT);
+    widget.$("[id$='loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    waitForWidgetLoadedByExpandThenCollapse(widget);
+    return widget.ancestor(".grid-stack-item");
+  }
+
+  public WebElement waitAndGetNewsWidget(int index) {
+    var widget = $$(".news-widget").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT)
+        .get(index).shouldBe(appear, DEFAULT_TIMEOUT);
+    widget.$("[id$='loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    widget.$("[id$=':add-news-button']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return widget.ancestor(".grid-stack-item");
+  }
+
+  private void waitForWidgetLoadedByExpandThenCollapse(SelenideElement widget) {
+    widget.$(".expand-link").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    widget.$(".collapse-link").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    widget.$(".expand-link").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
   public WelcomeEditWidgetNewDashboardPage editWelcomeWidgetConfiguration(String widgetId) {
-    var configurationPage = openDashboardConfigurationPage();
+    var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
@@ -644,17 +694,12 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public DashboardConfigurationPage openDashboardConfigurationPage() {
-    waitForDashboardPageAvailable();
     if ($("div[id='portal-global-growl_container']").is(appear)) {
         waitForGrowlMessageDisappear();
       }
     SelenideElement configureButton = getConfigureDashboardMenu();
     configureButton.click();
     return new DashboardConfigurationPage();
-  }
-
-  public void waitForDashboardPageAvailable() {
-    $(".js-dashboard__wrapper").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public ElementsCollection getDashboardCollection() {
@@ -743,11 +788,114 @@ public class NewDashboardPage extends TemplatePage {
 
   public GlobalSearchResultPage inputGlobalSearchKeyword(String keyword) {
     $(".topbar-item.search-item").shouldBe(appear, DEFAULT_TIMEOUT).click();
-    $("input[id$='global-search-component:global-search-data']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("input[id$='global-search-component:global-search-data']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT);
     getGlobalSearchInput().click();
     getGlobalSearchInput().sendKeys(keyword);
     getGlobalSearchInput().sendKeys(Keys.ENTER.toString());
     $("#search-results-tabview").shouldBe(appear, DEFAULT_TIMEOUT);
     return new GlobalSearchResultPage();
+  }
+
+  public void waitForCaseWidgetLoaded() {
+    checkDisplayedCaseWidgetContainer();
+    getCaseWidgetTable().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement openWidgetFilter(int index) {
+    $("[id$='filter-sidebar-link-" + index + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    var result = $("div[id$=':filter-overlay-panel-" + index + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    result.$("[class*='js-loading-']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    result.$(".filter-overlay-panel__header").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    return result;
+  }
+
+  public void closeWidgetFilter(int index) {
+    var widgetFilterPanel = $("div[id$=':filter-overlay-panel-" + index + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    widgetFilterPanel.$(".ui-overlaypanel-footer__cancel").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    widgetFilterPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  
+  public WebElement openWidgetInformation(int index) {
+    String widgetInfo =  String.format("button[id$=':info-sidebar-link-%d']", index);
+    $(widgetInfo).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+
+    String infoPanel = String.format("div[id$='info-overlay-panel-%d']", index);
+    $(infoPanel).shouldBe(appear, DEFAULT_TIMEOUT).$(".widget-info--type").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(infoPanel).$("[class^='js-loading-']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    return $(infoPanel).shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void startTask(int index) {
+    String cssSelector = String.format("a[id$=':task-component:dashboard-tasks:%d:dashboard-tasks-columns:0:start-task']", index);
+    $(cssSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void waitForTaskStartButtonDisplay(int index) {
+    String cssSelector = String.format("a[id*='task-component:dashboard-tasks:%d']", index);
+    $(cssSelector).shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public ChatPage openChatDialog() {
+    $("[id='toggle-chat-panel-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return new ChatPage();
+  }
+  
+  public SelenideElement getTopBar() {
+    return $("[id='top-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void clickOnGlobalSearch() {
+    $("a[id='global-search-item']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
+
+  public int getNotificationsBadge() {
+    $("[id='topbar-unread-notifications']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id='notifications-badge-value']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    return Integer.parseInt($("[id='notifications-badge-value']").getValue());
+  }
+
+  public WebElement getNotificationsPanel() {
+    waitForGlobalGrowlDisappear();
+    $("[id='topbar-unread-notifications']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return $(".notifications-container-content").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void hideNotificationsPanel() {
+    $("[id='topbar-unread-notifications']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(".notifications-container-content").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public boolean isOnlyUnreadDisplayed(WebElement notificationsPanel) {
+    return $("[id='notifications-only-unread']").shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
+  }
+
+  public void clickOnlyUnreadDisplayed(WebElement notificationsPanel) {
+    $("[id='notifications-only-unread']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public boolean isMarkAllAsReadDisplayed(WebElement notificationsPanel) {
+    return $("[id='notificationMarkAllAsRead']").shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
+  }
+
+  public boolean isTodayGroupLineDisplayed(WebElement notificationsPanel) {
+    return $(".notifications-group-name").shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
+  }
+
+  public void markAsRead(WebElement notificationsPanel, int expectedBadge) {
+    waitForGlobalGrowlDisappear();
+    WebElement item = $(".ui-datascroller-item");
+    item.findElement(By.id("notificationForm:notifications-scroller:0:notificationMarkAsRead")).click();
+    $(By.id("notifications-badge-value")).shouldBe(Condition.exactValue(String.valueOf(expectedBadge)), DEFAULT_TIMEOUT);
+  }
+
+  public int findNumberOfNotificationsItem(WebElement notificationsPanel) {
+    List<SelenideElement> item = $$(".ui-datascroller-item");
+    return item.size();
+  }
+
+  public void markAsAllRead(WebElement notificationsPanel) {
+    $("[id='notificationMarkAllAsRead']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    waitForElementValueChanged("#topbar-unread-notifications", "0");
   }
 }

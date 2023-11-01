@@ -83,41 +83,6 @@ After the user cancels a task, a growl message is displayed if ``Portal.DisplayM
 
 |example-global-growl-cancelled-task|
 
-.. _components-additional-component-global-growl-display-growl-after-cancel-task:
-
-Customize the Global Growl Message for a Task without using IFrames
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-For each task, you can turn the growl message display off or override it.
-Initially, when you submit the form to the interacting task, you need to set the
-``overridePortalGrowl`` key in the associated flash object:
-
-::
-
-   Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-   flash.put("overridePortalGrowl", true);
-   flash.setRedirect(true);
-
-If you want to turn the global growl message off, that is all that is required.
-To override the message with your own, add ``facesMessage`` to this component.
-You can customize the message for finished or cancelled tasks separately.
-
-::
-
-   import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-   import javax.faces.context.Flash;
-   import javax.faces.context.FacesContext;
-   import javax.faces.application.FacesMessage;
-
-   FacesMessage message = new FacesMessage("Task is done successfully", ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/linkToCaseDetails",
-   	[PortalNavigator.buildPortalCaseDetailsUrl(ivy.case.getBusinessCase().getId())]));
-   FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
-
-   Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-   flash.put("overridePortalGrowl", true);
-   flash.setRedirect(true);
-   flash.setKeepMessages(true);
-
 Customize the Global Growl Message for a Task using IFrames
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

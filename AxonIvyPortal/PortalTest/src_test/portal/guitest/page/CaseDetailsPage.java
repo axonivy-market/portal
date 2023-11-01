@@ -112,7 +112,6 @@ public class CaseDetailsPage extends TemplatePage {
         .findElements(By.cssSelector("td.name-column")).size();
   }
 
-  @SuppressWarnings("deprecation")
   public void addNote(String content) {
     onClickHistoryIcon();
     waitAjaxIndicatorDisappear();
@@ -125,7 +124,6 @@ public class CaseDetailsPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
 
-  @SuppressWarnings("deprecation")
   public void showNoteHistory() {
     click(findElementByCssSelector("a[id$='show-more-note-link']"));
   }
@@ -221,19 +219,18 @@ public class CaseDetailsPage extends TemplatePage {
     return new AdditionalCaseDetailsPage();
   }
 
-  public HomePage clickRelatedCaseSubmitLeaveReason(int index) {
+  public NewDashboardPage clickRelatedCaseSubmitLeaveReason(int index) {
     WebElement sideSteps = findElementByCssSelector(String.format("[id$='related-cases-widget:related-cases:%d:action-step-component:side-steps']", index));
     findChildElementByLinkText(sideSteps, "Submit leave reason").click();
-    return new HomePage();
+    return new NewDashboardPage();
   }
 
-  public HomePage clickRelatedCaseUploadAdditionalDocument(int index) {
+  public NewDashboardPage clickRelatedCaseUploadAdditionalDocument(int index) {
     WebElement sideSteps = findElementByCssSelector(String.format("[id$='related-cases-widget:related-cases:%d:action-step-component:side-steps']", index));
     findChildElementByLinkText(sideSteps, "Upload additional data").click();
-    return new HomePage();
+    return new NewDashboardPage();
   }
 
-  @SuppressWarnings("deprecation")
   public String openDoneTask(int index) {
     WebElement showTaskNoteLink = caseItem.findElements(By.cssSelector("a[id$='show-task-note-link']")).get(index);
     String taskName = showTaskNoteLink.getText();
@@ -308,18 +305,15 @@ public class CaseDetailsPage extends TemplatePage {
     return new CaseWidgetPage();
   }
 
-  @SuppressWarnings("deprecation")
   public void onClickHistoryIcon() {
     click(findElementByCssSelector("a[id$=':case-histories:add-note-command']"));
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
-  @SuppressWarnings("deprecation")
   public void onClickDestroyCase() {
     click(findElementByCssSelector("a[id$=':action-group:destroy-case']"));
   }
   
-  @SuppressWarnings("deprecation")
   public void confimDestruction() {
     String destroyCaseDialogSelector = "[id$=':destroy-case-confirmation-dialog']";
     waitForElementDisplayed(By.cssSelector(destroyCaseDialogSelector), true);
@@ -328,7 +322,6 @@ public class CaseDetailsPage extends TemplatePage {
     click(confirmButton);
   }
   
-  @SuppressWarnings("deprecation")
   @Override
   public void waitAjaxIndicatorDisappear() {
     WebElement ajaxIndicatorStartState = findElementById("ajax-indicator:ajax-indicator-ajax-indicator_start");
@@ -347,7 +340,6 @@ public class CaseDetailsPage extends TemplatePage {
     }
   }
 
-  @SuppressWarnings("deprecation")
   public TaskWidgetPage clickShowAllTasks() {
     click(caseItem.findElement(By.cssSelector("a[id$='show-more-related-tasks']")));
     return new TaskWidgetPage();
@@ -390,7 +382,6 @@ public class CaseDetailsPage extends TemplatePage {
     }
   }
   
-  @SuppressWarnings("deprecation")
   public WebElement getDeleteDocumentConfirmDialog() {
     click(findElementByCssSelector("a[id$='delete-file']"));
     waitForElementDisplayed(By.cssSelector("div[id$='document-deletion-dialog']"), true);
@@ -437,7 +428,6 @@ public class CaseDetailsPage extends TemplatePage {
     click(By.cssSelector(".portal-breadcrumb ol li:nth-of-type(2) .ui-menuitem-link"));
   }
   
-  @SuppressWarnings("deprecation")
   public void clickBackButton() {
     click(findElementById("case-item-details:case-details-container:back-to-cases"));
   }
@@ -883,7 +873,6 @@ public class CaseDetailsPage extends TemplatePage {
     }
   }
 
-  @SuppressWarnings("deprecation")
   public void clickOnRelatedCaseCheckbox(boolean checkboxShouldBeChecked) {
     waitForElementDisplayed(By.cssSelector("[id$=':history-container']"), true);
     var relatedCaseCheckbox = findElementByCssSelector("[id$=':case-histories:related-case-checkbox']");
@@ -914,4 +903,13 @@ public class CaseDetailsPage extends TemplatePage {
 	  int taskIndex = IntStream.range(0, taskNames.size()).filter(i -> taskNames.get(i).getText().equals(taskName)).findFirst().getAsInt();
 	  return taskIndex;
   }
+  
+  public WebElement getSharePageButtonElement() {
+    return findElementByCssSelector("[id$=':share-page-button']");
+  }
+
+  public String getCaseUuid() {
+    return findElementByCssSelector("a[id$='show-more-note-link']").getAttribute("href").split("uuid=")[1];
+  }
+
 }

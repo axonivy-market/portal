@@ -1,4 +1,0 @@
-LoadSubMenuItemsData #class
-ch.ivy.addon.portal.generic #namespace
-subMenuItems List<ch.addon.portal.generic.menu.SubMenuItem> #field
-subMenuItems PERSISTENT #fieldModifier

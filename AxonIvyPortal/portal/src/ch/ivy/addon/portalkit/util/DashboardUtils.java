@@ -194,6 +194,19 @@ public class DashboardUtils {
     return null;
   }
 
+  public static List<Dashboard> convertDashboardsFromUploadFileToLastestVersion(InputStream inputStream)
+      throws IOException {
+    new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+    try {
+      ObjectMapper mapper = new ObjectMapper();
+      JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(inputStream));
+      return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), Dashboard.class);
+    } catch (JsonProcessingException e) {
+      Ivy.log().error("Failed to read dashboard from JSON {0}", e);
+    }
+    return null;
+  }
+
   public static Dashboard convertDashboardToLatestVersion(InputStream inputStream) throws IOException {
     new InputStreamReader(inputStream, StandardCharsets.UTF_8);
     try {

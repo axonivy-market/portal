@@ -9,9 +9,9 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.Variable;
-import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.UserProfilePage;
 
@@ -31,8 +31,7 @@ public class TaskDescriptionChangeTest extends BaseTest {
   public void testChangeTaskDescription() {
     login(TestAccount.ADMIN_USER);
     int firstTask = 0;
-    taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.expand();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.openTaskDetails(firstTask);
     testChangeTaskDescription("Hello World!", "Hello World!", taskWidgetPage);
     testChangeTaskDescription(
@@ -51,8 +50,7 @@ public class TaskDescriptionChangeTest extends BaseTest {
   @Test
   public void testUserWithoutPermissionCannotChangeTaskName() {
     int firstTask = 0;
-    taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.expand();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.openTaskDetails(firstTask);
     assertFalse(taskWidgetPage.isTaskNameChangeComponentPresented(firstTask));
   }
@@ -69,8 +67,7 @@ public class TaskDescriptionChangeTest extends BaseTest {
     var taskNameGer = "Antrag auf Mutterschaftsurlaub";
     var taskDescriptionEn = "Hello World! - English";
     var taskDescriptionGer = "Hello World! - German";
-    taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.expand();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy(taskNameEn);
     taskWidgetPage.openTaskDetails(firstTask);
     testChangeTaskDescription(taskDescriptionEn, taskDescriptionEn, taskWidgetPage);
@@ -98,9 +95,7 @@ public class TaskDescriptionChangeTest extends BaseTest {
     UserProfilePage userProfilePage = taskWidgetPage.openMyProfilePage();
     userProfilePage.selectLanguage(index);
     userProfilePage.save();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.expand();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
   }
   
   @After

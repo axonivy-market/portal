@@ -14,6 +14,7 @@ import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
+import com.codeborne.selenide.Condition;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
@@ -28,6 +29,7 @@ public class CaseDetailsTest extends BaseTest {
   private static final String NOTE_BUSINESS_CASE = "Note is added on Business Case";
 
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
+  public static final String CUSTOM_CASE_WIDGET_NAME = "Create Event: Test custom case details";
 
   @Override
   @BeforeEach
@@ -48,6 +50,7 @@ public class CaseDetailsTest extends BaseTest {
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
     caseDetailsPage.getRelatedCasesComponent().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
+    caseDetailsPage.onClickHistoryIcon();
     caseDetailsPage.addNote(NOTE_BUSINESS_CASE);
     caseDetailsPage.getNotesWithContent(NOTE_BUSINESS_CASE).shouldHave(size(1));
     caseDetailsPage.gotoTaskDetailsPageOfRelatedTask(ORDER_PIZZA);
@@ -67,6 +70,7 @@ public class CaseDetailsTest extends BaseTest {
     caseDetailsPage.getRelatedCasesComponent().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
+    caseDetailsPage.onClickHistoryIcon();
     caseDetailsPage.addNote(NOTE_TECHNICAL_CASE);
     caseDetailsPage.getNotesWithContent(NOTE_TECHNICAL_CASE).shouldHave(size(1));
     caseDetailsPage.gotoTaskDetailsPageOfRelatedTask(TAKE_ORDER);
@@ -74,5 +78,29 @@ public class CaseDetailsTest extends BaseTest {
     taskDetailsPage.getNotesWithContent(NOTE_TECHNICAL_CASE).shouldHave(size(1));
     taskDetailsPage.gotoBusinessCase();
     caseDetailsPage.getNotesWithContent(NOTE_TECHNICAL_CASE).shouldHave(size(1));
+  }
+
+  @Test
+  public void testShareCaseDetails() {
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(grantShareLinkCaseDetailsPermission);
+    redirectToNewDashBoard();
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    mainMenuPage.openCaseList();
+    CaseWidgetPage caseWidgetPage = new CaseWidgetPage();
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
+    caseDetailsPage.getRelatedCasesComponent().shouldHave(sizeGreaterThanOrEqual(1));
+    caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
+    caseDetailsPage.getShareButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    caseDetailsPage.getShareDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
+    redirectToRelativeLink(denyShareLinkCaseDetailsPermission);
+    redirectToNewDashBoard();
+    mainMenuPage.openCaseList();
+    caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
+    caseDetailsPage.getRelatedCasesComponent().shouldHave(sizeGreaterThanOrEqual(1));
+    caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
+    caseDetailsPage.getShareButton().shouldBe(Condition.disappear);
   }
 }

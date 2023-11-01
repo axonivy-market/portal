@@ -1,19 +1,21 @@
-# == Custom Fields Information ==
-# 
-# You can define here your project custom fields.
-#
 CustomFields:
   Tasks:
-  #   MyTaskCustomField:
-  #      Label: My task custom field
-  #      Description: This new task custom field can be used to ...
-  #      Type: STRING        
+    HIDE:
+      Label: Hide task custom field
+      Description: Set HIDE to this custom field to mark a task as a hidden task on the Portal
+      Type: STRING
   Cases:
-  #   MyCaseCustomField:
-  #      Label: My case custom field
-  #      Description: This new case custom field can be used to ...
-  #      Type: STRING        
+    HIDE:
+      Label: Hide case custom field
+      Description: Set HIDE to this custom field to mark a case as a hidden task on the Portal
+      Type: STRING
   Starts:
-#   MyStartCustomField:
-#      Label: My start custom field
-#      Description: This new start custom field can be used to ...
+    portalSortIndex:
+      Label: Sort index on the Portal dashboard
+      Description: The predefined sort index for this startable process on the Portal dashboard
+    processImage:
+      Label: Process image
+      Description: Predefined image location for this start
+    isDashboardProcess:
+      Label: Portal Custom widget
+      Description: Set to 'true' to mark this start can be used as a Custom widget on the Portal dashboard

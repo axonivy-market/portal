@@ -10,6 +10,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -18,6 +19,7 @@ import com.codeborne.selenide.ElementsCollection;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
+@IvyWebTest
 public class DashboardTaskWidgetActionTest extends BaseTest {
   static final String DONE = "Done";
   static final String SUSPENDED = "Suspended";
@@ -108,6 +110,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
 
     // In progress for admin user
+    newDashboardPage.waitForGrowlMessageDisappear();
     assertTaskActionsByTaskState(IN_PROGRESS, Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, DESTROY,
         WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
 
@@ -118,6 +121,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.clickCancelTask();
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     // In progress for normal user
+    newDashboardPage.waitForGrowlMessageDisappear();
     assertTaskActionsByTaskState(IN_PROGRESS,
         Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));
   }

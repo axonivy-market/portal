@@ -7,11 +7,14 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.By;
 
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 
 public class TaskWidgetPage extends TemplatePage {
 
@@ -97,6 +100,17 @@ public class TaskWidgetPage extends TemplatePage {
       .shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
+  @SuppressWarnings("deprecation")
+  public TaskTemplatePage clickOnSideStepAction(int taskIndex, int sideStepIndex) {
+    String sideStepsId = String.format(
+        "task-widget:task-list-scroller:%d:task-item:task-action:additional-options:task-additional-actions",
+        taskIndex);
+    SelenideElement sideStepPanel = $("[id$='" + sideStepsId + "']");
+    ElementsCollection sideSteps = sideStepPanel.findAll(By.className("option-item"));
+    sideSteps.get(sideStepIndex).click();
+    return new TaskTemplatePage();
+  }
+  
   private void openTriggerEscalationDialog() {
     $("a[id$='task-trigger-escalation-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("div[id$='escalation-task-confirmation-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
@@ -106,7 +120,35 @@ public class TaskWidgetPage extends TemplatePage {
     openTriggerEscalationDialog();
     $("button[id$='confirm-escalation']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
-  
+
+  public void openTaskDelegationDialog() {
+    $("a[id$='task-delegate-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    WaitHelper.waitNumberOfElementsToBe(WebDriverRunner.getWebDriver(), By.cssSelector("div[id$='task-delegate-dialog']"), 1);
+    $("div[id$='task-delegate-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public boolean isDelegateTypeDisabled(int index) {
+    return getDelegateType(index).getDomAttribute("class").contains("ui-state-disabled");
+  }
+
+  public boolean isDelegateTypeAvailable() {
+    return $("div[id$=':task-delegate-form:activator-panel']").isDisplayed();
+  }
+
+  public String getCannotDelegateText() {
+    return $("div[id$='task-delegate-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$(".ui-dialog-content span").shouldBe(Condition.appear, DEFAULT_TIMEOUT).getText();
+  }
+
+  public SelenideElement getDelegateType(int index) {
+    return $("div[id$=':task-delegate-form:activator-panel']").$$(".ui-radiobutton-box").get(index)
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public boolean isDelegateListSelectionAvailable() {
+    return $("div[id$='select-delegate-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).exists();
+  }
+
   public SelenideElement getTaskState(int taskRowIndex) {
     return $(String.format("[id='task-widget:task-list-scroller:%d:task-item:task-state-component:task-state']",
         taskRowIndex)).shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span");
@@ -132,5 +174,29 @@ public class TaskWidgetPage extends TemplatePage {
 
   public SelenideElement getResponsibleAvatar() {
     return $(".security-member-container > .has-avatar > .ui-avatar").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void waitTillOnlyOneTaskAppear() {
+    WaitHelper.waitNumberOfElementsToBe(WebDriverRunner.getWebDriver(), By.cssSelector("div[id$='task-widget:task-view-container'] ul li"), 1);
+  }
+
+  public SelenideElement getSaveFilterDialog() {
+    $("[id$='task-widget:filter-save-action']").shouldBe(getClickableCondition()).click();
+    $(By.id("task-widget:filter-save-form:save-filter-set-name-input")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("[id$=':save-filter-set-name-input']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $(By.id("task-widget:save-filter-set-dialog")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void closeSaveFilterDialog() {
+    $("a[id^='task-widget:filter-save-form']").shouldBe(getClickableCondition()).click();
+    $(By.id("task-widget:save-filter-set-dialog")).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    waitForAjaxIndicatorDisappeared();
+  }
+  
+  public TaskDetailsPage openTaskDetail(int index) {
+    openTaskWithAccessTaskDetailsBehaviour(index);
+    TaskDetailsPage detailsPage = new TaskDetailsPage();
+    detailsPage.waitPageLoaded();
+    return new TaskDetailsPage();
   }
 }
