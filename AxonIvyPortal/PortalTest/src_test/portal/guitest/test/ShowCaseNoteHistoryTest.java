@@ -9,10 +9,11 @@ import org.junit.Test;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
-import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.NoteHistoryPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
@@ -20,7 +21,7 @@ import portal.guitest.page.TaskWidgetPage;
 public class ShowCaseNoteHistoryTest extends BaseTest {
 
   private CaseDetailsPage detailsPage;
-  private HomePage homePage;
+  private NewDashboardPage newDashboardPage;
   private MainMenuPage mainMenuPage;
   private NoteHistoryPage caseHistoryPage;
   private static final String NOTE_CONTENT = "test";
@@ -32,8 +33,8 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
   public void setup() {
     super.setup();
     redirectToRelativeLink(createTestingTasksUrl);
-    homePage = new HomePage();
-    mainMenuPage = homePage.openMainMenu();
+    newDashboardPage = new NewDashboardPage();
+    mainMenuPage = newDashboardPage.openMainMenu();
   }
 
   @Test
@@ -42,8 +43,9 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
     detailsPage = casePage.openDetailsOfCaseHasName(CASE_NAME);
     String caseName = detailsPage.getCaseName();
     String caseId = detailsPage.getCaseId();
+    String uuid = detailsPage.getCaseUuid();
     detailsPage.addNote(NOTE_CONTENT);
-    goToCaseNoteHistoryPage(caseId);
+    goToCaseNoteHistoryPage(uuid);
 
     caseHistoryPage = new NoteHistoryPage();
     int numberOfNotes = caseHistoryPage.countNotes();
@@ -57,14 +59,16 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
   @Test
   public void testShowCaseNoteHistoryInTask() {
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    CaseWidgetPage caseWidgetPage = NavigationHelper.navigateToCaseList();
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
+    String caseUuid = caseDetailsPage.getCaseUuid();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.openCaseInfo();
     taskTemplatePage.addNewNote(NOTE_CONTENT);
     String caseName = taskTemplatePage.getCaseName();
     getBrowser().getDriver().switchTo().defaultContent();
-    String caseID = taskTemplatePage.getCaseId();
-    goToCaseNoteHistoryPage(caseID);
+    goToCaseNoteHistoryPage(caseUuid);
 
     caseHistoryPage = new NoteHistoryPage();
     int numberOfNotes = caseHistoryPage.countNotes();

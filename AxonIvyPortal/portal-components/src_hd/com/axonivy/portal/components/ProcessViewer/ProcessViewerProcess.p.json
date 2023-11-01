@@ -34,7 +34,7 @@
             "import com.axonivy.portal.components.dto.ProcessViewerDTO;",
             "import com.axonivy.portal.components.util.ProcessViewerUtils;",
             "",
-            "ProcessViewerDTO processViewerDTO = ProcessViewerUtils.initProcessViewer(in.caseId, in.processId);",
+            "ProcessViewerDTO processViewerDTO = ProcessViewerUtils.initProcessViewer(in.taskId, in.caseId, in.processId);",
             "in.webStartable = processViewerDTO.getWebStartable();",
             "in.webLink = processViewerDTO.getWebLink();",
             "in.isError = processViewerDTO.isError();",
@@ -126,17 +126,19 @@
     }, {
       "id" : "f16",
       "type" : "HtmlDialogMethodStart",
-      "name" : "initData(Long,String)",
+      "name" : "initData(Long,Long,String)",
       "config" : {
         "signature" : "initData",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long", "desc" : "" },
-            { "name" : "processId", "type" : "String", "desc" : "" }
+            { "name" : "taskId", "type" : "Long" },
+            { "name" : "caseId", "type" : "Long" },
+            { "name" : "processId", "type" : "String" }
           ],
           "map" : {
             "out.caseId" : "param.caseId",
-            "out.processId" : "param.processId"
+            "out.processId" : "param.processId",
+            "out.taskId" : "param.taskId"
           }
         },
         "guid" : "1820140735F9BD0F"

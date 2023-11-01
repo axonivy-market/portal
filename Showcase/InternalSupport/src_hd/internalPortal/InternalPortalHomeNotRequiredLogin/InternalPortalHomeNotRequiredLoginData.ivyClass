@@ -1,4 +1,0 @@
-InternalPortalHomeNotRequiredLoginData #class
-internalPortal.InternalPortalHomeNotRequiredLogin #namespace
-isNotRequiredLogin Boolean #field
-isNotRequiredLogin PERSISTENT #fieldModifier

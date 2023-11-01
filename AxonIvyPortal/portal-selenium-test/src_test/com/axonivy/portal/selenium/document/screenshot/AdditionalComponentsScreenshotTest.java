@@ -41,7 +41,6 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
   public void captureScreenshotGrowlMessage() throws IOException {
     login(TestAccount.ADMIN_USER);
     updatePortalSetting(Variable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.getKey(), "true");
-    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "false");
     redirectToRelativeLink(createTestingCaseContainOneTask);
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 1500));
 

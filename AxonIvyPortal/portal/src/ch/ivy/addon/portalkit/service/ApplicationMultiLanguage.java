@@ -11,7 +11,6 @@ import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class ApplicationMultiLanguage {
-
   private ApplicationMultiLanguage() {}
 
   public static String getDisplayNameInCurrentLocale(Application application) throws JSONException {

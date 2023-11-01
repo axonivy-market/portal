@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -129,10 +130,6 @@ public class MenuView implements Serializable {
         || !UrlUtils.isIvyUrl(subMenuItem.getLink());
   }
 
-  public boolean isShowLegacyUI() {
-    return HomepageUtils.isShowLegacyUI();
-  }
-
   private DefaultMenuItem buildThirdPartyItem(Application application, int menuIndex) {
     String menuIcon = StringUtils.defaultString(application.getMenuIcon());
     String iconClass = (menuIcon.startsWith("fa") ? "fa " : "si ") + menuIcon;
@@ -156,42 +153,37 @@ public class MenuView implements Serializable {
       dashboardLink = getDefaultDashboardUrl();
     }
 
-    if (!isShowLegacyUI()) {
-      var dashboards = getDashboardCache().dashboards;
-      if (CollectionUtils.isNotEmpty(dashboards)) {
-        DefaultSubMenu dashboardGroupMenu = DefaultSubMenu.builder()
-                .label(dashboardTitle)
-                .icon(PortalMenuItem.DEFAULT_DASHBOARD_ICON)
-                .id(String.format(DASHBOARD_MENU_PATTERN, MenuKind.DASHBOARD.name()))
-                .styleClass(DASHBOARD_MENU_JS_CLASS).build();
-        if (dashboards.size() > 1) {
-          for (var board : dashboards) {
-            if(StringUtils.isBlank(board.getIcon())) {
-              board.setIcon(board.getIsPublic() ? "si-network-share" : "si-single-neutral-shield");  
-            }
-            var iconClass = (board.getIcon().startsWith("fa") ? "fa " : "si ") + board.getIcon();
-            var dashboardMenu = new PortalMenuBuilder(board.getTitle(), MenuKind.DASHBOARD, this.isWorkingOnATask)
-                  .icon(iconClass)
-                  .url(dashboardLink)
-                  .workingTaskId(this.workingTaskId).build();
-            dashboardMenu.setId(String.format(DASHBOARD_MENU_ITEM_PATTERN, board.getId()));
+    var dashboards = getDashboardCache().dashboards;
+    if (CollectionUtils.isNotEmpty(dashboards)) {
+      DefaultSubMenu dashboardGroupMenu =
+          DefaultSubMenu.builder().label(dashboardTitle).icon(PortalMenuItem.DEFAULT_DASHBOARD_ICON)
+              .id(String.format(DASHBOARD_MENU_PATTERN, MenuKind.DASHBOARD.name())).styleClass(DASHBOARD_MENU_JS_CLASS)
+              .build();
+      if (dashboards.size() > 1) {
+        for (var board : dashboards) {
+          if (StringUtils.isBlank(board.getIcon())) {
+            board.setIcon(board.getIsPublic() ? "si-network-share" : "si-single-neutral-shield");
+          }
+          var iconClass = (board.getIcon().startsWith("fa") ? "fa " : "si ") + board.getIcon();
+          var dashboardMenu = new PortalMenuBuilder(board.getTitle(), MenuKind.DASHBOARD, this.isWorkingOnATask)
+              .icon(iconClass).url(dashboardLink).workingTaskId(this.workingTaskId).build();
+          dashboardMenu.setId(String.format(DASHBOARD_MENU_ITEM_PATTERN, board.getId()));
 
-            String defaultTitle = (String) dashboardMenu.getValue();
-            String title = board.getTitles().stream()
-                .filter(name -> StatisticService.equalsLanguageLocale(name, currentLanguage)
-                    && StringUtils.isNotBlank(name.getValue()))
-                .map(DisplayName::getValue).findFirst().orElse(defaultTitle);
-            dashboardMenu.setValue(title);
-            dashboardGroupMenu.getElements().add(dashboardMenu);
-          }
-          if (StringUtils.endsWith(Ivy.request().getRootRequest().getRequestPath(), DASHBOARD_PAGE_URL)) {
-            dashboardGroupMenu.setExpanded(true);
-          }
-          return dashboardGroupMenu;
-        } else {
-          dashboardTitle = dashboards.get(0).getTitle();
-          dashboardId = dashboards.get(0).getId();
+          String defaultTitle = (String) dashboardMenu.getValue();
+          String title = board.getTitles().stream()
+              .filter(name -> StatisticService.equalsLanguageLocale(name, currentLanguage)
+                  && StringUtils.isNotBlank(name.getValue()))
+              .map(DisplayName::getValue).findFirst().orElse(defaultTitle);
+          dashboardMenu.setValue(title);
+          dashboardGroupMenu.getElements().add(dashboardMenu);
         }
+        if (StringUtils.endsWith(Ivy.request().getRootRequest().getRequestPath(), DASHBOARD_PAGE_URL)) {
+          dashboardGroupMenu.setExpanded(true);
+        }
+        return dashboardGroupMenu;
+      } else {
+        dashboardTitle = dashboards.get(0).getTitle();
+        dashboardId = dashboards.get(0).getId();
       }
     }
 
@@ -308,7 +300,7 @@ public class MenuView implements Serializable {
         buildBreadCrumbForEditDashboardDetail();
         break;
       case PROCESS_VIEWER:
-        buildBreadCrumbForProcessViewer(userCase);
+        buildBreadCrumbForProcessViewer(userTask, userCase);
         break;
       case PORTAL_MANAGEMENT:
         setPortalHomeMenuToBreadcrumbModel();
@@ -319,12 +311,17 @@ public class MenuView implements Serializable {
     }
   }
 
-  private void buildBreadCrumbForProcessViewer(ICase userCase) {
+  private void buildBreadCrumbForProcessViewer(ITask userTask, ICase userCase) {
     setPortalHomeMenuToBreadcrumbModel();
     var menuItem = (DefaultMenuItem) buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/Title");
-    if (userCase != null && StringUtils.isNotEmpty(userCase.getProcessStart().getName())) {
-      menuItem.setValue(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/Breadcrumb",
-          Arrays.asList(userCase.getProcessStart().getName())));
+    if (Objects.isNull(userCase) || StringUtils.isBlank(userCase.getProcessStart().getName())) {
+      if (Objects.nonNull(userTask)) {
+        userCase = userTask.getCase();
+      }
+    }
+
+    if (Objects.nonNull(userCase) && StringUtils.isNotEmpty(userCase.getProcessStart().getName())) {
+      menuItem.setValue(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/Breadcrumb", Arrays.asList(userCase.getProcessStart().getName())));
     }
     breadcrumbModel.getElements().add(menuItem);
   }
