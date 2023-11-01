@@ -705,7 +705,9 @@ public class NewDashboardPage extends TemplatePage {
   public ElementsCollection getDashboardCollection() {
     if (!$(".js-layout-wrapper").shouldBe(appear, DEFAULT_TIMEOUT).attr("class").contains("layout-static")) {
       $(".layout-menu-container").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).contextClick();
-      $("a[id$='user-menu-required-login:toggle-menu']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+      $("[id$=':main-navigator:main-menu']").hover();
+      Sleeper.sleep(500);
+      waitForElementClickableThenClick($(By.id("user-menu-required-login:toggle-menu")));
     }
     return $(".layout-menu").shouldBe(appear, DEFAULT_TIMEOUT).$$("li.menu-item-dashboard a.DASHBOARD");
   }

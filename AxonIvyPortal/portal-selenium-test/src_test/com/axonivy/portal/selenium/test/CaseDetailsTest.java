@@ -473,7 +473,7 @@ public class CaseDetailsTest extends BaseTest {
 
   public void setupCaseDetailsWithIFrameURL() throws IOException {
     ConfigurationJsonUtil.updateJSONSetting("custom-case-details-with-url.json", Variable.CASE_DETAIL);
-    detailsPage = goToCaseList().openDetailsOfCaseHasName(CUSTOM_CASE_WIDGET_NAME);
+    WaitHelper.waitForNavigation(() -> detailsPage = goToCaseList().openDetailsOfCaseHasName(CUSTOM_CASE_WIDGET_NAME));
   }
 
   public void setupCaseDetailsWithIFrameProcess() throws IOException {
