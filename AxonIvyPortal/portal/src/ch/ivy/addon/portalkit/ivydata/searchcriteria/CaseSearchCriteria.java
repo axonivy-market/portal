@@ -26,11 +26,6 @@ public class CaseSearchCriteria {
 
   public final static List<CaseState> STANDARD_STATES = Arrays.asList(CREATED, RUNNING);
   public final static List<CaseState> ADVANCE_STATES = Arrays.asList(DONE, DESTROYED);
-  /**
-   * @deprecated not used anymore, will get current login user for query
-   */
-  @Deprecated(since = "9.2", forRemoval = true)
-  private String involvedUsername;
   private List<CaseState> includedStates;
   private String keyword;
   private Long caseId;
@@ -311,24 +306,6 @@ public class CaseSearchCriteria {
 
   public void setCategory(String category) {
     this.category = category;
-  }
-
-  /**
-   * @return String
-   * @deprecated not used anymore, will get current login user for query
-   */
-  @Deprecated(since = "9.2", forRemoval = true)
-  public String getInvolvedUsername() {
-    return involvedUsername;
-  }
-
-  /**
-   * @param involvedUsername 
-   * @deprecated not used anymore, will get current login user for query
-   */
-  @Deprecated(since = "9.2", forRemoval = true)
-  public void setInvolvedUsername(String involvedUsername) {
-    this.involvedUsername = involvedUsername;
   }
 
   public boolean isBusinessCase() {
