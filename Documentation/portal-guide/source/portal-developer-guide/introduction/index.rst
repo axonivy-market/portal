@@ -245,13 +245,6 @@ and :ref:`components-portal-components-role-selection`.
 New & Noteworthy 9.1
 --------------------
 
-Overlay guide
-^^^^^^^^^^^^^
-
-At first login, an introduction will be shown to introduce all main features of Portal.
-
-|overlay-guide|
-
 My profile
 ^^^^^^^^^^
 
@@ -275,7 +268,6 @@ Further improvements
 Filter case by owner in case list and task analysis if case owner is enabled.
 
 
-.. |overlay-guide| image:: ../../screenshots/dashboard/overlay-guide.png
 .. |my-profile| image:: ../../screenshots/my-profile/my-profile.png
 .. |absence| image:: ../../screenshots/settings/absence.png
 .. |login-screen| image:: ../../screenshots/login/login-form.png

@@ -6,11 +6,15 @@ import static com.codeborne.selenide.Condition.editable;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -116,7 +120,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public WelcomeEditWidgetNewDashboardPage editWelcomeWidgetConfiguration(String widgetId) {
-    var configurationPage = openDashboardConfigurationPage();
+    var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
@@ -690,17 +694,12 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public DashboardConfigurationPage openDashboardConfigurationPage() {
-    waitForDashboardPageAvailable();
     if ($("div[id='portal-global-growl_container']").is(appear)) {
         waitForGrowlMessageDisappear();
       }
     SelenideElement configureButton = getConfigureDashboardMenu();
     configureButton.click();
     return new DashboardConfigurationPage();
-  }
-
-  public void waitForDashboardPageAvailable() {
-    $(".js-dashboard__wrapper").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public ElementsCollection getDashboardCollection() {
@@ -840,5 +839,63 @@ public class NewDashboardPage extends TemplatePage {
   public ChatPage openChatDialog() {
     $("[id='toggle-chat-panel-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return new ChatPage();
+  }
+  
+  public SelenideElement getTopBar() {
+    return $("[id='top-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void clickOnGlobalSearch() {
+    $("a[id='global-search-item']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
+
+  public int getNotificationsBadge() {
+    $("[id='topbar-unread-notifications']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id='notifications-badge-value']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    return Integer.parseInt($("[id='notifications-badge-value']").getValue());
+  }
+
+  public WebElement getNotificationsPanel() {
+    waitForGlobalGrowlDisappear();
+    $("[id='topbar-unread-notifications']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return $(".notifications-container-content").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void hideNotificationsPanel() {
+    $("[id='topbar-unread-notifications']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(".notifications-container-content").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public boolean isOnlyUnreadDisplayed(WebElement notificationsPanel) {
+    return $("[id='notifications-only-unread']").shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
+  }
+
+  public void clickOnlyUnreadDisplayed(WebElement notificationsPanel) {
+    $("[id='notifications-only-unread']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public boolean isMarkAllAsReadDisplayed(WebElement notificationsPanel) {
+    return $("[id='notificationMarkAllAsRead']").shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
+  }
+
+  public boolean isTodayGroupLineDisplayed(WebElement notificationsPanel) {
+    return $(".notifications-group-name").shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
+  }
+
+  public void markAsRead(WebElement notificationsPanel, int expectedBadge) {
+    waitForGlobalGrowlDisappear();
+    WebElement item = $(".ui-datascroller-item");
+    item.findElement(By.id("notificationForm:notifications-scroller:0:notificationMarkAsRead")).click();
+    $(By.id("notifications-badge-value")).shouldBe(Condition.exactValue(String.valueOf(expectedBadge)), DEFAULT_TIMEOUT);
+  }
+
+  public int findNumberOfNotificationsItem(WebElement notificationsPanel) {
+    List<SelenideElement> item = $$(".ui-datascroller-item");
+    return item.size();
+  }
+
+  public void markAsAllRead(WebElement notificationsPanel) {
+    $("[id='notificationMarkAllAsRead']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    waitForElementValueChanged("#topbar-unread-notifications", "0");
   }
 }

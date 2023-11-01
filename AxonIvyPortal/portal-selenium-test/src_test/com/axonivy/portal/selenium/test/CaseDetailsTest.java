@@ -29,6 +29,7 @@ public class CaseDetailsTest extends BaseTest {
   private static final String NOTE_BUSINESS_CASE = "Note is added on Business Case";
 
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
+  public static final String CUSTOM_CASE_WIDGET_NAME = "Create Event: Test custom case details";
 
   @Override
   @BeforeEach
@@ -49,6 +50,7 @@ public class CaseDetailsTest extends BaseTest {
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
     caseDetailsPage.getRelatedCasesComponent().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
+    caseDetailsPage.onClickHistoryIcon();
     caseDetailsPage.addNote(NOTE_BUSINESS_CASE);
     caseDetailsPage.getNotesWithContent(NOTE_BUSINESS_CASE).shouldHave(size(1));
     caseDetailsPage.gotoTaskDetailsPageOfRelatedTask(ORDER_PIZZA);
@@ -68,6 +70,7 @@ public class CaseDetailsTest extends BaseTest {
     caseDetailsPage.getRelatedCasesComponent().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
+    caseDetailsPage.onClickHistoryIcon();
     caseDetailsPage.addNote(NOTE_TECHNICAL_CASE);
     caseDetailsPage.getNotesWithContent(NOTE_TECHNICAL_CASE).shouldHave(size(1));
     caseDetailsPage.gotoTaskDetailsPageOfRelatedTask(TAKE_ORDER);

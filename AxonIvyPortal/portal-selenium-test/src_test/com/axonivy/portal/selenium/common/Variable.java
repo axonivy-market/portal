@@ -4,7 +4,6 @@ public enum Variable {
   
   HIDE_LOGOUT_BUTTON("Portal.UserMenu.HideLogoutMenu"),
   HIDE_CHANGE_PASSWORD_BUTTON("Portal.UserMenu.HideChangePasswordMenu"),
-  SHOW_ENVIRONMENT_INFO("Portal.ShowEnvironmentInfo"),
   ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT("Portal.Document.EnableScriptChecking"),
   ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT("Portal.Document.EnableVirusScanner"),
   UPLOAD_DOCUMENT_WHITELIST_EXTENSION("Portal.Document.WhitelistExtension"),
@@ -14,9 +13,7 @@ public enum Variable {
   HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR("Portal.Histories.HideSystemTasksForAdministrator"),
   HIDE_SYSTEM_NOTES_FROM_HISTORY("Portal.Histories.HideSystemNotes"),
   HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR("Portal.Histories.HideSystemNotesForAdministrator"),
-  ENABLE_USER_FAVORITES("Portal.Dashboard.ShowUserFavorites"),
   HIDE_STATISTIC_WIDGET("Portal.Dashboard.HideStatisticWidget"),
-  SHOW_USER_GUIDE("Portal.Dashboard.ShowUserGuide"),
   ENABLE_GROUP_CHAT("Portal.Chat.EnableGroup"),
   ENABLE_PRIVATE_CHAT("Portal.Chat.EnablePrivate"),
   CHAT_RESPONSE_TIMEOUT("Portal.Chat.ResponseTimeout"),
@@ -49,7 +46,6 @@ public enum Variable {
   TASK_ANALYSIS_FILTER("Portal.TaskAnalysisFilters"),
   THIRD_PARTY_APP("Portal.ThirdPartyApplications"),
   STATISTIC_CHART("Portal.StatisticCharts"),
-  FAVORITE_PROCESS("Portal.Dashboard.FavoriteProcesses"),
   EXTERNAL_LINK("Portal.Processes.ExternalLinks"),
   EXPRESS_PROCESS("Portal.Processes.ExpressProcesses"),
   TASK_COLUMN("Portal.Tasks.TaskColumn"),
@@ -65,7 +61,7 @@ public enum Variable {
   DEEPL_AUTH_KEY("Portal.DeepL.AuthKey"),
   ENABLE_DEEPL_TRANSLATION("Portal.DeepL.Enable"),
   DASHBOARD("Portal.Dashboard"),
-  SHOW_LEGACY_UI("Portal.ShowLegacyUI");
+  USER_MENU("Portal.UserMenu");
 
   private String key;
 
