@@ -20,6 +20,7 @@ import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.category.Category;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -164,7 +165,7 @@ public class DashboardProcess implements Process {
   }
 
   private String getActiveDisplayName() {
-    Locale currentLocale = new Locales().getCurrentLocale();
+    Locale currentLocale = Ivy.session().getContentLocale();
     return names.stream().filter(displayName -> displayName.getLocale().equals(currentLocale))
         .map(DisplayName::getValue).findFirst().orElse(this.name);
   }
