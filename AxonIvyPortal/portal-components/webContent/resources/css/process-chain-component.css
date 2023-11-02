@@ -89,12 +89,6 @@
     border-top: 3px dashed var(--process-chain-circle-horizontal-step-number-container-border-top);
   }
 
-
-.icon-horizontal-step-container:not(.last-step) .icon-step-number-container:after {
-    border-top: 3px dashed var(--process-chain-circle-horizontal-step-number-container-border-top) !important;
-  }
-
-
 .circle-horizontal-step-container.last-step .step-number-container:after {
   border-top: 3px dashed var(--process-chain-circle-horizontal-step-number-container-border-top);
 }
