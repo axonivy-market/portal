@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.service.impl.ProcessService;
-import com.axonivy.portal.components.util.IvyExecutor;
 
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
@@ -16,6 +15,7 @@ import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityContext;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
@@ -37,7 +37,7 @@ public final class ProcessStartAPI {
 	 * @return start link which session user can start or empty string
 	 */
 	public static String findStartableLinkByUserFriendlyRequestPath(String friendlyRequestPath) {
-		return IvyExecutor.executeAsSystem(() -> {
+		return Sudo.get(() -> {
 			List<IApplication> applicationsInSecurityContext = IApplicationRepository.instance()
 					.allOf(ISecurityContext.current());
 			for (IApplication app : applicationsInSecurityContext) {
@@ -89,7 +89,7 @@ public final class ProcessStartAPI {
 	}
 
 	private static IProcessStart findProcessStartByUserFriendlyRequestPath(String requestPath) {
-		return IvyExecutor.executeAsSystem(() -> {
+		return Sudo.get(() -> {
 			IProcessStart processStart = getProcessStart(requestPath, Ivy.request().getProcessModelVersion());
 			if (processStart != null) {
 				return processStart;

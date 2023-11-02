@@ -204,7 +204,12 @@
             "Overview"
           ],
           "config" : {
-            "dialog" : "com.axonivy.portal.userexamples.leaverequest.LeaveRequestOverview:start()",
+            "dialog" : "com.axonivy.portal.userexamples.leaverequest.LeaveRequestOverview:start(ch.ivy.addon.portalkit.configuration.UserProcess)",
+            "call" : {
+              "map" : {
+                "param.userProcess" : "in.process"
+              }
+            },
             "output" : {
               "map" : {
                 "out" : "in",
