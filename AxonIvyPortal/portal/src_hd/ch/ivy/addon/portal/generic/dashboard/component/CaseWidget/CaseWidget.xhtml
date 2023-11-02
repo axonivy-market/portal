@@ -127,9 +127,11 @@
   </div>
   <script type="text/javascript">
       function liveScroll() {
-        PF('dashboard-cases-#{caseWidget.id}').scrollOffset = 0;
-        PF('dashboard-cases-#{caseWidget.id}').scrollBody.scrollTop(1);
-        PF('dashboard-cases-#{caseWidget.id}').allLoadedLiveScroll = false;
+        if (PF('dashboard-cases-#{caseWidget.id}') != null) {
+          PF('dashboard-cases-#{caseWidget.id}').scrollOffset = 0;
+          PF('dashboard-cases-#{caseWidget.id}').scrollBody.scrollTop(1);
+          PF('dashboard-cases-#{caseWidget.id}').allLoadedLiveScroll = false;
+        }
       }
 
     </script>

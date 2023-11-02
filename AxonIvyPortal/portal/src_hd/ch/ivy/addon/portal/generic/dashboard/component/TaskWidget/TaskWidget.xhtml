@@ -151,9 +151,11 @@
   </ui:decorate>
   <script type="text/javascript">
       function liveScroll() {
-        PF('dashboard-tasks-#{taskWidget.id}').scrollOffset = 0;
-        PF('dashboard-tasks-#{taskWidget.id}').scrollBody.scrollTop(1);
-        PF('dashboard-tasks-#{taskWidget.id}').allLoadedLiveScroll = false;
+        if (PF('dashboard-tasks-#{taskWidget.id}') != null) {
+          PF('dashboard-tasks-#{taskWidget.id}').scrollOffset = 0;
+          PF('dashboard-tasks-#{taskWidget.id}').scrollBody.scrollTop(1);
+          PF('dashboard-tasks-#{taskWidget.id}').allLoadedLiveScroll = false;
+        }
       }
     </script>
 </cc:implementation>

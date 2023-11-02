@@ -30,10 +30,17 @@
       </p:selectOneMenu>
     </div>
 
-    <h:panelGroup layout="block" rendered="#{filter.isDate()}">
+    <h:panelGroup layout="block" rendered="#{filter.isDate() and !filter.isCreatedDate()}">
       <ic:com.axonivy.portal.dashboard.component.filter.DateFilter filter="#{filter}"
         componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
-        readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
+        readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"
+        operators="" />
+    </h:panelGroup>
+
+    <h:panelGroup layout="block" rendered="#{filter.isDate() and filter.isCreatedDate()}">
+      <ic:com.axonivy.portal.dashboard.component.filter.CreatedDateFilter filter="#{filter}"
+        componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+        readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"/>
     </h:panelGroup>
 
     <h:panelGroup layout="block" rendered="#{filter.isText()}">

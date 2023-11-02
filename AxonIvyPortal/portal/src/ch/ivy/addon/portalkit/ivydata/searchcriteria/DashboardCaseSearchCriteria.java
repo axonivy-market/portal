@@ -27,6 +27,7 @@ import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateAft
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateBeforeOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateBetweenOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateCurrentPeriodOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateEmptyOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateIsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateNumberOfPeriodsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateTodayOperatorHandler;
@@ -146,6 +147,8 @@ public class DashboardCaseSearchCriteria {
       case NEXT -> FinishedDateNumberOfPeriodsOperatorHandler.getInstance().buildNextPeriodQuery(filter);
       case IS -> FinishedDateIsOperatorHandler.getInstance().buildIsQuery(filter);
       case IS_NOT -> FinishedDateIsOperatorHandler.getInstance().buildIsNotQuery(filter);
+      case EMPTY -> FinishedDateEmptyOperatorHandler.getInstance().buildEmptyQuery();
+      case NOT_EMPTY -> FinishedDateEmptyOperatorHandler.getInstance().buildNotEmptyQuery();
       default -> null;
     };
   }
