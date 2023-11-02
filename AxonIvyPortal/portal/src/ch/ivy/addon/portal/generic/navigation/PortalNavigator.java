@@ -222,12 +222,6 @@ public final class PortalNavigator extends BaseNavigator{
     return buildUrlByKeyword("CaseDetailsPage.ivp", PORTAL_CASE_DETAILS, params);
   }
 
-//  public static String buildPortalCaseDetailInFrameUrl(Long caseId, IProcessModelVersion processModelVersion) {
-//    Map<String, String> params = new HashMap<>();
-//    params.put("caseId", String.valueOf(caseId));
-//    return buildUrlByKeywordInPMV(PORTAL_CASE_DETAILS_IN_IFRAME_START, processModelVersion, PORTAL_CASE_DETAILS_IN_FRAME, params);
-//  }
-
   public static String buildPortalCaseDetailInFrameUrl(Long caseId) {
     Map<String, String> params = new HashMap<>();
     params.put("caseId", String.valueOf(caseId));
@@ -251,11 +245,6 @@ public final class PortalNavigator extends BaseNavigator{
     return buildUrl(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, defaultFriendlyRequestPath), param);
   }
   
-//  public static String buildUrlByKeywordInPMV(String keyword, IProcessModelVersion processModelVersion ,String defaultFriendlyRequestPath, Map<String, String> param) {
-//    String customizePortalFriendlyRequestPath = ProcessStartUtils.findFriendlyRequestPathContainsKeywordInPMV(keyword, processModelVersion);
-//    return buildUrl(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, defaultFriendlyRequestPath), param);
-//  }
-
   private static String buildUrl(String friendlyRequestPath, Map<String, String> params) {
     String requestPath = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(friendlyRequestPath);
     if (StringUtils.isEmpty(requestPath)) {
