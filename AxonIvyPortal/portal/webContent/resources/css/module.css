@@ -6008,3 +6008,33 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
     max-width: 95%;
   }	 
 }
+
+/* =================== SKELETON ====================== */
+.process-widget-loading-description {
+  height: 10rem;
+}
+
+.process-widget-loading-button {
+  display: flex;
+  justify-content: center;
+}
+
+.combined-mode-left-container {
+  height: 100%;
+}
+
+.combined-mode-left-button {
+  display: flex;
+  justify-content: center;
+}
+
+.combined-mode-right-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.combined-mode-loading-container {
+  overflow: hidden;
+}
