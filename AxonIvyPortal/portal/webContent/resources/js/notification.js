@@ -1,8 +1,11 @@
 function openNotificationPanel() {
-    $('#notifications-panel').addClass('active')
+    $('#notifications-panel').addClass('active');    
     let right = document.getElementById("notifications-panel").style.right;
     if (right !== '-420px') {
         document.getElementById("notifications-panel").style.right = "0";
+    }
+    if ($('input#notifications-only-unread_input').attr('aria-checked')==='true') {
+      $('input#notifications-only-unread_input').click();
     }
 }
 
