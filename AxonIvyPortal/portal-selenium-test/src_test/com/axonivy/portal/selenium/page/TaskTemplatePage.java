@@ -111,4 +111,7 @@ public class TaskTemplatePage extends TemplatePage {
     return getTextOfCurrentBreadcrumb().replace("Task: ", "");
   }
 
+  public void clickCancelLink() {
+    waitForElementClickableThenClick($(By.linkText("Cancel")));
+  }
 }

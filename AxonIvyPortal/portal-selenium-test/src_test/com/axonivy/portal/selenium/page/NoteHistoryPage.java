@@ -9,6 +9,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -58,7 +59,8 @@ public class NoteHistoryPage extends TemplatePage {
   }
 
   public List<String> getNoteAuthors() {
-    List<SelenideElement> noteAuthorElements = $$("td.note-history-fullname-column .name-after-avatar");
+    List<SelenideElement> noteAuthorElements = $$("td.note-history-fullname-column .name-after-avatar")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT);
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
 

@@ -15,6 +15,7 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.Sleeper;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -63,7 +64,8 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void openActionPanel() {
-    $("[id$=':additional-options:task-detail-more-step']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("[id$=':additional-options:task-detail-more-step']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
+        .click();
     $("[id$=':additional-options:side-steps-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
@@ -82,11 +84,13 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public SelenideElement getStateOfTask() {
-    return $("[id$=':general-information:task-detail-state']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("i[class*='task-state']").closest("span");
+    return $("[id$=':general-information:task-detail-state']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("i[class*='task-state']")
+        .closest("span");
   }
 
   public void back() {
-    $("[id$=':task-detail-title-form:back-to-previous-page']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("[id$=':task-detail-title-form:back-to-previous-page']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
+        .click();
   }
 
   public SelenideElement getResponsibleAvatar() {
@@ -112,7 +116,8 @@ public class TaskDetailsPage extends TemplatePage {
   public List<String> getActiveTaskAction() {
     openActionPanel();
     WebElement actionPanel = findElementByCssSelector("div[id$=':additional-options:side-steps-panel']");
-    return actionPanel.findElements(By.cssSelector("a[class*='option-item']")).stream().map(WebElement::getText).collect(Collectors.toList());
+    return actionPanel.findElements(By.cssSelector("a[class*='option-item']")).stream().map(WebElement::getText)
+        .collect(Collectors.toList());
   }
 
   public boolean isAddNoteButtonDisplayed(boolean expected) {
@@ -136,8 +141,10 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void clickOnSwitchToEditModeButton() {
-    $(By.cssSelector("[id$=':switch-to-edit-mode-button']")).shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("[id$='task-details-information-panel']").shouldBe(Condition.visible, DEFAULT_TIMEOUT).shouldHave(Condition.attribute(CLASS_PROPERTY, "grid-stack-item ui-draggable ui-resizable ui-resizable-autohide"));
+    $(By.cssSelector("[id$=':switch-to-edit-mode-button']")).shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
+        .click();
+    $("[id$='task-details-information-panel']").shouldBe(Condition.visible, DEFAULT_TIMEOUT)
+        .shouldHave(Condition.attribute(CLASS_PROPERTY, "grid-stack-item ui-draggable ui-resizable ui-resizable-autohide"));
   }
 
   public void waitForSwitchToViewModeButtonDisplayed() {
@@ -146,7 +153,8 @@ public class TaskDetailsPage extends TemplatePage {
 
   public void drapAndDropWidgets(String sourceName, String destinationName) {
     SelenideElement sourceElement = $(String.format("[id$=':task-detail-%s-container']", sourceName)).shouldBe(appear, DEFAULT_TIMEOUT);
-    SelenideElement destinationElement = $(By.cssSelector(String.format("[id$=':task-detail-%s-container']", destinationName))).shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement destinationElement = $(By.cssSelector(String.format("[id$=':task-detail-%s-container']", destinationName)))
+        .shouldBe(appear, DEFAULT_TIMEOUT);
     Actions actions = new Actions(WebDriverRunner.getWebDriver());
     Action moveWidget = actions.dragAndDrop(sourceElement, destinationElement).build();
     moveWidget.perform();
@@ -271,4 +279,25 @@ public class TaskDetailsPage extends TemplatePage {
   public String getTaskUuid() {
     return $("a[id$='show-more-note-link']").getAttribute("href").split("uuid=")[1];
   }
+
+  public List<String> getTaskNoteAuthors() {
+    List<SelenideElement> noteAuthorElements = $$("td.task-document-author .name-after-avatar")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT);
+    return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
+  }
+
+  public void clickBackButton() {
+    waitForElementClickableThenClick($("[id$=':task-detail-title-form:back-to-previous-page']"));
+  }
+
+  public TaskWidgetPage goBackToTaskListFromTaskDetails() {
+    clickBackButton();
+    return new TaskWidgetPage();
+  }
+
+  public TaskTemplatePage clickStartTask() {
+    findElementByCssSelector("[id$=':task-detail-start-command']").click();
+    return new TaskTemplatePage();
+  }
+
 }

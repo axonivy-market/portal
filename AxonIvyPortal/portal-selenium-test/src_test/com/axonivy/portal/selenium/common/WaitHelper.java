@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.common;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.refresh;
 
 import java.time.Duration;
 import java.util.function.Supplier;
@@ -48,6 +49,30 @@ public final class WaitHelper {
 
   public static void waitAttributeContains(WebDriver dirver, By selector, String attribute, String value) {
     wait(dirver).until(ExpectedConditions.attributeContains(selector, attribute, value));
+  }
+
+  public static void assertTrueWithRefreshPage(Supplier<Boolean> supplier) {
+    wait(WebDriverRunner.getWebDriver()).until((driver) -> {
+      try {
+        boolean result = supplier.get();
+        if (!result) {
+          Sleeper.sleep(1000); // Wait for latest data
+          result = supplier.get();
+          if (!result) {
+            waitForNavigation(() -> refresh());
+          }
+        }
+        return supplier.get();
+      } catch (Exception e) {
+        Sleeper.sleep(1000);
+        try {
+          supplier.get();
+        } catch (Exception e1) {
+          waitForNavigation(() -> refresh());
+        }
+      }
+      return false;
+    });
   }
 
   public static WebDriverWait wait(WebDriver driver) {
