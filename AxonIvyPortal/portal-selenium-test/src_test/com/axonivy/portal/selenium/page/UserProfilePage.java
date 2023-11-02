@@ -18,8 +18,7 @@ public class UserProfilePage extends TemplatePage {
   private static final String CASE_SORT_FIELD_SELECTION_LABEL = "my-profile-form:case-sort-field-selection_label";
   private static final String CASE_SORT_FIELD_SELECTION = "my-profile-form:case-sort-field-selection";
   public static final String TASK_SORT_DIRECTION_SELECTION_ITEMS = "my-profile-form:task-sort-direction-selection_items";
-  private static String MAIL_NOTI_ON_TASK_ASSIGNMENT_SELECTOR = "div[id$=':mail-notification-on-task-assign']";
-  private static String FURTHER_EMAIL_FROM_APP_SELECTOR = "div[id$=':further-mails-from-application']";
+  private static String NOTI_CHANNELS_CHECKBOX_SELECTOR = "div[id$=':notification-Channels-Table'] div.ui-chkbox-box";
 
   @Override
   protected String getLoadedLocator() {
@@ -80,18 +79,15 @@ public class UserProfilePage extends TemplatePage {
     return $("[id='my-profile-container']");
   }
 
-  public void switchOnEmailOnTaskAssignmentSetting() {
-    switchOnSetting(MAIL_NOTI_ON_TASK_ASSIGNMENT_SELECTOR);
+  public void checkBoxTosubscribeChannel() {
+    checkIntoCheckbox(NOTI_CHANNELS_CHECKBOX_SELECTOR);
   }
 
-  private void switchOnSetting(String cssSelector) {
+  private void checkIntoCheckbox(String cssSelector) {
     SelenideElement inputSwitch = $(cssSelector).shouldBe(appear, DEFAULT_TIMEOUT);
-    if (!inputSwitch.getAttribute("class").contains("ui-inputswitch-checked")) {
+    if (inputSwitch.getAttribute("class").contains("ui-chkbox-box")) {
       $(inputSwitch).click();
     }
   }
 
-  public void switchOnFurtherEmailFromAppSetting() {
-    switchOnSetting(FURTHER_EMAIL_FROM_APP_SELECTOR);
-  }
 }
