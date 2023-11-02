@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.TaskWidgetPage;
@@ -89,7 +90,7 @@ public class CaseMapTest extends BaseTest {
     Assert.assertEquals("Fail", caseMapPage.getInternalCreditComment());
     caseMapPage.clickRejectButton();
     taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy(APPROVAL_LEVEL_2, 0);
+    taskWidgetPage.filterTasksInExpandedModeBy(APPROVAL_LEVEL_2, 0);
     Assert.assertEquals(0, taskWidgetPage.countTasks());
   }
 
@@ -118,8 +119,8 @@ public class CaseMapTest extends BaseTest {
   }
 
   private void startTaskByTaskName(String taskname) {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy(taskname);
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    taskWidgetPage.filterTasksInExpandedModeBy(taskname);
     taskWidgetPage.startTask(0);
   }
 }

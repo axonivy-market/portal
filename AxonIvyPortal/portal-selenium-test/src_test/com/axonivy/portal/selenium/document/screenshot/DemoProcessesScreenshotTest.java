@@ -10,7 +10,6 @@ import org.openqa.selenium.Dimension;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtil;
-import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseMapPage;
 import com.axonivy.portal.selenium.page.ExampleOverviewPage;
 import com.axonivy.portal.selenium.page.LeaveRequestPage;
@@ -79,7 +78,6 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
   
   @Test
   public void screenshotCaseMapProcess() throws IOException {
-    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "false");
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 900));
     redirectToRelativeLinkWithEmbedInFrame(CASE_MAP_URL);
     CaseMapPage caseMapPage = new CaseMapPage();

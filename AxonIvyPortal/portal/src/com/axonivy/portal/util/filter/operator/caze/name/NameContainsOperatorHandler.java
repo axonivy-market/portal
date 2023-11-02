@@ -3,11 +3,10 @@ package com.axonivy.portal.util.filter.operator.caze.name;
 import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.util.filter.operator.AbstractFilterOperatorHandler;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-public class NameContainsOperatorHandler extends AbstractFilterOperatorHandler {
+public class NameContainsOperatorHandler {
 
   private static final String LIKE_FORMAT = "%%%s%%";
 
@@ -27,7 +26,7 @@ public class NameContainsOperatorHandler extends AbstractFilterOperatorHandler {
     CaseQuery query = CaseQuery.create();
     filter.getTexts().forEach(text -> {
       CaseQuery subQuery = CaseQuery.create();
-      subQuery.where().name().isLike(String.format(LIKE_FORMAT, text.toLowerCase()));
+      subQuery.where().name().isLikeIgnoreCase(String.format(LIKE_FORMAT, text.toLowerCase()));
       query.where().or(subQuery);
     });
     return query;
@@ -40,8 +39,8 @@ public class NameContainsOperatorHandler extends AbstractFilterOperatorHandler {
     CaseQuery query = CaseQuery.create();
     filter.getTexts().forEach(text -> {
       CaseQuery subQuery = CaseQuery.create();
-      subQuery.where().name().isNotLike(String.format(LIKE_FORMAT, text.toLowerCase()));
-      query.where().or(subQuery);
+      subQuery.where().name().isNotLikeIgnoreCase(String.format(LIKE_FORMAT, text.toLowerCase()));
+      query.where().and(subQuery);
     });
     return query;
   }

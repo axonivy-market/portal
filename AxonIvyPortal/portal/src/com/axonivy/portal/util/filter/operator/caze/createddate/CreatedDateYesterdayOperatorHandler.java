@@ -3,11 +3,10 @@ package com.axonivy.portal.util.filter.operator.caze.createddate;
 import java.util.Date;
 
 import com.axonivy.portal.util.PortalDateUtils;
-import com.axonivy.portal.util.filter.operator.AbstractFilterOperatorHandler;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-public class CreatedDateYesterdayOperatorHandler extends AbstractFilterOperatorHandler {
+public class CreatedDateYesterdayOperatorHandler {
   private static CreatedDateYesterdayOperatorHandler instance;
 
   public static CreatedDateYesterdayOperatorHandler getInstance() {

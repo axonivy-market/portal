@@ -4,11 +4,10 @@ import java.util.Date;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.PortalDateUtils;
-import com.axonivy.portal.util.filter.operator.AbstractFilterOperatorHandler;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-public class CreatedDateBetweenOperatorHandler extends AbstractFilterOperatorHandler {
+public class CreatedDateBetweenOperatorHandler {
 
   private static CreatedDateBetweenOperatorHandler instance;
 
