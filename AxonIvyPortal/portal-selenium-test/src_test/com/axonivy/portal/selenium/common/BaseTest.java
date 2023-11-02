@@ -47,6 +47,7 @@ public class BaseTest {
     this.browser = browser;
   }
 
+  protected String simplePaymentUrl = "portal-developer-examples/162511D2577DBA88/simplePayment.ivp";
   protected String createTaskWithIframe = "portal-developer-examples/16E5DB746865BCEC/CreateInvestment.ivp";
   protected String processViewerPermissionExampleUrl = "portal-developer-examples/183C12775FE2BAB8/start.ivp";
   protected String testProcessViewerPermissionUrl = "portalKitTestHelper/153CACC26D0D4C3D/testProcessViewerPermission.ivp";

@@ -70,7 +70,8 @@ public class SystemNoteVisibilityTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     
     TaskDetailsPage taskDetailsPage = openTaskDetails();
-    List<String> taskNoteAuthors = taskDetailsPage.getTaskNoteAuthors();
+    taskDetailsPage.waitPageLoaded();
+    List<String> taskNoteAuthors = taskDetailsPage.getTaskNoteHasAuthors();
     assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));
     String taskUuid = taskDetailsPage.getTaskUuid();
     NoteHistoryPage taskNoteHistoryPage = openTaskNoteHistory(taskUuid);
@@ -104,7 +105,8 @@ public class SystemNoteVisibilityTest extends BaseTest {
     taskDetailsPage = openTaskDetails();
     taskNoteHistoryPage.clickOnCheckboxShowSystemNotes();
     taskNoteHistoryPage.waitForNoteTableDisplayed();
-    taskNoteAuthors = taskDetailsPage.getTaskNoteAuthors();
+    taskDetailsPage.waitPageLoaded();
+    taskNoteAuthors = taskDetailsPage.getTaskNoteHasAuthors();
     assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));
     taskUuid = taskDetailsPage.getTaskUuid();
     taskNoteHistoryPage = openTaskNoteHistory(taskUuid);

@@ -111,4 +111,8 @@ public final class WaitHelper {
       return input.getAttribute("value").equals(value);
     });
   }
+
+  public static void waitForPresenceOfElementLocatedInFrame(String cssSelector) {
+    wait(WebDriverRunner.getWebDriver()).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(cssSelector)));
+  }
 }
