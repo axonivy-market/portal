@@ -8,9 +8,17 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start()",
+      "name" : "start(UserProcess)",
       "config" : {
         "signature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "userProcess", "type" : "ch.ivy.addon.portalkit.configuration.UserProcess", "desc" : "" }
+          ],
+          "map" : {
+            "out.userProcess" : "param.userProcess"
+          }
+        },
         "result" : {
           "params" : [
             { "name" : "state", "type" : "com.axonivy.portal.userexamples.enums.RequestState", "desc" : "" }
