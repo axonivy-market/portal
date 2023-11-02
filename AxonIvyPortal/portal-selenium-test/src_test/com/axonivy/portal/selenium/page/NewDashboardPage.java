@@ -702,7 +702,7 @@ public class NewDashboardPage extends TemplatePage {
       waitForGrowlMessageDisappear();
     }
     waitPageLoaded();
-    WaitHelper.waitForNavigation(() -> getConfigureDashboardMenu().click());
+    WaitHelper.waitForNavigation(() -> clickByJavaScript(getConfigureDashboardMenu()));
     return new DashboardConfigurationPage();
   }
 
