@@ -9,6 +9,7 @@ import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
+import com.axonivy.portal.components.util.ProcessStartUtils;
 
 import ch.addon.portal.generic.menu.PortalMenuNavigator;
 import ch.addon.portal.generic.menu.SubMenuItem;
@@ -18,7 +19,6 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 

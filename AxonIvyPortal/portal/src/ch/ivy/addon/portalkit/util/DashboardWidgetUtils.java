@@ -63,7 +63,6 @@ import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.ReleaseState;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -606,7 +605,7 @@ public class DashboardWidgetUtils {
           processWidget.setProcess(process);
         }
       } else if (expressProcess != null) {
-        IProcessStart findExpressCreationProcess = ProcessStartCollector.getInstance().findExpressCreationProcess();
+        IProcessStart findExpressCreationProcess = ExpressProcessService.getInstance().findExpressCreationProcess();
         if (findExpressCreationProcess == null || 
             findExpressCreationProcess.getProcessModelVersion().getActivityState() != ActivityState.ACTIVE || 
             findExpressCreationProcess.getProcessModelVersion().getReleaseState() != ReleaseState.RELEASED) {

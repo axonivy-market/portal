@@ -8,7 +8,7 @@ pipeline {
   triggers {
     cron('0 20 * * *')
   }
-
+  
   tools {
     maven '3.8'
     jdk '17'
