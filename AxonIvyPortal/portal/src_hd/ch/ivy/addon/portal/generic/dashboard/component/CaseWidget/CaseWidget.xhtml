@@ -22,7 +22,12 @@
     oncomplete="loadWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); PF('dashboard-cases-#{caseWidget.id}').init(PF('dashboard-cases-#{caseWidget.id}').cfg); #{cc.attrs.onCompleteLoadWidget}" />
 
   <div class="ui-g">
-    <h:outputText id="loading" styleClass="js-loading-#{caseWidget.id} case-dashboard-widget__loading-message" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
+    <h:panelGroup layout="block"
+      styleClass="js-loading-#{caseWidget.id} case-dashboard-widget__loading-message ui-g-12">
+      <ui:repeat var="task" value="#{caseWidget.loadingItems()}">
+        <p:skeleton styleClass="MarTop20" height="4rem" />
+      </ui:repeat>
+    </h:panelGroup>
 
     <h:panelGroup id="dashboard-cases-container" layout="block"
       styleClass="ui-g-12 u-padding-0 js-dashboard-cases-container-#{caseWidget.id} u-display-none dashboard-cases-container">
