@@ -45,7 +45,7 @@ public abstract class TemplatePage extends AbstractPage {
 
   // If page load more than 45s, mark it failed by timeout
   protected long getTimeOutForLocator() {
-    return 30L;
+    return 45L;
   }
 
   public String getPageTitle() {

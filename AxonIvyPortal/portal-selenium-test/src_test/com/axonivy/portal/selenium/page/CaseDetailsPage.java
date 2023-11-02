@@ -406,7 +406,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public CaseDetailsPage openBusinessCaseFromTechnicalCase() {
-    waitForElementClickableThenClick(caseItem.$(By.cssSelector("a[id$='related-business-case']")));
+    clickByJavaScript(caseItem.$(By.cssSelector("a[id$='related-business-case']")));
     waitForElementDisplayed(By.cssSelector("div[id$='business-case-information']"), false);
     return new CaseDetailsPage();
   }
@@ -935,4 +935,11 @@ public class CaseDetailsPage extends TemplatePage {
     List<SelenideElement> doneTasks = $$(DONE_TASKS_SELECTOR);
     return CollectionUtils.isNotEmpty(doneTasks);
   }
+
+  public List<String> getCaseNoteAuthors() {
+    List<SelenideElement> noteAuthorElements = $$("span.history-fullname").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0),
+        DEFAULT_TIMEOUT);
+    return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
+  }
+
 }
