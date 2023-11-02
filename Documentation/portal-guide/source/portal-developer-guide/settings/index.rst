@@ -484,6 +484,8 @@ Data model:
 
 -  ``position``: position index of chart. Used to order the charts in the UI
 
+.. _portal-process-external-link:
+
 Portal Processes External Links
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The standard external links of the Portal are defined in the following file:

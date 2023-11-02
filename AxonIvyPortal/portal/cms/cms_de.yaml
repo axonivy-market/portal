@@ -148,7 +148,6 @@ ch.ivy.addon.portalkit.ui.jsf:
   MyProfile:
     CaseList: Liste der Fälle
     DateFormat: Datum Format
-    Email: E-Mail
     FormattingLanguage: Sprache der Formatierung
     General: Allgemeine
     Homepage: Homepage
@@ -157,8 +156,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     SortFieldSelections:
       defaultSortFieldLabel: Standard-Sortierfeld
     TaskList: Aufgabenliste
+    byDefault: '  standardmäßig'
     defaultOption: Standard ({0})
     defaultViewMode: Standardanzeige
+    event: Veranstaltung
+    notSubscribed: Nicht abonniert
+    notificationChannels: Benachrichtigungskanäle
+    notificationChannelsReset: Benachrichtigungskanäle zurücksetzen
+    subscribed: abonniert
   PortalManagement:
     AdminSetting: Administration
   ProcessViewer:
