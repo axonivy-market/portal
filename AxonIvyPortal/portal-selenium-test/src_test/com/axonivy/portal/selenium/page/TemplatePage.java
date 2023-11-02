@@ -458,4 +458,7 @@ public abstract class TemplatePage extends AbstractPage {
     new WebDriverWait(WebDriverRunner.getWebDriver(), Duration.ofSeconds(30)).until(ExpectedConditions.numberOfWindowsToBe(2));
   }
 
+  public TaskWidgetPage openTaskList() {
+    return openMainMenu().selectTaskMenu();
+  }
 }

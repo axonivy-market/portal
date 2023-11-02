@@ -578,4 +578,33 @@ public class TaskWidgetPage extends TemplatePage {
         By.id(String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-name-edit-form:task-name-input", index)));
   }
 
+  public boolean isTaskPriorityChangeComponentPresented(int index) {
+    return isElementPresent(
+        By.id(String.format(taskWidgetId + ":task-list-scroller:%d:task-item:general-info:priority-form:edit-priority-inplace", index)));
+  }
+
+  public TaskTemplatePage startTaskWithouWaitForTaskActionPresent(int index) {
+    waitTaskAppearThenClick(index);
+    return new TaskTemplatePage();
+  }
+
+  public boolean isTaskStateOpen(int index) {
+    try {
+      SelenideElement stateComponent = findElementById(String.format(TASK_STATE_COMPONENT_ID, index));
+      stateComponent.findElement(By.className("open-task-state"));
+    } catch (NoSuchElementException e) {
+      return false;
+    }
+    return true;
+  }
+
+  public boolean isCategoryColumnDisplayed() {
+    List<SelenideElement> taskCategoryCells = $$("span[id$=':task-category-cell']");
+    for (SelenideElement categoryCell : taskCategoryCells) {
+      if (categoryCell.isDisplayed()) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

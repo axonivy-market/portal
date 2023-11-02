@@ -10,10 +10,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
+import com.axonivy.portal.selenium.common.ScreenshotUtil;
 import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -280,6 +282,13 @@ public class TaskDetailsPage extends TemplatePage {
     return $("a[id$='show-more-note-link']").getAttribute("href").split("uuid=")[1];
   }
 
+  public List<String> getTaskNoteHasAuthors() {
+    ScreenshotUtil.resizeBrowser(new Dimension(2560, 1600));
+    List<SelenideElement> noteAuthorElements = $$("td.task-document-author .name-after-avatar")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0));
+    return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
+  }
+
   public List<String> getTaskNoteAuthors() {
     List<SelenideElement> noteAuthorElements = $$("td.task-document-author .name-after-avatar")
         .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT);
@@ -300,4 +309,21 @@ public class TaskDetailsPage extends TemplatePage {
     return new TaskTemplatePage();
   }
 
+  public void changePriorityOfTask(int priorityValue) {
+    findElementByCssSelector("[id$=':general-information:priority-form:edit-priority-inplace_display']").click();
+    waitForElementDisplayed(By.cssSelector("[id$=':general-information:priority-form:priority-select-menu_label']"), true);
+    findElementByCssSelector("[id$=':general-information:priority-form:priority-select-menu_label']").click();
+    SelenideElement prioritySelectElement = findElementByCssSelector(
+        String.format("[id$=':general-information:priority-form:priority-select-menu_%d']", priorityValue));
+    waitForElementDisplayed(prioritySelectElement, true);
+    prioritySelectElement.click();
+    clickByJavaScript($("[id$=':general-information:priority-form:edit-priority-inplace_editor'] .ui-inplace-save"));
+    waitForElementDisplayed(By.cssSelector("[id$=':general-information:priority-form:edit-priority-inplace_editor'] .ui-inplace-save"),
+        false);
+  }
+
+  public String getTaskNameInDialog() {
+    waitForElementDisplayed(By.cssSelector("span.ui-state-disabled span.ui-menuitem-text"), true);
+    return findElementByCssSelector("span.ui-state-disabled span.ui-menuitem-text").getText();
+  }
 }
