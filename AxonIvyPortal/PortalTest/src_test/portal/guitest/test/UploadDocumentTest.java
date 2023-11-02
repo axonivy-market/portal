@@ -19,11 +19,11 @@ import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 
 public class UploadDocumentTest extends BaseTest{
   
-  private HomePage homePage;
+  private NewDashboardPage newDashboardPage;
   private CaseWidgetPage casePage;
   private CaseDetailsPage caseDetailsPage;
   
@@ -36,8 +36,8 @@ public class UploadDocumentTest extends BaseTest{
   
   @Test
   public void uploadNormalDocument() {
-    initHomePage(TestAccount.ADMIN_USER);
-    casePage = homePage.openCaseList();
+    initNewDashboardPage(TestAccount.ADMIN_USER);
+    casePage = newDashboardPage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     int numberOfDocument = caseDetailsPage.countNumberOfDocument();
     caseDetailsPage.uploadDocumentWithoutError(getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
@@ -47,8 +47,8 @@ public class UploadDocumentTest extends BaseTest{
   @Test
   public void uploadScriptDocumentAndGetError() {
     enableScriptCheckingInPortalSetting();
-    initHomePage(TestAccount.ADMIN_USER);
-    casePage = homePage.openCaseList();
+    initNewDashboardPage(TestAccount.ADMIN_USER);
+    casePage = newDashboardPage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     String error = caseDetailsPage.uploadDocumentWithError(getAbsolutePathToTestFile("test-with-macro.doc"));
     assertEquals("This file is not allowed to upload because it contains some script!", error);
@@ -66,8 +66,8 @@ public class UploadDocumentTest extends BaseTest{
   @Test
   public void uploadUnsupportedFileType(){
     enableScriptCheckingInPortalSetting();
-    initHomePage(TestAccount.ADMIN_USER);
-    casePage = homePage.openCaseList();
+    initNewDashboardPage(TestAccount.ADMIN_USER);
+    casePage = newDashboardPage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     String error = caseDetailsPage.uploadDocumentWithError(getAbsolutePathToTestFile("unsupportedExtension.abc"));
     assertEquals("This file type is not accepted!", error);
@@ -81,9 +81,9 @@ public class UploadDocumentTest extends BaseTest{
     final String unsupportFile = "unsupportedExtension.abc";
     
     updateFileExtensionWhiteListInPortalSetting();
-    initHomePage(TestAccount.ADMIN_USER);
+    initNewDashboardPage(TestAccount.ADMIN_USER);
 
-    casePage = homePage.openCaseList();
+    casePage = newDashboardPage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     
     caseDetailsPage.uploadDocumentWithoutError(getAbsolutePathToTestFile(pdfFile));
@@ -113,18 +113,18 @@ public class UploadDocumentTest extends BaseTest{
   @Test
   public void addUnspportedFileTypeToSettingAndUploadFile() {
     updateFileExtensionWhiteListInPortalSetting();
-    initHomePage(TestAccount.ADMIN_USER);
-    casePage = homePage.openCaseList();
+    initNewDashboardPage(TestAccount.ADMIN_USER);
+    casePage = newDashboardPage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     int numberOfDocument = caseDetailsPage.countNumberOfDocument();
     caseDetailsPage.uploadDocumentWithoutError(getAbsolutePathToTestFile("unsupportedExtension.abc"));
     assertEquals(numberOfDocument + 1, caseDetailsPage.countNumberOfDocument());
   }
   
-  private void initHomePage(TestAccount account) {
+  private void initNewDashboardPage(TestAccount account) {
     login(account);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    homePage = new HomePage();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    newDashboardPage = new NewDashboardPage();
   }
   
   private void updateFileExtensionWhiteListInPortalSetting() {

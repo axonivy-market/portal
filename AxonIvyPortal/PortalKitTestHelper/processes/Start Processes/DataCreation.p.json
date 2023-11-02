@@ -1331,108 +1331,6 @@
         { "id" : "f139", "to" : "S10" }
       ]
     }, {
-      "id" : "f140",
-      "type" : "RequestStart",
-      "name" : "createTestUserFavoriteProcess.ivp",
-      "config" : {
-        "signature" : "createTestUserFavoriteProcess",
-        "request" : {
-          "name" : "Create Test UserFavorite Processes"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 824, "y" : 1152 },
-        "size" : { "width" : 32, "height" : 32 },
-        "labelOffset" : { "x" : -10, "y" : 45 }
-      },
-      "connect" : [
-        { "id" : "f144", "to" : "f142" }
-      ]
-    }, {
-      "id" : "f141",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 1112, "y" : 1152 }
-      }
-    }, {
-      "id" : "f142",
-      "type" : "Script",
-      "name" : "Create user process",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "import ch.ivy.addon.portalkit.enums.ProcessType;",
-            "import ch.ivyteam.ivy.application.IApplication;",
-            "import ch.ivy.addon.portalkit.service.ExternalLinkService;",
-            "import ch.ivy.addon.portalkit.configuration.ExternalLink;",
-            "import ch.ivy.addon.portalkit.service.ExpressProcessService;",
-            "import ch.ivy.addon.portalkit.bo.ExpressProcess;",
-            "import ch.ivy.addon.portalkit.configuration.UserProcess;",
-            "import ch.ivy.addon.portalkit.service.UserProcessService;",
-            "// Create user process",
-            "UserProcessService userProcessService = UserProcessService.getInstance();",
-            "Long testUserId = ivy.session.getSessionUser().getId();",
-            "IApplication application = IApplication.current();",
-            "String applicationName = application.getName();",
-            "",
-            "UserProcess userProcess = new UserProcess();",
-            "userProcess.setProcessId(applicationName + \"/InternalSupport/Business Processes/testCaseMaps/caseMapLeaves.icm\");",
-            "userProcess.setProcessType(ProcessType.IVY_PROCESS);",
-            "userProcess.setIndex(1);",
-            "userProcess.setDescription(\"Case Map: Leave Request\");",
-            "userProcess.setProcessName(\"Case Map: Leave Request\");",
-            "userProcess.setIcon(\"fa fa-rocket fa-fw\");",
-            "userProcessService.save(userProcess);",
-            "",
-            "userProcess = new UserProcess();",
-            "userProcess.setProcessId(applicationName + \"/InternalSupport/Business Processes/testProcesses/TestTaskFlow/CreateSupportTicket.ivp\");",
-            "userProcess.setProcessType(ProcessType.IVY_PROCESS);",
-            "userProcess.setIndex(2);",
-            "userProcess.setDescription(\"Create Support Ticket\");",
-            "userProcess.setProcessName(\"Create Support Ticket\");",
-            "userProcess.setIcon(\"fa fa-tags fa-fw\");",
-            "userProcessService.save(userProcess);",
-            "",
-            "userProcess = new UserProcess();",
-            "userProcess.setProcessId(applicationName + \"/InternalSupport/Business Processes/testCaseMaps/testProcesses/ApproveLeave/Appraisal.ivp\");",
-            "userProcess.setProcessType(ProcessType.IVY_PROCESS);",
-            "userProcess.setIndex(3);",
-            "userProcess.setDescription(\"Appraisal\");",
-            "userProcess.setProcessName(\"Appraisal\");",
-            "userProcess.setIcon(\"fa fa-graduation-cap fa-fw\");",
-            "userProcessService.save(userProcess);",
-            "",
-            "ExpressProcess expressProcess = new ExpressProcess();",
-            "expressProcess.ableToEdit = true;",
-            "expressProcess.processName = \"A sample for Express process\";",
-            "expressProcess.processDescription = \"A sample for Express process\";",
-            "expressProcess.readyToExecute = true;",
-            "expressProcess.processFolder = \"test\";",
-            "expressProcess.processType = \"AHWF\";",
-            "expressProcess.processPermissions = [\"#demo\"];",
-            "expressProcess.processOwner = \"#demo\";",
-            "ExpressProcessService expressProcessService = new ExpressProcessService();",
-            "expressProcessService.save(expressProcess);",
-            "",
-            "ExternalLink externalLink = new ExternalLink();",
-            "externalLink.name = \"A sample for External link to Google\";",
-            "externalLink.creatorId = ISecurityContext.current().users().find(\"demo\").getId();",
-            "externalLink.setIsPublic(true);",
-            "externalLink.link = \"google.com\";",
-            "ExternalLinkService externalLinkService = ExternalLinkService.getInstance();",
-            "externalLinkService.save(externalLink);"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 984, "y" : 1152 },
-        "size" : { "width" : 128, "height" : 60 }
-      },
-      "connect" : [
-        { "id" : "f143", "to" : "f141" }
-      ]
-    }, {
       "id" : "f145",
       "type" : "RequestStart",
       "name" : "createSampleExpressWorkflowProcess.ivp",
@@ -1520,15 +1418,12 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;",
-            "import ch.ivy.addon.portalkit.service.IvyCacheService;",
-            "import ch.ivy.addon.portalkit.util.Locales;",
             "import ch.ivy.addon.portalkit.util.DisplayNameConvertor;",
             "import ch.ivy.addon.portalkit.configuration.Application;",
             "import ch.ivy.addon.portalkit.service.RegisteredApplicationService;",
             "",
             "DisplayNameConvertor convertor = new DisplayNameConvertor();",
-            "convertor.add(new Locales().getCurrentLocale(), \"Google\");",
+            "convertor.add(ivy.session.getSessionUser().getLanguage(), \"Google\");",
             "",
             "Application app = new Application();",
             "app.displayName = convertor.toJson();",
@@ -1829,7 +1724,7 @@
       "type" : "DialogCall",
       "name" : "ProcessViewer",
       "config" : {
-        "dialog" : "ch.ivy.addon.portal.generic.ProcessViewer:start(Long,String)",
+        "dialog" : "ch.ivy.addon.portal.generic.ProcessViewer:start(Long,Long,String)",
         "call" : {
           "map" : { },
           "code" : [
@@ -1882,5 +1777,63 @@
       "connect" : [
         { "id" : "f182", "to" : "f181" }
       ]
+    }, {
+      "id" : "f140",
+      "type" : "RequestStart",
+      "name" : "createSampleProcesses",
+      "config" : {
+        "signature" : "createSampleProcesses"
+      },
+      "visual" : {
+        "at" : { "x" : 56, "y" : 2000 }
+      },
+      "connect" : [
+        { "id" : "f142", "to" : "f141" }
+      ]
+    }, {
+      "id" : "f141",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.ExternalLinkService;",
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import ch.ivy.addon.portalkit.configuration.ExternalLink;",
+            "import ch.ivy.addon.portalkit.service.ExpressProcessService;",
+            "import ch.ivy.addon.portalkit.bo.ExpressProcess;",
+            "ExpressProcess expressProcess = new ExpressProcess();",
+            "expressProcess.ableToEdit = true;",
+            "expressProcess.processName = \"A sample for Express process\";",
+            "expressProcess.processDescription = \"A sample for Express process\";",
+            "expressProcess.readyToExecute = true;",
+            "expressProcess.processFolder = \"test\";",
+            "expressProcess.processType = \"AHWF\";",
+            "expressProcess.processPermissions = [\"#demo\"];",
+            "expressProcess.processOwner = \"#demo\";",
+            "ExpressProcessService expressProcessService = new ExpressProcessService();",
+            "expressProcessService.save(expressProcess);",
+            "",
+            "ExternalLink externalLink = new ExternalLink();",
+            "externalLink.name = \"A sample for External link to Google\";",
+            "externalLink.creatorId = ISecurityContext.current().users().find(\"demo\").getId();",
+            "externalLink.setIsPublic(true);",
+            "externalLink.link = \"google.com\";",
+            "ExternalLinkService externalLinkService = ExternalLinkService.getInstance();",
+            "externalLinkService.save(externalLink);\""
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 216, "y" : 2000 }
+      },
+      "connect" : [
+        { "id" : "f144", "to" : "f143" }
+      ]
+    }, {
+      "id" : "f143",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 2000 }
+      }
     } ]
 }

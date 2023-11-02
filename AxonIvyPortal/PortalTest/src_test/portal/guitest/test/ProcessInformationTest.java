@@ -7,17 +7,18 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.ProcessInformationPage;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class ProcessInformationTest extends BaseTest {
 
-  private HomePage homePage;
+  private NewDashboardPage newDashboardPage;
   private ProcessWidgetPage processWidget;
   private ProcessInformationPage processInformationPage;
   private static String PROCESS_NAME = "Process With Process Steps";
@@ -27,7 +28,7 @@ public class ProcessInformationTest extends BaseTest {
   @Override
   public void setup() {
     super.setup();
-    homePage = new HomePage();
+    newDashboardPage = new NewDashboardPage();
   }
 
   @Test
@@ -37,9 +38,9 @@ public class ProcessInformationTest extends BaseTest {
     assertEquals(PROCESS_DESCRIPTION, processInformationPage.getProcessDescription());
 
     processInformationPage.startProcess();
-    homePage = new HomePage();
-    TaskWidgetPage taskWidget = homePage.getTaskWidget();
-    taskWidget.filterTasksBy(PROCESS_NAME, 1);
+    newDashboardPage = new NewDashboardPage();
+    TaskWidgetPage taskWidget = NavigationHelper.navigateToTaskList();
+    taskWidget.filterTasksInExpandedModeBy(PROCESS_NAME, 1);
     assertEquals(1, taskWidget.countTasks());
   }
   
@@ -55,12 +56,11 @@ public class ProcessInformationTest extends BaseTest {
   @Test
   public void testBackToCaseDetailsFromProcessInformationPage() {
     login(TestAccount.ADMIN_USER);
-    processWidget = homePage.getProcessWidget();
-    processWidget.expand();
+    processWidget = NavigationHelper.navigateToProcessList();
     processWidget.startProcess(PROCESS_NAME);
 
-    homePage = new HomePage();
-    CaseWidgetPage caseWidget = homePage.openCaseList();
+    newDashboardPage = new NewDashboardPage();
+    CaseWidgetPage caseWidget = newDashboardPage.openCaseList();
     CaseDetailsPage caseDetails = caseWidget.openCaseDetailsFromActionMenuByCaseName(PROCESS_NAME);
     caseDetails.openActionMenu();
     caseDetails.openProcessOverviewPage();
@@ -77,8 +77,7 @@ public class ProcessInformationTest extends BaseTest {
 
   private void navigateToProcessInformationPage() {
     String processName = "Process With Process Steps";
-    processWidget = homePage.getProcessWidget();
-    processWidget.expand();
+    processWidget = NavigationHelper.navigateToProcessList();
 
     processWidget.clickMoreInformationLink(processName);
     processInformationPage = new ProcessInformationPage();

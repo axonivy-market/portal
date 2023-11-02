@@ -23,7 +23,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     return "//*[contains(@id,'" + WIDGET_ID + ":statistic-result-list')]";
   }
 
-  @SuppressWarnings("deprecation")
   public StatisticWidgetPage navigateToStatisticPage() {
     String backButtonId = "task-widget:back-button";
     waitForElementDisplayed(By.id(backButtonId), true, DEFAULT_TIMEOUT);
@@ -192,7 +191,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
 
-  @SuppressWarnings("deprecation")
   public void enterDataToSaveFilterSet(String filterSetName, boolean isPersonalFilter) {
     click(By.id("task-widget:filter-save-action"));
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);

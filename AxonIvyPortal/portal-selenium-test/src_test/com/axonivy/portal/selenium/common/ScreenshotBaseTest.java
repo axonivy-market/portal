@@ -12,7 +12,6 @@ public class ScreenshotBaseTest extends BaseTest{
   public void setup() {
     super.setup();
     updatePortalSetting(Variable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.getKey(), "false");
-    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "true");
   }
 
 }

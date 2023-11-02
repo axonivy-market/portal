@@ -32,7 +32,6 @@ public class ForgotPasswordPage extends AbstractPage {
     this.testAccount = testAccount;
   }
 
-  @SuppressWarnings("deprecation")
   public void send() {
     emailTextField.sendKeys(testAccount.getEmail());
     click(sendButton);

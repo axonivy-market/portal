@@ -1,16 +1,4 @@
 Categories:
-  AnnualLeave:
-    name: Annual Leave
-  LeaveRequest:
-    name: Leave Request
-  OtherLeave:
-    Maternity:
-      name: Maternity
-    SickLeave:
-      Long:
-        name: Long
-      name: Sick Leave
-    name: Other Leave
   PersonalRequest:
     RaiseSalary:
       name: Raise Salary
@@ -21,15 +9,7 @@ Categories:
     Austria:
       name: Austria
 DefaultColumns:
-  ACTIVATOR: Responsible
-  CREATION_TIME: Created
-  CustomerName: Customer name
   CustomerType: Customer type
-  EXPIRY_TIME: Expiry
-  ID: Task Id
-  NAME: Name / Description
-  PRIORITY: Priority
-  STATE: State
 Processes:
   ProcessWithProcessSteps:
     processStep: |-

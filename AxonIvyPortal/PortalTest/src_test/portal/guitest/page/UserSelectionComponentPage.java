@@ -24,7 +24,6 @@ public class UserSelectionComponentPage extends TemplatePage {
     return findElementById("item-select-with-ajax-event-component");
   }
   
-  @SuppressWarnings("deprecation")
   public String selectFirstItemForNormalUserSelectionComponent(String keyword) {
     WebElement userElement = selectUserComponent("user-by-role-autocomplete", keyword);
     click(userElement);
@@ -36,7 +35,6 @@ public class UserSelectionComponentPage extends TemplatePage {
     return findElementByCssSelector("input[id$='user-by-role-autocomplete_hinput']").getCssValue("value");
   }
   
-  @SuppressWarnings("deprecation")
   public String selectFirstItemForFloatingLabelUserSelectionComponent(String keyword) {
     WebElement userElement = selectUserComponent("all-user-autocomplete", keyword);
     click(userElement);
@@ -48,7 +46,6 @@ public class UserSelectionComponentPage extends TemplatePage {
     return findElementByCssSelector("input[id$='all-user-autocomplete_hinput']").getCssValue("value");
   }
   
-  @SuppressWarnings("deprecation")
   public String selectFirstItemForAjaxEventUserSelectionComponent(String keyword) {
     WebElement userElement = selectUserComponent("item-select-event-for-user-selection", keyword);
     click(userElement);

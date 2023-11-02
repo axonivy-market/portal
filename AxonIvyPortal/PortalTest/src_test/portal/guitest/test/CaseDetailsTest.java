@@ -30,7 +30,7 @@ import portal.guitest.page.AdditionalCaseDetailsPage;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.ExpressProcessPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.NoteHistoryPage;
 import portal.guitest.page.TaskDetailsPage;
@@ -40,7 +40,7 @@ public class CaseDetailsTest extends BaseTest {
 
   private static final String RELATED_TASK_STATE_COLUMN = "related-task-state-column";
   private static final String RELATED_TASK_EXPIRY_COLUMN = "related-task-expiry-column";
-  private HomePage homePage;
+  private NewDashboardPage newDashboardPage;
   private CaseDetailsPage detailsPage;
 
   private static final String BUSINESS_CASE_MAP_LEAVE_REQUEST = "Business Case Map: Leave Request";
@@ -61,22 +61,22 @@ public class CaseDetailsTest extends BaseTest {
     super.setup();
     login(TestAccount.ADMIN_USER);
 
-    homePage = new HomePage();
+    newDashboardPage = new NewDashboardPage();
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
   }
 
   private void createTestingTask() {
     redirectToRelativeLink(createTestingTasksUrl);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName(LEAVE_REQUEST_CASE_NAME);
   }
 
   private void createTestingCaseContainTechnicalCases() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName(ORDER_PIZZA);
   }
@@ -123,7 +123,7 @@ public class CaseDetailsTest extends BaseTest {
   public void testShowBusinessCaseInTechnicalCase() {
     redirectToRelativeLink(createTestingCaseMapUrl);
     login(TestAccount.DEMO_USER);
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openCaseDetailsFromActionMenuByCaseName(BUSINESS_CASE_MAP_LEAVE_REQUEST);
     // check business case information is hidden in business case details
@@ -209,7 +209,7 @@ public class CaseDetailsTest extends BaseTest {
   public void testRelatedTaskDisplayDelegateButton() {
     createTestingTask();
     redirectToRelativeLink(GRANT_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName(LEAVE_REQUEST_CASE_NAME);
     assertFalse(detailsPage.isTaskDelegateOptionDisable(SICK_LEAVE_REQUEST_TASK));
@@ -248,19 +248,19 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testRelatedCaseSideSteps() {
     redirectToRelativeLink(createTestingCaseMapUrl);
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName(BUSINESS_CASE_MAP_LEAVE_REQUEST);
     assertEquals(1, detailsPage.countRelatedCases());
     detailsPage.clickRelatedCaseActionButton(0);
     detailsPage.clickRelatedCaseSubmitLeaveReason(0);
-    mainMenuPage = homePage.openMainMenu();
+    mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName(BUSINESS_CASE_MAP_LEAVE_REQUEST);
     assertEquals(2, detailsPage.countRelatedCases());
     detailsPage.clickRelatedCaseActionButton(0);
     detailsPage.clickRelatedCaseUploadAdditionalDocument(0);
-    mainMenuPage = homePage.openMainMenu();
+    mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName(BUSINESS_CASE_MAP_LEAVE_REQUEST);
     assertEquals(3, detailsPage.countRelatedCases());
@@ -327,7 +327,7 @@ public class CaseDetailsTest extends BaseTest {
   public void testHistoryShowDoneTasks() {
     redirectToRelativeLink(createTestingCaseMapUrl);
     login(TestAccount.DEMO_USER);
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openCaseDetailsFromActionMenuByCaseName(BUSINESS_CASE_MAP_LEAVE_REQUEST);
     assertTrue(detailsPage.checkDoneTasksOfHistory());
@@ -397,9 +397,9 @@ public class CaseDetailsTest extends BaseTest {
 
   public CaseWidgetPage goToCaseList() {
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
-    homePage = new HomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    newDashboardPage = new NewDashboardPage();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     return casePage;
   }
@@ -445,7 +445,7 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.clickOnRelatedCaseCheckbox(false);
     assertFalse("Related Case column is display", detailsPage.isRelatedCaseInfoColumnIsDisplay());
     updateGlobalVariable(Variable.HIDE_RELATED_CASE_INFO_FROM_HISTORY.getKey(), "true");
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName(ORDER_PIZZA);
     assertFalse("Related Case checkbox is display", detailsPage.isShowRelatedCaseCheckbox());
