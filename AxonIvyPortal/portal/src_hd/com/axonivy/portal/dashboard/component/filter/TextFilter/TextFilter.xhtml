@@ -21,7 +21,7 @@
   <h:panelGroup id="text-filter-operator-panel" layout="block"
     styleClass="ui-fluid md-inputfield">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
-        <f:selectItems value="#{widgetTextFilterBean.operators}" var="operator"
+        <f:selectItems value="#{filter.type eq 'STATE' ? widgetTextFilterBean.stateOperators  : widgetTextFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
           <p:ajax event="itemSelect" listener="#{widgetTextFilterBean.onChangeOperator(filter)}"
             process="@(this)" update="#{cc.attrs.componentToUpdate}" />
@@ -30,8 +30,8 @@
   </h:panelGroup>
 
   <h:panelGroup id="text-list-panel" layout="block"
-    styleClass="ui-fluid md-inputfield text-list-filter"
-    rendered="#{widgetTextFilterBean.isShowTextListPanel(filter)}">
+    styleClass="ui-fluid md-inputfield"
+    rendered="#{filter.type eq 'STATE' ? 'false' : widgetTextFilterBean.isShowTextListPanel(filter)}">
     <p:chips value="#{filter.texts}" unique="true" addOnPaste="true" disabled="#{readOnly}">
       <p:ajax event="change" process="@(this)" update="@(this)" partialSubmit="true" global="false" />
       <f:validator validatorId="dashboardTextFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
@@ -41,6 +41,18 @@
       <f:attribute name="messageId" value="#{messageId}" />
     </p:chips>
   </h:panelGroup>
+
+  <h:panelGroup rendered="#{filter.type eq 'STATE' ? widgetTextFilterBean.isShowStateListPanel(filter) : 'false'}">
+    <div class="ui-g-8 ui-sm-12 ui-fluid">
+      <p:selectCheckboxMenu id="states" value="#{filter.texts}" multiple="true"
+        filter="true" filterMatchMode="contains"
+        panelStyleClass="task-configuration__selectcheckboxmenu-panel"
+        styleClass="task-configuration__selectcheckboxmenu">
+        <f:selectItems value="#{filter.caseStateOptions}" var="state" itemValue="#{state}" />
+      </p:selectCheckboxMenu>
+    </div>
+  </h:panelGroup>
+
 </cc:implementation>
 
 </html>
