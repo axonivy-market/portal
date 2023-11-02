@@ -13,7 +13,7 @@ import org.openqa.selenium.WebDriver;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.StatisticWidgetPage;
 import portal.guitest.page.TaskWidgetPage;
@@ -30,23 +30,23 @@ public class MenuTest extends BaseTest {
 
   @Test
   public void testKeepOpenStateWhenNavigateToAnotherPage() {
-    HomePage homePage = new HomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     TaskWidgetPage taskWidgetPage = mainMenuPage.selectTaskMenu();
     assertTrue(taskWidgetPage.isMainMenuOpen());
   }
 
   @Test
   public void testKeepClosedStateWhenNavigateToAnotherPage() {
-    HomePage homePage = new HomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     StatisticWidgetPage dashboardPage = mainMenuPage.selectStatisticDashboard();
     dashboardPage.waitForPageLoaded();
 
     dashboardPage.closeMainMenu();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    homePage = new HomePage();
-    assertFalse(homePage.isMainMenuOpen());
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    newDashboardPage = new NewDashboardPage();
+    assertFalse(newDashboardPage.isMainMenuOpen());
   }
 
   @Test
@@ -55,8 +55,8 @@ public class MenuTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     // to refresh cache
     login(TestAccount.ADMIN_USER);
-    HomePage homePage = new HomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     mainMenuPage.clickThirdPartyApp();
 
     WebDriver driver = Browser.getBrowser().getDriver();

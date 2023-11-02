@@ -48,7 +48,6 @@
   <h:outputScript name="responsive-toolkit.js" library="js" />
   <h:outputScript name="main.js" library="js" />
   <h:outputScript name="portal.js" library="js" />
-  <h:outputScript name="guide-panel.js" library="js" />
 
   <ui:insert name="head" />
 </h:head>
@@ -102,7 +101,6 @@
               <ui:param name="enablesChat" value="#{enablesChat}" />
               <ui:param name="viewName" value="#{viewName}" />
               <ui:param name="case" value="#{case}" />
-              <ui:param name="updatedComponentAfterGuide" value="#{updatedComponentAfterGuide}" />
             </ui:decorate>
 
             <h:panelGroup layout="block" rendered="#{!isPortalInTeams}"
@@ -121,15 +119,6 @@
                 </c:otherwise>
               </c:choose>
             </h:panelGroup>
-            <ui:insert name="mainMenuGuide">
-              <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="left-menu-guide-component" targetComponent="left-menu"
-                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/mainMenu/title')}" 
-                content="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/mainMenu/content')}"
-                targetCssSelector="#left-menu" iconClass="si si-navigation-menu" onNext="removeHighlightLeftMenu(); PF('process-widget-guide').show()"
-                my="left+30 top+70" at="right top" targetPosition="fixed" arrowPosition="left top"
-                updatedComponentAfterGuide="#{updatedComponentAfterGuide}" rendered="#{guideBean.isGuideShown}"
-                onShow="onHighlightLeftMenu()"/>
-            </ui:insert>
           </h:panelGroup>
         </h:panelGroup>
 
@@ -158,8 +147,6 @@
         </div>
         <ic:ch.ivy.addon.portalkit.component.PageFooter />
       </div>
-      
-      <div id="guide-modal" class="guide-modal" />
     </c:otherwise>
   </c:choose>
 

@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.enums.SessionAttribute;
@@ -33,9 +33,7 @@ public class ProcessStartUtils {
 
   public static IProcessStart findProcessStartByUserFriendlyRequestPath(String requestPath) {
     return Sudo.get(() -> {
-      IProcessStart processStart = null;
-      processStart =
-          findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, Ivy.request().getProcessModelVersion());
+      IProcessStart processStart = findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, Ivy.request().getProcessModelVersion());
       if (processStart != null) {
         return processStart;
       }

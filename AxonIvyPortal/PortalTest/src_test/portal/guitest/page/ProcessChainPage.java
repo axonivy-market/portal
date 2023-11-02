@@ -14,7 +14,6 @@ public class ProcessChainPage extends TemplatePage {
     return isElementDisplayed(By.id("form:next-button"));
   }
   
-  @SuppressWarnings("deprecation")
   public void nextStep() {
     waitForElementDisplayed(By.id("form:next-button"), true);
     click(findElementById("form:next-button"));

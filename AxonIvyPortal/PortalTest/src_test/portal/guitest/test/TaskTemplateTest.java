@@ -15,9 +15,10 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.Variable;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.NoteHistoryPage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskTemplatePage;
@@ -26,7 +27,6 @@ import portal.guitest.page.WorkingTaskDialogPage;
 
 public class TaskTemplateTest extends BaseTest {
 
-  private String createImpersistentTaskUrl = "portal-developer-examples/169BDE2F368D6EC4/ApplicationShowcase.ivp";
   private static final String ANNUAL_LEAVE_REQUEST_TASK ="Annual Leave Request";
   @Override
   @Before
@@ -101,8 +101,7 @@ public class TaskTemplateTest extends BaseTest {
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
     dialogPage.leaveTask();
-    TaskWidgetPage taskWidget = new TaskWidgetPage();
-    taskWidget.expand();
+    TaskWidgetPage taskWidget = NavigationHelper.navigateToTaskList();
     assertTrue(taskWidget.isTaskStateOpen(0));
   }
   
@@ -110,39 +109,27 @@ public class TaskTemplateTest extends BaseTest {
   public void testReserveWorkingTaskByClickingOnLogo() {
     redirectToRelativeLink(simplePaymentUrl);
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    HomePage home = new HomePage();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    NewDashboardPage home = new NewDashboardPage();
     home.waitForPageLoaded();
     TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
     dialogPage.reserveTask();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    TaskWidgetPage taskWidget = new TaskWidgetPage();
-    taskWidget.expand();
+    TaskWidgetPage taskWidget = NavigationHelper.navigateToTaskList();
     Assert.assertTrue(taskWidget.isTaskStateReserved(0));
   }
   
   @Test
   public void testResetTaskWhenStartSideStep() {
     redirectToRelativeLink(createTestingCaseMapUrl);
-    HomePage homePage = new HomePage();
-    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     int latestTask = taskWidgetPage.countTasks() - 1;
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(latestTask);
     taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.startSideStep();
-    TaskWidgetPage taskWidget = new TaskWidgetPage();
-    taskWidget.expand();
+    TaskWidgetPage taskWidget = NavigationHelper.navigateToTaskList();
     assertTrue(taskWidget.isTaskStateOpen(0));
-  }
-
-  @Test
-  public void testNotShowStartAdhocWhenOpenImpersistedTask() {
-    redirectToRelativeLink(createImpersistentTaskUrl);
-    TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
-    taskTemplatePage.clickTaskActionMenu();
-    assertEquals(true, taskTemplatePage.isStartAdhocBtnNotExist());
   }
 
   private void createTestData() {
@@ -150,7 +137,7 @@ public class TaskTemplateTest extends BaseTest {
   }
   
   private TaskTemplatePage startATaskAndOpenCaseInfo() {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.openCaseInfo();
     return taskTemplatePage;
@@ -159,8 +146,8 @@ public class TaskTemplateTest extends BaseTest {
   @Test
   public void testShowCategoryColummnByDefault() {
     createTestData();
-    HomePage homePage = new HomePage();
-    TaskWidgetPage taskList = homePage.openTaskList();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    TaskWidgetPage taskList = newDashboardPage.openTaskList();
     assertTrue(taskList.isCategoryColumnDisplayed());
   }
 }

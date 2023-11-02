@@ -52,11 +52,6 @@
   }
 }
 
-.widget-tasklist-header {
-  position: relative;
-  height: 36px;
-}
-
 .widget-header-content-filter {
   width: 100%;
 }
@@ -1396,10 +1391,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 
 .external-link-type-radio td label {
   margin-right: 15px;
-}
-
-.favorite-process-name {
-  max-width: 850px;
 }
 
 .process-tooltip {
@@ -4749,11 +4740,6 @@ _:-ms-fullscreen, :root .content-link-history {
 /*  =================== END TASK TEMPLATE PAGE ========================= */
 
 /*====================FIX FOR SERENITY 2.0 STYLE========================*/
-.favorite-process-title {
-  display: inline-block;
-  padding-right: 20px;
-}
-
 /**************DATA TABLE START*******************/
 .column-header-top-alignment {
   vertical-align: baseline;
@@ -4913,70 +4899,6 @@ body .ui-breadcrumb li:first-child a span {
   display: block;
 }
 /*=================== BREADCRUMB END ===================*/
-/*=================== GUIDE ===================*/
-.ui-dialog-mask.ui-widget-overlay.guide-modal {
-  background-color: transparent;
-  z-index: -1;
-}
-
-.ui-dialog.guide-panel, .ui-dialog.guide-panel .ui-dialog-content {
-  overflow: visible;
-}
-
-.guide-panel__arrow {
-  content: " ";
-  position: absolute;
-}
-
-.guide-panel__container {
-  padding: 40px 20px 20px 20px;
-  text-align: center;
-}
-
-.guide-panel__icon {
-  font-size: 6rem !important;
-}
-
-.guide-panel__content {
-  padding: 0 40px;
-  margin-bottom: 40px;
-}
-
-.guide-panel__footer {
-  display: flex;
-  align-items: center;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-}
-
-.guide-panel__buttons {
-  text-align: right;
-}
-
-.guide-panel__cancel {
-  margin-right: 15px;
-}
-
-.guide-panel__dont-show-again {
-  text-align: left;
-}
-
-.guide-mark__highlight {
-  background: var(--surface-a, white) !important;
-  z-index: 9999 !important;
-  border-radius: 6px;
-}
-
-.guide-mark__transparent {
-  background: transparent !important;
-  z-index: 9999 !important;
-}
-
-.guide-mark__hidden {
-  z-index: -9999 !important;
-  visibility: hidden !important;
-}
-/*=================== GUIDE END ===================*/
 .card-layout-content .center,
 .case-map-detail-layout-content .center,
 .case-map-overview-layout-content .center,

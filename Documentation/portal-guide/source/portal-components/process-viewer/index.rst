@@ -6,7 +6,7 @@ Process Viewer
 Introduction
 ^^^^^^^^^^^^
 
-The Process Viewer component provides a visual representation of the process flow from a given Case ID or Process relative link.
+The Process Viewer component provides a visual representation of the process flow from a given Task ID, Case ID or Process relative link.
 
 |portal-process-viewer-component|
 
@@ -27,6 +27,12 @@ How to Use
 You can integrate the Process Viewer component in any page by including following code.
 
 #. You have to set one of parameters below:
+
+   - ``taskId``: show the process or Case Map of the task has ID equals to ``taskId``.
+
+   .. code-block:: html
+
+      <ic:com.axonivy.portal.components.ProcessViewer taskId="000001" containerStyleClass="process-viewer-container" />
 
    - ``caseId``: show the process or Case Map of the case has ID equals to ``caseId``.
 

@@ -31,3 +31,19 @@ Categories:
         name: Test 1_2 Sp
       name: Test 1 Sp
     name: Test Sp
+  Showcase:
+    Application:
+      name: Aplicación
+    Customized:
+      TaskList:
+        name: Custom task list
+      name: Personalizado
+    Error:
+      IvyError:
+        ShowIvyErrorPage:
+          name: Mostrar la página de errores de Ivy
+        name: Ivy Error
+      name: Error
+    PortalDialogExample:
+      name: Ejemplo de diálogo del portal
+    name: Escaparate
