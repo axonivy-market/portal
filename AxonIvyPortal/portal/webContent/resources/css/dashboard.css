@@ -1701,6 +1701,10 @@ body .ui-widget.new-widget-dialog__introduction {
   padding: 0.5em;
 }
 
+.dashboard-widget-filter__read-only-panel {
+  padding-left: 0.5em;
+}
+
 .dashboard-widget-filter__read-only-panel .dashboard-widget-filter__filter-panel:last-child {
   margin-bottom: 10px;
 }
@@ -1715,6 +1719,12 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .dashboard-widget-filter__filter-panel > div {
+  margin-left: 0.5em;
+  display: flex;
+  align-items: flex-start;
+}
+
+.dashboard-widget-filter__filter-panel > div.remove-filter-panel {
   margin-left: 0.5em;
   display: flex;
   align-items: center;
