@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterType;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
@@ -35,7 +36,9 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
 
     switch (columnEnum) {
       case CREATED -> initDateFilter(filter);
+      case FINISHED -> initDateFilter(filter);
       case NAME -> initTextFilter(filter);
+      case DESCRIPTION -> initTextFilter(filter);
       default -> {}
     };
   }
@@ -46,6 +49,7 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
 
   private void initTextFilter(DashboardFilter filter) {
     filter.setType(FilterType.TEXT);
+    filter.setOperator(FilterOperator.CONTAINS);
     filter.setTexts(new ArrayList<>());
   }
 

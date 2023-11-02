@@ -25,7 +25,7 @@
       <ic:com.axonivy.portal.dashboard.component.filter.DashboardFilter id="filter-component" filter="#{filter}" widget="#{widget}"
         managedBean="#{caseWidgetUserFilterBean}" componentToUpdate="#{p:resolveFirstComponentWithId(filterComponentToUpdate, view).clientId}"
         onCompleteRemoveFilter="loadSaveFilters#{index}()"
-        filterIndex="#{status.index}"/>
+        filterIndex="#{status.index}" messageId="filter-messages"/>
     </ui:repeat>
     <div class="ui-g-12 u-padding-0 MarTop10">
       <p:commandButton id="add-filter" icon="#{visibilityBean.generateButtonIcon('si si-add-circle')}"

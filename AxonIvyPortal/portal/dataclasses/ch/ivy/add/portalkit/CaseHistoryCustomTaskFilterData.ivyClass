@@ -1,3 +1,0 @@
-CaseHistoryCustomTaskFilterData #class
-ch.ivy.add.portalkit #namespace
-tasks java.util.List<ch.ivyteam.ivy.workflow.ITask> #field

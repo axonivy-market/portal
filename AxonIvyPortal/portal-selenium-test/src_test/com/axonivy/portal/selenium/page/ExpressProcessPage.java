@@ -6,6 +6,8 @@ import static com.codeborne.selenide.Selenide.$;
 
 import java.util.List;
 
+import org.openqa.selenium.WebElement;
+
 import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
 
 public class ExpressProcessPage extends TemplatePage {
@@ -61,5 +63,63 @@ public class ExpressProcessPage extends TemplatePage {
 
   public void clickSave() {
     $("[id='form:save']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public ExpressFormDefinitionPage goToFormDefinition() {
+    clickSave();
+    return new ExpressFormDefinitionPage();
+  }
+
+  public WebElement getDefineTaskStep(int stepIndex) {
+    String defineTaskStepId = String.format(":defined-tasks-list:%s:process-flow-field", stepIndex);
+    return $("[id$='"+ defineTaskStepId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void fillProcessProperties(boolean isAdhocWF, boolean isCreateOwn, String processName,
+      String processDescription) {
+    if (isAdhocWF) {
+      $("div[id='form:process-type']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    }
+
+    if (!isCreateOwn) {
+      $("div[id='form:user-interface-type']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+      agreeToDeleteAllDefineTasks();
+    }
+    $("[id='form:process-name']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(processName);
+    $("[id='form:process-description']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(processDescription);
+  }
+  
+  private void agreeToDeleteAllDefineTasks() {
+    $("[id='delete-all-defined-tasks-warning']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id='delete-all-defined-tasks-warning-ok']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void createTask(int taskIndex, int typeIndex, String taskName, String taskDescription,
+      List<ExpressResponsible> responsibles) {
+    final String TASK_NAME_FORMAT = "input[id$='%d:task-name']";
+    final int INFORMATION_EMAIL_INDEX = 2;
+
+    chooseTaskType(taskIndex, typeIndex);
+    if (typeIndex != INFORMATION_EMAIL_INDEX) {
+      $("[id='" + String.format("form:defined-tasks-list:%d:task-responsible-link", taskIndex) + "']").shouldBe(getClickableCondition()).click();
+      $("[id='choose-responsible-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+      addResponsible(responsibles);
+
+      $(String.format(TASK_NAME_FORMAT, taskIndex)).shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(taskName);
+      $(String.format("input[id$='%d:task-description']", taskIndex)).shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(taskDescription);
+    }
+  }
+
+  private void chooseTaskType(int taskIndex, int typeIndex) {
+    final String TASK_TYPE_FORMAT = "li[id$=':%d:task-type_%d']";
+    final String TASK_TYPE_LABEL_FORMAT = "label[id$=':%d:task-type_label']";
+
+    $(String.format(TASK_TYPE_LABEL_FORMAT, taskIndex)).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(String.format("[id$=':%d:task-type_panel']", taskIndex)).shouldBe(appear, DEFAULT_TIMEOUT);
+    $(String.format(TASK_TYPE_FORMAT, taskIndex, typeIndex)).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void waitUntilExpressProcessDisplay() {
+    $("[id='form:process-setting-fieldset']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 }

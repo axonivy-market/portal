@@ -7,27 +7,28 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.WaitHelper;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.SearchResultPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
 
 public class SearchProcessTest extends BaseTest {
 
-  private HomePage homePage;
+  private NewDashboardPage newDashboardPage;
 
   @Override
   @Before
   public void setup() {
     super.setup();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    homePage = new HomePage();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    newDashboardPage = new NewDashboardPage();
   }
 
   @Test
   public void testFindAndStartProcessByName() {
-    GlobalSearch globalSearch = homePage.getGlobalSearch();
+    GlobalSearch globalSearch = newDashboardPage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 
     String processName = "Simple Payment";
@@ -37,18 +38,16 @@ public class SearchProcessTest extends BaseTest {
     assertTrue(searchResultPage.isProcessGroupDisplay("S"));
 
     searchResultPage.startProcess(processName);
-    homePage = new HomePage();
-    homePage.waitForStatisticRendered();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    newDashboardPage = new NewDashboardPage();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     WaitHelper.assertTrueWithRefreshPage(taskWidgetPage,
-        () -> taskWidgetPage.getNameOfTaskInCompactListAt(0).contains("Payment"));
+        () -> taskWidgetPage.getNameOfTaskAt(0).contains("Payment"));
   }
   
   @Test
   public void testFindCaseMapByName() {
     String caseMapName = "Case Map: Leave Request";
-    GlobalSearch globalSearch = homePage.getGlobalSearch();
+    GlobalSearch globalSearch = newDashboardPage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(caseMapName);

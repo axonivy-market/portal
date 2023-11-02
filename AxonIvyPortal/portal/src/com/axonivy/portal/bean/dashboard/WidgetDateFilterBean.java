@@ -24,6 +24,8 @@ public class WidgetDateFilterBean implements Serializable {
   private static final long serialVersionUID = 4356531402161360729L;
 
   private static List<FilterOperator> operators = FilterOperator.DATE_OPERATORS.stream().toList();
+  private static List<FilterOperator> createdDateOperators = FilterOperator.CREATED_DATE_OPERATORS.stream().toList();
+  
   private static FilterPeriodType[] filterPeriodTypes = FilterPeriodType.values();
   private static List<FilterPeriodType> currentFilterPeriodTypes = FilterPeriodType.PERIOD_TYPES_FOR_CURRENT_OPERATOR.stream().toList();
 
@@ -64,5 +66,9 @@ public class WidgetDateFilterBean implements Serializable {
 
   public void updateFromDate(DashboardFilter filter) {
     filter.setFrom(formatter.format(filter.getFromDate()));
+  }
+
+  public List<FilterOperator> getCreatedDateOperators() {
+    return createdDateOperators;
   }
 }

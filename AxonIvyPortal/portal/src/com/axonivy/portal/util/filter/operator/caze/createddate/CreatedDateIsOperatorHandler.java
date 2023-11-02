@@ -2,11 +2,10 @@ package com.axonivy.portal.util.filter.operator.caze.createddate;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.PortalDateUtils;
-import com.axonivy.portal.util.filter.operator.AbstractFilterOperatorHandler;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-public class CreatedDateIsOperatorHandler extends AbstractFilterOperatorHandler {
+public class CreatedDateIsOperatorHandler {
   private static CreatedDateIsOperatorHandler instance;
 
   public static CreatedDateIsOperatorHandler getInstance() {
