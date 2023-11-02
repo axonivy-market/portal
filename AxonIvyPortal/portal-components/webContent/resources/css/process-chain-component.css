@@ -130,7 +130,7 @@
 
 .circle-process-chain .process-step-icon.cicrle-step-container {
   color: var(--process-chain-menu-color);
-  font-size: calc(var(--process-chain-process-step-font-size) * 1.4);
+  font-size: calc(var(--process-chain-process-step-font-size) * 1.6);
 }
 
 .circle-process-chain .waiting .process-step-icon {
@@ -138,7 +138,7 @@
 }
 
 .circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container.process-step-icon .step-number-container:after {
-  transform: none;
+  transform: translate(-0.2rem, 0);
 }
 
 .circle-vertical-process-step:not(:last-child) .circle-vertical-step-container.process-step-icon .step-number-container:after {

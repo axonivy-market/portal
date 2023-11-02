@@ -19,7 +19,6 @@
   <cc:attribute name="componentId" type="java.lang.String" default="process-chain-component-id" shortDescription="The component identifier. Default is process-chain-component-id"/>
   <cc:attribute name="steps" shortDescription="List of step in the process chain" />
   <cc:attribute name="stepIcons" shortDescription="List of step icons in the process chain" default=""/>
-  <cc:attribute name="stepIndexes" shortDescription="Steps index in the process chain, this field is using internally, don't change it" />
   <cc:attribute name="actualStepIndex" type="java.lang.Integer" default="0" shortDescription="Actual step index or current step index. Default is 0" />
 
   <cc:attribute name="direction" type="java.lang.String" default="HORIZONTAL" shortDescription="Direction of process chain: VERTICAL, HORIZONTAL. Default is HORIZONTAL" />
@@ -43,9 +42,9 @@
   <h:panelGroup id="#{cc.attrs.componentId}"
     styleClass="#{shape eq 'CIRCLE' or shape eq 'ICON'? 'circle-process-chain' : 'line-process-chain'}">
     <h:panelGroup styleClass="ui-sm-hidden ui-md-hidden #{isDirectionHorizontal ? 'horizontal-process-chain' : 'vertical-process-chain'}">
-      <c:set var="stepIndexesAAA" value="#{processChainBean.getProcessIndexes(cc.attrs.steps)}" />
-      <c:if test="#{not empty stepIndexesAAA}">
-        <c:forEach items="#{stepIndexesAAA}" var="step" varStatus="counter">
+      <c:if test="#{not empty cc.attrs.steps}">
+        <c:set var="stepIndexes" value="#{processChainBean.getProcessIndexes(cc.attrs.steps)}" />
+        <c:forEach items="#{stepIndexes}" var="step" varStatus="counter">
           <c:set var="stepName" value="#{cc.attrs.steps.get(counter.index)}" />
           <c:set var="isFirstStep" value="#{counter.index eq 0}" />
           <c:set var="isLastStep" value="#{counter.index eq (cc.attrs.steps.size() - 1)}" />

@@ -55,7 +55,7 @@
             "",
             "in.actualCurrentIndex = 2;",
             "in.steps = Arrays.asList(\"Step 1\",\"Step 2\",\"Step 3\",\"Step 4\",\"Step 5\",\"Step 6\",\"Step 7\",\"Step 8\",\"Step 9\");",
-            "in.stepIcons = Arrays.asList(\"si si-check-1\", \"si si-expand-1\", \"si si-folder-search\",\"si si-check-1\", \"si si-expand-1\", \"si si-folder-search\",\"si si-check-1\", \"si si-expand-1\", \"si si-folder-search\");"
+            "in.stepIcons = Arrays.asList(\"si si-calendar-date\", \"si si-expand-1\", \"si si-folder-search\",\"si si-multiple-neutral-1\", \"si si-ranking-winner-medal\", \"si si-expand-1\", \"si si-folder-search\",\"si si-multiple-neutral-1\", \"si si-ranking-winner-medal\");"
           ]
         },
         "sudo" : true

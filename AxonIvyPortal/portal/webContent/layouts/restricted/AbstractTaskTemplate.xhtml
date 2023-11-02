@@ -108,7 +108,7 @@
                 shape="#{processChainShape}"
                 direction="#{processChainDirection eq 'VERTICAL' ? 'VERTICAL' : 'HORIZONTAL'}" 
                 isShowAllSteps="#{isShowAllSteps}"
-                actualStepIndex="#{actualStepIndex}" steps="#{steps}" stepIcons="#{stepIcons}" stepIndexes="#{stepIndexes}"
+                actualStepIndex="#{actualStepIndex}" steps="#{steps}" stepIcons="#{stepIcons}"
                 currentIndex="#{abstractTaskTemplateBean.getIndexOfCurrentStage(case)}"
                 stages="#{abstractTaskTemplateBean.getStagesBaseOnCurrentStage(case, steps)}" />
             </ui:insert>
