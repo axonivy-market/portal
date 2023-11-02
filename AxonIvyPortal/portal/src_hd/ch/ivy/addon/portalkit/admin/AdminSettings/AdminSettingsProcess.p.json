@@ -53,7 +53,6 @@
           "code" : [
             "import ch.ivy.addon.portalkit.configuration.Application;",
             "import ch.ivy.addon.portalkit.enums.ApplicationType;",
-            "import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;",
             "",
             "in.selectedApp = new Application();",
             "if (in.applicationList.size() > 0) {",
@@ -64,7 +63,7 @@
             "in.isAddMode = true;",
             "in.dialogTitle = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addNewApplication\");",
             "",
-            "in.languages = ApplicationMultiLanguage.getThirdPartySupportedLanguage();",
+            "in.languages = new List();",
             "",
             "in.displayNameInCurrentLanguage = null;",
             "in.supportedLanguages = new List();"
@@ -128,14 +127,15 @@
             "Locale currentLocale = new Locales().getCurrentLocale();",
             "DisplayNameAdaptor displayNameAdaptor = new DisplayNameAdaptor(in.selectedApp.displayName, currentLocale);",
             "in.displayNameInCurrentLanguage = displayNameAdaptor.getDisplayNameAsString();",
-            "in.supportedLanguages = new List();"
+            "in.supportedLanguages = new List();",
+            "in.languages = new List();"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 376, "y" : 544 }
+        "at" : { "x" : 376, "y" : 592 }
       },
-      "connect" : { "id" : "f11", "to" : "f205" }
+      "connect" : { "id" : "f11", "to" : "f45" }
     }, {
       "id" : "f47",
       "type" : "HtmlDialogMethodStart",
@@ -510,28 +510,6 @@
         "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f3", "to" : "f88" }
-    }, {
-      "id" : "f205",
-      "type" : "Script",
-      "name" : [
-        "load supported languages",
-        "for 3rd party app"
-      ],
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;",
-            "",
-            "",
-            "in.languages = ApplicationMultiLanguage.getThirdPartySupportedLanguage();"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 376, "y" : 680 },
-        "size" : { "width" : 176, "height" : 60 }
-      },
-      "connect" : { "id" : "f46", "to" : "f45" }
     }, {
       "id" : "f209",
       "type" : "Alternative",

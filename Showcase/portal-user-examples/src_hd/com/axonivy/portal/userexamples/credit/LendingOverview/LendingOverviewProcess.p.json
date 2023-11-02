@@ -11,6 +11,18 @@
       "name" : "start(UserProcess)",
       "config" : {
         "callSignature" : "start",
+        "result" : {
+          "params" : [
+            { "name" : "state", "type" : "com.axonivy.portal.userexamples.enums.RequestState" },
+            { "name" : "stageIndex", "type" : "Integer" },
+            { "name" : "caseMapDetail", "type" : "ch.ivy.addon.portalkit.bo.CaseMapDetail" }
+          ],
+          "map" : {
+            "result.state" : "in.state",
+            "result.stageIndex" : "in.stageIndex",
+            "result.caseMapDetail" : "in.caseMapDetail"
+          }
+        },
         "input" : {
           "params" : [
             { "name" : "userProcess", "type" : "ch.ivy.addon.portalkit.configuration.UserProcess" }
@@ -155,7 +167,8 @@
             { "name" : "index", "type" : "Integer" }
           ],
           "map" : {
-            "out.stageIndex" : "param.index"
+            "out.stageIndex" : "param.index",
+            "out.state" : "com.axonivy.portal.userexamples.enums.RequestState.SUBMIT"
           }
         },
         "guid" : "1725FD5F6C762123"
@@ -166,32 +179,17 @@
       },
       "connect" : { "id" : "f10", "to" : "f9" }
     }, {
-      "id" : "f9",
-      "type" : "DialogCall",
-      "name" : "LendingDetail",
-      "config" : {
-        "dialogId" : "com.axonivy.portal.userexamples.credit.LendingDetail",
-        "startMethod" : "start(ch.ivy.addon.portalkit.bo.CaseMapDetail,Integer)",
-        "call" : {
-          "params" : [
-            { "name" : "caseMapDetail", "type" : "ch.ivy.addon.portalkit.bo.CaseMapDetail" },
-            { "name" : "index", "type" : "Integer" }
-          ],
-          "map" : {
-            "param.caseMapDetail" : "in.caseMapDetail",
-            "param.index" : "in.stageIndex"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 288, "y" : 256 }
-      }
-    }, {
       "id" : "f11",
       "type" : "HtmlDialogEventStart",
       "name" : "cancel",
       "config" : {
-        "guid" : "17298009F9A705DB"
+        "guid" : "17298009F9A705DB",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.state" : "com.axonivy.portal.userexamples.enums.RequestState.CANCEL"
+          }
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 352 },
@@ -199,16 +197,16 @@
       },
       "connect" : { "id" : "f13", "to" : "f12" }
     }, {
-      "id" : "f12",
-      "type" : "DialogCall",
-      "name" : "ExampleHomePage",
-      "config" : {
-        "dialogId" : "com.axonivy.portal.userexamples.ExampleHomePage",
-        "startMethod" : "start()"
-      },
+      "id" : "f9",
+      "type" : "HtmlDialogExit",
       "visual" : {
-        "at" : { "x" : 288, "y" : 352 },
-        "size" : { "width" : 128, "height" : 60 }
+        "at" : { "x" : 288, "y" : 256 }
+      }
+    }, {
+      "id" : "f12",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 288, "y" : 352 }
       }
     } ]
 }
