@@ -72,10 +72,11 @@
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.caseWithCustomAction(caseItem)}">
-            <p:link title="#{column.description}"
+            <p:link id="custom-description"
               href="#{column.getCustomProcessPath(caseItem)}">
               <i class="#{column.icon}" />
             </p:link>
+            <p:tooltip for="custom-description" value="#{column.description}" />  
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.format eq 'TIMESTAMP'}">
