@@ -96,7 +96,8 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 public class DashboardDetailModificationBean extends DashboardBean implements Serializable, PropertyChangeListener {
 
   private static final long serialVersionUID = -5272278165636659596L;
-  private static final String DEFAULT_USER_FILTER_ID = "widget-configuration-form:new-widget-configuration-component:%s-predefined-filter";
+  private static final String DEFAULT_COMPLEX_USER_FILTER_ID = "widget-configuration-form:new-widget-configuration-component:predefined-filter";
+  private static final String DEFAULT_USER_FILTER_ID = "widget-configuration-form:new-widget-configuration-component:user-filter";
   private static final String DEFAULT_WIDGET_TITLE_ID = "widget-configuration-form:new-widget-configuration-component:widget-title-group";
   private static final String PROCESS_ICON_CUSTOM_FIELD = "cssIcon";
   private static final String DEFAULT_PROCESS_ICON = "si si si-hierarchy-6 si-rotate-270";
@@ -882,12 +883,16 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     DashboardWidget processWidget = getWidget();
     if (processWidget != null) {
       componentId = DEFAULT_WIDGET_TITLE_ID;
-      if (NEWS != processWidget.getType()) {
+      if (NEWS != processWidget.getType() && CASE != processWidget.getType()) {
         String userFilterId = String.format(DEFAULT_USER_FILTER_ID, processWidget.getId());
         componentId = componentId.concat(" ").concat(userFilterId);
       } 
       if (PROCESS == processWidget.getType()) {
         componentId = componentId.concat(" widget-configuration-form");
+      }
+      if (CASE == processWidget.getType()) {
+        String userFilterId = String.format(DEFAULT_COMPLEX_USER_FILTER_ID, processWidget.getId());
+        componentId = componentId.concat(" ").concat(userFilterId);
       }
     }
     return componentId;

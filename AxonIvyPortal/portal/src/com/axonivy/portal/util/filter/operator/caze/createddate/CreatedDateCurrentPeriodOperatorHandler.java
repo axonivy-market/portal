@@ -5,11 +5,10 @@ import java.util.Date;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
 import com.axonivy.portal.util.PortalDateUtils;
-import com.axonivy.portal.util.filter.operator.AbstractFilterOperatorHandler;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-public class CreatedDateCurrentPeriodOperatorHandler extends AbstractFilterOperatorHandler {
+public class CreatedDateCurrentPeriodOperatorHandler {
 
   private static CreatedDateCurrentPeriodOperatorHandler instance;
 

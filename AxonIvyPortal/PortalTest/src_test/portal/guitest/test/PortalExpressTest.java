@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +16,7 @@ import org.openqa.selenium.WebElement;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.DefaultExpresTaskPage;
@@ -24,8 +26,8 @@ import portal.guitest.page.ExpressFormDefinitionPage;
 import portal.guitest.page.ExpressProcessPage;
 import portal.guitest.page.ExpressReviewPage;
 import portal.guitest.page.ExpressTaskPage;
-import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.SearchResultPage;
 import portal.guitest.page.TaskTemplatePage;
@@ -43,7 +45,7 @@ public class PortalExpressTest extends BaseTest {
 	protected static final int INPUT_NUMBER_TYPE_INDEX = 1;
 	protected static final int INPUT_DATE_TYPE_INDEX = 2;
 
-	protected HomePage homePage;
+	protected NewDashboardPage newDashboardPage;
 	protected ProcessWidgetPage processWidget;
 	protected TaskWidgetPage taskWidgetPage;
 
@@ -56,14 +58,14 @@ public class PortalExpressTest extends BaseTest {
 	public void setup() {
 		super.setup();
 		redirectToRelativeLink("portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp");
-		homePage = new HomePage();
+		newDashboardPage = new NewDashboardPage();
 	}
 
 	@Test
 	public void testOpenProcessWidgetWithoutCreateExpressWorkflowPermission() throws Exception {
 		String denyAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/denyPortalPermission.ivp";
 		redirectToRelativeLink(denyAllPermissionsForAdminUserURL);
-		MainMenuPage mainMenuPage = homePage.openMainMenu();
+		MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
 		processWidget = mainMenuPage.selectProcessesMenu();
 		assertEquals(false, processWidget.hasCreateNewExpressWorkflowLink());
 		// run process to grant permission back to normal
@@ -160,7 +162,7 @@ public class PortalExpressTest extends BaseTest {
 		formDefinition.executeWorkflow();
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
-		HomePage home = new HomePage();
+		NewDashboardPage home = new NewDashboardPage();
 		assertTrue(home.isDisplayed());
 	}
 
@@ -181,15 +183,15 @@ public class PortalExpressTest extends BaseTest {
 		defaultExpresTaskPage.enterTextToDefaultTask("Test input");
 		defaultExpresTaskPage.finishDefaultTask();
 
-		taskWidgetPage = new TaskWidgetPage();
-		taskWidgetPage.filterTasksBy("Next Default Task");
+    taskWidgetPage = new NewDashboardPage().openTaskList();
+    taskWidgetPage.filterTasksInExpandedModeBy("Next Default Task");
 		taskWidgetPage.startTask(0);
 		defaultExpresTaskPage = new DefaultExpresTaskPage();
 		defaultExpresTaskPage.enterTextToDefaultTask("Comment");
 		defaultExpresTaskPage.finishDefaultTask();
 
-		taskWidgetPage = new TaskWidgetPage();
-		taskWidgetPage.filterTasksBy("Test create default process: Final Review");
+    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.filterTasksInExpandedModeBy("Test create default process: Final Review");
 		taskWidgetPage.startTask(0);
 		
 		ExpressReviewPage reviewPage = new ExpressReviewPage();
@@ -220,7 +222,7 @@ public class PortalExpressTest extends BaseTest {
   public void testUserAdminCanViewEditDeleteProcess() {
     createAdministratedWorkflow("Test approval", Arrays.asList(responsible1, groupHr), false);
     login(TestAccount.ADMIN_USER);
-    GlobalSearch globalSearch = homePage.getGlobalSearch();
+    GlobalSearch globalSearch = newDashboardPage.getGlobalSearch();
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("Test approval");
     searchResultPage.waitForFirstTabFinishedLoading();
 
@@ -238,7 +240,7 @@ public class PortalExpressTest extends BaseTest {
   @Test
   public void testUserCreatorCanViewEditDeleteProcess() {
     createAdministratedWorkflow("Test approval", Arrays.asList(responsible1, groupHr), false);
-    GlobalSearch globalSearch = homePage.getGlobalSearch();
+    GlobalSearch globalSearch = newDashboardPage.getGlobalSearch();
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("Test approval");
     searchResultPage.waitForFirstTabFinishedLoading();
     WebElement expressWorkflow = searchResultPage.findElementByClassName("express-workflow");
@@ -256,7 +258,7 @@ public class PortalExpressTest extends BaseTest {
   public void testProcessOwnerCanViewAndEditProcess() {
     createAdministratedWorkflow("Test approval", Arrays.asList(responsible1, groupHr), false);
     login(TestAccount.HR_ROLE_USER);
-    GlobalSearch globalSearch = homePage.getGlobalSearch();
+    GlobalSearch globalSearch = newDashboardPage.getGlobalSearch();
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("Test approval");
     searchResultPage.waitForFirstTabFinishedLoading();
 
@@ -277,7 +279,7 @@ public class PortalExpressTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     createAdministratedWorkflow("Test approval", Arrays.asList(groupHr), false);
     login(TestAccount.DEMO_USER);
-    GlobalSearch globalSearch = homePage.getGlobalSearch();
+    GlobalSearch globalSearch = newDashboardPage.getGlobalSearch();
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("Test approval");
     searchResultPage.waitForFirstTabFinishedLoading();
     
@@ -325,11 +327,12 @@ public class PortalExpressTest extends BaseTest {
 	protected void rejectWhenMultiApproval() {
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
-		var taskWidgetPage = new TaskWidgetPage();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    var taskWidgetPage = newDashboardPage.openTaskList();
 		if (taskWidgetPage.countTasks() != 1) {
-			WaitHelper.waitForNavigation(taskWidgetPage, () -> taskWidgetPage.clickOnLogo());
+      WaitHelper.waitForNavigation(taskWidgetPage, () -> taskWidgetPage.openTaskList());
 			if (taskWidgetPage.countTasks() != 1) {
-				WaitHelper.waitForNavigation(taskWidgetPage, () -> taskWidgetPage.clickOnLogo());
+        WaitHelper.waitForNavigation(taskWidgetPage, () -> taskWidgetPage.openTaskList());
 			}
 		}
 		assertEquals(1, new TaskWidgetPage().countTasks());
@@ -407,12 +410,12 @@ public class PortalExpressTest extends BaseTest {
 	protected void executeExpressProcessWhenMultiApproval() {
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
-		executeApproval("Approved at first level");
-		executeApproval("Approved at second level");
+    executeApproval("Approved at first level", 0);
+    executeApproval("Approved at second level", 0);
 		login(TestAccount.ADMIN_USER);
-		executeApproval("Approved at second level");
+    executeApproval("Approved at second level", 1, "Task 3", 2);
 		login(TestAccount.DEMO_USER);
-
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
 		String approvalResult = executeReview();
 		Assert.assertEquals("Portal Demo User,Approved at first level,Yes," + TestAccount.DEMO_USER.getFullName()
 				+ ",Approved at second level,Yes," + TestAccount.ADMIN_USER.getFullName()
@@ -426,7 +429,8 @@ public class PortalExpressTest extends BaseTest {
 		userTaskWithMailFormPage.selectEmailTab();
 		userTaskWithMailFormPage.inputData("wawa@axongroupio.ch", "Task information", "Task is created");
 		userTaskWithMailFormPage.finish();
-		executeApproval("Approved at first level");
+    new NewDashboardPage();
+    executeApproval("Approved at first level", 0);
 		executeUserTask();
 		String approvalResult = executeReview("Test approval: Final Review");
 		Assert.assertEquals("Portal Demo User,Approved at first level,Yes", approvalResult);
@@ -443,8 +447,8 @@ public class PortalExpressTest extends BaseTest {
 	}
 
 	protected String executeReview(String taskName) {
-		taskWidgetPage = new TaskWidgetPage();
-		taskWidgetPage.filterTasksBy(taskName);
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
+    taskWidgetPage.filterTasksInExpandedModeBy(taskName);
 		taskWidgetPage.startTask(0);
 		ExpressReviewPage reviewPage = new ExpressReviewPage();
 		String approvalResult = reviewPage.getApprovalResult();
@@ -458,27 +462,35 @@ public class PortalExpressTest extends BaseTest {
 		taskWidgetPage.startTask(0);
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
+    taskWidgetPage = new TaskWidgetPage();
 	}
 
 	protected void startExpressProcess(String processName) {
-		homePage = new HomePage();
-		GlobalSearch globalSearch = homePage.getGlobalSearch();
+		newDashboardPage = new NewDashboardPage();
+		GlobalSearch globalSearch = newDashboardPage.getGlobalSearch();
 		SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(processName);
 		searchResultPage.waitForFirstTabFinishedLoading();
 		searchResultPage.startProcess(processName);
 		new TaskTemplatePage().isDisplayed();
 	}
 
-	protected void executeApproval(String comment) {
-		taskWidgetPage = new TaskWidgetPage();
-		if (taskWidgetPage.countTasks() == 0) {
-		  taskWidgetPage.filterTasksBy("Task");
-		}
-		taskWidgetPage.startTask(0);
-		ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
-		approvalPage1.comment(comment);
-		approvalPage1.approve();
-	}
+  protected void executeApproval(String comment, int taskIndex, String taskNameFilter, int taskCountAfterFiltering) {
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
+    if (taskWidgetPage.countTasks() <= taskIndex) {
+      taskWidgetPage.filterTasksInExpandedModeBy("Task", taskCountAfterFiltering);
+    }
+    if (StringUtils.isNotEmpty(taskNameFilter)) {
+      taskWidgetPage.filterTasksInExpandedModeBy(taskNameFilter, taskCountAfterFiltering);
+    }
+    taskWidgetPage.startTask(taskIndex);
+    ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
+    approvalPage1.comment(comment);
+    approvalPage1.approve();
+  }
+
+  protected void executeApproval(String comment, int taskIndex) {
+    executeApproval(comment, taskIndex, null, 1);
+  }
 
 	protected void rejectApproval(String comment) {
 		taskWidgetPage = new TaskWidgetPage();
@@ -493,8 +505,7 @@ public class PortalExpressTest extends BaseTest {
 	}
 
 	protected void goToCreateExpressProcess() {
-		processWidget = homePage.getProcessWidget();
-		processWidget.expand();
+    processWidget = NavigationHelper.navigateToProcessList();
 		processWidget.openExpressPage();
 	}
 	

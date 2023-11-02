@@ -386,7 +386,6 @@ td.dashboard-cases__name span {
 }
 
 .task-configuration.card,
-.case-configuration.card,
 .widget-configuration.card  {
   width: 450px;
   margin-right: 20px;
@@ -1688,8 +1687,8 @@ body .ui-widget.new-widget-dialog__introduction {
   width: auto;
 }
 
-.case-widget-filter.widget-configuration.card {
-  width: auto;
+.case-widget-configuration.widget-configuration.card {
+  width: 25vw;
 }
 
 .dashboard-configuration-filter-container {
@@ -1698,6 +1697,12 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .dashboard-widget-filter__main-panel {
   width: 100%;
+  overflow: auto;
+  padding: 0.5em;
+}
+
+.dashboard-widget-filter__read-only-panel {
+  padding-left: 0.5em;
 }
 
 .dashboard-widget-filter__read-only-panel .dashboard-widget-filter__filter-panel:last-child {
@@ -1716,15 +1721,21 @@ body .ui-widget.new-widget-dialog__introduction {
 .dashboard-widget-filter__filter-panel > div {
   margin-left: 0.5em;
   display: flex;
+  align-items: flex-start;
+}
+
+.dashboard-widget-filter__filter-panel > div.remove-filter-panel {
+  margin-left: 0.5em;
+  display: flex;
   align-items: center;
 }
 
 .dashboard-widget-filter__filter-panel > div.filter-selection-panel {
-  min-width: 150px;
+  min-width: 5vw;
 }
 
 .dashboard-widget-filter__filter-panel > div.date-picker-panel {
-  min-width: 200px;
+  min-width: 3vw;
 }
 
 .dashboard-widget-filter__filter-panel > div.number-of-periods-panel {
@@ -1732,11 +1743,15 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .dashboard-widget-filter__filter-panel > div.period-type-panel {
-  width: 120px;
+  width: 4vw;
 }
 
 .dashboard-widget-filter__filter-panel > div:first-child {
   margin-left: 0;
+}
+
+.dashboard-widget-filter__filter-panel .creator-filter-operation-panel {
+  width: 130px;
 }
 
 body .ui-button.rounded-button.dashboard-widget-filter__remove-filter {
@@ -1748,4 +1763,8 @@ body .ui-button.rounded-button.dashboard-widget-filter__remove-filter .ui-icon {
   font-size: 0.5rem;
   margin-top: -0.25rem;
   margin-left: -0.25rem;
+}
+
+.widget-configuration-footer-panel {
+  padding-top: 1.5rem;
 }

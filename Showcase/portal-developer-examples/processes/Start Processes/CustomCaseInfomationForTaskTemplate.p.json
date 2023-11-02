@@ -215,110 +215,13 @@
         "at" : { "x" : 816, "y" : 304 },
         "size" : { "width" : 672, "height" : 124 }
       }
-    }, {
-      "id" : "f22",
-      "type" : "RequestStart",
-      "name" : "employeeSearch.ivp",
-      "config" : {
-        "signature" : "employeeSearch",
-        "request" : {
-          "name" : "Employee Search"
-        },
-        "case" : {
-          "name" : "Case of Search list",
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 64, "y" : 512 },
-        "labelOffset" : { "x" : 42, "y" : 37 }
-      },
-      "connect" : [
-        { "id" : "f26", "to" : "f24" }
-      ]
-    }, {
-      "id" : "f23",
-      "type" : "RequestStart",
-      "name" : "employeeDetails.ivp",
-      "config" : {
-        "signature" : "employeeDetails",
-        "input" : {
-          "params" : [
-            { "name" : "employeeId", "type" : "Integer", "desc" : "" }
-          ],
-          "map" : {
-            "out.employeeInfo.id" : "param.employeeId"
-          }
-        },
-        "case" : {
-          "name" : "Case for Employee details",
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 64, "y" : 608 },
-        "labelOffset" : { "x" : 39, "y" : 37 }
-      },
-      "connect" : [
-        { "id" : "f27", "to" : "f25" }
-      ]
-    }, {
-      "id" : "f24",
-      "type" : "DialogCall",
-      "name" : "EmployeeSearch",
-      "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.testdata.EmployeeSearch:start()"
-      },
-      "visual" : {
-        "at" : { "x" : 240, "y" : 512 }
-      },
-      "connect" : [
-        { "id" : "f30", "to" : "f28" }
-      ]
-    }, {
-      "id" : "f25",
-      "type" : "DialogCall",
-      "name" : "EmployeeDetails",
-      "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.testdata.EmployeeDetails:start(Integer)",
-        "call" : {
-          "map" : {
-            "param.employeeId" : "in.employeeInfo.id"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 248, "y" : 608 }
-      },
-      "connect" : [
-        { "id" : "f31", "to" : "f29" }
-      ]
-    }, {
-      "id" : "f28",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 416, "y" : 512 }
-      }
-    }, {
-      "id" : "f29",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 416, "y" : 608 }
-      }
     } ],
   "layout" : {
     "lanes" : [ {
         "size" : 192
       }, {
-        "name" : "Example for IFrameTaskTemplate",
+        "name" : "Example for IFrame",
         "size" : 256
-      }, {
-        "name" : "Example for TaskTemplate-8",
-        "size" : 216
       } ]
   }
 }
