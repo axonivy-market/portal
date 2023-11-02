@@ -55,9 +55,6 @@ Variables:
     # [file: json]
     PasswordValidation:
 
-    # For switch on/off the display legacy UI.
-    ShowLegacyUI: false
-
     # You can define the own user menu via this JSON file.
     # It will be shown as the your user menu in the user menu settings.
     # [file: json]
@@ -73,19 +70,8 @@ Variables:
     # This setting will be taken over for all other dashboard.
     # [file: json]
     Dashboard:
-      # Activates the interactive user guide "first steps" in the portal at first login.
-      ShowUserGuide: true
-
       # Set to true to hide Statistic widget from homepage and application menu.
       HideStatisticWidget: false
-
-      # If this property is false, do not display user favorites section of process list in Portal home.
-      ShowUserFavorites: true
-
-      # You can include your custom application favorites processes via this JSON file.
-      # It will be shown as the processes in the application favorite section.
-      # [file: json]
-      FavoriteProcesses:
 
     Processes:
       # The standard setting of view mode in the process list.
@@ -278,7 +264,7 @@ Variables:
     # [file: json]
     CustomMenuItems:
 
-    # GlobalVariable of footer info that can be set in the portal admin settings.
+    # Global footer info that is displayed in bottom right corner can be set in the portal admin settings.
     GlobalFooterInfo: ''
 
     # Support the translation from English to the other languages or from German to the other languages (German, English, French, Spanish)

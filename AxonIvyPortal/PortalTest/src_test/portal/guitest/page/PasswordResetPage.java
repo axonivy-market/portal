@@ -26,7 +26,6 @@ public class PasswordResetPage extends AbstractPage {
     this.resetButton = findElementByCssSelector("button[id='password-reset:reset-password-form:reset-command']");
   }
 
-  @SuppressWarnings("deprecation")
   public void resetPassword(String newPassword, Boolean strongPasswordEnough) {
     newPasswordTextField.sendKeys(newPassword);
     passwordConfirmationTextField.sendKeys(newPassword);
@@ -50,7 +49,6 @@ public class PasswordResetPage extends AbstractPage {
     return StringUtils.isNotBlank(resultMessage);
   }
 
-  @SuppressWarnings("deprecation")
   public void goHome() {
     WebElement goHomeButton = findElementById("password-reset:reset-password-form:go-home-button");
     click(goHomeButton);

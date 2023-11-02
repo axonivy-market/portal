@@ -25,7 +25,6 @@ public class DashboardConfigurationScreenshotTest extends ScreenshotBaseTest {
   public void setup() {
     super.setup();
     updatePortalSetting(Variable.ENABLE_GROUP_CHAT.getKey(), "true");
-    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "false");
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createSampleDashboardUrl);
   }
@@ -45,9 +44,7 @@ public class DashboardConfigurationScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getMultipleLanguageDialog(), ScreenshotUtil.DASHBOARD_CONFIGURATION_FOLDER + "dashboard-multi-language-dialog", new ScreenshotMargin(10));
     dashboardConfigurationPage.cancelMultiLanguageDialog();
     dashboardConfigurationPage.cancelCreateDashboard();
-    dashboardConfigurationPage.openEditPrivateDashboardsPage();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(), ScreenshotUtil.DASHBOARD_CONFIGURATION_FOLDER + "edit-private-dashboards", new ScreenshotMargin(10));
-    dashboardConfigurationPage.reorderPrivateDashboard();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(), ScreenshotUtil.DASHBOARD_CONFIGURATION_FOLDER + "reorder-your-dashboards", new ScreenshotMargin(10));
     dashboardConfigurationPage.selectPublicDashboardType();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(), ScreenshotUtil.DASHBOARD_CONFIGURATION_FOLDER + "public-dashboard-configuration", new ScreenshotMargin(10));
@@ -56,7 +53,6 @@ public class DashboardConfigurationScreenshotTest extends ScreenshotBaseTest {
     dashboardConfigurationPage.cancelCreateDashboard();
     dashboardConfigurationPage.openEditPublicDashboardsPage();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(), ScreenshotUtil.DASHBOARD_CONFIGURATION_FOLDER + "edit-public-dashboards", new ScreenshotMargin(10));
-    dashboardConfigurationPage.reorderPublicDashboard();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(), ScreenshotUtil.DASHBOARD_CONFIGURATION_FOLDER + "reorder-public-dashboards", new ScreenshotMargin(10));
     dashboardConfigurationPage.openCreatePrivateDashboardMenu();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardTemplates(), ScreenshotUtil.DASHBOARD_CONFIGURATION_FOLDER + "dashboard-templates", new ScreenshotMargin(10));

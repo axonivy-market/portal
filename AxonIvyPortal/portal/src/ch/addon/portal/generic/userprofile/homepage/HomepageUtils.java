@@ -127,7 +127,4 @@ public class HomepageUtils {
     return homepage == null || homepage.getType() == HomepageType.DASHBOARD || isClickOnDashboard;
   }
 
-  public static boolean isShowLegacyUI() {
-    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_LEGACY_UI);
-  }
 }

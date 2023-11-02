@@ -21,6 +21,7 @@ import com.axonivy.portal.components.dto.UserDTO;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 
@@ -55,7 +56,7 @@ public class UserUtils {
    */
   @SuppressWarnings("unchecked")
   public static List<UserDTO> findUsers(String query, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return SubProcessCall.withPath(PortalComponentConstants.SECURITY_SERVICE_CALLABLE)
           .withStartName("findUsers")
           .withParam("query", query)

@@ -1,6 +1,0 @@
-EmployeeSearchData #class
-com.axonivy.portal.developerexamples.testdata.EmployeeSearch #namespace
-employees java.util.List<com.axonivy.portal.developerexamples.Employee> #field
-employees PERSISTENT #fieldModifier
-employeeId Integer #field
-employeeId PERSISTENT #fieldModifier
