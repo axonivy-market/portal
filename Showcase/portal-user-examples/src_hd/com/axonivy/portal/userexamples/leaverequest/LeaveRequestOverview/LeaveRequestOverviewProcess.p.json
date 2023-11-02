@@ -11,6 +11,14 @@
       "name" : "start()",
       "config" : {
         "callSignature" : "start",
+        "result" : {
+          "params" : [
+            { "name" : "state", "type" : "com.axonivy.portal.userexamples.enums.RequestState" }
+          ],
+          "map" : {
+            "result.state" : "in.state"
+          }
+        },
         "input" : {
           "params" : [
             { "name" : "userProcess", "type" : "ch.ivy.addon.portalkit.configuration.UserProcess" }
@@ -84,7 +92,13 @@
       "type" : "HtmlDialogEventStart",
       "name" : "cancel",
       "config" : {
-        "guid" : "17298017D25BAF7E"
+        "guid" : "17298017D25BAF7E",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.state" : "com.axonivy.portal.userexamples.enums.RequestState.CANCEL"
+          }
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 256 },
@@ -93,15 +107,9 @@
       "connect" : { "id" : "f10", "to" : "f9" }
     }, {
       "id" : "f9",
-      "type" : "DialogCall",
-      "name" : "ExampleHomePage",
-      "config" : {
-        "dialogId" : "com.axonivy.portal.userexamples.ExampleHomePage",
-        "startMethod" : "start()"
-      },
+      "type" : "HtmlDialogExit",
       "visual" : {
-        "at" : { "x" : 224, "y" : 256 },
-        "size" : { "width" : 128, "height" : 60 }
+        "at" : { "x" : 288, "y" : 256 }
       }
     } ]
 }
