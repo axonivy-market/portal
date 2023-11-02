@@ -528,8 +528,8 @@ function highlightIFrameWidgetTaskDetails() {
   createRedMediumOutline($(".custom-widget-card.task-detail-card"));
 }
 
-function highlightEmailSettings() {
-  createRedMediumOutline($("div[id$='email-setting-container']"));
+function highlightNotificationChannelSettings() {
+  createRedMediumOutline($("div[id$='notification-channels']"));
 }
 
 function highlightUserName() {
