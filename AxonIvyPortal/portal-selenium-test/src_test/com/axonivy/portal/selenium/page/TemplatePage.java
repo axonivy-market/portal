@@ -18,6 +18,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -33,6 +34,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.conditions.Not;
 
 public abstract class TemplatePage extends AbstractPage {
+  private static final int IFRAME_SCREENSHOT_FILE_SIZE_AT_MINIMUM = 10000;
   protected static final String LAYOUT_WRAPPER = ".layout-wrapper";
   public static final String ID_PROPERTY = "id";
   private static final String TEMPLATE_PAGE_LOCATOR = "[id='global-search-item']";
@@ -455,10 +457,24 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void waitForNewTabOpen() {
-    new WebDriverWait(WebDriverRunner.getWebDriver(), Duration.ofSeconds(30)).until(ExpectedConditions.numberOfWindowsToBe(2));
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(ExpectedConditions.numberOfWindowsToBe(2));
   }
 
   public TaskWidgetPage openTaskList() {
     return openMainMenu().selectTaskMenu();
+  }
+
+  public void waitForIFrameContentVisible() {
+    waitForIFrameScreenshotSizeGreaterThan(IFRAME_SCREENSHOT_FILE_SIZE_AT_MINIMUM);
+  }
+  public void switchToDefaultContent() {
+    driver.switchTo().defaultContent();
+  }
+  public void waitForIFrameScreenshotSizeGreaterThan(long fileSizeInBytes) {
+    switchToDefaultContent();
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((driver) -> {
+      return $("iFrame").getScreenshotAs(OutputType.FILE).length() > fileSizeInBytes;
+    });
+    switchToIFrameOfTask();
   }
 }
