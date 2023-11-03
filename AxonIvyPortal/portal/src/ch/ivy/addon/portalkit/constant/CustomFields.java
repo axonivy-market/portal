@@ -37,4 +37,7 @@ public class CustomFields {
   public static final String IS_EXPRESS_PROCESS = "isExpress";
   public static final String EXPRESS_END_PAGE_URL = "expressEndPageUrl";
   public static final String PROCESS_IMAGE = "processImage";
+  public static final String PROCESS_INFORMATION = "portalProcessInfo";
+  public static final String SORT_INDEX = "portalSortIndex";
+
 }

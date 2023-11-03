@@ -13,6 +13,7 @@ import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
+import ch.ivy.addon.portalkit.bo.ProcessWithCustomField;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
@@ -25,7 +26,7 @@ import ch.ivyteam.ivy.workflow.category.Category;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class DashboardProcess implements Process {
+public class DashboardProcess implements Process, ProcessWithCustomField {
   private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
   private String id;
   private Long processStartId;
@@ -39,6 +40,7 @@ public class DashboardProcess implements Process {
   private String application;
   private Category category;
   private String sortIndex;
+  private String portalProcessInformation;
   
   public DashboardProcess() {}
 
@@ -52,7 +54,8 @@ public class DashboardProcess implements Process {
     this.category = process.getCategory();
     this.imageUrl = process.getImageUrl();
     this.application = process.getApplication();
-    this.sortIndex = process.getSortIndex();
+    this.sortIndex = getSortIndex();
+    this.portalProcessInformation = getPortalProcessInformation();
   }
 
   public DashboardProcess(IWebStartable process) {
@@ -66,6 +69,7 @@ public class DashboardProcess implements Process {
     this.application = process.pmv().getApplication().getName();
     this.imageUrl = collectProcessImage(process);
     this.sortIndex = getSortIndexInCustomField(process);
+    this.portalProcessInformation = getPortalProcessInformation(process);
   }
 
   public DashboardProcess(ExpressProcess process) {
@@ -217,5 +221,10 @@ public class DashboardProcess implements Process {
   @Override
   public String getSortIndex() {
     return sortIndex;
+  }
+
+  @Override
+  public String getPortalProcessInformation() {
+    return portalProcessInformation;
   }
 }
