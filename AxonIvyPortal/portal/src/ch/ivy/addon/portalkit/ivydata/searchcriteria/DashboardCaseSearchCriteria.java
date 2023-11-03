@@ -36,6 +36,20 @@ import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateIsO
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateNumberOfPeriodsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateTodayOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateYesterdayOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.description.DescriptionContainsOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.description.DescriptionEndWithOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.description.DescriptionIsEmptyOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.description.DescriptionIsOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.description.DescriptionStartWithOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateAfterOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateBeforeOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateBetweenOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateCurrentPeriodOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateEmptyOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateIsOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateNumberOfPeriodsOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateTodayOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateYesterdayOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.name.NameContainsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.name.NameEndWithOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.name.NameIsEmptyOperatorHandler;
@@ -152,6 +166,8 @@ public class DashboardCaseSearchCriteria {
       case NEXT -> FinishedDateNumberOfPeriodsOperatorHandler.getInstance().buildNextPeriodQuery(filter);
       case IS -> FinishedDateIsOperatorHandler.getInstance().buildIsQuery(filter);
       case IS_NOT -> FinishedDateIsOperatorHandler.getInstance().buildIsNotQuery(filter);
+      case EMPTY -> FinishedDateEmptyOperatorHandler.getInstance().buildEmptyQuery();
+      case NOT_EMPTY -> FinishedDateEmptyOperatorHandler.getInstance().buildNotEmptyQuery();
       default -> null;
     };
   }
