@@ -26,4 +26,8 @@ public class CaseMapPage extends TemplatePage{
     switchBackToParent();
     return new NewDashboardPage();
   }
+
+  public String getHeader() {
+    return findElementByCssSelector("#header").getText();
+  }
 }
