@@ -32,19 +32,6 @@ import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateAft
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateBeforeOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateBetweenOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateCurrentPeriodOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateIsOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateNumberOfPeriodsOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateTodayOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateYesterdayOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.description.DescriptionContainsOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.description.DescriptionEndWithOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.description.DescriptionIsEmptyOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.description.DescriptionIsOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.description.DescriptionStartWithOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateAfterOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateBeforeOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateBetweenOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateCurrentPeriodOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateEmptyOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateIsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateNumberOfPeriodsOperatorHandler;
@@ -90,20 +77,6 @@ public class DashboardCaseSearchCriteria {
     CaseQuery query = CaseQuery.businessCases();
     queryFilters(query);
     return query;
-  }
-
-  private void queryCreatedDate(CaseQuery query, Date from, Date to) {
-    if (from != null || to != null) {
-      CaseQuery subQuery = CaseQuery.create();
-      if (from != null) {
-        subQuery.where().startTimestamp().isGreaterOrEqualThan(from);
-      }
-
-      if (to != null) {
-        subQuery.where().startTimestamp().isLowerOrEqualThan(DateUtils.addDays(to, 1));
-      }
-      query.where().and(subQuery);
-    }
   }
 
   private void queryComplexFilter(CaseQuery query, List<DashboardFilter> filterList) {
@@ -238,18 +211,6 @@ public class DashboardCaseSearchCriteria {
     };
   }
 
-  private void queryName(CaseQuery query, String name) {
-    if (StringUtils.isNotBlank(name)) {
-      query.where().name().isLikeIgnoreCase(String.format(LIKE_FORMAT, name));
-    }
-  }
-
-  private void queryDescription(CaseQuery query, String description) {
-    if (StringUtils.isNotBlank(description)) {
-      query.where().description().isLikeIgnoreCase(String.format(LIKE_FORMAT, description));
-    }
-  }
-
   private void queryCustomFieldSelection(CaseQuery query, String field, List<String> filterList) {
     if (CollectionUtils.isNotEmpty(filterList)) {
       CaseQuery subQuery = CaseQuery.create();
@@ -304,26 +265,8 @@ public class DashboardCaseSearchCriteria {
         String filterFrom = StringUtils.isNotBlank(userFilterFrom) && !isInConfiguration ? userFilterFrom : configuredFilterFrom;
         String filterTo = StringUtils.isNotBlank(userFilterTo) && !isInConfiguration ? userFilterTo : configuredFilterTo;
         
-        if (equals(DashboardStandardCaseColumn.NAME, column)) {
-          queryName(query, configuredFilter);
-          if (!isInConfiguration) {
-            queryName(query, userFilter);
-          }
-        } else if (equals(DashboardStandardCaseColumn.DESCRIPTION, column)) {
-          queryDescription(query, configuredFilter);
-          if (!isInConfiguration) {
-            queryDescription(query, userFilter);
-          }
-        } else if (equals(DashboardStandardCaseColumn.OWNER, column)) {
+        if (equals(DashboardStandardCaseColumn.OWNER, column)) {
           queryOwner(query, filterList);
-        } else if (equals(DashboardStandardCaseColumn.CREATED, column)) {
-          Date from = Dates.parse(filterFrom);
-          Date to = Dates.parse(filterTo);
-          queryCreatedDate(query, from, to);
-        } else if (equals(DashboardStandardCaseColumn.FINISHED, column)) {
-          Date from = Dates.parse(filterFrom);
-          Date to = Dates.parse(filterTo);
-          queryFinishedDate(query, from, to);
         } else if (column.getFilterType() == DashboardFilterType.SELECTION || CollectionUtils.isNotEmpty(filterList)) {
           queryCustomFieldSelection(query, field, filterList);
         } else {
@@ -376,20 +319,6 @@ public class DashboardCaseSearchCriteria {
       }
     }
     return subQuery;
-  }
-  
-  private void queryFinishedDate(CaseQuery query, Date from, Date to) {
-    if (from != null || to != null) {
-      CaseQuery subQuery = CaseQuery.create();
-      if (from != null) {
-        subQuery.where().endTimestamp().isGreaterOrEqualThan(from);
-      }
-
-      if (to != null) {
-        subQuery.where().endTimestamp().isLowerOrEqualThan(DateUtils.addDays(to, 1));
-      }
-      query.where().and(subQuery);
-    }
   }
 
   private void queryOwner(CaseQuery query, List<String> owners) {
