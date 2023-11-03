@@ -3,7 +3,7 @@
 Permission List
 ================
 
-Portal has a flexible security system which allows you to configure who can access applications, and what they can do/see within them.
+Portal has a flexible security system that allows you to configure who can access applications, and what they can do/see within them.
 
 
 Portal Task Permissions
@@ -71,7 +71,7 @@ These apply to Task as a whole
     - **Default assignment**: :guilabel:`Administrator`
 
 - _`TaskWriteExpiryTimestamp`
-    - Control whether to change deadline
+    - Control whether to change the deadline
 
     - **Default assignment**: :guilabel:`Administrator`
 
@@ -145,7 +145,7 @@ These apply to Case as a whole
     - **Default assignment**: :guilabel:`Administrator`
 
 - _`ShowAllTasksOfCase`
-    - Permission to see the related tasks action 
+    - Permission to see the related tasks's action 
 
     - **Default assignment**: :guilabel:`Everybody`
 
@@ -229,7 +229,7 @@ Portal General Permissions
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`TaskCaseAddNote`
-    - Permission to add note to task/case
+    - Permission to add notes to task/case
 
     - **Default assignment**: :guilabel:`Everybody`
 
@@ -288,12 +288,12 @@ Portal Absence And Substitute Permissions
 -----------------------------------------
 
 - _`UserCreateAbsence`
-    - Permission to craete, edit absence of all users
+    - Permission to create, edit absence of all users
 
     - **Default assignment**: :guilabel:`Administrator`
 
 - _`UserCreateOwnAbsence`
-    - Permission to craete, edit personal absence
+    - Permission to create, edit personal absence
 
     - **Default assignment**: :guilabel:`Everybody`
 
