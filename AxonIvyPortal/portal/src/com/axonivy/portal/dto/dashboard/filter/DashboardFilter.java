@@ -2,6 +2,7 @@ package com.axonivy.portal.dto.dashboard.filter;
 
 import java.io.Serializable;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -44,6 +45,8 @@ public class DashboardFilter implements Serializable {
   private FilterPeriodType periodType;
 
   private List<String> texts;
+  
+  private List<String> caseStateOptions = new ArrayList<>();
 
   @JsonIgnore
   private boolean isTemp;
@@ -61,6 +64,11 @@ public class DashboardFilter implements Serializable {
   @JsonIgnore
   public boolean isText() {
     return this.type == FilterType.TEXT;
+  }
+
+  @JsonIgnore
+  public boolean isState() {
+    return this.type == FilterType.STATE;
   }
 
   public FilterType getType() {
@@ -169,5 +177,13 @@ public class DashboardFilter implements Serializable {
 
   public void setTo(String to) {
     this.to = to;
+  }
+
+  public List<String> getCaseStateOptions() {
+    return caseStateOptions;
+  }
+
+  public void setCaseStateOptions(List<String> caseStateOptions) {
+    this.caseStateOptions = caseStateOptions;
   }
 }

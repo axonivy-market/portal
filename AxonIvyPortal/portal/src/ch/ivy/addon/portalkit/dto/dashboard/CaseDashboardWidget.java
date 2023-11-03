@@ -162,7 +162,7 @@ public class CaseDashboardWidget extends DashboardWidget {
     getUserFilters().forEach(filter -> filter.setTemp(false));
 
     var filterService = WidgetFilterService.getInstance();
-    userFilterCollection.updateUserFilterOptionValue(this);
+    userFilterCollection.updateUserFilterOptionValue(this);    
     filterService.storeUserSelectedFiltersToSession(id, getType(), userFilterCollection);
     userDefinedFiltersCount = DashboardWidgetUtils.countDefinedUserFilter(this);
   }
