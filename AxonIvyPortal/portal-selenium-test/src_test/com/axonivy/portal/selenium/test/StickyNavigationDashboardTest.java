@@ -32,6 +32,8 @@ public class StickyNavigationDashboardTest extends BaseTest {
   public void setup() {
     super.setup();
     login(TestAccount.ADMIN_USER);
+    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
+    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
     newDashboardPage = new NewDashboardPage();
   }
 
