@@ -7,8 +7,9 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.constant.CustomFields;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.ProcessType;
-import ch.ivy.addon.portalkit.util.ProcessStartUtils;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.category.Category;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
@@ -54,7 +55,9 @@ public interface Process {
    */
   default public String collectProcessImage(IWebStartable process) {
     var imageUri = DefaultImage.PROCESSMODELING.getPath();
-    var defaultImageSetting = ProcessStartUtils.getDefaultProcessImageSetting();
+    var defaultImageSetting = GlobalSettingService.getInstance()
+        .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_IMAGE)
+        .getDisplayValue().toUpperCase();
     if (!defaultImageSetting.equals(DefaultImage.DEFAULT.name())) {
       imageUri = DefaultImage.IMAGE_PATH + defaultImageSetting;
     }

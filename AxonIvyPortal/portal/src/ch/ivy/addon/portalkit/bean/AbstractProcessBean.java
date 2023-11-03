@@ -29,7 +29,6 @@ import ch.ivy.addon.portalkit.mapper.UserProcessMapper;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -64,7 +63,7 @@ public abstract class AbstractProcessBean implements Serializable {
 
   protected List<Process> findExpressProcesses() {
     List<ExpressProcess> processes = new ArrayList<>();
-    String expressStartLink = ProcessStartCollector.getInstance().findExpressWorkflowStartLink();
+    String expressStartLink = ExpressProcessService.getInstance().findExpressWorkflowStartLink();
     if (StringUtils.isNotBlank(expressStartLink)) {
       List<ExpressProcess> workflows = ExpressProcessService.getInstance().findReadyToExecuteProcessOrderByName();
       for (ExpressProcess wf : workflows) {

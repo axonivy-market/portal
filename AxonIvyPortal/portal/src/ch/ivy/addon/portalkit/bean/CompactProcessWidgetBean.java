@@ -12,9 +12,9 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.configuration.UserProcess;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.enums.ProcessType;
+import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 
 @ManagedBean
 @ViewScoped
@@ -39,8 +39,7 @@ private static final long serialVersionUID = -5889375917550618261L;
     }
 
     if (isExpressProcess(userProcess) && StringUtils.isNotBlank(userProcess.getProcessId())) {
-      ProcessStartCollector processStartCollector = new ProcessStartCollector();
-      String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
+      String expressStartLink = ExpressProcessService.getInstance().findExpressWorkflowStartLink();
       if (StringUtils.isNotBlank(expressStartLink)) {
         FacesContext.getCurrentInstance().getExternalContext()
             .redirect(expressStartLink + "?workflowID=" + userProcess.getProcessId());
@@ -63,10 +62,10 @@ private static final long serialVersionUID = -5889375917550618261L;
   }
 
   private boolean isExternalLink(UserProcess process) {
-    return process != null && ProcessStartUtils.isExternalLink(process.getProcessType());
+    return process != null && process.getProcessType() == ProcessType.EXTERNAL_LINK;
   }
 
   private boolean isExpressProcess(UserProcess process) {
-    return process != null && ProcessStartUtils.isExpressProcess(process.getProcessType());
+    return process != null && process.getProcessType() == ProcessType.EXPRESS_PROCESS;
   }
 }

@@ -228,7 +228,7 @@ Migrate 10.0.11 To 10.0.12
       - Update ``index`` for each custom menu item.
       - Refer to process ``CustomLoadSubMenuItems`` in the project ``portal-developer-examples`` for an example of how to create custom menu items.
 
-2. We change the **External Link** configuration for the field ``imageContent``, refer to :ref:`Portal Processes External Links <portal-process-external-link>` for more information. Basically, you do not need any migration on your engine. Just in case, you override variable `Portal.Processes.ExternalLinks` by deployment, update the field ``imageContent`` by removing the prefix like `data:image/jpeg;base64,` in your JSON variable `Portal.Processes.ExternalLinks` file.
+2. We changed the **External Link** configuration for the field ``imageContent``, refer to :ref:`Portal Processes External Links <portal-process-external-link>` for more information. Basically, you do not need any migration on your engine. In case you have overridden the variable `Portal.Processes.ExternalLinks` by deployment, update the field ``imageContent`` by removing the prefix like `data:image/jpeg;base64,` in your JSON variable `Portal.Processes.ExternalLinks` file.
 
 Migrate 10.0 To 10.0.7
 ----------------------
