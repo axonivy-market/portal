@@ -19,3 +19,6 @@ CustomFields:
     isDashboardProcess:
       Label: Portal Custom widget
       Description: Set to 'true' to mark this start can be used as a Custom widget on the Portal dashboard
+    portalProcessInfo:
+      Label: Custom process information
+      Description: Set content (HTML tags are supported) to this custom field to override Process Information Page of a process
