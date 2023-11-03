@@ -161,6 +161,7 @@
   </h:form>
 
   <f:facet name="footer">
+  <div class="widget-configuration-footer-panel">
     <p:commandLink id="task-configuration-cancel-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
       styleClass="u-mar-right-10"
       global="false"
@@ -176,6 +177,7 @@
       partialSubmit="true"
       update="widget-configuration-form load-grid-after-added-new-widget-cmd"
       disabled="#{empty widget}"/>
+  </div>
   </f:facet>
 </p:dialog>
 

@@ -17,13 +17,13 @@ public class DescriptionIsEmptyOperatorHandler {
 
   public CaseQuery buildIsEmptyQuery(DashboardFilter filter) {
     CaseQuery subQuery = CaseQuery.create();
-    subQuery.where().description().isNull();
+    subQuery.where().description().isNull().or().description().isLike("");
     return subQuery;
   }
 
   public CaseQuery buildNotEmptyQuery(DashboardFilter filter) {
     CaseQuery subQuery = CaseQuery.create();
-    subQuery.where().description().isNotNull();
+    subQuery.where().description().isNotNull().and().description().isNotLike("");
     return subQuery;
   }
 }
