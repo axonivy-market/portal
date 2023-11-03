@@ -100,9 +100,4 @@ public class ExternalLinkProcessItem implements Process {
   public String getApplication() {
     return null;
   }
-
-  @Override
-  public String getSortIndex() {
-    return null;
-  }
 }
