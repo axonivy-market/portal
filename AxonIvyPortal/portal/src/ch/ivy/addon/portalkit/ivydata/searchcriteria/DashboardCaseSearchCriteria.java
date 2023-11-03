@@ -36,6 +36,7 @@ import com.axonivy.portal.util.filter.operator.caze.name.NameEndWithOperatorHand
 import com.axonivy.portal.util.filter.operator.caze.name.NameIsEmptyOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.name.NameIsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.name.NameStartWithOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.state.StateInOperatorHandler;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
@@ -107,6 +108,7 @@ public class DashboardCaseSearchCriteria {
         case DESCRIPTION -> generateDescriptionFilterQuery(filter);
         case CREATED -> generateCreatedDateFilterQuery(filter);
         case FINISHED -> generatefFinishedDateFilterQuery(filter);
+        case STATE -> generateStateFilterQuery(filter);
         default -> null;
       };
 
@@ -178,6 +180,13 @@ public class DashboardCaseSearchCriteria {
       case NOT_END_WITH -> DescriptionEndWithOperatorHandler.getInstance().buildNotEndWithQuery(filter);
       case EMPTY -> DescriptionIsEmptyOperatorHandler.getInstance().buildIsEmptyQuery(filter);
       case NOT_EMPTY -> DescriptionIsEmptyOperatorHandler.getInstance().buildNotEmptyQuery(filter);
+      default -> null;
+    };
+  }
+
+  private CaseQuery generateStateFilterQuery(DashboardFilter filter) {
+    return switch (filter.getOperator()) {
+      case IN -> StateInOperatorHandler.getInstance().buildStateInQuery(filter);
       default -> null;
     };
   }

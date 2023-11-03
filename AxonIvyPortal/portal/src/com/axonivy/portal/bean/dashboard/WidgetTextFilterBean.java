@@ -21,15 +21,12 @@ public class WidgetTextFilterBean implements Serializable {
     return operators;
   }
 
+
   public void onChangeOperator(DashboardFilter filter) {
     
   }
 
   public boolean isShowTextListPanel(DashboardFilter filter) {
-    if (!filter.isText()) {
-      return false;
-    }
-
     for (FilterOperator operator : operators) {
       if (operator == FilterOperator.EMPTY || operator == FilterOperator.NOT_EMPTY) {
         continue;
@@ -41,4 +38,5 @@ public class WidgetTextFilterBean implements Serializable {
 
    return false;
   }
+
 }
