@@ -21,26 +21,25 @@
   <h:panelGroup id="text-filter-operator-panel" layout="block"
     styleClass="ui-fluid md-inputfield">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
-        <f:selectItems value="#{widgetTextFilterBean.operators}" var="operator"
+        <f:selectItems value="#{widgetStateFilterBean.stateOperators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
-          <p:ajax event="itemSelect" listener="#{widgetTextFilterBean.onChangeOperator(filter)}"
+          <p:ajax event="itemSelect" listener="#{widgetStateFilterBean.onChangeOperator(filter)}"
             process="@(this)" update="#{cc.attrs.componentToUpdate}" />
           <f:param name="skipValidator" value="true" />
       </p:selectOneMenu>
   </h:panelGroup>
 
-  <h:panelGroup id="text-list-panel" layout="block"
-    styleClass="ui-fluid md-inputfield text-list-filter"
-    rendered="#{widgetTextFilterBean.isShowTextListPanel(filter)}">
-    <p:chips value="#{filter.texts}" unique="true" addOnPaste="true" disabled="#{readOnly}">
-      <p:ajax event="change" process="@(this)" update="@(this)" partialSubmit="true" global="false" />
-      <f:validator validatorId="dashboardTextFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
-      <f:param name="skipValidator" value="true" />
-      <f:attribute name="filter" value="#{filter}" />
-      <f:attribute name="filterIndex" value="#{filterIndex}" />
-      <f:attribute name="messageId" value="#{messageId}" />
-    </p:chips>
+  <h:panelGroup rendered="#{widgetStateFilterBean.isShowStateListPanel(filter)}">
+    <div class="ui-g-8 ui-sm-12 ui-fluid">
+      <p:selectCheckboxMenu id="states" value="#{filter.texts}" multiple="true"
+        filter="true" filterMatchMode="contains"
+        panelStyleClass="task-configuration__selectcheckboxmenu-panel"
+        styleClass="task-configuration__selectcheckboxmenu">
+        <f:selectItems value="#{filter.caseStateOptions}" var="state" itemValue="#{state}" />
+      </p:selectCheckboxMenu>
+    </div>
   </h:panelGroup>
+
 </cc:implementation>
 
 </html>
