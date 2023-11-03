@@ -204,9 +204,6 @@ breeze.
       This component is deprecated. Please use `Cron Job <https://market.axonivy.com/cronjob>`_ on
       Axon Ivy Market instead.
 
-
-.. include:: ../../includes/_common-icon.rst
-
 .. |task-analysis| image:: ../../screenshots/components/task-analysis.png
 .. |example-global-growl-finished-task| image:: ../../screenshots/components/example-global-growl-finished-task.png
 .. |example-global-growl-cancelled-task| image:: ../../screenshots/components/example-global-growl-cancelled-task.png

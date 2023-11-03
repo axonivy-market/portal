@@ -270,7 +270,7 @@ HowTo: Export to excel
 #. You could use exported excel file to do further analysis by excel or import it to third-party applications to analyze more.
 
 
-.. include:: ../../includes/_common-icon.rst
+.. include:: ../includes/_common-icon.rst
 
 .. |navigate-to-full-statistics-page| image:: ../../screenshots/statistic/navigate-to-full-statistics-page.png
 .. |full-statistics-page-chart-detail| image:: ../../screenshots/statistic/chart-detail-with-annotation.png

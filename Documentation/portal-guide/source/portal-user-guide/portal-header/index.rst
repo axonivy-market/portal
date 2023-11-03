@@ -172,7 +172,7 @@ Portal provides two variables to help you:
 
 You can configure these variables by :ref:`settings-admin-settings`.
 
-.. include:: ../../includes/_common-icon.rst
+.. include:: ../includes/_common-icon.rst
 
 
 .. |portal-header| image:: ../../screenshots/dashboard/portal-header-with-numbering-annotation.png

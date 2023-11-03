@@ -256,7 +256,7 @@ A table of public dashboards is shown with the following information:
    - This feature reorders public dashboards only.
    - Note that this ordering does not apply to all users who ordered their dashboards (public and private) as detailed in the section :ref:`howto-reorder-your-dashboards` above. It is overridden by the personal ordering.
 
-.. include:: ../../includes/_common-icon.rst
+.. include:: ../includes/_common-icon.rst
 
 .. _howto-import-public-dashboard:
 

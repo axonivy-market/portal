@@ -122,7 +122,7 @@ Portal provides the :guilabel:`Password Validation` section in the :guilabel:`Ad
 
 #. After saving the configuration, you can verify it by either changing the password or reset password.
 
-.. include:: ../../includes/_common-icon.rst
+.. include:: ../includes/_common-icon.rst
 
 .. |applications| image:: ../../screenshots/settings/applications.png
 .. |add-application| image:: ../../screenshots/settings/add-application.png

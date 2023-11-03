@@ -205,7 +205,7 @@ If you require more or different charts, you need to create them first.
 Chapter :ref:`howto-create-chart` explains in detail how to create new
 charts.
 
-.. include:: ../../includes/_common-icon.rst
+.. include:: ../includes/_common-icon.rst
 
 .. |dash-board| image:: ../../screenshots/dashboard/dashboard-3-sections.png
 .. |process-favorites| image:: ../../screenshots/dashboard/process-widget.png
