@@ -2,19 +2,21 @@ package com.axonivy.portal.dto.dashboard.filter;
 
 import java.io.Serializable;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
 import com.axonivy.portal.enums.dashboard.filter.FilterType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -45,8 +47,6 @@ public class DashboardFilter implements Serializable {
   private FilterPeriodType periodType;
 
   private List<String> texts;
-  
-  private List<String> caseStateOptions = new ArrayList<>();
 
   @JsonIgnore
   private boolean isTemp;
@@ -64,6 +64,21 @@ public class DashboardFilter implements Serializable {
   @JsonIgnore
   public boolean isText() {
     return this.type == FilterType.TEXT;
+  }
+
+  @JsonIgnore
+  public boolean isCreator() {
+    return this.type == FilterType.CREATOR;
+  }
+
+  @JsonIgnore
+  public boolean isCategory() {
+    return this.type == FilterType.CATEGORY;
+  }
+
+  @JsonIgnore
+  public boolean isApplication() {
+    return this.type == FilterType.APPLICATION;
   }
 
   @JsonIgnore
@@ -179,11 +194,12 @@ public class DashboardFilter implements Serializable {
     this.to = to;
   }
 
-  public List<String> getCaseStateOptions() {
-    return caseStateOptions;
+  @JsonIgnore
+  public List<SecurityMemberDTO> getCreators() {
+    return this.texts.stream().map(this::findSecurityMember).collect(Collectors.toList());
   }
 
-  public void setCaseStateOptions(List<String> caseStateOptions) {
-    this.caseStateOptions = caseStateOptions;
+  private SecurityMemberDTO findSecurityMember(String memberName) {
+    return ServiceUtilities.findSecurityMemberByName("#".concat(memberName));
   }
 }

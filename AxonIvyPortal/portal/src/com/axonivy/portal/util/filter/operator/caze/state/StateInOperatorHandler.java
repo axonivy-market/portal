@@ -1,7 +1,8 @@
 package com.axonivy.portal.util.filter.operator.caze.state;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -27,25 +28,18 @@ public class StateInOperatorHandler {
     if (CollectionUtils.isEmpty(filter.getTexts())) {
       return null;
     }
-    
+
     CaseQuery query = CaseQuery.create();
-    CaseQuery subQuery = CaseQuery.create();
-    IFilterQuery filterQuery = subQuery.where();
-    List<CaseBusinessState> searchState = new ArrayList<>();
-    filter.getTexts().forEach(text -> {
-       switch (text) {
-        case "OPEN" -> searchState.add(CaseBusinessState.OPEN);
-        case "DONE" -> searchState.add(CaseBusinessState.DONE);
-        case "DESTROYED" -> searchState.add(CaseBusinessState.DESTROYED);
-        default -> {}
-      };
-    });
-    for (CaseBusinessState state : searchState) {
+    IFilterQuery filterQuery = query.where();
+
+    List<CaseBusinessState> states = filter.getTexts().stream()
+        .map(text -> CaseBusinessState.valueOf(text))
+        .filter(Objects::nonNull)
+        .collect(Collectors.toList());
+
+    for (CaseBusinessState state : states) {
       filterQuery.or().businessState().isEqual(state);
     }
-    query.where().and(subQuery);
     return query;
   }
-  
-
 }

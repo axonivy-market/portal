@@ -1752,3 +1752,8 @@ body .ui-button.rounded-button.dashboard-widget-filter__remove-filter .ui-icon {
   margin-top: -0.25rem;
   margin-left: -0.25rem;
 }
+
+.application-filter-operator-panel,
+.state-filter-operator-panel {
+  min-width: 130px;
+}
