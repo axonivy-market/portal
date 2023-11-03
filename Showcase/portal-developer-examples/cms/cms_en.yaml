@@ -22,12 +22,20 @@ Categories:
   Payment:
     name: Payment
   Showcase:
+    Application:
+      name: Application
+    Customized:
+      TaskList:
+        name: Custom task list
+      name: Customized
     Error:
       IvyError:
         ShowIvyErrorPage:
           name: Show Ivy Error Page
         name: Ivy Error
       name: Error
+    PortalDialogExample:
+      name: Portal dialog example
     name: Showcase
 CustomFields:
   Cases:
