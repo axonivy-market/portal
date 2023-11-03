@@ -719,12 +719,14 @@ public class CaseDetailsPage extends TemplatePage {
       waitAjaxIndicatorDisappear();
       waitForElementDisplayed(By.cssSelector("input[id$='group-activator-select_input']"), true);
       $(By.cssSelector("input[id$='group-activator-select_input']")).sendKeys(responsibleName);
+      waitAjaxIndicatorDisappear();
       waitForElementDisplayed(By.cssSelector("span[id$='group-activator-select_panel']"), true);
       List<SelenideElement> foundRoles = $$("span[id$='group-activator-select_panel'] .name-after-avatar");
       foundRoles.get(0).click();
     } else {
       waitForElementDisplayed(By.cssSelector("input[id$='user-activator-select_input']"), true);
       $(By.cssSelector("input[id$='user-activator-select_input']")).sendKeys(responsibleName);
+      waitAjaxIndicatorDisappear();
       waitForElementDisplayed(By.cssSelector("span[id$='user-activator-select_panel']"), true);
       List<SelenideElement> foundUsers = $$("span[id$='user-activator-select_panel'] .name-after-avatar");
       foundUsers.get(0).click();

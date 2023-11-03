@@ -4,8 +4,10 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 
-import org.openqa.selenium.interactions.Actions;
 import java.util.List;
+
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -419,14 +421,18 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void dragAndDropProcess(int fromIndex, int toIndex) {
-    Actions a = new Actions(WebDriverRunner.getWebDriver());
     SelenideElement processList = $("ul.ui-widget-content");
     processList.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    ElementsCollection findAll = processList.findAll("li.ui-orderlist-item");
+    List<SelenideElement> findAll = processList.findAll("li.ui-orderlist-item");
     if (findAll.size() > toIndex) {
       SelenideElement fromElement = findAll.get(fromIndex);
       SelenideElement toElement = findAll.get(toIndex);
-      a.dragAndDrop(fromElement, toElement).build().perform();
+
+      Actions builder = new Actions(WebDriverRunner.getWebDriver());
+      Action action = builder.dragAndDrop($(fromElement), $(toElement)).build();
+      action.perform();
+
+      waitForAjaxIndicatorDisappeared();
     }
   }
 
