@@ -1,0 +1,88 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="filter" type="com.axonivy.portal.dto.dashboard.filter.DashboardFilter" />
+  <cc:attribute name="componentToUpdate" required="true" />
+  <cc:attribute name="filterIndex" />
+  <cc:attribute name="readOnly" default="false" />
+  <cc:attribute name="messageId" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="filter" value="#{cc.attrs.filter}" />
+  <c:set var="filterIndex" value="#{cc.attrs.filterIndex}" />
+  <c:set var="readOnly" value="#{cc.attrs.readOnly}" />
+  <c:set var="messageId" value="#{cc.attrs.messageId}" />
+
+  <f:event listener="#{widgetCategoryFilterBean.init(filter)}" type="preRenderComponent" />
+  <p:remoteCommand id="reload-categories-rc" name="reloadCategories"
+    actionListener="#{widgetCategoryFilterBean.loadCategories(filter)}"
+    process="@this" partialSubmit="true" global="false" immediate="true" update="widget-filter-category-panel"/>
+
+  <h:panelGroup id="category-filter-operator-panel" layout="block"
+    styleClass="ui-fluid md-inputfield category-filter-operation-panel">
+      <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
+        <f:selectItems value="#{widgetCategoryFilterBean.operators}" var="operator"
+          itemValue="#{operator}" itemLabel="#{operator.label}" />
+          <p:ajax event="itemSelect" listener="#{widgetCategoryFilterBean.onChangeOperator(filter)}"
+            process="@(this)" update="#{cc.attrs.componentToUpdate} category-list-panel" />
+          <f:param name="skipValidator" value="true" />
+      </p:selectOneMenu>
+  </h:panelGroup>
+
+  <h:panelGroup id="category-list-panel" layout="block"
+    styleClass="ui-fluid md-inputfield category-filter-list" rendered="#{filter.operator ne 'NO_CATEGORY'}">
+
+    <div class="ui-fluid">
+      <p:inputText id="widget-filter-category" readonly="true"
+        onclick="reloadCategories()"
+        styleClass="widget-configuration__input-text #{cc.attrs.inputCategoryStyleClass}"
+        value="#{widgetCategoryFilterBean.selectedCategoriesString}"
+        disabled="#{readOnly}">
+
+        <f:validator validatorId="dashboardDefaultListFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
+        <f:param name="skipValidator" value="true" />
+        <f:attribute name="filter" value="#{filter}" />
+        <f:attribute name="filterIndex" value="#{filterIndex}" />
+        <f:attribute name="messageId" value="#{messageId}" />
+      </p:inputText>
+    </div>
+
+    <p:overlayPanel id="widget-filter-category-panel" for="widget-filter-category"
+      appendTo="@(body)" dynamic="true"
+      styleClass="widget-configuration__category-panel"
+      onHide="$(this.targetElement).parents('.widget-configuration__category').find('.portal-cancel-button').click();">
+
+      <p:tree id="widget-category-filter-tree"
+        value="#{widgetCategoryFilterBean.categoryTree}" var="node"
+        selectionMode="checkbox"
+        selection="#{widgetCategoryFilterBean.selectedCategoryNodes}"
+        filterMatchMode="contains" filterBy="#{node.value}"
+        showUnselectableCheckbox="true"
+        styleClass="category-filter-tree">
+        <p:treeNode>
+          <h:outputText value="#{node.value}" />
+        </p:treeNode>
+      </p:tree>
+
+      <h:panelGroup id="category-panel-footer" layout="block"
+        styleClass="widget-configuration__category-panel-footer">
+        <p:commandLink id="cancel-command" styleClass="portal-cancel-button u-mar-right-10"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          process="@this" global="false" update="category-list-panel"/>
+
+        <p:commandButton id="update-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
+          process="widget-filter-category-panel" partialSubmit="true" update="category-list-panel #{cc.attrs.componentToUpdate}"
+          icon="si si-check-1" styleClass="update-command"
+          actionListener="#{widgetCategoryFilterBean.updateCategoriesPath(filter)}"/>
+      </h:panelGroup>
+    </p:overlayPanel>
+
+  </h:panelGroup>
+</cc:implementation>
+
+</html>

@@ -18,10 +18,12 @@
   <c:set var="readOnly" value="#{cc.attrs.readOnly}" />
   <c:set var="messageId" value="#{cc.attrs.messageId}" />
 
-  <h:panelGroup id="text-filter-operator-panel" layout="block"
-    styleClass="ui-fluid md-inputfield">
+  <f:event listener="#{widgetApplicationFilterBean.init(filter)}" type="preRenderComponent" />
+
+  <h:panelGroup id="application-filter-operator-panel" layout="block"
+    styleClass="ui-fluid md-inputfield application-filter-operator-panel">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
-        <f:selectItems value="#{widgetTextFilterBean.operators}" var="operator"
+        <f:selectItems value="#{widgetApplicationFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
           <p:ajax event="itemSelect" listener="#{widgetTextFilterBean.onChangeOperator(filter)}"
             process="@(this)" update="#{cc.attrs.componentToUpdate}" />
@@ -29,17 +31,24 @@
       </p:selectOneMenu>
   </h:panelGroup>
 
-  <h:panelGroup id="text-list-panel" layout="block"
-    styleClass="ui-fluid md-inputfield text-list-filter"
-    rendered="#{widgetTextFilterBean.isShowTextListPanel(filter)}">
-    <p:chips value="#{filter.texts}" unique="true" addOnPaste="true" disabled="#{readOnly}">
-      <p:ajax event="change" process="@(this)" update="@(this)" partialSubmit="true" global="false" />
-      <f:validator validatorId="dashboardDefaultListFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
+  <h:panelGroup id="application-list-panel" layout="block"
+    styleClass="ui-fluid md-inputfield application-list-filter">
+    <p:selectCheckboxMenu id="applications" value="#{cc.attrs.filter.texts}"
+      multiple="true" filter="true" filterMatchMode="contains"
+      panelStyleClass="task-configuration__selectcheckboxmenu-panel"
+      styleClass="task-configuration__selectcheckboxmenu" disabled="#{readOnly}">
+      <f:validator validatorId="dashboardSelectableListFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
+      <p:ajax event="change" update="application-list-panel" process="@(this)" listener="#{widgetApplicationFilterBean.updateApplicationsString(cc.attrs.filter.texts)}" />
+      <f:selectItems value="#{widgetApplicationFilterBean.applications}" var="app" itemValue="#{app}" itemLabel="#{app}" />
+    </p:selectCheckboxMenu>
+
+    <p:inputText id="applications-hidden" type="hidden" value="#{widgetApplicationFilterBean.applicationString}">
       <f:param name="skipValidator" value="true" />
       <f:attribute name="filter" value="#{filter}" />
       <f:attribute name="filterIndex" value="#{filterIndex}" />
       <f:attribute name="messageId" value="#{messageId}" />
-    </p:chips>
+      <f:attribute name="componentToValidate" value="applications" />
+    </p:inputText>
   </h:panelGroup>
 </cc:implementation>
 

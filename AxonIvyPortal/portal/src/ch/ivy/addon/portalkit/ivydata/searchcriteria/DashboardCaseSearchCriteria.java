@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +9,10 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.util.filter.operator.caze.application.ApplicationInOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.category.CategoryContainsOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.category.CategoryInOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.category.CategoryNoCategoryOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateAfterOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateBeforeOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateBetweenOperatorHandler;
@@ -18,6 +21,8 @@ import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateIsOpe
 import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateNumberOfPeriodsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateTodayOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateYesterdayOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.creator.CreatorCurrentUserOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.creator.CreatorInOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.description.DescriptionContainsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.description.DescriptionEndWithOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.description.DescriptionIsEmptyOperatorHandler;
@@ -44,11 +49,7 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardFilterType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.Dates;
-import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.application.app.IApplicationRepository;
-import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.ICustomFieldFilterQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
@@ -107,7 +108,10 @@ public class DashboardCaseSearchCriteria {
         case NAME -> generateNameFilterQuery(filter);
         case DESCRIPTION -> generateDescriptionFilterQuery(filter);
         case CREATED -> generateCreatedDateFilterQuery(filter);
-        case FINISHED -> generatefFinishedDateFilterQuery(filter);
+        case FINISHED -> generateFinishedDateFilterQuery(filter);
+        case CREATOR -> generateCreatorFilterQuery(filter);
+        case CATEGORY -> generateCategoryFilterQuery(filter);
+        case APPLICATION -> generateApplicationFilterQuery(filter);
         case STATE -> generateStateFilterQuery(filter);
         default -> null;
       };
@@ -135,7 +139,7 @@ public class DashboardCaseSearchCriteria {
     };
   }
 
-  private CaseQuery generatefFinishedDateFilterQuery(DashboardFilter filter) {
+  private CaseQuery generateFinishedDateFilterQuery(DashboardFilter filter) {
     return switch (filter.getOperator()) {
       case BETWEEN -> FinishedDateBetweenOperatorHandler.getInstance().buildBetweenQuery(filter);
       case NOT_BETWEEN -> FinishedDateBetweenOperatorHandler.getInstance().buildNotBetweenQuery(filter);
@@ -184,6 +188,33 @@ public class DashboardCaseSearchCriteria {
     };
   }
 
+  private CaseQuery generateCreatorFilterQuery(DashboardFilter filter) {
+    return switch (filter.getOperator()) {
+      case IN -> CreatorInOperatorHandler.getInstance().buildInQuery(filter);
+      case NOT_IN -> CreatorInOperatorHandler.getInstance().buildNotInQuery(filter);
+      case CURRENT_USER -> CreatorCurrentUserOperatorHandler.getInstance().buildQuery();
+      default -> null;
+    };
+  }
+
+  private CaseQuery generateCategoryFilterQuery(DashboardFilter filter) {
+    return switch (filter.getOperator()) {
+      case IN -> CategoryInOperatorHandler.getInstance().buildInQuery(filter);
+      case NOT_IN -> CategoryInOperatorHandler.getInstance().buildNotInQuery(filter);
+      case CONTAINS -> CategoryContainsOperatorHandler.getInstance().buildContainsQuery(filter);
+      case NOT_CONTAINS -> CategoryContainsOperatorHandler.getInstance().buildNotContainsQuery(filter);
+      case NO_CATEGORY -> CategoryNoCategoryOperatorHandler.getInstance().buildQuery();
+      default -> null;
+    };
+  }
+
+  private CaseQuery generateApplicationFilterQuery(DashboardFilter filter) {
+    return switch (filter.getOperator()) {
+      case IN -> ApplicationInOperatorHandler.getInstance().buildQuery(filter);
+      default -> null;
+    };
+  }
+
   private CaseQuery generateStateFilterQuery(DashboardFilter filter) {
     return switch (filter.getOperator()) {
       case IN -> StateInOperatorHandler.getInstance().buildStateInQuery(filter);
@@ -203,44 +234,6 @@ public class DashboardCaseSearchCriteria {
     }
   }
 
-  private void queryStates(CaseQuery query, List<CaseBusinessState> states) {
-    if (CollectionUtils.isNotEmpty(states)) {
-      states = CaseUtils.filterStateByPermission(states);
-    } else {
-      states = CaseUtils.getValidStates();
-    }
-    CaseQuery subQuery = CaseQuery.create();
-    IFilterQuery filterQuery = subQuery.where();
-    for (CaseBusinessState state : states) {
-      filterQuery.or().businessState().isEqual(state);
-    }
-    query.where().and(subQuery);
-  }
-
-  private void queryCreator(CaseQuery query, List<String> creators) {
-    if (CollectionUtils.isNotEmpty(creators)) {
-      CaseQuery subQuery = CaseQuery.create();
-      IFilterQuery filterQuery = subQuery.where();
-      for (String creator : creators) {
-        filterQuery.or().creatorUserName().isEqual(creator.replace("#", ""));
-      }
-
-      query.where().and(subQuery);
-    }
-  }
-
-  private void queryCategory(CaseQuery query, List<String> categories) {
-    if (CollectionUtils.isNotEmpty(categories)) {
-      CaseQuery subQuery = CaseQuery.create();
-      IFilterQuery filterQuery = subQuery.where();
-      for (String category : categories) {
-        filterQuery.or().category().isEqual(category);
-      }
-      
-      query.where().and(subQuery);
-    }
-  }
-  
   private void queryCustomFieldSelection(CaseQuery query, String field, List<String> filterList) {
     if (CollectionUtils.isNotEmpty(filterList)) {
       CaseQuery subQuery = CaseQuery.create();
@@ -279,7 +272,6 @@ public class DashboardCaseSearchCriteria {
     }
 
     else {
-      var states = new ArrayList<CaseBusinessState>();
       for (ColumnModel column : columns) {
         String field = column.getField();
         String configuredFilter = column.getFilter();
@@ -306,16 +298,8 @@ public class DashboardCaseSearchCriteria {
           if (!isInConfiguration) {
             queryDescription(query, userFilter);
           }
-        } else if (equals(DashboardStandardCaseColumn.STATE, column)) {
-          for (String state : filterList) {
-            states.add(CaseBusinessState.valueOf(state.toUpperCase()));
-          }
-        } else if (equals(DashboardStandardCaseColumn.CREATOR, column)) {
-          queryCreator(query, filterList);
         } else if (equals(DashboardStandardCaseColumn.OWNER, column)) {
           queryOwner(query, filterList);
-        } else if (equals(DashboardStandardCaseColumn.CATEGORY, column)) {
-          queryCategory(query, filterList);
         } else if (equals(DashboardStandardCaseColumn.CREATED, column)) {
           Date from = Dates.parse(filterFrom);
           Date to = Dates.parse(filterTo);
@@ -324,8 +308,6 @@ public class DashboardCaseSearchCriteria {
           Date from = Dates.parse(filterFrom);
           Date to = Dates.parse(filterTo);
           queryFinishedDate(query, from, to);
-        } else if (equals(DashboardStandardCaseColumn.APPLICATION, column)) {
-          queryApplications(query, filterList);
         } else if (column.getFilterType() == DashboardFilterType.SELECTION || CollectionUtils.isNotEmpty(filterList)) {
           queryCustomFieldSelection(query, field, filterList);
         } else {
@@ -335,7 +317,6 @@ public class DashboardCaseSearchCriteria {
           }
         }
       }
-      queryStates(query, states);
     }
   }
 
@@ -404,20 +385,6 @@ public class DashboardCaseSearchCriteria {
         filterQuery.or().ownerName().isEqual(owner);
       }
 
-      query.where().and(subQuery);
-    }
-  }
-  
-  private void queryApplications(CaseQuery query, List<String> applications) {
-    if (CollectionUtils.isNotEmpty(applications)) {
-      CaseQuery subQuery = CaseQuery.create();
-      IFilterQuery filterQuery = subQuery.where();
-      for (String app : applications) {
-        final Optional<IApplication> appFindByName = IApplicationRepository.instance().findByName(app);
-        if (appFindByName.isPresent()) {
-          filterQuery.or().applicationId().isEqual(appFindByName.get().getId());
-        }
-      }
       query.where().and(subQuery);
     }
   }
