@@ -284,7 +284,7 @@ HowTo: Show Workflow Events
 ---------------------------
 
 .. note:: 
-   User must to has permission ``WORKFLOW_EVENT_READ_ALL`` to see all workflow events of a task
+   User must to has permission :bdg-warning:`🔑WorkflowEventReadAll` to see all workflow events of a task
 
 #. Open the task details of a task
 

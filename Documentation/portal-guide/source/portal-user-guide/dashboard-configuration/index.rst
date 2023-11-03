@@ -4,7 +4,7 @@ Dashboard Configuration
 ***********************
 
 .. hint::
-   Only users who have the permission ``DASHBOARD_WRITE_OWN`` or ``DASHBOARD_WRITE_PUBLIC`` can see and access
+   Only users who have the permission :bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>` or :bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>` can see and access
    the :guilabel:`Dashboard Configuration` user menu item. They can add, edit, reorder, show and hide the private or public dashboards.
 
 Select the :guilabel:`Dashboard Configuration` user menu item.
@@ -19,7 +19,7 @@ you hold in the application. The usage will be explained in the HowTo’s furthe
 Private dashboards configuration
 --------------------------------
 
-The tab :guilabel:`Private dashboards` is only available for users who have the permission ``DASHBOARD_WRITE_OWN``. Here you can
+The tab :guilabel:`Private dashboards` is only available for users who have the permission :bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>`. Here you can
 add or edit your private dashboards, and reorder all dashboards visible to you.
 
 |private-dashboard-configuration|
@@ -95,7 +95,7 @@ A table of private dashboards is shown with the following information:
 
    .. note::
 
-      the Export function only available for users who have the permission ``DASHBOARD_EXPORT_OWN``.
+      the Export function only available for users who have the permission :bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`.
 
 |edit-private-dashboards|
 
@@ -141,7 +141,7 @@ A table of private dashboards is shown with the following information:
 Public dashboards configuration
 -------------------------------
 
-The tab :guilabel:`Public dashboards` is only available for users who have the permission ``DASHBOARD_WRITE_PUBLIC``. Here you can
+The tab :guilabel:`Public dashboards` is only available for users who have the permission :bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>`. Here you can
 add, edit, and reorder public dashboards.
 
 |public-dashboard-configuration|
@@ -219,7 +219,7 @@ A table of public dashboards is shown with the following information:
 
    .. note::
 
-      the Export function only available for users who have the permission ``DASHBOARD_EXPORT_PUBLIC``.
+      the Export function only available for users who have the permission :bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`.
 
 |edit-public-dashboards|
 

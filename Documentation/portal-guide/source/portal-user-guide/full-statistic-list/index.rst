@@ -190,7 +190,7 @@ Portal provides lots of statistic charts, but maybe your business needs further 
 helps you query tasks with filters, then you could export data to excel for further analysis.
 
 .. important::
-   You need to have Portal permission STATISTIC_ANALYZE_TASK to use this feature.
+   You need to have Portal permission :bdg-ref-warning:`🔑StatisticAnalyzeTask <StatisticAnalyzeTask>` to use this feature.
 
 HowTo: Access task analysis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^

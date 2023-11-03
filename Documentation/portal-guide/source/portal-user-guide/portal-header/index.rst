@@ -38,7 +38,7 @@ Dashboard Configuration
 -----------------------
 
 Menu entry :ref:`dashboard-configuration` contains dashboards settings,
-only available for users who have the permission ``DASHBOARD_WRITE_OWN`` or ``DASHBOARD_WRITE_PUBLIC``.
+only available for users who have the permission :bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>` or :bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>`.
 
 Absences
 --------

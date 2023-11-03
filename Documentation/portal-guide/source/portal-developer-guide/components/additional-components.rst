@@ -14,7 +14,7 @@ Introduction
 ^^^^^^^^^^^^
 
 The Portal's Task Analysis component provides features in accordance with the
-user's permission ``StatisticAnalyzeTask`` in ``PortalTaskPermissions``. Refer to
+user's permission :bdg-ref-warning:`🔑StatisticAnalyzeTask <StatisticAnalyzeTask>`. Refer to
 :dev-url:`Security section in Cockpit
 </doc/|version|/engine-guide/reference/engine-cockpit/security.html>` to
 analyze not only tasks but also cases. These features are:
