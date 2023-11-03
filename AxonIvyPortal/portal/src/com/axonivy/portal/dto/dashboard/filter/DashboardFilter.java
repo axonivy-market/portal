@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -54,6 +55,11 @@ public class DashboardFilter implements Serializable {
   @JsonIgnore
   public boolean isDate() {
     return this.type == FilterType.DATE;
+  }
+
+  @JsonIgnore
+  public boolean isCreatedDate() {
+    return this.type == FilterType.DATE && DashboardStandardCaseColumn.findBy(this.field) == DashboardStandardCaseColumn.CREATED;
   }
 
   @JsonIgnore

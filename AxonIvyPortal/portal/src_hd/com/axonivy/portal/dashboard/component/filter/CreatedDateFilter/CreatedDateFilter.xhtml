@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="filter" type="com.axonivy.portal.dto.dashboard.filter.DashboardFilter" />
+  <cc:attribute name="componentToUpdate" required="true" />
+  <cc:attribute name="filterIndex" />
+  <cc:attribute name="readOnly" default="false" />
+  <cc:attribute name="messageId" />
+  <cc:attribute name="operators" />
+</cc:interface>
+
+<cc:implementation>
+  <ic:com.axonivy.portal.dashboard.component.filter.DateFilter componentToUpdate="#{cc.attrs.componentToUpdate}"
+    filter="#{cc.attrs.filter}" filterIndex="#{cc.attrs.filterIndex}" messageId="#{cc.attrs.messageId}"
+    readOnly="#{cc.attrs.readOnly}" operators="#{widgetDateFilterBean.createdDateOperators}" />
+</cc:implementation>
+
+</html>
