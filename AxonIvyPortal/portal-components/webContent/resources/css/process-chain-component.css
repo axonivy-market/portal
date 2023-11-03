@@ -179,6 +179,9 @@
     transform: translate(30px, -6px);
     border-top-style: dashed;
   }
+  .circle-horizontal-step-container.process-step-icon .step-number-container:after {
+      transform: translate(0.7rem, -6px);
+  }
   .circle-horizontal-step-container .step-number-container:before {
     transform: translate(-30px, -2px);
     border-top-style: dashed;
