@@ -12,7 +12,6 @@ import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.ivydata.dto.IvySecurityResultDTO;
 import com.axonivy.portal.components.ivydata.service.ISecurityService;
 
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -36,12 +35,6 @@ public class SecurityService implements ISecurityService {
       result.setUsers(queryUsers(query, startIndex, count, fromRoles, excludedUsernames));
       return result;
     });
-  }
-  
-  @Deprecated(forRemoval = true, since = "9.4")
-  @Override
-  public IvySecurityResultDTO findUsers(String query, IApplication app, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
-    return findUsers(query, startIndex, count, fromRoles, excludedUsernames);
   }
 
   /**
