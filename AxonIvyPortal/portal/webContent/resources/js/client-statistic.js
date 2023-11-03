@@ -292,7 +292,6 @@ function renderMultipleNumberChartInHTML(result, suffixSymbold){
 
     if (result.length > 0) {
         for (item of result) {
-            console.log("I think we should formatChartLabel here");
             let htmlString = renderNumberChartHtml(item.key, item.count, suffixSymbold);
             multipleNumberChartInHTML += htmlString;
         };
