@@ -18,17 +18,17 @@ These apply to Task as a whole
 - _`TaskReadOwnCaseTasks`
     - Permission to see related tasks
 
-    - **Default assignment**: :guilabel:`Administrator`
+    - **Default assignment**: :guilabel:`Everybody`
 
 - _`TaskParkOwnWorkingTask`
     - Permission to reserve a task
 
-    - **Default assignment**: :guilabel:`Administrator`
+    - **Default assignment**: :guilabel:`Everybody`
 
 - _`TaskResetOwnWorkingTask`
-    - Permission to reset tasks
+    - Permission to reset tasks 
 
-    - **Default assignment**: :guilabel:`Administrator`
+    - **Default assignment**: :guilabel:`Everybody`
 
 - _`TaskWriteName`
     - Permission to change task name
@@ -48,7 +48,7 @@ These apply to Task as a whole
 - _`TaskWriteActivator`
     - Permission to delegate all tasks in a task list
 
-    - **Default assignment**: :guilabel:`Administrator`
+    - **Default assignment**: :guilabel:`Everybody`
 
 - _`TaskWriteExpiryActivator`
     - Permission to change responsible after deadline
@@ -111,7 +111,7 @@ These apply to Task as a whole
     - **Default assignment**: :guilabel:`Administrator`
 
 - _`TaskResetReadyForJoin`
-    - Permission to reset tasks
+    - Permission to reset tasks while task is waiting to join
 
     - **Default assignment**: :guilabel:`Administrator`
 
@@ -147,7 +147,7 @@ These apply to Case as a whole
 - _`ShowAllTasksOfCase`
     - Permission to see the related tasks action 
 
-    - **Default assignment**: :guilabel:`Administrator`
+    - **Default assignment**: :guilabel:`Everybody`
 
 - _`ShowCaseDetails`
     - Permission to see business detail action
@@ -157,12 +157,11 @@ These apply to Case as a whole
 - _`ShareCaseDetailsLink`
     - Permission to see the Share button in case details
 
-    - **Default assignment**: :guilabel:`Administrator`
+    - **Default assignment**: :guilabel:`Everybody`
 
 
 Portal General Permissions
 --------------------------
-These apply as a whole
 
 - _`RoleCreate`
     - Permission to create a new dynamic role 
@@ -182,7 +181,7 @@ These apply as a whole
 - _`RoleReadAll`
     - Permission to 
 
-    - **Default assignment**: :guilabel:`Administrator`
+    - **Default assignment**: :guilabel:`Everybody`
 
 - _`DocumentRead`
     - Permission to 
@@ -197,7 +196,7 @@ These apply as a whole
 - _`DocumentOfInvolvedCaseWrite`
     - Permission to update, delete document
 
-    - **Default assignment**: :guilabel:`Administrator`
+    - **Default assignment**: :guilabel:`Everybody`
 
 - _`DashboardWriteOwn`
     - Permission to alter private dashboard 
@@ -245,7 +244,7 @@ These apply as a whole
     - **Default assignment**: :guilabel:`Administrator`
 
 - _`RoleManagement`
-    - Permission to access :guilabel:`Role Management` tab
+    - Permission to access Role Management tab
 
     - **Default assignment**: :guilabel:`Administrator`
 
@@ -255,7 +254,7 @@ These apply as a whole
     - **Default assignment**: :guilabel:`Administrator`
 
 - _`PasswordValidation`
-    - Permission to access the :guilabel:`Password Validation` tab
+    - Permission to access the Password Validation section in Admin Settings page
 
     - **Default assignment**: :guilabel:`Administrator`
 
@@ -272,12 +271,12 @@ These apply as a whole
 - _`DashboardImportOwn`
     - Permission to import private dashboard
 
-    - **Default assignment**: :guilabel:`Administrator`
+    - **Default assignment**: :guilabel:`Everybody`
 
 - _`DashboardImportPublic`
     - Permission to import public dashboard
 
-    - **Default assignment**: :guilabel:`Administrator`
+    - **Default assignment**: :guilabel:`Everybody`
 
 - _`ShareDashboardLink`
     - Permission to share dashboard
@@ -286,8 +285,7 @@ These apply as a whole
 
 
 Portal Absence And Substitute Permissions
------------------------
-These apply to Absence and Substitute
+-----------------------------------------
 
 - _`UserCreateAbsence`
     - Permission to craete, edit absence of all users
@@ -315,46 +313,44 @@ These apply to Absence and Substitute
     - **Default assignment**: :guilabel:`Administrator`
 
 - _`UserReadOwnAbsences`
-    - Permission to read absences
+    - Permission to read personal absences
 
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`UserCreateSubstitute`
-    - Permission to 
+    - Permission to create substitute of all users
 
     - **Default assignment**: :guilabel:`Administrator`
 
 - _`UserCreateOwnSubstitute`
-    - Permission to 
+    - Permission to create personal substitute
 
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`UserReadSubstitutes`
-    - Permission to 
+    - Permission to read substitute of all users
 
     - **Default assignment**: :guilabel:`Administrator`
 
 
 Portal Statistic Permissions
------------------------
-These apply to Absence and Substitute
+----------------------------
 
 - _`StatisticAddDashboardChart`
-    - Permission to 
+    - Permission to add dashboard chart
 
-    - **Default assignment**: :guilabel:`Administrator`
+    - **Default assignment**: :guilabel:`Everybody`
 
 - _`StatisticAnalyzeTask`
-    - Permission to 
+    - Permission to analyze, filter tasks and export data to excel for advanced analysis
 
     - **Default assignment**: :guilabel:`Administrator`
 
 
 Portal Express Permissions
------------------------
-These apply to Absence and Substitute
+--------------------------
 
 - _`ExpressCreateWorkflow`
-    - Permission to 
+    - Permission to create Express workflow
 
-    - **Default assignment**: :guilabel:`Administrator`
+    - **Default assignment**: :guilabel:`Everybody`
