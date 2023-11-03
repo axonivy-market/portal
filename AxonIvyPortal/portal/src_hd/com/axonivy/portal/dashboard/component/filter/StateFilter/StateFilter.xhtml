@@ -18,26 +18,35 @@
   <c:set var="readOnly" value="#{cc.attrs.readOnly}" />
   <c:set var="messageId" value="#{cc.attrs.messageId}" />
 
+  <f:event listener="#{widgetStateFilterBean.init(filter)}" type="preRenderComponent" />
+
   <h:panelGroup id="text-filter-operator-panel" layout="block"
-    styleClass="ui-fluid md-inputfield">
-      <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
+    styleClass="ui-fluid md-inputfield state-filter-operator-panel">
+      <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="true">
         <f:selectItems value="#{widgetStateFilterBean.stateOperators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
-          <p:ajax event="itemSelect" listener="#{widgetStateFilterBean.onChangeOperator(filter)}"
-            process="@(this)" update="#{cc.attrs.componentToUpdate}" />
-          <f:param name="skipValidator" value="true" />
       </p:selectOneMenu>
   </h:panelGroup>
 
-  <h:panelGroup rendered="#{widgetStateFilterBean.isShowStateListPanel(filter)}">
-    <div class="ui-g-8 ui-sm-12 ui-fluid">
-      <p:selectCheckboxMenu id="states" value="#{filter.texts}" multiple="true"
-        filter="true" filterMatchMode="contains"
-        panelStyleClass="task-configuration__selectcheckboxmenu-panel"
-        styleClass="task-configuration__selectcheckboxmenu">
-        <f:selectItems value="#{filter.caseStateOptions}" var="state" itemValue="#{state}" />
-      </p:selectCheckboxMenu>
-    </div>
+  <h:panelGroup id="states-list-panel" layout="block" styleClass="ui-g-8 ui-sm-12 ui-fluid">
+    <p:selectCheckboxMenu id="states" value="#{filter.texts}" multiple="true"
+      filter="true" filterMatchMode="contains"
+      panelStyleClass="task-configuration__selectcheckboxmenu-panel"
+      styleClass="task-configuration__selectcheckboxmenu"
+      disabled="#{readOnly}">
+      <f:selectItems value="#{widgetStateFilterBean.states}" var="state" itemValue="#{state}" />
+      <f:param name="skipValidator" value="true" />
+      <p:ajax event="change" update="states-list-panel" process="@(this)" listener="#{widgetStateFilterBean.updateStatesString(cc.attrs.filter.texts)}" global="false" />
+      <p:ajax event="toggleSelect" update="states-list-panel" process="@(this)" listener="#{widgetStateFilterBean.updateStatesString(cc.attrs.filter.texts)}" global="false" />
+    </p:selectCheckboxMenu>
+
+    <p:inputText id="states-hidden" type="hidden" value="#{widgetStateFilterBean.statesString}">
+      <f:validator validatorId="dashboardSelectableListFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
+      <f:attribute name="filter" value="#{filter}" />
+      <f:attribute name="filterIndex" value="#{filterIndex}" />
+      <f:attribute name="messageId" value="#{messageId}" />
+      <f:attribute name="componentToValidate" value="states" />
+    </p:inputText>
   </h:panelGroup>
 
 </cc:implementation>

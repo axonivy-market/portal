@@ -31,7 +31,8 @@
             managedBean="#{caseWidgetConfigurationFilterBean}"
             componentToUpdate="#{p:resolveFirstComponentWithId(filterComponentToUpdate, view).clientId}"
             filterIndex="#{status.index}" readOnly="false"
-            messageId="filter-messages" />
+            messageId="filter-messages"
+             />
         </ui:repeat>
         <div class="ui-g-12 u-padding-0 MarTop10">
           <p:commandButton id="add-filter" icon="#{visibilityBean.generateButtonIcon('si si-add-circle')}"

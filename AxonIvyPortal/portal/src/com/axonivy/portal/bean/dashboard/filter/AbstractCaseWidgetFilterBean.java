@@ -3,14 +3,17 @@ package com.axonivy.portal.bean.dashboard.filter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterType;
 
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
-import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 
 public abstract class AbstractCaseWidgetFilterBean implements Serializable {
 
@@ -40,6 +43,9 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
       case FINISHED -> initDateFilter(filter);
       case NAME -> initTextFilter(filter);
       case DESCRIPTION -> initTextFilter(filter);
+      case CREATOR -> initCreatorFilter(filter);
+      case CATEGORY -> initCategoryFilter(filter);
+      case APPLICATION -> initApplicationFilter(filter);
       case STATE -> initStateFilter(filter);
       default -> {}
     };
@@ -55,16 +61,28 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
     filter.setTexts(new ArrayList<>());
   }
 
+  private void initCreatorFilter(DashboardFilter filter) {
+    filter.setType(FilterType.CREATOR);
+    filter.setOperator(FilterOperator.CURRENT_USER);
+    filter.setTexts(new ArrayList<>());
+  }
+
+  private void initCategoryFilter(DashboardFilter filter) {
+    filter.setType(FilterType.CATEGORY);
+    filter.setOperator(FilterOperator.IN);
+    filter.setTexts(new ArrayList<>());
+  }
+
+  private void initApplicationFilter(DashboardFilter filter) {
+    filter.setType(FilterType.APPLICATION);
+    filter.setOperator(FilterOperator.IN);
+    filter.setTexts(new ArrayList<>());
+  }
+
   private void initStateFilter(DashboardFilter filter) {
     filter.setType(FilterType.STATE);
     filter.setOperator(FilterOperator.IN);
     filter.setTexts(new ArrayList<>());
-    filter.setCaseStateOptions(getValidStates());
-  }
-
-  public static List<String> getValidStates() {
-    List<String> validStates = CaseUtils.getValidStates().stream().map(businessState -> businessState.name()).toList();
-    return validStates;
   }
 
   protected abstract void initFilterTypes();
@@ -72,4 +90,13 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
   public abstract void removeFilter(CaseDashboardWidget widget, DashboardFilter filter);
 
   public abstract void addNewFilter(CaseDashboardWidget widget);
+
+  public List<SecurityMemberDTO> completeCreators(String query) {
+    return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE).stream()
+        .filter(SecurityMemberDTO::isUser).collect(Collectors.toList());
+  }
+
+  public List<SecurityMemberDTO> completeOwners(String query) {
+    return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
+  }
 }

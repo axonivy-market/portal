@@ -18,8 +18,8 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivyteam.ivy.environment.Ivy;
 
-@FacesValidator(value = "dashboardTextFilterValidator")
-public class DashboardTextFilterValidator implements Validator {
+@FacesValidator(value = "dashboardDefaultListFilterValidator")
+public class DashboardDefaultListFilterValidator implements Validator {
 
   private static final String MESSAGE_PREFIX_PATTERN = "%s(%d)";
 
