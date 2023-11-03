@@ -201,6 +201,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   }
 
   public void loadFilterSet(String filterSetName, boolean isPersonalFilter) {
+    waitPageLoaded();
     waitForElementDisplayed(By.id("task-widget:filter-selection-form:filter-name"), true);
     waitForElementClickableThenClick($(By.id("task-widget:filter-selection-form:filter-name")));
     waitForElementDisplayed(findElementById("task-widget:filter-selection-form:filter-name-overlay-panel"), true);
@@ -316,5 +317,9 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
         .until((driver) -> $("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)").getText().contains("Default"));
+  }
+
+  public SelenideElement findColumnContainer() {
+    return $(By.tagName("body")).$(By.cssSelector(".ui-columntoggler"));
   }
 }
