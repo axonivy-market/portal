@@ -105,7 +105,7 @@ public class WidgetSupportMultiLanguageTest extends BaseTest {
 
     changeUserLanguage();
     var taskWidget = newDashboardPage.selectTaskWidget(widgetTitle);
-    taskWidget.expand().shouldHave(size(1));
+    taskWidget.expand().shouldHave(size(1), DEFAULT_TIMEOUT);
   }
 
   @Test

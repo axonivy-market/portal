@@ -210,9 +210,8 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     } else {
       filterContainer = findElementById("task-widget:filter-selection-form:public-filters");
     }
-    waitForElementClickableThenClick(filterContainer.$(By.linkText(filterSetName)));
+    clickByJavaScript(filterContainer.$(By.linkText(filterSetName)));
     waitAjaxIndicatorDisappear();
-//    ensureNoBackgroundRequest();
   }
 
   public String getFilterName() {
