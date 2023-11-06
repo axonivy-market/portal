@@ -71,7 +71,7 @@ public class SecurityService implements ISecurityService {
   }
 
   private IFilterQuery createFilterQuery(String query, UserQuery userQuery) {
-    String containingQuery = "%"+ StringUtils.defaultString(query, StringUtils.EMPTY) +"%";
+    String containingQuery = "%"+ Objects.toString(query, StringUtils.EMPTY) +"%";
     IFilterQuery filterQuery = userQuery.where();
     filterQuery.fullName()
       .isLikeIgnoreCase(containingQuery)
