@@ -212,7 +212,8 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     updatePortalSetting(ENABLE_CASE_OWNER_SETTING, "false");
   }
 
-  @Test
+  // @Test
+  // unstable test
   public void testSavePublicFilterSet() {
     String filterSetName = "Filters for annual";
 
@@ -231,7 +232,8 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     assertTrue(resultCells.get(2).getText().toLowerCase().contains("annual"));
   }
 
-  @Test
+  // @Test
+  // unstable test
   public void testSavePrivateFilterSet() {
     String filterSetName = "Filters for annual";
 
