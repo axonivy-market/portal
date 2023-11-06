@@ -37,20 +37,23 @@
   <h:panelGroup id="category-list-panel" layout="block"
     styleClass="ui-fluid md-inputfield category-filter-list" rendered="#{filter.operator ne 'NO_CATEGORY'}">
 
-    <div class="ui-fluid">
+    <h:panelGroup styleClass="ui-fluid" layout="block">
       <p:inputText id="widget-filter-category" readonly="true"
         onclick="reloadCategories()"
         styleClass="widget-configuration__input-text #{cc.attrs.inputCategoryStyleClass}"
         value="#{widgetCategoryFilterBean.selectedCategoriesString}"
         disabled="#{readOnly}">
-
-        <f:validator validatorId="dashboardDefaultListFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
-        <f:param name="skipValidator" value="true" />
+      </p:inputText>
+      <p:inputText id="widget-filter-category-hidden" type="hidden"
+        value="#{widgetCategoryFilterBean.selectedCategoriesString}"
+        disabled="#{readOnly}">
+        <f:validator validatorId="dashboardTextFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
         <f:attribute name="filter" value="#{filter}" />
         <f:attribute name="filterIndex" value="#{filterIndex}" />
         <f:attribute name="messageId" value="#{messageId}" />
+        <f:attribute name="componentToValidate" value="widget-filter-category" />
       </p:inputText>
-    </div>
+    </h:panelGroup>
 
     <p:overlayPanel id="widget-filter-category-panel" for="widget-filter-category"
       appendTo="@(body)" dynamic="true"

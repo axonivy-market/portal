@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -86,7 +87,7 @@ public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
     Object memento = IvyThreadContext.saveToMemento();
     future = CompletableFuture.runAsync(() -> {
       IvyThreadContext.restoreFromMemento(memento);
-      foundCases = DashboardCaseService.getInstance().findByCaseQuery(query, 0, 25);
+      foundCases = Optional.ofNullable(DashboardCaseService.getInstance().findByCaseQuery(query, 0, 25)).orElse(new ArrayList<>());
       addDistict(cases, foundCases);
       mapCases.putAll(foundCases.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
       IvyThreadContext.reset();
