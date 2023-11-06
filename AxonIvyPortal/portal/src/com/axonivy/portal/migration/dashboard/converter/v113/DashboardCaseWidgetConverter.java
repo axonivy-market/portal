@@ -23,6 +23,8 @@ import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 
 public class DashboardCaseWidgetConverter implements IJsonConverter {
 
+  private static final String NO_CATEGORY = "[No Category]";
+
   @Override
   public AbstractJsonVersion version() {
     return new DashboardJsonVersion("11.3.0");
@@ -74,7 +76,7 @@ public class DashboardCaseWidgetConverter implements IJsonConverter {
                 FilterType.STATE.name());
           }
           case CATEGORY -> {
-            convertListFilter(initFilterNode(caseWidget),
+            convertCategoryFilter(initFilterNode(caseWidget),
                 (ArrayNode)col.get("filterList"),
                 DashboardStandardCaseColumn.CATEGORY.getField(),
                 FilterType.CATEGORY.name());
@@ -169,6 +171,33 @@ public class DashboardCaseWidgetConverter implements IJsonConverter {
     ArrayNode textsNode = newFilterNode.putArray("texts");
     filterList.elements().forEachRemaining(node -> {
       textsNode.add(new TextNode(node.asText()));
+    });
+  }
+
+  private void convertCategoryFilter(ArrayNode filters, ArrayNode filterList, String field, String filterType) {
+    if (filterList == null || filterList.size() == 0) {
+      return;
+    }
+
+    // If the new complex filters has filter for the same field, skip migrate
+    filters.elements().forEachRemaining(filter -> {
+      if (filter.get("field").asText().contentEquals(field)) {
+        return;
+      }
+    });
+
+    ObjectNode newFilterNode = filters.addObject();
+    newFilterNode.set("field", new TextNode(field));
+    newFilterNode.set("type", new TextNode(filterType));
+    newFilterNode.set("operator", new TextNode(FilterOperator.IN.name()));
+
+    ArrayNode textsNode = newFilterNode.putArray("texts");
+    filterList.elements().forEachRemaining(node -> {
+      if (node.asText().contentEquals(NO_CATEGORY)) {
+        newFilterNode.set("operator", new TextNode(FilterOperator.NO_CATEGORY.name()));
+      } else {
+        textsNode.add(new TextNode(node.asText()));
+      }
     });
   }
 
