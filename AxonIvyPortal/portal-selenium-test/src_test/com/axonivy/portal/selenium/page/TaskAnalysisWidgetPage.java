@@ -54,9 +54,12 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     $("[id='task-widget:filter-save-action']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id='task-widget:filter-save-form:save-filter-set-name-input']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(filterSetName);
 
-    String label = isPersonalFilter ? "Only me" : "All users";
-    $("[id='task-widget:filter-save-form:save-filter-type-radio']").shouldBe(appear, DEFAULT_TIMEOUT).$$("label").asFixedIterable().stream()
-        .filter(labelElem -> labelElem.getText().contentEquals(label)).findFirst().get().click();
+    SelenideElement filterVisibilityContainer = findElementById("task-widget:filter-save-form:save-filter-type-radio");
+    if (isPersonalFilter) {
+      clickByJavaScript(filterVisibilityContainer.$$(By.tagName("LABEL")).get(0));
+    } else {
+      clickByJavaScript(filterVisibilityContainer.$$(By.tagName("LABEL")).get(1));
+    }
   }
 
   public WebElement waitAndGetSavingFilterDialog() {
