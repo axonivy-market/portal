@@ -5,6 +5,7 @@ isLogOut = false;
 var PortalSessionWarning = function() {
   var warningDialogShow = false,
   isInteractedInIframeTaskTemplate = false,
+  isInteractedTaskTemplate = false,
   intervalCheckSessionTimeout,
 
   init = function(clientSideTimeOut) {
@@ -12,13 +13,18 @@ var PortalSessionWarning = function() {
     timeOutSeconds = timeout / 1000,
     sessionCounter = timeOutSeconds,
     isLogOut = false,
-    intervalCheckSessionTimeout = setInterval(timerDecrement, 1000); // Call Every Second
+    intervalCheckSessionTimeout = setInterval(function() {
+        timerDecrement();
+        if (isLogOut) {
+          clearInterval(intervalCheckSessionTimeout);
+        }
+      }, 1000); // Call every second, stop when user is logged out
     window.onload = resetCounterAndTimeout;
-    document.onkeypress = resetCounterAndTimeout;
-    document.onclick = resetCounterAndTimeout;
-    document.onmousedown = resetCounterAndTimeout;
-    document.ontouchstart = resetCounterAndTimeout;
-    document.onscroll = resetCounterAndTimeout;
+    document.onkeypress = updateInteractedTaskTemplate;
+    document.onclick = updateInteractedTaskTemplate;
+    document.onmousedown = updateInteractedTaskTemplate;
+    document.ontouchstart = updateInteractedTaskTemplate;
+    document.onscroll = updateInteractedTaskTemplate;
 
     // Using IFrame Task template
     if ($("#iFrame").length > 0) {
@@ -32,62 +38,50 @@ var PortalSessionWarning = function() {
   },
 
   timerDecrement = function() {
-    var lastUpdated = sessionCounterUpdatedOn, now = new Date(), shouldCheck = false;
-    let periodOfTime = 0;
-    if (lastUpdated == null) {
-      sessionCounterUpdatedOn = now;
-    } else {
-      periodOfTime = now.getTime() - new Date(lastUpdated).getTime();
-      if (periodOfTime >= 1000) {
-        sessionCounterUpdatedOn = now;
-        shouldCheck = true;
+    timeOutSeconds = timeOutSeconds - 1;
+
+    // when timed out, close the warning dialog and make a request to server to show session timeout dialog
+    if (timeOutSeconds < 0 && isLogOut == false) {
+        hideWarningDialog();
+        logoutAndShowDialog();
+        isLogOut = true;
+        stopAvailableChartPolling();
+        return;
       }
-    }
 
-    if (shouldCheck) {
-      if (timeOutSeconds > 0) {
-        if (sessionCounter > 0) {
-          timeOutSeconds = sessionCounter;
-        }
-        timeOutSeconds = timeOutSeconds - (periodOfTime / 1000);
-        sessionCounter = timeOutSeconds;
+    // perform check interaction when timeout less than 60 seconds and the warning dialog is hiding
+    if (timeOutSeconds < 60 && warningDialogShow == false && isLogOut == false) {
 
-      } else {
-        if (isLogOut == false) {
-          isLogOut = true;
-          stopAvailableChartPolling();
-          logoutAndShowDialog();
-        } else {
-          PF('timeout-warning-dialog').hide();
-          PF('timeout-dialog').show();
-          clearInterval(intervalCheckSessionTimeout);
-        }
+      // If have interaction, send a request to server to keep session
+      if (isInteractedTaskTemplate == true) {
+        keepSession();
+        return;
       }
-    } else {
-      timeOutSeconds = sessionCounter;
-    }
 
-    if (timeOutSeconds < 60) {
+      // If have interaction inside an iframe, send a request to server to keep session
       if ($("#iFrame").length > 0 && isInteractedInIframeTaskTemplate == true) {
         warningDialogShow = false;
         isInteractedInIframeTaskTemplate = false;
         keepSessionInIFrame();
-      } else if (warningDialogShow == false) {
-        warningDialogShow = true;
-        PF('timeout-warning-dialog').show();
+        return;
       }
-    } else {
-      hideWarningDialog();
+
+      // If don't have interaction, show the warning dialog
+      warningDialogShow = true;
+      PF('timeout-warning-dialog').show();
     }
   },
 
   resetCounterAndTimeout = function() {
-    if (warningDialogShow == false) {
-      sessionCounterUpdatedOn = null;
-      timeOutSeconds = timeout / 1000;
-      sessionCounter = timeOutSeconds;
-    }
+    hideWarningDialog();
+    isInteractedTaskTemplate = false;
+    isInteractedInIframeTaskTemplate = false;
+    timeOutSeconds = timeout / 1000;
   },
+
+  updateInteractedTaskTemplate = function() {
+    isInteractedTaskTemplate = true;
+  }
 
   updateInteractionStatusInIFrame = function() {
     isInteractedInIframeTaskTemplate = true;
