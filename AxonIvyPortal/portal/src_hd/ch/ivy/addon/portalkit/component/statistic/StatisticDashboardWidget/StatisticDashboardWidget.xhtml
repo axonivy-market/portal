@@ -14,6 +14,7 @@
   <cc:attribute name="showTaskListImmediately" default="false" />
   <cc:attribute name="isBackFromDrilldown" default="false" />
   <cc:attribute name="isDrilldownCasesByCategory" default="false" />
+  <cc:attribute name="isDisableDrilldown" default="true" type="java.lang.Boolean" />
   <cc:facet name="emptyDataPlace" shortDescription="user can override empty message with this place" />
 </cc:interface>
 
@@ -63,7 +64,7 @@
                         rendered="#{statisticDashboardBean.isTaskByPriority(chart)}" 
                         styleClass="statistic-chart">
                         <f:attribute name="selectedChartId" value="#{chart.id}" />
-                        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.drilldownTaskByPriority}" />
+                        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.drilldownTaskByPriority}" disabled="#{cc.attrs.isDisableDrilldown}" />
                       </p:donutChart>
 
                       <p:barChart
@@ -71,12 +72,12 @@
                         id="expiry-chart" style="width: 100%; height:400px;" model="#{chart.barChartModel}"
                         rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}">
                         <f:attribute name="selectedChartId" value="#{chart.id}" />
-                        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.onSelectDrilldownTaskByExpiry}" global="false" />
+                        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.onSelectDrilldownTaskByExpiry}" global="false" disabled="#{cc.attrs.isDisableDrilldown}" />
                       </p:barChart>
 
                       <p:overlayPanel styleClass="context-menu-#{chartStatus.index} expiry-chart-context-menu options-panel"
                         widgetVar="context-menu-#{chartStatus.index}"
-                        rendered="#{statisticDashboardBean.isTaskByExpiry(chart) and !statisticDashboardBean.isTaskByExpiryHour(chart)}"
+                        rendered="#{(statisticDashboardBean.isTaskByExpiry(chart) and !statisticDashboardBean.isTaskByExpiryHour(chart)) and !cc.attrs.isDisableDrilldown}"
                         onShow="updateDrillDownPanelPosition(this);">
                         <p:commandLink id="expiry-chart-drill-down" styleClass="js-expiry-chart-drill-down option-item"
                           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/contextMenuDrilldown')}"
@@ -90,37 +91,37 @@
                       <p:barChart styleClass="statistic-chart" model="#{chart.barChartModel}"
                         rendered="#{statisticDashboardBean.isElapsedTimeByCaseCategory(chart)}" style="width: 100%; height: 400px;">
                         <f:attribute name="selectedChartId" value="#{chart.id}" />
-                        <p:ajax listener="#{cc.attrs.drilldownListener}" update="@([id$='create-chart-header'])" />
-                        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.drilldownElapsedTime}" update="#{p:resolveFirstComponentWithId('widget-container', view).clientId}" />
+                        <p:ajax listener="#{cc.attrs.drilldownListener}" update="@([id$='create-chart-header'])" disabled="#{cc.attrs.isDisableDrilldown}" />
+                        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.drilldownElapsedTime}" update="#{p:resolveFirstComponentWithId('widget-container', view).clientId}" disabled="#{cc.attrs.isDisableDrilldown}" />
                       </p:barChart>
 
                       <p:donutChart styleClass="statistic-chart" model="#{chart.donutChartModel}" 
                         rendered="#{statisticDashboardBean.isCaseByState(chart)}" >
                         <f:attribute name="selectedChartId" value="#{chart.id}" />
-                        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.drilldownCaseByState}" />
+                        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.drilldownCaseByState}" disabled="#{cc.attrs.isDisableDrilldown}" />
                       </p:donutChart>
 
                       <p:donutChart styleClass="statistic-chart" model="#{chart.donutChartModel}"
                         rendered="#{statisticDashboardBean.isCaseByFinishedTask(chart)}" >
                         <f:attribute name="selectedChartId" value="#{chart.id}" />
-                        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.drilldownCaseByState}" />
+                        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.drilldownCaseByState}" disabled="#{cc.attrs.isDisableDrilldown}" />
                       </p:donutChart>
 
                       <p:donutChart styleClass="statistic-chart" model="#{chart.donutChartModel}"
                         rendered="#{statisticDashboardBean.isCaseByFinishedTime(chart)}" >
                         <f:attribute name="selectedChartId" value="#{chart.id}" />
-                        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.drilldownCaseByState}" />
+                        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.drilldownCaseByState}" disabled="#{cc.attrs.isDisableDrilldown}" />
                       </p:donutChart>
                       
                        <p:barChart styleClass="statistic-chart dashboard-statistic-chart-cases-by-category" model="#{chart.barChartModel}"
                         rendered="#{statisticDashboardBean.isCasesByCategory(chart)}" >
                         <f:attribute name="selectedChartId" value="#{chart.id}" />
-                        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.onSelectDrilldownCasesByCategory}" global="false" />
+                        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.onSelectDrilldownCasesByCategory}" global="false" disabled="#{cc.attrs.isDisableDrilldown}" />
                       </p:barChart>
                       
                       <p:overlayPanel styleClass="context-menu-#{chartStatus.index} expiry-chart-context-menu options-panel"
                         widgetVar="context-menu-#{chartStatus.index}"
-                        rendered="#{statisticDashboardBean.isCasesByCategory(chart)}"
+                        rendered="#{statisticDashboardBean.isCasesByCategory(chart) and !cc.attrs.isDisableDrilldown}"
                         onShow="updateDrillDownPanelPosition(this);">
                         <p:commandLink id="cases-by-category-chart-drill-down" styleClass="js-cases-by-category-chart-drill-down option-item"
                           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/contextMenuDrilldown')}"
