@@ -61,6 +61,30 @@ public class DashboardTemplateCaseWidgetConverter implements IJsonConverter {
                 col.get("filter"),
                 DashboardStandardCaseColumn.DESCRIPTION.getField());
           }
+          case CREATOR -> {
+            convertListFilter(initFilterNode(caseWidget),
+                (ArrayNode)col.get("filterList"),
+                DashboardStandardCaseColumn.CREATOR.getField(),
+                FilterType.CREATOR.name());
+          }
+          case STATE -> {
+            convertListFilter(initFilterNode(caseWidget),
+                (ArrayNode)col.get("filterList"),
+                DashboardStandardCaseColumn.STATE.getField(),
+                FilterType.STATE.name());
+          }
+          case CATEGORY -> {
+            convertListFilter(initFilterNode(caseWidget),
+                (ArrayNode)col.get("filterList"),
+                DashboardStandardCaseColumn.CATEGORY.getField(),
+                FilterType.CATEGORY.name());
+          }
+          case APPLICATION -> {
+            convertListFilter(initFilterNode(caseWidget),
+                (ArrayNode)col.get("filterList"),
+                DashboardStandardCaseColumn.APPLICATION.getField(),
+                FilterType.APPLICATION.name());
+          }
           default -> {}
         }
         removeOldFiltersFields(col);
@@ -109,6 +133,7 @@ public class DashboardTemplateCaseWidgetConverter implements IJsonConverter {
       return;
     }
 
+    // If the new complex filters has filter for the same field, skip migrate
     filters.elements().forEachRemaining(filter -> {
       if (filter.get("field").asText().contentEquals(field)) {
         return;
@@ -122,6 +147,29 @@ public class DashboardTemplateCaseWidgetConverter implements IJsonConverter {
 
     ArrayNode textsNode = newFilterNode.putArray("texts");
     textsNode.add(new TextNode(filterText.asText()));
+  }
+
+  private void convertListFilter(ArrayNode filters, ArrayNode filterList, String field, String filterType) {
+    if (filterList == null || filterList.size() == 0) {
+      return;
+    }
+
+    // If the new complex filters has filter for the same field, skip migrate
+    filters.elements().forEachRemaining(filter -> {
+      if (filter.get("field").asText().contentEquals(field)) {
+        return;
+      }
+    });
+
+    ObjectNode newFilterNode = filters.addObject();
+    newFilterNode.set("field", new TextNode(field));
+    newFilterNode.set("type", new TextNode(filterType));
+    newFilterNode.set("operator", new TextNode(FilterOperator.IN.name()));
+
+    ArrayNode textsNode = newFilterNode.putArray("texts");
+    filterList.elements().forEachRemaining(node -> {
+      textsNode.add(new TextNode(node.asText()));
+    });
   }
 
   private ArrayNode initFilterNode(JsonNode widget) {
