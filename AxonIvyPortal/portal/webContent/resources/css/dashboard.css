@@ -1725,6 +1725,10 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .dashboard-widget-filter__filter-panel > div.remove-filter-panel {
+  align-self: center;
+}
+
+.dashboard-widget-filter__filter-panel > div.remove-filter-panel {
   margin-left: 0.5em;
   display: flex;
   align-items: center;

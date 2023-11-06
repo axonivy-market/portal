@@ -33,9 +33,9 @@ public class WidgetCategoryFilterBean implements Serializable {
   public void init(DashboardFilter filter) {
     loadCategories(filter);
 
-    selectedCategoriesString = "";
+    setSelectedCategoriesString("");
     if (CollectionUtils.isNotEmpty(filter.getTexts())) {
-      selectedCategoriesString = filter.getTexts().stream().collect(Collectors.joining(", "));
+      setSelectedCategoriesString(filter.getTexts().stream().collect(Collectors.joining(", ")));
     }
   }
 
@@ -62,6 +62,10 @@ public class WidgetCategoryFilterBean implements Serializable {
     return selectedCategoriesString;
   }
 
+  public void setSelectedCategoriesString(String selectedCategoriesString) {
+    this.selectedCategoriesString = selectedCategoriesString;
+  }
+
   public CheckboxTreeNode<CategoryNode>[] getSelectedCategoryNodes() {
     return selectedCategoryNodes;
   }
@@ -77,4 +81,5 @@ public class WidgetCategoryFilterBean implements Serializable {
   public CheckboxTreeNode<CategoryNode> getCategoryTree() {
     return categoryTree;
   }
+
 }
