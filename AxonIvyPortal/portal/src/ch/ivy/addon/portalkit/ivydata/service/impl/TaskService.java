@@ -148,7 +148,6 @@ public class TaskService implements ITaskService {
       try {
         expiryStatistic = createExpiryTimeStampToCountMap(recordSet);
       } catch (ParseException e) {
-        // TODO Auto-generated catch block
         Ivy.log().error(e);
       }
       result.setExpiryStatistic(expiryStatistic);
