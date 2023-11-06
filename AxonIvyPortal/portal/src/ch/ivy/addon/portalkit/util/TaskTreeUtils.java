@@ -18,6 +18,7 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
@@ -29,7 +30,7 @@ public class TaskTreeUtils {
 
   public static CheckboxTreeNode<CategoryNode> buildTaskCategoryCheckboxTreeRoot() {
     CheckboxTreeNode<CategoryNode> root = buildRoot();
-    TaskQuery taskQuery = IvyExecutor.executeAsSystem(() -> {
+    TaskQuery taskQuery = Sudo.get(() -> {
       return SubProcessCall.withPath(PortalConstants.BUILD_TASK_QUERY_CALLABLE).withStartSignature("buildTaskQuery()")
           .call().get("taskQuery", TaskQuery.class);
     });

@@ -29,7 +29,6 @@ import ch.ivy.addon.portalkit.ivydata.service.ICaseService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
@@ -151,7 +150,7 @@ public class CaseService implements ICaseService {
 
   @Override
   public IvyCaseResultDTO analyzeCaseBusinessStateStatistic(CaseSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       CaseQuery finalQuery = extendQuery(criteria);
       finalQuery.aggregate().countRows().groupBy().businessState();
