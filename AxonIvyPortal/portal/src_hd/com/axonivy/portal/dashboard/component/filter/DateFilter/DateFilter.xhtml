@@ -100,7 +100,7 @@
     </p:datePicker>
   </h:panelGroup>
 
-  <h:panelGroup id="between-dates-panel-and" layout="block"
+  <h:panelGroup id="between-dates-panel-and" layout="block" styleClass="remove-filter-panel"
     rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}">
     <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/And')}</span>
   </h:panelGroup>
