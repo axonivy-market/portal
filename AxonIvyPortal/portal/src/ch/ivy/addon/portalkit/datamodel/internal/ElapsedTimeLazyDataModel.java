@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.model.FilterMeta;
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
@@ -14,14 +17,14 @@ import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivyteam.ivy.jsf.primefaces.legazy.LazyDataModel7;
+import ch.ivyteam.ivy.jsf.primefaces.sort.SortMetaConverter;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.OrderByColumnQuery;
 
-public class ElapsedTimeLazyDataModel extends LazyDataModel7<ICase> {
+public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
   private static final long serialVersionUID = 1L;
   protected final List<ICase> data;
 
@@ -40,10 +43,10 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel7<ICase> {
   }
 
   @Override
-  public List<ICase> load(int first, int pageSize, String sortField, SortOrder sortOrder,
-      Map<String, Object> filters) {
-    criteria.setSortField(sortField);
-    criteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
+  public List<ICase> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
+    SortMetaConverter sort = new SortMetaConverter(sortBy);
+    criteria.setSortField(sort.toField());
+    criteria.setSortDescending(sort.toOrder() == SortOrder.DESCENDING);
     if (first == 0) {
       initializedDataModel();
     }
@@ -74,7 +77,6 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel7<ICase> {
     buildSortCaseQuery(caseQuery);
     this.criteria.setFinalCaseQuery(caseQuery);
   }
-
 
   private CaseQuery buildCaseQuery() {
     return criteria.createQuery();
@@ -118,17 +120,14 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel7<ICase> {
   private void buildSortCaseQuery(CaseQuery caseQuery) {
     CaseSortField sortColumn = CaseSortField.valueOf(criteria.getSortField());
     OrderByColumnQuery orderQuery = null;
-    if (sortColumn.equals(CaseSortField.ELAPSED_TIME)) {
+    if (sortColumn == CaseSortField.ELAPSED_TIME) {
       orderQuery = caseQuery.orderBy().businessRuntime();
-    } else {
-      orderQuery = caseQuery.orderBy().caseId();
-    }
-
-    if (criteria.isSortDescending()) {
-      orderQuery.descending();
-    } else {
-      orderQuery.ascending();
-    }
+      if (criteria.isSortDescending()) {
+        orderQuery.descending();
+      } else {
+        orderQuery.ascending();
+      }
+    } 
   }
 
   public void setCategory(String category) {
@@ -163,5 +162,10 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel7<ICase> {
       return false;
     }
     return rowIndex >= 0 && rowIndex < data.size();
+  }
+
+  @Override
+  public int count(Map<String, FilterMeta> filterBy) {
+    return 0;
   }
 }
