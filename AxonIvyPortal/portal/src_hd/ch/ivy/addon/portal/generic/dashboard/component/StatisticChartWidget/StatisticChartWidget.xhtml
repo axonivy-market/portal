@@ -10,6 +10,7 @@
   <cc:attribute name="isReadOnlyMode" default="false" />
   <cc:attribute name="isPreviewMode" default="false" />
   <cc:attribute name="isConfigurationMode" default="false" />
+  <cc:attribute name="isDisableDrilldownChart" default="true" />
 </cc:interface>
 
 <cc:implementation>
@@ -22,7 +23,7 @@
   <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}"/>
   <c:set var="isConfigurationMode" value="#{cc.attrs.isConfigurationMode}" />
   <c:set var="availableFilter" value="#{isReadOnlyMode and chart.filter ne null}"/>
-  <c:set var="disabledDrillDownChart" value="#{isConfigurationMode or !isReadOnlyMode}"/>
+  <c:set var="disabledDrillDownChart" value="#{cc.attrs.isDisableDrilldownChart or (isConfigurationMode or !isReadOnlyMode)}"/>
 
   <f:event listener="#{dashboardStatisticChartBean.initSettings()}" type="preRenderComponent"/>
   <ui:decorate template="/layouts/restricted/decorator/CardWidget.xhtml">
