@@ -429,7 +429,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
       SelenideElement toElement = findAll.get(toIndex).shouldBe(appear, DEFAULT_TIMEOUT);
 
       Actions builder = new Actions(WebDriverRunner.getWebDriver());
-      Action dragAndDrop = builder.clickAndHold(fromElement).moveToElement(toElement).release(toElement).build();
+      Action dragAndDrop = builder.clickAndHold(fromElement).pause(500).moveToElement(toElement).pause(500).release(toElement).build();
       dragAndDrop.perform();
       waitForAjaxIndicatorDisappeared();
     }
