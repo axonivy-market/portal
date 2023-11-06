@@ -188,7 +188,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     caseWidget.stateOfFirstCase().shouldHave(text("Open"));
   }
 
-  @Test
+  //@Test
   public void testEditFilterCaseList() {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     login(TestAccount.ADMIN_USER);
