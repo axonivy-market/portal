@@ -11,10 +11,10 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.event.ISystemEventListener;
 import ch.ivyteam.ivy.event.SystemEvent;
 import ch.ivyteam.ivy.event.SystemEventCategory;
+import ch.ivyteam.ivy.security.exec.Sudo;
 
 public class ClusterChatEventListener implements ISystemEventListener {
   private static List<ClusterChatEventListener> listeners = new ArrayList<>();
@@ -24,7 +24,7 @@ public class ClusterChatEventListener implements ISystemEventListener {
   @Override
   public void handleSystemEvent(SystemEvent<?> event) {
     try {
-      IvyExecutor.executeAsSystem(() -> {
+      Sudo.get(() -> {
         String eventName = event.getName();
         if (StringUtils.isNotBlank(eventName) && eventName.contains(CLUSTER_CHAT_ACTION_PREFIX)
             && getChatService() != null) {

@@ -7,12 +7,12 @@ import java.util.EnumSet;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyEmailSettingResultDTO;
 import ch.ivy.addon.portalkit.ivydata.service.IEmailSettingService;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IEMailNotificationSettings;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserEMailNotificationSettings;
+import ch.ivyteam.ivy.security.exec.Sudo;
 
 public class EmailSettingService implements IEmailSettingService {
 
@@ -61,7 +61,7 @@ public class EmailSettingService implements IEmailSettingService {
 
   @Override
   public IvyEmailSettingResultDTO saveEmailSetting(IvyEmailSetting emailSetting) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyEmailSettingResultDTO rs = new IvyEmailSettingResultDTO();
 
       IUser user = Ivy.session().getSessionUser();
@@ -90,7 +90,7 @@ public class EmailSettingService implements IEmailSettingService {
 
   @Override
   public IvyEmailSettingResultDTO findEmailSetting() {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyEmailSettingResultDTO result = new IvyEmailSettingResultDTO();
       result.setIvyEmailSetting(getIvyEmailSetting());
       return result;
