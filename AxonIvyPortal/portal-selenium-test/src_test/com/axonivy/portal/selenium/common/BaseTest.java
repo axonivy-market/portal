@@ -241,6 +241,8 @@ public class BaseTest {
     } catch (UnsupportedEncodingException e) {
       throw new PortalGUITestException(e);
     }
+    redirectToRelativeLink(grantDashboardWritePublicPermissionUrl);
+    redirectToRelativeLink(grantDashboardWriteOwnPermissionUrl);
   }
 
   public void updatePortalSetting(String portalSettingName, String portalSettingValue) {
