@@ -48,7 +48,6 @@ import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -81,7 +80,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   public void initConfiguration() {
     initProcessViewMode();
-    createExpressWorkflowProcessStart = ProcessStartCollector.getInstance().findExpressCreationProcess();
+    createExpressWorkflowProcessStart = ExpressProcessService.getInstance().findExpressCreationProcess();
   }
 
   public void initProcesses() {
@@ -229,7 +228,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   public void editExpressWorkflow(ExpressProcess process) throws IOException {
-    String editLink = ProcessStartCollector.getInstance().findExpressWorkflowEditLink(process.getId());
+    String editLink = ExpressProcessService.getInstance().findExpressWorkflowEditLink(process.getId());
     FacesContext.getCurrentInstance().getExternalContext().redirect(editLink);
   }
 

@@ -9,7 +9,7 @@ import ch.ivy.addon.portalkit.ivydata.bo.IvySideStep;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySideStepResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.SideStepSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ISideStepService;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
 import ch.ivyteam.ivy.casemap.runtime.model.IStartableSideStep;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -52,7 +52,7 @@ public class SideStepService implements ISideStepService {
   }
 
   private IvySideStep createAdhocSideStep() {
-    String expressAdhocWFLink = ProcessStartCollector.getInstance().findExpressAdhocWFLink();
+    String expressAdhocWFLink = ExpressProcessService.getInstance().findExpressAdhocWFLink();
     if (StringUtils.isBlank(expressAdhocWFLink)) {
       return null;
     }
