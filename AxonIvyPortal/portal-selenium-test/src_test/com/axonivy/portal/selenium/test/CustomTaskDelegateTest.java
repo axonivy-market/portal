@@ -65,7 +65,7 @@ public class CustomTaskDelegateTest extends BaseTest {
 
   @Test
   public void testCustomTaskDelegateNoDelegateOption() {
-    login(TestAccount.DEMO_USER);
+    login(TestAccount.GUEST_USER);
     redirectToNewDashBoard();
     MainMenuPage menu = new MainMenuPage();
     menu.openTaskList();

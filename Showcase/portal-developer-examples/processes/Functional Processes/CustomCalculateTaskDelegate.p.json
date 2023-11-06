@@ -71,7 +71,7 @@
             "  } else if (\"Sick Leave Request\".equalsIgnoreCase(in.task.names().current())) {",
             "    in.roles.add(new RoleDTO(ivy.wf.getSecurityContext().roles().find(\"GeneralManager\")));",
             "  }",
-            "} else if (\"#demo\".equalsIgnoreCase(in.currentUser.getMemberName())) {",
+            "} else if (\"#guest\".equalsIgnoreCase(in.currentUser.getMemberName())) {",
             "  in.users = new ArrayList();",
             "  in.roles = new ArrayList();",
             "}"
