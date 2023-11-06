@@ -14,13 +14,13 @@ import org.apache.commons.lang.StringUtils;
 import org.primefaces.PF;
 
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
+import com.axonivy.portal.components.util.ProcessStartUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.util.DateTimeFormatterUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.PortalProcessViewerUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.TimesUtils;

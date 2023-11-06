@@ -13,13 +13,13 @@ import com.axonivy.portal.components.enums.ProcessType;
 import com.axonivy.portal.components.service.ExpressProcessService;
 import com.axonivy.portal.components.service.ExternalLinkService;
 import com.axonivy.portal.components.service.impl.ProcessService;
+import com.axonivy.portal.components.util.ProcessStartUtils;
 
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.application.app.IApplicationRepository;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.IProcessStart;
@@ -125,7 +125,7 @@ public final class ProcessStartAPI {
    * @return start link or empty string
    */
   public static String findRelativeUrlByProcessStartFriendlyRequestPath(String friendlyRequestPath) {
-    IProcessStart processStart = findProcessStartByUserFriendlyRequestPath(friendlyRequestPath);
+    IProcessStart processStart = ProcessStartUtils.findProcessStartByUserFriendlyRequestPath(friendlyRequestPath);
     return processStart != null ? processStart.getLink().getRelative() : StringUtils.EMPTY;
   }
 
@@ -152,23 +152,6 @@ public final class ProcessStartAPI {
         .map(IWebStartable::getLink)
         .filter(webLink -> webLink.getRelative().equals(processRelativeLink))
         .findFirst().isPresent();
-  }
-  
-  private static IProcessStart findProcessStartByUserFriendlyRequestPath(String requestPath) {
-    return Sudo.get(() -> {
-      IProcessStart processStart = getProcessStart(requestPath, Ivy.request().getProcessModelVersion());
-      if (processStart != null) {
-        return processStart;
-      }
-      List<IApplication> applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
-      for (IApplication app : applicationsInSecurityContext) {
-        IProcessStart findProcessStart = filterPMV(requestPath, app).findFirst().orElse(null);
-        if (findProcessStart != null) {
-          return findProcessStart;
-        }  
-      }
-      return null;
-    });
   }
 
   private static Stream<IProcessStart> filterPMV(String requestPath, IApplication application) {
