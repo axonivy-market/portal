@@ -300,13 +300,13 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
       dashboard.setPermissions(null);
     }
 
-    Optional.ofNullable(dashboard).map(Dashboard::getWidgets).orElse(new ArrayList<>())
-      .stream().forEach(widget -> {
-        if (widget instanceof WelcomeDashboardWidget) {
-          var welcomeWidget = (WelcomeDashboardWidget) widget;
-          welcomeWidget.setImageContent(encodeWelcomeWidgetImage(welcomeWidget));
-        }
-      });
+    Optional.ofNullable(dashboard).map(Dashboard::getWidgets).orElse(new ArrayList<>()).stream().forEach(widget -> {
+      if (widget instanceof WelcomeDashboardWidget) {
+        var welcomeWidget = (WelcomeDashboardWidget) widget;
+        welcomeWidget.setImageType(WelcomeWidgetUtils.getFileTypeOfImage(welcomeWidget.getImageType()));
+        welcomeWidget.setImageContent(encodeWelcomeWidgetImage(welcomeWidget));
+      }
+    });
 
     List<Dashboard> dashboardList = new ArrayList<>();
     dashboardList.add(dashboard);
