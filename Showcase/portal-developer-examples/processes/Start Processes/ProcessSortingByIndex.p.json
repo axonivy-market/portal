@@ -56,7 +56,7 @@
         "callSignature" : "ProcessSortingIndex2",
         "outLink" : "ProcessSortingIndex2.ivp",
         "startCustomFields" : [
-          { "name" : "portalSortIndex", "value" : "2" }
+          { "name" : "portalSortIndex", "value" : " 2" }
         ],
         "startName" : "Process Sorting By Index 2"
       },

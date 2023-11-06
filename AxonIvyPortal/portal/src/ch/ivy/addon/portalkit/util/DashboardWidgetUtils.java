@@ -761,7 +761,7 @@ public class DashboardWidgetUtils {
         .filter(process -> StringUtils.isNoneEmpty(process.getSortIndex()))
         .sorted(Comparator.<DashboardProcess, Integer>comparing(process -> {
           try {
-            return Integer.parseInt(process.getSortIndex());
+            return Integer.parseInt(process.getSortIndex().trim());
           } catch (NumberFormatException e) {
             Ivy.log().warn(e);
             return 0;
