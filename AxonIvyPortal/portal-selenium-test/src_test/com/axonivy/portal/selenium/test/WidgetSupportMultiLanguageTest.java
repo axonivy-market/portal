@@ -106,7 +106,7 @@ public class WidgetSupportMultiLanguageTest extends BaseTest {
     newTaskWidget.save();
 
     changeUserLanguage();
-    var taskWidget = newDashboardPage.selectTaskWidget(widgetTitle);
+    var taskWidget = newDashboardPage.selectTaskWidget(updatedTitle);
     ScreenshotUtil.resizeBrowser(new Dimension(2560, 1440));
     taskWidget.expand().shouldHave(size(1), DEFAULT_TIMEOUT);
   }
