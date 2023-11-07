@@ -16,8 +16,8 @@ import com.axonivy.portal.enums.dashboard.filter.FilterType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
+import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -90,6 +90,11 @@ public class DashboardFilter implements Serializable {
   @JsonIgnore
   public boolean isState() {
     return this.type == FilterType.STATE;
+  }
+
+  @JsonIgnore
+  public boolean isId() {
+    return this.type == FilterType.ID;
   }
 
   public FilterType getType() {
