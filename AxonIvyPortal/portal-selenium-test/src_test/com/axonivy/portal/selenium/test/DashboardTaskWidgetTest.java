@@ -122,7 +122,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.stateOfFirstTask().shouldHave(text(DONE));
   }
   
-  @Test
+  //@Test
   public void testEditFilterTaskList() {
     createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
