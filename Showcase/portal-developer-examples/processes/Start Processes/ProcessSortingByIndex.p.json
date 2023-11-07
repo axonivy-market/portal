@@ -107,19 +107,22 @@
     }, {
       "id" : "f12",
       "type" : "RequestStart",
-      "name" : "processSortingByIndex10.ivp",
+      "name" : "processSortingByIndex10",
       "config" : {
-        "callSignature" : "processSortingByIndex10",
-        "outLink" : "processSortingByIndex10.ivp",
-        "startCustomFields" : [
-          { "name" : "portalSortIndex", "value" : "10" }
-        ],
-        "startName" : "processSortingByIndex 10"
+        "signature" : "processSortingByIndex10",
+        "request" : {
+          "name" : "Process Sorting By Index 10",
+          "customFields" : [
+            { "name" : "portalSortIndex", "value" : "10" }
+          ]
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 424 }
       },
-      "connect" : { "id" : "f14", "to" : "f13" }
+      "connect" : [
+        { "id" : "f14", "to" : "f13" }
+      ]
     }, {
       "id" : "f13",
       "type" : "TaskEnd",
@@ -131,17 +134,20 @@
       "type" : "RequestStart",
       "name" : "processSortingByIndex12.ivp",
       "config" : {
-        "callSignature" : "processSortingByIndex12",
-        "outLink" : "processSortingByIndex12.ivp",
-        "startCustomFields" : [
-          { "name" : "portalSortIndex", "value" : "12" }
-        ],
-        "startName" : "Process Sorting By Index 12"
+        "signature" : "processSortingByIndex12",
+        "request" : {
+          "name" : "process Sorting By Index 12",
+          "customFields" : [
+            { "name" : "portalSortIndex", "value" : "12" }
+          ]
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 512 }
       },
-      "connect" : { "id" : "f17", "to" : "f16" }
+      "connect" : [
+        { "id" : "f17", "to" : "f16" }
+      ]
     }, {
       "id" : "f16",
       "type" : "TaskEnd",
@@ -153,17 +159,20 @@
       "type" : "RequestStart",
       "name" : "processSortingByIndex20.ivp",
       "config" : {
-        "callSignature" : "processSortingByIndex20",
-        "outLink" : "processSortingByIndex20.ivp",
-        "startCustomFields" : [
-          { "name" : "portalSortIndex", "value" : "20" }
-        ],
-        "startName" : "Process Sorting By Index 20"
+        "signature" : "processSortingByIndex20",
+        "request" : {
+          "name" : "process Sorting By Index 20",
+          "customFields" : [
+            { "name" : "portalSortIndex", "value" : "20" }
+          ]
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 608 }
       },
-      "connect" : { "id" : "f20", "to" : "f19" }
+      "connect" : [
+        { "id" : "f20", "to" : "f19" }
+      ]
     }, {
       "id" : "f19",
       "type" : "TaskEnd",
