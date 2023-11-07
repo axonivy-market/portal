@@ -290,7 +290,7 @@ Variables:
   # Cron expression define the time to clean up data of obsoleted users.
   # Ex. expression for at 6AM every day  is '0 0 6 * * ?'
   # Refer to http://quartz-scheduler.org/documentation/quartz-2.1.x/tutorials/crontrigger
-  PortalStartTimeCleanObsoletedDataExpression: '0 0 6 * * ?'
+  PortalStartTimeCleanObsoletedDataExpression: '0 6 * * *'
 
   # The delay time of search function at top menu
   PortalSearchDelayInMilliseconds: 500
