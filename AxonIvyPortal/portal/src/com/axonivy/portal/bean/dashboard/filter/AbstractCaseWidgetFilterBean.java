@@ -47,6 +47,7 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
       case CATEGORY -> initCategoryFilter(filter);
       case APPLICATION -> initApplicationFilter(filter);
       case STATE -> initStateFilter(filter);
+      case ID -> initIdFilter(filter);
       default -> {}
     };
   }
@@ -76,6 +77,12 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
   private void initApplicationFilter(DashboardFilter filter) {
     filter.setType(FilterType.APPLICATION);
     filter.setOperator(FilterOperator.IN);
+    filter.setTexts(new ArrayList<>());
+  }
+
+  private void initIdFilter(DashboardFilter filter) {
+    filter.setType(FilterType.ID);
+    filter.setOperator(FilterOperator.CONTAINS);
     filter.setTexts(new ArrayList<>());
   }
 

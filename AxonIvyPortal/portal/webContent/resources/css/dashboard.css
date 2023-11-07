@@ -1768,7 +1768,9 @@ body .ui-button.rounded-button.dashboard-widget-filter__remove-filter .ui-icon {
 
 .widget-configuration-footer-panel {
   padding-top: 1.5rem;
-}.application-filter-operator-panel,
-.state-filter-operator-panel {
+}
+.application-filter-operator-panel,
+.state-filter-operator-panel,
+.id-filter-operator-panel {
   min-width: 130px;
 }
