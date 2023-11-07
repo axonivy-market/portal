@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -30,5 +32,12 @@ public class UserSelectionComponentTest extends BaseTest {
     UserSelectionComponentPage userSelectionComponentPage = new UserSelectionComponentPage();
     String value = userSelectionComponentPage.selectFirstItemForFloatingLabelUserSelectionComponent("Backend Developer 1");
     userSelectionComponentPage.getFloatingLabelUserSelectionElem().shouldHave(Condition.cssValue("value", value));
+  }
+
+  @Test
+  public void testAjaxEventUserSelection() {
+    UserSelectionComponentPage userSelectionComponentPage = new UserSelectionComponentPage();
+    String value = userSelectionComponentPage.selectFirstItemForFloatingLabelUserSelectionComponent("Backend Developer 1");
+    assertEquals(value, userSelectionComponentPage.getFloatingLabelUserSelection());
   }
 }

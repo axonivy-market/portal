@@ -87,7 +87,6 @@ public class TaskWidgetTest extends BaseTest {
 
     taskWidgetPage.filterTasksBy("Sick Leave Request");
     taskWidgetPage.waitTillNameOfFirstTaskToBe("Sick Leave Request");
-//    taskWidgetPage.isTaskEnabled(0);
   }
 
   @Test
@@ -102,7 +101,6 @@ public class TaskWidgetTest extends BaseTest {
 
     taskWidgetPage.filterTasksBy("Annual Leave Request");
     taskWidgetPage.waitTillNameOfFirstTaskToBe("Annual Leave Request");
-//    taskWidgetPage.isTaskDelegationDisabled(0);
 
     redirectToRelativeLink(DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
   }
