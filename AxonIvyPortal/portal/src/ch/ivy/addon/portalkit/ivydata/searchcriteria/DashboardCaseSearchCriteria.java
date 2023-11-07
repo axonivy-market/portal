@@ -37,6 +37,7 @@ import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateIsO
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateNumberOfPeriodsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateTodayOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateYesterdayOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.id.IdContainsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.name.NameContainsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.name.NameEndWithOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.name.NameIsEmptyOperatorHandler;
@@ -100,6 +101,7 @@ public class DashboardCaseSearchCriteria {
         case CATEGORY -> generateCategoryFilterQuery(filter);
         case APPLICATION -> generateApplicationFilterQuery(filter);
         case STATE -> generateStateFilterQuery(filter);
+        case ID -> generateIdFilterQuery(filter);
         default -> null;
       };
 
@@ -207,6 +209,13 @@ public class DashboardCaseSearchCriteria {
   private CaseQuery generateStateFilterQuery(DashboardFilter filter) {
     return switch (filter.getOperator()) {
       case IN -> StateInOperatorHandler.getInstance().buildStateInQuery(filter);
+      default -> null;
+    };
+  }
+
+  private CaseQuery generateIdFilterQuery(DashboardFilter filter) {
+    return switch (filter.getOperator()) {
+      case CONTAINS -> IdContainsOperatorHandler.getInstance().buildContainsQuery(filter);
       default -> null;
     };
   }

@@ -234,7 +234,7 @@ public class DashboardWidgetUtils {
     List<ColumnModel> filterableColumns = new ArrayList<>();
     if (CollectionUtils.isNotEmpty(caseColumns)) {
       filterableColumns = caseColumns.stream().filter(Objects::nonNull)
-          .filter(col -> !StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardCaseColumn.ID.toString()))
+          .filter(col -> !StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardCaseColumn.ACTIONS.toString()))
           .collect(Collectors.toList());
     }
     var enableCaseOwner = GlobalSettingService.getInstance().isCaseOwnerEnabled();

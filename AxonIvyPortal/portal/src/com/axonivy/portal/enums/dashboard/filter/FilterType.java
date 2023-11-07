@@ -1,5 +1,5 @@
 package com.axonivy.portal.enums.dashboard.filter;
 
 public enum FilterType {
-  DATE, TEXT, NUMBER, STATE, CREATOR, CATEGORY, APPLICATION;
+  ID, DATE, TEXT, NUMBER, STATE, CREATOR, CATEGORY, APPLICATION;
 }
