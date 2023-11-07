@@ -750,4 +750,9 @@ public class NewDashboardPage extends TemplatePage {
     $("#search-results-tabview").shouldBe(appear, DEFAULT_TIMEOUT);
     return new GlobalSearchResultPage();
   }
+
+  public void waitForCaseWidgetLoaded() {
+    checkDisplayedCaseWidgetContainer();
+    getCaseWidgetTable().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
 }
