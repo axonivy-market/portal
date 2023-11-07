@@ -152,4 +152,70 @@ public class AbsenceTest extends BaseTest {
     return new NewDashboardPage().openAbsencePage();
   }
 
+  @Test
+  public void testReadOwnAbsenceOnly() {
+    login(TestAccount.GUEST_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadAbsencesPermission.ivp");
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateAbsencePermission.ivp");
+    AbsencePage absencePage = openAbsencePage();
+    createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
+
+    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
+    absencePage = openAbsencePage();
+    createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
+
+    login(TestAccount.GUEST_USER);
+    absencePage = openAbsencePage();
+    absencePage.showAbsencesInThePast(true);
+    assertEquals(1, absencePage.countAbsences());
+  }
+
+  @Test
+  public void testReadAbsencesOfOtherUser() {
+    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
+    AbsencePage absencePage = openAbsencePage();
+    createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
+
+    login(TestAccount.GUEST_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadAbsencesPermission.ivp");
+    absencePage = openAbsencePage();
+    absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
+    absencePage.showAbsencesInThePast(true);
+    assertEquals(1, absencePage.countAbsences());
+  }
+
+  @Test
+  public void testReadOnlyDeputyOfOtherUser() {
+    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateOwnSubstitutePermission.ivp");
+    AbsencePage absencePage = openAbsencePage();
+    List<String> deputyNames = Arrays.asList(TestAccount.GUEST_USER.getFullName());
+    absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
+    absencePage.saveSubstitute();
+    absencePage.waitForAbsencesGrowlMessageDisplay();
+
+    login(TestAccount.GUEST_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateOwnSubstitutePermission.ivp");
+    absencePage = openAbsencePage();
+    absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
+    assertEquals(TestAccount.GUEST_USER.getFullName(),
+        absencePage.getMyDisabledDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE)));
+  }
+
+  @Test
+  public void testSelectDeputyOfOtherUser() {
+    login(TestAccount.GUEST_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateSubstitutePermission.ivp");
+    AbsencePage absencePage = openAbsencePage();
+    absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
+    List<String> deputyNames = Arrays.asList(TestAccount.GUEST_USER.getFullName());
+    absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
+    absencePage.saveSubstitute();
+    absencePage.waitForAbsencesGrowlMessageDisplay();
+    assertEquals(TestAccount.GUEST_USER.getFullName(),
+        absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE)));
+  }
+
 }
