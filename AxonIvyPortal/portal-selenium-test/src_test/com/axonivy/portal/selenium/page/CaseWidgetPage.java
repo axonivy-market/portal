@@ -418,7 +418,7 @@ public class CaseWidgetPage extends TemplatePage {
     List<SelenideElement> caseItems = $$(CASE_ITEM_LIST_SELECTOR);
     for (SelenideElement caseItem : caseItems) {
       if (caseItem.$(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText().equals(caseName)) {
-        caseItem.$(By.cssSelector("span[id*='case-info-row']")).click();
+        clickByJavaScript(caseItem.$(By.cssSelector("span[id*='case-info-row']")));
         waitPageDisappear();
         return new CaseDetailsPage();
       }
