@@ -349,7 +349,7 @@ public class ProcessWidgetPage extends TemplatePage {
   public AddNewExternalLinkDialog openNewExternalLinkDialog() {
     waitForElementDisplayed(By.id(processWidgetId + ":add-external-link-command"), true);
     waitForElementClickableThenClick($(By.id("process-widget:add-external-link-command")));
-    waitAjaxIndicatorDisappear();
+//    waitAjaxIndicatorDisappear();
     return new AddNewExternalLinkDialog();
   }
 

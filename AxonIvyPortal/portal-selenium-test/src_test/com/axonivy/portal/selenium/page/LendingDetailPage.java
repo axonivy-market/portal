@@ -52,7 +52,7 @@ public class LendingDetailPage extends TemplatePage {
   public LendingDetailPage navigateToNextDetail() {
     clickByJavaScript($("[id$='next-stage']"));
     waitForElementDisplayed(By.cssSelector(String.format("#stage-%d-name", index + 1)), true);
-    waitAjaxIndicatorDisappear();
+//    waitAjaxIndicatorDisappear();
     return new LendingDetailPage(index + 1);
   }
 }

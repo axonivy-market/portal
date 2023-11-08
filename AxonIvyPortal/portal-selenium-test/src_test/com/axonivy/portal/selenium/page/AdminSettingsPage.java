@@ -35,7 +35,7 @@ public class AdminSettingsPage extends TemplatePage {
   public void openSettingTab() {
     waitForElementClickableThenClick("a[href$='#admin-setting-component:adminTabView:setting-tab']");
     waitForElementDisplayed(By.cssSelector("[id$=':adminTabView:settingForm']"), true);
-    waitAjaxIndicatorDisappear();
+//    waitAjaxIndicatorDisappear();
   }
 
   private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
@@ -114,14 +114,14 @@ public class AdminSettingsPage extends TemplatePage {
   public AnnouncementPage openAnnouncementTab() {
     waitForElementClickable($(By.xpath("//a[@href='#admin-setting-component:adminTabView:announcement-tab']"))).click();
     waitForElementDisplayed(By.id("admin-setting-component:adminTabView:announcement-tab"), true);
-    waitAjaxIndicatorDisappear();
+//    waitAjaxIndicatorDisappear();
     return new AnnouncementPage();
   }
 
   public ExpressManagementPage openExpressManagementTab() {
     waitForElementClickableThenClick($(By.xpath(("//a[@href='#admin-setting-component:adminTabView:express-management-tab']"))));
     waitForElementPresent(By.id("admin-setting-component:adminTabView:express-management-tab"), true);
-    waitAjaxIndicatorDisappear();
+//    waitAjaxIndicatorDisappear();
     return new ExpressManagementPage();
   }
 

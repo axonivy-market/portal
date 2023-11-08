@@ -15,13 +15,12 @@ public class ChangePasswordPage extends TemplatePage {
     return "[id='change-password-dialog_title']";
   }
 
-  @SuppressWarnings("deprecation")
   public void changePassword(String currentPassword, String newPassword) {
     inputCurrentPassword(currentPassword);
     inputConfirmNewPassword(newPassword);
     inputNewPassword(newPassword);
     waitForElementClickableThenClick($(By.id(("change-password-form:password-setting:save-password-setting"))));
-    waitAjaxIndicatorDisappear();
+//    waitAjaxIndicatorDisappear();
   }
   
   private void inputCurrentPassword(String currentPassword) {

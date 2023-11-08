@@ -76,7 +76,7 @@ public class TaskActionTest extends BaseTest {
     // Reserved
     taskWidgetPage.clickOnTaskActionLink(0);
     taskWidgetPage.reserveTask(0);
-    taskWidgetPage.waitAjaxIndicatorDisappear();
+//    taskWidgetPage.waitAjaxIndicatorDisappear();
     assertTaskActionsByTaskState(RESERVED,
         Arrays.asList(DETAILS, DELEGATE, RESET, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));
 
@@ -108,7 +108,7 @@ public class TaskActionTest extends BaseTest {
     // Reserved
     taskWidgetPage.clickOnTaskActionLink(0);
     taskWidgetPage.reserveTask(0);
-    taskWidgetPage.waitAjaxIndicatorDisappear();
+//    taskWidgetPage.waitAjaxIndicatorDisappear();
     assertTaskActionsByTaskState(RESERVED, Arrays.asList(DETAILS, DELEGATE, RESET, CLEAR_EXPIRY, DESTROY,
         WORKFLOW_EVENTS, TRIGGER_ESCALATION, PROCESS_VIEWER, ADD_AD_HOC_TASK));
 

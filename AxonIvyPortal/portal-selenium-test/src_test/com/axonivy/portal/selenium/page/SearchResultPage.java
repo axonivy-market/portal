@@ -22,12 +22,12 @@ public class SearchResultPage extends TemplatePage {
 
   public void openTaskTab() {
     waitForElementClickableThenClick($(By.cssSelector("li[class*='task-tab-title']")));
-    waitAjaxIndicatorDisappear();
+//    waitAjaxIndicatorDisappear();
   }
 
   public void openCaseTab() {
     waitForElementClickableThenClick($(By.cssSelector("li[class*='case-tab-title']")));
-    waitAjaxIndicatorDisappear();
+//    waitAjaxIndicatorDisappear();
   }
 
   public void startProcess(String name) {

@@ -374,7 +374,7 @@ public abstract class TemplatePage extends AbstractPage {
   public void clickOnLogo() {
     openMainMenu();
     waitForElementClickableThenClick($("a[id$='logo']"));
-    waitAjaxIndicatorDisappear();
+//    waitAjaxIndicatorDisappear();
   }
 
   protected void refreshAndWaitElement(String cssSelector) {
