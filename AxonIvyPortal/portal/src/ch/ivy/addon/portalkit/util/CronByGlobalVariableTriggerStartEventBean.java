@@ -25,7 +25,6 @@ import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
 import ch.ivyteam.ivy.process.eventstart.IProcessStartEventBeanRuntime;
 import ch.ivyteam.ivy.process.extension.ProgramConfig;
 import ch.ivyteam.ivy.process.extension.ui.ExtensionUiBuilder;
-import ch.ivyteam.ivy.process.extension.ui.IUiFieldEditor;
 import ch.ivyteam.ivy.process.extension.ui.UiEditorExtension;
 import ch.ivyteam.ivy.service.ServiceException;
 import ch.ivyteam.ivy.vars.Variable;
