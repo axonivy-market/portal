@@ -16,16 +16,14 @@ public class AnnouncementPage extends TemplatePage {
     return WebDriverRunner.getWebDriver().findElement(By.cssSelector("div[id$='messages'] span[class$='summary']")).getText();
   }
 
-  @SuppressWarnings("deprecation")
   public void publish() {
     waitForElementClickableThenClick("button[id$='publish-announcement']");
-    waitAjaxIndicatorDisappear();
+//    waitAjaxIndicatorDisappear();
   }
 
-  @SuppressWarnings("deprecation")
   public void dePublish() {
     waitForElementClickableThenClick("button[id$='delete-announcement']");
-    waitAjaxIndicatorDisappear();
+//    waitAjaxIndicatorDisappear();
   }
 
   public void setAnnoucement(int Language, String content) {

@@ -73,7 +73,7 @@ public class CaseWidgetTest extends BaseTest {
     casePage = mainMenuPage.selectCaseMenu();
     casePage.clickDestroyButton();
     casePage.confimDestruction();
-    casePage.waitAjaxIndicatorDisappear();
+//    casePage.waitAjaxIndicatorDisappear();
     CaseState caseState = casePage.getCaseState(0);
     assertEquals(CaseState.DESTROYED, caseState);
 
