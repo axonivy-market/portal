@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
@@ -192,8 +193,9 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
 
   public void saveFilterSet(String filterSetName, boolean isPersonalFilter) {
     enterDataToSaveFilterSet(filterSetName, isPersonalFilter);
-
-    waitForElementClickableThenClick($(By.id("task-widget:filter-save-form:filter-save-command")));
+    SelenideElement saveButton = $(By.id("task-widget:filter-save-form:filter-save-command"));
+    waitForElementClickableThenClick(saveButton);
+    saveButton.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
 //    waitAjaxIndicatorDisappear();
   }
 
