@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
 import ch.ivyteam.ivy.process.eventstart.IProcessStartEventBeanRuntime;
 import ch.ivyteam.ivy.process.extension.ProgramConfig;
@@ -44,7 +43,6 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
         String pattern = var.value();
         CronExpression cronExpression = new CronExpression(pattern);
         String unixPattern = cronExpression.convertQuartzCronToUnixPattern();
-        Ivy.log().error(unixPattern);
         if (unixPattern != null && unixPattern.length() > 0) {
           eventRuntime.poll().asDefinedByExpression(unixPattern);
         }
