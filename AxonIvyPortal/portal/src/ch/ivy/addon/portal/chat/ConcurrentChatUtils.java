@@ -5,7 +5,7 @@ import static ch.ivy.addon.portal.chat.ChatReferencesContainer.getApplication;
 import java.util.Deque;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
-import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivyteam.ivy.security.exec.Sudo;
 
 public final class ConcurrentChatUtils {
   public static final String PORTAL_CHAT_RESPONSE_HISTORY = "PortalChatResponseHistory_%s";
@@ -15,7 +15,7 @@ public final class ConcurrentChatUtils {
 
   @SuppressWarnings("unchecked")
   public static Deque<ChatResponse> getRecentChatResponseHistory(String username) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       Deque<ChatResponse> history =
           (Deque<ChatResponse>) getApplication().getAttribute(String.format(PORTAL_CHAT_RESPONSE_HISTORY, username));
       if (history == null) {
@@ -33,7 +33,7 @@ public final class ConcurrentChatUtils {
   }
 
   public static void removePortalChatResponseHistory(String username) {
-    IvyExecutor.executeAsSystem(() -> {
+    Sudo.get(() -> {
       getApplication().removeAttribute(String.format(PORTAL_CHAT_RESPONSE_HISTORY, username));
       return null;
     });

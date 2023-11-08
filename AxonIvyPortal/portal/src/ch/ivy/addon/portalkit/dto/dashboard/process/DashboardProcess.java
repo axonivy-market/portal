@@ -6,7 +6,6 @@ import java.util.Locale;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.util.Locales;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
