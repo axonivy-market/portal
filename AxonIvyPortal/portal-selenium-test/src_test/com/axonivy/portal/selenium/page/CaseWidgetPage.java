@@ -160,14 +160,14 @@ public class CaseWidgetPage extends TemplatePage {
     $("input[id$='description-filter:filter-input-form:description']").clear();
     $("input[id$='description-filter:filter-input-form:description']").sendKeys(text);
     waitForElementClickableThenClick("button[id$='description-filter:filter-input-form:update-command']");
-    waitAjaxIndicatorDisappear();
+//    waitAjaxIndicatorDisappear();
   }
 
   public void saveFilter(String filterName) {
     getSaveFilterDialog();
     $(By.id(caseWidgetId + ":filter-save-form:save-filter-set-name-input")).sendKeys(filterName);
     waitForElementClickableThenClick($(By.id(caseWidgetId + ":filter-save-form:filter-save-command")));
-    waitAjaxIndicatorDisappear();
+//    waitAjaxIndicatorDisappear();
     // ensureNoBackgroundRequest();
   }
 
@@ -224,7 +224,7 @@ public class CaseWidgetPage extends TemplatePage {
   public boolean isUserDisplayInCreatorFilter(String userFullName) {
     waitForElementClickableThenClick($((By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']"))));
     $(("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']")).sendKeys(userFullName);
-    waitAjaxIndicatorDisappear();
+//    waitAjaxIndicatorDisappear();
     try {
       new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((driver) -> findElementByCssSelector("span[id$='filter-input-form:creator-component:creator-select_panel']").isDisplayed());
     } catch (Exception timeoutException) {
@@ -264,7 +264,7 @@ public class CaseWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']"), true);
     findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']").clear();
     waitForElementClickableThenClick($(("button[id$='creator-filter:filter-input-form:update-command']")));
-    waitAjaxIndicatorDisappear();
+//    waitAjaxIndicatorDisappear();
   }
 
   public String getCreator() {
@@ -337,7 +337,7 @@ public class CaseWidgetPage extends TemplatePage {
 
   public void clickApplyButton() {
     waitForElementClickableThenClick($(By.cssSelector(APPLY_BUTTON_CSS_SELECTOR)));
-    waitAjaxIndicatorDisappear();
+//    waitAjaxIndicatorDisappear();
   }
 
   public void waitUntilCaseCountDifferentThanZero() {

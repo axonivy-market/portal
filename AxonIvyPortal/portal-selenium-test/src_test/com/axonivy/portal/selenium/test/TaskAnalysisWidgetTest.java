@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -21,6 +23,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.StatisticWidgetPage;
 import com.axonivy.portal.selenium.page.TaskAnalysisWidgetPage;
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
@@ -89,15 +92,15 @@ public class TaskAnalysisWidgetTest extends BaseTest {
 
     SelenideElement columnContainer = taskAnalysisWidgetPage.findColumnContainer();
     List<SelenideElement> selectedColumnCheckboxes = columnContainer.$$(By.cssSelector(".ui-chkbox-box.ui-state-active"));
-    taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
-    selectedColumnCheckboxes.get(0).click();
-    taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
-    selectedColumnCheckboxes.get(1).click();
+//    taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
+    selectedColumnCheckboxes.get(0).shouldBe(Condition.and("should be clickable", visible, exist), DEFAULT_TIMEOUT).click();
+//    taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
+    selectedColumnCheckboxes.get(1).shouldBe(Condition.and("should be clickable", visible, exist), DEFAULT_TIMEOUT).click();
 
     taskAnalysisWidgetPage.waitPageLoaded();
 
     int numberOfColumns = taskAnalysisWidgetPage.findElementById("task-widget:statistic-result-form:task-table_head")
-        .findElements(By.cssSelector("th[scope='col']:not(.ui-helper-hidden)")).size();
+        .$$(By.cssSelector("th[scope='col']:not(.ui-helper-hidden)")).shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0)).size();
 
     assertEquals(numberOfColumns, selectedColumnCheckboxes.size());
   }
@@ -198,7 +201,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
 
     taskAnalysisWidgetPage.clickOnColumnToggler();
-    taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
+//    taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
 
     WebElement columnContainer = taskAnalysisWidgetPage.getDriver().findElement(By.tagName("body"))
         .findElement(By.cssSelector(".ui-columntoggler"));

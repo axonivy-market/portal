@@ -38,8 +38,8 @@ public class AbsencePage extends TemplatePage {
   public int countAbsences() {
     $("div[id*='absence-table']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("td.absence-period").shouldBe(appear, DEFAULT_TIMEOUT);
-    waitAjaxIndicatorDisappear();
-    return $$("td.absence-period").size();
+//    waitAjaxIndicatorDisappear();
+    return $$("td.absence-period").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0)).size();
   }
 
   public void showAbsencesInThePast(boolean shown) {
@@ -51,7 +51,7 @@ public class AbsencePage extends TemplatePage {
   }
 
   public String getMyDeputy(int deputyRoleIndex) {
-    waitAjaxIndicatorDisappear();
+//    waitAjaxIndicatorDisappear();
     String deputiesSelector = String.format("a[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
     return $(deputiesSelector).shouldBe(appear, DEFAULT_TIMEOUT).getText();
   }
@@ -100,7 +100,7 @@ public class AbsencePage extends TemplatePage {
     }
     if (saveSelectedDeputies) {
       waitForElementClickableThenClick("[id='deputy-selection-form:save-deputy-button']");
-      waitAjaxIndicatorDisappear();
+//      waitAjaxIndicatorDisappear();
     }
   }
 
@@ -120,7 +120,7 @@ public class AbsencePage extends TemplatePage {
     element.clear();
     element.sendKeys(responsible);
     $(By.id("deputy-selection-form:user-selection-component:user-selection_panel")).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    waitAjaxIndicatorDisappear();
+//    waitAjaxIndicatorDisappear();
     waitForElementClickableThenClick("[id$='deputy-selection-form:add-deputy-button']");
   }
 
@@ -134,7 +134,7 @@ public class AbsencePage extends TemplatePage {
     SelenideElement substituted = $(selectedUserInput).shouldBe(appear, DEFAULT_TIMEOUT);
     substituted.clear();
     substituted.sendKeys(substitutedUser);
-    waitAjaxIndicatorDisappear();
+//    waitAjaxIndicatorDisappear();
     waitForElementClickableThenClick("[id='absences-management-form:user-absence-selection-component:user-absence_panel']");
   }
 
@@ -145,7 +145,7 @@ public class AbsencePage extends TemplatePage {
 
   public void saveSubstitute() {
     waitForElementClickableThenClick("button[id$='absences-management-form:save-substitute']");
-    waitAjaxIndicatorDisappear();
+//    waitAjaxIndicatorDisappear();
   }
 
   public WebElement getAbsenceForm() {

@@ -64,7 +64,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     // Reserved
     taskWidgetPageDemo.clickOnTaskActionLink(0);
     taskWidgetPageDemo.reserveTask(0);
-    taskWidgetPageDemo.waitAjaxIndicatorDisappear();
+//    taskWidgetPageDemo.waitAjaxIndicatorDisappear();
     taskWidgetPageDemo.clickOnTaskStatesAndApply(Arrays.asList("Reserved"));
     int countTasksReserved = taskWidgetPageDemo.countTasks().size();
     // User Guest
