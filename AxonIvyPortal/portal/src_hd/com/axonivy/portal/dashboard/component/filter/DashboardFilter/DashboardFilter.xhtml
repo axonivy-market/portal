@@ -21,10 +21,10 @@
 
   <h:panelGroup id ="filter-selection-panel" layout="block" styleClass="ui-g-12 u-padding-0 dashboard-widget-filter__filter-panel">
     <div class="ui-fluid md-inputfield filter-selection-panel">
-      <p:selectOneMenu id="field-selection" value="#{filter.field}" disabled="#{readOnly}">
+      <p:selectOneMenu id="field-selection" value="#{filter.filterField}" disabled="#{readOnly}" converter="pojoConverter">
         <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/pleaseSelect')}" itemValue="#{null}" />
         <f:selectItems value="#{cc.attrs.managedBean.filterTypes}" var="type"
-          itemValue="#{type.field}" itemLabel="#{type.label}" />
+          itemValue="#{type}" itemLabel="#{type.label}" />
           <f:param name="skipValidator" value="true" />
         <p:ajax event="itemSelect" listener="#{cc.attrs.managedBean.onSelectFilter(filter)}" process="@(this)" update="filter-selection-panel" global="false" />
       </p:selectOneMenu>
