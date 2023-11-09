@@ -560,8 +560,10 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void clickRelatedTaskColumnCheckbox(int columnIndex) {
-    WebElement columnCheckbox = $(By.xpath(String.format("//*[contains(@id,\":task-widget:task-columns-configuration:select-columns-form:columns-checkbox\")]/tbody/tr[%s]/td/div/div[2]", columnIndex)));
-    columnCheckbox.click();
+    SelenideElement columnCheckbox = $(By.xpath(String.format(
+        "//*[contains(@id,\":task-widget:task-columns-configuration:select-columns-form:columns-checkbox\")]/tbody/tr[%s]/td/div/div[2]",
+        columnIndex)));
+    columnCheckbox.shouldBe(Condition.visible, DEFAULT_TIMEOUT).click();
   }
 
   public void relatedTaskListColumnShouldBeExist(String columnClass, boolean expected) {
@@ -574,8 +576,9 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void clickRelatedTaskDefaultCheckbox() {
-    WebElement columnCheckbox = $(By.xpath(("//*[contains(@id,\":task-widget:task-columns-configuration:select-columns-form:default-columns\")]/div[2]")));
-    columnCheckbox.click();
+    SelenideElement columnCheckbox = $(
+        By.xpath(("//*[contains(@id,\":task-widget:task-columns-configuration:select-columns-form:default-columns\")]/div[2]")));
+    columnCheckbox.shouldBe(Condition.visible, DEFAULT_TIMEOUT).click();
     WaitHelper.assertTrueWithWait(() -> !findElementByCssSelector("label[for$='task-widget:task-columns-configuration:select-columns-form:columns-checkbox:5']").getAttribute("class").equals("ui-state-disabled"));
   }
 
@@ -597,13 +600,13 @@ public class CaseDetailsPage extends TemplatePage {
     js.executeScript("arguments[0].removeAttribute('download-status')", statusDialog);
 
     // click download
-    WebElement downloadLink = getExportToExcelLink(linkId);
+    SelenideElement downloadLink = getExportToExcelLink(linkId);
     if (downloadLink != null) {
-      downloadLink.click();
+      downloadLink.shouldBe(Condition.visible, DEFAULT_TIMEOUT).click();
     }
   }
 
-  public WebElement getExportToExcelLink(String linkId) {
+  public SelenideElement getExportToExcelLink(String linkId) {
     return findElementByCssSelector("a[id$=':" + linkId + "']");
   }
 
@@ -743,8 +746,9 @@ public class CaseDetailsPage extends TemplatePage {
   public void confimRelatedTaskDestruction() {
     String destroyCaseDialogId = "[id$='task-widget:destroy-task-confirmation-dialog']";
     waitForElementDisplayed(By.cssSelector(destroyCaseDialogId), true);
-    WebElement confirmButton = $(destroyCaseDialogId).$("[id$='task-widget:confirm-destruction']");
-    confirmButton.click();
+    SelenideElement confirmButton = $(destroyCaseDialogId).$("[id$='task-widget:confirm-destruction']");
+    confirmButton.shouldBe(appear, DEFAULT_TIMEOUT).click();
+    confirmButton.shouldBe(disappear, DEFAULT_TIMEOUT);
 //    waitAjaxIndicatorDisappear();
   }
 
