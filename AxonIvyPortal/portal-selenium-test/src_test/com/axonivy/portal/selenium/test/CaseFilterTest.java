@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.DateTimePattern;
+import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
@@ -40,10 +41,8 @@ public class CaseFilterTest extends BaseTest {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.openCaseList();
     String fromInputText = new SimpleDateFormat(DateTimePattern.DATE_PATTERN).format(new Date());
-    CaseWidgetPage caseWidgetPage = new CaseWidgetPage();
+    CaseWidgetPage caseWidgetPage = NavigationHelper.navigateToCaseList();
     caseWidgetPage.filterCasesByCreatedDate(fromInputText, EMPTY);
     caseWidgetPage.countCases().shouldHave(sizeGreaterThanOrEqual(1));
   }
@@ -52,9 +51,7 @@ public class CaseFilterTest extends BaseTest {
   public void testFilterCasesByApplication() {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     login(TestAccount.ADMIN_USER);
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.openCaseList();
-    CaseWidgetPage caseWidgetPage = new CaseWidgetPage();
+    CaseWidgetPage caseWidgetPage = NavigationHelper.navigateToCaseList();
     int before = caseWidgetPage.countCases().size();
     caseWidgetPage.openAdvancedFilter("Application", "application");
     caseWidgetPage.filterFirstApp();
@@ -110,8 +107,7 @@ public class CaseFilterTest extends BaseTest {
 
   @Test
   public void testCategory() {
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    CaseWidgetPage casePage = mainMenuPage.openCaseList();
+    CaseWidgetPage casePage = NavigationHelper.navigateToCaseList();
 
     String caseCategoryId = "case-category";
     casePage.openAdvancedFilter("Case category", caseCategoryId);
@@ -156,17 +152,14 @@ public class CaseFilterTest extends BaseTest {
 
   @Test
   public void testDefaultFilter() {
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.waitPageLoaded();
-    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
+    CaseWidgetPage casePage = NavigationHelper.navigateToCaseList();
     assertTrue(casePage.getFilterName().contains("Default filter"));
   }
 
   @Test
   public void testNoSelectionWhenChangeFilter() {
     String filterMaternity = "Maternity";
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    CaseWidgetPage casePage = mainMenuPage.openCaseList();
+    CaseWidgetPage casePage = NavigationHelper.navigateToCaseList();
     casePage.openAdvancedFilter("Description", "description");
     casePage.filterByDescription(filterMaternity);
     casePage.saveFilter(filterMaternity);

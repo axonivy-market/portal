@@ -20,6 +20,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.portal.selenium.common.CaseState;
 import com.axonivy.portal.selenium.common.WaitHelper;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
@@ -237,7 +238,8 @@ public class CaseWidgetPage extends TemplatePage {
     refreshAndWaitElement("a[id$='case-widget:filter-selection-form:filter-name']");
     waitForElementClickableThenClick($(By.id(("case-widget:filter-selection-form:filter-name"))));
     waitForElementDisplayed(By.cssSelector(".filter-name-overlay-panel.ui-connected-overlay-enter-done"), true);
-    List<SelenideElement> saveFilters = $$("a[id$='user-defined-filter']");
+    List<SelenideElement> saveFilters = $$("a[id$='user-defined-filter']").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0),
+        DEFAULT_TIMEOUT);
     for (SelenideElement filter : saveFilters) {
       if (filter.getText().equals(filterName)) {
         $(By.id("case-widget:filter-selection-form:filter-name-overlay-panel")).shouldBe(appear, DEFAULT_TIMEOUT);
@@ -246,6 +248,8 @@ public class CaseWidgetPage extends TemplatePage {
         return;
       }
     }
+    $(".filter-selection-label").hover().click();
+//    waitForElementClickableThenClick($(By.id(("case-widget:filter-selection-form:filter-name"))));
   }
 
   protected void refreshAndWaitElement(String cssSelector) {
@@ -263,7 +267,8 @@ public class CaseWidgetPage extends TemplatePage {
     waitForElementClickableThenClick($("button[id$='creator-filter:filter-open-form:advanced-filter-command']"));
     waitForElementDisplayed(By.cssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']"), true);
     findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']").clear();
-    waitForElementClickableThenClick($(("button[id$='creator-filter:filter-input-form:update-command']")));
+    waitForElementClickableThenClick($("button[id$='creator-filter:filter-input-form:update-command']"));
+    waitForElementDisplayed($("button[id$='creator-filter:filter-input-form:update-command']"), false);
 //    waitAjaxIndicatorDisappear();
   }
 
