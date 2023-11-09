@@ -68,14 +68,12 @@ public class StatisticWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-state-link"), true, 30);
     SelenideElement createCaseByStateLink = findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-state-link");
     waitForElementClickableThenClick(createCaseByStateLink);
-//    waitAjaxIndicatorDisappear();
 
     waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
 
     inputNameForSupportedLanguages(CASE_BY_STATE_CHART_NAME);
     waitForElementClickableThenClick("button[id$='chart-save-command']");
 
-//    waitAjaxIndicatorDisappear();
     waitForElementExisted(By.cssSelector("span[class='ui-growl-title']"), true);
   }
 
@@ -83,20 +81,17 @@ public class StatisticWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-finished-time-link"), true, 30);
     SelenideElement createCaseByFinishedTaskLink = findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-finished-time-link");
     waitForElementClickableThenClick(createCaseByFinishedTaskLink);
-//    waitAjaxIndicatorDisappear();
 
     waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
     inputNameForSupportedLanguages(CASE_BY_FINISHED_TIME_CHART_NAME);
     waitForElementClickableThenClick("button[id$='chart-save-command']");
 
-//    waitAjaxIndicatorDisappear();
     waitForElementExisted(By.cssSelector("span[class='ui-growl-title']"), true);
   }
 
   public void createTaskByPriorityChartMultiLanguage() {
     waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-task-by-priority-link"), true, 30);
     waitForElementClickableThenClick($(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-task-by-priority-link")));
-//    waitAjaxIndicatorDisappear();
 
     waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
 
@@ -106,7 +101,6 @@ public class StatisticWidgetPage extends TemplatePage {
     findElementByCssSelector("input[id$='3:chart-name-input']").sendKeys(TASK_BY_PRIORITY_CHART_NAME.concat(" Spanish"));
 
     waitForElementClickableThenClick("button[id$='chart-save-command']");
-//    waitAjaxIndicatorDisappear();
     waitForElementExisted(By.cssSelector("span[class='ui-growl-title']"), true);
   }
 
@@ -126,13 +120,11 @@ public class StatisticWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-elapsed-time-link"), true, 30);
     SelenideElement createElapsedTimeLink = findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-elapsed-time-link");
     waitForElementClickableThenClick(createElapsedTimeLink);
-//    waitAjaxIndicatorDisappear();
 
     waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
     inputNameForSupportedLanguages(ELAPSED_TIME_CHART_NAME);
     waitForElementClickableThenClick("button[id$='chart-save-command']");
 
-//    waitAjaxIndicatorDisappear();
     waitForElementExisted(By.cssSelector("span[class='ui-growl-title']"), true);
   }
 
@@ -158,10 +150,8 @@ public class StatisticWidgetPage extends TemplatePage {
       return false;
     });
     waitForElementClickableThenClick($("span[id$='restore-default-chart-link-label']"));
-//    waitAjaxIndicatorDisappear();
     waitForElementDisplayed(By.id("statistics-widget:restore-confirmation-dialog"), true, 30);
     waitForElementClickableThenClick($(By.id("statistics-widget:confirm-restore")));
-//    waitAjaxIndicatorDisappear();
   }
 
   public String getChartName(int chartIndex) {

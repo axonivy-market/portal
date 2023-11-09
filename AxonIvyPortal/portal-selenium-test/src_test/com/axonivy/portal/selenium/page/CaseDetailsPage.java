@@ -79,14 +79,12 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void addNote(String noteContent) {
     onClickHistoryIcon();
-//    waitAjaxIndicatorDisappear();
 
     waitForElementDisplayed(By.cssSelector("div.ui-dialog[aria-hidden='false']"), true);
     SelenideElement addNoteDialog = findElementByCssSelector("div.ui-dialog[aria-hidden='false']");
     waitForElementDisplayed(By.cssSelector("div.ui-dialog[aria-hidden='false']"), true);
     addNoteDialog.findElement(By.cssSelector("textarea[id$='note-content']")).sendKeys(noteContent);
     waitForElementClickableThenClick(addNoteDialog.$(By.cssSelector("button[id$='save-add-note-command']")));
-//    waitAjaxIndicatorDisappear();
   }
 
   public ElementsCollection getNotesWithContent(String content) {
@@ -307,7 +305,6 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void onClickHistoryIcon() {
     waitForElementClickableThenClick($("a[id$=':case-histories:add-note-command']"));
-//    waitAjaxIndicatorDisappear();
   }
 
   public void onClickDestroyCase() {
@@ -426,7 +423,6 @@ public class CaseDetailsPage extends TemplatePage {
       relatedCaseCheckbox.findElement(By.cssSelector("span.ui-chkbox-label")).click();
       // Cannot identify when the ajax request of select checkbox is finished
       // So we need to wait for Ajax Indicator disappear
-//      waitAjaxIndicatorDisappear();
       clickOnRelatedCaseCheckbox(checkboxShouldBeChecked);
     }
   }
@@ -475,7 +471,6 @@ public class CaseDetailsPage extends TemplatePage {
   public void switchToEditMode() {
     waitForElementDisplayed(By.cssSelector("[id$=':switch-to-edit-mode-button']"), true);
     $(By.cssSelector("[id$=':switch-to-edit-mode-button']")).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-//    waitAjaxIndicatorDisappear();
     com.axonivy.portal.selenium.common.WaitHelper.assertTrueWithWait(() -> {
       var infoWidget = findElementByCssSelector("[id$='case-details-information-panel']");
       return infoWidget.getAttribute(CLASS_PROPERTY).contains("ui-resizable ui-resizable-autohide");
@@ -511,7 +506,6 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void clickViewNote() {
     waitForElementClickableThenClick(LATEST_HISTORY_LIST_CSS_SELECTOR);
-//    waitAjaxIndicatorDisappear();
     waitForElementDisplayed($(VIEW_NOTE_DIALOG_SELECTOR), true);
   }
 
@@ -590,7 +584,6 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void clickRelatedTaskApplyButton() {
     $(By.cssSelector("button[id$='task-widget:task-columns-configuration:select-columns-form:update-command']")).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-//    waitAjaxIndicatorDisappear();
   }
 
   public void clickExportToExcelLink(String linkId, String statusDialogId) {
@@ -627,7 +620,6 @@ public class CaseDetailsPage extends TemplatePage {
     String reserveCommandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-reserve-command']", index);
     waitForElementDisplayed(By.cssSelector(reserveCommandButton), true);
     findElementByCssSelector(reserveCommandButton).click();
-//    waitAjaxIndicatorDisappear();
   }
 
   public void clickRelatedTaskActionButton(String taskName) {
@@ -654,7 +646,6 @@ public class CaseDetailsPage extends TemplatePage {
     String commandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-workflow-event-command", index);
     waitForElementDisplayed(By.cssSelector(commandButton), true);
     findElementByCssSelector(commandButton).click();
-//    waitAjaxIndicatorDisappear();
   }
 
   public boolean isRelatedTaskWorkflowEventsOpened() {
@@ -719,22 +710,18 @@ public class CaseDetailsPage extends TemplatePage {
       waitForElementDisplayed(By.cssSelector("[id$=':task-delegate-form:activator-type-select']"), true);
       waitForElementEnabled(By.cssSelector("[id$=':task-delegate-form:activator-type-select:1']"), true);
       waitForElementClickableThenClick($("[for$=':task-delegate-form:activator-type-select:1']"));
-//      waitAjaxIndicatorDisappear();
       waitForElementDisplayed(By.cssSelector("input[id$='group-activator-select_input']"), true);
       $(By.cssSelector("input[id$='group-activator-select_input']")).sendKeys(responsibleName);
-//      waitAjaxIndicatorDisappear();
       waitForElementDisplayed(By.cssSelector("span[id$='group-activator-select_panel']"), true);
       List<SelenideElement> foundRoles = $$("span[id$='group-activator-select_panel'] .name-after-avatar");
       foundRoles.get(0).click();
     } else {
       waitForElementDisplayed(By.cssSelector("input[id$='user-activator-select_input']"), true);
       $(By.cssSelector("input[id$='user-activator-select_input']")).sendKeys(responsibleName);
-//      waitAjaxIndicatorDisappear();
       waitForElementDisplayed(By.cssSelector("span[id$='user-activator-select_panel']"), true);
       List<SelenideElement> foundUsers = $$("span[id$='user-activator-select_panel'] .name-after-avatar");
       foundUsers.get(0).click();
     }
-//    waitAjaxIndicatorDisappear();
     waitForElementClickableThenClick($(By.cssSelector("button[id$='proceed-task-delegate-command']")));
     waitForElementDisplayed(By.cssSelector("div[id$='task-delegate-dialog']"), false);
   }
@@ -749,12 +736,10 @@ public class CaseDetailsPage extends TemplatePage {
     SelenideElement confirmButton = $(destroyCaseDialogId).$("[id$='task-widget:confirm-destruction']");
     confirmButton.shouldBe(appear, DEFAULT_TIMEOUT).click();
     confirmButton.shouldBe(disappear, DEFAULT_TIMEOUT);
-//    waitAjaxIndicatorDisappear();
   }
 
   public void destroyTask(String taskName) {
     findDestroyCommand(taskName).click();
-//    waitAjaxIndicatorDisappear();
   }
 
   public WebElement findDestroyCommand(String taskName) {
@@ -798,8 +783,6 @@ public class CaseDetailsPage extends TemplatePage {
     String resetCommandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-reset-command", index);
     waitForElementDisplayed(By.cssSelector(resetCommandButton), true);
     findElementByCssSelector(resetCommandButton).click();
-    // waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-//    waitAjaxIndicatorDisappear();
   }
 
   public int countNumberOfDocument() {
@@ -924,7 +907,6 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void waitRelatedTasks() {
     $("[id='case-details-relatedTask-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-//    waitAjaxIndicatorDisappear();
   }
 
   public TaskDetailsPage openTasksOfCasePage(String taskName) {

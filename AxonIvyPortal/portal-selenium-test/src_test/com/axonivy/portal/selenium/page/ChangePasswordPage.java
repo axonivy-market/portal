@@ -20,7 +20,6 @@ public class ChangePasswordPage extends TemplatePage {
     inputConfirmNewPassword(newPassword);
     inputNewPassword(newPassword);
     waitForElementClickableThenClick($(By.id(("change-password-form:password-setting:save-password-setting"))));
-//    waitAjaxIndicatorDisappear();
   }
   
   private void inputCurrentPassword(String currentPassword) {

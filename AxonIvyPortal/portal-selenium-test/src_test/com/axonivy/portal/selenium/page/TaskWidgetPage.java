@@ -270,11 +270,8 @@ public class TaskWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"), true);
     waitForElementClickableThenClick($(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']")));
     $("input[id$='responsible-filter:filter-input-form:responsible_input']").sendKeys(text);
-//    waitAjaxIndicatorDisappear();
     waitForElementClickableThenClick($("span[id$='responsible-filter:filter-input-form:responsible_panel'] .gravatar"));
-//    waitAjaxIndicatorDisappear();
     waitForElementClickableThenClick($(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']")));
-//    waitAjaxIndicatorDisappear();
   }
 
   public void openStateFilter() {
@@ -538,7 +535,6 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void resetFilter() {
     waitForElementClickableThenClick("[id$='task-widget:filter-reset-action']");
-//    waitAjaxIndicatorDisappear();
     waitForElementClickableThenClick("[id$='task-widget:filter-reset-command']");
     waitForElementDisplayed(By.id("task-widget:reset-filter-set-dialog"), false);
   }
