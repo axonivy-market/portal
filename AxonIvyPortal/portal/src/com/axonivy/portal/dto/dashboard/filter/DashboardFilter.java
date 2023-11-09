@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -11,10 +12,11 @@ import org.apache.commons.lang3.time.DateUtils;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
 import com.axonivy.portal.enums.dashboard.filter.FilterType;
+import com.axonivy.portal.util.filter.field.FilterField;
+import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCreatedDate;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -24,7 +26,7 @@ public class DashboardFilter implements Serializable {
   @JsonIgnore
   public static final String DATE_FORMAT = "MM/dd/yyyy";
 
-  private String field;
+  private FilterField filterField;
 
   @JsonIgnore
   private Date fromDate;
@@ -56,7 +58,7 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public boolean isCreatedDate() {
-    return this.type == FilterType.DATE && DashboardStandardCaseColumn.findBy(this.field) == DashboardStandardCaseColumn.CREATED;
+    return this.type == FilterType.DATE && filterField instanceof CaseFilterFieldCreatedDate;
   }
 
   @JsonIgnore
@@ -101,12 +103,17 @@ public class DashboardFilter implements Serializable {
     this.periods = periods;
   }
 
+  @JsonIgnore
   public String getField() {
-    return field;
+    return Optional.ofNullable(filterField).map(FilterField::getName).orElse(null);
   }
 
-  public void setField(String field) {
-    this.field = field;
+  public FilterField getFilterField() {
+    return filterField;
+  }
+
+  public void setFilterField(FilterField filterField) {
+    this.filterField = filterField;
   }
 
   public List<String> getTexts() {
