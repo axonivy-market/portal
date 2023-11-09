@@ -87,7 +87,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitForElementClickableThenClick($("[id$='task-name-filter:filter-open-form:advanced-filter-command']"));
     $("input[id$='task-name-filter:filter-input-form:name']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(text);
     waitForElementClickableThenClick($("[id$='task-name-filter:filter-input-form:update-command']"));
-    // waitAjaxIndicatorDisappear();
   }
 
   public ElementsCollection getRowsInTaskTable() {
@@ -108,8 +107,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
       if (filterName.equals(filterElement.getText())) {
         waitForElementClickableThenClick(filterElement);
         waitForElementClickableThenClick($("button[id$='task-widget:case-filter-add-form:update-task-filter-selected-command']"));
-//        waitAjaxIndicatorDisappear();
-//        ensureNoBackgroundRequest();
         break;
       }
     }
@@ -121,7 +118,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitForElementClickableThenClick($("[id$='case-name-filter:filter-open-form:advanced-filter-command']"));
     findElementByCssSelector("input[id$='case-name-filter:filter-input-form:name']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(text);
     waitForElementClickableThenClick($("[id$='case-name-filter:filter-input-form:update-command']"));
-//    waitAjaxIndicatorDisappear();
   }
 
   public void filterByCaseState(List<String> selectedPriorities) {
@@ -132,12 +128,10 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     for (SelenideElement labelElement : selectionElement.$$(By.tagName("LABEL"))) {
       if (!selectedPriorities.contains(labelElement.getText())) {
         waitForElementClickableThenClick(labelElement);
-//        waitAjaxIndicatorDisappear();
       }
     }
     waitForElementClickableThenClick(
         $("div[id$='task-widget:case-filters-container'] button[id$='state-filter:filter-input-form:update-command']"));
-//    waitAjaxIndicatorDisappear();
   }
 
   public void filterByTaskCategory(String selectedCategory) {
@@ -157,7 +151,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
       }
     }
     waitForElementClickableThenClick($("[id$='task-category-filter:filter-input-form:update-command']"));
-//    waitAjaxIndicatorDisappear();
   }
 
   public void filterByCaseCategory(String selectedCategory) {
@@ -177,7 +170,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
       }
     }
     waitForElementClickableThenClick($("button[id$='case-category-filter:filter-input-form:update-command']"));
-//    waitAjaxIndicatorDisappear();
   }
 
   public void filterByOwner(String user) {
@@ -188,7 +180,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitForElementDisplayed($("div[id*='owner-filter'] .ui-avatar-text"), true);
     waitForElementClickableThenClick($("[id$=':owner-filter:filter-input-form:owner_panel']"));
     waitForElementClickableThenClick($("button[id$='owner-filter:filter-input-form:update-command']"));
-//    waitAjaxIndicatorDisappear();
   }
 
   public void saveFilterSet(String filterSetName, boolean isPersonalFilter) {
@@ -196,7 +187,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     SelenideElement saveButton = $(By.id("task-widget:filter-save-form:filter-save-command"));
     waitForElementClickableThenClick(saveButton);
     saveButton.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
-//    waitAjaxIndicatorDisappear();
   }
 
   public void waitForTaskDataChangeToSpecificSize(int size) {
@@ -217,7 +207,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
       filterContainer = findElementById("task-widget:filter-selection-form:public-filters");
     }
     clickByJavaScript(filterContainer.$(By.linkText(filterSetName)));
-//    waitAjaxIndicatorDisappear();
   }
 
   public String getFilterName() {
@@ -232,25 +221,19 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitForElementClickableThenClick($("button[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-command']"));
     $("input[id*='" + filterIdName + "-filter:filter-input-form:']").sendKeys(user);
     ;
-//    waitAjaxIndicatorDisappear();
     waitForElementExisted(By.cssSelector("div[id*='" + filterIdName + "-filter'] .ui-avatar-text"), true);
     waitForElementClickableThenClick($("tr[class$='ui-state-highlight']"));
-//    waitAjaxIndicatorDisappear();
     waitForElementClickableThenClick($("button[id$='" + filterIdName + "-filter:filter-input-form:update-command']"));
-//    waitAjaxIndicatorDisappear();
   }
 
   public void filterByResponsible(String user, String filterName, String filterIdName) {
     openAdvancedTaskFilter(filterName, filterIdName);
     waitForElementClickableThenClick($("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"));
     $("input[id$='responsible-filter:filter-input-form:responsible_input']").sendKeys(user);
-    // enterKeys(responsible, text);
     waitForElementDisplayed($("span[id$='responsible-filter:filter-input-form:responsible_panel']"), true);
     waitForElementDisplayed($("div[id*='responsible-filter'] .ui-avatar-text"), true);
     waitForElementClickableThenClick($("[id$=':responsible-filter:filter-input-form:responsible_panel']"));
-//    waitAjaxIndicatorDisappear();
     waitForElementClickableThenClick($("button[id$='responsible-filter:filter-input-form:update-command']"));
-//    waitAjaxIndicatorDisappear();
   }
 
   public void removeUserInFilter() {
@@ -260,7 +243,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']").click();
     findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']").clear();
     waitForElementClickableThenClick($("button[id$='creator-filter:filter-input-form:update-command']"));
-//    waitAjaxIndicatorDisappear();
   }
 
   public void filterUserInCase(String user, String filterName, String filterIdName) {
@@ -275,7 +257,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     findElementByCssSelector("input[id$='responsible-filter:filter-input-form:responsible_input']").click();
     findElementByCssSelector("input[id$='responsible-filter:filter-input-form:responsible_input']").clear();
     waitForElementClickableThenClick($("button[id$='responsible-filter:filter-input-form:update-command']"));
-//    waitAjaxIndicatorDisappear();
   }
 
   public void openNoActivatorFilter(String filterName) {
@@ -316,10 +297,8 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
 
   public void resetFilter() {
     waitForElementClickableThenClick($("[id$='task-widget:filter-reset-action']"));
-//    waitAjaxIndicatorDisappear();
     waitForElementDisplayed($("[id$='task-widget:filter-reset-command']"), true);
     waitForElementClickableThenClick($("[id$='task-widget:filter-reset-command']"));
-//    waitAjaxIndicatorDisappear();
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
         .until((driver) -> $("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)").getText().contains("Default"));
   }

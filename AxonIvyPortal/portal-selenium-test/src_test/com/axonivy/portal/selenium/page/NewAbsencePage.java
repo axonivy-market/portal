@@ -37,10 +37,8 @@ public class NewAbsencePage extends TemplatePage {
       WebElement usernameInput = $(usernameSelector);
       usernameInput.clear();
       usernameInput.sendKeys(fullName);
-//      waitAjaxIndicatorDisappear();
       String itemSelector = "tr[data-item-label*='" + fullName  + "'].ui-state-highlight";
       $(itemSelector).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-//      waitAjaxIndicatorDisappear();
     }
     inputDate(absenceFrom, "input[id*='absence-start-date']");
     inputDate(absenceTill, "input[id*='absence-end-date']");
@@ -71,13 +69,11 @@ public class NewAbsencePage extends TemplatePage {
   public void proceed() {
     $(By.id("absence-dialog_title")).click();
     $("button[id*='save-absence']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-//    waitAjaxIndicatorDisappear();
   }
 
   public void closeAddAbsenceDialog() {
     $("a[id*='close-add-absence-dialog']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id$='absence-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
-//    waitAjaxIndicatorDisappear();
   }
 
   public void enterCommentForAbsence(String comment) {

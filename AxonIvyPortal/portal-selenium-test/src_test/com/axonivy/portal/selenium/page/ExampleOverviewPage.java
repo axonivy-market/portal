@@ -17,13 +17,11 @@ public class ExampleOverviewPage extends TemplatePage {
 
   public LeaveRequestOverviewPage openLeaveRequestOverview() {
     clickByJavaScript($("[id$='0:more-info']"));
-//    waitAjaxIndicatorDisappear();
     return new LeaveRequestOverviewPage();
   }
 
   public LendingOverviewPage openLendingOverview() {
     clickByJavaScript($("[id$='1:more-info']"));
-//    waitAjaxIndicatorDisappear();
     return new LendingOverviewPage();
   }
 

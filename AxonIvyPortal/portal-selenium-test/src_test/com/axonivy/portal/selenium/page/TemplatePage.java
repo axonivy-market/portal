@@ -200,23 +200,9 @@ public abstract class TemplatePage extends AbstractPage {
 
   public void openUserSettingMenu() {
     waitForElementDisplayed(By.id("user-settings-menu"), true);
-//    clickByJavaScript(findElementById("user-settings-menu"));
     waitForElementClickableThenClick(findElementById("user-settings-menu"));
     $("[id='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-
-//  public void waitAjaxIndicatorDisappear() {
-//    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(new ExpectedCondition<Boolean>() {
-//      public Boolean apply(WebDriver wdriver) {
-//        boolean isAjaxFinished = ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript("return jQuery.active == 0")
-//            .equals(true);
-//        boolean isLoaderHidden = (boolean) ((JavascriptExecutor) WebDriverRunner.getWebDriver())
-//            .executeScript("return $('.spinner').is(':visible') == false");
-//        return isAjaxFinished && isLoaderHidden;
-//      }
-//
-//    });
-//  }
 
   public void waitForPageLoad() {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
@@ -382,7 +368,6 @@ public abstract class TemplatePage extends AbstractPage {
   public void clickOnLogo() {
     openMainMenu();
     waitForElementClickableThenClick($("a[id$='logo']"));
-//    waitAjaxIndicatorDisappear();
   }
 
   protected void refreshAndWaitElement(String cssSelector) {

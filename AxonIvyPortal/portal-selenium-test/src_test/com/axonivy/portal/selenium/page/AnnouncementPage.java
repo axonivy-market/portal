@@ -18,17 +18,14 @@ public class AnnouncementPage extends TemplatePage {
 
   public void publish() {
     waitForElementClickableThenClick("button[id$='publish-announcement']");
-//    waitAjaxIndicatorDisappear();
   }
 
   public void dePublish() {
     waitForElementClickableThenClick("button[id$='delete-announcement']");
-//    waitAjaxIndicatorDisappear();
   }
 
   public void setAnnoucement(int Language, String content) {
     $("input[id$='" + Language + ":announcement-input']").sendKeys(content);
   }
-
 
 }

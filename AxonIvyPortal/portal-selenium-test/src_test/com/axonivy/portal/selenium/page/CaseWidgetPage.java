@@ -161,15 +161,12 @@ public class CaseWidgetPage extends TemplatePage {
     $("input[id$='description-filter:filter-input-form:description']").clear();
     $("input[id$='description-filter:filter-input-form:description']").sendKeys(text);
     waitForElementClickableThenClick("button[id$='description-filter:filter-input-form:update-command']");
-//    waitAjaxIndicatorDisappear();
   }
 
   public void saveFilter(String filterName) {
     getSaveFilterDialog();
     $(By.id(caseWidgetId + ":filter-save-form:save-filter-set-name-input")).sendKeys(filterName);
     waitForElementClickableThenClick($(By.id(caseWidgetId + ":filter-save-form:filter-save-command")));
-//    waitAjaxIndicatorDisappear();
-    // ensureNoBackgroundRequest();
   }
 
   public String getFilterName() {
@@ -225,7 +222,6 @@ public class CaseWidgetPage extends TemplatePage {
   public boolean isUserDisplayInCreatorFilter(String userFullName) {
     waitForElementClickableThenClick($((By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']"))));
     $(("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']")).sendKeys(userFullName);
-//    waitAjaxIndicatorDisappear();
     try {
       new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((driver) -> findElementByCssSelector("span[id$='filter-input-form:creator-component:creator-select_panel']").isDisplayed());
     } catch (Exception timeoutException) {
@@ -249,7 +245,6 @@ public class CaseWidgetPage extends TemplatePage {
       }
     }
     $(".filter-selection-label").hover().click();
-//    waitForElementClickableThenClick($(By.id(("case-widget:filter-selection-form:filter-name"))));
   }
 
   protected void refreshAndWaitElement(String cssSelector) {
@@ -269,7 +264,6 @@ public class CaseWidgetPage extends TemplatePage {
     findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']").clear();
     waitForElementClickableThenClick($("button[id$='creator-filter:filter-input-form:update-command']"));
     waitForElementDisplayed($("button[id$='creator-filter:filter-input-form:update-command']"), false);
-//    waitAjaxIndicatorDisappear();
   }
 
   public String getCreator() {
@@ -342,7 +336,6 @@ public class CaseWidgetPage extends TemplatePage {
 
   public void clickApplyButton() {
     waitForElementClickableThenClick($(By.cssSelector(APPLY_BUTTON_CSS_SELECTOR)));
-//    waitAjaxIndicatorDisappear();
   }
 
   public void waitUntilCaseCountDifferentThanZero() {
@@ -423,8 +416,9 @@ public class CaseWidgetPage extends TemplatePage {
     List<SelenideElement> caseItems = $$(CASE_ITEM_LIST_SELECTOR);
     for (SelenideElement caseItem : caseItems) {
       if (caseItem.$(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText().equals(caseName)) {
-        clickByJavaScript(caseItem.$(By.cssSelector("span[id*='case-info-row']")));
-        waitPageDisappear();
+        SelenideElement caseInfoRow = caseItem.$(By.cssSelector("span[id*='case-info-row']")).scrollTo();
+        waitForElementClickableThenClick(caseInfoRow);
+        caseInfoRow.shouldBe(disappear, DEFAULT_TIMEOUT);
         return new CaseDetailsPage();
       }
     }
