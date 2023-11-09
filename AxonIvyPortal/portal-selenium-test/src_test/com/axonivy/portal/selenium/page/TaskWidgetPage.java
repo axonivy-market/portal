@@ -309,7 +309,7 @@ public class TaskWidgetPage extends TemplatePage {
     statesSelectedIndex.forEach(index -> {
       waitForElementClickableThenClick(checkBoxList.get(index));
     });
-    waitForAjaxStatusPositionDisappear();
+//    waitForAjaxStatusPositionDisappear();
     waitForElementClickableThenClick($(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']")));
     waitForElementDisplayed(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']"), false);
   }
