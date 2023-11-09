@@ -3,16 +3,15 @@ package com.axonivy.portal.selenium.page;
 import static com.axonivy.portal.selenium.common.Variable.CLIENT_SIDE_TIMEOUT;
 import static com.axonivy.portal.selenium.common.Variable.GLOBAL_FOOTER_INFO;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
-import java.util.List;
-
-import org.apache.commons.collections.CollectionUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class AdminSettingsPage extends TemplatePage {
@@ -39,20 +38,29 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
-    List<SelenideElement> tableRows = getAdminTable().$$(By.tagName("tr"));
-    for (SelenideElement row : tableRows) {
-      List<SelenideElement> columns = row.$$(By.tagName("td"));
-      if (!CollectionUtils.isEmpty(columns)) {
-        SelenideElement keyColumn = columns.get(0);
-        if (keyColumn.getText().equals(variableName)) {
-          SelenideElement editButton = row.$(By.cssSelector("a[id$=edit]"));
-          clickByJavaScript(editButton);
-          waitForElementDisplayed(By.cssSelector("[id$=':settingDialogForm']"), true);
-          saveGlobalVariable(variableValue, isBooleanType);
-          return;
-        }
-      }
+    ElementsCollection tableRows = $$(".setting-key").filter(Condition.text(variableName));
+    if (!tableRows.isEmpty()) {
+      SelenideElement editButton = tableRows.get(0).ancestor("tr").$(By.cssSelector("a[id$=edit]"));
+      editButton.shouldBe(clickable(), DEFAULT_TIMEOUT).click();
     }
+    waitForElementDisplayed(By.cssSelector("[id$=':settingDialogForm']"), true);
+    saveGlobalVariable(variableValue, isBooleanType);
+//  List<SelenideElement> tableRows = getAdminTable().$$(By.tagName("tr"));
+//    for (SelenideElement row : tableRows) {
+//      $$(".setting-key").filter(Condition.text(variableName)).get(0).ancestor("tr").$(By.cssSelector("a[id$=edit]"));
+//      List<SelenideElement> columns = row.$$(By.tagName("td"));
+//      if (!CollectionUtils.isEmpty(columns)) {
+//        SelenideElement keyColumn = columns.get(0);
+//        if (keyColumn.getText().equals(variableName)) {
+//          SelenideElement editButton = row.$(By.cssSelector("a[id$=edit]"));
+////          clickByJavaScript(editButton);
+//          editButton.shouldBe(clickable(), DEFAULT_TIMEOUT).click();
+//          waitForElementDisplayed(By.cssSelector("[id$=':settingDialogForm']"), true);
+//          saveGlobalVariable(variableValue, isBooleanType);
+//          return;
+//        }
+//      }
+//    }
   }
 
   private SelenideElement getAdminTable() {
