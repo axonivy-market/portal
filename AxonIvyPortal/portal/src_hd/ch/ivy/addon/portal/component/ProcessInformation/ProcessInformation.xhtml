@@ -15,17 +15,16 @@
       <div class="ui-g-1 ui-xl-1 ui-lg-1 ui-md-2 ui-sm-3">
         <i id="icon" class="#{iconSelectionBean.generateIconWithFontFamily(data.selectedProcess.getIcon())} process-info-icon" />
       </div>
-      <div id="header" class="ui-g-11 ui-xl-11 ui-lg-11 ui-md-10 ui-sm-9 u-text-align-left header-process-name">
+      <div id="header" class="ui-g-11 ui-xl-11 ui-lg-11 ui-md-10 ui-sm-9 u-text-align-left">
         <h2>#{data.selectedProcess.processName}</h2>
       </div>
-      <div class="ui-g-12 process-info-description">
+      <div class="ui-g-12">
         <h:outputText id="process-description" value="#{data.selectedProcess.description}" />
       </div>
     </ui:define>
 
     <ui:define name="processInfo">
     <!-- Please put your process information here -->
-      <h:outputText value="#{data.portalProcessInformation}" escape="false" />
     </ui:define>
 
     <ui:define name="actionButtons">
