@@ -12,6 +12,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.util.filter.field.FilterField;
+import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
@@ -35,7 +37,7 @@ public class CaseWidgetUserFilterBean extends AbstractCaseWidgetFilterBean imple
   protected void initFilterTypes() {
     if (Optional.ofNullable(widget).map(CaseDashboardWidget::getFilterableColumns).isPresent()) {
       filterTypes = widget.getFilterableColumns().stream()
-          .map(getDashboardStandardCaseColumn())
+          .map(getFilterField())
           .filter(Objects::nonNull)
           .collect(Collectors.toUnmodifiableList());
     }
@@ -43,6 +45,11 @@ public class CaseWidgetUserFilterBean extends AbstractCaseWidgetFilterBean imple
 
   private Function<ColumnModel, DashboardStandardCaseColumn> getDashboardStandardCaseColumn() {
     return column -> DashboardStandardCaseColumn.findBy(Optional.ofNullable(column).map(ColumnModel::getField).orElse(""));
+  }
+
+  private Function<ColumnModel, FilterField> getFilterField() {
+    return column -> FilterFieldFactory
+        .findBy(Optional.ofNullable(column).map(ColumnModel::getField).orElse(""));
   }
 
   @Override
