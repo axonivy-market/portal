@@ -3,17 +3,14 @@
 Permission List
 ================
 
-Portal has a flexible security system that allows you to configure who can access applications, and what they can do/see within them.
+Portal has a flexible security system that allows you to configure who can access applications, and what they can do/see in Portal.
 
 
 Portal Task Permissions
 -----------------------
-These apply to Task as a whole
 
 - _`TaskReadAll`
-    - Permission to see all tasks in the application
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to see all tasks
 
 - _`TaskReadOwnCaseTasks`
     - Permission to see related tasks
@@ -21,64 +18,46 @@ These apply to Task as a whole
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`TaskParkOwnWorkingTask`
-    - Permission to reserve a task
+    - Permission to reserve my own tasks
 
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`TaskResetOwnWorkingTask`
-    - Permission to reset tasks 
+    - Permission to reset my own tasks 
 
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`TaskWriteName`
-    - Permission to change task name
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to change the task name
 
 - _`TaskWriteDescription`
-    - Permission to change task description
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to change the task description
 
 - _`TaskWriteOriginalPriority`
-    - Permission to change task priority
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to change the task priority
 
 - _`TaskWriteActivator`
-    - Permission to delegate all tasks in a task list
+    - Permission to delegate tasks
 
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`TaskWriteExpiryActivator`
-    - Permission to change responsible after deadline
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to change the responsible after deadline
 
 - _`TaskWriteDelayTimestamp`
-    - Permission to change delay time
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to change the delay time
 
 - _`TaskReset`
-    - Permission to reset tasks
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to reset all tasks
 
 - _`TaskDestroy`
     - Permission to see the Destroy Task action
 
-    - **Default assignment**: :guilabel:`Administrator`
-
 - _`TaskWriteExpiryTimestamp`
     - Control whether to change the deadline
 
-    - **Default assignment**: :guilabel:`Administrator`
-
 - _`TaskWriteActivatorOwnTasks`
-    - Permission to delegate personal or group tasks
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to delegate my own tasks
 
 - _`TaskDisplayAdditionalOptions`
     - Permission to see additional actions
@@ -96,24 +75,18 @@ These apply to Task as a whole
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`TaskDisplayDelegateAction`
-    - Permission to see the Reserve action
+    - Permission to see the Delegate action
 
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`TaskDisplayWorkflowEventAction`
     - Permission to see the Workflow Event action
 
-    - **Default assignment**: :guilabel:`Administrator`
-
 - _`TaskDisplayDestroyAction`
     - Permission to see the Destroy action
 
-    - **Default assignment**: :guilabel:`Administrator`
-
 - _`TaskResetReadyForJoin`
-    - Permission to reset tasks while task is waiting to join
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to reset tasks that are in state Ready for Join
 
 - _`ShareTaskDetailsLink`
     - Permission to see the Share button in task details
@@ -122,27 +95,18 @@ These apply to Task as a whole
 
 Portal Case Permissions
 -----------------------
-These apply to Case as a whole
 
 - _`CaseReadAll`
-    - Permission to see all cases in the application
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to see all cases
 
 - _`CaseDestroy`
-    Permission to delete case
-
-    - **Default assignment**: :guilabel:`Administrator`
+    Permission to delete cases
 
 - _`CaseWriteName`
-    - Permission to change case name
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to change the case name
 
 - _`CaseWriteDescription`
-    - Permission to change case description
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to change the case description
 
 - _`ShowAllTasksOfCase`
     - Permission to see the related tasks's action 
@@ -150,15 +114,12 @@ These apply to Case as a whole
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`ShowCaseDetails`
-    - Permission to see business detail action
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to see the Business details action
 
 - _`ShareCaseDetailsLink`
     - Permission to see the Share button in case details
 
     - **Default assignment**: :guilabel:`Everybody`
-
 
 Portal General Permissions
 --------------------------
@@ -166,17 +127,11 @@ Portal General Permissions
 - _`RoleCreate`
     - Permission to create a new dynamic role 
 
-    - **Default assignment**: :guilabel:`Administrator`
-
 - _`RoleDelete`
     - Permission to delete a dynamic role
 
-    - **Default assignment**: :guilabel:`Administrator`
-
 - _`RoleMove`
     - Permission to ....
-
-    - **Default assignment**: :guilabel:`Administrator`
 
 - _`RoleReadAll`
     - Permission to 
@@ -186,100 +141,82 @@ Portal General Permissions
 - _`DocumentRead`
     - Permission to 
 
-    - **Default assignment**: :guilabel:`Administrator`
-
 - _`DocumentWrite`
-    - Permission to update, delete document
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to update, delete documents
 
 - _`DocumentOfInvolvedCaseWrite`
-    - Permission to update, delete document
+    - Permission to update, delete documents
 
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`DashboardWriteOwn`
-    - Permission to alter private dashboard 
+    - Permission to update private dashboards
 
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`DashboardWritePublic`
-    - Permission to alter public dashboard
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to update public dashboards
 
 - _`AccessFullProcessList`
-    - Permission to access full process list. See :ref:`full-process-list`.
+    - Permission to access the full process list. See :ref:`full-process-list`.
 
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`AccessFullTaskList`
-    - Permission to access full task list. See :ref:`full-task-list`.
+    - Permission to access the full task list. See :ref:`full-task-list`.
 
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`AccessFullCaseList`
-    - Permission to access full case list. See :ref:`full-case-list`.
+    - Permission to access the full case list. See :ref:`full-case-list`.
 
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`AccessFullStatisticsList`
-    - Permission to statistics section. See :ref:`full-statistic-list`.
+    - Permission to access the statistics section. See :ref:`full-statistic-list`.
 
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`TaskCaseAddNote`
-    - Permission to add notes to task/case
+    - Permission to add notes to a task/case
 
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`TaskCaseShowMoreNote`
-    - Permission to see show more note
+    - Permission to see Show more note
 
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`CreatePublicExternalLink`
-    - Permission to create public external link, all other users can see that link in full process list.
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to create public external links, all other users can see the links in the full process list.
 
 - _`RoleManagement`
-    - Permission to access Role Management tab
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to access the Role Management tab
 
 - _`NewsManagement`
-    - Permission to manage the content of the news feed
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to manage the content of the News feed
 
 - _`PasswordValidation`
-    - Permission to access the Password Validation section in Admin Settings page
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to access the Password Validation section in the Admin Settings page
 
 - _`DashboardExportOwn`
-    - Permission to export private dashboard
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to export private dashboards
 
 - _`DashboardExportPublic`
-    - Permission to export public dashboard
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to export public dashboards
 
 - _`DashboardImportOwn`
-    - Permission to import private dashboard
+    - Permission to import private dashboards
 
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`DashboardImportPublic`
-    - Permission to import public dashboard
+    - Permission to import public dashboards
 
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`ShareDashboardLink`
-    - Permission to share dashboard
+    - Permission to share dashboard links
 
     - **Default assignment**: :guilabel:`Everybody`
 
@@ -288,63 +225,51 @@ Portal Absence And Substitute Permissions
 -----------------------------------------
 
 - _`UserCreateAbsence`
-    - Permission to create, edit absence of all users
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to create, edit absences of all users
 
 - _`UserCreateOwnAbsence`
-    - Permission to create, edit personal absence
+    - Permission to create, edit my own absences
 
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`UserDeleteAbsence`
     - Permission to remove the absence entries for all users
 
-    - **Default assignment**: :guilabel:`Administrator`
-
 - _`UserDeleteOwnAbsence`
-    - Permission to remove the personal absence entries
+    - Permission to remove my own absence entries
 
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`UserReadAbsences`
     - Permission to read absences of all users
 
-    - **Default assignment**: :guilabel:`Administrator`
-
 - _`UserReadOwnAbsences`
-    - Permission to read personal absences
+    - Permission to read my own absences
 
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`UserCreateSubstitute`
-    - Permission to create substitute of all users
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to create substitutes of all users
 
 - _`UserCreateOwnSubstitute`
-    - Permission to create personal substitute
+    - Permission to create my own substitutes
 
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`UserReadSubstitutes`
-    - Permission to read substitute of all users
-
-    - **Default assignment**: :guilabel:`Administrator`
+    - Permission to read substitutes of all users
 
 
 Portal Statistic Permissions
 ----------------------------
 
 - _`StatisticAddDashboardChart`
-    - Permission to add dashboard chart
+    - Permission to add dashboard charts
 
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`StatisticAnalyzeTask`
     - Permission to analyze, filter tasks and export data to excel for advanced analysis
-
-    - **Default assignment**: :guilabel:`Administrator`
 
 
 Portal Express Permissions
