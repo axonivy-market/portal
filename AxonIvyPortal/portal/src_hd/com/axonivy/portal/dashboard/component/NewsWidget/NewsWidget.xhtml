@@ -40,8 +40,12 @@
         oncomplete="setupNewsWidgetContent('#{widget.id}')" />
 
       <div class="w-full widget-height-100">
-        <h:outputText id="loading-#{widget.id}" styleClass="js-loading-#{widget.id} ui-g-12"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}" />
+        <h:panelGroup id="loading-#{widget.id}" styleClass="js-loading-#{widget.id}">
+          <ui:include src="NewsWidgetSkeleton.xhtml">
+            <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}"/>
+            <ui:param name="canManageNews" value="#{newsWidgetBean.canManageNews}"/>
+          </ui:include>
+        </h:panelGroup >
 
         <h:panelGroup id="dashboard-news-container-#{widget.id}" layout="block"
           styleClass="w-full dashboard-news-container js-dashboard-news-container-#{widget.id} u-display-none">
