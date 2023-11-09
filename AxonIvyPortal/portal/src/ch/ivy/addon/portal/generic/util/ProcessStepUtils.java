@@ -7,13 +7,13 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.ProcessStep;
 import ch.ivy.addon.portalkit.configuration.UserProcess;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.security.ISecurityContext;
+import ch.ivyteam.ivy.security.exec.Sudo;
 
 public class ProcessStepUtils {
 
@@ -37,7 +37,7 @@ public class ProcessStepUtils {
     String processName = processParts[processParts.length - 1].replace(".ivp", "");
     String processModelName = processParts[processParts.length - 3];
 
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IProcessModelVersion releasedProcessModelVersion = null;
       List<IApplication> applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
       for (IApplication app : applicationsInSecurityContext) {

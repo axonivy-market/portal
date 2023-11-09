@@ -13,6 +13,7 @@ import ch.ivy.addon.portalkit.enums.PortalPermissionGroup;
 import ch.ivy.addon.portalkit.security.PortalSecurity;
 import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
 import ch.ivyteam.ivy.process.eventstart.IProcessStartEventBeanRuntime;
+import ch.ivyteam.ivy.process.extension.ProgramConfig;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.IPermissionGroup;
 import ch.ivyteam.ivy.security.ISecurityConstants;
@@ -28,7 +29,7 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
   }
 
   @Override
-  public void initialize(IProcessStartEventBeanRuntime eventRuntime, String configuration) {
+  public void initialize(IProcessStartEventBeanRuntime eventRuntime, ProgramConfig configuration) {
     super.initialize(eventRuntime, configuration);
     getEventBeanRuntime().poll().disable();
     initPermissions();
