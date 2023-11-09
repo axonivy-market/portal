@@ -58,6 +58,9 @@ public abstract class TemplatePage extends AbstractPage {
     return and("should be clickable", visible, exist);
   }
 
+  protected Condition clickable() {
+    return and("should be clickable", visible, enabled);
+  }
   public WebDriver driver = WebDriverRunner.getWebDriver();
 
   public void switchLastBrowserTab() {
@@ -134,11 +137,11 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public SelenideElement waitForElementClickable(SelenideElement element) {
-    return element.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    return element.shouldBe(clickable(), DEFAULT_TIMEOUT);
   }
 
   public SelenideElement waitForElementClickable(String cssSelector) {
-    return $(cssSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    return $(cssSelector).shouldBe(clickable(), DEFAULT_TIMEOUT);
   }
 
   public boolean isElementDisplayed(By element) {
@@ -197,7 +200,8 @@ public abstract class TemplatePage extends AbstractPage {
 
   public void openUserSettingMenu() {
     waitForElementDisplayed(By.id("user-settings-menu"), true);
-    clickByJavaScript(findElementById("user-settings-menu"));
+//    clickByJavaScript(findElementById("user-settings-menu"));
+    waitForElementClickableThenClick(findElementById("user-settings-menu"));
     $("[id='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 

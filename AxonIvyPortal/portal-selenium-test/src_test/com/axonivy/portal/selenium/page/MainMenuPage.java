@@ -66,7 +66,9 @@ public class MainMenuPage extends TemplatePage {
 
   public void openUserSettingMenu() {
     $("#top-menu").shouldBe(appear, DEFAULT_TIMEOUT);
-    clickByJavaScript($("a[id='user-settings-menu']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()));
+    // clickByJavaScript($("a[id='user-settings-menu']").shouldBe(appear,
+    // DEFAULT_TIMEOUT).shouldBe(getClickableCondition()));
+    $("a[id='user-settings-menu']").shouldBe(clickable(), DEFAULT_TIMEOUT);
   }
 
   public void waitLeftMenuReady() {
@@ -98,11 +100,12 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public CaseWidgetPage selectCaseMenu() {
-    return NavigationHelper.navigateToCaseList();
-//    $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover();
+//    return NavigationHelper.navigateToCaseList();
+    $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
 //    Sleeper.sleep(500);
-//    WaitHelper.waitForNavigation(() -> $(By.cssSelector(".layout-menu li.sub-menu-item-case")).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
-//    return new CaseWidgetPage();
+    WaitHelper.waitForNavigation(() -> $(By.cssSelector(".layout-menu li.sub-menu-item-case")).shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+    return new CaseWidgetPage();
   }
 
   public StatisticWidgetPage selectStatisticDashboard() {
