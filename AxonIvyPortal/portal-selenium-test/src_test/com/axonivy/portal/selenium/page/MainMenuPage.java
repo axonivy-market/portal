@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
@@ -26,37 +27,41 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public TaskWidgetPage openTaskList() {
-    waitLeftMenuReady();
-    WaitHelper.waitForNavigation(() -> {
-      clickByJavaScript($(".layout-menu li[role='menuitem'] a.TASK").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT));
-    });
-    return new TaskWidgetPage();
+    return NavigationHelper.navigateToTaskList();
+//    waitLeftMenuReady();
+//    WaitHelper.waitForNavigation(() -> {
+//      clickByJavaScript($(".layout-menu li[role='menuitem'] a.TASK").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT));
+//    });
+//    return new TaskWidgetPage();
   }
 
   public CaseWidgetPage openCaseList() {
-    waitLeftMenuReady();
-    WaitHelper.waitForNavigation(() -> {
-      clickByJavaScript($(".layout-menu li[role='menuitem'] a.CASE").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT));
-    });
-    return new CaseWidgetPage();
+    return NavigationHelper.navigateToCaseList();
+//    waitLeftMenuReady();
+//    WaitHelper.waitForNavigation(() -> {
+//      clickByJavaScript($(".layout-menu li[role='menuitem'] a.CASE").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT));
+//    });
+//    return new CaseWidgetPage();
   }
 
   public ProcessWidgetPage openProcessList() {
-    waitLeftMenuReady();
-    WaitHelper.waitForNavigation(() -> {
-      clickByJavaScript($(".layout-menu li[role='menuitem'] a.PROCESS").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()));
-    });
-    waitPageLoaded();
-    return new ProcessWidgetPage();
+    return NavigationHelper.navigateToProcessList();
+//    waitLeftMenuReady();
+//    WaitHelper.waitForNavigation(() -> {
+//      clickByJavaScript($(".layout-menu li[role='menuitem'] a.PROCESS").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()));
+//    });
+//    waitPageLoaded();
+//    return new ProcessWidgetPage();
   }
 
   public StatisticWidgetPage openStatisticPage() {
-    waitLeftMenuReady();
-    WaitHelper.waitForNavigation(() -> {
-      clickByJavaScript($(".layout-menu li[role='menuitem'] a.STATISTICS").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()));
-    });
-
-    return new StatisticWidgetPage();
+//    waitLeftMenuReady();
+//    WaitHelper.waitForNavigation(() -> {
+//      clickByJavaScript($(".layout-menu li[role='menuitem'] a.STATISTICS").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()));
+//    });
+//
+//    return new StatisticWidgetPage();
+    return NavigationHelper.navigateToStatisticPage();
   }
 
   public void openUserSettingMenu() {
@@ -93,10 +98,11 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public CaseWidgetPage selectCaseMenu() {
-    $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover();
-    Sleeper.sleep(500);
-    WaitHelper.waitForNavigation(() -> $(By.cssSelector(".layout-menu li.sub-menu-item-case")).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
-    return new CaseWidgetPage();
+    return NavigationHelper.navigateToCaseList();
+//    $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover();
+//    Sleeper.sleep(500);
+//    WaitHelper.waitForNavigation(() -> $(By.cssSelector(".layout-menu li.sub-menu-item-case")).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+//    return new CaseWidgetPage();
   }
 
   public StatisticWidgetPage selectStatisticDashboard() {

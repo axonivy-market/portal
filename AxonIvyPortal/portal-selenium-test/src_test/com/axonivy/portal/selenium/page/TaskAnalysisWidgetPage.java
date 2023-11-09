@@ -87,7 +87,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitForElementClickableThenClick($("[id$='task-name-filter:filter-open-form:advanced-filter-command']"));
     $("input[id$='task-name-filter:filter-input-form:name']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(text);
     waitForElementClickableThenClick($("[id$='task-name-filter:filter-input-form:update-command']"));
-    waitAjaxIndicatorDisappear();
+    // waitAjaxIndicatorDisappear();
   }
 
   public ElementsCollection getRowsInTaskTable() {

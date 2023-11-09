@@ -12,7 +12,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.ivy.webtest.engine.EngineUrl;
-import com.codeborne.selenide.Browser;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -35,16 +34,6 @@ public class BaseTest {
   @AfterEach
   public void tearDown() {
     WebDriverRunner.getWebDriver().quit();
-  }
-
-  private Browser browser;
-
-  public Browser getBrowser() {
-    return browser;
-  }
-
-  public void setBrowser(Browser browser) {
-    this.browser = browser;
   }
 
   protected String simplePaymentUrl = "portal-developer-examples/162511D2577DBA88/simplePayment.ivp";
@@ -128,7 +117,6 @@ public class BaseTest {
     launchBrowserAndGotoRelativeLink(cleanupDataLink);
     createJSonFile("default-dashboard.json", PortalVariable.DASHBOARD.key);
     WebDriverRunner.getWebDriver().manage().window().maximize();
-    browser = new Browser("firefox", true);
   }
   
   /**

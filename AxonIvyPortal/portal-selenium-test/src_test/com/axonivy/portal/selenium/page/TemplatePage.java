@@ -21,10 +21,10 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
@@ -80,15 +80,12 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void waitForGrowlMessageDisappear() {
-    try {
-      $("div[id='portal-global-growl_container']").$("div.ui-growl-message").shouldBe(disappear, Duration.ofSeconds(45));
-    } catch (Exception ignore) {
-    }
+    $("div[id='portal-global-growl_container']").$("div.ui-growl-message").shouldBe(disappear, Duration.ofSeconds(45));
   }
 
-  public void waitForAjaxStatusPositionDisappear() {
-    $("div.ajax-status-position").shouldBe(disappear, DEFAULT_TIMEOUT);
-  }
+//  public void waitForAjaxStatusPositionDisappear() {
+//    $("div.ajax-status-position").shouldBe(disappear, DEFAULT_TIMEOUT);
+//  }
 
   public void waitForElementDisplayed(By element, boolean expected) {
     if (expected) {
@@ -128,7 +125,8 @@ public abstract class TemplatePage extends AbstractPage {
     } else {
       $(element).shouldBe(disappear, Duration.ofSeconds(timeout));
     }
-    $("div[id='portal-global-growl_container']").shouldBe(exist, DEFAULT_TIMEOUT).$("div.ui-growl-message").shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("div[id='portal-global-growl_container']").shouldBe(exist, DEFAULT_TIMEOUT).$("div.ui-growl-message").shouldBe(disappear,
+        DEFAULT_TIMEOUT);
   }
 
   public void waitForGrowlMessageDisplayClearly() {
@@ -203,19 +201,22 @@ public abstract class TemplatePage extends AbstractPage {
     $("[id='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public void waitAjaxIndicatorDisappear() {
-    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(new ExpectedCondition<Boolean>() {
-      public Boolean apply(WebDriver wdriver) {
-        boolean isAjaxFinished = ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript("return jQuery.active == 0").equals(true);
-        boolean isLoaderHidden = (boolean) ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript("return $('.spinner').is(':visible') == false");
-        return isAjaxFinished && isLoaderHidden;
-      }
-
-    });
-  }
+//  public void waitAjaxIndicatorDisappear() {
+//    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(new ExpectedCondition<Boolean>() {
+//      public Boolean apply(WebDriver wdriver) {
+//        boolean isAjaxFinished = ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript("return jQuery.active == 0")
+//            .equals(true);
+//        boolean isLoaderHidden = (boolean) ((JavascriptExecutor) WebDriverRunner.getWebDriver())
+//            .executeScript("return $('.spinner').is(':visible') == false");
+//        return isAjaxFinished && isLoaderHidden;
+//      }
+//
+//    });
+//  }
 
   public void waitForPageLoad() {
-    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
+        .until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
   }
 
   public void waitForGrowlTitleDisappear() {
@@ -228,7 +229,8 @@ public abstract class TemplatePage extends AbstractPage {
   public LoginPage clickOnLogout() {
     openUserSettingMenu();
     $("[id='logout-setting:logout-menu-item']").shouldBe(appear, DEFAULT_TIMEOUT);
-    WaitHelper.waitForNavigationToLoginPage(() -> $("[id='logout-setting:logout-menu-item']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+    WaitHelper.waitForNavigationToLoginPage(
+        () -> $("[id='logout-setting:logout-menu-item']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
     return new LoginPage();
   }
 
@@ -348,7 +350,8 @@ public abstract class TemplatePage extends AbstractPage {
     WebElement breadcrumb = findElementByCssSelector(CURRENT_BREADCRUMB_SELECTOR);
     String result = "";
     if (CollectionUtils.isNotEmpty(breadcrumb.findElements(By.cssSelector(".js-count")))) {
-      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getAttribute("innerHTML") + breadcrumb.findElement(By.cssSelector(".js-count")).getAttribute("innerHTML");
+      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getAttribute("innerHTML")
+          + breadcrumb.findElement(By.cssSelector(".js-count")).getAttribute("innerHTML");
     } else {
       result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getAttribute("innerHTML");
     }
@@ -357,8 +360,9 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public TaskWidgetPage selectTaskMenu() {
-    WaitHelper.waitForNavigation(() -> $(".layout-menu li[role='menuitem'] a.TASK").click());
-    return new TaskWidgetPage();
+//    WaitHelper.waitForNavigation(() -> $(".layout-menu li[role='menuitem'] a.TASK").click());
+//    return new TaskWidgetPage();
+    return NavigationHelper.navigateToTaskList();
   }
 
   public NewDashboardPage goToHomeFromBreadcrumb() {
@@ -411,7 +415,8 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void waitForElementValueChanged(String cssSelector, String expectedValue) {
-    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(ExpectedConditions.textToBe(By.cssSelector(cssSelector), expectedValue));
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
+        .until(ExpectedConditions.textToBe(By.cssSelector(cssSelector), expectedValue));
   }
 
   public void waitForGlobalGrowlDisappear() {
@@ -425,7 +430,8 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void waitForAjaxIndicatorDisappeared() {
-    WaitHelper.waitAttributeToBe(WebDriverRunner.getWebDriver(), By.id("ajax-indicator:ajax-indicator-ajax-indicator_start"), "display", "none");
+    WaitHelper.waitAttributeToBe(WebDriverRunner.getWebDriver(), By.id("ajax-indicator:ajax-indicator-ajax-indicator_start"), "display",
+        "none");
   }
 
   public ChangePasswordPage openChangePasswordPage() {
@@ -467,9 +473,11 @@ public abstract class TemplatePage extends AbstractPage {
   public void waitForIFrameContentVisible() {
     waitForIFrameScreenshotSizeGreaterThan(IFRAME_SCREENSHOT_FILE_SIZE_AT_MINIMUM);
   }
+
   public void switchToDefaultContent() {
     driver.switchTo().defaultContent();
   }
+
   public void waitForIFrameScreenshotSizeGreaterThan(long fileSizeInBytes) {
     switchToDefaultContent();
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((driver) -> {

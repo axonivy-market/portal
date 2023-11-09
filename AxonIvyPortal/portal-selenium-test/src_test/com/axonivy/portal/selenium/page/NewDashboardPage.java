@@ -117,8 +117,8 @@ public class NewDashboardPage extends TemplatePage {
     $(".dashboard-cases-container").shouldBe(appear, DEFAULT_TIMEOUT);
     if (!isMainMenuOpen()) {
       waitForElementDisplayed(By.id("left-menu"), true);
-      $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover();
-      Sleeper.sleep(500);
+      $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
+//      Sleeper.sleep(500);
       waitForElementClickableThenClick($(By.id("user-menu-required-login:toggle-menu")));
     }
     return new MainMenuPage();
