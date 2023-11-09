@@ -2,19 +2,17 @@ package ch.ivy.addon.portalkit.bo;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.constant.CustomFields;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivyteam.ivy.workflow.category.Category;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
-public class IvyProcess implements Process, ProcessWithCustomField {
+public class IvyProcess implements Process {
 
   private IWebStartable process;
   private String application;
   private String imageUrl;
   private String index;
-  private String portalProcessInformation;
   private static final String INDEX_CUSTOM_FIELD = "portalSortIndex";
 
   public IvyProcess(IWebStartable process) {
@@ -22,7 +20,6 @@ public class IvyProcess implements Process, ProcessWithCustomField {
     this.process = process;
     this.imageUrl = collectProcessImage(process);
     this.index = process.customFields().value(INDEX_CUSTOM_FIELD);
-    this.portalProcessInformation = process.customFields().value(CustomFields.PROCESS_INFORMATION);
   }
 
   @Override
@@ -91,10 +88,5 @@ public class IvyProcess implements Process, ProcessWithCustomField {
   @Override
   public String getSortIndex() {
     return index;
-  }
-
-  @Override
-  public String getPortalProcessInformation() {
-    return portalProcessInformation;
   }
 }

@@ -15,10 +15,10 @@ import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyAbsenceResultDTO;
 import ch.ivy.addon.portalkit.ivydata.service.IAbsenceService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserAbsence;
+import ch.ivyteam.ivy.security.exec.Sudo;
 
 public class AbsenceService implements IAbsenceService {
 
@@ -31,7 +31,7 @@ public class AbsenceService implements IAbsenceService {
   
   @Override
   public IvyAbsenceResultDTO findAbsences(String username) {
-    return IvyExecutor.executeAsSystem(() -> { 
+    return Sudo.get(() -> { 
       IvyAbsenceResultDTO result = new IvyAbsenceResultDTO();
 
       Map<String, Set<IvyAbsence>> ivyAbsencesByUser = new HashMap<>();
@@ -76,7 +76,7 @@ public class AbsenceService implements IAbsenceService {
 
   @Override
   public void createAbsence(IvyAbsence ivyAbsence) {
-    IvyExecutor.executeAsSystem(() -> { 
+    Sudo.get(() -> { 
 
       IUser user = ServiceUtilities.findUser(ivyAbsence.getUsername());
       user.createAbsence(ivyAbsence.getFrom(), ivyAbsence.getUntil(), ivyAbsence.getComment());
@@ -86,7 +86,7 @@ public class AbsenceService implements IAbsenceService {
   
   @Override
   public void updateAbsences(String username, Set<IvyAbsence> ivyAbsences) {
-    IvyExecutor.executeAsSystem(() -> { 
+    Sudo.get(() -> { 
       IUser user = ServiceUtilities.findUser(username);
       for (IUserAbsence userAbsence : user.getAbsences()) {
         user.deleteAbsence(userAbsence);
@@ -100,7 +100,7 @@ public class AbsenceService implements IAbsenceService {
 
   @Override
   public void deleteAbsence(IvyAbsence ivyAbsence) {
-    IvyExecutor.executeAsSystem(() -> { 
+    Sudo.get(() -> { 
       IUser user = ServiceUtilities.findUser(ivyAbsence.getUsername());
       for (IUserAbsence userAbsence : user.getAbsences()) {
         if (userAbsence.getStartTimestamp().equals(ivyAbsence.getFrom()) && userAbsence.getStopTimestamp().equals(ivyAbsence.getUntil())) {

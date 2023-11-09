@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.components.dto.RoleDTO;
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.dto.UserDTO;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
-import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.query.IPagedResult;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
@@ -18,13 +18,14 @@ import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.exec.Sudo;
 
 public class SecurityMemberUtils {
 
   private static final String PREFIX_CMS = "/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/";
 
   public static SecurityMemberDTO getCurrentSessionUserAsSecurityMemberDTO() {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return new SecurityMemberDTO(Ivy.session().getSessionUser());
     });
   }
@@ -38,7 +39,7 @@ public class SecurityMemberUtils {
    */
   @SuppressWarnings("unchecked")
   public static List<SecurityMemberDTO> findSecurityMembers(String query, int startIndex, int count) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
           .withStartName("findSecurityMembers")
           .withParam("query", query)
@@ -50,7 +51,7 @@ public class SecurityMemberUtils {
   }
 
   public static List<SecurityMemberDTO> convertIRoleToSecurityMemberDTO(List<IRole> roles) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return roles.stream().map(role -> new SecurityMemberDTO(role)).collect(Collectors.toList());
     });
   }
@@ -60,13 +61,13 @@ public class SecurityMemberUtils {
   }
 
   public static ISecurityMember findISecurityMemberFromRoleDTO(RoleDTO roleDTO) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return ISecurityContext.current().findRole(roleDTO.getId());
     });
   }
 
   public static String buildTooltipFromUsers(String roleName) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IRole role = ISecurityContext.current().roles().find(roleName);
       IPagedResult<IUser> result = role.users().assignedPaged(10);
       List<IUser> users = result.page(1);
