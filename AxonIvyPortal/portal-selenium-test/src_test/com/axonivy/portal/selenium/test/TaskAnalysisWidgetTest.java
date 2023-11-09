@@ -92,9 +92,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
 
     SelenideElement columnContainer = taskAnalysisWidgetPage.findColumnContainer();
     List<SelenideElement> selectedColumnCheckboxes = columnContainer.$$(By.cssSelector(".ui-chkbox-box.ui-state-active"));
-//    taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
     selectedColumnCheckboxes.get(0).shouldBe(Condition.and("should be clickable", visible, exist), DEFAULT_TIMEOUT).click();
-//    taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
     selectedColumnCheckboxes.get(1).shouldBe(Condition.and("should be clickable", visible, exist), DEFAULT_TIMEOUT).click();
 
     taskAnalysisWidgetPage.waitPageLoaded();
@@ -201,7 +199,6 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
 
     taskAnalysisWidgetPage.clickOnColumnToggler();
-//    taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
 
     WebElement columnContainer = taskAnalysisWidgetPage.getDriver().findElement(By.tagName("body"))
         .findElement(By.cssSelector(".ui-columntoggler"));
