@@ -47,7 +47,7 @@
             <ui:param name="canManageNews" value="#{newsWidgetBean.canManageNews}"/>
             <ui:param name="newsSkeletonHeight"
               value="#{widget.layout.height > 2 ? 
-            (widget.layout.height - 2) * 8 : 5}" />
+            (widget.layout.height - 2) * 8 : (widget.layout.height + 2)}" />
           </ui:include>
         </h:panelGroup >
 
