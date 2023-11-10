@@ -17,6 +17,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
 public class TaskTemplatePage extends TemplatePage {
+  private static final String ADHOC_HISTORY_TABLE_CSS_SELECTOR = "div[id*='adhoc-task-history-table'] table>tbody>tr";
   private static final String CASE_INFO_IFRAME_ID = "i-frame-case-details";
 
   @Override
@@ -234,4 +235,72 @@ public class TaskTemplatePage extends TemplatePage {
     clickByJavaScript(findElementById("side-step-start-ok"));
     new NewDashboardPage();
   }
+  
+  public void inputValue(String employee, String from, String to, String representation) {
+    $(By.id("leave-request:fullname")).sendKeys(employee);
+    $(By.id("leave-request:substitute")).sendKeys(representation);
+    $(By.id("leave-request:from_input")).sendKeys(from);
+    $(By.id("leave-request:to_input")).sendKeys(to);
+  }
+  
+  public void inputField(String cssSelector, String value) {
+    $(cssSelector).sendKeys(value);
+  }
+  
+  public void clickOnSubmitButton() {
+    clickByJavaScript($("button[id$=':button-submit']"));
+  }
+
+  public void clickAdhocCreationButton() {
+    clickTaskActionMenu();
+    clickOnStartAdhocLink();
+  }
+
+  public boolean isShowAdhocHistoryBtnNotExist() {
+    String adhocHistoryBtnCSSSelection = "a[id$='show-adhoc-history']";
+    return !$(By.cssSelector(adhocHistoryBtnCSSSelection)).exists();
+  }
+
+  public boolean isStartAdhocBtnNotExist() {
+    String startAdhocBtnCSSSelection = "a[id$='start-adhoc']";
+    return !$(By.cssSelector(startAdhocBtnCSSSelection)).exists();
+  }
+
+  @SuppressWarnings("deprecation")
+  public boolean isAdhocHistoryDialogExistWhenOpenTaskFirstTime() {
+    return findElementByCssSelector("div[id$='adhoc-task-history-dialog']").isDisplayed();
+  }
+
+  public SelenideElement getAdhocHistoryDialog() {
+    return $("div[id$='adhoc-task-history-dialog']");
+  }
+
+  @SuppressWarnings("deprecation")
+  public void clickShowAdhocHistoryBtn() {
+    waitForElementClickableThenClick("#horizontal-task-actions");
+    waitForElementDisplayed(By.cssSelector("a[id$='show-adhoc-history']"), true);
+    waitForElementClickableThenClick("a[id$='show-adhoc-history']");
+    waitAjaxIndicatorDisappear();
+  }
+
+  public String getAdhocCreationMessage() {
+    String adhocCreationMessageCSSSelector = "div[id$='adhoc-creation-message']";
+    return findDisplayedElementByCssSelector(adhocCreationMessageCSSSelector).getText();
+  }
+
+  public String getTaskNameOfAdhocHistoryRow(int index) {
+    SelenideElement elem = $$(By.cssSelector(ADHOC_HISTORY_TABLE_CSS_SELECTOR)).get(index);
+    return elem.findAll(By.xpath("td")).get(2).getText();
+  }
+
+  public String getCommentOfAdhocHistoryRow(int index) {
+    SelenideElement elem = $$(By.cssSelector(ADHOC_HISTORY_TABLE_CSS_SELECTOR)).get(index);
+    return elem.findAll(By.xpath("td")).get(3).getText();
+  }
+
+//  public String getTaskNameOfAdhocHistoryRow(int i) {
+//    WebElement row = driver.findElements(By.cssSelector(ADHOC_HISTORY_TABLE_CSS_SELECTOR)).get(index);
+//    return row.findElements(By.xpath("td")).get(2).getText();
+//  }
+
 }

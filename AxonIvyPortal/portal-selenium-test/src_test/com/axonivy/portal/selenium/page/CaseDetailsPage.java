@@ -50,7 +50,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return ".js-layout-content";
+    return "[id='case-item-details:case-details-container:case-detail-body']";
   }
 
   public CaseDetailsPage() {
@@ -929,5 +929,13 @@ public class CaseDetailsPage extends TemplatePage {
         DEFAULT_TIMEOUT);
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
-
+  
+  public void clickBackButton() {
+    waitForElementClickableThenClick($("[id$='case-item-details:case-details-container:back-to-cases']"));
+  }
+  
+  public CaseWidgetPage goBackToCaseListFromCaseDetails() {
+    clickBackButton();
+    return new CaseWidgetPage();
+  }
 }

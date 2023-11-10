@@ -326,4 +326,18 @@ public class TaskDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("span.ui-state-disabled span.ui-menuitem-text"), true);
     return findElementByCssSelector("span.ui-state-disabled span.ui-menuitem-text").getText();
   }
+
+  public String getTaskName() {
+    String[] breadcrumbTexts = getTextOfCurrentBreadcrumb().split(":");
+    int item = breadcrumbTexts.length;
+    if (item > 1) {
+      return breadcrumbTexts[item - 1].trim();
+    }
+    return breadcrumbTexts[0].trim();
+  }
+
+  public CaseDetailsPage backToCaseDetails() {
+    clickBackButton();
+    return new CaseDetailsPage();
+  }
 }

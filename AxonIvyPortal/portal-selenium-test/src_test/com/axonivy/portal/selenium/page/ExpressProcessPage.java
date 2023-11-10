@@ -138,4 +138,8 @@ public class ExpressProcessPage extends TemplatePage {
   public String getResponsiblesOfTask(int taskIndex) {
     return findElementById(String.format("form:defined-tasks-list:%d:task-responsible-link", taskIndex)).getText();
   }
+
+  public void executeDirectly() {
+    waitForElementClickableThenClick("[id$='form:save']");
+  }
 }
