@@ -29,7 +29,9 @@
 
     <div class="ui-g-12 widget-height-100 u-padding-0">
       <h:panelGroup layout="block" id="loading" styleClass="js-loading-#{widget.id} ui-g-12" >
-         <ui:include src="ProcessViewerSkeleton.xhtml" />
+         <ui:include src="ProcessViewerSkeleton.xhtml">
+           <ui:param name="processSkeletonHeight" value="#{widget.layout.height > 2 ? (widget.layout.height - 2) : 1 }" />
+         </ui:include>
       </h:panelGroup>
      
       <h:panelGroup id="dashboard-process-viewer-container" layout="block"
