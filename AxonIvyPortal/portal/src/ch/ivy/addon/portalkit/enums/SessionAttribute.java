@@ -1,7 +1,7 @@
 package ch.ivy.addon.portalkit.enums;
 
 public enum SessionAttribute {
-
+  SESSION_IDENTIFIER,
   TASK_END_INFO,
   IS_TASK_FINISHED,
   PORTAL_START_PMV_ID,

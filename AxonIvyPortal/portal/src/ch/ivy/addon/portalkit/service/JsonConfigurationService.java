@@ -5,17 +5,22 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.bo.JsonVersion;
+import com.axonivy.portal.bo.jsonversion.DashboardFilterJsonVersion;
+import com.axonivy.portal.migration.dashboardfilter.migrator.JsonDashboardFilterMigrator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
+import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 
-abstract class JsonConfigurationService<T extends AbstractConfiguration> {
+public abstract class JsonConfigurationService<T extends AbstractConfiguration> {
 
   public List<T> saveAllPublicConfig(List<T> entities) {
     var existedIds = entities.stream().map(e -> e.getId()).collect(toList());
@@ -63,7 +68,21 @@ abstract class JsonConfigurationService<T extends AbstractConfiguration> {
     if (StringUtils.isBlank(jsonValue)) {
       return new ArrayList<>();
     }
-    return BusinessEntityConverter.jsonValueToEntities(jsonValue, getType());
+    return Optional.ofNullable(convertToLatestVersion(jsonValue))
+        .orElse(BusinessEntityConverter.jsonValueToEntities(jsonValue, getType()));
+  }
+
+  private List<T> convertToLatestVersion(String jsonValue) {
+    if (getType() == WidgetFilterModel.class) {
+      try {
+        ObjectMapper mapper = new ObjectMapper();
+        JsonDashboardFilterMigrator migrator = new JsonDashboardFilterMigrator(mapper.readTree(jsonValue));
+        return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), getType());
+      } catch (JsonProcessingException ex) {
+        Ivy.log().error("Failed to read dashboard template from JSON {0}", ex, jsonValue);
+      }
+    }
+    return null;
   }
 
   public T save(T entity) {
@@ -130,7 +149,7 @@ abstract class JsonConfigurationService<T extends AbstractConfiguration> {
         }
       }
     } else {
-      entity.setVersion(JsonVersion.LATEST.getValue());
+      entity.setVersion(DashboardFilterJsonVersion.LATEST_VERSION.getValue());
       entities.add(entity);
     }
   }

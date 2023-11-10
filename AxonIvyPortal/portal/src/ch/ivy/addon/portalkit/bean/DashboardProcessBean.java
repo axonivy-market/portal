@@ -17,6 +17,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.service.impl.ProcessService;
 
@@ -74,7 +75,10 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   protected List<Process> findProcesses() {
     List<IWebStartable> processes = ProcessService.getInstance().findProcesses().getProcesses();
     List<Process> defaultPortalProcesses = new ArrayList<>();
-    processes.forEach(process -> defaultPortalProcesses.add(new DashboardProcess(process)));
+    // TODO fix static ProcessService#ivyProcessResultDTO, maybe cause error when Jmeter 10 user NavigateToGlobalSearch
+    if (processes != null) {
+      processes.forEach(process -> defaultPortalProcesses.add(new DashboardProcess(process)));
+    }
     return defaultPortalProcesses;
   }
 
@@ -138,7 +142,7 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
       super.init();
     }
     return getPortalProcesses().stream()
-        .filter(process -> CollectionUtils.isEmpty(applications) || applications.contains(process.getApplication()))
+        .filter(process -> StringUtils.isBlank(process.getApplication()) || CollectionUtils.isEmpty(applications) || applications.contains(process.getApplication()))
         .map(toDashboardProcess()).collect(Collectors.toList());
   }
 

@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.service;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,16 +9,10 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
-import org.primefaces.model.file.UploadedFile;
-import org.primefaces.virusscan.VirusException;
-import org.primefaces.virusscan.VirusScanner;
-import org.primefaces.virusscan.VirusScannerService;
 
 import com.axonivy.portal.components.ivydata.bo.IvyDocument;
 
 import ch.ivy.addon.portalkit.configuration.GlobalSetting;
-import ch.ivy.addon.portalkit.document.DocumentDetector;
-import ch.ivy.addon.portalkit.document.DocumentDetectorFactory;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.environment.Ivy;

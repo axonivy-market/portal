@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.ProcessType;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.ExpressManagementUtils;
 import ch.ivyteam.ivy.application.IApplication;
@@ -67,7 +67,7 @@ public class PortalExpressProcess implements Process {
   }
 
   private String generateWorkflowStartLink() {
-    return ProcessStartCollector.getInstance().findExpressWorkflowStartLink() + EXPRESS_WORKFLOW_ID_PARAM + this.process.getId();
+    return ExpressProcessService.getInstance().findExpressWorkflowStartLink() + EXPRESS_WORKFLOW_ID_PARAM + this.process.getId();
   }
 
   @Override
@@ -134,5 +134,10 @@ public class PortalExpressProcess implements Process {
 
   public void setApplication(String application) {
     this.application = application;
+  }
+
+  @Override
+  public String getSortIndex() {
+    return null;
   }
 }

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "16BF472CA9DB7AAE",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -34,7 +34,7 @@
     }, {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start(ITask,TaskLazyDataModel,PortalPage,Boolean)",
+      "name" : "start(ITask,TaskLazyDataModel,PortalPage,Boolean,Boolean)",
       "config" : {
         "signature" : "start",
         "input" : {
@@ -42,12 +42,14 @@
             { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" },
             { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel", "desc" : "" },
             { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage", "desc" : "" },
-            { "name" : "isFromTaskList", "type" : "Boolean", "desc" : "" }
+            { "name" : "isFromTaskList", "type" : "Boolean", "desc" : "" },
+            { "name" : "showItemDetailsHeader", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
             "out.dataModel" : "param.dataModel",
             "out.isFromTaskList" : "param.isFromTaskList",
             "out.portalPage" : "param.portalPage",
+            "out.showItemDetailsHeader" : "param.#showItemDetailsHeader is initialized ? param.showItemDetailsHeader : true",
             "out.task" : "param.task"
           }
         },

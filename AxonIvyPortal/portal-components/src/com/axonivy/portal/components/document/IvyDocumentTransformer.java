@@ -6,29 +6,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.axonivy.portal.components.ivydata.bo.IvyDocument;
+
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.File;
 import ch.ivyteam.ivy.workflow.document.IDocument;
 
 public class IvyDocumentTransformer {
   public IvyDocument transform(IDocument document) {
-    IvyDocument result = new IvyDocument();
-
-    result.setId(String.valueOf(document.getId()));
-    result.setName(document.getName());
-    result.setPath(document.getPath().asString());
-    result.setSize(document.getSize());
-    result.setCreation(document.getCreation());
-    result.setLastModification(document.getLastModification());
-
     try {
-      File file = new File(document.getPath().asString());
-      result.setContentType(Files.probeContentType(file.getJavaFile().toPath()));
+    File  file = new File(document.getPath().asString());
+    return IvyDocument.builder()
+              .id(String.valueOf(document.getId()))
+              .name(document.getName())
+              .path(document.getPath().asString())
+              .size(document.getSize())
+              .creation(document.getCreation())
+              .lastModification(document.getLastModification())
+              .uuid(document.uuid())
+              .contentType(Files.probeContentType(file.getJavaFile().toPath()))
+              .create();
     } catch (IOException e) {
       Ivy.log().error(e);
+      return new IvyDocument();
     }
-
-    return result;
   }
 
   public List<IvyDocument> transform(List<IDocument> documents) {

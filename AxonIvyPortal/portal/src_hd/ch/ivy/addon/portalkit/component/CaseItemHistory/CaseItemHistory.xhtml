@@ -22,7 +22,7 @@
         <h:panelGroup layout="block" styleClass="case-details-note-add">
           <p:link id="show-more-note-link" disabled="#{empty data.histories}"
             styleClass="case-details-document-add-link note-show-more-link js-note-show-more-link" target="_blank"
-            href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case)}"
+            href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case.uuid())}"
             rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
             <span class="si si-expand-6 note-show-more-link-icon" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
@@ -30,7 +30,7 @@
           </p:link>
           <p:commandLink id="add-note-command" styleClass="case-details-document-add-link"
             rendered="#{caseTaskNoteHistoryBean.showAddNote}" onclick="PF('add-note-dialog-#{case.id}').show()"
-            actionListener="#{data.setICase(case)}">
+            actionListener="#{data.setCaze(case)}">
             <span class="si si-notes-add" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')} </span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
@@ -68,7 +68,7 @@
           <h:outputText>
             <p:link id="show-task-note-link"
               value="#{empty history.content ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTaskName') : history.content}"
-              target="_blank" href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case)}"
+              target="_blank" href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case.uuid())}"
               rendered="#{history.type eq 'TASK'}" styleClass="task-note-link u-truncate-text" />
             <h:panelGroup layout="block" rendered="#{history.type eq 'NOTE'}">
               <p:commandLink value="#{history.content}" rendered="#{history.type eq 'NOTE'}" id="note-link"
@@ -84,7 +84,7 @@
           rendered="#{case.isBusinessCase() and data.showRelatedCaseInfo}">
           <p:commandLink id="related-case-link" value="#{history.displayCaseName}"
             rendered="#{not empty history.displayCaseName}"
-            actionListener="#{caseDetailsBean.navigateToCaseDetails(history.caseId)}"
+            actionListener="#{caseDetailsBean.navigateToCaseDetails(history.uuid)}"
             disabled="#{history.disabledCaseName}"/>
         </p:column>
 

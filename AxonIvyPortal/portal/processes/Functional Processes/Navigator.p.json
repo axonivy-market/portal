@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "1543CB1F7FCE2CC1",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -32,19 +32,17 @@
     }, {
       "id" : "f9",
       "type" : "CallSubStart",
-      "name" : "viewTask(Long,GlobalCaseId,String)",
+      "name" : "viewTask(GlobalCaseId,String)",
       "config" : {
         "signature" : "viewTask",
         "input" : {
           "params" : [
-            { "name" : "taskId", "type" : "Long", "desc" : "" },
             { "name" : "caseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId", "desc" : "" },
             { "name" : "caseName", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId",
-            "out.caseName" : "param.caseName",
-            "out.taskId" : "param.taskId"
+            "out.caseName" : "param.caseName"
           }
         }
       },
@@ -64,25 +62,21 @@
           "code" : [
             "import ch.ivyteam.ivy.workflow.ICase;",
             "import ch.ivy.addon.portalkit.util.PermissionUtils;",
-            "import ch.ivyteam.ivy.workflow.TaskState;",
-            "import ch.ivy.addon.portalkit.util.PermissionUtils;",
-            "import ch.ivy.addon.portalkit.enums.PortalPage;",
-            "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
-            "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
             "import ch.ivy.addon.portalkit.enums.TaskSortField;",
             "import ch.ivy.addon.portal.generic.view.TaskView;",
             "import java.util.Arrays;",
             "import org.apache.commons.lang3.StringUtils;",
             "",
-            "String pageTitle = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCaseOfBusinessCaseAlternativeTitle\", Arrays.asList(\"#\" + in.caseId.id().toString()));",
+            "ICase caze = ivy.wf.findCase(in.caseId.uuid());",
+            "String pageTitle = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCaseOfBusinessCaseAlternativeTitle\", Arrays.asList(\"#\" + caze.getId().toString()));",
             "",
-            "in.taskDataModel.setCaseId(in.caseId.id());",
+            "in.taskDataModel.setCaseId(caze.getId());",
             "in.taskDataModel.setSortField(TaskSortField.ID.toString(), true);",
             "in.taskDataModel.getCriteria().setKeyword(StringUtils.EMPTY);",
             "in.taskDataModel.setQueryByBusinessCaseId(in.caseId.isBusinessCase());",
             "in.taskDataModel.setCaseName(in.caseName);",
-            "ICase iCase = ivy.wf.findCase(in.caseId.id());",
-            "boolean isOwner = iCase != null && iCase.getOwner() != null ? iCase.getOwner().isMember(ivy.session, true) : false;",
+            "",
+            "boolean isOwner = caze != null && caze.getOwner() != null ? caze.getOwner().isMember(ivy.session, true) : false;",
             "in.taskDataModel.setAdminQuery(PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission() || isOwner);",
             "in.taskDataModel.setRelatedTaskDisplayed(true);",
             "",
@@ -102,20 +96,6 @@
       "connect" : [
         { "id" : "f13", "to" : "f12" }
       ]
-    }, {
-      "id" : "f4",
-      "type" : "ProcessAnnotation",
-      "name" : [
-        "**Technical Note**",
-        "",
-        "This callable is introduced for clients of Portal",
-        "to override and implement the functionality",
-        "of redirecting into a HtmlDialog for viewing task."
-      ],
-      "visual" : {
-        "at" : { "x" : 1424, "y" : 1432 },
-        "size" : { "width" : 272, "height" : 92 }
-      }
     }, {
       "id" : "f16",
       "type" : "SubProcessCall",
@@ -346,39 +326,12 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1930, "y" : 1223 }
+        "at" : { "x" : 1930, "y" : 1230 },
+        "size" : { "width" : 112, "height" : 45 }
       },
       "connect" : [
         { "id" : "f39", "to" : "f33" }
       ]
-    }, {
-      "id" : "f40",
-      "type" : "ProcessAnnotation",
-      "name" : [
-        "**Technical Note**",
-        "",
-        "This callable is introduced for clients of Portal",
-        "to override and implement the functionality",
-        "of redirecting into a HtmlDialog for viewing case."
-      ],
-      "visual" : {
-        "at" : { "x" : 2264, "y" : 1056 },
-        "size" : { "width" : 272, "height" : 92 }
-      }
-    }, {
-      "id" : "f42",
-      "type" : "ProcessAnnotation",
-      "name" : [
-        "**Technical Note**",
-        "",
-        "This callable is introduced for clients of Portal",
-        "to override and implement the functionality",
-        "of redirecting into a HtmlDialog for viewing task."
-      ],
-      "visual" : {
-        "at" : { "x" : 2272, "y" : 1432 },
-        "size" : { "width" : 272, "height" : 92 }
-      }
     }, {
       "id" : "f44",
       "type" : "CallSubStart",
@@ -437,19 +390,21 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.workflow.ICase;",
             "import ch.ivy.addon.portalkit.enums.CaseSortField;",
             "import java.util.Arrays;",
             "import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;",
             "import ch.ivy.addon.portal.generic.view.CaseView;",
             "import org.apache.commons.lang3.StringUtils;",
             "",
+            "ICase caze = ivy.wf.findCase(in.caseId.uuid());",
             "// Add a short title for mobile screen",
-            "String title = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCaseOfBusinessCaseAlternativeTitle\", Arrays.asList(in.caseId.id().toString()));",
+            "String title = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCaseOfBusinessCaseAlternativeTitle\", Arrays.asList(caze.getId().toString()));",
             "",
             "in.caseDataModel.getCriteria().setNewQueryCreated(true);",
             "in.caseDataModel.getCriteria().setKeyword(StringUtils.EMPTY);",
             "in.caseDataModel.getCriteria().setBusinessCase(false);",
-            "in.caseDataModel.getCriteria().setBusinessCaseId(in.caseId.id());",
+            "in.caseDataModel.getCriteria().setBusinessCaseId(caze.getId());",
             "in.caseDataModel.getCriteria().setTechnicalCase(true);",
             "in.caseDataModel.getCriteria().sortField = CaseSortField.NAME.toString();",
             "in.caseDataModel.setNotKeepFilter(true);",
@@ -482,20 +437,6 @@
         { "id" : "f52", "to" : "f45" }
       ]
     }, {
-      "id" : "f53",
-      "type" : "ProcessAnnotation",
-      "name" : [
-        "**Technical Note**",
-        "",
-        "This callable is introduced for clients of Portal",
-        "to override and implement the functionality",
-        "of redirecting into a HtmlDialog for viewing case."
-      ],
-      "visual" : {
-        "at" : { "x" : 3080, "y" : 1064 },
-        "size" : { "width" : 272, "height" : 92 }
-      }
-    }, {
       "id" : "f5",
       "type" : "SubProcessCall",
       "name" : "OpenPortalCaseDetails",
@@ -503,7 +444,7 @@
         "processCall" : "Functional Processes/OpenPortalCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean)",
         "call" : {
           "map" : {
-            "param.caseData" : "in.iCase",
+            "param.caseData" : "in.caze",
             "param.isShowBackButton" : "true"
           }
         }
@@ -519,20 +460,6 @@
       "type" : "CallSubEnd",
       "visual" : {
         "at" : { "x" : 1128, "y" : 1288 }
-      }
-    }, {
-      "id" : "f21",
-      "type" : "ProcessAnnotation",
-      "name" : [
-        "**Technical Note**",
-        "",
-        "This callable is introduced for clients of Portal",
-        "to override and implement the functionality",
-        "of redirecting into a HtmlDialog for viewing case."
-      ],
-      "visual" : {
-        "at" : { "x" : 1432, "y" : 1048 },
-        "size" : { "width" : 272, "height" : 92 }
       }
     }, {
       "id" : "f0",
@@ -566,7 +493,7 @@
             "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
             "import ch.ivyteam.ivy.workflow.ICase;",
             "",
-            "out.iCase = ivy.wf.getGlobalContext().getCaseQueryExecutor().createCaseQuery().where().caseId().isEqual(in.caseId.id()).executor().firstResult() as ICase;"
+            "out.caze = ivy.wf.getGlobalContext().getCaseQueryExecutor().createCaseQuery().where().uuid().isEqual(in.caseId.uuid()).executor().firstResult() as ICase;"
           ]
         }
       },
@@ -584,10 +511,12 @@
         "signature" : "viewRelatedTask",
         "input" : {
           "params" : [
-            { "name" : "taskId", "type" : "Long", "desc" : "" }
+            { "name" : "taskUUID", "type" : "String", "desc" : "" },
+            { "name" : "showItemDetailsHeader", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
-            "out.taskId" : "param.taskId"
+            "out.showItemDetailsHeader" : "param.#showItemDetailsHeader is initialized ? param.showItemDetailsHeader : true",
+            "out.uuid" : "param.taskUUID"
           }
         }
       },
@@ -598,20 +527,6 @@
       "connect" : [
         { "id" : "f57", "to" : "f56" }
       ]
-    }, {
-      "id" : "f19",
-      "type" : "ProcessAnnotation",
-      "name" : [
-        "**Technical Note**",
-        "",
-        "This callable is introduced for clients of Portal",
-        "to override and implement the functionality",
-        "of redirecting into a HtmlDialog for viewing task."
-      ],
-      "visual" : {
-        "at" : { "x" : 3104, "y" : 1504 },
-        "size" : { "width" : 272, "height" : 92 }
-      }
     }, {
       "id" : "f18",
       "type" : "CallSubEnd",
@@ -628,7 +543,7 @@
             "import ch.ivyteam.ivy.workflow.ITask;",
             "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
             "",
-            "out.iTask = ivy.wf.getGlobalContext().getTaskQueryExecutor().createTaskQuery().where().taskId().isEqual(in.taskId).executor().firstResult() as ITask;"
+            "out.task = ivy.wf.getGlobalContext().getTaskQueryExecutor().createTaskQuery().where().uuid().isEqual(in.uuid).executor().firstResult() as ITask;"
           ]
         }
       },
@@ -643,18 +558,19 @@
       "type" : "SubProcessCall",
       "name" : "OpenPortalTaskDetails",
       "config" : {
-        "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)",
+        "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean,Boolean)",
         "call" : {
           "map" : {
-            "param.task" : "in.iTask",
+            "param.task" : "in.task",
             "param.portalPage" : "ch.ivy.addon.portalkit.enums.PortalPage.CASE_DETAIL_FROM_TASK",
-            "param.isFromTaskList" : "false"
+            "param.isFromTaskList" : "false",
+            "param.showItemDetailsHeader" : "in.showItemDetailsHeader"
           }
         }
       },
       "visual" : {
-        "at" : { "x" : 2856, "y" : 1616 },
-        "size" : { "width" : 48, "height" : 24 }
+        "at" : { "x" : 2855, "y" : 1628 },
+        "size" : { "width" : 190, "height" : 51 }
       },
       "connect" : [
         { "id" : "f55", "to" : "f18" }
@@ -696,14 +612,16 @@
             "import java.util.Arrays;",
             "import org.apache.commons.lang3.StringUtils;",
             "",
-            "String pageTitle = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCaseOfBusinessCaseAlternativeTitle\", Arrays.asList(\"#\" + in.caseId.id().toString()));",
+            "ICase iCase = ivy.wf.findCase(in.caseId.uuid());",
             "",
-            "in.taskDataModel.setCaseId(in.caseId.id());",
+            "String pageTitle = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCaseOfBusinessCaseAlternativeTitle\", Arrays.asList(\"#\" + iCase.getId().toString()));",
+            "",
+            "in.taskDataModel.setCaseId(iCase.getId());",
             "in.taskDataModel.setSortField(TaskSortField.ID.toString(), true);",
             "in.taskDataModel.getCriteria().setKeyword(StringUtils.EMPTY);",
             "in.taskDataModel.setQueryByBusinessCaseId(in.caseId.isBusinessCase());",
             "in.taskDataModel.setCaseName(in.caseName);",
-            "ICase iCase = ivy.wf.findCase(in.caseId.id());",
+            "",
             "boolean isOwner = iCase != null && iCase.getOwner() != null ? iCase.getOwner().isMember(ivy.session, true) : false;",
             "in.taskDataModel.setAdminQuery(PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission() || isOwner);",
             "in.taskDataModel.setRelatedTaskDisplayed(true);",
@@ -752,19 +670,17 @@
     }, {
       "id" : "f64",
       "type" : "CallSubStart",
-      "name" : "viewTaskInFrame(Long,GlobalCaseId,String)",
+      "name" : "viewTaskInFrame(GlobalCaseId,String)",
       "config" : {
         "signature" : "viewTaskInFrame",
         "input" : {
           "params" : [
-            { "name" : "taskId", "type" : "Long", "desc" : "" },
             { "name" : "caseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId", "desc" : "" },
             { "name" : "caseName", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId",
-            "out.caseName" : "param.caseName",
-            "out.taskId" : "param.taskId"
+            "out.caseName" : "param.caseName"
           }
         }
       },
@@ -775,20 +691,6 @@
       "connect" : [
         { "id" : "f67", "to" : "f63" }
       ]
-    }, {
-      "id" : "f65",
-      "type" : "ProcessAnnotation",
-      "name" : [
-        "**Technical Note**",
-        "",
-        "This callable is introduced for clients of Portal",
-        "to override and implement the functionality",
-        "of redirecting into a HtmlDialog for viewing task."
-      ],
-      "visual" : {
-        "at" : { "x" : 1408, "y" : 1896 },
-        "size" : { "width" : 272, "height" : 92 }
-      }
     }, {
       "id" : "f70",
       "type" : "CallSubEnd",
@@ -822,10 +724,10 @@
       "type" : "DialogCall",
       "name" : "CaseInformationInIFrame",
       "config" : {
-        "dialog" : "ch.ivy.addon.portal.component.iframe.CaseInformationInIFrame:start(Long,Boolean)",
+        "dialog" : "ch.ivy.addon.portal.component.iframe.CaseInformationInIFrame:start(String,Boolean)",
         "call" : {
           "map" : {
-            "param.caseId" : "in.caseId.id()",
+            "param.uuid" : "in.caseId.uuid()",
             "param.showBackButton" : "!in.caseId.isBusinessCase()"
           }
         }
@@ -847,7 +749,7 @@
             "import ch.ivyteam.ivy.workflow.ITask;",
             "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
             "",
-            "out.iTask = ivy.wf.getGlobalContext().getTaskQueryExecutor().createTaskQuery().where().taskId().isEqual(in.taskId).executor().firstResult() as ITask;"
+            "out.task = ivy.wf.getGlobalContext().getTaskQueryExecutor().createTaskQuery().where().uuid().isEqual(in.uuid).executor().firstResult() as ITask;"
           ]
         }
       },
@@ -865,15 +767,15 @@
         "processCall" : "Functional Processes/OpenPortalTaskDetailsHook:callInFrame(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)",
         "call" : {
           "map" : {
-            "param.task" : "in.iTask",
+            "param.task" : "in.task",
             "param.portalPage" : "ch.ivy.addon.portalkit.enums.PortalPage.CASE_DETAIL_FROM_TASK",
             "param.isFromTaskList" : "false"
           }
         }
       },
       "visual" : {
-        "at" : { "x" : 2440, "y" : 1992 },
-        "size" : { "width" : 48, "height" : 24 }
+        "at" : { "x" : 2439, "y" : 2008 },
+        "size" : { "width" : 175, "height" : 64 }
       },
       "connect" : [
         { "id" : "f82", "to" : "f79" }
@@ -886,10 +788,10 @@
         "signature" : "viewRelatedTaskInFrame",
         "input" : {
           "params" : [
-            { "name" : "taskId", "type" : "Long", "desc" : "" }
+            { "name" : "taskUUID", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.taskId" : "param.taskId"
+            "out.uuid" : "param.taskUUID"
           }
         }
       },
@@ -900,20 +802,6 @@
       "connect" : [
         { "id" : "f81", "to" : "f75" }
       ]
-    }, {
-      "id" : "f78",
-      "type" : "ProcessAnnotation",
-      "name" : [
-        "**Technical Note**",
-        "",
-        "This callable is introduced for clients of Portal",
-        "to override and implement the functionality",
-        "of redirecting into a HtmlDialog for viewing task."
-      ],
-      "visual" : {
-        "at" : { "x" : 2736, "y" : 1896 },
-        "size" : { "width" : 272, "height" : 92 }
-      }
     }, {
       "id" : "f79",
       "type" : "CallSubEnd",
@@ -949,19 +837,22 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.workflow.ICase;",
             "import ch.ivy.addon.portalkit.enums.CaseSortField;",
             "import java.util.Arrays;",
             "import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;",
             "import ch.ivy.addon.portal.generic.view.CaseView;",
             "import org.apache.commons.lang3.StringUtils;",
             "",
+            "ICase caze = ivy.wf.findCase(in.caseId.uuid());",
+            "",
             "// Add a short title for mobile screen",
-            "String title = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCaseOfBusinessCaseAlternativeTitle\", Arrays.asList(in.caseId.id().toString()));",
+            "String title = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCaseOfBusinessCaseAlternativeTitle\", Arrays.asList(caze.getId().toString()));",
             "",
             "in.caseDataModel.getCriteria().setNewQueryCreated(true);",
             "in.caseDataModel.getCriteria().setKeyword(StringUtils.EMPTY);",
             "in.caseDataModel.getCriteria().setBusinessCase(false);",
-            "in.caseDataModel.getCriteria().setBusinessCaseId(in.caseId.id());",
+            "in.caseDataModel.getCriteria().setBusinessCaseId(caze.getId());",
             "in.caseDataModel.getCriteria().setTechnicalCase(true);",
             "in.caseDataModel.getCriteria().sortField = CaseSortField.NAME.toString();",
             "in.caseDataModel.setNotKeepFilter(true);",

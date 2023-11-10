@@ -13,3 +13,4 @@ RestClients:
     OpenAPI:
       SpecUrl: https://raw.githubusercontent.com/DeepLcom/openapi/main/openapi.yaml
       Namespace: com.deepl.api.v2.client
+      ResolveFully: true

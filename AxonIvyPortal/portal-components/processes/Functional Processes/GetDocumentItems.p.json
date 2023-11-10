@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "180CBDED29C1D2F8",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -8,9 +8,9 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "call(ICase)",
+      "name" : "getDocumentItems(ICase)",
       "config" : {
-        "signature" : "call",
+        "signature" : "getDocumentItems",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
@@ -31,17 +31,17 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 64 },
+        "at" : { "x" : 320, "y" : 160 },
         "labelOffset" : { "x" : 6, "y" : 44 }
       },
       "connect" : [
-        { "id" : "f4", "to" : "f3" }
+        { "id" : "f4", "to" : "f10" }
       ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 352, "y" : 64 }
+        "at" : { "x" : 920, "y" : 160 }
       }
     }, {
       "id" : "f3",
@@ -75,7 +75,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 64 },
+        "at" : { "x" : 768, "y" : 160 },
         "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : [
@@ -85,18 +85,76 @@
       "id" : "f5",
       "type" : "ProcessAnnotation",
       "name" : [
-        "After get document list from DMS, convert them into List<ch.ivy.addon.portal.components.ivydata.bo.IvyDocument>",
+        "This sub process can be customized to get files in DMS",
+        "The custom proccess signature must be: \"portalGetDocumentItems(ICase)\"",
+        "",
+        "After get document list from DMS, convert them into List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>",
         "Some mandatory fields when mapping:",
         "- id",
         "- name",
         "- contentType"
       ],
       "visual" : {
-        "at" : { "x" : 344, "y" : 240 },
-        "size" : { "width" : 624, "height" : 108 }
+        "at" : { "x" : 320, "y" : 332 },
+        "size" : { "width" : 624, "height" : 132 }
       },
       "connect" : [
         { "id" : "f6", "to" : "f0" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f9" : "in.hasCustomProcess",
+          "f8" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 608, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f3", "label" : {
+            "name" : "No"
+          } },
+        { "id" : "f9", "to" : "f1", "via" : [ { "x" : 608, "y" : 216 }, { "x" : 920, "y" : 216 } ], "label" : {
+            "name" : "Yes"
+          } }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : [
+        "Call customized",
+        "sub process"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.predicate.CustomProcessPredicate;",
+            "import com.axonivy.portal.components.enums.CustomSignature;",
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "",
+            "Map params = new HashMap();",
+            "params.put(\"businessCase\", in.businessCase);",
+            "",
+            "Map result = IvyAdapterService.startSubProcessesInSecurityContext(CustomSignature.GET_DOCUMENT_ITEMS.getSignature(), params, new CustomProcessPredicate());",
+            "in.hasCustomProcess = !result.isEmpty();",
+            "",
+            "if (in.hasCustomProcess) {",
+            "  in.documents = result.get(\"documents\") as List;",
+            "  in.message = result.get(\"message\").toString();",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 472, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f7" }
       ]
     } ]
 }

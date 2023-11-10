@@ -1,4 +1,0 @@
-AssignRolesGroupChatData #class
-ch.ivy.addon.portal.generic #namespace
-roles java.util.List<ch.ivyteam.ivy.security.IRole> #field
-task ch.ivyteam.ivy.workflow.ITask #field

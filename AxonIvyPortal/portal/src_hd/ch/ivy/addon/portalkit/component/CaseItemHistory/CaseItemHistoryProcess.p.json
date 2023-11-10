@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "153362B0AC312EFB",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -36,7 +36,7 @@
             { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
           ],
           "map" : {
-            "out.iCase" : "param.iCase"
+            "out.caze" : "param.iCase"
           }
         },
         "guid" : "167E9D324F6C3538"
@@ -59,31 +59,23 @@
           "code" : [
             "import org.primefaces.PrimeFaces;",
             "import ch.ivy.addon.portalkit.util.CaseUtils;",
-            "import ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel;",
-            "import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;",
-            "import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;",
-            "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
             "import ch.ivy.addon.portalkit.service.HistoryService;",
-            "import ch.ivyteam.ivy.workflow.CaseState;",
             "import ch.ivyteam.ivy.workflow.ICase;",
-            "import ch.ivyteam.ivy.workflow.INote;",
             "import ch.ivyteam.ivy.workflow.ITask;",
             "import ch.ivyteam.ivy.workflow.TaskState;",
             "import java.util.ArrayList;",
-            "import java.util.Arrays;",
-            "import org.apache.commons.collections4.CollectionUtils;",
             "",
             "List<ITask> finishedTasks = new ArrayList();",
-            "for (ITask task : in.iCase.tasks().all()) {",
+            "for (ITask task : in.caze.tasks().all()) {",
             "  if (task.getState() == TaskState.DONE",
             "  || task.getState() == TaskState.DESTROYED) {",
             "    finishedTasks.add(task);",
             "  }",
             "}",
             "",
-            "long selectedCaseId = in.iCase.getId();",
+            "long selectedCaseId = in.caze.getId();",
             "List<ICase> cases = new ArrayList();",
-            "cases.add(in.iCase);",
+            "cases.add(in.caze);",
             "cases.addAll(CaseUtils.findSubCasesByBusinessCaseId(selectedCaseId));",
             "",
             "HistoryService historyService = new HistoryService();",
@@ -115,7 +107,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "in.iCase.createNote(ivy.session, in.noteContent);",
+            "in.caze.createNote(ivy.session, in.noteContent);",
             "in.noteContent = \"\";"
           ]
         },
@@ -173,7 +165,7 @@
             "GlobalSettingService service = new GlobalSettingService();",
             "out.showSystemNotesChkbox = !service.findHideSystemNotesFromHistorySettingValue();",
             "out.showSystemTasksChkbox = !service.findHideSystemTasksFromHistorySettingValue();",
-            "out.showRelatedCaseInfoCheckbox = in.iCase.isBusinessCase() && !service.findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_RELATED_CASE_INFO_FROM_HISTORY);",
+            "out.showRelatedCaseInfoCheckbox = in.caze.isBusinessCase() && !service.findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_RELATED_CASE_INFO_FROM_HISTORY);",
             "boolean isAdmin = PermissionUtils.isSessionUserHasAdminRole();",
             "out.showSystemNotes = isAdmin && out.showSystemNotesChkbox;",
             "out.showSystemTasks = isAdmin && out.showSystemTasksChkbox;",

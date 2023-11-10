@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "153361016FE4213A",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -287,7 +287,7 @@
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
-        "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
+        "processCall" : "Functional Processes/GetDocumentList:getDocumentList(ch.ivyteam.ivy.workflow.ICase)",
         "call" : {
           "map" : {
             "param.businessCase" : "in.iCase"
@@ -311,7 +311,7 @@
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
-        "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
+        "processCall" : "Functional Processes/GetDocumentList:getDocumentList(ch.ivyteam.ivy.workflow.ICase)",
         "call" : {
           "map" : {
             "param.businessCase" : "in.iCase"
@@ -335,7 +335,7 @@
       "type" : "SubProcessCall",
       "name" : "Find documents",
       "config" : {
-        "processCall" : "Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)",
+        "processCall" : "Functional Processes/GetDocumentList:getDocumentList(ch.ivyteam.ivy.workflow.ICase)",
         "call" : {
           "map" : {
             "param.businessCase" : "in.iCase"
@@ -359,7 +359,7 @@
       "type" : "SubProcessCall",
       "name" : "UploadDocument",
       "config" : {
-        "processCall" : "Functional Processes/UploadDocument:call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.file.UploadedFile,Boolean,Boolean,String)",
+        "processCall" : "Functional Processes/UploadDocument:uploadDocument(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.file.UploadedFile,Boolean,Boolean,String)",
         "call" : {
           "map" : {
             "param.businessCase" : "in.iCase",
@@ -385,7 +385,7 @@
       "type" : "SubProcessCall",
       "name" : "Download Document",
       "config" : {
-        "processCall" : "Functional Processes/DownloadDocument:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "processCall" : "Functional Processes/DownloadDocument:downloadDocument(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
         "call" : {
           "map" : {
             "param.bussinessCase" : "in.iCase",
@@ -411,7 +411,7 @@
       "type" : "SubProcessCall",
       "name" : "Delete Document",
       "config" : {
-        "processCall" : "Functional Processes/DeleteDocument:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "processCall" : "Functional Processes/DeleteDocument:deleteDocument(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
         "call" : {
           "map" : {
             "param.businessCase" : "in.iCase",

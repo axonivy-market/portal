@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.service;
 
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,6 +14,8 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
+import com.axonivy.portal.components.service.IvyAdapterService;
+
 import ch.ivy.addon.portalkit.bo.CaseCategoryStatistic;
 import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
@@ -25,7 +26,6 @@ import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
-import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
@@ -57,8 +57,7 @@ public class DashboardWidgetInformationService {
   public Map<TaskBusinessState, Long> buildStatisticOfTaskByState(DashboardTaskLazyDataModel dataModel) {
     Map<String, Object> params = new HashMap<>();
     params.put(TASK_CRITERIA_PARAM, generateTaskSearchCriteriaWithoutOrderByClause(dataModel));
-    Map<String, Object> response = IvyAdapterService.startSubProcess(ANALYZE_TASK_STATE, params,
-          Arrays.asList(PortalLibrary.PORTAL.getValue()));
+    Map<String, Object> response = IvyAdapterService.startSubProcessInProjectAndAllRequired(ANALYZE_TASK_STATE, params);
 
     Map<TaskBusinessState, Long> taskStateResult = new HashMap<>();
     TaskStateStatistic taskStateStatistic = (TaskStateStatistic) response.get("taskStateStatistic");
@@ -85,8 +84,7 @@ public class DashboardWidgetInformationService {
     Map<String, Object> params = new HashMap<>();
     params.put("taskSearchCriteria", generateTaskSearchCriteriaWithoutOrderByClause(dataModel));
 
-    Map<String, Object> response = IvyAdapterService.startSubProcess(ANALYZE_TASK_EXPIRY, params,
-          Arrays.asList(PortalLibrary.PORTAL.getValue()));
+    Map<String, Object> response = IvyAdapterService.startSubProcessInProjectAndAllRequired(ANALYZE_TASK_EXPIRY, params);
     var expiryStatistic = (ExpiryStatistic) response.get("expiryStatistic");
 
     for (Entry<Date, Long> entry : expiryStatistic.getNumberOfTasksByExpiryTime().entrySet()) {
@@ -107,8 +105,7 @@ public class DashboardWidgetInformationService {
     Map<String, Object> params = new HashMap<>();
     params.put(TASK_CRITERIA_PARAM, generateTaskSearchCriteriaWithoutOrderByClause(dataModel));
 
-    Map<String, Object> response = IvyAdapterService.startSubProcess(ANALYZE_TASK_CATEGORY, params,
-          Arrays.asList(PortalLibrary.PORTAL.getValue()));
+    Map<String, Object> response = IvyAdapterService.startSubProcessInProjectAndAllRequired(ANALYZE_TASK_CATEGORY, params);
 
     var taskCategoryStatistic = (TaskCategoryStatistic) response.get("taskCategoryStatistic");
     taskByCategoryStatistic.putAll(taskCategoryStatistic.getNumberOfTasksByCategory());
@@ -125,8 +122,7 @@ public class DashboardWidgetInformationService {
     Map<String, Object> params = new HashMap<>();
     params.put(CASE_CRITERIA_PARAM, generateCaseSearchCriteriaWithoutOrderByClause(dataModel));
 
-    var response = IvyAdapterService.startSubProcess(ANALYZE_CASE_STATE, params,
-        Arrays.asList(PortalLibrary.PORTAL.getValue()));
+    var response = IvyAdapterService.startSubProcessInProjectAndAllRequired(ANALYZE_CASE_STATE, params);
 
     var caseStateStatistic = (CaseStateStatistic) response.get("caseStateStatistic");
     Map<CaseBusinessState, Long> result = new HashMap<>();
@@ -172,8 +168,7 @@ public class DashboardWidgetInformationService {
     Map<String, Object> params = new HashMap<>();
     params.put(CASE_CRITERIA_PARAM, generateCaseSearchCriteriaWithoutOrderByClause(dataModel));
 
-    var response = IvyAdapterService.startSubProcess(ANALYZE_CASE_CATEGORY, params,
-          Arrays.asList(PortalLibrary.PORTAL.getValue()));
+    var response = IvyAdapterService.startSubProcessInProjectAndAllRequired(ANALYZE_CASE_CATEGORY, params);
 
     var caseCategoryStatistic = (CaseCategoryStatistic) response.get("caseCategoryStatistic");
     caseByCategoryStatistic.putAll(caseCategoryStatistic.getNumberOfCasesByCategory());

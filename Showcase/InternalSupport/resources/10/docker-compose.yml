@@ -6,7 +6,6 @@ services:
     ports:
      - 8010:8080
     volumes:
-     - ./licence-10.lic:/etc/axonivy-engine/licence.lic
      - ./ivy.yaml:/etc/axonivy-engine/ivy.yaml
      - ./applications:/usr/lib/axonivy-engine/applications
      - ./configuration:/usr/lib/axonivy-engine/configuration

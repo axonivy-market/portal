@@ -3,14 +3,27 @@
 Architecture
 ************
 
-.. _architecture-portal-process-modules-structure:
-
 .. important::
       The CSS styles, Java methods, etc. which are not explicitly documented are
       only used internally in Portal. Don't use them because they can be
       changed in future versions.
 
-The Portal system consists of the following modules: portal-components, portal and axonivy-express.
+.. _multi-app-structure:
+
+Basically, you can deploy both the Portal and Projects into one application. This makes sense for simple applications. However, migration can be difficult with this approach. So we recommend deploying the Portal and your projects into separate applications.
+
+The Portal multi applications
+=============================
+
+The Portal and Projects using it should be deployed in different applications but in the same security context.
+
+|multi-app-structure|
+
+
+.. _architecture-portal-process-modules-structure:
+
+
+The Portal App consists of the following modules: portal-components, portal and axonivy-express.
 While axonivy-express is optional, all other modules are mandatory.
 
 |process-module-structure|
@@ -39,7 +52,6 @@ to use and administer (or manage) the portal, templates for developer and portal
 The templates offer features like top
 menu, application menu and user menu. It also contains start process links to
 default pages like Portal home, Portal task list, Portal case list etc..
-We advise developers to depend on this module to facilitate Portal customization.
 
 .. _architecture-axonivy-express:
 
@@ -56,7 +68,8 @@ This project has been extended from portal. It allows the end user to
 -  Create his own workflow
 -  Create and modify a web form for this workflow
 
-.. |process-module-structure| image:: images/process-module-structure.png
-
 |ivy| Express also provides an ad hoc process feature. When Express is deployed, users can start an ad hoc process from any task.
 Ad hoc allows users to define additional process steps which will be executed before the current task.
+
+.. |process-module-structure| image:: images/process-module-structure.png
+.. |multi-app-structure| image:: images/multi-app-structure.png

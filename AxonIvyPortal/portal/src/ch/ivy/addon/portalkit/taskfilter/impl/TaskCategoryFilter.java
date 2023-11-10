@@ -37,7 +37,7 @@ public class TaskCategoryFilter extends TaskFilter {
   @Override
   public String value() {
     if (CollectionUtils.isNotEmpty(categoryPaths) && (categories == null || categories.length == 0)) {
-      initializeRoot();
+      initializeRoot(false);
     }
     return CategoryUtils.getCategoryValues(categories);
   }
@@ -77,7 +77,7 @@ public class TaskCategoryFilter extends TaskFilter {
   }
 
   public CheckboxTreeNode<CategoryNode> getRoot() {
-    initializeRoot();
+    initializeRoot(false);
     return root;
   }
 
@@ -85,7 +85,7 @@ public class TaskCategoryFilter extends TaskFilter {
     this.root = root;
   }
 
-  private void initializeRoot() {
+  private void initializeRoot(boolean forceRebuildFilter) {
     String allCategoriesText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/allCategories");
     // If language is changed, category tree needs to be rebuilt
     String allCategoriesTextInTree = Optional.ofNullable(root)
@@ -95,7 +95,7 @@ public class TaskCategoryFilter extends TaskFilter {
         .map(TreeNode::getData)
         .map(data -> data.getValue())
         .orElse(StringUtils.EMPTY);
-    if (root == null || !StringUtils.equals(allCategoriesTextInTree, allCategoriesText)) {
+    if (forceRebuildFilter || root == null || !StringUtils.equals(allCategoriesTextInTree, allCategoriesText)) {
       root = TaskTreeUtils.buildTaskCategoryCheckboxTreeRoot();
       categories = CategoryUtils.recoverSelectedCategories(root, categoryPaths);
     }
@@ -108,5 +108,10 @@ public class TaskCategoryFilter extends TaskFilter {
   public void setCategoryPaths(List<String> categoryPaths) {
     this.categoryPaths = categoryPaths;
     categories = CategoryUtils.recoverSelectedCategories(root, categoryPaths);
+  }
+
+  @Override
+  public void update() {
+    initializeRoot(true);
   }
 }

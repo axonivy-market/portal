@@ -52,8 +52,8 @@
               showIcon="true" converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
               required="true"
               requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateRequired')}">
-              <p:ajax event="dateSelect" listener="#{logic.dateChange}"
-                update="#{p:resolveFirstComponentWithId('absence-messages', view).clientId} #{p:resolveFirstComponentWithId('save-absence', view).clientId}" />
+              <p:ajax event="dateSelect" listener="#{logic.fromDateChange}"
+                update="absence-end-date #{p:resolveFirstComponentWithId('absence-messages', view).clientId} #{p:resolveFirstComponentWithId('save-absence', view).clientId}" />
             </p:datePicker>
           </div>
         </div>

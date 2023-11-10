@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,7 +22,6 @@ import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.language.LanguageConfigurator;
 import ch.ivyteam.ivy.language.LanguageManager;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -55,9 +53,11 @@ public class UserUtils {
   public static void setLanguage() {
     Sudo.get(()->{
       IUser sessionUser = getIvySession().getSessionUser();
-      LanguageConfigurator languageConfigurator = new LanguageConfigurator(ISecurityContext.current());
-      Locale contentLocale = sessionUser.getLanguage() != null ? sessionUser.getLanguage() : languageConfigurator.content();
-      Locale formattingLocale = sessionUser.getFormattingLanguage() != null ? sessionUser.getFormattingLanguage() : languageConfigurator.formatting();
+      Locale defaultContentLocale = LanguageService.newInstance().getDefaultEmailLanguage();
+      Locale defaultFormattingLocale = LanguageService.newInstance().getDefaultFormattingLanguage();
+      
+      Locale contentLocale = sessionUser.getLanguage() != null && StringUtils.isNotBlank(sessionUser.getLanguage().toString()) ? sessionUser.getLanguage() : defaultContentLocale;
+      Locale formattingLocale = sessionUser.getFormattingLanguage() != null && StringUtils.isNotBlank(sessionUser.getFormattingLanguage().toString()) ? sessionUser.getFormattingLanguage() : defaultFormattingLocale;
       
       getIvySession().setContentLocale(contentLocale);
       getIvySession().setFormattingLocale(formattingLocale);

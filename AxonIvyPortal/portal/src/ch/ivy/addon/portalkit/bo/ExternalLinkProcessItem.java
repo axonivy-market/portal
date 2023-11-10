@@ -11,7 +11,6 @@ import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivyteam.ivy.workflow.category.Category;
-import ch.ivyteam.util.Pair;
 
 /*
  * Used for merging external link and ivy process into a process list
@@ -19,7 +18,6 @@ import ch.ivyteam.util.Pair;
 public class ExternalLinkProcessItem implements Process {
 
   public static final String DEFAULT_ICON = "si si-hyperlink-3";
-  public static final String BASE_64 = "base64";
   private ExternalLink externalLink;
   
   public ExternalLinkProcessItem(ExternalLink externalLink) {
@@ -28,11 +26,10 @@ public class ExternalLinkProcessItem implements Process {
   }
   
   private void convertBase64ImageToFile() {
-    if (StringUtils.isNotBlank(externalLink.getImageContent()) && externalLink.getImageContent().contains(BASE_64)) {
-      Pair<String, String> imageInfo = ExternalLinkUtils.imageBase64ToApplicationCMSFile(externalLink.getImageContent());
+    if (StringUtils.isNotBlank(externalLink.getImageType()) && StringUtils.isNotBlank(externalLink.getImageContent())) {
+      String imageLocation = ExternalLinkUtils.imageBase64ToApplicationCMSFile(externalLink.getImageContent(), externalLink.getImageType());
       ExternalLinkUtils.removeImage(externalLink.getImageLocation(), externalLink.getImageType());
-      externalLink.setImageLocation(imageInfo.getLeft());
-      externalLink.setImageType(imageInfo.getRight());
+      externalLink.setImageLocation(imageLocation);
       externalLink.setImageContent(null);
       ExternalLinkService.getInstance().save(externalLink);
     }
@@ -86,8 +83,8 @@ public class ExternalLinkProcessItem implements Process {
   
   @Override
   public String getImageUrl() {
-    String imageUrl = this.externalLink.getImageLocation();
-    return ExternalLinkUtils.isValidImageUrl(imageUrl, this.externalLink.getImageType()) ? imageUrl : getContentImageUrl(DefaultImage.ARROWRIGHT.getPath());
+    String imageLocation = this.externalLink.getImageLocation();
+    return ExternalLinkUtils.isValidImageUrl(imageLocation, this.externalLink.getImageType()) ? imageLocation : getContentImageUrl(DefaultImage.ARROWRIGHT.getPath());
   }
 
   public String getImageType() {
@@ -101,6 +98,11 @@ public class ExternalLinkProcessItem implements Process {
 
   @Override
   public String getApplication() {
+    return null;
+  }
+
+  @Override
+  public String getSortIndex() {
     return null;
   }
 }

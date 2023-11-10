@@ -6,16 +6,19 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 
 import ch.ivy.addon.portalkit.service.exception.PortalException;
-import ch.ivyteam.ivy.environment.Ivy;
 
 /**
  * This class provides method to convert Business entity object into JSON value and reverse
@@ -30,7 +33,6 @@ public class BusinessEntityConverter {
     try {
       return getObjectMapper().writeValueAsString(entity);
     } catch (JsonProcessingException e) {
-      Ivy.log().error("Can't write json value", e);
       throw new PortalException(e);
     }
   }
@@ -39,7 +41,6 @@ public class BusinessEntityConverter {
     try {
       return getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(entity);
     } catch (JsonProcessingException e) {
-      Ivy.log().error("Can't write json value", e);
       throw new PortalException(e);
     }
   }
@@ -48,7 +49,6 @@ public class BusinessEntityConverter {
     try {
       return getObjectMapper().readValue(jsonValue, classType);
     } catch (IOException e) {
-      Ivy.log().error("Can't read json value", e);
       throw new PortalException(e);
     }
   }
@@ -58,7 +58,6 @@ public class BusinessEntityConverter {
       new InputStreamReader(inputStream, StandardCharsets.UTF_8);
       return getObjectMapper().readValue(inputStream, classType);
     } catch (IOException e) {
-      Ivy.log().error("Can't read json value", e);
       throw new PortalException(e);
     }
   }
@@ -69,9 +68,8 @@ public class BusinessEntityConverter {
     }
     try {
       return getObjectMapper().readValue(jsonValue,
-          getObjectMapper().getTypeFactory().constructCollectionType(List.class, classType));
+          getListOfJavaType(classType));
     } catch (IOException e) {
-      Ivy.log().error("Can't read json value", e);
       throw new PortalException(e);
     }
   }
@@ -80,10 +78,36 @@ public class BusinessEntityConverter {
     return getObjectMapper().convertValue(fromValue, toValueType);
   }
 
+  public static <T> List<T> convertJsonNodeToList(JsonNode jsonNode, Class<T> classType) {
+    if (Optional.ofNullable(jsonNode).isPresent()) {
+      try {
+        return getObjectMapper().treeToValue(jsonNode, getListOfJavaType(classType));
+      } catch (IOException e) {
+        throw new PortalException(e);
+      }
+    }
+    return new ArrayList<>();
+  }
+
+  public static <T> T convertJsonNodeToEntity(JsonNode jsonNode, Class<T> classType) {
+    try {
+      return getObjectMapper().treeToValue(jsonNode, classType);
+    } catch (IOException e) {
+      throw new PortalException(e);
+    }
+  }
+
+  private static <T> JavaType getListOfJavaType (Class<T> type) {
+    return getObjectMapper().getTypeFactory().constructCollectionType(List.class, type);
+  }
+
   public static ObjectMapper getObjectMapper() {
     if (objectMapper == null) {
-      objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-      objectMapper.enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
+      objectMapper = JsonMapper
+          .builder()
+          .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+          .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
+          .build(); 
     }
     return objectMapper;
   }

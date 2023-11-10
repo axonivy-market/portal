@@ -1,9 +1,9 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import ch.ivy.addon.portalkit.ivydata.service.IPasswordService;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
+import ch.ivyteam.ivy.security.exec.Sudo;
 
 public class PasswordService implements IPasswordService {
 
@@ -15,7 +15,7 @@ public class PasswordService implements IPasswordService {
 
   @Override
   public boolean changePassword(String newPassword) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       try {
         Ivy.session().getSessionUser().setPassword(newPassword);
       } catch (PersistencyException ex) {

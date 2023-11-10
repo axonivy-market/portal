@@ -47,6 +47,17 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     return 0;
   }
 
+  private int getIndexWidgetByColumnScrollable(String columnName) {
+    ElementsCollection elementsTH = $(caseWidgetId).$(".ui-datatable-scrollable-header")
+            .shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
+    for (int i = 0; i < elementsTH.size(); i++) {
+      if (elementsTH.get(i).getAttribute("aria-label").equalsIgnoreCase(columnName)) {
+        return i;
+      }
+    }
+    return 0;
+  }
+
   private ElementsCollection getColumnsOfTableWidget() {
     return $(caseWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr td");
   }
@@ -84,6 +95,11 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   private SelenideElement getColumnOfCaseHasIndex(int index, String columnName) {
     int startIndex = getIndexWidgetByColumn(columnName);
     return getColumnOfTableWidget(index).get(startIndex);
+  }
+
+  private SelenideElement getColumnOfCaseHasActionIndex(int index, String columnName) {
+    int startIndex = getIndexWidgetByColumnScrollable(columnName);
+    return getColumnOfTableWidget(index).get(startIndex).$("span a");
   }
 
   public SelenideElement stateOfFirstCase() {
@@ -166,7 +182,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void clickOnCaseActionLink(int caseIndex) {
-    getColumnOfCaseHasIndex(caseIndex, "Actions").shouldBe(getClickableCondition()).click();
+    getColumnOfCaseHasActionIndex(caseIndex, "Actions").shouldBe(getClickableCondition()).click();
   }
   
   public void turnOffActionsPanel(int caseIndex) {

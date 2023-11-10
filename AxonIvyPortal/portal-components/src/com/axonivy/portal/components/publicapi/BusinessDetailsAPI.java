@@ -63,7 +63,7 @@ public class BusinessDetailsAPI {
       if (StringUtils.isEmpty(processPath)) {
         throw new PortalException(String.format("Cannot find process path [%s].", businessDetailsDTO.getPath()));
       }
-      casePageUrl = processPath + "?caseId=" + businessDetailsDTO.getCase().getId() + (businessDetailsDTO.isEmbedInFrame() ? "&embedInFrame" : "");
+      casePageUrl = processPath + "?uuid=" + businessDetailsDTO.getCase().uuid() + (businessDetailsDTO.isEmbedInFrame() ? "&embedInFrame" : "");
     }
     return casePageUrl;
   }

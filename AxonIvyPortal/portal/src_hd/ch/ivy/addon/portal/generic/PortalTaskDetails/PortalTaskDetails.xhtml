@@ -10,7 +10,7 @@
     <ui:param name="isTaskStartedInDetails" value="#{data.isTaskStartedInDetails}" />
     <!-- To show/hidden any sections of Task detail, you can turn true/false for below parameters -->
     <!-- To show the Header component inside Task details body. By default it's true -->
-    <ui:param name="showItemDetailsHeader" value="true" />
+    <ui:param name="showItemDetailsHeader" value="#{data.showItemDetailsHeader}"/>
     <!-- To show the Notes component inside Task details body. By default it's true -->
     <ui:param name="showItemDetailsNotes" value="true" />
     <!-- To show the Documents component inside Task details body. By default, it's true -->

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "15035F535EFB1618",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -1016,7 +1016,7 @@
             "import ch.ivy.addon.portalkit.dto.GlobalCaseId;",
             "",
             "ICase foundCase = ivy.wf.findCase(in.dataModel.criteria.caseId);",
-            "in.caseId = new GlobalCaseId(foundCase.getId(), foundCase.isBusinessCase());"
+            "in.caseId = new GlobalCaseId(foundCase.uuid(), foundCase.isBusinessCase());"
           ]
         },
         "sudo" : true

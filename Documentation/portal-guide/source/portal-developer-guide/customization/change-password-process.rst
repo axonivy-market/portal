@@ -1,6 +1,6 @@
 .. _customization-change-password-process:
 
-Change password process
+Change Password Process
 =======================
 
 .. _customization-change-password-process-introduction:
@@ -8,27 +8,37 @@ Change password process
 Introduction
 ------------
 
-In Portal, the ``Change password process`` allows users to change their current
-password. You can customize this process, e.g. to check new passwords against
+The Portal allows the change password process, e.g. to check new passwords against
 leaked passwords databases when the user changes his password.
 
 .. _customization-change-password-process-customization:
 
-Customization
--------------
+Customize
+---------
 
-Create a callable subprocess in your project with the signature
-``changePassword(String,String)``. Make sure that this signature is unique in
-your application. It has to return an enumeration ``ChangePasswordStatus`` and the
-``message`` to be shown to the user. You can override this process in ``portal``.
+Create a callable subprocess in your project with 
 
-|change-password-process|
+**Signature**: portalChangePassword
 
-|change-password-input|
++-----------------------+-----------------------+------------------+
+| Name                  | Type                  | Note             |
++=======================+=======================+==================+
+| **Parameter**                                 |                  |
++-----------------------+-----------------------+------------------+
+| currentPassword       | java.lang.String      |                  |
++-----------------------+-----------------------+------------------+
+| newPassword           | java.lang.String      |                  |
++-----------------------+-----------------------+------------------+
+|**Result**                                     |                  |
++-----------------------+-----------------------+------------------+
+| message               | java.lang.String      |                  |
++-----------------------+-----------------------+------------------+
+| status                | java.lang.String      | OK or FAIL       |
++-----------------------+-----------------------+------------------+
 
-|change-password-output|
+.. tip::
 
-.. |change-password-input| image:: images/change-password/change-password-input.png
-.. |change-password-output| image:: images/change-password/change-password-output.png
-.. |change-password-process| image:: images/change-password/change-password-process.png
+   Refer to process ``CustomChangePassword`` in project ``portal-developer-examples``
+   for an example of change password process customization.
+
 

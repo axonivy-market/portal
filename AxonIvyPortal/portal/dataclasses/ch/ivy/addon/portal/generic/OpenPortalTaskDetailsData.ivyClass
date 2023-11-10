@@ -6,3 +6,4 @@ portalPage ch.ivy.addon.portalkit.enums.PortalPage #field
 isFromTaskList Boolean #field
 isFromTaskList 'true: opened from TASK_LIST or SEARCH_RESULTS; false: back from Task Start page' #fieldComment
 dashboardDataModel ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel #field
+showItemDetailsHeader Boolean #field

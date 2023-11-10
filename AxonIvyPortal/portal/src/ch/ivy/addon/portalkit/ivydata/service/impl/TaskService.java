@@ -33,7 +33,6 @@ import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ITaskService;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Record;
@@ -59,7 +58,7 @@ public class TaskService implements ITaskService {
   
   @Override
   public IvyTaskResultDTO findTasksByCriteria(TaskSearchCriteria criteria, int startIndex, int count) { 
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       TaskQuery finalQuery = extendQueryWithUserHasPermissionToSee(criteria);
       result.setTasks(executeTaskQuery(finalQuery, startIndex, count));
@@ -69,7 +68,7 @@ public class TaskService implements ITaskService {
   
   @Override
   public IvyTaskResultDTO countTasksByCriteria(TaskSearchCriteria criteria) { 
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       TaskQuery finalQuery = extendQueryWithUserHasPermissionToSee(criteria);
       result.setTotalTasks(countTasks(finalQuery));
@@ -91,7 +90,7 @@ public class TaskService implements ITaskService {
 
   @Override
   public IvyTaskResultDTO findCategoriesByCriteria(TaskCategorySearchCriteria criteria) { 
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       TaskQuery finalQuery = criteria.createQuery();
       
@@ -106,7 +105,7 @@ public class TaskService implements ITaskService {
   
   @Override
   public IvyTaskResultDTO analyzePriorityStatistic(TaskSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       TaskQuery finalQuery = extendQueryWithUserCanWorkOn(criteria);
       finalQuery.aggregate().countRows().groupBy().priority();
@@ -140,13 +139,18 @@ public class TaskService implements ITaskService {
   
   @Override
   public IvyTaskResultDTO analyzeExpiryStatistic(TaskSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       TaskQuery finalQuery = extendQueryWithUserCanWorkOn(criteria);
       finalQuery.aggregate().countRows().groupBy().expiryTimestamp().orderBy().expiryTimestamp();
 
       Recordset recordSet = taskQueryExecutor().getRecordset(finalQuery);
-      ExpiryStatistic expiryStatistic = createExpiryTimeStampToCountMap(recordSet);
+      ExpiryStatistic expiryStatistic = null;
+      try {
+        expiryStatistic = createExpiryTimeStampToCountMap(recordSet);
+      } catch (ParseException e) {
+        Ivy.log().error(e);
+      }
       result.setExpiryStatistic(expiryStatistic);
       return result;
     });
@@ -154,7 +158,7 @@ public class TaskService implements ITaskService {
   
   @Override
   public IvyTaskResultDTO analyzeTaskBusinessStateStatistic(TaskSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       TaskQuery finalQuery = extendQueryWithInvolvedUser(criteria);
       finalQuery.aggregate().countRows().groupBy().businessState();
@@ -180,7 +184,7 @@ public class TaskService implements ITaskService {
 
   @Override
   public IvyTaskResultDTO analyzeTaskCategoryStatistic(TaskSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       TaskQuery finalQuery = extendQueryWithInvolvedUser(criteria);
       finalQuery.aggregate().countRows().groupBy().category().orderBy().category();
@@ -230,6 +234,7 @@ public class TaskService implements ITaskService {
       return expiryStatistic;
     }
 
+  @SuppressWarnings("deprecation")
   private TaskQuery extendQueryWithUserHasPermissionToSee(TaskSearchCriteria criteria) {
     TaskQuery clonedQuery = TaskQuery.fromJson(criteria.getFinalTaskQuery().asJson()); // clone to keep the final query in TaskSearchCriteria
     if (!criteria.isAdminQuery()) {
@@ -250,6 +255,7 @@ public class TaskService implements ITaskService {
     return currentUserIsInvolved;
   }
 
+  @SuppressWarnings("deprecation")
   private TaskQuery extendQueryWithInvolvedUser(TaskSearchCriteria criteria) {
     TaskQuery finalQuery = criteria.getFinalTaskQuery();
     TaskQuery clonedQuery = TaskQuery.fromJson(finalQuery.asJson()); // clone to keep the final query in TaskSearchCriteria
@@ -295,9 +301,27 @@ public class TaskService implements ITaskService {
       return taskQueryExecutor().getFirstResult(taskQuery);
     });
   }
+  
+  public ITask findTaskByUUID(String uuid) {
+    return Sudo.get(() -> {
+      TaskQuery taskQuery = TaskQuery.create().where().uuid().isEqual(uuid);
+      if (PermissionUtils.checkReadAllTasksPermission()) {
+        EnumSet<TaskState> ADVANCE_STATES = EnumSet.of(CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN, DONE,
+            DELAYED, DESTROYED, JOIN_FAILED, FAILED, WAITING_FOR_INTERMEDIATE_EVENT);
+        taskQuery.where().and(queryForStates(ADVANCE_STATES));
+      } else {
+        EnumSet<TaskState> STANDARD_STATES = EnumSet.of(CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN, DONE);
+        taskQuery.where().and(queryForStates(STANDARD_STATES)).and(queryInvolvedTasks());
+      }
+      if (isHiddenTasksCasesExcluded()) {
+        taskQuery.where().and(queryExcludeHiddenTasks());
+      }
+      return taskQueryExecutor().getFirstResult(taskQuery);
+    });
+  }
 
-  public boolean isTaskAccessible(long taskId) {
-    return findTaskById(taskId) != null;
+  public boolean isTaskAccessible(String uuid) {
+    return findTaskByUUID(uuid) != null;
   }
 
   private TaskQuery queryForStates(EnumSet<TaskState> states) {

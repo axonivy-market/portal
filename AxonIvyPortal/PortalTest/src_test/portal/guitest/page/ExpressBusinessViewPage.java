@@ -21,9 +21,9 @@ public class ExpressBusinessViewPage extends TaskTemplatePage {
     return message.getText();
   }
 
-  public HomePage clickOnCloseButton() {
+  public NewDashboardPage clickOnCloseButton() {
     click(findElementByCssSelector("[id$='express-view-form:cancel-btn']"));
-    return new HomePage();
+    return new NewDashboardPage();
   }
   
   public WebElement getLegendFisnishedTaskFieldset(int index) {

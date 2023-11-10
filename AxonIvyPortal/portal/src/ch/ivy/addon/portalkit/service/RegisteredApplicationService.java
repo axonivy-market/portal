@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.service;
 
+import java.util.List;
+
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
@@ -24,5 +26,20 @@ public class RegisteredApplicationService extends JsonConfigurationService<Appli
   @Override
   public String getConfigKey() {
     return THIRD_PARTY_APPLICATIONS;
+  }
+
+  @Override
+  public List<Application> getPublicConfig() {
+    return super.getPublicConfig();
+  }
+
+  @Override
+  public List<Application> saveAllPublicConfig(List<Application> application) {
+    return super.saveAllPublicConfig(getPublicConfig());
+  }
+
+  @Override
+  public List<Application> findAll() {
+    return super.findAll();
   }
 }

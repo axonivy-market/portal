@@ -2,8 +2,8 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -15,6 +15,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.PrimeFaces;
 
+import com.axonivy.portal.components.service.IvyAdapterService;
+import com.axonivy.portal.enums.PortalCustomSignature;
+
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bean.PermissionBean;
@@ -22,15 +25,12 @@ import ch.ivy.addon.portalkit.bean.PortalExceptionBean;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.dto.UserMenu;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -62,30 +62,18 @@ public class UserMenuBean implements Serializable {
       String fullName = Ivy.session().getSessionUser().getFullName();
       String userName = Ivy.session().getSessionUserName();
       String fullDisplayFormat = "%s (%s)";
-      switch (option) {
-        case USERNAME:
-          loggedInUser = userName;
-          break;
-        case DISPLAY_NAME:
-          loggedInUser = fullName;
-          break;
-        case DISPLAY_NAME_USERNAME:
-          loggedInUser = String.format(fullDisplayFormat, fullName, userName);
-          break;
-        default:
-          loggedInUser = String.format(fullDisplayFormat, userName, fullName);
-          break;
-      }
+      loggedInUser = switch (option) {
+        case USERNAME -> userName;
+        case DISPLAY_NAME -> fullName;
+        case DISPLAY_NAME_USERNAME -> String.format(fullDisplayFormat, fullName, userName);
+        default -> String.format(fullDisplayFormat, userName, fullName);
+      };
     }
     isShowGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_GLOBAL_SEARCH);
   }
 
   public boolean isShowCaseDurationTime() {
     return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_CASE_DURATION_TIME);
-  }
-
-  public boolean isShowServerInformation() {
-    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_ENVIRONMENT_INFO);
   }
 
   public boolean isHiddenLogout() {
@@ -291,9 +279,8 @@ public class UserMenuBean implements Serializable {
   }
   
   private String getCustomizedLogoutPage() {
-    Map<String, Object> response = IvyAdapterService.startSubProcess("getLogoutPage()", null,
-            Arrays.asList(PortalLibrary.PORTAL.getValue()));
-    return (String) response.get("logoutPage");
+    Map<String, Object> response =  IvyAdapterService.startSubProcessInSecurityContext(PortalCustomSignature.LOGOUT_PAGE.getSignature(), null);
+    return (String) Optional.ofNullable(response).map(r -> r.get("logoutPage")).orElse("");
   }
   
   public void navigateToURLOrDisplayWorkingTaskWarning(UserMenu menu, boolean isWorkingOnATask, ITask task) throws IOException {
@@ -329,7 +316,7 @@ public class UserMenuBean implements Serializable {
 
   private static String getExpressStartLink() {
     if (StringUtils.isEmpty(expressStartLink)) {
-      expressStartLink = ProcessStartCollector.getInstance().findExpressWorkflowStartLink();
+      expressStartLink = ExpressProcessService.getInstance().findExpressWorkflowStartLink();
     }
     return expressStartLink;
   }

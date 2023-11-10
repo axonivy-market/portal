@@ -115,15 +115,6 @@ You can customize the Portal styles in ``custom.css``.
 
    If you want to custom color of statistics please refer to :ref:`Override Statistic color <override-Statistic-colors>`
 
-.. _customization-portal-logos-and-colors-changedatepatterns:
-
-Change date time pattern
-------------------------
-
-You can change the date pattern by modifying the CMS in ``portal``:
-``portal/patterns/datePattern`` and
-``portal/patterns/dateTimePattern``.
-
 .. |css_variable| raw:: html
 
    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties" target="_blank">CSS Variable</a>

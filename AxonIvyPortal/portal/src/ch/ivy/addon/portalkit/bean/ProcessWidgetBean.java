@@ -48,11 +48,10 @@ import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 import ch.ivyteam.util.Pair;
@@ -76,14 +75,12 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   private List<SecurityMemberDTO> selectedSecurityMemberDTOsWhenEditingExternalLink;
   private List<String> selectedPermissionsWhenEditingExternalLink;
   private List<String> selectedPermissionsForSavingEditedExternalLink;
-  private boolean isShowInformationLink;
   private IProcessStart createExpressWorkflowProcessStart;
   private Map<String, List<Process>> processesByAlphabet;
 
   public void initConfiguration() {
     initProcessViewMode();
-    createExpressWorkflowProcessStart = ProcessStartCollector.getInstance().findExpressCreationProcess();
-    isShowInformationLink = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_PROCESS_INFORMATION);
+    createExpressWorkflowProcessStart = ExpressProcessService.getInstance().findExpressCreationProcess();
   }
 
   public void initProcesses() {
@@ -231,7 +228,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   public void editExpressWorkflow(ExpressProcess process) throws IOException {
-    String editLink = ProcessStartCollector.getInstance().findExpressWorkflowEditLink(process.getId());
+    String editLink = ExpressProcessService.getInstance().findExpressWorkflowEditLink(process.getId());
     FacesContext.getCurrentInstance().getExternalContext().redirect(editLink);
   }
 
@@ -392,7 +389,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   public String getCreateExpessWorkflowLink() {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return (createExpressWorkflowProcessStart != null) ? createExpressWorkflowProcessStart.getLink().getRelative()
           : StringUtils.EMPTY;
     });
@@ -561,9 +558,5 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   public void setSelectedPermissionsWhenEditingExternalLink(List<String> selectedPermissionsWhenEditingExternalLink) {
     this.selectedPermissionsWhenEditingExternalLink = new ArrayList<>(selectedPermissionsWhenEditingExternalLink);
-  }
-
-  public boolean isShowInformationLink() {
-    return isShowInformationLink;
   }
 }

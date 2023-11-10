@@ -7,14 +7,16 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.constant.CustomFields;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.ProcessType;
-import ch.ivy.addon.portalkit.util.ProcessStartUtils;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.category.Category;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public interface Process {
   public static final String DEFAULT_PROCESS_ICON = "si si-hierarchy-6 si-rotate-270";
+  public static final String INDEX_CUSTOM_FIELD = "portalSortIndex";
   public String getName();
   public String getStartLink();
   public String getDescription();
@@ -25,6 +27,7 @@ public interface Process {
   public Category getCategory();
   public String getImageUrl();
   public String getApplication();
+  public String getSortIndex();
 
   default public List<String> getPermissions() {
     return new ArrayList<>();
@@ -55,7 +58,9 @@ public interface Process {
    */
   default public String collectProcessImage(IWebStartable process) {
     var imageUri = DefaultImage.PROCESSMODELING.getPath();
-    var defaultImageSetting = ProcessStartUtils.getDefaultProcessImageSetting();
+    var defaultImageSetting = GlobalSettingService.getInstance()
+        .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_PROCESS_IMAGE)
+        .getDisplayValue().toUpperCase();
     if (!defaultImageSetting.equals(DefaultImage.DEFAULT.name())) {
       imageUri = DefaultImage.IMAGE_PATH + defaultImageSetting;
     }
@@ -63,5 +68,15 @@ public interface Process {
       imageUri = getCustomFieldProcessImage(process);
     }
     return getContentImageUrl(imageUri);
+  }
+
+  /**
+   * This method collect the index of process define by custom field name portalSortIndex
+   * 
+   * @param process
+   * @return the value of index in process custom field
+   */
+  default public String getSortIndexInCustomField(IWebStartable process) {
+    return process.customFields().value(INDEX_CUSTOM_FIELD);
   }
 }

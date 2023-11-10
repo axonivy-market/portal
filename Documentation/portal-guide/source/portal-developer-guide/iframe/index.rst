@@ -222,46 +222,6 @@ Developer tips
 In case your project has a navigation button that does not complete a task, e.g.,Cancel, redirect in your HTML dialog 
 to the page you want to display (i.e., default pages like application home, task list, process list, etc.)
 
-Customization
-=============
-
-If you have built your own portal and **had copied the process** ``PortalStart``
-from ``portal`` to your project, you have to follow some important
-steps to ensure that your processes/tasks can be rendered inside an IFrame:
-
-  1. Make sure your own portal project depends on ``portal``
-
-     - E.g: ``CustomizedPortal`` depends on the ``portal``
-
-  2. Create a business project that contains all business processes.
-
-     a. E.g: A project name ``BusinessProject``
-
-     b. If your business project ``BusinessProject`` needs some data or
-        resources from the Portal project ``CustomizedPortal`` then create a
-        dependency between these two projects. If not, please **skip step 2.b**.
-
-       * E.g. ``BusinessProject`` depends on ``CustomizedPortal``
-
-  3. Change the ``DefaultPages`` in ``StandardProcesses`` to your customized
-     portal project library id. For details, refer to :dev-url:`Standard Processes
-     </doc/|version|/engine-guide/deployment/advanced/index.html>`.
-
-     - E.g: DefaultPages: ``CustomizedPortal`` ID.
-
-Now you can develop your own processes inside the ``BusinessProject`` and the dialogs will be rendered automatically using IFrames.
-
-.. important:: 
-    We have to  create two projects: ``CustomizedPortal`` and ``BusinessProject``. 
-    Create your process start in ``BusinessProject``, not in ``CustomizedPortal``.
-
-    Because you copied ``PortalStart.p.json``, this contains the
-    ``DefaultFramePage.ivp`` start. So every process start which is in the same
-    **PMV** as the ``DefaultFramePage.ivp`` is not opened in the IFrame, to
-    avoid recursion. This means that the IFrame Dialog itself is **not** opened
-    again in an IFrame and so on.
-
-
 .. |task-embedInFrame| image:: images/task-embedInFrame.png
 .. |case-embedInFrame| image:: images/case-embedInFrame.png
 .. |case-list-template| image:: ../../screenshots/case/case-key-information.png

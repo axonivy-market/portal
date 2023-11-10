@@ -5,11 +5,11 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -19,15 +19,20 @@ import org.primefaces.event.MenuActionEvent;
 import org.primefaces.model.menu.MenuItem;
 
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
+import com.axonivy.portal.service.CustomSubMenuItemService;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;
 import ch.ivy.addon.portalkit.configuration.Application;
+import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.MenuKind;
-import ch.ivy.addon.portalkit.enums.PortalLibrary;
-import ch.ivy.addon.portalkit.service.IvyAdapterService;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -37,7 +42,6 @@ import ch.ivyteam.ivy.workflow.TaskState;
 public class PortalMenuNavigator {
   public final static String LOAD_SUB_MENU_PROCESS = "loadSubMenuItems()";
   public final static String SUB_MENU = "subMenuItems";
-  private static PortalSubMenuItemWrapper portalSubMenuItemWrapper;
 
   public static void navigateToTargetPage(Map<String, List<String>> params) throws IOException {
     MenuKind selectedMenuKind = MenuKind.getKind(getMenuParam(params, PortalMenuItem.MENU_KIND));
@@ -107,23 +111,29 @@ public class PortalMenuNavigator {
     return applications;
   }
 
-  @SuppressWarnings("unchecked")
   public static List<SubMenuItem> callSubMenuItemsProcess() {
-    String sessionUserId = Ivy.session().getSessionUser().getSecurityMemberId();
     Locale requestLocale = Ivy.session().getContentLocale();
+    String sessionIdAttribute = SessionAttribute.SESSION_IDENTIFIER.toString();
+    if (Ivy.session().getAttribute(sessionIdAttribute) == null) {
+      Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
+    }
+    String sessionUserId = (String) Ivy.session().getAttribute(sessionIdAttribute);
+    IvyCacheService cacheService = IvyCacheService.newInstance();
+    PortalSubMenuItemWrapper portalSubMenuItemWrapper =
+        (PortalSubMenuItemWrapper) cacheService.getSessionCacheValue(IvyCacheIdentifier.PORTAL_MENU, sessionUserId).orElse(null);
+    
     if (portalSubMenuItemWrapper == null
-        || !sessionUserId.equals(portalSubMenuItemWrapper.userId)
         || !requestLocale.equals(portalSubMenuItemWrapper.loadedLocale)) {
       synchronized(PortalSubMenuItemWrapper.class) {
         List<SubMenuItem> subMenuItems = new ArrayList<>();
-        Map<String, Object> response = IvyAdapterService.startSubProcess(LOAD_SUB_MENU_PROCESS, null,
-            Arrays.asList(PortalLibrary.PORTAL.getValue()));
         try {
-          subMenuItems = (List<SubMenuItem>) response.get(SUB_MENU);
+          subMenuItems = getSubmenuList();
         } catch (Exception e) {
           Ivy.log().error("Cannot load SubMenuItems {0}", e.getMessage());
         }
-        portalSubMenuItemWrapper = new PortalSubMenuItemWrapper(sessionUserId, requestLocale, subMenuItems);
+
+        portalSubMenuItemWrapper = new PortalSubMenuItemWrapper(requestLocale, subMenuItems);
+        cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_MENU, sessionUserId, portalSubMenuItemWrapper);
       }
     }
     return portalSubMenuItemWrapper.portalSubMenuItems;
@@ -143,6 +153,30 @@ public class PortalMenuNavigator {
     }
     navigateToTargetPage(params);
   }
+  private record PortalSubMenuItemWrapper(Locale loadedLocale, List<SubMenuItem> portalSubMenuItems) {}
 
-  private record PortalSubMenuItemWrapper(String userId, Locale loadedLocale, List<SubMenuItem> portalSubMenuItems) {}
+  private static List<SubMenuItem> getSubmenuList() {
+    List<SubMenuItem> subMenuItems = new ArrayList<>();
+    GlobalSettingService globalSettingService = new GlobalSettingService();
+
+    if(PermissionUtils.checkAccessFullProcessListPermission()) {
+      subMenuItems.add(new ProcessSubMenuItem());
+    }
+
+    if(PermissionUtils.checkAccessFullTaskListPermission()) {
+      subMenuItems.add(new TaskSubMenuItem());
+    }
+
+    if(PermissionUtils.checkAccessFullCaseListPermission()) {
+      subMenuItems.add(new CaseSubMenuItem());
+    }
+
+    if(PermissionUtils.checkAccessFullStatisticsListPermission()
+        && !globalSettingService.findBooleanGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET)) {
+      subMenuItems.add(new StatisticSubMenuItem());
+    }
+
+    subMenuItems.addAll(CustomSubMenuItemService.findAll());
+    return subMenuItems;
+  }
 }

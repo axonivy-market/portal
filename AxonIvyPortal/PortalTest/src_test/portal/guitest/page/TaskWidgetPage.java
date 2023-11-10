@@ -29,8 +29,6 @@ public class TaskWidgetPage extends TemplatePage {
   private static final String ID_END = "*[id$='";
   private static final String TASK_STATE_COMPONENT_ID =
       "task-widget:task-list-scroller:%d:task-item:task-state-component:task-state";
-  private static final String KEYWORD_FILTER_SELECTOR =
-      "input[id='task-widget:filter-form:filter-container:ajax-keyword-filter']";
   private static final String KEYWORD_FILTER_SELECTOR_EXPANDED_MODE =
       "input[id='task-widget:expanded-mode-filter-form:expanded-mode-filter-container:ajax-keyword-filter']";
 
@@ -45,15 +43,6 @@ public class TaskWidgetPage extends TemplatePage {
   @Override
   protected String getLoadedLocator() {
     return "//*[contains(@id,'task-widget:task-view')]";
-  }
-
-  public void expand() {
-    waitForElementDisplayed(By.cssSelector("a[id$=':task-list-link:task-list-link']"), true);
-    WebElement fullModeButton = findElementById(taskWidgetId + ":task-list-link:task-list-link");
-    click(fullModeButton);
-    WaitHelper.assertTrueWithWait(() -> isElementDisplayed(By.cssSelector("li.topbar-item.breadcrumb-container")));
-    WaitHelper.assertTrueWithWait(() -> isElementDisplayed(By.cssSelector("[id$=':filter-save-action']")));
-    waitForLocatorDisplayed("id('" + taskWidgetId + ":filter-save-action')");
   }
 
   public TaskDetailsPage openTaskDetails(int index) {
@@ -125,21 +114,6 @@ public class TaskWidgetPage extends TemplatePage {
   public int countTasks() {
     List<WebElement> taskElements = findListElementsByCssSelector("div[class*='task-start-list-item']");
     return taskElements.size();
-  }
-
-  public void filterTasksBy(String keyword, int... expectedNumberOfTasksAfterFiltering) {
-    if (countTasks() == getExpectedNumberOfTasks(expectedNumberOfTasksAfterFiltering)) {
-      return;
-    }
-    var keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR);
-    keywordFilter.clear();
-    keywordFilter.click(); // To make Firefox more stable
-    keywordFilter.sendKeys(keyword);
-    WaitHelper.assertTrueWithWait(() -> {
-      var result = findElementByCssSelector(KEYWORD_FILTER_SELECTOR);
-      return result.getAttribute("value").equals(keyword);
-    });
-    waitForNumberOfTasks(expectedNumberOfTasksAfterFiltering);
   }
 
   private void waitForNumberOfTasks(int... expectedNumberOfTasksAfterFiltering) {
@@ -343,10 +317,6 @@ public class TaskWidgetPage extends TemplatePage {
     return Optional.ofNullable(delegateTypeRadioButton.getAttribute("disabled")).isPresent();
   }
 
-  public boolean isDelegateListSelectionAvailable() {
-    return isElementPresent(By.cssSelector("div[id$='select-delegate-panel']"));
-  }
-
   @SuppressWarnings("deprecation")
   public AdhocPage addAdhoc(int taskIndex) {
     clickByCssSelector(ID_END + taskIndex + ":task-item:task-side-steps-menu']");
@@ -369,18 +339,6 @@ public class TaskWidgetPage extends TemplatePage {
    */
   public String getNameOfTaskAt(int index) {
     WebElement name = findElementByCssSelector(ID_END + index + ":task-item:task-name-component:task-name']");
-    return name.getText();
-  }
-
-  /**
-   * Get name from task item in task scroller at specific index in compact list (homepage)
-   * 
-   * @param index
-   * @return task name
-   */
-  public String getNameOfTaskInCompactListAt(int index) {
-    WebElement name =
-        findElementByCssSelector(ID_END + index + ":task-item:task-start-item-view:task-start-task-name']");
     return name.getText();
   }
 
@@ -413,12 +371,13 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public boolean isAdvancedFilterDisplayed(String filterIdName) {
+    WaitHelper.waitForVisibilityOfElementLocated(driver, "span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']");
     return isElementDisplayed(
         By.cssSelector("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']"));
   }
 
   public String getFilterValue(String filterId) {
-    waitForElementDisplayed(By.cssSelector("[id$='" + filterId + ":advanced-filter-component']"), true);
+    WaitHelper.waitForVisibilityOfElementLocated(driver, "[id$='" + filterId + ":advanced-filter-component']");
     WebElement filterElement =
         findElementByCssSelector("button[id$='" + filterId + ":filter-open-form:advanced-filter-command']");
     return filterElement.getText();
@@ -669,10 +628,10 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public String getTaskId() {
-    String taskTitleCssSelection = "span[id$='task-start-task-id']";
+    String taskTitleCssSelection = "span[id$=':task-id']";
     String taskTitle = findElementByCssSelector(taskTitleCssSelection).getText();
-    String taskId = taskTitle.substring(taskTitle.indexOf("#") + 1, taskTitle.indexOf(")"));
-    return taskId;
+    // String taskId = taskTitle.substring(taskTitle.indexOf("#") + 1, taskTitle.indexOf(")"));
+    return taskTitle;
   }
 
   public boolean hasNoTask() {
@@ -681,34 +640,15 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void startTaskWithoutUI(int index) {
-    String taskId = getTaskId(index);
     waitTaskAppearThenClick(index);
-    Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> {
-      try {
-        if (!findListElementsByCssSelector(".no-task-message").isEmpty()) {
-          return true;
-        }
-        return !getTaskId(index).equals(taskId);
-      } catch (Exception e) {
-        return false;
-      }
-    });
-  }
-
-  private String getTaskId(int taskIndex) {
-    return findElementByCssSelector(
-        "span[id$='" + taskIndex + "\\:task-item\\:task-start-item-view\\:task-start-task-id']").getText();
   }
 
   private void waitTaskAppearThenClick(int index) {
-    WebElement taskListElement = findElementById(taskWidgetId + ":task-list-scroller");
-    if (taskListElement.getAttribute(CLASS).contains("compact-mode")) {
-      List<WebElement> taskItems = taskListElement.findElements(By.className("compact-task-start-link"));
-      boolean isResumedTask = taskItems.get(index).getAttribute("id").contains("compact-resumed-task-start-link");
-      click(taskItems.get(index));
-      if (isResumedTask) {
-        resetResumedTask();
-      }
+    WebElement taskStartElement = findElementById(taskWidgetId + ":task-list-scroller")
+        .findElements(By.className("start-task-action")).get(index);
+    if (taskStartElement.getAttribute("id").contains(":task-action:resume-task-action-component")) {
+      click(taskStartElement);
+      resetResumedTask();
     } else {
       String cssSelector = String.format("a[id$='%d:task-item:task-action:task-action-component']", index);
       refreshAndWaitElement(cssSelector);
@@ -729,7 +669,7 @@ public class TaskWidgetPage extends TemplatePage {
       return taskItems.get(index).getAttribute("id").contains("compact-resumed-task-start-link");
     }
 
-    taskItems = taskListElement.findElements(By.className("task-start-list-item"));
+    taskItems = taskListElement.findElements(By.className("start-task-action"));
     return taskItems.get(index).getAttribute("id").contains(":task-action:resume-task-action-component");
   }
 
@@ -787,17 +727,23 @@ public class TaskWidgetPage extends TemplatePage {
     return isElementDisplayed(By.cssSelector("a[id$='adhoc-side-step-item']"));
   }
 
+  public boolean isLoadingCategories() {
+    return isElementDisplayed(By.cssSelector(".loading-panel"));
+  }
+
   public boolean isAllCategoriesSelected() {
+    waitForElementDisplayed(By.cssSelector(".filter-category-checkbox-tree"), true);
     return isElementDisplayed(By.cssSelector(".filter-category-checkbox-tree .ui-treenode-selected"));
   }
 
   public boolean isAllCategoriesUnselected() {
+    waitForElementDisplayed(By.cssSelector(".filter-category-checkbox-tree"), true);
     return isElementDisplayed(By.cssSelector(".filter-category-checkbox-tree .ui-treenode-hasselected"));
   }
 
   public void openCategoryFilter() {
     click(By.cssSelector("button[id$='task-category-filter:filter-open-form:advanced-filter-command']"));
-    waitForElementDisplayed(By.cssSelector(".advanced-filter-panel.ui-connected-overlay-enter-done"), true);
+    waitForElementDisplayed(By.cssSelector("div[id$=':task-category-filter-tree']"), true);
   }
 
   public void toggleNoCategory() {
@@ -848,11 +794,6 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement confirmButton = findChildElementById(destroyConfirmationDialog, taskWidgetId + ":confirm-destruction");
     confirmButton.click();
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-  }
-
-  public void openCompactSortMenu() {
-    click(By.cssSelector("[id$='sort-task-menu_label']"));
-    waitForElementDisplayed(By.cssSelector("div[id$='sort-task-menu_panel']"), true);
   }
 
   public void selectCompactSortByName(String sortName, int rowIndex, String expectedValue) {

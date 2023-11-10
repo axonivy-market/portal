@@ -384,6 +384,7 @@
   --task-high-priority-color: #007095;
   --task-exception-priority-color: #EE4A52;
   --task-state-suspended-background: #DADADA;
+  --task-state-suspended-color: var(--ivy-primary-color-grey-dark);
   --task-state-resumed-background: #FFE896;
   --task-state-done-background: #D4EBA2;
   --task-state-parked-background: rgba(0, 112, 149, 0.2);
@@ -573,4 +574,9 @@
   --combined-button-tab-background-focus: rgba(144, 221, 233, 0.5);
   /* News Widget */
   --news-item-background: #F7F7F8;
+  /* Notification */
+  --notification-panel-color: var(--ivy-primary-color-white);
+  /*Notification channels*/
+  --state-active: var(--case-state-done-color);
+  --state-inactive: var(--task-state-failed-color);
 }

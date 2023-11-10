@@ -12,7 +12,6 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
 import ch.ivy.addon.portalkit.ivydata.service.ILanguageService;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.ListUtilities;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.language.LanguageConfigurator;
@@ -20,6 +19,7 @@ import ch.ivyteam.ivy.language.LanguageManager;
 import ch.ivyteam.ivy.language.LanguageRepository;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.exec.Sudo;
 
 public class LanguageService implements ILanguageService {
 
@@ -33,7 +33,7 @@ public class LanguageService implements ILanguageService {
 
   @Override
   public IvyLanguageResultDTO findUserLanguages() {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyLanguageResultDTO result = new IvyLanguageResultDTO();
       result.setIvyLanguage(getIvyLanguageOfUser());
       return result;
@@ -82,7 +82,7 @@ public class LanguageService implements ILanguageService {
     if (Ivy.session().isSessionUserUnknown()) {
       return;
     }
-    IvyExecutor.executeAsSystem(() -> {
+    Sudo.get(() -> {
       IUser currentUser = Ivy.session().getSessionUser();
       
       Locale userLanguage = null;
@@ -92,7 +92,9 @@ public class LanguageService implements ILanguageService {
       currentUser.setLanguage(userLanguage);
       
       Locale userFormatLocale = null;
-      if (language.getItemFormattingLanguage() != null && language.getItemFormattingLanguage().getValue() != null) {
+      if (language.getItemFormattingLanguage() != null && 
+          language.getItemFormattingLanguage().getValue() != null && 
+          StringUtils.isNotBlank(language.getItemFormattingLanguage().getValue().toString())) {
         userFormatLocale = Locale.forLanguageTag(language.getItemFormattingLanguage().getValue().toString());
       }
       currentUser.setFormattingLanguage(userFormatLocale);
@@ -117,6 +119,15 @@ public class LanguageService implements ILanguageService {
   }
 
   public Locale getDefaultEmailLanguage() {
-    return new LanguageConfigurator(ISecurityContext.current()).content();
+    return getLanguageConfigurator().content();
   }
+
+  public Locale getDefaultFormattingLanguage() {
+    return getLanguageConfigurator().formatting();
+  }
+  
+  private LanguageConfigurator getLanguageConfigurator() {
+    return new LanguageConfigurator(ISecurityContext.current());
+  }
+  
 }

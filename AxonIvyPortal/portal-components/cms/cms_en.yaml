@@ -76,12 +76,15 @@ Dialogs:
             NoName: no name
             NotAvailable: NA
           ProcessViewer:
-            ProcessDataNotFound: Could not found the Process Data!
+            CouldNotFindLinkedProcess: Could not find the linked process!
+            NoPermissionToView: You do not have the required permission to view this process.
+            ProcessCanNotBeLoaded: Process can not be loaded.
             ProcessDetails: Process details
             ProcessId: Process Id
             ProcessInfo: Process Information
             ProcessInfoIconTooltip: Click to see details of the process start
             ProcessIsHidden: The current process is hidden!
+            ProcessNotFound: The defined process cannot be found.
             ProcessType:
               CASE_MAP: Case Map
               EXPRESS_PROCESS: Express Workflow

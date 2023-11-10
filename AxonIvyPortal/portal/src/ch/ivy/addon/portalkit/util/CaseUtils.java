@@ -8,15 +8,12 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.publicapi.CaseAPI;
-import com.axonivy.portal.components.publicapi.ProcessStartAPI;
-
-import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
@@ -28,11 +25,11 @@ public final class CaseUtils {
   private CaseUtils() {}
 
   public static ICase findCase(long caseId) {
-    return IvyExecutor.executeAsSystem(() -> Ivy.wf().findCase(caseId));
+    return Sudo.get(() -> Ivy.wf().findCase(caseId));
   }
-
+  
   public static List<ICase> findSubCasesByBusinessCaseId(long caseId) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       CaseSearchCriteria criteria = new CaseSearchCriteria();
       criteria.setBusinessCase(false);
       criteria.setTechnicalCase(true);
@@ -42,32 +39,6 @@ public final class CaseUtils {
     });
   }
 
-  /**
-   * Set the "HIDE" property to the given case to hide it in case list of Portal.
-   * @deprecated Use {@link CaseAPI#setHidePropertyToHideInPortal(ICase)} instead
-   * @param iCase target case
-   */
-  @Deprecated
-  public static void setHidePropertyToHideInPortal(ICase iCase) {
-    iCase.customFields().stringField(AdditionalProperty.HIDE.toString()).set(AdditionalProperty.HIDE.toString());
-  }
-
-  /**
-   * Remove the "HIDE" property to the given case to display it in case list of Portal.
-   * @deprecated Use {@link CaseAPI#removeHidePropertyToDisplayInPortal(ICase)} instead
-   * @param iCase target case
-   */
-  @Deprecated
-  public static void removeHidePropertyToDisplayInPortal(ICase iCase) {
-    iCase.customFields().stringField(AdditionalProperty.HIDE.toString()).set(null);
-  }
-
-  @Deprecated(since = "9.3")
-  public static String getProcessStartUriWithCaseParameters(ICase iCase, String requestPath) {
-    String urlParameters = "?caseId=" + iCase.getId();
-    return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(requestPath) + urlParameters;
-  }
-  
   public static List<INote> findNotes(ICase iCase, boolean excludeSystemNotes) {
     Objects.requireNonNull(iCase, "Case must not be null");
     List<INote> notes = iCase.getNotes();
@@ -84,7 +55,7 @@ public final class CaseUtils {
   }
   
   public static void destroyCase(ICase selectedCase) {
-    IvyExecutor.executeAsSystem(() -> {
+    Sudo.get(() -> {
       selectedCase.destroy();
       return Void.class;
     });
@@ -137,15 +108,12 @@ public final class CaseUtils {
     if (state == null) {
       return StringUtils.EMPTY;
     }
-    switch (state) {
-      case OPEN:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/OPEN_UPPERCASE");
-      case DESTROYED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/DESTROYED_UPPERCASE");
-      case DONE:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/DONE_UPPERCASE");
-      default:
-        return StringUtils.EMPTY;
-    }
+    String url = switch(state) {
+      case OPEN -> "/ch.ivy.addon.portalkit.ui.jsf/caseState/OPEN_UPPERCASE";
+      case DESTROYED -> "/ch.ivy.addon.portalkit.ui.jsf/caseState/DESTROYED_UPPERCASE";
+      case DONE -> "/ch.ivy.addon.portalkit.ui.jsf/caseState/DONE_UPPERCASE";
+      default -> StringUtils.EMPTY;
+    };
+    return Ivy.cms().co(url);
   }
 }

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "1754AA136C748BA5",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -8,17 +8,17 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start(Long,Boolean)",
+      "name" : "start(String,Boolean)",
       "config" : {
         "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long", "desc" : "" },
+            { "name" : "uuid", "type" : "String", "desc" : "" },
             { "name" : "showBackButton", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
-            "out.currentCaseId" : "param.caseId",
-            "out.showBackButton" : "param.showBackButton"
+            "out.showBackButton" : "param.showBackButton",
+            "out.uuid" : "param.uuid"
           }
         },
         "guid" : "1754AA136CE42DB5"
@@ -62,7 +62,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "in.currentCase = ivy.wf.findCase(in.currentCaseId);",
+            "in.currentCase = ivy.wf.findCase(in.uuid);",
             "in.readOnly = !in.currentCase.isBusinessCase();"
           ]
         },

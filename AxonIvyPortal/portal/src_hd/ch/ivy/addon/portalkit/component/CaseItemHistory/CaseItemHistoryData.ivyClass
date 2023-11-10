@@ -1,7 +1,7 @@
 CaseItemHistoryData #class
 ch.ivy.addon.portalkit.component.CaseItemHistory #namespace
-iCase ch.ivyteam.ivy.workflow.ICase #field
-iCase PERSISTENT #fieldModifier
+caze ch.ivyteam.ivy.workflow.ICase #field
+caze PERSISTENT #fieldModifier
 histories List<ch.ivy.addon.portalkit.bo.History> #field
 histories PERSISTENT #fieldModifier
 noteContent String #field

@@ -1,8 +1,13 @@
 package com.axonivy.portal.components.util;
 
+import static java.util.Comparator.comparingLong;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toCollection;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.TreeSet;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -15,6 +20,7 @@ import com.axonivy.portal.components.enums.AdditionalProperty;
 
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
+import ch.ivyteam.ivy.security.exec.Sudo;
 
 public final class RoleUtils {
 
@@ -63,7 +69,7 @@ public final class RoleUtils {
    * @return <IRole> : role
    */
   public static IRole findRole(String name) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return ISecurityContext.current().roles().find(name);
     });
   }
@@ -100,7 +106,7 @@ public final class RoleUtils {
    * @return List<IRole> : All roles of current Ivy Application
    */
   public static List<IRole> getAllRoles() {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return ISecurityContext.current().roles().all();
     });
   }
@@ -141,5 +147,23 @@ public final class RoleUtils {
       }
     }
     return filterRoles;
+  }
+
+  /**
+   * Distinct a list of RoleDTO by id then sort by display name.
+   * 
+   * @param roleList original list of roles
+   * @return distinct and sorted list of roles
+   */
+  public static List<RoleDTO> distinctAndSortRoleList(List<RoleDTO> roleList) {
+    if (CollectionUtils.isEmpty(roleList)) {
+      return null;
+    }
+
+    List<RoleDTO> result = roleList.stream()
+        .collect(collectingAndThen(toCollection(() -> new TreeSet<>(comparingLong(RoleDTO::getId))), ArrayList::new));
+
+    result.sort((r1, r2) -> r1.getDisplayName().compareTo(r2.getDisplayName()));
+    return result;
   }
 }

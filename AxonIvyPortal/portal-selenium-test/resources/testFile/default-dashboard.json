@@ -151,7 +151,7 @@
         "name": "Your Welcome Widget",
         "layout": {
           "w": 12,
-          "h": 4,
+          "h": 2,
           "x": 0,
           "y": 0
         },
@@ -178,6 +178,9 @@
         ],
         "greeting": true
       }
+    ],
+    "permissions": [
+      "Everybody"
     ]
   }
 ]

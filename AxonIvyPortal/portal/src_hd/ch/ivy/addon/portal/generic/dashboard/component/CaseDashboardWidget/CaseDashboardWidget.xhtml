@@ -24,6 +24,7 @@
     <ui:param name="componentToUpdateOnResetFilter" value="#{cc.clientId}:case-component:dashboard-cases #{cc.clientId}:case-component:empty-message-container" />
     <ui:param name="onCompleteApplyFilters" value="PF('dashboard-cases-#{widget.id}').filter()" />
     <ui:param name="isRenderExpandCollapse" value="true" />
+    <ui:param name="widgetContentStyleClass" value="case-widget" />
 
     <ui:define name="widgetInformationContent">
       <ui:include src="CaseInfo.xhtml">

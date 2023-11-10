@@ -10,8 +10,6 @@ ch.ivy.addon.portal.generic:
     noCaseId: Keine Vorgangs-ID spezifiziert
     requestTabTitle: Anfrage
     statusTabTitle: Vorgangsinformationen
-  CustomLinkGenerator:
-    myTasks: Meine Aufgaben
   OpenTaskTemplate:
     adhocHistory: AdHoc Prozesshistorie
     adhocHistoryTooltip: AdHoc Prozesshistorie anzeigen
@@ -23,22 +21,6 @@ ch.ivy.addon.portal.generic:
     resultFromAdhocProcess: Ergebnisse aus dem Ad-Hoc Prozess
     startAdHoc: Start Adhoc
     startAdHocTooltip: Neue Aufgabe hinzufügen, und den aktuellen Prozess umleiten.
-  PortalCaseMenu:
-    AllCases: Alle Vorgänge
-    MyCases: Meine Vorgänge
-  PortalTaskMenu:
-    AllTasks: Alle Aufgaben
-    GroupTasks: Gruppenaufgaben
-    PersonalTasks: '{0}''''s Aufgaben'
-  TaskMail:
-    dailyTaskSummaryIntro: 'Liste der offenen Workflow Aufgaben:'
-    dailyTaskSummaryTitle: Tägliche Zusammenfassung
-    newTaskIntro: 'Ihnen wurde die folgende Workflow Aufgabe zugewiesen:'
-    newTaskTitle: Neue Aufgabe zugewiesen
-    taskResume: Aufnehmen
-ch.ivy.addon.portalkit:
-  variables:
-    portalkit_serveradress: PORTALKIT_SERVERADRESS
 ch.ivy.addon.portalkit.ui.jsf:
   AbsenceAndDeputy:
     Messages:
@@ -85,14 +67,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskState: Aufgabenstatus
   CaseDocuments:
     CaseDocumentsPageTitle: Dokumente zum Vorfall
-  CaseStatusInformation:
-    CurrentTasks:
-      currentTasks: Laufende Aufgaben
-      noTasksFound: Keine Aufgaben gefunden.
-    GeneralInformation:
-      processVersion: Prozessversion
-      removeDelayConfirm: Durch diese Aktion wird die Verzögerungs-Einstellung der Aufgabe entfernt. Sind Sie sicher?
-      showNow: Sofort anzeigen
   Enums:
     BasicDocumentType:
       CONTRACT: Vertrag
@@ -128,6 +102,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPACT: Kompakt
       GRID: Raster
       IMAGE: Bild
+    ProcessSorting:
+      BY_ALPHABETICALLY: Alphabetisch
+      BY_CUSTOM_ORDER: Benutzerdefinierte Reihenfolge
+      BY_INDEX: Sortierindex
     ProcessType:
       EXPRESS_PROCESS: Express Workflow
       EXTERNAL_LINK: External Link
@@ -170,20 +148,22 @@ ch.ivy.addon.portalkit.ui.jsf:
   MyProfile:
     CaseList: Liste der Fälle
     DateFormat: Datum Format
-    Email: E-Mail
     FormattingLanguage: Sprache der Formatierung
     General: Allgemeine
     Homepage: Homepage
-    HomepageSelection:
-      fullTaskList: Vollständige Aufgabenliste
     Language: Sprache
     ProcessList: Prozess-Liste
     SortFieldSelections:
       defaultSortFieldLabel: Standard-Sortierfeld
     TaskList: Aufgabenliste
+    byDefault: '  standardmäßig'
     defaultOption: Standard ({0})
     defaultViewMode: Standardanzeige
-    showTutorial: Willkommenstour anzeigen
+    event: Veranstaltung
+    notSubscribed: Nicht abonniert
+    notificationChannels: Benachrichtigungskanäle
+    notificationChannelsReset: Benachrichtigungskanäle zurücksetzen
+    subscribed: abonniert
   PortalManagement:
     AdminSetting: Administration
   ProcessViewer:
@@ -241,6 +221,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       clientSideTimeoutNote: Cientseitiges Time-out in Minuten, muss größer als 0 und kleiner als das serverseitige Time-out sein (z. B. 25 Sekunden). Der Standardwert ist 0, d. h., das standardmäßige clientseitige Time-out wird angewendet. Das standardmäßige clientseitige Time-out ist das serverseitige
         Time-out minus 3 Minuten.
       dateFilterWithTime: Setzen Sie diesen Wert auf true, um die Datumsfilterung mit Uhrzeit zu aktivieren. Diese Einstellung wirkt sich auf die Aufgabenliste, die Fallliste und die Statistik aus.
+      deepLAuthKey: DeepL Authentifizierungsschlüssel (sollte mit :fx enden)
       defaultHomepage: Zum Einstellen der Standard-Homepage, zu der umgeleitet wird, wenn Sie auf das Home-Symbol oder das Logo klicken. Diese Einstellung gilt auch für die Endeseite nach Beendigung einer Aufgabe.
       defaultProcessImage: Die Standardeinstellung des Standardbildes, das in der Bildprozessliste angezeigt wird.
       defaultProcessMode: Die Standardeinstellung des Ansichtsmodus in der Prozessliste.
@@ -255,11 +236,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       displayMessageAfterFinishOrLeaveTask: Eine Feedback-Nachricht wird angezeigt, nachdem der Benutzer eine Aufgabe beendet oder verlassen hat.
       embedInFrame: Auf true gesetzt, um einen Prozess/Task im IFrame-Modus zu starten
       enableCaseOwner: Wird auf true gesetzt, um die Filterung des Vorgangsinhabers bei der Abfrage von Vorgängen zu aktivieren. Diese Einstellung wirkt sich auf alle Vorgangsabfragen aus, z.B. nach Vorgangsliste, globale Suche, Statistik, …
+      enableDeepLTranslation: Setzen Sie diese Eigenschaft auf true, um die DeepL Übersetzungsunterstützung zu aktivieren.
       enableGroupChat: Setzen Sie diese Einstellung auf "true", um den Gruppenchat zu aktivieren
       enablePrivateChat: Setzen Sie diese Einstellung auf "true", um den privaten Chat zu aktivieren
       enableProcessViewer: Setzen Sie diese Einstellung auf true, um die Prozess-Viewer-Option in Aufgaben-/Vorgang-Aktionen zu aktivieren
       enableScriptCheckingForUploadedDocumentNote: 'Auf "true" setzen, um die Skriptüberprüfung zu aktivieren. Es werden die Formate PDF, Excel und Word unterstützt. '
-      enableUserFavorites: Wenn diese Einstellung deaktiviert ist, zeigen Sie den Benutzerfavoritenabschnitt der Prozessliste nicht in Portal Home an.
       enableVirusScannerForUploadedDocumentNote: Auf true setzen, um den Virenscanner für das hochgeladene Dokument zu aktivieren. Derzeit verwendet diese Funktion die API VIRUSTOTAL.
       expressEndPageNote: Anzeigen der angepassten Endseite nach dem Ende eines Express Prozesses.
       hideCaseDocument: Auf "true" setzen, um die Dokumentensektion in Vorgangsdetails auszublenden.
@@ -280,17 +261,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       showAvatar: Zum Ein- und Ausschalten der Anzeige von Benutzer-/Rollenavataren.
       showButtonIcon: Zum Ein-/Ausschalten des Anzeigesymbols bei Butons im Portal
       showCaseDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Vorgangsdetailseite.
-      showEnvironmentInfoNote: Zum Ein-/Ausschalten der Anzeige der Environment-Information
       showErrorLogToConsole: Auf true setzen, um Fehlerprotokoll in die Browserkonsole zu schreiben
       showGlobalSearch: Zum Ein-/Ausschalten der Anzeige der globalen Suche.
-      showLegacyUI: Zum Ein-/Ausschalten der Legacy UI des Dashboards.
       showProcessInformation: Auf "false" setzen, um die Verknüpfung zu Informationen des Prozesses auf der Seite Prozesse (Gittermodus) und Falldetails anzeigen zu deaktivieren.
       showTaskDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Aufgabendetailseite.
-      showUserGuide: 'Aktiviert die interaktive Benutzeranleitung "erste Schritte" im Portal bei erstmaliger Anmeldung. '
       statisticChartScalingInterval: Intervall in Sekunden, in dem die Skalierung des statistischen Diagramms regelmäßig angefordert wird. Ist der Intervallwert kleiner als 10, wird die periodische Skalierung des statistischen Diagramms deaktiviert.
       uploadDocumentWhiteListExtensionNote: 'Leer lassen, falls Sie alle Formate erlauben. Falls Sie nur eine geringe Anzahl an Formate erlauben möchten (White list), können Sie diese hier, mit Komma getrennt, aufführen. Z.B.: pdf, txt, doc, docx.'
-      deepLAuthKey: DeepL Authentifizierungsschlüssel (sollte mit :fx enden)
-      enableDeepLTranslation: Setzen Sie diese Eigenschaft auf true, um die DeepL Übersetzungsunterstützung zu aktivieren.
     key: Schlüssel
     link: Link
     loading: WIRD GELADEN
@@ -399,8 +375,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     OPEN: Offen
     OPEN_UPPERCASE: OFFEN
     RUNNING: in Bearbeitung
-  caseTreeTable:
-    caseState: Vorgangsstatus
   chat:
     chatAssigneeDialogHeader: Benutzer zum Chat hinzufügen
     chatAssigneeDialogHint: 'Bitte wählen Sie die relevanten User und Gruppen, die Sie zum Gruppenchat hinzufügen möchten:'
@@ -581,6 +555,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showRelatedCaseInfo: Zugehöriger Vorfall
     showSystemNotes: Systemhinweise
     showSystemTasks: Systemaufgaben
+    sorting: Sortierung
     start: Start
     state: Status
     status: Status
@@ -658,9 +633,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       noUser: Es sind keine Benutzer vorhanden.
       tooltipHelper: Klicken Sie hier, um alle Benutzer anzuzeigen, die diese Rolle direkt oder indirekt besitzen
       userOfRoleTitle: Benutzer der Gruppe {0}
-    compactProcessWidget:
-      selectedProcess: Ausgewählter Prozess
-      settingFavoriteProcessName: Namensdefinition für Prozess-Favorit
     expressManagement:
       deployButton: Hochladen
       deployMessage: Prozesse werden deployt
@@ -700,27 +672,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       importHeaderTitle: 'Liste von Express Prozessen werden exportiert:'
       processCount: Prozess(e)
       waitingMessage: Daten werden gesammelt…
-    guide:
-      dontShowAgain: Nicht mehr anzeigen
-      mainMenu:
-        content: In diesem Menü können Sie zu den unterschiedlichen Bereichen Prozesse, Aufgaben, Vorgänge und Statistiken navigieren.
-        title: Hauptmenü
-      process:
-        content: In diesem Bereich können Sie Ihre eigenen Favoriten definieren und Standardprozesse der Anwendung einsehen. Klicken Sie darauf und der Prozess wird gestartet.
-        title: Prozesse
-      statistic:
-        content: "In diesem Bereich finden Sie alle verfügbaren Statistiken. Klicken Sie darauf für mehr Details. \n"
-        title: Statistiken
-      task:
-        content: In diesem Bereich finden Sie alle offenen Aufgaben. Klicken Sie darauf, um eine Aufgabe zu bearbeiten.
-        title: Aufgaben
-      username:
-        content: Mi Klick auf dem Benutzername können Sie Einstellungen wie Abwesenheiten, Sprache, Email Einstellungen, usw. vornehmen.
-        title: Benutzername
-      welcome:
-        content: 'Wir möchten Ihnen einen guten Start im Portal ermöglichen. Dazu möchten wir Sie durch die ersten Aktionen führen, die Sie durchführen können. Darüber hinaus finden Sie hier eine erweiterte Benutzerdokumentation inklusive "How-to-Guide": <a href="{0}"  target="_blank">Portal-Anleitung</a>'
-        mobileContent: 'Sie können auf dieser Seite sofort auf Ihre Aufgaben zugreifen oder mit <span class="{0}"></span> zu anderen Bereichen navigieren. Sie finden weiterführende Informationen hier: <a href="{1}"  target="_blank">PortalGuide</a>'
-        title: Willkommen im Axon Ivy Portal
     passwordValidation:
       criteria: Kriterien
       enablePasswordValidation: Kennwortüberprüfung einschalten
@@ -767,6 +718,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Öffentlich
       savedFilters: 'Gespeicherte Filter:'
   dashboard:
+    CustomWidgets: Benutzerdefinierte Widgets
     DashboardConfiguration:
       CreateFromScratch: Von Grund auf neu erstellen
       CreateFromScratchDescription: Erstellen Sie Ihr eigenes Dashboard von Grund auf
@@ -776,7 +728,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       DoNotSupportMobile: Die Dashboard-Konfiguration wird für mobile Geräte nicht unterstützt.
       EditPrivateDashboards: Private Dashboards bearbeiten
       EditPublicDashboards: Öffentliche Dashboards bearbeiten
-      InvalidDeepLAuthKey: Ungültiger DeepL Authentifizierungsschlüssel
       ExportDashboard: Dashboard exportieren
       PrivateDashboard: Private Dashboards
       PrivateDashboardConfiguration: Private Dashboard-Konfiguration
@@ -785,8 +736,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       ReorderPrivateDashboards: Dashboards neu anordnen
       ReorderPublicDashboards: Öffentliche Dashboards neu anordnen
       SelectAction: Wählen Sie die Aktion
+      SomeThingWentWrong: Etwas ist schief gelaufen
       Title: Dashboard-Konfiguration
     EmptyFilterMessage: Kein Widget-Filter gefunden
+    ExternalPageWidget: Externe Webseite
+    ExternalPageWidgetIntroduction: Dieses Widget kann eine externe Webseite anzeigen.
     Filter:
       FilterOptionHeader: Filter-Optionen
       ManageWidgetFilterHeader: Widget-Filter-Verwaltung
@@ -796,10 +750,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     ManageFilter: Filterverwaltung
     NoData: Keine Daten
     NoSavedFilterMessage: Kein gespeicherter Filter gefunden. Versuchen Sie, einen neuen zu erstellen, indem Sie auf die Schaltfläche Filter speichern klicken.
+    NoWidgetAvailable: Es gibt keine Widgets.
     RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
     SaveNewWidgetFilterHeader: Speichere neuen Widget-Filter
     SavedFilterHeader: Gespeicherte Filter
     SearchForFilter: Suche nach Filter
+    ShareThisDashboard: Teilen Sie dieses Dashboard
+    StandardWidgets: Standard-Widgets
     StatisticWidget:
       AvailableCharts: Verfügbare Statistikdiagramme
       Charts: 'Diagramm(e): {0}'
@@ -869,8 +826,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     createdFrom: Erstellt von
     createdTo: Erzeugt bis
     customFieldType: Benutzerdefinierter Feldtyp
-    customWidget: Benutzerdefiniertes Widget
-    customWidgetIntroduction: Dieses Widget kann einen Axon Ivy-Prozess oder eine externe Webseite anzeigen.
     dashboardManagement:
       CreateDashboard: Dashboard erstellen
       addDashboard: Dashboard hinzufügen
@@ -924,7 +879,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processes:
       emptyProcess: Sie haben keine Prozesse definiert.
       noMatchingProcess: Keine passenden Prozesse.
-      noPermissionToSee: Sie haben nicht die erforderliche Berechtigung, dieses Widget zu sehen.
+      noPermissionToSee: Sie besitzen nicht die erforderlichen Rechte um diesen Prozess zu starten.
       noProcessSelected: Bitte wählen Sie einen Prozess
     removeWidgetHeader: Widget "{0}" löschen
     removeWidgetMessage: Möchten Sie es wirklich löschen?
@@ -1025,9 +980,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     seachIconByNamePlaceHolder: Icon anhand des Namens suchen
   languageSetting:
     Language: Sprache
-    cannotSetEmailLanguage: Sprache kann nicht als Emailbenachrichtigungssprache gewählt werden.
-    languageSetting: Spracheinstellungen
-    saveLanguageHasWSErrors: Fehler beim Speichern der Sprache
   login:
     AxonIvyPortal: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
@@ -1057,6 +1009,22 @@ ch.ivy.addon.portalkit.ui.jsf:
   notes:
     newNoteHeader: Neue Notiz hinzufügen
     wroteAt: Erstellt am
+  notifications:
+    linkToFullScreen: Link zum Vollbild
+    linkToNotificationSettings: Link zu den Benachrichtigungseinstellungen
+    markAllAsRead: Alle als gelesen markieren
+    markAsRead: Als gelesen markieren
+    noNotificationText: Keine Benachrichtigungen
+    notificationTitle: Benachrichtigungen
+    olderText: Ältere
+    onlyUnread: Nur ungelesen
+    todayText: Heute
+    xDaysAgo: vor %s Tagen
+    xHoursAgo: vor %s Stunden
+    xMinutesAgo: vor %s Minuten
+    xMonthsAgo: vor %s Monaten
+    xSecondsAgo: vor %s Sekunden
+    xYearsAgo: vor %s Jahren
   passwordSetting:
     changePasswordWSError: Ein Fehler ist während der Passwortänderung aufgetreten. Bitte, kontaktieren Sie Ihren Administrator falls das Problem nach mehreren Versuchen besteht.
     confirmNewPassword: Neues Password bestätigen
@@ -1083,8 +1051,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewProcess: Prozess hinzufügen
     addNewProcessDialogHeader: Neuen Prozess hinzufügen
     backToOverview: Zurück zur Übersicht
-    brokenLinkProcess: Der Prozess-Link ist ungültig. Bitte aktualisieren Sie Ihre Favoriten oder kontaktieren Sie den Administrator
-    defaultProcesses: Anwendungs-Favoriten
     deleteExpressWorkflowTooltip: Express Workflow entfernen
     deleteExternalLinkTooltip: Externen Link löschen
     deleteProcess: Prozess löschen
@@ -1101,13 +1067,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     expressWorkflow: Express Workflow
     externalLink: Externer Link
     externalLinkVisibility: Sichtbarkeit
-    favoriteProcesses: Ihre Favoriten
     goTo: 'Gehe zu: '
     icon: Symbol
     image: Bild
     isRequiredMessage: muss gesetzt werden
     linkDescription: Link Beschreibung
-    noFavoriteProcess: Sie haben keine Favoriten definiert.
     noProcess: Keinen Prozess gefunden.
     noProcesses: Keine Prozesse gefunden.
     private: Privat
@@ -1193,6 +1157,9 @@ ch.ivy.addon.portalkit.ui.jsf:
         withRole: 'Mit Rolle:'
       emptystate:
         defaultEmptyMessages: Es sind keine Auswertungen vorhanden.
+      exception:
+        idNotFound: 'Chart Id not found with id: {0}'
+        noPermission: You do not have the permission to send this request!
       expiryPeriod: Fristende
       loadingCharts: Bitte warten während die Diagramme geladen werden…
       notAllowedToCreateChart: Sie haben die Filtereinstellungen geändert. Bitte aktualisieren Sie gesetzten Filter mit "Filter anwenden", um das Diagramm anschließend erstellen zu können
@@ -1468,7 +1435,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskNotFound: Die Aufgabe existiert nicht oder Sie haben ungenügende Rechte, um diese Aufgabe zu sehen.
   userProfile:
     myProfileTitle: Mein Profil
-    saveUserSettingsSuccessfully: Benutzereinstellungen erfolgreich gespeichert.
   warningBeforeLostSession:
     extend: Erweitern
     warningMessage: Ihre Sitzung läuft in 1 Minute ab. Möchten Sie diese verlängern?
@@ -1559,11 +1525,20 @@ Dialogs:
         portal:
           generic:
             dashboard:
+              PortalDashboardConfiguration:
+                NewDashboard: Neues Dashboard
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
+                DashboardModification:
+                  Share: Aktie
+                ProcessWidgetConfiguration:
+                  DragAndDropToChangeOrder: ziehen und ablegen zum ändern der Reihenfolge.
+                  DragAndDropTooltip: Klicken Sie auf die Vorschau und ändern Sie die Reihenfolge durch Ziehen und Ableg
         portalkit:
           component:
+            CaseItemDetails:
+              ShareCaseDetails: Teilen Sie Falldetails mit
             CaseWidget:
               CaseCategory: Vorgangskategorie
               CaseDetail:
@@ -1578,9 +1553,15 @@ Dialogs:
               defaultEmptyMessage: Keine Vorgänge verfügbar
             IconSelection:
               IconLinkTooltip: Zum Ändern des Symbols anklicken
+            TaskItemDetails:
+              ShareTaskDetails: Teilen Sie Aufgabendetails
   com:
     axonivy:
       portal:
+        component:
+          ShareLinkDialog:
+            CopyLink: Link kopieren
+            LinkCopied: Link kopiert!
         dashboard:
           component:
             DashboardImportDetails:
@@ -1588,6 +1569,8 @@ Dialogs:
               ImportPrivate: Privates Dashboard importieren
               ImportPublic: Öffentliches Dashboard importieren
               chooseAJsonFile: Wählen Sie eine JSON-Datei
+            DashboardSharing:
+              ShareDashboard: Dashboard teilen
             NewsWidget:
               NewsContentPlaceHolder: Nachrichteninhalt eingeben
               NewsContentValidateMessage: Nachrichteninhalt in {0} ist erforderlich
@@ -1598,6 +1581,7 @@ Dialogs:
               RemoveNewsHeader: Die Nachrichten entfernen?
               SeeLess: Weniger sehen
               SeeMore: Mehr sehen
+              Translate: Übersetzen Sie
             NewsWidgetConfiguration:
               AddNews: Neuigkeiten hinzufügen
               EditNews: Nachrichten bearbeiten
@@ -1717,6 +1701,7 @@ Labels:
   AdhocWorkflow: Beschreiben Sie Ihren Workflow
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
+  CreateNewDashboard: Neues Dashboard erstellen
   Enums:
     SearchScopeCaseField:
       CUSTOM: Benutzerdefinierte Stringfelder
@@ -1734,6 +1719,7 @@ Labels:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Permissions: Berechtigungen
+  Share: Aktie
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails
   TaskUser-Explain: Kommaseparierte Liste von Benutzern

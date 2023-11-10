@@ -1,0 +1,11 @@
+CustomUploadDocumentItemData #class
+gawfs #namespace
+businessCase ch.ivyteam.ivy.workflow.ICase #field
+message String #field
+status String #field
+uploadedDocument ch.ivyteam.ivy.workflow.document.IDocument #field
+uploadedFile org.primefaces.model.file.UploadedFile #field
+enableVirusScannerForUploadedDocument Boolean #field
+enableScriptCheckingForUploadedDocument Boolean #field
+allowedUploadFileTypes String #field
+skip Boolean #field

@@ -16,10 +16,10 @@ import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.ProcessType;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
-import ch.ivy.addon.portalkit.util.Locales;
 import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.category.Category;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -37,6 +37,7 @@ public class DashboardProcess implements Process {
   private String imageUrl;
   private String application;
   private Category category;
+  private String sortIndex;
   
   public DashboardProcess() {}
 
@@ -50,6 +51,7 @@ public class DashboardProcess implements Process {
     this.category = process.getCategory();
     this.imageUrl = process.getImageUrl();
     this.application = process.getApplication();
+    this.sortIndex = process.getSortIndex();
   }
 
   public DashboardProcess(IWebStartable process) {
@@ -62,6 +64,7 @@ public class DashboardProcess implements Process {
     this.category = process.getCategory();
     this.application = process.pmv().getApplication().getName();
     this.imageUrl = collectProcessImage(process);
+    this.sortIndex = getSortIndexInCustomField(process);
   }
 
   public DashboardProcess(ExpressProcess process) {
@@ -161,13 +164,13 @@ public class DashboardProcess implements Process {
   }
 
   private String getActiveDisplayName() {
-    Locale currentLocale = new Locales().getCurrentLocale();
+    Locale currentLocale = Ivy.session().getContentLocale();
     return names.stream().filter(displayName -> displayName.getLocale().equals(currentLocale))
         .map(DisplayName::getValue).findFirst().orElse(this.name);
   }
 
   private String generateWorkflowStartLink() {
-    return ProcessStartCollector.getInstance().findExpressWorkflowStartLink() + EXPRESS_WORKFLOW_ID_PARAM + this.id;
+    return ExpressProcessService.getInstance().findExpressWorkflowStartLink() + EXPRESS_WORKFLOW_ID_PARAM + this.id;
   }
 
   public Long getProcessStartId() {
@@ -208,5 +211,10 @@ public class DashboardProcess implements Process {
   @Override
   public Category getCategory() {
     return category;
+  }
+
+  @Override
+  public String getSortIndex() {
+    return sortIndex;
   }
 }

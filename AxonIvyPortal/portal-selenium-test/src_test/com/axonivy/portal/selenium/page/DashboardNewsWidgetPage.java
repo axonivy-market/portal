@@ -33,12 +33,12 @@ public class DashboardNewsWidgetPage extends TemplatePage {
   }
 
   public void openAddNewsFeedItemDialog() {
-    $(".news-widget__content-panel").shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$=':add-news-button']")
+    $(".news-widget__content-panel").shouldBe(appear, DEFAULT_TIMEOUT).$("a[id$=':add-news-button']")
         .shouldBe(getClickableCondition()).click();
     manageNewsDialogShouldBe(appear).$("[id$=':news-icon:awesome-icon-selection']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public void enterNewsItemData(String languageTag, String icon, String title, String content) {
+  public String enterNewsItemData(String languageTag, String icon, String title, String content) {
     // Select language
     var tabIndex = selectNewsLanguage(languageTag);
     // News Icon
@@ -47,6 +47,7 @@ public class DashboardNewsWidgetPage extends TemplatePage {
     enterNewsTitle(title, tabIndex);
     // News content
     enterNewsContent(content, tabIndex);
+    return tabIndex;
   }
 
   private void enterNewsContent(String content, String tabIndex) {
@@ -74,7 +75,7 @@ public class DashboardNewsWidgetPage extends TemplatePage {
     $(selectIconDialogId).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
-  private String selectNewsLanguage(String languageTag) {
+  public String selectNewsLanguage(String languageTag) {
     var languageTabClass = "li.ui-tabs-header.news-language-tab-" + languageTag;
     $("[id$=':manage-news-tabview']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("ul.ui-tabs-nav").$(languageTabClass).shouldBe(getClickableCondition()).click();
@@ -147,5 +148,24 @@ public class DashboardNewsWidgetPage extends TemplatePage {
     $("[id$=':delete-news-dialog']").shouldBe(appear, DEFAULT_TIMEOUT).$("[id$=':remove-widget-button']")
         .shouldBe(getClickableCondition()).click();
     $("[id$=':delete-news-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement getTranslationOverlayPanel(int index) {
+    SelenideElement translationOverlay = $(String.format("div[id$=':%s:overlay-panel-input']", index));
+    waitUntilElementToBeClickable(translationOverlay);
+    translationOverlay.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
+    return translationOverlay;
+  }
+  
+  public void clickOnTitle(String tabIndex) {
+    SelenideElement newsTitleInput = $("input" + String.format(MANAGE_NEWS_TABVIEW_FORMAT, tabIndex, "news-title"))
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    newsTitleInput.click();
+  }
+  
+  public void findTranslationButton(String tabIndex) {
+    $(String.format("[id$=':%s:translate-language-button']", tabIndex))
+        .shouldBe(appear, DEFAULT_TIMEOUT);
   }
 }

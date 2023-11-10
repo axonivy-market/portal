@@ -18,7 +18,7 @@ public enum TestAccount {
   
   CASE_OWNER_USER("caseOwnerUser", "caseOwnerUser", "caseOwnerUser"),
   
-  TEST_FORGOT_PASSWORD_USER("test_forgot_password_user", "123", "Forgot Password User", "wawa@axonivy.io");
+  TEST_FORGOT_PASSWORD_USER("test_forgot_password_user", "123", "Forgot Password User", "wawa@axongroupio.ch");
 
 	private String username;
 	private String password;

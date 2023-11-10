@@ -5,13 +5,15 @@ import java.nio.charset.StandardCharsets;
 
 import org.primefaces.PrimeFaces;
 
+import com.axonivy.portal.components.generic.navigation.BaseNavigator;
+
 import ch.ivyteam.ivy.environment.Ivy;
 
 /**
  * Portal API for navigation in iFrame
  *
  */
-public final class PortalNavigatorInFrameAPI {
+public final class PortalNavigatorInFrameAPI extends BaseNavigator {
 	private PortalNavigatorInFrameAPI() {
 	}
 

@@ -21,6 +21,7 @@ public class StatisticChart extends AbstractConfiguration {
   private StatisticChartType type;
   private StatisticFilter filter;
   private long position;
+  private List<String> permissions;
   @JsonIgnore
   private DonutChartModel donutChartModel;
   @JsonIgnore
@@ -101,4 +102,13 @@ public class StatisticChart extends AbstractConfiguration {
   public void setName(String name) {
     this.name = name;
   }
+
+  public List<String> getPermissions() {
+    return permissions;
+  }
+
+  public void setPermissions(List<String> permissions) {
+    this.permissions = permissions;
+  }
+
 }

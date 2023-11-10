@@ -122,6 +122,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   @SuppressWarnings("deprecation")
   public void filterByTaskCategory(String selectedCategory) {
     click(By.cssSelector("[id$='task-category-filter:filter-open-form:advanced-filter-command']"));
+    waitForElementDisplayed(By.cssSelector("div[id$=':task-category-filter-tree']"), true);
     WebElement selectionElement = findElementByCssSelector("[id$='task-category-filter:filter-input-form:advanced-filter-panel-content']");
     List<WebElement> categoryTreeLabels = findChildElementsByClassName(selectionElement, "ui-treenode-label");
     //Find parent node of tree first and uncheck it
@@ -165,6 +166,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   @SuppressWarnings("deprecation")
   public void filterByCaseCategory(String selectedCategory) {
     click(By.cssSelector("[id$='case-category-filter:filter-open-form:advanced-filter-command']"));
+    waitForElementDisplayed(By.cssSelector("div[id$=':case-category-filter-tree']"), true);
     WebElement selectionElement = findElementByCssSelector("[id$='case-category-filter:filter-input-form:advanced-filter-panel-content']");
     List<WebElement> categoryTreeLabels = findChildElementsByClassName(selectionElement, "ui-treenode-label");
     //Find parent node of tree first and uncheck it

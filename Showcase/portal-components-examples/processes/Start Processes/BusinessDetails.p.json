@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "176465FBFE257CF3",
   "config" : {
     "data" : "com.axonivy.portal.components.examples.BusinessDetailsData"
@@ -12,7 +12,7 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.util.CaseUtils;",
-            "out.iCase = CaseUtils.findCase(in.caseId);"
+            "out.caze = CaseUtils.findCase(in.uuid);"
           ]
         }
       },
@@ -69,7 +69,7 @@
         "dialog" : "com.axonivy.portal.components.examples.InvestmentRequestBusinessDetailsPage:start(ch.ivyteam.ivy.workflow.ICase)",
         "call" : {
           "map" : {
-            "param.ivyCase" : "in.iCase"
+            "param.ivyCase" : "in.caze"
           }
         }
       },
@@ -121,10 +121,10 @@
         "signature" : "showInvestmentRequestCustomFields",
         "input" : {
           "params" : [
-            { "name" : "caseId", "type" : "Long", "desc" : "" }
+            { "name" : "uuid", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.caseId" : "param.caseId"
+            "out.uuid" : "param.uuid"
           }
         },
         "request" : {

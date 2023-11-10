@@ -11,7 +11,6 @@ These components fully support both Freya and Serenity themes of Primefaces.
 .. toctree::
    :maxdepth: 1
 
-   process-history/index
    process-chain/index
    document-table/index
    security-member-name-and-avatar/index

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "16B1B70EE89C4939",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -54,7 +54,7 @@
       "type" : "SubProcessCall",
       "name" : "GetDocumentList",
       "config" : {
-        "processCall" : "Functional Processes/GetDocumentItems:call(ch.ivyteam.ivy.workflow.ICase)",
+        "processCall" : "Functional Processes/GetDocumentItems:getDocumentItems(ch.ivyteam.ivy.workflow.ICase)",
         "call" : {
           "map" : {
             "param.businessCase" : "in.ivyCase"
@@ -156,7 +156,7 @@
       "type" : "SubProcessCall",
       "name" : "UploadDocument",
       "config" : {
-        "processCall" : "Functional Processes/UploadDocumentItem:call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.file.UploadedFile,Boolean,Boolean,String)",
+        "processCall" : "Functional Processes/UploadDocumentItem:uploadDocumentItem(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.file.UploadedFile,Boolean,Boolean,String)",
         "call" : {
           "map" : {
             "param.businessCase" : "in.ivyCase",
@@ -252,7 +252,7 @@
       "type" : "SubProcessCall",
       "name" : "Delete Document",
       "config" : {
-        "processCall" : "Functional Processes/DeleteDocumentItem:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "processCall" : "Functional Processes/DeleteDocumentItem:deleteDocumentItem(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
         "call" : {
           "map" : {
             "param.businessCase" : "in.ivyCase",
@@ -336,7 +336,7 @@
       "type" : "SubProcessCall",
       "name" : "DownloadDocument",
       "config" : {
-        "processCall" : "Functional Processes/DownloadDocumentItem:call(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "processCall" : "Functional Processes/DownloadDocumentItem:downloadDocumentItem(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
         "call" : {
           "map" : {
             "param.bussinessCase" : "in.ivyCase",

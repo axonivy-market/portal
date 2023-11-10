@@ -201,6 +201,9 @@ Processes:
       Signal:
         name: Signal create New Payment
     name: Create New Payment
+  ProcessWithIndex:
+    name1: Process With Index 1
+    name2: Process With Index 2
   TasksForTaskListCustomization:
     Cases:
       Party:

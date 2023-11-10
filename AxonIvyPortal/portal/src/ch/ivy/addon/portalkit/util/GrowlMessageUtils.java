@@ -18,6 +18,7 @@ import ch.ivyteam.ivy.workflow.ICase;
 
 public final class GrowlMessageUtils {
   public static final String PORTAL_GLOBAL_GROWL_MESSAGE = "portal-global-growl-message";
+  public static final String PORTAL_GLOBAL_GROWL= "portal-global-growl";
   public static final String OVERRIDE_PORTAL_GROWL = "overridePortalGrowl";
   private static final String TASK_LEFT = "/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully";
   private static final String TASK_FINISHED = "/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully";
@@ -42,7 +43,7 @@ public final class GrowlMessageUtils {
 
   private static void addMessageToFacesContext(ICase iCase, boolean isTaskFinished) {
     String caseDetailsUrl =
-        iCase != null ? PortalNavigator.buildPortalCaseDetailsUrl(iCase.getBusinessCase().getId()) : null;
+        iCase != null ? PortalNavigator.buildPortalCaseDetailsUrl(iCase.getBusinessCase().uuid()) : null;
     FacesMessage message = null;
     if (isCaseDetailsAvailable(iCase, caseDetailsUrl)) {
       message = addMessageWithoutCaseDetails(isTaskFinished);

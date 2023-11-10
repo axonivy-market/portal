@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "180CC2A120F7FCC9",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -8,9 +8,9 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "call(ICase,IvyDocument)",
+      "name" : "downloadDocumentItem(ICase,IvyDocument)",
       "config" : {
-        "signature" : "call",
+        "signature" : "downloadDocumentItem",
         "input" : {
           "params" : [
             { "name" : "bussinessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
@@ -31,17 +31,17 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 64 },
+        "at" : { "x" : 328, "y" : 184 },
         "labelOffset" : { "x" : -2, "y" : 50 }
       },
       "connect" : [
-        { "id" : "f4", "to" : "f3" }
+        { "id" : "f4", "to" : "f7" }
       ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 352, "y" : 64 }
+        "at" : { "x" : 960, "y" : 184 }
       }
     }, {
       "id" : "f3",
@@ -58,7 +58,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 64 },
+        "at" : { "x" : 792, "y" : 184 },
         "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : [
@@ -67,13 +67,73 @@
     }, {
       "id" : "f5",
       "type" : "ProcessAnnotation",
-      "name" : "Override this subprocess to download file from DMS",
+      "name" : [
+        "This sub process can be customized  to download file from DMS",
+        "",
+        "The custom proccess signature must be: \"portalDownloadDocumentItem(ICase,IvyDocument)\""
+      ],
       "visual" : {
-        "at" : { "x" : 312, "y" : 200 },
-        "size" : { "width" : 288, "height" : 30 }
+        "at" : { "x" : 328, "y" : 376 },
+        "size" : { "width" : 384, "height" : 78 }
       },
       "connect" : [
-        { "id" : "f6", "to" : "f0", "via" : [ { "x" : 328, "y" : 184 } ] }
+        { "id" : "f6", "to" : "f0" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "Script",
+      "name" : [
+        "Call customized",
+        "sub process"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.predicate.CustomProcessPredicate;",
+            "import com.axonivy.portal.components.enums.CustomSignature;",
+            "import org.primefaces.model.StreamedContent;",
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "",
+            "Map params = new HashMap();",
+            "params.put(\"businessCase\", in.businessCase);",
+            "params.put(\"document\", in.document);",
+            "",
+            "Map result = IvyAdapterService.startSubProcessesInSecurityContext(CustomSignature.DOWNLOAD_DOCUMENT_ITEM.getSignature(), params, new CustomProcessPredicate());",
+            "in.hasCustomProcess = !result.isEmpty();",
+            "",
+            "if (in.hasCustomProcess) {",
+            "  in.streamedContent = result.get(\"streamedContent\") as StreamedContent;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 472, "y" : 184 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f9" }
+      ]
+    }, {
+      "id" : "f9",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f11" : "in.hasCustomProcess",
+          "f10" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 624, "y" : 184 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "f3", "label" : {
+            "name" : "No"
+          } },
+        { "id" : "f11", "to" : "f1", "via" : [ { "x" : 624, "y" : 240 }, { "x" : 960, "y" : 240 } ], "label" : {
+            "name" : "Yes"
+          } }
       ]
     } ]
 }

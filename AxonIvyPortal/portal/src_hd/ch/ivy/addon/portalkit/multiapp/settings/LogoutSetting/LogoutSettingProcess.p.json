@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "15EF07D454EF13E4",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -59,7 +59,7 @@
       "type" : "SubProcessCall",
       "name" : "Extend logout",
       "config" : {
-        "processCall" : "Functional Processes/Logout:call(Boolean,ch.ivyteam.ivy.workflow.ITask)",
+        "processCall" : "Functional Processes/Logout:logout(Boolean,ch.ivyteam.ivy.workflow.ITask)",
         "call" : {
           "map" : {
             "param.isTaskReserve" : "false",
@@ -101,7 +101,7 @@
       "type" : "SubProcessCall",
       "name" : "Extend logout",
       "config" : {
-        "processCall" : "Functional Processes/Logout:call(Boolean,ch.ivyteam.ivy.workflow.ITask)",
+        "processCall" : "Functional Processes/Logout:logout(Boolean,ch.ivyteam.ivy.workflow.ITask)",
         "call" : {
           "map" : {
             "param.isTaskReserve" : "true",
@@ -209,7 +209,7 @@
       "type" : "SubProcessCall",
       "name" : "Extend logout",
       "config" : {
-        "processCall" : "Functional Processes/Logout:call(Boolean,ch.ivyteam.ivy.workflow.ITask)",
+        "processCall" : "Functional Processes/Logout:logout(Boolean,ch.ivyteam.ivy.workflow.ITask)",
         "call" : {
           "map" : {
             "param.isTaskReserve" : "false",

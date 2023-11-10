@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "188DC1996B169C8D",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -8,24 +8,28 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "translateText(String,TargetLanguage,SourceLanguage)",
+      "name" : "translateText(String,TargetLanguage,SourceLanguage,String,String)",
       "config" : {
         "signature" : "translateText",
         "input" : {
           "params" : [
             { "name" : "text", "type" : "String", "desc" : "The text to translate" },
             { "name" : "targetLanguage", "type" : "com.deepl.api.v2.client.TargetLanguage", "desc" : "The wished target language" },
-            { "name" : "sourceLanguage", "type" : "com.deepl.api.v2.client.SourceLanguage", "desc" : "The source language" }
+            { "name" : "sourceLanguage", "type" : "com.deepl.api.v2.client.SourceLanguage", "desc" : "The source language" },
+            { "name" : "tagHandling", "type" : "String", "desc" : "" },
+            { "name" : "preserveFormatting", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.input" : "param.text",
+            "out.preserveFormatting" : "param.preserveFormatting",
             "out.sourceLanguage" : "param.sourceLanguage",
+            "out.tagHandling" : "param.tagHandling",
             "out.targetLanguage" : "param.targetLanguage"
           }
         },
         "result" : {
           "params" : [
-            { "name" : "translation", "type" : "String", "desc" : "" }
+            { "name" : "translation", "type" : "com.deepl.api.v2.client.InlineResponse200", "desc" : "" }
           ],
           "map" : {
             "result.translation" : "in.output"
@@ -60,7 +64,9 @@
           "form" : {
             "source_lang" : [ "in.sourceLanguage" ],
             "target_lang" : [ "in.targetLanguage" ],
-            "text" : [ "in.input.lines().toList()" ]
+            "text" : [ "in.input.lines().toList()" ],
+            "preserve_formatting" : [ "in.preserveFormatting" ],
+            "tag_handling" : [ "in.tagHandling" ]
           },
           "entity" : {
             "type" : "com.deepl.api.v2.client.TranslateBody"
@@ -68,9 +74,10 @@
         },
         "response" : {
           "entity" : {
-            "type" : "com.fasterxml.jackson.databind.JsonNode",
+            "type" : "com.deepl.api.v2.client.InlineResponse200",
             "map" : {
-              "out.output" : "result != null ? result.get(\"translations\").get(0).get(\"text\").asText() : \"\";"
+              "out.output" : "result",
+              "out.output.translations" : "result.getTranslations()"
             }
           }
         }

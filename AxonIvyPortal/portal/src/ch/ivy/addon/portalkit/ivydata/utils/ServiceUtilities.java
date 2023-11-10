@@ -10,15 +10,14 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.RoleDTO;
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.dto.UserDTO;
 
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
-import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModel;
@@ -27,6 +26,7 @@ import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.exec.Sudo;
 
 public class ServiceUtilities {
 
@@ -124,14 +124,14 @@ public class ServiceUtilities {
   }
 
   public static IUser findUser(String username) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return ISecurityContext.current().users().find(username);
     });
   }
 
   public static UserDTO findUserDTO(final String username) {
     Objects.requireNonNull(username, "The username must not be null");
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IUser user = ISecurityContext.current().users().find(username);
       return user == null? null : new UserDTO(user);
     });
@@ -159,7 +159,7 @@ public class ServiceUtilities {
   }
   
   public static List<RoleDTO> findAllRoleDTO() {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return CollectionUtils.emptyIfNull(ISecurityContext.current().roles().all())
           .stream()
           .filter(role -> role.getProperty(AdditionalProperty.HIDE.toString()) == null)

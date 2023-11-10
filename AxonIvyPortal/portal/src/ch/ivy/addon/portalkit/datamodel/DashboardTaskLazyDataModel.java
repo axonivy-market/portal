@@ -4,37 +4,46 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
-import org.primefaces.model.SortOrder;
+import org.apache.commons.collections4.map.HashedMap;
+import org.primefaces.PrimeFaces;
+import org.primefaces.model.FilterMeta;
+import org.primefaces.model.SortMeta;
 
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardTaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
-import ch.ivyteam.ivy.jsf.primefaces.legazy.LazyDataModel7;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.util.threadcontext.IvyThreadContext;
 
-public class DashboardTaskLazyDataModel extends LazyDataModel7<ITask> {
+public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
 
   private static final long serialVersionUID = -6615871274830927272L;
 
-  private static final int QUERY_PAGES_AT_FIRST_TIME = 5;
-  private static final int QUERY_PAGES = 3;
-
   private DashboardTaskSearchCriteria criteria;
-  private boolean isFirstTime = true;
   private List<ITask> tasks;
-  private CompletableFuture<Void> future;
+  private Map<Long, ITask> mapTasks;
   private TaskQuery query;
+  private int countLoad;
+  private boolean isFirstTime = true;
+  private CompletableFuture<Void> future;
+  List<ITask> foundTasks;
 
   public DashboardTaskLazyDataModel() {
     criteria = new DashboardTaskSearchCriteria();
     tasks = new ArrayList<>();
+    foundTasks = new ArrayList<>();
+    mapTasks = new HashedMap<>();
   }
 
   @Override
-  public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+  public List<ITask> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
+    if (first == 0) {
+      PrimeFaces.current().executeScript("resizeTableBody();");
+    }
     if (isFirstTime) {
       isFirstTime = false;
       if (future != null) {
@@ -46,19 +55,30 @@ public class DashboardTaskLazyDataModel extends LazyDataModel7<ITask> {
       }
     } else {
       if (first == 0) {
-        criteria.setSortField(sortField);
-        criteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
-        query = criteria.buildQuery();
+        tasks.clear();
+        if (sortBy.entrySet().iterator().hasNext()) {
+          Map.Entry<String, SortMeta> sortEntry = sortBy.entrySet().iterator().next();
+          if (sortEntry != null && sortEntry.getValue() != null) {
+            SortMeta sortMeta = sortEntry.getValue();
+            criteria.setSortField(sortMeta.getField());
+            criteria.setSortDescending(sortMeta.getOrder().isDescending());
+          }
+          query = criteria.buildQuery();
+        }
       }
-      tasks = DashboardTaskService.getInstance().findByTaskQuery(query, first, pageSize * (first <= pageSize ? QUERY_PAGES_AT_FIRST_TIME : QUERY_PAGES));
+      foundTasks = DashboardTaskService.getInstance().findByTaskQuery(query, first, pageSize);
+      addDistict(tasks, foundTasks);
+      mapTasks.putAll(foundTasks.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
     }
-    int rowCount = tasks.size() + first;
-    List<ITask> result = new ArrayList<>();
-    for (int i = 0; i < Math.min(pageSize, tasks.size()); i++) {
-      result.add(tasks.get(i));
+
+    int rowCount = 0;
+    if (foundTasks.size() >= pageSize) {
+      rowCount = first + pageSize + 1;
+    } else {
+      rowCount = first + foundTasks.size();
     }
     setRowCount(rowCount);
-    return result;
+    return foundTasks;
   }
 
   public void loadFirstTime() {
@@ -66,18 +86,26 @@ public class DashboardTaskLazyDataModel extends LazyDataModel7<ITask> {
     Object memento = IvyThreadContext.saveToMemento();
     future = CompletableFuture.runAsync(() -> {
       IvyThreadContext.restoreFromMemento(memento);
-      tasks = DashboardTaskService.getInstance().findByTaskQuery(query, 0, getPageSize() * QUERY_PAGES_AT_FIRST_TIME);
+      foundTasks = DashboardTaskService.getInstance().findByTaskQuery(query, 0, 25);
+      addDistict(tasks, foundTasks);
+      mapTasks.putAll(foundTasks.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
       IvyThreadContext.reset();
     });
     isFirstTime = true;
   }
 
+  private void addDistict(List<ITask> tasks, List<ITask> foundTasks) {
+    for (ITask found : foundTasks) {
+      tasks.removeIf(task -> task.getId() == found.getId());
+    }
+    tasks.addAll(foundTasks);
+  }
+
   @Override
   public ITask getRowData(String rowKey) {
-    for (ITask task : tasks) {
-      if (task.getId() == Long.valueOf(rowKey)) {
-        return task;
-      }
+    ITask task = mapTasks.get(Long.valueOf(rowKey));
+    if (task != null) {
+      return task;
     }
     return null;
   }
@@ -85,30 +113,6 @@ public class DashboardTaskLazyDataModel extends LazyDataModel7<ITask> {
   @Override
   public String getRowKey(ITask task) {
     return String.valueOf(task.getId());
-  }
-
-  /**
-   * @hidden
-   */
-  @Override
-  public void setRowIndex(int index) {
-    super.setRowIndex(index);
-  }
-
-  /**
-   * @hidden
-   */
-  @Override
-  public ITask getRowData() {
-    return super.getRowData();
-  }
-
-  /**
-   * @hidden
-   */
-  @Override
-  public boolean isRowAvailable() {
-    return super.isRowAvailable();
   }
 
   public DashboardTaskSearchCriteria getCriteria() {
@@ -127,4 +131,21 @@ public class DashboardTaskLazyDataModel extends LazyDataModel7<ITask> {
     criteria.setCanWorkOn(canWorkOn);
   }
 
+  @Override
+  public List<ITask> getResults() {
+    return this.tasks;
+  }
+
+  @Override
+  public int count(Map<String, FilterMeta> filterBy) {
+    return this.getRowCount();
+  }
+
+  public int getCountLoad() {
+    return countLoad;
+  }
+
+  public void setCountLoad(int countLoad) {
+    this.countLoad = countLoad;
+  }
 }

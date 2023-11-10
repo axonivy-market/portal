@@ -14,6 +14,7 @@ import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.codeborne.selenide.Condition;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
@@ -76,5 +77,26 @@ public class TaskDetailsTest extends BaseTest {
     caseDetailsPage.gotoBusinessCase();
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_TECHNICAL_CASE).shouldHave(size(1));
+  }
+  
+  @Test
+  public void testShareTaskDetails() {
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(grantShareLinkTaskDetailsPermission);
+    redirectToNewDashBoard();
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    mainMenuPage.openTaskList();
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.openTask(TAKE_ORDER);
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.getShareButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    taskDetailsPage.getShareDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
+    redirectToRelativeLink(denyShareLinkTaskDetailsPermission);
+    redirectToNewDashBoard();
+    mainMenuPage.openTaskList();
+    taskWidgetPage.openTask(TAKE_ORDER);
+    taskDetailsPage.getShareButton().shouldBe(Condition.disappear);
   }
 }

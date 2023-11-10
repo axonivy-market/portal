@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
@@ -139,27 +140,18 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskEditWidget.clickOnStateToShowDropdown();
     taskEditWidget.selectState(OPEN);
     taskEditWidget.preview();
-    taskEditWidget.waitPageSelected(1);
-    taskEditWidget.countAllTasks().shouldHave(size(5));
-    taskEditWidget.nextPageTable();
-    taskEditWidget.waitPageSelected(2);
-    taskEditWidget.countAllTasks().shouldHave(size(5));
-    taskEditWidget.nextPageTable();
-    taskEditWidget.waitPageSelected(3);
-    taskEditWidget.countAllTasks().shouldHave(size(2));
+    taskEditWidget.countAllTasks().shouldHave(size(12));
     taskEditWidget.save();
     TaskWidgetNewDashBoardPage taskWidgetEdited = newDashboardPage.selectTaskWidget(NEW_YOUR_TASK);
     taskWidgetEdited.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    taskWidgetEdited.countAllTasks().shouldHave(size(5));
+    taskWidgetEdited.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1));
   }
   
   @Test
   public void testAddNewTaskList() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
-    redirectToNewDashBoard();
-
-    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
@@ -243,9 +235,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
   public void testExportExcel() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
-    redirectToNewDashBoard();
-
-    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     newDashboardDetailsEditPage.addWidget();

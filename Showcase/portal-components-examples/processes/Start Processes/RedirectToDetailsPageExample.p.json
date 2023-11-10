@@ -1,0 +1,120 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "id" : "189B5CA2807EB1E7",
+  "config" : {
+    "data" : "com.axonivy.portal.components.examples.RedirectToDetailsPageExampleData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "redirectToTaskDetailsPageById.ivp",
+      "config" : {
+        "signature" : "redirectToTaskDetailsPageById",
+        "request" : {
+          "name" : "Redirect To Task Details Page By Id",
+          "description" : "Example Process To redirect to task details page by task id"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "RedirectToTaskDetailsPageExample",
+      "config" : {
+        "dialog" : "com.axonivy.portal.components.examples.redirectstodetailspage.RedirectToTaskDetailsPageExample:start()"
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 64 },
+        "size" : { "width" : 224, "height" : 60 }
+      }
+    }, {
+      "id" : "f1",
+      "type" : "RequestStart",
+      "name" : "redirectToCaseDetailsPageById.ivp",
+      "config" : {
+        "signature" : "redirectToCaseDetailsPageById",
+        "request" : {
+          "name" : "Redirect To Case Details Page by id",
+          "description" : "Example Process To redirect to task details page by case id"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 168 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f2" }
+      ]
+    }, {
+      "id" : "f2",
+      "type" : "DialogCall",
+      "name" : "RedirectToCaseDetailsExample",
+      "config" : {
+        "dialog" : "com.axonivy.portal.components.examples.redirectstodetailspage.RedirectToCaseDetailsExample:start()"
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 168 },
+        "size" : { "width" : 224, "height" : 60 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "RequestStart",
+      "name" : "redirectToTaskDetailsPageByUUID.ivp",
+      "config" : {
+        "signature" : "redirectToTaskDetailsPageByUUID",
+        "request" : {
+          "name" : "Redirect To Task Details Page By UUID",
+          "description" : "Example Process To redirect to task details page by task uuid"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "DialogCall",
+      "name" : "RedirectToTaskDetailsPageByUUIDExample",
+      "config" : {
+        "dialog" : "com.axonivy.portal.components.examples.redirectstodetailspage.RedirectToTaskDetailsPageByUUIDExample:start()"
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 280 },
+        "size" : { "width" : 268, "height" : 58 }
+      }
+    }, {
+      "id" : "f7",
+      "type" : "RequestStart",
+      "name" : "redirectToCaseDetailsPageByUUID.ivp",
+      "config" : {
+        "signature" : "redirectToCaseDetailsPageByUUID",
+        "request" : {
+          "name" : "Redirect To Case Details Page By UUID",
+          "description" : "Example Process To redirect to task details page by case uuid"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 384 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f9" }
+      ]
+    }, {
+      "id" : "f9",
+      "type" : "DialogCall",
+      "name" : "RedirectToCaseDetailsByUUIDExample",
+      "config" : {
+        "dialog" : "com.axonivy.portal.components.examples.redirectstodetailspage.RedirectToCaseDetailsByUUIDExample:start()"
+      },
+      "visual" : {
+        "at" : { "x" : 351, "y" : 384 },
+        "size" : { "width" : 271, "height" : 62 }
+      }
+    } ]
+}

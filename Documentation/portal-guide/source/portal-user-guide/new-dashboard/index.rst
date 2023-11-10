@@ -32,6 +32,8 @@ The following default widgets are available:
 
 #. **News feed widget**: This widget shares relevant information as a News Feed into |ivy|.
 
+#. **External page widget**: This widget displays an external webpage on your dashboard.
+
 In addition, a developer can provide custom widgets to add relevant project information to your dashboard.
 
 **Task list widget, Case list widget, Process list widget (compact mode)** has the following standard features:
@@ -179,7 +181,7 @@ a particular process:
 
 **Compact mode**
 
-This widget displays a list of all selected process starts.
+This widget displays a list of all selected process starts. You can sort your processes by index, alphabetical order or custom order. You can change your custom order by drag and drop the processes.
 
 |process-widget-compact-mode|
 
@@ -258,9 +260,13 @@ The :guilabel:`Manage News` dialog.
 
 |news-feed-widget-manage-content|
 
+|news-feed-widget-overlay-panel|
+
 In manage news, the user can:
 
 #. Create one entry in multiple languages. When creating the entry, the user can switch between the available languages with a click on the tab view header.
+
+#. Translate the title by clicking on the input label. Translate the content by clicking on the |translate-icon| icon.
 
 #. Choose an icon for the news by clicking directly on the icon, the :guilabel:`Icon browser` browser will be shown.
 
@@ -268,8 +274,16 @@ In manage news, the user can:
 
 #. Provide news content, i.e., the main information for the newsfeed. The content is limited to 1000 characters, max.
 
+After setting up everything, simply click on the :guilabel:`Share this dashboard` link at the bottom of your dashboard to share it with colleagues.
 
-.. include:: ../includes/_common-icon.rst  
+External page widget
+====================
+
+You enter an URL to embed an external webpage into the Portal dashboard.
+
+|external-page-widget-configuration|
+
+.. include:: ../includes/_common-icon.rst
 
 .. |dash-board| image:: ../../screenshots/new-dashboard/dashboard.png
 .. |widget-filter| image:: ../../screenshots/new-dashboard/widget-filter.png
@@ -302,3 +316,6 @@ In manage news, the user can:
 .. |news-feed-widget-configuration| image:: ../../screenshots/new-dashboard/news-feed-widget-configuration.png
 .. |news-feed-widget| image:: ../../screenshots/new-dashboard/news-feed-widget.png
 .. |news-feed-widget-manage-content| image:: ../../screenshots/new-dashboard/news-feed-widget-manage-content.png
+.. |news-feed-widget-overlay-panel| image:: ../../screenshots/new-dashboard/news-feed-widget-overlay-panel.png
+
+.. |external-page-widget-configuration| image:: ../../screenshots/dashboard/external-page-widget-configuration.png

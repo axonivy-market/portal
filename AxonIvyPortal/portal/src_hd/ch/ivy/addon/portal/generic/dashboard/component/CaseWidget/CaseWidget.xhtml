@@ -20,12 +20,17 @@
 
   <p:remoteCommand id="rcLoadCaseFirstTime" autoRun="true" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
     update="dashboard-cases-container" global="false" async="true" process="@this"
-    oncomplete="loadWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); #{cc.attrs.onCompleteLoadWidget}" />
+    oncomplete="loadWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); PF('dashboard-cases-#{caseWidget.id}').init(PF('dashboard-cases-#{caseWidget.id}').cfg); #{cc.attrs.onCompleteLoadWidget}" />
   <div class="ui-g">
-    <h:outputText id="loading" styleClass="js-loading-#{caseWidget.id} case-dashboard-widget__loading-message" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
+    <h:panelGroup layout="block"
+      styleClass="js-loading-#{caseWidget.id} case-dashboard-widget__loading-message ui-g-12">
+      <ui:repeat var="task" value="#{caseWidget.loadingItems()}">
+        <p:skeleton styleClass="MarTop20" height="4rem" />
+      </ui:repeat>
+    </h:panelGroup>
 
     <h:panelGroup id="dashboard-cases-container" layout="block"
-      styleClass="ui-g-12 u-padding-0 js-dashboard-cases-container-#{caseWidget.id} u-display-none">
+      styleClass="ui-g-12 u-padding-0 js-dashboard-cases-container-#{caseWidget.id} u-display-none dashboard-cases-container">
 
       <h:panelGroup id="columns-configuration" layout="block" rendered="#{cc.attrs.renderColumnConfiguration}"
         styleClass="dashboard-cases-container__columns-configuration">
@@ -36,17 +41,15 @@
       </h:panelGroup>
 
       <p:dataTable id="dashboard-cases" widgetVar="dashboard-cases-#{caseWidget.id}" value="#{caseWidget.dataModel}" var="caseItem"
-        paginator="true" paginatorPosition="bottom" lazy="true"
-        paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}" pageLinks="5"
-        rows="#{caseWidget.rowsPerPage}"
-        rowsPerPageTemplate="5,10,20,50"
-        paginatorAlwaysVisible="true"
-        sortBy="#{caseWidget.sortBy}"
+        lazy="true" scrollRows="25"
+        liveScroll="true" scrollable="true" sortBy="#{caseWidget.sortBy}"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-cases--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and caseWidget.caseCount lt 1 ? 'u-display-none' : ''}"
         rowStyleClass="dashboard-table--row-style"
-        emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
+        emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" >
+        
         <p:ajax event="rowSelect" listener="#{dashboardBean.navigateToSelectedCaseDetails}" disabled="#{!isReadOnlyMode}" />
+        <p:ajax event="sort" update="dashboard-cases" onstart="liveScroll()" />
 
         <p:columns var="column" value="#{caseWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass} #{(column.field eq 'name' or column.field eq 'actions' ) ? 'dashboard-cases__column-small-screen' : 'u-hidden-sm-down'}"
           visible="#{column.visible}" field="#{column.field}" filterable="false" sortBy="#{column.field}" sortable="#{column.sortable}"
@@ -95,13 +98,13 @@
             <p:tooltip for="case-application" value="#{column.display(caseItem)}" trackMouse="true" hideEvent="mouseleave click"/>
           </h:panelGroup>
           
-          <h:panelGroup rendered="#{column.field eq 'actions'}">
+          <h:panelGroup rendered="#{column.field eq 'actions'}" id="action-cell-item">
             <ui:include src="ActionsCell.xhtml" />
           </h:panelGroup>
         </p:columns>
       </p:dataTable>
       <h:panelGroup layout="block" id="empty-message-container"
-        styleClass="empty-message-container #{!isPreviewMode and caseWidget.caseCount lt 1 ? '' : 'u-display-none'}">
+        styleClass="empty-message-container #{!isPreviewMode and caseWidget.caseCount lt 1 and caseWidget.dataModel.countLoad lt 1 ? '' : 'u-display-none'}">
         <c:set var="noCasesWhenFilter"
           value="#{caseWidget.userDefinedFiltersCount.isPresent()}" />
         <h:panelGroup layout="block" id="empty-message-when-filter"
@@ -122,5 +125,13 @@
       </h:panelGroup>
     </h:panelGroup>
   </div>
+  <script type="text/javascript">
+      function liveScroll() {
+        PF('dashboard-cases-#{caseWidget.id}').scrollOffset = 0;
+        PF('dashboard-cases-#{caseWidget.id}').scrollBody.scrollTop(1);
+        PF('dashboard-cases-#{caseWidget.id}').allLoadedLiveScroll = false;
+      }
+
+    </script>
 </cc:implementation>
 </html>

@@ -1,7 +1,6 @@
 package portal.guitest.page;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -22,11 +21,9 @@ public class UserProfilePage extends TemplatePage {
   private static final String TASK_SORT_FIELD_SELECTION_LABEL = "my-profile-form:task-sort-field-selection_label";
   private static final String TASK_SORT_FIELD_SELECTION = "my-profile-form:task-sort-field-selection";
   private static final String TASK_SORT_DIRECTION_SELECTION = "my-profile-form:task-sort-direction-selection";
-  private static final String LANGUAGE_SELECTION_SELECTOR = "div[id$='language-selection'] div.ui-selectonemenu-trigger"; 
+  private static final String LANGUAGE_SELECTION_SELECTOR =
+      "div[id$='language-selection'] div.ui-selectonemenu-trigger";
 
-  private static String MAIL_NOTI_ON_TASK_ASSIGNMENT_SELECTOR = "div[id$=':mail-notification-on-task-assign']";
-  private static String FURTHER_EMAIL_FROM_APP_SELECTOR = "div[id$=':further-mails-from-application']";
-  private static String SELECTED_DAY_XPATH="//*[@id='my-profile-form:daily-summary']/div/div/div/div[2]";
   private static String SHOW_TUTORIAL_XPATH = "//*[@id='my-profile-form:general-show-tutorial']/div[2]";
 
   @Override
@@ -39,10 +36,17 @@ public class UserProfilePage extends TemplatePage {
     clickByCssSelector(LANGUAGE_SELECTION_SELECTOR);
     clickByCssSelector("li[id$='language-selection_" + newLanguage + "']");
   }
+  
+  public void inputFormattingLanguage(String newLanguage) {
+    waitForElementDisplayed(By.cssSelector(LANGUAGE_SELECTION_SELECTOR), true);
+    WebElement formattingLanguage = findElementByCssSelector("[id$='my-profile-form:format-language-selection_input']");
+    formattingLanguage.clear();
+    formattingLanguage.sendKeys(newLanguage);
+  }
 
-  public HomePage save() {
+  public NewDashboardPage save() {
     saveWithoutWaitingNavigation();
-    return new HomePage();
+    return new NewDashboardPage();
   }
   
   public void saveWithoutWaitingNavigation() {
@@ -54,66 +58,9 @@ public class UserProfilePage extends TemplatePage {
     return findElementByCssSelector("h2[id$='language-setting-title']").getText();
   }
   
-  public void switchOnEmailOnTaskAssignmentSetting() {
-    switchOnSetting(MAIL_NOTI_ON_TASK_ASSIGNMENT_SELECTOR);
-  }
-  
-  public void switchOnFurtherEmailFromAppSetting() {
-    switchOnSetting(FURTHER_EMAIL_FROM_APP_SELECTOR);
-    waitUntilAnimationFinished(DEFAULT_TIMEOUT, "my-profile-form\\\\:further-mails-from-application", ID_PROPERTY);
-  }
-  
-  public void switchOffEmailOnTaskAssignmentSetting() {
-    switchOffSetting(MAIL_NOTI_ON_TASK_ASSIGNMENT_SELECTOR);
-  }
-  
-  public void switchOffFurtherEmailFromAppSetting() {
-    switchOffSetting(FURTHER_EMAIL_FROM_APP_SELECTOR);
-  }
-
-  private void switchOnSetting(String cssSelector) {
-    WebElement inputSwitch = findElementByCssSelector(cssSelector);
-    if (!inputSwitch.getAttribute("class").contains("ui-inputswitch-checked")) {
-      click(inputSwitch);
-    }
-  }
-  
-  private void switchOffSetting(String cssSelector) {
-    WebElement inputSwitch = findElementByCssSelector(cssSelector);
-    if (inputSwitch.getAttribute("class").contains("ui-inputswitch-checked")) {
-      click(inputSwitch);
-    }
-  }
-
-  public void selectDaysForDailySummary(List<Integer> indices) {
-    List<WebElement> selectDays = findListElementsByXpath(SELECTED_DAY_XPATH);
-    for(int index : indices) {
-      WebElement selectedDayCheckbox = selectDays.get(index);
-      if (!selectedDayCheckbox.getAttribute("class").contains("ui-state-active")) {
-        click(selectedDayCheckbox);
-      }
-    }
-  }
-
-  public int getSelectedDaySummary() {
-    return findListElementsByXpath(SELECTED_DAY_XPATH)
-        .stream()
-        .filter(checkbox -> checkbox.getAttribute("class").contains("ui-state-active"))
-        .collect(Collectors.toList())
-        .size();
-  }
-  
   public boolean isSettingSwitchedOn(String cssSelector) {
     WebElement inputSwitch = findElementByCssSelector(cssSelector);
     return inputSwitch != null ? inputSwitch.getAttribute("class").contains("ui-inputswitch-checked") : false;
-  }
-  
-  public boolean isEmailOnTaskAssignmentSettingSwitchedOn() {
-    return isSettingSwitchedOn(MAIL_NOTI_ON_TASK_ASSIGNMENT_SELECTOR);
-  }
-  
-  public boolean isFurtherEmailFromAppSettingSwitchedOn() {
-    return isSettingSwitchedOn(FURTHER_EMAIL_FROM_APP_SELECTOR);
   }
   
   public WebElement getUserSettingCard() {
@@ -173,19 +120,19 @@ public class UserProfilePage extends TemplatePage {
     ensureNoBackgroundRequest();
   }
 
-  public void changeHomePageToCase() {
-    String homepageLabel = "my-profile-form:homepage_label";
-    click(By.id(homepageLabel));
+  public void changeNewDashboardPageToCase() {
+    String newdashboardpageLabel = "my-profile-form:homepage_label";
+    click(By.id(newdashboardpageLabel));
     String caseItemCssSelector = "li.ui-selectonemenu-item[data-label='Cases']";
     waitForElementDisplayed(By.cssSelector(caseItemCssSelector), true);
     clickByCssSelector(caseItemCssSelector);
-    waitUntilTextToBePresentInElement(findElementById(homepageLabel), "Cases", getTimeOutForLocator());
+    waitUntilTextToBePresentInElement(findElementById(newdashboardpageLabel), "Cases", getTimeOutForLocator());
   }
   
-  public HomePage clickOnCancelLink() {
+  public NewDashboardPage clickOnCancelLink() {
     click(findElementByCssSelector("a[id^='my-profile-form:']"));
     waitForPageLoaded();
-    return new HomePage();
+    return new NewDashboardPage();
   }
 
   public void changeDateFormatToPattern(String pattern) {

@@ -1,11 +1,9 @@
 CaseItemRelatedTaskData #class
 ch.ivy.addon.portalkit.component.CaseItemRelatedTask #namespace
-iCase ch.ivyteam.ivy.workflow.ICase #field
-iCase PERSISTENT #fieldModifier
+caze ch.ivyteam.ivy.workflow.ICase #field
+caze PERSISTENT #fieldModifier
 relatedTasks java.util.List<ch.ivyteam.ivy.workflow.ITask> #field
 relatedTasks PERSISTENT #fieldModifier
-taskId Long #field
-taskId PERSISTENT #fieldModifier
 technicalCases java.util.List<ch.ivyteam.ivy.workflow.ICase> #field
 technicalCases PERSISTENT #fieldModifier
 caseSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria #field
@@ -22,3 +20,5 @@ isWorkingOnTask Boolean #field
 isWorkingOnTask PERSISTENT #fieldModifier
 inFrame Boolean #field
 inFrame PERSISTENT #fieldModifier
+taskUUID String #field
+taskUUID PERSISTENT #fieldModifier

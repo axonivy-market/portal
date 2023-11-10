@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.poi.ss.formula.functions.T;
 
 import ch.ivy.addon.portalkit.constant.CustomFields;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -21,7 +23,7 @@ public final class ExecutingExpressProcessUtils {
 
   @SuppressWarnings("unchecked")
   public static <T> List<T> getAttributesOfTasks(String groupId, String attribute) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       TaskQuery query =
           TaskQuery.create().where().caseId().isEqual(Ivy.wfCase().getId()).and().customField().textField(TASK_GROUP_ID_KEY)
               .isEqual(groupId).orderBy().endTimestamp();
@@ -40,7 +42,7 @@ public final class ExecutingExpressProcessUtils {
   
   @SuppressWarnings("unchecked")
   public static <T> List<T> getExpressTaskEndProcessData(Long caseId, String parentCategoryName) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       TaskQuery query = buildExpressTaskQuery(caseId, parentCategoryName);
       query.orderBy().endTimestamp();
       List<ITask> tasks = Ivy.wf().getTaskQueryExecutor().getResults(query);
@@ -66,11 +68,16 @@ public final class ExecutingExpressProcessUtils {
   }
 
   public static ICase getExpressCase(long caseId) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       CaseQuery query = CaseQuery.businessCases().where().caseId().isEqual(caseId)
           .and().customField().stringField(CustomFields.IS_EXPRESS_PROCESS).isEqual("true");
       List<ICase> result = Ivy.wf().getCaseQueryExecutor().getResults(query);
       return CollectionUtils.isEmpty(result) ? null : result.get(0);
     });
+  }
+
+  public static boolean isExpressCase(ICase caze) {
+    String isExpress = caze.customFields().stringField(CustomFields.IS_EXPRESS_PROCESS).getOrDefault("false");
+    return Boolean.parseBoolean(isExpress);
   }
 }

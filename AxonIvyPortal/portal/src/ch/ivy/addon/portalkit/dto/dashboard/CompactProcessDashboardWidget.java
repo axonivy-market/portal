@@ -22,6 +22,8 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
   private static final long serialVersionUID = 1L;
 
   private List<String> processPaths;
+  protected String sorting;
+  private Map<String, Integer> customIndexs;
 
   @JsonIgnore
   private List<DashboardProcess> displayProcesses;
@@ -41,6 +43,8 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
     filterableColumns = widget.getFilterableColumns();
     originalDisplayProcesses = widget.getOriginalDisplayProcesses();
     processes = widget.getProcesses();
+    sorting = widget.getSorting();
+    customIndexs = widget.getCustomIndexs();
   }
 
   public CompactProcessDashboardWidget(ProcessDashboardWidget widget) {
@@ -143,5 +147,21 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
 
   public void setProcessPaths(List<String> processPaths) {
     this.processPaths = processPaths;
+  }
+
+  public String getSorting() {
+    return sorting;
+  }
+
+  public void setSorting(String sorting) {
+    this.sorting = sorting;
+  }
+
+  public Map<String, Integer> getCustomIndexs() {
+    return customIndexs;
+  }
+
+  public void setCustomIndexs(Map<String, Integer> customIndexs) {
+    this.customIndexs = customIndexs;
   }
 }

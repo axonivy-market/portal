@@ -41,7 +41,7 @@ public abstract class TemplatePage extends AbstractPage {
 
   //If page load more than 45s, mark it failed by timeout
   protected long getTimeOutForLocator() {
-    return 45L;
+    return 9L;
   }
 
   protected void waitForLocatorDisplayed(String locator) {
@@ -392,18 +392,18 @@ public abstract class TemplatePage extends AbstractPage {
     });
   }
 
-  public HomePage goToHomeFromBreadcrumb() {
+  public NewDashboardPage goToHomeFromBreadcrumb() {
     waitForElementDisplayed(By.cssSelector(HOME_BREADCRUMB_SELECTOR), true);
     click(By.cssSelector(HOME_BREADCRUMB_SELECTOR));
-    return new HomePage();
+    return new NewDashboardPage();
   }
   
-  public HomePage goToHomeFromBreadcrumbWithWarning() {
+  public NewDashboardPage goToHomeFromBreadcrumbWithWarning() {
     waitForElementDisplayed(By.cssSelector(HOME_BREADCRUMB_SELECTOR), true);
     click(By.cssSelector(HOME_BREADCRUMB_SELECTOR));
     waitForElementDisplayed(By.id("user-menu-required-login:warning-before-leaving-task-component:leave-button"), true);
     click(By.id("user-menu-required-login:warning-before-leaving-task-component:leave-button"));
-    return new HomePage();
+    return new NewDashboardPage();
   }
   
   public String getTextOfCurrentBreadcrumb() {
@@ -516,6 +516,40 @@ public abstract class TemplatePage extends AbstractPage {
       return findElementById(iframeId).getScreenshotAs(OutputType.FILE).length() > iframeFileSizeAtMinimum;
     });
     WaitHelper.waitForIFrameAvailable(driver, iframeId);
+  }
+
+  public boolean isAnnouncementMessageNotDisplayed() {
+    if (driver.findElements(By.cssSelector("div[class*='announcement-message-customizable']")).size() == 0) {
+      return true;
+    }
+    return false;
+  }
+
+  public String getEnviromentInfo() {
+    waitForElementDisplayed(By.cssSelector("span[id$='server-infor']"), true, 5);
+    return findElementByCssSelector("span[id$='server-infor']").getText();
+  }
+
+  public String getAnnouncementMessage() {
+    waitForElementDisplayed(By.cssSelector("div[class*='announcement-message-customizable']"), true);
+    return driver.findElement(By.cssSelector("div[class*='announcement-message-customizable']")).getText();
+  }
+
+  public boolean isChatDisplayed() {
+    if (driver.findElements(By.id("toggle-chat-panel-command")).size() == 0) {
+      return false;
+    }
+    return true;
+  }
+  public void waitForElementValueChanged(String cssSelector, String expectedValue) {
+    Awaitility.await().atMost(new Duration(DEFAULT_TIMEOUT, TimeUnit.SECONDS)).until(() -> {
+      try {
+        return expectedValue.equals(findElementByCssSelector(cssSelector).getText());
+      } catch (WebDriverException e) {
+        System.out.println("Exception when waiting for element existed, try again.");
+      }
+      return false;
+    });
   }
 
 }

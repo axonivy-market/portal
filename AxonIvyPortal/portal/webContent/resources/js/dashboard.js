@@ -1,7 +1,7 @@
 var grids;
 var originalGridstackHeight = 0;
 loadGrid();
-
+resizeTableBody();
 function loadGrid() {
   grids = GridStack.initAll({
     column: 12,
@@ -204,13 +204,35 @@ function expandFullscreen(index, widgetId) {
 
   // Hide dashboard overlay panel is opening
   hideAllDashboardOverlayPanels();
-
+  resizeTableBody();
   var isSafari = isSafariBrowser();
   if (isSafari) {
     $(widget.get(0)).parent().addClass('expand-fullscreen');
     $(widget.get(0)).closest('.js-dashboard__body').addClass('expand-fullscreen');
     $(widget.get(0)).closest('.js-layout-content').addClass('expand-fullscreen');
   }
+}
+
+function resizeTableBody() {
+  const scrollableBody = document.querySelectorAll('.ui-datatable-scrollable-body');
+  scrollableBody.forEach((sb) => {
+    const resizeObserver = new ResizeObserver(() => {
+      let tableBody = $(sb);
+      let parentHeight = tableBody.parents('.grid-stack-item-content.card.dashboard-card').height();
+      tableBody.height(parentHeight * 0.85);
+      if (!window.matchMedia("(max-width: 767px)").matches) {
+        tableBody.height(parentHeight - 100);
+        tableBody.attr('attr-item-size', parentHeight - 100);
+      } else {
+        tableBody.height(parentHeight * 0.85);
+        tableBody.attr('attr-item-size', parentHeight * 0.85);
+      }
+    });
+    setTimeout(function() {
+      resizeObserver.observe(sb);
+    }, 50);
+  })
+
 }
 
 function collapseFullscreen(index, widgetId) {
@@ -226,9 +248,9 @@ function collapseFullscreen(index, widgetId) {
   }
 
   $(widget.get(0)).parent('.grid-stack').height(originalGridstackHeight);
-
   // Hide dashboard overlay panel is opening
   hideAllDashboardOverlayPanels();
+  resizeTableBody();
 }
 
 function loadWidgetFirstTime(loadingClass, widgetClass) {
@@ -244,6 +266,7 @@ function loadWidgetFirstTime(loadingClass, widgetClass) {
     widget.removeClass('u-display-none');
     widget.removeClass('u-invisibility');
   }
+  resizeTableBody();
 }
 
 function hideAllDashboardOverlayPanels() {
@@ -406,7 +429,7 @@ function getAvailableHeightOfWidget(widget) {
   let $processStartContainer = $(widget).find("[id^='start-button-wrap-']");
   const startProcessButtonHeight = $(widget).find("button[id$=':start-button']").outerHeight(true);
   const processStartContainerXSpaces = parseInt($processStartContainer.outerHeight(true) - $processStartContainer.height());
-  
+
   return $(widget).height() - $processHeader.outerHeight(true) - startProcessButtonHeight - processDescriptionXSpaces - processStartContainerXSpaces;
 }
 // End Process Dashboard Widget
@@ -417,4 +440,32 @@ function setLineClamp(element, number) {
 
 function removeStyle(element) {
   $(element).removeAttr('style');
+}
+
+function searcNewhWidgetByNameOrDescription(input) {
+  var keyword = input.value.toLowerCase();
+  $('.js-widget').each(function() {
+    var hasKeyword = false;
+
+    $(this).find('label').each(function() {
+      if (this.innerText.toLowerCase().includes(keyword)) {
+        hasKeyword = true;
+        return;
+      }
+    });
+
+    hasKeyword ? $(this).removeClass('u-hidden') : $(this).addClass('u-hidden');
+  });
+
+  var noResult = true;
+  $('.js-widget-fieldset').each(function() {
+    if ($(this).find('.js-widget:not(".u-hidden")').length == 0) {
+      $(this).addClass('u-hidden');
+    } else {
+      $(this).removeClass('u-hidden');
+      noResult = false;
+    }
+  });
+
+  noResult ? $('.js-no-widget').removeClass('u-hidden') : $('.js-no-widget').addClass('u-hidden');
 }

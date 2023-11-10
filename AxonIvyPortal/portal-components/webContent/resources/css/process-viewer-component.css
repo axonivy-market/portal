@@ -6,15 +6,18 @@
 .process-viewer-data.has-error-message {
   font-weight: var(--process-viewer-data-has-error-message-font-weight);
   font-size: var(--process-viewer-data-has-error-message-font-size);
-  height: 200px;
 }
 
 .process-viewer-information {
-  height: 60px;
+  height: fit-content;
 }
 
 .process-viewer-information .process-information-title {
   font-weight: bold;
+}
+
+.process-viewer-fit-content {
+  min-width: fit-content;
 }
 
 .process-details-column-title {
@@ -62,9 +65,13 @@
 }
 
 .process-viewer-diagram {
-  height: calc(100% - 60px);
+  height: calc(100% - 78px);
 }
 
 .process-viewer-frame {
   height: 100%;
+}
+
+.process-viewer-data .empty-message-container {
+	margin: 90px 0px;
 }

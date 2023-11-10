@@ -9,7 +9,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -23,16 +22,19 @@ import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.util.Strings;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
-import com.axonivy.portal.bo.JsonVersion;
+import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.RoleUtils;
+import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
+import ch.addon.portal.generic.menu.MenuView;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
@@ -40,15 +42,14 @@ import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
-import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.service.ServiceException;
 
 @ViewScoped
 @ManagedBean
@@ -122,7 +123,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     this.selectedDashboard.setDisplayedPermission(displayedPermission);
     this.selectedDashboard.setPermissions(permissions);
     if (!this.dashboards.contains(selectedDashboard)) {
-      selectedDashboard.setVersion(JsonVersion.LATEST.getValue());
+      selectedDashboard.setVersion(DashboardJsonVersion.LATEST_VERSION.getValue());
       this.dashboards.add(selectedDashboard);
     }
     saveDashboards(new ArrayList<>(this.dashboards));
@@ -151,7 +152,6 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
   /**
    * Remove the image of welcome widget from CMS
-   * 
    */
   private void removeWelcomeWidgetImage(DashboardWidget selectedWidget) {
     WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) selectedWidget;
@@ -167,6 +167,9 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     } else {
       currentUser().setProperty(PortalVariable.DASHBOARD.key, dashboardJson);
     }
+
+    MenuView menuView = (MenuView) ManagedBeans.get("menuView");
+    menuView.updateDashboardCache(dashboards);
   }
 
   private List<Dashboard> getVisibleDashboards(String dashboardJson) {
@@ -179,6 +182,14 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
   public void navigateToDashboardDetailsPage(String dashboardId) {
     PortalNavigator.navigateToDashboardDetailsPage(dashboardId, isPublicDashboard);
+  }
+
+  public void navigateToPublicDashBoardListPage() {
+    PortalNavigator.navigateToDashboardConfigurationEditPageUrl(isPublicDashboard);
+  }
+
+  public void navigateToPrivateDashboardPage() {
+    PortalNavigator.navigateToDashboardConfigurationEditPageUrl(isPublicDashboard);
   }
 
   public void onSelectedDeleteDashboard(Dashboard dashboard) {
@@ -201,6 +212,11 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     navigateToDashboardDetailsPage(this.selectedDashboard.getId());
   }
 
+  public void createDashboards() {
+    collectDashboardsForManagement();
+    saveDashboardDetail();
+  }
+
   public boolean isPublicDashboard() {
     return isPublicDashboard;
   }
@@ -210,7 +226,10 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
 
   public String generateDashboardPermisisonForDisplay(Dashboard dashboard) {
-    return String.join(", ", dashboard.getPermissions());
+    return Optional.ofNullable(dashboard)
+        .map(Dashboard::getPermissions)
+        .filter(l -> CollectionUtils.isNotEmpty(l))
+        .isPresent() ? String.join(", ", dashboard.getPermissions()) : "";
   }
 
   public void updateDashboardTitleByLocale() {
@@ -269,28 +288,21 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
 
   public void translate(DisplayName title) {
-    translatedText = "";
-    warningText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/InvalidDeepLAuthKey");
-    if (!title.getLocale().getLanguage().equals(UserUtils.getUserLanguage())) {
+    translatedText = Strings.EMPTY;
+    warningText = Strings.EMPTY;
+
+    String currentLanguage = UserUtils.getUserLanguage();
+    if (!title.getLocale().getLanguage().equals(currentLanguage)) {
       Map<String, DisplayName> languages = getMapLanguages();
-      String currentLanguage = UserUtils.getUserLanguage();
       DisplayName defaultTitle = languages.get(currentLanguage);
       if (defaultTitle != null) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("text", defaultTitle.getValue());
-        params.put("targetLanguage", getTargetLanguageFromValue(title.getLocale().getLanguage().toUpperCase()));
-        params.put("sourceLanguage", getSourceLanguageFromValue(defaultTitle.getLocale().getLanguage().toUpperCase()));
-        Map<String, Object> response = null;
         try {
-          response = IvyAdapterService.startSubProcess(
-              "translateText(String,com.deepl.api.v2.client.TargetLanguage,com.deepl.api.v2.client.SourceLanguage)",
-                  params, new ArrayList<>());
-        } catch (ServiceException ex) {
-          Ivy.log().error(ex.getMessage());
-        }
-        if (response != null) {
-          translatedText = response.get("translation").toString();
-          warningText = "";
+          translatedText = DeepLTranslationService.getInstance().translate(defaultTitle.getValue(),
+              defaultTitle.getLocale(), title.getLocale());
+        } catch (Exception e) {
+          warningText = Ivy.cms()
+              .co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
+          Ivy.log().error("DeepL Translation Service error: ", e.getMessage());
         }
       }
     }
@@ -301,14 +313,14 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     return isPublicDashboard ?
         PermissionUtils.hasDashboardExportPublicPermission() : PermissionUtils.hasDashboardExportOwnPermission();
   }
-  
+
   public boolean hasImportDashboardPermission(boolean isPublicDashboard) {
     return isPublicDashboard ?
         PermissionUtils.hasDashboardImportPublicPermission() : PermissionUtils.hasDashboardImportOwnPermission();
   }
 
   public StreamedContent exportToJsonFile(Dashboard dashboard) {
-    dashboard.setVersion(JsonVersion.LATEST.getValue());
+    dashboard.setVersion(DashboardJsonVersion.LATEST_VERSION.getValue());
 
     // For private dashboard, we don't need to export permission
     if (!dashboard.getIsPublic()) {
@@ -323,7 +335,11 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
         }
       });
 
-    var inputStream = new ByteArrayInputStream(BusinessEntityConverter.prettyPrintEntityToJsonValue(dashboard).getBytes(StandardCharsets.UTF_8));
+    List<Dashboard> dashboardList = new ArrayList<>();
+    dashboardList.add(dashboard);
+
+    var inputStream = new ByteArrayInputStream(
+        BusinessEntityConverter.prettyPrintEntityToJsonValue(dashboardList).getBytes(StandardCharsets.UTF_8));
     return DefaultStreamedContent
         .builder()
         .stream(() -> inputStream)
@@ -347,4 +363,42 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
   private String getFileName(String dashboardName) {
     return dashboardName + JSON_FILE_SUFFIX;
-  }}
+  }
+
+  public boolean isShowShareButtonOnConfig(boolean isPublicDashboard) {
+    return isPublicDashboard && PermissionUtils.hasShareDashboardPermission();
+  }
+
+  public void saveArrangment() {
+    if (isPublicDashboard) {
+      savePublicArrangement();
+    } else {
+      savePrivateArrangement();
+    }
+  }
+
+  public void savePublicArrangement() {
+    List<Dashboard> dashboards = DashboardUtils.getPublicDashboards();
+    for (Dashboard dashboard : dashboards) {
+      if (dashboard.getId() == null) {
+        dashboard.setId(DashboardUtils.generateId());
+      }
+    }
+
+    Map<String, Dashboard> idToDashboard = DashboardUtils.createMapIdToDashboard(dashboards);
+    List<Dashboard> newDashboards = new ArrayList<>();
+    for (Dashboard dashboardOrder : this.dashboards) {
+      if (idToDashboard.containsKey(dashboardOrder.getId())) {
+        newDashboards.add(idToDashboard.remove(dashboardOrder.getId()));
+      }
+    }
+    newDashboards.addAll(idToDashboard.values());
+    String dashboardsAsSJSON = BusinessEntityConverter.entityToJsonValue(newDashboards);
+    Ivy.var().set(PortalVariable.DASHBOARD.key, dashboardsAsSJSON);
+  }
+
+  public void savePrivateArrangement() {
+    String dashboardJson = BusinessEntityConverter.entityToJsonValue(this.dashboards);
+    Ivy.session().getSessionUser().setProperty(PortalVariable.DASHBOARD.key, dashboardJson);
+  }
+}

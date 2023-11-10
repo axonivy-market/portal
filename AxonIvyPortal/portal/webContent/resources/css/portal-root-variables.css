@@ -139,14 +139,20 @@
 
   --new-widget-dialog-description-font-weight: 400;
   --new-widget-dialog-description-font-style: normal;
-  --new-widget-dialog-description-font-size: 1.3rem;
+  --new-widget-dialog-description-font-size: 1rem;
   --dashboard-table-empty-message-icon-font-size: 6rem;
   --new-widget-dialog-title-font-weight: 700;
   --new-widget-dialog-title-font-style: normal;
-  --new-widget-dialog-title-font-size: 1.4rem;
+  --new-widget-dialog-title-font-size: 1.1rem;
 
   /* News feed widget */
   --news-feed-item-border-radius: 1rem;
   --news-feed-item-title-line-height: 1rem;
   --news-feed-item-title-font-weight: bold;
+  
+  /* Notification */
+  --notification-background-color: #293241;
+  --notification-label-font-size: 12px;
+  --notification-label-item-font-size: 0.75em;
+  --notifications-title-header-font-weight: bold;
 }

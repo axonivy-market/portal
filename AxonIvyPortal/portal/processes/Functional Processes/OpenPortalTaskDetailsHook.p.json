@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "16D289860FF9CFCA",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -8,7 +8,7 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "call(ITask,TaskLazyDataModel,PortalPage,Boolean)",
+      "name" : "call(ITask,TaskLazyDataModel,PortalPage,Boolean,Boolean)",
       "config" : {
         "signature" : "call",
         "input" : {
@@ -16,12 +16,14 @@
             { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" },
             { "name" : "dataModel", "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel", "desc" : "" },
             { "name" : "portalPage", "type" : "ch.ivy.addon.portalkit.enums.PortalPage", "desc" : "" },
-            { "name" : "isFromTaskList", "type" : "Boolean", "desc" : "" }
+            { "name" : "isFromTaskList", "type" : "Boolean", "desc" : "" },
+            { "name" : "showItemDetailsHeader", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
             "out.dataModel" : "param.dataModel",
             "out.isFromTaskList" : "param.#isFromTaskList is initialized ? param.isFromTaskList : true",
             "out.portalPage" : "param.portalPage",
+            "out.showItemDetailsHeader" : "param.#showItemDetailsHeader is initialized ? param.showItemDetailsHeader : true",
             "out.task" : "param.task"
           }
         }
@@ -44,13 +46,14 @@
       "type" : "DialogCall",
       "name" : "PortalTaskDetails",
       "config" : {
-        "dialog" : "ch.ivy.addon.portal.generic.PortalTaskDetails:start(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)",
+        "dialog" : "ch.ivy.addon.portal.generic.PortalTaskDetails:start(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean,Boolean)",
         "call" : {
           "map" : {
             "param.task" : "in.task",
             "param.dataModel" : "in.dataModel",
             "param.portalPage" : "in.portalPage",
-            "param.isFromTaskList" : "in.isFromTaskList"
+            "param.isFromTaskList" : "in.isFromTaskList",
+            "param.showItemDetailsHeader" : "in.showItemDetailsHeader"
           }
         }
       },

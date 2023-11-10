@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "17727FBAA8BC2EDF",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -41,7 +41,7 @@
             { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
           ],
           "map" : {
-            "out.iCase" : "param.iCase"
+            "out.caze" : "param.iCase"
           }
         },
         "guid" : "167E9A777AB171EA"
@@ -67,7 +67,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.datamodel.internal.RelatedTaskLazyDataModel;",
             "",
-            "in.dataModel = new RelatedTaskLazyDataModel(in.iCase);",
+            "in.dataModel = new RelatedTaskLazyDataModel(in.caze);",
             "in.dataModel.initColumnsConfiguration();"
           ]
         }
@@ -108,9 +108,9 @@
             "import ch.ivy.addon.portal.generic.navigation.PortalNavigator;",
             "",
             "if (in.inFrame) {",
-            "  PortalNavigator.navigateToPortalTaskDetailsInFrame(in.taskId);",
+            "  PortalNavigator.navigateToPortalTaskDetailsInFrame(in.taskUUID);",
             "} else {",
-            "  PortalNavigator.navigateToPortalTaskDetails(in.taskId);",
+            "  PortalNavigator.navigateToPortalTaskDetails(in.taskUUID);",
             "}"
           ]
         }
@@ -122,19 +122,19 @@
     }, {
       "id" : "f45",
       "type" : "HtmlDialogMethodStart",
-      "name" : "navigateToSelectedTaskDetails(Long,Boolean,Boolean)",
+      "name" : "navigateToSelectedTaskDetails(String,Boolean,Boolean)",
       "config" : {
         "signature" : "navigateToSelectedTaskDetails",
         "input" : {
           "params" : [
-            { "name" : "taskId", "type" : "Long", "desc" : "" },
+            { "name" : "taskUUID", "type" : "String", "desc" : "" },
             { "name" : "isWorkingOnTask", "type" : "Boolean", "desc" : "" },
             { "name" : "inFrame", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
             "out.inFrame" : "param.inFrame",
             "out.isWorkingOnTask" : "param.isWorkingOnTask",
-            "out.taskId" : "param.taskId"
+            "out.taskUUID" : "param.taskUUID"
           }
         },
         "guid" : "1720C62D9BF92EB1"
@@ -157,9 +157,9 @@
             "import ch.ivy.addon.portal.generic.navigation.PortalNavigator;",
             "",
             "if (in.inFrame) {",
-            "  PortalNavigator.navigateToPortalRelatedTasksOfCaseInFrame(in.iCase.getId(), true, PermissionUtils.getCaseName(in.iCase));",
+            "  PortalNavigator.navigateToPortalRelatedTasksOfCaseInFrame(in.caze.uuid(), true, PermissionUtils.getCaseName(in.caze));",
             "} else {",
-            "  PortalNavigator.navigateToPortalRelatedTasksOfCase(in.iCase.getId(), true, PermissionUtils.getCaseName(in.iCase));",
+            "  PortalNavigator.navigateToPortalRelatedTasksOfCase(in.caze.uuid(), true, PermissionUtils.getCaseName(in.caze));",
             "}"
           ]
         }

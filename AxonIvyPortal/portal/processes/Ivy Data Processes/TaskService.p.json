@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "146C8E81DE07F973",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -362,10 +362,10 @@
         "signature" : "analyzeTaskBusinessStateStatistic",
         "input" : {
           "params" : [
-            { "name" : "taskSearchCriteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria", "desc" : "" }
+            { "name" : "criteria", "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria", "desc" : "" }
           ],
           "map" : {
-            "out.taskSearchCriteria" : "param.taskSearchCriteria"
+            "out.taskSearchCriteria" : "param.criteria"
           }
         },
         "result" : {

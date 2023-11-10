@@ -3,12 +3,15 @@ package ch.ivy.gawfs.beans;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
+
+import com.axonivy.portal.components.util.CaseUtils;
 
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.jsf.Attrs;
@@ -38,7 +41,8 @@ public class ExpressBusinessViewBean implements Serializable {
 
   @PostConstruct
   public void init() {
-    this.caseId = Attrs.currentContext().getAttribute("#{data.caseId}", Long.class);
+    String uuid = Attrs.currentContext().getAttribute("#{data.uuid}", String.class);
+    this.caseId = Optional.ofNullable(CaseUtils.findCase(uuid)).map(ICase::getId).orElse(null);
     expressCase = ExecutingExpressProcessUtils.getExpressCase(caseId);
     if (expressCase != null) {
       executeWorkflowDataList = collectPredefinedWorkflowData(expressCase.getCategory().getName());

@@ -1,4 +1,4 @@
 BusinessDetailsData #class
 com.axonivy.portal.components.examples #namespace
-iCase ch.ivyteam.ivy.workflow.ICase #field
-caseId Long #field
+caze ch.ivyteam.ivy.workflow.ICase #field
+uuid String #field

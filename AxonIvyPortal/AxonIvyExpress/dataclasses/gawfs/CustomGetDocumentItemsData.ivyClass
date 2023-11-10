@@ -1,0 +1,6 @@
+CustomGetDocumentItemsData #class
+gawfs #namespace
+businessCase ch.ivyteam.ivy.workflow.ICase #field
+message String #field
+documents java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument> #field
+status com.axonivy.portal.components.enums.CustomProcessStatus #field

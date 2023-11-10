@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "181FC5E5ED6EAE2A",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -34,11 +34,12 @@
             "import com.axonivy.portal.components.dto.ProcessViewerDTO;",
             "import com.axonivy.portal.components.util.ProcessViewerUtils;",
             "",
-            "ProcessViewerDTO processViewerDTO = ProcessViewerUtils.initProcessViewer(in.caseId, in.processId);",
+            "ProcessViewerDTO processViewerDTO = ProcessViewerUtils.initProcessViewer(in.taskId, in.caseId, in.processId);",
             "in.webStartable = processViewerDTO.getWebStartable();",
             "in.webLink = processViewerDTO.getWebLink();",
             "in.isError = processViewerDTO.isError();",
-            "in.errorMessage = processViewerDTO.getErrorMessage();"
+            "in.errorMessage = processViewerDTO.getErrorMessage();",
+            "in.errorIcon = processViewerDTO.getErrorIcon();"
           ]
         },
         "sudo" : true
@@ -125,17 +126,19 @@
     }, {
       "id" : "f16",
       "type" : "HtmlDialogMethodStart",
-      "name" : "initData(Long,String)",
+      "name" : "initData(Long,Long,String)",
       "config" : {
         "signature" : "initData",
         "input" : {
           "params" : [
+            { "name" : "taskId", "type" : "Long", "desc" : "" },
             { "name" : "caseId", "type" : "Long", "desc" : "" },
             { "name" : "processId", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId",
-            "out.processId" : "param.processId"
+            "out.processId" : "param.processId",
+            "out.taskId" : "param.taskId"
           }
         },
         "guid" : "1820140735F9BD0F"

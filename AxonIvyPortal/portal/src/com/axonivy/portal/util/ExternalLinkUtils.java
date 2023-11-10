@@ -1,7 +1,5 @@
 package com.axonivy.portal.util;
 
-import static org.apache.commons.lang3.StringUtils.EMPTY;
-
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.UUID;
@@ -22,7 +20,6 @@ public class ExternalLinkUtils {
 
   public static final String IMAGE_DIRECTORY = "com/axonivy/portal/ExternalLink";
   public static final String DEFAULT_LOCALE_TAG = "en";
-  public static final String BASE_64 = "base64";
 
   public static Pair<String, String> handleImageUpload(FileUploadEvent event) {
     UploadedFile file = event.getFile();
@@ -39,7 +36,7 @@ public class ExternalLinkUtils {
         return Pair.of(imageCMSObject.uri(), fileExtension);
       }
     }
-    return Pair.of(EMPTY, EMPTY);
+    return Pair.of(StringUtils.EMPTY, StringUtils.EMPTY);
   }
 
   public static void removeImage(String imageUrl, String imageType) {
@@ -49,35 +46,28 @@ public class ExternalLinkUtils {
     }
   }
 
-  public static Pair<String, String> imageBase64ToApplicationCMSFile(String base64Data) {
+  public static String imageBase64ToApplicationCMSFile(String base64Data, String imageType) {
     try {
-      String encodedData = base64Data.split(",")[1];
-      byte[] data = Base64.getDecoder().decode(encodedData.getBytes(StandardCharsets.UTF_8));
+      byte[] data = Base64.getDecoder().decode(base64Data.getBytes(StandardCharsets.UTF_8));
       String fileName = UUID.randomUUID().toString();
-      String fileExtension = getImageExtensionFromBase64(base64Data);
-      ContentObject imageCMSObject = getApplicationCMS().child().folder(IMAGE_DIRECTORY).child().file(fileName,
-          fileExtension);
+      ContentObject imageCMSObject = getApplicationCMS().child().folder(IMAGE_DIRECTORY).child().file(fileName, imageType);
 
       if (imageCMSObject != null) {
         readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(data);
-        return Pair.of(imageCMSObject.uri(), fileExtension);
+        return imageCMSObject.uri();
       }
     } catch (Exception e) {
       Ivy.log().warn("Cannot convert base64 image to cms file: {0}", e.getMessage());
     }
-    return Pair.of(EMPTY, EMPTY);
+    return StringUtils.EMPTY;
   }
   
-  public static Boolean isValidImageUrl(String imageUrl, String imageType) {
-    if (StringUtils.isBlank(imageUrl)) {
+  public static Boolean isValidImageUrl(String imageLocation, String imageType) {
+    if (StringUtils.isBlank(imageLocation)) {
       return false;
     }
 
-    if (imageUrl.contains(BASE_64)) {
-      return true;
-    }
-
-    ContentObject imageCMSObject = getApplicationCMS().child().file(imageUrl, imageType);
+    ContentObject imageCMSObject = getApplicationCMS().child().file(imageLocation, imageType);
     return imageCMSObject.exists();
   }
 
@@ -90,14 +80,5 @@ public class ExternalLinkUtils {
 
   private static ContentObject getApplicationCMS() {
     return ContentManagement.cms(IApplication.current()).root();
-  }
-
-  private static String getImageExtensionFromBase64(String base64Data) {
-    try {
-      return base64Data.split(";")[0].split("/")[1];
-    } catch (Exception e) {
-      Ivy.log().warn("Invalid base64 image format: {0}", e.getMessage());
-    }
-    return EMPTY;
   }
 }

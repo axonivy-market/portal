@@ -1,14 +1,24 @@
 package ch.ivy.addon.portalkit.util;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
+
+import com.axonivy.portal.migration.dashboard.migrator.JsonDashboardMigrator;
+import com.axonivy.portal.migration.dashboardtemplate.migrator.JsonDashboardTemplateMigrator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
@@ -56,15 +66,23 @@ public class DashboardUtils {
   }
 
   public static List<Dashboard> jsonToDashboards(String dashboardJSON) {
-    List<Dashboard> mappingDashboards = BusinessEntityConverter.jsonValueToEntities(dashboardJSON, Dashboard.class);
-    for (Dashboard dashboard : mappingDashboards) {
+    if (StringUtils.isBlank(dashboardJSON)) {
+      return new ArrayList<>();
+    }
+
+    List<Dashboard> mappingDashboards = convertDashboardsToLatestVersion(dashboardJSON);
+    mappingDashboards.forEach(dashboard -> initDefaultPermission());
+    return mappingDashboards;
+  }
+
+  private static Consumer<Dashboard> initDefaultPermission() {
+    return dashboard -> {
       if (CollectionUtils.isEmpty(dashboard.getPermissions())) {
         ArrayList<String> defaultPermissions = new ArrayList<>();
         defaultPermissions.add(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
         dashboard.setPermissions(defaultPermissions);
       }
-    }
-    return mappingDashboards;
+    };
   }
 
   private static IUser currentUser() {
@@ -101,7 +119,7 @@ public class DashboardUtils {
 
   public static List<DashboardTemplate> getDashboardTemplates() {
     String dashboardTemplatesJson = Ivy.var().get(PortalVariable.DASHBOARD_TEMPLATES.key);
-    return BusinessEntityConverter.jsonValueToEntities(dashboardTemplatesJson, DashboardTemplate.class);
+    return convertDashboardTemplatesToLatestVersion(dashboardTemplatesJson);
   }
 
   public static void setDashboardAsPublic(List<Dashboard> visibleDashboards) {
@@ -115,9 +133,7 @@ public class DashboardUtils {
 
   public static Map<String, Dashboard> createMapIdToDashboard(List<Dashboard> dashboards) {
     Map<String, Dashboard> idToDashboard = new LinkedHashMap<>();
-    for (Dashboard dashboard : dashboards) {
-      idToDashboard.put(dashboard.getId(), dashboard);
-    }
+    dashboards.forEach(dashboard -> idToDashboard.put(dashboard.getId(), dashboard));
     return idToDashboard;
   }
 
@@ -165,5 +181,57 @@ public class DashboardUtils {
       dashboardId = dashboardId.replace(DASHBOARD_MENU_ITEM_POSTFIX, "");
       Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), dashboardId);
     }
+  }
+
+  public static List<Dashboard> convertDashboardsToLatestVersion(String json) {
+    try {
+      ObjectMapper mapper = new ObjectMapper();
+      JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(json));
+      return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), Dashboard.class);
+    } catch (JsonProcessingException ex) {
+      Ivy.log().error("Failed to read dashboard from JSON {0}", ex, json);
+    }
+    return null;
+  }
+
+  public static List<Dashboard> convertDashboardsFromUploadFileToLastestVersion(InputStream inputStream)
+      throws IOException {
+    new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+    try {
+      ObjectMapper mapper = new ObjectMapper();
+      JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(inputStream));
+      return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), Dashboard.class);
+    } catch (JsonProcessingException e) {
+      Ivy.log().error("Failed to read dashboard from JSON {0}", e);
+    }
+    return null;
+  }
+
+  public static Dashboard convertDashboardToLatestVersion(InputStream inputStream) throws IOException {
+    new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+    try {
+      ObjectMapper mapper = new ObjectMapper();
+      JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(inputStream));
+      return BusinessEntityConverter.convertJsonNodeToEntity(migrator.migrate(), Dashboard.class);
+    } catch (JsonProcessingException ex) {
+      Ivy.log().error("Failed to read dashboard from JSON {0}", ex);
+    }
+    return null;
+  }
+
+  private static List<DashboardTemplate> convertDashboardTemplatesToLatestVersion(String json) {
+    try {
+      ObjectMapper mapper = new ObjectMapper();
+      JsonDashboardTemplateMigrator migrator = new JsonDashboardTemplateMigrator(mapper.readTree(json));
+      return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), DashboardTemplate.class);
+    } catch (JsonProcessingException ex) {
+      Ivy.log().error("Failed to read dashboard template from JSON {0}", ex, json);
+    }
+    return null;
+  }
+  
+  
+  public static void storeDashboardInSession(String id) {
+    Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), id);
   }
 }

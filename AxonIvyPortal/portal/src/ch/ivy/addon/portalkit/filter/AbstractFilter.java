@@ -145,4 +145,11 @@ public abstract class AbstractFilter<T extends Query<?>> {
   protected String getAllLabel() {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/All");
   }
+
+  /**
+   * <p>
+   * Update filter when open filter content
+   * </p>
+   */
+  public void update() {}
 }

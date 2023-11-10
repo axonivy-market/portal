@@ -28,6 +28,7 @@ public class CaseTaskNoteHistoryBean implements Serializable {
   
   private static final String SHOW_TASK_NOTE_HISTORY_FRIENDLY_REQUEST_PATH = "Start Processes/PortaStart/showTaskNoteHistory.ivp";
   private static final String SHOW_CASE_NOTE_HISTORY_FRIENDLY_REQUEST_PATH = "Start Processes/PortaStart/showCaseNoteHistory.ivp";
+  private static final String UUID = "uuid";
   
   public boolean isShowAddNote() {
     return PermissionUtils.hasPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
@@ -39,38 +40,31 @@ public class CaseTaskNoteHistoryBean implements Serializable {
 
   public String getTaskNoteHistoryLink(ITask task) {
     Map<String, String> params = new HashMap<>();
-    params.put("selectedTaskId", String.valueOf(task.getId()));
+    params.put(UUID, task.uuid());
     return PortalNavigator.buildUrlByKeyword("showTaskNoteHistory.ivp", SHOW_TASK_NOTE_HISTORY_FRIENDLY_REQUEST_PATH, params);
   }
 
   public String getCaseNoteHistoryLink(ICase iCase) {
-    return getCaseNoteHistoryLink(iCase.getId());
+    return getCaseNoteHistoryLink(iCase.uuid());
   }
   
-  public String getCaseNoteHistoryLink(Long caseId) {
+  public String getCaseNoteHistoryLink(String uuid) {
     Map<String, String> params = new HashMap<>();
-    params.put("caseId", String.valueOf(caseId));
+    params.put(UUID, uuid);
     return PortalNavigator.buildUrlByKeyword("showCaseNoteHistory.ivp", SHOW_CASE_NOTE_HISTORY_FRIENDLY_REQUEST_PATH, params);
   }
 
   public String getCaseNoteContent(History history) {
     String content = history.getContent();
     if (history.getType() == HistoryType.TASK) {
-      switch (history.getTaskState()) {
-        case DONE:
-          return createContentWithTaskState("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDone", content);
-        case DESTROYED:
-          return createContentWithTaskState("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDestroyed", content);
-        case CREATED:
-          return createContentWithTaskState("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateIsCreated", content);
-        case FAILED:
-        case JOIN_FAILED:
-          return createContentWithTaskState("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsFailed", content);
-        case WAITING_FOR_INTERMEDIATE_EVENT:
-          return createContentWithTaskState("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsWaiting", content);
-        default:
-          break;
-      }
+      return switch (history.getTaskState()) {
+        case DONE -> createContentWithTaskState("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDone", content);
+        case DESTROYED -> createContentWithTaskState("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDestroyed", content);
+        case CREATED -> createContentWithTaskState("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateIsCreated", content);
+        case FAILED, JOIN_FAILED -> createContentWithTaskState("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsFailed", content);
+        case WAITING_FOR_INTERMEDIATE_EVENT -> createContentWithTaskState("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsWaiting", content);
+        default -> content;
+      };
     }
     return content; 
   }

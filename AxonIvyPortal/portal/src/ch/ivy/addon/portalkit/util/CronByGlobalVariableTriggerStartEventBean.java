@@ -23,9 +23,9 @@ import org.quartz.impl.StdSchedulerFactory;
 import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
 import ch.ivyteam.ivy.process.eventstart.IProcessStartEventBeanRuntime;
-import ch.ivyteam.ivy.process.extension.ui.UiEditorExtension;
+import ch.ivyteam.ivy.process.extension.ProgramConfig;
 import ch.ivyteam.ivy.process.extension.ui.ExtensionUiBuilder;
-import ch.ivyteam.ivy.process.extension.ui.IUiFieldEditor;
+import ch.ivyteam.ivy.process.extension.ui.UiEditorExtension;
 import ch.ivyteam.ivy.service.ServiceException;
 import ch.ivyteam.ivy.vars.Variable;
 import ch.ivyteam.ivy.vars.Variables;
@@ -48,23 +48,19 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
   private static final String RUNTIME_KEY = "eventRuntime";
   private static final Object SYN_OBJECT = new Object();
   private static Map<String, Long> startedJobs = Collections.synchronizedMap(new HashMap<String, Long>());
+  private static final String VARIABLE = "variable";
 
-
-  /**
-   * Default constructor
-   */
   public CronByGlobalVariableTriggerStartEventBean() {
     super("CronTrigger", "Description of CronTrigger");
   }
 
   @Override
-  public void initialize(IProcessStartEventBeanRuntime eventRuntime, String configuration) {
+  public void initialize(IProcessStartEventBeanRuntime eventRuntime, ProgramConfig configuration) {
     super.initialize(eventRuntime, configuration);
     // Disable Ivy polling
-    eventRuntime.setPollTimeInterval(0);
-
+    eventRuntime.poll().disable();
     try {
-      Variable var = Variables.of(eventRuntime.getProcessModelVersion().getApplication()).variable(configuration);
+      Variable var = Variables.of(eventRuntime.getProcessModelVersion().getApplication()).variable(configuration.get(VARIABLE));
       if (var != null) {
         String pattern = var.value();
         SchedulerFactory sf = new StdSchedulerFactory();
@@ -146,9 +142,7 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
             eventRuntime.executeAsSystem(new Callable<Void>() {
               @Override
               public Void call() throws Exception {
-                String firingReason = "Cron Trigger started " + triggerIdentifier;
-                Map<String, Object> parameters = new HashMap<>();
-                eventRuntime.fireProcessStartEventRequest(null, firingReason, parameters);
+                eventRuntime.processStarter().withReason("Cron Trigger started " + triggerIdentifier).start();
                 return null;
               }
             });
@@ -179,21 +173,9 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
    */
   public static class Editor extends UiEditorExtension {
 
-    private IUiFieldEditor globalVariable;
-
-    @Override
+	@Override
     public void initUiFields(ExtensionUiBuilder ui) {
-      globalVariable = ui.textField().create();
-    }
-
-    @Override
-    public String getConfiguration() {
-      return globalVariable.getText();
-    }
-
-    @Override
-    public void setConfiguration(String configString) {
-      globalVariable.setText(configString);
+      ui.textField(VARIABLE).create();
     }
   }
 }

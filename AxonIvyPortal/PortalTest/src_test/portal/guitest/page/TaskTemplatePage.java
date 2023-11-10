@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.WaitHelper;
 
@@ -97,6 +98,7 @@ public class TaskTemplatePage extends TemplatePage {
     click(findElementByClassName("side-step-item"));
     waitForElementDisplayed(By.id("sidestep-task-reset-confirmation-dialog"), true);
     click(findElementById("side-step-start-ok"));
+    new NewDashboardPage();
   }
 
   public int countSideSteps() {
@@ -126,7 +128,7 @@ public class TaskTemplatePage extends TemplatePage {
     switchToCaseInfoIframe();
     return findElementByCssSelector("span[id$='case-id']").getText();
   }
-
+  
   public void clickAdhocCreationButton() {
     clickTaskActionMenu();
     clickOnStartAdhocLink();
@@ -187,18 +189,18 @@ public class TaskTemplatePage extends TemplatePage {
     return findDisplayedElementByCssSelector(adhocCreationMessageCSSSelector).getText();
   }
 
-  public HomePage clickSubmitButton() {
+  public TaskWidgetPage clickSubmitButton() {
     clickOnSubmitButton();
-    return new HomePage();
+    return new TaskWidgetPage();
   }
 
   public void clickOnSubmitButton() {
     clickByCssSelector("button[id$='button-submit']");
   }
 
-  public HomePage clickCancelAndLeftButton() {
+  public TaskWidgetPage clickCancelAndLeftButton() {
     clickByCssSelector("a[id$='button-cancel']");
-    return new HomePage();
+    return new TaskWidgetPage();
   }
 
   public void clickCancelButton() {
@@ -216,13 +218,10 @@ public class TaskTemplatePage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("div[id$='adhoc-task-reset-confirmation-dialog_content']"), true);
   }
 
-  public void clickChatGroup(boolean growlMessageExpected) {
+  public void clickChatGroup() {
     String chatGroup = "a[id$='chat-group']";
     waitForElementDisplayed(By.cssSelector(chatGroup), true);
     clickByCssSelector(chatGroup);
-    if (growlMessageExpected) {
-      waitForElementDisplayedByCssSelector("span.ui-growl-title");
-    }
   }
 
   @SuppressWarnings("deprecation")
@@ -258,6 +257,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void clickCreateGroupChatBtn() {
+    waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-group-create-button"), true);
     click(By.id("chat-assignee-selection-form:chat-group-create-button"));
     waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-group-create-button"), false);
   }
@@ -279,15 +279,15 @@ public class TaskTemplatePage extends TemplatePage {
     click(By.id("form:save-btn"));
     driver.switchTo().defaultContent();
     WaitHelper.waitForPresenceOfElementLocatedInFrame(driver, "[id$='global-search-component:global-search-data']");
-    return new TaskWidgetPage();
+    return NavigationHelper.navigateToTaskList();
   }
 
-  public HomePage backToHomeInIFrameApprovalTask() {
+  public NewDashboardPage backToHomeInIFrameApprovalTask() {
     driver.switchTo().frame("iFrame");
     waitForElementDisplayed(By.id("content-form:home-btn"), true);
     click(By.id("content-form:home-btn"));
     driver.switchTo().defaultContent();
-    return new HomePage();
+    return new NewDashboardPage();
   }
 
   public TaskWidgetPage finishIFrameReviewTask() {

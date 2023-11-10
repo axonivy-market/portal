@@ -1,0 +1,11 @@
+[
+  {
+    "id": "0",
+    "aggregates": "businessState:bucket",
+    "filter": "businessState:OPEN",
+    "permissions": [
+      "everybody"
+  ] ,
+  "isCaseFilter" : "false"
+  }
+]

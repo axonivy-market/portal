@@ -27,6 +27,7 @@ public class CaseTaskDocumentBean implements Serializable {
       "Start Processes/PortalStart/ShowTaskDocument.ivp";
   private static final String SHOW_CASE_DOCUMENT_FRIENDLY_REQUEST_PATH =
       "Start Processes/PortaStart/ShowCaseDocument.ivp";
+  private static final String UUID = "uuid";
 
   public boolean isShowMoreDocument() {
     return PermissionUtils.hasPermission(IPermission.DOCUMENT_READ);
@@ -67,14 +68,14 @@ public class CaseTaskDocumentBean implements Serializable {
 
   public String getTaskDocumentsLink(ITask task) {
     Map<String, String> params = new HashMap<>();
-    params.put("selectedTaskId", String.valueOf(task.getId()));
+    params.put(UUID, task.uuid());
     return PortalNavigator.buildUrlByKeyword("ShowTaskDocument.ivp", SHOW_TASK_DOCUMENT_FRIENDLY_REQUEST_PATH,
         params);
   }
 
   public String getCaseDocumentsLink(ICase iCase) {
     Map<String, String> params = new HashMap<>();
-    params.put("caseId", String.valueOf(iCase.getId()));
+    params.put(UUID, iCase.uuid());
     return PortalNavigator.buildUrlByKeyword("ShowCaseDocument.ivp", SHOW_CASE_DOCUMENT_FRIENDLY_REQUEST_PATH,
         params);
   }

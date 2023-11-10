@@ -27,21 +27,24 @@ public final class AbsenceAndSubstituteUtils {
    * @return boolean : true if from bigger than till
    */
   public static boolean checkFromBiggerThanTill(IvyAbsence ivyAbsence) {
+    if (isFromDateAfterTill(ivyAbsence)) {
+      FacesContext.getCurrentInstance().addMessage(null,
+          new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co(
+              "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/fromBiggerThanTill"), ""));
+      return true;
+    }
+    return false;
+  }
+  
+  public static boolean isFromDateAfterTill(IvyAbsence ivyAbsence) {
     if (ivyAbsence == null || ivyAbsence.getFrom() == null || ivyAbsence.getUntil() == null) {
       return false;
     }
 
     Date startDate = setTimeToMidnight(ivyAbsence.getFrom());
     Date stopDate = setTimeToMidnight(ivyAbsence.getUntil());
-
-    if (ivyAbsence.getUntil() != null && ivyAbsence.getFrom() != null && (startDate.compareTo(stopDate) > 0)) {
-      FacesContext.getCurrentInstance().addMessage(null,
-          new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co(
-              "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/fromBiggerThanTill"), ""));
-      return true;
-    }
-
-    return false;
+    
+    return startDate.compareTo(stopDate) > 0;
   }
 
   /**

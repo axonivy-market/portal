@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "153358BE9219FD4C",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -36,7 +36,7 @@
             { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
           ],
           "map" : {
-            "out.iCase" : "param.iCase"
+            "out.caze" : "param.iCase"
           }
         },
         "guid" : "167E9A777AB171EA"
@@ -60,8 +60,8 @@
         "output" : {
           "map" : {
             "out1" : "in",
-            "out1.iCase" : "in.iCase",
-            "out2.iCase" : "in.iCase"
+            "out1.caze" : "in.caze",
+            "out2.caze" : "in.caze"
           }
         }
       },
@@ -114,9 +114,9 @@
             "in.totalRelatedTasks = 0;",
             "boolean excludeHiddenTasks = Boolean.parseBoolean(ivy.var.get(HiddenTasksCasesConfig.PORTAL_HIDDEN_TASK_CASE_EXCLUDED));",
             "ISession session = ivy.session;",
-            "boolean isOwner = in.iCase.#owner != null ? in.iCase.getOwner().isMember(ivy.session, true) : false;",
+            "boolean isOwner = in.caze.#owner != null ? in.caze.getOwner().isMember(ivy.session, true) : false;",
             "boolean ableToSeeAllRelatedTaskOfCase = PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission() || isOwner;",
-            "for (ITask task : in.iCase.tasks().all()) {",
+            "for (ITask task : in.caze.tasks().all()) {",
             "  if ((task.getState() == TaskState.SUSPENDED || task.getState() == TaskState.RESUMED || task.getState() == TaskState.PARKED || task.getState() == TaskState.CREATED)",
             "        && (excludeHiddenTasks ? StringUtils.isEmpty(task.customFields().stringField(AdditionalProperty.HIDE.toString()).getOrNull()) : true) && task.isPersistent()) {",
             "    if (ableToSeeAllRelatedTaskOfCase) {",
@@ -161,7 +161,7 @@
             "import java.util.Arrays;",
             "",
             "",
-            "out.caseSearchCriteria.businessCaseId = in.iCase.getId();",
+            "out.caseSearchCriteria.businessCaseId = in.caze.getId();",
             "out.caseSearchCriteria.setIncludedStates(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE));",
             "out.caseSearchCriteria.technicalCase = true;",
             "out.caseSearchCriteria.adminQuery = PermissionUtils.checkReadAllCasesPermission();"
@@ -208,7 +208,7 @@
         "processCall" : "Functional Processes/Navigator:viewCase(ch.ivy.addon.portalkit.dto.GlobalCaseId)",
         "call" : {
           "map" : {
-            "param.caseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.selectedTechnicalCase.getId()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build()"
+            "param.caseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.uuid(in.selectedTechnicalCase.uuid()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build()"
           }
         }
       },
@@ -225,7 +225,7 @@
         "call" : {
           "map" : {
             "param.businessCaseName" : "ch.ivy.addon.portalkit.util.PermissionUtils.getCaseName(in.selectedTechnicalCase)",
-            "param.businessCaseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.selectedTechnicalCase.getId()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build()"
+            "param.businessCaseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.uuid(in.selectedTechnicalCase.uuid()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build()"
           }
         }
       },
@@ -289,9 +289,9 @@
             "import ch.ivy.addon.portal.generic.navigation.PortalNavigator;",
             "",
             "if (in.inFrame) {",
-            "  PortalNavigator.navigateToPortalRelatedTasksOfCaseInFrame(in.iCase.getId(), true, PermissionUtils.getCaseName(in.iCase));",
+            "  PortalNavigator.navigateToPortalRelatedTasksOfCaseInFrame(in.caze.uuid(), true, PermissionUtils.getCaseName(in.caze));",
             "} else {",
-            "  PortalNavigator.navigateToPortalRelatedTasksOfCase(in.iCase.getId(), true, PermissionUtils.getCaseName(in.iCase));",
+            "  PortalNavigator.navigateToPortalRelatedTasksOfCase(in.caze.uuid(), true, PermissionUtils.getCaseName(in.caze));",
             "}"
           ]
         }
@@ -309,9 +309,9 @@
             "import ch.ivy.addon.portal.generic.navigation.PortalNavigator;",
             "",
             "if (in.inFrame) {",
-            "  PortalNavigator.navigateToPortalTaskDetailsInFrame(in.taskId);",
+            "  PortalNavigator.navigateToPortalTaskDetailsInFrame(in.taskUUID);",
             "} else {",
-            "  PortalNavigator.navigateToPortalTaskDetails(in.taskId);",
+            "  PortalNavigator.navigateToPortalTaskDetails(in.taskUUID);",
             "}"
           ]
         }
@@ -367,19 +367,19 @@
     }, {
       "id" : "f45",
       "type" : "HtmlDialogMethodStart",
-      "name" : "navigateToSelectedTaskDetails(Long,Boolean,Boolean)",
+      "name" : "navigateToSelectedTaskDetails(String,Boolean,Boolean)",
       "config" : {
         "signature" : "navigateToSelectedTaskDetails",
         "input" : {
           "params" : [
-            { "name" : "taskId", "type" : "Long", "desc" : "" },
+            { "name" : "taskUUID", "type" : "String", "desc" : "" },
             { "name" : "isWorkingOnTask", "type" : "Boolean", "desc" : "" },
             { "name" : "inFrame", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
             "out.inFrame" : "param.inFrame",
             "out.isWorkingOnTask" : "param.isWorkingOnTask",
-            "out.taskId" : "param.taskId"
+            "out.taskUUID" : "param.taskUUID"
           }
         },
         "guid" : "1720C62D9BF92EB1"
@@ -495,7 +495,7 @@
         "processCall" : "Functional Processes/Navigator:viewCaseItemDetailsInIFrame(ch.ivy.addon.portalkit.dto.GlobalCaseId)",
         "call" : {
           "map" : {
-            "param.caseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.selectedTechnicalCase.getId()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build()"
+            "param.caseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.uuid(in.selectedTechnicalCase.uuid()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build()"
           }
         }
       },
@@ -529,7 +529,7 @@
         "call" : {
           "map" : {
             "param.businessCaseName" : "ch.ivy.addon.portalkit.util.PermissionUtils.getCaseName(in.selectedTechnicalCase)",
-            "param.businessCaseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.selectedTechnicalCase.getId()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build()"
+            "param.businessCaseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.uuid(in.selectedTechnicalCase.uuid()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build()"
           }
         }
       },

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "1602F513613E1225",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -781,7 +781,7 @@
         "processCall" : "Ivy Data Processes/TaskService:analyzeTaskBusinessStateStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)",
         "call" : {
           "map" : {
-            "param.taskSearchCriteria" : "in.taskSearchCriteria"
+            "param.criteria" : "in.taskSearchCriteria"
           }
         },
         "output" : {

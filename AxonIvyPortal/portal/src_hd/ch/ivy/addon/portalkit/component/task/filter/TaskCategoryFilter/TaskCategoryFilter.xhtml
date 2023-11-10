@@ -14,7 +14,8 @@
 <cc:implementation>
   <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="#{cc.attrs.componentId}"
     taskFilter="#{cc.attrs.filter}" selectedFilters="#{cc.attrs.selectedFilters}"
-    resultContainerUpdated="#{cc.attrs.resultContainerUpdated}" dataModel="#{cc.attrs.dataModel}">
+    resultContainerUpdated="#{cc.attrs.resultContainerUpdated}" dataModel="#{cc.attrs.dataModel}"
+    dynamicUpdate="true">
     <p:tree id="task-category-filter-tree" value="#{cc.attrs.filter.root}" var="node" selectionMode="checkbox"
       selection="#{cc.attrs.filter.categories}" filterBy="#{node.value}" filterMatchMode="contains"
       styleClass="filter-category-checkbox-tree">

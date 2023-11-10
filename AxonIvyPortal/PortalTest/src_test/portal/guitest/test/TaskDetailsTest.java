@@ -1,5 +1,6 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -10,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
@@ -17,17 +19,18 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.TestRole;
 import portal.guitest.common.Variable;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
+import portal.guitest.page.UserProfilePage;
 
 public class TaskDetailsTest extends BaseTest {
 
   private static final String COMMENT_CONTENT = "Test comment";
-  private HomePage homePage;
   private TaskWidgetPage taskWidgetPage;
   private TaskDetailsPage taskDetailsPage;
 
@@ -37,14 +40,13 @@ public class TaskDetailsTest extends BaseTest {
     super.setup();
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     createTestingTasks();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    homePage = new HomePage();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    new NewDashboardPage();
   }
 
   @Test
   public void testDelegateTaskInTaskDetail() {
-    login(TestAccount.HR_ROLE_USER);
-    homePage = new HomePage();
+    login(TestAccount.ADMIN_USER);
     taskDetailsPage = openDetailsPageOfFirstTask();
     assertTrue(StringUtils.equalsIgnoreCase(TestRole.EVERYBODY_ROLE, taskDetailsPage.getTaskResponsible()));
     taskDetailsPage.openTaskDelegateDialog();
@@ -59,27 +61,37 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   private TaskDetailsPage openDetailsPageOfFirstTask() {
-    taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     return taskWidgetPage.openTaskDetails(0);
   }
 
   @Test
   public void testChangeTaskDeadline() {
-    String tomorrowStringLiteral = prepareTomorrowAsString();
+    setFormattingLanguage();
+    LocalDateTime now = LocalDateTime.now();
+    String tomorrowStringLiteral = prepareTomorrowAsString(now);
     taskDetailsPage = openDetailsPageOfFirstTask();
     taskDetailsPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
-    assertTrue(StringUtils.equalsIgnoreCase(prepareTomorrowAsLocaleDateString(), taskDetailsPage.getExpiryOfTaskAt()));
+    assertEquals(prepareTomorrowAsLocaleDateString(now), taskDetailsPage.getExpiryOfTaskAt());
+  }
+
+  private void setFormattingLanguage() {
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
+    userProfilePage.inputFormattingLanguage("English (United Kingdom)");
+    newDashboardPage = userProfilePage.save();
   }
 
   @Test
   public void testChangeTaskDeadlineWithAfterEscalationIsNA() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTestingCaseMapUrl);
-    String tomorrowStringLiteral = prepareTomorrowAsString();
+    setFormattingLanguage();
+    LocalDateTime now = LocalDateTime.now();
+    String tomorrowStringLiteral = prepareTomorrowAsString(now);
     taskDetailsPage = openDetailsPageOfFirstTask();
     taskDetailsPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
-    assertTrue(StringUtils.equalsIgnoreCase(prepareTomorrowAsLocaleDateString(), taskDetailsPage.getExpiryOfTaskAt()));
+    assertTrue(StringUtils.equalsIgnoreCase(prepareTomorrowAsLocaleDateString(now), taskDetailsPage.getExpiryOfTaskAt()));
     String firstTaskNoteComment = taskDetailsPage.getFirstTaskNoteComment();
     assertTrue(StringUtils.contains(firstTaskNoteComment, "Portal Admin User (admin) has set deadline to task"));
     assertTrue(StringUtils.contains(firstTaskNoteComment, "assign Everybody as the task escalation activator"));
@@ -113,14 +125,14 @@ public class TaskDetailsTest extends BaseTest {
     assertFalse(taskDetailsPage.canChangeEscalationActivator());
   }
 
-  private String prepareTomorrowAsString() {
-    LocalDateTime tomorrow = LocalDateTime.now().plusDays(1);
+  private String prepareTomorrowAsString(LocalDateTime now) {
+    LocalDateTime tomorrow = now.plusDays(1);
     return tomorrow.format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
   }
   
-  private String prepareTomorrowAsLocaleDateString() {
-    LocalDateTime tommorrow = LocalDateTime.now().plusDays(1);
-    return tommorrow.format(DateTimeFormatter.ofPattern(DateTimePattern.LOCALE_DATE_TIME_PATTERN));
+  private String prepareTomorrowAsLocaleDateString(LocalDateTime now) {
+    LocalDateTime tommorrow = now.plusDays(1);
+    return tommorrow.format(DateTimeFormatter.ofPattern(DateTimePattern.LOCALE_DATE_TIME_PATTERN, Locale.UK));
   }
 
   @Test
@@ -136,16 +148,18 @@ public class TaskDetailsTest extends BaseTest {
 
   @Test
   public void testChangeDelayTimestamp() {
+    setFormattingLanguage();
     openDelayTask();
     assertTrue(StringUtils.equalsIgnoreCase("DELAYED", taskDetailsPage.getTaskState()));
-    String tomorrow = prepareTomorrowAsString();
-    String tomorrowWithLocale = prepareTomorrowAsLocaleDateString();
+    LocalDateTime now = LocalDateTime.now();
+    String tomorrow = prepareTomorrowAsString(now);
+    String tomorrowWithLocale = prepareTomorrowAsLocaleDateString(now);
     taskDetailsPage.updateDelayTimestamp(tomorrow,tomorrowWithLocale);
     assertTrue(StringUtils.equalsIgnoreCase("DELAYED", taskDetailsPage.getTaskState()));
     refreshPage();
     taskDetailsPage = new TaskDetailsPage();
     String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
-    String yesterdayWithLocale = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.LOCALE_DATE_TIME_PATTERN));
+    String yesterdayWithLocale = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.LOCALE_DATE_TIME_PATTERN, Locale.UK));
     taskDetailsPage.updateDelayTimestamp(yesterday,yesterdayWithLocale);
     assertTrue(StringUtils.equalsIgnoreCase("OPEN", taskDetailsPage.getTaskState()));
   }
@@ -154,8 +168,6 @@ public class TaskDetailsTest extends BaseTest {
   public void testShowTaskWorkflowEvent() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTechnicalStateUrl);
-    homePage = new HomePage();
-
     taskDetailsPage = openDetailsPageOfFirstTask();
     String eventData = taskDetailsPage.openWorkflowEventDialog();
     assertTrue(eventData.contains("admin"));
@@ -164,9 +176,7 @@ public class TaskDetailsTest extends BaseTest {
   private void openDelayTask() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTaskWithSystemState);
-    homePage = new HomePage();
-    taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Delayed"));
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
   }
@@ -179,9 +189,7 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   private void openFirstTaskInCompletedTasks() {
-    homePage = new HomePage();
-    taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.openAdvancedFilter("Completed on (from/to)", "completed");
     filterByDateType("completed");
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
@@ -216,9 +224,7 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   private void openFirstTaskInTaskList() {
-    homePage = new HomePage();
-    taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
   }
 

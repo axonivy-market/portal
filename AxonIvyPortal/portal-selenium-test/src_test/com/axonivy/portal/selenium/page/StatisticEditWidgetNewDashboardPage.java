@@ -4,6 +4,7 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
@@ -27,6 +28,7 @@ public class StatisticEditWidgetNewDashboardPage extends TemplatePage {
   public void save() {
     $("[id$='new-widget-configuration-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("button[id$='widget-configuration-save-button']").shouldBe(getClickableCondition()).click();
+    $("div[id='new-widget-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void selectFirstChart() {
@@ -39,4 +41,16 @@ public class StatisticEditWidgetNewDashboardPage extends TemplatePage {
     $("[id$=':new-widget-configuration-component:statistic-list_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
+  public void clickPreviewButton() {
+    $("button[id$='preview-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='widget-configuration-form:new-widget-configuration-component:preview-statistic']")
+      .find("canvas").shouldBe(appear, DEFAULT_TIMEOUT);
+    //Wait for chart animation loaded
+    Sleeper.sleep(1000);
+    $("button[id$='preview-button']").hover();
+  }
+
+  public SelenideElement getConfigurationDialog() {
+    return $("div[id='new-widget-configuration-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
 }

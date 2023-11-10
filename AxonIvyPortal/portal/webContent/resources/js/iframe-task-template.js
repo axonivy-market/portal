@@ -28,6 +28,7 @@ function loadIframe(recheckIndicator) {
     }
   }
 
+  resizeIFrame();
   recheckFrameTimer = setTimeout(function () { loadIframe(true); }, 500);
 }
 

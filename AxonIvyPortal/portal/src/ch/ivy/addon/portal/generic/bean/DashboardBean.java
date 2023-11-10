@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -18,9 +17,9 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 
-import com.deepl.api.v2.client.SourceLanguage;
-import com.deepl.api.v2.client.TargetLanguage;
+import com.axonivy.portal.service.DeepLTranslationService;
 
+import ch.addon.portal.generic.menu.MenuView;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
@@ -37,12 +36,14 @@ import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.CaseEmptyMessage;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.DashboardService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -50,7 +51,9 @@ import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
@@ -79,15 +82,24 @@ public class DashboardBean implements Serializable {
   private List<DashboardTemplate> dashboardTemplates;
   protected String translatedText;
   protected String warningText;
+  protected String dashboardUrl;
+  protected List<Dashboard> importedDashboards;
 
   @PostConstruct
   public void init() {
     currentDashboardIndex = 0;
     dashboards = collectDashboards();
+
+    if (isReadOnlyMode) {
+      MenuView menuView = (MenuView) ManagedBeans.get("menuView");
+      menuView.updateDashboardCache(dashboards);
+    }
+
     if (CollectionUtils.isNotEmpty(dashboards)) {
       selectedDashboardId = readDashboardFromSession();
       currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
       selectedDashboard = dashboards.get(currentDashboardIndex);
+      initShareDashboardLink(selectedDashboard);
       // can not find dashboard by dashboard id session in view mode
       if (StringUtils.isBlank(selectedDashboardId)
           || (!selectedDashboardId.equalsIgnoreCase(selectedDashboard.getId()) && dashboards.size() > 1)) {
@@ -168,8 +180,8 @@ public class DashboardBean implements Serializable {
   }
 
   public void navigateToSelectedTaskDetails(SelectEvent<Object> event) {
-    Long taskId = ((ITask) event.getObject()).getId();
-    PortalNavigator.navigateToPortalTaskDetails(taskId);
+    String uuid = ((ITask) event.getObject()).uuid();
+    PortalNavigator.navigateToPortalTaskDetails(uuid);
   }
 
   public void handleRowSelectEventOnTaskWidget(SelectEvent<Object> event) throws IOException {
@@ -184,19 +196,19 @@ public class DashboardBean implements Serializable {
       navigateToSelectedTaskDetails(task);
     }
   }
-  
+
   public void handleStartTask(ITask task) throws IOException {
     selectedTask = task;
-    TaskUtils.handleStartTask(task, null, PortalConstants.RESET_TASK_CONFIRMATION_DIALOG);
+    TaskUtils.handleStartTask(task, PortalPage.HOME_PAGE, PortalConstants.RESET_TASK_CONFIRMATION_DIALOG);
   }
 
   public void navigateToSelectedTaskDetails(ITask task) {
-    PortalNavigator.navigateToPortalTaskDetails(task.getId());
+    PortalNavigator.navigateToPortalTaskDetails(task.uuid());
   }
 
   public void navigateToSelectedCaseDetails(SelectEvent<Object> event) {
-    Long caseId = ((ICase) event.getObject()).getId();
-    PortalNavigator.navigateToPortalCaseDetails(caseId);
+    String uuid = ((ICase) event.getObject()).uuid();
+    PortalNavigator.navigateToPortalCaseDetails(uuid);
   }
 
   public void resetAndOpenTask() throws IOException {
@@ -221,11 +233,11 @@ public class DashboardBean implements Serializable {
   public String createExtractedTextFromHtml(String text) {
     return HtmlParser.extractTextFromHtml(text);
   }
-  
+
   public String createParseTextFromHtml (String text) {
 	  return HtmlParser.parseTextFromHtml(text);
   }
-  
+
   public int getCurrentTabIndex() {
     return dashboards.indexOf(getSelectedDashboard());
   }
@@ -261,7 +273,7 @@ public class DashboardBean implements Serializable {
   protected String translate(String cms) {
     return Ivy.cms().co(cms);
   }
-  
+
   protected String translate(String cms, List<Object> params) {
     return Ivy.cms().co(cms, params);
   }
@@ -372,15 +384,15 @@ public class DashboardBean implements Serializable {
   public void setDashboardTemplates(List<DashboardTemplate> dashboardTemplates) {
     this.dashboardTemplates = dashboardTemplates;
   }
-  
+
   private String readDashboardFromSession() {
     return (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString());
   }
-  
+
   private void storeDashboardInSession(String id) {
     Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), id);
   }
-  
+
   private int findIndexOfDashboardById(String selectedDashboardId) {
     int currentDashboardIndex = 0;
     if(StringUtils.isNotBlank(selectedDashboardId)) {
@@ -403,13 +415,7 @@ public class DashboardBean implements Serializable {
   }
 
   public boolean isShowTranslation(DisplayName title) {
-    String deepLAuthKey = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.DEEPL_AUTH_KEY);
-    boolean enableDeepL = GlobalSettingService.getInstance()
-        .findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_DEEPL_TRANSLATION);
-    boolean isShow = StringUtils.isNotBlank(title.getValue())
-        && !title.getLocale().getLanguage().equals(UserUtils.getUserLanguage()) && enableDeepL
-        && StringUtils.isNotBlank(deepLAuthKey);
-    return isShow;
+    return DeepLTranslationService.getInstance().isShowTranslation(title.getLocale());
   }
 
   public boolean isFocus(DisplayName title) {
@@ -427,19 +433,6 @@ public class DashboardBean implements Serializable {
     }
   }
 
-  public TargetLanguage getTargetLanguageFromValue(String language) {
-    if (Locale.ENGLISH.getLanguage().equalsIgnoreCase(language)) {
-      return TargetLanguage.EN_US;
-    }
-    return TargetLanguage.fromValue(language);
-  }
-
-  public SourceLanguage getSourceLanguageFromValue(String language) {
-    if (Locale.ENGLISH.getLanguage().equalsIgnoreCase(language)) {
-      return SourceLanguage.UK;
-    }
-    return SourceLanguage.fromValue(language);
-  }
   public boolean isRequiredField(DisplayName displayName) {
     String currentLanguage = UserUtils.getUserLanguage();
     String displayLanguage = displayName.getLocale().getLanguage();
@@ -448,6 +441,29 @@ public class DashboardBean implements Serializable {
 
   public String getWarningText() {
     return warningText;
+  }
+  public String getDashboardUrl() {
+    return dashboardUrl;
+  }
+
+  public void setDashboardUrl(String dashboardUrl) {
+    this.dashboardUrl = dashboardUrl;
+  }
+
+  public void initShareDashboardLink(Dashboard dashboard) {
+    setDashboardUrl(UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId()));
+  }
+
+  public boolean isShowShareButtonOnDashboard() {
+    return PermissionUtils.hasShareDashboardPermission() && selectedDashboard != null && !getIsEditMode() && selectedDashboard.getIsPublic();
+  }
+
+  public List<Dashboard> getImportedDashboards() {
+    return importedDashboards;
+  }
+
+  public void setImportedDashboards(List<Dashboard> importedDashboards) {
+    this.importedDashboards = importedDashboards;
   }
 
 }

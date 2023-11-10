@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "16AC05A855359627",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -8,9 +8,9 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "call(ICase,IvyDocument)",
+      "name" : "deleteDocument(ICase,IvyDocument)",
       "config" : {
-        "signature" : "call",
+        "signature" : "deleteDocument",
         "input" : {
           "params" : [
             { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
@@ -31,17 +31,17 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 64 },
+        "at" : { "x" : 216, "y" : 112 },
         "labelOffset" : { "x" : 1, "y" : 37 }
       },
       "connect" : [
-        { "id" : "f4", "to" : "f3" }
+        { "id" : "f4", "to" : "f7" }
       ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 416, "y" : 64 }
+        "at" : { "x" : 912, "y" : 112 }
       }
     }, {
       "id" : "f3",
@@ -61,7 +61,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 256, "y" : 64 },
+        "at" : { "x" : 752, "y" : 112 },
         "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : [
@@ -70,13 +70,74 @@
     }, {
       "id" : "f5",
       "type" : "ProcessAnnotation",
-      "name" : "Override this sub process to delete file in DMS",
+      "name" : [
+        "Override this sub process to deletThis sub process can be customized to delete file in DMS",
+        "",
+        "The custom proccess signature must be: \"portalDeleteDocument(ICase,IvyDocument)\"e file in DMS"
+      ],
       "visual" : {
-        "at" : { "x" : 288, "y" : 184 },
-        "size" : { "width" : 256, "height" : 40 }
+        "at" : { "x" : 216, "y" : 280 },
+        "size" : { "width" : 400, "height" : 88 }
       },
       "connect" : [
         { "id" : "f6", "to" : "f0" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "Script",
+      "name" : [
+        "Call customized",
+        "sub process"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "import com.axonivy.portal.enums.PortalCustomSignature;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "",
+            "Map params = new HashMap();",
+            "params.put(\"businessCase\", in.businessCase);",
+            "params.put(\"document\", in.document);",
+            "",
+            "Map result = IvyAdapterService.startSubProcessInSecurityContext(PortalCustomSignature.DELETE_DOCUMENT.getSignature(), params);",
+            "in.hasCustomProcess = result != null;",
+            "if (in.hasCustomProcess) {",
+            "  in.message = result.get(\"message\").toString();",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 376, "y" : 112 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f9" }
+      ]
+    }, {
+      "id" : "f9",
+      "type" : "Alternative",
+      "name" : "Has custom sub process?",
+      "config" : {
+        "conditions" : {
+          "f11" : "in.hasCustomProcess",
+          "f10" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 560, "y" : 112 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "f3", "label" : {
+            "name" : "No"
+          } },
+        { "id" : "f11", "to" : "f1", "via" : [ { "x" : 560, "y" : 184 }, { "x" : 912, "y" : 184 } ], "label" : {
+            "name" : "Yes",
+            "offset" : { "x" : -95, "y" : -2 }
+          } }
       ]
     } ]
 }

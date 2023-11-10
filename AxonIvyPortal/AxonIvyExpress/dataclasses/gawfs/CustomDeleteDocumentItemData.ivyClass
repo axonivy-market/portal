@@ -1,0 +1,6 @@
+CustomDeleteDocumentItemData #class
+gawfs #namespace
+document com.axonivy.portal.components.ivydata.bo.IvyDocument #field
+businessCase ch.ivyteam.ivy.workflow.ICase #field
+message String #field
+status com.axonivy.portal.components.enums.CustomProcessStatus #field

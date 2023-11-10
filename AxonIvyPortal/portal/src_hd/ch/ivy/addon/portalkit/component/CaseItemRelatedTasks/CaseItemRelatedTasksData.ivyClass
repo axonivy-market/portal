@@ -1,15 +1,13 @@
 CaseItemRelatedTasksData #class
 ch.ivy.addon.portalkit.component.CaseItemRelatedTasks #namespace
-iCase ch.ivyteam.ivy.workflow.ICase #field
-iCase PERSISTENT #fieldModifier
+caze ch.ivyteam.ivy.workflow.ICase #field
+caze PERSISTENT #fieldModifier
 isTaskFinished Boolean #field
 isTaskFinished PERSISTENT #fieldModifier
 isWorkingOnTask Boolean #field
 isWorkingOnTask PERSISTENT #fieldModifier
 inFrame Boolean #field
 inFrame PERSISTENT #fieldModifier
-taskId Long #field
-taskId PERSISTENT #fieldModifier
 task ch.ivyteam.ivy.workflow.ITask #field
 task PERSISTENT #fieldModifier
 canUserResumeTask Boolean #field
@@ -41,3 +39,5 @@ startIndex Integer #field
 startIndex PERSISTENT #fieldModifier
 tasks List<ch.ivyteam.ivy.workflow.ITask> #field
 tasks PERSISTENT #fieldModifier
+taskUUID String #field
+taskUUID PERSISTENT #fieldModifier

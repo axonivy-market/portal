@@ -15,6 +15,7 @@ import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.util.threadcontext.IvyThreadContext;
 
+@SuppressWarnings("deprecation")
 public class DashboardProcessTaskLazyDataModel extends LazyDataModel7<ITask> {
 
   private static final long serialVersionUID = -6615871274830927272L;

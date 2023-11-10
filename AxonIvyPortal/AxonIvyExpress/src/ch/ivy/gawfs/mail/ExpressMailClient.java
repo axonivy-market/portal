@@ -10,7 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpressUserEmail;
 import ch.ivy.addon.portalkit.dto.ExpressAttachment;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.mail.Attachment;
 import ch.ivyteam.ivy.mail.MailClient;
@@ -18,15 +17,13 @@ import ch.ivyteam.ivy.mail.MailClientConfig;
 import ch.ivyteam.ivy.mail.MailClientConfigProvider;
 import ch.ivyteam.ivy.mail.MailMessage;
 import ch.ivyteam.ivy.mail.MailMessage.Builder;
-import ch.ivyteam.ivy.project.IIvyProject;
-import ch.ivyteam.ivy.project.IvyProjectUtil;
 import ch.ivyteam.ivy.scripting.objects.File;
-import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
+import ch.ivyteam.ivy.security.exec.Sudo;
 
 public class ExpressMailClient {
 
   public static void send(ExpressUserEmail mail) {
-    IvyExecutor.executeAsSystem(() -> {
+    Sudo.get(() -> {
       MailMessage message = mapMailMessage(mail);
       MailClientConfig mailSetupConfig = getMailClientConfig();
 
@@ -83,12 +80,7 @@ public class ExpressMailClient {
   }
 
   private static MailClientConfig getMailClientConfig() {
-    IIvyProject ivyProject = IvyProjectUtil.getIvyProjectByName(getProjectName());
-    return MailClientConfigProvider.get(ivyProject);
-  }
-
-  private static String getProjectName() {
-    return IWorkflowProcessModelVersion.of(Ivy.request().getProcessModelVersion()).getProjectName();
+    return MailClientConfigProvider.get();
   }
 
 }

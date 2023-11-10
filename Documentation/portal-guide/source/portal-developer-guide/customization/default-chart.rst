@@ -8,7 +8,7 @@ Default Chart
 Introduction
 ------------
 
-In the legacy Portal home page, by default, there is a chart named "Tasks by
+In the Statistics page, by default, there is a chart named "Tasks by
 Priority". However, you can create your default chart.
 
 .. _customization-default-chart-customization:

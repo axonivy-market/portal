@@ -14,13 +14,11 @@ import org.junit.Test;
 
 import ch.ivy.addon.portalkit.enums.DeputyRoleType;
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AbsencePage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.NewAbsencePage;
 import portal.guitest.page.TemplatePage;
-import portal.guitest.page.UserProfilePage;
 
 public class AbsenceTest extends BaseTest {
   private static final LocalDate TODAY = LocalDate.now();
@@ -34,15 +32,15 @@ public class AbsenceTest extends BaseTest {
     updatePortalSetting(HIDE_YEAR.getKey(), "false");
   }
 
-  private HomePage changeDateFormat() {
-    HomePage homePage = new HomePage();
-    return homePage;
+  private NewDashboardPage changeDateFormat() {
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    return newDashboardPage;
   }
 
   @Test
   public void whenLoginAsNormalUserThenManageAbsencesOfThatUser() {
-    HomePage homePage = changeDateFormat();
-    AbsencePage absencePage = openAbsencePage(homePage);
+    NewDashboardPage newDashboardPage = changeDateFormat();
+    AbsencePage absencePage = openAbsencePage(newDashboardPage);
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
     createAbsenceForCurrentUser(TODAY, TODAY, "For party", absencePage);
     assertEquals(1, absencePage.countAbsences());
@@ -53,8 +51,8 @@ public class AbsenceTest extends BaseTest {
   @Test
   public void whenLoginAsAdminUserThenManageAbsencesOfAllUsers() {
     login(TestAccount.ADMIN_USER);
-    HomePage homePage = changeDateFormat();
-    AbsencePage absencePage = openAbsencePage(homePage);
+    NewDashboardPage newDashboardPage = changeDateFormat();
+    AbsencePage absencePage = openAbsencePage(newDashboardPage);
     createAbsenceForCurrentUser(TODAY, TODAY, "For party", absencePage);
     String demoFullName = TestAccount.DEMO_USER.getFullName();
     createAbsence(demoFullName, YESTERDAY, YESTERDAY, "For travel of another user", absencePage);
@@ -66,8 +64,8 @@ public class AbsenceTest extends BaseTest {
   public void displayMessageWhenInputOverlappingAbsence() {
     LocalDate chosenDay = LocalDate.now();
     LocalDate theNextDayOfChosenDay = chosenDay.plusDays(1);
-    HomePage homePage = changeDateFormat();
-    AbsencePage absencePage = openAbsencePage(homePage);
+    NewDashboardPage newDashboardPage = changeDateFormat();
+    AbsencePage absencePage = openAbsencePage(newDashboardPage);
     createAbsenceForCurrentUser(chosenDay, theNextDayOfChosenDay, "Just day off", absencePage);
     assertEquals(1, absencePage.countAbsences());
 
@@ -137,14 +135,14 @@ public class AbsenceTest extends BaseTest {
   @Test
   public void testIAmDeputyFor() {
     login(TestAccount.ADMIN_USER);
-    HomePage homePage = changeDateFormat();
-    AbsencePage absencePage = openAbsencePage(homePage);
+    NewDashboardPage newDashboardPage = changeDateFormat();
+    AbsencePage absencePage = openAbsencePage(newDashboardPage);
     createAbsenceForCurrentUser(TOMORROW, TOMORROW, "For Family", absencePage);
 
     absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName()), 0);
     absencePage.saveSubstitute();
     login(TestAccount.DEMO_USER);
-    absencePage = openAbsencePage(homePage);
+    absencePage = openAbsencePage(newDashboardPage);
     assertTrue(absencePage.getIAMDeputyFor().contains(TestAccount.ADMIN_USER.getFullName()));
   }
 
@@ -153,7 +151,7 @@ public class AbsenceTest extends BaseTest {
   }
   
   private AbsencePage openAbsencePage() {
-    return new HomePage().openAbsencePage();
+    return new NewDashboardPage().openAbsencePage();
   }
 
   private void createAbsenceForCurrentUser(LocalDate from, LocalDate till, String comment, AbsencePage absencePage) {

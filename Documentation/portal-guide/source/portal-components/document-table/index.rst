@@ -3,14 +3,157 @@
 Document Table
 **************
 
-This component is a case document table with the features display, upload,
+This component is a case document table with functions display, upload,
 download and delete document entries.
 
 |document-table|
 
-To extend features of this component, please override these subprocesses: ``GetDocumentItems``,
-``UploadDocumentItem``, ``DeleteDocumentItem``, and ``DownloadDocumentItem``.
-You can also add a new column or remove default columns of the document table.
+Attributes
+^^^^^^^^^^
+.. csv-table::
+  :file: ../documents/document_table_component_attributes.csv
+  :header-rows: 1
+  :class: longtable
+  :widths: 1 1 1 3
+
+Virus scanning
+^^^^^^^^^^^^^^
+
+The **Document Table** has options to check for harmful scripts and viruses inside the file before uploading it to the system.
+
+   - Set ``enableScriptCheckingForUploadedDocument`` to ``true`` to check for harmful scripts.
+   - Set ``enableVirusScannerForUploadedDocument`` to ``true`` to enable virus scanning.
+
+Code example:
+
+.. code-block:: html
+
+   <ic:com.axonivy.portal.components.DocumentTable id="document-table-component"
+      enableScriptCheckingForUploadedDocument="true"
+      enableVirusScannerForUploadedDocument="true" />
+
+Please refer to :ref:`settings-virus-scanning-setting` for more details about virus scanning.
+
+.. _components-portal-components-migrate-from-old-document-table:
+
+Customize
+^^^^^^^^^
+
+In your project, create four callable subprocesses with the information below to customize
+the functions of the **Document Table**.
+
+.. tip::
+
+   You can refer to process ``CustomDocumentFeatures`` in project ``portal-component-examples``
+   to examnine how to customize.
+
+Get document list
+-----------------
+
+To customize how **Document Table** gets documents, create a callable subprocess with:
+
+**Signature**: portalGetDocumentItems
+
++------------------------+----------------------------------------------------------------------+
+| Name                   | Type                                                                 |
++========================+======================================================================+
+| **Parameter**                                                                                 |
++------------------------+----------------------------------------------------------------------+
+| businessCase           | ch.ivyteam.ivy.workflow.ICase                                        |
++------------------------+----------------------------------------------------------------------+
+|**Result**                                                                                     |
++------------------------+----------------------------------------------------------------------+
+| documents              | java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument> |
++------------------------+----------------------------------------------------------------------+
+| message                | java.lang.String                                                     |
++------------------------+----------------------------------------------------------------------+
+
+.. note::
+
+   After you get the document list from DMS, convert it into ``List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>``
+   These fields are mandatory when mapping: ``id``, ``name``, ``contentType``
+
+Upload document
+---------------
+
+To customize what **Document Table** should do when a user uploads a document,
+create a callable subprocess with:
+
+**Signature**: portalUploadDocumentItem
+
++-----------------------------------------+-----------------------------------------------+---------------+
+| Name                                    | Type                                          | Note          |
++=========================================+===============================================+===============+
+| **Parameter**                                                                                           |
++-----------------------------------------+-----------------------------------------------+---------------+
+| businessCase                            | ch.ivyteam.ivy.workflow.ICase                 |               |
++-----------------------------------------+-----------------------------------------------+---------------+
+| uploadedFile                            | org.primefaces.model.file.UploadedFile        |               |
++-----------------------------------------+-----------------------------------------------+---------------+
+| enableScriptCheckingForUploadedDocument | java.lang.Boolean                             |               |
++-----------------------------------------+-----------------------------------------------+---------------+
+| enableVirusScannerForUploadedDocument   | java.lang.Boolean                             |               |
++-----------------------------------------+-----------------------------------------------+---------------+
+| allowedUploadFileTypes                  | java.lang.String                              |               |
++-----------------------------------------+-----------------------------------------------+---------------+
+| **Result**                                                                                              |
++-----------------------------------------+-----------------------------------------------+---------------+
+| uploadedDocument                        | ch.ivyteam.ivy.workflow.document.IDocument    |               |
++-----------------------------------------+-----------------------------------------------+---------------+
+| message                                 | java.lang.String                              |               |
++-----------------------------------------+-----------------------------------------------+---------------+
+| status                                  | java.lang.String                              | OK or FAIL    |
++-----------------------------------------+-----------------------------------------------+---------------+
+
+Download document
+-----------------
+
+To customize behavior when a user downloads a document from **Document Table**,
+create a callable subprocess with:
+
+**Signature**: portalDownloadDocumentItem
+
++------------------------+------------------------------------------------------+
+| Name                   | Type                                                 |
++========================+======================================================+
+| **Parameter**                                                                 |
++------------------------+------------------------------------------------------+
+| businessCase           | ch.ivyteam.ivy.workflow.ICase                        |
++------------------------+------------------------------------------------------+
+| document               | com.axonivy.portal.components.ivydata.bo.IvyDocument |
++------------------------+------------------------------------------------------+
+|**Result**                                                                     |
++------------------------+------------------------------------------------------+
+| streamedContent        | org.primefaces.model.StreamedContent                 |
++------------------------+------------------------------------------------------+
+
+Delete document
+---------------
+
+To customize behavior when a user deletes a document from **Document Table**,
+create a callable subprocess with:
+
+**Signature**: portalDeleteDocumentItem
+
++------------------------+------------------------------------------------------+
+| Name                   | Type                                                 |
++========================+======================================================+
+| **Parameter**                                                                 |
++------------------------+------------------------------------------------------+
+| businessCase           | ch.ivyteam.ivy.workflow.ICase                        |
++------------------------+------------------------------------------------------+
+| document               | com.axonivy.portal.components.ivydata.bo.IvyDocument |
++------------------------+------------------------------------------------------+
+|**Result**                                                                     |
++------------------------+------------------------------------------------------+
+| message                | java.lang.String                                     |
++------------------------+------------------------------------------------------+
+
+User interface
+--------------
+
+Not only the functions, but you can also customize the UI of the **Document Table**
+such as adding a new column or removing default columns.
 
 Code Example:
 
@@ -38,40 +181,40 @@ Code Example:
       </ic:com.axonivy.portal.components.DocumentTable>
    </h:form>
 
+.. tip::
 
-Refer to process ``DocumentTableExample`` in project ``portal-components-examples`` for more details.
+   Refer to process ``DocumentTableExample`` in project ``portal-components-examples`` for more details.
 
-Attributes of this component:
+Migration Notes
+^^^^^^^^^^^^^^^
 
+Migrate 10.0.x to 10.0.12
+-------------------------
 
-.. csv-table::
-  :file: ../documents/document_table_component_attributes.csv
-  :header-rows: 1
-  :class: longtable
-  :widths: 1 1 1 3
+Since this version, we no longer support the override process approach for functions of **Document Table**.
+Please follow our guidelines below to migrate your override subprocesses.
 
-Script checking and virus scanning
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   - Remove Subprocess Override of ``GetDocumentItems``, ``UploadDocumentItem``,
+     ``DeleteDocumentItem``, and ``DownloadDocumentItem`` from your project.
 
-The Document Table has options to check for harmful scripts and viruses inside the file before uploading it to the system.
+   - Change the signature of your callable starts as described below.
 
-   - Set ``enableScriptCheckingForUploadedDocument`` to ``true`` to check for harmful scripts.
-   - Set ``enableVirusScannerForUploadedDocument`` to ``true`` to enable virus scanning.
+      +----------------------+----------------------------+
+      | Subprocess           | New signature              |
+      +======================+============================+
+      | GetDocumentItems     | portalGetDocumentItems     |
+      +----------------------+----------------------------+
+      | UploadDocumentItem   | portalUploadDocumentItem   |
+      +----------------------+----------------------------+
+      | DeleteDocumentItem   | portalDownloadDocumentItem |
+      +----------------------+----------------------------+
+      | DownloadDocumentItem | portalDeleteDocumentItem   |
+      +----------------------+----------------------------+
 
-Code example:
+Now your **Document Table** should work as before.
 
-.. code-block:: html
-
-   <ic:com.axonivy.portal.components.DocumentTable id="document-table-component"
-      enableScriptCheckingForUploadedDocument="true"
-      enableVirusScannerForUploadedDocument="true" />
-
-Please refer to :ref:`settings-virus-scanning-setting` for more details about virus scanning.
-
-.. _components-portal-components-migrate-from-old-document-table:
-
-Migrate from Deprecated Document Table
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Migrate to 10.0.0
+-----------------
 
 #. Replace code in HTML files: replace ``ic:ch.ivy.addon.portalkit.component.document.DocumentTable`` with ``ic:com.axonivy.portal.components.DocumentTable``.
 
@@ -80,7 +223,7 @@ Migrate from Deprecated Document Table
 #. Override subprocesses if you want and adapt your business accordingly.
 
    +-----------------------------------+--------------------------+
-   | New sub process                   | Deprecated sub process   |
+   | New subprocess                    | Deprecated subprocess    |
    +===================================+==========================+
    | GetDocumentItems                  | GetDocumentList          |
    +-----------------------------------+--------------------------+
@@ -96,8 +239,8 @@ Migrate from Deprecated Document Table
 #. Attributes ``typeSelectionItems`` and ``selectedType`` now use ``com.axonivy.portal.components.enums.DocumentType``.
    Please replace ``ch.ivy.addon.portalkit.enums.DocumentType`` with ``com.axonivy.portal.components.enums.DocumentType``.
 
-.. note::
-   Please remove redundant overridden configurations, subprocesses, and data classes such as GetDocumentListOverride,
-   UploadDocumentOverride, etc.
+   .. note::
+      Please remove redundant overridden configurations, subprocesses, and data classes such as GetDocumentListOverride,
+      UploadDocumentOverride, etc.
 
 .. |document-table| image:: ../../screenshots/components/document-table.png

@@ -1,6 +1,6 @@
 .. _customization-document-processes:
 
-Document processes
+Document Processes
 ==================
 
 .. _customization-document-processes-introduction:
@@ -8,54 +8,115 @@ Document processes
 Introduction
 ------------
 
-When you upload document but want to manage them outside ivy, for
-example: in Document Management System (DMS), you should follow this
-section to override document functions of Portal.
+When you upload documents but want to manage them outside of Ivy, for
+example: in a Document Management System (DMS), you should follow this
+section to customize the document functions of Portal.
 
 .. _customization-document-processes-customization:
 
-Customization
--------------
+Customize
+---------
+In your project, create four callable subprocesses with the below information
+to customize document functions.
 
-#. Introduce an |ivy| project which has ``portal`` as a
-   required library.
+Get document list
++++++++++++++++++
 
-#. Copy the ``PortalStart`` process from ``portal`` to your
-   project. This process is new home page and administrator should
-   register this link by global
+Customize how Portal gets documents, create a callable subprocess with:
 
-#. Refer to :ref:`Customize Portal
-   home <customization-portal-home>` to set new home
-   page.
+**Signature**: portalGetDocumentList
 
-#. Override 4 ``Document subprocesses`` described in table below to
-   customize document functions.
++------------------------+----------------------------------------------------------------------+
+| Name                   | Type                                                                 |
++========================+======================================================================+
+| **Parameter**                                                                                 |
++------------------------+----------------------------------------------------------------------+
+| businessCase           | ch.ivyteam.ivy.workflow.ICase                                        |
++------------------------+----------------------------------------------------------------------+
+|**Result**                                                                                     |
++------------------------+----------------------------------------------------------------------+
+| documents              | java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument> |
++------------------------+----------------------------------------------------------------------+
+| message                | java.lang.String                                                     |
++------------------------+----------------------------------------------------------------------+
 
-   .. table::
+.. note::
 
-    +-----------------------------------+-----------------------------------+
-    | Subprocess                        | Description                       |
-    +===================================+===================================+
-    | GetDocumentList                   | After get document list from DMS, |
-    |                                   | convert them into                 |
-    |                                   | List<ch.ivy.addon.portalkit.ivyda |
-    |                                   | ta.bo.IvyDocument>                |
-    |                                   | Mandatory fields are:             |
-    |                                   |                                   |
-    |                                   | - id                              |
-    |                                   | - name                            |
-    |                                   | - contentType                     |
-    +-----------------------------------+-----------------------------------+
-    | UploadDocument                    | Override this subprocess to       |
-    |                                   | upload your file. This sub        |
-    |                                   | process also contains some        |
-    |                                   | validations, so if you override   |
-    |                                   | it, you have to implement         |
-    |                                   | validation by your own.           |
-    +-----------------------------------+-----------------------------------+
-    | DownloadDocument                  | Override this subprocess to       |
-    |                                   | download file from DMS.           |
-    +-----------------------------------+-----------------------------------+
-    | DeleteDocument                    | Override this subprocess to       |
-    |                                   | delete file in DMS                |
-    +-----------------------------------+-----------------------------------+
+   After get document list from DMS, convert them into ``List<ch.ivy.addon.portal.component.ivydata.bo.IvyDocument>``
+   Some mandatory fields when mapping: ``id``, ``name``, ``contentType``
+
+Upload document
++++++++++++++++
+
+Customize what Portal should do when a user uploads a document,
+create a callable subprocess with:
+
+**Signature**: portalUploadDocument
+
++-----------------------------------------+------------------------------------------------+---------------+
+| Name                                    | Type                                           | Note          |
++=========================================+================================================+===============+
+| **Parameter**                                                                            |               |
++-----------------------------------------+------------------------------------------------+---------------+
+| businessCase                            | ch.ivyteam.ivy.workflow.ICase                  |               |
++-----------------------------------------+------------------------------------------------+---------------+
+| uploadedFile                            | org.primefaces.model.file.UploadedFile         |               |
++-----------------------------------------+------------------------------------------------+---------------+
+| enableScriptCheckingForUploadedDocument | java.lang.Boolean                              |               |
++-----------------------------------------+------------------------------------------------+---------------+
+| enableVirusScannerForUploadedDocument   | java.lang.Boolean                              |               |
++-----------------------------------------+------------------------------------------------+---------------+
+| allowedUploadFileTypes                  | java.lang.String                               |               |
++-----------------------------------------+------------------------------------------------+---------------+
+| **Result**                                                                               |               |
++-----------------------------------------+------------------------------------------------+---------------+
+| uploadedDocument                        | ch.ivyteam.ivy.workflow.document.IDocument     |               |
++-----------------------------------------+------------------------------------------------+---------------+
+| message                                 | java.lang.String                               |               |
++-----------------------------------------+------------------------------------------------+---------------+
+| status                                  | java.lang.String                               | OK or FAIL    |
++-----------------------------------------+------------------------------------------------+---------------+
+
+Download document
++++++++++++++++++
+
+Customize behavior when a user downloads a document from Portal,
+create a callable subprocess with:
+
+**Signature**: portalDownloadDocument
+
++------------------------+------------------------------------------------------+
+| Name                   | Type                                                 |
++========================+======================================================+
+| **Parameter**                                                                 |
++------------------------+------------------------------------------------------+
+| businessCase           | ch.ivyteam.ivy.workflow.ICase                        |
++------------------------+------------------------------------------------------+
+| document               | com.axonivy.portal.components.ivydata.bo.IvyDocument |
++------------------------+------------------------------------------------------+
+|**Result**                                                                     |
++------------------------+------------------------------------------------------+
+| streamedContent        | org.primefaces.model.StreamedContent                 |
++------------------------+------------------------------------------------------+
+
+Delete document
++++++++++++++++
+
+Customize behavior when an user deletes a document from Portal,
+create a callable subprocess with:
+
+**Signature**: portalDeleteDocument
+
++------------------------+------------------------------------------------------+
+| Name                   | Type                                                 |
++========================+======================================================+
+| **Parameter**                                                                 |
++------------------------+------------------------------------------------------+
+| businessCase           | ch.ivyteam.ivy.workflow.ICase                        |
++------------------------+------------------------------------------------------+
+| document               | com.axonivy.portal.components.ivydata.bo.IvyDocument |
++------------------------+------------------------------------------------------+
+|**Result**                                                                     |
++------------------------+------------------------------------------------------+
+| message                | java.lang.String                                     |
++------------------------+------------------------------------------------------+

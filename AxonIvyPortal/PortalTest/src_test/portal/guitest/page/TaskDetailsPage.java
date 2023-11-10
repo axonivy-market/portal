@@ -124,8 +124,8 @@ public class TaskDetailsPage extends TemplatePage {
   }
   
   public String getTaskNameInDialog() {
-    waitForElementDisplayed(By.cssSelector("[id$=':task-detail-title-form:task-name-edit-form']"), true);
-    return findElementByCssSelector("[id$=':task-detail-title-form:task-name-edit-form']").getText();
+    waitForElementDisplayed(By.cssSelector("span.ui-state-disabled span.ui-menuitem-text"), true);
+    return findElementByCssSelector("span.ui-state-disabled span.ui-menuitem-text").getText();
   }
   
   public CaseDetailsPage backToCaseDetails() {
@@ -225,7 +225,7 @@ public class TaskDetailsPage extends TemplatePage {
   public String getTaskId() {
     return findElementByCssSelector("[id$=':task-id']").getText();
   }
-
+  
   public String getFirstTaskNoteComment() {
     return findElementByCssSelector("a[id$=':task-notes:task-note-table:0:note-message']").getText();
   }
@@ -474,4 +474,13 @@ public class TaskDetailsPage extends TemplatePage {
     driver.switchTo().frame("custom-widget-iframe-url");
     WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("a[href='https://www.axonivy.com']").isDisplayed());
   }
+  
+  public WebElement getSharePageButtonElement() {
+    return findElementByCssSelector("[id$=':share-page-button']");
+  }
+
+  public String getTaskUuid() {
+    return findElementByCssSelector("a[id$='show-more-note-link']").getAttribute("href").split("uuid=")[1];
+  }
+
 }

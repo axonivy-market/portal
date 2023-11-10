@@ -79,10 +79,10 @@ public class TaskTemplateIFramePage extends TemplatePage {
     return isElementPresent(By.cssSelector("iframe[id*='iFrame']"));
   }
 
-  public HomePage clickSubmitButton() {
+  public NewDashboardPage clickSubmitButton() {
     clickByCssSelector("button[id$='button-submit']");
     switchToDefaultContent();
-    return new HomePage();
+    return new NewDashboardPage();
   }
 
 }

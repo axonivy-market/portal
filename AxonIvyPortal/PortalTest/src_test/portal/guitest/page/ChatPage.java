@@ -38,11 +38,6 @@ public class ChatPage extends TemplatePage {
     click(findElementByXpath("//span[text()='" + name + "']"));
   }
 
-  public void selectPortalDemoUserChatGroup() {
-    waitForElementDisplayedByCssSelector("span.js-group-card-name[title$='Portal Demo User']");
-    click(findElementByCssSelector("span.js-group-card-name[title$='Portal Demo User']"));
-  }
-
   public void sendMessage(String chatMessage) {
     waitForElementExisted("textarea[id='message-input-field']", true, DEFAULT_TIMEOUT);
     waitForElementEnabled(By.id("message-input-field"), true, DEFAULT_TIMEOUT);
@@ -64,13 +59,10 @@ public class ChatPage extends TemplatePage {
     for (ExpressResponsible responsible : responsibles) {
       chooseResponsible(responsible.getResponsibleName(), responsible.isGroup());
     }
-    click(By.id("chat-assignee-selection-form:chat-group-create-button"));
-    waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-group-create-button"), false, DEFAULT_TIMEOUT);
-    waitAjaxIndicatorDisappear();
   }
 
   @SuppressWarnings("deprecation")
-  private void chooseResponsible(String responsible, boolean isGroup) {
+  public  void chooseResponsible(String responsible, boolean isGroup) {
     if (isGroup) {
       selectRoleAssigneeCheckbox();
       waitAjaxIndicatorDisappear();
@@ -144,5 +136,13 @@ public class ChatPage extends TemplatePage {
       click(chatGroups.get(0));
     }
     Sleeper.sleep(300);//Wait for animation finish to capture screenshot
+  }
+
+  public int refreshAndCountGroupChat() {
+    refresh();
+    getChat();
+    waitForElementDisplayed(By.id("chat-form:group-chat-container"), true);
+    List<WebElement> chatGroups = findChildElementsByClassName(findElementById("chat-form:group-chat-container"), "js-group-card-name");
+    return chatGroups.size();
   }
 }

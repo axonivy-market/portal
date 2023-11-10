@@ -17,8 +17,8 @@ import ch.ivy.addon.portalkit.constant.CustomFields;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PortalProcessViewerUtils;
 import ch.ivyteam.ivy.security.IPermission;
@@ -41,7 +41,7 @@ public class CaseActionBean implements Serializable {
     String additionalCaseDetailsPageUri = StringUtils.EMPTY;
     if (isExpressCase(iCase)) {
       additionalCaseDetailsPageUri =
-          ProcessStartCollector.getInstance().findExpressBusinessViewStartLink() + "?caseId=" + iCase.getId();
+          ExpressProcessService.getInstance().findExpressBusinessViewStartLink() + "?uuid=" + iCase.uuid();
     } else {
       additionalCaseDetailsPageUri = getBusinessDetailURLFromCustomField(iCase);
     }
@@ -60,7 +60,7 @@ public class CaseActionBean implements Serializable {
     }
     if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
       Map<String, String> params = new HashMap<>();
-      params.put("caseId", String.valueOf(iCase.getId()));
+      params.put("uuid", String.valueOf(iCase.uuid()));
       additionalCaseDetailsPageUri = PortalNavigator.buildUrlByKeyword("showAdditionalCaseDetails",
           START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE, params);
     }

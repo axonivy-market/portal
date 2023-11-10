@@ -15,6 +15,7 @@ public class TaskCategorySearchCriteria {
   
   private TaskQuery customTaskQuery;
   
+  @SuppressWarnings("deprecation")
   public TaskQuery createQuery() {
     TaskQuery query = TaskQuery.create();
     if (customTaskQuery != null) {

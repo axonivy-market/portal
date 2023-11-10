@@ -219,18 +219,16 @@ public class CaseDetailsPage extends TemplatePage {
     return new AdditionalCaseDetailsPage();
   }
 
-  public HomePage clickRelatedCaseSubmitLeaveReason(int index) {
+  public NewDashboardPage clickRelatedCaseSubmitLeaveReason(int index) {
     WebElement sideSteps = findElementByCssSelector(String.format("[id$='related-cases-widget:related-cases:%d:action-step-component:side-steps']", index));
-    //findChildElementsByCssSelector(sideSteps, "a[id$=':side-step-item']").get(0).click();
     findChildElementByLinkText(sideSteps, "Submit leave reason").click();
-    return new HomePage();
+    return new NewDashboardPage();
   }
 
-  public HomePage clickRelatedCaseUploadAdditionalDocument(int index) {
+  public NewDashboardPage clickRelatedCaseUploadAdditionalDocument(int index) {
     WebElement sideSteps = findElementByCssSelector(String.format("[id$='related-cases-widget:related-cases:%d:action-step-component:side-steps']", index));
-    //findChildElementsByCssSelector(sideSteps, "a[id$=':side-step-item']").get(1).click();
     findChildElementByLinkText(sideSteps, "Upload additional data").click();
-    return new HomePage();
+    return new NewDashboardPage();
   }
 
   public String openDoneTask(int index) {
@@ -324,7 +322,6 @@ public class CaseDetailsPage extends TemplatePage {
     click(confirmButton);
   }
   
-  @SuppressWarnings("deprecation")
   @Override
   public void waitAjaxIndicatorDisappear() {
     WebElement ajaxIndicatorStartState = findElementById("ajax-indicator:ajax-indicator-ajax-indicator_start");
@@ -906,4 +903,13 @@ public class CaseDetailsPage extends TemplatePage {
 	  int taskIndex = IntStream.range(0, taskNames.size()).filter(i -> taskNames.get(i).getText().equals(taskName)).findFirst().getAsInt();
 	  return taskIndex;
   }
+  
+  public WebElement getSharePageButtonElement() {
+    return findElementByCssSelector("[id$=':share-page-button']");
+  }
+
+  public String getCaseUuid() {
+    return findElementByCssSelector("a[id$='show-more-note-link']").getAttribute("href").split("uuid=")[1];
+  }
+
 }

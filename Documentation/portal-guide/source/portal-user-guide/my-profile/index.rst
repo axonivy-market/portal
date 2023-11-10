@@ -3,7 +3,7 @@
 My Profile
 **********
 
-Help you adjust your general settings, language, email settings and date format configuration.
+Help you adjust your general settings, language and notification channels subscription settings.
 
 |my-profile-save|
 
@@ -100,56 +100,17 @@ Portal:
    application specific dialogs will
    still be shown in English.    
 
-Email settings
---------------
+Notification Channels
+---------------------
 
-**Email settings** allows you to configure your
-preferences related to standard email notifications sent by the |ivy|
-Engine.
+**Notification Channels** allows you to configure your
+manage subscriptions of the different kinds of notification channels in 
+the |ivy| Engine.
 
-.. hint:: 
-   If configured by applications of your company, you might also be able to 
-   configure application specific email notifications.   
-..
+The table :guilabel:`Notification Channels` displays all the available 
+events that can either be subscribed or unsubscribed.
 
-The switch :guilabel:`Receive email notification on task assignment` allows you to 
-specify if you want to receive an instant notification when a task is assigned to 
-you or one of the roles you hold.
-
-The switch :guilabel:`Receive further emails from application` allows you 
-to activate or deactivate further email notifications.
-
-The daily checkboxes :guilabel:`Receive daily summary at` allow you to specify the weekdays 
-on which you receive a summary of all tasks assigned to you or one of your roles.
-
-Date format configuration
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This section allows you to configure the date field format.
-These are the options:
-
-.. table:: 
-
-   +-----------------------+-----------------------------------------------+
-   | Option                | Description                                   |
-   +=======================+===============================================+
-   | Default               | Default date format will be detected by       |
-   |                       | browser's locale for your first login.        |
-   |                       |                                               |
-   |                       | Example: Default format is dd/MM/yyyy.        |
-   |                       | Date fields will be displayed as "31/01/2021" |
-   +-----------------------+-----------------------------------------------+
-   | dd.MM.yyyy            | Date fields will be displayed by              |
-   |                       | Day.Month.Year.                               |
-   |                       |                                               |
-   |                       | Example: With this format, date fields will   |
-   |                       | be displayed as "31.01.2021"                  |
-   +-----------------------+-----------------------------------------------+
-   | MM.dd.yyyy            | Date fields will be displayed by              |
-   |                       | Month.Day.Year.                               |
-   |                       |                                               |
-   |                       | Example: With this format, date fields will   |   
-   |                       | be displayed as "01.31.2021"                  |
-   +-----------------------+-----------------------------------------------+
+The checkbox in each event column allow you to specify 
+three state of event: subscribed by default, subscribe, unsubscribe.
 
 .. |my-profile-save| image:: ../../screenshots/my-profile/my-profile.png

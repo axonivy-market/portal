@@ -6,14 +6,17 @@ import org.openqa.selenium.WebElement;
 import portal.guitest.common.WaitHelper;
 
 public class NewDashboardPage extends TemplatePage {
+  public final static String PORTAL_HOME_PAGE_URL = "portal/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
+
   private static final String CONFIGURATION_DIALOG_ID = "new-widget-configuration-dialog";
   private static final String ADD_WIDGET_DIALOG_ID = "new-widget-dialog";
-  private static final String ADD_CUSTOM_WIDGET_BUTTON_ID = "new-widget-dialog-content:1:add-widget";
+  private static final String ADD_CUSTOM_WIDGET_BUTTON_ID = "new-custom-widget-dialog-content:0:add-widget";
+  private static final String ADD_EXTERNAL_PAGE_WIDGET_BUTTON_ID = "new-widget-dialog-content:1:add-widget";
   private static final String CUSTOM_WIDGET_TYPE_DROPDOWN_ID = "widget-configuration-form:new-widget-configuration-component:custom-widget-type_label";
   private static final String CUSTOM_WIDGET_PROCESS_SELECTION_ID = "widget-configuration-form:new-widget-configuration-component:selected-process";
   private static final String NEWS_FEED_WIDGET_ID = "[class*='js-dashboard-widget-news_']";
   private static final String NEWS_FEED_TITLE_INPUT_ID = "input[id$=':manage-news-tabview:0:news-title']";
-
+  private static final String MANAGE_NEWS_TABVIEW_FORMAT = "[id$=':manage-news-tabview:%s:%s']";
   @Override
   protected String getLoadedLocator() {
     return "id('dashboard-body')";
@@ -52,6 +55,13 @@ public class NewDashboardPage extends TemplatePage {
     clickAddWidget();
     waitForElementDisplayed(By.id("new-widget-dialog"), true);
     click(By.id(ADD_CUSTOM_WIDGET_BUTTON_ID));
+    waitForElementDisplayed(By.id("new-widget-configuration-dialog"), true);
+  }
+  
+  public void addNewExternalPageWidget() {
+    clickAddWidget();
+    waitForElementDisplayed(By.id("new-widget-dialog"), true);
+    click(By.id(ADD_EXTERNAL_PAGE_WIDGET_BUTTON_ID));
     waitForElementDisplayed(By.id("new-widget-configuration-dialog"), true);
   }
   
@@ -107,10 +117,6 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void waitForTaskWidgetLoading() {
-    WaitHelper.assertTrueWithWait(() -> {
-      var taskLoading = findElementByCssSelector("[id$=':task-component:loading']");
-      return taskLoading.getAttribute(CLASS_PROPERTY).contains("u-display-none");
-    });
     waitUntilAnimationFinished(DEFAULT_TIMEOUT, "ui-datatable.dashboard-tasks--table", CLASS_PROPERTY);
   }
 
@@ -164,8 +170,8 @@ public class NewDashboardPage extends TemplatePage {
 
   public void openManageNewsDialog() {
     waitForNewsWidgetLoadedData();
-    waitForElementDisplayed(By.cssSelector("button[id$=':add-news-button']"), true);
-    clickByCssSelector("button[id$=':add-news-button']");
+    waitForElementDisplayed(By.cssSelector("a[id$=':add-news-button']"), true);
+    clickByCssSelector("a[id$=':add-news-button']");
     waitForElementDisplayed(By.cssSelector("[id$=':manage-news-dialog']"), true);
     waitForElementDisplayed(By.cssSelector(".management-news__title-input"), true);
     waitForElementReallyDisplayed(By.cssSelector(NEWS_FEED_TITLE_INPUT_ID), true);
@@ -183,4 +189,33 @@ public class NewDashboardPage extends TemplatePage {
     newsTitleInput.clear();
     newsTitleInput.sendKeys(newsTitle);
   }
+
+  public String selectNewsLanguage(String languageTag) {
+    var languageTabClass = "li.ui-tabs-header.news-language-tab-" + languageTag;
+    findElementByCssSelector(languageTabClass).click();
+    return findElementByCssSelector(languageTabClass).getAttribute("data-index");
+  }
+
+  public void clickOnTitle(String tabIndex) {
+    String tabLanguage = "input" + String.format(MANAGE_NEWS_TABVIEW_FORMAT, tabIndex, "news-title");
+    waitForElementDisplayed(By.cssSelector(tabLanguage), true);
+    findElementByCssSelector(tabLanguage).click();
+  }
+
+  public WebElement getTranslationOverlayPanel(int index) {
+    WebElement translationOverlay = findElementByCssSelector(
+        String.format("div[id$=':%s:overlay-panel-input']", index));
+    waitForElementDisplayed(translationOverlay, true);
+    return translationOverlay;
+  }
+
+  public void findTranslationButton(String tabIndex) {
+    findElementByCssSelector(String.format("[id$=':%s:translate-language-button']", tabIndex)).click();
+  }
+
+  public String getGlobalFooterInfo() {
+    waitForElementDisplayed(By.cssSelector("span[id$='server-infor']"), true, 5);
+    return findElementByCssSelector("span[id$='server-infor']").getText();
+  }
+
 }

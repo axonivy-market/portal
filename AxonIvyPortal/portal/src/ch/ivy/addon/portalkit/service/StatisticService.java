@@ -113,6 +113,8 @@ import org.primefaces.model.charts.optionconfig.legend.Legend;
 import org.primefaces.model.charts.optionconfig.legend.LegendLabel;
 import org.primefaces.model.charts.optionconfig.title.Title;
 
+import com.axonivy.portal.components.service.IvyAdapterService;
+
 import ch.ivy.addon.portalkit.bo.CaseCategoryStatistic;
 import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
@@ -120,7 +122,6 @@ import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
-import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria;
@@ -210,8 +211,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     params.put(TASK_QUERY, taskQuery);
 
     Map<String, Object> response =
-        IvyAdapterService.startSubProcess("analyzePriorityStatistic(ch.ivyteam.ivy.workflow.query.TaskQuery)", params,
-            Arrays.asList(PortalLibrary.PORTAL.getValue()));
+        IvyAdapterService.startSubProcessInProjectAndAllRequired("analyzePriorityStatistic(ch.ivyteam.ivy.workflow.query.TaskQuery)", params);
     return (PriorityStatistic) response.get(RESULT);
   }
 
@@ -226,8 +226,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     params.put(TASK_QUERY, taskQuery);
 
     Map<String, Object> response =
-        IvyAdapterService.startSubProcess("analyzeExpiryStatistic(ch.ivyteam.ivy.workflow.query.TaskQuery)", params,
-            Arrays.asList(PortalLibrary.PORTAL.getValue()));
+        IvyAdapterService.startSubProcessInProjectAndAllRequired("analyzeExpiryStatistic(ch.ivyteam.ivy.workflow.query.TaskQuery)", params);
     return (ExpiryStatistic) response.get(RESULT);
   }
 
@@ -242,8 +241,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     params.put(CASE_QUERY, caseQuery);
 
     Map<String, Object> response =
-        IvyAdapterService.startSubProcess("analyzeCaseStateStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery)", params,
-            Arrays.asList(PortalLibrary.PORTAL.getValue()));
+        IvyAdapterService.startSubProcessInProjectAndAllRequired("analyzeCaseStateStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery)", params);
     return (CaseStateStatistic) response.get(RESULT);
   }
 
@@ -258,8 +256,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     params.put(CASE_QUERY, caseQuery);
 
     Map<String, Object> response =
-        IvyAdapterService.startSubProcess("analyzeElapsedTimeStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery)", params,
-            Arrays.asList(PortalLibrary.PORTAL.getValue()));
+        IvyAdapterService.startSubProcessInProjectAndAllRequired("analyzeElapsedTimeStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery)", params);
     return (ElapsedTimeStatistic) response.get(RESULT);
   }
   
@@ -275,8 +272,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     params.put(CASE_QUERY, caseQuery);
     params.put(SELECTED_CATEGORIES, categoryNodes);
     Map<String, Object> response =
-        IvyAdapterService.startSubProcess("analyzeCasesByCategoryStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery,java.util.List<String>)", params,
-            Arrays.asList(PortalLibrary.PORTAL.getValue()));
+        IvyAdapterService.startSubProcessInProjectAndAllRequired("analyzeCasesByCategoryStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery,java.util.List<String>)", params);
     return (CaseCategoryStatistic) response.get(RESULT);
   }
   
@@ -285,8 +281,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     params.put(CASE_QUERY, caseQuery);
     params.put(SELECTED_CATEGORY, categoryNode);
     Map<String, Object> response =
-        IvyAdapterService.startSubProcess("analyzeCasesByCategoryDrilldownStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery,String)", params,
-            Arrays.asList(PortalLibrary.PORTAL.getValue()));
+        IvyAdapterService.startSubProcessInProjectAndAllRequired("analyzeCasesByCategoryDrilldownStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery,String)", params);
     return (CaseCategoryStatistic) response.get(RESULT);
   }
 

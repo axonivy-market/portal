@@ -5,7 +5,7 @@ Case Item Details
 
 CaseItemDetails is a built-in component of the Portal that contains the case
 information which users can interact with. To show additional required case
-information, the Portal supports overriding the CaseItemDetails.
+information, the Portal supports customizing the CaseItemDetails.
 
 Each CaseItemDetails contains
 
@@ -125,55 +125,6 @@ How to Configure Widgets in Case Details
       - We support all case business states in filter type ``states``.
 
 
-   .. _customization-case-item-details-how-to-override-ui:
-
-How to Customize the Case Details UI
-------------------------------------
-
-We included sample code for this customization in ``portal-developer-examples``.
-
-#. Create an |ivy| project which has ``portal`` as a
-   required library.
-
-#. To customize the case details UI, you have to customize Portal Home first.
-   Refer to :ref:`Customize Portal home <customization-portal-home>` to set a new
-   home page.
-
-#. Copy the ``PortalStart`` process from ``portal`` to your project.
-   Point the PortalHome element to your custom home page created in the previous
-   step. This process is the new home page. The Portal administrator has to
-   register this link in the Portal Admin Settings.
-
-#. Use :dev-url:`|ivy| HtmlOverride wizard
-   </doc/|version|/designer-guide/how-to/overrides.html?#override-new-wizard>` to
-   override the ``CaseInformation`` HTML dialog.
-
-#. After the above steps are done, you can override **Case Details UI elements**
-   by some options below:
-
-   - To show/hide, please use the ``showItemDetailsHeader`` and ``showItemBackButton`` code. For details, please refer to
-     :ref:`Show/Hide components <customization-case-details-how-to-override-ui-show-hidden-ui>`.
-
-   - And to show a new elements in ``CaseInformation`` customized, please refer to :ref:`Show custom widgets <customization-case-item-details-how-to-override-ui-custom-body>`
-     code.
-
-
-.. _customization-case-details-how-to-override-ui-show-hidden-ui:
-
-Show/Hide Components by Keywords
---------------------------------
-
-Refer to the ``ui:param`` tag list in ``CaseInformation.xhtml`` of
-``portal``. In case, we want to show/hide any elements on
-CaseItemDetails, we should override value of ``ui:param``
-
-List valid parameters:
-
--  ``ui:param name="showItemDetailsHeader" value="true"`` to show/hide case header, by default it's true, you should set as
-   ``false`` if you set **alwaysShowDetails** for **CaseItem**.
-
--  ``ui:param name="showItemBackButton" value="true"`` to show/hide back button, by default it's true.
-
 .. _customization-case-item-details-how-to-override-ui-custom-body:
 
 Show custom widgets
@@ -278,96 +229,6 @@ The following two steps are necessary to add new custom panels:
            }
         ]
 
-
-#. Refer to the ``caseItemDetailCustom*`` section in ``CaseInformation.xhtml`` of ``portal``.
-
-
-   -  You need to define ``ui:define`` with a valid name such as
-      ``caseItemDetailCustomTop``, ``caseItemDetailCustomMiddle`` and
-      ``caseItemDetailCustomBottom``.
-
-   -  Add your custom code into the tags above.
-
-   -  Finally, your custom widget will be displayed on the :ref:`CaseItemDetails <customization-case-item-details>` page.
-
-   -  Below, find a code example for adding custom widgets to case details
-
-   .. code-block:: html
-
-      <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-         !!!! START: AREA SHOULD BE CUSTOMIZED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-         !!!!!!!! START: TO SHOW /HIDE ANY SECTIONS OF CASE DETAILS, YOU CAN TURN TRUE/FALSE FOR BELOW PARAMETERS !!!!!!!!!!!!!!!!!!!!!!!!!!
-         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-         Attribute showItemDetailsHeader: To show the header of case details. By default it's true
-         !!!!!!!! END SHOW /HIDE SECTIONS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-
-      <ui:param name="id" value="#{cc.clientId}" />
-      <ui:param name="showItemDetailsHeader" value="#{cc.attrs.showItemDetailsHeader}" />
-      <ui:param name="descriptionComponentToUpdate" value="#{cc.attrs.descriptionComponentToUpdate}" />
-      <ui:param name="isWorkingOnTask" value="#{cc.attrs.isWorkingOnTask}" />
-
-      <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-         !!!!!!!! START: TO ADD YOUR CUSTOMIZATION CODE TO THE CASE DETAILS PAGE, WE PROVIDE THE 3 SECTIONS BELOW !!!!!!!!!!!!!!!!!!!!!!!!!!
-         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-
-      <ui:define name="caseItemDetailCustomTop">
-         <h:panelGroup styleClass="ui-g-12" layout="block">
-            <div class="card card-w-title case-detail-card">
-               <div class="case-detail-section-title u-truncate-text">
-               <h:outputText value="This is custom panel on top section" />
-               </div>
-               <div class="Separator" />
-
-               <div class="custom-task-details-panel-top">
-               <h1>This is custom content on top</h1>
-               <p>Custom height to auto</p>
-               <p>Custom font size to 1.6rem</p>
-               </div>
-            </div>
-         </h:panelGroup>
-      </ui:define>
-
-      <ui:define name="caseItemDetailCustomMiddle">
-         <h:panelGroup styleClass="ui-g-12" layout="block">
-            <div class="card card-w-title case-detail-card">
-               <div class="case-detail-section-title u-truncate-text">
-               <h:outputText value="This is custom panel on middle section" />
-               </div>
-               <div class="Separator" />
-
-               <div class="custom-task-details-panel-middle">
-               <h1>This is custom content on middle</h1>
-               <p>Custom height to auto</p>
-               <p>Custom font size to 1.6rem</p>
-               </div>
-            </div>
-         </h:panelGroup>
-      </ui:define>
-
-      <ui:define name="caseItemDetailCustomBottom">
-         <h:panelGroup styleClass="ui-g-12" layout="block">
-            <div class="card card-w-title case-detail-card">
-               <div class="case-detail-section-title u-truncate-text">
-               <h:outputText value="This is custom panel on bottom section" />
-               </div>
-               <div class="Separator" />
-
-               <div class="custom-task-details-panel">
-               <h1>This is custom content on bottom</h1>
-               <p>Custom height to auto</p>
-               <p>Custom font size to 1.6rem</p>
-               </div>
-            </div>
-         </h:panelGroup>
-      </ui:define>
-
-      <!-- !!!!!!!! END ADD YOUR CUSTOMIZATION  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-      <!-- !!!! END: AREA SHOULD BE CUSTOMIZED! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-
-   ..
-
-   -  We have full flexibility in the page layout if we use ``ui-g-*`` class to
-      define the width of the panel
 
 #. To customize case details using an **IFrame**, you have to define one of the following two input parameters in the ``data`` node:
 

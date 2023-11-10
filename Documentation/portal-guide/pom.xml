@@ -32,7 +32,7 @@
               <artifactItems>
                 <artifactItem>
                   <groupId>com.axonivy.portal</groupId>
-                  <artifactId>portal-document-screenshots</artifactId>
+                  <artifactId>portal-document-screenshots-selenide</artifactId>
                   <version>${project.version}</version>
                   <type>zip</type>
                 </artifactItem>
@@ -114,7 +114,7 @@
 
     <repository>
       <id>portal.release</id>
-      <url>https://repo.axonivy.io/artifactory/ext-release-local</url>
+      <url>https://repo.axongroupio.ch/artifactory/ext-release-local</url>
       <releases>
         <enabled>true</enabled>
       </releases>
@@ -125,7 +125,7 @@
 
     <repository>
       <id>portal.snapshots</id>
-      <url>https://repo.axonivy.io/artifactory/ext-snapshot-local</url>
+      <url>https://repo.axongroupio.ch/artifactory/ext-snapshot-local</url>
       <releases>
         <enabled>false</enabled>
       </releases>

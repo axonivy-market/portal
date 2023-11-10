@@ -253,7 +253,7 @@ function highlightCustomColumnsConfigOnCaseList() {
 }
 
 function highlightCaseCreatorFilter() {
-  var filterLabel = $("[id$=':creator-filter:filter-open-form:advanced-filter-command']").find("span.ui-button-text");
+  var filterLabel = $("[id$=':creator-filter:filter-open-form:advanced-filter-command']");
   createRedMediumOutline(filterLabel);
   appendStepAnnotation(filterLabel, "1", -25, -30);
   
@@ -264,25 +264,6 @@ function highlightCaseCreatorFilter() {
   var updateCommand = $("[id$=':creator-filter:filter-input-form:update-command']");
   createRedMediumOutline(updateCommand);
   appendStepAnnotation(updateCommand, "3", -2, -40)
-}
-
-function highlightAddFavoriteProcess() {
-  var addProcessCommand = $("[id$=':user-process-action-form:show-adding-dialog-commmand']");
-  appendStepAnnotation(addProcessCommand, "1", -10, addProcessCommand.width() + 2);
-  
-  var addNewProcessTitle = $("[id$='process-widget:add-new-process-dialog_title']");
-  appendStepAnnotation(addNewProcessTitle, "2", 0, addNewProcessTitle.width() + 2);
-  
-  var addNewProcessName = $("label[for$='process-widget:new-process-name_input']").find("span[class$='ui-outputlabel-rfi']");
-  appendStepAnnotation(addNewProcessName, "3", -10, addNewProcessName.width());
-  
-  var addNewProcessDisplayName = $("label[for$='process-widget:process-display-name']").find("span[class$='ui-outputlabel-rfi']");
-  appendStepAnnotation(addNewProcessDisplayName, "4", -10, addNewProcessName.width());
-  
-  var addProcessIcon = $(".ui-commandlink.select-awesome-icon-button");
-  appendStepAnnotation(addProcessIcon, "5", -10, addProcessIcon.width() + 2)
-  
-  appendStepAnnotation($("[id$='process-widget:add-process-command']"), "6", -5, 0);
 }
 
 function highlightEditSwitchProcessButton() {
@@ -349,7 +330,7 @@ function highlightCustomColumnsConfigOnTaskList() {
 
 
 function highlightTaskStateFilter() {
-  var filterLabel = $("[id$=':state-filter:filter-open-form:advanced-filter-command']").find("span.ui-button-text");
+  var filterLabel = $("[id$=':state-filter:filter-open-form:advanced-filter-command']");
   createRedMediumOutline(filterLabel);
   appendStepAnnotation(filterLabel, "1", -25, -30);
   
@@ -372,6 +353,10 @@ function highlightShowMoreTaskHistories() {
 
 function highlightSwitchToEditMode() {
   createRedMediumOutline($("[id$=':switch-to-edit-mode-button']"));
+}
+
+function highlightSharePageButton() {
+  createRedMediumOutline($("[id$=':share-page-button']"));
 }
 
 function highlightSwitchToViewMode() {

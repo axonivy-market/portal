@@ -1,0 +1,733 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "id" : "189F33E127423286",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.portal.components.examples.CustomDocumentFeaturesData"
+  },
+  "elements" : [ {
+      "id" : "f3",
+      "type" : "CallSubStart",
+      "name" : "portalDeleteDocumentItem(ICase,IvyDocument)",
+      "config" : {
+        "signature" : "portalDeleteDocumentItem",
+        "input" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument", "desc" : "" }
+          ],
+          "map" : {
+            "out.businessCase" : "param.businessCase",
+            "out.document" : "param.document"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "message", "type" : "String", "desc" : "" },
+            { "name" : "status", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "result.message" : "in.message",
+            "result.status" : "in.skip ? com.axonivy.portal.components.enums.CustomProcessStatus.SKIP.name() : com.axonivy.portal.components.enums.CustomProcessStatus.OK.name()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 136, "y" : 384 },
+        "labelOffset" : { "x" : -7, "y" : 46 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f32" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 800, "y" : 384 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "Script",
+      "name" : "Delete document item",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.Arrays;",
+            "",
+            "ivy.log.warn(\"Call to override process delete document item\");",
+            "in.businessCase.documents().delete(Long.valueOf(in.document.id));",
+            "",
+            "String note = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/DeleteDocumentNote\", Arrays.asList(ivy.session.getSessionUserName(), in.document.getName()));",
+            "in.businessCase.createNote(ivy.session, note);",
+            "in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/DeleteSuceed\");"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 544, "y" : 384 },
+        "size" : { "width" : 128, "height" : 60 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f46" }
+      ]
+    }, {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "portalDownloadDocumentItem(ICase,IvyDocument)",
+      "config" : {
+        "signature" : "portalDownloadDocumentItem",
+        "input" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument", "desc" : "" }
+          ],
+          "map" : {
+            "out.businessCase" : "param.businessCase",
+            "out.document" : "param.document"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent", "desc" : "" },
+            { "name" : "status", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "result.streamedContent" : "in.streamedContent",
+            "result.status" : "in.skip ? com.axonivy.portal.components.enums.CustomProcessStatus.SKIP.name() : com.axonivy.portal.components.enums.CustomProcessStatus.OK.name()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 136, "y" : 552 },
+        "labelOffset" : { "x" : -2, "y" : 50 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f34" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 800, "y" : 552 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "Script",
+      "name" : "Download document item",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.service.CaseDocumentService;",
+            "",
+            "ivy.log.warn(\"Call to override process download document item\");",
+            "out.streamedContent = CaseDocumentService.newInstance(in.businessCase).download(in.document);"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 560, "y" : 552 },
+        "size" : { "width" : 160, "height" : 60 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f48" }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "CallSubStart",
+      "name" : "portalGetDocumentItems(ICase)",
+      "config" : {
+        "signature" : "portalGetDocumentItems",
+        "input" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
+          ],
+          "map" : {
+            "out.businessCase" : "param.businessCase"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "documents", "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>", "desc" : "" },
+            { "name" : "message", "type" : "String", "desc" : "" },
+            { "name" : "status", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "result.documents" : "in.documents",
+            "result.message" : "in.message",
+            "result.status" : "in.skip ? com.axonivy.portal.components.enums.CustomProcessStatus.SKIP.name() : com.axonivy.portal.components.enums.CustomProcessStatus.OK.name()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 144, "y" : 712 },
+        "labelOffset" : { "x" : 6, "y" : 44 }
+      },
+      "connect" : [
+        { "id" : "f14", "to" : "f37" }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 800, "y" : 712 }
+      }
+    }, {
+      "id" : "f12",
+      "type" : "Script",
+      "name" : "get document items",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.examples.enums.ExtendedDocumentType;",
+            "import com.axonivy.portal.components.examples.document.CustomizedIvyDocument;",
+            "import com.axonivy.portal.components.examples.document.CustomizedIvyDocumentTransformer;",
+            "import com.axonivy.portal.components.document.DocumentCustomField;",
+            "import com.axonivy.portal.components.service.CaseDocumentService;",
+            "",
+            "import org.apache.commons.lang3.StringUtils;",
+            "import ch.ivyteam.ivy.workflow.document.IDocument;",
+            "",
+            "if (in.#businessCase is initialized) {",
+            "  List<IDocument> iDocuments = CaseDocumentService.newInstance(in.businessCase).getAll();",
+            "  CustomizedIvyDocumentTransformer transformer = new CustomizedIvyDocumentTransformer();",
+            "  in.documents = transformer.transform(iDocuments);",
+            "  for(CustomizedIvyDocument doc : in.documents) {",
+            "    doc.setName(\"Overridden: \" + doc.getName());",
+            "    String typeStringField = DocumentCustomField.TYPE_PREFIX + doc.id;",
+            "    String typeString = in.businessCase.customFields().stringField(typeStringField).getOrNull();",
+            "    if (StringUtils.isNotBlank(typeString)) {",
+            "      doc.setType(ExtendedDocumentType.valueOf(typeString.toUpperCase()));",
+            "    }",
+            "    ",
+            "    String customerStringField = \"IvyDocumentCustomer-\" + doc.id;",
+            "    String customer = in.businessCase.customFields().stringField(customerStringField).getOrNull();",
+            "    if (StringUtils.isNotBlank(customer)) {",
+            "      doc.setCustomer(customer);",
+            "    }",
+            "  }",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 544, "y" : 712 },
+        "size" : { "width" : 128, "height" : 60 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "f50" }
+      ]
+    }, {
+      "id" : "f15",
+      "type" : "CallSubStart",
+      "name" : [
+        "portalUploadDocumentItem(ICase,UploadedFile,",
+        "Boolean,Boolean,String)"
+      ],
+      "config" : {
+        "signature" : "portalUploadDocumentItem",
+        "input" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
+            { "name" : "uploadedFile", "type" : "org.primefaces.model.file.UploadedFile", "desc" : "" },
+            { "name" : "enableScriptCheckingForUploadedDocument", "type" : "Boolean", "desc" : "" },
+            { "name" : "enableVirusScannerForUploadedDocument", "type" : "Boolean", "desc" : "" },
+            { "name" : "allowedUploadFileTypes", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.allowedUploadFileTypes" : "param.allowedUploadFileTypes",
+            "out.businessCase" : "param.businessCase",
+            "out.enableScriptCheckingForUploadedDocument" : "param.enableScriptCheckingForUploadedDocument",
+            "out.enableVirusScannerForUploadedDocument" : "param.enableVirusScannerForUploadedDocument",
+            "out.uploadedFile" : "param.uploadedFile"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "uploadedDocument", "type" : "ch.ivyteam.ivy.workflow.document.IDocument", "desc" : "" },
+            { "name" : "message", "type" : "String", "desc" : "" },
+            { "name" : "status", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "result.uploadedDocument" : "in.uploadedDocument",
+            "result.message" : "in.message",
+            "result.status" : "in.status"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 128, "y" : 160 },
+        "labelOffset" : { "x" : -52, "y" : -26 }
+      },
+      "connect" : [
+        { "id" : "f21", "to" : "f23" }
+      ]
+    }, {
+      "id" : "f16",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 1760, "y" : 160 }
+      }
+    }, {
+      "id" : "f36",
+      "type" : "Script",
+      "name" : "Validate",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.masterdata.MasterData;",
+            "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
+            "import org.apache.commons.io.FileUtils;",
+            "import java.util.Arrays;",
+            "",
+            "in.message = \"\";",
+            "in.status = \"OK\";",
+            "",
+            "if (in.uploadedFile == null) {",
+            "  in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/InvalidFileMessage\");",
+            "  in.status = UploadDocumentCheckStatus.FAIL.name();",
+            "} else if (in.uploadedFile.getSize() == 0) {",
+            "  in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/EmptyFileMessage\");",
+            "  in.status = UploadDocumentCheckStatus.FAIL.name();",
+            "} else {",
+            "  Long maxFileUploadSize = MasterData.getFileUploadSizeLimit();",
+            "  if (in.uploadedFile.getSize() > maxFileUploadSize) {",
+            "    in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/ErrorFileUploadSize\", Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));",
+            "  }",
+            "  in.status = UploadDocumentCheckStatus.FAIL.name();",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 512, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f79", "to" : "f70" }
+      ]
+    }, {
+      "id" : "f72",
+      "type" : "Alternative",
+      "name" : "Not exist?",
+      "config" : {
+        "conditions" : {
+          "f19" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK.name()"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1176, "y" : 160 },
+        "labelOffset" : { "x" : 8, "y" : -14 }
+      },
+      "connect" : [
+        { "id" : "f19", "to" : "f71", "label" : {
+            "name" : "YES",
+            "segment" : 0.3,
+            "offset" : { "x" : 0, "y" : -12 }
+          } },
+        { "id" : "f88", "to" : "f73" }
+      ]
+    }, {
+      "id" : "f71",
+      "type" : "Script",
+      "name" : [
+        "Upload document item",
+        "and create note"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.service.CaseDocumentService;",
+            "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
+            "import java.util.Arrays;",
+            "import org.primefaces.model.file.UploadedFile;",
+            "",
+            "out.message = \"\";",
+            "out.status = UploadDocumentCheckStatus.OK.name();",
+            "String fileName = in.uploadedFile.getFileName();",
+            "out.uploadedDocument = CaseDocumentService.newInstance(in.businessCase).upload(fileName, in.uploadedFile.getInputStream());",
+            "",
+            "if (out.#uploadedDocument != null) {  ",
+            "  String note = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadDocumentNote\", Arrays.asList(ivy.session.getSessionUserName(), fileName));",
+            "  in.businessCase.createNote(ivy.session, note);",
+            "  out.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadSucceed\");",
+            "} else {",
+            "  out.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadFailed\");",
+            "  out.status = UploadDocumentCheckStatus.FAIL.name();",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 1344, "y" : 160 },
+        "size" : { "width" : 160, "height" : 60 }
+      },
+      "connect" : [
+        { "id" : "f22", "to" : "f17" }
+      ]
+    }, {
+      "id" : "f38",
+      "type" : "Script",
+      "name" : "Check exist",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
+            "import org.primefaces.model.file.UploadedFile;",
+            "import com.axonivy.portal.components.service.CaseDocumentService;",
+            "",
+            "String fileName = in.uploadedFile.getFileName();",
+            "boolean doesDocumentExist = CaseDocumentService.newInstance(in.businessCase).doesDocumentExist(fileName);",
+            "",
+            "if (doesDocumentExist) {",
+            "  in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/UploadFileExists\", [fileName]);",
+            "  in.status = UploadDocumentCheckStatus.FAIL.name();",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 1048, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f91", "to" : "f72" }
+      ]
+    }, {
+      "id" : "f74",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 920, "y" : 256 }
+      },
+      "connect" : [
+        { "id" : "f92", "to" : "f73" }
+      ]
+    }, {
+      "id" : "f73",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 1176, "y" : 256 }
+      },
+      "connect" : [
+        { "id" : "f20", "to" : "f16", "via" : [ { "x" : 1760, "y" : 256 } ] }
+      ]
+    }, {
+      "id" : "f70",
+      "type" : "Alternative",
+      "name" : "valid file?",
+      "config" : {
+        "conditions" : {
+          "f78" : "org.apache.commons.lang.StringUtils.isBlank(in.message)"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 632, "y" : 160 },
+        "labelOffset" : { "x" : 3, "y" : -14 }
+      },
+      "connect" : [
+        { "id" : "f78", "to" : "f75", "label" : {
+            "name" : "YES",
+            "segment" : 0.26,
+            "offset" : { "x" : 1, "y" : -11 }
+          } },
+        { "id" : "f83", "to" : "f74", "via" : [ { "x" : 632, "y" : 256 } ], "label" : {
+            "name" : "NO",
+            "segment" : 1.12,
+            "offset" : { "x" : -1, "y" : -9 }
+          } }
+      ]
+    }, {
+      "id" : "f53",
+      "type" : "Alternative",
+      "name" : "Document check",
+      "config" : {
+        "conditions" : {
+          "f87" : "in.status == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK.name()"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 920, "y" : 160 },
+        "labelOffset" : { "x" : 0, "y" : -17 }
+      },
+      "connect" : [
+        { "id" : "f87", "to" : "f38", "label" : {
+            "name" : "OK",
+            "segment" : 0.33,
+            "offset" : { "x" : 0, "y" : -8 }
+          } },
+        { "id" : "f90", "to" : "f74" }
+      ]
+    }, {
+      "id" : "f75",
+      "type" : "SubProcessCall",
+      "name" : "UploadDocumentItemChecker",
+      "config" : {
+        "processCall" : "Functional Processes/UploadDocumentItemChecker:call(org.primefaces.model.file.UploadedFile,Boolean,Boolean,String)",
+        "call" : {
+          "map" : {
+            "param.uploadFile" : "in.uploadedFile",
+            "param.enableVirusScannerForUploadedDocument" : "in.enableVirusScannerForUploadedDocument",
+            "param.enableScriptCheckingForUploadedDocument" : "in.enableScriptCheckingForUploadedDocument",
+            "param.allowedUploadFileTypes" : "in.allowedUploadFileTypes"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.message" : "result.message",
+            "out.status" : "result.uploadDocumentCheckStatus.toString()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 776, "y" : 160 },
+        "size" : { "width" : 176, "height" : 60 }
+      },
+      "connect" : [
+        { "id" : "f80", "to" : "f53" }
+      ]
+    }, {
+      "id" : "f17",
+      "type" : "Script",
+      "name" : [
+        "Customize: add",
+        "customer info"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.Random;",
+            "",
+            "Random rand = new Random();",
+            "String customerStringField = \"IvyDocumentCustomer-\" + in.uploadedDocument.getId();",
+            "in.businessCase.customFields().stringField(customerStringField).set(\"Customer \" + rand.nextInt(50));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1536, "y" : 160 },
+        "size" : { "width" : 128, "height" : 60 }
+      },
+      "connect" : [
+        { "id" : "f18", "to" : "f29" }
+      ]
+    }, {
+      "id" : "f23",
+      "type" : "Script",
+      "name" : [
+        "detect if need to",
+        "skip upload"
+      ],
+      "config" : {
+        "output" : {
+          "code" : "in.skip = !Boolean.parseBoolean(in.businessCase.customFields().stringField(\"custom\").getOrDefault(\"false\"));"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f24", "to" : "f25" }
+      ]
+    }, {
+      "id" : "f25",
+      "type" : "Alternative",
+      "name" : "skip custom upload?",
+      "config" : {
+        "conditions" : {
+          "f28" : "in.skip",
+          "f26" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f26", "to" : "f36", "label" : {
+            "name" : "NO"
+          } },
+        { "id" : "f28", "to" : "f27", "via" : [ { "x" : 384, "y" : 48 } ], "label" : {
+            "name" : "YES",
+            "segment" : 1.1,
+            "offset" : { "x" : -11, "y" : 36 }
+          } }
+      ]
+    }, {
+      "id" : "f27",
+      "type" : "Script",
+      "name" : "Update status",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.enums.CustomProcessStatus;",
+            "",
+            "in.status = CustomProcessStatus.SKIP.name();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 512, "y" : 48 }
+      },
+      "connect" : [
+        { "id" : "f31", "to" : "f29", "via" : [ { "x" : 1664, "y" : 48 } ] }
+      ]
+    }, {
+      "id" : "f29",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 1664, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f30", "to" : "f16" }
+      ]
+    }, {
+      "id" : "f32",
+      "type" : "Script",
+      "name" : [
+        "detect if need to",
+        "skip upload"
+      ],
+      "config" : {
+        "output" : {
+          "code" : "in.skip = !Boolean.parseBoolean(in.businessCase.customFields().stringField(\"custom\").getOrDefault(\"false\"));"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 384 }
+      },
+      "connect" : [
+        { "id" : "f33", "to" : "f40" }
+      ]
+    }, {
+      "id" : "f34",
+      "type" : "Script",
+      "name" : [
+        "detect if need to",
+        "skip upload"
+      ],
+      "config" : {
+        "output" : {
+          "code" : "in.skip = !Boolean.parseBoolean(in.businessCase.customFields().stringField(\"custom\").getOrDefault(\"false\"));"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 552 }
+      },
+      "connect" : [
+        { "id" : "f35", "to" : "f42" }
+      ]
+    }, {
+      "id" : "f37",
+      "type" : "Script",
+      "name" : [
+        "detect if need to",
+        "skip upload"
+      ],
+      "config" : {
+        "output" : {
+          "code" : "in.skip = !Boolean.parseBoolean(in.businessCase.customFields().stringField(\"custom\").getOrDefault(\"false\"));"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 712 }
+      },
+      "connect" : [
+        { "id" : "f39", "to" : "f44" }
+      ]
+    }, {
+      "id" : "f40",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f52" : "in.skip",
+          "f41" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 392, "y" : 384 }
+      },
+      "connect" : [
+        { "id" : "f41", "to" : "f5", "label" : {
+            "name" : "NO"
+          } },
+        { "id" : "f52", "to" : "f46", "via" : [ { "x" : 392, "y" : 288 }, { "x" : 704, "y" : 288 } ], "label" : {
+            "name" : "YES",
+            "segment" : 1.53,
+            "offset" : { "x" : -155, "y" : 46 }
+          } }
+      ]
+    }, {
+      "id" : "f42",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f54" : "in.skip",
+          "f43" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 392, "y" : 552 }
+      },
+      "connect" : [
+        { "id" : "f43", "to" : "f2", "label" : {
+            "name" : "NO"
+          } },
+        { "id" : "f54", "to" : "f48", "via" : [ { "x" : 392, "y" : 464 }, { "x" : 704, "y" : 464 } ], "label" : {
+            "name" : "YES",
+            "segment" : 1.53,
+            "offset" : { "x" : -157, "y" : 46 }
+          } }
+      ]
+    }, {
+      "id" : "f44",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f55" : "in.skip",
+          "f45" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 400, "y" : 712 }
+      },
+      "connect" : [
+        { "id" : "f45", "to" : "f12", "label" : {
+            "name" : "NO"
+          } },
+        { "id" : "f55", "to" : "f50", "via" : [ { "x" : 400, "y" : 624 }, { "x" : 704, "y" : 624 } ], "label" : {
+            "name" : "YES",
+            "segment" : 1.55,
+            "offset" : { "x" : -157, "y" : 38 }
+          } }
+      ]
+    }, {
+      "id" : "f46",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 704, "y" : 384 }
+      },
+      "connect" : [
+        { "id" : "f47", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f48",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 704, "y" : 552 }
+      },
+      "connect" : [
+        { "id" : "f49", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f50",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 704, "y" : 712 }
+      },
+      "connect" : [
+        { "id" : "f51", "to" : "f11" }
+      ]
+    } ]
+}

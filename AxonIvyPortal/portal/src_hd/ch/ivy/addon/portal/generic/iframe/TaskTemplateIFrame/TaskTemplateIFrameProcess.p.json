@@ -1,12 +1,12 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "16E1584824AEC16C",
   "kind" : "HTML_DIALOG",
   "config" : {
     "data" : "ch.ivy.addon.portal.generic.iframe.TaskTemplateIFrame.TaskTemplateIFrameData"
   },
   "elements" : [ {
-      "id" : "f0",
+      "id" : "f5",
       "type" : "HtmlDialogStart",
       "name" : "start(String,Number)",
       "config" : {
@@ -21,23 +21,17 @@
             "out.url" : "param.url"
           }
         },
-        "guid" : "16E11EC8F88D54A6"
+        "guid" : "189AFECA63AAE8B5"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 64 },
+        "at" : { "x" : 88, "y" : 176 },
         "labelOffset" : { "x" : 49, "y" : 35 }
       },
       "connect" : [
-        { "id" : "f4", "to" : "f3" }
+        { "id" : "f9", "to" : "f6" }
       ]
     }, {
-      "id" : "f1",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 352, "y" : 64 }
-      }
-    }, {
-      "id" : "f3",
+      "id" : "f6",
       "type" : "Script",
       "name" : "Find task by id",
       "config" : {
@@ -47,10 +41,16 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 256, "y" : 64 }
+        "at" : { "x" : 248, "y" : 176 }
       },
       "connect" : [
-        { "id" : "f2", "to" : "f1" }
+        { "id" : "f8", "to" : "f7" }
       ]
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 344, "y" : 176 }
+      }
     } ]
 }

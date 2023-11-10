@@ -1,8 +1,5 @@
 package portal.guitest.common;
 
-import static portal.guitest.common.Variable.SHOW_LEGACY_UI;
-import static portal.guitest.common.Variable.SHOW_USER_GUIDE;
-
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -18,7 +15,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 import vn.wawa.guitest.base.client.Browser;
 import vn.wawa.guitest.base.enums.BrowserType;
 
@@ -59,6 +56,7 @@ public class BaseTest {
   protected String hideCaseUrl = "portal-developer-examples/16583F0F73864543/createHiddenTechnicalCase.ivp";
   protected String createTestingCaseMapUrl = "internalSupport/764871e4-cf70-401f-83fb-9e99fa897fc4.icm";
   protected String createTestingCaseUrlForCustomizationAdditionalCaseDetails = "portal-components-examples/176465FBFE257CF3/createInvestmentRequest.ivp";
+  protected String createTaskWithIframe = "portal-developer-examples/16E5DB746865BCEC/CreateInvestment.ivp";
   protected String createTestingCaseUrlForDefaultAdditionalCaseDetails = "internalSupport/14B2FC03D2E87141/DefaultAdditionalCaseDetails.ivp";
   protected String createTestingCaseContainOneTask = "internalSupport/14B2FC03D2E87141/CreateSupportTicket.ivp";
   protected String createTaskWithNotExistedActivatorUrl = "internalSupport/14B2FC03D2E87141/createTaskWithNotExistedActivator.ivp";
@@ -73,15 +71,14 @@ public class BaseTest {
   protected String complexPaymentUrl = "portal-developer-examples/162511D2577DBA88/complexPayment.ivp";
   protected String documentTableComponentUrl = "portal-components-examples/1818938E7EBC9329/showCustomizedDocumentTableExample.ivp";
   protected String cleanUpAbsencesAndSubstituesLink = "portalKitTestHelper/1511A66AF619A768/cleanAbsencesAndSubstitues.ivp";
-  protected String createUserFavoriteProcess = "portalKitTestHelper/153CACC26D0D4C3D/createTestUserFavoriteProcess.ivp";
   protected String createCasesForCaseListCustomization = "portal-developer-examples/162511D2577DBA88/createCasesForCaseListCustomization.ivp";
   protected String processChainShowcaseUrl = "portal-components-examples/181897243F2BFDD3/showProcessChainExamples.ivp";
   protected String userSelectionComponentShowcaseUrl = "portal-components-examples/18189AF10B521DF4/showUserSelectionExamples.ivp";
   protected String roleSelectionComponentShowcaseUrl = "portal-components-examples/181899823E886ABB/showRoleSelectionExamples.ivp";
   protected String startUserExampleProcess = "portal-user-examples/17236DB1D3DA14C0/userExampleGuide.ivp";
   protected String userIsOwnerUrl = "internalSupport/16A68510A341BE6E/userIsOwner.ivp";
-  protected String showTaskNoteHistoryUrl = "portal/1549F58C18A6C562/showTaskNoteHistory.ivp?selectedTaskId=%s";
-  protected String showCaseNoteHistoryUrl = "portal/1549F58C18A6C562/showCaseNoteHistory.ivp?caseId=%s";
+  protected String showTaskNoteHistoryUrl = "portal/1549F58C18A6C562/showTaskNoteHistory.ivp?uuid=%s";
+  protected String showCaseNoteHistoryUrl = "portal/1549F58C18A6C562/showCaseNoteHistory.ivp?uuid=%s";
   protected String createTaskWithSystemState = "portalKitTestHelper/153CACC26D0D4C3D/createTaskWithSystemState.ivp";
   protected String createTechnicalStateUrl = "portal-developer-examples/162511D2577DBA88/createTechnicalStateTasks.ivp";
   protected String portalKitTestHelperPasswordResetUrl = "portalKitTestHelper/176463FD4BBF6C93/PasswordReset.ivp";
@@ -95,6 +92,7 @@ public class BaseTest {
   protected String defaultProcessImageSelectionExampleUrl = "portal-developer-examples/179D499523153784/start.ivp";
   protected String securityMemberNameAndAvatarExampleInFrameUrl = "/portal-components-examples/182A5FCAF7FC6B1A/showSecurityMemberNameAndAvatarExamples.ivp?embedInFrame";
   protected String templateInFrameExampleInFrameUrl = "/portal-developer-examples/162511D2577DBA88/createTaskWithFrameTemplate.ivp?embedInFrame";
+  public static final long DEFAULT_TIMEOUT = 15;
 
   @Rule
   public ScreenshotFailedTestRule screenshotTestRule = new ScreenshotFailedTestRule();
@@ -118,8 +116,6 @@ public class BaseTest {
   public void setup() {
     browser = Browser.getBrowser();
     launchBrowserAndGotoRelativeLink(cleanupDataLink);
-    updatePortalSetting(SHOW_USER_GUIDE.getKey(), "false");
-    updatePortalSettingToShowLegacyUI();
   }
   
   /**
@@ -130,8 +126,6 @@ public class BaseTest {
   public void setupWithAlternativeLinkAndAccount(String relativePath, TestAccount account) {
     browser = Browser.getBrowser();
     launchBrowserAndGotoRelativeLink(relativePath);
-    updatePortalSetting(SHOW_USER_GUIDE.getKey(), "false");
-    updatePortalSettingToShowLegacyUI();
     login(account);
   }
 
@@ -170,7 +164,7 @@ public class BaseTest {
   protected void logoutDesigner() {
     try {
       browser.goHome(designerLogoutUrl);
-      redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+      redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     } catch (Exception e) {
       throw new PortalGUITestException(e);
     }
@@ -243,7 +237,7 @@ public class BaseTest {
       Awaitility.await().atMost(new Duration(60, TimeUnit.SECONDS)).until(() -> {
         try {
           redirectToRelativeLink(String.format(LOGIN_URL_PATTERN, username, password));
-          return new HomePage() {
+          return new NewDashboardPage() {
             @Override
             protected long getTimeOutForLocator() {
               return 10L;
@@ -301,12 +295,12 @@ public class BaseTest {
     }
   }
   
-  public void goToTaskNoteHistoryPage(String taskId) {
-     redirectToRelativeLink(String.format(showTaskNoteHistoryUrl, taskId));
+  public void goToTaskNoteHistoryPage(String uuid) {
+    redirectToRelativeLink(String.format(showTaskNoteHistoryUrl, uuid));
   }
   
-  public void goToCaseNoteHistoryPage(String caseId) {
-    redirectToRelativeLink(String.format(showCaseNoteHistoryUrl, caseId));
+  public void goToCaseNoteHistoryPage(String uuid) {
+    redirectToRelativeLink(String.format(showCaseNoteHistoryUrl, uuid));
  }
 
   
@@ -322,13 +316,4 @@ public class BaseTest {
     Sleeper.sleep(200); // Wait for JS executed successfully
   }
 
-  public void updatePortalSettingToShowLegacyUI() {
-    updatePortalSetting(SHOW_LEGACY_UI.getKey(), "true");
-  }
-
-  protected void showNewDashboard() {
-    updatePortalSetting(SHOW_LEGACY_UI.getKey(), "false");
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-  }
-  
 }

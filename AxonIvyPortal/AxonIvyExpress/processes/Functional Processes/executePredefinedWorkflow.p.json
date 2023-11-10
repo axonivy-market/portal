@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "163729F2CBAE7BE4",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -37,8 +37,7 @@
           "id" : "U21-g0",
           "type" : "EmbeddedStart",
           "visual" : {
-            "at" : { "x" : 288, "y" : 64 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 288, "y" : 64 }
           },
           "parentConnector" : "f3",
           "connect" : [
@@ -48,8 +47,7 @@
           "id" : "U21-g1",
           "type" : "EmbeddedEnd",
           "visual" : {
-            "at" : { "x" : 288, "y" : 1248 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 288, "y" : 1248 }
           },
           "parentConnector" : "f6"
         }, {
@@ -593,7 +591,7 @@
           ]
         } ],
       "visual" : {
-        "at" : { "x" : 526, "y" : 162 }
+        "at" : { "x" : 528, "y" : 160 }
       },
       "connect" : [
         { "id" : "f6", "to" : "f5" }
@@ -707,7 +705,6 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 264, "y" : 32 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 35, "y" : 29 }
           },
           "parentConnector" : "f30",
@@ -720,7 +717,6 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 640, "y" : 416 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : -6, "y" : 38 }
           },
           "parentConnector" : "f10"
@@ -728,8 +724,7 @@
           "id" : "S11-g2",
           "type" : "EmbeddedStart",
           "visual" : {
-            "at" : { "x" : 64, "y" : 320 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 64, "y" : 320 }
           },
           "parentConnector" : "f18",
           "connect" : [
@@ -815,8 +810,7 @@
           "id" : "S40-g0",
           "type" : "EmbeddedStart",
           "visual" : {
-            "at" : { "x" : 64, "y" : 192 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 64, "y" : 192 }
           },
           "parentConnector" : "f13",
           "connect" : [
@@ -826,8 +820,7 @@
           "id" : "S40-g1",
           "type" : "EmbeddedEnd",
           "visual" : {
-            "at" : { "x" : 544, "y" : 192 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 544, "y" : 192 }
           },
           "parentConnector" : "f4"
         }, {
@@ -939,9 +932,9 @@
                 "import java.util.Map;",
                 "import ch.ivy.addon.portalkit.enums.PortalLibrary;",
                 "import java.util.Arrays;",
-                "import ch.ivy.addon.portalkit.service.IvyAdapterService;",
+                "import com.axonivy.portal.components.service.IvyAdapterService;",
                 "",
-                "Map x = IvyAdapterService.startSubProcess(\"handleEndPage()\", null, Arrays.asList(PortalLibrary.AXON_EXPRESS.getValue()));",
+                "Map x = IvyAdapterService.startSubProcessInApplication(\"handleEndPage()\", null);",
                 "String callbackUrl = x.get(\"callbackUrl\") as String;",
                 "ivy.task.customFields().stringField(CustomFields.EXPRESS_END_PAGE_URL.toString()).set(callbackUrl);"
               ]
@@ -1000,7 +993,6 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 192 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f8",
@@ -1013,7 +1005,6 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 1200, "y" : 192 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f25"
@@ -1090,8 +1081,7 @@
           "id" : "U20-g0",
           "type" : "EmbeddedStart",
           "visual" : {
-            "at" : { "x" : 320, "y" : 64 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 320, "y" : 64 }
           },
           "parentConnector" : "f15",
           "connect" : [
@@ -1101,8 +1091,7 @@
           "id" : "U20-g1",
           "type" : "EmbeddedEnd",
           "visual" : {
-            "at" : { "x" : 320, "y" : 1024 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 320, "y" : 1024 }
           },
           "parentConnector" : "f17"
         }, {

@@ -38,7 +38,7 @@ public class CaseCategoryFilter extends CaseFilter {
   @Override
   public String value() {
     if (CollectionUtils.isNotEmpty(categoryPaths) && (categories == null || categories.length == 0)) {
-      initializeRoot();
+      initializeRoot(false);
     }
     return CategoryUtils.getCategoryValues(categories);
   }
@@ -78,7 +78,7 @@ public class CaseCategoryFilter extends CaseFilter {
   }
 
   public CheckboxTreeNode<CategoryNode> getRoot() {
-    initializeRoot();
+    initializeRoot(false);
     return root;
   }
 
@@ -86,7 +86,7 @@ public class CaseCategoryFilter extends CaseFilter {
     this.root = root;
   }
 
-  public void initializeRoot() {
+  public void initializeRoot(boolean forceRebuildFilter) {
     String allCategoriesText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/allCategories");
     // If language is changed, category tree needs to be rebuilt
     String allCategoriesTextInTree = Optional.ofNullable(root)
@@ -96,7 +96,7 @@ public class CaseCategoryFilter extends CaseFilter {
         .map(TreeNode::getData)
         .map(data -> data.getValue())
         .orElse(StringUtils.EMPTY);
-    if (root == null || !StringUtils.equals(allCategoriesTextInTree, allCategoriesText)) {
+    if (forceRebuildFilter || root == null || !StringUtils.equals(allCategoriesTextInTree, allCategoriesText)) {
       root = CaseTreeUtils.buildCaseCategoryCheckboxTreeRoot();
       categories = CategoryUtils.recoverSelectedCategories(root, categoryPaths);
     }
@@ -109,5 +109,10 @@ public class CaseCategoryFilter extends CaseFilter {
   public void setCategoryPaths(List<String> categoryPaths) {
     this.categoryPaths = categoryPaths;
     categories = CategoryUtils.recoverSelectedCategories(root, categoryPaths);
+  }
+
+  @Override
+  public void update() {
+    initializeRoot(true);
   }
 }

@@ -3,19 +3,47 @@
 Logout Process
 ==============
 
-#. Create an |ivy| project which has ``portal`` as a
-   required library.
+Introduction
+------------
 
-#. Copy the ``PortalStart`` process from ``portal`` to your project.
-   This process is the new home page. The administrator has to register this
-   link.
+The Portal allows you to customize:
 
-#. Refer to :ref:`Customize Portal home <customization-portal-home>` to set new
-   home page.
+   - Logout function when the user logs out from Portal.
+   - The page that is shown to the user after he has logged out using the default logout process.
 
-#. Override the ``Logout`` process to customize the logout behavior.
+.. tip::
 
-#. Create a callable subprocess in your project with the ``getLogoutPage()``
-   signature to customize the page which will be redirected to after logout,
-   default is the Portal home page. Make sure this signature is unique in your
-   application.
+   Refer to process ``CustomLogoutFeatures`` in project ``portal-developer-examples``
+   for an example of how to customize the logout process.
+
+Customize the logout function
+-----------------------------
+
+Create a callable subprocess with
+
+**Signature**: portalLogout
+
++-----------------------+-------------------+
+| Name                  | Type              |
++=======================+===================+
+|**Parameter**                              |
++-----------------------+-------------------+
+| isTaskReserve         | java.lang.String  |
++-----------------------+-------------------+
+| task                  | java.lang.String  |
++-----------------------+-------------------+
+
+Customize the logout page
+-------------------------
+
+Create a callable subprocess with 
+
+**Signature**: portalGetLogoutPage
+
++-----------------------+-------------------+
+| Name                  | Type              |
++=======================+===================+
+|**Result**                                 |
++-----------------------+-------------------+
+| logoutPage            | java.lang.String  |
++-----------------------+-------------------+
