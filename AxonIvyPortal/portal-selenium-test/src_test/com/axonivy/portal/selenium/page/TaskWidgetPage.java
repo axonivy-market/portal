@@ -602,4 +602,11 @@ public class TaskWidgetPage extends TemplatePage {
     }
     return false;
   }
+
+  public String getTaskId() {
+    String taskTitleCssSelection = "span[id$=':task-id']";
+    String taskTitle = findElementByCssSelector(taskTitleCssSelection).getText();
+    // String taskId = taskTitle.substring(taskTitle.indexOf("#") + 1, taskTitle.indexOf(")"));
+    return taskTitle;
+  }
 }
