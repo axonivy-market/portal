@@ -57,9 +57,9 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
 
     SelenideElement filterVisibilityContainer = findElementById("task-widget:filter-save-form:save-filter-type-radio");
     if (isPersonalFilter) {
-      clickByJavaScript(filterVisibilityContainer.$$(By.tagName("LABEL")).get(0));
+      clickByJavaScript(filterVisibilityContainer.$$(By.tagName("LABEL")).get(0).shouldBe(clickable(), DEFAULT_TIMEOUT));
     } else {
-      clickByJavaScript(filterVisibilityContainer.$$(By.tagName("LABEL")).get(1));
+      clickByJavaScript(filterVisibilityContainer.$$(By.tagName("LABEL")).get(1).shouldBe(clickable(), DEFAULT_TIMEOUT));
     }
   }
 
@@ -184,7 +184,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
 
   public void saveFilterSet(String filterSetName, boolean isPersonalFilter) {
     enterDataToSaveFilterSet(filterSetName, isPersonalFilter);
-    SelenideElement saveButton = $(By.id("task-widget:filter-save-form:filter-save-command"));
+    SelenideElement saveButton = $(By.id("task-widget:filter-save-form:filter-save-command")).shouldBe(appear, DEFAULT_TIMEOUT);
     waitForElementClickableThenClick(saveButton);
     saveButton.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
@@ -206,7 +206,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     } else {
       filterContainer = findElementById("task-widget:filter-selection-form:public-filters");
     }
-    clickByJavaScript(filterContainer.$(By.linkText(filterSetName)));
+    clickByJavaScript(filterContainer.$(By.linkText(filterSetName)).shouldBe(appear, DEFAULT_TIMEOUT));
   }
 
   public String getFilterName() {
@@ -220,7 +220,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   private void filterByUserName(String user, String filterIdName) {
     waitForElementClickableThenClick($("button[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-command']"));
     $("input[id*='" + filterIdName + "-filter:filter-input-form:']").sendKeys(user);
-    ;
     waitForElementExisted(By.cssSelector("div[id*='" + filterIdName + "-filter'] .ui-avatar-text"), true);
     waitForElementClickableThenClick($("tr[class$='ui-state-highlight']"));
     waitForElementClickableThenClick($("button[id$='" + filterIdName + "-filter:filter-input-form:update-command']"));
