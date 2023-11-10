@@ -28,47 +28,23 @@ public class MainMenuPage extends TemplatePage {
 
   public TaskWidgetPage openTaskList() {
     return NavigationHelper.navigateToTaskList();
-//    waitLeftMenuReady();
-//    WaitHelper.waitForNavigation(() -> {
-//      clickByJavaScript($(".layout-menu li[role='menuitem'] a.TASK").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT));
-//    });
-//    return new TaskWidgetPage();
   }
 
   public CaseWidgetPage openCaseList() {
     return NavigationHelper.navigateToCaseList();
-//    waitLeftMenuReady();
-//    WaitHelper.waitForNavigation(() -> {
-//      clickByJavaScript($(".layout-menu li[role='menuitem'] a.CASE").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT));
-//    });
-//    return new CaseWidgetPage();
   }
 
   public ProcessWidgetPage openProcessList() {
     return NavigationHelper.navigateToProcessList();
-//    waitLeftMenuReady();
-//    WaitHelper.waitForNavigation(() -> {
-//      clickByJavaScript($(".layout-menu li[role='menuitem'] a.PROCESS").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()));
-//    });
-//    waitPageLoaded();
-//    return new ProcessWidgetPage();
   }
 
   public StatisticWidgetPage openStatisticPage() {
-//    waitLeftMenuReady();
-//    WaitHelper.waitForNavigation(() -> {
-//      clickByJavaScript($(".layout-menu li[role='menuitem'] a.STATISTICS").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()));
-//    });
-//
-//    return new StatisticWidgetPage();
     return NavigationHelper.navigateToStatisticPage();
   }
 
   public void openUserSettingMenu() {
     $("#top-menu").shouldBe(appear, DEFAULT_TIMEOUT);
-    // clickByJavaScript($("a[id='user-settings-menu']").shouldBe(appear,
-    // DEFAULT_TIMEOUT).shouldBe(getClickableCondition()));
-    $("a[id='user-settings-menu']").shouldBe(clickable(), DEFAULT_TIMEOUT);
+    $("a[id='user-settings-menu']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
   }
 
   public void waitLeftMenuReady() {
@@ -81,14 +57,16 @@ public class MainMenuPage extends TemplatePage {
     if ($("a[id$='user-menu-required-login:toggle-menu']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).is(disappear)) {
       $("[id$=':main-navigator:main-menu']").hover();
       WaitHelper.waitNumberOfElementsToBe(WebDriverRunner.getWebDriver(), By.id("user-menu-required-login:toggle-menu"), 1);
-      $("a[id$='user-menu-required-login:toggle-menu']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+      $("a[id$='user-menu-required-login:toggle-menu']").shouldBe(appear, DEFAULT_TIMEOUT)
+          .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     }
   }
 
   public void closeMainMenu() {
     waitLeftMenuReady();
     if ($("a[id$='user-menu-required-login:toggle-menu']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).is(appear)) {
-      $("a[id$='user-menu-required-login:toggle-menu']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+      $("a[id$='user-menu-required-login:toggle-menu']").shouldBe(appear, DEFAULT_TIMEOUT)
+          .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
       $(".js-layout-main").hover();
       $(".portal-home-logo.portal-home-logo-small").should(Condition.visible, DEFAULT_TIMEOUT);
     }
@@ -96,13 +74,12 @@ public class MainMenuPage extends TemplatePage {
 
   public String getMenuItemsAsString() {
     expandMainMenu();
-    return String.join(",", $$(".layout-menu li[role='menuitem'] a span").asDynamicIterable().stream().map(SelenideElement::getText).collect(Collectors.toList()));
+    return String.join(",", $$(".layout-menu li[role='menuitem'] a span").asDynamicIterable().stream().map(SelenideElement::getText)
+        .collect(Collectors.toList()));
   }
 
   public CaseWidgetPage selectCaseMenu() {
-//    return NavigationHelper.navigateToCaseList();
     $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
-//    Sleeper.sleep(500);
     WaitHelper.waitForNavigation(() -> $(By.cssSelector(".layout-menu li.sub-menu-item-case")).shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
     return new CaseWidgetPage();
@@ -142,7 +119,8 @@ public class MainMenuPage extends TemplatePage {
   }
 
   private boolean isMenuItemDisplayed(String menuItemName) {
-    return $$("li[role='menuitem']").asFixedIterable().stream().filter(element -> element.getText().equals(menuItemName)).findFirst().map(WebElement::isDisplayed).orElse(false);
+    return $$("li[role='menuitem']").asFixedIterable().stream().filter(element -> element.getText().equals(menuItemName)).findFirst()
+        .map(WebElement::isDisplayed).orElse(false);
   }
 
   public boolean isTasksDisplayed() {
