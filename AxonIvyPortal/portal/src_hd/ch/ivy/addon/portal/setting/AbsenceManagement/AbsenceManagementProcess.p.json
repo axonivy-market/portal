@@ -1310,11 +1310,10 @@
             "import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;",
             "",
             "boolean fromBiggerThanTill = AbsenceAndSubstituteUtils.isFromDateAfterTill(in.selectedAbsence);",
-            "",
+            "in.validationError = false;",
             "",
             "if (fromBiggerThanTill) {",
             "  in.selectedAbsence.until = in.selectedAbsence.from;",
-            "",
             "}"
           ]
         }

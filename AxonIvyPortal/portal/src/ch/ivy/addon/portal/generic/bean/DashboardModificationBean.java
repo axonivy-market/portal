@@ -150,7 +150,6 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
   /**
    * Remove the image of welcome widget from CMS
-   * 
    */
   private void removeWelcomeWidgetImage(DashboardWidget selectedWidget) {
     WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) selectedWidget;
@@ -183,6 +182,14 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     PortalNavigator.navigateToDashboardDetailsPage(dashboardId, isPublicDashboard);
   }
 
+  public void navigateToPublicDashBoardListPage() {
+    PortalNavigator.navigateToDashboardConfigurationEditPageUrl(isPublicDashboard);
+  }
+
+  public void navigateToPrivateDashboardPage() {
+    PortalNavigator.navigateToDashboardConfigurationEditPageUrl(isPublicDashboard);
+  }
+
   public void onSelectedDeleteDashboard(Dashboard dashboard) {
     this.selectedDashboard = dashboard;
   }
@@ -201,6 +208,11 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     collectDashboardsForManagement();
     saveDashboardDetail();
     navigateToDashboardDetailsPage(this.selectedDashboard.getId());
+  }
+
+  public void createDashboards() {
+    collectDashboardsForManagement();
+    saveDashboardDetail();
   }
 
   public boolean isPublicDashboard() {
@@ -274,7 +286,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     return isPublicDashboard ?
         PermissionUtils.hasDashboardExportPublicPermission() : PermissionUtils.hasDashboardExportOwnPermission();
   }
-  
+
   public boolean hasImportDashboardPermission(boolean isPublicDashboard) {
     return isPublicDashboard ?
         PermissionUtils.hasDashboardImportPublicPermission() : PermissionUtils.hasDashboardImportOwnPermission();
@@ -288,15 +300,19 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
       dashboard.setPermissions(null);
     }
 
-    Optional.ofNullable(dashboard).map(Dashboard::getWidgets).orElse(new ArrayList<>())
-      .stream().forEach(widget -> {
-        if (widget instanceof WelcomeDashboardWidget) {
-          var welcomeWidget = (WelcomeDashboardWidget) widget;
-          welcomeWidget.setImageContent(encodeWelcomeWidgetImage(welcomeWidget));
-        }
-      });
+    Optional.ofNullable(dashboard).map(Dashboard::getWidgets).orElse(new ArrayList<>()).stream().forEach(widget -> {
+      if (widget instanceof WelcomeDashboardWidget) {
+        var welcomeWidget = (WelcomeDashboardWidget) widget;
+        welcomeWidget.setImageType(WelcomeWidgetUtils.getFileTypeOfImage(welcomeWidget.getImageType()));
+        welcomeWidget.setImageContent(encodeWelcomeWidgetImage(welcomeWidget));
+      }
+    });
 
-    var inputStream = new ByteArrayInputStream(BusinessEntityConverter.prettyPrintEntityToJsonValue(dashboard).getBytes(StandardCharsets.UTF_8));
+    List<Dashboard> dashboardList = new ArrayList<>();
+    dashboardList.add(dashboard);
+
+    var inputStream = new ByteArrayInputStream(
+        BusinessEntityConverter.prettyPrintEntityToJsonValue(dashboardList).getBytes(StandardCharsets.UTF_8));
     return DefaultStreamedContent
         .builder()
         .stream(() -> inputStream)
@@ -321,7 +337,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   private String getFileName(String dashboardName) {
     return dashboardName + JSON_FILE_SUFFIX;
   }
-  
+
   public boolean isShowShareButtonOnConfig(boolean isPublicDashboard) {
     return isPublicDashboard && PermissionUtils.hasShareDashboardPermission();
   }

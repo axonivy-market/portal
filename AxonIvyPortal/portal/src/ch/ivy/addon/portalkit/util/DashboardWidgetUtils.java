@@ -63,7 +63,6 @@ import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.ReleaseState;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -606,7 +605,7 @@ public class DashboardWidgetUtils {
           processWidget.setProcess(process);
         }
       } else if (expressProcess != null) {
-        IProcessStart findExpressCreationProcess = ProcessStartCollector.getInstance().findExpressCreationProcess();
+        IProcessStart findExpressCreationProcess = ExpressProcessService.getInstance().findExpressCreationProcess();
         if (findExpressCreationProcess == null || 
             findExpressCreationProcess.getProcessModelVersion().getActivityState() != ActivityState.ACTIVE || 
             findExpressCreationProcess.getProcessModelVersion().getReleaseState() != ReleaseState.RELEASED) {
@@ -754,14 +753,21 @@ public class DashboardWidgetUtils {
     Locale currentLocale = Ivy.session().getContentLocale();
     Collator collator = Collator.getInstance(currentLocale);
 
-    Comparator<DashboardProcess> byIndex = Comparator.comparing(DashboardProcess::getSortIndex, collator::compare)
-        .thenComparing(process -> process.getName().toLowerCase(), collator::compare);
     Comparator<DashboardProcess> byName =
         Comparator.comparing(process -> process.getName().toLowerCase(), collator::compare);
 
+    // First, compare by sort index (as integers or 0 if parsing fails)
     List<DashboardProcess> processWithIndex = processes.stream()
         .filter(process -> StringUtils.isNoneEmpty(process.getSortIndex()))
-        .sorted(byIndex)
+        .sorted(Comparator.<DashboardProcess, Integer>comparing(process -> {
+          try {
+            return Integer.parseInt(process.getSortIndex().trim());
+          } catch (NumberFormatException e) {
+            Ivy.log().warn(e);
+            return 0;
+          }
+          // Then, if sort index is equal, compare by name (case-insensitive)
+        }).thenComparing(byName))
         .collect(Collectors.toList());
 
     List<DashboardProcess> processWithoutIndex = processes.stream()

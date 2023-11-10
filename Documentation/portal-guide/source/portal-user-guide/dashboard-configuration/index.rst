@@ -178,6 +178,8 @@ Available dashboard templates:
 .. hint::
    Depending on dashboard roles, you might see other public dashboards in the dashboards list.
 
+.. _howto-import-your-public-dashboards:
+
 How to: import public dashboard
 ===============================
 

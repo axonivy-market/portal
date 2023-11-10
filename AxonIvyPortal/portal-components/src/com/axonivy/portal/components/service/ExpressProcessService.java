@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import com.axonivy.portal.components.bo.ExpressProcess;
 import com.axonivy.portal.components.enums.PortalVariable;
 
-
+@Deprecated(forRemoval = true, since = "10.0.13")
 public class ExpressProcessService extends JsonConfigurationService<ExpressProcess> {
 
     private static final String EXPRESS_PROCESSES = PortalVariable.EXPRESS_PROCESS.key;

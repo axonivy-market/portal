@@ -66,15 +66,39 @@ Engine With License (Production Mode)
 The engine does not deploy anything, you need to deploy and configure the Portal
 application manually.
 
+Install Dashboard configuration file to engine (Production Mode)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+To install Dashboard JSON configuration file to the Axon Ivy Engine, you can choose 1 of these ways
+
+- Include the Dashboard.json file in the app.zip under ``<app.zip>/config/variables/Portal.Dashboard.json`` as the structure shown below
+
+   .. code-block:: 
+
+      app.zip
+      ├── config
+      │   └── app.yaml
+      |   └── variables
+      |       └── Portal.Dashboard.json
+      ├── portal.iar
+      ├── portal-components.iar    
+   ..
+
+   The JSON file name must be Portal.Dashboard.json. Refer to :dev-url:`Engine Deployment</doc/|version|/engine-guide/deployment/index.html>` 
+- Copy the Dashboard.json file directly into the engine folder ``<engine>/configuration/applications/<application>``. The Json file name must be named ``variables.Portal.Dashboard.json``
+
+- Use the import dashboard feature of the Portal. Refer to :ref:`How to import your public dashboards<howto-import-your-public-dashboards>`
+
+
+
 Setup Portal multi applications
 """""""""""""""""""""""""""""""
 .. important::
 
-   This is used to display common task lists of users in several applications. Task/Case list of application named ``Portal`` would display all tasks/cases of applications using the Portal running in the same security context.
+   This is used to display common task lists for each user in several applications. The Task/Case lists of all applications installed in a security context are displayed by the Portal running in this security context.
 
-All applications are in the same security context and the **portal-components** should be the only part being deployed in the other applications. See :ref:`multi-app-structure` overview.
+All applications are in the same security context and the **portal-components** should be the only part being deployed in the other applications. See :ref:`The Portal multi applications <multi-app-structure>` overview.
 
--  Create a new application named ``Portal``. Deploy Portal (portal, portal-components, optionally AxonIvyExpress) to this application.
+-  Create a new application. Deploy Portal (portal, portal-components, optionally AxonIvyExpress) to this application.
 
 -  Create new applications: App 1, App 2,... Deploy your projects to the new applications.
 
@@ -121,16 +145,20 @@ In Engine
 
 #. Follow detailed migration notes for each version below.
 
-Migrate 10.0 To 10.0.12
------------------------
+Migrate 10.0.12 To 10.0.13
+--------------------------
 
-Portal no longer supports the override process approach for some subprocesses.
-Please follow the guidelines below to migrate your override subprocesses.
+- Override HTML dialog ``UserWithEnvironmentInfo`` is removed and no longer supported, use ``GlobalFooterInfo`` dialog instead with the GlobalVariable.
 
-#. :ref:`Customize Forgot Password <customization-forgot-password>`
+- Override HTML dialog ``PageHeader`` and ``PageFooter`` are no longer supported, use callable instead.
 
+Migrate 10.0.11 To 10.0.12
+--------------------------
+
+1. Portal no longer supports the override process approach for some subprocesses. Please follow the guidelines below to migrate your override subprocesses.
+
+   - :ref:`Customize Forgot Password <customization-forgot-password>`
       - Remove subprocess override of ``ResetPassword`` and ``SendPasswordResetEmail``` from your project.
-
       - Change the signature of your callable start as described below.
 
          +-------------------------+-------------------------------+
@@ -141,11 +169,8 @@ Please follow the guidelines below to migrate your override subprocesses.
          | SendPasswordResetEmail  | portalSendPasswordResetEmail  |
          +-------------------------+-------------------------------+
 
-#. :ref:`Document processes <customization-document-processes>`
-
-      - Remove subprocess override of ``GetDocumentList``, ``UploadDocument``,
-        ``DeleteDocument``, and ``DownloadDocument`` from your project.
-
+   - :ref:`Document processes <customization-document-processes>`
+      - Remove subprocess override of ``GetDocumentList``, ``UploadDocument``, ``DeleteDocument``, and ``DownloadDocument`` from your project.
       - Change the signature of your callable starts as described below.
 
          +----------------------+----------------------------+
@@ -160,10 +185,8 @@ Please follow the guidelines below to migrate your override subprocesses.
          | DownloadDocument     | portalDownloadDocument     |
          +----------------------+----------------------------+
 
-#. :ref:`Customize Logout Process <customization-logout>`
-
+   - :ref:`Customize Logout Process <customization-logout>`
       - Remove subprocess override of ``LogoutPage`` and ``Logout`` from your project.
-
       - Change the signature of your callable start as described below.
 
          +----------------------+----------------------------+
@@ -174,10 +197,8 @@ Please follow the guidelines below to migrate your override subprocesses.
          | Logout               | portalLogout               |
          +----------------------+----------------------------+
 
-#. :ref:`Customize Change Password Process <customization-change-password-process>`
-
+   - :ref:`Customize Change Password Process <customization-change-password-process>`
       - Remove subprocess override of ``ChangePassword`` from your project.
-
       - Change the signature of your callable start as described below.
 
          +----------------------+----------------------------+
@@ -186,10 +207,8 @@ Please follow the guidelines below to migrate your override subprocesses.
          | ChangePassword       | portalChangePassword       |
          +----------------------+----------------------------+
 
-#. :ref:`Customize Menu Items <customization-menu-customization>`
-
+   - :ref:`Customize Menu Items <customization-menu-customization>`
       - Remove subprocess override of ``LoadSubMenuItems`` from your project.
-
       - Change the signature of your callable start as described below.
 
          +-------------------------+-------------------------------+
@@ -197,18 +216,12 @@ Please follow the guidelines below to migrate your override subprocesses.
          +=========================+===============================+
          | LoadSubMenuItems        | portalLoadSubMenuItems        |
          +-------------------------+-------------------------------+
-
       - To hide default menu items, you can utilize variables. Here's a link :ref:`Show/hide default menu items <customization-menu-hide-default-menu-item>` that provides instructions on how to do so.
-
       - Update ``index`` for each custom menu item.
-
       - Refer to process ``CustomLoadSubMenuItems`` in the project ``portal-developer-examples`` for an example of how to create custom menu items.
 
-#. :ref:`Task Delegation <customization-task-delegation>`
-
-
+   - :ref:`Task Delegation <customization-task-delegation>`
       - Remove subprocess override of ``CalculateTaskDelegate`` from your project.
-
       - Change the signature of your callable start as described below.
 
          +-------------------------+-------------------------------+
@@ -216,6 +229,8 @@ Please follow the guidelines below to migrate your override subprocesses.
          +=========================+===============================+
          | CalculateTaskDelegate   | portalCalculateTaskDelegate   |
          +-------------------------+-------------------------------+
+
+2. We changed the **External Link** configuration for the field ``imageContent``, refer to :ref:`Portal Processes External Links <portal-process-external-link>` for more information. Basically, you do not need any migration on your engine. In case you have overridden the variable `Portal.Processes.ExternalLinks` by deployment, update the field ``imageContent`` by removing the prefix like `data:image/jpeg;base64,` in your JSON variable `Portal.Processes.ExternalLinks` file.
 
 Migrate 10.0 To 10.0.7
 ----------------------
@@ -471,12 +486,13 @@ releases of |ivy|.
 Changes in 10.0.13
 ------------------
 
-Introduced the sort by custom order for the process dashboard widget. You can change your custom order by drag and drop the processes.
+- Introduced the sort by custom order for the process dashboard widget. You can change your custom order by drag and drop the processes.
+- Introduced the ``Task ID`` param for the component ``ic:com.axonivy.portal.components.ProcessViewer`` to highlight the current step in the Process Viewer.
 
 Changes in 10.0.12
 ------------------
 
-Introduced the sort feature for the process dashboard widget. User can sort the processes by index or by alphabetical order.
+- Introduced the sort feature for the process dashboard widget. User can sort the processes by index or by alphabetical order.
 
 Changes in 10.0.9
 -----------------

@@ -528,6 +528,8 @@ Data model:
 - ``processId``: the process id of the process start.
 - ``index``: the index number to order the processes in the dashboard.
 
+.. _portal-process-external-link:
+
 Portal Processes External Links
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The standard external links of the Portal are defined in the following file:

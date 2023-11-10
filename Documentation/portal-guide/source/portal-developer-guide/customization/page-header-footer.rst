@@ -1,21 +1,32 @@
 .. _page-header-footer:
 
-Page Header And Footer (Deprecated)
-===================================
-.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
+Page Header And Footer
+======================
 
-The components ``PageHeader`` and ``PageFooter`` show the header and footer applied to every Portal page.
+Introduction
+------------
 
-|page-header-footer|
+You have the option to customize the header and footer that will be applied to every page within the Portal.
 
-You can add a customized header and footer to every page by overriding the
-``PageHeader`` and ``PageFooter`` Html Dialogs. 
-Refer to :dev-url:`|ivy| HtmlOverride wizard
-</doc/|version|/designer-guide/how-to/overrides.html?#override-new-wizard>` to
-override HTML dialogs.
 
-If you use Case Scope, you need to copy the ``PortalStart`` process from
-``portal`` to your project. This ensures that the process request is
-issued through your project instead of the (standard) portal.
+Customize
+---------
+Create the callable subprocess in your project with
 
-.. |page-header-footer| image:: ../../screenshots/dashboard/page-header-footer.png
+**Signature**: portalGetPageHeaderAndFooter
+
++-----------------------+-----------------------+-----------------------------+
+| Name                  | Type                  | Note                        |
++=======================+=======================+=============================+
+|**Result**                                     |                             |
++-----------------------+-----------------------+-----------------------------+
+| pageHeader            | java.lang.String      | HTML code is also supported |
++-----------------------+-----------------------+-----------------------------+
+| pageFooter            | java.lang.String      | HTML code is also supported |
++-----------------------+-----------------------+-----------------------------+
+
+.. tip::
+
+   Refer to process ``CustomPageHeaderAndFooter`` in project ``portal-developer-examples``
+   for an example of page header and footer customization.
+

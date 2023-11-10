@@ -23,19 +23,19 @@
       <p:donutChart styleClass="statistic-chart ui-g-12" model="#{chart.donutChartModel}" rendered="#{statisticDashboardBean.isTaskByPriority(chart)}"
         style="width: 100%; height:200px;">
         <f:attribute name="selectedChartId" value="#{chart.id}" />
-        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.drilldownTaskByPriority}" />
+        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.drilldownTaskByPriority}" disabled="#{cc.attrs.isDisableDrilldown}" />
       </p:donutChart>
 
       <p:barChart styleClass="statistic-chart ui-g-12" model="#{chart.barChartModel}" rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}"
         style="width: 100%; height:200px;">
         <f:attribute name="selectedChartId" value="#{chart.id}" />
-        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.toTaskByExpiryTaskList}" update="#{p:resolveFirstComponentWithId('widget-container', view).clientId}" />
+        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.toTaskByExpiryTaskList}" update="#{p:resolveFirstComponentWithId('widget-container', view).clientId}" disabled="#{cc.attrs.isDisableDrilldown}" />
       </p:barChart>
 
       <p:donutChart styleClass="statistic-chart ui-g-12" model="#{chart.donutChartModel}" rendered="#{statisticDashboardBean.isCaseByState(chart)}"
         style="width: 100%; height:200px;">
         <f:attribute name="selectedChartId" value="#{chart.id}" />
-        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.drilldownCaseByState}" />
+        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.drilldownCaseByState}" disabled="#{cc.attrs.isDisableDrilldown}" />
       </p:donutChart>
 
       <p:barChart styleClass="statistic-chart ui-g-12" model="#{chart.barChartModel}" style="width: 100%; height:200px;"
@@ -52,7 +52,7 @@
        <p:barChart styleClass="statistic-chart ui-g-12" model="#{chart.barChartModel}" rendered="#{statisticDashboardBean.isCasesByCategory(chart)}"
         style="width: 100%; height:200px;">
         <f:attribute name="selectedChartId" value="#{chart.id}" />
-        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.toCasesByCategoryList}" update="#{p:resolveFirstComponentWithId('widget-container', view).clientId}" />
+        <p:ajax event="itemSelect" listener="#{statisticDashboardBean.toCasesByCategoryList}" update="#{p:resolveFirstComponentWithId('widget-container', view).clientId}" disabled="#{cc.attrs.isDisableDrilldown}" />
       </p:barChart>
     </h:panelGroup>
   </h:panelGroup>

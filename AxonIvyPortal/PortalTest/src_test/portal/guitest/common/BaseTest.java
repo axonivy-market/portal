@@ -88,8 +88,8 @@ public class BaseTest {
   protected String portalPasswordResetUrl = "portal/1549F58C18A6C562/PasswordResetPage.ivp?token=%s&username=%s";
   protected String cleanSessionCacheUrl = "portalKitTestHelper/17208192E0AF4185/cleanSessionCache.ivp";
   protected String showProcessViewerUrl = "portal/1549F58C18A6C562/PortalProcessViewer.ivp?caseId=%s&processKey=%s";
-  protected String processViewerPermissionExampleUrl = "portal-developer-examples/183C12775FE2BAB8/start.ivp";
-  protected String testProcessViewerPermissionUrl = "portalKitTestHelper/153CACC26D0D4C3D/testProcessViewerPermission.ivp";
+  protected String processViewerPermissionExampleUrl = "portal-developer-examples/183C12775FE2BAB8/start.ivp"; //  friendly url : Start Processes/ProcessViewerPermission/start.ivp
+  protected String testProcessViewerPermissionUrl = "portalKitTestHelper/153CACC26D0D4C3D/testProcessViewerPermission.ivp"; // friendly url: Start Processes/DataCreation/testProcessViewerPermission.ivp
   protected String createSampleDashboardUrl = "portalKitTestHelper/17F2050944B46BB0/createSampleDashboard.ivp";
   protected String processViewerExampleInFrameUrl = "portal-components-examples/1821592826979C20/showProcessViewerOfLeaveRequestUsingProcessLink.ivp";
   protected String defaultProcessImageSelectionExampleUrl = "portal-developer-examples/179D499523153784/start.ivp";

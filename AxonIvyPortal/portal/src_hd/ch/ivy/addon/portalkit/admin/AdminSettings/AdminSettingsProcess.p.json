@@ -53,7 +53,6 @@
           "code" : [
             "import ch.ivy.addon.portalkit.configuration.Application;",
             "import ch.ivy.addon.portalkit.enums.ApplicationType;",
-            "import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;",
             "",
             "in.selectedApp = new Application();",
             "if (in.applicationList.size() > 0) {",
@@ -64,7 +63,7 @@
             "in.isAddMode = true;",
             "in.dialogTitle = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addNewApplication\");",
             "",
-            "in.languages = ApplicationMultiLanguage.getThirdPartySupportedLanguage();",
+            "in.languages = new List();",
             "",
             "in.displayNameInCurrentLanguage = null;",
             "in.supportedLanguages = new List();"
@@ -120,7 +119,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;",
             "import java.util.Locale;",
-            "import ch.ivy.addon.portalkit.util.Locales;",
+            "import com.axonivy.portal.components.util.Locales;",
             "",
             "in.isAddMode = false;",
             "in.dialogTitle = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/editApplication\");",
@@ -128,14 +127,15 @@
             "Locale currentLocale = new Locales().getCurrentLocale();",
             "DisplayNameAdaptor displayNameAdaptor = new DisplayNameAdaptor(in.selectedApp.displayName, currentLocale);",
             "in.displayNameInCurrentLanguage = displayNameAdaptor.getDisplayNameAsString();",
-            "in.supportedLanguages = new List();"
+            "in.supportedLanguages = new List();",
+            "in.languages = new List();"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 376, "y" : 544 }
+        "at" : { "x" : 376, "y" : 592 }
       },
-      "connect" : { "id" : "f11", "to" : "f205" }
+      "connect" : { "id" : "f11", "to" : "f45" }
     }, {
       "id" : "f47",
       "type" : "HtmlDialogMethodStart",
@@ -382,7 +382,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.dto.DisplayName;",
             "import ch.ivy.addon.portalkit.util.DisplayNameConvertor;",
-            "import ch.ivy.addon.portalkit.util.Locales;",
+            "import com.axonivy.portal.components.util.Locales;",
             "",
             "if (!in.languages.isEmpty()){",
             "  DisplayNameConvertor displayNameConvertor = new DisplayNameConvertor();",
@@ -410,7 +410,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.loader.ApplicationMultiLanguageNameLoader;",
             "import ch.ivy.addon.portalkit.dto.DisplayName;",
-            "import ch.ivy.addon.portalkit.util.Locales;",
+            "import com.axonivy.portal.components.util.Locales;",
             "import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;",
             "",
             "if(in.isAddMode){",
@@ -475,10 +475,10 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.Locales;",
             "import ch.ivy.addon.portalkit.dto.DisplayName;",
             "import java.util.Map;",
             "import java.util.Locale;",
-            "import ch.ivy.addon.portalkit.util.Locales;",
             "import ch.ivy.addon.portalkit.util.DisplayNameConvertor;",
             "",
             "DisplayNameConvertor convertor = new DisplayNameConvertor();",
@@ -511,28 +511,6 @@
       },
       "connect" : { "id" : "f3", "to" : "f88" }
     }, {
-      "id" : "f205",
-      "type" : "Script",
-      "name" : [
-        "load supported languages",
-        "for 3rd party app"
-      ],
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;",
-            "",
-            "",
-            "in.languages = ApplicationMultiLanguage.getThirdPartySupportedLanguage();"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 376, "y" : 680 },
-        "size" : { "width" : 176, "height" : 60 }
-      },
-      "connect" : { "id" : "f46", "to" : "f45" }
-    }, {
       "id" : "f209",
       "type" : "Alternative",
       "name" : "is add mode?",
@@ -563,7 +541,7 @@
             "import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;",
             "import java.util.Map;",
             "import java.util.Locale;",
-            "import ch.ivy.addon.portalkit.util.Locales;",
+            "import com.axonivy.portal.components.util.Locales;",
             "import ch.ivy.addon.portalkit.util.DisplayNameConvertor;",
             "",
             "Locale currentLocale = new Locales().getCurrentLocale();",

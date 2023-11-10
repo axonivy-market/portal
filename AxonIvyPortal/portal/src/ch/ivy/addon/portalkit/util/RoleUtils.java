@@ -16,13 +16,12 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.publicapi.RoleAPI;
 
-import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivyteam.api.PublicAPI;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.exec.Sudo;
 
 /**
  * Provide the utilities related to role
@@ -43,7 +42,7 @@ public final class RoleUtils {
    */
   @PublicAPI
   public static List<IRole> getAllRoles() {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return ISecurityContext.current().roles().all();
     });
   }
@@ -56,7 +55,7 @@ public final class RoleUtils {
    */
   @PublicAPI
   public static IRole findRole(String name) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return ISecurityContext.current().roles().find(name);
     });
   }
@@ -191,7 +190,7 @@ public final class RoleUtils {
    *         HIDE
    */
   public static List<IRole> getRolesForDelegate() {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       List<IRole> roles = new ArrayList<>();
       List<IRole> securityRolesTmp = filterVisibleRoles(ISecurityContext.current().roles().all());
       for (IRole role : securityRolesTmp) {
@@ -207,41 +206,6 @@ public final class RoleUtils {
   }
 
   /**
-   * Set property for passed role
-   * @deprecated Use {@link RoleAPI#setProperty(IRole, String, String)} instead
-   * @param role role for setting property
-   * @param key property key
-   * @param value property value
-   */
-  @Deprecated
-  public static void setProperty(final IRole role, final String key, final String value) {
-    IvyExecutor.executeAsSystem(() -> {
-      role.setProperty(key, value);
-      invalidateCacheForRoles();
-      return Void.class;
-    });
-  }
-
-  private static void invalidateCacheForRoles() {
-    IvyCacheService.newInstance().invalidateSessionEntry(ISecurityContext.current().getName(), IvyCacheIdentifier.ROLES_IN_SECURITY_CONTEXT);
-  }
-
-  /**
-   * Remove property for passed role
-   * @deprecated Use {@link RoleAPI#removeProperty(IRole, String)} instead
-   * @param role role to remove property
-   * @param key key to remove property
-   */
-  @Deprecated
-  public static void removeProperty(final IRole role, final String key) {
-    IvyExecutor.executeAsSystem(() -> {
-      role.removeProperty(key);
-      invalidateCacheForRoles();
-      return Void.class;
-    });
-  }
-
-  /**
    * Set hide property for specific roles by default
    */
   public static void setHidePropertyForDefaultHiddenRoles() {
@@ -251,7 +215,7 @@ public final class RoleUtils {
     defaultHiddenRoleNames.forEach(roleName -> {
       IRole role = findRole(roleName);
       if (role != null && role.getProperty(hideProperty) == null) {
-        setProperty(role, hideProperty, hideProperty);
+        RoleAPI.setProperty(role, hideProperty, hideProperty);
       }
     });
   }

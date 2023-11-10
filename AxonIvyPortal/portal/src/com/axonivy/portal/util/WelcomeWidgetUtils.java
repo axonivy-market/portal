@@ -5,6 +5,8 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.io.IOException;
 import java.util.Base64;
+import java.util.List;
+import java.util.stream.Stream;
 
 import javax.faces.context.FacesContext;
 
@@ -26,6 +28,7 @@ public class WelcomeWidgetUtils {
   public static final String DEFAULT_LOCALE_AND_DOT = "_en.";
   public static final String DEFAULT_LOCALE_TAG = "en";
   public static final String FOLDER_DELIMITER = "/";
+  public static final String IMAGE_PREFIX = "image";
 
   public static boolean isObsoleteImageData(String imageLocation, String widgetId) {
     return imageLocation.startsWith(IMAGE_DIRECTORY.concat(FOLDER_DELIMITER).concat(widgetId));
@@ -117,7 +120,8 @@ public class WelcomeWidgetUtils {
 
   public static String getFileTypeOfImage(String imageType) {
     String[] types = StringUtils.defaultIfEmpty(imageType, EMPTY).split(FOLDER_DELIMITER);
-    return types[types.length - 1];
+    List<String> filteredTypes = Stream.of(types).filter(type -> !IMAGE_PREFIX.equals(type)).toList();
+    return filteredTypes.get(filteredTypes.size() - 1);
   }
 
   public static String getFileNameOfImage(String imageLocation) {

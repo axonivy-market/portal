@@ -33,18 +33,27 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 144 }
       },
-      "connect" : { "id" : "f7", "to" : "f33" }
+      "connect" : { "id" : "f4", "to" : "f3" }
     }, {
-      "id" : "f33",
-      "type" : "DialogCall",
-      "name" : "processes",
+      "id" : "f3",
+      "type" : "Script",
       "config" : {
-        "dialogId" : "ch.ivy.addon.portal.generic.Processes",
-        "startMethod" : "start()"
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portal.generic.navigation.PortalNavigator;",
+            "PortalNavigator.navigateToPortalProcess();"
+          ]
+        }
       },
       "visual" : {
-        "at" : { "x" : 240, "y" : 144 },
-        "size" : { "width" : 112, "height" : 48 }
+        "at" : { "x" : 224, "y" : 144 }
+      },
+      "connect" : { "id" : "f7", "to" : "f5" }
+    }, {
+      "id" : "f5",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 416, "y" : 144 }
       }
     } ]
 }
