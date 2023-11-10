@@ -182,7 +182,7 @@ public class RoleManagementPage extends TemplatePage {
 
       waitForElementDisplayed(By.cssSelector("[id$=':manage-role-details-form:user-assignment-selection:user-selection_panel"), false);
       waitForElementClickableThenClick($(By.cssSelector("button[id$=':manage-role-details-form:add-new-user']")));
-      waitForElementClickable($(By.cssSelector("button[id$=':manage-role-details-form:add-new-user']")));
+      $(By.cssSelector("button[id$=':manage-role-details-form:add-new-user']")).shouldBe(Condition.disabled, DEFAULT_TIMEOUT);
     }
   }
   
@@ -210,7 +210,7 @@ public class RoleManagementPage extends TemplatePage {
   private void removeUserOfRole(int index) {
     waitForElementDisplayed(By.cssSelector("[id$=':manage-role-details-form:users-of-role-table_data']"), true);
     if ($(By.cssSelector("a[id$=':delete-user-link']")).isDisplayed()) {
-      $$("a[id$=':delete-user-link']").get(index).click();
+      waitForElementClickableThenClick($$("a[id$=':delete-user-link']").get(index));
       removeUserOfRole(0);
     }
   }

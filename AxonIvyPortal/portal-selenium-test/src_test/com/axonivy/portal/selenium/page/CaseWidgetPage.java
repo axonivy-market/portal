@@ -244,7 +244,7 @@ public class CaseWidgetPage extends TemplatePage {
         return;
       }
     }
-    $(".filter-selection-label").hover().click();
+    $(".selected-filters-label").hover().click();
   }
 
   protected void refreshAndWaitElement(String cssSelector) {
