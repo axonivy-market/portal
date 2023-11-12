@@ -206,6 +206,10 @@ HowTo: Create an Express Workflow
 
 #. Use the button |arrow-right-icon| :guilabel:`Next` to define the next process step
 
+.. note::
+
+   :bdg-ref-warning:`🔑ExpressCreateWorkflow <ExpressCreateWorkflow>` permission is required to create an Express Workflow.
+
 Define an Information Email
 ---------------------------
 

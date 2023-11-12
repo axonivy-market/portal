@@ -77,6 +77,11 @@ How to: import private dashboards
 
 |import-private-dashboard-dialog|
 
+.. note::
+
+   :bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>` permission is required to use this feature.
+
+
 How to: edit private dashboards
 ===============================
 
@@ -95,7 +100,7 @@ A table of private dashboards is shown with the following information:
 
    .. note::
 
-      the Export function only available for users who have the permission :bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`.
+      The Export function only available for users who have the permission :bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`.
 
 |edit-private-dashboards|
 
@@ -201,6 +206,10 @@ How to: import public dashboard
 
 |import-public-dashboard-dialog|
 
+.. note::
+
+   :bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>` permission is required to use this feature.
+
 How to: edit public dashboards
 ==============================
 
@@ -221,7 +230,7 @@ A table of public dashboards is shown with the following information:
 
    .. note::
 
-      the Export function only available for users who have the permission :bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`.
+      The Export function only available for users who have the permission :bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`
 
 |edit-public-dashboards|
 
@@ -234,7 +243,7 @@ To generate a public dashboard link, simply click on the |share-icon| Share in t
 
 .. note::
    To share the dashboard without the menu frame, add the parameter ``openWithoutMenu=true`` to the URL. However, please be aware that this option is only for embedding purposes.
-
+   And :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>` permission is required to use this feature.
 
 How to: reorder public dashboards
 =================================
