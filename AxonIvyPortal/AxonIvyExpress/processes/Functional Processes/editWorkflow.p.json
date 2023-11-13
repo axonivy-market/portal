@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "15791C23B125821B",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -63,7 +63,6 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 208, "y" : 104 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f33",
@@ -76,7 +75,6 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 208, "y" : 416 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f34"

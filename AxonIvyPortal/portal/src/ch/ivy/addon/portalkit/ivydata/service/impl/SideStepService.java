@@ -10,11 +10,11 @@ import ch.ivy.addon.portalkit.ivydata.dto.IvySideStepResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.SideStepSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ISideStepService;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
 import ch.ivyteam.ivy.casemap.runtime.model.IStartableSideStep;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.ICaseQueryExecutor;
 
@@ -28,7 +28,7 @@ public class SideStepService implements ISideStepService {
 
   @Override
   public IvySideStepResultDTO findSideStepsByCriteria(SideStepSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> { 
+    return Sudo.get(() -> { 
       IvySideStepResultDTO result = new IvySideStepResultDTO();
       ICase iCase = findCase(criteria.getCaseId());
       if (iCase == null) {
