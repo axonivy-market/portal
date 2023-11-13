@@ -11,13 +11,12 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.ivydata.dto.IvySecurityResultDTO;
 import com.axonivy.portal.components.ivydata.service.ISecurityService;
-import com.axonivy.portal.components.util.IvyExecutor;
 
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.security.query.UserQuery;
 import ch.ivyteam.ivy.security.query.UserQuery.IFilterQuery;
 
@@ -31,17 +30,11 @@ public class SecurityService implements ISecurityService {
 
   @Override
   public IvySecurityResultDTO findUsers(String query, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       result.setUsers(queryUsers(query, startIndex, count, fromRoles, excludedUsernames));
       return result;
     });
-  }
-  
-  @Deprecated(forRemoval = true, since = "9.4")
-  @Override
-  public IvySecurityResultDTO findUsers(String query, IApplication app, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
-    return findUsers(query, startIndex, count, fromRoles, excludedUsernames);
   }
 
   /**
@@ -78,7 +71,7 @@ public class SecurityService implements ISecurityService {
   }
 
   private IFilterQuery createFilterQuery(String query, UserQuery userQuery) {
-    String containingQuery = "%"+ StringUtils.defaultString(query, StringUtils.EMPTY) +"%";
+    String containingQuery = "%"+ Objects.toString(query, StringUtils.EMPTY) +"%";
     IFilterQuery filterQuery = userQuery.where();
     filterQuery.fullName()
       .isLikeIgnoreCase(containingQuery)

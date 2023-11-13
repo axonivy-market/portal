@@ -32,7 +32,7 @@
               <artifactItems>
                 <artifactItem>
                   <groupId>com.axonivy.portal</groupId>
-                  <artifactId>portal-document-screenshots</artifactId>
+                  <artifactId>portal-document-screenshots-selenide</artifactId>
                   <version>${project.version}</version>
                   <type>zip</type>
                 </artifactItem>

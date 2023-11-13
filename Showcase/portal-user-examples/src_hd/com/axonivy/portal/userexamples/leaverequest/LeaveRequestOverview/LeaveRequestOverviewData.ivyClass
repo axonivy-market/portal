@@ -4,3 +4,5 @@ processSteps java.util.List<ch.ivy.addon.portalkit.bo.ProcessStep> #field
 processSteps PERSISTENT #fieldModifier
 userProcess ch.ivy.addon.portalkit.configuration.UserProcess #field
 userProcess PERSISTENT #fieldModifier
+state com.axonivy.portal.userexamples.enums.RequestState #field
+state PERSISTENT #fieldModifier

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "1511A66AF619A768",
   "config" : {
     "data" : "portalKit_test.Data"
@@ -43,55 +43,6 @@
       },
       "connect" : [
         { "id" : "f2", "to" : "f1" }
-      ]
-    }, {
-      "id" : "f5",
-      "type" : "Script",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.service.UserProcessService;",
-            "import ch.ivyteam.ivy.security.IUser;",
-            "import ch.ivy.addon.portalkit.test.util.SecurityUtils;",
-            "",
-            "List users = SecurityUtils.findAllUsers();",
-            "String key = UserProcessService.getInstance().getConfigKey();",
-            "for (IUser user : users) {",
-            "  user.removeProperty(key);",
-            "}"
-          ]
-        },
-        "sudo" : true
-      },
-      "visual" : {
-        "at" : { "x" : 240, "y" : 200 }
-      },
-      "connect" : [
-        { "id" : "f9", "to" : "f6" }
-      ]
-    }, {
-      "id" : "f6",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 240, "y" : 288 }
-      }
-    }, {
-      "id" : "f7",
-      "type" : "RequestStart",
-      "name" : "CleanFavoriteProcess.ivp",
-      "config" : {
-        "signature" : "CleanFavoriteProcess",
-        "request" : {
-          "name" : "(For autotest) Clean all favorite processes"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 240, "y" : 96 },
-        "labelOffset" : { "x" : 8, "y" : -16 },
-        "description" : "Clean all favorite processes before run UI test"
-      },
-      "connect" : [
-        { "id" : "f8", "to" : "f5" }
       ]
     }, {
       "id" : "f59",
@@ -393,7 +344,6 @@
             "import ch.ivy.addon.portalkit.service.ExternalLinkService;",
             "import ch.ivy.addon.portalkit.test.util.BusinessDataUtils;",
             "import ch.ivy.addon.portalkit.test.util.CaseUtils;",
-            "import ch.ivy.addon.portalkit.service.UserProcessService;",
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
             "import ch.ivy.addon.portalkit.test.util.SecurityUtils;",
             "",
@@ -401,17 +351,13 @@
             "BusinessDataUtils.clearAllBusinessData();",
             "ivy.datacache.getAppCache().invalidate();",
             "",
-            "UserProcessService userProcess = UserProcessService.getInstance();",
             "",
             "SecurityUtils.updatePermissionsOfTestUsers();",
             "",
             "GlobalSettingService globalSettingService = new GlobalSettingService();",
             "globalSettingService.resetAll();",
-            "List excludedResetVars = [UserProcessService.getInstance().getConfigKey()];",
             "for (String varName : ivy.var.names()) {",
-            "  if (!excludedResetVars.contains(varName)) {",
-            "    ivy.var.reset(varName);",
-            "  }",
+            "  ivy.var.reset(varName);",
             "}",
             "",
             "List<IUser> users = SecurityUtils.findAllUsers();",

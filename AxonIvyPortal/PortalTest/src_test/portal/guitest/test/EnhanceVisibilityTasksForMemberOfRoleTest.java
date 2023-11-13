@@ -11,15 +11,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.Variable;
-import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
 
-  private HomePage homePage;
   private TaskWidgetPage taskWidgetPage;
   private TaskDetailsPage taskDetailsPage;
 
@@ -27,14 +26,13 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
-    homePage = new HomePage();
   }
 
   @Test
   public void testVisibilityTaskOpen() {
     login(TestAccount.DEMO_USER);
     createTestingTasks();
-    gotoTaskList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     // Suspended
     TaskWidgetPage taskWidgetPageDemo = new TaskWidgetPage();
     taskWidgetPageDemo.filterByResponsible("Everybody");
@@ -42,7 +40,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     int countTasks = taskWidgetPageDemo.countTasks();
     // User Guest
     login(TestAccount.GUEST_USER);
-    gotoTaskList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     // Suspended
     TaskWidgetPage taskWidgetPageGuest = new TaskWidgetPage();
     taskWidgetPageGuest.filterByResponsible("Everybody");
@@ -56,7 +54,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     login(TestAccount.DEMO_USER);
     createTestingTasks();
-    gotoTaskList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     // Suspended
     TaskWidgetPage taskWidgetPageDemo = new TaskWidgetPage();
     taskWidgetPageDemo.filterByResponsible("Everybody");
@@ -69,7 +67,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     int countTasksReserved = taskWidgetPageDemo.countTasks();
     // User Guest
     login(TestAccount.GUEST_USER);
-    gotoTaskList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     // Reserved
     TaskWidgetPage taskWidgetPageGuest = new TaskWidgetPage();
     taskWidgetPageGuest.filterByResponsible("Everybody");
@@ -83,8 +81,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
   public void testVisibilityTaskDone() {
     login(TestAccount.DEMO_USER);
     createTestingTasks();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    gotoTaskList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     // Suspended
     TaskWidgetPage taskWidgetPageDemo = new TaskWidgetPage();
     taskWidgetPageDemo.filterByResponsible("Everybody");
@@ -92,8 +89,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     int countTasks = taskWidgetPageDemo.countTasks();
     // User Guest
     login(TestAccount.GUEST_USER);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    gotoTaskList();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     // Suspended
     TaskWidgetPage taskWidgetPageGuest = new TaskWidgetPage();
     taskWidgetPageGuest.filterByResponsible("Everybody");
@@ -101,13 +97,8 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     assertEquals(countTasks, taskWidgetPageGuest.countTasks());
   }
 
-  private void gotoTaskList() {
-    homePage = new HomePage();
-    taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
-  }
-  
   private void assertFalseTaskActionsByTaskState(String state, List<String> taskActionInTaskDetails) {
+    taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList(state));
     List<String> actionInTaskList = taskWidgetPage.getActiveTaskAction(0);
     actionInTaskList.remove("Details");

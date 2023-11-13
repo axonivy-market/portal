@@ -8,20 +8,18 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
+import com.axonivy.portal.components.generic.navigation.BaseNavigator;
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
+import com.axonivy.portal.components.util.ProcessStartUtils;
 
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;
-import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.IHttpRequest;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
 
 public final class PortalNavigator extends BaseNavigator{
-  private static final String PORTAL_PROCESS_START_NAME = "Start Processes/PortalStart/DefaultApplicationHomePage.ivp";
   private static final String PORTAL_DASHBOARD = "Start Processes/PortalStart/DefaultDashboardPage.ivp";
   private static final String PORTAL_PROCESS = "Start Processes/PortalStart/DefaultProcessStartListPage.ivp";
   private static final String PORTAL_TASK = "Start Processes/PortalStart/DefaultTaskListPage.ivp";
@@ -52,6 +50,7 @@ public final class PortalNavigator extends BaseNavigator{
   public static final String PORTAL_CASE_DETAILS_IN_IFRAME_START = "/CaseDetailsInIFrame.ivp";
   private static final String UUID = "uuid";
   private static final String PORTAL_DASHBOARD_PAGE = "Start Processes/PortalStart/DashboardPage.ivp";
+  private static final String PORTAL_DASHBOARD_CONFIGURATION_EDIT_PAGE = "Start Processes/PortalStart/PortalDashboardConfigurationEditPage.ivp";
   
   private final static String DASHBOARD_PARAM = "isShowDashboard";
   
@@ -110,16 +109,6 @@ public final class PortalNavigator extends BaseNavigator{
     redirect(String.format("%s?endedTaskId=%s", customizePortalEndPage, taskId));
   }
 
-  /**
-   * Navigates to PortalEndPage without finishing a task, e.g. clicking on Cancel button then back to previous page:
-   * task list or task details or global search NOTES: is only used for the task not started in Portal IFrame
-   * @deprecated Use {@link PortalNavigatorAPI#navigateToPortalEndPage()} instead
-   */
-  @Deprecated
-  public static void navigateToPortalEndPage() {
-    navigateToPortalEndPage(Ivy.wfTask().getId());
-  }
-
   public static void navigateToPortalProcess() {
     navigateByKeyword(PORTAL_PROCESS_START, PORTAL_PROCESS, new HashMap<>());
   }
@@ -134,15 +123,6 @@ public final class PortalNavigator extends BaseNavigator{
 
   public static void navigateToPortalStatistic() {
     navigateByKeyword(PORTAL_STATISTIC_START, PORTAL_STATISTIC, new HashMap<>());
-  }
-
-  /**
-   * Navigate to Portal home
-   * @deprecated Use {@link PortalNavigatorAPI#navigateToPortalHome()} instead
-   */
-  @Deprecated
-  public static void navigateToPortalHome() {
-    navigateByKeyword("DefaultApplicationHomePage.ivp", PORTAL_PROCESS_START_NAME, new HashMap<>());
   }
   
   public static void navigateToPortalCaseDetails(String uuid) {
@@ -203,6 +183,17 @@ public final class PortalNavigator extends BaseNavigator{
     navigateByKeyword("DashboardDetails.ivp", PORTAL_DASHBOARD_DETAILS, params);
   }
 
+  public static void navigateToDashboardConfigurationUrl() {
+    Map<String, String> params = new HashMap<>();
+    navigateByKeyword("PortalDashboardConfiguration.ivp", PORTAL_NEW_DASHBOARD_CONFIGURATION, params);
+  }
+
+  public static void navigateToDashboardConfigurationEditPageUrl(boolean isPublicDashboard) {
+    Map<String, String> params = new HashMap<>();
+    params.put("isPublicDashboard", Boolean.valueOf(isPublicDashboard).toString());
+    navigateByKeyword("PortalDashboardConfigurationEditPage.ivp", PORTAL_DASHBOARD_CONFIGURATION_EDIT_PAGE, params);
+  }
+
   public static String getDashboardLink() {
     Map<String, String> params = new HashMap<>();
     params.put(DASHBOARD_PARAM, Boolean.TRUE.toString());
@@ -231,12 +222,6 @@ public final class PortalNavigator extends BaseNavigator{
     return buildUrlByKeyword("CaseDetailsPage.ivp", PORTAL_CASE_DETAILS, params);
   }
 
-  public static String buildPortalCaseDetailInFrameUrl(String uuid, IProcessModelVersion processModelVersion) {
-    Map<String, String> params = new HashMap<>();
-    params.put(UUID, uuid);
-    return buildUrlByKeywordInPMV(PORTAL_CASE_DETAILS_IN_IFRAME_START, processModelVersion, PORTAL_CASE_DETAILS_IN_FRAME, params);
-  }
-
   public static String buildPortalCaseDetailInFrameUrl(String uuid) {
     Map<String, String> params = new HashMap<>();
     params.put(UUID, uuid);
@@ -256,12 +241,8 @@ public final class PortalNavigator extends BaseNavigator{
   }
   
   public static String buildUrlByKeyword(String keyword, String defaultFriendlyRequestPath, Map<String, String> param) {
-    String customizePortalFriendlyRequestPath = ProcessStartUtils.findFriendlyRequestPathContainsKeyword(keyword);
-    return buildUrl(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, defaultFriendlyRequestPath), param);
-  }
-  
-  public static String buildUrlByKeywordInPMV(String keyword, IProcessModelVersion processModelVersion ,String defaultFriendlyRequestPath, Map<String, String> param) {
-    String customizePortalFriendlyRequestPath = ProcessStartUtils.findFriendlyRequestPathContainsKeywordInPMV(keyword, processModelVersion);
+    Object portalStartPmvId = Ivy.session().getAttribute(SessionAttribute.PORTAL_START_PMV_ID.toString());
+    String customizePortalFriendlyRequestPath = ProcessStartUtils.findFriendlyRequestPathContainsKeyword(keyword, portalStartPmvId); 
     return buildUrl(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, defaultFriendlyRequestPath), param);
   }
 

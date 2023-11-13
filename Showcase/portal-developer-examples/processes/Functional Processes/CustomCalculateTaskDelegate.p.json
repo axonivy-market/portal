@@ -1,9 +1,9 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "16F3229F28D3A455",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "_com.axonivy.portal.developerexamples.CustomCalculateTaskDelegateData"
+    "data" : "com.axonivy.portal.developerexamples.CustomCalculateTaskDelegateData"
   },
   "elements" : [ {
       "id" : "f0",
@@ -84,7 +84,7 @@
             "  } else if (\"Sick Leave Request\".equalsIgnoreCase(in.task.names().current())) {",
             "    in.roles.add(new RoleDTO(ivy.wf.getSecurityContext().roles().find(\"GeneralManager\")));",
             "  }",
-            "} else if (\"#demo\".equalsIgnoreCase(in.currentUser.getMemberName())) {",
+            "} else if (\"#guest\".equalsIgnoreCase(in.currentUser.getMemberName())) {",
             "  in.users = new ArrayList();",
             "  in.roles = new ArrayList();",
             "}"

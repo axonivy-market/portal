@@ -45,6 +45,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 public abstract class DashboardWidget implements Serializable {
 
   private static final long serialVersionUID = 4580715578128184706L;
+  private static final Integer NUMBER_OF_MOCK_ITEMS = 25;
   
   protected String id;
   @Deprecated(since = "10.0", forRemoval = true)
@@ -260,6 +261,11 @@ public abstract class DashboardWidget implements Serializable {
 
   public void setUserFilterCollection(UserFilterCollection userFilterCollection) {
     this.userFilterCollection = userFilterCollection;
+  }
+
+  @JsonIgnore
+  public Integer[] loadingItems() {
+    return new Integer[NUMBER_OF_MOCK_ITEMS];
   }
 
   @Override

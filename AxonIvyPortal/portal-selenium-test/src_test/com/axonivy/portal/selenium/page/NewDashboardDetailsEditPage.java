@@ -56,6 +56,11 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     return new CustomWidgetNewDashBoardPage();
   }
 
+  public CustomWidgetNewDashBoardPage addExternalPageWidget() {
+    addWidgetByName("External Page");
+    return new CustomWidgetNewDashBoardPage();
+  }
+
   public void addWidgetByName(String name) {
     $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("div.new-widget-dialog__item").filter(text(name)).first()

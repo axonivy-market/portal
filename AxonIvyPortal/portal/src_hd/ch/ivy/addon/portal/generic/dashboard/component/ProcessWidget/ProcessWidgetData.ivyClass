@@ -16,5 +16,3 @@ currentPortalPage String #field
 currentPortalPage PERSISTENT #fieldModifier
 selectedTask ch.ivyteam.ivy.workflow.ITask #field
 selectedTask PERSISTENT #fieldModifier
-showInformationLink Boolean #field
-showInformationLink PERSISTENT #fieldModifier

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "1826808C70BE47D1",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -8,17 +8,19 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start(Long,String)",
+      "name" : "start(Long,Long,String)",
       "config" : {
         "signature" : "start",
         "input" : {
           "params" : [
+            { "name" : "taskId", "type" : "Long", "desc" : "" },
             { "name" : "caseId", "type" : "Long", "desc" : "" },
             { "name" : "processLink", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId",
-            "out.processLink" : "param.processLink"
+            "out.processLink" : "param.processLink",
+            "out.taskId" : "param.taskId"
           }
         },
         "guid" : "1826808C70F5CEF5"

@@ -27,12 +27,6 @@ public class SearchResultPage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 	}
 
-  @SuppressWarnings("deprecation")
-	public void openEmployeeTab() {
-		click(By.xpath("//div[@id='search-results-tabview']/ul/li[4]"));
-		waitAjaxIndicatorDisappear();
-	}
-
   public void startProcess(String name) {
     ProcessWidgetPage processWidgetPage = getProcessWidget();
     if (processWidgetPage.isImageModeActivated()) {
@@ -81,12 +75,6 @@ public class SearchResultPage extends TemplatePage {
 	public boolean isCaseResultEmpty() {
 		CaseWidgetPage caseWidgetPage = getCaseWidget();
 		return caseWidgetPage.isEmpty();
-	}
-
-	public int countNumberOfEmployee() {
-	  	waitForElementDisplayed(By.id("search-results-tabview:employee-table"), true);
-		WebElement employeeSearchResult = findElementById("search-results-tabview:employee-table");
-		return employeeSearchResult.findElements(By.cssSelector("tr.ui-widget-content")).size();
 	}
 
 	public boolean isProcessGroupDisplay(String group) {

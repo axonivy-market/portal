@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "1723A6F0283D003D",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -11,6 +11,16 @@
       "name" : "start()",
       "config" : {
         "signature" : "start",
+        "result" : {
+          "params" : [
+            { "name" : "state", "type" : "com.axonivy.portal.userexamples.enums.RequestState", "desc" : "" },
+            { "name" : "process", "type" : "ch.ivy.addon.portalkit.configuration.UserProcess", "desc" : "" }
+          ],
+          "map" : {
+            "result.state" : "in.state",
+            "result.process" : "in.process"
+          }
+        },
         "guid" : "1723A6F02AC488D2"
       },
       "visual" : {
@@ -30,7 +40,13 @@
       "type" : "HtmlDialogEventStart",
       "name" : "close",
       "config" : {
-        "guid" : "1723A6F02C055ED2"
+        "guid" : "1723A6F02C055ED2",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.state" : "com.axonivy.portal.userexamples.enums.RequestState.CANCEL"
+          }
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }
@@ -43,34 +59,6 @@
       "type" : "HtmlDialogExit",
       "visual" : {
         "at" : { "x" : 264, "y" : 160 }
-      }
-    }, {
-      "id" : "f9",
-      "type" : "DialogCall",
-      "name" : [
-        "Leave Request",
-        "Overview"
-      ],
-      "config" : {
-        "dialog" : "com.axonivy.portal.userexamples.leaverequest.LeaveRequestOverview:start(ch.ivy.addon.portalkit.configuration.UserProcess)",
-        "call" : {
-          "map" : {
-            "param.userProcess" : "in.process"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 472, "y" : 256 },
-        "size" : { "width" : 128, "height" : 60 }
-      },
-      "connect" : [
-        { "id" : "f12", "to" : "f11", "via" : [ { "x" : 672, "y" : 256 } ] }
-      ]
-    }, {
-      "id" : "f11",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 672, "y" : 352 }
       }
     }, {
       "id" : "f13",
@@ -89,54 +77,41 @@
         "guid" : "1725039A6FEBEA96"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 352 },
+        "at" : { "x" : 96, "y" : 256 },
         "labelOffset" : { "x" : 46, "y" : 35 }
       },
       "connect" : [
-        { "id" : "f16", "to" : "f14" }
+        { "id" : "f16", "to" : "f6" }
       ]
     }, {
-      "id" : "f14",
-      "type" : "Alternative",
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Set RequestState",
       "config" : {
-        "conditions" : {
-          "f15" : "ivy.cms.co(\"/Processes/LeaveRequest/name\").equals(in.process.processName)",
-          "f10" : "ivy.cms.co(\"/Processes/CaseMap/name\").equals(in.process.processName)"
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.userexamples.enums.RequestState;",
+            "if (ivy.cms.co(\"/Processes/LeaveRequest/name\").equals(in.process.processName)) {",
+            "  in.state = RequestState.SUBMIT;",
+            "} else if (ivy.cms.co(\"/Processes/CaseMap/name\").equals(in.process.processName)) {",
+            "  in.state = RequestState.SUBMIT2;",
+            "} else {",
+            "  in.state = RequestState.CANCEL;",
+            "}"
+          ]
         }
       },
       "visual" : {
-        "at" : { "x" : 288, "y" : 352 }
+        "at" : { "x" : 304, "y" : 256 }
       },
       "connect" : [
-        { "id" : "f15", "to" : "f9", "via" : [ { "x" : 288, "y" : 256 } ], "label" : {
-            "name" : "leave request",
-            "segment" : 1.36,
-            "offset" : { "x" : 0, "y" : -11 }
-          } },
-        { "id" : "f10", "to" : "f8", "label" : {
-            "name" : "lending",
-            "segment" : 0.38,
-            "offset" : { "x" : 0, "y" : -10 }
-          } },
-        { "id" : "f18", "to" : "f11", "via" : [ { "x" : 288, "y" : 464 }, { "x" : 672, "y" : 464 } ] }
+        { "id" : "f8", "to" : "f7" }
       ]
     }, {
-      "id" : "f8",
-      "type" : "DialogCall",
-      "name" : "Lending overview",
-      "config" : {
-        "dialog" : "com.axonivy.portal.userexamples.credit.LendingOverview:start(ch.ivy.addon.portalkit.configuration.UserProcess)",
-        "call" : {
-          "map" : {
-            "param.userProcess" : "in.process"
-          }
-        }
-      },
+      "id" : "f7",
+      "type" : "HtmlDialogExit",
       "visual" : {
-        "at" : { "x" : 464, "y" : 352 }
-      },
-      "connect" : [
-        { "id" : "f17", "to" : "f11" }
-      ]
+        "at" : { "x" : 416, "y" : 256 }
+      }
     } ]
 }

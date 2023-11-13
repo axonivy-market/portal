@@ -9,11 +9,6 @@
     <ui:param name="loadGridStack" value="true" />
 
     <ui:define name="pageContent">
-      <script type="text/javascript">
-        if("${menuView.isShowLegacyUI()}"==="true") {
-          window.location = "${menuView.getDashboardLink()}";
-        }
-      </script>
       <h:form id="remote-command-group">
         <p:remoteCommand id="reset-active-menu-items-rc" name="resetActiveMenuItems" autoRun="true"
           onstart="resetPortalLeftMenuState();"

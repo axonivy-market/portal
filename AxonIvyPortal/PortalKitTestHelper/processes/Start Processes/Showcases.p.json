@@ -1,0 +1,179 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "id" : "169BDE2F368D6EC4",
+  "config" : {
+    "data" : "portalKit_test.Data"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "ApplicationShowcase.ivp",
+      "config" : {
+        "signature" : "ApplicationShowcase",
+        "request" : {
+          "name" : "Showcase Application",
+          "description" : "Showcase Application",
+          "category" : "Showcase/Application"
+        },
+        "task" : {
+          "name" : "Start Application Showcase",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+          ]
+        },
+        "case" : {
+          "name" : "Application Showcase",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 120, "y" : 64 },
+        "labelOffset" : { "x" : 7, "y" : 37 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 432, "y" : 64 }
+      }
+    }, {
+      "id" : "f11",
+      "type" : "RequestStart",
+      "name" : "CustomizedUIShowcase.ivp",
+      "config" : {
+        "signature" : "CustomizedUIShowcase",
+        "request" : {
+          "name" : "Showcase Customized UI",
+          "description" : "Showcase Customized UI",
+          "category" : "Showcase/Customized"
+        },
+        "task" : {
+          "name" : "Start Customized UI",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+          ]
+        },
+        "case" : {
+          "name" : "Start Customized UI",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 120, "y" : 256 },
+        "labelOffset" : { "x" : 8, "y" : 39 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "f12" }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 432, "y" : 256 }
+      }
+    }, {
+      "id" : "f20",
+      "type" : "RequestStart",
+      "name" : "CustomizedTaskTemplate.ivp",
+      "config" : {
+        "signature" : "CustomizedTaskTemplate",
+        "request" : {
+          "name" : "Customization for TaskTemplate",
+          "description" : "Show example for how to use TaskTemplate",
+          "category" : "Showcase/Customized/TaskList"
+        },
+        "task" : {
+          "name" : "Test Tasktemplate task",
+          "description" : "Test Tasktemplate task",
+          "category" : "Tasktemplate",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+          ]
+        },
+        "case" : {
+          "name" : "Case testing",
+          "description" : "Testing",
+          "category" : "Test",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 120, "y" : 480 },
+        "labelOffset" : { "x" : 19, "y" : 49 }
+      },
+      "connect" : [
+        { "id" : "f26", "to" : "f21" }
+      ]
+    }, {
+      "id" : "f21",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 592, "y" : 480 }
+      }
+    }, {
+      "id" : "f32",
+      "type" : "RequestStart",
+      "name" : "StartShowIvyErrorPage.ivp",
+      "config" : {
+        "signature" : "StartShowIvyErrorPage",
+        "input" : {
+          "map" : { },
+          "code" : "1/0;"
+        },
+        "request" : {
+          "category" : "Showcase/Error/IvyError/ShowIvyErrorPage"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 120, "y" : 160 },
+        "labelOffset" : { "x" : 0, "y" : 39 }
+      },
+      "connect" : [
+        { "id" : "f34", "to" : "f33" }
+      ]
+    }, {
+      "id" : "f33",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 432, "y" : 160 }
+      }
+    }, {
+      "id" : "f35",
+      "type" : "RequestStart",
+      "name" : "PortalDialogExamples.ivp",
+      "config" : {
+        "signature" : "PortalDialogExamples",
+        "request" : {
+          "name" : "Portal Dialog Examples",
+          "category" : "Showcase/PortalDialogExample"
+        },
+        "case" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 120, "y" : 360 },
+        "labelOffset" : { "x" : -4, "y" : 38 }
+      },
+      "connect" : [
+        { "id" : "f38", "to" : "f36" }
+      ]
+    }, {
+      "id" : "f36",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 432, "y" : 360 }
+      }
+    } ]
+}
