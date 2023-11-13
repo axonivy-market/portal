@@ -9,9 +9,10 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.Variable;
 import portal.guitest.common.WaitHelper;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
@@ -25,25 +26,14 @@ public class TaskTemplateIFrameTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-  }
-
-  @Test
-  public void testCustomParamsForTaskTemplate8() {
-    redirectToRelativeLink(CUSTOM_PARAMS_TEMPLATE_TASK_URL);
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy("Task template 8 with custom params");
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTaskWithouWaitForTaskActionPresent(0);
-    assertFalse(taskTemplatePage.isTaskNameDisplayed());
-    assertFalse(taskTemplatePage.isTaskActionDisplayed());
-    assertFalse(taskTemplatePage.isCaseInfoButtonDisplayed());
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
   }
 
   @Test
   public void testCustomParamsForIFrameTaskTemplate() {
     redirectToRelativeLink(CUSTOM_PARAMS_TEMPLATE_TASK_URL);
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy("IFrame task with custom params");
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    taskWidgetPage.filterTasksInExpandedModeBy("IFrame task with custom params");
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTaskWithouWaitForTaskActionPresent(0);
     assertFalse(taskTemplatePage.isTaskNameDisplayed());
     assertFalse(taskTemplatePage.isTaskActionDisplayed());
@@ -66,11 +56,10 @@ public class TaskTemplateIFrameTest extends BaseTest {
     waitForTemplateRender();
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
     TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
-    taskWidgetPage.filterTasksBy("Approve Investment", 1);
+    taskWidgetPage.filterTasksInExpandedModeBy("Approve Investment", 1);
     TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(0);
     taskTemplatePage2.clickOnLogo();
-    WaitHelper.assertTrueWithWait(
-        () -> taskTemplatePage2.isElementDisplayed(By.id("task-widget:task-list-link:task-list-link")));
+    new NewDashboardPage();
   }
 
   @Test
@@ -80,11 +69,10 @@ public class TaskTemplateIFrameTest extends BaseTest {
     waitForTemplateRender();
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
     TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
-    taskWidgetPage.filterTasksBy("Approve Investment", 1);
+    taskWidgetPage.filterTasksInExpandedModeBy("Approve Investment", 1);
     TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(0);
-    HomePage homePage = taskTemplatePage2.backToHomeInIFrameApprovalTask();
-    WaitHelper
-        .assertTrueWithWait(() -> homePage.isElementDisplayed(By.id("task-widget:task-list-link:task-list-link")));
+    taskTemplatePage2.backToHomeInIFrameApprovalTask();
+    new NewDashboardPage();
   }
 
   @Test
@@ -121,8 +109,8 @@ public class TaskTemplateIFrameTest extends BaseTest {
   @Test
   public void testShowCategoryInCaseByDefaultIframe() {
     redirectToRelativeLink("InternalSupport/15B1EA24CCF377E8/saleAndInform.ivp");
-    HomePage homePage = new HomePage();
-    TaskWidgetPage taskWidget = homePage.openTaskList();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    TaskWidgetPage taskWidget = newDashboardPage.openTaskList();
     taskWidget.filterTasksInExpandedModeBy("sale department", 1);
     TaskTemplatePage startTask = taskWidget.startTask(0);
     startTask.openCaseInfo();

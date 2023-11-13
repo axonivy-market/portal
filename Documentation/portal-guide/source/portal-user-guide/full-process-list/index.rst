@@ -113,7 +113,7 @@ HowTo: Add an external link
    Starting processes from the Full Process List page is fine if you require
    this process only on a rare basis. For all processes which you use on a
    regular basis we highly recommend configuring them on your personal
-   dashboard. See :ref:`howto-add-a-process-as-a-user-favorite` for an instruction.
+   dashboard.
 
 .. include:: ../includes/_common-icon.rst
 

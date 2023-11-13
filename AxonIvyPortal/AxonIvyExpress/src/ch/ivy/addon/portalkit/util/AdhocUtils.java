@@ -10,6 +10,7 @@ import ch.ivy.addon.portalkit.service.AdhocHistoryService;
 import ch.ivy.gawfs.DynaFormController;
 import ch.ivy.gawfs.Formelement;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ICase;
 import gawfs.ExecutePredefinedWorkflowData;
 import gawfs.TaskDef;
@@ -40,7 +41,7 @@ public class AdhocUtils {
   }
   
   public static void attachToBusinessCase(final ICase icase, final Long businessCaseId) {
-    IvyExecutor.executeAsSystem(() -> {
+    Sudo.get(() -> {
         icase.attachToBusinessCase(businessCaseId);
         return null;
     });

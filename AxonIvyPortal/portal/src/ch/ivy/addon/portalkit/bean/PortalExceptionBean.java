@@ -11,9 +11,9 @@ import org.primefaces.application.exceptionhandler.ExceptionInfo;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplicationConfigurationManager;
 import ch.ivyteam.ivy.bpm.error.BpmError;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.util.IvyRuntimeException;
 
 @ManagedBean
@@ -30,7 +30,7 @@ public class PortalExceptionBean implements Serializable {
   private ExceptionInfo exceptionInfo;
 
   public boolean getErrorDetailToEndUser() {
-    return IvyExecutor.executeAsSystem(() -> findShowErrorDetailSystemProperty());
+    return Sudo.get(() -> findShowErrorDetailSystemProperty());
   }
 
   private boolean findShowErrorDetailSystemProperty() {

@@ -1,8 +1,7 @@
 package portal.guitest.page;
 
 import static portal.guitest.common.Variable.CLIENT_SIDE_TIMEOUT;
-import static portal.guitest.common.Variable.SHOW_ENVIRONMENT_INFO;
-import static portal.guitest.common.Variable.SHOW_LEGACY_UI;
+import static portal.guitest.common.Variable.GLOBAL_FOOTER_INFO;
 
 import java.util.List;
 
@@ -39,7 +38,6 @@ public class AdminSettingsPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
 
-  @SuppressWarnings("deprecation")
   private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
     List<WebElement> tableRows = getAdminTable().findElements(By.tagName("tr"));
     for (WebElement row : tableRows) {
@@ -57,31 +55,10 @@ public class AdminSettingsPage extends TemplatePage {
     }
   }
 
-  @SuppressWarnings("deprecation")
-  private void resetGlobalVariable(String variableName) {
-    List<WebElement> tableRows = getAdminTable().findElements(By.tagName("tr"));
-    for (WebElement row : tableRows) {
-      List<WebElement> columns = row.findElements(By.tagName("td"));
-      if (!CollectionUtils.isEmpty(columns)) {
-        WebElement keyColumn = columns.get(0);
-        if (keyColumn.getText().equals(variableName)) {
-          WebElement editButton = row.findElement(By.cssSelector("a[id$=reset]"));
-          click(editButton);
-          waitForElementPresent(By.cssSelector("[id$=':resetConfirmationDialog']"), true);
-          waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-          WebElement restoreButton = findElementById("admin-setting-component:reset-setting");
-          click(restoreButton);
-          return;
-        }
-      }
-    }
-  }
-
   private WebElement getAdminTable() {
     return findElementByCssSelector("[id$=':adminTabView:settingTable']");
   }
 
-  @SuppressWarnings("deprecation")
   public void resetAllSettings() {
     openSettingTab();
     WebElement restoreAllToDefaultButton = findElementById("admin-setting-component:adminTabView:restore-all-to-default-button");
@@ -92,7 +69,6 @@ public class AdminSettingsPage extends TemplatePage {
     closeConfirmationDialog();
   }
 
-  @SuppressWarnings("deprecation")
   private void saveGlobalVariable(String value, boolean isBooleanType) {
     if (!isBooleanType) {
       WebElement valueInput = findElementById("admin-setting-component:valueSetting");
@@ -109,8 +85,7 @@ public class AdminSettingsPage extends TemplatePage {
     click(saveButton);
   }
 
-  @SuppressWarnings("deprecation")
-  public void clickOnbackToHomepageOnAdminSetting() {
+  public void clickOnbackToNewDashboardPageOnAdminSetting() {
     WebElement closeButton = findElementById("back-to-home-button");
     WaitHelper.waitForNavigation(this, () -> click(closeButton));
   }
@@ -122,27 +97,15 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   public void closeConfirmationDialog() {
-    clickOnbackToHomepageOnAdminSetting();
+    clickOnbackToNewDashboardPageOnAdminSetting();
   }
 
-  public void setEnviromentInfo() {
+  public void setGlobalFooterInfo() {
     openSettingTab();
-    editGlobalVariable(SHOW_ENVIRONMENT_INFO.getKey(), "true", true);
+    editGlobalVariable(GLOBAL_FOOTER_INFO.getKey(), "Dev Team: Wawa, Env: Dev", false);
     closeConfirmationDialog();
   }
 
-  public void setShowLegacyUI() {
-    openSettingTab();
-    editGlobalVariable(SHOW_LEGACY_UI.getKey(), "true", true);
-    clickOnbackToHomepageOnAdminSetting();
-  }
-
-  public void resetShowLegacyUI() {
-    openSettingTab();
-    resetGlobalVariable(SHOW_LEGACY_UI.getKey());
-    closeConfirmationDialog();
-  }
-  
   public boolean isWarningDialogShowWhenTimeoutIsLosing() {
     waitForElementDisplayed(By.cssSelector("div[id$=':timeout-warning-dialog']"), true, 121);
     return isElementDisplayed(By.cssSelector("div[id$=':timeout-warning-dialog']"));

@@ -1,9 +1,0 @@
-SearchResultsData #class
-com.axonivy.portal.developerexamples.customization.SearchResults #namespace
-dataModel com.axonivy.portal.developerexamples.component.customize.CustomizedSearchResultsDataModel #field
-dataModel 'For customization: change this attribute''s type to <YOUR_CUSTOMIZED_DATA_MODEL>, for example: CustomizedSearchResultsDataModel' #fieldComment
-dataModel PERSISTENT #fieldModifier
-activeTabIndex Number #field
-activeTabIndex PERSISTENT #fieldModifier
-emp com.axonivy.portal.developerexamples.Employee #field
-emp PERSISTENT #fieldModifier

@@ -5,7 +5,6 @@ public enum PortalVariable {
   ANNOUNCEMENT("Portal.Announcement"),
   THIRD_PARTY_APP("Portal.ThirdPartyApplications"),
   STATISTIC_CHART("Portal.StatisticCharts"),
-  FAVORITE_PROCESS("Portal.Dashboard.FavoriteProcesses"),
   WIDGET_FILTER("Portal.Dashboard.WidgetFilters"),
   EXTERNAL_LINK("Portal.Processes.ExternalLinks"),
   EXPRESS_PROCESS("Portal.Processes.ExpressProcesses"),

@@ -31,3 +31,19 @@ Categories:
         name: Test 1_2 Ge
       name: Test 1 Ge
     name: Test Ge
+  Showcase:
+    Application:
+      name: Anmeldung
+    Customized:
+      TaskList:
+        name: Custom task list
+      name: Kundenspezifisch
+    Error:
+      IvyError:
+        ShowIvyErrorPage:
+          name: Ivy-Fehlerseite anzeigen
+        name: Ivy Error
+      name: Error
+    PortalDialogExample:
+      name: Beispiel für einen Portaldialog
+    name: Schaukasten

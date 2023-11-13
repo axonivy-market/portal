@@ -17,8 +17,8 @@ import ch.ivy.addon.portalkit.constant.CustomFields;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PortalProcessViewerUtils;
 import ch.ivyteam.ivy.security.IPermission;
@@ -41,7 +41,7 @@ public class CaseActionBean implements Serializable {
     String additionalCaseDetailsPageUri = StringUtils.EMPTY;
     if (isExpressCase(iCase)) {
       additionalCaseDetailsPageUri =
-          ProcessStartCollector.getInstance().findExpressBusinessViewStartLink() + "?uuid=" + iCase.uuid();
+          ExpressProcessService.getInstance().findExpressBusinessViewStartLink() + "?uuid=" + iCase.uuid();
     } else {
       additionalCaseDetailsPageUri = getBusinessDetailURLFromCustomField(iCase);
     }

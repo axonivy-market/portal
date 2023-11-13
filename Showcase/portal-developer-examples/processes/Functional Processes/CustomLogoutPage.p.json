@@ -1,9 +1,9 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "1657EA461CE412A1",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "_com.axonivy.portal.developerexamples.CustomLogoutPageData"
+    "data" : "com.axonivy.portal.developerexamples.CustomLogoutPageData"
   },
   "elements" : [ {
       "id" : "f0",
@@ -36,7 +36,7 @@
       "id" : "f3",
       "type" : "ProcessAnnotation",
       "name" : [
-        "This process overrides the LogoutPage process of Portal Template. It set the in.logoutPage to the url of application home apge.",
+        "This process customizes Portal logout page. It set the in.logoutPage to the url of application home page.",
         "So whenever user logout of Portal, he will be redirected to the application home page."
       ],
       "visual" : {

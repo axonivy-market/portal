@@ -89,7 +89,6 @@ public class GlobalSearchTest extends BaseTest {
 
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
-    newDashboardPage.waitForDashboardPageAvailable();
     String caseName = "Testing Case for Global Search (Name)";
     resultPage = newDashboardPage.inputGlobalSearchKeyword(customKeyword);
     resultPage.openCaseTab();

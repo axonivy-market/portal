@@ -1,0 +1,8 @@
+RedirectToCaseDetailsByUUIDExampleData #class
+com.axonivy.portal.components.examples.redirectstodetailspage.RedirectToCaseDetailsByUUIDExample #namespace
+uuid String #field
+uuid PERSISTENT #fieldModifier
+caseLink String #field
+caseLink PERSISTENT #fieldModifier
+isLinkEnable Boolean #field
+isLinkEnable PERSISTENT #fieldModifier

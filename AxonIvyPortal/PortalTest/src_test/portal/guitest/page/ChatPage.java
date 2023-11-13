@@ -33,7 +33,6 @@ public class ChatPage extends TemplatePage {
     return findElementByXpath("//span[contains(text(),'" + groupChatID + "')]").isDisplayed();
   }
 
-  @SuppressWarnings("deprecation")
   public void selectChatUser(String name) {
     waitForElementDisplayed(By.xpath("//span[text()='" + name + "']"), true);
     click(findElementByXpath("//span[text()='" + name + "']"));
@@ -130,7 +129,6 @@ public class ChatPage extends TemplatePage {
     return isElementPresent(By.cssSelector("span[class$='js-notification']"));
   }
   
-  @SuppressWarnings("deprecation")
   public void openFirstGroupChat() {
     waitForElementDisplayed(By.id("chat-form:group-chat-container"), true);
     List<WebElement> chatGroups = findListElementsByClassName("js-group-card-name");

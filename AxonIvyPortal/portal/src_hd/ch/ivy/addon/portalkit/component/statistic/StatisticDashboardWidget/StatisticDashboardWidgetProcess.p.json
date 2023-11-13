@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "1600AC95D2CA7CEA",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -35,16 +35,14 @@
           "id" : "S10-g2",
           "type" : "EmbeddedEnd",
           "visual" : {
-            "at" : { "x" : 792, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 792, "y" : 160 }
           },
           "parentConnector" : "f1"
         }, {
           "id" : "S10-g1",
           "type" : "EmbeddedStart",
           "visual" : {
-            "at" : { "x" : 88, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 88, "y" : 160 }
           },
           "parentConnector" : "f67",
           "connect" : [
@@ -54,8 +52,7 @@
           "id" : "S10-g0",
           "type" : "EmbeddedStart",
           "visual" : {
-            "at" : { "x" : 336, "y" : 272 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 336, "y" : 272 }
           }
         } ],
       "visual" : {
@@ -526,7 +523,6 @@
       "type" : "Alternative",
       "config" : {
         "conditions" : {
-          "f51" : "in.isGuide",
           "f50" : "in.statisticChartList.isEmpty()",
           "f54" : "in.isFinishLoadCharts && ch.ivy.addon.portalkit.service.StatisticService.getInstance().isSame(in.prevStatisticList, in.statisticChartList)",
           "f56" : "in.isCompactMode"
@@ -536,11 +532,6 @@
         "at" : { "x" : 1080, "y" : 288 }
       },
       "connect" : [
-        { "id" : "f51", "to" : "f49", "via" : [ { "x" : 1088, "y" : 448 } ], "label" : {
-            "name" : "isGuide",
-            "segment" : 1.27,
-            "offset" : { "x" : 0, "y" : -14 }
-          } },
         { "id" : "f50", "to" : "f4", "via" : [ { "x" : 1096, "y" : 384 } ] },
         { "id" : "f54", "to" : "f2", "via" : [ { "x" : 1096, "y" : 336 }, { "x" : 1480, "y" : 336 } ], "label" : {
             "name" : "haven't data changed in Statistics",
@@ -661,16 +652,10 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.util.BeanUtils;",
             "import ch.ivy.addon.portalkit.service.StatisticService;",
             "import java.util.ArrayList;",
-            "import ch.ivy.addon.portalkit.service.DummyStatisticService;",
             "",
             "StatisticService service = StatisticService.getInstance();",
-            "in.isGuide = ch.ivy.addon.portalkit.bo.GuidePool.instance().guide(ivy.session.getSessionUserName()).isGuideShown();",
-            "if (in.isGuide) {",
-            "  in.statisticChartList = [DummyStatisticService.createDummyChartForGuide()];",
-            "}",
             "",
             "/* isReloadChartContent is a flag to reload the ChartJS canvas on UI ",
             "   If isFinishLoadCharts is true, we will reload the ChartJS canvas to draw new canva based on new data",
@@ -850,29 +835,6 @@
       },
       "connect" : [
         { "id" : "f45", "to" : "f53" }
-      ]
-    }, {
-      "id" : "f49",
-      "type" : "Script",
-      "name" : "Create dummy chart",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.service.DummyStatisticService;",
-            "import java.util.ArrayList;",
-            "import ch.ivy.addon.portalkit.service.StatisticService;",
-            "",
-            "StatisticService service = StatisticService.getInstance();",
-            "in.statisticChartList = [DummyStatisticService.createDummyChartForGuide()];",
-            "in.prevStatisticList = new ArrayList(in.statisticChartList);"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 1280, "y" : 448 }
-      },
-      "connect" : [
-        { "id" : "f12", "to" : "f2", "via" : [ { "x" : 1480, "y" : 448 } ] }
       ]
     }, {
       "id" : "f13",
