@@ -199,15 +199,17 @@
                                  <p:autoUpdate />
                               </p:growl>
                               <div class="card-header">
-                                 <div class="setting-header ui-g-12">
+                                 <div class="setting-header">
                                     <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/notificationChannels')}</h2>
                                  </div>
-                                 <p:commandButton id="reset"
-                                    actionListener="#{userProfileBean.resetAllChannel}"
-                                    title="Reset to default"
-                                    icon="si si-undo"
-                                    styleClass="p-col-fixed p-ml-auto ui-button-danger rounded-button"
-                                    update="@form" />
+                                 <div class="p-d-flex">
+                                   <p:commandLink id="reset" update="@form" 
+                                   actionListener="#{userProfileBean.resetAllChannel}" 
+                                   title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}"
+                                   styleClass="notification-channel-reset">
+                                   <span class="si si-undo p-ml-1 p-mt-2" />
+                                 </p:commandLink>
+                                </div>
                               </div>
                               <p:dataTable paginator="true" rows="10"
                                  paginatorPosition="bottom"
