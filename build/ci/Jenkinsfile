@@ -12,7 +12,7 @@ pipeline {
   }
 
   parameters {
-    string(name: 'modulesMustBeBuilt', defaultValue: '', description: 'Define modules must be built. By default, only modules which have code changes since the last successful build are built. Available modules: portal-components,portal,AxonIvyExpress,PortalKitTestHelper,portal-user-examples,portal-developer-examples,InternalSupport,portal-components-examples. E.g. portal-components code is changed, then set this property value portal => portal-components,portal will be built.')
+    string(name: 'modulesMustBeBuilt', defaultValue: '', description: 'Define modules must be built. By default, only modules which have code changes since the last successful build are built. Available modules: portal-components,portal,PortalKitTestHelper,portal-user-examples,portal-developer-examples,InternalSupport,portal-components-examples. E.g. portal-components code is changed, then set this property value portal => portal-components,portal will be built.')
   }
 
   stages {
@@ -21,7 +21,7 @@ pipeline {
         script {
           builtModules = []
           docker.build('build-portal-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
-            def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
+            def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
             def changeLog = ''
             if (env.GIT_PREVIOUS_SUCCESSFUL_COMMIT) {
               changeLog = sh(returnStdout: true, script: 'git diff --name-only $GIT_COMMIT $GIT_PREVIOUS_SUCCESSFUL_COMMIT').trim()
