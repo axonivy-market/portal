@@ -202,12 +202,12 @@
                                  <div class="setting-header ui-g-12">
                                     <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/notificationChannels')}</h2>
                                  </div>
-                                 <p:commandButton id="reset"
-                                    actionListener="#{userProfileBean.resetAllChannel}"
-                                    title="Reset to default"
-                                    icon="si si-undo"
-                                    styleClass="p-col-fixed p-ml-auto ui-button-danger rounded-button"
-                                    update="@form" />
+                               <p:commandLink id="reset" update="@form"
+                                actionListener="#{userProfileBean.resetAllChannel}" 
+                                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}"
+                                styleClass="action-column-icon-button">
+                                 <span class="si si-undo" />
+                               </p:commandLink>
                               </div>
                               <p:dataTable paginator="true" rows="10"
                                  paginatorPosition="bottom"
