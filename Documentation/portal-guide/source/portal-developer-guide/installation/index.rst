@@ -20,7 +20,7 @@ on each module, refer to :ref:`architecture`.
 
 -  portal-components
 -  portal
--  AxonIvyExpress
+-  axonivy-express
 
 The deployment of Ivy projects is described in :dev-url:`project
 deployment </doc/|version|/engine-guide/deployment/index.html>`
@@ -33,6 +33,7 @@ Designer
 ^^^^^^^^
 
 Import Portal modules to Designer.
+axonivy-express is excluded from the Portal application. If you want to use axonivy-express, you should import it from Axon Ivy Market.
 
 
 Engine Without License (Demo Mode)
@@ -142,6 +143,17 @@ In Engine
 #. Redeploy Portal projects and customer project.
 
 #. Follow detailed migration notes for each version below.
+
+Migrate 11.1.0 To 11.2.0
+------------------------
+
+The ``AxonIvyExpress`` module is renamed to ``axonivy-express`` and becomes an item on the Axon Ivy Market, To migrate it you need to do the following steps:
+
+- Open **Portal**, go to **Setting** -> **Express Management**. Export all Express configurations.
+- Open the **Cockpit**, stop the PM **AxonIvyExpress** in your **Portal** application.
+- Deploy the **axonivy-express** module which gets from the Axon Ivy Market into the **Portal** application.
+- Restart Engine.
+- Open **Portal**, go to **Setting** -> **Express Management**. Import the configuration which is exported at the first step.
 
 Migrate 10.0.12 To 10.0.13
 --------------------------
@@ -471,6 +483,8 @@ Migrate 8.x To 9.x
 You need to do all steps starting at ``Migrate 8.x To ...`` up to and including
 ``Migrate ... To 9.x``
 
+.. _installation-release-notes:
+
 Release notes
 =============
 
@@ -491,6 +505,7 @@ Changes in 11.2.0
 - Introduced the sort feature for the process dashboard widget. User can sort the processes by index, alphabetical order or by custom order.
 - Introduced the ``taskId`` param for the component ``ic:com.axonivy.portal.components.ProcessViewer`` to highlight the current step in the Process Viewer.
 - Portal Legacy dashboard has been removed.
+- The ``AxonIvyExpress`` module is renamed to ``axonivy-express`` and becomes an item on the Axon Ivy Market.
 
 Changes in 10
 -------------
