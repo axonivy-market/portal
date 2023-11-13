@@ -6,17 +6,12 @@ import java.util.Locale;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.ProcessType;
-import ch.ivy.addon.portalkit.util.Locales;
 import ch.ivyteam.ivy.environment.Ivy;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class UserProcess extends AbstractConfiguration {
+public class UserProcess {
   private ProcessType processType;
   @Deprecated(since = "10.0", forRemoval = true)
   private String processName;
@@ -24,11 +19,6 @@ public class UserProcess extends AbstractConfiguration {
   private String link;
   private String icon;
   private String processId;
-  private Integer index;
-  @JsonIgnore
-  private boolean isBrokenLink = false;
-
-  @JsonIgnore
   private String description;
 
   public UserProcess() {
@@ -41,8 +31,6 @@ public class UserProcess extends AbstractConfiguration {
     link = userProcess.link;
     icon = userProcess.icon;
     processId = userProcess.processId;
-    index = userProcess.index;
-    isBrokenLink = userProcess.isBrokenLink;
     description = userProcess.description;
   }
 
@@ -73,7 +61,7 @@ public class UserProcess extends AbstractConfiguration {
   }
 
   private String getActiveDisplayName() {
-    Locale currentLocale = new Locales().getCurrentLocale();
+    Locale currentLocale = Ivy.session().getContentLocale();
     return names.stream().filter(displayName -> displayName.getLocale().equals(currentLocale))
         .map(DisplayName::getValue).findFirst().orElse(getDisplayNameWithCms());
   }
@@ -114,23 +102,6 @@ public class UserProcess extends AbstractConfiguration {
     this.processId = processId;
   }
 
-  public boolean isBrokenLink() {
-    return isBrokenLink;
-  }
-
-  @JsonIgnore
-  public void setBrokenLink(boolean isBrokenLink) {
-    this.isBrokenLink = isBrokenLink;
-  }
-
-  public Integer getIndex() {
-    return index;
-  }
-
-  public void setIndex(Integer index) {
-    this.index = index;
-  }
-
   public String getDescription() {
     return description;
   }
@@ -141,7 +112,7 @@ public class UserProcess extends AbstractConfiguration {
 
   @Override
   public String toString() {
-    return String.format("UserProcess {processName=%s, icon=%s, link=%s, id=%s}", processName, icon, link, getId());
+    return String.format("UserProcess {processName=%s, icon=%s, link=%s, id=%s}", processName, icon, link);
   }
 
   private String getDisplayNameWithCms() {

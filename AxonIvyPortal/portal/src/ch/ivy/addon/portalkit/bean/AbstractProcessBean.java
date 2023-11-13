@@ -14,15 +14,20 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portal.generic.util.ProcessStepUtils;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
+import ch.ivy.addon.portalkit.bo.ProcessStep;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
+import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.ProcessType;
+import ch.ivy.addon.portalkit.mapper.UserProcessMapper;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -54,7 +59,7 @@ public abstract class AbstractProcessBean implements Serializable {
 
   protected List<Process> findExpressProcesses() {
     List<ExpressProcess> processes = new ArrayList<>();
-    String expressStartLink = ProcessStartCollector.getInstance().findExpressWorkflowStartLink();
+    String expressStartLink = ExpressProcessService.getInstance().findExpressWorkflowStartLink();
     if (StringUtils.isNotBlank(expressStartLink)) {
       List<ExpressProcess> workflows = ExpressProcessService.getInstance().findReadyToExecuteProcessOrderByName();
       for (ExpressProcess wf : workflows) {
@@ -136,5 +141,18 @@ public abstract class AbstractProcessBean implements Serializable {
 
   public synchronized List<Process> getPortalProcesses() {
     return portalProcesses;
+  }
+  
+  public Boolean isShowInformationLink(Process process) {
+    Boolean hasProcessInfo = false;
+    List<ProcessStep> processSteps = null;
+    Object nestedProcess = process.getProcess();
+    if (nestedProcess instanceof IWebStartable) {
+      processSteps = ProcessStepUtils.findProcessStepsOfProcess(UserProcessMapper.toUserProcess(((IWebStartable) nestedProcess)));
+    } else if (nestedProcess instanceof DashboardProcess) {
+      processSteps = ProcessStepUtils.findProcessStepsOfProcess(UserProcessMapper.toUserProcess(((DashboardProcess) nestedProcess)));
+    }
+    hasProcessInfo = processSteps != null && processSteps.size() > 0;
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_PROCESS_INFORMATION) && hasProcessInfo;
   }
 }

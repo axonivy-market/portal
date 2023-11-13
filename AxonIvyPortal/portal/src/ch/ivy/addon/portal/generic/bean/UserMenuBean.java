@@ -31,7 +31,6 @@ import ch.ivy.addon.portalkit.service.AnnouncementService;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -75,10 +74,6 @@ public class UserMenuBean implements Serializable {
 
   public boolean isShowCaseDurationTime() {
     return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_CASE_DURATION_TIME);
-  }
-
-  public boolean isShowServerInformation() {
-    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_ENVIRONMENT_INFO);
   }
 
   public boolean isHiddenLogout() {
@@ -321,7 +316,7 @@ public class UserMenuBean implements Serializable {
 
   private static String getExpressStartLink() {
     if (StringUtils.isEmpty(expressStartLink)) {
-      expressStartLink = ProcessStartCollector.getInstance().findExpressWorkflowStartLink();
+      expressStartLink = ExpressProcessService.getInstance().findExpressWorkflowStartLink();
     }
     return expressStartLink;
   }

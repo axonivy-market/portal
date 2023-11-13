@@ -1,72 +1,10 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "16A7BB2ADC9580A8",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.GlobalGrowlData"
   },
   "elements" : [ {
-      "id" : "f0",
-      "type" : "RequestStart",
-      "name" : "start.ivp",
-      "config" : {
-        "signature" : "start",
-        "request" : {
-          "name" : "Global Growl"
-        },
-        "task" : {
-          "name" : "Start: Global Growl"
-        },
-        "case" : {
-          "name" : "Global Growl",
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 64 }
-      },
-      "connect" : [
-        { "id" : "f4", "to" : "f3", "var" : "in1" }
-      ]
-    }, {
-      "id" : "f1",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 448, "y" : 64 }
-      }
-    }, {
-      "id" : "f3",
-      "type" : "TaskSwitchGateway",
-      "config" : {
-        "tasks" : [ {
-            "id" : "TaskA",
-            "name" : "Global Growl",
-            "customFields" : [
-              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
-            ]
-          } ]
-      },
-      "visual" : {
-        "at" : { "x" : 192, "y" : 64 }
-      },
-      "connect" : [
-        { "id" : "f6", "to" : "f5", "condition" : "ivp==\"TaskA.ivp\"" }
-      ]
-    }, {
-      "id" : "f5",
-      "type" : "DialogCall",
-      "name" : "GlobalGrowl",
-      "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowl:start()"
-      },
-      "visual" : {
-        "at" : { "x" : 320, "y" : 64 }
-      },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
-    }, {
       "id" : "f7",
       "type" : "DialogCall",
       "name" : "GlobalGrowlIFrame8",

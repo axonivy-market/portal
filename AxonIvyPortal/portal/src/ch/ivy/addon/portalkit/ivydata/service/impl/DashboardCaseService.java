@@ -4,8 +4,8 @@ import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isHiddenTasksCa
 
 import java.util.List;
 
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
@@ -21,7 +21,7 @@ public class DashboardCaseService extends CaseService {
   }
 
   public List<ICase> findByCaseQuery(CaseQuery query, int startIndex, int count) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       var subQuery = CaseQuery.businessCases();
       if (!PermissionUtils.checkReadAllCasesPermission()) {
         subQuery.where().and(queryForCurrentUser(false));
@@ -36,7 +36,7 @@ public class DashboardCaseService extends CaseService {
   }
 
   public Long countByCaseQuery(CaseQuery query) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       var subQuery = CaseQuery.businessCases();
       if (!PermissionUtils.checkReadAllCasesPermission()) {
         subQuery.where().and(queryForCurrentUser(false));

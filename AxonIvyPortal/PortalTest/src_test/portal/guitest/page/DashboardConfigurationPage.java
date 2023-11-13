@@ -32,10 +32,9 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public void selectEditPublicDashboards() {
     waitForElementDisplayed(By.cssSelector(".dashboard-configuration__content.js-public-dashboard-configuration"), true);
-    clickByCssSelector("a[id$='edit-dashboard-action'].js-public-dashboard");
-    waitForElementDisplayed(By.cssSelector("[id$=':dashboard-modification-container']"), true);
+    clickByCssSelector("button[id$='dashboard-modification-component:dashboard-table:0:configure-dashboard']");
   }
-  
+
   public WebElement getDashboardConfigurationPage() {
     return findElementById("configuration-group");
   }
@@ -56,7 +55,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   
   public void createPrivateDashboard() {
     selectPrivateDashboardType();
-    clickByCssSelector("a[id$='create-dashboard-action'].js-private-dashboard");
+    clickByCssSelector("button[id$='create-dashboard-action']");
     waitForElementDisplayed(By.cssSelector("div[id$=':create-new-dashboard-section']"), true);
   }
   
@@ -73,7 +72,14 @@ public class DashboardConfigurationPage extends TemplatePage {
     clickByCssSelector("a[id$='edit-dashboard-action'].js-private-dashboard");
     waitForElementDisplayed(By.cssSelector("[id$='dashboard-modification-container']"), true);
   }
-  
+
+  public void closeAddDashboardDialog() {
+    waitForElementDisplayed(By.cssSelector("[id='dashboard-template-selection-component:create-new-dashboard-dialog']"), true);
+    WebElement element = findElementByCssSelector("[id='dashboard-template-selection-component:create-new-dashboard-dialog']");
+    waitAjaxIndicatorDisappear();
+    element.findElement(By.cssSelector("a.ui-dialog-titlebar-close")).click();
+  }
+
   public void reorderPrivateDashboards() {
     selectPrivateDashboardType();
     clickByCssSelector("a[id$='reorder-dashboard-action'].js-private-dashboard");
@@ -82,7 +88,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   
   public void createPublicDashboardFromScratch() {
     selectPublicDashboardType();
-    clickByCssSelector("a[id$='create-dashboard-action'].js-public-dashboard");
+    clickByCssSelector("button[id$='create-dashboard-action']");
     waitForElementDisplayed(By.cssSelector("div[id$=':create-new-dashboard-section']"), true);
     clickByCssSelector("a[id$=':create-from-scratch']");
     waitForElementDisplayed(By.cssSelector("div[id$=':dashboard-creation-details-dialog']"), true);
@@ -91,7 +97,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   
   public void openEditPublicDashboards() {
     selectPublicDashboardType();
-    clickByCssSelector("a[id$='edit-dashboard-action'].js-public-dashboard");
+    clickByCssSelector("button[id$='dashboard-modification-component:dashboard-table:0:edit']");
     waitForElementDisplayed(By.cssSelector("[id$='dashboard-modification-container']"), true);
   }
   
@@ -141,7 +147,6 @@ public class DashboardConfigurationPage extends TemplatePage {
   
   public void openImportPublicDashboards() {
     selectPublicDashboardType();
-    clickByCssSelector("a[id$='create-dashboard-action'].js-public-dashboard");
     waitForElementDisplayed(By.cssSelector("div[id$=':create-new-dashboard-section']"), true);
     openImportDashboardDialog();
   }
@@ -155,13 +160,13 @@ public class DashboardConfigurationPage extends TemplatePage {
     clickByCssSelector("a[id$=':import-dashboard']");
     waitForElementDisplayed(By.cssSelector("div[id$=':dashboard-import-dialog']"), true);
     findElementByCssSelector("[id$=':dashboard-upload_input']").sendKeys(FileHelper.getAbsolutePathToTestFile("Dashboard_Dashboard_Export.json"));
-    waitForElementDisplayed(By.cssSelector("input[id$=':import-dashboard-form:import-dashboard-title']"), true);    
+    waitForElementDisplayed(By.cssSelector("input[id$=':import-dashboard-form:0:import-dashboard-title']"), true);
   }
 
   
   public WebElement getImportDashboardDialog() {
-    mouseOver(findElementByCssSelector("input[id$=':import-dashboard-form:import-dashboard-title']"));
-    waitForElementDisplayed(By.cssSelector("input[id$=':import-dashboard-form:import-dashboard-title']"), true);
+    mouseOver(findElementByCssSelector("input[id$=':import-dashboard-form:0:import-dashboard-title']"));
+    waitForElementDisplayed(By.cssSelector("input[id$=':import-dashboard-form:0:import-dashboard-title']"), true);
     return findElementByCssSelector("div[id$=':dashboard-import-dialog']");
   }  
   

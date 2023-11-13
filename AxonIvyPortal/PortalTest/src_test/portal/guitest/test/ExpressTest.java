@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.NavigationHelper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.ExpressApprovalPage;
@@ -18,7 +19,7 @@ import portal.guitest.page.ExpressFormDefinitionPage;
 import portal.guitest.page.ExpressProcessPage;
 import portal.guitest.page.ExpressReviewPage;
 import portal.guitest.page.ExpressTaskPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class ExpressTest extends BaseTest{
@@ -28,14 +29,14 @@ public class ExpressTest extends BaseTest{
   private static final int INPUT_TEXT_TYPE_INDEX = 0;
   private static final int INPUT_NUMBER_TYPE_INDEX = 1;
   
-  private HomePage homePage;
+  private NewDashboardPage newDashboardPage;
   private TaskWidgetPage taskWidgetPage;
   ExpressResponsible responsible1 = new ExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
   @Override
   @Before
   public void setup() {
     super.setup();
-    homePage = new HomePage();
+    newDashboardPage = new NewDashboardPage();
   }
 
   @Test
@@ -60,8 +61,8 @@ public class ExpressTest extends BaseTest{
     ExpressFormDefinitionPage formDefinition = expressProcessPage.goToFormDefinition();
     assertEquals("Express Workflow", formDefinition.getTextOfCurrentBreadcrumb());
 
-    homePage = formDefinition.goToHomeFromBreadcrumbWithWarning();
-    assertEquals(true, homePage.isDisplayed());
+    newDashboardPage = formDefinition.goToHomeFromBreadcrumbWithWarning();
+    assertEquals(true, newDashboardPage.isDisplayed());
   }
   
   private ExpressFormDefinitionPage configureExpressProcessWhenMultiApproval(ExpressProcessPage expressProcessPage) {
@@ -88,10 +89,10 @@ public class ExpressTest extends BaseTest{
     login(TestAccount.ADMIN_USER);
     executeUserTask();
     login(TestAccount.DEMO_USER);
-    executeApproval("Approved at first level");
-    executeApproval("Approved at second level");
+    executeApproval("Approved at first level", TestAccount.DEMO_USER.getFullName());
+    executeApproval("Approved at second level", TestAccount.DEMO_USER.getFullName());
     login(TestAccount.ADMIN_USER);
-    executeApproval("Approved at second level");
+    executeApproval("Approved at second level", "Task 3", 1, 0, TestAccount.ADMIN_USER.getFullName());
     login(TestAccount.DEMO_USER);
     
     String approvalResult = executeReview();
@@ -105,7 +106,7 @@ public class ExpressTest extends BaseTest{
   }
 
   private String executeReview() {
-    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.startTask(0);
     ExpressReviewPage reviewPage = new ExpressReviewPage();
     String approvalResult = reviewPage.getApprovalResult();
@@ -114,23 +115,27 @@ public class ExpressTest extends BaseTest{
   }
   
   private void executeUserTask() {
-    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
+    taskWidgetPage.filterByResponsible(TestAccount.ADMIN_USER.getFullName());
     taskWidgetPage.startTask(0);
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.finish();
-    HomePage home = new HomePage();
-    home.waitForPageLoaded();
+    new TaskWidgetPage();
   }
   
-  private void executeApproval(String comment) {
-    taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy("Task", 1);
-    taskWidgetPage.startTask(0);
+  private void executeApproval(String comment, String responsible) {
+    executeApproval(comment, "Task", 1, 0, responsible);
+  }
+
+  private void executeApproval(String comment, String taskNameFilter, int expectedNumber, int startTaskIndex,
+      String responsible) {
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
+    taskWidgetPage.filterByResponsible(responsible);
+    taskWidgetPage.filterTasksInExpandedModeBy(taskNameFilter, expectedNumber);
+    taskWidgetPage.startTask(startTaskIndex);
     ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
     approvalPage1.comment(comment);
     approvalPage1.approve();
-    HomePage home = new HomePage();
-    home.waitForPageLoaded();
   }
 
   private void goToExpressCreationPage() {

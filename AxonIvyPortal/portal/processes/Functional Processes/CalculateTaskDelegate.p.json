@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "15B8089000CE1FF7",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -70,7 +70,7 @@
             "params.put(\"task\", in.task);",
             "",
             "List result = IvyAdapterService.startSubProcessesInSecurityContext(PortalCustomSignature.DELEGATE.getSignature(), params);",
-            "in.hasCustomProcess = result != null;",
+            "in.hasCustomProcess = #result is initialized;",
             "",
             "if (in.hasCustomProcess) {",
             "",

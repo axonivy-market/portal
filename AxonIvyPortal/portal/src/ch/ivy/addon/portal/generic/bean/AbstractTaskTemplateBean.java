@@ -13,9 +13,8 @@ import ch.ivy.addon.portalkit.bo.AdhocHistory;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.AdhocHistoryService;
+import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
@@ -26,6 +25,7 @@ import ch.ivyteam.ivy.casemap.runtime.model.IStartableSideStep;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.security.query.UserQuery;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -49,7 +49,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
   }
 
   public void startAdhoc(Long taskId) {
-    String url = ProcessStartCollector.getInstance().findExpressAdhocWFLink();
+    String url = ExpressProcessService.getInstance().findExpressAdhocWFLink();
     url = url + "?originalTaskId=" + taskId;
     PortalNavigator.redirect(url);
   }
@@ -61,7 +61,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
   }
 
   public boolean hasExpressAdhocWF() {
-    String adhocUrl = ProcessStartCollector.getInstance().findExpressAdhocWFLink();
+    String adhocUrl = ExpressProcessService.getInstance().findExpressAdhocWFLink();
     return !adhocUrl.isEmpty();
   }
 
@@ -122,7 +122,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
       return "";
     }
 
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IUser user = UserUtils.findUserByUsername(username);
       if (user == null) {
         UserQuery query = ISecurityContext.current().users().query();
@@ -137,7 +137,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
     if (StringUtils.isBlank(username)) {
       return null;
     }
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IUser user = UserUtils.findUserByUsername(username);
       if (user == null) {
         UserQuery query = ISecurityContext.current().users().query();

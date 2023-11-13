@@ -20,8 +20,50 @@
     actionListener="#{widget.buildProcessDataFirstTime(cc.attrs.isInConfiguration)}" />
 
   <div class="ui-g widget-height-100 #{displayMode eq 'COMBINED_MODE' ? 'widget-overflow-auto' : ''} #{displayMode eq 'IMAGE_MODE' ? 'image-process-container' : ''}">
-    <h:outputText id="loading" styleClass="js-loading-#{widget.id} ui-g-12 #{displayMode eq 'COMPACT_MODE' ? '':'MarLeft10 MarTop20'}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}" />
+    <h:panelGroup layout="block"
+      rendered="#{displayMode eq 'COMPACT_MODE'}"
+      styleClass="js-loading-#{widget.id} ui-g-12">
+      <ui:repeat var="process" value="#{widget.loadingItems()}">
+        <p:skeleton styleClass="MarTop20" height="4rem" />
+      </ui:repeat>
+    </h:panelGroup>
+    <h:panelGroup layout="block"
+      rendered="#{displayMode eq 'IMAGE_MODE' or displayMode eq 'FULL_MODE'}"
+      styleClass="js-loading-#{widget.id} ui-g-12">
+      <p:skeleton styleClass="MarTop20" height="50%" />
+      <div class="process-widget-loading-description ui-g-12">
+        <p:skeleton styleClass="MarTop5" height="50%" />
+      </div>
+      <div class="process-widget-loading-button  ui-g-12">
+        <p:skeleton styleClass="MarTop5" width="10rem" height="4rem"
+          borderRadius="16px" />
+      </div>
+    </h:panelGroup>
+    <h:panelGroup layout="block"
+      rendered="#{displayMode eq 'COMBINED_MODE'}"
+      styleClass="js-loading-#{widget.id} combined-mode-loading-container ui-g-12">
+      <div class="combined-mode-left-container ui-g-4">
+        <p:skeleton styleClass="MarTop20" height="50%" />
+        <p:skeleton styleClass="MarTop20" height="10rem" />
+        <div class="combined-mode-left-button MarTop20">
+          <p:skeleton styleClass="MarTop5" width="10rem" height="4rem"
+            borderRadius="16px" />
+        </div>
+      </div>
+      <div class="combined-mode-right-container ui-g-8">
+        <div class="ui-g-12">
+          <div class="combined-mode-left-button MarTop20">
+            <p:skeleton styleClass="MarTop5" width="10rem" height="4rem"
+              borderRadius="16px" />
+          </div>
+          <div class="ui-g-12 MarTop20">
+            <p:skeleton styleClass="MarTop5" height="10rem"
+              borderRadius="16px" />
+          </div>
+        </div>
+      </div>
 
+    </h:panelGroup>
     <h:panelGroup id="dashboard-processes-container" layout="block"
       styleClass="dashboard-processes-container ui-g-12 u-padding-0 u-display-none js-dashboard-processes-container-#{widget.id}
         #{displayMode eq 'COMBINED_MODE' and widget.process != null ? 'dashboard-processes-container--combined' : ''}">
@@ -43,7 +85,7 @@
           oncompleteRemoveProcess="PF('remove-widget-dialog').show()"
           componentToUpdateOnRemoveProcess="remove-widget-dialog"
           removeActionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
-          showInformationLink="#{data.showInformationLink}"
+          showInformationLink="#{dashboardProcessBean.isShowInformationLink(widget.process)}"
           processStyleClass="ui-g-12 u-padding-0 process-widget--full"
           processIconStyleClass="process-grid-view__icon"
           isInConfiguration="#{cc.attrs.isInConfiguration}"/>

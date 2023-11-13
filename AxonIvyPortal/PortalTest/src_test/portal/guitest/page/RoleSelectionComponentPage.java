@@ -28,7 +28,6 @@ public class RoleSelectionComponentPage extends TemplatePage {
     return findElementById("item-select-with-ajax-event-component");
   }
   
-  @SuppressWarnings("deprecation")
   public String selectFirstItemForDefaultRoleSelectionComponent(String keyword) {
     WebElement roleElement = selectRoleSelection("default-role-autocomplete", keyword);
     click(roleElement);
@@ -40,7 +39,6 @@ public class RoleSelectionComponentPage extends TemplatePage {
     return findElementByCssSelector("input[id$='default-role-autocomplete_hinput']").getCssValue("value");
   }
   
-  @SuppressWarnings("deprecation")
   public String selectFirstItemForRoleFromDefinedRoleSelectionComponent(String keyword) {
     WebElement roleElement = selectRoleSelection("role-from-defined-role-autocomplete", keyword);
     click(roleElement);
@@ -52,7 +50,6 @@ public class RoleSelectionComponentPage extends TemplatePage {
     return findElementByCssSelector("input[id$='role-from-defined-role-autocomplete_hinput']").getCssValue("value");
   }
   
-  @SuppressWarnings("deprecation")
   public String selectFirstItemForFloatingLabelAndExcludeRoleSelectionComponent(String keyword) {
     WebElement roleElement = selectRoleSelection("floating-label-and-exclude-role-autocomplete", keyword);
     click(roleElement);
@@ -64,7 +61,6 @@ public class RoleSelectionComponentPage extends TemplatePage {
     return findElementByCssSelector("input[id$='floating-label-and-exclude-role-autocomplete_hinput']").getCssValue("value");
   }
   
-  @SuppressWarnings("deprecation")
   public String selectFirstItemForAjaxEventRoleSelectionComponent(String keyword) {
     WebElement roleElement = selectRoleSelection("item-select-event-for-role-selection", keyword);
     click(roleElement);

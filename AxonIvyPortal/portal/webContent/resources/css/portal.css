@@ -1461,6 +1461,17 @@ color: var(--button-text-color);
 .my-profile-container .setting-header span {
   color: var(--general-config-description-color);
 }
+.my-profile-container .state-active {
+  color: var(--state-active);
+}
+
+.my-profile-container .state-inactive {
+  color: var(--state-inactive);
+}
+
+.my-profile-container .table-icon.light {
+  opacity: 0.5;
+}
 
 /* Absences Management */
 @media screen and (max-width: 40em) {
@@ -1716,4 +1727,16 @@ body .notification-checkbox .ui-chkbox-box {
   width: 100%;
   margin-left: 15px;
   top: 50%;
+}
+
+i.dashboard-icon-drag-drop {
+    border: 1px solid var(--ivy-primary-color);
+    color: var(--ivy-primary-color);
+    width: 2.357rem;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 2.257rem;
+    vertical-align: unset;
+    cursor: move
+
 }
