@@ -1,4 +1,0 @@
-ExpressBusinessViewData #class
-ch.ivy.addon.express.generic.ExpressBusinessView #namespace
-uuid String #field
-uuid PERSISTENT #fieldModifier
