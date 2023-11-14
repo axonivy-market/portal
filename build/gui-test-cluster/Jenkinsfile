@@ -34,12 +34,15 @@ pipeline {
           elasticSearchDataDir = 'C:\\tools\\external-elastic-search\\elasticsearch-master-cluster\\data'
           def utils = load 'build\\common\\utils.groovy'
           utils.stopAllEngines()
+
+          utils.downloadExpress()
+          def expressFile = findFiles(glob: 'archive/**/axonivy-express*.iar')[0].path
           
           configs.each{k, v ->
             utils.extractEngine(v['engineDir'], params.engineDownloadURL)
           }
           echo "====================Build Portal modules===================="
-          def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples', 'AxonIvyPortal/PortalApp', 'Showcase/portal-demo-app']
+          def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples', 'AxonIvyPortal/PortalApp', 'Showcase/portal-demo-app']
           for (module in modules) {
             bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=${masterNodeDir}"
           }
@@ -76,6 +79,7 @@ pipeline {
             Copy-Item AxonIvyPortal\\PortalKitTestHelper\\target\\*iar -Destination \$DEPLOYMENT
             Start-Sleep 2
             Copy-Item Showcase\\InternalSupport\\target\\*iar -Destination \$DEPLOYMENT
+            Copy-Item ${expressFile} -Destination \$DEPLOYMENT
           """)
 
           bat """
