@@ -922,5 +922,9 @@ public class NewDashboardPage extends TemplatePage {
   public TaskWidgetPage openTaskList() {
     return openMainMenu().selectTaskMenu();
   }
+  
+  public void isChatDisplayed() {
+    $("[id='toggle-chat-panel-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT); 
+  }
 
 }
