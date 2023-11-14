@@ -51,6 +51,9 @@ function processIFrameData(iframe) {
     name: 'processSteps',
     value: window.processSteps
   }, {
+    name: 'processStepIcons',
+    value: window.processStepIcons
+  }, {
     name: 'isShowAllSteps',
     value: window.isShowAllSteps
   }, {

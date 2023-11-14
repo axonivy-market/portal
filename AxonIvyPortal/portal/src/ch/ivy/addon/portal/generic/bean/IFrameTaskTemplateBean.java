@@ -41,6 +41,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private static final String PROCESS_CHAIN_SHAPE_PARAM = "processChainShape";
   private static final String PROCESS_CHAIN_DIRECTION_PARAM = "processChainDirection";
   private static final String PROCESS_STEPS_PARAM = "processSteps";
+  private static final String PROCESS_STEP_ICONS_PARAM = "processStepIcons";
   private static final String ANNOUNCEMENT_INVISIBLE_PARAM = "announcementInvisible";
   private static final String CURRENT_PROCESS_STEP_PARAM = "currentProcessStep";
   private static final String IS_HIDE_CASE_INFO = "isHideCaseInfo";
@@ -53,7 +54,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
 
   private int currentProcessStep;
   private List<String> processSteps;
-  private List<String> stepIndexes;
+  private List<String> processStepIcons;
   private boolean isShowAllSteps;
   private String processChainDirection;
   private String processChainShape;
@@ -146,10 +147,9 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     Map<String, String> requestParamMap = getRequestParameterMap();
     String currentProcessStepText = requestParamMap.get(CURRENT_PROCESS_STEP_PARAM);
     processSteps = StringUtils.isNotBlank(requestParamMap.get(PROCESS_STEPS_PARAM)) ? Arrays.asList(requestParamMap.get(PROCESS_STEPS_PARAM).split("\\s*,\\s*")) : new ArrayList<>();
-    stepIndexes = new ArrayList<>();
-    for (int i= 0; i < processSteps.size(); i++) {
-      stepIndexes.add(String.valueOf(i));
-    }
+    processStepIcons = StringUtils.isNotBlank(requestParamMap.get(PROCESS_STEP_ICONS_PARAM))
+        ? Arrays.asList(requestParamMap.get(PROCESS_STEP_ICONS_PARAM).split("\\s*,\\s*"))
+        : new ArrayList<>();
     currentProcessStep = StringUtils.isBlank(currentProcessStepText) ? 0
         : (NumberUtils.isCreatable(currentProcessStepText) ? Integer.parseInt(currentProcessStepText)
             : Math.max(processSteps.indexOf(currentProcessStepText), 0));
@@ -181,6 +181,10 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
 
   public List<String> getProcessSteps() {
     return processSteps;
+  }
+
+  public List<String> getProcessStepIcons() {
+    return processStepIcons;
   }
 
   public boolean getIsShowAllSteps() {
@@ -232,11 +236,4 @@ public void setCaseId(Long caseId) {
     return taskName;
   }
 
-  public List<String> getStepIndexes() {
-    return stepIndexes;
-  }
-
-  public void setStepIndexes(List<String> stepIndexes) {
-    this.stepIndexes = stepIndexes;
-  }
 }
