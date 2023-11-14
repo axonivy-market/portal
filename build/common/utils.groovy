@@ -97,4 +97,9 @@ def cleanDisk() {
     exit 0
   """
 }
+
+def getJenkinsMasterDomain() {
+  return env.BUILD_URL.split('/')[2].split(':')[0]
+}
+
 return this
