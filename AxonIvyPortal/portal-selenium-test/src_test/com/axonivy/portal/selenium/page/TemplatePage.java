@@ -200,7 +200,7 @@ public abstract class TemplatePage extends AbstractPage {
 
   public void openUserSettingMenu() {
     waitForElementDisplayed(By.id("user-settings-menu"), true);
-    waitForElementClickableThenClick(findElementById("user-settings-menu"));
+    clickByJavaScript(findElementById("user-settings-menu"));
     $("[id='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
