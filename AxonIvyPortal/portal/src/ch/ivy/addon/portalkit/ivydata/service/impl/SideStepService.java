@@ -8,7 +8,6 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.ivydata.bo.IvySideStep;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySideStepResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.SideStepSearchCriteria;
-import ch.ivy.addon.portalkit.ivydata.service.ISideStepService;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
 import ch.ivyteam.ivy.casemap.runtime.model.IStartableSideStep;
@@ -18,7 +17,7 @@ import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.ICaseQueryExecutor;
 
-public class SideStepService implements ISideStepService {
+public class SideStepService {
 
   private SideStepService() {}
 
@@ -26,7 +25,6 @@ public class SideStepService implements ISideStepService {
     return new SideStepService();
   }
 
-  @Override
   public IvySideStepResultDTO findSideStepsByCriteria(SideStepSearchCriteria criteria) {
     return Sudo.get(() -> { 
       IvySideStepResultDTO result = new IvySideStepResultDTO();

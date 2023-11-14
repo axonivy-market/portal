@@ -13,14 +13,13 @@ import com.axonivy.portal.components.dto.UserDTO;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyAbsenceResultDTO;
-import ch.ivy.addon.portalkit.ivydata.service.IAbsenceService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserAbsence;
 import ch.ivyteam.ivy.security.exec.Sudo;
 
-public class AbsenceService implements IAbsenceService {
+public class AbsenceService{
 
   private AbsenceService() {
   }
@@ -29,7 +28,6 @@ public class AbsenceService implements IAbsenceService {
     return new AbsenceService();
   }
   
-  @Override
   public IvyAbsenceResultDTO findAbsences(String username) {
     return Sudo.get(() -> { 
       IvyAbsenceResultDTO result = new IvyAbsenceResultDTO();
@@ -74,7 +72,6 @@ public class AbsenceService implements IAbsenceService {
     return ivyAbsence;
   }
 
-  @Override
   public void createAbsence(IvyAbsence ivyAbsence) {
     Sudo.get(() -> { 
 
@@ -84,7 +81,6 @@ public class AbsenceService implements IAbsenceService {
     });
   }
   
-  @Override
   public void updateAbsences(String username, Set<IvyAbsence> ivyAbsences) {
     Sudo.get(() -> { 
       IUser user = ServiceUtilities.findUser(username);
@@ -98,7 +94,6 @@ public class AbsenceService implements IAbsenceService {
     });
   }
 
-  @Override
   public void deleteAbsence(IvyAbsence ivyAbsence) {
     Sudo.get(() -> { 
       IUser user = ServiceUtilities.findUser(ivyAbsence.getUsername());

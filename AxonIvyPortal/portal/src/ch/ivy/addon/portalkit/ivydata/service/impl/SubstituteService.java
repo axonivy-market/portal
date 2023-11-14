@@ -11,7 +11,6 @@ import com.axonivy.portal.components.dto.UserDTO;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySubstituteResultDTO;
-import ch.ivy.addon.portalkit.ivydata.service.ISubstituteService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
@@ -19,7 +18,7 @@ import ch.ivyteam.ivy.security.IUserSubstitute;
 import ch.ivyteam.ivy.security.SubstitutionType;
 import ch.ivyteam.ivy.security.exec.Sudo;
 
-public class SubstituteService implements ISubstituteService {
+public class SubstituteService{
 
   private static final String ROLE_EVERYBODY = "Everybody";
   
@@ -30,12 +29,10 @@ public class SubstituteService implements ISubstituteService {
     return new SubstituteService();
   }
   
-  @Override
   public IvySubstituteResultDTO findSubstitutes(String username) {
     return findSubstituteSubstitutionOfUser(username, true);
   }
   
-  @Override
   public IvySubstituteResultDTO findSubstitutions(String username) {
     return findSubstituteSubstitutionOfUser(username, false);
   }
@@ -132,7 +129,6 @@ public class SubstituteService implements ISubstituteService {
     }
   }
 
-  @Override
   public void saveSubstitutes(UserDTO userDTO, List<IvySubstitute> ivySubstitutes) {
     Sudo.get(() -> { 
       if (userDTO == null) {
