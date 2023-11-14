@@ -248,8 +248,6 @@ Migrate 10.0 To 10.0.7
 The ``ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI`` class is removed and no longer supported, use 
 ``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` instead.
 
-.. _installation-release-notes:
-
 Migrate 8.x To 10.0
 -------------------
 
