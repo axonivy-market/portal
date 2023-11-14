@@ -711,11 +711,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         widget.getLayout().setAxisY(portalGridsCurrentRow.intValue());
       }
     }
-    if (StringUtils.isEmpty(widget.getLayout().getStyleClass())) {
-      widget.getLayout().setStyleClass(DashboardConstants.NEW_WIDGET_STYLE_CLASS);
-    } else {
-      widget.getLayout().setStyleClass(widget.getLayout().getStyleClass().concat(DashboardConstants.NEW_WIDGET_STYLE_CLASS));
-    }
+    widget.getLayout().setNewWidget(true);
   }
 
   private void updateProcessWidget(SingleProcessDashboardWidget processWidget, int height, int width) {
