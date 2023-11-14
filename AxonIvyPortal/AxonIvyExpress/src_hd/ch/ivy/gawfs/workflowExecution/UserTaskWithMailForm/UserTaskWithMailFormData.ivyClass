@@ -1,6 +1,0 @@
-UserTaskWithMailFormData #class
-ch.ivy.gawfs.workflowExecution.UserTaskWithMailForm #namespace
-executePredefinedWorkflowData gawfs.ExecutePredefinedWorkflowData #field
-executePredefinedWorkflowData PERSISTENT #fieldModifier
-email ch.ivy.addon.portalkit.bo.ExpressUserEmail #field
-email PERSISTENT #fieldModifier

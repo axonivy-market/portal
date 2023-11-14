@@ -1565,6 +1565,18 @@ body .ui-widget.new-widget-dialog__introduction {
   padding-bottom: 0;
 }
 
+.news-widget__skeleton-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 10px 15px 15px 0;
+}
+
+.news-widget__skeleton-add-news-button {
+  margin-left: auto;
+}
+
 .dashboard-news-container {
   display: flex;
   flex-direction: column;

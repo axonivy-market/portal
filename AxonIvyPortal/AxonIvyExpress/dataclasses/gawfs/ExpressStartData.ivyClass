@@ -1,4 +1,0 @@
-ExpressStartData #class
-gawfs #namespace
-uuid String #field
-uuid PERSISTENT #fieldModifier
