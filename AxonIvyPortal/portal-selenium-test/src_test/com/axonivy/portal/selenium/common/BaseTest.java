@@ -9,6 +9,7 @@ import java.net.URLEncoder;
 import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
+import org.openqa.selenium.WindowType;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.ivy.webtest.engine.EngineUrl;
@@ -138,6 +139,18 @@ public class BaseTest {
 
   public void redirectToRelativeLink(String relativeProcessStartUrl) {
     LinkNavigator.redirectToRelativeLink(relativeProcessStartUrl);
+  }
+  
+  /**
+   * {@link #launchBrowserAndGotoRelativeLink(String)} will open link using existing browser. 
+   * This function will launch new window/tab and focus on that window/tab
+   * 
+   * @param WindowType
+   * @return String
+   */
+  public String openNewTabOrWindow(WindowType type) {
+    WebDriverRunner.getWebDriver().switchTo().newWindow(type);
+    return WebDriverRunner.getWebDriver().getWindowHandle();
   }
 
   public void launchBrowserAndLogoutInDesigner() {
