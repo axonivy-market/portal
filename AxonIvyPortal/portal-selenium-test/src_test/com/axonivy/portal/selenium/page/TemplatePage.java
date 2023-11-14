@@ -168,6 +168,10 @@ public abstract class TemplatePage extends AbstractPage {
   public void waitForElementClickableThenClick(SelenideElement element) {
     waitForElementClickable(element).click();
   }
+  
+  public void waitForElementClickableThenClick(By by) {
+    waitForElementClickable($(by)).click();
+  }
 
   public void waitForElementPresent(By element, boolean expected) {
     if (expected) {
@@ -473,5 +477,20 @@ public abstract class TemplatePage extends AbstractPage {
       return $("iFrame").getScreenshotAs(OutputType.FILE).length() > fileSizeInBytes;
     });
     switchToIFrameOfTask();
+  }
+  
+
+  public ChatPage getChat() {
+    waitForElementDisplayed(By.id("toggle-chat-panel-command"), true, 5);
+    waitForElementClickableThenClick("[id$='toggle-chat-panel-command']");
+    return new ChatPage();
+  }
+  
+  public NewDashboardPage goToHomeFromBreadcrumbWithWarning() {
+    waitForElementDisplayed(By.cssSelector(HOME_BREADCRUMB_SELECTOR), true);
+    waitForElementClickableThenClick(By.cssSelector(HOME_BREADCRUMB_SELECTOR));
+    waitForElementDisplayed(By.id("user-menu-required-login:warning-before-leaving-task-component:leave-button"), true);
+    waitForElementClickableThenClick(By.id("user-menu-required-login:warning-before-leaving-task-component:leave-button"));
+    return new NewDashboardPage();
   }
 }

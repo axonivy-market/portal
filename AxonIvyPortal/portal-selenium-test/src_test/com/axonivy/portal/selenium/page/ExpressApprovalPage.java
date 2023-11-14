@@ -30,6 +30,7 @@ public class ExpressApprovalPage extends TemplatePage {
   }
   
   public void comment(String comment) {
-    $("textarea[id$='comment']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(comment);
+    $("textarea[id$='comment']").shouldBe(appear, DEFAULT_TIMEOUT).clear();
+    $("textarea[id$='comment']").sendKeys(comment);
   }
 }

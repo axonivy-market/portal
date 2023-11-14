@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 import java.util.Random;
 
@@ -12,7 +13,6 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.Sleeper;
-import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -51,7 +51,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   }
 
   public void moveAllElementToDragAndDrogPanel() {
-    long size = $("[id='form:available-form-elements_content']").$$("ul.ui-dataview-list-container li").asFixedIterable().stream().filter(WebElement::isDisplayed).count();
+    int size = $$(By.xpath("//div[@id='form:available-form-elements_content']/ul/li")).size();
     long startIndex = size - 1;
 
     for (long i = startIndex; i >= 0; i--) {
@@ -84,7 +84,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     Actions builder = new Actions(WebDriverRunner.getWebDriver());
     Action moveProcessSequence = builder.dragAndDrop($(formElementSelector), $(panelSelector)).build();
     moveProcessSequence.perform();
-    waitForAjaxIndicatorDisappeared();
+//    waitForAjaxIndicatorDisappeared();
   }
 
   private boolean formElementIsFileUpload(WebElement formElement) {
@@ -108,5 +108,30 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 
   public WebElement getPageElement() {
     return $(".portal-layout-container").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void executeWorkflow() {
+    waitForElementClickableThenClick(By.id("execute-button"));
+    waitForElementDisplayed(By.id("form:dynaform-fieldset"), true);
+  }
+  
+  @SuppressWarnings("deprecation")
+  public void createTextInputField(String label, int inputFieldTypeIndex, boolean isRequired) {
+    waitForElementClickableThenClick(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][1]"));
+    waitForElementDisplayed(By.id("form:create-tabs:create-input-field-tab"), true);
+    $(By.id("form:create-tabs:input-field-label")).sendKeys(label);
+    chooseInputFieldType(inputFieldTypeIndex);
+    if (isRequired) {
+      waitForElementClickableThenClick(By.cssSelector("div[id='form:create-tabs:input-field-required']"));
+    }
+    waitForElementClickableThenClick(By.id("form:create-tabs:add-input-text-btn"));
+//    waitAjaxIndicatorDisappear();
+//    ensureNoBackgroundRequest();
+  }
+  
+  private void chooseInputFieldType(int inputTypeIndex) {
+    waitForElementClickableThenClick(By.id("form:create-tabs:input-field-type_label"));
+    waitForElementDisplayed(By.id("form:create-tabs:input-field-type_panel"), true);
+    waitForElementClickableThenClick(By.id(String.format("form:create-tabs:input-field-type_%d", inputTypeIndex)));
   }
 }

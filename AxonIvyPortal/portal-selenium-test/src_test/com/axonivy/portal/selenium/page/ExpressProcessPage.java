@@ -38,14 +38,18 @@ public class ExpressProcessPage extends TemplatePage {
     if (isGroup) {
       $("[id='assignee-selection-form:assignee-type:1']").shouldBe(appear, DEFAULT_TIMEOUT).click();
       $("[id='assignee-selection-form:role-selection-component:role-selection_input']")
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).sendKeys(responsible);
+      .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).clear();
+      $("[id='assignee-selection-form:role-selection-component:role-selection_input']")
+        .sendKeys(responsible);
       $("[id='assignee-selection-form:role-selection-component:role-selection_panel']")
         .shouldBe(appear, DEFAULT_TIMEOUT);
       $("span[id='assignee-selection-form:role-selection-component:role-selection_panel'] .gravatar")
         .shouldBe(appear, DEFAULT_TIMEOUT).click();
     } else {
       $("[id='assignee-selection-form:user-selection-component:user-selection_input']")
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).sendKeys(responsible);
+      .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).clear();
+      $("[id='assignee-selection-form:user-selection-component:user-selection_input']")
+        .sendKeys(responsible);
       $("[id='assignee-selection-form:user-selection-component:user-selection_panel']")
         .shouldBe(appear, DEFAULT_TIMEOUT);
       $("span[id='assignee-selection-form:user-selection-component:user-selection_panel'] .gravatar")

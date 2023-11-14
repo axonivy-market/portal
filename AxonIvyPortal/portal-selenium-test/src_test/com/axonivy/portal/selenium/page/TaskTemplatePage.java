@@ -280,7 +280,6 @@ public class TaskTemplatePage extends TemplatePage {
     waitForElementClickableThenClick("#horizontal-task-actions");
     waitForElementDisplayed(By.cssSelector("a[id$='show-adhoc-history']"), true);
     waitForElementClickableThenClick("a[id$='show-adhoc-history']");
-    waitAjaxIndicatorDisappear();
   }
 
   public String getAdhocCreationMessage() {
@@ -296,6 +295,18 @@ public class TaskTemplatePage extends TemplatePage {
   public String getCommentOfAdhocHistoryRow(int index) {
     SelenideElement elem = $$(By.cssSelector(ADHOC_HISTORY_TABLE_CSS_SELECTOR)).get(index);
     return elem.findAll(By.xpath("td")).get(3).getText();
+  }
+
+  public void joinProcessChatAlreadyCreated() {
+    waitForElementDisplayed(By.id("chat-group-join-form:chat-group-join-button"), true);
+    waitForElementClickableThenClick($(By.id("chat-group-join-form:chat-group-join-button")));
+    waitForElementDisplayed(By.id("chat-form:group-chat-container"), true);
+  }
+
+  public void clickCreateGroupChatBtn() {
+    waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-group-create-button"), true);
+    waitForElementClickableThenClick(By.id("chat-assignee-selection-form:chat-group-create-button"));
+    waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-group-create-button"), false);
   }
 
 //  public String getTaskNameOfAdhocHistoryRow(int i) {
