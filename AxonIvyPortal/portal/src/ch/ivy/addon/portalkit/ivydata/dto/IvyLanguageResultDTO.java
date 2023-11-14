@@ -2,7 +2,7 @@ package ch.ivy.addon.portalkit.ivydata.dto;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;
 
-public class IvyLanguageResultDTO extends AbstractResultDTO {
+public class IvyLanguageResultDTO {
 
   private IvyLanguage ivyLanguage = new IvyLanguage();
 

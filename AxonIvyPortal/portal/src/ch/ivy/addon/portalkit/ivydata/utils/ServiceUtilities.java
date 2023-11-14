@@ -31,39 +31,12 @@ import ch.ivyteam.ivy.security.exec.Sudo;
 public class ServiceUtilities {
 
   private ServiceUtilities() {}
-
-  /**
-   * @deprecated use {@link ServiceUtilities#findUser(String)} instead
-   * @param username
-   * @param app
-   * @return list of user
-   */
-  @Deprecated(forRemoval = true, since = "9.4")
-  public static IUser findUser(final String username, @SuppressWarnings("unused") IApplication app) {
-    return findUser(username);
-  }
   
   private static void requireNonNull(IApplication app) {
     Objects.requireNonNull(app, "The application must not be null");
   }
 
-  /**
-   * Finds all of the users within the given app, except the system user
-   *
-   * @deprecated use {@link ServiceUtilities#findAllUsers()} instead 
-   * @param app
-   * @return users
-   */
-  @Deprecated(forRemoval=true, since = "9.4")
-  public static List<IUser> findAllUsers(@SuppressWarnings("unused") IApplication app) {
-    return findAllUsers();
-  }
   
-  /**
-   * Finds all of the users within the current application, except the system user
-   *
-   * @return users
-   */
   public static List<IUser> findAllUsers() {
     return ISecurityContext.current()
       .users()
@@ -73,16 +46,6 @@ public class ServiceUtilities {
       .collect(Collectors.toList());
   }
 
-  /**
-   * Finds all of the roles within the given app, except the roles have the HIDE property
-   * @deprecated use {@link ServiceUtilities#findAllRoles()} instead
-   * @param app
-   * @return roles
-   */
-  @Deprecated(forRemoval=true, since = "9.4")
-  public static List<IRole> findAllRoles(@SuppressWarnings("unused") IApplication app) {
-    return findAllRoles();
-  }
   
   /**
    * Finds all of the roles in security context, except the roles have the HIDE property
@@ -135,27 +98,6 @@ public class ServiceUtilities {
       IUser user = ISecurityContext.current().users().find(username);
       return user == null? null : new UserDTO(user);
     });
-  }
-  
-  /**
-   * @deprecated Use {@link ServiceUtilities#findUserDTO(String)} instead
-   * @param username
-   * @param application
-   * @return user
-   */
-  @Deprecated(forRemoval = true, since = "9.4")
-  public static UserDTO findUserDTO(final String username, @SuppressWarnings("unused") final IApplication application) {
-    return findUserDTO(username);
-  }
-
-  /**
-   * @deprecated use {@link ServiceUtilities#findAllRoleDTO()} instead
-   * @param app
-   * @return list of {@link UserDTO}
-   */
-  @Deprecated(forRemoval = true, since = "9.4")
-  public static List<RoleDTO> findAllRoleDTO(@SuppressWarnings("unused") IApplication app) {
-    return findAllRoleDTO();
   }
   
   public static List<RoleDTO> findAllRoleDTO() {

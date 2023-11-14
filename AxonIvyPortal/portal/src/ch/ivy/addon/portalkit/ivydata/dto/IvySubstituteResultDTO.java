@@ -4,7 +4,7 @@ import java.util.List;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
 
-public class IvySubstituteResultDTO extends AbstractResultDTO {
+public class IvySubstituteResultDTO {
 
   private List<IvySubstitute> ivySubstitutes;
 

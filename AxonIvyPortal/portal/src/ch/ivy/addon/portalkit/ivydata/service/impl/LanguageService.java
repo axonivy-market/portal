@@ -11,7 +11,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
-import ch.ivy.addon.portalkit.ivydata.service.ILanguageService;
 import ch.ivy.addon.portalkit.util.ListUtilities;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.language.LanguageConfigurator;
@@ -21,7 +20,7 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.exec.Sudo;
 
-public class LanguageService implements ILanguageService {
+public class LanguageService {
 
   private static final Comparator<Locale> LOCALE_COMPARATOR = Comparator.comparing(Locale::getDisplayName, String.CASE_INSENSITIVE_ORDER);
 
@@ -31,7 +30,6 @@ public class LanguageService implements ILanguageService {
     return new LanguageService();
   }
 
-  @Override
   public IvyLanguageResultDTO findUserLanguages() {
     return Sudo.get(() -> {
       IvyLanguageResultDTO result = new IvyLanguageResultDTO();
@@ -77,7 +75,6 @@ public class LanguageService implements ILanguageService {
     return languageTag;
   }
 
-  @Override
   public void saveUserLanguage(IvyLanguage language) {
     if (Ivy.session().isSessionUserUnknown()) {
       return;

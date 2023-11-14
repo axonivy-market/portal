@@ -4,7 +4,7 @@ import java.util.List;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvySideStep;
 
-public class IvySideStepResultDTO extends AbstractResultDTO {
+public class IvySideStepResultDTO {
 
   private List<IvySideStep> sideSteps;
 
