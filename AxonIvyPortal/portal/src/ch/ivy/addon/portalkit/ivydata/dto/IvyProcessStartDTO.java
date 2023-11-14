@@ -2,7 +2,7 @@ package ch.ivy.addon.portalkit.ivydata.dto;
 
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
-public class IvyProcessStartDTO extends AbstractResultDTO {
+public class IvyProcessStartDTO {
 
   private IWebStartable startableProcessStart;
 
