@@ -442,17 +442,15 @@ function removeStyle(element) {
   $(element).removeAttr('style');
 }
 
-function searcNewhWidgetByNameOrDescription(input) {
+function searchNewWidgetByNameOrDescription(input) {
   var keyword = input.value.toLowerCase();
   $('.js-widget').each(function() {
     var hasKeyword = false;
 
-    $(this).find('label').each(function() {
-      if (this.innerText.toLowerCase().includes(keyword)) {
-        hasKeyword = true;
-        return;
-      }
-    });
+    if ($(this).find('.new-widget-dialog__item-title span').text().toLowerCase().includes(keyword)) {
+      hasKeyword = true;
+      return;
+    }
 
     hasKeyword ? $(this).removeClass('u-hidden') : $(this).addClass('u-hidden');
   });

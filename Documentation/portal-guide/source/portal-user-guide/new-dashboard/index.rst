@@ -28,6 +28,8 @@ The following default widgets are available:
 
 #. **Statistic chart widget**: This widget provides graphical display of statistical data.
 
+#. **Client Statistic chart widget**: This widget provides graphical display of client statistical data.
+
 #. **Welcome widget**: This widget greets the user based on the local time and enables a friendlier approach.
 
 #. **News feed widget**: This widget shares relevant information as a News Feed into |ivy|.
@@ -210,8 +212,8 @@ You can define the widget name and process to be displayed.
 
   |process-viewer-widget|
 
-Statistic chart widget
-======================
+Statistic chart widget (Deprecated)
+===================================
 
 You can select the chart to be displayed.
 
@@ -222,6 +224,73 @@ You can select the chart to be displayed.
 - This is the sample output of the widget configured above:
 
   |statistic-chart-widget|
+
+New client statistic chart widget
+=================================
+
+You can select a client statistic chart to be displayed. There are 5 chart types available.
+
+To add a new statistic widget in the edit mode, press on the :guilabel:`+ Add widget`
+button and select one of the available widgets in :guilabel:`Statistic Widgets` section to add:
+
+|add-client-statistic-widget|
+
+**Available charts**
+
+|chart-task-by-priority|
+
+|chart-task-grouped-by-priority|
+
+|chart-number-of-open-tasks|
+
+|chart-completed-tasks-per-day|
+
+|chart-started-cases-per-day|
+
+.. centered:: Chart types
+
++-----------------------+-----------------------+-----------------------+
+| Name                  | Type                  | Description           |
++=======================+=======================+=======================+
+| Tasks by priority     | Doughnut chart        | Displays all tasks    |
+|                       |                       | assigned to a user or |
+|                       |                       | a belonged role       |
+|                       |                       | categorized by their  |
+|                       |                       | priority (Low,        |
+|                       |                       | Normal, High,         |
+|                       |                       | Exception). The       |
+|                       |                       | values are shown in   |
+|                       |                       | percentages.          |
++-----------------------+-----------------------+-----------------------+
+| Tasks grouped         | Bar chart             | Displays all tasks    |
+| by expiry             |                       | assigned to a user or |
+|                       |                       | a belonged role       |
+|                       |                       | categorized by expiry |
+|                       |                       | day. Then values are  |
+|                       |                       | the sum of tasks in   |
+|                       |                       | the respective days.  |
++-----------------------+-----------------------+-----------------------+
+| Number of OPEN Tasks  | Number chart          | Displays the sum of   |
+|                       |                       | OPEN tasks assigned   |
+|                       |                       | to a user or          |
+|                       |                       | a belonged role.      |
++-----------------------+-----------------------+-----------------------+
+| Completed Tasks       | Bar chart             | Displays all completed|
+| per day               |                       | tasks assigned to     |
+|                       |                       | a user or a belonged  |
+|                       |                       | role a user or a role,|
+|                       |                       | categorized by day.   |
+|                       |                       | The values are the    |
+|                       |                       | sum of tasks in the   |
+|                       |                       | respective days.      |
++-----------------------+-----------------------+-----------------------+
+| Started Cases per Day | Line chart            | Displays all cases    |
+|                       |                       | started by a user     |
+|                       |                       | or a role, categorized|
+|                       |                       | by day. The values are|
+|                       |                       | the sum of cases in   |
+|                       |                       | the respective days.  |
++-----------------------+-----------------------+-----------------------+
 
 Welcome widget
 ==============
@@ -319,3 +388,9 @@ You enter an URL to embed an external webpage into the Portal dashboard.
 .. |news-feed-widget-overlay-panel| image:: ../../screenshots/new-dashboard/news-feed-widget-overlay-panel.png
 
 .. |external-page-widget-configuration| image:: ../../screenshots/dashboard/external-page-widget-configuration.png
+.. |chart-task-by-priority| image:: ../../screenshots/new-dashboard/task-by-priority-statistic-chart-widget.png
+.. |chart-task-grouped-by-priority| image:: ../../screenshots/new-dashboard/task-grouped-by-priority-statistic-chart-widget.png
+.. |chart-number-of-open-tasks| image:: ../../screenshots/new-dashboard/number-of-open-tasks-statistic-chart-widget.png
+.. |chart-started-cases-per-day| image:: ../../screenshots/new-dashboard/started-cases-per-day-statistic-chart-widget.png
+.. |chart-completed-tasks-per-day| image:: ../../screenshots/new-dashboard/completed-tasks-per-day-statistic-chart-widget.png
+.. |add-client-statistic-widget| image:: ../../screenshots/new-dashboard/add-client-statistic-widget.png

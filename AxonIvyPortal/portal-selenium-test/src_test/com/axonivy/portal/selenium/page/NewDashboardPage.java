@@ -105,6 +105,14 @@ public class NewDashboardPage extends TemplatePage {
     return widget.ancestor(".grid-stack-item");
   }
 
+  public SelenideElement waitAndGetClientStatisticChart(int index) {
+    var widget = $$("[id^='client-statistic-client_statistic']").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT)
+        .get(index)
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    widget.$("[id$='loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    waitForWidgetLoadedByExpandThenCollapse(widget);
+    return widget.ancestor(".grid-stack-item");
+  }
   public WebElement waitAndGetNewsWidget(int index) {
     var widget = $$(".news-widget").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT)
         .get(index).shouldBe(appear, DEFAULT_TIMEOUT);
