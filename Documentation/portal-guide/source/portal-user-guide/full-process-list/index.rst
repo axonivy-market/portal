@@ -7,6 +7,11 @@ The **Full Process List** page gives you an overview of all the processes in the
 application available to you. To open the page, click :guilabel:`Processes` in
 the |ivy| Portal menu.
 
+.. note::
+
+   If :guilabel:`Processes` is not visible in the |ivy| Portal menu, please ensure that the :bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>` permission has been granted.
+
+
 |navigate-to-full-process-list|
 
 On the **Full Process List** page, you see a list of all processes. They
@@ -113,7 +118,12 @@ HowTo: Add an external link
    Starting processes from the Full Process List page is fine if you require
    this process only on a rare basis. For all processes which you use on a
    regular basis we highly recommend configuring them on your personal
-   dashboard. See :ref:`howto-add-a-process-as-a-user-favorite` for an instruction.
+   dashboard. See :ref:`new-dashboard-process-list-widget` for an instruction.
+
+.. note::
+
+   If the full process list is not visible in the |ivy| Portal menu, please ensure that the :bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>` permission has been granted.
+
 
 .. include:: ../includes/_common-icon.rst
 

@@ -75,6 +75,10 @@ HowTo: Add absence
 
 |how-to-add-an-absence|
 
+.. note::
+
+   Permission :bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` or :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>` is required to use this feature.
+
 HowTo: Set substitute
 ^^^^^^^^^^^^^^^^^^^^^
 
@@ -95,6 +99,10 @@ HowTo: Set substitute
 #. Confirm your substitutes with the button :guilabel:`Save`.
 
 |how-to-set-absence-substitutes|
+
+.. note::
+
+   Permission :bdg-ref-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>` or :bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>` is required to use this feature.
 
 Change Password
 ---------------

@@ -10,6 +10,11 @@ consume statistics and charts here at one glance and have the chance to set up
 your own statistics. You can reach the page by using the
 :guilabel:`Statistics` link in the |ivy| Portal menu.
 
+.. note::
+
+   If :guilabel:`Statistics` is not visible in the |ivy| Portal menu, please ensure that the :bdg-ref-warning:`🔑AccessFullStatisticsList <AccessFullStatisticsList>` permission has been granted.
+
+
 .. hint::
    The statistics allow you to evaluate case and task data only. Business data
    from your processes is not available in these statistics and must be

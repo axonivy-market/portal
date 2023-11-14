@@ -8,6 +8,10 @@ This page provides you with extended information on the cases as well
 as advanced search and filter capabilities. You can reach the page by
 selecting |case-icon| :guilabel:`Cases` in the |ivy| Portal menu.
 
+.. note::
+
+   If |case-icon| :guilabel:`Cases` is not visible in the |ivy| Portal menu, please ensure that the :bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>` permission has been enabled.
+
 .. hint:: 
    The set of cases you see in the Portal depends on the roles you hold 
    in both the application and the |ivy| Portal. Administrators 
@@ -199,6 +203,10 @@ HowTo: Attach a Document to the Case
 
 |how-to-attach-document-to-case|
 
+.. note::
+
+   Permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` is required to use this feature.
+
 .. _howto-remove-an-attachment-from-the-case-1:
 
 HowTo: Remove an Attachment from the Case
@@ -214,6 +222,10 @@ HowTo: Remove an Attachment from the Case
 #. Click :guilabel:`Delete` to remove the attachment
 
 |how-to-delete-an-attachment-from-case|
+
+.. note::
+   
+   Permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` is required to use this feature.
 
 HowTo: Add a Note to a Case
 ---------------------------
@@ -238,6 +250,8 @@ HowTo: Add a Note to a Case
       - Displayed in the ``History`` table of the case details and its direct tasks
       - Displayed in the ``History`` table of its technical case details.
       - Not displayed in the ``Notes`` table of tasks belong to technical case.
+   
+   Permission :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>` permission is required to use this feature.
 
 HowTo: Export a Case History
 ----------------------------
@@ -275,6 +289,10 @@ This section shows you the related tasks of this case.
 .. hint:: 
    What you see here depends on the roles granted to you in both the application 
    and the |ivy| Portal. Administrators can see all open tasks.
+
+.. note::
+   
+   To show all related task of case, please make sure the permission :bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` is enabled.
 
 The list shows the following key information for each task. To change the
 columns displayed, click on :guilabel:`Manage columns`. Select from the
@@ -383,6 +401,10 @@ HowTo: Share Case Details
 #. Click on the share button |share-icon|
 
 |how-to-share-case-details|
+
+.. note::
+
+   Permission :bdg-ref-warning:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>` is required to use this feature.
 
 .. include:: ../includes/_common-icon.rst
 

@@ -1,7 +1,7 @@
 .. _list-permissions:
 
 Permission List
-================
+===============
 
 Portal has a flexible security system that allows you to configure who can access applications, and what they can do/see in Portal.
 
@@ -15,7 +15,7 @@ Portal Task Permissions
 - _`TaskReadOwnCaseTasks`
     - Permission to see related tasks
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to the 'Everybody' role by default
 
 - _`TaskParkOwnWorkingTask`
     - Permission to reserve my own tasks
@@ -42,7 +42,7 @@ Portal Task Permissions
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`TaskWriteExpiryActivator`
-    - Permission to change the responsible after deadline
+    - Permission to change the expiry responsible
 
 - _`TaskWriteDelayTimestamp`
     - Permission to change the delay time
@@ -53,7 +53,7 @@ Portal Task Permissions
 - _`TaskDestroy`
     - Permission to see the Destroy Task action
 
-- _`TaskWriteExpiryTimestamp`
+- _`TaskWriteExpiryTimestamp`   
     - Control whether to change the deadline
 
 - _`TaskWriteActivatorOwnTasks`
@@ -131,15 +131,15 @@ Portal General Permissions
     - Permission to delete a dynamic role
 
 - _`RoleMove`
-    - Permission to ....
+    - Permission to move role (select the parent role)
 
 - _`RoleReadAll`
-    - Permission to 
+    - Permission to see all roles
 
     - **Default assignment**: :guilabel:`Everybody`
 
 - _`DocumentRead`
-    - Permission to 
+    - Permission to see all documents
 
 - _`DocumentWrite`
     - Permission to update, delete documents

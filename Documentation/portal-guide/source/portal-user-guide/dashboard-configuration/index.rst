@@ -79,7 +79,7 @@ How to: import private dashboards
 
 .. note::
 
-   :bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>` permission is required to use this feature.
+   Permission :bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>` is required to use this feature.
 
 
 How to: edit private dashboards
@@ -98,9 +98,9 @@ A table of private dashboards is shown with the following information:
    (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| export dashboard,
    and |trash-icon| delete a private dashboard.
 
-   .. note::
+.. note::
 
-      The Export function only available for users who have the permission :bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`.
+   The Export function only available for users who have the permission :bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`.
 
 |edit-private-dashboards|
 
@@ -208,7 +208,7 @@ How to: import public dashboard
 
 .. note::
 
-   :bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>` permission is required to use this feature.
+   Permission :bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>` is required to use this feature.
 
 How to: edit public dashboards
 ==============================
@@ -228,9 +228,9 @@ A table of public dashboards is shown with the following information:
    (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| export dashboard, |share-icon| share
    and |trash-icon| delete a public dashboard.
 
-   .. note::
+.. note::
 
-      The Export function only available for users who have the permission :bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`
+   The Export function only available for users who have the permission :bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`.
 
 |edit-public-dashboards|
 
