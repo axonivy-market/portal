@@ -117,6 +117,7 @@ public class DashboardWidgetInformationService {
   private TaskSearchCriteria generateTaskSearchCriteriaWithoutOrderByClause(DashboardTaskLazyDataModel dataModel) {
     var taskSearchCriteria = new TaskSearchCriteria();
     taskSearchCriteria.setFinalTaskQuery(dataModel.getCriteria().buildQueryWithoutOrderByClause());
+    taskSearchCriteria.setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
     return taskSearchCriteria;
   }
 
