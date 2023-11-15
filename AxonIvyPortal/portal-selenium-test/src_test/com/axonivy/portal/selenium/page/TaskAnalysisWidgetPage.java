@@ -186,6 +186,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     enterDataToSaveFilterSet(filterSetName, isPersonalFilter);
     SelenideElement saveButton = $(By.id("task-widget:filter-save-form:filter-save-command")).shouldBe(appear, DEFAULT_TIMEOUT);
     waitForElementClickableThenClick(saveButton);
+    $("[id='task-widget:save-filter-set-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
     saveButton.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
