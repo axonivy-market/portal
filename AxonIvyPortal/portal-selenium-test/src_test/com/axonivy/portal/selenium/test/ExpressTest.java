@@ -22,7 +22,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
 import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class ExpressTest extends BaseTest{
   private static final int USER_TASK_INDEX = 0;
   private static final int APPROVAL_INDEX = 3;
