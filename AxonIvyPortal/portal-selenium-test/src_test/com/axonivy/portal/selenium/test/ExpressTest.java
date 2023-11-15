@@ -81,6 +81,7 @@ public class ExpressTest extends BaseTest{
     ExpressFormDefinitionPage formDefinition = expressProcessPage.goToFormDefinition();
     formDefinition.createTextInputField("Input Text 1", INPUT_TEXT_TYPE_INDEX, false);
     formDefinition.createTextInputField("Input Number 2", INPUT_NUMBER_TYPE_INDEX, false);
+    formDefinition.countElementPrepareToDrag(2);
     formDefinition.moveAllElementToDragAndDrogPanel();
     return formDefinition;
   }
@@ -142,12 +143,5 @@ public class ExpressTest extends BaseTest{
   
   private void goToExpressCreationPage() {
     redirectToRelativeLink(expressStartLink);
-  }
-  
-  private ExpressResponsible setExpressResponsible(String userName, boolean isGroup) {
-    ExpressResponsible user = new ExpressResponsible();
-    user.setResponsibleName(userName);
-    user.setIsGroup(isGroup);
-    return user;
   }
 }

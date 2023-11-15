@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
+import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.DefaultExpresTaskPage;
 import com.axonivy.portal.selenium.page.ExpressProcessPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
@@ -57,9 +58,7 @@ public class AdhocExpressTest extends BaseTest{
     ExpressProcessPage expressPage = new ExpressProcessPage();
     String processName = expressPage.getProcessName();
     assertTrue(processName.startsWith(String.format("AdHoc Process for Task %s -", taskId)));
-    ExpressResponsible responsible = new ExpressResponsible(); 
-    responsible.setResponsibleName("demo");
-    responsible.setIsGroup(false);
+    ExpressResponsible responsible = setExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
 
     List<ExpressResponsible> responsibles = Arrays.asList(responsible);
     expressPage.createDefaultTask(0, defaultTaskName1, responsibles);
