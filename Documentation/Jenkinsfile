@@ -21,6 +21,7 @@ pipeline {
         script {
           def version = 'dev'
           docker.withRegistry('', 'docker.io') {
+            sh "cp /mnt/portal02/document-screenshots/portal-document-screenshots-10.0.0.0-SNAPSHOT.zip Documentation/portal-guide/source/screenshots"
             docker.image('maven:3.6.3-openjdk-17-slim').inside {
               version = getCurrentVersion()
               maven cmd: 'clean process-resources -Divy.engine.version=[10.0.1,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-10.0/axonivy-engine.zip -f Documentation/public-api/pom.xml'
