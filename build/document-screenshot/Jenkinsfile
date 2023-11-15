@@ -22,7 +22,7 @@ pipeline {
       -Divy.engine.download.url=file:///C:/wawa/engine/AxonIvyEngineX.X.X.X_Windows_x64.zip for downloaded engine
       -Divy.engine.list.url=https://jenkins.ivyteam.io/job/core_product/job/release%252F10.0/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.server.product/target/products/ -Divy.engine.os.arch=Windows_x64 for last successful build 10.0
     ''')
-      booleanParam(name: 'deployToRepo', defaultValue: false, description: 'Force deploy new version of screenshots. CAUTION: Only enable this option when you run with default test pattern.')
+      booleanParam(name: 'useForDocumentation', defaultValue: false, description: 'Make screenshots available to use in upcomming documentation builds. CAUTION: Only enable this option when you run with default test pattern.')
       booleanParam(name: 'checkoutCodeFromLatestReleaseTag', defaultValue: false, description: 'Turn on when you want to release new Portal screenshots, it will checkout the code from latest release tag')
   }
 
@@ -85,8 +85,7 @@ pipeline {
           utils.killUnnecessaryProcessesToRunTest()
 
           echo '====================Execute maven for testing===================='
-          def mavenGoal = params.deployToRepo? 'deploy' : 'install'
-          bat "mvn clean ${mavenGoal} -f AxonIvyPortal/PortalTest/document_screenshot_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
+          bat "mvn clean install -f AxonIvyPortal/PortalTest/document_screenshot_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
           utils.cleanDisk()
 
           echo '====================Copy ElasticSearch log===================='
@@ -96,10 +95,12 @@ pipeline {
             Copy-Item  AxonIvyPortal/PortalTest/target/*.zip -Destination ${shareDir}
           '''
 
-          echo '====================Copy screenshots to shared directory===================='
-          powershell """
-            Copy-Item  AxonIvyPortal/PortalTest/target/*.zip -Destination ${shareDir}
-          """
+          if (params.useForDocumentation) {
+            echo '====================Copy screenshots to shared directory===================='
+            powershell """
+              Copy-Item  AxonIvyPortal/PortalTest/target/*.zip -Destination ${shareDir}
+            """
+          }
         }
       }
     }
