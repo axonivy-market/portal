@@ -29,6 +29,7 @@ pipeline {
   environment {
     releaseDir = 'archive'
     engineDir = "$env.WORKSPACE/AxonIvyPortal/PortalTest/engine"
+    shareDir = 'C:/tools/shared/document-screenshots'
   }
 
   stages {
@@ -92,7 +93,13 @@ pipeline {
           powershell '''
             $LOG= $env:engineDir + '/elasticsearch/logs/ivy-elasticsearch-*.log'
             Copy-Item $LOG -Destination AxonIvyPortal/PortalTest/target
+            Copy-Item  AxonIvyPortal/PortalTest/target/*.zip -Destination ${shareDir}
           '''
+
+          echo '====================Copy screenshots to shared directory===================='
+          powershell """
+            Copy-Item  AxonIvyPortal/PortalTest/target/*.zip -Destination ${shareDir}
+          """
         }
       }
     }
