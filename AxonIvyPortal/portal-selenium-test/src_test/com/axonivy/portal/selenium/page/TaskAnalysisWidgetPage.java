@@ -57,9 +57,9 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
 
     SelenideElement filterVisibilityContainer = findElementById("task-widget:filter-save-form:save-filter-type-radio");
     if (isPersonalFilter) {
-      clickByJavaScript(filterVisibilityContainer.$$(By.tagName("LABEL")).get(0).shouldBe(clickable(), DEFAULT_TIMEOUT));
+      filterVisibilityContainer.$$(By.tagName("LABEL")).get(0).shouldBe(clickable(), DEFAULT_TIMEOUT).click();
     } else {
-      clickByJavaScript(filterVisibilityContainer.$$(By.tagName("LABEL")).get(1).shouldBe(clickable(), DEFAULT_TIMEOUT));
+      filterVisibilityContainer.$$(By.tagName("LABEL")).get(1).shouldBe(clickable(), DEFAULT_TIMEOUT).click();
     }
   }
 
