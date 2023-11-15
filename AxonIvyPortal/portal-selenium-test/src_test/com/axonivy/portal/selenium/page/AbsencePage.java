@@ -35,10 +35,10 @@ public class AbsencePage extends TemplatePage {
     return new NewAbsencePage();
   }
 
-  public int countAbsences() {
+  public void countAbsences(int expectedSize) {
     $("div[id*='absence-table']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("td.absence-period").shouldBe(appear, DEFAULT_TIMEOUT);
-    return $$("td.absence-period").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0)).size();
+    $$("td.absence-period").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(expectedSize));
   }
 
   public void showAbsencesInThePast(boolean shown) {
@@ -155,15 +155,15 @@ public class AbsencePage extends TemplatePage {
     $(growlMessage.findElement(By.className("ui-growl-item-container"))).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public boolean canDeleteAbsence(int index) {
-    return $(String.format(DELETE_ABSENCE__LINK_ID_PATTERN, index)).isDisplayed();
+  public void canDeleteAbsence(int index) {
+    waitForElementDisplayed($(By.id(String.format(DELETE_ABSENCE__LINK_ID_PATTERN, index))), true);
   }
 
-  public boolean canEditAbsence(int index) {
-    return $(String.format(EDIT_ABSENCE__LINK_ID_PATTERN, index)).isDisplayed();
+  public void canEditAbsence(int index) {
+    waitForElementDisplayed($(By.id(String.format(EDIT_ABSENCE__LINK_ID_PATTERN, index))), true);
   }
 
-  public boolean isDeputySettingSectionDisplayed() {
-    return $(By.id("deputy-setting")).isDisplayed();
+  public void isDeputySettingSectionDisplayed(boolean isDisplay) {
+    waitForElementDisplayed(By.id("deputy-setting"), isDisplay);
   }
 }
