@@ -26,6 +26,8 @@ The following default widgets are available:
 
 #. **Process viewer widget**: This widget provides a visual representation of the process flow.
 
+#. **Legacy statistic chart widget**: This widget provides graphical display of legacy statistical data.
+
 #. **Statistic chart widget**: This widget provides graphical display of statistical data.
 
 #. **Client Statistic chart widget**: This widget provides graphical display of client statistical data.
@@ -212,28 +214,28 @@ You can define the widget name and process to be displayed.
 
   |process-viewer-widget|
 
-Statistic chart widget (Deprecated)
-===================================
+Legacy statistic chart widget
+=============================
 
 You can select the chart to be displayed.
 
-- Configuration of a statistic chart widget:
+- Configuration of a legacy statistic chart widget:
 
-  |statistic-chart-widget-configuration|
+  |legacy-statistic-chart-widget-configuration|
 
 - This is the sample output of the widget configured above:
 
-  |statistic-chart-widget|
+  |legacy-statistic-chart-widget|
 
-New client statistic chart widget
-=================================
+Statistic chart widget
+======================
 
-You can select a client statistic chart to be displayed. There are 5 chart types available.
+You can select a statistic chart to be displayed. There are 5 chart types available.
 
-To add a new statistic widget in the edit mode, press on the :guilabel:`+ Add widget`
+To add a new statistic chart widget in the edit mode, press on the :guilabel:`+ Add widget`
 button and select one of the available widgets in :guilabel:`Statistic Widgets` section to add:
 
-|add-client-statistic-widget|
+|add-statistic-widget|
 
 **Available charts**
 
@@ -378,8 +380,8 @@ You enter an URL to embed an external webpage into the Portal dashboard.
 .. |process-viewer-widget| image:: ../../screenshots/new-dashboard/process-viewer-widget.png
 .. |process-viewer-widget-configuration| image:: ../../screenshots/new-dashboard/process-viewer-widget-configuration.png
 
-.. |statistic-chart-widget-configuration| image:: ../../screenshots/new-dashboard/statistic-chart-widget-configuration.png
-.. |statistic-chart-widget| image:: ../../screenshots/new-dashboard/statistic-chart-widget.png
+.. |legacy-statistic-chart-widget-configuration| image:: ../../screenshots/new-dashboard/statistic-chart-widget-configuration.png
+.. |legacy-statistic-chart-widget| image:: ../../screenshots/new-dashboard/statistic-chart-widget.png
 
 .. |welcome-widget-configuration| image:: ../../screenshots/new-dashboard/welcome-widget-configuration.png
 .. |news-feed-widget-configuration| image:: ../../screenshots/new-dashboard/news-feed-widget-configuration.png
@@ -393,4 +395,4 @@ You enter an URL to embed an external webpage into the Portal dashboard.
 .. |chart-number-of-open-tasks| image:: ../../screenshots/new-dashboard/number-of-open-tasks-statistic-chart-widget.png
 .. |chart-started-cases-per-day| image:: ../../screenshots/new-dashboard/started-cases-per-day-statistic-chart-widget.png
 .. |chart-completed-tasks-per-day| image:: ../../screenshots/new-dashboard/completed-tasks-per-day-statistic-chart-widget.png
-.. |add-client-statistic-widget| image:: ../../screenshots/new-dashboard/add-client-statistic-widget.png
+.. |add-statistic-widget| image:: ../../screenshots/new-dashboard/add-client-statistic-widget.png
