@@ -18,6 +18,7 @@ import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
+import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
 /**
  * A base test that other tests extend it. It will test on browser IE by default. It provides feature to take screenshot
  * of failed tests and utility methods.
@@ -300,5 +301,12 @@ public class BaseTest {
 
   public WebDriverWait webDriverWait() {
     return new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT);
+  }
+  
+  public ExpressResponsible setExpressResponsible(String userName, boolean isGroup) {
+    ExpressResponsible user = new ExpressResponsible();
+    user.setResponsibleName(userName);
+    user.setIsGroup(isGroup);
+    return user;
   }
 }

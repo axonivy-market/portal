@@ -58,9 +58,7 @@ public class AdhocScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 1200));
     ExpressProcessPage expressPage = new ExpressProcessPage();
 
-    ExpressResponsible responsible = new ExpressResponsible();
-    responsible.setResponsibleName("demo");
-    responsible.setIsGroup(false);
+    ExpressResponsible responsible = setExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
 
     List<ExpressResponsible> responsibles = Arrays.asList(responsible);
     expressPage.createDefaultTask(0, defaultTaskName1, responsibles);

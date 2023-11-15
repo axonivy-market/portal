@@ -36,9 +36,7 @@ public class ChatTest extends BaseTest{
   
   @Test
   public void chatAddGroup() {
-    ExpressResponsible chatUser1 = new ExpressResponsible();
-    chatUser1.setResponsibleName(TestAccount.ADMIN_USER.getUsername());
-    chatUser1.setIsGroup(false);
+    ExpressResponsible chatUser1 = setExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
     ChatPage chatPage = enableChatGroup();
     createChatGroup(TestAccount.DEMO_USER);
     joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
@@ -51,9 +49,7 @@ public class ChatTest extends BaseTest{
     openNewTabOrWindow(WindowType.WINDOW);
     launchBrowserAndGotoRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     
-    ExpressResponsible chatGroupEveryBody = new ExpressResponsible();
-    chatGroupEveryBody.setResponsibleName("Everybody");
-    chatGroupEveryBody.setIsGroup(true);
+    ExpressResponsible chatGroupEveryBody = setExpressResponsible("Everybody", true);
     createChatGroup(TestAccount.GUEST_USER, chatUser1, chatGroupEveryBody);
     
     login(TestAccount.ADMIN_USER);

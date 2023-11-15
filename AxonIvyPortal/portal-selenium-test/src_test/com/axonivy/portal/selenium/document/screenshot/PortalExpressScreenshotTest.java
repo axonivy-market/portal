@@ -77,9 +77,7 @@ public class PortalExpressScreenshotTest extends ScreenshotBaseTest{
     ScreenshotUtil.captureElementScreenshot(taskStep1, ScreenshotUtil.EXPRESS_FOLDER + "express-able-to-start");
     expressProcessPage.fillProcessProperties(true, true, "Request new resources process", "Request description");
 
-    ExpressResponsible responsible1 = new ExpressResponsible();
-    responsible1.setResponsibleName(TestAccount.DEMO_USER.getUsername());
-    responsible1.setIsGroup(false);
+    ExpressResponsible responsible1 = setExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
 
     expressProcessPage.createTask(0, USER_TASK_INDEX, "Request resource", "Task request description", Arrays.asList(responsible1));
     ScreenshotUtil.resizeBrowser(new Dimension(1100, 1200));
@@ -87,9 +85,7 @@ public class PortalExpressScreenshotTest extends ScreenshotBaseTest{
     expressProcessPage.waitUntilExpressProcessDisplay();
     expressProcessPage.addNewTask(0);
 
-    ExpressResponsible responsible2 = new ExpressResponsible();
-    responsible2.setResponsibleName(TestAccount.ADMIN_USER.getUsername());
-    responsible2.setIsGroup(false);
+    ExpressResponsible responsible2 = setExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
 
     expressProcessPage.createTask(1, USER_TASK_WITH_EMAIL_INDEX, "Approval request", "Approval request description", Arrays.asList(responsible2));
     ScreenshotUtil.executeDecorateJs("highlightExpressTaskResponsible(1)");
@@ -117,9 +113,7 @@ public class PortalExpressScreenshotTest extends ScreenshotBaseTest{
     expressProcessPage = new ExpressProcessPage();
     expressProcessPage.fillProcessProperties(true, true, "Request new resources process", "Request description");
 
-    responsible1 = new ExpressResponsible();
-    responsible1.setResponsibleName(TestAccount.DEMO_USER.getUsername());
-    responsible1.setIsGroup(false);
+    responsible1 = setExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
     expressProcessPage.createTask(0, USER_TASK_INDEX, "Request resource", "Task request description", Arrays.asList(responsible1));
 
     expressProcessPage.addNewTask(0);
