@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.refresh;
+import static com.codeborne.selenide.Selenide.webdriver;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverConditions;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.conditions.Not;
 
@@ -52,6 +54,10 @@ public abstract class TemplatePage extends AbstractPage {
 
   public String getPageTitle() {
     return driver.getTitle();
+  }
+  
+  public void assertPageTitle(String titleExpect) {
+    webdriver().shouldHave(WebDriverConditions.title(titleExpect));
   }
 
   protected Condition getClickableCondition() {
