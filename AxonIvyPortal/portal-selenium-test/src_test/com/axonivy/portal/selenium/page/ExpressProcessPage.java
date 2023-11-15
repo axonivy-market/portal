@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
@@ -145,5 +146,10 @@ public class ExpressProcessPage extends TemplatePage {
 
   public void executeDirectly() {
     waitForElementClickableThenClick("[id$='form:save']");
+  }
+  
+  public NewDashboardPage cancelWorkflowDefinition() {
+    waitForElementClickableThenClick(By.id("form:cancel-workflow-button"));
+    return new NewDashboardPage();
   }
 }
