@@ -13,6 +13,7 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.Sleeper;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -65,6 +66,10 @@ public class ExpressFormDefinitionPage extends TemplatePage {
       }
       $("[id$='form:available-form-elements:" + i + ":pnl']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
     }
+  }
+  
+  public void countElementPrepareToDrag(int size) {
+    $$(By.xpath("//div[@id='form:available-form-elements_content']/ul/li")).shouldBe(CollectionCondition.size(size), DEFAULT_TIMEOUT);
   }
 
   private void moveFormElementToPanel(long index, String position) {
@@ -133,5 +138,22 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     waitForElementClickableThenClick(By.id("form:create-tabs:input-field-type_label"));
     waitForElementDisplayed(By.id("form:create-tabs:input-field-type_panel"), true);
     waitForElementClickableThenClick(By.id(String.format("form:create-tabs:input-field-type_%d", inputTypeIndex)));
+  }
+  
+  public void finishWorkflow() {
+    waitForElementClickableThenClick(By.id("finish-button"));
+    new NewDashboardPage().isDisplayed();
+  }
+  
+  public NewDashboardPage save() {
+    waitForElementClickableThenClick(By.id("save-button"));
+    return new NewDashboardPage();
+  }
+  
+  public NewDashboardPage cancel() {
+    waitForElementClickableThenClick(By.id("cancel-button"));
+    waitForElementDisplayed(By.id("yes-button"), true);
+    waitForElementClickableThenClick(By.id("yes-button"));
+    return new NewDashboardPage();
   }
 }
