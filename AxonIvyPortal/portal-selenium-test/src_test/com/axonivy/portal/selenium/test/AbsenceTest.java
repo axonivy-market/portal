@@ -42,9 +42,9 @@ public class AbsenceTest extends BaseTest {
     AbsencePage absencePage = openAbsencePage(newDashboardPage);
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
     createAbsenceForCurrentUser(TODAY, TODAY, "For party", absencePage);
-    assertEquals(1, absencePage.countAbsences());
+    absencePage.countAbsences(1);
     absencePage.showAbsencesInThePast(true);
-    assertEquals(2, absencePage.countAbsences());
+    absencePage.countAbsences(2);
   }
 
   @Test
@@ -56,7 +56,7 @@ public class AbsenceTest extends BaseTest {
     String demoFullName = TestAccount.DEMO_USER.getFullName();
     createAbsence(demoFullName, YESTERDAY, YESTERDAY, "For travel of another user", absencePage);
     createAbsence(demoFullName, TODAY, TODAY, "For party of another user", absencePage);
-    assertEquals(1, absencePage.countAbsences());
+    absencePage.countAbsences(1);
   }
 
   @Test
@@ -66,7 +66,7 @@ public class AbsenceTest extends BaseTest {
     NewDashboardPage newDashboardPage = changeDateFormat();
     AbsencePage absencePage = openAbsencePage(newDashboardPage);
     createAbsenceForCurrentUser(chosenDay, theNextDayOfChosenDay, "Just day off", absencePage);
-    assertEquals(1, absencePage.countAbsences());
+    absencePage.countAbsences(1);
 
     NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
     newAbsencePage.input(chosenDay, theNextDayOfChosenDay, "Overlapping absence");
@@ -168,7 +168,7 @@ public class AbsenceTest extends BaseTest {
     login(TestAccount.GUEST_USER);
     absencePage = openAbsencePage();
     absencePage.showAbsencesInThePast(true);
-    assertEquals(1, absencePage.countAbsences());
+    absencePage.countAbsences(1);
   }
 
   @Test
@@ -183,7 +183,7 @@ public class AbsenceTest extends BaseTest {
     absencePage = openAbsencePage();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     absencePage.showAbsencesInThePast(true);
-    assertEquals(1, absencePage.countAbsences());
+    absencePage.countAbsences(1);
   }
 
   @Test
@@ -217,5 +217,55 @@ public class AbsenceTest extends BaseTest {
     assertEquals(TestAccount.GUEST_USER.getFullName(),
         absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE)));
   }
+  
+  @Test
+  public void testDeleteAbsenceOfOtherUser() {
+    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
+    AbsencePage absencePage = openAbsencePage();
+    createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
+    createAbsenceForCurrentUser(TODAY, TODAY, "For other reason", absencePage);
+    absencePage.countAbsences(1);
 
+    login(TestAccount.GUEST_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadAbsencesPermission.ivp");
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantDeleteAbsencePermission.ivp");
+    absencePage = openAbsencePage();
+    absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
+    absencePage.showAbsencesInThePast(true);
+    absencePage.countAbsences(2);
+    absencePage.canDeleteAbsence(0);
+    absencePage.canDeleteAbsence(1);
+  }
+  
+  @Test
+  public void testEditAbsenceOfOtherUser() {
+    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
+    AbsencePage absencePage = openAbsencePage();
+    createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
+    createAbsenceForCurrentUser(TODAY, TODAY, "For other reason", absencePage);
+    absencePage.countAbsences(1);
+
+    login(TestAccount.GUEST_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadAbsencesPermission.ivp");
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateAbsencePermission.ivp");
+    absencePage = openAbsencePage();
+    absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
+    absencePage.showAbsencesInThePast(true);
+    absencePage.countAbsences(2);
+    absencePage.canEditAbsence(0);
+    absencePage.canEditAbsence(1);
+  }
+
+  @Test
+  public void testReadOwnDeputy() {
+    login(TestAccount.GUEST_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/denyReadSubstitutesPermission.ivp");
+    AbsencePage absencePage = openAbsencePage();
+    absencePage.isDeputySettingSectionDisplayed(true);
+
+    absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
+    absencePage.isDeputySettingSectionDisplayed(false);
+  }
 }
