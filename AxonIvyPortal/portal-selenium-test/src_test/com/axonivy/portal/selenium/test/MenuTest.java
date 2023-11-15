@@ -63,5 +63,15 @@ public class MenuTest extends BaseTest {
     assertFalse(newDashboardPage.isMainMenuOpen());
   }
 
-
+  @Test
+  public void testNavigateToThirdPartyApp() {
+    createThirdPartyApp();
+    login(TestAccount.DEMO_USER);
+    // to refresh cache
+    login(TestAccount.ADMIN_USER);
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
+    mainMenuPage.clickThirdPartyApp();
+    mainMenuPage.assertThirdPartyApp("https://www.google.com/");
+  }
 }
