@@ -12,40 +12,8 @@
   <artifactId>portal-guide</artifactId>
   <packaging>pom</packaging>
   <name>Portal Guide</name>
-  <properties>
-    <images.folder>source/screenshots</images.folder>
-  </properties>
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>unpack-portal-images</id>
-            <goals>
-              <goal>unpack</goal>
-            </goals>
-            <phase>generate-resources</phase>
-            <configuration>
-              <outputDirectory>${images.folder}</outputDirectory>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>ch.ivyteam.ivy.project.portal</groupId>
-                  <artifactId>portal-document-screenshots</artifactId>
-                  <version>${project.version}</version>
-                  <type>zip</type>
-                </artifactItem>
-              </artifactItems>
-            </configuration>
-          </execution>
-        </executions>
-
-        <configuration>
-          <overWriteSnapshots>true</overWriteSnapshots>
-        </configuration>
-      </plugin>
-
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>
         <version>2.6</version>
@@ -88,19 +56,6 @@
           </execution>
         </executions>
       </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-clean-plugin</artifactId>
-        <version>3.1.0</version>
-        <configuration>
-          <filesets>
-            <fileset>
-              <directory>${images.folder}</directory>
-            </fileset>
-          </filesets>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
 
@@ -110,29 +65,6 @@
       <id>maven.axonivy.com</id>
       <url>https://maven.axonivy.com/</url>
       <layout>default</layout>
-    </repository>
-
-    <repository>
-      <id>portal.release</id>
-      <url>https://repo.axongroupio.ch/artifactory/ext-release-local</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-
-    <repository>
-      <id>portal.snapshots</id>
-      <url>https://repo.axongroupio.ch/artifactory/ext-snapshot-local</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-        <updatePolicy>always</updatePolicy>
-      </snapshots>
     </repository>
   </repositories>
 
