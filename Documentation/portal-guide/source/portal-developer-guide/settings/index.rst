@@ -1,5 +1,13 @@
 .. _settings:
 
+.. raw:: html
+
+    <style>
+      .wy-nav-content {
+         max-width: 1350px;
+      }
+    </style>
+
 Settings
 ********
 
