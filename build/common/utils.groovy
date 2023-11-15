@@ -57,7 +57,7 @@ def stopWindowsService(String serviceName) {
 def remoteDesktop() {
   closeAllRemoteDesktopConnections()
   echo '====================Setup remote desktop connections to Portal slave===================='
-  //e.g. remoteDesktopCmd=D:/tools/remote-desktop-plus/rdp.exe /v:10.123.1.193 /domain:wawa.vn /u:wawa /p:SAMPLE_TEXT_1 /w:2560 /h:1440 /noclose
+  //e.g. remoteDesktopCmd=D:/tools/remote-desktop-plus/rdp.exe /v:portal02.server.ivy-cloud.com /domain:wawa.vn /u:wawa /p:SAMPLE_TEXT_1 /w:2560 /h:1440 /noclose
   bat "${props.remoteDesktopCmd}"
 }
 
