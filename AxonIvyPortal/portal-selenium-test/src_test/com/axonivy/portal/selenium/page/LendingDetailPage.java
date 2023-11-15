@@ -3,7 +3,8 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Selenide.$;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+
+import com.codeborne.selenide.SelenideElement;
 
 public class LendingDetailPage extends TemplatePage {
   int index;
@@ -17,24 +18,20 @@ public class LendingDetailPage extends TemplatePage {
     this.index = index;
   }
 
-  public String getHearText() {
-    WebElement element = findElementByCssSelector("[id$='lending-detail-header']");
-    return element.getText();
+  public SelenideElement getHearText() {
+    return findElementByCssSelector("[id$='lending-detail-header']");
   }
 
-  public String getStageName() {
-    WebElement element = findElementByCssSelector(String.format("[id$='stage-%d-name']", index));
-    return element.getText();
+  public SelenideElement getStageName() {
+    return findElementByCssSelector(String.format("[id$='stage-%d-name']", index));
   }
 
-  public String getProcessName(int index) {
-    WebElement element = findElementByCssSelector(String.format("[id$=':%d:process-name']", index));
-    return element.getText();
+  public SelenideElement getProcessName(int index) {
+    return findElementByCssSelector(String.format("[id$=':%d:process-name']", index));
   }
 
-  public String getSideStepName(int index) {
-    WebElement element = findElementByCssSelector(String.format("[id$=':%d:side-step-name']", index));
-    return element.getText();
+  public SelenideElement getSideStepName(int index) {
+    return findElementByCssSelector(String.format("[id$=':%d:side-step-name']", index));
   }
 
   public LendingOverviewPage navigateToLendingOverview() {

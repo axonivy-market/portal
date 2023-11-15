@@ -2,10 +2,10 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
 
-import org.apache.commons.lang.StringUtils;
 import org.openqa.selenium.By;
 
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 public class ForgotPasswordPage extends TemplatePage {
@@ -19,7 +19,7 @@ public class ForgotPasswordPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('forgot-password:forgot-password-form:send-command')";
+    return "[id$='forgot-password:forgot-password-form:send-command']";
   }
 
   public ForgotPasswordPage() {
@@ -36,11 +36,10 @@ public class ForgotPasswordPage extends TemplatePage {
   public void send() {
     emailTextField.sendKeys(testAccount.getEmail());
     waitForElementClickableThenClick(sendButton);
-    waitForElementDisplayed(By.cssSelector(RESULT_MESSAGE_SELECTOR), true, FORGOT_PASSWORD_TIMEOUT);
+    waitForElementDisplayed(By.cssSelector(RESULT_MESSAGE_SELECTOR), true);
   }
 
-  public boolean isProcessed() {
-    SelenideElement summayMessageSpan = findElementByCssSelector(RESULT_MESSAGE_SELECTOR);
-    return summayMessageSpan != null && StringUtils.isNotBlank(summayMessageSpan.getText());
+  public void isProcessed() {
+    findElementByCssSelector(RESULT_MESSAGE_SELECTOR).shouldBe(Condition.not(Condition.empty));
   }
 }

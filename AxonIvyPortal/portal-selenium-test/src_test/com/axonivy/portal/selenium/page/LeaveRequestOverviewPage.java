@@ -3,7 +3,8 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Selenide.$;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+
+import com.codeborne.selenide.SelenideElement;
 
 public class LeaveRequestOverviewPage extends TemplatePage {
   @Override
@@ -11,19 +12,18 @@ public class LeaveRequestOverviewPage extends TemplatePage {
     return "[id='leave-request-header']";
   }
 
-  public String getHearText() {
-    WebElement element = findElementByCssSelector("[id$='leave-request-header']");
-    return element.getText();
+  public SelenideElement getHearText() {
+    return findElementByCssSelector("[id$='leave-request-header']");
   }
 
-  public String getStepName(int index) {
-    WebElement element = findElementByCssSelector(String.format("[id$=':%d:process-step']", index));
-    return element.getText();
+  public SelenideElement getStepName(int index) {
+    return findElementByCssSelector(String.format("[id$=':%d:process-step']", index));
   }
 
   public LeaveRequestPage start() {
     clickByJavaScript($("button[id$='start']"));
     waitForElementDisplayed(By.cssSelector("[id$='leave-request']"), true);
+    switchBackToParent();
     return new LeaveRequestPage();
   }
 }

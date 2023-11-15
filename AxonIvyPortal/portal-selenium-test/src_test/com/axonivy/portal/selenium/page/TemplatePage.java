@@ -493,4 +493,8 @@ public abstract class TemplatePage extends AbstractPage {
     waitForElementClickableThenClick(By.id("user-menu-required-login:warning-before-leaving-task-component:leave-button"));
     return new NewDashboardPage();
   }
+
+  public SelenideElement getGlobalGrowlMessage() {
+    return findElementById(PORTAL_GLOBAL_GROWL_ID).find(By.cssSelector(".ui-growl-message"));
+  }
 }

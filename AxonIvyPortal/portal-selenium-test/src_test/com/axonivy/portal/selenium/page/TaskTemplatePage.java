@@ -247,6 +247,11 @@ public class TaskTemplatePage extends TemplatePage {
     $(cssSelector).sendKeys(value);
   }
   
+  public TaskWidgetPage clickSubmitButton() {
+    clickOnSubmitButton();
+    return new TaskWidgetPage();
+  }
+  
   public void clickOnSubmitButton() {
     clickByJavaScript($("button[id$=':button-submit']"));
   }
@@ -309,9 +314,10 @@ public class TaskTemplatePage extends TemplatePage {
     waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-group-create-button"), false);
   }
 
-//  public String getTaskNameOfAdhocHistoryRow(int i) {
-//    WebElement row = driver.findElements(By.cssSelector(ADHOC_HISTORY_TABLE_CSS_SELECTOR)).get(index);
-//    return row.findElements(By.xpath("td")).get(2).getText();
-//  }
+  public TaskWidgetPage clickCancelAndLeftButton() {
+    waitForElementClickableThenClick("a[id$='button-cancel']");
+    return new TaskWidgetPage();
+  }
+
 
 }
