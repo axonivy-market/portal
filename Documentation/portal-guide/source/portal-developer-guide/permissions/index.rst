@@ -15,17 +15,17 @@ Portal Task Permissions
 - _`TaskReadOwnCaseTasks`
     - Permission to see related tasks
 
-    - Granted to the 'Everybody' role by default
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`TaskParkOwnWorkingTask`
     - Permission to reserve my own tasks
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`TaskResetOwnWorkingTask`
     - Permission to reset my own tasks 
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`TaskWriteName`
     - Permission to change the task name
@@ -39,7 +39,7 @@ Portal Task Permissions
 - _`TaskWriteActivator`
     - Permission to delegate tasks
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`TaskWriteExpiryActivator`
     - Permission to change the expiry responsible
@@ -62,22 +62,22 @@ Portal Task Permissions
 - _`TaskDisplayAdditionalOptions`
     - Permission to see additional actions
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`TaskDisplayResetAction`
     - Permission to see the Reset action
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`TaskDisplayReserveAction`
     - Permission to see the Reserve action
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`TaskDisplayDelegateAction`
     - Permission to see the Delegate action
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`TaskDisplayWorkflowEventAction`
     - Permission to see the Workflow Event action
@@ -91,7 +91,7 @@ Portal Task Permissions
 - _`ShareTaskDetailsLink`
     - Permission to see the Share button in task details
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 Portal Case Permissions
 -----------------------
@@ -111,7 +111,7 @@ Portal Case Permissions
 - _`ShowAllTasksOfCase`
     - Permission to see the related tasks's action 
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`ShowCaseDetails`
     - Permission to see the Business details action
@@ -119,7 +119,7 @@ Portal Case Permissions
 - _`ShareCaseDetailsLink`
     - Permission to see the Share button in case details
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 Portal General Permissions
 --------------------------
@@ -136,7 +136,7 @@ Portal General Permissions
 - _`RoleReadAll`
     - Permission to see all roles
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`DocumentRead`
     - Permission to see all documents
@@ -147,12 +147,12 @@ Portal General Permissions
 - _`DocumentOfInvolvedCaseWrite`
     - Permission to update, delete documents
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`DashboardWriteOwn`
     - Permission to update private dashboards
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`DashboardWritePublic`
     - Permission to update public dashboards
@@ -160,32 +160,32 @@ Portal General Permissions
 - _`AccessFullProcessList`
     - Permission to access the full process list. See :ref:`full-process-list`.
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`AccessFullTaskList`
     - Permission to access the full task list. See :ref:`full-task-list`.
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`AccessFullCaseList`
     - Permission to access the full case list. See :ref:`full-case-list`.
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`AccessFullStatisticsList`
     - Permission to access the statistics section. See :ref:`full-statistic-list`.
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`TaskCaseAddNote`
     - Permission to add notes to a task/case
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`TaskCaseShowMoreNote`
     - Permission to see Show more note
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`CreatePublicExternalLink`
     - Permission to create public external links, all other users can see the links in the full process list.
@@ -208,18 +208,19 @@ Portal General Permissions
 - _`DashboardImportOwn`
     - Permission to import private dashboards
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`DashboardImportPublic`
     - Permission to import public dashboards
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`ShareDashboardLink`
     - Permission to share dashboard links
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
+.. _portal-absence-and-sub-permission:
 
 Portal Absence And Substitute Permissions
 -----------------------------------------
@@ -230,7 +231,7 @@ Portal Absence And Substitute Permissions
 - _`UserCreateOwnAbsence`
     - Permission to create, edit my own absences
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`UserDeleteAbsence`
     - Permission to remove the absence entries for all users
@@ -238,7 +239,7 @@ Portal Absence And Substitute Permissions
 - _`UserDeleteOwnAbsence`
     - Permission to remove my own absence entries
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`UserReadAbsences`
     - Permission to read absences of all users
@@ -246,7 +247,7 @@ Portal Absence And Substitute Permissions
 - _`UserReadOwnAbsences`
     - Permission to read my own absences
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`UserCreateSubstitute`
     - Permission to create substitutes of all users
@@ -254,7 +255,7 @@ Portal Absence And Substitute Permissions
 - _`UserCreateOwnSubstitute`
     - Permission to create my own substitutes
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`UserReadSubstitutes`
     - Permission to read substitutes of all users
@@ -266,7 +267,7 @@ Portal Statistic Permissions
 - _`StatisticAddDashboardChart`
     - Permission to add dashboard charts
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
 
 - _`StatisticAnalyzeTask`
     - Permission to analyze, filter tasks and export data to excel for advanced analysis
@@ -278,4 +279,4 @@ Portal Express Permissions
 - _`ExpressCreateWorkflow`
     - Permission to create Express workflow
 
-    - **Default assignment**: :guilabel:`Everybody`
+    - Granted to :guilabel:`Everybody` role by default
