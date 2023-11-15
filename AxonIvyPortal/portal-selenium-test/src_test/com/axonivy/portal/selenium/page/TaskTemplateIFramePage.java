@@ -7,4 +7,10 @@ public class TaskTemplateIFramePage extends TemplatePage{
     return "[id='task-template-title']";
   }
 
+  public NewDashboardPage clickSubmitButton() {
+    waitForElementClickableThenClick("button[id$='button-submit']");
+    switchToDefaultContent();
+    return new NewDashboardPage();
+  }
+
 }
