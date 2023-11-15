@@ -57,9 +57,9 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
 
     SelenideElement filterVisibilityContainer = findElementById("task-widget:filter-save-form:save-filter-type-radio");
     if (isPersonalFilter) {
-      clickByJavaScript(filterVisibilityContainer.$$(By.tagName("LABEL")).get(0).shouldBe(clickable(), DEFAULT_TIMEOUT));
+      filterVisibilityContainer.$$(By.tagName("LABEL")).get(0).shouldBe(clickable(), DEFAULT_TIMEOUT).click();
     } else {
-      clickByJavaScript(filterVisibilityContainer.$$(By.tagName("LABEL")).get(1).shouldBe(clickable(), DEFAULT_TIMEOUT));
+      filterVisibilityContainer.$$(By.tagName("LABEL")).get(1).shouldBe(clickable(), DEFAULT_TIMEOUT).click();
     }
   }
 
@@ -186,6 +186,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     enterDataToSaveFilterSet(filterSetName, isPersonalFilter);
     SelenideElement saveButton = $(By.id("task-widget:filter-save-form:filter-save-command")).shouldBe(appear, DEFAULT_TIMEOUT);
     waitForElementClickableThenClick(saveButton);
+    $("[id='task-widget:save-filter-set-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
     saveButton.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
