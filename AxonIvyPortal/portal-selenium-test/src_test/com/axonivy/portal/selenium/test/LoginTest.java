@@ -10,7 +10,7 @@ import com.axonivy.portal.selenium.page.ForgotPasswordPage;
 import com.axonivy.portal.selenium.page.LoginPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class LoginTest extends BaseTest{
   private LoginPage loginPage;
 

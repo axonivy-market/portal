@@ -16,7 +16,7 @@ import com.axonivy.portal.selenium.page.LendingDetailPage;
 import com.axonivy.portal.selenium.page.LendingOverviewPage;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class ExampleOverviewTest extends BaseTest{
   
   public final static String PORTAL_EXAMPLES_PROCESS_CHAIN = "portal-user-examples/17236DB1D3DA14C0/userExampleGuide.ivp";
