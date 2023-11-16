@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.SystemProperties;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.ForgotPasswordPage;
 import com.axonivy.portal.selenium.page.LoginPage;
@@ -17,7 +18,10 @@ public class LoginTest extends BaseTest{
   @BeforeEach
   @Override
   public void setup() {
-    launchBrowserAndLogoutInDesigner();
+    redirectToNewDashBoard();
+    if (!SystemProperties.isInServerMode()) {
+      launchBrowserAndLogoutInDesigner();
+    }
   }
   
   @Test

@@ -97,7 +97,6 @@ def cleanDisk() {
     exit 0
   """
 }
-return this
 
 def downloadExpress() {
   echo '====================Download Express===================='
@@ -108,3 +107,4 @@ def downloadExpress() {
   }
   unzip zipFile: 'archive.zip', quiet: true
 }
+return this
