@@ -163,7 +163,7 @@ public abstract class TemplatePage extends AbstractPage {
     if (expected) {
       return isElementDisplayed(element);
     } else {
-      return !$(element).isDisplayed();
+      return !$(element).shouldBe(disappear, DEFAULT_TIMEOUT).isDisplayed();
     }
   }
 
