@@ -16,7 +16,7 @@ import ch.ivyteam.util.IvyRuntimeException;
  * @deprecated reference to {@link TimerBean}.
  */
 
-@Deprecated(since = "11.3")
+@Deprecated(since = "11.2")
 public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessStartEventBean {
   private static final String VARIABLE = "variable";
   private static String name;

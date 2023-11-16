@@ -287,7 +287,7 @@ Variables:
   # If set to false, redirect to login error page.
   PortalLoginPageDisplay: true
 
-  # @Deprecated(Since 11.3)
+  # @Deprecated(Since 11.2)
   # Cron expression define the time to clean up data of obsoleted users.
   # Please refer to Axon Ivy CRON job pattern: https://developer.axonivy.com/doc/sprint/engine-guide/configuration/advanced-configuration.html
   PortalStartTimeCleanObsoletedDataExpression: '0 6 * * *'
