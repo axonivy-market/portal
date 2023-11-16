@@ -887,6 +887,10 @@ public class CaseDetailsPage extends TemplatePage {
   public boolean isAddDocumentLinkDisplayed(boolean expected) {
     return isElementDisplayed(By.cssSelector("a[id$='document:add-document-command']"), expected);
   }
+  
+  public boolean isDeleteDocumentButtonPresented(boolean expected) {
+    return isElementDisplayed(By.cssSelector("a[id$='delete-file']"), expected);
+  }
 
   public void openProcessOverviewPage() {
     waitForElementClickableThenClick(PROCESS_OVERVIEW_URL_CSS_SELECTOR);
@@ -938,4 +942,12 @@ public class CaseDetailsPage extends TemplatePage {
     clickBackButton();
     return new CaseWidgetPage();
   }
+  
+  public String openDoneTask(int index) {
+    SelenideElement showTaskNoteLink = caseItem.$$(By.cssSelector("a[id$='show-task-note-link']")).get(index);
+    String taskName = showTaskNoteLink.getText();
+    waitForElementClickableThenClick(showTaskNoteLink);
+    return taskName;
+  }
 }
+
