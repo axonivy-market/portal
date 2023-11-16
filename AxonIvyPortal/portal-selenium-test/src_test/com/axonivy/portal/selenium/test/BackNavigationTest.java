@@ -50,14 +50,15 @@ public class BackNavigationTest extends BaseTest{
     taskWidgetPage = NavigationHelper.navigateToTaskList();
 
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
-    assertEquals(TASK_DETAILS_TITLE, taskDetailsPage.getPageTitle());
+    taskDetailsPage.assertPageTitle(TASK_DETAILS_TITLE);
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
-    assertEquals(TASK_LIST_TITLE, taskWidgetPage.getPageTitle());
+    taskWidgetPage.assertPageTitle(TASK_LIST_TITLE);
 
     taskDetailsPage = taskWidgetPage.openTaskDetailsFromActionMenu(0);
-    assertEquals(TASK_DETAILS_TITLE, taskDetailsPage.getPageTitle());
+    taskDetailsPage.assertPageTitle(TASK_DETAILS_TITLE);
+
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
-    assertEquals(TASK_LIST_TITLE, taskWidgetPage.getPageTitle());
+    taskWidgetPage.assertPageTitle(TASK_LIST_TITLE);
   }
   
   @Test
@@ -67,9 +68,9 @@ public class BackNavigationTest extends BaseTest{
 
     caseDetailsPage = caseWidgetPage.openCaseDetailsFromActionMenuByCaseName(LEAVE_REQUEST_CASE_NAME);
     caseDetailsPage.waitPageLoaded();
-    assertEquals(CASE_DETAILS_TITLE, caseDetailsPage.getPageTitle());
+    caseDetailsPage.assertPageTitle(CASE_DETAILS_TITLE);
     caseWidgetPage = caseDetailsPage.goBackToCaseListFromCaseDetails();
-    assertEquals(CASE_LIST_TITLE, caseWidgetPage.getPageTitle());
+    caseWidgetPage.assertPageTitle(CASE_LIST_TITLE);
   }
 
   @Test
@@ -90,10 +91,10 @@ public class BackNavigationTest extends BaseTest{
     taskTemplatePage.clickOnSubmitButton();
 
     caseDetailsPage = new CaseDetailsPage();
-    assertEquals(CASE_DETAILS_TITLE, caseDetailsPage.getPageTitle());
+    caseDetailsPage.assertPageTitle(CASE_DETAILS_TITLE);
 
     caseWidgetPage = caseDetailsPage.goBackToCaseListFromCaseDetails();
-    assertEquals(CASE_LIST_TITLE, caseWidgetPage.getPageTitle());
+    caseWidgetPage.assertPageTitle(CASE_LIST_TITLE);
   }
   
   @Test
@@ -111,7 +112,7 @@ public class BackNavigationTest extends BaseTest{
     assertEquals(PAYMENT_CASE_NAME, caseDetailsPage.getCaseName());
 
     caseWidgetPage = caseDetailsPage.goBackToCaseListFromCaseDetails();
-    assertEquals(CASE_LIST_TITLE, caseWidgetPage.getPageTitle());
+    caseWidgetPage.assertPageTitle(CASE_LIST_TITLE);
   }
   
   @Test
@@ -141,7 +142,8 @@ public class BackNavigationTest extends BaseTest{
     assertEquals(PAYMENT_CASE_NAME, caseDetailsPage.getCaseName());
 
     caseWidgetPage = caseDetailsPage.goBackToCaseListFromCaseDetails();
-    assertEquals(CASE_LIST_TITLE, caseWidgetPage.getPageTitle());
+    caseWidgetPage.assertPageTitle(CASE_LIST_TITLE);
+
   }
 
   @Test
@@ -160,10 +162,12 @@ public class BackNavigationTest extends BaseTest{
     taskDetailsPage.clickBackButton();
 
     caseDetailsPage = new CaseDetailsPage();
-    assertEquals(CASE_DETAILS_TITLE, caseDetailsPage.getPageTitle());
+    caseDetailsPage.assertPageTitle(CASE_DETAILS_TITLE);
+
     
     caseWidgetPage = caseDetailsPage.goBackToCaseListFromCaseDetails();
-    assertEquals(CASE_LIST_TITLE, caseWidgetPage.getPageTitle());
+    caseWidgetPage.assertPageTitle(CASE_LIST_TITLE);
+
   }
 
 }

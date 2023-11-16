@@ -1,13 +1,16 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Selenide.$;
+
+import org.openqa.selenium.By;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 public class PasswordResetPage extends TemplatePage{
+  private static final long PASSWORD_RESET_TIMEOUT = 60;
 
   private SelenideElement newPasswordTextField;
   private SelenideElement passwordConfirmationTextField;
@@ -42,5 +45,17 @@ public class PasswordResetPage extends TemplatePage{
       $("span[class='ui-messages-error-summary']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);;
     }
   }
+  
+  public void isReset() {
+    $(".result-message").shouldBe(Condition.not(Condition.empty));
+  }
+  
+  public void goHome() {
+    waitForElementClickableThenClick(findElementById("password-reset:reset-password-form:go-home-button"));
+    waitForElementDisplayed(By.id("login:login-form:login-command"), true);
+  }
 
+  public void isNewPasswordNotStrongEnough() {
+    findElementByCssSelector("span[class='ui-messages-error-summary']").shouldBe(Condition.text("Password must be at least 4 characters long, contain at least 1 lowercase character, contain at least 1 uppercase character, contain at least 1 number, contain at least 1 special character."));
+  }
 }
