@@ -252,8 +252,7 @@ public class TaskService {
     TaskQuery finalQuery = criteria.getFinalTaskQuery();
     TaskQuery clonedQuery = TaskQuery.fromJson(finalQuery.asJson()); // clone to keep the final query in TaskSearchCriteria
     if (!criteria.isAdminQuery()) {
-      FilterLink currentUserIsInvolved = TaskQuery.create().where().or().currentUserIsInvolved();
-      clonedQuery.where().and(currentUserIsInvolved);
+      clonedQuery.where().and(queryInvolvedTasks());
     } 
     if (isHiddenTasksCasesExcluded()) {
       clonedQuery.where().and(queryExcludeHiddenTasks());
