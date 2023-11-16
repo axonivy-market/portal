@@ -77,7 +77,7 @@ public class WidgetSupportMultiLanguageTest extends BaseTest {
     caseWidget.expand().shouldHave(size(1));
   }
 
-  //@Test
+  @Test
   public void testAddNewTaskList() {
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
     newDashboardDetailsEditPage.addWidget();
