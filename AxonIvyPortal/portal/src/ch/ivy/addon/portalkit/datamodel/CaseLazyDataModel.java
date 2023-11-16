@@ -279,6 +279,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     filterData.setFilters(filtersToSave);
     filterData.setKeyword(criteria.getKeyword());
     filterData.setUserId(Ivy.session().getSessionUser().getId());
+    filterData.setSecurityMemberId(Ivy.session().getSessionUser().getSecurityMemberId());
     filterData.setFilterGroupId(filterGroupId);
     filterData.setFilterName(filterName);
     filterData.setType(filterType);
@@ -567,6 +568,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     CaseColumnsConfiguration caseColumnsConfiguration = new CaseColumnsConfiguration();
     caseColumnsConfiguration.setProcessModelId(Ivy.request().getProcessModel().getId());
     caseColumnsConfiguration.setUserId(Ivy.session().getSessionUser().getId());
+    caseColumnsConfiguration.setSecurityMemberId(Ivy.session().getSessionUser().getSecurityMemberId());
     caseColumnsConfiguration.setApplicationId(Ivy.request().getApplication().getId());
     caseColumnsConfiguration.setSelectedColumns(new ArrayList<>());
     updateCaseColumnsConfiguration(caseColumnsConfiguration);

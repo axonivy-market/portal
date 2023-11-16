@@ -61,7 +61,6 @@ public class TaskWidgetBean implements Serializable {
         .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
   }
   
-  public void preRender(TaskLazyDataModel dataModel) {}
 
   public Long getExpandedTaskId() {
     return expandedTaskId;
