@@ -11,7 +11,7 @@ import com.axonivy.portal.components.dto.UserDTO;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySubstituteResultDTO;
-import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserSubstitute;
@@ -41,7 +41,7 @@ public class SubstituteService{
     return Sudo.get(() -> { 
       IvySubstituteResultDTO result = new IvySubstituteResultDTO();
 
-      IUser user = ServiceUtilities.findUser(username);
+      IUser user = UserUtils.findUserByUsername(username);
       List<IvySubstitute> ivySubstitutions = isFindSubstitute? getIvySubstitutes(user) : getIvySubstitutions(user);
       
       result.setIvySubstitutes(ivySubstitutions);
@@ -113,7 +113,7 @@ public class SubstituteService{
   private void createSubstitutes(List<IvySubstitute> substitutes, IUser user){
     for (IvySubstitute ivySubstitute : substitutes) {
       if (ivySubstitute.getSubstituteUser() != null) {
-        IUser iUser = ServiceUtilities.findUser(ivySubstitute.getSubstituteUser().getName());
+        IUser iUser = UserUtils.findUserByUsername(ivySubstitute.getSubstituteUser().getName());
         if (ivySubstitute.getSubstitionRole() == null) {
           user.createSubstitute(iUser, "", ivySubstitute.getSubstitutionType());
         } else {
@@ -135,7 +135,7 @@ public class SubstituteService{
         return Void.class;
       }
 
-      IUser user = ServiceUtilities.findUser(userDTO.getName());
+      IUser user = UserUtils.findUserByUsername(userDTO.getName());
       deleteSubstitutes(user);
       createSubstitutes(ivySubstitutes, user);
       return Void.class;

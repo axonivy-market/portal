@@ -18,6 +18,7 @@ import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModel;
@@ -118,7 +119,7 @@ public class ServiceUtilities {
   }
 
   private static SecurityMemberDTO findSecurityUserByName(String securityMemberName) {
-    IUser findUser = findUser(securityMemberName);
+    IUser findUser = UserUtils.findUserByUsername(securityMemberName);
     return findUser == null ? null : new SecurityMemberDTO(findUser);
   }
 

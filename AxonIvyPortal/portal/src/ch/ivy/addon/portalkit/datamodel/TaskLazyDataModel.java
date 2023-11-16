@@ -525,6 +525,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     taskFilterData.setFilters(taskFilters);
     taskFilterData.setKeyword(criteria.getKeyword());
     taskFilterData.setUserId(Ivy.session().getSessionUser().getId());
+    taskFilterData.setSecurityMemberId(Ivy.session().getSessionUser().getSecurityMemberId());
     taskFilterData.setFilterGroupId(taskFilterGroupId);
     taskFilterData.setFilterName(filterName);
     taskFilterData.setType(filterType);

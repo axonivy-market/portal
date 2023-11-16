@@ -42,7 +42,7 @@ public class AbsenceService{
           }
         });
       } else {
-        IUser user = ServiceUtilities.findUser(username);
+        IUser user = UserUtils.findUserByUsername(username);
         if (ivyAbsencesByUser.containsKey(user.getName())) {
           ivyAbsencesByUser.get(username).addAll(getAbsences(user));
         } else {
@@ -75,7 +75,7 @@ public class AbsenceService{
   public void createAbsence(IvyAbsence ivyAbsence) {
     Sudo.get(() -> { 
 
-      IUser user = ServiceUtilities.findUser(ivyAbsence.getUsername());
+      IUser user = UserUtils.findUserByUsername(ivyAbsence.getUsername());
       user.createAbsence(ivyAbsence.getFrom(), ivyAbsence.getUntil(), ivyAbsence.getComment());
       return Void.class;
     });
@@ -83,7 +83,7 @@ public class AbsenceService{
   
   public void updateAbsences(String username, Set<IvyAbsence> ivyAbsences) {
     Sudo.get(() -> { 
-      IUser user = ServiceUtilities.findUser(username);
+      IUser user = UserUtils.findUserByUsername(username);
       for (IUserAbsence userAbsence : user.getAbsences()) {
         user.deleteAbsence(userAbsence);
       }
@@ -96,7 +96,7 @@ public class AbsenceService{
 
   public void deleteAbsence(IvyAbsence ivyAbsence) {
     Sudo.get(() -> { 
-      IUser user = ServiceUtilities.findUser(ivyAbsence.getUsername());
+      IUser user = UserUtils.findUserByUsername(ivyAbsence.getUsername());
       for (IUserAbsence userAbsence : user.getAbsences()) {
         if (userAbsence.getStartTimestamp().equals(ivyAbsence.getFrom()) && userAbsence.getStopTimestamp().equals(ivyAbsence.getUntil())) {
           user.deleteAbsence(userAbsence);
