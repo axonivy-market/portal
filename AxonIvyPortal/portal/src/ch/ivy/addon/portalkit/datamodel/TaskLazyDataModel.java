@@ -85,7 +85,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
                                                               TaskSortField.CATEGORY.name());
   protected List<String> portalRequiredColumns = Arrays.asList(TaskSortField.NAME.name());
 
-  protected boolean compactMode;
   protected boolean isAutoHideColumns;
   protected boolean isDisableSelectionCheckboxes;
   protected boolean isRelatedTaskDisplayed;
@@ -428,25 +427,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     return criteria;
   }
 
-  /**
-   * Detect whether task list is in compact mode
-   * @return compactMode
-   */
-  public boolean isCompactMode() {
-    return compactMode;
-  }
-
-  /**
-   * Set compact mode. If true also clear selected filter
-   * @param compactMode
-   */
-  public void setCompactMode(boolean compactMode) {
-    this.compactMode = compactMode;
-    if (compactMode) {
-      selectedFilters.clear();
-    }
-  }
-
   public String getCaseName() {
     return caseName;
   }
@@ -606,33 +586,23 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected void buildQueryToSearchCriteria() {
     if (criteria.getCustomTaskQuery() == null) {
       TaskQuery taskQuery = SubProcessCall.withPath(PortalConstants.BUILD_TASK_QUERY_CALLABLE)
-          .withStartSignature("buildTaskQuery(Boolean)").withParam("isQueryForHomePage", compactMode).call()
+          .withStartSignature("buildTaskQuery()")
+          .call()
           .get("taskQuery", TaskQuery.class);
       criteria.setCustomTaskQuery(taskQuery);
     }
 
-    if (compactMode) {
-      criteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED)));
-      if (SortFieldUtil.invalidSortField(UserUtils.getSessionTaskSortAttribute(), getPortalTaskSort())) {
-        buildCompactModeTaskSort();
-      }
-    } else {
-      if (filterContainer != null) {
-        if (selectedFilters.contains(filterContainer.getStateFilter())) {
-          criteria.setIncludedStates(new ArrayList<>());
-        } else {
-          criteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
-        }
+    if (filterContainer != null) {
+      if (selectedFilters.contains(filterContainer.getStateFilter())) {
+        criteria.setIncludedStates(new ArrayList<>());
+      } else {
+        criteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
       }
     }
 
     TaskQuery taskQuery = buildTaskQuery();
     extendSort(taskQuery);
     criteria.setFinalTaskQuery(taskQuery);
-  }
-
-  private void buildCompactModeTaskSort() {
-    updateSortCriteria(TaskSortField.CREATION_TIME.name(), true, false);
   }
 
   protected void setValuesForStateFilter(TaskSearchCriteria criteria, TaskFilterContainer filterContainer) {
@@ -662,10 +632,8 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       UserUtils.setSessionSelectedDefaultTaskFilterSetAttribute(isSelectedDefaultFilter);
       UserUtils.setSessionSelectedTaskFilterSetAttribute(selectedTaskFilterData);
       UserUtils.setSessionTaskKeywordFilterAttribute(criteria.getKeyword());
-      if (!compactMode) {
-        UserUtils.setSessionFilterGroupIdAttribute(Ivy.request().getProcessModel().getId());
-        UserUtils.setSessionTaskAdvancedFilterAttribute(selectedFilters);
-      }
+      UserUtils.setSessionFilterGroupIdAttribute(Ivy.request().getProcessModel().getId());
+      UserUtils.setSessionTaskAdvancedFilterAttribute(selectedFilters);
     }
   }
 
@@ -924,13 +892,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   private void storeTaskSortIntoSession(String sortColumn, boolean sortDescending) {
     UserUtils.setSessionTaskSortAttribute(SortFieldUtil.buildSortField(sortColumn, sortDescending));
-  }
-
-  public String getSelectedCompactSort() {
-    if (SortFieldUtil.invalidSortField(UserUtils.getSessionTaskSortAttribute(), getPortalTaskSort())) {
-      buildCompactModeTaskSort();
-    }
-    return SortFieldUtil.buildSortField(criteria.getSortField(), criteria.isSortDescending());
   }
 
   public boolean isSortable(String sortField) {
