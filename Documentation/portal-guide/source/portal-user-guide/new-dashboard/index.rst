@@ -159,6 +159,8 @@ You can export all data of the case widget by clicking on the link ``Export to E
 If the number of exported cases exceed the maximum row number of the Excel file, Portal will separate data into multiple Excel
 files and put them into a single zip file.
 
+.. _new-dashboard-process-list-widget:
+
 Process list widget
 ===================
 
