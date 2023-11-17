@@ -9,7 +9,7 @@ link in the |ivy| Portal menu.
 
 .. note::
 
-   If |task-list-icon| :guilabel:`Tasks` link is not visible in the |ivy| Portal menu, please ensure that the :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>` permission has been enabled.
+   If |task-list-icon| :guilabel:`Tasks` link is not visible in the |ivy| Portal menu, please ensure that the permission :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>` has been enabled.
 
 
 .. hint:: 

@@ -10,7 +10,7 @@ selecting |case-icon| :guilabel:`Cases` in the |ivy| Portal menu.
 
 .. note::
 
-   If |case-icon| :guilabel:`Cases` is not visible in the |ivy| Portal menu, please ensure that the :bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>` permission has been enabled.
+   If |case-icon| :guilabel:`Cases` is not visible in the |ivy| Portal menu, please ensure that the permission :bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>` has been enabled.
 
 .. hint:: 
    The set of cases you see in the Portal depends on the roles you hold 
@@ -251,7 +251,7 @@ HowTo: Add a Note to a Case
       - Displayed in the ``History`` table of its technical case details.
       - Not displayed in the ``Notes`` table of tasks belong to technical case.
    
-   Permission :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>` permission is required to use this feature.
+   Permission :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>` is required to use this feature.
 
 HowTo: Export a Case History
 ----------------------------

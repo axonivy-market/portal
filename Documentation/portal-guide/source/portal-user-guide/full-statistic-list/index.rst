@@ -12,7 +12,7 @@ your own statistics. You can reach the page by using the
 
 .. note::
 
-   If :guilabel:`Statistics` is not visible in the |ivy| Portal menu, please ensure that the :bdg-ref-warning:`🔑AccessFullStatisticsList <AccessFullStatisticsList>` permission has been granted.
+   If :guilabel:`Statistics` is not visible in the |ivy| Portal menu, please ensure that the permission :bdg-ref-warning:`🔑AccessFullStatisticsList <AccessFullStatisticsList>` has been granted.
 
 
 .. hint::
