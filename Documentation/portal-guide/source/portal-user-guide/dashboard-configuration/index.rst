@@ -79,7 +79,7 @@ How to: import private dashboards
 
 .. note::
 
-   Permission :bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>` is required to use this feature.
+   The permission :bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>` is required to use this feature.
 
 
 How to: edit private dashboards
@@ -208,7 +208,7 @@ How to: import public dashboard
 
 .. note::
 
-   Permission :bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>` is required to use this feature.
+   The permission :bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>` is required to use this feature.
 
 How to: edit public dashboards
 ==============================
@@ -243,7 +243,7 @@ To generate a public dashboard link, simply click on the |share-icon| Share in t
 
 .. note::
    To share the dashboard without the menu frame, add the parameter ``openWithoutMenu=true`` to the URL. However, please be aware that this option is only for embedding purposes.
-   Permission :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>` is required to use this feature.
+   The permission :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>` is required to use this feature.
 
 How to: reorder public dashboards
 =================================

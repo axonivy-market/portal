@@ -242,7 +242,7 @@ HowTo: Attach a document to the case
 
 .. note::
 
-   Permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` is required to use this feature.
+   The permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` is required to use this feature.
 
 HowTo: Remove an attachment from the case
 -----------------------------------------
@@ -260,7 +260,7 @@ HowTo: Remove an attachment from the case
 
 .. note::
 
-   Permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` is required to use this feature.
+   The permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` is required to use this feature.
 
 HowTo: Add a note to a task
 ---------------------------
@@ -282,7 +282,7 @@ HowTo: Add a note to a task
 
    If the task belongs to a technical case, its notes are also displayed in the ``History`` table of this technical case.
    
-   Permission :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>` is required to use this feature.
+   The permission :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>` is required to use this feature.
 
 HowTo: Export a task history
 ----------------------------
@@ -306,7 +306,7 @@ HowTo: Show Workflow Events
 ---------------------------
 
 .. note:: 
-   User must to has permission :bdg-warning:`🔑WorkflowEventReadAll` to see all workflow events of a task
+   Users must have the permission :bdg-warning:`🔑WorkflowEventReadAll` to see all workflow events of a task
 
 #. Open the task details of a task
 
@@ -337,7 +337,7 @@ HowTo: Share Task Details
 
 .. note::
 
-   Permission :bdg-ref-warning:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>` is required to use this feature.
+   The permission :bdg-ref-warning:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>` is required to use this feature.
 
 .. include:: ../includes/_common-icon.rst
 
