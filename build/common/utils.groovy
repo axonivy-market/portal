@@ -68,7 +68,7 @@ def remoteDesktop() {
   configFileProvider(
       [configFile(fileId: 'properties-config', variable: 'PROPERTIES_CONFIG')]) {
       props = readProperties  file: "${env.PROPERTIES_CONFIG}"
-      //e.g. remoteDesktopCmd=D:/tools/remote-desktop-plus/rdp.exe /v:10.123.1.193 /domain:wawa.vn /u:wawa /p:W4w4@CH$ /w:2560 /h:1440 /noclose
+      //e.g. remoteDesktopCmd=D:/tools/remote-desktop-plus/rdp.exe /v:portal02.server.ivy-cloud.com /domain:wawa.vn /u:wawa /p:W4w4@CH$ /w:2560 /h:1440 /noclose
       bat "${props.remoteDesktopCmd}"
   }
 }
@@ -108,6 +108,10 @@ def cleanDisk() {
     c:/tools/clean-disk.bat
     exit 0
   """
+}
+
+def getJenkinsMasterDomain() {
+  return env.BUILD_URL.split('/')[2].split(':')[0]
 }
 
 return this
