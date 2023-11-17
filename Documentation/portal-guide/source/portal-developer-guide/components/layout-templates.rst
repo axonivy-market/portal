@@ -3,7 +3,7 @@
 Layout Templates (Deprecated)
 ================
 .. warning:: 
-      Certain components are marked for removal in LTS version 12. 
+      Certain components are marked for removal in version LTS 12. 
       Please take note of these changes and plan your updates accordingly.
 
 .. _components-layout-templates-templates-for-development:
