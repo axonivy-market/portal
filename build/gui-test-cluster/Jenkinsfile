@@ -59,8 +59,8 @@ pipeline {
 
           bat """
             ${masterNodeDir}\\bin\\EngineConfigCli.exe create-db
-            ${masterNodeDir}\\bin\\EngineConfigCli.exe config-cluster 10.123.1.193 8023
-            ${configs['node2']['engineDir']}\\bin\\EngineConfigCli.exe config-cluster 10.123.1.193 8024
+            ${masterNodeDir}\\bin\\EngineConfigCli.exe config-cluster portal02.server.ivy-cloud.com 8023
+            ${configs['node2']['engineDir']}\\bin\\EngineConfigCli.exe config-cluster portal02.server.ivy-cloud.com 8024
           """
 
           utils.startWindowsService("ivy-elasticsearch-8-cluster")

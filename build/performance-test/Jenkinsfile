@@ -28,7 +28,8 @@ pipeline {
           docker.build('build-portal-8-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
             def modules = ['AxonIvyPortal/portal-components','AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress']
             def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/PortalStyle/pom.xml').getProperties().getProperty("build.plugin.version")
-            def engineUrl = 'http://10.123.1.216:9008'
+            def utils = load 'build/common/utils.groovy'
+            def engineUrl = 'http://' + utils.getJenkinsMasterDomain() + ':9008'
             for (module in modules) {
               maven cmd: "clean install -f ${module}/pom.xml"
               maven cmd: "com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.server.id=engine-cockpit -Divy.deploy.engine.app=Portal -Divy.deploy.engine.dir=${ivyDir}/${engineNames[5]} -Divy.test.engine=MODIFY_EXISTING"
