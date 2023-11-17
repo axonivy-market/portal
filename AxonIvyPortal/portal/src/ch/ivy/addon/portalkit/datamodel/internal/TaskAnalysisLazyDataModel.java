@@ -228,7 +228,8 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   protected void buildQueryToSearchCriteria() {
     if (criteria.getCustomTaskQuery() == null) {
       TaskQuery taskQuery = SubProcessCall.withPath(PortalConstants.BUILD_TASK_QUERY_CALLABLE)
-          .withStartSignature("buildTaskQuery(Boolean)").withParam("isQueryForHomePage", compactMode).call()
+          .withStartSignature("buildTaskQuery()")
+          .call()
           .get("taskQuery", TaskQuery.class);
       criteria.setCustomTaskQuery(taskQuery);
     }
