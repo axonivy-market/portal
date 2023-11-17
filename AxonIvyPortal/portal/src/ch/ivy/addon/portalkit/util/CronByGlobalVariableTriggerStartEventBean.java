@@ -18,6 +18,8 @@ import ch.ivyteam.util.IvyRuntimeException;
 
 @Deprecated(since = "11.2")
 public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessStartEventBean {
+
+  private static final String PORTAL_DELETE_ALL_FINISHED_HIDDEN_CASE = "PortalDeleteAllFinishedHiddenCases";
   private static final String VARIABLE = "variable";
   private static String name;
   private static String description;
@@ -33,9 +35,12 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
     try {
       Variable var =
           Variables.of(eventRuntime.getProcessModelVersion().getApplication()).variable(configuration.get(VARIABLE));
-      if (var != null) {
+      Variable deleteAllFinishedHiddenCasesVar = Variables.of(eventRuntime.getProcessModelVersion().getApplication())
+          .variable(PORTAL_DELETE_ALL_FINISHED_HIDDEN_CASE);
+      if (var != null && deleteAllFinishedHiddenCasesVar != null) {
         String pattern = var.value();
-        if (pattern != null && pattern.length() > 0) {
+        Boolean isJobTrigger = Boolean.parseBoolean(deleteAllFinishedHiddenCasesVar.value());
+        if (pattern != null && pattern.length() > 0 && isJobTrigger) {
           eventRuntime.poll().asDefinedByExpression(pattern);
         }
       }
