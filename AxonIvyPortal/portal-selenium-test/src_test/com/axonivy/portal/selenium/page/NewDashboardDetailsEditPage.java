@@ -20,6 +20,11 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   public static final String STATISTIC_WIDGET = "Statistic chart";
   public static final String WELCOME_WIDGET = "Welcome widget";
   public static final String NEWS_WIDGET = "News feed widget";
+  public static final String TASK_BY_PRIORITY = "Tasks by Priority";
+  public static final String TASK_GROUPED_BY_PRIORITY = "Tasks grouped by expiry";
+  public static final String NUMBER_OF_OPEN_TASKS = "Number of OPEN Tasks";
+  public static final String COMPLETED_TASKS_PER_DAY = "Completed Tasks per Day";
+  public static final String STARTED_CASES_PER_DAY = "Started Cases per Day";
 
   @Override
   protected String getLoadedLocator() {
@@ -29,6 +34,11 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   public WebElement addWidget() {
     $("button[id='add-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     return $("div[id$='new-widget-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void collapseStandardWidgets() {
+    $(".ui-fieldset-legend.ui-corner-all.ui-state-default").click();
+    $(".ui-fieldset-content").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public TaskEditWidgetNewDashBoardPage addNewTaskWidget() {
@@ -62,11 +72,18 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   public void addWidgetByName(String name) {
+    $("[id='search-input']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(name);
     $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("div.new-widget-dialog__item").filter(text(name)).first()
         .$("button[id^='new-widget-dialog-content']").shouldBe(getClickableCondition()).click();
   }
 
+  public void addStatisticWidgetByName(String name) {
+    $("[id='search-input']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(name);
+    $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT).$$("div.new-widget-dialog__item").filter(text(name)).first()
+        .$("button[id^='new-statistic-widget-dialog-content']").shouldBe(getClickableCondition()).click();
+    $("[id='new-widget-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
   private void addCustomWidgetByName(String name) {
     $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT).$$("div.new-widget-dialog__item")
         .filter(text(name)).first().$("button[id^='new-custom-widget-dialog-content']")
@@ -198,5 +215,12 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public ElementsCollection countStatisticCharts() {
     return $("div[id='dashboard-body']").$$(".statistic-chart-widget__chart");
+  }
+
+  public SelenideElement getStatisticWidgetConfigurationDialog() {
+    $("[id$=':case-component:dashboard-cases']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement statisticElement = $("div[id^='client-statistic-client_statistic']").shouldBe(appear, DEFAULT_TIMEOUT).scrollTo();
+    $("canvas").shouldBe(appear, DEFAULT_TIMEOUT);
+    return statisticElement;
   }
 }

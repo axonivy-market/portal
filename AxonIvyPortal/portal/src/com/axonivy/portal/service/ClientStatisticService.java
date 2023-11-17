@@ -5,6 +5,7 @@ import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Optional;
 
 import javax.naming.NoPermissionException;
@@ -37,7 +38,7 @@ public class ClientStatisticService extends JsonConfigurationService<ClientStati
     return findAll();
   }
 
-  public ClientStatisticResponse getData(ClientStatisticDto payload) throws NotFoundException, NoPermissionException {
+  public ClientStatisticResponse getStatisticData(ClientStatisticDto payload) throws NotFoundException, NoPermissionException {
     ClientStatistic chart = findById(payload.getChartId());
     if (chart == null) {
       throw new NotFoundException(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/exception/idNotFound",
@@ -46,15 +47,14 @@ public class ClientStatisticService extends JsonConfigurationService<ClientStati
 
     if (!isPermissionValid(chart)) {
       throw new NoPermissionException(
-          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/exception/noPermission"));
+          Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/ClientStatisticWidget/NoPermissionChartMessage"));
     }
-    AggregationResult result = getData(chart);
-    chart.setAdditionalConfig(List.of(new SimpleEntry<>(AdditionalChartConfig.EMPTY_CHART_DATA_MESSAGE.getKey(),
-        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/EmptyChartDataMessage"))));
+    AggregationResult result = getChartData(chart);
+    chart.setAdditionalConfig(getAdditionalConfig());
     return new ClientStatisticResponse(result, chart);
   }
 
-  private AggregationResult getData(ClientStatistic chart) {
+  private AggregationResult getChartData(ClientStatistic chart) {
     if (ChartTarget.CASE.equals(chart.getChartTarget())) {
       return WorkflowStats.current().caze().aggregate(chart.getAggregates(), chart.getFilter());
     } else if (ChartTarget.TASK.equals(chart.getChartTarget())) {
@@ -63,6 +63,11 @@ public class ClientStatisticService extends JsonConfigurationService<ClientStati
       throw new InvalidParameterException();
     }
 
+  }
+
+  private List<Entry<String, String>> getAdditionalConfig() {
+    return List.of(new SimpleEntry<>(AdditionalChartConfig.EMPTY_CHART_DATA_MESSAGE.getKey(),
+        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/EmptyChartDataMessage")));
   }
 
   private boolean isPermissionValid(ClientStatistic data) {
