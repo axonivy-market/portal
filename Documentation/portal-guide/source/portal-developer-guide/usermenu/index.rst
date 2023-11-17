@@ -1,6 +1,6 @@
 .. _customization-user-menu:
 
-User menu
+User Menu
 ================
 
 .. _customization-user-menu-introduction:
