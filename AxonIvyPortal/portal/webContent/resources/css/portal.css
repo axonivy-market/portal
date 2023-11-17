@@ -1730,13 +1730,10 @@ body .notification-checkbox .ui-chkbox-box {
 }
 
 i.dashboard-icon-drag-drop {
-    border: 1px solid var(--ivy-primary-color);
-    color: var(--ivy-primary-color);
-    width: 2.357rem;
-    border-radius: 50%;
+    border-radius: 100%;
     text-align: center;
-    line-height: 2.257rem;
-    vertical-align: unset;
-    cursor: move
-
+    cursor: move;
+    height: 2.28rem;
+    width: 2.28rem;
+    padding: 0.6rem 0;
 }
