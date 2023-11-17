@@ -70,6 +70,7 @@ public class CombinedDashboardProcessBean
       newWidget.setProcessPath(null);
     }
     dashboardProcessBean.updateWidget(newWidget);
+    newWidget.setName(StringUtils.EMPTY);
   }
 
   public void updateProcessStartId() {
