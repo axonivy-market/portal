@@ -1,7 +1,7 @@
 .. _components-layout-templates:
 
 Layout Templates (Deprecated)
-================
+=============================
 .. warning:: 
       Certain components are marked for removal in version LTS 12. 
       Please take note of these changes and plan your updates accordingly.
