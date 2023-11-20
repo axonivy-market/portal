@@ -148,7 +148,7 @@ In case your project has a navigation button that does not complete a task, e.g 
 .. _components-layout-templates-task-template-8:
 
 TaskTemplate-8 (Deprecated)
---------------
+---------------------------
 
 Task Template 8 is a template that uses the default theme of Portal introduced since Portal 8.
 Because there is no TabView, you have to define that if needed.
