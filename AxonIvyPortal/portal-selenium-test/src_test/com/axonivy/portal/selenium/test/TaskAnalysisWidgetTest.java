@@ -74,7 +74,8 @@ public class TaskAnalysisWidgetTest extends BaseTest {
 
     SelenideElement columnContainer = taskAnalysisWidgetPage.findColumnContainer();
     int numberOfCheckboxes = columnContainer.findElements(By.cssSelector(".ui-chkbox-box")).size();
-    List<SelenideElement> unselectedColumnCheckboxes = columnContainer.$$(By.cssSelector(".ui-chkbox-box:not(.ui-state-active)"));
+    List<SelenideElement> unselectedColumnCheckboxes =
+        columnContainer.$$(By.cssSelector(".ui-chkbox-box:not(.ui-state-active)"));
 
     unselectedColumnCheckboxes.forEach(elem -> elem.click());
     taskAnalysisWidgetPage.waitPageLoaded();
@@ -91,14 +92,18 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     taskAnalysisWidgetPage.clickOnColumnToggler();
 
     SelenideElement columnContainer = taskAnalysisWidgetPage.findColumnContainer();
-    List<SelenideElement> selectedColumnCheckboxes = columnContainer.$$(By.cssSelector(".ui-chkbox-box.ui-state-active"));
-    selectedColumnCheckboxes.get(0).shouldBe(Condition.and("should be clickable", visible, exist), DEFAULT_TIMEOUT).click();
-    selectedColumnCheckboxes.get(1).shouldBe(Condition.and("should be clickable", visible, exist), DEFAULT_TIMEOUT).click();
+    List<SelenideElement> selectedColumnCheckboxes =
+        columnContainer.$$(By.cssSelector(".ui-chkbox-box.ui-state-active"));
+    selectedColumnCheckboxes.get(0).shouldBe(Condition.and("should be clickable", visible, exist), DEFAULT_TIMEOUT)
+        .click();
+    selectedColumnCheckboxes.get(1).shouldBe(Condition.and("should be clickable", visible, exist), DEFAULT_TIMEOUT)
+        .click();
 
     taskAnalysisWidgetPage.waitPageLoaded();
 
     int numberOfColumns = taskAnalysisWidgetPage.findElementById("task-widget:statistic-result-form:task-table_head")
-        .$$(By.cssSelector("th[scope='col']:not(.ui-helper-hidden)")).shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0)).size();
+        .$$(By.cssSelector("th[scope='col']:not(.ui-helper-hidden)"))
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0)).size();
 
     assertEquals(numberOfColumns, selectedColumnCheckboxes.size());
   }
@@ -212,8 +217,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     updatePortalSetting(ENABLE_CASE_OWNER_SETTING, "false");
   }
 
-  // @Test
-  // unstable test
+  @Test
   public void testSavePublicFilterSet() {
     String filterSetName = "Filters for annual";
 
@@ -232,8 +236,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     assertTrue(resultCells.get(2).getText().toLowerCase().contains("annual"));
   }
 
-  // @Test
-  // unstable test
+  @Test
   public void testSavePrivateFilterSet() {
     String filterSetName = "Filters for annual";
 
