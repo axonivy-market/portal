@@ -9,7 +9,7 @@ Layout Templates (Deprecated)
 .. _components-layout-templates-templates-for-development:
 
 Templates for Development (Deprecated)
--------------------------
+--------------------------------------
 
 Your Portal project depends on ``portal``, which offers several templates that can be used directly withoutIFrames.
 Additionally, two templates are described to be used with IFrames.
@@ -58,7 +58,7 @@ to :ref:`Settings <settings>`.
 .. _components-layout-templates-basic-template:
 
 Basic Template (Deprecated)
---------------
+---------------------------
 
 The Basic template provides a basic layout so you as a developer can put your
 custom contents. It lacks the Portal menu and Case details. We recommend to use
@@ -215,7 +215,7 @@ business case details of the working task instead. Please refer to the example b
    <ui:param name="caseId" value="123456" />
 
 Task List Template (Deprecated)
-------------------
+-------------------------------
 
 Task list template is used to display a task list so the end user can see tasks
 and their details.
@@ -255,7 +255,7 @@ How to Use Task List Template
 .. _components-layout-templates-case-list-template:
 
 Case List Template (Deprecated)
-------------------
+-------------------------------
 
 The Case list template is used to display a case list with the end user's cases
 and their details.
@@ -320,7 +320,7 @@ How To Handle Required Login In Template
 .. _components-layout-templates-default-homepage-template:
 
 Default Homepage Template (Deprecated)
--------------------------
+--------------------------------------
 
 The Default Homepage template is used to create pages that look like the default
 homepage of the Portal. You can customize it by disabling the default widgets,
@@ -345,7 +345,7 @@ template.
 .. _components-layout-templates-responsiveness:
 
 Responsiveness (Deprecated)
---------------
+---------------------------
 
 Since version 8.0, Portal has a simplified ResponsiveToolKit. Now, the Portal
 supports various screen resolutions, not just the fixed three screen widths as before.
