@@ -10,7 +10,7 @@
   <cc:attribute name="showQuickGlobalSearch" />
 </cc:interface>
 <cc:implementation>
-  <h:panelGroup styleClass="search-input-wrapper 123 #{showQuickGlobalSearch}">
+  <h:panelGroup styleClass="search-input-wrapper">
     <p:inputText id="global-search-data" styleClass="global-search-input" value="#{data.keyword}"
       onkeypress="if (event.keyCode == 13) { portalGlobalSearch(); return false; }"
       placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}">
