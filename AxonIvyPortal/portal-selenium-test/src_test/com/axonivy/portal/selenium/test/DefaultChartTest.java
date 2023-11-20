@@ -72,7 +72,6 @@ public class DefaultChartTest extends BaseTest {
   }
   
   private void grantPermissionToCreateChart() {
-    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
-    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
+    redirectToRelativeLink(grantPortalPermission);
   }
 }
