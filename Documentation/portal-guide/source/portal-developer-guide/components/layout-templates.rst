@@ -291,7 +291,7 @@ How To Use Case List Template
 .. _components-layout-templates-handle-required-login-in-templates:
 
 Handle Required Login In Templates (Deprecated)
-----------------------------------
+-----------------------------------------------
 
 All templates require login to access by default. But templates also allow to
 access the page without login by adding the ``isNotRequiredLogin`` parameter.
