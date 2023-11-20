@@ -25,7 +25,10 @@ Variables:
 
     # For switch on/off the display of global search.
     ShowGlobalSearch: true
-
+    
+    # For switch on/off the display of quick global search.
+    ShowQuickGlobalSearch: false
+    
     # For switch on/off the display icon in button.
     ShowButtonIcon: true
 
