@@ -431,4 +431,9 @@ public class ProcessWidgetPage extends TemplatePage {
     }
     return new ExpressProcessPage();
   }
+  
+  public boolean hasCreateNewExpressWorkflowLink() {
+    return isElementPresent(By.id("process-widget:create-express-workflow"));
+  }
+
 }

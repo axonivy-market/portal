@@ -26,7 +26,7 @@ public class LoginTest extends BaseTest{
   
   @Test
   public void testLogin() {
-    loginPage = new LoginPage(TestAccount.DEMO_USER);
+    loginPage = new LoginPage(TestAccount.ADMIN_USER);
     loginPage.login();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitPageLoaded();
