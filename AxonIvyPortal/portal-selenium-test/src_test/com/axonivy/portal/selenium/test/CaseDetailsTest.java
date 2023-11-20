@@ -272,7 +272,7 @@ public class CaseDetailsTest extends BaseTest {
     assertTrue(detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskBusinessState.DESTROYED));
   }
 
-//  @Test
+  @Test
   // unstable test
   public void testRelatedTaskDelegateTask() {
     createTestingTask();

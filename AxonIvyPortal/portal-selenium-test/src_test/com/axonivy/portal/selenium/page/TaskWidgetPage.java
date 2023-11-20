@@ -12,8 +12,10 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
@@ -608,5 +610,96 @@ public class TaskWidgetPage extends TemplatePage {
     String taskTitle = findElementByCssSelector(taskTitleCssSelection).getText();
     // String taskId = taskTitle.substring(taskTitle.indexOf("#") + 1, taskTitle.indexOf(")"));
     return taskTitle;
+  }
+  
+  public SelenideElement getTaskCategory() {
+    return findElementByCssSelector("span[id$='task-category']");
+  }
+
+  public SelenideElement getCaseCategory() {
+    return findElementByCssSelector("span[id$='case-category']");
+  }
+  
+  public void waitUntilTaskCountDifferentThanZero() {
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((driver) -> getTaskCount().intValue() != 0);
+
+  }
+  
+  public Integer getTaskCount() {
+    String title = getTextOfCurrentBreadcrumb();
+    String count = StringUtils.substringBetween(title, "(", ")");
+    return StringUtils.isNotBlank(count) ? Integer.parseInt(count) : null;
+  }
+  
+  public void isDelegateTypeSelectAvailable() {
+    waitForElementDisplayed($("div[id$=':activator-panel']"), true);
+  }
+
+  public void openTaskDelegateDialog(int index) {
+    sideStepMenuOnActionButton(index);
+    waitForElementClickableThenClick($("a[id$='\\:task-delegate-command']"));
+    waitForElementDisplayed(By.cssSelector("div[id$='task-delegate-dialog']"), true);
+  }
+  
+  public void selectDelegateResponsible(String responsibleName, boolean isRole) {
+    if (isRole) {
+      waitForElementDisplayed(By.cssSelector("[id$=':task-delegate-form:activator-type-select']"), true);
+      waitForElementEnabled(By.cssSelector("[id$=':task-delegate-form:activator-type-select:1']"), true);
+      waitForElementClickableThenClick("[for$=':task-delegate-form:activator-type-select:1']");;
+      waitForElementDisplayed(By.cssSelector("input[id$='group-activator-select_input']"), true);
+      $(By.cssSelector("input[id$='group-activator-select_input']")).sendKeys(responsibleName);
+      waitForElementDisplayed(By.cssSelector("span[id$='group-activator-select_panel']"), true);
+      List<SelenideElement> foundRoles = $$("span[id$='group-activator-select_panel'] .gravatar");
+      waitForElementClickableThenClick(foundRoles.get(0));
+    } else {
+      waitForElementDisplayed(By.cssSelector("input[id$='user-activator-select_input']"), true);
+      $(By.cssSelector("input[id$='user-activator-select_input']")).sendKeys(responsibleName);
+      waitForElementDisplayed(By.cssSelector("span[id$='user-activator-select_panel']"), true);
+      List<SelenideElement> foundUsers =
+          $$("span[id$='user-activator-select_panel'] .name-after-avatar");
+      waitForElementClickableThenClick(foundUsers.get(0));
+    }
+    waitForElementClickableThenClick(By.cssSelector("button[id$='proceed-task-delegate-command']"));
+    waitForElementDisplayed(By.cssSelector("div[id$='task-delegate-dialog']"), false);
+  }
+  
+  public void clickExportToExcelLink() {
+    // Ensure that attribute is removed before downloading
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+    SelenideElement statusDialog = $(By.cssSelector("div[id$=':status-dialog']"));
+    js.executeScript("arguments[0].removeAttribute('download-status')", statusDialog);
+
+    // click download
+    SelenideElement downloadLink = getExportToExcelLink();
+    if (downloadLink != null) {
+      downloadLink.click();
+    }
+  }
+  
+  public SelenideElement getExportToExcelLink() {
+    return findElementByCssSelector("a[id$=':task-export-to-excel']");
+  }
+  
+  public boolean isDownloadCompleted() {
+    WebElement statusDialog = driver.findElement(By.cssSelector("div[id$=':status-dialog']"));
+    WaitHelper.assertTrueWithWait(() -> StringUtils.isNotBlank(statusDialog.getAttribute("download-status")));
+    return StringUtils.equals(statusDialog.getAttribute("download-status"), "completed");
+  }
+
+  public void sortTaskListByColumn(String columnHeaderText, int rowIndex, String columnId, String expectedValue) {
+    WebElement taskListHeader = findElementById(taskWidgetId + ":task-widget-sort-menu");
+    for (WebElement column : taskListHeader.findElements(By.tagName("a"))) {
+      if (columnHeaderText.equals(column.getText())) {
+        column.click();
+        break;
+      }
+    }
+    WaitHelper.assertTrueWithWait(() -> getTaskListCustomCellValue(rowIndex, columnId).equals(expectedValue));
+  }
+  
+  public String getTaskListCustomCellValue(int index, String columnId) {
+    WebElement cell = findElementById(
+        String.format(taskWidgetId + ":task-list-scroller:%d:task-item:%s-component:%s", index, columnId, columnId));
+    return cell.getText();
   }
 }
