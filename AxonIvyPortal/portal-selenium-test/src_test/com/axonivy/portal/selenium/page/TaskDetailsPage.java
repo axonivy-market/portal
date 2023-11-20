@@ -340,4 +340,9 @@ public class TaskDetailsPage extends TemplatePage {
     clickBackButton();
     return new CaseDetailsPage();
   }
+
+  public void clickTaskListBreadCrumb() {
+    waitForElementClickableThenClick(By.cssSelector(".portal-breadcrumb ol li:nth-of-type(2) .ui-menuitem-link"));
+  }
+  
 }

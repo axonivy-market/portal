@@ -19,6 +19,11 @@ public class UserProfilePage extends TemplatePage {
   private static final String CASE_SORT_FIELD_SELECTION = "my-profile-form:case-sort-field-selection";
   public static final String TASK_SORT_DIRECTION_SELECTION_ITEMS = "my-profile-form:task-sort-direction-selection_items";
   private static String NOTI_CHANNELS_CHECKBOX_SELECTOR = "div[id$=':notification-Channels-Table'] div.ui-chkbox-box";
+  private static final String TASK_SORT_FIELD_SELECTION = "my-profile-form:task-sort-field-selection";
+  private static final String TASK_SORT_FIELD_SELECTION_LABEL = "my-profile-form:task-sort-field-selection_label";
+  public static final String TASK_SORT_FIELD_SELECTION_ITEMS = "my-profile-form:task-sort-field-selection_items";
+  private static final String TASK_SORT_DIRECTION_SELECTION = "my-profile-form:task-sort-direction-selection";
+  private static final String TASK_SORT_DIRECTION_SELECTION_LABEL = "my-profile-form:task-sort-direction-selection_label";
 
   @Override
   protected String getLoadedLocator() {
@@ -44,7 +49,6 @@ public class UserProfilePage extends TemplatePage {
     waitForElementClickableThenClick($(By.xpath("//*[@id='" + CASE_SORT_FIELD_SELECTION_ITEMS + "']/li[contains(text(),'" + selectValue + "')]")));
   }
 
-  @SuppressWarnings("deprecation")
   public void selectCaseSortDirection(String selectValue) {
     waitForElementDisplayed(By.id(CASE_SORT_DIRECTION_SELECTION), true);
     waitForElementClickableThenClick($(By.id(CASE_SORT_DIRECTION_SELECTION_LABEL)));
@@ -89,5 +93,20 @@ public class UserProfilePage extends TemplatePage {
       $(inputSwitch).click();
     }
   }
+  
+  public void selectTaskSortField(String selectValue) {
+    waitForElementDisplayed(By.id(TASK_SORT_FIELD_SELECTION), true);
+    waitForElementClickableThenClick(findElementById(TASK_SORT_FIELD_SELECTION_LABEL));
 
+    waitForElementDisplayed(By.id(TASK_SORT_FIELD_SELECTION_ITEMS), true);
+    waitForElementClickableThenClick(By.xpath("//*[@id='" + TASK_SORT_FIELD_SELECTION_ITEMS + "']/li[contains(text(),'" + selectValue + "')]"));
+  }
+
+  public void selectTaskSortDirection(String selectValue) {
+    waitForElementDisplayed(By.id(TASK_SORT_DIRECTION_SELECTION), true);
+    waitForElementClickableThenClick(findElementById(TASK_SORT_DIRECTION_SELECTION_LABEL));
+
+    waitForElementDisplayed(By.id(TASK_SORT_DIRECTION_SELECTION_ITEMS), true);
+    waitForElementClickableThenClick(By.xpath("//*[@id='" + TASK_SORT_DIRECTION_SELECTION_ITEMS + "']/li[contains(text(),'" + selectValue + "')]"));
+  }
 }

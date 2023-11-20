@@ -1,9 +1,10 @@
 package com.axonivy.portal.selenium.test;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,11 +13,15 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TaskState;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.TestRole;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
+import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.UserProfilePage;
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 
 @IvyWebTest
 public class TaskWidgetTest extends BaseTest {
@@ -120,5 +125,127 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.checkTaskState(0, TaskState.DESTROYED.getValue());
 
     redirectToRelativeLink(DENY_DESTROY_TASK_URL);
+  }
+  
+  @Test
+  public void testBreadCrumbInTaskDetail() {
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    taskDetailsPage = taskWidgetPage.openTaskDetails(0);
+    assertEquals("Task: Maternity Leave Request", taskDetailsPage.getTextOfCurrentBreadcrumb());
+
+    taskDetailsPage.clickTaskListBreadCrumb();
+    taskWidgetPage = new TaskWidgetPage();
+    assertEquals(true, taskWidgetPage.isDisplayed());
+
+    taskDetailsPage = taskWidgetPage.openTaskDetails(0);
+    taskDetailsPage.goToHomeFromBreadcrumb();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    assertEquals(true, newDashboardPage.isDisplayed());
+  }
+  
+  @Test
+  public void testDisplayTaskAndCaseCategory() {
+    login(TestAccount.ADMIN_USER);
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    taskWidgetPage.openTaskDetails(0);
+    taskWidgetPage.getTaskCategory().shouldHave(Condition.text("Other Leave/Maternity"));
+    taskWidgetPage.getCaseCategory().shouldHave(Condition.text("Leave Request"));
+  }
+  
+  @Test
+  public void testShowTaskCount() { 
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    taskWidgetPage.waitUntilTaskCountDifferentThanZero();
+    assertEquals(3, taskWidgetPage.getTaskCount().intValue(), "In Task list, Task Count != 3");
+  }
+
+  @Test
+  public void testDisableTaskCount() {
+    updatePortalSetting(DISABLE_TASK_COUNT_SETTING, "true");
+    login(TestAccount.ADMIN_USER);
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    assertEquals(null, taskWidgetPage.getTaskCount(), "In Task list, Task Count is disabled");
+  }
+
+  @Test
+  public void testBreadCrumb() {
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    assertEquals("Tasks (3)", taskWidgetPage.getTextOfCurrentBreadcrumb());
+    taskWidgetPage.goToHomeFromBreadcrumb();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    assertEquals(true, newDashboardPage.isDisplayed());
+  }
+  
+  @Test
+  public void testDelegateTask() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    assertEquals(TestRole.EVERYBODY_ROLE, taskWidgetPage.getResponsibleOfTaskAt(0));
+    taskWidgetPage.openTaskDelegateDialog(0);
+    taskWidgetPage.isDelegateTypeSelectAvailable();
+    taskWidgetPage.selectDelegateResponsible(TestAccount.HR_ROLE_USER.getFullName(), false);
+    assertEquals(TestAccount.HR_ROLE_USER.getFullName(), taskWidgetPage.getResponsibleOfTaskAt(0));
+    
+    taskWidgetPage.openTaskDelegateDialog(0);
+    taskWidgetPage.selectDelegateResponsible(TestRole.HR_ROLE, true);
+    assertEquals(TestRole.HR_ROLE, taskWidgetPage.getResponsibleOfTaskAt(0));
+  }
+  
+  @Test
+  public void testChangeTaskSortingOptions() {
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
+
+    // Change sorting options
+    userProfilePage.selectTaskSortField("Priority");
+    userProfilePage.selectTaskSortDirection("Sort ascending");
+    newDashboardPage = userProfilePage.save();
+
+    // Check result
+    TaskWidgetPage taskWidgetPage = newDashboardPage.openTaskList();
+    assertEquals("high", taskWidgetPage.getPriorityOfTask(0));
+    assertEquals("low", taskWidgetPage.getPriorityOfTask(taskWidgetPage.countTasks().size() - 1));
+
+    // Change sorting options
+    userProfilePage = taskWidgetPage.openMyProfilePage();
+    userProfilePage.selectTaskSortField("Name");
+    userProfilePage.selectTaskSortDirection("Sort descending");
+    newDashboardPage = userProfilePage.save();
+
+    // Check result
+    taskWidgetPage = newDashboardPage.openTaskList();
+    assertEquals("Sick Leave Request", taskWidgetPage.getNameOfTaskAt(0));
+    assertEquals("Annual Leave Request", taskWidgetPage.getNameOfTaskAt(taskWidgetPage.countTasks().size() - 1));
+  }
+
+  @Test
+  public void testExportToExcel() {
+    login(TestAccount.ADMIN_USER);
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    taskWidgetPage.clickExportToExcelLink();
+    assertTrue(taskWidgetPage.isDownloadCompleted());
+  }
+
+  @Test
+  public void testStickySortTaskList() {
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    taskWidgetPage.sortTaskListByColumn("Name / Description", 0, "task-name", "Annual Leave Request");
+    String taskName = taskWidgetPage.getTaskListCustomCellValue(0, "task-name");
+    assertTrue(StringUtils.equalsIgnoreCase("Annual Leave Request", taskName));
+    taskWidgetPage.sortTaskListByColumn("Name / Description", 0, "task-name", "Sick Leave Request");
+    taskWidgetPage.clickOnLogo();
+    new NewDashboardPage();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
+    taskName = taskWidgetPage.getTaskListCustomCellValue(0, "task-name");
+    assertTrue(StringUtils.equalsIgnoreCase("Sick Leave Request", taskName));
+
+    UserProfilePage userProfilePage = taskWidgetPage.openMyProfilePage();
+    userProfilePage.selectTaskSortField("Priority");
+    userProfilePage.selectTaskSortDirection("Sort ascending");
+    NewDashboardPage newDashboardPage = userProfilePage.save();
+
+    taskWidgetPage = newDashboardPage.openTaskList();
+    assertEquals("high", taskWidgetPage.getPriorityOfTask(0));
   }
 }
