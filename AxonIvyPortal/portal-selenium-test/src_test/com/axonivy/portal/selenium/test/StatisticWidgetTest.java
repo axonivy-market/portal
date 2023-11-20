@@ -64,8 +64,7 @@ public class StatisticWidgetTest extends BaseTest {
     mainMenuPage = newDashboardPage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     assertEquals(false, statisticWidgetPage.hasCreateChartsLink());
-    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
-    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
+    redirectToRelativeLink(grantPortalPermission);
   }
 
   @Test
@@ -112,8 +111,7 @@ public class StatisticWidgetTest extends BaseTest {
   }
 
   private void grantPermissionToCreateChart() {
-    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
-    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
+    redirectToRelativeLink(grantPortalPermission);
   }
 
   @Test

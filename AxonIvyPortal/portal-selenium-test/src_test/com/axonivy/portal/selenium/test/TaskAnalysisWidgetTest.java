@@ -49,8 +49,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
   }
 
   private void grantPermissionOfPortal() {
-    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
-    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
+    redirectToRelativeLink(grantPortalPermission);
   }
 
   @Test
