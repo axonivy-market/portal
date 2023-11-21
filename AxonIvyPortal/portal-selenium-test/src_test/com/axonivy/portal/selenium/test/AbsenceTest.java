@@ -40,8 +40,8 @@ public class AbsenceTest extends BaseTest {
   public void whenLoginAsNormalUserThenManageAbsencesOfThatUser() {
     NewDashboardPage newDashboardPage = changeDateFormat();
     AbsencePage absencePage = openAbsencePage(newDashboardPage);
-    createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
     createAbsenceForCurrentUser(TODAY, TODAY, "For party", absencePage);
+    createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
     absencePage.countAbsences(1);
     absencePage.showAbsencesInThePast(true);
     absencePage.countAbsences(2);
@@ -50,12 +50,14 @@ public class AbsenceTest extends BaseTest {
   @Test
   public void whenLoginAsAdminUserThenManageAbsencesOfAllUsers() {
     login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadAbsencesPermission.ivp");
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateAbsencePermission.ivp");
     NewDashboardPage newDashboardPage = changeDateFormat();
     AbsencePage absencePage = openAbsencePage(newDashboardPage);
-    createAbsenceForCurrentUser(TODAY, TODAY, "For party", absencePage);
+    createAbsenceForCurrentUser(TOMORROW, TOMORROW, "For party", absencePage);
     String demoFullName = TestAccount.DEMO_USER.getFullName();
-    createAbsence(demoFullName, YESTERDAY, YESTERDAY, "For travel of another user", absencePage);
     createAbsence(demoFullName, TODAY, TODAY, "For party of another user", absencePage);
+    createAbsence(demoFullName, YESTERDAY, YESTERDAY, "For travel of another user", absencePage);
     absencePage.countAbsences(1);
   }
 
@@ -64,7 +66,6 @@ public class AbsenceTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     LocalDate chosenDay = LocalDate.now();
     LocalDate theNextDayOfChosenDay = chosenDay.plusDays(1);
-//    NewDashboardPage newDashboardPage = changeDateFormat();
     AbsencePage absencePage = openAbsencePage(new NewDashboardPage());
     createAbsenceForCurrentUser(chosenDay, theNextDayOfChosenDay, "Just day off", absencePage);
     absencePage.countAbsences(1);
@@ -156,7 +157,7 @@ public class AbsenceTest extends BaseTest {
   @Test
   public void testReadOwnAbsenceOnly() {
     login(TestAccount.GUEST_USER);
-    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadAbsencesPermission.ivp");
+    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateAbsencePermission.ivp");
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
@@ -224,8 +225,8 @@ public class AbsenceTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
     AbsencePage absencePage = openAbsencePage();
-    createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
     createAbsenceForCurrentUser(TODAY, TODAY, "For other reason", absencePage);
+    createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
     absencePage.countAbsences(1);
 
     login(TestAccount.GUEST_USER);
@@ -244,8 +245,8 @@ public class AbsenceTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
     AbsencePage absencePage = openAbsencePage();
-    createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
     createAbsenceForCurrentUser(TODAY, TODAY, "For other reason", absencePage);
+    createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
     absencePage.countAbsences(1);
 
     login(TestAccount.GUEST_USER);
