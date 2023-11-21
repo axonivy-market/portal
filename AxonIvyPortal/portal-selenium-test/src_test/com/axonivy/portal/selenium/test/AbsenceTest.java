@@ -61,10 +61,11 @@ public class AbsenceTest extends BaseTest {
 
   @Test
   public void displayMessageWhenInputOverlappingAbsence() {
+    login(TestAccount.ADMIN_USER);
     LocalDate chosenDay = LocalDate.now();
     LocalDate theNextDayOfChosenDay = chosenDay.plusDays(1);
-    NewDashboardPage newDashboardPage = changeDateFormat();
-    AbsencePage absencePage = openAbsencePage(newDashboardPage);
+//    NewDashboardPage newDashboardPage = changeDateFormat();
+    AbsencePage absencePage = openAbsencePage(new NewDashboardPage());
     createAbsenceForCurrentUser(chosenDay, theNextDayOfChosenDay, "Just day off", absencePage);
     absencePage.countAbsences(1);
 
