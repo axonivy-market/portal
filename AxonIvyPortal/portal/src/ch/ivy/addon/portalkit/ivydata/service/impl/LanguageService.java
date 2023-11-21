@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;
-import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
 import ch.ivy.addon.portalkit.util.ListUtilities;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.language.LanguageConfigurator;
@@ -30,15 +29,7 @@ public class LanguageService {
     return new LanguageService();
   }
 
-  public IvyLanguageResultDTO findUserLanguages() {
-    return Sudo.get(() -> {
-      IvyLanguageResultDTO result = new IvyLanguageResultDTO();
-      result.setIvyLanguage(getIvyLanguageOfUser());
-      return result;
-    });
-  }
-
-  private IvyLanguage getIvyLanguageOfUser() {
+  public IvyLanguage getIvyLanguageOfUser() {
     IvyLanguage ivyLanguage = new IvyLanguage();
     List<Locale> contentLocales = getContentLocales();
     List<Locale> formatLocales = getFormattingLocales();

@@ -41,7 +41,6 @@ import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
 import ch.ivy.addon.portalkit.exporter.Exporter;
-import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
@@ -56,6 +55,8 @@ import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.project.IIvyProject;
+import ch.ivyteam.ivy.project.IvyProjectNavigationUtil;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -410,8 +411,7 @@ public class DashboardBean implements Serializable {
   }
 
   protected List<String> getSupportedLanguages() {
-    IvyLanguage ivyLanguage = LanguageService.newInstance().findUserLanguages().getIvyLanguage();
-    return ivyLanguage.getSupportedLanguages();
+    return LanguageService.newInstance().getIvyLanguageOfUser().getSupportedLanguages();
   }
 
   public boolean isShowTranslation(DisplayName title) {
@@ -431,6 +431,8 @@ public class DashboardBean implements Serializable {
       displayName.setValue(translatedText);
       translatedText = "";
     }
+    IIvyProject ivyProject = IvyProjectNavigationUtil.getIvyProject(Ivy.request().getProcessModelVersion());
+//    ivyProject.getL
   }
 
   public boolean isRequiredField(DisplayName displayName) {
