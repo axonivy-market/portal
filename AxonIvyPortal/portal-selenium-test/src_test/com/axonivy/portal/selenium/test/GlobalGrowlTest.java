@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
@@ -34,6 +35,13 @@ public class GlobalGrowlTest extends BaseTest{
   private static final String CANCEL_MESSAGE = "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.";
   private static final String CANCEL_MESSAGE_WITH_DETAILS = "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.\nClick here for details.";
 
+  @Override
+  @BeforeEach
+  public void setup() {
+    super.setup();
+    login(TestAccount.ADMIN_USER);
+  }
+  
   // TODO Write test for Growl in IFrame, in version 10 it has the test public void
   // testDisplayCustomGrowlAfterFinishTask()
 
