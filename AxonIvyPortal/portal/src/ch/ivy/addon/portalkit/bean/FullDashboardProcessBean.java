@@ -42,6 +42,7 @@ public class FullDashboardProcessBean implements DashboardProcessBeanHandler<Ful
     FullProcessDashboardWidget newWidget = new FullProcessDashboardWidget(dashboardProcessBean.getWidget());
     newWidget.buildFilterableColumns(DashboardWidgetUtils.initProcessFilterableColumns());
     dashboardProcessBean.updateWidget(newWidget);
+    newWidget.setName(StringUtils.EMPTY);
   }
 
   @Override

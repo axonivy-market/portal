@@ -52,6 +52,7 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
     setDisplayMode(COMPACT_MODE);
     filterableColumns = new ArrayList<>();
     processes = new ArrayList<>();
+    displayProcesses = new ArrayList<DashboardProcess>();
   }
 
   public CompactProcessDashboardWidget() {
