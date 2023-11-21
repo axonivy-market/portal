@@ -503,4 +503,8 @@ public abstract class TemplatePage extends AbstractPage {
   public SelenideElement getGlobalGrowlMessage() {
     return findElementById(PORTAL_GLOBAL_GROWL_ID).find(By.cssSelector(".ui-growl-message"));
   }
+  
+  public void makeSureLoadingIconNotShowUp() {
+    $(By.id("ajax-indicator:ajax-indicator-ajax-indicator_start")).shouldNotBe(Condition.visible, DEFAULT_TIMEOUT);
+  }
 }

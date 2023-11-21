@@ -225,7 +225,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     taskAnalysisWidgetPage.saveFilterSet(filterSetName, false);
 
     statisticWidgetPage = taskAnalysisWidgetPage.navigateToStatisticPage();
-    final TaskAnalysisWidgetPage secondTaskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
+    TaskAnalysisWidgetPage secondTaskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
     secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, false);
     secondTaskAnalysisWidgetPage.waitForTaskDataChangeToSpecificSize(1);
     List<WebElement> resultCells = secondTaskAnalysisWidgetPage.getRowsInTaskTable().get(0)

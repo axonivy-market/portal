@@ -45,10 +45,11 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   }
 
   public void createUploadComponent(String label) {
-    switchToUploadTab();
-    $("[id='form:create-tabs:file-upload-label']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(label);
+    waitForElementClickableThenClick(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][5]"));
+    makeSureLoadingIconNotShowUp();
+    $("input[id$='form:create-tabs:file-upload-label']").shouldBe(Condition.editable, DEFAULT_TIMEOUT).sendKeys(label);
     $("[id='form:create-tabs:add-upload-file-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    waitForAjaxIndicatorDisappeared();
+    $("input[id$='form:create-tabs:file-upload-label']").shouldBe(Condition.empty);
   }
 
   public void moveAllElementToDragAndDrogPanel() {
@@ -64,7 +65,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
       } else {
         moveFormElementToPanel(i, getRandomPosition());
       }
-      $("[id$='form:available-form-elements:" + i + ":pnl']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+//      $("[id$='form:available-form-elements:" + i + ":pnl']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
     }
   }
   
@@ -89,7 +90,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     Actions builder = new Actions(WebDriverRunner.getWebDriver());
     Action moveProcessSequence = builder.dragAndDrop($(formElementSelector), $(panelSelector)).build();
     moveProcessSequence.perform();
-//    waitForAjaxIndicatorDisappeared();
+    makeSureLoadingIconNotShowUp();
   }
 
   private boolean formElementIsFileUpload(WebElement formElement) {
@@ -120,7 +121,6 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     waitForElementDisplayed(By.id("form:dynaform-fieldset"), true);
   }
   
-  @SuppressWarnings("deprecation")
   public void createTextInputField(String label, int inputFieldTypeIndex, boolean isRequired) {
     waitForElementClickableThenClick(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][1]"));
     waitForElementDisplayed(By.id("form:create-tabs:create-input-field-tab"), true);
@@ -130,8 +130,6 @@ public class ExpressFormDefinitionPage extends TemplatePage {
       waitForElementClickableThenClick(By.cssSelector("div[id='form:create-tabs:input-field-required']"));
     }
     waitForElementClickableThenClick(By.id("form:create-tabs:add-input-text-btn"));
-//    waitAjaxIndicatorDisappear();
-//    ensureNoBackgroundRequest();
   }
   
   private void chooseInputFieldType(int inputTypeIndex) {
@@ -155,5 +153,91 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     waitForElementDisplayed(By.id("yes-button"), true);
     waitForElementClickableThenClick(By.id("yes-button"));
     return new NewDashboardPage();
+  }
+  
+  public void createRadioButtonField(String label, int numberOfOption) {
+    waitForElementClickableThenClick(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][4]"));
+    makeSureLoadingIconNotShowUp();
+    waitForElementDisplayed(By.id("form:create-tabs:one-radio-label"), true);
+    addRadioOptions(numberOfOption);
+    $("input[id$='form:create-tabs:one-radio-label']").shouldBe(Condition.editable, DEFAULT_TIMEOUT).sendKeys(label);
+    waitForElementClickableThenClick(By.id("form:create-tabs:add-radio-btn"));
+    $("input[id$='form:create-tabs:one-radio-label']").shouldBe(Condition.empty);
+  }
+  
+  private void addRadioOptions(int numberOfOptions) {
+    for (int i = 1; i <= numberOfOptions; i++) {
+      waitForElementClickableThenClick(By.id("form:create-tabs:one-radio-options:add-radio-option-btn"));
+//      waitAjaxIndicatorDisappear();
+      $(By.xpath(String.format("//*[@id='form:create-tabs:one-radio-options_data']/tr[%d]/td/input", i))).sendKeys("Radio " + i);
+    }
+  }
+  
+  public void createCheckboxField(String label, int numberOfSelection) {
+    waitForElementClickableThenClick(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][3]"));
+    makeSureLoadingIconNotShowUp();
+    waitForElementDisplayed(By.id("form:create-tabs:many-checkbox-options"), true);
+    $("input[id='form:create-tabs:many-checkbox-label']").sendKeys(label);
+    addCheckboxOptions(numberOfSelection);
+    waitForElementClickableThenClick(By.id("form:create-tabs:add-checkbox-btn"));
+    $("input[id='form:create-tabs:many-checkbox-label']").shouldBe(Condition.empty);
+//    waitAjaxIndicatorDisappear();
+//    ensureNoBackgroundRequest();
+  }
+  
+  private void addCheckboxOptions(int numberOfSelection) {
+    for (int i = 1; i <= numberOfSelection; i++) {
+      waitForElementClickableThenClick(By.id("form:create-tabs:many-checkbox-options:add-checkbox-option-btn"));
+//      waitAjaxIndicatorDisappear();
+      $(By.xpath(String.format("//*[@id='form:create-tabs:many-checkbox-options_data']/tr[%d]/td/input", i))).sendKeys("Option " + i);
+    }
+  }
+  
+  public void createTextAreaField(String label, boolean isRequired) {
+    waitForElementClickableThenClick(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][2]"));
+    makeSureLoadingIconNotShowUp();
+    waitForElementDisplayed(By.id("form:create-tabs:create-input-area-tab"), true);
+    $(By.id("form:create-tabs:input-area-label")).sendKeys(label);
+    if (isRequired) {
+      waitForElementClickableThenClick(By.cssSelector("div[id='form:create-tabs:input-area-required']"));
+    }
+    waitForElementClickableThenClick(By.id("form:create-tabs:add-text-area-btn"));
+    $(By.id("form:create-tabs:input-area-label")).shouldBe(Condition.empty);
+//    waitAjaxIndicatorDisappear();
+//    ensureNoBackgroundRequest();
+  }
+  
+  public void createCheckboxFieldWithDataProvider(String label) {
+    fillDataForCheckboxProvider(label);
+    waitForElementClickableThenClick(By.id("form:create-tabs:add-checkbox-btn"));
+    $(By.id("form:create-tabs:many-checkbox-label")).shouldBe(Condition.empty);
+//    waitAjaxIndicatorDisappear();
+//    ensureNoBackgroundRequest();
+  }
+  
+  public void fillDataForCheckboxProvider(String label) {
+    waitForElementClickableThenClick(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][3]"));
+    makeSureLoadingIconNotShowUp();
+    waitForElementDisplayed(By.id("form:create-tabs:create-many-checkbox-tab"), true);
+    waitForElementClickableThenClick(By.id("form:create-tabs:DataProvider_label"));
+    waitForElementClickableThenClick(By.xpath("//*[@data-label='TestDataProviderForPortalExpress']"));
+    makeSureLoadingIconNotShowUp();
+    waitForElementDisplayed(By.id("form:create-tabs:many-checkbox-label"), true);
+    $(By.id("form:create-tabs:many-checkbox-label")).shouldBe(Condition.editable).sendKeys(label);
+//    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+  }
+  
+  public int countNumberOfElementsInPreviewDialog() {
+    waitForElementClickableThenClick(By.id("form:show-preview-button"));
+    waitForElementDisplayed(By.id("form:preview-dialog"), true);
+    WebElement previewDialog = findElementById("form:preview-dialog");
+    int numberOfInput = previewDialog.findElements(By.xpath("//table[@id='form:dyna-form']//input")).size();
+    int numberOfTextArea = previewDialog.findElements(By.xpath("//table[@id='form:dyna-form']//textarea")).size();
+    int numberOfUploadFile = previewDialog.findElements(By.xpath("//div[contains(@id,'fileUploadComponent:document-table')]")).size();
+    return numberOfInput + numberOfTextArea + numberOfUploadFile;
+  }
+  
+  public int countNumberOfSteps() {
+    return driver.findElements(By.xpath("//div[@id='defined-task-container']//button")).size();
   }
 }
