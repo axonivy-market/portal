@@ -10,7 +10,6 @@ import com.axonivy.portal.components.dto.UserDTO;
 
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
-import ch.ivy.addon.portalkit.ivydata.dto.IvySubstituteResultDTO;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
@@ -29,23 +28,19 @@ public class SubstituteService{
     return new SubstituteService();
   }
   
-  public IvySubstituteResultDTO findSubstitutes(String username) {
+  public List<IvySubstitute> findSubstitutes(String username) {
     return findSubstituteSubstitutionOfUser(username, true);
   }
   
-  public IvySubstituteResultDTO findSubstitutions(String username) {
+  public List<IvySubstitute> findSubstitutions(String username) {
     return findSubstituteSubstitutionOfUser(username, false);
   }
   
-  private IvySubstituteResultDTO findSubstituteSubstitutionOfUser(String username, boolean isFindSubstitute) {
+  private List<IvySubstitute> findSubstituteSubstitutionOfUser(String username, boolean isFindSubstitute) {
     return Sudo.get(() -> { 
-      IvySubstituteResultDTO result = new IvySubstituteResultDTO();
-
       IUser user = UserUtils.findUserByUsername(username);
       List<IvySubstitute> ivySubstitutions = isFindSubstitute? getIvySubstitutes(user) : getIvySubstitutions(user);
-      
-      result.setIvySubstitutes(ivySubstitutions);
-      return result;
+      return ivySubstitutions;
     });
   }
   

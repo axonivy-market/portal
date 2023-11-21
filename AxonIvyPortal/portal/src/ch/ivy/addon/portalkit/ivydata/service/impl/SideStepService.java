@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvySideStep;
-import ch.ivy.addon.portalkit.ivydata.dto.IvySideStepResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.SideStepSearchCriteria;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
@@ -25,9 +24,8 @@ public class SideStepService {
     return new SideStepService();
   }
 
-  public IvySideStepResultDTO findSideStepsByCriteria(SideStepSearchCriteria criteria) {
+  public List<IvySideStep> findSideStepsByCriteria(SideStepSearchCriteria criteria) {
     return Sudo.get(() -> { 
-      IvySideStepResultDTO result = new IvySideStepResultDTO();
       ICase iCase = findCase(criteria.getCaseId());
       if (iCase == null) {
         return null;
@@ -44,8 +42,7 @@ public class SideStepService {
       }
       
       ivySideSteps.sort((s1, s2) -> StringUtils.compareIgnoreCase(s1.getName(), s2.getName()));
-      result.setSideSteps(ivySideSteps);
-      return result;
+      return ivySideSteps;
     });
   }
 

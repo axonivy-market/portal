@@ -55,8 +55,6 @@ import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.project.IIvyProject;
-import ch.ivyteam.ivy.project.IvyProjectNavigationUtil;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -431,8 +429,6 @@ public class DashboardBean implements Serializable {
       displayName.setValue(translatedText);
       translatedText = "";
     }
-    IIvyProject ivyProject = IvyProjectNavigationUtil.getIvyProject(Ivy.request().getProcessModelVersion());
-//    ivyProject.getL
   }
 
   public boolean isRequiredField(DisplayName displayName) {
