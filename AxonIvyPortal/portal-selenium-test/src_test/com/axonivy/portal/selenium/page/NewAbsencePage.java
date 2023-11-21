@@ -31,19 +31,17 @@ public class NewAbsencePage extends TemplatePage {
   }
 
   public void input(String fullName, LocalDate absenceFrom, LocalDate absenceTill, String comment) {
+    inputDate(absenceFrom, "input[id*='absence-start-date']");
+    inputDate(absenceTill, "input[id*='absence-end-date']");
+    $("textarea[id*='comment']").sendKeys(comment);
+    $(By.id("absence-dialog_title")).click();
     if (StringUtils.isNotEmpty(fullName)) {
-      String usernameSelector = "input[id*='absence-username']";
-      $(usernameSelector).shouldBe(appear, DEFAULT_TIMEOUT);
-      WebElement usernameInput = $(usernameSelector);
+      WebElement usernameInput = $("input[id*='absence-username']").shouldBe(appear, DEFAULT_TIMEOUT);
       usernameInput.clear();
       usernameInput.sendKeys(fullName);
       String itemSelector = "tr[data-item-label*='" + fullName  + "'].ui-state-highlight";
       $(itemSelector).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     }
-    inputDate(absenceFrom, "input[id*='absence-start-date']");
-    inputDate(absenceTill, "input[id*='absence-end-date']");
-    WebElement commentInput = $("textarea[id*='comment']");
-    commentInput.sendKeys(comment);
   }
 
   private void inputDate(LocalDate absenceFrom, String inputCssSelector) {
