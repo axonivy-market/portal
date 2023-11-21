@@ -3,7 +3,6 @@ package ch.ivy.addon.portalkit.util;
 import static ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix.CMS;
 import static ch.ivy.addon.portalkit.constant.DashboardConstants.MAX_NOTI_FILTERS;
 import static ch.ivy.addon.portalkit.constant.DashboardConstants.MAX_NOTI_PATTERN;
-import static ch.ivy.addon.portalkit.constant.DashboardConstants.NEW_WIDGET_STYLE_CLASS;
 import static ch.ivy.addon.portalkit.constant.DashboardConstants.WIDGET_ID_PATTERN;
 import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.NUMBER;
 import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.STRING;
@@ -314,10 +313,7 @@ public class DashboardWidgetUtils {
   }
 
   public static void removeStyleNewWidget(DashboardWidget widget) {
-    if (StringUtils.contains(widget.getLayout().getStyleClass(), NEW_WIDGET_STYLE_CLASS)) {
-      var styleClass = widget.getLayout().getStyleClass();
-      widget.getLayout().setStyleClass(styleClass.replace(NEW_WIDGET_STYLE_CLASS, ""));
-    }
+    widget.getLayout().setNewWidget(false);
   }
 
   public static List<WidgetLayout> getWidgetLayoutFromRequest(Map<String, String> requestParamMap) {
