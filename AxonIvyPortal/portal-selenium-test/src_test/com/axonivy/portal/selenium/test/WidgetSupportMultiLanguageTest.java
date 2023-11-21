@@ -53,7 +53,7 @@ public class WidgetSupportMultiLanguageTest extends BaseTest {
     String updatedTitle = "German Your New Cases";
     newCaseWidget.changeWidgetTitle(widgetTitle);
     var addLanguageButton = newCaseWidget.getAddLanguageButton();
-    addLanguageButton.click();
+    addLanguageButton.shouldBe(Condition.visible, DEFAULT_TIMEOUT).click();
     var multipleLanguageDialog = newCaseWidget.getMultipleLanguageDialog();
     multipleLanguageDialog.getText();
     var elementsInput = multipleLanguageDialog.$$("td input");
@@ -65,9 +65,9 @@ public class WidgetSupportMultiLanguageTest extends BaseTest {
     elementsInput.get(2).setValue(updatedTitle);
     elementsInput.get(1).click();
     SelenideElement translation = newCaseWidget.getTranslationOverlayPanel(1);
-    translation.$("span.ui-icon-closethick").click();
+    translation.shouldBe(Condition.visible, DEFAULT_TIMEOUT).$("span.ui-icon-closethick").click();
 
-    multipleLanguageDialog.$("button[type='submit']").click();
+    multipleLanguageDialog.$("button[type='submit']").shouldBe(Condition.visible, DEFAULT_TIMEOUT).click();
     multipleLanguageDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
 
     newCaseWidget.save();
