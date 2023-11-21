@@ -1,4 +1,4 @@
-package com.axonivy.portal.selenium.test.userexample.text;
+package com.axonivy.portal.selenium.test.userexample.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
