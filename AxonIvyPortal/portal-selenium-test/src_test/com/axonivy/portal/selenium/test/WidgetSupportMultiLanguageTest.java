@@ -158,6 +158,7 @@ public class WidgetSupportMultiLanguageTest extends BaseTest {
     configurationPage.backToHomePage();
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openUserSettingMenu();
+    mainMenuPage.waitCaseContainerAppear();
     UserMenuPage userMenuPage = new UserMenuPage();
     userMenuPage.accessMenu("My profile");
     UserProfilePage userProfilePage = new UserProfilePage();
