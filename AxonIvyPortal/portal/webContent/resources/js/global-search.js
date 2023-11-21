@@ -11,15 +11,15 @@ const CASE_TAB_INDEX = '2';
 
 $(document).ready(function () {
     $(eleSearchId).val('');
-    $(".process-tab-title").click(() => {
+    $(".search-bar.process-tab-title").click(() => {
         focusSearchBox();
         searchProcess($(eleSearchId).val());
     });
-    $(".task-tab-title").click(() => {
+    $(".search-bar.task-tab-title").click(() => {
         focusSearchBox();
         searchTask($(eleSearchId).val());
     });
-    $(".case-tab-title").click(() => {
+    $(".search-bar.case-tab-title").click(() => {
         focusSearchBox();
         searchCase($(eleSearchId).val());
     });
@@ -47,7 +47,6 @@ function focusSearchBox() {
     $(eleSearchId).focus();
 }
 
-// search process
 const searchHandler = async (event) => {
     let keyword = event.target.value;
     search(keyword);

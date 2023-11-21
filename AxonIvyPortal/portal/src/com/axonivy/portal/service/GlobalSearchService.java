@@ -10,6 +10,7 @@ import com.axonivy.portal.response.CaseData;
 import com.axonivy.portal.response.ProcessData;
 import com.axonivy.portal.response.TaskData;
 
+import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
@@ -33,6 +34,9 @@ public class GlobalSearchService {
   public List<TaskData> searchTasks(SearchPayload payload) {
     TaskSearchCriteria query = new TaskSearchCriteria();
     query.setKeyword(payload.getQuery());
+    query.setSortField(TaskSortField.EXPIRY_TIME.toString());
+    query.setSortDescending(true);
+    query.setQuickGlobalSearch(true);
     IvyTaskResultDTO iTasks = TaskService.newInstance().findTasksByCriteria(query, 0, PAGE_SIZE);
     return iTasks.getTasks().stream().map(TaskData::new).toList();
   }
