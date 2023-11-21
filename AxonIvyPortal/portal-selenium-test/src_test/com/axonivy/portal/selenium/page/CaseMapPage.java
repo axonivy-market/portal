@@ -97,11 +97,12 @@ public class CaseMapPage extends TemplatePage{
     $(By.id(id)).sendKeys(value);
   }
   
-  public void clickSubmitButton() {
+  public TaskWidgetPage clickSubmitButton() {
     $("button[id$='form:submit-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     switchBackToParent();
 //    return new NewDashboardPage();
 //    $("button[id$='form:submit-button']").shouldBe(getClickableCondition()).click();
+    return new TaskWidgetPage();
   }
 
   public TaskWidgetPage clickApproveButton() {
