@@ -45,12 +45,14 @@
           "code" : [
             "import ch.ivyteam.ivy.project.IvyProjectNavigationUtil;",
             "import ch.ivyteam.ivy.project.IIvyProject;",
-            "import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;",
+            "import ch.ivyteam.ivy.library.IProjectLibraryConfigurationManager;",
+            "import ch.ivyteam.ivy.library.ILibraryConfiguration;",
             "",
             "IIvyProject ivyProject = IvyProjectNavigationUtil.getIvyProject(ivy.request.getProcessModelVersion());",
+            "ILibraryConfiguration lib = IProjectLibraryConfigurationManager.of(ivyProject.getProject()).getLibrary();",
             "",
-            "if (ivyProject.getLibrary() != null && ivyProject.getLibrary().getId() != null){",
-            "  in.groupId = ivyProject.getLibrary().getId().groupId();",
+            "if (lib != null && lib.getId() != null){",
+            "  in.groupId = lib.getId().groupId();",
             "}"
           ]
         },

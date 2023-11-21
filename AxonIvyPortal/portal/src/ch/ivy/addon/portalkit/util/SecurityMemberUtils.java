@@ -57,12 +57,14 @@ public class SecurityMemberUtils {
   }
 
   public static ISecurityMember findISecurityMemberFromUserDTO(UserDTO userDTO) {
-    return UserUtils.findUserByUserId(userDTO.getId());
+    return Sudo.get(() -> {
+      return ISecurityContext.current().users().findById(userDTO.getSecurityMemberId());
+    });
   }
 
   public static ISecurityMember findISecurityMemberFromRoleDTO(RoleDTO roleDTO) {
     return Sudo.get(() -> {
-      return ISecurityContext.current().findRole(roleDTO.getId());
+      return ISecurityContext.current().roles().findById(roleDTO.getSecurityMemberId());
     });
   }
 
