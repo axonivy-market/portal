@@ -1,11 +1,10 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
-import ch.ivy.addon.portalkit.ivydata.service.IPasswordService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.security.exec.Sudo;
 
-public class PasswordService implements IPasswordService {
+public class PasswordService{
 
   private PasswordService() {}
 
@@ -13,7 +12,6 @@ public class PasswordService implements IPasswordService {
     return new PasswordService();
   }
 
-  @Override
   public boolean changePassword(String newPassword) {
     return Sudo.get(() -> {
       try {
