@@ -49,6 +49,10 @@ public class MainMenuPage extends TemplatePage {
     $("a[id='user-settings-menu']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
   }
 
+  public void waitCaseContainerAppear() {
+    $(".dashboard-cases-container").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
   public void waitLeftMenuReady() {
     WaitHelper.waitNumberOfElementsToBe(WebDriverRunner.getWebDriver(), By.cssSelector("[id$=':main-navigator:main-menu']"), 1);
     $("[id$=':main-navigator:main-menu']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).shouldBe(appear, DEFAULT_TIMEOUT);
