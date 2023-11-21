@@ -46,6 +46,7 @@ public class ExpressTest extends BaseTest{
     goToExpressCreationPage();
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
+    expressProcessPage.makeSureLoadingIconNotShowUp();
     ExpressFormDefinitionPage formDefinition = configureExpressProcessWhenMultiApproval(expressProcessPage);
     formDefinition.executeWorkflow();
     executeExpressProcessWhenMultiApproval();
@@ -90,6 +91,7 @@ public class ExpressTest extends BaseTest{
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.finish();
     login(TestAccount.ADMIN_USER);
+    newDashboardPage.waitPageLoaded();
     executeUserTask();
     login(TestAccount.DEMO_USER);
     executeApproval("Approved at first level", TestAccount.DEMO_USER.getFullName());
@@ -118,7 +120,7 @@ public class ExpressTest extends BaseTest{
   }
   
   private void executeUserTask() {
-    taskWidgetPage = NavigationHelper.navigateToTaskList();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterByResponsible(TestAccount.ADMIN_USER.getFullName());
     taskWidgetPage.startTask(0);
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
