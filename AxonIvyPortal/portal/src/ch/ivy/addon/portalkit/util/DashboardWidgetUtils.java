@@ -630,6 +630,7 @@ public class DashboardWidgetUtils {
           .filter(processStart -> processStart.getLink().getRelative().equals(process.getStartLink())).findFirst()
           .ifPresent(optional -> {
             process.setProcessStartId(optional.getId());
+            process.setProcessElementId(optional.getProcessElementId());
           });
     }
   }

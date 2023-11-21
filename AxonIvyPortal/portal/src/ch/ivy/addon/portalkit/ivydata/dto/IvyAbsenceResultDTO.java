@@ -5,7 +5,7 @@ import java.util.Set;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 
-public class IvyAbsenceResultDTO extends AbstractResultDTO {
+public class IvyAbsenceResultDTO{
 
   private Map<String, Set<IvyAbsence>> ivyAbsencesByUser;
 

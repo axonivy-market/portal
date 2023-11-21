@@ -48,10 +48,6 @@ Dialogs:
               EMAIL: Courriel electronique
               INFORMATION: nformation
               OTHERS: Autres
-            PortalIvyDataErrorType:
-              APP_NOT_FOUND: Application non trouvée
-              FAIL_TO_COUNT_CASE: Impossible de compter le cas
-              FAIL_TO_LOAD_CASE: Impossible de charger le cas
           ProcessChain:
             currentStepIsNotDefined: L'étape actuelle ({0}) de la chaîne de processus n'est pas définie
           ProcessHistory:

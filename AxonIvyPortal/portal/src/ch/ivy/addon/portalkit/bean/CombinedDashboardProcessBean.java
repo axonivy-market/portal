@@ -84,6 +84,7 @@ public class CombinedDashboardProcessBean
       IProcessStart processStart = startableProcessStarts.stream()
           .filter(process -> process.getLink().getRelative().equals(startLink)).findFirst().get();
       getWidget().getProcess().setProcessStartId(processStart.getId());
+      getWidget().getProcess().setProcessElementId(processStart.getProcessElementId());
     }
   }
 
