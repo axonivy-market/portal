@@ -15,7 +15,7 @@ import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class CaseMapTest extends BaseTest {
 
   private static final String CREATE_CONTRACT = "Create Contract";
