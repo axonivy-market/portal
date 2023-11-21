@@ -12,7 +12,7 @@ public class UrlHelpers {
     //because we renamed PortalExamples project to portal-developer-examples, so no need to capitalize first character of this project
     //we combined PortalStyle, PortalKit and PortalTemplate to portal, so no need to capitalize first character of this project
     if (!relativeProcessStartLink.contains("portal/") && !relativeProcessStartLink.contains("portal-developer-examples")
-        && !relativeProcessStartLink.contains("portal-user-examples") && !relativeProcessStartLink.contains("portal-components-examples")) {
+        && !relativeProcessStartLink.contains("portal-user-examples") && !relativeProcessStartLink.contains("portal-components-examples") && !relativeProcessStartLink.contains("axonivy-express")) {
       relativeProcessStartLink = WordUtils.capitalize(relativeProcessStartLink);
     }
     if (relativeProcessStartLink.endsWith(".icm")) {

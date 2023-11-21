@@ -187,7 +187,7 @@ public class CaseService implements ICaseService {
     if (recordSet != null) {
       recordSet.getRecords().forEach(record -> {
         int state = Integer.parseInt(record.getField("BUSINESSSTATE").toString());
-        long numberOfCases = Long.parseLong(record.getField("COUNT").toString());
+        long numberOfCases = ((BigDecimal)(record.getField("COUNT"))).longValue();
         if (state == CaseBusinessState.DONE.intValue()) {
           caseStateStatistic.setDone(numberOfCases);
         } else if (state == CaseBusinessState.DESTROYED.intValue()) {
