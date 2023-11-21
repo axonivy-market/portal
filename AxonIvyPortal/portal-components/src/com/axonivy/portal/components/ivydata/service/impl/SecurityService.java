@@ -10,7 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.ivydata.dto.IvySecurityResultDTO;
-import com.axonivy.portal.components.ivydata.service.ISecurityService;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
@@ -20,7 +19,7 @@ import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.security.query.UserQuery;
 import ch.ivyteam.ivy.security.query.UserQuery.IFilterQuery;
 
-public class SecurityService implements ISecurityService {
+public class SecurityService{
 
   private SecurityService() {}
 
@@ -28,7 +27,6 @@ public class SecurityService implements ISecurityService {
     return new SecurityService();
   }
 
-  @Override
   public IvySecurityResultDTO findUsers(String query, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
     return Sudo.get(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
