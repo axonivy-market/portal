@@ -124,8 +124,8 @@ public class TaskDetailsPage extends TemplatePage {
   }
   
   public String getTaskNameInDialog() {
-    waitForElementDisplayed(By.cssSelector("span.ui-state-disabled span.ui-menuitem-text"), true);
-    return findElementByCssSelector("span.ui-state-disabled span.ui-menuitem-text").getText();
+    waitForElementDisplayed(By.cssSelector("span[id='task-detail-template:task-detail-title-form:task-name-edit-form']"), true);
+    return findElementByCssSelector("span[id='task-detail-template:task-detail-title-form:task-name-edit-form']").getText();
   }
   
   public CaseDetailsPage backToCaseDetails() {
