@@ -1,6 +1,6 @@
 pipeline {
   agent {label 'loc-pc'}
-
+  
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '60'))
   }
@@ -34,20 +34,24 @@ pipeline {
           utils.stopAllEngines()
           utils.extractEngine(env.engineDir, params.engineDownloadURL)
 
+          utils.downloadExpress()
+          def expressFile = findFiles(glob: 'archive/**/axonivy-express*.iar')[0].path
+
           echo '====================Build Portal modules===================='
-          def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples', 'AxonIvyPortal/PortalApp', 'Showcase/portal-demo-app']
+          def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples', 'AxonIvyPortal/PortalApp', 'Showcase/portal-demo-app']
           for (module in modules) {
             bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=%engineDir%"
           }
 
           echo '====================Deploy Portal modules===================='
-          powershell '''
-            $DEPLOYMENT= $env:engineDir + "/system/demo-applications/demo-portal"
-            rmdir $DEPLOYMENT/* -recurse
-            Copy-Item Showcase/portal-demo-app/target/*zip -Destination $DEPLOYMENT
-            Copy-Item Showcase/portal-developer-examples/target/*iar -Destination $DEPLOYMENT
-            Copy-Item Showcase/portal-components-examples/target/*iar -Destination $DEPLOYMENT
-          '''
+          powershell """
+            \$DEPLOYMENT= \$env:engineDir + "/system/demo-applications/demo-portal"
+            rmdir \$DEPLOYMENT/* -recurse
+            Copy-Item Showcase/portal-demo-app/target/*zip -Destination \$DEPLOYMENT
+            Copy-Item Showcase/portal-developer-examples/target/*iar -Destination \$DEPLOYMENT
+            Copy-Item Showcase/portal-components-examples/target/*iar -Destination \$DEPLOYMENT
+            Copy-Item ${expressFile} -Destination \$DEPLOYMENT
+          """
           utils.killUnnecessaryProcessesToRunTest()
 
           echo '====================Execute maven for testing===================='
