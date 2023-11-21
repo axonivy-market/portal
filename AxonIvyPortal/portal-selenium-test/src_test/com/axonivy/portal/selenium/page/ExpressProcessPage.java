@@ -9,6 +9,8 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import com.codeborne.selenide.Condition;
+
 import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
 
 public class ExpressProcessPage extends TemplatePage {
@@ -84,6 +86,7 @@ public class ExpressProcessPage extends TemplatePage {
       String processDescription) {
     if (isAdhocWF) {
       $("div[id='form:process-type']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+      $("span[id='form:process-type-group']").$(".switch-active").shouldBe(Condition.text("One time"));
     }
 
     if (!isCreateOwn) {
@@ -119,9 +122,9 @@ public class ExpressProcessPage extends TemplatePage {
     final String TASK_TYPE_FORMAT = "li[id$=':%d:task-type_%d']";
     final String TASK_TYPE_LABEL_FORMAT = "label[id$=':%d:task-type_label']";
 
-    $(String.format(TASK_TYPE_LABEL_FORMAT, taskIndex)).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(String.format(TASK_TYPE_LABEL_FORMAT, taskIndex)).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $(String.format("[id$=':%d:task-type_panel']", taskIndex)).shouldBe(appear, DEFAULT_TIMEOUT);
-    $(String.format(TASK_TYPE_FORMAT, taskIndex, typeIndex)).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(String.format(TASK_TYPE_FORMAT, taskIndex, typeIndex)).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void waitUntilExpressProcessDisplay() {
