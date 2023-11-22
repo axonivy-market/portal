@@ -244,9 +244,9 @@
   position: absolute;
   top: 15px;
   content: "";
-  width: 79px;
+  width: 90px;
   left: 50%;
-  transform: translate(38%, 0);
+  transform: translate(22.5px, 0);
 }
 
 _:-ms-fullscreen, :root .circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
@@ -308,7 +308,7 @@ _:-ms-fullscreen, :root .circle-horizontal-process-step:not(:last-child) .circle
   height: 50px;
   top: 40px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, 2.5px);
 }
 
 _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(:last-child) .circle-vertical-step-container .step-number-container:after {
