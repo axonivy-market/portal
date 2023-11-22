@@ -45,6 +45,7 @@ public class ExternalLinkBean implements Serializable {
   public ExternalLink saveNewExternalLink() {
     IUser sessionUser = Ivy.session().getSessionUser();
     externalLink.setCreatorId(sessionUser.getId());
+    externalLink.setSecurityMemberId(sessionUser.getSecurityMemberId());
     String processLink = correctLink(externalLink.getLink());
     externalLink.setLink(processLink);
 
