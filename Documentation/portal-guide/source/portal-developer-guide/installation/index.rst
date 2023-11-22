@@ -143,6 +143,13 @@ In Engine
 
 #. Follow detailed migration notes for each version below.
 
+Migrate to 11.1.0 to 11.2.0
+---------------------------
+
+- If you override ``PortalStartTimeCleanObsoletedDataExpression`` variable, please update it to new Ivy CRON job pattern.
+- Refer to Axon Ivy CRON job pattern: `CRON Expression <https://developer.axonivy.com/doc/|version|/engine-guide/configuration/advanced-configuration.html#cron-expression>`_.
+- Example: Change ``0 0 1 * * ?`` to ``0 1 * * *`` for job trigger 01:00 AM everyday.
+
 Migrate 10.0.12 To 10.0.13
 --------------------------
 
