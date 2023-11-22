@@ -289,7 +289,7 @@ Variables:
 
   # @Deprecated(Since 11.2)
   # Cron expression define the time to clean up data of obsoleted users.
-  # Please refer to Axon Ivy CRON job pattern: https://developer.axonivy.com/doc/|version|/engine-guide/configuration/advanced-configuration.html
+  # Please refer to Axon Ivy CRON job pattern documentation.
   PortalStartTimeCleanObsoletedDataExpression: '0 6 * * *'
 
   # The delay time of search function at top menu

@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.util;
 
+import java.util.Optional;
+
 import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
 import ch.ivyteam.ivy.process.eventstart.IProcessStartEventBeanRuntime;
 import ch.ivyteam.ivy.process.eventstart.beans.TimerBean;
@@ -37,9 +39,9 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
           Variables.of(eventRuntime.getProcessModelVersion().getApplication()).variable(configuration.get(VARIABLE));
       Variable deleteAllFinishedHiddenCasesVar = Variables.of(eventRuntime.getProcessModelVersion().getApplication())
           .variable(PORTAL_DELETE_ALL_FINISHED_HIDDEN_CASE);
-      if (var != null && deleteAllFinishedHiddenCasesVar != null) {
+      if (var != null) {
         String pattern = var.value();
-        Boolean isJobTrigger = Boolean.parseBoolean(deleteAllFinishedHiddenCasesVar.value());
+        Boolean isJobTrigger = Optional.of(Boolean.parseBoolean(deleteAllFinishedHiddenCasesVar.value())).orElse(false);
         if (pattern != null && pattern.length() > 0 && isJobTrigger) {
           eventRuntime.poll().asDefinedByExpression(pattern);
         }
