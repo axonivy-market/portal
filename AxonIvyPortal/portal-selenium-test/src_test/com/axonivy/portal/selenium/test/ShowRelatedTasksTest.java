@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -20,10 +21,10 @@ import com.axonivy.portal.selenium.page.TaskDetailsPage;
 
 @IvyWebTest
 public class ShowRelatedTasksTest extends BaseTest {
-  
+
   private CaseDetailsPage detailsPage;
   private NewDashboardPage newDashboardPage;
-  NoteHistoryPage caseHistoryPage;
+
 
   @Override
   @BeforeEach
@@ -34,14 +35,14 @@ public class ShowRelatedTasksTest extends BaseTest {
     login(TestAccount.TEST_RELATED_TASKS_USER);
     denyReadAllPermissionFromCurrentUser();
   }
-  
+
   private void openCaseDetail() {
     newDashboardPage = new NewDashboardPage();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
   }
-  
+
   @Test
   public void testRelatedTasksWithTaskReadAllPermission() {
     grantTaskReadAllPermissionsToCurrentUser();
@@ -50,7 +51,7 @@ public class ShowRelatedTasksTest extends BaseTest {
     assertTrue(numberOfTasks == 4);
     assertTrue(detailsPage.hasDoneTask());
   }
-  
+
   @Test
   public void testRelatedTasksWithTaskReadOwnCaseTasksPermission() {
     grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
@@ -59,7 +60,7 @@ public class ShowRelatedTasksTest extends BaseTest {
     assertTrue(numberOfTasks == 4);
     assertTrue(detailsPage.hasDoneTask());
   }
-  
+
   @Test
   public void testRelatedTasksWithNoPermission() {
     denyReadAllPermissionFromCurrentUser();
@@ -80,4 +81,19 @@ public class ShowRelatedTasksTest extends BaseTest {
     WaitHelper.assertTrueWithWait(() -> "Task Details".equals(taskDetailsPage.getPageTitle()));
   }
 
+  @Test
+  public void testRelatedTasksWhenClickingDoneTask() {
+    grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
+    openCaseDetail();
+    detailsPage.addNote("test");
+    String doneTaskName = detailsPage.openDoneTask(0);
+    WaitHelper.assertTrueWithWait(() -> newDashboardPage.countBrowserTab() > 1);
+    newDashboardPage.switchLastBrowserTab();
+    NoteHistoryPage caseHistoryPage = new NoteHistoryPage();
+    int numberOfNotes;
+    numberOfNotes = caseHistoryPage.countNotes();
+    assertEquals(2, numberOfNotes);
+    assertEquals("test", caseHistoryPage.getNoteContentOfRow(0));
+    assertEquals("Task is done: " + doneTaskName, caseHistoryPage.getNoteContentOfRow(1));
+  }
 }

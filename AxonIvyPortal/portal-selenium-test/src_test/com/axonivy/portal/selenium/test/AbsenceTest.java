@@ -151,7 +151,8 @@ public class AbsenceTest extends BaseTest {
   }
 
   private AbsencePage openAbsencePage() {
-    return new NewDashboardPage().openAbsencePage();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    return newDashboardPage.openAbsencePage();
   }
 
   @Test
