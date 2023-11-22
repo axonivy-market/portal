@@ -100,7 +100,9 @@ public class PortalExpressScreenshotTest extends ScreenshotBaseTest{
     ScreenshotUtil.resizeBrowser(new Dimension(1100, 1100));
     ExpressFormDefinitionPage formDefinition = expressProcessPage.goToFormDefinition();
     formDefinition.createUploadComponent("Upload");
+    formDefinition.countElementPrepareToDrag(1);
     formDefinition.moveAllElementToDragAndDrogPanel();
+    formDefinition.countElementPrepareToDrag(0);
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "express-workflow-dialog-editor");
     
 

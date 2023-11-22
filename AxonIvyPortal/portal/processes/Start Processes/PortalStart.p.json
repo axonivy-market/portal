@@ -3020,7 +3020,7 @@
                 "segment" : 0.49,
                 "offset" : { "x" : 0, "y" : -13 }
               } },
-            { "id" : "S70-f55", "to" : "S70-f7", "via" : [ { "x" : 152, "y" : 224 }, { "x" : 504, "y" : 224 } ], "label" : {
+            { "id" : "S70-f55", "to" : "S70-f12", "via" : [ { "x" : 152, "y" : 224 }, { "x" : 664, "y" : 224 } ], "label" : {
                 "name" : "No",
                 "segment" : 1.45,
                 "offset" : { "x" : 0, "y" : 10 }
@@ -3044,7 +3044,7 @@
             "size" : { "width" : 144, "height" : 60 }
           },
           "connect" : [
-            { "id" : "S70-f31", "to" : "S70-f7" }
+            { "id" : "S70-f31", "to" : "S70-f12" }
           ]
         }, {
           "id" : "S70-f12",
@@ -3068,32 +3068,6 @@
           },
           "connect" : [
             { "id" : "S70-f1", "to" : "S70-g1" }
-          ]
-        }, {
-          "id" : "S70-f7",
-          "type" : "Script",
-          "name" : [
-            "Set compactMode",
-            "DataModel"
-          ],
-          "config" : {
-            "output" : {
-              "code" : [
-                "import ch.ivy.addon.portalkit.enums.PortalPage;",
-                "import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;",
-                "",
-                "if(in.#portalPage == PortalPage.HOME_PAGE) {",
-                "  in.dataModel.compactMode = true;",
-                "}"
-              ]
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 504, "y" : 160 },
-            "size" : { "width" : 128, "height" : 60 }
-          },
-          "connect" : [
-            { "id" : "S70-f2", "to" : "S70-f12" }
           ]
         }, {
           "id" : "S70-g0",

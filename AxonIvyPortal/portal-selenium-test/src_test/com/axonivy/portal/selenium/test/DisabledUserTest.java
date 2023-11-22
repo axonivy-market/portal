@@ -70,14 +70,14 @@ public class DisabledUserTest extends BaseTest {
 
   @Test
   public void testExpressWfWithDisabledUser() {
-    NewDashboardPage newDashboardPage = new NewDashboardPage();
-    AdminSettingsPage adminSettingsPage = newDashboardPage.openAdminSettings();
+    redirectToNewDashBoard();
+    AdminSettingsPage adminSettingsPage = new NewDashboardPage().openAdminSettings();
     ExpressManagementPage expressManagementPage = adminSettingsPage.openExpressManagementTab();
     expressManagementPage.openImportDialog();
     expressManagementPage.selectJSONFile(FileHelper.getAbsolutePathToTestFile("express-wf-with-disabled-user.json"));
     expressManagementPage.clickOnDeployExpress();
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
-    newDashboardPage = new NewDashboardPage();
+    new NewDashboardPage().waitPageLoaded();
     ProcessWidgetPage processPage = NavigationHelper.navigateToProcessList();
     ExpressProcessPage expressPage = processPage.editExpressWF("Test disabled user");
     assertEquals("Test disabled user", expressPage.getProcessName());
