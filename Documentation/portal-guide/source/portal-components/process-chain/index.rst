@@ -14,7 +14,7 @@ process: the currently executable steps, done steps, and open steps. Its feature
 #. Display all currently executable steps, or display only helpful steps like
    begin, last, current, previous, and next steps.
 
-#. Change the shape of the process chain: circle or line.
+#. Change the shape of the process chain: circle, line or icon.
 
 #. Change the orientation of the process chain: horizontal or vertical.
 
@@ -30,17 +30,30 @@ the component on a page with following code:
 
 .. code-block:: html
 
-		<ic:com.axonivy.portal.components.ProcessChain id="process-chain-circle-horizontal" componentId="component-circle-horizontal" shape="CIRCLE" direction="HORIZONTAL"
-         isShowAllSteps="false" actualStepIndex="0" steps="#{['Step 1','Step 2','Step 3','Step 4','Step 5','Step 6','Step 7','Step 8','Step 9']}" />
+		<ic:com.axonivy.portal.components.ProcessChain id="process-chain-icon-horizontal" componentId="component-icon-horizontal" 
+		  shape="ICON" direction="HORIZONTAL"
+		  isShowAllSteps="false" actualStepIndex="0" 
+		  steps="#{['Step 1','Step 2','Step 3','Step 4','Step 5','Step 6','Step 7','Step 8','Step 9']}" 
+		  stepIcons="#{[
+			'si si-calendar-date',
+			'si si-expand-1',
+			'si si-folder-search',
+			'si si-multiple-neutral-1',
+			'si si-ranking-winner-medal',
+			'si si-expand-1',
+			'si si-folder-search',
+			'si si-multiple-neutral-1',
+			'si si-ranking-winner-medal' ]}" />
 
 #. You have to set the parameters
 
    -  ``actualStepIndex``. This is the index of the current step.
-   -  ``steps``. This is list of working steps.
+   -  ``steps``. This is the list of working steps.
+   -  ``stepIcons``. This is the list of icons.
 
 #. You may change the parameters
 
-   -  ``shape`` to ``CIRCLE`` or ``LINE`` according to your requirements. Default is ``CIRCLE``.
+   -  ``shape`` to ``CIRCLE``, ``LINE`` or ``ICON`` according to your requirements. Default is ``CIRCLE``.
    -  ``direction`` to ``HORIZONTAL`` or ``VERTICAL`` . Default is ``HORIZONTAL``.
    -  ``isShowAllSteps`` to ``TRUE`` or ``FALSE`` . Default is ``FALSE``.
 
