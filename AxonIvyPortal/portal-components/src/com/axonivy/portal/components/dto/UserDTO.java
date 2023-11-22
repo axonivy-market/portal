@@ -1,17 +1,18 @@
 package com.axonivy.portal.components.dto;
 
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.scripting.objects.Record;
 import ch.ivyteam.ivy.security.IUser;
 
 public class UserDTO {
 
+  @Deprecated(forRemoval = true, since = "11.2.0")
   private long id;
   private String name;
   private String displayName;
   private String memberName;
   private String email;
   private boolean isEnabled;
+  private String securityMemberId;
   
   public UserDTO() {}
 
@@ -22,14 +23,7 @@ public class UserDTO {
     this.email = user.getEMailAddress();
     this.id = user.getId();
     this.isEnabled = user.isEnabled();
-  }
-  
-  public UserDTO(Record record) {
-    this.id = Long.valueOf(record.getField("USERID").toString());
-    this.name = record.getField("NAME").toString();
-    this.memberName = "#" + this.name;
-    this.displayName = record.getField("FULLNAME").toString();
-    this.isEnabled = Integer.valueOf(record.getField("STATE").toString()) == 0;
+    this.securityMemberId = user.getSecurityMemberId();
   }
   
   public UserDTO(UserDTO user) {
@@ -38,6 +32,7 @@ public class UserDTO {
     this.displayName = user.getDisplayName();
     this.id = user.getId();
     this.isEnabled = user.isEnabled();
+    this.securityMemberId = user.getSecurityMemberId();
   }
 
   public String getName() {
@@ -64,10 +59,20 @@ public class UserDTO {
     this.email = email;
   }
 
+  /**
+   * @deprecated use {@link #getSecurityMemberId()}
+   * @return userId
+   */
+  @Deprecated(forRemoval = true, since = "11.2.0")
   public long getId() {
     return id;
   }
 
+  /**
+   * {@link Deprecated} use {@link #setSecurityMemberId(String)}
+   * @param id
+   */
+  @Deprecated(forRemoval = true, since = "11.2.0")
   public void setId(long id) {
     this.id = id;
   }
@@ -93,5 +98,13 @@ public class UserDTO {
       return this.displayName;
     }
     return Ivy.cms().co("/Labels/disabledUserPrefix") + " " + this.displayName;
+  }
+
+  public String getSecurityMemberId() {
+    return securityMemberId;
+  }
+
+  public void setSecurityMemberId(String securityMemberId) {
+    this.securityMemberId = securityMemberId;
   }
 }

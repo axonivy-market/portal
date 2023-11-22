@@ -40,12 +40,9 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;",
             "import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;",
             "",
-            "",
-            "IvyLanguageResultDTO dto = LanguageService.newInstance().findUserLanguages();",
-            "out.language = dto.ivyLanguage;"
+            "out.language = LanguageService.newInstance().getIvyLanguageOfUser();"
           ]
         }
       },
@@ -139,10 +136,9 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;",
             "import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;",
             "",
-            "out.language = LanguageService.newInstance().findUserLanguages().getIvyLanguage();"
+            "out.language = LanguageService.newInstance().getIvyLanguageOfUser();"
           ]
         }
       },

@@ -12,7 +12,6 @@ import com.axonivy.portal.components.dto.UserDTO;
 import ch.ivy.addon.portalkit.dto.DeputyRole;
 import ch.ivy.addon.portalkit.enums.DeputyRoleType;
 import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
-import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
@@ -87,7 +86,7 @@ public class DeputyRoleUtils {
     List<IvySubstitute> ivySubstitutes = new ArrayList<>();
     if (deputyRole != null && CollectionUtils.isNotEmpty(deputyRole.getDeputies())) {
       for (ISecurityMember securityMember : deputyRole.getDeputies()) {
-        IUser substituteUser = ServiceUtilities.findUser(securityMember.getName());
+        IUser substituteUser = UserUtils.findUserByUsername(securityMember.getName());
         if (substituteUser != null) {
           IvySubstitute ivySubstitute = initIvySubstitute(deputyRole, substituteUser);
 
@@ -112,14 +111,15 @@ public class DeputyRoleUtils {
   }
 
   public static DeputyRole findDeputyRoleByType(List<DeputyRole> deputyRoles, DeputyRoleType deputyRoleType) {
-    if (CollectionUtils.isNotEmpty(deputyRoles) && deputyRoleType != null) {
-      for (DeputyRole deputyRole : deputyRoles) {
-        if (deputyRoleType.equals(deputyRole.getDeputyRoleType())) {
-          return deputyRole;
-        }
-      }
-    }
-    return null;
+    return CollectionUtils.emptyIfNull(deputyRoles)
+            .stream()
+            .filter(item -> (deputyRoleType != null && item.getDeputyRoleType() == deputyRoleType))
+            .findFirst()
+            .orElse(null);
+  }
+  
+  public static void main(String[] args) {
+    System.out.println(null == null);
   }
 
   public static boolean isSecurityMemberSelectedInDeputyRoleByType(List<DeputyRole> deputyRoles,

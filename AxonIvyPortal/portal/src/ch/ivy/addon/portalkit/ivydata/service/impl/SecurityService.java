@@ -15,9 +15,7 @@ import com.axonivy.portal.components.dto.UserDTO;
 
 import ch.ivy.addon.portalkit.ivydata.dto.IvySecurityResultDTO;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
-import ch.ivy.addon.portalkit.ivydata.service.ISecurityService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -26,7 +24,7 @@ import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.security.query.UserQuery;
 import ch.ivyteam.ivy.security.query.UserQuery.IFilterQuery;
 
-public class SecurityService implements ISecurityService {
+public class SecurityService {
 
   private SecurityService() {}
 
@@ -34,7 +32,6 @@ public class SecurityService implements ISecurityService {
     return new SecurityService();
   }
 
-  @Override
   public IvySecurityResultDTO findUsers(String query, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
     return Sudo.get(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
@@ -87,17 +84,6 @@ public class SecurityService implements ISecurityService {
     return filterQuery;
   }
 
-  @Override
-  public IvySecurityResultDTO findUsers(String query, IApplication app, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
-    return Sudo.get(() -> {
-      IvySecurityResultDTO result = new IvySecurityResultDTO();
-      List<UserDTO> userDTOs = queryUsers(query, startIndex, count, fromRoles, excludedUsernames);
-      result.setUsers(userDTOs);
-      return result;
-    });
-  }
-
-  @Override
   public IvySecurityResultDTO findRoles() {
     return Sudo.get(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
@@ -107,7 +93,6 @@ public class SecurityService implements ISecurityService {
     });
   }
 
-  @Override
   public IvySecurityResultDTO findRoleDTOs() {
     return Sudo.get(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
@@ -118,7 +103,6 @@ public class SecurityService implements ISecurityService {
     });
   }
 
-  @Override
   public IvySecurityResultDTO findSecurityMembers(String query, int startIndex, int count) {
     return Sudo.get(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
@@ -176,7 +160,6 @@ public class SecurityService implements ISecurityService {
     return (u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName());
   }
 
-  @Override
   public IvySecurityResultDTO findAllUsersOfRoles(int startIndex, int count, List<String> fromRoles,
       List<String> excludedUsernames) {
     return Sudo.get(() -> {
