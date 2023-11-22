@@ -4,6 +4,7 @@ import static com.codeborne.selenide.Condition.and;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disabled;
 import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.editable;
 import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
@@ -321,14 +322,14 @@ public abstract class TemplatePage extends AbstractPage {
     public SearchResultPage inputSearchKeyword(String keyword) {
       waitForElementDisplayed(By.cssSelector(".topbar-item.search-item"), true);
       waitForElementClickableThenClick("a[id$='global-search-item']");
-      Sleeper.sleep(500);
+//      Sleeper.sleep(500);
       waitForElementDisplayed(By.cssSelector("input[id$='global-search-component:global-search-data']"), true);
       $(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR)).click();
       $(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR)).sendKeys(keyword);
       getSearchInput().sendKeys(Keys.ENTER.toString());
       try {
         waitForElementDisplayed(By.id("search-results-tabview"), true);
-      } catch (Exception e) {
+      } catch (Error e) {
         System.out.println("Exception when waiting for search page displayed, press Enter again.");
         getSearchInput().sendKeys(Keys.ENTER.toString());
       }
@@ -506,5 +507,19 @@ public abstract class TemplatePage extends AbstractPage {
   
   public void makeSureLoadingIconNotShowUp() {
     $(By.id("ajax-indicator:ajax-indicator-ajax-indicator_start")).shouldNotBe(Condition.visible, DEFAULT_TIMEOUT);
+  }
+  
+  public GlobalSearchResultPage inputGlobalSearchKeyword(String keyword) {
+    $(".topbar-item.search-item").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("input[id$='global-search-component:global-search-data']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT);
+    getGlobalSearchInput().click();
+    getGlobalSearchInput().sendKeys(keyword);
+    getGlobalSearchInput().sendKeys(Keys.ENTER.toString());
+    $("#search-results-tabview").shouldBe(appear, DEFAULT_TIMEOUT);
+    return new GlobalSearchResultPage();
+  }
+  
+  private SelenideElement getGlobalSearchInput() {
+    return $("#global-search-component\\:global-search-data").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 }
