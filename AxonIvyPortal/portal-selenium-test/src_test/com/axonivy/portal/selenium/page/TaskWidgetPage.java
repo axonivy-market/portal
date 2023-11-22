@@ -702,4 +702,12 @@ public class TaskWidgetPage extends TemplatePage {
         String.format(taskWidgetId + ":task-list-scroller:%d:task-item:%s-component:%s", index, columnId, columnId));
     return cell.getText();
   }
+
+  public AdhocPage addAdhoc(int taskIndex) {
+    waitForElementClickableThenClick("[id$=':task-side-steps-menu']");
+    waitForElementClickableThenClick("[id$=':adhoc-side-step-item']");
+    waitForElementPresent(By.id(TASK_ACTION), true);
+    return new AdhocPage();
+  }
+
 }
