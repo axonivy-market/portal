@@ -145,7 +145,6 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.ivydata.dto.IvySubstituteResultDTO;",
             "import ch.ivy.addon.portalkit.ivydata.service.impl.SubstituteService;",
             "",
             "SubstituteService.newInstance().saveSubstitutes(in.userDTO, in.substitutes);"
