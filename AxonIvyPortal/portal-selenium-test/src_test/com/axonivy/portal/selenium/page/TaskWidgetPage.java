@@ -271,6 +271,7 @@ public class TaskWidgetPage extends TemplatePage {
   public void filterByResponsible(String text) {
     waitForElementDisplayed(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"), true);
     waitForElementClickableThenClick($(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']")));
+    $("input[id$='responsible-filter:filter-input-form:responsible_input']").shouldBe(appear, DEFAULT_TIMEOUT).clear();
     $("input[id$='responsible-filter:filter-input-form:responsible_input']").sendKeys(text);
     waitForElementClickableThenClick($("span[id$='responsible-filter:filter-input-form:responsible_panel'] .gravatar"));
     waitForElementClickableThenClick($(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']")));
