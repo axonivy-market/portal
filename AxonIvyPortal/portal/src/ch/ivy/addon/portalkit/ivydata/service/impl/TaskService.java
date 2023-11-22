@@ -32,7 +32,6 @@ import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
-import ch.ivy.addon.portalkit.ivydata.service.ITaskService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Record;
@@ -48,7 +47,7 @@ import ch.ivyteam.ivy.workflow.query.ITaskQueryExecutor;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.FilterLink;
 
-public class TaskService implements ITaskService {
+public class TaskService {
 
   protected TaskService() {}
 
@@ -56,7 +55,6 @@ public class TaskService implements ITaskService {
     return new TaskService();
   }
   
-  @Override
   public IvyTaskResultDTO findTasksByCriteria(TaskSearchCriteria criteria, int startIndex, int count) { 
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
@@ -66,7 +64,6 @@ public class TaskService implements ITaskService {
     });
   }
   
-  @Override
   public IvyTaskResultDTO countTasksByCriteria(TaskSearchCriteria criteria) { 
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
@@ -88,7 +85,6 @@ public class TaskService implements ITaskService {
     return TaskQuery.create().where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull();
   }
 
-  @Override
   public IvyTaskResultDTO findCategoriesByCriteria(TaskCategorySearchCriteria criteria) { 
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
@@ -103,7 +99,6 @@ public class TaskService implements ITaskService {
     });
   }
   
-  @Override
   public IvyTaskResultDTO analyzePriorityStatistic(TaskSearchCriteria criteria) {
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
@@ -137,7 +132,6 @@ public class TaskService implements ITaskService {
     return priorityStatistic;
   }
   
-  @Override
   public IvyTaskResultDTO analyzeExpiryStatistic(TaskSearchCriteria criteria) {
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
@@ -156,7 +150,6 @@ public class TaskService implements ITaskService {
     });
   }
   
-  @Override
   public IvyTaskResultDTO analyzeTaskBusinessStateStatistic(TaskSearchCriteria criteria) {
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
@@ -182,7 +175,6 @@ public class TaskService implements ITaskService {
     return taskStateStatistic;
   }
 
-  @Override
   public IvyTaskResultDTO analyzeTaskCategoryStatistic(TaskSearchCriteria criteria) {
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();

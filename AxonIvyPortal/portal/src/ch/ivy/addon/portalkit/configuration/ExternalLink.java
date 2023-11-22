@@ -16,6 +16,7 @@ public class ExternalLink extends AbstractConfiguration {
 
   private String name;
   private String link;
+  @Deprecated(forRemoval = true, since = "11.2.0")
   private Long creatorId;
   private String icon;
   private String description;
@@ -25,6 +26,7 @@ public class ExternalLink extends AbstractConfiguration {
   private List<String> permissions;
   @JsonIgnore
   private List<String> defaultPermissions = new ArrayList<>();
+  private String securityMemberId;
 
   public String getName() {
     return name;
@@ -42,10 +44,20 @@ public class ExternalLink extends AbstractConfiguration {
     this.link = link;
   }
 
+  /**
+   * @deprecated use {@link #getSecurityMemberId()}
+   * @return creator id
+   */
+  @Deprecated(forRemoval = true, since = "11.2.0")
   public Long getCreatorId() {
     return creatorId;
   }
 
+  /**
+   * @deprecated use {@link #setSecurityMemberId(String)}
+   * @param creatorId
+   */
+  @Deprecated(forRemoval = true, since = "11.2.0")
   public void setCreatorId(Long creatorId) {
     this.creatorId = creatorId;
   }
@@ -112,5 +124,13 @@ public class ExternalLink extends AbstractConfiguration {
   private List<String> getDefaultPermissions() {
     defaultPermissions.add(ROLE_EVERYBODY);
     return defaultPermissions;
+  }
+
+  public String getSecurityMemberId() {
+    return securityMemberId;
+  }
+
+  public void setSecurityMemberId(String securityMemberId) {
+    this.securityMemberId = securityMemberId;
   }
 }

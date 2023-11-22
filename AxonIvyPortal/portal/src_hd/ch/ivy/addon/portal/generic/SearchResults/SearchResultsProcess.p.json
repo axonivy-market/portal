@@ -19,7 +19,6 @@
             "out.activeTabIndex" : "0",
             "out.dataModel.caseDataModel.notKeepFilter" : "true",
             "out.dataModel.keyword" : "param.keyword",
-            "out.dataModel.taskDataModel.compactMode" : "false",
             "out.dataModel.taskDataModel.notKeepFilter" : "true"
           },
           "code" : "out.dataModel.search();"
