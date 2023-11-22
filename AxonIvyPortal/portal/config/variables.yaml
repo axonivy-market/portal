@@ -288,7 +288,7 @@ Variables:
   PortalLoginPageDisplay: true
 
   # @Deprecated(Since 11.2)
-  # Cron expression define the time to clean up data of obsoleted users.
+  # Cron expression define the time to clean up obsoleted data.
   # Please refer to Axon Ivy CRON job pattern documentation.
   PortalStartTimeCleanObsoletedDataExpression: '0 6 * * *'
 
