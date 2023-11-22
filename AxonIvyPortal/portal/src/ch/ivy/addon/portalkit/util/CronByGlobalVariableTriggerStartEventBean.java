@@ -2,9 +2,10 @@ package ch.ivy.addon.portalkit.util;
 
 import java.util.Optional;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
 import ch.ivyteam.ivy.process.eventstart.IProcessStartEventBeanRuntime;
-import ch.ivyteam.ivy.process.eventstart.beans.TimerBean;
 import ch.ivyteam.ivy.process.extension.ProgramConfig;
 import ch.ivyteam.ivy.process.extension.ui.ExtensionUiBuilder;
 import ch.ivyteam.ivy.process.extension.ui.UiEditorExtension;
@@ -13,12 +14,6 @@ import ch.ivyteam.ivy.vars.Variable;
 import ch.ivyteam.ivy.vars.Variables;
 import ch.ivyteam.util.IvyRuntimeException;
 
-
-/**
- * @deprecated reference to {@link TimerBean}.
- */
-
-@Deprecated(since = "11.2")
 public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessStartEventBean {
 
   private static final String PORTAL_DELETE_ALL_FINISHED_HIDDEN_CASE = "PortalDeleteAllFinishedHiddenCases";
@@ -41,8 +36,8 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
           .variable(PORTAL_DELETE_ALL_FINISHED_HIDDEN_CASE);
       if (var != null) {
         String pattern = var.value();
-        Boolean isJobTrigger = Optional.of(Boolean.parseBoolean(deleteAllFinishedHiddenCasesVar.value())).orElse(false);
-        if (pattern != null && pattern.length() > 0 && isJobTrigger) {
+        Boolean isJobTrigger = Optional.of(deleteAllFinishedHiddenCasesVar).map(Variable::value).map(Boolean::parseBoolean).orElse(false);
+        if (StringUtils.isNotBlank(pattern) && isJobTrigger) {
           eventRuntime.poll().asDefinedByExpression(pattern);
         }
       }
@@ -62,11 +57,6 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
     }
   }
 
-  /**
-   * Editor class to work with the configuration.
-   *
-   * @author maonguyen
-   */
   public static class Editor extends UiEditorExtension {
 
     @Override
