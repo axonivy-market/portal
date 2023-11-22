@@ -1523,6 +1523,7 @@ Dialogs:
           generic:
             GlobalSearch:
               ViewAllResults: Voir tous les résultats
+              noResultsText: Il n'y a pas de résultats.
             dashboard:
               PortalDashboardConfiguration:
                 NewDashboard: Nouveau tableau de bord

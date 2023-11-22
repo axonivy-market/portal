@@ -1336,6 +1336,7 @@ Dialogs:
           generic:
             GlobalSearch:
               ViewAllResults: View all results
+              noResultsText: There are no results.
             dashboard:
               PortalDashboardConfiguration:
                 NewDashboard: New Dashboard

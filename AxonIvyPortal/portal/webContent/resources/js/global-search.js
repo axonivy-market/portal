@@ -72,6 +72,18 @@ function handleError(err) {
     console.log(err);
 }
 
+function handleUISearchResults($parent, results) {
+    let viewAllLink = $parent.siblings('.global-search-all-results')[0];
+    let noResults = $parent.siblings('.global-search-no-results')[0];
+    if (results && results.length > 0) {
+        $(viewAllLink).removeClass('u-hidden');
+        $(noResults).addClass('u-hidden');
+    } else {
+        $(viewAllLink).addClass('u-hidden');
+        $(noResults).removeClass('u-hidden');
+    }
+}
+
 function searchProcess(keyword) {
     fetch(baseURL + searchProcessesURL, {
         method: "POST",
@@ -79,12 +91,14 @@ function searchProcess(keyword) {
         body: JSON.stringify({"query": keyword.trim()})
     }).then((response) => {
         response.json().then(results => {
-            $("#process-search-results").html("");
+            let $resultsContainer = $("#process-search-results");
+            $resultsContainer.html("");
             if (results) {
                 results.forEach((rs, index) => {
                     document.getElementById("process-search-results").innerHTML += processComponent(rs);
                 });
             }
+            handleUISearchResults($resultsContainer, results);
         }, err => handleError(err));
     }, err => handleError(err));
 
@@ -97,12 +111,14 @@ function searchTask(keyword) {
         body: JSON.stringify({"query": keyword.trim()})
     }).then((response) => {
         response.json().then(results => {
-            $("#task-search-results").html("");
+            let $resultsContainer = $("#task-search-results");
+            $resultsContainer.html("");
             if (results) {
                 results.forEach((rs, index) => {
                     document.getElementById("task-search-results").innerHTML += taskComponent(rs);
                 });
             }
+            handleUISearchResults($resultsContainer, results);
         }, err => handleError(err));
     }, err => handleError(err));
 }
@@ -114,12 +130,14 @@ function searchCase(keyword) {
         body: JSON.stringify({"query": keyword.trim()})
     }).then((response) => {
         response.json().then(results => {
-            $("#case-search-results").html("");
+            let $resultsContainer = $("#case-search-results");
+            $resultsContainer.html("");
             if (results) {
                 results.forEach((rs, index) => {
                     document.getElementById("case-search-results").innerHTML += caseComponent(rs);
                 });
             }
+            handleUISearchResults($resultsContainer, results);
         }, err => handleError(err));
     }, err => handleError(err));
 }

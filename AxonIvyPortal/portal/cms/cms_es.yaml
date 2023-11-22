@@ -1529,6 +1529,7 @@ Dialogs:
           generic:
             GlobalSearch:
               ViewAllResults: Ver todos los resultados
+              noResultsText: No hay resultados.
             dashboard:
               PortalDashboardConfiguration:
                 NewDashboard: Nuevo panel de control
