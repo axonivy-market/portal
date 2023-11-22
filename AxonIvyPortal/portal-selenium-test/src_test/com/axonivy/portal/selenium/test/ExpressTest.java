@@ -84,6 +84,7 @@ public class ExpressTest extends BaseTest{
     formDefinition.createTextInputField("Input Number 2", INPUT_NUMBER_TYPE_INDEX, false);
     formDefinition.countElementPrepareToDrag(2);
     formDefinition.moveAllElementToDragAndDrogPanel();
+    formDefinition.countElementPrepareToDrag(0);
     return formDefinition;
   }
 
