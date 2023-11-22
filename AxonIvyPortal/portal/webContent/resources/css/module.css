@@ -3080,6 +3080,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   text-overflow: ellipsis;
 }
 
+.my-profile-container .notification-channel-reset {
+  font-size: 2rem;
+}
+
 @media screen and (max-width: 40em) {
   .my-profile-container .sort-field-selection {
     width: 100%;

@@ -7,7 +7,6 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="task" required="true" shortDescription="Task" type="ch.ivyteam.ivy.workflow.ITask" />
   <cc:attribute name="rowIndex" />
-  <cc:attribute name="compactMode" type="Boolean" />
   <cc:attribute name="isSelected" type="Boolean" />
   <cc:attribute name="onTaskStartCallback" />
   <cc:facet name="taskHeader" shortDescription="Header content of a task item" />
@@ -23,18 +22,11 @@
 <cc:implementation>
   <c:set var="task" value="#{cc.attrs.task}" />
   <c:set var="rowIndex" value="#{cc.attrs.rowIndex}" />
-  <c:set var="compactMode" value="#{cc.attrs.compactMode}" />
   <c:set var="isSelected" value="#{taskWidgetBean.expandedTaskId == -1 and cc.attrs.isSelected}" />
   <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
   <c:set var="isRunningTaskWhenClickingOnTaskInList" value="#{taskWidgetBean.runningTaskWhenClickingOnTaskInList}" />
 
-  <h:panelGroup rendered="#{compactMode}">
-    <ui:include src="CompactTaskStartLink.xhtml">
-      <ui:param name="dataModel" value="#{dataModel}" />
-    </ui:include>
-  </h:panelGroup>
-
-  <h:panelGroup id="task-start" layout="block" rendered="#{!compactMode}"
+  <h:panelGroup id="task-start" layout="block" 
     styleClass="#{rowIndex % 2 == 0 ? 'task-even-row' : 'task-odd-row'} full-mode task-start-list-item js-task-start-list-item">
     <h:panelGroup id="task-info" styleClass="task-start-link js-task-start-link" layout="block" rendered="#{!isRunningTaskWhenClickingOnTaskInList}">
       <p:ajax event="click" listener="#{logic.openDetails(task,dataModel, cc.attrs.inFrame)}" onstart="#{cc.attrs.onTaskStartCallback}" />
@@ -49,7 +41,7 @@
       <p:ajax event="click" listener="#{logic.openTask(task, dataModel)}" onstart="#{cc.attrs.onTaskStartCallback}" />
       <cc:renderFacet name="taskHeader" />
     </h:panelGroup>
-    <div class="task-item-header-actions" jsf:rendered="#{!compactMode and !cc.attrs.readOnly}">
+    <div class="task-item-header-actions" jsf:rendered="#{!cc.attrs.readOnly}">
       <f:subview id="task-action">
         <ui:include src="TaskAction.xhtml">
           <ui:param name="dataModel" value="#{dataModel}" />
