@@ -188,12 +188,13 @@ Code Example:
 Migration Notes
 ^^^^^^^^^^^^^^^
 
-Migrate to 11.0.0
------------------
+Migrate to 11.1.0 to 11.2.0
+---------------------------
 
-Since this version, we no longer support Quartz CRON job pattern.
-Please update ``PortalStartTimeCleanObsoletedDataExpression``variable to adapt new Ivy CRON job pattern.
+Since this version, we change Quartz CRON job pattern.
+If you override ``PortalStartTimeCleanObsoletedDataExpression`` variable, please update it to adapt new Ivy CRON job pattern.
 Refer to Axon Ivy CRON job pattern: https://developer.axonivy.com/doc/|version|/engine-guide/configuration/advanced-configuration.html
+Example: Change ``0 0 1 * * ?`` to ``0 1 * * * `` for job trigger 01:00 AM everyday.
 
 Migrate 10.0.x to 10.0.12
 -------------------------
