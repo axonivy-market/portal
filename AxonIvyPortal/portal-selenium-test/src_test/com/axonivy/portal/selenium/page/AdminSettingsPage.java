@@ -37,6 +37,7 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
+    $("button[id$='admin-setting-component:adminTabView:restore-all-to-default-button']").shouldBe(Condition.appear).shouldBe(getClickableCondition());
     ElementsCollection tableRows = $$(".setting-key").filter(Condition.text(variableName));
     if (!tableRows.isEmpty()) {
       SelenideElement editButton = tableRows.get(0).ancestor("tr").$(By.cssSelector("a[id$=edit]"));
