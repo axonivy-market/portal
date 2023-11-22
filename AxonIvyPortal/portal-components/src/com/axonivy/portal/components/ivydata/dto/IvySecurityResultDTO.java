@@ -8,7 +8,7 @@ import com.axonivy.portal.components.dto.UserDTO;
 
 import ch.ivyteam.ivy.security.IRole;
 
-public class IvySecurityResultDTO extends AbstractResultDTO {
+public class IvySecurityResultDTO {
 
   private List<UserDTO> users;
   private List<IRole> roles;

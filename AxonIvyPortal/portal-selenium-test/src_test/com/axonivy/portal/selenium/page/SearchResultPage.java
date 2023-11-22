@@ -17,7 +17,7 @@ public class SearchResultPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "[id='search-results-tabview']";
+    return "[id$='search-results-tabview']";
   }
 
   public void openTaskTab() {
@@ -85,7 +85,7 @@ public class SearchResultPage extends TemplatePage {
   public boolean isInfoWorkflowIcon() {
     ProcessWidgetPage processWidget = getProcessWidget();
     if (processWidget.isImageModeActivated()) {
-      SelenideElement icon = $(By.className("express-workflow")).$("process-image-view-icon");
+      SelenideElement icon = $(".express-workflow").$(".process-image-view-icon");
       return icon.getAttribute("class").contains("si si si-startup-launch");
     }
 
@@ -142,5 +142,9 @@ public class SearchResultPage extends TemplatePage {
   public void waitForFirstTabFinishedLoading() {
     waitForElementDisplayed(By.className("js-loading-process-list"), false);
     waitForElementDisplayed(By.className("js-process-start-list-container"), true);
+  }
+
+  public void clickOnActionButton(String processName) {
+    $(".express-workflow").$("button[id$=':process-action-button']").shouldBe(getClickableCondition()).click();
   }
 }

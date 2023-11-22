@@ -47,11 +47,8 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.ivydata.dto.IvyAbsenceResultDTO;",
             "import ch.ivy.addon.portalkit.ivydata.service.impl.AbsenceService;",
-            "",
-            "IvyAbsenceResultDTO dto = AbsenceService.newInstance().findAbsences(in.username);",
-            "out.absencesByUser = dto.getIvyAbsencesByUser();"
+            "out.absencesByUser = AbsenceService.newInstance().findAbsences(in.username);"
           ]
         }
       },
@@ -176,7 +173,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 266, "y" : 160 }
+        "at" : { "x" : 264, "y" : 160 }
       },
       "connect" : [
         { "id" : "f11", "to" : "f18" }

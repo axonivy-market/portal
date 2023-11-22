@@ -8,8 +8,7 @@ import ch.ivyteam.ivy.security.exec.Sudo;
 
 public enum PortalLibrary {
   PORTAL("portal"),
-  AXON_EXPRESS("axonivy-express"),
-  SELF_SERVICE("selfService");
+  AXON_EXPRESS("axonivy-express");
   private String value;
 
   private PortalLibrary(String value) {
