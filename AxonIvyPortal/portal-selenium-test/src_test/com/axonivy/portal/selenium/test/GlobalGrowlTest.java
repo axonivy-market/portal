@@ -111,6 +111,7 @@ public class GlobalGrowlTest extends BaseTest{
     formDefinition.createTextInputField("Input Text", 0, false);
     formDefinition.countElementPrepareToDrag(1);
     formDefinition.moveAllElementToDragAndDrogPanel();
+    formDefinition.countElementPrepareToDrag(0);
     return formDefinition;
   }
 
