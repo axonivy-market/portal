@@ -7,16 +7,10 @@
 <h:body>
   <ui:composition>
     <ui:param name="userAgent" value="#{request.getHeader('User-Agent')}"></ui:param>
-    <ui:param name="isIE"
-      value="#{(fn:containsIgnoreCase(userAgent, 'Trident') and fn:containsIgnoreCase(userAgent, 'rv:11')) || fn:containsIgnoreCase(userAgent, 'MSIE')}" />
 
     <h:form id="chat-form">
-      <h:outputScript library="js" name="polyfill/promise.min.js" rendered="#{isIE}" />
-      <h:outputScript library="js" name="polyfill/fetch.js" rendered="#{isIE}" />
-      <h:outputScript library="js" name="polyfill/babel-runtime.js" rendered="#{isIE}" />
-      <h:outputScript library="js" name="chat-transpiled.js" rendered="#{isIE}" />
 
-      <h:outputScript library="js" name="chat.js" rendered="#{!isIE}" />
+      <h:outputScript library="js" name="chat.js" />
 
       <script type="text/javascript">
               var userName = "#{ivy.session.getSessionUserName()}";

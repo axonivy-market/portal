@@ -48,11 +48,8 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.ivydata.dto.IvySideStepResultDTO;",
             "import ch.ivy.addon.portalkit.ivydata.service.impl.SideStepService;",
-            "",
-            "IvySideStepResultDTO dto = SideStepService.newInstance().findSideStepsByCriteria(in.sideStepSearchCriteria);",
-            "out.sideSteps = dto.getSideSteps();"
+            "out.sideSteps = SideStepService.newInstance().findSideStepsByCriteria(in.sideStepSearchCriteria);"
           ]
         }
       },

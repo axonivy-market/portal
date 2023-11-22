@@ -5,15 +5,27 @@ import java.util.List;
 public abstract class ColumnsConfiguration {
 
   private Long applicationId;
+  @Deprecated(forRemoval = true, since = "11.2.0")
   private Long userId;
   private List<String> selectedColumns;
   private boolean isAutoHideColumns;
   private Long processModelId;
+  private String securityMemberId;
 
+  /**
+   * @deprecated use {@link #getSecurityMemberId()}
+   * @return id
+   */
+  @Deprecated(forRemoval = true, since = "11.2.0")
   public Long getUserId() {
     return userId;
   }
 
+  /**
+   * @deprecated use {@link #setSecurityMemberId(String)}
+   * @param userId
+   */
+  @Deprecated(forRemoval = true, since = "11.2.0")
   public void setUserId(Long userId) {
     this.userId = userId;
   }
@@ -48,5 +60,13 @@ public abstract class ColumnsConfiguration {
 
   public void setProcessModelId(Long processModelId) {
     this.processModelId = processModelId;
+  }
+
+  public String getSecurityMemberId() {
+    return securityMemberId;
+  }
+
+  public void setSecurityMemberId(String securityMemberId) {
+    this.securityMemberId = securityMemberId;
   }
 }

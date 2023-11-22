@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.WaitHelper;
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 
 public class ExpressReviewPage extends TemplatePage {
 
@@ -30,7 +32,7 @@ public class ExpressReviewPage extends TemplatePage {
       elem.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
       elem.ancestor("fieldset").$(".ui-fieldset-content").shouldBe(appear, DEFAULT_TIMEOUT);
     });
-
+    $$("div[id*='approval-result'] td").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT).get(0).shouldNotHave(Condition.empty, DEFAULT_TIMEOUT);
     return $$("div[id*='approval-result'] td").asFixedIterable().stream().map(WebElement::getText)
         .collect(Collectors.joining(","));
   }
