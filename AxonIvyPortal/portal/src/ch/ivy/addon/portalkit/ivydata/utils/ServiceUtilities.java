@@ -15,7 +15,6 @@ import com.axonivy.portal.components.dto.UserDTO;
 
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.util.UserUtils;
@@ -77,14 +76,6 @@ public class ServiceUtilities {
           .map(IProcessModel::getReleasedProcessModelVersion)
           .filter(pmv -> pmv != null && pmv.getActivityState() == ActivityState.ACTIVE)
           .collect(Collectors.toList());
-  }
-
-  public static IvyApplication toIvyApplication(String appName, String appDisplayName) {
-    IvyApplication ivyApplication = new IvyApplication();
-    ivyApplication.setName(appName);
-    ivyApplication.setDisplayName(appDisplayName);
-    ivyApplication.setActive(true);
-    return ivyApplication;
   }
 
   public static IUser findUser(String username) {

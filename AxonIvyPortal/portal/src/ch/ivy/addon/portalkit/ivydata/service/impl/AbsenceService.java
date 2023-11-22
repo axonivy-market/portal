@@ -12,7 +12,6 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.components.dto.UserDTO;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
-import ch.ivy.addon.portalkit.ivydata.dto.IvyAbsenceResultDTO;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.security.IUser;
@@ -28,10 +27,8 @@ public class AbsenceService{
     return new AbsenceService();
   }
   
-  public IvyAbsenceResultDTO findAbsences(String username) {
+  public Map<String, Set<IvyAbsence>> findAbsences(String username) {
     return Sudo.get(() -> { 
-      IvyAbsenceResultDTO result = new IvyAbsenceResultDTO();
-
       Map<String, Set<IvyAbsence>> ivyAbsencesByUser = new HashMap<>();
       if (StringUtils.isBlank(username)) {
           ServiceUtilities.findAllUsers().forEach(user -> {
@@ -49,8 +46,7 @@ public class AbsenceService{
           ivyAbsencesByUser.put(username, getAbsences(user));
         }
       }
-      result.setIvyAbsencesByUser(ivyAbsencesByUser);
-      return result;
+      return ivyAbsencesByUser;
     });
   }
 
