@@ -13,6 +13,7 @@ import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.WaitHelper;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -271,7 +272,6 @@ public class TaskTemplatePage extends TemplatePage {
     return !$(By.cssSelector(startAdhocBtnCSSSelection)).exists();
   }
 
-  @SuppressWarnings("deprecation")
   public boolean isAdhocHistoryDialogExistWhenOpenTaskFirstTime() {
     return findElementByCssSelector("div[id$='adhoc-task-history-dialog']").isDisplayed();
   }
@@ -280,7 +280,6 @@ public class TaskTemplatePage extends TemplatePage {
     return $("div[id$='adhoc-task-history-dialog']");
   }
 
-  @SuppressWarnings("deprecation")
   public void clickShowAdhocHistoryBtn() {
     waitForElementClickableThenClick("#horizontal-task-actions");
     waitForElementDisplayed(By.cssSelector("a[id$='show-adhoc-history']"), true);
@@ -319,5 +318,10 @@ public class TaskTemplatePage extends TemplatePage {
     return new TaskWidgetPage();
   }
 
+
+  public int countSideSteps() {
+    waitForElementDisplayed($("[id$='horizontal-task-action-menu']"), true);
+    return $$("a.side-step-item").shouldHave(CollectionCondition.size(2)).size();
+  }
 
 }
