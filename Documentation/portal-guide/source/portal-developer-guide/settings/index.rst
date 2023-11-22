@@ -327,9 +327,9 @@ These variables are stored as key-value pairs. They have to be edited in the Eng
    |                                             |                               | to                          |
    |                                             |                               | `CRON Expression <https://  |
    |                                             |                               | developer.axonivy.com/doc/  |
-   |                                             |                               | 11.2/|version|/configurati  |
-   |                                             |                               | on/advanced-configuration.  |
-   |                                             |                               | html#cron-expression>`__    |
+   |                                             |                               | 11.2/engine-guide/configur  |
+   |                                             |                               | ation/advanced-configurati  |
+   |                                             |                               | on.html#cron-expression>`_  |
    +---------------------------------------------+-------------------------------+-----------------------------+
    | PortalDeleteAllFinishedHiddenCases          | false                         | If set to ``true``, the     |
    |                                             |                               | above cron job runs daily   |
