@@ -123,6 +123,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   
   public void createTextInputField(String label, int inputFieldTypeIndex, boolean isRequired) {
     waitForElementClickableThenClick(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][1]"));
+    makeSureLoadingIconNotShowUp();
     waitForElementDisplayed(By.id("form:create-tabs:create-input-field-tab"), true);
     $(By.id("form:create-tabs:input-field-label")).sendKeys(label);
     chooseInputFieldType(inputFieldTypeIndex);
@@ -239,5 +240,23 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   
   public int countNumberOfSteps() {
     return driver.findElements(By.xpath("//div[@id='defined-task-container']//button")).size();
+  }
+  
+  public void inputMailRecipient(String content) {
+    findElementById("form:information-email:email-recipients").sendKeys(content);
+  }
+
+  public void inputMailSubject(String content) {
+    findElementById("form:information-email:email-subject").sendKeys(content);
+  }
+
+  public void inputMailContent(String content) {
+    ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript(
+        "document.querySelector(\"input[name='form:information-email:email-content_input'\").value='" + content + "';");
+  }
+  
+  public void executeWorkflowAndWaitForUserTaskWithEmailDisplay() {
+    waitForElementClickableThenClick(By.id("execute-button"));
+    waitForElementDisplayed(By.id("task-form:task-view:dyna-form-fieldset"), true);
   }
 }

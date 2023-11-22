@@ -39,7 +39,7 @@ public class ExpressProcessPage extends TemplatePage {
 
   private void chooseResponsible(String responsible, boolean isGroup) {
     if (isGroup) {
-      $("[id='assignee-selection-form:assignee-type:1']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+      $("label[for='assignee-selection-form:assignee-type:1']").shouldBe(appear, DEFAULT_TIMEOUT).click();
       $("[id='assignee-selection-form:role-selection-component:role-selection_input']")
       .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).clear();
       $("[id='assignee-selection-form:role-selection-component:role-selection_input']")
@@ -86,12 +86,13 @@ public class ExpressProcessPage extends TemplatePage {
       String processDescription) {
     if (isAdhocWF) {
       $("div[id='form:process-type']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-      $("span[id='form:process-type-group']").$(".switch-active").shouldBe(Condition.text("One time"));
+      $("span[id='form:process-type-group']").$(".switch-active").shouldBe(Condition.text("One time"), DEFAULT_TIMEOUT);
     }
 
     if (!isCreateOwn) {
       $("div[id='form:user-interface-type']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
       agreeToDeleteAllDefineTasks();
+      
     }
     $("[id='form:process-name']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(processName);
     $("[id='form:process-description']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(processDescription);
@@ -100,6 +101,7 @@ public class ExpressProcessPage extends TemplatePage {
   private void agreeToDeleteAllDefineTasks() {
     $("[id='delete-all-defined-tasks-warning']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("[id='delete-all-defined-tasks-warning-ok']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='delete-all-defined-tasks-warning']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void createTask(int taskIndex, int typeIndex, String taskName, String taskDescription,
@@ -154,5 +156,10 @@ public class ExpressProcessPage extends TemplatePage {
   public NewDashboardPage cancelWorkflowDefinition() {
     waitForElementClickableThenClick(By.id("form:cancel-workflow-button"));
     return new NewDashboardPage();
+  }
+  
+  public void fillProcessOwners(List<ExpressResponsible> responsibles) {
+    waitForElementClickableThenClick(By.id("form:process-owner-link"));
+    addResponsible(responsibles);
   }
 }
