@@ -93,6 +93,7 @@
                 styleClass="line-horizontal-step-container" />
             </h:panelGroup>
           </c:if>
+
           <c:if test="#{!isDirectionHorizontal}">
             <h:panelGroup rendered="#{isShowAllSteps or isDisplayedStep}" layout="block"
               id="step-info-#{counter.index}"
@@ -107,6 +108,7 @@
             id="many-steps-#{counter.index}"
             styleClass="#{isDirectionHorizontal ? 'line-horizontal-process-step' : 'line-vertical-process-step'} hide-right-steps" />
         </c:if>
+
         <c:if test="#{shape eq 'ICON'}">
           <h:panelGroup layout="block" id="step-info-#{counter.index}"
             rendered="#{isShowAllSteps or isDisplayedStep}"
@@ -168,7 +170,7 @@
       <c:if test="#{shape eq 'ICON'}">
         <h:panelGroup layout="block" id="step-info-mobile-#{currentIndex}"
           styleClass="circle-horizontal-process-step #{isHideLeftSteps ? '':'left-steps'} #{isHideRightSteps ? '':'right-steps'}">
-          <h:outputText value="${stepName}" styleClass="circle-horizontal-step-title ui-sm-hidden" />
+          <h:outputText value="${stepName}" styleClass="line-horizontal-step-title u-truncate-text" />
           <h:panelGroup layout="block" id="step-count-mobile-container-#{currentIndex}"
             styleClass="#{cc.attrs.stepIcons[currentIndex]} process-step-icon circle-horizontal-step-container #{isHideLeftSteps ? '':'left-steps'} #{isHideRightSteps ? '':'right-steps'} cicrle-step-container">
             <div class="step-number-container">
