@@ -14,7 +14,7 @@ process: the currently executable steps, done steps, and open steps. Its feature
 #. Display all currently executable steps, or display only helpful steps like
    begin, last, current, previous, and next steps.
 
-#. Change the shape of the process chain: circle, line or icons.
+#. Change the shape of the process chain: circle, line or icon.
 
 #. Change the orientation of the process chain: horizontal or vertical.
 
