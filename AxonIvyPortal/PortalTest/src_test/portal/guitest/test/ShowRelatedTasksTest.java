@@ -17,6 +17,7 @@ import com.jayway.awaitility.Duration;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.Variable;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
@@ -79,6 +80,13 @@ public class ShowRelatedTasksTest extends BaseTest {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
     openCaseDetail();
+    detailsPage.clickRelatedTaskColumnsButton();
+    detailsPage.clickRelatedTaskDefaultCheckbox();
+    detailsPage.clickRelatedTaskColumnCheckbox(4);
+    detailsPage.clickRelatedTaskColumnCheckbox(5);
+    detailsPage.clickRelatedTaskColumnCheckbox(6);
+    detailsPage.clickRelatedTaskApplyButton();
+    WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedTaskListColumnExist("related-task-name-column"));
     TaskDetailsPage taskDetailsPage = detailsPage.openTasksOfCasePage("Sick Leave Request");
     assertEquals("Task Details", taskDetailsPage.getPageTitle());
   }
