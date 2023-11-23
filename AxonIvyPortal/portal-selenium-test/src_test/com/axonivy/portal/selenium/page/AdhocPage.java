@@ -32,6 +32,7 @@ public class AdhocPage extends TaskTemplatePage {
     $("[id='assignee-selection-form:save-assignee-button']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
     $("[id='choose-responsible-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
+
   public void addTask() {
     waitForElementClickableThenClick($("[id$=':add-step-button']"));
   }
@@ -42,6 +43,7 @@ public class AdhocPage extends TaskTemplatePage {
 
   public void startWorkflow() {
     waitForElementClickableThenClick($("[id='form:save']"));
+    $("[id='form:save']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public TaskWidgetPage send() {
@@ -49,5 +51,9 @@ public class AdhocPage extends TaskTemplatePage {
     return new TaskWidgetPage();
   }
 
-
+  public void addDescription(String description) {
+    $("[id$=':input-text-area']").sendKeys(description);
+    $("[id='form:ok-btn']").click();
+    $("[id='form:ok-btn']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
 }

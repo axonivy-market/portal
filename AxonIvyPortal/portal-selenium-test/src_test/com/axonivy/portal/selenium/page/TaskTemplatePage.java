@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.NavigationHelper;
@@ -42,6 +43,7 @@ public class TaskTemplatePage extends TemplatePage {
     waitForElementClickableThenClick("[id='horizontal-case-info']");
     waitForElementDisplayed(By.cssSelector("[id$='i-frame-case-details']"), true);
     driver.switchTo().defaultContent();
+    switchToIframeWithId("i-frame-case-details");
   }
 
   public void switchToCaseInfoIframe() {
@@ -236,23 +238,23 @@ public class TaskTemplatePage extends TemplatePage {
     clickByJavaScript(findElementById("side-step-start-ok"));
     new NewDashboardPage();
   }
-  
+
   public void inputValue(String employee, String from, String to, String representation) {
     $(By.id("leave-request:fullname")).sendKeys(employee);
     $(By.id("leave-request:substitute")).sendKeys(representation);
     $(By.id("leave-request:from_input")).sendKeys(from);
     $(By.id("leave-request:to_input")).sendKeys(to);
   }
-  
+
   public void inputField(String cssSelector, String value) {
     $(cssSelector).sendKeys(value);
   }
-  
+
   public TaskWidgetPage clickSubmitButton() {
     clickOnSubmitButton();
     return new TaskWidgetPage();
   }
-  
+
   public void clickOnSubmitButton() {
     clickByJavaScript($("button[id$=':button-submit']"));
   }
@@ -318,10 +320,14 @@ public class TaskTemplatePage extends TemplatePage {
     return new TaskWidgetPage();
   }
 
-
   public int countSideSteps() {
     waitForElementDisplayed($("[id$='horizontal-task-action-menu']"), true);
     return $$("a.side-step-item").shouldHave(CollectionCondition.size(2)).size();
   }
 
+  public void openFinishedTaskInHistoryArea() {
+    SelenideElement element = $("[id$=':case-histories:show-more-note-link']").scrollTo();
+    String url = element.getAttribute("href");
+    ((JavascriptExecutor) driver).executeScript("window.open('" + url + "','_blank');");
+  }
 }
