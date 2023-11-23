@@ -59,7 +59,11 @@ public class ChatTest extends BaseTest{
     assertEquals(2, chatPage.refreshAndCountGroupChat());
   }
   
-  @Test
+  // Currently still not have any idea how to open two browser with difference session to test chat between multiple user
+  // Tests that still not still implement
+  // TODO chatGroupMultiTabs, chatGroupOnTwoInstanceOfBrowser
+  
+  //  @Test
   public void chatGroupOnTwoInstanceOfBrowser() {
     ChatPage chatPage = enableChatGroup();
     createChatGroup(TestAccount.DEMO_USER);

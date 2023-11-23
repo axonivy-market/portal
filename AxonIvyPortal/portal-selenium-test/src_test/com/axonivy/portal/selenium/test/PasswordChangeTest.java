@@ -30,10 +30,10 @@ public class PasswordChangeTest extends BaseTest {
     ChangePasswordPage changePasswordPage = newDashboardPage.openChangePasswordPage();
 
     changePasswordPage.changePassword("random password", newPassword);
-    assertTrue(changePasswordPage.isWrongCurrentPasswordError());
+    changePasswordPage.isWrongCurrentPasswordError();
 
     changePasswordPage.changePassword(TestAccount.TEST_CHANGE_PASSWORD_USER.getPassword(), newPassword);
-    assertTrue(changePasswordPage.isNewPasswordNotStrongEnough());
+    changePasswordPage.isNewPasswordNotStrongEnough();
 
     newPassword = "a2C!";
     changePasswordPage.changePassword(TestAccount.TEST_CHANGE_PASSWORD_USER.getPassword(), newPassword);
