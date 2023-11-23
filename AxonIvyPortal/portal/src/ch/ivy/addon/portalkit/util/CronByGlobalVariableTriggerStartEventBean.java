@@ -18,17 +18,13 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
 
   private static final String PORTAL_DELETE_ALL_FINISHED_HIDDEN_CASE = "PortalDeleteAllFinishedHiddenCases";
   private static final String VARIABLE = "variable";
-  private static String name;
-  private static String description;
   public CronByGlobalVariableTriggerStartEventBean() {
-    super(name, description);
+    super("PortalStartCleanObsoleted", "This is a scheduled process of Portal");
   }
 
   @Override
   public void initialize(IProcessStartEventBeanRuntime eventRuntime, ProgramConfig configuration) {
     super.initialize(eventRuntime, configuration);
-    name = eventRuntime.getProcessStart().getName();
-    description = eventRuntime.getProcessStart().getDescription();
     try {
       Variable var =
           Variables.of(eventRuntime.getProcessModelVersion().getApplication()).variable(configuration.get(VARIABLE));
