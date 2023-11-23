@@ -483,4 +483,7 @@ public class TaskDetailsPage extends TemplatePage {
     return findElementByCssSelector("a[id$='show-more-note-link']").getAttribute("href").split("uuid=")[1];
   }
 
+  public void waitForNoteTableDisplayed() {
+    WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("div[id$=':task-note-table']").isDisplayed());
+  }
 }
