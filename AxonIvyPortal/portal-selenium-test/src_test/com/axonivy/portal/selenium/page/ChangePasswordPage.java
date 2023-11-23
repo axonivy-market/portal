@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.Sleeper;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 public class ChangePasswordPage extends TemplatePage {
 
@@ -39,14 +40,12 @@ public class ChangePasswordPage extends TemplatePage {
     inputField.sendKeys(value);
   }
   
-  public boolean isWrongCurrentPasswordError() {
-    SelenideElement element = findElementByCssSelector("#change-password-form\\:password-setting\\:change-password-messages .ui-messages-error-detail");
-    return element.getText().equalsIgnoreCase("Authentication failed, your password seems to be wrong!");
+  public void isWrongCurrentPasswordError() {
+    $("#change-password-form\\:password-setting\\:change-password-messages .ui-messages-error-detail").shouldHave(Condition.text("Authentication failed, your password seems to be wrong!"), DEFAULT_TIMEOUT);
   }
   
-  public boolean isNewPasswordNotStrongEnough() {
-    SelenideElement element = findElementByCssSelector("#change-password-form\\:password-setting\\:change-password-messages .ui-messages-error-detail");
-    return element.getText().equalsIgnoreCase("Password must be at least 4 characters long, contain at least 1 lowercase character, contain at least 1 uppercase character, contain at least 1 number, contain at least 1 special character.");
+  public void isNewPasswordNotStrongEnough() {
+    $("#change-password-form\\:password-setting\\:change-password-messages .ui-messages-error-detail").shouldHave(Condition.text("Password must be at least 4 characters long, contain at least 1 lowercase character, contain at least 1 uppercase character, contain at least 1 number, contain at least 1 special character."), DEFAULT_TIMEOUT);
   }
   
   public WebElement getChangePasswordDialog() {

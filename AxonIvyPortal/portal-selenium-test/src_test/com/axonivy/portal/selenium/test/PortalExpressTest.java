@@ -49,7 +49,7 @@ public class PortalExpressTest extends BaseTest{
   protected static final int INPUT_TEXT_TYPE_INDEX = 0;
   protected static final int INPUT_NUMBER_TYPE_INDEX = 1;
   protected static final int INPUT_DATE_TYPE_INDEX = 2;
-  final String processName = "Test approval";
+  final String testProcessName = "Test approval";
 
   protected NewDashboardPage newDashboardPage;
   protected ProcessWidgetPage processWidget;
@@ -211,77 +211,77 @@ public class PortalExpressTest extends BaseTest{
 
   @Test
   public void testMultiApprovalWhenMultiTask() {
-    createAdministratedWorkflow(processName, Arrays.asList(responsible1, groupHr), true);
-    startExpressProcess(processName);
+    createAdministratedWorkflow(testProcessName, Arrays.asList(responsible1, groupHr), true);
+    startExpressProcess(testProcessName);
     executeExpressProcessWhenMultiApproval();
   }
 
   @Test
   public void testAbleToStartAdministratedWorkflow() {
-    createAdministratedWorkflow(processName, Arrays.asList(responsible1, groupHr), false);
+    createAdministratedWorkflow(testProcessName, Arrays.asList(responsible1, groupHr), false);
     // responsible1, groupHr is able to start process
     login(TestAccount.ADMIN_USER);
-    startExpressProcess(processName);
+    startExpressProcess(testProcessName);
     login(TestAccount.HR_ROLE_USER);
-    startExpressProcess(processName);
+    startExpressProcess(testProcessName);
     // creator is able to start process
     login(TestAccount.DEMO_USER);
-    startExpressProcess(processName);
+    startExpressProcess(testProcessName);
   }
   
   @Test
   public void testUserAdminCanViewEditDeleteProcess() {
-    createAdministratedWorkflow(processName, Arrays.asList(responsible1, groupHr), false);
+    createAdministratedWorkflow(testProcessName, Arrays.asList(responsible1, groupHr), false);
     login(TestAccount.ADMIN_USER);
     newDashboardPage = new NewDashboardPage();
-    GlobalSearchResultPage searchResultPage = newDashboardPage.inputGlobalSearchKeyword(processName);
+    GlobalSearchResultPage searchResultPage = newDashboardPage.inputGlobalSearchKeyword(testProcessName);
     searchResultPage.waitForFirstTabFinishedLoading();
-    searchResultPage.clickOnActionButton(processName);
+    searchResultPage.clickOnActionButton(testProcessName);
 
     assertTrue(searchResultPage.isInfoWorkflowIcon());
-    assertTrue(searchResultPage.isEditExpressWorkflow(processName));
-    assertTrue(searchResultPage.isDeleteExpressWorkflown(processName));
+    assertTrue(searchResultPage.isEditExpressWorkflow(testProcessName));
+    assertTrue(searchResultPage.isDeleteExpressWorkflown(testProcessName));
     assertTrue(searchResultPage.isExpressProcessLogo());
   }
 
   @Test
   public void testUserCreatorCanViewEditDeleteProcess() {
-    createAdministratedWorkflow(processName, Arrays.asList(responsible1, groupHr), false);
+    createAdministratedWorkflow(testProcessName, Arrays.asList(responsible1, groupHr), false);
     newDashboardPage = new NewDashboardPage();
-    GlobalSearchResultPage searchResultPage = newDashboardPage.inputGlobalSearchKeyword(processName);
+    GlobalSearchResultPage searchResultPage = newDashboardPage.inputGlobalSearchKeyword(testProcessName);
     searchResultPage.waitForFirstTabFinishedLoading();
-    searchResultPage.clickOnActionButton(processName);
+    searchResultPage.clickOnActionButton(testProcessName);
 
     assertTrue(searchResultPage.isInfoWorkflowIcon());
-    assertTrue(searchResultPage.isEditExpressWorkflow(processName));
-    assertTrue(searchResultPage.isDeleteExpressWorkflown(processName));
+    assertTrue(searchResultPage.isEditExpressWorkflow(testProcessName));
+    assertTrue(searchResultPage.isDeleteExpressWorkflown(testProcessName));
     assertTrue(searchResultPage.isExpressProcessLogo());
   }
 
   @Test
   public void testProcessOwnerCanViewAndEditProcess() {
-    createAdministratedWorkflow(processName, Arrays.asList(responsible1, groupHr), false);
+    createAdministratedWorkflow(testProcessName, Arrays.asList(responsible1, groupHr), false);
     login(TestAccount.HR_ROLE_USER);
     newDashboardPage = new NewDashboardPage();
-    GlobalSearchResultPage searchResultPage = newDashboardPage.inputGlobalSearchKeyword(processName);
+    GlobalSearchResultPage searchResultPage = newDashboardPage.inputGlobalSearchKeyword(testProcessName);
     searchResultPage.waitForFirstTabFinishedLoading();
 
     assertTrue(searchResultPage.isInfoWorkflowIcon());
     assertTrue(searchResultPage.isExpressProcessLogo());
 
-    searchResultPage.clickOnActionButton(processName);
+    searchResultPage.clickOnActionButton(testProcessName);
 
-    assertTrue(searchResultPage.isEditExpressWorkflow(processName));
-    assertTrue(searchResultPage.isDeleteExpressWorkflown(processName));
+    assertTrue(searchResultPage.isEditExpressWorkflow(testProcessName));
+    assertTrue(searchResultPage.isDeleteExpressWorkflown(testProcessName));
   }
 
   @Test
   public void testAbleToStartCanViewProcess() {
     login(TestAccount.ADMIN_USER);
-    createAdministratedWorkflow(processName, Arrays.asList(groupHr), false);
+    createAdministratedWorkflow(testProcessName, Arrays.asList(groupHr), false);
     login(TestAccount.DEMO_USER);
     newDashboardPage = new NewDashboardPage();
-    GlobalSearchResultPage searchResultPage = newDashboardPage.inputGlobalSearchKeyword(processName);
+    GlobalSearchResultPage searchResultPage = newDashboardPage.inputGlobalSearchKeyword(testProcessName);
     searchResultPage.waitForFirstTabFinishedLoading();
     
     assertTrue(searchResultPage.isInfoWorkflowIcon());
@@ -292,11 +292,11 @@ public class PortalExpressTest extends BaseTest{
   public void testRejectedApprovalWhenMultiTask() {
     goToExpressCreationPage();
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
-    expressProcessPage.fillProcessProperties(false, true, processName, "Test description");
+    expressProcessPage.fillProcessProperties(false, true, testProcessName, "Test description");
     expressProcessPage.fillProcessOwners(Arrays.asList(responsible1, groupHr));
     ExpressFormDefinitionPage formDefinition = configureExpressProcessWhenMultiApproval(expressProcessPage);
     formDefinition.finishWorkflow();
-    startExpressProcess(processName);
+    startExpressProcess(testProcessName);
     rejectWhenMultiApproval();
   }
 
@@ -304,7 +304,7 @@ public class PortalExpressTest extends BaseTest{
   public void testComplexProcess() {
     goToExpressCreationPage();
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
-    expressProcessPage.fillProcessProperties(true, true, processName, "Test description");
+    expressProcessPage.fillProcessProperties(true, true, testProcessName, "Test description");
     ExpressFormDefinitionPage formDefinition = configureComplexProcess(expressProcessPage);
     formDefinition.executeWorkflowAndWaitForUserTaskWithEmailDisplay();
     executeComplexProcess();
