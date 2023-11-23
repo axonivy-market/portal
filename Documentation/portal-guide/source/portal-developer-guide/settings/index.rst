@@ -318,21 +318,18 @@ These variables are stored as key-value pairs. They have to be edited in the Eng
    | Variable                                    | Default                       | Description                 |
    |                                             | value                         |                             |
    +=============================================+===============================+=============================+
-   | PortalStartTimeCleanObsoletedDataExpression | 0 0 6 \* \* ?                 | Cron expression defines     |
+   | PortalStartTimeCleanObsoletedDataExpression | 0 6 \* \* \*                  | Cron expression defines     |
    |                                             |                               | the time to clean up data   |
    |                                             |                               | of obsolete users. E.g.:    |
    |                                             |                               | expression for at 6AM       |
    |                                             |                               | every day is                |
-   |                                             |                               | ``0 0 6 * * ?`` . Refer     |
+   |                                             |                               | ``0 6 * * *`` . Refer       |
    |                                             |                               | to                          |
-   |                                             |                               | `crontrigger <http://quar   |
-   |                                             |                               | tz-scheduler.org/document   |
-   |                                             |                               | ation/quartz-2.1.7/tutori   |
-   |                                             |                               | als/tutorial-lesson-06.htm  |
-   |                                             |                               | l>`__                       |
-   |                                             |                               | . Restart Ivy engine        |
-   |                                             |                               | after changing this         |
-   |                                             |                               | variable.                   |
+   |                                             |                               | `CRON Expression <https://  |
+   |                                             |                               | developer.axonivy.com/doc/  |
+   |                                             |                               | 11.2/engine-guide/configur  |
+   |                                             |                               | ation/advanced-configurati  |
+   |                                             |                               | on.html#cron-expression>`_  |
    +---------------------------------------------+-------------------------------+-----------------------------+
    | PortalDeleteAllFinishedHiddenCases          | false                         | If set to ``true``, the     |
    |                                             |                               | above cron job runs daily   |
