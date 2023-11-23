@@ -3,7 +3,7 @@ package ch.ivy.addon.portalkit.support;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.safety.Whitelist;
+import org.jsoup.safety.Safelist;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -31,6 +31,6 @@ public class HtmlParser {
   }
 
   private static String sanitize(String text) {
-    return Jsoup.clean(text, Whitelist.relaxed().addAttributes(":all", "style"));
+    return Jsoup.clean(text, Safelist.relaxed().addAttributes(":all", "style"));
   }
 }
