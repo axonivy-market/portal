@@ -9,6 +9,7 @@ import java.net.URLEncoder;
 import java.time.Duration;
 
 import org.junit.jupiter.api.AfterEach;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WindowType;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -309,5 +310,9 @@ public class BaseTest {
     user.setResponsibleName(userName);
     user.setIsGroup(isGroup);
     return user;
+  }
+  
+  public void resizeBrowserTo2k() {
+    ScreenshotUtil.resizeBrowser(new Dimension(2560, 1440));
   }
 }

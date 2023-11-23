@@ -221,9 +221,10 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     String filterSetName = "Filters for annual";
 
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
+    resizeBrowserTo2k();
     addFilters(taskAnalysisWidgetPage);
     taskAnalysisWidgetPage.saveFilterSet(filterSetName, false);
-
+    taskAnalysisWidgetPage.countSavedFilter(2);
     statisticWidgetPage = taskAnalysisWidgetPage.navigateToStatisticPage();
     TaskAnalysisWidgetPage secondTaskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
     secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, false);
@@ -238,8 +239,8 @@ public class TaskAnalysisWidgetTest extends BaseTest {
   @Test
   public void testSavePrivateFilterSet() {
     String filterSetName = "Filters for annual";
-
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
+    resizeBrowserTo2k();
     addFilters(taskAnalysisWidgetPage);
     taskAnalysisWidgetPage.saveFilterSet(filterSetName, true);
     taskAnalysisWidgetPage.countSavedFilter(2);
@@ -305,8 +306,10 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
     taskAnalysisWidgetPage.filterByResponsible("Demo", "Responsible", "responsible");
     taskAnalysisWidgetPage.filterUserInCase("Demo", "Creator", "creator");
-
+    resizeBrowserTo2k();
     taskAnalysisWidgetPage.saveFilterSet(filterSetName, false);
+    taskAnalysisWidgetPage.countSavedFilter(2);
+
     MainMenuPage mainMenuPage = new MainMenuPage();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     statisticWidgetPage.navigateToTaskAnalysisPage();
