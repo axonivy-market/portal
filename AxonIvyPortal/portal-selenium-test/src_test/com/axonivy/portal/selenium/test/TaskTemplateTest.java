@@ -11,7 +11,9 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.NoteHistoryPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
@@ -130,5 +132,18 @@ public class TaskTemplateTest extends BaseTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     TaskWidgetPage taskList = newDashboardPage.openTaskList();
     assertTrue(taskList.isCategoryColumnDisplayed());
+  }
+
+  @Test
+  public void testOpeningFinishedTaskInHistoryArea() {
+    createTestData();
+    TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
+    taskTemplatePage.openFinishedTaskInHistoryArea();
+    taskTemplatePage.switchLastBrowserTab();
+    NoteHistoryPage caseHistoryPage = new NoteHistoryPage();
+    WaitHelper.assertTrueWithWait(() -> taskTemplatePage.countBrowserTab() > 1);
+    int numberOfNotes = 0;
+    numberOfNotes = caseHistoryPage.countNotes();
+    assertEquals(1, numberOfNotes);
   }
 }

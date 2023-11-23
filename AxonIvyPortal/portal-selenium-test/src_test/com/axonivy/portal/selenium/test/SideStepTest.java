@@ -17,7 +17,7 @@ import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.codeborne.selenide.CollectionCondition;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class SideStepTest extends BaseTest {
 
   @Override
@@ -52,23 +52,25 @@ public class SideStepTest extends BaseTest {
 
   @Test
   public void testAddAdhocTask() {
+    login(TestAccount.ADMIN_USER);
     int firstTask = 0;
     final String TASK_NAME = "Case Map Leave Request";
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.countTasks().shouldHave(CollectionCondition.size(1));
+    taskWidgetPage.countTasks().shouldHave(CollectionCondition.size(2));
     assertEquals(taskWidgetPage.getNameOfTaskAt(0), TASK_NAME);
     AdhocPage adhocPage = taskWidgetPage.addAdhoc(firstTask);
     adhocPage.enterSubject("Collect Information");
     adhocPage.addResponsible(TestAccount.DEMO_USER.getFullName());
-    adhocPage.addTask();
     adhocPage.startWorkflow();
+    adhocPage = new AdhocPage();
+    login(TestAccount.DEMO_USER);
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.countTasks().shouldHave(CollectionCondition.size(1));
-    assertEquals(taskWidgetPage.getNameOfTaskAt(0), "TASK Collect Information");
+    assertEquals(taskWidgetPage.getNameOfTaskAt(0), "Collect Information");
     taskWidgetPage.startTask(0);
     adhocPage = new AdhocPage();
-    adhocPage.addComment("Annual leaves are available");
-    taskWidgetPage = adhocPage.send();
+    adhocPage.addDescription("Annual leaves are available");
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.countTasks().shouldHave(CollectionCondition.size(1));
     assertEquals(taskWidgetPage.getNameOfTaskAt(0), TASK_NAME);
   }
