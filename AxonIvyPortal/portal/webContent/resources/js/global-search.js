@@ -157,7 +157,7 @@ function debounce(func, delay) {
 }
 
 let processComponent = (process) => {
-    return `<div class="task-even-row full-mode task-start-list-item js-task-start-list-item">
+    return `<a href="${process.link}" target="_blank" class="task-even-row full-mode task-start-list-item js-task-start-list-item">
               <div class="task-start-link js-task-start-link">
                 <div class="task-priority-item">
                   <span class="priority-cell search-item">
@@ -167,14 +167,10 @@ let processComponent = (process) => {
                   </span>
                 </div>
                 <div class="task-start-info">
-                  <span class="name-cell">
-                  ${process.name}
-                  </span>
-                  <span id="search-results-tabview:task-results:task-list-scroller:0:task-item:task-name-component:task-description"
-                   class="description-cell ">${process.description}</span>
+                  <span class="name-cell"> ${process.name}</span>
                 </div>
-              </div>
-            </div>`;
+               </div>
+            </a>`;
 }
 
 let taskComponent = (task) => {
@@ -194,7 +190,7 @@ let taskComponent = (task) => {
             iconClass = "priority si si-alert-circle exception-priority";
             break;
     }
-    return `<div class="task-even-row full-mode task-start-list-item js-task-start-list-item">
+    return `<a href="${task.link}" target="_blank" class="task-even-row full-mode task-start-list-item js-task-start-list-item">
                 <div class="task-start-link js-task-start-link">
                   <div class="task-priority-item">
                     <span class="priority-cell search-item">
@@ -209,19 +205,24 @@ let taskComponent = (task) => {
                     </span>
                   </div>
                 </div>
-              </div>`;
+              </a>`;
 }
 
 let caseComponent = (caze) => {
-    return `<div class="task-even-row full-mode task-start-list-item js-task-start-list-item">
+    return `<a href="${caze.link}" target="_blank"  class="task-even-row full-mode task-start-list-item js-task-start-list-item">
                 <div class="task-start-link js-task-start-link">
+                  <div class="task-priority-item">
+                    <span class="priority-cell search-item">
+                      <span class="priority-icon">
+                        <i class="si si-layout-bullets"></i>
+                      </span>
+                    </span>
+                  </div>
                   <div class="task-start-info">
                     <span class="name-cell">
                     ${caze.name}
                     </span>
-                    <span id="search-results-tabview:task-results:task-list-scroller:0:task-item:task-name-component:task-description"
-                     class="description-cell ">${caze.description}</span>
                   </div>
                 </div>
-              </div>`;
+              </a>`;
 }

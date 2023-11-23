@@ -1,12 +1,21 @@
 package com.axonivy.portal.response;
 
+import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
+
 import ch.ivyteam.ivy.workflow.ICase;
 
 public class CaseData {
   private long id;
   private String name;
-  private String description;
+  private String link;
 
+  public String getLink() {
+    return link;
+  }
+
+  public void setLink(String link) {
+    this.link = link;
+  }
   public long getId() {
     return id;
   }
@@ -23,21 +32,13 @@ public class CaseData {
     this.name = name;
   }
 
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
   public CaseData() {
   }
 
   public CaseData(ICase caze) {
     this.id = caze.getId();
     this.name = caze.getName();
-    this.description = caze.getDescription();
+    this.link = PortalNavigatorAPI.buildUrlToPortalCaseDetailsPageByUUID(caze.uuid());
   }
 
 }

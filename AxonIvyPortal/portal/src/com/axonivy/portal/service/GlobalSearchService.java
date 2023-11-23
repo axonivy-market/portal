@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.components.util.ProcessViewerUtils;
+import com.axonivy.portal.enums.SearchScopeCaseField;
+import com.axonivy.portal.enums.SearchScopeTaskField;
 import com.axonivy.portal.payload.SearchPayload;
 import com.axonivy.portal.response.CaseData;
 import com.axonivy.portal.response.ProcessData;
@@ -37,6 +39,7 @@ public class GlobalSearchService {
     query.setSortField(TaskSortField.EXPIRY_TIME.toString());
     query.setSortDescending(true);
     query.setQuickGlobalSearch(true);
+    query.setSearchScopeTaskFields(List.of(SearchScopeTaskField.NAME, SearchScopeTaskField.DESCRIPTION));
     IvyTaskResultDTO iTasks = TaskService.newInstance().findTasksByCriteria(query, 0, PAGE_SIZE);
     return iTasks.getTasks().stream().map(TaskData::new).toList();
   }
@@ -44,6 +47,7 @@ public class GlobalSearchService {
   public List<CaseData> searchCases(SearchPayload payload) {
     CaseSearchCriteria query = new CaseSearchCriteria();
     query.setKeyword(payload.getQuery());
+    query.setSearchScopeCaseFields(List.of(SearchScopeCaseField.NAME, SearchScopeCaseField.DESCRIPTION, SearchScopeCaseField.CUSTOM));
     IvyCaseResultDTO iCases = CaseService.newInstance().findCasesByCriteria(query, 0, PAGE_SIZE);
     return iCases.getCases().stream().map(CaseData::new).toList();
   }
@@ -52,7 +56,8 @@ public class GlobalSearchService {
     List<IWebStartable> startableProcesses = ProcessService.getInstance().findProcesses().getProcesses();
     List<ProcessData> processes = startableProcesses.stream()
         .filter(process -> ProcessViewerUtils.isViewerAllowed(process)
-            && process.getName().toLowerCase().contains(payload.getQuery().toLowerCase()))
+            && (process.getName().toLowerCase().contains(payload.getQuery().toLowerCase())
+                || process.getDescription().toLowerCase().contains(payload.getQuery().toLowerCase())))
         .map(ProcessData::new).sorted(Comparator.comparing(ProcessData::getName)).toList();
     return processes.isEmpty() ? processes : processes.subList(0, Math.min(processes.size(), PAGE_SIZE));
   }

@@ -9,6 +9,15 @@ public class ProcessData {
   private String name;
   private String description;
   private String icon;
+  private String link;
+
+  public String getLink() {
+    return link;
+  }
+
+  public void setLink(String link) {
+    this.link = link;
+  }
 
   public String getIcon() {
     return icon;
@@ -49,6 +58,7 @@ public class ProcessData {
     this.id = process.getId();
     this.name = process.getName();
     this.description = process.getDescription();
+    this.link = process.getLink().getAbsolute();
     this.icon = StringUtils.defaultIfBlank(process.customFields().value("cssIcon"), "si si si-hierarchy-6 si-rotate-270");
   }
 }
