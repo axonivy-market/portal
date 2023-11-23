@@ -14,7 +14,7 @@
     }, {
       "id" : "f5",
       "type" : "ProgramStart",
-      "name" : "PortalClearObsoleteData",
+      "name" : "PortalCleanObsoleteData",
       "config" : {
         "javaClass" : "ch.ivy.addon.portalkit.util.CronByGlobalVariableTriggerStartEventBean",
         "userConfig" : {
