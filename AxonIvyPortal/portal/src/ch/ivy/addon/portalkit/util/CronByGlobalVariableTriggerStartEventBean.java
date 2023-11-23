@@ -35,7 +35,7 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
         Boolean isJobTrigger = Optional.of(deleteAllFinishedHiddenCasesVar).map(Variable::value).map(Boolean::parseBoolean).orElse(false);
         if (StringUtils.isNotBlank(pattern) && isJobTrigger) {
           eventRuntime.poll().asDefinedByExpression(pattern);
-        }else {
+        } else {
           eventRuntime.poll().disable();
         }
       }
