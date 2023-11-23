@@ -425,7 +425,7 @@ public abstract class TemplatePage extends AbstractPage {
 
   public AdminSettingsPage openAdminSettings() {
     openUserSettingMenu();
-    WaitHelper.waitForNavigation(() -> clickByJavaScript($("[id='adminui-menu-item']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)));
+    clickByJavaScript($("[id='adminui-menu-item']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT));
     return new AdminSettingsPage();
   }
 
