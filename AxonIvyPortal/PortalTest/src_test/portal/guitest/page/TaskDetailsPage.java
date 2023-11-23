@@ -479,4 +479,9 @@ public class TaskDetailsPage extends TemplatePage {
     driver.switchTo().frame("custom-widget-iframe-url");
     WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("a[href='https://www.axonivy.com']").isDisplayed());
   }
+
+  public void waitForNoteTableDisplayed() {
+	  WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("div[id$=':task-note-table']").isDisplayed());
+	  
+  }
 }

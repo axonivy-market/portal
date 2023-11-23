@@ -71,6 +71,9 @@ public class SystemNoteVisibilityTest extends BaseTest {
     
     TaskDetailsPage taskDetailsPage = openTaskDetails();
     String taskId = taskDetailsPage.getTaskId();
+    taskDetailsPage.closeMainMenu();
+    taskDetailsPage.refresh();
+    taskDetailsPage.waitForNoteTableDisplayed();
     List<String> taskNoteAuthors = taskDetailsPage.getTaskNoteAuthors();
     Assert.assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));
     
@@ -93,6 +96,9 @@ public class SystemNoteVisibilityTest extends BaseTest {
     updatePortalSetting(HIDE_SYSTEM_NOTES_FROM_HISTORY.getKey(), "true");
     TaskDetailsPage taskDetailsPage = openTaskDetails();
     String taskId = taskDetailsPage.getTaskId();
+    taskDetailsPage.closeMainMenu();
+    taskDetailsPage.refresh();
+    taskDetailsPage.waitForNoteTableDisplayed();
     List<String> taskNoteAuthors = taskDetailsPage.getTaskNoteAuthors();
     Assert.assertFalse(taskNoteAuthors.contains(SYSTEM_USER_NAME));
     
