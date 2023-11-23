@@ -18,8 +18,7 @@
   </distributionManagement>
   <properties>
     <ivy.engine.version>11.3.0</ivy.engine.version>
-    <build.plugin.version>11.1.0</build.plugin.version>
-    <quartz.version>2.3.2</quartz.version>
+    <build.plugin.version>11.2.0</build.plugin.version>
   </properties>
   <dependencies>
     <dependency>
@@ -27,17 +26,6 @@
       <artifactId>portal-components</artifactId>
       <version>9.1.0.0-SNAPSHOT</version>
       <type>iar</type>
-    </dependency>
-    <dependency>
-      <groupId>org.quartz-scheduler</groupId>
-      <artifactId>quartz</artifactId>
-      <version>${quartz.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
   </dependencies>
   <repositories>

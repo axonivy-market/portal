@@ -75,7 +75,7 @@
                             </p:commandLink>
                             <p:tooltip for="notificationMarkAsRead" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
                           </div>
-                          <h:outputText id="notificationMessage" value="#{notification.message}" />
+                          <h:outputText id="notificationMessage" value="#{notification.message}" escape="false"/>
                         </div>
 
                         <div>
