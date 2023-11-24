@@ -818,8 +818,8 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .new-widget-dialog__introduction {
   display: -webkit-box;
-  -webkit-line-clamp: 2 !important;
-  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
