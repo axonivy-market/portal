@@ -169,7 +169,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     }
 
     MenuView menuView = (MenuView) ManagedBeans.get("menuView");
-    menuView.updateDashboardCache(dashboards);
+    menuView.updateDashboardCache(DashboardUtils.collectDashboards());
   }
 
   private List<Dashboard> getVisibleDashboards(String dashboardJson) {
