@@ -194,7 +194,7 @@
                      <!--Notification Channels -->
                      <div id="notification-channels" class="ui-g-12">
                         <div class="ui-g-12 u-no-padding-top">
-                           <div>
+                           <div class="u-mar-right-5">
                               <p:growl for="notification-Message">
                                  <p:autoUpdate />
                               </p:growl>
@@ -203,7 +203,7 @@
                                     <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/notificationChannels')}</h2>
                                  </div>
                                  <div class="p-d-flex">
-                                    <p:commandButton id="reset" styleClass="rounded-button ui-button-outlined u-mar-right-5" global="false" 
+                                    <p:commandButton id="reset" styleClass="rounded-button ui-button-outlined" global="false" 
                                        icon="si si-undo" actionListener="#{userProfileBean.resetAllChannel}" update="@form" 
                                        title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}"/>
                                 </div>
