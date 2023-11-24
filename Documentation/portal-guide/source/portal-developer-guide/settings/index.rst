@@ -323,15 +323,14 @@ These variables are stored as key-value pairs. They have to be edited in the Eng
    |                                             |                               | of obsolete users. E.g.:    |
    |                                             |                               | expression for at 6AM       |
    |                                             |                               | every day is                |
-   |                                             |                               | ``0 6 * * *`` . Refer       |
-   |                                             |                               | to                          |
+   |                                             |                               | ``0 6 * * *``. Refer to     |
    |                                             |                               | `CRON Expression <https://  |
    |                                             |                               | developer.axonivy.com/doc/  |
    |                                             |                               | 11.2/engine-guide/configur  |
    |                                             |                               | ation/advanced-configurati  |
-   |                                             |                               | on.html#cron-expression>`_  |
+   |                                             |                               | on.html#cron-expression>`_. |
    |                                             |                               | Restart Ivy engine after    |
-   |                                             |                               | changing this variable      |
+   |                                             |                               | changing this variable.     |
    +---------------------------------------------+-------------------------------+-----------------------------+
    | PortalDeleteAllFinishedHiddenCases          | false                         | If set to ``true``, the     |
    |                                             |                               | above cron job runs daily   |
