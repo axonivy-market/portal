@@ -138,9 +138,76 @@
                   </div>
                </div>
 
-               <!-- Language and Email setting card -->
+               <!-- Language and Notification setting card -->
                <div class="ui-g-6 ui-lg-6 ui-md-12 ui-sm-12">
                   <div class="portal-section-container card">
+
+
+                     <!--Notification Channels -->
+                     <div id="notification-channels" class="ui-g-12">
+                        <div class="ui-g-12 u-no-padding-top">
+                           <div>
+                              <p:growl for="notification-Message">
+                                 <p:autoUpdate />
+                              </p:growl>
+                              <div class="card-header">
+                                 <div class="setting-header">
+                                    <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/notificationChannels')}</h2>
+                                 </div>
+                              </div>
+                              <div class="ui-g-12">
+                              <p:dataTable paginator="true" rows="10"
+                                 paginatorPosition="bottom"
+                                 paginatorAlwaysVisible="false"
+                                 var="event"
+                                 value="#{userProfileBean.events}"
+                                 id="notification-Channels-Table"
+                                 lazy="false" styleClass="ui-fluid">
+                                 <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/event')}"
+                                    sortBy="#{event}">
+                                    <h:outputText value="#{event}" />
+                                 </p:column>
+                                 <p:columns id="channels" var="channel"
+                                    value="#{userProfileBean.channels}">
+                                    <div>
+                                       <f:facet name="header">
+                                          <div class="p-d-flex">
+                                             <i
+                                                class="#{channel.channel.displayIcon()} table-icon p-mr-2 p-mt-1" />
+                                             <h:outputText
+                                                value="#{channel.channel.displayName()}">
+                                             </h:outputText>
+                                          </div>
+                                       </f:facet>
+                                    </div>
+                                    <c:set var="subscription"
+                                       value="#{channel.getSubscription(event)}" />
+                                    <div class="p-d-flex">
+                                       <i
+                                          class="p-mr-2 p-mt-1 si table-icon si-#{subscription.icon} subscription-icon "
+                                          title="#{subscription.title}" />
+                                       <p:triStateCheckbox
+                                          id="subscriptionCheckbox"
+                                          value="#{subscription.stateAsString}">
+                                          <p:ajax event="change"
+                                             update="@form"
+                                             listener="#{channel.setSubscriptionIconAndTitle(event)}" />
+                                       </p:triStateCheckbox>
+                                    </div>
+                                 </p:columns>
+                              </p:dataTable>
+                              </div>
+                              <div>
+                                 <div class="u-text-align-right ui-g-12">
+                                    <p:commandButton id="restore-to-default-button" icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
+                                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}" 
+                                       actionListener="#{userProfileBean.resetAllChannel}" update="@form" styleClass="setting-tab-action-buttons" />
+                                </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
                      <div id="language-setting-container"
                         class="ui-g-12 ui-fluid">
                         <div class="setting-header ui-g-12">
@@ -187,67 +254,6 @@
                                     dynamic="true"
                                     appendTo="@(.portal-layout-container)" />
                               </div>
-                           </div>
-                        </div>
-                     </div>
-
-                     <!--Notification Channels -->
-                     <div id="notification-channels" class="ui-g-12">
-                        <div class="ui-g-12 u-no-padding-top">
-                           <div>
-                              <p:growl for="notification-Message">
-                                 <p:autoUpdate />
-                              </p:growl>
-                              <div class="card-header">
-                                 <div class="setting-header">
-                                    <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/notificationChannels')}</h2>
-                                 </div>
-                                 <div class="p-d-flex">
-                                    <p:commandButton id="reset" styleClass="rounded-button ui-button-outlined u-mar-right-5" global="false" 
-                                       icon="si si-undo" actionListener="#{userProfileBean.resetAllChannel}" update="@form" 
-                                       title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}"/>
-                                </div>
-                              </div>
-                              <p:dataTable paginator="true" rows="10"
-                                 paginatorPosition="bottom"
-                                 paginatorAlwaysVisible="false"
-                                 var="event"
-                                 value="#{userProfileBean.events}"
-                                 id="notification-Channels-Table"
-                                 lazy="false" styleClass="ui-fluid">
-                                 <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/event')}"
-                                    sortBy="#{event}">
-                                    <h:outputText value="#{event}" />
-                                 </p:column>
-                                 <p:columns id="channels" var="channel"
-                                    value="#{userProfileBean.channels}">
-                                    <div>
-                                       <f:facet name="header">
-                                          <div class="p-d-flex">
-                                             <i
-                                                class="#{channel.channel.displayIcon()} table-icon p-mr-2 p-mt-1" />
-                                             <h:outputText
-                                                value="#{channel.channel.displayName()}">
-                                             </h:outputText>
-                                          </div>
-                                       </f:facet>
-                                    </div>
-                                    <c:set var="subscription"
-                                       value="#{channel.getSubscription(event)}" />
-                                    <div class="p-d-flex">
-                                       <i
-                                          class="p-mr-2 p-mt-1 si table-icon si-#{subscription.icon} subscription-icon "
-                                          title="#{subscription.title}" />
-                                       <p:triStateCheckbox
-                                          id="subscriptionCheckbox"
-                                          value="#{subscription.stateAsString}">
-                                          <p:ajax event="change"
-                                             update="@form"
-                                             listener="#{channel.setSubscriptionIconAndTitle(event)}" />
-                                       </p:triStateCheckbox>
-                                    </div>
-                                 </p:columns>
-                              </p:dataTable>
                            </div>
                         </div>
                      </div>
