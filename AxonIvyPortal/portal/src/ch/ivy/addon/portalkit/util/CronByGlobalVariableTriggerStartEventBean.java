@@ -19,7 +19,7 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
   private static final String PORTAL_DELETE_ALL_FINISHED_HIDDEN_CASE = "PortalDeleteAllFinishedHiddenCases";
   private static final String VARIABLE = "variable";
   public CronByGlobalVariableTriggerStartEventBean() {
-    super("Portal Clear Obsolete Data", "This is a scheduled process of Portal");
+    super("Portal Clean Obsolete Data", "This is a scheduled process of Portal");
   }
 
   @Override
@@ -35,6 +35,8 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
         Boolean isJobTrigger = Optional.of(deleteAllFinishedHiddenCasesVar).map(Variable::value).map(Boolean::parseBoolean).orElse(false);
         if (StringUtils.isNotBlank(pattern) && isJobTrigger) {
           eventRuntime.poll().asDefinedByExpression(pattern);
+        } else {
+          eventRuntime.poll().disable();
         }
       }
     } catch (Exception ex) {

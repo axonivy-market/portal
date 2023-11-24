@@ -330,6 +330,8 @@ These variables are stored as key-value pairs. They have to be edited in the Eng
    |                                             |                               | 11.2/engine-guide/configur  |
    |                                             |                               | ation/advanced-configurati  |
    |                                             |                               | on.html#cron-expression>`_  |
+   |                                             |                               | Restart Ivy engine after    |
+   |                                             |                               | changing this variable      |
    +---------------------------------------------+-------------------------------+-----------------------------+
    | PortalDeleteAllFinishedHiddenCases          | false                         | If set to ``true``, the     |
    |                                             |                               | above cron job runs daily   |
