@@ -312,7 +312,7 @@ public class BaseTest {
     return user;
   }
   
-  public void resizeBrowserTo2k() {
+  public void resizeBrowserTo2kResolution() {
     ScreenshotUtil.resizeBrowser(new Dimension(2560, 1440));
   }
 }
