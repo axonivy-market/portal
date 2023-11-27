@@ -118,7 +118,6 @@ public class TaskTemplateIFrameTest extends BaseTest {
     taskWidget.filterTasksInExpandedModeBy("sale department", 1);
     TaskTemplatePage startTask = taskWidget.startTask(0);
     startTask.openCaseInfo();
-    startTask.switchToCaseInfoIframe();
     ScreenshotUtil.resizeBrowser(new Dimension(1920, 1080));
     assertTrue(startTask.isCategoryColumnDisplayed());
   }

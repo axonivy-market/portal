@@ -46,12 +46,7 @@ public class TaskTemplatePage extends TemplatePage {
     switchToIframeWithId("i-frame-case-details");
   }
 
-  public void switchToCaseInfoIframe() {
-    WaitHelper.waitForIFrameAvailable(driver, CASE_INFO_IFRAME_ID);
-  }
-
   public void addNewNote(String content) {
-    switchToCaseInfoIframe();
     waitForElementClickableThenClick("a[id$='add-note-command']");
     waitForElementDisplayed(By.cssSelector("div[id$='add-note-dialog']"), true);
     findElementByCssSelector("textarea[id$='note-content']").sendKeys(content);
@@ -179,7 +174,6 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void openDocumentUploadingDialog() {
-    switchToCaseInfoIframe();
     waitForElementDisplayed(By.cssSelector("a[id$='add-document-command']"), true);
     clickByJavaScript($("a[id$='add-document-command']"));
     waitForElementDisplayed(By.cssSelector("div[id$='document-upload-dialog']"), true);
@@ -190,7 +184,6 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public TaskDetailsPage openRelatedTaskInList(String taskName) {
-    switchToCaseInfoIframe();
     Integer index = getTaskRowIndex(taskName);
     waitForElementDisplayed(By.cssSelector("td.related-task-name-column"), true);
     $$("td.related-task-name-column").get(index).click();
@@ -215,12 +208,10 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public boolean containsCaseDetails() {
-    WebElement caseDetails = findDisplayedElementByCssSelector("div[id$='case-details-panel']");
-    return caseDetails.isDisplayed();
+    return $("div[id$='case-item-details']").isDisplayed();
   }
 
   public int countRelatedTasks() {
-    switchToCaseInfoIframe();
     waitForElementDisplayed(By.cssSelector("td.related-task-name-column"), true);
     return $$("td.related-task-name-column").size();
   }

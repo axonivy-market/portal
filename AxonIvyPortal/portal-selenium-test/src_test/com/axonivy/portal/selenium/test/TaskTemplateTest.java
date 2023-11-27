@@ -53,13 +53,13 @@ public class TaskTemplateTest extends BaseTest {
     createTestData();
     TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
 
-    WebDriverRunner.getWebDriver().switchTo().defaultContent();
     TaskDetailsPage taskDetailsPage = taskTemplatePage.openRelatedTaskInList(ANNUAL_LEAVE_REQUEST_TASK);
     assertEquals("Task: Annual Leave Request", taskDetailsPage.getTaskNameInDialog());
 
     taskDetailsPage.clickBackButton();
     WebDriverRunner.getWebDriver().switchTo().defaultContent();
     taskTemplatePage = new TaskTemplatePage();
+    taskDetailsPage.switchToCaseInfoIframe();
     assertTrue(taskTemplatePage.countRelatedTasks() > 0);
   }
 
