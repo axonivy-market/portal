@@ -23,6 +23,7 @@ import com.axonivy.portal.selenium.page.ExpressProcessPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.codeborne.selenide.Condition;
 
 @IvyWebTest
 public class DisabledUserTest extends BaseTest {
@@ -88,7 +89,6 @@ public class DisabledUserTest extends BaseTest {
 
   @Test
   public void testAbsenceWithDisabledUser() {
-    login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(cleanUpAbsencesAndSubstituesLink);
     AbsencePage absencePage = new NewDashboardPage().openAbsencePage();
     absencePage.setSubstitutedByAdmin(VISIBILITY_USER_FULL_NAME);
@@ -101,6 +101,6 @@ public class DisabledUserTest extends BaseTest {
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     absencePage = new NewDashboardPage().openAbsencePage();
     absencePage.setSubstitutedByAdmin(VISIBILITY_USER_FULL_NAME);
-    assertEquals(TestAccount.DEMO_USER.getFullName(), absencePage.getMyDeputy(0));
+    absencePage.getMyDeputy(0).shouldBe(Condition.text(TestAccount.DEMO_USER.getFullName()), DEFAULT_TIMEOUT);
   }
 }
