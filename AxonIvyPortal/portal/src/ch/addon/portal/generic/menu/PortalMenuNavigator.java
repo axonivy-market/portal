@@ -119,9 +119,14 @@ public class PortalMenuNavigator {
     }
     String sessionUserId = (String) Ivy.session().getAttribute(sessionIdAttribute);
     IvyCacheService cacheService = IvyCacheService.newInstance();
-    PortalSubMenuItemWrapper portalSubMenuItemWrapper =
-        (PortalSubMenuItemWrapper) cacheService.getSessionCacheValue(IvyCacheIdentifier.PORTAL_MENU, sessionUserId).orElse(null);
-    
+    PortalSubMenuItemWrapper portalSubMenuItemWrapper = null;
+    try {
+      portalSubMenuItemWrapper = (PortalSubMenuItemWrapper) cacheService
+          .getSessionCacheValue(IvyCacheIdentifier.PORTAL_MENU, sessionUserId).orElse(null);
+    } catch (ClassCastException e) {
+      cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_MENU, sessionUserId);
+    }
+
     if (portalSubMenuItemWrapper == null
         || !requestLocale.equals(portalSubMenuItemWrapper.loadedLocale)) {
       synchronized(PortalSubMenuItemWrapper.class) {
