@@ -9,7 +9,7 @@ import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.codeborne.selenide.CollectionCondition;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class PageRefreshingTest extends BaseTest{
 
   @Override
