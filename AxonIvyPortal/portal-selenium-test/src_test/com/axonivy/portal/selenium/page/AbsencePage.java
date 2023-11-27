@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -49,9 +50,9 @@ public class AbsencePage extends TemplatePage {
     }
   }
 
-  public String getMyDeputy(int deputyRoleIndex) {
+  public SelenideElement getMyDeputy(int deputyRoleIndex) {
     String deputiesSelector = String.format("a[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
-    return $(deputiesSelector).shouldBe(appear, DEFAULT_TIMEOUT).getText();
+    return $(deputiesSelector).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public String getMyDisabledDeputy(int deputyRoleIndex) {
@@ -98,6 +99,7 @@ public class AbsencePage extends TemplatePage {
     }
     if (saveSelectedDeputies) {
       waitForElementClickableThenClick("[id='deputy-selection-form:save-deputy-button']");
+      $(By.id("choose-deputy-dialog")).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
     }
   }
 
@@ -140,6 +142,7 @@ public class AbsencePage extends TemplatePage {
 
   public void saveSubstitute() {
     waitForElementClickableThenClick("button[id$='absences-management-form:save-substitute']");
+    waitForAbsencesGrowlMessageDisplay();
   }
 
   public WebElement getAbsenceForm() {

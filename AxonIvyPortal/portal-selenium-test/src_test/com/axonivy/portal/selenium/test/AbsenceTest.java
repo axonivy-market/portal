@@ -18,6 +18,7 @@ import com.axonivy.portal.selenium.page.AbsencePage;
 import com.axonivy.portal.selenium.page.NewAbsencePage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TemplatePage;
+import com.codeborne.selenide.Condition;
 
 import ch.ivy.addon.portalkit.enums.DeputyRoleType;
 
@@ -86,9 +87,8 @@ public class AbsenceTest extends BaseTest {
     List<String> personalTaskPermanentDeputyNames = Arrays.asList(TestAccount.ADMIN_USER.getFullName(), TestAccount.HR_ROLE_USER.getFullName());
     absencePage.setDeputy(personalTaskPermanentDeputyNames, DeputyRoleType.PERSONAL_TASK_PERMANENT);
     absencePage.saveSubstitute();
-    absencePage.waitForAbsencesGrowlMessageDisplay();
-    assertEquals(joinDeputyNames(personalTaskDuringAbsenceDeputyNames), absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE)));
-    assertEquals(joinDeputyNames(personalTaskPermanentDeputyNames), absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_PERMANENT)));
+    absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE)).shouldBe(Condition.text(joinDeputyNames(personalTaskDuringAbsenceDeputyNames)));;
+    absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_PERMANENT)).shouldBe(Condition.text(joinDeputyNames(personalTaskPermanentDeputyNames)));;
   }
 
   @Test
@@ -197,7 +197,6 @@ public class AbsenceTest extends BaseTest {
     List<String> deputyNames = Arrays.asList(TestAccount.GUEST_USER.getFullName());
     absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
     absencePage.saveSubstitute();
-    absencePage.waitForAbsencesGrowlMessageDisplay();
 
     login(TestAccount.GUEST_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateOwnSubstitutePermission.ivp");
@@ -216,9 +215,7 @@ public class AbsenceTest extends BaseTest {
     List<String> deputyNames = Arrays.asList(TestAccount.GUEST_USER.getFullName());
     absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
     absencePage.saveSubstitute();
-    absencePage.waitForAbsencesGrowlMessageDisplay();
-    assertEquals(TestAccount.GUEST_USER.getFullName(),
-        absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE)));
+    absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE)).shouldBe(Condition.text(TestAccount.GUEST_USER.getFullName()));;
   }
   
   @Test

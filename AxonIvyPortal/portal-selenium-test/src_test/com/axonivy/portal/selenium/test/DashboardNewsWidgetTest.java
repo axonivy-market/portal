@@ -146,7 +146,7 @@ public class DashboardNewsWidgetTest extends BaseTest {
     String tabIndexFr = newsWidget.selectNewsLanguage("fr");
     newsWidget.clickOnTitle(tabIndexFr);
     SelenideElement translation = newsWidget.getTranslationOverlayPanel(1);
-    translation.$("span.ui-icon-closethick").click();
+    translation.$("span.ui-icon-closethick").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     newsWidget.findTranslationButton(tabIndexFr);
     newsWidget.publishNews();
     newsWidget.waitForNewsWidgetContentDisplayClearly(1);
