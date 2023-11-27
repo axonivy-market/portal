@@ -24,7 +24,8 @@ public class CaseFilterFieldCreatedDate extends FilterField {
   }
 
   public String getLabel() {
-    return Ivy.cms().co(String.format("/Labels/Enums/DashboardStandardCaseColumn/%s", getName()));
+    // TODO filterfield how to improve, new CMS?
+    return Ivy.cms().co(String.format("/Labels/Enums/DashboardStandardCaseColumn/%s", "CREATED"));
   }
 
   @Override
