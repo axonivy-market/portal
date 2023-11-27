@@ -93,10 +93,6 @@ public abstract class TemplatePage extends AbstractPage {
     $("div[id='portal-global-growl_container']").$("div.ui-growl-message").shouldBe(disappear, Duration.ofSeconds(45));
   }
 
-//  public void waitForAjaxStatusPositionDisappear() {
-//    $("div.ajax-status-position").shouldBe(disappear, DEFAULT_TIMEOUT);
-//  }
-
   public void waitForElementDisplayed(By element, boolean expected) {
     if (expected) {
       $(element).shouldBe(appear, DEFAULT_TIMEOUT);

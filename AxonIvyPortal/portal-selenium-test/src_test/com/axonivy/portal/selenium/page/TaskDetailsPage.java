@@ -299,6 +299,9 @@ public class TaskDetailsPage extends TemplatePage {
     waitForElementClickableThenClick($("[id$=':task-detail-title-form:back-to-previous-page']"));
   }
 
+  public void switchToCaseInfoIframe() {
+    switchToIframeWithId("i-frame-case-details");
+  }
   public TaskWidgetPage goBackToTaskListFromTaskDetails() {
     clickBackButton();
     return new TaskWidgetPage();

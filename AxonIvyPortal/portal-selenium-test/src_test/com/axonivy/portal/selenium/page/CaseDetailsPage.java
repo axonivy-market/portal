@@ -83,8 +83,10 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("div.ui-dialog[aria-hidden='false']"), true);
     SelenideElement addNoteDialog = findElementByCssSelector("div.ui-dialog[aria-hidden='false']");
     waitForElementDisplayed(By.cssSelector("div.ui-dialog[aria-hidden='false']"), true);
-    addNoteDialog.findElement(By.cssSelector("textarea[id$='note-content']")).sendKeys(noteContent);
-    waitForElementClickableThenClick(addNoteDialog.$(By.cssSelector("button[id$='save-add-note-command']")));
+    addNoteDialog.$(By.cssSelector("textarea[id$='note-content']")).sendKeys(noteContent);
+    SelenideElement saveButton = addNoteDialog.$(By.cssSelector("button[id$='save-add-note-command']"));
+    waitForElementClickableThenClick(saveButton);
+    saveButton.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public ElementsCollection getNotesWithContent(String content) {
