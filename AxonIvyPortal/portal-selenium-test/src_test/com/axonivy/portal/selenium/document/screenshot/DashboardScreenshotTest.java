@@ -301,6 +301,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
     configPage.selectPublicDashboardType();
     DashboardModificationPage editPage = new DashboardModificationPage();
     NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
+    detailsEditPage.waitForCaseWidgetLoaded();
     detailsEditPage.waitPageLoaded();
     detailsEditPage.addWidget();
     detailsEditPage.addWidgetByName(widgetName);
