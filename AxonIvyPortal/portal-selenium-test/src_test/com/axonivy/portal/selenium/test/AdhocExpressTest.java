@@ -23,7 +23,7 @@ import com.codeborne.selenide.Condition;
 
 import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class AdhocExpressTest extends BaseTest{
   
   @Override

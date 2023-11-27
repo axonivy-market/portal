@@ -14,7 +14,7 @@ import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class UploadDeleteDocumentVisibilityTest extends BaseTest{
 
   private NewDashboardPage newDashboardPage;
