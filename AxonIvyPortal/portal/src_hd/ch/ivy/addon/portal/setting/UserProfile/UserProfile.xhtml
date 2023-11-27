@@ -140,10 +140,60 @@
 
                <!-- Language and Notification setting card -->
                <div class="ui-g-6 ui-lg-6 ui-md-12 ui-sm-12">
+
                   <div class="portal-section-container card">
-
-
-                     <!--Notification Channels -->
+                     <div id="language-setting-container"
+                        class="ui-g-12 ui-fluid">
+                        <div class="setting-header ui-g-12">
+                           <h2 id="language-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Language')}</h2>
+                        </div>
+                           <!-- Language Setting -->
+                        <div class="ui-g ui-g-12 u-padding-0">
+                           <div
+                              class="language-selection ui-g-6 ui-sm-12 u-no-padding-top u-no-padding-right">
+                              <h:outputText
+                                 id="language-selection-label"
+                                 styleClass="language-selection-label ui-g-12"
+                                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Language')}" />
+                              <div class="ui-g-12">
+                                 <p:selectOneMenu
+                                    id="language-selection"
+                                    value="#{data.language.userLanguage}">
+                                    <f:selectItems
+                                       value="#{data.language.languages}" />
+                                 </p:selectOneMenu>
+                              </div>
+                           </div>
+                           <!-- Format language Setting -->
+                           <div
+                              class="language-selection ui-g-6 ui-sm-12 u-no-padding-top u-no-padding-left">
+                              <h:outputText
+                                 id="format-language-selection-label"
+                                 styleClass="language-selection-label ui-g-12"
+                                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/FormattingLanguage')}" />
+                              <div class="ui-g-12">
+                                 <p:autoComplete
+                                    id="format-language-selection"
+                                    scrollHeight="210" dropdown="true"
+                                    size="35"
+                                    completeMethod="#{logic.completeFormattingLanguage}"
+                                    value="#{data.language.itemFormattingLanguage}"
+                                    var="language"
+                                    itemValue="#{language}"
+                                    itemLabel="#{language.label}"
+                                    converter="pojoConverter"
+                                    cache="true" maxResults="100"
+                                    moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/MoreItemsAvailable')}"
+                                    dynamic="true"
+                                    appendTo="@(.portal-layout-container)" />
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  
+                                  <!--Notification Channels -->
+                  <div class="portal-section-container card">
                      <div id="notification-channels" class="ui-g-12">
                         <div class="ui-g-12 u-no-padding-top">
                            <div class="u-mar-right-5">
@@ -190,7 +240,7 @@
                                           id="subscriptionCheckbox"
                                           value="#{subscription.stateAsString}">
                                           <p:ajax event="change"
-                                             update="@form"
+                                             update="@this"
                                              listener="#{channel.setSubscriptionIconAndTitle(event)}" />
                                        </p:triStateCheckbox>
                                     </div>
@@ -207,57 +257,7 @@
                            </div>
                         </div>
                      </div>
-                     
-                     <div id="language-setting-container"
-                        class="ui-g-12 ui-fluid">
-                        <div class="setting-header ui-g-12">
-                           <h2 id="language-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Language')}</h2>
-                        </div>
-
-                        <div class="ui-g ui-g-12 u-padding-0">
-                           <!-- Language Setting -->
-                           <div
-                              class="language-selection ui-g-6 ui-sm-12 u-no-padding-top u-no-padding-right">
-                              <h:outputText
-                                 id="language-selection-label"
-                                 styleClass="language-selection-label ui-g-12"
-                                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Language')}" />
-                              <div class="ui-g-12">
-                                 <p:selectOneMenu
-                                    id="language-selection"
-                                    value="#{data.language.userLanguage}">
-                                    <f:selectItems
-                                       value="#{data.language.languages}" />
-                                 </p:selectOneMenu>
-                              </div>
-                           </div>
-                           <!-- Format language Setting -->
-                           <div
-                              class="language-selection ui-g-6 ui-sm-12 u-no-padding-top u-no-padding-left">
-                              <h:outputText
-                                 id="format-language-selection-label"
-                                 styleClass="language-selection-label ui-g-12"
-                                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/FormattingLanguage')}" />
-                              <div class="ui-g-12">
-                                 <p:autoComplete
-                                    id="format-language-selection"
-                                    scrollHeight="210" dropdown="true"
-                                    size="35"
-                                    completeMethod="#{logic.completeFormattingLanguage}"
-                                    value="#{data.language.itemFormattingLanguage}"
-                                    var="language"
-                                    itemValue="#{language}"
-                                    itemLabel="#{language.label}"
-                                    converter="pojoConverter"
-                                    cache="true" maxResults="100"
-                                    moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/MoreItemsAvailable')}"
-                                    dynamic="true"
-                                    appendTo="@(.portal-layout-container)" />
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+                   </div>
                </div>
 
                <div class="user-profile-footer ui-g-12">
