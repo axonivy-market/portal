@@ -20,6 +20,10 @@ public class UrlHelpers {
     }
     return getEngineUrl() + getApplicationName() + "/pro/" + relativeProcessStartLink;
   }
+  
+  public static String getLogoutLink() {
+    return getEngineUrl() + getApplicationName() + "/logout";
+  }
 
   private static String getApplicationName() {
     String applicationName = System.getProperty("test.engine.app");
