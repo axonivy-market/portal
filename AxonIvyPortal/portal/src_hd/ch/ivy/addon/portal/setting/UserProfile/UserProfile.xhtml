@@ -138,17 +138,17 @@
                   </div>
                </div>
 
-               <!-- Language and Email setting card -->
+               <!-- Language and Notification setting card -->
                <div class="ui-g-6 ui-lg-6 ui-md-12 ui-sm-12">
+
                   <div class="portal-section-container card">
                      <div id="language-setting-container"
                         class="ui-g-12 ui-fluid">
                         <div class="setting-header ui-g-12">
                            <h2 id="language-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Language')}</h2>
                         </div>
-
-                        <div class="ui-g ui-g-12 u-padding-0">
                            <!-- Language Setting -->
+                        <div class="ui-g ui-g-12 u-padding-0">
                            <div
                               class="language-selection ui-g-6 ui-sm-12 u-no-padding-top u-no-padding-right">
                               <h:outputText
@@ -190,27 +190,21 @@
                            </div>
                         </div>
                      </div>
-
-                     <!--Notification Channels -->
+                  </div>
+                  
+                                  <!--Notification Channels -->
+                  <div class="portal-section-container card">
                      <div id="notification-channels" class="ui-g-12">
-                        <div class="ui-g-12 u-no-padding-top">
-                           <div class="card">
+                        <div class="ui-g-12">
+                           <div class="u-mar-right-5">
                               <p:growl for="notification-Message">
                                  <p:autoUpdate />
                               </p:growl>
-                              <div class="card-header">
-                                 <div class="setting-header">
-                                    <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/notificationChannels')}</h2>
-                                 </div>
-                                 <div class="p-d-flex">
-                                   <p:commandLink id="reset" update="@form" 
-                                   actionListener="#{userProfileBean.resetAllChannel}" 
-                                   title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}"
-                                   styleClass="notification-channel-reset">
-                                   <span class="si si-undo p-ml-1 p-mt-2" />
-                                 </p:commandLink>
-                                </div>
-                              </div>
+                           </div>
+                               <div class="setting-header ui-g-12">
+                                  <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/notificationChannels')}</h2>
+                               </div>
+                              <div class="ui-g-12">
                               <p:dataTable paginator="true" rows="10"
                                  paginatorPosition="bottom"
                                  paginatorAlwaysVisible="false"
@@ -245,17 +239,25 @@
                                           id="subscriptionCheckbox"
                                           value="#{subscription.stateAsString}">
                                           <p:ajax event="change"
-                                             update="@form"
+                                             update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"
                                              listener="#{channel.setSubscriptionIconAndTitle(event)}" />
                                        </p:triStateCheckbox>
                                     </div>
                                  </p:columns>
                               </p:dataTable>
+                              </div>
+                              <div>
+                                 <div class="u-text-align-right ui-g-12">
+                                    <p:commandButton id="restore-to-default-button" icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
+                                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}" 
+                                       actionListener="#{userProfileBean.resetAllChannel}" update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"
+                                       styleClass="setting-tab-action-buttons" />
+                                </div>
+                              </div>
                            </div>
                         </div>
                      </div>
-                  </div>
-               </div>
+                   </div>
 
                <div class="user-profile-footer ui-g-12">
                   <p:commandLink
