@@ -17,7 +17,6 @@ import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
-import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 
 @ManagedBean
 @ViewScoped
@@ -41,10 +40,6 @@ public class CaseWidgetUserFilterBean extends AbstractCaseWidgetFilterBean imple
           .filter(Objects::nonNull)
           .collect(Collectors.toUnmodifiableList());
     }
-  }
-
-  private Function<ColumnModel, DashboardStandardCaseColumn> getDashboardStandardCaseColumn() {
-    return column -> DashboardStandardCaseColumn.findBy(Optional.ofNullable(column).map(ColumnModel::getField).orElse(""));
   }
 
   private Function<ColumnModel, FilterField> getFilterField() {

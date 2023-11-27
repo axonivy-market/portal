@@ -4,13 +4,13 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-public class StringIsEmptyOperatorHandler {
+public class CustomStringIsEmptyOperatorHandler {
 
-  private static StringIsEmptyOperatorHandler instance;
+  private static CustomStringIsEmptyOperatorHandler instance;
 
-  public static StringIsEmptyOperatorHandler getInstance() {
+  public static CustomStringIsEmptyOperatorHandler getInstance() {
     if (instance == null) {
-      instance = new StringIsEmptyOperatorHandler();
+      instance = new CustomStringIsEmptyOperatorHandler();
     }
     return instance;
   }

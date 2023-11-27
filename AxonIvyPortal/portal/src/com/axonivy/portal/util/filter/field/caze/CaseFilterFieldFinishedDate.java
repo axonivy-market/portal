@@ -25,7 +25,7 @@ public class CaseFilterFieldFinishedDate extends FilterField {
   }
 
   public String getLabel() {
-    return Ivy.cms().co(String.format("/Labels/Enums/DashboardStandardCaseColumn/%s", getName()));
+    return Ivy.cms().co(String.format("/Labels/Enums/DashboardStandardCaseColumn/%s", "FINISHED"));
   }
 
   @Override

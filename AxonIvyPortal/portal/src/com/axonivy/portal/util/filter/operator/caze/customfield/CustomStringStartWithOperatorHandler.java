@@ -6,34 +6,20 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-public class StringContainsOperatorHandler {
+public class CustomStringStartWithOperatorHandler {
 
-  private static final String LIKE_FORMAT = "%%%s%%";
+  private static final String START_WTIH_FORMAT = "%s%%";
 
-  private static StringContainsOperatorHandler instance;
+  private static CustomStringStartWithOperatorHandler instance;
 
-  public static StringContainsOperatorHandler getInstance() {
+  public static CustomStringStartWithOperatorHandler getInstance() {
     if (instance == null) {
-      instance = new StringContainsOperatorHandler();
+      instance = new CustomStringStartWithOperatorHandler();
     }
     return instance;
   }
 
-  public CaseQuery buildContainsQuery(DashboardFilter filter) {
-    if (CollectionUtils.isEmpty(filter.getTexts())) {
-      return null;
-    }
-    CaseQuery query = CaseQuery.create(); // TODO z1 correct?
-    filter.getTexts().forEach(text -> {
-      CaseQuery subQuery = CaseQuery.create();
-      subQuery.where().customField().stringField(filter.getField())
-          .isLikeIgnoreCase(String.format(LIKE_FORMAT, text.toLowerCase()));
-      query.where().or(subQuery);
-    });
-    return query;
-  }
-
-  public CaseQuery buildNotContainsQuery(DashboardFilter filter) {
+  public CaseQuery buildStartWithQuery(DashboardFilter filter) {
     if (CollectionUtils.isEmpty(filter.getTexts())) {
       return null;
     }
@@ -41,7 +27,21 @@ public class StringContainsOperatorHandler {
     filter.getTexts().forEach(text -> {
       CaseQuery subQuery = CaseQuery.create();
       subQuery.where().customField().stringField(filter.getField())
-          .isNotLikeIgnoreCase(String.format(LIKE_FORMAT, text.toLowerCase()));
+          .isLikeIgnoreCase(String.format(START_WTIH_FORMAT, text.toLowerCase()));
+      query.where().or(subQuery);
+    });
+    return query;
+  }
+
+  public CaseQuery buildNotStartWithQuery(DashboardFilter filter) {
+    if (CollectionUtils.isEmpty(filter.getTexts())) {
+      return null;
+    }
+    CaseQuery query = CaseQuery.create();
+    filter.getTexts().forEach(text -> {
+      CaseQuery subQuery = CaseQuery.create();
+      subQuery.where().customField().stringField(filter.getField())
+          .isNotLikeIgnoreCase(String.format(START_WTIH_FORMAT, text.toLowerCase()));
       query.where().and(subQuery);
     });
     return query;

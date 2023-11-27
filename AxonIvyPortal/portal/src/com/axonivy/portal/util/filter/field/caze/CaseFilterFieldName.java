@@ -1,5 +1,7 @@
 package com.axonivy.portal.util.filter.field.caze;
 
+import static org.apache.commons.lang3.StringUtils.upperCase;
+
 import java.util.ArrayList;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
@@ -24,7 +26,7 @@ public class CaseFilterFieldName extends FilterField {
   }
 
   public String getLabel() {
-    return Ivy.cms().co(String.format("/Labels/Enums/DashboardStandardCaseColumn/%s", getName()));
+    return Ivy.cms().co(String.format("/Labels/Enums/DashboardStandardCaseColumn/%s", upperCase(getName())));
   }
 
   @Override
