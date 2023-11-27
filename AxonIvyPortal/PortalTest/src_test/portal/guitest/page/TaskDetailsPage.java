@@ -124,8 +124,8 @@ public class TaskDetailsPage extends TemplatePage {
   }
   
   public String getTaskNameInDialog() {
-    waitForElementDisplayed(By.cssSelector("[id$=':task-detail-title-form:task-name-edit-form']"), true);
-    return findElementByCssSelector("[id$=':task-detail-title-form:task-name-edit-form']").getText();
+    waitForElementDisplayed(By.cssSelector("span[id='task-detail-template:task-detail-title-form:task-name-edit-form']"), true);
+    return findElementByCssSelector("span[id='task-detail-template:task-detail-title-form:task-name-edit-form']").getText();
   }
   
   public CaseDetailsPage backToCaseDetails() {
@@ -420,7 +420,6 @@ public class TaskDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':reset-details-settings-button']"), true);
   }
 
-  @SuppressWarnings("deprecation")
   public void changeEscaltionActivatorTo(String activatorName, boolean isUser) {
     boolean canEditExpiryActivator = canChangeEscalationActivator();
     if (canEditExpiryActivator) {
@@ -478,5 +477,13 @@ public class TaskDetailsPage extends TemplatePage {
   
   public WebElement getSharePageButtonElement() {
     return findElementByCssSelector("[id$=':share-page-button']");
+  }
+
+  public String getTaskUuid() {
+    return findElementByCssSelector("a[id$='show-more-note-link']").getAttribute("href").split("uuid=")[1];
+  }
+
+  public void waitForNoteTableDisplayed() {
+    WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("div[id$=':task-note-table']").isDisplayed());
   }
 }

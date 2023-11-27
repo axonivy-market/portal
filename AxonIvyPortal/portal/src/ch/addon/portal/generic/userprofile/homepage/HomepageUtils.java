@@ -9,6 +9,7 @@ import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
+import com.axonivy.portal.components.util.ProcessStartUtils;
 
 import ch.addon.portal.generic.menu.PortalMenuNavigator;
 import ch.addon.portal.generic.menu.SubMenuItem;
@@ -18,7 +19,6 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -84,23 +84,13 @@ public class HomepageUtils {
   }
 
   private static void adjustHomepageStartLink(Homepage homepage) {
-    String relativeUrl = "";
-    switch (homepage.getType()) {
-      case PROCESS:
-        relativeUrl = findRelativeUrlByKeywork(PortalNavigator.PORTAL_PROCESS_START);
-        break;
-      case TASK:
-        relativeUrl = findRelativeUrlByKeywork(PortalNavigator.PORTAL_TASK_START);
-        break;
-      case CASE:
-        relativeUrl = findRelativeUrlByKeywork(PortalNavigator.PORTAL_CASE_START);
-        break;
-      case STATISTICS:
-        relativeUrl = findRelativeUrlByKeywork(PortalNavigator.PORTAL_STATISTIC_START);
-        break;
-      default:
-        break;
-    }
+    String relativeUrl = switch (homepage.getType()) {
+      case PROCESS -> findRelativeUrlByKeywork(PortalNavigator.PORTAL_PROCESS_START);
+      case TASK -> findRelativeUrlByKeywork(PortalNavigator.PORTAL_TASK_START);
+      case CASE -> findRelativeUrlByKeywork(PortalNavigator.PORTAL_CASE_START);
+      case STATISTICS -> findRelativeUrlByKeywork(PortalNavigator.PORTAL_STATISTIC_START);
+      default -> "";
+    };
     if (StringUtils.isNotEmpty(relativeUrl)) {
       homepage.setLink(relativeUrl);
     }
@@ -137,7 +127,4 @@ public class HomepageUtils {
     return homepage == null || homepage.getType() == HomepageType.DASHBOARD || isClickOnDashboard;
   }
 
-  public static boolean isShowLegacyUI() {
-    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_LEGACY_UI);
-  }
 }

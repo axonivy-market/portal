@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "14BE80F25BC9033C",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -40,12 +40,9 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;",
             "import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;",
             "",
-            "",
-            "IvyLanguageResultDTO dto = LanguageService.newInstance().findUserLanguages();",
-            "out.language = dto.ivyLanguage;"
+            "out.language = LanguageService.newInstance().getIvyLanguageOfUser();"
           ]
         }
       },
@@ -139,10 +136,9 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;",
             "import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;",
             "",
-            "out.language = LanguageService.newInstance().findUserLanguages().getIvyLanguage();"
+            "out.language = LanguageService.newInstance().getIvyLanguageOfUser();"
           ]
         }
       },

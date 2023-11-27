@@ -9,11 +9,6 @@
     <ui:param name="loadGridStack" value="true" />
 
     <ui:define name="pageContent">
-      <script type="text/javascript">
-        if("${menuView.isShowLegacyUI()}"==="true") {
-          window.location = "${menuView.getDashboardLink()}";
-        }
-      </script>
       <h:form id="remote-command-group">
         <p:remoteCommand id="reset-active-menu-items-rc" name="resetActiveMenuItems" autoRun="true"
           onstart="resetPortalLeftMenuState();"
@@ -61,7 +56,7 @@
                   gs-autoPosition="#{widget.autoPosition}"
                   gs-no-resize="#{managedBean.isReadOnlyMode}"
                   gs-no-move="#{managedBean.isReadOnlyMode}">
-                  <div class="grid-stack-item-content card dashboard-card dashboard__widget #{widget.layout.styleClass} js-dashboard-widget-#{widget.id}">
+                  <div class="grid-stack-item-content card dashboard-card dashboard__widget #{widget.layout.newWidget ? 'new-widget' : ''} js-dashboard-widget-#{widget.id}">
                     <!-- Task widget -->
                     <c:if test="#{widget.type eq 'TASK'}">
                       <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskDashboardWidget widget="#{widget}"

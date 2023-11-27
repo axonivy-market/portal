@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.FileHelper;
+import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtil;
@@ -35,7 +36,6 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
   @BeforeEach
   public void setup() {
     super.setup();
-    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "false");
     updatePortalSetting(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createTestingTasksUrl);
@@ -55,7 +55,7 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
 
   @Test
   public void screenshotBasicTaskDetails() throws IOException {
-    WaitHelper.waitForNavigation(() -> login(TestAccount.ADMIN_USER));
+    login(TestAccount.ADMIN_USER);
     mainMenuPage = new MainMenuPage();
     showNewDashboard();
     NewDashboardPage homePage = new NewDashboardPage();
@@ -75,7 +75,7 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
 
   @Test
   public void screenshotActionButtonsOnTaskDetailsWithJsonFile() throws IOException {
-    WaitHelper.waitForNavigation(() -> login(TestAccount.ADMIN_USER));
+    login(TestAccount.ADMIN_USER);
     mainMenuPage = new MainMenuPage();
     showNewDashboard();
     NewDashboardPage homePage = new NewDashboardPage();
@@ -115,7 +115,7 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
 
   @Test
   public void screenshotTaskDetails() throws IOException {
-    WaitHelper.waitForNavigation(() -> login(TestAccount.ADMIN_USER));
+    login(TestAccount.ADMIN_USER);
     mainMenuPage = new MainMenuPage();
     showNewDashboard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
@@ -169,7 +169,7 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
 
   @Test
   public void screenshotShowMoreTaskHistories() throws IOException {
-    WaitHelper.waitForNavigation(() -> login(TestAccount.ADMIN_USER));
+    login(TestAccount.ADMIN_USER);
     mainMenuPage = new MainMenuPage();
     ScreenshotUtil.resizeBrowser(new Dimension(2560, 1000));
     showNewDashboard();
@@ -207,8 +207,6 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
   
   @Test
   public void screenshotCustomTaskDetails() throws IOException {
-    redirectToRelativeLink("portal-developer-examples/1791D27754935B10/SaleManagment.ivp");
-    showNewDashboard();
     TaskDetailsPage taskDetails = setupCustomWidgetByJSONFile("task-details-custom-panel.json");
     refreshPage();
     taskDetails.waitUtilsTaskDetailsDisplayed();
@@ -226,11 +224,10 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
 
   private TaskDetailsPage setupCustomWidgetByJSONFile(String configFile) throws IOException {
     ConfigurationJsonUtil.updateJSONSetting(configFile, Variable.TASK_DETAIL);
-    WaitHelper.waitForNavigation(() -> login(TestAccount.ADMIN_USER));
-    mainMenuPage = new MainMenuPage();
-    redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 1200));
-    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     TaskDetailsPage taskDetails = taskWidgetPage.openTaskDetail(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
     return taskDetails;

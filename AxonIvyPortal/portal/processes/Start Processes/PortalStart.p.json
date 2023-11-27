@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "1549F58C18A6C562",
   "config" : {
     "data" : "ch.ivy.addon.portal.generic.PortalStartData"
@@ -1337,27 +1337,6 @@
         "at" : { "x" : 592, "y" : 800 }
       }
     }, {
-      "id" : "f9",
-      "type" : "SubProcessCall",
-      "name" : "InitializeTaskDataModel",
-      "config" : {
-        "processCall" : "Functional Processes/InitializeTaskDataModel:call()",
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.dataModel" : "result.dataModel",
-            "out.dataModel.compactMode" : "true"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 846, "y" : 241 },
-        "size" : { "width" : 253, "height" : 63 }
-      },
-      "connect" : [
-        { "id" : "f16", "to" : "f0" }
-      ]
-    }, {
       "id" : "f1",
       "type" : "Alternative",
       "config" : {
@@ -1927,17 +1906,11 @@
     }, {
       "id" : "f22",
       "type" : "Alternative",
-      "config" : {
-        "conditions" : {
-          "f50" : "ch.addon.portal.generic.userprofile.homepage.HomepageUtils.isShowLegacyUI()"
-        }
-      },
       "visual" : {
         "at" : { "x" : 592, "y" : 240 }
       },
       "connect" : [
-        { "id" : "f50", "to" : "f9" },
-        { "id" : "f141", "to" : "f0", "via" : [ { "x" : 592, "y" : 192 }, { "x" : 1008, "y" : 192 } ] }
+        { "id" : "f141", "to" : "f0" }
       ]
     }, {
       "id" : "f4",
@@ -2096,7 +2069,7 @@
       "type" : "SubProcessCall",
       "name" : "Functional Processes/Navigator",
       "config" : {
-        "processCall" : "Functional Processes/Navigator:viewRelatedTask(String,Boolean)",
+        "processCall" : "Functional Processes/Navigator:viewRelatedTaskInFrame(String)",
         "call" : {
           "map" : {
             "param.taskUUID" : "in.uuid"
@@ -2510,76 +2483,28 @@
         "homepage"
       ],
       "elements" : [ {
-          "id" : "S60-f36",
-          "type" : "DialogCall",
-          "name" : "Portal Homepage",
-          "config" : {
-            "dialog" : "ch.ivy.addon.portal.generic.PortalHome:start(ch.ivy.addon.portal.generic.view.TaskView)",
-            "call" : {
-              "map" : {
-                "param.taskView" : "in.taskView"
-              }
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 660, "y" : 160 }
-          }
-        }, {
-          "id" : "S60-f22",
-          "type" : "Script",
-          "name" : "Build task view",
-          "config" : {
-            "output" : {
-              "code" : [
-                "import ch.ivyteam.ivy.request.IHttpRequest;",
-                "import ch.ivy.addon.portal.generic.view.TaskView;",
-                "",
-                "in.taskView = TaskView.create().dataModel(in.dataModel).showHeaderToolbar(true).noTaskFoundMessage(\"\").createNewTaskView();"
-              ]
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 508, "y" : 160 }
-          },
-          "connect" : [
-            { "id" : "S60-f43", "to" : "S60-f36" }
-          ]
-        }, {
           "id" : "S60-f54",
           "type" : "Alternative",
           "config" : {
             "conditions" : {
-              "S60-f7" : "ch.addon.portal.generic.userprofile.homepage.HomepageUtils.isShowDashboard(in.#homepage, in.#isShowDashboard)"
+              "S60-f7" : "ch.addon.portal.generic.userprofile.homepage.HomepageUtils.isShowDashboard(in.#homepage, in.#isShowDashboard)",
+              "S60-f5" : ""
             }
           },
           "visual" : {
             "at" : { "x" : 284, "y" : 160 }
           },
           "connect" : [
-            { "id" : "S60-f7", "to" : "S60-f2", "label" : {
-                "name" : "dashboard",
-                "segment" : 0.41,
-                "offset" : { "x" : 0, "y" : -12 }
-              } },
             { "id" : "S60-f5", "to" : "S60-f4", "via" : [ { "x" : 284, "y" : 256 } ], "label" : {
                 "name" : "others",
                 "segment" : 1.43,
                 "offset" : { "x" : 0, "y" : -10 }
+              } },
+            { "id" : "S60-f7", "to" : "S60-f12", "label" : {
+                "name" : "dashboard",
+                "segment" : 0.41,
+                "offset" : { "x" : 0, "y" : -12 }
               } }
-          ]
-        }, {
-          "id" : "S60-f3",
-          "type" : "ProcessAnnotation",
-          "name" : [
-            "Replace by customized ",
-            "homepage if you have"
-          ],
-          "visual" : {
-            "at" : { "x" : 832, "y" : 160 },
-            "size" : { "width" : 144, "height" : 44 }
-          },
-          "connect" : [
-            { "id" : "S60-f8", "to" : "S60-f36" }
           ]
         }, {
           "id" : "S60-g0",
@@ -2634,25 +2559,6 @@
             "size" : { "width" : 128, "height" : 60 }
           }
         }, {
-          "id" : "S60-f2",
-          "type" : "Alternative",
-          "config" : {
-            "conditions" : {
-              "S60-f6" : "ch.addon.portal.generic.userprofile.homepage.HomepageUtils.isShowLegacyUI()"
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 380, "y" : 160 }
-          },
-          "connect" : [
-            { "id" : "S60-f6", "to" : "S60-f22" },
-            { "id" : "S60-f10", "to" : "S60-f12", "via" : [ { "x" : 380, "y" : 72 } ], "label" : {
-                "name" : "new dashboard",
-                "segment" : 1.26,
-                "offset" : { "x" : 0, "y" : -10 }
-              } }
-          ]
-        }, {
           "id" : "S60-f12",
           "type" : "DialogCall",
           "name" : "PortalDashboard",
@@ -2660,7 +2566,7 @@
             "dialog" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboard:start()"
           },
           "visual" : {
-            "at" : { "x" : 656, "y" : 72 }
+            "at" : { "x" : 440, "y" : 160 }
           }
         } ],
       "visual" : {
@@ -3114,7 +3020,7 @@
                 "segment" : 0.49,
                 "offset" : { "x" : 0, "y" : -13 }
               } },
-            { "id" : "S70-f55", "to" : "S70-f7", "via" : [ { "x" : 152, "y" : 224 }, { "x" : 504, "y" : 224 } ], "label" : {
+            { "id" : "S70-f55", "to" : "S70-f12", "via" : [ { "x" : 152, "y" : 224 }, { "x" : 664, "y" : 224 } ], "label" : {
                 "name" : "No",
                 "segment" : 1.45,
                 "offset" : { "x" : 0, "y" : 10 }
@@ -3138,7 +3044,7 @@
             "size" : { "width" : 144, "height" : 60 }
           },
           "connect" : [
-            { "id" : "S70-f31", "to" : "S70-f7" }
+            { "id" : "S70-f31", "to" : "S70-f12" }
           ]
         }, {
           "id" : "S70-f12",
@@ -3162,32 +3068,6 @@
           },
           "connect" : [
             { "id" : "S70-f1", "to" : "S70-g1" }
-          ]
-        }, {
-          "id" : "S70-f7",
-          "type" : "Script",
-          "name" : [
-            "Set compactMode",
-            "DataModel"
-          ],
-          "config" : {
-            "output" : {
-              "code" : [
-                "import ch.ivy.addon.portalkit.enums.PortalPage;",
-                "import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;",
-                "",
-                "if(in.#portalPage == PortalPage.HOME_PAGE) {",
-                "  in.dataModel.compactMode = true;",
-                "}"
-              ]
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 504, "y" : 160 },
-            "size" : { "width" : 128, "height" : 60 }
-          },
-          "connect" : [
-            { "id" : "S70-f2", "to" : "S70-f12" }
           ]
         }, {
           "id" : "S70-g0",

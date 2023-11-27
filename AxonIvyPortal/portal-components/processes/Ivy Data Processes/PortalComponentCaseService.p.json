@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "18104AE3EB4807A1",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -25,11 +25,9 @@
         },
         "result" : {
           "params" : [
-            { "name" : "errors", "type" : "java.util.List<com.axonivy.portal.components.ivydata.exception.PortalIvyDataException>", "desc" : "" },
             { "name" : "cases", "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>", "desc" : "" }
           ],
           "map" : {
-            "result.errors" : "in.errors",
             "result.cases" : "in.cases"
           }
         }
@@ -58,8 +56,7 @@
             "import com.axonivy.portal.components.ivydata.dto.IvyCaseResultDTO;",
             "",
             "IvyCaseResultDTO dto = CaseService.newInstance().findCasesByCriteria(in.caseSearchCriteria, in.startIndex, in.count);",
-            "out.cases = dto.cases;",
-            "out.errors = dto.errors;"
+            "out.cases = dto.cases;"
           ]
         }
       },
@@ -112,11 +109,9 @@
         },
         "result" : {
           "params" : [
-            { "name" : "errors", "type" : "java.util.List<com.axonivy.portal.components.ivydata.exception.PortalIvyDataException>", "desc" : "" },
             { "name" : "totalCases", "type" : "Long", "desc" : "" }
           ],
           "map" : {
-            "result.errors" : "in.errors",
             "result.totalCases" : "in.totalCases"
           }
         }

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "15FFC669C88F7E0B",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -177,7 +177,7 @@
             "in.oldStatisticFilter = ObjectUtils.clone(in.statisticFilter) as StatisticFilter;",
             "",
             "in.chartNames = new ArrayList();",
-            "for(String lang : LanguageService.newInstance().findUserLanguages().ivyLanguage.supportedLanguages) {",
+            "for(String lang : LanguageService.newInstance().getIvyLanguageOfUser().supportedLanguages) {",
             "  DisplayName displayName = new DisplayName();",
             "  displayName.locale = Locale.forLanguageTag(lang);",
             "  displayName.value = \"\";",
@@ -191,7 +191,7 @@
         "at" : { "x" : 776, "y" : 88 }
       },
       "connect" : [
-        { "id" : "f27", "to" : "f9" }
+        { "id" : "f27", "to" : "f28" }
       ]
     }, {
       "id" : "f7",
@@ -249,7 +249,7 @@
             "",
             "in.chartNames = new ArrayList();",
             "",
-            "for(String lang : LanguageService.newInstance().findUserLanguages().ivyLanguage.supportedLanguages) {",
+            "for(String lang : LanguageService.newInstance().getIvyLanguageOfUser().supportedLanguages) {",
             "  DisplayName displayName = new DisplayName();",
             "  displayName.locale = Locale.forLanguageTag(lang);",
             "  displayName.value = \"\";",
@@ -382,25 +382,6 @@
       },
       "connect" : [
         { "id" : "f25", "to" : "f43", "via" : [ { "x" : 448, "y" : 832 } ] }
-      ]
-    }, {
-      "id" : "f9",
-      "type" : "SubProcessCall",
-      "name" : "get custom fields",
-      "config" : {
-        "processCall" : "Functional Processes/DefaultStatisticCustomField:createDefaultStatisticCustomFields()",
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.customFields" : "result.customFields"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 976, "y" : 88 }
-      },
-      "connect" : [
-        { "id" : "f29", "to" : "f28" }
       ]
     }, {
       "id" : "f28",

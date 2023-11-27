@@ -373,7 +373,8 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
   
   public SelenideElement getImportDialog() {
-    $("input[id$=':import-dashboard-form:import-dashboard-title']").hover();
+    $("input[id$='dashboard-template-selection-component:dashboard-import-component:import-dashboard-form:dashboards-information-form:0:import-dashboard-title']")
+        .hover();
     return $("div[id$=':dashboard-import-dialog']");
   }
   

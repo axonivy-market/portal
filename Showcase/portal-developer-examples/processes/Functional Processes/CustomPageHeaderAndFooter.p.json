@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "18B1854EC0276551",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -42,7 +42,7 @@
         "output" : {
           "code" : [
             "in.pageFooter = \"\";",
-            "in.pageHeader = \"<div style='height: 20px; text-align: center; background-color: var(--primary-color); color: white'><span>custom page header</span></div>\";"
+            "in.pageHeader = \"\";"
           ]
         }
       },

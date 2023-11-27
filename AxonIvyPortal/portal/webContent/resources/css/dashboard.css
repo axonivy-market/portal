@@ -804,6 +804,7 @@ body .ui-widget.new-widget-dialog__widget-name {
   text-overflow: ellipsis;
   white-space: nowrap;
   display: block;
+  max-width: 20vw;
 }
 
 body .ui-widget.new-widget-dialog__introduction {
@@ -1555,6 +1556,18 @@ body .ui-widget.new-widget-dialog__introduction {
 .news-widget__content-panel.widget__content {
   padding-right: 0;
   padding-bottom: 0;
+}
+
+.news-widget__skeleton-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 10px 15px 15px 0;
+}
+
+.news-widget__skeleton-add-news-button {
+  margin-left: auto;
 }
 
 .dashboard-news-container {

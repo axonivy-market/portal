@@ -26,32 +26,15 @@ var PortalComponent = {
       resizeTimer = setTimeout(function() {
         responsiveToolkit.updateLayoutWithoutAnimation();
       }, 250);
-      PortalComponent.updateGuide();
     });
-  },
-  
-  updateGuide : function() {
-    var $guidePanel = $('.guide-panel:visible');
-    if ($guidePanel.length > 0) {
-      var id = $guidePanel.attr('id');
-      if (id !== undefined) {
-        var guidePanelObject = window[id.substring(id.lastIndexOf(':') + 1)];
-        if (guidePanelObject !== undefined) {
-          guidePanelObject.show();
-        }
-      }
-    }
   },
   
   updateLayoutContent : function() {
     var ua = window.navigator.userAgent;
-    var isIE = /MSIE|Trident/.test(ua);
     var fullHeight= '100vh';
-    if (!isIE) {
-      var vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', vh + 'px');
-      fullHeight = 'var(--vh, 1vh) * 100';
-    }
+    var vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', vh + 'px');
+    fullHeight = 'var(--vh, 1vh) * 100';
 
     var headerHeight = $('.js-portal-template-header').outerHeight(true)||0;
     var footerHeight = $('.js-portal-template-footer').outerHeight(true)||0;

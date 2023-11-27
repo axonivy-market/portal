@@ -1,8 +1,0 @@
-NavigateBackTaskPageData #class
-com.axonivy.portal.developerexamples.showcase.NavigateBackTaskPage #namespace
-employeeInfo com.axonivy.portal.developerexamples.Employee #field
-employeeInfo PERSISTENT #fieldModifier
-userAction com.axonivy.portal.developerexamples.enums.UserAction #field
-userAction PERSISTENT #fieldModifier
-s String #field
-s PERSISTENT #fieldModifier

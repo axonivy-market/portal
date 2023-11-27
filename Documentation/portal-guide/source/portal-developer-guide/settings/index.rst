@@ -269,8 +269,7 @@ Other Permissions
  |           +---------------------------------+----------------------------------------------------+
  |           | Create public external link, all| ``PortalPermission.CREATE_PUBLIC_EXTERNAL_LINK``   |
  |           | other users can see that link in|                                                    |
- |           | full process list and can also  |                                                    |
- |           | add it to User Favorite         |                                                    |
+ |           | the full process list           |                                                    |
  |           +---------------------------------+----------------------------------------------------+
  |           | Dashboard sharing               | ``PortalPermission.DASHBOARD_SHARE_LINK``          |
  +-----------+---------------------------------+----------------------------------------------------+
@@ -319,21 +318,19 @@ These variables are stored as key-value pairs. They have to be edited in the Eng
    | Variable                                    | Default                       | Description                 |
    |                                             | value                         |                             |
    +=============================================+===============================+=============================+
-   | PortalStartTimeCleanObsoletedDataExpression | 0 0 6 \* \* ?                 | Cron expression defines     |
+   | PortalStartTimeCleanObsoletedDataExpression | 0 6 \* \* \*                  | Cron expression defines     |
    |                                             |                               | the time to clean up data   |
    |                                             |                               | of obsolete users. E.g.:    |
    |                                             |                               | expression for at 6AM       |
    |                                             |                               | every day is                |
-   |                                             |                               | ``0 0 6 * * ?`` . Refer     |
-   |                                             |                               | to                          |
-   |                                             |                               | `crontrigger <http://quar   |
-   |                                             |                               | tz-scheduler.org/document   |
-   |                                             |                               | ation/quartz-2.1.7/tutori   |
-   |                                             |                               | als/tutorial-lesson-06.htm  |
-   |                                             |                               | l>`__                       |
-   |                                             |                               | . Restart Ivy engine        |
-   |                                             |                               | after changing this         |
-   |                                             |                               | variable.                   |
+   |                                             |                               | ``0 6 * * *``. Refer to     |
+   |                                             |                               | `CRON Expression <https://  |
+   |                                             |                               | developer.axonivy.com/doc/  |
+   |                                             |                               | 11.2/engine-guide/configur  |
+   |                                             |                               | ation/advanced-configurati  |
+   |                                             |                               | on.html#cron-expression>`_. |
+   |                                             |                               | Restart Ivy engine after    |
+   |                                             |                               | changing this variable.     |
    +---------------------------------------------+-------------------------------+-----------------------------+
    | PortalDeleteAllFinishedHiddenCases          | false                         | If set to ``true``, the     |
    |                                             |                               | above cron job runs daily   |
@@ -485,51 +482,7 @@ Data model:
 
 -  ``position``: position index of chart. Used to order the charts in the UI
 
-.. _portal-dashboard-favorite-processes:
-
-Portal Dashboard Favorite Processes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-You can include the favorite processes of your custom application via the following
-JSON file. It will be shown as the processes in the application favorite
-section.
-
-Filename: ``variables.Portal.Dashboard.FavoriteProcesses.json``
-
-Data model:
-
-.. code-block:: html
-
-   [{ "id": "234152a58c7a48a2b63be8a946e5731b",
-      "processType": "IVY_PROCESS",
-      "names": [
-         {
-            "locale": "de",
-            "value": "Investition anlegen"
-         },
-         {
-            "locale": "en",
-            "value": "Create Investment"
-         },
-         {
-            "locale": "fr",
-            "value": "Réaliser un investissement"
-         },
-         {
-            "locale": "es",
-            "value": "Crear investición"
-         }
-      ],
-      "icon": "fa-building",
-      "processId": "Portal/portal-developer-examples/Start Processes/IFrameExample/CreateInvestment.ivp",
-      "index": 1
-   }]
-
-- ``id``: the identification of a process. auto-generated UUID.
-- ``processType``: type of a process such as ``EXPRESS_PROCESS``, ``EXTERNAL_LINK``, ``IVY_PROCESS``.
-- ``names``: the display name of a process. Multilingual name is supported.
-- ``icon``: the style class of the process icon.
-- ``processId``: the process id of the process start.
-- ``index``: the index number to order the processes in the dashboard.
+.. _portal-process-external-link:
 
 Portal Processes External Links
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

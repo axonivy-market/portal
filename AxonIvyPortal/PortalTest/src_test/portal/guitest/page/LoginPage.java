@@ -34,7 +34,6 @@ public class LoginPage extends AbstractPage {
     this.testAccount = testAccount;
   }
 
-  @SuppressWarnings("deprecation")
   public void login() {
     usernameTextField.sendKeys(testAccount.getUsername());
     passwordField.sendKeys(testAccount.getPassword());
@@ -42,7 +41,6 @@ public class LoginPage extends AbstractPage {
     waitForElementDisplayed(By.id("left-menu"), true, LOGIN_TIMEOUT);
   }
   
-  @SuppressWarnings("deprecation")
   public void login(String username, String password) {
     usernameTextField.sendKeys(username);
     passwordField.sendKeys(password);
@@ -50,7 +48,6 @@ public class LoginPage extends AbstractPage {
     waitForElementDisplayed(By.id("left-menu"), true, LOGIN_TIMEOUT);
   }
 
-  @SuppressWarnings("deprecation")
   public void forgotPassword() {
     click(forgotPasswordLink);
     waitForElementDisplayed(By.id("forgot-password:forgot-password-form:send-command"), true, LOGIN_TIMEOUT);

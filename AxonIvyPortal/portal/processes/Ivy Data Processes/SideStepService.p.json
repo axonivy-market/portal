@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "167F3CD1442A57A4",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -48,11 +48,8 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.ivydata.dto.IvySideStepResultDTO;",
             "import ch.ivy.addon.portalkit.ivydata.service.impl.SideStepService;",
-            "",
-            "IvySideStepResultDTO dto = SideStepService.newInstance().findSideStepsByCriteria(in.sideStepSearchCriteria);",
-            "out.sideSteps = dto.getSideSteps();"
+            "out.sideSteps = SideStepService.newInstance().findSideStepsByCriteria(in.sideStepSearchCriteria);"
           ]
         }
       },

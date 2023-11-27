@@ -17,9 +17,10 @@ import com.jayway.awaitility.Duration;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.Variable;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
-import portal.guitest.page.HomePage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.NoteHistoryPage;
 import portal.guitest.page.TaskDetailsPage;
@@ -27,7 +28,7 @@ import portal.guitest.page.TaskDetailsPage;
 public class ShowRelatedTasksTest extends BaseTest {
   
   private CaseDetailsPage detailsPage;
-  private HomePage homePage;
+  private NewDashboardPage newDashboardPage;
   NoteHistoryPage caseHistoryPage;
 
   @Override
@@ -41,8 +42,8 @@ public class ShowRelatedTasksTest extends BaseTest {
   }
   
   private void openCaseDetail() {
-    homePage = new HomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    newDashboardPage = new NewDashboardPage();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
   }
@@ -79,6 +80,13 @@ public class ShowRelatedTasksTest extends BaseTest {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
     openCaseDetail();
+    detailsPage.clickRelatedTaskColumnsButton();
+    detailsPage.clickRelatedTaskDefaultCheckbox();
+    detailsPage.clickRelatedTaskColumnCheckbox(4);
+    detailsPage.clickRelatedTaskColumnCheckbox(5);
+    detailsPage.clickRelatedTaskColumnCheckbox(6);
+    detailsPage.clickRelatedTaskApplyButton();
+    WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedTaskListColumnExist("related-task-name-column"));
     TaskDetailsPage taskDetailsPage = detailsPage.openTasksOfCasePage("Sick Leave Request");
     assertEquals("Task Details", taskDetailsPage.getPageTitle());
   }
@@ -90,8 +98,8 @@ public class ShowRelatedTasksTest extends BaseTest {
     openCaseDetail();
     detailsPage.addNote("test");
     String doneTaskName = detailsPage.openDoneTask(0);
-    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
-    homePage.switchLastBrowserTab();
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> newDashboardPage.countBrowserTab() > 1);
+    newDashboardPage.switchLastBrowserTab();
     int numberOfNotes;
     try {
         numberOfNotes = caseHistoryPage.countNotes();

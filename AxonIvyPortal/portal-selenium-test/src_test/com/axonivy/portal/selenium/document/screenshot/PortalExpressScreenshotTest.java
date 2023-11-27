@@ -14,7 +14,6 @@ import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtil;
 import com.axonivy.portal.selenium.common.TestAccount;
-import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.AdminSettingsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.ExpressApprovalPage;
@@ -46,8 +45,6 @@ public class PortalExpressScreenshotTest extends ScreenshotBaseTest{
   @BeforeEach
   public void setup() {
     super.setup();
-    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "false");
-    redirectToRelativeLink(createUserFavoriteProcess);
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     showNewDashboard();

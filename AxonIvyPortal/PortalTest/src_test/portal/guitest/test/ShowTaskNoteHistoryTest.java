@@ -6,8 +6,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.page.HomePage;
+import portal.guitest.common.NavigationHelper;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.NoteHistoryPage;
+import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
@@ -25,14 +27,16 @@ public class ShowTaskNoteHistoryTest extends BaseTest {
     
     @Test
     public void testShowTaskNoteHistory() {
-        HomePage homePage = new HomePage();
-        TaskWidgetPage taskWidgetPage = homePage.openTaskList();
-        String taskId = taskWidgetPage.getTaskIdOfRow(0);
+        NewDashboardPage newDashboardPage = new NewDashboardPage();
+        TaskWidgetPage taskWidgetPage = newDashboardPage.openTaskList();
+        TaskDetailsPage taskDetailsPage = taskWidgetPage.openTaskDetailsFromActionMenu(0);
+        String taskUuid = taskDetailsPage.getTaskUuid();
+        NavigationHelper.navigateToTaskList();
         TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
         taskTemplatePage.openCaseInfo();
         taskTemplatePage.addNewNote(NOTE_CONTENT);
         
-        goToTaskNoteHistoryPage(taskId);
+        goToTaskNoteHistoryPage(taskUuid);
         taskHistoryPage = new NoteHistoryPage();
         int numberOfNotes = taskHistoryPage.countNotes();
         

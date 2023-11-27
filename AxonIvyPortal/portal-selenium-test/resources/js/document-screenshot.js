@@ -266,25 +266,6 @@ function highlightCaseCreatorFilter() {
   appendStepAnnotation(updateCommand, "3", -2, -40)
 }
 
-function highlightAddFavoriteProcess() {
-  var addProcessCommand = $("[id$=':user-process-action-form:show-adding-dialog-commmand']");
-  appendStepAnnotation(addProcessCommand, "1", -10, addProcessCommand.width() + 2);
-  
-  var addNewProcessTitle = $("[id$='process-widget:add-new-process-dialog_title']");
-  appendStepAnnotation(addNewProcessTitle, "2", 0, addNewProcessTitle.width() + 2);
-  
-  var addNewProcessName = $("label[for$='process-widget:new-process-name_input']").find("span[class$='ui-outputlabel-rfi']");
-  appendStepAnnotation(addNewProcessName, "3", -10, addNewProcessName.width());
-  
-  var addNewProcessDisplayName = $("label[for$='process-widget:process-display-name']").find("span[class$='ui-outputlabel-rfi']");
-  appendStepAnnotation(addNewProcessDisplayName, "4", -10, addNewProcessName.width());
-  
-  var addProcessIcon = $(".ui-commandlink.select-awesome-icon-button");
-  appendStepAnnotation(addProcessIcon, "5", -10, addProcessIcon.width() + 2)
-  
-  appendStepAnnotation($("[id$='process-widget:add-process-command']"), "6", -5, 0);
-}
-
 function highlightEditSwitchProcessButton() {
   var editSwitchCommand = $("[id$='process-widget:user-process-action-form:editing-switch-command']");
   createRedMediumOutline(editSwitchCommand);
@@ -547,8 +528,8 @@ function highlightIFrameWidgetTaskDetails() {
   createRedMediumOutline($(".custom-widget-card.task-detail-card"));
 }
 
-function highlightEmailSettings() {
-  createRedMediumOutline($("div[id$='email-setting-container']"));
+function highlightNotificationChannelSettings() {
+  createRedMediumOutline($("div[id$='notification-channels']"));
 }
 
 function highlightUserName() {

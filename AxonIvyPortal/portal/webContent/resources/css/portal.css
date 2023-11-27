@@ -1461,6 +1461,17 @@ color: var(--button-text-color);
 .my-profile-container .setting-header span {
   color: var(--general-config-description-color);
 }
+.my-profile-container .state-active {
+  color: var(--state-active);
+}
+
+.my-profile-container .state-inactive {
+  color: var(--state-inactive);
+}
+
+.my-profile-container .table-icon.light {
+  opacity: 0.5;
+}
 
 /* Absences Management */
 @media screen and (max-width: 40em) {
@@ -1627,7 +1638,7 @@ body.in-dialog .ui-widget-overlay {
   padding-right: 5px;
 }
 .notifications-container-top {
-  padding:10px;
+  padding:0.3rem;
   padding-left:0px;
   padding-right:0px;
   margin-bottom:0.15em;

@@ -43,6 +43,7 @@ public class ImageDashboardProcessBean
     ImageProcessDashboardWidget newWidget = new ImageProcessDashboardWidget(dashboardProcessBean.getWidget());
     newWidget.buildFilterableColumns(DashboardWidgetUtils.initProcessFilterableColumns());
     dashboardProcessBean.updateWidget(newWidget);
+    newWidget.setName(StringUtils.EMPTY);
   }
 
   @Override
