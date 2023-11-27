@@ -124,6 +124,11 @@ public class ExpressProcessPage extends TemplatePage {
   }
 
   private void chooseTaskType(int taskIndex, int typeIndex) {
+    if (typeIndex == 0) {
+      // If the selected task type is already task type? ignore click on the drop-down
+      return;
+    }
+    
     final String TASK_TYPE_FORMAT = "li[id$=':%d:task-type_%d']";
     final String TASK_TYPE_LABEL_FORMAT = "label[id$=':%d:task-type_label']";
 
