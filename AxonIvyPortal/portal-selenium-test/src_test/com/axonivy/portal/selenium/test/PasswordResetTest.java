@@ -14,7 +14,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.PasswordResetErrorPage;
 import com.axonivy.portal.selenium.page.PasswordResetPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class PasswordResetTest extends BaseTest{
   private PasswordResetPage passwordResetPage;
   private PasswordResetErrorPage passwordResetErrorPage;
