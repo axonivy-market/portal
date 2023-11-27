@@ -201,7 +201,12 @@ public class MenuView implements Serializable {
   public PortalDashboardItemWrapper getDashboardCache() {
     String sessionUserId = getSessionUserId();
     IvyCacheService cacheService = IvyCacheService.newInstance();
-    PortalDashboardItemWrapper portalDashboardItemWrapper = getPortalDashboardItemWrapper(sessionUserId, cacheService);
+    PortalDashboardItemWrapper portalDashboardItemWrapper = null;
+    try {
+      portalDashboardItemWrapper = getPortalDashboardItemWrapper(sessionUserId, cacheService);
+    } catch (ClassCastException e) {
+      cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_MENU, sessionUserId);
+    }
 
     if (portalDashboardItemWrapper == null) {
       synchronized(PortalDashboardItemWrapper.class) {
