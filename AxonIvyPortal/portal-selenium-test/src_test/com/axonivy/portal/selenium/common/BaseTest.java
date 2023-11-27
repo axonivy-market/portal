@@ -158,7 +158,7 @@ public class BaseTest {
 
   public void launchBrowserAndLogoutInDesigner() {
     try {
-      open(designerLogoutUrl);
+      open(UrlHelpers.getLogoutLink());
     } catch (Exception e) {
       throw new PortalGUITestException(e);
     }
