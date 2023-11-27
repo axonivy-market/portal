@@ -1,9 +1,6 @@
 package com.axonivy.portal.util.filter.field.caze;
 
-import java.util.ArrayList;
-
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterType;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.operator.caze.customfield.CustomStringContainsOperatorHandler;
@@ -15,13 +12,13 @@ import com.axonivy.portal.util.filter.operator.caze.customfield.CustomStringStar
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-public class CaseFilterFieldCustomString extends FilterField {
+public class CaseFilterFieldCustomNumber extends FilterField {
 
   private ICustomFieldMeta customField;
 
-  public CaseFilterFieldCustomString() {}
+  public CaseFilterFieldCustomNumber() {}
 
-  public CaseFilterFieldCustomString(ICustomFieldMeta customField) {
+  public CaseFilterFieldCustomNumber(ICustomFieldMeta customField) {
     super(customField.name());
     this.customField = customField;
   }
@@ -32,9 +29,7 @@ public class CaseFilterFieldCustomString extends FilterField {
 
   @Override
   public void initFilter(DashboardFilter filter) {
-    filter.setType(FilterType.TEXT);
-    filter.setOperator(FilterOperator.CONTAINS);
-    filter.setTexts(new ArrayList<>());
+    filter.setType(FilterType.NUMBER);
   }
 
   @Override

@@ -32,8 +32,7 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
   public void onSelectFilter(DashboardFilter filter) {
     String field = filter.getField();
     FilterField filterField = FilterFieldFactory.findBy(field);
-    filterField.initFilter(filter); // TODO z1 handle for basic column
-    // TODO z1 handle null caseColumn
+    filterField.initFilter(filter);
     switch (field) {
       case "startTimestamp" -> initDateFilter(filter);
       case "endTimestamp" -> initDateFilter(filter);

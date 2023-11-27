@@ -156,7 +156,7 @@ public class CaseDashboardWidget extends DashboardWidget {
   public void onApplyUserFilters() {
     setUserFilters(this.getUserFilters().stream()
       .filter(Objects::nonNull)
-        .filter(filter -> StringUtils.isNotBlank(filter.getField())) // TODO z1 check null
+        .filter(filter -> StringUtils.isNotBlank(filter.getField()))
       .collect(Collectors.toList()));
 
     getUserFilters().forEach(filter -> filter.setTemp(false));

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCreatedDate;
+import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCustomNumber;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCustomString;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCustomTimestamp;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldDescription;
@@ -27,8 +28,7 @@ public class FilterFieldFactory {
       switch (customField.type()) {
         case STRING, TEXT -> NAME_TO_FILTER_FIELD.put(customField.name(), new CaseFilterFieldCustomString(customField));
         case TIMESTAMP -> NAME_TO_FILTER_FIELD.put(customField.name(), new CaseFilterFieldCustomTimestamp(customField));
-        case NUMBER -> NAME_TO_FILTER_FIELD.put(customField.name(),
-            new FilterFieldDefault(customField.name() + "_CASE_CUSTOM_NUMBER"));
+        case NUMBER -> NAME_TO_FILTER_FIELD.put(customField.name(), new CaseFilterFieldCustomNumber(customField));
         default -> throw new IllegalArgumentException("Unexpected value: " + customField.type());
       }
     }

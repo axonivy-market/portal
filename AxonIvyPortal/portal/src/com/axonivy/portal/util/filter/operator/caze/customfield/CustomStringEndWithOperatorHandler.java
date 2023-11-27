@@ -6,15 +6,15 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-public class StringEndWithOperatorHandler {
+public class CustomStringEndWithOperatorHandler {
 
   private static final String END_WTIH_FORMAT = "%%%s";
 
-  private static StringEndWithOperatorHandler instance;
+  private static CustomStringEndWithOperatorHandler instance;
 
-  public static StringEndWithOperatorHandler getInstance() {
+  public static CustomStringEndWithOperatorHandler getInstance() {
     if (instance == null) {
-      instance = new StringEndWithOperatorHandler();
+      instance = new CustomStringEndWithOperatorHandler();
     }
     return instance;
   }

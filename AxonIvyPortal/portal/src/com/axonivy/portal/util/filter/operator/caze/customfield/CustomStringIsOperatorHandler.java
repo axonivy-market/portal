@@ -6,13 +6,13 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-public class StringIsOperatorHandler {
+public class CustomStringIsOperatorHandler {
 
-  private static StringIsOperatorHandler instance;
+  private static CustomStringIsOperatorHandler instance;
 
-  public static StringIsOperatorHandler getInstance() {
+  public static CustomStringIsOperatorHandler getInstance() {
     if (instance == null) {
-      instance = new StringIsOperatorHandler();
+      instance = new CustomStringIsOperatorHandler();
     }
     return instance;
   }
