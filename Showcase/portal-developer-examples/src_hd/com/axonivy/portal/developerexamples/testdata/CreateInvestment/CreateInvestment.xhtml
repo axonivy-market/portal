@@ -69,12 +69,11 @@
       </h:form>
       <script>
         window.processSteps = "#{fn:join(data.steps.toArray(), ',')}";
-        //window.processSteps = "Create Investment Request1,Approve Investment Request";
-        //window.processSteps = ["Create Investment Request","Approve Investment Request"];
         window.currentProcessStep = 0;
         window.processChainDirection = "VERTICAL";
         window.processChainShape = "LINE";
         window.viewName = "TASK_DETAIL";
+        window.taskIcon = "si si-coffee-cup";
       </script>
     </ui:define>
   </ui:composition>
