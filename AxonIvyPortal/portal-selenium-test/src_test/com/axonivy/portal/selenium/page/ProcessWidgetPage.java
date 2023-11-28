@@ -20,7 +20,7 @@ import com.codeborne.selenide.SelenideElement;
 public class ProcessWidgetPage extends TemplatePage {
   public static final String IMAGE_MODE = "IMAGE";
   public static final String GRID_MODE = "GRID";
-  private static final String ACTIVE_MODE_SELECTOR = "[id$=':process-view-mode:view-mode-selection'] div.ui-button.ui-button-text-only.ui-state-active .ui-button-text";
+  private static final String ACTIVE_MODE_SELECTOR = "#process-widget\\:process-view-mode\\:view-mode-selection > div.ui-button.ui-button-text-only.ui-state-active > span";
   private static final String IMAGE_EDIT_PROCESS_LINK = "[id$=':%d:image-processes:%d:process-item:image-process-action-component:edit-process']";
   private static final String MORE_ACTION_BUTTON = "[id='process-widget:image-process-group-alphabet:%d:image-processes:%d:process-item:image-process-action-component:process-action-button']";
   private static final String ACTION_DIALOG = "[id='process-widget:image-process-group-alphabet:%d:image-processes:%d:process-item:image-process-action-component:process-action-menu']";
@@ -201,9 +201,7 @@ public class ProcessWidgetPage extends TemplatePage {
       for (SelenideElement webElement : webElements) {
         if (webElement.getText().equalsIgnoreCase(viewMode)) {
           waitForElementClickableThenClick(webElement);
-          WaitHelper.assertTrueWithWait(() -> {
-            return findElementByCssSelector(ACTIVE_MODE_SELECTOR).getText().equalsIgnoreCase(viewMode);
-          });
+          $(ACTIVE_MODE_SELECTOR).shouldBe(Condition.and("should be visible", appear, Condition.text(viewMode)), DEFAULT_TIMEOUT);
           WaitHelper.assertTrueWithWait(() -> {
             if (IMAGE_MODE.equalsIgnoreCase(viewMode)) {
               return findElementByCssSelector(".process-group.image-process-container").isDisplayed();
