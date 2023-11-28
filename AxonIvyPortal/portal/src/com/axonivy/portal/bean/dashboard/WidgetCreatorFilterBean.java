@@ -35,7 +35,9 @@ public class WidgetCreatorFilterBean implements Serializable {
   }
 
   public void onChangeOperator(DashboardFilter filter) {
-    filter.setTexts(new ArrayList<>());
+    if (filter.getOperator() == FilterOperator.CURRENT_USER) {
+      filter.setTexts(new ArrayList<>());
+    }
   }
 
   public List<SecurityMemberDTO> getSelectedCreators() {
