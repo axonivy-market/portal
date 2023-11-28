@@ -41,9 +41,13 @@
       var="creator" itemValue="#{creator}" itemLabel="#{creator.briefDisplayNameWithState}"
       converter="pojoConverter" cache="true" maxResults="100" multiple="true"
       moreTextSelect="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
-      dynamic="true" forceSelection="true" styleClass="case-configuration__creators"
+      unique="true" dynamic="true" forceSelection="true" styleClass="case-configuration__creators"
       disabled="#{readOnly}">
-      <p:ajax event="change" listener="#{widgetCreatorFilterBean.onChangeCreators(filter)}" />
+      <p:ajax event="itemSelect" var="event" listener="#{widgetCreatorFilterBean.onSelectCreator}"
+        update="creators" global="false" process="@this"/>
+      <p:ajax event="itemUnselect" listener="#{widgetCreatorFilterBean.onUnselectCreator}"
+        global="false" process="@this" />
+
       <f:validator validatorId="dashboardDefaultListFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
       <f:param name="skipValidator" value="true" />
       <f:attribute name="filter" value="#{filter}" />
