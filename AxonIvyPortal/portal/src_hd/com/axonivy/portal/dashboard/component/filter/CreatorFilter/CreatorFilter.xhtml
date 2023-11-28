@@ -43,7 +43,7 @@
       moreTextSelect="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
       unique="true" dynamic="true" forceSelection="true" styleClass="case-configuration__creators"
       disabled="#{readOnly}">
-      <p:ajax event="itemSelect" var="event" listener="#{widgetCreatorFilterBean.onSelectCreator}"
+      <p:ajax event="itemSelect" listener="#{widgetCreatorFilterBean.onSelectCreator}"
         update="creators" global="false" process="@this"/>
       <p:ajax event="itemUnselect" listener="#{widgetCreatorFilterBean.onUnselectCreator}"
         global="false" process="@this" />
