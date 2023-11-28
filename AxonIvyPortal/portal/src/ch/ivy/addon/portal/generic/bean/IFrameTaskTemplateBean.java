@@ -50,6 +50,8 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private static final String VIEW_NAME = "viewName";
   private static final String TASK_NAME = "taskName";
   public static final String PORTAL_GROWL_MESSGE_PARAM = "portalGrowlMessage";
+  private static final String DEFAULT_TASK_ICON = "si si-task-list-edit";
+  private static final String TASK_ICON = "taskIcon";
 
   private int currentProcessStep;
   private List<String> processSteps;
@@ -58,14 +60,15 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private String processChainDirection;
   private String processChainShape;
   private boolean announcementInvisible = true;
-  //In Iframe, when initial loading the page we hide both 
-  //3 items: task action, task name and case info, to avoid blinking problem
+  //In Iframe, when initial loading the page we hide  
+  //3 items: task action, task name and case info to avoid blinking problem
   private boolean isHideTaskAction = true;
   private boolean isHideTaskName = true;
   private boolean isHideCaseInfo = true;
   private boolean isWorkingOnATask = true;
   private String taskName;
   private Map<String, Object> overridePortalGrowlMap = new HashMap<>();
+  private String taskIcon;
 
   private Long caseId = null;
 
@@ -163,6 +166,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     isWorkingOnATask = Optional.ofNullable(requestParamMap.get(IS_WORKING_ON_A_TASK)).map(p -> StringUtils.isNotBlank(p) ? BooleanUtils.toBoolean(p) : true).get();
     caseId = Optional.ofNullable(requestParamMap.get(CASE_ID_PARAM)).map(p -> StringUtils.isNotBlank(p) ? Long.parseLong(p) : null).orElse(null);
     taskName = Optional.ofNullable(requestParamMap.get(TASK_NAME)).orElse(StringUtils.EMPTY);
+    taskIcon = Optional.ofNullable(requestParamMap.get(TASK_ICON)).orElse(DEFAULT_TASK_ICON);
   }
 
   private Map<String, String> getRequestParameterMap() {
@@ -238,5 +242,13 @@ public void setCaseId(Long caseId) {
 
   public void setStepIndexes(List<String> stepIndexes) {
     this.stepIndexes = stepIndexes;
+  }
+
+  public String getTaskIcon() {
+    return taskIcon;
+  }
+
+  public void setTaskIcon(String taskIcon) {
+    this.taskIcon = taskIcon;
   }
 }
