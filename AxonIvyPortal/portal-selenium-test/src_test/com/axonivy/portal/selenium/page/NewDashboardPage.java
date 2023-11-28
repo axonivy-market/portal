@@ -67,7 +67,12 @@ public class NewDashboardPage extends TemplatePage {
 
   private void clickUserMenuItem(String menuItemSelector) {
     waitForElementDisplayed(By.id("user-settings-menu"), true);
-    clickByJavaScript(findElementById("user-settings-menu"));
+    try {
+      clickByJavaScript(findElementById("user-settings-menu"));
+      $("ul[id$='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    } catch (Error e) {
+      clickByJavaScript(findElementById("user-settings-menu"));
+    }
     waitForElementDisplayed(By.id(menuItemSelector), true);
     clickByJavaScript(findElementById(menuItemSelector));
     WaitHelper.assertTrueWithWait(() -> !$("#user-setting-container").isDisplayed());
