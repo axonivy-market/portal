@@ -55,6 +55,7 @@ public class DefaultChartTest extends BaseTest {
   public void testRestoreDefaultChart() {
     MainMenuPage mainMenuPage = new MainMenuPage();
     StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
+    resizeBrowserTo2kResolution();
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     statisticWidgetPage.switchCreateMode();
     statisticWidgetPage.createCaseByFinishedTask();
