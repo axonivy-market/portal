@@ -797,7 +797,12 @@ public class NewDashboardPage extends TemplatePage {
 
   public GlobalSearchResultPage inputGlobalSearchKeyword(String keyword) {
     $(".topbar-item.search-item").shouldBe(appear, DEFAULT_TIMEOUT).click();
-    $("input[id$='global-search-component:global-search-data']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT);
+    try {
+      $("input[id$='global-search-component:global-search-data']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT);
+    } catch (Error e) {
+      $(".topbar-item.search-item").shouldBe(appear, DEFAULT_TIMEOUT).click();
+      $("input[id$='global-search-component:global-search-data']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT);
+    }
     getGlobalSearchInput().click();
     getGlobalSearchInput().sendKeys(keyword);
     getGlobalSearchInput().sendKeys(Keys.ENTER.toString());
