@@ -112,6 +112,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public void save() {
     $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='widget-configuration-save-button']")
         .shouldBe(getClickableCondition()).click();
+    $(".dashboard-card.new-widget").shouldBe(appear, DEFAULT_TIMEOUT);
     $("[id$='task-component:loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
