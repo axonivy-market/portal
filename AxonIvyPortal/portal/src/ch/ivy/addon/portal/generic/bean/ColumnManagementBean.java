@@ -75,6 +75,8 @@ public class ColumnManagementBean implements Serializable {
     if (widget.getType() == DashboardWidgetType.TASK) {
       TaskDashboardWidget taskWidget = (TaskDashboardWidget) this.widget; 
       this.columnsBeforeSave = new ArrayList<>(taskWidget.getColumns());
+      this.fieldTypes = Arrays.asList(DashboardColumnType.STANDARD, DashboardColumnType.CUSTOM,
+          DashboardColumnType.CUSTOM_CASE);
     }
     if (widget.getType() == DashboardWidgetType.CASE) {
       CaseDashboardWidget caseDashboardWidget = (CaseDashboardWidget) this.widget;
@@ -144,7 +146,8 @@ public class ColumnManagementBean implements Serializable {
     columnModel.initDefaultValue();
     columnModel.setHeader(this.fieldDisplayName);
     columnModel.setField(this.selectedField);
-    if (this.selectedFieldType == DashboardColumnType.CUSTOM) {
+    if (this.selectedFieldType == DashboardColumnType.CUSTOM
+        || this.selectedFieldType == DashboardColumnType.CUSTOM_CASE) {
       columnModel.setType(selectedFieldType);
       columnModel.setFormat(DashboardColumnFormat.valueOf(selectedFieldType.name()));
       columnModel.setPattern(numberFieldPattern);
@@ -222,12 +225,14 @@ public class ColumnManagementBean implements Serializable {
   }
 
   private Set<ICustomFieldMeta> getCustomFieldNames() {
-    if (CollectionUtils.isEmpty(customFieldNames)) {
-      if (widget.getType() == DashboardWidgetType.TASK) {
-        customFieldNames = ICustomFieldMeta.tasks();
-      } else if (widget.getType() == DashboardWidgetType.CASE) {
+    if (widget.getType() == DashboardWidgetType.TASK) {
+      if (selectedFieldType == DashboardColumnType.CUSTOM_CASE) {
         customFieldNames = ICustomFieldMeta.cases();
+      } else {
+        customFieldNames = ICustomFieldMeta.tasks();
       }
+    } else if (widget.getType() == DashboardWidgetType.CASE) {
+      customFieldNames = ICustomFieldMeta.cases();
     }
     return customFieldNames;
   }
@@ -235,7 +240,11 @@ public class ColumnManagementBean implements Serializable {
   public Optional<ICustomFieldMeta> findCustomFieldMeta() {
     Optional<ICustomFieldMeta> metaData = Optional.empty();
     if (widget.getType() == DashboardWidgetType.TASK) {
-      metaData = ICustomFieldMeta.tasks().stream().filter(meta -> meta.name().equals(selectedField)).findFirst();
+      if (selectedFieldType == DashboardColumnType.CUSTOM_CASE) {
+        metaData = ICustomFieldMeta.cases().stream().filter(meta -> meta.name().equals(selectedField)).findFirst();
+      } else {
+        metaData = ICustomFieldMeta.tasks().stream().filter(meta -> meta.name().equals(selectedField)).findFirst();
+      }
     } else if (widget.getType() == DashboardWidgetType.CASE) {
       metaData = ICustomFieldMeta.cases().stream().filter(meta -> meta.name().equals(selectedField)).findFirst();
     }

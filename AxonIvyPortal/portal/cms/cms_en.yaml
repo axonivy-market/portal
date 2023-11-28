@@ -785,6 +785,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfCase: case(s)
     category: Category
     columnManagement: Column management
+    columnType:
+      CUSTOM: Custom field
+      CUSTOM_CASE: Custom case field
+      STANDARD: Standard column
     configuration:
       CustomWidgetExternalLinkWarning: Some websites are not compatible with iframe due to security concerns. Please contact your administrator if the external website is not working properly.
       CustomWidgetTitlePlaceholder: Leave it blank to hide the header of the widget
