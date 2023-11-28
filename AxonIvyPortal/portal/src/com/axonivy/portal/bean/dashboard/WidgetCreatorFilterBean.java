@@ -68,6 +68,9 @@ public class WidgetCreatorFilterBean implements Serializable {
   }
 
   public void onChangeCreators(DashboardFilter filter) {
+    if (filter.getTexts() == null) {
+      filter.setTexts(new ArrayList<>());
+    }
     filter.getTexts().clear();
     for(SecurityMemberDTO creator : selectedCreators) {
       filter.getTexts().add(creator.getName());
