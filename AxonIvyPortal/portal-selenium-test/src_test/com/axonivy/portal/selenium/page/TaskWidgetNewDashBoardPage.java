@@ -101,6 +101,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void openFilterWidget() {
+    waitForGlobalGrowlDisappear();
     getTaskWidgetHeader().$(".widget__filter-sidebar-link")
         .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
