@@ -496,6 +496,7 @@ public class PortalExpressTest extends BaseTest{
   
   protected void executeUserTask() {
     taskWidgetPage = new TaskWidgetPage();
+    refreshPage();
     taskWidgetPage.countTasks().shouldBe(CollectionCondition.size(1));
     taskWidgetPage.startTask(0);
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
