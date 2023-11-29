@@ -51,6 +51,9 @@ CustomFields:
     CustomerType:
       Description: Colonne de type de client par exemple
       Label: Type de client
+    DestroyCaseAction:
+      Description: Annuler le cas et toutes les tâches appartenant au cas
+      Label: Détruire l'action en justice
     InvoiceDate:
       Description: Propriété de la page de détails des cas supplémentaires
       Label: Date de la facture

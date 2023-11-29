@@ -51,6 +51,9 @@ CustomFields:
     CustomerType:
       Description: Customer type column for example
       Label: Customer type
+    DestroyCaseAction:
+      Description: Cancel the Case and all tasks belong to the Case
+      Label: Destroy Case Action
     InvoiceDate:
       Description: Property of Additional Case details page
       Label: Invoice date
