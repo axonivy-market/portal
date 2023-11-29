@@ -135,11 +135,16 @@ The basic JSON structure of the case widget
 
    -  ``headers``: multilingual header of the column.
 
+.. _configure-new-dashboard-case-widget-custom-columns:
+
 Custom Columns
 --------------
 
 The Portal supports custom fields for a case. You can show them on the case widget
 as a column.
+
+Traditional Custom Columns
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You can predefine which column to show, and other attributes such as filter, format, and style. Below is a standard JSON of a custom column.
 
@@ -170,6 +175,35 @@ two differences:
 .. important::
    Portal only displays custom fields declared in the ``custom-fields.yaml`` file.
    Refer to :dev-url:`Custom Fields Meta Information </doc/|version|/designer-guide/how-to/workflow/custom-fields.html#meta-information>` for more information.
+
+Custom Action Button Columns
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Portal supports creating custom action buttons for specific needs. By clicking on this buttons, a custom process is triggered.
+
+Follow these steps to use create it:
+
+   #. Create a process that will be triggered after clicking on the custom action button. In this example, the process will destroy the case.
+      
+      |custom-action-button-custom-field|
+
+   #. Describe the custom action button in ``custom-fields.yaml``. 
+
+      .. code-block:: yaml
+
+         CustomFields:
+            Cases:
+            DestroyCaseAction:
+               Label: Destroy Case Action
+               Category: Custom Case Action
+               Icon: si si-controls-play
+               IsCustomAction: true
+
+      - ``IsCustomAction: true`` is mandatory to inform Portal that it is an action button.
+      - For the ``Icon``, please refer to the streamline icon library.
+
+   #. On the process start of the main process, assign a custom field to it.
+   
+      |custom-action-button-custom-field|
 
 Filter Conditions
 -----------------
@@ -315,3 +349,6 @@ conditions.
       case widget will show cases with an expiry date between the dates defined.
 
       Acceptable date formats: ``dd.MM.yyyy`` and ``MM/dd/yyyy``.
+
+.. |custom-action-button-custom-field| image:: images/new-dashboard-case-widget/custom-action-button-custom-field.png
+.. |custom-action-button-process-demo| image:: images/new-dashboard-case-widget/custom-action-button-process-demo.png
