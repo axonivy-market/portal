@@ -432,7 +432,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.save();
     editProcessWidgetConfiguration = newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName().shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .shouldNotHave(Condition.exactTextCaseSensitive(CLEAN_ABSENCES), DEFAULT_TIMEOUT);
+        .shouldNotHave(Condition.text(CLEAN_ABSENCES), DEFAULT_TIMEOUT);
   }
 
   @Test
