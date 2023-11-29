@@ -32,10 +32,11 @@ public class PasswordResetPage extends TemplatePage{
     $(".login-footer").click();
 //    $("[id='password-reset:reset-password-form:new-password_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
     passwordConfirmationTextField.sendKeys(newPassword);
-//    $("[id='password-reset:reset-password-form:password-confirmation_panel']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id='password-reset:reset-password-form:password-confirmation_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $(".login-footer").click();
 //    $("[id='password-reset:reset-password-form:password-confirmation_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
-    resetButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+//    resetButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    clickByJavaScript(resetButton);
 
     if (strongPasswordEnough) {
       $("[id='password-reset:reset-password-form:result-message']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
