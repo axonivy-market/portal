@@ -73,6 +73,9 @@ public class SystemNoteVisibilityTest extends BaseTest {
     List<String> taskNoteAuthors = taskDetailsPage.getTaskNoteAuthors();
     Assert.assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));
     String taskUuid = taskDetailsPage.getTaskUuid();
+    taskDetailsPage.closeMainMenu();
+    taskDetailsPage.refresh();
+    taskDetailsPage.waitForNoteTableDisplayed();
     NoteHistoryPage taskNoteHistoryPage = openTaskNoteHistory(taskUuid);
     taskNoteAuthors = taskNoteHistoryPage.getNoteAuthors();
     Assert.assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));

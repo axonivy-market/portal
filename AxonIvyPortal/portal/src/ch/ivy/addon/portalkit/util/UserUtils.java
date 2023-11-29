@@ -255,9 +255,21 @@ public class UserUtils {
     });
   }
 
+  /**
+   * use {@link #findUserBySecurityMemberId(String)}
+   * @param userId
+   * @return {@link IUser}
+   */
+  @Deprecated(forRemoval = true, since = "11.2.0")
   public static IUser findUserByUserId(Long userId) {
     return Sudo.get(() -> {
       return ISecurityContext.current().users().find(userId);
+    });
+  }
+  
+  public static IUser findUserBySecurityMemberId(String securityMemberId) {
+    return Sudo.get(() -> {
+      return ISecurityContext.current().users().find(securityMemberId);
     });
   }
 
@@ -273,7 +285,7 @@ public class UserUtils {
   }
 
   public static String getUserLanguage() {
-    String userLanguage = LanguageService.newInstance().findUserLanguages().getIvyLanguage().getUserLanguage();
+    String userLanguage = LanguageService.newInstance().getIvyLanguageOfUser().getUserLanguage();
     String systemLanguage = LanguageManager.instance().configurator(ISecurityContext.current()).content().toString();
     return StringUtils.defaultIfBlank(userLanguage, systemLanguage);
   }

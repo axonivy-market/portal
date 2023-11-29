@@ -292,7 +292,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     resetAllSettingsConfirmation: 'Seguro que quiere reestablecer todos los valores iniciales? '
     resetSettingConfirmation: 'Seguro que quiere reestablecer el valor inicial? '
     restoreAllToDefault: Restaurar todos los valores predeterminados
-    restoreDefault: Restaurar valor predeterminado
+    restoreDefault: Restablecer valores por defecto
     settingApplicationName: Definir el nombre de la aplicación
     settingMultipleLanguages: Establecer varios idiomas
     usernameHint: Nombre de usuario de un administrador de sistema.

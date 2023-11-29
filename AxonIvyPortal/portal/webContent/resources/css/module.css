@@ -3054,7 +3054,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .my-profile-container .card {
-  height: 100%;
+  height: auto;
   float: left;
 }
 
