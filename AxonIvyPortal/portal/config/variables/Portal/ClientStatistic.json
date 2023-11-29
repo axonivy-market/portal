@@ -1,0 +1,359 @@
+[
+  {
+    "id": "1",
+    "aggregates": "priority",
+    "chartTarget": "TASK",
+    "permissions": [
+      "Everybody"
+    ],
+    "chartType": "pie",
+    "names": [
+      {
+        "locale": "de",
+        "value": "Aufgaben nach Priorität"
+      },
+      {
+        "locale": "en",
+        "value": "Tasks by Priority"
+      },
+      {
+        "locale": "fr",
+        "value": "Tãches par priorité"
+      },
+      {
+        "locale": "es",
+        "value": "Tareas por prioridad"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "de",
+        "value": "Aufgaben nach Priorität"
+      },
+      {
+        "locale": "en",
+        "value": "Tasks by Priority"
+      },
+      {
+        "locale": "fr",
+        "value": "Tãches par priorité"
+      },
+      {
+        "locale": "es",
+        "value": "Tareas por prioridad"
+      }
+    ],
+    "icon": "si si-pie-line-graph",
+    "refreshInterval": 10
+  },
+  {
+    "id": "2",
+    "aggregates": "expiryTimestamp",
+    "filter": "expiryTimestamp:>=now <=now+4d/d",
+    "chartTarget": "TASK",
+    "permissions": [
+      "Everybody"
+    ],
+    "chartType": "bar",
+    "names": [
+      {
+        "locale": "de",
+        "value": "Aufgaben gruppiert nach Ablaufdatum"
+      },
+      {
+        "locale": "en",
+        "value": "Tasks grouped by expiry"
+      },
+      {
+        "locale": "fr",
+        "value": "Tâches regroupées par échéance"
+      },
+      {
+        "locale": "es",
+        "value": "Tareas agrupadas por vencimiento"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "de",
+        "value": "Aufgaben gruppiert nach Ablaufdatum"
+      },
+      {
+        "locale": "en",
+        "value": "Tasks grouped by expiry"
+      },
+      {
+        "locale": "fr",
+        "value": "Tâches regroupées par échéance"
+      },
+      {
+        "locale": "es",
+        "value": "Tareas agrupadas por vencimiento"
+      }
+    ],
+    "icon": "si si-pie-line-graph",
+    "refreshInterval": 10,
+    "barChartConfig": {
+      "xTitles": [
+        {
+          "locale": "de",
+          "value": "Tag"
+        },
+        {
+          "locale": "en",
+          "value": "Day"
+        },
+        {
+          "locale": "fr",
+          "value": "Jour"
+        },
+        {
+          "locale": "es",
+          "value": "Día"
+        }
+      ],
+      "yTitles": [
+        {
+          "locale": "de",
+          "value": "Anzahl der Aufgaben"
+        },
+        {
+          "locale": "en",
+          "value": "Number of tasks"
+        },
+        {
+          "locale": "fr",
+          "value": "Nombre de tâches"
+        },
+        {
+          "locale": "es",
+          "value": "Número de tareas"
+        }
+      ]
+     }
+  },
+  {
+    "id": "3",
+    "aggregates": "businessState",
+    "filter": "businessState:OPEN",
+    "permissions": [
+      "Everybody"
+    ] ,
+    "chartTarget": "TASK",
+    "chartType": "number",
+    "names": [
+      {
+        "locale": "de",
+        "value": "Anzahl der OFFENEN Aufgaben"
+      },
+      {
+        "locale": "en",
+        "value": "Number of OPEN Tasks"
+      },
+      {
+        "locale": "fr",
+        "value": "Nombre de tâches OUVERTES"
+      },
+      {
+        "locale": "es",
+        "value": "Número de tareas ABIERTAS"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "de",
+        "value": "Anzahl der OFFENEN Aufgaben"
+      },
+      {
+        "locale": "en",
+        "value": "Tasks Number of OPEN tasks"
+      },
+      {
+        "locale": "fr",
+        "value": "Nombre de tâches OUVERTES"
+      },
+      {
+        "locale": "es",
+        "value": "Número de tareas ABIERTAS"
+      }
+    ],
+    "icon": "si si-pie-line-graph",
+    "refreshInterval": 10,
+    "numberChartConfig": {
+       "suffixSymbol": ""
+     }
+  },
+  {
+    "id": "4",
+    "aggregates": "endTimestamp",
+    "filter": "endTimestamp:>=now-4d/d <=now+1d,businessState:DONE",
+    "permissions": [
+      "Everybody"
+    ] ,
+    "chartTarget": "TASK",
+    "chartType": "bar",
+    "names": [
+      {
+        "locale": "de",
+        "value": "Erledigte Aufgaben pro Tag"
+      },
+      {
+        "locale": "en",
+        "value": "Completed Tasks per Day"
+      },
+      {
+        "locale": "fr",
+        "value": "Tâches accomplies par jour"
+      },
+      {
+        "locale": "es",
+        "value": "Tareas completadas por día"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "de",
+        "value": "Erledigte Aufgaben pro Tag"
+      },
+      {
+        "locale": "en",
+        "value": "Completed Tasks per Day"
+      },
+      {
+        "locale": "fr",
+        "value": "Tâches accomplies par jour"
+      },
+      {
+        "locale": "es",
+        "value": "Tareas completadas por día"
+      }
+    ],
+    "icon": "si si-pie-line-graph",
+    "refreshInterval": 10,
+    "barChartConfig": {
+      "xTitles": [
+        {
+          "locale": "de",
+          "value": "Tag"
+        },
+        {
+          "locale": "en",
+          "value": "Day"
+        },
+        {
+          "locale": "fr",
+          "value": "Jour"
+        },
+        {
+          "locale": "es",
+          "value": "Día"
+        }
+      ],
+      "yTitles": [
+        {
+          "locale": "de",
+          "value": "Anzahl der Aufgaben"
+        },
+        {
+          "locale": "en",
+          "value": "Number of tasks"
+        },
+        {
+          "locale": "fr",
+          "value": "Nombre de tâches"
+        },
+        {
+          "locale": "es",
+          "value": "Número de tareas"
+        }
+      ]
+     }
+  },
+  {
+    "id": "5",
+    "aggregates": "expiryTimestamp",
+    "filter": "expiryTimestamp:>=now <=now+2M/d",
+    "chartTarget": "TASK",
+    "permissions": [
+      "Everybody"
+    ],
+    "chartType": "line",
+    "names": [
+      {
+        "locale": "de",
+        "value": "Angefangene Fälle pro Tag"
+      },
+      {
+        "locale": "en",
+        "value": "Started Cases per Day"
+      },
+      {
+        "locale": "fr",
+        "value": "Cas initiés par jour"
+      },
+      {
+        "locale": "es",
+        "value": "Casos iniciados por día"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "de",
+        "value": "Angefangene Fälle pro Tag"
+      },
+      {
+        "locale": "en",
+        "value": "Started Cases per Day"
+      },
+      {
+        "locale": "fr",
+        "value": "Cas initiés par jour"
+      },
+      {
+        "locale": "es",
+        "value": "Casos iniciados por día"
+      }
+    ],
+    "icon": "si si-pie-line-graph",
+    "refreshInterval": 10,
+    "lineChartConfig": {
+      "xTitles": [
+        {
+          "locale": "de",
+          "value": "Tag"
+        },
+        {
+          "locale": "en",
+          "value": "Day"
+        },
+        {
+          "locale": "fr",
+          "value": "Jour"
+        },
+        {
+          "locale": "es",
+          "value": "Día"
+        }
+      ],
+      "yTitles": [
+        {
+          "locale": "de",
+          "value": "Anzahl der Fälle"
+        },
+        {
+          "locale": "en",
+          "value": "Number of cases"
+        },
+        {
+          "locale": "fr",
+          "value": "Nombre de cas"
+        },
+        {
+          "locale": "es",
+          "value": "Número de casos"
+        }
+      ]
+     }
+  }
+  
+]

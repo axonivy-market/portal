@@ -65,6 +65,14 @@ public class DashboardAddWidgetTest extends BaseTest {
     chartWidget.countStatisticCharts().shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
   }
 
+  @Test
+  public void testAddClientStatisticChart() {
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
+    newDashboardDetailsEditPage.addWidget();
+    newDashboardDetailsEditPage.clickToAddClientStatisticWidget();
+    newDashboardDetailsEditPage.countStatisticCharts().shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
+  }
+
   private NewDashboardDetailsEditPage gotoEditPublicDashboardPage() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
