@@ -180,9 +180,9 @@ Custom Action Button Columns
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Portal supports creating custom action buttons for specific needs. By clicking on this buttons, a custom process is triggered.
 
-Follow these steps to use create it:
+Follow these steps to create it:
 
-   #. Create a process that will be triggered after clicking on the custom action button. In this example, the process will destroy the case.
+   #. Create a new process that will be triggered after clicking on the custom action button. In this example, the process will destroy the case.
       
       |custom-action-button-custom-field|
 
@@ -199,7 +199,7 @@ Follow these steps to use create it:
                IsCustomAction: true
 
       - ``IsCustomAction: true`` is mandatory to inform Portal that it is an action button.
-      - For the ``Icon``, please refer to the streamline icon library.
+      - For the ``Icon``, please refer to the streamline icon showcase available in Html Dialog Demos on |ivy| Market.
 
    #. On the process start of the main process, assign a custom field to it.
    
