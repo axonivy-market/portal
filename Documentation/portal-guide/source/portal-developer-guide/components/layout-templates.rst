@@ -126,6 +126,8 @@ Inside your UI, you can configure these parameters as follows; they will be rend
       window.announcementInvisible = false;
       window.viewName = "TASK_DETAIL";
       window.taskName = "Your New Task Name";
+      // Define task icon using font Streamline or font Awesome
+      window.taskIcon = "si si-coffee-cup";
 
       // Use this code to show case details of a case different from current case of working task.
       // by send the case ID of that case.
