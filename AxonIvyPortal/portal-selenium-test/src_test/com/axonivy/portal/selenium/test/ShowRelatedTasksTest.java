@@ -85,6 +85,7 @@ public class ShowRelatedTasksTest extends BaseTest {
   public void testRelatedTasksWhenClickingDoneTask() {
     grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
     openCaseDetail();
+    resizeBrowserTo2kResolution();
     detailsPage.addNote("test");
     String doneTaskName = detailsPage.openDoneTask(0);
     WaitHelper.assertTrueWithWait(() -> newDashboardPage.countBrowserTab() > 1);
