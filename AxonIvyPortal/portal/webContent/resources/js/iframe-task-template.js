@@ -83,7 +83,10 @@ function processIFrameData(iframe) {
   }, {
     name: 'taskName',
     value: window.taskName
-  }]);
+  }, {
+    name : 'taskIcon',
+    value : window.taskIcon
+    }]);
 }
 
 function streamliningPortalFrameStyle(window) {
