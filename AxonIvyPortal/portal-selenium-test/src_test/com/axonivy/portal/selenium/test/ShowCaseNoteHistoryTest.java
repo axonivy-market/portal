@@ -45,6 +45,7 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
   public void testShowCaseNoteHistory() {
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName(CASE_NAME);
+    resizeBrowserTo2kResolution();
     String caseId = detailsPage.getCaseId();
     String uuid = detailsPage.getCaseUuid();
     detailsPage.addNote(NOTE_CONTENT);
