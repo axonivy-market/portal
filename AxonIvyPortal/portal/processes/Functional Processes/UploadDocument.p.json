@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "16AB53A8F6EAADFB",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -295,8 +295,7 @@
           "type" : "EmbeddedStart",
           "name" : "in 1",
           "visual" : {
-            "at" : { "x" : 64, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 64, "y" : 160 }
           },
           "parentConnector" : "f10",
           "connect" : [
@@ -307,8 +306,7 @@
           "type" : "EmbeddedEnd",
           "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 1184, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 1184, "y" : 160 }
           },
           "parentConnector" : "f8"
         }, {
@@ -316,8 +314,7 @@
           "type" : "EmbeddedEnd",
           "name" : "out 2",
           "visual" : {
-            "at" : { "x" : 1184, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 1184, "y" : 160 }
           },
           "parentConnector" : "f9"
         } ],

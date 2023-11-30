@@ -15,6 +15,7 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityDescriptor;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -242,13 +243,13 @@ public class PermissionUtils {
   }
 
   public static String getCaseName(ICase iCase) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return iCase.names().current();
     });
   }
 
   public static String getTaskName(ITask task) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return task.names().current();
     });
   }

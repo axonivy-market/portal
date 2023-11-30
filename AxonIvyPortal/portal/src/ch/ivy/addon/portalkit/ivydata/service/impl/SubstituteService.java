@@ -10,16 +10,14 @@ import com.axonivy.portal.components.dto.UserDTO;
 
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
-import ch.ivy.addon.portalkit.ivydata.dto.IvySubstituteResultDTO;
-import ch.ivy.addon.portalkit.ivydata.service.ISubstituteService;
-import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserSubstitute;
 import ch.ivyteam.ivy.security.SubstitutionType;
+import ch.ivyteam.ivy.security.exec.Sudo;
 
-public class SubstituteService implements ISubstituteService {
+public class SubstituteService{
 
   private static final String ROLE_EVERYBODY = "Everybody";
   
@@ -30,25 +28,19 @@ public class SubstituteService implements ISubstituteService {
     return new SubstituteService();
   }
   
-  @Override
-  public IvySubstituteResultDTO findSubstitutes(String username) {
+  public List<IvySubstitute> findSubstitutes(String username) {
     return findSubstituteSubstitutionOfUser(username, true);
   }
   
-  @Override
-  public IvySubstituteResultDTO findSubstitutions(String username) {
+  public List<IvySubstitute> findSubstitutions(String username) {
     return findSubstituteSubstitutionOfUser(username, false);
   }
   
-  private IvySubstituteResultDTO findSubstituteSubstitutionOfUser(String username, boolean isFindSubstitute) {
-    return IvyExecutor.executeAsSystem(() -> { 
-      IvySubstituteResultDTO result = new IvySubstituteResultDTO();
-
-      IUser user = ServiceUtilities.findUser(username);
+  private List<IvySubstitute> findSubstituteSubstitutionOfUser(String username, boolean isFindSubstitute) {
+    return Sudo.get(() -> { 
+      IUser user = UserUtils.findUserByUsername(username);
       List<IvySubstitute> ivySubstitutions = isFindSubstitute? getIvySubstitutes(user) : getIvySubstitutions(user);
-      
-      result.setIvySubstitutes(ivySubstitutions);
-      return result;
+      return ivySubstitutions;
     });
   }
   
@@ -116,7 +108,7 @@ public class SubstituteService implements ISubstituteService {
   private void createSubstitutes(List<IvySubstitute> substitutes, IUser user){
     for (IvySubstitute ivySubstitute : substitutes) {
       if (ivySubstitute.getSubstituteUser() != null) {
-        IUser iUser = ServiceUtilities.findUser(ivySubstitute.getSubstituteUser().getName());
+        IUser iUser = UserUtils.findUserByUsername(ivySubstitute.getSubstituteUser().getName());
         if (ivySubstitute.getSubstitionRole() == null) {
           user.createSubstitute(iUser, "", ivySubstitute.getSubstitutionType());
         } else {
@@ -132,14 +124,13 @@ public class SubstituteService implements ISubstituteService {
     }
   }
 
-  @Override
   public void saveSubstitutes(UserDTO userDTO, List<IvySubstitute> ivySubstitutes) {
-    IvyExecutor.executeAsSystem(() -> { 
+    Sudo.get(() -> { 
       if (userDTO == null) {
         return Void.class;
       }
 
-      IUser user = ServiceUtilities.findUser(userDTO.getName());
+      IUser user = UserUtils.findUserByUsername(userDTO.getName());
       deleteSubstitutes(user);
       createSubstitutes(ivySubstitutes, user);
       return Void.class;

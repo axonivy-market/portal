@@ -18,6 +18,7 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
@@ -44,7 +45,7 @@ public class CaseTreeUtils {
   }
 
   private static CategoryTree findAllCategories() {
-    CaseQuery caseQuery = IvyExecutor.executeAsSystem(() -> {
+    CaseQuery caseQuery = Sudo.get(() -> {
       return SubProcessCall.withPath(PortalConstants.BUILD_CASE_QUERY_CALLABLE).withStartSignature("buildCaseQuery()")
           .call().get("caseQuery", CaseQuery.class);
     });

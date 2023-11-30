@@ -10,7 +10,7 @@ import ch.ivyteam.ivy.notification.channel.NotificationSubscription;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 
-public class IvyNotificationChannelDTO extends AbstractResultDTO {
+public class IvyNotificationChannelDTO {
 
   private final NotificationChannel channel;
   private final Map<String, IvyNotificationChannelSubcriptionDTO> subscriptions;

@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.dto;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -22,6 +23,8 @@ public class WidgetLayout implements Serializable {
   private int axisX;
   @JsonProperty("y")
   private int axisY;
+  @JsonIgnore
+  private boolean newWidget;
 
   public String getId() {
     return id;
@@ -77,5 +80,13 @@ public class WidgetLayout implements Serializable {
 
   public void setHeight(int height) {
     this.height = height;
+  }
+
+  public boolean isNewWidget() {
+    return newWidget;
+  }
+
+  public void setNewWidget(boolean newWidget) {
+    this.newWidget = newWidget;
   }
 }
