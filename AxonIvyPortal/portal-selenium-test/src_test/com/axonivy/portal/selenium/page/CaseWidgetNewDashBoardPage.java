@@ -221,4 +221,9 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
         .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("div.info-overlay-panel__footer").$(".dashboard-excel-export-form").$("a").shouldBe(getClickableCondition()).click();
   }
+  
+  public void clickOnCustomActionButton(int rowIndex, String columnName) {
+    SelenideElement custom = $("a[id$=':custom-description']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    custom.shouldBe(getClickableCondition()).click();
+  }
 }
