@@ -6,7 +6,6 @@ import java.util.Locale;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.util.Locales;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
@@ -17,7 +16,7 @@ import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.ProcessType;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -28,6 +27,7 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 public class DashboardProcess implements Process {
   private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
   private String id;
+  @Deprecated(forRemoval = true, since = "11.2.0")
   private Long processStartId;
   private ProcessType type;
   private String name;
@@ -39,6 +39,7 @@ public class DashboardProcess implements Process {
   private String application;
   private Category category;
   private String sortIndex;
+  private String processElementId;
   
   public DashboardProcess() {}
 
@@ -171,13 +172,23 @@ public class DashboardProcess implements Process {
   }
 
   private String generateWorkflowStartLink() {
-    return ProcessStartCollector.getInstance().findExpressWorkflowStartLink() + EXPRESS_WORKFLOW_ID_PARAM + this.id;
+    return ExpressProcessService.getInstance().findExpressWorkflowStartLink() + EXPRESS_WORKFLOW_ID_PARAM + this.id;
   }
 
+  /**
+   * @deprecated use {@link #setProcessElementId(String)}
+   * @return process start id
+   */
+  @Deprecated(forRemoval = true, since = "11.2.0")
   public Long getProcessStartId() {
     return processStartId;
   }
 
+  /**
+   * @deprecated use {@link #setProcessElementId(String)} 
+   * @param processStartId
+   */
+  @Deprecated(forRemoval = true, since = "11.2.0")
   public void setProcessStartId(Long processStartId) {
     this.processStartId = processStartId;
   }
@@ -217,5 +228,13 @@ public class DashboardProcess implements Process {
   @Override
   public String getSortIndex() {
     return sortIndex;
+  }
+
+  public String getProcessElementId() {
+    return processElementId;
+  }
+
+  public void setProcessElementId(String processElementId) {
+    this.processElementId = processElementId;
   }
 }

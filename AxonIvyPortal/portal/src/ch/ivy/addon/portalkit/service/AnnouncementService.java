@@ -16,11 +16,11 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.configuration.Announcement;
 import ch.ivy.addon.portalkit.configuration.LocalizationContent;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
-import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
+import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.exec.Sudo;
 
 public class AnnouncementService {
   private static final String ANNOUNCEMENT = PortalVariable.ANNOUNCEMENT.key;
@@ -37,7 +37,7 @@ public class AnnouncementService {
   }
 
   public boolean isDefaultApplicationLanguage(String language) {
-    return IvyExecutor.executeAsSystem(
+    return Sudo.get(
         () -> {
           Locale content = LanguageService.newInstance().getDefaultEmailLanguage();
           return content.getLanguage().equalsIgnoreCase(language);
@@ -98,9 +98,9 @@ public class AnnouncementService {
       languageToAnnouncements = new HashMap<>();
     }
     
-    IvyLanguageResultDTO ivyLanguage = LanguageService.newInstance().findUserLanguages();
+    IvyLanguage ivyLanguage = LanguageService.newInstance().getIvyLanguageOfUser();
 
-    List<String> supportedLanguages = ivyLanguage.getIvyLanguage().getSupportedLanguages();
+    List<String> supportedLanguages = ivyLanguage.getSupportedLanguages();
     
 
     List<LocalizationContent> contentsWithAllSupportedLanguages = supportedLanguages.stream().map(language -> {

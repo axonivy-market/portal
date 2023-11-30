@@ -32,8 +32,6 @@ import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
-import ch.ivy.addon.portalkit.ivydata.service.ITaskService;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Record;
@@ -49,7 +47,7 @@ import ch.ivyteam.ivy.workflow.query.ITaskQueryExecutor;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.FilterLink;
 
-public class TaskService implements ITaskService {
+public class TaskService {
 
   protected TaskService() {}
 
@@ -57,9 +55,8 @@ public class TaskService implements ITaskService {
     return new TaskService();
   }
   
-  @Override
   public IvyTaskResultDTO findTasksByCriteria(TaskSearchCriteria criteria, int startIndex, int count) { 
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       TaskQuery finalQuery = extendQueryWithUserHasPermissionToSee(criteria);
       result.setTasks(executeTaskQuery(finalQuery, startIndex, count));
@@ -67,9 +64,8 @@ public class TaskService implements ITaskService {
     });
   }
   
-  @Override
   public IvyTaskResultDTO countTasksByCriteria(TaskSearchCriteria criteria) { 
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       TaskQuery finalQuery = extendQueryWithUserHasPermissionToSee(criteria);
       result.setTotalTasks(countTasks(finalQuery));
@@ -89,9 +85,8 @@ public class TaskService implements ITaskService {
     return TaskQuery.create().where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull();
   }
 
-  @Override
   public IvyTaskResultDTO findCategoriesByCriteria(TaskCategorySearchCriteria criteria) { 
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       TaskQuery finalQuery = criteria.createQuery();
       
@@ -104,9 +99,8 @@ public class TaskService implements ITaskService {
     });
   }
   
-  @Override
   public IvyTaskResultDTO analyzePriorityStatistic(TaskSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       TaskQuery finalQuery = extendQueryWithUserCanWorkOn(criteria);
       finalQuery.aggregate().countRows().groupBy().priority();
@@ -138,23 +132,26 @@ public class TaskService implements ITaskService {
     return priorityStatistic;
   }
   
-  @Override
   public IvyTaskResultDTO analyzeExpiryStatistic(TaskSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       TaskQuery finalQuery = extendQueryWithUserCanWorkOn(criteria);
       finalQuery.aggregate().countRows().groupBy().expiryTimestamp().orderBy().expiryTimestamp();
 
       Recordset recordSet = taskQueryExecutor().getRecordset(finalQuery);
-      ExpiryStatistic expiryStatistic = createExpiryTimeStampToCountMap(recordSet);
+      ExpiryStatistic expiryStatistic = null;
+      try {
+        expiryStatistic = createExpiryTimeStampToCountMap(recordSet);
+      } catch (ParseException e) {
+        Ivy.log().error(e);
+      }
       result.setExpiryStatistic(expiryStatistic);
       return result;
     });
   }
   
-  @Override
   public IvyTaskResultDTO analyzeTaskBusinessStateStatistic(TaskSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       TaskQuery finalQuery = extendQueryWithInvolvedUser(criteria);
       finalQuery.aggregate().countRows().groupBy().businessState();
@@ -178,9 +175,8 @@ public class TaskService implements ITaskService {
     return taskStateStatistic;
   }
 
-  @Override
   public IvyTaskResultDTO analyzeTaskCategoryStatistic(TaskSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       TaskQuery finalQuery = extendQueryWithInvolvedUser(criteria);
       finalQuery.aggregate().countRows().groupBy().category().orderBy().category();
@@ -256,8 +252,7 @@ public class TaskService implements ITaskService {
     TaskQuery finalQuery = criteria.getFinalTaskQuery();
     TaskQuery clonedQuery = TaskQuery.fromJson(finalQuery.asJson()); // clone to keep the final query in TaskSearchCriteria
     if (!criteria.isAdminQuery()) {
-      FilterLink currentUserIsInvolved = TaskQuery.create().where().or().currentUserIsInvolved();
-      clonedQuery.where().and(currentUserIsInvolved);
+      clonedQuery.where().and(queryInvolvedTasks());
     } 
     if (isHiddenTasksCasesExcluded()) {
       clonedQuery.where().and(queryExcludeHiddenTasks());

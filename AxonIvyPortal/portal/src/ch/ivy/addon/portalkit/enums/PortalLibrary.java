@@ -3,13 +3,12 @@ package ch.ivy.addon.portalkit.enums;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
+import ch.ivyteam.ivy.security.exec.Sudo;
 
 public enum PortalLibrary {
   PORTAL("portal"),
-  AXON_EXPRESS("axonIvyExpress"),
-  SELF_SERVICE("selfService");
+  AXON_EXPRESS("axonivy-express");
   private String value;
 
   private PortalLibrary(String value) {
@@ -17,7 +16,7 @@ public enum PortalLibrary {
   }
 
   public String getValue(){
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       String groupId = SubProcessCall.withPath(PortalConstants.GET_GROUP_ID_CALLABLE)
           .withStartName("getGroupId")
           .call()

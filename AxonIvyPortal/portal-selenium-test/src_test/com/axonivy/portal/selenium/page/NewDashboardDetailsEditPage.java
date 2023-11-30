@@ -27,17 +27,19 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   public WebElement addWidget() {
-    $("button[id='add-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("button[id='add-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return $("div[id$='new-widget-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public TaskEditWidgetNewDashBoardPage addNewTaskWidget() {
     addWidgetByName("Task List");
+    $("div[id$=':task-widget-preview:dashboard-tasks']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition());
     return new TaskEditWidgetNewDashBoardPage();
   }
 
   public CaseEditWidgetNewDashBoardPage addNewCaseWidget() {
     addWidgetByName("Case List");
+    $("div[id$=':case-widget-preview:dashboard-cases']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition());
     return new CaseEditWidgetNewDashBoardPage();
   }
 

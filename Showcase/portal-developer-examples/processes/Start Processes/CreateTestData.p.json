@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "162511D2577DBA88",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.Data"
@@ -52,7 +52,6 @@
           "name" : "createTechnicalStateTasks",
           "visual" : {
             "at" : { "x" : 176, "y" : 200 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 13, "y" : 42 }
           },
           "parentConnector" : "f62",
@@ -124,7 +123,6 @@
           "name" : "createTechnicalStateTasks",
           "visual" : {
             "at" : { "x" : 128, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : -3, "y" : 48 }
           },
           "parentConnector" : "f63",
@@ -237,7 +235,6 @@
           "name" : "createTechnicalStateTasks",
           "visual" : {
             "at" : { "x" : 152, "y" : 208 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : -3, "y" : 58 }
           },
           "parentConnector" : "f61",
@@ -1346,8 +1343,7 @@
           "id" : "S40-g0",
           "type" : "EmbeddedStart",
           "visual" : {
-            "at" : { "x" : 64, "y" : 288 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 64, "y" : 288 }
           },
           "parentConnector" : "f102",
           "connect" : [
@@ -1357,8 +1353,7 @@
           "id" : "S40-g1",
           "type" : "EmbeddedEnd",
           "visual" : {
-            "at" : { "x" : 872, "y" : 288 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 872, "y" : 288 }
           },
           "parentConnector" : "f97"
         }, {
@@ -1454,8 +1449,7 @@
           "id" : "S41-g0",
           "type" : "EmbeddedStart",
           "visual" : {
-            "at" : { "x" : 64, "y" : 288 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 64, "y" : 288 }
           },
           "parentConnector" : "f103",
           "connect" : [
@@ -1465,8 +1459,7 @@
           "id" : "S41-g1",
           "type" : "EmbeddedEnd",
           "visual" : {
-            "at" : { "x" : 872, "y" : 288 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 872, "y" : 288 }
           },
           "parentConnector" : "f105"
         }, {
@@ -1562,8 +1555,7 @@
           "id" : "S42-g0",
           "type" : "EmbeddedStart",
           "visual" : {
-            "at" : { "x" : 64, "y" : 288 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 64, "y" : 288 }
           },
           "parentConnector" : "f98",
           "connect" : [
@@ -1573,8 +1565,7 @@
           "id" : "S42-g1",
           "type" : "EmbeddedEnd",
           "visual" : {
-            "at" : { "x" : 872, "y" : 288 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 872, "y" : 288 }
           },
           "parentConnector" : "f106"
         }, {
@@ -1670,8 +1661,7 @@
           "id" : "S45-g0",
           "type" : "EmbeddedStart",
           "visual" : {
-            "at" : { "x" : 64, "y" : 288 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 64, "y" : 288 }
           },
           "parentConnector" : "f100",
           "connect" : [
@@ -1681,8 +1671,7 @@
           "id" : "S45-g1",
           "type" : "EmbeddedEnd",
           "visual" : {
-            "at" : { "x" : 872, "y" : 288 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 872, "y" : 288 }
           },
           "parentConnector" : "f108"
         }, {
@@ -1778,8 +1767,7 @@
           "id" : "S43-g0",
           "type" : "EmbeddedStart",
           "visual" : {
-            "at" : { "x" : 64, "y" : 288 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 64, "y" : 288 }
           },
           "parentConnector" : "f104",
           "connect" : [
@@ -1789,8 +1777,7 @@
           "id" : "S43-g1",
           "type" : "EmbeddedEnd",
           "visual" : {
-            "at" : { "x" : 872, "y" : 288 },
-            "size" : { "width" : 26, "height" : 26 }
+            "at" : { "x" : 872, "y" : 288 }
           },
           "parentConnector" : "f112"
         }, {

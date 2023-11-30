@@ -3045,7 +3045,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .my-profile-container .card {
-  height: 100%;
+  height: auto;
   float: left;
 }
 
@@ -3078,6 +3078,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .my-profile-container .my-profile-selection-menu .ui-selectonemenu-label {
   text-overflow: ellipsis;
+}
+
+.my-profile-container .notification-channel-reset {
+  font-size: 2rem;
 }
 
 @media screen and (max-width: 40em) {
