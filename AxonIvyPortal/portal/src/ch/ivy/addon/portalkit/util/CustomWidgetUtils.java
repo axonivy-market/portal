@@ -19,7 +19,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.ProcessViewerDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.CustomWidgetParam;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
-import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.ReleaseState;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -199,10 +198,7 @@ public class CustomWidgetUtils {
         
         
       }
-      if (isNull(customWidget.getData().getIvyProcessStartDTO())) {
-        customWidget.getData().setIvyProcessStartDTO(new IvyProcessStartDTO());
-      }
-      customWidget.getData().getIvyProcessStartDTO().setStartableProcessStart(startable);
+      customWidget.getData().setStartableProcessStart(startable);
       customWidget.loadParameters();
       customWidget.getData().setStartRequestPath(startable.getLink().getRelative());
       customWidget.getData().setType(DashboardCustomWidgetType.PROCESS);

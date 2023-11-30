@@ -28,6 +28,7 @@ Language Settings
 =================
 
 To add a new language to the Portal, what you have to do is:
+
 -  Export all CMS entries of the Portal to an Excel file.
 -  Add one new column to the end of this file, then add the new language locale for example ``it`` for the Italian language to the first cell of this new column. Refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk11-suported-locales.html>`_ for the supported locales.
 
@@ -318,21 +319,19 @@ These variables are stored as key-value pairs. They have to be edited in the Eng
    | Variable                                    | Default                       | Description                 |
    |                                             | value                         |                             |
    +=============================================+===============================+=============================+
-   | PortalStartTimeCleanObsoletedDataExpression | 0 0 6 \* \* ?                 | Cron expression defines     |
+   | PortalStartTimeCleanObsoletedDataExpression | 0 6 \* \* \*                  | Cron expression defines     |
    |                                             |                               | the time to clean up data   |
    |                                             |                               | of obsolete users. E.g.:    |
    |                                             |                               | expression for at 6AM       |
    |                                             |                               | every day is                |
-   |                                             |                               | ``0 0 6 * * ?`` . Refer     |
-   |                                             |                               | to                          |
-   |                                             |                               | `crontrigger <http://quar   |
-   |                                             |                               | tz-scheduler.org/document   |
-   |                                             |                               | ation/quartz-2.1.7/tutori   |
-   |                                             |                               | als/tutorial-lesson-06.htm  |
-   |                                             |                               | l>`__                       |
-   |                                             |                               | . Restart Ivy engine        |
-   |                                             |                               | after changing this         |
-   |                                             |                               | variable.                   |
+   |                                             |                               | ``0 6 * * *``. Refer to     |
+   |                                             |                               | `CRON Expression <https://  |
+   |                                             |                               | developer.axonivy.com/doc/  |
+   |                                             |                               | 11.2/engine-guide/configur  |
+   |                                             |                               | ation/advanced-configurati  |
+   |                                             |                               | on.html#cron-expression>`_. |
+   |                                             |                               | Restart Ivy engine after    |
+   |                                             |                               | changing this variable.     |
    +---------------------------------------------+-------------------------------+-----------------------------+
    | PortalDeleteAllFinishedHiddenCases          | false                         | If set to ``true``, the     |
    |                                             |                               | above cron job runs daily   |

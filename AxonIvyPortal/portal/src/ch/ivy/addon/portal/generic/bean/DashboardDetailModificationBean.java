@@ -75,7 +75,6 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.ProcessSorting;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
-import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.DashboardService;
@@ -300,10 +299,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       return;
     }
 
-    var ivyProcessStartDTO = new IvyProcessStartDTO(iWebStartable);
-    customWidget.getData().setIvyProcessStartDTO(ivyProcessStartDTO);
-    customWidget.getData().setProcessPath(ivyProcessStartDTO.getStartableProcessStart().getId());
-    customWidget.getData().setStartRequestPath(ivyProcessStartDTO.getStartableProcessStart().getLink().getRelative());
+    customWidget.getData().setStartableProcessStart(iWebStartable);
+    customWidget.getData().setProcessPath(iWebStartable.getId());
+    customWidget.getData().setStartRequestPath(iWebStartable.getLink().getRelative());
     customWidget.loadParametersFromProcess();
   }
 
@@ -578,8 +576,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     if (customWidget.getData().getType() == DashboardCustomWidgetType.PROCESS) {
       // Update processPath to latest
       IWebStartable startable = Optional.ofNullable(customWidget.getData())
-          .map(DashboardCustomWidgetData::getIvyProcessStartDTO)
-          .map(IvyProcessStartDTO::getStartableProcessStart).orElse(null);
+          .map(DashboardCustomWidgetData::getStartableProcessStart).orElse(null);
       if (Objects.isNull(startable)) {
         startable = CustomWidgetUtils.findStartableOfCustomDashboardProcess(customWidget.getData().getProcessPath());
       }
@@ -695,11 +692,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         widget.getLayout().setAxisY(portalGridsCurrentRow.intValue());
       }
     }
-    if (StringUtils.isEmpty(widget.getLayout().getStyleClass())) {
-      widget.getLayout().setStyleClass(DashboardConstants.NEW_WIDGET_STYLE_CLASS);
-    } else {
-      widget.getLayout().setStyleClass(widget.getLayout().getStyleClass().concat(DashboardConstants.NEW_WIDGET_STYLE_CLASS));
-    }
+    widget.getLayout().setNewWidget(true);
   }
 
   private void updateProcessWidget(SingleProcessDashboardWidget processWidget, int height, int width) {

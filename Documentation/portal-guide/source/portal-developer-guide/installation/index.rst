@@ -20,7 +20,7 @@ on each module, refer to :ref:`architecture`.
 
 -  portal-components
 -  portal
--  AxonIvyExpress
+-  axonivy-express
 
 The deployment of Ivy projects is described in :dev-url:`project
 deployment </doc/|version|/engine-guide/deployment/index.html>`
@@ -33,6 +33,7 @@ Designer
 ^^^^^^^^
 
 Import Portal modules to Designer.
+axonivy-express is excluded from the Portal application. If you want to use axonivy-express, you should import it from Axon Ivy Market.
 
 
 Engine Without License (Demo Mode)
@@ -143,6 +144,22 @@ In Engine
 
 #. Follow detailed migration notes for each version below.
 
+Migrate 11.1.0 To 11.2.0
+------------------------
+
+The ``AxonIvyExpress`` module is renamed to ``axonivy-express`` and becomes an item on the Axon Ivy Market, To migrate it you need to do the following steps:
+
+- Open **Portal**, go to **Setting** -> **Express Management**. Export all Express configurations.
+- Open the **Cockpit**, stop the PM **AxonIvyExpress** in your **Portal** application.
+- Deploy the **axonivy-express** module which gets from the Axon Ivy Market into the **Portal** application.
+- Restart Engine.
+- Open **Portal**, go to **Setting** -> **Express Management**. Import the configuration which is exported at the first step.
+
+
+- If you override ``PortalStartTimeCleanObsoletedDataExpression`` variable, please update it to new Ivy CRON job pattern.
+- Refer to Axon Ivy CRON job pattern: `CRON Expression <https://developer.axonivy.com/doc/|version|/engine-guide/configuration/advanced-configuration.html#cron-expression>`_.
+- Example: Change ``0 0 1 * * ?`` to ``0 1 * * *`` for job trigger 01:00 AM everyday.
+
 Migrate 10.0.12 To 10.0.13
 --------------------------
 
@@ -228,15 +245,13 @@ Migrate 10.0.11 To 10.0.12
       - Update ``index`` for each custom menu item.
       - Refer to process ``CustomLoadSubMenuItems`` in the project ``portal-developer-examples`` for an example of how to create custom menu items.
 
-2. We change the **External Link** configuration for the field ``imageContent``, refer to :ref:`Portal Processes External Links <portal-process-external-link>` for more information. Basically, you do not need any migration on your engine. Just in case, you override variable `Portal.Processes.ExternalLinks` by deployment, update the field ``imageContent`` by removing the prefix like `data:image/jpeg;base64,` in your JSON variable `Portal.Processes.ExternalLinks` file.
+2. We changed the **External Link** configuration for the field ``imageContent``, refer to :ref:`Portal Processes External Links <portal-process-external-link>` for more information. Basically, you do not need any migration on your engine. In case you have overridden the variable `Portal.Processes.ExternalLinks` by deployment, update the field ``imageContent`` by removing the prefix like `data:image/jpeg;base64,` in your JSON variable `Portal.Processes.ExternalLinks` file.
 
 Migrate 10.0 To 10.0.7
 ----------------------
 
 The ``ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI`` class is removed and no longer supported, use 
 ``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` instead.
-
-.. _installation-release-notes:
 
 Migrate 8.x To 10.0
 -------------------
@@ -471,6 +486,8 @@ Migrate 8.x To 9.x
 You need to do all steps starting at ``Migrate 8.x To ...`` up to and including
 ``Migrate ... To 9.x``
 
+.. _installation-release-notes:
+
 Release notes
 =============
 
@@ -491,6 +508,7 @@ Changes in 11.2.0
 - Introduced the sort feature for the process dashboard widget. User can sort the processes by index, alphabetical order or by custom order.
 - Introduced the ``taskId`` param for the component ``ic:com.axonivy.portal.components.ProcessViewer`` to highlight the current step in the Process Viewer.
 - Portal Legacy dashboard has been removed.
+- The ``AxonIvyExpress`` module is renamed to ``axonivy-express`` and becomes an item on the Axon Ivy Market.
 
 Changes in 10
 -------------

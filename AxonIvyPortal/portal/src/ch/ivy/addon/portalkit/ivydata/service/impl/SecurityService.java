@@ -10,23 +10,21 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.RoleDTO;
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.dto.UserDTO;
 
-import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySecurityResultDTO;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
-import ch.ivy.addon.portalkit.ivydata.service.ISecurityService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.security.query.UserQuery;
 import ch.ivyteam.ivy.security.query.UserQuery.IFilterQuery;
 
-public class SecurityService implements ISecurityService {
+public class SecurityService {
 
   private SecurityService() {}
 
@@ -34,9 +32,8 @@ public class SecurityService implements ISecurityService {
     return new SecurityService();
   }
 
-  @Override
   public IvySecurityResultDTO findUsers(String query, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       result.setUsers(queryUsers(query, startIndex, count, fromRoles, excludedUsernames));
       return result;
@@ -77,7 +74,7 @@ public class SecurityService implements ISecurityService {
   }
 
   private IFilterQuery createFilterQuery(String query, UserQuery userQuery) {
-    String containingQuery = "%"+ StringUtils.defaultString(query, StringUtils.EMPTY) +"%";
+    String containingQuery = "%"+ Objects.toString(query, StringUtils.EMPTY) +"%";
     IFilterQuery filterQuery = userQuery.where();
     filterQuery.fullName()
       .isLikeIgnoreCase(containingQuery)
@@ -87,19 +84,8 @@ public class SecurityService implements ISecurityService {
     return filterQuery;
   }
 
-  @Override
-  public IvySecurityResultDTO findUsers(String query, IApplication app, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
-    return IvyExecutor.executeAsSystem(() -> {
-      IvySecurityResultDTO result = new IvySecurityResultDTO();
-      List<UserDTO> userDTOs = queryUsers(query, startIndex, count, fromRoles, excludedUsernames);
-      result.setUsers(userDTOs);
-      return result;
-    });
-  }
-
-  @Override
   public IvySecurityResultDTO findRoles() {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       List<IRole> roles = ServiceUtilities.findAllRoles();
       result.setRoles(roles);
@@ -107,9 +93,8 @@ public class SecurityService implements ISecurityService {
     });
   }
 
-  @Override
   public IvySecurityResultDTO findRoleDTOs() {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       List<RoleDTO> roles = ServiceUtilities.findAllRoleDTO();
       roles.sort(getRoleDTOComparator());
@@ -118,9 +103,8 @@ public class SecurityService implements ISecurityService {
     });
   }
 
-  @Override
   public IvySecurityResultDTO findSecurityMembers(String query, int startIndex, int count) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       List<RoleDTO> roles = ServiceUtilities.findAllRoleDTO().stream()
           .filter(role -> doesNameContainQuery(query, role))
@@ -176,10 +160,9 @@ public class SecurityService implements ISecurityService {
     return (u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName());
   }
 
-  @Override
   public IvySecurityResultDTO findAllUsersOfRoles(int startIndex, int count, List<String> fromRoles,
       List<String> excludedUsernames) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       result.setUsers(queryAllUsers(startIndex, count, fromRoles, excludedUsernames));
       return result;
