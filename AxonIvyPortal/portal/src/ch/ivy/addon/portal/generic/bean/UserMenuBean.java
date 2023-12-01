@@ -320,4 +320,8 @@ public class UserMenuBean implements Serializable {
     }
     return expressStartLink;
   }
+  
+  public void navigateToNotification(){
+    PortalNavigator.navigateToNavigationFullPage();
+  }
 }

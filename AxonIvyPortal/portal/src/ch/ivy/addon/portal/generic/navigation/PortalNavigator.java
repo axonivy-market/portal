@@ -51,6 +51,8 @@ public final class PortalNavigator extends BaseNavigator{
   private static final String UUID = "uuid";
   private static final String PORTAL_DASHBOARD_PAGE = "Start Processes/PortalStart/DashboardPage.ivp";
   private static final String PORTAL_DASHBOARD_CONFIGURATION_EDIT_PAGE = "Start Processes/PortalStart/PortalDashboardConfigurationEditPage.ivp";
+  private static final String PORTAL_NOTIFICATION_FULLPAGE =  "Start Processes/PortalStart/NotificationFullPage.ivp";
+  private static final String PORTAL_NOTIFICATION_FULLPAGE_START =  "/NotificationFullPage.ivp";
   
   private final static String DASHBOARD_PARAM = "isShowDashboard";
   
@@ -259,5 +261,9 @@ public final class PortalNavigator extends BaseNavigator{
 
   public static String buildPortalManagementUrl() {
     return buildUrlByKeyword("PortalManagement.ivp", PORTAL_MANAGEMENT, new HashMap<>());
+  }
+  
+  public static void navigateToNavigationFullPage() {
+    navigateByKeyword(PORTAL_NOTIFICATION_FULLPAGE_START, PORTAL_NOTIFICATION_FULLPAGE, new HashMap<>());
   }
 }
