@@ -30,6 +30,9 @@ public class SearchResultsDataModel implements Serializable {
   protected CaseLazyDataModel caseDataModel;
   protected List<SearchScopeTaskField> searchScopeTaskFields;
   protected List<SearchScopeCaseField> searchScopeCaseFields;
+  private static final String SEARCH_TASK_PREFIX = "task: ";
+  private static final String SEARCH_CASE_PREFIX = "case: ";
+  private static final String SEARCH_PROCESS_PREFIX = "process: ";
 
   /**
    * @hidden
@@ -105,8 +108,9 @@ public class SearchResultsDataModel implements Serializable {
    */
   public void setKeyword(String keyword) {
     this.keyword = keyword;
-    this.taskDataModel.getCriteria().setKeyword(keyword);
-    this.caseDataModel.getCriteria().setKeyword(keyword);
+    analyzeKeyword(keyword.toLowerCase());
+    this.taskDataModel.getCriteria().setKeyword(this.keyword);
+    this.caseDataModel.getCriteria().setKeyword(this.keyword);
 
     this.taskDataModel.getCriteria().setGlobalSearch(true);
     this.caseDataModel.getCriteria().setGlobalSearch(true);
@@ -118,6 +122,29 @@ public class SearchResultsDataModel implements Serializable {
     if (CollectionUtils.isNotEmpty(searchScopeCaseFields)) {
       this.caseDataModel.getCriteria().setSearchScopeCaseFields(searchScopeCaseFields);
     }
+  }
+
+  public static int getActiveTabIndexByKeyword(String keyword) {
+    if (keyword.toLowerCase().startsWith(SEARCH_TASK_PREFIX)) {
+      return 1;
+    }
+    if (keyword.toLowerCase().startsWith(SEARCH_CASE_PREFIX)) {
+      return 2;
+    }
+    return 0;
+  }
+
+  private void analyzeKeyword(String keyword) {
+    if (keyword.startsWith(SEARCH_PROCESS_PREFIX)) {
+      this.keyword = StringUtils.substringAfter(keyword, SEARCH_PROCESS_PREFIX);
+    }
+    if (keyword.startsWith(SEARCH_TASK_PREFIX)) {
+      this.keyword = StringUtils.substringAfter(keyword, SEARCH_TASK_PREFIX);
+    }
+    if (keyword.startsWith(SEARCH_CASE_PREFIX)) {
+      this.keyword = StringUtils.substringAfter(keyword, SEARCH_CASE_PREFIX);
+    }
+
   }
 
   /**

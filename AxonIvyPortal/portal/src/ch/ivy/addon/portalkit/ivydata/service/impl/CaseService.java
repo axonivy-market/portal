@@ -64,6 +64,16 @@ public class CaseService{
     });
   }
 
+  public IvyCaseResultDTO findGlobalSearchCasesByCriteria(CaseSearchCriteria criteria, int startIndex, int count) {
+    return Sudo.get(() -> {
+      IvyCaseResultDTO result = new IvyCaseResultDTO();
+      CaseQuery finalQuery = extendQuery(criteria);
+      result.setCases(executeCaseQuery(finalQuery, startIndex, count));
+      result.setTotalCases(countCases(finalQuery));
+      return result;
+    });
+  }
+
   private List<ICase> executeCaseQuery(CaseQuery query) {
     return Sudo.get(() -> {
       return Ivy.wf().getCaseQueryExecutor().getResults(query);

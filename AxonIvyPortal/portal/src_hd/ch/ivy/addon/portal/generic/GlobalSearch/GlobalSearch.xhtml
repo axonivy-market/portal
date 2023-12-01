@@ -10,17 +10,18 @@
   <cc:attribute name="showQuickGlobalSearch" />
 </cc:interface>
 <cc:implementation>
+  <!-- Warning before leaving task -->
   <h:panelGroup styleClass="search-input-wrapper">
     <p:inputText id="global-search-data" styleClass="global-search-input" value="#{data.keyword}" autocomplete="off"
-      onkeypress="if (event.keyCode == 13) { portalGlobalSearch(); return false; }"
+      onkeypress="if (event.code === 'Enter') { portalGlobalSearch(); return false; }"
       placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}">
     </p:inputText>
     <i class="global-search-icon si si-search" />
   </h:panelGroup>
   <ul>
     <h:panelGroup styleClass="search-input-wrapper">
-      <p:inputText id="global-search-mobile-data" styleClass="global-search-input" value="#{data.keyword}"
-        onkeypress="if (event.keyCode == 13) { portalGlobalSearchMobile(); return false; }"
+      <p:inputText id="global-search-mobile-data" styleClass="global-search-input " value="#{data.keyword}"
+        onkeypress="if (event.code === 'Enter') { portalGlobalSearchMobile(); return false; }"
         placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}">
       </p:inputText>
       <i class="global-search-icon si si-search" />
@@ -35,7 +36,6 @@
   <p:overlayPanel rendered="#{cc.attrs.showQuickGlobalSearch}" hideEvent="dbclick" autoHide="false" id="global-search-form" onHide="resetSearchBar();"
    appendTo="@(body)" for="quick-global-search-component:global-search-data" styleClass="global-search-form">
     <h:outputScript library="js" name="global-search.js" />
-
     <div id="global-search-panel">
       <p:tabView style="height: 250px">
         <p:tab id="process-tab-search" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}"
@@ -44,8 +44,7 @@
           id="process-search-results">
          </div>
          <div class="global-search-all-results" >
-           <p:commandLink onclick="portalGlobalSearch(); return false;" 
-           value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/ViewAllResults')}" />
+           <p:commandLink onclick="viewAllResults(0);" />
          </div>
          <h:outputText styleClass="global-search-no-results" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/noResultsText')}" />
         </p:tab>
@@ -54,8 +53,7 @@
           <div id="task-search-results">
           </div>
           <div class="global-search-all-results" >
-           <p:commandLink onclick="portalGlobalSearch(); return false;" 
-             value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/ViewAllResults')}" />
+           <p:commandLink onclick="viewAllResults(1);" />
           </div>
           <h:outputText styleClass="global-search-no-results" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/noResultsText')}" />
         </p:tab>
@@ -64,8 +62,7 @@
           <div id="case-search-results" class="js-case-default-widget-container case-default-widget-container js-for-search-result">
           </div>
           <div class="global-search-all-results" >
-           <p:commandLink onclick="portalGlobalSearch(); return false;" 
-             value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/ViewAllResults')}" />
+           <p:commandLink onclick="viewAllResults(2);" />
           </div>
           <h:outputText styleClass="global-search-no-results" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/noResultsText')}" />
         </p:tab>
@@ -73,6 +70,5 @@
     </div>
 
   </p:overlayPanel>
-    
 </cc:implementation>
 </html>

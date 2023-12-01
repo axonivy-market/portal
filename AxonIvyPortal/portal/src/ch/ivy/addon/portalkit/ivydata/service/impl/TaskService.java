@@ -64,6 +64,16 @@ public class TaskService {
     });
   }
   
+  public IvyTaskResultDTO findGlobalSearchTasksByCriteria(TaskSearchCriteria criteria, int startIndex, int count) {
+    return Sudo.get(() -> {
+      IvyTaskResultDTO result = new IvyTaskResultDTO();
+      TaskQuery finalQuery = extendQueryWithUserHasPermissionToSee(criteria);
+      result.setTasks(executeTaskQuery(finalQuery, startIndex, count));
+      result.setTotalTasks(countTasks(finalQuery));
+      return result;
+    });
+  }
+
   public IvyTaskResultDTO countTasksByCriteria(TaskSearchCriteria criteria) { 
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();

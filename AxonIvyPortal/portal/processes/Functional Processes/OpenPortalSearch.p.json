@@ -38,11 +38,15 @@
       "type" : "DialogCall",
       "name" : "SearchResults",
       "config" : {
-        "dialog" : "ch.ivy.addon.portal.generic.SearchResults:start(String)",
+        "dialog" : "ch.ivy.addon.portal.generic.SearchResults:start(String,Number)",
         "call" : {
           "map" : {
             "param.keyword" : "in.keyword"
-          }
+          },
+          "code" : [
+            "import ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel;",
+            "param.activeTabIndex = SearchResultsDataModel.getActiveTabIndexByKeyword(in.keyword);"
+          ]
         }
       },
       "visual" : {

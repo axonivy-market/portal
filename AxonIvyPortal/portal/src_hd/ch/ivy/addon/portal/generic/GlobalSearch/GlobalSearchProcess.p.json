@@ -45,6 +45,9 @@
             "",
             "if(in.isWorkingOnTask) {",
             "  GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, in.iCase);",
+            "  ivy.log.warn(\"leaving task\");",
+            "} else {",
+            "  ivy.log.warn(\"NO leaving task\");",
             "}"
           ]
         }
