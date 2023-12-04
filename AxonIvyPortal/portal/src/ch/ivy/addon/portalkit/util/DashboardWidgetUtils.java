@@ -31,6 +31,7 @@ import com.axonivy.portal.components.service.impl.ProcessService;
 
 import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
+import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.AbstractColumn;
@@ -616,7 +617,7 @@ public class DashboardWidgetUtils {
         }
         processWidget.setProcess(new DashboardProcess(expressProcess));
       } else if (externalLink != null) {
-        processWidget.setProcess(new DashboardProcess(externalLink));
+        processWidget.setProcess(new DashboardProcess(new ExternalLinkProcessItem(externalLink)));
       }
     }
   }
