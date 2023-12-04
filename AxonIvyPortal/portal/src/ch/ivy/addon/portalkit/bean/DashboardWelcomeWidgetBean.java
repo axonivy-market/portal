@@ -52,6 +52,10 @@ public class DashboardWelcomeWidgetBean implements Serializable {
           .findFirst().orElse(new DisplayName()).getValue());
     }
     widget.setImageContentObject(renderImage());
+    if (StringUtils.isNotBlank(widget.getId())) {
+      String idWithoutSpecialChar = widget.getId().replaceAll("[^\\p{Alpha}\\p{Digit}_]+","_");
+      widget.setInternalId(idWithoutSpecialChar);
+    }
   }
 
   public ContentObject renderImage() {
