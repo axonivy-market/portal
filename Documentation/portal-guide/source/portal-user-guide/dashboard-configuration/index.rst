@@ -20,7 +20,7 @@ Private dashboards configuration
 --------------------------------
 
 The tab :guilabel:`Private dashboards` is only available for users who have the permission ``DASHBOARD_WRITE_OWN``. Here you can
-add or edit your private dashboards, and reorder all dashboards visible to you.
+add or edit, reorder your private dashboards.
 
 |private-dashboard-configuration|
 
@@ -29,7 +29,7 @@ add or edit your private dashboards, and reorder all dashboards visible to you.
 How to: add private dashboard
 =============================
 
-#. Select |add-icon| Add.
+#. Select |add-icon| New Dashboard.
 
 #. Select one of the available templates to add  (see Available dashboard templates).
 
@@ -59,7 +59,7 @@ Available dashboard templates:
 How to: import private dashboards
 =================================
 
-#. Select |add-icon| Add.
+#. Select |add-icon| New Dashboard.
 
 #. Select |import-icon| Import.
 
@@ -87,9 +87,9 @@ A table of private dashboards is shown with the following information:
 
 #. Dashboard title
 
-#. Description
+#. Dashboard description
 
-#. :guilabel:`Actions` for further actions: |edit-icon| edit (name, description), |settings-icon| configure
+#. :guilabel:`Actions` for further actions: |move-expand-vertical| reorder, |edit-icon| edit (name, description), |settings-icon| configure
    (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| export dashboard,
    and |trash-icon| delete a private dashboard.
 
@@ -101,41 +101,29 @@ A table of private dashboards is shown with the following information:
 
 .. _howto-reorder-your-dashboards:
 
-How to: reorder your dashboards
-===============================
+How to: reorder private dashboards
+==================================
 
-To access the reorder dashboards section, click on |move-expand-vertical| Reorder your dashboards. All dashboards that you can access will be listed,
-you can hide or show a dashboard by selecting the checkbox `Visible`, re-arrange dashboards by drag and drop using |move-expand-vertical| Reorder.
+You can re-arrange dashboards by drag and drop using |move-expand-vertical| Reorder.
 
 A table of private dashboards is shown with the following information:
 
 #. Dashboard title
 
-#. Dashboard type: type of dashboard (public or private).
+#. Dashboard description
 
-#. :guilabel:`Visible`: toggle visibility of dashboards.
-
-#. :guilabel:`Reorder`: re-arrange dashboards.
-
-#. Apply your changes by selecting Save.
+#. :guilabel:`Actions` for further actions: |move-expand-vertical| reorder, |edit-icon| edit (name, description), |settings-icon| configure
+   (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| export dashboard,
+   and |trash-icon| delete a private dashboard.
 
 |reorder-your-dashboards|
-
-.. hint::
-   - This feature reorders both your private and all public dashboards visible to you.
-   - The resulting re-arrangement of dashboards
-
-         - is only visible to yourself.
-         - overrides all re-orderings of public dashboards.
 
 .. note::
    - Once created, your personal sort order is retained.
    - Once you have created a personal sort order, you can rearrange the order, but you cannot delete your personal sort order.
 
 .. hint::
-   If you create new private dashboards, or if new public dashboards are available to you, they are
-   automatically added to the end of your personal sort order. New public dashboards are added
-   in front of new private dashboards.
+   If you create new dashboards, they are automatically added to the end of your personal sort order.
 
 
 Public dashboards configuration
@@ -151,7 +139,7 @@ add, edit, and reorder public dashboards.
 How to: add public dashboard
 ============================
 
-#. Select |add-icon| Add.
+#. Select |add-icon| New Dashboard.
 
 #. Select one of the available templates to add  (see Available dashboard templates).
 
@@ -183,7 +171,7 @@ Available dashboard templates:
 How to: import public dashboard
 ===============================
 
-#. Select |add-icon| Add.
+#. Select |add-icon| New Dashboard.
 
 #. Select |import-icon| Import.
 
@@ -211,11 +199,11 @@ A table of public dashboards is shown with the following information:
 
 #. Dashboard title
 
-#. Dashboard roles
+#. Dashboard permissions
 
-#. Description
+#. Dashboard description
 
-#. :guilabel:`Actions` for further actions: |edit-icon| edit (name, description), |settings-icon| configure
+#. :guilabel:`Actions` for further actions: |move-expand-vertical| reorder, |edit-icon| edit (name, description), |settings-icon| configure
    (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| export dashboard, |share-icon| share
    and |trash-icon| delete a public dashboard.
 
@@ -239,24 +227,24 @@ To generate a public dashboard link, simply click on the |share-icon| Share in t
 How to: reorder public dashboards
 =================================
 
-To access the reorder public dashboards section, click on |move-expand-vertical| Reorder public dashboards. Here, all public dashboards are listed.
-You may re-arrange them by drag and drop using |move-expand-vertical| Reorder.
+You can re-arrange them by drag and drop using |move-expand-vertical| Reorder.
 
 A table of public dashboards is shown with the following information:
 
 #. Dashboard title
 
-#. Dashboard type: type of dashboard (public).
+#. Dashboard permissions
 
-#. :guilabel:`Reorder`: re-arrange public dashboards.
+#. Dashboard description
 
-#. Apply your changes by selecting Save.
+#. :guilabel:`Actions` for further actions: |move-expand-vertical| reorder, |edit-icon| edit (name, description), |settings-icon| configure
+   (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| export dashboard, |share-icon| share
+   and |trash-icon| delete a public dashboard.
 
 |reorder-public-dashboards|
 
 .. hint::
-   - This feature reorders public dashboards only.
-   - Note that this ordering does not apply to all users who ordered their dashboards (public and private) as detailed in the section :ref:`howto-reorder-your-dashboards` above. It is overridden by the personal ordering.
+   - Note that this ordering does not apply to all users who ordered their dashboards. It is overridden by the personal ordering.
 
 .. include:: ../includes/_common-icon.rst
 
