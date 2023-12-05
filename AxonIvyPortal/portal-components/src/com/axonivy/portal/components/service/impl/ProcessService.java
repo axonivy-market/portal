@@ -17,15 +17,9 @@ import com.axonivy.portal.components.enums.SessionAttribute;
 import com.axonivy.portal.components.service.IProcessService;
 import com.axonivy.portal.components.util.UserUtils;
 
-import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.application.IProcessModel;
-import ch.ivyteam.ivy.application.IProcessModelVersion;
-import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.server.restricted.EngineMode;
-import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -112,51 +106,4 @@ public class ProcessService implements IProcessService {
   private Predicate<? super IWebStartable> filterByCustomDashboardProcess() {
     return start -> BooleanUtils.toBoolean(start.customFields().value(IS_DASHBOARD_PROCESS));
   }
-
-  public IWebStartable findWebStartableInSecurityContextById(String processId){
-    Predicate<? super IWebStartable> predicate = startable -> StringUtils.endsWith(startable.getId(), processId) && isNotPortalHomeAndMSTeamsProcess(startable);
-    return findStartable(predicate);
-  }
-
-  public IWebStartable findWebStartableInSecurityContextByRelativeLink(String processRelativeLink){
-    Predicate<? super IWebStartable> predicate = startable -> StringUtils.equals(processRelativeLink, startable.getLink().getRelative()) && isNotPortalHomeAndMSTeamsProcess(startable);
-    return findStartable(predicate);
-  }
-  
-  public IWebStartable findCustomDashboardProcessInSecurityContextByProcessId(String processId) {
-    Predicate<? super IWebStartable> predicate = startable -> StringUtils.endsWith(startable.getId(),processId) && 
-        BooleanUtils.toBoolean(startable.customFields().value(IS_DASHBOARD_PROCESS));
-    return findStartable(predicate);
-  }
-  
-  public IWebStartable findCustomDashboardProcessInSecurityContextByRelativePath(String processRelativeLink) {
-    Predicate<? super IWebStartable> predicate = startable -> StringUtils.equals(processRelativeLink, startable.getLink().getRelative()) && 
-        BooleanUtils.toBoolean(startable.customFields().value(IS_DASHBOARD_PROCESS));
-    return findStartable(predicate);
-  }
-  
-  
-  private IWebStartable findStartable(Predicate<? super IWebStartable> predicate) {
-    List<IApplication> applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
-    IWebStartable foundStartable = null;
-    for (IApplication app : applicationsInSecurityContext) {
-      List<IProcessModelVersion> pmvs = app.getProcessModels()
-                                            .stream()
-                                            .map(IProcessModel::getProcessModelVersions)
-                                            .flatMap(List::stream)
-                                            .collect(Collectors.toList());
-      for (IProcessModelVersion pmv : pmvs) {
-        foundStartable = IWorkflowProcessModelVersion.of(pmv)
-            .getAllStartables()
-            .filter(predicate)
-            .findFirst()
-            .orElse(null);
-        if (foundStartable != null) {
-          return foundStartable;
-        }
-      }
-    }
-    return foundStartable;
-  }
-  
 }
