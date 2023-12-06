@@ -24,7 +24,7 @@ public class ExternalLinkTest extends BaseTest {
   private static final String DEFAULT_IMAGE = "Images/process/PROCESSMODELING.svg";
   
   public ExternalLinkTest() {
-    super.setup();;
+    super.setup();
   }
   
   @Test
