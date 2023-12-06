@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Deprecated(forRemoval = true, since = "10.0.13")
 public class ExpressUserEmail implements Serializable {
 
     private static final long serialVersionUID = 55870461406887925L;

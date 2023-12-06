@@ -28,6 +28,7 @@ Language Settings
 =================
 
 To add a new language to the Portal, what you have to do is:
+
 -  Export all CMS entries of the Portal to an Excel file.
 -  Add one new column to the end of this file, then add the new language locale for example ``it`` for the Italian language to the first cell of this new column. Refer to `Java supported locales <https://www.oracle.com/java/technologies/javase/jdk11-suported-locales.html>`_ for the supported locales.
 
@@ -529,6 +530,8 @@ Data model:
 - ``icon``: the style class of the process icon.
 - ``processId``: the process id of the process start.
 - ``index``: the index number to order the processes in the dashboard.
+
+.. _portal-process-external-link:
 
 Portal Processes External Links
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

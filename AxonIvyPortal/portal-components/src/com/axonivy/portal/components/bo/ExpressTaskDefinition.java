@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Deprecated(forRemoval = true, since = "10.0.13")
 public class ExpressTaskDefinition implements Serializable {
 
     private static final long serialVersionUID = 6708062804413815719L;

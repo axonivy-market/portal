@@ -12,14 +12,13 @@ import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
-import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.ProcessType;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
-import ch.ivy.addon.portalkit.util.Locales;
 import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.category.Category;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -75,15 +74,6 @@ public class DashboardProcess implements Process {
     this.icon = process.getIcon();
     this.category = CategoryUtils.buildExpressCategory(process.getProcessName());
     this.application = IApplication.current().getName();
-  }
-
-  public DashboardProcess(ExternalLink externalLink) {
-    this.id = String.valueOf(externalLink.getId());
-    this.type = ProcessType.EXTERNAL_LINK;
-    this.name = externalLink.getName();
-    this.description = externalLink.getDescription();
-    this.startLink = externalLink.getLink();
-    this.icon = externalLink.getIcon();
   }
 
   @Override
@@ -164,13 +154,13 @@ public class DashboardProcess implements Process {
   }
 
   private String getActiveDisplayName() {
-    Locale currentLocale = new Locales().getCurrentLocale();
+    Locale currentLocale = Ivy.session().getContentLocale();
     return names.stream().filter(displayName -> displayName.getLocale().equals(currentLocale))
         .map(DisplayName::getValue).findFirst().orElse(this.name);
   }
 
   private String generateWorkflowStartLink() {
-    return ProcessStartCollector.getInstance().findExpressWorkflowStartLink() + EXPRESS_WORKFLOW_ID_PARAM + this.id;
+    return ExpressProcessService.getInstance().findExpressWorkflowStartLink() + EXPRESS_WORKFLOW_ID_PARAM + this.id;
   }
 
   public Long getProcessStartId() {

@@ -1,11 +1,13 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;
 
@@ -28,6 +30,8 @@ public class DashboardConfigurationBean implements Serializable {
   public void initConfigurationBean() {
     initPermissions();
     resetAllIndicators();
+    String isPublicDashboardString = Attrs.currentContext().getAttribute("#{data.isPublicDashboard}", String.class);
+    isPublicDashboard = Optional.ofNullable(isPublicDashboardString).map(Boolean::parseBoolean).orElse(false);
     isSelectingAction = true;
   }
 

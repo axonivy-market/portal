@@ -8,17 +8,19 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start(Long,String)",
+      "name" : "start(Long,Long,String)",
       "config" : {
         "callSignature" : "start",
         "input" : {
           "params" : [
+            { "name" : "taskId", "type" : "Long" },
             { "name" : "caseId", "type" : "Long" },
             { "name" : "processLink", "type" : "String" }
           ],
           "map" : {
             "out.caseId" : "param.caseId",
-            "out.processLink" : "param.processLink"
+            "out.processLink" : "param.processLink",
+            "out.taskId" : "param.taskId"
           }
         },
         "guid" : "1826808C70F5CEF5"

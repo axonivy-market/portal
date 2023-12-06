@@ -7,7 +7,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
-import ch.ivy.addon.portalkit.util.Locales;
+import ch.ivyteam.ivy.environment.Ivy;
 
 /**
  * This class provides method for loading supported language.
@@ -57,7 +57,7 @@ public class ApplicationMultiLanguageNameLoader {
   }
 
   private boolean isCurrentLocaleAndNotNullDisplayName(Locale locale) {
-    String currentLanguage = new Locales().getCurrentLocale().toLanguageTag();
+    String currentLanguage = Ivy.session().getContentLocale().toLanguageTag();
     return null != currentDisplayName && locale.toLanguageTag().equals(currentLanguage);
   }
 
