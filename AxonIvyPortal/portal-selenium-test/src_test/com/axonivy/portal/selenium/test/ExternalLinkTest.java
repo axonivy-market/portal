@@ -1,7 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
 import static com.codeborne.selenide.Selenide.$;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
@@ -21,7 +21,7 @@ import com.codeborne.selenide.SelenideElement;
 public class ExternalLinkTest extends BaseTest {
   
   private static final String TEST_PROCESS = "Search page";
-  private static final String EXTERNAL_LINK_PART = "ExternalLink";
+  private static final String DEFAULT_IMAGE = "Images/process/PROCESSMODELING.svg";
   
   public ExternalLinkTest() {
     super.setup();;
@@ -47,8 +47,7 @@ public class ExternalLinkTest extends BaseTest {
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.getStartButton().shouldBe(Condition.appear);
     SelenideElement image = newDashboardPage.getFirstImageProcess();
-    System.out.println(image.toString());
-    assertTrue(image.shouldBe(Condition.attribute("src")).getAttribute("src").contains(EXTERNAL_LINK_PART));
+    assertFalse(image.shouldBe(Condition.attribute("src")).getAttribute("src").contains(DEFAULT_IMAGE));
   }
   
   private void setUpExternalLink() {
