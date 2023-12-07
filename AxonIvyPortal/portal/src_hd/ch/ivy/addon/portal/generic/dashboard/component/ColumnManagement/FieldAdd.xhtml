@@ -76,6 +76,7 @@
             inputStyleClass="field-add-fieldset__autocomplete-input" validator="duplicateFieldValidator"
             emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}">
             <f:attribute name="existingFields" value="#{columnManagementBean.existingFields}" />
+            <f:attribute name="selectedFieldType" value="#{columnManagementBean.selectedFieldType}" />
             <p:ajax listener="#{columnManagementBean.onSelectCustomField()}" process="@this" update="field-add-fieldset"/>
           </p:autoComplete>
         </ui:fragment>
@@ -87,6 +88,7 @@
             inputStyleClass="field-add-fieldset__autocomplete-input" validator="duplicateFieldValidator"
             emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}">
             <f:attribute name="existingFields" value="#{columnManagementBean.existingFields}" />
+            <f:attribute name="selectedFieldType" value="#{columnManagementBean.selectedFieldType}" />
             <p:ajax listener="#{columnManagementBean.onSelectCustomField()}" process="@this" update="field-add-fieldset"/>
           </p:autoComplete>
         </ui:fragment>
