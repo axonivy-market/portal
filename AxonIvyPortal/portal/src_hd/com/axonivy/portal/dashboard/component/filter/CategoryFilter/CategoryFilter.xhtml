@@ -19,9 +19,8 @@
   <c:set var="messageId" value="#{cc.attrs.messageId}" />
 
   <f:event listener="#{widgetCategoryFilterBean.init(filter)}" type="preRenderComponent" />
-  <p:remoteCommand id="reload-categories-rc" name="reloadCategories"
-    actionListener="#{widgetCategoryFilterBean.loadCategories(filter)}"
-    process="@this" partialSubmit="true" global="false" immediate="true" update="widget-filter-category-panel"/>
+  <p:remoteCommand id="reload-categories-rc" name="reloadCategories_#{filterIndex}"
+    actionListener="#{widgetCategoryFilterBean.loadCategories(filter)}" update="widget-filter-category-panel"/>
 
   <h:panelGroup id="category-filter-operator-panel" layout="block"
     styleClass="ui-fluid md-inputfield category-filter-operation-panel">
@@ -39,7 +38,7 @@
 
     <h:panelGroup styleClass="ui-fluid" layout="block">
       <p:inputText id="widget-filter-category" readonly="true"
-        onclick="reloadCategories()"
+        onclick="reloadCategories_#{filterIndex}()"
         styleClass="widget-configuration__input-text #{cc.attrs.inputCategoryStyleClass}"
         value="#{widgetCategoryFilterBean.selectedCategoriesString}"
         disabled="#{readOnly}">
