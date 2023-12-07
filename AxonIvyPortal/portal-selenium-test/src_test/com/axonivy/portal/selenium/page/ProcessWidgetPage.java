@@ -19,7 +19,7 @@ public class ProcessWidgetPage extends TemplatePage {
     $("input[id$=':add-external-link-form:external-link']").sendKeys(link);
     
     // change icon
-    $("a[id$=':change-icon-link']").click();
+    $("a[id$=':external-link-icon:change-icon-link']").shouldBe(getClickableCondition()).click();
     $("div[id='process-widget:add-external-link-form:external-link-icon:select-icon-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     
     $("input[id$=':search-icon-name-field']").sendKeys(iconClass);
