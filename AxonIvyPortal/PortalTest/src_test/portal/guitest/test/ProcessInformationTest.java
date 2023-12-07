@@ -22,6 +22,8 @@ public class ProcessInformationTest extends BaseTest {
   private ProcessInformationPage processInformationPage;
   private static String PROCESS_NAME = "Process With Process Steps";
   private static String PROCESS_DESCRIPTION = "Create task for a process with three process steps which can be show in Porcess Information page";
+  private static String CUSTOM_INFORMATION_PROCESS_NAME = "CustomProcessInformation";
+  private static String CUSTOM_INFORMATION_PROCESS_DESCRIPTION = "Click on More Information to see the customized process information page";
 
   @Before
   @Override
@@ -32,7 +34,7 @@ public class ProcessInformationTest extends BaseTest {
 
   @Test
   public void testStartProcessFromProcessInformationPage() {
-    navigateToProcessInformationPage();
+    navigateToProcessInformationPage(PROCESS_NAME);
     assertEquals(PROCESS_NAME, processInformationPage.getProcessName());
     assertEquals(PROCESS_DESCRIPTION, processInformationPage.getProcessDescription());
 
@@ -45,7 +47,7 @@ public class ProcessInformationTest extends BaseTest {
   
   @Test
   public void testBackToProcessListFromProcessInformationPage() {
-    navigateToProcessInformationPage();
+    navigateToProcessInformationPage(PROCESS_NAME);
 
     processInformationPage.back();
     processWidget = new ProcessWidgetPage();
@@ -75,8 +77,14 @@ public class ProcessInformationTest extends BaseTest {
     assertEquals(PROCESS_NAME, caseDetails.getDescription());
   }
 
-  private void navigateToProcessInformationPage() {
-    String processName = "Process With Process Steps";
+  @Test
+  public void testNavigateToCustomProcessInformationPage() {
+    navigateToProcessInformationPage(CUSTOM_INFORMATION_PROCESS_NAME);
+    assertEquals(CUSTOM_INFORMATION_PROCESS_NAME, processInformationPage.getProcessName());
+    assertEquals(CUSTOM_INFORMATION_PROCESS_DESCRIPTION, processInformationPage.getProcessDescription());
+  }
+
+  private void navigateToProcessInformationPage(String processName) {
     processWidget = homePage.getProcessWidget();
     processWidget.expand();
 

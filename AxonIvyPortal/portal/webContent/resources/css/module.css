@@ -5725,6 +5725,10 @@ border-top: 0.14rem dashed;
   padding: 0.5em 0;
 }
 
+.process-info-wrapper {
+  margin-top: -2.1rem;
+}
+
 @media screen and (min-width: 90.063em) {
   .process-group.image-process-container .image-process-item,
   .process-group.grid-process-container .process-grid-item {
