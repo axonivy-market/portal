@@ -898,4 +898,8 @@ public class NewDashboardPage extends TemplatePage {
     $("[id='notificationMarkAllAsRead']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     waitForElementValueChanged("#topbar-unread-notifications", "0");
   }
+  
+  public SelenideElement getFirstImageProcess() {
+    return $(".image-process-item-image").shouldBe(Condition.exist, DEFAULT_TIMEOUT);
+  }
 }
