@@ -8,7 +8,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 
 public class TaskData {
-  private long id;
+  private String uuid;
   private String name;
   private String priority;
   private String link;
@@ -21,12 +21,12 @@ public class TaskData {
     this.link = link;
   }
 
-  public long getId() {
-    return id;
+  public String getUuid() {
+    return uuid;
   }
 
-  public void setId(long id) {
-    this.id = id;
+  public void setUuid(String uuid) {
+    this.uuid = uuid;
   }
 
   public String getName() {
@@ -49,7 +49,7 @@ public class TaskData {
   }
 
   public TaskData(ITask task) {
-    this.id = task.getId();
+    this.uuid = task.uuid();
     this.name = StringUtils.defaultIfBlank(task.getName(),
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable"));
     this.link = PortalNavigatorAPI.buildUrlToPortalTaskDetailsPageByUUID(task.uuid());

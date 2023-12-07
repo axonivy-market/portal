@@ -58,7 +58,7 @@ public class ProcessData {
     this.id = process.getId();
     this.name = process.getName();
     this.description = process.getDescription();
-    this.link = process.getLink().getAbsolute();
+    this.link = process.getLinkEmbedded().getAbsolute();
     this.icon = StringUtils.defaultIfBlank(process.customFields().value("cssIcon"), "si si si-hierarchy-6 si-rotate-270");
   }
 }

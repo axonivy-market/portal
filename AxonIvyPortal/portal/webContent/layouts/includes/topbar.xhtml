@@ -36,11 +36,11 @@
             <i class="topbar-icon si si-search"/>
           </a>
           <ic:ch.ivy.addon.portal.generic.GlobalSearch id="global-search-component" 
-            showQuickGlobalSearch="#{showQuickGlobalSearch}" isWorkingOnATask="#{isWorkingOnATask}" case="#{case}" />
+            showQuickGlobalSearch="#{showQuickGlobalSearch}" isWorkingOnATask="#{isWorkingOnATask}" case="#{case}" task="#{task}"/>
         </li>
         <li class="topbar-item custom-search-item" jsf:rendered="#{showQuickGlobalSearch}">
           <ic:ch.ivy.addon.portal.generic.GlobalSearch id="quick-global-search-component" showQuickGlobalSearch="#{showQuickGlobalSearch}" 
-            isWorkingOnATask="#{isWorkingOnATask}" case="#{case}" />
+            isWorkingOnATask="#{isWorkingOnATask}" case="#{case}" task="#{task}" />
         </li>
         <li class="topbar-item themeswitch-item">
           <p:commandLink id="theme-switcher" disabled="#{!themeBean.enableSwitchThemeButton}"

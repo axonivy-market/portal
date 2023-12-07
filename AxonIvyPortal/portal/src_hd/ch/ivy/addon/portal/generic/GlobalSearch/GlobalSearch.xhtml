@@ -5,12 +5,22 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="isWorkingOnATask" />
+  <cc:attribute name="isWorkingOnATask" type="java.lang.Boolean" />
   <cc:attribute name="case" />
+  <cc:attribute name="task" />
   <cc:attribute name="showQuickGlobalSearch" />
 </cc:interface>
 <cc:implementation>
-  <!-- Warning before leaving task -->
+  <c:set var="task" value="#{cc.attrs.task}" />
+  <c:set var="isWorkingOnATask" value="#{cc.attrs.isWorkingOnATask ? cc.attrs.isWorkingOnATask : false}" />
+    <!-- Warning before leaving task -->
+  <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask
+    id="search-warning-before-leaving-task-component" componentId="search-task-leave-warning-dialog"
+    widgetVar="search-task-losing-confirmation-dialog" rendered="#{isWorkingOnATask}" 
+    taskState="#{task.state}"
+    leaveActionListener="#{logic.fireEventClick()}" leaveOnComplete="leaveTaskSearch();"
+    reserveActionListener="#{logic.fireEventClick()}" reserveOnComplete="reserveTaskSearch();">
+  </ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask>
   <h:panelGroup styleClass="search-input-wrapper">
     <p:inputText id="global-search-data" styleClass="global-search-input" value="#{data.keyword}" autocomplete="off"
       onkeypress="if (event.code === 'Enter') { portalGlobalSearch(); return false; }"
@@ -27,10 +37,22 @@
       <i class="global-search-icon si si-search" />
     </h:panelGroup>
   </ul>
-
-  <p:remoteCommand id="global-search-remote-cmd" name="portalGlobalSearch" actionListener="#{logic.search(cc.attrs.isWorkingOnATask, cc.attrs.case)}"
-    process="global-search-data" partialSubmit="true" />
-  <p:remoteCommand id="global-search-mobile-remote-cmd" name="portalGlobalSearchMobile" actionListener="#{logic.search(cc.attrs.isWorkingOnATask, cc.attrs.case)}"
+  <p:remoteCommand id="search-leave-task-rc" name="leaveTaskSearch" actionListener="#{logic.leave(task)}" immediate="true"
+    process="@this" partialSubmit="true" />
+    
+  <p:remoteCommand id="search-reserve-task-rc" name="reserveTaskSearch" actionListener="#{logic.reserve(task)}"
+    immediate="true" process="@this" partialSubmit="true" />
+    
+  <p:remoteCommand id="search-update-current-item-rc" name="rcUpdateCurrentItemId" actionListener="#{logic.updateCurrentItemId()}"
+    immediate="true" process="@this" partialSubmit="true" />
+    
+  <p:remoteCommand id="search-reset-all-id-rc" name="rcResetAllId" actionListener="#{logic.resetAllId()}"
+    immediate="true" process="@this" partialSubmit="true" />
+    
+  <p:remoteCommand id="global-search-remote-cmd" name="portalGlobalSearch" actionListener="#{logic.search(isWorkingOnATask, cc.attrs.case)}"
+    process="global-search-data" partialSubmit="true" oncomplete="showConfirmationDialog();"/>
+    
+  <p:remoteCommand id="global-search-mobile-remote-cmd" name="portalGlobalSearchMobile" actionListener="#{logic.search(isWorkingOnATask, cc.attrs.case)}"
     process="global-search-mobile-data" partialSubmit="true" />
     
   <p:overlayPanel rendered="#{cc.attrs.showQuickGlobalSearch}" hideEvent="dbclick" autoHide="false" id="global-search-form" onHide="resetSearchBar();"

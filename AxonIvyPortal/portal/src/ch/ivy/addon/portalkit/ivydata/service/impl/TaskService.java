@@ -34,6 +34,7 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.persistence.query.IPagedResult;
 import ch.ivyteam.ivy.scripting.objects.Record;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.security.IRole;
@@ -68,8 +69,9 @@ public class TaskService {
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       TaskQuery finalQuery = extendQueryWithUserHasPermissionToSee(criteria);
-      result.setTasks(executeTaskQuery(finalQuery, startIndex, count));
-      result.setTotalTasks(countTasks(finalQuery));
+      IPagedResult<ITask> iTask = Ivy.wf().getTaskQueryExecutor().getResultsPaged(finalQuery);
+      result.setTasks(iTask.window(startIndex, count));
+      result.setTotalTasks(iTask.count());
       return result;
     });
   }
