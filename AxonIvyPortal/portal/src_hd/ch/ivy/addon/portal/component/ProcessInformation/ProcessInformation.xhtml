@@ -20,7 +20,7 @@
         <h2>#{data.selectedProcess.processName}</h2>
       </div>
       <div class="ui-g-12 process-info-description" jsf:rendered="#{data.selectedProcess.description ne ''}">
-        <h:outputText id="process-description" value="#{data.selectedProcess.description}" rendered="#{data.selectedProcess.description ne ''}"/>
+        <h:outputText id="process-description" value="#{data.selectedProcess.description}" />
       </div>
     </ui:define>
 
