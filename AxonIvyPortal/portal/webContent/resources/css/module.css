@@ -5725,8 +5725,8 @@ border-top: 0.14rem dashed;
   padding: 0.5em 0;
 }
 
-.process-info-wrapper {
-  margin-top: -2.1rem;
+.process-info {
+  margin-top: -1rem;
 }
 
 @media screen and (min-width: 90.063em) {
