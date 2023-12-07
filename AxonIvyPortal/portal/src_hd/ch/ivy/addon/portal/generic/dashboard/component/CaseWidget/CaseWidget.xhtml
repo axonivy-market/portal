@@ -77,7 +77,7 @@
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.caseWithCustomAction(caseItem)}">
-            <p:link id="custom-description"
+            <p:link id="custom-description" disabled="#{!isReadOnlyMode}"
               href="#{column.getCustomProcessPath(caseItem)}">
               <i class="#{column.icon}" />
             </p:link>
