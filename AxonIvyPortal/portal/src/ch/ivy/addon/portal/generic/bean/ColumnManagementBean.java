@@ -112,7 +112,8 @@ public class ColumnManagementBean implements Serializable {
   }
 
   public void remove(ColumnModel col) {
-    this.columnsBeforeSave.removeIf(column -> column.getField().equals(col.getField()));
+    this.columnsBeforeSave
+        .removeIf(column -> column.getField().equals(col.getField()) && column.getType() == col.getType());
     fetchFields();
   }
 
@@ -166,19 +167,21 @@ public class ColumnManagementBean implements Serializable {
     } else {
       resetValues();
     }
-    List<String> existingFields = getExistingFields();
+    List<FetchingField> existingFields = getExistingFields();
     this.fields = this.fields.stream().filter(isNotUsedIn(existingFields)).collect(Collectors.toList());
   }
 
-  private Predicate<? super String> isNotUsedIn(List<String> existingFields) {
-    return f -> CollectionUtils.isEmpty(existingFields) || !existingFields.contains(f);
+  private Predicate<? super String> isNotUsedIn(List<FetchingField> existingFields) {
+    List<String> fields = existingFields.stream().filter(f -> f.getType() == this.selectedFieldType)
+        .map(f -> f.getField()).toList();
+    return f -> CollectionUtils.isEmpty(fields) || !fields.contains(f);
   }
 
   public List<String> completeCustomFields(String query) {
     return getCustomFieldNames().stream()
           .filter(meta -> !meta.isHidden())
           .filter(filterCustomFieldByCategory())
-          .map(ICustomFieldMeta::name).filter(isNotUsedIn(getExistingFields()))
+        .map(ICustomFieldMeta::name).filter(isNotUsedIn(getExistingFields()))
           .sorted().filter(f -> StringUtils.containsIgnoreCase(f, query))
           .collect(Collectors.toList());
   }
@@ -339,11 +342,39 @@ public class ColumnManagementBean implements Serializable {
     this.fieldDisplayName = fieldDisplayName;
   }
 
-  public List<String> getExistingFields() {
-    return this.columnsBeforeSave.stream().map(ColumnModel::getField).collect(Collectors.toList());
+  public List<FetchingField> getExistingFields() {
+    return this.columnsBeforeSave.stream().map(column -> new FetchingField(column.getType(), column.getField()))
+        .collect(Collectors.toList());
   }
 
   public void handleVisibility(ColumnModel column) {
     column.setVisible(BooleanUtils.isFalse(column.getVisible()));
+  }
+
+  public class FetchingField {
+    private DashboardColumnType type;
+    private String field;
+
+    public FetchingField(DashboardColumnType type, String field) {
+      this.type = type;
+      this.field = field;
+    }
+
+    public DashboardColumnType getType() {
+      return type;
+    }
+
+    public void setType(DashboardColumnType type) {
+      this.type = type;
+    }
+
+    public String getField() {
+      return field;
+    }
+
+    public void setField(String field) {
+      this.field = field;
+    }
+
   }
 }
