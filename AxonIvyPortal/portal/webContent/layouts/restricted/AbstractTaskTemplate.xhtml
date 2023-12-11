@@ -51,7 +51,7 @@
             styleClass="task-template-title #{processChainDirection eq 'VERTICAL' ? 'task-name-vertical-process-chain js-task-name-vertical-process-chain' : ''} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
             <ui:insert name="taskName">
               <ui:fragment rendered="#{!isHideTaskName}">
-                <span class="si si-task-list-edit task-template-title-icon" />
+                <span class="#{taskIcon} task-template-title-icon" />
                 <h:outputText id="title" title="#{currentTask.names().current()}" value="#{not empty taskName ? taskName : currentTask.names().current()}" styleClass="task-title" />
               </ui:fragment>
             </ui:insert>

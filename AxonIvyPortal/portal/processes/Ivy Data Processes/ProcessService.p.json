@@ -41,7 +41,7 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.service.impl.ProcessService;",
-            "out.processes = ProcessService.getInstance().findProcesses().processes;"
+            "out.processes = ProcessService.getInstance().findProcesses();"
           ]
         },
         "sudo" : true
