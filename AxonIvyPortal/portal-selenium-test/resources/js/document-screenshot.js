@@ -557,7 +557,7 @@ function highlightDashboardConfiguration() {
 }
 
 function highlightSharePageButton() {
-  createRedMediumOutline($("button[id$='task-detail-template:share-page-button']"));
+  createRedMediumOutline($("button[id$=':share-page-button']"));
 }
 
 function removeHighlightSharePageButton() {
