@@ -33,11 +33,13 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public TaskEditWidgetNewDashBoardPage addNewTaskWidget() {
     addWidgetByName("Task List");
+    $("div[id$=':task-widget-preview:dashboard-tasks']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition());
     return new TaskEditWidgetNewDashBoardPage();
   }
 
   public CaseEditWidgetNewDashBoardPage addNewCaseWidget() {
     addWidgetByName("Case List");
+    $("div[id$=':case-widget-preview:dashboard-cases']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition());
     return new CaseEditWidgetNewDashBoardPage();
   }
 
