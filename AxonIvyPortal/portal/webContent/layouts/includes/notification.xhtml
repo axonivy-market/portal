@@ -25,7 +25,8 @@
                       <p:ajax listener="#{notificationBean.dataModel.onSelectedFilter()}" oncomplete="Portal.updateLayoutContent()"
                       update="#{unreadNotificationsId}, #{notificationScrollerId}" global="false" partialSubmit="true"/>
                     </p:selectBooleanCheckbox>  
-                    <p:commandLink id="notificationFullScreen" rendered="false"
+                    <p:commandLink id="notificationFullScreen" 
+                      actionListener="#{userMenuBean.navigateToNotification()}"
                       styleClass="notifications-icon" global="false">
                       <i class="notifications-button si si-expand-6 " />
                     </p:commandLink>
@@ -40,7 +41,8 @@
                     </p:commandLink>
                     <p:tooltip for="notificationMarkAllAsRead" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAllAsRead')}" />
                    
-                    <p:commandLink id="notificationSetting"  styleClass="notifications-icon" rendered="false"
+                    <p:commandLink id="notificationSetting"  styleClass="notifications-icon"
+                      actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}" 
                       oncomplete="Portal.updateLayoutContent()" global="false">
                       <i class="notifications-button si si-cog" />
                     </p:commandLink>

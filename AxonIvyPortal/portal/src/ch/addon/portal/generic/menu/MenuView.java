@@ -116,13 +116,12 @@ public class MenuView implements Serializable {
 
   private DefaultMenuItem buildSubMenuItem(SubMenuItem subMenuItem, int menuIndex) {
     boolean isExternalLink = isExternalLink(subMenuItem);
-    DefaultMenuItem item = new PortalMenuBuilder(subMenuItem.getLabel(), subMenuItem.getMenuKind(), isWorkingOnATask)
+    return new PortalMenuBuilder(subMenuItem.getLabel(), subMenuItem.getMenuKind(), isWorkingOnATask)
         .url(subMenuItem.buildLink())
         .icon(subMenuItem.getIcon())
         .cleanParam(isExternalLink)
         .menuIndex(menuIndex)
         .build();
-    return item;
   }
 
   private boolean isExternalLink(SubMenuItem subMenuItem) {
@@ -155,10 +154,12 @@ public class MenuView implements Serializable {
 
     var dashboards = getDashboardCache().dashboards;
     if (CollectionUtils.isNotEmpty(dashboards)) {
-      DefaultSubMenu dashboardGroupMenu =
-          DefaultSubMenu.builder().label(dashboardTitle).icon(PortalMenuItem.DEFAULT_DASHBOARD_ICON)
-              .id(String.format(DASHBOARD_MENU_PATTERN, MenuKind.DASHBOARD.name())).styleClass(DASHBOARD_MENU_JS_CLASS)
-              .build();
+      DefaultSubMenu dashboardGroupMenu = DefaultSubMenu.builder()
+        .label(dashboardTitle)
+        .icon(PortalMenuItem.DEFAULT_DASHBOARD_ICON)
+        .id(String.format(DASHBOARD_MENU_PATTERN, MenuKind.DASHBOARD.name()))
+        .styleClass(DASHBOARD_MENU_JS_CLASS)
+        .build();
       if (dashboards.size() > 1) {
         for (var board : dashboards) {
           if (StringUtils.isBlank(board.getIcon())) {
@@ -224,10 +225,10 @@ public class MenuView implements Serializable {
 
   private String getSessionUserId() {
     String sessionIdAttribute = SessionAttribute.SESSION_IDENTIFIER.name();
-    if (Ivy.session().getAttribute(sessionIdAttribute) == null) {
-      Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
+    if (session().getAttribute(sessionIdAttribute) == null) {
+      session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
     }
-    return (String) Ivy.session().getAttribute(sessionIdAttribute);
+    return (String) session().getAttribute(sessionIdAttribute);
   }
 
   private PortalDashboardItemWrapper getPortalDashboardItemWrapper(String sessionUserId, IvyCacheService cacheService) {
@@ -257,57 +258,26 @@ public class MenuView implements Serializable {
     }
     BreadCrumbKind breadCrumbKind = BreadCrumbKind.valueOf(viewName);
     switch (breadCrumbKind) {
-      case TASK:
-        buildBreadCrumbForTaskList();
-        break;
-      case CASE:
-        buildBreadCrumbForCaseList();
-        break;
-      case TECHNICAL_CASE:
-        buildBreadCrumbForTechnicalCaseList(userCase);
-        break;
-      case RELATED_TASK:
-        buildBreadCrumbForRelatedTask(userCase);
-        break;
-      case PROCESS:
-        buildBreadCrumbForProcess();
-        break;
-      case STATISTICS:
-        buildBreadCrumbForStatistic();
-        break;
-      case TASK_DETAIL:
-        buildBreadCrumbForTaskDetails(userTask);
-        break;
-      case CASE_DETAIL:
-        buildBreadCrumbForCaseDetails(userCase);
-        break;
-      case EXPRESS:
-        buildBreadCrumbForExpress();
-        break;
-      case USER_PROFILE:
-        buildBreadCrumbForUserProfile();
-        break;
-      case EXPRESS_BUSINESS:
-        buildBreadCrumbForExpressBusiness(userCase);
-        break;
-      case ABSENCES_MANAGEMENT:
-        buildBreadCrumbForAbsences();
-        break;
-      case DASHBOARD_CONFIGURATION:
-        buildBreadCrumbForDashboardConfiguration();
-        break;
-      case EDIT_DASHBOARD_DETAILS:
-        buildBreadCrumbForEditDashboardDetail();
-        break;
-      case PROCESS_VIEWER:
-        buildBreadCrumbForProcessViewer(userTask, userCase);
-        break;
-      case PORTAL_MANAGEMENT:
+      case TASK -> buildBreadCrumbForTaskList();
+      case CASE -> buildBreadCrumbForCaseList();
+      case TECHNICAL_CASE -> buildBreadCrumbForTechnicalCaseList(userCase);
+      case RELATED_TASK -> buildBreadCrumbForRelatedTask(userCase);
+      case PROCESS -> buildBreadCrumbForProcess();
+      case STATISTICS -> buildBreadCrumbForStatistic();
+      case TASK_DETAIL -> buildBreadCrumbForTaskDetails(userTask);
+      case CASE_DETAIL -> buildBreadCrumbForCaseDetails(userCase);
+      case EXPRESS -> buildBreadCrumbForExpress();
+      case USER_PROFILE -> buildBreadCrumbForUserProfile();
+      case EXPRESS_BUSINESS -> buildBreadCrumbForExpressBusiness(userCase);
+      case ABSENCES_MANAGEMENT -> buildBreadCrumbForAbsences();
+      case DASHBOARD_CONFIGURATION -> buildBreadCrumbForDashboardConfiguration();
+      case EDIT_DASHBOARD_DETAILS -> buildBreadCrumbForEditDashboardDetail();
+      case PROCESS_VIEWER -> buildBreadCrumbForProcessViewer(userTask, userCase);
+      case PORTAL_MANAGEMENT -> {
         setPortalHomeMenuToBreadcrumbModel();
-        breadcrumbModel.getElements().add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/PortalManagement/AdminSetting"));
-        break;
-      default:
-        break;
+        breadcrumbModel.getElements().add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/PortalManagement/AdminSetting"));}
+      case NOTIFICATION -> buildBreadCrumbForNotification();
+      default -> {}
     }
   }
 
@@ -420,17 +390,17 @@ public class MenuView implements Serializable {
   }
 
   private MenuItem buildPortalHomeMenuItem() {
-    DefaultMenuItem menuItem = DefaultMenuItem.builder().build();
-    menuItem.setIcon("si si-house-chimney-2 portal-icon");
-    menuItem.setOnclick("navigateToPortalHome();");
-    return menuItem;
+    return DefaultMenuItem.builder()
+      .icon("si si-house-chimney-2 portal-icon")
+      .onclick("navigateToPortalHome();")
+      .build();
   }
 
   private DefaultMenuItem buildMenuItemFromPortalSubMenuItem(SubMenuItem subMenuItem) {
-    DefaultMenuItem menuItem = DefaultMenuItem.builder().build();
-    menuItem.setValue(subMenuItem.getLabel());
-    menuItem.setUrl(null);
-    return menuItem;
+    return DefaultMenuItem.builder()
+      .value(subMenuItem.getLabel())
+      .url(null)
+      .build();
   }
 
   private DefaultMenuItem buildTaskListMenuItem() {
@@ -458,36 +428,36 @@ public class MenuView implements Serializable {
   }
 
   private MenuItem buildTaskDetailsMenuItem(ITask userTask) {
-    DefaultMenuItem menuItem = DefaultMenuItem.builder().build();
     String taskName = StringUtils.isEmpty(userTask.getName()) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable") : userTask.names().current();
-    menuItem.setValue(String.join(": ", Ivy.cms().co("/Labels/Task"), taskName));
-    menuItem.setUrl("#");
-    menuItem.setDisabled(true);
-    return menuItem;
+    return DefaultMenuItem.builder()
+      .value(String.join(": ", Ivy.cms().co("/Labels/Task"), taskName))
+      .url("#")
+      .disabled(true)
+      .build();
   }
 
   private MenuItem buildCaseDetailsMenuItem(ICase userCase) {
-    DefaultMenuItem menuItem = DefaultMenuItem.builder().build();
-    menuItem.setValue(String.join(": ", Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/case"), userCase.names().current()));
-    menuItem.setUrl("#");
-    menuItem.setDisabled(true);
-    return menuItem;
+    return DefaultMenuItem.builder()
+      .value(String.join(": ", Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/case"), userCase.names().current()))
+      .url("#")
+      .disabled(true)
+      .build();
   }
 
   private MenuItem buildExpressBusinessMenuItem(String caseId) {
-    DefaultMenuItem menuItem = DefaultMenuItem.builder().build();
-    menuItem.setValue(Ivy.cms().co("/Dialogs/ch/ivy/addon/express/generic/expressWorkflowName", Arrays.asList(caseId)));
-    menuItem.setUrl("#");
-    menuItem.setDisabled(true);
-    return menuItem;
+    return DefaultMenuItem.builder()
+      .value(Ivy.cms().co("/Dialogs/ch/ivy/addon/express/generic/expressWorkflowName", Arrays.asList(caseId)))
+      .url("#")
+      .disabled(true)
+      .build();
   }
 
   private MenuItem buildGenericMenuItem(String cms) {
-    DefaultMenuItem menuItem = DefaultMenuItem.builder().build();
-    menuItem.setValue(Ivy.cms().co(cms));
-    menuItem.setUrl("#");
-    menuItem.setDisabled(true);
-    return menuItem;
+    return DefaultMenuItem.builder()
+      .value(Ivy.cms().co(cms))
+      .url("#")
+      .disabled(true)
+      .build();
   }
 
   private void setPortalHomeMenuToBreadcrumbModel() {
@@ -540,8 +510,13 @@ public class MenuView implements Serializable {
   }
 
   private IWorkflowSession session() {
-    return Ivy.session();
+    return session();
   }
 
   private record PortalDashboardItemWrapper(List<Dashboard> dashboards) {}
+  
+  private void buildBreadCrumbForNotification() {
+    setPortalHomeMenuToBreadcrumbModel();
+    breadcrumbModel.getElements().add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationTitle"));
+  }
 }
