@@ -29,7 +29,7 @@
       "id" : "f4",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 864, "y" : 224 }
+        "at" : { "x" : 904, "y" : 224 }
       }
     }, {
       "id" : "f8",
@@ -45,13 +45,12 @@
             "",
             "if(in.isWorkingOnTask) {",
             "  GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, in.iCase);",
-            "} else {",
             "}"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 456, "y" : 224 },
+        "at" : { "x" : 496, "y" : 224 },
         "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : [
@@ -80,7 +79,7 @@
         "labelOffset" : { "x" : 47, "y" : 35 }
       },
       "connect" : [
-        { "id" : "f9", "to" : "f19" }
+        { "id" : "f9", "to" : "f29" }
       ]
     }, {
       "id" : "f31",
@@ -101,13 +100,12 @@
             "if (StringUtils.isNotBlank(in.caseId)) {",
             "  PortalNavigator.navigateToPortalCaseDetails(in.caseId);",
             "}",
-            "",
-            "PortalNavigator.navigateToPortalGlobalSearch(in.keyword);"
+            "PortalNavigator.navigateToPortalGlobalSearch(in.keyword, in.activeTabIndex);"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 704, "y" : 224 },
+        "at" : { "x" : 744, "y" : 224 },
         "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : [
@@ -210,7 +208,7 @@
         "at" : { "x" : 208, "y" : 416 }
       },
       "connect" : [
-        { "id" : "f18", "to" : "f8", "via" : [ { "x" : 456, "y" : 416 } ] }
+        { "id" : "f18", "to" : "f8", "via" : [ { "x" : 496, "y" : 416 } ] }
       ]
     }, {
       "id" : "f19",
@@ -222,12 +220,12 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 280, "y" : 224 },
+        "at" : { "x" : 320, "y" : 224 },
         "labelOffset" : { "x" : 14, "y" : 34 }
       },
       "connect" : [
         { "id" : "f20", "to" : "f8" },
-        { "id" : "f21", "to" : "f4", "via" : [ { "x" : 280, "y" : 160 }, { "x" : 864, "y" : 160 } ] }
+        { "id" : "f21", "to" : "f4", "via" : [ { "x" : 320, "y" : 160 }, { "x" : 904, "y" : 160 } ] }
       ]
     }, {
       "id" : "f22",
@@ -326,6 +324,24 @@
       },
       "connect" : [
         { "id" : "f28", "to" : "f33", "via" : [ { "x" : 712, "y" : 472 } ] }
+      ]
+    }, {
+      "id" : "f29",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.context.FacesContext;",
+            "String activeTabIndex = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(\"activeTabIndex\").toString();",
+            "out.activeTabIndex = activeTabIndex;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 224 }
+      },
+      "connect" : [
+        { "id" : "f30", "to" : "f19" }
       ]
     } ]
 }

@@ -87,10 +87,15 @@ if (document) {
   function viewAllResults(tabIndex) {
     rcResetAllId();
     handlePromise(tabIndex).then(() => {
-      portalGlobalSearch();
+      portalGlobalSearch([{name: 'activeTabIndex', value: getTabActiveIndex()}]);
       return false;
     })
 
+  }
+
+  function getTabActiveIndex() {
+    let activeTab = $("li.ui-tabs-header.search-bar[aria-selected='true']");
+    return activeTab.attr('data-index') * 1;
   }
 
   function handlePromise(tabIndex) {
@@ -121,9 +126,8 @@ if (document) {
   });
 
   function doneTyping(event) {
-    console.log(`The user is done typing`);
     if (event.key === 'Enter') {
-      portalGlobalSearch();
+      portalGlobalSearch([{name: 'activeTabIndex', value: getTabActiveIndex()}]);
       return false;
     } else {
       searchHandler();
