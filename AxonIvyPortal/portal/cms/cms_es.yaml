@@ -770,18 +770,18 @@ ch.ivy.addon.portalkit.ui.jsf:
       CreateFromScratch: Crear desde cero
       CreateFromScratchDescription: Cree su propio panel de control desde cero
       CreateNewPrivateDashboard: Crear un nuevo cuadro de mando personalizado
-      CreateNewPublicDashboard: Crear un tablero público
+      CreateNewPublicDashboard: Crear un dashboard público
       Description: En esta sección puedes configurar los cuadros de mando según tus necesidades.
       DoNotSupportMobile: La configuración del panel de control no es compatible con los dispositivos móviles.
       EditPrivateDashboards: Editar tu cuadro de mando
-      EditPublicDashboards: Editar tableros públicos
+      EditPublicDashboards: Editar dashboard públicos
       ExportDashboard: Exportar el cuadro de mandos
       PrivateDashboard: Dashboard - Configuración  personalizada
       PrivateDashboardConfiguration: Configuración de tableros privados
       PublicDashboard: Dashboard - Configuración pública
       PublicDashboardConfiguration: Configuración de tableros públicos
       ReorderPrivateDashboards: Reorganizar tu cuadro de mando
-      ReorderPublicDashboards: Reordenar tableros públicos
+      ReorderPublicDashboards: Reordenar dashboard públicos
       SelectAction: Seleccione la acción
       Title: Configuración Dashboard
     EmptyFilterMessage: No se ha encontrado ningún filtro de widget
