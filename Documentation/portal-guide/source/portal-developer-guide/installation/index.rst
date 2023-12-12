@@ -401,7 +401,7 @@ Migrate 9.1 To 9.2
 
    .. important:: The callable process which is supporting to open customization dialog will be removed in the future, do not use it in the new project
 
-#. We remove ivy-icon.css and replace current classes with new classes from `Streamline icons <https://dev.demo.ivyteam.io/demo-app/faces/view/html-dialog-demos$1/icons.xhtml>`_. So that you need to update your files that are using classes in ivy-icon.css.
+#. We remove ivy-icon.css and replace current classes with new classes from Streamline icons, which can be found in the `HTML Dialog Demo <https://market.axonivy.com/html-dialog-demo>`_. So that you need to update your files that are using classes in ivy-icon.css.
 
 #. If you have taskItemDetailCustomPanelTop, taskItemDetailCustomPanelBottom customization, follow :ref:`How to override TaskItemDetail <customization-task-item-details>` to add custom widgets.
 
