@@ -264,6 +264,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showCaseDurationTime: Activar o desactivar la visibilidad de la duración del caso en detalles de caso.
       showErrorLogToConsole: Establecer en true para activar el registro de errores en la consola del navegador
       showGlobalSearch: Para activar o desactivar la visualización de la búsqueda global.
+      showQuickGlobalSearch: Para activar/desactivar la visualización de la búsqueda global rápida.
       showProcessInformation: Cambiar a falso para desactivar el enlace "Más información" en la página de Procesos (modo cuadrícula) y Detalles del caso.
       showTaskDurationTime: Activar o desactivar la visibilidad de la duración de la tarea en detalles de tarea.
       statisticChartScalingInterval: Intervalo en segundos para realizar peticiones periódicas de escalado de gráficos estadísticos. Si el valor del intervalo es inferior a 10, se desactiva el escalado periódico de gráficos estadísticos.
@@ -1526,6 +1527,9 @@ Dialogs:
             expressWorkflowName: 'Detalles de negocio del caso #{0}'
         portal:
           generic:
+            GlobalSearch:
+              ViewAllResults: Ver todos los resultados
+              noResultsText: No hay resultados.
             dashboard:
               PortalDashboardConfiguration:
                 NewDashboard: Nuevo panel de control
@@ -1725,6 +1729,7 @@ Labels:
   Task: Tarea
   TaskItemDetail: Detalles de la tarea
   TaskUser-Explain: Lista de usuario separados por coma
+  ViewAllResults: Ver todos los resultados
   adhocTaskRequired: Deberá agregar al menos una tarea.
   disabledUserPrefix: (inactivo)
   title: Flujo de trabajo Ad-hoc de auto servicio
