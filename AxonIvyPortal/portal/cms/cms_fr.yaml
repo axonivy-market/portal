@@ -261,6 +261,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showCaseDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de l'affaire.
       showErrorLogToConsole: Défini à true pour activer l'écriture du journal des erreurs dans la console du navigateur.
       showGlobalSearch: Pour activer/désactiver l'affichage de la recherche globale.
+      showQuickGlobalSearch: Pour activer/désactiver l'affichage de la recherche globale rapide.
       showProcessInformation: Définissez la valeur false pour désactiver le lien vers l'option Afficher les informations du processus sur la page processus (mode grille) et détails du cas.
       showTaskDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de la tâche.
       statisticChartScalingInterval: Intervalle en secondes pour effectuer les demandes de mise à l'échelle périodique des graphiques statistiques. Si la valeur de l'intervalle est inférieure à 10, la mise à l'échelle périodique des graphiques statistiques est désactivée.
@@ -1520,6 +1521,9 @@ Dialogs:
             expressWorkflowName: 'Détails de cas #{0}'
         portal:
           generic:
+            GlobalSearch:
+              ViewAllResults: Voir tous les résultats
+              noResultsText: Il n'y a pas de résultats.
             dashboard:
               PortalDashboardConfiguration:
                 NewDashboard: Nouveau tableau de bord
@@ -1712,6 +1716,7 @@ Labels:
   Task: Tâche
   TaskItemDetail: Détails de la tâche
   TaskUser-Explain: Liste d’utilisateurs séparés par des virgules
+  ViewAllResults: Voir tous les résultats
   adhocTaskRequired: Vous devez ajouter au moins une tâche.
   disabledUserPrefix: (désactivé)
   title: Workflow ad hoc Self Service
