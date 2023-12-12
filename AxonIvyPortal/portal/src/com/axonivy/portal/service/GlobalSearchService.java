@@ -62,7 +62,7 @@ public class GlobalSearchService {
 
   public GlobalSearchResponse searchProcesses(SearchPayload payload) {
     String keyword = payload.getQuery().toLowerCase();
-    List<IWebStartable> startableProcesses = ProcessService.getInstance().findProcesses().getProcesses();
+    List<IWebStartable> startableProcesses = ProcessService.getInstance().findProcesses();
     List<ProcessData> processes = startableProcesses.stream()
         .filter(process -> ProcessViewerUtils.isViewerAllowed(process)
             && (process.getName().toLowerCase().contains(keyword) || process.getDescription().toLowerCase().contains(keyword)))
