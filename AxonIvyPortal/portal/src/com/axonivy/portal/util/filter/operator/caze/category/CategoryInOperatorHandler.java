@@ -34,7 +34,7 @@ public class CategoryInOperatorHandler {
     IFilterQuery filterQuery = query.where();
     for (String category : filter.getTexts()) {
       if (isNot) {
-        filterQuery.or().category().isNotEqual(category);
+        filterQuery.and().category().isNotEqual(category);
       } else {
         filterQuery.or().category().isEqual(category);
       }
