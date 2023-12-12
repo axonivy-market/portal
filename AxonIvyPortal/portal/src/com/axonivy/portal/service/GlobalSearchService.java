@@ -16,6 +16,7 @@ import com.axonivy.portal.response.ProcessData;
 import com.axonivy.portal.response.TaskData;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
@@ -23,6 +24,7 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;
 import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -44,6 +46,9 @@ public class GlobalSearchService {
     query.setSortField(TaskSortField.EXPIRY_TIME.toString());
     query.setSortDescending(true);
     query.setQuickGlobalSearch(true);
+    query.setTaskAssigneeType(TaskAssigneeType.ALL);
+    boolean hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();
+    query.setAdminQuery(hasReadAllTasksPermisson);
     query.setSearchScopeTaskFields(getSearchScopeTaskFields());
     IvyTaskResultDTO iTasks = TaskService.newInstance().findGlobalSearchTasksByCriteria(query, 0, PAGE_SIZE);
     List<TaskData> results = iTasks.getTasks().stream().map(TaskData::new).toList();
@@ -54,6 +59,9 @@ public class GlobalSearchService {
     CaseSearchCriteria query = new CaseSearchCriteria();
     query.setKeyword(payload.getQuery());
     query.setSearchScopeCaseFields(getSearchScopeCaseFields());
+    boolean hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();
+    query.setAdminQuery(hasReadAllTasksPermisson);
+    query.setBusinessCase(true);
     IvyCaseResultDTO iCases = CaseService.newInstance().findGlobalSearchCasesByCriteria(query, 0, PAGE_SIZE);
     List<CaseData> results = iCases.getCases().stream().map(CaseData::new).toList();
     return new GlobalSearchResponse(results, iCases.getTotalCases());
