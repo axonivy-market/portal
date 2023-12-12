@@ -19,9 +19,6 @@
   <c:set var="messageId" value="#{cc.attrs.messageId}" />
 
   <f:event listener="#{widgetCategoryFilterBean.init(filter)}" type="preRenderComponent" />
-  <p:remoteCommand id="reload-categories-rc" name="reloadCategories_#{filterIndex}"
-    actionListener="#{widgetCategoryFilterBean.loadCategories(filter)}" update="widget-filter-category-panel"/>
-
   <h:panelGroup id="category-filter-operator-panel" layout="block"
     styleClass="ui-fluid md-inputfield category-filter-operation-panel">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
@@ -38,10 +35,11 @@
 
     <h:panelGroup styleClass="ui-fluid" layout="block">
       <p:inputText id="widget-filter-category" readonly="true"
-        onclick="reloadCategories_#{filterIndex}()"
         styleClass="widget-configuration__input-text #{cc.attrs.inputCategoryStyleClass}"
         value="#{widgetCategoryFilterBean.selectedCategoriesString}"
         disabled="#{readOnly}">
+        <p:ajax event="click" oncomplete="PF('widget-filter-category-panel-#{cc.clientId}').show();" />
+        <f:param name="skipValidator" value="true" />
       </p:inputText>
       <p:inputText id="widget-filter-category-hidden" type="hidden"
         value="#{widgetCategoryFilterBean.selectedCategoriesString}"
@@ -54,11 +52,10 @@
       </p:inputText>
     </h:panelGroup>
 
-    <p:overlayPanel id="widget-filter-category-panel" for="widget-filter-category"
-      appendTo="@(body)" dynamic="true"
+    <p:overlayPanel id="widget-filter-category-panel"
+      widgetVar="widget-filter-category-panel-#{cc.clientId}"
       styleClass="widget-configuration__category-panel"
-      onHide="$(this.targetElement).parents('.widget-configuration__category').find('.portal-cancel-button').click();">
-
+      dismissable="false">
       <p:tree id="widget-category-filter-tree"
         value="#{widgetCategoryFilterBean.categoryTree}" var="node"
         selectionMode="checkbox"
@@ -75,12 +72,20 @@
         styleClass="widget-configuration__category-panel-footer">
         <p:commandLink id="cancel-command" styleClass="portal-cancel-button u-mar-right-10"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          process="@this" global="false" update="category-list-panel"/>
+          global="false" process="@this" update="category-list-panel #{cc.attrs.componentToUpdate}"
+          oncomplete="PF('widget-filter-category-panel-#{cc.clientId}').hide();">
+          <f:param name="skipValidator" value="true" />
+          <p:resetInput target="widget-filter-category-panel" />
+        </p:commandLink>
 
         <p:commandButton id="update-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
-          process="widget-filter-category-panel" partialSubmit="true" update="category-list-panel #{cc.attrs.componentToUpdate}"
+          process="widget-filter-category-panel" partialSubmit="true"
+          update="category-list-panel #{cc.attrs.componentToUpdate}"
           icon="si si-check-1" styleClass="update-command"
-          actionListener="#{widgetCategoryFilterBean.updateCategoriesPath(filter)}"/>
+          actionListener="#{widgetCategoryFilterBean.updateCategoriesPath(filter)}"
+          oncomplete="PF('widget-filter-category-panel-#{cc.clientId}').hide();">
+          <f:param name="skipValidator" value="true" />
+        </p:commandButton>
       </h:panelGroup>
     </p:overlayPanel>
 
