@@ -7,7 +7,6 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.service.impl.ProcessService;
-import com.axonivy.portal.components.util.ProcessViewerUtils;
 import com.axonivy.portal.enums.SearchScopeCaseField;
 import com.axonivy.portal.enums.SearchScopeTaskField;
 import com.axonivy.portal.payload.SearchPayload;
@@ -64,8 +63,8 @@ public class GlobalSearchService {
     String keyword = payload.getQuery().toLowerCase();
     List<IWebStartable> startableProcesses = ProcessService.getInstance().findProcesses();
     List<ProcessData> processes = startableProcesses.stream()
-        .filter(process -> ProcessViewerUtils.isViewerAllowed(process)
-            && (process.getName().toLowerCase().contains(keyword) || process.getDescription().toLowerCase().contains(keyword)))
+        .filter(process -> process.getName().toLowerCase().contains(keyword)
+            || process.getDescription().toLowerCase().contains(keyword))
         .map(ProcessData::new).sorted(Comparator.comparing(ProcessData::getName)).toList();
     List<ProcessData> results = processes.isEmpty() ? processes : processes.subList(0, Math.min(processes.size(), PAGE_SIZE));
     return new GlobalSearchResponse(results, processes.size());
