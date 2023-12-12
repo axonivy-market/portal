@@ -71,7 +71,7 @@ public class TaskService {
       TaskQuery finalQuery = extendQueryWithUserHasPermissionToSee(criteria);
       IPagedResult<ITask> iTask = Ivy.wf().getTaskQueryExecutor().getResultsPaged(finalQuery);
       result.setTasks(iTask.window(startIndex, count));
-      result.setTotalTasks(iTask.count());
+      result.setTotalTasks(countTasks(finalQuery));
       return result;
     });
   }
