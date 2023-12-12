@@ -142,8 +142,12 @@ public class DashboardWidgetUtils {
       } 
       
       column.initDefaultValue();
-      if (column.getType() == DashboardColumnType.CUSTOM || column.getType() == DashboardColumnType.CUSTOM_CASE) {
+      if (column.getType() == DashboardColumnType.CUSTOM) {
         buildCustomColumn(ICustomFieldMeta.tasks(), column, field);
+      }
+      if (column.getType() == DashboardColumnType.CUSTOM_CASE) {
+        buildCustomColumn(ICustomFieldMeta.cases(), column, field);
+        column.setSortable(false);
       }
       columns.set(i, column);
     }

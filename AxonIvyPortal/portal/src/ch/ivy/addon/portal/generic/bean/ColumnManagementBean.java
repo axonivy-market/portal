@@ -207,14 +207,13 @@ public class ColumnManagementBean implements Serializable {
   }
 
   public List<String> getCustomFieldCategories() {
-    if (CollectionUtils.isEmpty(customFieldCategories)) {
-      if (widget.getType() == DashboardWidgetType.TASK) {
-        customFieldCategories = ICustomFieldMeta.tasks().stream()
+    if (widget.getType() == DashboardWidgetType.CASE || selectedFieldType == DashboardColumnType.CUSTOM_CASE) {
+      customFieldCategories = ICustomFieldMeta.cases().stream()
             .map(ICustomFieldMeta::category)
             .distinct()
             .sorted().collect(Collectors.toList());
-      } else if (widget.getType() == DashboardWidgetType.CASE) {
-        customFieldCategories = ICustomFieldMeta.cases().stream()
+    } else if (widget.getType() == DashboardWidgetType.TASK) {
+      customFieldCategories = ICustomFieldMeta.tasks().stream()
             .map(ICustomFieldMeta::category)
             .distinct()
             .sorted().collect(Collectors.toList());

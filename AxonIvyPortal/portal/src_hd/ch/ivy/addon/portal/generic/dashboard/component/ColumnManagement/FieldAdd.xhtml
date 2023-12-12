@@ -29,7 +29,7 @@
         <div class="ui-g-9 field-add-fieldset__selection ui-fluid">
           <p:autoComplete id="custom-field-categories-selection" value="#{columnManagementBean.selectedCustomFieldCategory}"
             completeMethod="#{columnManagementBean.completeCategoriesSelection}"
-            cache="true" dynamic="true" dropdown="true"
+            cache="false" dynamic="true" dropdown="true"
             emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noCategory')}">
             <p:ajax listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" />
             <p:ajax event="clear" listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" />
@@ -44,7 +44,7 @@
         <div class="ui-g-9 field-add-fieldset__selection ui-fluid">
           <p:autoComplete id="custom-case-field-categories-selection" value="#{columnManagementBean.selectedCustomFieldCategory}"
             completeMethod="#{columnManagementBean.completeCategoriesSelection}"
-            cache="true" dynamic="true" dropdown="true"
+            cache="false" dynamic="true" dropdown="true"
             emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noCategory')}">
             <p:ajax listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" />
             <p:ajax event="clear" listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" />
