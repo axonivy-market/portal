@@ -167,21 +167,24 @@ public class ColumnManagementBean implements Serializable {
     } else {
       resetValues();
     }
-    List<FetchingField> existingFields = getExistingFields();
-    this.fields = this.fields.stream().filter(isNotUsedIn(existingFields)).collect(Collectors.toList());
+    this.fields = this.fields.stream().filter(isNotUsedIn(getExistingFieldNames())).collect(Collectors.toList());
   }
 
-  private Predicate<? super String> isNotUsedIn(List<FetchingField> existingFields) {
-    List<String> fields = existingFields.stream().filter(f -> f.getType() == this.selectedFieldType)
+  private Predicate<? super String> isNotUsedIn(List<String> existingFieldNames) {
+    return f -> CollectionUtils.isEmpty(existingFieldNames) || !existingFieldNames.contains(f);
+  }
+
+  private List<String> getExistingFieldNames() {
+    List<String> fields = getExistingFields().stream().filter(f -> f.getType() == this.selectedFieldType)
         .map(f -> f.getField()).toList();
-    return f -> CollectionUtils.isEmpty(fields) || !fields.contains(f);
+    return fields;
   }
 
   public List<String> completeCustomFields(String query) {
     return getCustomFieldNames().stream()
           .filter(meta -> !meta.isHidden())
           .filter(filterCustomFieldByCategory())
-        .map(ICustomFieldMeta::name).filter(isNotUsedIn(getExistingFields()))
+        .map(ICustomFieldMeta::name).filter(isNotUsedIn(getExistingFieldNames()))
           .sorted().filter(f -> StringUtils.containsIgnoreCase(f, query))
           .collect(Collectors.toList());
   }
@@ -217,11 +220,10 @@ public class ColumnManagementBean implements Serializable {
             .map(ICustomFieldMeta::category)
             .distinct()
             .sorted().collect(Collectors.toList());
-      }
-      if (customFieldCategories.contains(EMPTY)) {
-        customFieldCategories.remove(EMPTY);
-        customFieldCategories.add(Ivy.cms().co(NO_CATEGORY_CMS));
-      }
+    }
+    if (customFieldCategories.contains(EMPTY)) {
+      customFieldCategories.remove(EMPTY);
+      customFieldCategories.add(Ivy.cms().co(NO_CATEGORY_CMS));
     }
     return customFieldCategories;
   }
