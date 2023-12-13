@@ -9,7 +9,7 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 
 public class ExportUtils {
 
-  private final static String CUSTOM_FIELD_FORMAT = "%s__%s__%s";
+  private final static String CUSTOM_FIELD_FORMAT = "%s__%s__%s__%s";
   private final static String FIRST_COLUMN_OF_TASK_DASHBOARD_WIDGET = "start";
 
   /**
@@ -24,7 +24,8 @@ public class ExportUtils {
       if (column.getVisible() && !column.getField().contentEquals(DashboardStandardCaseColumn.ACTIONS.getField())) {
         if (column.getType() == DashboardColumnType.CUSTOM || column.getType() == DashboardColumnType.CUSTOM_CASE) {
           visibleColumns.add(
-              String.format(CUSTOM_FIELD_FORMAT, column.getFormat().name(), column.getField(), column.getHeader()));
+              String.format(CUSTOM_FIELD_FORMAT, column.getFormat().name(), column.getField(), column.getHeader(),
+                  column.getType()));
         } else {
           visibleColumns.add(column.getField());
         }
