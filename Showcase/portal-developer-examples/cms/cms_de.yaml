@@ -78,7 +78,7 @@ CustomFields:
   Categories:
     CustomCaseWidget: Benutzerdefiniertes CaseWidget
     CustomTaskWidget: Benutzerdefiniertes TaskWidget
-    DefaultAdditionalCaseDetai: Standardmäßig zusätzliche Falldetailseite
+    DefaultAdditionalCaseDetails: Standardmäßig zusätzliche Falldetailseite
   Tasks:
     CustomerAddress:
       Description: Feld Kundenadresse

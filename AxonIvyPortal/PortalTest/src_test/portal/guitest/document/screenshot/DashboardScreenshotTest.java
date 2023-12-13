@@ -226,7 +226,14 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getMultiLanguageDialogForTaskWidget(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "dashboard-multi-language-widget-dialog");
     configurationDialogPage.clickOkMultiLanguageDialog();
     ScreenshotUtil.captureElementScreenshot(configurationDialogPage.getConfigurationFilter(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "task-list-widget-configuration");
-    ScreenshotUtil.captureElementScreenshot(configurationDialogPage.openManageColumnDialog(true), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "task-list-widget-table-configuration");
+    WebElement columnManagementDialog = configurationDialogPage.openManageColumnDialog(true);
+    ScreenshotUtil.captureElementScreenshot(columnManagementDialog,
+        ScreenshotUtil.NEW_DASHBOARD_FOLDER + "task-list-widget-table-configuration");
+    configurationDialogPage.getAddingFieldColumnType().click();
+    executeDecorateJs("highlightProcessDisplayModePanel()");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(columnManagementDialog,
+        ScreenshotUtil.NEW_DASHBOARD_FOLDER + "task-column-field-type-configuration", new ScreenshotMargin(20));
+
     configurationDialogPage.closeManageColumnDialog();
     configurationDialogPage.uncheckTaskColumn(Arrays.asList("category", "description", "expiryTimestamp"), true);
     configurationDialogPage.waitForElementDisplayed(By.id("widget-configuration-form:new-widget-configuration-component:task-widget-preview:dashboard-tasks"), true);

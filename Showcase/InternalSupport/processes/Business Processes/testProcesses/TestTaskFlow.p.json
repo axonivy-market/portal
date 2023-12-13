@@ -1221,7 +1221,9 @@
           "description" : "Leave Request Description",
           "attachToBusinessCase" : false,
           "customFields" : [
+            { "name" : "CreatedBillDate", "type" : "Timestamp", "value" : "new DateTime()" },
             { "name" : "CustomerType", "type" : "String", "value" : "\"Leave Request CustomerType\"" },
+            { "name" : "InvoiceDueDate", "type" : "Timestamp", "value" : "new java.util.Date()" },
             { "name" : "Number field", "type" : "Number", "value" : "1000000" },
             { "name" : "ProcessCategoryCode", "type" : "String", "value" : "\"pubRequested\"" },
             { "name" : "ProcessCategoryName", "type" : "String", "value" : "\"Publication Requested\"" },
@@ -1267,10 +1269,12 @@
       "config" : {
         "outLinks" : [ "TaskB.ivp", "TaskA.ivp", "TaskC.ivp" ],
         "case" : {
-          "name" : "Leave Request",
+          "name" : "Leave Request Test",
           "category" : "LeaveRequest",
           "customFields" : [
-            { "name" : "InvoiceTotalAmount", "type" : "Number", "value" : "36" }
+            { "name" : "CreatedBillDate", "type" : "Timestamp", "value" : "new DateTime()" },
+            { "name" : "InvoiceDueDate", "type" : "Timestamp", "value" : "new DateTime()" },
+            { "name" : "InvoiceTotalAmount", "type" : "Number", "value" : "69" }
           ]
         },
         "tasks" : {

@@ -127,8 +127,6 @@ public class DashboardWidgetUtils {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ApplicationColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.ACTIONS, field)) {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ActionsColumnModel.class;
-      } else {
-        column.setType(DashboardColumnType.CUSTOM);
       }
       
       if (taskColumnModelClass != null) {
@@ -138,6 +136,10 @@ public class DashboardWidgetUtils {
       column.initDefaultValue();
       if (column.getType() == DashboardColumnType.CUSTOM) {
         buildCustomColumn(ICustomFieldMeta.tasks(), column, field);
+      }
+      if (column.getType() == DashboardColumnType.CUSTOM_CASE) {
+        buildCustomColumn(ICustomFieldMeta.cases(), column, field);
+        column.setSortable(false);
       }
       columns.set(i, column);
     }
@@ -237,29 +239,32 @@ public class DashboardWidgetUtils {
   public static DashboardWidget simplifyWidgetColumnData(DashboardWidget widget) {
     List<String> deprecatedFields = new ArrayList<>();
     return switch (widget.getType()) {
-      case TASK -> {
-        var taskCustomFieldMetas = ICustomFieldMeta.tasks();
-        List<TaskColumnModel> columns = ((TaskDashboardWidget) widget).getColumns();
-        columns.forEach(column -> {
-          simplifyColumnData(column, taskCustomFieldMetas, deprecatedFields);
-        });
-        deprecatedFields.forEach(field -> {
-          columns.removeIf(column -> column.getField().equals(field));
-        });
-        yield widget;
-        }
-      case CASE ->{
-        var caseCustomFieldMetas = ICustomFieldMeta.cases();
-        List<CaseColumnModel> caseColumns = ((CaseDashboardWidget) widget).getColumns();
-        caseColumns.forEach(column -> {
-          simplifyColumnData(column, caseCustomFieldMetas, deprecatedFields);
-        });
-        deprecatedFields.forEach(field -> {
-          caseColumns.removeIf(column -> column.getField().equals(field));
-        });
-        yield widget;
-        }
-      default -> widget;
+    case TASK -> {
+      var taskCustomFieldMetas = ICustomFieldMeta.tasks();
+
+      var caseCustomFieldMetas = ICustomFieldMeta.cases();
+      taskCustomFieldMetas.addAll(caseCustomFieldMetas);
+      List<TaskColumnModel> columns = ((TaskDashboardWidget) widget).getColumns();
+      columns.forEach(column -> {
+        simplifyColumnData(column, taskCustomFieldMetas, deprecatedFields);
+      });
+      deprecatedFields.forEach(field -> {
+        columns.removeIf(column -> column.getField().equals(field));
+      });
+      yield widget;
+    }
+    case CASE -> {
+      var caseCustomFieldMetas = ICustomFieldMeta.cases();
+      List<CaseColumnModel> caseColumns = ((CaseDashboardWidget) widget).getColumns();
+      caseColumns.forEach(column -> {
+        simplifyColumnData(column, caseCustomFieldMetas, deprecatedFields);
+      });
+      deprecatedFields.forEach(field -> {
+        caseColumns.removeIf(column -> column.getField().equals(field));
+      });
+      yield widget;
+    }
+    default -> widget;
     };
   }
 
