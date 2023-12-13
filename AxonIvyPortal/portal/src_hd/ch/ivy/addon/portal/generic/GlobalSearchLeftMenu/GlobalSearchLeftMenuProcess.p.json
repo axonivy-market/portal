@@ -30,10 +30,11 @@
       "type" : "SubProcessCall",
       "name" : "OpenPortalSearch",
       "config" : {
-        "processCall" : "Functional Processes/OpenPortalSearch:call(String)",
+        "processCall" : "Functional Processes/OpenPortalSearch:call(String,String)",
         "call" : {
           "map" : {
-            "param.keyword" : "in.keyword"
+            "param.keyword" : "in.keyword",
+            "param.activeTabIndex" : "org.apache.commons.lang.StringUtils.defaultIfBlank(in.activeTabIndex, \"0\")"
           }
         }
       },

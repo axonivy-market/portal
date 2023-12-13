@@ -175,6 +175,21 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     getAddedFieldRemoveLink(field).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return field;
   }
+  
+  public String addCustomColumnByName (String columnName) {
+    selectCustomType();
+    getCustomFieldSelection().click();
+    $("span[id$='column-management-form:custom-field-selection_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement result = $("span[id$='column-management-form:custom-field-selection_panel']").$$("li").filter(Condition.text(columnName)).first().shouldBe(getClickableCondition());
+    String field = result.getText();
+    result.click();
+    $("input[id$=':field-display-name'").shouldNot(Condition.empty, DEFAULT_TIMEOUT);
+    
+    getColumnManagementDialog().$("button[id$='field-add-btn']").click();
+    getAddedFieldRemoveLink(field).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
+    return field;
+  }
 
   private SelenideElement getCustomFieldSelection() {
     return getColumnManagementDialog().$("span[id$='custom-field-selection'] button");

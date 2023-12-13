@@ -8,15 +8,16 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start(String)",
+      "name" : "start(String,Number)",
       "config" : {
         "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "keyword", "type" : "String", "desc" : "" }
+            { "name" : "keyword", "type" : "String", "desc" : "" },
+            { "name" : "activeTabIndex", "type" : "Number", "desc" : "" }
           ],
           "map" : {
-            "out.activeTabIndex" : "0",
+            "out.activeTabIndex" : "param.activeTabIndex",
             "out.dataModel.caseDataModel.notKeepFilter" : "true",
             "out.dataModel.keyword" : "param.keyword",
             "out.dataModel.taskDataModel.notKeepFilter" : "true"
