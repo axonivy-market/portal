@@ -1,6 +1,7 @@
 package com.axonivy.portal.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -26,6 +27,7 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;
 import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class GlobalSearchService {
@@ -41,30 +43,46 @@ public class GlobalSearchService {
   }
 
   public GlobalSearchResponse searchTasks(SearchPayload payload) {
-    TaskSearchCriteria query = new TaskSearchCriteria();
-    query.setKeyword(payload.getQuery());
-    query.setSortField(TaskSortField.EXPIRY_TIME.toString());
-    query.setSortDescending(true);
-    query.setQuickGlobalSearch(true);
-    query.setTaskAssigneeType(TaskAssigneeType.ALL);
-    boolean hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();
-    query.setAdminQuery(hasReadAllTasksPermisson);
-    query.setSearchScopeTaskFields(getSearchScopeTaskFields());
-    IvyTaskResultDTO iTasks = TaskService.newInstance().findGlobalSearchTasksByCriteria(query, 0, PAGE_SIZE);
+    TaskSearchCriteria criteria = buildTaskCriteria(payload);
+    IvyTaskResultDTO iTasks = TaskService.newInstance().findGlobalSearchTasksByCriteria(criteria, 0, PAGE_SIZE);
     List<TaskData> results = iTasks.getTasks().stream().map(TaskData::new).toList();
     return new GlobalSearchResponse(results, iTasks.getTotalTasks());
   }
 
   public GlobalSearchResponse searchCases(SearchPayload payload) {
-    CaseSearchCriteria query = new CaseSearchCriteria();
-    query.setKeyword(payload.getQuery());
-    query.setSearchScopeCaseFields(getSearchScopeCaseFields());
-    boolean hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();
-    query.setAdminQuery(hasReadAllTasksPermisson);
-    query.setBusinessCase(true);
-    IvyCaseResultDTO iCases = CaseService.newInstance().findGlobalSearchCasesByCriteria(query, 0, PAGE_SIZE);
+    CaseSearchCriteria criteria = buildCaseCriteria(payload);
+    IvyCaseResultDTO iCases = CaseService.newInstance().findGlobalSearchCasesByCriteria(criteria, 0, PAGE_SIZE);
     List<CaseData> results = iCases.getCases().stream().map(CaseData::new).toList();
     return new GlobalSearchResponse(results, iCases.getTotalCases());
+  }
+
+  private TaskSearchCriteria buildTaskCriteria(SearchPayload payload) {
+    TaskSearchCriteria criteria = new TaskSearchCriteria();
+    criteria.setKeyword(payload.getQuery());
+    criteria.setSortField(TaskSortField.EXPIRY_TIME.toString());
+    criteria.setSortDescending(true);
+    criteria.setQuickGlobalSearch(true);
+    criteria.setTaskAssigneeType(TaskAssigneeType.ALL);
+    criteria.setIncludedStates(new ArrayList<>(TaskSearchCriteria.STANDARD_STATES));
+    boolean isAdminQuery = PermissionUtils.checkReadAllTasksPermission();
+    criteria.setAdminQuery(isAdminQuery);
+    criteria.extendStatesQueryByPermission(isAdminQuery);
+    criteria.setSearchScopeTaskFields(getSearchScopeTaskFields());
+    return criteria;
+  }
+
+  private CaseSearchCriteria buildCaseCriteria(SearchPayload payload) {
+    CaseSearchCriteria criteria = new CaseSearchCriteria();
+    criteria.setKeyword(payload.getQuery());
+    criteria.setSearchScopeCaseFields(getSearchScopeCaseFields());
+    criteria.setBusinessCase(true);
+    criteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
+    boolean isAdminQuery = PermissionUtils.checkReadAllTasksPermission();
+    criteria.setAdminQuery(isAdminQuery);
+    criteria.extendStatesQueryByPermission(isAdminQuery);
+    boolean hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();
+    criteria.setAdminQuery(hasReadAllTasksPermisson);
+    return criteria;
   }
 
   public GlobalSearchResponse searchProcesses(SearchPayload payload) {
