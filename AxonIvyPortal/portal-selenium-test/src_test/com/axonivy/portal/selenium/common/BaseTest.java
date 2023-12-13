@@ -105,6 +105,7 @@ public class BaseTest {
   protected String securityMemberNameAndAvatarExampleInFrameUrl = "/portal-components-examples/182A5FCAF7FC6B1A/showSecurityMemberNameAndAvatarExamples.ivp?embedInFrame";
   protected String templateInFrameExampleInFrameUrl = "/portal-developer-examples/162511D2577DBA88/createTaskWithFrameTemplate.ivp?embedInFrame";
   protected String createEventTestUrl ="portal-developer-examples/17A2C6D73AB4186E/CreateEventTest.ivp";
+  protected String createCustomActionCaseExampleUrl ="portal-developer-examples/162511D2577DBA88/CreateCustomActionCaseExample.ivp";
   protected String grantPortalPermission ="portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
 
 

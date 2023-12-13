@@ -19,8 +19,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.ProcessViewerDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.CustomWidgetParam;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
-import ch.ivyteam.ivy.application.ActivityState;
-import ch.ivyteam.ivy.application.ReleaseState;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -174,29 +172,19 @@ public class CustomWidgetUtils {
     String processPath = customWidget.getData().getProcessPath();
     if (StringUtils.isNotBlank(processPath)) {
       customWidget.getData().setUrl(EMPTY);
-      IWebStartable startable = findStartableOfCustomDashboardProcessInSecurityContext(processPath);
+      IWebStartable startable = findStartableOfCustomDashboardProcess(processPath);
       if (isNull(startable)) {
         customWidget.getData().setStartRequestPath(EMPTY);
         customWidget.setErrorMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessNotFound"));
         customWidget.setErrorIcon("si si-alert-circle");
         return;
-      } else {
-        boolean isViewerAllowed = Ivy.session().getAllStartables().anyMatch(item-> item.getId().equals(startable.getId()));
-        if (startable.pmv().getActivityState() != ActivityState.ACTIVE || startable.pmv().getReleaseState() != ReleaseState.RELEASED) {
-          customWidget.getData().setStartRequestPath(EMPTY);
-          customWidget.setErrorIcon("si si-alert-circle");
-          customWidget.setErrorMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessCanNotBeLoaded"));
-          return;
-        }
-        
-        if (!isViewerAllowed) {
-          customWidget.getData().setStartRequestPath(EMPTY);
-          customWidget.setErrorIcon("si si-lock-1");
-          customWidget.setErrorMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/NoPermissionToView"));
-          return;
-        }
-        
-        
+      } 
+      boolean isViewerAllowed = Ivy.session().getAllStartables().anyMatch(item-> item.getId().equals(startable.getId()));
+      if (!isViewerAllowed) {
+        customWidget.getData().setStartRequestPath(EMPTY);
+        customWidget.setErrorIcon("si si-lock-1");
+        customWidget.setErrorMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/NoPermissionToView"));
+        return;
       }
       customWidget.getData().setStartableProcessStart(startable);
       customWidget.loadParameters();
@@ -212,8 +200,7 @@ public class CustomWidgetUtils {
     var processViewerWidget = (ProcessViewerDashboardWidget) widget;
     String processPath = processViewerWidget.getProcessPath();
     if (StringUtils.isNotBlank(processPath)) {
-      Optional
-          .ofNullable(ProcessService.getInstance().findWebStartableInSecurityContextById(processPath))
+      Optional.ofNullable(findWebStartableByProcessPath(processPath))
           .ifPresent(webStartable -> processViewerWidget.setProcess(new DashboardProcess(webStartable)));
     }
   }
@@ -246,18 +233,9 @@ public class CustomWidgetUtils {
     return startable;
   }
   
-  public static IWebStartable findStartableOfCustomDashboardProcessInSecurityContext(String processPath) {
-    IWebStartable startable = ProcessService.getInstance().findCustomDashboardProcessInSecurityContextByProcessId(processPath);
-    if (isNull(startable)) {
-      String processStartLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(processPath);
-      startable = ProcessService.getInstance().findCustomDashboardProcessInSecurityContextByRelativePath(processStartLink);
-    }
-    return startable;
-  }
-
   private static List<IWebStartable> getAllPortalProcesses() {
     if (CollectionUtils.isEmpty(allPortalProcesses)) {
-      allPortalProcesses = ProcessService.getInstance().findProcesses().getProcesses();
+      allPortalProcesses = ProcessService.getInstance().findProcesses();
     }
     return allPortalProcesses;
   }
