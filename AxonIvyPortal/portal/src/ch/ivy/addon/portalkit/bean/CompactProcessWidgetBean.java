@@ -48,7 +48,6 @@ import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
-@Deprecated(since = "9.3")
 @ManagedBean
 @ViewScoped
 public class CompactProcessWidgetBean implements Serializable, Converter {

@@ -12,6 +12,7 @@ import org.apache.commons.lang3.time.DateUtils;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardFilterType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.Dates;
@@ -20,6 +21,7 @@ import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.ICustomFieldFilterQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.ICustomFieldOrderBy;
@@ -164,7 +166,21 @@ public class DashboardTaskSearchCriteria {
     }
   }
   
+  private void queryCaseTextField(ch.ivyteam.ivy.workflow.query.CaseQuery.ICustomFieldFilterQuery filterQuery,
+      String field, String filter) {
+    if (StringUtils.isNotBlank(filter)) {
+      filterQuery.textField(field).isLikeIgnoreCase(String.format(LIKE_FORMAT, filter));
+    }
+  }
+
   private void queryStringField(ICustomFieldFilterQuery filterQuery, String field, String filter) {
+    if (StringUtils.isNotBlank(filter)) {
+      filterQuery.stringField(field).isLikeIgnoreCase(String.format(LIKE_FORMAT, filter));
+    }
+  }
+
+  private void queryCaseStringField(ch.ivyteam.ivy.workflow.query.CaseQuery.ICustomFieldFilterQuery filterQuery,
+      String field, String filter) {
     if (StringUtils.isNotBlank(filter)) {
       filterQuery.stringField(field).isLikeIgnoreCase(String.format(LIKE_FORMAT, filter));
     }
@@ -230,8 +246,13 @@ public class DashboardTaskSearchCriteria {
       
       } else {
         if (isAnyNotBlank(configuredFilter, userFilter, filterFrom, filterTo)) {
-          TaskQuery subQuery = applyFilter(column, field, configuredFilter, userFilter, filterFrom, filterTo);
-          query.where().and(subQuery);
+          if (column.getType() == DashboardColumnType.CUSTOM_CASE) {
+            CaseQuery subQuery = applyCaseFilter(column, field, configuredFilter, userFilter, filterFrom, filterTo);
+            query.where().cases(subQuery);
+          } else {
+            TaskQuery subQuery = applyFilter(column, field, configuredFilter, userFilter, filterFrom, filterTo);
+            query.where().and(subQuery);
+          }
         }
       }
     }
@@ -289,6 +310,44 @@ public class DashboardTaskSearchCriteria {
     return subQuery;
   }
   
+  private CaseQuery applyCaseFilter(ColumnModel column, String field, String configuredFilter, String userFilter,
+      String filterFrom, String filterTo) {
+    CaseQuery subQuery = CaseQuery.create();
+    ch.ivyteam.ivy.workflow.query.CaseQuery.ICustomFieldFilterQuery filterQuery = subQuery.where().customField();
+    if (column.isNumber()) {
+      if (StringUtils.isNotBlank(filterFrom)) {
+        Number from = Double.parseDouble(filterFrom.toString());
+        filterQuery.numberField(field).isGreaterOrEqualThan(from);
+      }
+
+      if (StringUtils.isNotBlank(filterTo)) {
+        Number to = Double.parseDouble(filterTo.toString());
+        filterQuery.numberField(field).isLowerOrEqualThan(to);
+      }
+    } else if (column.isDate()) {
+      Date from = Dates.parse(filterFrom);
+      Date to = Dates.parse(filterTo);
+      if (from != null) {
+        filterQuery.timestampField(field).isGreaterOrEqualThan(from);
+      }
+
+      if (to != null) {
+        filterQuery.timestampField(field).isLowerOrEqualThan(DateUtils.addDays(to, 1));
+      }
+    } else if (column.isText()) {
+      queryCaseTextField(filterQuery, field, configuredFilter);
+      if (!isInConfiguration) {
+        queryCaseTextField(filterQuery, field, userFilter);
+      }
+    } else {
+      queryCaseStringField(filterQuery, field, configuredFilter);
+      if (!isInConfiguration) {
+        queryCaseStringField(filterQuery, field, userFilter);
+      }
+    }
+    return subQuery;
+  }
+
   private void queryApplications(TaskQuery query, List<String> applications) {
     if (CollectionUtils.isNotEmpty(applications)) {
       TaskQuery subQuery = TaskQuery.create();

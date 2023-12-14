@@ -63,7 +63,7 @@
             { "name" : "isPublicDashBoard", "type" : "Boolean" }
           ],
           "map" : {
-            "out.isPublicDashBoard" : "param.isPublicDashBoard"
+            "out.isPublicDashboard" : "param.isPublicDashBoard"
           }
         },
         "guid" : "18B3C7ECD86EE0EA"

@@ -49,7 +49,9 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private static final String IS_WORKING_ON_A_TASK = "isWorkingOnATask";
   private static final String VIEW_NAME = "viewName";
   private static final String TASK_NAME = "taskName";
+  private static final String TASK_ICON = "taskIcon";
   public static final String PORTAL_GROWL_MESSGE_PARAM = "portalGrowlMessage";
+  private static final String DEFAULT_TASK_ICON = "si si-task-list-edit";
 
   private int currentProcessStep;
   private List<String> processSteps;
@@ -66,6 +68,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private boolean isWorkingOnATask = true;
   private String taskName;
   private Map<String, Object> overridePortalGrowlMap = new HashMap<>();
+  private String taskIcon;
 
   private Long caseId = null;
 
@@ -163,6 +166,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     isWorkingOnATask = Optional.ofNullable(requestParamMap.get(IS_WORKING_ON_A_TASK)).map(p -> StringUtils.isNotBlank(p) ? BooleanUtils.toBoolean(p) : true).get();
     caseId = Optional.ofNullable(requestParamMap.get(CASE_ID_PARAM)).map(p -> StringUtils.isNotBlank(p) ? Long.parseLong(p) : null).orElse(null);
     taskName = Optional.ofNullable(requestParamMap.get(TASK_NAME)).orElse(StringUtils.EMPTY);
+    taskIcon = StringUtils.defaultIfBlank(requestParamMap.get(TASK_ICON), DEFAULT_TASK_ICON);
   }
 
   private Map<String, String> getRequestParameterMap() {
@@ -238,5 +242,13 @@ public void setCaseId(Long caseId) {
 
   public void setStepIndexes(List<String> stepIndexes) {
     this.stepIndexes = stepIndexes;
+  }
+
+  public String getTaskIcon() {
+    return taskIcon;
+  }
+
+  public void setTaskIcon(String taskIcon) {
+    this.taskIcon = taskIcon;
   }
 }

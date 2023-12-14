@@ -3,7 +3,6 @@ package ch.ivy.addon.portalkit.util;
 import static ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix.CMS;
 import static ch.ivy.addon.portalkit.constant.DashboardConstants.MAX_NOTI_FILTERS;
 import static ch.ivy.addon.portalkit.constant.DashboardConstants.MAX_NOTI_PATTERN;
-import static ch.ivy.addon.portalkit.constant.DashboardConstants.NEW_WIDGET_STYLE_CLASS;
 import static ch.ivy.addon.portalkit.constant.DashboardConstants.WIDGET_ID_PATTERN;
 import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.NUMBER;
 import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.STRING;
@@ -28,10 +27,7 @@ import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.service.impl.ProcessService;
-
 import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
-import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.AbstractColumn;
@@ -60,15 +56,10 @@ import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
-import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivyteam.ivy.application.ActivityState;
-import ch.ivyteam.ivy.application.ReleaseState;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
-import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class DashboardWidgetUtils {
 
@@ -136,8 +127,6 @@ public class DashboardWidgetUtils {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ApplicationColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.ACTIONS, field)) {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ActionsColumnModel.class;
-      } else {
-        column.setType(DashboardColumnType.CUSTOM);
       }
       
       if (taskColumnModelClass != null) {
@@ -147,6 +136,10 @@ public class DashboardWidgetUtils {
       column.initDefaultValue();
       if (column.getType() == DashboardColumnType.CUSTOM) {
         buildCustomColumn(ICustomFieldMeta.tasks(), column, field);
+      }
+      if (column.getType() == DashboardColumnType.CUSTOM_CASE) {
+        buildCustomColumn(ICustomFieldMeta.cases(), column, field);
+        column.setSortable(false);
       }
       columns.set(i, column);
     }
@@ -246,29 +239,32 @@ public class DashboardWidgetUtils {
   public static DashboardWidget simplifyWidgetColumnData(DashboardWidget widget) {
     List<String> deprecatedFields = new ArrayList<>();
     return switch (widget.getType()) {
-      case TASK -> {
-        var taskCustomFieldMetas = ICustomFieldMeta.tasks();
-        List<TaskColumnModel> columns = ((TaskDashboardWidget) widget).getColumns();
-        columns.forEach(column -> {
-          simplifyColumnData(column, taskCustomFieldMetas, deprecatedFields);
-        });
-        deprecatedFields.forEach(field -> {
-          columns.removeIf(column -> column.getField().equals(field));
-        });
-        yield widget;
-        }
-      case CASE ->{
-        var caseCustomFieldMetas = ICustomFieldMeta.cases();
-        List<CaseColumnModel> caseColumns = ((CaseDashboardWidget) widget).getColumns();
-        caseColumns.forEach(column -> {
-          simplifyColumnData(column, caseCustomFieldMetas, deprecatedFields);
-        });
-        deprecatedFields.forEach(field -> {
-          caseColumns.removeIf(column -> column.getField().equals(field));
-        });
-        yield widget;
-        }
-      default -> widget;
+    case TASK -> {
+      var taskCustomFieldMetas = ICustomFieldMeta.tasks();
+
+      var caseCustomFieldMetas = ICustomFieldMeta.cases();
+      taskCustomFieldMetas.addAll(caseCustomFieldMetas);
+      List<TaskColumnModel> columns = ((TaskDashboardWidget) widget).getColumns();
+      columns.forEach(column -> {
+        simplifyColumnData(column, taskCustomFieldMetas, deprecatedFields);
+      });
+      deprecatedFields.forEach(field -> {
+        columns.removeIf(column -> column.getField().equals(field));
+      });
+      yield widget;
+    }
+    case CASE -> {
+      var caseCustomFieldMetas = ICustomFieldMeta.cases();
+      List<CaseColumnModel> caseColumns = ((CaseDashboardWidget) widget).getColumns();
+      caseColumns.forEach(column -> {
+        simplifyColumnData(column, caseCustomFieldMetas, deprecatedFields);
+      });
+      deprecatedFields.forEach(field -> {
+        caseColumns.removeIf(column -> column.getField().equals(field));
+      });
+      yield widget;
+    }
+    default -> widget;
     };
   }
 
@@ -314,10 +310,7 @@ public class DashboardWidgetUtils {
   }
 
   public static void removeStyleNewWidget(DashboardWidget widget) {
-    if (StringUtils.contains(widget.getLayout().getStyleClass(), NEW_WIDGET_STYLE_CLASS)) {
-      var styleClass = widget.getLayout().getStyleClass();
-      widget.getLayout().setStyleClass(styleClass.replace(NEW_WIDGET_STYLE_CLASS, ""));
-    }
+    widget.getLayout().setNewWidget(false);
   }
 
   public static List<WidgetLayout> getWidgetLayoutFromRequest(Map<String, String> requestParamMap) {
@@ -577,52 +570,15 @@ public class DashboardWidgetUtils {
       processWidget.setHasPermissionToSee(true);
     }
     
-    
-    IWebStartable startProcess = ProcessService.getInstance().findWebStartableInSecurityContextById(processPath);
-    ExpressProcess expressProcess = ExpressProcessService.getInstance().findExpressProcessById(processPath);
-    ExternalLink externalLink = ExternalLinkService.getInstance().findById(processPath);
-    
-    if (startProcess == null && expressProcess == null && externalLink == null) {
-      processWidget.setEmptyProcessMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessNotFound"));
-      return;
-    } else {
-      boolean hasPermissionToSee = false;
-      if (startProcess != null) {
-        // Found but can not load
-        if (startProcess.pmv().getActivityState() != ActivityState.ACTIVE || startProcess.pmv().getReleaseState() != ReleaseState.RELEASED) {
-          processWidget.setEmptyProcessMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessCanNotBeLoaded"));
-          return;
-        }
-        hasPermissionToSee = Ivy.session().getAllStartables().anyMatch(startable-> startable.getId().equals(startProcess.getId()));
-        processWidget.setHasPermissionToSee(hasPermissionToSee);
-        if (!hasPermissionToSee) {
-          processWidget.setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noPermissionToSee"));
-          return;
-        }
-        if (startProcess.getId().contains(processPath)) {
-          DashboardProcess process = new DashboardProcess(startProcess);
-          updateProcessStartIdForCombined(processWidget, process );
-          processWidget.setProcess(process);
-        }
-      } else if (expressProcess != null) {
-        IProcessStart findExpressCreationProcess = ExpressProcessService.getInstance().findExpressCreationProcess();
-        if (findExpressCreationProcess == null || 
-            findExpressCreationProcess.getProcessModelVersion().getActivityState() != ActivityState.ACTIVE || 
-            findExpressCreationProcess.getProcessModelVersion().getReleaseState() != ReleaseState.RELEASED) {
-          processWidget.setEmptyProcessMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessCanNotBeLoaded"));
-          return;
-        }
-        hasPermissionToSee = PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(expressProcess);
-        processWidget.setHasPermissionToSee(hasPermissionToSee);
-        if (!hasPermissionToSee) {
-          processWidget.setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noPermissionToSee"));
-          return;
-        }
-        processWidget.setProcess(new DashboardProcess(expressProcess));
-      } else if (externalLink != null) {
-        processWidget.setProcess(new DashboardProcess(externalLink));
+    for (DashboardProcess process : getAllPortalProcesses()) {
+      if (process.getId() != null && process.getId().contains(processPath)) {
+        updateProcessStartIdForCombined(processWidget, process);
+        processWidget.setProcess(process);
+        return;
       }
     }
+    
+    processWidget.setEmptyProcessMessage(Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessNotFound"));
   }
   
   private static List<String> getPublicExternalLinkIdsNotForIvySessionUser() {
