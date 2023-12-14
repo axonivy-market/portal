@@ -14,7 +14,6 @@ import org.openqa.selenium.WebElement;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
-import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -30,7 +29,6 @@ public class DefaultChartTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
-    Sleeper.sleep(2000); // To make Firefox test more stable, make business data updated correctly 
     login(TestAccount.ADMIN_USER);
     grantPermissionToCreateChart();
   }

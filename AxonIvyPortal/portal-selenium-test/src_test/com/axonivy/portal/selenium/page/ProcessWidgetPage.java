@@ -22,11 +22,8 @@ public class ProcessWidgetPage extends TemplatePage {
   public static final String GRID_MODE = "GRID";
   private static final String ACTIVE_MODE_SELECTOR = "#process-widget\\:process-view-mode\\:view-mode-selection > div.ui-button.ui-button-text-only.ui-state-active > span";
   private static final String IMAGE_EDIT_PROCESS_LINK = "[id$=':%d:image-processes:%d:process-item:image-process-action-component:edit-process']";
-  private static final String MORE_ACTION_BUTTON = "[id='process-widget:image-process-group-alphabet:%d:image-processes:%d:process-item:image-process-action-component:process-action-button']";
-  private static final String ACTION_DIALOG = "[id='process-widget:image-process-group-alphabet:%d:image-processes:%d:process-item:image-process-action-component:process-action-menu']";
   private static final String GRID_ACTION_BUTTON = "[id$=':%d:grid-processes:%d:process-grid-item:process-item:grid-process-action-component:process-action-button']";
   private SelenideElement liveSearchTextField;
-  private SelenideElement processWidget;
   private String processWidgetId;
 
   public ProcessWidgetPage() {
@@ -35,7 +32,7 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public ProcessWidgetPage(String processWidgetId) {
     this.processWidgetId = processWidgetId;
-    processWidget = findElementById(this.processWidgetId);
+    findElementById(this.processWidgetId);
   }
 
   @Override

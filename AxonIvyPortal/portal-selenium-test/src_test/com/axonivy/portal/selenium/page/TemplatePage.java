@@ -40,13 +40,11 @@ public abstract class TemplatePage extends AbstractPage {
   private static final int IFRAME_SCREENSHOT_FILE_SIZE_AT_MINIMUM = 10000;
   protected static final String LAYOUT_WRAPPER = ".layout-wrapper";
   public static final String ID_PROPERTY = "id";
-  private static final String TEMPLATE_PAGE_LOCATOR = "[id='global-search-item']";
   public static final String CLASS_PROPERTY = "class";
   public static final String CURRENT_BREADCRUMB_SELECTOR = ".portal-breadcrumb li:last-child .ui-menuitem-link.ui-state-disabled";
   private static final String HOME_BREADCRUMB_SELECTOR = ".portal-breadcrumb .ui-menuitem-link:first-child";
   public static final String PORTAL_GLOBAL_GROWL_ID = "portal-global-growl_container";
   protected static final String COMPONENT_PAGE_LOCATOR = "//*[contains(@id,'theme-selection')]";
-  private static final String GLOBAL_SEARCH_INPUT_SELECTOR = "#global-search-component\\:global-search-data";
 
   // If page load more than 45s, mark it failed by timeout
   protected long getTimeOutForLocator() {

@@ -15,6 +15,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessViewerPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.component.ProcessViewerComponentPage;
+import com.axonivy.portal.selenium.test.express.ExpressManagementTest;
 
 @IvyWebTest
 public class ProcessViewerTest extends BaseTest {

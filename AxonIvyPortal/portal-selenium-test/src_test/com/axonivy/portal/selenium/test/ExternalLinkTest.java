@@ -8,7 +8,7 @@ import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
-import com.axonivy.portal.selenium.common.ScreenshotUtil;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -56,7 +56,7 @@ public class ExternalLinkTest extends BaseTest {
     mainMenuPage.openProcessList();
     ProcessWidgetPage processPage = new ProcessWidgetPage();
     processPage.waitForStartListShow();
-    ScreenshotUtil.resizeBrowser(new Dimension(2560, 1440));
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
     String iconClass = "si-server-search";
     processPage.addExternalLink(TEST_PROCESS, "https://www.google.com", iconClass, "test-welcome-widget-image.jpg");
     

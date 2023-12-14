@@ -50,7 +50,6 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     assertEquals(countTasks, taskWidgetPageGuest.countTasks().size());
   }
   
-  @SuppressWarnings("deprecation")
   @Test
   public void testVisibilityTaskInprogress() {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");

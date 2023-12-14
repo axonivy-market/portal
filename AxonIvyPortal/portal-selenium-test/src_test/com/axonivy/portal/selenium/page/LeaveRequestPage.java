@@ -38,7 +38,6 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
     waitForElementClickableThenClick(By.id("leave-request:button-submit"));
   }
   
-  @SuppressWarnings("deprecation")
   public String clickSubmitAndGetValidationMsg() {
     int numberOfErrors = $$("span.ui-messages-error-summary").size();
     clickSubmitLeaveRequest();

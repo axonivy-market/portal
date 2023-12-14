@@ -9,7 +9,7 @@ import org.openqa.selenium.Dimension;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
-import com.axonivy.portal.selenium.common.ScreenshotUtil;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.ChatPage;
@@ -36,9 +36,9 @@ public class ChatScreenshotTest extends ScreenshotBaseTest {
     showNewDashboard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForCaseWidgetLoaded();
-    ScreenshotUtil.resizeBrowser(new Dimension(1500, 800));
-    ScreenshotUtil.executeDecorateJs("highlightChatIcon()");
-    ScreenshotUtil.captureHalfTopRightPageScreenShot(ScreenshotUtil.CHAT_FOLDER + "access-chat");
+    ScreenshotUtils.resizeBrowser(new Dimension(1500, 800));
+    ScreenshotUtils.executeDecorateJs("highlightChatIcon()");
+    ScreenshotUtils.captureHalfTopRightPageScreenShot(ScreenshotUtils.CHAT_FOLDER + "access-chat");
     MainMenuPage menu = new MainMenuPage();
     TaskWidgetPage taskWidgetPage = menu.openTaskList();
     taskWidgetPage.openTask("Maternity Leave Request");
@@ -46,18 +46,18 @@ public class ChatScreenshotTest extends ScreenshotBaseTest {
 
     
     taskTemplatePage.clickActionButton();
-    ScreenshotUtil.executeDecorateJs("highlightJoinGroupChatOption()");
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CHAT_FOLDER + "create-new-group-chat");
+    ScreenshotUtils.executeDecorateJs("highlightJoinGroupChatOption()");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CHAT_FOLDER + "create-new-group-chat");
 
     taskTemplatePage.clickChatGroup();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskTemplatePage.getAddMemberToChatDialog(), ScreenshotUtil.CHAT_FOLDER + "chat-group-assignee", new ScreenshotMargin(20));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskTemplatePage.getAddMemberToChatDialog(), ScreenshotUtils.CHAT_FOLDER + "chat-group-assignee", new ScreenshotMargin(20));
     taskTemplatePage.clickCreateGroupChatButton();
 
     showNewDashboard();
     newDashboardPage = new NewDashboardPage();
     ChatPage chatPage = newDashboardPage.openChatDialog();
     chatPage.openFirstGroupChat();
-    ScreenshotUtil.resizeBrowser(new Dimension(1200, 800));
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CHAT_FOLDER + "chat");
+    ScreenshotUtils.resizeBrowser(new Dimension(1200, 800));
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CHAT_FOLDER + "chat");
   }
 }
