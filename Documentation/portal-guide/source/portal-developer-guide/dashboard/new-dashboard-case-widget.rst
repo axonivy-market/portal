@@ -180,7 +180,7 @@ Custom Action Button Columns
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Portal supports creating custom action buttons for specific needs. By clicking on this buttons, a custom process is triggered.
 
-Follow these steps to create it:
+Follow these steps to implement it:
 
    #. Create a new process that will be triggered after clicking on the custom action button. In this example, the process will destroy the case.
       
