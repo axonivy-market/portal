@@ -192,11 +192,11 @@ Follow these steps to create it:
 
          CustomFields:
             Cases:
-            DestroyCaseAction:
-               Label: Destroy Case Action
-               Category: Custom Case Action
-               Icon: si si-controls-play
-               IsCustomAction: true
+               DestroyCaseAction:
+                  Label: Destroy Case Action
+                  Category: Custom Case Action
+                  Icon: si si-controls-play
+                  IsCustomAction: true
 
       - ``IsCustomAction: true`` is mandatory to inform Portal that it is an action button.
       - For the ``Icon``, please refer to the streamline icon showcase available in Html Dialog Demos on |ivy| Market.
