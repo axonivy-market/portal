@@ -11,8 +11,6 @@ import com.codeborne.selenide.SelenideElement;
 public class ForgotPasswordPage extends TemplatePage {
   private static final String RESULT_MESSAGE_SELECTOR = "span[class='ui-messages-info-summary'], span[class='ui-messages-error-summary']";
 
-  private static final long FORGOT_PASSWORD_TIMEOUT = 60;
-
   private SelenideElement emailTextField;
   private SelenideElement sendButton;
   private TestAccount testAccount;

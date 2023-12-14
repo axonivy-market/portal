@@ -27,7 +27,6 @@ public class ProcessHistoryPage extends TemplatePage {
     return $(".ui-datascroller-list").$$(By.className("ui-datascroller-item")).size();
   }
 
-  @SuppressWarnings("deprecation")
   public SelenideElement getProcessHistoryDialog() {
     $("button[id='process-history-dialog-button']").shouldBe(getClickableCondition()).click();
     $("div[id='process-history-dialog_content']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);

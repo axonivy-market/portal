@@ -15,7 +15,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
-import com.axonivy.portal.selenium.common.ScreenshotUtil;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -283,7 +283,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public List<String> getTaskNoteHasAuthors() {
-    ScreenshotUtil.resizeBrowser(new Dimension(2560, 1600));
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1600));
     List<SelenideElement> noteAuthorElements = $$("td.task-document-author .name-after-avatar")
         .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0));
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());

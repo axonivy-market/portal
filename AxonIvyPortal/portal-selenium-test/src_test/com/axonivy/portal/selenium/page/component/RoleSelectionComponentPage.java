@@ -30,7 +30,6 @@ public class RoleSelectionComponentPage extends TemplatePage {
     return $("[id='item-select-with-ajax-event-component']");
   }
 
-  @SuppressWarnings("deprecation")
   public String selectFirstItemForDefaultRoleSelectionComponent(String keyword) {
     SelenideElement roleElement = selectRoleSelection("default-role-autocomplete", keyword);
     roleElement.shouldBe(getClickableCondition()).click();
@@ -38,7 +37,6 @@ public class RoleSelectionComponentPage extends TemplatePage {
     return roleElement.attr("data-item-value");
   }
 
-  @SuppressWarnings("deprecation")
   public String selectFirstItemForFloatingLabelAndExcludeRoleSelectionComponent(String keyword) {
     SelenideElement roleElement = selectRoleSelection("floating-label-and-exclude-role-autocomplete", keyword);
     roleElement.shouldBe(getClickableCondition()).click();
@@ -46,7 +44,6 @@ public class RoleSelectionComponentPage extends TemplatePage {
     return roleElement.attr("data-item-value");
   }
 
-  @SuppressWarnings("deprecation")
   public String selectFirstItemForRoleFromDefinedRoleSelectionComponent(String keyword) {
     SelenideElement roleElement = selectRoleSelection("role-from-defined-role-autocomplete", keyword);
     roleElement.shouldBe(getClickableCondition()).click();
@@ -54,7 +51,6 @@ public class RoleSelectionComponentPage extends TemplatePage {
     return roleElement.attr("data-item-value");
   }
 
-  @SuppressWarnings("deprecation")
   public String selectFirstItemForAjaxEventRoleSelectionComponent(String keyword) {
     SelenideElement roleElement = selectRoleSelection("item-select-event-for-role-selection", keyword);
     roleElement.shouldBe(getClickableCondition()).click();

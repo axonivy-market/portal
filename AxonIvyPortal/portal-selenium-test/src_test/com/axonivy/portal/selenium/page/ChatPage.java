@@ -33,20 +33,16 @@ public class ChatPage extends TemplatePage {
     }
   }
   
-  @SuppressWarnings("deprecation")
   public void addUserToChatGroup(List<ExpressResponsible> responsibles) {
-//    ensureNoBackgroundRequest();
     waitForElementDisplayed(By.id("chat-assignee-dialog"), true);
     for (ExpressResponsible responsible : responsibles) {
       chooseResponsible(responsible.getResponsibleName(), responsible.getIsGroup());
     }
   }
 
-  @SuppressWarnings("deprecation")
   public  void chooseResponsible(String responsible, boolean isGroup) {
     if (isGroup) {
       selectRoleAssigneeCheckbox();
-//      waitAjaxIndicatorDisappear();
       $(By.cssSelector("input[id$='selection_input']")).sendKeys(responsible);
       waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-role-selection-component:chat-role-selection_panel"), true);
       waitForElementClickableThenClick("span[id='chat-assignee-selection-form:chat-role-selection-component:chat-role-selection_panel'] .gravatar");
@@ -60,7 +56,6 @@ public class ChatPage extends TemplatePage {
     waitForElementClickableThenClick($(By.id("chat-assignee-selection-form:chat-add-assignee-button")));
   }
   
-  @SuppressWarnings("deprecation")
   private void selectRoleAssigneeCheckbox() {
     waitForElementClickableThenClick($(By.xpath(String.format("//label[@for='%s']", "chat-assignee-selection-form:chat-assignee-type:1"))));
     waitForElementDisplayed(By.cssSelector("input[id$='role-selection_input']"), true);
