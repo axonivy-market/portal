@@ -12,7 +12,7 @@ import org.openqa.selenium.Dimension;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.LinkNavigator;
-import com.axonivy.portal.selenium.common.ScreenshotUtil;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
@@ -107,7 +107,7 @@ public class WidgetSupportMultiLanguageTest extends BaseTest {
 
     changeUserLanguage();
     var taskWidget = newDashboardPage.selectTaskWidget(updatedTitle);
-    ScreenshotUtil.resizeBrowser(new Dimension(2560, 1440));
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
     taskWidget.expand().shouldHave(size(1), DEFAULT_TIMEOUT);
   }
 

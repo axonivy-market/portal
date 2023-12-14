@@ -20,7 +20,6 @@ import com.codeborne.selenide.WebDriverRunner;
 
 public class TaskTemplatePage extends TemplatePage {
   private static final String ADHOC_HISTORY_TABLE_CSS_SELECTOR = "div[id*='adhoc-task-history-table'] table>tbody>tr";
-  private static final String CASE_INFO_IFRAME_ID = "i-frame-case-details";
 
   @Override
   protected String getLoadedLocator() {

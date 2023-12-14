@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import com.codeborne.selenide.SelenideElement;
 
 public class PasswordResetErrorPage extends TemplatePage{
-  private static final long PASSWORD_RESET_TIMEOUT = 60;
 
   private SelenideElement goForgotPasswordButton;
 

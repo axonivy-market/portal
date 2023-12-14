@@ -169,7 +169,6 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   private void addRadioOptions(int numberOfOptions) {
     for (int i = 1; i <= numberOfOptions; i++) {
       waitForElementClickableThenClick(By.id("form:create-tabs:one-radio-options:add-radio-option-btn"));
-//      waitAjaxIndicatorDisappear();
       $(By.xpath(String.format("//*[@id='form:create-tabs:one-radio-options_data']/tr[%d]/td/input", i))).sendKeys("Radio " + i);
     }
   }
@@ -182,15 +181,11 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     addCheckboxOptions(numberOfSelection);
     waitForElementClickableThenClick(By.id("form:create-tabs:add-checkbox-btn"));
     $("input[id='form:create-tabs:many-checkbox-label']").shouldBe(Condition.empty);
-//    waitAjaxIndicatorDisappear();
-//    ensureNoBackgroundRequest();
   }
   
   private void addCheckboxOptions(int numberOfSelection) {
     for (int i = 1; i <= numberOfSelection; i++) {
       waitForElementClickableThenClick(By.id("form:create-tabs:many-checkbox-options:add-checkbox-option-btn"));
-//      waitAjaxIndicatorDisappear();
-      $(By.xpath(String.format("//*[@id='form:create-tabs:many-checkbox-options_data']/tr[%d]/td/input", i))).sendKeys("Option " + i);
     }
   }
   
@@ -204,16 +199,12 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     }
     waitForElementClickableThenClick(By.id("form:create-tabs:add-text-area-btn"));
     $(By.id("form:create-tabs:input-area-label")).shouldBe(Condition.empty);
-//    waitAjaxIndicatorDisappear();
-//    ensureNoBackgroundRequest();
   }
   
   public void createCheckboxFieldWithDataProvider(String label) {
     fillDataForCheckboxProvider(label);
     waitForElementClickableThenClick(By.id("form:create-tabs:add-checkbox-btn"));
     $(By.id("form:create-tabs:many-checkbox-label")).shouldBe(Condition.empty);
-//    waitAjaxIndicatorDisappear();
-//    ensureNoBackgroundRequest();
   }
   
   public void fillDataForCheckboxProvider(String label) {
@@ -225,7 +216,6 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     makeSureLoadingIconNotShowUp();
     waitForElementDisplayed(By.id("form:create-tabs:many-checkbox-label"), true);
     $(By.id("form:create-tabs:many-checkbox-label")).shouldBe(Condition.editable).sendKeys(label);
-//    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
   
   public int countNumberOfElementsInPreviewDialog() {

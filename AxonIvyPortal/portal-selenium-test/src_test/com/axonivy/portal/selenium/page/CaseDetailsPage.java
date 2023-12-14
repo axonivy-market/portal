@@ -21,7 +21,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
-import com.axonivy.portal.selenium.common.ScreenshotUtil;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -40,7 +40,6 @@ public class CaseDetailsPage extends TemplatePage {
   private static final String HISTORY_LIST_CSS_SELECTOR = "td.history-note a[id*=':case-histories:case-histories:']";
   private static final String LATEST_HISTORY_LIST_CSS_SELECTOR = "a[id*=':case-histories:case-histories:0:note-link']";
   private static final String GENERAL_INFORMATION_COMPONENT_ID = "div[id='case-details-information-panel']";
-  private static final String ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR = "a[id$=':show-additional-case-details-link']";
   private static final String PROCESS_OVERVIEW_URL_CSS_SELECTOR = "a[id$=':show-process-overview-link']";
   private static final String VIEW_NOTE_DIALOG_SELECTOR = "[id$=':case-histories:view-note-dialog']";
   private static final String RELATED_CASES = "Related Cases";
@@ -917,7 +916,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public TaskDetailsPage openTasksOfCasePage(String taskName) {
     SelenideElement task = caseItem.$(By.cssSelector("div[id$='related-tasks']"));
-    ScreenshotUtil.resizeBrowser(new Dimension(2560, 1440));
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
     Optional<SelenideElement> optionalEle = task.$$(By.cssSelector("td.related-task-name-column")).asFixedIterable().stream().filter(element -> element.getText().equals(taskName)).findFirst();
     if (optionalEle.isPresent()) {
       optionalEle.get().click();

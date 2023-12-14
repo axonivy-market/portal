@@ -8,7 +8,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 public class PasswordResetPage extends TemplatePage{
-  private static final long PASSWORD_RESET_TIMEOUT = 60;
 
   private SelenideElement newPasswordTextField;
   private SelenideElement passwordConfirmationTextField;
@@ -28,14 +27,10 @@ public class PasswordResetPage extends TemplatePage{
 
   public void resetPassword(String newPassword, Boolean strongPasswordEnough) {
     newPasswordTextField.sendKeys(newPassword);
-//    $("[id='password-reset:reset-password-form:new-password_panel']").shouldBe(appear, DEFAULT_TIMEOUT);
     $(".login-footer").click();
-//    $("[id='password-reset:reset-password-form:new-password_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
     passwordConfirmationTextField.sendKeys(newPassword);
     $("[id='password-reset:reset-password-form:password-confirmation_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $(".login-footer").click();
-//    $("[id='password-reset:reset-password-form:password-confirmation_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
-//    resetButton.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     clickByJavaScript(resetButton);
 
     if (strongPasswordEnough) {

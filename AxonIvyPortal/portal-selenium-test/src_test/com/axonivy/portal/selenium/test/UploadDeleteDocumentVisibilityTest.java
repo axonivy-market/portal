@@ -17,7 +17,6 @@ import com.axonivy.portal.selenium.page.TaskWidgetPage;
 @IvyWebTest
 public class UploadDeleteDocumentVisibilityTest extends BaseTest{
 
-  private NewDashboardPage newDashboardPage;
   private CaseWidgetPage casePage;
   private CaseDetailsPage caseDetailsPage;
   private TaskWidgetPage taskWidgetPage;
@@ -81,7 +80,7 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest{
   
   private void initNewDashboardPage(TestAccount account) {
     login(account);
-    newDashboardPage = new NewDashboardPage();
+    new NewDashboardPage();
   }
   
   private String getAbsolutePathToTestFile(String fileName) {

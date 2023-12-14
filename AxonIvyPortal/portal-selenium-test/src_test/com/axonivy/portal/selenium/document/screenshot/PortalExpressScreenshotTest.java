@@ -12,7 +12,7 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.FileHelper;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
-import com.axonivy.portal.selenium.common.ScreenshotUtil;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.AdminSettingsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
@@ -57,30 +57,30 @@ public class PortalExpressScreenshotTest extends ScreenshotBaseTest{
 
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.expandMainMenu();
-    ScreenshotUtil.resizeBrowser(new Dimension(1400, 800));
-    ScreenshotUtil.executeDecorateJs("highlightShowAllProcesses()");
-    ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.EXPRESS_FOLDER + "navigate-to-axon-ivy-express");
+    ScreenshotUtils.resizeBrowser(new Dimension(1400, 800));
+    ScreenshotUtils.executeDecorateJs("highlightShowAllProcesses()");
+    ScreenshotUtils.captureHalfLeftPageScreenShot(ScreenshotUtils.EXPRESS_FOLDER + "navigate-to-axon-ivy-express");
 
     mainMenuPage.closeMainMenu();
     ProcessWidgetPage processWidget = mainMenuPage.openProcessList();
     processWidget.waitUtilProcessWidgetDisplayed();
 
-    ScreenshotUtil.executeDecorateJs("highlightCreateExpressWorkflow()");
-    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.EXPRESS_FOLDER + "start-link-for-axon-ivy-express", new Dimension(1100, 1000));
+    ScreenshotUtils.executeDecorateJs("highlightCreateExpressWorkflow()");
+    ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.EXPRESS_FOLDER + "start-link-for-axon-ivy-express", new Dimension(1100, 1000));
 
     ExpressProcessPage expressProcessPage = processWidget.openExpressPage();
-    ScreenshotUtil.resizeBrowser(new Dimension(1100, 800));
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "express-workflow-process-properties");
+    ScreenshotUtils.resizeBrowser(new Dimension(1100, 800));
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.EXPRESS_FOLDER + "express-workflow-process-properties");
 
-    ScreenshotUtil.executeDecorateJs("highlightExpressTaskResponsible(0)");
+    ScreenshotUtils.executeDecorateJs("highlightExpressTaskResponsible(0)");
     WebElement taskStep1 = expressProcessPage.getDefineTaskStep(0);
-    ScreenshotUtil.captureElementScreenshot(taskStep1, ScreenshotUtil.EXPRESS_FOLDER + "express-able-to-start");
+    ScreenshotUtils.captureElementScreenshot(taskStep1, ScreenshotUtils.EXPRESS_FOLDER + "express-able-to-start");
     expressProcessPage.fillProcessProperties(true, true, "Request new resources process", "Request description");
 
     ExpressResponsible responsible1 = setExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
 
     expressProcessPage.createTask(0, USER_TASK_INDEX, "Request resource", "Task request description", Arrays.asList(responsible1));
-    ScreenshotUtil.resizeBrowser(new Dimension(1100, 1200));
+    ScreenshotUtils.resizeBrowser(new Dimension(1100, 1200));
     refreshPage();
     expressProcessPage.waitUntilExpressProcessDisplay();
     expressProcessPage.addNewTask(0);
@@ -88,29 +88,29 @@ public class PortalExpressScreenshotTest extends ScreenshotBaseTest{
     ExpressResponsible responsible2 = setExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
 
     expressProcessPage.createTask(1, USER_TASK_WITH_EMAIL_INDEX, "Approval request", "Approval request description", Arrays.asList(responsible2));
-    ScreenshotUtil.executeDecorateJs("highlightExpressTaskResponsible(1)");
+    ScreenshotUtils.executeDecorateJs("highlightExpressTaskResponsible(1)");
     WebElement taskStep2 = expressProcessPage.getDefineTaskStep(1);
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskStep2, ScreenshotUtil.EXPRESS_FOLDER + "express-task-responsible", new ScreenshotMargin(20, 20, 0, 20));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskStep2, ScreenshotUtils.EXPRESS_FOLDER + "express-task-responsible", new ScreenshotMargin(20, 20, 0, 20));
 
     refreshPage();
-    ScreenshotUtil.resizeBrowser(new Dimension(1100, 1100));
+    ScreenshotUtils.resizeBrowser(new Dimension(1100, 1100));
     expressProcessPage.waitUntilExpressProcessDisplay();
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "define-express-workflow-process-steps");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.EXPRESS_FOLDER + "define-express-workflow-process-steps");
 
-    ScreenshotUtil.resizeBrowser(new Dimension(1100, 1100));
+    ScreenshotUtils.resizeBrowser(new Dimension(1100, 1100));
     ExpressFormDefinitionPage formDefinition = expressProcessPage.goToFormDefinition();
     formDefinition.createUploadComponent("Upload");
     formDefinition.countElementPrepareToDrag(1);
     formDefinition.moveAllElementToDragAndDrogPanel();
     formDefinition.countElementPrepareToDrag(0);
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "express-workflow-dialog-editor");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.EXPRESS_FOLDER + "express-workflow-dialog-editor");
     
 
     showNewDashboard();
     mainMenuPage = new MainMenuPage();
     processWidget = mainMenuPage.openProcessList();
 
-    ScreenshotUtil.resizeBrowser(new Dimension(1400, 1200));
+    ScreenshotUtils.resizeBrowser(new Dimension(1400, 1200));
     processWidget.openExpressPage();
     expressProcessPage = new ExpressProcessPage();
     expressProcessPage.fillProcessProperties(true, true, "Request new resources process", "Request description");
@@ -123,42 +123,42 @@ public class PortalExpressScreenshotTest extends ScreenshotBaseTest{
     ExpressFormDefinitionPage expressFormDefinition = expressProcessPage.goToFormDefinition();
     expressFormDefinition.nextStep();
     expressFormDefinition.waitForEmailEditorDisplayed();
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "express-workflow-email-editor");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.EXPRESS_FOLDER + "express-workflow-email-editor");
   }
   
   @Test
   public void screenshotExpressManagement() throws IOException {
-    ScreenshotUtil.resizeBrowser(new Dimension(1200, 800));
+    ScreenshotUtils.resizeBrowser(new Dimension(1200, 800));
     NewDashboardPage homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
 
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
     adminSettingsPage.openExpressManagementTab();
-    ScreenshotUtil.executeDecorateJs("highlightManagementExpressTab()");
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_MANAGEMENT_FOLDER + "express-management-tab");
+    ScreenshotUtils.executeDecorateJs("highlightManagementExpressTab()");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.EXPRESS_MANAGEMENT_FOLDER + "express-management-tab");
 
     refreshPage();
     ExpressManagementPage expressManagementPage = adminSettingsPage.openExpressManagementTab();
     expressManagementPage.openImportDialog();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(expressManagementPage.getImportExpressDialog(), ScreenshotUtil.EXPRESS_MANAGEMENT_FOLDER + "import-selection", new ScreenshotMargin(40));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(expressManagementPage.getImportExpressDialog(), ScreenshotUtils.EXPRESS_MANAGEMENT_FOLDER + "import-selection", new ScreenshotMargin(40));
     expressManagementPage.selectJSONFile(FileHelper.getAbsolutePathToTestFile("express-test.json"));
 
-    ScreenshotUtil.executeDecorateJs("highlightDeployExpress()");
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(expressManagementPage.getImportExpressDialog(), ScreenshotUtil.EXPRESS_MANAGEMENT_FOLDER + "import-deployment", new ScreenshotMargin(40));
+    ScreenshotUtils.executeDecorateJs("highlightDeployExpress()");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(expressManagementPage.getImportExpressDialog(), ScreenshotUtils.EXPRESS_MANAGEMENT_FOLDER + "import-deployment", new ScreenshotMargin(40));
 
     expressManagementPage.clickOnDeployExpress();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(expressManagementPage.getImportExpressDialog(), ScreenshotUtil.EXPRESS_MANAGEMENT_FOLDER + "deployment-result", new ScreenshotMargin(40));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(expressManagementPage.getImportExpressDialog(), ScreenshotUtils.EXPRESS_MANAGEMENT_FOLDER + "deployment-result", new ScreenshotMargin(40));
 
     expressManagementPage.clickOnCloseButton();
     expressManagementPage.clickOnSelectAllExpresses();
-    ScreenshotUtil.executeDecorateJs("highlightExportExpress()");
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingContainer(), ScreenshotUtil.EXPRESS_MANAGEMENT_FOLDER + "express-export-tab", new ScreenshotMargin(60));
+    ScreenshotUtils.executeDecorateJs("highlightExportExpress()");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingContainer(), ScreenshotUtils.EXPRESS_MANAGEMENT_FOLDER + "express-export-tab", new ScreenshotMargin(60));
 
-    ScreenshotUtil.executeDecorateJs("cleanHighlightExportExpress()");
+    ScreenshotUtils.executeDecorateJs("cleanHighlightExportExpress()");
     expressManagementPage.clickOnExportButton();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(expressManagementPage.getExportExpressDialog(), ScreenshotUtil.EXPRESS_MANAGEMENT_FOLDER + "export-list-summary", new ScreenshotMargin(60));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(expressManagementPage.getExportExpressDialog(), ScreenshotUtils.EXPRESS_MANAGEMENT_FOLDER + "export-list-summary", new ScreenshotMargin(60));
 
-    ScreenshotUtil.maximizeBrowser();
+    ScreenshotUtils.maximizeBrowser();
     refreshPage();
 
     expressManagementPage = adminSettingsPage.openExpressManagementTab();
@@ -171,28 +171,28 @@ public class PortalExpressScreenshotTest extends ScreenshotBaseTest{
     ProcessWidgetPage processWidget = mainMenu.openProcessList();
     processWidget.waitForStartListShow();
     processWidget.startProcessByName(REQUEST_NEW_RESOURCE_PROCESS);
-    ScreenshotUtil.resizeBrowser(new Dimension(1920, 1080));
+    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
     completeExpressWorkflowTasks(FIRST_COMMENT, SECOND_COMMENT);
 
-    ScreenshotUtil.resizeBrowser(new Dimension(1050, 600));
+    ScreenshotUtils.resizeBrowser(new Dimension(1050, 600));
     showNewDashboard();
     homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
     mainMenu = new MainMenuPage();
     CaseWidgetPage caseWidgetPage = mainMenu.openCaseList();
     SelenideElement actionMenu = caseWidgetPage.openActionStepMenu(0);
-    ScreenshotUtil.executeDecorateJs("highlightShowAdditionalLink()");
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "express-case");
+    ScreenshotUtils.executeDecorateJs("highlightShowAdditionalLink()");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.EXPRESS_FOLDER + "express-case");
 
     caseWidgetPage.openAdditionalCaseDetails(actionMenu);
     caseWidgetPage.switchLastBrowserTab();
 
-    ScreenshotUtil.resizeBrowser(new Dimension(1050, 1000));
+    ScreenshotUtils.resizeBrowser(new Dimension(1050, 1000));
     ExpressBusinessViewPage expressBusinessView = new ExpressBusinessViewPage();
     expressBusinessView.clickOnLegendOfFieldset(1);
     expressBusinessView.clickOnLegendOfFieldset(2);
     expressBusinessView.clickTaskTitle();
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "express-business-summary");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.EXPRESS_FOLDER + "express-business-summary");
   }
 
   public void completeExpressWorkflowTasks(String firstComment, String secondComment) {
