@@ -145,12 +145,6 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     return $("[id='widget-configuration-form:new-widget-configuration-component:filter-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-//  public WebElement openColumnManagementDialog() {
-//    $("div[id$='task-widget-preview:dashboard-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT)
-//        .$("a[id$='column-toggler']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-//    return getColumnManagementDialog().shouldBe(appear, DEFAULT_TIMEOUT);
-//  }
-
   public SelenideElement getColumnManagementDialog() {
     return $("div[id$='column-management-dialog']");
   }
@@ -299,18 +293,4 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     return standardFieldPanel.$("li[data-label='" + field + "']");
   }
 
-//  public SelenideElement getColumnManagementDialog() {
-//    return $("div[id$='column-management-dialog']");
-//  }
-//
-//  public void removeAddedField(String field) {
-//    SelenideElement removeLink = getAddedFieldRemoveLink(field);
-//    removeLink.click();
-//    removeLink.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
-//  }
-//
-//  public SelenideElement getAddedFieldRemoveLink(String field) {
-//    return getColumnManagementDialog().$("tbody td.js-column-field-" + field + " a").shouldBe(getClickableCondition(),
-//        DEFAULT_TIMEOUT);
-//  }
 }
