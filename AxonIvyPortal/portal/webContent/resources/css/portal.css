@@ -1637,11 +1637,22 @@ body.in-dialog .ui-widget-overlay {
   font-size: var(--default-font-size);
   padding-right: 5px;
 }
+
+.notifications-action-button.si {
+  font-size: var(--default-font-size);
+}
+
+.notifications-action-button.fa {
+  font-size: var(--default-font-size);
+  padding-right: 10px;
+}
+
 .notifications-container-top {
   padding:0.3rem;
   padding-left:0px;
   padding-right:0px;
   margin-bottom:0.15em;
+  margin-top:0.15em;
   border-radius: 6px;
 }
 body .notification-scroll>.ui-datascroller-content  {
@@ -1706,6 +1717,9 @@ body .notification-checkbox .ui-chkbox-box {
 .notifications-item-time-since {
   font-size: var(--notification-label-item-font-size);
   padding-left: 1.3rem;
+}
+.time-since {
+  padding-left: 1rem;
 }
 .notifications-title-header {
   flex: 1;
