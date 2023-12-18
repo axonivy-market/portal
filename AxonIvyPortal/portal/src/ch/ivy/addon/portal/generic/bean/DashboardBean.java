@@ -225,10 +225,6 @@ public class DashboardBean implements Serializable {
     buildWidgetModels(selectedDashboard);
   }
 
-  public void startTask(ITask task) throws IOException {
-    FacesContext.getCurrentInstance().getExternalContext().redirect(task.getStartLinkEmbedded().getRelative());
-  }
-
   public String createExtractedTextFromHtml(String text) {
     return HtmlParser.extractTextFromHtml(text);
   }
