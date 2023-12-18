@@ -36,6 +36,7 @@ import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtil;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -233,8 +234,11 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testRelatedTaskStartButtonStatus() {
     createTestingTask();
-    WaitHelper.assertFalseWithWait(() -> detailsPage.isRelatedTaskStartEnabled(ANNUAL_LEAVE_REQUEST_TASK));
-    WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedTaskStartEnabled(SICK_LEAVE_REQUEST_TASK));
+    SelenideElement element1 = detailsPage.getRelatedTaskStart(ANNUAL_LEAVE_REQUEST_TASK);
+    element1.shouldHave(Condition.cssClass("ui-state-disabled"));
+
+    SelenideElement element2 = detailsPage.getRelatedTaskStart(SICK_LEAVE_REQUEST_TASK);
+    element2.shouldNotHave(Condition.cssClass("ui-state-disabled"));
   }
 
   @Test

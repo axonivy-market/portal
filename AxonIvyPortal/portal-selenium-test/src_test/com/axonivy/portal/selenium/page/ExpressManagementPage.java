@@ -3,12 +3,11 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import com.axonivy.portal.selenium.common.WaitHelper;
-import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.CollectionCondition;
 
 public class ExpressManagementPage extends TemplatePage {
 
@@ -28,7 +27,7 @@ public class ExpressManagementPage extends TemplatePage {
 
   public void selectJSONFile(String pathToFile) {
     $("*[id$=':express-process-upload_input']").sendKeys(pathToFile);
-    WaitHelper.waitNumberOfElementsToBe(WebDriverRunner.getWebDriver(), By.cssSelector(".ui-fileupload-upload"), 1);
+    $$(".ui-fileupload-upload").shouldBe(CollectionCondition.size(1), DEFAULT_TIMEOUT);
   }
 
   public void clickOnDeployExpress() {

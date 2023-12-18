@@ -431,7 +431,6 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
       Actions builder = new Actions(WebDriverRunner.getWebDriver());
       Action dragAndDrop = builder.clickAndHold(fromElement).pause(500).moveToElement(toElement).pause(500).release(toElement).build();
       dragAndDrop.perform();
-      makeSureLoadingIconNotShowUp();
     }
   }
 

@@ -27,7 +27,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.portal.selenium.common.NavigationHelper;
-import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -224,8 +223,7 @@ public abstract class TemplatePage extends AbstractPage {
   public LoginPage clickOnLogout() {
     openUserSettingMenu();
     $("[id='logout-setting:logout-menu-item']").shouldBe(appear, DEFAULT_TIMEOUT);
-    WaitHelper.waitForNavigationToLoginPage(
-        () -> $("[id='logout-setting:logout-menu-item']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+    WaitHelper.waitForNavigation(() -> $("[id='logout-setting:logout-menu-item']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
     return new LoginPage();
   }
 
@@ -258,7 +256,6 @@ public abstract class TemplatePage extends AbstractPage {
     if (!isMainMenuOpen()) {
       waitForElementDisplayed(By.id("left-menu"), true);
       $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover();
-      Sleeper.sleep(500);
       waitForElementClickableThenClick($(By.id("user-menu-required-login:toggle-menu")));
     }
     return new MainMenuPage();
@@ -321,7 +318,6 @@ public abstract class TemplatePage extends AbstractPage {
     public SearchResultPage inputSearchKeyword(String keyword) {
       waitForElementDisplayed(By.cssSelector(".topbar-item.search-item"), true);
       waitForElementClickableThenClick("a[id$='global-search-item']");
-//      Sleeper.sleep(500);
       waitForElementDisplayed(By.cssSelector("input[id$='global-search-component:global-search-data']"), true);
       $(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR)).click();
       $(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR)).sendKeys(keyword);
@@ -428,11 +424,6 @@ public abstract class TemplatePage extends AbstractPage {
     return new AdminSettingsPage();
   }
 
-  public void waitForAjaxIndicatorDisappeared() {
-    WaitHelper.waitAttributeToBe(WebDriverRunner.getWebDriver(), By.id("ajax-indicator:ajax-indicator-ajax-indicator_start"), "display",
-        "none");
-  }
-
   public ChangePasswordPage openChangePasswordPage() {
     clickUserMenuItem("change-password-menu-item");
     return new ChangePasswordPage();
@@ -502,10 +493,6 @@ public abstract class TemplatePage extends AbstractPage {
 
   public SelenideElement getGlobalGrowlMessage() {
     return findElementById(PORTAL_GLOBAL_GROWL_ID).find(By.cssSelector(".ui-growl-message"));
-  }
-  
-  public void makeSureLoadingIconNotShowUp() {
-    $(By.id("ajax-indicator:ajax-indicator-ajax-indicator_start")).shouldNotBe(Condition.visible, DEFAULT_TIMEOUT);
   }
   
   public GlobalSearchResultPage inputGlobalSearchKeyword(String keyword) {

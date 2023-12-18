@@ -212,7 +212,6 @@ public class CaseDetailsPage extends TemplatePage {
   public SelenideElement getAddNoteDialog() {
     onClickHistoryIcon();
     var result = $("div[id$=':case-histories:add-note-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
-    waitForAjaxIndicatorDisappeared();
     result.$(".ui-dialog-title").shouldBe(appear, DEFAULT_TIMEOUT).click();
     return result.shouldBe(appear, DEFAULT_TIMEOUT);
   }
@@ -766,10 +765,9 @@ public class CaseDetailsPage extends TemplatePage {
     return eventTypeList;
   }
 
-  public boolean isRelatedTaskStartEnabled(String taskName) {
+  public SelenideElement getRelatedTaskStart(String taskName) {
     Integer index = getTaskRowIndex(taskName);
-    WebElement element = $$("[id$='task-action-component']").get(index);
-    return !element.getAttribute(CLASS).contains("ui-state-disabled");
+    return $$("[id$='task-action-component']").get(index);
   }
 
   public TaskTemplatePage startRelatedTask(String taskName) {
