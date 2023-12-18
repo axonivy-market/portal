@@ -355,7 +355,7 @@ public abstract class TemplatePage extends AbstractPage {
           return TEMPLATE_PAGE_LOCATOR;
         }
       }, GLOBAL_SEARCH_INPUT_SELECTOR, keyword);
-      getSearchInput().sendKeys(Keys.ENTER.toString());
+      getSearchInput().sendKeys(Keys.RETURN.toString());
       try {
         waitForElementDisplayed(By.id("search-results-tabview"), true);
       } catch (Exception e) {
