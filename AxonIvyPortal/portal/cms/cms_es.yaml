@@ -29,7 +29,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       fromBiggerThanTill: '''Hasta'' debe ser posterior a ''Desde''.'
       overlappingAbsence: La ausencia se superpone con otra ausencia.
       userNameRequired: '''Nombre de usuario'' no debe estar vacío.'
-    absences: Ausencias
+    absences: Sustitución de permisos
     addAbsence: Agregar ausencia
     deputies: Sustitutos
     description: Establezca sus vacaciones, enfermedades u otras obligaciones externas que lleven a cualquier ausencia.
@@ -264,6 +264,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showCaseDurationTime: Activar o desactivar la visibilidad de la duración del caso en detalles de caso.
       showErrorLogToConsole: Establecer en true para activar el registro de errores en la consola del navegador
       showGlobalSearch: Para activar o desactivar la visualización de la búsqueda global.
+      showQuickGlobalSearch: Para activar/desactivar la visualización de la búsqueda global rápida.
       showProcessInformation: Cambiar a falso para desactivar el enlace "Más información" en la página de Procesos (modo cuadrícula) y Detalles del caso.
       showTaskDurationTime: Activar o desactivar la visibilidad de la duración de la tarea en detalles de tarea.
       statisticChartScalingInterval: Intervalo en segundos para realizar peticiones periódicas de escalado de gráficos estadísticos. Si el valor del intervalo es inferior a 10, se desactiva el escalado periódico de gráficos estadísticos.
@@ -721,22 +722,22 @@ ch.ivy.addon.portalkit.ui.jsf:
     DashboardConfiguration:
       CreateFromScratch: Crear desde cero
       CreateFromScratchDescription: Cree su propio panel de control desde cero
-      CreateNewPrivateDashboard: Crear un nuevo panel de control privado
-      CreateNewPublicDashboard: Crear un tablero público
-      Description: En esta área, puede configurar los cuadros de mando según sus necesidades.
+      CreateNewPrivateDashboard: Crear un nuevo cuadro de mando personalizado
+      CreateNewPublicDashboard: Crear un dashboard público
+      Description: En esta sección puedes configurar los cuadros de mando según tus necesidades.
       DoNotSupportMobile: La configuración del panel de control no es compatible con los dispositivos móviles.
-      EditPrivateDashboards: Editar sus tableros privados
-      EditPublicDashboards: Editar tableros públicos
+      EditPrivateDashboards: Editar tu cuadro de mando
+      EditPublicDashboards: Editar dashboard públicos
       ExportDashboard: Exportar el cuadro de mandos
-      PrivateDashboard: Cuadros de mando privados
+      PrivateDashboard: Dashboard - Configuración  personalizada
       PrivateDashboardConfiguration: Configuración de tableros privados
-      PublicDashboard: Cuadros de mando públicos
+      PublicDashboard: Dashboard - Configuración pública
       PublicDashboardConfiguration: Configuración de tableros públicos
-      ReorderPrivateDashboards: Reordenar tableros privados
-      ReorderPublicDashboards: Reordenar tableros públicos
+      ReorderPrivateDashboards: Reorganizar tu cuadro de mando
+      ReorderPublicDashboards: Reordenar dashboard públicos
       SelectAction: Seleccione la acción
       SomeThingWentWrong: Algo salió mal
-      Title: Configuración de tablero
+      Title: Configuración Dashboard
     EmptyFilterMessage: No se ha encontrado ningún filtro de widget
     ExternalPageWidget: Página externa
     ExternalPageWidgetIntroduction: Este widget puede mostrar una página web externa.
@@ -815,7 +816,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       import: Importar
       importFromJsonFile: Importar desde archivo JSON
       newWidgetHeader: Nueva {0} configuración del widget
-      pageTitle: Configuración del panel de control
+      pageTitle: Configuración Dashboard
       processConfigurationDescription: Puede configurar su widget en esta área de configuración. Por favor, defina los filtros requeridos así como las propiedades a mostrar.
       processViewerConfigurationDescription: Puede configurar su widget en esta área de configuración. Defina la información que se mostrará.
       tableConfiguration: Configuración de la tabla
@@ -1526,6 +1527,9 @@ Dialogs:
             expressWorkflowName: 'Detalles de negocio del caso #{0}'
         portal:
           generic:
+            GlobalSearch:
+              ViewAllResults: Ver todos los resultados
+              noResultsText: No hay resultados.
             dashboard:
               PortalDashboardConfiguration:
                 NewDashboard: Nuevo panel de control
@@ -1725,6 +1729,7 @@ Labels:
   Task: Tarea
   TaskItemDetail: Detalles de la tarea
   TaskUser-Explain: Lista de usuario separados por coma
+  ViewAllResults: Ver todos los resultados
   adhocTaskRequired: Deberá agregar al menos una tarea.
   disabledUserPrefix: (inactivo)
   title: Flujo de trabajo Ad-hoc de auto servicio

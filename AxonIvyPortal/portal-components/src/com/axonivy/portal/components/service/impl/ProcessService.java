@@ -12,62 +12,43 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.dto.IvyProcessResultDTO;
 import com.axonivy.portal.components.enums.SessionAttribute;
-import com.axonivy.portal.components.service.IProcessService;
 import com.axonivy.portal.components.util.UserUtils;
 
-import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.application.IProcessModel;
-import ch.ivyteam.ivy.application.IProcessModelVersion;
-import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.server.restricted.EngineMode;
-import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
-public class ProcessService implements IProcessService {
+public class ProcessService {
 
   private static final String PORTAL_IN_TEAMS_REQUEST_PATH = "InTeams.ivp";
   private static final String PORTAL_START_REQUEST_PATH = "/DefaultApplicationHomePage.ivp";
   private static ProcessService instance;
-  private static IvyProcessResultDTO ivyProcessResultDTO;
+  private static List<IWebStartable> processes;
   private static List<IWebStartable> customDashboardProcesses;
   private static String sessionUserId;
   private static String userLanguage; 
   public ProcessService() { }
 
-  /**
-   * @deprecated instead use {@link #getInstance()}
-   * @return create a new instance for ProcessService
-   */
-  @Deprecated
-  public static ProcessService newInstance() {
-    return new ProcessService();
-  }
-
   public static ProcessService getInstance() {
     if (instance == null) {
       instance = new ProcessService();
-      ivyProcessResultDTO = new IvyProcessResultDTO();
+      processes = new ArrayList<IWebStartable>();
       customDashboardProcesses = new ArrayList<>();
     }
     return instance;
   }
 
-  @Override
-  public IvyProcessResultDTO findProcesses() {
-    if (isInSession() && isNotEmpty(ivyProcessResultDTO.getProcesses())) {
-      return ivyProcessResultDTO;
+  public List<IWebStartable> findProcesses() {
+    if (isInSession() && isNotEmpty(processes)) {
+      return processes;
     }
     updateUserSessionAtributes();
-    ivyProcessResultDTO = new IvyProcessResultDTO();
+    processes = new ArrayList<>();
     return Sudo.get(() -> {
-      ivyProcessResultDTO.setProcesses(findStartablesWithoutPortalHomeAndMSTeamsProcess(Ivy.session()));
-      return ivyProcessResultDTO;
+      return findStartablesWithoutPortalHomeAndMSTeamsProcess(Ivy.session());
     });
   }
 
@@ -109,49 +90,5 @@ public class ProcessService implements IProcessService {
   private Predicate<? super IWebStartable> filterByCustomDashboardProcess() {
     return start -> BooleanUtils.toBoolean(start.customFields().value(IS_DASHBOARD_PROCESS));
   }
-  public IWebStartable findWebStartableInSecurityContextById(String processId){
-    Predicate<? super IWebStartable> predicate = startable -> StringUtils.endsWith(startable.getId(), processId) && isNotPortalHomeAndMSTeamsProcess(startable);
-    return findStartable(predicate);
-  }
-
-  public IWebStartable findWebStartableInSecurityContextByRelativeLink(String processRelativeLink){
-    Predicate<? super IWebStartable> predicate = startable -> StringUtils.equals(processRelativeLink, startable.getLink().getRelative()) && isNotPortalHomeAndMSTeamsProcess(startable);
-    return findStartable(predicate);
-  }
-  
-  public IWebStartable findCustomDashboardProcessInSecurityContextByProcessId(String processId) {
-    Predicate<? super IWebStartable> predicate = startable -> StringUtils.endsWith(startable.getId(),processId) && 
-        BooleanUtils.toBoolean(startable.customFields().value(IS_DASHBOARD_PROCESS));
-    return findStartable(predicate);
-  }
-  
-  public IWebStartable findCustomDashboardProcessInSecurityContextByRelativePath(String processRelativeLink) {
-    Predicate<? super IWebStartable> predicate = startable -> StringUtils.equals(processRelativeLink, startable.getLink().getRelative()) && 
-        BooleanUtils.toBoolean(startable.customFields().value(IS_DASHBOARD_PROCESS));
-    return findStartable(predicate);
-  }
-  
-  
-  private IWebStartable findStartable(Predicate<? super IWebStartable> predicate) {
-    List<IApplication> applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
-    IWebStartable foundStartable = null;
-    for (IApplication app : applicationsInSecurityContext) {
-      List<IProcessModelVersion> pmvs = app.getProcessModels()
-                                            .stream()
-                                            .map(IProcessModel::getProcessModelVersions)
-                                            .flatMap(List::stream)
-                                            .collect(Collectors.toList());
-      for (IProcessModelVersion pmv : pmvs) {
-        foundStartable = IWorkflowProcessModelVersion.of(pmv)
-            .getAllStartables()
-            .filter(predicate)
-            .findFirst()
-            .orElse(null);
-        if (foundStartable != null) {
-          return foundStartable;
-        }
-      }
-    }
-    return foundStartable;
-  }
+ 
 }

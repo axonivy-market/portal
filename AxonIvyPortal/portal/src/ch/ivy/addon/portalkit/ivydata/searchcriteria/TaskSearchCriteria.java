@@ -64,6 +64,7 @@ public class TaskSearchCriteria {
 
   private List<SearchScopeTaskField> searchScopeTaskFields;
   private boolean isGlobalSearch;
+  private boolean isQuickGlobalSearch;
 
   public TaskQuery createQueryToFindLatestTasks(TaskQuery taskQuery, Date timeStamp) {
     if (isAdminQuery) {
@@ -257,11 +258,20 @@ public class TaskSearchCriteria {
 
     private void appendSortByExpiryDateIfSet(TaskSearchCriteria criteria) {
       if (TaskSortField.EXPIRY_TIME.toString().equalsIgnoreCase(criteria.getSortField())) {
-        if (criteria.isSortDescending()) {
-          query.orderBy().expiryTimestamp().descendingNullFirst();
+        if (criteria.isQuickGlobalSearch()) {
+          if (criteria.isSortDescending()) {
+            query.orderBy().expiryTimestamp().descendingNullLast();
+          } else {
+            query.orderBy().expiryTimestamp().ascendingNullFirst();
+          }
         } else {
-          query.orderBy().expiryTimestamp().ascendingNullLast();
+          if (criteria.isSortDescending()) {
+            query.orderBy().expiryTimestamp().descendingNullFirst();
+          } else {
+            query.orderBy().expiryTimestamp().ascendingNullLast();
+          }
         }
+
       }
     }
     
@@ -498,6 +508,13 @@ public class TaskSearchCriteria {
     this.isGlobalSearch = isGlobalSearch;
   }
 
+  public boolean isQuickGlobalSearch() {
+    return isGlobalSearch;
+  }
+
+  public void setQuickGlobalSearch(boolean isQuickGlobalSearch) {
+    this.isQuickGlobalSearch = isQuickGlobalSearch;
+  }
   public List<SearchScopeTaskField> getSearchScopeTaskFields() {
     return searchScopeTaskFields;
   }

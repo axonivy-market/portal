@@ -49,6 +49,7 @@ public class UserMenuBean implements Serializable {
   private String targetPage = StringUtils.EMPTY;
   private String loggedInUser;
   private boolean isShowGlobalSearch;
+  private boolean isShowQuickGlobalSearch;
 
   public String getLoggedInUser() {
     return loggedInUser;
@@ -70,6 +71,7 @@ public class UserMenuBean implements Serializable {
       };
     }
     isShowGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_GLOBAL_SEARCH);
+    isShowQuickGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_QUICK_GLOBAL_SEARCH);
   }
 
   public boolean isShowCaseDurationTime() {
@@ -97,6 +99,9 @@ public class UserMenuBean implements Serializable {
     return isShowGlobalSearch;
   }
 
+  public boolean getIsShowQuickGlobalSearch() {
+    return isShowQuickGlobalSearch;
+  }
   public long getClientSideTimeout() {
     String clientSideTimeoutInMinute = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT);
     if (StringUtils.isNotBlank(clientSideTimeoutInMinute)) {
