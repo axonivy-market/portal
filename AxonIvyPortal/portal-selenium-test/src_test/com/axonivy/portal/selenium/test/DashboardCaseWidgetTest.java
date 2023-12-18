@@ -7,14 +7,17 @@ import static com.codeborne.selenide.Condition.visible;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.LinkNavigator;
+import com.axonivy.portal.selenium.common.ScreenshotUtil;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -261,4 +264,36 @@ public class DashboardCaseWidgetTest extends BaseTest {
     dashboardPage.isDownloadCompleted();
   }
 
+  @Test
+  public void testCustomActionButton() {
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    newDashboardPage = new NewDashboardPage();
+
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    ScreenshotUtil.resizeBrowser(new Dimension(2560, 1440));
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    caseEditWidget.preview();
+    caseEditWidget.openColumnManagementDialog();
+    
+    caseEditWidget.removeAddedField("id");
+    
+    caseEditWidget.selectCustomType();
+    String customColumn = caseEditWidget.addCustomColumnByName("DestroyCaseAction");
+    caseEditWidget.getCustomField(customColumn).shouldNotBe(Condition.exist);
+    caseEditWidget.saveColumn();
+    caseEditWidget.save();
+    
+    redirectToNewDashBoard();
+    redirectToRelativeLink(createCustomActionCaseExampleUrl);
+
+    caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+    caseWidget.clickOnCustomActionButton(0, customColumn);
+    caseWidget.stateOfFirstCase().shouldHave(text("Destroyed"));
+
+  }
 }
