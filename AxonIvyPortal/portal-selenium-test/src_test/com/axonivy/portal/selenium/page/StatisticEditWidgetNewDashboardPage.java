@@ -4,7 +4,6 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 
-import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
@@ -45,9 +44,7 @@ public class StatisticEditWidgetNewDashboardPage extends TemplatePage {
     $("button[id$='preview-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id='widget-configuration-form:new-widget-configuration-component:preview-statistic']")
       .find("canvas").shouldBe(appear, DEFAULT_TIMEOUT);
-    //Wait for chart animation loaded
-    Sleeper.sleep(1000);
-    $("button[id$='preview-button']").hover();
+    $("button[id$='preview-button']").shouldBe(appear, DEFAULT_TIMEOUT).hover();
   }
 
   public SelenideElement getConfigurationDialog() {

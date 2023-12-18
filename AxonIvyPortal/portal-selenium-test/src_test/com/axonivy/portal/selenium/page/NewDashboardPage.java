@@ -15,7 +15,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.LinkNavigator;
-import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -123,7 +122,6 @@ public class NewDashboardPage extends TemplatePage {
     if (!isMainMenuOpen()) {
       waitForElementDisplayed(By.id("left-menu"), true);
       $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
-//      Sleeper.sleep(500);
       waitForElementClickableThenClick($(By.id("user-menu-required-login:toggle-menu")));
     }
     return new MainMenuPage();
@@ -694,7 +692,6 @@ public class NewDashboardPage extends TemplatePage {
   public SelenideElement getConfigureDashboardMenu() {
     waitPageLoaded();
     $("#user-settings-menu").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    Sleeper.sleep(500);
     $("#user-setting-container").shouldBe(Condition.exist, DEFAULT_TIMEOUT).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return $("#dashboard-configuration").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
@@ -714,8 +711,7 @@ public class NewDashboardPage extends TemplatePage {
   public ElementsCollection getDashboardCollection() {
     if (!$(".js-layout-wrapper").shouldBe(appear, DEFAULT_TIMEOUT).attr("class").contains("layout-static")) {
       $(".layout-menu-container").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).contextClick();
-      $("[id$=':main-navigator:main-menu']").hover();
-      Sleeper.sleep(500);
+      $("[id$=':main-navigator:main-menu']").shouldBe(appear, DEFAULT_TIMEOUT).hover();
       waitForElementClickableThenClick($(By.id("user-menu-required-login:toggle-menu")));
     }
     return $(".layout-menu").shouldBe(appear, DEFAULT_TIMEOUT).$$("li.menu-item-dashboard a.DASHBOARD").shouldHave(CollectionCondition.sizeGreaterThan(0));

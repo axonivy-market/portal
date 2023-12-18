@@ -275,7 +275,7 @@ public class BaseTest {
   }
   
   public void goToCaseNoteHistoryPage(String caseId) {
-    redirectToRelativeLink(String.format(showCaseNoteHistoryUrl, caseId));
+    WaitHelper.waitForNavigation(() -> redirectToRelativeLink(String.format(showCaseNoteHistoryUrl, caseId)));
   }
   
   public void createJSonFile(String jsonFile, String key) {

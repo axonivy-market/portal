@@ -18,6 +18,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.portal.selenium.common.WaitHelper;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
@@ -150,7 +151,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void openTaskDelegationDialog() {
     $("a[id$='task-delegate-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    WaitHelper.waitNumberOfElementsToBe(WebDriverRunner.getWebDriver(), By.cssSelector("div[id$='task-delegate-dialog']"), 1);
+    $$("div[id$='task-delegate-dialog']").shouldBe(CollectionCondition.size(1), DEFAULT_TIMEOUT);
     $("div[id$='task-delegate-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
@@ -203,8 +204,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void waitTillOnlyOneTaskAppear() {
-    WaitHelper.waitNumberOfElementsToBe(WebDriverRunner.getWebDriver(), By.cssSelector("div[id$='task-widget:task-view-container'] ul li"),
-        1);
+    $$("div[id$='task-widget:task-view-container'] ul li").shouldBe(CollectionCondition.size(1), DEFAULT_TIMEOUT);
   }
 
   public String getRelatedCase() {
@@ -414,7 +414,6 @@ public class TaskWidgetPage extends TemplatePage {
   public void closeSaveFilterDialog() {
     $("a[id^='task-widget:filter-save-form']").shouldBe(getClickableCondition()).click();
     $(By.id("task-widget:save-filter-set-dialog")).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
-    waitForAjaxIndicatorDisappeared();
   }
 
   public TaskDetailsPage openTaskDetail(int index) {

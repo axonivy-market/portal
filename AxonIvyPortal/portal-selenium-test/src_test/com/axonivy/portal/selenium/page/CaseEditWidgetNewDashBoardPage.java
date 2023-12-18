@@ -107,7 +107,6 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void save() {
     $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT);
-    makeSureLoadingIconNotShowUp();
     $("button[id$='widget-configuration-save-button']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("button[id$='widget-configuration-save-button']").shouldBe(disappear, DEFAULT_TIMEOUT);

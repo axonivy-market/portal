@@ -10,7 +10,6 @@ import org.openqa.selenium.By;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
-import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.MainMenuPage;
@@ -37,7 +36,6 @@ public class StatisticWidgetTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
-    Sleeper.sleep(2000); // To make Firefox test more stable, make business data updated correctly
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     newDashboardPage = new NewDashboardPage();
