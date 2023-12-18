@@ -510,7 +510,7 @@ public class MenuView implements Serializable {
   }
 
   private IWorkflowSession session() {
-    return session();
+    return Ivy.session();
   }
 
   private record PortalDashboardItemWrapper(List<Dashboard> dashboards) {}
