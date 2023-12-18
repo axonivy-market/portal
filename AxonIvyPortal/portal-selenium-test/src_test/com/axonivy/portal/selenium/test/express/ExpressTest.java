@@ -46,7 +46,6 @@ public class ExpressTest extends BaseTest{
     goToExpressCreationPage();
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
-    expressProcessPage.makeSureLoadingIconNotShowUp();
     ExpressFormDefinitionPage formDefinition = configureExpressProcessWhenMultiApproval(expressProcessPage);
     formDefinition.executeWorkflow();
     executeExpressProcessWhenMultiApproval();

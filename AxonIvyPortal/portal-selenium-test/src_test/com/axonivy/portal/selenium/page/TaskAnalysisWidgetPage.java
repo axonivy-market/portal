@@ -46,7 +46,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
 
   public void clickApplyFilter() {
     $("button[id$='task-widget:apply-filter']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    waitForAjaxIndicatorDisappeared();
   }
 
   private SelenideElement findTaskFilterButton() {

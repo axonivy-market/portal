@@ -12,7 +12,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
-import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
@@ -30,23 +29,8 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     return "[id='form:create-tabs']";
   }
 
-  public void switchToUploadTab() {
-    switchToElementTab("File upload");
-    $("[id='form:create-tabs:create-file-upload-tab']").shouldBe(appear, DEFAULT_TIMEOUT);
-  }
-
-  private void switchToElementTab(String elementName) {
-    $("[id='form:create-tabs']").shouldBe(appear, DEFAULT_TIMEOUT).$$("li.ui-tabs-header").asFixedIterable()
-    .stream().filter(WebElement::isDisplayed)
-    .filter(formElem -> formElem.$("span.form-definition-item-icon").getText().contentEquals(elementName))
-    .findFirst().get().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-
-    waitForAjaxIndicatorDisappeared();
-  }
-
   public void createUploadComponent(String label) {
     waitForElementClickableThenClick(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][5]"));
-    makeSureLoadingIconNotShowUp();
     $("input[id$='form:create-tabs:file-upload-label']").shouldBe(Condition.editable, DEFAULT_TIMEOUT).sendKeys(label);
     $("[id='form:create-tabs:add-upload-file-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("input[id$='form:create-tabs:file-upload-label']").shouldBe(Condition.empty);
@@ -77,7 +61,6 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     //TODO Need to be fixed - Workaround for scroll-bar issue
     JavascriptExecutor jse = (JavascriptExecutor) WebDriverRunner.getWebDriver();
     jse.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-    Sleeper.sleep(200); // Wait for JS executed successfully
 
     var formElementSelector = String.format("[id$='form:available-form-elements:%d:pnl_content']", index);
     // If elements is FileUpload, move to footer
@@ -90,7 +73,6 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     Actions builder = new Actions(WebDriverRunner.getWebDriver());
     Action moveProcessSequence = builder.dragAndDrop($(formElementSelector), $(panelSelector)).build();
     moveProcessSequence.perform();
-    makeSureLoadingIconNotShowUp();
   }
 
   private boolean formElementIsFileUpload(WebElement formElement) {
@@ -109,7 +91,6 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 
   public void waitForEmailEditorDisplayed() {
     $("[id='form:information-email:email-container']").shouldBe(appear, DEFAULT_TIMEOUT);
-    waitForAjaxIndicatorDisappeared();
   }
 
   public WebElement getPageElement() {
@@ -123,7 +104,6 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   
   public void createTextInputField(String label, int inputFieldTypeIndex, boolean isRequired) {
     waitForElementClickableThenClick(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][1]"));
-    makeSureLoadingIconNotShowUp();
     waitForElementDisplayed(By.id("form:create-tabs:create-input-field-tab"), true);
     $(By.id("form:create-tabs:input-field-label")).sendKeys(label);
     chooseInputFieldType(inputFieldTypeIndex);
@@ -158,7 +138,6 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   
   public void createRadioButtonField(String label, int numberOfOption) {
     waitForElementClickableThenClick(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][4]"));
-    makeSureLoadingIconNotShowUp();
     waitForElementDisplayed(By.id("form:create-tabs:one-radio-label"), true);
     addRadioOptions(numberOfOption);
     $("input[id$='form:create-tabs:one-radio-label']").shouldBe(Condition.editable, DEFAULT_TIMEOUT).sendKeys(label);
@@ -175,7 +154,6 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   
   public void createCheckboxField(String label, int numberOfSelection) {
     waitForElementClickableThenClick(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][3]"));
-    makeSureLoadingIconNotShowUp();
     waitForElementDisplayed(By.id("form:create-tabs:many-checkbox-options"), true);
     $("input[id='form:create-tabs:many-checkbox-label']").sendKeys(label);
     addCheckboxOptions(numberOfSelection);
@@ -191,7 +169,6 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   
   public void createTextAreaField(String label, boolean isRequired) {
     waitForElementClickableThenClick(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][2]"));
-    makeSureLoadingIconNotShowUp();
     waitForElementDisplayed(By.id("form:create-tabs:create-input-area-tab"), true);
     $(By.id("form:create-tabs:input-area-label")).sendKeys(label);
     if (isRequired) {
@@ -209,11 +186,9 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   
   public void fillDataForCheckboxProvider(String label) {
     waitForElementClickableThenClick(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][3]"));
-    makeSureLoadingIconNotShowUp();
     waitForElementDisplayed(By.id("form:create-tabs:create-many-checkbox-tab"), true);
     waitForElementClickableThenClick(By.id("form:create-tabs:DataProvider_label"));
     waitForElementClickableThenClick(By.xpath("//*[@data-label='TestDataProviderForPortalExpress']"));
-    makeSureLoadingIconNotShowUp();
     waitForElementDisplayed(By.id("form:create-tabs:many-checkbox-label"), true);
     $(By.id("form:create-tabs:many-checkbox-label")).shouldBe(Condition.editable).sendKeys(label);
   }

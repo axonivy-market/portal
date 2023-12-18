@@ -13,7 +13,6 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -173,7 +172,11 @@ public class StatisticWidgetPage extends TemplatePage {
   }
 
   public void waitForAllChartLoaded() {
-    Sleeper.sleep(5000);// wait for last chart animation finish
+    SelenideElement element = $(
+        "[id$='statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name-container'] a");
+    element.shouldBe(clickable(), DEFAULT_TIMEOUT).click();
+    $("[id$='statistics-widget:statistic-dashboard-widget:chart-details-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("button.ui-button-text-icon-left").shouldBe(appear, DEFAULT_TIMEOUT).click();
   }
 
   public void createTaskByPriorityChart() {

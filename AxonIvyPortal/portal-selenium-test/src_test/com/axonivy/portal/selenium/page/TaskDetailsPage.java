@@ -16,7 +16,6 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
-import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -188,7 +187,6 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public SelenideElement getAddNoteDialog() {
-    waitForAjaxIndicatorDisappeared();
     var noteDialog = $("[id$=':task-notes:add-new-note-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     noteDialog.$(".ui-dialog-title").shouldBe(appear, DEFAULT_TIMEOUT).click();
     return noteDialog;
@@ -217,7 +215,6 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void uploadDocument(String path) {
-    Sleeper.sleep(500);
     uploadDocumentByPath(path);
     $("span[class$='ui-messages-info-summary']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("button[id$=':task-documents:document-upload-close-command']").shouldBe(getClickableCondition()).click();

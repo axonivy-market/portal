@@ -54,7 +54,6 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest{
 
     StatisticWidgetPage statisticWidgetPage = mainMenu.openStatisticPage();
     statisticWidgetPage.switchCreateMode();
-    statisticWidgetPage.waitForAllChartLoaded();
     mainMenu.closeMainMenu();
 
     statisticWidgetPage.createTaskByPriorityChart();
