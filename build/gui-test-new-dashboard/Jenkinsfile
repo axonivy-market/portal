@@ -1,5 +1,5 @@
 pipeline {
-  agent {label 'loc-pc'}
+  agent {label 'danh-pc'}
   
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '60'))
