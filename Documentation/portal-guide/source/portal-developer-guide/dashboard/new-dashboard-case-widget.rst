@@ -178,7 +178,7 @@ two differences:
 
 Custom Action Button Columns
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Portal supports creating custom action buttons for specific needs. By clicking on this buttons, a custom process is triggered.
+Portal supports creating custom action buttons for specific needs. By clicking on these buttons, a custom process is triggered.
 
 Follow these steps to implement it:
 
