@@ -364,11 +364,20 @@ td.dashboard-cases__name span {
 td.dashboard-tasks__description span,
 td.dashboard-tasks__name span,
 td.dashboard-cases__description span,
-td.dashboard-cases__name span {
+td.dashboard-cases__name span,
+td.dashboard-widget-column__custom span,
+td.dashboard-cases__creator span,
+td.dashboard-cases__owner span,
+td.dashboard-tasks__responsible span,
+td.dashboard-cases__category span,
+td.dashboard-tasks__category span {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+    word-wrap: break-word;
+  text-overflow: ellipsis;
+  overflow-wrap: anywhere;
 }
 
 @media screen and (max-width: 40em) {
@@ -637,7 +646,6 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 
 .dashboard-cases--table table,
 .dashboard-tasks--table table {
-  min-width: 100%;
   width: max-content;
 }
 

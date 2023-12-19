@@ -164,6 +164,7 @@ public class DashboardWidgetUtils {
       column.setFormat(DashboardColumnFormat.valueOf(fieldMeta.get().type().name()));
       column.setIsCustomAction(Boolean.valueOf(fieldMeta.get().attribute(IS_CUSTOM_ACTION_ATTRIBUTE)));
       column.setIcon(fieldMeta.get().attribute(ICON_ATTRIBUTE));
+      column.setStyleClass("dashboard-widget-column__custom");
       column.setDescription(fieldMeta.get().description());
       if (column.getIsCustomAction()) {
         column.setSortable(false);
