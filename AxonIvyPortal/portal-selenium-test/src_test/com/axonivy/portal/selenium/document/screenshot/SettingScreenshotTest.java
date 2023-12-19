@@ -20,7 +20,7 @@ import com.axonivy.portal.selenium.page.NewAbsencePage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProjectVersionPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
-import com.axonivy.portal.selenium.util.ConfigurationJsonUtil;
+import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 
 @IvyWebTest
 public class SettingScreenshotTest extends ScreenshotBaseTest {
@@ -131,7 +131,7 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
   public void screenshotUserMenuConfiguration() throws IOException {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
-    ConfigurationJsonUtil.updateJSONSetting("custom-user-menu.json", Variable.USER_MENU);
+    ConfigurationJsonUtils.updateJSONSetting("custom-user-menu.json", Variable.USER_MENU);
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 1000));
     showNewDashboard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();

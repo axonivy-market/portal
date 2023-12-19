@@ -12,7 +12,7 @@ import com.axonivy.portal.selenium.common.FileHelper;
 import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.Variable;
 
-public class ConfigurationJsonUtil {
+public class ConfigurationJsonUtils {
   public static void updateJSONSetting(String fileConfig, Variable variableName) throws IOException {
     String customCaseDetais = FileHelper.getAbsolutePathToTestFile(fileConfig);
     Path path = Paths.get(customCaseDetais);

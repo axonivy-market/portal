@@ -22,7 +22,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.NoteHistoryPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
-import com.axonivy.portal.selenium.util.ConfigurationJsonUtil;
+import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 import com.codeborne.selenide.SelenideElement;
 
 
@@ -223,7 +223,7 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
   }
 
   private TaskDetailsPage setupCustomWidgetByJSONFile(String configFile) throws IOException {
-    ConfigurationJsonUtil.updateJSONSetting(configFile, Variable.TASK_DETAIL);
+    ConfigurationJsonUtils.updateJSONSetting(configFile, Variable.TASK_DETAIL);
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 1200));

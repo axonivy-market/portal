@@ -34,7 +34,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.NoteHistoryPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
-import com.axonivy.portal.selenium.util.ConfigurationJsonUtil;
+import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
@@ -473,17 +473,17 @@ public class CaseDetailsTest extends BaseTest {
   }
 
   public void setupCaseDetailsWith2Panels() throws IOException {
-    ConfigurationJsonUtil.updateJSONSetting("custom-case-details-with-panel.json", Variable.CASE_DETAIL);
+    ConfigurationJsonUtils.updateJSONSetting("custom-case-details-with-panel.json", Variable.CASE_DETAIL);
     detailsPage = goToCaseList().openDetailsOfCaseHasName(CUSTOM_CASE_WIDGET_NAME);
   }
 
   public void setupCaseDetailsWithIFrameURL() throws IOException {
-    ConfigurationJsonUtil.updateJSONSetting("custom-case-details-with-url.json", Variable.CASE_DETAIL);
+    ConfigurationJsonUtils.updateJSONSetting("custom-case-details-with-url.json", Variable.CASE_DETAIL);
     WaitHelper.waitForNavigation(() -> detailsPage = goToCaseList().openDetailsOfCaseHasName(CUSTOM_CASE_WIDGET_NAME));
   }
 
   public void setupCaseDetailsWithIFrameProcess() throws IOException {
-    ConfigurationJsonUtil.updateJSONSetting("custom-case-details.json", Variable.CASE_DETAIL);
+    ConfigurationJsonUtils.updateJSONSetting("custom-case-details.json", Variable.CASE_DETAIL);
     detailsPage = goToCaseList().openDetailsOfCaseHasName(CUSTOM_CASE_WIDGET_NAME);
   }
 
