@@ -29,7 +29,7 @@ import com.axonivy.portal.selenium.page.ProcessViewerWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.StatisticEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
-import com.axonivy.portal.selenium.util.ConfigurationJsonUtil;
+import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 
 @IvyWebTest
 public class DashboardScreenshotTest extends ScreenshotBaseTest{
@@ -270,7 +270,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "news-feed-widget-configuration", new ScreenshotMargin(20));
     newsWidgetPage.save();
 
-    ConfigurationJsonUtil.updateJSONSetting("dashboard-has-newsfeed.json", Variable.DASHBOARD);
+    ConfigurationJsonUtils.updateJSONSetting("dashboard-has-newsfeed.json", Variable.DASHBOARD);
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     
     homePage = new NewDashboardPage();
