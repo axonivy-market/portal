@@ -326,7 +326,7 @@ public abstract class TemplatePage extends AbstractPage {
         waitForElementDisplayed(By.id("search-results-tabview"), true);
       } catch (Error e) {
         System.out.println("Exception when waiting for search page displayed, press Enter again.");
-        getSearchInput().sendKeys(Keys.ENTER.toString());
+        getSearchInput().sendKeys(Keys.RETURN);
       }
       return new SearchResultPage();
     }
@@ -356,8 +356,6 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public TaskWidgetPage selectTaskMenu() {
-//    WaitHelper.waitForNavigation(() -> $(".layout-menu li[role='menuitem'] a.TASK").click());
-//    return new TaskWidgetPage();
     return NavigationHelper.navigateToTaskList();
   }
 
