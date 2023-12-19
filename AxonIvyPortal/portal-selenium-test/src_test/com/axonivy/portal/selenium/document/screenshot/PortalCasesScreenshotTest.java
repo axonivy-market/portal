@@ -19,7 +19,7 @@ import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.axonivy.portal.selenium.test.caze.CaseDetailsTest;
-import com.axonivy.portal.selenium.util.ConfigurationJsonUtil;
+import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 import com.codeborne.selenide.SelenideElement;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -149,7 +149,7 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest{
   }
 
   public CaseDetailsPage setupCustomWidgetByJSONFile(String configFile) throws IOException {
-    ConfigurationJsonUtil.updateJSONSetting(configFile, Variable.CASE_DETAIL);
+    ConfigurationJsonUtils.updateJSONSetting(configFile, Variable.CASE_DETAIL);
     CaseDetailsPage detailsPage = goToCaseList().openDetailsOfCaseHasName(CaseDetailsTest.CUSTOM_CASE_WIDGET_NAME);
     return detailsPage;
   }
