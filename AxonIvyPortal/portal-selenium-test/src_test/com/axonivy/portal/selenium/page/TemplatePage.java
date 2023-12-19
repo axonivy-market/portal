@@ -321,13 +321,8 @@ public abstract class TemplatePage extends AbstractPage {
       waitForElementDisplayed(By.cssSelector("input[id$='global-search-component:global-search-data']"), true);
       $(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR)).click();
       $(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR)).sendKeys(keyword);
-      getSearchInput().sendKeys(Keys.ENTER.toString());
-      try {
-        waitForElementDisplayed(By.id("search-results-tabview"), true);
-      } catch (Error e) {
-        System.out.println("Exception when waiting for search page displayed, press Enter again.");
-        getSearchInput().sendKeys(Keys.RETURN);
-      }
+      getSearchInput().sendKeys(Keys.RETURN);
+      waitForElementDisplayed(By.id("search-results-tabview"), true);
       return new SearchResultPage();
     }
 
