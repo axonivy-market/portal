@@ -1,3 +1,4 @@
+
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -11,6 +12,7 @@ import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 
 public class RoleManagementPage extends TemplatePage {
 
@@ -105,35 +107,35 @@ public class RoleManagementPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':role-management-component:role-management-message_container']"), false);
   }
 
-  public WebElement getEditActionEnableForRole(String roleName) {
+  public SelenideElement getEditActionEnableForRole(String roleName) {
     return findActionForRoleByName(roleName, "edit-role-link");
   }
 
   public void clickOnEditRole(String roleName) {
-    var editLink = getEditActionEnableForRole(roleName);
-    editLink.click();
+    SelenideElement editLink = getEditActionEnableForRole(roleName);
+    editLink.shouldBe(clickable(), DEFAULT_TIMEOUT).click();
     waitForElementDisplayed(getRoleDetailsDialog(), true);
   }
 
-  public WebElement getAssigningUsersActionEnableForRole(String roleName) {
+  public SelenideElement getAssigningUsersActionEnableForRole(String roleName) {
     return findActionForRoleByName(roleName, "assign-users-to-role-link");
   }
 
-  public WebElement findActionForRoleByName(String roleName, String actionId) {
+  public SelenideElement findActionForRoleByName(String roleName, String actionId) {
     for (var role : getRolesOnTheTreeTable()) {
-      var roleNameColumn = role.findElement(By.cssSelector("td.role-name-column span[id$=':role-username']"));
+      var roleNameColumn = role.$(By.cssSelector("td.role-name-column span[id$=':role-username']"));
       if (roleNameColumn.getText().equalsIgnoreCase(roleName)) {
-        return role.findElement(By.cssSelector("td.role-actions-column [id$=':" + actionId + "']"));
+        return role.$(By.cssSelector("td.role-actions-column [id$=':" + actionId + "']"));
       }
     }
     return null;
   }
 
-  private List<WebElement> getRolesOnTheTreeTable() {
-    return getRoleTreeTable().findElements(By.cssSelector("tbody tr.role"));
+  private List<SelenideElement> getRolesOnTheTreeTable() {
+    return getRoleTreeTable().$$(By.cssSelector("tbody tr.role"));
   }
 
-  private WebElement getRoleTreeTable() {
+  private SelenideElement getRoleTreeTable() {
     return $("[id$=':role-management-form:role-tree-table']");
   }
 
@@ -215,7 +217,7 @@ public class RoleManagementPage extends TemplatePage {
     }
   }
 
-  public WebElement getRoleCreationDialog() {
+  public SelenideElement getRoleCreationDialog() {
     return $("[id='admin-setting-component:adminTabView:role-management-component:role-details-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 }
