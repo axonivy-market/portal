@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Selenide.$;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 public class ChangePasswordPage extends TemplatePage {
