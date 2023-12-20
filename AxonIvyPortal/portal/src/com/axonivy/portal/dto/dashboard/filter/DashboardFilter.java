@@ -71,6 +71,7 @@ public class DashboardFilter implements Serializable {
     return filterField instanceof CaseFilterFieldCustomTimestamp;
   }
 
+  @JsonIgnore
   public boolean isFinishedDateField() {
     return filterField instanceof CaseFilterFieldFinishedDate;
   }
