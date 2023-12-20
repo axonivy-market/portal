@@ -516,6 +516,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noRecordsFound: Keine Ergebnisse gefunden.
     notAvailable: N/V
     note: NOTIZ
+    numberFromBiggerThanTo: Nach" muss größer sein als "Von".
     numberOfSelectedFilter: Ausgewählte Filter
     ok: Ok
     'on': am

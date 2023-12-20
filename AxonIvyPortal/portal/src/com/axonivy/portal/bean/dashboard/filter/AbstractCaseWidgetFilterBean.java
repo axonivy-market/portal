@@ -61,7 +61,8 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
    * @return
    */
   private boolean isFilterAvaliable(DashboardFilter filter) {
-    return filterFields.stream().filter(field -> filter.getField().contentEquals(filter.getField())).findFirst().isPresent();
+    return Optional.ofNullable(filter).map(DashboardFilter::getField).isPresent()
+        && filterFields.stream().filter(field -> filter.getField().contentEquals(filter.getField())).findFirst().isPresent();
   }
 
   public List<FilterField> getFilterFields() {
