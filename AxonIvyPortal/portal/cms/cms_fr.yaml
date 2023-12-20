@@ -514,6 +514,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noRecordsFound: Aucun résultat
     notAvailable: '-'
     note: NOTE
+    numberFromBiggerThanTo: L'adresse de destination doit être plus grande que l'adresse de départ.
     numberOfSelectedFilter: filtres sélectionnés
     ok: Ok
     'on': le
