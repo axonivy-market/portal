@@ -366,6 +366,7 @@ td.dashboard-tasks__name span,
 td.dashboard-cases__description span,
 td.dashboard-cases__name span,
 td.dashboard-widget-column__custom span,
+td > .dashboard-widget-column__custom,
 td.dashboard-cases__creator span,
 td.dashboard-cases__owner span,
 td.dashboard-tasks__responsible span,
@@ -375,7 +376,7 @@ td.dashboard-tasks__category span {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-    word-wrap: break-word;
+  word-wrap: break-word;
   text-overflow: ellipsis;
   overflow-wrap: anywhere;
 }
