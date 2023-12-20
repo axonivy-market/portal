@@ -10,7 +10,7 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class NotificationsTest extends BaseTest {
 
   @Override
@@ -40,6 +40,22 @@ public class NotificationsTest extends BaseTest {
     homepage.clickOnlyUnreadDisplayed(notficationsPanel);
     assertEquals(homepage.getNotificationsBadge(), 0);
     homepage.hideNotificationsPanel();
+  }
+  
+  @Test
+  public void testLinkToNotificationSetting() {
+    NewDashboardPage homepage = new NewDashboardPage();
+    homepage.getNotificationsPanel();
+    homepage.clickNotificationSetting();
+    homepage.waitForUserProfileDisplay();
+  }
+  
+  @Test
+  public void testLinkToNotificationFullPage() {
+    NewDashboardPage homepage = new NewDashboardPage();
+    homepage.getNotificationsPanel();
+    homepage.clickNotificationFullPage();
+    homepage.waitForNotificationFullpageDisplay();
   }
 
 }
