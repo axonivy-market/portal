@@ -8,16 +8,19 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.DashboardFilterJsonVersion;
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
-import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.common.search.JsonDashboardConfigurationSearch;
 import com.axonivy.portal.migration.common.visitor.JsonDashboardVisitor;
+import com.axonivy.portal.util.filter.field.FilterField;
+import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 
@@ -35,34 +38,83 @@ public class DashboardCaseWidgetFilterConverter implements IJsonConverter {
       .findFilterableColumns().ifPresent(columns -> {
           columns.elements().forEachRemaining(col -> {
             DashboardStandardCaseColumn field = DashboardStandardCaseColumn.findBy(col.get("field").asText());
-            switch (field) {
-            case CREATED -> {
-              convertDateFilters(initFilterNode(jsonNode),
-                  col.get("userFilterFrom"),
-                  col.get("userFilterTo"),
-                  DashboardStandardCaseColumn.CREATED.getField());
+            if (field == null) {
+              migrateCustomColumn(jsonNode, col);
+            } else {
+              migrateStandardColumn(jsonNode, col, field);
             }
-            case FINISHED -> {
-              convertDateFilters(initFilterNode(jsonNode),
-                  col.get("userFilterFrom"),
-                  col.get("userFilterTo"),
-                  DashboardStandardCaseColumn.FINISHED.getField());
-            }
-            case NAME -> {
-              convertStringFilters(initFilterNode(jsonNode),
-                  col.get("userFilter"),
-                  DashboardStandardCaseColumn.NAME.getField());
-            }
-            case DESCRIPTION -> {
-              convertStringFilters(initFilterNode(jsonNode),
-                  col.get("userFilter"),
-                  DashboardStandardCaseColumn.DESCRIPTION.getField());
-            }
-            default -> {}
-          }
           });
         columns.removeAll();
       });
+  }
+
+  private void migrateCustomColumn(JsonNode jsonNode, JsonNode col) {
+    FilterField filterField = FilterFieldFactory.findBy(col.get("field").asText());
+    if (filterField != null) {
+      DashboardFilter filter = new DashboardFilter();
+      filterField.initFilter(filter);
+      switch (filter.getFilterFormat()) {
+        case STRING -> {
+          convertStringFilters(initFilterNode(jsonNode),
+              col.get("userFilter"),
+              filter.getField(),
+              false);
+        }
+        case TEXT -> {
+          convertStringFilters(initFilterNode(jsonNode),
+              col.get("userFilter"),
+              filter.getField(),
+              false);
+        }
+        case DATE -> {
+          convertDateFilters(initFilterNode(jsonNode),
+              col.get("userFilterFrom"),
+              col.get("userFilterTo"),
+              filter.getField(),
+              false);
+        }
+        case NUMBER -> {
+          convertNumberFilters(initFilterNode(jsonNode),
+              col.get("userFilterFrom"),
+              col.get("userFilterTo"),
+              filter.getField(),
+              false);
+        }
+        default -> {}
+      }
+    }
+  }
+
+  private void migrateStandardColumn(JsonNode jsonNode, JsonNode col, DashboardStandardCaseColumn field) {
+    switch (field) {
+      case CREATED -> {
+        convertDateFilters(initFilterNode(jsonNode),
+            col.get("userFilterFrom"),
+            col.get("userFilterTo"),
+            DashboardStandardCaseColumn.CREATED.getField(),
+            true);
+      }
+      case FINISHED -> {
+        convertDateFilters(initFilterNode(jsonNode),
+            col.get("userFilterFrom"),
+            col.get("userFilterTo"),
+            DashboardStandardCaseColumn.FINISHED.getField(),
+            true);
+      }
+      case NAME -> {
+        convertStringFilters(initFilterNode(jsonNode),
+            col.get("userFilter"),
+            DashboardStandardCaseColumn.NAME.getField(),
+            true);
+      }
+      case DESCRIPTION -> {
+        convertStringFilters(initFilterNode(jsonNode),
+            col.get("userFilter"),
+            DashboardStandardCaseColumn.DESCRIPTION.getField(),
+            true);
+      }
+      default -> {}
+    }
   }
 
   public List<JsonNode> findWidgets(JsonNode dashboard) {
@@ -73,7 +125,7 @@ public class DashboardCaseWidgetFilterConverter implements IJsonConverter {
     return matches;
   }
 
-  private void convertDateFilters(ArrayNode filters, JsonNode filterFrom, JsonNode filterTo, String field) {
+  private void convertDateFilters(ArrayNode filters, JsonNode filterFrom, JsonNode filterTo, String field, boolean isStandardField) {
     boolean isEmptyFilterFrom = filterFrom == null || StringUtils.isBlank(filterFrom.asText());
     boolean isEmptyFilterTo = filterTo == null || StringUtils.isBlank(filterTo.asText());
 
@@ -87,10 +139,11 @@ public class DashboardCaseWidgetFilterConverter implements IJsonConverter {
       }
     });
 
+    DashboardColumnType type = isStandardField ? DashboardColumnType.STANDARD : DashboardColumnType.CUSTOM;
     ObjectNode newFilterNode = filters.addObject();
     newFilterNode.set("field", new TextNode(field));
-    newFilterNode.set("type", new TextNode(FilterFormat.DATE.name()));
-    newFilterNode.set("operator", new TextNode(FilterOperator.BETWEEN.name()));
+    newFilterNode.set("type", new TextNode(type.getType()));
+    newFilterNode.set("operator", new TextNode(FilterOperator.BETWEEN.getOperator()));
 
     if (!isEmptyFilterFrom) {
       newFilterNode.set("from", new TextNode(filterFrom.asText()));
@@ -101,7 +154,7 @@ public class DashboardCaseWidgetFilterConverter implements IJsonConverter {
     }
   }
 
-  private void convertStringFilters(ArrayNode filters, JsonNode filterText, String field) {
+  private void convertStringFilters(ArrayNode filters, JsonNode filterText, String field, boolean isStandardField) {
     if (filterText == null || StringUtils.isBlank(filterText.asText())) {
       return;
     }
@@ -112,13 +165,19 @@ public class DashboardCaseWidgetFilterConverter implements IJsonConverter {
       }
     });
 
+    DashboardColumnType type = isStandardField ? DashboardColumnType.STANDARD : DashboardColumnType.CUSTOM;
     ObjectNode newFilterNode = filters.addObject();
     newFilterNode.set("field", new TextNode(field));
-    newFilterNode.set("type", new TextNode(FilterFormat.TEXT.name()));
-    newFilterNode.set("operator", new TextNode(FilterOperator.CONTAINS.name()));
+    newFilterNode.set("type", new TextNode(type.getType()));
+    newFilterNode.set("operator", new TextNode(FilterOperator.CONTAINS.getOperator()));
 
-    ArrayNode textsNode = newFilterNode.putArray("texts");
+    ArrayNode textsNode = newFilterNode.putArray("values");
     textsNode.add(new TextNode(filterText.asText()));
+  }
+
+  private void convertNumberFilters(ArrayNode filters, JsonNode filterFrom, JsonNode filterTo, String field, boolean isStandardField) {
+    // Currently convert number filters same as convert date filters
+    convertDateFilters(filters, filterFrom, filterTo, field, isStandardField);
   }
 
   private ArrayNode initFilterNode(JsonNode widget) {

@@ -102,7 +102,8 @@
   </h:panelGroup>
 
   <h:panelGroup id="between-dates-panel-and" layout="block"
-    rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}">
+    rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}"
+    styleClass="and-text-panel">
     <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/And')}</span>
   </h:panelGroup>
 

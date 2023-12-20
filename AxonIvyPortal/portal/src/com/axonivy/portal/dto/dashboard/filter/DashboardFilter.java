@@ -8,11 +8,12 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
+import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
-import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCreatedDate;
+import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldFinishedDate;
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomTimestamp;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -57,15 +58,6 @@ public class DashboardFilter implements Serializable {
   private Date toDate;
 
   @JsonIgnore
-  private Number number;
-
-  @JsonIgnore
-  private Number fromNumber;
-
-  @JsonIgnore
-  private Number toNumber;
-
-  @JsonIgnore
   private FilterFormat filterFormat;
 
   @JsonIgnore
@@ -76,12 +68,16 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public boolean isCustomDateField() {
-    return this.filterFormat == FilterFormat.DATE && filterField instanceof CaseFilterFieldCustomTimestamp;
+    return filterField instanceof CaseFilterFieldCustomTimestamp;
+  }
+
+  public boolean isFinishedDateField() {
+    return filterField instanceof CaseFilterFieldFinishedDate;
   }
 
   @JsonIgnore
   public boolean isCreatedDateField() {
-    return this.filterFormat == FilterFormat.DATE && filterField instanceof CaseFilterFieldCreatedDate;
+    return filterField instanceof CaseFilterFieldCreatedDate;
   }
 
   @JsonIgnore
@@ -204,36 +200,6 @@ public class DashboardFilter implements Serializable {
 
   public void setTo(String to) {
     this.to = to;
-  }
-
-  @JsonIgnore
-  public Number getNumber() {
-    return number;
-  }
-
-  @JsonIgnore
-  public void setNumber(Number number) {
-    this.number = number;
-  }
-
-  @JsonIgnore
-  public Number getFromNumber() {
-    return fromNumber;
-  }
-
-  @JsonIgnore
-  public void setFromNumber(Number fromNumber) {
-    this.fromNumber = fromNumber;
-  }
-
-  @JsonIgnore
-  public Number getToNumber() {
-    return toNumber;
-  }
-
-  @JsonIgnore
-  public void setToNumber(Number toNumber) {
-    this.toNumber = toNumber;
   }
 
   public String getValue() {
