@@ -902,4 +902,18 @@ public class NewDashboardPage extends TemplatePage {
   public SelenideElement getFirstImageProcess() {
     return $(".image-process-item-image").shouldBe(Condition.exist, DEFAULT_TIMEOUT);
   }
+  
+  public void clickNotificationSetting() {
+    $("[id='notification-setting']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+  
+  public void waitForUserProfileDisplay() {
+    $("div[id='my-profile-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  public void clickNotificationFullPage() {
+    $("[id='notification-full-page']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+  public void waitForNotificationFullpageDisplay() {
+    $("span[id='notification-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
 }
