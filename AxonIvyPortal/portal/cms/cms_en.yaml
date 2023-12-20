@@ -514,6 +514,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noRecordsFound: No records found.
     notAvailable: N/A
     note: NOTE
+    numberFromBiggerThanTo: '''To'' must be bigger than ''From''.'
     numberOfSelectedFilter: selected filters
     ok: Ok
     'on': 'on'

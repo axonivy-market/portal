@@ -517,6 +517,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noRecordsFound: No se encuentran registros
     notAvailable: N/A
     note: Nota
+    numberFromBiggerThanTo: Para" debe ser mayor que "De".
     numberOfSelectedFilter: Filtros seleccionados
     ok: Ok
     'on': en
