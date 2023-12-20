@@ -1,5 +1,9 @@
 package com.axonivy.portal.util.filter.operator.caze.customfield;
 
+import java.math.BigDecimal;
+
+import org.apache.commons.lang3.math.NumberUtils;
+
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -15,8 +19,8 @@ public class CustomNumberBetweenOperatorHandler {
   }
 
   public CaseQuery buildEqualQuery(DashboardFilter filter) {
-    Number from = filter.getFromNumber();
-    Number to = filter.getToNumber();
+    Number from = BigDecimal.valueOf(NumberUtils.toDouble(filter.getFrom()));
+    Number to = BigDecimal.valueOf(NumberUtils.toDouble(filter.getTo()));
 
     CaseQuery query = CaseQuery.create();
 
@@ -40,8 +44,8 @@ public class CustomNumberBetweenOperatorHandler {
   }
 
   public CaseQuery buildNotEqualQuery(DashboardFilter filter) {
-    Number from = filter.getFromNumber();
-    Number to = filter.getToNumber();
+    Number from = BigDecimal.valueOf(NumberUtils.toDouble(filter.getFrom()));
+    Number to = BigDecimal.valueOf(NumberUtils.toDouble(filter.getTo()));
 
     CaseQuery query = CaseQuery.create();
 

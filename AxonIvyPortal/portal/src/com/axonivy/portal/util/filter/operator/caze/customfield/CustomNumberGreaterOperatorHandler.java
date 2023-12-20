@@ -1,5 +1,10 @@
 package com.axonivy.portal.util.filter.operator.caze.customfield;
 
+import java.math.BigDecimal;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
+
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -15,24 +20,24 @@ public class CustomNumberGreaterOperatorHandler {
   }
 
   public CaseQuery buildGreaterQuery(DashboardFilter filter) {
-    if (filter.getNumber() == null) {
+    if (StringUtils.isBlank(filter.getValue())) {
       return null;
     }
 
     CaseQuery query = CaseQuery.create();
     query.where().customField().numberField(filter.getField())
-      .isGreaterThan(filter.getNumber());
+      .isGreaterThan(BigDecimal.valueOf(NumberUtils.toDouble(filter.getValue())));
     return query;
   }
 
   public CaseQuery buildGreaterOrEqualQuery(DashboardFilter filter) {
-    if (filter.getNumber() == null) {
+    if (StringUtils.isBlank(filter.getValue())) {
       return null;
     }
 
     CaseQuery query = CaseQuery.create();
     query.where().customField().numberField(filter.getField())
-      .isGreaterOrEqualThan(filter.getNumber());
+      .isGreaterOrEqualThan(BigDecimal.valueOf(NumberUtils.toDouble(filter.getValue())));
     return query;
   }
 }

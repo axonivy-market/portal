@@ -1758,6 +1758,10 @@ body .ui-widget.new-widget-dialog__introduction {
   max-width: 3vw;
 }
 
+.dashboard-widget-filter__filter-panel > div.and-text-panel {
+  align-self: center;
+}
+
 body .ui-button.rounded-button.dashboard-widget-filter__remove-filter {
   width: 1.2rem;
   height: 1.2rem;

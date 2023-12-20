@@ -37,8 +37,8 @@ public class WidgetNumberFilterBean implements Serializable {
   }
 
   public void onChangeOperator(DashboardFilter filter) {
-    filter.setFromNumber(null);
-    filter.setToNumber(null);
-    filter.setNumber(null);
+    filter.setFrom(null);
+    filter.setTo(null);
+    filter.setValue(null);
   }
 }
