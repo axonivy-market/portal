@@ -308,6 +308,7 @@ td.dashboard-tasks__name span,
 td.dashboard-cases__description span,
 td.dashboard-cases__name span, 
 td.dashboard-widget-column__custom span,
+td > .dashboard-widget-column__custom,
 td.dashboard-cases__creator span,
 td.dashboard-cases__owner span,
 td.dashboard-tasks__responsible span,
@@ -588,6 +589,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 
 .dashboard-cases--table table,
 .dashboard-tasks--table table {
+  min-width: 100%;
   width: max-content;
 }
 
