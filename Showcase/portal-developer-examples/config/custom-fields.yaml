@@ -76,17 +76,17 @@ CustomFields:
     InvoiceDate:
       Label: InvoiceDate
       Description: InvoiceDate
-      Type: NUMBER
+      Type: TIMESTAMP
       Category: DefaultAdditionalCaseDetails
     InvoiceDueDate:
       Label: InvoiceDueDate
       Description: InvoiceDueDate
-      Type: NUMBER
+      Type: TIMESTAMP
       Category: DefaultAdditionalCaseDetails
     CreatedBillDate:
       Label: CreatedBillDate
       Description: CreatedBillDate
-      Type: NUMBER
+      Type: TIMESTAMP
       Category: DefaultAdditionalCaseDetails
     SupportData:
       Label: SupportData

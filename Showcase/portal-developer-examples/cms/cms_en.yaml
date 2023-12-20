@@ -74,7 +74,7 @@ CustomFields:
       Label: Shipment date
     SupportData:
       Description: Property of Additional Case details page
-      Label: Invoice date
+      Label: Support data
   Categories:
     CustomCaseWidget: Custom CaseWidget
     CustomTaskWidget: Custom TaskWidget

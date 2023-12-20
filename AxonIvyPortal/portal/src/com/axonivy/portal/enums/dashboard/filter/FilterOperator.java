@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.EnumSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import ch.ivyteam.ivy.environment.Ivy;
 
 public enum FilterOperator {
@@ -37,6 +39,11 @@ public enum FilterOperator {
 
   public String getLabel() {
     return Ivy.cms().co(String.format("/Labels/Enums/FilterOperator/%s", this.name()));
+  }
+
+  @JsonValue
+  public String getOperator() {
+    return this.name().toLowerCase();
   }
 
   public static final Set<FilterOperator> DATE_OPERATORS = Collections.unmodifiableSet(EnumSet.of(TODAY, YESTERDAY, IS, IS_NOT, BEFORE, AFTER, BETWEEN, NOT_BETWEEN, CURRENT, LAST, NEXT, EMPTY, NOT_EMPTY));

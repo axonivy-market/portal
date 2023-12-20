@@ -20,22 +20,22 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
   private static final long serialVersionUID = 4672539720688592048L;
 
   protected CaseDashboardWidget widget;
-  protected List<FilterField> filterTypes;
+  protected List<FilterField> filterFields;
 
   public void preRender(CaseDashboardWidget widget) {
     this.widget = widget;
     this.widget.setInConfiguration(true);
-    initFilterTypes();
+    initFilterFields();
     initFilters();
   }
 
-  private void initFilterTypes() {
-    this.filterTypes = FilterFieldFactory.getStandardFilterableFields();
+  private void initFilterFields() {
+    this.filterFields = FilterFieldFactory.getStandardFilterableFields();
 
     // Add custom fields which are selected by user.
     this.widget.getFilterableColumns()
       .stream().filter(col -> col.getType() == DashboardColumnType.CUSTOM)
-      .forEach(customColumn -> this.filterTypes.add(FilterFieldFactory.findBy(customColumn.getField())));
+      .forEach(customColumn -> this.filterFields.add(FilterFieldFactory.findBy(customColumn.getField())));
   }
 
   private void initFilters() {
@@ -44,16 +44,28 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
       return;
     }
 
+    // If the filter available in the filter list, initialize it
     for (DashboardFilter filter : this.widget.getFilters()) {
-      FilterField filterField = FilterFieldFactory.findBy(Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""));
-      if (filterField != null) {
-        filterField.initFilter(filter);
+      if (isFilterAvaliable(filter)) {
+        FilterField filterField = FilterFieldFactory.findBy(Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""));
+        if (filterField != null) {
+          filterField.initFilter(filter);
+        }
       }
     }
   }
 
-  public List<FilterField> getFilterTypes() {
-    return filterTypes;
+  /**
+   * Check if the filter is existing in the filter list or not
+   * @param filter
+   * @return
+   */
+  private boolean isFilterAvaliable(DashboardFilter filter) {
+    return filterFields.stream().filter(field -> filter.getField().contentEquals(filter.getField())).findFirst().isPresent();
+  }
+
+  public List<FilterField> getFilterFields() {
+    return filterFields;
   }
 
   public void onSelectFilter(DashboardFilter filter) {
