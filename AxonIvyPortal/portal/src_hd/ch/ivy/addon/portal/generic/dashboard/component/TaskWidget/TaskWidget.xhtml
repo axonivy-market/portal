@@ -76,7 +76,8 @@
           </h:panelGroup>
           
           <h:panelGroup rendered="#{(column.format eq 'STRING' or column.format eq 'TEXT') and column.field ne 'name'}">
-            <h:outputText value="#{dashboardBean.createParseTextFromHtml(column.display(task))}" styleClass="#{column.fieldStyleClass}" style="#{column.fieldStyle}" />
+            <h:outputText id="custom-column" value="#{dashboardBean.createParseTextFromHtml(column.display(task))}" styleClass="#{column.fieldStyleClass}" style="#{column.fieldStyle}" />
+            <p:tooltip for="custom-column" value="#{column.display(task)}" trackMouse="true" hideEvent="mouseleave click"/>
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.format eq 'TIMESTAMP'}">
