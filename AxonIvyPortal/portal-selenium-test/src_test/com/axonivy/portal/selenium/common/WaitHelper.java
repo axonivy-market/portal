@@ -7,11 +7,13 @@ import java.time.Duration;
 import java.util.function.Supplier;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
 
 public final class WaitHelper {
@@ -38,5 +40,17 @@ public final class WaitHelper {
 
   public static void waitForPresenceOfElementLocatedInFrame(String cssSelector) {
     wait(WebDriverRunner.getWebDriver()).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(cssSelector)));
+  }
+
+  /**
+   * Some UI are the same before and after AJAX, use this method only in that scenario. Ask the team if using this
+   */
+  public static void waitForActionComplete(String cssSelector, Runnable action) {
+    ((JavascriptExecutor) WebDriverRunner.getWebDriver())
+        .executeScript("$('" + cssSelector.replace("\\", "\\\\") + "').css('background-color', 'rgb(250, 0, 0)')");
+    $(cssSelector).getCssValue("background-color");
+    $(cssSelector).shouldHave(Condition.cssValue("background-color", "rgb(250, 0, 0)"));
+    action.run();
+    $(cssSelector).shouldNotHave(Condition.cssValue("background-color", "rgb(250, 0, 0)"));
   }
 }
