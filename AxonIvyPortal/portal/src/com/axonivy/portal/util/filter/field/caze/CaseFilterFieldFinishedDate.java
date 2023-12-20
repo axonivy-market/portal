@@ -1,7 +1,8 @@
 package com.axonivy.portal.util.filter.field.caze;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.enums.dashboard.filter.FilterType;
+import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
+import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateAfterOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateBeforeOperatorHandler;
@@ -13,24 +14,34 @@ import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateNum
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateTodayOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateYesterdayOperatorHandler;
 
-import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public class CaseFilterFieldFinishedDate extends FilterField {
 
-  public CaseFilterFieldFinishedDate() {}
-
-  public CaseFilterFieldFinishedDate(String name) {
-    super(name);
+  public CaseFilterFieldFinishedDate() {
+    super(DashboardStandardCaseColumn.FINISHED.getField());
   }
 
   public String getLabel() {
-    return Ivy.cms().co(String.format("/Labels/Enums/DashboardStandardCaseColumn/%s", "FINISHED"));
+    return DashboardStandardCaseColumn.FINISHED.getLabel();
   }
 
   @Override
   public void initFilter(DashboardFilter filter) {
-    filter.setType(FilterType.DATE);
+    filter.setFilterField(this);
+    filter.setFilterType(DashboardColumnType.STANDARD);
+    filter.setFilterFormat(FilterFormat.DATE);
+    filter.setField(getName());
+  }
+
+  @Override
+  public void addNewFilter(DashboardFilter filter) {
+    initFilter(filter);
+    filter.setOperator(FilterOperator.TODAY);
+    filter.setFromDate(null);
+    filter.setToDate(null);
   }
 
   @Override

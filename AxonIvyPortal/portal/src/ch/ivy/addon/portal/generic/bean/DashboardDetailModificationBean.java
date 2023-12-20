@@ -532,7 +532,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   private Predicate<DashboardFilter> checkValidFilter() {
     return filter -> {
-      return StringUtils.isNotBlank(filter.getField()) && filter.getOperator() != null && filter.getType() != null;
+      return StringUtils.isNotBlank(filter.getField())
+          && filter.getOperator() != null
+          && filter.getFilterType() != null;
     };
   }
 

@@ -6,13 +6,13 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-public class CustomStringIsOperatorHandler {
+public class CustomTextIsOperatorHandler {
 
-  private static CustomStringIsOperatorHandler instance;
+  private static CustomTextIsOperatorHandler instance;
 
-  public static CustomStringIsOperatorHandler getInstance() {
+  public static CustomTextIsOperatorHandler getInstance() {
     if (instance == null) {
-      instance = new CustomStringIsOperatorHandler();
+      instance = new CustomTextIsOperatorHandler();
     }
     return instance;
   }
@@ -24,7 +24,7 @@ public class CustomStringIsOperatorHandler {
     CaseQuery query = CaseQuery.create();
     filter.getValues().forEach(text -> {
       CaseQuery subQuery = CaseQuery.create();
-      subQuery.where().customField().stringField(filter.getField()).isEqualIgnoreCase(text.toLowerCase());
+      subQuery.where().customField().textField(filter.getField()).isEqualIgnoreCase(text.toLowerCase());
       query.where().or(subQuery);
     });
     return query;
@@ -37,7 +37,7 @@ public class CustomStringIsOperatorHandler {
     CaseQuery query = CaseQuery.create();
     filter.getValues().forEach(text -> {
       CaseQuery subQuery = CaseQuery.create();
-      subQuery.where().customField().stringField(filter.getField()).isNotEqualIgnoreCase(text.toLowerCase());
+      subQuery.where().customField().textField(filter.getField()).isNotEqualIgnoreCase(text.toLowerCase());
       query.where().and(subQuery);
     });
     return query;

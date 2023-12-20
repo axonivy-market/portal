@@ -1,12 +1,10 @@
 package com.axonivy.portal.util.filter.field.caze;
 
-import static org.apache.commons.lang3.StringUtils.upperCase;
-
 import java.util.ArrayList;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
-import com.axonivy.portal.enums.dashboard.filter.FilterType;
+import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.operator.caze.description.DescriptionContainsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.description.DescriptionEndWithOperatorHandler;
@@ -14,26 +12,33 @@ import com.axonivy.portal.util.filter.operator.caze.description.DescriptionIsEmp
 import com.axonivy.portal.util.filter.operator.caze.description.DescriptionIsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.description.DescriptionStartWithOperatorHandler;
 
-import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public class CaseFilterFieldDescription extends FilterField {
 
-  public CaseFilterFieldDescription() {}
-
-  public CaseFilterFieldDescription(String name) {
-    super(name);
+  public CaseFilterFieldDescription() {
+    super(DashboardStandardCaseColumn.DESCRIPTION.getField());
   }
 
   public String getLabel() {
-    return Ivy.cms().co(String.format("/Labels/Enums/DashboardStandardCaseColumn/%s", upperCase(getName())));
+    return DashboardStandardCaseColumn.DESCRIPTION.getLabel();
   }
 
   @Override
   public void initFilter(DashboardFilter filter) {
-    filter.setType(FilterType.TEXT);
+    filter.setFilterField(this);
+    filter.setFilterType(DashboardColumnType.STANDARD);
+    filter.setFilterFormat(FilterFormat.TEXT);
+    filter.setField(getName());
+  }
+
+  @Override
+  public void addNewFilter(DashboardFilter filter) {
+    initFilter(filter);
     filter.setOperator(FilterOperator.CONTAINS);
-    filter.setTexts(new ArrayList<>());
+    filter.setValues(new ArrayList<>());
   }
 
   @Override

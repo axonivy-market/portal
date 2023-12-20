@@ -20,6 +20,9 @@ public class FilterFieldDefault extends FilterField {
   public void initFilter(DashboardFilter filter) {}
 
   @Override
+  public void addNewFilter(DashboardFilter filter) {}
+
+  @Override
   public CaseQuery generateFilterQuery(DashboardFilter filter) {
     return null;
   }

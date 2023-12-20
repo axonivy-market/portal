@@ -3,20 +3,18 @@ package com.axonivy.portal.bean.dashboard.filter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+
+import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
-import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 
 @ManagedBean
 @ViewScoped
@@ -29,22 +27,22 @@ public class CaseWidgetUserFilterBean extends AbstractCaseWidgetFilterBean imple
   @Override
   public void preRender(CaseDashboardWidget widget) {
     super.preRender(widget);
+    initUSerFilters();
     originalUserFilters = widget.getUserFilters();
   }
 
-  @Override
-  protected void initFilterTypes() {
-    if (Optional.ofNullable(widget).map(CaseDashboardWidget::getFilterableColumns).isPresent()) {
-      filterTypes = widget.getFilterableColumns().stream()
-          .map(getFilterField())
-          .filter(Objects::nonNull)
-          .collect(Collectors.toUnmodifiableList());
+  private void initUSerFilters() {
+    if (CollectionUtils.isEmpty(Optional.ofNullable(this.widget)
+        .map(CaseDashboardWidget::getUserFilters).get())) {
+      return;
     }
-  }
 
-  private Function<ColumnModel, FilterField> getFilterField() {
-    return column -> FilterFieldFactory
-        .findBy(Optional.ofNullable(column).map(ColumnModel::getField).orElse(""));
+    for (DashboardFilter filter : this.widget.getUserFilters()) {
+      FilterField filterField = FilterFieldFactory.findBy(Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""));
+      if (filterField != null) {
+        filterField.initFilter(filter);
+      }
+    }
   }
 
   @Override

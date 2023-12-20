@@ -1,25 +1,29 @@
-package com.axonivy.portal.util.filter.field.caze;
+package com.axonivy.portal.util.filter.field.caze.custom;
+
+import java.util.ArrayList;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.enums.dashboard.filter.FilterType;
-import com.axonivy.portal.util.filter.field.FilterField;
+import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
+import com.axonivy.portal.util.filter.field.CustomFilterField;
 import com.axonivy.portal.util.filter.operator.caze.customfield.CustomStringContainsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.customfield.CustomStringEndWithOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.customfield.CustomStringIsEmptyOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.customfield.CustomStringIsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.customfield.CustomStringStartWithOperatorHandler;
 
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-public class CaseFilterFieldCustomNumber extends FilterField {
+public class CaseFilterFieldCustomString extends CustomFilterField {
 
   private ICustomFieldMeta customField;
 
-  public CaseFilterFieldCustomNumber() {}
+  public CaseFilterFieldCustomString() {}
 
-  public CaseFilterFieldCustomNumber(ICustomFieldMeta customField) {
-    super(customField.name());
+  public CaseFilterFieldCustomString(ICustomFieldMeta customField) {
+    super(customField.name(), FilterFormat.STRING);
     this.customField = customField;
   }
 
@@ -29,7 +33,17 @@ public class CaseFilterFieldCustomNumber extends FilterField {
 
   @Override
   public void initFilter(DashboardFilter filter) {
-    filter.setType(FilterType.NUMBER);
+    filter.setFilterField(this);
+    filter.setFilterType(DashboardColumnType.CUSTOM);
+    filter.setFilterFormat(FilterFormat.STRING);
+    filter.setField(getName());
+  }
+
+  @Override
+  public void addNewFilter(DashboardFilter filter) {
+    initFilter(filter);
+    filter.setOperator(FilterOperator.CONTAINS);
+    filter.setValues(new ArrayList<>());
   }
 
   @Override
