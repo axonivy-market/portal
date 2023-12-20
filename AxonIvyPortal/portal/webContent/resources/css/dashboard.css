@@ -588,6 +588,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 
 .dashboard-cases--table table,
 .dashboard-tasks--table table {
+  min-width: 100%;
   width: max-content;
 }
 
