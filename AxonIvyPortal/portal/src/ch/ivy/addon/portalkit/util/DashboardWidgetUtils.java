@@ -161,7 +161,6 @@ public class DashboardWidgetUtils {
     if (fieldMeta.isPresent()) {
       column.setHeader(fieldMeta.get().label());
       column.setFormat(DashboardColumnFormat.valueOf(fieldMeta.get().type().name()));
-      column.setStyleClass("dashboard-widget-column__custom");
     } else if (StringUtils.isBlank(column.getHeader())) {
       column.setHeader(field);
     }
