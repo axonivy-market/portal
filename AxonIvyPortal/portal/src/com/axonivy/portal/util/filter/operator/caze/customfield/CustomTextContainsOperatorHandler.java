@@ -6,15 +6,15 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-public class CustomStringContainsOperatorHandler {
+public class CustomTextContainsOperatorHandler {
 
   private static final String LIKE_FORMAT = "%%%s%%";
 
-  private static CustomStringContainsOperatorHandler instance;
+  private static CustomTextContainsOperatorHandler instance;
 
-  public static CustomStringContainsOperatorHandler getInstance() {
+  public static CustomTextContainsOperatorHandler getInstance() {
     if (instance == null) {
-      instance = new CustomStringContainsOperatorHandler();
+      instance = new CustomTextContainsOperatorHandler();
     }
     return instance;
   }
@@ -26,7 +26,7 @@ public class CustomStringContainsOperatorHandler {
     CaseQuery query = CaseQuery.create(); // TODO filterfield correct? business and/or technical cases?
     filter.getValues().forEach(text -> {
       CaseQuery subQuery = CaseQuery.create();
-      subQuery.where().customField().stringField(filter.getField())
+      subQuery.where().customField().textField(filter.getField())
           .isLikeIgnoreCase(String.format(LIKE_FORMAT, text.toLowerCase()));
       query.where().or(subQuery);
     });
@@ -40,7 +40,7 @@ public class CustomStringContainsOperatorHandler {
     CaseQuery query = CaseQuery.create();
     filter.getValues().forEach(text -> {
       CaseQuery subQuery = CaseQuery.create();
-      subQuery.where().customField().stringField(filter.getField())
+      subQuery.where().customField().textField(filter.getField())
           .isNotLikeIgnoreCase(String.format(LIKE_FORMAT, text.toLowerCase()));
       query.where().and(subQuery);
     });

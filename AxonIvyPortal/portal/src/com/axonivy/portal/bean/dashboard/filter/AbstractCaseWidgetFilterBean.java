@@ -1,16 +1,19 @@
 package com.axonivy.portal.bean.dashboard.filter;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
+import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
-import com.axonivy.portal.enums.dashboard.filter.FilterType;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
+import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomNumber;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 
 public abstract class AbstractCaseWidgetFilterBean implements Serializable {
 
@@ -23,6 +26,30 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
     this.widget = widget;
     this.widget.setInConfiguration(true);
     initFilterTypes();
+    initFilters();
+  }
+
+  private void initFilterTypes() {
+    this.filterTypes = FilterFieldFactory.getStandardFilterableFields();
+
+    // Add custom fields which are selected by user.
+    this.widget.getFilterableColumns()
+      .stream().filter(col -> col.getType() == DashboardColumnType.CUSTOM)
+      .forEach(customColumn -> this.filterTypes.add(FilterFieldFactory.findBy(customColumn.getField())));
+  }
+
+  private void initFilters() {
+    if (CollectionUtils.isEmpty(Optional.ofNullable(this.widget)
+        .map(CaseDashboardWidget::getFilters).get())) {
+      return;
+    }
+
+    for (DashboardFilter filter : this.widget.getFilters()) {
+      FilterField filterField = FilterFieldFactory.findBy(Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""));
+      if (filterField != null) {
+        filterField.initFilter(filter);
+      }
+    }
   }
 
   public List<FilterField> getFilterTypes() {
@@ -30,30 +57,24 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
   }
 
   public void onSelectFilter(DashboardFilter filter) {
-    String field = filter.getField();
+    String field = Optional.ofNullable( filter.getFilterField()).map(FilterField::getName).orElse(null);
     FilterField filterField = FilterFieldFactory.findBy(field);
-    filterField.initFilter(filter);
-    switch (field) {
-      case "startTimestamp" -> initDateFilter(filter);
-      case "endTimestamp" -> initDateFilter(filter);
-      case "name" -> initTextFilter(filter);
-      case "description" -> initTextFilter(filter);
-      default -> {
-      }
-    };
+
+    if (filterField == null) {
+      return;
+    }
+
+    filterField.addNewFilter(filter);
+    initCustomFieldNumberPattern(filter, field, filterField);
   }
 
-  private void initDateFilter(DashboardFilter filter) {
-    filter.setType(FilterType.DATE);
+  private void initCustomFieldNumberPattern(DashboardFilter filter, String field, FilterField filterField) {
+    if (filterField instanceof CaseFilterFieldCustomNumber) {
+      ColumnModel column = widget.getFilterableColumns().stream()
+          .filter(col -> col.getField().contentEquals(field)).findFirst().orElse(new ColumnModel());
+      filter.setNumberPattern(column.getPattern());
+    }
   }
-
-  private void initTextFilter(DashboardFilter filter) {
-    filter.setType(FilterType.TEXT);
-    filter.setOperator(FilterOperator.CONTAINS);
-    filter.setTexts(new ArrayList<>());
-  }
-
-  protected abstract void initFilterTypes();
 
   public abstract void removeFilter(CaseDashboardWidget widget, DashboardFilter filter);
 

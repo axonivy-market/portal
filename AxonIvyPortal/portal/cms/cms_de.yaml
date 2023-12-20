@@ -1726,15 +1726,21 @@ Labels:
       CURRENT: Aktuell
       EMPTY: Ist leer
       END_WITH: Endet mit
+      EQUAL: Gleichberechtigt
+      GREATER: Greater
+      GREATER_OR_EQUAL: Greater or equal
       IN: Unter
       IS: Ist
       IS_NOT: Ist nicht
       LAST: In den letzten
+      LESS: Less
+      LESS_OR_EQUAL: Less or equal
       NEXT: Innerhalb der nächsten
       NOT_BETWEEN: Nicht zwischen
       NOT_CONTAINS: Enthält nicht
       NOT_EMPTY: Ist nicht leer
       NOT_END_WITH: Endet nicht mit
+      NOT_EQUAL: Nicht gleich
       NOT_IN: Nicht in
       NOT_START_WITH: Beginnt nicht mit
       START_WITH: Beginnt mit

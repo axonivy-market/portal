@@ -1722,15 +1722,20 @@ Labels:
       CURRENT: Actuel
       EMPTY: Est vide
       END_WITH: Se termine par
+      EQUAL: Égalité
+      GREATER_OR_EQUAL: Greater or equal
       IN: En
       IS: Est
       IS_NOT: N'est pas
       LAST: Au cours des dernières
+      LESS: Less
+      LESS_OR_EQUAL: Less or equal
       NEXT: Dans les prochains
       NOT_BETWEEN: Pas entre
       NOT_CONTAINS: Ne contient pas
       NOT_EMPTY: N'est pas vide
       NOT_END_WITH: Ne se termine pas par
+      NOT_EQUAL: Pas d'égalité
       NOT_IN: Pas dans
       NOT_START_WITH: Ne commence pas par
       START_WITH: Commence par
