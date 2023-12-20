@@ -1,8 +1,9 @@
-package com.axonivy.portal.util.filter.field.caze;
+package com.axonivy.portal.util.filter.field.caze.custom;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.enums.dashboard.filter.FilterType;
-import com.axonivy.portal.util.filter.field.FilterField;
+import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
+import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+import com.axonivy.portal.util.filter.field.CustomFilterField;
 import com.axonivy.portal.util.filter.operator.caze.customfield.CustomTimestampAfterOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.customfield.CustomTimestampBeforeOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.customfield.CustomTimestampBetweenOperatorHandler;
@@ -13,17 +14,18 @@ import com.axonivy.portal.util.filter.operator.caze.customfield.CustomTimestampN
 import com.axonivy.portal.util.filter.operator.caze.customfield.CustomTimestampTodayOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.customfield.CustomTimestampYesterdayOperatorHandler;
 
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-public class CaseFilterFieldCustomTimestamp extends FilterField {
+public class CaseFilterFieldCustomTimestamp extends CustomFilterField {
 
   private ICustomFieldMeta customField;
 
   public CaseFilterFieldCustomTimestamp() {}
 
   public CaseFilterFieldCustomTimestamp(ICustomFieldMeta customField) {
-    super(customField.name());
+    super(customField.name(), FilterFormat.DATE);
     this.customField = customField;
   }
 
@@ -33,7 +35,18 @@ public class CaseFilterFieldCustomTimestamp extends FilterField {
 
   @Override
   public void initFilter(DashboardFilter filter) {
-    filter.setType(FilterType.DATE);
+    filter.setFilterField(this);
+    filter.setFilterType(DashboardColumnType.CUSTOM);
+    filter.setFilterFormat(FilterFormat.DATE);
+    filter.setField(getName());
+  }
+
+  @Override
+  public void addNewFilter(DashboardFilter filter) {
+    initFilter(filter);
+    filter.setOperator(FilterOperator.TODAY);
+    filter.setFromDate(null);
+    filter.setToDate(null);
   }
 
   @Override

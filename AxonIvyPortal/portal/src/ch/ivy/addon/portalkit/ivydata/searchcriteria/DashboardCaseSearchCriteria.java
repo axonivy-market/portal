@@ -72,15 +72,17 @@ public class DashboardCaseSearchCriteria {
     }
 
     for (DashboardFilter filter : filterList) {
-      FilterField filterField =
-          FilterFieldFactory.findBy(filter.getField());
-
       if (Optional.ofNullable(filter).map(DashboardFilter::getOperator).isEmpty()) {
         continue;
       }
-      CaseQuery filterQuery = filterField.generateFilterQuery(filter);
-      if (filterQuery != null) {
-        query.where().and(filterQuery);
+
+      FilterField filterField =
+          FilterFieldFactory.findBy(filter.getField());
+      if (filterField != null) {
+        CaseQuery filterQuery = filterField.generateFilterQuery(filter);
+        if (filterQuery != null) {
+          query.where().and(filterQuery);
+        }
       }
     }
   }

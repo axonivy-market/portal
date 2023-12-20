@@ -1,7 +1,8 @@
 package com.axonivy.portal.util.filter.field.caze;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.enums.dashboard.filter.FilterType;
+import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
+import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateAfterOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateBeforeOperatorHandler;
@@ -12,25 +13,34 @@ import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateNumbe
 import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateTodayOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateYesterdayOperatorHandler;
 
-import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public class CaseFilterFieldCreatedDate extends FilterField {
 
-  public CaseFilterFieldCreatedDate() {}
-
-  public CaseFilterFieldCreatedDate(String name) {
-    super(name);
+  public CaseFilterFieldCreatedDate() {
+    super(DashboardStandardCaseColumn.CREATED.getField());
   }
 
   public String getLabel() {
-    // TODO filterfield how to improve, new CMS?
-    return Ivy.cms().co(String.format("/Labels/Enums/DashboardStandardCaseColumn/%s", "CREATED"));
+    return DashboardStandardCaseColumn.CREATED.getLabel();
   }
 
   @Override
   public void initFilter(DashboardFilter filter) {
-    filter.setType(FilterType.DATE);
+    filter.setFilterField(this);
+    filter.setFilterType(DashboardColumnType.STANDARD);
+    filter.setFilterFormat(FilterFormat.DATE);
+    filter.setField(getName());
+  }
+
+  @Override
+  public void addNewFilter(DashboardFilter filter) {
+    initFilter(filter);
+    filter.setOperator(FilterOperator.TODAY);
+    filter.setFromDate(null);
+    filter.setToDate(null);
   }
 
   @Override

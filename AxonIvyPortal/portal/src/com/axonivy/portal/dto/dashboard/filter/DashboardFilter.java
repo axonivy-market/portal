@@ -4,19 +4,21 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
-import com.axonivy.portal.enums.dashboard.filter.FilterType;
+import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCreatedDate;
+import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomTimestamp;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -26,6 +28,26 @@ public class DashboardFilter implements Serializable {
   @JsonIgnore
   public static final String DATE_FORMAT = "MM/dd/yyyy";
 
+  private String field;
+
+  private String from;
+
+  private String to;
+
+  private List<String> values;
+
+  private String value;
+
+  private FilterOperator operator;
+
+  private Long periods;
+
+  private FilterPeriodType periodType;
+
+  @JsonProperty("type")
+  private DashboardColumnType filterType;
+
+  @JsonIgnore
   private FilterField filterField;
 
   @JsonIgnore
@@ -34,49 +56,52 @@ public class DashboardFilter implements Serializable {
   @JsonIgnore
   private Date toDate;
 
-  private String from;
+  @JsonIgnore
+  private Number number;
 
-  private String to;
+  @JsonIgnore
+  private Number fromNumber;
 
-  private FilterType type;
+  @JsonIgnore
+  private Number toNumber;
 
-  private FilterOperator operator;
-
-  private Long periods;
-
-  private FilterPeriodType periodType;
-
-  private List<String> texts;
+  @JsonIgnore
+  private FilterFormat filterFormat;
 
   @JsonIgnore
   private boolean isTemp;
 
   @JsonIgnore
-  public boolean isDate() {
-    return this.type == FilterType.DATE;
+  private String numberPattern;
+
+  @JsonIgnore
+  public boolean isCustomDateField() {
+    return this.filterFormat == FilterFormat.DATE && filterField instanceof CaseFilterFieldCustomTimestamp;
   }
 
   @JsonIgnore
-  public boolean isCreatedDate() {
-    return this.type == FilterType.DATE && filterField instanceof CaseFilterFieldCreatedDate;
+  public boolean isCreatedDateField() {
+    return this.filterFormat == FilterFormat.DATE && filterField instanceof CaseFilterFieldCreatedDate;
   }
 
   @JsonIgnore
-  public boolean isNumber() {
-    return this.type == FilterType.NUMBER;
+  public boolean isNumberField() {
+    return this.filterFormat == FilterFormat.NUMBER;
   }
 
   @JsonIgnore
-  public boolean isText() {
-    return this.type == FilterType.TEXT;
+  public boolean isTextField() {
+    return this.filterFormat == FilterFormat.TEXT || this.filterFormat == FilterFormat.STRING;
   }
 
-  public FilterType getType() {
-    return type;
+  @JsonIgnore
+  public FilterFormat getFilterFormat() {
+    return filterFormat;
   }
 
-  public void setType(FilterType type) {
-    this.type = type;
+  @JsonIgnore
+  public void setFilterFormat(FilterFormat filterFormat) {
+    this.filterFormat = filterFormat;
   }
 
   public FilterOperator getOperator() {
@@ -104,24 +129,21 @@ public class DashboardFilter implements Serializable {
   }
 
   @JsonIgnore
-  public String getField() {
-    return Optional.ofNullable(filterField).map(FilterField::getName).orElse(null);
-  }
-
   public FilterField getFilterField() {
     return filterField;
   }
 
+  @JsonIgnore
   public void setFilterField(FilterField filterField) {
     this.filterField = filterField;
   }
 
-  public List<String> getTexts() {
-    return texts;
+  public List<String> getValues() {
+    return values;
   }
 
-  public void setTexts(List<String> texts) {
-    this.texts = texts;
+  public void setValues(List<String> values) {
+    this.values = values;
   }
 
   @JsonIgnore
@@ -182,5 +204,69 @@ public class DashboardFilter implements Serializable {
 
   public void setTo(String to) {
     this.to = to;
+  }
+
+  @JsonIgnore
+  public Number getNumber() {
+    return number;
+  }
+
+  @JsonIgnore
+  public void setNumber(Number number) {
+    this.number = number;
+  }
+
+  @JsonIgnore
+  public Number getFromNumber() {
+    return fromNumber;
+  }
+
+  @JsonIgnore
+  public void setFromNumber(Number fromNumber) {
+    this.fromNumber = fromNumber;
+  }
+
+  @JsonIgnore
+  public Number getToNumber() {
+    return toNumber;
+  }
+
+  @JsonIgnore
+  public void setToNumber(Number toNumber) {
+    this.toNumber = toNumber;
+  }
+
+  public String getValue() {
+    return value;
+  }
+
+  public void setValue(String value) {
+    this.value = value;
+  }
+
+  @JsonIgnore
+  public String getNumberPattern() {
+    return numberPattern;
+  }
+
+  @JsonIgnore
+  public void setNumberPattern(String numberPattern) {
+    this.numberPattern = numberPattern;
+  }
+
+  public String getField() {
+    return field;
+  }
+
+  public void setField(String field) {
+    this.field = field;
+  }
+
+  public DashboardColumnType getFilterType() {
+    return filterType;
+  }
+
+  public void setFilterType(DashboardColumnType filterType) {
+    this.filterType = filterType;
   }
 }

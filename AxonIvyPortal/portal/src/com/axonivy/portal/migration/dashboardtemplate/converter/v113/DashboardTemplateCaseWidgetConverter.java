@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.DashboardTemplateJsonVersion;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
-import com.axonivy.portal.enums.dashboard.filter.FilterType;
+import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.common.search.JsonWidgetSearch;
 import com.axonivy.portal.migration.common.visitor.JsonDashboardVisitor;
@@ -92,7 +92,7 @@ public class DashboardTemplateCaseWidgetConverter implements IJsonConverter {
 
     ObjectNode newFilterNode = filters.addObject();
     newFilterNode.set("field", new TextNode(field));
-    newFilterNode.set("type", new TextNode(FilterType.DATE.name()));
+    newFilterNode.set("type", new TextNode(FilterFormat.DATE.name()));
     newFilterNode.set("operator", new TextNode(FilterOperator.BETWEEN.name()));
 
     if (!isEmptyFilterFrom) {
@@ -117,7 +117,7 @@ public class DashboardTemplateCaseWidgetConverter implements IJsonConverter {
 
     ObjectNode newFilterNode = filters.addObject();
     newFilterNode.set("field", new TextNode(field));
-    newFilterNode.set("type", new TextNode(FilterType.TEXT.name()));
+    newFilterNode.set("type", new TextNode(FilterFormat.TEXT.name()));
     newFilterNode.set("operator", new TextNode(FilterOperator.CONTAINS.name()));
 
     ArrayNode textsNode = newFilterNode.putArray("texts");
