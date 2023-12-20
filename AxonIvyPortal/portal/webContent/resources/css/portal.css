@@ -1662,6 +1662,10 @@ body .notification-scroll>.ui-datascroller-content  {
 body .notification-scroll>.ui-datascroller-content::-webkit-scrollbar {
   display: none;
 }
+body .notification-full-scroll>.ui-datascroller-content  {
+  border: 0px;
+  padding: 2px;
+}
 body .notification-checkbox .ui-chkbox-box {
   width: 1rem;
   height: 1rem;
@@ -1741,6 +1745,18 @@ body .notification-checkbox .ui-chkbox-box {
   width: 100%;
   margin-left: 15px;
   top: 50%;
+}
+.notifications-group-name-full{
+  position: relative;
+  bottom: 15px;
+}
+.only-unread-toggle{
+  padding-right:10px;
+}
+.unread-container{
+  display:flex;
+  align-items:center;
+  justify-content:end;
 }
 
 i.dashboard-icon-drag-drop {
