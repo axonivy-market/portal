@@ -134,8 +134,8 @@ public class DashboardTaskWidgetTest extends BaseTest {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
     resizeBrowserTo2kResolution();
+    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
     taskEditWidget.changeWidgetTitle(NEW_YOUR_TASK);
     taskEditWidget.filterTaskName(TASK_NUMBER);
     taskEditWidget.clickOnStateToShowDropdown();
