@@ -3,6 +3,7 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 import java.util.List;
 
@@ -248,7 +249,8 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
   
   public SelenideElement getDashboardImportPermission() {
-    return $("div[id$=':dashboard-permission']");
+    return $$("div[id$='0:dashboard-permission']").size() > 0 ? $("div[id$='0:dashboard-permission']")
+        : $("div[id$=':dashboard-permission']");
   }
   
   public void uploadFile(String fileName) {
@@ -257,6 +259,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
   
   public void setPermissions(List<String> permissions) {
+    getDashboardImportPermission().$("button.ui-autocomplete-dropdown").shouldBe(getClickableCondition());
     getDashboardImportPermission().$$("li.ui-state-active").asDynamicIterable().forEach(permission -> {
       permission.$("span.ui-icon-close").shouldBe(getClickableCondition()).click();
     });
