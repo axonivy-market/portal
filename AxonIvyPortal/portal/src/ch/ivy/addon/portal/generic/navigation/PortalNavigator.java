@@ -69,12 +69,11 @@ public final class PortalNavigator extends BaseNavigator{
     String originalUrl = URLEncoder.encode(RequestUtils.getFullURL(request.getHttpServletRequest()), StandardCharsets.ISO_8859_1);
     redirect(String.format("%s?originalUrl=%s", loginPage, originalUrl));
   }
-
+  
   public static String getForgotPasswordUrl() {
     return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(PORTAL_FORGOT_PASSWORD);
   }
-
-
+  
   public static String getPasswordResetUrl(String token, String username) {
     Map<String, String> params = new HashMap<>();
     params.put("token", token);

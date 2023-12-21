@@ -100,6 +100,9 @@
 
             <li><p:link id="project-info-menu-item" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/info')}"
                 onclick="rcProjectInfo(); $('#user-setting-container').click()" /></li>
+            
+            <li><p:link id="mobile-app-item" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/MobileApp')}" rendered="#{userMenuBean.isShowQRCode()}"
+                onclick="PF('mobile-app-dialog').show();" /></li>
 
             <c:forEach var="menu" items="#{userMenuConfigurableBean.menus}" varStatus="status">
               <li><ic:ch.ivy.addon.portalkit.component.UserMenu id="user-menu-setting-#{status.index}" menu="#{menu}"
@@ -135,6 +138,30 @@
         <div class="u-dialog-footer-actions-group">
           <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" id="project-version-close-button" type="button"
             icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('project-info-dialog').hide();" />
+        </div>
+      </p:dialog>
+      
+      <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/MobileApp')}" width="600" 
+        closeOnEscape="true" widgetVar="mobile-app-dialog" id="mobile-app-dialog" resizable="false" modal="true" draggable="false"
+        appendTo="@(body)" dynamic="true" responsive="true" fitViewport="true">
+        <div class="ui-12-g">
+          <div class="ui-12-g">
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/mobile/QRCodeTitle')}"/>
+          </div>
+        </div>
+        <div class="ui-g-12">
+          <div class="ui-g-5">
+            <p:barcode value="#{userMenuBean.getLoginPageURL()}" type="qr" width="200" height="200" />
+          </div>
+          <div class="ui-g-7">
+            <span class="si si-information-circle" />
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/mobile/QRCodeDescription')}" styleClass="MarLeft10"/>
+             
+          </div>
+        </div>
+        <div class="u-dialog-footer-actions-group">
+          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" id="mobile-app-close-button" type="button"
+            icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('mobile-app-dialog').hide();" />
         </div>
       </p:dialog>
 
