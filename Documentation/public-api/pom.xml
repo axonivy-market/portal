@@ -6,7 +6,7 @@
   <version>8.0.0.0-SNAPSHOT</version>
   <properties>
     <build.plugin.version>8.0.7</build.plugin.version>
-    <ivy.engine.version>8.0.34</ivy.engine.version>
+    <ivy.engine.version>8.0.37</ivy.engine.version>
   </properties>
   <distributionManagement>
     <repository>
@@ -76,7 +76,7 @@
           <additionalOptions>
             <additionalOption>-classpath</additionalOption>
             <!--On Windows, replace character : by character ;-->
-            <additionalOption>../../../../../AxonIvyPortal/PortalKit/lib/itextpdf-5.5.13.jar:../../../../../AxonIvyPortal/PortalKit/lib/jsoup-1.10.3.jar:../../../../../AxonIvyPortal/PortalKit/lib/quartz-2.1.1.jar:${standardized.maven.processor.classpath}</additionalOption>
+            <additionalOption>../../../../../AxonIvyPortal/PortalKit/lib/itextpdf-5.5.13.3.jar:../../../../../AxonIvyPortal/PortalKit/lib/jsoup-1.11.3.jar:../../../../../AxonIvyPortal/PortalKit/lib/quartz-2.3.2.jar:${standardized.maven.processor.classpath}</additionalOption>
           </additionalOptions>
           <show>public</show>
           <doclint>none</doclint>
