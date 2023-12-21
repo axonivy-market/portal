@@ -2,6 +2,7 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -15,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.PrimeFaces;
 
+import com.axonivy.portal.components.generic.navigation.BaseNavigator;
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.enums.PortalCustomSignature;
 
@@ -324,5 +326,13 @@ public class UserMenuBean implements Serializable {
       expressStartLink = ExpressProcessService.getInstance().findExpressWorkflowStartLink();
     }
     return expressStartLink;
+  }
+  
+  public String getLoginPageURL() {
+    return BaseNavigator.buildAbsoluteUrl("Start Processes/PortalStart/DefaultLoginPage.ivp", new HashMap<>());
+  }
+  
+  public boolean isShowQRCode() {
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_QR_CODE);
   }
 }
