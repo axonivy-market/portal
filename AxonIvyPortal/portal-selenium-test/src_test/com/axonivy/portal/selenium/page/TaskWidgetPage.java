@@ -213,8 +213,9 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void filterTasksInExpandedModeBy(String keyword, int... expectedNumberOfTasksAfterFiltering) {
     waitForElementDisplayed(By.cssSelector(KEYWORD_FILTER_SELECTOR_EXPANDED_MODE), true);
-    WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR_EXPANDED_MODE);
+    SelenideElement keywordFilter = $(KEYWORD_FILTER_SELECTOR_EXPANDED_MODE);
     keywordFilter.clear();
+    keywordFilter.click();
     keywordFilter.sendKeys(keyword);
     waitForNumberOfTasks(expectedNumberOfTasksAfterFiltering);
   }
@@ -271,8 +272,10 @@ public class TaskWidgetPage extends TemplatePage {
   public void filterByResponsible(String text) {
     waitForElementDisplayed(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"), true);
     waitForElementClickableThenClick($(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']")));
-    $("input[id$='responsible-filter:filter-input-form:responsible_input']").shouldBe(appear, DEFAULT_TIMEOUT).clear();
-    $("input[id$='responsible-filter:filter-input-form:responsible_input']").sendKeys(text);
+    SelenideElement input = $("input[id$='responsible-filter:filter-input-form:responsible_input']");
+    input.shouldBe(appear, DEFAULT_TIMEOUT).clear();
+    input.click();
+    input.sendKeys(text);
     waitForElementClickableThenClick($("span[id$='responsible-filter:filter-input-form:responsible_panel'] .gravatar"));
     waitForElementClickableThenClick($(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']")));
   }
