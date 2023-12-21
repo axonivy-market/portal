@@ -826,6 +826,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfCase: cas
     category: Catégorie
     columnManagement: Gestion des colonnes
+    columnType:
+      CUSTOM: Champ personnalisé
+      CUSTOM_CASE: Champ d'affaire personnalisé
+      STANDARD: Colonne standard
     configuration:
       CustomWidgetExternalLinkWarning: Certains web sites ne sont pas compatibles avec les iframe pour des raisons de sécurité. Veuillez contacter votre administrateur si le web site externe ne fonctionne pas correctement.
       CustomWidgetTitlePlaceholder: Laissez-le vide pour masquer l'en-tête du widget

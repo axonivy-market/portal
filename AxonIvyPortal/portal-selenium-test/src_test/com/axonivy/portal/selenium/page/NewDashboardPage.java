@@ -755,4 +755,8 @@ public class NewDashboardPage extends TemplatePage {
     checkDisplayedCaseWidgetContainer();
     getCaseWidgetTable().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
+  
+  public SelenideElement getFirstImageProcess() {
+    return $(".image-process-item-image").shouldBe(Condition.exist, DEFAULT_TIMEOUT);
+  }
 }
