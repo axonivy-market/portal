@@ -129,7 +129,7 @@ public class GlobalGrowlTest extends BaseTest{
     redirectToRelativeLink(expressStartLink);
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     GlobalSearch globalSearch = expressProcessPage.getGlobalSearch();
-    SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("a");
+    SearchResultPage searchResultPage = globalSearch.inputSearchKeywordForWorkingTask("a");
     assertGrowlMessage(searchResultPage, CANCEL_MESSAGE);
   }
 
