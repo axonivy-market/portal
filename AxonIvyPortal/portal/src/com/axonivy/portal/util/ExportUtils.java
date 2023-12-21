@@ -8,7 +8,7 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 
 public class ExportUtils {
 
-  private final static String CUSTOM_FIELD_FORMAT = "%s__%s__%s";
+  private final static String CUSTOM_FIELD_FORMAT = "%s__%s__%s__%s";
   private final static String START_COLUMN = "start";
   private final static String ACTIONS_COLUMN = "actions";
 
@@ -22,9 +22,10 @@ public class ExportUtils {
     List<String> visibleColumns = new ArrayList<>();
     for (ColumnModel column : columns) {
       if (column.getVisible()) {
-        if (column.getType() == DashboardColumnType.CUSTOM) {
+        if (column.getType() == DashboardColumnType.CUSTOM || column.getType() == DashboardColumnType.CUSTOM_CASE) {
           visibleColumns.add(
-              String.format(CUSTOM_FIELD_FORMAT, column.getFormat().name(), column.getField(), column.getHeader()));
+              String.format(CUSTOM_FIELD_FORMAT, column.getFormat().name(), column.getField(), column.getHeader(),
+                  column.getType()));
         } else {
           visibleColumns.add(column.getField());
         }

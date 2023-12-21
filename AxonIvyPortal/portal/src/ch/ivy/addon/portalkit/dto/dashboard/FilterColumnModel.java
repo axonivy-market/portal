@@ -12,7 +12,7 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonIgnoreProperties({"header", "styleClass", "fieldStyleClass", "style", "fieldStyle", "visible", "sortable",
     "sorted", "sortDescending", "dateFilterFrom", "dateFilterTo", "userDateFilterFrom", "userDateFilterTo",
-    "filterList", "filterListOptions", "userFilterListOptions", "filterType", "type" })
+    "filterList", "filterListOptions", "userFilterListOptions", "filterType"})
 public class FilterColumnModel extends AbstractColumn implements Serializable {
 
   private static final long serialVersionUID = -6624895834973797177L;

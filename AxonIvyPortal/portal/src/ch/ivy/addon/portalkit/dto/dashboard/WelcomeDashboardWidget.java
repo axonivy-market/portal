@@ -34,6 +34,8 @@ public class WelcomeDashboardWidget extends DashboardWidget {
   private String welcomeText;
   @JsonIgnore
   private ContentObject imageContentObject;
+  @JsonIgnore
+  private String internalId;
 
   @JsonIgnore
   public static WelcomeDashboardWidget buildDefaultWidget(String id, String name) {
@@ -170,4 +172,11 @@ public class WelcomeDashboardWidget extends DashboardWidget {
     this.imageContent = imageContent;
   }
 
+  public String getInternalId() {
+    return internalId;
+  }
+
+  public void setInternalId(String internalId) {
+    this.internalId = internalId;
+  }
 }
