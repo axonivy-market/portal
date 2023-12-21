@@ -142,7 +142,7 @@ public class DashboardWidgetUtils {
       }
       if (column.getType() == DashboardColumnType.CUSTOM_CASE) {
         buildCustomColumn(ICustomFieldMeta.cases(), column, field);
-        column.setSortable(false);
+        column.setSortable(null);
       }
       columns.set(i, column);
     }

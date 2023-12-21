@@ -153,6 +153,9 @@ public class ColumnManagementBean implements Serializable {
       columnModel.setFormat(DashboardColumnFormat.valueOf(selectedFieldType.name()));
       columnModel.setPattern(numberFieldPattern);
     }
+    if (this.selectedFieldType == DashboardColumnType.CUSTOM_CASE) {
+      columnModel.setSortable(null);
+    }
     this.columnsBeforeSave.add(columnModel);
     this.fields.remove(columnModel.getField());
     FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
