@@ -144,7 +144,7 @@ The Portal supports custom fields for a case. You can show them on the case widg
 as a column.
 
 Traditional Custom Columns
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You can predefine which column to show, and other attributes such as filter, format, and style. Below is a standard JSON of a custom column.
 
