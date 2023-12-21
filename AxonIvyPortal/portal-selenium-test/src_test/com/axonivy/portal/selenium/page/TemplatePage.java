@@ -319,9 +319,14 @@ public abstract class TemplatePage extends AbstractPage {
       waitForElementDisplayed(By.cssSelector(".topbar-item.search-item"), true);
       waitForElementClickableThenClick("a[id$='global-search-item']");
       waitForElementDisplayed(By.cssSelector("input[id$='global-search-component:global-search-data']"), true);
-      $(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR)).click();
-      $(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR)).sendKeys(keyword);
-      getSearchInput().sendKeys(Keys.RETURN);
+      SelenideElement searchInput = $(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR)).shouldBe(appear, DEFAULT_TIMEOUT);
+      searchInput.click();
+      searchInput.sendKeys(keyword);
+      searchInput.click();
+      searchInput.sendKeys(Keys.RETURN);
+      $("[id$=':search-warning-before-leaving-task-component:search-task-leave-warning-dialog']")
+          .shouldBe(appear, DEFAULT_TIMEOUT).$("[id$=':search-warning-before-leaving-task-component:leave-button']")
+          .shouldBe(clickable(), DEFAULT_TIMEOUT).click();
       waitForElementDisplayed(By.id("search-results-tabview"), true);
       return new SearchResultPage();
     }
