@@ -125,7 +125,8 @@ public class RoleManagementPage extends TemplatePage {
     for (var role : getRolesOnTheTreeTable()) {
       var roleNameColumn = role.$(By.cssSelector("td.role-name-column span[id$=':role-username']"));
       if (roleNameColumn.getText().equalsIgnoreCase(roleName)) {
-        return role.$(By.cssSelector("td.role-actions-column [id$=':" + actionId + "']"));
+        return role.$(By.cssSelector("td.role-actions-column [id$=':" + actionId + "']")).shouldBe(Condition.appear,
+            DEFAULT_TIMEOUT);
       }
     }
     return null;
@@ -174,13 +175,15 @@ public class RoleManagementPage extends TemplatePage {
 
   private void assignUsersToRole(List<String> members) {
     for (var userName : members) {
-      var usersAssignmentInput = $("[id$=':manage-role-details-form:user-assignment-selection:user-selection_input']");
+      var usersAssignmentInput = $("[id$=':manage-role-details-form:user-assignment-selection:user-selection_input']")
+          .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
       usersAssignmentInput.clear();
+      usersAssignmentInput.click();
       usersAssignmentInput.sendKeys(userName);
       waitForElementDisplayed(By.cssSelector("[id$=':manage-role-details-form:user-assignment-selection:user-selection_panel"), true);
       var userSelectionPanel = $("[id$=':manage-role-details-form:user-assignment-selection:user-selection_panel");
-      var userOption = userSelectionPanel.findElements(By.cssSelector(".ui-autocomplete-item.ui-autocomplete-row")).get(0);
-      userOption.click();
+      var userOption = userSelectionPanel.$$(By.cssSelector(".ui-autocomplete-item.ui-autocomplete-row")).get(0);
+      userOption.shouldBe(clickable(), DEFAULT_TIMEOUT).click();
 
       waitForElementDisplayed(By.cssSelector("[id$=':manage-role-details-form:user-assignment-selection:user-selection_panel"), false);
       waitForElementClickableThenClick($(By.cssSelector("button[id$=':manage-role-details-form:add-new-user']")));
@@ -211,7 +214,7 @@ public class RoleManagementPage extends TemplatePage {
 
   private void removeUserOfRole(int index) {
     waitForElementDisplayed(By.cssSelector("[id$=':manage-role-details-form:users-of-role-table_data']"), true);
-    if ($(By.cssSelector("a[id$=':delete-user-link']")).isDisplayed()) {
+    if ($(By.cssSelector("a[id$=':delete-user-link']")).exists()) {
       waitForElementClickableThenClick($$("a[id$=':delete-user-link']").get(index));
       removeUserOfRole(0);
     }
