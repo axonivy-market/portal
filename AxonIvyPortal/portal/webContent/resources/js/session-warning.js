@@ -38,10 +38,6 @@ var PortalSessionWarning = function() {
         iframeContent.addEventListener("mousedown", function (event) {
           updateInteractionStatusInIFrame();
         });
-
-        iframeContent.addEventListener("click", function (event) {
-          updateInteractionStatusInIFrame();
-        });
         
         iframeContent.addEventListener("touchstart", function (event) {
           updateInteractionStatusInIFrame();
