@@ -185,7 +185,7 @@ public class TaskTemplatePage extends TemplatePage {
   public TaskDetailsPage openRelatedTaskInList(String taskName) {
     Integer index = getTaskRowIndex(taskName);
     waitForElementDisplayed(By.cssSelector("td.related-task-name-column"), true);
-    $$("td.related-task-name-column").get(index).click();
+    $$("td.related-task-name-column").get(index).shouldBe(clickable(), DEFAULT_TIMEOUT).click();
     return new TaskDetailsPage();
   }
 

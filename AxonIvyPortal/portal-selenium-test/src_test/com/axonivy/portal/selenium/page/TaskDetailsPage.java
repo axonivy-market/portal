@@ -323,7 +323,8 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public String getTaskNameInDialog() {
-    return $("[id='task-detail-template:task-detail-title-form:task-name-edit-form']").shouldBe(appear, DEFAULT_TIMEOUT).getText();
+    waitForElementDisplayed(By.cssSelector("span.ui-state-disabled span.ui-menuitem-text"), true);
+    return findElementByCssSelector("span.ui-state-disabled span.ui-menuitem-text").getText();
   }
 
   public String getTaskName() {
