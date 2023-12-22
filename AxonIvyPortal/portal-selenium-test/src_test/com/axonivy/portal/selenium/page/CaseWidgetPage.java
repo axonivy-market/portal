@@ -334,7 +334,8 @@ public class CaseWidgetPage extends TemplatePage {
   }
 
   public void clickApplyButton() {
-    waitForElementClickableThenClick($(By.cssSelector(APPLY_BUTTON_CSS_SELECTOR)));
+    waitForElementClickableThenClick($(APPLY_BUTTON_CSS_SELECTOR));
+    $(APPLY_BUTTON_CSS_SELECTOR).shouldBe(disappear);
   }
 
   public void waitUntilCaseCountDifferentThanZero() {
