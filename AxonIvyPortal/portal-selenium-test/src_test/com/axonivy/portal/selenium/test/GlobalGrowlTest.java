@@ -6,11 +6,13 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.DateTimePattern;
 import com.axonivy.portal.selenium.common.NavigationHelper;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.ExpressFormDefinitionPage;
 import com.axonivy.portal.selenium.page.ExpressProcessPage;
@@ -108,6 +110,7 @@ public class GlobalGrowlTest extends BaseTest{
     ExpressResponsible responsible = setExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
     expressProcessPage.createTask(0, 0, "Task 1", "Task 1 description", Arrays.asList(responsible));
     ExpressFormDefinitionPage formDefinition = expressProcessPage.goToFormDefinition();
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
     formDefinition.createTextInputField("Input Text", 0, false);
     formDefinition.countElementPrepareToDrag(1);
     formDefinition.moveAllElementToDragAndDrogPanel();
