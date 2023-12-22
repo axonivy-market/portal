@@ -19,6 +19,7 @@ import com.axonivy.portal.selenium.page.ExpressReviewPage;
 import com.axonivy.portal.selenium.page.ExpressTaskPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.codeborne.selenide.ElementsCollection;
 
 import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
 
@@ -100,25 +101,18 @@ public class ExpressTest extends BaseTest{
     executeApproval("Approved at second level", "Task 3", 1, 0, TestAccount.ADMIN_USER.getFullName());
     login(TestAccount.DEMO_USER);
     
-    String approvalResult = executeReview();
-    assertEquals("Portal Demo User,Approved at first level,Yes,"
-        + TestAccount.DEMO_USER.getFullName() + ",Approved at second level,Yes,"
-        + TestAccount.ADMIN_USER.getFullName() + ",Approved at second level,Yes,"
-        + TestAccount.DEMO_USER.getFullName() + ",Approved at first level,Yes,"
-        + TestAccount.DEMO_USER.getFullName() + ",Approved at second level,Yes,"
-        + TestAccount.ADMIN_USER.getFullName() + ",Approved at second level,Yes", approvalResult);
-    new ExpressEndPage().finish();
-  }
-
-  private String executeReview() {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.startTask(0);
     ExpressReviewPage reviewPage = new ExpressReviewPage();
-    String approvalResult = reviewPage.getApprovalResult();
+    ElementsCollection task2 = reviewPage.getApprovalResults(0);
+    assertEquals("Portal Demo User Approved at first level Yes", task2.get(0).getText());
+    ElementsCollection task3 = reviewPage.getApprovalResults(1);
+    assertEquals("Portal Demo User Approved at second level Yes", task3.get(0).getText());
+    assertEquals("Portal Admin User Approved at second level Yes", task3.get(1).getText());
     reviewPage.finish();
-    return approvalResult;
+    new ExpressEndPage().finish();
   }
-  
+
   private void executeUserTask() {
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterByResponsible(TestAccount.ADMIN_USER.getFullName());
