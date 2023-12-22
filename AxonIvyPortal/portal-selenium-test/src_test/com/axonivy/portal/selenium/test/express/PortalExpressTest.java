@@ -11,10 +11,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.DefaultExpresTaskPage;
 import com.axonivy.portal.selenium.page.ExpressApprovalPage;
@@ -110,6 +112,7 @@ public class PortalExpressTest extends BaseTest{
     expressProcessPage.createTask(0, USER_TASK_INDEX, "Task 1", "Task 1 description", Arrays.asList(responsible1));
 
     ExpressFormDefinitionPage formDefinition = expressProcessPage.goToFormDefinition();
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
     formDefinition.createTextInputField("Input Text", INPUT_TEXT_TYPE_INDEX, false);
     formDefinition.createTextInputField("Input number", INPUT_NUMBER_TYPE_INDEX, true);
     formDefinition.createTextInputField("Input date", INPUT_DATE_TYPE_INDEX, true);
