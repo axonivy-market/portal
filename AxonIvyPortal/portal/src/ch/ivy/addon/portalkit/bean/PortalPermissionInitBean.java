@@ -14,19 +14,15 @@ import ch.ivy.addon.portalkit.security.PortalSecurity;
 import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
 import ch.ivyteam.ivy.process.eventstart.IProcessStartEventBeanRuntime;
 import ch.ivyteam.ivy.process.extension.ProgramConfig;
-import ch.ivyteam.ivy.security.AccessState;
 import ch.ivyteam.ivy.security.IPermission;
-import ch.ivyteam.ivy.security.IPermissionAccess;
 import ch.ivyteam.ivy.security.IPermissionGroup;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.ISecurityContext;
-import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionGroupRepository;
+import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.server.restricted.EngineMode;
 
 public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
-
-  private List<IPermissionAccess> everyBodyPermisisonAccesses;
 
   public PortalPermissionInitBean() {
     super("Init Portal Permissions", "Create Portal permissions if missing");
@@ -36,15 +32,7 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
   public void initialize(IProcessStartEventBeanRuntime eventRuntime, ProgramConfig configuration) {
     super.initialize(eventRuntime, configuration);
     getEventBeanRuntime().poll().disable();
-    initEveryBodyPermissionAccessList();
     initPermissions();
-  }
-
-  private void initEveryBodyPermissionAccessList() {
-    ISecurityMember everybody = ISecurityContext.current().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
-    everyBodyPermisisonAccesses = ISecurityContext.current()
-        .securityDescriptor()
-        .getPermissionAccesses(everybody);
   }
 
   private void initPermissions() {
@@ -95,20 +83,13 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
     return result;
   }
 
-  /**
-   * Grant permission for role Everybody if the permission didn't change by user
-   * 
-   * @param permission
-   * @return the granted permission
-   */
-  private IPermission grantPermission(PortalPermission permission) {
-    if (everyBodyPermisisonAccesses.stream()
-        .filter(access -> access.getPermission().getId() == permission.getPermission().getId())
-        .filter(access -> access.getAccessState() == AccessState.NOT_GRANTED_OR_DENIED)
-        .findFirst().isPresent()) {
-      PortalSecurity.INSTANCE.grantPermissionToEverybody(permission.getPermission().getName());
+  private IPermission createAndGrantPermission(PortalPermission permission) {
+    IPermission iPermission = IPermissionRepository.instance().findByName(permission.getValue());
+    if (Objects.isNull(iPermission)) {
+      iPermission = IPermissionRepository.instance().create(permission.getValue());
+      PortalSecurity.INSTANCE.grantPermissionToEverybody(iPermission.getName());
     }
-    return permission.getPermission();
+    return iPermission;
   }
 
   private boolean isIvySecuritySystem() {
@@ -143,7 +124,7 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
     List<PortalPermission> portalPermissions = Stream.of(PortalPermission.values())
         .filter(p -> p.getGroup() == permissionGroup).collect(toList());
     for (PortalPermission permission : portalPermissions) {
-      result.add(grantPermission(permission));
+      result.add(createAndGrantPermission(permission));
     }
     return result;
   }
