@@ -22,6 +22,7 @@ import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionGroupRepository;
+import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.server.restricted.EngineMode;
 
 public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
@@ -96,17 +97,26 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
   }
 
   /**
-   * Grant permission for role Everybody if the permission didn't change by user
+   * Create and grant permission for role Everybody if the permission didn't change by user
    * 
    * @param permission
    * @return the granted permission
    */
-  private IPermission grantPermission(PortalPermission permission) {
-    if (everyBodyPermisisonAccesses.stream()
-        .filter(access -> access.getPermission().getId() == permission.getPermission().getId())
-        .filter(access -> access.getAccessState() == AccessState.NOT_GRANTED_OR_DENIED)
-        .findFirst().isPresent()) {
-      PortalSecurity.INSTANCE.grantPermissionToEverybody(permission.getPermission().getName());
+  private IPermission createAndGrantPermission(PortalPermission permission) {
+    IPermission iPermission = IPermissionRepository.instance().findByName(permission.getValue());
+    if (Objects.isNull(iPermission)) {
+      // If Portal added a new permission, create that permission and grant to Everybody
+      iPermission = IPermissionRepository.instance().create(permission.getValue());
+      PortalSecurity.INSTANCE.grantPermissionToEverybody(iPermission.getName());
+    } else {
+      // Otherwise check access state of existing permission.
+      // If the permission doesn't have any change, grant it to Everybody
+      if (everyBodyPermisisonAccesses.stream()
+          .filter(access -> access.getPermission().getId() == permission.getPermission().getId())
+          .filter(access -> access.getAccessState() == AccessState.NOT_GRANTED_OR_DENIED)
+          .findFirst().isPresent()) {
+        PortalSecurity.INSTANCE.grantPermissionToEverybody(permission.getPermission().getName());
+      }
     }
     return permission.getPermission();
   }
@@ -143,7 +153,7 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
     List<PortalPermission> portalPermissions = Stream.of(PortalPermission.values())
         .filter(p -> p.getGroup() == permissionGroup).collect(toList());
     for (PortalPermission permission : portalPermissions) {
-      result.add(grantPermission(permission));
+      result.add(createAndGrantPermission(permission));
     }
     return result;
   }
