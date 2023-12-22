@@ -7,8 +7,10 @@ import static com.codeborne.selenide.Selenide.$;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.codeborne.selenide.Condition;
 
 import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
@@ -77,6 +79,8 @@ public class ExpressProcessPage extends TemplatePage {
 
   public ExpressFormDefinitionPage goToFormDefinition() {
     clickSave();
+    new ExpressFormDefinitionPage();
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
     return new ExpressFormDefinitionPage();
   }
 
