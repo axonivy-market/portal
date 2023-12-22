@@ -8,8 +8,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -126,7 +128,7 @@ public class RoleManagementPage extends TemplatePage {
       var roleNameColumn = role.$(By.cssSelector("td.role-name-column span[id$=':role-username']"));
       if (roleNameColumn.getText().equalsIgnoreCase(roleName)) {
         return role.$(By.cssSelector("td.role-actions-column [id$=':" + actionId + "']")).shouldBe(Condition.appear,
-            DEFAULT_TIMEOUT);
+            DEFAULT_TIMEOUT).scrollTo();
       }
     }
     return null;
@@ -163,6 +165,7 @@ public class RoleManagementPage extends TemplatePage {
   }
 
   public void clickOnAssignUsersToRole(String roleName) {
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
     var assignUsersLink = getAssigningUsersActionEnableForRole(roleName);
     assignUsersLink.click();
     waitForElementDisplayed(getRoleDetailsDialog(), true);
