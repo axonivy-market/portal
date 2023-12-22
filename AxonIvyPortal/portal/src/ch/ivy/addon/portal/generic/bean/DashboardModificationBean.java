@@ -255,6 +255,10 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
 
   public List<DisplayName> getTitles() {
+    if (this.selectedDashboard == null) {
+      return new ArrayList<>();
+    }
+
     if (this.selectedDashboard.getTitles().isEmpty()) {
       List<String> supportedLanguages = getSupportedLanguages();
       for (String language : supportedLanguages) {

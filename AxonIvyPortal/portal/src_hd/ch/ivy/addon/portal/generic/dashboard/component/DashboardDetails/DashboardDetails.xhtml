@@ -17,8 +17,7 @@
   <p:dialog id="#{cc.attrs.detailDialogId}" widgetVar="#{cc.attrs.detailDialogId}" styleClass="js-#{cc.attrs.detailDialogId}"
     header="#{cc.attrs.title}"
     appendTo="@(body)" closeOnEscape="true" draggable="false" fitViewport="true" responsive="true" modal="true"
-    minWidth="300"
-    dynamic="true">
+    minWidth="300">
 
     <h:form id="dashboard-detail-form" styleClass="dashboard-detail-form">
       <p:messages id="dashboard-detail-messages" />
@@ -39,11 +38,12 @@
         <div class="ui-g-8 ui-fluid  ui-inputgroup">
           <p:inputText id="dashboard-title" value="#{managedBean.selectedDashboard.title}"
             required="#{param['skipValidator'] == null}" styleClass="manage-dashboard__input" />
-          <p:commandButton id="add-language-button" icon="si si-chat-translate">
+          <p:commandButton id="add-language-button" icon="si si-chat-translate"
+            actionListener="#{managedBean.updateDashboardTitleByLocale()}"
+            process="dashboard-title"
+            update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
+            oncomplete="PF('multiple-languages-dialog').show();">
             <f:param name="skipValidator" value="true" />
-            <p:ajax event="click" listener="#{managedBean.updateDashboardTitleByLocale()}" process="dashboard-title"
-              update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
-              oncomplete="PF('multiple-languages-dialog').show();" />
           </p:commandButton>
         </div>
         <h:panelGroup layout="block" styleClass="ui-g-4 manage-dashboard__label"
@@ -91,9 +91,9 @@
       componentToUpdateOnCreate="dashboard-template-selection-component:dashboard-creation-component:dashboard-detail-form:dashboard-title" />
     <f:facet name="footer">
       <h:panelGroup layout="block" styleClass="u-text-align-right">
-        <p:commandLink id="dashboard-detail-close-button" type="button"
+        <p:commandLink id="dashboard-detail-close-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          onclick="PF('#{cc.attrs.detailDialogId}').hide()" />
+          onclick="PF('#{cc.attrs.detailDialogId}').hide(); return false;" />
         <p:spacer width="15" />
         <p:commandButton id="dashboard-detail-save-button"
           rendered="#{!cc.attrs.isDashboardCreation}"
