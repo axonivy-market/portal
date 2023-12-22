@@ -71,6 +71,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void changeWidgetTitle(String name) {
     widgetTitle().clear();
+    widgetTitle().click();
     widgetTitle().sendKeys(name);
   }
 
