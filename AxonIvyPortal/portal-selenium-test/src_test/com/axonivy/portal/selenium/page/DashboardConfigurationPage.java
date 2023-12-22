@@ -275,7 +275,7 @@ public class DashboardConfigurationPage extends TemplatePage {
         });
   }
   
-  public void saveImportDashboard(String name, String otherLangName, String desc, String icon, List<String> permissions) {
+  public void saveImportDashboard(String name, String otherLangName, String desc, String icon) {
     var importDialog = $("div[id$='dashboard-import-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("a[id$=':change-icon-link']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     selectDashboardIcon(icon);
@@ -284,10 +284,6 @@ public class DashboardConfigurationPage extends TemplatePage {
     importDialog.$("input[id$=':dashboard-description']").clear();
     importDialog.$("input[id$=':dashboard-description']").sendKeys(desc);
     editMultiLangDashboardImportTitle(otherLangName);
-
-    if (permissions != null) {
-      setPermissions(permissions);
-    }
     importDialog.$("button[id$=':dashboard-detail-save-button']").shouldBe(getClickableCondition()).click();
     importDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
