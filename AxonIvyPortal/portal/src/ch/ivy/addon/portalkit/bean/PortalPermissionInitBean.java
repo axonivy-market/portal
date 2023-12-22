@@ -101,7 +101,7 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
    * @param permission
    * @return the granted permission
    */
-  private IPermission grantPermission(PortalPermission permission) {
+  private IPermission createAndGrantPermission(PortalPermission permission) {
     IPermission iPermission = IPermissionRepository.instance().findByName(permission.getValue());
     if (Objects.isNull(iPermission)) {
       // If Portal added a new permission, create that permission and grant to Everybody
@@ -152,7 +152,7 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
     List<PortalPermission> portalPermissions = Stream.of(PortalPermission.values())
         .filter(p -> p.getGroup() == permissionGroup).collect(toList());
     for (PortalPermission permission : portalPermissions) {
-      result.add(grantPermission(permission));
+      result.add(createAndGrantPermission(permission));
     }
     return result;
   }
