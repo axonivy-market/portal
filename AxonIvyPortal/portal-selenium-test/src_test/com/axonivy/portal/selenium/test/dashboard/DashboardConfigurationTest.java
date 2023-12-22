@@ -437,7 +437,7 @@ public class DashboardConfigurationTest extends BaseTest {
     String newGermanName = "German dashboard";
     String icon = "fa-coffee";
     String description = "New import private dashboard description";
-    configurationPage.saveImportDashboard(name, newGermanName, description, icon, null);
+    configurationPage.saveImportDashboard(name, newGermanName, description, icon);
   }
   
   @Test
@@ -459,9 +459,7 @@ public class DashboardConfigurationTest extends BaseTest {
     String newGermanName = "German public dashboard";
     String icon = "fa-coffee";
     String description = "New import public dashboard description";
-    List<String> permissions = new ArrayList<>();
-    permissions.add("Everybody");
     
-    configurationPage.saveImportDashboard(name, newGermanName, description, icon, permissions);
+    configurationPage.saveImportDashboard(name, newGermanName, description, icon);
   }
 }
