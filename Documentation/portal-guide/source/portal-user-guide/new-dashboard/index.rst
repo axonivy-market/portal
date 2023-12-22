@@ -106,6 +106,10 @@ In the column management panel, you will find two sections:
       - Reorder the columns by drag and drop using the arrows |move-expand-vertical|
       - Remove columns
 
+Portal supports to display custom case fields within the task list.
+
+|task-column-field-type-configuration|
+
 **Excel export**
 
 You can export all data of the task widget by clicking on the link ``Export to Excel`` at the bottom left corner of the widget information panel.
@@ -296,6 +300,7 @@ You enter an URL to embed an external webpage into the Portal dashboard.
 .. |task-list-widget| image:: ../../screenshots/new-dashboard/task-list-widget.png
 .. |task-list-widget-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-configuration.png
 .. |task-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-table-configuration.png
+.. |task-column-field-type-configuration| image:: ../../screenshots/new-dashboard/task-column-field-type-configuration.png
 
 .. |case-list-widget| image:: ../../screenshots/new-dashboard/case-list-widget.png
 .. |case-list-widget-configuration| image:: ../../screenshots/new-dashboard/case-list-widget-configuration.png
