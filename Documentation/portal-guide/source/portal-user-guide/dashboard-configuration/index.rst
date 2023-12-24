@@ -79,7 +79,7 @@ How to: import private dashboards
 
 .. note::
 
-   The permission :bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>` is required to use this feature.
+   Grant permission :bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>` to use this feature.
 
 
 How to: edit private dashboards
@@ -134,7 +134,7 @@ A table of private dashboards is shown with the following information:
 Public dashboards configuration
 -------------------------------
 
-The tab :guilabel:`Public dashboards` is only available for users who have the permission :bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>`. Here you can
+Grant permission :bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>` to make tab :guilabel:`Public dashboards` visible for a user. Here you can
 add, edit, and reorder public dashboards.
 
 |public-dashboard-configuration|
@@ -196,7 +196,7 @@ How to: import public dashboard
 
 .. note::
 
-   The permission :bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>` is required to use this feature.
+   Grant permission :bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>` to enable public dashboard import for a user.
 
 How to: edit public dashboards
 ==============================
@@ -231,7 +231,7 @@ To generate a public dashboard link, simply click on the |share-icon| Share in t
 
 .. note::
    To share the dashboard without the menu frame, add the parameter ``openWithoutMenu=true`` to the URL. However, please be aware that this option is only for embedding purposes.
-   The permission :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>` is required to use this feature.
+   Grant permission :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>` to allow a user to share dashboard links.
 
 How to: reorder public dashboards
 =================================

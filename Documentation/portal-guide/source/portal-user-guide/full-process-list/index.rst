@@ -9,7 +9,7 @@ the |ivy| Portal menu.
 
 .. note::
 
-   If :guilabel:`Processes` is not visible in the |ivy| Portal menu, please ensure that the permission :bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>` has been granted.
+   Grant permission :bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>` to allow a user to see the full process list (:guilabel:`Processes`) in the |ivy| Portal menu.
 
 
 |navigate-to-full-process-list|
@@ -99,7 +99,7 @@ HowTo: Add an external link
 
 #. For the :guilabel:`Start link`, add the URL of your external link.
 
-#. This step is only for a user granted permission :bdg-ref-warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`. 
+#. Grant permission :bdg-ref-warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>` to allow a user to create public links to external sites. 
    This user can set this link as a public link by selecting :guilabel:`All users` .
    By default, :guilabel:`Visibility` field is not displayed and this new external link is a private link.
 
@@ -119,10 +119,6 @@ HowTo: Add an external link
    this process only on a rare basis. For all processes which you use on a
    regular basis we highly recommend configuring them on your personal
    dashboard. See :ref:`new-dashboard-process-list-widget` for an instruction.
-
-.. note::
-
-   If the full process list is not visible in the |ivy| Portal menu, please ensure that the permission :bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>` has been granted.
 
 
 .. include:: ../includes/_common-icon.rst

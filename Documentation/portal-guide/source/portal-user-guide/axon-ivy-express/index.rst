@@ -208,7 +208,7 @@ HowTo: Create an Express Workflow
 
 .. note::
 
-   The permission :bdg-ref-warning:`🔑ExpressCreateWorkflow <ExpressCreateWorkflow>` is required to create an Express Workflow.
+   Grant permission :bdg-ref-warning:`🔑ExpressCreateWorkflow <ExpressCreateWorkflow>` to enable creation of an Express Workflow.
 
 Define an Information Email
 ---------------------------

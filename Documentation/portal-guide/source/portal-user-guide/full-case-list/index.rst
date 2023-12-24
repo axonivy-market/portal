@@ -205,7 +205,7 @@ HowTo: Attach a Document to the Case
 
 .. note::
 
-   The permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` is required to use this feature.
+   Grant either permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` to allow a user to write case documents.
 
 .. _howto-remove-an-attachment-from-the-case-1:
 
@@ -225,7 +225,7 @@ HowTo: Remove an Attachment from the Case
 
 .. note::
    
-   The permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` is required to use this feature.
+   Grant either permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` to allow a user to delete attachments from a case.
 
 HowTo: Add a Note to a Case
 ---------------------------
@@ -251,7 +251,7 @@ HowTo: Add a Note to a Case
       - Displayed in the ``History`` table of its technical case details.
       - Not displayed in the ``Notes`` table of tasks belong to technical case.
    
-   The permission :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>` is required to use this feature.
+   Grant permission :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>` to allow a user to add a note to a case.
 
 HowTo: Export a Case History
 ----------------------------
@@ -404,7 +404,7 @@ HowTo: Share Case Details
 
 .. note::
 
-   The permission :bdg-ref-warning:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>` is required to use this feature.
+   Grant permission :bdg-ref-warning:`🔑ShareCaseDetailsLink <ShareCaseDetailsLink>` to allow a user to share case details.
 
 .. include:: ../includes/_common-icon.rst
 

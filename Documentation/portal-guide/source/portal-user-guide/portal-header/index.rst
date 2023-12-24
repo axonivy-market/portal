@@ -38,7 +38,8 @@ Dashboard Configuration
 -----------------------
 
 Menu entry :ref:`dashboard-configuration` contains dashboards settings,
-only available for users who have the permission :bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>` or :bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>`.
+grant either :bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>` or :bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>` 
+to allow a user to define dashboard settings either for their own private dashboards or public dashboards, respectively.
 
 Absences
 --------
@@ -77,7 +78,8 @@ HowTo: Add absence
 
 .. note::
 
-   The permission :bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` or :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>` is required to use this feature.
+   Grant either permission :bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` or :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>` 
+   to allow a user to create own, personal absences or public absences, respectively.
 
 HowTo: Set substitute
 ^^^^^^^^^^^^^^^^^^^^^
@@ -102,7 +104,8 @@ HowTo: Set substitute
 
 .. note::
 
-   The permission :bdg-ref-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>` or :bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>` is required to use this feature.
+   Grant either permission :bdg-ref-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>` or :bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>` 
+   to allow a user to create their own substitute definitions or create substitute definitions for all users, respectively.
 
 Change Password
 ---------------

@@ -33,7 +33,7 @@ configure the process favorites to your personal needs.
 
 .. note::
 
-   The permission :bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>` is required to use this feature.
+   Grant permission :bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>` to allow a user to access the full process list.
 
 |process-favorites|
 
@@ -146,8 +146,7 @@ from the task list and start working on it.
 You see the number of tasks right next to the heading :guilabel:`Tasks`. At the 
 right, you find the link ``Show full task list``. This quick link
 routes you to the **Task List** page of the |ivy| Portal. Please refer to
-:ref:`full-task-list` for detailed information. If this link is not visible, please ensure that the 
-permission :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>` has been enabled.
+:ref:`full-task-list` for detailed information. Grant permission :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>` to allow a user to access the full task list.
 
 Right below the heading :guilabel:`Task`, you find the following features which
 help you find the correct tasks:

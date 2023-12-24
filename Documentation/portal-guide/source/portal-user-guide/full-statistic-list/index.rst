@@ -12,7 +12,7 @@ your own statistics. You can reach the page by using the
 
 .. note::
 
-   If :guilabel:`Statistics` is not visible in the |ivy| Portal menu, please ensure that the permission :bdg-ref-warning:`🔑AccessFullStatisticsList <AccessFullStatisticsList>` has been granted.
+   Grant permission :bdg-ref-warning:`🔑AccessFullStatisticsList <AccessFullStatisticsList>` to allow a user to see the full statistics list (:guilabel:`Statistics`) in the |ivy| Portal menu.
 
 
 .. hint::
@@ -195,7 +195,7 @@ Portal provides lots of statistic charts, but maybe your business needs further 
 helps you query tasks with filters, then you could export data to excel for further analysis.
 
 .. important::
-   You need to have Portal permission :bdg-ref-warning:`🔑StatisticAnalyzeTask <StatisticAnalyzeTask>` to use this feature.
+   Grant permission :bdg-ref-warning:`🔑StatisticAnalyzeTask <StatisticAnalyzeTask>` to allow a user to analyze statistics.
 
 HowTo: Access task analysis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^

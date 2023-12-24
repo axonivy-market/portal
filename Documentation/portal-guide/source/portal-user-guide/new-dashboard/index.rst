@@ -252,7 +252,7 @@ You can define a news feed widget to display all news entries to the user
 
 **Manage news feed content**
 
-.. note:: The user has to have permission :bdg-ref-warning:`🔑NewsManagement <NewsManagement>` to manage the content of the news feed.
+.. note:: Grant permission :bdg-ref-warning:`🔑NewsManagement <NewsManagement>` to allow a user to manage the content of the news feed.
 
 If the user has permission, then the user can:
 
