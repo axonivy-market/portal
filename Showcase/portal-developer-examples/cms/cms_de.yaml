@@ -51,6 +51,9 @@ CustomFields:
     CustomerType:
       Description: Spalte Kundentyp zum Beispiel
       Label: Typ des Kunden
+    DestroyCaseAction:
+      Description: Stornieren Sie den Fall und alle Aufgaben, die zum Fall gehören
+      Label: Fall vernichten Aktion
     InvoiceDate:
       Description: Eigenschaft der Seite Zusätzliche Falldetails
       Label: Datum der Rechnung

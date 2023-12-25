@@ -62,6 +62,10 @@ public abstract class AbstractColumn implements Serializable {
   protected Boolean sorted;
   protected Boolean sortDescending;
   protected DashboardColumnType type;
+  protected Boolean isCustomAction;
+  protected String icon;
+  protected String description;
+
   protected String userFilter;
   protected List<String> userFilterList;
   protected String userFilterFrom;
@@ -411,5 +415,32 @@ public abstract class AbstractColumn implements Serializable {
     setUserFilterTo(StringUtils.EMPTY);
     setUserDateFilterFrom(null);
     setUserDateFilterTo(null);
+  }
+
+  @JsonIgnore
+  public Boolean getIsCustomAction() {
+    return isCustomAction;
+  }
+
+  public void setIsCustomAction(Boolean isCustomAction) {
+    this.isCustomAction = isCustomAction;
+  }
+
+  @JsonIgnore
+  public String getIcon() {
+    return icon;
+  }
+
+  public void setIcon(String icon) {
+    this.icon = icon;
+  }
+
+  @JsonIgnore
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 }

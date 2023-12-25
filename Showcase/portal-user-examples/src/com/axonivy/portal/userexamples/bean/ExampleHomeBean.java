@@ -11,10 +11,10 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.service.impl.ProcessService;
 
 import ch.ivy.addon.portalkit.configuration.UserProcess;
-import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -71,7 +71,7 @@ public class ExampleHomeBean implements Serializable {
 
   private List<IWebStartable> getWebStartables() {
     if (CollectionUtils.isEmpty(webStartables)) {
-      webStartables = ProcessService.getInstance().findProcesses().getProcesses();
+      webStartables = ProcessService.getInstance().findProcesses();
     }
     return webStartables;
   }

@@ -1638,7 +1638,7 @@ body.in-dialog .ui-widget-overlay {
   padding-right: 5px;
 }
 .notifications-container-top {
-  padding:10px;
+  padding:0.3rem;
   padding-left:0px;
   padding-right:0px;
   margin-bottom:0.15em;
@@ -1739,4 +1739,47 @@ i.dashboard-icon-drag-drop {
     vertical-align: unset;
     cursor: move
 
+}
+
+.global-search-form {
+  width: 600px;
+}
+
+.global-search-icon {
+  position: absolute;
+  left: 0.9rem;
+  top: 50%;
+  margin-top: -0.35rem;
+  z-index: 1;
+}
+.ui-inputfield.global-search-input {
+  padding-left: 2.5rem;
+  width: 100%;
+  min-width:100px;
+}
+.task-priority-item {
+  padding: 0.1rem;
+}
+
+@media (max-width: 767px) {
+  .global-search-form {
+    width: 330px;
+  }
+  .ui-inputfield.global-search-input {
+    max-width: 200px;
+  }
+}
+
+.global-search-all-results {
+  padding-top: 0.5rem;
+}
+.global-search-input.global-default-search-bar {
+  width: 100%;
+}
+.global-search-input.global-large-search-bar {
+  width: 600px;
+}
+
+.global-search-input.global-small-search-bar {
+  width: 200px;
 }

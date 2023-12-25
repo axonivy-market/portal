@@ -1,6 +1,7 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "1626C02D46BF5153",
+  "description" : "This is a scheduled process of Portal",
   "config" : {
     "data" : "ch.ivy.add.portalkit.Data"
   },
@@ -13,14 +14,16 @@
     }, {
       "id" : "f5",
       "type" : "ProgramStart",
-      "name" : "eventStarterbyQuatzScheduler",
+      "name" : "PortalCleanObsoleteData",
       "config" : {
         "javaClass" : "ch.ivy.addon.portalkit.util.CronByGlobalVariableTriggerStartEventBean",
-        "userConfig" : "PortalStartTimeCleanObsoletedDataExpression",
+        "userConfig" : {
+          "variable" : "PortalStartTimeCleanObsoletedDataExpression"
+        },
         "link" : "eventLink.ivp"
       },
       "visual" : {
-        "at" : { "x" : 120, "y" : 49 },
+        "at" : { "x" : 120, "y" : 104 },
         "labelOffset" : { "x" : 104, "y" : 20 },
         "description" : "This is a scheduled process of Portal"
       },
@@ -45,7 +48,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 120, "y" : 224 },
+        "at" : { "x" : 120, "y" : 208 },
         "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : [

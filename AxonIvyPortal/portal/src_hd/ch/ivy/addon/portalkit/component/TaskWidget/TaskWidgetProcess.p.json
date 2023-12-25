@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "15035F535EFB1618",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -132,20 +132,19 @@
             "import ch.ivy.addon.portalkit.enums.FilterType;",
             "import ch.ivy.addon.portalkit.service.TaskFilterService;",
             "",
-            "if(!in.dataModel.compactMode) {",
-            "  TaskFilterService taskFilterService = new TaskFilterService();",
-            "  in.taskPrivateFilters = taskFilterService.getPrivateFilterForCurrentUser(in.taskFilterGroupId) as List;",
             "",
-            "  PermissionBean permissionBean = ManagedBeans.get(\"permissionBean\") as PermissionBean;",
-            "  if (permissionBean.hasAdminPermission()) {",
-            "    in.taskPublicFilters = taskFilterService.getPublicFilterForAdmin(in.taskFilterGroupId) as List;",
-            "  } else {",
-            "    in.taskPublicFilters = taskFilterService.getPublicFilter(in.taskFilterGroupId) as List;",
-            "  }",
+            "TaskFilterService taskFilterService = new TaskFilterService();",
+            "in.taskPrivateFilters = taskFilterService.getPrivateFilterForCurrentUser(in.taskFilterGroupId) as List;",
             "",
-            "  in.taskPublicFilters.add(in.dataModel.buildDefaultTaskFilterData());",
-            "  in.filterType = FilterType.ONLY_ME;",
-            "}"
+            "PermissionBean permissionBean = ManagedBeans.get(\"permissionBean\") as PermissionBean;",
+            "if (permissionBean.hasAdminPermission()) {",
+            "  in.taskPublicFilters = taskFilterService.getPublicFilterForAdmin(in.taskFilterGroupId) as List;",
+            "} else {",
+            "  in.taskPublicFilters = taskFilterService.getPublicFilter(in.taskFilterGroupId) as List;",
+            "}",
+            "",
+            "in.taskPublicFilters.add(in.dataModel.buildDefaultTaskFilterData());",
+            "in.filterType = FilterType.ONLY_ME;"
           ]
         }
       },
@@ -154,7 +153,7 @@
         "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : [
-        { "id" : "f101", "to" : "f100" }
+        { "id" : "f101", "to" : "f3" }
       ]
     }, {
       "id" : "f3",
@@ -465,7 +464,6 @@
             "TaskWidgetBean taskWidgetBean = context.getApplication().evaluateExpressionGet(context, \"#{taskWidgetBean}\", TaskWidgetBean.class) as TaskWidgetBean;",
             "if (!in.#dataModel is initialized) {",
             "  TaskLazyDataModel dataModel = new TaskLazyDataModel();",
-            "  dataModel.setCompactMode(true);",
             "  taskWidgetBean.setDataModel(dataModel);",
             "  in.dataModel = taskWidgetBean.dataModel;",
             "} else {",
@@ -568,7 +566,8 @@
             "param.taskSearchCriteria" : "in.taskSearchCriteria",
             "param.startIndex" : "in.startIndex",
             "param.count" : "in.count"
-          }
+          },
+          "code" : "ivy.log.warn(\"keyword {0}\", in.taskSearchCriteria.keyword);"
         },
         "output" : {
           "map" : {
@@ -1051,26 +1050,6 @@
       },
       "connect" : [
         { "id" : "f99", "to" : "f95" }
-      ]
-    }, {
-      "id" : "f100",
-      "type" : "Script",
-      "name" : "update sort field",
-      "config" : {
-        "output" : {
-          "code" : [
-            "",
-            "if(in.dataModel.compactMode) {",
-            "  in.selectedSort = in.dataModel.getSelectedCompactSort();",
-            "}"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 544, "y" : 96 }
-      },
-      "connect" : [
-        { "id" : "f57", "to" : "f3" }
       ]
     } ]
 }

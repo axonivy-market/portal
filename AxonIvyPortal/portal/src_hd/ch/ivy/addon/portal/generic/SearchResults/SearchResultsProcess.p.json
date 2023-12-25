@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "163A4BFC48261B85",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -8,18 +8,18 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start(String)",
+      "name" : "start(String,Number)",
       "config" : {
         "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "keyword", "type" : "String", "desc" : "" }
+            { "name" : "keyword", "type" : "String", "desc" : "" },
+            { "name" : "activeTabIndex", "type" : "Number", "desc" : "" }
           ],
           "map" : {
-            "out.activeTabIndex" : "0",
+            "out.activeTabIndex" : "param.activeTabIndex",
             "out.dataModel.caseDataModel.notKeepFilter" : "true",
             "out.dataModel.keyword" : "param.keyword",
-            "out.dataModel.taskDataModel.compactMode" : "false",
             "out.dataModel.taskDataModel.notKeepFilter" : "true"
           },
           "code" : "out.dataModel.search();"
