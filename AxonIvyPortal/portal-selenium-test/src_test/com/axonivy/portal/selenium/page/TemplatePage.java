@@ -305,11 +305,6 @@ public abstract class TemplatePage extends AbstractPage {
     public GlobalSearch() {
     }
 
-    private WebElement getSearchInput() {
-      waitForElementDisplayed(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR), true);
-      return findElementByCssSelector(GLOBAL_SEARCH_INPUT_SELECTOR);
-    }
-
     public boolean isDisplayed() {
       waitForElementDisplayed(By.cssSelector("a[id$='global-search-item']"), true);
       return findElementByCssSelector("a[id$='global-search-item']").isDisplayed();

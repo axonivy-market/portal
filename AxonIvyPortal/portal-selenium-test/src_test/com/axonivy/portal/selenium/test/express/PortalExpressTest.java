@@ -471,6 +471,7 @@ public class PortalExpressTest extends BaseTest{
     formDefinition.inputMailContent("Task is finished");
     formDefinition.nextStep();
     formDefinition = new ExpressFormDefinitionPage();
+    resizeBrowserTo2kResolution();
     formDefinition.createTextInputField("Input Text 1", INPUT_TEXT_TYPE_INDEX, false);
     formDefinition.createTextInputField("Input Number 2", INPUT_NUMBER_TYPE_INDEX, false);
     formDefinition.countElementPrepareToDrag(2);
