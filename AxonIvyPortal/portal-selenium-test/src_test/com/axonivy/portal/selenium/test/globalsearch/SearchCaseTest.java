@@ -42,7 +42,6 @@ public class SearchCaseTest extends BaseTest {
 
   @Test
   public void testFindCaseByNameWithSpecialCharacter() {
-    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     GlobalSearch globalSearch = newDashboardPage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 
