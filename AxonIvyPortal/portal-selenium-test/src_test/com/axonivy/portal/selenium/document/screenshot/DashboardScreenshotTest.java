@@ -160,7 +160,13 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
 
     taskConfigurationPage.cancelMultiLanguageDialogWhenAddWidget();
     ScreenshotUtil.captureElementScreenshot(taskConfigurationPage.getConfigurationFilter(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "task-list-widget-configuration");
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskConfigurationPage.openColumnManagementDialog(), ScreenshotUtil.NEW_DASHBOARD_FOLDER + "task-list-widget-table-configuration", new ScreenshotMargin(20));
+    WebElement columnManagementDialog = taskConfigurationPage.openColumnManagementDialog();
+    ScreenshotUtil.captureElementScreenshot(columnManagementDialog,
+        ScreenshotUtil.NEW_DASHBOARD_FOLDER + "task-list-widget-table-configuration");
+    taskConfigurationPage.getAddingFieldColumnType().click();
+    ScreenshotUtil.executeDecorateJs("highlightProcessDisplayModePanel()");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(columnManagementDialog,
+        ScreenshotUtil.NEW_DASHBOARD_FOLDER + "task-column-field-type-configuration", new ScreenshotMargin(20));
 
     taskConfigurationPage.removeAddedField("category");
     taskConfigurationPage.removeAddedField("description");
