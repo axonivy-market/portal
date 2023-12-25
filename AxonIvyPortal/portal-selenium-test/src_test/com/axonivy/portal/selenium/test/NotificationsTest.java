@@ -57,5 +57,4 @@ public class NotificationsTest extends BaseTest {
     homepage.clickNotificationFullPage();
     homepage.waitForNotificationFullpageDisplay();
   }
-
 }
