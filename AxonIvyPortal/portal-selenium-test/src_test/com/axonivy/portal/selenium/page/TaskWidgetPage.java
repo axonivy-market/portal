@@ -645,18 +645,23 @@ public class TaskWidgetPage extends TemplatePage {
   }
   
   public void selectDelegateResponsible(String responsibleName, boolean isRole) {
+    SelenideElement responsibleElement;
     if (isRole) {
       waitForElementDisplayed(By.cssSelector("[id$=':task-delegate-form:activator-type-select']"), true);
       waitForElementEnabled(By.cssSelector("[id$=':task-delegate-form:activator-type-select:1']"), true);
       waitForElementClickableThenClick("[for$=':task-delegate-form:activator-type-select:1']");;
       waitForElementDisplayed(By.cssSelector("input[id$='group-activator-select_input']"), true);
-      $(By.cssSelector("input[id$='group-activator-select_input']")).sendKeys(responsibleName);
+      responsibleElement = $(By.cssSelector("input[id$='group-activator-select_input']"));
+      responsibleElement.click();
+      responsibleElement.sendKeys(responsibleName);
       waitForElementDisplayed(By.cssSelector("span[id$='group-activator-select_panel']"), true);
       List<SelenideElement> foundRoles = $$("span[id$='group-activator-select_panel'] .gravatar");
       waitForElementClickableThenClick(foundRoles.get(0));
     } else {
       waitForElementDisplayed(By.cssSelector("input[id$='user-activator-select_input']"), true);
-      $(By.cssSelector("input[id$='user-activator-select_input']")).sendKeys(responsibleName);
+      responsibleElement = $(By.cssSelector("input[id$='user-activator-select_input']"));
+      responsibleElement.click();
+      responsibleElement.sendKeys(responsibleName);
       waitForElementDisplayed(By.cssSelector("span[id$='user-activator-select_panel']"), true);
       List<SelenideElement> foundUsers =
           $$("span[id$='user-activator-select_panel'] .name-after-avatar");
