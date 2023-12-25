@@ -78,6 +78,7 @@ public class DashboardModificationPage extends TemplatePage {
     $("span[id$=':dashboard-permission_panel']").$$("tr.ui-autocomplete-item").asDynamicIterable().forEach(item -> {
       for(String permissionName : permissions) {
         if (item.$("td").getText().contains(permissionName)) {
+          item.should(getClickableCondition());
           item.click();
         }
       }
