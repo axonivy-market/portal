@@ -151,7 +151,7 @@ public class CaseService implements ICaseService {
     if (recordSet != null) {
       recordSet.getRecords().forEach(record -> {
         int state = Integer.parseInt(record.getField("STATE").toString());
-        long numberOfCases = Long.parseLong(record.getField("COUNT").toString());
+        long numberOfCases = ((Number) record.getField("COUNT")).longValue();
         if (state == CaseState.DONE.intValue()) {
           caseStateStatistic.setDone(numberOfCases);
         } else if (state == CaseState.CREATED.intValue()) {
@@ -266,7 +266,7 @@ public class CaseService implements ICaseService {
     caseCategoryStatistic.setNumberOfCasesByCategory(new HashMap<>());
     if (recordSet != null) {
       recordSet.getRecords().forEach(record -> {
-        long numberOfCases = Long.parseLong(record.getField("COUNT").toString());
+        long numberOfCases = ((Number) record.getField("COUNT")).longValue();
         caseCategoryStatistic.getNumberOfCasesByCategory().put(record.getField("CATEGORY").toString(), numberOfCases);
       });
     }
