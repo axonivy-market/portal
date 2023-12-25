@@ -190,8 +190,7 @@ the overall situation at a glance.
 
 Next to the heading you find a link ``Show all charts``. This quick link
 routes you the :guilabel:`Statistics` page of the |ivy| Portal. Please refer
-to :ref:`full-statistic-list` for detailed information. If this link is not visible, please ensure that the 
-permission :bdg-ref-warning:`🔑AccessFullStatisticsList <AccessFullStatisticsList>` has been enabled.
+to :ref:`full-statistic-list` for detailed information. Grant permission :bdg-ref-warning:`🔑AccessFullStatisticsList <AccessFullStatisticsList>` to allow a user to access the full list of statistics.
 
 Within header of the chart, you find two navigation buttons (|pre-icon|,
 |next-icon|) allowing you to toggle between the available charts. Each chart
