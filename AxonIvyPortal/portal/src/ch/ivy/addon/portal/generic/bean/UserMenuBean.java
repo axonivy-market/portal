@@ -249,7 +249,7 @@ public class UserMenuBean implements Serializable {
     return AnnouncementService.getInstance().isAnnouncementActivated();
   }
   
-  private void navigateToHomePage() throws IOException {
+  public void navigateToHomePage() throws IOException {
     getExternalContext().redirect(getHomePageURL());
   }
   
