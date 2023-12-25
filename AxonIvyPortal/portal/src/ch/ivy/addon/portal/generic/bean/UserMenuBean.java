@@ -329,7 +329,8 @@ public class UserMenuBean implements Serializable {
   }
   
   public String getLoginPageURL() {
-    return BaseNavigator.buildAbsoluteUrl("Start Processes/PortalStart/DefaultLoginPage.ivp", new HashMap<>());
+    String returnURL = "%s##%s";
+    return String.format(returnURL, BaseNavigator.buildAbsoluteUrl("Start Processes/PortalStart/DefaultLoginPage.ivp", new HashMap<>()), Ivy.session().getSessionUserName());
   }
   
   public boolean isShowQRCode() {

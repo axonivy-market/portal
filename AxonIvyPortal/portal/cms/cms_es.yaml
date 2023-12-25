@@ -299,7 +299,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     usernameRequiredMsg: Por favor ingrese nombre de usuario.
     value: Valor
   applicationMenuHeader:
-    MobileApp: Aplicación móvil
+    MobileApp: Conectar la aplicación móvil Axon Ivy
     adminSettings: Configuración de administrador
     changePassword: Cambiar contraseña
   businessCaseState:
@@ -994,8 +994,8 @@ ch.ivy.addon.portalkit.ui.jsf:
   logoutSetting:
     logout: Cerrar sesión
   mobile:
-    QRCodeDescription: Abre tu aplicación Axon Ivy y escanea este código QR.
-    QRCodeTitle: Conectarse a la aplicación Axon Ivy
+    MenuName: Aplicación móvil
+    QRCodeDescription: Para conectar su aplicación móvil Axon Ivy, escanee este código QR e introduzca sus credenciales en el interior de la aplicación.
   noteHistory:
     author: Autor
     caseExportedFileNamePrefix: Historia_Notas_del_caso_ {0}
