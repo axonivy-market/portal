@@ -786,6 +786,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfCase: Vorfälle
     category: Kategorie
     columnManagement: Spaltenverwaltung
+    columnType:
+      CUSTOM: Benutzerdefiniertes Feld
+      CUSTOM_CASE: Benutzerdefiniertes Fallfeld
+      STANDARD: Standard-Säule
     configuration:
       CustomWidgetExternalLinkWarning: Einige Websites sind aufgrund von Sicherheitsbedenken nicht mit iframe kompatibel. Bitte wenden Sie sich an Ihren Administrator, wenn die externe Website nicht ordnungsgemäß funktioniert.
       CustomWidgetTitlePlaceholder: Lassen Sie es leer, um die Kopfzeile des Widgets auszublenden
