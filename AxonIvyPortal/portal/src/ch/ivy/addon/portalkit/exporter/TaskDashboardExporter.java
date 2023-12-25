@@ -8,6 +8,7 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 /**
@@ -62,7 +63,7 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
    */
   private String getCustomColumnName(String column) {
     String[] columnParts = getCustomColumnParts(column);
-    if (columnParts.length != 3) {
+    if (columnParts.length != 4) {
       return "";
     }
     
@@ -91,25 +92,31 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
   
   private Object getCustomColumnValue(String column, ITask taskItem) {
     String[] columnParts = getCustomColumnParts(column);
-    if(columnParts.length != 3) {
-      return "columnParts not equal to 3";
+    if (columnParts.length != 4) {
+      return "columnParts not equal to 4";
     }
     
     String fieldName = columnParts[1];
+    String type = columnParts[3];
     DashboardColumnFormat fieldFormat = DashboardColumnFormat.valueOf(columnParts[0]);
     if(fieldFormat == null) {
       return "";
     }
-    
+    ICustomFields customFields;
+    if (type.equals(DashboardColumnFormat.CUSTOM_CASE.name())) {
+      customFields = taskItem.getCase().customFields();
+    } else {
+      customFields = taskItem.customFields();
+    }
     switch (fieldFormat) {
       case NUMBER: 
-        return taskItem.customFields().numberField(fieldName).getOrNull();
+        return customFields.numberField(fieldName).getOrNull();
       case STRING:
-        return taskItem.customFields().stringField(fieldName).getOrNull();
+        return customFields.stringField(fieldName).getOrNull();
       case TEXT:
-        return taskItem.customFields().textField(fieldName).getOrNull();
+        return customFields.textField(fieldName).getOrNull();
       case TIMESTAMP:
-        return taskItem.customFields().timestampField(fieldName).getOrNull();
+        return customFields.timestampField(fieldName).getOrNull();
       default:
         return "";
     }

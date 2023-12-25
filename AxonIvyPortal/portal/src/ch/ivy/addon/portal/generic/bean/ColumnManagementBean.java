@@ -75,6 +75,8 @@ public class ColumnManagementBean implements Serializable {
     if (widget.getType() == DashboardWidgetType.TASK) {
       TaskDashboardWidget taskWidget = (TaskDashboardWidget) this.widget; 
       this.columnsBeforeSave = new ArrayList<>(taskWidget.getColumns());
+      this.fieldTypes = Arrays.asList(DashboardColumnType.STANDARD, DashboardColumnType.CUSTOM,
+          DashboardColumnType.CUSTOM_CASE);
     }
     if (widget.getType() == DashboardWidgetType.CASE) {
       CaseDashboardWidget caseDashboardWidget = (CaseDashboardWidget) this.widget;
@@ -110,7 +112,8 @@ public class ColumnManagementBean implements Serializable {
   }
 
   public void remove(ColumnModel col) {
-    this.columnsBeforeSave.removeIf(column -> column.getField().equals(col.getField()));
+    this.columnsBeforeSave
+        .removeIf(column -> column.getField().equals(col.getField()) && column.getType() == col.getType());
     fetchFields();
   }
 
@@ -144,10 +147,14 @@ public class ColumnManagementBean implements Serializable {
     columnModel.initDefaultValue();
     columnModel.setHeader(this.fieldDisplayName);
     columnModel.setField(this.selectedField);
-    if (this.selectedFieldType == DashboardColumnType.CUSTOM) {
+    if (this.selectedFieldType == DashboardColumnType.CUSTOM
+        || this.selectedFieldType == DashboardColumnType.CUSTOM_CASE) {
       columnModel.setType(selectedFieldType);
       columnModel.setFormat(DashboardColumnFormat.valueOf(selectedFieldType.name()));
       columnModel.setPattern(numberFieldPattern);
+    }
+    if (this.selectedFieldType == DashboardColumnType.CUSTOM_CASE) {
+      columnModel.setSortable(null);
     }
     this.columnsBeforeSave.add(columnModel);
     this.fields.remove(columnModel.getField());
@@ -163,19 +170,24 @@ public class ColumnManagementBean implements Serializable {
     } else {
       resetValues();
     }
-    List<String> existingFields = getExistingFields();
-    this.fields = this.fields.stream().filter(isNotUsedIn(existingFields)).collect(Collectors.toList());
+
+    this.fields = this.fields.stream().filter(isNotUsedIn(getExistingFieldNames())).collect(Collectors.toList());
   }
 
   private Predicate<? super String> isNotUsedIn(List<String> existingFields) {
     return f -> CollectionUtils.isEmpty(existingFields) || !existingFields.contains(f);
   }
 
+  private List<String> getExistingFieldNames() {
+    List<String> fields = getExistingFields().stream().filter(f -> f.getType() == this.selectedFieldType)
+        .map(f -> f.getField()).toList();
+    return fields;
+  }
   public List<String> completeCustomFields(String query) {
     return getCustomFieldNames().stream()
           .filter(meta -> !meta.isHidden())
           .filter(filterCustomFieldByCategory())
-          .map(ICustomFieldMeta::name).filter(isNotUsedIn(getExistingFields()))
+        .map(ICustomFieldMeta::name).filter(isNotUsedIn(getExistingFieldNames()))
           .sorted().filter(f -> StringUtils.containsIgnoreCase(f, query))
           .collect(Collectors.toList());
   }
@@ -201,33 +213,33 @@ public class ColumnManagementBean implements Serializable {
   }
 
   public List<String> getCustomFieldCategories() {
-    if (CollectionUtils.isEmpty(customFieldCategories)) {
-      if (widget.getType() == DashboardWidgetType.TASK) {
-        customFieldCategories = ICustomFieldMeta.tasks().stream()
+    if (widget.getType() == DashboardWidgetType.CASE || selectedFieldType == DashboardColumnType.CUSTOM_CASE) {
+      customFieldCategories = ICustomFieldMeta.cases().stream()
             .map(ICustomFieldMeta::category)
             .distinct()
             .sorted().collect(Collectors.toList());
-      } else if (widget.getType() == DashboardWidgetType.CASE) {
-        customFieldCategories = ICustomFieldMeta.cases().stream()
+    } else if (widget.getType() == DashboardWidgetType.TASK) {
+      customFieldCategories = ICustomFieldMeta.tasks().stream()
             .map(ICustomFieldMeta::category)
             .distinct()
             .sorted().collect(Collectors.toList());
-      }
-      if (customFieldCategories.contains(EMPTY)) {
-        customFieldCategories.remove(EMPTY);
-        customFieldCategories.add(Ivy.cms().co(NO_CATEGORY_CMS));
-      }
+    }
+    if (customFieldCategories.contains(EMPTY)) {
+      customFieldCategories.remove(EMPTY);
+      customFieldCategories.add(Ivy.cms().co(NO_CATEGORY_CMS));
     }
     return customFieldCategories;
   }
 
   private Set<ICustomFieldMeta> getCustomFieldNames() {
-    if (CollectionUtils.isEmpty(customFieldNames)) {
-      if (widget.getType() == DashboardWidgetType.TASK) {
-        customFieldNames = ICustomFieldMeta.tasks();
-      } else if (widget.getType() == DashboardWidgetType.CASE) {
+    if (widget.getType() == DashboardWidgetType.TASK) {
+      if (selectedFieldType == DashboardColumnType.CUSTOM_CASE) {
         customFieldNames = ICustomFieldMeta.cases();
+      } else {
+        customFieldNames = ICustomFieldMeta.tasks();
       }
+    } else if (widget.getType() == DashboardWidgetType.CASE) {
+      customFieldNames = ICustomFieldMeta.cases();
     }
     return customFieldNames;
   }
@@ -235,7 +247,11 @@ public class ColumnManagementBean implements Serializable {
   public Optional<ICustomFieldMeta> findCustomFieldMeta() {
     Optional<ICustomFieldMeta> metaData = Optional.empty();
     if (widget.getType() == DashboardWidgetType.TASK) {
-      metaData = ICustomFieldMeta.tasks().stream().filter(meta -> meta.name().equals(selectedField)).findFirst();
+      if (selectedFieldType == DashboardColumnType.CUSTOM_CASE) {
+        metaData = ICustomFieldMeta.cases().stream().filter(meta -> meta.name().equals(selectedField)).findFirst();
+      } else {
+        metaData = ICustomFieldMeta.tasks().stream().filter(meta -> meta.name().equals(selectedField)).findFirst();
+      }
     } else if (widget.getType() == DashboardWidgetType.CASE) {
       metaData = ICustomFieldMeta.cases().stream().filter(meta -> meta.name().equals(selectedField)).findFirst();
     }
@@ -330,11 +346,39 @@ public class ColumnManagementBean implements Serializable {
     this.fieldDisplayName = fieldDisplayName;
   }
 
-  public List<String> getExistingFields() {
-    return this.columnsBeforeSave.stream().map(ColumnModel::getField).collect(Collectors.toList());
+  public List<FetchingField> getExistingFields() {
+    return this.columnsBeforeSave.stream().map(column -> new FetchingField(column.getType(), column.getField()))
+        .collect(Collectors.toList());
   }
 
   public void handleVisibility(ColumnModel column) {
     column.setVisible(BooleanUtils.isFalse(column.getVisible()));
+  }
+
+  public class FetchingField {
+    private DashboardColumnType type;
+    private String field;
+
+    public FetchingField(DashboardColumnType type, String field) {
+      this.type = type;
+      this.field = field;
+    }
+
+    public DashboardColumnType getType() {
+      return type;
+    }
+
+    public void setType(DashboardColumnType type) {
+      this.type = type;
+    }
+
+    public String getField() {
+      return field;
+    }
+
+    public void setField(String field) {
+      this.field = field;
+    }
+
   }
 }
