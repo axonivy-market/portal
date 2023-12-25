@@ -10,7 +10,7 @@ import ch.ivyteam.ivy.notification.channel.NotificationSubscription;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 
-public class IvyNotificationChannelDTO extends AbstractResultDTO {
+public class IvyNotificationChannelDTO {
 
   private final NotificationChannel channel;
   private final Map<String, IvyNotificationChannelSubcriptionDTO> subscriptions;
@@ -23,7 +23,7 @@ public class IvyNotificationChannelDTO extends AbstractResultDTO {
 
   public static List<IvyNotificationChannelDTO> all(ISecurityMember subscriber, ISecurityContext securityContext,
       List<String> events) {
-    var channels = NotificationChannel.all().stream().filter(channel -> channel.configFor(securityContext).enabled())
+    var channels = NotificationChannel.all(securityContext).stream().filter(channel -> channel.config().enabled())
         .map(channel -> toChannel(subscriber, channel)).toList();
     channels.forEach(channel -> events.forEach(event -> channel.setSubscriptionIconAndTitle(event)));
     return channels;

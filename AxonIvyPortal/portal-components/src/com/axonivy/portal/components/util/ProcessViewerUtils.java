@@ -12,8 +12,6 @@ import com.axonivy.portal.components.constant.CustomFields;
 import com.axonivy.portal.components.dto.ProcessViewerDTO;
 import com.axonivy.portal.components.service.impl.ProcessService;
 
-import ch.ivyteam.ivy.application.ActivityState;
-import ch.ivyteam.ivy.application.ReleaseState;
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
 import ch.ivyteam.ivy.casemap.runtime.model.ICaseMap;
 import ch.ivyteam.ivy.casemap.viewer.api.CaseMapViewer;
@@ -36,8 +34,8 @@ public class ProcessViewerUtils {
     IWebStartable webStartable = null;
     WebLink webLink = null;
     boolean isError = false;
-    String errorMessage = "";
     String errorIcon = "";
+    String errorMessage = null;
     if (taskId != 0 || caseId != 0 || StringUtils.isNotBlank(processLink)) {
       // init data using caseId
       ITask selectedTask = TaskUtils.findTaskById(taskId);
@@ -67,10 +65,9 @@ public class ProcessViewerUtils {
 
       // try to init data using processLink
       if (webLink == null) {
-        webStartable = ProcessService.getInstance().findWebStartableInSecurityContextByRelativeLink(processLink);
-        String processId = webStartable.getId();
-        isViewerAllowed = Ivy.session().getAllStartables().anyMatch(startable-> startable.getId().equals(processId));
-        
+        errorIcon = "si si-alert-circle";
+        webStartable = findWebStartable(processLink);
+        isViewerAllowed = isViewerAllowed(webStartable);
         if (isViewerAllowed) {
           if (webStartable instanceof ICaseMapWebStartable) {
             webLink = CaseMapViewer.of((ICaseMapWebStartable) webStartable).url().toWebLink();
@@ -84,21 +81,14 @@ public class ProcessViewerUtils {
     // check result
     if (webLink == null) {
       isError = true;
-      if (webStartable == null) {
+      if (!isViewerAllowed) {
+        errorIcon = "si si-lock-1";
+        errorMessage = Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/NoPermissionToView");
+      } else {
         errorIcon = "si si-alert-circle";
         errorMessage = Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessNotFound");
-      } else {
-        if (webStartable.pmv().getActivityState() != ActivityState.ACTIVE || webStartable.pmv().getReleaseState() != ReleaseState.RELEASED) {
-          errorIcon = "si si-alert-circle";
-          errorMessage = Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/ProcessCanNotBeLoaded");
-        } else {
-          errorIcon = "si si-lock-1";
-          errorMessage = Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessViewer/NoPermissionToView");
-        }
-        
       }
-      
-    }
+    } 
     
     return ProcessViewerDTO
         .builder()
@@ -135,7 +125,7 @@ public class ProcessViewerUtils {
 
   private static List<IWebStartable> getWebStartables() {
     if (CollectionUtils.isEmpty(webStartables)) {
-      webStartables = ProcessService.getInstance().findProcesses().getProcesses();
+      webStartables = ProcessService.getInstance().findProcesses();
     }
     return webStartables;
   }
