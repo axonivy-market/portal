@@ -26,13 +26,30 @@ var PortalSessionWarning = function() {
     document.onscroll = updateInteractedTaskTemplate;
 
     // Using IFrame Task template
-    if ($("#iFrame").length > 0) {
-      $("#iFrame").get(0).contentDocument.onload = updateInteractionStatusInIFrame;
-      $("#iFrame").get(0).contentDocument.onkeypress = updateInteractionStatusInIFrame;
-      $("#iFrame").get(0).contentDocument.onclick = updateInteractionStatusInIFrame;
-      $("#iFrame").get(0).contentDocument.onmousedown = updateInteractionStatusInIFrame;
-      $("#iFrame").get(0).contentDocument.ontouchstart = updateInteractionStatusInIFrame;
-      $("#iFrame").get(0).contentDocument.onscroll = updateInteractionStatusInIFrame;
+    if ($("#iFrame").length > 0) {      
+      $("#iFrame").on("load", function () {
+          var iframeContent = $("#iFrame").get(0).contentDocument || $("#iFrame").get(0).contentWindow.document;
+
+          iframeContent.addEventListener("keypress", function (event) {
+              updateInteractionStatusInIFrame();
+          });
+
+          iframeContent.addEventListener("mousedown", function (event) {
+            updateInteractionStatusInIFrame();
+          });
+
+          iframeContent.addEventListener("touchstart", function (event) {
+            updateInteractionStatusInIFrame();
+          });
+
+          iframeContent.addEventListener("scroll", function (event) {
+            updateInteractionStatusInIFrame();
+          });
+
+          iframeContent.addEventListener("click", function (event) {
+            updateInteractionStatusInIFrame();
+          });
+      });
     }
   },
 
