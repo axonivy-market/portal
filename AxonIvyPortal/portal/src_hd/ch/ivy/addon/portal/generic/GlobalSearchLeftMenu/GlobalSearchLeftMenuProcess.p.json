@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "16CF626AB4B6E5B2",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -30,10 +30,11 @@
       "type" : "SubProcessCall",
       "name" : "OpenPortalSearch",
       "config" : {
-        "processCall" : "Functional Processes/OpenPortalSearch:call(String)",
+        "processCall" : "Functional Processes/OpenPortalSearch:call(String,String)",
         "call" : {
           "map" : {
-            "param.keyword" : "in.keyword"
+            "param.keyword" : "in.keyword",
+            "param.activeTabIndex" : "org.apache.commons.lang.StringUtils.defaultIfBlank(in.activeTabIndex, \"0\")"
           }
         }
       },

@@ -25,9 +25,9 @@ import org.apache.commons.lang3.math.NumberUtils;
 import com.google.gson.Gson;
 
 import ch.ivy.addon.portalkit.persistence.converter.UserEntityConverter;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.scripting.objects.File;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 
@@ -296,7 +296,7 @@ public final class ChatMessageManager {
 
   private static ICase findCase(String caseId) {
     if (NumberUtils.isCreatable(caseId)) {
-      return IvyExecutor.executeAsSystem(() -> wf().findCase(Long.valueOf(caseId)));
+      return Sudo.get(() -> wf().findCase(Long.valueOf(caseId)));
     }
     return null;
   }

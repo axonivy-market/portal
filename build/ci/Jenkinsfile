@@ -12,7 +12,7 @@ pipeline {
   }
 
   parameters {
-    string(name: 'modulesMustBeBuilt', defaultValue: '', description: 'Define modules must be built. By default, only modules which have code changes since the last successful build are built. Available modules: portal-components,portal,AxonIvyExpress,PortalKitTestHelper,portal-user-examples,portal-developer-examples,InternalSupport,portal-components-examples. E.g. portal-components code is changed, then set this property value portal => portal-components,portal will be built.')
+    string(name: 'modulesMustBeBuilt', defaultValue: '', description: 'Define modules must be built. By default, only modules which have code changes since the last successful build are built. Available modules: portal-components,portal,PortalKitTestHelper,portal-user-examples,portal-developer-examples,InternalSupport,portal-components-examples. E.g. portal-components code is changed, then set this property value portal => portal-components,portal will be built.')
   }
 
   stages {
@@ -21,7 +21,7 @@ pipeline {
         script {
           builtModules = []
           docker.build('build-portal-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
-            def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
+            def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
             def changeLog = ''
             if (env.GIT_PREVIOUS_SUCCESSFUL_COMMIT) {
               changeLog = sh(returnStdout: true, script: 'git diff --name-only $GIT_COMMIT $GIT_PREVIOUS_SUCCESSFUL_COMMIT').trim()
@@ -42,7 +42,8 @@ pipeline {
       steps {
         script {
           def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty("build.plugin.version")
-          def engineUrl = 'http://10.123.1.216:8000'
+          def utils = load 'build/common/utils.groovy'
+          def engineUrl = 'http://' + utils.getJenkinsMasterDomain() + ':8000'
           docker.build('deploy-modules-to-engine', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
             for (module in builtModules) {
               maven cmd: "com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.server.id=engine-cockpit -Divy.deploy.engine.app=Portal -Divy.deploy.method=HTTP -Divy.deploy.engine.url=${engineUrl} -Divy.test.engine=MODIFY_EXISTING -Divy.deploy.test.users=true"

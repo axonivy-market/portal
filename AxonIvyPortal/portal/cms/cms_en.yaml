@@ -261,6 +261,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showCaseDurationTime: For switch on/off the display of the duration time in case details page.
       showErrorLogToConsole: Set to true to enable write error log to browser console
       showGlobalSearch: For switch on/off the display of the global search.
+      showQuickGlobalSearch: For switch on/off the display of the quick global search.
       showProcessInformation: Set to false to disable link to Show Information of process on Processes page (grid mode) and Case Details.
       showTaskDurationTime: For switch on/off the display of the duration time in task details page.
       statisticChartScalingInterval: Interval in seconds to do periodic statistic chart scaling requests. If the interval value is less than 10, periodic statistic chart scaling is disabled.
@@ -288,7 +289,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     resetAllSettingsConfirmation: Are you sure you want to restore to default values for all settings?
     resetSettingConfirmation: Are you sure you want to restore to default value for this setting?
     restoreAllToDefault: Restore all to defaults
-    restoreDefault: Restore Default
+    restoreDefault: Restore to default
     settingApplicationName: Setting application name
     settingMultipleLanguages: Setting multiple languages
     usernameHint: Username of a system administrator.
@@ -787,6 +788,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfCase: case(s)
     category: Category
     columnManagement: Column management
+    columnType:
+      CUSTOM: Custom field
+      CUSTOM_CASE: Custom case field
+      STANDARD: Standard column
     configuration:
       CustomWidgetExternalLinkWarning: Some websites are not compatible with iframe due to security concerns. Please contact your administrator if the external website is not working properly.
       CustomWidgetTitlePlaceholder: Leave it blank to hide the header of the widget
@@ -1526,6 +1531,9 @@ Dialogs:
             expressWorkflowName: 'Business Details of Case #{0}'
         portal:
           generic:
+            GlobalSearch:
+              ViewAllResults: View all results
+              noResultsText: There are no results.
             dashboard:
               PortalDashboardConfiguration:
                 NewDashboard: New Dashboard
@@ -1780,6 +1788,7 @@ Labels:
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users
+  ViewAllResults: View all results
   adhocTaskRequired: You must add at least one new task.
   disabledUserPrefix: (disabled)
   title: Self Service Ad-hoc Workflow

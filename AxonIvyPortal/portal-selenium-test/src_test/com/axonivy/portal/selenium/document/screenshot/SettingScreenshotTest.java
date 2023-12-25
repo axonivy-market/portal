@@ -91,10 +91,9 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtil.resizeBrowser(new Dimension(1400, 1400));
     ScreenshotUtil.captureElementScreenshot(userProfilePage.getUserSettingCard(), ScreenshotUtil.MY_PROFILE_FOLDER + "my-profile");
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 900));
-    userProfilePage.switchOnEmailOnTaskAssignmentSetting();
-    userProfilePage.switchOnFurtherEmailFromAppSetting();
-    ScreenshotUtil.executeDecorateJs("highlightEmailSettings()");
-    ScreenshotUtil.captureHalfRightPageScreenShot(ScreenshotUtil.MY_PROFILE_FOLDER + "email-settings");
+    userProfilePage.checkBoxTosubscribeChannel();
+    ScreenshotUtil.executeDecorateJs("highlightNotificationChannelSettings()");
+    ScreenshotUtil.captureHalfRightPageScreenShot(ScreenshotUtil.MY_PROFILE_FOLDER + "notification-channels-settings");
   }
 
   @Test

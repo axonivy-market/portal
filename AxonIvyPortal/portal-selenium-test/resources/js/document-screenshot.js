@@ -528,8 +528,8 @@ function highlightIFrameWidgetTaskDetails() {
   createRedMediumOutline($(".custom-widget-card.task-detail-card"));
 }
 
-function highlightEmailSettings() {
-  createRedMediumOutline($("div[id$='email-setting-container']"));
+function highlightNotificationChannelSettings() {
+  createRedMediumOutline($("div[id$='notification-channels']"));
 }
 
 function highlightUserName() {
@@ -557,7 +557,7 @@ function highlightDashboardConfiguration() {
 }
 
 function highlightSharePageButton() {
-  createRedMediumOutline($("[id$=':share-page-button']"));
+  createRedMediumOutline($("button[id$=':share-page-button']"));
 }
 
 function removeHighlightSharePageButton() {
