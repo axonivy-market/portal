@@ -10,7 +10,7 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class NotificationsTest extends BaseTest {
 
   @Override
