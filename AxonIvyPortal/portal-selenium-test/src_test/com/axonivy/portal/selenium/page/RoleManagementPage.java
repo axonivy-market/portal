@@ -8,12 +8,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
-import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.WaitHelper;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class RoleManagementPage extends TemplatePage {
@@ -77,25 +77,25 @@ public class RoleManagementPage extends TemplatePage {
   }
 
   public String getRoleNamesInRoleTreeTable() {
-    return getRoleTreeTable().findElements(By.cssSelector("tbody tr.role span[id$=':role-username']")).stream()
-        .map(WebElement::getText).collect(Collectors.joining(";"));
+    return getRoleTreeTable().$$(By.cssSelector("tbody tr.role span[id$=':role-username']")).asFixedIterable().stream()
+        .map(SelenideElement::getText).collect(Collectors.joining(";"));
   }
 
   public String getRoleDisplayNameInRoleTreeTable() {
-    return getRoleTreeTable().findElements(By.cssSelector("tbody tr.role span[id$=':role-displayname']")).stream()
-        .map(WebElement::getText).collect(Collectors.joining(";"));
+    return getRoleTreeTable().$$(By.cssSelector("tbody tr.role span[id$=':role-displayname']")).asFixedIterable()
+        .stream().map(SelenideElement::getText).collect(Collectors.joining(";"));
   }
 
   public String getTotalUsersOfRoleInRoleTreeTable(String roleName) {
     for (var row : getRolesOnTheTreeTable()) {
-      if (row.findElement(By.cssSelector("span[id$=':role-username']")).getText().equalsIgnoreCase(roleName)) {
-        return row.findElement(By.cssSelector("span[id$=':role-assigned-users-text']")).getText();
+      if (row.$(By.cssSelector("span[id$=':role-username']")).getText().equalsIgnoreCase(roleName)) {
+        return row.$(By.cssSelector("span[id$=':role-assigned-users-text']")).getText();
       }
     }
     return "";
   }
 
-  public WebElement getDeleteActionEnableForRole(String roleName) {
+  public SelenideElement getDeleteActionEnableForRole(String roleName) {
     return findActionForRoleByName(roleName, "delete-role-link");
   }
 
@@ -113,8 +113,7 @@ public class RoleManagementPage extends TemplatePage {
     return findActionForRoleByName(roleName, "edit-role-link");
   }
 
-  public void clickOnEditRole(String roleName) {
-    SelenideElement editLink = getEditActionEnableForRole(roleName);
+  public void clickOnEditRole(SelenideElement editLink) {
     editLink.shouldBe(clickable(), DEFAULT_TIMEOUT).click();
     waitForElementDisplayed(getRoleDetailsDialog(), true);
   }
@@ -124,14 +123,20 @@ public class RoleManagementPage extends TemplatePage {
   }
 
   public SelenideElement findActionForRoleByName(String roleName, String actionId) {
-    for (var role : getRolesOnTheTreeTable()) {
-      var roleNameColumn = role.$(By.cssSelector("td.role-name-column span[id$=':role-username']"));
-      if (roleNameColumn.getText().equalsIgnoreCase(roleName)) {
-        return role.$(By.cssSelector("td.role-actions-column [id$=':" + actionId + "']")).shouldBe(Condition.appear,
-            DEFAULT_TIMEOUT).scrollTo();
-      }
-    }
-    return null;
+    $$("tr.ui-node-level-2").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(1),
+        DEFAULT_TIMEOUT);
+    SelenideElement searchInput = $(
+        "[id='admin-setting-component:adminTabView:role-management-component:role-management-form:role-tree-table:global-filter']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    searchInput.click();
+    searchInput.clear();
+    searchInput.sendKeys(roleName);
+    ElementsCollection roles = $$(
+        "tr.ui-node-level-2")
+        .shouldBe(CollectionCondition.size(1), DEFAULT_TIMEOUT);
+    return roles.filter(Condition.matchText(roleName + ".*")).get(0)
+    .$(By.cssSelector("td.role-actions-column [id$=':" + actionId + "']"))
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   private List<SelenideElement> getRolesOnTheTreeTable() {
@@ -165,7 +170,6 @@ public class RoleManagementPage extends TemplatePage {
   }
 
   public void clickOnAssignUsersToRole(String roleName) {
-    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
     var assignUsersLink = getAssigningUsersActionEnableForRole(roleName);
     assignUsersLink.click();
     waitForElementDisplayed(getRoleDetailsDialog(), true);
@@ -180,11 +184,12 @@ public class RoleManagementPage extends TemplatePage {
     for (var userName : members) {
       var usersAssignmentInput = $("[id$=':manage-role-details-form:user-assignment-selection:user-selection_input']")
           .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-      usersAssignmentInput.clear();
       usersAssignmentInput.click();
+      usersAssignmentInput.clear();
       usersAssignmentInput.sendKeys(userName);
       waitForElementDisplayed(By.cssSelector("[id$=':manage-role-details-form:user-assignment-selection:user-selection_panel"), true);
-      var userSelectionPanel = $("[id$=':manage-role-details-form:user-assignment-selection:user-selection_panel");
+      var userSelectionPanel = $("[id$=':manage-role-details-form:user-assignment-selection:user-selection_panel")
+          .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
       var userOption = userSelectionPanel.$$(By.cssSelector(".ui-autocomplete-item.ui-autocomplete-row")).get(0);
       userOption.shouldBe(clickable(), DEFAULT_TIMEOUT).click();
 
@@ -217,7 +222,7 @@ public class RoleManagementPage extends TemplatePage {
 
   private void removeUserOfRole(int index) {
     waitForElementDisplayed(By.cssSelector("[id$=':manage-role-details-form:users-of-role-table_data']"), true);
-    if ($(By.cssSelector("a[id$=':delete-user-link']")).exists()) {
+    if ($(By.cssSelector("a[id$=':delete-user-link']")).exists() && $$("a[id$=':delete-user-link']").size() > 0) {
       waitForElementClickableThenClick($$("a[id$=':delete-user-link']").get(index));
       removeUserOfRole(0);
     }

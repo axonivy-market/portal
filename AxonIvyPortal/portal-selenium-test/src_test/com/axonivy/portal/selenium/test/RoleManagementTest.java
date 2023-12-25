@@ -15,6 +15,7 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.AdminSettingsPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.RoleManagementPage;
+import com.codeborne.selenide.SelenideElement;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
@@ -38,6 +39,7 @@ public class RoleManagementTest extends BaseTest {
 
   @Test
   public void testVisibilityForRoleManagementTab() {
+    grantSpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
     accessToRoleManagement();
     assertTrue(roleManagementPage.isDisplayed(), "RoleManagement tab is not displayed");
 
@@ -67,6 +69,7 @@ public class RoleManagementTest extends BaseTest {
   public void testVisibilityForDeletingRoleAction() {
     grantSpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
     redirectToRelativeLink(String.format(GRANT_SPECIFIC_PERMISSION, "RoleCreate"));
+    redirectToRelativeLink(String.format(GRANT_SPECIFIC_PERMISSION, "RoleDelete"));
     var roleName = "NewRole" + UUID.randomUUID();
     RoleManagementPage roleManagementPage = accessToRoleManagementAndCreateNewRole(roleName);
     assertTrue(roleManagementPage.getRoleNamesInRoleTreeTable().contains(roleName), "New Role is not appear on tree");
@@ -109,9 +112,10 @@ public class RoleManagementTest extends BaseTest {
     redirectToRelativeLink(String.format(GRANT_SPECIFIC_PERMISSION, "RoleCreate"));
     accessToRoleManagement();
     assertTrue(roleManagementPage.isDisplayed(), "RoleManagement tab is not displayed");
-    editLinkClasses = roleManagementPage.getEditActionEnableForRole(roleName).getAttribute("class");
+    SelenideElement editLink = roleManagementPage.getEditActionEnableForRole(roleName);
+    editLinkClasses = editLink.getAttribute("class");
     assertFalse(editLinkClasses.contains("ui-state-disabled"), "User can not click on edit New Role");
-    roleManagementPage.clickOnEditRole(roleName);
+    roleManagementPage.clickOnEditRole(editLink);
     var roleDisplayName = "RoleDisplayName is edited";
     roleManagementPage.enterRoleAdditionalInformation(roleDisplayName, "RoleDescription is edited");
     roleManagementPage.clickOnSaveRoleButtonDialog();
@@ -140,7 +144,8 @@ public class RoleManagementTest extends BaseTest {
     redirectToRelativeLink(String.format(GRANT_SPECIFIC_PERMISSION, "RoleCreate"));
     accessToRoleManagement();
     var roleName = "HR";
-    var assignUsersLinkClasses = roleManagementPage.getAssigningUsersActionEnableForRole(roleName).getAttribute("class");
+    var assignUsersLink = roleManagementPage.getAssigningUsersActionEnableForRole(roleName);
+    var assignUsersLinkClasses = assignUsersLink.getAttribute("class");
     assertFalse(assignUsersLinkClasses.contains("ui-state-disabled"), "User can not click on AssignUsers");
     roleManagementPage.removeAllUsersOfRole(roleName);
     roleManagementPage.clickOnCloseAssignUsersButton();
@@ -148,6 +153,7 @@ public class RoleManagementTest extends BaseTest {
     roleManagementPage.assignUsersToRole(roleName, Arrays.asList("admin", "demo", "david"));
     roleManagementPage.clickOnCloseAssignUsersButton();
     assertFalse(totalUsers.equalsIgnoreCase(roleManagementPage.getTotalUsersOfRoleInRoleTreeTable(roleName)), "Total users of role is the same");
+    denySpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
   }
 
   @Test
