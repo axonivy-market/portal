@@ -692,7 +692,7 @@
           "name" : "Authorized?",
           "config" : {
             "conditions" : {
-              "S51-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.uuid)"
+              "S51-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.id)"
             }
           },
           "visual" : {
@@ -750,7 +750,7 @@
           "name" : "Authorized?",
           "config" : {
             "conditions" : {
-              "S40-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.TaskService.newInstance().isTaskAccessible(in.uuid)"
+              "S40-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.TaskService.newInstance().isTaskAccessible(in.id)"
             }
           },
           "visual" : {
@@ -917,7 +917,7 @@
           "name" : "Authorized?",
           "config" : {
             "conditions" : {
-              "S11-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.TaskService.newInstance().isTaskAccessible(in.uuid)"
+              "S11-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.TaskService.newInstance().isTaskAccessible(in.id)"
             }
           },
           "visual" : {
@@ -1285,15 +1285,15 @@
     }, {
       "id" : "f103",
       "type" : "RequestStart",
-      "name" : "CaseDetailsPage.ivp",
+      "name" : "DefaultCaseDetailPage.ivp",
       "config" : {
-        "signature" : "CaseDetailsPage",
+        "signature" : "DefaultCaseDetailPage",
         "input" : {
           "params" : [
-            { "name" : "uuid", "type" : "String", "desc" : "" }
+            { "name" : "id", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.uuid" : "param.uuid"
+            "out.id" : "param.id"
           }
         },
         "request" : {
@@ -1537,15 +1537,15 @@
     }, {
       "id" : "f62",
       "type" : "RequestStart",
-      "name" : "TaskDetailsPage.ivp",
+      "name" : "DefaultTaskDetailPage.ivp",
       "config" : {
-        "signature" : "TaskDetailsPage",
+        "signature" : "DefaultTaskDetailPage",
         "input" : {
           "params" : [
-            { "name" : "uuid", "type" : "String", "desc" : "" }
+            { "name" : "id", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.uuid" : "param.uuid"
+            "out.id" : "param.id"
           }
         },
         "request" : {
@@ -1567,7 +1567,7 @@
         "processCall" : "Functional Processes/Navigator:viewRelatedTask(String,Boolean)",
         "call" : {
           "map" : {
-            "param.taskUUID" : "in.uuid"
+            "param.taskUUID" : "in.id"
           }
         }
       },
@@ -2075,7 +2075,7 @@
         "processCall" : "Functional Processes/Navigator:viewRelatedTask(String,Boolean)",
         "call" : {
           "map" : {
-            "param.taskUUID" : "in.uuid"
+            "param.taskUUID" : "in.id"
           }
         }
       },
@@ -2086,15 +2086,15 @@
     }, {
       "id" : "f97",
       "type" : "RequestStart",
-      "name" : "TaskDetailsPageInFrame.ivp",
+      "name" : "DefaultTaskDetailPageInFrame.ivp",
       "config" : {
-        "signature" : "TaskDetailsPageInFrame",
+        "signature" : "DefaultTaskDetailPageInFrame",
         "input" : {
           "params" : [
-            { "name" : "uuid", "type" : "String", "desc" : "" }
+            { "name" : "id", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.uuid" : "param.uuid"
+            "out.id" : "param.id"
           }
         },
         "request" : {
@@ -2370,7 +2370,7 @@
         "processCall" : "Functional Processes/Navigator:viewCaseItemDetailsInIFrame(ch.ivy.addon.portalkit.dto.GlobalCaseId)",
         "call" : {
           "map" : {
-            "param.caseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.uuid(in.uuid).isBusinessCase(in.isBusinessCase).build()"
+            "param.caseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.uuid(in.id).isBusinessCase(in.isBusinessCase).build()"
           }
         }
       },
@@ -2381,17 +2381,17 @@
     }, {
       "id" : "f130",
       "type" : "RequestStart",
-      "name" : "CaseDetailsPageInFrame.ivp",
+      "name" : "DefaultCaseDetailPageInFrame.ivp",
       "config" : {
-        "signature" : "CaseDetailsPageInFrame",
+        "signature" : "DefaultCaseDetailPageInFrame",
         "input" : {
           "params" : [
-            { "name" : "uuid", "type" : "String", "desc" : "" },
+            { "name" : "id", "type" : "String", "desc" : "" },
             { "name" : "isBusinessCase", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
-            "out.isBusinessCase" : "param.isBusinessCase",
-            "out.uuid" : "param.uuid"
+            "out.id" : "param.id",
+            "out.isBusinessCase" : "param.isBusinessCase"
           }
         },
         "request" : {
@@ -3560,7 +3560,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1360 },
-        "labelOffset" : { "x" : -7, "y" : -239 }
+        "labelOffset" : { "x" : -79, "y" : 41 }
       },
       "connect" : [
         { "id" : "f222", "to" : "f221" }
@@ -3847,7 +3847,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
             "",
-            "out.caseSelected = CaseService.newInstance().findCaseByUUID(in.uuid);"
+            "out.caseSelected = CaseService.newInstance().findCaseByUUID(in.id);"
           ]
         },
         "sudo" : true
