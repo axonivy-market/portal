@@ -10,7 +10,7 @@ selecting |case-icon| :guilabel:`Cases` in the |ivy| Portal menu.
 
 .. note::
 
-   If |case-icon| :guilabel:`Cases` is not visible in the |ivy| Portal menu, please ensure that the permission :bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>` has been enabled.
+   Grant permission :bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>` if |case-icon| :guilabel:`Cases` is not visible.
 
 .. hint:: 
    The set of cases you see in the Portal depends on the roles you hold 
@@ -292,7 +292,7 @@ This section shows you the related tasks of this case.
 
 .. note::
    
-   To show all related task of case, please make sure the permission :bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` is enabled.
+   Grant either permission :bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>` to allow a user to see all related tasks of a case.
 
 The list shows the following key information for each task. To change the
 columns displayed, click on :guilabel:`Manage columns`. Select from the

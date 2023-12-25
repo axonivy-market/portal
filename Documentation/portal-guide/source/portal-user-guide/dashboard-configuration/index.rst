@@ -100,7 +100,7 @@ A table of private dashboards is shown with the following information:
 
 .. note::
 
-   The Export function only available for users who have the permission :bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>`.
+   Grant permission :bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>` to enable the export function for personal dashboards for a user.
 
 |edit-private-dashboards|
 
@@ -218,7 +218,7 @@ A table of public dashboards is shown with the following information:
 
 .. note::
 
-   The Export function only available for users who have the permission :bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>`.
+   Grant permission :bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>` to enable export of public dashboards for users.
 
 |edit-public-dashboards|
 
