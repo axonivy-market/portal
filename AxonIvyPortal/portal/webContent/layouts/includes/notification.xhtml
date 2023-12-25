@@ -32,14 +32,14 @@
                     </p:commandLink>
                     <p:tooltip for="notification-full-page" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/linkToFullScreen')}" />
                     
-                    <p:commandLink id="notificationMarkAllAsRead" styleClass="notifications-icon"
+                    <p:commandLink id="notification-mark-all-as-read" styleClass="notifications-icon"
                       disabled="#{!notificationBean.hasUnreadNotifications()}"
                       update="#{unreadNotificationsId}, #{notificationScrollerId}"
                       oncomplete="Portal.updateLayoutContent()"
                       actionListener="#{notificationBean.readAll()}">
                       <i class="notifications-button si si-check-double-1 p-mr-1" />
                     </p:commandLink>
-                    <p:tooltip for="notificationMarkAllAsRead" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAllAsRead')}" />
+                    <p:tooltip for="notification-mark-all-as-read" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAllAsRead')}" />
                    
                     <p:commandLink id="notification-setting"  styleClass="notifications-icon"
                       actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}" 

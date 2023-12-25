@@ -264,8 +264,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       showCaseDurationTime: Activar o desactivar la visibilidad de la duración del caso en detalles de caso.
       showErrorLogToConsole: Establecer en true para activar el registro de errores en la consola del navegador
       showGlobalSearch: Para activar o desactivar la visualización de la búsqueda global.
-      showQuickGlobalSearch: Para activar/desactivar la visualización de la búsqueda global rápida.
       showProcessInformation: Cambiar a falso para desactivar el enlace "Más información" en la página de Procesos (modo cuadrícula) y Detalles del caso.
+      showQuickGlobalSearch: Para activar/desactivar la visualización de la búsqueda global rápida.
       showTaskDurationTime: Activar o desactivar la visibilidad de la duración de la tarea en detalles de tarea.
       statisticChartScalingInterval: Intervalo en segundos para realizar peticiones periódicas de escalado de gráficos estadísticos. Si el valor del intervalo es inferior a 10, se desactiva el escalado periódico de gráficos estadísticos.
       uploadDocumentWhiteListExtensionNote: 'Dejar libre, sie quiere permitir todos los anexos. Si quiere reducir los formatos permitidos, cree una lista separada por coma. Por ejemplo: pdf, txt, doc, docx.'
@@ -1015,7 +1015,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     wroteAt: escribió en
   notifications:
     linkToFullScreen: Enlace a la pantalla completa
-    linkToNotificationSettings: Enlace a la configuración de notificaciones
+    linkToNotificationSettings: Ajustes de notificación
     markAllAsRead: Marcar todo como leído
     markAsRead: Marcar como leído
     noNotificationText: Notificaciones
