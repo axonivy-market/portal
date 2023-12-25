@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
 import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.Selenide.$$;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,7 @@ import com.axonivy.portal.selenium.page.ProcessInformationPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
 @IvyWebTest
@@ -421,8 +423,10 @@ public class DashboardProcessWidgetTest extends BaseTest {
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectCompactMode();
     editProcessWidgetConfiguration.selectCompactProcessSorting(CUSTOM_ORDER);
+    $$(".ui-sortable-handle").shouldHave(CollectionCondition.size(0));
     editProcessWidgetConfiguration.getPreviewButton().click();
     editProcessWidgetConfiguration.getCompactModeProcessPreview().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $$(".ui-sortable-handle").shouldHave(CollectionCondition.sizeGreaterThan(0));
     // expect "Clean absences" process is the first process
     editProcessWidgetConfiguration.getPreviewProcessElement(0).shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldHave(Condition.exactTextCaseSensitive(CLEAN_ABSENCES));
