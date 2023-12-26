@@ -58,10 +58,12 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest{
 
     statisticWidgetPage.createTaskByPriorityChart();
     statisticWidgetPage.createTaskByExpiryChart();
-    ScreenshotUtils.captureElementScreenshot(statisticWidgetPage.waitAndGetChartCreationContainer(), ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "available-charts");
+    ScreenshotUtils.captureElementScreenshot(statisticWidgetPage.waitAndGetChartCreationContainer(),
+        ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "available-charts");
 
     WebElement chartCreationDialog = statisticWidgetPage.getCaseByFinishedTaskCreationDialog();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(chartCreationDialog, ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-creation-dialog", new ScreenshotMargin(10, 10));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(chartCreationDialog,
+        ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-creation-dialog", new ScreenshotMargin(10, 10));
     
     refreshPage();
     statisticWidgetPage.waitForChartCreationPageRendered();
