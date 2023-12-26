@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="viewName" value="NOTIFICATION" />
+    <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationTitle')}</ui:define>
+    <ui:define name="pageContent">
+      <div class="ui-g-12 card">
+        <div class="setting-header ui-g-12 u-no-padding-bottom">
+          <h2 id="notification">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationTitle')}</h2>
+        </div>
+        <h:panelGroup id="no-notification-panel" rendered="#{!notificationBean.hasNotifications()}">
+          <div class="p-text-center message">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/noNotificationText')}</div>
+        </h:panelGroup>
+        <h:panelGroup id="notification-panel" rendered="#{notificationBean.hasNotifications()}" >
+          <h:panelGroup styleClass="ui-g-12">
+            <div class="unread-container">
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/onlyUnread')} " styleClass="only-unread-toggle"/>
+              <p:toggleSwitch id="toggle-only-unread" value="#{notificationBean.onlyUnread}">
+                <p:ajax listener="#{notificationBean.dataModel.onSelectedFilter()}" oncomplete="Portal.updateLayoutContent()"
+                update="notification-full-form" global="false" partialSubmit="true"/>
+              </p:toggleSwitch>
+            </div>
+          </h:panelGroup>
+          <h:form id="notification-full-form" >
+            <p:dataScroller id="notifications-scroller" lazy="true" value="#{notificationBean.dataModel}" var="notification"
+              chunkSize="20" widgetVar="notifications-scroller" styleClass="notification-full-scroll">
+              <div class="notifications-item-container">
+                <span class="notifications-group-name-full #{notification.markedToday} #{notification.markedToday ? '' : 'u-hidden'}" >#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/todayText')}</span>
+                <span class="#{notification.markedOlder ? '' : 'u-hidden'}" >#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/olderText')}</span>
+                <div class="#{notification.style} ui-g ">
+                  <p:commandLink id="notification-mark-as-read"
+                    actionListener="#{notificationBean.markAsRead(notification)}"
+                    process="@this"
+                    partialSubmit="true"
+                    global="false"
+                    onclick="markAsRead('#{notification.id}')"
+                    oncomplete="Portal.updateLayoutContent();"
+                    update="#{unreadNotificationsId}">
+                    <i class="notifications-button fa #{notification.read ? 'fa-circle-thin': 'fa-circle'}" id="#{notification.id}" />
+                  </p:commandLink>
+                  <p:tooltip for="notification-mark-as-read" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
+                  <h:outputText id="notificationMessage" value="#{notification.message}" escape="false"/>
+                  <div>
+                    <h:outputText value="#{notification.timeSince}" styleClass="time-since"/>
+                  </div>
+                </div>
+              </div>
+            </p:dataScroller>
+          </h:form>
+        </h:panelGroup>
+        <div class="user-profile-footer ui-g-12">
+          <p:commandLink id="link-notification-setting"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/linkToNotificationSettings')}"
+              actionListener="#{userMenuBean.navigateToUserProfile()}"
+              styleClass="u-mar-right-15" />
+          <p:commandButton id="close-notification"
+            actionListener="#{userMenuBean.navigateToHomePage()}"
+            icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" />
+        </div>
+      </div>
+      
+    </ui:define>
+  </ui:composition>
+</h:body>
+
+</html>
