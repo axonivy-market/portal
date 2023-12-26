@@ -94,6 +94,9 @@ public class ExpressTest extends BaseTest{
     login(TestAccount.ADMIN_USER);
     newDashboardPage.waitPageLoaded();
     executeUserTask();
+    // work-around so that engine has more time to finish the task (we do not want
+    // spend too much time on this test)
+    NavigationHelper.navigateToCaseList();
     login(TestAccount.DEMO_USER);
     executeApproval("Approved at first level", TestAccount.DEMO_USER.getFullName());
     executeApproval("Approved at second level", TestAccount.DEMO_USER.getFullName());
