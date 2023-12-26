@@ -20,6 +20,7 @@ public class UserMenuPage extends TemplatePage {
   }
   
   public void accessMenu(String title) {
+    waitForGlobalGrowlDisappear();
     findMenu(title).shouldBe(getClickableCondition()).click();
   }
 }
