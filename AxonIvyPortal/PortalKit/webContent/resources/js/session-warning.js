@@ -75,8 +75,6 @@ var PortalSessionWarning = function() {
 
       // If have interaction inside an iframe, send a request to server to keep session
       if ($("#iFrame").length > 0 && isInteractedInIframeTaskTemplate == true) {
-        warningDialogShow = false;
-        isInteractedInIframeTaskTemplate = false;
         keepSessionInIFrame();
         return;
       }
