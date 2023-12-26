@@ -77,6 +77,11 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void addNote(String noteContent) {
+    onClickHistoryIcon();
+    addNoteContent(noteContent);
+  }
+
+  public void addNoteContent(String noteContent) {
     waitForElementDisplayed(By.cssSelector("div.ui-dialog[aria-hidden='false']"), true);
     SelenideElement addNoteDialog = findElementByCssSelector("div.ui-dialog[aria-hidden='false']");
     waitForElementDisplayed(By.cssSelector("div.ui-dialog[aria-hidden='false']"), true);
