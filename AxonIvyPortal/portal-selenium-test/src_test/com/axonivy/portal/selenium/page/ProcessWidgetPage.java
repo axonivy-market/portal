@@ -325,7 +325,7 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public void clickMoreInformationLink(String processName) {
     SelenideElement processItem = getProcessItem(processName);
-    processItem.findElement(By.cssSelector(".more-information")).click();
+    processItem.$(By.cssSelector(".more-information-wrapper")).click();
   }
 
   public SelenideElement getProcessItem(String processName) {
