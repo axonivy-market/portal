@@ -1016,7 +1016,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     wroteAt: Ajoutée le
   notifications:
     linkToFullScreen: Lien vers le plein écran
-    linkToNotificationSettings: Lien vers les paramètres de notification
+    linkToNotificationSettings: Paramètres de notification
     markAllAsRead: Marquer tous les textes comme lus
     markAsRead: Marquer comme lu
     noNotificationText: Pas de notification

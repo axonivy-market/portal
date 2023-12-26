@@ -41,5 +41,20 @@ public class NotificationsTest extends BaseTest {
     assertEquals(homepage.getNotificationsBadge(), 0);
     homepage.hideNotificationsPanel();
   }
-
+  
+  @Test
+  public void testLinkToNotificationSetting() {
+    NewDashboardPage homepage = new NewDashboardPage();
+    homepage.getNotificationsPanel();
+    homepage.clickNotificationSetting();
+    homepage.waitForUserProfileDisplay();
+  }
+  
+  @Test
+  public void testLinkToNotificationFullPage() {
+    NewDashboardPage homepage = new NewDashboardPage();
+    homepage.getNotificationsPanel();
+    homepage.clickNotificationFullPage();
+    homepage.waitForNotificationFullpageDisplay();
+  }
 }

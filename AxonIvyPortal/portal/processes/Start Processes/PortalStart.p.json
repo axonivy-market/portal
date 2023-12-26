@@ -4615,5 +4615,40 @@
       "connect" : [
         { "id" : "f258", "to" : "S92" }
       ]
+    }, {
+      "id" : "f9",
+      "type" : "RequestStart",
+      "name" : "NotificationFullPage.ivp",
+      "config" : {
+        "signature" : "NotificationFullPage",
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 3848 }
+      },
+      "connect" : [
+        { "id" : "f267", "to" : "f16" }
+      ]
+    }, {
+      "id" : "f16",
+      "type" : "DialogCall",
+      "name" : "Notification",
+      "config" : {
+        "dialog" : "com.axonivy.portal.component.NotificationFullPage:start()"
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 3848 }
+      },
+      "connect" : [
+        { "id" : "f268", "to" : "f50" }
+      ]
+    }, {
+      "id" : "f50",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 376, "y" : 3848 }
+      }
     } ]
 }
