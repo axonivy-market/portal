@@ -47,8 +47,6 @@ public class ExpressProcessPage extends TemplatePage {
         .sendKeys(responsible);
       $("[id='assignee-selection-form:role-selection-component:role-selection_panel']")
         .shouldBe(appear, DEFAULT_TIMEOUT);
-//      $("span[id='assignee-selection-form:user-selection-component:user-selection_panel'] .gravatar")
-//      .shouldBe(Condition.and("Clickable", Condition.visible, Condition.enabled), DEFAULT_TIMEOUT);
       $("span[id='assignee-selection-form:role-selection-component:role-selection_panel'] .gravatar")
         .shouldBe(appear, DEFAULT_TIMEOUT).click();
     } else {
@@ -58,8 +56,6 @@ public class ExpressProcessPage extends TemplatePage {
         .sendKeys(responsible);
       $("[id='assignee-selection-form:user-selection-component:user-selection_panel']")
         .shouldBe(appear, DEFAULT_TIMEOUT);
-//      $("span[id='assignee-selection-form:user-selection-component:user-selection_panel'] .gravatar")
-//      .shouldBe(Condition.and("Clickable", appear, Condition.visible, Condition.enabled), DEFAULT_TIMEOUT);
       $("span[id='assignee-selection-form:user-selection-component:user-selection_panel'] .gravatar")
         .shouldBe(appear, DEFAULT_TIMEOUT).click();
     }
@@ -118,7 +114,8 @@ public class ExpressProcessPage extends TemplatePage {
 
     chooseTaskType(taskIndex, typeIndex);
     if (typeIndex != INFORMATION_EMAIL_INDEX) {
-      $("[id='" + String.format("form:defined-tasks-list:%d:task-responsible-link", taskIndex) + "']").shouldBe(getClickableCondition()).click();
+      $("[id='" + String.format("form:defined-tasks-list:%d:task-responsible-link", taskIndex) + "']")
+          .shouldBe(clickable(), DEFAULT_TIMEOUT).click();
       $("[id='choose-responsible-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
       addResponsible(responsibles);
 
