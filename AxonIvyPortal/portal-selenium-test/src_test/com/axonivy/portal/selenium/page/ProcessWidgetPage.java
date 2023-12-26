@@ -323,9 +323,14 @@ public class ProcessWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$='process-widget:remove-process-workflow-dialog']"), false);
   }
 
-  public void clickMoreInformationLink(String processName) {
+  public void clickMoreInformationLinkImage(String processName) {
     SelenideElement processItem = getProcessItem(processName);
     processItem.$(By.cssSelector(".more-information-wrapper")).click();
+  }
+
+  public void clickMoreInformationLink(String processName) {
+    SelenideElement processItem = getProcessItem(processName);
+    processItem.$(By.cssSelector(".more-information")).click();
   }
 
   public SelenideElement getProcessItem(String processName) {
