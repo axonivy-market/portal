@@ -62,11 +62,15 @@ public class WidgetDateFilterBean implements Serializable {
   }
 
   public void updateToDate(DashboardFilter filter) {
-    filter.setTo(formatter.format(filter.getToDate()));
+    if (Optional.ofNullable(filter).map(DashboardFilter::getToDate).isPresent()) {
+      filter.setTo(formatter.format(filter.getToDate()));
+    }
   }
 
   public void updateFromDate(DashboardFilter filter) {
-    filter.setFrom(formatter.format(filter.getFromDate()));
+    if (Optional.ofNullable(filter).map(DashboardFilter::getFromDate).isPresent()) {
+      filter.setFrom(formatter.format(filter.getFromDate()));
+    }
   }
 
   public List<FilterOperator> getCreatedDateOperators() {
