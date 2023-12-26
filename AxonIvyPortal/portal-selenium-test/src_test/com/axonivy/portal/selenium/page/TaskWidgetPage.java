@@ -718,4 +718,9 @@ public class TaskWidgetPage extends TemplatePage {
     return new AdhocPage();
   }
 
+  public void clearFilterInput() {
+    $(KEYWORD_FILTER_SELECTOR_EXPANDED_MODE).click();
+    $(KEYWORD_FILTER_SELECTOR_EXPANDED_MODE).clear();
+  }
+
 }

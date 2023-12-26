@@ -102,6 +102,7 @@ public class ExpressTest extends BaseTest{
     login(TestAccount.DEMO_USER);
     
     taskWidgetPage = NavigationHelper.navigateToTaskList();
+    taskWidgetPage.clearFilterInput();
     taskWidgetPage.startTask(0);
     ExpressReviewPage reviewPage = new ExpressReviewPage();
     ElementsCollection task2 = reviewPage.getApprovalResults(0);
