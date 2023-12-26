@@ -77,8 +77,6 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void addNote(String noteContent) {
-    onClickHistoryIcon();
-
     waitForElementDisplayed(By.cssSelector("div.ui-dialog[aria-hidden='false']"), true);
     SelenideElement addNoteDialog = findElementByCssSelector("div.ui-dialog[aria-hidden='false']");
     waitForElementDisplayed(By.cssSelector("div.ui-dialog[aria-hidden='false']"), true);
@@ -219,10 +217,11 @@ public class CaseDetailsPage extends TemplatePage {
     return result.shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public void openAddAttachmentDialog() {
-    $("a[id$='add-document-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    getAddAttachmentDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  public SelenideElement openAddAttachmentDialog() {
+    SelenideElement dialog = getAddAttachmentDialog();
+    dialog.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("[id$='document:document-upload-dialog_title']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return dialog;
   }
 
   public SelenideElement getDocumentBox() {
@@ -814,6 +813,11 @@ public class CaseDetailsPage extends TemplatePage {
     return $("[id$='document:document-upload-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  public void closeAddAttachmentDialog() {
+    $("[id$='document:document-upload-dialog']").$("[id$=':document-upload-close-command']")
+        .shouldBe(clickable(), DEFAULT_TIMEOUT).click();
+  }
+  
   public boolean checkUploadDocumentErrorContent(String error) {
     return $("div[id$='upload-messages']").shouldBe(appear, DEFAULT_TIMEOUT).is(Condition.text(error));
   }
