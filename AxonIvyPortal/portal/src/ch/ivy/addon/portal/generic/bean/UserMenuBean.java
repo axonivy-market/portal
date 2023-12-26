@@ -16,7 +16,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.PrimeFaces;
 
-import com.axonivy.portal.components.generic.navigation.BaseNavigator;
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.enums.PortalCustomSignature;
 
@@ -251,7 +250,7 @@ public class UserMenuBean implements Serializable {
     return AnnouncementService.getInstance().isAnnouncementActivated();
   }
   
-  private void navigateToHomePage() throws IOException {
+  public void navigateToHomePage() throws IOException {
     getExternalContext().redirect(getHomePageURL());
   }
   
@@ -328,12 +327,12 @@ public class UserMenuBean implements Serializable {
     return expressStartLink;
   }
   
+  public void navigateToNotification(){
+    PortalNavigator.navigateToNavigationFullPage();
+  }
+  
   public String getLoginPageURL() {
     String returnURL = "%s##%s";
     return String.format(returnURL, BaseNavigator.buildAbsoluteUrl("Start Processes/PortalStart/DefaultLoginPage.ivp", new HashMap<>()), Ivy.session().getSessionUserName());
-  }
-  
-  public boolean isShowQRCode() {
-    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_QR_CODE);
   }
 }

@@ -1020,7 +1020,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     wroteAt: Erstellt am
   notifications:
     linkToFullScreen: Link zum Vollbild
-    linkToNotificationSettings: Link zu den Benachrichtigungseinstellungen
+    linkToNotificationSettings: Benachrichtigungseinstellungen
     markAllAsRead: Alle als gelesen markieren
     markAsRead: Als gelesen markieren
     noNotificationText: Keine Benachrichtigungen

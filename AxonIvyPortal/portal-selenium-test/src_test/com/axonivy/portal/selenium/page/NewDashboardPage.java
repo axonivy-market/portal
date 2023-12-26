@@ -875,7 +875,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public boolean isMarkAllAsReadDisplayed(WebElement notificationsPanel) {
-    return $("[id='notificationMarkAllAsRead']").shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
+    return $("[id='notification-mark-all-as-read']").shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
   }
 
   public boolean isTodayGroupLineDisplayed(WebElement notificationsPanel) {
@@ -895,11 +895,25 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void markAsAllRead(WebElement notificationsPanel) {
-    $("[id='notificationMarkAllAsRead']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='notification-mark-all-as-read']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     waitForElementValueChanged("#topbar-unread-notifications", "0");
   }
   
   public SelenideElement getFirstImageProcess() {
     return $(".image-process-item-image").shouldBe(Condition.exist, DEFAULT_TIMEOUT);
+  }
+  
+  public void clickNotificationSetting() {
+    $("[id='notification-setting']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+  
+  public void waitForUserProfileDisplay() {
+    $("div[id='my-profile-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  public void clickNotificationFullPage() {
+    $("[id='notification-full-page']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+  public void waitForNotificationFullpageDisplay() {
+    $("form[id='notification-full-form']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 }
