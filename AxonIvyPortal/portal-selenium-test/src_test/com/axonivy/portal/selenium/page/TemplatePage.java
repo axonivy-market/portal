@@ -138,4 +138,9 @@ public abstract class TemplatePage extends AbstractPage {
     new WebDriverWait(WebDriverRunner.getWebDriver(), Duration.ofSeconds(30)).until(ExpectedConditions.numberOfWindowsToBe(2));
   }
 
+  public QRCodePage openQRCode() {
+    openUserSettingMenu();
+    $("[id='mobile-app-item']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    return new QRCodePage();
+  }
 }

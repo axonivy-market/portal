@@ -21,3 +21,4 @@ User Guide
    portal-chat/index
    demo-processes/index
    portal-multi-language/index
+   qr-code/index
