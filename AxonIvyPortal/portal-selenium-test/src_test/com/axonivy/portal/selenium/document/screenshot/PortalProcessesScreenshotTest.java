@@ -108,7 +108,7 @@ public class PortalProcessesScreenshotTest extends ScreenshotBaseTest{
     ScreenshotUtils.executeDecorateJs("highlightProcessMoreInformationLink()");
     ScreenshotUtils.captureHalfLeftPageScreenShot(ScreenshotUtils.PROCESSES_INFORMATION_WIDGET_FOLDER + "more-information-link");
 
-    processWidget.clickMoreInformationLink(processName);
+    processWidget.clickMoreInformationLinkImage(processName);
     ProcessInformationPage processInformationPage = new ProcessInformationPage();
     processInformationPage.waitPageLoaded();
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 800));
