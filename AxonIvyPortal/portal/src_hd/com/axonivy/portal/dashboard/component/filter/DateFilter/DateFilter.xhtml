@@ -35,7 +35,7 @@
     <p:datePicker id="is-date" value="#{filter.fromDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex)}">
-      <p:ajax event="change" process="@(this)" update="@(this)" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
+      <p:ajax event="dateSelect" process="@(this)" update="is-date-panel" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
       <f:attribute name="filter" value="#{filter}" />
