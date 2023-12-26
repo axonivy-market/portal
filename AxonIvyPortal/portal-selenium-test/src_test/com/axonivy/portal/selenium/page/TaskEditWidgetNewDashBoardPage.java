@@ -149,12 +149,6 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     return $("[id='widget-configuration-form:new-widget-configuration-component:filter-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public WebElement openColumnManagementDialog() {
-    $("div[id$='task-widget-preview:dashboard-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$("a[id$='column-toggler']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    return getColumnManagementDialog().shouldBe(appear, DEFAULT_TIMEOUT);
-  }
-
   public SelenideElement getColumnManagementDialog() {
     return $("div[id$='column-management-dialog']");
   }
@@ -199,4 +193,108 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     getConfigurationDialog().$(".ui-dialog-footer").$("a").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id='new-widget-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
+
+  public SelenideElement getAddingFieldColumnType() {
+    return $(
+        "[id='widget-configuration-form:new-widget-configuration-component:column-management-component:column-management-form:field-type-selection_label']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement getStandardFieldSelection() {
+    getColumnManagementDialog().$("div[id$='standard-field-selection'] .ui-selectonemenu-trigger")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    return getColumnManagementDialog().$("div[id$='standard-field-selection'] .ui-selectonemenu-trigger");
+  }
+
+  public void selectCustomCaseType() {
+    selectFieldType("Custom case field");
+    getCustomCaseFieldCategory().shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void selectStandardType() {
+    selectFieldType("Standard column");
+    getCustomFieldCategory().shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public String addFirstStandardField() {
+    getStandardFieldSelection().click();
+    SelenideElement standardFieldPanel = $("div[id$='column-management-form:standard-field-selection_panel']");
+    standardFieldPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement firstFieldElement = standardFieldPanel.$("li").shouldBe(getClickableCondition());
+    String field = firstFieldElement.getText();
+    firstFieldElement.click();
+
+    getFieldDisplayName().clear();
+    getFieldDisplayName().sendKeys(field);
+
+    getColumnManagementDialog().$("button[id$='field-add-btn']").click();
+
+    getAddedFieldRemoveLink(field).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return field;
+  }
+
+  private SelenideElement getFieldDisplayName() {
+    return getColumnManagementDialog().$("input[id$='field-display-name']");
+  }
+
+  public void selectFieldType(String type) {
+    getColumnManagementDialog().$("div[id$='field-type-selection'] span.ui-icon-triangle-1-s")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(Condition.enabled, DEFAULT_TIMEOUT).click();
+    $("div[id$='column-management-form:field-type-selection_panel'] li[data-label='" + type + "']").click();
+  }
+
+  public SelenideElement getCustomField(String field) {
+    getCustomFieldSelection().click();
+    SelenideElement customFieldPanel = $("span[id$='column-management-form:custom-field-selection_panel']");
+    customFieldPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return customFieldPanel.$("li[data-item-value='" + field + "']");
+  }
+
+  private SelenideElement getCustomFieldSelection() {
+    return getColumnManagementDialog().$("span[id$='custom-field-selection'] button");
+  }
+
+  public SelenideElement openColumnManagementDialog() {
+    $("div[id$='task-widget-preview:dashboard-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("a[id$='column-toggler']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return getColumnManagementDialog().shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public String addFirstCustomField() {
+    selectCustomType();
+    getCustomFieldSelection().click();
+    SelenideElement customFieldPanel = $("span[id$='column-management-form:custom-field-selection_panel']");
+    customFieldPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement firstFieldElement = customFieldPanel.$("li").shouldBe(getClickableCondition());
+    String field = firstFieldElement.getText();
+    firstFieldElement.click();
+
+    getColumnManagementDialog().$("button[id$='field-add-btn']").click();
+
+    getAddedFieldRemoveLink(field).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return field;
+  }
+
+  private SelenideElement getCustomFieldCategory() {
+    return getColumnManagementDialog()
+        .$("input[id$=':column-management-form:custom-field-categories-selection_input']");
+  }
+
+  private SelenideElement getCustomCaseFieldCategory() {
+    return getColumnManagementDialog()
+        .$("input[id$=':column-management-form:custom-case-field-categories-selection_input']");
+  }
+
+  public void selectCustomType() {
+    selectFieldType("Custom field");
+    getCustomFieldCategory().shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getStandardField(String field) {
+    getStandardFieldSelection().click();
+    SelenideElement standardFieldPanel = $("div[id$='column-management-form:standard-field-selection_panel']");
+    standardFieldPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return standardFieldPanel.$("li[data-label='" + field + "']");
+  }
+
 }
