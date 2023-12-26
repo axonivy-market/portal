@@ -159,8 +159,15 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest{
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskConfigurationPage.openMultiLanguageDialogWhenAddWidget(), ScreenshotUtils.NEW_DASHBOARD_FOLDER + "dashboard-multi-language-widget-dialog", new ScreenshotMargin(20));
 
     taskConfigurationPage.cancelMultiLanguageDialogWhenAddWidget();
-    ScreenshotUtils.captureElementScreenshot(taskConfigurationPage.getConfigurationFilter(), ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-configuration");
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskConfigurationPage.openColumnManagementDialog(), ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-table-configuration", new ScreenshotMargin(20));
+    ScreenshotUtils.captureElementScreenshot(taskConfigurationPage.getConfigurationFilter(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-configuration");
+    WebElement columnManagementDialog = taskConfigurationPage.openColumnManagementDialog();
+    ScreenshotUtils.captureElementScreenshot(columnManagementDialog,
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-table-configuration");
+    taskConfigurationPage.getAddingFieldColumnType().click();
+    ScreenshotUtils.executeDecorateJs("highlightProcessDisplayModePanel()");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(columnManagementDialog,
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-column-field-type-configuration", new ScreenshotMargin(20));
 
     taskConfigurationPage.removeAddedField("category");
     taskConfigurationPage.removeAddedField("description");
