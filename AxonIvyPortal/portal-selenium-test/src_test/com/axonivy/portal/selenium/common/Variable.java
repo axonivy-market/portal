@@ -61,7 +61,9 @@ public enum Variable {
   DEEPL_AUTH_KEY("Portal.DeepL.AuthKey"),
   ENABLE_DEEPL_TRANSLATION("Portal.DeepL.Enable"),
   DASHBOARD("Portal.Dashboard"),
-  USER_MENU("Portal.UserMenu");
+  USER_MENU("Portal.UserMenu"),
+  SHOW_QR_CODE("Portal.UserMenu.ShowQRCode");
+  
 
   private String key;
 
