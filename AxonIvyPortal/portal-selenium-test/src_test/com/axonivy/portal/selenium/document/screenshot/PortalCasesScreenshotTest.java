@@ -78,7 +78,7 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest{
     detailsPage.waitForCaseDetailsDisplay();
     ScreenshotUtils.captureElementScreenshot(detailsPage.getAddNoteDialog(), ScreenshotUtils.CASE_DETAIL_FOLDER + "how-to-add-task-note");
 
-    detailsPage.addNote("Take Order");
+    detailsPage.addNoteContent("Take Order");
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(detailsPage.openAddAttachmentDialog(),
         ScreenshotUtils.CASE_DETAIL_FOLDER + "how-to-attach-document-to-case", new ScreenshotMargin(10));
     detailsPage.closeAddAttachmentDialog();
