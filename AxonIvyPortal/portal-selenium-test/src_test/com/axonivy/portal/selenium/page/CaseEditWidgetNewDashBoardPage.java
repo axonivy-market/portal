@@ -127,12 +127,12 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void selectCustomType() {
-    selectFieldType("CUSTOM");
+    selectFieldType("Custom field");
     getCustomFieldCategory().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void selectStandardType() {
-    selectFieldType("STANDARD");
+    selectFieldType("Standard column");
     getCustomFieldCategory().shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
