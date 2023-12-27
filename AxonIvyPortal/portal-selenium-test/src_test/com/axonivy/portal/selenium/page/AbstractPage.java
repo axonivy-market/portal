@@ -31,7 +31,6 @@ public abstract class AbstractPage {
   protected AbstractPage() {
     log = LogFactory.getLog(getClass());
     log.debug("Created page abstraction for " + getClass().getName());
-    WebDriverRunner.getWebDriver().manage().window().maximize();
     waitPageLoaded();
   }
 

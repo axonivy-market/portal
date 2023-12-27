@@ -119,7 +119,6 @@ public class BaseTest {
   public void setup() {
     launchBrowserAndGotoRelativeLink(cleanupDataLink);
     createJSonFile("default-dashboard.json", PortalVariable.DASHBOARD.key);
-    WebDriverRunner.getWebDriver().manage().window().maximize();
   }
   
   /**
