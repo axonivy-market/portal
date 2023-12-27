@@ -8,7 +8,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.time.Duration;
 
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WindowType;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.axonivy.ivy.webtest.engine.EngineUrl;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.junit5.ScreenShooterExtension;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
@@ -25,6 +26,7 @@ import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
  * of failed tests and utility methods.
  *
  */
+@ExtendWith({ScreenShooterExtension.class})
 public class BaseTest {
 
   private final static String LOGIN_URL_PATTERN = "/PortalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
@@ -32,11 +34,6 @@ public class BaseTest {
   protected final static Duration DEFAULT_TIMEOUT = Duration.ofSeconds(45);
 
   public BaseTest() {}
-
-  @AfterEach
-  public void tearDown() {
-    WebDriverRunner.getWebDriver().quit();
-  }
 
   protected String simplePaymentUrl = "portal-developer-examples/162511D2577DBA88/simplePayment.ivp";
   protected String createTaskWithIframe = "portal-developer-examples/16E5DB746865BCEC/CreateInvestment.ivp";
