@@ -562,7 +562,7 @@ Changes in 9.2
 
 - Included new CaseState ``Destroyed`` in Portal Case list, also in Case State filter.
 
-- Introduced :ref:`Workflow Events table <how-to-show-workflow-events>`, user who has permission ``WORKFLOW_EVENT_READ_ALL`` can see all ``WORKFLOW_EVENTS``.
+- Introduced :ref:`Workflow Events table <how-to-show-workflow-events>`, user who has permission :bdg-warning:`🔑WorkflowEventReadAll` can see all ``WORKFLOW_EVENTS``.
 
 - Introduced the ``Portal.Homepage`` Portal setting to set the default homepage, each user can change it via user profile.
 

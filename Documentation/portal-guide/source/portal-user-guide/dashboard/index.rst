@@ -29,7 +29,11 @@ Process Favorites
 The  **Process favorites** you find in **Processes** at the left. They allow you
 to quickly access the processes you need most often in your daily work. To make
 full use of this feature, the |ivy| Portal offers you an easy way to
-configure the process favorites to your personal needs. 
+configure the process favorites to your personal needs.
+
+.. note::
+
+   Grant permission :bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>` to allow a user to access the full process list.
 
 |process-favorites|
 
@@ -142,7 +146,7 @@ from the task list and start working on it.
 You see the number of tasks right next to the heading :guilabel:`Tasks`. At the 
 right, you find the link ``Show full task list``. This quick link
 routes you to the **Task List** page of the |ivy| Portal. Please refer to
-:ref:`full-task-list` for detailed information.
+:ref:`full-task-list` for detailed information. Grant permission :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>` to allow a user to access the full task list.
 
 Right below the heading :guilabel:`Task`, you find the following features which
 help you find the correct tasks:
@@ -186,7 +190,7 @@ the overall situation at a glance.
 
 Next to the heading you find a link ``Show all charts``. This quick link
 routes you the :guilabel:`Statistics` page of the |ivy| Portal. Please refer
-to :ref:`full-statistic-list` for detailed information.
+to :ref:`full-statistic-list` for detailed information. Grant permission :bdg-ref-warning:`🔑AccessFullStatisticsList <AccessFullStatisticsList>` to allow a user to access the full list of statistics.
 
 Within header of the chart, you find two navigation buttons (|pre-icon|,
 |next-icon|) allowing you to toggle between the available charts. Each chart
