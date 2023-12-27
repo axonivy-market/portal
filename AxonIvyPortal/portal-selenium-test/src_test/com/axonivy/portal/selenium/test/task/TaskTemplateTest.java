@@ -111,6 +111,7 @@ public class TaskTemplateTest extends BaseTest {
 
   private void createTestData() {
     redirectToRelativeLink(createTestingTasksUrl);
+    new NewDashboardPage();
   }
 
   private TaskTemplatePage startATask() {
