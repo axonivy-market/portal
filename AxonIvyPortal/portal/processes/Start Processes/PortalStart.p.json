@@ -2072,7 +2072,7 @@
       "type" : "SubProcessCall",
       "name" : "Functional Processes/Navigator",
       "config" : {
-        "processCall" : "Functional Processes/Navigator:viewRelatedTask(String,Boolean)",
+        "processCall" : "Functional Processes/Navigator:viewRelatedTaskInFrame(String)",
         "call" : {
           "map" : {
             "param.taskUUID" : "in.uuid"
