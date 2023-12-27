@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.persistence.domain.BusinessEntity;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class ExternalLink extends BusinessEntity{
@@ -48,7 +49,7 @@ public class ExternalLink extends BusinessEntity{
 
   @JsonIgnore
   public boolean isAbleToEdit() {
-    return this.creator.equalsIgnoreCase(Ivy.session().getSessionUserName());
+    return this.creator.equalsIgnoreCase(Ivy.session().getSessionUserName()) || PermissionUtils.isSessionUserHasAdminRole();
   }
   
   @Override
