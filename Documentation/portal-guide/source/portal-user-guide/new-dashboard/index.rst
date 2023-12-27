@@ -163,6 +163,8 @@ You can export all data of the case widget by clicking on the link ``Export to E
 If the number of exported cases exceed the maximum row number of the Excel file, Portal will separate data into multiple Excel
 files and put them into a single zip file.
 
+.. _new-dashboard-process-list-widget:
+
 Process list widget
 ===================
 
@@ -250,7 +252,7 @@ You can define a news feed widget to display all news entries to the user
 
 **Manage news feed content**
 
-.. note:: The user has to have permission ``NewsManagement`` to manage the content of the news feed.
+.. note:: Grant permission :bdg-ref-warning:`🔑NewsManagement <NewsManagement>` to allow a user to manage the content of the news feed.
 
 If the user has permission, then the user can:
 
