@@ -31,8 +31,8 @@ public class AbsencePage extends TemplatePage {
   }
 
   public NewAbsencePage openNewAbsenceDialog() {
-    String selector = "button[id*='add-absence']";
-    waitForElementClickableThenClick(selector);
+    $("button[id*='add-absence']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    getAddAbsenceDialog();
     return new NewAbsencePage();
   }
 
@@ -149,8 +149,8 @@ public class AbsencePage extends TemplatePage {
     return $("[id$='absences-management-form']");
   }
 
-  public WebElement getAddAbsenceDialog() {
-    return $("[id$='absence-dialog']");
+  public SelenideElement getAddAbsenceDialog() {
+    return $("[id$='absence-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void waitForAbsencesGrowlMessageDisplay() {

@@ -15,6 +15,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.LinkNavigator;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -131,6 +132,9 @@ public class NewDashboardPage extends TemplatePage {
     var widget = $$(".statistic-chart-widget").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT).get(index).shouldBe(appear, DEFAULT_TIMEOUT);
     widget.$("[id$='loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
     waitForWidgetLoadedByExpandThenCollapse(widget);
+    // We use Sleeper here to wait for chart render completely, because the
+    // statistic dialog was render with an animation by canvas.
+    Sleeper.sleep(1000);
     return widget.ancestor(".grid-stack-item");
   }
 
