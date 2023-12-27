@@ -31,6 +31,7 @@ public class HandleErrorPageScreenshotTest extends ScreenshotBaseTest {
       $(".notification-container").shouldBe(appear, DEFAULT_TIMEOUT);
 
       $("a[class$='notification-content-action-more-details']") .shouldBe(exist, DEFAULT_TIMEOUT) .shouldBe(visible, DEFAULT_TIMEOUT).click();
+      $("[id='exception-dialog:exception-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
       ScreenshotUtils.capturePageScreenshot(ERROR_HANDLING_FOLDER +
       "portal-ajax-error-handler");
 

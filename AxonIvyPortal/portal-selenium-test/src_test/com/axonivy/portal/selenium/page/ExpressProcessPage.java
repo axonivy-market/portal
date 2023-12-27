@@ -74,9 +74,13 @@ public class ExpressProcessPage extends TemplatePage {
   }
 
   public ExpressFormDefinitionPage goToFormDefinition() {
-    clickSave();
-    new ExpressFormDefinitionPage();
+    goToFormDefinitionDefaultResolution();
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
+    return new ExpressFormDefinitionPage();
+  }
+
+  public ExpressFormDefinitionPage goToFormDefinitionDefaultResolution() {
+    clickSave();
     return new ExpressFormDefinitionPage();
   }
 

@@ -16,7 +16,6 @@ public class DefaultExpresTaskPage extends TaskTemplatePage{
     textArea.clear();
     textArea.sendKeys(text);
     var textAreaId = textArea.getAttribute(ID_PROPERTY);
-//    waitUntilAnimationFinished(DEFAULT_TIMEOUT, textAreaId.replace(":", "\\\\:"), ID_PROPERTY);
     textAreaId.replace(":", "\\\\:");
   }
   
