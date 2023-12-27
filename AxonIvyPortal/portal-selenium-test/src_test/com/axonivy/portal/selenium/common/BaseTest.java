@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Selenide.refresh;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.time.Duration;
+import java.util.Objects;
 
 import org.junit.jupiter.api.AfterEach;
 import org.openqa.selenium.Dimension;
@@ -314,4 +315,59 @@ public class BaseTest {
   public void resizeBrowserTo2kResolution() {
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
   }
+
+  /**
+   * Use this instead of {@code Assertions} methods so that Selenide would take screenshots if errors. This is a
+   * workaround because we cannot use @ExtendWith({ScreenShooterExtension.class}) with
+   * `WebDriverRunner.getWebDriver().quit();` in `@AfterEach`
+   */
+  public void assertTrue(boolean condition) {
+    assertTrue(condition, "");
+  }
+
+  /**
+   * For documentation, see {@link BaseTest#assertTrue(boolean)}
+   */
+  public void assertTrue(boolean condition, String message) {
+    if (!condition) {
+      System.out.println(message);
+      $("ASSERTION FAILED, CHECK STACK TRACE").shouldBe(Condition.exist);
+    }
+  }
+
+  /**
+   * For documentation, see {@link BaseTest#assertTrue(boolean)}
+   */
+  public void assertFalse(boolean condition) {
+    assertTrue(!condition);
+  }
+
+  /**
+   * For documentation, see {@link BaseTest#assertTrue(boolean)}
+   */
+  public void assertFalse(boolean condition, String message) {
+    assertTrue(!condition, message);
+  }
+
+  /**
+   * For documentation, see {@link BaseTest#assertTrue(boolean)}
+   */
+  public void assertEquals(Object a, Object b) {
+    assertTrue(Objects.equals(a, b));
+  }
+
+  /**
+   * For documentation, see {@link BaseTest#assertTrue(boolean)}
+   */
+  public void assertEquals(Object a, Object b, String message) {
+    assertTrue(Objects.equals(a, b), message);
+  }
+
+  /**
+   * For documentation, see {@link BaseTest#assertTrue(boolean)}
+   */
+  public void assertNotEquals(Object a, Object b) {
+    assertTrue(!Objects.equals(a, b));
+  }
+
 }
