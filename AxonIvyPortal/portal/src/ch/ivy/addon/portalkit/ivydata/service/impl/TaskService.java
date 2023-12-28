@@ -117,7 +117,7 @@ public class TaskService {
     if (recordSet != null) {
       recordSet.getRecords().forEach(record -> {
         int priority = Integer.parseInt(record.getField("PRIORITY").toString());
-        long numberOfTasks = ((BigDecimal)(record.getField("COUNT"))).longValue();
+        long numberOfTasks = ((Number)(record.getField("COUNT"))).longValue();
         if (priority == WorkflowPriority.EXCEPTION.intValue()) {
           priorityStatistic.setException(numberOfTasks);
         } else if (priority == WorkflowPriority.HIGH.intValue()) {
@@ -168,7 +168,7 @@ public class TaskService {
     if (recordSet != null) {
       recordSet.getRecords().forEach(record -> {
         int state = Integer.parseInt(record.getField("BUSINESSSTATE").toString());
-        long numberOfTasks = ((BigDecimal) (record.getField("COUNT"))).longValue();
+        long numberOfTasks = ((Number) (record.getField("COUNT"))).longValue();
         taskStateStatistic.getNumberOfTasksByState().put(state, numberOfTasks);
       });
     }
@@ -193,7 +193,7 @@ public class TaskService {
     taskCategoryStatistic.setNumberOfTasksByCategory(new HashMap<>());
     if (recordSet != null) {
       recordSet.getRecords().forEach(record -> {
-        long numberOfTasks = ((BigDecimal)(record.getField("COUNT"))).longValue();
+        long numberOfTasks = ((Number)(record.getField("COUNT"))).longValue();
         taskCategoryStatistic.getNumberOfTasksByCategory().put(record.getField("CATEGORY").toString(), numberOfTasks);
       });
     }
@@ -218,7 +218,8 @@ public class TaskService {
               SimpleDateFormat mySqlDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
               date = mySqlDateFormat.parse(record.getField("EXPIRYTIMESTAMP").toString());
             }
-            numberOfTasksByExpiryTime.put(date, Long.valueOf(record.getField("COUNT").toString()));
+            long numberOfTasks = ((Number)(record.getField("COUNT"))).longValue();
+            numberOfTasksByExpiryTime.put(date, numberOfTasks);
           }
         }
       }
