@@ -30,7 +30,7 @@ public class TaskDetailsTest extends BaseTest {
       "Note is added on Task Details and the task has Technical Case";
   private static final String NOTE_TASK_DETAIL_BUSINESS_CASE =
       "Note is added on Task Details and the task has only Business Case";
-  
+
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
 
   @Override
@@ -78,7 +78,7 @@ public class TaskDetailsTest extends BaseTest {
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_TECHNICAL_CASE).shouldHave(size(1));
   }
-  
+
   @Test
   public void testShareTaskDetails() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);

@@ -28,20 +28,21 @@ public class LoginPage extends TemplatePage {
     this();
     this.testAccount = testAccount;
   }
-  
+
   public void login() {
     usernameTextField.sendKeys(testAccount.getUsername());
     passwordField.sendKeys(testAccount.getPassword());
     waitForElementClickableThenClick(loginButton);
     waitForElementDisplayed(By.id("left-menu"), true, LOGIN_TIMEOUT);
   }
-  
+
   public void login(String username, String password) {
     usernameTextField.sendKeys(username);
     passwordField.sendKeys(password);
     waitForElementClickableThenClick(loginButton);
     waitForElementDisplayed(By.id("left-menu"), true, LOGIN_TIMEOUT);
   }
+
   public LoginPage() {
     this.usernameTextField = $("input[id='login:login-form:username']");
     this.passwordField = $("input[id='login:login-form:password']");

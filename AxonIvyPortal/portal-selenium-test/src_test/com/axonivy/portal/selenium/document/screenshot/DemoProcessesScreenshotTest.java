@@ -47,9 +47,9 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.executeDecorateJs("highlightUserExampleNavigation()");
     ScreenshotUtils.captureHalfLeftPageScreenShot(ScreenshotUtils.DEMO_FOLDER + "user-example-guide-link");
   }
-  
+
   @Test
-  public void screenshotUserExampleOverview() throws IOException{
+  public void screenshotUserExampleOverview() throws IOException {
     mainMenuPage.closeMainMenu();
     ScreenshotUtils.resizeBrowser(new Dimension(1600, 1300));
     redirectToRelativeLinkWithEmbedInFrame(startUserExampleProcess);
@@ -75,7 +75,7 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
     leaveRequestPage.waitForIFrameContentVisible();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "leave-request-creation");
   }
-  
+
   @Test
   public void screenshotCaseMapProcess() throws IOException {
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 900));
@@ -84,7 +84,7 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
     caseMapPage.switchToIFrameOfTask();
     caseMapPage.waitForIFrameContentVisible();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "lending-casemap-collect-personal-data");
-    
+
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1000));
     NewDashboardPage newDashboardPage = caseMapPage.clickSubmitRequestButton();
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1500));

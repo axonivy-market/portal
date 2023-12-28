@@ -22,10 +22,10 @@ public class CaseMapTest extends BaseTest {
   private static final String INTERNAL_SOLVENCY_CHECK = "Internal Solvency Check";
   private static final String APPROVAL_LEVEL_1 = "Approve Level 1";
   private static final String APPROVAL_LEVEL_2 = "Approve Level 2";
-  
+
   private CaseMapPage caseMapPage;
   private TaskWidgetPage taskWidgetPage;
-  
+
   @Override
   @BeforeEach
   public void setup() {
@@ -71,7 +71,7 @@ public class CaseMapTest extends BaseTest {
     CaseDetailsPage caseDetailsPage = userExamplesEndPage.goToCaseDetail();
     assertEquals("Lending", caseDetailsPage.getCaseName());
   }
-  
+
   @Test
   public void testCaseMapRejectedWorkflow() {
     caseMapPage = new CaseMapPage();
@@ -99,13 +99,13 @@ public class CaseMapTest extends BaseTest {
     taskWidgetPage.filterTasksInExpandedModeBy(APPROVAL_LEVEL_2, 0);
     taskWidgetPage.countTasks().shouldHave(CollectionCondition.size(0));
   }
-  
+
   private void startTaskByTaskName(String taskname) {
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy(taskname);
     taskWidgetPage.startTask(0);
   }
-  
+
   private void assertInputData() {
     caseMapPage.getCustomerLastName().shouldHave(Condition.value("John"));
     caseMapPage.getCustomerFirstName().shouldHave(Condition.value("Jack"));
@@ -115,6 +115,6 @@ public class CaseMapTest extends BaseTest {
     caseMapPage.getSalary().shouldHave(Condition.value("80000"));
     caseMapPage.getOtherCredits().shouldHave(Condition.value("100000"));
   }
-  
-  
+
+
 }

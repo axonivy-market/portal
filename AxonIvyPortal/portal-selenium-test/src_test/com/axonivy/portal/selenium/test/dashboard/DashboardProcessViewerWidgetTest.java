@@ -31,13 +31,15 @@ public class DashboardProcessViewerWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testCreateProcessViewerWidget() {    
+  public void testCreateProcessViewerWidget() {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
-    NewDashboardDetailsEditPage newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage =
+        modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
     newDashboardDetailsEditPage.addWidget();
-    ProcessViewerWidgetNewDashBoardPage processViewerWidgetConfiguration = newDashboardDetailsEditPage.addNewProcessViewerWidget();
+    ProcessViewerWidgetNewDashBoardPage processViewerWidgetConfiguration =
+        newDashboardDetailsEditPage.addNewProcessViewerWidget();
     processViewerWidgetConfiguration.findProcess(TEST_PROCESS_VIEWER_PERMISSION);
     processViewerWidgetConfiguration.getSelectedProcessList().shouldHave(size(0));
     processViewerWidgetConfiguration.selectProcessAndSaveWidget(THIRD_PARTY_APP);
@@ -49,8 +51,8 @@ public class DashboardProcessViewerWidgetTest extends BaseTest {
   }
 
   public void testEditProcessViewerWidget() {
-    ProcessViewerWidgetNewDashBoardPage processViewerWidgetConfiguration = newDashboardPage
-        .showEditProcessViewerWidgetConfiguration();
+    ProcessViewerWidgetNewDashBoardPage processViewerWidgetConfiguration =
+        newDashboardPage.showEditProcessViewerWidgetConfiguration();
     processViewerWidgetConfiguration.selectProcessAndSaveWidget(SHOWCASE_APPLICATION);
     newDashboardPage.getProcessRequestPathName().shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_APPLICATION));
   }

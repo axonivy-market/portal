@@ -34,7 +34,7 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.filterTasksByCreatedDate(fromInputText, EMPTY);
     taskWidgetPage.countTasks().shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
   }
-  
+
   @Test
   public void testFilterTasksByApplication() {
     TaskWidgetPage taskWidgetPage = createTestData();

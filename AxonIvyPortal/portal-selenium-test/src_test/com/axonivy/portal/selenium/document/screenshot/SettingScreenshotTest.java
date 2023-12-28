@@ -39,28 +39,35 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
 
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 800));
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingContainer(), ScreenshotUtils.SETTINGS_FOLDER + "applications", new ScreenshotMargin(5, 20));
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAddApplicationDialog(), ScreenshotUtils.SETTINGS_FOLDER + "add-application", new ScreenshotMargin(20));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingContainer(),
+        ScreenshotUtils.SETTINGS_FOLDER + "applications", new ScreenshotMargin(5, 20));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAddApplicationDialog(),
+        ScreenshotUtils.SETTINGS_FOLDER + "add-application", new ScreenshotMargin(20));
     adminSettingsPage.closeAddApplicationDialog();
 
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 1000));
     adminSettingsPage.openSettingTab();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingContainer(), ScreenshotUtils.SETTINGS_FOLDER + "global-settings", new ScreenshotMargin(5, 20));
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(adminSettingsPage.getEditSettingDialogOfFirstRow(), ScreenshotUtils.SETTINGS_FOLDER + "edit-global-settings", new ScreenshotMargin(20));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingContainer(),
+        ScreenshotUtils.SETTINGS_FOLDER + "global-settings", new ScreenshotMargin(5, 20));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(adminSettingsPage.getEditSettingDialogOfFirstRow(),
+        ScreenshotUtils.SETTINGS_FOLDER + "edit-global-settings", new ScreenshotMargin(20));
     adminSettingsPage.closeEditSettingDialog();
 
     adminSettingsPage.openAnnouncementTab();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingContainer(), ScreenshotUtils.SETTINGS_FOLDER + "announcement", new ScreenshotMargin(5, 20));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingContainer(),
+        ScreenshotUtils.SETTINGS_FOLDER + "announcement", new ScreenshotMargin(5, 20));
 
     showNewDashboard();
     homePage.waitForCaseWidgetLoaded();
     ChangePasswordPage changePasswordPage = homePage.openChangePasswordPage();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(changePasswordPage.getChangePasswordDialog(), ScreenshotUtils.SETTINGS_FOLDER + "change-password", new ScreenshotMargin(20));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(changePasswordPage.getChangePasswordDialog(),
+        ScreenshotUtils.SETTINGS_FOLDER + "change-password", new ScreenshotMargin(20));
 
     showNewDashboard();
     homePage.waitForCaseWidgetLoaded();
     ProjectVersionPage projectVersionPage = homePage.openProjectVersionPage();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(projectVersionPage.getProjectVersionDialog(), ScreenshotUtils.SETTINGS_FOLDER + "portal-version-information", new ScreenshotMargin(20));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(projectVersionPage.getProjectVersionDialog(),
+        ScreenshotUtils.SETTINGS_FOLDER + "portal-version-information", new ScreenshotMargin(20));
   }
 
   @Test
@@ -74,7 +81,8 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
 
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 800));
     ScreenshotUtils.executeDecorateJs("highlightUserName()");
-    ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.SETTINGS_FOLDER + "user-settings", new Dimension(1100, 800));
+    ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.SETTINGS_FOLDER + "user-settings",
+        new Dimension(1100, 800));
 
     ScreenshotUtils.executeDecorateJs("clearHighlightUserName()");
     ScreenshotUtils.executeDecorateJs("highlightAdminSettings()");
@@ -89,11 +97,13 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
 
     UserProfilePage userProfilePage = homePage.openMyProfilePage();
     ScreenshotUtils.resizeBrowser(new Dimension(1400, 1400));
-    ScreenshotUtils.captureElementScreenshot(userProfilePage.getUserSettingCard(), ScreenshotUtils.MY_PROFILE_FOLDER + "my-profile");
+    ScreenshotUtils.captureElementScreenshot(userProfilePage.getUserSettingCard(),
+        ScreenshotUtils.MY_PROFILE_FOLDER + "my-profile");
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 900));
     userProfilePage.checkBoxTosubscribeChannel();
     ScreenshotUtils.executeDecorateJs("highlightNotificationChannelSettings()");
-    ScreenshotUtils.captureHalfRightPageScreenShot(ScreenshotUtils.MY_PROFILE_FOLDER + "notification-channels-settings");
+    ScreenshotUtils
+        .captureHalfRightPageScreenShot(ScreenshotUtils.MY_PROFILE_FOLDER + "notification-channels-settings");
   }
 
   @Test
@@ -110,11 +120,13 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
     NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
     newAbsencePage.enterCommentForAbsence("Add new absence");
 
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(absencePage.getAddAbsenceDialog(), ScreenshotUtils.SETTINGS_FOLDER + "new-absence", new ScreenshotMargin(20));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(absencePage.getAddAbsenceDialog(),
+        ScreenshotUtils.SETTINGS_FOLDER + "new-absence", new ScreenshotMargin(20));
     newAbsencePage.closeAddAbsenceDialog();
     ScreenshotUtils.captureElementScreenshot(absencePage.getAbsenceForm(), ScreenshotUtils.SETTINGS_FOLDER + "absence");
     absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName(), TestAccount.GUEST_USER.getFullName()), 0);
-    ScreenshotUtils.captureElementScreenshot(absencePage.getAbsenceForm(), ScreenshotUtils.SETTINGS_FOLDER + "set-deputy");
+    ScreenshotUtils.captureElementScreenshot(absencePage.getAbsenceForm(),
+        ScreenshotUtils.SETTINGS_FOLDER + "set-deputy");
   }
 
   private void createAbsenceForCurrentUser(LocalDate from, LocalDate till, String comment, AbsencePage absencePage) {

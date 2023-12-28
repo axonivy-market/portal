@@ -34,7 +34,8 @@ public class DashboardNewsWidgetTest extends BaseTest {
   private static final String NEWS_ITEM_LANG = "en";
   private static final String NEWS_ITEM_ICON = "si-send-email";
   private static final String NEWS_ITEM_TITLE = "Welcome to Portal News feed";
-  private static final String NEWS_ITEM_CONTENT = "This is great place to share relevant information as News Feed into Axon Ivy.";
+  private static final String NEWS_ITEM_CONTENT =
+      "This is great place to share relevant information as News Feed into Axon Ivy.";
   private NewDashboardPage newDashboardPage;
   private DashboardNewsWidgetPage newsWidget;
 
@@ -69,13 +70,13 @@ public class DashboardNewsWidgetTest extends BaseTest {
     newsWidget = loginAsAdminAndPreDashboard();
     newsWidget.openAddNewsFeedItemDialog();
     newsWidget.enterNewsItemData(NEWS_ITEM_LANG, NEWS_ITEM_ICON, NEWS_ITEM_TITLE, NEWS_ITEM_CONTENT);
-    
+
     var tabIndex = newsWidget.selectNewsLanguage("fr");
     newsWidget.clickOnTitle(tabIndex);
     SelenideElement translation = newsWidget.getTranslationOverlayPanel(1);
     translation.$("span.ui-icon-closethick").click();
     newsWidget.findTranslationButton(tabIndex);
-    
+
     newsWidget.clickOnCancelAddingNewsItem();
     newsWidget.getNewsEmptyMessage().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     publishSampleNewsFeed(NEWS_ITEM_LANG);

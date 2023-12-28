@@ -12,26 +12,26 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 
 @IvyWebTest
 public class ClientSideTimeoutTest extends BaseTest {
-  
+
   @Override
   @BeforeEach
   public void setup() {
     super.setup();
     setupWithAlternativeLinkAndAccount(NewDashboardPage.PORTAL_HOME_PAGE_URL, TestAccount.ADMIN_USER);
   }
-  
+
   @Test
-  public void testShowWarningDialog(){
+  public void testShowWarningDialog() {
     AdminSettingsPage adminSettingPage = setupClientSideTimeout2Minutes();
     assertTrue(adminSettingPage.isWarningDialogShowWhenTimeoutIsLosing());
   }
 
   @Test
-  public void testShowInformDialog(){
+  public void testShowInformDialog() {
     AdminSettingsPage adminSettingPage = setupClientSideTimeout2Minutes();
     assertTrue(adminSettingPage.isInformDialogShowAfterTimeout());
   }
-  
+
   private AdminSettingsPage setupClientSideTimeout2Minutes() {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitPageLoaded();
@@ -40,10 +40,10 @@ public class ClientSideTimeoutTest extends BaseTest {
     refreshPage();
     return adminSettingPage;
   }
-  
+
   @AfterEach
   public void cleanupSettingAfterTest() {
     redirectToRelativeLink(cleanupDataLink);
   }
-  
+
 }

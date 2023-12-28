@@ -49,11 +49,11 @@ public class SystemTaskHistoryVisibilityTest extends BaseTest {
     goToCaseNoteHistoryPage(caseUuid);
     assertFalse(noteAuthorsContainsUser(caseUuid));
   }
-  
+
   private boolean noteAuthorsContainsUser(String caseUuid) {
     goToCaseNoteHistoryPage(caseUuid);
     NoteHistoryPage noteHistoryPage = new NoteHistoryPage();
     return noteHistoryPage.getNoteAuthors().contains("System user");
-    
+
   }
 }

@@ -222,7 +222,8 @@ public class DashboardCaseWidgetTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
-    NewDashboardDetailsEditPage newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage =
+        modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
     newDashboardDetailsEditPage.addWidget();
     CaseEditWidgetNewDashBoardPage newCaseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
@@ -243,7 +244,8 @@ public class DashboardCaseWidgetTest extends BaseTest {
 
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
-    NewDashboardDetailsEditPage newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage =
+        modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     String caseWidgetName = "Export Excel Case";
 
     newDashboardDetailsEditPage.addWidget();
@@ -278,15 +280,15 @@ public class DashboardCaseWidgetTest extends BaseTest {
     CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
     caseEditWidget.preview();
     caseEditWidget.openColumnManagementDialog();
-    
+
     caseEditWidget.removeAddedField("id");
-    
+
     caseEditWidget.selectCustomType();
     String customColumn = caseEditWidget.addCustomColumnByName("DestroyCaseAction");
     caseEditWidget.getCustomField(customColumn).shouldNotBe(Condition.exist);
     caseEditWidget.saveColumn();
     caseEditWidget.save();
-    
+
     redirectToNewDashBoard();
     redirectToRelativeLink(createCustomActionCaseExampleUrl);
 

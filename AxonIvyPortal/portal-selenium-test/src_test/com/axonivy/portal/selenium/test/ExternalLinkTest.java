@@ -18,20 +18,20 @@ import com.codeborne.selenide.SelenideElement;
 
 @IvyWebTest
 public class ExternalLinkTest extends BaseTest {
-  
+
   private static final String TEST_PROCESS = "Search page";
   private static final String DEFAULT_IMAGE = "Images/process/PROCESSMODELING.svg";
-  
+
   public ExternalLinkTest() {
     super.setup();
   }
-  
+
   @Test
   public void createExternalLink() {
     login(TestAccount.DEMO_USER);
     setUpExternalLink();
   }
-  
+
   @Test
   public void addExternalLinkToDashboardProcessImageMode() {
     login(TestAccount.ADMIN_USER);
@@ -39,7 +39,7 @@ public class ExternalLinkTest extends BaseTest {
     redirectToNewDashBoard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
-    newDashboardPage.editProcessWidgetConfiguration();    
+        newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectImageModeAndSaveWidget(TEST_PROCESS);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
     redirectToNewDashBoard();
@@ -48,7 +48,7 @@ public class ExternalLinkTest extends BaseTest {
     SelenideElement image = newDashboardPage.getFirstImageProcess();
     assertFalse(image.shouldBe(Condition.attribute("src")).getAttribute("src").contains(DEFAULT_IMAGE));
   }
-  
+
   private void setUpExternalLink() {
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.waitForGrowlMessageDisappear();
@@ -58,7 +58,7 @@ public class ExternalLinkTest extends BaseTest {
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
     String iconClass = "si-server-search";
     processPage.addExternalLink(TEST_PROCESS, "https://www.google.com", iconClass, "test-welcome-widget-image.jpg");
-    
+
     $("i." + iconClass).should(Condition.appear);
   }
 }

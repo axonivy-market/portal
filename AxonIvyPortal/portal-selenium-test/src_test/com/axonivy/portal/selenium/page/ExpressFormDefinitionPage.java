@@ -53,13 +53,14 @@ public class ExpressFormDefinitionPage extends TemplatePage {
       $$(panelSelector).shouldBe(CollectionCondition.empty);
     }
   }
-  
+
   public void countElementPrepareToDrag(int size) {
-    $$(By.xpath("//div[@id='form:available-form-elements_content']/ul/li")).shouldBe(CollectionCondition.size(size), DEFAULT_TIMEOUT);
+    $$(By.xpath("//div[@id='form:available-form-elements_content']/ul/li")).shouldBe(CollectionCondition.size(size),
+        DEFAULT_TIMEOUT);
   }
 
   private void moveFormElementToPanel(long index, String position) {
-    //TODO Need to be fixed - Workaround for scroll-bar issue
+    // TODO Need to be fixed - Workaround for scroll-bar issue
     JavascriptExecutor jse = (JavascriptExecutor) WebDriverRunner.getWebDriver();
     jse.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
@@ -69,7 +70,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
       position = FOOTER_POSITION;
     }
 
-    var panelSelector = String.format("[id='form:selected-form-elements-%s-panel']",position);
+    var panelSelector = String.format("[id='form:selected-form-elements-%s-panel']", position);
 
     Actions builder = new Actions(WebDriverRunner.getWebDriver());
     Action moveProcessSequence = builder.dragAndDrop($(formElementSelector), $(panelSelector)).build();
@@ -97,12 +98,12 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   public WebElement getPageElement() {
     return $(".portal-layout-container").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-  
+
   public void executeWorkflow() {
     waitForElementClickableThenClick(By.id("execute-button"));
     waitForElementDisplayed(By.id("form:dynaform-fieldset"), true);
   }
-  
+
   public void createTextInputField(String label, int inputFieldTypeIndex, boolean isRequired) {
     waitForElementClickableThenClick(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][1]"));
     waitForElementDisplayed(By.id("form:create-tabs:create-input-field-tab"), true);
@@ -113,30 +114,30 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     }
     waitForElementClickableThenClick(By.id("form:create-tabs:add-input-text-btn"));
   }
-  
+
   private void chooseInputFieldType(int inputTypeIndex) {
     waitForElementClickableThenClick(By.id("form:create-tabs:input-field-type_label"));
     waitForElementDisplayed(By.id("form:create-tabs:input-field-type_panel"), true);
     waitForElementClickableThenClick(By.id(String.format("form:create-tabs:input-field-type_%d", inputTypeIndex)));
   }
-  
+
   public void finishWorkflow() {
     waitForElementClickableThenClick(By.id("finish-button"));
     new NewDashboardPage().isDisplayed();
   }
-  
+
   public NewDashboardPage save() {
     waitForElementClickableThenClick(By.id("save-button"));
     return new NewDashboardPage();
   }
-  
+
   public NewDashboardPage cancel() {
     waitForElementClickableThenClick(By.id("cancel-button"));
     waitForElementDisplayed(By.id("yes-button"), true);
     waitForElementClickableThenClick(By.id("yes-button"));
     return new NewDashboardPage();
   }
-  
+
   public void createRadioButtonField(String label, int numberOfOption) {
     clickOnFormCreationTabIndex(4);
     waitForElementDisplayed(By.id("form:create-tabs:one-radio-label"), true);
@@ -145,14 +146,15 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     waitForElementClickableThenClick(By.id("form:create-tabs:add-radio-btn"));
     $("input[id$='form:create-tabs:one-radio-label']").shouldBe(Condition.empty);
   }
-  
+
   private void addRadioOptions(int numberOfOptions) {
     for (int i = 1; i <= numberOfOptions; i++) {
       waitForElementClickableThenClick(By.id("form:create-tabs:one-radio-options:add-radio-option-btn"));
-      $(By.xpath(String.format("//*[@id='form:create-tabs:one-radio-options_data']/tr[%d]/td/input", i))).sendKeys("Radio " + i);
+      $(By.xpath(String.format("//*[@id='form:create-tabs:one-radio-options_data']/tr[%d]/td/input", i)))
+          .sendKeys("Radio " + i);
     }
   }
-  
+
   public void createCheckboxField(String label, int numberOfSelection) {
     clickOnFormCreationTabIndex(3);
     waitForElementDisplayed(By.id("form:create-tabs:many-checkbox-options"), true);
@@ -161,7 +163,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     waitForElementClickableThenClick(By.id("form:create-tabs:add-checkbox-btn"));
     $("input[id='form:create-tabs:many-checkbox-label']").shouldBe(Condition.empty);
   }
-  
+
   private void addCheckboxOptions(int numberOfSelection) {
     for (int i = 1; i <= numberOfSelection; i++) {
       waitForElementClickableThenClick(By.id("form:create-tabs:many-checkbox-options:add-checkbox-option-btn"));
@@ -169,7 +171,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
           .sendKeys("Option " + i);
     }
   }
-  
+
   public void createTextAreaField(String label, boolean isRequired) {
     clickOnFormCreationTabIndex(2);
     waitForElementDisplayed(By.id("form:create-tabs:create-input-area-tab"), true);
@@ -186,7 +188,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     waitForElementClickableThenClick(By.id("form:create-tabs:add-checkbox-btn"));
     $(By.id("form:create-tabs:many-checkbox-label")).shouldBe(Condition.empty);
   }
-  
+
   public void fillDataForCheckboxProvider(String label) {
     clickOnFormCreationTabIndex(3);
     waitForElementDisplayed(By.id("form:create-tabs:create-many-checkbox-tab"), true);
@@ -196,21 +198,22 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     waitForElementDisplayed(By.id("form:create-tabs:many-checkbox-label"), true);
     $(By.id("form:create-tabs:many-checkbox-label")).sendKeys(label);
   }
-  
+
   public int countNumberOfElementsInPreviewDialog() {
     waitForElementClickableThenClick(By.id("form:show-preview-button"));
     waitForElementDisplayed(By.id("form:preview-dialog"), true);
     WebElement previewDialog = findElementById("form:preview-dialog");
     int numberOfInput = previewDialog.findElements(By.xpath("//table[@id='form:dyna-form']//input")).size();
     int numberOfTextArea = previewDialog.findElements(By.xpath("//table[@id='form:dyna-form']//textarea")).size();
-    int numberOfUploadFile = previewDialog.findElements(By.xpath("//div[contains(@id,'fileUploadComponent:document-table')]")).size();
+    int numberOfUploadFile =
+        previewDialog.findElements(By.xpath("//div[contains(@id,'fileUploadComponent:document-table')]")).size();
     return numberOfInput + numberOfTextArea + numberOfUploadFile;
   }
-  
+
   public int countNumberOfSteps() {
     return driver.findElements(By.xpath("//div[@id='defined-task-container']//button")).size();
   }
-  
+
   public void inputMailRecipient(String content) {
     findElementById("form:information-email:email-recipients").sendKeys(content);
   }
@@ -223,7 +226,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript(
         "document.querySelector(\"input[name='form:information-email:email-content_input'\").value='" + content + "';");
   }
-  
+
   public void executeWorkflowAndWaitForUserTaskWithEmailDisplay() {
     waitForElementClickableThenClick(By.id("execute-button"));
     waitForElementDisplayed(By.id("task-form:task-view:dyna-form-fieldset"), true);

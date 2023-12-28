@@ -35,7 +35,8 @@ public class RoleManagementPage extends TemplatePage {
   }
 
   public boolean isCreateNewRoleButtonPresent() {
-    return isElementPresent(By.cssSelector("[id$=':role-management-component:role-management-form:create-role-button']"));
+    return isElementPresent(
+        By.cssSelector("[id$=':role-management-component:role-management-form:create-role-button']"));
   }
 
   public void openRoleCreationDialog() {
@@ -50,8 +51,10 @@ public class RoleManagementPage extends TemplatePage {
   public void clickOnSaveRoleButtonDialog() {
     waitForElementClickableThenClick($("[id$=':role-management-component:save-role-configuration']"));
     waitForElementDisplayed(getRoleDetailsDialog(), false);
-    waitForElementDisplayed(By.cssSelector("[id$=':role-management-component:role-management-message_container']"), true);
-    waitForElementDisplayed(By.cssSelector("[id$=':role-management-component:role-management-message_container']"), false);
+    waitForElementDisplayed(By.cssSelector("[id$=':role-management-component:role-management-message_container']"),
+        true);
+    waitForElementDisplayed(By.cssSelector("[id$=':role-management-component:role-management-message_container']"),
+        false);
   }
 
   public void createNewRoleWithData(String parentRole, String roleName, String roleDisplayName, String roleDescription,
@@ -59,14 +62,19 @@ public class RoleManagementPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':role-management-component:manage-role-details-form']"), true);
 
     // Fill parent data
-    var parentRoleInput = $(By.cssSelector("[id$=':manage-role-details-form:parent-role:parent-role-selection_input']"));
+    var parentRoleInput =
+        $(By.cssSelector("[id$=':manage-role-details-form:parent-role:parent-role-selection_input']"));
     parentRoleInput.clear();
     parentRoleInput.sendKeys(parentRole);
-    waitForElementDisplayed(By.cssSelector("[id$=':manage-role-details-form:parent-role:parent-role-selection_panel']"), true);
-    var roleSelectionPanel = $(By.cssSelector("[id$=':manage-role-details-form:parent-role:parent-role-selection_panel']"));
-    var parentRoleOption = roleSelectionPanel.findElements(By.cssSelector(".ui-autocomplete-item.ui-autocomplete-row")).get(0);
+    waitForElementDisplayed(By.cssSelector("[id$=':manage-role-details-form:parent-role:parent-role-selection_panel']"),
+        true);
+    var roleSelectionPanel =
+        $(By.cssSelector("[id$=':manage-role-details-form:parent-role:parent-role-selection_panel']"));
+    var parentRoleOption =
+        roleSelectionPanel.findElements(By.cssSelector(".ui-autocomplete-item.ui-autocomplete-row")).get(0);
     parentRoleOption.click();
-    waitForElementDisplayed(By.cssSelector("[id$=':manage-role-details-form:parent-role:parent-role-selection_panel']"), false);
+    waitForElementDisplayed(By.cssSelector("[id$=':manage-role-details-form:parent-role:parent-role-selection_panel']"),
+        false);
 
     // Fill role name data
     var roleNameInput = $(By.cssSelector("[id$=':manage-role-details-form:role-name']"));
@@ -105,8 +113,10 @@ public class RoleManagementPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':role-management-component:delete-role-dialog']"), true);
     waitForElementClickableThenClick($("button[id$=':role-management-component:yes-button']"));
     waitForElementDisplayed(By.cssSelector("[id$=':role-management-component:delete-role-dialog']"), false);
-    waitForElementDisplayed(By.cssSelector("[id$=':role-management-component:role-management-message_container']"), true);
-    waitForElementDisplayed(By.cssSelector("[id$=':role-management-component:role-management-message_container']"), false);
+    waitForElementDisplayed(By.cssSelector("[id$=':role-management-component:role-management-message_container']"),
+        true);
+    waitForElementDisplayed(By.cssSelector("[id$=':role-management-component:role-management-message_container']"),
+        false);
   }
 
   public SelenideElement getEditActionEnableForRole(String roleName) {
@@ -123,19 +133,16 @@ public class RoleManagementPage extends TemplatePage {
   }
 
   public SelenideElement findActionForRoleByName(String roleName, String actionId) {
-    $$("tr.ui-node-level-2").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(1),
-        DEFAULT_TIMEOUT);
+    $$("tr.ui-node-level-2").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
     SelenideElement searchInput = $(
         "[id='admin-setting-component:adminTabView:role-management-component:role-management-form:role-tree-table:global-filter']")
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+            .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     searchInput.click();
     searchInput.clear();
     searchInput.sendKeys(roleName);
-    ElementsCollection roles = $$(
-        "tr.ui-node-level-2")
-        .shouldBe(CollectionCondition.size(1), DEFAULT_TIMEOUT);
+    ElementsCollection roles = $$("tr.ui-node-level-2").shouldBe(CollectionCondition.size(1), DEFAULT_TIMEOUT);
     return roles.filter(Condition.matchText(roleName + ".*")).get(0)
-    .$(By.cssSelector("td.role-actions-column [id$=':" + actionId + "']"))
+        .$(By.cssSelector("td.role-actions-column [id$=':" + actionId + "']"))
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
@@ -187,18 +194,21 @@ public class RoleManagementPage extends TemplatePage {
       usersAssignmentInput.click();
       usersAssignmentInput.clear();
       usersAssignmentInput.sendKeys(userName);
-      waitForElementDisplayed(By.cssSelector("[id$=':manage-role-details-form:user-assignment-selection:user-selection_panel"), true);
+      waitForElementDisplayed(
+          By.cssSelector("[id$=':manage-role-details-form:user-assignment-selection:user-selection_panel"), true);
       var userSelectionPanel = $("[id$=':manage-role-details-form:user-assignment-selection:user-selection_panel")
           .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
       var userOption = userSelectionPanel.$$(By.cssSelector(".ui-autocomplete-item.ui-autocomplete-row")).get(0);
       userOption.shouldBe(clickable(), DEFAULT_TIMEOUT).click();
 
-      waitForElementDisplayed(By.cssSelector("[id$=':manage-role-details-form:user-assignment-selection:user-selection_panel"), false);
+      waitForElementDisplayed(
+          By.cssSelector("[id$=':manage-role-details-form:user-assignment-selection:user-selection_panel"), false);
       waitForElementClickableThenClick($(By.cssSelector("button[id$=':manage-role-details-form:add-new-user']")));
-      $(By.cssSelector("button[id$=':manage-role-details-form:add-new-user']")).shouldBe(Condition.disabled, DEFAULT_TIMEOUT);
+      $(By.cssSelector("button[id$=':manage-role-details-form:add-new-user']")).shouldBe(Condition.disabled,
+          DEFAULT_TIMEOUT);
     }
   }
-  
+
   public void clickOnCloseAssignUsersButton() {
     waitForElementClickableThenClick($("button[id$=':role-management-component:cancel-update-users']"));
     waitForElementDisplayed(getRoleDetailsDialog(), false);
@@ -206,7 +216,8 @@ public class RoleManagementPage extends TemplatePage {
 
   public void filterRoleTreeTableByRoleName(String roleName) {
     var roleNames = getRoleNamesInRoleTreeTable();
-    var filterInput = getRoleTreeTable().findElement(By.cssSelector("input[id$=':role-management-form:role-tree-table:global-filter']"));
+    var filterInput = getRoleTreeTable()
+        .findElement(By.cssSelector("input[id$=':role-management-form:role-tree-table:global-filter']"));
     filterInput.clear();
     filterInput.sendKeys(roleName);
     WaitHelper.assertTrueWithWait(() -> {
@@ -229,6 +240,7 @@ public class RoleManagementPage extends TemplatePage {
   }
 
   public SelenideElement getRoleCreationDialog() {
-    return $("[id='admin-setting-component:adminTabView:role-management-component:role-details-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $("[id='admin-setting-component:adminTabView:role-management-component:role-details-dialog']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 }

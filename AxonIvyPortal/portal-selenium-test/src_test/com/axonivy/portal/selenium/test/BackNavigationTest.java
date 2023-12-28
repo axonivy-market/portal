@@ -20,7 +20,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
 
 @IvyWebTest
-public class BackNavigationTest extends BaseTest{
+public class BackNavigationTest extends BaseTest {
   private static final String CASE_LIST_TITLE = "Cases";
   private static final String CASE_DETAILS_TITLE = "Case Details";
   private static final String TASK_LIST_TITLE = "Tasks";
@@ -58,7 +58,7 @@ public class BackNavigationTest extends BaseTest{
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
     taskWidgetPage.assertPageTitle(TASK_LIST_TITLE);
   }
-  
+
   @Test
   public void testEnterCaseDetailAndGoBack() {
     createTestingTasks();
@@ -83,8 +83,9 @@ public class BackNavigationTest extends BaseTest{
     taskDetailsPage.waitPageLoaded();
 
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
-    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
-    String yesterday =  LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
+    String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
+    String yesterday =
+        LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskTemplatePage.inputValue("tester", yesterday, today, "tester");
     taskTemplatePage.clickOnSubmitButton();
 
@@ -94,7 +95,7 @@ public class BackNavigationTest extends BaseTest{
     caseWidgetPage = caseDetailsPage.goBackToCaseListFromCaseDetails();
     caseWidgetPage.assertPageTitle(CASE_LIST_TITLE);
   }
-  
+
   @Test
   public void testNavigateFromTechToBusinessCase() {
     redirectToRelativeLink(createNewPaymentUrl);
@@ -104,7 +105,7 @@ public class BackNavigationTest extends BaseTest{
     caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(SIGNAL_NEW_PAYMENT);
     caseDetailsPage.waitPageLoaded();
     assertEquals(SIGNAL_NEW_PAYMENT, caseDetailsPage.getCaseName());
-    
+
     caseDetailsPage.clickBackButton();
     caseDetailsPage.waitPageLoaded();
     assertEquals(PAYMENT_CASE_NAME, caseDetailsPage.getCaseName());
@@ -112,7 +113,7 @@ public class BackNavigationTest extends BaseTest{
     caseWidgetPage = caseDetailsPage.goBackToCaseListFromCaseDetails();
     caseWidgetPage.assertPageTitle(CASE_LIST_TITLE);
   }
-  
+
   @Test
   public void testNavigateAfterFinishedTaskToCaseDetails() {
     redirectToRelativeLink(simplePaymentUrl);
@@ -131,7 +132,7 @@ public class BackNavigationTest extends BaseTest{
 
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
     taskTemplatePage.inputField("[id$='payment-request:fullname']", "Demo");
-    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
+    String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskTemplatePage.inputField("[id$='payment-request:from_input']", today);
 
     taskTemplatePage.clickOnSubmitButton();
@@ -150,9 +151,9 @@ public class BackNavigationTest extends BaseTest{
     caseWidgetPage = NavigationHelper.navigateToCaseList();
 
     caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName(PAYMENT_CASE_NAME);
-    
+
     taskDetailsPage = caseDetailsPage.openTasksOfCasePage(PAYMENT_TASK_NAME);
-    
+
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
     taskTemplatePage.clickCancelLink();
     taskDetailsPage = new TaskDetailsPage();
@@ -162,7 +163,7 @@ public class BackNavigationTest extends BaseTest{
     caseDetailsPage = new CaseDetailsPage();
     caseDetailsPage.assertPageTitle(CASE_DETAILS_TITLE);
 
-    
+
     caseWidgetPage = caseDetailsPage.goBackToCaseListFromCaseDetails();
     caseWidgetPage.assertPageTitle(CASE_LIST_TITLE);
 

@@ -20,7 +20,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
 
 @IvyWebTest
-public class ChatTest extends BaseTest{
+public class ChatTest extends BaseTest {
   private static final String ENABLE_PRIVATE_CHAT_SETTING = Variable.ENABLE_PRIVATE_CHAT.getKey();
   private static final String ENABLE_GROUP_CHAT_SETTING = Variable.ENABLE_GROUP_CHAT.getKey();
   private static final String CHAT_MESSAGE_USER_DEMO = "Hi i'm demo user";
@@ -31,8 +31,9 @@ public class ChatTest extends BaseTest{
   public void setup() {
     super.setup();
   }
-  
-  // Currently still not have any idea how to open two browser with difference session to test chat between multiple user
+
+  // Currently still not have any idea how to open two browser with difference session to test chat between multiple
+  // user
   // Tests that still not implement
   // TODO chatGroupMultiTabs, chatGroupOnTwoInstanceOfBrowser
 
@@ -43,50 +44,50 @@ public class ChatTest extends BaseTest{
     createChatGroup(TestAccount.DEMO_USER);
     joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
     chatMessageInGroup(TestAccount.DEMO_USER, CHAT_MESSAGE_USER_DEMO);
-    
+
     openNewTabOrWindow(WindowType.WINDOW);
     launchBrowserAndGotoRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPage2 = chatMessageInGroup(TestAccount.ADMIN_USER, CHAT_MESSAGE_USER_ADMIN);
-    
+
     openNewTabOrWindow(WindowType.WINDOW);
     launchBrowserAndGotoRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
-    
+
     ExpressResponsible chatGroupEveryBody = setExpressResponsible("Everybody", true);
     createChatGroup(TestAccount.GUEST_USER, chatUser1, chatGroupEveryBody);
-    
+
     login(TestAccount.ADMIN_USER);
     assertEquals(2, chatPage2.refreshAndCountGroupChat());
-    
+
     login(TestAccount.DEMO_USER);
     assertEquals(2, chatPage.refreshAndCountGroupChat());
   }
-  
-  //  @Test
+
+  // @Test
   public void chatGroupOnTwoInstanceOfBrowser() {
     ChatPage chatPage = enableChatGroup();
     createChatGroup(TestAccount.DEMO_USER);
     joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
     chatMessageInGroup(TestAccount.DEMO_USER, CHAT_MESSAGE_USER_DEMO);
-    
+
     launchBrowserAndGotoRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPage2 = chatMessageInGroup(TestAccount.ADMIN_USER, CHAT_MESSAGE_USER_ADMIN);
     chatPage2.closeChatMessageList();
-    
+
     chatPage = chatMessageInGroup(TestAccount.DEMO_USER, CHAT_MESSAGE_USER_DEMO);
     chatPage.sendMessage("from 1 to 2");
-    
+
     chatPage2 = getChatGroup(TestAccount.ADMIN_USER);
     assertChatNotification(chatPage2, true);
-    
+
     chatPage2.openFirstGroupChat();
     chatPage2.sendMessage("from 2 to 1");
-    
+
     chatPage = getChatGroup(TestAccount.DEMO_USER);
     assertContainMessage(chatPage, "from 2 to 1");
     chatPage2 = getChatGroup(TestAccount.ADMIN_USER);
     assertContainMessage(chatPage2, "from 1 to 2");
   }
-  
+
   @Test
   public void chatDisplay() {
     enableChatGroup();
@@ -104,7 +105,7 @@ public class ChatTest extends BaseTest{
     chatPage.selectChatUser("admin");
     chatPage.sendMessage(CHAT_MESSAGE_USER_DEMO);
   }
-  
+
   @Test
   public void joinChatGroupAlreadyCreated() {
     ChatPage chatPage = enableChatGroup();
@@ -120,7 +121,7 @@ public class ChatTest extends BaseTest{
     new NewDashboardPage().getChat().isNotificationContactChat();
   }
 
-  private ChatPage createChatGroup(TestAccount creatorChatGroup, ExpressResponsible ...participants) {
+  private ChatPage createChatGroup(TestAccount creatorChatGroup, ExpressResponsible... participants) {
     redirectToRelativeLink(createTestingCaseUrlForDefaultAdditionalCaseDetails);
     login(creatorChatGroup);
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
@@ -149,7 +150,7 @@ public class ChatTest extends BaseTest{
     new NewDashboardPage().getChat();
     return new ChatPage();
   }
-  
+
   private void joinChatGroupWhichAlreadyHadChatGroup(TestAccount userJoined) {
     login(userJoined);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
@@ -159,13 +160,13 @@ public class ChatTest extends BaseTest{
     taskTemplatePage.clickChatGroup();
     taskTemplatePage.joinProcessChatAlreadyCreated();
   }
-  
+
   private ChatPage chatMessageInGroup(TestAccount chatUser, String chatMessage) {
     ChatPage chatPage = openChatGroup(chatUser);
     chatPage.sendMessage(chatMessage);
     return chatPage;
   }
-  
+
   private ChatPage openChatGroup(TestAccount chatUser) {
     login(chatUser);
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
@@ -173,13 +174,13 @@ public class ChatTest extends BaseTest{
     chatPage.openFirstGroupChat();
     return chatPage;
   }
-  
+
   private ChatPage getChatGroup(TestAccount chatUser) {
     login(chatUser);
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     return new NewDashboardPage().getChat();
   }
-  
+
   private void assertContainMessage(ChatPage chatPage, String message) {
     WaitHelper.assertTrueWithWait(() -> chatPage.getAllMessagesChatLog().contains(message));
   }

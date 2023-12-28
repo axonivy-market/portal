@@ -24,7 +24,8 @@ public class ProcessViewerWidgetNewDashBoardPage extends TemplatePage {
     getSelectedProcess().shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     getSelectedProcess().find("input").clear();
     getSelectedProcess().find("input").sendKeys(processName);
-    $("tr[data-item-label='" + processName + "']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("tr[data-item-label='" + processName + "']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void unfocusAllInputs() {

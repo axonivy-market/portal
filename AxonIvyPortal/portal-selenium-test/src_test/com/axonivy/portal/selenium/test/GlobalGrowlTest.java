@@ -30,12 +30,15 @@ import com.codeborne.selenide.Condition;
 import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
 
 @IvyWebTest
-public class GlobalGrowlTest extends BaseTest{
-  
+public class GlobalGrowlTest extends BaseTest {
+
   private static final String FINISH_MESSAGE = "You have finished the task successfully";
-  private static final String FINISH_MESSAGE_WITH_DETAILS = "You have finished the task successfully.\nClick here for details.";
-  private static final String CANCEL_MESSAGE = "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.";
-  private static final String CANCEL_MESSAGE_WITH_DETAILS = "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.\nClick here for details.";
+  private static final String FINISH_MESSAGE_WITH_DETAILS =
+      "You have finished the task successfully.\nClick here for details.";
+  private static final String CANCEL_MESSAGE =
+      "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.";
+  private static final String CANCEL_MESSAGE_WITH_DETAILS =
+      "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.\nClick here for details.";
 
   @Override
   @BeforeEach
@@ -43,7 +46,7 @@ public class GlobalGrowlTest extends BaseTest{
     super.setup();
     login(TestAccount.ADMIN_USER);
   }
-  
+
   // TODO Write test for Growl in IFrame, in version 10 it has the test public void
   // testDisplayCustomGrowlAfterFinishTask()
 
@@ -52,7 +55,7 @@ public class GlobalGrowlTest extends BaseTest{
     redirectToRelativeLink(createTestingTasksUrl);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
+    String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskTemplatePage.inputValue("Employee", today, today, "Representation");
     taskWidgetPage = taskTemplatePage.clickSubmitButton();
     assertGrowlMessage(taskWidgetPage, FINISH_MESSAGE_WITH_DETAILS);
@@ -96,7 +99,7 @@ public class GlobalGrowlTest extends BaseTest{
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     assertGrowlMessage(newDashboardPage, FINISH_MESSAGE);
   }
-  
+
   @Test
   public void testTaskLeft() {
     leftTaskWhenClickingOnLogo();
@@ -150,18 +153,18 @@ public class GlobalGrowlTest extends BaseTest{
     NewDashboardPage newDashboardPage = dialogPage.leaveTask();
     assertGrowlMessage(newDashboardPage, CANCEL_MESSAGE);
   }
-  
+
   private void leftExpressFormDefinition() {
     redirectToRelativeLink(expressStartLink);
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
     expressProcessPage.createTask(0, 0, "Task 1", "Task 1 description",
-            Arrays.asList(setExpressResponsible(TestAccount.DEMO_USER.getUsername(), false)));
+        Arrays.asList(setExpressResponsible(TestAccount.DEMO_USER.getUsername(), false)));
     ExpressFormDefinitionPage expressFormDefinitionPage = expressProcessPage.goToFormDefinition();
     NewDashboardPage newDashboardPage = expressFormDefinitionPage.cancel();
     assertGrowlMessage(newDashboardPage, CANCEL_MESSAGE);
   }
-  
+
   private void assertGrowlMessage(TemplatePage templatePage, String message) {
     templatePage.getGlobalGrowlMessage().shouldBe(Condition.text(message));
   }

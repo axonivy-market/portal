@@ -22,7 +22,7 @@ public class DefaultChartTest extends BaseTest {
 
   private static final String DEFAULT_CHART = "Tasks by Priority";
   private static final String RESTORE_DEFAULT = "Restore default";
-  
+
   @Override
   @BeforeEach
   public void setup() {
@@ -46,7 +46,7 @@ public class DefaultChartTest extends BaseTest {
     assertTrue(chartNames.contains(DEFAULT_CHART));
     assertEquals(RESTORE_DEFAULT, statisticWidgetPage.getRestoreDefaultButtonName());
   }
-  
+
   @Test
   public void testRestoreDefaultChart() {
     MainMenuPage mainMenuPage = new MainMenuPage();
@@ -58,16 +58,17 @@ public class DefaultChartTest extends BaseTest {
     statisticWidgetPage.backToDashboard();
     statisticWidgetPage.restoreDefaultCharts();
 
-    WebElement taskByExpiryChartName3 = null ;
+    WebElement taskByExpiryChartName3 = null;
     try {
-      taskByExpiryChartName3 = $("[id='statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:2:chart-name']");
+      taskByExpiryChartName3 =
+          $("[id='statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:2:chart-name']");
     } catch (Exception ex) {
     }
 
     assertEquals(DEFAULT_CHART, statisticWidgetPage.getChartName(0));
     assertEquals(false, taskByExpiryChartName3.isDisplayed());
   }
-  
+
   private void grantPermissionToCreateChart() {
     redirectToRelativeLink(grantPortalPermission);
   }

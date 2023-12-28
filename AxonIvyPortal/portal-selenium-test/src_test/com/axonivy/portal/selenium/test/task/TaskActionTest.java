@@ -158,7 +158,7 @@ public class TaskActionTest extends BaseTest {
     assertTaskActionsByTaskState(DESTROYED, Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
   }
-  
+
   @Test
   public void testVisibilityTaskActionForTechnicalStates() {
     login(TestAccount.ADMIN_USER);

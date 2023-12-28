@@ -27,11 +27,11 @@ import com.codeborne.selenide.SelenideElement;
 
 
 @IvyWebTest
-public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
-  
+public class PortalTaskScreenshotTest extends ScreenshotBaseTest {
+
   private static final int SCREENSHOT_WIDTH = 1500;
   MainMenuPage mainMenuPage;
-  
+
   @Override
   @BeforeEach
   public void setup() {
@@ -40,7 +40,7 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createTestingTasksUrl);
   }
-  
+
   @Test
   public void screenshotTaskList() throws IOException {
     mainMenuPage = new MainMenuPage();
@@ -48,7 +48,8 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
     TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
     SelenideElement saveTaskFilterDialog = taskWidgetPage.getSaveFilterDialog();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(saveTaskFilterDialog, ScreenshotUtils.TASK_WIDGET_FOLDER + "how-to-create-task-filter",new ScreenshotMargin(100, 200));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(saveTaskFilterDialog,
+        ScreenshotUtils.TASK_WIDGET_FOLDER + "how-to-create-task-filter", new ScreenshotMargin(100, 200));
     taskWidgetPage.closeSaveFilterDialog();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "task-key-information");
   }
@@ -127,7 +128,7 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskDetails.getTaskGeneralInformation(),
         ScreenshotUtils.TASK_DETAIL_FOLDER + "detailed-task-information-data-description", new ScreenshotMargin(10));
-    
+
     ScreenshotUtils.resizeBrowser(new Dimension(1440, 1000));
     taskDetails.openAddNoteDialog();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskDetails.getAddNoteDialog(),
@@ -156,7 +157,8 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
     taskDetails.waitUtilsTaskDetailsDisplayed();
     taskDetails.openActionPanel();
     ScreenshotUtils.executeDecorateJs("highlightShowWorkflowEvents()");
-    ScreenshotUtils.captureHalfCenterTopPageScreenShot(ScreenshotUtils.TASK_DETAIL_FOLDER + "how-to-show-workflow-event");
+    ScreenshotUtils
+        .captureHalfCenterTopPageScreenShot(ScreenshotUtils.TASK_DETAIL_FOLDER + "how-to-show-workflow-event");
 
     refreshPage();
     taskDetails.waitUtilsTaskDetailsDisplayed();
@@ -185,13 +187,15 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
 
     ScreenshotUtils.executeDecorateJs("highlightShowMoreTaskHistories()");
     WebElement showMoreTaskHistories = taskDetails.getTaskHistories();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(showMoreTaskHistories, ScreenshotUtils.TASK_DETAIL_FOLDER + "how-to-show-note-details", new ScreenshotMargin(10));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(showMoreTaskHistories,
+        ScreenshotUtils.TASK_DETAIL_FOLDER + "how-to-show-note-details", new ScreenshotMargin(10));
     taskDetails.clickOnShowMoreHistories();
     taskDetails.waitForNewTabOpen();
     taskDetails.switchLastBrowserTab();
     NoteHistoryPage noteHistoryPage = new NoteHistoryPage();
     noteHistoryPage.waitDocumentReady();
-    ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.TASK_DETAIL_FOLDER + "how-to-export-note-details", new Dimension(SCREENSHOT_WIDTH, 1000));
+    ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.TASK_DETAIL_FOLDER + "how-to-export-note-details",
+        new Dimension(SCREENSHOT_WIDTH, 1000));
   }
 
   @Test
@@ -204,7 +208,7 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
     ScreenshotUtils.executeDecorateJs("highlightTaskExportToExcelButton()");
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "export-to-excel-button");
   }
-  
+
   @Test
   public void screenshotCustomTaskDetails() throws IOException {
     TaskDetailsPage taskDetails = setupCustomWidgetByJSONFile("task-details-custom-panel.json");
@@ -214,12 +218,14 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest{
     setupCustomWidgetByJSONFile("task-details-custom-iframe.json");
     ScreenshotUtils.executeDecorateJs("highlightIFrameWidgetTaskDetails()");
     taskDetails.waitForIFrameURLWidgetLoad();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-iframe-url");
+    ScreenshotUtils
+        .capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-iframe-url");
 
     setupCustomWidgetByJSONFile("task-details-custom-process-iframe.json");
     ScreenshotUtils.executeDecorateJs("highlightIFrameWidgetTaskDetails()");
     taskDetails.waitForIFrameWidgetLoad();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-iframe-process");
+    ScreenshotUtils
+        .capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-iframe-process");
   }
 
   private TaskDetailsPage setupCustomWidgetByJSONFile(String configFile) throws IOException {

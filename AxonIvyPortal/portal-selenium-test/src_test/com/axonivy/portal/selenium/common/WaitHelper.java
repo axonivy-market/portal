@@ -39,7 +39,8 @@ public final class WaitHelper {
   }
 
   public static void waitForPresenceOfElementLocatedInFrame(String cssSelector) {
-    wait(WebDriverRunner.getWebDriver()).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(cssSelector)));
+    wait(WebDriverRunner.getWebDriver())
+        .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(cssSelector)));
   }
 
   /**

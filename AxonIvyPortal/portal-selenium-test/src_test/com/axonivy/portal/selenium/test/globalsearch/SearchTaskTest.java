@@ -26,7 +26,7 @@ public class SearchTaskTest extends BaseTest {
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     GlobalSearch globalSearch = newDashboardPage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
-    
+
     String taskName = "Annual Leave Request";
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(taskName);
     searchResultPage.openTaskTab();

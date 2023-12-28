@@ -26,7 +26,7 @@ public class SearchCaseTest extends BaseTest {
   @Test
   public void testFindCaseByNameAndOpenCaseList() {
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
-    GlobalSearch globalSearch = newDashboardPage.getGlobalSearch(); 
+    GlobalSearch globalSearch = newDashboardPage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 
     String caseName = "Leave Request";

@@ -19,12 +19,14 @@ import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
 @IvyWebTest
-public class PortalPermissionTest extends BaseTest{
-  
+public class PortalPermissionTest extends BaseTest {
+
   protected NewDashboardPage newDashboardPage;
-  private String grantSpecificPortalPermissionLink = "portalKitTestHelper/14DE09882B540AD5/grantSpecificPortalPermission.ivp?portalPermission=%s";
-  private String denySpecificPortalPermissionLink = "portalKitTestHelper/14DE09882B540AD5/denySpecificPortalPermission.ivp?portalPermission=%s";
-  
+  private String grantSpecificPortalPermissionLink =
+      "portalKitTestHelper/14DE09882B540AD5/grantSpecificPortalPermission.ivp?portalPermission=%s";
+  private String denySpecificPortalPermissionLink =
+      "portalKitTestHelper/14DE09882B540AD5/denySpecificPortalPermission.ivp?portalPermission=%s";
+
   @Override
   @BeforeEach
   public void setup() {
@@ -32,7 +34,7 @@ public class PortalPermissionTest extends BaseTest{
     grantAccessFullListPermissions();
     newDashboardPage = new NewDashboardPage();
   }
-  
+
   @AfterEach
   public void tearDown() {
     grantTaskActionsPermissions();
@@ -41,7 +43,7 @@ public class PortalPermissionTest extends BaseTest{
     grantDocumentOfInvolvedCaseWritePemissionToCurrentUser();
     grantCasePermissions();
   }
-  
+
   @Test
   public void testShowHideSubMenuItems() {
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
@@ -50,7 +52,7 @@ public class PortalPermissionTest extends BaseTest{
     assertFalse(mainMenuPage.isTasksDisplayed());
     assertFalse(mainMenuPage.isCasesDisplayed());
     assertFalse(mainMenuPage.isStatisticsDisplayed());
-    
+
     grantAccessFullListPermissions();
     newDashboardPage = new NewDashboardPage();
     WaitHelper.assertTrueWithWait(() -> mainMenuPage.isProcessesDisplayed());
@@ -58,7 +60,7 @@ public class PortalPermissionTest extends BaseTest{
     assertTrue(mainMenuPage.isCasesDisplayed());
     assertTrue(mainMenuPage.isStatisticsDisplayed());
   }
-  
+
   @Test
   public void testShowHideTaskActions() {
     denyTaskActionsPermissions();
@@ -69,7 +71,7 @@ public class PortalPermissionTest extends BaseTest{
     assertTrue(taskWidgetPage.isTaskDelegateDisplayed(false));
     assertTrue(taskWidgetPage.isTaskReserverDisplayed(false));
     assertTrue(taskWidgetPage.isAdhocSideStepDisplayed(false));
-    
+
     grantTaskActionsPermissions();
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.sideStepMenuOnActionButton(0);
@@ -78,7 +80,7 @@ public class PortalPermissionTest extends BaseTest{
     assertTrue(taskWidgetPage.isTaskReserverDisplayed(true));
     assertTrue(taskWidgetPage.isAdhocSideStepDisplayed(true));
   }
-  
+
   @Test
   public void testShowHideNoteAndDocumentButtons() {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
@@ -97,7 +99,7 @@ public class PortalPermissionTest extends BaseTest{
     assertTrue(taskDetailsPage.isAddNoteButtonDisplayed(false));
     assertTrue(taskDetailsPage.isShowMoreNoteButtonDisplayed(false));
     assertTrue(taskDetailsPage.isAddDocumentLinkDisplayed(false));
-    
+
     grantShowHideNotePermissions();
     grantDocumentOfInvolvedCaseWritePemissionToCurrentUser();
     mainMenuPage.openCaseList();
@@ -111,7 +113,7 @@ public class PortalPermissionTest extends BaseTest{
     assertTrue(taskDetailsPage.isShowMoreNoteButtonDisplayed(true));
     assertTrue(taskDetailsPage.isAddDocumentLinkDisplayed(true));
   }
-  
+
   @Test
   public void testShowHideLinkRelatedToCasePermissions() {
     createTestingTasks();
@@ -120,60 +122,85 @@ public class PortalPermissionTest extends BaseTest{
     CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
     assertTrue(caseDetailsPage.isShowDetailsDisplayed(false));
-    
+
     grantCasePermissions();
     mainMenuPage.openCaseList();
     caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
     caseDetailsPage.openActionMenu();
     assertTrue(caseDetailsPage.isShowDetailsDisplayed(true));
   }
-  
+
   private void grantAccessFullListPermissions() {
-    redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_PROCESS_LIST.getValue()));
-    redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_CASE_LIST.getValue()));
-    redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_TASK_LIST.getValue()));
-    redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_STATISTICS_LIST.getValue()));
+    redirectToRelativeLink(
+        String.format(grantSpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_PROCESS_LIST.getValue()));
+    redirectToRelativeLink(
+        String.format(grantSpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_CASE_LIST.getValue()));
+    redirectToRelativeLink(
+        String.format(grantSpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_TASK_LIST.getValue()));
+    redirectToRelativeLink(
+        String.format(grantSpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_STATISTICS_LIST.getValue()));
   }
-  
+
   private void denyAccessFullListPermissions() {
-    redirectToRelativeLink(String.format(denySpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_PROCESS_LIST.getValue()));
-    redirectToRelativeLink(String.format(denySpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_CASE_LIST.getValue()));
-    redirectToRelativeLink(String.format(denySpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_TASK_LIST.getValue()));
-    redirectToRelativeLink(String.format(denySpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_STATISTICS_LIST.getValue()));
+    redirectToRelativeLink(
+        String.format(denySpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_PROCESS_LIST.getValue()));
+    redirectToRelativeLink(
+        String.format(denySpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_CASE_LIST.getValue()));
+    redirectToRelativeLink(
+        String.format(denySpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_TASK_LIST.getValue()));
+    redirectToRelativeLink(
+        String.format(denySpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_STATISTICS_LIST.getValue()));
   }
-  
+
   private void grantTaskActionsPermissions() {
-    redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_RESET_ACTION.getValue()));
-    redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_DELEGATE_ACTION.getValue()));
-    redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_RESERVE_ACTION.getValue()));
-    redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS.getValue()));
-    redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_DESTROY_ACTION.getValue()));
+    redirectToRelativeLink(
+        String.format(grantSpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_RESET_ACTION.getValue()));
+    redirectToRelativeLink(
+        String.format(grantSpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_DELEGATE_ACTION.getValue()));
+    redirectToRelativeLink(
+        String.format(grantSpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_RESERVE_ACTION.getValue()));
+    redirectToRelativeLink(
+        String.format(grantSpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS.getValue()));
+    redirectToRelativeLink(
+        String.format(grantSpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_DESTROY_ACTION.getValue()));
   }
-  
+
   private void denyTaskActionsPermissions() {
-    redirectToRelativeLink(String.format(denySpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_RESET_ACTION.getValue()));
-    redirectToRelativeLink(String.format(denySpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_DELEGATE_ACTION.getValue()));
-    redirectToRelativeLink(String.format(denySpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_RESERVE_ACTION.getValue()));
-    redirectToRelativeLink(String.format(denySpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS.getValue()));
-    redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_DESTROY_ACTION.getValue()));
+    redirectToRelativeLink(
+        String.format(denySpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_RESET_ACTION.getValue()));
+    redirectToRelativeLink(
+        String.format(denySpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_DELEGATE_ACTION.getValue()));
+    redirectToRelativeLink(
+        String.format(denySpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_RESERVE_ACTION.getValue()));
+    redirectToRelativeLink(
+        String.format(denySpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS.getValue()));
+    redirectToRelativeLink(
+        String.format(grantSpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_DESTROY_ACTION.getValue()));
   }
-  
+
   private void grantCasePermissions() {
-    redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, PortalPermission.SHOW_CASE_DETAILS.getValue()));
-    redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, PortalPermission.SHOW_ALL_TASKS_OF_CASE.getValue()));
+    redirectToRelativeLink(
+        String.format(grantSpecificPortalPermissionLink, PortalPermission.SHOW_CASE_DETAILS.getValue()));
+    redirectToRelativeLink(
+        String.format(grantSpecificPortalPermissionLink, PortalPermission.SHOW_ALL_TASKS_OF_CASE.getValue()));
   }
-  
+
   private void denyCasePermissions() {
-    redirectToRelativeLink(String.format(denySpecificPortalPermissionLink, PortalPermission.SHOW_CASE_DETAILS.getValue()));
+    redirectToRelativeLink(
+        String.format(denySpecificPortalPermissionLink, PortalPermission.SHOW_CASE_DETAILS.getValue()));
   }
-  
+
   private void grantShowHideNotePermissions() {
-    redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, PortalPermission.TASK_CASE_ADD_NOTE.getValue()));
-    redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, PortalPermission.TASK_CASE_SHOW_MORE_NOTE.getValue()));
+    redirectToRelativeLink(
+        String.format(grantSpecificPortalPermissionLink, PortalPermission.TASK_CASE_ADD_NOTE.getValue()));
+    redirectToRelativeLink(
+        String.format(grantSpecificPortalPermissionLink, PortalPermission.TASK_CASE_SHOW_MORE_NOTE.getValue()));
   }
-  
+
   private void denyShowHideNotePermissions() {
-    redirectToRelativeLink(String.format(denySpecificPortalPermissionLink, PortalPermission.TASK_CASE_ADD_NOTE.getValue()));
-    redirectToRelativeLink(String.format(denySpecificPortalPermissionLink, PortalPermission.TASK_CASE_SHOW_MORE_NOTE.getValue()));
+    redirectToRelativeLink(
+        String.format(denySpecificPortalPermissionLink, PortalPermission.TASK_CASE_ADD_NOTE.getValue()));
+    redirectToRelativeLink(
+        String.format(denySpecificPortalPermissionLink, PortalPermission.TASK_CASE_SHOW_MORE_NOTE.getValue()));
   }
 }

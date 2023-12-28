@@ -32,9 +32,11 @@ public class CaseWidgetPage extends TemplatePage {
   private static final String CASE_ITEM_LIST_SELECTOR = "li[class='ui-datascroller-item']";
   private static final String CASE_NAME_CSS_SELECTOR = "span[class*='case-header-name-cell']";
   private static final String SELECT_COLUMNS_LINK_CSS_SELECTOR = "a[id$='case-config-button']";
-  private static final String SELECT_ITEM_XPATH = "//*[@id=\"case-widget:case-columns-configuration:select-columns-form:columns-checkbox\"]/tbody/tr[%s]/td/div/div[2]";
+  private static final String SELECT_ITEM_XPATH =
+      "//*[@id=\"case-widget:case-columns-configuration:select-columns-form:columns-checkbox\"]/tbody/tr[%s]/td/div/div[2]";
   private static final String APPLY_BUTTON_CSS_SELECTOR = "button[id$='select-columns-form:update-command']";
-  private static final String DEFAULT_COLUMNS_XPATH = "//*[@id=\"case-widget:case-columns-configuration:select-columns-form:default-columns\"]/div[2]";
+  private static final String DEFAULT_COLUMNS_XPATH =
+      "//*[@id=\"case-widget:case-columns-configuration:select-columns-form:default-columns\"]/div[2]";
 
   private String caseWidgetId;
 
@@ -53,7 +55,8 @@ public class CaseWidgetPage extends TemplatePage {
 
   public CaseDetailsPage openCase(String caseName) {
     $("div[id='case-widget:case-list']").shouldBe(appear, DEFAULT_TIMEOUT);
-    $$("div[id='case-widget:case-list'] ul li div[id$=':case-item'] span.case-info-row span.case-header-name-cell").filter(text(caseName)).first().click();
+    $$("div[id='case-widget:case-list'] ul li div[id$=':case-item'] span.case-info-row span.case-header-name-cell")
+        .filter(text(caseName)).first().click();
     return new CaseDetailsPage();
   }
 
@@ -69,7 +72,8 @@ public class CaseWidgetPage extends TemplatePage {
 
   public void filterCasesByCreatedDate(String fromCreatedDate, String toCreatedDate) {
     $("button[id$='created-filter:filter-open-form:advanced-filter-command']").shouldBe(appear, DEFAULT_TIMEOUT);
-    $("button[id$='created-filter:filter-open-form:advanced-filter-command']").shouldBe(getClickableCondition()).click();
+    $("button[id$='created-filter:filter-open-form:advanced-filter-command']").shouldBe(getClickableCondition())
+        .click();
     $("div[id$='created-filter:filter-input-form:advanced-filter-panel'").shouldBe(appear, DEFAULT_TIMEOUT);
     $("input[id$='created-filter:filter-input-form:from-created-calendar_input'").sendKeys(fromCreatedDate);
     closePanelDatePicker($("div[id$='created-filter:filter-input-form:from-created-calendar_panel"));
@@ -106,13 +110,16 @@ public class CaseWidgetPage extends TemplatePage {
 
   public String getCaseId(int caseIndex) {
     $("[id$=':case-list']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    SelenideElement selectedCaseIdElement = $(String.format("[id$='case-list-scroller:%d:case-item:case-item-container']", caseIndex)).find(By.cssSelector("[id$=':case-id-cell']"));
+    SelenideElement selectedCaseIdElement =
+        $(String.format("[id$='case-list-scroller:%d:case-item:case-item-container']", caseIndex))
+            .find(By.cssSelector("[id$=':case-id-cell']"));
     return selectedCaseIdElement.getText();
   }
 
   public String getCaseNameAt(int index) {
     waitForElementDisplayed(By.className("js-case-list"), true);
-    SelenideElement name = $("[id$='case-list-scroller:" + index + ":case-item:case-name-component:case-header-name-cell']");
+    SelenideElement name =
+        $("[id$='case-list-scroller:" + index + ":case-item:case-name-component:case-header-name-cell']");
     return name.getText();
   }
 
@@ -179,10 +186,15 @@ public class CaseWidgetPage extends TemplatePage {
   }
 
   public String getFilterValue(String filterId) {
-    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((driver) -> findElementByCssSelector("button[id$='" + filterId + ":filter-open-form:advanced-filter-command']").getText().length() > 1);
-    waitForElementDisplayed(By.cssSelector("button[id$='" + filterId + ":filter-open-form:advanced-filter-command']"), true);
-    WebElement filterElement = findElementByCssSelector("button[id$='" + filterId + ":filter-open-form:advanced-filter-command']");
-    $(By.cssSelector("button[id$='case-category-filter:filter-input-form:update-command']")).shouldBe(disappear, DEFAULT_TIMEOUT);
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(
+        (driver) -> findElementByCssSelector("button[id$='" + filterId + ":filter-open-form:advanced-filter-command']")
+            .getText().length() > 1);
+    waitForElementDisplayed(By.cssSelector("button[id$='" + filterId + ":filter-open-form:advanced-filter-command']"),
+        true);
+    WebElement filterElement =
+        findElementByCssSelector("button[id$='" + filterId + ":filter-open-form:advanced-filter-command']");
+    $(By.cssSelector("button[id$='case-category-filter:filter-input-form:update-command']")).shouldBe(disappear,
+        DEFAULT_TIMEOUT);
     return filterElement.getText();
   }
 
@@ -207,22 +219,29 @@ public class CaseWidgetPage extends TemplatePage {
   }
 
   public void applyCategoryFilter() {
-    waitForElementClickableThenClick($(By.cssSelector("button[id$='case-category-filter:filter-input-form:update-command']")));
+    waitForElementClickableThenClick(
+        $(By.cssSelector("button[id$='case-category-filter:filter-input-form:update-command']")));
   }
 
   public void filterByCreator(String text) {
-    waitForElementClickableThenClick($(By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']")));
+    waitForElementClickableThenClick(
+        $(By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']")));
     $("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']").sendKeys(text);
     waitForElementDisplayed($("div[id*='creator-filter'] .ui-avatar-text"), true);
-    waitForElementClickableThenClick("span[id$=':creator-filter:filter-input-form:creator-component:creator-select_panel']");
-    waitForElementClickableThenClick($(By.cssSelector("button[id$='creator-filter:filter-input-form:update-command']")));
+    waitForElementClickableThenClick(
+        "span[id$=':creator-filter:filter-input-form:creator-component:creator-select_panel']");
+    waitForElementClickableThenClick(
+        $(By.cssSelector("button[id$='creator-filter:filter-input-form:update-command']")));
   }
 
   public boolean isUserDisplayInCreatorFilter(String userFullName) {
-    waitForElementClickableThenClick($((By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']"))));
+    waitForElementClickableThenClick(
+        $((By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']"))));
     $(("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']")).sendKeys(userFullName);
     try {
-      new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((driver) -> findElementByCssSelector("span[id$='filter-input-form:creator-component:creator-select_panel']").isDisplayed());
+      new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(
+          (driver) -> findElementByCssSelector("span[id$='filter-input-form:creator-component:creator-select_panel']")
+              .isDisplayed());
     } catch (Exception timeoutException) {
       return false;
     }
@@ -233,8 +252,8 @@ public class CaseWidgetPage extends TemplatePage {
     refreshAndWaitElement("a[id$='case-widget:filter-selection-form:filter-name']");
     waitForElementClickableThenClick($(By.id(("case-widget:filter-selection-form:filter-name"))));
     waitForElementDisplayed(By.cssSelector(".filter-name-overlay-panel.ui-connected-overlay-enter-done"), true);
-    List<SelenideElement> saveFilters = $$("a[id$='user-defined-filter']").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0),
-        DEFAULT_TIMEOUT);
+    List<SelenideElement> saveFilters =
+        $$("a[id$='user-defined-filter']").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT);
     for (SelenideElement filter : saveFilters) {
       if (filter.getText().equals(filterName)) {
         $(By.id("case-widget:filter-selection-form:filter-name-overlay-panel")).shouldBe(appear, DEFAULT_TIMEOUT);
@@ -259,8 +278,10 @@ public class CaseWidgetPage extends TemplatePage {
 
   public void removeResponsibleFilter() {
     waitForElementClickableThenClick($("button[id$='creator-filter:filter-open-form:advanced-filter-command']"));
-    waitForElementDisplayed(By.cssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']"), true);
-    findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']").clear();
+    waitForElementDisplayed(
+        By.cssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']"), true);
+    findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']")
+        .clear();
     waitForElementClickableThenClick($("button[id$='creator-filter:filter-input-form:update-command']"));
     waitForElementDisplayed($("button[id$='creator-filter:filter-input-form:update-command']"), false);
   }
@@ -268,8 +289,10 @@ public class CaseWidgetPage extends TemplatePage {
   public String getCreator() {
     refreshAndWaitElement("button[id$='creator-filter:filter-open-form:advanced-filter-command']");
     waitForElementClickableThenClick($(("button[id$='creator-filter:filter-open-form:advanced-filter-command']")));
-    waitForElementDisplayed(By.cssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']"), true);
-    return findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']").getAttribute("value");
+    waitForElementDisplayed(
+        By.cssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']"), true);
+    return findElementByCssSelector(
+        "input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']").getAttribute("value");
   }
 
   public void clickDestroyButton() {
@@ -280,7 +303,8 @@ public class CaseWidgetPage extends TemplatePage {
   private WebElement getDestroyButtonOfCaseItem() {
     openActionStepMenu();
     waitForElementDisplayed(By.cssSelector("a[id$='destroy-case']"), true);
-    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((webDriver) -> findElementByCssSelector("a[id$='destroy-case']").isDisplayed());
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
+        .until((webDriver) -> findElementByCssSelector("a[id$='destroy-case']").isDisplayed());
     return findElementByCssSelector("a[id$='destroy-case']");
   }
 
@@ -298,7 +322,8 @@ public class CaseWidgetPage extends TemplatePage {
   public void confimDestruction() {
     String destroyCaseDialogId = caseWidgetId + ":destroy-case-confirmation-dialog";
     waitForElementDisplayed(By.id(destroyCaseDialogId), true);
-    $(By.id(destroyCaseDialogId)).$(By.id(caseWidgetId + ":confirm-destruction")).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(By.id(destroyCaseDialogId)).$(By.id(caseWidgetId + ":confirm-destruction"))
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public boolean isCaseListColumnExist(String columnHeaderText) {
@@ -322,15 +347,16 @@ public class CaseWidgetPage extends TemplatePage {
 
   public void clickColumnCheckboxByName(String columnName) {
     waitForElementDisplayed(By.cssSelector("[id$=':case-columns-configuration:case-config-columns-panel']"), true);
-    $$("label[for*=':case-columns-configuration:select-columns-form:columns-checkbox:']").asFixedIterable().stream().filter(checkbox -> checkbox.getText().equalsIgnoreCase(columnName)).findAny()
-        .ifPresent(foundCheckbox -> {
+    $$("label[for*=':case-columns-configuration:select-columns-form:columns-checkbox:']").asFixedIterable().stream()
+        .filter(checkbox -> checkbox.getText().equalsIgnoreCase(columnName)).findAny().ifPresent(foundCheckbox -> {
           clickByJavaScript(foundCheckbox);
         });
   }
 
   public void clickDefaultCheckbox() {
     waitForElementClickableThenClick($(By.xpath(DEFAULT_COLUMNS_XPATH)));
-    WaitHelper.assertTrueWithWait(() -> !findElementByCssSelector("label[for$='columns-checkbox:3']").getAttribute("class").equals("ui-state-disabled"));
+    WaitHelper.assertTrueWithWait(() -> !findElementByCssSelector("label[for$='columns-checkbox:3']")
+        .getAttribute("class").equals("ui-state-disabled"));
   }
 
   public void clickApplyButton() {
@@ -339,7 +365,8 @@ public class CaseWidgetPage extends TemplatePage {
   }
 
   public void waitUntilCaseCountDifferentThanZero() {
-    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((webDriver) -> getCaseCount().intValue() != 0);
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
+        .until((webDriver) -> getCaseCount().intValue() != 0);
   }
 
   public Integer getCaseCount() {
@@ -386,7 +413,8 @@ public class CaseWidgetPage extends TemplatePage {
 
   public void clickOnProcessViewerOption() {
     waitForElementDisplayed(By.cssSelector("[id$=':action-steps-panel']"), true);
-    waitForElementClickableThenClick("a[id$=':case-item:case-item-action-form:action-step-component:show-process-viewer-link']");
+    waitForElementClickableThenClick(
+        "a[id$=':case-item:case-item-action-form:action-step-component:show-process-viewer-link']");
   }
 
   public List<String> getAvailableActionSteps() {
@@ -396,19 +424,25 @@ public class CaseWidgetPage extends TemplatePage {
   }
 
   public SelenideElement openActionStepMenu(int index) {
-    String menuSelector = String.format("[id='case-widget:case-list-scroller:%d:case-item:case-item-action-form:action-step-component:action-steps-menu']", index);
-    String menuPanelSelector = String.format("[id='case-widget:case-list-scroller:%d:case-item:case-item-action-form:action-step-component:action-steps-panel']", index);
+    String menuSelector = String.format(
+        "[id='case-widget:case-list-scroller:%d:case-item:case-item-action-form:action-step-component:action-steps-menu']",
+        index);
+    String menuPanelSelector = String.format(
+        "[id='case-widget:case-list-scroller:%d:case-item:case-item-action-form:action-step-component:action-steps-panel']",
+        index);
     $(menuSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return $(menuPanelSelector).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void openAdditionalCaseDetails(SelenideElement actionMenu) {
-    actionMenu.$("[id$=':show-additional-case-details-link']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    actionMenu.$("[id$=':show-additional-case-details-link']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
   }
 
   public SelenideElement getSaveFilterDialog() {
     $(By.id(caseWidgetId + ":filter-save-action")).shouldBe(getClickableCondition()).click();
-    $(By.id(caseWidgetId + ":filter-save-form:save-filter-set-name-input")).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    $(By.id(caseWidgetId + ":filter-save-form:save-filter-set-name-input")).shouldBe(Condition.visible,
+        DEFAULT_TIMEOUT);
     return $(By.id(caseWidgetId + ":save-filter-set-dialog")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
@@ -442,7 +476,8 @@ public class CaseWidgetPage extends TemplatePage {
   private SelenideElement getMoreActionsPanel() {
     openActionStepMenu();
     waitForElementDisplayed(By.cssSelector("div[id$='action-steps-panel']"), true);
-    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((driver) -> findElementByCssSelector("div[id$='action-steps-panel']").isDisplayed());
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
+        .until((driver) -> findElementByCssSelector("div[id$='action-steps-panel']").isDisplayed());
     return findElementByCssSelector("div[id$='action-steps-panel']");
   }
 

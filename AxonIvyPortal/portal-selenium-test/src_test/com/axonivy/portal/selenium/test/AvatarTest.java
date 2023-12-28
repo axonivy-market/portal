@@ -35,7 +35,7 @@ public class AvatarTest extends BaseTest {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     redirectToRelativeLink(createTestingTasksUrl);
 
-    // Check dashboard 
+    // Check dashboard
     NewDashboardPage dashboardPage = new NewDashboardPage();
     assertTrue(dashboardPage.getUserMenuAvatar().exists());
     TaskWidgetNewDashBoardPage taskWidgetNewDashBoardPage = new TaskWidgetNewDashBoardPage();

@@ -174,9 +174,11 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     // Failed
     resizeBrowserTo2kResolution();
-    assertTaskActionsByTaskStateAndName(ERROR,"Signal create Task failed", Arrays.asList(DETAILS, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+    assertTaskActionsByTaskStateAndName(ERROR, "Signal create Task failed",
+        Arrays.asList(DETAILS, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
     // Join failed
-    assertTaskActionsByTaskStateAndName(ERROR, "Signal create Technical task",Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+    assertTaskActionsByTaskStateAndName(ERROR, "Signal create Technical task",
+        Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
     // waiting for event
     assertTaskActionsByTaskState(OPEN, Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
   }

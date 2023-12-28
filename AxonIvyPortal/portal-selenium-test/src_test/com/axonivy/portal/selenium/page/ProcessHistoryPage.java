@@ -21,6 +21,7 @@ public class ProcessHistoryPage extends TemplatePage {
   public boolean isEmptyMessageDisplay() {
     return isElementDisplayed(By.className("process-history-empty-message"));
   }
+
   public int openDialogAndCountCases() {
     waitForElementClickableThenClick($(By.id("process-history-dialog-button")));
     waitForElementDisplayed(By.cssSelector("ul.ui-datascroller-list li div.js-case-item.case-list-item"), true);

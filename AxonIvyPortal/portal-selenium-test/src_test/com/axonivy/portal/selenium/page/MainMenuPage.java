@@ -80,19 +80,20 @@ public class MainMenuPage extends TemplatePage {
 
   public String getMenuItemsAsString() {
     expandMainMenu();
-    return String.join(",", $$(".layout-menu li[role='menuitem'] a span").asDynamicIterable().stream().map(SelenideElement::getText)
-        .collect(Collectors.toList()));
+    return String.join(",", $$(".layout-menu li[role='menuitem'] a span").asDynamicIterable().stream()
+        .map(SelenideElement::getText).collect(Collectors.toList()));
   }
 
   public CaseWidgetPage selectCaseMenu() {
     $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
-    WaitHelper.waitForNavigation(() -> $(By.cssSelector(".layout-menu li.sub-menu-item-case")).shouldBe(appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+    WaitHelper.waitForNavigation(() -> $(By.cssSelector(".layout-menu li.sub-menu-item-case"))
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
     return new CaseWidgetPage();
   }
 
   public StatisticWidgetPage selectStatisticDashboard() {
-    WaitHelper.waitForNavigation(() -> waitForElementClickableThenClick($(".layout-menu li[role='menuitem'] a.STATISTICS")));
+    WaitHelper
+        .waitForNavigation(() -> waitForElementClickableThenClick($(".layout-menu li[role='menuitem'] a.STATISTICS")));
     return new StatisticWidgetPage();
   }
 
@@ -116,24 +117,25 @@ public class MainMenuPage extends TemplatePage {
     waitForElementClickableThenClick("li[class*='thirdparty-menu-item'] > a");
 
   }
-  
+
   public void assertThirdPartyApp(String url) {
     WebDriver driver = getDriver();
     WaitHelper.assertTrueWithWait(() -> driver.getWindowHandles().size() > 1);
-    ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+    ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
     driver.switchTo().window(tabs.get(1));
     WaitHelper.assertTrueWithWait(() -> "Google".equals(driver.getTitle()));
     assertEquals(url, driver.getCurrentUrl());
   }
-  
+
 
   public boolean isProcessesDisplayed() {
     return isMenuItemDisplayed("Processes");
   }
 
   private boolean isMenuItemDisplayed(String menuItemName) {
-    return $$("li[role='menuitem']").asFixedIterable().stream().filter(element -> element.getText().equals(menuItemName)).findFirst()
-        .map(WebElement::isDisplayed).orElse(false);
+    return $$("li[role='menuitem']").asFixedIterable().stream()
+        .filter(element -> element.getText().equals(menuItemName)).findFirst().map(WebElement::isDisplayed)
+        .orElse(false);
   }
 
   public boolean isTasksDisplayed() {
@@ -147,7 +149,7 @@ public class MainMenuPage extends TemplatePage {
   public boolean isStatisticsDisplayed() {
     return isMenuItemDisplayed("Statistics");
   }
-  
+
   public WorkingTaskDialogPageOfApplicationMenu selectDashboardMenu() {
     waitForElementClickableThenClick(".layout-menu li[role='menuitem'] a.DASHBOARD");
     return new WorkingTaskDialogPageOfApplicationMenu();

@@ -23,7 +23,8 @@ public class ConfigurationJsonUtils {
   public static void updateGlobalVariable(String variableName, String variableValue) {
     String encodeVariableName = URLEncoder.encode(variableName, StandardCharsets.UTF_8);
     String encodeVariableValue = URLEncoder.encode(variableValue, StandardCharsets.UTF_8);
-    String updateGlobalVariableLink = "portalKitTestHelper/1749B87B8C1B77BE/updateGlobalVariable.ivp?variableName=%s&variableValue=%s";
+    String updateGlobalVariableLink =
+        "portalKitTestHelper/1749B87B8C1B77BE/updateGlobalVariable.ivp?variableName=%s&variableValue=%s";
     redirectToRelativeLink(String.format(updateGlobalVariableLink, encodeVariableName, encodeVariableValue));
   }
 

@@ -54,7 +54,8 @@ public class ExpressManagementTest extends BaseTest {
 
   private void importExpressFile(String pathName) throws UnsupportedEncodingException {
     String filepath = URLEncoder.encode(pathName, "UTF-8");
-    redirectToRelativeLink("PortalKitTestHelper/153CACC26D0D4C3D/createSampleExpressWorkflowProcess.ivp?filePath=" + filepath);
+    redirectToRelativeLink(
+        "PortalKitTestHelper/153CACC26D0D4C3D/createSampleExpressWorkflowProcess.ivp?filePath=" + filepath);
   }
 
   private void startExpressHelperProcess(String processName) {
@@ -62,7 +63,8 @@ public class ExpressManagementTest extends BaseTest {
     processWidget = NavigationHelper.navigateToProcessList();
     assertTrue(processWidget.isExpandedMode());
     processWidget.enterSearchKeyword(processName);
-    new WebDriverWait(WebDriverRunner.getWebDriver(), Duration.ofSeconds(30)).until((driver) -> processWidget.isProcessDisplay(processName));
+    new WebDriverWait(WebDriverRunner.getWebDriver(), Duration.ofSeconds(30))
+        .until((driver) -> processWidget.isProcessDisplay(processName));
     processWidget.startProcess(processName);
   }
 
@@ -73,7 +75,8 @@ public class ExpressManagementTest extends BaseTest {
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCaseDetailsFromActionMenuByCaseName(caseName);
     caseDetailsPage.openActionMenu();
     caseDetailsPage.openAdditionalCaseDetailsPage();
-    new WebDriverWait(WebDriverRunner.getWebDriver(), Duration.ofSeconds(30)).until((driver) -> newDashboardPage.countBrowserTab() > 1);
+    new WebDriverWait(WebDriverRunner.getWebDriver(), Duration.ofSeconds(30))
+        .until((driver) -> newDashboardPage.countBrowserTab() > 1);
     newDashboardPage.switchLastBrowserTab();
   }
 
