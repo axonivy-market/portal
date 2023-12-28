@@ -1,7 +1,5 @@
 package com.axonivy.portal.selenium.test.express;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.time.Duration;

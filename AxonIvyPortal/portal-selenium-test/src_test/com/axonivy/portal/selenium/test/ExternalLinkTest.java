@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.test;
 
 import static com.codeborne.selenide.Selenide.$;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
