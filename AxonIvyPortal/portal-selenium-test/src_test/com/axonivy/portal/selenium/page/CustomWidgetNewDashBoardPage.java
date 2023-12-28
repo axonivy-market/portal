@@ -68,7 +68,7 @@ public class CustomWidgetNewDashBoardPage extends TemplatePage {
     
     String dialogId = String.format(CUSTOM_USER_SELECTION_DIALOG_PATTERN, index);
     $("[id='"+ dialogId +"']").shouldBe(appear, DEFAULT_TIMEOUT).$$("td").get(0)
-       .shouldBe(appear, DEFAULT_TIMEOUT).click();
+        .shouldBe(clickable(), DEFAULT_TIMEOUT).click();
     $("[id='"+ dialogId +"']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
