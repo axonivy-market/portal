@@ -43,6 +43,8 @@ import com.axonivy.portal.util.filter.operator.caze.name.NameEndWithOperatorHand
 import com.axonivy.portal.util.filter.operator.caze.name.NameIsEmptyOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.name.NameIsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.name.NameStartWithOperatorHandler;
+import com.axonivy.portal.util.filter.field.FilterField;
+import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 import com.axonivy.portal.util.filter.operator.caze.state.StateInOperatorHandler;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
@@ -86,97 +88,19 @@ public class DashboardCaseSearchCriteria {
     }
 
     for (DashboardFilter filter : filterList) {
-      DashboardStandardCaseColumn fieldEnum  = DashboardStandardCaseColumn.findBy(filter.getField());
-
       if (Optional.ofNullable(filter).map(DashboardFilter::getOperator).isEmpty()) {
         continue;
       }
 
-      CaseQuery filterQuery = switch (fieldEnum) {
-        case NAME -> generateNameFilterQuery(filter);
-        case DESCRIPTION -> generateDescriptionFilterQuery(filter);
-        case CREATED -> generateCreatedDateFilterQuery(filter);
-        case FINISHED -> generateFinishedDateFilterQuery(filter);
-        case CREATOR -> generateCreatorFilterQuery(filter);
-        case CATEGORY -> generateCategoryFilterQuery(filter);
-        case APPLICATION -> generateApplicationFilterQuery(filter);
-        case STATE -> generateStateFilterQuery(filter);
-        case ID -> generateIdFilterQuery(filter);
-        default -> null;
-      };
-
-      if (filterQuery != null) {
-        query.where().and(filterQuery);
+      FilterField filterField =
+          FilterFieldFactory.findBy(filter.getField());
+      if (filterField != null) {
+        CaseQuery filterQuery = filterField.generateFilterQuery(filter);
+        if (filterQuery != null) {
+          query.where().and(filterQuery);
+        }
       }
     }
-  }
-
-  private CaseQuery generateCreatedDateFilterQuery(DashboardFilter filter) {
-    return switch (filter.getOperator()) {
-      case BETWEEN -> CreatedDateBetweenOperatorHandler.getInstance().buildBetweenQuery(filter);
-      case NOT_BETWEEN -> CreatedDateBetweenOperatorHandler.getInstance().buildNotBetweenQuery(filter);
-      case BEFORE -> CreatedDateBeforeOperatorHandler.getInstance().buildQuery(filter);
-      case AFTER -> CreatedDateAfterOperatorHandler.getInstance().buildQuery(filter);
-      case TODAY -> CreatedDateTodayOperatorHandler.getInstance().buildQuery();
-      case YESTERDAY -> CreatedDateYesterdayOperatorHandler.getInstance().buildQuery();
-      case CURRENT -> CreatedDateCurrentPeriodOperatorHandler.getInstance().buildQuery(filter);
-      case LAST -> CreatedDateNumberOfPeriodsOperatorHandler.getInstance().buildLastPeriodQuery(filter);
-      case NEXT -> CreatedDateNumberOfPeriodsOperatorHandler.getInstance().buildNextPeriodQuery(filter);
-      case IS -> CreatedDateIsOperatorHandler.getInstance().buildIsQuery(filter);
-      case IS_NOT -> CreatedDateIsOperatorHandler.getInstance().buildIsNotQuery(filter);
-      default -> null;
-    };
-  }
-
-  private CaseQuery generateFinishedDateFilterQuery(DashboardFilter filter) {
-    return switch (filter.getOperator()) {
-      case BETWEEN -> FinishedDateBetweenOperatorHandler.getInstance().buildBetweenQuery(filter);
-      case NOT_BETWEEN -> FinishedDateBetweenOperatorHandler.getInstance().buildNotBetweenQuery(filter);
-      case BEFORE -> FinishedDateBeforeOperatorHandler.getInstance().buildQuery(filter);
-      case AFTER -> FinishedDateAfterOperatorHandler.getInstance().buildQuery(filter);
-      case TODAY -> FinishedDateTodayOperatorHandler.getInstance().buildQuery();
-      case YESTERDAY -> FinishedDateYesterdayOperatorHandler.getInstance().buildQuery();
-      case CURRENT -> FinishedDateCurrentPeriodOperatorHandler.getInstance().buildQuery(filter);
-      case LAST -> FinishedDateNumberOfPeriodsOperatorHandler.getInstance().buildLastPeriodQuery(filter);
-      case NEXT -> FinishedDateNumberOfPeriodsOperatorHandler.getInstance().buildNextPeriodQuery(filter);
-      case IS -> FinishedDateIsOperatorHandler.getInstance().buildIsQuery(filter);
-      case IS_NOT -> FinishedDateIsOperatorHandler.getInstance().buildIsNotQuery(filter);
-      case EMPTY -> FinishedDateEmptyOperatorHandler.getInstance().buildEmptyQuery();
-      case NOT_EMPTY -> FinishedDateEmptyOperatorHandler.getInstance().buildNotEmptyQuery();
-      default -> null;
-    };
-  }
-
-  private CaseQuery generateNameFilterQuery(DashboardFilter filter) {
-    return switch (filter.getOperator()) {
-      case CONTAINS -> NameContainsOperatorHandler.getInstance().buildContainsQuery(filter);
-      case NOT_CONTAINS -> NameContainsOperatorHandler.getInstance().buildNotContainsQuery(filter);
-      case IS -> NameIsOperatorHandler.getInstance().buildIsQuery(filter);
-      case IS_NOT -> NameIsOperatorHandler.getInstance().buildIsNotQuery(filter);
-      case START_WITH -> NameStartWithOperatorHandler.getInstance().buildStartWithQuery(filter);
-      case NOT_START_WITH -> NameStartWithOperatorHandler.getInstance().buildNotStartWithQuery(filter);
-      case END_WITH -> NameEndWithOperatorHandler.getInstance().buildEndWithQuery(filter);
-      case NOT_END_WITH -> NameEndWithOperatorHandler.getInstance().buildNotEndWithQuery(filter);
-      case EMPTY -> NameIsEmptyOperatorHandler.getInstance().buildIsEmptyQuery(filter);
-      case NOT_EMPTY -> NameIsEmptyOperatorHandler.getInstance().buildNotEmptyQuery(filter);
-      default -> null;
-    };
-  }
-
-  private CaseQuery generateDescriptionFilterQuery(DashboardFilter filter) {
-    return switch (filter.getOperator()) {
-      case CONTAINS -> DescriptionContainsOperatorHandler.getInstance().buildContainsQuery(filter);
-      case NOT_CONTAINS -> DescriptionContainsOperatorHandler.getInstance().buildNotContainsQuery(filter);
-      case IS -> DescriptionIsOperatorHandler.getInstance().buildIsQuery(filter);
-      case IS_NOT -> DescriptionIsOperatorHandler.getInstance().buildIsNotQuery(filter);
-      case START_WITH -> DescriptionStartWithOperatorHandler.getInstance().buildStartWithQuery(filter);
-      case NOT_START_WITH -> DescriptionStartWithOperatorHandler.getInstance().buildNotStartWithQuery(filter);
-      case END_WITH -> DescriptionEndWithOperatorHandler.getInstance().buildEndWithQuery(filter);
-      case NOT_END_WITH -> DescriptionEndWithOperatorHandler.getInstance().buildNotEndWithQuery(filter);
-      case EMPTY -> DescriptionIsEmptyOperatorHandler.getInstance().buildIsEmptyQuery(filter);
-      case NOT_EMPTY -> DescriptionIsEmptyOperatorHandler.getInstance().buildNotEmptyQuery(filter);
-      default -> null;
-    };
   }
 
   private CaseQuery generateCreatorFilterQuery(DashboardFilter filter) {

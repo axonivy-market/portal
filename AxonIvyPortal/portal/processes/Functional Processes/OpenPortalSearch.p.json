@@ -8,14 +8,16 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "call(String)",
+      "name" : "call(String,String)",
       "config" : {
         "signature" : "call",
         "input" : {
           "params" : [
-            { "name" : "keyword", "type" : "String", "desc" : "" }
+            { "name" : "keyword", "type" : "String", "desc" : "" },
+            { "name" : "activeTabIndex", "type" : "String", "desc" : "" }
           ],
           "map" : {
+            "out.activeTabIndex" : "Integer.parseInt(param.activeTabIndex)",
             "out.keyword" : "param.keyword"
           }
         }
@@ -38,10 +40,11 @@
       "type" : "DialogCall",
       "name" : "SearchResults",
       "config" : {
-        "dialog" : "ch.ivy.addon.portal.generic.SearchResults:start(String)",
+        "dialog" : "ch.ivy.addon.portal.generic.SearchResults:start(String,Number)",
         "call" : {
           "map" : {
-            "param.keyword" : "in.keyword"
+            "param.keyword" : "in.keyword",
+            "param.activeTabIndex" : "in.activeTabIndex"
           }
         }
       },

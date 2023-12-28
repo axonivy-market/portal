@@ -32,8 +32,9 @@
   <h:panelGroup id="text-list-panel" layout="block"
     styleClass="ui-fluid md-inputfield text-list-filter"
     rendered="#{widgetTextFilterBean.isShowTextListPanel(filter)}">
-    <p:chips value="#{filter.texts}" unique="true" addOnPaste="true" disabled="#{readOnly}">
-      <p:ajax event="change" process="@(this)" update="@(this)" partialSubmit="true" global="false" />
+    <p:chips value="#{filter.values}" unique="true" addOnPaste="true" disabled="#{readOnly}" addOnBlur="true">
+      <p:ajax event="itemSelect" process="@(this)" update="@(this)" partialSubmit="true" global="false" />
+      <p:ajax event="itemUnselect" process="@(this)" update="@(this)" partialSubmit="true" global="false" />
       <f:validator validatorId="dashboardDefaultListFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
       <f:param name="skipValidator" value="true" />
       <f:attribute name="filter" value="#{filter}" />

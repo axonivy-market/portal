@@ -293,7 +293,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     customWidget.getData().setType(DashboardCustomWidgetType.PROCESS);
     
     var iWebStartable = ProcessService.getInstance()
-        .findCustomDashboardProcessInSecurityContextByProcessId(process.getId());
+        .findCustomDashboardProcesses()
+        .stream()
+        .filter(startable -> StringUtils.endsWith(startable.getId(), process.getId()))
+        .findFirst().orElse(null);
 
     if (Objects.isNull(iWebStartable)) {
       return;
@@ -530,7 +533,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   private Predicate<DashboardFilter> checkValidFilter() {
     return filter -> {
-      return StringUtils.isNotBlank(filter.getField()) && filter.getOperator() != null && filter.getType() != null;
+      return StringUtils.isNotBlank(filter.getField())
+          && filter.getOperator() != null
+          && filter.getFilterType() != null;
     };
   }
 

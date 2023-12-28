@@ -33,6 +33,13 @@ CustomFields:
       Type: NUMBER
       Category: DefaultAdditionalCaseDetails
   Cases:
+    DestroyCaseAction:
+      Label: Destroy Case Action
+      Description: Cancel the Case and all tasks belong to the Case
+      Type: STRING
+      Category: Custom Case Action
+      Icon: si si-controls-play
+      IsCustomAction: true
     CustomerName:
       Label: CustomerName
       Description: CustomerName
@@ -76,17 +83,17 @@ CustomFields:
     InvoiceDate:
       Label: InvoiceDate
       Description: InvoiceDate
-      Type: NUMBER
+      Type: TIMESTAMP
       Category: DefaultAdditionalCaseDetails
     InvoiceDueDate:
       Label: InvoiceDueDate
       Description: InvoiceDueDate
-      Type: NUMBER
+      Type: TIMESTAMP
       Category: DefaultAdditionalCaseDetails
     CreatedBillDate:
       Label: CreatedBillDate
       Description: CreatedBillDate
-      Type: NUMBER
+      Type: TIMESTAMP
       Category: DefaultAdditionalCaseDetails
     SupportData:
       Label: SupportData
