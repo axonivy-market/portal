@@ -172,7 +172,7 @@ public class CaseService{
     if (recordSet != null) {
       recordSet.getRecords().forEach(record -> {
         int state = Integer.parseInt(record.getField("STATE").toString());
-        long numberOfCases = ((BigDecimal)(record.getField("COUNT"))).longValue();
+        long numberOfCases = ((Number)(record.getField("COUNT"))).longValue();
         if (state == CaseState.DONE.intValue()) {
           caseStateStatistic.setDone(numberOfCases);
         } else if (state == CaseState.CREATED.intValue()) {
@@ -192,7 +192,7 @@ public class CaseService{
     if (recordSet != null) {
       recordSet.getRecords().forEach(record -> {
         int state = Integer.parseInt(record.getField("BUSINESSSTATE").toString());
-        long numberOfCases = ((BigDecimal)(record.getField("COUNT"))).longValue();
+        long numberOfCases = ((Number)(record.getField("COUNT"))).longValue();
         if (state == CaseBusinessState.DONE.intValue()) {
           caseStateStatistic.setDone(numberOfCases);
         } else if (state == CaseBusinessState.DESTROYED.intValue()) {
@@ -302,7 +302,7 @@ public class CaseService{
     caseCategoryStatistic.setNumberOfCasesByCategory(new HashMap<>());
     if (recordSet != null) {
       recordSet.getRecords().forEach(record -> {
-        long numberOfCases = ((BigDecimal)(record.getField("COUNT"))).longValue();
+        long numberOfCases = ((Number)(record.getField("COUNT"))).longValue();
         caseCategoryStatistic.getNumberOfCasesByCategory().put(record.getField("CATEGORY").toString(), numberOfCases);
       });
     }
