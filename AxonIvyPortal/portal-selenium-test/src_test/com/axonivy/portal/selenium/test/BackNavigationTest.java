@@ -1,7 +1,5 @@
 package com.axonivy.portal.selenium.test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 

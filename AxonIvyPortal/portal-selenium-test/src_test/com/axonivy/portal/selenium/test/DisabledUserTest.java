@@ -1,8 +1,6 @@
 package com.axonivy.portal.selenium.test;
 
 import static com.codeborne.selenide.CollectionCondition.size;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 

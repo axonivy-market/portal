@@ -1,7 +1,5 @@
 package com.axonivy.portal.selenium.document.screenshot;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;

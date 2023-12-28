@@ -2,7 +2,6 @@ package com.axonivy.portal.selenium.test;
 
 import static com.axonivy.portal.selenium.common.Variable.GLOBAL_FOOTER_INFO;
 import static com.axonivy.portal.selenium.common.Variable.HIDE_YEAR;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.util.Arrays;

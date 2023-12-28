@@ -5,9 +5,6 @@ import static com.axonivy.portal.selenium.common.Variable.DEFAULT_SORT_DIRECTION
 import static com.axonivy.portal.selenium.common.Variable.DEFAULT_SORT_FIELD_OF_CASE_LIST;
 import static com.axonivy.portal.selenium.common.Variable.DEFAULT_SORT_FIELD_OF_TASK_LIST;
 import static com.axonivy.portal.selenium.common.Variable.GLOBAL_FOOTER_INFO;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
