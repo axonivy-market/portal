@@ -43,10 +43,11 @@ public final class PortalNavigatorAPI extends BaseNavigator {
 
   /**
    * Build url to case details page of case id
-   * 
+   * @deprecated use {@link #buildUrlToPortalCaseDetailsPage(String)}
    * @param caseId
    * @return Absolute url to case details page of case id
    */
+  @Deprecated
   public static String buildUrlToPortalCaseDetailsPageById(Long caseId) {
     String id = Long.toString(caseId);
     ICase caze = Sudo.get(() -> Ivy.wf().findCase(caseId));
@@ -55,10 +56,11 @@ public final class PortalNavigatorAPI extends BaseNavigator {
 
   /**
    * Build url to task details page of task id
-   * 
+   * @deprecated use {@link #buildUrlToPortalTaskDetailsPage(String)}
    * @param taskId
    * @return Absolute url to task details page of task id
    */
+  @Deprecated
   public static String buildUrlToPortalTaskDetailsPageById(Long taskId) {
     String id = Long.toString(taskId);
     ITask task = Sudo.get(() -> Ivy.wf().findTask(taskId));
@@ -67,10 +69,11 @@ public final class PortalNavigatorAPI extends BaseNavigator {
   
   /**
    * Build url to case details page of task uuid
-   * 
+   * @deprecated use {@link #buildUrlToPortalCaseDetailsPage(String)}
    * @param uuid
    * @return Absolute url to case details page of case uuid
    */
+  @Deprecated
   public static String buildUrlToPortalCaseDetailsPageByUUID(String uuid) {
     Map<String, String> param = new HashMap<>();
     param.put("uuid", uuid);
@@ -79,13 +82,36 @@ public final class PortalNavigatorAPI extends BaseNavigator {
 
   /**
    * Build url to task details page of task uuid
-   * 
+   * @deprecated use {@link #buildUrlToPortalTaskDetailsPage(String)}
    * @param uuid
    * @return Absolute url to task details page of task uuid
    */
+  @Deprecated
   public static String buildUrlToPortalTaskDetailsPageByUUID(String uuid) {
     Map<String, String> param = new HashMap<>();
     param.put("uuid", uuid);
     return buildAbsoluteUrl(PORTAL_PROCESS_START_TASK_DETAIL, param);
+  }
+  
+  /**
+   * Build url to case details page of task uuid
+   * 
+   * @param uuid
+   * @return Absolute url to case details page of case uuid
+   */
+  public static String buildUrlToPortalCaseDetailsPage(String uuid) {
+    ICase caze = Sudo.get(() -> Ivy.wf().findCase(uuid));
+    return (caze != null && caze.getDetailLink() != null) ? caze.getDetailLink().getAbsolute() : "";
+  }
+
+  /**
+   * Build url to task details page of task uuid
+   * 
+   * @param uuid
+   * @return Absolute url to task details page of task uuid
+   */
+  public static String buildUrlToPortalTaskDetailsPage(String uuid) {
+    ITask task = Sudo.get(() -> Ivy.wf().findTask(uuid));
+    return (task != null && task.getDetailLink() != null) ? task.getDetailLink().getAbsolute() : "";
   }
 }
