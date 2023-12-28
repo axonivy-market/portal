@@ -37,6 +37,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void changeWidgetTitle(String name) {
     widgetTitle().clear();
+    widgetTitle().click();
     widgetTitle().sendKeys(name);
   }
   

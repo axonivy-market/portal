@@ -318,9 +318,6 @@ public class BaseTest {
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
   }
 
-  /**
-   * For documentation, see {@link BaseTest#assertTrue(boolean, String)}
-   */
   public void assertTrue(boolean condition) {
     assertTrue(condition, "");
   }
