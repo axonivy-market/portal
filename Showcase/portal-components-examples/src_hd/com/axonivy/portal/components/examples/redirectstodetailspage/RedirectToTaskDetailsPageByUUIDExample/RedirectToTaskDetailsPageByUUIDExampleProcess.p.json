@@ -73,7 +73,7 @@
           "code" : [
             "import org.apache.commons.lang3.StringUtils;",
             "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
-            "in.taskLink = PortalNavigatorAPI.buildUrlToPortalTaskDetailsPage(in.uuid);",
+            "in.taskLink = PortalNavigatorAPI.buildUrlToPortalTaskDetailsPageByUUID(in.uuid);",
             "in.isLinkEnable = StringUtils.isNotEmpty(in.taskLink);"
           ]
         }
