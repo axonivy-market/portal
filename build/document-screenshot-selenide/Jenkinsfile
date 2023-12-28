@@ -22,13 +22,14 @@ pipeline {
       -Divy.engine.download.url=file:///C:/wawa/engine/AxonIvyEngineX.X.X.X_Windows_x64.zip for downloaded engine
       -Divy.engine.list.url=https://jenkins.ivyteam.io/job/core_product/job/release%252F9.4/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.server.product/target/products/ -Divy.engine.os.arch=Windows_x64 for last successful build 9.4
     ''')
-    booleanParam(name: 'deployToRepo', defaultValue: false, description: 'Force deploy new version of screenshots. CAUTION: Only enable this option when you run with default test pattern.')
+    booleanParam(name: 'useForDocumentation', defaultValue: false, description: 'Make screenshots available to use in upcomming documentation builds. CAUTION: Only enable this option when you run with default test pattern.')
     booleanParam(name: 'checkoutCodeFromLatestReleaseTag', defaultValue: false, description: 'Turn on when you want to release new Portal screenshots, it will checkout the code from latest release tag')
   }
 
   environment {
     releaseDir = 'archive'
     engineDir = "$env.WORKSPACE/AxonIvyPortal/portal-selenium-test/engine"
+    shareDir = 'C:/tools/shared/document-screenshots'
   }
 
   stages {
@@ -38,6 +39,9 @@ pipeline {
           def utils = load 'build/common/utils.groovy'
           utils.init()
           utils.stopAllEngines()
+
+          utils.downloadExpress()
+          def expressFile = findFiles(glob: 'archive/**/axonivy-express*.iar')[0].path
 
           if (params.checkoutCodeFromLatestReleaseTag) {
             downloadPortalRelease()
@@ -67,24 +71,25 @@ pipeline {
           bat 'AxonIvyPortal/portal-selenium-test/resources/copy-decorate-js-css.bat'
 
           echo '====================Build Portal modules===================='
-          def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples', 'AxonIvyPortal/PortalApp', 'Showcase/portal-demo-app']
+          def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples', 'AxonIvyPortal/PortalApp', 'Showcase/portal-demo-app']
           for (module in modules) {
             bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=%engineDir%"
           }
 
           echo '====================Deploy Portal modules===================='
-          powershell '''
-            $DEPLOYMENT= $env:engineDir + "/system/demo-applications/demo-portal"
-            rmdir $DEPLOYMENT/* -recurse
-            Copy-Item Showcase/portal-demo-app/target/*zip -Destination $DEPLOYMENT
-            Copy-Item Showcase/portal-developer-examples/target/*iar -Destination $DEPLOYMENT
-            Copy-Item Showcase/portal-components-examples/target/*iar -Destination $DEPLOYMENT
-          '''
+          powershell """
+            \$DEPLOYMENT= \$env:engineDir + "/system/demo-applications/demo-portal"
+            rmdir \$DEPLOYMENT/* -recurse
+            Copy-Item Showcase/portal-demo-app/target/*zip -Destination \$DEPLOYMENT
+            Copy-Item Showcase/portal-developer-examples/target/*iar -Destination \$DEPLOYMENT
+            Copy-Item Showcase/portal-components-examples/target/*iar -Destination \$DEPLOYMENT
+            Copy-Item ${expressFile} -Destination \$DEPLOYMENT
+          """
+
           utils.killUnnecessaryProcessesToRunTest()
 
           echo '====================Execute maven for testing===================='
-          def mavenGoal = params.deployToRepo? 'deploy' : 'install'
-          bat "mvn clean ${mavenGoal} -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
+          bat "mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
           utils.cleanDisk()
 
           echo '====================Copy ElasticSearch log===================='
@@ -92,7 +97,12 @@ pipeline {
             $LOG= $env:engineDir + "/elasticsearch/logs/ivy-elasticsearch-*.log"
             Copy-Item $LOG -Destination AxonIvyPortal/portal-selenium-test/target
           '''
-
+          if (params.useForDocumentation) {
+            echo '====================Copy screenshots to shared directory===================='
+            powershell """
+              Copy-Item  AxonIvyPortal/portal-selenium-test/target/*.zip -Destination ${shareDir}
+            """
+          }
         }
       }
     }

@@ -8,8 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
-import ch.ivy.addon.portalkit.ivydata.factory.LibraryServiceFactory;
-import ch.ivy.addon.portalkit.ivydata.service.ILibraryService;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LibraryService;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.application.ReleaseState;
@@ -25,7 +24,7 @@ public class ProjectVersionBean implements Serializable {
   private Map<String, List<ILibrary>> projectLibraries;
 
   private Map<String, List<ILibrary>> retrieveProjectLibraries() {
-    ILibraryService service = LibraryServiceFactory.getLibraryService();
+    LibraryService service = new LibraryService();
     return service.collectLibraries();
   }
 

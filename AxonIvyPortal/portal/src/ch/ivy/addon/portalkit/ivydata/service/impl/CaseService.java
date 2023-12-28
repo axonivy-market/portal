@@ -25,13 +25,12 @@ import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
-import ch.ivy.addon.portalkit.ivydata.service.ICaseService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.persistence.query.IPagedResult;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -40,7 +39,7 @@ import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-public class CaseService implements ICaseService {
+public class CaseService{
 
   protected CaseService() {}
 
@@ -48,7 +47,6 @@ public class CaseService implements ICaseService {
     return new CaseService();
   }
   
-  @Override
   public IvyCaseResultDTO findCasesByCriteria(CaseSearchCriteria criteria, int startIndex, int count) {
     return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
@@ -58,12 +56,22 @@ public class CaseService implements ICaseService {
     });
   }
 
-  @Override
   public IvyCaseResultDTO findCasesByCriteria(CaseSearchCriteria criteria) {
     return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       CaseQuery finalQuery = extendQuery(criteria);
       result.setCases(executeCaseQuery(finalQuery));
+      return result;
+    });
+  }
+
+  public IvyCaseResultDTO findGlobalSearchCasesByCriteria(CaseSearchCriteria criteria, int startIndex, int count) {
+    return Sudo.get(() -> {
+      IvyCaseResultDTO result = new IvyCaseResultDTO();
+      CaseQuery finalQuery = extendQuery(criteria);
+      IPagedResult<ICase> iCase = Ivy.wf().getCaseQueryExecutor().getResultsPaged(finalQuery);
+      result.setCases(iCase.window(startIndex, count));
+      result.setTotalCases(iCase.count());
       return result;
     });
   }
@@ -74,7 +82,6 @@ public class CaseService implements ICaseService {
     });
   }
 
-  @Override
   public IvyCaseResultDTO countCasesByCriteria(CaseSearchCriteria criteria) {
     return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
@@ -115,7 +122,6 @@ public class CaseService implements ICaseService {
     return caseQuery;
   }
 
-  @Override
   public IvyCaseResultDTO findCategoriesByCriteria(CaseCategorySearchCriteria criteria) {
     return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
@@ -135,7 +141,6 @@ public class CaseService implements ICaseService {
     });
   }
   
-  @Override
   public IvyCaseResultDTO analyzeCaseStateStatistic(CaseSearchCriteria criteria) {
     return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
@@ -149,9 +154,8 @@ public class CaseService implements ICaseService {
     });
   }
 
-  @Override
   public IvyCaseResultDTO analyzeCaseBusinessStateStatistic(CaseSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       CaseQuery finalQuery = extendQuery(criteria);
       finalQuery.aggregate().countRows().groupBy().businessState();
@@ -188,7 +192,7 @@ public class CaseService implements ICaseService {
     if (recordSet != null) {
       recordSet.getRecords().forEach(record -> {
         int state = Integer.parseInt(record.getField("BUSINESSSTATE").toString());
-        long numberOfCases = Long.parseLong(record.getField("COUNT").toString());
+        long numberOfCases = ((BigDecimal)(record.getField("COUNT"))).longValue();
         if (state == CaseBusinessState.DONE.intValue()) {
           caseStateStatistic.setDone(numberOfCases);
         } else if (state == CaseBusinessState.DESTROYED.intValue()) {
@@ -201,7 +205,6 @@ public class CaseService implements ICaseService {
     return caseStateStatistic;
   }
   
-  @Override
   public IvyCaseResultDTO analyzeElapsedTimeByCaseCategory(CaseSearchCriteria criteria) {
     return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
@@ -272,7 +275,6 @@ public class CaseService implements ICaseService {
     return clonedQuery;
   }
 
-  @Override
   public IvyCaseResultDTO findValuesOfCustomString(CaseCustomFieldSearchCriteria criteria) {
     return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
@@ -282,7 +284,6 @@ public class CaseService implements ICaseService {
     });
   }
 
-  @Override
   public IvyCaseResultDTO analyzeCaseCategoryStatistic(CaseSearchCriteria criteria) {
     return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
@@ -308,7 +309,6 @@ public class CaseService implements ICaseService {
     return caseCategoryStatistic;
   }
   
-  @Override
   public IvyCaseResultDTO analyzeCasesByCategoryStatistic(CaseSearchCriteria criteria, List<String> selectedCategories) {
     return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
@@ -377,7 +377,6 @@ public class CaseService implements ICaseService {
     }
   }
   
-  @Override
   public IvyCaseResultDTO analyzeCasesByCategoryStatisticDrilldown(CaseSearchCriteria criteria, String selectedCategory) {
     return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();

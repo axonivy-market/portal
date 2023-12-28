@@ -1755,6 +1755,11 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   padding-left: 5px;
   padding-right: 10px;
   min-width: 105px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .task-start-info-header-full-mode {
@@ -1772,6 +1777,10 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .priority-cell {
   display: inline-block;
+}
+.priority-cell.search-item {
+  display: block;
+  padding-right: 0.1rem;
 }
 
 .priority-cell .priority-icon {
@@ -3045,7 +3054,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .my-profile-container .card {
-  height: 100%;
+  height: auto;
   float: left;
 }
 
@@ -3078,6 +3087,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .my-profile-container .my-profile-selection-menu .ui-selectonemenu-label {
   text-overflow: ellipsis;
+}
+
+.my-profile-container .notification-channel-reset {
+  font-size: 2rem;
 }
 
 @media screen and (max-width: 40em) {

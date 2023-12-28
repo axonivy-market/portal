@@ -18,11 +18,13 @@ public abstract class AbstractFilterData<T extends AbstractFilter<?>> extends Ab
   private List<T> filters = new ArrayList<>();
   private String keyword;
   private String filterName;
+  @Deprecated(forRemoval = true, since = "11.2.0")
   private Long userId;
   // Use to distinguish between filters of different lists (e.g. task/case lists). Default value is the process model
   // id.
   private Long filterGroupId;
   private FilterType type;
+  private String securityMemberId;
 
   /**
    * @hidden
@@ -62,17 +64,21 @@ public abstract class AbstractFilterData<T extends AbstractFilter<?>> extends Ab
   }
 
   /**
+   * @deprecated use {@link #getSecurityMemberId()} instead
    * Getter for user Id
    * @return Id user which filter belongs to
    */
+  @Deprecated(forRemoval = true, since = "11.2.0")
   public Long getUserId() {
     return userId;
   }
 
   /**
+   * @deprecated use {@link #setSecurityMemberId(String)} instead
    * Setter for user Id
    * @param userId
    */
+  @Deprecated(forRemoval = true, since = "11.2.0")
   public void setUserId(Long userId) {
     this.userId = userId;
   }
@@ -123,6 +129,14 @@ public abstract class AbstractFilterData<T extends AbstractFilter<?>> extends Ab
    */
   public void setFilterGroupId(Long filterGroupId) {
     this.filterGroupId = filterGroupId;
+  }
+
+  public String getSecurityMemberId() {
+    return securityMemberId;
+  }
+
+  public void setSecurityMemberId(String securityMemberId) {
+    this.securityMemberId = securityMemberId;
   }
 
 }

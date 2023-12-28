@@ -14,8 +14,8 @@ import javax.faces.validator.ValidatorException;
 import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 
-import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @FacesValidator(value = "dashboardTextFilterValidator")
@@ -36,7 +36,8 @@ public class DashboardTextFilterValidator implements Validator {
     if (CollectionUtils.isEmpty(value)) {
       FacesContext.getCurrentInstance().addMessage(
           messageComponentId,
-          new FacesMessage(FacesMessage.SEVERITY_ERROR, getRequiredMessage(filter.getField(), filterIndex), null));
+          new FacesMessage(FacesMessage.SEVERITY_ERROR,
+              getRequiredMessage(filter.getField(), filterIndex), null));
       invalidate(component);
     }
   }
@@ -48,7 +49,8 @@ public class DashboardTextFilterValidator implements Validator {
   }
 
   private String getMessagePrefix(String field, int index) {
-    return String.format(MESSAGE_PREFIX_PATTERN, DashboardStandardCaseColumn.findBy(Optional.ofNullable(field).orElse("")).getLabel(), index + 1);
+    return String.format(MESSAGE_PREFIX_PATTERN,
+        FilterFieldFactory.findBy(Optional.ofNullable(field).orElse("")).getLabel(), index + 1);
   }
 
   public String getRequiredMessage(String field, int index) {

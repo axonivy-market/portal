@@ -31,7 +31,6 @@ import ch.ivy.addon.portalkit.service.AnnouncementService;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -50,6 +49,7 @@ public class UserMenuBean implements Serializable {
   private String targetPage = StringUtils.EMPTY;
   private String loggedInUser;
   private boolean isShowGlobalSearch;
+  private boolean isShowQuickGlobalSearch;
 
   public String getLoggedInUser() {
     return loggedInUser;
@@ -71,6 +71,7 @@ public class UserMenuBean implements Serializable {
       };
     }
     isShowGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_GLOBAL_SEARCH);
+    isShowQuickGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_QUICK_GLOBAL_SEARCH);
   }
 
   public boolean isShowCaseDurationTime() {
@@ -98,6 +99,9 @@ public class UserMenuBean implements Serializable {
     return isShowGlobalSearch;
   }
 
+  public boolean getIsShowQuickGlobalSearch() {
+    return isShowQuickGlobalSearch;
+  }
   public long getClientSideTimeout() {
     String clientSideTimeoutInMinute = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT);
     if (StringUtils.isNotBlank(clientSideTimeoutInMinute)) {
@@ -317,7 +321,7 @@ public class UserMenuBean implements Serializable {
 
   private static String getExpressStartLink() {
     if (StringUtils.isEmpty(expressStartLink)) {
-      expressStartLink = ProcessStartCollector.getInstance().findExpressWorkflowStartLink();
+      expressStartLink = ExpressProcessService.getInstance().findExpressWorkflowStartLink();
     }
     return expressStartLink;
   }

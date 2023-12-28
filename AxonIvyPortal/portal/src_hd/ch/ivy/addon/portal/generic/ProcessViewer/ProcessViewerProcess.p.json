@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "17FABECA599F49AF",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -13,9 +13,9 @@
         "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "taskId", "type" : "Long" },
-            { "name" : "caseId", "type" : "Long" },
-            { "name" : "processId", "type" : "String" }
+            { "name" : "taskId", "type" : "Long", "desc" : "" },
+            { "name" : "caseId", "type" : "Long", "desc" : "" },
+            { "name" : "processId", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.caseId" : "param.caseId",

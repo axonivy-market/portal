@@ -122,12 +122,12 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void selectCustomType() {
-    selectFieldType("CUSTOM");
+    selectFieldType("Custom field");
     getCustomFieldCategory().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void selectStandardType() {
-    selectFieldType("STANDARD");
+    selectFieldType("Standard column");
     getCustomFieldCategory().shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
@@ -170,6 +170,21 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     getColumnManagementDialog().$("button[id$='field-add-btn']").click();
 
     getAddedFieldRemoveLink(field).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return field;
+  }
+  
+  public String addCustomColumnByName (String columnName) {
+    selectCustomType();
+    getCustomFieldSelection().click();
+    $("span[id$='column-management-form:custom-field-selection_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement result = $("span[id$='column-management-form:custom-field-selection_panel']").$$("li").filter(Condition.text(columnName)).first().shouldBe(getClickableCondition());
+    String field = result.getText();
+    result.click();
+    $("input[id$=':field-display-name'").shouldNot(Condition.empty, DEFAULT_TIMEOUT);
+    
+    getColumnManagementDialog().$("button[id$='field-add-btn']").click();
+    getAddedFieldRemoveLink(field).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
     return field;
   }
 

@@ -26,7 +26,7 @@ public class WidgetTextFilterBean implements Serializable {
   }
 
   public boolean isShowTextListPanel(DashboardFilter filter) {
-    if (!filter.isText()) {
+    if (!filter.isTextField()) {
       return false;
     }
 

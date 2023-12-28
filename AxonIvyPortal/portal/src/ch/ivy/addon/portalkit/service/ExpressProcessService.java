@@ -5,13 +5,31 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.axonivy.portal.components.publicapi.ProcessStartAPI;
+import com.axonivy.portal.components.util.ProcessStartUtils;
+
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
+import ch.ivy.addon.portalkit.configuration.UserProcess;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
+import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.util.ExpressManagementUtils;
+import ch.ivyteam.ivy.workflow.IProcessStart;
 
 public class ExpressProcessService extends JsonConfigurationService<ExpressProcess> {
 
   private static final String EXPRESS_PROCESSES = PortalVariable.EXPRESS_PROCESS.key;
+  private static final String EXPRESS_CREATE_FRIENDLY_REQUEST_PATH =
+      "Start Processes/CreateWorkflow/AxonIvyExpressWF.ivp";
+  private static final String EXPRESS_ADHOC_WF_FRIENDLY_REQUEST_PATH =
+      "Start Processes/CreateWorkflow/AxonIvyExpressAdhocWF.ivp";
+  private static final String EXPRESS_WORKFLOW_FRIENDLY_REQUEST_PATH =
+      "Start Processes/GenericPredefinedWorkflowStart/GenericPredefinedProcessStart.ivp";
+  private static final String EXPRESS_WORKFLOW_EDIT_REQUEST_PATH =
+      "Start Processes/GenericPredefinedWorkflowStart/GenericEditProcessStart.ivp";
+  private static final String EXPRESS_BUSINESS_VIEW_REQUEST_PATH =
+      "Start Processes/ExpressStart/startExpressBusinessView.ivp";
   private static ExpressProcessService instance;
 
   public static ExpressProcessService getInstance() {
@@ -69,5 +87,36 @@ public class ExpressProcessService extends JsonConfigurationService<ExpressProce
   @Override
   public String getConfigKey() {
     return EXPRESS_PROCESSES;
+  }
+  
+  public static boolean isExpressProcessAdded(ExpressProcess expressProcess, List<UserProcess> userProcesses) {
+    return userProcesses.stream()
+    .filter(process -> (process.getProcessType() == ProcessType.EXPRESS_PROCESS) && StringUtils.isNoneBlank(process.getProcessId()) && process.getProcessId().equals(expressProcess.getId()))
+    .findFirst()
+    .isPresent();
+  }
+  
+  public String findExpressAdhocWFLink() {
+    return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(EXPRESS_ADHOC_WF_FRIENDLY_REQUEST_PATH);
+  }
+
+  public String findExpressWorkflowStartLink() {
+    return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(EXPRESS_WORKFLOW_FRIENDLY_REQUEST_PATH);
+  }
+
+  public String findExpressBusinessViewStartLink() {
+    return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(EXPRESS_BUSINESS_VIEW_REQUEST_PATH);
+  }
+
+  public IProcessStart findExpressCreationProcess() {
+    return ProcessStartUtils.findProcessStartByUserFriendlyRequestPath(EXPRESS_CREATE_FRIENDLY_REQUEST_PATH);
+  }
+
+  public String findExpressWorkflowEditLink(String workflowId) {
+    String url = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(EXPRESS_WORKFLOW_EDIT_REQUEST_PATH);
+    if (StringUtils.isNotBlank(url)) {
+      return String.format("%s?workflowID=%s", url, workflowId);
+    }
+    return StringUtils.EMPTY;
   }
 }

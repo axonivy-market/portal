@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "175F92F71BC45295",
   "config" : {
     "data" : "portalmigration.Data"
@@ -80,7 +80,6 @@
           "name" : "in 1",
           "visual" : {
             "at" : { "x" : 64, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
           "parentConnector" : "f4",
@@ -93,7 +92,6 @@
           "name" : "out 1",
           "visual" : {
             "at" : { "x" : 608, "y" : 160 },
-            "size" : { "width" : 26, "height" : 26 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
           "parentConnector" : "f11"

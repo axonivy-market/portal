@@ -20,11 +20,11 @@ public class DescriptionIsOperatorHandler {
   }
 
   public CaseQuery buildIsQuery(DashboardFilter filter) {
-    if (CollectionUtils.isEmpty(filter.getTexts())) {
+    if (CollectionUtils.isEmpty(filter.getValues())) {
       return null;
     }
     CaseQuery query = CaseQuery.create();
-    filter.getTexts().forEach(text -> {
+    filter.getValues().forEach(text -> {
       CaseQuery subQuery = CaseQuery.create();
       subQuery.where().description().isLikeIgnoreCase(String.format(EQUALS_FORMAT, text.toLowerCase()));
       query.where().or(subQuery);
@@ -33,11 +33,11 @@ public class DescriptionIsOperatorHandler {
   }
 
   public CaseQuery buildIsNotQuery(DashboardFilter filter) {
-    if (CollectionUtils.isEmpty(filter.getTexts())) {
+    if (CollectionUtils.isEmpty(filter.getValues())) {
       return null;
     }
     CaseQuery query = CaseQuery.create();
-    filter.getTexts().forEach(text -> {
+    filter.getValues().forEach(text -> {
       CaseQuery subQuery = CaseQuery.create();
       subQuery.where().description().isNotLikeIgnoreCase(String.format(EQUALS_FORMAT, text.toLowerCase()));
       query.where().and(subQuery);

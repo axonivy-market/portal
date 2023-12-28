@@ -85,6 +85,8 @@ You can configure those options by using Javascript from your HTML dialog as fol
             window.isHideCaseInfo = false;
             window.isWorkingOnATask = false;
             window.taskName = "Your New Task Name";
+            // Define task icon using Streamline or Awesome font
+            window.taskIcon = "si si-arrow-right";
 
             // show case details of a case different from current case.
             window.caseId = "Case-Id";
