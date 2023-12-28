@@ -885,7 +885,7 @@ public class NewDashboardPage extends TemplatePage {
   public void markAsRead(WebElement notificationsPanel, int expectedBadge) {
     waitForGlobalGrowlDisappear();
     WebElement item = $(".ui-datascroller-item");
-    item.findElement(By.id("notificationForm:notifications-scroller:0:notificationMarkAsRead")).click();
+    item.findElement(By.id("notification-compact-form:notifications-scroller:0:notification-mark-as-read")).click();
     $(By.id("notifications-badge-value")).shouldBe(Condition.exactValue(String.valueOf(expectedBadge)), DEFAULT_TIMEOUT);
   }
 
