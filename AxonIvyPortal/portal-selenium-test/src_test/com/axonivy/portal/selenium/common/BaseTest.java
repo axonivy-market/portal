@@ -1,14 +1,17 @@
 package com.axonivy.portal.selenium.common;
 
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.refresh;
+import static java.time.Duration.ZERO;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.time.Duration;
+import java.util.Objects;
 
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.AfterEach;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WindowType;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -16,7 +19,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.axonivy.ivy.webtest.engine.EngineUrl;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
-import com.codeborne.selenide.junit5.ScreenShooterExtension;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
@@ -26,7 +28,6 @@ import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
  * of failed tests and utility methods.
  *
  */
-@ExtendWith({ScreenShooterExtension.class})
 public class BaseTest {
 
   private final static String LOGIN_URL_PATTERN = "/PortalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
@@ -34,6 +35,11 @@ public class BaseTest {
   protected final static Duration DEFAULT_TIMEOUT = Duration.ofSeconds(45);
 
   public BaseTest() {}
+
+  @AfterEach
+  public void tearDown() {
+    WebDriverRunner.getWebDriver().quit();
+  }
 
   protected String simplePaymentUrl = "portal-developer-examples/162511D2577DBA88/simplePayment.ivp";
   protected String createTaskWithIframe = "portal-developer-examples/16E5DB746865BCEC/CreateInvestment.ivp";
@@ -311,4 +317,44 @@ public class BaseTest {
   public void resizeBrowserTo2kResolution() {
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
   }
+
+  /**
+   * For documentation, see {@link BaseTest#assertTrue(boolean, String)}
+   */
+  public void assertTrue(boolean condition) {
+    assertTrue(condition, "");
+  }
+
+  /**
+   * Use this instead of {@code Assertions} methods so that Selenide would take screenshots if errors. This is a
+   * workaround because we cannot use @ExtendWith({ScreenShooterExtension.class}) with
+   * `WebDriverRunner.getWebDriver().quit();` in `@AfterEach`
+   */
+  public void assertTrue(boolean condition, String message) {
+    if (!condition) {
+      System.out.println(message);
+      $("ASSERTION FAILED, CHECK STACK TRACE from BaseTest.assertTrue").shouldBe(exist, ZERO);
+    }
+  }
+
+  public void assertFalse(boolean condition) {
+    assertTrue(!condition);
+  }
+
+  public void assertFalse(boolean condition, String message) {
+    assertTrue(!condition, message);
+  }
+
+  public void assertEquals(Object a, Object b) {
+    assertTrue(Objects.equals(a, b));
+  }
+
+  public void assertEquals(Object a, Object b, String message) {
+    assertTrue(Objects.equals(a, b), message);
+  }
+
+  public void assertNotEquals(Object a, Object b) {
+    assertTrue(!Objects.equals(a, b));
+  }
+
 }
