@@ -61,6 +61,8 @@ pipeline {
               docker compose stop
               docker compose pull
               docker compose up -d
+              # Wait engine starting so that Autoconvert: true takes affect
+              sleep 100
             """
           }
           

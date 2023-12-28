@@ -6,19 +6,17 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvySideStep;
-import ch.ivy.addon.portalkit.ivydata.dto.IvySideStepResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.SideStepSearchCriteria;
-import ch.ivy.addon.portalkit.ivydata.service.ISideStepService;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
 import ch.ivyteam.ivy.casemap.runtime.model.IStartableSideStep;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.ICaseQueryExecutor;
 
-public class SideStepService implements ISideStepService {
+public class SideStepService {
 
   private SideStepService() {}
 
@@ -26,10 +24,8 @@ public class SideStepService implements ISideStepService {
     return new SideStepService();
   }
 
-  @Override
-  public IvySideStepResultDTO findSideStepsByCriteria(SideStepSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> { 
-      IvySideStepResultDTO result = new IvySideStepResultDTO();
+  public List<IvySideStep> findSideStepsByCriteria(SideStepSearchCriteria criteria) {
+    return Sudo.get(() -> { 
       ICase iCase = findCase(criteria.getCaseId());
       if (iCase == null) {
         return null;
@@ -46,13 +42,12 @@ public class SideStepService implements ISideStepService {
       }
       
       ivySideSteps.sort((s1, s2) -> StringUtils.compareIgnoreCase(s1.getName(), s2.getName()));
-      result.setSideSteps(ivySideSteps);
-      return result;
+      return ivySideSteps;
     });
   }
 
   private IvySideStep createAdhocSideStep() {
-    String expressAdhocWFLink = ProcessStartCollector.getInstance().findExpressAdhocWFLink();
+    String expressAdhocWFLink = ExpressProcessService.getInstance().findExpressAdhocWFLink();
     if (StringUtils.isBlank(expressAdhocWFLink)) {
       return null;
     }

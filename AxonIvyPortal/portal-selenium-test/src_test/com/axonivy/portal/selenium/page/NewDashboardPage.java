@@ -791,7 +791,7 @@ public class NewDashboardPage extends TemplatePage {
     $("input[id$='global-search-component:global-search-data']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT);
     getGlobalSearchInput().click();
     getGlobalSearchInput().sendKeys(keyword);
-    getGlobalSearchInput().sendKeys(Keys.ENTER.toString());
+    getGlobalSearchInput().sendKeys(Keys.RETURN);
     $("#search-results-tabview").shouldBe(appear, DEFAULT_TIMEOUT);
     return new GlobalSearchResultPage();
   }
@@ -897,5 +897,9 @@ public class NewDashboardPage extends TemplatePage {
   public void markAsAllRead(WebElement notificationsPanel) {
     $("[id='notificationMarkAllAsRead']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     waitForElementValueChanged("#topbar-unread-notifications", "0");
+  }
+  
+  public SelenideElement getFirstImageProcess() {
+    return $(".image-process-item-image").shouldBe(Condition.exist, DEFAULT_TIMEOUT);
   }
 }

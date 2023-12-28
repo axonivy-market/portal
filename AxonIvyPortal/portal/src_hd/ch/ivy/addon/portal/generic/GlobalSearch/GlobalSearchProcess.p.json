@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "163AFDE4C30836BD",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -23,13 +23,13 @@
       "id" : "f1",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 320, "y" : 96 }
+        "at" : { "x" : 280, "y" : 96 }
       }
     }, {
       "id" : "f4",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 584, "y" : 224 }
+        "at" : { "x" : 904, "y" : 224 }
       }
     }, {
       "id" : "f8",
@@ -50,7 +50,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 216, "y" : 224 },
+        "at" : { "x" : 496, "y" : 224 },
         "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : [
@@ -79,7 +79,7 @@
         "labelOffset" : { "x" : 47, "y" : 35 }
       },
       "connect" : [
-        { "id" : "f9", "to" : "f8" }
+        { "id" : "f9", "to" : "f29" }
       ]
     }, {
       "id" : "f31",
@@ -89,13 +89,23 @@
         "output" : {
           "code" : [
             "import ch.ivy.addon.portal.generic.navigation.PortalNavigator;",
+            "import org.apache.commons.lang3.StringUtils;",
             "",
-            "PortalNavigator.navigateToPortalGlobalSearch(in.keyword);"
+            "if (StringUtils.isNotBlank(in.processId)) {",
+            "  PortalNavigator.redirect(in.processId);",
+            "}",
+            "if (StringUtils.isNotBlank(in.taskId)) {",
+            "  PortalNavigator.navigateToPortalTaskDetails(in.taskId);",
+            "}",
+            "if (StringUtils.isNotBlank(in.caseId)) {",
+            "  PortalNavigator.navigateToPortalCaseDetails(in.caseId);",
+            "}",
+            "PortalNavigator.navigateToPortalGlobalSearch(in.keyword, in.activeTabIndex);"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 416, "y" : 224 },
+        "at" : { "x" : 744, "y" : 224 },
         "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : [
@@ -109,11 +119,229 @@
         "start a task > perform global search"
       ],
       "visual" : {
-        "at" : { "x" : 256, "y" : 288 },
+        "at" : { "x" : 592, "y" : 312 },
         "size" : { "width" : 208, "height" : 44 }
       },
       "connect" : [
         { "id" : "f10", "to" : "f8" }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "reserve(ITask)",
+      "config" : {
+        "signature" : "reserve",
+        "input" : {
+          "params" : [
+            { "name" : "workingTask", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
+          ],
+          "map" : {
+            "out.workingTask" : "param.workingTask"
+          }
+        },
+        "guid" : "18C32C8BCF6C3CB3"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 328 }
+      },
+      "connect" : [
+        { "id" : "f15", "to" : "f13" }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "leave(ITask)",
+      "config" : {
+        "signature" : "leave",
+        "input" : {
+          "params" : [
+            { "name" : "workingTask", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
+          ],
+          "map" : {
+            "out.workingTask" : "param.#workingTask"
+          }
+        },
+        "guid" : "18C32C93037C6CEA"
+      },
+      "visual" : {
+        "at" : { "x" : 56, "y" : 416 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f14" }
+      ]
+    }, {
+      "id" : "f13",
+      "type" : "Script",
+      "name" : "Reserve task",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "",
+            "TaskUtils.parkTask(in.#workingTask != null ? in.workingTask : ivy.task);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 328 }
+      },
+      "connect" : [
+        { "id" : "f17", "to" : "f8" }
+      ]
+    }, {
+      "id" : "f14",
+      "type" : "Script",
+      "name" : [
+        "Leave and ",
+        "reset task"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "",
+            "TaskUtils.resetTask(in.#workingTask != null ? in.workingTask : ivy.task);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 416 }
+      },
+      "connect" : [
+        { "id" : "f18", "to" : "f8", "via" : [ { "x" : 496, "y" : 416 } ] }
+      ]
+    }, {
+      "id" : "f19",
+      "type" : "Alternative",
+      "name" : "is working task?",
+      "config" : {
+        "conditions" : {
+          "f20" : "!in.isWorkingOnTask"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 320, "y" : 224 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f20", "to" : "f8" },
+        { "id" : "f21", "to" : "f4", "via" : [ { "x" : 320, "y" : 160 }, { "x" : 904, "y" : 160 } ] }
+      ]
+    }, {
+      "id" : "f22",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "fireEventClick()",
+      "config" : {
+        "signature" : "fireEventClick",
+        "guid" : "18C33A6354AA5F07"
+      },
+      "visual" : {
+        "at" : { "x" : 48, "y" : 496 }
+      },
+      "connect" : [
+        { "id" : "f24", "to" : "f25" }
+      ]
+    }, {
+      "id" : "f23",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 304, "y" : 496 }
+      }
+    }, {
+      "id" : "f25",
+      "type" : "Script",
+      "name" : "Fire event click",
+      "visual" : {
+        "at" : { "x" : 176, "y" : 496 }
+      },
+      "connect" : [
+        { "id" : "f26", "to" : "f23" }
+      ]
+    }, {
+      "id" : "f32",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "updateCurrentItemId()",
+      "config" : {
+        "signature" : "updateCurrentItemId",
+        "guid" : "18C37E5AA02E747A"
+      },
+      "visual" : {
+        "at" : { "x" : 456, "y" : 472 }
+      },
+      "connect" : [
+        { "id" : "f34", "to" : "f27" }
+      ]
+    }, {
+      "id" : "f33",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 712, "y" : 536 }
+      }
+    }, {
+      "id" : "f39",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "resetAllId()",
+      "config" : {
+        "signature" : "resetAllId",
+        "input" : {
+          "map" : { },
+          "code" : [
+            "out.processId = \"\";",
+            "out.taskId = \"\";",
+            "out.caseId = \"\";"
+          ]
+        },
+        "guid" : "18C38007EA4ED6AE"
+      },
+      "visual" : {
+        "at" : { "x" : 456, "y" : 536 }
+      },
+      "connect" : [
+        { "id" : "f40", "to" : "f33" }
+      ]
+    }, {
+      "id" : "f27",
+      "type" : "Script",
+      "name" : "update current task/case/process id",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.context.FacesContext;",
+            "String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(\"id\").toString();",
+            "String type = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(\"type\").toString();",
+            "if (type == \"TASK\") {",
+            "  out.taskId = id;",
+            "} else if (type == \"CASE\") {",
+            "  out.caseId = id;",
+            "} else if (type == \"PROCESS\") {",
+            "  out.processId = id;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 584, "y" : 472 }
+      },
+      "connect" : [
+        { "id" : "f28", "to" : "f33", "via" : [ { "x" : 712, "y" : 472 } ] }
+      ]
+    }, {
+      "id" : "f29",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.context.FacesContext;",
+            "String activeTabIndex = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(\"activeTabIndex\").toString();",
+            "out.activeTabIndex = activeTabIndex;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 224 }
+      },
+      "connect" : [
+        { "id" : "f30", "to" : "f19" }
       ]
     } ]
 }

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "14BECA923C1F4A4B",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -47,11 +47,9 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.ivydata.dto.IvySubstituteResultDTO;",
             "import ch.ivy.addon.portalkit.ivydata.service.impl.SubstituteService;",
             "",
-            "IvySubstituteResultDTO dto = SubstituteService.newInstance().findSubstitutes(in.username);",
-            "out.substitutes = dto.getIvySubstitutes();"
+            "out.substitutes = SubstituteService.newInstance().findSubstitutes(in.username);"
           ]
         }
       },
@@ -98,11 +96,9 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.ivydata.dto.IvySubstituteResultDTO;",
             "import ch.ivy.addon.portalkit.ivydata.service.impl.SubstituteService;",
             "",
-            "IvySubstituteResultDTO dto = SubstituteService.newInstance().findSubstitutions(in.username);",
-            "out.substitutes = dto.ivySubstitutes;"
+            "out.substitutes = SubstituteService.newInstance().findSubstitutions(in.username);"
           ]
         }
       },
@@ -149,7 +145,6 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.ivydata.dto.IvySubstituteResultDTO;",
             "import ch.ivy.addon.portalkit.ivydata.service.impl.SubstituteService;",
             "",
             "SubstituteService.newInstance().saveSubstitutes(in.userDTO, in.substitutes);"

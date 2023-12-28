@@ -17,7 +17,7 @@ import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.enums.GlobalVariable.Option;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.jsf.Attrs;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -44,7 +44,7 @@ public class AdminSettingBean implements Serializable {
       isTabChangeEventTriggered = false;
       return;
     }
-    isShowExpressManagementTab = ProcessStartCollector.getInstance().findExpressCreationProcess() != null;
+    isShowExpressManagementTab = ExpressProcessService.getInstance().findExpressCreationProcess() != null;
     isShowRoleManagementTab = canSeeRoleManagement();
     isShowPasswordValidationTab = canSeePasswordValidation();
     initApplicationTab();

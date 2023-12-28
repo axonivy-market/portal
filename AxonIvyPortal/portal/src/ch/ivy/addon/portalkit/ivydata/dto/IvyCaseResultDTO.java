@@ -8,7 +8,7 @@ import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
 
-public class IvyCaseResultDTO extends AbstractResultDTO {
+public class IvyCaseResultDTO {
 
   private List<ICase> cases;
   private long totalCases;

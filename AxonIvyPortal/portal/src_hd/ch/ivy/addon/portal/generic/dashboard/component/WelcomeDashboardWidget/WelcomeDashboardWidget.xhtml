@@ -62,7 +62,7 @@
         </h:panelGroup>
       </h:panelGroup>
     </div>
-    <p:remoteCommand id="update-welcome-text-#{widget.id}-rc" name="updateWelcomeText_#{widget.id}" update="welcome-text" process="@this" async="true"
+    <p:remoteCommand id="update-welcome-text-#{widget.id}-rc" name="updateWelcomeText_#{widget.internalId}" update="welcome-text" process="@this" async="true"
       actionListener="#{dashboardWelcomeWidgetBean.updateWelcomeText(widget)}"
       oncomplete="WelcomeWidget.updateWelcomeTextStyles('#{widget.id}','#{widget.welcomeTextColor}','#{widget.welcomeTextPosition}','#{widget.welcomeTextSize}');" />
     <script>
@@ -70,7 +70,7 @@
         WelcomeWidget.init('#{widget.id}','#{widget.welcomeTextColor}','#{widget.welcomeTextPosition}','#{widget.welcomeTextSize}', '#{widget.welcomeImageFit}', '#{widget.imageInlineStyle}');
         if ('#{widget.greeting}' == 'true') {
           var time= new Date().getHours();
-          updateWelcomeText_#{widget.id}([{name: 'clientTime', value: time}]);
+          updateWelcomeText_#{widget.internalId}([{name: 'clientTime', value: time}]);
         }
       });
     </script>

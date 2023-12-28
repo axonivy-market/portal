@@ -19,7 +19,6 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
-import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
@@ -107,11 +106,6 @@ public class CaseWidgetConfigurationFilterBean extends AbstractCaseWidgetFilterB
 
   public void setOwners(List<SecurityMemberDTO> owners) {
     this.owners = owners;
-  }
-
-  @Override
-  protected void initFilterTypes() {
-    this.filterTypes = DashboardStandardCaseColumn.getFilterableFields();
   }
 
   @Override

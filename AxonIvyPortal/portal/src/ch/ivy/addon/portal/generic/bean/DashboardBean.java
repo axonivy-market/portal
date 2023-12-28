@@ -42,7 +42,6 @@ import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
 import ch.ivy.addon.portalkit.exporter.Exporter;
-import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
@@ -225,10 +224,6 @@ public class DashboardBean implements Serializable {
     currentDashboardIndex = index;
     selectedDashboard = dashboards.get(index);
     buildWidgetModels(selectedDashboard);
-  }
-
-  public void startTask(ITask task) throws IOException {
-    FacesContext.getCurrentInstance().getExternalContext().redirect(task.getStartLinkEmbedded().getRelative());
   }
 
   public String createExtractedTextFromHtml(String text) {
@@ -424,8 +419,7 @@ public class DashboardBean implements Serializable {
   }
 
   protected List<String> getSupportedLanguages() {
-    IvyLanguage ivyLanguage = LanguageService.newInstance().findUserLanguages().getIvyLanguage();
-    return ivyLanguage.getSupportedLanguages();
+    return LanguageService.newInstance().getIvyLanguageOfUser().getSupportedLanguages();
   }
 
   public boolean isShowTranslation(DisplayName title) {

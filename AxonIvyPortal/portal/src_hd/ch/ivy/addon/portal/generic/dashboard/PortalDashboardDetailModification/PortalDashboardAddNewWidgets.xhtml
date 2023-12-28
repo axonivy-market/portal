@@ -7,8 +7,7 @@
   header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/createWidget')}"
   appendTo="@(body)" closeOnEscape="true"
   fitViewport="true" responsive="true"
-  modal="true" dynamic="true"
-  position="center center"
+  modal="true" position="center center"
   onShow="PF('new-widget-dialog').initPosition()">
   <div class="new-widget-dialog__search">
     <p:inputText id="search-input" styleClass="js-search-input new-widget-dialog__search-input"
@@ -103,7 +102,7 @@
 <p:dialog id="new-widget-configuration-dialog" widgetVar="new-widget-configuration-dialog"
   styleClass="new-widget-configuration-dialog" closable="false"
   header="#{dashboardDetailModificationBean.newWidgetHeader}"
-  appendTo="@(body)" closeOnEscape="true" dynamic="true"
+  appendTo="@(body)" closeOnEscape="true"
   fitViewport="true" responsive="true" modal="true">
   <c:set var="widget" value="#{dashboardDetailModificationBean.widget}" />
 
