@@ -1,7 +1,9 @@
 package com.axonivy.portal.selenium.common;
 
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static java.time.Duration.ZERO;
 
 import java.time.Duration;
 import java.util.function.Supplier;
@@ -27,20 +29,35 @@ public final class WaitHelper {
   }
 
   public static void waitForIFrameAvailable(WebDriver driver, String frameId) {
-    wait(driver).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameId));
+    try {
+      wait(driver).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameId));
+    } catch (Exception e) {
+      e.printStackTrace();
+      assertTrue(false);
+    }
   }
 
-  public static WebDriverWait wait(WebDriver driver) {
+  private static WebDriverWait wait(WebDriver driver) {
     return new WebDriverWait(driver, DEFAULT_TIMEOUT);
   }
 
   public static void assertTrueWithWait(Supplier<Boolean> supplier) {
-    wait(WebDriverRunner.getWebDriver()).until(webDriver -> supplier.get());
+    try {
+      wait(WebDriverRunner.getWebDriver()).until(webDriver -> supplier.get());
+    } catch (Exception e) {
+      e.printStackTrace();
+      assertTrue(false);
+    }
   }
 
   public static void waitForPresenceOfElementLocatedInFrame(String cssSelector) {
-    wait(WebDriverRunner.getWebDriver())
-        .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(cssSelector)));
+    try {
+      wait(WebDriverRunner.getWebDriver())
+          .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(cssSelector)));
+    } catch (Exception e) {
+      e.printStackTrace();
+      assertTrue(false);
+    }
   }
 
   /**
@@ -53,5 +70,16 @@ public final class WaitHelper {
     $(cssSelector).shouldHave(Condition.cssValue("background-color", "rgb(250, 0, 0)"));
     action.run();
     $(cssSelector).shouldNotHave(Condition.cssValue("background-color", "rgb(250, 0, 0)"));
+  }
+
+  /**
+   * Use this instead of {@code Assertions} methods so that Selenide would take screenshots if errors. This is a
+   * workaround because we cannot use @ExtendWith({ScreenShooterExtension.class}) with
+   * `WebDriverRunner.getWebDriver().quit();` in `@AfterEach`
+   */
+  public static void assertTrue(boolean condition) {
+    if (!condition) {
+      $("ASSERTION FAILED, CHECK STACK TRACE from BaseTest.assertTrue").shouldBe(exist, ZERO);
+    }
   }
 }
