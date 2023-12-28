@@ -30,6 +30,7 @@ import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.persistence.query.IPagedResult;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -60,6 +61,17 @@ public class CaseService{
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       CaseQuery finalQuery = extendQuery(criteria);
       result.setCases(executeCaseQuery(finalQuery));
+      return result;
+    });
+  }
+
+  public IvyCaseResultDTO findGlobalSearchCasesByCriteria(CaseSearchCriteria criteria, int startIndex, int count) {
+    return Sudo.get(() -> {
+      IvyCaseResultDTO result = new IvyCaseResultDTO();
+      CaseQuery finalQuery = extendQuery(criteria);
+      IPagedResult<ICase> iCase = Ivy.wf().getCaseQueryExecutor().getResultsPaged(finalQuery);
+      result.setCases(iCase.window(startIndex, count));
+      result.setTotalCases(iCase.count());
       return result;
     });
   }

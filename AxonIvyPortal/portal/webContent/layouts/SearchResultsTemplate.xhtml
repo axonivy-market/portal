@@ -36,7 +36,7 @@
       </c:if>
       <div id="search-results-tabview-container" class="search-results-tabview-container js-search-results-tabview-container">
         <p:tabView id="search-results-tabview" widgetVar="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview js-search-results-tabview"
-          rendered="#{isShowResultTabView}">
+          rendered="#{isShowResultTabView}" activeIndex="#{data.activeTabIndex}" >
           <p:tab id="process-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" titleStyleClass="process-tab-title"
             rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink}">
             <div class="js-process-list-container">
@@ -46,7 +46,7 @@
           </p:tab>
           
           <p:tab id="task-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" titleStyleClass="task-tab-title"
-            rendered="#{taskWidgetBean.showFullTaskList}">
+            rendered="#{taskWidgetBean.showFullTaskList}" >
             <div class="task-list-container js-task-list-container js-for-search-result">
               <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-results" listHeaderStyleClass="task-in-search"
                 keyword="#{dataModel.taskDataModel.criteria.keyword}" hideTaskFilter="true" currentPortalPage="SEARCH_RESULTS"

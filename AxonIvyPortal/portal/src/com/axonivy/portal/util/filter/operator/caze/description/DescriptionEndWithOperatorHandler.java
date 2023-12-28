@@ -20,11 +20,11 @@ public class DescriptionEndWithOperatorHandler {
   }
 
   public CaseQuery buildEndWithQuery(DashboardFilter filter) {
-    if (CollectionUtils.isEmpty(filter.getTexts())) {
+    if (CollectionUtils.isEmpty(filter.getValues())) {
       return null;
     }
     CaseQuery query = CaseQuery.create();
-    filter.getTexts().forEach(text -> {
+    filter.getValues().forEach(text -> {
       CaseQuery subQuery = CaseQuery.create();
       subQuery.where().description().isLikeIgnoreCase(String.format(END_WTIH_FORMAT, text.toLowerCase()));
       query.where().or(subQuery);
@@ -33,11 +33,11 @@ public class DescriptionEndWithOperatorHandler {
   }
 
   public CaseQuery buildNotEndWithQuery(DashboardFilter filter) {
-    if (CollectionUtils.isEmpty(filter.getTexts())) {
+    if (CollectionUtils.isEmpty(filter.getValues())) {
       return null;
     }
     CaseQuery query = CaseQuery.create();
-    filter.getTexts().forEach(text -> {
+    filter.getValues().forEach(text -> {
       CaseQuery subQuery = CaseQuery.create();
       subQuery.where().description().isNotLikeIgnoreCase(String.format(END_WTIH_FORMAT, text.toLowerCase()));
       query.where().and(subQuery);

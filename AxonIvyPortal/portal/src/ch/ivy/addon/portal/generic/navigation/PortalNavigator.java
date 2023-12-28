@@ -172,6 +172,13 @@ public final class PortalNavigator extends BaseNavigator{
     navigateByKeyword("GlobalSearchPage.ivp", PORTAL_GLOBAL_SEARCH, params);
   }
   
+  public static void navigateToPortalGlobalSearch(String keyword, String activeTabIndex) {
+    Map<String, String> params = new HashMap<>();
+    params.put("keyword", keyword);
+    params.put("activeTabIndex", activeTabIndex);
+    navigateByKeyword("GlobalSearchPage.ivp", PORTAL_GLOBAL_SEARCH, params);
+  }
+
   public static void navigateToUserProfile() {
     navigateByKeyword(PORTAL_USER_PROFILE_START, PORTAL_USER_PROFILE, new HashMap<>());
   }

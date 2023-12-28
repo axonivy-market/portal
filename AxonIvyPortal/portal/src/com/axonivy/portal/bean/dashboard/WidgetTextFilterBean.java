@@ -27,6 +27,10 @@ public class WidgetTextFilterBean implements Serializable {
   }
 
   public boolean isShowTextListPanel(DashboardFilter filter) {
+    if (!filter.isTextField()) {
+      return false;
+    }
+
     for (FilterOperator operator : operators) {
       if (operator == FilterOperator.EMPTY || operator == FilterOperator.NOT_EMPTY) {
         continue;
