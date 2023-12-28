@@ -270,7 +270,11 @@ public final class PortalNavigator extends BaseNavigator{
     return buildUrlByKeyword("PortalManagement.ivp", PORTAL_MANAGEMENT, new HashMap<>());
   }
   
-  public static void navigateToNavigationFullPage() {
+  public static void navigateToNotificationFullPage() {
     navigateByKeyword(PORTAL_NOTIFICATION_FULLPAGE_START, PORTAL_NOTIFICATION_FULLPAGE, new HashMap<>());
+  }
+  
+  public static String buildNotificationFullPageUrl() {
+    return buildUrlByKeyword(PORTAL_NOTIFICATION_FULLPAGE_START, PORTAL_NOTIFICATION_FULLPAGE, new HashMap<>());
   }
 }

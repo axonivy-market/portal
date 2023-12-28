@@ -26,7 +26,7 @@
                       update="#{unreadNotificationsId}, #{notificationScrollerId}" global="false" partialSubmit="true"/>
                     </p:selectBooleanCheckbox>  
                     <p:commandLink id="notification-full-page" 
-                      actionListener="#{userMenuBean.navigateToNotification()}"
+                      actionListener="#{userMenuBean.navigateToNotificationOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"
                       styleClass="notifications-icon" global="false">
                       <i class="notifications-button si si-expand-6 " />
                     </p:commandLink>
@@ -57,7 +57,7 @@
                 
                 <h:panelGroup id="has-notifications" rendered="#{notificationBean.hasNotifications()}">
                   <h:outputText styleClass="#{notificationBean.render ? 'u-hidden' : ''}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
-                  <h:form id="notificationForm" onmouseover="Portal.updateLayoutContent()">
+                  <h:form id="notification-compact-form" onmouseover="Portal.updateLayoutContent()">
                     <p:dataScroller id="notifications-scroller" lazy="true" styleClass="notification-scroll" value="#{notificationBean.dataModel}" var="notification"
                       rendered="#{notificationBean.render}" chunkSize="20" mode="inline" widgetVar="notifications-scroller">
                       <span class="notifications-group-name #{notification.markedToday} #{notification.markedToday ? '' : 'u-hidden'}" >#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/todayText')}</span>
@@ -65,7 +65,7 @@
                       <div class="#{notification.style} notifications-container-top">
                         <div class="p-d-flex">
                           <div class="p-d-flex">
-                            <p:commandLink id="notificationMarkAsRead"
+                            <p:commandLink id="notification-mark-as-read"
                               actionListener="#{notificationBean.markAsRead(notification)}"
                               process="@this"
                               partialSubmit="true"
@@ -75,9 +75,9 @@
                               update="#{unreadNotificationsId}">
                               <i class="notifications-button fa #{notification.read ? 'fa-circle-thin': 'fa-circle'}" id="#{notification.id}" />
                             </p:commandLink>
-                            <p:tooltip for="notificationMarkAsRead" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
+                            <p:tooltip for="notification-mark-as-read" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
                           </div>
-                          <h:outputText id="notificationMessage" value="#{notification.message}" escape="false"/>
+                          <h:outputText id="notification-message" value="#{notification.message}" escape="false"/>
                         </div>
 
                         <div>
