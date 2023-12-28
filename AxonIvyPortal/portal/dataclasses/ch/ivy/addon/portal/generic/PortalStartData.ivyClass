@@ -40,3 +40,4 @@ uuid String #field
 isOpenWithoutMenu Boolean #field
 isOpenDashboardFromLink Boolean #field
 activeTabIndex String #field
+id String #field
