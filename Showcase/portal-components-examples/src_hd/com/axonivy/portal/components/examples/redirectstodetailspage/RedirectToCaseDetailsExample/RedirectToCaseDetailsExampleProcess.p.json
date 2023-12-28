@@ -1,9 +1,9 @@
 {
   "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
-  "id" : "189D4B709085FC89",
+  "id" : "189BA1E3B3EBAADD",
   "kind" : "HTML_DIALOG",
   "config" : {
-    "data" : "com.axonivy.portal.components.examples.redirectstodetailspage.RedirectToCaseDetailsByUUIDExample.RedirectToCaseDetailsByUUIDExampleData"
+    "data" : "com.axonivy.portal.components.examples.redirectstodetailspage.RedirectToCaseDetailsExample.RedirectToCaseDetailsExampleData"
   },
   "elements" : [ {
       "id" : "f0",
@@ -11,14 +11,6 @@
       "name" : "start()",
       "config" : {
         "signature" : "start",
-        "result" : {
-          "params" : [
-            { "name" : "uuid", "type" : "String", "desc" : "" }
-          ],
-          "map" : {
-            "result.uuid" : "in.uuid"
-          }
-        },
         "guid" : "189BA1E3B3F8735D"
       },
       "visual" : {
@@ -81,7 +73,7 @@
           "code" : [
             "import org.apache.commons.lang3.StringUtils;",
             "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
-            "in.caseLink = PortalNavigatorAPI.buildUrlToPortalCaseDetailsPageByUUID(in.uuid);",
+            "in.caseLink = PortalNavigatorAPI.buildUrlToPortalCaseDetailsPageById(in.caseId);",
             "in.isLinkEnable = StringUtils.isNotEmpty(in.caseLink);"
           ]
         }
