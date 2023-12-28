@@ -29,7 +29,7 @@ public class DashboardAddWidgetTest extends BaseTest {
     super.setup();
     newDashboardPage = new NewDashboardPage();
   }
-  
+
   @Test
   public void testAddNewCaseList() {
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
@@ -41,7 +41,7 @@ public class DashboardAddWidgetTest extends BaseTest {
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget("Your New Cases");
     caseWidget.expand().shouldHave(size(1));
   }
-  
+
   @Test
   public void testAddNewTaskList() {
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();

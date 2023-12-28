@@ -9,7 +9,8 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 public class ForgotPasswordPage extends TemplatePage {
-  private static final String RESULT_MESSAGE_SELECTOR = "span[class='ui-messages-info-summary'], span[class='ui-messages-error-summary']";
+  private static final String RESULT_MESSAGE_SELECTOR =
+      "span[class='ui-messages-info-summary'], span[class='ui-messages-error-summary']";
 
   private SelenideElement emailTextField;
   private SelenideElement sendButton;

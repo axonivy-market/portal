@@ -24,7 +24,7 @@ public class TopbarTest extends BaseTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.checkNameOfLoggedInUserFormat("demo");
   }
-  
+
   @Test
   public void testLoggedInUserWithDisplayNameFormat() {
     updatePortalSetting(LOGGED_IN_USER_FORMAT_SETTING, "DISPLAY_NAME");
@@ -34,7 +34,7 @@ public class TopbarTest extends BaseTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.checkNameOfLoggedInUserFormat("Portal Demo User");
   }
-  
+
   @Test
   public void testLoggedInUserWithDisplayNameUsernameFormat() {
     updatePortalSetting(LOGGED_IN_USER_FORMAT_SETTING, "DISPLAY_NAME_USERNAME");

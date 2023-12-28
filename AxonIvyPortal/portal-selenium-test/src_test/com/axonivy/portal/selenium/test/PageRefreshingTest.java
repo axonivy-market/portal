@@ -10,7 +10,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.codeborne.selenide.CollectionCondition;
 
 @IvyWebTest
-public class PageRefreshingTest extends BaseTest{
+public class PageRefreshingTest extends BaseTest {
 
   @Override
   @BeforeEach

@@ -18,12 +18,12 @@ public class ProcessChainTest extends BaseTest {
   }
 
   @Test
-  public void testDisplayProcessChain() {    
+  public void testDisplayProcessChain() {
     ProcessChainPage processChainPage = new ProcessChainPage();
     processChainPage.waitPageLoaded();
     assertTrue(processChainPage.isEmptyNextStepButtonDisplay());
   }
-  
+
   @Test
   public void testNextStepActionProcessChain() {
     ProcessChainPage processChainPage = new ProcessChainPage();

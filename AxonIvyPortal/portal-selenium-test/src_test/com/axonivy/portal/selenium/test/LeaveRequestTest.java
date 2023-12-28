@@ -49,10 +49,13 @@ public class LeaveRequestTest extends BaseTest {
   public void testApproveScenario() {
     leaveRequestPage = startLeaveRequestProcess();
     assertEquals("Create leave request", leaveRequestPage.getPageTitle());
-    String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
-    String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
+    String today =
+        LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
+    String yesterday = LocalDateTime.now().minusDays(1)
+        .format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
     leaveRequestPage.waitForIFrameContentVisible();
-    leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", yesterday, today, TestAccount.ADMIN_USER.getFullName(), "requester comment");
+    leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", yesterday, today,
+        TestAccount.ADMIN_USER.getFullName(), "requester comment");
     leaveRequestPage.clickSubmitButton();
     leaveRequestPage.clickOnLogout();
     login(TestAccount.ADMIN_USER);
@@ -79,9 +82,12 @@ public class LeaveRequestTest extends BaseTest {
     leaveRequestPage = startLeaveRequestProcess();
     leaveRequestPage.assertPageTitle("Create leave request");
 
-    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
-    String yesterday =  LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
-    leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", yesterday, today, TestAccount.ADMIN_USER.getFullName(), "requester comment");
+    String today =
+        LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
+    String yesterday = LocalDateTime.now().minusDays(1)
+        .format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
+    leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", yesterday, today,
+        TestAccount.ADMIN_USER.getFullName(), "requester comment");
     leaveRequestPage.clickSubmitButton();
     leaveRequestPage.clickOnLogout();
     login(TestAccount.ADMIN_USER);

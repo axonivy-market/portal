@@ -22,17 +22,17 @@ import com.codeborne.selenide.ElementsCollection;
 import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
 
 @IvyWebTest
-public class ExpressTest extends BaseTest{
+public class ExpressTest extends BaseTest {
   private static final int USER_TASK_INDEX = 0;
   private static final int APPROVAL_INDEX = 3;
-  
+
   private static final int INPUT_TEXT_TYPE_INDEX = 0;
   private static final int INPUT_NUMBER_TYPE_INDEX = 1;
-  
+
   private NewDashboardPage newDashboardPage;
   private TaskWidgetPage taskWidgetPage;
   ExpressResponsible responsible1 = setExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
-  
+
   @Override
   @BeforeEach
   public void setup() {
@@ -49,7 +49,7 @@ public class ExpressTest extends BaseTest{
     formDefinition.executeWorkflow();
     executeExpressProcessWhenMultiApproval();
   }
-  
+
   @Test
   public void testBreadCrumb() {
     goToExpressCreationPage();
@@ -69,14 +69,16 @@ public class ExpressTest extends BaseTest{
   private ExpressFormDefinitionPage configureExpressProcessWhenMultiApproval(ExpressProcessPage expressProcessPage) {
     ExpressResponsible responsible1 = setExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
     ExpressResponsible responsible2 = setExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
-    
-    expressProcessPage.createTask(0, USER_TASK_INDEX, "Task 1", "Task 1 description", Arrays.asList(responsible1, responsible2));
-    
+
+    expressProcessPage.createTask(0, USER_TASK_INDEX, "Task 1", "Task 1 description",
+        Arrays.asList(responsible1, responsible2));
+
     expressProcessPage.addNewTask(0);
     expressProcessPage.createTask(1, APPROVAL_INDEX, "Task 2", "Task 2 description", Arrays.asList(responsible2));
-    
+
     expressProcessPage.addNewTask(1);
-    expressProcessPage.createTask(2, APPROVAL_INDEX, "Task 3", "Task 3 description", Arrays.asList(responsible1, responsible2));
+    expressProcessPage.createTask(2, APPROVAL_INDEX, "Task 3", "Task 3 description",
+        Arrays.asList(responsible1, responsible2));
     ExpressFormDefinitionPage formDefinition = expressProcessPage.goToFormDefinition();
     formDefinition.createTextInputField("Input Text 1", INPUT_TEXT_TYPE_INDEX, false);
     formDefinition.createTextInputField("Input Number 2", INPUT_NUMBER_TYPE_INDEX, false);
@@ -101,7 +103,7 @@ public class ExpressTest extends BaseTest{
     login(TestAccount.ADMIN_USER);
     executeApproval("Approved at second level", "Task 3", 1, 0, TestAccount.ADMIN_USER.getFullName());
     login(TestAccount.DEMO_USER);
-    
+
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.clearFilterInput();
     taskWidgetPage.startTask(0);
@@ -123,7 +125,7 @@ public class ExpressTest extends BaseTest{
     expressTaskPage.finish();
     new TaskWidgetPage();
   }
-  
+
   private void executeApproval(String comment, String responsible) {
     executeApproval(comment, "Task", 1, 0, responsible);
   }
@@ -138,7 +140,7 @@ public class ExpressTest extends BaseTest{
     approvalPage1.comment(comment);
     approvalPage1.approve();
   }
-  
+
   private void goToExpressCreationPage() {
     redirectToRelativeLink(expressStartLink);
   }

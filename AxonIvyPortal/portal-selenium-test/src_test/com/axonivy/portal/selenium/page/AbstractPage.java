@@ -18,7 +18,7 @@ import com.codeborne.selenide.WebDriverRunner;
 public abstract class AbstractPage {
 
   protected final Log log;
-//  protected static final long DEFAULT_TIMEOUT = 45000;
+  // protected static final long DEFAULT_TIMEOUT = 45000;
   protected static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(45);
 
   /**
@@ -59,6 +59,8 @@ public abstract class AbstractPage {
   }
 
   public void waitDocumentReady() {
-    new WebDriverWait(WebDriverRunner.getWebDriver(), Duration.ofSeconds(30)).until((ExpectedCondition<Boolean>) wd -> ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+    new WebDriverWait(WebDriverRunner.getWebDriver(), Duration.ofSeconds(30))
+        .until((ExpectedCondition<Boolean>) wd -> ((JavascriptExecutor) wd).executeScript("return document.readyState")
+            .equals("complete"));
   }
 }

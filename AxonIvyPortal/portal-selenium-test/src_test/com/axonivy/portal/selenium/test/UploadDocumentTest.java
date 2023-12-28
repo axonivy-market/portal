@@ -26,14 +26,14 @@ public class UploadDocumentTest extends BaseTest {
   private MainMenuPage menuPage;
   private CaseWidgetPage casePage;
   private CaseDetailsPage caseDetailsPage;
-  
+
   @Override
   @BeforeEach
   public void setup() {
     super.setup();
     createTestingTasks();
   }
-  
+
   @Test
   public void uploadNormalDocument() {
     initNewDashboardPage(TestAccount.ADMIN_USER);
@@ -52,26 +52,31 @@ public class UploadDocumentTest extends BaseTest {
 
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     caseDetailsPage.openAddDocumentDialogAndUploadDocument(FileHelper.getAbsolutePathToTestFile("test-with-macro.doc"));
-    caseDetailsPage.checkUploadDocumentErrorContent("This file is not allowed to upload because it contains some script!");
+    caseDetailsPage
+        .checkUploadDocumentErrorContent("This file is not allowed to upload because it contains some script!");
     caseDetailsPage.closeUploadDocumentDialog();
 
     caseDetailsPage.openAddDocumentDialogAndUploadDocument(FileHelper.getAbsolutePathToTestFile("test-with-macro.xls"));
-    caseDetailsPage.checkUploadDocumentErrorContent("This file is not allowed to upload because it contains some script!");
+    caseDetailsPage
+        .checkUploadDocumentErrorContent("This file is not allowed to upload because it contains some script!");
     caseDetailsPage.closeUploadDocumentDialog();
 
-    caseDetailsPage.openAddDocumentDialogAndUploadDocument(FileHelper.getAbsolutePathToTestFile("test-no-files-with-js.pdf"));
-    caseDetailsPage.checkUploadDocumentErrorContent("This file is not allowed to upload because it contains some script!");
+    caseDetailsPage
+        .openAddDocumentDialogAndUploadDocument(FileHelper.getAbsolutePathToTestFile("test-no-files-with-js.pdf"));
+    caseDetailsPage
+        .checkUploadDocumentErrorContent("This file is not allowed to upload because it contains some script!");
     caseDetailsPage.closeUploadDocumentDialog();
   }
 
   @Test
-  public void uploadUnsupportedFileType(){
+  public void uploadUnsupportedFileType() {
     enableScriptCheckingInPortalSetting();
     initNewDashboardPage(TestAccount.ADMIN_USER);
     casePage = menuPage.openCaseList();
 
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
-    caseDetailsPage.openAddDocumentDialogAndUploadDocument(FileHelper.getAbsolutePathToTestFile("unsupportedExtension.abc"));
+    caseDetailsPage
+        .openAddDocumentDialogAndUploadDocument(FileHelper.getAbsolutePathToTestFile("unsupportedExtension.abc"));
     caseDetailsPage.checkUploadDocumentErrorContent("This file type is not accepted!");
 
     disableScriptCheckingInPortalSetting();
@@ -82,7 +87,7 @@ public class UploadDocumentTest extends BaseTest {
     final String pdfFile = "test-no-files-no-js.pdf";
     final String wordFile = "test-ms-word-extension.doc";
     final String unsupportFile = "unsupportedExtension.abc";
-    
+
     updateFileExtensionWhiteListInPortalSetting();
     initNewDashboardPage(TestAccount.ADMIN_USER);
     casePage = menuPage.openCaseList();
@@ -90,10 +95,10 @@ public class UploadDocumentTest extends BaseTest {
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile(pdfFile));
     isCorrectIconExtension(pdfFile, "si si-office-file-pdf-1");
-    
+
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile(wordFile));
     isCorrectIconExtension(wordFile, "si si-office-file-doc-1");
-    
+
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile(unsupportFile));
     isCorrectIconExtension(unsupportFile, "si si-common-file-empty");
   }
@@ -105,7 +110,8 @@ public class UploadDocumentTest extends BaseTest {
     documentItems.asFixedIterable().forEach(doc -> {
       String uploadedFileName = doc.$(".js-document-name").shouldBe(Condition.appear, DEFAULT_TIMEOUT).getText();
       if (uploadedFileName.equalsIgnoreCase(fileName)) {
-        SelenideElement docSymbol = doc.$(By.cssSelector("." + caseDetailDocumentClass)).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+        SelenideElement docSymbol =
+            doc.$(By.cssSelector("." + caseDetailDocumentClass)).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
         docSymbol.is(Condition.cssClass(iconClass.concat(StringUtils.SPACE.concat(caseDetailDocumentClass))));
       }
     });

@@ -28,10 +28,12 @@ import com.codeborne.selenide.WebDriverRunner;
 public class TaskWidgetPage extends TemplatePage {
   private String taskWidgetId;
   private static final String CLASS = "class";
-  private static final String KEYWORD_FILTER_SELECTOR_EXPANDED_MODE = "input[id='task-widget:expanded-mode-filter-form:expanded-mode-filter-container:ajax-keyword-filter']";
+  private static final String KEYWORD_FILTER_SELECTOR_EXPANDED_MODE =
+      "input[id='task-widget:expanded-mode-filter-form:expanded-mode-filter-container:ajax-keyword-filter']";
 
   private static final String ID_END = "*[id$='";
-  private static final String TASK_STATE_COMPONENT_ID = "task-widget:task-list-scroller:%d:task-item:task-state-component:task-state";
+  private static final String TASK_STATE_COMPONENT_ID =
+      "task-widget:task-list-scroller:%d:task-item:task-state-component:task-state";
   private static final String TASK_ACTION = "horizontal-task-actions";
 
   public TaskWidgetPage() {
@@ -49,8 +51,8 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void openTask(String taskName) {
     $("div[id='task-widget:task-view-container']").shouldBe(appear, DEFAULT_TIMEOUT);
-    $$("div[id='task-widget:task-view-container'] ul li div[id$=':task-item:task-start'] div.task-start-info span").filter(text(taskName))
-        .first().click();
+    $$("div[id='task-widget:task-view-container'] ul li div[id$=':task-item:task-start'] div.task-start-info span")
+        .filter(text(taskName)).first().click();
   }
 
   public void openAdvancedFilter(String filterName, String filterIdName) {
@@ -96,12 +98,14 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void runTaskWithRunTheTaskBehaviour(int position) {
-    $("div[id='task-widget:task-list-scroller:" + position + ":task-item:runnable-task-info']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div[id='task-widget:task-list-scroller:" + position + ":task-item:runnable-task-info']").shouldBe(appear,
+        DEFAULT_TIMEOUT);
     $("div[id='task-widget:task-list-scroller:" + position + ":task-item:runnable-task-info']").click();
   }
 
   public void openTaskWithAccessTaskDetailsBehaviour(int position) {
-    $("div[id='task-widget:task-list-scroller:" + position + ":task-item:task-info']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div[id='task-widget:task-list-scroller:" + position + ":task-item:task-info']").shouldBe(appear,
+        DEFAULT_TIMEOUT);
     $("div[id='task-widget:task-list-scroller:" + position + ":task-item:task-info']").click();
   }
 
@@ -119,19 +123,20 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void waitTillNameOfFirstTaskToBe(String name) {
     $("div[id$='task-widget:task-view-container']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$("[id='task-widget:task-list-scroller:0:task-item:task-name-component:task-name']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .shouldBe(Condition.text(name), DEFAULT_TIMEOUT);
+        .$("[id='task-widget:task-list-scroller:0:task-item:task-name-component:task-name']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(Condition.text(name), DEFAULT_TIMEOUT);
   }
 
   public void clickOnTaskActionLink(int taskIndex) {
     $(String.format("a[id$=':%d:task-item:task-action:additional-options:task-side-steps-menu']", taskIndex))
         .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $(String.format("div[id$=':%d:task-item:task-action:additional-options:side-steps-panel']", taskIndex)).shouldBe(appear,
-        DEFAULT_TIMEOUT);
+    $(String.format("div[id$=':%d:task-item:task-action:additional-options:side-steps-panel']", taskIndex))
+        .shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public TaskTemplatePage clickOnSideStepAction(int taskIndex, int sideStepIndex) {
-    String sideStepsId = String.format("task-widget:task-list-scroller:%d:task-item:task-action:additional-options:task-additional-actions",
+    String sideStepsId = String.format(
+        "task-widget:task-list-scroller:%d:task-item:task-action:additional-options:task-additional-actions",
         taskIndex);
     SelenideElement sideStepPanel = $("[id$='" + sideStepsId + "']");
     ElementsCollection sideSteps = sideStepPanel.findAll(By.className("option-item"));
@@ -140,17 +145,20 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   private void openTriggerEscalationDialog() {
-    $("a[id$='task-trigger-escalation-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("a[id$='task-trigger-escalation-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition()).click();
     $("div[id$='escalation-task-confirmation-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public void triggerEscalation() {
     openTriggerEscalationDialog();
-    $("button[id$='confirm-escalation']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("button[id$='confirm-escalation']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
+        .click();
   }
 
   public void openTaskDelegationDialog() {
-    $("a[id$='task-delegate-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("a[id$='task-delegate-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
+        .click();
     $$("div[id$='task-delegate-dialog']").shouldBe(CollectionCondition.size(1), DEFAULT_TIMEOUT);
     $("div[id$='task-delegate-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
@@ -169,8 +177,8 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public SelenideElement getDelegateType(int index) {
-    return $("div[id$=':task-delegate-form:activator-panel']").$$(".ui-radiobutton-box").get(index).shouldBe(Condition.appear,
-        DEFAULT_TIMEOUT);
+    return $("div[id$=':task-delegate-form:activator-panel']").$$(".ui-radiobutton-box").get(index)
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public boolean isDelegateListSelectionAvailable() {
@@ -178,13 +186,14 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public SelenideElement getTaskState(int taskRowIndex) {
-    return $(String.format("[id='task-widget:task-list-scroller:%d:task-item:task-state-component:task-state']", taskRowIndex))
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span");
+    return $(String.format("[id='task-widget:task-list-scroller:%d:task-item:task-state-component:task-state']",
+        taskRowIndex)).shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span");
   }
 
   public String getPriorityOfTask(int taskIndex) {
-    var priorityClassName = $(String.format("span[id$=':%d:task-item:task-priority-component:task-priority']", taskIndex))
-        .shouldBe(appear, DEFAULT_TIMEOUT).$("span.priority-icon").$("i.priority").attr("class");
+    var priorityClassName =
+        $(String.format("span[id$=':%d:task-item:task-priority-component:task-priority']", taskIndex))
+            .shouldBe(appear, DEFAULT_TIMEOUT).$("span.priority-icon").$("i.priority").attr("class");
     if (StringUtils.isBlank(priorityClassName)) {
       return priorityClassName;
     }
@@ -240,8 +249,8 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   private void waitTaskAppearThenClick(int index) {
-    SelenideElement taskStartElement = findElementById(taskWidgetId + ":task-list-scroller").$$(By.className("start-task-action"))
-        .get(index);
+    SelenideElement taskStartElement =
+        findElementById(taskWidgetId + ":task-list-scroller").$$(By.className("start-task-action")).get(index);
     if (taskStartElement.getAttribute("id").contains(":task-action:resume-task-action-component")) {
       waitForElementClickableThenClick(taskStartElement);
       resetResumedTask();
@@ -258,30 +267,34 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void reserveTask(int taskId) {
-    String reserveCommandButton = String
-        .format(taskWidgetId + ":task-list-scroller:%d:task-item:task-action:additional-options:task-reserve-command", taskId);
+    String reserveCommandButton = String.format(
+        taskWidgetId + ":task-list-scroller:%d:task-item:task-action:additional-options:task-reserve-command", taskId);
     waitForElementClickableThenClick($(By.id(reserveCommandButton)));
   }
 
   public void resetTask(int taskId) {
-    String resetButton = String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-action:additional-options:task-reset-command",
-        taskId);
+    String resetButton = String.format(
+        taskWidgetId + ":task-list-scroller:%d:task-item:task-action:additional-options:task-reset-command", taskId);
     waitForElementClickableThenClick($(By.id(resetButton)));
   }
 
   public void filterByResponsible(String text) {
-    waitForElementDisplayed(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"), true);
-    waitForElementClickableThenClick($(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']")));
+    waitForElementDisplayed(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"),
+        true);
+    waitForElementClickableThenClick(
+        $(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']")));
     SelenideElement input = $("input[id$='responsible-filter:filter-input-form:responsible_input']");
     input.shouldBe(appear, DEFAULT_TIMEOUT).clear();
     input.click();
     input.sendKeys(text);
     waitForElementClickableThenClick($("span[id$='responsible-filter:filter-input-form:responsible_panel'] .gravatar"));
-    waitForElementClickableThenClick($(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']")));
+    waitForElementClickableThenClick(
+        $(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']")));
   }
 
   public void openStateFilter() {
-    waitForElementClickableThenClick($(By.cssSelector("button[id$='state-filter:filter-open-form:advanced-filter-command']")));
+    waitForElementClickableThenClick(
+        $(By.cssSelector("button[id$='state-filter:filter-open-form:advanced-filter-command']")));
     waitForElementDisplayed(By.cssSelector("[id$='state-filter:filter-input-form:state-selection']"), true);
   }
 
@@ -303,8 +316,8 @@ public class TaskWidgetPage extends TemplatePage {
     clickOnUnCheckSelectAllStates();
     WaitHelper.assertTrueWithWait(() -> {
       return getStateFilterPanel()
-          .findElements(
-              By.cssSelector("table[id$=':filter-input-form:state-selection'] div.ui-chkbox-box span.ui-chkbox-icon.ui-icon-blank"))
+          .findElements(By.cssSelector(
+              "table[id$=':filter-input-form:state-selection'] div.ui-chkbox-box span.ui-chkbox-icon.ui-icon-blank"))
           .size() == labelList.size();
     });
     List<SelenideElement> checkBoxList = getStateFilterPanel()
@@ -312,7 +325,7 @@ public class TaskWidgetPage extends TemplatePage {
     statesSelectedIndex.forEach(index -> {
       waitForElementClickableThenClick(checkBoxList.get(index));
     });
-//    waitForAjaxStatusPositionDisappear();
+    // waitForAjaxStatusPositionDisappear();
     waitForElementClickableThenClick($(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']")));
     waitForElementDisplayed(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']"), false);
   }
@@ -322,27 +335,30 @@ public class TaskWidgetPage extends TemplatePage {
     if (selectAll.$(By.className("ui-chkbox-box")).getAttribute(CLASS_PROPERTY).contains("ui-state-active")) {
       waitForElementClickableThenClick($(selectAll.$(By.cssSelector("span.ui-chkbox-label"))));
       WaitHelper.assertTrueWithWait(() -> {
-        return $("[id$=':filter-input-form:states-select-all'] span.ui-chkbox-icon").getAttribute(CLASS).contains("ui-icon-blank");
+        return $("[id$=':filter-input-form:states-select-all'] span.ui-chkbox-icon").getAttribute(CLASS)
+            .contains("ui-icon-blank");
       });
     } else {
       waitForElementClickableThenClick($(selectAll.$(By.cssSelector("span.ui-chkbox-label"))));
       WaitHelper.assertTrueWithWait(() -> {
-        return $("[id$=':filter-input-form:states-select-all'] span.ui-chkbox-icon").getAttribute(CLASS).contains("ui-icon-check");
+        return $("[id$=':filter-input-form:states-select-all'] span.ui-chkbox-icon").getAttribute(CLASS)
+            .contains("ui-icon-check");
       });
       clickOnUnCheckSelectAllStates();
     }
   }
 
   public boolean isTaskStartEnabled(int taskId) {
-    String startCommandButton = String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-action:task-action-component", taskId);
+    String startCommandButton =
+        String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-action:task-action-component", taskId);
     WebElement element = findElementById(startCommandButton);
     return !element.getAttribute(CLASS).contains("ui-state-disabled");
   }
 
   public List<String> getActiveTaskAction(int taskIndex) {
     clickOnTaskActionLink(taskIndex);
-    WebElement actionPanel = findElementByCssSelector(
-        String.format("div[id$='task-list-scroller:%d:task-item:task-action:additional-options:side-steps-panel']", taskIndex));
+    WebElement actionPanel = findElementByCssSelector(String.format(
+        "div[id$='task-list-scroller:%d:task-item:task-action:additional-options:side-steps-panel']", taskIndex));
     return actionPanel.findElements(By.cssSelector("a[class*='option-item']")).stream().map(WebElement::getText)
         .collect(Collectors.toList());
   }
@@ -367,8 +383,9 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   private boolean isTaskActionDisplayed(String action, int taskIndex, boolean expected) {
-    return isElementDisplayed(
-        By.id(String.format("task-widget:task-list-scroller:%d:task-item:task-action:additional-options:%s", taskIndex, action)), expected);
+    return isElementDisplayed(By.id(String
+        .format("task-widget:task-list-scroller:%d:task-item:task-action:additional-options:%s", taskIndex, action)),
+        expected);
   }
 
   public boolean isTaskResetDisplayed(boolean expected) {
@@ -388,15 +405,17 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void sideStepMenuOnActionButton(int index) {
-    String actionButton = String.format("[id$='%d\\:task-item\\:task-action\\:additional-options\\:task-side-steps-menu']", index);
+    String actionButton =
+        String.format("[id$='%d\\:task-item\\:task-action\\:additional-options\\:task-side-steps-menu']", index);
     waitForElementClickableThenClick($(actionButton));
-    String actionPanel = String.format("task-widget:task-list-scroller:%d:task-item:task-action:additional-options:side-steps-panel",
-        index);
+    String actionPanel = String
+        .format("task-widget:task-list-scroller:%d:task-item:task-action:additional-options:side-steps-panel", index);
     waitForElementDisplayed(By.id(actionPanel), true);
   }
 
   public void clickOnProcessViewerOption() {
-    waitForElementDisplayed(By.cssSelector("[id$=':task-item:task-action:additional-options:side-steps-panel'].options-panel"), true);
+    waitForElementDisplayed(
+        By.cssSelector("[id$=':task-item:task-action:additional-options:side-steps-panel'].options-panel"), true);
     waitForElementClickableThenClick("a[id$=':task-item:task-action:additional-options:show-process-viewer-link']");
   }
 
@@ -434,7 +453,8 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public boolean checkNameOfTaskAt(int index, String name) {
-    return $(ID_END + index + ":task-item:task-name-component:task-name']").shouldBe(appear, DEFAULT_TIMEOUT).is(Condition.text(name));
+    return $(ID_END + index + ":task-item:task-name-component:task-name']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .is(Condition.text(name));
   }
 
   public boolean isReserveLinkDisabled(int taskId) {
@@ -442,8 +462,8 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public String getReserveTaskLinkSelector(int taskId) {
-    String reserveCommandButton = String
-        .format("task-widget:task-list-scroller:%d:task-item:task-action:additional-options:task-reserve-command", taskId);
+    String reserveCommandButton = String.format(
+        "task-widget:task-list-scroller:%d:task-item:task-action:additional-options:task-reserve-command", taskId);
     return "[id='" + reserveCommandButton + "']";
   }
 
@@ -456,7 +476,8 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   private String getResetTaskLinkSelector(int taskId) {
-    return String.format("[id='task-widget:task-list-scroller:%s:task-item:task-action:additional-options:task-reset-command']", taskId);
+    return String.format(
+        "[id='task-widget:task-list-scroller:%s:task-item:task-action:additional-options:task-reset-command']", taskId);
   }
 
   public void isTaskEnabled(int index) {
@@ -468,30 +489,36 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   private SelenideElement getStartTaskElement(int index) {
-    String startCommandButton = String.format("task-widget:task-list-scroller:%d:task-item:task-action:task-action-component", index);
+    String startCommandButton =
+        String.format("task-widget:task-list-scroller:%d:task-item:task-action:task-action-component", index);
     return $("[id='" + startCommandButton + "']");
   }
 
   public void isTaskDelegationEnabled(int index) {
-    getDelegateCommandElement(index).shouldBe(appear, DEFAULT_TIMEOUT).shouldNot(Condition.cssClass("ui-state-disabled"));
+    getDelegateCommandElement(index).shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldNot(Condition.cssClass("ui-state-disabled"));
   }
 
   public void isTaskDelegationDisabled(int index) {
-    getDelegateCommandElement(index).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(Condition.cssClass("ui-state-disabled"));
+    getDelegateCommandElement(index).shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldBe(Condition.cssClass("ui-state-disabled"));
   }
 
   private SelenideElement getDelegateCommandElement(int index) {
     sideStepMenuOnActionButton(index);
-    return $("[id='task-widget:task-list-scroller:" + index + ":task-item:task-action:additional-options:task-delegate-command']");
+    return $("[id='task-widget:task-list-scroller:" + index
+        + ":task-item:task-action:additional-options:task-delegate-command']");
   }
 
   public void isTaskDestroyEnabled(int index) {
     sideStepMenuOnActionButton(index);
-    getDestroyCommandElement(index).shouldBe(appear, DEFAULT_TIMEOUT).shouldNot(Condition.cssClass("ui-state-disabled"));
+    getDestroyCommandElement(index).shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldNot(Condition.cssClass("ui-state-disabled"));
   }
 
   private SelenideElement getDestroyCommandElement(int index) {
-    return $("[id='task-widget:task-list-scroller:" + index + ":task-item:task-action:additional-options:task-destroy-command']");
+    return $("[id='task-widget:task-list-scroller:" + index
+        + ":task-item:task-action:additional-options:task-destroy-command']");
   }
 
   public void destroyTask(int index) {
@@ -520,10 +547,10 @@ public class TaskWidgetPage extends TemplatePage {
 
   public boolean isTaskDelegateOptionDisable(int index) {
     sideStepMenuOnActionButton(index);
-    waitForElementDisplayed(
-        By.id(taskWidgetId + ":task-list-scroller:" + index + ":task-item:task-action:additional-options:task-delegate-command"), true);
-    SelenideElement delegateButton = findElementById(
-        taskWidgetId + ":task-list-scroller:" + index + ":task-item:task-action:additional-options:task-delegate-command");
+    waitForElementDisplayed(By.id(taskWidgetId + ":task-list-scroller:" + index
+        + ":task-item:task-action:additional-options:task-delegate-command"), true);
+    SelenideElement delegateButton = findElementById(taskWidgetId + ":task-list-scroller:" + index
+        + ":task-item:task-action:additional-options:task-delegate-command");
     return delegateButton.getAttribute(CLASS).contains("ui-state-disabled");
   }
 
@@ -533,7 +560,8 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void clickOnStartTaskLink(int index) {
-    String startLinkId = String.format("a[id$='task-list-scroller:%d:task-item:task-action:task-action-component']", index);
+    String startLinkId =
+        String.format("a[id$='task-list-scroller:%d:task-item:task-action:task-action-component']", index);
     refreshAndWaitElement(startLinkId);
     waitForElementClickableThenClick(findElementByCssSelector(startLinkId));
   }
@@ -550,7 +578,8 @@ public class TaskWidgetPage extends TemplatePage {
 
   public String getFilterValue(String filterId) {
     $("[id$='" + filterId + ":advanced-filter-component']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
-    return $("button[id$='" + filterId + ":filter-open-form:advanced-filter-command']").shouldBe(appear, DEFAULT_TIMEOUT).getText();
+    return $("button[id$='" + filterId + ":filter-open-form:advanced-filter-command']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).getText();
   }
 
   public String getResponsibleOfTaskAt(int index) {
@@ -560,7 +589,8 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void changeDescriptionOfTask(String description) {
     waitForElementClickableThenClick("a[id$=':task-detail-description:edit-description-link']");
-    waitForElementDisplayed(By.cssSelector("[id$=':task-detail-description-form:task-description-inplace_content']"), true);
+    waitForElementDisplayed(By.cssSelector("[id$=':task-detail-description-form:task-description-inplace_content']"),
+        true);
     SelenideElement taskNameInput = $("textarea[id$=':task-description-input']");
     waitForElementDisplayed(taskNameInput, true);
     taskNameInput.clear();
@@ -574,13 +604,13 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public boolean isTaskNameChangeComponentPresented(int index) {
-    return isElementPresent(
-        By.id(String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-name-edit-form:task-name-input", index)));
+    return isElementPresent(By.id(
+        String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-name-edit-form:task-name-input", index)));
   }
 
   public boolean isTaskPriorityChangeComponentPresented(int index) {
-    return isElementPresent(
-        By.id(String.format(taskWidgetId + ":task-list-scroller:%d:task-item:general-info:priority-form:edit-priority-inplace", index)));
+    return isElementPresent(By.id(String.format(
+        taskWidgetId + ":task-list-scroller:%d:task-item:general-info:priority-form:edit-priority-inplace", index)));
   }
 
   public TaskTemplatePage startTaskWithouWaitForTaskActionPresent(int index) {
@@ -614,7 +644,7 @@ public class TaskWidgetPage extends TemplatePage {
     // String taskId = taskTitle.substring(taskTitle.indexOf("#") + 1, taskTitle.indexOf(")"));
     return taskTitle;
   }
-  
+
   public SelenideElement getTaskCategory() {
     return findElementByCssSelector("span[id$='task-category']");
   }
@@ -622,18 +652,19 @@ public class TaskWidgetPage extends TemplatePage {
   public SelenideElement getCaseCategory() {
     return findElementByCssSelector("span[id$='case-category']");
   }
-  
+
   public void waitUntilTaskCountDifferentThanZero() {
-    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((driver) -> getTaskCount().intValue() != 0);
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
+        .until((driver) -> getTaskCount().intValue() != 0);
 
   }
-  
+
   public Integer getTaskCount() {
     String title = getTextOfCurrentBreadcrumb();
     String count = StringUtils.substringBetween(title, "(", ")");
     return StringUtils.isNotBlank(count) ? Integer.parseInt(count) : null;
   }
-  
+
   public void isDelegateTypeSelectAvailable() {
     waitForElementDisplayed($("div[id$=':activator-panel']"), true);
   }
@@ -643,7 +674,7 @@ public class TaskWidgetPage extends TemplatePage {
     waitForElementClickableThenClick($("a[id$='\\:task-delegate-command']"));
     waitForElementDisplayed(By.cssSelector("div[id$='task-delegate-dialog']"), true);
   }
-  
+
   public void selectDelegateResponsible(String responsibleName, boolean isRole) {
     SelenideElement responsibleElement;
     if (isRole) {
@@ -663,14 +694,13 @@ public class TaskWidgetPage extends TemplatePage {
       responsibleElement.click();
       responsibleElement.sendKeys(responsibleName);
       waitForElementDisplayed(By.cssSelector("span[id$='user-activator-select_panel']"), true);
-      List<SelenideElement> foundUsers =
-          $$("span[id$='user-activator-select_panel'] .name-after-avatar");
+      List<SelenideElement> foundUsers = $$("span[id$='user-activator-select_panel'] .name-after-avatar");
       waitForElementClickableThenClick(foundUsers.get(0));
     }
     waitForElementClickableThenClick(By.cssSelector("button[id$='proceed-task-delegate-command']"));
     waitForElementDisplayed(By.cssSelector("div[id$='task-delegate-dialog']"), false);
   }
-  
+
   public void clickExportToExcelLink() {
     // Ensure that attribute is removed before downloading
     JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -683,11 +713,11 @@ public class TaskWidgetPage extends TemplatePage {
       downloadLink.click();
     }
   }
-  
+
   public SelenideElement getExportToExcelLink() {
     return findElementByCssSelector("a[id$=':task-export-to-excel']");
   }
-  
+
   public boolean isDownloadCompleted() {
     WebElement statusDialog = driver.findElement(By.cssSelector("div[id$=':status-dialog']"));
     WaitHelper.assertTrueWithWait(() -> StringUtils.isNotBlank(statusDialog.getAttribute("download-status")));
@@ -704,7 +734,7 @@ public class TaskWidgetPage extends TemplatePage {
     }
     WaitHelper.assertTrueWithWait(() -> getTaskListCustomCellValue(rowIndex, columnId).equals(expectedValue));
   }
-  
+
   public String getTaskListCustomCellValue(int index, String columnId) {
     WebElement cell = findElementById(
         String.format(taskWidgetId + ":task-list-scroller:%d:task-item:%s-component:%s", index, columnId, columnId));

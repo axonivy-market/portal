@@ -10,7 +10,7 @@ import com.codeborne.selenide.Condition;
 
 @IvyWebTest
 public class UserSelectionComponentTest extends BaseTest {
-  
+
   @Override
   @BeforeEach
   public void setup() {
@@ -28,14 +28,16 @@ public class UserSelectionComponentTest extends BaseTest {
   @Test
   public void testFloatingLabelUserSelection() {
     UserSelectionComponentPage userSelectionComponentPage = new UserSelectionComponentPage();
-    String value = userSelectionComponentPage.selectFirstItemForFloatingLabelUserSelectionComponent("Backend Developer 1");
+    String value =
+        userSelectionComponentPage.selectFirstItemForFloatingLabelUserSelectionComponent("Backend Developer 1");
     userSelectionComponentPage.getFloatingLabelUserSelectionElem().shouldHave(Condition.cssValue("value", value));
   }
 
   @Test
   public void testAjaxEventUserSelection() {
     UserSelectionComponentPage userSelectionComponentPage = new UserSelectionComponentPage();
-    String value = userSelectionComponentPage.selectFirstItemForFloatingLabelUserSelectionComponent("Backend Developer 1");
+    String value =
+        userSelectionComponentPage.selectFirstItemForFloatingLabelUserSelectionComponent("Backend Developer 1");
     assertEquals(value, userSelectionComponentPage.getFloatingLabelUserSelection());
   }
 }

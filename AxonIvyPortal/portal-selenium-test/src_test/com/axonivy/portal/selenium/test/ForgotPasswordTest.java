@@ -12,8 +12,8 @@ import com.axonivy.portal.selenium.page.ForgotPasswordPage;
 import com.axonivy.portal.selenium.page.LoginPage;
 
 @IvyWebTest
-public class ForgotPasswordTest extends BaseTest{
-  
+public class ForgotPasswordTest extends BaseTest {
+
   private ForgotPasswordPage forgotPasswordPage;
 
   @BeforeEach
@@ -29,7 +29,7 @@ public class ForgotPasswordTest extends BaseTest{
 
   @Test
   public void testForgotPassword() {
-    forgotPasswordPage = new ForgotPasswordPage(TestAccount.TEST_FORGOT_PASSWORD_USER); 
+    forgotPasswordPage = new ForgotPasswordPage(TestAccount.TEST_FORGOT_PASSWORD_USER);
     forgotPasswordPage.send();
     forgotPasswordPage.isProcessed();
   }

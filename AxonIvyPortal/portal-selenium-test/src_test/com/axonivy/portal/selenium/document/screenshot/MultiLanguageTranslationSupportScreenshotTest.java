@@ -15,7 +15,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 
 @IvyWebTest
 public class MultiLanguageTranslationSupportScreenshotTest extends ScreenshotBaseTest {
-  
+
   @Override
   @BeforeEach
   public void setup() {

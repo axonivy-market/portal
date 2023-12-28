@@ -1,4 +1,5 @@
 package com.axonivy.portal.selenium.test.task;
+
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -28,8 +29,10 @@ public class TaskWidgetTest extends BaseTest {
       "portalKitTestHelper/14DE09882B540AD5/grantOnlyDelegateOwnTasksPermission.ivp";
   private static final String DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL =
       "portalKitTestHelper/14DE09882B540AD5/undoOnlyDelegateOwnTasksPermission.ivp";
-  private static final String DENY_DESTROY_TASK_URL = "portalKitTestHelper/14DE09882B540AD5/denyDestroyTaskPermission.ivp";
-  private static final String GRANT_DESTROY_TASK_URL = "portalKitTestHelper/14DE09882B540AD5/grantDestroyTaskPermission.ivp";
+  private static final String DENY_DESTROY_TASK_URL =
+      "portalKitTestHelper/14DE09882B540AD5/denyDestroyTaskPermission.ivp";
+  private static final String GRANT_DESTROY_TASK_URL =
+      "portalKitTestHelper/14DE09882B540AD5/grantDestroyTaskPermission.ivp";
 
   private static final String MATERNITY_LEAVE_REQUEST = "Maternity Leave Request";
 
@@ -73,7 +76,7 @@ public class TaskWidgetTest extends BaseTest {
 
     taskWidgetPage.clickOnTaskStatesAndApply(List.of("Reserved"));
     taskWidgetPage.countTasks().shouldHave(CollectionCondition.size(0));
-    
+
     taskWidgetPage.clickOnTaskStatesAndApply(List.of("Suspended"));
     taskWidgetPage.checkNameOfTaskAt(0, MATERNITY_LEAVE_REQUEST);
   }
@@ -123,7 +126,7 @@ public class TaskWidgetTest extends BaseTest {
 
     redirectToRelativeLink(DENY_DESTROY_TASK_URL);
   }
-  
+
   @Test
   public void testBreadCrumbInTaskDetail() {
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
@@ -139,7 +142,7 @@ public class TaskWidgetTest extends BaseTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     assertEquals(true, newDashboardPage.isDisplayed());
   }
-  
+
   @Test
   public void testDisplayTaskAndCaseCategory() {
     login(TestAccount.ADMIN_USER);
@@ -148,9 +151,9 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.getTaskCategory().shouldHave(Condition.text("Other Leave/Maternity"));
     taskWidgetPage.getCaseCategory().shouldHave(Condition.text("Leave Request"));
   }
-  
+
   @Test
-  public void testShowTaskCount() { 
+  public void testShowTaskCount() {
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.waitUntilTaskCountDifferentThanZero();
     assertEquals(3, taskWidgetPage.getTaskCount().intValue(), "In Task list, Task Count != 3");
@@ -172,7 +175,7 @@ public class TaskWidgetTest extends BaseTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     assertEquals(true, newDashboardPage.isDisplayed());
   }
-  
+
   @Test
   public void testDelegateTask() {
     login(TestAccount.ADMIN_USER);
@@ -183,12 +186,12 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.isDelegateTypeSelectAvailable();
     taskWidgetPage.selectDelegateResponsible(TestAccount.HR_ROLE_USER.getFullName(), false);
     assertEquals(TestAccount.HR_ROLE_USER.getFullName(), taskWidgetPage.getResponsibleOfTaskAt(0));
-    
+
     taskWidgetPage.openTaskDelegateDialog(0);
     taskWidgetPage.selectDelegateResponsible(TestRole.HR_ROLE, true);
     assertEquals(TestRole.HR_ROLE, taskWidgetPage.getResponsibleOfTaskAt(0));
   }
-  
+
   @Test
   public void testChangeTaskSortingOptions() {
     NewDashboardPage newDashboardPage = new NewDashboardPage();

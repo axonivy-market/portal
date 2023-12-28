@@ -21,7 +21,8 @@ public class ProcessInformationTest extends BaseTest {
   private ProcessWidgetPage processWidget;
   private ProcessInformationPage processInformationPage;
   private static String PROCESS_NAME = "Process With Process Steps";
-  private static String PROCESS_DESCRIPTION = "Create task for a process with three process steps which can be show in Porcess Information page";
+  private static String PROCESS_DESCRIPTION =
+      "Create task for a process with three process steps which can be show in Porcess Information page";
 
   @BeforeEach
   @Override
@@ -42,7 +43,7 @@ public class ProcessInformationTest extends BaseTest {
     taskWidget.filterTasksInExpandedModeBy(PROCESS_NAME, 1);
     assertEquals(1, taskWidget.countTasks().size());
   }
-  
+
   @Test
   public void testBackToProcessListFromProcessInformationPage() {
     navigateToProcessInformationPage();
@@ -51,7 +52,7 @@ public class ProcessInformationTest extends BaseTest {
     processWidget = new ProcessWidgetPage();
     assertTrue(processWidget.isDisplayed());
   }
-  
+
   @Test
   public void testBackToCaseDetailsFromProcessInformationPage() {
     login(TestAccount.ADMIN_USER);

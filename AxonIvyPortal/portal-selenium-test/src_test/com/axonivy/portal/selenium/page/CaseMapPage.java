@@ -9,7 +9,7 @@ import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
-public class CaseMapPage extends TemplatePage{
+public class CaseMapPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
@@ -19,13 +19,14 @@ public class CaseMapPage extends TemplatePage{
   public void waitForIFrameContentVisible() {
     $("button[id='form:submit-request']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
-  
+
   public NewDashboardPage clickSubmitRequestButton() {
-    $("button[id$='submit-request']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("button[id$='submit-request']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     switchBackToParent();
     return new NewDashboardPage();
   }
-  
+
   public NewDashboardPage clickSubmitButtonAndBackToTaskList() {
     $("button[id$='submit-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     switchBackToParent();
@@ -35,9 +36,9 @@ public class CaseMapPage extends TemplatePage{
   public String getHeader() {
     return findElementByCssSelector("#header").getText();
   }
-  
-  public void inputFields(String lastName, String firstName, String birthDate, String country, String amount, String reason,
-      String salary, String otherCredit) {
+
+  public void inputFields(String lastName, String firstName, String birthDate, String country, String amount,
+      String reason, String salary, String otherCredit) {
     waitForIFrameContentVisible();
     inputField("form:last-name", lastName);
     inputField("form:first-name", firstName);
@@ -48,14 +49,14 @@ public class CaseMapPage extends TemplatePage{
     inputField("form:salary", salary);
     inputField("form:amount-of-other-credits", otherCredit);
   }
-  
+
   private void typeBirthDay(String text) {
     SelenideElement datePicker = findElementByCssSelector("input[id='form:birth-date_input']");
     datePicker.sendKeys(Keys.chord(Keys.CONTROL, "a"));
     datePicker.sendKeys(Keys.BACK_SPACE);
     datePicker.sendKeys(text);
   }
-  
+
   public SelenideElement getCustomerLastName() {
     return findElementByCssSelector("input[id$='last-name']");
   }
@@ -91,17 +92,18 @@ public class CaseMapPage extends TemplatePage{
   public SelenideElement getInternalCreditComment() {
     return findElementByCssSelector("textarea[id$='internal-comment']");
   }
-  
+
   public void inputField(String id, String value) {
     $(By.id(id)).clear();
     $(By.id(id)).sendKeys(value);
   }
-  
+
   public TaskWidgetPage clickSubmitButton() {
-    $("button[id$='form:submit-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("button[id$='form:submit-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     switchBackToParent();
-//    return new NewDashboardPage();
-//    $("button[id$='form:submit-button']").shouldBe(getClickableCondition()).click();
+    // return new NewDashboardPage();
+    // $("button[id$='form:submit-button']").shouldBe(getClickableCondition()).click();
     return new TaskWidgetPage();
   }
 
@@ -116,7 +118,7 @@ public class CaseMapPage extends TemplatePage{
     switchToDefaultContent();
     return new UserExamplesEndPage();
   }
-  
+
   public TaskWidgetPage clickRejectButton() {
     waitForElementClickableThenClick("button[id$='form:rejected-button']");
     switchToDefaultContent();

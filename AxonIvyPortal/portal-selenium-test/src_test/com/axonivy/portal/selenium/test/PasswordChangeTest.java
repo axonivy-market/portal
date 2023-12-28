@@ -16,7 +16,8 @@ public class PasswordChangeTest extends BaseTest {
   @Override
   @BeforeEach
   public void setup() {
-    setupWithAlternativeLinkAndAccount("portalKitTestHelper/153CACC26D0D4C3D/createTestUser.ivp", TestAccount.TEST_CHANGE_PASSWORD_USER);
+    setupWithAlternativeLinkAndAccount("portalKitTestHelper/153CACC26D0D4C3D/createTestUser.ivp",
+        TestAccount.TEST_CHANGE_PASSWORD_USER);
   }
 
   @Test

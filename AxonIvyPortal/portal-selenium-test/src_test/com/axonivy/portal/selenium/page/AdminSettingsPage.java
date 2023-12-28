@@ -37,7 +37,8 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
-    $("button[id$='admin-setting-component:adminTabView:restore-all-to-default-button']").shouldBe(Condition.appear).shouldBe(getClickableCondition());
+    $("button[id$='admin-setting-component:adminTabView:restore-all-to-default-button']").shouldBe(Condition.appear)
+        .shouldBe(getClickableCondition());
     ElementsCollection tableRows = $$(".setting-key").filter(Condition.text(variableName));
     if (!tableRows.isEmpty()) {
       SelenideElement editButton = tableRows.get(0).ancestor("tr").$(By.cssSelector("a[id$=edit]"));
@@ -64,7 +65,8 @@ public class AdminSettingsPage extends TemplatePage {
       waitForElementDisplayed(By.id("admin-setting-component:valueSetting_panel"), true);
       boolean boolValue = Boolean.parseBoolean(value);
       int index = boolValue ? 1 : 0;
-      $(By.id(String.format("admin-setting-component:valueSetting_%d", index))).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+      $(By.id(String.format("admin-setting-component:valueSetting_%d", index)))
+          .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     }
     waitForElementClickableThenClick("[id='admin-setting-component:save-setting']");
   }
@@ -91,12 +93,14 @@ public class AdminSettingsPage extends TemplatePage {
 
   public boolean isWarningDialogShowWhenTimeoutIsLosing() {
     waitForElementDisplayed(By.cssSelector("div[id$=':timeout-warning-dialog']"), true, 121);
-    return $(By.cssSelector("div[id$=':timeout-warning-dialog']")).shouldBe(Condition.appear, DEFAULT_TIMEOUT).isDisplayed();
+    return $(By.cssSelector("div[id$=':timeout-warning-dialog']")).shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .isDisplayed();
   }
 
   public boolean isInformDialogShowAfterTimeout() {
     waitForElementDisplayed(By.id("warning-before-lost-session:timeout-dialog"), true, 181);
-    return $(By.id("warning-before-lost-session:timeout-dialog")).shouldBe(Condition.appear, DEFAULT_TIMEOUT).isDisplayed();
+    return $(By.id("warning-before-lost-session:timeout-dialog")).shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .isDisplayed();
   }
 
   public AnnouncementPage openAnnouncementTab() {
@@ -106,7 +110,8 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   public ExpressManagementPage openExpressManagementTab() {
-    waitForElementClickableThenClick($(By.xpath(("//a[@href='#admin-setting-component:adminTabView:express-management-tab']"))));
+    waitForElementClickableThenClick(
+        $(By.xpath(("//a[@href='#admin-setting-component:adminTabView:express-management-tab']"))));
     waitForElementPresent(By.id("admin-setting-component:adminTabView:express-management-tab"), true);
     return new ExpressManagementPage();
   }
@@ -114,7 +119,8 @@ public class AdminSettingsPage extends TemplatePage {
   public RoleManagementPage openRoleManagementTab() {
     waitForElementDisplayed(By.cssSelector("[id$='admin-setting-component:adminTabView']"), true);
     waitForElementClickableThenClick("a[href='#admin-setting-component:adminTabView:role-management-tab']");
-    waitForElementDisplayed(By.cssSelector("[id$=':role-management-component:role-management-form:role-tree-table']"), true);
+    waitForElementDisplayed(By.cssSelector("[id$=':role-management-component:role-management-form:role-tree-table']"),
+        true);
     return new RoleManagementPage();
   }
 
@@ -129,7 +135,9 @@ public class AdminSettingsPage extends TemplatePage {
   public PasswordValidationPage openPasswordValidationTab() {
     waitForElementDisplayed(By.cssSelector("[id$='admin-setting-component:adminTabView']"), true);
     waitForElementClickableThenClick($("a[href='#admin-setting-component:adminTabView:password-validation-tab']"));
-    waitForElementDisplayed(By.cssSelector("[id$=':password-validation-component:password-validation-form:password-policy-setting']"), true);
+    waitForElementDisplayed(
+        By.cssSelector("[id$=':password-validation-component:password-validation-form:password-policy-setting']"),
+        true);
     return new PasswordValidationPage();
   }
 
@@ -152,12 +160,14 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   public void closeAddApplicationDialog() {
-    $("[id='admin-setting-component:appDialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='admin-setting-component:appDialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id='admin-setting-component:appDialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public void closeEditSettingDialog() {
-    $("[id='admin-setting-component:settingDialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='admin-setting-component:settingDialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id='admin-setting-component:settingDialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 

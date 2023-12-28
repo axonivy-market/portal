@@ -36,11 +36,12 @@ public class TaskDescriptionChangeTest extends BaseTest {
         "<b>HTML</b> description could contain malicious script <script>alert('Attacking')</script> but it will be sanitized.",
         "HTML description could contain malicious script but it will be sanitized.", taskWidgetPage);
     testChangeTaskDescription("", "No description", taskWidgetPage);
-    testChangeTaskDescription("And you can change description if it is empty", "And you can change description if it is empty",
-        taskWidgetPage);
+    testChangeTaskDescription("And you can change description if it is empty",
+        "And you can change description if it is empty", taskWidgetPage);
   }
 
-  private void testChangeTaskDescription(String newDescription, String shownDescriptionInDetails, TaskWidgetPage taskWidgetPage) {
+  private void testChangeTaskDescription(String newDescription, String shownDescriptionInDetails,
+      TaskWidgetPage taskWidgetPage) {
     taskWidgetPage.changeDescriptionOfTask(newDescription);
     assertEquals(taskWidgetPage.getTaskDescription(), shownDescriptionInDetails);
   }

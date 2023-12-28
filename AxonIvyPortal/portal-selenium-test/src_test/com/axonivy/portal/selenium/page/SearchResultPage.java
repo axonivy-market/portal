@@ -105,7 +105,8 @@ public class SearchResultPage extends TemplatePage {
   }
 
   private SelenideElement getImageProcessActionMenuPanel(String processName) {
-    var selectedProcess = $$("span.process-image-view-name").asFixedIterable().stream().filter(process -> processName.equalsIgnoreCase(process.getText())).findFirst().orElse(null);
+    var selectedProcess = $$("span.process-image-view-name").asFixedIterable().stream()
+        .filter(process -> processName.equalsIgnoreCase(process.getText())).findFirst().orElse(null);
     var processActionMenuId = selectedProcess.getAttribute(ID_PROPERTY).replace("process-item-name", "");
     processActionMenuId = processActionMenuId.concat("process-item:image-process-action-component:process-action-menu");
     return findElementByCssSelector(String.format("div[id$='%s']", processActionMenuId));

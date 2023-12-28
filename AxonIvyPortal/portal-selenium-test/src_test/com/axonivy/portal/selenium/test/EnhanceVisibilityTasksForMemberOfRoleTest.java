@@ -45,7 +45,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidgetPageGuest.clickOnTaskStatesAndApply(Arrays.asList("Suspended"));
     assertEquals(countTasks, taskWidgetPageGuest.countTasks().size());
   }
-  
+
   @Test
   public void testVisibilityTaskInprogress() {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
@@ -55,7 +55,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     // Suspended
     TaskWidgetPage taskWidgetPageDemo = new TaskWidgetPage();
     taskWidgetPageDemo.filterByResponsible("Everybody");
-    taskWidgetPageDemo.clickOnTaskStatesAndApply(Arrays.asList("Suspended"));   
+    taskWidgetPageDemo.clickOnTaskStatesAndApply(Arrays.asList("Suspended"));
     // Reserved
     taskWidgetPageDemo.clickOnTaskActionLink(0);
     taskWidgetPageDemo.reserveTask(0);
@@ -70,7 +70,8 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidgetPageGuest.clickOnTaskStatesAndApply(Arrays.asList("Reserved"));
     assertEquals(countTasksReserved, taskWidgetPageGuest.countTasks().size());
     assertFalse(taskWidgetPageGuest.isTaskStartEnabled(0));
-    assertFalseTaskActionsByTaskState("Reserved", Arrays.asList("Delegate", "Reset", "Clear expiry", "Add Ad-hoc Task"));
+    assertFalseTaskActionsByTaskState("Reserved",
+        Arrays.asList("Delegate", "Reset", "Clear expiry", "Add Ad-hoc Task"));
   }
 
   @Test
@@ -109,5 +110,5 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     actionInDetails.remove("Workflow Events");
     assertFalse(actionInDetails.containsAll(taskActionInTaskDetails));
   }
-  
+
 }

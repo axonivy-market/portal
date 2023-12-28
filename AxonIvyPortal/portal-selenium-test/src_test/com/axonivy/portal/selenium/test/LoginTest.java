@@ -12,7 +12,7 @@ import com.axonivy.portal.selenium.page.LoginPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 
 @IvyWebTest
-public class LoginTest extends BaseTest{
+public class LoginTest extends BaseTest {
   private LoginPage loginPage;
 
   @BeforeEach
@@ -23,7 +23,7 @@ public class LoginTest extends BaseTest{
       launchBrowserAndLogoutInDesigner();
     }
   }
-  
+
   @Test
   public void testLogin() {
     loginPage = new LoginPage(TestAccount.ADMIN_USER);
@@ -38,7 +38,7 @@ public class LoginTest extends BaseTest{
     loginPage.forgotPassword();
     ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage();
     forgotPasswordPage.waitPageLoaded();
-  }  
-  
-  
+  }
+
+
 }

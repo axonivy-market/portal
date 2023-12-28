@@ -14,7 +14,7 @@ import com.axonivy.portal.selenium.page.UserProfilePage;
 
 @IvyWebTest
 public class CaseDescriptionChangeTest extends BaseTest {
-  
+
   private NewDashboardPage newDashboardPage;
   private CaseWidgetPage casePage;
 

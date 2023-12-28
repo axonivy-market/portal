@@ -62,7 +62,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public SelenideElement getImageModeProcessPreview() {
     $(".widget-preview .widget-preview--image-width").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-      .$("[id$=':process-item-name']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+        .$("[id$=':process-item-name']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
 
     return $(".widget-preview .widget-preview--image-width").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
@@ -85,8 +85,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickSaveProcessWidget() {
-    $("button[id='widget-configuration-save-button']")
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    $("button[id='widget-configuration-save-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
     $("div[id='new-widget-configuration-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
@@ -126,7 +125,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public SelenideElement getFullModeProcessPreview() {
     $(".widget-preview .widget-preview--full").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-      .$("[id$='process-grid-item:process-item:start-process-link']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+        .$("[id$='process-grid-item:process-item:start-process-link']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
 
     return $(".widget-preview .widget-preview--full").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
@@ -175,7 +174,9 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getCombinedModeProcessPreview() {
-    $(".widget-preview .widget-preview--combined").$("div[id$='process-task-widget-component:dashboard-process-tasks-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $(".widget-preview .widget-preview--combined")
+        .$("div[id$='process-task-widget-component:dashboard-process-tasks-container']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return $(".widget-preview .widget-preview--combined").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
@@ -205,7 +206,8 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void selectCasesTab() {
-    getCasesTab().shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    getCasesTab().shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
   }
 
   public SelenideElement getFirstDisplayedCaseName() {
@@ -260,7 +262,8 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getProcessDisplayMode() {
-    return $("div[id$=':process-display-mode']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    return $("div[id$=':process-display-mode']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCompactModeProcessPreviewLoading() {
@@ -269,7 +272,8 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public SelenideElement getCompactModeProcessPreview() {
     $(".widget-preview .widget-preview--compact .widget-preview__header").shouldBe(appear, DEFAULT_TIMEOUT).click();
-    return $(".widget-preview .widget-preview--compact div[id$=':dashboard-processes-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $(".widget-preview .widget-preview--compact div[id$=':dashboard-processes-container']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCompactModeProcessDisabledFirstProcessItem() {
@@ -290,8 +294,8 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   private void selectCompactModeCategory(String category) {
     getCompactModeProcessCategoryFilter().click();
 
-    ElementsCollection categories = getCompactModeProcessCategoryFilterPanel()
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$(".ui-treenode-label");
+    ElementsCollection categories =
+        getCompactModeProcessCategoryFilterPanel().shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$(".ui-treenode-label");
     categories.filter(Condition.exactTextCaseSensitive("All Categories")).first().click();
     categories.filter(Condition.exactTextCaseSensitive(category)).first()
         .shouldBe(Condition.not(Condition.cssClass("ui-state-highlight")), DEFAULT_TIMEOUT).click();
@@ -347,7 +351,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void changeProcessTitle(String name) {
-	getCompactModeWidgetTitle().clear();
+    getCompactModeWidgetTitle().clear();
     getCompactModeWidgetTitle().sendKeys(name);
   }
 
@@ -388,7 +392,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   public SelenideElement getCompactModeProcessDisplayedCategoryFilter() {
     return getCompactModeProcessCategoryFilter().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
-  
+
   public void clickOnProcesses() {
     $("div[id$=':processes-list']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
         .click();
@@ -429,7 +433,8 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
       SelenideElement toElement = findAll.get(toIndex).shouldBe(appear, DEFAULT_TIMEOUT);
 
       Actions builder = new Actions(WebDriverRunner.getWebDriver());
-      Action dragAndDrop = builder.clickAndHold(fromElement).pause(500).moveToElement(toElement).pause(500).release(toElement).build();
+      Action dragAndDrop =
+          builder.clickAndHold(fromElement).pause(500).moveToElement(toElement).pause(500).release(toElement).build();
       dragAndDrop.perform();
     }
   }
@@ -437,7 +442,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   public SelenideElement getPreviewProcessElement(int index) {
     return $("div.compact-processes-container").findAll(".process-start-list-item").get(index);
   }
-  
+
   public SelenideElement getTranslationOverlayPanel(int index) {
     SelenideElement translationOverlay = $(String.format("div[id$=':%s:overlay-panel-input']", index));
     waitUntilElementToBeClickable(translationOverlay);
@@ -448,47 +453,52 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void selectProcessForCombinedMode(String processName) {
     $("[id='widget-configuration-form:new-widget-configuration-component:selected-combined-process_input']")
-      .shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(processName);
+        .shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(processName);
 
     $("[id='widget-configuration-form:new-widget-configuration-component:selected-combined-process_panel']")
-      .shouldBe(appear, DEFAULT_TIMEOUT).$$("tr").get(0).shouldBe(appear, DEFAULT_TIMEOUT).click();
+        .shouldBe(appear, DEFAULT_TIMEOUT).$$("tr").get(0).shouldBe(appear, DEFAULT_TIMEOUT).click();
 
     clickDialogTitle();
-    $("[id='widget-configuration-form:new-widget-configuration-component:selected-combined-process_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("[id='widget-configuration-form:new-widget-configuration-component:selected-combined-process_panel']")
+        .shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void selectProcessesForCompactMode(List<String> processes) {
-    $("[id='widget-configuration-form:new-widget-configuration-component:processes-list']").shouldBe(appear, DEFAULT_TIMEOUT)
-      .$("ul").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("div[id='widget-configuration-form:new-widget-configuration-component:processes-list_panel']").shouldBe(appear, DEFAULT_TIMEOUT).$$("li").asFixedIterable().forEach(process -> {
-      if (processes.contains(process.$("label").getText())) {
-        process.$(".ui-chkbox-box").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-      }
-    });
+    $("[id='widget-configuration-form:new-widget-configuration-component:processes-list']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$("ul").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div[id='widget-configuration-form:new-widget-configuration-component:processes-list_panel']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$$("li").asFixedIterable().forEach(process -> {
+          if (processes.contains(process.$("label").getText())) {
+            process.$(".ui-chkbox-box").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+          }
+        });
 
     clickDialogTitle();
-    $("div[id='widget-configuration-form:new-widget-configuration-component:processes-list_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("div[id='widget-configuration-form:new-widget-configuration-component:processes-list_panel']").shouldBe(disappear,
+        DEFAULT_TIMEOUT);
   }
 
   public void selectProcessForFullMode(String processName) {
     $("[id='widget-configuration-form:new-widget-configuration-component:selected-full-process_input']")
-      .shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(processName);
+        .shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(processName);
 
     $("[id='widget-configuration-form:new-widget-configuration-component:selected-full-process_panel']")
-      .shouldBe(appear, DEFAULT_TIMEOUT).$$("tr").get(0).shouldBe(appear, DEFAULT_TIMEOUT).click();
+        .shouldBe(appear, DEFAULT_TIMEOUT).$$("tr").get(0).shouldBe(appear, DEFAULT_TIMEOUT).click();
 
     clickDialogTitle();
-    $("[id='widget-configuration-form:new-widget-configuration-component:selected-full-process_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("[id='widget-configuration-form:new-widget-configuration-component:selected-full-process_panel']")
+        .shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void selectProcessForImageMode(String processName) {
     $("[id='widget-configuration-form:new-widget-configuration-component:selected-image-process_input']")
-    .shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(processName);
+        .shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(processName);
     $("[id='widget-configuration-form:new-widget-configuration-component:selected-image-process_panel']")
-      .shouldBe(appear, DEFAULT_TIMEOUT).$$("tr").get(0).shouldBe(appear, DEFAULT_TIMEOUT).click();
+        .shouldBe(appear, DEFAULT_TIMEOUT).$$("tr").get(0).shouldBe(appear, DEFAULT_TIMEOUT).click();
 
     clickDialogTitle();
-    $("[id='widget-configuration-form:new-widget-configuration-component:selected-image-process_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("[id='widget-configuration-form:new-widget-configuration-component:selected-image-process_panel']")
+        .shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   private void clickDialogTitle() {

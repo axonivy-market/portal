@@ -26,14 +26,14 @@ public class HandleErrorPageScreenshotTest extends ScreenshotBaseTest {
   @Test
   public void screenshotErrorPages() throws IOException {
     ScreenshotUtils.resizeBrowser(new Dimension(1200, 800));
-    redirectToRelativeLink(portalCustomErrorUrl); $("[id$=':test-error-method']")
-      .shouldBe(exist, DEFAULT_TIMEOUT) .shouldBe(visible, DEFAULT_TIMEOUT).click();
-      $(".notification-container").shouldBe(appear, DEFAULT_TIMEOUT);
+    redirectToRelativeLink(portalCustomErrorUrl);
+    $("[id$=':test-error-method']").shouldBe(exist, DEFAULT_TIMEOUT).shouldBe(visible, DEFAULT_TIMEOUT).click();
+    $(".notification-container").shouldBe(appear, DEFAULT_TIMEOUT);
 
-      $("a[class$='notification-content-action-more-details']") .shouldBe(exist, DEFAULT_TIMEOUT) .shouldBe(visible, DEFAULT_TIMEOUT).click();
-      $("[id='exception-dialog:exception-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
-      ScreenshotUtils.capturePageScreenshot(ERROR_HANDLING_FOLDER +
-      "portal-ajax-error-handler");
+    $("a[class$='notification-content-action-more-details']").shouldBe(exist, DEFAULT_TIMEOUT)
+        .shouldBe(visible, DEFAULT_TIMEOUT).click();
+    $("[id='exception-dialog:exception-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    ScreenshotUtils.capturePageScreenshot(ERROR_HANDLING_FOLDER + "portal-ajax-error-handler");
 
     redirectToRelativeLink(showIvyErrorPageUrl);
     $(".exception-body").shouldBe(appear, DEFAULT_TIMEOUT);

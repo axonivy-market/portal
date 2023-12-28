@@ -16,13 +16,14 @@ import com.codeborne.selenide.Condition;
 
 public class NewAbsencePage extends TemplatePage {
 
-  private static final String ABSENCE_ERROR_MESSAGE_SELECTOR = "[id*='absence-messages'] span.ui-messages-error-summary";
+  private static final String ABSENCE_ERROR_MESSAGE_SELECTOR =
+      "[id*='absence-messages'] span.ui-messages-error-summary";
 
   @Override
   protected String getLoadedLocator() {
     return "[id='absence-dialog_title']";
   }
-  
+
   public void input(LocalDate absenceFrom, LocalDate absenceTill, String comment) {
     inputDate(absenceFrom, "input[id*='absence-start-date']");
     inputDate(absenceTill, "input[id*='absence-end-date']");
@@ -40,7 +41,7 @@ public class NewAbsencePage extends TemplatePage {
       WebElement usernameInput = $("input[id*='absence-username']").shouldBe(appear, DEFAULT_TIMEOUT);
       usernameInput.clear();
       usernameInput.sendKeys(fullName);
-      String itemSelector = "tr[data-item-label*='" + fullName  + "'].ui-state-highlight";
+      String itemSelector = "tr[data-item-label*='" + fullName + "'].ui-state-highlight";
       $(itemSelector).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     }
   }
@@ -67,7 +68,8 @@ public class NewAbsencePage extends TemplatePage {
 
   public void proceed() {
     $(By.id("absence-dialog_title")).click();
-    $("button[id*='save-absence']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("button[id*='save-absence']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
   }
 
   public void closeAddAbsenceDialog() {

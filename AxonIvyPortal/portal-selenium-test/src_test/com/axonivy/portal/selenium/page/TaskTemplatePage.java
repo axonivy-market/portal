@@ -95,7 +95,8 @@ public class TaskTemplatePage extends TemplatePage {
 
   public WebElement openAdhocHistoryDialog() {
     clickActionButton();
-    $("[id='horizontal-task-action-form:show-adhoc-history']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='horizontal-task-action-form:show-adhoc-history']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
     return $("div[id$='adhoc-task-history-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -108,7 +109,8 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void clickCreateGroupChatButton() {
-    $("[id='chat-assignee-selection-form:chat-group-create-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='chat-assignee-selection-form:chat-group-create-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
     $("[id='chat-assignee-selection-form:chat-group-create-button']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
@@ -147,8 +149,8 @@ public class TaskTemplatePage extends TemplatePage {
     String approveTaskNameOutIFrame = findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText();
     waitForCloseButtonDisplayAfterInputedAprrovalNote("1");
     driver.switchTo().defaultContent();
-    WaitHelper.assertTrueWithWait(
-        () -> !approveTaskNameOutIFrame.equals(findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText()));
+    WaitHelper.assertTrueWithWait(() -> !approveTaskNameOutIFrame
+        .equals(findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText()));
     return findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText();
   }
 
@@ -191,7 +193,8 @@ public class TaskTemplatePage extends TemplatePage {
 
   public Integer getTaskRowIndex(String taskName) {
     List<SelenideElement> taskNames = $$(".task-name-value");
-    int taskIndex = IntStream.range(0, taskNames.size()).filter(i -> taskNames.get(i).getText().equals(taskName)).findFirst().getAsInt();
+    int taskIndex = IntStream.range(0, taskNames.size()).filter(i -> taskNames.get(i).getText().equals(taskName))
+        .findFirst().getAsInt();
     return taskIndex;
   }
 

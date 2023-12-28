@@ -25,8 +25,8 @@ import com.codeborne.selenide.SelenideElement;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
 @IvyWebTest
-public class PortalCasesScreenshotTest extends ScreenshotBaseTest{
-  
+public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
+
   private MainMenuPage mainMenuPage;
   private static final int SCREENSHOT_WIDTH = 1500;
   private static final int SCREENSHOT_MEDIUM_WIDTH = 1100;
@@ -45,67 +45,77 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest{
     mainMenuPage = new MainMenuPage();
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT));
   }
-  
+
   @Test
   public void screenshotCasesNavigate() throws IOException {
     CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
     mainMenuPage.expandMainMenu();
     ScreenshotUtils.executeDecorateJs("highlightCaseMenuItem()");
-    ScreenshotUtils.captureHalfLeftPageScreenShot(ScreenshotUtils.CASE_WIDGET_FOLDER + "navigate-to-full-cases-list-page");
-    
+    ScreenshotUtils
+        .captureHalfLeftPageScreenShot(ScreenshotUtils.CASE_WIDGET_FOLDER + "navigate-to-full-cases-list-page");
+
     refreshPage();
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 600));
     mainMenuPage.closeMainMenu();
     caseWidgetPage.openActionStepMenu(0);
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_WIDGET_FOLDER + "case-key-information");
-    
+
     ScreenshotUtils.maximizeBrowser();
-    SelenideElement saveFilterDialog =  caseWidgetPage.getSaveFilterDialog();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(saveFilterDialog, ScreenshotUtils.CASE_WIDGET_FOLDER + "how-to-create-case-filter", new ScreenshotMargin(100, 200));
+    SelenideElement saveFilterDialog = caseWidgetPage.getSaveFilterDialog();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(saveFilterDialog,
+        ScreenshotUtils.CASE_WIDGET_FOLDER + "how-to-create-case-filter", new ScreenshotMargin(100, 200));
   }
-  
+
   @Test
   public void screenshotCaseDetails() throws IOException {
     CaseWidgetPage caseWidget = mainMenuPage.openCaseList();
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1400));
     WaitHelper.waitForNavigation(() -> caseWidget.openDetailsOfCaseHasName("Order Pizza"));
     CaseDetailsPage detailsPage = new CaseDetailsPage();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(detailsPage.getGeneralInforBox(), ScreenshotUtils.CASE_DETAIL_FOLDER + "case-details-data-description", new ScreenshotMargin(50, 10, 10, 10));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(detailsPage.getGeneralInforBox(),
+        ScreenshotUtils.CASE_DETAIL_FOLDER + "case-details-data-description", new ScreenshotMargin(50, 10, 10, 10));
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_FOLDER + "case-details");
-    ScreenshotUtils.captureElementScreenshot(detailsPage.getRelatedRunningTaskBox(), ScreenshotUtils.CASE_DETAIL_FOLDER + "case-details-related-tasks-cases");
+    ScreenshotUtils.captureElementScreenshot(detailsPage.getRelatedRunningTaskBox(),
+        ScreenshotUtils.CASE_DETAIL_FOLDER + "case-details-related-tasks-cases");
 
     refreshPage();
     detailsPage.waitForCaseDetailsDisplay();
-    ScreenshotUtils.captureElementScreenshot(detailsPage.getAddNoteDialog(), ScreenshotUtils.CASE_DETAIL_FOLDER + "how-to-add-task-note");
+    ScreenshotUtils.captureElementScreenshot(detailsPage.getAddNoteDialog(),
+        ScreenshotUtils.CASE_DETAIL_FOLDER + "how-to-add-task-note");
 
     detailsPage.addNoteContent("Take Order");
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(detailsPage.openAddAttachmentDialog(),
         ScreenshotUtils.CASE_DETAIL_FOLDER + "how-to-attach-document-to-case", new ScreenshotMargin(10));
     detailsPage.closeAddAttachmentDialog();
     detailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
-    
+
     refreshPage();
     detailsPage.waitForCaseDetailsDisplay();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(detailsPage.getDocumentBox(), ScreenshotUtils.CASE_DETAIL_FOLDER + "case-details-documents", new ScreenshotMargin(10));
-    
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(detailsPage.getDocumentBox(),
+        ScreenshotUtils.CASE_DETAIL_FOLDER + "case-details-documents", new ScreenshotMargin(10));
+
     ScreenshotUtils.executeDecorateJs("scrollToBottomOfLayoutContent()");
-    ScreenshotUtils.captureElementScreenshot(detailsPage.getHistoriesBox(), ScreenshotUtils.CASE_DETAIL_FOLDER + "case-details-histories");
-    
+    ScreenshotUtils.captureElementScreenshot(detailsPage.getHistoriesBox(),
+        ScreenshotUtils.CASE_DETAIL_FOLDER + "case-details-histories");
+
     refreshPage();
     detailsPage.waitForCaseDetailsDisplay();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(detailsPage.getDeleteDocumentConfirmDialog(), ScreenshotUtils.CASE_DETAIL_FOLDER + "how-to-delete-an-attachment-from-case", new ScreenshotMargin(100, 200));
-    
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(detailsPage.getDeleteDocumentConfirmDialog(),
+        ScreenshotUtils.CASE_DETAIL_FOLDER + "how-to-delete-an-attachment-from-case", new ScreenshotMargin(100, 200));
+
     refreshPage();
     detailsPage.waitForCaseDetailsDisplay();
     ScreenshotUtils.executeDecorateJs("scrollToBottomOfLayoutContent()");
     ScreenshotUtils.executeDecorateJs("highlightShowMoreNoteLink()");
     detailsPage.getHistoriesBox();
-    ScreenshotUtils.captureElementScreenshot(detailsPage.getHistoriesBox(), ScreenshotUtils.CASE_DETAIL_FOLDER + "how-to-show-note-details");
-    
+    ScreenshotUtils.captureElementScreenshot(detailsPage.getHistoriesBox(),
+        ScreenshotUtils.CASE_DETAIL_FOLDER + "how-to-show-note-details");
+
     detailsPage.showNoteHistory();
     detailsPage.switchLastBrowserTab();
     detailsPage.waitForShowNoteHistory();
-    ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.CASE_WIDGET_FOLDER + "export-case-history", new Dimension(SCREENSHOT_MEDIUM_WIDTH, 1000));
+    ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.CASE_WIDGET_FOLDER + "export-case-history",
+        new Dimension(SCREENSHOT_MEDIUM_WIDTH, 1000));
   }
 
   @Test
@@ -133,7 +143,7 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest{
     ScreenshotUtils.executeDecorateJs("highlightCaseExportToExcelButton()");
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_WIDGET_FOLDER + "export-to-excel-button");
   }
-  
+
   @Test
   public void testCustomWidgetInCaseDetails() throws IOException {
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 1000));
@@ -141,12 +151,14 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest{
     CaseDetailsPage detailsPage = setupCustomWidgetByJSONFile("custom-case-details.json");
     ScreenshotUtils.executeDecorateJs("highlightCustomWidgetInCaseDetails()");
     detailsPage.waitForIFrameWidgetLoad();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-customized-iframe-process");
+    ScreenshotUtils
+        .capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-customized-iframe-process");
     refreshPage();
     setupCustomWidgetByJSONFile("custom-case-details-with-url.json");
     ScreenshotUtils.executeDecorateJs("highlightCustomWidgetInCaseDetails()");
     detailsPage.waitForIFrameURLWidgetLoad();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-customized-iframe-url");
+    ScreenshotUtils
+        .capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-customized-iframe-url");
   }
 
   public CaseDetailsPage setupCustomWidgetByJSONFile(String configFile) throws IOException {
@@ -154,14 +166,14 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest{
     CaseDetailsPage detailsPage = goToCaseList().openDetailsOfCaseHasName(CaseDetailsTest.CUSTOM_CASE_WIDGET_NAME);
     return detailsPage;
   }
-  
+
   public CaseWidgetPage goToCaseList() {
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     CaseWidgetPage casePage = mainMenuPage.openCaseList();
     return casePage;
   }
-  
+
   @Test
   public void screenshotActionButtonsOnCaseDetails() throws IOException {
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1440));
@@ -176,7 +188,7 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest{
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(sharePageBtn,
         ScreenshotUtils.CASE_DETAIL_FOLDER + "share-page-button", new ScreenshotMargin(100, 200));
     refreshPage();
-    
+
     ScreenshotUtils.executeDecorateJs("highlightSwitchToEditMode()");
     SelenideElement switchToEditMode = caseDetailsPage.getSwitchToEditModeButton();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(switchToEditMode,
@@ -207,12 +219,13 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest{
     processWidget.waitForStartListShow();
     processWidget.startProcessByName("Process With Process Steps");
     showNewDashboard();
-    
+
     CaseWidgetPage caseWidget = mainMenuPage.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Process With Process Steps");
     caseDetailsPage.waitForCaseDetailsDisplay();
-    
+
     ScreenshotUtils.executeDecorateJs("highlightProcessOverviewLink()");
-    ScreenshotUtils.captureHalfLeftPageScreenShot(ScreenshotUtils.PROCESSES_INFORMATION_WIDGET_FOLDER + "process-overview-link");
+    ScreenshotUtils
+        .captureHalfLeftPageScreenShot(ScreenshotUtils.PROCESSES_INFORMATION_WIDGET_FOLDER + "process-overview-link");
   }
 }

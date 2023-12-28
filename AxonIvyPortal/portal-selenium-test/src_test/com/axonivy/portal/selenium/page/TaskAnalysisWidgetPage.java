@@ -28,20 +28,23 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   public void openAdvancedTaskFilter(String filterName, String filterIdName) {
     findTaskFilterButton().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id='" + TASK_FILTER_SELECTION + "']").shouldBe(appear, DEFAULT_TIMEOUT).$$("label").asFixedIterable().stream()
-        .filter(filter -> filter.getText().contentEquals(filterName)).findFirst().get().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
-        .click();
-    $("[id='task-widget:task-filter-add-form:update-task-filter-selected-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
-        .click();
-    $("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+        .filter(filter -> filter.getText().contentEquals(filterName)).findFirst().get()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='task-widget:task-filter-add-form:update-task-filter-selected-command']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']").shouldBe(appear,
+        DEFAULT_TIMEOUT);
   }
 
   public void filterByTaskPriority(List<String> selectedPriorities) {
-    $("[id$='priority-filter:filter-open-form:advanced-filter-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("[id$='priority-filter:filter-input-form:advanced-filter-panel-content']").shouldBe(appear, DEFAULT_TIMEOUT).$$("label")
-        .asFixedIterable().stream().filter(filter -> !selectedPriorities.contains(filter.getText()))
+    $("[id$='priority-filter:filter-open-form:advanced-filter-command']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id$='priority-filter:filter-input-form:advanced-filter-panel-content']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$$("label").asFixedIterable().stream().filter(filter -> !selectedPriorities.contains(filter.getText()))
         .forEach(filter -> filter.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
 
-    $("[id$='priority-filter:filter-input-form:update-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id$='priority-filter:filter-input-form:update-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
   }
 
   public void clickApplyFilter() {
@@ -54,7 +57,8 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
 
   public void enterDataToSaveFilterSet(String filterSetName, boolean isPersonalFilter) {
     $("[id='task-widget:filter-save-action']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("[id='task-widget:filter-save-form:save-filter-set-name-input']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(filterSetName);
+    $("[id='task-widget:filter-save-form:save-filter-set-name-input']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .sendKeys(filterSetName);
 
     SelenideElement filterVisibilityContainer = findElementById("task-widget:filter-save-form:save-filter-type-radio");
     if (isPersonalFilter) {
@@ -107,23 +111,26 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     for (SelenideElement filterElement : filterSelectionElement.$$(By.tagName("LABEL"))) {
       if (filterName.equals(filterElement.getText())) {
         waitForElementClickableThenClick(filterElement);
-        waitForElementClickableThenClick($("button[id$='task-widget:case-filter-add-form:update-task-filter-selected-command']"));
+        waitForElementClickableThenClick(
+            $("button[id$='task-widget:case-filter-add-form:update-task-filter-selected-command']"));
         break;
       }
     }
-    waitForElementDisplayed(By.cssSelector("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']"),
+    waitForElementDisplayed(
+        By.cssSelector("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']"),
         true);
   }
 
   public void filterByCaseName(String text) {
     waitForElementClickableThenClick($("[id$='case-name-filter:filter-open-form:advanced-filter-command']"));
-    findElementByCssSelector("input[id$='case-name-filter:filter-input-form:name']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(text);
+    findElementByCssSelector("input[id$='case-name-filter:filter-input-form:name']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .sendKeys(text);
     waitForElementClickableThenClick($("[id$='case-name-filter:filter-input-form:update-command']"));
   }
 
   public void filterByCaseState(List<String> selectedPriorities) {
-    waitForElementClickableThenClick(
-        $("div[id$='task-widget:case-filters-container'] button[id$='state-filter:filter-open-form:advanced-filter-command']"));
+    waitForElementClickableThenClick($(
+        "div[id$='task-widget:case-filters-container'] button[id$='state-filter:filter-open-form:advanced-filter-command']"));
     SelenideElement selectionElement = findElementByCssSelector(
         "div[id$='task-widget:case-filters-container'] div[id$='state-filter:filter-input-form:advanced-filter-panel-content']");
     for (SelenideElement labelElement : selectionElement.$$(By.tagName("LABEL"))) {
@@ -138,8 +145,8 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   public void filterByTaskCategory(String selectedCategory) {
     waitForElementClickableThenClick($("[id$='task-category-filter:filter-open-form:advanced-filter-command']"));
     waitForElementDisplayed($("div[id$=':task-category-filter-tree']"), true);
-    SelenideElement selectionElement = findElementByCssSelector(
-        "[id$='task-category-filter:filter-input-form:advanced-filter-panel-content']");
+    SelenideElement selectionElement =
+        findElementByCssSelector("[id$='task-category-filter:filter-input-form:advanced-filter-panel-content']");
     List<SelenideElement> categoryTreeLabels = selectionElement.$$(By.className("ui-treenode-label"));
     // Find parent node of tree first and uncheck it
     SelenideElement parentNodeOfTree = categoryTreeLabels.stream().findFirst().get();
@@ -157,8 +164,8 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   public void filterByCaseCategory(String selectedCategory) {
     waitForElementClickableThenClick($("[id$='case-category-filter:filter-open-form:advanced-filter-command']"));
     waitForElementDisplayed($("div[id$=':case-category-filter-tree']"), true);
-    SelenideElement selectionElement = findElementByCssSelector(
-        "[id$='case-category-filter:filter-input-form:advanced-filter-panel-content']");
+    SelenideElement selectionElement =
+        findElementByCssSelector("[id$='case-category-filter:filter-input-form:advanced-filter-panel-content']");
     List<SelenideElement> categoryTreeLabels = selectionElement.$$(By.className("ui-treenode-label"));
     // Find parent node of tree first and uncheck it
     SelenideElement parentNodeOfTree = categoryTreeLabels.stream().findFirst().get();
@@ -185,7 +192,8 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
 
   public void saveFilterSet(String filterSetName, boolean isPersonalFilter) {
     enterDataToSaveFilterSet(filterSetName, isPersonalFilter);
-    SelenideElement saveButton = $("button[id$='task-widget:filter-save-form:filter-save-command']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement saveButton =
+        $("button[id$='task-widget:filter-save-form:filter-save-command']").shouldBe(appear, DEFAULT_TIMEOUT);
     waitForElementClickableThenClick(saveButton);
     $("[id='task-widget:save-filter-set-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
     saveButton.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
@@ -215,12 +223,14 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((driver) ->
 
     $("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)").getText().length() > 1);
-    WebElement filterName = findElementByCssSelector("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)");
+    WebElement filterName =
+        findElementByCssSelector("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)");
     return filterName.getText();
   }
 
   private void filterByUserName(String user, String filterIdName) {
-    waitForElementClickableThenClick($("button[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-command']"));
+    waitForElementClickableThenClick(
+        $("button[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-command']"));
     $("input[id*='" + filterIdName + "-filter:filter-input-form:']").sendKeys(user);
     waitForElementExisted(By.cssSelector("div[id*='" + filterIdName + "-filter'] .ui-avatar-text"), true);
     waitForElementClickableThenClick($("tr[class$='ui-state-highlight']"));
@@ -238,11 +248,15 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   }
 
   public void removeUserInFilter() {
-    waitForElementDisplayed(By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']"), true);
+    waitForElementDisplayed(By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']"),
+        true);
     waitForElementClickableThenClick($("button[id$='creator-filter:filter-open-form:advanced-filter-command']"));
-    waitForElementDisplayed(By.cssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']"), true);
-    findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']").click();
-    findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']").clear();
+    waitForElementDisplayed(
+        By.cssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']"), true);
+    findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']")
+        .click();
+    findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']")
+        .clear();
     waitForElementClickableThenClick($("button[id$='creator-filter:filter-input-form:update-command']"));
   }
 
@@ -252,9 +266,11 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   }
 
   public void removeResponsible() {
-    waitForElementDisplayed(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"), true);
+    waitForElementDisplayed(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"),
+        true);
     waitForElementClickableThenClick($("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"));
-    waitForElementDisplayed(By.cssSelector("input[id$='responsible-filter:filter-input-form:responsible_input']"), true);
+    waitForElementDisplayed(By.cssSelector("input[id$='responsible-filter:filter-input-form:responsible_input']"),
+        true);
     findElementByCssSelector("input[id$='responsible-filter:filter-input-form:responsible_input']").click();
     findElementByCssSelector("input[id$='responsible-filter:filter-input-form:responsible_input']").clear();
     waitForElementClickableThenClick($("button[id$='responsible-filter:filter-input-form:update-command']"));
@@ -266,19 +282,23 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     for (SelenideElement filterElement : filterSelectionElement.$$(By.tagName("LABEL"))) {
       if (filterName.equals(filterElement.getText())) {
         filterElement.click();
-        waitForElementClickableThenClick($("button[id$='task-widget:task-filter-add-form:update-task-filter-selected-command']"));
+        waitForElementClickableThenClick(
+            $("button[id$='task-widget:task-filter-add-form:update-task-filter-selected-command']"));
         break;
       }
     }
   }
 
   public void filterByUnavailableActivator() {
-    waitForElementDisplayed(By.cssSelector("button[id$='available-activator-filter:filter-open-form:advanced-filter-command']"), true);
-    waitForElementClickableThenClick($("button[id$='available-activator-filter:filter-open-form:advanced-filter-command']"));
+    waitForElementDisplayed(
+        By.cssSelector("button[id$='available-activator-filter:filter-open-form:advanced-filter-command']"), true);
+    waitForElementClickableThenClick(
+        $("button[id$='available-activator-filter:filter-open-form:advanced-filter-command']"));
 
-    waitForElementDisplayed(By.cssSelector("[id$='available-activator-filter:filter-input-form:available-activator']"), true);
-    WebElement displayOnlyUnavailableTaskCheckbox = findElementByCssSelector(
-        "[id$='available-activator-filter:filter-input-form:available-activator']");
+    waitForElementDisplayed(By.cssSelector("[id$='available-activator-filter:filter-input-form:available-activator']"),
+        true);
+    WebElement displayOnlyUnavailableTaskCheckbox =
+        findElementByCssSelector("[id$='available-activator-filter:filter-input-form:available-activator']");
     displayOnlyUnavailableTaskCheckbox.click();
     waitForElementClickableThenClick($("button[id$='available-activator-filter:filter-input-form:update-command']"));
   }
@@ -289,11 +309,13 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   }
 
   public String getUser(String filterName) {
-    waitForElementDisplayed($("button[id$='" + filterName + "-filter:filter-open-form:advanced-filter-command']"), true);
-    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(
-        (driver) -> findElementByCssSelector("button[id$='" + filterName + "-filter:filter-open-form:advanced-filter-command'] > span")
-            .getText().length() > 1);
-    return findElementByCssSelector("button[id$='" + filterName + "-filter:filter-open-form:advanced-filter-command'] > span").getText();
+    waitForElementDisplayed($("button[id$='" + filterName + "-filter:filter-open-form:advanced-filter-command']"),
+        true);
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((driver) -> findElementByCssSelector(
+        "button[id$='" + filterName + "-filter:filter-open-form:advanced-filter-command'] > span").getText()
+            .length() > 1);
+    return findElementByCssSelector(
+        "button[id$='" + filterName + "-filter:filter-open-form:advanced-filter-command'] > span").getText();
   }
 
   public void resetFilter() {
@@ -301,7 +323,8 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitForElementDisplayed($("[id$='task-widget:filter-reset-command']"), true);
     waitForElementClickableThenClick($("[id$='task-widget:filter-reset-command']"));
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
-        .until((driver) -> $("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)").getText().contains("Default"));
+        .until((driver) -> $("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)").getText()
+            .contains("Default"));
   }
 
   public SelenideElement findColumnContainer() {

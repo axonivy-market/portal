@@ -25,17 +25,17 @@ public class ProcessHistoryTest extends BaseTest {
     processHistoryPage.waitPageLoaded();
     assertEquals(1, processHistoryPage.countCases());
   }
-  
+
   @Test
   public void testDisplayProcessHistoryDialog() {
     redirectToRelativeLink(createBetaCompanyUrl);
     redirectToRelativeLink(viewBetaCompanyProcessHistoryInDialogUrl);
-    
+
     ProcessHistoryPage processHistoryPage = new ProcessHistoryPage();
     processHistoryPage.waitPageLoaded();
     assertEquals(1, processHistoryPage.openDialogAndCountCases());
   }
-  
+
   @Test
   public void testDisplayEmptyMessage() {
     redirectToRelativeLink(viewAlphaCompanyProcessHistoryUrl);

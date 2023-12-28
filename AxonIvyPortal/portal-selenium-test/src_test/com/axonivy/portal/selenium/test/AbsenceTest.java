@@ -81,13 +81,17 @@ public class AbsenceTest extends BaseTest {
   @Test
   public void testDeputyAsNormalUser() {
     AbsencePage absencePage = openAbsencePage();
-    List<String> personalTaskDuringAbsenceDeputyNames = Arrays.asList(TestAccount.CASE_OWNER_USER.getFullName(), TestAccount.GUEST_USER.getFullName());
+    List<String> personalTaskDuringAbsenceDeputyNames =
+        Arrays.asList(TestAccount.CASE_OWNER_USER.getFullName(), TestAccount.GUEST_USER.getFullName());
     absencePage.setDeputy(personalTaskDuringAbsenceDeputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
-    List<String> personalTaskPermanentDeputyNames = Arrays.asList(TestAccount.ADMIN_USER.getFullName(), TestAccount.HR_ROLE_USER.getFullName());
+    List<String> personalTaskPermanentDeputyNames =
+        Arrays.asList(TestAccount.ADMIN_USER.getFullName(), TestAccount.HR_ROLE_USER.getFullName());
     absencePage.setDeputy(personalTaskPermanentDeputyNames, DeputyRoleType.PERSONAL_TASK_PERMANENT);
     absencePage.saveSubstitute();
-    absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE)).shouldBe(Condition.text(joinDeputyNames(personalTaskDuringAbsenceDeputyNames)));;
-    absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_PERMANENT)).shouldBe(Condition.text(joinDeputyNames(personalTaskPermanentDeputyNames)));;
+    absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE))
+        .shouldBe(Condition.text(joinDeputyNames(personalTaskDuringAbsenceDeputyNames)));;
+    absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_PERMANENT))
+        .shouldBe(Condition.text(joinDeputyNames(personalTaskPermanentDeputyNames)));;
   }
 
   @Test
@@ -214,9 +218,10 @@ public class AbsenceTest extends BaseTest {
     List<String> deputyNames = Arrays.asList(TestAccount.GUEST_USER.getFullName());
     absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
     absencePage.saveSubstitute();
-    absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE)).shouldBe(Condition.text(TestAccount.GUEST_USER.getFullName()));;
+    absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE))
+        .shouldBe(Condition.text(TestAccount.GUEST_USER.getFullName()));;
   }
-  
+
   @Test
   public void testDeleteAbsenceOfOtherUser() {
     login(TestAccount.DEMO_USER);
@@ -236,7 +241,7 @@ public class AbsenceTest extends BaseTest {
     absencePage.canDeleteAbsence(0);
     absencePage.canDeleteAbsence(1);
   }
-  
+
   @Test
   public void testEditAbsenceOfOtherUser() {
     login(TestAccount.DEMO_USER);

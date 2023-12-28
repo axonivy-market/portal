@@ -23,7 +23,7 @@ import ch.ivy.addon.portalkit.enums.PortalVariable;
 @IvyWebTest
 public class DashboardTaskWidgetTest extends BaseTest {
 
-  //WIDGET
+  // WIDGET
   private static final String YOUR_TASKS_WIDGET = "Your Tasks";
 
   // CASES
@@ -43,16 +43,16 @@ public class DashboardTaskWidgetTest extends BaseTest {
   private static final String EXPIRY = "Expiry";
   private static final String IN_PROGRESS = "In progress";
   private static final String OPEN = "Open";
-  
+
   private NewDashboardPage newDashboardPage;
-  
+
   @Override
   @BeforeEach
   public void setup() {
     super.setup();
     newDashboardPage = new NewDashboardPage();
   }
-  
+
   @Test
   public void testHideTasks() {
     redirectToRelativeLink(createTestingTasksUrl);
@@ -67,7 +67,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.clickCancelTask();
     taskWidget.stateOfFirstTask().shouldHave(text(IN_PROGRESS));
   }
-  
+
   @Test
   public void testDestroyTaskWithPermission() {
     createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
@@ -83,7 +83,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.destroy();
     taskWidget.stateOfFirstTask().shouldHave(text(DESTROYED));
   }
-  
+
   @Test
   public void testDestroyTaskWithoutPermission() {
     redirectToRelativeLink(createTestingTasksUrl);
@@ -97,7 +97,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.clickOnTaskActionLink(0);
     taskWidget.destroyTaskLink().shouldNotHave(visible);
   }
-  
+
   @Test
   public void testStickyFilterTaskList() {
     createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
@@ -106,12 +106,12 @@ public class DashboardTaskWidgetTest extends BaseTest {
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    //Filter Task Name
+    // Filter Task Name
     taskWidget.openFilterWidget();
     taskWidget.filterTaskName(TASK_NUMBER);
     taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(5));
-    //Filter State
+    // Filter State
     taskWidget.openFilterWidget();
     taskWidget.filterTaskName(CREATE_12_CASES_WITH_CATEGORY_CASE);
     taskWidget.filterTaskState();
@@ -120,7 +120,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.countAllTasks().shouldHave(size(1));
     taskWidget.stateOfFirstTask().shouldHave(text(DONE));
   }
-  
+
   @Test
   public void testEditFilterTaskList() {
     createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
@@ -129,7 +129,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    
+
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
@@ -146,14 +146,15 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidgetEdited.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidgetEdited.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1));
   }
-  
+
   @Test
   public void testAddNewTaskList() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
-    NewDashboardDetailsEditPage newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage =
+        modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
     newDashboardDetailsEditPage.addWidget();
     TaskEditWidgetNewDashBoardPage newtaskWidget = newDashboardDetailsEditPage.addNewTaskWidget();
@@ -162,7 +163,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(NEW_YOUR_TASK);
     taskWidget.expand().shouldHave(size(1));
   }
-  
+
   @Test
   public void testTaskWidgetInformation() {
     redirectToRelativeLink(createTestingTasksUrl);
@@ -175,11 +176,11 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.getExpiryTodayLabelInWidgetInfo().shouldHave(text(EXPIRE_TODAY));
     taskWidget.clickToExpandNumberOfTaskByState();
     taskWidget.getFirstStateLabelInWidgetInfo().shouldHave(text(OPEN));
-    taskWidget.clickToExpandNumberOfTaskByCategory();    
+    taskWidget.clickToExpandNumberOfTaskByCategory();
     taskWidget.clickToExpandPredefinedFilters();
     taskWidget.closeWidgetInformationDialog();
   }
-  
+
   @Test
   public void testExpandAndCollapseTaskWidget() {
     redirectToRelativeLink(createTestingTasksUrl);
@@ -188,22 +189,22 @@ public class DashboardTaskWidgetTest extends BaseTest {
 
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    
+
     taskWidget.clickOnButtonExpandTaskWidget();
     taskWidget.getExpandedTaskWidget().shouldHave(size(1));
     taskWidget.clickOnButtonCollapseTaskWidget();
     taskWidget.getExpandedWidget().shouldHave(size(0));
   }
-  
+
   @Test
   public void testStickySortTaskList() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
-    
+
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    
+
     // Verify default task should be sorted by Created descending
     taskWidget.getTaskWidgetHeaderSorted().shouldHave(text("Created"));
     String sortType = taskWidget.getTaskWidgetHeaderSorted().getAttribute("aria-sort");
@@ -230,16 +231,17 @@ public class DashboardTaskWidgetTest extends BaseTest {
     assertEquals(sortType, "ascending");
     taskWidget.getTheFirstTaskWidgetByColumn(TASK_NAME).shouldHave(text(ANNUAL_LEAVE_REQUEST));
   }
-  
+
   @Test
   public void testExportExcel() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
-    NewDashboardDetailsEditPage newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage =
+        modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     newDashboardDetailsEditPage.addWidget();
-    TaskEditWidgetNewDashBoardPage newTaskWidget = newDashboardDetailsEditPage.addNewTaskWidget(); 
+    TaskEditWidgetNewDashBoardPage newTaskWidget = newDashboardDetailsEditPage.addNewTaskWidget();
 
     String taskWidgetName = "Export Excel Task";
     newTaskWidget.changeWidgetTitle(taskWidgetName);

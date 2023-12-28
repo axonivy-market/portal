@@ -17,7 +17,7 @@ public class CaseOwnerTest extends BaseTest {
 
   private static final String USER_IS_OWNER_URL = "internalSupport/16A68510A341BE6E/userIsOwner.ivp";
   private static final String ROLE_IS_OWNER_URL = "internalSupport/16A68510A341BE6E/roleIsOwner.ivp";
-  
+
   private NewDashboardPage newDashboardPage;
   private MainMenuPage mainMenuPage;
   private CaseWidgetPage casePage;
@@ -28,17 +28,17 @@ public class CaseOwnerTest extends BaseTest {
     super.setup();
     updatePortalSetting(Variable.ENABLE_CASE_OWNER.getKey(), "true");
   }
-  
+
   @AfterEach
   public void destroy() {
     updatePortalSetting(Variable.ENABLE_CASE_OWNER.getKey(), "false");
   }
-  
+
   @Test
   public void testUserIsOwner() {
     redirectToRelativeLink(USER_IS_OWNER_URL);
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
-    
+
     newDashboardPage = new NewDashboardPage();
     mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
@@ -50,7 +50,7 @@ public class CaseOwnerTest extends BaseTest {
     redirectToRelativeLink(ROLE_IS_OWNER_URL);
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     login(TestAccount.CASE_OWNER_USER);
-    
+
     newDashboardPage = new NewDashboardPage();
     mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();

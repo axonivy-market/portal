@@ -32,7 +32,8 @@ public class DashboardProcessWidgetTest extends BaseTest {
   private static final String POINTER_EVENTS_PROPERTY = "pointer-events";
   private static final String TITLE_ATTRIBUTE = "title";
   private static final String APPRAISAL = "Appraisal";
-  private static final String SHOWCASE_CATEGORY = "Customized, Custom task list, Portal dialog example, Application, Error, Ivy Error, Show Ivy Error Page, Showcase";
+  private static final String SHOWCASE_CATEGORY =
+      "Customized, Custom task list, Portal dialog example, Application, Error, Ivy Error, Show Ivy Error Page, Showcase";
   private static final String LEAVE_REQUEST_TEST_FOR_IVYPORTAL_3369 = "Leave Request Test For IVYPORTAL-3369";
   private static final String TEST_FOR_IVYPORTAL_3369 = "Test for IVYPORTAL-3369";
   private static final String CATEGORIED_LEAVE_REQUEST = "Categoried Leave Request";
@@ -389,8 +390,8 @@ public class DashboardProcessWidgetTest extends BaseTest {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.previewCompactModeProcess();
-    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItem().shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .shouldHave(Condition.cssValue(POINTER_EVENTS_PROPERTY, NONE));
+    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItem()
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldHave(Condition.cssValue(POINTER_EVENTS_PROPERTY, NONE));
   }
 
   @Test
@@ -401,8 +402,8 @@ public class DashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.selectCompactProcessSorting(ALPHABETICALLY_SORTING);
     editProcessWidgetConfiguration.getPreviewButton().click();
     editProcessWidgetConfiguration.getCompactModeProcessPreview().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName().shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .shouldHave(Condition.exactTextCaseSensitive(CLEAN_ABSENCES));
+    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName()
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldHave(Condition.exactTextCaseSensitive(CLEAN_ABSENCES));
   }
 
   // this test was failed cause by a bug of feature, it will be fixed at part 2
@@ -413,10 +414,10 @@ public class DashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.selectCompactProcessSorting(SORTING_INDEX);
     editProcessWidgetConfiguration.getPreviewButton().click();
     editProcessWidgetConfiguration.getCompactModeProcessPreview().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName().shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .shouldHave(Condition.exactTextCaseSensitive(PROCESS_WITH_INDEX_1));
+    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName()
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldHave(Condition.exactTextCaseSensitive(PROCESS_WITH_INDEX_1));
   }
-  
+
   @Test
   public void testSortProcessCompactProcessModeCustomSorting() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
@@ -435,7 +436,8 @@ public class DashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.dragAndDropProcess(fromIndex, toIndex);
     editProcessWidgetConfiguration.save();
     editProcessWidgetConfiguration = newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName().shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName()
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldNotHave(Condition.exactTextCaseSensitive(CLEAN_ABSENCES), DEFAULT_TIMEOUT);
   }
 
@@ -444,7 +446,8 @@ public class DashboardProcessWidgetTest extends BaseTest {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.previewCompactModeProcessFilterCategory(SHOWCASE);
-    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName().shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName()
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldHave(Condition.exactTextCaseSensitive("Customization for TaskTemplate"));
   }
 
@@ -453,7 +456,8 @@ public class DashboardProcessWidgetTest extends BaseTest {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.previewCompactModeProcessFilterProcess(CREATE_INVESTMENT_IFRAME);
-    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName().shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName()
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldHave(Condition.exactTextCaseSensitive(CREATE_INVESTMENT_IFRAME));
   }
 
@@ -610,8 +614,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     newDashboardPage.expandCompactModeProcess();
 
     newDashboardPage.openCompactModeProcessInforPanelWhenExpanded();
-    newDashboardPage.getCompactModeProcessInfoProcessTypesWhenExpanded().shouldHave(size(3),
-        DEFAULT_TIMEOUT);
+    newDashboardPage.getCompactModeProcessInfoProcessTypesWhenExpanded().shouldHave(size(3), DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -619,7 +622,8 @@ public class DashboardProcessWidgetTest extends BaseTest {
     // Add FULL_MODE widget
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = navigateToEditDashboardDetails();
     newDashboardDetailsEditPage.addWidget();
-    ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration = newDashboardDetailsEditPage.addNewProcessWidget();
+    ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
+        newDashboardDetailsEditPage.addNewProcessWidget();
     editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
     newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
@@ -629,8 +633,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     newDashboardDetailsEditPage = navigateToEditDashboardDetails();
     editProcessWidgetConfiguration = newDashboardDetailsEditPage.editFullModeProcess();
     editProcessWidgetConfiguration.changeToCompactModeProcess(SHOWCASE, SHOWCASE_APPLICATION);
-    editProcessWidgetConfiguration.getCompactModeProcessCategoryFilter()
-        .shouldBe(Condition.value(SHOWCASE_CATEGORY));
+    editProcessWidgetConfiguration.getCompactModeProcessCategoryFilter().shouldBe(Condition.value(SHOWCASE_CATEGORY));
     editProcessWidgetConfiguration.getCompactModeProcessSelectedProcess()
         .shouldHave(Condition.exactTextCaseSensitive(SHOWCASE_APPLICATION));
 

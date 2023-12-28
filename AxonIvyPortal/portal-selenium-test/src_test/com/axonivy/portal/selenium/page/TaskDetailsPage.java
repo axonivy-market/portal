@@ -65,33 +65,36 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void openActionPanel() {
-    $("[id$=':additional-options:task-detail-more-step']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
-        .click();
+    $("[id$=':additional-options:task-detail-more-step']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition()).click();
     $("[id$=':additional-options:side-steps-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   private void openTriggerEscalationDialog() {
-    $("a[id$='\\:task-trigger-escalation-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("a[id$='\\:task-trigger-escalation-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition()).click();
     $("div[id$='\\:escalation-task-confirmation-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public void triggerEscalation() {
     openTriggerEscalationDialog();
-    $("button[id$='\\:confirm-escalation']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("button[id$='\\:confirm-escalation']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition()).click();
   }
 
   public SelenideElement getPriorityOfTask() {
-    return $("span[id$='task-priority']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("i[class*='priority']").closest("span");
-  }
-
-  public SelenideElement getStateOfTask() {
-    return $("[id$=':general-information:task-detail-state']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("i[class*='task-state']")
+    return $("span[id$='task-priority']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("i[class*='priority']")
         .closest("span");
   }
 
+  public SelenideElement getStateOfTask() {
+    return $("[id$=':general-information:task-detail-state']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("i[class*='task-state']").closest("span");
+  }
+
   public void back() {
-    $("[id$=':task-detail-title-form:back-to-previous-page']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
-        .click();
+    $("[id$=':task-detail-title-form:back-to-previous-page']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition()).click();
   }
 
   public SelenideElement getResponsibleAvatar() {
@@ -142,10 +145,10 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void clickOnSwitchToEditModeButton() {
-    $(By.cssSelector("[id$=':switch-to-edit-mode-button']")).shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
-        .click();
-    $("[id$='task-details-information-panel']").shouldBe(Condition.visible, DEFAULT_TIMEOUT)
-        .shouldHave(Condition.attribute(CLASS_PROPERTY, "grid-stack-item ui-draggable ui-resizable ui-resizable-autohide"));
+    $(By.cssSelector("[id$=':switch-to-edit-mode-button']")).shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition()).click();
+    $("[id$='task-details-information-panel']").shouldBe(Condition.visible, DEFAULT_TIMEOUT).shouldHave(
+        Condition.attribute(CLASS_PROPERTY, "grid-stack-item ui-draggable ui-resizable ui-resizable-autohide"));
   }
 
   public void waitForSwitchToViewModeButtonDisplayed() {
@@ -153,9 +156,11 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void drapAndDropWidgets(String sourceName, String destinationName) {
-    SelenideElement sourceElement = $(String.format("[id$=':task-detail-%s-container']", sourceName)).shouldBe(appear, DEFAULT_TIMEOUT);
-    SelenideElement destinationElement = $(By.cssSelector(String.format("[id$=':task-detail-%s-container']", destinationName)))
-        .shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement sourceElement =
+        $(String.format("[id$=':task-detail-%s-container']", sourceName)).shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement destinationElement =
+        $(By.cssSelector(String.format("[id$=':task-detail-%s-container']", destinationName))).shouldBe(appear,
+            DEFAULT_TIMEOUT);
     Actions actions = new Actions(WebDriverRunner.getWebDriver());
     Action moveWidget = actions.dragAndDrop(sourceElement, destinationElement).build();
     moveWidget.perform();
@@ -204,7 +209,8 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void openAddAttachmentDialog() {
-    $("[id$=':task-documents:add-document-command']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("[id$=':task-documents:add-document-command']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition()).click();
     $("[id$=':task-documents:document-upload-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
@@ -244,7 +250,8 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   private String getDataOfWorkflowEventsTable() {
-    List<WebElement> cells = $("tbody[id$='events-table_data']").shouldBe(appear, DEFAULT_TIMEOUT).findElements(By.cssSelector("td"));
+    List<WebElement> cells =
+        $("tbody[id$='events-table_data']").shouldBe(appear, DEFAULT_TIMEOUT).findElements(By.cssSelector("td"));
     return String.join(",", cells.stream().map(WebElement::getText).collect(Collectors.toList()));
   }
 
@@ -282,8 +289,8 @@ public class TaskDetailsPage extends TemplatePage {
   public List<String> getTaskNoteHasAuthors() {
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1600));
     $("th.task-document-author").shouldBe(appear);
-    List<SelenideElement> noteAuthorElements = $$("td.task-document-author .name-after-avatar")
-        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(1));
+    List<SelenideElement> noteAuthorElements =
+        $$("td.task-document-author .name-after-avatar").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(1));
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
 
@@ -300,6 +307,7 @@ public class TaskDetailsPage extends TemplatePage {
   public void switchToCaseInfoIframe() {
     switchToIframeWithId("i-frame-case-details");
   }
+
   public TaskWidgetPage goBackToTaskListFromTaskDetails() {
     clickBackButton();
     return new TaskWidgetPage();
@@ -312,14 +320,16 @@ public class TaskDetailsPage extends TemplatePage {
 
   public void changePriorityOfTask(int priorityValue) {
     findElementByCssSelector("[id$=':general-information:priority-form:edit-priority-inplace_display']").click();
-    waitForElementDisplayed(By.cssSelector("[id$=':general-information:priority-form:priority-select-menu_label']"), true);
+    waitForElementDisplayed(By.cssSelector("[id$=':general-information:priority-form:priority-select-menu_label']"),
+        true);
     findElementByCssSelector("[id$=':general-information:priority-form:priority-select-menu_label']").click();
     SelenideElement prioritySelectElement = findElementByCssSelector(
         String.format("[id$=':general-information:priority-form:priority-select-menu_%d']", priorityValue));
     waitForElementDisplayed(prioritySelectElement, true);
     prioritySelectElement.click();
     clickByJavaScript($("[id$=':general-information:priority-form:edit-priority-inplace_editor'] .ui-inplace-save"));
-    waitForElementDisplayed(By.cssSelector("[id$=':general-information:priority-form:edit-priority-inplace_editor'] .ui-inplace-save"),
+    waitForElementDisplayed(
+        By.cssSelector("[id$=':general-information:priority-form:edit-priority-inplace_editor'] .ui-inplace-save"),
         false);
   }
 
@@ -347,5 +357,5 @@ public class TaskDetailsPage extends TemplatePage {
   public void clickTaskListBreadCrumb() {
     waitForElementClickableThenClick(By.cssSelector(".portal-breadcrumb ol li:nth-of-type(2) .ui-menuitem-link"));
   }
-  
+
 }

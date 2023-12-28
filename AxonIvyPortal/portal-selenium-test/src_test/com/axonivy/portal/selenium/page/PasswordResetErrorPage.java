@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 
 import com.codeborne.selenide.SelenideElement;
 
-public class PasswordResetErrorPage extends TemplatePage{
+public class PasswordResetErrorPage extends TemplatePage {
 
   private SelenideElement goForgotPasswordButton;
 
@@ -12,10 +12,11 @@ public class PasswordResetErrorPage extends TemplatePage{
   protected String getLoadedLocator() {
     return "[id$='password-reset-error:go-forgot-password-button']";
   }
-  
+
   public PasswordResetErrorPage() {
     waitPageLoaded();
-    this.goForgotPasswordButton =  findElementByCssSelector("button[id='password-reset-error:go-forgot-password-button']");
+    this.goForgotPasswordButton =
+        findElementByCssSelector("button[id='password-reset-error:go-forgot-password-button']");
   }
 
   public void goForgotPassword() {
