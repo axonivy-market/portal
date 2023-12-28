@@ -1,8 +1,10 @@
 package com.axonivy.portal.selenium.common;
 
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.refresh;
+import static java.time.Duration.ZERO;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -317,55 +319,40 @@ public class BaseTest {
   }
 
   /**
-   * Use this instead of {@code Assertions} methods so that Selenide would take screenshots if errors. This is a
-   * workaround because we cannot use @ExtendWith({ScreenShooterExtension.class}) with
-   * `WebDriverRunner.getWebDriver().quit();` in `@AfterEach`
+   * For documentation, see {@link BaseTest#assertTrue(boolean, String)}
    */
   public void assertTrue(boolean condition) {
     assertTrue(condition, "");
   }
 
   /**
-   * For documentation, see {@link BaseTest#assertTrue(boolean)}
+   * Use this instead of {@code Assertions} methods so that Selenide would take screenshots if errors. This is a
+   * workaround because we cannot use @ExtendWith({ScreenShooterExtension.class}) with
+   * `WebDriverRunner.getWebDriver().quit();` in `@AfterEach`
    */
   public void assertTrue(boolean condition, String message) {
     if (!condition) {
       System.out.println(message);
-      $("ASSERTION FAILED, CHECK STACK TRACE").shouldBe(Condition.exist);
+      $("ASSERTION FAILED, CHECK STACK TRACE from BaseTest.assertTrue").shouldBe(exist, ZERO);
     }
   }
 
-  /**
-   * For documentation, see {@link BaseTest#assertTrue(boolean)}
-   */
   public void assertFalse(boolean condition) {
     assertTrue(!condition);
   }
 
-  /**
-   * For documentation, see {@link BaseTest#assertTrue(boolean)}
-   */
   public void assertFalse(boolean condition, String message) {
     assertTrue(!condition, message);
   }
 
-  /**
-   * For documentation, see {@link BaseTest#assertTrue(boolean)}
-   */
   public void assertEquals(Object a, Object b) {
     assertTrue(Objects.equals(a, b));
   }
 
-  /**
-   * For documentation, see {@link BaseTest#assertTrue(boolean)}
-   */
   public void assertEquals(Object a, Object b, String message) {
     assertTrue(Objects.equals(a, b), message);
   }
 
-  /**
-   * For documentation, see {@link BaseTest#assertTrue(boolean)}
-   */
   public void assertNotEquals(Object a, Object b) {
     assertTrue(!Objects.equals(a, b));
   }
