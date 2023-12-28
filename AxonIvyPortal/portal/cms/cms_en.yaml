@@ -261,6 +261,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showCaseDurationTime: For switch on/off the display of the duration time in case details page.
       showErrorLogToConsole: Set to true to enable write error log to browser console
       showGlobalSearch: For switch on/off the display of the global search.
+      showQuickGlobalSearch: For switch on/off the display of the quick global search.
       showProcessInformation: Set to false to disable link to Show Information of process on Processes page (grid mode) and Case Details.
       showTaskDurationTime: For switch on/off the display of the duration time in task details page.
       statisticChartScalingInterval: Interval in seconds to do periodic statistic chart scaling requests. If the interval value is less than 10, periodic statistic chart scaling is disabled.
@@ -514,6 +515,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noRecordsFound: No records found.
     notAvailable: N/A
     note: NOTE
+    numberFromBiggerThanTo: '''To'' must be bigger than ''From''.'
     numberOfSelectedFilter: selected filters
     ok: Ok
     'on': 'on'
@@ -786,6 +788,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfCase: case(s)
     category: Category
     columnManagement: Column management
+    columnType:
+      CUSTOM: Custom field
+      CUSTOM_CASE: Custom case field
+      STANDARD: Standard column
     configuration:
       CustomWidgetExternalLinkWarning: Some websites are not compatible with iframe due to security concerns. Please contact your administrator if the external website is not working properly.
       CustomWidgetTitlePlaceholder: Leave it blank to hide the header of the widget
@@ -1525,6 +1531,9 @@ Dialogs:
             expressWorkflowName: 'Business Details of Case #{0}'
         portal:
           generic:
+            GlobalSearch:
+              ViewAllResults: View all results
+              noResultsText: There are no results.
             dashboard:
               PortalDashboardConfiguration:
                 NewDashboard: New Dashboard
@@ -1731,15 +1740,21 @@ Labels:
       CURRENT_USER_CAN_WORK_ON: Current user can work on
       EMPTY: Is Empty
       END_WITH: Ends With
+      EQUAL: Equal
+      GREATER: Greater
+      GREATER_OR_EQUAL: Greater or equal
       IN: In
       IS: Is
       IS_NOT: Is Not
       LAST: Within the last
+      LESS: Less
+      LESS_OR_EQUAL: Less or equal
       NEXT: Within the next
       NOT_BETWEEN: Not Between
       NOT_CONTAINS: Does Not Contain
       NOT_EMPTY: Is Not Empty
       NOT_END_WITH: Doesn’t end with
+      NOT_EQUAL: Not equal
       NOT_IN: Not In
       NOT_START_WITH: Doesn’t start with
       NO_CATEGORY: No Category
@@ -1776,6 +1791,7 @@ Labels:
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users
+  ViewAllResults: View all results
   adhocTaskRequired: You must add at least one new task.
   disabledUserPrefix: (disabled)
   title: Self Service Ad-hoc Workflow

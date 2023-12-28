@@ -12,7 +12,6 @@ import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
-import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.ProcessType;
@@ -77,15 +76,6 @@ public class DashboardProcess implements Process {
     this.icon = process.getIcon();
     this.category = CategoryUtils.buildExpressCategory(process.getProcessName());
     this.application = IApplication.current().getName();
-  }
-
-  public DashboardProcess(ExternalLink externalLink) {
-    this.id = String.valueOf(externalLink.getId());
-    this.type = ProcessType.EXTERNAL_LINK;
-    this.name = externalLink.getName();
-    this.description = externalLink.getDescription();
-    this.startLink = externalLink.getLink();
-    this.icon = externalLink.getIcon();
   }
 
   @Override

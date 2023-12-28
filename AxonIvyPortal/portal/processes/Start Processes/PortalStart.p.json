@@ -1580,10 +1580,11 @@
       "type" : "SubProcessCall",
       "name" : "Functional Processes/OpenPortalSearch",
       "config" : {
-        "processCall" : "Functional Processes/OpenPortalSearch:call(String)",
+        "processCall" : "Functional Processes/OpenPortalSearch:call(String,String)",
         "call" : {
           "map" : {
-            "param.keyword" : "in.keyword"
+            "param.keyword" : "in.keyword",
+            "param.activeTabIndex" : "org.apache.commons.lang.StringUtils.defaultIfBlank(in.activeTabIndex, \"0\")"
           }
         }
       },
@@ -1599,9 +1600,11 @@
         "signature" : "GlobalSearchPage",
         "input" : {
           "params" : [
-            { "name" : "keyword", "type" : "String", "desc" : "" }
+            { "name" : "keyword", "type" : "String", "desc" : "" },
+            { "name" : "activeTabIndex", "type" : "String", "desc" : "" }
           ],
           "map" : {
+            "out.activeTabIndex" : "param.activeTabIndex",
             "out.keyword" : "param.keyword"
           }
         },
@@ -2069,7 +2072,7 @@
       "type" : "SubProcessCall",
       "name" : "Functional Processes/Navigator",
       "config" : {
-        "processCall" : "Functional Processes/Navigator:viewRelatedTaskInFrame(String)",
+        "processCall" : "Functional Processes/Navigator:viewRelatedTask(String,Boolean)",
         "call" : {
           "map" : {
             "param.taskUUID" : "in.uuid"

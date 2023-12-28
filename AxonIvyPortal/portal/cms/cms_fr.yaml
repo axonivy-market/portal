@@ -261,6 +261,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showCaseDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de l'affaire.
       showErrorLogToConsole: Défini à true pour activer l'écriture du journal des erreurs dans la console du navigateur.
       showGlobalSearch: Pour activer/désactiver l'affichage de la recherche globale.
+      showQuickGlobalSearch: Pour activer/désactiver l'affichage de la recherche globale rapide.
       showProcessInformation: Définissez la valeur false pour désactiver le lien vers l'option Afficher les informations du processus sur la page processus (mode grille) et détails du cas.
       showTaskDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de la tâche.
       statisticChartScalingInterval: Intervalle en secondes pour effectuer les demandes de mise à l'échelle périodique des graphiques statistiques. Si la valeur de l'intervalle est inférieure à 10, la mise à l'échelle périodique des graphiques statistiques est désactivée.
@@ -514,6 +515,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noRecordsFound: Aucun résultat
     notAvailable: '-'
     note: NOTE
+    numberFromBiggerThanTo: L'adresse de destination doit être plus grande que l'adresse de départ.
     numberOfSelectedFilter: filtres sélectionnés
     ok: Ok
     'on': le
@@ -781,6 +783,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfCase: cas
     category: Catégorie
     columnManagement: Gestion des colonnes
+    columnType:
+      CUSTOM: Champ personnalisé
+      CUSTOM_CASE: Champ d'affaire personnalisé
+      STANDARD: Colonne standard
     configuration:
       CustomWidgetExternalLinkWarning: Certains web sites ne sont pas compatibles avec les iframe pour des raisons de sécurité. Veuillez contacter votre administrateur si le web site externe ne fonctionne pas correctement.
       CustomWidgetTitlePlaceholder: Laissez-le vide pour masquer l'en-tête du widget
@@ -1521,6 +1527,9 @@ Dialogs:
             expressWorkflowName: 'Détails de cas #{0}'
         portal:
           generic:
+            GlobalSearch:
+              ViewAllResults: Voir tous les résultats
+              noResultsText: Il n'y a pas de résultats.
             dashboard:
               PortalDashboardConfiguration:
                 NewDashboard: Nouveau tableau de bord
@@ -1724,15 +1733,20 @@ Labels:
       CURRENT_USER_CAN_WORK_ON: L'utilisateur actuel peut travailler sur
       EMPTY: Est vide
       END_WITH: Se termine par
+      EQUAL: Égalité
+      GREATER_OR_EQUAL: Greater or equal
       IN: En
       IS: Est
       IS_NOT: N'est pas
       LAST: Au cours des dernières
+      LESS: Less
+      LESS_OR_EQUAL: Less or equal
       NEXT: Dans les prochains
       NOT_BETWEEN: Pas entre
       NOT_CONTAINS: Ne contient pas
       NOT_EMPTY: N'est pas vide
       NOT_END_WITH: Ne se termine pas par
+      NOT_EQUAL: Pas d'égalité
       NOT_IN: Pas dans
       NOT_START_WITH: Ne commence pas par
       NO_CATEGORY: Pas de catégorie
@@ -1762,6 +1776,7 @@ Labels:
   Task: Tâche
   TaskItemDetail: Détails de la tâche
   TaskUser-Explain: Liste d’utilisateurs séparés par des virgules
+  ViewAllResults: Voir tous les résultats
   adhocTaskRequired: Vous devez ajouter au moins une tâche.
   disabledUserPrefix: (désactivé)
   title: Workflow ad hoc Self Service

@@ -166,7 +166,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     isWorkingOnATask = Optional.ofNullable(requestParamMap.get(IS_WORKING_ON_A_TASK)).map(p -> StringUtils.isNotBlank(p) ? BooleanUtils.toBoolean(p) : true).get();
     caseId = Optional.ofNullable(requestParamMap.get(CASE_ID_PARAM)).map(p -> StringUtils.isNotBlank(p) ? Long.parseLong(p) : null).orElse(null);
     taskName = Optional.ofNullable(requestParamMap.get(TASK_NAME)).orElse(StringUtils.EMPTY);
-    taskIcon = Optional.ofNullable(requestParamMap.get(TASK_ICON)).orElse(DEFAULT_TASK_ICON);
+    taskIcon = StringUtils.defaultIfBlank(requestParamMap.get(TASK_ICON), DEFAULT_TASK_ICON);
   }
 
   private Map<String, String> getRequestParameterMap() {
