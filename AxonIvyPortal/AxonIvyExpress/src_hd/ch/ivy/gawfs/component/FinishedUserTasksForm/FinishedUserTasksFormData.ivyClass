@@ -1,4 +1,0 @@
-FinishedUserTasksFormData #class
-ch.ivy.gawfs.component.FinishedUserTasksForm #namespace
-finishedTasks java.util.List<gawfs.TaskDef> #field
-finishedTasks PERSISTENT #fieldModifier

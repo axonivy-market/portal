@@ -15,11 +15,11 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.bo.History;
 import ch.ivy.addon.portalkit.bo.History.HistoryType;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
+import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -168,7 +168,7 @@ public class HistoryService {
   }
 
   private List<IWorkflowEvent> getTaskWorkflowEvents(ITask task) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return Sudo.get(() -> {
       return PermissionUtils.checkReadAllWorkflowEventPermission() ? task.getWorkflowEvents() : new ArrayList<>();
     });
   }

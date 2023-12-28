@@ -18,7 +18,6 @@ public class CreatedDateBetweenOperatorHandler {
     return instance;
   }
 
-  
   public CaseQuery buildBetweenQuery(DashboardFilter filter) {
     Date from = PortalDateUtils.getStartOfDate(filter.getFromDate());
     Date to = PortalDateUtils.getEndOfDate(filter.getToDate());

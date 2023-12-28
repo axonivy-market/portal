@@ -220,7 +220,7 @@ public class SecurityUtils {
             List<IUser> result1 = new ArrayList<IUser>();
             List<IUser> users = ISecurityContext.current().users().paged().stream().collect(Collectors.toList());
             for (IUser u : users) {
-              if (u.getId() != ISecurityContext.current().users().system().getId()) {
+              if (!u.getSecurityMemberId().equals(ISecurityContext.current().users().system().getSecurityMemberId())) {
                 result1.add(u);
               }
             }

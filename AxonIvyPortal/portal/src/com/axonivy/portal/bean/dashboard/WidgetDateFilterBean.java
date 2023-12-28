@@ -11,8 +11,8 @@ import javax.faces.bean.ViewScoped;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
+import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 
-import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -49,7 +49,8 @@ public class WidgetDateFilterBean implements Serializable {
   }
 
   private String getMessagePrefix(String field, int index) {
-    return String.format(MESSAGE_PREFIX_PATTERN, DashboardStandardCaseColumn.findBy(Optional.ofNullable(field).orElse("")).getLabel(), index + 1);
+    return String.format(MESSAGE_PREFIX_PATTERN,
+        FilterFieldFactory.findBy(Optional.ofNullable(field).orElse("")).getLabel(), index + 1);
   }
 
   public String getWrongFormatMessage(String field, int index) {
@@ -61,11 +62,15 @@ public class WidgetDateFilterBean implements Serializable {
   }
 
   public void updateToDate(DashboardFilter filter) {
-    filter.setTo(formatter.format(filter.getToDate()));
+    if (Optional.ofNullable(filter).map(DashboardFilter::getToDate).isPresent()) {
+      filter.setTo(formatter.format(filter.getToDate()));
+    }
   }
 
   public void updateFromDate(DashboardFilter filter) {
-    filter.setFrom(formatter.format(filter.getFromDate()));
+    if (Optional.ofNullable(filter).map(DashboardFilter::getFromDate).isPresent()) {
+      filter.setFrom(formatter.format(filter.getFromDate()));
+    }
   }
 
   public List<FilterOperator> getCreatedDateOperators() {
