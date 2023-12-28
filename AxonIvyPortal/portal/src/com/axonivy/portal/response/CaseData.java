@@ -43,7 +43,7 @@ public class CaseData {
     this.uuid = caze.uuid();
     this.name = StringUtils.defaultIfBlank(caze.getName(),
         Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable"));
-    this.link = PortalNavigatorAPI.buildUrlToPortalCaseDetailsPageByUUID(caze.uuid());
+    this.link = PortalNavigatorAPI.buildUrlToPortalCaseDetailsPage(caze.uuid());
   }
 
 }
