@@ -8,6 +8,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -64,7 +65,7 @@ public class ExternalLink extends AbstractConfiguration {
 
   @JsonIgnore
   public boolean isAbleToEdit() {
-    return this.creatorId == null ? true : this.creatorId == Ivy.session().getSessionUser().getId();
+    return (this.creatorId == null || PermissionUtils.isSessionUserHasAdminRole()) ? true : this.creatorId == Ivy.session().getSessionUser().getId();
   }
 
   public String getDescription() {
