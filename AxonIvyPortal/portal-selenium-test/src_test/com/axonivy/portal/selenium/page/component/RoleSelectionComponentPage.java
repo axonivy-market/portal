@@ -67,7 +67,8 @@ public class RoleSelectionComponentPage extends TemplatePage {
   private SelenideElement selectRoleSelection(String componentId, String keyword) {
     $("input[id$='" + componentId + "_input']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).clear();
     $("input[id$='" + componentId + "_input']").sendKeys(keyword);
-    ElementsCollection selectionItems = $("span[id$='" + componentId + "_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).findAll(".ui-autocomplete-item");
+    ElementsCollection selectionItems = $("span[id$='" + componentId + "_panel']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).findAll(".ui-autocomplete-item");
     return selectionItems.get(0);
   }
 

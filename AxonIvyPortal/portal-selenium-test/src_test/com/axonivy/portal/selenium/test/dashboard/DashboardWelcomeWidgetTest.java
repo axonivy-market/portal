@@ -21,7 +21,7 @@ public class DashboardWelcomeWidgetTest extends BaseTest {
 
   private static final String WIDGET_ID = "welcome-widget1";
   private NewDashboardPage newDashboardPage;
-  
+
   @Override
   @BeforeEach
   public void setup() {

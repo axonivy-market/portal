@@ -30,8 +30,10 @@ public class DisabledUserTest extends BaseTest {
   private static final String DISABLED_VISIBILITY_USER_FULL_DISPLAY_NAME =
       "(disabled) Visibility Test User (visibility_test_user)";
   private static final String DISABLED_VISIBILITY_USER_BRIEF_DISPLAY_NAME = "(disabled) Visibility Test User";
-  private static final String DISABLE_VISIBILITY_USER_CREATION_LINK = "portalKitTestHelper/153CACC26D0D4C3D/disableVisibilityUser.ivp";
-  private static final String TASK_CASE_CREATION_FOR_DISABLED_USER_LINK = "portalKitTestHelper/153CACC26D0D4C3D/createTaskAndCaseForDisabledUser.ivp";
+  private static final String DISABLE_VISIBILITY_USER_CREATION_LINK =
+      "portalKitTestHelper/153CACC26D0D4C3D/disableVisibilityUser.ivp";
+  private static final String TASK_CASE_CREATION_FOR_DISABLED_USER_LINK =
+      "portalKitTestHelper/153CACC26D0D4C3D/createTaskAndCaseForDisabledUser.ivp";
 
 
   @Override
@@ -47,7 +49,8 @@ public class DisabledUserTest extends BaseTest {
     redirectToRelativeLink(TASK_CASE_CREATION_FOR_DISABLED_USER_LINK);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterByResponsible(VISIBILITY_USER_FULL_NAME);
-    assertTrue(taskWidgetPage.getFilterValue("responsible-filter").contains(DISABLED_VISIBILITY_USER_FULL_DISPLAY_NAME));
+    assertTrue(
+        taskWidgetPage.getFilterValue("responsible-filter").contains(DISABLED_VISIBILITY_USER_FULL_DISPLAY_NAME));
     assertEquals(1, taskWidgetPage.countTasks().size());
     taskWidgetPage.countTasks().shouldHave(size(1));
     assertEquals(DISABLED_VISIBILITY_USER_BRIEF_DISPLAY_NAME, taskWidgetPage.getResponsibleOfTaskAt(0));
@@ -61,10 +64,11 @@ public class DisabledUserTest extends BaseTest {
     CaseWidgetPage caseWidgetPage = newDashboardPage.openCaseList();
     caseWidgetPage.openAdvancedFilter("Creator", "creator");
     caseWidgetPage.filterByCreator(VISIBILITY_USER_FULL_NAME);
-    WaitHelper.assertTrueWithWait(() -> caseWidgetPage.getFilterValue("creator-filter").contains(DISABLED_VISIBILITY_USER_FULL_DISPLAY_NAME));
+    WaitHelper.assertTrueWithWait(
+        () -> caseWidgetPage.getFilterValue("creator-filter").contains(DISABLED_VISIBILITY_USER_FULL_DISPLAY_NAME));
     caseWidgetPage.countCases().shouldHave(size(1));
     assertEquals(DISABLED_VISIBILITY_USER_BRIEF_DISPLAY_NAME, caseWidgetPage.getCreatorAt(0));
-    
+
   }
 
   @Test

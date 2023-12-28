@@ -23,7 +23,7 @@ public class ProcessInformationPage extends TemplatePage {
   public SelenideElement getBackLink() {
     return $("a[id='back-link']");
   }
-  
+
   public void checkBackLinkAndStartButtonShown() {
     getDisplayedBackLink();
     getDisplayedStartButton().shouldBe(Condition.enabled);

@@ -40,7 +40,8 @@ public abstract class TemplatePage extends AbstractPage {
   protected static final String LAYOUT_WRAPPER = ".layout-wrapper";
   public static final String ID_PROPERTY = "id";
   public static final String CLASS_PROPERTY = "class";
-  public static final String CURRENT_BREADCRUMB_SELECTOR = ".portal-breadcrumb li:last-child .ui-menuitem-link.ui-state-disabled";
+  public static final String CURRENT_BREADCRUMB_SELECTOR =
+      ".portal-breadcrumb li:last-child .ui-menuitem-link.ui-state-disabled";
   private static final String HOME_BREADCRUMB_SELECTOR = ".portal-breadcrumb .ui-menuitem-link:first-child";
   public static final String PORTAL_GLOBAL_GROWL_ID = "portal-global-growl_container";
   protected static final String COMPONENT_PAGE_LOCATOR = "//*[contains(@id,'theme-selection')]";
@@ -53,7 +54,7 @@ public abstract class TemplatePage extends AbstractPage {
   public String getPageTitle() {
     return driver.getTitle();
   }
-  
+
   public void assertPageTitle(String titleExpect) {
     webdriver().shouldHave(WebDriverConditions.title(titleExpect));
   }
@@ -65,6 +66,7 @@ public abstract class TemplatePage extends AbstractPage {
   protected Condition clickable() {
     return and("should be clickable", visible, enabled);
   }
+
   public WebDriver driver = WebDriverRunner.getWebDriver();
 
   public void switchLastBrowserTab() {
@@ -75,7 +77,8 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void waitUntilElementToBeClickable(SelenideElement element) {
-    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(ExpectedConditions.elementToBeClickable(element));
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
+        .until(ExpectedConditions.elementToBeClickable(element));
   }
 
   public void switchToIframeWithId(String id) {
@@ -128,8 +131,8 @@ public abstract class TemplatePage extends AbstractPage {
     } else {
       $(element).shouldBe(disappear, Duration.ofSeconds(timeout));
     }
-    $("div[id='portal-global-growl_container']").shouldBe(exist, DEFAULT_TIMEOUT).$("div.ui-growl-message").shouldBe(disappear,
-        DEFAULT_TIMEOUT);
+    $("div[id='portal-global-growl_container']").shouldBe(exist, DEFAULT_TIMEOUT).$("div.ui-growl-message")
+        .shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void waitForGrowlMessageDisplayClearly() {
@@ -168,7 +171,7 @@ public abstract class TemplatePage extends AbstractPage {
   public void waitForElementClickableThenClick(SelenideElement element) {
     waitForElementClickable(element).click();
   }
-  
+
   public void waitForElementClickableThenClick(By by) {
     waitForElementClickable($(by)).click();
   }
@@ -203,14 +206,14 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void openUserSettingMenu() {
-//    waitForElementDisplayed(By.id("user-settings-menu"), true);
+    // waitForElementDisplayed(By.id("user-settings-menu"), true);
     clickByJavaScript(findElementById("user-settings-menu"));
     $("[id='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void waitForPageLoad() {
-    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
-        .until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(
+        webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
   }
 
   public void waitForGrowlTitleDisappear() {
@@ -223,7 +226,8 @@ public abstract class TemplatePage extends AbstractPage {
   public LoginPage clickOnLogout() {
     openUserSettingMenu();
     $("[id='logout-setting:logout-menu-item']").shouldBe(appear, DEFAULT_TIMEOUT);
-    WaitHelper.waitForNavigation(() -> $("[id='logout-setting:logout-menu-item']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+    WaitHelper.waitForNavigation(
+        () -> $("[id='logout-setting:logout-menu-item']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
     return new LoginPage();
   }
 
@@ -274,11 +278,13 @@ public abstract class TemplatePage extends AbstractPage {
 
   public String getAnnouncementMessage() {
     waitForElementDisplayed(By.cssSelector("div[class*='announcement-message-customizable']"), true);
-    return WebDriverRunner.getWebDriver().findElement(By.cssSelector("div[class*='announcement-message-customizable']")).getText();
+    return WebDriverRunner.getWebDriver().findElement(By.cssSelector("div[class*='announcement-message-customizable']"))
+        .getText();
   }
 
   public boolean isAnnouncementMessageNotDisplayed() {
-    if (WebDriverRunner.getWebDriver().findElements(By.cssSelector("div[class*='announcement-message-customizable']")).size() == 0) {
+    if (WebDriverRunner.getWebDriver().findElements(By.cssSelector("div[class*='announcement-message-customizable']"))
+        .size() == 0) {
       return true;
     }
     return false;
@@ -302,8 +308,7 @@ public abstract class TemplatePage extends AbstractPage {
 
     private static final String GLOBAL_SEARCH_INPUT_SELECTOR = "#global-search-component\\:global-search-data";
 
-    public GlobalSearch() {
-    }
+    public GlobalSearch() {}
 
     public boolean isDisplayed() {
       waitForElementDisplayed(By.cssSelector("a[id$='global-search-item']"), true);
@@ -478,36 +483,38 @@ public abstract class TemplatePage extends AbstractPage {
     });
     switchToIFrameOfTask();
   }
-  
+
 
   public ChatPage getChat() {
     waitForElementDisplayed(By.id("toggle-chat-panel-command"), true, 5);
     waitForElementClickableThenClick("[id$='toggle-chat-panel-command']");
     return new ChatPage();
   }
-  
+
   public NewDashboardPage goToHomeFromBreadcrumbWithWarning() {
     waitForElementDisplayed(By.cssSelector(HOME_BREADCRUMB_SELECTOR), true);
     waitForElementClickableThenClick(By.cssSelector(HOME_BREADCRUMB_SELECTOR));
     waitForElementDisplayed(By.id("user-menu-required-login:warning-before-leaving-task-component:leave-button"), true);
-    waitForElementClickableThenClick(By.id("user-menu-required-login:warning-before-leaving-task-component:leave-button"));
+    waitForElementClickableThenClick(
+        By.id("user-menu-required-login:warning-before-leaving-task-component:leave-button"));
     return new NewDashboardPage();
   }
 
   public SelenideElement getGlobalGrowlMessage() {
     return findElementById(PORTAL_GLOBAL_GROWL_ID).find(By.cssSelector(".ui-growl-message"));
   }
-  
+
   public GlobalSearchResultPage inputGlobalSearchKeyword(String keyword) {
     $(".topbar-item.search-item").shouldBe(appear, DEFAULT_TIMEOUT).click();
-    $("input[id$='global-search-component:global-search-data']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT);
+    $("input[id$='global-search-component:global-search-data']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable,
+        DEFAULT_TIMEOUT);
     getGlobalSearchInput().click();
     getGlobalSearchInput().sendKeys(keyword);
     getGlobalSearchInput().sendKeys(Keys.ENTER.toString());
     $("#search-results-tabview").shouldBe(appear, DEFAULT_TIMEOUT);
     return new GlobalSearchResultPage();
   }
-  
+
   private SelenideElement getGlobalSearchInput() {
     return $("#global-search-component\\:global-search-data").shouldBe(appear, DEFAULT_TIMEOUT);
   }

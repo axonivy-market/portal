@@ -22,7 +22,8 @@ import ch.ivy.addon.portalkit.enums.DeputyRoleType;
 
 public class AbsencePage extends TemplatePage {
 
-  private static final String DELETE_ABSENCE__LINK_ID_PATTERN = "absences-management-form:absence-table:%d:delete-absence";
+  private static final String DELETE_ABSENCE__LINK_ID_PATTERN =
+      "absences-management-form:absence-table:%d:delete-absence";
   private static final String EDIT_ABSENCE__LINK_ID_PATTERN = "absences-management-form:absence-table:%d:edit-absence";
 
   @Override
@@ -51,12 +52,14 @@ public class AbsencePage extends TemplatePage {
   }
 
   public SelenideElement getMyDeputy(int deputyRoleIndex) {
-    String deputiesSelector = String.format("a[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
+    String deputiesSelector =
+        String.format("a[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
     return $(deputiesSelector).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public String getMyDisabledDeputy(int deputyRoleIndex) {
-    String deputiesSelector = String.format("span[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
+    String deputiesSelector = String
+        .format("span[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
     return $(deputiesSelector).shouldBe(appear, DEFAULT_TIMEOUT).getText();
   }
 
@@ -104,11 +107,13 @@ public class AbsencePage extends TemplatePage {
   }
 
   public void waitForElementValueChanged(String cssSelector, String expectedValue) {
-    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(ExpectedConditions.textToBe(By.cssSelector(cssSelector), expectedValue));
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
+        .until(ExpectedConditions.textToBe(By.cssSelector(cssSelector), expectedValue));
   }
 
   private void clickSelectedDeputiesLink(int deputyRoleIndex) {
-    String deputiesSelector = String.format("a[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
+    String deputiesSelector =
+        String.format("a[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
     $(deputiesSelector).shouldBe(appear, DEFAULT_TIMEOUT);
     waitForElementClickableThenClick(deputiesSelector);
     $(By.id("choose-deputy-dialog")).shouldBe(appear, DEFAULT_TIMEOUT);
@@ -134,11 +139,13 @@ public class AbsencePage extends TemplatePage {
     SelenideElement substituted = $(selectedUserInput).shouldBe(appear, DEFAULT_TIMEOUT);
     substituted.clear();
     substituted.sendKeys(substitutedUser);
-    waitForElementClickableThenClick("[id='absences-management-form:user-absence-selection-component:user-absence_panel']");
+    waitForElementClickableThenClick(
+        "[id='absences-management-form:user-absence-selection-component:user-absence_panel']");
   }
 
   public String getSubstitutedByAdmin(int rowIndex) {
-    SelenideElement deputyFor = $("[id$=':substitution-table']").$$(By.cssSelector(".name-after-avatar")).shouldBe(CollectionCondition.size(1)).get(rowIndex);
+    SelenideElement deputyFor = $("[id$=':substitution-table']").$$(By.cssSelector(".name-after-avatar"))
+        .shouldBe(CollectionCondition.size(1)).get(rowIndex);
     return deputyFor.getText();
   }
 
@@ -157,7 +164,8 @@ public class AbsencePage extends TemplatePage {
   }
 
   public void waitForAbsencesGrowlMessageDisplay() {
-    SelenideElement growlMessage = $("div[id$='absences-management-form:absences-management-info_container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement growlMessage =
+        $("div[id$='absences-management-form:absences-management-info_container']").shouldBe(appear, DEFAULT_TIMEOUT);
     $(growlMessage.findElement(By.className("ui-growl-item-container"))).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 

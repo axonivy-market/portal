@@ -38,7 +38,7 @@ import com.codeborne.selenide.Condition;
 import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
 
 @IvyWebTest
-public class PortalExpressTest extends BaseTest{
+public class PortalExpressTest extends BaseTest {
   protected static final int USER_TASK_INDEX = 0;
   protected static final int USER_TASK_WITH_EMAIL_INDEX = 1;
   protected static final int INFORMATION_EMAIL_INDEX = 2;
@@ -57,7 +57,7 @@ public class PortalExpressTest extends BaseTest{
   ExpressResponsible responsible2 = setExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
   ExpressResponsible groupHr = setExpressResponsible("Human resources department", true);
 
-  
+
   @Override
   @BeforeEach
   public void setup() {
@@ -65,7 +65,7 @@ public class PortalExpressTest extends BaseTest{
     redirectToRelativeLink(grantPortalPermission);
     newDashboardPage = new NewDashboardPage();
   }
-  
+
   @Test
   public void testOpenProcessWidgetWithoutCreateExpressWorkflowPermission() throws Exception {
     String denyAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/denyPortalPermission.ivp";
@@ -128,7 +128,7 @@ public class PortalExpressTest extends BaseTest{
     $(By.xpath("//label[text()='Data Provider Item 2']")).shouldBe(Condition.exist, DEFAULT_TIMEOUT);
     $(By.xpath("//label[text()='Data Provider Item 3']")).shouldBe(Condition.exist, DEFAULT_TIMEOUT);
   }
-  
+
   @Test
   public void createFullTaskType() {
     goToExpressCreationPage();
@@ -201,7 +201,7 @@ public class PortalExpressTest extends BaseTest{
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksInExpandedModeBy("Test create default process: Final Review");
     taskWidgetPage.startTask(0);
-    
+
     ExpressReviewPage reviewPage = new ExpressReviewPage();
     reviewPage.finish();
   }
@@ -225,7 +225,7 @@ public class PortalExpressTest extends BaseTest{
     login(TestAccount.DEMO_USER);
     startExpressProcess(testProcessName);
   }
-  
+
   @Test
   public void testUserAdminCanViewEditDeleteProcess() {
     createAdministratedWorkflow(testProcessName, Arrays.asList(responsible1, groupHr), false);
@@ -280,11 +280,11 @@ public class PortalExpressTest extends BaseTest{
     newDashboardPage = new NewDashboardPage();
     GlobalSearchResultPage searchResultPage = newDashboardPage.inputGlobalSearchKeyword(testProcessName);
     searchResultPage.waitForFirstTabFinishedLoading();
-    
+
     assertTrue(searchResultPage.isInfoWorkflowIcon());
     assertTrue(searchResultPage.isExpressProcessLogo());
   }
-  
+
   @Test
   public void testRejectedApprovalWhenMultiTask() {
     goToExpressCreationPage();
@@ -306,15 +306,16 @@ public class PortalExpressTest extends BaseTest{
     formDefinition.executeWorkflowAndWaitForUserTaskWithEmailDisplay();
     executeComplexProcess();
   }
+
   protected void goToCreateExpressProcess() {
     processWidget = NavigationHelper.navigateToProcessList();
     processWidget.openExpressPage();
   }
-  
+
   protected void goToExpressCreationPage() {
     redirectToRelativeLink(expressStartLink);
   }
-  
+
   private void createAdministratedWorkflow(String expressProcessName, List<ExpressResponsible> processOwners,
       Boolean isMultiApproved) {
     ExpressFormDefinitionPage formDefinition;
@@ -329,9 +330,8 @@ public class PortalExpressTest extends BaseTest{
     }
     formDefinition.finishWorkflow();
   }
-  
-  protected ExpressFormDefinitionPage configureExpressProcessWhenMultiApproval(
-      ExpressProcessPage expressProcessPage) {
+
+  protected ExpressFormDefinitionPage configureExpressProcessWhenMultiApproval(ExpressProcessPage expressProcessPage) {
     ExpressResponsible responsible1 = setExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
     ExpressResponsible responsible2 = setExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
 
@@ -352,7 +352,7 @@ public class PortalExpressTest extends BaseTest{
     formDefinition.countElementPrepareToDrag(0);
     return formDefinition;
   }
-  
+
   protected ExpressFormDefinitionPage configureExpressProcessWhenOneApproval(ExpressProcessPage expressProcessPage) {
     ExpressResponsible responsible1 = setExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
     ExpressResponsible responsible2 = setExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
@@ -367,7 +367,7 @@ public class PortalExpressTest extends BaseTest{
     formDefinition.countElementPrepareToDrag(0);
     return formDefinition;
   }
-  
+
   protected void startExpressProcess(String processName) {
     newDashboardPage = new NewDashboardPage();
     GlobalSearch globalSearch = newDashboardPage.getGlobalSearch();
@@ -387,12 +387,13 @@ public class PortalExpressTest extends BaseTest{
     login(TestAccount.DEMO_USER);
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     String approvalResult = executeReview();
-    assertEquals("Portal Demo User,Approved at first level,Yes," + TestAccount.DEMO_USER.getFullName()
-        + ",Approved at second level,Yes," + TestAccount.ADMIN_USER.getFullName()
-        + ",Approved at second level,Yes", approvalResult);
+    assertEquals(
+        "Portal Demo User,Approved at first level,Yes," + TestAccount.DEMO_USER.getFullName()
+            + ",Approved at second level,Yes," + TestAccount.ADMIN_USER.getFullName() + ",Approved at second level,Yes",
+        approvalResult);
     new ExpressEndPage().finish();
   }
-  
+
   protected void executeApproval(String comment, int taskIndex, String taskNameFilter, int taskCountAfterFiltering) {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     if (taskWidgetPage.countTasks().size() <= taskIndex) {
@@ -407,11 +408,11 @@ public class PortalExpressTest extends BaseTest{
     approvalPage1.comment(comment);
     approvalPage1.approve();
   }
-  
+
   protected void executeApproval(String comment, int taskIndex) {
     executeApproval(comment, taskIndex, null, 1);
   }
-  
+
   protected String executeReview() {
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.startTask(0);
@@ -420,7 +421,7 @@ public class PortalExpressTest extends BaseTest{
     reviewPage.finish();
     return approvalResult;
   }
-  
+
   protected void rejectWhenMultiApproval() {
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.finish();
@@ -429,8 +430,7 @@ public class PortalExpressTest extends BaseTest{
     taskWidgetPage.countTasks().shouldBe(CollectionCondition.size(1));
     rejectApproval("Rejected at first level");
     String approvalResult = executeReview();
-    assertEquals("Portal Demo User,Rejected at first level,No",
-        approvalResult);
+    assertEquals("Portal Demo User,Rejected at first level,No", approvalResult);
     new ExpressEndPage().finish();
   }
 
@@ -441,7 +441,7 @@ public class PortalExpressTest extends BaseTest{
     approvalPage1.comment(comment);
     approvalPage1.reject();
   }
-  
+
 
   protected ExpressFormDefinitionPage configureComplexProcess(ExpressProcessPage expressProcessPage) {
     ExpressResponsible responsible1 = setExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
@@ -477,7 +477,7 @@ public class PortalExpressTest extends BaseTest{
     formDefinition.countElementPrepareToDrag(0);
     return formDefinition;
   }
-  
+
   protected void executeComplexProcess() {
     UserTaskWithMailFormPage userTaskWithMailFormPage = new UserTaskWithMailFormPage();
     userTaskWithMailFormPage.waitPageLoaded();
@@ -491,7 +491,7 @@ public class PortalExpressTest extends BaseTest{
     assertEquals("Portal Demo User,Approved at first level,Yes", approvalResult);
     new ExpressEndPage().finish();
   }
-  
+
   protected void executeUserTask() {
     taskWidgetPage = new TaskWidgetPage();
     refreshPage();
@@ -501,7 +501,7 @@ public class PortalExpressTest extends BaseTest{
     expressTaskPage.finish();
     taskWidgetPage = new TaskWidgetPage();
   }
-  
+
 
   protected String executeReview(String taskName) {
     taskWidgetPage = NavigationHelper.navigateToTaskList();

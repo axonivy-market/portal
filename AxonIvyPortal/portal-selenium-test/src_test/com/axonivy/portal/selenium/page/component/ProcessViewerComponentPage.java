@@ -5,7 +5,7 @@ import static com.codeborne.selenide.Selenide.$;
 import com.axonivy.portal.selenium.page.TemplatePage;
 import com.codeborne.selenide.Condition;
 
-public class ProcessViewerComponentPage extends TemplatePage{
+public class ProcessViewerComponentPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {

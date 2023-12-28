@@ -41,7 +41,7 @@ public class SearchProcessTest extends BaseTest {
     refreshPage();
     assertTrue(taskWidgetPage.getNameOfTaskAt(0).contains("Payment"));
   }
-  
+
   @Test
   public void testFindCaseMapByName() {
     String caseMapName = "Case Map: Leave Request";

@@ -40,7 +40,7 @@ public class AdhocScreenshotTest extends ScreenshotBaseTest {
     String defaultTaskName2 = "Adhoc-Inform team member";
     String defaultTaskComment1 = "Get approve from CEO";
     String defaultTaskComment2 = "Inform team";
-    
+
     ScreenshotUtils.resizeBrowser(new Dimension(1200, 580));
     showNewDashboard();
     MainMenuPage menuPage = new MainMenuPage();
@@ -54,7 +54,7 @@ public class AdhocScreenshotTest extends ScreenshotBaseTest {
     taskTemplatePage.clickOnStartAdhocLink();
     taskTemplatePage.clickAdhocOkButton();
 
-    //create tasks in adhoc page
+    // create tasks in adhoc page
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 1200));
     ExpressProcessPage expressPage = new ExpressProcessPage();
 
@@ -67,14 +67,14 @@ public class AdhocScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.EXPRESS_FOLDER + "adhoc-define");
     expressPage.clickSave();
 
-    //first task of adhoc
+    // first task of adhoc
     DefaultExpressTaskPage defaultExpressTaskPage = new DefaultExpressTaskPage();
     defaultExpressTaskPage.enterTextToDefaultTask(defaultTaskComment1);
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 600));
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.EXPRESS_FOLDER + "adhoc-first-task");
     defaultExpressTaskPage.clickOK();
-    
-    //approval task of adhoc
+
+    // approval task of adhoc
     NewDashboardPage homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
     menuPage = new MainMenuPage();
@@ -99,6 +99,7 @@ public class AdhocScreenshotTest extends ScreenshotBaseTest {
     taskTemplatePage.clickActionButton();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.EXPRESS_FOLDER + "adhoc-show-history");
     ScreenshotUtils.maximizeBrowser();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskTemplatePage.openAdhocHistoryDialog(), ScreenshotUtils.EXPRESS_FOLDER + "adhoc-process-history", new ScreenshotMargin(20));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskTemplatePage.openAdhocHistoryDialog(),
+        ScreenshotUtils.EXPRESS_FOLDER + "adhoc-process-history", new ScreenshotMargin(20));
   }
 }

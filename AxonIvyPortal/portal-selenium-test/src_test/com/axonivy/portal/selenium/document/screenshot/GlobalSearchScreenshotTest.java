@@ -28,7 +28,7 @@ public class GlobalSearchScreenshotTest extends ScreenshotBaseTest {
     NewDashboardPage homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
     GlobalSearchResultPage resultPage = homePage.inputGlobalSearchKeyword("process");
-    
+
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 800));
     resultPage.waitUtilProcessWidgetDisplayed();
     ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.SEARCH_FOLDER + "global-search-result");

@@ -19,8 +19,10 @@ import ch.ivy.addon.portalkit.enums.PortalPermission;
 @IvyWebTest
 public class RoleManagementTest extends BaseTest {
 
-  private static final String DENY_SPECIFIC_PERMISSION = "portalKitTestHelper/14DE09882B540AD5/denySpecificPortalPermission.ivp?portalPermission=%s";
-  private static final String GRANT_SPECIFIC_PERMISSION = "portalKitTestHelper/14DE09882B540AD5/grantSpecificPortalPermission.ivp?portalPermission=%s";
+  private static final String DENY_SPECIFIC_PERMISSION =
+      "portalKitTestHelper/14DE09882B540AD5/denySpecificPortalPermission.ivp?portalPermission=%s";
+  private static final String GRANT_SPECIFIC_PERMISSION =
+      "portalKitTestHelper/14DE09882B540AD5/grantSpecificPortalPermission.ivp?portalPermission=%s";
 
   private NewDashboardPage newDashboardPage;
   private AdminSettingsPage adminSettingsPage;
@@ -78,7 +80,8 @@ public class RoleManagementTest extends BaseTest {
     accessToRoleManagement();
     assertTrue(roleManagementPage.isDisplayed(), "RoleManagement tab is not displayed");
     deleteLinkClasses = roleManagementPage.getDeleteActionEnableForRole(roleName).getAttribute("class");
-    assertTrue(deleteLinkClasses.contains("ui-state-disabled action-column-icon-button"), "User can click on delele New Role");
+    assertTrue(deleteLinkClasses.contains("ui-state-disabled action-column-icon-button"),
+        "User can click on delele New Role");
 
     // Admin can delete role
     redirectToRelativeLink(String.format(GRANT_SPECIFIC_PERMISSION, "RoleDelete"));
@@ -104,7 +107,8 @@ public class RoleManagementTest extends BaseTest {
     redirectToRelativeLink(String.format(DENY_SPECIFIC_PERMISSION, "RoleCreate"));
     accessToRoleManagement();
     var editLinkClasses = roleManagementPage.getEditActionEnableForRole(roleName).getAttribute("class");
-    assertTrue(editLinkClasses.contains("ui-state-disabled action-column-icon-button"), "User can click on edit New Role");
+    assertTrue(editLinkClasses.contains("ui-state-disabled action-column-icon-button"),
+        "User can click on edit New Role");
 
     redirectToRelativeLink(String.format(GRANT_SPECIFIC_PERMISSION, "RoleCreate"));
     accessToRoleManagement();
@@ -117,7 +121,8 @@ public class RoleManagementTest extends BaseTest {
     roleManagementPage.enterRoleAdditionalInformation(roleDisplayName, "RoleDescription is edited");
     roleManagementPage.clickOnSaveRoleButtonDialog();
     assertTrue(roleManagementPage.getRoleNamesInRoleTreeTable().contains(roleName), "New Role is not appears on tree");
-    assertTrue(roleManagementPage.getRoleDisplayNameInRoleTreeTable().contains(roleDisplayName), "RoleDisplayname is not be changed");
+    assertTrue(roleManagementPage.getRoleDisplayNameInRoleTreeTable().contains(roleDisplayName),
+        "RoleDisplayname is not be changed");
   }
 
   @Test
@@ -128,11 +133,13 @@ public class RoleManagementTest extends BaseTest {
     RoleManagementPage roleManagementPage = accessToRoleManagementAndCreateNewRole(roleName);
     assertTrue(roleManagementPage.getRoleNamesInRoleTreeTable().contains(roleName), "New Role is not appear on tree");
     var totalUsers = roleManagementPage.getTotalUsersOfRoleInRoleTreeTable(roleName);
-    var assignUsersLinkClasses = roleManagementPage.getAssigningUsersActionEnableForRole(roleName).getAttribute("class");
+    var assignUsersLinkClasses =
+        roleManagementPage.getAssigningUsersActionEnableForRole(roleName).getAttribute("class");
     assertFalse(assignUsersLinkClasses.contains("ui-state-disabled"), "User can not click on AssignUsers");
     roleManagementPage.assignUsersToRole(roleName, Arrays.asList("demo", "david"));
     roleManagementPage.clickOnCloseAssignUsersButton();
-    assertFalse(totalUsers.equalsIgnoreCase(roleManagementPage.getTotalUsersOfRoleInRoleTreeTable(roleName)), "Total users of role is the same");
+    assertFalse(totalUsers.equalsIgnoreCase(roleManagementPage.getTotalUsersOfRoleInRoleTreeTable(roleName)),
+        "Total users of role is the same");
   }
 
   @Test
@@ -149,7 +156,8 @@ public class RoleManagementTest extends BaseTest {
     var totalUsers = roleManagementPage.getTotalUsersOfRoleInRoleTreeTable(roleName);
     roleManagementPage.assignUsersToRole(roleName, Arrays.asList("admin", "demo", "david"));
     roleManagementPage.clickOnCloseAssignUsersButton();
-    assertFalse(totalUsers.equalsIgnoreCase(roleManagementPage.getTotalUsersOfRoleInRoleTreeTable(roleName)), "Total users of role is the same");
+    assertFalse(totalUsers.equalsIgnoreCase(roleManagementPage.getTotalUsersOfRoleInRoleTreeTable(roleName)),
+        "Total users of role is the same");
     denySpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
   }
 
@@ -159,13 +167,15 @@ public class RoleManagementTest extends BaseTest {
     accessToRoleManagement();
     var roleName = "HR";
     roleManagementPage.filterRoleTreeTableByRoleName(roleName);
-    assertTrue(roleManagementPage.getRoleNamesInRoleTreeTable().equalsIgnoreCase("Everybody;HR"), "Role tree does not contain (Everybody);(HR)");
+    assertTrue(roleManagementPage.getRoleNamesInRoleTreeTable().equalsIgnoreCase("Everybody;HR"),
+        "Role tree does not contain (Everybody);(HR)");
   }
 
   private RoleManagementPage accessToRoleManagementAndCreateNewRole(String roleName) {
     accessToRoleManagement();
     roleManagementPage.openRoleCreationDialog();
-    roleManagementPage.createNewRoleWithData("Everybody", roleName, "New Role", "NewRoleDescription", Arrays.asList("admin"));
+    roleManagementPage.createNewRoleWithData("Everybody", roleName, "New Role", "NewRoleDescription",
+        Arrays.asList("admin"));
     roleManagementPage.clickOnSaveRoleButtonDialog();
     return roleManagementPage;
   }

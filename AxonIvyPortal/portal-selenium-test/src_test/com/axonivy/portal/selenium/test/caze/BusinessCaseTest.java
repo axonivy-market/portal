@@ -37,7 +37,7 @@ public class BusinessCaseTest extends BaseTest {
     assertTrue(casePage.isCaseDisplayed(BUSINESS_CASE_NAME));
     assertFalse(casePage.isCaseDisplayed(TECHNICAL_CASE_NAME));
   }
-  
+
   @Test
   public void testOnlyDisplayBusinessCaseOnCaseListWithAdmin() {
     login(TestAccount.ADMIN_USER);
@@ -48,7 +48,7 @@ public class BusinessCaseTest extends BaseTest {
     assertTrue(casePage.isCaseDisplayed(BUSINESS_CASE_NAME));
     assertFalse(casePage.isCaseDisplayed(TECHNICAL_CASE_NAME));
   }
-  
+
   @Test
   public void testOnlyDisplayBusinessCaseOnGlobalSearch() {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
@@ -58,7 +58,7 @@ public class BusinessCaseTest extends BaseTest {
     assertEquals(1, searchResultPage.countCase());
     assertEquals(BUSINESS_CASE_NAME, searchResultPage.getCaseResult(0));
   }
-  
+
   @Test
   public void testTaskOfTechnicalCaseDisplayBusinessCaseOnTaskDetails() {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");

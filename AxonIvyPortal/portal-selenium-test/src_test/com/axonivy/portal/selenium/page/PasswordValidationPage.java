@@ -6,7 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class PasswordValidationPage extends TemplatePage {
-  private static final String PASSWORD_VALIDATION_PAGE_ID = "admin-setting-component:adminTabView:password-validation-component:password-validation-form";
+  private static final String PASSWORD_VALIDATION_PAGE_ID =
+      "admin-setting-component:adminTabView:password-validation-component:password-validation-form";
 
   public PasswordValidationPage() {
     waitForElementDisplayed(By.id(PASSWORD_VALIDATION_PAGE_ID), true);
@@ -18,7 +19,8 @@ public class PasswordValidationPage extends TemplatePage {
   }
 
   public boolean isPasswordValidationTogglePresent() {
-    return isElementPresent(By.cssSelector("[id$=':password-validation-component:password-validation-form:enable-password-validation-button']"));
+    return isElementPresent(By.cssSelector(
+        "[id$=':password-validation-component:password-validation-form:enable-password-validation-button']"));
   }
 
   public WebElement getPasswordValidationToggle() {
@@ -38,7 +40,8 @@ public class PasswordValidationPage extends TemplatePage {
   }
 
   public boolean isSaveButtonPresent() {
-    return isElementPresent(By.cssSelector("[id$=':password-validation-component:password-validation-form:save-password-validation-btn']"));
+    return isElementPresent(
+        By.cssSelector("[id$=':password-validation-component:password-validation-form:save-password-validation-btn']"));
   }
 
   public boolean isEnableSaveButton() {
@@ -47,11 +50,13 @@ public class PasswordValidationPage extends TemplatePage {
 
   public void clickOnSaveButton() {
     getSaveButton().click();
-//    waitForElementEnabled(By.cssSelector("[id$=':password-validation-component:password-validation-form:save-password-validation-btn']"), false, DEFAULT_TIMEOUT);
+    // waitForElementEnabled(By.cssSelector("[id$=':password-validation-component:password-validation-form:save-password-validation-btn']"),
+    // false, DEFAULT_TIMEOUT);
   }
 
   public boolean isCheckBoxInTableEnabled() {
-    return $("[id^='admin-setting-component:adminTabView:password-validation-component:password-validation-form:password-policy-setting']").findElement(By.className("ui-chkbox-box"))
-        .getAttribute("class").contains("ui-state-active");
+    return $(
+        "[id^='admin-setting-component:adminTabView:password-validation-component:password-validation-form:password-policy-setting']")
+            .findElement(By.className("ui-chkbox-box")).getAttribute("class").contains("ui-state-active");
   }
 }

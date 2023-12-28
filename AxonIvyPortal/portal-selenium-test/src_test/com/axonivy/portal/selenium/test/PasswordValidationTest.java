@@ -59,7 +59,8 @@ public class PasswordValidationTest extends BaseTest {
     grantSpecificPortalPermission(PortalPermission.PASSWORD_VALIDATION);
     accessToPasswordValidation();
     passwordValidationPage.clickOnPasswordValidationToggle();
-    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((driver) -> passwordValidationPage.isEnableSaveButton());
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
+        .until((driver) -> passwordValidationPage.isEnableSaveButton());
     assertTrue(passwordValidationPage.isEnableSaveButton());
   }
 
@@ -78,9 +79,11 @@ public class PasswordValidationTest extends BaseTest {
     grantSpecificPortalPermission(PortalPermission.PASSWORD_VALIDATION);
     accessToPasswordValidation();
     passwordValidationPage.clickOnPasswordValidationToggle();
-    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((driver) -> passwordValidationPage.isEnableSaveButton());
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
+        .until((driver) -> passwordValidationPage.isEnableSaveButton());
     passwordValidationPage.clickOnSaveButton();
-    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((driver) -> !passwordValidationPage.isEnableSaveButton());
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
+        .until((driver) -> !passwordValidationPage.isEnableSaveButton());
   }
 
   private PasswordValidationPage accessToPasswordValidation() {

@@ -18,6 +18,7 @@ public class ProjectVersionTest extends BaseTest {
     super.setup();
     newDashboardPage = new NewDashboardPage();
   }
+
   @Test
   public void shouldShowProjectVersion() {
     ProjectVersionPage projectVersionPage = newDashboardPage.openProjectVersionPage();

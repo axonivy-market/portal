@@ -18,7 +18,7 @@ import ch.ivy.addon.portalkit.enums.PortalVariable;
 @IvyWebTest
 public class StatisticDashboardWidgetTest extends BaseTest {
 
-  private static final String CHART_ID= "statistic_1";
+  private static final String CHART_ID = "statistic_1";
   private NewDashboardPage newDashboardPage;
 
   @Override
@@ -61,7 +61,7 @@ public class StatisticDashboardWidgetTest extends BaseTest {
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     return modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
   }
-  
+
   @Test
   public void testShowChartCasesByCategoryInfo() {
     login(TestAccount.ADMIN_USER);
@@ -76,7 +76,7 @@ public class StatisticDashboardWidgetTest extends BaseTest {
     var chartFilter = chartWidget.countFilterOfStatistic(CHART_ID);
     chartFilter.shouldHave(CollectionCondition.sizeGreaterThanOrEqual(4));
   }
-  
+
   @Test
   public void testEditCasesByCategoryChart() {
     login(TestAccount.ADMIN_USER);

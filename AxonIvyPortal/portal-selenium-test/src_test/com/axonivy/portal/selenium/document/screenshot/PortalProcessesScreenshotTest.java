@@ -18,7 +18,7 @@ import com.axonivy.portal.selenium.page.ProcessInformationPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 
 @IvyWebTest
-public class PortalProcessesScreenshotTest extends ScreenshotBaseTest{
+public class PortalProcessesScreenshotTest extends ScreenshotBaseTest {
 
   private static final int SCREENSHOT_WIDTH = 1440;
   private static final int SCREENSHOT_HD_WIDTH = 1920;
@@ -45,20 +45,24 @@ public class PortalProcessesScreenshotTest extends ScreenshotBaseTest{
 
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_HD_WIDTH, 700));
     ScreenshotUtils.executeDecorateJs("highlightProcessNavigation()");
-    ScreenshotUtils.captureHalfLeftPageScreenShot(ScreenshotUtils.PROCESSES_WIDGET_FOLDER + "navigate-to-full-process-list");
+    ScreenshotUtils
+        .captureHalfLeftPageScreenShot(ScreenshotUtils.PROCESSES_WIDGET_FOLDER + "navigate-to-full-process-list");
 
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_MOBILE_HEIGHT));
     processWidget = mainMenuPage.openProcessList();
     processWidget.waitUtilProcessWidgetDisplayed();
     ScreenshotUtils.executeDecorateJs("highlightAddExternalLink()");
-    ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.PROCESSES_WIDGET_FOLDER + "how-to-add-a-new-external-link", new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_MOBILE_HEIGHT));
+    ScreenshotUtils.captureHalfTopPageScreenShot(
+        ScreenshotUtils.PROCESSES_WIDGET_FOLDER + "how-to-add-a-new-external-link",
+        new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_MOBILE_HEIGHT));
     refreshPage();
     processWidget.waitUtilProcessWidgetDisplayed();
 
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT));
     WebElement externalLinkDialog = processWidget.openExternalLinkDialog();
     ScreenshotUtils.executeDecorateJs("highlightAddExternalDialogItem()");
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(externalLinkDialog, ScreenshotUtils.PROCESSES_WIDGET_FOLDER + "add-external-link-dialog", new ScreenshotMargin(100, 150));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(externalLinkDialog,
+        ScreenshotUtils.PROCESSES_WIDGET_FOLDER + "add-external-link-dialog", new ScreenshotMargin(100, 150));
   }
 
   @Test
@@ -73,11 +77,13 @@ public class PortalProcessesScreenshotTest extends ScreenshotBaseTest{
     processWidget.clickMoreButtonOfFirstImageProcess();
     ScreenshotUtils.executeDecorateJs("highlightEditProcessLink()");
 
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(processWidget.getProcessEditMenu(0), ScreenshotUtils.PROCESSES_WIDGET_FOLDER + "edit-process-menu-item", new ScreenshotMargin(150, 200));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(processWidget.getProcessEditMenu(0),
+        ScreenshotUtils.PROCESSES_WIDGET_FOLDER + "edit-process-menu-item", new ScreenshotMargin(150, 200));
     processWidget.clickOnProcessEditMenu(0);
     ScreenshotUtils.executeDecorateJs("highlightEditProcessDialog()");
     ScreenshotUtils.executeDecorateJs("highlightEditProcessIcon()");
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(processWidget.getEditProcessDialog(), ScreenshotUtils.PROCESSES_WIDGET_FOLDER + "edit-process-dialog", new ScreenshotMargin(10));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(processWidget.getEditProcessDialog(),
+        ScreenshotUtils.PROCESSES_WIDGET_FOLDER + "edit-process-dialog", new ScreenshotMargin(10));
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 800));
     refreshPage();
     processWidget.waitUtilProcessWidgetDisplayed();
@@ -106,7 +112,8 @@ public class PortalProcessesScreenshotTest extends ScreenshotBaseTest{
     processWidget.waitUntilProcessDisplayed(processName);
 
     ScreenshotUtils.executeDecorateJs("highlightProcessMoreInformationLink()");
-    ScreenshotUtils.captureHalfLeftPageScreenShot(ScreenshotUtils.PROCESSES_INFORMATION_WIDGET_FOLDER + "more-information-link");
+    ScreenshotUtils
+        .captureHalfLeftPageScreenShot(ScreenshotUtils.PROCESSES_INFORMATION_WIDGET_FOLDER + "more-information-link");
 
     processWidget.clickMoreInformationLinkImage(processName);
     ProcessInformationPage processInformationPage = new ProcessInformationPage();
@@ -123,6 +130,7 @@ public class PortalProcessesScreenshotTest extends ScreenshotBaseTest{
     processWidget.waitUntilProcessDisplayed(processName);
     processWidget.selectImageMode();
 
-    ScreenshotUtils.captureHalfLeftPageScreenShot(ScreenshotUtils.PROCESSES_PROCESS_IMAGE_FOLDER + "image-process-list");
+    ScreenshotUtils
+        .captureHalfLeftPageScreenShot(ScreenshotUtils.PROCESSES_PROCESS_IMAGE_FOLDER + "image-process-list");
   }
 }

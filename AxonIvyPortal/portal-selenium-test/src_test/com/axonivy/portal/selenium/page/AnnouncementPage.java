@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Selenide.$;
 import org.openqa.selenium.By;
 
 import com.codeborne.selenide.WebDriverRunner;
+
 public class AnnouncementPage extends TemplatePage {
 
   @Override
@@ -13,7 +14,8 @@ public class AnnouncementPage extends TemplatePage {
   }
 
   public String getInfoSummary() {
-    return WebDriverRunner.getWebDriver().findElement(By.cssSelector("div[id$='messages'] span[class$='summary']")).getText();
+    return WebDriverRunner.getWebDriver().findElement(By.cssSelector("div[id$='messages'] span[class$='summary']"))
+        .getText();
   }
 
   public void publish() {

@@ -5,8 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import com.axonivy.ivy.webtest.IvyWebTest;
 
 @IvyWebTest
-public class ScreenshotBaseTest extends BaseTest{
-  
+public class ScreenshotBaseTest extends BaseTest {
+
   @Override
   @BeforeEach
   public void setup() {

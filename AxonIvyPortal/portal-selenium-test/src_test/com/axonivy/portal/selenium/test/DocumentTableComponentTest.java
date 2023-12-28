@@ -24,7 +24,7 @@ public class DocumentTableComponentTest extends BaseTest {
     documentTableComponentPage.uploadSampleDocument(FileHelper.getAbsolutePathToTestFile("sample-file.txt"));
     refreshPage();
     documentTableComponentPage.waitForDocumentTableComponentPageLoaded();
-    assertEquals(1, documentTableComponentPage.countDocuments());   
+    assertEquals(1, documentTableComponentPage.countDocuments());
   }
 
 }

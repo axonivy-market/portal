@@ -49,34 +49,36 @@ public class ScreenshotUtils {
   public static final String LAYOUT_FOLDER = "/layout-template/";
   public static final String ERROR_HANDLING_FOLDER = "/error-handling/";
   public static final String DASHBOARD_CONFIGURATION_FOLDER = "/dashboard-configuration/";
-  
+
   @PostConstruct
   public void initFolder() {
     new File(SCREENSHOT_FOLDER).mkdirs();
   }
-  
+
   public static void capturePageScreenshot(String screenshotName) throws IOException {
     WebDriver driver = WebDriverRunner.getWebDriver();
     File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
     File fileScreenShot = new File(SCREENSHOT_FOLDER + screenshotName + SCREENSHOT_EXTENSION);
     FileUtils.copyFile(screenshot, fileScreenShot);
   }
-  
+
   public static void captureElementScreenshot(WebElement element, String screenshotName) throws IOException {
     File screenshot = element.getScreenshotAs(OutputType.FILE);
     File fileScreenShot = new File(SCREENSHOT_FOLDER + screenshotName + SCREENSHOT_EXTENSION);
     FileUtils.copyFile(screenshot, fileScreenShot);
   }
-  
-  public static void captureElementWithMarginOptionScreenshot(WebElement element, String screenshotName, ScreenshotMargin screenshotMargin) throws IOException {
+
+  public static void captureElementWithMarginOptionScreenshot(WebElement element, String screenshotName,
+      ScreenshotMargin screenshotMargin) throws IOException {
     WebDriver driver = WebDriverRunner.getWebDriver();
     File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
     File fileScreenShot = new File(SCREENSHOT_FOLDER + screenshotName + SCREENSHOT_EXTENSION);
     addMarginForImage(element, screenshot, screenshotMargin);
     FileUtils.copyFile(screenshot, fileScreenShot);
   }
-  
-  private static File addMarginForImage(WebElement element, File fileScreenShot, ScreenshotMargin screenshotMargin) throws IOException {
+
+  private static File addMarginForImage(WebElement element, File fileScreenShot, ScreenshotMargin screenshotMargin)
+      throws IOException {
     BufferedImage original = ImageIO.read(fileScreenShot);
     int coordinateX = element.getLocation().getX() - screenshotMargin.getMarginLeft();
     int coordinateY = element.getLocation().getY() - screenshotMargin.getMarginTop();
@@ -103,11 +105,7 @@ public class ScreenshotUtils {
       height = original.getHeight() - coordinateY;
     }
 
-    BufferedImage screenshot = original.getSubimage(
-        coordinateX,
-        coordinateY, 
-        width, 
-        height);
+    BufferedImage screenshot = original.getSubimage(coordinateX, coordinateY, width, height);
     ImageIO.write(screenshot, "png", fileScreenShot);
     return fileScreenShot;
   }
@@ -129,7 +127,7 @@ public class ScreenshotUtils {
     captureHalfRightPageScreenShot(screenshotName);
     resizeBrowser(oldSize);
   }
-  
+
   public static void captureHalfRightPageScreenShot(String screenshotName) throws IOException {
     WebDriver driver = WebDriverRunner.getWebDriver();
     File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
@@ -146,10 +144,10 @@ public class ScreenshotUtils {
     int height = original.getHeight();
     switch (coordinateSide) {
       case TOP_SIDE:
-        height = original.getHeight()/2;
+        height = original.getHeight() / 2;
         break;
       case RIGHT_SIDE:
-        coordinateX = original.getWidth()/2;
+        coordinateX = original.getWidth() / 2;
         if (coordinateX + width > original.getWidth()) {
           width = original.getWidth() - coordinateX;
         }
@@ -157,33 +155,29 @@ public class ScreenshotUtils {
       case BOTTOM_SIDE:
         break;
       case LEFT_SIDE:
-        width = original.getWidth()/2;
+        width = original.getWidth() / 2;
         break;
       case TOP_RIGHT:
-        coordinateX = original.getWidth()/2;
+        coordinateX = original.getWidth() / 2;
         if (coordinateX + width > original.getWidth()) {
           width = original.getWidth() - coordinateX;
         }
-        height = original.getHeight()/2;
+        height = original.getHeight() / 2;
         break;
       case CENTER_TOP_SIDE:
-        coordinateX = original.getWidth()/4;
+        coordinateX = original.getWidth() / 4;
         coordinateY = 0;
-        width = original.getWidth()/2;
-        height = original.getHeight()/2;
+        width = original.getWidth() / 2;
+        height = original.getHeight() / 2;
         break;
       default:
         break;
     }
-    BufferedImage halfOfScreenshot = original.getSubimage(
-        coordinateX,
-        coordinateY, 
-        width, 
-        height);
+    BufferedImage halfOfScreenshot = original.getSubimage(coordinateX, coordinateY, width, height);
     ImageIO.write(halfOfScreenshot, "png", screenshot);
     return screenshot;
   }
-  
+
   public static void captureHalfLeftPageScreenShot(String screenshotName) throws IOException {
     WebDriver driver = WebDriverRunner.getWebDriver();
     File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
@@ -191,11 +185,11 @@ public class ScreenshotUtils {
     File fileScreenShot = new File(SCREENSHOT_FOLDER + screenshotName + SCREENSHOT_EXTENSION);
     FileUtils.copyFile(screenshot, fileScreenShot);
   }
-  
+
   public static void resizeBrowser(Dimension size) {
     WebDriverRunner.getWebDriver().manage().window().setSize(size);
   }
-  
+
   public static void maximizeBrowser() {
     WebDriverRunner.getWebDriver().manage().window().maximize();
     Sleeper.sleep(300); // Wait for window resized successfully
@@ -226,7 +220,7 @@ public class ScreenshotUtils {
     File fileScreenShot = new File(SCREENSHOT_FOLDER + screenshotName + SCREENSHOT_EXTENSION);
     FileUtils.copyFile(screenshot, fileScreenShot);
   }
-  
+
   public static void captureHalfTopRightPageScreenShot(String screenshotName) throws IOException {
     WebDriver driver = WebDriverRunner.getWebDriver();
     File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
@@ -244,6 +238,7 @@ public class ScreenshotUtils {
     File fileScreenShot = new File(SCREENSHOT_FOLDER + screenshotName + SCREENSHOT_EXTENSION);
     FileUtils.copyFile(screenshot, fileScreenShot);
   }
+
   public static void captureHalfTopPageScreenShot(String screenshotName) throws IOException {
     WebDriver driver = WebDriverRunner.getWebDriver();
     File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
@@ -257,7 +252,7 @@ public class ScreenshotUtils {
   }
 
   public static boolean isDOMStatusComplete() {
-    return ((JavascriptExecutor) WebDriverRunner.getWebDriver())
-        .executeScript("return document.readyState").equals("complete");
+    return ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript("return document.readyState")
+        .equals("complete");
   }
 }

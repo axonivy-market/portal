@@ -44,7 +44,8 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
   public void testRestorePublishDashboardToScratch() {
     var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.createPublicDashboardFromScratch(DASHBOARD_NAME, ICON, DASHBOARD_DESCRIPTION, DASHBOARD_PERMISSION);
+    configurationPage.createPublicDashboardFromScratch(DASHBOARD_NAME, ICON, DASHBOARD_DESCRIPTION,
+        DASHBOARD_PERMISSION);
     verifyEditingDashboardContent(DASHBOARD_NAME, CollectionCondition.empty);
     addNewCaseWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
@@ -58,7 +59,8 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
   public void testRestorePublishDashboardToDefaultTemplate() {
     var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.createPublicDashboardFromTemplate(DASHBOARD_NAME, ICON, DASHBOARD_DESCRIPTION, DASHBOARD_PERMISSION, 0);
+    configurationPage.createPublicDashboardFromTemplate(DASHBOARD_NAME, ICON, DASHBOARD_DESCRIPTION,
+        DASHBOARD_PERMISSION, 0);
     verifyEditingDashboardContent(DASHBOARD_NAME, CollectionCondition.size(4));
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.deleteCompactModeProcess();

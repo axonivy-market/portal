@@ -23,8 +23,8 @@ public class AdhocPage extends TaskTemplatePage {
     $("[id$=':default-task-responsible-link']").click();
     $("[id='choose-responsible-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("[id='assignee-selection-form:user-selection-component:user-selection_input']").sendKeys(fullname);
-    SelenideElement panel = $("[id='assignee-selection-form:user-selection-component:user-selection_panel']").shouldBe(appear,
-        DEFAULT_TIMEOUT);
+    SelenideElement panel = $("[id='assignee-selection-form:user-selection-component:user-selection_panel']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
     panel.click();
     panel.shouldBe(disappear, DEFAULT_TIMEOUT);
     $("[id='assignee-selection-form:add-assignee-button']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();

@@ -23,13 +23,13 @@ public class ExpressTaskPage extends TemplatePage {
   }
 
   public void enterRequiredInputFieldByLabel(String label, String data) {
-    $(String.format("input[data-p-rmsg*='%s']",  label)).shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(data);
+    $(String.format("input[data-p-rmsg*='%s']", label)).shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(data);
   }
 
   public void finish() {
     $("[id='form:ok-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
-  
+
   public boolean isDocumentTableVisible() {
     return isElementPresent(By.xpath("//div[contains(@id, 'fileUploadComponent:document-table')]"));
   }

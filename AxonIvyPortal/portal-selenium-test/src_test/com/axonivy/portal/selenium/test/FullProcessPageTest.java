@@ -14,12 +14,12 @@ import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage.AddNewExternalLinkDialog;
 
 @IvyWebTest
-public class FullProcessPageTest extends BaseTest{
-  
+public class FullProcessPageTest extends BaseTest {
+
   private static final String AAGOOGLE_LINK = "11AAGoogle";
   protected NewDashboardPage newDashboardPage;
   protected ProcessWidgetPage processWidgetPage;
-  
+
   @Override
   @BeforeEach
   public void setup() {
@@ -28,7 +28,7 @@ public class FullProcessPageTest extends BaseTest{
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     processWidgetPage = mainMenuPage.selectProcessesMenu();
   }
-  
+
   @Test
   public void testFindProcess() {
     processWidgetPage.selectViewMode("COMPACT");
@@ -40,7 +40,7 @@ public class FullProcessPageTest extends BaseTest{
     assertTrue(processWidgetPage.isNoProcessFound());
     assertFalse(processWidgetPage.isProcessGroupDisplay("A"));
   }
-  
+
   @Test
   public void testChangeProcessViewMode() {
     String currentView = processWidgetPage.getCurrentViewMode();
@@ -48,7 +48,7 @@ public class FullProcessPageTest extends BaseTest{
     String newView = processWidgetPage.getCurrentViewMode();
     assertFalse(StringUtils.equals(currentView, newView));
   }
-  
+
   @Test
   public void testEditDeleteProcessIcon() {
     login(TestAccount.ADMIN_USER);
@@ -101,7 +101,7 @@ public class FullProcessPageTest extends BaseTest{
     processWidgetPage.enterSearchKeyword("link");
     assertTrue(processWidgetPage.isNoProcessFound());
   }
-  
+
   private void createPublicExternalTestProcess(String processName, String processLink, String rolePermission) {
     AddNewExternalLinkDialog addNewExternalLinkDialog = processWidgetPage.openNewExternalLinkDialog();
     addNewExternalLinkDialog.inputDataForPublicExternalLink(processName, processLink, rolePermission);

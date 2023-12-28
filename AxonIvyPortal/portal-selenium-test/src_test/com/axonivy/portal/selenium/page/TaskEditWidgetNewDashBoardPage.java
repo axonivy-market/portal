@@ -40,7 +40,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     widgetTitle().click();
     widgetTitle().sendKeys(name);
   }
-  
+
   private int getIndexFiltertByName(String name) {
     ElementsCollection elementsTH =
         $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='user-filter']").$$("div");
@@ -51,65 +51,67 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     }
     return 0;
   }
-  
+
   private SelenideElement getAvailableFilterInput(String filterName) {
     int index = getIndexFiltertByName(filterName);
     return $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='user-filter']").$$("div").get(index + 1)
         .$("input");
   }
-  
+
   public void filterTaskName(String taskName) {
     getAvailableFilterInput(TASK_NAME).sendKeys(taskName);
   }
-  
+
   public void clickOnStateToShowDropdown() {
     int index = getIndexFiltertByName(STATE);
-    $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='user-filter']").$$("div").get(index + 1)
-        .click();
+    $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='user-filter']").$$("div").get(index + 1).click();
   }
-  
+
   private SelenideElement getValueOfCheckBox(String value) {
-    return $("div[style*='display: block;'] div.ui-selectcheckboxmenu-items-wrapper")
-        .shouldBe(appear, DEFAULT_TIMEOUT).$$("li.ui-selectcheckboxmenu-item").filter(text(value)).first().$("div.ui-chkbox-box");
+    return $("div[style*='display: block;'] div.ui-selectcheckboxmenu-items-wrapper").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$$("li.ui-selectcheckboxmenu-item").filter(text(value)).first().$("div.ui-chkbox-box");
   }
-  
+
   private SelenideElement getCloseCheckBox() {
-    return $("div.ui-selectcheckboxmenu-panel[style*='display: block;']").shouldBe(appear, DEFAULT_TIMEOUT).$("a.ui-selectcheckboxmenu-close");
+    return $("div.ui-selectcheckboxmenu-panel[style*='display: block;']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("a.ui-selectcheckboxmenu-close");
   }
-  
+
   public void selectState(String state) {
     getValueOfCheckBox(state).shouldBe(getClickableCondition()).click();
     getCloseCheckBox().shouldBe(getClickableCondition()).click();
   }
-  
+
   public void preview() {
     $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']")
         .shouldBe(getClickableCondition()).click();
   }
-  
+
   private ElementsCollection getColumnsOfTableWidget() {
     return $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr td");
   }
-  
+
   private ElementsCollection getAllTasksOfTaskWidget() {
     return getColumnsOfTableWidget().filter(Condition.cssClass("dashboard-tasks__name"));
   }
-  
+
   public ElementsCollection countAllTasks() {
     return getAllTasksOfTaskWidget();
   }
-  
-  
+
+
   public void nextPageTable() {
     $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-preview']")
-    .shouldBe(appear, DEFAULT_TIMEOUT).$("a.ui-paginator-next").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+        .shouldBe(appear, DEFAULT_TIMEOUT).$("a.ui-paginator-next").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
   }
-  
+
   public void waitPageSelected(int pageNumber) {
     $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-preview']")
-    .shouldBe(appear, DEFAULT_TIMEOUT).$$("a.ui-paginator-page").get(pageNumber-1).shouldBe(Condition.attributeMatching("class", ".*ui-state-active.*"), DEFAULT_TIMEOUT);
+        .shouldBe(appear, DEFAULT_TIMEOUT).$$("a.ui-paginator-page").get(pageNumber - 1)
+        .shouldBe(Condition.attributeMatching("class", ".*ui-state-active.*"), DEFAULT_TIMEOUT);
   }
-  
+
   public void save() {
     $("[id='widget-configuration-form:new-widget-configuration-component:task-widget-preview:dashboard-tasks_head']")
         .shouldBe(appear, DEFAULT_TIMEOUT);
@@ -147,7 +149,8 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public WebElement getConfigurationFilter() {
-    return $("[id='widget-configuration-form:new-widget-configuration-component:filter-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("[id='widget-configuration-form:new-widget-configuration-component:filter-container']").shouldBe(appear,
+        DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getColumnManagementDialog() {
@@ -161,7 +164,8 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getAddedFieldRemoveLink(String field) {
-    return getColumnManagementDialog().$("tbody td.js-column-field-" + field + " a").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    return getColumnManagementDialog().$("tbody td.js-column-field-" + field + " a").shouldBe(getClickableCondition(),
+        DEFAULT_TIMEOUT);
   }
 
   public void saveColumn() {
@@ -171,14 +175,17 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private SelenideElement getMultiLanguageDialogWhenAddWidget() {
-    return $("div[id='widget-configuration-form:new-widget-configuration-component:title-language-config:multiple-languages-dialog']");
+    return $(
+        "div[id='widget-configuration-form:new-widget-configuration-component:title-language-config:multiple-languages-dialog']");
   }
+
   public WebElement openMultiLanguageDialogWhenAddWidget() {
     getAddLanguageButton().click();
-    getMultiLanguageDialogWhenAddWidget().shouldBe(Condition.appear, DEFAULT_TIMEOUT).$(".ui-dialog-title").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    getMultiLanguageDialogWhenAddWidget().shouldBe(Condition.appear, DEFAULT_TIMEOUT).$(".ui-dialog-title")
+        .shouldBe(appear, DEFAULT_TIMEOUT).click();
     return getMultiLanguageDialogWhenAddWidget();
   }
-  
+
   public void cancelMultiLanguageDialogWhenAddWidget() {
     $("a[id$=':multi-language-cancel-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     getMultiLanguageDialogWhenAddWidget().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
@@ -186,7 +193,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
 
   public SelenideElement getConfigurationDialog() {
     $("div[id='new-widget-configuration-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
-      .$("[id='new-widget-configuration-dialog_title']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+        .$("[id='new-widget-configuration-dialog_title']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     return $("div[id='new-widget-configuration-dialog']");
   }
 
@@ -198,7 +205,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public SelenideElement getAddingFieldColumnType() {
     return $(
         "[id='widget-configuration-form:new-widget-configuration-component:column-management-component:column-management-form:field-type-selection_label']")
-        .shouldBe(appear, DEFAULT_TIMEOUT);
+            .shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   private SelenideElement getStandardFieldSelection() {

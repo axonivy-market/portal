@@ -19,7 +19,8 @@ public class DashboardFilterWidgetTest extends BaseTest {
 
   private static final String YOUR_TASKS_WIDGET = "Your Tasks";
 
-  private static final String CREATE_USER_FILTER_URL = "portalKitTestHelper/153CACC26D0D4C3D/createUserTaskWidgetFilters.ivp";
+  private static final String CREATE_USER_FILTER_URL =
+      "portalKitTestHelper/153CACC26D0D4C3D/createUserTaskWidgetFilters.ivp";
 
   private NewDashboardPage dashboardPage;
 

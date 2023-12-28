@@ -19,13 +19,18 @@ import com.axonivy.portal.selenium.test.express.ExpressManagementTest;
 public class ProcessViewerTest extends BaseTest {
 
   private static final String PROCESS_VIEWER_IS_FOUND_ON_TASK_LIST_PAGE = "Process Viewer is found on TaskList page";
-  private static final String PROCESS_VIEWER_IS_FOUND_ON_TASK_DETAILS_PAGE = "Process Viewer is found on CaseDetails page";
+  private static final String PROCESS_VIEWER_IS_FOUND_ON_TASK_DETAILS_PAGE =
+      "Process Viewer is found on CaseDetails page";
   private static final String PROCESS_VIEWER_IS_FOUND_IN_CASE_LIST = "Process Viewer is found in CaseList";
-  private static final String PROCESS_VIEWER_IS_FOUND_ON_CASE_DETAILS_PAGE = "Process Viewer is found on CaseDetails page";
+  private static final String PROCESS_VIEWER_IS_FOUND_ON_CASE_DETAILS_PAGE =
+      "Process Viewer is found on CaseDetails page";
   private static final String PROCESS_VIEWER_IS_NOT_FOUND_IN_CASE_LIST = "Process Viewer is NOT found in CaseList";
-  private static final String PROCESS_VIEWER_IS_NOT_FOUND_ON_CASE_DETAILS_PAGE = "Process Viewer is NOT found on CaseDetails page";
-  private static final String PROCESS_VIEWER_IS_NOT_FOUND_ON_TASK_LIST_PAGE = "Process Viewer is NOT found on TaskList page";
-  private static final String PROCESS_VIEWER_IS_NOT_FOUND_ON_TASK_DETAILS_PAGE = "Process Viewer is NOT found on TaskDetails page";
+  private static final String PROCESS_VIEWER_IS_NOT_FOUND_ON_CASE_DETAILS_PAGE =
+      "Process Viewer is NOT found on CaseDetails page";
+  private static final String PROCESS_VIEWER_IS_NOT_FOUND_ON_TASK_LIST_PAGE =
+      "Process Viewer is NOT found on TaskList page";
+  private static final String PROCESS_VIEWER_IS_NOT_FOUND_ON_TASK_DETAILS_PAGE =
+      "Process Viewer is NOT found on TaskDetails page";
   private static final String PROCESS_VIEWER = "Process Viewer";
   private NewDashboardPage newDashboardPage;
   private CaseWidgetPage caseWidgetPage;
@@ -36,7 +41,7 @@ public class ProcessViewerTest extends BaseTest {
   public void setup() {
     super.setup();
   }
-  
+
   @Test
   public void testOpenProcessViewerComponent() {
     redirectToRelativeLink(processViewerExampleInFrameUrl);
@@ -48,7 +53,8 @@ public class ProcessViewerTest extends BaseTest {
   public void testPermissionForProcessViewerComponent() {
     redirectToRelativeLink(testProcessViewerPermissionUrl);
     ProcessViewerPage processViewerPage = new ProcessViewerPage();
-    assertTrue(processViewerPage.getErrorMessage().equalsIgnoreCase("You do not have the required permission to view this process."));
+    assertTrue(processViewerPage.getErrorMessage()
+        .equalsIgnoreCase("You do not have the required permission to view this process."));
   }
 
   @Test
@@ -188,7 +194,7 @@ public class ProcessViewerTest extends BaseTest {
     var detailActions = taskDetailsPage.getActiveTaskAction();
     assertTrue(detailActions.contains(PROCESS_VIEWER), PROCESS_VIEWER_IS_NOT_FOUND_ON_TASK_DETAILS_PAGE);
   }
-  
+
   private CaseWidgetPage gotoCaseList() {
     newDashboardPage = new NewDashboardPage();
     var mainMenuPage = newDashboardPage.openMainMenu();

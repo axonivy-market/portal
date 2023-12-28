@@ -27,7 +27,7 @@ import com.axonivy.portal.selenium.page.component.UserSelectionComponentPage;
 
 @IvyWebTest
 public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
-  
+
   @Test
   public void captureScreenshotForProcessChainComponent() throws IOException {
     redirectToRelativeLink(processChainShowcaseUrl);
@@ -47,8 +47,9 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 800));
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForGrowlMessageDisplayClearly();
-    ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.COMPONENTS_FOLDER + "example-global-growl-finished-task");
-    
+    ScreenshotUtils
+        .captureHalfTopPageScreenShot(ScreenshotUtils.COMPONENTS_FOLDER + "example-global-growl-finished-task");
+
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
     redirectToRelativeLink(cleanupDataLink);
     redirectToRelativeLink(createTestingTasksUrl);
@@ -59,25 +60,27 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForTaskStartButtonDisplay(1);
     newDashboardPage.waitForGrowlMessageDisplayClearly();
-    ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.COMPONENTS_FOLDER + "example-global-growl-cancelled-task");
+    ScreenshotUtils
+        .captureHalfTopPageScreenShot(ScreenshotUtils.COMPONENTS_FOLDER + "example-global-growl-cancelled-task");
   }
-  
+
   @Test
   public void captureScreenshotProcessHistoryComponent() throws IOException {
     redirectToRelativeLink(createAlphaCompanyUrl);
     redirectToRelativeLink(createBetaCompanyUrl);
-    
+
     redirectToRelativeLink(viewAlphaCompanyProcessHistoryUrl);
     ProcessHistoryPage processHistoryPage = new ProcessHistoryPage();
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 600));
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.COMPONENTS_FOLDER + "process-history-example");
-    
+
     redirectToRelativeLink(viewBetaCompanyProcessHistoryInDialogUrl);
     processHistoryPage = new ProcessHistoryPage();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(processHistoryPage.getProcessHistoryDialog(), ScreenshotUtils.COMPONENTS_FOLDER + "process-history-dialog-example", new ScreenshotMargin(200, 200));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(processHistoryPage.getProcessHistoryDialog(),
+        ScreenshotUtils.COMPONENTS_FOLDER + "process-history-dialog-example", new ScreenshotMargin(200, 200));
   }
-  
-  
+
+
   @Test
   public void captureScreenshotDocumentTableComponent() throws IOException {
     redirectToRelativeLink(documentTableComponentUrl);
@@ -88,7 +91,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     documentTableComponentPage.waitForDocumentTableComponentPageLoaded();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.COMPONENTS_FOLDER + "document-table");
   }
-  
+
   @Test
   public void captureScreenshotTaskAnalysisComponent() throws IOException {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
@@ -109,20 +112,29 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     redirectToRelativeLink(userSelectionComponentShowcaseUrl);
     ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
     UserSelectionComponentPage userSelectionComponentPage = new UserSelectionComponentPage();
-    
+
     userSelectionComponentPage.selectFirstItemForNormalUserSelectionComponent("Backend Developer 1");
-    ScreenshotUtils.captureElementScreenshot(userSelectionComponentPage.getNormalUserSelectionComponent(), ScreenshotUtils.COMPONENTS_FOLDER + "user-selection-component");
-    
+    ScreenshotUtils.captureElementScreenshot(userSelectionComponentPage.getNormalUserSelectionComponent(),
+        ScreenshotUtils.COMPONENTS_FOLDER + "user-selection-component");
+
     userSelectionComponentPage.selectFirstItemForFloatingLabelUserSelectionComponent("Backend Developer 1");
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(userSelectionComponentPage.getFloatingLabelUserSelectionComponent(), ScreenshotUtils.COMPONENTS_FOLDER + "user-selection-component-floating-label", new ScreenshotMargin(30, 0 , 0 ,0));
-    
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(
+        userSelectionComponentPage.getFloatingLabelUserSelectionComponent(),
+        ScreenshotUtils.COMPONENTS_FOLDER + "user-selection-component-floating-label",
+        new ScreenshotMargin(30, 0, 0, 0));
+
     userSelectionComponentPage.selectFirstItemForAjaxEventUserSelectionComponent("Backend Developer 1");
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(userSelectionComponentPage.getAjaxEventUserSelectionComponent(), ScreenshotUtils.COMPONENTS_FOLDER + "user-selection-component-ajax-event-selected-message", new ScreenshotMargin(20,0));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(
+        userSelectionComponentPage.getAjaxEventUserSelectionComponent(),
+        ScreenshotUtils.COMPONENTS_FOLDER + "user-selection-component-ajax-event-selected-message",
+        new ScreenshotMargin(20, 0));
     userSelectionComponentPage.openSelectionPanelForAjaxEventUserSelectionComponent("Backend Developer 1");
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(userSelectionComponentPage.getAjaxEventUserSelectionComponent(), ScreenshotUtils.COMPONENTS_FOLDER + "user-selection-component-ajax-expand", new ScreenshotMargin(20, 0, 60, 0));
-    
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(
+        userSelectionComponentPage.getAjaxEventUserSelectionComponent(),
+        ScreenshotUtils.COMPONENTS_FOLDER + "user-selection-component-ajax-expand", new ScreenshotMargin(20, 0, 60, 0));
+
   }
-  
+
   @Test
   public void captureScreenshotRoleSelectionComponent() throws IOException {
     redirectToRelativeLink(roleSelectionComponentShowcaseUrl);
@@ -154,7 +166,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
         roleSelectionComponentPage.getAjaxEventRoleSelectionComponent(),
         ScreenshotUtils.COMPONENTS_FOLDER + "role-selection-component-ajax-expand", new ScreenshotMargin(20, 0, 60, 0));
   }
-  
+
   @Test
   public void captureScreenshotProcessViewerPage() throws IOException {
     createTestingTasks();
@@ -175,7 +187,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     redirectToRelativeLink(processViewerExampleInFrameUrl);
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 1000));
     ProcessViewerComponentPage processViewerPage = new ProcessViewerComponentPage();
-    processViewerPage.waitForSprottyToolDisplayed(); 
+    processViewerPage.waitForSprottyToolDisplayed();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.COMPONENTS_FOLDER + "portal-process-viewer-component");
   }
 
@@ -183,7 +195,8 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
   public void captureScreenshotSecurityMemberNameAndAvatarComponent() throws IOException {
     redirectToRelativeLink(securityMemberNameAndAvatarExampleInFrameUrl);
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 1000));
-    SecurityMemberNameAndAvatarComponentPage securityMemberNameAndAvatarComponentPage = new SecurityMemberNameAndAvatarComponentPage();
+    SecurityMemberNameAndAvatarComponentPage securityMemberNameAndAvatarComponentPage =
+        new SecurityMemberNameAndAvatarComponentPage();
     ScreenshotUtils.captureElementScreenshot(
         securityMemberNameAndAvatarComponentPage.getCurrentSessionUserSecurityMemberNameAndAvatarComponentContainer(),
         ScreenshotUtils.COMPONENTS_FOLDER + "session-user-security-member-name-and-avatar");

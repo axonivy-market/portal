@@ -29,7 +29,8 @@ public class NoteHistoryPage extends TemplatePage {
 
   public int countDoneTasks() {
     waitForElementDisplayed(By.cssSelector("div[id*='notes-table']"), true);
-    List<WebElement> elements = WebDriverRunner.getWebDriver().findElements(By.cssSelector(".case-task-note-histories"));
+    List<WebElement> elements =
+        WebDriverRunner.getWebDriver().findElements(By.cssSelector(".case-task-note-histories"));
     int result = 0;
     if (CollectionUtils.isNotEmpty(elements)) {
       for (WebElement element : elements) {

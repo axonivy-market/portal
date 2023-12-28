@@ -14,21 +14,22 @@ public class ExpressApprovalPage extends TemplatePage {
 
   public void approve() {
     WaitHelper.waitForNavigation(() -> clickOnApprove());
-    
+
   }
-  
+
   public void clickOnApprove() {
     $("button[id$='approve-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void reject() {
-    WaitHelper.waitForNavigation(() -> $("[id='form:refuse-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+    WaitHelper.waitForNavigation(
+        () -> $("[id='form:refuse-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
   }
-  
+
   public void waitForCommentContainerDisplay() {
     $(".approval-comment-container").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-  
+
   public void comment(String comment) {
     $("textarea[id$='comment']").shouldBe(appear, DEFAULT_TIMEOUT).clear();
     $("textarea[id$='comment']").click();

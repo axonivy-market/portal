@@ -20,7 +20,7 @@ import com.axonivy.portal.selenium.page.StatisticWidgetPage;
 import com.axonivy.portal.selenium.page.TaskAnalysisWidgetPage;
 
 @IvyWebTest
-public class TaskAnalysisScreenshotTest extends ScreenshotBaseTest{
+public class TaskAnalysisScreenshotTest extends ScreenshotBaseTest {
 
   @Override
   @BeforeEach
@@ -41,7 +41,8 @@ public class TaskAnalysisScreenshotTest extends ScreenshotBaseTest{
 
     ScreenshotUtils.executeDecorateJs("highlightTaskAnalysisNavigationLink()");
     ScreenshotUtils.resizeBrowser(new Dimension(1200, 800));
-    ScreenshotUtils.captureHalfTopRightPageScreenShot(ScreenshotUtils.TASK_ANALYSIS_FOLDER + "navigate-to-task-analysis");
+    ScreenshotUtils
+        .captureHalfTopRightPageScreenShot(ScreenshotUtils.TASK_ANALYSIS_FOLDER + "navigate-to-task-analysis");
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
 
     ScreenshotUtils.resizeBrowser(new Dimension(1400, 900));

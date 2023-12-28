@@ -2,7 +2,7 @@ package com.axonivy.portal.selenium.page;
 
 import org.openqa.selenium.By;
 
-public class WorkingTaskDialogPageOfApplicationMenu extends TemplatePage{
+public class WorkingTaskDialogPageOfApplicationMenu extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
@@ -10,7 +10,8 @@ public class WorkingTaskDialogPageOfApplicationMenu extends TemplatePage{
   }
 
   public NewDashboardPage leaveTask() {
-    waitForElementClickableThenClick(By.id("user-menu-required-login:warning-before-leaving-task-component:leave-button"));
+    waitForElementClickableThenClick(
+        By.id("user-menu-required-login:warning-before-leaving-task-component:leave-button"));
     return new NewDashboardPage();
   }
 }

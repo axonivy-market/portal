@@ -27,7 +27,7 @@ public class SystemNoteVisibilityTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
-    //hide all system task in history to avoid effecting to test assertion
+    // hide all system task in history to avoid effecting to test assertion
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     updatePortalSetting(Variable.HIDE_SYSTEM_TASKS_FROM_HISTORY.getKey(), "true");
     updatePortalSetting(Variable.HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR.getKey(), "true");
@@ -37,12 +37,12 @@ public class SystemNoteVisibilityTest extends BaseTest {
   @Test
   public void testSystemNoteVisibilityInCaseForAdmin() {
     login(TestAccount.ADMIN_USER);
-    
+
     CaseDetailsPage caseDetailsPage = openCaseDetails();
     String caseId = caseDetailsPage.getCaseUuid();
     List<String> caseNoteAuthors = caseDetailsPage.getCaseNoteAuthors();
     assertTrue(caseNoteAuthors.contains(SYSTEM_USER_NAME));
-    
+
     NoteHistoryPage caseNoteHistoryPage = openCaseNoteHistory(caseId);
     caseNoteAuthors = caseNoteHistoryPage.getNoteAuthors();
     assertTrue(caseNoteAuthors.contains(SYSTEM_USER_NAME));
@@ -55,17 +55,17 @@ public class SystemNoteVisibilityTest extends BaseTest {
     String caseId = caseDetailsPage.getCaseUuid();
     List<String> caseNoteAuthors = caseDetailsPage.getCaseNoteAuthors();
     assertFalse(caseNoteAuthors.contains(SYSTEM_USER_NAME));
-    
+
     NoteHistoryPage caseNoteHistoryPage = openCaseNoteHistory(caseId);
     caseNoteAuthors = caseNoteHistoryPage.getNoteAuthors();
     assertFalse(caseNoteAuthors.contains(SYSTEM_USER_NAME));
   }
-  
+
   @Test
   public void testSystemNoteVisibilityInTaskForAdmin() {
     updatePortalSetting(Variable.HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR.getKey(), "false");
     login(TestAccount.ADMIN_USER);
-    
+
     TaskDetailsPage taskDetailsPage = openTaskDetails();
     taskDetailsPage.waitPageLoaded();
     List<String> taskNoteAuthors = taskDetailsPage.getTaskNoteHasAuthors();
@@ -74,12 +74,12 @@ public class SystemNoteVisibilityTest extends BaseTest {
     NoteHistoryPage taskNoteHistoryPage = openTaskNoteHistory(taskUuid);
     taskNoteAuthors = taskNoteHistoryPage.getNoteAuthors();
     assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));
-    
+
     updatePortalSetting(Variable.HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR.getKey(), "true");
     taskDetailsPage = openTaskDetails();
     taskNoteAuthors = taskDetailsPage.getTaskNoteAuthors();
     assertFalse(taskNoteAuthors.contains(SYSTEM_USER_NAME));
-    
+
     taskUuid = taskDetailsPage.getTaskUuid();
     taskNoteHistoryPage = openTaskNoteHistory(taskUuid);
     taskNoteAuthors = taskNoteHistoryPage.getNoteAuthors();
@@ -97,7 +97,7 @@ public class SystemNoteVisibilityTest extends BaseTest {
     NoteHistoryPage taskNoteHistoryPage = openTaskNoteHistory(taskUuid);
     taskNoteAuthors = taskNoteHistoryPage.getNoteAuthors();
     assertFalse(taskNoteAuthors.contains(SYSTEM_USER_NAME));
-    
+
     updatePortalSetting(Variable.HIDE_SYSTEM_NOTES_FROM_HISTORY.getKey(), "false");
     taskDetailsPage = openTaskDetails();
     taskNoteHistoryPage.clickOnCheckboxShowSystemNotes();
@@ -117,7 +117,7 @@ public class SystemNoteVisibilityTest extends BaseTest {
     TaskWidgetPage taskWidget = mainMenuPage.selectTaskMenu();
     return taskWidget.openTaskDetails(0);
   }
-  
+
   private CaseDetailsPage openCaseDetails() {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
@@ -129,10 +129,10 @@ public class SystemNoteVisibilityTest extends BaseTest {
     goToCaseNoteHistoryPage(uuid);
     return new NoteHistoryPage();
   }
-  
+
   private NoteHistoryPage openTaskNoteHistory(String uuid) {
     goToTaskNoteHistoryPage(uuid);
     return new NoteHistoryPage();
   }
-  
+
 }

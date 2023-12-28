@@ -26,14 +26,15 @@ import com.codeborne.selenide.WebDriverRunner;
 public class CaseWidgetTest extends BaseTest {
 
   private static final String INVESTMENT_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME = "Create Investment";
-  private static final String LEAVE_REQUEST_DEFAULT_CASE_DETAILS_PAGE_CASE_NAME = "Leave Request for Default Additional Case Details";
+  private static final String LEAVE_REQUEST_DEFAULT_CASE_DETAILS_PAGE_CASE_NAME =
+      "Leave Request for Default Additional Case Details";
   private static final String LEAVE_REQUEST_CASE_NAME = "Leave Request";
   private static final String ORDER_PIZZA = "Order Pizza";
   private static final String CREATED_COLUMN_HEADER = "Created";
   private static final String STATE_COLUMN_HEADER = "State";
   private static final String RELATED_CASE_STATE_COLUMN = "state-column";
   private static final String RELATED_CASE_CREATED_COLUMN = "created-column";
-  
+
   private NewDashboardPage newDashboardPage;
   private MainMenuPage mainMenuPage;
   private CaseWidgetPage casePage;
@@ -51,12 +52,12 @@ public class CaseWidgetTest extends BaseTest {
   public void testHideCase() {
     redirectToRelativeLink(hideCaseUrl);
     initNewDashboardPage(TestAccount.ADMIN_USER);
-    
+
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy("Report and hide case", 2);
     taskWidgetPage.startTaskWithoutUI(1);
     newDashboardPage = new NewDashboardPage();
-    
+
     mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     assertFalse(casePage.isCaseDisplayed("Repair Computer"));
@@ -100,19 +101,21 @@ public class CaseWidgetTest extends BaseTest {
     caseDetailsPage = casePage.openDetailsOfCaseHasName(ORDER_PIZZA);
     assertEquals(1, caseDetailsPage.countRelatedCases());
   }
-  
+
   @Test
   public void testOpenAdditionalCaseDetailsPage() throws Exception {
-    openAdditionalCaseDetailsPage(createTestingCaseUrlForDefaultAdditionalCaseDetails, LEAVE_REQUEST_DEFAULT_CASE_DETAILS_PAGE_CASE_NAME);
+    openAdditionalCaseDetailsPage(createTestingCaseUrlForDefaultAdditionalCaseDetails,
+        LEAVE_REQUEST_DEFAULT_CASE_DETAILS_PAGE_CASE_NAME);
     validateAdditionalCaseDetailsPage(13, "Customer name", false);
   }
-  
+
   @Test
   public void testOpenCustomizationAdditionalCaseDetailsPage() throws Exception {
-    openAdditionalCaseDetailsPage(createTestingCaseUrlForCustomizationAdditionalCaseDetails, INVESTMENT_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME);
+    openAdditionalCaseDetailsPage(createTestingCaseUrlForCustomizationAdditionalCaseDetails,
+        INVESTMENT_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME);
     validateAdditionalCaseDetailsPage(4, "Apartment A", true);
   }
-  
+
   @Test
   public void testEnableAndDisableColumnsInCaseWidget() {
     initNewDashboardPage(TestAccount.DEMO_USER);
@@ -134,7 +137,7 @@ public class CaseWidgetTest extends BaseTest {
     WaitHelper.assertTrueWithWait(() -> !casePage.isCaseListColumnExist(STATE_COLUMN_HEADER));
   }
 
-  private void openAdditionalCaseDetailsPage(String initDataUrl, String caseName){
+  private void openAdditionalCaseDetailsPage(String initDataUrl, String caseName) {
     redirectToRelativeLink(initDataUrl);
     initNewDashboardPage(TestAccount.ADMIN_USER);
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
@@ -145,12 +148,14 @@ public class CaseWidgetTest extends BaseTest {
     caseDetailsPage = casePage.openDetailsOfCaseHasName(caseName);
     caseDetailsPage.openActionMenu();
     caseDetailsPage.openAdditionalCaseDetailsPage();
-    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((webDriver) -> newDashboardPage.countBrowserTab() > 1);
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
+        .until((webDriver) -> newDashboardPage.countBrowserTab() > 1);
     newDashboardPage.switchLastBrowserTab();
     mainMenuPage.waitPageLoaded();
   }
-  
-  private void validateAdditionalCaseDetailsPage(int expectedNumberOfFields, String expectedFirstFieldValue, boolean isIframe) {
+
+  private void validateAdditionalCaseDetailsPage(int expectedNumberOfFields, String expectedFirstFieldValue,
+      boolean isIframe) {
     int numberOfFields;
     try {
       if (isIframe) {
@@ -158,9 +163,10 @@ public class CaseWidgetTest extends BaseTest {
       } else {
         numberOfFields = additionalCaseDetailsPage.countFields();
       }
-    } catch (TimeoutException e) { // sometimes session is destroyed (don't know reason why!!!) so we cannot reach the page
-        System.out.println("Stop testOpenCustomizationAdditionalCaseDetailsPage test here because session is destroyed");
-        return ;
+    } catch (TimeoutException e) { // sometimes session is destroyed (don't know reason why!!!) so we cannot reach the
+                                   // page
+      System.out.println("Stop testOpenCustomizationAdditionalCaseDetailsPage test here because session is destroyed");
+      return;
     }
     assertEquals(expectedNumberOfFields, numberOfFields);
     assertEquals(expectedFirstFieldValue, additionalCaseDetailsPage.getAdditionalFieldContentOfFirstRow());
@@ -170,7 +176,7 @@ public class CaseWidgetTest extends BaseTest {
     login(account);
     newDashboardPage = new NewDashboardPage();
   }
-  
+
   @Test
   public void testShowCaseCount() {
     initNewDashboardPage(TestAccount.DEMO_USER);
@@ -179,7 +185,7 @@ public class CaseWidgetTest extends BaseTest {
     casePage.waitUntilCaseCountDifferentThanZero();
     assertEquals(1, casePage.getCaseCount().intValue());
   }
-  
+
   @Test
   public void testDisableCaseCount() {
     updatePortalSetting(Variable.DISABLE_CASE_COUNT.getKey(), "true");
@@ -261,7 +267,8 @@ public class CaseWidgetTest extends BaseTest {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     CaseWidgetPage caseWidgetPage = newDashboardPage.openCaseList();
-    caseWidgetPage.sortCaseListByColumn("case-widget:case-list-header:created-date-column-header:created-date-column-header");
+    caseWidgetPage
+        .sortCaseListByColumn("case-widget:case-list-header:created-date-column-header:created-date-column-header");
     caseWidgetPage.clickOnLogo();
     newDashboardPage = new NewDashboardPage();
     caseWidgetPage = newDashboardPage.openCaseList();
@@ -274,7 +281,7 @@ public class CaseWidgetTest extends BaseTest {
     userProfilePage.selectCaseSortField("State");
     userProfilePage.selectCaseSortDirection("Sort descending");
     newDashboardPage = userProfilePage.save();
-    
+
     // Check result
     caseWidgetPage = newDashboardPage.openCaseList();
     selectedSortColumn = caseWidgetPage.getSelectedSortColumn();

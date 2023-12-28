@@ -13,7 +13,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
 @IvyWebTest
-public class UploadDeleteDocumentVisibilityTest extends BaseTest{
+public class UploadDeleteDocumentVisibilityTest extends BaseTest {
 
   private CaseWidgetPage casePage;
   private CaseDetailsPage caseDetailsPage;
@@ -22,7 +22,7 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest{
   @Test
   public void testShowUploadDeleteDocumentWhenHasDocumentOfInvolvedCaseWritePemission() {
     createCaseAndUploadDocumentByUser(TestAccount.DEMO_USER);
-    
+
     assertTrue(caseDetailsPage.isAddDocumentLinkDisplayed(true));
     assertTrue(caseDetailsPage.isDeleteDocumentButtonPresented(true));
   }
@@ -34,7 +34,7 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest{
     denyDocumentOfInvolvedCaseWritePemissionFromCurrentUser();
     casePage = NavigationHelper.navigateToCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("SupportTicket");
-    
+
     assertTrue(caseDetailsPage.isAddDocumentLinkDisplayed(false));
     assertTrue(caseDetailsPage.isDeleteDocumentButtonPresented(false));
   }
@@ -51,16 +51,16 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest{
 
     casePage = NavigationHelper.navigateToCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("SupportTicket");
-    
+
     assertTrue(caseDetailsPage.isAddDocumentLinkDisplayed(false));
     assertTrue(caseDetailsPage.isDeleteDocumentButtonPresented(false));
   }
-  
+
   private void createCaseAndUploadDocumentByUser(TestAccount user) {
     createTestingCaseContainOneTaskByUser(user);
     uploadDocumentToTestingCaseByUser();
   }
-  
+
   private void uploadDocumentToTestingCaseByUser() {
     grantDocumentOfInvolvedCaseWritePemissionToCurrentUser();
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
@@ -75,12 +75,12 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest{
     initNewDashboardPage(user);
     redirectToRelativeLink(createTestingCaseContainOneTask);
   }
-  
+
   private void initNewDashboardPage(TestAccount account) {
     login(account);
     new NewDashboardPage();
   }
-  
+
   private String getAbsolutePathToTestFile(String fileName) {
     return System.getProperty("user.dir") + "\\resources\\testFile\\" + fileName;
   }
