@@ -1,9 +1,9 @@
 {
   "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
-  "id" : "189D4B709085FC89",
+  "id" : "189B5CFC9F7CFDDC",
   "kind" : "HTML_DIALOG",
   "config" : {
-    "data" : "com.axonivy.portal.components.examples.redirectstodetailspage.RedirectToCaseDetailsByUUIDExample.RedirectToCaseDetailsByUUIDExampleData"
+    "data" : "com.axonivy.portal.components.examples.redirectstodetailspage.RedirectToTaskDetailsPageExample.RedirectToTaskDetailsPageExampleData"
   },
   "elements" : [ {
       "id" : "f0",
@@ -11,15 +11,7 @@
       "name" : "start()",
       "config" : {
         "signature" : "start",
-        "result" : {
-          "params" : [
-            { "name" : "uuid", "type" : "String", "desc" : "" }
-          ],
-          "map" : {
-            "result.uuid" : "in.uuid"
-          }
-        },
-        "guid" : "189BA1E3B3F8735D"
+        "guid" : "189B5CFC9F82A67F"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
@@ -38,7 +30,7 @@
       "type" : "HtmlDialogEventStart",
       "name" : "close",
       "config" : {
-        "guid" : "189BA1E3B3FFC3D5"
+        "guid" : "189B5CFC9F9D4639"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }
@@ -58,10 +50,10 @@
       "name" : "generate()",
       "config" : {
         "signature" : "generate",
-        "guid" : "189D354DED93DA00"
+        "guid" : "189D34BD0BAF5D30"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 248 }
+        "at" : { "x" : 96, "y" : 264 }
       },
       "connect" : [
         { "id" : "f10", "to" : "f9" }
@@ -70,7 +62,7 @@
       "id" : "f7",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 352, "y" : 248 }
+        "at" : { "x" : 352, "y" : 264 }
       }
     }, {
       "id" : "f9",
@@ -81,13 +73,13 @@
           "code" : [
             "import org.apache.commons.lang3.StringUtils;",
             "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
-            "in.caseLink = PortalNavigatorAPI.buildUrlToPortalCaseDetailsPageByUUID(in.uuid);",
-            "in.isLinkEnable = StringUtils.isNotEmpty(in.caseLink);"
+            "in.taskLink = PortalNavigatorAPI.buildUrlToPortalTaskDetailsPageById(in.taskId);",
+            "in.isLinkEnable = StringUtils.isNotEmpty(in.taskLink);"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 248 }
+        "at" : { "x" : 224, "y" : 264 }
       },
       "connect" : [
         { "id" : "f8", "to" : "f7" }

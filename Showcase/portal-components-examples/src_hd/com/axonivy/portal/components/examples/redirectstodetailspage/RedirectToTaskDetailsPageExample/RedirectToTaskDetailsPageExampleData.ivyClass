@@ -1,0 +1,8 @@
+RedirectToTaskDetailsPageExampleData #class
+com.axonivy.portal.components.examples.redirectstodetailspage.RedirectToTaskDetailsPageExample #namespace
+taskId Long #field
+taskId PERSISTENT #fieldModifier
+taskLink String #field
+taskLink PERSISTENT #fieldModifier
+isLinkEnable Boolean #field
+isLinkEnable PERSISTENT #fieldModifier
