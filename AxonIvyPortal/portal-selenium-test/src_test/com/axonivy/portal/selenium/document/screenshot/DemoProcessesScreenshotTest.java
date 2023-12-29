@@ -9,7 +9,7 @@ import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
-import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.ScreenshotUtil;
 import com.axonivy.portal.selenium.page.CaseMapPage;
 import com.axonivy.portal.selenium.page.ExampleOverviewPage;
 import com.axonivy.portal.selenium.page.LeaveRequestPage;
@@ -43,61 +43,61 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
     dashboardPage.waitForCaseWidgetLoaded();
     mainMenuPage = new MainMenuPage();
     mainMenuPage.expandMainMenu();
-    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 500));
-    ScreenshotUtils.executeDecorateJs("highlightUserExampleNavigation()");
-    ScreenshotUtils.captureHalfLeftPageScreenShot(ScreenshotUtils.DEMO_FOLDER + "user-example-guide-link");
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 500));
+    ScreenshotUtil.executeDecorateJs("highlightUserExampleNavigation()");
+    ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.DEMO_FOLDER + "user-example-guide-link");
   }
-
+  
   @Test
-  public void screenshotUserExampleOverview() throws IOException {
+  public void screenshotUserExampleOverview() throws IOException{
     mainMenuPage.closeMainMenu();
-    ScreenshotUtils.resizeBrowser(new Dimension(1600, 1300));
+    ScreenshotUtil.resizeBrowser(new Dimension(1600, 1300));
     redirectToRelativeLinkWithEmbedInFrame(startUserExampleProcess);
     ExampleOverviewPage exampleOverviewPage = new ExampleOverviewPage();
     exampleOverviewPage.switchToIFrameOfTask();
     exampleOverviewPage.waitForIFrameContentVisible();
-    ScreenshotUtils.executeDecorateJs("highlightUserExampleCard(0)");
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "example-overview-leave-request");
+    ScreenshotUtil.executeDecorateJs("highlightUserExampleCard(0)");
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DEMO_FOLDER + "example-overview-leave-request");
     refreshPage();
     exampleOverviewPage = new ExampleOverviewPage();
     exampleOverviewPage.switchToIFrameOfTask();
     exampleOverviewPage.waitForIFrameContentVisible();
-    ScreenshotUtils.executeDecorateJs("highlightUserExampleCard(1)");
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "example-overview-lending-case");
+    ScreenshotUtil.executeDecorateJs("highlightUserExampleCard(1)");
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DEMO_FOLDER + "example-overview-lending-case");
   }
 
   @Test
   public void screenshotLeaveRequestProcess() throws IOException {
-    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 950));
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 950));
     redirectToRelativeLinkWithEmbedInFrame(LEAVE_REQUEST_START_LINK);
     LeaveRequestPage leaveRequestPage = new LeaveRequestPage();
     leaveRequestPage.switchToIFrameOfTask();
     leaveRequestPage.waitForIFrameContentVisible();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "leave-request-creation");
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DEMO_FOLDER + "leave-request-creation");
   }
-
+  
   @Test
   public void screenshotCaseMapProcess() throws IOException {
-    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 900));
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 900));
     redirectToRelativeLinkWithEmbedInFrame(CASE_MAP_URL);
     CaseMapPage caseMapPage = new CaseMapPage();
     caseMapPage.switchToIFrameOfTask();
     caseMapPage.waitForIFrameContentVisible();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "lending-casemap-collect-personal-data");
-
-    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1000));
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DEMO_FOLDER + "lending-casemap-collect-personal-data");
+    
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1000));
     NewDashboardPage newDashboardPage = caseMapPage.clickSubmitRequestButton();
-    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1500));
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1500));
     newDashboardPage.startTask(0);
     caseMapPage = new CaseMapPage();
     caseMapPage.switchToIFrameOfTask();
     caseMapPage.clickSubmitButtonAndBackToTaskList();
     TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
     taskWidgetPage.clickOnTaskActionLink(0);
-    ScreenshotUtils.executeDecorateJs("highlightTaskActionItem(0, 1)");
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "lending-casemap-external-solvency-service");
+    ScreenshotUtil.executeDecorateJs("highlightTaskActionItem(0, 1)");
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DEMO_FOLDER + "lending-casemap-external-solvency-service");
     taskWidgetPage.clickOnSideStepAction(0, 1);
-    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1150));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "lending-casemap-approval-task");
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1150));
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DEMO_FOLDER + "lending-casemap-approval-task");
   }
 }

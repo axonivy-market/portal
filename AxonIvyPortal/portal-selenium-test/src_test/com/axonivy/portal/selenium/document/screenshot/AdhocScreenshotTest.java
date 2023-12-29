@@ -11,7 +11,7 @@ import org.openqa.selenium.Dimension;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
-import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.ScreenshotUtil;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.DefaultExpressTaskPage;
 import com.axonivy.portal.selenium.page.ExpressProcessPage;
@@ -40,8 +40,8 @@ public class AdhocScreenshotTest extends ScreenshotBaseTest {
     String defaultTaskName2 = "Adhoc-Inform team member";
     String defaultTaskComment1 = "Get approve from CEO";
     String defaultTaskComment2 = "Inform team";
-
-    ScreenshotUtils.resizeBrowser(new Dimension(1200, 580));
+    
+    ScreenshotUtil.resizeBrowser(new Dimension(1200, 580));
     showNewDashboard();
     MainMenuPage menuPage = new MainMenuPage();
     TaskWidgetPage taskWidget = menuPage.openTaskList();
@@ -49,32 +49,34 @@ public class AdhocScreenshotTest extends ScreenshotBaseTest {
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     taskTemplatePage.switchBackToParent();
     taskTemplatePage.clickActionButton();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.EXPRESS_FOLDER + "adhoc-start");
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "adhoc-start");
 
     taskTemplatePage.clickOnStartAdhocLink();
     taskTemplatePage.clickAdhocOkButton();
 
-    // create tasks in adhoc page
-    ScreenshotUtils.resizeBrowser(new Dimension(1500, 1200));
+    //create tasks in adhoc page
+    ScreenshotUtil.resizeBrowser(new Dimension(1500, 1200));
     ExpressProcessPage expressPage = new ExpressProcessPage();
 
-    ExpressResponsible responsible = setExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
+    ExpressResponsible responsible = new ExpressResponsible();
+    responsible.setResponsibleName("demo");
+    responsible.setIsGroup(false);
 
     List<ExpressResponsible> responsibles = Arrays.asList(responsible);
     expressPage.createDefaultTask(0, defaultTaskName1, responsibles);
     expressPage.addNewTask(0);
     expressPage.createDefaultTask(1, defaultTaskName2, responsibles);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.EXPRESS_FOLDER + "adhoc-define");
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "adhoc-define");
     expressPage.clickSave();
 
-    // first task of adhoc
+    //first task of adhoc
     DefaultExpressTaskPage defaultExpressTaskPage = new DefaultExpressTaskPage();
     defaultExpressTaskPage.enterTextToDefaultTask(defaultTaskComment1);
-    ScreenshotUtils.resizeBrowser(new Dimension(1500, 600));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.EXPRESS_FOLDER + "adhoc-first-task");
+    ScreenshotUtil.resizeBrowser(new Dimension(1500, 600));
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "adhoc-first-task");
     defaultExpressTaskPage.clickOK();
-
-    // approval task of adhoc
+    
+    //approval task of adhoc
     NewDashboardPage homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
     menuPage = new MainMenuPage();
@@ -83,8 +85,8 @@ public class AdhocScreenshotTest extends ScreenshotBaseTest {
 
     defaultExpressTaskPage = new DefaultExpressTaskPage();
     defaultExpressTaskPage.enterTextToDefaultTask(defaultTaskComment2);
-    ScreenshotUtils.resizeBrowser(new Dimension(1500, 1000));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.EXPRESS_FOLDER + "adhoc-finish");
+    ScreenshotUtil.resizeBrowser(new Dimension(1500, 1000));
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "adhoc-finish");
     defaultExpressTaskPage.clickOK();
 
     showNewDashboard();
@@ -94,12 +96,11 @@ public class AdhocScreenshotTest extends ScreenshotBaseTest {
     taskWidget = menuPage.openTaskList();
     taskWidget.openTask(mainTask);
 
-    ScreenshotUtils.resizeBrowser(new Dimension(1200, 800));
+    ScreenshotUtil.resizeBrowser(new Dimension(1200, 800));
     taskTemplatePage.closeAdhocHistoryDialog();
     taskTemplatePage.clickActionButton();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.EXPRESS_FOLDER + "adhoc-show-history");
-    ScreenshotUtils.maximizeBrowser();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskTemplatePage.openAdhocHistoryDialog(),
-        ScreenshotUtils.EXPRESS_FOLDER + "adhoc-process-history", new ScreenshotMargin(20));
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "adhoc-show-history");
+    ScreenshotUtil.maximizeBrowser();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskTemplatePage.openAdhocHistoryDialog(), ScreenshotUtil.EXPRESS_FOLDER + "adhoc-process-history", new ScreenshotMargin(20));
   }
 }

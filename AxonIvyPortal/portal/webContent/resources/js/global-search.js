@@ -290,7 +290,13 @@ if (document) {
     }
   }
 
-
+  function showConfirmationDialog() {
+    if (PrimeFaces.widgets['search-task-losing-confirmation-dialog']) {
+      PF('search-task-losing-confirmation-dialog').show();
+    } else {
+      return false;
+    }
+  }
 
 
   let processComponent = (process) => {
