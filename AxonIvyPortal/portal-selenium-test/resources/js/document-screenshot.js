@@ -579,3 +579,7 @@ function highlightAndNumberingTaskTemplate() {
   createRedMediumOutline(other);
   appendStepAnnotation(other, "3", 27, -20);
 }
+
+function highlightMobileApp() {
+  createRedMediumOutline($("#mobile-app-item"));
+}

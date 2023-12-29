@@ -9,7 +9,7 @@ import org.openqa.selenium.Dimension;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
-import com.axonivy.portal.selenium.common.ScreenshotUtil;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -28,14 +28,9 @@ public class QRCodeScreenshotTest extends ScreenshotBaseTest {
   @Test
   public void screenshotQRCode() throws IOException {
     NewDashboardPage homePage = new NewDashboardPage();
-//    homePage.openUserSettingMenu();
-//
-//    ScreenshotUtil.resizeBrowser(new Dimension(1500, 800));
-//    ScreenshotUtil.executeDecorateJs("highlightAdminSettings()");
-//    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.MOBILE_FOLDER + "mobile-app");
     
     QRCodePage qrCodePage = homePage.openQRCode();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(qrCodePage.getQRCodeDialog(), ScreenshotUtil.MOBILE_FOLDER + "qr-code", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(qrCodePage.getQRCodeDialog(), ScreenshotUtils.MOBILE_FOLDER + "qr-code", new ScreenshotMargin(5, 5));
   }
   
   @Test
@@ -43,8 +38,8 @@ public class QRCodeScreenshotTest extends ScreenshotBaseTest {
     NewDashboardPage homePage = new NewDashboardPage();
     homePage.openUserSettingMenu();
 
-    ScreenshotUtil.resizeBrowser(new Dimension(1500, 800));
-    ScreenshotUtil.executeDecorateJs("highlightMobileApp()");
-    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.MOBILE_FOLDER + "mobile-app-menu");
+    ScreenshotUtils.resizeBrowser(new Dimension(1500, 800));
+    ScreenshotUtils.executeDecorateJs("highlightMobileApp()");
+    ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.MOBILE_FOLDER + "mobile-app-menu");
   }
 }
