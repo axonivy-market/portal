@@ -8,7 +8,7 @@ import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
-import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.ScreenshotUtil;
 import com.axonivy.portal.selenium.page.GlobalSearchResultPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 
@@ -28,9 +28,9 @@ public class GlobalSearchScreenshotTest extends ScreenshotBaseTest {
     NewDashboardPage homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
     GlobalSearchResultPage resultPage = homePage.inputGlobalSearchKeyword("process");
-
-    ScreenshotUtils.resizeBrowser(new Dimension(1500, 800));
+    
+    ScreenshotUtil.resizeBrowser(new Dimension(1500, 800));
     resultPage.waitUtilProcessWidgetDisplayed();
-    ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.SEARCH_FOLDER + "global-search-result");
+    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.SEARCH_FOLDER + "global-search-result");
   }
 }

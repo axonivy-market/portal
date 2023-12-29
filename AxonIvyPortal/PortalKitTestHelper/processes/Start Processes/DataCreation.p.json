@@ -1418,13 +1418,12 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.Locales;",
             "import ch.ivy.addon.portalkit.util.DisplayNameConvertor;",
             "import ch.ivy.addon.portalkit.configuration.Application;",
             "import ch.ivy.addon.portalkit.service.RegisteredApplicationService;",
             "",
             "DisplayNameConvertor convertor = new DisplayNameConvertor();",
-            "convertor.add(new Locales().getCurrentLocale(), \"Google\");",
+            "convertor.add(ivy.session.getSessionUser().getLanguage(), \"Google\");",
             "",
             "Application app = new Application();",
             "app.displayName = convertor.toJson();",

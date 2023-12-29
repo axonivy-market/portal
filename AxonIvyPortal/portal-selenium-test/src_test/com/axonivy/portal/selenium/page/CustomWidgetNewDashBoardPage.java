@@ -15,18 +15,12 @@ import com.codeborne.selenide.SelenideElement;
 public class CustomWidgetNewDashBoardPage extends TemplatePage {
 
   private static final String CONFIGURATION_DIALOG = "new-widget-configuration-dialog";
-  private static final String CUSTOM_DATE_INPUT_PATTERN =
-      "widget-configuration-form:new-widget-configuration-component:parammeters:%d:param-calendar-_input";
-  private static final String CUSTOM_DATE_DIALOG_PATTERN =
-      "widget-configuration-form:new-widget-configuration-component:parammeters:%d:param-calendar-_panel";
-  private static final String CUSTOM_STRING_INPUT_PATTERN =
-      "widget-configuration-form:new-widget-configuration-component:parammeters:%d:param-string-";
-  private static final String CUSTOM_USER_SELECTION_INPUT_PATTERN =
-      "widget-configuration-form:new-widget-configuration-component:parammeters:%d:param-user-:user-selection_input";
-  private static final String CUSTOM_USER_SELECTION_DIALOG_PATTERN =
-      "widget-configuration-form:new-widget-configuration-component:parammeters:%d:param-user-:user-selection_panel";
-  private static final String EXTERNAL_URL =
-      "widget-configuration-form:new-widget-configuration-component:external-url";
+  private static final String CUSTOM_DATE_INPUT_PATTERN = "widget-configuration-form:new-widget-configuration-component:parammeters:%d:param-calendar-_input";
+  private static final String CUSTOM_DATE_DIALOG_PATTERN = "widget-configuration-form:new-widget-configuration-component:parammeters:%d:param-calendar-_panel";
+  private static final String CUSTOM_STRING_INPUT_PATTERN = "widget-configuration-form:new-widget-configuration-component:parammeters:%d:param-string-";
+  private static final String CUSTOM_USER_SELECTION_INPUT_PATTERN = "widget-configuration-form:new-widget-configuration-component:parammeters:%d:param-user-:user-selection_input";
+  private static final String CUSTOM_USER_SELECTION_DIALOG_PATTERN = "widget-configuration-form:new-widget-configuration-component:parammeters:%d:param-user-:user-selection_panel";
+  private static final String EXTERNAL_URL = "widget-configuration-form:new-widget-configuration-component:external-url";
 
   @Override
   protected String getLoadedLocator() {
@@ -35,7 +29,7 @@ public class CustomWidgetNewDashBoardPage extends TemplatePage {
 
   public void selectProcessAndSaveWidget(String processName) {
     selectProcess(processName);
-
+    
   }
 
   public void selectProcess(String processName) {
@@ -45,10 +39,9 @@ public class CustomWidgetNewDashBoardPage extends TemplatePage {
 
   public void selectProcessAndWaitForParameterPanel(String processName) {
     selectProcess(processName);
-    $("[id='widget-configuration-form:new-widget-configuration-component:selected-process_panel']")
-        .shouldBe(appear, DEFAULT_TIMEOUT).$$(".autocomplete-tooltip").get(0).shouldBe(appear, DEFAULT_TIMEOUT).click();
-    $("div[id='widget-configuration-form:new-widget-configuration-component:parameters-panel']").shouldBe(appear,
-        DEFAULT_TIMEOUT);
+    $("[id='widget-configuration-form:new-widget-configuration-component:selected-process_panel']").shouldBe(appear, DEFAULT_TIMEOUT)
+      .$$(".autocomplete-tooltip").get(0).shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("div[id='widget-configuration-form:new-widget-configuration-component:parameters-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getSelectedProcess() {
@@ -71,41 +64,40 @@ public class CustomWidgetNewDashBoardPage extends TemplatePage {
 
   public void inputUserField(int index, String value) {
     String fieldId = String.format(CUSTOM_USER_SELECTION_INPUT_PATTERN, index);
-    $("[id='" + fieldId + "']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT).sendKeys(value);
-
+    $("[id='"+ fieldId +"']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT).sendKeys(value);
+    
     String dialogId = String.format(CUSTOM_USER_SELECTION_DIALOG_PATTERN, index);
-    $("[id='" + dialogId + "']").shouldBe(appear, DEFAULT_TIMEOUT).$$("td").get(0)
-        .shouldBe(clickable(), DEFAULT_TIMEOUT).click();
-    $("[id='" + dialogId + "']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("[id='"+ dialogId +"']").shouldBe(appear, DEFAULT_TIMEOUT).$$("td").get(0)
+       .shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("[id='"+ dialogId +"']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void inputDateField(int index, String value) {
     String fieldId = String.format(CUSTOM_DATE_INPUT_PATTERN, index);
-    $("[id='" + fieldId + "']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT).sendKeys(value);
+    $("[id='"+ fieldId +"']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT).sendKeys(value);
 
     String dialogId = String.format(CUSTOM_DATE_DIALOG_PATTERN, index);
-    $("[id='" + dialogId + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id='"+ dialogId +"']").shouldBe(appear, DEFAULT_TIMEOUT);
     unfocusInput();
   }
 
   public void inputStringField(int index, String value) {
     String fieldId = String.format(CUSTOM_STRING_INPUT_PATTERN, index);
-    $("[id='" + fieldId + "']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT).sendKeys(value);
+    $("[id='"+ fieldId +"']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT).sendKeys(value);
   }
 
   public void inputExternalUrlField(String value) {
-    $("[id='" + EXTERNAL_URL + "']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT)
-        .sendKeys(value);
+    $("[id='" + EXTERNAL_URL + "']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT).sendKeys(value);
   }
 
   public WebElement getConfigurationDialog() {
     unfocusInput();
-    return $("[id='" + CONFIGURATION_DIALOG + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("[id='"+ CONFIGURATION_DIALOG +"']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   private void unfocusInput() {
     $("[id='new-widget-configuration-dialog_title']").shouldBe(appear, DEFAULT_TIMEOUT).click();
-  }
+  }  
 
   public SelenideElement processParam() {
     return $("div[id$=':parameters-panel']");
