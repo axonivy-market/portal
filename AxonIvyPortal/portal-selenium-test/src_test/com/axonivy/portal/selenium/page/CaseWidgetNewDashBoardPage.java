@@ -48,8 +48,8 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private int getIndexWidgetByColumnScrollable(String columnName) {
-    ElementsCollection elementsTH = $(caseWidgetId).$(".ui-datatable-scrollable-header")
-            .shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
+    ElementsCollection elementsTH =
+        $(caseWidgetId).$(".ui-datatable-scrollable-header").shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
     for (int i = 0; i < elementsTH.size(); i++) {
       if (elementsTH.get(i).getAttribute("aria-label").equalsIgnoreCase(columnName)) {
         return i;
@@ -175,32 +175,32 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='reset-button']")
         .filter(text("Reset")).first().shouldBe(getClickableCondition()).click();
   }
-  
+
   public void selectState(String state) {
     getValueOfCheckBox(state).shouldBe(getClickableCondition()).click();
     getCloseCheckBox().shouldBe(getClickableCondition()).click();
   }
-  
+
   public void clickOnCaseActionLink(int caseIndex) {
     getColumnOfCaseHasActionIndex(caseIndex, "Actions").shouldBe(getClickableCondition()).click();
   }
-  
+
   public void turnOffActionsPanel(int caseIndex) {
     $$("div.widget__header").filter(text(caseWidgetName)).first().shouldBe(getClickableCondition()).click();
     $$(String.format("div.js-case-side-steps-panel-case_1-%d", caseIndex)).first().shouldBe(disappear, DEFAULT_TIMEOUT);
   }
-  
+
   public ElementsCollection getActiveCaseActions(int caseIndex) {
     clickOnCaseActionLink(caseIndex);
     return $$(String.format("div.js-case-side-steps-panel-case_1-%d", caseIndex)).filter(appear).first()
         .shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='action-step-item']");
   }
-  
+
   public void destroyCase(int caseIndex) {
     getActiveCaseActions(caseIndex).filter(text("Destroy")).first().shouldBe(getClickableCondition()).click();
     confirmDestroy();
   }
-  
+
   private void confirmDestroy() {
     $("div[id$='destroy-case-confirmation-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("button[id$='confirm-destruction-dashboard-cases']").shouldBe(getClickableCondition()).click();
@@ -209,19 +209,20 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public SelenideElement getCreatorAvatar() {
     return $(".dashboard-cases__creator > .has-avatar > .ui-avatar").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-  
+
   public void deleteCaseWidget() {
     $$("div.table-widget-panel div.widget__header").filter(text(caseWidgetName)).first()
         .shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='delete-widget']")
         .shouldBe(getClickableCondition()).click();
   }
-  
+
   public void clickExportExcel() {
-    expand().first().$(".widget__info-sidebar-link")
-        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("div.info-overlay-panel__footer").$(".dashboard-excel-export-form").$("a").shouldBe(getClickableCondition()).click();
+    expand().first().$(".widget__info-sidebar-link").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
+        .click();
+    $("div.info-overlay-panel__footer").$(".dashboard-excel-export-form").$("a").shouldBe(getClickableCondition())
+        .click();
   }
-  
+
   public void clickOnCustomActionButton(int rowIndex, String columnName) {
     SelenideElement custom = $("a[id$=':custom-description']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     custom.shouldBe(getClickableCondition()).click();
