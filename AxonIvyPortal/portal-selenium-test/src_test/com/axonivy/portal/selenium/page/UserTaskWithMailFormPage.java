@@ -7,7 +7,7 @@ import org.openqa.selenium.JavascriptExecutor;
 
 import com.codeborne.selenide.WebDriverRunner;
 
-public class UserTaskWithMailFormPage extends TemplatePage {
+public class UserTaskWithMailFormPage  extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
@@ -26,8 +26,7 @@ public class UserTaskWithMailFormPage extends TemplatePage {
   }
 
   private void inputRecipient(String recipient) {
-    $("[id='task-form:task-view:information-email:email-recipients']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .sendKeys(recipient);
+    $("[id='task-form:task-view:information-email:email-recipients']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(recipient);
   }
 
   private void inputSubject(String content) {
@@ -36,11 +35,9 @@ public class UserTaskWithMailFormPage extends TemplatePage {
 
   private void inputContent(String content) {
     JavascriptExecutor jse = (JavascriptExecutor) WebDriverRunner.getWebDriver();
-    jse.executeScript(
-        "document.querySelector(\"input[name='task-form:task-view:information-email:email-content_input'\").value='"
-            + content + "';");
+    jse.executeScript("document.querySelector(\"input[name='task-form:task-view:information-email:email-content_input'\").value='"
+        + content + "';");
   }
-
   public void finish() {
     $("[id='task-form:ok-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }

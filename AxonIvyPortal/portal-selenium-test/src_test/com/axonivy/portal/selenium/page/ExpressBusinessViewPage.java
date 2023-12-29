@@ -20,26 +20,24 @@ public class ExpressBusinessViewPage extends TemplatePage {
   public SelenideElement getEmptyFinishedTask() {
     return $("[id$='express-view-form:empty-finished-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-
+  
   public String getEmptyFinishedTaskMessage() {
     return getEmptyFinishedTask().$(".no-item-header").shouldBe(appear, DEFAULT_TIMEOUT).getText();
   }
 
   public void clickOnCloseButton() {
-    WaitHelper.waitForNavigation(
-        () -> $("[id$='express-view-form:cancel-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+    WaitHelper.waitForNavigation(() -> $("[id$='express-view-form:cancel-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
   }
-
+  
   public SelenideElement getLegendFisnishedTaskFieldset(int index) {
-    return $(
-        String.format("span[id$=':finished-tasks-component:approval-result:%d:finished-task-fieldset-legend']", index))
-            .shouldBe(appear, DEFAULT_TIMEOUT);
+    return $(String.format("span[id$=':finished-tasks-component:approval-result:%d:finished-task-fieldset-legend']", index))
+        .shouldBe(appear, DEFAULT_TIMEOUT);
   }
-
+  
   public String getTextOfLegendFinishedTask(int index) {
     return getLegendFisnishedTaskFieldset(index).getText();
   }
-
+  
   public String getTextOfLegendApprovalResult(int index) {
     return $(String.format("span[id$=':approval-result-container:0:approval-result-fieldset-legend']", index))
         .shouldBe(appear, DEFAULT_TIMEOUT).getText();
@@ -48,7 +46,7 @@ public class ExpressBusinessViewPage extends TemplatePage {
   public void clickOnLegendOfFieldset(int index) {
     getLegendFisnishedTaskFieldset(index).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
-
+  
   public String getApprovalResultsText() {
     return $(".approval-result-content").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("tbody[id$=':approval-result-table_data'] td").asFixedIterable().stream().map(WebElement::getText)
@@ -56,8 +54,8 @@ public class ExpressBusinessViewPage extends TemplatePage {
   }
 
   public Integer getIndexOfCurrentProcessChain() {
-    SelenideElement processChainContainer =
-        $("[id$='process-chain-component:process-chain-component-id']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement processChainContainer = $("[id$='process-chain-component:process-chain-component-id']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
 
     for (var step : processChainContainer.$$("div[id^='process-chain-component:step-info-']")) {
       if (step.getAttribute(CLASS_PROPERTY).contains("current")) {

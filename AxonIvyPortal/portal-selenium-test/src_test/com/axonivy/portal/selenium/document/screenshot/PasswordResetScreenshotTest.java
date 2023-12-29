@@ -9,7 +9,7 @@ import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
-import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.ScreenshotUtil;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.PasswordResetPage;
@@ -32,16 +32,15 @@ public class PasswordResetScreenshotTest extends ScreenshotBaseTest {
     homePage.clickOnLogout();
     redirectToRelativeLink(String.format(portalPasswordResetUrl, TestAccount.TEST_FORGOT_PASSWORD_USER.getPassword(),
         TestAccount.TEST_FORGOT_PASSWORD_USER.getUsername()));
-    ScreenshotUtils.resizeBrowser(new Dimension(1024, 768));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.FORGOT_PASSWORD + "reset-password-screen");
+    ScreenshotUtil.resizeBrowser(new Dimension(1024, 768));
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.FORGOT_PASSWORD + "reset-password-screen");
 
-    redirectToRelativeLink(String.format(portalPasswordResetUrl, TestAccount.TEST_FORGOT_PASSWORD_USER.getPassword(),
-        TestAccount.TEST_FORGOT_PASSWORD_USER.getUsername()));
+    redirectToRelativeLink(String.format(portalPasswordResetUrl, TestAccount.TEST_FORGOT_PASSWORD_USER.getPassword(), TestAccount.TEST_FORGOT_PASSWORD_USER.getUsername()));
     var passwordResetPage = new PasswordResetPage();
     String newPassword = "a2C!";
     passwordResetPage.resetPassword(newPassword, true);
     refreshPage();
-    ScreenshotUtils.resizeBrowser(new Dimension(1024, 768));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.FORGOT_PASSWORD + "reset-password-success-screen");
+    ScreenshotUtil.resizeBrowser(new Dimension(1024, 768));
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.FORGOT_PASSWORD + "reset-password-success-screen");
   }
 }
