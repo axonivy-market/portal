@@ -8,12 +8,12 @@ import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
-import com.axonivy.portal.selenium.common.ScreenshotUtil;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.NotificationCompactPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class NotificationScreenshotTest extends ScreenshotBaseTest {
   @Override
   @BeforeEach
@@ -29,16 +29,16 @@ public class NotificationScreenshotTest extends ScreenshotBaseTest {
     homePage.waitForCaseWidgetLoaded();
     NotificationCompactPage notificationPanel = homePage.openNotificationPanel();
     
-    ScreenshotUtil.resizeBrowser(new Dimension(1400, 700));
-    ScreenshotUtil.executeDecorateJs("highlightNotificationIcon()");    
-    ScreenshotUtil.captureHalfRightPageScreenShot(ScreenshotUtil.NOTIFICATION_FOLDER + "notification-panel");
+    ScreenshotUtils.resizeBrowser(new Dimension(1400, 700));
+    ScreenshotUtils.executeDecorateJs("highlightNotificationIcon()");    
+    ScreenshotUtils.captureHalfRightPageScreenShot(ScreenshotUtils.NOTIFICATION_FOLDER + "notification-panel");
     
-    ScreenshotUtil.resizeBrowser(new Dimension(1400, 700));
-    ScreenshotUtil.executeDecorateJs("highlightNotificationFullPageIcon()");    
-    ScreenshotUtil.captureHalfRightPageScreenShot(ScreenshotUtil.NOTIFICATION_FOLDER + "notification-link-to-full-page");
+    ScreenshotUtils.resizeBrowser(new Dimension(1400, 700));
+    ScreenshotUtils.executeDecorateJs("highlightNotificationFullPageIcon()");    
+    ScreenshotUtils.captureHalfRightPageScreenShot(ScreenshotUtils.NOTIFICATION_FOLDER + "notification-link-to-full-page");
     
-    ScreenshotUtil.resizeBrowser(new Dimension(1400, 1000));
+    ScreenshotUtils.resizeBrowser(new Dimension(1400, 1000));
     notificationPanel.openNotificationFullPage();
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.NOTIFICATION_FOLDER + "notification-full-page");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NOTIFICATION_FOLDER + "notification-full-page");
   }
 }
