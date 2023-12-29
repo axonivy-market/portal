@@ -37,8 +37,6 @@ public class AdminSettingsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':adminTabView:settingForm']"), true);
     waitForElementClickableThenClick("a[href$='#admin-setting-component:adminTabView:announcement-tab']");
     $("button[id$='publish-announcement']").shouldBe(appear);
-    // WaitHelper.waitForActionComplete("form[id$=':adminTabView:applicationForm']",
-    // () -> waitForElementClickableThenClick("a[href$='#admin-setting-component:adminTabView:application-tab']"));
     WaitHelper.waitForActionComplete("a[id$='0:edit']",
         () -> waitForElementClickableThenClick("a[href$='#admin-setting-component:adminTabView:setting-tab']"));
   }
