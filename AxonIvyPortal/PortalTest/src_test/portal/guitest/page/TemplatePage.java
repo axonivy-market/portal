@@ -41,7 +41,7 @@ public abstract class TemplatePage extends AbstractPage {
 
   //If page load more than 45s, mark it failed by timeout
   protected long getTimeOutForLocator() {
-    return 30L;
+    return 9L;
   }
 
   protected void waitForLocatorDisplayed(String locator) {
@@ -440,7 +440,7 @@ public abstract class TemplatePage extends AbstractPage {
   public WebElement getAbsenceManagementDialog() {
     return findElementById("absence-management-dialog");
   }
-
+  
   public WebElement getUserSettings() {
     waitForElementDisplayed(By.id("user-settings-menu"), true);
     click(findElementById("user-settings-menu"));
@@ -460,7 +460,7 @@ public abstract class TemplatePage extends AbstractPage {
   public void waitUntilErrorMessageShowUp() {
     waitForElementDisplayed(By.className("notification-container"), true);
   }
-
+  
   public void clickOnShowMoreLinkOfErrorMessages() {
     click(findElementByCssSelector("a[class$='notification-content-action-more-details']"));
   }
@@ -551,4 +551,5 @@ public abstract class TemplatePage extends AbstractPage {
       return false;
     });
   }
+
 }
