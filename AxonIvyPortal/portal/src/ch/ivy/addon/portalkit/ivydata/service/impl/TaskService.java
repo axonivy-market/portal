@@ -243,7 +243,7 @@ public class TaskService {
   private TaskQuery extendQueryWithUserHasPermissionToSee(TaskSearchCriteria criteria) {
     TaskQuery clonedQuery = TaskQuery.fromJson(criteria.getFinalTaskQuery().asJson()); // clone to keep the final query in TaskSearchCriteria
     if (!criteria.isAdminQuery()) {
-      clonedQuery.where().and(queryInvolvedTasks());
+      clonedQuery.where().and(queryInvolvedTasks()).and().currentUserCanWorkOn();
     }
     if (isHiddenTasksCasesExcluded()) {
       clonedQuery.where().and(queryExcludeHiddenTasks());
