@@ -6,7 +6,6 @@ public class NotificationCompactPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    // TODO Auto-generated method stub
     return "[id='notifications-panel']";
   }
 

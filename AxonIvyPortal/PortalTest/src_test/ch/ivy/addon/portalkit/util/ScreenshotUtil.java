@@ -51,8 +51,6 @@ public class ScreenshotUtil {
   public static final String LAYOUT_FOLDER = "/layout-template/";
   public static final String ERROR_HANDLING_FOLDER = "/error-handling/";
   public static final String DASHBOARD_CONFIGURATION_FOLDER = "/dashboard-configuration/";
-  public static final String NOTIFICATION_FOLDER = "/notification/";
-  
   
   @PostConstruct
   public void initFolder() {
