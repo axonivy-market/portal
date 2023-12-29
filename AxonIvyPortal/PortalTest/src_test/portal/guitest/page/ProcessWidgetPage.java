@@ -230,7 +230,7 @@ public class ProcessWidgetPage extends TemplatePage {
     liveSearchTextField = findElementById(processWidgetId + ":process-search:non-ajax-keyword-filter");
     type(liveSearchTextField, keyword);
   }
-
+  
   public class AddNewExternalLinkDialog {
     private final String EXTERNAL_LINK_NAME_INPUT_CSS_SELECTOR = "input[id$=':add-external-link-form:external-link-name']";
     private final String EXTERNAL_LINK_INPUT_CSS_SELECTOR = "input[id$=':add-external-link-form:external-link']";

@@ -19,11 +19,11 @@ import portal.guitest.page.NewDashboardPage;
 public class CaseFilterTest extends BaseTest {
 
   @Override
-  @Before
-  public void setup() {
-    super.setup();
-    redirectToRelativeLink(createTestingTasksUrl);
-  }
+	@Before
+	public void setup() {
+		super.setup();
+		redirectToRelativeLink(createTestingTasksUrl);
+	}
 
   @Test
   public void testCaseOwnerFilter() {
@@ -59,87 +59,87 @@ public class CaseFilterTest extends BaseTest {
     });
   }
 
-  @Test
-  public void testSaveFilter() {
-    login(TestAccount.ADMIN_USER);
-    NewDashboardPage newDashboardPage = new NewDashboardPage();
-    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
-    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
+	@Test
+	public void testSaveFilter() {
+		login(TestAccount.ADMIN_USER);
+		NewDashboardPage newDashboardPage = new NewDashboardPage();
+		MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
+		CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
 
-    casePage.openAdvancedFilter("Description", "description");
-    casePage.filterByDescription("leave");
-    String filterName = "leave";
-    casePage.saveFilter(filterName);
+		casePage.openAdvancedFilter("Description", "description");
+		casePage.filterByDescription("leave");
+		String filterName = "leave";
+		casePage.saveFilter(filterName);
 
-    mainMenuPage.selectTaskMenu();
-    casePage = mainMenuPage.openCaseList();
-    assertEquals(filterName, casePage.getFilterName().toLowerCase());
-  }
+		mainMenuPage.selectTaskMenu();
+		casePage = mainMenuPage.openCaseList();
+		assertEquals(filterName, casePage.getFilterName().toLowerCase());
+	}
 
-  @Test
-  public void testCategory() {
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    CaseWidgetPage casePage = mainMenuPage.openCaseList();
+	@Test
+	public void testCategory() {
+		MainMenuPage mainMenuPage = new MainMenuPage();
+		CaseWidgetPage casePage = mainMenuPage.openCaseList();
 
-    String caseCategoryId = "case-category";
-    casePage.openAdvancedFilter("Case category", caseCategoryId);
-    assertEquals("Case category: All", casePage.getFilterValue(caseCategoryId + "-filter"));
-    casePage.openCategoryFilter();
-    assertTrue(casePage.isAllCategoriesSelected());
+		String caseCategoryId = "case-category";
+		casePage.openAdvancedFilter("Case category", caseCategoryId);
+		assertEquals("Case category: All", casePage.getFilterValue(caseCategoryId + "-filter"));
+		casePage.openCategoryFilter();
+		assertTrue(casePage.isAllCategoriesSelected());
 
-    casePage.toggleNoCategory();
-    assertTrue(casePage.isAllCategoriesUnselected());
+		casePage.toggleNoCategory();
+		assertTrue(casePage.isAllCategoriesUnselected());
 
-    casePage.applyCategoryFilter();
-    assertFalse(StringUtils.equals("Case category: All", casePage.getFilterValue(caseCategoryId + "-filter")));
-  }
+		casePage.applyCategoryFilter();
+		assertFalse(StringUtils.equals("Case category: All", casePage.getFilterValue(caseCategoryId + "-filter")));
+	}
 
-  @Test
-  public void testRemoveResponsibleAndSwitchFilter() {
-    // Prepare 2 filter
-    String filterResponsible = "Responsible";
-    String filterMaternity = "Maternity";
+	@Test
+	public void testRemoveResponsibleAndSwitchFilter() {
+		// Prepare 2 filter
+		String filterResponsible = "Responsible";
+		String filterMaternity = "Maternity";
 
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    CaseWidgetPage casePage = mainMenuPage.openCaseList();
-    casePage.openAdvancedFilter("Description", "description");
-    casePage.filterByDescription(filterMaternity);
-    casePage.saveFilter(filterMaternity);
+		MainMenuPage mainMenuPage = new MainMenuPage();
+		CaseWidgetPage casePage = mainMenuPage.openCaseList();
+		casePage.openAdvancedFilter("Description", "description");
+		casePage.filterByDescription(filterMaternity);
+		casePage.saveFilter(filterMaternity);
 
-    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+		redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
 
-    casePage = mainMenuPage.selectCaseMenu();
-    casePage.openAdvancedFilter("Creator", "creator");
-    casePage.filterByCreator("Demo");
-    casePage.saveFilter(filterResponsible);
-    // Switch filter and remove responsible
-    casePage.openSavedFilters(filterMaternity);
-    casePage.openSavedFilters(filterResponsible);
-    casePage.removeResponsibleFilter();
-    casePage.openSavedFilters(filterMaternity);
-    casePage.openSavedFilters(filterResponsible);
+		casePage = mainMenuPage.selectCaseMenu();
+		casePage.openAdvancedFilter("Creator", "creator");
+		casePage.filterByCreator("Demo");
+		casePage.saveFilter(filterResponsible);
+		// Switch filter and remove responsible
+		casePage.openSavedFilters(filterMaternity);
+		casePage.openSavedFilters(filterResponsible);
+		casePage.removeResponsibleFilter();
+		casePage.openSavedFilters(filterMaternity);
+		casePage.openSavedFilters(filterResponsible);
 
-    assertTrue(casePage.getCreator().contains("Portal Demo User"));
-  }
+		assertTrue(casePage.getCreator().contains("Portal Demo User"));
+	}
 
-  @Test
-  public void testDefaultFilter() {
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
-    assertTrue(casePage.getFilterName().contains("Default filter"));
-  }
+	@Test
+	public void testDefaultFilter() {
+		MainMenuPage mainMenuPage = new MainMenuPage();
+		CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
+		assertTrue(casePage.getFilterName().contains("Default filter"));
+	}
 
-  @Test
-  public void testNoSelectionWhenChangeFilter() {
-    String filterMaternity = "Maternity";
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    CaseWidgetPage casePage = mainMenuPage.openCaseList();
-    casePage.openAdvancedFilter("Description", "description");
-    casePage.filterByDescription(filterMaternity);
-    casePage.saveFilter(filterMaternity);
-    casePage.openAdvancedFilter("Creator", "creator");
-    casePage.filterByCreator("Demo");
-
-    assertTrue(casePage.getFilterName().contains("No Selection"));
-  }
+	@Test
+	public void testNoSelectionWhenChangeFilter() {
+		String filterMaternity = "Maternity";
+		MainMenuPage mainMenuPage = new MainMenuPage();
+		CaseWidgetPage casePage = mainMenuPage.openCaseList();
+		casePage.openAdvancedFilter("Description", "description");
+		casePage.filterByDescription(filterMaternity);
+		casePage.saveFilter(filterMaternity);
+		casePage.openAdvancedFilter("Creator", "creator");
+		casePage.filterByCreator("Demo");
+		
+		assertTrue(casePage.getFilterName().contains("No Selection"));
+	}
 }

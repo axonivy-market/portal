@@ -86,7 +86,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     TaskTemplatePage taskTemplatePage2 = taskWidgetPage1.startTask(0);
     TaskWidgetPage taskWidgetPage2 = taskTemplatePage2.finishIFrameReviewTask();
     WaitHelper
-            .assertTrueWithWait(() -> taskWidgetPage2.isElementDisplayed(By.cssSelector("[id$='task-config-command']")));
+        .assertTrueWithWait(() -> taskWidgetPage2.isElementDisplayed(By.cssSelector("[id$='task-config-command']")));
   }
 
   public void waitForTemplateRender() {
@@ -103,9 +103,9 @@ public class TaskTemplateIFrameTest extends BaseTest {
     taskWidgetPage1.filterTasksInExpandedModeBy("Approve Investment", 1);
     TaskTemplatePage taskTemplatePage2 = taskWidgetPage1.startTask(0);
     assertEquals("Review Request (Skip Tasklist in IFrame)",
-            taskTemplatePage2.getTaskNameOutsideIFrameWithSkipTaskList());
+        taskTemplatePage2.getTaskNameOutsideIFrameWithSkipTaskList());
   }
-
+  
   @Test
   public void testShowCategoryInCaseByDefaultIframe() {
     redirectToRelativeLink("InternalSupport/15B1EA24CCF377E8/saleAndInform.ivp");
