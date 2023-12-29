@@ -1666,6 +1666,12 @@ body .notification-full-scroll>.ui-datascroller-content  {
   border: 0px;
   padding: 2px;
 }
+.notifications-scroller-container .ui-datascroller .ui-datascroller-content{
+  border: 0px;
+  height:600px;
+  overflow:auto;
+}
+
 body .notification-checkbox .ui-chkbox-box {
   width: 1rem;
   height: 1rem;
@@ -1673,6 +1679,7 @@ body .notification-checkbox .ui-chkbox-box {
 .notification-checkbox .ui-chkbox-label {
   var(--notification-label-font-size);
 }
+
 .notifications-item-container {
   padding: 20px 10px 5px 10px;
   display: block;
