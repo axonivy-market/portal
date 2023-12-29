@@ -7,7 +7,7 @@ import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
-import com.axonivy.portal.selenium.common.ScreenshotUtil;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.LoginPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -21,8 +21,8 @@ public class LoginScreenshotTest extends ScreenshotBaseTest {
     showNewDashboard();
     NewDashboardPage homePage = new NewDashboardPage();
     homePage.clickOnLogout();
-    ScreenshotUtil.resizeBrowser(new Dimension(1024, 768));
+    ScreenshotUtils.resizeBrowser(new Dimension(1024, 768));
     new LoginPage().waitForUsernameInputIsFocused();
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.LOGIN_FOLDER + "login-form");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.LOGIN_FOLDER + "login-form");
   }
 }

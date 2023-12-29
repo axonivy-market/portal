@@ -49,6 +49,7 @@ var PortalSessionWarning = function() {
 
         iframeContent.addEventListener("click", function (event) {
           updateInteractionStatusInIFrame();
+          handleGlobalSearchInIFrame();
         });
       });
     }
@@ -101,6 +102,13 @@ var PortalSessionWarning = function() {
 
   updateInteractionStatusInIFrame = function() {
     isInteractedInIframeTaskTemplate = true;
+  },
+
+  handleGlobalSearchInIFrame = function() {
+    if ( $("[id='quick-global-search-component:global-search-form']").is(':visible')) {
+      $("[id='quick-global-search-component:global-search-data']").removeClass('global-large-search-bar').addClass('global-small-search-bar');
+      $("[id='quick-global-search-component:global-search-form']").hide();
+    }
   },
 
   hideWarningDialog = function() {
