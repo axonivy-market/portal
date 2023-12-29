@@ -4,6 +4,7 @@
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="unreadNotificationsId" value="#{p:resolveFirstComponentWithId('topbar-unread-notifications-container', view).clientId}" />
     <ui:param name="viewName" value="NOTIFICATION" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationTitle')}</ui:define>
     <ui:define name="pageContent">
@@ -24,29 +25,31 @@
               </p:toggleSwitch>
             </div>
           </h:panelGroup>
+          
           <h:form id="notification-full-form" >
-            <p:dataScroller id="notifications-scroller" lazy="true" value="#{notificationBean.dataModel}" var="notification"
-              chunkSize="20" widgetVar="notifications-scroller" styleClass="notification-scroll">
-              <div>
-                <span class="#{notification.markedToday} #{notification.markedToday ? '' : 'u-hidden'} ui-g-12" >#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/todayText')}</span>
-                <span class="#{notification.markedOlder ? '' : 'u-hidden'} ui-g-12" >#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/olderText')}</span>
-                <div class="#{notification.style} ui-g-9 ui-lg-9 ui-md-12 ui-sm-12"> 
-                  <p:commandLink id="notification-mark-as-read"
-                    actionListener="#{notificationBean.markAsRead(notification)}"
-                    process="@this"
-                    partialSubmit="true"
-                    global="false"
-                    onclick="markAsRead('#{notification.id}')"
-                    oncomplete="Portal.updateLayoutContent();"
-                    update="#{unreadNotificationsId}">
-                    <i class="notifications-button fa #{notification.read ? 'fa-circle-thin': 'fa-circle'}" id="#{notification.id}" />
-                  </p:commandLink>
-                  <p:tooltip for="notification-mark-as-read" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
-                  <h:outputText id="notification-message" value="#{notification.message}" escape="false"/>
-                  <h:outputText value="#{notification.timeSince}" styleClass="time-since"/>
+            <h:panelGroup layout="block" styleClass="notifications-scroller-container">
+              <p:dataScroller id="notifications-scroller" lazy="true" value="#{notificationBean.dataModel}" var="notification" 
+                chunkSize="20" widgetVar="notifications-scroller" mode="inline">
+                <div>
+                  <span class="#{notification.markedToday} #{notification.markedToday ? '' : 'u-hidden'} ui-g-12" >#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/todayText')}</span>
+                  <span class="#{notification.markedOlder ? '' : 'u-hidden'} ui-g-12" >#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/olderText')}</span>
+                  <div class="#{notification.style} ui-g-9 ui-lg-9 ui-md-12 ui-sm-12"> 
+                    <p:commandLink id="notification-mark-as-read"
+                      actionListener="#{notificationBean.markAsRead(notification)}"
+                      process="@this"
+                      partialSubmit="true"
+                      global="false"
+                      onclick="markAsRead('#{notification.id}')"
+                      update="#{unreadNotificationsId}">
+                      <i class="notifications-button fa #{notification.read ? 'fa-circle-thin': 'fa-circle'}" id="#{notification.id}" />
+                    </p:commandLink>
+                    <p:tooltip for="notification-mark-as-read" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
+                    <h:outputText id="notification-message" value="#{notification.message}" escape="false"/>
+                    <h:outputText value="#{notification.timeSince}" styleClass="time-since"/>
+                  </div>
                 </div>
-              </div>
-            </p:dataScroller>
+              </p:dataScroller>
+            </h:panelGroup>
           </h:form>
         </h:panelGroup>
         <div class="u-text-align-right ui-g-12">

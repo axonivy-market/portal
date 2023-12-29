@@ -916,4 +916,10 @@ public class NewDashboardPage extends TemplatePage {
   public void waitForNotificationFullpageDisplay() {
     $("form[id='notification-full-form']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
+  
+  public NotificationCompactPage openNotificationPanel() {
+    $("[id='open-notifications-panel']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='notification-compact-form:notifications-scroller:0:notification-mark-as-read']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    return new NotificationCompactPage();
+  }
 }
