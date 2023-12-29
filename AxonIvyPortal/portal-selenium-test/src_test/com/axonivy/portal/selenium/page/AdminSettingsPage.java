@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.page;
 
 import static com.axonivy.portal.selenium.common.Variable.CLIENT_SIDE_TIMEOUT;
 import static com.axonivy.portal.selenium.common.Variable.GLOBAL_FOOTER_INFO;
+import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -34,6 +35,12 @@ public class AdminSettingsPage extends TemplatePage {
   public void openSettingTab() {
     waitForElementClickableThenClick("a[href$='#admin-setting-component:adminTabView:setting-tab']");
     waitForElementDisplayed(By.cssSelector("[id$=':adminTabView:settingForm']"), true);
+    waitForElementClickableThenClick("a[href$='#admin-setting-component:adminTabView:announcement-tab']");
+    $("button[id$='publish-announcement']").shouldBe(appear);
+    // WaitHelper.waitForActionComplete("form[id$=':adminTabView:applicationForm']",
+    // () -> waitForElementClickableThenClick("a[href$='#admin-setting-component:adminTabView:application-tab']"));
+    WaitHelper.waitForActionComplete("a[id$='0:edit']",
+        () -> waitForElementClickableThenClick("a[href$='#admin-setting-component:adminTabView:setting-tab']"));
   }
 
   private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
