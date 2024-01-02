@@ -1,5 +1,13 @@
 .. _settings:
 
+.. raw:: html
+
+    <style>
+      .wy-nav-content {
+         max-width: 1350px;
+      }
+    </style>
+
 Settings
 ********
 
@@ -68,19 +76,19 @@ Task Permissions
 ----------------
 - Add note
 
-   User needs permission: ``PortalPermission.TASK_CASE_ADD_NOTE``.
+   User needs permission: :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`.
 
 - Delegate
 
    To be able to delegate, the user needs permission
-   ``PortalPermission.TASK_DISPLAY_DELEGATE_ACTION``.
+   :bdg-ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`.
 
    To delegate personal or group tasks, user needs permission
-   ``TaskWriteActivatorOwnTasks``. This permission belongs to the
+   :bdg-ref-warning:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>`. This permission belongs to the
    PortalPermissions group. It is not assigned to role Everybody by default.
 
    To delegate all tasks in a task list, the user needs permission
-   ``IPermission.TASK_WRITE_ACTIVATOR``.
+   :bdg-ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>`.
 
    .. important::
       Only tasks ready for user processing can be delegated.
@@ -90,12 +98,12 @@ Task Permissions
 - Reset
 
    To see the reset action, the user needs permission
-   ``PortalPermission.TASK_DISPLAY_RESET_ACTION``.
+   :bdg-ref-warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`.
 
    To reset tasks, the user needs permission:
-   ``IPermission.TASK_RESET_OWN_WORKING_TASK`` or
-   ``PortalPermission.TASK_RESET_READY_FOR_JOIN`` or
-   ``IPermission.TASK_RESET``.
+   :bdg-ref-warning:`🔑TaskResetOwnWorkingTask <TaskResetOwnWorkingTask>` or
+   :bdg-ref-warning:`🔑TaskResetReadyForJoin <TaskResetReadyForJoin>` or
+   :bdg-ref-warning:`🔑TaskReset <TaskReset>`.
 
    .. important::
       This only works for tasks in one of following states: RESUMED,
@@ -105,7 +113,7 @@ Task Permissions
 - Delete
 
    To see the Delete Task action, the user needs permission
-   ``IPermission.TASK_DESTROY``.
+   :bdg-ref-warning:`🔑TaskDestroy <TaskDestroy>`.
 
    .. important::
       Delete Task only works if the task state is not already DESTROYED
@@ -114,10 +122,10 @@ Task Permissions
 - Reserve
 
    To see the Reserve action, the user needs permission
-   ``PortalPermission.TASK_DISPLAY_RESERVE_ACTION``.
+   :bdg-ref-warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`.
 
    To reserve a task, the user needs permission
-   ``IPermission.TASK_PARK_OWN_WORKING_TASK``.
+   :bdg-ref-warning:`🔑TaskParkOwnWorkingTask <TaskParkOwnWorkingTask>`.
 
    .. important::
       Reservation is only possible if the task is in one of the following
@@ -126,7 +134,7 @@ Task Permissions
 - Change description
 
    User needs permission:
-   ``IPermission.TASK_WRITE_DESCRIPTION``.
+   :bdg-ref-warning:`🔑TaskWriteDescription <TaskWriteDescription>`.
 
    .. important::
       A terminated task cannot be changed. Therefore, the task state cannot be one of the following values:
@@ -135,7 +143,7 @@ Task Permissions
 - Change deadline
 
    User needs permission
-   ``IPermission.TASK_WRITE_EXPIRY_TIMESTAMP``.
+   :bdg-ref-warning:`🔑TaskWriteExpiryTimestamp <TaskWriteExpiryTimestamp>`.
 
    .. important::
       To change an expiry date, the task cannot be in one of the following states:
@@ -144,7 +152,7 @@ Task Permissions
 - Change priority
 
    User needs permission
-   ``IPermission.TASK_WRITE_ORIGINAL_PRIORITY``.
+   :bdg-ref-warning:`🔑TaskWriteOriginalPriority <TaskWriteOriginalPriority>`.
 
    .. important::
       To change task priority, the task cannot be in the following states:
@@ -153,25 +161,25 @@ Task Permissions
 - Display additional options
 
    To see additional actions, the user needs permission
-   ``PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS``.
+   :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`.
 
 Case Permissions
 ----------------
 
 - Add note
 
-   User needs permission ``PortalPermission.TASK_CASE_ADD_NOTE``.
+   User needs permission :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`.
 
 - Delete
 
-   User needs permission ``IPermission.CASE_DESTROY``.
+   User needs permission :bdg-ref-warning:`🔑CaseDestroy <CaseDestroy>`.
 
    .. important::
       Case state has to be RUNNING.
 
 - Change description
 
-   User needs permission ``IPermission.CASE_WRITE_DESCRIPTION``.
+   User needs permission :bdg-ref-warning:`🔑CaseWriteDescription <CaseWriteDescription>`.
 
    .. important::
       Case state cannot be DESTROYED.
@@ -179,23 +187,23 @@ Case Permissions
 - See related tasks of case
 
    To see the related tasks action, the user needs permission
-   ``PortalPermission.SHOW_ALL_TASKS_OF_CASE``.
+   :bdg-ref-warning:`🔑ShowAllTasksOfCase <ShowAllTasksOfCase>`.
 
    To see related tasks, user needs permission
-   ``IPermission.TASK_READ_OWN_CASE_TASKS`` or ``IPermission.TASK_READ_ALL``.
+   :bdg-ref-warning:`🔑TaskReadOwnCaseTasks <TaskReadOwnCaseTasks>` or :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`.
 
    .. important::
       Case state cannot be DESTROYED.
 
 - Display show detail link
 
-   User needs permission ``PortalPermission.SHOW_CASE_DETAILS``. By default, this permission
+   User needs permission :bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>`. By default, this permission
    is not assigned to role Everybody.
 
 Normal users can only see the tasks and cases that they can work on.
 
 Administrators can see all tasks/cases in the application. The require
-Permissions ``IPermission.TASK_READ_ALL``, ``IPermission.CASE_READ_ALL``.
+permissions :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`, :bdg-ref-warning:`🔑CaseReadAll <CaseReadAll>`.
 
 Administrators can interact with all workflows in the application.
 
@@ -212,68 +220,68 @@ Other Permissions
 
 .. table::
 
- +-----------+---------------------------------+----------------------------------------------------+
- |           | Action                          | Permission required                                |
- +===========+=================================+====================================================+
- | Absence   | Read                            | ``IPermission.USER_READ_OWN_ABSENCES`` or          |
- |           |                                 | ``IPermission.USER_READ_ABSENCES``                 |
- |           +---------------------------------+----------------------------------------------------+
- |           | Create, edit                    | ``IPermission.USER_CREATE_OWN_ABSENCE`` or         |
- |           |                                 | ``IPermission.USER_CREATE_ABSENCE``                |
- |           +---------------------------------+----------------------------------------------------+
- |           | Delete                          | ``IPermission.USER_DELETE_OWN_ABSENCE`` or         |
- |           |                                 | ``IPermission.USER_DELETE_ABSENCE``                |
- |           +---------------------------------+----------------------------------------------------+
- |           | Read absences of all users      | ``IPermission.USER_READ_ABSENCES``                 |
- |           +---------------------------------+----------------------------------------------------+
- |           | Delete absences of all users    | ``IPermission.USER_DELETE_ABSENCE``                |
- |           +---------------------------------+----------------------------------------------------+
- |           | Create new absence for all users| ``IPermission.USER_CREATE_ABSENCE``                |
- +-----------+---------------------------------+----------------------------------------------------+
- | Substitute| Manage substitute               | ``IPermission.USER_CREATE_SUBSTITUTE`` and         |
- |           |                                 | ``IPermission.USER_READ_SUBSTITUTES``              |
- +-----------+---------------------------------+----------------------------------------------------+
- | Document  | Upload, delete                  | ``IPermission.DOCUMENT_WRITE`` or                  |
- |           |                                 | ``IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE``    |
- +-----------+---------------------------------+----------------------------------------------------+
- | Express   | Create Express workflow         | ``PortalPermission.EXPRESS_CREATE_WORKFLOW``       |
- |           |                                 | (assigned to role Everybody by default)            |
- +-----------+---------------------------------+----------------------------------------------------+
- | Statistics| Add dashboard                   | ``PortalPermission.STATISTIC_ADD_DASHBOARD_CHART`` |
- |           |                                 | (assigned to role Everybody by default)            |
- |           +---------------------------------+----------------------------------------------------+
- |           | Analyze, filter tasks           | ``PortalPermission.STATISTIC_ANALYZE_TASK``        |
- |           | and export data to excel        |                                                    |
- |           | for advanced analysis           |                                                    |
- +-----------+---------------------------------+----------------------------------------------------+
- | Portal    | Access to full process          | ``PortalPermission.ACCESS_FULL_PROCESS_LIST``      |
- | permission| list, it's "Processes" on the   |                                                    |
- |           | left menu and link "Show all    |                                                    |
- |           | processes" on Dashboard         |                                                    |
- |           +---------------------------------+----------------------------------------------------+
- |           | Access to full task list, it's  | ``PortalPermission.ACCESS_FULL_TASK_LIST``         |
- |           | "Tasks" on the left menu and    |                                                    |
- |           | link "Show full task list" on   |                                                    |
- |           | Dashboard                       |                                                    |
- |           +---------------------------------+----------------------------------------------------+
- |           | Access to full case list, it's  | ``PortalPermission.ACCESS_FULL_CASE_LIST``         |
- |           | "Cases" on the left menu        |                                                    |
- |           +---------------------------------+----------------------------------------------------+
- |           | Access to statistics it's       | ``PortalPermission.ACCESS_FULL_STATISTICS_LIST``   |
- |           | "Statistics" on the left menu   |                                                    |
- |           | and link "Show all charts" on   |                                                    |
- |           | Dashboard                       |                                                    |
- |           +---------------------------------+----------------------------------------------------+
- |           | Add note to task/case           | ``PortalPermission.TASK_CASE_ADD_NOTE``            |
- |           +---------------------------------+----------------------------------------------------+
- |           | Display show more note          | ``PortalPermission.TASK_CASE_SHOW_MORE_NOTE``      |
- |           +---------------------------------+----------------------------------------------------+
- |           | Create public external link, all| ``PortalPermission.CREATE_PUBLIC_EXTERNAL_LINK``   |
- |           | other users can see that link in|                                                    |
- |           | the full process list           |                                                    |
- |           +---------------------------------+----------------------------------------------------+
- |           | Dashboard sharing               | ``PortalPermission.DASHBOARD_SHARE_LINK``          |
- +-----------+---------------------------------+----------------------------------------------------+
+ +-----------+---------------------------------+---------------------------------------------------------------------------------------+
+ |           | Action                          | Permission required                                                                   |
+ +===========+=================================+=======================================================================================+
+ | Absence   | Read                            | :bdg-ref-warning:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`  or                    |
+ |           |                                 | :bdg-ref-warning:`🔑UserReadAbsences <UserReadAbsences>`                              |
+ |           +---------------------------------+---------------------------------------------------------------------------------------+
+ |           | Create, edit                    | :bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` or                   |
+ |           |                                 | :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`                            |
+ |           +---------------------------------+---------------------------------------------------------------------------------------+
+ |           | Delete                          | :bdg-ref-warning:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>` or                   |
+ |           |                                 | :bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`                            |
+ |           +---------------------------------+---------------------------------------------------------------------------------------+
+ |           | Read absences of all users      | :bdg-ref-warning:`🔑UserReadAbsences <UserReadAbsences>`                              |
+ |           +---------------------------------+---------------------------------------------------------------------------------------+
+ |           | Delete absences of all users    | :bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`                            |
+ |           +---------------------------------+---------------------------------------------------------------------------------------+
+ |           | Create new absence for all users| :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`                            |
+ +-----------+---------------------------------+---------------------------------------------------------------------------------------+
+ | Substitute| Manage substitute               | :bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>` and                  |
+ |           |                                 | :bdg-ref-warning:`🔑UserReadSubstitutes <UserReadSubstitutes>`                        |
+ +-----------+---------------------------------+---------------------------------------------------------------------------------------+
+ | Document  | Upload, delete                  | :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`                                    |
+ |           |                                 | :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`        |
+ +-----------+---------------------------------+---------------------------------------------------------------------------------------+
+ | Express   | Create Express workflow         | :bdg-ref-warning:`🔑ExpressCreateWorkflow <ExpressCreateWorkflow>`                    |
+ |           |                                 | (assigned to role Everybody by default)                                               |
+ +-----------+---------------------------------+---------------------------------------------------------------------------------------+
+ | Statistics| Add dashboard                   | :bdg-ref-warning:`🔑StatisticAddDashboardChart <StatisticAddDashboardChart>`          |
+ |           |                                 | (assigned to role Everybody by default)                                               |
+ |           +---------------------------------+---------------------------------------------------------------------------------------+
+ |           | Analyze, filter tasks           | :bdg-ref-warning:`🔑StatisticAnalyzeTask <StatisticAnalyzeTask>`                      |
+ |           | and export data to excel        |                                                                                       |
+ |           | for advanced analysis           |                                                                                       |
+ +-----------+---------------------------------+---------------------------------------------------------------------------------------+
+ | Portal    | Access to full process          | :bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>`                    |
+ | permission| list, it's "Processes" on the   |                                                                                       |
+ |           | left menu and link "Show all    |                                                                                       |
+ |           | processes" on Dashboard         |                                                                                       |
+ |           +---------------------------------+---------------------------------------------------------------------------------------+
+ |           | Access to full task list, it's  | :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>`                          |
+ |           | "Tasks" on the left menu and    |                                                                                       |
+ |           | link "Show full task list" on   |                                                                                       |
+ |           | Dashboard                       |                                                                                       |
+ |           +---------------------------------+---------------------------------------------------------------------------------------+
+ |           | Access to full case list, it's  | :bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>`                          |
+ |           | "Cases" on the left menu        |                                                                                       |
+ |           +---------------------------------+---------------------------------------------------------------------------------------+
+ |           | Access to statistics it's       | :bdg-ref-warning:`🔑AccessFullStatisticsList <AccessFullStatisticsList>`              |
+ |           | "Statistics" on the left menu   |                                                                                       |
+ |           | and link "Show all charts" on   |                                                                                       |
+ |           | Dashboard                       |                                                                                       |
+ |           +---------------------------------+---------------------------------------------------------------------------------------+
+ |           | Add note to task/case           | :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`                                |
+ |           +---------------------------------+---------------------------------------------------------------------------------------+
+ |           | Display show more note          | :bdg-ref-warning:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`                      |
+ |           +---------------------------------+---------------------------------------------------------------------------------------+
+ |           | Create public external link, all| :bdg-ref-warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`              |
+ |           | other users can see that link in|                                                                                       |
+ |           | the full process list           |                                                                                       |
+ |           +---------------------------------+---------------------------------------------------------------------------------------+
+ |           | Dashboard sharing               | :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`                          |
+ +-----------+---------------------------------+---------------------------------------------------------------------------------------+
 
 .. _settings-virus-scanning-setting:
 
