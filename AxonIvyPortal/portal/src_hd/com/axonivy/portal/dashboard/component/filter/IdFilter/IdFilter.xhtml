@@ -32,7 +32,7 @@
 
   <h:panelGroup id="text-list-panel" layout="block"
     styleClass="ui-fluid md-inputfield text-list-filter" >
-    <p:chips value="#{filter.texts}" unique="true" addOnPaste="true" disabled="#{readOnly}">
+    <p:chips value="#{filter.values}" unique="true" addOnPaste="true" disabled="#{readOnly}">
       <p:ajax event="change" process="@(this)" update="@(this)" partialSubmit="true" global="false" />
       <f:validator validatorId="dashboardDefaultListFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
       <f:param name="skipValidator" value="true" />

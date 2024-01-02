@@ -29,15 +29,15 @@
   </h:panelGroup>
 
   <h:panelGroup id="states-list-panel" layout="block" styleClass="ui-fluid md-inputfield text-list-filter">
-    <p:selectCheckboxMenu id="states" value="#{filter.texts}" multiple="true"
+    <p:selectCheckboxMenu id="states" value="#{filter.values}" multiple="true"
       filter="true" filterMatchMode="contains"
       panelStyleClass="task-configuration__selectcheckboxmenu-panel"
       styleClass="task-configuration__selectcheckboxmenu"
       disabled="#{readOnly}">
       <f:selectItems value="#{widgetStateFilterBean.states}" var="state" itemValue="#{state}" />
       <f:param name="skipValidator" value="true" />
-      <p:ajax event="change" update="states-list-panel" process="@(this)" listener="#{widgetStateFilterBean.updateStatesString(cc.attrs.filter.texts)}" global="false" />
-      <p:ajax event="toggleSelect" update="states-list-panel" process="@(this)" listener="#{widgetStateFilterBean.updateStatesString(cc.attrs.filter.texts)}" global="false" />
+      <p:ajax event="change" update="states-list-panel" process="@(this)" listener="#{widgetStateFilterBean.updateStatesString(cc.attrs.filter.values)}" global="false" />
+      <p:ajax event="toggleSelect" update="states-list-panel" process="@(this)" listener="#{widgetStateFilterBean.updateStatesString(cc.attrs.filter.values)}" global="false" />
     </p:selectCheckboxMenu>
 
     <p:inputText id="states-hidden" type="hidden" value="#{widgetStateFilterBean.statesString}">

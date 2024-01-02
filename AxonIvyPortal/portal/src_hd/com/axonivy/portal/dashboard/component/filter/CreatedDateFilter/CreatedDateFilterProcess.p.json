@@ -1,9 +1,9 @@
 {
   "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
-  "id" : "18BA7CF66D1B63B8",
+  "id" : "18B8E540E55292AC",
   "kind" : "HTML_DIALOG",
   "config" : {
-    "data" : "com.axonivy.portal.dashboard.component.filter.IdFilter.IdFilterData"
+    "data" : "com.axonivy.portal.dashboard.component.filter.CreatedDateFilter.CreatedDateFilterData"
   },
   "elements" : [ {
       "id" : "f0",
@@ -11,7 +11,7 @@
       "name" : "start()",
       "config" : {
         "signature" : "start",
-        "guid" : "18B1756AFF61AFAE"
+        "guid" : "18B8E540E59DF5EA"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
@@ -30,7 +30,7 @@
       "type" : "HtmlDialogEventStart",
       "name" : "close",
       "config" : {
-        "guid" : "18B1756AFFB39CE3"
+        "guid" : "18B8E540E5FFAAFC"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }

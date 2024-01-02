@@ -34,8 +34,8 @@ public class WidgetCategoryFilterBean implements Serializable {
     loadCategories(filter);
 
     setSelectedCategoriesString("");
-    if (CollectionUtils.isNotEmpty(filter.getTexts())) {
-      setSelectedCategoriesString(filter.getTexts().stream().collect(Collectors.joining(", ")));
+    if (CollectionUtils.isNotEmpty(filter.getValues())) {
+      setSelectedCategoriesString(filter.getValues().stream().collect(Collectors.joining(", ")));
     }
   }
 
@@ -45,14 +45,14 @@ public class WidgetCategoryFilterBean implements Serializable {
 
   public void onChangeOperator(DashboardFilter filter) {
     if (filter.getOperator() == FilterOperator.NO_CATEGORY) {
-      filter.setTexts(new ArrayList<>());
+      filter.setValues(new ArrayList<>());
     }
   }
 
   public void loadCategories(DashboardFilter filter) {
     var availableCategories = CaseTreeUtils.buildCaseCategoryCheckboxTreeRootWithoutAllCategoriesNode();
     this.categoryTree = availableCategories;
-    List<String> filterList = filter.getTexts();
+    List<String> filterList = filter.getValues();
     if (CollectionUtils.isNotEmpty(filterList)) {
       CategoryUtils.recoverSelectedCategories(this.getCategoryTree(), filterList);
     }
@@ -75,7 +75,7 @@ public class WidgetCategoryFilterBean implements Serializable {
   }
 
   public void updateCategoriesPath(DashboardFilter filter) {
-    filter.setTexts(CategoryUtils.getCategoryPaths(selectedCategoryNodes));
+    filter.setValues(CategoryUtils.getCategoryPaths(selectedCategoryNodes));
   }
 
   public CheckboxTreeNode<CategoryNode> getCategoryTree() {

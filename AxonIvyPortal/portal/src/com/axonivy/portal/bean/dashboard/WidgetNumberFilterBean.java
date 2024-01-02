@@ -25,15 +25,15 @@ public class WidgetNumberFilterBean implements Serializable {
   private static final long serialVersionUID = 6088715427600445713L;
 
   private static List<FilterOperator> operators = FilterOperator.NUMBER_OPERATORS.stream().toList();
-  private static List<FilterOperator> SINGLE_FILTER_OPERATORS = Arrays.asList(EQUAL, NOT_EQUAL, LESS, LESS_OR_EQUAL, GREATER, GREATER_OR_EQUAL);
+  private static List<FilterOperator> SINGLE_FILTER_OPERATORS = Arrays.asList(EQUAL, NOT_EQUAL, LESS, LESS_OR_EQUAL,
+      GREATER, GREATER_OR_EQUAL);
 
   public List<FilterOperator> getOperators() {
     return operators;
   }
 
   public boolean renderSingleNumberFilter(DashboardFilter filter) {
-    return SINGLE_FILTER_OPERATORS
-        .contains(Optional.ofNullable(filter).map(DashboardFilter::getOperator).orElse(null));
+    return SINGLE_FILTER_OPERATORS.contains(Optional.ofNullable(filter).map(DashboardFilter::getOperator).orElse(null));
   }
 
   public void onChangeOperator(DashboardFilter filter) {

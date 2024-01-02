@@ -22,15 +22,14 @@ public class WidgetStateFilterBean implements Serializable {
   private List<String> states;
   private String statesString;
 
-  public  void init(DashboardFilter filter) {
+  public void init(DashboardFilter filter) {
     states = CaseUtils.getValidStates().stream().map(businessState -> businessState.name()).toList();
-    statesString = String.join(", ", filter.getTexts());
+    statesString = String.join(", ", filter.getValues());
   }
 
   public List<FilterOperator> getStateOperators() {
     return stateOperators;
   }
-  
 
   public List<String> getStates() {
     return states;
@@ -45,6 +44,6 @@ public class WidgetStateFilterBean implements Serializable {
   }
 
   public void updateStatesString(List<String> states) {
-    statesString =  String.join(", ", states);
+    statesString = String.join(", ", states);
   }
 }

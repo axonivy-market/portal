@@ -18,16 +18,17 @@ import ch.ivyteam.ivy.environment.Ivy;
 @ManagedBean
 @ViewScoped
 public class WidgetDateFilterBean implements Serializable {
-  
+
   private static final String MESSAGE_PREFIX_PATTERN = "%s(%d)";
 
   private static final long serialVersionUID = 4356531402161360729L;
 
   private static List<FilterOperator> operators = FilterOperator.DATE_OPERATORS.stream().toList();
   private static List<FilterOperator> createdDateOperators = FilterOperator.CREATED_DATE_OPERATORS.stream().toList();
-  
+
   private static FilterPeriodType[] filterPeriodTypes = FilterPeriodType.values();
-  private static List<FilterPeriodType> currentFilterPeriodTypes = FilterPeriodType.PERIOD_TYPES_FOR_CURRENT_OPERATOR.stream().toList();
+  private static List<FilterPeriodType> currentFilterPeriodTypes = FilterPeriodType.PERIOD_TYPES_FOR_CURRENT_OPERATOR
+      .stream().toList();
 
   private static SimpleDateFormat formatter = new SimpleDateFormat(DashboardFilter.DATE_FORMAT);
 
@@ -54,7 +55,8 @@ public class WidgetDateFilterBean implements Serializable {
   }
 
   public String getWrongFormatMessage(String field, int index) {
-    return String.join(": ", getMessagePrefix(field, index), Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat"));
+    return String.join(": ", getMessagePrefix(field, index),
+        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat"));
   }
 
   public List<FilterPeriodType> getCurrentFilterPeriodTypes() {

@@ -33,11 +33,11 @@
 
   <h:panelGroup id="application-list-panel" layout="block"
     styleClass="ui-fluid md-inputfield application-list-filter">
-    <p:selectCheckboxMenu id="applications" value="#{cc.attrs.filter.texts}"
+    <p:selectCheckboxMenu id="applications" value="#{cc.attrs.filter.values}"
       multiple="true" filter="true" filterMatchMode="contains"
       panelStyleClass="task-configuration__selectcheckboxmenu-panel"
       styleClass="task-configuration__selectcheckboxmenu" disabled="#{readOnly}">
-      <p:ajax event="change" update="application-list-panel" process="@(this)" listener="#{widgetApplicationFilterBean.updateApplicationsString(cc.attrs.filter.texts)}" />
+      <p:ajax event="change" update="application-list-panel" process="@(this)" listener="#{widgetApplicationFilterBean.updateApplicationsString(cc.attrs.filter.values)}" />
       <f:param name="skipValidator" value="true" />
       <f:selectItems value="#{widgetApplicationFilterBean.applications}" var="app" itemValue="#{app}" itemLabel="#{app}" />
     </p:selectCheckboxMenu>
