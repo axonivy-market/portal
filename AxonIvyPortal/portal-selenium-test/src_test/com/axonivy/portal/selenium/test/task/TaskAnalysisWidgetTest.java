@@ -14,6 +14,7 @@ import org.openqa.selenium.WebElement;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.MainMenuPage;
@@ -23,7 +24,6 @@ import com.axonivy.portal.selenium.page.TaskAnalysisWidgetPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 @IvyWebTest
@@ -263,8 +263,8 @@ public class TaskAnalysisWidgetTest extends BaseTest {
       secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, isPersonalFilter);
     } catch (Throwable t) {
       // Elastic seach could be slow, workaround with refresh page and check again
-      Selenide.refresh();
-      secondTaskAnalysisWidgetPage = new TaskAnalysisWidgetPage();
+      StatisticWidgetPage statisticWidgetPage = NavigationHelper.navigateToStatisticPage();
+      secondTaskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
       secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, isPersonalFilter);
     }
     return secondTaskAnalysisWidgetPage;
