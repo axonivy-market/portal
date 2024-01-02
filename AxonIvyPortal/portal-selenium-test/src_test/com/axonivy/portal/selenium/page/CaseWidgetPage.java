@@ -184,7 +184,6 @@ public class CaseWidgetPage extends TemplatePage {
   }
 
   public void waitFilterNameDisplayed(String filterName) {
-    filterName = filterName + "abc";
     try {
       $("[id$='case-widget:filter-selection-form:filter-name'] > span").shouldBe(text(filterName));
     } catch (Throwable t) {
