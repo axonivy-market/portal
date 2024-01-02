@@ -40,7 +40,7 @@
               <c:forEach var="param" items="#{widget.data.params}">
                 <input type="hidden" name="#{dashboardCustomWidgetBean.generateParamName(param)}" value="#{param.value}" />
               </c:forEach>
-              <iframe name="custom-widget-iframe-#{index}" class="dashboard-custom-iframe" />
+              <iframe id="id-custom-widget-iframe-#{index}" name="custom-widget-iframe-#{index}" class="dashboard-custom-iframe u-hidden" />
             </h:form>
             <script type="text/javascript">
                    $(function() {
@@ -54,6 +54,11 @@
                      widgetForm.submit();
                      widgetForm.action = action;
                      widgetForm.target = target;
+                     
+                     var iFrame = $(`#id-custom-widget-iframe-${index}`);
+                     iFrame.on('load', function(){
+                        iFrame.removeClass('u-hidden');
+                     });
                    });
                </script>
           </h:panelGroup>
