@@ -23,6 +23,7 @@ import com.axonivy.portal.selenium.page.TaskAnalysisWidgetPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 @IvyWebTest
@@ -225,7 +226,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     taskAnalysisWidgetPage.countSavedFilter(2);
     statisticWidgetPage = taskAnalysisWidgetPage.navigateToStatisticPage();
     TaskAnalysisWidgetPage secondTaskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
-    secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, false);
+    secondTaskAnalysisWidgetPage = loadFilterSetWithWaitingElasticSearch(filterSetName, secondTaskAnalysisWidgetPage);
     secondTaskAnalysisWidgetPage.waitForTaskDataChangeToSpecificSize(1);
     List<WebElement> resultCells = secondTaskAnalysisWidgetPage.getRowsInTaskTable().get(0)
         .findElements(By.cssSelector("td:not([class='ui-helper-hidden'])"));
@@ -244,7 +245,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     taskAnalysisWidgetPage.countSavedFilter(2);
     statisticWidgetPage = taskAnalysisWidgetPage.navigateToStatisticPage();
     TaskAnalysisWidgetPage secondTaskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
-    secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, true);
+    secondTaskAnalysisWidgetPage = loadFilterSetWithWaitingElasticSearch(filterSetName, secondTaskAnalysisWidgetPage);
     secondTaskAnalysisWidgetPage.waitForTaskDataChangeToSpecificSize(1);
 
     List<WebElement> resultCells = secondTaskAnalysisWidgetPage.getRowsInTaskTable().get(0)
@@ -252,6 +253,19 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     assertTrue(resultCells.get(0).getText().toLowerCase().contains("request"));
     assertTrue(resultCells.get(1).getText().equals("RUNNING"));
     assertTrue(resultCells.get(2).getText().toLowerCase().contains("annual"));
+  }
+
+  private TaskAnalysisWidgetPage loadFilterSetWithWaitingElasticSearch(String filterSetName,
+      TaskAnalysisWidgetPage secondTaskAnalysisWidgetPage) {
+    try {
+      secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, true);
+    } catch (Exception e) {
+      // Elastic seach could be slow, workaround with refresh page and check again
+      Selenide.refresh();
+      secondTaskAnalysisWidgetPage = new TaskAnalysisWidgetPage();
+      secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, true);
+    }
+    return secondTaskAnalysisWidgetPage;
   }
 
   private void createTestData() {
