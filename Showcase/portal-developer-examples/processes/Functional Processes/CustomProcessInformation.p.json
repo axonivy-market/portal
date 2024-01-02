@@ -1,0 +1,34 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "id" : "18C1F45C2986A3CC",
+  "config" : {
+    "data" : "com.axonivy.portal.components.examples.CustomProcessInformationData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start",
+      "config" : {
+        "signature" : "start",
+        "request" : {
+          "name" : "CustomProcessInformation",
+          "description" : "Click on More Information to see the customized process information page",
+          "customFields" : [
+            { "name" : "portalProcessInfo", "value" : "<%=ivy.cms.co(\"/Processes/MoreInformation/customProcessInfo\")%>" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    } ]
+}
