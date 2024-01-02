@@ -226,7 +226,8 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     taskAnalysisWidgetPage.countSavedFilter(2);
     statisticWidgetPage = taskAnalysisWidgetPage.navigateToStatisticPage();
     TaskAnalysisWidgetPage secondTaskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
-    secondTaskAnalysisWidgetPage = loadFilterSetWithWaitingElasticSearch(filterSetName, secondTaskAnalysisWidgetPage);
+    secondTaskAnalysisWidgetPage =
+        loadFilterSetWithWaitingElasticSearch(filterSetName, false, secondTaskAnalysisWidgetPage);
     secondTaskAnalysisWidgetPage.waitForTaskDataChangeToSpecificSize(1);
     List<WebElement> resultCells = secondTaskAnalysisWidgetPage.getRowsInTaskTable().get(0)
         .findElements(By.cssSelector("td:not([class='ui-helper-hidden'])"));
@@ -245,7 +246,8 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     taskAnalysisWidgetPage.countSavedFilter(2);
     statisticWidgetPage = taskAnalysisWidgetPage.navigateToStatisticPage();
     TaskAnalysisWidgetPage secondTaskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
-    secondTaskAnalysisWidgetPage = loadFilterSetWithWaitingElasticSearch(filterSetName, secondTaskAnalysisWidgetPage);
+    secondTaskAnalysisWidgetPage =
+        loadFilterSetWithWaitingElasticSearch(filterSetName, true, secondTaskAnalysisWidgetPage);
     secondTaskAnalysisWidgetPage.waitForTaskDataChangeToSpecificSize(1);
 
     List<WebElement> resultCells = secondTaskAnalysisWidgetPage.getRowsInTaskTable().get(0)
@@ -255,15 +257,15 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     assertTrue(resultCells.get(2).getText().toLowerCase().contains("annual"));
   }
 
-  private TaskAnalysisWidgetPage loadFilterSetWithWaitingElasticSearch(String filterSetName,
+  private TaskAnalysisWidgetPage loadFilterSetWithWaitingElasticSearch(String filterSetName, boolean isPersonalFilter,
       TaskAnalysisWidgetPage secondTaskAnalysisWidgetPage) {
     try {
-      secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, true);
+      secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, isPersonalFilter);
     } catch (Exception e) {
       // Elastic seach could be slow, workaround with refresh page and check again
       Selenide.refresh();
       secondTaskAnalysisWidgetPage = new TaskAnalysisWidgetPage();
-      secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, true);
+      secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, isPersonalFilter);
     }
     return secondTaskAnalysisWidgetPage;
   }
