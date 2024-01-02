@@ -30,13 +30,13 @@ public class CategoryContainsOperatorHandler {
   }
 
   public CaseQuery buildQuery(DashboardFilter filter, boolean isNot) {
-    if (CollectionUtils.isEmpty(filter.getTexts())) {
+    if (CollectionUtils.isEmpty(filter.getValues())) {
       return null;
     }
 
     CaseQuery query = CaseQuery.create();
     IFilterQuery filterQuery = query.where();
-    for (String category : filter.getTexts()) {
+    for (String category : filter.getValues()) {
       if (isNot) {
         filterQuery.and().category().isNotLike(String.format(LIKE_FORMAT, category));
       } else {

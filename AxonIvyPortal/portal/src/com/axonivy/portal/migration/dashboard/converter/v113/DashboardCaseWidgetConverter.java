@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
@@ -119,29 +120,28 @@ public class DashboardCaseWidgetConverter implements IJsonConverter {
             true);
       }
       case CREATOR -> {
-            convertListFilter(initFilterNode(caseWidget),
-                (ArrayNode)col.get("filterList"),
-                DashboardStandardCaseColumn.CREATOR.getField(),
-                FilterType.CREATOR.name());
-          }
-          case STATE -> {
-            convertListFilter(initFilterNode(caseWidget),
-                (ArrayNode)col.get("filterList"),
-                DashboardStandardCaseColumn.STATE.getField(),
-                FilterType.STATE.name());
-          }
-          case CATEGORY -> {
-            convertCategoryFilter(initFilterNode(caseWidget),
-                (ArrayNode)col.get("filterList"),
-                DashboardStandardCaseColumn.CATEGORY.getField(),
-                FilterType.CATEGORY.name());
-          }
-          case APPLICATION -> {
-            convertListFilter(initFilterNode(caseWidget),
-                (ArrayNode)col.get("filterList"),
-                DashboardStandardCaseColumn.APPLICATION.getField(),
-                FilterType.APPLICATION.name());
-          }
+        convertListFilter(initFilterNode(caseWidget),
+            (ArrayNode)col.get("filterList"),
+            DashboardStandardCaseColumn.CREATOR.getField(),
+            true);
+      }
+      case STATE -> {
+        convertListFilter(initFilterNode(caseWidget),
+            (ArrayNode)col.get("filterList"),
+            DashboardStandardCaseColumn.STATE.getField(),
+            true);
+      }
+      case CATEGORY -> {
+        convertCategoryFilter(initFilterNode(caseWidget),
+            (ArrayNode)col.get("filterList"),
+            DashboardStandardCaseColumn.CATEGORY.getField());
+      }
+      case APPLICATION -> {
+        convertListFilter(initFilterNode(caseWidget),
+            (ArrayNode)col.get("filterList"),
+            DashboardStandardCaseColumn.APPLICATION.getField(),
+            true);
+      }
       default -> {}
     }
   }
@@ -201,11 +201,35 @@ public class DashboardCaseWidgetConverter implements IJsonConverter {
     newFilterNode.set("type", new TextNode(type.getType()));
     newFilterNode.set("operator", new TextNode(FilterOperator.CONTAINS.getOperator()));
 
-    ArrayNode textsNode = newFilterNode.putArray("values");
-    textsNode.add(new TextNode(filterText.asText()));
+    ArrayNode valuesNode = newFilterNode.putArray("values");
+    valuesNode.add(new TextNode(filterText.asText()));
   }
 
-  private void convertListFilter(ArrayNode filters, ArrayNode filterList, String field, String filterType) {
+  private void convertListFilter(ArrayNode filters, ArrayNode filterList, String field, boolean isStandardField) {
+    if (filterList == null || filterList.size() == 0) {
+      return;
+    }
+
+    // If the new complex filters has filter for the same field, skip migrate
+    filters.elements().forEachRemaining(filter -> {
+      if (filter.get("field").asText().contentEquals(field)) {
+        return;
+      }
+    });
+
+    DashboardColumnType type = isStandardField ? DashboardColumnType.STANDARD : DashboardColumnType.CUSTOM;
+    ObjectNode newFilterNode = filters.addObject();
+    newFilterNode.set("field", new TextNode(field));
+    newFilterNode.set("type", new TextNode(type.getType()));
+    newFilterNode.set("operator", new TextNode(FilterOperator.IN.name()));
+
+    ArrayNode valuesNode = newFilterNode.putArray("values");
+    filterList.elements().forEachRemaining(node -> {
+      valuesNode.add(new TextNode(node.asText()));
+    });
+  }
+
+  private void convertCategoryFilter(ArrayNode filters, ArrayNode filterList, String field) {
     if (filterList == null || filterList.size() == 0) {
       return;
     }
@@ -219,38 +243,18 @@ public class DashboardCaseWidgetConverter implements IJsonConverter {
 
     ObjectNode newFilterNode = filters.addObject();
     newFilterNode.set("field", new TextNode(field));
-    newFilterNode.set("type", new TextNode(filterType));
+    newFilterNode.set("type", new TextNode(DashboardColumnType.STANDARD.getType()));
     newFilterNode.set("operator", new TextNode(FilterOperator.IN.name()));
 
-    ArrayNode textsNode = newFilterNode.putArray("texts");
+    ArrayNode valuesNode = newFilterNode.putArray("values");
     filterList.elements().forEachRemaining(node -> {
-      textsNode.add(new TextNode(node.asText()));
-    });
-  }
-
-  private void convertCategoryFilter(ArrayNode filters, ArrayNode filterList, String field, String filterType) {
-    if (filterList == null || filterList.size() == 0) {
-      return;
-    }
-
-    // If the new complex filters has filter for the same field, skip migrate
-    filters.elements().forEachRemaining(filter -> {
-      if (filter.get("field").asText().contentEquals(field)) {
-        return;
-      }
-    });
-
-    ObjectNode newFilterNode = filters.addObject();
-    newFilterNode.set("field", new TextNode(field));
-    newFilterNode.set("type", new TextNode(filterType));
-    newFilterNode.set("operator", new TextNode(FilterOperator.IN.name()));
-
-    ArrayNode textsNode = newFilterNode.putArray("texts");
-    filterList.elements().forEachRemaining(node -> {
-      if (node.asText().contentEquals(NO_CATEGORY)) {
+      if (node.asText().contentEquals(NO_CATEGORY) && CollectionUtils.size(filterList.elements()) == 1) {
+        // If category filter only have one option: No category
+        // Choose operator: No category
         newFilterNode.set("operator", new TextNode(FilterOperator.NO_CATEGORY.name()));
-      } else {
-        textsNode.add(new TextNode(node.asText()));
+      } else if (!node.asText().contentEquals(NO_CATEGORY)) {
+        // Otherwise add all selected categories beside "No category"
+        valuesNode.add(new TextNode(node.asText()));
       }
     });
   }

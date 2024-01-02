@@ -22,13 +22,13 @@ public class ApplicationIsOperatorHandler {
   }
 
   public CaseQuery buildQuery(DashboardFilter filter) {
-    if (CollectionUtils.isEmpty(filter.getTexts())) {
+    if (CollectionUtils.isEmpty(filter.getValues())) {
       return null;
     }
 
     CaseQuery query = CaseQuery.create();
     IFilterQuery filterQuery = query.where();
-    for (String app : filter.getTexts()) {
+    for (String app : filter.getValues()) {
       final Optional<IApplication> appFindByName = IApplicationRepository.instance().findByName(app);
       if (appFindByName.isPresent()) {
         filterQuery.or().applicationId().isEqual(appFindByName.get().getId());

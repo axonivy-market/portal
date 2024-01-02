@@ -31,7 +31,7 @@ public class WidgetCreatorFilterBean implements Serializable {
 
   public void init(DashboardFilter filter) {
     selectedCreators = new ArrayList<>();
-    if (CollectionUtils.isNotEmpty(filter.getTexts())) {
+    if (CollectionUtils.isNotEmpty(filter.getValues())) {
       selectedCreators.addAll(filter.getCreators());
     }
   }
@@ -42,7 +42,7 @@ public class WidgetCreatorFilterBean implements Serializable {
 
   public void onChangeOperator(DashboardFilter filter) {
     if (filter.getOperator() == FilterOperator.CURRENT_USER) {
-      filter.setTexts(new ArrayList<>());
+      filter.setValues(new ArrayList<>());
     }
   }
 
@@ -61,19 +61,21 @@ public class WidgetCreatorFilterBean implements Serializable {
   }
 
   public void setSelectedCreators(List<SecurityMemberDTO> selectedCreators) {
-    List<SecurityMemberDTO> uniqueSelectedCreators = selectedCreators.stream().collect(Collectors.collectingAndThen(
-        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(SecurityMemberDTO::getId))), ArrayList::new));
-    
+    List<SecurityMemberDTO> uniqueSelectedCreators = selectedCreators.stream()
+        .collect(Collectors.collectingAndThen(
+            Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(SecurityMemberDTO::getSecurityMemberId))),
+            ArrayList::new));
+
     this.selectedCreators = uniqueSelectedCreators;
   }
 
   public void onChangeCreators(DashboardFilter filter) {
-    if (filter.getTexts() == null) {
-      filter.setTexts(new ArrayList<>());
+    if (filter.getValues() == null) {
+      filter.setValues(new ArrayList<>());
     }
-    filter.getTexts().clear();
-    for(SecurityMemberDTO creator : selectedCreators) {
-      filter.getTexts().add(creator.getName());
+    filter.getValues().clear();
+    for (SecurityMemberDTO creator : selectedCreators) {
+      filter.getValues().add(creator.getName());
     }
   }
 }

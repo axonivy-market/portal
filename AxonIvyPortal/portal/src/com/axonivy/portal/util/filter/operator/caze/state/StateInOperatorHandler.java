@@ -25,14 +25,14 @@ public class StateInOperatorHandler {
   }
   
   public CaseQuery buildStateInQuery(DashboardFilter filter) {
-    if (CollectionUtils.isEmpty(filter.getTexts())) {
+    if (CollectionUtils.isEmpty(filter.getValues())) {
       return null;
     }
 
     CaseQuery query = CaseQuery.create();
     IFilterQuery filterQuery = query.where();
 
-    List<CaseBusinessState> states = filter.getTexts().stream()
+    List<CaseBusinessState> states = filter.getValues().stream()
         .map(text -> CaseBusinessState.valueOf(text))
         .filter(Objects::nonNull)
         .collect(Collectors.toList());

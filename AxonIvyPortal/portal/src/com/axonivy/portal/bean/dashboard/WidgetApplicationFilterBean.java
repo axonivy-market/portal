@@ -1,10 +1,13 @@
 package com.axonivy.portal.bean.dashboard;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+
+import org.apache.commons.collections.CollectionUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
@@ -21,22 +24,16 @@ public class WidgetApplicationFilterBean implements Serializable {
   private static final long serialVersionUID = 4458514225804204212L;
 
   private static List<FilterOperator> operators = FilterOperator.APPLICATION_OPERATORS.stream().toList();
-
   private List<String> applications;
-  private List<String> selectedApps;
   private String applicationString;
 
+  @SuppressWarnings("unchecked")
   public void init(DashboardFilter filter) {
-    this.applications = ListUtilities.transformList(IApplicationRepository.instance().allOf(ISecurityContext.current()), IApplication::getName);
-    this.applicationString = String.join(", ", filter.getTexts());
-  }
+    this.applications = ListUtilities.transformList(IApplicationRepository.instance().allOf(ISecurityContext.current()),
+        IApplication::getName);
 
-  public List<String> getSelectedApps() {
-    return selectedApps;
-  }
-
-  public void setSelectedApps(List<String> selectedApps) {
-    this.selectedApps = selectedApps;
+    this.applicationString = String.join(", ",
+        new ArrayList<>(CollectionUtils.intersection(applications, filter.getValues())));
   }
 
   public List<FilterOperator> getOperators() {

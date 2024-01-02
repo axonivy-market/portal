@@ -39,7 +39,7 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
     // Add custom fields which are selected by user.
     this.widget.getFilterableColumns()
       .stream().filter(col -> col.getType() == DashboardColumnType.CUSTOM)
-      .forEach(customColumn -> this.filterFields.add(FilterFieldFactory.findBy(customColumn.getField())));
+      .forEach(customColumn -> this.filterFields.add(FilterFieldFactory.findCustomFieldBy(customColumn.getField())));
   }
 
   private void initFilters() {
@@ -73,37 +73,6 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
     return filterFields;
   }
 
-  private void initCreatorFilter(DashboardFilter filter) {
-    filter.setType(FilterType.CREATOR);
-    filter.setOperator(FilterOperator.CURRENT_USER);
-    filter.setTexts(new ArrayList<>());
-  }
-
-  private void initCategoryFilter(DashboardFilter filter) {
-    filter.setType(FilterType.CATEGORY);
-    filter.setOperator(FilterOperator.IN);
-    filter.setTexts(new ArrayList<>());
-  }
-
-  private void initApplicationFilter(DashboardFilter filter) {
-    filter.setType(FilterType.APPLICATION);
-    filter.setOperator(FilterOperator.IN);
-    filter.setTexts(new ArrayList<>());
-  }
-
-  private void initIdFilter(DashboardFilter filter) {
-    filter.setType(FilterType.ID);
-    filter.setOperator(FilterOperator.CONTAINS);
-    filter.setTexts(new ArrayList<>());
-  }
-
-  private void initStateFilter(DashboardFilter filter) {
-    filter.setType(FilterType.STATE);
-    filter.setOperator(FilterOperator.IN);
-    filter.setTexts(new ArrayList<>());
-  }
-
-  protected abstract void initFilterTypes();
   public void onSelectFilter(DashboardFilter filter) {
     String field = Optional.ofNullable( filter.getFilterField()).map(FilterField::getName).orElse(null);
     FilterField filterField = FilterFieldFactory.findBy(field);
