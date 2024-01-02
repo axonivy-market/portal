@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.generic.navigation.BaseNavigator;
+import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.util.ProcessStartUtils;
 
@@ -29,14 +30,14 @@ public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_RELATED_TASKS_OF_CASE = "Start Processes/PortalStart/RelatedTasksOfCasePage.ivp";
   private static final String PORTAL_RELATED_TASKS_OF_CASE_IN_FRAME = "Start Processes/PortalStart/RelatedTasksOfCasePageInFrame.ivp";
   private static final String PORTAL_TASK_DETAILS = "Start Processes/PortalStart/DefaultTaskDetailPage.ivp";
-  private static final String PORTAL_TASK_DETAILS_IN_FRAME = "Start Processes/PortalStart/DefaultTaskDetailPageInFrame.ivp";
+  private static final String PORTAL_TASK_DETAILS_IN_FRAME = "Start Processes/PortalStart/TaskDetailsPageInFrame.ivp";
   private static final String PORTAL_GLOBAL_SEARCH = "Start Processes/PortalStart/GlobalSearchPage.ivp";
   private static final String PORTAL_USER_PROFILE =  "Start Processes/PortalStart/UserProfile.ivp";
   private static final String PORTAL_MANAGEMENT =  "Start Processes/PortalStart/PortalManagement.ivp";
   private static final String PORTAL_ABSENCE_MANAGEMENT =  "Start Processes/PortalStart/AbsenceManagement.ivp";
   private static final String PORTAL_FORGOT_PASSWORD = "Start Processes/PortalStart/ForgotPasswordPage.ivp";
   private static final String PORTAL_PASSWORD_RESET = "Start Processes/PortalStart/PasswordResetPage.ivp";
-  private static final String PORTAL_CASE_DETAILS_IN_FRAME = "Start Processes/PortalStart/DefaultCaseDetailPageInIFrame.ivp";
+  private static final String PORTAL_CASE_DETAILS_IN_FRAME = "Start Processes/PortalStart/CaseDetailsInIFrame.ivp";
   private static final String PORTAL_NEW_DASHBOARD_CONFIGURATION = "Start Processes/PortalStart/PortalDashboardConfiguration.ivp";
   private static final String PORTAL_PROCESS_INFO = "Start Processes/PortalStart/ProcessInformation.ivp";
   private static final String PORTAL_DASHBOARD_DETAILS = "Start Processes/PortalStart/DashboardDetails.ivp";
@@ -47,7 +48,7 @@ public final class PortalNavigator extends BaseNavigator{
   public static final String PORTAL_CASE_START = "/CaseListPage.ivp";
   public static final String PORTAL_STATISTIC_START = "/StatisticPage.ivp";
   public static final String PORTAL_USER_PROFILE_START =  "/UserProfile.ivp";
-  public static final String PORTAL_CASE_DETAILS_IN_IFRAME_START = "/DefaultCaseDetailPageInIFrame.ivp";
+  public static final String PORTAL_CASE_DETAILS_IN_IFRAME_START = "/CaseDetailsInIFrame.ivp";
   private static final String UUID = "uuid";
   private static final String ID = "id";
   private static final String PORTAL_DASHBOARD_PAGE = "Start Processes/PortalStart/DashboardPage.ivp";
@@ -156,15 +157,15 @@ public final class PortalNavigator extends BaseNavigator{
 
   public static void navigateToPortalTaskDetailsInFrame(String uuid) {
     Map<String, String> params = new HashMap<>();
-    params.put(ID, uuid);
-    navigateByKeyword("DefaultTaskDetailPageInFrame.ivp", PORTAL_TASK_DETAILS_IN_FRAME, params);
+    params.put(UUID, uuid);
+    navigateByKeyword("TaskDetailsPageInFrame.ivp", PORTAL_TASK_DETAILS_IN_FRAME, params);
   }
   
   public static void navigateToPortalCaseDetailsInFrame(String uuid, boolean isBusinessCase) {
     Map<String, String> params = new HashMap<>();
-    params.put(ID, uuid);
+    params.put(UUID, uuid);
     params.put("isBusinessCase", String.valueOf(isBusinessCase));
-    navigateByKeyword("DefaultCaseDetailPageInFrame.ivp", PORTAL_CASE_DETAILS_IN_FRAME, params);
+    navigateByKeyword("CaseDetailsPageInFrame.ivp", PORTAL_CASE_DETAILS_IN_FRAME, params);
   }
 
   public static void navigateToPortalGlobalSearch(String keyword) {
@@ -224,6 +225,14 @@ public final class PortalNavigator extends BaseNavigator{
     return buildUrlByKeyword("AbsenceManagement.ivp", PORTAL_ABSENCE_MANAGEMENT, new HashMap<>());
   }
 
+  /**
+   * Build url to task details page of task uuid
+   * 
+   * @deprecated use{@link PortalNavigatorAPI#buildUrlToPortalCaseDetailsPage(String)}
+   * @param uuid
+   * @return Absolute url to task details page of task uuid
+   */
+  @Deprecated
   public static String buildPortalCaseDetailsUrl(String uuid) {
     Map<String, String> params = new HashMap<>();
     params.put(ID, uuid);
@@ -232,7 +241,7 @@ public final class PortalNavigator extends BaseNavigator{
 
   public static String buildPortalCaseDetailInFrameUrl(String uuid) {
     Map<String, String> params = new HashMap<>();
-    params.put(ID, uuid);
+    params.put(UUID, uuid);
     return buildUrlByKeyword(PORTAL_CASE_DETAILS_IN_IFRAME_START, PORTAL_CASE_DETAILS_IN_FRAME, params);
   }
   

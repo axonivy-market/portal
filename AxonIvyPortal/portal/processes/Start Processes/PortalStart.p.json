@@ -692,7 +692,7 @@
           "name" : "Authorized?",
           "config" : {
             "conditions" : {
-              "S51-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.id)"
+              "S51-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.uuid)"
             }
           },
           "visual" : {
@@ -750,7 +750,7 @@
           "name" : "Authorized?",
           "config" : {
             "conditions" : {
-              "S40-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.TaskService.newInstance().isTaskAccessible(in.id)"
+              "S40-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.TaskService.newInstance().isTaskAccessible(in.uuid)"
             }
           },
           "visual" : {
@@ -2075,7 +2075,7 @@
         "processCall" : "Functional Processes/Navigator:viewRelatedTaskInFrame(String)",
         "call" : {
           "map" : {
-            "param.taskUUID" : "in.id"
+            "param.taskUUID" : "in.uuid"
           }
         }
       },
@@ -2086,15 +2086,15 @@
     }, {
       "id" : "f97",
       "type" : "RequestStart",
-      "name" : "DefaultTaskDetailPageInFrame.ivp",
+      "name" : "TaskDetailsPageInFrame.ivp",
       "config" : {
-        "signature" : "DefaultTaskDetailPageInFrame",
+        "signature" : "TaskDetailsPageInFrame",
         "input" : {
           "params" : [
-            { "name" : "id", "type" : "String", "desc" : "" }
+            { "name" : "uuid", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.id" : "param.id"
+            "out.uuid" : "param.uuid"
           }
         },
         "request" : {
@@ -2370,7 +2370,7 @@
         "processCall" : "Functional Processes/Navigator:viewCaseItemDetailsInIFrame(ch.ivy.addon.portalkit.dto.GlobalCaseId)",
         "call" : {
           "map" : {
-            "param.caseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.uuid(in.id).isBusinessCase(in.isBusinessCase).build()"
+            "param.caseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.uuid(in.uuid).isBusinessCase(in.isBusinessCase).build()"
           }
         }
       },
@@ -2381,17 +2381,17 @@
     }, {
       "id" : "f130",
       "type" : "RequestStart",
-      "name" : "DefaultCaseDetailPageInFrame.ivp",
+      "name" : "CaseDetailsPageInFrame.ivp",
       "config" : {
-        "signature" : "DefaultCaseDetailPageInFrame",
+        "signature" : "CaseDetailsPageInFrame",
         "input" : {
           "params" : [
-            { "name" : "id", "type" : "String", "desc" : "" },
+            { "name" : "uuid", "type" : "String", "desc" : "" },
             { "name" : "isBusinessCase", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
-            "out.id" : "param.id",
-            "out.isBusinessCase" : "param.isBusinessCase"
+            "out.isBusinessCase" : "param.isBusinessCase",
+            "out.uuid" : "param.uuid"
           }
         },
         "request" : {
