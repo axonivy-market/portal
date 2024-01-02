@@ -262,7 +262,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     try {
       secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, isPersonalFilter);
     } catch (Throwable t) {
-      // Elastic seach could be slow, workaround with refresh page and check again
+      // Elastic search could be slow, workaround with refresh page and check again
       StatisticWidgetPage statisticWidgetPage = NavigationHelper.navigateToStatisticPage();
       secondTaskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
       secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, isPersonalFilter);

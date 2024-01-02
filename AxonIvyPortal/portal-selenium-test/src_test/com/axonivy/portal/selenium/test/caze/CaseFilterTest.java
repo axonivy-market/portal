@@ -99,6 +99,7 @@ public class CaseFilterTest extends BaseTest {
 
     mainMenuPage.selectTaskMenu();
     casePage = mainMenuPage.openCaseList();
+    casePage.waitFilterNameDisplayed(filterName);
     assertEquals(filterName, casePage.getFilterName().toLowerCase());
   }
 

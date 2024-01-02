@@ -3,6 +3,7 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.textCaseSensitive;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.refresh;
@@ -19,6 +20,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.portal.selenium.common.CaseState;
+import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -173,11 +175,24 @@ public class CaseWidgetPage extends TemplatePage {
     getSaveFilterDialog();
     $(By.id(caseWidgetId + ":filter-save-form:save-filter-set-name-input")).sendKeys(filterName);
     waitForElementClickableThenClick($(By.id(caseWidgetId + ":filter-save-form:filter-save-command")));
+    $("a[id$='filter-name']").shouldBe(textCaseSensitive(filterName));
   }
 
   public String getFilterName() {
     WebElement filterName = findElementByCssSelector("[id$='case-widget:filter-selection-form:filter-name'] > span");
     return filterName.getText();
+  }
+
+  public void waitFilterNameDisplayed(String filterName) {
+    filterName = filterName + "abc";
+    try {
+      $("[id$='case-widget:filter-selection-form:filter-name'] > span").shouldBe(text(filterName));
+    } catch (Throwable t) {
+      // Elastic search could be slow, workaround with navigating back to case list
+      NavigationHelper.navigateToTaskList();
+      NavigationHelper.navigateToCaseList();
+      $("[id$='case-widget:filter-selection-form:filter-name'] > span").shouldBe(text(filterName));
+    }
   }
 
   public void openCategoryFilter() {
