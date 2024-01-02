@@ -261,7 +261,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
       TaskAnalysisWidgetPage secondTaskAnalysisWidgetPage) {
     try {
       secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, isPersonalFilter);
-    } catch (Exception e) {
+    } catch (Throwable t) {
       // Elastic seach could be slow, workaround with refresh page and check again
       Selenide.refresh();
       secondTaskAnalysisWidgetPage = new TaskAnalysisWidgetPage();
