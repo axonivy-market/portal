@@ -119,29 +119,28 @@ public class DashboardTemplateCaseWidgetConverter implements IJsonConverter {
             true);
       }
       case CREATOR -> {
-            convertListFilter(initFilterNode(caseWidget),
-                (ArrayNode)col.get("filterList"),
-                DashboardStandardCaseColumn.CREATOR.getField(),
-                FilterType.CREATOR.name());
-          }
-          case STATE -> {
-            convertListFilter(initFilterNode(caseWidget),
-                (ArrayNode)col.get("filterList"),
-                DashboardStandardCaseColumn.STATE.getField(),
-                FilterType.STATE.name());
-          }
-          case CATEGORY -> {
-            convertCategoryFilter(initFilterNode(caseWidget),
-                (ArrayNode)col.get("filterList"),
-                DashboardStandardCaseColumn.CATEGORY.getField(),
-                FilterType.CATEGORY.name());
-          }
-          case APPLICATION -> {
-            convertListFilter(initFilterNode(caseWidget),
-                (ArrayNode)col.get("filterList"),
-                DashboardStandardCaseColumn.APPLICATION.getField(),
-                FilterType.APPLICATION.name());
-          }
+        convertListFilter(initFilterNode(caseWidget),
+            (ArrayNode)col.get("filterList"),
+            DashboardStandardCaseColumn.CREATOR.getField(),
+            true);
+      }
+      case STATE -> {
+        convertListFilter(initFilterNode(caseWidget),
+            (ArrayNode)col.get("filterList"),
+            DashboardStandardCaseColumn.STATE.getField(),
+            true);
+      }
+      case CATEGORY -> {
+        convertCategoryFilter(initFilterNode(caseWidget),
+            (ArrayNode)col.get("filterList"),
+            DashboardStandardCaseColumn.CATEGORY.getField());
+      }
+      case APPLICATION -> {
+        convertListFilter(initFilterNode(caseWidget),
+            (ArrayNode)col.get("filterList"),
+            DashboardStandardCaseColumn.APPLICATION.getField(),
+            true);
+      }
       default -> {}
     }
   }
@@ -201,11 +200,11 @@ public class DashboardTemplateCaseWidgetConverter implements IJsonConverter {
     newFilterNode.set("type", new TextNode(type.getType()));
     newFilterNode.set("operator", new TextNode(FilterOperator.CONTAINS.getOperator()));
 
-    ArrayNode textsNode = newFilterNode.putArray("values");
-    textsNode.add(new TextNode(filterText.asText()));
+    ArrayNode valuesNode = newFilterNode.putArray("values");
+    valuesNode.add(new TextNode(filterText.asText()));
   }
 
-  private void convertListFilter(ArrayNode filters, ArrayNode filterList, String field, String filterType) {
+  private void convertListFilter(ArrayNode filters, ArrayNode filterList, String field, boolean isStandardField) {
     if (filterList == null || filterList.size() == 0) {
       return;
     }
@@ -217,18 +216,19 @@ public class DashboardTemplateCaseWidgetConverter implements IJsonConverter {
       }
     });
 
+    DashboardColumnType type = isStandardField ? DashboardColumnType.STANDARD : DashboardColumnType.CUSTOM;
     ObjectNode newFilterNode = filters.addObject();
     newFilterNode.set("field", new TextNode(field));
-    newFilterNode.set("type", new TextNode(filterType));
+    newFilterNode.set("type", new TextNode(type.getType()));
     newFilterNode.set("operator", new TextNode(FilterOperator.IN.name()));
 
-    ArrayNode textsNode = newFilterNode.putArray("texts");
+    ArrayNode valuesNode = newFilterNode.putArray("values");
     filterList.elements().forEachRemaining(node -> {
-      textsNode.add(new TextNode(node.asText()));
+      valuesNode.add(new TextNode(node.asText()));
     });
   }
 
-  private void convertCategoryFilter(ArrayNode filters, ArrayNode filterList, String field, String filterType) {
+  private void convertCategoryFilter(ArrayNode filters, ArrayNode filterList, String field) {
     if (filterList == null || filterList.size() == 0) {
       return;
     }
@@ -242,15 +242,15 @@ public class DashboardTemplateCaseWidgetConverter implements IJsonConverter {
 
     ObjectNode newFilterNode = filters.addObject();
     newFilterNode.set("field", new TextNode(field));
-    newFilterNode.set("type", new TextNode(filterType));
+    newFilterNode.set("type", new TextNode(DashboardColumnType.STANDARD.getType()));
     newFilterNode.set("operator", new TextNode(FilterOperator.IN.name()));
 
-    ArrayNode textsNode = newFilterNode.putArray("texts");
+    ArrayNode valuesNode = newFilterNode.putArray("values");
     filterList.elements().forEachRemaining(node -> {
       if (node.asText().contentEquals(NO_CATEGORY)) {
         newFilterNode.set("operator", new TextNode(FilterOperator.NO_CATEGORY.name()));
       } else {
-        textsNode.add(new TextNode(node.asText()));
+        valuesNode.add(new TextNode(node.asText()));
       }
     });
   }

@@ -1,67 +1,26 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang3.time.DateUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.util.filter.operator.caze.application.ApplicationInOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.category.CategoryContainsOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.category.CategoryInOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.category.CategoryNoCategoryOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateAfterOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateBeforeOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateBetweenOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateCurrentPeriodOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateIsOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateNumberOfPeriodsOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateTodayOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateYesterdayOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.creator.CreatorCurrentUserOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.creator.CreatorInOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.description.DescriptionContainsOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.description.DescriptionEndWithOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.description.DescriptionIsEmptyOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.description.DescriptionIsOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.description.DescriptionStartWithOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateAfterOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateBeforeOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateBetweenOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateCurrentPeriodOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateEmptyOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateIsOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateNumberOfPeriodsOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateTodayOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateYesterdayOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.id.IdContainsOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.name.NameContainsOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.name.NameEndWithOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.name.NameIsEmptyOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.name.NameIsOperatorHandler;
-import com.axonivy.portal.util.filter.operator.caze.name.NameStartWithOperatorHandler;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
-import com.axonivy.portal.util.filter.operator.caze.state.StateInOperatorHandler;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
-import ch.ivy.addon.portalkit.enums.DashboardFilterType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
-import ch.ivyteam.ivy.workflow.query.CaseQuery.ICustomFieldFilterQuery;
-import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.OrderByColumnQuery;
 
 public class DashboardCaseSearchCriteria {
 
-  private static final String LIKE_FORMAT = "%%%s%%";
   private List<CaseColumnModel> columns;
   private List<DashboardFilter> filters;
   private List<DashboardFilter> userFilters;
@@ -92,8 +51,7 @@ public class DashboardCaseSearchCriteria {
         continue;
       }
 
-      FilterField filterField =
-          FilterFieldFactory.findBy(filter.getField());
+      FilterField filterField = FilterFieldFactory.findBy(filter.getField());
       if (filterField != null) {
         CaseQuery filterQuery = filterField.generateFilterQuery(filter);
         if (filterQuery != null) {
@@ -103,167 +61,12 @@ public class DashboardCaseSearchCriteria {
     }
   }
 
-  private CaseQuery generateCreatorFilterQuery(DashboardFilter filter) {
-    return switch (filter.getOperator()) {
-      case IN -> CreatorInOperatorHandler.getInstance().buildInQuery(filter);
-      case NOT_IN -> CreatorInOperatorHandler.getInstance().buildNotInQuery(filter);
-      case CURRENT_USER -> CreatorCurrentUserOperatorHandler.getInstance().buildQuery();
-      default -> null;
-    };
-  }
-
-  private CaseQuery generateCategoryFilterQuery(DashboardFilter filter) {
-    return switch (filter.getOperator()) {
-      case IN -> CategoryInOperatorHandler.getInstance().buildInQuery(filter);
-      case NOT_IN -> CategoryInOperatorHandler.getInstance().buildNotInQuery(filter);
-      case CONTAINS -> CategoryContainsOperatorHandler.getInstance().buildContainsQuery(filter);
-      case NOT_CONTAINS -> CategoryContainsOperatorHandler.getInstance().buildNotContainsQuery(filter);
-      case NO_CATEGORY -> CategoryNoCategoryOperatorHandler.getInstance().buildQuery();
-      default -> null;
-    };
-  }
-
-  private CaseQuery generateApplicationFilterQuery(DashboardFilter filter) {
-    return switch (filter.getOperator()) {
-      case IN -> ApplicationInOperatorHandler.getInstance().buildQuery(filter);
-      default -> null;
-    };
-  }
-
-  private CaseQuery generateStateFilterQuery(DashboardFilter filter) {
-    return switch (filter.getOperator()) {
-      case IN -> StateInOperatorHandler.getInstance().buildStateInQuery(filter);
-      default -> null;
-    };
-  }
-
-  private CaseQuery generateIdFilterQuery(DashboardFilter filter) {
-    return switch (filter.getOperator()) {
-      case CONTAINS -> IdContainsOperatorHandler.getInstance().buildContainsQuery(filter);
-      default -> null;
-    };
-  }
-
-  private void queryCustomFieldSelection(CaseQuery query, String field, List<String> filterList) {
-    if (CollectionUtils.isNotEmpty(filterList)) {
-      CaseQuery subQuery = CaseQuery.create();
-      IFilterQuery filterQuery = subQuery.where();
-      for (String filter : filterList) {
-        filterQuery.or().customField().stringField(field).isEqual(filter);
-      }
-      
-      query.where().and(subQuery);
-    }
-  }
-  
-  private void queryTextField(ICustomFieldFilterQuery filterQuery, String field, String filter) {
-    if (StringUtils.isNotBlank(filter)) {
-      filterQuery.textField(field).isLikeIgnoreCase(String.format(LIKE_FORMAT, filter));
-    }
-  }
-  
-  private void queryStringField(ICustomFieldFilterQuery filterQuery, String field, String filter) {
-    if (StringUtils.isNotBlank(filter)) {
-      filterQuery.stringField(field).isLikeIgnoreCase(String.format(LIKE_FORMAT, filter));
-    }
-  }
-  
+  @SuppressWarnings("unchecked")
   private void queryFilters(CaseQuery query) {
-    if (CollectionUtils.isNotEmpty(filters)) {
-      queryComplexFilter(query, filters);
-    }
-
-    if (CollectionUtils.isNotEmpty(userFilters)) {
-      queryComplexFilter(query, userFilters);
-    }
-
-    if (CollectionUtils.isNotEmpty(filters) || CollectionUtils.isNotEmpty(filters)) {
-      return;
-    }
-
-    else {
-      for (ColumnModel column : columns) {
-        String field = column.getField();
-        String configuredFilter = column.getFilter();
-        List<String> configuredFilterList = column.getFilterList();
-        String configuredFilterFrom = column.getFilterFrom();
-        String configuredFilterTo = column.getFilterTo();
-        
-        String userFilter = column.getUserFilter();
-        List<String> userFilterList = column.getUserFilterList();
-        String userFilterFrom = column.getUserFilterFrom();
-        String userFilterTo = column.getUserFilterTo();
-        
-        List<String> filterList = CollectionUtils.isNotEmpty(userFilterList) && !isInConfiguration ? userFilterList : configuredFilterList;
-        String filterFrom = StringUtils.isNotBlank(userFilterFrom) && !isInConfiguration ? userFilterFrom : configuredFilterFrom;
-        String filterTo = StringUtils.isNotBlank(userFilterTo) && !isInConfiguration ? userFilterTo : configuredFilterTo;
-        
-        if (equals(DashboardStandardCaseColumn.OWNER, column)) {
-          queryOwner(query, filterList);
-        } else if (column.getFilterType() == DashboardFilterType.SELECTION || CollectionUtils.isNotEmpty(filterList)) {
-          queryCustomFieldSelection(query, field, filterList);
-        } else {
-          if (StringUtils.isNotBlank(configuredFilter) || StringUtils.isNotBlank(userFilter) || StringUtils.isNotBlank(filterFrom) || StringUtils.isNotBlank(filterTo)) {
-            CaseQuery subQuery = applyFilter(column, field, configuredFilter, userFilter, filterFrom, filterTo);
-            query.where().and(subQuery);
-          }
-        }
-      }
-    }
-  }
-
-  private boolean equals(DashboardStandardCaseColumn caseColumn, ColumnModel column) {
-    return StringUtils.equals(caseColumn.getField(), column.getField());
-  }
-
-  private CaseQuery applyFilter(ColumnModel column, String field, String configuredFilter, String userFilter,
-      String filterFrom, String filterTo) {
-    CaseQuery subQuery = CaseQuery.create();
-    ICustomFieldFilterQuery filterQuery = subQuery.where().customField();
-    if (column.isNumber()) {
-      if (StringUtils.isNotBlank(filterFrom)) {
-        Number from = Double.parseDouble(filterFrom.toString());
-        filterQuery.numberField(field).isGreaterOrEqualThan(from);
-      }
- 
-      if (StringUtils.isNotBlank(filterTo)) {
-        Number to = Double.parseDouble(filterTo.toString());
-        filterQuery.numberField(field).isLowerOrEqualThan(to);
-      }
-    } else if (column.isDate()) {
-      Date from = Dates.parse(filterFrom);
-      Date to = Dates.parse(filterTo);
-      if (from != null) {
-        filterQuery.timestampField(field).isGreaterOrEqualThan(from);
-      }
- 
-      if (to != null) {
-        filterQuery.timestampField(field).isLowerOrEqualThan(DateUtils.addDays(to, 1));
-      }
-    } else if (column.isText()) {
-      queryTextField(filterQuery, field, configuredFilter);
-      if (!isInConfiguration) {
-        queryTextField(filterQuery, field, userFilter);
-      }
-    } else {
-      queryStringField(filterQuery, field, configuredFilter);
-      if (!isInConfiguration) {
-        queryStringField(filterQuery, field, userFilter);
-      }
-    }
-    return subQuery;
-  }
-
-  private void queryOwner(CaseQuery query, List<String> owners) {
-    if (CollectionUtils.isNotEmpty(owners)
-        && GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
-      CaseQuery subQuery = CaseQuery.create();
-      IFilterQuery filterQuery = subQuery.where();
-      for (String owner : owners) {
-        filterQuery.or().ownerName().isEqual(owner);
-      }
-
-      query.where().and(subQuery);
+    List<DashboardFilter> allFilters =
+        new ArrayList<>(CollectionUtils.union(filters, userFilters));
+    if (CollectionUtils.isNotEmpty(allFilters)) {
+      queryComplexFilter(query, allFilters);
     }
   }
 
@@ -282,11 +85,11 @@ public class DashboardCaseSearchCriteria {
   public void setSortDescending(boolean sortDescending) {
     this.sortDescending = sortDescending;
   }
-  
+
   public boolean isInConfiguration() {
     return isInConfiguration;
   }
-  
+
   public void setInConfiguration(boolean isInConfiguration) {
     this.isInConfiguration = isInConfiguration;
   }
@@ -392,7 +195,7 @@ public class DashboardCaseSearchCriteria {
   public List<CaseColumnModel> getColumns() {
     return columns;
   }
-  
+
   public void setColumns(List<CaseColumnModel> columns) {
     this.columns = columns;
   }

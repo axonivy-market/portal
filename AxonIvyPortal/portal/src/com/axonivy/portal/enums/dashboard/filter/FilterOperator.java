@@ -33,7 +33,6 @@ public enum FilterOperator {
   CURRENT_USER_CAN_WORK_ON,
   CURRENT_USER,
   NO_CATEGORY,
-  NOT_END_WITH,
   EQUAL,
   NOT_EQUAL,
   LESS,

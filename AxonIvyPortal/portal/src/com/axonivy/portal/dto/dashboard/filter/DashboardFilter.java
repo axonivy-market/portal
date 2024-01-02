@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -22,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 
@@ -91,27 +93,27 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public boolean isCreator() {
-    return this.type == FilterType.CREATOR;
+    return this.field == DashboardStandardCaseColumn.CREATOR.getField();
   }
 
   @JsonIgnore
   public boolean isCategory() {
-    return this.type == FilterType.CATEGORY;
+    return this.field == DashboardStandardCaseColumn.CATEGORY.getField();
   }
 
   @JsonIgnore
   public boolean isApplication() {
-    return this.type == FilterType.APPLICATION;
+    return this.field == DashboardStandardCaseColumn.APPLICATION.getField();
   }
 
   @JsonIgnore
   public boolean isState() {
-    return this.type == FilterType.STATE;
+    return this.field == DashboardStandardCaseColumn.STATE.getField();
   }
 
   @JsonIgnore
   public boolean isId() {
-    return this.type == FilterType.ID;
+    return this.field == DashboardStandardCaseColumn.ID.getField();
   }
 
   @JsonIgnore
@@ -233,7 +235,8 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public List<SecurityMemberDTO> getCreators() {
-    return this.texts.stream().map(this::findSecurityMember).collect(Collectors.toList());
+    return this.values.stream().map(this::findSecurityMember)
+        .filter(Objects::nonNull).collect(Collectors.toList());
   }
 
   private SecurityMemberDTO findSecurityMember(String memberName) {

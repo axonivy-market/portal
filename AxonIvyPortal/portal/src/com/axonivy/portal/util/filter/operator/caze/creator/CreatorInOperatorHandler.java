@@ -18,13 +18,13 @@ public class CreatorInOperatorHandler {
   }
 
   public CaseQuery buildInQuery(DashboardFilter filter) {
-    if (CollectionUtils.isEmpty(filter.getTexts())) {
+    if (CollectionUtils.isEmpty(filter.getValues())) {
       return null;
     }
 
     CaseQuery query = CaseQuery.create();
     IFilterQuery filterQuery = query.where();
-    for (String creator : filter.getTexts()) {
+    for (String creator : filter.getValues()) {
       filterQuery.or().creatorUserName().isEqual(creator.replace("#", ""));
     }
 
@@ -32,13 +32,13 @@ public class CreatorInOperatorHandler {
   }
 
   public CaseQuery buildNotInQuery(DashboardFilter filter) {
-    if (CollectionUtils.isEmpty(filter.getTexts())) {
+    if (CollectionUtils.isEmpty(filter.getValues())) {
       return null;
     }
 
     CaseQuery query = CaseQuery.create();
     IFilterQuery filterQuery = query.where();
-    for (String creator : filter.getTexts()) {
+    for (String creator : filter.getValues()) {
       filterQuery.and().creatorUserName().isNotEqual(creator.replace("#", ""));
     }
 
