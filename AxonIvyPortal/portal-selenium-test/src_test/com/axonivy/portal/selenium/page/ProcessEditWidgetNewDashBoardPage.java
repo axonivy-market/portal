@@ -34,6 +34,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   public void selectImageModeAndSaveWidget(String processName) {
     selectImageMode();
     selectImageProcess(processName);
+    clickPreviewButton();
     clickSaveProcessWidget();
   }
 
@@ -41,7 +42,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     getImageModeProcessSelectedProcess().click();
     getImageModeProcessSelectedProcess().find("input").clear();
     getImageModeProcessSelectedProcess().find("input").sendKeys(processName);
-    $("tr[data-item-label='" + processName + "']").click();
+    $("tr[data-item-label='" + processName + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void selectImageMode() {
@@ -294,8 +295,8 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   private void selectCompactModeCategory(String category) {
     getCompactModeProcessCategoryFilter().click();
 
-    ElementsCollection categories =
-        getCompactModeProcessCategoryFilterPanel().shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$(".ui-treenode-label");
+    ElementsCollection categories = getCompactModeProcessCategoryFilterPanel()
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$(".ui-treenode-label");
     categories.filter(Condition.exactTextCaseSensitive("All Categories")).first().click();
     categories.filter(Condition.exactTextCaseSensitive(category)).first()
         .shouldBe(Condition.not(Condition.cssClass("ui-state-highlight")), DEFAULT_TIMEOUT).click();
@@ -433,8 +434,8 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
       SelenideElement toElement = findAll.get(toIndex).shouldBe(clickable(), DEFAULT_TIMEOUT);
 
       Actions builder = new Actions(WebDriverRunner.getWebDriver());
-      Action dragAndDrop =
-          builder.clickAndHold(fromElement).pause(500).moveToElement(toElement).pause(500).release(toElement).build();
+      Action dragAndDrop = builder.clickAndHold(fromElement).pause(500).moveToElement(toElement).pause(500)
+          .release(toElement).build();
       dragAndDrop.perform();
     }
   }

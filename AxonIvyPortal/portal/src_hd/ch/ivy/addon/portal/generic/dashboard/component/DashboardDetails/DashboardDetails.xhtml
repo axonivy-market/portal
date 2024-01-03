@@ -14,7 +14,8 @@
 <cc:implementation>
   <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
 
-  <p:dialog id="#{cc.attrs.detailDialogId}" widgetVar="#{cc.attrs.detailDialogId}" styleClass="js-#{cc.attrs.detailDialogId}"
+  <p:dialog id="#{cc.attrs.detailDialogId}" widgetVar="#{cc.attrs.detailDialogId}"
+    styleClass="js-#{cc.attrs.detailDialogId} #{isPublicDashboard ? 'create-public-dashboard-dialog' : 'create-private-dashboard-dialog'}"
     header="#{cc.attrs.title}"
     appendTo="@(body)" closeOnEscape="true" draggable="false" fitViewport="true" responsive="true" modal="true"
     minWidth="300">
@@ -86,6 +87,7 @@
     <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="title-language-config"
       titles="#{managedBean.getTitles()}" 
       managedBean="#{managedBean}"
+      dynamic="true"
       updateCurrentLanguage="#{managedBean.updateCurrentLanguage()}"
       componentToUpdateOnModify="dashboard-modification-component:configuration-dashboard-detail-component:dashboard-detail-form:dashboard-title"
       componentToUpdateOnCreate="dashboard-template-selection-component:dashboard-creation-component:dashboard-detail-form:dashboard-title" />
