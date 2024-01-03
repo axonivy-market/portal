@@ -81,7 +81,7 @@
           "code" : [
             "import org.apache.commons.lang3.StringUtils;",
             "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
-            "in.caseLink = PortalNavigatorAPI.buildUrlToPortalCaseDetailsPageByUUID(in.uuid);",
+            "in.caseLink = PortalNavigatorAPI.buildUrlToPortalCaseDetailsPage(in.uuid);",
             "in.isLinkEnable = StringUtils.isNotEmpty(in.caseLink);"
           ]
         }
