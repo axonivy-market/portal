@@ -1,0 +1,8 @@
+PortalCaseDetailsData #class
+com.axonivy.portal.userexamples.PortalCaseDetails #namespace
+caseInfo ch.ivyteam.ivy.workflow.ICase #field
+caseInfo PERSISTENT #fieldModifier
+isShowBackButton Boolean #field
+isShowBackButton PERSISTENT #fieldModifier
+isTaskStartedInDetails Boolean #field
+isTaskStartedInDetails PERSISTENT #fieldModifier

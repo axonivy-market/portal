@@ -1,0 +1,134 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "id" : "18CB45BA98D28C8A",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.portal.userexamples.OpenPortalCaseDetailsData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call(ICase,Boolean)",
+      "config" : {
+        "signature" : "call",
+        "input" : {
+          "params" : [
+            { "name" : "caseData", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
+            { "name" : "isShowBackButton", "type" : "Boolean", "desc" : "" }
+          ],
+          "map" : {
+            "out.caseView" : "param.caseData",
+            "out.isShowBackButton" : "param.isShowBackButton"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 256 },
+        "labelOffset" : { "x" : 22, "y" : -17 }
+      },
+      "connect" : [
+        { "id" : "f3", "to" : "f2" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 1016, "y" : 256 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "DialogCall",
+      "name" : "PortalCaseDetails",
+      "config" : {
+        "dialog" : "com.axonivy.portal.userexamples.PortalCaseDetails:start(ch.ivyteam.ivy.workflow.ICase,Boolean)",
+        "call" : {
+          "map" : {
+            "param.caseInfo" : "in.caseView",
+            "param.isShowBackButton" : "in.isShowBackButton"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 648, "y" : 256 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "CallSubStart",
+      "name" : "callForIFrame(ICase,Boolean)",
+      "config" : {
+        "signature" : "callForIFrame",
+        "input" : {
+          "params" : [
+            { "name" : "caseData", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
+            { "name" : "isShowBackButton", "type" : "Boolean", "desc" : "" }
+          ],
+          "map" : {
+            "out.caseView" : "param.caseData",
+            "out.isShowBackButton" : "param.isShowBackButton"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 576 },
+        "labelOffset" : { "x" : 27, "y" : -17 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f7" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 1016, "y" : 576 }
+      }
+    }, {
+      "id" : "f7",
+      "type" : "DialogCall",
+      "name" : "CaseInformationInIFrame",
+      "config" : {
+        "dialog" : "com.axonivy.portal.userexamples.CaseInformationInIFrame:start(String,Boolean)",
+        "call" : {
+          "map" : {
+            "param.uuid" : "in.caseView.uuid()",
+            "param.showBackButton" : "in.isShowBackButton"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 648, "y" : 576 },
+        "size" : { "width" : 160, "height" : 60 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "**Deprecated Note**",
+        "",
+        "**This callable will be removed from Portal 11.**",
+        "To override PortalCase item details UI: you should use Axon Ivy HTMLOverride Dialog to override the PortalCaseDetails Html dialog."
+      ],
+      "visual" : {
+        "at" : { "x" : 736, "y" : 360 },
+        "size" : { "width" : 720, "height" : 76 }
+      }
+    }, {
+      "id" : "f12",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "**Deprecated Note**",
+        "",
+        "**This callable will be removed from Portal 11.**",
+        "To override PortalCase item details UI: you should use Axon Ivy HTMLOverride Dialog to override the CaseInformationInIFrame Html dialog."
+      ],
+      "visual" : {
+        "at" : { "x" : 760, "y" : 680 },
+        "size" : { "width" : 768, "height" : 76 }
+      }
+    } ]
+}

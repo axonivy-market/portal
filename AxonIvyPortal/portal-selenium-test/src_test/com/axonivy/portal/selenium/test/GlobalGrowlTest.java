@@ -29,7 +29,7 @@ import com.codeborne.selenide.Condition;
 
 import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class GlobalGrowlTest extends BaseTest {
 
   private static final String FINISH_MESSAGE = "You have finished the task successfully";
@@ -39,6 +39,12 @@ public class GlobalGrowlTest extends BaseTest {
       "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.";
   private static final String CANCEL_MESSAGE_WITH_DETAILS =
       "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.\nClick here for details.";
+  private static final String CUSTOM_FINISH_MESSAGE = "Task is done successfully\nClick here for details.";
+  private static final String CUSTOM_CANCEL_MESSAGE = "You have cancelled and left the task successfully\nClick here for details.";
+  private static final String CUSTOM_GROWL_URL =
+      "portal-developer-examples/16A7BB2ADC9580A8/frame8CustomizedMessage.ivp";
+  private static final String SKIP_TASK_LIST_URL =
+      "portal-developer-examples/16A7BB2ADC9580A8/frame8StandardMessageAndSkipTasklist.ivp";
 
   @Override
   @BeforeEach
@@ -48,13 +54,22 @@ public class GlobalGrowlTest extends BaseTest {
   }
 
   // TODO Write test for Growl in IFrame, in version 10 it has the test public void
-  // testDisplayCustomGrowlAfterFinishTask()
+  @Test
+  public void testDisplayCustomGrowlAfterFinishTask() {
+    redirectToRelativeLink(CUSTOM_GROWL_URL);
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    taskTemplatePage.switchToIFrameOfTask();
+    taskWidgetPage = taskTemplatePage.clickSubmitButtonCustom();
+    assertGrowlMessage(taskWidgetPage, CUSTOM_FINISH_MESSAGE);
+  }
 
   @Test
   public void testDisplayDefaultGrowlAfterFinishTask() {
     redirectToRelativeLink(createTestingTasksUrl);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    taskTemplatePage.switchToIFrameOfTask();
     String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskTemplatePage.inputValue("Employee", today, today, "Representation");
     taskWidgetPage = taskTemplatePage.clickSubmitButton();
@@ -63,7 +78,17 @@ public class GlobalGrowlTest extends BaseTest {
 
   // TODO Write test for Growl in IFrame, in version 10 it has the test public void
   // testDisplayDefaultGrowlAfterFinishFirstTask()
-
+  @Test
+  public void testDisplayDefaultGrowlAfterFinishFirstTask() {
+    redirectToRelativeLink(SKIP_TASK_LIST_URL);
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
+    taskTemplatePage.inputFields("Employee", today, today, "Representation");
+    TaskWidgetPage homePage = taskTemplatePage.clickSubmitButtonCustom();
+    assertGrowlMessage(homePage, FINISH_MESSAGE_WITH_DETAILS);
+  }
+  
   @Test
   public void testDisplayDefaultGrowlAfterCancelTask() {
     redirectToRelativeLink(createTestingTasksUrl);
@@ -75,9 +100,24 @@ public class GlobalGrowlTest extends BaseTest {
 
   // TODO Write test for Growl in IFrame, in version 10 it has the test public void
   // testDisplayCustomGrowlAfterCancelTask()
+  @Test
+  public void testDisplayCustomGrowlAfterCancelTask() {
+    redirectToRelativeLink(CUSTOM_GROWL_URL);
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    TaskWidgetPage homePage = taskTemplatePage.clickCancelAndLeftButton();
+    assertGrowlMessage(homePage, CUSTOM_CANCEL_MESSAGE);
+  }
 
   // TODO Write test for Growl in IFrame, in version 10 it has the test public void
   // testDisplayDefaultGrowlAfterCancelFirstTask()
+  @Test
+  public void testDisplayDefaultGrowlAfterCancelFirstTask() {
+    redirectToRelativeLink(SKIP_TASK_LIST_URL);
+    TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
+    TaskWidgetPage homePage = taskTemplatePage.clickCancelAndLeftButton();
+    assertGrowlMessage(homePage, CANCEL_MESSAGE_WITH_DETAILS);
+  }
 
   @Test
   public void testSaveExpressFormDefinition() {

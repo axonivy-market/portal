@@ -13,4 +13,8 @@
         <identifier>CostObject</identifier>
         <displayName>Cost Object</displayName>
     </role>
+    <role>
+        <identifier>AXONIVY_PORTAL_ADMIN</identifier>
+        <displayName>Portal Admin</displayName>
+    </role>
 </role>

@@ -107,10 +107,10 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.application.IApplication;",
-            "import ch.ivy.addon.portalkit.util.RequestUtils;",
+            "import com.axonivy.portal.developerexamples.util.RequestUtils;",
             "import org.primefaces.PrimeFaces;",
             "import javax.faces.context.FacesContext;",
-            "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
+            "import com.axonivy.portal.developerexamples.publicapi.ProcessStartAPI;",
             "",
             "String requestPath = \"Start Processes/CustomCaseInfomationForTaskTemplate/employeeDetailsInFrame.ivp\";",
             "String url = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(requestPath);",
