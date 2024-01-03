@@ -7,6 +7,11 @@ The **Full Task List** page shows you the tasks, as well as, advanced search and
 capabilities. You can reach the page by using the |task-list-icon| :guilabel:`Tasks` 
 link in the |ivy| Portal menu.
 
+.. note::
+
+   Grant permission :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>` to allow a user to access the full task list ( |task-list-icon| :guilabel:`Tasks`) in the |ivy| Portal menu.
+
+
 .. hint:: 
    Depending on the roles you hold
    in the application and the     
@@ -66,6 +71,13 @@ handling tasks:
 #. Trigger Escalation Task
 
 #. Add Ad-hoc Task
+
+.. note::
+
+   Grant permissions :bdg-ref-warning:`🔑TaskDisplayResetAction <TaskDisplayResetAction>`, 
+   :bdg-ref-warning:`🔑TaskDisplayReserveAction <TaskDisplayReserveAction>`, :bdg-ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`, 
+   :bdg-ref-warning:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>`, :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`,
+   :bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>` to allow a user to see the corresponding buttons and menu items.
 
 Finally, you have the possibility to access the full set of the task
 data by clicking on the row containing the task Name and Description.
@@ -228,6 +240,10 @@ HowTo: Attach a document to the case
 
 |how-to-upload-document|
 
+.. note::
+
+   Grant either permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` to allow a user to upload documents.
+
 HowTo: Remove an attachment from the case
 -----------------------------------------
 
@@ -241,6 +257,10 @@ HowTo: Remove an attachment from the case
 #. Confirm the deletion with the button :guilabel:`Delete` 
 
 |how-to-delete-document|
+
+.. note::
+
+   Grant either permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` to allow a user to delete documents.
 
 HowTo: Add a note to a task
 ---------------------------
@@ -261,6 +281,8 @@ HowTo: Add a note to a task
    Notes of a task are displayed in the ``Notes`` table of the task details, and in the ``History`` table of its business case.
 
    If the task belongs to a technical case, its notes are also displayed in the ``History`` table of this technical case.
+   
+   Grant permission :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>` to allow a user to add task and case notes.
 
 HowTo: Export a task history
 ----------------------------
@@ -284,7 +306,7 @@ HowTo: Show Workflow Events
 ---------------------------
 
 .. note:: 
-   User must to has permission ``WORKFLOW_EVENT_READ_ALL`` to see all workflow events of a task
+   Grant permission :bdg-warning:`🔑WorkflowEventReadAll` to allow a user to see all workflow events of a task.
 
 #. Open the task details of a task
 
@@ -313,6 +335,9 @@ HowTo: Share Task Details
 
 |how-to-share-task-details|
 
+.. note::
+
+   Grant permission :bdg-ref-warning:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>` to allow a user to share task details.
 
 .. include:: ../includes/_common-icon.rst
 
