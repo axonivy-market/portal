@@ -3,7 +3,7 @@
 Notification
 ************
 
-You can open your notifications by clicking on the bell icon on the top right corner. A panel contains all your notifications will be displayed .
+You can open your notifications by clicking on the bell icon in the top right corner. A panel contains all your notifications will be displayed.
 
 |notification-panel|
 
