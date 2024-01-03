@@ -248,6 +248,11 @@ public class TaskTemplatePage extends TemplatePage {
     return new TaskWidgetPage();
   }
 
+  public TaskWidgetPage clickSubmitButtonCustom() {
+    $("button[id='form:proceed']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
+    return new TaskWidgetPage();
+  }
+
   public void clickOnSubmitButton() {
     clickByJavaScript($("button[id$=':button-submit']"));
   }
@@ -322,5 +327,12 @@ public class TaskTemplatePage extends TemplatePage {
     SelenideElement element = $("[id$=':case-histories:show-more-note-link']").scrollTo();
     String url = element.getAttribute("href");
     ((JavascriptExecutor) driver).executeScript("window.open('" + url + "','_blank');");
+  }
+
+  public void inputFields(String employee, String from, String to, String representation) {
+    $(By.id("leave-request:fullname")).sendKeys(employee);;
+    $(By.id("leave-request:from_input")).sendKeys(from);;
+    $(By.id("leave-request:to_input")).sendKeys(to);;
+    $(By.id("leave-request:substitute")).sendKeys(representation);;
   }
 }

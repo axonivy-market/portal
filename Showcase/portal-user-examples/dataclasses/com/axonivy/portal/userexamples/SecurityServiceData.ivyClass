@@ -1,0 +1,10 @@
+SecurityServiceData #class
+com.axonivy.portal.userexamples #namespace
+count Integer #field
+query String #field
+fromRoles java.util.List<String> #field
+roles java.util.List<ch.ivyteam.ivy.security.IRole> #field
+startIndex Integer #field
+username String #field
+users java.util.List<com.axonivy.portal.userexamples.dto.UserDTO> #field
+excludedUsernames java.util.List<String> #field

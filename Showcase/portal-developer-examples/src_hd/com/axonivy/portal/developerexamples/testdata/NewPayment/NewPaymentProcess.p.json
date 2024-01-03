@@ -71,7 +71,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
+            "import com.axonivy.portal.developerexamples.publicapi.PortalNavigatorAPI;",
             "",
             "PortalNavigatorAPI.navigateToPortalEndPage();"
           ]
