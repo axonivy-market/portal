@@ -580,6 +580,16 @@ function highlightAndNumberingTaskTemplate() {
   appendStepAnnotation(other, "3", 27, -20);
 }
 
+function highlightNotificationFullPageIcon(){
+  var icon = $("#notification-full-page");
+  icon.addClass("red-medium-border");
+}
+
+function highlightNotificationIcon(){
+  var icon = $("#open-notifications-panel");
+  icon.addClass("red-medium-border");
+}
+
 function highlightMobileApp() {
   createRedMediumOutline($("#mobile-app-item"));
 }
