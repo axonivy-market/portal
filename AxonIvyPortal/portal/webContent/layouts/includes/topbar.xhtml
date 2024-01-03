@@ -148,6 +148,9 @@
   <c:if test="#{chatRendererBean.isChatRendered}">
     <ui:include src="/layouts/includes/chat.xhtml" />
   </c:if>
-  <ui:include src="/layouts/includes/notification.xhtml" />
+  <ui:include src="/layouts/includes/notification.xhtml" >
+    <ui:param name="task" value="#{not empty currentTask ? currentTask : task}" />
+    <ui:param name="isWorkingOnATask" value="#{isWorkingOnATask}" />
+  </ui:include>
   <!-- TOPBAR END -->
 </ui:composition>
