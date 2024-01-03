@@ -19,6 +19,7 @@ User Guide
    admin-settings/index
    axon-ivy-express/index
    portal-chat/index
+   notification/index
    demo-processes/index
    portal-multi-language/index
    qr-code/index

@@ -328,8 +328,18 @@ public class UserMenuBean implements Serializable {
     return expressStartLink;
   }
   
-  public void navigateToNotification(){
-    PortalNavigator.navigateToNavigationFullPage();
+  public void navigateToNotificationOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) {
+    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+      openTaskLosingConfirmationDialog();
+      targetPage = getNotificationFullPageUrl();
+    } else {
+      executeJSResetPortalMenuState();
+      PortalNavigator.navigateToNotificationFullPage();
+    }
+  }
+  
+  private String getNotificationFullPageUrl() {
+    return PortalNavigator.buildNotificationFullPageUrl();
   }
   
   public String getLoginPageURL() {
