@@ -931,7 +931,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public boolean isMarkAllAsReadDisplayed(WebElement notificationsPanel) {
-    return $("[id='notificationMarkAllAsRead']").shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
+    return $("[id='notification-mark-all-as-read']").shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
   }
 
   public boolean isTodayGroupLineDisplayed(WebElement notificationsPanel) {
@@ -940,8 +940,7 @@ public class NewDashboardPage extends TemplatePage {
 
   public void markAsRead(WebElement notificationsPanel, int expectedBadge) {
     waitForGlobalGrowlDisappear();
-    WebElement item = $(".ui-datascroller-item");
-    item.findElement(By.id("notificationForm:notifications-scroller:0:notificationMarkAsRead")).click();
+    $("[id='notification-compact-form:notifications-scroller:0:notification-mark-as-read']").click();
     $(By.id("notifications-badge-value")).shouldBe(Condition.exactValue(String.valueOf(expectedBadge)),
         DEFAULT_TIMEOUT);
   }
@@ -952,7 +951,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void markAsAllRead(WebElement notificationsPanel) {
-    $("[id='notificationMarkAllAsRead']").shouldBe(appear, DEFAULT_TIMEOUT)
+    $("[id='notification-mark-all-as-read']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     waitForElementValueChanged("#topbar-unread-notifications", "0");
   }
@@ -987,4 +986,24 @@ public class NewDashboardPage extends TemplatePage {
     $("[id='toggle-chat-panel-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
 
+  public void clickNotificationSetting() {
+    $("[id='notification-setting']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+  
+  public void waitForUserProfileDisplay() {
+    $("div[id='my-profile-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void clickNotificationFullPage() {
+    $("[id='notification-full-page']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+  public void waitForNotificationFullpageDisplay() {
+    $("form[id='notification-full-form']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public NotificationCompactPage openNotificationPanel() {
+    $("[id='open-notifications-panel']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='notification-compact-form:notifications-scroller:0:notification-mark-as-read']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    return new NotificationCompactPage();
+  }
 }
