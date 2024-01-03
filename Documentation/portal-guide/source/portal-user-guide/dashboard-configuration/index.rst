@@ -4,7 +4,7 @@ Dashboard Configuration
 ***********************
 
 .. hint::
-   Only users who have the permission ``DASHBOARD_WRITE_OWN`` or ``DASHBOARD_WRITE_PUBLIC`` can see and access
+   Only users who have the permission :bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>` or :bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>` can see and access
    the :guilabel:`Dashboard Configuration` user menu item. They can add, edit, reorder, show and hide the private or public dashboards.
 
 Select the :guilabel:`Dashboard Configuration` user menu item.
@@ -19,8 +19,8 @@ you hold in the application. The usage will be explained in the HowTo’s furthe
 Private dashboards configuration
 --------------------------------
 
-The tab :guilabel:`Private dashboards` is only available for users who have the permission ``DASHBOARD_WRITE_OWN``. Here you can
-add or edit, reorder your private dashboards.
+The tab :guilabel:`Private dashboards` is only available for users who have the permission :bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>`. Here you can
+add or edit your private dashboards, and reorder all dashboards visible to you.
 
 |private-dashboard-configuration|
 
@@ -75,6 +75,11 @@ How to: import private dashboards
 
 |import-private-dashboard-dialog|
 
+.. note::
+
+   Grant permission :bdg-ref-warning:`🔑DashboardImportOwn <DashboardImportOwn>` to use this feature.
+
+
 How to: edit private dashboards
 ===============================
 
@@ -91,9 +96,9 @@ A table of private dashboards is shown with the following information:
    (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| export dashboard,
    and |trash-icon| delete a private dashboard.
 
-   .. note::
+.. note::
 
-      the Export function only available for users who have the permission ``DASHBOARD_EXPORT_OWN``.
+   Grant permission :bdg-ref-warning:`🔑DashboardExportOwn <DashboardExportOwn>` to enable the export function for personal dashboards for a user.
 
 |edit-private-dashboards|
 
@@ -126,7 +131,7 @@ A table of private dashboards is shown with the following information:
 Public dashboards configuration
 -------------------------------
 
-The tab :guilabel:`Public dashboards` is only available for users who have the permission ``DASHBOARD_WRITE_PUBLIC``. Here you can
+Grant permission :bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>` to make tab :guilabel:`Public dashboards` visible for a user. Here you can
 add, edit, and reorder public dashboards.
 
 |public-dashboard-configuration|
@@ -184,6 +189,10 @@ How to: import public dashboard
 
 |import-public-dashboard-dialog|
 
+.. note::
+
+   Grant permission :bdg-ref-warning:`🔑DashboardImportPublic <DashboardImportPublic>` to enable public dashboard import for a user.
+
 How to: edit public dashboards
 ==============================
 
@@ -202,9 +211,9 @@ A table of public dashboards is shown with the following information:
    (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| export dashboard, |share-icon| share,
    and |trash-icon| delete a public dashboard.
 
-   .. note::
+.. note::
 
-      the Export function only available for users who have the permission ``DASHBOARD_EXPORT_PUBLIC``.
+   Grant permission :bdg-ref-warning:`🔑DashboardExportPublic <DashboardExportPublic>` to enable export of public dashboards for users.
 
 |edit-public-dashboards|
 
@@ -218,7 +227,7 @@ To generate a public dashboard link, simply click on the |share-icon| Share in t
 
 .. note::
    To share the dashboard without the menu frame, add the parameter ``openWithoutMenu=true`` to the URL. However, please be aware that this option is only for embedding purposes.
-
+   Grant permission :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>` to allow a user to share dashboard links.
 
 How to: reorder public dashboards
 =================================
