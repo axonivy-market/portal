@@ -34,6 +34,7 @@
       </h:panelGroup>
       <p:dataTable id="dashboard-tasks" widgetVar="dashboard-tasks-#{taskWidget.id}" value="#{taskWidget.dataModel}" var="task"
         lazy="true" scrollRows="25"
+        disabledSelection="#{isPreviewMode}"
         liveScroll="true" scrollable="true" sortBy="#{taskWidget.sortBy}"      
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and taskWidget.taskCount lt 1 ? 'u-display-none' : ''}"
