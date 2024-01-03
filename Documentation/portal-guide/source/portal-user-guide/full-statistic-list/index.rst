@@ -9,6 +9,11 @@ consume statistics and charts here at one glance and have the chance to set up
 your own statistics. You can reach the page by using the
 :guilabel:`Statistics` link in the |ivy| Portal menu.
 
+.. note::
+
+   Grant permission :bdg-ref-warning:`🔑AccessFullStatisticsList <AccessFullStatisticsList>` to allow a user to see the full statistics list (:guilabel:`Statistics`) in the |ivy| Portal menu.
+
+
 .. hint::
    The statistics allow you to evaluate case and task data only. Business data
    from your processes is not available in these statistics and must be
@@ -189,7 +194,7 @@ Portal provides lots of statistic charts, but maybe your business needs further 
 helps you query tasks with filters, then you could export data to excel for further analysis.
 
 .. important::
-   You need to have Portal permission STATISTIC_ANALYZE_TASK to use this feature.
+   Grant permission :bdg-ref-warning:`🔑StatisticAnalyzeTask <StatisticAnalyzeTask>` to allow a user to analyze statistics.
 
 HowTo: Access task analysis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
