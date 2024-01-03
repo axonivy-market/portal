@@ -2,13 +2,13 @@ package com.axonivy.portal.selenium.test;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
@@ -30,17 +30,18 @@ public class EscalationTaskTest extends BaseTest {
   private static final String SICK_LEAVE_REQUEST = "Sick Leave Request";
   private static final String SICK_LEAVE_REQUEST_ESCALATED = "Sick Leave Request Escalated";
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
-  private static final String TRIGGER_ESCALATION_CASE= "Create Test Data For Trigger Escalation";
-  
+  private static final String TRIGGER_ESCALATION_CASE = "Create Test Data For Trigger Escalation";
+
   static final String OPEN = "Open";
   static final String DESTROYED = "Destroyed ";
+
   @Override
   @BeforeEach
   public void setup() {
     super.setup();
     redirectToRelativeLink(createTestingEscalationTasksUrl);
   }
-  
+
   @Test
   public void testTriggerEscalationTaskOnTaskDetails() {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
@@ -58,7 +59,7 @@ public class EscalationTaskTest extends BaseTest {
     assertTrue(taskWidgetPage.getFilterTasksByKeyword().attr("value").equalsIgnoreCase(SICK_LEAVE_REQUEST_ESCALATED));
     taskWidgetPage.countTasks().shouldHave(size(1));
   }
-  
+
   @Test
   public void testTriggerEscalationTaskOnTaskList() {
     login(TestAccount.ADMIN_USER);
@@ -79,14 +80,13 @@ public class EscalationTaskTest extends BaseTest {
     taskWidgetPage.countTasks().shouldHave(size(1));
     assertTrue(taskWidgetPage.getPriorityOfTask(0).equalsIgnoreCase("high"));
   }
-  
+
   @Test
   public void testTriggerEscalationTaskOnRelatedTasksOfCase() {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
+    CaseWidgetPage caseWidgetPage = NavigationHelper.navigateToCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(TRIGGER_ESCALATION_CASE);
     caseDetailsPage.getNameOfRelatedTask(1).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
     caseDetailsPage.clickRelatedTaskActionButton(1);
@@ -97,7 +97,7 @@ public class EscalationTaskTest extends BaseTest {
     caseDetailsPage.getStateOfRelatedTask(1).shouldHave(Condition.text("Destroyed"));
     caseDetailsPage.getNameOfRelatedTask(3).shouldHave(Condition.text(SICK_LEAVE_REQUEST_ESCALATED));
   }
-  
+
   @Test
   public void testTriggerEscalationTaskWidgetOfDashboard() {
     createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
@@ -110,7 +110,7 @@ public class EscalationTaskTest extends BaseTest {
     taskWidget.triggerEscalationTask(0);
     filterTaskByNameAndState(SICK_LEAVE_REQUEST, DESTROYED);
   }
-  
+
   private void filterTaskByNameAndState(String name, String state) {
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));

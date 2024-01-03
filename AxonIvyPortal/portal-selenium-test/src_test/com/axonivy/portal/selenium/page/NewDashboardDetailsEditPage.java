@@ -33,13 +33,15 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public TaskEditWidgetNewDashBoardPage addNewTaskWidget() {
     addWidgetByName("Task List");
-    $("div[id$=':task-widget-preview:dashboard-tasks']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition());
+    $("div[id$=':task-widget-preview:dashboard-tasks']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition());
     return new TaskEditWidgetNewDashBoardPage();
   }
 
   public CaseEditWidgetNewDashBoardPage addNewCaseWidget() {
     addWidgetByName("Case List");
-    $("div[id$=':case-widget-preview:dashboard-cases']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition());
+    $("div[id$=':case-widget-preview:dashboard-cases']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition());
     return new CaseEditWidgetNewDashBoardPage();
   }
 
@@ -47,7 +49,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     addWidgetByName("Process List");
     return new ProcessEditWidgetNewDashBoardPage();
   }
-  
+
   public ProcessViewerWidgetNewDashBoardPage addNewProcessViewerWidget() {
     addWidgetByName("Process Viewer");
     return new ProcessViewerWidgetNewDashBoardPage();
@@ -64,9 +66,9 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   public void addWidgetByName(String name) {
-    $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$$("div.new-widget-dialog__item").filter(text(name)).first()
-        .$("button[id^='new-widget-dialog-content']").shouldBe(getClickableCondition()).click();
+    $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT).$$("div.new-widget-dialog__item")
+        .filter(text(name)).first().$("button[id^='new-widget-dialog-content']").shouldBe(getClickableCondition())
+        .click();
   }
 
   private void addCustomWidgetByName(String name) {
@@ -89,8 +91,8 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public void deleteImageModeProcess() {
     $("button[id$=':process-action-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("[id$=':process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-      .$("span.si-bin-1").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("[id$=':process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span.si-bin-1")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     getRemoveWidgetDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     getRemoveWidgetButton().click();
     getRemoveWidgetDialog().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
@@ -98,8 +100,8 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public void deleteFullModeProcess() {
     $("button[id$=':process-action-button']").shouldBe(Condition.appear).click();
-    $("[id$=':process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-      .$("span.si-bin-1").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("[id$=':process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span.si-bin-1")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     getRemoveWidgetDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     getRemoveWidgetButton().click();
     getRemoveWidgetDialog().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
@@ -114,7 +116,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     getRemoveWidgetButton().click();
     getRemoveWidgetDialog().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
-  
+
   public void clickOnRemoveWidgetButton() {
     getRemoveWidgetButton().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     getRemoveWidgetButton().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
@@ -132,7 +134,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     $("div[id='new-widget-configuration-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return new ProcessEditWidgetNewDashBoardPage();
   }
-  
+
   private SelenideElement getRemoveWidgetDialog() {
     return $("div[id='remove-widget-dialog']");
   }
@@ -189,7 +191,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   public void waitForCaseWidgetLoaded() {
-    $("div[id$='dashboard-cases-container']").shouldBe(appear, DEFAULT_TIMEOUT)
-      .$("div[id$='dashboard-cases']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("div[id$='dashboard-cases-container']").shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='dashboard-cases']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 }
