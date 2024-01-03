@@ -71,7 +71,7 @@ Permission Setting
 Configure permissions in the :dev-url:`Engine Cockpit
 </doc/|version|/engine-guide/reference/engine-cockpit/security.html>`. In the security area, open PortalPermissions -> PortalCasePermissions -> ShowCaseDetails.
 
-Or search "ShowCaseDetails" in the permissions search bar. By default, this permission is set to ``true`` for role ``Everybody``.
+Or search :bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>` in the permissions search bar. By default, this permission is set to ``true`` for role ``Everybody``.
 
 
 .. |start-business-details-page-iframe| image:: images/business-details-page/start-business-details-page-iframe.png

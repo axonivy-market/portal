@@ -24,7 +24,7 @@ public class StatisticEditWidgetNewDashboardPage extends TemplatePage {
     widgetTitle().clear();
     widgetTitle().sendKeys(name);
   }
-  
+
   public void save() {
     $("[id$='new-widget-configuration-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("button[id$='widget-configuration-save-button']").shouldBe(getClickableCondition()).click();
@@ -34,23 +34,26 @@ public class StatisticEditWidgetNewDashboardPage extends TemplatePage {
   public void selectFirstChart() {
     $("[id$=':new-widget-configuration-component:user-filter']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("[id$=':new-widget-configuration-component:statistic-list']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$("button.ui-autocomplete-dropdown").shouldBe(Condition.exist, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    var selectionOptions = $("[id$=':new-widget-configuration-component:statistic-list_panel']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$$("tr.ui-autocomplete-item.ui-autocomplete-row");
+        .$("button.ui-autocomplete-dropdown").shouldBe(Condition.exist, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    var selectionOptions = $("[id$=':new-widget-configuration-component:statistic-list_panel']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$$("tr.ui-autocomplete-item.ui-autocomplete-row");
     selectionOptions.get(0).click();
     $("[id$=':new-widget-configuration-component:statistic-list_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void clickPreviewButton() {
     $("button[id$='preview-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("[id='widget-configuration-form:new-widget-configuration-component:preview-statistic']")
-      .find("canvas").shouldBe(appear, DEFAULT_TIMEOUT);
-    //Wait for chart animation loaded
-    Sleeper.sleep(1000);
-    $("button[id$='preview-button']").hover();
+    $("[id='widget-configuration-form:new-widget-configuration-component:preview-statistic']").find("canvas")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    $("button[id$='preview-button']").shouldBe(appear, DEFAULT_TIMEOUT).hover();
   }
 
   public SelenideElement getConfigurationDialog() {
-    return $("div[id='new-widget-configuration-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement statisticDialog = $("div[id='new-widget-configuration-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    // We use Sleeper here to wait for chart render completely, because the
+    // statistic dialog was render with an animation by canvas.
+    Sleeper.sleep(1000);
+    return statisticDialog;
   }
 }
