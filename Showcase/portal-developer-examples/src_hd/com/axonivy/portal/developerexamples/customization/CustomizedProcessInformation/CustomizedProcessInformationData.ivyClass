@@ -1,10 +1,10 @@
 CustomizedProcessInformationData #class
 com.axonivy.portal.developerexamples.customization.CustomizedProcessInformation #namespace
-processSteps java.util.List<ch.ivy.addon.portalkit.bo.ProcessStep> #field
+processSteps java.util.List<com.axonivy.portal.developerexamples.dto.ProcessStep> #field
 processSteps PERSISTENT #fieldModifier
 processId String #field
 processId PERSISTENT #fieldModifier
 userProcesses java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartable> #field
 userProcesses PERSISTENT #fieldModifier
-selectedProcess ch.ivy.addon.portalkit.configuration.UserProcess #field
+selectedProcess com.axonivy.portal.developerexamples.dto.UserProcess #field
 selectedProcess PERSISTENT #fieldModifier

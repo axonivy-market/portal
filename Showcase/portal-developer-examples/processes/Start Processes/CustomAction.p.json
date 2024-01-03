@@ -39,7 +39,7 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.workflow.ICase;",
-            "import com.axonivy.portal.components.util.CaseUtils;",
+            "import com.axonivy.portal.developerexamples.util.CaseUtils;",
             "",
             "ICase iCase = CaseUtils.findCase(in.caseId);",
             "iCase.destroy();"

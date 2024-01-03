@@ -58,8 +58,8 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "import ch.ivy.addon.portalkit.enums.AdditionalProperty;",
-            "import com.axonivy.portal.components.publicapi.RoleAPI;",
+            "import com.axonivy.portal.developerexamples.enums.AdditionalProperty;",
+            "import com.axonivy.portal.developerexamples.publicapi.RoleAPI;",
             "import ch.ivyteam.ivy.security.IRole;",
             "IRole role = ISecurityContext.current().roles().find(\"PortalSystem\");",
             "if(#role is initialized) {",
@@ -83,8 +83,8 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "import ch.ivy.addon.portalkit.enums.AdditionalProperty;",
-            "import com.axonivy.portal.components.publicapi.RoleAPI;",
+            "import com.axonivy.portal.developerexamples.enums.AdditionalProperty;",
+            "import com.axonivy.portal.developerexamples.publicapi.RoleAPI;",
             "import ch.ivyteam.ivy.security.IRole;",
             "IRole role = ISecurityContext.current().roles().find(\"PortalSystem\");",
             "if(#role is initialized) {",
@@ -94,7 +94,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 367, "y" : 173 },
+        "at" : { "x" : 368, "y" : 176 },
         "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : [
@@ -129,7 +129,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.publicapi.TaskAPI;",
+            "import com.axonivy.portal.developerexamples.publicapi.TaskAPI;",
             "TaskAPI.setHidePropertyToHideInPortal(ivy.task);"
           ]
         },
@@ -169,7 +169,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.publicapi.TaskAPI;",
+            "import com.axonivy.portal.developerexamples.publicapi.TaskAPI;",
             "TaskAPI.setHidePropertyToHideInPortal(ivy.task);"
           ]
         },
@@ -216,7 +216,7 @@
       "id" : "f26",
       "type" : "ProcessAnnotation",
       "name" : [
-        "This example demonstates the hide technical cases feature of Portal",
+        "This example demonstrates the hide technical cases feature of Portal",
         "",
         "HOW TO RUN THIS EXAMPLE",
         "Run createHiddenTechnicalCase.ivp to create a case named \"Create hidden technical case\" and 2 tasks: \"Report\" & \"Report and hide case\".",

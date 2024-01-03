@@ -86,8 +86,8 @@
         "output" : {
           "code" : [
             "import javax.faces.context.FacesContext;",
-            "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
-            "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
+            "import com.axonivy.portal.developerexamples.util.SecurityServiceUtils;",
+            "import com.axonivy.portal.developerexamples.enums.SessionAttribute;",
             "if (in.isTaskReserve) {",
             "  ivy.session.parkTask(in.#task != null ? in.task : ivy.task);",
             "}",

@@ -34,8 +34,8 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portal.generic.util.ProcessStepUtils;",
-            "import ch.ivy.addon.portalkit.mapper.UserProcessMapper;",
+            "import com.axonivy.portal.developerexamples.util.ProcessStepUtils;",
+            "import com.axonivy.portal.developerexamples.configuration.UserProcessMapper;",
             "import ch.ivyteam.ivy.workflow.start.IWebStartable;",
             "",
             "for (IWebStartable process : in.userProcesses) {",
