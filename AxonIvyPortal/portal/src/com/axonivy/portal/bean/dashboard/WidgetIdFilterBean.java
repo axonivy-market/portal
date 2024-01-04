@@ -11,20 +11,16 @@ import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 
 @ManagedBean
 @ViewScoped
-public class WidgetIdFilterBean implements Serializable{
+public class WidgetIdFilterBean implements Serializable {
 
   private static final long serialVersionUID = 4671032185665650209L;
-  
-  
+
   private static List<FilterOperator> operators = FilterOperator.ID_OPERATORS.stream().toList();
 
   public List<FilterOperator> getOperators() {
     return operators;
   }
 
-
   public void onChangeOperator(DashboardFilter filter) {
-    
   }
-
 }
