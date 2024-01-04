@@ -6,10 +6,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldApplication;
+import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCategory;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCreatedDate;
+import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCreator;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldDescription;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldFinishedDate;
+import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldId;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldName;
+import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldState;
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomNumber;
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomString;
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomText;
@@ -24,10 +29,15 @@ public class FilterFieldFactory {
   private static final Map<String, CustomFilterField> CUSTOM_FILTER_FIELD = new HashMap<>();
 
   static {
+    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.ID.getField(), new CaseFilterFieldId());
     STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.NAME.getField(), new CaseFilterFieldName());
     STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.DESCRIPTION.getField(), new CaseFilterFieldDescription());
     STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.CREATED.getField(), new CaseFilterFieldCreatedDate());
     STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.FINISHED.getField(), new CaseFilterFieldFinishedDate());
+    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.CREATOR.getField(), new CaseFilterFieldCreator());
+    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.CATEGORY.getField(), new CaseFilterFieldCategory());
+    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.STATE.getField(), new CaseFilterFieldState());
+    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.APPLICATION.getField(), new CaseFilterFieldApplication());
     for (ICustomFieldMeta customField : ICustomFieldMeta.cases()) {
       switch (customField.type()) {
         case STRING -> CUSTOM_FILTER_FIELD.put(customField.name(), new CaseFilterFieldCustomString(customField));
@@ -47,10 +57,10 @@ public class FilterFieldFactory {
     return result;
   }
 
-  private static CustomFilterField findCustomFieldBy(String field) {
+  public static CustomFilterField findCustomFieldBy(String field) {
     return CUSTOM_FILTER_FIELD.entrySet().stream().map(Entry<String,CustomFilterField>::getValue)
       .filter(customField -> customField.getName().contentEquals(field))
-      .findFirst().get();
+      .findFirst().orElse(null);
   }
 
   public static List<FilterField> getStandardFilterableFields() {

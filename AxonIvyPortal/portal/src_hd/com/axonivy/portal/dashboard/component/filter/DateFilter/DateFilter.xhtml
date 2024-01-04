@@ -10,7 +10,6 @@
   <cc:attribute name="filterIndex" />
   <cc:attribute name="readOnly" default="false" />
   <cc:attribute name="messageId" />
-  <cc:attribute name="operators" />
 </cc:interface>
 
 <cc:implementation>
@@ -20,9 +19,9 @@
   <c:set var="messageId" value="#{cc.attrs.messageId}" />
 
   <h:panelGroup id="date-filter-operator-panel" layout="block"
-    styleClass="md-inputfield">
+    styleClass="ui-fluid md-inputfield">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
-        <f:selectItems value="#{empty cc.attrs.operators ? widgetDateFilterBean.operators : cc.attrs.operators}" var="operator"
+        <f:selectItems value="#{widgetDateFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
           <p:ajax event="itemSelect" listener="#{widgetDateFilterBean.onChangeOperator(filter)}"
             process="@(this)" update="#{cc.attrs.componentToUpdate}" />
@@ -106,9 +105,8 @@
     </p:datePicker>
   </h:panelGroup>
 
-  <h:panelGroup id="between-dates-panel-and" layout="block"
-    rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}"
-    styleClass="and-text-panel">
+  <h:panelGroup id="between-dates-panel-and" layout="block" styleClass="and-text-panel"
+    rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}">
     <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/And')}</span>
   </h:panelGroup>
 

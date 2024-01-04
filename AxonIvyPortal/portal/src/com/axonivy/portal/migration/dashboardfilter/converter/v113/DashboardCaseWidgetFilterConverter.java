@@ -26,6 +26,8 @@ import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 
 public class DashboardCaseWidgetFilterConverter implements IJsonConverter {
 
+  private static final String NO_CATEGORY = "[No Category]";
+
   @Override
   public AbstractJsonVersion version() {
     return new DashboardFilterJsonVersion("11.3.0");
@@ -113,6 +115,29 @@ public class DashboardCaseWidgetFilterConverter implements IJsonConverter {
             DashboardStandardCaseColumn.DESCRIPTION.getField(),
             true);
       }
+      case CREATOR -> {
+          convertListFilter(initFilterNode(jsonNode),
+              (ArrayNode)col.get("userFilterList"),
+              DashboardStandardCaseColumn.CREATOR.getField(),
+              true);
+        }
+        case STATE -> {
+          convertListFilter(initFilterNode(jsonNode),
+              (ArrayNode)col.get("userFilterList"),
+              DashboardStandardCaseColumn.STATE.getField(),
+              true);
+        }
+        case CATEGORY -> {
+          convertCategoryFilter(initFilterNode(jsonNode),
+              (ArrayNode)col.get("userFilterList"),
+              DashboardStandardCaseColumn.CATEGORY.getField());
+        }
+        case APPLICATION -> {
+          convertListFilter(initFilterNode(jsonNode),
+              (ArrayNode)col.get("userFilterList"),
+              DashboardStandardCaseColumn.APPLICATION.getField(),
+              true);
+        }
       default -> {}
     }
   }
@@ -159,6 +184,7 @@ public class DashboardCaseWidgetFilterConverter implements IJsonConverter {
       return;
     }
 
+    // If the new complex filters has filter for the same field, skip migrate
     filters.elements().forEachRemaining(filter -> {
       if (filter.get("field").asText().contentEquals(field)) {
         return;
@@ -171,8 +197,59 @@ public class DashboardCaseWidgetFilterConverter implements IJsonConverter {
     newFilterNode.set("type", new TextNode(type.getType()));
     newFilterNode.set("operator", new TextNode(FilterOperator.CONTAINS.getOperator()));
 
-    ArrayNode textsNode = newFilterNode.putArray("values");
-    textsNode.add(new TextNode(filterText.asText()));
+    ArrayNode valuesNode = newFilterNode.putArray("values");
+    valuesNode.add(new TextNode(filterText.asText()));
+  }
+
+  private void convertListFilter(ArrayNode filters, ArrayNode filterList, String field, boolean isStandardField) {
+    if (filterList == null || filterList.size() == 0) {
+      return;
+    }
+
+    // If the new complex filters has filter for the same field, skip migrate
+    filters.elements().forEachRemaining(filter -> {
+      if (filter.get("field").asText().contentEquals(field)) {
+        return;
+      }
+    });
+
+    DashboardColumnType type = isStandardField ? DashboardColumnType.STANDARD : DashboardColumnType.CUSTOM;
+    ObjectNode newFilterNode = filters.addObject();
+    newFilterNode.set("field", new TextNode(field));
+    newFilterNode.set("type", new TextNode(type.getType()));
+    newFilterNode.set("operator", new TextNode(FilterOperator.IN.name()));
+
+    ArrayNode valuesNode = newFilterNode.putArray("values");
+    filterList.elements().forEachRemaining(node -> {
+      valuesNode.add(new TextNode(node.asText()));
+    });
+  }
+
+  private void convertCategoryFilter(ArrayNode filters, ArrayNode filterList, String field) {
+    if (filterList == null || filterList.size() == 0) {
+      return;
+    }
+
+    // If the new complex filters has filter for the same field, skip migrate
+    filters.elements().forEachRemaining(filter -> {
+      if (filter.get("field").asText().contentEquals(field)) {
+        return;
+      }
+    });
+
+    ObjectNode newFilterNode = filters.addObject();
+    newFilterNode.set("field", new TextNode(field));
+    newFilterNode.set("type", new TextNode(DashboardColumnType.STANDARD.getType()));
+    newFilterNode.set("operator", new TextNode(FilterOperator.IN.name()));
+
+    ArrayNode valuesNode = newFilterNode.putArray("values");
+    filterList.elements().forEachRemaining(node -> {
+      if (node.asText().contentEquals(NO_CATEGORY)) {
+        newFilterNode.set("operator", new TextNode(FilterOperator.NO_CATEGORY.name()));
+      } else {
+        valuesNode.add(new TextNode(node.asText()));
+      }
+    });
   }
 
   private void convertNumberFilters(ArrayNode filters, JsonNode filterFrom, JsonNode filterTo, String field, boolean isStandardField) {

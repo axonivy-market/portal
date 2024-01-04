@@ -1729,6 +1729,8 @@ Labels:
       BETWEEN: Entre
       CONTAINS: Contient
       CURRENT: Actuel
+      CURRENT_USER: Utilisateur actuel
+      CURRENT_USER_CAN_WORK_ON: L'utilisateur actuel peut travailler sur
       EMPTY: Est vide
       END_WITH: Se termine par
       EQUAL: Égalité
@@ -1747,6 +1749,7 @@ Labels:
       NOT_EQUAL: Pas d'égalité
       NOT_IN: Pas dans
       NOT_START_WITH: Ne commence pas par
+      NO_CATEGORY: Pas de catégorie
       START_WITH: Commence par
       TODAY: Aujourd'hui
       YESTERDAY: Hier
