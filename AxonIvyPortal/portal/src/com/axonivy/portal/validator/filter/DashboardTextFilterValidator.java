@@ -1,6 +1,5 @@
 package com.axonivy.portal.validator.filter;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 import javax.faces.application.FacesMessage;
@@ -11,7 +10,7 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
-import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
@@ -23,17 +22,21 @@ public class DashboardTextFilterValidator implements Validator {
 
   private static final String MESSAGE_PREFIX_PATTERN = "%s(%d)";
 
-  @SuppressWarnings("unchecked")
   public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-  
     DashboardFilter filter = (DashboardFilter) component.getAttributes().get("filter");
     Integer filterIndex = Optional.ofNullable((Integer)component.getAttributes().get("filterIndex")).orElse(0);
     String messageComponentId = Optional.ofNullable((String)component.getAttributes().get("messageId")).orElse(null);
-    validateDefaultOperator((ArrayList<String>)value, filter, filterIndex, component, messageComponentId);
+    String componentToValidate =  Optional.ofNullable((String)component.getAttributes().get("componentToValidate")).orElse(null);
+
+    if (StringUtils.isNotBlank(componentToValidate)) {
+      validateForOtherComponent((String)value, filter, filterIndex, component, messageComponentId, componentToValidate);
+    } else {
+      validateDefaultOperator((String)value, filter, filterIndex, component, messageComponentId);
+    }
   }
 
-  private void validateDefaultOperator(ArrayList<String> value, DashboardFilter filter, int filterIndex, UIComponent component, String messageComponentId) {
-    if (CollectionUtils.isEmpty(value)) {
+  private void validateDefaultOperator(String value, DashboardFilter filter, int filterIndex, UIComponent component, String messageComponentId) {
+    if (StringUtils.isBlank(value)) {
       FacesContext.getCurrentInstance().addMessage(
           messageComponentId,
           new FacesMessage(FacesMessage.SEVERITY_ERROR,
@@ -42,9 +45,25 @@ public class DashboardTextFilterValidator implements Validator {
     }
   }
 
+  private void validateForOtherComponent(String value, DashboardFilter filter, int filterIndex, UIComponent component, String messageComponentId, String componentToValidate) {
+    if (StringUtils.isBlank(value)) {
+      FacesContext.getCurrentInstance().addMessage(
+          messageComponentId,
+          new FacesMessage(FacesMessage.SEVERITY_ERROR, getRequiredMessage(filter.getField(), filterIndex), null));
+      invalidate(component, componentToValidate);
+    }
+  }
+
   private void invalidate(UIComponent component) {
     FacesContext.getCurrentInstance().validationFailed();
     UIInput input = (UIInput) component;
+    input.setValid(false);
+  }
+
+  private void invalidate(UIComponent component, String componentToValidate) {
+    UIComponent applicationSelection = component.getParent().findComponent(componentToValidate);
+    FacesContext.getCurrentInstance().validationFailed();
+    UIInput input = (UIInput) applicationSelection;
     input.setValid(false);
   }
 

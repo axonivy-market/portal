@@ -30,14 +30,27 @@ public class CaseTreeUtils {
 
   public static CheckboxTreeNode<CategoryNode> buildCaseCategoryCheckboxTreeRoot() {
     CheckboxTreeNode<CategoryNode> root = buildRoot();
+    CategoryTree allCaseCategories = findAllCategories();
+    convertToCheckboxTreeNode((CheckboxTreeNode<CategoryNode>) root.getChildren().get(0), allCaseCategories);
+    sortNode(root);
+    return root;
+  }
+
+  public static CheckboxTreeNode<CategoryNode> buildCaseCategoryCheckboxTreeRootWithoutAllCategoriesNode() {
+    CheckboxTreeNode<CategoryNode> root = buildRootWithoutAllCategoriesNode();
+    CategoryTree allCaseCategories = findAllCategories();
+    convertToCheckboxTreeNode((CheckboxTreeNode<CategoryNode>) root, allCaseCategories);
+    sortNode(root);
+    return root;
+  }
+
+  private static CategoryTree findAllCategories() {
     CaseQuery caseQuery = Sudo.get(() -> {
       return SubProcessCall.withPath(PortalConstants.BUILD_CASE_QUERY_CALLABLE).withStartSignature("buildCaseQuery()")
           .call().get("caseQuery", CaseQuery.class);
     });
     CategoryTree allCaseCategories = findAllCaseCategoryTree(caseQuery);
-    convertToCheckboxTreeNode((CheckboxTreeNode<CategoryNode>) root.getChildren().get(0), allCaseCategories);
-    sortNode(root);
-    return root;
+    return allCaseCategories;
   }
 
   private static CategoryTree findAllCaseCategoryTree(CaseQuery caseQuery) {
@@ -102,6 +115,16 @@ public class CaseTreeUtils {
     checkboxTreeNode.setExpanded(true);
     checkboxTreeNode.setSelected(true);
     buildAllCategoriesNode(checkboxTreeNode);
+    return checkboxTreeNode;
+  }
+
+  public static CheckboxTreeNode<CategoryNode> buildRootWithoutAllCategoriesNode() {
+    CategoryNode nodeData = new CategoryNode();
+    nodeData.setValue(StringUtils.EMPTY);
+    nodeData.setCategory(StringUtils.EMPTY);
+    CheckboxTreeNode<CategoryNode> checkboxTreeNode = new CheckboxTreeNode<>(StringUtils.EMPTY, nodeData, null);
+    checkboxTreeNode.setExpanded(true);
+    checkboxTreeNode.setSelected(true);
     return checkboxTreeNode;
   }
 

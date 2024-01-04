@@ -4,10 +4,13 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
@@ -20,6 +23,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
+import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -84,6 +89,31 @@ public class DashboardFilter implements Serializable {
   @JsonIgnore
   public boolean isNumberField() {
     return this.filterFormat == FilterFormat.NUMBER;
+  }
+
+  @JsonIgnore
+  public boolean isCreator() {
+    return this.field == DashboardStandardCaseColumn.CREATOR.getField();
+  }
+
+  @JsonIgnore
+  public boolean isCategory() {
+    return this.field == DashboardStandardCaseColumn.CATEGORY.getField();
+  }
+
+  @JsonIgnore
+  public boolean isApplication() {
+    return this.field == DashboardStandardCaseColumn.APPLICATION.getField();
+  }
+
+  @JsonIgnore
+  public boolean isState() {
+    return this.field == DashboardStandardCaseColumn.STATE.getField();
+  }
+
+  @JsonIgnore
+  public boolean isId() {
+    return this.field == DashboardStandardCaseColumn.ID.getField();
   }
 
   @JsonIgnore
@@ -201,6 +231,16 @@ public class DashboardFilter implements Serializable {
 
   public void setTo(String to) {
     this.to = to;
+  }
+
+  @JsonIgnore
+  public List<SecurityMemberDTO> getCreators() {
+    return this.values.stream().map(this::findSecurityMember)
+        .filter(Objects::nonNull).collect(Collectors.toList());
+  }
+
+  private SecurityMemberDTO findSecurityMember(String memberName) {
+    return ServiceUtilities.findSecurityMemberByName("#".concat(memberName));
   }
 
   public String getValue() {

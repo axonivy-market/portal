@@ -34,8 +34,8 @@
     styleClass="md-inputfield ui-fluid number-panel">
     <p:inputNumber id="number" value="#{filter.value}" disabled="#{readOnly}"
       maxValue="999999999.99"
+      minValue="-999999999.99"
       onkeypress="if (event.keyCode == 13) { return false; }">
-      <f:convertNumber pattern="#{filter.numberPattern}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardNumberFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
       <f:attribute name="filter" value="#{filter}" />
@@ -49,9 +49,8 @@
     rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}"
     styleClass="md-inputfield ui-fluid number-panel">
     <p:inputNumber id="from-number" value="#{filter.from}" disabled="#{readOnly}"
-      maxValue="999999999.99"
+      maxValue="999999999.99" minValue="-999999999.99"
       onkeypress="if (event.keyCode == 13) { return false; }">
-      <f:convertNumber pattern="#{filter.numberPattern}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardNumberFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
       <f:attribute name="filter" value="#{filter}" />
@@ -73,8 +72,8 @@
     styleClass="md-inputfield ui-fluid number-panel">
     <p:inputNumber id="to-number" value="#{filter.to}" disabled="#{readOnly}"
       maxValue="999999999.99"
+      minValue="-999999999.99"
       onkeypress="if (event.keyCode == 13) { return false; }">
-      <f:convertNumber pattern="#{filter.numberPattern}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardNumberFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
       <f:attribute name="filter" value="#{filter}" />

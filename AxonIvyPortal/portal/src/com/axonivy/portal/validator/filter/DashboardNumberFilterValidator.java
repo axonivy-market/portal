@@ -26,30 +26,29 @@ public class DashboardNumberFilterValidator implements Validator {
   @Override
   public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
     DashboardFilter filter = (DashboardFilter) component.getAttributes().get("filter");
-    Integer filterIndex = Optional.ofNullable((Integer)component.getAttributes().get("filterIndex")).orElse(0);
-    String messageComponentId = Optional.ofNullable((String)component.getAttributes().get("messageId")).orElse(null);
+    Integer filterIndex = Optional.ofNullable((Integer) component.getAttributes().get("filterIndex")).orElse(0);
+    String messageComponentId = Optional.ofNullable((String) component.getAttributes().get("messageId")).orElse(null);
 
     if (!validateDefaultOperator(value, filter, filterIndex, component, messageComponentId)) {
       return;
     }
 
-    BigDecimal valueNumber = BigDecimal.ZERO;
-    if (value instanceof Double) {
-      valueNumber = BigDecimal.valueOf((Double)value);
-    } else {
-      valueNumber = BigDecimal.valueOf((Long)value);
-    }
+    String valueString = String.valueOf(value);
+    BigDecimal valueNumber = NumberUtils.toScaledBigDecimal(valueString);
 
     switch (filter.getOperator()) {
-      case BETWEEN -> validateBetweenOperator(valueNumber, filter, filterIndex, component, messageComponentId);
-      case NOT_BETWEEN -> validateBetweenOperator(valueNumber, filter, filterIndex, component, messageComponentId);
-      default -> {}
-    };
+    case BETWEEN -> validateBetweenOperator(valueNumber, filter, filterIndex, component, messageComponentId);
+    case NOT_BETWEEN -> validateBetweenOperator(valueNumber, filter, filterIndex, component, messageComponentId);
+    default -> {
+    }
+    }
+    ;
   }
 
-  private void validateBetweenOperator(BigDecimal value, DashboardFilter filter, int filterIndex, UIComponent component, String messageComponentId) {
+  private void validateBetweenOperator(BigDecimal value, DashboardFilter filter, int filterIndex, UIComponent component,
+      String messageComponentId) {
     if (component.getId().contentEquals("to-number")) {
-      BigDecimal fromNumber = BigDecimal.valueOf(NumberUtils.toDouble((String)filter.getFrom()));
+      BigDecimal fromNumber = BigDecimal.valueOf(NumberUtils.toDouble((String) filter.getFrom()));
       FacesMessage error = validateFromToValues(fromNumber, value, filter.getField(), filterIndex);
       if (error != null) {
         FacesContext.getCurrentInstance().addMessage(messageComponentId, error);
@@ -59,10 +58,10 @@ public class DashboardNumberFilterValidator implements Validator {
     }
   }
 
-  private boolean validateDefaultOperator(Object value, DashboardFilter filter, int filterIndex, UIComponent component, String messageComponentId) {
+  private boolean validateDefaultOperator(Object value, DashboardFilter filter, int filterIndex, UIComponent component,
+      String messageComponentId) {
     if (value == null) {
-      FacesContext.getCurrentInstance().addMessage(
-          messageComponentId,
+      FacesContext.getCurrentInstance().addMessage(messageComponentId,
           new FacesMessage(FacesMessage.SEVERITY_ERROR, getRequiredMessage(filter.getField(), filterIndex), null));
       invalidate(component);
       return false;
@@ -77,7 +76,7 @@ public class DashboardNumberFilterValidator implements Validator {
   }
 
   private FacesMessage validateFromToValues(BigDecimal from, BigDecimal to, String field, int index) {
-    if(from != null && from.compareTo(to) > 0) {
+    if (from != null && from.compareTo(to) > 0) {
       return new FacesMessage(FacesMessage.SEVERITY_ERROR, getFromToViolationError(field, index), null);
     }
     return null;
@@ -89,14 +88,17 @@ public class DashboardNumberFilterValidator implements Validator {
   }
 
   public String getWrongFormatMessage(String field, int index) {
-    return String.join(": ", getMessagePrefix(field, index), Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat"));
+    return String.join(": ", getMessagePrefix(field, index),
+        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat"));
   }
 
   public String getRequiredMessage(String field, int index) {
-    return String.join(": ", getMessagePrefix(field, index), Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage"));
+    return String.join(": ", getMessagePrefix(field, index),
+        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage"));
   }
 
   public String getFromToViolationError(String field, int index) {
-    return String.join(": ", getMessagePrefix(field, index), Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/numberFromBiggerThanTo"));
+    return String.join(": ", getMessagePrefix(field, index),
+        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/numberFromBiggerThanTo"));
   }
 }
