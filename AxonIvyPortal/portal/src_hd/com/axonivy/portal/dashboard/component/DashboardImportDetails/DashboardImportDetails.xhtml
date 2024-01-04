@@ -76,11 +76,13 @@
         <p:outputLabel for="import-dashboard-title" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}" />
        </div>
        <div class="ui-g-10 ui-fluid ui-inputgroup">
-        <p:inputText id="import-dashboard-title" value="#{dashboard.title}" styleClass="manage-dashboard__input" required="true">
-        </p:inputText>
-        <p:commandButton id="add-language-button" icon="si si-chat-translate">
-         <p:ajax event="click" listener="#{managedBean.updateDashboardTitleByLocale()}" process="import-dashboard-title" update="#{cc.clientId}:title-language-config:multiple-languages-dialog" oncomplete="PF('multiple-languages-dialog').show();" />
-        </p:commandButton>
+        <p:inputText id="import-dashboard-title" value="#{dashboard.title}"
+          styleClass="manage-dashboard__input" required="true" />
+        <p:commandButton id="add-language-button" icon="si si-chat-translate"
+          actionListener="#{managedBean.updateDashboardTitleByLocale()}"
+          process="import-dashboard-title"
+          update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
+          oncomplete="PF('multiple-languages-dialog').show();" />
        </div>
        <h:panelGroup layout="block" styleClass="ui-g-2 import-dashboard-label" rendered="#{cc.attrs.isPublicDashboard}">
         <p:outputLabel for="dashboard-permission" value="#{ivy.cms.co('/Labels/Permissions')}" />
@@ -133,15 +135,15 @@
     </h:form>
     <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
       id="title-language-config" titles="#{managedBean.getTitles()}"
-      managedBean="#{managedBean}"
+      managedBean="#{managedBean}" dynamic="true"
       updateCurrentLanguage="#{managedbean.updatecurrentlanguage()}"
       componentToUpdateOnModify="dashboard-template-selection-component:dashboard-import-component:import-dashboard-form:dashboards-information-form:#{dashboardImportBean.activeIndex}:import-dashboard-title" />
     <f:facet name="footer">
       <h:panelGroup layout="block" styleClass="u-text-align-right"
         id="footer-button-container">
-        <p:commandLink id="dashboard-import-close-button" type="button"
+        <p:commandLink id="dashboard-import-close-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          onclick="PF('#{cc.attrs.importDialogId}').hide()" />
+          onclick="PF('#{cc.attrs.importDialogId}').hide(); return false;" />
         <p:spacer width="15" />
         <p:commandButton id="dashboard-detail-save-button"
           disabled="#{!managedBean.loaded}"

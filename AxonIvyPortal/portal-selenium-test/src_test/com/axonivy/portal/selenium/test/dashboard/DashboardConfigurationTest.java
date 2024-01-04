@@ -99,7 +99,7 @@ public class DashboardConfigurationTest extends BaseTest {
   }
 
   @Test
-  public void testAddPublishDashboardFromScratch() {
+  public void testAddPublicDashboardFromScratch() {
     String name = "New public dashboard";
     String icon = "fa-coffee";
     String description = "New public dashboard description";
@@ -135,7 +135,7 @@ public class DashboardConfigurationTest extends BaseTest {
   }
 
   @Test
-  public void testAddPublishDashboardUseTemplate() {
+  public void testAddPublicDashboardUseTemplate() {
     createPublicDashboardUseTemplate();
     String name = "New public dashboard";
     String icon = "fa-coffee";
@@ -165,7 +165,7 @@ public class DashboardConfigurationTest extends BaseTest {
   }
 
   @Test
-  public void testAddPublishDashboardTwoTaskListDashboard() {
+  public void testAddPublicDashboardTwoTaskListDashboard() {
     String name = "New public dashboard two task list";
     String icon = "fa-coffee";
     String description = "New public dashboard description";
@@ -376,7 +376,6 @@ public class DashboardConfigurationTest extends BaseTest {
     configurationPage.openCreatePublicDashboardMenu();
     configurationPage.createPublicDashboardFromTemplate(name, icon, description, permissions, 0);
   }
-
 
   @Test
   public void testVisibleSharingDashboardButton() {

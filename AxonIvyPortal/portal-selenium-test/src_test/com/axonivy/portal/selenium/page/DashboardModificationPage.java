@@ -56,8 +56,8 @@ public class DashboardModificationPage extends TemplatePage {
   public void clickDeleteDashboardByName(String dashboardName) {
     SelenideElement dashboardRow = getDashboardRowByName(dashboardName);
     dashboardRow.$("[id$=':delete-dashboard']").click();
-    SelenideElement deleteConfirmDialog =
-        $("[id$=':remove-dashboard-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement deleteConfirmDialog = $("[id$=':remove-dashboard-dialog']").shouldBe(Condition.appear,
+        DEFAULT_TIMEOUT);
     deleteConfirmDialog.$("button[id$=':remove-dashboard-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
     deleteConfirmDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
@@ -70,24 +70,29 @@ public class DashboardModificationPage extends TemplatePage {
     editDashboardDialog.$("input[id$=':dashboard-description']").clear();
     editDashboardDialog.$("input[id$=':dashboard-description']").sendKeys(newDescription);
 
-    ElementsCollection selectedPermissions =
-        editDashboardDialog.$("div[id$=':dashboard-permission']").$$("li.ui-state-active");
+    ElementsCollection selectedPermissions = editDashboardDialog.$("div[id$=':dashboard-permission']")
+        .$$("li.ui-state-active");
     if (!selectedPermissions.isEmpty()) {
       for (SelenideElement permission : selectedPermissions) {
-        permission.$("span.ui-icon-close").click();
+        permission.$("span.ui-icon-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
       }
     }
 
-    editDashboardDialog.$("div[id$=':dashboard-permission']").$("button.ui-autocomplete-dropdown").click();
-    $$("span[id$=':dashboard-permission_panel']").shouldBe(CollectionCondition.size(1), DEFAULT_TIMEOUT);
-    $("span[id$=':dashboard-permission_panel']").$$("tr.ui-autocomplete-item").asDynamicIterable().forEach(item -> {
+    editDashboardDialog.$("div[id$=':dashboard-permission']").$("button.ui-autocomplete-dropdown")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+
+    SelenideElement permissionPanel = $$("span[id$=':dashboard-permission_panel']")
+        .shouldBe(CollectionCondition.size(1), DEFAULT_TIMEOUT).get(0).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
+    permissionPanel.$$("tr.ui-autocomplete-item").asDynamicIterable().forEach(item -> {
       for (String permissionName : permissions) {
         if (item.$("td").getText().contains(permissionName)) {
-          item.should(getClickableCondition());
-          item.click();
+          item.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+          permissionPanel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
         }
       }
     });
+
     editDashboardDialog.$("button[id$='dashboard-detail-save-button']").click();
     editDashboardDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
