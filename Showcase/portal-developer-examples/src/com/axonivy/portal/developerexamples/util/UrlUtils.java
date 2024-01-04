@@ -3,7 +3,7 @@ package com.axonivy.portal.developerexamples.util;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.axonivy.portal.developerexamples.exeption.PortalException;
+import com.axonivy.portal.components.service.exception.PortalException;
 
 import ch.ivyteam.ivy.environment.Ivy;
 

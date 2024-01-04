@@ -248,9 +248,9 @@ public class TaskTemplatePage extends TemplatePage {
     return new TaskWidgetPage();
   }
 
-  public TaskWidgetPage clickSubmitButtonCustom() {
+  public void clickSubmitButtonProceed() {
     $("button[id='form:proceed']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
-    return new TaskWidgetPage();
+    $("button[id='form:proceed']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void clickOnSubmitButton() {
@@ -313,9 +313,8 @@ public class TaskTemplatePage extends TemplatePage {
     waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-group-create-button"), false);
   }
 
-  public TaskWidgetPage clickCancelAndLeftButton() {
+  public void clickCancelAndLeftButton() {
     waitForElementClickableThenClick("a[id$='button-cancel']");
-    return new TaskWidgetPage();
   }
 
   public int countSideSteps() {

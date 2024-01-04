@@ -6,7 +6,7 @@ import java.util.Date;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
-import com.axonivy.portal.developerexamples.exeption.PortalException;
+import com.axonivy.portal.components.service.exception.PortalException;
 
 public final class Dates {
 

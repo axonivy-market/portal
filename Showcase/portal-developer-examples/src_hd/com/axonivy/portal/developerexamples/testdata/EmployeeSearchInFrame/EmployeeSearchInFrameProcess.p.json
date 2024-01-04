@@ -110,7 +110,7 @@
             "import com.axonivy.portal.developerexamples.util.RequestUtils;",
             "import org.primefaces.PrimeFaces;",
             "import javax.faces.context.FacesContext;",
-            "import com.axonivy.portal.developerexamples.publicapi.ProcessStartAPI;",
+            "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
             "",
             "String requestPath = \"Start Processes/CustomCaseInfomationForTaskTemplate/employeeDetailsInFrame.ivp\";",
             "String url = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(requestPath);",

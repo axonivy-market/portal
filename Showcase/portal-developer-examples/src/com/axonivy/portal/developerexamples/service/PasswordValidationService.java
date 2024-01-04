@@ -6,7 +6,7 @@ import java.util.List;
 import com.axonivy.portal.developerexamples.dto.PasswordPolicy;
 import com.axonivy.portal.developerexamples.dto.PasswordValidation;
 import com.axonivy.portal.developerexamples.enums.PasswordPolicyType;
-import com.axonivy.portal.developerexamples.enums.PortalVariable;
+import com.axonivy.portal.components.enums.PortalVariable;
 
 public class PasswordValidationService extends JsonConfigurationService<PasswordValidation> {
 

@@ -612,7 +612,7 @@
               { "name" : "CustomerName", "type" : "STRING", "value" : "\"Tung Le\"" },
               { "name" : "CustomerType", "type" : "STRING", "value" : "\"Interior\"" },
               { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" },
-              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
             ]
           }, {
             "id" : "TaskA",
@@ -631,7 +631,7 @@
               { "name" : "CustomerName", "type" : "STRING", "value" : "\"Long Do\"" },
               { "name" : "CustomerType", "type" : "STRING", "value" : "\"Exterior\"" },
               { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" },
-              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
             ]
           }, {
             "id" : "TaskC",
@@ -649,7 +649,7 @@
               { "name" : "CustomerName", "type" : "STRING", "value" : "\"Anh Nguyen\"" },
               { "name" : "CustomerType", "type" : "STRING", "value" : "\"Interior\"" },
               { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" },
-              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
             ]
           } ],
         "case" : {
