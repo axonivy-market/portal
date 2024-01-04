@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.developerexamples.enums.SessionAttribute;
 
 import ch.ivyteam.ivy.environment.Ivy;

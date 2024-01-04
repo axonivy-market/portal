@@ -44,9 +44,9 @@
           "code" : [
             "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
             "import ch.ivyteam.ivy.workflow.ITask;",
-            "import com.axonivy.portal.developerexamples.publicapi.TaskAPI;",
+            "import com.axonivy.portal.components.publicapi.TaskAPI;",
             "import ch.ivyteam.ivy.workflow.ICase;",
-            "import com.axonivy.portal.developerexamples.publicapi.CaseAPI;",
+            "import com.axonivy.portal.components.publicapi.CaseAPI;",
             "",
             "ICase selectedCase = in.hideBusinessCase ? ivy.wf.findCase(ivy.case.getBusinessCase().getId()) : ivy.case;",
             "CaseAPI.setHidePropertyToHideInPortal(selectedCase);",

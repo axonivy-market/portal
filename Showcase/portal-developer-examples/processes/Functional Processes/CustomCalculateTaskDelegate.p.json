@@ -13,9 +13,9 @@
         "signature" : "portalCalculateTaskDelegate",
         "input" : {
           "params" : [
-            { "name" : "roles", "type" : "java.util.List<com.axonivy.portal.developerexamples.dto.RoleDTO>", "desc" : "" },
-            { "name" : "users", "type" : "java.util.List<com.axonivy.portal.developerexamples.dto.UserDTO>", "desc" : "" },
-            { "name" : "currentUser", "type" : "com.axonivy.portal.developerexamples.dto.SecurityMemberDTO", "desc" : "" },
+            { "name" : "roles", "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>", "desc" : "" },
+            { "name" : "users", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>", "desc" : "" },
+            { "name" : "currentUser", "type" : "com.axonivy.portal.components.dto.SecurityMemberDTO", "desc" : "" },
             { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
           ],
           "map" : {
@@ -27,8 +27,8 @@
         },
         "result" : {
           "params" : [
-            { "name" : "users", "type" : "java.util.List<com.axonivy.portal.developerexamples.dto.UserDTO>", "desc" : "" },
-            { "name" : "roles", "type" : "java.util.List<com.axonivy.portal.developerexamples.dto.RoleDTO>", "desc" : "" },
+            { "name" : "users", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>", "desc" : "" },
+            { "name" : "roles", "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>", "desc" : "" },
             { "name" : "status", "type" : "String", "desc" : "" }
           ],
           "map" : {
@@ -69,9 +69,9 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.developerexamples.enums.CustomProcessStatus;",
-            "import com.axonivy.portal.developerexamples.dto.RoleDTO;",
-            "import com.axonivy.portal.developerexamples.dto.UserDTO;",
+            "import com.axonivy.portal.components.enums.CustomProcessStatus;",
+            "import com.axonivy.portal.components.dto.RoleDTO;",
+            "import com.axonivy.portal.components.dto.UserDTO;",
             "import java.util.ArrayList;",
             "",
             "in.status = CustomProcessStatus.OK;",

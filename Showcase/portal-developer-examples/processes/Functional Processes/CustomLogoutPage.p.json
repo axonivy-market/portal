@@ -87,7 +87,7 @@
           "code" : [
             "import javax.faces.context.FacesContext;",
             "import com.axonivy.portal.developerexamples.util.SecurityServiceUtils;",
-            "import com.axonivy.portal.developerexamples.enums.SessionAttribute;",
+            "import com.axonivy.portal.components.enums.SessionAttribute;",
             "if (in.isTaskReserve) {",
             "  ivy.session.parkTask(in.#task != null ? in.task : ivy.task);",
             "}",

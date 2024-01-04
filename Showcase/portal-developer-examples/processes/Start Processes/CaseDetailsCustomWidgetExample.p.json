@@ -237,7 +237,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.developerexamples.publicapi.PortalNavigatorAPI;",
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
             "",
             "ivy.case.destroy();",
             "",
