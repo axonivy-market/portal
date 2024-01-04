@@ -26,7 +26,7 @@
     fitViewport="true" responsive="true" modal="true" width="70%"
     styleClass="import-dashboard-dialog"
     onShow="PF('#{cc.attrs.importDialogId}').initPosition()">
-    <h:form id="import-dashboard-form">
+    <h:form id="import-dashboard-form" onkeypress="if (event.keyCode == 13) { return false; }">
       <h:panelGroup id="dashboard-upload-panel" layout="block"
         styleClass="ui-g">
         <div class="ui-g-12">
