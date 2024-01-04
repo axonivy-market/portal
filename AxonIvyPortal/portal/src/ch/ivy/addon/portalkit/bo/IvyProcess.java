@@ -8,7 +8,7 @@ import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivyteam.ivy.workflow.category.Category;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
-public class IvyProcess implements Process, ProcessWithCustomField {
+public class IvyProcess implements Process {
 
   private IWebStartable process;
   private String application;

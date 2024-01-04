@@ -135,4 +135,14 @@ public class PortalExpressProcess implements Process {
   public void setApplication(String application) {
     this.application = application;
   }
+
+  @Override
+  public String getSortIndex() {
+    return null;
+  }
+
+  @Override
+  public String getPortalProcessInformation() {
+    return null;
+  }
 }

@@ -7,12 +7,12 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "RequestStart",
-      "name" : "start",
+      "name" : "customProcessInformation",
       "config" : {
         "signature" : "start",
         "request" : {
-          "name" : "CustomProcessInformation",
-          "description" : "Click on More Information to see the customized process information page",
+          "name" : "Custom Process Information",
+          "description" : "<%=ivy.cms.co(\"/Processes/MoreInformation/description\")%>",
           "customFields" : [
             { "name" : "portalProcessInfo", "value" : "<%=ivy.cms.co(\"/Processes/MoreInformation/customProcessInfo\")%>" }
           ]

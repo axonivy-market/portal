@@ -12,7 +12,6 @@ import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
-import ch.ivy.addon.portalkit.bo.ProcessWithCustomField;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.ProcessType;
@@ -24,7 +23,7 @@ import ch.ivyteam.ivy.workflow.category.Category;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class DashboardProcess implements Process, ProcessWithCustomField {
+public class DashboardProcess implements Process {
   private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
   private String id;
   @Deprecated(forRemoval = true, since = "11.2.0")
@@ -54,8 +53,8 @@ public class DashboardProcess implements Process, ProcessWithCustomField {
     this.category = process.getCategory();
     this.imageUrl = process.getImageUrl();
     this.application = process.getApplication();
-    this.sortIndex = getSortIndex();
-    this.portalProcessInformation = getPortalProcessInformation();
+    this.sortIndex = process.getSortIndex();
+    this.portalProcessInformation = process.getPortalProcessInformation();
   }
 
   public DashboardProcess(IWebStartable process) {
