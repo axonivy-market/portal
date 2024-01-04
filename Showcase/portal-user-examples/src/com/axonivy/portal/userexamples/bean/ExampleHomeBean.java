@@ -11,9 +11,9 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.userexamples.configuration.ProcessStartAPI;
+import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.userexamples.dto.UserProcess;
-import com.axonivy.portal.userexamples.service.ProcessService;
+import com.axonivy.portal.components.service.impl.ProcessService;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
