@@ -3,23 +3,23 @@
 QR code
 *******
 
-QR code provides the login url for the Axon Ivy mobile application to connect
+By scanning the QR code, the Axon Ivy mobile application can obtain the login url and the username.
 
-HowTo: Activate QR code
------------------------
+HowTo: Activate the QR code
+---------------------------
 
 You can turn on QR code with this Portal setting: Portal.UserMenu.ShowQRCode.
 
 See :ref:`Update Portal settings <update-portal-settings>`.
 
-HowTo: Open QR code
--------------------
+HowTo: Connect to the Axon Ivy application using the QR code
+------------------------------------------------------------
 
 #. Select the :guilabel:`Mobile app` user menu item.
 
    |mobile-app-menu|
 
-#. A dialog with QR code is displayed.
+#. A dialog with a QR code will be displayed.
 
    |qr-code|
 
