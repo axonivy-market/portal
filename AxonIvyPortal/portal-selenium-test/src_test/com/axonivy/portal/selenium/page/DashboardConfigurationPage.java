@@ -345,7 +345,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   public void createPrivateDashboardFromScratch() {
     openCreatePrivateDashboardMenu();
     $("a[id$=':create-from-scratch']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("[id$=':dashboard-title']").sendKeys("My dashboard");
+    $$("[id$=':dashboard-title']").filter(Condition.visible).first().sendKeys("My dashboard");
   }
 
   public SelenideElement getDashboardCreationDialog() {
