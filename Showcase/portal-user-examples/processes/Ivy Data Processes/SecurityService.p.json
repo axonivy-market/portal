@@ -29,7 +29,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "users", "type" : "java.util.List<com.axonivy.portal.userexamples.dto.UserDTO>", "desc" : "" }
+            { "name" : "users", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>", "desc" : "" }
           ],
           "map" : {
             "result.users" : "in.users"
@@ -50,8 +50,8 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.userexamples.service.SecurityService;",
-            "import com.axonivy.portal.userexamples.dto.IvySecurityResultDTO;",
+            "import com.axonivy.portal.components.ivydata.service.impl.SecurityService;",
+            "import com.axonivy.portal.components.ivydata.dto.IvySecurityResultDTO;",
             "",
             "IvySecurityResultDTO dto = SecurityService.newInstance().findUsers(in.query, in.startIndex, in.count, in.fromRoles, in.excludedUsernames);",
             "out.users = dto.users;"

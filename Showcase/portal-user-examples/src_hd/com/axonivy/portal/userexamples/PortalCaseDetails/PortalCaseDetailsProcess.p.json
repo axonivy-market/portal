@@ -63,7 +63,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.userexamples.enums.SessionAttribute;",
+            "import com.axonivy.portal.components.enums.SessionAttribute;",
             "",
             "in.isTaskStartedInDetails = ivy.session.getAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString()) as Boolean;"
           ]

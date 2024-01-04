@@ -55,7 +55,7 @@
             "import com.axonivy.portal.userexamples.leaverequest.LeaveRequest;",
             "",
             "import com.axonivy.portal.userexamples.dto.UserProcess;",
-            "import com.axonivy.portal.userexamples.dto.UserDTO;",
+            "import com.axonivy.portal.components.dto.UserDTO;",
             "",
             "in.leaveRequestData = ivy.repo.get(LeaveRequest.class) as LeaveRequest;",
             "",
