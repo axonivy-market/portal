@@ -6,5 +6,5 @@ fromRoles java.util.List<String> #field
 roles java.util.List<ch.ivyteam.ivy.security.IRole> #field
 startIndex Integer #field
 username String #field
-users java.util.List<com.axonivy.portal.userexamples.dto.UserDTO> #field
+users java.util.List<com.axonivy.portal.components.dto.UserDTO> #field
 excludedUsernames java.util.List<String> #field
