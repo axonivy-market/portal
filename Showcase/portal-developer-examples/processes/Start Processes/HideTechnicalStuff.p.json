@@ -59,7 +59,7 @@
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import com.axonivy.portal.developerexamples.enums.AdditionalProperty;",
-            "import com.axonivy.portal.developerexamples.publicapi.RoleAPI;",
+            "import com.axonivy.portal.components.publicapi.RoleAPI;",
             "import ch.ivyteam.ivy.security.IRole;",
             "IRole role = ISecurityContext.current().roles().find(\"PortalSystem\");",
             "if(#role is initialized) {",
@@ -84,7 +84,7 @@
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import com.axonivy.portal.developerexamples.enums.AdditionalProperty;",
-            "import com.axonivy.portal.developerexamples.publicapi.RoleAPI;",
+            "import com.axonivy.portal.components.publicapi.RoleAPI;",
             "import ch.ivyteam.ivy.security.IRole;",
             "IRole role = ISecurityContext.current().roles().find(\"PortalSystem\");",
             "if(#role is initialized) {",
@@ -129,7 +129,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.developerexamples.publicapi.TaskAPI;",
+            "import com.axonivy.portal.components.publicapi.TaskAPI;",
             "TaskAPI.setHidePropertyToHideInPortal(ivy.task);"
           ]
         },
@@ -169,7 +169,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.developerexamples.publicapi.TaskAPI;",
+            "import com.axonivy.portal.components.publicapi.TaskAPI;",
             "TaskAPI.setHidePropertyToHideInPortal(ivy.task);"
           ]
         },
