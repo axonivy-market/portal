@@ -6,7 +6,7 @@ pipeline {
   }
 
   triggers {
-    cron('30 17 * * *')
+    cron('0 22 * * *')
   }
 
   tools {
