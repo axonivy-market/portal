@@ -2,8 +2,10 @@ package com.axonivy.portal.bean.dashboard.filter;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.Optional;
 
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
@@ -11,9 +13,11 @@ import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomNumber;
 
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 
 public abstract class AbstractCaseWidgetFilterBean implements Serializable {
 
@@ -35,7 +39,7 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
     // Add custom fields which are selected by user.
     this.widget.getFilterableColumns()
       .stream().filter(col -> col.getType() == DashboardColumnType.CUSTOM)
-      .forEach(customColumn -> this.filterFields.add(FilterFieldFactory.findBy(customColumn.getField())));
+      .forEach(customColumn -> this.filterFields.add(FilterFieldFactory.findCustomFieldBy(customColumn.getField())));
   }
 
   private void initFilters() {
@@ -92,4 +96,13 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
   public abstract void removeFilter(CaseDashboardWidget widget, DashboardFilter filter);
 
   public abstract void addNewFilter(CaseDashboardWidget widget);
+
+  public List<SecurityMemberDTO> completeCreators(String query) {
+    return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE).stream()
+        .filter(SecurityMemberDTO::isUser).collect(Collectors.toList());
+  }
+
+  public List<SecurityMemberDTO> completeOwners(String query) {
+    return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
+  }
 }

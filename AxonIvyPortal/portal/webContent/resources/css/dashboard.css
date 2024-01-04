@@ -1748,17 +1748,18 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .dashboard-widget-filter__filter-panel > div.remove-filter-panel {
+  align-self: center;
+}
+
+.dashboard-widget-filter__filter-panel > div.remove-filter-panel {
   margin-left: 0.5em;
   display: flex;
   align-items: center;
 }
 
-.dashboard-widget-filter__filter-panel > div.filter-selection-panel {
-  min-width: 5vw;
-}
-
+.dashboard-widget-filter__filter-panel > div.filter-selection-panel,
 .dashboard-widget-filter__filter-panel > div.date-picker-panel {
-  min-width: 3vw;
+  min-width: 5vw;
 }
 
 .dashboard-widget-filter__filter-panel > div.number-of-periods-panel {
@@ -1798,4 +1799,9 @@ body .ui-button.rounded-button.dashboard-widget-filter__remove-filter .ui-icon {
 
 .widget-configuration-footer-panel {
   padding-top: 1.5rem;
+}
+.application-filter-operator-panel,
+.state-filter-operator-panel,
+.id-filter-operator-panel {
+  min-width: 130px;
 }

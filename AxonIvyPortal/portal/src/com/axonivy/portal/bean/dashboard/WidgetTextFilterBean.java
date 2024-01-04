@@ -22,7 +22,6 @@ public class WidgetTextFilterBean implements Serializable {
   }
 
   public void onChangeOperator(DashboardFilter filter) {
-    
   }
 
   public boolean isShowTextListPanel(DashboardFilter filter) {
@@ -39,6 +38,7 @@ public class WidgetTextFilterBean implements Serializable {
       }
     }
 
-   return false;
+    return false;
   }
+
 }
