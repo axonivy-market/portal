@@ -68,6 +68,9 @@ Variables:
       # Set to true, the change password option in top menu will be hidden, otherwise it will be shown.
       # [boolean]
       HideChangePasswordMenu: false
+      
+      # For switch on/off the display of QR code.
+      ShowQRCode: false
 
     # You can configure the look and feel for dashboard according to your needs via this json file.
     # This setting will be taken over for all other dashboard.
