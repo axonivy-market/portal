@@ -43,7 +43,7 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
     if (selectedTask == null) {
       return;
     }
-    setTaskDetailsUrl(PortalNavigatorAPI.buildUrlToPortalTaskDetailsPage(selectedTask.uuid()));
+    setTaskDetailsUrl(PortalNavigatorAPI.buildUrlToPortalTaskDetailsPageByUUID(selectedTask.uuid()));
     super.loadWidgets();
   }
 

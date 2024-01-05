@@ -52,7 +52,7 @@ public class TaskData {
     this.uuid = task.uuid();
     this.name = StringUtils.defaultIfBlank(task.getName(),
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable"));
-    this.link = PortalNavigatorAPI.buildUrlToPortalTaskDetailsPage(task.uuid());
+    this.link = PortalNavigatorAPI.buildUrlToPortalTaskDetailsPageByUUID(task.uuid());
     this.priority = task.getPriority().name();
   }
 
