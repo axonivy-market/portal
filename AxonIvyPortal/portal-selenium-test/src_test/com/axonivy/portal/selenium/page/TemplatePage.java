@@ -518,4 +518,10 @@ public abstract class TemplatePage extends AbstractPage {
   private SelenideElement getGlobalSearchInput() {
     return $("#global-search-component\\:global-search-data").shouldBe(appear, DEFAULT_TIMEOUT);
   }
+  
+  public QRCodePage openQRCode() {
+    openUserSettingMenu();
+    $("[id='mobile-app-item']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    return new QRCodePage();
+  }
 }
