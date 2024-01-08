@@ -41,7 +41,7 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
   }
 
   @Test
-  public void testRestorePublishDashboardToScratch() {
+  public void testRestorePublicDashboardToScratch() {
     var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     configurationPage.openCreatePublicDashboardMenu();
     configurationPage.createPublicDashboardFromScratch(DASHBOARD_NAME, ICON, DASHBOARD_DESCRIPTION,
@@ -56,7 +56,7 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
   }
 
   @Test
-  public void testRestorePublishDashboardToDefaultTemplate() {
+  public void testRestorePublicDashboardToDefaultTemplate() {
     var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     configurationPage.openCreatePublicDashboardMenu();
     configurationPage.createPublicDashboardFromTemplate(DASHBOARD_NAME, ICON, DASHBOARD_DESCRIPTION,
