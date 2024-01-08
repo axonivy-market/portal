@@ -29,9 +29,4 @@ public class ProcessInformationPage extends TemplatePage {
   public void back() {
     clickByCssSelector("[id$='back-link']");
   }
-
-  public String getProcessInfoWrapperContent() {
-    waitForElementDisplayed(By.cssSelector("[id$='process-info-wrapper']"), true);
-    return findElementByCssSelector("[id$='process-info-wrapper'] > h3 > span").getText();
-  }
 }

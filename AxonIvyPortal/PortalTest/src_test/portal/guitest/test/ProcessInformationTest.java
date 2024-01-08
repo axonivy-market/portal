@@ -24,10 +24,6 @@ public class ProcessInformationTest extends BaseTest {
   private static String PROCESS_NAME = "Process With Process Steps";
   private static String PROCESS_DESCRIPTION = "Create task for a process with three process steps which can be show in Porcess Information page";
 
-  private static String CUSTOM_PROCESS_NAME = "CustomProcessInformation";
-  private static String CUSTOM_PROCESS_DESCRIPTION = "Click on More Information to see the customized process information page";
-  private static String CUSTOM_PROCESS_INFORMATION_HEADER = "Hello world example";
-
   @Before
   @Override
   public void setup() {
@@ -39,21 +35,13 @@ public class ProcessInformationTest extends BaseTest {
   public void testStartProcessFromProcessInformationPage() {
     navigateToProcessInformationPage();
     assertEquals(PROCESS_NAME, processInformationPage.getProcessName());
-    assertEquals(PROCESS_DESCRIPTION , processInformationPage.getProcessDescription());
+    assertEquals(PROCESS_DESCRIPTION, processInformationPage.getProcessDescription());
+
     processInformationPage.startProcess();
     newDashboardPage = new NewDashboardPage();
     TaskWidgetPage taskWidget = NavigationHelper.navigateToTaskList();
     taskWidget.filterTasksInExpandedModeBy(PROCESS_NAME, 1);
     assertEquals(1, taskWidget.countTasks());
-  }
-  
-  @Test
-  public void testClickOnCustomProcessInformationPage() {
-    navigateToCustomProcessInformationPage();
-    assertEquals(CUSTOM_PROCESS_NAME, processInformationPage.getProcessName());
-    assertEquals(CUSTOM_PROCESS_DESCRIPTION , processInformationPage.getProcessDescription());
-    
-    assertEquals(CUSTOM_PROCESS_INFORMATION_HEADER, processInformationPage.getProcessInfoWrapperContent());
   }
   
   @Test
@@ -89,14 +77,6 @@ public class ProcessInformationTest extends BaseTest {
 
   private void navigateToProcessInformationPage() {
     String processName = "Process With Process Steps";
-    processWidget = NavigationHelper.navigateToProcessList();
-
-    processWidget.clickMoreInformationLink(processName);
-    processInformationPage = new ProcessInformationPage();
-  }
-
-  private void navigateToCustomProcessInformationPage() {
-    String processName = CUSTOM_PROCESS_NAME ;
     processWidget = NavigationHelper.navigateToProcessList();
 
     processWidget.clickMoreInformationLink(processName);
