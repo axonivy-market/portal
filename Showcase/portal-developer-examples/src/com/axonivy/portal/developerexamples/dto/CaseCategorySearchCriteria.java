@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 
-import com.axonivy.portal.components.util.CaseUtils;
+import com.axonivy.portal.developerexamples.util.CaseUtils;
 
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
