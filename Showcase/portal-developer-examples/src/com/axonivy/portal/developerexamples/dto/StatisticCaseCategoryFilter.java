@@ -8,8 +8,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.CheckboxTreeNode;
 
-import com.axonivy.portal.components.util.CaseUtils;
 import com.axonivy.portal.developerexamples.util.CaseTreeUtils;
+import com.axonivy.portal.developerexamples.util.CaseUtils;
 import com.axonivy.portal.developerexamples.util.CategoryUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
