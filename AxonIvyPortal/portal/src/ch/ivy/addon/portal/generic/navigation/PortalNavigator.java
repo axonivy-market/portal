@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.generic.navigation.BaseNavigator;
-import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.util.ProcessStartUtils;
 
@@ -73,12 +72,11 @@ public final class PortalNavigator extends BaseNavigator{
     String originalUrl = URLEncoder.encode(RequestUtils.getFullURL(request.getHttpServletRequest()), StandardCharsets.ISO_8859_1);
     redirect(String.format("%s?originalUrl=%s", loginPage, originalUrl));
   }
-
+  
   public static String getForgotPasswordUrl() {
     return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(PORTAL_FORGOT_PASSWORD);
   }
-
-
+  
   public static String getPasswordResetUrl(String token, String username) {
     Map<String, String> params = new HashMap<>();
     params.put("token", token);
@@ -227,14 +225,6 @@ public final class PortalNavigator extends BaseNavigator{
     return buildUrlByKeyword("AbsenceManagement.ivp", PORTAL_ABSENCE_MANAGEMENT, new HashMap<>());
   }
 
-  /**
-   * Build url to task details page of task uuid
-   * 
-   * @deprecated use{@link PortalNavigatorAPI#buildUrlToPortalCaseDetailsPage(String)}
-   * @param uuid
-   * @return Absolute url to task details page of task uuid
-   */
-  @Deprecated
   public static String buildPortalCaseDetailsUrl(String uuid) {
     Map<String, String> params = new HashMap<>();
     params.put(ID, uuid);

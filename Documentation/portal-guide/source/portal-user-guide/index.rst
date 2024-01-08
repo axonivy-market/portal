@@ -22,3 +22,4 @@ User Guide
    notification/index
    demo-processes/index
    portal-multi-language/index
+   qr-code/index

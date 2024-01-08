@@ -589,3 +589,7 @@ function highlightNotificationIcon(){
   var icon = $("#open-notifications-panel");
   icon.addClass("red-medium-border");
 }
+
+function highlightMobileApp() {
+  createRedMediumOutline($("#mobile-app-item"));
+}
