@@ -125,6 +125,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.maximizeBrowser();
     homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
+    homePage.scrollTo(0, 10);
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "dashboard");
 
     // Take screenshot of widget filter panel
