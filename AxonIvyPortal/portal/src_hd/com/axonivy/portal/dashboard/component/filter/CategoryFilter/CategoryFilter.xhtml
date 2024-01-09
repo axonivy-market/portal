@@ -33,7 +33,8 @@
   <h:panelGroup id="category-list-panel" layout="block"
     styleClass="ui-fluid md-inputfield category-filter-list" rendered="#{filter.operator ne 'NO_CATEGORY'}">
 
-    <h:panelGroup styleClass="ui-fluid" layout="block">
+    <h:panelGroup styleClass="ui-fluid" layout="block"
+      rendered="#{widgetCategoryFilterBean.isShowCategorySelectionPanel(filter)}">
       <p:inputText id="widget-filter-category" readonly="true"
         styleClass="widget-configuration__input-text #{cc.attrs.inputCategoryStyleClass}"
         value="#{widgetCategoryFilterBean.selectedCategoriesString}"
@@ -53,6 +54,7 @@
     </h:panelGroup>
 
     <p:overlayPanel id="widget-filter-category-panel"
+      rendered="#{widgetCategoryFilterBean.isShowCategorySelectionPanel(filter)}"
       widgetVar="widget-filter-category-panel-#{cc.clientId}"
       styleClass="widget-configuration__category-panel"
       dismissable="false">
@@ -89,6 +91,19 @@
       </h:panelGroup>
     </p:overlayPanel>
 
+    <h:panelGroup layout="block"
+      styleClass="ui-fluid md-inputfield text-list-filter" 
+      rendered="#{widgetCategoryFilterBean.isShowCategoryContainsPanel(filter)}">
+      <p:chips value="#{filter.values}" unique="true" addOnPaste="true" disabled="#{readOnly}" addOnBlur="true">
+        <p:ajax event="itemSelect" process="@(this)" update="@(this)" partialSubmit="true" global="false" />
+        <p:ajax event="itemUnselect" process="@(this)" update="@(this)" partialSubmit="true" global="false" />
+        <f:validator validatorId="dashboardDefaultListFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
+        <f:param name="skipValidator" value="true" />
+        <f:attribute name="filter" value="#{filter}" />
+        <f:attribute name="filterIndex" value="#{filterIndex}" />
+        <f:attribute name="messageId" value="#{messageId}" />
+      </p:chips>
+    </h:panelGroup>
   </h:panelGroup>
 </cc:implementation>
 
