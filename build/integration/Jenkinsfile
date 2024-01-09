@@ -11,8 +11,7 @@ pipeline {
   }
 
   parameters {
-      string(name: 'testPatternToRun', defaultValue: 'portal.guitest.userexample.test.*Test,portal.guitest.test.*Test,!*Express*Test', description: 'Test pattern to run.')
-      string(name: 'testNewDashboardPatternToRun', defaultValue: 'com.axonivy.portal.selenium.test.*Test,!*Express*Test', description: 'Test new dashboard pattern to run')
+      string(name: 'testPatternToRun', defaultValue: 'com.axonivy.portal.selenium.test.**.*Test,!*Express*Test', description: 'Test pattern to run')
       string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
         -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip for nightly master
         -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine-windows.zip for dev master
@@ -30,6 +29,7 @@ pipeline {
     stage('build') {
       steps {
         script {
+          currentBuild.description = "On ${env.NODE_NAME}"											  
           def utils = load 'build/common/utils.groovy'
           utils.init()
           downloadPortalRelease()
@@ -82,8 +82,7 @@ pipeline {
           utils.killUnnecessaryProcessesToRunTest()
 
           echo '====================Test Portal===================='
-          bat "mvn clean test -f AxonIvyPortal/PortalTest/customized_pom.xml -Dtest=%testPatternToRun% -DbrowserType=${props.browserType} -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
-          bat "mvn clean test -f AxonIvyPortal/portal-selenium-test/customized_pom.xml -Dtest=${params.testNewDashboardPatternToRun} -DbrowserType=${props.browserType} -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
+          bat "mvn clean test -f AxonIvyPortal/portal-selenium-test/customized_pom.xml -Dtest=${params.testPatternToRun} -DbrowserType=${props.browserType} -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
           utils.cleanDisk()
         }
       }
@@ -92,7 +91,7 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: "AxonIvyPortal/PortalTest/target/*/*/*.jpg, AxonIvyPortal/portal-selenium-test/target/selenide/reports/*/*/*.png, AxonIvyPortal/*/target/testEngineOut.log", allowEmptyArchive: true
+      archiveArtifacts artifacts: 'AxonIvyPortal/portal-selenium-test/target/selenide/reports/**/*.*, AxonIvyPortal/portal-selenium-test/target/testEngineOut.log', allowEmptyArchive: true
       junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
     }
   }

@@ -2,6 +2,7 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -15,8 +16,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.PrimeFaces;
 
+import com.axonivy.portal.bo.QRCodeData;
+import com.axonivy.portal.components.generic.navigation.BaseNavigator;
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.enums.PortalCustomSignature;
+import com.google.gson.Gson;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
@@ -249,7 +253,7 @@ public class UserMenuBean implements Serializable {
     return AnnouncementService.getInstance().isAnnouncementActivated();
   }
   
-  private void navigateToHomePage() throws IOException {
+  public void navigateToHomePage() throws IOException {
     getExternalContext().redirect(getHomePageURL());
   }
   
@@ -324,5 +328,31 @@ public class UserMenuBean implements Serializable {
       expressStartLink = ExpressProcessService.getInstance().findExpressWorkflowStartLink();
     }
     return expressStartLink;
+  }
+  
+  public void navigateToNotificationOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) {
+    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+      openTaskLosingConfirmationDialog();
+      targetPage = getNotificationFullPageUrl();
+    } else {
+      executeJSResetPortalMenuState();
+      PortalNavigator.navigateToNotificationFullPage();
+    }
+  }
+  
+  private String getNotificationFullPageUrl() {
+    return PortalNavigator.buildNotificationFullPageUrl();
+  }
+  
+  public boolean isShowQRCode() {
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_QR_CODE);
+  }
+  
+  public String getQRcodeData() {
+    QRCodeData data = new QRCodeData();
+    data.setLoginUrl(BaseNavigator.buildAbsoluteUrl("Start Processes/PortalStart/DefaultLoginPage.ivp", new HashMap<>()));
+    data.setUsername(Ivy.session().getSessionUserName());
+    
+    return new Gson().toJson(data);
   }
 }

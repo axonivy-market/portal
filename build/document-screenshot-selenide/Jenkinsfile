@@ -6,7 +6,7 @@ pipeline {
   }
 
   triggers {
-    cron('0 23 * * *')
+    cron('0 15 * * *')
   }
 
   tools {
@@ -36,6 +36,7 @@ pipeline {
     stage('build') {
       steps {
         script {
+          currentBuild.description = "On ${env.NODE_NAME}"
           def utils = load 'build/common/utils.groovy'
           utils.init()
           utils.stopAllEngines()

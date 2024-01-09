@@ -215,6 +215,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SearchScopeCaseFields: Defining the fields that the global search will use to find matching cases beside case Id (this can influence the performance of the search)
       SearchScopeTaskFields: Defining the fields that the global search will use to find matching tasks beside task Id (this can influence the performance of the search)
       ShowLoginPageFooter: For switch on/off the display of the footer on the login page.
+      ShowQRCode: For switch on/off the display of the QR code.
       behaviourWhenClickingOnLineInTaskList: For switch behaviours (run the task or access task details) when clicking on a line in task list, task widget of dashboard and related tasks  in case details page.
       chatMaxConnection: 'The set number controls the amount of tabs allowed with active chat. If more tabs are opened, the chat will be disabled in inactive tabs. Allowed values between 1-5 '
       chatResponseTimeout: Chat response timeout in seconds, default value is 0 and means no timeout. If chat messages go through the reverse proxy Nginx, chat response timeout must be less than the Nginx timeout, e.g. less than 60 seconds.
@@ -261,8 +262,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       showCaseDurationTime: For switch on/off the display of the duration time in case details page.
       showErrorLogToConsole: Set to true to enable write error log to browser console
       showGlobalSearch: For switch on/off the display of the global search.
-      showQuickGlobalSearch: For switch on/off the display of the quick global search.
       showProcessInformation: Set to false to disable link to Show Information of process on Processes page (grid mode) and Case Details.
+      showQuickGlobalSearch: For switch on/off the display of the quick global search.
       showTaskDurationTime: For switch on/off the display of the duration time in task details page.
       statisticChartScalingInterval: Interval in seconds to do periodic statistic chart scaling requests. If the interval value is less than 10, periodic statistic chart scaling is disabled.
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
@@ -296,6 +297,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     usernameRequiredMsg: Please input username.
     value: Value
   applicationMenuHeader:
+    MobileApp: Connect the Axon Ivy Mobile App
     adminSettings: Admin settings
     changePassword: Change password
   businessCaseState:
@@ -998,6 +1000,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     username: Username
   logoutSetting:
     logout: Logout
+  mobile:
+    MenuName: Mobile app
+    QRCodeDescription: To connect your Axon Ivy Mobile App, please scan this QR Code and enter your credentials in the inside the app.
   noteHistory:
     author: Author
     caseExportedFileNamePrefix: Note_history_of_case_{0}
@@ -1017,7 +1022,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     wroteAt: wrote at
   notifications:
     linkToFullScreen: Link to full screen
-    linkToNotificationSettings: Link to notification settings
+    linkToNotificationSettings: Notification settings
     markAllAsRead: Mark all as read
     markAsRead: Mark as read
     noNotificationText: No Notifications
