@@ -35,12 +35,12 @@
           value="#{widget.name}" />
         <!-- Add language button -->
         <p:commandButton styleClass="app-setting-button"
-          icon="si si-chat-translate" id="add-language-button">
-          <p:ajax event="click"
-            listener="#{managedBean.updateWidgetNameByLocale()}"
-            process="widget-title"
-            update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
-            oncomplete="PF('multiple-languages-dialog').show();" />
+          icon="si si-chat-translate" id="add-language-button"
+          actionListener="#{managedBean.updateWidgetNameByLocale()}"
+          process="widget-title"
+          update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
+          oncomplete="PF('multiple-languages-dialog').show();"
+          global="false">
         </p:commandButton>
       </div>
     </h:panelGroup>

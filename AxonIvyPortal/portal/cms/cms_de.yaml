@@ -215,6 +215,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SearchScopeCaseFields: Festlegung der Felder, die bei der globalen Suche verwendet werden sollen, um neben der Fallnummer übereinstimmende Fälle zu finden (dies kann die Leistung der Suche beeinflussen)
       SearchScopeTaskFields: Festlegung der Felder, die die globale Suche neben der Aufgabenkennung verwendet, um passende Aufgaben zu finden (dies kann die Leistung der Suche beeinflussen)
       ShowLoginPageFooter: Zum Ein-/Ausschalten der Anzeige der Fußzeile auf der Anmeldeseite.
+      ShowQRCode: Zum Ein- und Ausschalten der Anzeige des QR-Codes.
       behaviourWhenClickingOnLineInTaskList: Zum Umschalten des Verhaltens (Ausführen der Aufgabe oder Aufrufen der Aufgabendetails) beim Klicken auf eine Zeile in der Aufgabenliste, im Aufgaben-Widget des Dashboards und bei verwandten Aufgaben auf der Seite mit den Vorgangsdetails.
       chatMaxConnection: 'Die gesetzte Nummer steuert die Anzahl der erlaubten Tabs mit aktiven Chat. Falls mehr Tabs geöffnet werden, wird der Chat in inaktive Tabs deaktiviert. Erlaubte Werte zw. 1-5 '
       chatResponseTimeout: Chat-Antwort-Time-out in Sekunden, Standardwert ist 0 und bedeutet kein Time-out. Wenn Chat-Nachrichten durch den Reverse-Proxy Nginx gehen, muss das Chat-Antwort-Time-out kleiner sein als das Nginx-Time-out, z. B. kleiner als 60 Sekunden.
@@ -263,8 +264,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       showCaseDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Vorgangsdetailseite.
       showErrorLogToConsole: Auf true setzen, um Fehlerprotokoll in die Browserkonsole zu schreiben
       showGlobalSearch: Zum Ein-/Ausschalten der Anzeige der globalen Suche.
-      showQuickGlobalSearch: Zum Ein-/Ausschalten der Anzeige der globalen Schnellsuche.
       showProcessInformation: Auf "false" setzen, um die Verknüpfung zu Informationen des Prozesses auf der Seite Prozesse (Gittermodus) und Falldetails anzeigen zu deaktivieren.
+      showQuickGlobalSearch: Zum Ein-/Ausschalten der Anzeige der globalen Schnellsuche.
       showTaskDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Aufgabendetailseite.
       statisticChartScalingInterval: Intervall in Sekunden, in dem die Skalierung des statistischen Diagramms regelmäßig angefordert wird. Ist der Intervallwert kleiner als 10, wird die periodische Skalierung des statistischen Diagramms deaktiviert.
       uploadDocumentWhiteListExtensionNote: 'Leer lassen, falls Sie alle Formate erlauben. Falls Sie nur eine geringe Anzahl an Formate erlauben möchten (White list), können Sie diese hier, mit Komma getrennt, aufführen. Z.B.: pdf, txt, doc, docx.'
@@ -298,6 +299,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     usernameRequiredMsg: Bitte geben Sie den Benutzernamen an.
     value: Wert
   applicationMenuHeader:
+    MobileApp: Verbinden Sie die Axon Ivy Mobile App
     adminSettings: Administration
     changePassword: Passwort ändern
   businessCaseState:
@@ -997,6 +999,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     username: Benutzername
   logoutSetting:
     logout: Abmelden
+  mobile:
+    MenuName: Mobile App
+    QRCodeDescription: Um Ihre Axon Ivy Mobile App zu verbinden, scannen Sie bitte diesen QR-Code und geben Sie Ihre Zugangsdaten in der App ein.
   noteHistory:
     author: Autor
     caseExportedFileNamePrefix: Verlauf_Vorgangsnotizen_{0}
@@ -1016,7 +1021,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     wroteAt: Erstellt am
   notifications:
     linkToFullScreen: Link zum Vollbild
-    linkToNotificationSettings: Link zu den Benachrichtigungseinstellungen
+    linkToNotificationSettings: Benachrichtigungseinstellungen
     markAllAsRead: Alle als gelesen markieren
     markAsRead: Als gelesen markieren
     noNotificationText: Keine Benachrichtigungen

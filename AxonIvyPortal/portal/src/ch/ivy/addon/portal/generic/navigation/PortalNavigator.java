@@ -25,10 +25,10 @@ public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_TASK = "Start Processes/PortalStart/DefaultTaskListPage.ivp";
   private static final String PORTAL_CASE = "Start Processes/PortalStart/CaseListPage.ivp";
   private static final String PORTAL_STATISTIC = "Start Processes/PortalStart/StatisticPage.ivp";
-  private static final String PORTAL_CASE_DETAILS = "Start Processes/PortalStart/CaseDetailsPage.ivp";
+  private static final String PORTAL_CASE_DETAILS = "Start Processes/PortalStart/DefaultCaseDetailPage.ivp";
   private static final String PORTAL_RELATED_TASKS_OF_CASE = "Start Processes/PortalStart/RelatedTasksOfCasePage.ivp";
   private static final String PORTAL_RELATED_TASKS_OF_CASE_IN_FRAME = "Start Processes/PortalStart/RelatedTasksOfCasePageInFrame.ivp";
-  private static final String PORTAL_TASK_DETAILS = "Start Processes/PortalStart/TaskDetailsPage.ivp";
+  private static final String PORTAL_TASK_DETAILS = "Start Processes/PortalStart/DefaultTaskDetailPage.ivp";
   private static final String PORTAL_TASK_DETAILS_IN_FRAME = "Start Processes/PortalStart/TaskDetailsPageInFrame.ivp";
   private static final String PORTAL_GLOBAL_SEARCH = "Start Processes/PortalStart/GlobalSearchPage.ivp";
   private static final String PORTAL_USER_PROFILE =  "Start Processes/PortalStart/UserProfile.ivp";
@@ -49,8 +49,11 @@ public final class PortalNavigator extends BaseNavigator{
   public static final String PORTAL_USER_PROFILE_START =  "/UserProfile.ivp";
   public static final String PORTAL_CASE_DETAILS_IN_IFRAME_START = "/CaseDetailsInIFrame.ivp";
   private static final String UUID = "uuid";
+  private static final String ID = "id";
   private static final String PORTAL_DASHBOARD_PAGE = "Start Processes/PortalStart/DashboardPage.ivp";
   private static final String PORTAL_DASHBOARD_CONFIGURATION_EDIT_PAGE = "Start Processes/PortalStart/PortalDashboardConfigurationEditPage.ivp";
+  private static final String PORTAL_NOTIFICATION_FULLPAGE =  "Start Processes/PortalStart/NotificationFullPage.ivp";
+  private static final String PORTAL_NOTIFICATION_FULLPAGE_START =  "/NotificationFullPage.ivp";
   
   private final static String DASHBOARD_PARAM = "isShowDashboard";
   
@@ -69,12 +72,11 @@ public final class PortalNavigator extends BaseNavigator{
     String originalUrl = URLEncoder.encode(RequestUtils.getFullURL(request.getHttpServletRequest()), StandardCharsets.ISO_8859_1);
     redirect(String.format("%s?originalUrl=%s", loginPage, originalUrl));
   }
-
+  
   public static String getForgotPasswordUrl() {
     return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(PORTAL_FORGOT_PASSWORD);
   }
-
-
+  
   public static String getPasswordResetUrl(String token, String username) {
     Map<String, String> params = new HashMap<>();
     params.put("token", token);
@@ -127,8 +129,8 @@ public final class PortalNavigator extends BaseNavigator{
   
   public static void navigateToPortalCaseDetails(String uuid) {
     Map<String, String> params = new HashMap<>();
-    params.put(UUID, uuid);
-    navigateByKeyword("CaseDetailsPage.ivp", PORTAL_CASE_DETAILS, params);
+    params.put(ID, uuid);
+    navigateByKeyword("DefaultCaseDetailPage.ivp", PORTAL_CASE_DETAILS, params);
   }
 
   public static void navigateToPortalRelatedTasksOfCase(String uuid, boolean isBusinessCase, String caseName) {
@@ -149,8 +151,8 @@ public final class PortalNavigator extends BaseNavigator{
 
   public static void navigateToPortalTaskDetails(String uuid) {
     Map<String, String> params = new HashMap<>();
-    params.put(UUID, uuid);
-    navigateByKeyword("TaskDetailsPage.ivp", PORTAL_TASK_DETAILS, params);
+    params.put(ID, uuid);
+    navigateByKeyword("DefaultTaskDetailPage.ivp", PORTAL_TASK_DETAILS, params);
   }
 
   public static void navigateToPortalTaskDetailsInFrame(String uuid) {
@@ -225,8 +227,8 @@ public final class PortalNavigator extends BaseNavigator{
 
   public static String buildPortalCaseDetailsUrl(String uuid) {
     Map<String, String> params = new HashMap<>();
-    params.put(UUID, uuid);
-    return buildUrlByKeyword("CaseDetailsPage.ivp", PORTAL_CASE_DETAILS, params);
+    params.put(ID, uuid);
+    return buildUrlByKeyword("DefaultCaseDetailPage.ivp", PORTAL_CASE_DETAILS, params);
   }
 
   public static String buildPortalCaseDetailInFrameUrl(String uuid) {
@@ -266,5 +268,13 @@ public final class PortalNavigator extends BaseNavigator{
 
   public static String buildPortalManagementUrl() {
     return buildUrlByKeyword("PortalManagement.ivp", PORTAL_MANAGEMENT, new HashMap<>());
+  }
+  
+  public static void navigateToNotificationFullPage() {
+    navigateByKeyword(PORTAL_NOTIFICATION_FULLPAGE_START, PORTAL_NOTIFICATION_FULLPAGE, new HashMap<>());
+  }
+  
+  public static String buildNotificationFullPageUrl() {
+    return buildUrlByKeyword(PORTAL_NOTIFICATION_FULLPAGE_START, PORTAL_NOTIFICATION_FULLPAGE, new HashMap<>());
   }
 }

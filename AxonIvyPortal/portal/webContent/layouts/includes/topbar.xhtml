@@ -100,6 +100,9 @@
 
             <li><p:link id="project-info-menu-item" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/info')}"
                 onclick="rcProjectInfo(); $('#user-setting-container').click()" /></li>
+            
+            <li><p:link id="mobile-app-item" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/mobile/MenuName')}" rendered="#{userMenuBean.isShowQRCode()}"
+                onclick="PF('mobile-app-dialog').show();" /></li>
 
             <c:forEach var="menu" items="#{userMenuConfigurableBean.menus}" varStatus="status">
               <li><ic:ch.ivy.addon.portalkit.component.UserMenu id="user-menu-setting-#{status.index}" menu="#{menu}"
@@ -137,6 +140,24 @@
             icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('project-info-dialog').hide();" />
         </div>
       </p:dialog>
+      
+      <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/MobileApp')}" width="600" 
+        closeOnEscape="true" widgetVar="mobile-app-dialog" id="mobile-app-dialog" resizable="false" modal="true" draggable="false"
+        appendTo="@(body)" dynamic="true" responsive="true" fitViewport="true">
+        <div class="ui-g-12">
+          <div class="ui-g-5">
+            <p:barcode id="qr-code" value="#{userMenuBean.getQRcodeData()}" type="qr" width="200" height="200" />
+          </div>
+          <div class="ui-g-7">
+            <span class="si si-information-circle" />
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/mobile/QRCodeDescription')}" styleClass="MarLeft10"/>
+          </div>
+        </div>
+        <div class="u-dialog-footer-actions-group">
+          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" id="mobile-app-close-button" type="button"
+            icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('mobile-app-dialog').hide();" />
+        </div>
+      </p:dialog>
 
       <h:form>
         <p:remoteCommand name="rcProjectInfo" actionListener="#{projectVersionBean.loadProjectVesion}" oncomplete="PF('project-info-dialog').show()"
@@ -148,6 +169,9 @@
   <c:if test="#{chatRendererBean.isChatRendered}">
     <ui:include src="/layouts/includes/chat.xhtml" />
   </c:if>
-  <ui:include src="/layouts/includes/notification.xhtml" />
+  <ui:include src="/layouts/includes/notification.xhtml" >
+    <ui:param name="task" value="#{not empty currentTask ? currentTask : task}" />
+    <ui:param name="isWorkingOnATask" value="#{isWorkingOnATask}" />
+  </ui:include>
   <!-- TOPBAR END -->
 </ui:composition>
