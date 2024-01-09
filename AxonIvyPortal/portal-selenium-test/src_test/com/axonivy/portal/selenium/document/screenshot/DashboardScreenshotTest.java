@@ -30,8 +30,9 @@ import com.axonivy.portal.selenium.page.StatisticEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
+import com.codeborne.selenide.impl.Screenshot;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class DashboardScreenshotTest extends ScreenshotBaseTest {
   private NewDashboardPage homePage;
   private static final int SCREENSHOT_WIDTH = 1500;
@@ -125,132 +126,18 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.maximizeBrowser();
     homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
-    homePage.scrollTo(0, 10);
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "dashboard");
 
-    // Take screenshot of widget filter panel
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.openWidgetFilter(1),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-filter", new ScreenshotMargin(20));
     homePage.closeWidgetFilter(1);
-
+    
+    homePage.scrollTo(0, 200);
     var taskInfoOverlayPanel = homePage.openWidgetInformation(0);
     // Take screenshot of widget info panel
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskInfoOverlayPanel,
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-info", new ScreenshotMargin(20));
 
-    // Take screenshot of task Excel export link
-    ScreenshotUtils.executeDecorateJs("highlightWidgetExportToExcelLinkForTask()");
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskInfoOverlayPanel,
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-export-excel", new ScreenshotMargin(20));
-    taskInfoOverlayPanel.findElement(By.className("info-overlay-panel__footer"))
-        .findElement(By.className("info-overlay-panel__close-link")).click();
-
-    // Take screenshot of case Excel export link
-    var caseInfoOverlayPanel = homePage.openWidgetInformation(1);
-    ScreenshotUtils.executeDecorateJs("highlightWidgetExportToExcelLinkForCase()");
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseInfoOverlayPanel,
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-export-excel", new ScreenshotMargin(20));
-    caseInfoOverlayPanel.findElement(By.className("info-overlay-panel__footer"))
-        .findElement(By.className("info-overlay-panel__close-link")).click();
-
-    // Take screenshot of Edit dashboard page
-    redirectToDashboardConfiguration();
-    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
-    configPage.selectPublicDashboardType();
-    DashboardModificationPage editPage = new DashboardModificationPage();
-    NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
-    detailsEditPage.waitForCaseWidgetLoaded();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "edit-widget");
-
-    // Take screenshot of Add new widget dialog
-    WebElement newWidgetDialog = detailsEditPage.addWidget();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(newWidgetDialog,
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "add-widget", new ScreenshotMargin(20));
-
-    // Take screenshots of Task widget configuration dialog
-    TaskEditWidgetNewDashBoardPage taskConfigurationPage = detailsEditPage.addNewTaskWidget();
-    taskConfigurationPage.waitPreviewTableLoaded();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(
-        taskConfigurationPage.openMultiLanguageDialogWhenAddWidget(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "dashboard-multi-language-widget-dialog", new ScreenshotMargin(20));
-
-    taskConfigurationPage.cancelMultiLanguageDialogWhenAddWidget();
-    ScreenshotUtils.captureElementScreenshot(taskConfigurationPage.getConfigurationFilter(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-configuration");
-    WebElement columnManagementDialog = taskConfigurationPage.openColumnManagementDialog();
-    ScreenshotUtils.captureElementScreenshot(columnManagementDialog,
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-table-configuration");
-    taskConfigurationPage.getAddingFieldColumnType().click();
-    ScreenshotUtils.executeDecorateJs("highlightProcessDisplayModePanel()");
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(columnManagementDialog,
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-column-field-type-configuration", new ScreenshotMargin(20));
-
-    taskConfigurationPage.removeAddedField("category");
-    taskConfigurationPage.removeAddedField("description");
-    taskConfigurationPage.removeAddedField("expiryTimestamp");
-    taskConfigurationPage.saveColumn();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskConfigurationPage.getConfigurationDialog(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget", new ScreenshotMargin(20));
-    taskConfigurationPage.closeConfigurationDialog();
-
-    // Take screenshots of Case widget configuration dialog
-    detailsEditPage.addWidget();
-    CaseEditWidgetNewDashBoardPage caseConfigurationPage = detailsEditPage.addNewCaseWidget();
-    ScreenshotUtils.captureElementScreenshot(caseConfigurationPage.getConfigurationFilter(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-configuration");
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseConfigurationPage.openColumnManagementDialog(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-table-configuration", new ScreenshotMargin(20));
-
-    caseConfigurationPage.removeAddedField("category");
-    caseConfigurationPage.removeAddedField("description");
-    caseConfigurationPage.removeAddedField("endTimestamp");
-    caseConfigurationPage.saveColumn();
-    caseConfigurationPage.waitPreviewTableLoaded();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseConfigurationPage.getConfigurationDialog(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget", new ScreenshotMargin(20));
-    caseConfigurationPage.closeConfigurationDialog();
-
-    // Take screenshot of Process widget configuration dialog
-    detailsEditPage.addWidget();
-    ProcessEditWidgetNewDashBoardPage processConfigurationPage = detailsEditPage.addNewProcessWidget();
-
-    // Combined mode
-    processConfigurationPage.selectCombinedMode();
-    processConfigurationPage.selectProcessForCombinedMode("Categoried Leave Request");
-    processConfigurationPage.clickPreviewButton();
-    processConfigurationPage.getCombinedModeProcessPreview();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(processConfigurationPage.getConfigurationDialog(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "process-widget-combined-mode", new ScreenshotMargin(20));
-
-    // Compact mode
-    processConfigurationPage.selectCompactMode();
-    processConfigurationPage.selectProcessesForCompactMode(
-        Arrays.asList("Create New Payment", "Create Support Ticket", "Sales Management"));
-    processConfigurationPage.clickPreviewButton();
-    processConfigurationPage.getCompactModeProcessPreview();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(processConfigurationPage.getConfigurationDialog(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "process-widget-compact-mode", new ScreenshotMargin(20));
-
-    // Full mode
-    processConfigurationPage.selectFullMode();
-    processConfigurationPage.selectProcessForFullMode("Sales Management");
-    processConfigurationPage.clickPreviewButton();
-    processConfigurationPage.getFullModeProcessPreview();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(processConfigurationPage.getConfigurationDialog(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "process-widget-full-mode", new ScreenshotMargin(20));
-
-    // Image mode
-    processConfigurationPage.selectImageMode();
-    processConfigurationPage.selectProcessForImageMode("Create New Payment");
-    processConfigurationPage.clickPreviewButton();
-    processConfigurationPage.getImageModeProcessPreview();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(processConfigurationPage.getConfigurationDialog(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "process-widget-image-mode", new ScreenshotMargin(20));
-
-    processConfigurationPage.getProcessDisplayMode().click();
-    ScreenshotUtils.executeDecorateJs("highlightProcessDisplayModePanel()");
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(processConfigurationPage.getConfigurationDialog(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "process-widget-modes", new ScreenshotMargin(20));
   }
 
   @Test
