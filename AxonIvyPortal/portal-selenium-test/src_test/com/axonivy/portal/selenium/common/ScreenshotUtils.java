@@ -1,6 +1,5 @@
 package com.axonivy.portal.selenium.common;
 
-import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -76,7 +75,6 @@ public class ScreenshotUtils {
     WebDriver driver = WebDriverRunner.getWebDriver();
     File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
     File fileScreenShot = new File(SCREENSHOT_FOLDER + screenshotName + SCREENSHOT_EXTENSION);
-    FileUtils.copyFile(screenshot, fileScreenShot);
     addMarginForImage(element, screenshot, screenshotMargin);
     FileUtils.copyFile(screenshot, fileScreenShot);
   }
@@ -84,47 +82,36 @@ public class ScreenshotUtils {
   private static File addMarginForImage(WebElement element, File fileScreenShot, ScreenshotMargin screenshotMargin)
       throws IOException {
     BufferedImage original = ImageIO.read(fileScreenShot);
-    System.out.println("x " + element.getLocation().getX());
-    System.out.println("y " + element.getLocation().getY());
-    System.out.println("width " + element.getSize().getWidth());
-    System.out.println("height " + element.getSize().getHeight());
-    System.out.println("margin top " + screenshotMargin.getMarginTop());
-    System.out.println("margin right " + screenshotMargin.getMarginRight());
-    System.out.println("margin bottom " + screenshotMargin.getMarginBottom());
-    System.out.println("margin left " + screenshotMargin.getMarginLeft());
-    System.out.println("imageHeight " + ImageIO.read(fileScreenShot).getHeight());
-    System.out.println("imageWidth " + ImageIO.read(fileScreenShot).getWidth());
-    System.out.println("screenHeight " + Toolkit.getDefaultToolkit().getScreenSize().getHeight());
+    int coordinateX = element.getLocation().getX() - screenshotMargin.getMarginLeft();
+    int coordinateY = element.getLocation().getY() - screenshotMargin.getMarginTop();
+    int width = element.getSize().getWidth() + screenshotMargin.getMarginRight() + screenshotMargin.getMarginLeft();
+    int height = element.getSize().getHeight() + screenshotMargin.getMarginBottom() + screenshotMargin.getMarginTop();
 
-    int top = screenshotMargin.getMarginTop();
-    int right = screenshotMargin.getMarginRight();
-    int bottom = screenshotMargin.getMarginBottom();
-    int left = screenshotMargin.getMarginLeft();
-    int corX = element.getLocation().getX() - left < 0 ? 0 : element.getLocation().getX();
-    int corY = element.getLocation().getY() - top < 0 ? 0 : element.getLocation().getY();
-    int elWidth = element.getSize().getWidth();
-    int elHeight = element.getSize().getHeight();
-    int imgHeight = ImageIO.read(fileScreenShot).getHeight();
-
-
-    if(corY + elHeight < imgHeight ) {
-      BufferedImage screenshot = original.getSubimage(
-          corX,
-          corY,
-          elWidth,
-          elHeight);
-      ImageIO.write(screenshot, "png", fileScreenShot);
-    } else {
-      BufferedImage screenshot = original.getSubimage(
-          corX - 20,
-          635 - elHeight - 20,
-          elWidth,
-          elHeight);
-      ImageIO.write(screenshot, "png", fileScreenShot);
+    if (coordinateX < 0) {
+      coordinateX = 0;
+    } else if (coordinateX > original.getWidth()) {
+      coordinateX = original.getWidth();
     }
+
+    if (coordinateY < 0) {
+      coordinateY = original.getMinY();
+    } else if (coordinateY > original.getHeight()) {
+      coordinateY = original.getHeight();
+    }
+
+    if (width > original.getWidth() || width + coordinateX > original.getWidth()) {
+      width = original.getWidth() - coordinateX;
+    }
+
+    if (height > original.getHeight() || height + coordinateY > original.getHeight()) {
+      height = original.getHeight() - coordinateY;
+    }
+
+    BufferedImage screenshot = original.getSubimage(coordinateX, coordinateY, width, height);
+    ImageIO.write(screenshot, "png", fileScreenShot);
     return fileScreenShot;
   }
-  
+
   public static void resizeBrowserAndCaptureWholeScreen(String screenshotName, Dimension size) throws IOException {
     WebDriver driver = WebDriverRunner.getWebDriver();
     Dimension oldSize = driver.manage().window().getSize();
