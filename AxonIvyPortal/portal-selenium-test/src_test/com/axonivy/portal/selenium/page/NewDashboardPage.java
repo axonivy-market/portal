@@ -852,10 +852,6 @@ public class NewDashboardPage extends TemplatePage {
     checkDisplayedCaseWidgetContainer();
     getCaseWidgetTable().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
-  public void scrollTo(int xCoordination, int yCoordination) {
-    JavascriptExecutor js = (JavascriptExecutor) driver;
-    js.executeScript("javascript:window.scrollBy(" + xCoordination + "," + yCoordination + ")");
-  }
 
   public SelenideElement openWidgetFilter(int index) {
     $("[id$='filter-sidebar-link-" + index + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
