@@ -1783,3 +1783,24 @@ i.dashboard-icon-drag-drop {
 .global-search-input.global-small-search-bar {
   width: 200px;
 }
+.filter-panel.active {
+  width: 50%;
+  height: 700px;
+  visibility: visible;
+  opacity: 1;
+  overflow: auto;
+}
+.filter-panel {
+  background: var(--notification-panel-color);
+  position: absolute;
+  overflow:hidden;
+  width: 0;
+  opacity: 0;
+  transition: all .5s;
+  -ms-transition: all 0s;
+  box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+
+}
+.table-configuration{
+  height:700px;
+}
