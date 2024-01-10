@@ -12,8 +12,7 @@
 
 <cc:implementation>
   <f:event listener="#{caseWidgetConfigurationFilterBean.preRender(cc.attrs.caseWidget)}" type="preRenderComponent" />
-
-  <ui:decorate template="/layouts/restricted/decorator/TableWidgetConfiguration.xhtml">
+  <ui:decorate template="/layouts/restricted/decorator/SidebarWidgetConfiguration.xhtml">
     <ui:param name="widget" value="#{cc.attrs.caseWidget}" />
     <ui:param name="managedBean" value="#{cc.attrs.managedBean}" />
     <ui:param name="filterContainerStyleClass" value="case-widget-filter case-widget-configuration filter-messages predefined-filter" />
