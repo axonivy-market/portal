@@ -1,0 +1,131 @@
+.chatbot-panel {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+}
+
+.chatbot-panel .message-list {
+  display: block;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.chatbot-panel .message-list .chat-message-list {
+  height: 100%;
+  width: 100%;
+}
+
+.chatbot-panel .message-list-content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+}
+
+.chatbot-panel .message-list {
+  background: transparent;
+  box-shadow: none;
+}
+
+.chatbot-panel .chat-message-list {
+  height: calc(100% - 235px);
+  width: 100%;
+  padding: 0 30px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: row;
+}
+
+.chatbot-panel .my-message .chat-meta {
+  text-align: left;
+}
+
+.chatbot-panel .avatar-block {
+  display: inline;
+  margin-right: 0.5rem;
+}
+
+.chatbot-panel .message-block {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.chatbot-panel .message-block .chat-message {
+  cursor: default;
+  border-radius: 10px;
+  margin: 0;
+  word-break: break-all;
+  box-sizing: border-box;
+  border-top-left-radius: 0px;
+  float: left;
+  font-size: 1.1rem;
+}
+
+.chatbot-panel .message-block .chat-sender,
+.chatbot-panel .message-block .chat-message {
+  align-self: flex-start;
+}
+
+.chatbot-panel .chatbot-logo,
+.chatbot-panel .gravatar {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+}
+
+.chatbot-panel .chat-meta {
+  display: flex;
+}
+
+.chatbot-panel .chat-sender {
+  font-size: 1.2rem;
+  font-weight: 500;	
+  line-height: 2rem;
+}
+
+.chatbot-panel .code-block {
+  border-radius: 5px;
+  flex-direction: column;
+  overflow-x: auto;
+}
+
+.chatbot-panel .code-block .code-block-header {
+  border-radius: 5px 5px 0 0 ;
+  display: block;
+  width: 100%;
+  background: var(--ivy-primary-color-grey-dark);
+  line-height: 2rem;
+  padding: 0 0.5rem;
+}
+
+.chatbot-panel .code-block .code-block-header span {
+  color: var(--ivy-primary-text-color);
+  font-weight: bold;
+}
+
+
+.chatbot-panel .code-block .code-wrapper {
+  padding: 5px;
+}
+
+.chatbot-panel .image-container {
+  width: 50%;
+  border-radius: 5px;
+  background: transparent;
+  position: relative;
+}
+
+.chatbot-panel .image-container .image {
+  width: 100%;
+  border-radius: 5px;
+}
