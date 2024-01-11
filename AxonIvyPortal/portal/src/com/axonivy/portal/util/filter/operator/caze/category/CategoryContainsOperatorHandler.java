@@ -9,7 +9,7 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 
 public class CategoryContainsOperatorHandler {
 
-  private static final String LIKE_FORMAT = "%s%%";
+  private static final String LIKE_FORMAT = "%%%s%%";
 
   private static CategoryContainsOperatorHandler instance;
 
