@@ -44,9 +44,7 @@ public class WidgetCategoryFilterBean implements Serializable {
   }
 
   public void onChangeOperator(DashboardFilter filter) {
-    if (filter.getOperator() == FilterOperator.NO_CATEGORY) {
-      filter.setValues(new ArrayList<>());
-    }
+    filter.setValues(new ArrayList<>());
   }
 
   public void loadCategories(DashboardFilter filter) {
@@ -82,4 +80,12 @@ public class WidgetCategoryFilterBean implements Serializable {
     return categoryTree;
   }
 
+  public boolean isShowCategorySelectionPanel(DashboardFilter filter) {
+    return !(filter.getOperator() == FilterOperator.NO_CATEGORY || filter.getOperator() == FilterOperator.CONTAINS
+        || filter.getOperator() == FilterOperator.NOT_CONTAINS);
+  }
+
+  public boolean isShowCategoryContainsPanel(DashboardFilter filter) {
+    return filter.getOperator() == FilterOperator.CONTAINS || filter.getOperator() == FilterOperator.NOT_CONTAINS;
+  }
 }
