@@ -16,7 +16,6 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public interface Process {
   public static final String DEFAULT_PROCESS_ICON = "si si-hierarchy-6 si-rotate-270";
-  public static final String INDEX_CUSTOM_FIELD = "portalSortIndex";
   public String getName();
   public String getStartLink();
   public String getDescription();
@@ -28,6 +27,7 @@ public interface Process {
   public String getImageUrl();
   public String getApplication();
   public String getSortIndex();
+  public String getPortalProcessInformation();
 
   default public List<String> getPermissions() {
     return new ArrayList<>();
@@ -69,14 +69,25 @@ public interface Process {
     }
     return getContentImageUrl(imageUri);
   }
-
+ 
   /**
-   * This method collect the index of process define by custom field name portalSortIndex
+   * This method collect the index of process define by Custom Field name portalSortIndex
    * 
    * @param process
    * @return the value of index in process custom field
    */
   default public String getSortIndexInCustomField(IWebStartable process) {
-    return process.customFields().value(INDEX_CUSTOM_FIELD);
+    return process.customFields().value(CustomFields.SORT_INDEX);
   }
+
+  /**
+   * This method get the override template for process information defined by Custom Field name portalProcessInformation
+   * 
+   * @param process
+   * @return the value of override template in process custom field
+   */
+  default public String getPortalProcessInformation(IWebStartable process) {
+    return process.customFields().value(CustomFields.PROCESS_INFORMATION);
+  }
+
 }
