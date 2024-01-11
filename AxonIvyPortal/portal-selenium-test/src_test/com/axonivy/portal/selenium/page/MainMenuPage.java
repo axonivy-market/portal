@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
 
+import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -69,4 +70,19 @@ public class MainMenuPage extends TemplatePage {
         .asFixedIterable().stream()
         .map(SelenideElement::getText).collect(Collectors.toList()));
   }
+  
+  public StatisticWidgetPage openStatisticPage() {
+    return NavigationHelper.navigateToStatisticPage();
+  }
+
+  public void closeMainMenu() {
+    waitLeftMenuReady();
+    if ($("a[id$='user-menu-required-login:toggle-menu']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).is(appear)) {
+      $("a[id$='user-menu-required-login:toggle-menu']").shouldBe(appear, DEFAULT_TIMEOUT)
+          .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+      $(".js-layout-main").hover();
+      $(".portal-home-logo.portal-home-logo-small").should(Condition.visible, DEFAULT_TIMEOUT);
+    }
+  }
+
 }

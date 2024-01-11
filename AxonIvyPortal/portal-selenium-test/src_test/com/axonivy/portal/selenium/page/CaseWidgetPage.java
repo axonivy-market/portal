@@ -6,11 +6,35 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 public class CaseWidgetPage extends TemplatePage {
+  private static final String CASE_ITEM_LIST_SELECTOR = "li[class='ui-datascroller-item']";
+  private static final String CASE_NAME_CSS_SELECTOR = "span[class*='case-header-name-cell']";
+  private static final String SELECT_COLUMNS_LINK_CSS_SELECTOR = "a[id$='case-config-button']";
+  private static final String SELECT_ITEM_XPATH =
+      "//*[@id=\"case-widget:case-columns-configuration:select-columns-form:columns-checkbox\"]/tbody/tr[%s]/td/div/div[2]";
+  private static final String APPLY_BUTTON_CSS_SELECTOR = "button[id$='select-columns-form:update-command']";
+  private static final String DEFAULT_COLUMNS_XPATH =
+      "//*[@id=\"case-widget:case-columns-configuration:select-columns-form:default-columns\"]/div[2]";
+
+  private String caseWidgetId;
+  
+  public CaseWidgetPage() {
+    this("case-widget");
+  }
+
+  public CaseWidgetPage(String caseWidgetId) {
+    this.caseWidgetId = caseWidgetId;
+  }
 
   @Override
   protected String getLoadedLocator() {
@@ -70,4 +94,49 @@ public class CaseWidgetPage extends TemplatePage {
   public SelenideElement getCreatorAvatar() {
     return $(".security-member-container > .has-avatar > .ui-avatar").shouldBe(appear, DEFAULT_TIMEOUT);
   }
+  
+  public String getCaseId(int caseIndex) {
+    $("[id$=':case-list']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement selectedCaseIdElement =
+        $(String.format("[id$='case-list-scroller:%d:case-item:case-item-container']", caseIndex))
+            .find(By.cssSelector("[id$=':case-id-cell']"));
+    return selectedCaseIdElement.getText();
+  }
+
+  public SelenideElement openActionStepMenu(int index) {
+    String menuSelector = String.format(
+        "[id='case-widget:case-list-scroller:%d:case-item:case-item-action-form:action-step-component:action-steps-menu']",
+        index);
+    String menuPanelSelector = String.format(
+        "[id='case-widget:case-list-scroller:%d:case-item:case-item-action-form:action-step-component:action-steps-panel']",
+        index);
+    $(menuSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return $(menuPanelSelector).shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getSaveFilterDialog() {
+    $(By.id(caseWidgetId + ":filter-save-action")).shouldBe(getClickableCondition()).click();
+    $(By.id(caseWidgetId + ":filter-save-form:save-filter-set-name-input")).shouldBe(Condition.visible,
+        DEFAULT_TIMEOUT);
+    return $(By.id(caseWidgetId + ":save-filter-set-dialog")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public CaseDetailsPage openDetailsOfCaseHasName(String caseName) {
+    List<SelenideElement> caseItems = $$(CASE_ITEM_LIST_SELECTOR);
+    for (SelenideElement caseItem : caseItems) {
+      if (caseItem.$(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText().equals(caseName)) {
+        SelenideElement caseInfoRow = caseItem.$(By.cssSelector("span[id*='case-info-row']")).scrollTo();
+        waitForElementClickableThenClick(caseInfoRow);
+        caseInfoRow.shouldBe(disappear, DEFAULT_TIMEOUT);
+        return new CaseDetailsPage();
+      }
+    }
+    throw new NoSuchElementException("Cannot find case has name " + caseName);
+  }
+
+  public void openAdditionalCaseDetails(SelenideElement actionMenu) {
+    actionMenu.$("[id$=':show-additional-case-details-link']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
+  }
+
 }

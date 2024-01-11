@@ -2,16 +2,20 @@ package com.axonivy.portal.selenium.common;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-
+import static java.time.Duration.ZERO;
+import static com.codeborne.selenide.Condition.exist;
 import java.time.Duration;
+import java.util.function.Supplier;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.WebDriverRunner;
 
 
 public final class WaitHelper {
@@ -53,4 +57,36 @@ public final class WaitHelper {
       action.run();
     }
   }
+  
+  /**
+   * Some UI are the same before and after AJAX, use this method only in that scenario. Ask the team if using this
+   */
+  public static void waitForActionComplete(String cssSelector, Runnable action) {
+    ((JavascriptExecutor) WebDriverRunner.getWebDriver())
+        .executeScript("$(\"" + cssSelector + "\").css('background-color', 'rgb(250, 0, 0)')");
+    $(cssSelector).shouldHave(Condition.cssValue("background-color", "rgb(250, 0, 0)"));
+    action.run();
+    $(cssSelector).shouldNotHave(Condition.cssValue("background-color", "rgb(250, 0, 0)"));
+  }
+
+  public static void assertTrueWithWait(Supplier<Boolean> supplier) {
+    try {
+      wait(WebDriverRunner.getWebDriver()).until(webDriver -> supplier.get());
+    } catch (Exception e) {
+      e.printStackTrace();
+      assertTrue(false);
+    }
+  }
+
+  /**
+   * Use this instead of {@code Assertions} methods so that Selenide would take screenshots if errors. This is a
+   * workaround because we cannot use @ExtendWith({ScreenShooterExtension.class}) with
+   * `WebDriverRunner.getWebDriver().quit();` in `@AfterEach`
+   */
+  public static void assertTrue(boolean condition) {
+    if (!condition) {
+      $("ASSERTION FAILED, CHECK STACK TRACE from BaseTest.assertTrue").shouldBe(exist, ZERO);
+    }
+  }
+
 }

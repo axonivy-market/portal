@@ -74,7 +74,7 @@ public class DashboardNewsWidgetPage extends TemplatePage {
     $(selectIconDialogId).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
-  private String selectNewsLanguage(String languageTag) {
+  public String selectNewsLanguage(String languageTag) {
     var languageTabClass = "li.ui-tabs-header.news-language-tab-" + languageTag;
     $("[id$=':manage-news-tabview']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("ul.ui-tabs-nav").$(languageTabClass).shouldBe(getClickableCondition()).click();
@@ -147,5 +147,23 @@ public class DashboardNewsWidgetPage extends TemplatePage {
     $("[id$=':delete-news-dialog']").shouldBe(appear, DEFAULT_TIMEOUT).$("[id$=':remove-widget-button']")
         .shouldBe(getClickableCondition()).click();
     $("[id$=':delete-news-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+  
+  public void clickOnTitle(String tabIndex) {
+    SelenideElement newsTitleInput = $("input" + String.format(MANAGE_NEWS_TABVIEW_FORMAT, tabIndex, "news-title"))
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    newsTitleInput.click();
+  }
+  
+  public SelenideElement getTranslationOverlayPanel(int index) {
+    SelenideElement translationOverlay = $(String.format("div[id$=':%s:overlay-panel-input']", index));
+    waitUntilElementToBeClickable(translationOverlay);
+    translationOverlay.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
+    return translationOverlay;
+  }
+  
+  public void findTranslationButton(String tabIndex) {
+    $(String.format("[id$=':%s:translate-language-button']", tabIndex)).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 }

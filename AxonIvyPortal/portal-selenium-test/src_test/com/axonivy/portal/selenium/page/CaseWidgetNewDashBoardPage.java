@@ -11,7 +11,6 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class CaseWidgetNewDashBoardPage extends TemplatePage {
-
   private static final String YOUR_CASES_WIDGET = "Your Cases";
   private static final String FILTER_CASE_NAME = "Case name";
   private static final String FILTER_CASE_STATE = "State";
