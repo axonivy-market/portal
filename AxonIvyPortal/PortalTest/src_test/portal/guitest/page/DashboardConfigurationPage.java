@@ -47,7 +47,8 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
   
   public void createPrivateDashboardFromScratch() {
-    createPrivateDashboard();
+    clickByCssSelector("a[id$='create-dashboard-action'].js-private-dashboard");
+    waitForElementDisplayed(By.cssSelector("div[id$=':create-new-dashboard-section']"), true);
     clickByCssSelector("a[id$=':create-from-scratch']");
     waitForElementDisplayed(By.cssSelector("div[id$=':dashboard-creation-details-dialog']"), true);
   }
