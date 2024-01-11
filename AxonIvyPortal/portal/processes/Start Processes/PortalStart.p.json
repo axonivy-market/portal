@@ -4650,5 +4650,37 @@
       "visual" : {
         "at" : { "x" : 376, "y" : 3848 }
       }
+    }, {
+      "id" : "f269",
+      "type" : "RequestStart",
+      "name" : "PortalChatDashboard",
+      "config" : {
+        "signature" : "PortalChatDashboard"
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 3976 }
+      },
+      "connect" : [
+        { "id" : "f273", "to" : "f271" }
+      ]
+    }, {
+      "id" : "f270",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 376, "y" : 3976 }
+      }
+    }, {
+      "id" : "f271",
+      "type" : "DialogCall",
+      "name" : "ChatDashboard",
+      "config" : {
+        "dialog" : "com.axonivy.portal.component.ChatDashboard:start()"
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 3976 }
+      },
+      "connect" : [
+        { "id" : "f277", "to" : "f270" }
+      ]
     } ]
 }

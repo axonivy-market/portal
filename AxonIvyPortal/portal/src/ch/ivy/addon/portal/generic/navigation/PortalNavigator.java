@@ -40,6 +40,7 @@ public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_NEW_DASHBOARD_CONFIGURATION = "Start Processes/PortalStart/PortalDashboardConfiguration.ivp";
   private static final String PORTAL_PROCESS_INFO = "Start Processes/PortalStart/ProcessInformation.ivp";
   private static final String PORTAL_DASHBOARD_DETAILS = "Start Processes/PortalStart/DashboardDetails.ivp";
+  private static final String PORTAL_CHATBOT = "Start Processes/PortalStart/PortalChatDashboard.ivp";
 
   public static final String PORTAL_DASHBOARD_START = "/DefaultDashboardPage.ivp";
   public static final String PORTAL_PROCESS_START = "/DefaultProcessStartListPage.ivp";
@@ -276,5 +277,9 @@ public final class PortalNavigator extends BaseNavigator{
   
   public static String buildNotificationFullPageUrl() {
     return buildUrlByKeyword(PORTAL_NOTIFICATION_FULLPAGE_START, PORTAL_NOTIFICATION_FULLPAGE, new HashMap<>());
+  }
+
+  public static String buildChatbotUrl() {
+    return buildUrlByKeyword("PortalChatDashboard.ivp", PORTAL_CHATBOT, new HashMap<>());
   }
 }
