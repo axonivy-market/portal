@@ -58,4 +58,8 @@ public class GlobalSearchResultPage extends TemplatePage {
   public String getGlobalSearchByFieldTextForCaseTab() {
     return $("span[id = 'search-results-tabview:case-results:global-search-text']").shouldBe(appear, DEFAULT_TIMEOUT).getText();
   }
+
+  public void waitUtilProcessWidgetDisplayed() {
+    $("[id='search-results-tabview:process-results:process-list']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
 }

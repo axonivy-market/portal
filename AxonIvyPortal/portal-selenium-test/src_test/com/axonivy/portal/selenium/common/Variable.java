@@ -60,7 +60,14 @@ public enum Variable {
   CASE_DETAIL("Portal.CaseDetails"),
   SHOW_AVATAR("Portal.ShowAvatar"),
   GLOBAL_SEARCH_BY_TASK_FIELDS("Portal.SearchScope.ByTaskFields"),
-  GLOBAL_SEARCH_BY_CASE_FIELDS("Portal.SearchScope.ByCaseFields");
+  GLOBAL_SEARCH_BY_CASE_FIELDS("Portal.SearchScope.ByCaseFields"),
+  DASHBOARD("Portal.Dashboard"),
+  GLOBAL_FOOTER_INFO("Portal.GlobalFooterInfo"),
+  USER_MENU("Portal.UserMenu"),
+  DEFAULT_THEME_MODE("Portal.Theme.Mode"),
+  ENABLE_SWITCH_THEME_BUTTON("Portal.Theme.EnableSwitchThemeModeButton");
+
+
 
   private String key;
 

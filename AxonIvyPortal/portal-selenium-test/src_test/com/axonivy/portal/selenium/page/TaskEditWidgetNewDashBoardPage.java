@@ -5,6 +5,8 @@ import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
+import org.openqa.selenium.WebElement;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -247,5 +249,44 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public SelenideElement getAddedFieldRemoveLink(String field) {
     return getColumnManagementDialog().$("tbody td.js-column-field-" + field + " a").shouldBe(getClickableCondition(),
         DEFAULT_TIMEOUT);
+  }
+
+  public WebElement openMultiLanguageDialogWhenAddWidget() {
+    getAddLanguageButton().click();
+    getMultiLanguageDialogWhenAddWidget().shouldBe(Condition.appear, DEFAULT_TIMEOUT).$(".ui-dialog-title")
+        .shouldBe(appear, DEFAULT_TIMEOUT).click();
+    return getMultiLanguageDialogWhenAddWidget();
+  }
+
+  private SelenideElement getMultiLanguageDialogWhenAddWidget() {
+    return $(
+        "div[id='widget-configuration-form:new-widget-configuration-component:title-language-config:multiple-languages-dialog']");
+  }
+
+  public void cancelMultiLanguageDialogWhenAddWidget() {
+    $("a[id$=':multi-language-cancel-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    getMultiLanguageDialogWhenAddWidget().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+  
+  public WebElement getConfigurationFilter() {
+    return $("[id='widget-configuration-form:new-widget-configuration-component:filter-container']").shouldBe(appear,
+        DEFAULT_TIMEOUT);
+  }
+  
+  public void saveColumn() {
+    getColumnManagementDialog().$("button[id$='column-management-save-btn']").click();
+    $("div[id$=':column-management-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    waitPreviewTableLoaded();
+  }
+  
+  public SelenideElement getConfigurationDialog() {
+    $("div[id='new-widget-configuration-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("[id='new-widget-configuration-dialog_title']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    return $("div[id='new-widget-configuration-dialog']");
+  }
+
+  public void closeConfigurationDialog() {
+    getConfigurationDialog().$(".ui-dialog-footer").$("a").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div[id='new-widget-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 }

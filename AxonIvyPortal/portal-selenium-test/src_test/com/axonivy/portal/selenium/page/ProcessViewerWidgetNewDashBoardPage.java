@@ -19,13 +19,6 @@ public class ProcessViewerWidgetNewDashBoardPage extends TemplatePage {
     clickSaveProcessViewerWidget();
   }
 
-  private void selectProcess(String processName) {
-    getSelectedProcess().click();
-    getSelectedProcess().find("input").clear();
-    getSelectedProcess().find("input").sendKeys(processName);
-    $("tr[data-item-label='" + processName + "']").click();
-  }
-
   public SelenideElement getSelectedProcess() {
     return $("span[id$=':selected-process']");
   }
@@ -44,5 +37,22 @@ public class ProcessViewerWidgetNewDashBoardPage extends TemplatePage {
 
   public ElementsCollection getSelectedProcessList() {
     return $$("span[id$=':selected-process_panel'] tr");
+  }
+  
+  public void selectProcess(String processName) {
+    getSelectedProcess().shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    getSelectedProcess().find("input").clear();
+    getSelectedProcess().find("input").sendKeys(processName);
+    $("tr[data-item-label='" + processName + "']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+  
+  public SelenideElement getConfigurationDialog() {
+    unfocusAllInputs();
+    return $("div[id='new-widget-configuration-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void unfocusAllInputs() {
+    $("[id='new-widget-configuration-dialog_title']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
   }
 }

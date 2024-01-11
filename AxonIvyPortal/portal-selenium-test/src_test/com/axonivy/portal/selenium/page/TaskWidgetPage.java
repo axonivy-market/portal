@@ -164,4 +164,35 @@ public class TaskWidgetPage extends TemplatePage {
   public SelenideElement getResponsibleAvatar() {
     return $(".security-member-container > .has-avatar > .ui-avatar").shouldBe(appear, DEFAULT_TIMEOUT);
   }
+  
+  public TaskTemplatePage clickOnSideStepAction(int taskIndex, int sideStepIndex) {
+    String sideStepsId = String.format(
+        "task-widget:task-list-scroller:%d:task-item:task-action:additional-options:task-additional-actions",
+        taskIndex);
+    SelenideElement sideStepPanel = $("[id$='" + sideStepsId + "']");
+    ElementsCollection sideSteps = sideStepPanel.findAll(By.className("option-item"));
+    sideSteps.get(sideStepIndex).click();
+    return new TaskTemplatePage();
+  }
+
+  public SelenideElement getSaveFilterDialog() {
+    $("[id$='task-widget:filter-save-action']").shouldBe(getClickableCondition()).click();
+    $(By.id("task-widget:filter-save-form:save-filter-set-name-input")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("[id$=':save-filter-set-name-input']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $(By.id("task-widget:save-filter-set-dialog")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void closeSaveFilterDialog() {
+    $("a[id^='task-widget:filter-save-form']").shouldBe(getClickableCondition()).click();
+    $(By.id("task-widget:save-filter-set-dialog")).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  public TaskDetailsPage openTaskDetail(int index) {
+    openTaskWithAccessTaskDetailsBehaviour(index);
+    TaskDetailsPage detailsPage = new TaskDetailsPage();
+    detailsPage.waitPageLoaded();
+    return new TaskDetailsPage();
+  }
+
 }
+

@@ -4,6 +4,7 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
@@ -39,4 +40,18 @@ public class StatisticEditWidgetNewDashboardPage extends TemplatePage {
     $("[id$=':new-widget-configuration-component:statistic-list_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
+  public void clickPreviewButton() {
+    $("button[id$='preview-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='widget-configuration-form:new-widget-configuration-component:preview-statistic']").find("canvas")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    $("button[id$='preview-button']").shouldBe(appear, DEFAULT_TIMEOUT).hover();
+  }
+  
+  public SelenideElement getConfigurationDialog() {
+    SelenideElement statisticDialog = $("div[id='new-widget-configuration-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    // We use Sleeper here to wait for chart render completely, because the
+    // statistic dialog was render with an animation by canvas.
+    Sleeper.sleep(1000);
+    return statisticDialog;
+  }
 }

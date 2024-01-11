@@ -5,13 +5,19 @@ import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
+import com.axonivy.portal.selenium.common.Sleeper;
+import com.axonivy.portal.selenium.common.WaitHelper;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 
 public class NewDashboardPage extends TemplatePage {
   private static final String IVY_PROCESS = "IVY_PROCESS";
@@ -680,7 +686,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void checkDisplayedCaseWidgetContainer() {
-    getCaseWidgetContainer().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    getCaseWidgetContainer().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   private SelenideElement getCaseWidgetContainer() {
@@ -700,7 +706,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void checkDisplayedTaskWidgetContainer() {
-    getTaskWidgetContainer().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    getTaskWidgetContainer().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   private SelenideElement getTaskWidgetContainer() {
@@ -724,7 +730,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getWidgetNoti() {
-    return $("div[gs-id$='process_1']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$(".widget__filter-noti-number");
+    return $("div[gs-id$='process_1']").shouldBe(appear, DEFAULT_TIMEOUT).$(".widget__filter-noti-number");
   }
 
   public DashboardNewsWidgetPage selectNewsFeedWidget(String newWidgetName) {
@@ -753,10 +759,130 @@ public class NewDashboardPage extends TemplatePage {
 
   public void waitForCaseWidgetLoaded() {
     checkDisplayedCaseWidgetContainer();
-    getCaseWidgetTable().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    getCaseWidgetTable().shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
   public SelenideElement getFirstImageProcess() {
     return $(".image-process-item-image").shouldBe(Condition.exist, DEFAULT_TIMEOUT);
   }
+  
+  public void startTask(int index) {
+    String cssSelector =
+        String.format("a[id$=':task-component:dashboard-tasks:%d:dashboard-tasks-columns:0:start-task']", index);
+    $(cssSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void waitForTaskStartButtonDisplay(int index) {
+    String cssSelector = String.format("a[id*='task-component:dashboard-tasks:%d']", index);
+    $(cssSelector).shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public ChatPage openChatDialog() {
+    $("[id='toggle-chat-panel-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return new ChatPage();
+  }
+  
+  public void clickOnGlobalSearch() {
+    $("a[id='global-search-item']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  }
+  
+  public SelenideElement getTopBar() {
+    return $("[id='top-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement openWidgetFilter(int index) {
+    $("[id$='filter-sidebar-link-" + index + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    var result = $("div[id$=':filter-overlay-panel-" + index + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    result.$("[class*='js-loading-']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    result.$(".filter-overlay-panel__header").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    return result;
+  }
+
+  public void closeWidgetFilter(int index) {
+    var widgetFilterPanel = $("div[id$=':filter-overlay-panel-" + index + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    widgetFilterPanel.$(".ui-overlaypanel-footer__cancel").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    widgetFilterPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+  
+  public WebElement openWidgetInformation(int index) {
+    String widgetInfo = String.format("button[id$=':info-sidebar-link-%d']", index);
+    $(widgetInfo).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+
+    String infoPanel = String.format("div[id$='info-overlay-panel-%d']", index);
+    $(infoPanel).shouldBe(appear, DEFAULT_TIMEOUT).$(".widget-info--type")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(infoPanel).$("[class^='js-loading-']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    return $(infoPanel).shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public WebElement waitAndGetProcessViewerWidget(int index) {
+    var widget =
+        $$(".process-viewer-widget-panel").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT)
+            .get(index).shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForProcessViewerLoading(widget);
+    return widget.ancestor(".grid-stack-item");
+  }
+
+  public void waitForProcessViewerLoading(SelenideElement processViewer) {
+    processViewer.$("[id$='loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    WebDriver driver = WebDriverRunner.getWebDriver();
+    processViewer.$("iframe").shouldBe(appear, DEFAULT_TIMEOUT);
+    switchToIframeWithId("process-viewer");
+    $("svg.sprotty-graph").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    driver.switchTo().defaultContent();
+    waitForWidgetLoadedByExpandThenCollapse(processViewer);
+  }
+  
+  private void waitForWidgetLoadedByExpandThenCollapse(SelenideElement widget) {
+    widget.$(".expand-link").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    widget.$(".collapse-link").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    widget.$(".expand-link").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public WebElement waitAndGetStatisticChart(int index) {
+    var widget = $$(".statistic-chart-widget").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT)
+        .get(index).shouldBe(appear, DEFAULT_TIMEOUT);
+    widget.$("[id$='loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    waitForWidgetLoadedByExpandThenCollapse(widget);
+    // We use Sleeper here to wait for chart render completely, because the
+    // statistic dialog was render with an animation by canvas.
+    Sleeper.sleep(1000);
+    return widget.ancestor(".grid-stack-item");
+  }
+  
+  public WebElement waitAndGetNewsWidget(int index) {
+    var widget = $$(".news-widget").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT).get(index)
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    widget.$("[id$='loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    widget.$("[id$=':add-news-button']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return widget.ancestor(".grid-stack-item");
+  }
+  
+  public String selectNewsLanguage(String languageTag) {
+    var languageTabClass = "li.ui-tabs-header.news-language-tab-" + languageTag;
+    $("[id$=':manage-news-tabview']").shouldBe(appear, DEFAULT_TIMEOUT).$("ul.ui-tabs-nav").$(languageTabClass)
+        .shouldBe(getClickableCondition()).click();
+    return $(languageTabClass).shouldBe(appear, DEFAULT_TIMEOUT).shouldHave(Condition.cssClass("ui-tabs-selected"))
+        .attr("data-index");
+  }
+
+  public ChangePasswordPage openChangePasswordPage() {
+    clickUserMenuItem("change-password-menu-item");
+    return new ChangePasswordPage();
+  }
+  
+  private void clickUserMenuItem(String menuItemSelector) {
+    waitForElementDisplayed(By.id("user-settings-menu"), true);
+    try {
+      clickByJavaScript(findElementById("user-settings-menu"));
+      $("ul[id$='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    } catch (Error e) {
+      clickByJavaScript(findElementById("user-settings-menu"));
+    }
+    waitForElementDisplayed(By.id(menuItemSelector), true);
+    clickByJavaScript(findElementById(menuItemSelector));
+    WaitHelper.assertTrueWithWait(() -> !$("#user-setting-container").isDisplayed());
+  }
+
+
 }

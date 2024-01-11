@@ -1,8 +1,12 @@
 package com.axonivy.portal.selenium.common;
 
 import static com.axonivy.portal.selenium.common.Variable.SHOW_USER_GUIDE;
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.refresh;
+import static com.codeborne.selenide.Condition.exist;
+import static java.time.Duration.ZERO;
+
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -15,6 +19,7 @@ import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
+import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
 /**
  * A base test that other tests extend it. It will test on browser IE by default. It provides feature to take screenshot
  * of failed tests and utility methods.
@@ -24,7 +29,7 @@ public class BaseTest {
 
   private String designerLogoutUrl = "http://localhost:8081/designer/logout";
   private final static String LOGIN_URL_PATTERN = "/PortalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
-  private final static String PORTAL_HOME_PAGE_URL = "/portal/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
+  public final static String PORTAL_HOME_PAGE_URL = "/portal/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
   protected final static Duration DEFAULT_TIMEOUT = Duration.ofSeconds(45);
   
   public BaseTest() {}
@@ -69,7 +74,9 @@ public class BaseTest {
   protected String portalPasswordResetUrl = "portal/1549F58C18A6C562/PasswordResetPage.ivp?token=%s&username=%s";
   protected String createExpressProcess = "axonIvyExpress/15798655494F25E1/AxonIvyExpressWF.ivp";
   protected String cleanSessionCacheUrl = "http://localhost:8081/designer/pro/PortalKitTestHelper/17208192E0AF4185/cleanSessionCache.ivp";
+  protected String showProcessViewerUrl = "portal/1549F58C18A6C562/PortalProcessViewer.ivp?caseId=%s&processKey=%s";
   protected String createSampleDashboardUrl = "portalKitTestHelper/17F2050944B46BB0/createSampleDashboard.ivp";
+  protected String processViewerExampleInFrameUrl = "portal-components-examples/1821592826979C20/showProcessViewerOfLeaveRequestUsingProcessLink.ivp";
   protected String createTestingEscalationTasksUrl = "portal-developer-examples/162511D2577DBA88/CreateTaskForEscalation.ivp";
   protected String createJSonFileUrl = "PortalKitTestHelper/153CACC26D0D4C3D/createJSonFile.ivp?filePath=%s&key=%s";
   protected String grantDashboardWriteOwnPermissionUrl = "PortalKitTestHelper/14DE09882B540AD5/grantDashboardWriteOwnPermission.ivp";
@@ -91,6 +98,9 @@ public class BaseTest {
   protected String denyShareLinkCaseDetailsPermission = "PortalKitTestHelper/14DE09882B540AD5/denyShareLinkCaseDetailsPermission.ivp";
   protected String grantShareLinkTaskDetailsPermission = "PortalKitTestHelper/14DE09882B540AD5/grantShareLinkTaskDetailsPermission.ivp";
   protected String denyShareLinkTaskDetailsPermission = "PortalKitTestHelper/14DE09882B540AD5/denyShareLinkTaskDetailsPermission.ivp";
+  protected String securityMemberNameAndAvatarExampleInFrameUrl = "/portal-components-examples/182A5FCAF7FC6B1A/showSecurityMemberNameAndAvatarExamples.ivp?embedInFrame";
+  protected String defaultProcessImageSelectionExampleUrl = "portal-developer-examples/179D499523153784/start.ivp";
+  protected String createSampleProcesses = "portalKitTestHelper/153CACC26D0D4C3D/createSampleProcesses.ivp";
 
   protected void redirectToNewDashBoard() {
     open(EngineUrl.createProcessUrl(PORTAL_HOME_PAGE_URL));
@@ -252,5 +262,40 @@ public class BaseTest {
       e.printStackTrace();
     }
     redirectToRelativeLink(String.format(createJSonFileUrl,filepath,key));
+  }
+  
+  protected void showNewDashboard() {
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+  }
+  
+  public ExpressResponsible setExpressResponsible(String userName, boolean isGroup) {
+    ExpressResponsible user = new ExpressResponsible();
+    user.setResponsibleName(userName);
+    user.setIsGroup(isGroup);
+    return user;
+  }
+  
+  public void assertTrue(boolean condition) {
+    assertTrue(condition, "");
+  }
+  
+  /**
+   * Use this instead of {@code Assertions} methods so that Selenide would take screenshots if errors. This is a
+   * workaround because we cannot use @ExtendWith({ScreenShooterExtension.class}) with
+   * `WebDriverRunner.getWebDriver().quit();` in `@AfterEach`
+   */
+  public void assertTrue(boolean condition, String message) {
+    if (!condition) {
+      System.out.println(message);
+      $("ASSERTION FAILED, CHECK STACK TRACE from BaseTest.assertTrue").shouldBe(exist, ZERO);
+    }
+  }
+
+  public void redirectToRelativeLinkWithEmbedInFrame(String relativeProcessStartUrl) {
+    try {
+      open(UrlHelpers.generateAbsoluteProcessStartLink(relativeProcessStartUrl) + "?embedInFrame");
+    } catch (Exception e) {
+      throw new PortalGUITestException(e);
+    }
   }
 }
