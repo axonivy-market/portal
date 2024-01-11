@@ -1,0 +1,88 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui" 
+  xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
+
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:define name="title">Portal Chat</ui:define>
+    <ui:define name="head">
+      <!-- Chatbot -->
+      <h:outputScript library="js" name="chatbot-utils.js" />
+      <h:outputScript library="js" name="chatbot.js" />
+      <h:outputStylesheet library="css" name="chatbot.css" />
+
+      <!-- Highlight JS -->
+      <h:outputScript library="js" name="highlightJS/highlight.min.js" />
+      <h:outputStylesheet library="css" name="atom-one-dark.min.css" />
+
+    </ui:define>
+    <ui:define name="pageContent">
+      <div class="ui-g">
+        <div class="ui-g-12 portal-section-container card">
+          <h:form id="chat-form">
+            <script type="text/javascript">
+              $(document).ready(function(){
+                var contentHeight = $(".js-layout-content").get(0).offsetHeight - 40;
+                $(".js-chatbot-panel").height(contentHeight);
+              });
+
+              hljs.configure({
+                ignoreUnescapedHTML: true
+              });
+
+              var userName = "#{ivy.session.getSessionUserName()}";
+              var contextPath = "#{ivy.task.getApplication().getContextPath()}";
+              var resource = new IvyUri().rest() + "/chatbot";
+      
+              var view = new View(resource);
+              var chatbot = new ChatBot(resource, view);
+    
+            </script>
+    
+            <div id="chat-panel" class="chatbot-panel js-chatbot-panel">
+              <div class="message-list">
+                <h:panelGroup id="chat-message-list" layout="block"
+                  styleClass="chatbot-message-list js-chatbot-message-list ui-g" />
+                <p:scrollTop target="chat-message-list" />
+              </div>
+              <h:panelGroup id="chat-send-form-container" layout="block" styleClass="chat-send-form">
+                  <p:inputTextarea id="message-input-field" onkeydown="chatbot.onKeyEvent(event)"
+                    placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/typeMessage')}"
+                    maxlength="2500"
+                    styleClass="message-list-content-send-input js-chatbot-input-message message-list-content-send-input" />
+                  <p:commandButton icon="si si-send-email" onclick="chatbot.sendMessage()"
+                    styleClass="message-list-content-send-button" global="false" type="button" />
+                </h:panelGroup>
+            </div>
+      
+            <div class="js-message-template u-hidden chat-message-container ui-g-12">
+              <div class="chat-meta">
+                <div class="avatar-block">
+                  <div class="js-user-avatar">
+                    <pc:securityMemberNameAndAvatar
+                      displayName="#{documentAuthorName}" securityMember="#{ivy.session.sessionUser}" />
+                  </div>
+                  <p:graphicImage styleClass="chatbot-logo js-chatbot-avatar"
+                    name="logo_small" library="ivy-branding"
+                    alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
+                </div>
+                <div class="message-block">
+                  <span class="chat-sender js-sender" />
+                  <div class="chat-message js-message" />
+                </div>
+              </div>
+
+            </div>
+            <div class="js-message-components u-hidden">
+              <p:link styleClass="external-link js-external-link" href="" target="_blank" />
+            </div>
+          </h:form>
+        </div>
+      </div>
+    </ui:define>
+
+  </ui:composition>
+</h:body>
+</html>

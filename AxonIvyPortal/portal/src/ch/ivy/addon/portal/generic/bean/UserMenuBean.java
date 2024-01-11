@@ -212,7 +212,7 @@ public class UserMenuBean implements Serializable {
   private void executeJSResetPortalMenuState() {
     PrimeFaces.current().executeScript("resetPortalLeftMenuState()");
   }
-  
+
   private void openTaskLosingConfirmationDialog() {
     PrimeFaces.current().executeScript("PF('logo-task-losing-confirmation-dialog').show()");
   }
@@ -260,13 +260,21 @@ public class UserMenuBean implements Serializable {
   public void navigateToUserProfile() throws IOException {
     getExternalContext().redirect(getUserProfileUrl());
   }
-  
+
+  public void navigateToChatbotDashboard() throws IOException {
+    getExternalContext().redirect(getChatbotUrl());
+  }
+
   private void navigateToTargetPage() throws IOException {
     getExternalContext().redirect(targetPage);
   }
   
   private String getUserProfileUrl() {
     return PortalNavigator.buildUserProfileUrl();
+  }
+
+  private String getChatbotUrl() {
+    return PortalNavigator.buildChatbotUrl();
   }
 
   private void navigateToPortalManagement() throws IOException {
@@ -354,5 +362,15 @@ public class UserMenuBean implements Serializable {
     data.setUsername(Ivy.session().getSessionUserName());
     
     return new Gson().toJson(data);
+  }
+
+  public void navigateToChatBotOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+      openTaskLosingConfirmationDialog();
+      targetPage = getChatbotUrl();
+    } else {
+      executeJSResetPortalMenuState();
+      navigateToChatbotDashboard();
+    }
   }
 }

@@ -61,6 +61,12 @@
             </h:panelGroup>
           </p:commandLink>
         </li>
+        <li class="topbar-item">
+          <p:commandLink id="chat-bot"
+               actionListener="#{userMenuBean.navigateToChatBotOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}">
+            <i class="topbar-icon si si-headphones-customer-support-human-1" />
+          </p:commandLink>
+        </li>
         <li jsf:rendered="#{chatRendererBean.isChatRendered}" class="topbar-item chat-item">
           <p:commandLink id="toggle-chat-panel-command" global="false" styleClass="notification-badge mod-chat-menu">
             <i class="topbar-icon si si-messages-bubble" />
