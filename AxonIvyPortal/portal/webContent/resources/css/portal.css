@@ -1788,7 +1788,7 @@ i.dashboard-icon-drag-drop {
   height: 700px;
   visibility: visible;
   opacity: 1;
-  overflow: auto;
+  overflow: hidden;
 }
 .filter-panel {
   background: var(--notification-panel-color);
@@ -1803,4 +1803,8 @@ i.dashboard-icon-drag-drop {
 }
 .table-configuration{
   height:700px;
+}
+.filter-panel .filter-area{
+  height:90%;
+  overflow:auto;
 }

@@ -15,7 +15,7 @@
 
 <!-- Table configuration -->
 <h:panelGroup id="widget-preview" styleClass="card table-configuration u-hidden-sm-down" layout="block">
-  <div class="ui-g" onloadeddata="console.log('load lai');">
+  <div class="ui-g">
     <div class="ui-g-12 widget-preview__header">
       <h4>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/tableConfiguration')}</h4>
     </div>
@@ -45,8 +45,19 @@
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/tableConfigurationDesc')}" />
     </div>
     <div class="ui-g-4">
-      <p:commandButton id="show-filter" styleClass="Fright" icon="si si-filter-1" value="Filters"
+      <p:commandButton id="show-filter" styleClass="Fright" icon="si si-filter-1" 
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}"
         type="button" onclick="openFilterPanel(event);"/>
+      <p:commandButton id="manage-column"
+        icon="si si-layers-grid-settings" 
+        styleClass="Fright u-mar-right-15"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
+        update="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" 
+        oncomplete="PF('column-management-dialog').show()" 
+        process="@this" 
+        global="false" >
+        <p:resetInput target="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" />
+      </p:commandButton>
     </div>
 
     <!-- Widget data -->
@@ -56,20 +67,22 @@
   </div>
 </h:panelGroup>
 
- <h:panelGroup id="filter-panel" layout="block" styleClass="filter-panel js-filter-panel active" >
+  <h:panelGroup id="filter-panel" layout="block" styleClass="filter-panel js-filter-panel active" >
       <div class="ui-g-12 MarTop20">
         <div class="ui-g-4 ui-md-5">
           <strong>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters")}</strong>
         </div>
         <div class="ui-g-8 ui-md-7">
           <p:commandButton id="preview-button" oncomplete="registerClickOnPanelEvent();"
-            value="Apply"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
             styleClass="Fright preview-button u-hidden-sm-down" icon="si si-button-refresh-arrow"
             update="#{componentToUpdateOnPreview}" />
         </div>
       </div>
+      <div class="ui-g-12 filter-area" >
+        <ui:insert name="widgetFilterContent" />
+      </div>
       <ui:insert name="multiLanguageDialog" />
-      <ui:insert name="widgetFilterContent" />
   </h:panelGroup>
  
 
