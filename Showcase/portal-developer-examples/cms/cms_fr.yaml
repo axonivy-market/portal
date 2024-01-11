@@ -196,6 +196,8 @@ Processes:
       #Résumé
       Le demandeur recevra un résumé de la demande
       Connaître le résultat
+  MoreInformation:
+    description: Cliquez sur Plus d'informations pour afficher la page d'information personnalisée sur le processus.
   Payment:
     Tasks:
       Pay:
