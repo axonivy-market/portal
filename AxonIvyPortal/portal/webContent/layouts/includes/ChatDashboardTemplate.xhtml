@@ -35,10 +35,9 @@
               var userName = "#{ivy.session.getSessionUserName()}";
               var contextPath = "#{ivy.task.getApplication().getContextPath()}";
               var resource = new IvyUri().rest() + "/chatbot";
-      
+
               var view = new View(resource);
               var chatbot = new ChatBot(resource, view);
-    
             </script>
     
             <div id="chat-panel" class="chatbot-panel js-chatbot-panel">
