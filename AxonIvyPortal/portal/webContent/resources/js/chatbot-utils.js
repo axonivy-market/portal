@@ -122,6 +122,12 @@ const convertImage = paragraph => {
   return elemToString(imageContainer);
 };
 
+const convertParagraph = paragraph => {
+  const result = document.createElement('p');
+  result.innerHTML = paragraph;
+  return elemToString(result);
+}
+
 // Other Functions
 
 // Corrects a URL by adding 'http://' if missing.
@@ -144,6 +150,7 @@ const parseParagraph = paragraph => {
     const words = paragraph.split(' ');
     const formattedWords = words.map(w => addLink(w));
     paragraph = formattedWords.join(' ');
+    paragraph = convertParagraph(paragraph);
   }
 
   return paragraph;
