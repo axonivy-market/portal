@@ -797,7 +797,7 @@
       },
       "visual" : {
         "at" : { "x" : 2440, "y" : 1800 },
-        "labelOffset" : { "x" : 169, "y" : 17 }
+        "labelOffset" : { "x" : 169, "y" : 20 }
       },
       "connect" : [
         { "id" : "f81", "to" : "f75" }
