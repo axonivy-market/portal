@@ -15,6 +15,6 @@ private final String label;
   }
   
   public String getLabel() {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/timePeriod/" + label);
+    return Ivy.cms().co("/Labels/statistic/timePeriod/" + label);
   }
 }

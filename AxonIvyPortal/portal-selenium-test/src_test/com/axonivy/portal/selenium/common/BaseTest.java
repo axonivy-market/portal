@@ -34,7 +34,7 @@ public class BaseTest {
   private final static String LOGIN_URL_PATTERN =
       "/PortalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
   protected final static String PORTAL_HOME_PAGE_URL = "/portal/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
-  protected final static Duration DEFAULT_TIMEOUT = Duration.ofSeconds(45);
+  protected final static Duration DEFAULT_TIMEOUT = Duration.ofSeconds(10);
 
   public BaseTest() {}
 
@@ -324,7 +324,8 @@ public class BaseTest {
   }
 
   public void goToCaseNoteHistoryPage(String caseId) {
-    WaitHelper.waitForNavigation(() -> redirectToRelativeLink(String.format(showCaseNoteHistoryUrl, caseId)));
+    // WaitHelper.waitForNavigation(() -> redirectToRelativeLink(String.format(showCaseNoteHistoryUrl, caseId)));
+    redirectToRelativeLink(String.format(showCaseNoteHistoryUrl, caseId));
   }
 
   public void createJSonFile(String jsonFile, String key) {

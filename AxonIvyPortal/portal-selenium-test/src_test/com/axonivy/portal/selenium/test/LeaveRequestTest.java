@@ -18,7 +18,7 @@ import com.axonivy.portal.selenium.page.LeaveRequestPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class LeaveRequestTest extends BaseTest {
   private static final String LEAVE_REQUEST_START_LINK = "portal-user-examples/170321BD7F5539D6/start.ivp";
   private LeaveRequestPage leaveRequestPage;
@@ -60,8 +60,7 @@ public class LeaveRequestTest extends BaseTest {
     leaveRequestPage.clickOnLogout();
     login(TestAccount.ADMIN_USER);
     taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.startTask(0);
-    taskWidgetPage.switchToIFrameOfTask();
+    taskWidgetPage.startTaskIFrame(0);
     leaveRequestPage.assertPageTitle("Approval");
     leaveRequestPage.enterApproverComment("Approved");
     leaveRequestPage.clickApproveBtn();
@@ -69,8 +68,7 @@ public class LeaveRequestTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy("Your leave request is approved");
-    taskWidgetPage.startTask(0);
-    taskWidgetPage.switchToIFrameOfTask();
+    taskWidgetPage.startTaskIFrame(0);
     leaveRequestPage.assertPageTitle("Approval Result");
     UserExamplesEndPage userExamplesEndPage = leaveRequestPage.finishLeaveRequest();
     CaseDetailsPage caseDetailsPage = userExamplesEndPage.goToCaseDetail();
@@ -92,7 +90,7 @@ public class LeaveRequestTest extends BaseTest {
     leaveRequestPage.clickOnLogout();
     login(TestAccount.ADMIN_USER);
     taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.startTask(0);
+    taskWidgetPage.startTaskIFrame(0);
     taskWidgetPage.switchToIFrameOfTask();
     leaveRequestPage.assertPageTitle("Approval");
 
@@ -102,7 +100,7 @@ public class LeaveRequestTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy("Your leave request is rejected");
-    taskWidgetPage.startTask(0);
+    taskWidgetPage.startTaskIFrame(0);
     taskWidgetPage.switchToIFrameOfTask();
     leaveRequestPage.assertPageTitle("Approval Result");
   }

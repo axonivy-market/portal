@@ -1,13 +1,13 @@
 package com.axonivy.portal.developerexamples.enums;
 
 public enum StatisticChartType {
-  TASK_BY_PRIORITY("/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority", null, "taskByPriorityChartExtender"),
-  CASES_BY_STATE("/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState", null, "caseByStateChartExtender"),
-  CASES_BY_FINISHED_TASK("/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask", "/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTaskDescription", "caseByStateFinishTaskChartExtender"),
-  CASES_BY_FINISHED_TIME("/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime", "/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTimeDescription", "caseByStateFinishTimeChartExtender"),
-  TASK_BY_EXPIRY("/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry", null, "taskByExpiryChartDefaultExtender"),
-  ELAPSED_TIME_BY_CASE_CATEGORY("/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory", "/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategoryDescription", "elapsedTimeChartExtender"),
-  CASES_BY_CATEGORY("/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/casesByCategory", null, "casesByCategoryChartExtender");
+  TASK_BY_PRIORITY("/Labels/statistic/chartType/taskByPriority", null, "taskByPriorityChartExtender"),
+  CASES_BY_STATE("/Labels/statistic/chartType/caseByState", null, "caseByStateChartExtender"),
+  CASES_BY_FINISHED_TASK("/Labels/statistic/chartType/caseByFinishedTask", "/Labels/statistic/chartType/caseByFinishedTaskDescription", "caseByStateFinishTaskChartExtender"),
+  CASES_BY_FINISHED_TIME("/Labels/statistic/chartType/caseByFinishedTime", "/Labels/statistic/chartType/caseByFinishedTimeDescription", "caseByStateFinishTimeChartExtender"),
+  TASK_BY_EXPIRY("/Labels/statistic/chartType/taskByExpiry", null, "taskByExpiryChartDefaultExtender"),
+  ELAPSED_TIME_BY_CASE_CATEGORY("/Labels/statistic/chartType/elapsedTimeByCaseCategory", "/Labels/statistic/chartType/elapsedTimeByCaseCategoryDescription", "elapsedTimeChartExtender"),
+  CASES_BY_CATEGORY("/Labels/statistic/chartType/casesByCategory", null, "casesByCategoryChartExtender");
 
   private String cmsUri;
   private String cmsDescriptionUri;

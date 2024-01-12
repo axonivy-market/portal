@@ -522,8 +522,7 @@
             },
             "customFields" : [
               { "name" : "CustomerName", "type" : "STRING", "value" : "\"Tung Le\"" },
-              { "name" : "CustomerType", "type" : "STRING", "value" : "\"Interior\"" },
-              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+              { "name" : "CustomerType", "type" : "STRING", "value" : "\"Interior\"" }
             ]
           }, {
             "id" : "TaskA",
@@ -539,8 +538,7 @@
             },
             "customFields" : [
               { "name" : "CustomerName", "type" : "STRING", "value" : "\"Long Do\"" },
-              { "name" : "CustomerType", "type" : "STRING", "value" : "\"Exterior\"" },
-              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+              { "name" : "CustomerType", "type" : "STRING", "value" : "\"Exterior\"" }
             ]
           }, {
             "id" : "TaskC",
@@ -555,8 +553,7 @@
             },
             "customFields" : [
               { "name" : "CustomerName", "type" : "STRING", "value" : "\"Anh Nguyen\"" },
-              { "name" : "CustomerType", "type" : "STRING", "value" : "\"Interior\"" },
-              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+              { "name" : "CustomerType", "type" : "STRING", "value" : "\"Interior\"" }
             ]
           } ],
         "case" : {

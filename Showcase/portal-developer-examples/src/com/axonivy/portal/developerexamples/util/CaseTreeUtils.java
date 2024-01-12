@@ -107,7 +107,7 @@ public class CaseTreeUtils {
 
   private static void buildAllCategoriesNode(CheckboxTreeNode<CategoryNode> parent) {
     CategoryNode nodeData = new CategoryNode();
-    nodeData.setValue(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/allCategories"));
+    nodeData.setValue(Ivy.cms().co("/Labels/allCategories"));
     nodeData.setCategory(StringUtils.EMPTY);
     CheckboxTreeNode<CategoryNode> checkboxTreeNode = new CheckboxTreeNode<>(nodeData, parent);
     checkboxTreeNode.setExpanded(true);

@@ -15,6 +15,6 @@ public enum DashboardWidgetType {
   }
 
   public String getLabel() {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/" + name());
+    return Ivy.cms().co("/Labels/DashboardWidgetType/" + name());
   }
 }

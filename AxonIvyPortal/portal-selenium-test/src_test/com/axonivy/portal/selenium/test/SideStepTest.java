@@ -65,7 +65,7 @@ public class SideStepTest extends BaseTest {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.countTasks().shouldHave(CollectionCondition.size(1));
     assertEquals(taskWidgetPage.getNameOfTaskAt(0), "Collect Information");
-    taskWidgetPage.startTask(0);
+    taskWidgetPage.startTaskIFrame(0);
     adhocPage = new AdhocPage();
     adhocPage.addDescription("Annual leaves are available");
     taskWidgetPage = NavigationHelper.navigateToTaskList();

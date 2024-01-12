@@ -1,0 +1,4 @@
+PageHeaderData #class
+com.axonivy.portal.userexamples.PageHeader #namespace
+content String #field
+content PERSISTENT #fieldModifier

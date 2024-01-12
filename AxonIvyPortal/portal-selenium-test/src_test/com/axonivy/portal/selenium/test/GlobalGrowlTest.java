@@ -19,7 +19,7 @@ import com.axonivy.portal.selenium.page.ExpressProcessPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.SearchResultPage;
-import com.axonivy.portal.selenium.page.TaskTemplatePage;
+import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.TemplatePage;
 import com.axonivy.portal.selenium.page.TemplatePage.GlobalSearch;
@@ -60,7 +60,7 @@ public class GlobalGrowlTest extends BaseTest {
   public void testDisplayCustomGrowlAfterFinishTask() {
     redirectToRelativeLink(CUSTOM_GROWL_URL);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
     taskTemplatePage.switchToIFrameOfTask();
     taskTemplatePage.clickSubmitButtonProceed();
     taskTemplatePage.switchBackToParent();
@@ -71,7 +71,7 @@ public class GlobalGrowlTest extends BaseTest {
   public void testDisplayDefaultGrowlAfterFinishTask() {
     redirectToRelativeLink(createTestingTasksUrl);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
     taskTemplatePage.switchToIFrameOfTask();
     String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskTemplatePage.inputValue("Employee", today, today, "Representation");
@@ -87,7 +87,7 @@ public class GlobalGrowlTest extends BaseTest {
   public void testDisplayDefaultGrowlAfterFinishFirstTask() {
     redirectToRelativeLink(SKIP_TASK_LIST_URL);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
     taskTemplatePage.switchToIFrameOfTask();
     taskTemplatePage.clickSubmitButtonProceed();
     taskTemplatePage.switchBackToParent();
@@ -99,7 +99,7 @@ public class GlobalGrowlTest extends BaseTest {
   public void testDisplayDefaultGrowlAfterCancelTask() {
     redirectToRelativeLink(createTestingTasksUrl);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
     taskTemplatePage.switchToIFrameOfTask();
     taskTemplatePage.clickCancelAndLeftButton();
     taskWidgetPage = new TaskWidgetPage();
@@ -112,7 +112,7 @@ public class GlobalGrowlTest extends BaseTest {
   public void testDisplayCustomGrowlAfterCancelTask() {
     redirectToRelativeLink(CUSTOM_GROWL_URL);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
     taskTemplatePage.switchToIFrameOfTask();
     taskTemplatePage.clickCancelAndLeftButton();//
     taskTemplatePage.switchBackToParent();
@@ -125,10 +125,10 @@ public class GlobalGrowlTest extends BaseTest {
   // @Test
   public void testDisplayDefaultGrowlAfterCancelFirstTask() {
     redirectToRelativeLink(SKIP_TASK_LIST_URL);
-    TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
+    TaskIFrameTemplatePage taskTemplatePage = new TaskIFrameTemplatePage();
     taskTemplatePage.switchToIFrameOfTask();
     taskTemplatePage.clickCancelAndLeftButton();
-    taskTemplatePage = new TaskTemplatePage();
+    taskTemplatePage = new TaskIFrameTemplatePage();
     assertGrowlMessage(taskTemplatePage, CANCEL_MESSAGE_WITH_DETAILS);
   }
 
