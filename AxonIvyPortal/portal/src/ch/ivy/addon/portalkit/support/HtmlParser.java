@@ -31,6 +31,6 @@ public class HtmlParser {
   }
 
   public static String sanitize(String text) {
-    return Jsoup.clean(text, Safelist.relaxed().addAttributes(":all", "style"));
+    return text == null ? null : Jsoup.clean(text, Safelist.relaxed().addAttributes(":all", "style"));
   }
 }
