@@ -26,7 +26,7 @@ public class DashboardProcessViewerWidgetConfigurationBean implements Serializab
   private List<DashboardProcess> defaultPortalProcesses;
 
   public void preRender() {
-    List<IWebStartable> processes = ProcessService.getInstance().findProcesses().getProcesses();
+    List<IWebStartable> processes = ProcessService.getInstance().findProcesses();
     defaultPortalProcesses = processes.stream().filter(process -> ProcessViewerUtils.isViewerAllowed(process))
         .map(DashboardProcess::new).sorted(Comparator.comparing(Process::getName)).collect(Collectors.toList());
   }
