@@ -12,6 +12,9 @@ Enums:
     MATERNITY_LEAVE: Ausencia maternal
     SICK_LEAVE: Ausencia por enfermedad
 Labels:
+  AxonIvyPortal: Axon Ivy Portal
+  BackToCaseMap: Volver al mapa de caso
+  Cancel: Cancelar
   CaseMap:
     Credit:
       address: Dirección
@@ -41,6 +44,9 @@ Labels:
       submitRequest: Presentar solicitud
       verifierComment: Comentario del verificador
       verifierSubmit: Solicitud del verificador
+  Copyright: Copyright Ⓒ Axon Ivy Portal
+  GoToDetail: Ir a detalles
+  HasPrecondition: Este proceso tiene una precondición
   LeaveRequest:
     LeaveSteps:
       approval: Aprobar
@@ -56,6 +62,17 @@ Labels:
     requesterComment: Comentario del solicitante
     submitLeaveRequest: Presentar solicitud para ausencia
     to: Hasta
+  LoginErrorMessage: No está conectado o su usuario no existe en el sistema. Por favor, contacte con el administrador del sistema
+  LoginFailed: error de inicio de sesion
+  LoginLogo: Logo de inicio de sesión
+  MoreInformation: Más información
+  NextStage: Siguiente etapa
+  PreviousStage: Etapa anterior
+  RequiredFieldMessage: este campo es obligatorio
+  Start: Abrir
+  TheCaseMap: El mapa de caso
+  TheProcess: El proceso
+  dateFromBiggerThanTo: Hasta' debe ser después de 'Desde'
 Processes:
   CaseMap:
     ApprovalLevel12:

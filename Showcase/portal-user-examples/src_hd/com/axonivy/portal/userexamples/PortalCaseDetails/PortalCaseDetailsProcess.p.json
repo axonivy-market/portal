@@ -63,9 +63,9 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.enums.SessionAttribute;",
+            "//import com.axonivy.portal.components.enums.SessionAttribute;",
             "",
-            "in.isTaskStartedInDetails = ivy.session.getAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString()) as Boolean;"
+            "//in.isTaskStartedInDetails = ivy.session.getAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString()) as Boolean;"
           ]
         }
       },

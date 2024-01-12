@@ -148,24 +148,233 @@ Dialogs:
                   IsRequired: Pflichtfeld
                   Representation: Vertretung
                   To: Bis
+  com:
+    axonivy:
+      portal:
+        developerexamples:
+          testdata:
+            LeaveRequestForm:
+              MinCharacterReq: mindestens {0} Zeichen lang sein
+              MinLowercaseCharacter: mindestens {0} Kleinbuchstaben enthalten
+              MinNumber: Minimale numerische Zeichen
+              MinNumberRequire: mindestens {0} Zahl enthalten
+              MinSpecialCharacter: Minimum Sonderzeichen
+              MinSpecialCharacterRequired: mindestens {0} Sonderzeichen enthalten
+              MinUppercaseCharacter: Minimum Großbuchstaben
+              MinUppercaseCharacterRequired: mindestens {0} Großbuchstaben enthalten
+              MinimumLength: Mindestlänge
 Labels:
+  Back: Zurück
+  DashboardWidgetType:
+    CASE: Vorfall-Widget
+    CUSTOM: Benutzerdefiniertes Widget
+    NEW: Neues Widget
+    NEWS: Nachrichten
+    PROCESS: Prozess-Widget
+    PROCESS_VIEWER: Prozess-Viewer-Widget
+    STATISTIC: Statistik-Widget
+    TASK: Aufgaben-Widget
+    WELCOME: Willkommens-Widget
+  ProcessSorting:
+    BY_ALPHABETICALLY: Alphabetisch
+    BY_CUSTOM_ORDER: Benutzerdefinierte Reihenfolge
+    BY_INDEX: Sortierindex
+  Start: Start
   address: Strasse/Hausnr.
+  allCategories: Alle Kategorien
   cancel: Abbrechen
   caseId: Vorgangs Id
+  caseState:
+    CREATED: Erstellt
+    CREATED_UPPERCASE: ERSTELLT
+    DESTROYED: Gelöscht
+    DESTROYED_UPPERCASE: GELÖSCHT
+    DONE: Erledigt
+    DONE_UPPERCASE: ERLEDIGT
+    FAILED: Fehlgeschlagen
+    INPROGRESS: IN BEARBEITUNG
+    OPEN: Offen
+    OPEN_UPPERCASE: OFFEN
+    RUNNING: in Bearbeitung
+  changePasswordWSError: Ein Fehler ist während der Passwortänderung aufgetreten. Bitte, kontaktieren Sie Ihren Administrator falls das Problem nach mehreren Versuchen besteht.
   city: /Stadt
   date: Datum
   delete: Löschen
   email: E-Mail
   firstName: Vorname
+  forgotPasswordError: Bei der Bearbeitung Ihrer Anfrage ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.
+  invalidToken: Ungültiges Token
+  noCategory: '[Keine Kategorie]'
+  passwordMust: Das Passwort muss
+  passwordResetEmailCantSend: Ausnahme beim Senden der E-Mail an Sie. Bitte versuchen Sie es später erneut.
+  passwordResetEmailContent: '<html>Hallo {0},<br/><br/>Bitte klicken Sie auf diesen Link, um Ihr Passwort zurückzusetzen: <a href="{1}">Passwort zurücksetzen</a><br/><br/>Mit freundlichen Grüßen</html>'
+  passwordResetEmailSent: Wenn diese E-Mail-Adresse registriert ist, haben wir einen Link zur Wiederherstellung des Passworts an diese Adresse geschickt.
+  passwordResetEmailSubject: E-Mail zum Zurücksetzen des Passworts
   personalData: Personendaten
   phoneNumber: Telefonnummer
   proceed: Weiter
   reason: Begründung
   request: Anfrage
   requestType: Begehrenstyp
+  statistic:
+    chart:
+      ExpandOrCollapseColumn: Spalten auf-/zuklappen
+      addChart: Neues Diagramm hinzufügen
+      addChartDialogHeader: Diagramm zum Dashboard hinzufügen
+      backToDashboard: Zurück zum Dashboard
+      barchart:
+        Percentage: Prozent
+        daysOfWeek:
+          friday: Freitag
+          monday: Montag
+          saturday: Samstag
+          sunday: Sonntag
+          thursday: Donnerstag
+          tuesday: Dienstag
+          wednesday: Mittwoch
+        expired: Abgelaufen
+        in2Days: In 2 Tagen
+        in3Days: In 3 Tagen
+        monthsOfYear:
+          April: April
+          August: August
+          December: Dezember
+          February: Februar
+          January: Januar
+          July: Juli
+          June: Juni
+          March: März
+          May: Mai
+          November: November
+          October: Oktober
+          September: September
+        today: Heute
+        tomorrow: Morgen
+        weeksOfMonth:
+          fifthWeek: Fünfte Woche
+          firstWeek: Erste Woche
+          fourthWeek: Vierte Woche
+          secondWeek: Zweite Woche
+          sixthWeek: Sechste Woche
+          thirdWeek: Dritte Woche
+      caseCategory: Vorgangskategorie
+      chartCreationSuccessDetailMsg: Diagramm mit Name {0} wurde erfolgreich erstellt
+      chartCreationSuccessTitle: Diagramm wurde erfolgreich erstellt
+      elapsedTime: Verstrichene Zeit
+      elapsedTimeChart:
+        compareButton: Vergleichen
+        compareRole: Rollen vergleichen
+        elapsedTimeInHours: Laufzeit in Std.
+        noEntriesFound: Keine übereinstimmende Kriterien gefunden
+        taskCategory: Aufgabenkategorie
+        withRole: 'Mit Rolle:'
+      emptystate:
+        defaultEmptyMessages: Es sind keine Auswertungen vorhanden.
+      exception:
+        idNotFound: 'Chart Id not found with id: {0}'
+        noPermission: You do not have the permission to send this request!
+      expiryPeriod: Fristende
+      loadingCharts: Bitte warten während die Diagramme geladen werden…
+      notAllowedToCreateChart: Sie haben die Filtereinstellungen geändert. Bitte aktualisieren Sie gesetzten Filter mit "Filter anwenden", um das Diagramm anschließend erstellen zu können
+      other: Andere
+      restoreDefaultChart: Wenn Sie fortfahren, werden alle selbsterstellten Diagramme gelöscht. Die Standardeinstellung wird angewendet.
+      second: sek
+      showAllCharts: Alle Diagramme anzeigen
+      statisticCarousel: Statistik-Karussell
+      statistics: Statistiken
+      taskByExpiry:
+        hour: (Stunde)
+        thisMonth: Diesen Monat
+        thisWeek: Diese Woche
+        thisYear: Dieses Jahr
+      taskByPriority:
+        addToDashboardLink: Zum Dashboard hinzufügen
+        exception: Ausnahme
+        high: Hoch
+        low: Niedrig
+        normal: Normal
+      taskExpiry: Aufgabenfristen
+    chartInfo:
+      chartDetailsHeader: Diagrammdetails
+      chartName: Diagrammname
+      chartType: Diagrammtyp
+    chartType:
+      caseByFinishedTask: Bearbeitete Vorgänge im Zeitraum
+      caseByFinishedTaskDescription: Vorgänge, in denen eine Aufgabe in der ausgewählten Zeitspanne abgeschlossen wurde
+      caseByFinishedTime: Abgeschlossene Vorgänge im Zeitraum
+      caseByFinishedTimeDescription: Vorgänge die in der ausgewählten Zeitspanne abgeschlossen wurden
+      caseByState: Vorgänge nach Status
+      casesByCategory: Fälle nach Kategorie
+      elapsedTimeByCaseCategory: Durchlaufzeit abgeschlossener Vorgänge
+      elapsedTimeByCaseCategoryDescription: Durchlaufszeit (Start bis Ende des Vorgangs) abgeschlossener Vorgänge nach Kategorie
+      taskByExpiry: Aufgaben nach Ablaufdatum
+      taskByPriority: Aufgaben nach Priorität
+    defaultChart:
+      newChart: Neues Diagramm
+      tasksByPriority: Aufgaben nach Priorität
+    filter:
+      affectedCharts: Betroffene Diagramme
+      caseCategoriesLabel: Vorgangskategorien
+      caseCategoryFilterDescription: Hier sehen Sie alle verfügbaren Vorgangskategorien. Nur ausgewählte Vorgangskategorien werden in den betroffenen Diagrammen berücksichtigt.
+      caseStateFilterDescription: Nur ausgewählte Status werden in den betroffenen Diagrammen berücksichtigt.
+      filter: Filter
+      noRoles: Keine Rollen vorhanden
+      noSelectionCustomVarChar: Keine Auswahl
+      noneSelected: Keine
+      roleFilterDescription: Hier sehen Sie alle verfügbaren Prozessrollen. Nur ausgewählte Rollen werden in den betroffenen Diagrammen berücksichtigt.
+      rolesLabel: Rollen
+      selectAll: Alle selektieren
+      taskPrioritiesLabel: Aufgabenprioritäten
+      taskPriorityFilterDescription: Aufgaben können nach Ihrer Priorität gefiltert werden.
+      timePeriod: Zeitspanne
+      timePeriodFilterDescription: 'Schränkt den Zeitraum der Vorgänge und Aufgaben ein. '
+      workflowStatesLabel: Workflowstatus
+    taskAnalysis:
+      applyFilter: Filter anwenden
+      caseCategory: Vorgangskategorie
+      caseCreator: Ersteller
+      caseDescription: Vorgangsbeschreibung
+      caseFilter: Vorgangsfilter
+      caseID: Vorgangs Id
+      caseName: Vorgangsname
+      caseOwner: Vorgangs Owner
+      caseState: Vorgangsstatus
+      downloadZipFileExplanation: Die Anzahl der zu exportierenden Aufgaben überschreitet die Grenze der Excel-Zeilen. Daher werden die Daten in mehrere Excel-Dateien aufgeteilt und dann in einer ZIP-Datei zum Herunterladen komprimiert.
+      taskAnalysis: Aufgabenanalyse
+      taskCategory: Aufgabenkategorie
+      taskCreationTime: Aufgabe erstellt
+      taskDescription: Aufgabenbeschreibung
+      taskExpiryTime: Aufgabenfälligkeit
+      taskFilter: Aufgabenfilter
+      taskFinishedTime: Aufgabe abgeschlossen am
+      taskID: Aufgabe Id
+      taskPriority: Aufgabenpriorität
+      taskResponsible: Aufgabenverantwortlicher
+      taskState: Aufgabenstatus
+      taskWorker: Aufgabenbearbeiter
+      waitingDownloadMessage: Bitte um Geduld. Wir erstellen gerade den Export. Das kann einige Minuten dauern.
+    timePeriod:
+      custom: Benutzerdefiniert
+      last6Month: Letzte 6 Monate
+      lastMonth: Letzter Monat
+    validationErrors:
+      nameIsExisted: Ein Diagramm mit dem selben Namen existiert bereits
   surName: Name
   tableDelete: Löschen
   tableName: Name
+  taskPriority:
+    EXCEPTION: AUSNAHME
+    EXCEPTION_LOWERCASE: Ausnahme
+    HIGH: HOCH
+    HIGH_LOWERCASE: Hoch
+    LOW: NIEDRIG
+    LOW_LOWERCASE: Niedrig
+    NORMAL: NORMAL
+    NORMAL_LOWERCASE: Normal
+  updatePasswordSuccessfully: Das Passwort wurde erfolgreich geändert.
+  userNotFound: Wenn diese E-Mail-Adresse registriert ist, haben wir einen Link zur Wiederherstellung des Passworts an diese Adresse geschickt.
+  usersHaveSameEmail: Es gibt viele Benutzer, die diese E-Mail verwenden. Bitte wenden Sie sich an Ihren Administrator.
+  wrongPassword: Das angegebene Passwort wurde abgelehnt!
   zip: PLZ
 Processes:
   CategoriedLeaveRequest:

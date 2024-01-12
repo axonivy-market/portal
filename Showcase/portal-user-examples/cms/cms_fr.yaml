@@ -12,6 +12,9 @@ Enums:
     MATERNITY_LEAVE: Congé de maternité
     SICK_LEAVE: Congés de maladie
 Labels:
+  AxonIvyPortal: Axon Ivy Portal
+  BackToCaseMap: Retour à la carte des cas
+  Cancel: Annuler
   CaseMap:
     Credit:
       address: Adresse
@@ -41,6 +44,9 @@ Labels:
       submitRequest: Soumettre une demande
       verifierComment: Commentaire du vérificateur
       verifierSubmit: Soumission du vérificateur
+  Copyright: Copyright Ⓒ Axon Ivy Portal
+  GoToDetail: Aller au détail
+  HasPrecondition: Ce processus est soumis à une condition préalable
   LeaveRequest:
     LeaveSteps:
       approval: Approbation
@@ -56,6 +62,17 @@ Labels:
     requesterComment: Commentaire du demandeur
     submitLeaveRequest: Soumettre une demande de congé
     to: Au
+  LoginErrorMessage: Vous n'êtes pas connecté ou votre nom d'utilisateur n'est pas connu par cette application. Veuillez consulter votre administrateur système.
+  LoginFailed: Erreur de connexion
+  LoginLogo: Logo login
+  MoreInformation: Plus d'informations
+  NextStage: Prochaine étape
+  PreviousStage: Étape précédente
+  RequiredFieldMessage: Ce champ est obligatoire
+  Start: Démarrage
+  TheCaseMap: La carte des cas
+  TheProcess: Le processus
+  dateFromBiggerThanTo: '"Au" doit être ultérieur à "Depuis"'
 Processes:
   CaseMap:
     ApprovalLevel12:

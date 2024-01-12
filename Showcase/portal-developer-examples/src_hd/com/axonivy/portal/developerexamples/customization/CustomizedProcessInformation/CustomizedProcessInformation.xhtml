@@ -37,9 +37,9 @@
     </ui:define>
 
     <ui:define name="actionButtons">
-      <p:link id="back-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" onclick="goBack();" href="#"/>
+      <p:link id="back-link" value="#{ivy.cms.co('/Labels/Back')}" onclick="goBack();" href="#"/>
       <p:spacer width="20px" />
-      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')} #{data.selectedProcess.processName}"
+      <p:commandButton value="#{ivy.cms.co('/Labels/Start')} #{data.selectedProcess.processName}"
         id="start-process-button"
         actionListener="#{compactProcessWidgetBean.startProcess(data.selectedProcess)}" />
 

@@ -6,19 +6,19 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public enum PasswordPolicyType {
   MIN_CHARACTERS("MinCharacters",
-      "/ch.ivy.addon.portalkit.ui.jsf/components/passwordValidation/passwordPolicyType/minCharacter",
-      "/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/minCharacterRequired"),
+      "/Dialogs/com/axonivy/portal/developerexamples/testdata/LeaveRequestForm/MinimumLength",
+      "/Dialogs/com/axonivy/portal/developerexamples/testdata/LeaveRequestForm/MinCharacterReq"),
   MIN_LOWERCASE_CHARACTERS("MinLowercaseCharacters",
-      "/ch.ivy.addon.portalkit.ui.jsf/components/passwordValidation/passwordPolicyType/minLowercaseCharacter",
-      "/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/minLowercaseCharacterRequired"),
+      "/Dialogs/com/axonivy/portal/developerexamples/testdata/LeaveRequestForm/MinLowercaseCharacter",
+      "/Dialogs/com/axonivy/portal/developerexamples/testdata/LeaveRequestForm/MinLowercaseCharacter"),
   MIN_UPPERCASE_CHARACTERS("MinUppercaseCharacters",
-      "/ch.ivy.addon.portalkit.ui.jsf/components/passwordValidation/passwordPolicyType/minUppercaseCharacter",
-      "/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/minUppercaseCharacterRequired"),
-  MIN_NUMBERS("MinNumbers", "/ch.ivy.addon.portalkit.ui.jsf/components/passwordValidation/passwordPolicyType/minNumber",
-      "/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/minNumberRequired"),
+      "/Dialogs/com/axonivy/portal/developerexamples/testdata/LeaveRequestForm/MinUppercaseCharacter",
+      "/Dialogs/com/axonivy/portal/developerexamples/testdata/LeaveRequestForm/MinUppercaseCharacterRequired"), MIN_NUMBERS(
+          "MinNumbers", "/Dialogs/com/axonivy/portal/developerexamples/testdata/LeaveRequestForm/MinNumber",
+          "/Dialogs/com/axonivy/portal/developerexamples/testdata/LeaveRequestForm/MinNumberRequire"),
   MIN_SPEACIAL_CHARACTERS("MinSpecialCharacters",
-      "/ch.ivy.addon.portalkit.ui.jsf/components/passwordValidation/passwordPolicyType/minSpecialCharacter",
-      "/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/minSpecialCharacterRequired");
+      "/Dialogs/com/axonivy/portal/developerexamples/testdata/LeaveRequestForm/MinSpecialCharacter",
+      "/Dialogs/com/axonivy/portal/developerexamples/testdata/LeaveRequestForm/MinSpecialCharacterRequired");
 
   private final String name;
   private final String titleCmsUri;

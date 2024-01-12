@@ -8,7 +8,7 @@ import org.openqa.selenium.Dimension;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
-import com.axonivy.portal.selenium.page.TaskTemplatePage;
+import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.codeborne.selenide.Condition;
 
 @IvyWebTest
@@ -18,7 +18,7 @@ public class LayoutTemplateScreenshotTest extends ScreenshotBaseTest {
   public void screenshotLayoutTemplate() throws IOException {
     redirectToRelativeLink(templateInFrameExampleInFrameUrl);
 
-    TaskTemplatePage templatePage = new TaskTemplatePage();
+    TaskIFrameTemplatePage templatePage = new TaskIFrameTemplatePage();
     templatePage.getElementInPortalIFramTask("[id='form:save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     templatePage.switchBackToParent();
     ScreenshotUtils.resizeBrowser(new Dimension(1200, 800));

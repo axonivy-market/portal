@@ -12,7 +12,7 @@ import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.page.CaseMapPage;
 import com.axonivy.portal.selenium.page.ExampleOverviewPage;
-import com.axonivy.portal.selenium.page.LeaveRequestPage;
+import com.axonivy.portal.selenium.page.LeaveRequestIFramePage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
@@ -70,7 +70,7 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
   public void screenshotLeaveRequestProcess() throws IOException {
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 950));
     redirectToRelativeLinkWithEmbedInFrame(LEAVE_REQUEST_START_LINK);
-    LeaveRequestPage leaveRequestPage = new LeaveRequestPage();
+    LeaveRequestIFramePage leaveRequestPage = new LeaveRequestIFramePage();
     leaveRequestPage.switchToIFrameOfTask();
     leaveRequestPage.waitForIFrameContentVisible();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "leave-request-creation");

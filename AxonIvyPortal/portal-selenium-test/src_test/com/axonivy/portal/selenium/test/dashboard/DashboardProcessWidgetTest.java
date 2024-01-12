@@ -17,7 +17,7 @@ import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.ProcessInformationPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
-import com.axonivy.portal.selenium.page.TaskTemplatePage;
+import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
@@ -276,7 +276,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     backToNewDashboardPage();
     newDashboardPage.startCombinedModeProcessFirstTask();
 
-    TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
+    TaskIFrameTemplatePage taskTemplatePage = new TaskIFrameTemplatePage();
     taskTemplatePage.getDisplayedTaskTitle().shouldHave(Condition.attribute(TITLE_ATTRIBUTE, SICK_LEAVE_REQUEST));
   }
 
@@ -294,7 +294,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     newDashboardPage.expandCombindedModeProcess();
     newDashboardPage.startCombinedModeProcessFirstTask();
 
-    TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
+    TaskIFrameTemplatePage taskTemplatePage = new TaskIFrameTemplatePage();
     taskTemplatePage.getDisplayedTaskTitle().shouldHave(Condition.attribute(TITLE_ATTRIBUTE, SICK_LEAVE_REQUEST));
   }
 

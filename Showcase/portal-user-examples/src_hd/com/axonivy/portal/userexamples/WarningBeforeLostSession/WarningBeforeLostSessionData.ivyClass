@@ -1,0 +1,4 @@
+WarningBeforeLostSessionData #class
+com.axonivy.portal.userexamples.WarningBeforeLostSession #namespace
+task ch.ivyteam.ivy.workflow.ITask #field
+task PERSISTENT #fieldModifier

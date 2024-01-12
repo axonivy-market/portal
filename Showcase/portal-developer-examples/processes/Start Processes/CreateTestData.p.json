@@ -845,10 +845,7 @@
       "config" : {
         "dialog" : "com.axonivy.portal.developerexamples.testdata.NewPayment:start()",
         "task" : {
-          "name" : "<%=ivy.cms.co(\"/Processes/Payment/Tasks/Pay/name\")%>",
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
-          ]
+          "name" : "<%=ivy.cms.co(\"/Processes/Payment/Tasks/Pay/name\")%>"
         }
       },
       "visual" : {

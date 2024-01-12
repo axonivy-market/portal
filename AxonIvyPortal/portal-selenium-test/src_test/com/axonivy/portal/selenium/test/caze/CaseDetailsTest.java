@@ -30,7 +30,7 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.NoteHistoryPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
-import com.axonivy.portal.selenium.page.TaskTemplatePage;
+import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -243,7 +243,7 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testRelatedTaskStartTask() {
     createTestingTask();
-    TaskTemplatePage taskTemplate = detailsPage.startRelatedTask(SICK_LEAVE_REQUEST_TASK);
+    TaskIFrameTemplatePage taskTemplate = detailsPage.startRelatedTask(SICK_LEAVE_REQUEST_TASK);
     assertEquals(SICK_LEAVE_REQUEST_TASK, taskTemplate.getTaskName());
   }
 

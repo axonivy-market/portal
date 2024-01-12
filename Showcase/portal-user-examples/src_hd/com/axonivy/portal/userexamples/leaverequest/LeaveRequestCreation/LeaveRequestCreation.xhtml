@@ -34,7 +34,7 @@
                   <p:outputLabel for="leave-type" value="#{ivy.cms.co('/Labels/LeaveRequest/leaveType')}" />
                   <p:selectOneMenu id="leave-type" value="#{data.leaveRequestData.leaveType}" converter="pojoConverter"
                     required="true" styleClass="MarTop10"
-                    requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/leaveType')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
+                    requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/leaveType')}: #{ivy.cms.co('/Labels/RequiredFieldMessage')}">
                     <f:selectItem itemLabel="" itemValue="#{null}" noSelectionOption="true" />
                     <f:selectItems value="#{data.leaveTypes}" var="type" itemLabel="#{type.getLabel()}"
                       itemValue="#{type}" />
@@ -46,7 +46,7 @@
                   <p:datePicker id="from" value="#{data.leaveRequestData.from}" locale="#{localeBean.locale}"
                     styleClass="MarTop10" required="true"
                     showTime="#{!dateTimePatternBean.isTimeHidden}"
-                    requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/from')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
+                    requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/from')}: #{ivy.cms.co('/Labels/RequiredFieldMessage')}" />
                 </h:panelGroup>
 
                 <h:panelGroup class="md-inputfield MarTop20">
@@ -54,14 +54,14 @@
                   <p:datePicker id="to" value="#{data.leaveRequestData.to}" locale="#{localeBean.locale}"
                     styleClass="MarTop10" required="true"
                     showTime="#{!dateTimePatternBean.isTimeHidden}"
-                    requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/to')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
+                    requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/to')}: #{ivy.cms.co('/Labels/RequiredFieldMessage')}" />
                 </h:panelGroup>
 
                 <h:panelGroup class="md-inputfield MarTop20">
                   <p:outputLabel for="approver" value="#{ivy.cms.co('/Labels/LeaveRequest/approver')}" />
                   <p:selectOneMenu id="approver" value="#{data.approver}" converter="pojoConverter" required="true"
                     styleClass="MarTop10"
-                    requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/approver')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
+                    requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/approver')}: #{ivy.cms.co('/Labels/RequiredFieldMessage')}">
                     <f:selectItem itemLabel="" itemValue="#{null}" noSelectionOption="true" />
                     <f:selectItems value="#{data.approvers}" var="approver" itemLabel="#{approver.getDisplayName()}"
                       itemValue="#{approver}" />
@@ -73,7 +73,7 @@
                     value="#{ivy.cms.co('/Labels/LeaveRequest/requesterComment')}: " />
                   <p:inputTextarea id="requester-comment" value="#{data.leaveRequestData.requesterComment}"
                     required="true" rows="5" styleClass="MarTop10"
-                    requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/requesterComment')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
+                    requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/requesterComment')}: #{ivy.cms.co('/Labels/RequiredFieldMessage')}" />
                 </h:panelGroup>
 
                 <h:panelGroup layout="block" styleClass="MarTop5 Fright" id="command-group">

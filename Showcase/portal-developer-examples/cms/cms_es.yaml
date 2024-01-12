@@ -148,25 +148,239 @@ Dialogs:
                   IsRequired: Mandatorio
                   Representation: Representante
                   To: Hasta
+  com:
+    axonivy:
+      portal:
+        developerexamples:
+          testdata:
+            LeaveRequestForm:
+              MinCharacterReq: tener al menos {0} caracteres
+              MinLowercaseCharacter: contienen al menos {0} caracteres en minúscula
+              MinNumber: Caracteres numéricos mínimos
+              MinNumberRequire: contienen al menos {0} número
+              MinSpecialCharacter: Caracteres especiales mínimos
+              MinSpecialCharacterRequired: contienen al menos {0} un carácter especial
+              MinUppercaseCharacter: Caracteres mínimos en mayúsculas
+              MinUppercaseCharacterRequired: contener al menos {0} caracteres en mayúscula
+              MinimumLength: Longitud mínima
 Labels:
+  Back: Regresar
+  DashboardWidgetType:
+    CASE: Widget del caso
+    CUSTOM: Widget personalizado
+    NEW: Nuevo widget
+    NEWS: Noticias
+    PROCESS: Widget de procesos
+    PROCESS_VIEWER: Widget del visor de procesos
+    STATISTIC: Widget de estadísticas
+    TASK: Widget de tareas
+    WELCOME: Widget de bienvenida
+  ProcessSorting:
+    BY_ALPHABETICALLY: Alfabéticamente
+    BY_CUSTOM_ORDER: Pedido personalizado
+    BY_INDEX: Índice de clasificación
+  Start: Abrir
   address: Calle / Número
+  allCategories: Todas las categorias
   cancel: Cancelar
   caseId: ID del caso
+  caseState:
+    CREATED: Creado
+    CREATED_UPPERCASE: Creado
+    DESTROYED: Destruido
+    DESTROYED_UPPERCASE: Destruido
+    DONE: Hecho
+    DONE_UPPERCASE: Hecho
+    FAILED: Ha fallado
+    INPROGRESS: En Progreso
+    OPEN: Pendiente
+    OPEN_UPPERCASE: Pendiente
+    RUNNING: En progreso
+  changePasswordWSError: Se produjo un error al cambiar su contraseña. Póngase en contacto con su administrador si este problema persiste.
   city: /Ciudad
   date: Fecha
   delete: Eliminar
   email: Courrier électronique
   firstName: Nombre
+  forgotPasswordError: Ha habido un error mientras se procesaba su solicitud. Por favor inténtelo más tarde.
+  invalidToken: Token inválido
+  noCategory: '[Sin Categoría]'
+  passwordMust: La contraseña debe
+  passwordResetEmailCantSend: 'Ha habido un problema para enviarle un E-Mail. Por favor inténtelo más tarde. '
+  passwordResetEmailContent: <html>Hola {0},<br/><br/>por favor haga click en este link para restablecer su contraseña <a href="{1}">Restablecer contraseña</a><br/><br/>Saludos</html>
+  passwordResetEmailSent: Si esta dirección de correo electrónico está registrada, le hemos enviado un enlace para recuperar la contraseña.
+  passwordResetEmailSubject: E-Mail para restablecer su contraseña
   personalData: Datos personales
   phoneNumber: Número de teléfono
   proceed: Proceder
   reason: Razón
   request: Solicitud
   requestType: Tipo de solicitud
+  statistic:
+    chart:
+      ExpandOrCollapseColumn: Abrir/Cerrar columnas
+      addChart: Agregar nueva grafica
+      addChartDialogHeader: Agregar grafica estadística al tablero
+      backToDashboard: Regresar al tablero
+      barchart:
+        Percentage: Porcentaje
+        daysOfWeek:
+          friday: Viernes
+          monday: Lunes
+          saturday: Sábado
+          sunday: Domingo
+          thursday: Jueves
+          tuesday: Martes
+          wednesday: Miércoles
+        expired: Vencido
+        in2Days: En 2 días
+        in3Days: En 3 días
+        monthsOfYear:
+          April: Abril
+          August: Agosto
+          December: Diciembre
+          February: Febrero
+          January: Enero
+          July: Julio
+          June: Junio
+          March: Marzo
+          May: Mayo
+          November: Noviembre
+          October: Octubre
+          September: Septiembre
+        today: Hoy
+        tomorrow: Mañana
+        weeksOfMonth:
+          fifthWeek: Quinta semana
+          firstWeek: Primera semana
+          fourthWeek: Cuarta semana
+          secondWeek: Segunda semana
+          sixthWeek: Sexta semana
+          thirdWeek: Tercera semana
+      caseCategory: Categoría de caso
+      chartCreationSuccessDetailMsg: El gráfico con el nombre {0} se creó con éxito
+      chartCreationSuccessTitle: El gráfico fue creado con éxito
+      elapsedTime: Tiempo transcurrido
+      elapsedTimeChart:
+        compareButton: Comparar
+        compareRole: 'Comparar el rol:'
+        elapsedTimeInHours: Tiempo transcurrido en horas
+        noEntriesFound: No se encontraron entradas con los criterios dados
+        taskCategory: Categoría de tarea
+        withRole: 'Con Rol:'
+      emptystate:
+        defaultEmptyMessages: No hay tabla de estadísticas para mostrar.
+      exception:
+        idNotFound: 'Chart Id not found with id: {0}'
+        noPermission: You do not have the permission to send this request!
+      expiryPeriod: Período de caducidad
+      loadingCharts: Por favor espere, los diagramas se están cargando
+      notAllowedToCreateChart: Ha cambiado los filtros aplicados. Por favor aplique los filtros.
+      other: Otros
+      restoreDefaultChart: Si continúa, todos los diagramas hechos por usted serán borrados. Los valores iniciales serán reestablecidos.
+      second: segundo
+      showAllCharts: Mostrar todas las estadísticas
+      statisticCarousel: Tiovivo de estadísticas
+      statistics: Estadísticas
+      taskByExpiry:
+        hour: (Hora)
+        thisMonth: Este mes
+        thisWeek: Esta semana
+        thisYear: Este año
+      taskByPriority:
+        addToDashboardLink: Agregar al tablero
+        exception: Excepción
+        high: Alto
+        low: Bajo
+        normal: Normal
+      taskExpiry: Vencimiento de tareas
+    chartInfo:
+      chartDetailsHeader: Detalles del gráfico
+      chartName: Nombre del gráfico
+      chartType: Tipo de gráfico
+    chartType:
+      caseByFinishedTask: Caso por Tarea Terminada
+      caseByFinishedTaskDescription: Casos en los que al menos una tarea ha sido finalizada en el tiempo seleccionado
+      caseByFinishedTime: Caso por tiempo finalizado
+      caseByFinishedTimeDescription: Casos terminados en el periodo de tiempo seleccionado
+      caseByState: Caso por estado
+      casesByCategory: Casos por categoría
+      elapsedTimeByCaseCategory: Tiempo transcurrido por categoría de caso
+      elapsedTimeByCaseCategoryDescription: Tiempo de duración para casos terminados por categoría
+      taskByExpiry: Tarea por vencimiento
+      taskByPriority: Tarea por prioridad
+    defaultChart:
+      newChart: Diagrama nuevo
+      tasksByPriority: Tareas por prioridad
+    filter:
+      affectedCharts: Diagramas afectados
+      allSelected: Todos
+      caseCategoriesLabel: Categorías de casos
+      caseCategoryFilterDescription: Puede encontrar todos las categorias disponibles aqui. Solo las categorías seleccionadas serán consideradas en los diagramas creados
+      caseStateFilterDescription: Solo los estados seleccionados serán considerados en los diagramas
+      filter: Filtros
+      noRoles: No hay Roles
+      noSelectionCustomVarChar: Sin selección
+      noneSelected: Ninguno
+      roleFilterDescription: Puede encontra todos los roles disponibles aquí. Solo los roles seleccionados serán considerados en los diagramas
+      rolesLabel: Roles
+      selectAll: Seleccionar todo
+      taskPrioritiesLabel: Prioridades de tareas
+      taskPriorityFilterDescription: Puede filtrar tareas por prioridad.
+      timePeriod: Periodo de tiempo
+      timePeriodFilterDescription: Restringir el periodo de tiempo para casos y tareas
+      workflowStatesLabel: Estados de flujo de trabajo
+    taskAnalysis:
+      applyFilter: Aplicar filtros
+      caseCategory: Categoría de caso
+      caseCreator: Creador del caso
+      caseDescription: Descripción del caso
+      caseFilter: Filtros del caso
+      caseID: ID del caso
+      caseName: Nombre del caso
+      caseOwner: Propietario del caso
+      caseState: Estado del caso
+      downloadZipFileExplanation: |-
+        El número de tareas excede el Límite de Excel. Por ello se crearán varios archivos y se comprimirán en un archivo Zip.
+
+        El número de tareas excede el Límite de Excel. Por ello se crearán varios archivos y se comprimirán en un archivo Zip.
+      taskAnalysis: Análisis de tareas
+      taskCategory: Categoría de la tarea
+      taskCreationTime: Tarea creada
+      taskDescription: Descripción de la tarea
+      taskExpiryTime: Fecha de expiración de la tarea
+      taskFilter: Filtros de tareas
+      taskFinishedTime: Tarea completada
+      taskID: ID de la tarea
+      taskPriority: Prioridad de tarea
+      taskResponsible: Resonsable de tarea
+      taskState: Estado de tarea
+      taskWorker: Editor de tareas
+      waitingDownloadMessage: 'Estamos creando su exporte, esto puede tardar unos minutos. '
+    timePeriod:
+      custom: Personalizado
+      last6Month: Último 6 meses
+      lastMonth: El mes pasado
+      lastWeek: La semana pasada
+    validationErrors:
+      nameIsExisted: Ya existe una tabla con este nombre
   surName: Apellido
   tableDelete: Eliminar
   tableDownload: Descargar
   tableName: Nombre
+  taskPriority:
+    EXCEPTION: Excepción
+    EXCEPTION_LOWERCASE: Excepción
+    HIGH: Alto
+    HIGH_LOWERCASE: Alto
+    LOW: Bajo
+    LOW_LOWERCASE: Bajo
+    NORMAL: Normal
+    NORMAL_LOWERCASE: Normal
+  updatePasswordSuccessfully: Contraseña actualizada exitosamente.
+  userNotFound: Si esta dirección de correo electrónico está registrada, le hemos enviado un enlace para recuperar la contraseña.
+  usersHaveSameEmail: Hay varios usuarios usando el mismo E-Mail. Por favor contacte con su administrador.
+  wrongPassword: Error de autenticación, ¡su contraseña parece no ser la correcta!
   zip: Codigo postal
 Processes:
   CategoriedLeaveRequest:
