@@ -134,14 +134,14 @@ public class TaskWidgetPage extends TemplatePage {
         .shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public TaskTemplatePage clickOnSideStepAction(int taskIndex, int sideStepIndex) {
+  public TaskIFrameTemplatePage clickOnSideStepAction(int taskIndex, int sideStepIndex) {
     String sideStepsId = String.format(
         "task-widget:task-list-scroller:%d:task-item:task-action:additional-options:task-additional-actions",
         taskIndex);
     SelenideElement sideStepPanel = $("[id$='" + sideStepsId + "']");
     ElementsCollection sideSteps = sideStepPanel.findAll(By.className("option-item"));
     sideSteps.get(sideStepIndex).click();
-    return new TaskTemplatePage();
+    return new TaskIFrameTemplatePage();
   }
 
   private void openTriggerEscalationDialog() {
@@ -367,12 +367,24 @@ public class TaskWidgetPage extends TemplatePage {
     return !$(".action-link").getAttribute("class").contains("ui-state-disabled");
   }
 
+  public ExpressTaskPage startExpressTask(int index) {
+    waitTaskAppearThenClick(index);
+    $(By.id(TASK_ACTION)).shouldBe(appear, DEFAULT_TIMEOUT);
+    return new ExpressTaskPage();
+  }
+
+  public TaskIFrameTemplatePage startTaskIFrame(int index) {
+    waitTaskAppearThenClick(index);
+    $(By.id(TASK_ACTION)).shouldBe(appear, DEFAULT_TIMEOUT);
+    switchToIFrameOfTask();
+    return new TaskIFrameTemplatePage();
+  }
+
   public TaskTemplatePage startTask(int index) {
     waitTaskAppearThenClick(index);
     $(By.id(TASK_ACTION)).shouldBe(appear, DEFAULT_TIMEOUT);
     return new TaskTemplatePage();
   }
-
   public boolean isTaskStateReserved(int index) {
     try {
       $(By.id(String.format(TASK_STATE_COMPONENT_ID, index))).$(By.className("open-task-state"));
@@ -564,6 +576,7 @@ public class TaskWidgetPage extends TemplatePage {
         String.format("a[id$='task-list-scroller:%d:task-item:task-action:task-action-component']", index);
     refreshAndWaitElement(startLinkId);
     waitForElementClickableThenClick(findElementByCssSelector(startLinkId));
+    switchToIFrameOfTask();
   }
 
   public void resetFilter() {
@@ -613,9 +626,9 @@ public class TaskWidgetPage extends TemplatePage {
         taskWidgetId + ":task-list-scroller:%d:task-item:general-info:priority-form:edit-priority-inplace", index)));
   }
 
-  public TaskTemplatePage startTaskWithouWaitForTaskActionPresent(int index) {
+  public TaskIFrameTemplatePage startTaskWithouWaitForTaskActionPresent(int index) {
     waitTaskAppearThenClick(index);
-    return new TaskTemplatePage();
+    return new TaskIFrameTemplatePage();
   }
 
   public boolean isTaskStateOpen(int index) {

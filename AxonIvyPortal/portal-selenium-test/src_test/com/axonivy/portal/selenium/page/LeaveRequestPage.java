@@ -20,7 +20,7 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "div[id='content-container']";
+    return "[id='content-container']";
   }
 
   public void waitForIFrameContentVisible() {

@@ -1,0 +1,6 @@
+LogoutData #class
+com.axonivy.portal.userexamples #namespace
+isTaskReserve Boolean #field
+task ch.ivyteam.ivy.workflow.ITask #field
+hasCustomProcess Boolean #field
+hasCustomProcess PERSISTENT #fieldModifier

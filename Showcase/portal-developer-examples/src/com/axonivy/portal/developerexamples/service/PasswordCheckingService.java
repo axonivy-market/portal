@@ -43,7 +43,7 @@ public class PasswordCheckingService {
 
   private String buildPasswordRequirementMessages(List<PasswordPolicy> passwordPolicies) {
     StringBuilder messageBuilder = new StringBuilder();
-    messageBuilder.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/passwordMust"));
+    messageBuilder.append(Ivy.cms().co("/Labels/passwordMust"));
     messageBuilder.append(StringUtils.SPACE);
 
     for (int i = 0; i < passwordPolicies.size(); i++) {

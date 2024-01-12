@@ -11,7 +11,7 @@ import com.axonivy.portal.developerexamples.dto.CategoryNode;
 public class CategoryUtils {
 
   public static final String NO_CATEGORY = "[No Category]";
-  public static final String NO_CATEGORY_CMS = "/ch.ivy.addon.portalkit.ui.jsf/common/noCategory";
+  public static final String NO_CATEGORY_CMS = "/Labels/noCategory";
   public static final String CATEGORY_SEPARATOR = ", ";
   public static final String CATEGORY_PATH_DELIMITER = "/";
 

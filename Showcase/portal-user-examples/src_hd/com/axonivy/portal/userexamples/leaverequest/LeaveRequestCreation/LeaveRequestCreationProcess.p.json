@@ -125,7 +125,7 @@
             "FacesContext.getCurrentInstance().addMessage(",
             "          null,",
             "          new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co(",
-            "              \"/ch.ivy.addon.portalkit.ui.jsf/common/dateFromBiggerThanTo\"), null));",
+            "              \"/Labels/dateFromBiggerThanTo\"), null));",
             "}"
           ]
         },

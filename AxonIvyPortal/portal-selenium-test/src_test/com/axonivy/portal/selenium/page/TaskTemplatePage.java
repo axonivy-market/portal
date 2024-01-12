@@ -100,6 +100,7 @@ public class TaskTemplatePage extends TemplatePage {
     return $("div[id$='adhoc-task-history-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  // moved
   public void clickChatGroup() {
     $("a[id$='chat-group']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
@@ -119,7 +120,8 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void clickCancelLink() {
-    waitForElementClickableThenClick($(By.linkText("Cancel")));
+    clickByJavaScript($(By.linkText("Cancel")));
+    switchBackToParent();
   }
 
   public boolean isTaskNameDisplayed() {
@@ -218,6 +220,7 @@ public class TaskTemplatePage extends TemplatePage {
     return $$("td.related-task-name-column").size();
   }
 
+  // moved
   public void clickTaskActionMenu() {
     clickByJavaScript($("button[id$='horizontal-task-actions']"));
     waitForElementDisplayed(By.cssSelector("[id$=':horizontal-task-action-menu']"), true);
@@ -255,6 +258,7 @@ public class TaskTemplatePage extends TemplatePage {
 
   public void clickOnSubmitButton() {
     clickByJavaScript($("button[id$=':button-submit']"));
+    switchBackToParent();
   }
 
   public void clickAdhocCreationButton() {
@@ -301,12 +305,14 @@ public class TaskTemplatePage extends TemplatePage {
     return elem.findAll(By.xpath("td")).get(3).getText();
   }
 
+  // moved
   public void joinProcessChatAlreadyCreated() {
     waitForElementDisplayed(By.id("chat-group-join-form:chat-group-join-button"), true);
     waitForElementClickableThenClick($(By.id("chat-group-join-form:chat-group-join-button")));
     waitForElementDisplayed(By.id("chat-form:group-chat-container"), true);
   }
 
+  // moved
   public void clickCreateGroupChatBtn() {
     waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-group-create-button"), true);
     waitForElementClickableThenClick(By.id("chat-assignee-selection-form:chat-group-create-button"));

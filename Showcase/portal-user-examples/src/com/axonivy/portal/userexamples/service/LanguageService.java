@@ -7,6 +7,8 @@ import java.util.function.Function;
 import com.axonivy.portal.userexamples.dto.IvyLanguage;
 
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.language.LanguageConfigurator;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 
 public class LanguageService {
@@ -27,6 +29,16 @@ public class LanguageService {
     return loadLanguage(IUser::getLanguage);
   }
 
+  public Locale getDefaultEmailLanguage() {
+    return getLanguageConfigurator().content();
+  }
+
+  private LanguageConfigurator getLanguageConfigurator() {
+    return new LanguageConfigurator(ISecurityContext.current());
+  }
+  public Locale getDefaultFormattingLanguage() {
+    return getLanguageConfigurator().formatting();
+  }
   private String loadLanguage(Function<IUser, Locale> userLocaleLoader) {
     var languageTag = "";
     if (Ivy.session().isSessionUserUnknown()) {

@@ -313,9 +313,10 @@ public class TaskDetailsPage extends TemplatePage {
     return new TaskWidgetPage();
   }
 
-  public TaskTemplatePage clickStartTask() {
+  public TaskIFrameTemplatePage clickStartTask() {
     findElementByCssSelector("[id$=':task-detail-start-command']").click();
-    return new TaskTemplatePage();
+    switchToIFrameOfTask();
+    return new TaskIFrameTemplatePage();
   }
 
   public void changePriorityOfTask(int priorityValue) {

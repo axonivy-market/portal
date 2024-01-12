@@ -186,11 +186,11 @@ public class StatisticFilter implements Cloneable {
   }
 
   public String getCaseStateName(CaseState state) {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/" + state);
+    return Ivy.cms().co("/Labels/caseState/" + state);
   }
 
   public String getPriorityName(WorkflowPriority priority) {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/" + priority);
+    return Ivy.cms().co("/Labels/taskPriority/" + priority);
   }
 
   public StatisticTimePeriodSelection getTimePeriodSelection() {
