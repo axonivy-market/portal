@@ -88,7 +88,7 @@ public class News extends AbstractConfiguration implements Serializable {
   }
 
   public String getDescription() {
-    return HtmlParser.sanitizeHTML(description);
+    return description;
   }
 
   public void setDescription(String description) {
