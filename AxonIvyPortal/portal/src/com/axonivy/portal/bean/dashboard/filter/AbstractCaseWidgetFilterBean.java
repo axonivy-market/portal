@@ -2,12 +2,13 @@ package com.axonivy.portal.bean.dashboard.filter;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
-import org.apache.commons.collections4.CollectionUtils;
-
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
@@ -74,7 +75,8 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
   }
 
   public void onSelectFilter(DashboardFilter filter) {
-    String field = Optional.ofNullable( filter.getFilterField()).map(FilterField::getName).orElse(null);
+    String field = Optional.ofNullable(filter).map(DashboardFilter::getFilterField).map(FilterField::getName)
+        .orElse(StringUtils.EMPTY);
     FilterField filterField = FilterFieldFactory.findBy(field);
 
     if (filterField == null) {
