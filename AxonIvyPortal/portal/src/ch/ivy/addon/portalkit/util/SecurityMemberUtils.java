@@ -11,6 +11,7 @@ import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.dto.UserDTO;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.query.IPagedResult;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
@@ -95,11 +96,11 @@ public class SecurityMemberUtils {
   }
   
   private static String cms(String url, List<Object> params) {
-    return Ivy.cms().co(PREFIX_CMS.concat(url), params);
+    return HtmlParser.sanitize(Ivy.cms().co(PREFIX_CMS.concat(url), params));
   }
 
   private static String cms(String url) {
-    return Ivy.cms().co(PREFIX_CMS.concat(url));
+    return HtmlParser.sanitize(Ivy.cms().co(PREFIX_CMS.concat(url)));
   }
 
 }
