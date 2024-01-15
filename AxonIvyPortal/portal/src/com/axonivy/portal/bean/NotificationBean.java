@@ -27,6 +27,7 @@ public class NotificationBean implements Serializable {
   private static final long serialVersionUID = 4467991301954952570L;
   private final WebNotifications webNotifications;
   private final NotificationLazyModel dataModel;
+  private final String WEB = "web";
 
   private long countAll;
   private long countUnread;
@@ -124,13 +125,13 @@ public class NotificationBean implements Serializable {
 
   private boolean isWebChannelEnableByAdmin() {
     return channels.stream().map(IvyNotificationChannelDTO::getChannel)
-        .filter(channel -> channel.displayName().equalsIgnoreCase("web")).map(NotificationChannel::config)
+        .filter(channel -> channel.displayName().equalsIgnoreCase(WEB)).map(NotificationChannel::config)
         .map(NotificationChannelSystemConfig::enabled).map(Boolean::valueOf).findFirst().orElse(false);
   }
 
   private boolean isWebChannelEnableByUser() {
     List<NotificationSubscription> subscriptions = channels.stream().map(IvyNotificationChannelDTO::getChannel)
-        .filter(channel -> channel.displayName().equalsIgnoreCase("web"))
+        .filter(channel -> channel.displayName().equalsIgnoreCase(WEB))
         .map(channel -> channel.configFor(subscriber).subscriptions()).findFirst().orElse(null);
     if (subscriptions != null) {
       return subscriptions.stream().map(NotificationSubscription::state)
