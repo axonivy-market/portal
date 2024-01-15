@@ -24,12 +24,13 @@
     <ui:param name="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
     <ui:param name="isRenderInfo" value="false" />
     <ui:param name="widgetContentStyleClass" value="notification-widget__content-panel" />
+    <ui:param name="unreadNotificationsId" value="#{p:resolveFirstComponentWithId('topbar-unread-notifications-container', view).clientId}" />
 
     <ui:define name="widgetContent">
       <p:remoteCommand id="rc-load-notification-firsttime-#{widget.id}" autoRun="true"
         update="dashboard-notification-container-#{widget.id}" global="false" async="true" process="@this"
         oncomplete="loadWidgetFirstTime('js-loading-#{widget.id}', 'js-dashboard-notification-container-#{widget.id}')"
-        actionListener="#{widget.setOnlyUnread(widget.onlyUnread)}" />
+        actionListener="#{widget.loadFirstTime()}" />
 
       <div class="w-full widget-height-100">
         <h:panelGroup id="loading-#{widget.id}" styleClass="js-loading-#{widget.id}">
@@ -41,21 +42,21 @@
         <h:panelGroup id="dashboard-notification-container-#{widget.id}" layout="block"
           styleClass="w-full dashboard-notification-container js-dashboard-notification-container-#{widget.id}  u-display-none">
           <h:panelGroup id="notification-widget__content-#{widget.id}" layout="block" styleClass="notification-widget__content">
-            <p:dataScroller id="notifications-scroller-#{widget.id}" lazy="true" value="#{notificationBean.dataModel}" var="notification" 
-                chunkSize="10" widgetVar="notifications-scroller" mode="inline" rendered="#{notificationBean.hasNotifications()}">
+            <p:dataScroller id="notifications-scroller-#{widget.id}" lazy="true" value="#{widget.dataModel}" var="notification" 
+                chunkSize="10" widgetVar="notifications-scroller-#{widget.id}" mode="inline" rendered="#{widget.hasNotifications()}">
               <span class="notifications-group-title #{notification.markedToday} #{notification.markedToday ? '' : 'u-hidden'}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/todayText')}</span>
               <span class="notifications-group-title #{notification.markedOlder ? '' : 'u-hidden'}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/olderText')}</span>
               <div class="#{notification.style} notifications-container-top">
                 <div class="p-d-flex">
                   <div class="p-d-flex">
                     <p:commandLink id="notification-mark-as-read"
-                      actionListener="#{notificationBean.markAsRead(notification)}"
+                      actionListener="#{widget.markAsRead(notification)}"
                       process="@this" partialSubmit="true"
                       global="false"
-                      onclick="markAsRead('#{notification.id}')"
+                      onclick="markAsRead('#{widget.id}__#{notification.id}')"
                       oncomplete="Portal.updateLayoutContent();"
                       update="#{unreadNotificationsId}">
-                      <i class="notifications-button fa #{notification.read ? 'fa-circle-thin': 'fa-circle'}" id="#{notification.id}" />
+                      <i class="notifications-button fa #{notification.read ? 'fa-circle-thin': 'fa-circle'}" id="#{widget.id}__#{notification.id}" />
                     </p:commandLink>
                     <p:tooltip for="notification-mark-as-read"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
@@ -70,7 +71,7 @@
               </div>
 
             </p:dataScroller>
-            <h:panelGroup layout="block" id="empty-message" rendered="#{!notificationBean.hasNotifications()}"
+            <h:panelGroup layout="block" id="empty-message" rendered="#{!widget.hasNotifications()}"
               styleClass="empty-message-container">
               <i class="si si-alarm-bell empty-message-icon" />
               <br />

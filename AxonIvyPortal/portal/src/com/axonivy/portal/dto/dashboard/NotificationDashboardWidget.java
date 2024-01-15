@@ -1,6 +1,7 @@
 package com.axonivy.portal.dto.dashboard;
 
-import com.axonivy.portal.datamodel.NotificationLazyModel;
+import com.axonivy.portal.datamodel.DashboardNotificationLazyModel;
+import com.axonivy.portal.dto.NotificationDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
@@ -15,12 +16,15 @@ public class NotificationDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private final WebNotifications webNotifications;
   @JsonIgnore
-  private NotificationLazyModel dataModel;
+  private DashboardNotificationLazyModel dataModel;
+  @JsonIgnore
+  private long countAll;
   private boolean onlyUnread;
 
   public NotificationDashboardWidget() {
     this.webNotifications = WebNotifications.current();
-    this.dataModel = new NotificationLazyModel(webNotifications);
+    this.countAll = webNotifications.countAll();
+    this.dataModel = new DashboardNotificationLazyModel(this.webNotifications);
   }
 
   @JsonIgnore
@@ -34,6 +38,11 @@ public class NotificationDashboardWidget extends DashboardWidget {
     widget.getLayout().setAxisX(0);
     widget.getLayout().setAxisY(0);
     return widget;
+  }
+
+  public void loadFirstTime() {
+    this.dataModel.setOnlyUnread(this.onlyUnread);
+    this.dataModel.setWidgetId(this.getId());
   }
 
   @Override
@@ -52,11 +61,17 @@ public class NotificationDashboardWidget extends DashboardWidget {
     this.onlyUnread = onlyUnread;
   }
 
-  public WebNotifications getWebNotifications() {
-    return webNotifications;
+  public DashboardNotificationLazyModel getDataModel() {
+    return dataModel;
   }
 
-  public NotificationLazyModel getDataModel() {
-    return dataModel;
+  public void markAsRead(NotificationDto dto) {
+    if (!dto.isRead()) {
+      dataModel.markAsRead(dto.getNotification());
+    }
+  }
+
+  public boolean hasNotifications() {
+    return countAll != 0;
   }
 }
