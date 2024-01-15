@@ -6,7 +6,9 @@ import org.openqa.selenium.WebElement;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.UserProfilePage;
 
 @IvyWebTest
 public class NotificationsTest extends BaseTest {
@@ -54,5 +56,16 @@ public class NotificationsTest extends BaseTest {
     homepage.getNotificationsPanel();
     homepage.clickNotificationFullPage();
     homepage.waitForNotificationFullpageDisplay();
+  }
+
+  @Test
+  public void testDisableNotificationIcon() {
+    login(TestAccount.ADMIN_USER);
+    NewDashboardPage homepage = new NewDashboardPage();
+    UserProfilePage userProfilePage = homepage.openMyProfilePage();
+    userProfilePage.checkBoxTosubscribeChannel();
+    userProfilePage.checkBoxTosubscribeChannel();
+    userProfilePage.save();
+    homepage.hideNotificationsIcon();
   }
 }
