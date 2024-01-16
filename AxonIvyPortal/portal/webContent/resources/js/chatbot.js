@@ -143,6 +143,7 @@ async function sendChatMessage(uri, view, message) {
       view.renderMyMessage(message);
       view.renderMessage(JSON.parse(response.responseText));
       $('.js-chatbot-input-message').val('');
+      scrollToLatestUserMessage();
     }
   });
 }
@@ -155,4 +156,15 @@ function adjustMessageInputForNewline() {
   messageInputField.selectionEnd = position + 1;
   messageInputField.seletionStart = position + 1;
   messageInputField.scrollTop = messageInputField.scrollHeight;
+}
+
+function scrollToLatestUserMessage() {
+    var $messageList = $('.js-message-list');
+    var $latestMessage = $('.my-message').last();
+
+    if ($latestMessage.length > 0) {
+        $messageList.animate({
+            scrollTop: $latestMessage.offset().top - $messageList.offset().top + $messageList.scrollTop()
+        }, 300);
+    }
 }

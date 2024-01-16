@@ -579,4 +579,8 @@
   /*Notification channels*/
   --state-active: var(--case-state-done-color);
   --state-inactive: var(--task-state-failed-color);
+  
+  /* Chatbot */
+  --my-message-color: var(--ivy-portal-blue-light);
+  --my-message-text: var(--ivy-primary-color-black);
 }
