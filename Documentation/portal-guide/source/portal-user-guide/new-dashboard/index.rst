@@ -34,6 +34,8 @@ The following default widgets are available:
 
 #. **External page widget**: This widget displays an external webpage on your dashboard.
 
+#. **Notifications widget**: This widget displays all Notifications based on your notification settings.
+
 In addition, a developer can provide custom widgets to add relevant project information to your dashboard.
 
 **Task list widget, Case list widget, Process list widget (compact mode)** has the following standard features:
@@ -289,6 +291,19 @@ You enter an URL to embed an external webpage into the Portal dashboard.
 
 |external-page-widget-configuration|
 
+.. _add-new-notification-widget:
+
+Notifications widget
+====================
+
+You can define a Notifications widget to display all Notifications based on your notification settings.
+
+|notification-widget-configuration|
+
+- This is sample output of the widget configured above:
+
+|notification-widget|
+
 .. include:: ../includes/_common-icon.rst
 
 .. |dash-board| image:: ../../screenshots/new-dashboard/dashboard.png
@@ -326,3 +341,5 @@ You enter an URL to embed an external webpage into the Portal dashboard.
 .. |news-feed-widget-overlay-panel| image:: ../../screenshots/new-dashboard/news-feed-widget-overlay-panel.png
 
 .. |external-page-widget-configuration| image:: ../../screenshots/dashboard/external-page-widget-configuration.png
+.. |notification-widget-configuration| image:: ../../screenshots/new-dashboard/notification-widget-configuration.png
+.. |notification-widget| image:: ../../screenshots/new-dashboard/notification-widget.png

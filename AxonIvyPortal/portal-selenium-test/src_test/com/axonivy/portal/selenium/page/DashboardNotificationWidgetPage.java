@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 
 public class DashboardNotificationWidgetPage extends TemplatePage {
 
@@ -13,7 +14,8 @@ public class DashboardNotificationWidgetPage extends TemplatePage {
 
   public DashboardNotificationWidgetPage() {
     super();
-    var widgetHeader = $(".widget__header span[id*='notification-notification_']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    var widgetHeader = $(".widget__header span[id*='notification-notification_']").shouldBe(Condition.appear,
+        DEFAULT_TIMEOUT);
     widgetName = widgetHeader.getText();
     String widgetHeaderId = widgetHeader.getAttribute("id");
     widgetId = widgetHeaderId.substring("notification-notification_".length(), widgetHeaderId.indexOf(':'));
@@ -22,6 +24,12 @@ public class DashboardNotificationWidgetPage extends TemplatePage {
   @Override
   protected String getLoadedLocator() {
     return ".notification-widget__content-panel";
+  }
+
+  public SelenideElement getWidgetElement() {
+    return $(
+        "div[id='notification-notification_" + widgetId + ":notification-widget-notification_" + widgetId + "-panel']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public String getWidgetName() {
