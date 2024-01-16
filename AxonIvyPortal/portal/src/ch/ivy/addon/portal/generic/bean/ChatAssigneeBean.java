@@ -106,7 +106,8 @@ public class ChatAssigneeBean implements Serializable {
       CaseQuery caseQuery = queryCaseHasGroupChat();
       ICase iCase = Ivy.wf().getCaseQueryExecutor().getFirstResult(caseQuery);
       existedGroupChat = mapFromCustomField(iCase);
-      groupChatExistMessage = cms(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/processChatWasCreated",
+      groupChatExistMessage = HtmlParser
+          .sanitize(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/processChatWasCreated",
           Arrays.asList(getGroupChatName(existedGroupChat))));
     }
     return groupChatExistMessage;
@@ -123,7 +124,8 @@ public class ChatAssigneeBean implements Serializable {
         assigneeNames.add("#".concat(Long.toString(Ivy.session().getSessionUser().getId())));
         String groupChatName = getGroupChatName(existedGroupChat);
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
-            cms(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/joinedProcessChat", Arrays.asList(groupChatName))),
+            HtmlParser.sanitize(
+                Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/joinedProcessChat", Arrays.asList(groupChatName))),
             null);
         CreateGroupChatStatus createGroupChatStatus = CreateGroupChatStatus.FAIL;
         boolean joinGroup = true;
@@ -193,7 +195,8 @@ public class ChatAssigneeBean implements Serializable {
     GroupChat group = initGroupChat(iCase);
     String groupChatName = getGroupChatName(group);
     FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
-        cms(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/processChatIsCreated", Arrays.asList(groupChatName))),
+        HtmlParser.sanitize(
+            Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/processChatIsCreated", Arrays.asList(groupChatName))),
         null);
     boolean isCreated = true;
 
@@ -300,10 +303,6 @@ public class ChatAssigneeBean implements Serializable {
       return true;
     }
     return false;
-  }
-
-  private String cms(String cmsURL, Object... param) {
-    return HtmlParser.sanitize(Ivy.cms().co(cmsURL, Arrays.asList(param)));
   }
 
   public boolean getIsAssignToUser() {
