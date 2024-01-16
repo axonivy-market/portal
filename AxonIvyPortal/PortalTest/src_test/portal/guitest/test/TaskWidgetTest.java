@@ -124,8 +124,7 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.filterTasksInExpendedModeBy("Annual Leave Request");
     Assert.assertFalse(taskWidgetPage.isTaskStartEnabled(0));
     taskWidgetPage.filterTasksInExpendedModeBy("Sick Leave Request");
-    Awaitility.waitAtMost(15, TimeUnit.SECONDS);
-    Assert.assertTrue(taskWidgetPage.isTaskStartEnabled(0));
+    Awaitility.waitAtMost(10, TimeUnit.SECONDS).until(() -> taskWidgetPage.isTaskStartEnabled(0));
   }
 
   @Test
