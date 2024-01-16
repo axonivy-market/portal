@@ -20,12 +20,11 @@
     </ui:define>
     <ui:define name="pageContent">
       <div class="ui-g">
-        <div class="ui-g-12 portal-section-container card">
+        <div class="ui-g-7 ui-md-9 ui-sm-12 chat-container card u-no-padding">
           <h:form id="chat-form">
             <script type="text/javascript">
               $(document).ready(function(){
-                var contentHeight = $(".js-layout-content").get(0).offsetHeight - 40;
-                $(".js-chatbot-panel").height(contentHeight);
+                initUI();
               });
 
               hljs.configure({
@@ -46,13 +45,13 @@
                   styleClass="chatbot-message-list js-chatbot-message-list ui-g" />
                 <p:scrollTop target="chat-message-list" />
               </div>
-              <h:panelGroup id="chat-send-form-container" layout="block" styleClass="chat-send-form">
+              <h:panelGroup id="chat-send-form-container" layout="block" styleClass="chat-send-form js-chat-send-form">
                   <p:inputTextarea id="message-input-field" onkeydown="chatbot.onKeyEvent(event)"
                     placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/typeMessage')}"
                     maxlength="2500"
-                    styleClass="message-list-content-send-input js-chatbot-input-message message-list-content-send-input" />
+                    styleClass="message-list-content-send-input js-chatbot-input-message" />
                   <p:commandButton icon="si si-send-email" onclick="chatbot.sendMessage()"
-                    styleClass="message-list-content-send-button" global="false" type="button" />
+                    styleClass="message-list-content-send-button rounded-button ui-button-outlined" global="false" type="button" />
                 </h:panelGroup>
             </div>
       
