@@ -14,12 +14,12 @@ function loadIframe(recheckIndicator) {
 
   if (!recheckIndicator) {
     $(iframe).on('load', function () {
-      $(iframe).css('display', 'none');
+      iframe.style.visibility = 'hidden';
       processIFrameData(iframe);
       clearTimeout(recheckFrameTimer);
       setTimeout(function() {
         if ($(iframe).attr('src') != 'about:blank') {
-            $(iframe).css('display', 'block');
+          iframe.style.visibility = 'visible';
           }
         }, 500);
       return;
@@ -33,7 +33,7 @@ function loadIframe(recheckIndicator) {
     if (iframeDoc.readyState == 'complete') {
       processIFrameData(iframe);
       clearTimeout(recheckFrameTimer);
-      $(iframe).css('display', 'block');
+      iframe.style.visibility = 'visible';
       return;
     }
   }
