@@ -8,7 +8,6 @@ import ch.ivy.addon.portalkit.bo.PasswordValidationStatus;
 import ch.ivy.addon.portalkit.enums.PasswordPolicyType;
 import ch.ivy.addon.portalkit.password.PasswordPolicy;
 import ch.ivy.addon.portalkit.password.PasswordValidation;
-import com.axonivy.portal.components.util.HtmlParser;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class PasswordCheckingService {
@@ -63,7 +62,7 @@ public class PasswordCheckingService {
         }
       }
     }
-    return HtmlParser.sanitize(messageBuilder.toString());
+    return messageBuilder.toString();
   }
 
   private boolean checkPasswordPolicies(String password, List<PasswordPolicy> passwordPolicies) {
