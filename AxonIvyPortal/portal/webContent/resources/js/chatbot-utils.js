@@ -163,3 +163,12 @@ const parseMessage = message => {
   message = formattedParagraphs.join('\n');
   return message;
 };
+
+function initUI() {
+  var contentHeight = $(".js-layout-content").get(0).offsetHeight;
+  $(".js-chatbot-panel").height(contentHeight);
+
+  const chatSendForm = $('.chat-send-form')
+  chatSendForm.height('6rem');
+  chatSendForm.find('.js-chatbot-input-message').height('100%');
+}
