@@ -1728,6 +1728,11 @@ body .ui-widget.new-widget-dialog__introduction {
   padding-left: 0.5em;
 }
 
+.dashboard-widget-filter__filter-wrapper {
+  padding: 10px 0;
+  border-bottom: solid 1px var(--ivy-primary-color-grey-light);
+}
+
 .dashboard-widget-filter__read-only-panel .dashboard-widget-filter__filter-panel:last-child {
   margin-bottom: 10px;
 }
