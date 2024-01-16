@@ -19,11 +19,14 @@ public class NotificationDashboardWidget extends DashboardWidget {
   private DashboardNotificationLazyModel dataModel;
   @JsonIgnore
   private long countAll;
+  @JsonIgnore
+  private long countUnread;
   private boolean onlyUnread;
 
   public NotificationDashboardWidget() {
     this.webNotifications = WebNotifications.current();
     this.countAll = webNotifications.countAll();
+    this.countUnread = webNotifications.countUnread();
     this.dataModel = new DashboardNotificationLazyModel(this.webNotifications);
   }
 
@@ -72,6 +75,6 @@ public class NotificationDashboardWidget extends DashboardWidget {
   }
 
   public boolean hasNotifications() {
-    return countAll != 0;
+    return this.onlyUnread ? countUnread != 0 : countAll != 0;
   }
 }
