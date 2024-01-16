@@ -57,6 +57,14 @@
   text-align: left;
 }
 
+.chatbot-panel .my-message .chat-message {
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--my-message-color);
+  color: var(--my-message-text);
+  box-shadow: 0px 3px 5px rgba(41, 50, 65, 0.2);
+}
+
 .chatbot-panel .avatar-block {
   display: inline;
   margin-right: 0.5rem;
@@ -74,11 +82,12 @@
   cursor: default;
   border-radius: 10px;
   margin: 0;
-  word-break: break-all;
+  word-break: break-word;
   box-sizing: border-box;
   border-top-left-radius: 0px;
   float: left;
   font-size: 1.1rem;
+  white-space: pre-wrap;
 }
 
 .chatbot-panel .message-block .chat-sender,
