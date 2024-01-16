@@ -1805,3 +1805,6 @@ body .ui-button.rounded-button.dashboard-widget-filter__remove-filter .ui-icon {
 .id-filter-operator-panel {
   min-width: 130px;
 }
+.text-list-filter{
+  max-width: 60%;
+}
