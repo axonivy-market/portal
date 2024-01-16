@@ -12,8 +12,10 @@ import com.axonivy.portal.selenium.page.DashboardNotificationWidgetConfiguration
 import com.axonivy.portal.selenium.page.DashboardNotificationWidgetPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.ElementsCollection;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DashboardNotificationWidgetTest extends BaseTest {
 
   private static final String NOTIFICATION_WIDGET_NAME = "My Notifications";
@@ -41,5 +43,12 @@ public class DashboardNotificationWidgetTest extends BaseTest {
     notificationWidgetConfiguration.save();
     notificationWidget = newDashboardPage.selectNotificationWidget();
     assertEquals(notificationWidget.getWidgetName(), NOTIFICATION_WIDGET_NAME);
+    ElementsCollection notifications = notificationWidget.getListNotifications();
+    if (notifications.size() == 0) {
+      redirectToRelativeLink(createTestingTasksUrl);
+      redirectToRelativeLink(BaseTest.PORTAL_HOME_PAGE_URL);
+      notifications = notificationWidget.getListNotifications();
+    }
+    notifications.shouldBe(CollectionCondition.sizeGreaterThan(0));
   }
 }
