@@ -126,7 +126,7 @@
         "security" : "system",
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.support.HtmlParser;",
+            "import com.axonivy.portal.components.util.HtmlParser;",
             "import org.primefaces.PrimeFaces;",
             "import ch.ivyteam.ivy.security.IUser;",
             "import org.apache.commons.lang3.StringUtils;",

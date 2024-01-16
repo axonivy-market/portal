@@ -14,6 +14,7 @@ import javax.faces.validator.ValidatorException;
 
 import ch.ivy.addon.portal.generic.bean.ColumnManagementBean;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import com.axonivy.portal.components.util.HtmlParser;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @FacesValidator("duplicateFieldValidator")
@@ -30,7 +31,9 @@ public class DuplicateFieldValidator implements Validator {
         .filter(f -> f.getType() == selectedFieldType && f.getField().equals(value)).findFirst();
     if (field.isPresent()) {
       FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/existingField", Arrays.asList(value)), null);
+          HtmlParser.sanitize(
+              Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/existingField", Arrays.asList(value))),
+          null);
       FacesContext.getCurrentInstance().addMessage(component.getClientId(), msg);
       throw new ValidatorException(msg);
     }

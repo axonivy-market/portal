@@ -10,7 +10,7 @@ import org.apache.commons.lang.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.support.HtmlParser;
+import com.axonivy.portal.components.util.HtmlParser;
 
 @ManagedBean
 @ViewScoped

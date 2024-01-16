@@ -35,7 +35,7 @@
     <div class="guide-panel__container" style="width: #{cc.attrs.contentWidth}">
       <span class="#{cc.attrs.iconClass} guide-panel__icon" />
       <h2>#{cc.attrs.title}</h2>
-      <p class="guide-panel__content"><h:outputText id="#{cc.attrs.targetComponent}-content" value="#{visibilityBean.sanitizeContent(cc.attrs.content)}" escape="false" /></p>
+      <p class="guide-panel__content"><h:outputText id="#{cc.attrs.targetComponent}-content" value="#{cc.attrs.content}" /></p>
       <div class="guide-panel__footer">
         <h:panelGroup id="guide-panel-buttons" layout="block" styleClass="guide-panel__buttons">
           <p:commandLink id="cancel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"

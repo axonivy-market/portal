@@ -3,13 +3,12 @@ package ch.ivy.addon.portalkit.support;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.safety.Safelist;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class HtmlParser {
   public static String sanitizeHTML(String text) {
-    String sanitizedText = sanitize(text);
+    String sanitizedText = com.axonivy.portal.components.util.HtmlParser.sanitize(text);
     if (StringUtils.isBlank(parseTextFromHtml(text))) {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription");
     }
@@ -25,12 +24,9 @@ public class HtmlParser {
   }
 
   public static String parseTextFromHtml(String text) {
-    String sanitizedText = sanitize(text);
+    String sanitizedText = com.axonivy.portal.components.util.HtmlParser.sanitize(text);
     Document doc = Jsoup.parse(sanitizedText);
     return doc.body().text();
   }
 
-  public static String sanitize(String text) {
-    return text == null ? null : Jsoup.clean(text, Safelist.relaxed().addAttributes(":all", "style"));
-  }
 }
