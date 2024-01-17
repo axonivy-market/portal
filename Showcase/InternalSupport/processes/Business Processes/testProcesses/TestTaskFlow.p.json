@@ -213,7 +213,8 @@
             "customFields" : [
               { "name" : "CustomerName", "type" : "STRING", "value" : "\"Other Leave/Sick/Long\"" },
               { "name" : "CustomerType", "type" : "STRING", "value" : "\"Sick CustomerType\"" },
-              { "name" : "SupportData", "type" : "STRING", "value" : "\"Sick SupportData\"" }
+              { "name" : "SupportData", "type" : "STRING", "value" : "\"Sick SupportData\"" },
+              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
             ]
           }, {
             "id" : "TaskC",

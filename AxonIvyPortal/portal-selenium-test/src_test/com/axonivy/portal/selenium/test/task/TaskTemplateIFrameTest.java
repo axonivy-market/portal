@@ -13,6 +13,7 @@ import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
+import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
 @IvyWebTest
@@ -44,7 +45,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
   public void testDisplayWarningInIFrameTaskTemplate() {
     redirectToRelativeLink(IFRAME_TASK_URL);
     waitForTemplateRender();
-    final TaskIFrameTemplatePage taskTemplatePage = new TaskIFrameTemplatePage();
+    TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     taskTemplatePage.clickOnLogo();
     By leaveButton = By.id("task-leave-warning-component:leave-button");
     WaitHelper.assertTrueWithWait(() -> taskTemplatePage.isElementDisplayed(leaveButton));
@@ -54,7 +55,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
   public void testNotDisplayWarningInIFrameTaskTemplate() {
     redirectToRelativeLink(IFRAME_TASK_URL);
     waitForTemplateRender();
-    TaskIFrameTemplatePage taskTemplatePage1 = new TaskIFrameTemplatePage();
+    TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
     TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
     taskWidgetPage.filterTasksInExpandedModeBy("Approve Investment", 1);
     TaskIFrameTemplatePage taskTemplatePage2 = taskWidgetPage.startTaskIFrame(0);
@@ -67,7 +68,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     redirectToRelativeLink(IFRAME_TASK_URL);
     waitForTemplateRender();
-    TaskIFrameTemplatePage taskTemplatePage1 = new TaskIFrameTemplatePage();
+    TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
     TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
     taskWidgetPage.filterTasksInExpandedModeBy("Approve Investment", 1);
     TaskIFrameTemplatePage taskTemplatePage2 = taskWidgetPage.startTaskIFrame(0);

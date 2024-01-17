@@ -628,6 +628,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public TaskIFrameTemplatePage startTaskWithouWaitForTaskActionPresent(int index) {
     waitTaskAppearThenClick(index);
+    switchToIFrameOfTask();
     return new TaskIFrameTemplatePage();
   }
 
