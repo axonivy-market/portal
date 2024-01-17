@@ -578,7 +578,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       roleMemberLineFormat: <p class="tooltip-body-item">{0}</p>
       roleMembersTooltipFormat: |-
         <p class="tooltip-header">{0}</p>
-        <ul class="tooltip-body {1}">{2}</ul>
+        <ul style="margin: auto; {1}">{2}</ul>
       tooltipHelper: Click to show all users which own this role directly or indirectly
       userOfRoleTitle: User of {0} group
     compactProcessWidget:
