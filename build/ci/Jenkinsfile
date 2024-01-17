@@ -19,6 +19,7 @@ pipeline {
     stage('build') {
       steps {
         script {
+          currentBuild.description = "On ${env.NODE_NAME}"
           builtModules = []
           docker.build('build-portal-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
             def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
