@@ -29,7 +29,7 @@ function loadIframe(recheckIndicator) {
   else {
     const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
     iframeDoc.onbeforeunload = function() {
-      $(iframe).addClass('u-hidden');
+      iframe.style.visibility = 'hidden';
     }
     if (iframeDoc.readyState == 'complete') {
       processIFrameData(iframe);
