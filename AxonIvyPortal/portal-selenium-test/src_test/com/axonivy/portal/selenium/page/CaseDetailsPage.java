@@ -827,11 +827,11 @@ public class CaseDetailsPage extends TemplatePage {
     return $$("[id$='task-action-component']").get(index);
   }
 
-  public TaskIFrameTemplatePage startRelatedTask(String taskName) {
+  public TaskTemplatePage startRelatedTask(String taskName) {
     Integer index = getTaskRowIndex(taskName);
     WebElement element = $$("[id$='task-action-component']").get(index);
     element.click();
-    return new TaskIFrameTemplatePage();
+    return new TaskTemplatePage();
   }
 
   public void resetTask(String taskName) {

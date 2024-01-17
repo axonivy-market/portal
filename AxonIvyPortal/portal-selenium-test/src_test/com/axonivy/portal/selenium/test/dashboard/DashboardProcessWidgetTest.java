@@ -16,8 +16,8 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.ProcessInformationPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
-import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
+import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 

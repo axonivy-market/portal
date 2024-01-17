@@ -27,6 +27,7 @@ public class TaskIFrameTemplatePage extends TemplatePage {
   }
 
   public SelenideElement getDisplayedTaskTitle() {
+    switchBackToParent();
     return getTaskTitle().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
