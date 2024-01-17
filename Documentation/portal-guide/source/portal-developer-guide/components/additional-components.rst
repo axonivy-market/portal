@@ -113,10 +113,10 @@ The message could contain HTML code. To prevent XSS attacks, you need to sanitiz
    import org.jsoup.safety.Safelist;
 
    // sanitize the message to prevent XSS attacks
-   String message = Jsoup.clean(ivy.cms.co("/com.project.demo/common/customGrowlMessage",
+   String messageDetail = Jsoup.clean(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/linkToCaseDetails",
     Safelist.relaxed().addAttributes(":all", "style"));
 
-   FacesMessage facesMessage = new FacesMessage("Task is done successfully", message,
+   FacesMessage facesMessage = new FacesMessage("Task is done successfully", messageDetail,
    	[PortalNavigator.buildPortalCaseDetailsUrl(ivy.case.getBusinessCase().getId())]));
    FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", facesMessage);
 
