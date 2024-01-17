@@ -19,6 +19,7 @@ pipeline {
     stage('build') {
       steps {
         script {
+          currentBuild.description = "On ${env.NODE_NAME}"
           def version = 'dev'
           docker.withRegistry('', 'docker.io') {
             docker.image('maven:3.6.3-jdk-11-slim').inside {
