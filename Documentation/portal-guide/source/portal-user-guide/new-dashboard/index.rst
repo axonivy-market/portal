@@ -300,7 +300,7 @@ You can define a Notifications widget to display all Notifications based on your
 
 |notification-widget-configuration|
 
-- This is sample output of the widget configured above:
+- This is the sample output of the widget configured above:
 
 |notification-widget|
 
