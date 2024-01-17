@@ -70,6 +70,10 @@
   margin-right: 0.5rem;
 }
 
+.chatbot-panel .chatbot-message-list {
+  padding: 10px;
+}
+
 .chatbot-panel .message-block {
   display: flex;
   flex-direction: column;
@@ -149,13 +153,33 @@
   border-radius: 5px;
 }
 
-.chatbot-panel .chat-send-form {
+.chatbot-panel .chatbot-send-form {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 15px 0;
 }
 
-.chatbot-panel .chat-send-form .ui-widget.ui-button {
-  top: 25%;
+.chatbot-panel .chatbot-send-form .chat-send-form-input-field {
+  flex: 1 0 90%;
+  padding: 0 15px;
+}
+
+.chatbot-panel .chatbot-send-form .chat-send-form-button {
+  width: 60px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.chatbot-panel .chatbot-send-form .chat-send-form-input-field {
+  height: 100%;
+}
+
+.chatbot-panel .chatbot-send-form .message-list-content-send-input {
+  height: 100%;
+  padding: 10px;
+  resize: none;
 }
