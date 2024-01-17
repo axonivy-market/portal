@@ -136,6 +136,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.HtmlParser;",
             "import org.primefaces.PrimeFaces;",
             "import ch.ivyteam.ivy.security.IUser;",
             "import org.apache.commons.lang3.StringUtils;",
@@ -160,7 +161,7 @@
             "}",
             "",
             "facesContext.validationFailed();",
-            "facesContext.addMessage(\"portal-global-growl-message\", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));",
+            "facesContext.addMessage(\"portal-global-growl-message\", new FacesMessage(FacesMessage.SEVERITY_INFO, HtmlParser.sanitize(notification), null));",
             "PrimeFaces.current().ajax().update(\"portal-global-growl\");  "
           ]
         },

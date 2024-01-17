@@ -22,6 +22,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import com.axonivy.portal.components.util.HtmlParser;
 import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 import ch.ivyteam.ivy.dialog.execution.api.DialogInstance;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -93,7 +94,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
       Boolean overridePortalGrowl = (Boolean) overridePortalGrowlMap.get(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL + taskId);
       if (overridePortalGrowl != null && overridePortalGrowl) {
         String portalGlobalGrowlMessage = String.valueOf(overridePortalGrowlMap.get(IFrameTaskTemplateBean.PORTAL_GROWL_MESSGE_PARAM + taskId));
-        FacesMessage message = new FacesMessage(portalGlobalGrowlMessage, "");
+        FacesMessage message = new FacesMessage(HtmlParser.sanitize(portalGlobalGrowlMessage), "");
         FacesContext.getCurrentInstance().addMessage(GrowlMessageUtils.PORTAL_GLOBAL_GROWL_MESSAGE, message);
 
         Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
