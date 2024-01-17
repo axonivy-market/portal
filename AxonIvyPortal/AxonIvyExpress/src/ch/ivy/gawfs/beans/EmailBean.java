@@ -66,7 +66,7 @@ public class EmailBean implements Serializable {
     String uploadDocumentCheckMessage = checkFileSize(uploadedFile);
     if (!StringUtils.isEmpty(uploadDocumentCheckMessage)) {
       FacesContext.getCurrentInstance().addMessage(null,
-          new FacesMessage(FacesMessage.SEVERITY_ERROR, uploadDocumentCheckMessage, null));
+          new FacesMessage(FacesMessage.SEVERITY_ERROR, HtmlParser.sanitize(uploadDocumentCheckMessage), null));
       return;
     }
 
@@ -95,7 +95,7 @@ public class EmailBean implements Serializable {
       }
     }
 
-    return HtmlParser.sanitize(uploadDocumentCheckMessage);
+    return uploadDocumentCheckMessage;
   }
 
   public void downloadAttachment(ExpressAttachment attachment) throws IOException {
