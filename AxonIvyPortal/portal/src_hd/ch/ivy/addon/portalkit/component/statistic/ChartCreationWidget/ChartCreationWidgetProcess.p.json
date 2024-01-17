@@ -498,7 +498,7 @@
             "import javax.faces.application.FacesMessage;",
             "import ch.ivy.addon.portalkit.service.StatisticService;",
             "import ch.ivy.addon.portalkit.statistics.StatisticChart;",
-            "",
+            "import com.axonivy.portal.components.util.HtmlParser;",
             "",
             "// Update empty chart name",
             "String defaultEmailLanguage = new LanguageConfigurator(ISecurityContext.current()).content().toLanguageTag();",
@@ -521,7 +521,7 @@
             "",
             "String growlTitle = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/chartCreationSuccessTitle\");",
             "String growlDetail = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/chartCreationSuccessDetailMsg\", Arrays.asList(service.getDisplayNameInUserLanguageForChart(newChart).value));",
-            "FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_INFO, growlTitle, growlDetail);",
+            "FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_INFO, growlTitle, HtmlParser.sanitize(growlDetail));",
             "FacesContext.getCurrentInstance().addMessage(\"chart-creation-growl\", message);"
           ]
         },

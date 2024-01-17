@@ -20,6 +20,7 @@ import org.primefaces.PrimeFaces;
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.dto.UserDTO;
+import com.axonivy.portal.components.util.HtmlParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -104,8 +105,9 @@ public class ChatAssigneeBean implements Serializable {
       CaseQuery caseQuery = queryCaseHasGroupChat();
       ICase iCase = Ivy.wf().getCaseQueryExecutor().getFirstResult(caseQuery);
       existedGroupChat = mapFromCustomField(iCase);
-      groupChatExistMessage = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/processChatWasCreated",
-          Arrays.asList(getGroupChatName(existedGroupChat)));
+      groupChatExistMessage = HtmlParser
+          .sanitize(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/processChatWasCreated",
+          Arrays.asList(getGroupChatName(existedGroupChat))));
     }
     return groupChatExistMessage;
   }
@@ -121,8 +123,9 @@ public class ChatAssigneeBean implements Serializable {
         assigneeNames.add("#".concat(Long.toString(Ivy.session().getSessionUser().getId())));
         String groupChatName = getGroupChatName(existedGroupChat);
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
-            Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/joinedProcessChat",
-                Arrays.asList(groupChatName)), null);
+            HtmlParser.sanitize(
+                Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/joinedProcessChat", Arrays.asList(groupChatName))),
+            null);
         CreateGroupChatStatus createGroupChatStatus = CreateGroupChatStatus.FAIL;
         boolean joinGroup = true;
         try {
@@ -190,8 +193,10 @@ public class ChatAssigneeBean implements Serializable {
     ICase iCase = task.getCase().getBusinessCase();
     GroupChat group = initGroupChat(iCase);
     String groupChatName = getGroupChatName(group);
-    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, Ivy.cms()
-        .co("/ch.ivy.addon.portalkit.ui.jsf/chat/processChatIsCreated", Arrays.asList(groupChatName)), null);
+    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
+        HtmlParser.sanitize(
+            Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/processChatIsCreated", Arrays.asList(groupChatName))),
+        null);
     boolean isCreated = true;
 
     try {
@@ -250,7 +255,7 @@ public class ChatAssigneeBean implements Serializable {
         groupChatName = groupChatName.replace("{" + entry.getKey() + "}", entry.getValue().toString());
       }
     }
-    return groupChatName;
+    return HtmlParser.sanitize(groupChatName);
   }
 
   private CreateGroupChatStatus saveGroupChat(GroupChat group, boolean isUpdate) throws JsonProcessingException {
