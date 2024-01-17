@@ -52,6 +52,9 @@
   display: flex;
   flex-direction: row;
 }
+.chatbot-panel .my-message {
+  width: unset;
+}
 
 .chatbot-panel .my-message .chat-meta {
   text-align: left;
@@ -80,6 +83,7 @@
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: flex-start;
+  width: 100%;'
 }
 
 .chatbot-panel .message-block .chat-message {
@@ -92,6 +96,7 @@
   float: left;
   font-size: 1.1rem;
   white-space: pre-wrap;
+  width: 100%;
 }
 
 .chatbot-panel .message-block .chat-sender,
@@ -182,4 +187,11 @@
   height: 100%;
   padding: 10px;
   resize: none;
+}
+
+.chatbot-panel .message-iframe {
+  width: 100%;
+  height: 70vh;
+  border-radius: 10px;
+  border: solid 1px var(--ivy-primary-color-grey-light);
 }

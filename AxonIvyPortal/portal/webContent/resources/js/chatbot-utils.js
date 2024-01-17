@@ -4,6 +4,8 @@ const IMAGE_PATTERN = /\.(jpg|jpeg|png|webp|avif|gif|svg)$/;
 const HAS_HTTP_PATTERN = /^https?:\/\//i;
 const CODE_TAG_START = '<code>';
 const CODE_TAG_END = '</code>';
+const IFRAME_TAG_START = '<iframe>';
+const IFRAME_TAG_END = '</iframe>';
 const HLJS_LANGUAGE_PREFIX = 'language-';
 
 // Helper Functions
@@ -17,6 +19,9 @@ const isCode = paragraph => paragraph.startsWith(CODE_TAG_START);
 // Checks if a URL is an image URL.
 const isImageUrl = url => isUrl(url) && url.match(IMAGE_PATTERN);
 
+// Checks if a paragraph starts with an iframe tag.
+const isIFrame = paragraph => paragraph.startsWith(IFRAME_TAG_START);
+
 // Adds a link component to a word if it's a URL, otherwise returns the word unchanged.
 const addLink = word => (isUrl(word) ? generateLinkComponent(word) : word);
 
@@ -28,6 +33,13 @@ const convertCode = paragraph => {
   paragraph = generateCodeComponent(paragraph);
   return paragraph.endsWith(CODE_TAG_END) ? paragraph.slice(0, -CODE_TAG_END.length) : paragraph;
 };
+
+// Converts a iframe block paragraph to a Iframe component.
+const convertIFrame = paragraph => {
+  paragraph = paragraph.replace(IFRAME_TAG_START, '');
+  paragraph = paragraph.replace(IFRAME_TAG_END, '');
+  return generateIFrameComponent(paragraph);
+}
 
 // Generates an HTML link element with an updated URL.
 const generateLinkComponent = url => {
@@ -103,6 +115,14 @@ const generateCodeComponent = codeBlock => {
   return elemToString(preElem);
 };
 
+// Generates an Iframe component with the given paragraph
+const generateIFrameComponent = paragraph => {
+  const iframeElem = document.createElement('iframe');
+  iframeElem.className = 'message-iframe';
+  iframeElem.src = paragraph;
+  return elemToString(iframeElem);
+};
+
 // Converts an image URL to a formatted image component.
 const convertImage = paragraph => {
   const createImageContainerElement = () => {
@@ -146,6 +166,8 @@ const parseParagraph = paragraph => {
     paragraph = convertCode(paragraph);
   } else if (isImageUrl(paragraph)) {
     paragraph = convertImage(paragraph);
+  } else if (isIFrame(paragraph)) {
+    paragraph = convertIFrame(paragraph);
   } else {
     const words = paragraph.split(' ');
     const formattedWords = words.map(w => addLink(w));
