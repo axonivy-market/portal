@@ -5,11 +5,6 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '60'))
   }
 
-  triggers {
-    pollSCM '0 7 * * *'
-    cron('0 21 * * *')
-  }
-
   tools {
     maven '3.8'
     jdk '17'
@@ -33,6 +28,7 @@ pipeline {
     stage('build') {
       steps {
         script {
+          currentBuild.description = "On ${env.NODE_NAME}"
           def utils = load 'build/common/utils.groovy'
           utils.init()
           utils.stopAllEngines()

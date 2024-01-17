@@ -29,6 +29,7 @@ pipeline {
     stage('build') {
       steps {
         script {
+          currentBuild.description = "On ${env.NODE_NAME}"
           echo "====================Update pom version to ${params.releaseVersion}===================="
           powershell '''
             #find all pom file of portal project and change their versions and their portal dependencies to releaseVersion
