@@ -27,6 +27,7 @@ pipeline {
     stage('build') {
       steps {
         script {
+          currentBuild.description = "On ${env.NODE_NAME}"
           configs = [node1: [engineDir: "$env.WORKSPACE\\AxonIvyPortal\\PortalTest\\engine1", engineService: "Axon.ivy-master-cluster-gui-test-1", configDir: "master-cluster-node1"], 
             node2: [engineDir: "$env.WORKSPACE\\AxonIvyPortal\\PortalTest\\engine2", engineService: "Axon.ivy-master-cluster-gui-test-2", configDir: "master-cluster-node2"]]
           masterNode = configs['node1']
