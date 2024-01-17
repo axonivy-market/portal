@@ -33,7 +33,7 @@
   <p:dialog id="broken-link-process-warning-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" modal="true"
     widgetVar="broken-link-process-warning-dialog-widget" appendTo="@(body)" closeOnEscape="true" responsive="true">
     <span class="ui-icon ui-icon-alert ui-confirm-dialog-severity"></span>
-    <h:outputText escape="false" styleClass="ui-confirm-dialog-message" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/brokenLinkProcess')}" />
+    <h:outputText styleClass="ui-confirm-dialog-message" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/brokenLinkProcess')}" />
     <h:panelGroup layout="block" styleClass="ui-dialog-footer u-no-padding-right">
       <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('broken-link-process-warning-dialog-widget').hide();">
