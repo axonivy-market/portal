@@ -14,16 +14,26 @@ function loadIframe(recheckIndicator) {
 
   if (!recheckIndicator) {
     $(iframe).on('load', function () {
+      iframe.style.visibility = 'hidden';
       processIFrameData(iframe);
       clearTimeout(recheckFrameTimer);
+      setTimeout(function() {
+        if ($(iframe).attr('src') != 'about:blank') {
+          iframe.style.visibility = 'visible';
+          }
+        }, 500);
       return;
     });
   }
   else {
     const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    iframeDoc.onbeforeunload = function() {
+      iframe.style.visibility = 'hidden';
+    }
     if (iframeDoc.readyState == 'complete') {
       processIFrameData(iframe);
       clearTimeout(recheckFrameTimer);
+      iframe.style.visibility = 'visible';
       return;
     }
   }
