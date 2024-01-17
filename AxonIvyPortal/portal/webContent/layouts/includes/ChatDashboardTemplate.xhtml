@@ -20,23 +20,26 @@
     </ui:define>
     <ui:define name="pageContent">
       <div class="ui-g">
-        <div class="ui-g-7 ui-md-9 ui-sm-12 chat-container card u-no-padding">
+        <div class="ui-g-7 ui-lg-7 ui-md-9 ui-sm-12 chat-container card u-no-padding">
           <h:form id="chat-form">
             <script type="text/javascript">
+
+              const userName = "#{ivy.session.getSessionUserName()}";
+              const contextPath = "#{ivy.task.getApplication().getContextPath()}";
+              const resource = new IvyUri().rest() + "/chatbot";
+              const view = new View(resource);
+              const chatbot = new ChatBot(resource, view);
+
               $(document).ready(function(){
-                initUI();
+                hljs.configure({
+                  ignoreUnescapedHTML: true
+                });
+
+                
+
+                view.init();
+                chatbot.bindEvents();
               });
-
-              hljs.configure({
-                ignoreUnescapedHTML: true
-              });
-
-              var userName = "#{ivy.session.getSessionUserName()}";
-              var contextPath = "#{ivy.task.getApplication().getContextPath()}";
-              var resource = new IvyUri().rest() + "/chatbot";
-
-              var view = new View(resource);
-              var chatbot = new ChatBot(resource, view);
             </script>
     
             <div id="chat-panel" class="chatbot-panel js-chatbot-panel">
@@ -45,14 +48,17 @@
                   styleClass="chatbot-message-list js-chatbot-message-list ui-g" />
                 <p:scrollTop target="chat-message-list" />
               </div>
-              <h:panelGroup id="chat-send-form-container" layout="block" styleClass="chat-send-form js-chat-send-form">
-                  <p:inputTextarea id="message-input-field" onkeydown="chatbot.onKeyEvent(event)"
+              <h:panelGroup id="chat-send-form-container" layout="block" styleClass="chatbot-send-form js-chat-send-form">
+                <div class="chat-send-form-input-field">
+                  <textarea id="message-input-field"
                     placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/typeMessage')}"
-                    maxlength="2500"
-                    styleClass="message-list-content-send-input js-chatbot-input-message" />
-                  <p:commandButton icon="si si-send-email" onclick="chatbot.sendMessage()"
-                    styleClass="message-list-content-send-button rounded-button ui-button-outlined" global="false" type="button" />
-                </h:panelGroup>
+                    class="message-list-content-send-input js-chatbot-input-message ui-inputfield ui-inputtextarea ui-widget ui-state-default" />
+                </div>
+                <div class="chat-send-form-button">
+                  <p:commandButton icon="si si-send-email" onclick="chatbot.onClickSendMessage()"
+                    styleClass="rounded-button ui-button-outlined" global="false" type="button" />
+                </div>
+              </h:panelGroup>
             </div>
       
             <div class="js-message-template u-hidden chat-message-container ui-g-12">
