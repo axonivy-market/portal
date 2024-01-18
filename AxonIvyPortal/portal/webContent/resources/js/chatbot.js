@@ -145,6 +145,7 @@ function ChatBot(uri, view) {
 // View class for rendering chat messages
 function View(uri) {
   this.init = function() {
+    $('.js-layout-main').addClass('chatbot-layout-main');
     // Set chatbot panel height to content height
     const contentHeight = $(".js-layout-content").get(0).offsetHeight;
     $(".js-chatbot-panel").height(contentHeight);
@@ -184,17 +185,14 @@ function View(uri) {
     cloneTemplate.getElementsByClassName('js-message')[0].innerHTML = message;
     $(cloneTemplate).removeClass('u-hidden').removeClass('js-message-template');
 
-    const senderElem = cloneTemplate.getElementsByClassName('js-sender')[0];
+    // Set width to auto if has iframe inside the chat message
+    if (cloneTemplate.querySelector('iframe') != null) {
+      $(cloneTemplate).find('.chatbot-meta').get(0).style.width = 'auto';
+    }
 
     if (isMyMessage) {
-      // Add class for own message and set sender as 'You'
+      // Add class for own message
       $(cloneTemplate).addClass('my-message');
-      senderElem.innerText = 'You';
-      $(cloneTemplate).find('.js-chatbot-avatar').get(0).remove();
-    } else {
-      // Set sender as 'Portal' for received message
-      senderElem.innerText = 'Portal';
-      $(cloneTemplate).find('.js-user-avatar').get(0).remove();
     }
 
     // Append message to the list
@@ -237,7 +235,7 @@ function View(uri) {
       // Scroll to the latest message with animation
       $messageList.animate({
         scrollTop: $latestMessage.offset().top - $messageList.offset().top + $messageList.scrollTop()
-      }, 0);
+      }, 500);
     }
   };
 

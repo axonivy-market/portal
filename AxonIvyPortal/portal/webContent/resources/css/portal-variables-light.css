@@ -581,6 +581,10 @@
   --state-inactive: var(--task-state-failed-color);
   
   /* Chatbot */
-  --my-message-color: var(--ivy-portal-blue-light);
-  --my-message-text: var(--ivy-primary-color-black);
+  --chat-message-color: var(--ivy-primary-color-white);
+  --chat-message-text: var(--ivy-primary-color-black);
+  --chat-my-message-color: var(--ivy-portal-blue-light);
+  --chat-my-message-text: var(--ivy-primary-color-black);
+  --chat-textbox-background-color: var(--ivy-primary-color-white);
+  --chat-send-form-background-color: #F2F4F6;
 }
