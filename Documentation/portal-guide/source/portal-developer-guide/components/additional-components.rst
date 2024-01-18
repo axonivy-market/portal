@@ -109,14 +109,13 @@ The message could contain HTML code. To prevent XSS attacks, you need to sanitiz
    import javax.faces.context.Flash;
    import javax.faces.context.FacesContext;
    import javax.faces.application.FacesMessage;
-   import org.jsoup.Jsoup;
-   import org.jsoup.safety.Safelist;
+   import org.primefaces.util.HtmlSanitizer;
 
+   String message = "/ch.ivy.addon.portalkit.ui.jsf/common/linkToCaseDetails";
    // sanitize the message to prevent XSS attacks
-   String messageDetail = Jsoup.clean(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/linkToCaseDetails",
-    Safelist.relaxed().addAttributes(":all", "style"));
+   String sanitizedMessage = HtmlSanitizer.sanitizeHtml(message, true, true, true, true, true);
 
-   FacesMessage facesMessage = new FacesMessage("Task is done successfully", messageDetail,
+   FacesMessage facesMessage = new FacesMessage("Task is done successfully", sanitizedMessage,
    	[PortalNavigator.buildPortalCaseDetailsUrl(ivy.case.getBusinessCase().getId())]));
    FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", facesMessage);
 
