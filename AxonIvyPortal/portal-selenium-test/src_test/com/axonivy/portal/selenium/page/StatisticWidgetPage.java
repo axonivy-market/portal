@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
 import static com.codeborne.selenide.CollectionCondition.size;
+
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import static com.codeborne.selenide.Condition.appear;
@@ -190,11 +192,11 @@ public class StatisticWidgetPage extends TemplatePage {
   }
 
   public void waitForAllChartLoaded() {
-    SelenideElement element =
-        $("[id$='statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name-container'] a");
-    element.shouldBe(clickable(), DEFAULT_TIMEOUT).click();
-    $("[id$='statistics-widget:statistic-dashboard-widget:chart-details-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$("button.ui-button-text-icon-left").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("[id$='statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:period-time-filter-tab_header']").shouldBe(getClickableCondition()).click();;
+    $("[id$='statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:role-filter-tab_header']").shouldBe(getClickableCondition()).click();;
+    $("[id$='statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:case-category-filter-tab_header']").shouldBe(getClickableCondition()).click();;
+    $("[id$='statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:case-state-filter-tab_header']").shouldBe(getClickableCondition()).click();;
+    $("[id$='statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:task-priority-filter-tab_header']").shouldBe(getClickableCondition()).click();;
   }
 
   public void createTaskByPriorityChart() {

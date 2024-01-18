@@ -4,6 +4,9 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static org.assertj.core.api.Assertions.shouldHaveThrown;
+
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -814,6 +817,13 @@ public class NewDashboardPage extends TemplatePage {
     $(infoPanel).$("[class^='js-loading-']").shouldBe(disappear, DEFAULT_TIMEOUT);
     return $(infoPanel).shouldBe(appear, DEFAULT_TIMEOUT);
   }
+  
+  public void waitForWidgetInfoLoading(WebElement taskInfoOverlayPanel) {
+    WaitHelper.assertTrueWithWait(() -> {
+      var widgetInfo = taskInfoOverlayPanel.findElements(By.cssSelector("[class*='js-loading-']")).get(0);
+      return widgetInfo.getAttribute(CLASS_PROPERTY).contains("u-display-none");
+    });
+  }
 
   public WebElement waitAndGetProcessViewerWidget(int index) {
     var widget =
@@ -884,5 +894,9 @@ public class NewDashboardPage extends TemplatePage {
     WaitHelper.assertTrueWithWait(() -> !$("#user-setting-container").isDisplayed());
   }
 
+  public void waitForLeftMenuActive() {
+    $(".menu-item-dashboard").shouldBe(appear, TEN_SECOND);
+    $(".active-menuitem").shouldBe(appear, TEN_SECOND);
+  }
 
 }

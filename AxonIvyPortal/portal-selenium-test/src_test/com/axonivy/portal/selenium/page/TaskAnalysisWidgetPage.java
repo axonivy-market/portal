@@ -11,12 +11,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
-public class TaskAnalysisWidgetPage extends TemplatePage{
+public class TaskAnalysisWidgetPage extends TemplatePage {
 
   private static final String TASK_FILTER_SELECTION = "task-widget:task-filter-add-form:task-filter-selection";
 
@@ -49,6 +50,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage{
 
   public void clickApplyFilter() {
     $("button[id$='task-widget:apply-filter']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    Sleeper.sleep(2000);
   }
 
   private SelenideElement findTaskFilterButton() {

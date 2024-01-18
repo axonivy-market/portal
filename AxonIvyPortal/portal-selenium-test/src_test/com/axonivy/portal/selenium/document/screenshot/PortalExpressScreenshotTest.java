@@ -109,6 +109,10 @@ public class PortalExpressScreenshotTest extends ScreenshotTest{
     formDefinition.countElementPrepareToDrag(0);
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.EXPRESS_FOLDER + "express-workflow-dialog-editor");
 
+    formDefinition.switchToCheckBoxTab();
+    ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.EXPRESS_FOLDER + "express-workflow");
+
+
 
     showNewDashboard();
     mainMenuPage = new MainMenuPage();
@@ -267,4 +271,5 @@ public class PortalExpressScreenshotTest extends ScreenshotTest{
     ExpressReviewPage expressReview = new ExpressReviewPage();
     expressReview.finish();
   }
+
 }

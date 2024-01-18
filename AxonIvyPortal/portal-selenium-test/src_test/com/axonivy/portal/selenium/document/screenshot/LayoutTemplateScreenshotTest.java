@@ -9,19 +9,24 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
-import com.codeborne.selenide.Condition;
 
 @IvyWebTest
 public class LayoutTemplateScreenshotTest extends ScreenshotTest{
+  private String applicationShowcase = "portal-developer-examples/169BDE2F368D6EC4/ApplicationShowcase.ivp";
+
   @Test
   public void screenshotLayoutTemplate() throws IOException {
+    ScreenshotUtils.resizeBrowser(new Dimension(1200, 700));
     redirectToRelativeLink(defaultProcessImageSelectionExampleUrl);
 
     TaskTemplatePage templatePage = new TaskTemplatePage();
-    templatePage.getElementInPortalIFramTask("[id='form:save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    templatePage.waitUntilLayoutWrapperDisplayed();
     templatePage.switchBackToParent();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.LAYOUT_FOLDER + "basic-template");
+
+    redirectToRelativeLink(applicationShowcase);
+    templatePage.waitUntilLayoutWrapperDisplayed();
     ScreenshotUtils.resizeBrowser(new Dimension(1200, 800));
-    ScreenshotUtils.executeDecorateJs("highlightAndNumberingTaskTemplate()");
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.LAYOUT_FOLDER + "task-template");
   }
 }

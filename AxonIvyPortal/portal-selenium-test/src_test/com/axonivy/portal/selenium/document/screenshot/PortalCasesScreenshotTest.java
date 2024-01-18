@@ -25,14 +25,15 @@ import com.codeborne.selenide.SelenideElement;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
 
-@IvyWebTest(headless = false)
-public class PortalCasesScreenshotTest extends ScreenshotTest{
-
-
+@IvyWebTest
+public class PortalCasesScreenshotTest extends ScreenshotTest {
   private MainMenuPage mainMenuPage;
   private static final int SCREENSHOT_WIDTH = 1500;
   private static final int SCREENSHOT_MEDIUM_WIDTH = 1100;
   private static final int SCREENSHOT_HEIGHT = 800;
+  private static final String CAPITALIZED_CREATOR = "Creator";
+  private static final String NORMAL_CREATOR = "creator";
+  private static final String DEMO = "Demo";
 
   @Override
   @BeforeEach
@@ -119,6 +120,31 @@ public class PortalCasesScreenshotTest extends ScreenshotTest{
     ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.CASE_WIDGET_FOLDER + "export-case-history",
         new Dimension(SCREENSHOT_MEDIUM_WIDTH, 1000));
   }
+  
+  @Test
+  public void screenshotCustomCaseListColumnConfig() throws IOException {
+    ScreenshotUtils.maximizeBrowser();
+    redirectToRelativeLink(createCasesForCaseListCustomization);
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    
+    CaseWidgetPage caseWidget = mainMenuPage.openCaseList();
+    caseWidget.clickColumnsButton();
+
+    ScreenshotUtils.executeDecorateJs("highlightCustomColumnsConfigOnCaseList()");
+    ScreenshotUtils.captureHalfTopRightPageScreenShot(ScreenshotUtils.CASE_WIDGET_CUSTOMIZATION_FOLDER + "case-columns-configuration");
+  }
+
+  @Test
+  public void screenshotCaseFilter() throws IOException {
+    ScreenshotUtils.maximizeBrowser();
+    CaseWidgetPage caseWidget = mainMenuPage.openCaseList();
+    caseWidget.openAdvancedFilter(CAPITALIZED_CREATOR, NORMAL_CREATOR);
+    caseWidget.filterByCreator(DEMO);
+    caseWidget.getCreator();
+    ScreenshotUtils.executeDecorateJs("highlightCaseCreatorFilter()");
+    ScreenshotUtils.captureHalfCenterTopPageScreenShot(ScreenshotUtils.CASE_WIDGET_CUSTOMIZATION_FOLDER + "case-filter");
+  }
 
   @Test
   public void screenshotCustomizeCaseDetails() throws IOException {
@@ -165,7 +191,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest{
 
   public CaseDetailsPage setupCustomWidgetByJSONFile(String configFile) throws IOException {
     ConfigurationJsonUtils.updateJSONSetting(configFile, Variable.CASE_DETAIL);
-    CaseDetailsPage detailsPage = goToCaseList().openDetailsOfCaseHasName(CaseDetailsTest.CREATE_EVENT_TEST_URL);
+    CaseDetailsPage detailsPage = goToCaseList().openDetailsOfCaseHasName(CaseDetailsTest.CUSTOM_CASE_WIDGET_NAME);
     return detailsPage;
   }
 

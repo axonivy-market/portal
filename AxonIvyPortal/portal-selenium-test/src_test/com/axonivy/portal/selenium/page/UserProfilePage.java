@@ -4,6 +4,7 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
@@ -12,14 +13,6 @@ import com.codeborne.selenide.SelenideElement;
 public class UserProfilePage extends TemplatePage {
   private static final String LANGUAGE_SELECTION_SELECTOR =
       "div[id$='language-selection'] div.ui-selectonemenu-trigger";
-  private static final String CASE_SORT_DIRECTION_SELECTION_ITEMS =
-      "my-profile-form:case-sort-direction-selection_items";
-  private static final String CASE_SORT_DIRECTION_SELECTION_LABEL =
-      "my-profile-form:case-sort-direction-selection_label";
-  private static final String CASE_SORT_DIRECTION_SELECTION = "my-profile-form:case-sort-direction-selection";
-  private static final String CASE_SORT_FIELD_SELECTION_ITEMS = "my-profile-form:case-sort-field-selection_items";
-  private static final String CASE_SORT_FIELD_SELECTION_LABEL = "my-profile-form:case-sort-field-selection_label";
-  private static final String CASE_SORT_FIELD_SELECTION = "my-profile-form:case-sort-field-selection";
   public static final String TASK_SORT_DIRECTION_SELECTION_ITEMS =
       "my-profile-form:task-sort-direction-selection_items";
   private static String NOTI_CHANNELS_CHECKBOX_SELECTOR = "div[id$=':notification-Channels-Table'] div.ui-chkbox-box";
@@ -29,7 +22,9 @@ public class UserProfilePage extends TemplatePage {
   private static final String TASK_SORT_DIRECTION_SELECTION = "my-profile-form:task-sort-direction-selection";
   private static final String TASK_SORT_DIRECTION_SELECTION_LABEL =
       "my-profile-form:task-sort-direction-selection_label";
-
+  
+  private static String MAIL_NOTI_ON_TASK_ASSIGNMENT_SELECTOR = "div[id$=':mail-notification-on-task-assign']";
+  private static String FURTHER_EMAIL_FROM_APP_SELECTOR = "div[id$=':further-mails-from-application']";
 
   @Override
   protected String getLoadedLocator() {
@@ -77,6 +72,22 @@ public class UserProfilePage extends TemplatePage {
     waitForElementDisplayed(By.id(TASK_SORT_DIRECTION_SELECTION_ITEMS), true);
     waitForElementClickableThenClick(
         By.xpath("//*[@id='" + TASK_SORT_DIRECTION_SELECTION_ITEMS + "']/li[contains(text(),'" + selectValue + "')]"));
+  }
+
+  public void switchOnEmailOnTaskAssignmentSetting() {
+    switchOnSetting(MAIL_NOTI_ON_TASK_ASSIGNMENT_SELECTOR);
+  }
+
+  private void switchOnSetting(String cssSelector) {
+    WebElement inputSwitch = findElementByCssSelector(cssSelector);
+    if (!inputSwitch.getAttribute("class").contains("ui-inputswitch-checked")) {
+      $(inputSwitch).shouldBe(getClickableCondition()).click();
+    }
+  }
+  
+  public void switchOnFurtherEmailFromAppSetting() {
+    switchOnSetting(FURTHER_EMAIL_FROM_APP_SELECTOR);
+    $("div[id$='my-profile-form:further-mails-from-application']").shouldBe(appear, TEN_SECOND);
   }
 
 }

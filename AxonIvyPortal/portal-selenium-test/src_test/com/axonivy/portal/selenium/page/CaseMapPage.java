@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Selenide.$;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
@@ -16,6 +17,7 @@ public class CaseMapPage extends TemplatePage {
   }
 
   public void waitForIFrameContentVisible() {
+    $("[id$='header'").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("button[id='form:submit-request']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 

@@ -21,7 +21,6 @@ import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
 @IvyWebTest
 public class StatisticScreenshotTest extends ScreenshotTest {
-
   @Override
   @BeforeEach
   public void setup() {
@@ -45,7 +44,6 @@ public class StatisticScreenshotTest extends ScreenshotTest {
     WaitHelper.waitForNavigation(() -> redirectToRelativeLink(createTestingTasksUrl));
     homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
-    homePage.waitForGrowlMessageDisappear();
     mainMenu.expandMainMenu();
 
     ScreenshotUtils.executeDecorateJs("highlightStatisticNavigation()");
@@ -54,7 +52,11 @@ public class StatisticScreenshotTest extends ScreenshotTest {
 
     StatisticWidgetPage statisticWidgetPage = mainMenu.openStatisticPage();
     statisticWidgetPage.switchCreateMode();
+    statisticWidgetPage.waitForAllChartLoaded();
     mainMenu.closeMainMenu();
+    ScreenshotUtils.resizeBrowser(new Dimension(1386, 2210));
+    statisticWidgetPage.waitForAllChartLoaded();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-creation-page");
 
     statisticWidgetPage.createTaskByPriorityChart();
     statisticWidgetPage.createTaskByExpiryChart();
@@ -77,5 +79,6 @@ public class StatisticScreenshotTest extends ScreenshotTest {
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(statisticWidgetPage.getChartInfoDialogOfChart(1),
         ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-info-dialog", new ScreenshotMargin(20, 10));
   }
+
 }
 

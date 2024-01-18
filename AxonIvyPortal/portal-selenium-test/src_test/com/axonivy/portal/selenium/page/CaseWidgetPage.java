@@ -20,11 +20,6 @@ public class CaseWidgetPage extends TemplatePage {
   private static final String CASE_ITEM_LIST_SELECTOR = "li[class='ui-datascroller-item']";
   private static final String CASE_NAME_CSS_SELECTOR = "span[class*='case-header-name-cell']";
   private static final String SELECT_COLUMNS_LINK_CSS_SELECTOR = "a[id$='case-config-button']";
-  private static final String SELECT_ITEM_XPATH =
-      "//*[@id=\"case-widget:case-columns-configuration:select-columns-form:columns-checkbox\"]/tbody/tr[%s]/td/div/div[2]";
-  private static final String APPLY_BUTTON_CSS_SELECTOR = "button[id$='select-columns-form:update-command']";
-  private static final String DEFAULT_COLUMNS_XPATH =
-      "//*[@id=\"case-widget:case-columns-configuration:select-columns-form:default-columns\"]/div[2]";
 
   private String caseWidgetId;
   
@@ -139,4 +134,24 @@ public class CaseWidgetPage extends TemplatePage {
         .click();
   }
 
+  public void filterByCreator(String text) {
+    $("[id$='creator-filter:filter-open-form:advanced-filter-command']").shouldBe(getClickableCondition()).click();
+    $("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']").sendKeys(text);
+
+    $("span[id$='creator-filter:filter-input-form:creator-component:creator-select_panel']").shouldBe(getClickableCondition()).click();
+
+    $("button[id$='creator-filter:filter-input-form:update-command']").shouldBe(getClickableCondition()).click();
+  }
+  
+  public String getCreator() {
+    $("button[id$='creator-filter:filter-open-form:advanced-filter-command']").shouldBe(getClickableCondition()).click();
+    waitForElementDisplayed($(By.cssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']")), true);
+    
+    return findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']").getAttribute("value");
+  }
+
+  public void clickColumnsButton() {
+    $(SELECT_COLUMNS_LINK_CSS_SELECTOR).shouldBe(getClickableCondition(), TEN_SECOND).click();
+    waitForElementDisplayed($("label[for$='columns-checkbox:3']"), true);
+  }
 }
