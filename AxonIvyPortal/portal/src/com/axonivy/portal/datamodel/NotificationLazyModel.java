@@ -6,16 +6,15 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
 
-import com.axonivy.portal.bean.NotificationBean;
 import com.axonivy.portal.dto.NotificationDto;
 
-import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivyteam.ivy.notification.web.WebNotification;
 import ch.ivyteam.ivy.notification.web.WebNotifications;
 
@@ -24,6 +23,8 @@ public class NotificationLazyModel extends LazyDataModel<NotificationDto> {
   private static final long serialVersionUID = 4026276222222837138L;
 
   private final WebNotifications webNotifications;
+  private boolean onlyUnread;
+  private String widgetId;
 
   public NotificationLazyModel() {
     this.webNotifications = WebNotifications.current();
@@ -47,9 +48,8 @@ public class NotificationLazyModel extends LazyDataModel<NotificationDto> {
       resetGroupNotifications();
     }
     Date today = new Date();
-    NotificationBean notificationBean = ManagedBeans.get("notificationBean");
     List<WebNotification> notifications;
-    if (notificationBean.isOnlyUnread()) {
+    if (this.onlyUnread) {
       notifications = webNotifications.unread(first, pageSize);
     } else {
       notifications = webNotifications.all(first, pageSize);
@@ -76,7 +76,9 @@ public class NotificationLazyModel extends LazyDataModel<NotificationDto> {
       rowCount = first + results.size();
     }
     setRowCount(rowCount);
-    PrimeFaces.current().executeScript("PF('notifications-scroller').cfg.totalSize = " + rowCount);
+    String scroller = StringUtils.isBlank(widgetId) ? String.format("PF('notifications-scroller').cfg.totalSize =%s", rowCount) : String.format("PF('notifications-scroller-%s').cfg.totalSize= %s", widgetId, rowCount);
+    PrimeFaces.current().executeScript(scroller);
+
     return results;
   }
 
@@ -91,6 +93,22 @@ public class NotificationLazyModel extends LazyDataModel<NotificationDto> {
 
   public void markAsRead(WebNotification dto) {
     webNotifications.markAsRead(dto);
+  }
+
+  public boolean isOnlyUnread() {
+    return onlyUnread;
+  }
+
+  public void setOnlyUnread(boolean onlyUnread) {
+    this.onlyUnread = onlyUnread;
+  }
+
+  public String getWidgetId() {
+    return widgetId;
+  }
+
+  public void setWidgetId(String widgetId) {
+    this.widgetId = widgetId;
   }
 
 }

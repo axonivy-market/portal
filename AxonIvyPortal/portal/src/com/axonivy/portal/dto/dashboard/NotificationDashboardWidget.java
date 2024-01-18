@@ -1,6 +1,6 @@
 package com.axonivy.portal.dto.dashboard;
 
-import com.axonivy.portal.datamodel.DashboardNotificationLazyModel;
+import com.axonivy.portal.datamodel.NotificationLazyModel;
 import com.axonivy.portal.dto.NotificationDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -16,7 +16,7 @@ public class NotificationDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private final WebNotifications webNotifications;
   @JsonIgnore
-  private DashboardNotificationLazyModel dataModel;
+  private NotificationLazyModel dataModel;
   @JsonIgnore
   private long countAll;
   @JsonIgnore
@@ -27,7 +27,7 @@ public class NotificationDashboardWidget extends DashboardWidget {
     this.webNotifications = WebNotifications.current();
     this.countAll = webNotifications.countAll();
     this.countUnread = webNotifications.countUnread();
-    this.dataModel = new DashboardNotificationLazyModel(this.webNotifications);
+    this.dataModel = new NotificationLazyModel(this.webNotifications);
   }
 
   @JsonIgnore
@@ -64,7 +64,7 @@ public class NotificationDashboardWidget extends DashboardWidget {
     this.onlyUnread = onlyUnread;
   }
 
-  public DashboardNotificationLazyModel getDataModel() {
+  public NotificationLazyModel getDataModel() {
     return dataModel;
   }
 

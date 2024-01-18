@@ -71,16 +71,6 @@ public class NotificationBean implements Serializable {
     return isRender;
   }
 
-  private boolean isOnlyUnread = false;
-
-  public boolean isOnlyUnread() {
-    return isOnlyUnread;
-  }
-
-  public void setOnlyUnread(boolean isOnlyUnread) {
-    this.isOnlyUnread = isOnlyUnread;
-  }
-
   public long getCountUnread() {
     return this.countUnread;
   }
