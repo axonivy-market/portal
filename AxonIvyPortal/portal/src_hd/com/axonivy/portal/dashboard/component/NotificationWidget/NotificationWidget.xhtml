@@ -24,6 +24,7 @@
     <ui:param name="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
     <ui:param name="isRenderInfo" value="false" />
     <ui:param name="widgetContentStyleClass" value="notification-widget__content-panel" />
+    <ui:param name="unreadNotificationsId" value="#{p:resolveFirstComponentWithId('topbar-unread-notifications-container', view).clientId}" />
 
     <ui:define name="widgetContent">
       <p:remoteCommand id="rc-load-notification-firsttime-#{widget.id}" autoRun="true"
@@ -53,7 +54,8 @@
                       process="@this" partialSubmit="true"
                       global="false"
                       onclick="markAsRead('#{widget.id}__#{notification.id}')"
-                      oncomplete="Portal.updateLayoutContent();">
+                      oncomplete="Portal.updateLayoutContent();"
+                      update="#{unreadNotificationsId}">
                       <i class="notifications-button fa #{notification.read ? 'fa-circle-thin': 'fa-circle'}" id="#{widget.id}__#{notification.id}" />
                     </p:commandLink>
                     <p:tooltip for="notification-mark-as-read"

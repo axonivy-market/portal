@@ -1702,10 +1702,10 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .widget-configuration.card.notification-widget-configuration {
-  width: 600px;
+  width: 100%;
   margin-right: 0;
   flex-grow: 1;
-  max-width: 650px;
+  max-width: 680px;
 }
 
 .dashboard-notification-container {
@@ -1720,8 +1720,6 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .notification-widget__content-panel.widget__content {
   padding-right: 0;
-  padding-bottom: 0;
-  height: 100%;
 }
 
 .notification-widget__content .ui-datascroller {
@@ -1731,6 +1729,7 @@ body .ui-widget.new-widget-dialog__introduction {
 .notification-widget__content .ui-datascroller .ui-datascroller-content{
   border: none;
   height: 100%;
+  padding: 0;
 }
 
 .notifications-group-title {
