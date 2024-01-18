@@ -31,10 +31,12 @@ import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DashboardScreenshotTest extends ScreenshotTest{
   private NewDashboardPage homePage;
   private static final int SCREENSHOT_WIDTH = 1500;
+  private static final String EXTERNAL_URL = "https://developer.axonivy.com";
+  private static final String INVESTMENT_LIST = "Investment List (Example for Custom Widget on Dashboard)";
 
   @Override
   @BeforeEach
@@ -75,16 +77,19 @@ public class DashboardScreenshotTest extends ScreenshotTest{
     redirectToDashboardConfiguration();
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
     configPage.selectPublicDashboardType();
+    configPage.openEditPublicDashboardsPage();
     DashboardModificationPage editPage = new DashboardModificationPage();
     NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
     detailsEditPage.waitPageLoaded();
     detailsEditPage.addWidget();
+    detailsEditPage.clickOnAddCustomWidget();
 
-    CustomWidgetNewDashBoardPage customWidgetPage =
-        detailsEditPage.addNewCustomrWidget("Investment List (Example for Custom Widget on Dashboard)");
-    customWidgetPage.inputDateField(1, "24 Nov, 2021 00:00");
-    customWidgetPage.inputStringField(2, "a short note");
-    customWidgetPage.inputUserField(0, "demo");
+    CustomWidgetNewDashBoardPage customWidgetPage = new CustomWidgetNewDashBoardPage();
+    customWidgetPage.selectCustomWidgetTypeProcess();
+    customWidgetPage.inputProcessName(INVESTMENT_LIST);
+    customWidgetPage.inputCustomer("demo");
+    customWidgetPage.inputStartDate("24 Nov, 2021 00:00");
+    customWidgetPage.inputNote("a short note");
 
     ScreenshotUtils.captureElementScreenshot(customWidgetPage.getConfigurationDialog(),
         ScreenshotUtils.DASHBOARD_FOLDER + "process-custom-widget-configuration");
@@ -95,13 +100,15 @@ public class DashboardScreenshotTest extends ScreenshotTest{
     redirectToDashboardConfiguration();
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
     configPage.selectPublicDashboardType();
+    configPage.openEditPublicDashboardsPage();
     DashboardModificationPage editPage = new DashboardModificationPage();
     NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
     detailsEditPage.waitPageLoaded();
     detailsEditPage.addWidget();
+    detailsEditPage.clickOnAddCustomWidget();
 
-    CustomWidgetNewDashBoardPage customWidgetPage = detailsEditPage.addExternalPageWidget();
-    customWidgetPage.inputExternalUrlField("https://developer.axonivy.com");
+    CustomWidgetNewDashBoardPage customWidgetPage = new CustomWidgetNewDashBoardPage();
+    customWidgetPage.inputExternalUrlField(EXTERNAL_URL);
     ScreenshotUtils.captureElementScreenshot(customWidgetPage.getConfigurationDialog(),
         ScreenshotUtils.DASHBOARD_FOLDER + "external-page-widget-configuration");
   }
@@ -156,6 +163,7 @@ public class DashboardScreenshotTest extends ScreenshotTest{
     redirectToDashboardConfiguration();
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
     configPage.selectPublicDashboardType();
+    configPage.openEditPublicDashboardsPage();
     DashboardModificationPage editPage = new DashboardModificationPage();
     NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
     detailsEditPage.waitForCaseWidgetLoaded();
@@ -281,6 +289,7 @@ public class DashboardScreenshotTest extends ScreenshotTest{
     statisticPage.save();
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     homePage = new NewDashboardPage();
+    refreshPage();
     ScreenshotUtils.captureElementScreenshot(homePage.waitAndGetStatisticChart(0),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "statistic-chart-widget");
   }
@@ -310,23 +319,17 @@ public class DashboardScreenshotTest extends ScreenshotTest{
     ConfigurationJsonUtils.updateJSONSetting("dashboard-has-newsfeed.json", Variable.DASHBOARD);
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
 
-//    homePage = new NewDashboardPage();
-//
-//    ScreenshotUtils.captureElementScreenshot(homePage.waitAndGetNewsWidget(0),
-//        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "news-feed-widget");
-//    ScreenshotUtils.resizeBrowser(new Dimension(900, 850));
-//    DashboardNewsWidgetPage newDashboardPage = new DashboardNewsWidgetPage("News feed");
-//
-//    newDashboardPage.openAddNewsFeedItemDialog();
-//    newDashboardPage.enterNewsItemData("en", "si-send-email", "Welcome to Portal News feed",
-//        "Welcome to Portal News feed");
-//    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "news-feed-widget-manage-content");
-//    String tabIndex = newDashboardPage.selectNewsLanguage("fr");
-//    newDashboardPage.clickOnTitle(tabIndex);
-//    WebElement translation = newDashboardPage.getTranslationOverlayPanel(1);
-//    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "news-feed-widget-overlay-panel");
-//    translation.findElement(By.cssSelector("span.ui-icon-closethick")).click();
-//    newDashboardPage.findTranslationButton(tabIndex);
+    homePage = new NewDashboardPage();
+
+    ScreenshotUtils.captureElementScreenshot(homePage.waitAndGetNewsWidget(0),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "news-feed-widget");
+    ScreenshotUtils.resizeBrowser(new Dimension(900, 850));
+    DashboardNewsWidgetPage newDashboardPage = new DashboardNewsWidgetPage("News feed");
+
+    newDashboardPage.openAddNewsFeedItemDialog();
+    newDashboardPage.enterNewsItemData("en", "si-send-email", "Welcome to Portal News feed",
+        "Welcome to Portal News feed");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "news-feed-widget-manage-content");
   }
 
   private void redirectToDashboardConfiguration() {

@@ -25,10 +25,8 @@ import com.codeborne.selenide.SelenideElement;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class PortalCasesScreenshotTest extends ScreenshotTest{
-
-
   private MainMenuPage mainMenuPage;
   private static final int SCREENSHOT_WIDTH = 1500;
   private static final int SCREENSHOT_MEDIUM_WIDTH = 1100;
@@ -165,7 +163,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest{
 
   public CaseDetailsPage setupCustomWidgetByJSONFile(String configFile) throws IOException {
     ConfigurationJsonUtils.updateJSONSetting(configFile, Variable.CASE_DETAIL);
-    CaseDetailsPage detailsPage = goToCaseList().openDetailsOfCaseHasName(CaseDetailsTest.CREATE_EVENT_TEST_URL);
+    CaseDetailsPage detailsPage = goToCaseList().openDetailsOfCaseHasName(CaseDetailsTest.CUSTOM_CASE_WIDGET_NAME);
     return detailsPage;
   }
 

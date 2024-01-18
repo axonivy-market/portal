@@ -26,7 +26,6 @@ import com.codeborne.selenide.SelenideElement;
 
 @IvyWebTest
 public class PortalTaskScreenshotTest extends ScreenshotTest{
-
   private static final int SCREENSHOT_WIDTH = 1500;
   MainMenuPage mainMenuPage;
 
@@ -90,7 +89,6 @@ public class PortalTaskScreenshotTest extends ScreenshotTest{
 
     taskDetails = new TaskDetailsPage();
     taskDetails.waitUtilsTaskDetailsDisplayed();
-    ScreenshotUtils.executeDecorateJs("removeHighlightSharePageButton()");
     ScreenshotUtils.executeDecorateJs("highlightSwitchToEditMode()");
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskDetails.getSwitchToEditModeButtonElement(),
         ScreenshotUtils.TASK_DETAIL_FOLDER + "how-to-switch-to-edit-mode", new ScreenshotMargin(100, 200));
@@ -221,6 +219,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest{
 
     setupCustomWidgetByJSONFile("task-details-custom-process-iframe.json");
     ScreenshotUtils.executeDecorateJs("highlightIFrameWidgetTaskDetails()");
+    refreshPage();
     taskDetails.waitForIFrameWidgetLoad();
     ScreenshotUtils
         .capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-iframe-process");
@@ -236,4 +235,5 @@ public class PortalTaskScreenshotTest extends ScreenshotTest{
     taskDetails.waitUtilsTaskDetailsDisplayed();
     return taskDetails;
   }
+
 }

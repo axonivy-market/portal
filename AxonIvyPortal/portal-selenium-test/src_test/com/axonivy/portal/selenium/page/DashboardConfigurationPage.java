@@ -297,7 +297,7 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public void cancelCreateDashboard() {
     $("a[id$='dashboard-creation-component:dashboard-detail-close-button']").shouldBe(getClickableCondition()).click();
-    closeAddDashboardDialog();
+//    closeAddDashboardDialog();
   }
 
   public void closeAddDashboardDialog() {
@@ -328,7 +328,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   
   public void cancelImportDashboard() {
     $("a[id$=':dashboard-import-close-button']").shouldBe(getClickableCondition()).click();
-    closeAddDashboardDialog();
+//    closeAddDashboardDialog();
   }
   
   public void openImportPrivateDashboards() {

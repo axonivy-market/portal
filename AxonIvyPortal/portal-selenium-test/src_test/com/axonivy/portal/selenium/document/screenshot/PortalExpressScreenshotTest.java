@@ -267,4 +267,5 @@ public class PortalExpressScreenshotTest extends ScreenshotTest{
     ExpressReviewPage expressReview = new ExpressReviewPage();
     expressReview.finish();
   }
+
 }

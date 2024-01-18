@@ -24,7 +24,6 @@ import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 
 @IvyWebTest
 public class SettingScreenshotTest extends ScreenshotTest {
-
   private static final LocalDate TODAY = LocalDate.now();
   private static final LocalDate TOMORROW = TODAY.plusDays(1);
 
@@ -100,10 +99,6 @@ public class SettingScreenshotTest extends ScreenshotTest {
     ScreenshotUtils.captureElementScreenshot(userProfilePage.getUserSettingCard(),
         ScreenshotUtils.MY_PROFILE_FOLDER + "my-profile");
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 900));
-    userProfilePage.checkBoxTosubscribeChannel();
-    ScreenshotUtils.executeDecorateJs("highlightNotificationChannelSettings()");
-    ScreenshotUtils
-        .captureHalfRightPageScreenShot(ScreenshotUtils.MY_PROFILE_FOLDER + "notification-channels-settings");
   }
 
   @Test
@@ -124,7 +119,7 @@ public class SettingScreenshotTest extends ScreenshotTest {
         ScreenshotUtils.SETTINGS_FOLDER + "new-absence", new ScreenshotMargin(20));
     newAbsencePage.closeAddAbsenceDialog();
     ScreenshotUtils.captureElementScreenshot(absencePage.getAbsenceForm(), ScreenshotUtils.SETTINGS_FOLDER + "absence");
-    absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName(), TestAccount.GUEST_USER.getFullName()), 0);
+    absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getUsername(), TestAccount.GUEST_USER.getUsername()), 0);
     ScreenshotUtils.captureElementScreenshot(absencePage.getAbsenceForm(),
         ScreenshotUtils.SETTINGS_FOLDER + "set-deputy");
   }
@@ -198,4 +193,5 @@ public class SettingScreenshotTest extends ScreenshotTest {
     ScreenshotUtils.executeDecorateJs("highlightDashboardConfiguration()");
     ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.SETTINGS_FOLDER + "dashboard-configuration");
   }
+
 }

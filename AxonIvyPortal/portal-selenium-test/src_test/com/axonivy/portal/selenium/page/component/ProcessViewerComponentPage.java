@@ -1,9 +1,9 @@
 package com.axonivy.portal.selenium.page.component;
+
 import static com.codeborne.selenide.Selenide.$;
 
 import com.axonivy.portal.selenium.page.TemplatePage;
 import com.codeborne.selenide.Condition;
-
 
 public class ProcessViewerComponentPage extends TemplatePage {
 

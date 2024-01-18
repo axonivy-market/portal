@@ -4,7 +4,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.Condition;
 import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.disappear;
 
 import java.util.List;
 
@@ -17,14 +16,8 @@ import com.codeborne.selenide.SelenideElement;
 public class ProcessWidgetPage extends TemplatePage {
   public static final String IMAGE_MODE = "IMAGE";
   public static final String GRID_MODE = "GRID";
-  private static final String ACTIVE_MODE_SELECTOR =
-      "#process-widget\\:process-view-mode\\:view-mode-selection > div.ui-button.ui-button-text-only.ui-state-active > span";
   private static final String IMAGE_EDIT_PROCESS_LINK =
       "[id$=':%d:image-processes:%d:process-item:image-process-action-component:edit-process']";
-  private static final String GRID_ACTION_BUTTON =
-      "[id$=':%d:grid-processes:%d:process-grid-item:process-item:grid-process-action-component:process-action-button']";
-  private SelenideElement liveSearchTextField;
-  private String processWidgetId;
 
   @Override
   protected String getLoadedLocator() {

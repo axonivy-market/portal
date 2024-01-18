@@ -14,6 +14,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 
 @IvyWebTest
 public class GlobalSearchScreenshotTest extends ScreenshotTest {
+
   @Override
   @BeforeEach
   public void setup() {
@@ -32,6 +33,5 @@ public class GlobalSearchScreenshotTest extends ScreenshotTest {
     resultPage.waitUtilProcessWidgetDisplayed();
     ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.SEARCH_FOLDER + "global-search-result");
   }
-
 
 }
