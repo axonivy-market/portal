@@ -65,12 +65,14 @@ pipeline {
               Copy-Item $env:releaseDir/Showcase/portal-demo-app/target/*zip -Destination $DEPLOYMENT
               Copy-Item $env:releaseDir/Showcase/portal-developer-examples/target/*iar -Destination $DEPLOYMENT
               Copy-Item $env:releaseDir/Showcase/portal-components-examples/target/*iar -Destination $DEPLOYMENT
+              Copy-Item $env:releaseDir/axonivy-express/target/*iar -Destination $DEPLOYMENT
             '''
           } else {
             powershell '''
               $DEPLOYMENT= $env:engineDir + "/system/demo-applications/demo-portal"
               Copy-Item $env:releaseDir/Showcase/portal-developer-examples/target/*iar -Destination $DEPLOYMENT
               Copy-Item $env:releaseDir/Showcase/portal-components-examples/target/*iar -Destination $DEPLOYMENT
+              Copy-Item $env:releaseDir/axonivy-express/target/*iar -Destination $DEPLOYMENT
             '''
           }
 
@@ -104,6 +106,8 @@ def downloadPortalRelease() {
   def branchName = env.BRANCH_NAME.replaceAll("/", "%%2F")
   withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
     bat "curl --user ${credentials} --output archive.zip ${env.JENKINS_URL}job/portal-release/job/${branchName}/lastSuccessfulBuild/artifact/*zip*/archive.zip"
+    bat "curl --user ${credentials} --output archive-express.zip ${env.JENKINS_URL}job/axonivy-express-integration/job/feature%%2Fcreate-package-for-portal/lastSuccessfulBuild/artifact/*zip*/archive.zip"
   }
   unzip zipFile: 'archive.zip', quiet: true
+  unzip zipFile: 'archive-express.zip', quiet: true
 }
