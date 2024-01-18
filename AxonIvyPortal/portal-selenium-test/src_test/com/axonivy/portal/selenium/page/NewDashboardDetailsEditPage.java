@@ -23,7 +23,8 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   public static final String STATISTIC_WIDGET = "Statistic chart";
   public static final String WELCOME_WIDGET = "Welcome widget";
   public static final String NEWS_WIDGET = "News feed widget";
-
+  
+  private static final String CUSTOM_WIDGET_TYPE_DROPDOWN_ID = "widget-configuration-form:new-widget-configuration-component:custom-widget-type_label";
 
   @Override
   protected String getLoadedLocator() {
@@ -175,12 +176,12 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     return new DashboardNewsWidgetConfigurationPage();
   }
   
-  public CustomWidgetNewDashBoardPage addNewCustomrWidget(String processName) {
+  public void addNewCustomrWidget(String processName) {
     addCustomWidgetByName(processName);
-    return new CustomWidgetNewDashBoardPage();
   }
   
-  private void addCustomWidgetByName(String name) {
+  public void addCustomWidgetByName(String name) {
+//    new-widget-dialog-content:1:add-widget
     $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT).$$("div.new-widget-dialog__item")
         .filter(text(name)).first().$("button[id^='new-custom-widget-dialog-content']")
         .shouldBe(getClickableCondition()).click();
@@ -200,4 +201,17 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     $("button[id='add-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return $("div[id$='new-widget-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
+  
+  public void clickOnAddCustomWidget() {
+    waitForElementDisplayed(By.id("new-widget-dialog"), Boolean.TRUE);
+    waitForElementClickableThenClick(By.id("new-widget-dialog-content:1:add-widget"));
+  }
+
+  public void selectCustomWidgetTypeProcess() {
+    waitForElementDisplayed(By.id(CUSTOM_WIDGET_TYPE_DROPDOWN_ID), Boolean.TRUE);
+    waitForElementClickableThenClick(By.id(CUSTOM_WIDGET_TYPE_DROPDOWN_ID));
+    waitForElementDisplayed(By.id("widget-configuration-form:new-widget-configuration-component:custom-widget-type_items"), Boolean.TRUE);
+    waitForElementClickableThenClick(By.id("widget-configuration-form:new-widget-configuration-component:custom-widget-type_1"));
+  }
+  
 }

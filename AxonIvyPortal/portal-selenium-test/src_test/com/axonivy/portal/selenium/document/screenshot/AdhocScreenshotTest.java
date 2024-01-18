@@ -66,7 +66,7 @@ public class AdhocScreenshotTest extends ScreenshotTest {
     expressPage.createDefaultTask(1, defaultTaskName2, responsibles);
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.EXPRESS_FOLDER + "adhoc-define");
     expressPage.clickSave();
-
+//
     // first task of adhoc
     DefaultExpressTaskPage defaultExpressTaskPage = new DefaultExpressTaskPage();
     defaultExpressTaskPage.enterTextToDefaultTask(defaultTaskComment1);

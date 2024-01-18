@@ -65,7 +65,8 @@ public enum Variable {
   GLOBAL_FOOTER_INFO("Portal.GlobalFooterInfo"),
   USER_MENU("Portal.UserMenu"),
   DEFAULT_THEME_MODE("Portal.Theme.Mode"),
-  ENABLE_SWITCH_THEME_BUTTON("Portal.Theme.EnableSwitchThemeModeButton");
+  ENABLE_SWITCH_THEME_BUTTON("Portal.Theme.EnableSwitchThemeModeButton"),
+  SHOW_LEGACY_UI("Portal.ShowLegacyUI");
 
 
 

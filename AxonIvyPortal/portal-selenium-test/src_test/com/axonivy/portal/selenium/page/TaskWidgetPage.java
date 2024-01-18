@@ -6,9 +6,15 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -18,10 +24,16 @@ import com.codeborne.selenide.WebDriverRunner;
 
 public class TaskWidgetPage extends TemplatePage {
 
+  private String taskWidgetId;
+
   @Override
   protected String getLoadedLocator() {
     return ".js-task-widget-header";
   }
+  
+//  public TaskWidgetPage(String taskWidgetId) {
+//    this.taskWidgetId = taskWidgetId;
+//  }
 
   public void openTask(String taskName) {
     $("div[id='task-widget:task-view-container']").shouldBe(appear, DEFAULT_TIMEOUT);
@@ -177,14 +189,14 @@ public class TaskWidgetPage extends TemplatePage {
 
   public SelenideElement getSaveFilterDialog() {
     $("[id$='task-widget:filter-save-action']").shouldBe(getClickableCondition()).click();
-    $(By.id("task-widget:filter-save-form:save-filter-set-name-input")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $(By.id("task-widget:filter-save-form:save-filter-set-name-input")).shouldBe(appear, DEFAULT_TIMEOUT);
     $("[id$=':save-filter-set-name-input']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    return $(By.id("task-widget:save-filter-set-dialog")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $(By.id("task-widget:save-filter-set-dialog")).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void closeSaveFilterDialog() {
     $("a[id^='task-widget:filter-save-form']").shouldBe(getClickableCondition()).click();
-    $(By.id("task-widget:save-filter-set-dialog")).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    $(By.id("task-widget:save-filter-set-dialog")).shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public TaskDetailsPage openTaskDetail(int index) {
@@ -193,6 +205,59 @@ public class TaskWidgetPage extends TemplatePage {
     detailsPage.waitPageLoaded();
     return new TaskDetailsPage();
   }
+
+  public void openCompactSortMenu() {
+    $("[id$='sort-task-menu_label']").shouldBe(getClickableCondition()).click();
+    $(By.cssSelector("div[id$='sort-task-menu_panel']")).shouldBe(appear, TEN_SECOND);
+  }
+
+  public void clickToWaitAjaxDisappear() {
+    $("[id$='task-widget:filter-add-action']").shouldBe(getClickableCondition()).click();
+    $("[id$='task-widget:filter-add-action']").shouldBe(getClickableCondition()).click();
+    $("[id$='task-widget:filter-add-action']").shouldBe(getClickableCondition()).click();
+    $("[id$='task-widget:filter-add-action']").shouldBe(getClickableCondition()).click();
+  }
+  
+  public void openStateFilter() {
+    $(By.cssSelector("button[id$='state-filter:filter-open-form:advanced-filter-command']")).shouldBe(getClickableCondition()).click();
+    $(By.cssSelector("[id$='state-filter:filter-input-form:state-selection']")).shouldBe(appear, TEN_SECOND);
+  }
+
+  public void clickOnTaskStatesAndApply(List<String> states) {
+    openStateFilter();
+
+    $("[id$='state-filter:filter-input-form:advanced-filter-panel']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$$("label").asFixedIterable().stream().filter(filter -> !states.contains(filter.getText()))
+        .forEach(filter -> filter.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+    
+    $(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']")).shouldBe(getClickableCondition())
+        .click();
+    waitForElementDisplayed(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']"), false);
+  }
+
+  private WebElement getStateFilterPanel() {
+    return findElementByCssSelector("div[id$='state-filter:filter-input-form:advanced-filter-panel']");
+  }
+  
+  public void expand() {
+    waitForElementDisplayed(By.cssSelector("a[id$=':task-list-link:task-list-link']"), Boolean.TRUE);
+    WebElement fullModeButton = findElementById(taskWidgetId + ":task-list-link:task-list-link");
+    $(fullModeButton).shouldBe(getClickableCondition()).click();
+    WaitHelper.assertTrueWithWait(() -> isElementDisplayed(By.cssSelector("li.topbar-item.breadcrumb-container")));
+    WaitHelper.assertTrueWithWait(() -> isElementDisplayed(By.cssSelector("[id$=':filter-save-action']")));
+//    waitForLocatorDisplayed("id('" + taskWidgetId + ":filter-save-action')");
+    waitForElementDisplayed(By.id(taskWidgetId + ":filter-save-action"), Boolean.TRUE);
+  }
+
+  public void clickColumnsButton() {
+//    clickByCssSelector("[id$='task-widget:task-columns-configuration:task-config-command']");
+    $("a[id$='task-widget:task-columns-configuration:task-config-command']").shouldBe(getClickableCondition()).click();
+    waitForElementDisplayed(By.cssSelector("label[for$=':columns-checkbox:3']"), Boolean.TRUE);
+//    $("label[for$=':columns-checkbox:3']")
+//    Sleeper.sleep(2000);
+  }
+
+  
 
 }
 

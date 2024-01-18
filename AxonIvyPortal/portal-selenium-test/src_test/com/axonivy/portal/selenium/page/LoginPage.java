@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.page;
 
+import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
 
 import org.openqa.selenium.By;
@@ -59,6 +60,7 @@ public class LoginPage extends TemplatePage {
   }
 
   public void waitForUsernameInputIsFocused() {
-    $("input[id$='login:login-form:username']").shouldBe(Condition.focused, DEFAULT_TIMEOUT);
+    $("[id='login:login-form:username']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
+
 }

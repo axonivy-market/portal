@@ -74,7 +74,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
   @Test
   public void screenshotCaseDetails() throws IOException {
     caseWidget = homePage.openCaseList();
-    homePage.closeMainMenu();
+//    homePage.closeMainMenu();
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1400));
     CaseDetailsPage detailsPage = caseWidget.openDetailsOfCaseHasName("Order Pizza");
     Sleeper.sleep(250); // Need to wait for bread-crumb finished render

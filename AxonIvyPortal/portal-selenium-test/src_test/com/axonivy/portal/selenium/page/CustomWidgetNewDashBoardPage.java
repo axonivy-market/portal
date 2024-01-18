@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.editable;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.codeborne.selenide.Condition;
@@ -27,6 +28,7 @@ public class CustomWidgetNewDashBoardPage extends TemplatePage {
       "widget-configuration-form:new-widget-configuration-component:parammeters:%d:param-user-:user-selection_panel";
   private static final String EXTERNAL_URL =
       "widget-configuration-form:new-widget-configuration-component:external-url";
+  private static final String CUSTOM_WIDGET_TYPE_DROPDOWN_ID = "widget-configuration-form:new-widget-configuration-component:custom-widget-type_label";
 
   @Override
   protected String getLoadedLocator() {
@@ -108,4 +110,35 @@ public class CustomWidgetNewDashBoardPage extends TemplatePage {
     $("[id='" + EXTERNAL_URL + "']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT)
         .sendKeys(value);
   }
+  
+  public void selectCustomWidgetTypeProcess() {
+    waitForElementDisplayed(By.id(CUSTOM_WIDGET_TYPE_DROPDOWN_ID), Boolean.TRUE);
+    waitForElementClickableThenClick(By.id(CUSTOM_WIDGET_TYPE_DROPDOWN_ID));
+    waitForElementDisplayed(By.id("widget-configuration-form:new-widget-configuration-component:custom-widget-type_items"), Boolean.TRUE);
+    waitForElementClickableThenClick(By.id("widget-configuration-form:new-widget-configuration-component:custom-widget-type_1"));
+  }
+
+  public void inputProcessName(String name) {
+    $("[id='widget-configuration-form:new-widget-configuration-component:selected-process_input']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT)
+    .sendKeys(name);
+    waitForElementPresent(By.id("widget-configuration-form:new-widget-configuration-component:selected-process_panel"), Boolean.TRUE);
+    waitForElementClickableThenClick(
+        $(By.xpath(("//*[@id='widget-configuration-form:new-widget-configuration-component:selected-process_panel']/table/tbody/tr"))));
+  }
+
+  public void inputCustomer(String name) {
+    $("[id='widget-configuration-form:new-widget-configuration-component:parammeters:0:param-user-:user-selection_input']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT)
+    .sendKeys(name);
+  }
+
+  public void inputStartDate(String name) {
+    $("[id='widget-configuration-form:new-widget-configuration-component:parammeters:1:param-calendar-_input']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT)
+    .sendKeys(name);
+  }
+
+  public void inputNote(String name) {
+    $("[id='widget-configuration-form:new-widget-configuration-component:parammeters:2:param-string-']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT)
+    .sendKeys(name);
+  }
+  
 }

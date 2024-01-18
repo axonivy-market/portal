@@ -1,7 +1,9 @@
 package com.axonivy.portal.selenium.page;
 
+import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.WaitHelper;
@@ -13,7 +15,7 @@ public class TaskTemplatePage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "#content-container";
+    return ".layout-wrapper";
   }
 
   public SelenideElement getDisplayedTaskTitle() {
@@ -78,6 +80,15 @@ public class TaskTemplatePage extends TemplatePage {
     $("[id='chat-assignee-selection-form:chat-group-create-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
         .click();
     $("[id='chat-assignee-selection-form:chat-group-create-button']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+
+  public void waitUntilLayoutWrapperDisplayed() {
+    waitForElementDisplayed(By.className("layout-wrapper"), Boolean.TRUE);
+  }
+  
+  public void waitForLeftMenuActive() {
+    $(".menu-item-dashboard").shouldBe(appear, TEN_SECOND);
+    $(".active-menuitem").shouldBe(appear, TEN_SECOND);
   }
 
 }
