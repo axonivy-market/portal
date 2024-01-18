@@ -44,7 +44,7 @@
                       <i class="notifications-button fa #{notification.read ? 'fa-circle-thin': 'fa-circle'}" id="#{notification.id}" />
                     </p:commandLink>
                     <p:tooltip for="notification-mark-as-read" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
-                    <h:outputText id="notification-message" value="#{notification.message}" escape="false"/>
+                    <h:outputText id="notification-message" value="#{visibilityBean.sanitizeContent(notification.message)}" escape="false"/>
                     <h:outputText value="#{notification.timeSince}" styleClass="time-since"/>
                   </div>
                 </div>
