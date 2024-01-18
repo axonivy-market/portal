@@ -4,7 +4,7 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import org.junit.jupiter.api.BeforeEach;
 
 @IvyWebTest
-public class ScreenshotTest extends BaseTest{
+public class ScreenshotTest extends BaseTest {
 
   @Override
   @BeforeEach

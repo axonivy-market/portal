@@ -30,6 +30,7 @@ public class BaseTest {
   private String designerLogoutUrl = "http://localhost:8081/designer/logout";
   private final static String LOGIN_URL_PATTERN = "/PortalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
   public final static String PORTAL_HOME_PAGE_URL = "/portal/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
+  protected final static String LOGOUT_URL = "/PortalKitTestHelper/1636734E13CEC872/logout.ivp";
   protected final static Duration DEFAULT_TIMEOUT = Duration.ofSeconds(45);
   
   public BaseTest() {}
@@ -101,6 +102,7 @@ public class BaseTest {
   protected String securityMemberNameAndAvatarExampleInFrameUrl = "/portal-components-examples/182A5FCAF7FC6B1A/showSecurityMemberNameAndAvatarExamples.ivp?embedInFrame";
   protected String defaultProcessImageSelectionExampleUrl = "portal-developer-examples/179D499523153784/start.ivp";
   protected String createSampleProcesses = "portalKitTestHelper/153CACC26D0D4C3D/createSampleProcesses.ivp";
+
 
   protected void redirectToNewDashBoard() {
     open(EngineUrl.createProcessUrl(PORTAL_HOME_PAGE_URL));

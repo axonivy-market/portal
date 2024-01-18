@@ -19,9 +19,8 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.StatisticWidgetPage;
 import com.axonivy.portal.selenium.page.TaskAnalysisWidgetPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class TaskAnalysisScreenshotTest extends ScreenshotTest {
-
   @Override
   @BeforeEach
   public void setup() {
@@ -59,5 +58,6 @@ public class TaskAnalysisScreenshotTest extends ScreenshotTest {
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskAnalysisWidgetPage.waitAndGetSavingFilterDialog(),
         ScreenshotUtils.TASK_ANALYSIS_FOLDER + "saved-filter", new ScreenshotMargin(20));
   }
+
 }
 
