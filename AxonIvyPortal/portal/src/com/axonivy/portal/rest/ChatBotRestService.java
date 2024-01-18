@@ -68,7 +68,7 @@ public class ChatBotRestService {
   }
 
   private void mockImageResponse(ChatMessage response) {
-    response.setMessage("https://market.axonivy.com/market-cache/portal/portal-guide/11.1.0/_images/my-profile.png");
+    response.setMessage("This is an image of My Profile section\n\nhttps://market.axonivy.com/market-cache/portal/portal-guide/11.1.0/_images/my-profile.png");
   }
 
   private void mockFrameResponse(ChatMessage response) {
@@ -81,15 +81,18 @@ public class ChatBotRestService {
     }
 
     var link = PortalNavigator.buildPortalCaseDetailInFrameUrl(caze.uuid());
-    response.setMessage("<iframe>" + link + "</iframe>");
+    response.setMessage("Below is the details of most recently done case\n\n<iframe>" + link + "</iframe>");
   }
 
   private void mockLinkResponse(ChatMessage response) {
-    response.setMessage("www.google.com");
+    response.setMessage("This is a link to Axon ivy website\n\nhttps://www.axonivy.com/");
   }
 
   private void mockJsonResponse(ChatMessage response) {
     response.setMessage("""
+        This is an JSON example of Portal Dashboard
+        
+        
         <code>
         [
          {

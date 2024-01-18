@@ -182,6 +182,6 @@ const parseParagraph = paragraph => {
 const parseMessage = message => {
   const paragraphs = message.split(/\r?\n\n/);
   const formattedParagraphs = paragraphs.map(p => parseParagraph(p));
-  message = formattedParagraphs.join('\n');
+  message = formattedParagraphs.join('\r\n');
   return message;
 };
