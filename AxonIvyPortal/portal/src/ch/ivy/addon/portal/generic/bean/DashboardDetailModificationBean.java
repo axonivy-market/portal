@@ -3,6 +3,7 @@ package ch.ivy.addon.portal.generic.bean;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CASE;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CUSTOM;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NEWS;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NOTIFICATION;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS_VIEWER;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.STATISTIC;
@@ -41,6 +42,7 @@ import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.dto.News;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
+import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
@@ -127,7 +129,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void initSampleWidgets() {
     if (CollectionUtils.isEmpty(samples)) {
       samples = List.of(taskSample(), caseSample(), processSample(), statisticSample(), externalPageSample(),
-          processViewerSample(), welcomeWidgetSample(), newsSample());
+          processViewerSample(), welcomeWidgetSample(), newsSample(), notificationSample());
       samples = samples.stream().sorted(Comparator.comparing(WidgetSample::getName)).collect(Collectors.toList());
     }
     initCustomWidgets();
@@ -211,6 +213,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         translate("/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/NewsWidgetDescription"), true);
   }
 
+  private WidgetSample notificationSample() {
+    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/NOTIFICATION"),
+        NOTIFICATION, "si si-alarm-bell", translate("/Dialogs/com/axonivy/portal/dashboard/component/NotificationWidgetConfiguration/NotificationWidgetDescription"), true);
+  }
+
   public void restore() {
     removeWelcomeWidgetImagesOfDashboard(getSelectedDashboard());
     selectedDashboardId = getSelectedDashboard().getId();
@@ -276,6 +283,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       case NEWS -> {
         newWidgetHeader = translate("/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/NewsWidgetConfiguration");
         widget = getDefaultNewsWidget();
+      }
+      case NOTIFICATION -> {
+        newWidgetHeader = translate("/Dialogs/com/axonivy/portal/dashboard/component/NotificationWidgetConfiguration/NotificationWidgetConfiguration");
+        widget = getDefaultNotificationWidget();
       }
       default -> {}
     }
@@ -383,6 +394,12 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     String widgetId = DashboardWidgetUtils.generateNewWidgetId(NEWS);
     String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/NEWS");
     return NewsDashboardWidget.buildDefaultWidget(widgetId, widgetName);
+  }
+
+  private NotificationDashboardWidget getDefaultNotificationWidget() {
+    String widgetId = DashboardWidgetUtils.generateNewWidgetId(NOTIFICATION);
+    String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourNotifications");
+    return NotificationDashboardWidget.buildDefaultWidget(widgetId, widgetName);
   }
 
   public void saveWidget() {

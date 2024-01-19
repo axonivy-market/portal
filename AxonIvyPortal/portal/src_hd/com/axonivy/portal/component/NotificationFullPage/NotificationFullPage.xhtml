@@ -19,7 +19,7 @@
           <h:panelGroup styleClass="ui-g-12">
             <div class="unread-container">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/onlyUnread')} " styleClass="only-unread-toggle"/>
-              <p:toggleSwitch id="toggle-only-unread" value="#{notificationBean.onlyUnread}">
+              <p:toggleSwitch id="toggle-only-unread" value="#{notificationBean.dataModel.onlyUnread}">
                 <p:ajax listener="#{notificationBean.dataModel.onSelectedFilter()}" oncomplete="Portal.updateLayoutContent()"
                 update="notification-full-form" global="false" partialSubmit="true"/>
               </p:toggleSwitch>
