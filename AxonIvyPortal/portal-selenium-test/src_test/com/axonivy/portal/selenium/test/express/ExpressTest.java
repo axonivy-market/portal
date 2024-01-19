@@ -106,7 +106,7 @@ public class ExpressTest extends BaseTest {
 
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.clearFilterInput();
-    taskWidgetPage.startTaskIFrame(0);
+    taskWidgetPage.startTask(0);
     ExpressReviewPage reviewPage = new ExpressReviewPage();
     ElementsCollection task2 = reviewPage.getApprovalResults(0);
     assertEquals("Portal Demo User Approved at first level Yes", task2.get(0).getText());
@@ -120,7 +120,7 @@ public class ExpressTest extends BaseTest {
   private void executeUserTask() {
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterByResponsible(TestAccount.ADMIN_USER.getFullName());
-    taskWidgetPage.startTaskIFrame(0);
+    taskWidgetPage.startTask(0);
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.finish();
     new TaskWidgetPage();
@@ -135,7 +135,7 @@ public class ExpressTest extends BaseTest {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterByResponsible(responsible);
     taskWidgetPage.filterTasksInExpandedModeBy(taskNameFilter, expectedNumber);
-    taskWidgetPage.startTaskIFrame(startTaskIndex);
+    taskWidgetPage.startTask(startTaskIndex);
     ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
     approvalPage1.comment(comment);
     approvalPage1.approve();
