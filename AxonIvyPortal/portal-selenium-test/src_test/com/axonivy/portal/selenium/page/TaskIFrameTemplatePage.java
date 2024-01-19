@@ -149,17 +149,16 @@ public class TaskIFrameTemplatePage extends TemplatePage {
   }
 
   public String getTaskNameOutsideIFrameWithSkipTaskList() {
-    String taskNameOutIFrameCssSelector = "span[id$='title']";
-    String approveTaskNameOutIFrame = findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText();
     waitForCloseButtonDisplayAfterInputedAprrovalNote("1");
     driver.switchTo().defaultContent();
+    String taskNameOutIFrameCssSelector = "span[id$='title']";
+    String approveTaskNameOutIFrame = findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText();
     WaitHelper.assertTrueWithWait(() -> !approveTaskNameOutIFrame
         .equals(findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText()));
     return findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText();
   }
 
   private void waitForCloseButtonDisplayAfterInputedAprrovalNote(String approvalNote) {
-    driver.switchTo().frame("iFrame");
     waitForElementDisplayed(By.id("content-form:approve-btn"), true);
     $(By.id("content-form:content-tab-view:approval-note")).sendKeys(approvalNote);
     clickByJavaScript($(By.id("content-form:approve-btn")));
@@ -171,7 +170,6 @@ public class TaskIFrameTemplatePage extends TemplatePage {
   }
 
   public NewDashboardPage backToHomeInIFrameApprovalTask() {
-    driver.switchTo().frame("iFrame");
     waitForElementDisplayed(By.id("content-form:home-btn"), true);
     clickByJavaScript($(By.id("content-form:home-btn")));
     driver.switchTo().defaultContent();

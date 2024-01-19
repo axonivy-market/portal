@@ -28,7 +28,7 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.axonivy.portal.selenium.page.SearchResultPage;
-import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
+import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.TemplatePage.GlobalSearch;
 import com.axonivy.portal.selenium.page.UserTaskWithMailFormPage;
@@ -193,14 +193,14 @@ public class PortalExpressTest extends BaseTest {
 
     taskWidgetPage = new NewDashboardPage().openTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy("Next Default Task");
-    taskWidgetPage.startTaskIFrame(0);
+    taskWidgetPage.startTask(0);
     defaultExpresTaskPage = new DefaultExpresTaskPage();
     defaultExpresTaskPage.enterTextToDefaultTask("Comment");
     defaultExpresTaskPage.finishDefaultTask();
 
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksInExpandedModeBy("Test create default process: Final Review");
-    taskWidgetPage.startTaskIFrame(0);
+    taskWidgetPage.startTask(0);
 
     ExpressReviewPage reviewPage = new ExpressReviewPage();
     reviewPage.finish();
@@ -374,7 +374,7 @@ public class PortalExpressTest extends BaseTest {
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(processName);
     searchResultPage.waitForFirstTabFinishedLoading();
     searchResultPage.startProcess(processName);
-    new TaskIFrameTemplatePage().isDisplayed();
+    new TaskTemplatePage().isDisplayed();
   }
 
   protected void executeExpressProcessWhenMultiApproval() {
@@ -403,7 +403,7 @@ public class PortalExpressTest extends BaseTest {
       taskWidgetPage.filterTasksInExpandedModeBy(taskNameFilter, taskCountAfterFiltering);
     }
     taskWidgetPage.openStateFilter();
-    taskWidgetPage.startTaskIFrame(taskIndex);
+    taskWidgetPage.startTask(taskIndex);
     ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
     approvalPage1.comment(comment);
     approvalPage1.approve();
@@ -415,7 +415,7 @@ public class PortalExpressTest extends BaseTest {
 
   protected String executeReview() {
     taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.startTaskIFrame(0);
+    taskWidgetPage.startTask(0);
     ExpressReviewPage reviewPage = new ExpressReviewPage();
     String approvalResult = reviewPage.getApprovalResult();
     reviewPage.finish();
@@ -436,7 +436,7 @@ public class PortalExpressTest extends BaseTest {
 
   protected void rejectApproval(String comment) {
     taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.startTaskIFrame(0);
+    taskWidgetPage.startTask(0);
     ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
     approvalPage1.comment(comment);
     approvalPage1.reject();
@@ -496,7 +496,7 @@ public class PortalExpressTest extends BaseTest {
     taskWidgetPage = new TaskWidgetPage();
     refreshPage();
     taskWidgetPage.countTasks().shouldBe(CollectionCondition.size(1));
-    taskWidgetPage.startTaskIFrame(0);
+    taskWidgetPage.startTask(0);
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.finish();
     taskWidgetPage = new TaskWidgetPage();
@@ -506,7 +506,7 @@ public class PortalExpressTest extends BaseTest {
   protected String executeReview(String taskName) {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy(taskName);
-    taskWidgetPage.startTaskIFrame(0);
+    taskWidgetPage.startTask(0);
     ExpressReviewPage reviewPage = new ExpressReviewPage();
     String approvalResult = reviewPage.getApprovalResult();
     reviewPage.finish();

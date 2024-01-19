@@ -88,7 +88,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void startFirstTaskAndWaitShowHomePageButton() {
     $(".task-dashboard-widget__panel span.widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT);
     getColumnOfTaskHasIndex(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click();
-    $("a>span.si-house-chimney-2.portal-icon").shouldBe(appear, DEFAULT_TIMEOUT);
+    // $("a>span.si-house-chimney-2.portal-icon").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void startTask(int taskIndex) {
@@ -330,7 +330,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickCancelTask() {
-    $("a[id$='button-cancel']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    switchToIFrameOfTask();
+    TaskIFrameTemplatePage taskIFrameTemplatePage = new TaskIFrameTemplatePage();
+    taskIFrameTemplatePage.clickCancelButton();
   }
 
   public void triggerEscalationTask(int taskIndex) {

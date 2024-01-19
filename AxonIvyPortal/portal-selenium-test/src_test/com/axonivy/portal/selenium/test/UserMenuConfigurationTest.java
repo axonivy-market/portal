@@ -9,7 +9,7 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.ExpressTaskPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
-import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
+import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.UserMenuPage;
 import com.codeborne.selenide.Condition;
 
@@ -48,7 +48,8 @@ public class UserMenuConfigurationTest extends BaseTest {
     UserMenuPage userMenu = new UserMenuPage();
     userMenu.findMenu("Create Investment").shouldBe(Condition.appear);
     userMenu.accessMenu("Create Investment");
-    TaskIFrameTemplatePage templatePage = new TaskIFrameTemplatePage();
+    TaskTemplatePage templatePage = new TaskTemplatePage();
+    templatePage.switchToIFrameOfTask();
     templatePage.getElementInPortalIFramTask("[id$=':investment-table']").shouldBe(Condition.appear);
   }
 

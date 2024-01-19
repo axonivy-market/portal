@@ -26,6 +26,7 @@ public class LanguageSettingTest extends BaseTest {
   public void testChangeLanguageWhenWorkingOnTask() {
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.startTaskIFrame(0);
+    taskWidgetPage.switchBackToParent();
     taskWidgetPage.clickOnMyProfile();
     WorkingTaskDialogFromUserProfilePage workingTaskDialogPage = new WorkingTaskDialogFromUserProfilePage();
     workingTaskDialogPage.leaveTask();
