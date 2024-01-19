@@ -15,6 +15,7 @@ Labels:
   AxonIvyPortal: Axon Ivy Portal
   BackToCaseMap: Volver al mapa de caso
   Cancel: Cancelar
+  CaseDetails: Detalles del caso
   CaseMap:
     Credit:
       address: Dirección
