@@ -61,7 +61,6 @@ public class GlobalGrowlTest extends BaseTest {
     redirectToRelativeLink(CUSTOM_GROWL_URL);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
-    taskTemplatePage.switchToIFrameOfTask();
     taskTemplatePage.clickSubmitButtonProceed();
     taskTemplatePage.switchBackToParent();
     assertGrowlMessage(taskWidgetPage, CUSTOM_FINISH_MESSAGE);
@@ -72,7 +71,6 @@ public class GlobalGrowlTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
-    taskTemplatePage.switchToIFrameOfTask();
     String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskTemplatePage.inputValue("Employee", today, today, "Representation");
     taskTemplatePage.clickOnSubmitButton();
@@ -88,7 +86,6 @@ public class GlobalGrowlTest extends BaseTest {
     redirectToRelativeLink(SKIP_TASK_LIST_URL);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
-    taskTemplatePage.switchToIFrameOfTask();
     taskTemplatePage.clickSubmitButtonProceed();
     taskTemplatePage.switchBackToParent();
     TaskWidgetPage homePage = new TaskWidgetPage();
@@ -100,8 +97,8 @@ public class GlobalGrowlTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
-    taskTemplatePage.switchToIFrameOfTask();
     taskTemplatePage.clickCancelAndLeftButton();
+    taskTemplatePage.switchBackToParent();
     taskWidgetPage = new TaskWidgetPage();
     assertGrowlMessage(taskWidgetPage, CANCEL_MESSAGE_WITH_DETAILS);
   }
@@ -113,7 +110,6 @@ public class GlobalGrowlTest extends BaseTest {
     redirectToRelativeLink(CUSTOM_GROWL_URL);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
-    taskTemplatePage.switchToIFrameOfTask();
     taskTemplatePage.clickCancelAndLeftButton();//
     taskTemplatePage.switchBackToParent();
     taskWidgetPage = new TaskWidgetPage();

@@ -15,10 +15,10 @@ import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.LeaveRequestPage;
+import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
-import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class LeaveRequestTest extends BaseTest {
   private static final String LEAVE_REQUEST_START_LINK = "portal-user-examples/170321BD7F5539D6/start.ivp";
   private LeaveRequestPage leaveRequestPage;
@@ -70,8 +70,8 @@ public class LeaveRequestTest extends BaseTest {
     taskWidgetPage.filterTasksInExpandedModeBy("Your leave request is approved");
     taskWidgetPage.startTaskIFrame(0);
     leaveRequestPage.assertPageTitle("Approval Result");
-    UserExamplesEndPage userExamplesEndPage = leaveRequestPage.finishLeaveRequest();
-    CaseDetailsPage caseDetailsPage = userExamplesEndPage.goToCaseDetail();
+    TaskTemplatePage taskTemplatePage = leaveRequestPage.finishLeaveRequest();
+    CaseDetailsPage caseDetailsPage = taskTemplatePage.goToCaseDetail();
     assertEquals("Leave Request", caseDetailsPage.getCaseName());
   }
 
@@ -91,7 +91,6 @@ public class LeaveRequestTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.startTaskIFrame(0);
-    taskWidgetPage.switchToIFrameOfTask();
     leaveRequestPage.assertPageTitle("Approval");
 
     leaveRequestPage.enterApproverComment("Rejected");
@@ -101,7 +100,6 @@ public class LeaveRequestTest extends BaseTest {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy("Your leave request is rejected");
     taskWidgetPage.startTaskIFrame(0);
-    taskWidgetPage.switchToIFrameOfTask();
     leaveRequestPage.assertPageTitle("Approval Result");
   }
 

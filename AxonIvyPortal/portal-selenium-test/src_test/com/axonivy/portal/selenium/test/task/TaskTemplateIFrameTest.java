@@ -80,7 +80,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
   public void testStickyTaskList() {
     redirectToRelativeLink(IFRAME_TASK_URL);
     waitForTemplateRender();
-    TaskIFrameTemplatePage taskTemplatePage1 = new TaskIFrameTemplatePage();
+    TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
     TaskWidgetPage taskWidgetPage1 = taskTemplatePage1.finishCreateInvestmentTask();
     taskWidgetPage1 = taskWidgetPage1.openTaskList();
     taskWidgetPage1.filterTasksInExpandedModeBy("Approve Investment", 1);
@@ -98,7 +98,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
   public void testTextOutIFrameChangeWithSkipTaskList() {
     redirectToRelativeLink(IFRAME_TASK_URL);
     waitForTemplateRender();
-    TaskIFrameTemplatePage taskTemplatePage1 = new TaskIFrameTemplatePage();
+    TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
     TaskWidgetPage taskWidgetPage1 = taskTemplatePage1.finishCreateInvestmentTask();
     taskWidgetPage1 = taskWidgetPage1.openTaskList();
     taskWidgetPage1.filterTasksInExpandedModeBy("Approve Investment", 1);

@@ -11,7 +11,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
-import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -91,10 +90,10 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
     return new TaskWidgetPage();
   }
 
-  public UserExamplesEndPage finishLeaveRequest() {
+  public TaskTemplatePage finishLeaveRequest() {
     waitForElementClickableThenClick(By.id("leave-request:finish-btn"));
     switchToDefaultContent();
-    return new UserExamplesEndPage();
+    return new TaskTemplatePage();
   }
 
   public TaskWidgetPage clickRejectBtn() {

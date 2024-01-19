@@ -16,7 +16,6 @@ import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebDriverRunner;
 
 public class TaskTemplatePage extends TemplatePage {
   private static final String ADHOC_HISTORY_TABLE_CSS_SELECTOR = "div[id*='adhoc-task-history-table'] table>tbody>tr";
@@ -64,7 +63,6 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public SelenideElement getElementInPortalIFramTask(String cssSelector) {
-    WaitHelper.waitForIFrameAvailable(WebDriverRunner.getWebDriver(), "iFrame");
     return $(cssSelector);
   }
 
@@ -340,4 +338,10 @@ public class TaskTemplatePage extends TemplatePage {
     $(By.id("leave-request:to_input")).sendKeys(to);;
     $(By.id("leave-request:substitute")).sendKeys(representation);;
   }
+
+  public CaseDetailsPage goToCaseDetail() {
+    waitForElementClickableThenClick("[id$='form:go-to-case-detail']");
+    return new CaseDetailsPage();
+  }
+
 }

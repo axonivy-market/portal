@@ -73,7 +73,7 @@ public class AdhocExpressTest extends BaseTest {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy(defaultTaskName2, 1);
     taskWidgetPage.countTasks().shouldHave(CollectionCondition.size(1));
-    taskWidgetPage.startTaskIFrame(0);
+    taskWidgetPage.startTask(0);
     defaultExpressTaskPage = new DefaultExpresTaskPage();
     defaultExpressTaskPage.enterTextToDefaultTask(defaultTaskComment2);
     defaultExpressTaskPage.finishDefaultTask();
@@ -83,7 +83,7 @@ public class AdhocExpressTest extends BaseTest {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy(taskNamePrefix, 1);
     taskWidgetPage.countTasks().shouldHave(CollectionCondition.size(1));
-    taskWidgetPage.startTaskIFrame(0);
+    taskWidgetPage.startTask(0);
 
     // check adhoc history
     assertEquals(true, taskTemplatePage.isAdhocHistoryDialogExistWhenOpenTaskFirstTime());
