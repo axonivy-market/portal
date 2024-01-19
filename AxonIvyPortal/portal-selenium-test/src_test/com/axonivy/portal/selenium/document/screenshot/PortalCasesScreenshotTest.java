@@ -16,6 +16,7 @@ import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.HomePage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.axonivy.portal.selenium.test.CaseDetailsTest;
@@ -123,10 +124,10 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
   
   @Test
   public void screenshotCustomCaseListColumnConfig() throws IOException {
-    ScreenshotUtils.maximizeBrowser();
+    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1400));
     redirectToRelativeLink(createCasesForCaseListCustomization);
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     
     CaseWidgetPage caseWidget = mainMenuPage.openCaseList();
     caseWidget.clickColumnsButton();

@@ -137,7 +137,7 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest{
   }
   
   @Test
-  public void screenshotHowtoEditUserProcess() throws IOException {
+  public void screenshotHowToEditUserProcess() throws IOException {
     redirectToRelativeLink(createUserFavoriteProcess);
 
     ScreenshotUtils.resizeBrowser(new Dimension(1920, 800));

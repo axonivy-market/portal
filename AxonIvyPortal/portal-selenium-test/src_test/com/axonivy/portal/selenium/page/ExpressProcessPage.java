@@ -10,12 +10,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
+import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.codeborne.selenide.Condition;
 
 import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
 
-public class ExpressProcessPage extends TemplatePage{
+public class ExpressProcessPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
@@ -126,6 +127,7 @@ public class ExpressProcessPage extends TemplatePage{
       $("[id='choose-responsible-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
       addResponsible(responsibles);
 
+      waitForElementDisplayed($("input[id$='form:defined-tasks-list:" + taskIndex + ":task-name']"), Boolean.TRUE);
       $(String.format(TASK_NAME_FORMAT, taskIndex)).shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(taskName);
       $(String.format("input[id$='%d:task-description']", taskIndex)).shouldBe(appear, DEFAULT_TIMEOUT)
           .sendKeys(taskDescription);
