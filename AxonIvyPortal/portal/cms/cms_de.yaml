@@ -85,6 +85,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CUSTOM: Benutzerdefiniertes Widget
       NEW: Neues Widget
       NEWS: Nachrichten
+      NOTIFICATION: Benachrichtigungen
       PROCESS: Prozess-Widget
       PROCESS_VIEWER: Prozess-Viewer-Widget
       STATISTIC: Statistik-Widget
@@ -916,6 +917,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     widgetType: Widget-Typ
     yourCases: Ihre Vorgänge
     yourCustomWidget: Ihr benutzerdefiniertes Widget
+    yourNotifications: Ihre Benachrichtigungen
     yourProcessViewer: Ihr Prozessbetrachter
     yourProcesses: Ihre Prozesse
     yourStatistics: Ihre Statistiken
@@ -1602,6 +1604,12 @@ Dialogs:
               NewsWidgetConfiguration: Konfiguration des Newsfeed-Widgets
               NewsWidgetDescription: Dieses Widget teilt relevante Informationen als News Feed in Axon Ivy.
               NewsWidgetTitle: News-Feed-Widget
+            NotificationWidget:
+              NoNotificationAvailable: Es liegen noch keine Benachrichtigungen vor
+            NotificationWidgetConfiguration:
+              NotificationWidgetConfiguration: Konfiguration des Benachrichtigungs-Widgets
+              NotificationWidgetDescription: Dieses Widget zeigt alle Benachrichtigungen basierend auf Ihren Benachrichtigungseinstellungen an.
+              WidgetFilter: Widget-Filter
   components:
     CaseDocument:
       FileDate: Änderungsdatum
