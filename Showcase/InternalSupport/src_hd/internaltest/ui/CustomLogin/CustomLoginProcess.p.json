@@ -68,9 +68,11 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.developerexamples.util.UserUtils;",
+            "import com.axonivy.portal.components.util.UserUtils;",
             "import javax.faces.context.FacesContext;",
             "import javax.faces.application.FacesMessage;",
+            "import ch.ivyteam.ivy.environment.Ivy;",
+            "import java.util.Locale;",
             "",
             "in.loginOk = ivy.session.loginSessionUser(in.username, in.password);",
             "out.password = null;",
@@ -78,7 +80,7 @@
             "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/login/loginFailed\"), \"\"));",
             "  FacesContext.getCurrentInstance().validationFailed();",
             "} else {",
-            "  UserUtils.setLanguage();",
+            "  Ivy.session().setFormattingLocale(new Locale(\"en\", \"GB\"));",
             "}"
           ]
         }
