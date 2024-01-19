@@ -148,21 +148,6 @@ Dialogs:
                   IsRequired: This field is mandatory
                   Representation: Representation
                   To: To
-  com:
-    axonivy:
-      portal:
-        developerexamples:
-          testdata:
-            LeaveRequestForm:
-              MinCharacterReq: be at least {0} characters long
-              MinLowercaseCharacter: contain at least {0} lowercase character
-              MinNumber: Minimum Numeric Characters
-              MinNumberRequire: contain at least {0} number
-              MinSpecialCharacter: Minimum Special Characters
-              MinSpecialCharacterRequired: contain at least {0} special character
-              MinUppercaseCharacter: Minimum Uppercase Characters
-              MinUppercaseCharacterRequired: contain at least {0} uppercase character
-              MinimumLength: Minimum Length
 Labels:
   Back: Back
   DashboardWidgetType:
@@ -204,9 +189,7 @@ Labels:
   firstName: First name
   forgotPasswordError: An error occurred while processing your request. Please try again later.
   id: ID
-  invalidToken: Invalid token
   noCategory: '[No Category]'
-  passwordMust: Password must
   passwordResetEmailCantSend: Exception while sending email to you. Please try again later.
   passwordResetEmailContent: '<html>Dear {0},<br/><br/>Please click to this link to reset your password: <a href="{1}">Reset Password</a><br/><br/>Best regards</html>'
   passwordResetEmailSent: If this e-mail address is registered then we have sent a password recovery link to it.
