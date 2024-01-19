@@ -11,12 +11,13 @@ function closeNotificationPanel() {
 }
 
 function markAsRead(notiId) {
-  let noti = $('i#' + notiId);
-  if (noti !== undefined) {
-    noti.addClass('fa-circle-thin');
-    noti.removeClass('fa-circle');
-    noti.parents('.notifications-container-top').removeClass('p-text-bold');
-  }
+    $('i#' + notiId).each(function(index) {
+      if ($(this) !== undefined) {
+      $(this).addClass('fa-circle-thin');
+      $(this).removeClass('fa-circle');
+      $(this).parents('.notifications-container-top').removeClass('p-text-bold');
+    }
+  });
 }
 
 $(document).ready(function () {

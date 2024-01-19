@@ -1,0 +1,87 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+  xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="index" required="true" />
+  <cc:attribute name="widget" required="true" />
+  <cc:attribute name="isReadOnlyMode" default="false" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="index" value="#{cc.attrs.index}" />
+  <c:set var="widget" value="#{cc.attrs.widget}" />
+  
+    <ui:decorate template="/layouts/restricted/decorator/CardWidget.xhtml">
+    <ui:param name="index" value="#{index}" />
+    <ui:param name="widget" value="#{widget}" />
+    <ui:param name="panelId" value="notification-widget-#{widget.id}-panel" />
+    <ui:param name="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
+    <ui:param name="isRenderInfo" value="false" />
+    <ui:param name="widgetContentStyleClass" value="notification-widget__content-panel" />
+    <ui:param name="unreadNotificationsId" value="#{p:resolveFirstComponentWithId('topbar-unread-notifications-container', view).clientId}" />
+
+    <ui:define name="widgetContent">
+      <p:remoteCommand id="rc-load-notification-firsttime-#{widget.id}" autoRun="true"
+        update="dashboard-notification-container-#{widget.id}" global="false" async="true" process="@this"
+        oncomplete="loadWidgetFirstTime('js-loading-#{widget.id}', 'js-dashboard-notification-container-#{widget.id}')"
+        actionListener="#{widget.loadFirstTime()}" />
+
+      <div class="w-full widget-height-100">
+        <h:panelGroup id="loading-#{widget.id}" styleClass="js-loading-#{widget.id}">
+          <ui:include src="NotificationWidgetSkeleton.xhtml">
+            <ui:param name="skeletonHeight" value="#{widget.layout.height > 2 ? (widget.layout.height - 2) * 8 : 5}" />
+          </ui:include>
+        </h:panelGroup >
+
+        <h:panelGroup id="dashboard-notification-container-#{widget.id}" layout="block"
+          styleClass="w-full dashboard-notification-container js-dashboard-notification-container-#{widget.id}  u-display-none">
+          <h:panelGroup id="notification-widget__content-#{widget.id}" layout="block" styleClass="notification-widget__content">
+            <p:dataScroller id="notifications-scroller-#{widget.id}" lazy="true" value="#{widget.dataModel}" var="notification" 
+                chunkSize="10" widgetVar="notifications-scroller-#{widget.id}" mode="inline" rendered="#{widget.hasNotifications()}">
+              <span class="notifications-group-title #{notification.markedToday} #{notification.markedToday ? '' : 'u-hidden'}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/todayText')}</span>
+              <span class="notifications-group-title #{notification.markedOlder ? '' : 'u-hidden'}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/olderText')}</span>
+              <div class="#{notification.style} notifications-container-top">
+                <div class="p-d-flex">
+                  <div class="p-d-flex">
+                    <p:commandLink id="notification-mark-as-read"
+                      actionListener="#{widget.markAsRead(notification)}"
+                      process="@this" partialSubmit="true"
+                      global="false"
+                      onclick="markAsRead('#{widget.id}__#{notification.id}')"
+                      oncomplete="Portal.updateLayoutContent();"
+                      update="#{unreadNotificationsId}">
+                      <i class="notifications-button fa #{notification.read ? 'fa-circle-thin': 'fa-circle'}" id="#{widget.id}__#{notification.id}" />
+                    </p:commandLink>
+                    <p:tooltip for="notification-mark-as-read"
+                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
+                  </div>
+                  <h:outputText id="notification-message" value="#{notification.message}" escape="false" />
+                </div>
+
+                <div>
+                  <h:outputText value="#{notification.timeSince}"
+                    styleClass="notifications-item-time-since" />
+                </div>
+              </div>
+
+            </p:dataScroller>
+            <h:panelGroup layout="block" id="empty-message" rendered="#{!widget.hasNotifications()}"
+              styleClass="empty-message-container">
+              <i class="si si-alarm-bell empty-message-icon" />
+              <br />
+              <h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NotificationWidget/NoNotificationAvailable')}" styleClass="empty-message-text" />
+            </h:panelGroup>
+          </h:panelGroup>
+        </h:panelGroup>
+      </div>
+    </ui:define>
+  </ui:decorate>
+
+</cc:implementation>
+</html>

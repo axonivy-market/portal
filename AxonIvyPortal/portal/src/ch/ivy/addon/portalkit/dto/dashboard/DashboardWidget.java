@@ -9,6 +9,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
+import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -38,7 +39,8 @@ import ch.ivyteam.ivy.environment.Ivy;
   @Type(value = CustomDashboardWidget.class, name = "custom"),
   @Type(value = ProcessViewerDashboardWidget.class, name = "process-viewer"),
   @Type(value = WelcomeDashboardWidget.class, name = "welcome"),
-  @Type(value = NewsDashboardWidget.class, name = "news")
+  @Type(value = NewsDashboardWidget.class, name = "news"),
+  @Type(value = NotificationDashboardWidget.class, name = "notification")
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public abstract class DashboardWidget implements Serializable {
