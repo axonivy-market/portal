@@ -88,9 +88,26 @@ public class DashboardScreenshotTest extends ScreenshotTest {
   @Test
   public void screenshotDashboardWithAnnotation() throws IOException {
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-//    ScreenshotUtil.maximizeBrowser();
-//    executeDecorateJs("numberingStatisticWidget();");
-//    ScreenshotUtil.captureElementScreenshot(homePage.getStatisticWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "statistics-key-information");
+    ScreenshotUtil.maximizeBrowser();
+    executeDecorateJs("numberingStatisticWidget();");
+    ScreenshotUtil.captureElementScreenshot(homePage.getStatisticWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "statistics-key-information");
+
+    ScreenshotUtil.resizeBrowser(new Dimension(1100, 800));
+    refreshHomePage();
+    homePage = new HomePage();
+    homePage.clickByCssSelector("a[id='global-search-item']");
+    executeDecorateJs("numberingTopBar()");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(homePage.getTopBar(), ScreenshotUtil.DASHBOARD_FOLDER + "portal-header-with-numbering-annotation", new ScreenshotMargin(20, 20, 20, 120));
+    ScreenshotUtil.resizeBrowser(new Dimension(1400, 800));
+
+    executeDecorateJs("numberingTaskItem();");
+    ScreenshotUtil.captureElementScreenshot(homePage.getTaskWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "personal-tasks-key-information");
+    
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
+    refreshHomePage();
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DASHBOARD_FOLDER + "legacy-dashboard");
+    executeDecorateJs("highlightAndNumberingDashboardSections();");
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DASHBOARD_FOLDER + "dashboard-3-sections");
 
 //    ScreenshotUtil.resizeBrowser(new Dimension(1100, 800));
 //    refreshHomePage();

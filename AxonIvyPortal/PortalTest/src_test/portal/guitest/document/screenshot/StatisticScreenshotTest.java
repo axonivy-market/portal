@@ -47,23 +47,23 @@ public class StatisticScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.resizeBrowser(new Dimension(1386, 2210));
     statisticWidgetPage.waitForAllChartLoaded();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "chart-creation-page");
-//    statisticWidgetPage.createTaskByPriorityChart();
-//    statisticWidgetPage.createTaskByExpiryChart();
-//    ScreenshotUtil.captureElementScreenshot(statisticWidgetPage.getChartCreationContainer(), ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "available-charts");
-//    ScreenshotUtil.maximizeBrowser();
-//
-//    WebElement chartCreationDialog = statisticWidgetPage.getCaseByFinishedTaskCreationDialog();
-//    ScreenshotUtil.captureElementWithMarginOptionScreenshot(chartCreationDialog, ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "chart-creation-dialog", new ScreenshotMargin(100, 100));
-//    
-//    refreshPage();
-//    statisticWidgetPage.waitForChartCreationPageRendered();
-//    statisticWidgetPage.backToDashboard();
-//    statisticWidgetPage.waitForAllChartLoaded();
-//    executeDecorateJs("numberingChartPanel()");
-//    ScreenshotUtil.captureElementWithMarginOptionScreenshot(statisticWidgetPage.getChartPanelByIndex(1), ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "chart-detail-with-annotation", new ScreenshotMargin(20, 10));
-//    refreshPage();
-//    statisticWidgetPage.waitForAllChartLoaded();
-//    ScreenshotUtil.captureElementWithMarginOptionScreenshot(statisticWidgetPage.getChartInfoDialogOfChart(1), ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "chart-info-dialog", new ScreenshotMargin(20, 10));
+    statisticWidgetPage.createTaskByPriorityChart();
+    statisticWidgetPage.createTaskByExpiryChart();
+    ScreenshotUtil.captureElementScreenshot(statisticWidgetPage.getChartCreationContainer(), ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "available-charts");
+    ScreenshotUtil.maximizeBrowser();
+
+    WebElement chartCreationDialog = statisticWidgetPage.getCaseByFinishedTaskCreationDialog();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(chartCreationDialog, ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "chart-creation-dialog", new ScreenshotMargin(100, 100));
+    
+    refreshPage();
+    statisticWidgetPage.waitForChartCreationPageRendered();
+    statisticWidgetPage.backToDashboard();
+    statisticWidgetPage.waitForAllChartLoaded();
+    executeDecorateJs("numberingChartPanel()");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(statisticWidgetPage.getChartPanelByIndex(1), ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "chart-detail-with-annotation", new ScreenshotMargin(20, 10));
+    refreshPage();
+    statisticWidgetPage.waitForAllChartLoaded();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(statisticWidgetPage.getChartInfoDialogOfChart(1), ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "chart-info-dialog", new ScreenshotMargin(20, 10));
   }
   
 }
