@@ -70,12 +70,13 @@ public class StatisticScreenshotTest extends ScreenshotTest {
     refreshPage();
     statisticWidgetPage.waitForChartCreationPageRendered();
     statisticWidgetPage.backToDashboard();
-    statisticWidgetPage.waitForAllChartLoaded();
+    statisticWidgetPage.clickChartInfoAndCloseToWaitAnimation();
     ScreenshotUtils.executeDecorateJs("numberingChartPanel()");
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(statisticWidgetPage.waitAndGetChartPanelByIndex(1),
         ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-detail-with-annotation", new ScreenshotMargin(20, 10));
     refreshPage();
-    statisticWidgetPage.waitForAllChartLoaded();
+    mainMenu.waitForPageLoad();
+    statisticWidgetPage.waitForPageLoad();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(statisticWidgetPage.getChartInfoDialogOfChart(1),
         ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-info-dialog", new ScreenshotMargin(20, 10));
   }

@@ -9,12 +9,12 @@ import org.openqa.selenium.WebElement;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 
-import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import static com.codeborne.selenide.Condition.appear;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
+
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -192,11 +192,12 @@ public class StatisticWidgetPage extends TemplatePage {
   }
 
   public void waitForAllChartLoaded() {
-    $("[id$='statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:period-time-filter-tab_header']").shouldBe(getClickableCondition()).click();;
-    $("[id$='statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:role-filter-tab_header']").shouldBe(getClickableCondition()).click();;
-    $("[id$='statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:case-category-filter-tab_header']").shouldBe(getClickableCondition()).click();;
-    $("[id$='statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:case-state-filter-tab_header']").shouldBe(getClickableCondition()).click();;
-    $("[id$='statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:task-priority-filter-tab_header']").shouldBe(getClickableCondition()).click();;
+    $("[id$='statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:period-time-filter-tab_header']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id$='statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:period-time-filter-tab_header']").shouldBe(getClickableCondition()).click();
+    $("[id$='statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:role-filter-tab_header']").shouldBe(getClickableCondition()).click();
+    $("[id$='statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:case-category-filter-tab_header']").shouldBe(getClickableCondition()).click();
+    $("[id$='statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:case-state-filter-tab_header']").shouldBe(getClickableCondition()).click();
+    $("[id$='statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:task-priority-filter-tab_header']").shouldBe(getClickableCondition()).click();
   }
 
   public void createTaskByPriorityChart() {
@@ -269,5 +270,13 @@ public class StatisticWidgetPage extends TemplatePage {
     return $("[id='statistics-widget:statistic-dashboard-widget:chart-details-dialog']").shouldBe(appear,
         DEFAULT_TIMEOUT);
   }
-
+  
+  public void clickChartInfoAndCloseToWaitAnimation() {
+    getChartInfoDialogOfChart(0);
+    pressESC();
+    
+    getChartInfoDialogOfChart(0);
+    pressESC();
+  }
+  
 }
