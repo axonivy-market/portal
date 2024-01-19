@@ -11,7 +11,7 @@ public class ScreenshotTest extends BaseTest {
   public void setup() {
     killBrowsers();
     super.setup();
-    updatePortalSetting(DISPLAY_MESSAGE_AFTER_FINISH_TASK.getKey(), Boolean.FALSE.toString());
+    updatePortalSetting(DISPLAY_MESSAGE_AFTER_FINISH_TASK.getKey(), "false");
   }
 
 }
