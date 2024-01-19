@@ -224,6 +224,7 @@ public class TaskIFrameTemplatePage extends TemplatePage {
 
   // moved
   public void clickTaskActionMenu() {
+    switchBackToParent();
     clickByJavaScript($("button[id$='horizontal-task-actions']"));
     waitForElementDisplayed(By.cssSelector("[id$=':horizontal-task-action-menu']"), true);
   }

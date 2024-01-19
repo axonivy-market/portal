@@ -13,7 +13,7 @@ import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class CaseMapTest extends BaseTest {
 
   private static final String CREATE_CONTRACT = "Create Contract";
@@ -40,32 +40,27 @@ public class CaseMapTest extends BaseTest {
     caseMapPage.inputFields("John", "Jack", "1.1.2019", "VN", "20000", "To buy a new car", "80000", "100000");
     caseMapPage.clickSubmitRequestButton();
     startTaskByTaskName(VERIFY_PERSONAL_DATA);
-    caseMapPage.switchToIFrameOfTask();
     assertInputData();
     caseMapPage.inputField("form:verifier-comment", "Ok");
     caseMapPage.clickSubmitButton();
     startTaskByTaskName(INTERNAL_SOLVENCY_CHECK);
-    caseMapPage.switchToIFrameOfTask();
     assertInputData();
     caseMapPage.getVerifierComment().shouldHave(Condition.value("OK"));
     caseMapPage.inputField("form:internal-comment", "Pass");
     caseMapPage.clickSubmitButton();
     startTaskByTaskName(APPROVAL_LEVEL_1);
-    caseMapPage.switchToIFrameOfTask();
     assertInputData();
     caseMapPage.getVerifierComment().shouldHave(Condition.value("OK"));
     caseMapPage.getInternalCreditComment().shouldHave(Condition.value("Pass"));
 
     caseMapPage.clickApproveButton();
     startTaskByTaskName(APPROVAL_LEVEL_2);
-    caseMapPage.switchToIFrameOfTask();
     assertInputData();
     caseMapPage.getVerifierComment().shouldHave(Condition.value("OK"));
     caseMapPage.getInternalCreditComment().shouldHave(Condition.value("Pass"));
 
     caseMapPage.clickApproveButton();
     startTaskByTaskName(CREATE_CONTRACT);
-    caseMapPage.switchToIFrameOfTask();
     assertInputData();
     UserExamplesEndPage userExamplesEndPage = caseMapPage.clickSubmitContractButton();
     CaseDetailsPage caseDetailsPage = userExamplesEndPage.goToCaseDetail();
@@ -79,18 +74,15 @@ public class CaseMapTest extends BaseTest {
     caseMapPage.inputFields("John", "Jack", "1.1.2019", "VN", "20000", "To buy a new car", "80000", "100000");
     caseMapPage.clickSubmitRequestButton();
     startTaskByTaskName(VERIFY_PERSONAL_DATA);
-    caseMapPage.switchToIFrameOfTask();
     assertInputData();
     caseMapPage.inputField("form:verifier-comment", "Ok");
     caseMapPage.clickSubmitButton();
     startTaskByTaskName(INTERNAL_SOLVENCY_CHECK);
-    caseMapPage.switchToIFrameOfTask();
     assertInputData();
     caseMapPage.getVerifierComment().shouldHave(Condition.value("OK"));
     caseMapPage.inputField("form:internal-comment", "Fail");
     caseMapPage.clickSubmitButton();
     startTaskByTaskName(APPROVAL_LEVEL_1);
-    caseMapPage.switchToIFrameOfTask();
     assertInputData();
     caseMapPage.getVerifierComment().shouldHave(Condition.value("Ok"));
     caseMapPage.getInternalCreditComment().shouldHave(Condition.value("Fail"));
