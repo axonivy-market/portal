@@ -148,21 +148,6 @@ Dialogs:
                   IsRequired: Ce champ est obligatoire
                   Representation: Représentation
                   To: À l'adresse suivante
-  com:
-    axonivy:
-      portal:
-        developerexamples:
-          testdata:
-            LeaveRequestForm:
-              MinCharacterReq: être d'au moins {0} caractères
-              MinLowercaseCharacter: contenir au moins {0} caractère minuscule
-              MinNumber: Caractères numériques minimums
-              MinNumberRequire: contient au moins {0} nombre
-              MinSpecialCharacter: Caractères spéciaux minimums
-              MinSpecialCharacterRequired: contenir au moins {0} caractère spécial
-              MinUppercaseCharacter: Caractères majuscules minimum
-              MinUppercaseCharacterRequired: contenir au moins {0} un caractère majuscule
-              MinimumLength: Longueur minimale
 Labels:
   Back: Retour
   DashboardWidgetType:
@@ -203,9 +188,7 @@ Labels:
   email: Courriel
   firstName: Nom
   forgotPasswordError: Une erreur s'est produite lors du traitement de votre demande. Veuillez réessayer plus tard.
-  invalidToken: Token non valable
   noCategory: '[Pas de catégorie]'
-  passwordMust: Le mot de passe doit
   passwordResetEmailCantSend: Exception lors de l'envoi d'un courrier électronique. Veuillez réessayer plus tard.
   passwordResetEmailContent: '<html>Cher/e {0},<br/><br/>Veuillez cliquer sur ce lien pour réinitialiser votre mot de passe : <a href="{1}">Réinitialisation du mot de passe</a><br/><br/>Bonnes salutations</html>.'
   passwordResetEmailSent: Si cette adresse e-mail est enregistrée, nous lui avons envoyé un lien de récupération du mot de passe.
