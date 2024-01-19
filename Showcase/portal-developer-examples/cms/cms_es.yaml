@@ -148,21 +148,6 @@ Dialogs:
                   IsRequired: Mandatorio
                   Representation: Representante
                   To: Hasta
-  com:
-    axonivy:
-      portal:
-        developerexamples:
-          testdata:
-            LeaveRequestForm:
-              MinCharacterReq: tener al menos {0} caracteres
-              MinLowercaseCharacter: contienen al menos {0} caracteres en minúscula
-              MinNumber: Caracteres numéricos mínimos
-              MinNumberRequire: contienen al menos {0} número
-              MinSpecialCharacter: Caracteres especiales mínimos
-              MinSpecialCharacterRequired: contienen al menos {0} un carácter especial
-              MinUppercaseCharacter: Caracteres mínimos en mayúsculas
-              MinUppercaseCharacterRequired: contener al menos {0} caracteres en mayúscula
-              MinimumLength: Longitud mínima
 Labels:
   Back: Regresar
   DashboardWidgetType:
@@ -203,9 +188,7 @@ Labels:
   email: Courrier électronique
   firstName: Nombre
   forgotPasswordError: Ha habido un error mientras se procesaba su solicitud. Por favor inténtelo más tarde.
-  invalidToken: Token inválido
   noCategory: '[Sin Categoría]'
-  passwordMust: La contraseña debe
   passwordResetEmailCantSend: 'Ha habido un problema para enviarle un E-Mail. Por favor inténtelo más tarde. '
   passwordResetEmailContent: <html>Hola {0},<br/><br/>por favor haga click en este link para restablecer su contraseña <a href="{1}">Restablecer contraseña</a><br/><br/>Saludos</html>
   passwordResetEmailSent: Si esta dirección de correo electrónico está registrada, le hemos enviado un enlace para recuperar la contraseña.
