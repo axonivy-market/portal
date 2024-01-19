@@ -21,6 +21,8 @@ import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.DashboardNewsWidgetConfigurationPage;
 import com.axonivy.portal.selenium.page.DashboardNewsWidgetPage;
+import com.axonivy.portal.selenium.page.DashboardNotificationWidgetConfigurationPage;
+import com.axonivy.portal.selenium.page.DashboardNotificationWidgetPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -104,6 +106,27 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     customWidgetPage.inputExternalUrlField("https://developer.axonivy.com");
     ScreenshotUtils.captureElementScreenshot(customWidgetPage.getConfigurationDialog(),
         ScreenshotUtils.DASHBOARD_FOLDER + "external-page-widget-configuration");
+  }
+
+  @Test
+  public void screenshotConfigureNotificationsWidget() throws IOException {
+    redirectToDashboardConfiguration();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    DashboardModificationPage editPage = new DashboardModificationPage();
+    NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
+    detailsEditPage.waitPageLoaded();
+    detailsEditPage.addWidget();
+
+    DashboardNotificationWidgetConfigurationPage notiWidgetPage = detailsEditPage.addNotificationWidget();
+    notiWidgetPage.changeFilter();
+    ScreenshotUtils.captureElementScreenshot(notiWidgetPage.getConfigurationDialog(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "notification-widget-configuration");
+    notiWidgetPage.save();
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    DashboardNotificationWidgetPage notiPage = new DashboardNotificationWidgetPage();
+    ScreenshotUtils.captureElementScreenshot(notiPage.getWidgetElement(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "notification-widget");
   }
 
   @Test
