@@ -49,7 +49,7 @@ public class DashboardScreenshotTest extends ScreenshotTest{
   @BeforeEach
   public void setup() {
     super.setup();
-    updatePortalSetting(Variable.ENABLE_GROUP_CHAT.getKey(), Boolean.TRUE.toString());
+    updatePortalSetting(Variable.ENABLE_GROUP_CHAT.getKey(), ScreenshotUtils.TRUE);
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createUserFavoriteProcess);
@@ -124,7 +124,7 @@ public class DashboardScreenshotTest extends ScreenshotTest{
 
   @Test
   public void screenshotDashboardWithAnnotation() throws IOException {
-    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), Boolean.TRUE.toString());
+    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), ScreenshotUtils.TRUE);
     HomePage homePage = new HomePage();
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     
@@ -386,8 +386,8 @@ public class DashboardScreenshotTest extends ScreenshotTest{
   @Test
   public void takeScreenshotOverlayGuide() throws IOException {
     ScreenshotUtils.resizeBrowser(new Dimension(1200, 800));
-    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), Boolean.TRUE.toString());
-    updatePortalSetting(Variable.SHOW_USER_GUIDE.getKey(), Boolean.TRUE.toString());
+    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), ScreenshotUtils.TRUE);
+    updatePortalSetting(Variable.SHOW_USER_GUIDE.getKey(), ScreenshotUtils.TRUE);
     TaskTemplatePage homePage = new TaskTemplatePage();
     homePage.waitForLeftMenuActive();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DASHBOARD_FOLDER + "overlay-guide");
@@ -404,7 +404,7 @@ public class DashboardScreenshotTest extends ScreenshotTest{
   
   @Test
   public void screenshotDashboard() throws IOException {
-    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), Boolean.TRUE.toString());
+    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), ScreenshotUtils.TRUE);
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
 
     HomePage homePage = new HomePage();

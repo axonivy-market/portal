@@ -17,12 +17,12 @@ public class LoginErrorPageScreenshotTest extends ScreenshotTest {
 
   @Test
   public void testLoginErrorPage() throws IOException {
-    updateGlobalVariable(PORTAL_LOGIN_PAGE_DISPLAY, Boolean.FALSE.toString());
+    updateGlobalVariable(PORTAL_LOGIN_PAGE_DISPLAY, ScreenshotUtils.FALSE);
     redirectToRelativeLink(BaseTest.LOGOUT_URL);
     ScreenshotUtils.resizeBrowser(new Dimension(1024, 768));
     waitForPageLoad();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.LOGIN_FOLDER + "login-error-page");
-    updateGlobalVariable(PORTAL_LOGIN_PAGE_DISPLAY, Boolean.TRUE.toString());
+    updateGlobalVariable(PORTAL_LOGIN_PAGE_DISPLAY, ScreenshotUtils.TRUE);
   }
 
   private void waitForPageLoad() {

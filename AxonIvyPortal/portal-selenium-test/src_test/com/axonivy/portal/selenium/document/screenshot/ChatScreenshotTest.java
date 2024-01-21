@@ -26,8 +26,8 @@ public class ChatScreenshotTest extends ScreenshotTest {
   public void setup() {
     super.setup();
     login(TestAccount.HR_ROLE_USER);
-    updatePortalSetting(Variable.ENABLE_GROUP_CHAT.getKey(), Boolean.TRUE.toString());
-    updatePortalSetting(Variable.ENABLE_PRIVATE_CHAT.getKey(), Boolean.TRUE.toString());
+    updatePortalSetting(Variable.ENABLE_GROUP_CHAT.getKey(), ScreenshotUtils.TRUE);
+    updatePortalSetting(Variable.ENABLE_PRIVATE_CHAT.getKey(), ScreenshotUtils.TRUE);
     redirectToRelativeLink(createTestingTasksUrl);
   }
 

@@ -23,7 +23,7 @@ public class DashboardConfigurationScreenshotTest extends ScreenshotTest {
   @BeforeEach
   public void setup() {
     super.setup();
-    updatePortalSetting(Variable.ENABLE_GROUP_CHAT.getKey(), Boolean.TRUE.toString());
+    updatePortalSetting(Variable.ENABLE_GROUP_CHAT.getKey(), ScreenshotUtils.TRUE);
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createSampleDashboardUrl);
   }
