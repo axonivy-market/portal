@@ -20,6 +20,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   public static final String STATISTIC_WIDGET = "Statistic chart";
   public static final String WELCOME_WIDGET = "Welcome widget";
   public static final String NEWS_WIDGET = "News feed widget";
+  public static final String NOTIFICATION_WIDGET = "Notifications";
 
   @Override
   protected String getLoadedLocator() {
@@ -188,6 +189,11 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   public DashboardNewsWidgetConfigurationPage addNewsFeedWidget() {
     addWidgetByName("News feed widget");
     return new DashboardNewsWidgetConfigurationPage();
+  }
+
+  public DashboardNotificationWidgetConfigurationPage addNotificationWidget() {
+    addWidgetByName(NOTIFICATION_WIDGET);
+    return new DashboardNotificationWidgetConfigurationPage();
   }
 
   public void waitForCaseWidgetLoaded() {
