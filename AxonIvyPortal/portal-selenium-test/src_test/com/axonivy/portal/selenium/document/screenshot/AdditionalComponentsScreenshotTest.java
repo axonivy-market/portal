@@ -38,8 +38,8 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
   @Test
   public void captureScreenshotGrowlMessage() throws IOException {
     login(TestAccount.ADMIN_USER);
-    updatePortalSetting(Variable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.getKey(), Boolean.TRUE.toString());
-//    updatePortalSetting(SHOW_LEGACY_UI .getKey(), "false"); // this line is in portalTest package maybe don't need, confirm later
+    updatePortalSetting(Variable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.getKey(), ScreenshotUtils.TRUE);
+    updatePortalSetting(Variable.SHOW_LEGACY_UI .getKey(), "false");
     redirectToRelativeLink(createTestingCaseContainOneTask);
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 1000));
 

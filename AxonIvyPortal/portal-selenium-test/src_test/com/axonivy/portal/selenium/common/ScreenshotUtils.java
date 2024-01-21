@@ -52,6 +52,9 @@ public class ScreenshotUtils {
   public static final String NOTIFICATION_FOLDER = "/notification/";
   public static final String MOBILE_FOLDER = "/mobile/";
 
+  public static final String TRUE = "true";
+  public static final String FALSE = "false";
+
   @PostConstruct
   public void initFolder() {
     new File(SCREENSHOT_FOLDER).mkdirs();

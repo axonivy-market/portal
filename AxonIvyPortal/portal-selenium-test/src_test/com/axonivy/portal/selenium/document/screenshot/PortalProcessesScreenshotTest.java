@@ -141,7 +141,7 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest{
     redirectToRelativeLink(createUserFavoriteProcess);
 
     ScreenshotUtils.resizeBrowser(new Dimension(1920, 800));
-    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), Boolean.TRUE.toString());
+    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), ScreenshotUtils.TRUE);
     HomePage homePage = new HomePage();
 
     ScreenshotUtils.executeDecorateJs("highlightEditSwitchProcessButton()");
@@ -169,7 +169,7 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest{
   public void screenshotHowtoAddProcessFavorite() throws IOException {
     redirectToRelativeLink(createUserFavoriteProcess);
     ScreenshotUtils.resizeBrowser(new Dimension(1920, 800));
-    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), Boolean.TRUE.toString());
+    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), ScreenshotUtils.TRUE);
     HomePage homePage = new HomePage();
 
     ScreenshotUtils.resizeBrowser(new Dimension(1366, SCREENSHOT_MOBILE_HEIGHT));

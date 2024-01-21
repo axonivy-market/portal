@@ -245,7 +245,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest{
   
   @Test
   public void screenshotTaskFilter() throws IOException {
-    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), Boolean.TRUE.toString());
+    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), ScreenshotUtils.TRUE);
     ScreenshotUtils.resizeBrowser(new Dimension(1440, 1280));
     mainMenuPage = new MainMenuPage();
     TaskWidgetPage taskWidget = mainMenuPage.openTaskList();
@@ -257,7 +257,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest{
 
   @Test
   public void screenshotCustomTaskList() throws IOException {
-    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), Boolean.TRUE.toString());
+    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), ScreenshotUtils.TRUE);
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 900));
     mainMenuPage = new MainMenuPage();
     redirectToRelativeLink(createTestingTasksUrl);
