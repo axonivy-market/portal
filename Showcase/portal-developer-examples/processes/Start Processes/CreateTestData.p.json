@@ -662,7 +662,7 @@
         },
         "output" : {
           "code" : [
-            "import com.axonivy.portal.developerexamples.enums.AdditionalProperty;",
+            "import com.axonivy.portal.components.enums.AdditionalProperty;",
             "",
             "ivy.case.getBusinessCase().customFields().textField(AdditionalProperty.CASE_BUSINESS_ENTITY_PROPERTY.toString()).set(\"leave_request\");"
           ]
@@ -979,7 +979,7 @@
         },
         "output" : {
           "code" : [
-            "import com.axonivy.portal.developerexamples.enums.AdditionalProperty;",
+            "import com.axonivy.portal.components.enums.AdditionalProperty;",
             "",
             "ivy.case.getBusinessCase().customFields().textField(AdditionalProperty.CASE_BUSINESS_ENTITY_PROPERTY.toString()).set(\"leave_request\");"
           ]
