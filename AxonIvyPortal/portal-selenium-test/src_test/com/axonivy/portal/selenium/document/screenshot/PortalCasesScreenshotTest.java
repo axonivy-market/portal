@@ -257,5 +257,14 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     ScreenshotUtils
         .captureHalfLeftPageScreenShot(ScreenshotUtils.PROCESSES_INFORMATION_WIDGET_FOLDER + "process-overview-link");
   }
+  
+  @Test
+  public void screenshotCustomCaseList() throws IOException {
+    mainMenuPage.openCaseList();
+    mainMenuPage.waitForPageLoad();
+    ScreenshotUtils.executeDecorateJs("highlightCustomCaseList()");
+    ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.CASE_WIDGET_CUSTOMIZATION_FOLDER + "case-list", new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT));
+  }
+
 
 }
