@@ -123,8 +123,9 @@
           "code" : [
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
+            "import com.axonivy.portal.components.util.HtmlParser;",
             "",
-            "FacesContext.getCurrentInstance().addMessage(in.messageComponentId, new FacesMessage(FacesMessage.SEVERITY_ERROR, in.message, null));"
+            "FacesContext.getCurrentInstance().addMessage(in.messageComponentId, new FacesMessage(FacesMessage.SEVERITY_ERROR, HtmlParser.sanitize(in.message), null));"
           ]
         }
       },
@@ -186,8 +187,9 @@
           "code" : [
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
+            "import com.axonivy.portal.components.util.HtmlParser;",
             "",
-            "FacesContext.getCurrentInstance().addMessage(in.messageComponentId, new FacesMessage(in.message, \"\"));"
+            "FacesContext.getCurrentInstance().addMessage(in.messageComponentId, new FacesMessage(HtmlParser.sanitize(in.message), \"\"));"
           ]
         }
       },
@@ -273,8 +275,9 @@
           "code" : [
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
+            "import com.axonivy.portal.components.util.HtmlParser;",
             "",
-            "FacesContext.getCurrentInstance().addMessage(in.messageComponentId, new FacesMessage(in.message, \"\"));"
+            "FacesContext.getCurrentInstance().addMessage(in.messageComponentId, new FacesMessage(HtmlParser.sanitize(in.message), \"\"));"
           ]
         }
       },
