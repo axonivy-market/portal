@@ -98,43 +98,7 @@ CustomFields:
     ShipmentDate:
       Description: Shipment date column for example
       Label: Shipment date
-DefaultColumns:
-  ACTIVATOR: Responsible
-  APPLICATION: Application
-  CREATION_TIME: Created
-  CustomerName: Customer name
-  EXPIRY_TIME: Expiry
-  ID: Task Id
-  NAME: Name / Description
-  PRIORITY: Priority
-  STATE: State
-  ShipmentDate: Shipment date
-  caseList:
-    APPLICATION: Application
-    CREATION_TIME: Created
-    CREATOR: Creator
-    CustomerName: Customer name
-    FINISHED_TIME: Finished
-    ID: Case Id
-    NAME: Name / Description
-    OWNER: Owner
-    STATE: State
-    ShipmentDate: Shipment date
 Dialogs:
-  Lists:
-    Completeness:
-      ADDITIONAL_IDENTIFICATION_NEEDED: Additional identification needed
-      NO_INFORMATION: No information available
-      PERSON_LEGITIMIZED: Person legitmized
-      REQUEST_PROOF: Request proof of identification
-    ProcessState:
-      APPLICATION: Application
-      DONE: Done
-      IDENTITY_CHECK: Identity Check
-      INFORMATION: Information
-      INQUIRY: Inquiry
-      PROCESSING: Edit
-      VERIFICATION: Verification
   ch:
     ivyteam:
       ivy:
@@ -149,218 +113,16 @@ Dialogs:
                   Representation: Representation
                   To: To
 Labels:
-  Back: Back
-  DashboardWidgetType:
-    CASE: Case widget
-    CUSTOM: Custom widget
-    NEW: New widget
-    NEWS: News feed
-    PROCESS: Process widget
-    PROCESS_VIEWER: Process viewer widget
-    STATISTIC: Statistic widget
-    TASK: Task widget
-    WELCOME: Welcome widget
-  ProcessSorting:
-    BY_ALPHABETICALLY: Alphabetically
-    BY_CUSTOM_ORDER: Custom order
-    BY_INDEX: Sorting index
-  Start: Start
-  address: Street/No.
-  allCategories: All Categories
-  cancel: Cancel
-  caseId: Case ID
-  caseState:
-    CREATED: Created
-    CREATED_UPPERCASE: CREATED
-    DESTROYED: Destroyed
-    DESTROYED_UPPERCASE: DESTROYED
-    DONE: Done
-    DONE_UPPERCASE: DONE
-    FAILED: Failed
-    INPROGRESS: IN PROGRESS
-    OPEN: Open
-    OPEN_UPPERCASE: OPEN
-    RUNNING: In progress
   changePasswordWSError: An error occurred while changing your password. Please contact your administrator if this problem persists.
-  city: /City
-  date: Date
-  delete: Delete
-  email: E-Mail
-  firstName: First name
   forgotPasswordError: An error occurred while processing your request. Please try again later.
-  id: ID
-  noCategory: '[No Category]'
   passwordResetEmailCantSend: Exception while sending email to you. Please try again later.
   passwordResetEmailContent: '<html>Dear {0},<br/><br/>Please click to this link to reset your password: <a href="{1}">Reset Password</a><br/><br/>Best regards</html>'
   passwordResetEmailSent: If this e-mail address is registered then we have sent a password recovery link to it.
   passwordResetEmailSubject: Email to reset your password
-  personalData: Personal data
-  phoneNumber: Phone number
-  proceed: Proceed
-  reason: Reason
-  request: Request
-  requestType: Request type
-  statistic:
-    chart:
-      ExpandOrCollapseColumn: Expand/Collapse Columns
-      addChart: Add new chart
-      addChartDialogHeader: Add statistic chart to dashboard
-      backToDashboard: Back to dashboard
-      barchart:
-        Percentage: Percentage
-        daysOfWeek:
-          friday: Friday
-          monday: Monday
-          saturday: Saturday
-          sunday: Sunday
-          thursday: Thursday
-          tuesday: Tuesday
-          wednesday: Wednesday
-        expired: Expired
-        in2Days: In 2 days
-        in3Days: In 3 days
-        monthsOfYear:
-          April: April
-          August: August
-          December: December
-          February: February
-          January: January
-          July: July
-          June: June
-          March: March
-          May: May
-          November: November
-          October: October
-          September: September
-        today: Today
-        tomorrow: Tomorrow
-        weeksOfMonth:
-          fifthWeek: Fifth week
-          firstWeek: First week
-          fourthWeek: Fourth week
-          secondWeek: Second week
-          sixthWeek: Sixth week
-          thirdWeek: Third week
-      caseCategory: Case category
-      chartCreationSuccessDetailMsg: Chart with name {0} was created successfully
-      chartCreationSuccessTitle: Chart was created successfully
-      elapsedTime: Elapsed Time
-      elapsedTimeChart:
-        compareButton: Compare
-        compareRole: 'Compare Role:'
-        elapsedTimeInHours: Elapsed time in hours
-        noEntriesFound: No entries found with given criteria
-        taskCategory: Task category
-        withRole: 'With Role:'
-      emptystate:
-        defaultEmptyMessages: No statistic chart to display.
-      exception:
-        idNotFound: 'Chart Id not found with id: {0}'
-        noPermission: You do not have the permission to send this request!
-      expiryPeriod: Expiry period
-      loadingCharts: Please wait, charts are loading...
-      notAllowedToCreateChart: You are not allowed to create a chart before clicking Apply Filters button
-      other: Others
-      restoreDefaultChart: If you proceed, you will loose all charts created by yourself. The standard settings will be applied.
-      second: sec
-      showAllCharts: Show all charts
-      statisticCarousel: Statistics Carousel
-      statistics: Statistics
-      taskByExpiry:
-        thisMonth: This Month
-        thisWeek: This Week
-        thisYear: This Year
-      taskByPriority:
-        addToDashboardLink: Add to dashboard
-        exception: Exception
-        high: High
-        low: Low
-        normal: Normal
-      taskExpiry: Task expiry
-    chartInfo:
-      chartDetailsHeader: Chart Details
-      chartName: Chart Name
-      chartType: Chart Type
-    chartType:
-      caseByFinishedTask: Processed cases in time period
-      caseByFinishedTaskDescription: Cases where a task was finished in the selected time period
-      caseByFinishedTime: Done cases in time period
-      caseByFinishedTimeDescription: Cases which are done in the selected time period
-      caseByState: Case by state
-      casesByCategory: Cases by category
-      elapsedTimeByCaseCategory: Elapsed time of done cases
-      elapsedTimeByCaseCategoryDescription: Elapsed time of finished cases by category
-      taskByExpiry: Task by expiry
-      taskByPriority: Task by priority
-    defaultChart:
-      newChart: New chart
-      tasksByPriority: Tasks by Priority
-    filter:
-      affectedCharts: Affected charts
-      allSelected: All
-      caseCategoriesLabel: Case Categories
-      caseCategoryFilterDescription: You can find all available case categories here. Only selected Case Categories are considered in the affected charts.
-      caseStateFilterDescription: Only selected States are considered in the affected charts.
-      filter: Filters
-      noRoles: There are no roles
-      noSelectionCustomVarChar: No selection.
-      noneSelected: None
-      roleFilterDescription: You can find all available process roles here. Only selected roles are considered in the affected charts
-      rolesLabel: Roles
-      selectAll: Select All
-      taskPrioritiesLabel: Task Priorities
-      taskPriorityFilterDescription: Tasks can be selected depending on their priority.
-      timePeriod: Time period
-      timePeriodFilterDescription: Restricts the time period for cases and tasks.
-      workflowStatesLabel: Workflow States
-    taskAnalysis:
-      applyFilter: Apply filters
-      caseCategory: Case category
-      caseCreator: Case creator
-      caseDescription: Case description
-      caseFilter: Case filters
-      caseName: Case name
-      caseOwner: Case owner
-      caseState: Case state
-      downloadZipFileExplanation: The number of tasks to export exceeds the limit of Excel rows. Therefore, data will be split to multiple Excel files, then compressed in a Zip file to download.
-      taskAnalysis: Task Analysis
-      taskCategory: Task category
-      taskCreationTime: Task created
-      taskDescription: Task description
-      taskExpiryTime: Task expiry
-      taskFilter: Task filters
-      taskFinishedTime: Task completed on
-      taskID: Task ID
-      taskPriority: Task priority
-      taskResponsible: Task responsible
-      taskState: Task state
-      taskWorker: Task editor
-      waitingDownloadMessage: We are creating the Export, this can take a few minutes
-    timePeriod:
-      custom: Custom
-      last6Month: Last 6 month
-      lastMonth: Last month
-      lastWeek: Last week
-    validationErrors:
-      nameIsExisted: A chart with this name already exists
-  surName: Surname
-  tableDelete: Delete
-  tableDownload: Download
-  tableName: Name
-  taskPriority:
-    EXCEPTION: EXCEPTION
-    EXCEPTION_LOWERCASE: Exception
-    HIGH: HIGH
-    HIGH_LOWERCASE: High
-    LOW: LOW
-    LOW_LOWERCASE: Low
-    NORMAL: NORMAL
-    NORMAL_LOWERCASE: Normal
   updatePasswordSuccessfully: Password updated successfully.
   userNotFound: If this e-mail address is registered then we have sent a password recovery link to it.
   usersHaveSameEmail: There are many users using this email. Please contact your administrator.
   wrongPassword: Authentication failed, your password seems to be wrong!
-  zip: ZIP
 Processes:
   CategoriedLeaveRequest:
     Cases:
@@ -396,9 +158,6 @@ Processes:
       Signal:
         name: Signal create New Payment
     name: Create New Payment
-  ProcessWithIndex:
-    name1: Process With Index 1
-    name2: Process With Index 2
   TasksForTaskListCustomization:
     Cases:
       Party:
@@ -416,14 +175,3 @@ Processes:
         name: Pizza Order
     description: Create 3 tasks, each task has CustomerName and ShipmentDate
     name: Create Tasks For Task List Customization
-sortFields:
-  CREATION_TIME_ASC: Creation date (Oldest first)
-  CREATION_TIME_DESC: Creation date (Newest first)
-  CustomerName_ASC: Customer name (A -> Z)
-  CustomerName_DESC: Customer name (Z -> A)
-  EXPIRY_TIME_ASC: Expiry (Oldest first)
-  EXPIRY_TIME_DESC: Expiry (Newest first)
-  PRIORITY_ASC: Priority (High -> low)
-  PRIORITY_DESC: Priority (Low -> high)
-  ShipmentDate_ASC: Shipment date (Oldest first)
-  ShipmentDate_DESC: Shipment date (Newest first)
