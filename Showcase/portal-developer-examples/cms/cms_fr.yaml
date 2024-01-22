@@ -98,43 +98,7 @@ CustomFields:
     ShipmentDate:
       Description: Colonne de date d'expédition par exemple
       Label: Date d'expédition
-DefaultColumns:
-  ACTIVATOR: Responsable
-  APPLICATION: Application
-  CREATION_TIME: Créé
-  CustomerName: Nom du client
-  EXPIRY_TIME: Délai
-  ID: Id de tâche
-  NAME: Nom / Description
-  PRIORITY: Priorité
-  STATE: Etat
-  ShipmentDate: Date d'expédition
-  caseList:
-    APPLICATION: Application
-    CREATION_TIME: Créé
-    CREATOR: Créateur
-    CustomerName: Nom du client
-    FINISHED_TIME: Terminé
-    ID: Id du dossier
-    NAME: Nom / Description
-    OWNER: Propriétaire
-    STATE: Etat
-    ShipmentDate: Date d'expédition
 Dialogs:
-  Lists:
-    Completeness:
-      ADDITIONAL_IDENTIFICATION_NEEDED: Identification supplémentaire nécessaire
-      NO_INFORMATION: Aucune information disponible
-      PERSON_LEGITIMIZED: Personne légalisée
-      REQUEST_PROOF: Demander une preuve d'identité
-    ProcessState:
-      APPLICATION: Candidature
-      DONE: Terminé
-      IDENTITY_CHECK: Contrôle d'identité
-      INFORMATION: Informations
-      INQUIRY: Enquête
-      PROCESSING: Éditer
-      VERIFICATION: Vérification
   ch:
     ivyteam:
       ivy:
@@ -149,219 +113,16 @@ Dialogs:
                   Representation: Représentation
                   To: À l'adresse suivante
 Labels:
-  Back: Retour
-  DashboardWidgetType:
-    CASE: Widget de cas
-    CUSTOM: Widget personnalisé
-    NEW: Nouveau widget
-    NEWS: Nouvelles
-    PROCESS: Widget Processus
-    PROCESS_VIEWER: Widget de visualisation des processus
-    STATISTIC: Widget Statistiques
-    TASK: Widget Tâche
-    WELCOME: Widget de bienvenue
-  ProcessSorting:
-    BY_ALPHABETICALLY: Alphabétiquement
-    BY_CUSTOM_ORDER: Commande personnalisée
-    BY_INDEX: Index de tri
-  Start: Démarrage
-  address: Rue/No.
-  allCategories: Toutes les catégories
-  cancel: Annuler
-  caseId: Identification du cas
-  caseState:
-    CREATED: Créé
-    CREATED_UPPERCASE: CRÉÉ
-    DESTROYED: Supprimé
-    DESTROYED_UPPERCASE: SUPPRIMÉ
-    DONE: Terminé
-    DONE_UPPERCASE: TERMINEE
-    FAILED: Échoué
-    INPROGRESS: EN COURS
-    OPEN: Ouverte
-    OPEN_UPPERCASE: OUVERTE
-    RUNNING: En cours
   changePasswordWSError: Une error s'est produite lors du changement de mot de passe. Veuillez contacter votre administrateur si le problème persiste après plusieurs essais.
-  city: /Ville
-  date: Date
-  delete: Supprimer
-  email: Courriel
-  firstName: Nom
   forgotPasswordError: Une erreur s'est produite lors du traitement de votre demande. Veuillez réessayer plus tard.
-  noCategory: '[Pas de catégorie]'
   passwordResetEmailCantSend: Exception lors de l'envoi d'un courrier électronique. Veuillez réessayer plus tard.
   passwordResetEmailContent: '<html>Cher/e {0},<br/><br/>Veuillez cliquer sur ce lien pour réinitialiser votre mot de passe : <a href="{1}">Réinitialisation du mot de passe</a><br/><br/>Bonnes salutations</html>.'
   passwordResetEmailSent: Si cette adresse e-mail est enregistrée, nous lui avons envoyé un lien de récupération du mot de passe.
   passwordResetEmailSubject: Courriel de réinitialisation du mot de passe
-  personalData: Données personnelles
-  phoneNumber: Numéro de téléphone
-  proceed: Poursuivre
-  reason: Motif
-  request: Demande
-  requestType: Type de demande
-  statistic:
-    chart:
-      ExpandOrCollapseColumn: Agrandir/réduire les colonnes
-      addChart: Ajouter un nouveau diagramme
-      addChartDialogHeader: Ajouter un diagramme au tableau de bord
-      backToDashboard: Retour au tableau de bord
-      barchart:
-        Percentage: Pourcentage
-        daysOfWeek:
-          friday: Vendredi
-          monday: Lundi
-          saturday: samedi
-          sunday: dimanche
-          thursday: Jeudi
-          tuesday: Mardi
-          wednesday: Mercredi
-        expired: Expiré
-        in2Days: Dans 2 jours
-        in3Days: Dans 3 jours
-        monthsOfYear:
-          April: avril
-          August: août
-          December: décembre
-          February: février
-          January: janvier
-          July: juillet
-          June: juin
-          March: Mars
-          May: Mai
-          November: novembre
-          October: octobre
-          September: septembre
-        today: Aujourd'hui
-        tomorrow: Demain
-        weeksOfMonth:
-          fifthWeek: Cinquième semaine
-          firstWeek: Première semaine
-          fourthWeek: Quatrième semaine
-          secondWeek: Deuxième semaine
-          sixthWeek: Sixième semaine
-          thirdWeek: Troisième semaine
-      caseCategory: Catégorie des cas
-      chartCreationSuccessDetailMsg: Diagramme avec le nom {0} a été créé avec succès
-      chartCreationSuccessTitle: Diagramme a été créé avec succès
-      elapsedTime: Temps écoulé
-      elapsedTimeChart:
-        compareButton: Comparer
-        compareRole: Comparer les rôles
-        elapsedTimeInHours: Temps écoulé en heures
-        noEntriesFound: Aucun critère correspondant trouvé
-        taskCategory: Catégorie de tâche
-        withRole: 'Avec rôle:'
-      emptystate:
-        defaultEmptyMessages: Pas de diagrammes à afficher
-      exception:
-        idNotFound: 'Chart Id not found with id: {0}'
-        noPermission: You do not have the permission to send this request!
-      expiryPeriod: Période d'expiration
-      loadingCharts: Veuillez patienter, les graphiques sont en cours de chargement …
-      notAllowedToCreateChart: Vous n'êtes pas autorisé à créer un diagramme avant de cliquer sur le bouton Appliquer les filtres
-      other: Outres
-      restoreDefaultChart: Si vous continuez, vous perdrez tous les graphiques créés par vous-même. Les paramètres standard seront appliqués.
-      second: sec
-      showAllCharts: Voir tous les diagrammes
-      statisticCarousel: Carrousel de statistiques
-      statistics: Statistiques
-      taskByExpiry:
-        hour: (Heure)
-        thisMonth: Ce mois
-        thisWeek: Cette semaine
-        thisYear: Cette année
-      taskByPriority:
-        addToDashboardLink: Ajouter au tableau de bord
-        exception: Exception
-        high: Haute
-        low: Basse
-        normal: Normale
-      taskExpiry: Expiration de la tâche
-    chartInfo:
-      chartDetailsHeader: Détails du diagramme
-      chartName: Nom du diagramme
-      chartType: Type du diagramme
-    chartType:
-      caseByFinishedTask: Cas traités en période de temps
-      caseByFinishedTaskDescription: Cas où une tâche s'est terminée dans la période sélectionnée
-      caseByFinishedTime: Cas traités dans le temps
-      caseByFinishedTimeDescription: Cas qui se font dans la période sélectionnée
-      caseByState: Cas par état
-      casesByCategory: Affaires par catégorie
-      elapsedTimeByCaseCategory: Temps écoulé des cas accomplis
-      elapsedTimeByCaseCategoryDescription: Temps écoulé des cas finis par catégorie
-      taskByExpiry: Tâche par échéance
-      taskByPriority: Tâche par priorité
-    defaultChart:
-      newChart: Nouveau diagramme
-      tasksByPriority: Tãches par priorité
-    filter:
-      affectedCharts: Diagrammes concernés
-      allSelected: Tous
-      caseCategoriesLabel: Catégories de cas
-      caseCategoryFilterDescription: Vous pouvez trouver toutes les catégories de cas disponibles ici. Seules les catégories de cas sélectionnées sont prises en compte dans les diagrammes concernés.
-      caseStateFilterDescription: Seuls les états sélectionnés sont pris en compte dans les diagrammes concernés.
-      filter: Filtres
-      noRoles: Aucun rôle disponible
-      noSelectionCustomVarChar: Pas de choix.
-      noneSelected: Aucun
-      roleFilterDescription: Vous pouvez trouver tous les rôles de processus disponibles ici. Seuls les rôles sélectionnés sont pris en compte dans le diagramme concerné
-      rolesLabel: Rôle
-      selectAll: Tout sélectionner
-      taskPrioritiesLabel: Priorités de tâches
-      taskPriorityFilterDescription: Les tâches peuvent être sélectionnées en fonction de leur priorité.
-      timePeriod: Période de temps
-      timePeriodFilterDescription: Limite la période de temps pour les cas et les tâches.
-      workflowStatesLabel: État de flux de travail
-    taskAnalysis:
-      applyFilter: Appliquer les filtres
-      caseCategory: Catégorie de cas
-      caseCreator: Créateur de cas
-      caseDescription: Description du cas
-      caseFilter: Filtres de cas
-      caseID: ID de cas
-      caseName: Nom de cas
-      caseOwner: Propriétaire du cas
-      caseState: État du cas
-      downloadZipFileExplanation: Le nombre de tâches à exporter dépasse la limite des lignes Excel. Par conséquent, les données seront divisées en plusieurs fichiers Excel, puis compressées dans un fichier ZIP à télécharger.
-      taskAnalysis: Analyse des tâches
-      taskCategory: Catégorie de tâche
-      taskCreationTime: Tâche créée
-      taskDescription: Description de la tâche
-      taskExpiryTime: Expiration de la tâche
-      taskFilter: Filtres de la tâche
-      taskFinishedTime: Tâche terminée le
-      taskID: Id de tâche
-      taskPriority: Priorité de la tâche
-      taskResponsible: Tâche responsable
-      taskState: État de la tâche
-      taskWorker: Éditeur de tâche
-      waitingDownloadMessage: Nous créons l'export, cela peut prendre quelques minutes
-    timePeriod:
-      custom: Coutume
-      last6Month: Six derniers mois
-      lastMonth: Dernier Mois
-      lastWeek: Dernière semaine
-    validationErrors:
-      nameIsExisted: Un diagramme avec ce nom existe déjà
-  surName: Nom de famille
-  tableDelete: Supprimer
-  tableDownload: Télécharger
-  tableName: Nom
-  taskPriority:
-    EXCEPTION: EXCEPTION
-    EXCEPTION_LOWERCASE: Exception
-    HIGH: HAUTE
-    HIGH_LOWERCASE: Haute
-    LOW: BASSE
-    LOW_LOWERCASE: Basse
-    NORMAL: NORMALE
-    NORMAL_LOWERCASE: Normale
   updatePasswordSuccessfully: Le mot de passe a été modifié avec succès.
   userNotFound: Si cette adresse e-mail est enregistrée, nous lui avons envoyé un lien de récupération du mot de passe.
   usersHaveSameEmail: De nombreux utilisateurs utilisent ce courrier électronique. Veuillez contacter votre administrateur.
   wrongPassword: Le mot de passe est erroné !
-  zip: Code postal
 Processes:
   CategoriedLeaveRequest:
     Cases:
@@ -397,9 +158,6 @@ Processes:
       Signal:
         name: Signal de création d'un nouveau paiement
     name: Créer un nouveau paiement
-  ProcessWithIndex:
-    name1: ''
-    name2: ''
   TasksForTaskListCustomization:
     Cases:
       Party:
@@ -417,14 +175,3 @@ Processes:
         name: Commande de pizzas
     description: Créez 3 tâches, chaque tâche a le nom du client et la date d'expédition.
     name: Créer des tâches pour la personnalisation de la liste de tâches
-sortFields:
-  CREATION_TIME_ASC: Date de création (le plus ancien en premier)
-  CREATION_TIME_DESC: Date de création (le plus récent en premier)
-  CustomerName_ASC: Nom du client (A -> Z)
-  CustomerName_DESC: Nom du client (Z -> A)
-  EXPIRY_TIME_ASC: Expiration (le plus ancien en premier)
-  EXPIRY_TIME_DESC: Expiration (le plus récent en premier)
-  PRIORITY_ASC: Priorité (de haute à basse)
-  PRIORITY_DESC: Priorité (de basse à haute)
-  ShipmentDate_ASC: Date d'expédition (ancienne en premier)
-  ShipmentDate_DESC: Date d'expédition (récente en premier)
