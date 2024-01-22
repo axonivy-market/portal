@@ -15,11 +15,12 @@ import java.time.Duration;
 import org.junit.jupiter.api.AfterEach;
 
 import com.axonivy.ivy.webtest.engine.EngineUrl;
+import com.axonivy.portal.selenium.bean.ExpressResponsible;
 import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
-import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
+
 /**
  * A base test that other tests extend it. It will test on browser IE by default. It provides feature to take screenshot
  * of failed tests and utility methods.
@@ -271,10 +272,7 @@ public class BaseTest {
   }
   
   public ExpressResponsible setExpressResponsible(String userName, boolean isGroup) {
-    ExpressResponsible user = new ExpressResponsible();
-    user.setResponsibleName(userName);
-    user.setIsGroup(isGroup);
-    return user;
+    return new ExpressResponsible(userName, isGroup);
   }
   
   public void assertTrue(boolean condition) {

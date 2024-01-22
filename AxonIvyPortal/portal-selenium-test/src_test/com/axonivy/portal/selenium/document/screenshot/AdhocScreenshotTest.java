@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
+import com.axonivy.portal.selenium.bean.ExpressResponsible;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
@@ -19,8 +20,6 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
-
-import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
 
 @IvyWebTest
 public class AdhocScreenshotTest extends ScreenshotTest {
