@@ -912,7 +912,7 @@ public class NewDashboardPage extends TemplatePage {
     return Integer.parseInt($("[id='notifications-badge-value']").getValue());
   }
 
-  public WebElement getNotificationsPanel() {
+  public SelenideElement getNotificationsPanel() {
     waitForGlobalGrowlDisappear();
     $("[id='topbar-unread-notifications']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
