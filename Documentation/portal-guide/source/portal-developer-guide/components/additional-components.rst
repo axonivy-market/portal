@@ -101,6 +101,7 @@ Initially, when you submit the form to the interacting task, you need to set the
 If you want to turn the global growl message off, that is all that is required.
 To override the message with your own, add ``facesMessage`` to this component.
 You can customize the message for finished or cancelled tasks separately.
+The message could contain HTML code. To prevent XSS attacks, you need to sanitize the message.
 
 ::
 
@@ -108,10 +109,15 @@ You can customize the message for finished or cancelled tasks separately.
    import javax.faces.context.Flash;
    import javax.faces.context.FacesContext;
    import javax.faces.application.FacesMessage;
+   import org.primefaces.util.HtmlSanitizer;
 
-   FacesMessage message = new FacesMessage("Task is done successfully", ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/linkToCaseDetails",
+   String message = "/ch.ivy.addon.portalkit.ui.jsf/common/linkToCaseDetails";
+   // sanitize the message to prevent XSS attacks
+   String sanitizedMessage = HtmlSanitizer.sanitizeHtml(message, true, true, true, true, true);
+
+   FacesMessage facesMessage = new FacesMessage("Task is done successfully", sanitizedMessage,
    	[PortalNavigator.buildPortalCaseDetailsUrl(ivy.case.getBusinessCase().getId())]));
-   FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
+   FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", facesMessage);
 
    Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
    flash.put("overridePortalGrowl", true);

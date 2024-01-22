@@ -15,6 +15,7 @@ pipeline {
     stage('backupDatabase') {
       steps {
         script {
+          currentBuild.description = "On ${env.NODE_NAME}"
           def today = new Date().format('dd-MM-yyyy_HH-mm')
           def config = [portal:[engine: '10', systemDatabase: 'AxonIvySystemDatabase-10'],
                     performanceTest:[engine: 'performance-10', systemDatabase: 'AxonIvySystemDatabase-performance-10']]

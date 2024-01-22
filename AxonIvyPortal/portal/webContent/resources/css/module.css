@@ -5383,17 +5383,12 @@ border-top: 0.14rem dashed;
 }
 
 .security-member-tooltip .tooltip-header,
-.security-member-tooltip .tooltip-body,
 .security-member-tooltip .tooltip-body-item {
   margin: auto;
 }
 
 .security-member-tooltip .tooltip-body {
   padding-left: 14px;
-}
-
-.security-member-tooltip .tooltip-body.no-user {
-  padding-left: 0;
 }
 
 /* Activator selection */
