@@ -1,3 +1,0 @@
-ProcessServiceData #class
-com.axonivy.portal.developerexamples #namespace
-processes java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartable> #field

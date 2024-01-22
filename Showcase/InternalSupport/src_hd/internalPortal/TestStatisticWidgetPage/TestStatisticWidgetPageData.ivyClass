@@ -1,8 +1,0 @@
-TestStatisticWidgetPageData #class
-internalPortal.TestStatisticWidgetPage #namespace
-involvedApplications java.util.List<String> #field
-involvedApplications PERSISTENT #fieldModifier
-statisticChartList java.util.List<com.axonivy.portal.developerexamples.dto.StatisticChart> #field
-statisticChartList PERSISTENT #fieldModifier
-expiryChartDrilldownLevels String #field
-expiryChartDrilldownLevels PERSISTENT #fieldModifier
