@@ -31,12 +31,11 @@ public class PasswordResetScreenshotTest extends ScreenshotTest {
     ScreenshotUtils.resizeBrowser(new Dimension(1024, 768));
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.FORGOT_PASSWORD + "reset-password-screen");
 
-    PasswordResetPage passwordResetPage = new PasswordResetPage();
     redirectToRelativeLink(String.format(portalPasswordResetUrl, TestAccount.TEST_FORGOT_PASSWORD_USER.getPassword(),
         TestAccount.TEST_FORGOT_PASSWORD_USER.getUsername()));
     String newPassword = "a2C!";
+    PasswordResetPage passwordResetPage = new PasswordResetPage();
     passwordResetPage.resetPassword(newPassword, true);
-    refreshPage();
     ScreenshotUtils.resizeBrowser(new Dimension(1024, 768));
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.FORGOT_PASSWORD + "reset-password-success-screen");
   }
