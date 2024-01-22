@@ -78,7 +78,10 @@ public class PortalExpressScreenshotTest extends ScreenshotTest{
     ScreenshotUtils.captureElementScreenshot(taskStep1, ScreenshotUtils.EXPRESS_FOLDER + "express-able-to-start");
     expressProcessPage.fillProcessProperties(true, true, "Request new resources process", "Request description");
 
-    ExpressResponsible responsible1 = setExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
+    ExpressResponsible responsible1 = new ExpressResponsible();
+//        setExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
+    responsible1.setResponsibleName(TestAccount.DEMO_USER.getUsername());
+    responsible1.setIsGroup(false);
 
     expressProcessPage.createTask(0, USER_TASK_INDEX, "Request resource", "Task request description",
         Arrays.asList(responsible1));
@@ -87,7 +90,10 @@ public class PortalExpressScreenshotTest extends ScreenshotTest{
     expressProcessPage.waitUntilExpressProcessDisplay();
     expressProcessPage.addNewTask(0);
 
-    ExpressResponsible responsible2 = setExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
+    ExpressResponsible responsible2 = new ExpressResponsible();
+//        setExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
+    responsible2.setResponsibleName(TestAccount.ADMIN_USER.getUsername());
+    responsible2.setIsGroup(false);
 
     expressProcessPage.createTask(1, USER_TASK_WITH_EMAIL_INDEX, "Approval request", "Approval request description",
         Arrays.asList(responsible2));
@@ -111,8 +117,6 @@ public class PortalExpressScreenshotTest extends ScreenshotTest{
 
     formDefinition.switchToCheckBoxTab();
     ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.EXPRESS_FOLDER + "express-workflow");
-
-
 
     showNewDashboard();
     mainMenuPage = new MainMenuPage();
