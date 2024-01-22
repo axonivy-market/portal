@@ -6,15 +6,12 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -31,10 +28,6 @@ public class TaskWidgetPage extends TemplatePage {
     return ".js-task-widget-header";
   }
   
-//  public TaskWidgetPage(String taskWidgetId) {
-//    this.taskWidgetId = taskWidgetId;
-//  }
-
   public void openTask(String taskName) {
     $("div[id='task-widget:task-view-container']").shouldBe(appear, DEFAULT_TIMEOUT);
     $$("div[id='task-widget:task-view-container'] ul li div[id$=':task-item:task-start'] div.task-start-info span")
@@ -235,26 +228,18 @@ public class TaskWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']"), false);
   }
 
-  private WebElement getStateFilterPanel() {
-    return findElementByCssSelector("div[id$='state-filter:filter-input-form:advanced-filter-panel']");
-  }
-  
   public void expand() {
     waitForElementDisplayed(By.cssSelector("a[id$=':task-list-link:task-list-link']"), Boolean.TRUE);
     WebElement fullModeButton = findElementById(taskWidgetId + ":task-list-link:task-list-link");
     $(fullModeButton).shouldBe(getClickableCondition()).click();
     WaitHelper.assertTrueWithWait(() -> isElementDisplayed(By.cssSelector("li.topbar-item.breadcrumb-container")));
     WaitHelper.assertTrueWithWait(() -> isElementDisplayed(By.cssSelector("[id$=':filter-save-action']")));
-//    waitForLocatorDisplayed("id('" + taskWidgetId + ":filter-save-action')");
     waitForElementDisplayed(By.id(taskWidgetId + ":filter-save-action"), Boolean.TRUE);
   }
 
   public void clickColumnsButton() {
-//    clickByCssSelector("[id$='task-widget:task-columns-configuration:task-config-command']");
     $("a[id$='task-widget:task-columns-configuration:task-config-command']").shouldBe(getClickableCondition()).click();
     waitForElementDisplayed(By.cssSelector("label[for$=':columns-checkbox:3']"), Boolean.TRUE);
-//    $("label[for$=':columns-checkbox:3']")
-//    Sleeper.sleep(2000);
   }
 
   

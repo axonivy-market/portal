@@ -5,7 +5,6 @@ import static com.codeborne.selenide.Selenide.$;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
-import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
@@ -103,8 +102,6 @@ public class CaseMapPage extends TemplatePage {
     $("button[id$='form:submit-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     switchBackToParent();
-    // return new NewDashboardPage();
-    // $("button[id$='form:submit-button']").shouldBe(getClickableCondition()).click();
     return new TaskWidgetPage();
   }
 

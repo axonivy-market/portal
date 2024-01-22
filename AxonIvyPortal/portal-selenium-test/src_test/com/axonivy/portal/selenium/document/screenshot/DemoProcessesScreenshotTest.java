@@ -23,7 +23,6 @@ public class DemoProcessesScreenshotTest extends ScreenshotTest {
   private static final String CASE_MAP_URL = "/portal-user-examples/70765b37-a3e8-418a-a8d5-c2b3a539408e.icm";
 
   private MainMenuPage mainMenuPage;
-  // private ExampleOverviewPage exampleOverviewPage;
   private static final int SCREENSHOT_WIDTH = 1400;
 
   @Override
