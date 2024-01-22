@@ -33,7 +33,7 @@ public class DashboardConfigurationScreenshotTest extends ScreenshotTest {
     showNewDashboard();
     newDashboardPage = new NewDashboardPage();
     DashboardConfigurationPage dashboardConfigurationPage = newDashboardPage.openDashboardConfigurationPage();
-    ScreenshotUtils.resizeBrowser(new Dimension(1050, 750));
+    ScreenshotUtils.resizeBrowser(new Dimension(1920, 750));
     ScreenshotUtils
         .capturePageScreenshot(ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "dashboard-configuration-item");
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(),
@@ -65,7 +65,7 @@ public class DashboardConfigurationScreenshotTest extends ScreenshotTest {
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "edit-public-dashboards", new ScreenshotMargin(10));
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "reorder-public-dashboards", new ScreenshotMargin(10));
-    dashboardConfigurationPage.openCreatePrivateDashboardMenu();
+    dashboardConfigurationPage.openCreatePublicDashboardMenu();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardTemplates(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "dashboard-templates", new ScreenshotMargin(10));
     dashboardConfigurationPage.openImportPublicDashboards();
