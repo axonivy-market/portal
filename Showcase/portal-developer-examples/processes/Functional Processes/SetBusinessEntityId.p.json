@@ -39,7 +39,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.developerexamples.enums.AdditionalProperty;",
+            "import com.axonivy.portal.components.enums.AdditionalProperty;",
             "import ch.ivyteam.ivy.workflow.ICase;",
             "",
             "ivy.case.getBusinessCase().customFields().textField(AdditionalProperty.CASE_BUSINESS_ENTITY_PROPERTY.toString()).set(in.businessEntityId);"
