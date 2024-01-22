@@ -1910,49 +1910,5 @@
       "visual" : {
         "at" : { "x" : 416, "y" : 2184 }
       }
-    }, {
-      "id" : "f119",
-      "type" : "RequestStart",
-      "name" : "CreateCustomActionCaseExample",
-      "config" : {
-        "signature" : "CreateCustomActionCaseExample",
-        "request" : {
-          "name" : "Create Custom Action Case Example",
-          "description" : "This will create a Case has a custom-field which is Custom Action type"
-        },
-        "case" : {
-          "customFields" : [
-            { "name" : "DestroyCaseAction", "type" : "STRING", "value" : "\"Start Processes/CustomAction/CustomActionForCase.ivp\"" }
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 16, "y" : 2304 }
-      },
-      "connect" : [
-        { "id" : "f122", "to" : "f124" }
-      ]
-    }, {
-      "id" : "f120",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 576, "y" : 2304 }
-      }
-    }, {
-      "id" : "f124",
-      "type" : "TaskSwitchEvent",
-      "name" : "Custom Action for Case",
-      "config" : {
-        "task" : {
-          "name" : "CustomActionForCase"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 200, "y" : 2304 },
-        "labelOffset" : { "x" : 14, "y" : 34 }
-      },
-      "connect" : [
-        { "id" : "f121", "to" : "f120" }
-      ]
     } ]
 }
