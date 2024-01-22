@@ -24,6 +24,7 @@ public class CaseMapPage extends TemplatePage {
     $("button[id$='submit-request']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     switchBackToParent();
+    $("div[class*='js-dashboard__wrapper']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return new NewDashboardPage();
   }
 

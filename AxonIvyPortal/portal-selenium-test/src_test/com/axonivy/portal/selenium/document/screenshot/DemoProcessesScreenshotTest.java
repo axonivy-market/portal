@@ -85,7 +85,6 @@ public class DemoProcessesScreenshotTest extends ScreenshotTest {
 
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1000));
     NewDashboardPage newDashboardPage = caseMapPage.clickSubmitRequestButton();
-    newDashboardPage.waitPageLoaded();
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1500));
     newDashboardPage.startTask(0);
     caseMapPage = new CaseMapPage();
