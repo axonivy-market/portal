@@ -11,6 +11,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
+import com.axonivy.portal.selenium.bean.ExpressResponsible;
 import com.axonivy.portal.selenium.common.FileHelper;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
@@ -29,8 +30,6 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.axonivy.portal.selenium.page.UserTaskWithMailFormPage;
 import com.codeborne.selenide.SelenideElement;
-
-import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
 
 @IvyWebTest
 public class PortalExpressScreenshotTest extends ScreenshotTest{

@@ -10,10 +10,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
+import com.axonivy.portal.selenium.bean.ExpressResponsible;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.codeborne.selenide.Condition;
-
-import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
 
 public class ExpressProcessPage extends TemplatePage {
 
@@ -33,7 +32,7 @@ public class ExpressProcessPage extends TemplatePage {
     //  ADD RESPONSIBLES
     $("[id='choose-responsible-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     for (ExpressResponsible responsible : responsibles) {
-      chooseResponsible(responsible.getResponsibleName(), responsible.getIsGroup());
+      chooseResponsible(responsible.getResponsibleName(), responsible.isGroup());
     }
     $("[id='assignee-selection-form:save-assignee-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id='choose-responsible-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
@@ -42,7 +41,7 @@ public class ExpressProcessPage extends TemplatePage {
   public void addResponsible(List<ExpressResponsible> responsibles) {
     $("[id='choose-responsible-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     for (ExpressResponsible responsible : responsibles) {
-      chooseResponsible(responsible.getResponsibleName(), responsible.getIsGroup());
+      chooseResponsible(responsible.getResponsibleName(), responsible.isGroup());
     }
     $("[id='assignee-selection-form:save-assignee-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id='choose-responsible-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
