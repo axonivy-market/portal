@@ -103,7 +103,7 @@ public class TaskDetailsPage extends TemplatePage {
     return $("div[id$=':share-task-details-dialog']");
   }
 
-  public void waitUtilsTaskDetailsDisplayed() {
+  public void waitUntilTaskDetailsDisplayed() {
     $("[id$=':task-detail-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
@@ -126,7 +126,7 @@ public class TaskDetailsPage extends TemplatePage {
     $(By.cssSelector("[id$=':switch-to-view-mode-button']")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
-  public void drapAndDropWidgets(String sourceName, String destinationName) {
+  public void dragAndDropWidgets(String sourceName, String destinationName) {
     SelenideElement sourceElement =
         $(String.format("[id$=':task-detail-%s-container']", sourceName)).shouldBe(appear, DEFAULT_TIMEOUT);
     SelenideElement destinationElement =
