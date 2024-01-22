@@ -136,8 +136,11 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.userexamples.util.RequestUtils;",
-            "RequestUtils.redirect(in.callbackUrl);"
+            "import ch.ivyteam.ivy.request.IHttpResponse;",
+            "",
+            "",
+            "IHttpResponse httpResponse = ivy.response as IHttpResponse;",
+            "httpResponse.sendRedirect(in.callbackUrl);"
           ]
         }
       },
