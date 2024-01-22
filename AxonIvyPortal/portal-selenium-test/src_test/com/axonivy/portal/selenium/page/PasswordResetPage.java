@@ -12,6 +12,7 @@ public class PasswordResetPage extends TemplatePage {
   private SelenideElement newPasswordTextField;
   private SelenideElement passwordConfirmationTextField;
   private SelenideElement resetButton;
+  private final String PASSWORD_WEAK_CUSTOM_MESSAGE = "Password must has at least 5 characters.";
 
   @Override
   protected String getLoadedLocator() {
@@ -50,7 +51,7 @@ public class PasswordResetPage extends TemplatePage {
   }
 
   public void isNewPasswordNotStrongEnough() {
-    findElementByCssSelector("span[class='ui-messages-error-summary']").shouldBe(Condition.text(
-        "Password must be at least 4 characters long, contain at least 1 lowercase character, contain at least 1 uppercase character, contain at least 1 number, contain at least 1 special character."));
+    findElementByCssSelector("span[class='ui-messages-error-summary']")
+        .shouldBe(Condition.text(PASSWORD_WEAK_CUSTOM_MESSAGE));
   }
 }
