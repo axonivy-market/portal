@@ -300,7 +300,7 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':switch-to-view-mode-button']"), true);
   }
 
-  public void drapAndDropWidgets(String sourceName, String destinationName) {
+  public void dragAndDropWidgets(String sourceName, String destinationName) {
     $(By.cssSelector(String.format("[id='case-details-%s-panel']", sourceName))).shouldBe(Condition.visible,
         DEFAULT_TIMEOUT);
     SelenideElement sourceElement =

@@ -225,7 +225,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
 
     caseDetailsPage.switchToEditMode();
     caseDetailsPage.waitForSaveButtonDisplayed();
-    caseDetailsPage.drapAndDropWidgets("information", "document");
+    caseDetailsPage.dragAndDropWidgets("information", "document");
     ScreenshotUtils.executeDecorateJs("highlightSwitchToViewMode()");
     SelenideElement switchToViewMode = caseDetailsPage.getSwitchToViewModeButton();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(switchToViewMode,

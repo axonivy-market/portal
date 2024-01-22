@@ -535,7 +535,7 @@ public class CaseDetailsPage extends TemplatePage {
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
-  public void drapAndDropWidgets(String sourceName, String destinationName) {
+  public void dragAndDropWidgets(String sourceName, String destinationName) {
     waitForElementDisplayed(By.cssSelector(String.format("[id='case-details-%s-panel']", sourceName)), true);
     WebElement sourceElement = findElementByCssSelector(String.format("[id='case-details-%s-panel']", sourceName));
     waitForElementDisplayed(By.cssSelector(String.format("[id='case-details-%s-panel']", destinationName)), true);

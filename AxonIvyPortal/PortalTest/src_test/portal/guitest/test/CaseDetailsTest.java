@@ -342,8 +342,8 @@ public class CaseDetailsTest extends BaseTest {
     createTestingTask();
     detailsPage.switchToEditMode();
     detailsPage.waitForSaveButtonDisplayed();
-    detailsPage.drapAndDropWidgets("information", "document");
-    detailsPage.drapAndDropWidgets("document", "information");
+    detailsPage.dragAndDropWidgets("information", "document");
+    detailsPage.dragAndDropWidgets("document", "information");
     detailsPage.saveAndSwitchToViewMode();
     detailsPage.switchToEditMode();
     detailsPage.waitForResetButtonDisplayed();
