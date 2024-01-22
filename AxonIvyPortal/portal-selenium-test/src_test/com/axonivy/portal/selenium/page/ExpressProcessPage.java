@@ -29,10 +29,17 @@ public class ExpressProcessPage extends TemplatePage {
     }
     $("[id='" + String.format("form:defined-tasks-list:%d:default-task-responsible-link", taskIndex) + "']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    addResponsible(responsibles);
+
+    //  ADD RESPONSIBLES
+    $("[id='choose-responsible-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    for (ExpressResponsible responsible : responsibles) {
+      chooseResponsible(responsible.getResponsibleName(), responsible.getIsGroup());
+    }
+    $("[id='assignee-selection-form:save-assignee-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='choose-responsible-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
-  private void addResponsible(List<ExpressResponsible> responsibles) {
+  public void addResponsible(List<ExpressResponsible> responsibles) {
     $("[id='choose-responsible-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     for (ExpressResponsible responsible : responsibles) {
       chooseResponsible(responsible.getResponsibleName(), responsible.getIsGroup());
