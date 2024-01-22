@@ -1,6 +1,5 @@
 package com.axonivy.portal.selenium.document.screenshot;
 
-import static com.codeborne.selenide.Selenide.$$;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -36,7 +35,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 
-@IvyWebTest(headless = true)
+@IvyWebTest
 public class DashboardScreenshotTest extends ScreenshotTest{
   private NewDashboardPage homePage;
   private static final int SCREENSHOT_WIDTH = 1500;
@@ -128,7 +127,7 @@ public class DashboardScreenshotTest extends ScreenshotTest{
     HomePage homePage = new HomePage();
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     
-    ScreenshotUtils.maximizeBrowser();
+    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
     ScreenshotUtils.executeDecorateJs("numberingStatisticWidget();");
     ScreenshotUtils.captureElementScreenshot(homePage.getStatisticWidgetElement(), ScreenshotUtils.DASHBOARD_FOLDER + "statistics-key-information");
 
@@ -204,6 +203,8 @@ public class DashboardScreenshotTest extends ScreenshotTest{
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "edit-widget");
 
     // Take screenshot of Add new widget dialog
+    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_HD_WIDTH, 1080));
+    refreshPage();
     WebElement newWidgetDialog = detailsEditPage.addWidget();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(newWidgetDialog,
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "add-widget", new ScreenshotMargin(20));

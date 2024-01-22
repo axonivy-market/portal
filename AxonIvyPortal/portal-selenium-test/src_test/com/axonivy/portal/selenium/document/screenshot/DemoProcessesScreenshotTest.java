@@ -97,6 +97,7 @@ public class DemoProcessesScreenshotTest extends ScreenshotTest {
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "lending-casemap-external-solvency-service");
     taskWidgetPage.clickOnSideStepAction(0, 1);
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1150));
+    taskWidgetPage.waitForPageLoad();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "lending-casemap-approval-task");
   }
 }
