@@ -10,7 +10,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
-import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.codeborne.selenide.Condition;
 

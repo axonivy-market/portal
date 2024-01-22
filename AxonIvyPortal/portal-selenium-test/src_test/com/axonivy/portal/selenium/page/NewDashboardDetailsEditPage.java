@@ -181,7 +181,6 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
   
   public void addCustomWidgetByName(String name) {
-//    new-widget-dialog-content:1:add-widget
     $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT).$$("div.new-widget-dialog__item")
         .filter(text(name)).first().$("button[id^='new-custom-widget-dialog-content']")
         .shouldBe(getClickableCondition()).click();
