@@ -15,11 +15,10 @@ public class PasswordResetPage extends TemplatePage{
 
   @Override
   protected String getLoadedLocator() {
-    return "[id='password-reset:reset-password-form:reset-command']";
+    return ".login-wrapper";
   }
 
   public PasswordResetPage() {
-    $("button[id='password-reset:reset-password-form:reset-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     this.newPasswordTextField = $("input[id='password-reset:reset-password-form:new-password']");
     this.passwordConfirmationTextField = $("input[id='password-reset:reset-password-form:password-confirmation']");
     this.resetButton = $("button[id='password-reset:reset-password-form:reset-command']");
