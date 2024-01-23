@@ -13,7 +13,7 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.PasswordResetPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class PasswordResetScreenshotTest extends ScreenshotTest {
 
   @BeforeEach

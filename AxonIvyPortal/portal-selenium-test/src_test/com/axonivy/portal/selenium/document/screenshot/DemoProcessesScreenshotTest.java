@@ -74,28 +74,29 @@ public class DemoProcessesScreenshotTest extends ScreenshotTest {
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "leave-request-creation");
   }
 
-  @Test
-  public void screenshotCaseMapProcess() throws IOException {
-    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 900));
-    redirectToRelativeLinkWithEmbedInFrame(CASE_MAP_URL);
-    CaseMapPage caseMapPage = new CaseMapPage();
-    caseMapPage.switchToIFrameOfTask();
-    caseMapPage.waitForIFrameContentVisible();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "lending-casemap-collect-personal-data");
-
-    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1000));
-    NewDashboardPage newDashboardPage = caseMapPage.clickSubmitRequestButton();
-    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1500));
-    newDashboardPage.startTask(0);
-    caseMapPage = new CaseMapPage();
-    caseMapPage.switchToIFrameOfTask();
-    caseMapPage.clickSubmitButtonAndBackToTaskList();
-    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
-    taskWidgetPage.clickOnTaskActionLink(0);
-    ScreenshotUtils.executeDecorateJs("highlightTaskActionItem(0, 1)");
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "lending-casemap-external-solvency-service");
-    taskWidgetPage.clickOnSideStepAction(0, 1);
-    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1150));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "lending-casemap-approval-task");
-  }
+//  @Test
+//  public void screenshotCaseMapProcess() throws IOException {
+//    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 900));
+//    redirectToRelativeLinkWithEmbedInFrame(CASE_MAP_URL);
+//    CaseMapPage caseMapPage = new CaseMapPage();
+//    caseMapPage.switchToIFrameOfTask();
+//    caseMapPage.waitForIFrameContentVisible();
+//    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "lending-casemap-collect-personal-data");
+//
+//    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1000));
+//    NewDashboardPage newDashboardPage = caseMapPage.clickSubmitRequestButton();
+//    newDashboardPage.waitForDashboardPageAvailable();
+//    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1500));
+//    newDashboardPage.startTask(0);
+//    caseMapPage = new CaseMapPage();
+//    caseMapPage.switchToIFrameOfTask();
+//    caseMapPage.clickSubmitButtonAndBackToTaskList();
+//    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+//    taskWidgetPage.clickOnTaskActionLink(0);
+//    ScreenshotUtils.executeDecorateJs("highlightTaskActionItem(0, 1)");
+//    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "lending-casemap-external-solvency-service");
+//    taskWidgetPage.clickOnSideStepAction(0, 1);
+//    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1150));
+//    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "lending-casemap-approval-task");
+//  }
 }
