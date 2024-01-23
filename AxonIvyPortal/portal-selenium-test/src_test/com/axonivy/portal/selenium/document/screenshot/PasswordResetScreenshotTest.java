@@ -20,12 +20,12 @@ public class PasswordResetScreenshotTest extends ScreenshotTest {
   public void setup() {
     super.setup();
     redirectToRelativeLink(portalKitTestHelperPasswordResetUrl);
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    launchBrowserAndLogoutInDesigner();
   }
 
   @Test
   public void testResetPassword() throws IOException {
-    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
-    launchBrowserAndLogoutInDesigner();
     redirectToRelativeLink(String.format(portalPasswordResetUrl, TestAccount.TEST_FORGOT_PASSWORD_USER.getPassword(),
         TestAccount.TEST_FORGOT_PASSWORD_USER.getUsername()));
     PasswordResetPage passwordResetPage = new PasswordResetPage();
