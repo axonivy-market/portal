@@ -8,7 +8,7 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/welcomeToPortal')}" />
+  <cc:attribute name="title" default="#{ivy.cms.co('/Labels/WelcomeToPortal')}" />
 </cc:interface>
 
 <cc:implementation>
@@ -17,7 +17,7 @@
       <div class="login-panel">
         <div class="login-panel-header">
           <p:graphicImage name="#{themeBean.themeMode eq 'dark' ? 'logo_light': 'logo'}" library="ivy-branding"
-            alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loginLogo')}" />
+            alt="#{ivy.cms.co('/Labels/LoginLogo')}" />
         </div>
         <p:focus for="username" />
         <h4>#{cc.attrs.title}</h4>
@@ -25,15 +25,15 @@
         <p:messages id="login-message" showIcon="false"/>
 
         <p:inputText id="username" autocomplete="off" value="#{data.username}" required="true"
-          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}"
-          requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/UsernameRequiredMessage')}" />
+          placeholder="#{ivy.cms.co('/Labels/Username')}"
+          requiredMessage="#{ivy.cms.co('/Labels/UsernameRequiredMessage')}" />
 
         <p:password id="password" autocomplete="off" value="#{data.password}" required="true"
-          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/password')}"
-          requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/PasswordRequiredMessage')}" />
+          placeholder="#{ivy.cms.co('/Labels/Password')}"
+          requiredMessage="#{ivy.cms.co('/Labels/PasswordRequiredMessage')}" />
 
         <p:commandButton id="login-command" actionListener="#{logic.login}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/login')}"
+          value="#{ivy.cms.co('/Labels/Login')}"
           icon="#{visibilityBean.generateButtonIcon('si si-login-3')}"
           oncomplete="if (#{empty data.callbackUrl} === 'true' &amp;&amp; args &amp;&amp; !args.validationFailed) {location.reload()};Portal.changeLogoByThemeMode('#{themeBean.themeMode}');"
           process="login-form" update="login-form" />
@@ -41,7 +41,7 @@
         <h:panelGroup styleClass="forgot-link" rendered="#{forgotPasswordBean.isForgotPasswordRendered()}" layout="block">
           <p:link id="forgot-password-link" href="#{forgotPasswordBean.getForgotPasswordUrl()}">
             <i class="si si-question-circle u-mar-right-5" />
-            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/forgotPassword')}" />
+            <h:outputText value="#{ivy.cms.co('/Labels/ForgotPassword')}" />
           </p:link>
         </h:panelGroup>
         
@@ -52,7 +52,7 @@
                 <h:outputLink value="${authProvider.link}">
                   <h:outputText value="${authProvider.image}" escape="false" />
                     <span>
-                      #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/LoginWith')} <h:outputText value="${authProvider.displayName}" />
+                      #{ivy.cms.co('/Labels/LoginWith')}<h:outputText value="${authProvider.displayName}" />
                     </span>
                 </h:outputLink>
               </li>

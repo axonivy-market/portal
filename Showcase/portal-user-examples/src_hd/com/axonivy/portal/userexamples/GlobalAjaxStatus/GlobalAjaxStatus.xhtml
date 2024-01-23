@@ -22,7 +22,7 @@
       <div class="ajax-status-position #{cc.attrs.styleClass}">
         <div class="axonivy-loader">
           <div class="spinner" />
-          <h5>#{empty cc.attrs.startLoadingText ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loading') : cc.attrs.startLoadingText}...</h5>
+          <h5>#{empty cc.attrs.startLoadingText ? ivy.cms.co('/Labels/Loading') : cc.attrs.startLoadingText}...</h5>
         </div>
       </div>
     </f:facet>
@@ -38,24 +38,24 @@
     <ui:param name="widgetVar" value="error-ajax-dialog" />
     <ui:param name="appendTo" value="@(body)" />
     <ui:param name="styleClass" value="error-ajax-dialog" />
-    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/Labels/Warning')}" />
     <ui:param name="iconClass" value="si si-road-sign-warning" />
     <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
 
     <ui:define name="dialogContentSection">
       <div class="ui-g">
         <div class="ui-g-12 u-text-align-center">
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/errorAjaxMessage')}" />
+          <h:outputText value="#{ivy.cms.co('/Labels/ErrorAjaxMessage')}" />
         </div>
         <div class="ui-g-12 u-text-align-center MarTop10 u-no-padding-bottom">
           <div class="ui-g-12">
             <p:button rendered="#{!isPortalInTeams}" href="#"
               onclick="window.open('#{userMenuBean.getHomePageURL()}', '_self')"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"
+              value="#{ivy.cms.co('/Labels/BackToHomePage')}"
               icon="#{visibilityBean.generateButtonIcon('si si-house-chimney-2')}" />
           </div>
           <p:link id="#{cc.clientId}-show-more" rendered="#{renderDetail}"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" styleClass="ui-g-12" href="#" />
+            value="#{ivy.cms.co('/Labels/More')}" styleClass="ui-g-12" href="#" />
         </div>
       </div>
     </ui:define>
@@ -63,7 +63,7 @@
 
   <p:dialog id="#{cc.clientId}-detail-error-dialog" widgetVar="detail-error-dialog" rendered="#{renderDetail}"
     closable="true" width="70%" closeOnEscape="true" modal="true" resizable="false" responsive="true"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/errorXhr')}">
+    header="#{ivy.cms.co('/Labels/ErrorXhr')}">
     <div class="ui-g ui-fluid">
       <div class="ui-g-2">
         <h:outputText value="Status code"/>
@@ -127,7 +127,7 @@
       </div>
     </div>
     <div class="ui-g-12">
-      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+      <p:commandButton value="#{ivy.cms.co('/Labels/Close')}"
         type="button" onclick="PF('detail-error-dialog').hide();"
         styleClass="Fright" />
     </div>
