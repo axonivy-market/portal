@@ -178,13 +178,11 @@ public abstract class TemplatePage extends AbstractPage {
   public LoginPage clickOnLogout() {
     openUserSettingMenu();
     $("[id='logout-setting:logout-menu-item']").shouldBe(appear, DEFAULT_TIMEOUT);
-    WaitHelper.waitForNavigation(
-        () -> $("[id='logout-setting:logout-menu-item']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+    $("[id='logout-setting:logout-menu-item']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return new LoginPage();
   }
   
   public void openUserSettingMenu() {
-//     waitForElementDisplayed(By.id("user-settings-menu"), true);
     clickByJavaScript(findElementById("user-settings-menu"));
     $("[id='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
