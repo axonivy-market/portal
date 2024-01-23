@@ -912,6 +912,14 @@ public class NewDashboardPage extends TemplatePage {
     return Integer.parseInt($("[id='notifications-badge-value']").getValue());
   }
 
+  public SelenideElement hideNotificationsIcon() {
+    return $("[id='topbar-unread-notifications']").shouldBe(disappear);
+  }
+  
+  public SelenideElement showNotificationsIcon() {
+    return $("[id='topbar-unread-notifications']").shouldBe(appear);
+  }
+
   public SelenideElement getNotificationsPanel() {
     waitForGlobalGrowlDisappear();
     $("[id='topbar-unread-notifications']").shouldBe(appear, DEFAULT_TIMEOUT)
