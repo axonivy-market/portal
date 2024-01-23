@@ -76,7 +76,7 @@
             "in.loginOk = ivy.session.loginSessionUser(in.username, in.password);",
             "out.password = null;",
             "if (!in.loginOk) {",
-            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/login/loginFailed\"), \"\"));",
+            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co(\"/Labels/LoginFailed\"), \"\"));",
             "  FacesContext.getCurrentInstance().validationFailed();",
             "} else {    ",
             "  UserUtils.setLanguage();",
