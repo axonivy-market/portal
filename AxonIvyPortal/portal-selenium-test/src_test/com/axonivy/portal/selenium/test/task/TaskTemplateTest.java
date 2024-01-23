@@ -15,7 +15,6 @@ import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.WorkingTaskDialogPage;
-import com.codeborne.selenide.WebDriverRunner;
 
 @IvyWebTest
 public class TaskTemplateTest extends BaseTest {
@@ -54,9 +53,6 @@ public class TaskTemplateTest extends BaseTest {
     assertEquals("Task: Annual Leave Request", taskDetailsPage.getTaskNameInDialog());
 
     taskDetailsPage.clickBackButton();
-    WebDriverRunner.getWebDriver().switchTo().defaultContent();
-    taskTemplatePage = new TaskIFrameTemplatePage();
-    taskDetailsPage.switchToCaseInfoIframe();
     assertTrue(taskTemplatePage.countRelatedTasks() > 0);
   }
 
