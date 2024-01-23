@@ -19,8 +19,8 @@ public class PasswordResetScreenshotTest extends ScreenshotTest {
   @Override
   public void setup() {
     super.setup();
-    redirectToRelativeLink(portalKitTestHelperPasswordResetUrl);
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(portalKitTestHelperPasswordResetUrl);
     launchBrowserAndLogoutInDesigner();
   }
 
