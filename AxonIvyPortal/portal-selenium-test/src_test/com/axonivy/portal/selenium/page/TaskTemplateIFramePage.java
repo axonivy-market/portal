@@ -13,4 +13,9 @@ public class TaskTemplateIFramePage extends TemplatePage {
     return new NewDashboardPage();
   }
 
+  public NewDashboardPage clickCancelButton() {
+    waitForElementClickableThenClick("a[id$='button-cancel']");
+    switchToDefaultContent();
+    return new NewDashboardPage();
+  }
 }

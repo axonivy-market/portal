@@ -71,7 +71,7 @@ public class TaskIFrameTemplatePage extends TemplatePage {
   }
 
   public void clickCancelButton() {
-    $("a[id$='button-cancel']").shouldBe(getClickableCondition()).click();
+    $("a[id$='button-cancel']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void clickActionButton() {
@@ -340,5 +340,9 @@ public class TaskIFrameTemplatePage extends TemplatePage {
     $(By.id("leave-request:from_input")).sendKeys(from);;
     $(By.id("leave-request:to_input")).sendKeys(to);;
     $(By.id("leave-request:substitute")).sendKeys(representation);;
+  }
+
+  public void switchToCaseInfoIframe() {
+    switchToIframeWithId("i-frame-case-details");
   }
 }

@@ -103,6 +103,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     taskWidgetPage1 = taskWidgetPage1.openTaskList();
     taskWidgetPage1.filterTasksInExpandedModeBy("Approve Investment", 1);
     TaskIFrameTemplatePage taskTemplatePage2 = taskWidgetPage1.startTaskIFrame(0);
+    taskTemplatePage2.waitForIFrameContentVisible();
     assertEquals("Review Request (Skip Tasklist in IFrame)",
         taskTemplatePage2.getTaskNameOutsideIFrameWithSkipTaskList());
   }
