@@ -1592,7 +1592,7 @@ Dialogs:
               NewsTitlePlaceholder: Titel der Nachricht eingeben
               NewsTitleValidateMessage: Nachrichtentitel in {0} ist erforderlich
               NoNewsAvailable: Es gibt noch keine Neuigkeiten
-              Publish: veröffentlichen.
+              Publish: Veröffentlichen
               RemoveNewsHeader: Die Nachrichten entfernen?
               SeeLess: Weniger sehen
               SeeMore: Mehr sehen
