@@ -105,4 +105,9 @@ public class ExternalLinkProcessItem implements Process {
   public String getSortIndex() {
     return null;
   }
+
+  @Override
+  public String getPortalProcessInformation() {
+    return null;
+  }
 }

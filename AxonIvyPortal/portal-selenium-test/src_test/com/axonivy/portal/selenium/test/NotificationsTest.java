@@ -2,15 +2,15 @@ package com.axonivy.portal.selenium.test;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebElement;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
+import com.codeborne.selenide.SelenideElement;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class NotificationsTest extends BaseTest {
 
   @Override
@@ -24,11 +24,13 @@ public class NotificationsTest extends BaseTest {
     NewDashboardPage homepage = new NewDashboardPage();
     int oldBadge = homepage.getNotificationsBadge();
     redirectToRelativeLink(create12CasesWithCategoryUrl);
+    homepage = new NewDashboardPage();
+    assertEquals(homepage.getNotificationsPanel().isDisplayed(), true);
     redirectToRelativeLink(BaseTest.PORTAL_HOME_PAGE_URL);
     int newBadge = homepage.getNotificationsBadge();
     assertEquals(newBadge - oldBadge >= 0, true);
 
-    WebElement notficationsPanel = homepage.getNotificationsPanel();
+    SelenideElement notficationsPanel = homepage.getNotificationsPanel();
     assertEquals(homepage.isOnlyUnreadDisplayed(notficationsPanel), true);
     assertEquals(homepage.isMarkAllAsReadDisplayed(notficationsPanel), true);
     assertEquals(homepage.isTodayGroupLineDisplayed(notficationsPanel), true);
@@ -67,5 +69,11 @@ public class NotificationsTest extends BaseTest {
     userProfilePage.checkBoxTosubscribeChannel();
     userProfilePage.save();
     homepage.hideNotificationsIcon();
+    homepage.openMyProfilePage();
+    userProfilePage.checkBoxTosubscribeChannel();
+    userProfilePage.save();
+    homepage.showNotificationsIcon();
+    
   }
+
 }
