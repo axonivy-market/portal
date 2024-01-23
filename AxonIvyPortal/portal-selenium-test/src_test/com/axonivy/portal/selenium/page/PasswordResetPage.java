@@ -15,7 +15,7 @@ public class PasswordResetPage extends TemplatePage{
 
   @Override
   protected String getLoadedLocator() {
-    return ".login-wrapper";
+    return "[id='password-reset:reset-password-form:reset-command']";
   }
 
   public PasswordResetPage() {
