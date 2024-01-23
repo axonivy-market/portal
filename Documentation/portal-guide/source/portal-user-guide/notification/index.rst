@@ -5,6 +5,10 @@ Notification
 
 You can open your notifications by clicking on the bell icon in the top right corner. A panel contains all your notifications will be displayed.
 
+.. note::
+
+   The bell icon will automatically be hidden if the web notification channel is disabled either by the administrator or the user.
+
 |notification-panel|
 
 You can navigate to a full page notification by clicking on the |show-more-icon| icon in the notification panel.
