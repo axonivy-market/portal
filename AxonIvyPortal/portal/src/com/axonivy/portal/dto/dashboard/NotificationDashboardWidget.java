@@ -27,7 +27,6 @@ public class NotificationDashboardWidget extends DashboardWidget {
     this.webNotifications = WebNotifications.current();
     this.countAll = webNotifications.countAll();
     this.countUnread = webNotifications.countUnread();
-    this.dataModel = new NotificationLazyModel(this.webNotifications);
   }
 
   @JsonIgnore
@@ -44,6 +43,7 @@ public class NotificationDashboardWidget extends DashboardWidget {
   }
 
   public void loadFirstTime() {
+    this.dataModel = new NotificationLazyModel(this.webNotifications);
     this.dataModel.setOnlyUnread(this.onlyUnread);
     this.dataModel.setWidgetId(this.getId());
   }
