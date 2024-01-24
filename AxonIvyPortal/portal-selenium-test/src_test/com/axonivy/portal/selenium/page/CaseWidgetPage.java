@@ -151,7 +151,7 @@ public class CaseWidgetPage extends TemplatePage {
   }
 
   public void clickColumnsButton() {
-    $(SELECT_COLUMNS_LINK_CSS_SELECTOR).shouldBe(getClickableCondition(), TEN_SECOND).click();
+    $(SELECT_COLUMNS_LINK_CSS_SELECTOR).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     waitForElementDisplayed($("label[for$='columns-checkbox:3']"), true);
   }
 }

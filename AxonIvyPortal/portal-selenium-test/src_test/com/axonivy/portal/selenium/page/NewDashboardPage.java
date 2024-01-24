@@ -892,8 +892,8 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void waitForLeftMenuActive() {
-    $(".menu-item-dashboard").shouldBe(appear, TEN_SECOND);
-    $(".active-menuitem").shouldBe(appear, TEN_SECOND);
+    $(".menu-item-dashboard").shouldBe(appear, DEFAULT_TIMEOUT);
+    $(".active-menuitem").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
 }

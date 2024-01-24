@@ -47,16 +47,16 @@ public class HomePage extends TemplatePage {
 
 
   public void waitForWidgetsInDashboardLoaded() {
-    $("div[class*='home-page-container']").shouldBe(appear, TEN_SECOND);
-    $("div[class*='compact-process-widget']").shouldBe(appear, TEN_SECOND);
-    $("div[class*='dashboard-task-widget-container']").shouldBe(appear, TEN_SECOND);
-    $("div[class*='statistic-widget-container']").shouldBe(appear, TEN_SECOND);
+    $("div[class*='home-page-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div[class*='compact-process-widget']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div[class*='dashboard-task-widget-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div[class*='statistic-widget-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
   public void waitUntilProcessWidgetDisplayed() {
-    $("div[class*='process-widget'").shouldBe(appear, TEN_SECOND);
+    $("div[class*='process-widget'").shouldBe(appear, DEFAULT_TIMEOUT);
     $("div[class*='js-loading-text'").shouldNotBe(appear);
-    $("div[class*='user-process-container'").shouldBe(appear, TEN_SECOND);
+    $("div[class*='user-process-container'").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
   public void waitUtilProcessWidgetUserFavoriteDisplayed() {
