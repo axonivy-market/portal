@@ -794,7 +794,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ManageFilter: Gérer les filtres
     NoData: Pas de données
     NoSavedFilterMessage: Aucun filtre enregistré n'a été trouvé. Essayez d'en créer un nouveau en cliquant sur le bouton Enregistrer le filtre.
-    RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
+    RestoreDefaultDashboardMessage: Si vous procédez ainsi, vous perdrez tous les widgets que vous avez créés. Les paramètres standard de <span class="dashboard-template-name-message">{0}</span> seront appliqués.
     SaveNewWidgetFilterHeader: Save a new widget filter
     SavedFilterHeader: Saved filters
     SearchForFilter: Search for filter
