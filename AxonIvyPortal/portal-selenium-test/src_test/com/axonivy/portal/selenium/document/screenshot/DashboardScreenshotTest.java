@@ -35,7 +35,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DashboardScreenshotTest extends ScreenshotTest{
   private NewDashboardPage homePage;
   private static final int SCREENSHOT_WIDTH = 1500;
