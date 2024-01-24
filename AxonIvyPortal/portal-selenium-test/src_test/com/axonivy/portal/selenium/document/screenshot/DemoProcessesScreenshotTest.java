@@ -16,7 +16,7 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class DemoProcessesScreenshotTest extends ScreenshotTest {
 
   private static String LEAVE_REQUEST_START_LINK = "portal-user-examples/170321BD7F5539D6/start.ivp";
@@ -90,7 +90,8 @@ public class DemoProcessesScreenshotTest extends ScreenshotTest {
     newDashboardPage.startTask(0);
     caseMapPage = new CaseMapPage();
     caseMapPage.switchToIFrameOfTask();
-    caseMapPage.clickSubmitButtonAndBackToTaskList();
+    newDashboardPage = caseMapPage.clickSubmitButtonAndBackToTaskList();
+    newDashboardPage.waitForDashboardPageAvailable();
     TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
     taskWidgetPage.clickOnTaskActionLink(0);
     ScreenshotUtils.executeDecorateJs("highlightTaskActionItem(0, 1)");
