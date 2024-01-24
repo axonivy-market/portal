@@ -16,7 +16,6 @@ public class CaseMapPage extends TemplatePage {
   }
 
   public void waitForIFrameContentVisible() {
-    $("[id$='header'").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("button[id='form:submit-request']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
@@ -28,7 +27,6 @@ public class CaseMapPage extends TemplatePage {
   }
 
   public NewDashboardPage clickSubmitButtonAndBackToTaskList() {
-    waitForElementDisplayed(By.id("form:submit-button"), true);
     $("button[id$='submit-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     switchBackToParent();
     return new NewDashboardPage();
