@@ -5,9 +5,10 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '60'))
   }
 
-  triggers {
-    cron('0 13 * * *')
-  }
+  // WILL UNCOMMENT WHEN MERGE
+  // triggers {
+  //   cron('0 13 * * *')
+  // }
 
   tools { 
     maven '3.8' 
