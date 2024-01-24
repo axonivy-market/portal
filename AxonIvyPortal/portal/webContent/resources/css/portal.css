@@ -1784,7 +1784,7 @@ i.dashboard-icon-drag-drop {
   width: 200px;
 }
 .filter-panel.active {
-  width: 50%;
+  width: 60%;
   height: 700px;
   visibility: visible;
   opacity: 1;
