@@ -200,8 +200,8 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void openCompactSortMenu() {
-    $("[id$='sort-task-menu_label']").shouldBe(getClickableCondition()).click();
-    $(By.cssSelector("div[id$='sort-task-menu_panel']")).shouldBe(appear, TEN_SECOND);
+    $("div[id$='sort-task-menu']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id$='sort-task-menu']").shouldBe(getClickableCondition()).click();
   }
 
   public void clickToWaitAjaxDisappear() {
@@ -213,7 +213,7 @@ public class TaskWidgetPage extends TemplatePage {
   
   public void openStateFilter() {
     $(By.cssSelector("button[id$='state-filter:filter-open-form:advanced-filter-command']")).shouldBe(getClickableCondition()).click();
-    $(By.cssSelector("[id$='state-filter:filter-input-form:state-selection']")).shouldBe(appear, TEN_SECOND);
+    $(By.cssSelector("[id$='state-filter:filter-input-form:state-selection']")).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void clickOnTaskStatesAndApply(List<String> states) {

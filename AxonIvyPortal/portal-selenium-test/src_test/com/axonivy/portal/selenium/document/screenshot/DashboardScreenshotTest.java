@@ -35,7 +35,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class DashboardScreenshotTest extends ScreenshotTest{
   private NewDashboardPage homePage;
   private static final int SCREENSHOT_WIDTH = 1500;
@@ -153,6 +153,7 @@ public class DashboardScreenshotTest extends ScreenshotTest{
     refreshPage();
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_HD_WIDTH, 800));
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    homePage.waitForPageLoad();
     taskWidgetPage.openCompactSortMenu();
     ScreenshotUtils.executeDecorateJs("numberingTaskFilterAndSort();");
     ScreenshotUtils.captureElementScreenshot(homePage.getTaskWidgetElement(), ScreenshotUtils.DASHBOARD_FOLDER + "personal-tasks-sort-and-search-features");

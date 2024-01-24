@@ -87,7 +87,7 @@ public class UserProfilePage extends TemplatePage {
   
   public void switchOnFurtherEmailFromAppSetting() {
     switchOnSetting(FURTHER_EMAIL_FROM_APP_SELECTOR);
-    $("div[id$='my-profile-form:further-mails-from-application']").shouldBe(appear, TEN_SECOND);
+    $("div[id$='my-profile-form:further-mails-from-application']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
 }

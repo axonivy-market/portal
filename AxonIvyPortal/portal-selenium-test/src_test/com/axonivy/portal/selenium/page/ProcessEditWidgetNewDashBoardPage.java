@@ -60,7 +60,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getImageModeProcessPreview() {
-    $("span[id$='process-item-name']").shouldBe(appear, TEN_SECOND);
+    $("span[id$='process-item-name']").shouldBe(appear, DEFAULT_TIMEOUT);
     return $(".widget-preview .widget-preview--image-width");
   }
 
@@ -122,7 +122,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getFullModeProcessPreview() {
-    $("span[id$='process-item:process-name']").shouldBe(appear, TEN_SECOND);
+    $("span[id$='process-item:process-name']").shouldBe(appear, DEFAULT_TIMEOUT);
     return $(".widget-preview .widget-preview--full");
   }
 
@@ -170,8 +170,8 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getCombinedModeProcessPreview() {
-    $("div[class*='process-name--combined']").shouldBe(appear, TEN_SECOND);
-    $("div[id$='process-task-widget-component:dashboard-process-tasks-container']").shouldBe(appear, TEN_SECOND);
+    $("div[class*='process-name--combined']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div[id$='process-task-widget-component:dashboard-process-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT);
     return $(".widget-preview .widget-preview--combined");
   }
 
@@ -260,7 +260,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getCompactModeProcessPreview() {
-    $("div[id$='process-list']").shouldBe(appear, TEN_SECOND);
+    $("div[id$='process-list']").shouldBe(appear, DEFAULT_TIMEOUT);
     return $(".widget-preview .widget-preview--compact div[id$=':dashboard-processes-container']");
   }
 
