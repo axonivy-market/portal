@@ -20,7 +20,7 @@
 
   <f:event listener="#{widgetStateFilterBean.init(filter)}" type="preRenderComponent" />
 
-  <h:panelGroup id="text-filter-operator-panel" layout="block"
+  <h:panelGroup id="state-filter-operator-panel" layout="block"
     styleClass="ui-fluid md-inputfield state-filter-operator-panel">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="true">
         <f:selectItems value="#{widgetStateFilterBean.stateOperators}" var="operator"
@@ -36,8 +36,8 @@
       disabled="#{readOnly}">
       <f:selectItems value="#{widgetStateFilterBean.states}" var="state" itemValue="#{state}" />
       <f:param name="skipValidator" value="true" />
-      <p:ajax event="change" update="states-list-panel" process="@(this)" listener="#{widgetStateFilterBean.updateStatesString(cc.attrs.filter.values)}" global="false" />
-      <p:ajax event="toggleSelect" update="states-list-panel" process="@(this)" listener="#{widgetStateFilterBean.updateStatesString(cc.attrs.filter.values)}" global="false" />
+      <p:ajax event="change" update="states-hidden" process="@(this)" listener="#{widgetStateFilterBean.updateStatesString(cc.attrs.filter.values)}" global="false" />
+      <p:ajax event="toggleSelect" update="states-hidden" process="@(this)" listener="#{widgetStateFilterBean.updateStatesString(cc.attrs.filter.values)}" global="false" />
     </p:selectCheckboxMenu>
 
     <p:inputText id="states-hidden" type="hidden" value="#{widgetStateFilterBean.statesString}">

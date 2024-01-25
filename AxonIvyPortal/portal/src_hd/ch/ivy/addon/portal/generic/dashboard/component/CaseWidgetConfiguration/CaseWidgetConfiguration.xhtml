@@ -12,8 +12,7 @@
 
 <cc:implementation>
   <f:event listener="#{caseWidgetConfigurationFilterBean.preRender(cc.attrs.caseWidget)}" type="preRenderComponent" />
-
-  <ui:decorate template="/layouts/restricted/decorator/TableWidgetConfiguration.xhtml">
+  <ui:decorate template="/layouts/restricted/decorator/SidebarWidgetConfiguration.xhtml">
     <ui:param name="widget" value="#{cc.attrs.caseWidget}" />
     <ui:param name="managedBean" value="#{cc.attrs.managedBean}" />
     <ui:param name="filterContainerStyleClass" value="case-widget-filter case-widget-configuration filter-messages predefined-filter" />
@@ -51,7 +50,7 @@
       <ic:ch.ivy.addon.portal.generic.dashboard.component.ColumnManagement id="column-management-component" widget="#{widget}"
         componentToUpdate="#{cc.attrs.componentToUpdate}" />
       <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidget id="case-widget-preview" isReadOnlyMode="#{cc.attrs.isReadOnlyMode}"
-        caseWidget="#{widget}" renderColumnConfiguration="true" isPreviewMode="true"
+        caseWidget="#{widget}" renderColumnConfiguration="false" isPreviewMode="true"
         onCompleteLoadWidget="PF('new-widget-configuration-dialog').initPosition();"/>
     </ui:define>
 
