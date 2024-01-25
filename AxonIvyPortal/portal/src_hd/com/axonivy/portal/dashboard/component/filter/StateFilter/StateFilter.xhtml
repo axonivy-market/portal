@@ -20,7 +20,7 @@
 
   <f:event listener="#{widgetStateFilterBean.init(filter)}" type="preRenderComponent" />
 
-  <h:panelGroup id="text-filter-operator-panel" layout="block"
+  <h:panelGroup id="state-filter-operator-panel" layout="block"
     styleClass="ui-fluid md-inputfield state-filter-operator-panel">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="true">
         <f:selectItems value="#{widgetStateFilterBean.stateOperators}" var="operator"
