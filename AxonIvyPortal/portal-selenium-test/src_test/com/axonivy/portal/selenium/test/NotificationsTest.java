@@ -10,7 +10,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 import com.codeborne.selenide.SelenideElement;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class NotificationsTest extends BaseTest {
 
   @Override
