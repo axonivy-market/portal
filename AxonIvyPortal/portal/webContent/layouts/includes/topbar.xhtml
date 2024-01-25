@@ -62,7 +62,7 @@
           </p:commandLink>
         </li>
         <li class="topbar-item">
-          <p:commandLink id="chat-bot"
+          <p:commandLink id="chat-bot" rendered="#{chatRendererBean.isChatbotRendered}"
                actionListener="#{userMenuBean.navigateToChatBotOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}">
             <i class="topbar-icon si si-headphones-customer-support-human-1" />
           </p:commandLink>

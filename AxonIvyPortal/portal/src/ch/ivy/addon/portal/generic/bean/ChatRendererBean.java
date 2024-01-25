@@ -12,6 +12,7 @@ import org.primefaces.PrimeFaces;
 import com.axonivy.portal.components.service.IvyAdapterService;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -59,5 +60,9 @@ public class ChatRendererBean implements Serializable {
 
   public boolean isExpressCreationTask() {
     return Ivy.wfTask().customFields().stringField(EXPRESS_CREATION_TASK).get().isPresent();
+  }
+
+  public boolean getIsChatbotRendered() {
+    return !StringUtils.isBlank(Ivy.var().get(PortalVariable.CHATBOT_ENDPOINT.key));
   }
 }

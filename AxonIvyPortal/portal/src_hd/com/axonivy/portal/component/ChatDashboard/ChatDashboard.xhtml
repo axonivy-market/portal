@@ -1,10 +1,36 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
-  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-  <ui:composition template="/layouts/includes/ChatDashboardTemplate.xhtml">
-    
+  <ui:composition
+    template="/layouts/includes/ChatDashboardTemplate.xhtml">
+    <ui:param name="chatbotEndPoint" value="#{chatDashboardBean.chatbotEndpoint}" />
+    <ui:define name="welcomeSection">
+      <div class="welcome-container">
+        <p>#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/ChatDashboard/WelcomeHeaderText')}</p>
+        <p>#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/ChatDashboard/WelcomeText')}</p>
+      </div>
+
+      <div class="candidate-question-container ui-g">
+        <ui:repeat var="question"
+          value="#{chatDashboardBean.candidateQuestions}">
+          <div class="candidate-question-block js-candidate-question-block">
+            <div class="candidate-question ui-g-4">
+              <div class="candidate-question-header">
+                <span class="si #{question.icon}" /> <span>#{question.headerText}</span>
+              </div>
+              <div>
+                <p class="js-candidate-question">#{question.question}</p>
+              </div>
+            </div>
+          </div>
+        </ui:repeat>
+      </div>
+    </ui:define>
   </ui:composition>
 </h:body>
 

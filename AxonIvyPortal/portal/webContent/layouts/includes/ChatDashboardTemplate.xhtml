@@ -26,9 +26,10 @@
 
               const userName = "#{ivy.session.getSessionUserName()}";
               const contextPath = "#{ivy.task.getApplication().getContextPath()}";
-              const resource = new IvyUri().rest() + "/chatbot";
+              const resource = "#{chatbotEndPoint}";
+              const ivyResource = new IvyUri().rest() + "/chatbot";
               const view = new View(resource);
-              const chatbot = new ChatBot(resource, view);
+              const chatbot = new ChatBot(ivyResource, resource, view);
 
               $(document).ready(function(){
                 hljs.configure({
@@ -43,7 +44,11 @@
             <div id="chat-panel" class="chatbot-panel js-chatbot-panel">
               <div class="message-list js-message-list ui-g">
                 <h:panelGroup id="chat-message-list" layout="block"
-                  styleClass="chatbot-message-list js-chatbot-message-list ui-g-9 ui-sm-12" />
+                  styleClass="chatbot-message-list js-chatbot-message-list ui-g-9 ui-sm-12">
+
+                  <ui:insert name="welcomeSection" />
+
+                </h:panelGroup>
                 <p:scrollTop target="chat-message-list" styleClass="chatbot-message-list-scrolltop" />
               </div>
               <div class="ui-g">
@@ -56,7 +61,7 @@
                   </div>
                   <div class="chat-send-form-button">
                     <p:commandButton icon="si si-send-email" onclick="chatbot.onClickSendMessage()"
-                      styleClass="rounded-button ui-button-outlined" global="false" type="button" />
+                      styleClass="rounded-button" global="false" type="button" />
                   </div>
                 </h:panelGroup>
               </div>

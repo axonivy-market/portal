@@ -33,18 +33,24 @@ function IvyUri() {
 }
 
 // ChatBot class for handling chat interactions
-function ChatBot(uri, view) {
+function ChatBot(ivyUri, uri, view) {
   this.uri = uri;
+  this.ivyUri = ivyUri;
 
   // Bind events for UI elements
   this.bindEvents = function() {
+    // Bind event for window
+    window.addEventListener('resize', (event) => {
+      view.init();
+    });
+
+    // Bind events for text box interactions
     const textbox = $('.js-chat-send-form .js-chatbot-input-message').get(0);
     if (!textbox) {
       console.error('Textbox is undefined. Make sure to provide a valid element.');
       return;
     }
 
-    // Bind events for text box interactions
     textbox.addEventListener('paste', (event) => {
       // Adjust textarea height after paste event
       view.adjustTextareaHeight(event.srcElement);
@@ -73,6 +79,7 @@ function ChatBot(uri, view) {
 
       // Enter is pressed
       if (event.key === 'Enter') {
+        event.preventDefault();
         this.sendMessage(event.srcElement);
         return;
       }
@@ -80,6 +87,33 @@ function ChatBot(uri, view) {
       // Adjust textarea height for other cases
       view.adjustTextareaHeight(event.srcElement);
     });
+
+    // Bind event for candidate questions
+    const candidateQuestionBlocks = $('.js-candidate-question-block');
+    if (!candidateQuestionBlocks || candidateQuestionBlocks.length == 0) {
+      return;
+    }
+
+    for (let i = 0; i < candidateQuestionBlocks.length; i++) {
+      candidateQuestionBlocks.get(i).addEventListener('click', (event) => {
+
+        // Create message object and send it
+        const inputMessage = $(event.currentTarget).find('.js-candidate-question').text();
+        const selectedMessage = { 'message': inputMessage };
+
+        // Render own message
+        view.renderMyMessage(selectedMessage);
+
+        // Clear input textbox and initialize
+        textbox.value = '';
+        view.initInputTextbox(textbox);
+
+        // Scroll to latest message
+        view.scrollToLatestMessage();
+
+        sendChatMessage(this.ivyUri, this.uri, view, inputMessage);
+      });
+    }
   };
 
   // Sending a message
@@ -92,52 +126,86 @@ function ChatBot(uri, view) {
 
     // Create message object and send it
     const message = { 'message': inputMessage };
-    await sendChatMessage(this.uri, view, message);
+
+    // Render own message
+    view.renderMyMessage(message);
+
+    // Clear input textbox and initialize
+    textbox.value = '';
+    view.initInputTextbox(textbox);
+
+    // Scroll to latest message
+    view.scrollToLatestMessage();
+
+    await sendChatMessage(this.ivyUri, this.uri, view, inputMessage);
   };
 
   this.onClickSendMessage = function(event) {
     // Send message on click then initialize input textbox
     const textbox = $('.js-chat-send-form .js-chatbot-input-message').get(0);
     this.sendMessage(textbox);
-    view.initInputTextbox(textbox);
   };
 
   // Function to send chat messages
-  async function sendChatMessage(uri, view, message) {
-    try {
-      // Send AJAX request to server
-      const response = await $.ajax({
-        type: 'POST',
-        contentType: 'application/json',
-        url: uri + '/' + clientId,
-        crossDomain: true,
-        cache: false,
-        headers: { 'X-Requested-By': 'ivy' },
-        data: JSON.stringify(message),
-      });
-
-      // Check if the response is valid JSON
-      let parsedResponse;
+  async function sendChatMessage(ivyUri, uri, view, message) {
+    if (message == 'image' || message == 'json' || message == 'link' || message == 'frame') {
       try {
-        parsedResponse = JSON.parse(response);
-      } catch (parseError) {
-        console.error('Error parsing JSON response:', parseError);
-        return;
+        // Send AJAX request to server
+        const response = await $.ajax({
+          type: 'POST',
+          contentType: 'application/json',
+          url: ivyUri + '/' + clientId,
+          crossDomain: true,
+          cache: false,
+          headers: { 'X-Requested-By': 'ivy' },
+          data: JSON.stringify({ 'message': message }),
+        });
+  
+        // Check if the response is valid JSON
+  
+        // Render the response message
+        const parsedResponse = JSON.parse(response);
+        view.renderMessage(parsedResponse.message);
+  
+        // Scroll to latest message
+        view.scrollToLatestMessage();
+      } catch (error) {
+        console.error('Error sending chat message:', error);
       }
-
-      // Render own message and received message
-      view.renderMyMessage(message);
-      view.renderMessage(parsedResponse);
-
-      // Clear input textbox and initialize
-      const textbox = $('.js-chat-send-form .js-chatbot-input-message').get(0);
-      $(textbox).val('');
-      view.initInputTextbox(textbox);
-
-      // Scroll to latest user message
-      view.scrollToLatestUserMessage();
-    } catch (error) {
-      console.error('Error sending chat message:', error);
+    } else {
+      try {
+        // Send AJAX request to the chatbot server
+        const response = await fetch(uri + '/chat/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-By': 'ivy',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST',
+          },
+          body: JSON.stringify({ 'message': message, 'session_id': '123' }),
+        });
+  
+        // Read the response as a stream of data
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder("utf-8");
+        result = '';
+  
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) {
+            break;
+          }
+  
+          // Massage and parse the chunk of data
+          const chunk = decoder.decode(value);
+          result += chunk;
+          view.renderMessage(result);
+          view.scrollToLatestMessage();
+        }
+      } catch (error) {
+        console.error('Error sending chat message:', error);
+      }
     }
   }
 }
@@ -179,7 +247,7 @@ function View(uri) {
   function renderMessageFunc(messageWrapper, isMyMessage) {
     // Clone message template
     const cloneTemplate = originalMessageTemplate.cloneNode(true);
-    const message = isMyMessage ? messageWrapper.message : parseMessage(messageWrapper.message);
+    const message = isMyMessage ? messageWrapper.message : parseMessage(messageWrapper);
 
     // Set message content
     cloneTemplate.getElementsByClassName('js-message')[0].innerHTML = message;
@@ -227,16 +295,12 @@ function View(uri) {
   };
 
   // Scroll to the latest user message
-  this.scrollToLatestUserMessage = function() {
+  this.scrollToLatestMessage = function() {
     const $messageList = $('.js-message-list');
-    const $latestMessage = $('.my-message').last();
-
-    if ($latestMessage.length > 0) {
-      // Scroll to the latest message with animation
-      $messageList.animate({
-        scrollTop: $latestMessage.offset().top - $messageList.offset().top + $messageList.scrollTop()
-      }, 500);
-    }
+    // Scroll to the bottom of the message list with animation
+    $messageList.animate({
+      scrollTop: $messageList[0].scrollHeight
+    }, 500);
   };
 
   // Adjust textarea height based on content
@@ -265,7 +329,8 @@ function View(uri) {
   };
   
   function initTextbox(textbox) {
-    const initialHeight = 2 * parseFloat(getComputedStyle(textbox).fontSize);
+    // Initial height of the textbox equals to 5 times font size
+    const initialHeight = 5 * parseFloat(getComputedStyle(textbox).fontSize);
     const paddingTop = parseFloat(getComputedStyle(textbox).paddingTop);
     const paddingBottom = parseFloat(getComputedStyle(textbox).paddingBottom);
     textbox.style.height = initialHeight + paddingTop + paddingBottom + 'px';
