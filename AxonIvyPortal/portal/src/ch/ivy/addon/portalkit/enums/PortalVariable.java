@@ -15,7 +15,8 @@ public enum PortalVariable {
   DASHBOARD_TEMPLATES("Portal.DashboardTemplates"),
   USER_MENU("Portal.UserMenu"),
   CUSTOM_MENU_ITEMS("Portal.CustomMenuItems"),
-  STATISTIC_DATA("Portal.StatisticData");
+  STATISTIC_DATA("Portal.StatisticData"),
+  CHATBOT_ENDPOINT("Portal.Chat.ChatBotEndpoint");
 
   public String key;
 

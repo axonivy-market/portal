@@ -1572,6 +1572,9 @@ Dialogs:
     axonivy:
       portal:
         component:
+          ChatDashboard:
+            WelcomeHeaderText: Willkommen bei Axon Ivy Portal!
+            WelcomeText: Wir freuen uns, Sie an Bord zu haben. Das Axon Ivy Portal ist Ihr Tor zu einer nahtlosen und effizienten Erfahrung. Egal, ob Sie ein neuer Benutzer sind, der die Funktionen erkundet, oder ein wiederkehrender Besucher, wir sind hier, um Sie bei jedem Schritt zu unterstützen.
           ShareLinkDialog:
             CopyLink: Link kopieren
             LinkCopied: Link kopiert!
@@ -1716,6 +1719,16 @@ Labels:
   AppendTheTask: Aufgabe anhängen
   CreateNewDashboard: Neues Dashboard erstellen
   Enums:
+    ChatbotCandidateQuestion:
+      EXPLORE:
+        header: Explore
+        question: What are the key features of Portal?
+      INTERACT:
+        header: Interact
+        question: List out tasks that require completion within the current week.
+      TUTORIAL:
+        header: Tutorial
+        question: Are there Portal tutorials or documentation available for new users?
     SearchScopeCaseField:
       CUSTOM: Benutzerdefinierte Stringfelder
       DESCRIPTION: Beschreibung

@@ -5,4 +5,5 @@
 # please add a 'variables.yaml' in the sub directory '_<environment>'.
 #
 Variables:
-  #myVariable: value
+  #URL to the REST service endpoint of Portal AI
+  PortalAiUrl: 'http://localhost:8018'

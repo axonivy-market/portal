@@ -182,6 +182,9 @@ Variables:
       # [enum: 1, 2, 3, 4, 5]
       MaxConnection: 3
 
+      # Endpoint URL for the RESTful service of Portal chatbot
+      ChatBotEndpoint: 
+
     Histories:
       # If true, case note does not display any system tasks for non-administrator users.
       HideSystemTasks: true
