@@ -2,8 +2,7 @@
 const URL_PATTERN = /\b(?:https?:\/\/www\.|https?:\/\/|www\.)[a-z0-9]+(?:[.\-][a-z0-9]+)*\.[a-z]{2,5}(?::[0-9]{1,5})?(?:\/[^()\s]*)?(?:(?:\([^()]*\))*)\b/ig;
 const IMAGE_PATTERN = /\.(jpg|jpeg|png|webp|avif|gif|svg)$/;
 const HAS_HTTP_PATTERN = /^https?:\/\//i;
-const CODE_TAG_START = '<code>';
-const CODE_TAG_END = '</code>';
+const CODE_TAG = '```';
 const IFRAME_TAG_START = '<iframe>';
 const IFRAME_TAG_END = '</iframe>';
 const HLJS_LANGUAGE_PREFIX = 'language-';
@@ -14,7 +13,7 @@ const HLJS_LANGUAGE_PREFIX = 'language-';
 const elemToString = el => el.outerHTML;
 
 // Checks if a paragraph starts with a code tag.
-const isCode = paragraph => paragraph.startsWith(CODE_TAG_START);
+const isCode = paragraph => paragraph.startsWith(CODE_TAG);
 
 // Checks if a URL is an image URL.
 const isImageUrl = url => isUrl(url) && url.match(IMAGE_PATTERN);
@@ -29,9 +28,25 @@ const addLink = word => (isUrl(word) ? generateLinkComponent(word) : word);
 
 // Converts a code block paragraph to a formatted code component.
 const convertCode = paragraph => {
-  paragraph = paragraph.replace(CODE_TAG_START, '');
+  const removeCodeTags = paragraph => {
+    var lines = paragraph.split('\n');
+
+    if (lines.legnth <= 1) {
+      return paragraph;
+    }
+
+    // Filter out lines start with the CODE_TAG
+    var filteredLines = lines.filter(function(line) {
+      return !line.startsWith(CODE_TAG);
+    });
+
+    // Join the filtered lines back into a single string
+    return filteredLines.join('\n');
+  };
+  
+  paragraph = removeCodeTags(paragraph);
   paragraph = generateCodeComponent(paragraph);
-  return paragraph.endsWith(CODE_TAG_END) ? paragraph.slice(0, -CODE_TAG_END.length) : paragraph;
+  return paragraph.endsWith(CODE_TAG) ? paragraph.slice(0, -CODE_TAG.length) : paragraph;
 };
 
 // Converts a iframe block paragraph to a Iframe component.

@@ -93,7 +93,7 @@ public class ChatBotRestService {
         This is an JSON example of Portal Dashboard
         
         
-        <code>
+        ```json
         [
          {
              "id" : "axon-ivy",
@@ -125,7 +125,8 @@ public class ChatBotRestService {
                  "isPublicDashboard":"false"
              }
          }
-     ]</code>""");
+     ]
+     ```""");
   }
 
   private void mockDefaultResponse(ChatMessage response) {
