@@ -24,10 +24,14 @@ $(document).ready(function () {
     closeNotificationPanel();
     let notificationPanel = document.getElementById("notifications-panel");
     let bellIcon = document.getElementById('open-notifications-panel');
+    let isClickOnBell = false;
     document.addEventListener('click', event => {
         const isClickInside = notificationPanel.contains(event.target);
-        const isClickOnBell = bellIcon.contains(event.target);
-
+        if (bellIcon !== null && bellIcon !== undefined){
+            isClickOnBell = bellIcon.contains(event.target);
+        } else {
+            isClickOnBell = false;
+        }
         if (!isClickInside && notificationPanel.style.right === '0px') {
             notificationPanel.style.right = "-420px";
         } else if (isClickOnBell) {
