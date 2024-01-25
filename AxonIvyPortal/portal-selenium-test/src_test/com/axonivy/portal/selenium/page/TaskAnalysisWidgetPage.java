@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.textCaseSensitive;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -11,7 +12,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
@@ -195,8 +195,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     SelenideElement saveButton =
         $("button[id$='task-widget:filter-save-form:filter-save-command']").shouldBe(appear, DEFAULT_TIMEOUT);
     waitForElementClickableThenClick(saveButton);
-    $("[id='task-widget:save-filter-set-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
-    saveButton.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    $("div[id$='filter-selection-container']").shouldBe(textCaseSensitive(filterSetName));
   }
 
   public void waitForTaskDataChangeToSpecificSize(int size) {

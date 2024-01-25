@@ -65,8 +65,7 @@ public final class WaitHelper {
    */
   public static void waitForActionComplete(String cssSelector, Runnable action) {
     ((JavascriptExecutor) WebDriverRunner.getWebDriver())
-        .executeScript("$('" + cssSelector.replace("\\", "\\\\") + "').css('background-color', 'rgb(250, 0, 0)')");
-    $(cssSelector).getCssValue("background-color");
+        .executeScript("$(\"" + cssSelector + "\").css('background-color', 'rgb(250, 0, 0)')");
     $(cssSelector).shouldHave(Condition.cssValue("background-color", "rgb(250, 0, 0)"));
     action.run();
     $(cssSelector).shouldNotHave(Condition.cssValue("background-color", "rgb(250, 0, 0)"));

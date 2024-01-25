@@ -14,6 +14,7 @@ import org.openqa.selenium.WebElement;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.MainMenuPage;
@@ -225,7 +226,8 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     taskAnalysisWidgetPage.countSavedFilter(2);
     statisticWidgetPage = taskAnalysisWidgetPage.navigateToStatisticPage();
     TaskAnalysisWidgetPage secondTaskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
-    secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, false);
+    secondTaskAnalysisWidgetPage =
+        loadFilterSetWithWaitingElasticSearch(filterSetName, false, secondTaskAnalysisWidgetPage);
     secondTaskAnalysisWidgetPage.waitForTaskDataChangeToSpecificSize(1);
     List<WebElement> resultCells = secondTaskAnalysisWidgetPage.getRowsInTaskTable().get(0)
         .findElements(By.cssSelector("td:not([class='ui-helper-hidden'])"));
@@ -244,7 +246,8 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     taskAnalysisWidgetPage.countSavedFilter(2);
     statisticWidgetPage = taskAnalysisWidgetPage.navigateToStatisticPage();
     TaskAnalysisWidgetPage secondTaskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
-    secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, true);
+    secondTaskAnalysisWidgetPage =
+        loadFilterSetWithWaitingElasticSearch(filterSetName, true, secondTaskAnalysisWidgetPage);
     secondTaskAnalysisWidgetPage.waitForTaskDataChangeToSpecificSize(1);
 
     List<WebElement> resultCells = secondTaskAnalysisWidgetPage.getRowsInTaskTable().get(0)
@@ -252,6 +255,19 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     assertTrue(resultCells.get(0).getText().toLowerCase().contains("request"));
     assertTrue(resultCells.get(1).getText().equals("RUNNING"));
     assertTrue(resultCells.get(2).getText().toLowerCase().contains("annual"));
+  }
+
+  private TaskAnalysisWidgetPage loadFilterSetWithWaitingElasticSearch(String filterSetName, boolean isPersonalFilter,
+      TaskAnalysisWidgetPage secondTaskAnalysisWidgetPage) {
+    try {
+      secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, isPersonalFilter);
+    } catch (Throwable t) {
+      // Elastic search could be slow, workaround with refresh page and check again
+      StatisticWidgetPage statisticWidgetPage = NavigationHelper.navigateToStatisticPage();
+      secondTaskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
+      secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, isPersonalFilter);
+    }
+    return secondTaskAnalysisWidgetPage;
   }
 
   private void createTestData() {

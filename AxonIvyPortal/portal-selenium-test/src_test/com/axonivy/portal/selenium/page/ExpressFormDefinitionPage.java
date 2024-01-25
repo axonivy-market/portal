@@ -233,7 +233,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   }
 
   private void clickOnFormCreationTabIndex(int tabIndex) {
-    WaitHelper.waitForActionComplete("#form\\:create-tabs ul", () -> waitForElementClickableThenClick(
+    WaitHelper.waitForActionComplete("div[id$=':create-tabs']  ul", () -> waitForElementClickableThenClick(
         By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][" + tabIndex + "]")));
   }
 
