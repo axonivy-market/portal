@@ -155,4 +155,7 @@
   --notification-label-font-size: 12px;
   --notification-label-item-font-size: 0.75em;
   --notifications-title-header-font-weight: bold;
+
+  /* Chatbot */
+  --candidate-question-header-font-size: 1.5rem;
 }
