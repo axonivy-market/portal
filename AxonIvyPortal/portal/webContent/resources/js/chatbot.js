@@ -13,6 +13,8 @@ let isChatDeactivated = false;
 let hasPendingRequestForSendersOfUnreadMessages = false;
 let hidden, visibilityChange;
 
+let streaming = false;
+
 // Handling browser visibility change
 if (typeof document.hidden !== 'undefined') {
   hidden = 'hidden';
@@ -190,10 +192,13 @@ function ChatBot(ivyUri, uri, view) {
         const reader = response.body.getReader();
         const decoder = new TextDecoder("utf-8");
         result = '';
-  
+
         while (true) {
+          streaming = true;
           const { done, value } = await reader.read();
           if (done) {
+            streaming = false;
+            view.removeStreamingClassFromMessage();
             break;
           }
   
@@ -232,7 +237,11 @@ function View(uri) {
     // Set value for message components
     setValueForMessageComponent();
     // Render the message
-    renderMessageFunc(message, false);
+    if (streaming) {
+      updateMessageFunc(message);
+    } else {
+      renderNewMessageFunc(message, false);
+    }
   };
 
   // Rendering user's own messages
@@ -240,11 +249,11 @@ function View(uri) {
     // Set value for message components
     setValueForMessageComponent();
     // Render own message
-    renderMessageFunc(message, true);
+    renderNewMessageFunc(message, true);
   };
 
   // Helper function for rendering messages
-  function renderMessageFunc(messageWrapper, isMyMessage) {
+  function renderNewMessageFunc(messageWrapper, isMyMessage) {
     // Clone message template
     const cloneTemplate = originalMessageTemplate.cloneNode(true);
     const message = isMyMessage ? messageWrapper.message : parseMessage(messageWrapper);
@@ -268,6 +277,26 @@ function View(uri) {
     return cloneTemplate;
   }
 
+  // Helper function for update message
+  function updateMessageFunc(messageWrapper) {
+    // Clone message template
+    const cloneTemplate = originalMessageTemplate.cloneNode(true);
+    const message = parseMessage(messageWrapper);
+
+    // Set message content
+    cloneTemplate.getElementsByClassName('js-message')[0].innerHTML = message;
+    $(cloneTemplate).removeClass('u-hidden').removeClass('js-message-template');
+
+    // Set width to auto if has iframe inside the chat message
+    if (cloneTemplate.querySelector('iframe') != null) {
+      $(cloneTemplate).find('.chatbot-meta').get(0).style.width = 'auto';
+    }
+
+    // Update the streaming message
+    updateStreamingMessage(cloneTemplate);
+    return cloneTemplate;
+  }
+
   // Helper function for appending messages to the message list
   function appendMessageToList(cloneTemplate) {
     const $messageList = $(jsMessageList);
@@ -283,6 +312,27 @@ function View(uri) {
       }, 0);
     }
   }
+  
+  function updateStreamingMessage(cloneTemplate) {
+    const messageList = $(jsMessageList);
+    const streamingMessage = messageList.find('.chat-message-container.streaming');
+
+    // Create streaming message if not exist
+    if (streamingMessage.length == 0) {
+      $(cloneTemplate).addClass('streaming');
+      messageList.append(cloneTemplate);
+      return;
+    }
+
+    // Update existing streaming message
+    streamingMessage.get(0).innerHTML = cloneTemplate.innerHTML;
+  }
+
+  this.removeStreamingClassFromMessage = function() {
+    const messageList = $(jsMessageList);
+    const streamingMessage = messageList.find('.chat-message-container.streaming');
+    streamingMessage.removeClass('streaming');
+  }
 
   // Add new line to the textbox
   this.addNewLineToTextbox = function(textbox) {
@@ -294,13 +344,13 @@ function View(uri) {
     textbox.scrollTop = textbox.scrollHeight;
   };
 
-  // Scroll to the latest user message
+  // Scroll to the latest message
   this.scrollToLatestMessage = function() {
     const $messageList = $('.js-message-list');
     // Scroll to the bottom of the message list with animation
     $messageList.animate({
       scrollTop: $messageList[0].scrollHeight
-    }, 500);
+    }, 0);
   };
 
   // Adjust textarea height based on content
