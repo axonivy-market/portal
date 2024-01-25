@@ -26,7 +26,7 @@ public class CaseFilterFieldState extends FilterField {
     filter.setFilterField(this);
     filter.setFilterType(DashboardColumnType.STANDARD);
     filter.setField(getName());
-
+    filter.setFilterFormat(null);
   }
 
   @Override

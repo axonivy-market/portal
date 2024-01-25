@@ -261,8 +261,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       showCaseDurationTime: For switch on/off the display of the duration time in case details page.
       showErrorLogToConsole: Set to true to enable write error log to browser console
       showGlobalSearch: For switch on/off the display of the global search.
-      showQuickGlobalSearch: For switch on/off the display of the quick global search.
       showProcessInformation: Set to false to disable link to Show Information of process on Processes page (grid mode) and Case Details.
+      showQuickGlobalSearch: For switch on/off the display of the quick global search.
       showTaskDurationTime: For switch on/off the display of the duration time in task details page.
       statisticChartScalingInterval: Interval in seconds to do periodic statistic chart scaling requests. If the interval value is less than 10, periodic statistic chart scaling is disabled.
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
@@ -1751,7 +1751,7 @@ Labels:
       LESS_OR_EQUAL: Less or equal
       NEXT: Within the next
       NOT_BETWEEN: Not Between
-      NOT_CONTAINS: Does Not Contain
+      NOT_CONTAINS: Doesn’t Contain
       NOT_EMPTY: Is Not Empty
       NOT_END_WITH: Doesn’t end with
       NOT_EQUAL: Not equal
