@@ -21,7 +21,7 @@ public class LoginPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "#login\\:login-form\\:login-command";
+    return "[id='login:login-form:login-command']";
   }
 
   public LoginPage(TestAccount testAccount) {
