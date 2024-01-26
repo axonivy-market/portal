@@ -1,4 +1,0 @@
-PageFooterData #class
-com.axonivy.portal.userexamples.PageFooter #namespace
-content String #field
-content PERSISTENT #fieldModifier
