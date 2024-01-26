@@ -8,9 +8,9 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.safety.Safelist;
 
 import com.axonivy.portal.components.datamodel.internal.CaseHistoryLazyDataModel;
+import com.axonivy.portal.components.util.HtmlParser;
 import com.axonivy.portal.components.util.UserFormatUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
@@ -54,15 +54,11 @@ public class ProcessHistoryComponentBean implements Serializable {
   }
 
   private String parseTextFromHtml(String text) {
-    String sanitizedText = sanitize(text);
+    String sanitizedText = HtmlParser.sanitize(text);
     Document doc = Jsoup.parse(sanitizedText);
     return doc.body().text();
   }
 
-  private String sanitize(String text) {
-    return Jsoup.clean(text, Safelist.relaxed().addAttributes(":all", "style"));
-  }
-  
   public String getState(ICase iCase) {
     if (iCase == null) {
       return "";
