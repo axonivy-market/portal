@@ -1,8 +1,13 @@
 pipeline {
-  agent {label 'danh-pc'}
+  agent {label 'portal-slave'}
 
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '60'))
+  }
+
+  triggers {
+    pollSCM '0 7 * * *'
+    cron('0 11 * * *')
   }
 
   tools {
@@ -28,6 +33,7 @@ pipeline {
     stage('build') {
       steps {
         script {
+          currentBuild.description = "On ${env.NODE_NAME}"
           def utils = load 'build/common/utils.groovy'
           utils.init()
           utils.stopAllEngines()
