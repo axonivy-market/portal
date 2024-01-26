@@ -162,7 +162,7 @@ public class DashboardScreenshotTest extends ScreenshotTest{
   @Test
   public void screenshotNewDashboardUserGuide() throws IOException {
     showNewDashboard();
-    ScreenshotUtils.maximizeBrowser();
+    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_HD_WIDTH, 1080));
     homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "dashboard");
@@ -187,6 +187,7 @@ public class DashboardScreenshotTest extends ScreenshotTest{
 
     // Take screenshot of case Excel export link
     var caseInfoOverlayPanel = homePage.openWidgetInformation(1);
+    homePage.waitForWidgetInfoLoading(caseInfoOverlayPanel);
     ScreenshotUtils.executeDecorateJs("highlightWidgetExportToExcelLinkForCase()");
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseInfoOverlayPanel,
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-export-excel", new ScreenshotMargin(20));
@@ -204,7 +205,6 @@ public class DashboardScreenshotTest extends ScreenshotTest{
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "edit-widget");
 
     // Take screenshot of Add new widget dialog
-    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_HD_WIDTH, 1080));
     refreshPage();
     WebElement newWidgetDialog = detailsEditPage.addWidget();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(newWidgetDialog,
