@@ -40,9 +40,9 @@
     </h:form>
     <f:facet name="message">
       <h:outputText rendered="#{task.state != 'CREATED'}" styleClass="ui-confirm-dialog-message"
-                    escape="false" value="#{visibilityBean.sanitizeContent(ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLogout'))}" />
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLogout')}" />
       <h:outputText rendered="#{task.state == 'CREATED'}" styleClass="ui-confirm-dialog-message"
-                    escape="false" value="#{visibilityBean.sanitizeContent(ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLogout'))}" />
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLogout')}" />
     </f:facet>
   </p:confirmDialog>
 
