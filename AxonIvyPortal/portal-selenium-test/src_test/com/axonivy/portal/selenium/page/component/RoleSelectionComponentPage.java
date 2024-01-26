@@ -1,9 +1,10 @@
 package com.axonivy.portal.selenium.page.component;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
 
 import com.axonivy.portal.selenium.page.TemplatePage;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
@@ -33,42 +34,42 @@ public class RoleSelectionComponentPage extends TemplatePage {
   public String selectFirstItemForDefaultRoleSelectionComponent(String keyword) {
     SelenideElement roleElement = selectRoleSelection("default-role-autocomplete", keyword);
     roleElement.shouldBe(getClickableCondition()).click();
-    $("span[id$='default-role-autocomplete_panel']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    $("span[id$='default-role-autocomplete_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
     return roleElement.attr("data-item-value");
   }
 
   public String selectFirstItemForFloatingLabelAndExcludeRoleSelectionComponent(String keyword) {
     SelenideElement roleElement = selectRoleSelection("floating-label-and-exclude-role-autocomplete", keyword);
     roleElement.shouldBe(getClickableCondition()).click();
-    $("span[id$='floating-label-and-exclude-role-autocomplete_panel']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    $("span[id$='floating-label-and-exclude-role-autocomplete_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
     return roleElement.attr("data-item-value");
   }
 
   public String selectFirstItemForRoleFromDefinedRoleSelectionComponent(String keyword) {
     SelenideElement roleElement = selectRoleSelection("role-from-defined-role-autocomplete", keyword);
     roleElement.shouldBe(getClickableCondition()).click();
-    $("span[id$='role-from-defined-role-autocomplete_panel']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    $("span[id$='role-from-defined-role-autocomplete_panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
     return roleElement.attr("data-item-value");
   }
 
   public String selectFirstItemForAjaxEventRoleSelectionComponent(String keyword) {
     SelenideElement roleElement = selectRoleSelection("item-select-event-for-role-selection", keyword);
     roleElement.shouldBe(getClickableCondition()).click();
-    $("[id$='item-select-event-for-role-selection-message_info-detail']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("[id$='item-select-event-for-role-selection-message_info-detail']").shouldBe(appear, DEFAULT_TIMEOUT);
     return roleElement.attr("data-item-value");
   }
 
   public void openSelectionPanelForAjaxEventRoleSelectionComponent(String keyword) {
     $("input[id$='item-select-event-for-role-selection_input']").clear();
     $("input[id$='item-select-event-for-role-selection_input']").sendKeys(keyword);
-    $("span[id$='item-select-event-for-role-selection_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("span[id$='item-select-event-for-role-selection_panel']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   private SelenideElement selectRoleSelection(String componentId, String keyword) {
-    $("input[id$='" + componentId + "_input']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).clear();
+    $("input[id$='" + componentId + "_input']").shouldBe(appear, DEFAULT_TIMEOUT).clear();
     $("input[id$='" + componentId + "_input']").sendKeys(keyword);
     ElementsCollection selectionItems = $("span[id$='" + componentId + "_panel']")
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).findAll(".ui-autocomplete-item");
+        .shouldBe(appear, DEFAULT_TIMEOUT).findAll(".ui-autocomplete-item");
     return selectionItems.get(0);
   }
 

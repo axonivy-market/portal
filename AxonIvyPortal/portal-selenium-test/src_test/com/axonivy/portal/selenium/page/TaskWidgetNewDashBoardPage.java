@@ -122,7 +122,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void applyFilter() {
     $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='apply-button']")
         .filter(text("Apply")).first().shouldBe(getClickableCondition()).click();
-    $("div[id$='task-task_1:filter-overlay-panel-0']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    $("div[id$='task-task_1:filter-overlay-panel-0']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
   
   public void resetFilter() {
@@ -334,8 +334,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   
   public void triggerEscalationTask(int taskIndex) {
     getActiveTaskActions(taskIndex).filter(text("Trigger Escalation")).first().shouldBe(getClickableCondition()).click();
-    $("div[id='escalation-task-confirmation-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    $("button[id='confirm-escalation-dashboard-tasks']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("div[id='escalation-task-confirmation-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("button[id='confirm-escalation-dashboard-tasks']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
   
   private ElementsCollection getColumnsOfTableWidget() {

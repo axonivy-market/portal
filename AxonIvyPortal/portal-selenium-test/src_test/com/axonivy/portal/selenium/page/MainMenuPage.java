@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -52,12 +53,12 @@ public class MainMenuPage extends TemplatePage {
   }
 
   private void waitLeftMenuReady() {
-    $("[id$=':main-navigator:main-menu']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id$=':main-navigator:main-menu']").shouldBe(exist, DEFAULT_TIMEOUT).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void expandMainMenu() {
     waitLeftMenuReady();
-    if ($("a[id$='user-menu-required-login:toggle-menu']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).is(disappear)) {
+    if ($("a[id$='user-menu-required-login:toggle-menu']").shouldBe(exist, DEFAULT_TIMEOUT).is(disappear)) {
       $("[id$=':main-navigator:main-menu']").hover();
       WaitHelper.waitNumberOfElementsToBe(WebDriverRunner.getWebDriver(), By.id("user-menu-required-login:toggle-menu"), 1);
       $("a[id$='user-menu-required-login:toggle-menu']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
@@ -77,7 +78,7 @@ public class MainMenuPage extends TemplatePage {
 
   public void closeMainMenu() {
     waitLeftMenuReady();
-    if ($("a[id$='user-menu-required-login:toggle-menu']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).is(appear)) {
+    if ($("a[id$='user-menu-required-login:toggle-menu']").shouldBe(exist, DEFAULT_TIMEOUT).is(appear)) {
       $("a[id$='user-menu-required-login:toggle-menu']").shouldBe(appear, DEFAULT_TIMEOUT)
           .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
       $(".js-layout-main").hover();

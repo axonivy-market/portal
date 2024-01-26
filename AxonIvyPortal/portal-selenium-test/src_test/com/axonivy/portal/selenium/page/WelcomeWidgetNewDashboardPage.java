@@ -1,8 +1,8 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Condition.appear;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 public class WelcomeWidgetNewDashboardPage extends TemplatePage {
@@ -15,6 +15,6 @@ public class WelcomeWidgetNewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getWelcomeText(String widgetId) {
-    return $("[id = '" + String.format(WELCOME_TEXT_ID_PATTERN, widgetId) + "']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $("[id = '" + String.format(WELCOME_TEXT_ID_PATTERN, widgetId) + "']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 }

@@ -121,7 +121,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   
   public SelenideElement getAddLanguageButton() {
     SelenideElement addLanguageButton = $("button[id$='add-language-button']");
-    addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    addLanguageButton.shouldBe(appear, DEFAULT_TIMEOUT);
     addLanguageButton.shouldBe(getClickableCondition());
     waitUntilElementToBeClickable(addLanguageButton);
     return addLanguageButton;
@@ -129,7 +129,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
 
   public SelenideElement getMultipleLanguageDialog() {
     SelenideElement addLanguageButton = $("div[id$='multiple-languages-dialog']");
-    addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    addLanguageButton.shouldBe(appear, DEFAULT_TIMEOUT);
     return addLanguageButton;
   }
 
@@ -158,7 +158,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public String addFirstStandardField() {
     getStandardFieldSelection().click();
     SelenideElement standardFieldPanel = $("div[id$='column-management-form:standard-field-selection_panel']");
-    standardFieldPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    standardFieldPanel.shouldBe(appear, DEFAULT_TIMEOUT);
     SelenideElement firstFieldElement = standardFieldPanel.$("li").shouldBe(getClickableCondition());
     String field = firstFieldElement.getText();
     firstFieldElement.click();
@@ -168,7 +168,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
 
     getColumnManagementDialog().$("button[id$='field-add-btn']").click();
 
-    getAddedFieldRemoveLink(field).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    getAddedFieldRemoveLink(field).shouldBe(appear, DEFAULT_TIMEOUT);
     return field;
   }
 
@@ -178,14 +178,14 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void selectFieldType(String type) {
     getColumnManagementDialog().$("div[id$='field-type-selection'] span.ui-icon-triangle-1-s")
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(Condition.enabled, DEFAULT_TIMEOUT).click();
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(Condition.enabled, DEFAULT_TIMEOUT).click();
     $("div[id$='column-management-form:field-type-selection_panel'] li[data-label='" + type + "']").click();
   }
 
   public SelenideElement getCustomField(String field) {
     getCustomFieldSelection().click();
     SelenideElement customFieldPanel = $("span[id$='column-management-form:custom-field-selection_panel']");
-    customFieldPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    customFieldPanel.shouldBe(appear, DEFAULT_TIMEOUT);
     return customFieldPanel.$("li[data-item-value='" + field + "']");
   }
 
@@ -203,14 +203,14 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     selectCustomType();
     getCustomFieldSelection().click();
     SelenideElement customFieldPanel = $("span[id$='column-management-form:custom-field-selection_panel']");
-    customFieldPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    customFieldPanel.shouldBe(appear, DEFAULT_TIMEOUT);
     SelenideElement firstFieldElement = customFieldPanel.$("li").shouldBe(getClickableCondition());
     String field = firstFieldElement.getText();
     firstFieldElement.click();
 
     getColumnManagementDialog().$("button[id$='field-add-btn']").click();
 
-    getAddedFieldRemoveLink(field).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    getAddedFieldRemoveLink(field).shouldBe(appear, DEFAULT_TIMEOUT);
     return field;
   }
 
@@ -232,7 +232,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public SelenideElement getStandardField(String field) {
     getStandardFieldSelection().click();
     SelenideElement standardFieldPanel = $("div[id$='column-management-form:standard-field-selection_panel']");
-    standardFieldPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    standardFieldPanel.shouldBe(appear, DEFAULT_TIMEOUT);
     return standardFieldPanel.$("li[data-label='" + field + "']");
   }
 
@@ -243,7 +243,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public void removeAddedField(String field) {
     SelenideElement removeLink = getAddedFieldRemoveLink(field);
     removeLink.click();
-    removeLink.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    removeLink.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getAddedFieldRemoveLink(String field) {
@@ -253,7 +253,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
 
   public WebElement openMultiLanguageDialogWhenAddWidget() {
     getAddLanguageButton().click();
-    getMultiLanguageDialogWhenAddWidget().shouldBe(Condition.appear, DEFAULT_TIMEOUT).$(".ui-dialog-title")
+    getMultiLanguageDialogWhenAddWidget().shouldBe(appear, DEFAULT_TIMEOUT).$(".ui-dialog-title")
         .shouldBe(appear, DEFAULT_TIMEOUT).click();
     return getMultiLanguageDialogWhenAddWidget();
   }
@@ -265,7 +265,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void cancelMultiLanguageDialogWhenAddWidget() {
     $("a[id$=':multi-language-cancel-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    getMultiLanguageDialogWhenAddWidget().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    getMultiLanguageDialogWhenAddWidget().shouldBe(disappear, DEFAULT_TIMEOUT);
   }
   
   public WebElement getConfigurationFilter() {

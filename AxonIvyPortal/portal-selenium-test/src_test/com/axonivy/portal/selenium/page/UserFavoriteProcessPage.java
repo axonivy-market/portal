@@ -9,7 +9,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.WaitHelper;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
@@ -28,7 +27,7 @@ public class UserFavoriteProcessPage extends TemplatePage{
   }
 
   public void selectProcessByName(String ivyProcessName) {
-    $("input[id$='process-widget:new-process-name_input']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).sendKeys(ivyProcessName);
+    $("input[id$='process-widget:new-process-name_input']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(ivyProcessName);
 
     String processSelector = String.format("tr[data-item-label='%s']", ivyProcessName);
     clickByCssSelector(processSelector);
@@ -48,7 +47,7 @@ public class UserFavoriteProcessPage extends TemplatePage{
   }
   
   public void inputSearchedIconName(String keyword) {
-    $("input[id$='search-icon-name-field']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).sendKeys(keyword);
+    $("input[id$='search-icon-name-field']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(keyword);
   }
   
   public int getDisplayedIconAmount() {

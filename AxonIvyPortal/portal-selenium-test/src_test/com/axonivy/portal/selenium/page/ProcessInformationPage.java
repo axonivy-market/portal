@@ -1,8 +1,9 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.enabled;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 public class ProcessInformationPage extends TemplatePage {
@@ -15,7 +16,7 @@ public class ProcessInformationPage extends TemplatePage {
   }
 
   public SelenideElement getDisplayedBackLink() {
-    return getBackLink().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return getBackLink().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getBackLink() {
@@ -24,11 +25,11 @@ public class ProcessInformationPage extends TemplatePage {
   
   public void checkBackLinkAndStartButtonShown() {
     getDisplayedBackLink();
-    getDisplayedStartButton().shouldBe(Condition.enabled);
+    getDisplayedStartButton().shouldBe(enabled);
   }
 
   public SelenideElement getDisplayedStartButton() {
-    return getStartButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return getStartButton().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getStartButton() {

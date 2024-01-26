@@ -9,7 +9,6 @@ import static com.codeborne.selenide.Selenide.$$;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
@@ -41,8 +40,8 @@ public class CustomWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void selectProcess(String processName) {
-    getSelectedProcess().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    $("input[id$=':selected-process_input']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).sendKeys(processName);
+    getSelectedProcess().shouldBe(appear, DEFAULT_TIMEOUT);
+    $("input[id$=':selected-process_input']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(processName);
   }
 
   public SelenideElement getSelectedProcess() {
@@ -50,9 +49,9 @@ public class CustomWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickSaveCustomWidget() {
-    $("button[id='widget-configuration-save-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    $("button[id='widget-configuration-save-button']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
-    $("div[id='new-widget-configuration-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    $("div[id='new-widget-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public ElementsCollection getSelectedProcessList() {
@@ -60,7 +59,7 @@ public class CustomWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void selectWidgetType(String type) {
-    getWidgetType().shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("label[id$=':custom-widget-type_label']")
+    getWidgetType().shouldBe(appear, DEFAULT_TIMEOUT).$("label[id$=':custom-widget-type_label']")
         .shouldBe(getClickableCondition()).click();
     $("li[data-label='" + type + "']").click();
   }

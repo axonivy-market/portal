@@ -2,6 +2,8 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -17,10 +19,10 @@ import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.Condition;
 
 public class TaskDetailsPage extends TemplatePage {
 
@@ -57,38 +59,38 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public SelenideElement getBreadcrumbLastDisplayedItem() {
-    return $$("span.ui-menuitem-text").last().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $$("span.ui-menuitem-text").last().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getInformationPanel() {
-    return $("div[id$='task-details-information-panel'").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $("div[id$='task-details-information-panel'").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
   public void openActionPanel() {
-    $("[id$=':additional-options:task-detail-more-step']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("[id$=':additional-options:side-steps-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("[id$=':additional-options:task-detail-more-step']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("[id$=':additional-options:side-steps-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
   private void openTriggerEscalationDialog() {
-    $("a[id$='\\:task-trigger-escalation-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("div[id$='\\:escalation-task-confirmation-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("a[id$='\\:task-trigger-escalation-command']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("div[id$='\\:escalation-task-confirmation-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
   public void triggerEscalation() {
     openTriggerEscalationDialog();
-    $("button[id$='\\:confirm-escalation']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("button[id$='\\:confirm-escalation']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
   
   public SelenideElement getPriorityOfTask() {
-    return $("span[id$='task-priority']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("i[class*='priority']").closest("span");
+    return $("span[id$='task-priority']").shouldBe(appear, DEFAULT_TIMEOUT).$("i[class*='priority']").closest("span");
   }
   
   public SelenideElement getStateOfTask() {
-    return $("[id$=':general-information:task-detail-state']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("i[class*='task-state']").closest("span");
+    return $("[id$=':general-information:task-detail-state']").shouldBe(appear, DEFAULT_TIMEOUT).$("i[class*='task-state']").closest("span");
   }
   
   public void back() {
-    $("[id$=':task-detail-title-form:back-to-previous-page']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("[id$=':task-detail-title-form:back-to-previous-page']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
 
   public SelenideElement getResponsibleAvatar() {
@@ -104,26 +106,26 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void waitUntilTaskDetailsDisplayed() {
-    $("[id$=':task-detail-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("[id$=':task-detail-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getSharePageButtonElement() {
-    return $("[id$=':share-page-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $("[id$=':share-page-button']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getSwitchToEditModeButtonElement() {
-    return $("[id$=':switch-to-edit-mode-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $("[id$=':switch-to-edit-mode-button']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void clickOnSwitchToEditModeButton() {
-    $(By.cssSelector("[id$=':switch-to-edit-mode-button']")).shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    $(By.cssSelector("[id$=':switch-to-edit-mode-button']")).shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
-    $("[id$='task-details-information-panel']").shouldBe(Condition.visible, DEFAULT_TIMEOUT).shouldHave(
+    $("[id$='task-details-information-panel']").shouldBe(visible, DEFAULT_TIMEOUT).shouldHave(
         Condition.attribute(CLASS_PROPERTY, "grid-stack-item ui-draggable ui-resizable ui-resizable-autohide"));
   }
 
   public void waitForSwitchToViewModeButtonDisplayed() {
-    $(By.cssSelector("[id$=':switch-to-view-mode-button']")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $(By.cssSelector("[id$=':switch-to-view-mode-button']")).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void dragAndDropWidgets(String sourceName, String destinationName) {
@@ -154,22 +156,22 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public SelenideElement getTaskGeneralInformation() {
-    return $("[id$=':task-detail-general-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $("[id$=':task-detail-general-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void openAddNoteDialog() {
     $("[id$=':task-notes:add-note-command']").shouldBe(getClickableCondition()).click();
-    $("[id$=':task-notes:add-new-note-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("[id$=':task-notes:add-new-note-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getAddNoteDialog() {
-    var noteDialog = $("[id$=':task-notes:add-new-note-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    var noteDialog = $("[id$=':task-notes:add-new-note-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     noteDialog.$(".ui-dialog-title").shouldBe(appear, DEFAULT_TIMEOUT).click();
     return noteDialog;
   }
 
   public void addNoteToTaskWithContent(String content) {
-    $("div.ui-dialog[aria-hidden='false']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("div.ui-dialog[aria-hidden='false']").shouldBe(appear, DEFAULT_TIMEOUT);
     SelenideElement addNoteDialog = $("div.ui-dialog[aria-hidden='false']").shouldBe(appear, DEFAULT_TIMEOUT);
     addNoteDialog.findElement(By.cssSelector("textarea[id$='note-content']")).sendKeys(content);
     addNoteDialog.findElement(By.cssSelector("button[id$='save-add-note-command']")).click();
@@ -178,7 +180,7 @@ public class TaskDetailsPage extends TemplatePage {
   public void openAddAttachmentDialog() {
     $("[id$=':task-documents:add-document-command']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
-    $("[id$=':task-documents:document-upload-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("[id$=':task-documents:document-upload-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getAddAttachmentDialog() {
@@ -194,7 +196,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   private void uploadDocumentByPath(String path) {
-    $("input[id$='document-upload-panel_input']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).sendKeys(path);
+    $("input[id$='document-upload-panel_input']").shouldBe(exist, DEFAULT_TIMEOUT).sendKeys(path);
   }
 
   public SelenideElement getTaskHistories() {
@@ -238,14 +240,14 @@ public class TaskDetailsPage extends TemplatePage {
 
   public void waitForIFrameURLWidgetLoad() {
     switchToIframeWithNameOrId("custom-widget-iframe-url");
-    $("a[href='https://www.axonivy.com']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    $("a[href='https://www.axonivy.com']").shouldBe(visible, DEFAULT_TIMEOUT);
     switchBackToParent();
 
   }
 
   public void waitForIFrameWidgetLoad() {
     switchToIframeWithNameOrId("custom-widget-iframe");
-    $(".container.frame").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    $(".container.frame").shouldBe(visible, DEFAULT_TIMEOUT);
     switchBackToParent();
   }
 

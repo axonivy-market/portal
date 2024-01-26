@@ -12,7 +12,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
+import static com.codeborne.selenide.Condition.appear;
 import com.codeborne.selenide.SelenideElement;
 
 public class LeaveRequestPage extends TaskTemplateIFramePage {
@@ -23,7 +23,7 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   }
 
   public void waitForIFrameContentVisible() {
-    $("div[id='content']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("div[id='content']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void fulfillAndSendMaternityLeaveRequest() {
