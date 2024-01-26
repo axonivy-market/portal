@@ -43,7 +43,7 @@
           styleClass="w-full dashboard-notification-container js-dashboard-notification-container-#{widget.id}  u-display-none">
           <h:panelGroup id="notification-widget__content-#{widget.id}" layout="block" styleClass="notification-widget__content">
             <p:dataScroller id="notifications-scroller-#{widget.id}" lazy="true" value="#{widget.dataModel}" var="notification" 
-                chunkSize="10" widgetVar="notifications-scroller-#{widget.id}" mode="inline" rendered="#{widget.hasNotifications()}">
+                chunkSize="25" widgetVar="notifications-scroller-#{widget.id}" mode="inline" rendered="#{widget.hasNotifications()}">
               <span class="notifications-group-title #{notification.markedToday} #{notification.markedToday ? '' : 'u-hidden'}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/todayText')}</span>
               <span class="notifications-group-title #{notification.markedOlder ? '' : 'u-hidden'}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/olderText')}</span>
               <div class="#{notification.style} notifications-container-top">
