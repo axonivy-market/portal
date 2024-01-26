@@ -1,7 +1,9 @@
 package com.axonivy.portal.components.util;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -127,7 +129,7 @@ public class ProcessViewerUtils {
     if (CollectionUtils.isEmpty(webStartables)) {
       webStartables = ProcessService.getInstance().findProcesses().getProcesses();
     }
-    return webStartables;
+    return Optional.ofNullable(webStartables).orElse(new ArrayList<>());
   }
 
   public static boolean isExpressCase(ICase iCase) {
