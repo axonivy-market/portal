@@ -7,7 +7,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.WaitHelper;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 public class UserProfilePage extends TemplatePage {
@@ -32,12 +31,12 @@ public class UserProfilePage extends TemplatePage {
   }
 
   public void selectLanguage(int newLanguage) {
-    $(LANGUAGE_SELECTION_SELECTOR).shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("li[id$='language-selection_" + newLanguage + "']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $(LANGUAGE_SELECTION_SELECTOR).shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("li[id$='language-selection_" + newLanguage + "']").shouldBe(appear, DEFAULT_TIMEOUT).click();
   }
 
   public void save() {
-    var save = $("button[id$='save-settings']").should(Condition.appear, DEFAULT_TIMEOUT);
+    var save = $("button[id$='save-settings']").should(appear, DEFAULT_TIMEOUT);
     WaitHelper.waitForNavigation(() -> save.click());
   }
 

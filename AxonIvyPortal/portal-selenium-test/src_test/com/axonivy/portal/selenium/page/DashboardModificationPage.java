@@ -5,9 +5,10 @@ import static com.codeborne.selenide.Selenide.$;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
 
 import com.axonivy.portal.selenium.common.WaitHelper;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
@@ -20,7 +21,7 @@ public class DashboardModificationPage extends TemplatePage {
   }
 
   public ElementsCollection getDashboardRows() {
-    SelenideElement dashboardTable = $("tbody[id='dashboard-modification-component:dashboard-table_data']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement dashboardTable = $("tbody[id='dashboard-modification-component:dashboard-table_data']").shouldBe(appear, DEFAULT_TIMEOUT);
     return dashboardTable.$$("tr:not(.ui-datatable-empty-message)");
   }
 
@@ -50,15 +51,15 @@ public class DashboardModificationPage extends TemplatePage {
   public void clickEditDashboardByName(String dashboardName) {
     SelenideElement dashboardRow = getDashboardRowByName(dashboardName);
     dashboardRow.$("[id$=':edit']").click();
-    getEditDashboardDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    getEditDashboardDialog().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void clickDeleteDashboardByName(String dashboardName) {
     SelenideElement dashboardRow = getDashboardRowByName(dashboardName);
     dashboardRow.$("[id$=':delete-dashboard']").click();
-    SelenideElement deleteConfirmDialog = $("[id$=':remove-dashboard-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    deleteConfirmDialog.$("button[id$=':remove-dashboard-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    deleteConfirmDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    SelenideElement deleteConfirmDialog = $("[id$=':remove-dashboard-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    deleteConfirmDialog.$("button[id$=':remove-dashboard-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    deleteConfirmDialog.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void editDashboardInfo(String newName, String newDescription, List<String> permissions) {
@@ -85,7 +86,7 @@ public class DashboardModificationPage extends TemplatePage {
       }
     });
     editDashboardDialog.$("button[id$='dashboard-detail-save-button']").click();
-    editDashboardDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    editDashboardDialog.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
   
   public void editPrivateDashboardInfo(String newName, String newDescription) {
@@ -96,7 +97,7 @@ public class DashboardModificationPage extends TemplatePage {
     editDashboardDialog.$("input[id$=':dashboard-description']").sendKeys(newDescription);
     
     editDashboardDialog.$("button[id$='dashboard-detail-save-button']").click();
-    editDashboardDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    editDashboardDialog.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public NewDashboardPage navigateToNewDashboardPage() {
@@ -108,13 +109,13 @@ public class DashboardModificationPage extends TemplatePage {
 
   public SelenideElement getDashboardCellByNameAndPosition(String dashboardName, int position) {
     SelenideElement dashboard = getDashboardRowByName(dashboardName);
-    dashboard.shouldBe(Condition.appear);
+    dashboard.shouldBe(appear);
     return dashboard.$("td:nth-child(" + position + ")");
   }
 
   public SelenideElement getDashboardExportButtonOfDashboard(String dashboardName) {
     SelenideElement dashboard = getDashboardRowByName(dashboardName);
-    dashboard.shouldBe(Condition.appear);
+    dashboard.shouldBe(appear);
     return dashboard.$("td:last-child button[id $=':export-dashboard']");
   }
   
@@ -123,7 +124,7 @@ public class DashboardModificationPage extends TemplatePage {
   }
   
   public void getDashboardShareLinkDialog() {
-    getDashboardShareLinkButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("div[id$=':share-dashboard-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    getDashboardShareLinkButton().shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("div[id$=':share-dashboard-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 }

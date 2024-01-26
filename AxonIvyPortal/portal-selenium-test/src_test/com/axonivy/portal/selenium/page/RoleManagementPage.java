@@ -2,6 +2,8 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disabled;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -135,14 +137,14 @@ public class RoleManagementPage extends TemplatePage {
     $$("tr.ui-node-level-2").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
     SelenideElement searchInput = $(
         "[id='admin-setting-component:adminTabView:role-management-component:role-management-form:role-tree-table:global-filter']")
-            .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+            .shouldBe(appear, DEFAULT_TIMEOUT);
     searchInput.click();
     searchInput.clear();
     searchInput.sendKeys(roleName);
     ElementsCollection roles = $$("tr.ui-node-level-2").shouldBe(CollectionCondition.size(1), DEFAULT_TIMEOUT);
     return roles.filter(Condition.matchText(roleName + ".*")).get(0)
         .$(By.cssSelector("td.role-actions-column [id$=':" + actionId + "']"))
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+        .shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   private List<SelenideElement> getRolesOnTheTreeTable() {
@@ -189,21 +191,21 @@ public class RoleManagementPage extends TemplatePage {
   private void assignUsersToRole(List<String> members) {
     for (var userName : members) {
       var usersAssignmentInput = $("[id$=':manage-role-details-form:user-assignment-selection:user-selection_input']")
-          .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+          .shouldBe(appear, DEFAULT_TIMEOUT);
       usersAssignmentInput.click();
       usersAssignmentInput.clear();
       usersAssignmentInput.sendKeys(userName);
       waitForElementDisplayed(
           By.cssSelector("[id$=':manage-role-details-form:user-assignment-selection:user-selection_panel"), true);
       var userSelectionPanel = $("[id$=':manage-role-details-form:user-assignment-selection:user-selection_panel")
-          .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+          .shouldBe(appear, DEFAULT_TIMEOUT);
       var userOption = userSelectionPanel.$$(By.cssSelector(".ui-autocomplete-item.ui-autocomplete-row")).get(0);
       userOption.shouldBe(clickable(), DEFAULT_TIMEOUT).click();
 
       waitForElementDisplayed(
           By.cssSelector("[id$=':manage-role-details-form:user-assignment-selection:user-selection_panel"), false);
       waitForElementClickableThenClick($(By.cssSelector("button[id$=':manage-role-details-form:add-new-user']")));
-      $(By.cssSelector("button[id$=':manage-role-details-form:add-new-user']")).shouldBe(Condition.disabled,
+      $(By.cssSelector("button[id$=':manage-role-details-form:add-new-user']")).shouldBe(disabled,
           DEFAULT_TIMEOUT);
     }
   }
@@ -240,6 +242,6 @@ public class RoleManagementPage extends TemplatePage {
 
   public SelenideElement getRoleCreationDialog() {
     return $("[id='admin-setting-component:adminTabView:role-management-component:role-details-dialog']")
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+        .shouldBe(appear, DEFAULT_TIMEOUT);
   }
 }

@@ -13,7 +13,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.WaitHelper;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
@@ -107,18 +106,18 @@ public class TaskWidgetPage extends TemplatePage {
   }
   
   private void openTriggerEscalationDialog() {
-    $("a[id$='task-trigger-escalation-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("div[id$='escalation-task-confirmation-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("a[id$='task-trigger-escalation-command']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("div[id$='escalation-task-confirmation-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
   public void triggerEscalation() {
     openTriggerEscalationDialog();
-    $("button[id$='confirm-escalation']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("button[id$='confirm-escalation']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
 
   public void openTaskDelegationDialog() {
-    $("a[id$='task-delegate-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("div[id$='task-delegate-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("a[id$='task-delegate-command']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("div[id$='task-delegate-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public boolean isDelegateTypeDisabled(int index) {
@@ -130,22 +129,22 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public String getCannotDelegateText() {
-    return $("div[id$='task-delegate-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$(".ui-dialog-content span").shouldBe(Condition.appear, DEFAULT_TIMEOUT).getText();
+    return $("div[id$='task-delegate-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$(".ui-dialog-content span").shouldBe(appear, DEFAULT_TIMEOUT).getText();
   }
 
   public SelenideElement getDelegateType(int index) {
     return $("div[id$=':task-delegate-form:activator-panel']").$$(".ui-radiobutton-box").get(index)
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+        .shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public boolean isDelegateListSelectionAvailable() {
-    return $("div[id$='select-delegate-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).exists();
+    return $("div[id$='select-delegate-panel']").shouldBe(appear, DEFAULT_TIMEOUT).exists();
   }
 
   public SelenideElement getTaskState(int taskRowIndex) {
     return $(String.format("[id='task-widget:task-list-scroller:%d:task-item:task-state-component:task-state']",
-        taskRowIndex)).shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span");
+        taskRowIndex)).shouldBe(appear, DEFAULT_TIMEOUT).$("span");
   }
   
   public String getPriorityOfTask(int taskIndex) {
@@ -183,7 +182,7 @@ public class TaskWidgetPage extends TemplatePage {
   public SelenideElement getSaveFilterDialog() {
     $("[id$='task-widget:filter-save-action']").shouldBe(getClickableCondition()).click();
     $(By.id("task-widget:filter-save-form:save-filter-set-name-input")).shouldBe(appear, DEFAULT_TIMEOUT);
-    $("[id$=':save-filter-set-name-input']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("[id$=':save-filter-set-name-input']").shouldBe(appear, DEFAULT_TIMEOUT);
     return $(By.id("task-widget:save-filter-set-dialog")).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 

@@ -7,11 +7,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
+import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.CollectionCondition.size;
 
 import com.axonivy.portal.selenium.common.WaitHelper;
-import com.codeborne.selenide.Condition;
-import static com.codeborne.selenide.Condition.appear;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -37,14 +36,14 @@ public class StatisticWidgetPage extends TemplatePage {
 
   public TaskAnalysisWidgetPage navigateToTaskAnalysisPage() {
     var taskAnalysLink = $("a[id='statistics-widget:task-analysis-page-navigation-link']")
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition());
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition());
     WaitHelper.waitForNavigation(() -> taskAnalysLink.click());
-    $("[id='task-widget']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("[id='task-widget']").shouldBe(appear, DEFAULT_TIMEOUT);
     return new TaskAnalysisWidgetPage();
   }
 
   public Set<String> getAllChartNames() {
-    $(By.id("chart-name-0")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $(By.id("chart-name-0")).shouldBe(appear, DEFAULT_TIMEOUT);
     return $$("div[id$=':chart-name-container'] .chart-name").shouldHave(size(1), DEFAULT_TIMEOUT).asFixedIterable()
         .stream().map(e -> e.getText()).collect(Collectors.toSet());
   }

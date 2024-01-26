@@ -2,8 +2,9 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import com.codeborne.selenide.Condition;
 import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.hidden;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class ProcessWidgetPage extends TemplatePage {
   }
   
   public void addExternalLink(String name, String link, String iconClass, String imageName) {
-    $("a[id$=':add-external-link-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("a[id$=':add-external-link-command']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("a[id$=':add-external-link-command']").click();
     
     $("input[id$=':add-external-link-form:external-link-name']").sendKeys(name);
@@ -33,38 +34,38 @@ public class ProcessWidgetPage extends TemplatePage {
     
     // change icon
     $("a[id$=':external-link-icon:change-icon-link']").shouldBe(getClickableCondition()).click();
-    $("div[id='process-widget:add-external-link-form:external-link-icon:select-icon-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("div[id='process-widget:add-external-link-form:external-link-icon:select-icon-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     
     $("input[id$=':search-icon-name-field']").sendKeys(iconClass);
     
     $("a[title='"+ iconClass + "']").click();
-    $("div[id$='process-widget:add-external-link-form:external-link-icon:select-icon-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    $("div[id$='process-widget:add-external-link-form:external-link-icon:select-icon-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
     
     $("input[id$='process-widget:add-external-link-form:external-link-image-upload_input']").sendKeys(FileHelper.getAbsolutePathToTestFile(imageName));
     
-    $("img[id$='process-widget:add-external-link-form:external-link-preview-image']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("img[id$='process-widget:add-external-link-form:external-link-preview-image']").shouldBe(appear, DEFAULT_TIMEOUT);
     
     $("button[id$='adding-new-external-link-command']").click();
-    $("div[id='process-widget:add-external-link-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    $("div[id='process-widget:add-external-link-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
     
  
   }
   
   public void findProcess(String keyword) {
     $("input[id='process-widget:process-search:non-ajax-keyword-filter']").sendKeys(keyword);
-    $("div.js-external-link-process-item").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("div.js-external-link-process-item").shouldBe(appear, DEFAULT_TIMEOUT);
     
     System.out.println($("i[id='icon']").getAttribute("class"));
   }
 
   public void waitForStartListShow() {
-    $(".js-loading-process-list").shouldBe(Condition.hidden, DEFAULT_TIMEOUT);
-    $(".js-process-start-list-container").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $(".js-loading-process-list").shouldBe(hidden, DEFAULT_TIMEOUT);
+    $(".js-process-start-list-container").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
   public void checkProcessNotExists(String keyword) {
     $("input[id='process-widget:process-search:non-ajax-keyword-filter']").sendKeys(keyword);
-    $("div.js-external-link-process-item").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    $("div.js-external-link-process-item").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
   
   public void startProcessByName(String processName) {
@@ -86,8 +87,8 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public void waitUtilProcessWidgetDisplayed() {
-    $(".js-loading-process-list").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
-    $(".js-process-start-list-container").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $(".js-loading-process-list").shouldBe(disappear, DEFAULT_TIMEOUT);
+    $(".js-process-start-list-container").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public ExpressProcessPage openExpressPage() {
@@ -100,7 +101,7 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public WebElement openExternalLinkDialog() {
     $("a[id$=':add-external-link-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    return $("[id='process-widget:add-external-link-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $("[id='process-widget:add-external-link-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public WebElement navigateToProcessIndex(String character) {
@@ -118,7 +119,7 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public SelenideElement getProcessEditMenu(int index) {
-    return $(String.format(IMAGE_EDIT_PROCESS_LINK, 0, index)).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $(String.format(IMAGE_EDIT_PROCESS_LINK, 0, index)).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void clickOnProcessEditMenu(int index) {
@@ -133,13 +134,13 @@ public class ProcessWidgetPage extends TemplatePage {
   public void selectGridMode() {
     $("[id='process-widget:process-view-mode:view-mode-selection:1']").ancestor(".ui-button")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("[id='process-widget:grid-process-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("[id='process-widget:grid-process-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void selectCompactMode() {
     $("[id='process-widget:process-view-mode:view-mode-selection:2']").ancestor(".ui-button")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("[id$='alphabet-process-index-fieldset']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("[id$='alphabet-process-index-fieldset']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getFilterTextfield() {

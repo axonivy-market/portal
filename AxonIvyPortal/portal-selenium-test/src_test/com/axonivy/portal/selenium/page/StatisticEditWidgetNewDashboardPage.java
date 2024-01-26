@@ -1,11 +1,11 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.axonivy.portal.selenium.common.Sleeper;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 public class StatisticEditWidgetNewDashboardPage extends TemplatePage {
@@ -33,7 +33,7 @@ public class StatisticEditWidgetNewDashboardPage extends TemplatePage {
   public void selectFirstChart() {
     $("[id$=':new-widget-configuration-component:user-filter']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("[id$=':new-widget-configuration-component:statistic-list']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$("button.ui-autocomplete-dropdown").shouldBe(Condition.exist, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+        .$("button.ui-autocomplete-dropdown").shouldBe(exist, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     var selectionOptions = $("[id$=':new-widget-configuration-component:statistic-list_panel']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("tr.ui-autocomplete-item.ui-autocomplete-row");
     selectionOptions.get(0).click();

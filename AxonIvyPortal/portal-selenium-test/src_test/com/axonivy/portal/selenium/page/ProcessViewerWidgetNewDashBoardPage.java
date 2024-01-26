@@ -2,8 +2,9 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
@@ -24,9 +25,9 @@ public class ProcessViewerWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickSaveProcessViewerWidget() {
-    $("button[id='widget-configuration-save-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    $("button[id='widget-configuration-save-button']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
-    $("div[id='new-widget-configuration-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    $("div[id='new-widget-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void findProcess(String processName) {
@@ -40,19 +41,19 @@ public class ProcessViewerWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void selectProcess(String processName) {
-    getSelectedProcess().shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    getSelectedProcess().shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     getSelectedProcess().find("input").clear();
     getSelectedProcess().find("input").sendKeys(processName);
-    $("tr[data-item-label='" + processName + "']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    $("tr[data-item-label='" + processName + "']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
   
   public SelenideElement getConfigurationDialog() {
     unfocusAllInputs();
-    return $("div[id='new-widget-configuration-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $("div[id='new-widget-configuration-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void unfocusAllInputs() {
-    $("[id='new-widget-configuration-dialog_title']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("[id='new-widget-configuration-dialog_title']").shouldBe(appear, DEFAULT_TIMEOUT).click();
   }
 }

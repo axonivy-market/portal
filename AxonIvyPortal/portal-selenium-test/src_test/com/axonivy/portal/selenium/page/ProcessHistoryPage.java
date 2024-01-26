@@ -1,10 +1,9 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Condition.appear;
 
 import org.openqa.selenium.By;
-
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 public class ProcessHistoryPage extends TemplatePage {
@@ -29,7 +28,7 @@ public class ProcessHistoryPage extends TemplatePage {
 
   public SelenideElement getProcessHistoryDialog() {
     $("button[id='process-history-dialog-button']").shouldBe(getClickableCondition()).click();
-    $("div[id='process-history-dialog_content']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    return $("div[id='process-history-dialog']").shouldBe(Condition.appear);
+    $("div[id='process-history-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("div[id='process-history-dialog']").shouldBe(appear);
   }
 }

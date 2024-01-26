@@ -106,8 +106,8 @@ public class CaseDetailsPage extends TemplatePage {
   public void triggerEscalationTask(int index) {
     $(String.format("[id$='task-widget:related-tasks:%d:additional-options:task-trigger-escalation-command']", index))
         .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    $("div[id$='\\:escalation-task-confirmation-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    $("button[id$='\\:confirm-escalation']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("div[id$='\\:escalation-task-confirmation-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("button[id$='\\:confirm-escalation']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
 
 
@@ -173,15 +173,15 @@ public class CaseDetailsPage extends TemplatePage {
   }
   
   public SelenideElement getGeneralInforBox() {
-    return $("[id$='case-detail-general-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $("[id$='case-detail-general-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getRelatedRunningTaskBox() {
-    return $("[id$='case-details-related-running-tasks-card']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $("[id$='case-details-related-running-tasks-card']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void waitForCaseDetailsDisplay() {
-    $(By.id("case-item-details:case-details-container:case-detail-body")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $(By.id("case-item-details:case-details-container:case-detail-body")).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getAddNoteDialog() {
@@ -210,7 +210,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public SelenideElement openAddAttachmentDialog() {
     SelenideElement dialog = getAddAttachmentDialog();
-    dialog.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    dialog.shouldBe(appear, DEFAULT_TIMEOUT);
     $("[id$='document:document-upload-dialog_title']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return dialog;
   }
@@ -240,11 +240,11 @@ public class CaseDetailsPage extends TemplatePage {
   } 
   
   public SelenideElement getDocumentBox() {
-    return $("[id$='case-details-document-card']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $("[id$='case-details-document-card']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getHistoriesBox() {
-    return $("[id$='history-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $("[id$='history-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getDeleteDocumentConfirmDialog() {
@@ -313,7 +313,7 @@ public class CaseDetailsPage extends TemplatePage {
     Action moveWidget = actions.dragAndDrop(sourceElement, destinationElement).build();
     moveWidget.perform();
     $("[id$=':case-details-container:case-details-widgets']").shouldBe(Condition.visible, DEFAULT_TIMEOUT)
-        .$(".ui-droppable-over").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+        .$(".ui-droppable-over").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getSwitchToViewModeButton() {

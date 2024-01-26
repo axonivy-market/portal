@@ -1,12 +1,12 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.focused;
 import static com.codeborne.selenide.Selenide.$;
 
 import org.openqa.selenium.By;
 
 import com.axonivy.portal.selenium.common.TestAccount;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 public class LoginPage extends TemplatePage {
@@ -52,11 +52,11 @@ public class LoginPage extends TemplatePage {
 
   public void forgotPassword() {
     this.forgotPasswordLink.click();
-    $("button[id$='forgot-password:forgot-password-form:send-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("button[id$='forgot-password:forgot-password-form:send-command']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void waitForEmailAddressIsFocused() {
-    $("input[id$='forgot-password:forgot-password-form:email']").shouldBe(Condition.focused, DEFAULT_TIMEOUT);
+    $("input[id$='forgot-password:forgot-password-form:email']").shouldBe(focused, DEFAULT_TIMEOUT);
   }
 
   public void waitForUsernameInputIsFocused() {

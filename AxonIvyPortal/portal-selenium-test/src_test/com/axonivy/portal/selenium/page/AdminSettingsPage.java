@@ -3,6 +3,7 @@ package com.axonivy.portal.selenium.page;
 import static com.axonivy.portal.selenium.common.Variable.CLIENT_SIDE_TIMEOUT;
 import static com.axonivy.portal.selenium.common.Variable.GLOBAL_FOOTER_INFO;
 import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -42,7 +43,7 @@ public class AdminSettingsPage extends TemplatePage{
   }
 
   private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
-    $("button[id$='admin-setting-component:adminTabView:restore-all-to-default-button']").shouldBe(Condition.appear)
+    $("button[id$='admin-setting-component:adminTabView:restore-all-to-default-button']").shouldBe(appear)
         .shouldBe(getClickableCondition());
     ElementsCollection tableRows = $$(".setting-key").filter(Condition.text(variableName));
     if (!tableRows.isEmpty()) {
@@ -98,13 +99,13 @@ public class AdminSettingsPage extends TemplatePage{
 
   public boolean isWarningDialogShowWhenTimeoutIsLosing() {
     waitForElementDisplayed(By.cssSelector("div[id$=':timeout-warning-dialog']"), true, 121);
-    return $(By.cssSelector("div[id$=':timeout-warning-dialog']")).shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    return $(By.cssSelector("div[id$=':timeout-warning-dialog']")).shouldBe(appear, DEFAULT_TIMEOUT)
         .isDisplayed();
   }
 
   public boolean isInformDialogShowAfterTimeout() {
     waitForElementDisplayed(By.id("warning-before-lost-session:timeout-dialog"), true, 181);
-    return $(By.id("warning-before-lost-session:timeout-dialog")).shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    return $(By.id("warning-before-lost-session:timeout-dialog")).shouldBe(appear, DEFAULT_TIMEOUT)
         .isDisplayed();
   }
 
@@ -165,14 +166,14 @@ public class AdminSettingsPage extends TemplatePage{
   }
 
   public void closeAddApplicationDialog() {
-    $("[id='admin-setting-component:appDialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    $("[id='admin-setting-component:appDialog']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("[id='admin-setting-component:appDialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    $("[id='admin-setting-component:appDialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void closeEditSettingDialog() {
-    $("[id='admin-setting-component:settingDialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    $("[id='admin-setting-component:settingDialog']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("[id='admin-setting-component:settingDialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    $("[id='admin-setting-component:settingDialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 }

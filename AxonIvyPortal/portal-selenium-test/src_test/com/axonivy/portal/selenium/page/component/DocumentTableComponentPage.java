@@ -1,9 +1,8 @@
 package com.axonivy.portal.selenium.page.component;
 
 import static com.codeborne.selenide.Selenide.$;
-
+import static com.codeborne.selenide.Condition.appear;
 import com.axonivy.portal.selenium.page.TemplatePage;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 
 public class DocumentTableComponentPage extends TemplatePage{
@@ -14,8 +13,8 @@ public class DocumentTableComponentPage extends TemplatePage{
 
   public void uploadSampleDocument(String pathToFile) {
     $("[id$=':document-upload_input']").sendKeys(pathToFile);
-    getDocuments().get(0).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    $("span[class$='ui-messages-info-summary']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    getDocuments().get(0).shouldBe(appear, DEFAULT_TIMEOUT);
+    $("span[class$='ui-messages-info-summary']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   private ElementsCollection getDocuments() {
@@ -23,7 +22,7 @@ public class DocumentTableComponentPage extends TemplatePage{
   }
 
   public void waitForDocumentTableComponentPageLoaded() {
-    $("[id$=':document-table-component']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("[id$=':document-table-component']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public int countDocuments() {

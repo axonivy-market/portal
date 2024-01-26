@@ -71,7 +71,7 @@ public class DashboardNewsWidgetPage extends TemplatePage {
     SelenideElement selectIconDialog = $(selectIconDialogId);
     String iconSelector = "a.icon-selection-dialog-selecting-icon ." + icon;
     selectIconDialog.$(iconSelector).shouldBe(getClickableCondition()).click();
-    $(selectIconDialogId).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    $(selectIconDialogId).shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public String selectNewsLanguage(String languageTag) {
@@ -158,7 +158,7 @@ public class DashboardNewsWidgetPage extends TemplatePage {
   public SelenideElement getTranslationOverlayPanel(int index) {
     SelenideElement translationOverlay = $(String.format("div[id$=':%s:overlay-panel-input']", index));
     waitUntilElementToBeClickable(translationOverlay);
-    translationOverlay.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    translationOverlay.shouldBe(appear, DEFAULT_TIMEOUT);
 
     return translationOverlay;
   }

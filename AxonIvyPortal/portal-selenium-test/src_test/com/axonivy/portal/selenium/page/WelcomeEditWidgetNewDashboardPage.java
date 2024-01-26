@@ -7,7 +7,6 @@ import static com.codeborne.selenide.Selenide.$;
 import java.util.List;
 
 import com.axonivy.portal.selenium.common.FileHelper;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
@@ -21,7 +20,7 @@ public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
   public void uploadImage(String fileName) {
     var configDialog = $("#new-widget-configuration-dialog");
     configDialog.find("[id $= ':image-upload-panel_input']").sendKeys(getTestFilePath(fileName));
-    configDialog.find(".ui-fileupload-filename").shouldBe(Condition.disappear, DEFAULT_TIMEOUT).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    configDialog.find(".ui-fileupload-filename").shouldBe(disappear, DEFAULT_TIMEOUT).shouldBe(disappear, DEFAULT_TIMEOUT);
   }
   
   private String getTestFilePath(String filename) {
@@ -41,11 +40,11 @@ public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
     var configDialog = $("#new-widget-configuration-dialog");
     configDialog.find("[id $= ':welcome-text-size']").click();
     var selectionPanel = $("[id $= ':welcome-text-size_panel']");
-    selectionPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    selectionPanel.shouldBe(appear, DEFAULT_TIMEOUT);
     selectionPanel.findAll("li.ui-selectonemenu-item").asDynamicIterable().forEach( item -> {
       if (item.innerText().contentEquals(value)) {
         item.click();
-        selectionPanel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+        selectionPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
         return;
       }
     });
@@ -55,11 +54,11 @@ public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
     var configDialog = $("#new-widget-configuration-dialog");
     configDialog.find("[id $= ':welcome-text-position']").click();
     var selectionPanel = $("[id $= ':welcome-text-position_panel']");
-    selectionPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    selectionPanel.shouldBe(appear, DEFAULT_TIMEOUT);
     selectionPanel.findAll("li.ui-selectonemenu-item").asDynamicIterable().forEach( item -> {
       if (item.innerText().contentEquals(value)) {
         item.click();
-        selectionPanel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+        selectionPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
         return;
       }
     });

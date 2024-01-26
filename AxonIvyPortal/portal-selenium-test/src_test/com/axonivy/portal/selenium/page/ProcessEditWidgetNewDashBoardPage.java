@@ -2,6 +2,8 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.interactable;
 import static com.codeborne.selenide.Selenide.$;
 
 import java.util.List;
@@ -45,7 +47,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void selectImageMode() {
     selectProcessMode("Image mode");
-    getImageModeProcessSelectedProcess().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    getImageModeProcessSelectedProcess().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getImageModeProcessSelectedProcess() {
@@ -56,7 +58,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     selectImageMode();
     selectImageProcess(processName);
     getPreviewButton().click();
-    getImageModeProcessPreview().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    getImageModeProcessPreview().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getImageModeProcessPreview() {
@@ -69,11 +71,11 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getStartButton() {
-    return $("button[id$=':start-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $("button[id$=':start-button']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getMoreInformationLink() {
-    return $("span[id$=':more-information']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $("span[id$=':more-information']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void changeImageModeProcessAndSaveWidget(String newProcessName) {
@@ -83,25 +85,25 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void clickSaveProcessWidget() {
     $("button[id='widget-configuration-save-button']")
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
-    $("div[id='new-widget-configuration-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    $("div[id='new-widget-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void previewFullModeProcess(String processName) {
     selectFullMode();
     selectFullProcess(processName);
     getPreviewButton().click();
-    getFullModeProcessPreview().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    getFullModeProcessPreview().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void selectFullMode() {
     selectProcessMode("Full mode");
-    getFullModeProcessSelectedProcess().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    getFullModeProcessSelectedProcess().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void selectProcessMode(String mode) {
-    getProcessDisplayMode().shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    getProcessDisplayMode().shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("li[data-label='" + mode + "']").click();
   }
 
@@ -145,12 +147,12 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     selectCombinedMode();
     selectCombinedProcess(processName, description);
     getPreviewButton().click();
-    getCombinedModeProcessPreview().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    getCombinedModeProcessPreview().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void selectCombinedMode() {
     selectProcessMode("Combined mode");
-    getCombinedModeProcessSelectedProcess().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    getCombinedModeProcessSelectedProcess().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCombinedModeProcessSelectedProcess() {
@@ -184,7 +186,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getFirstTaskDisplayedDisabledStartAction() {
-    return $("div[id$=':dashboard-process-tasks-container'] span.start-task-action").shouldBe(Condition.appear,
+    return $("div[id$=':dashboard-process-tasks-container'] span.start-task-action").shouldBe(appear,
         DEFAULT_TIMEOUT);
   }
 
@@ -201,12 +203,12 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void selectCasesTab() {
-    getCasesTab().shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    getCasesTab().shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public SelenideElement getFirstDisplayedCaseName() {
     return $("div[id$=':dashboard-process-cases-container'] .dashboard-cases__column-small-screen-name")
-        .shouldBe(Condition.exist, DEFAULT_TIMEOUT);
+        .shouldBe(exist, DEFAULT_TIMEOUT);
   }
 
   public void selectCombinedModeProcessAndSaveWidget(String processName) {
@@ -227,7 +229,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   public void previewCompactModeProcess() {
     selectCompactModeFromCombinedMode();
     getPreviewButton().click();
-    getCompactModeProcessPreview().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    getCompactModeProcessPreview().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   private void selectCompactModeFromCombinedMode() {
@@ -237,13 +239,13 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void selectCompactMode() {
     selectProcessMode("Compact mode");
-    getCompactModeWidgetTitle().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    getCompactModeProcessCategoryFilter().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    getCompactModeProcessProcessFilter().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    getCompactModeWidgetTitle().shouldBe(appear, DEFAULT_TIMEOUT);
+    getCompactModeProcessCategoryFilter().shouldBe(appear, DEFAULT_TIMEOUT);
+    getCompactModeProcessProcessFilter().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void selectCompactProcessSorting(String sorting) {
-    getCompactModeSorting().shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    getCompactModeSorting().shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("li[data-label='" + sorting + "']").click();
   }
 
@@ -276,20 +278,20 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     selectCompactModeFromCombinedMode();
     selectCompactModeCategory(category);
     getPreviewButton().click();
-    getCompactModeProcessPreview().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    getCompactModeProcessPreview().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   private void selectCompactModeCategory(String category) {
     getCompactModeProcessCategoryFilter().click();
 
     ElementsCollection categories = getCompactModeProcessCategoryFilterPanel()
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$(".ui-treenode-label");
+        .shouldBe(appear, DEFAULT_TIMEOUT).$$(".ui-treenode-label");
     categories.filter(Condition.exactTextCaseSensitive("All Categories")).first().click();
     categories.filter(Condition.exactTextCaseSensitive(category)).first()
         .shouldBe(Condition.not(Condition.cssClass("ui-state-highlight")), DEFAULT_TIMEOUT).click();
 
     getFilterApplyButton().click();
-    getCompactModeProcessCategoryFilterPanel().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    getCompactModeProcessCategoryFilterPanel().shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCompactModeProcessCategoryFilter() {
@@ -308,17 +310,17 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     selectCompactModeFromCombinedMode();
     selectCompactModeProcess(processName);
     getPreviewButton().click();
-    getCompactModeProcessPreview().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    getCompactModeProcessPreview().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   private void selectCompactModeProcess(String processName) {
     getCompactModeProcessProcessFilter().click();
 
-    getCompactModeProcessProcessFilterPanel().shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    getCompactModeProcessProcessFilterPanel().shouldBe(appear, DEFAULT_TIMEOUT)
         .$$(".ui-selectcheckboxmenu-item label").filter(Condition.exactTextCaseSensitive(processName)).first().click();
 
     getCompactModeProcessProcessFilterPanel().$(".ui-selectcheckboxmenu-close").click();
-    getCompactModeProcessCategoryFilterPanel().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    getCompactModeProcessCategoryFilterPanel().shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getCompactModeProcessProcessFilter() {
@@ -368,21 +370,21 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getFullModeProcessSelectedProcessInput() {
-    return getFullModeProcessSelectedProcess().shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    return getFullModeProcessSelectedProcess().shouldBe(appear, DEFAULT_TIMEOUT)
         .$("input[id$=':selected-full-process_input']");
   }
 
   public SelenideElement getCompactModeProcessSelectedProcess() {
-    return getCompactModeProcessProcessFilter().shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    return getCompactModeProcessProcessFilter().shouldBe(appear, DEFAULT_TIMEOUT)
         .$("span.ui-selectcheckboxmenu-token-label");
   }
 
   public SelenideElement getCompactModeProcessDisplayedCategoryFilter() {
-    return getCompactModeProcessCategoryFilter().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return getCompactModeProcessCategoryFilter().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void clickOnProcesses() {
-    $("div[id$=':processes-list']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
+    $("div[id$=':processes-list']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
         .click();
   }
 
@@ -393,7 +395,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public SelenideElement getAddLanguageButton() {
     SelenideElement addLanguageButton = $("button[id$='add-language-button']");
-    addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    addLanguageButton.shouldBe(appear, DEFAULT_TIMEOUT);
     addLanguageButton.shouldBe(getClickableCondition());
     waitUntilElementToBeClickable(addLanguageButton);
     return addLanguageButton;
@@ -401,7 +403,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public SelenideElement getMultipleLanguageDialog() {
     SelenideElement addLanguageButton = $("div[id$='multiple-languages-dialog']");
-    addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    addLanguageButton.shouldBe(appear, DEFAULT_TIMEOUT);
     return addLanguageButton;
   }
 
@@ -409,13 +411,13 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     $(processEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='widget-configuration-save-button']")
         .shouldBe(getClickableCondition()).click();
     $("[id$='task-component:loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
-    $("[id$='process-process_1:widget-content']").shouldBe(Condition.interactable, DEFAULT_TIMEOUT);
+    $("[id$='process-process_1:widget-content']").shouldBe(interactable, DEFAULT_TIMEOUT);
   }
   
   public void dragAndDropProcess(int fromIndex, int toIndex) {
     Actions a = new Actions(WebDriverRunner.getWebDriver());
     SelenideElement processList = $("ul.ui-widget-content");
-    processList.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    processList.shouldBe(appear, DEFAULT_TIMEOUT);
     ElementsCollection findAll = processList.findAll("li.ui-orderlist-item");
     if (findAll.size() > toIndex) {
       SelenideElement fromElement = findAll.get(fromIndex);
@@ -491,7 +493,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getProcessDisplayMode() {
-    return $("div[id$=':process-display-mode']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    return $("div[id$=':process-display-mode']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
 

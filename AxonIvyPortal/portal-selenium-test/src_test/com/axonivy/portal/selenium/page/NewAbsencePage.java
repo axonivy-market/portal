@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.page;
 
 
 import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 
 import java.time.LocalDate;
@@ -13,7 +14,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.DateTimePattern;
-import com.codeborne.selenide.Condition;
 
 public class NewAbsencePage extends TemplatePage {
 
@@ -77,7 +77,7 @@ public class NewAbsencePage extends TemplatePage {
     $("[id='absence-dialog_title']").click();
     $("a[id*='close-add-absence-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("[id$='absence-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    $("[id$='absence-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void enterCommentForAbsence(String comment) {
