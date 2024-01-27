@@ -9,13 +9,16 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.page.LoginPage;
+import com.axonivy.portal.selenium.page.NewDashboardPage;
 
 @IvyWebTest
 public class ForgotPasswordScreenshotTest extends ScreenshotTest {
 
   @Test
   public void testForgotPassword() throws IOException {
-    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    showNewDashboard();
+    newDashboardPage.waitForDashboardPageAvailable();
     launchBrowserAndLogoutInDesigner();
     
     LoginPage loginPage = new LoginPage();
