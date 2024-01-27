@@ -9,13 +9,17 @@ import org.openqa.selenium.Dimension;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.page.LoginPage;
+import com.axonivy.portal.selenium.page.NewDashboardPage;
 
 @IvyWebTest
 public class LoginScreenshotTest extends ScreenshotTest{
 
   @Test
   public void testLogin() throws IOException {
-    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    showNewDashboard();
+    newDashboardPage.waitForDashboardPageAvailable();
+
     launchBrowserAndLogoutInDesigner();
     ScreenshotUtils.resizeBrowser(new Dimension(1024, 768));
     new LoginPage().waitForUsernameInputIsFocused();
