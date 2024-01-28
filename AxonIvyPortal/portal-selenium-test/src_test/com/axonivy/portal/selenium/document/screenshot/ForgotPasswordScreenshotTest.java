@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
+import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.page.LoginPage;
@@ -19,7 +20,7 @@ public class ForgotPasswordScreenshotTest extends ScreenshotTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     showNewDashboard();
     newDashboardPage.waitForDashboardPageAvailable();
-    launchBrowserAndLogoutInDesigner();
+    redirectToRelativeLink(BaseTest.LOGOUT_URL);
     
     LoginPage loginPage = new LoginPage();
     loginPage.forgotPassword();
