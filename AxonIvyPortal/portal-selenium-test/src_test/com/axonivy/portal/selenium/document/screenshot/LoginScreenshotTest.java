@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.document.screenshot;
 
+import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotTest;
 import java.io.IOException;
 
@@ -19,8 +20,8 @@ public class LoginScreenshotTest extends ScreenshotTest{
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     showNewDashboard();
     newDashboardPage.waitForDashboardPageAvailable();
+    redirectToRelativeLink(BaseTest.LOGOUT_URL);
 
-    launchBrowserAndLogoutInDesigner();
     ScreenshotUtils.resizeBrowser(new Dimension(1024, 768));
     new LoginPage().waitForUsernameInputIsFocused();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.LOGIN_FOLDER + "login-form");
