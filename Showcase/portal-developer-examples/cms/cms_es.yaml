@@ -196,6 +196,8 @@ Processes:
       #Resumen
       Solicitante obtendrá un resumen
       Tomar nota del resultado
+  MoreInformation:
+    description: Haga clic en Más información para ver la página de información personalizada del proceso.
   Payment:
     Tasks:
       Pay:

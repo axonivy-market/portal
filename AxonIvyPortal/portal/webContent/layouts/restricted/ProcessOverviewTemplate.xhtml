@@ -6,7 +6,7 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:define name="pageContent">
-      <div id="process-information" class="ui-g process-overview-layout-content">
+      <div id="process-information" class="ui-g process-overview-layout-content process-information-container">
         <div class="center ui-g-6 ui-xl-8 ui-lg-12 ui-md-12 ui-sm-12">
           <ui:insert name="header">
             <!-- Put header here -->
@@ -36,7 +36,7 @@
                               <i id="icon" class="si si-check-circle-1 process-step-icon" />
                             </div>
                             <div class="ui-g-10">
-                              <h:outputText value="#{desc}" escape="false" styleClass="process-step-description" />
+                              <h:outputText value="#{visibilityBean.sanitizeContent(desc)}" escape="false" styleClass="process-step-description" />
                             </div>
                           </div>
                         </ui:repeat>

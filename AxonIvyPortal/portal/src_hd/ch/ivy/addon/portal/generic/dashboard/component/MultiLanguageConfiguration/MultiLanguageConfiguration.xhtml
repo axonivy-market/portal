@@ -17,6 +17,7 @@
   <cc:attribute name="componentToUpdateOnModify" />
   <cc:attribute name="updateCurrentLanguage" />
   <cc:attribute name="titleRequired" default="true"/>
+  <cc:attribute name="dynamic" default="false" />
 </cc:interface>
 
 <cc:implementation>
@@ -25,9 +26,10 @@
   <c:set var="titleRequired" value="#{cc.attrs.titleRequired}" />
   <p:dialog appendTo="@(body)" fitViewport="true" width="500" closeOnEscape="true"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingMultipleLanguages')}" resizable="false"
-    id="multiple-languages-dialog" widgetVar="multiple-languages-dialog" dynamic="true" modal="true" responsive="true">
+    id="multiple-languages-dialog" widgetVar="multiple-languages-dialog" modal="true" responsive="true"
+    dynamic="#{cc.attrs.dynamic}">
     <h:form id="add-language-detail-form">
-      <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/emptySupportedLanguages')}"
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/emptySupportedLanguages')}"
         rendered="#{titles.isEmpty()}" />
       <h:dataTable id="table-titles" value="#{titles}" rendered="#{titles.isEmpty() eq 'false'}" var="title" width="460" >
         <h:column>
@@ -64,7 +66,7 @@
       <div class="u-dialog-footer-actions-group">
         <p:commandLink id="multi-language-cancel-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          onclick="PF('multiple-languages-dialog').hide();" />
+          onclick="PF('multiple-languages-dialog').hide(); return false;" />
         <p:spacer width="15px" rendered="#{!titles.isEmpty()}" />
         <p:commandButton id="multi-language-ok-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           update="#{cc.attrs.componentToUpdateOnCreate}, #{cc.attrs.componentToUpdateOnModify}, @form" process="@form"
