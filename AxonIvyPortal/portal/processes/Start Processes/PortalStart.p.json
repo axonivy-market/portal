@@ -917,7 +917,7 @@
           "name" : "Authorized?",
           "config" : {
             "conditions" : {
-              "S11-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.TaskService.newInstance().isTaskAccessible(in.uuid)"
+              "S11-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.TaskService.newInstance().isTaskAccessible(in.id)"
             }
           },
           "visual" : {
@@ -1285,15 +1285,15 @@
     }, {
       "id" : "f103",
       "type" : "RequestStart",
-      "name" : "CaseDetailsPage.ivp",
+      "name" : "DefaultCaseDetailPage.ivp",
       "config" : {
-        "signature" : "CaseDetailsPage",
+        "signature" : "DefaultCaseDetailPage",
         "input" : {
           "params" : [
-            { "name" : "uuid", "type" : "String", "desc" : "" }
+            { "name" : "id", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.uuid" : "param.uuid"
+            "out.id" : "param.id"
           }
         },
         "request" : {
@@ -1537,15 +1537,15 @@
     }, {
       "id" : "f62",
       "type" : "RequestStart",
-      "name" : "TaskDetailsPage.ivp",
+      "name" : "DefaultTaskDetailPage.ivp",
       "config" : {
-        "signature" : "TaskDetailsPage",
+        "signature" : "DefaultTaskDetailPage",
         "input" : {
           "params" : [
-            { "name" : "uuid", "type" : "String", "desc" : "" }
+            { "name" : "id", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "out.uuid" : "param.uuid"
+            "out.id" : "param.id"
           }
         },
         "request" : {
@@ -1567,7 +1567,7 @@
         "processCall" : "Functional Processes/Navigator:viewRelatedTask(String,Boolean)",
         "call" : {
           "map" : {
-            "param.taskUUID" : "in.uuid"
+            "param.taskUUID" : "in.id"
           }
         }
       },
@@ -2072,7 +2072,7 @@
       "type" : "SubProcessCall",
       "name" : "Functional Processes/Navigator",
       "config" : {
-        "processCall" : "Functional Processes/Navigator:viewRelatedTask(String,Boolean)",
+        "processCall" : "Functional Processes/Navigator:viewRelatedTaskInFrame(String)",
         "call" : {
           "map" : {
             "param.taskUUID" : "in.uuid"
@@ -3560,7 +3560,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1360 },
-        "labelOffset" : { "x" : -7, "y" : -239 }
+        "labelOffset" : { "x" : -79, "y" : 41 }
       },
       "connect" : [
         { "id" : "f222", "to" : "f221" }
@@ -3847,7 +3847,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
             "",
-            "out.caseSelected = CaseService.newInstance().findCaseByUUID(in.uuid);"
+            "out.caseSelected = CaseService.newInstance().findCaseByUUID(in.id);"
           ]
         },
         "sudo" : true
@@ -4615,5 +4615,40 @@
       "connect" : [
         { "id" : "f258", "to" : "S92" }
       ]
+    }, {
+      "id" : "f9",
+      "type" : "RequestStart",
+      "name" : "NotificationFullPage.ivp",
+      "config" : {
+        "signature" : "NotificationFullPage",
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 3848 }
+      },
+      "connect" : [
+        { "id" : "f267", "to" : "f16" }
+      ]
+    }, {
+      "id" : "f16",
+      "type" : "DialogCall",
+      "name" : "Notification",
+      "config" : {
+        "dialog" : "com.axonivy.portal.component.NotificationFullPage:start()"
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 3848 }
+      },
+      "connect" : [
+        { "id" : "f268", "to" : "f50" }
+      ]
+    }, {
+      "id" : "f50",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 376, "y" : 3848 }
+      }
     } ]
 }
