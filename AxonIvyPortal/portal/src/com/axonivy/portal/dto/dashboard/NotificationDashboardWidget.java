@@ -77,4 +77,7 @@ public class NotificationDashboardWidget extends DashboardWidget {
   public boolean hasNotifications() {
     return this.onlyUnread ? countUnread != 0 : countAll != 0;
   }
+
+  @Override
+  public void cancelUserFilter() {}
 }
