@@ -22,7 +22,6 @@
         mindate="#{cc.attrs.minFilterFrom}"
         locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
         validator="#{field.validate}"
-        readonlyInput="true"
         converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongFromDateFormat', [dateTimePatternBean.dateTimestampPattern])}"/>
       <p:message for="from-date-field-input" styleClass="ui-g-12 u-padding-0"/>
     </div>
@@ -37,7 +36,6 @@
         maxdate="#{cc.attrs.maxFilterTo}"
         locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
         validator="#{field.validate}"
-        readonlyInput="true"
         converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongToDateFormat', [dateTimePatternBean.dateTimestampPattern])}" />
       <p:message for="to-date-field-input" styleClass="ui-g-12 u-padding-0"/>
     </div>
