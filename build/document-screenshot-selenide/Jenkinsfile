@@ -6,7 +6,7 @@ pipeline {
   }
 
   triggers {
-    cron('0 23 * * *')
+    cron('0 15 * * *')
   }
 
   tools {
@@ -36,6 +36,7 @@ pipeline {
     stage('build') {
       steps {
         script {
+          currentBuild.description = "On ${env.NODE_NAME}"
           def utils = load 'build/common/utils.groovy'
           utils.init()
           utils.stopAllEngines()
@@ -111,7 +112,7 @@ pipeline {
   post {
     always {
       archiveArtifacts artifacts: 'AxonIvyPortal/portal-selenium-test/target/*.zip', allowEmptyArchive: true
-      archiveArtifacts artifacts: 'AxonIvyPortal/portal-selenium-test/target/selenide/reports/*/*/*.png, AxonIvyPortal/portal-selenium-test/target/testEngineOut.log, AxonIvyPortal/portal-selenium-test/target/ivy-elasticsearch-*.log', allowEmptyArchive: true
+      archiveArtifacts artifacts: 'AxonIvyPortal/portal-selenium-test/target/selenide/reports/**/*.*, AxonIvyPortal/portal-selenium-test/target/testEngineOut.log, AxonIvyPortal/portal-selenium-test/target/ivy-elasticsearch-*.log', allowEmptyArchive: true
       junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
     }
   }

@@ -85,6 +85,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CUSTOM: Custom widget
       NEW: New widget
       NEWS: News feed
+      NOTIFICATION: Notifications
       PROCESS: Process widget
       PROCESS_VIEWER: Process viewer widget
       STATISTIC: Statistic widget
@@ -215,6 +216,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SearchScopeCaseFields: Defining the fields that the global search will use to find matching cases beside case Id (this can influence the performance of the search)
       SearchScopeTaskFields: Defining the fields that the global search will use to find matching tasks beside task Id (this can influence the performance of the search)
       ShowLoginPageFooter: For switch on/off the display of the footer on the login page.
+      ShowQRCode: For switch on/off the display of the QR code.
       behaviourWhenClickingOnLineInTaskList: For switch behaviours (run the task or access task details) when clicking on a line in task list, task widget of dashboard and related tasks  in case details page.
       chatMaxConnection: 'The set number controls the amount of tabs allowed with active chat. If more tabs are opened, the chat will be disabled in inactive tabs. Allowed values between 1-5 '
       chatResponseTimeout: Chat response timeout in seconds, default value is 0 and means no timeout. If chat messages go through the reverse proxy Nginx, chat response timeout must be less than the Nginx timeout, e.g. less than 60 seconds.
@@ -296,6 +298,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     usernameRequiredMsg: Please input username.
     value: Value
   applicationMenuHeader:
+    MobileApp: Connect the Axon Ivy Mobile App
     adminSettings: Admin settings
     changePassword: Change password
   businessCaseState:
@@ -636,7 +639,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       roleMemberLineFormat: <p class="tooltip-body-item">{0}</p>
       roleMembersTooltipFormat: |-
         <p class="tooltip-header">{0}</p>
-        <ul class="tooltip-body {1}">{2}</ul>
+        <ul style="margin: auto; {1}">{2}</ul>
       tooltipHelper: Click to show all users which own this role directly or indirectly
       userOfRoleTitle: User of {0} group
     expressManagement:
@@ -917,6 +920,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     widgetType: Widget type
     yourCases: Your Cases
     yourCustomWidget: Your Custom Widget
+    yourNotifications: Your Notifications
     yourProcessViewer: Your Process Viewer
     yourProcesses: Your Processes
     yourStatistics: Your Statistics
@@ -1000,6 +1004,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     username: Username
   logoutSetting:
     logout: Logout
+  mobile:
+    MenuName: Mobile app
+    QRCodeDescription: To connect your Axon Ivy Mobile App, please scan this QR Code and enter your credentials in the inside the app.
   noteHistory:
     author: Author
     caseExportedFileNamePrefix: Note_history_of_case_{0}
@@ -1019,7 +1026,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     wroteAt: wrote at
   notifications:
     linkToFullScreen: Link to full screen
-    linkToNotificationSettings: Link to notification settings
+    linkToNotificationSettings: Notification settings
     markAllAsRead: Mark all as read
     markAsRead: Mark as read
     noNotificationText: No Notifications
@@ -1601,6 +1608,12 @@ Dialogs:
               NewsWidgetConfiguration: News feed widget configuration
               NewsWidgetDescription: This widget shares relevant information as a News Feed into Axon Ivy.
               NewsWidgetTitle: News feed widget
+            NotificationWidget:
+              NoNotificationAvailable: There are no notifications yet
+            NotificationWidgetConfiguration:
+              NotificationWidgetConfiguration: Notification widget configuration
+              NotificationWidgetDescription: This widget displays all Notifications based on your notification settings.
+              WidgetFilter: Widget Filter
   components:
     CaseDocument:
       FileDate: Modified at

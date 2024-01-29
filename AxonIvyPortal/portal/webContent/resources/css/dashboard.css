@@ -1701,6 +1701,60 @@ body .ui-widget.new-widget-dialog__introduction {
   border:none;
 }
 
+.widget-configuration.card.notification-widget-configuration {
+  width: 100%;
+  margin-right: 0;
+  flex-grow: 1;
+  max-width: 680px;
+}
+
+.dashboard-notification-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.notification-widget__content {
+  height: 100%;
+}
+
+.notification-widget__content-panel.widget__content {
+  padding-right: 0;
+}
+
+.notification-widget__content .ui-datascroller {
+  height: 100%;
+}
+
+.notification-widget__content .ui-datascroller .ui-datascroller-content{
+  border: none;
+  height: 100%;
+  padding: 0;
+}
+
+.notifications-group-title {
+  position: relative;
+  display: block;
+}
+
+.notifications-group-title:after {
+  position: absolute;
+  content: "";
+  height: 1px;
+  background-color: var(--ivy-primary-color-black);
+  width: calc(100% - 4rem);
+  margin-left: 15px;
+  top: 50%;
+}
+
+.notification-widget__skeleton-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 10px 15px 15px 0;
+}
+
 /* new filter */
 .widget-configuration-form {
   flex-wrap: nowrap;

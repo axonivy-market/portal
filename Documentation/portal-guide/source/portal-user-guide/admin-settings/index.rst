@@ -81,12 +81,12 @@ HowTo: Manage Roles
 ------------------------------
 Portal provides the :guilabel:`Role Management` section in the :guilabel:`Admin Settings` area, where the user can manage roles.
 
-| To see the :guilabel:`Role Management` tab, the user has to have the ``RoleManagement`` permission.
+| To see the :guilabel:`Role Management` tab, the user has to have the permission :bdg-ref-warning:`🔑RoleManagement <RoleManagement>`.
 | To manage roles, the user also has to own these permissions:
 
-  - ``RoleCreate``: create a new dynamic role
-  - ``RoleDelete``: delete a dynamic role
-  - ``RoleMove``: can select the parent role at the :guilabel:`Create new role` step, by default the system will use ``Everybody``
+  - :bdg-ref-warning:`🔑RoleCreate <RoleCreate>`: create a new dynamic role
+  - :bdg-ref-warning:`🔑RoleDelete <RoleDelete>`: delete a dynamic role
+  - :bdg-ref-warning:`🔑RoleMove <RoleMove>`: can select the parent role at the :guilabel:`Create new role` step, by default the system will use ``Everybody``
 
 #. Select the :guilabel:`Role Management` tab.
 
@@ -110,7 +110,7 @@ HowTo: Enable/Disable Password Validation
 -----------------------------------------
 Portal provides the :guilabel:`Password Validation` section in the :guilabel:`Admin Settings` area, where you can enable/disable password validation and change password policies as well. 
 
-| To see the :guilabel:`Password Validation` tab, you have to have the ``PasswordValidation`` permission.
+| To see the :guilabel:`Password Validation` tab, you have to have the permission :bdg-ref-warning:`🔑PasswordValidation <PasswordValidation>`.
 
 #. Select the :guilabel:`Password Validation` tab.
 

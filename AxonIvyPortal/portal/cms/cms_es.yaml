@@ -85,6 +85,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CUSTOM: Widget personalizado
       NEW: Nuevo widget
       NEWS: Noticias
+      NOTIFICATION: Notificaciones
       PROCESS: Widget de procesos
       PROCESS_VIEWER: Widget del visor de procesos
       STATISTIC: Widget de estadísticas
@@ -215,6 +216,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SearchScopeCaseFields: Definición de los campos que la búsqueda global utilizará para encontrar casos coincidentes además del Id de caso (esto puede influir en el rendimiento de la búsqueda)
       SearchScopeTaskFields: Definir los campos que la búsqueda global utilizará para encontrar tareas coincidentes junto al Id de tarea (esto puede influir en el rendimiento de la búsqueda).
       ShowLoginPageFooter: Para activar/desactivar la visualización del pie de página en la página de acceso.
+      ShowQRCode: Para activar/desactivar la visualización del código QR.
       behaviourWhenClickingOnLineInTaskList: Para cambiar los comportamientos (ejecutar la tarea o acceder a los detalles de la tarea) al hacer clic en una línea de la lista de tareas, el widget de tareas del tablero y las tareas relacionadas en la página de detalles del caso.
       chatMaxConnection: 'El número establecido controla la cantidad de pestañas permitidas con el chat activo. Si se abren más pestañas, el chat se desactivará en las pestañas inactivas. Valores permitidos entre 1-5 '
       chatResponseTimeout: Tiempo de respuesta del chat en segundos, el valor por defecto es 0 y significa que no hay tiempo de espera. Si los mensajes de chat pasan por el proxy inverso Nginx, el tiempo de espera de la respuesta del chat debe ser menor que el tiempo de espera de Nginx, por ejemplo, menos
@@ -264,8 +266,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       showCaseDurationTime: Activar o desactivar la visibilidad de la duración del caso en detalles de caso.
       showErrorLogToConsole: Establecer en true para activar el registro de errores en la consola del navegador
       showGlobalSearch: Para activar o desactivar la visualización de la búsqueda global.
-      showQuickGlobalSearch: Para activar/desactivar la visualización de la búsqueda global rápida.
       showProcessInformation: Cambiar a falso para desactivar el enlace "Más información" en la página de Procesos (modo cuadrícula) y Detalles del caso.
+      showQuickGlobalSearch: Para activar/desactivar la visualización de la búsqueda global rápida.
       showTaskDurationTime: Activar o desactivar la visibilidad de la duración de la tarea en detalles de tarea.
       statisticChartScalingInterval: Intervalo en segundos para realizar peticiones periódicas de escalado de gráficos estadísticos. Si el valor del intervalo es inferior a 10, se desactiva el escalado periódico de gráficos estadísticos.
       uploadDocumentWhiteListExtensionNote: 'Dejar libre, sie quiere permitir todos los anexos. Si quiere reducir los formatos permitidos, cree una lista separada por coma. Por ejemplo: pdf, txt, doc, docx.'
@@ -299,6 +301,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     usernameRequiredMsg: Por favor ingrese nombre de usuario.
     value: Valor
   applicationMenuHeader:
+    MobileApp: Conectar la aplicación móvil Axon Ivy
     adminSettings: Configuración de administrador
     changePassword: Cambiar contraseña
   businessCaseState:
@@ -753,7 +756,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoData: No hay datos
     NoSavedFilterMessage: No se ha encontrado ningún filtro guardado. Intente crear uno nuevo haciendo clic en el botón Guardar filtro
     NoWidgetAvailable: No existen widgets.
-    RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
+    RestoreDefaultDashboardMessage: Si continúa, perderá todos los widgets creados por usted. Se aplicará la configuración estándar de <span class="dashboard-template-name-message">{0}</span>.
     SaveNewWidgetFilterHeader: Guardar un nuevo filtro de widget
     SavedFilterHeader: Filtros guardados
     SearchForFilter: Búsqueda del filtro
@@ -915,6 +918,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     widgetType: Tipo de widget
     yourCases: Sus casos
     yourCustomWidget: Su widget personalizado
+    yourNotifications: Sus notificaciones
     yourProcessViewer: Su visor de procesos
     yourProcesses: Sus procesos
     yourStatistics: Sus estadísticas
@@ -998,6 +1002,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     username: Nombre de usuario
   logoutSetting:
     logout: Cerrar sesión
+  mobile:
+    MenuName: Aplicación móvil
+    QRCodeDescription: Para conectar su aplicación móvil Axon Ivy, escanee este código QR e introduzca sus credenciales en el interior de la aplicación.
   noteHistory:
     author: Autor
     caseExportedFileNamePrefix: Historia_Notas_del_caso_ {0}
@@ -1017,7 +1024,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     wroteAt: escribió en
   notifications:
     linkToFullScreen: Enlace a la pantalla completa
-    linkToNotificationSettings: Enlace a la configuración de notificaciones
+    linkToNotificationSettings: Ajustes de notificación
     markAllAsRead: Marcar todo como leído
     markAsRead: Marcar como leído
     noNotificationText: Notificaciones
@@ -1603,6 +1610,12 @@ Dialogs:
               NewsWidgetConfiguration: Configuración del widget de noticias
               NewsWidgetDescription: Este widget comparte información relevante como un News Feed en Axon Ivy.
               NewsWidgetTitle: Widget de noticias
+            NotificationWidget:
+              NoNotificationAvailable: Aún no hay notificaciones
+            NotificationWidgetConfiguration:
+              NotificationWidgetConfiguration: Configuración del widget de notificaciones
+              NotificationWidgetDescription: Este widget muestra todas las notificaciones según la configuración de notificaciones.
+              WidgetFilter: Filtro de widgets
   components:
     CaseDocument:
       FileDate: Modificado el

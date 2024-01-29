@@ -23,6 +23,7 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.service.TaskInforActionService;
+import com.axonivy.portal.components.util.HtmlParser;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
@@ -266,7 +267,7 @@ public final class TaskUtils {
       FacesContext facesContext = FacesContext.getCurrentInstance();
       facesContext.validationFailed();
       facesContext.addMessage(PORTAL_GLOBAL_GROWL_MESSAGE,
-          new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
+          new FacesMessage(FacesMessage.SEVERITY_INFO, HtmlParser.sanitize(notification), null));
       PrimeFaces.current().ajax().update(PORTAL_GLOBAL_GROWL);
     }
     return StringUtils.isBlank(notification);

@@ -1,7 +1,6 @@
 package com.axonivy.portal.components.publicapi;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import com.axonivy.portal.components.enums.SessionAttribute;
 import com.axonivy.portal.components.generic.navigation.BaseNavigator;
@@ -18,8 +17,6 @@ import ch.ivyteam.ivy.workflow.StandardProcessType;
  */
 public final class PortalNavigatorAPI extends BaseNavigator {
   private static final String PORTAL_PROCESS_START_NAME = "Start Processes/PortalStart/DefaultApplicationHomePage.ivp";
-  private static final String PORTAL_PROCESS_START_CASE_DETAIL = "Start Processes/PortalStart/CaseDetailsLink.ivp";
-  private static final String PORTAL_PROCESS_START_TASK_DETAIL = "Start Processes/PortalStart/TaskDetailsLink.ivp";
 
 
   private PortalNavigatorAPI() {}
@@ -72,9 +69,8 @@ public final class PortalNavigatorAPI extends BaseNavigator {
    * @return Absolute url to case details page of case uuid
    */
   public static String buildUrlToPortalCaseDetailsPageByUUID(String uuid) {
-    Map<String, String> param = new HashMap<>();
-    param.put("uuid", uuid);
-    return buildAbsoluteUrl(PORTAL_PROCESS_START_CASE_DETAIL, param);
+    ICase caze = Sudo.get(() -> Ivy.wf().findCase(uuid));
+    return (caze != null && caze.getDetailLink() != null) ? caze.getDetailLink().getAbsolute() : "";
   }
 
   /**
@@ -84,8 +80,7 @@ public final class PortalNavigatorAPI extends BaseNavigator {
    * @return Absolute url to task details page of task uuid
    */
   public static String buildUrlToPortalTaskDetailsPageByUUID(String uuid) {
-    Map<String, String> param = new HashMap<>();
-    param.put("uuid", uuid);
-    return buildAbsoluteUrl(PORTAL_PROCESS_START_TASK_DETAIL, param);
+    ITask task = Sudo.get(() -> Ivy.wf().findTask(uuid));
+    return (task != null && task.getDetailLink() != null) ? task.getDetailLink().getAbsolute() : "";
   }
 }
