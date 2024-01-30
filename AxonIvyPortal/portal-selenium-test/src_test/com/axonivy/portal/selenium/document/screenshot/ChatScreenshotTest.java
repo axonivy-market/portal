@@ -15,7 +15,7 @@ import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.ChatPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
-import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
+import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
 @IvyWebTest
@@ -42,8 +42,7 @@ public class ChatScreenshotTest extends ScreenshotBaseTest {
     MainMenuPage menu = new MainMenuPage();
     TaskWidgetPage taskWidgetPage = menu.openTaskList();
     taskWidgetPage.openTask("Maternity Leave Request");
-    TaskIFrameTemplatePage taskTemplatePage = new TaskIFrameTemplatePage();
-
+    TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
 
     taskTemplatePage.clickActionButton();
     ScreenshotUtils.executeDecorateJs("highlightJoinGroupChatOption()");
