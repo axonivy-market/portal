@@ -134,14 +134,14 @@ public class TaskWidgetPage extends TemplatePage {
         .shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public TaskIFrameTemplatePage clickOnSideStepAction(int taskIndex, int sideStepIndex) {
+  public TaskTemplatePage clickOnSideStepAction(int taskIndex, int sideStepIndex) {
     String sideStepsId = String.format(
         "task-widget:task-list-scroller:%d:task-item:task-action:additional-options:task-additional-actions",
         taskIndex);
     SelenideElement sideStepPanel = $("[id$='" + sideStepsId + "']");
     ElementsCollection sideSteps = sideStepPanel.findAll(By.className("option-item"));
     sideSteps.get(sideStepIndex).click();
-    return new TaskIFrameTemplatePage();
+    return new TaskTemplatePage();
   }
 
   private void openTriggerEscalationDialog() {
