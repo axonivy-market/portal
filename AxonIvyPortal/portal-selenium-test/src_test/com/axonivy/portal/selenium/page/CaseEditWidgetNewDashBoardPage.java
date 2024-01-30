@@ -115,9 +115,9 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     $(caseEditWidgetId).shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
-  public WebElement openColumnManagementDialog() {
-    $("div[id$='case-widget-preview:dashboard-cases-container']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$("a[id$='column-toggler']").click();
+  public SelenideElement openColumnManagementDialog() {
+    $("div[id$='case-widget-preview:dashboard-cases-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("button[id$=':manage-column']").shouldBe(getClickableCondition()).click();
     return getColumnManagementDialog().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -240,7 +240,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return ".case-configuration__creators";
+    return ".widget-configuration__input-text";
   }
 
   public SelenideElement getAddLanguageButton() {
