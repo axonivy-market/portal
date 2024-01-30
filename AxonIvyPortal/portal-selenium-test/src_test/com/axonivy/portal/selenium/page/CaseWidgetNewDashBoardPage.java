@@ -6,6 +6,8 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -227,4 +229,29 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     SelenideElement custom = $("a[id$=':custom-description']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     custom.shouldBe(getClickableCondition()).click();
   }
+  
+  ////////////////// 
+  
+  public void addFilter(String columnName, FilterOperator FilterOperator) {
+    $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT);
+    int totalChildFilter = $$("div[id$=':filter-component:filter-selection-panel']").size();
+    $("button[id$=':add-filter']").shouldBe(getClickableCondition()).click();
+    $$("div[id$=':filter-component:filter-selection-panel']").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(totalChildFilter + 1));
+    getNewFilter(totalChildFilter);
+  }
+  
+  public SelenideElement getNewFilter(int index) {
+    String latestFilter = String.format("div[id$=':%s:filter-component:filter-selection-panel']", index);
+    return $(latestFilter).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void selectFilterColumnName(String columnName, int index) {
+    String columnSelection = String.format("div[id$=':%s:filter-component:field-selection_panel']", index);
+    $(columnSelection).$$("ul li").filter(text(columnName)).first().click();
+//    $(columnSelection).
+  }
+  
+//  public void 
+  
+  
 }
