@@ -918,7 +918,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   }
 }
 
-@media screen and (max-width: 90.062em) {
+@media screen and (max-width: 101.062em) {
   .case-detail-body .name-column .case-description-value,
   .case-detail-body .case-details-related-task-table .related-task-name-column .task-description-value {
     display: block;
@@ -945,7 +945,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   }
 }
 
-@media screen and (min-width: 90.063em) {
+@media screen and (min-width: 101.062em) {
   .case-detail-body .name-column .case-description-value,
   .case-detail-body .case-details-related-task-table .related-task-name-column .task-description-value {
     display: none;
