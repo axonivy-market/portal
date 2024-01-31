@@ -97,7 +97,13 @@ HowTo: Add an external link
 
 #. For the :guilabel:`Process name`, define the best name for it.
 
+#. For the :guilabel:`Process name` in multiple languages.
+
 #. For the :guilabel:`Start link`, add the URL of your external link.
+
+#. For the :guilabel:`Description`, add the description of your external link.
+
+#. For the :guilabel:`Description` in multiple languages.
 
 #. Grant permission :bdg-ref-warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>` to allow a user to create public links to external sites. 
    This user can set this link as a public link by selecting :guilabel:`All users` .
