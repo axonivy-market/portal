@@ -85,6 +85,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CUSTOM: Widget personalizado
       NEW: Nuevo widget
       NEWS: Noticias
+      NOTIFICATION: Notificaciones
       PROCESS: Widget de procesos
       PROCESS_VIEWER: Widget del visor de procesos
       STATISTIC: Widget de estadísticas
@@ -753,7 +754,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoData: No hay datos
     NoSavedFilterMessage: No se ha encontrado ningún filtro guardado. Intente crear uno nuevo haciendo clic en el botón Guardar filtro
     NoWidgetAvailable: No existen widgets.
-    RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
+    RestoreDefaultDashboardMessage: Si continúa, perderá todos los widgets creados por usted. Se aplicará la configuración estándar de <span class="dashboard-template-name-message">{0}</span>.
     SaveNewWidgetFilterHeader: Guardar un nuevo filtro de widget
     SavedFilterHeader: Filtros guardados
     SearchForFilter: Búsqueda del filtro
@@ -915,6 +916,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     widgetType: Tipo de widget
     yourCases: Sus casos
     yourCustomWidget: Su widget personalizado
+    yourNotifications: Sus notificaciones
     yourProcessViewer: Su visor de procesos
     yourProcesses: Sus procesos
     yourStatistics: Sus estadísticas
@@ -1604,6 +1606,12 @@ Dialogs:
               NewsWidgetConfiguration: Configuración del widget de noticias
               NewsWidgetDescription: Este widget comparte información relevante como un News Feed en Axon Ivy.
               NewsWidgetTitle: Widget de noticias
+            NotificationWidget:
+              NoNotificationAvailable: Aún no hay notificaciones
+            NotificationWidgetConfiguration:
+              NotificationWidgetConfiguration: Configuración del widget de notificaciones
+              NotificationWidgetDescription: Este widget muestra todas las notificaciones según la configuración de notificaciones.
+              WidgetFilter: Filtro de widgets
   components:
     CaseDocument:
       FileDate: Modificado el

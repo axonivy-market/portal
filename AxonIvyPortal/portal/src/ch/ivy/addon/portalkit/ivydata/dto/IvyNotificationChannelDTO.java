@@ -52,27 +52,27 @@ public class IvyNotificationChannelDTO {
   public void setSubscriptionIconAndTitle(String event) {
     var subscription = subscriptions.get(event);
     if (subscription != null) {
-    var state = subscription.getState();
-    boolean subscribedByUser = IvyNotificationChannelSubcriptionDTO.State.SUBSCRIBED.equals(state);
-    boolean useDefault = IvyNotificationChannelSubcriptionDTO.State.USE_DEFAULT.equals(state);
-    var icon = new StringBuilder();
-    var iconTitle = new StringBuilder();
+      var state = subscription.getState();
+      boolean subscribedByUser = IvyNotificationChannelSubcriptionDTO.State.SUBSCRIBED.equals(state);
+      boolean useDefault = IvyNotificationChannelSubcriptionDTO.State.USE_DEFAULT.equals(state);
+      var icon = new StringBuilder();
+      var iconTitle = new StringBuilder();
 
-    if (subscribedByUser || (useDefault && subscription.isSubscribedByDefault())) {
-      icon.append("check-circle-1 state-active");
-      iconTitle.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/subscribed"));
-    } else {
-      icon.append("remove-circle state-inactive");
-      iconTitle.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/notSubscribed"));
-    }
+      if (subscribedByUser || (useDefault && subscription.isSubscribedByDefault())) {
+        icon.append("check-circle-1 state-active");
+        iconTitle.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/subscribed"));
+      } else {
+        icon.append("remove-circle state-inactive");
+        iconTitle.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/notSubscribed"));
+      }
 
-    if (useDefault) {
-      icon.append(" light");
-      iconTitle.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/byDefault"));
-    }
+      if (useDefault) {
+        icon.append(" light");
+        iconTitle.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/byDefault"));
+      }
 
-    subscription.setIcon(icon.toString());
-    subscription.setTitle(iconTitle.toString());
+      subscription.setIcon(icon.toString());
+      subscription.setTitle(iconTitle.toString());
     }
   }
 }
