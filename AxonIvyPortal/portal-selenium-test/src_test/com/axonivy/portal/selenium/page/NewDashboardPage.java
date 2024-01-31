@@ -822,6 +822,10 @@ public class NewDashboardPage extends TemplatePage {
     return new DashboardNewsWidgetPage(newWidgetName);
   }
 
+  public DashboardNotificationWidgetPage selectNotificationWidget() {
+    return new DashboardNotificationWidgetPage();
+  }
+
   public boolean isDownloadCompleted() {
     return $("#download-status-dialog").shouldBe(Condition.attribute("download-status", "completed"), DEFAULT_TIMEOUT)
         .exists();
@@ -908,7 +912,15 @@ public class NewDashboardPage extends TemplatePage {
     return Integer.parseInt($("[id='notifications-badge-value']").getValue());
   }
 
-  public WebElement getNotificationsPanel() {
+  public SelenideElement hideNotificationsIcon() {
+    return $("[id='topbar-unread-notifications']").shouldBe(disappear);
+  }
+  
+  public SelenideElement showNotificationsIcon() {
+    return $("[id='topbar-unread-notifications']").shouldBe(appear);
+  }
+
+  public SelenideElement getNotificationsPanel() {
     waitForGlobalGrowlDisappear();
     $("[id='topbar-unread-notifications']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();

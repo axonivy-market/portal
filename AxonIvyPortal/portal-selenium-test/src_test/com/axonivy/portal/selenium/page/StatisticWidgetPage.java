@@ -33,9 +33,10 @@ public class StatisticWidgetPage extends TemplatePage {
   }
 
   public TaskAnalysisWidgetPage navigateToTaskAnalysisPage() {
+    waitForPageLoad();
     var taskAnalysLink = $("a[id='statistics-widget:task-analysis-page-navigation-link']")
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition());
-    WaitHelper.waitForNavigation(() -> taskAnalysLink.click());
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    WaitHelper.waitForNavigation(() -> waitForElementClickableThenClick(taskAnalysLink));
     $("[id='task-widget']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return new TaskAnalysisWidgetPage();
   }
