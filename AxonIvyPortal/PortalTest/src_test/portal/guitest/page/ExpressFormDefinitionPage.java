@@ -176,8 +176,9 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     // this click to fix bug can't drag on IE
     clickByCssSelector(formElementSelector);
     WebElement panel = findElementById(panelId);
+    WebElement formElement = findElementByCssSelector(formElementSelector);
     Actions builder = new Actions(driver);
-    Action moveProcessSequence = builder.dragAndDrop(findElementByCssSelector(formElementSelector), panel).build();
+    Action moveProcessSequence = builder.clickAndHold(formElement).dragAndDrop(formElement, panel).build();
     moveProcessSequence.perform();
     WaitHelper.assertTrueWithWait(() -> {
       var dropPanel = findElementById(panelId);

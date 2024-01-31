@@ -96,7 +96,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
   private void filterTaskByNameAndState(String name, String state) {
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
-    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
     taskWidget.openFilterWidget();
     taskWidget.resetFilter();
     taskWidget.openFilterWidget();
