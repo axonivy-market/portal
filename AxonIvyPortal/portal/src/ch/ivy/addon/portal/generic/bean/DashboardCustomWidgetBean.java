@@ -2,7 +2,10 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
@@ -13,10 +16,14 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.service.impl.ProcessService;
 
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidgetParam;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import ch.ivy.addon.portalkit.util.LanguageUtils;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ManagedBean
@@ -91,5 +98,64 @@ public class DashboardCustomWidgetBean implements Serializable {
     }
     return allCustomDashboardProcesses;
   }
-
+  
+  public void updateNameByLocale(CustomDashboardWidget widget) {
+    String currentName = LanguageUtils.getLocalizedName(widget.getData().getNames(), widget.getData().getName());
+    initMultipleLanguagesForLinkName(widget, currentName);
+    String currentLanguage = UserUtils.getUserLanguage();
+    Optional<DisplayName> optional = widget.getData().getNames().stream()
+        .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+    if (optional.isPresent()) {
+      optional.get().setValue(currentName);
+    }
+  }
+  
+  private void initMultipleLanguagesForLinkName(CustomDashboardWidget widget, String currentName) {
+    Map<String, DisplayName> mapLanguage = widget.getData()
+                                            .getNames()
+                                            .stream()
+                                            .collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
+    List<String> supportedLanguages = LanguageService.newInstance().findUserLanguages().getIvyLanguage().getSupportedLanguages();
+    for (String language : supportedLanguages) {
+      DisplayName localeLanguage = mapLanguage.get(language);
+      if (localeLanguage == null) {
+        DisplayName displayName = new DisplayName();
+        displayName.setLocale(Locale.forLanguageTag(language));
+        displayName.setValue(currentName);
+        widget.getData().getNames().add(displayName);
+      } else if (StringUtils.isBlank(localeLanguage.getValue())) {
+        localeLanguage.setValue(currentName);
+      }
+    }
+  }
+  
+  public void updateDescriptionByLocale(CustomDashboardWidget widget) {
+    String currentDescription = LanguageUtils.getLocalizedName(widget.getData().getDescriptions(), widget.getData().getDescription());
+    initMultipleLanguagesForLinkDescription(widget, currentDescription);
+    String currentLanguage = UserUtils.getUserLanguage();
+    Optional<DisplayName> optional = widget.getData().getDescriptions().stream()
+        .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+    if (optional.isPresent()) {
+      optional.get().setValue(currentDescription);
+    }
+  }
+  
+  private void initMultipleLanguagesForLinkDescription(CustomDashboardWidget widget, String currentDescription) {
+    Map<String, DisplayName> mapLanguage = widget.getData()
+                                            .getDescriptions()
+                                            .stream()
+                                            .collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
+    List<String> supportedLanguages = LanguageService.newInstance().findUserLanguages().getIvyLanguage().getSupportedLanguages();
+    for (String language : supportedLanguages) {
+      DisplayName localeLanguage = mapLanguage.get(language);
+      if (localeLanguage == null) {
+        DisplayName displayName = new DisplayName();
+        displayName.setLocale(Locale.forLanguageTag(language));
+        displayName.setValue(currentDescription);
+        widget.getData().getDescriptions().add(displayName);
+      } else if (StringUtils.isBlank(localeLanguage.getValue())) {
+        localeLanguage.setValue(currentDescription);
+      }
+    }
+  }
 }

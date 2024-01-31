@@ -56,9 +56,9 @@ public class ApplicationColumnModel extends TaskColumnModel implements Serializa
     return false;
   }
 
-  public void updateApplications(@SuppressWarnings("unused") TaskDashboardWidget  widget) {
+  public void updateApplications(TaskDashboardWidget  widget) {
   }
-  public void initializeApplications(@SuppressWarnings("unused") TaskDashboardWidget widget) {
+  public void initializeApplications(TaskDashboardWidget widget) {
   }
   
   @Override
