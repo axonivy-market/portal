@@ -1398,6 +1398,9 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   margin-right: 15px;
 }
 
+.external-link-description {
+  padding-right:0.5em;
+}
 .favorite-process-name {
   max-width: 850px;
 }
@@ -3261,15 +3264,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   text-align: left;
   padding: 6px 0;
   vertical-align: top;
-}
-
-.edit-process-form .edit-process-detail-2nd-cell .ui-inplace-content {
-  display: flex;
-}
-
-.edit-process-form .edit-process-detail-2nd-cell .ui-inplace-content input,
-.edit-process-form .edit-process-detail-2nd-cell .ui-inplace-content textarea {
-  flex-grow: 1;
 }
 
 .edit-process-form .edit-external-link-name {

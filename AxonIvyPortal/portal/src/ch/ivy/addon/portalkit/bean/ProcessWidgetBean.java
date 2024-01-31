@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -37,19 +38,23 @@ import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.configuration.GlobalSetting;
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.ProcessMode;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.IProcessStart;
@@ -238,14 +243,9 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     }
 
     switch (deletedProcess.getType()) {
-      case EXPRESS_PROCESS:
-        deleteExpressWorkflow();
-        break;
-      case EXTERNAL_LINK:
-        deleteExternalLink();
-        break;
-      default:
-        break;
+      case EXPRESS_PROCESS -> deleteExpressWorkflow();
+      case EXTERNAL_LINK -> deleteExternalLink();
+      default -> {}
     }
   }
 
@@ -262,16 +262,15 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     }
     String oldProcessName = this.editedProcess.getName();
     switch (this.editedProcess.getType()) {
-      case EXPRESS_PROCESS:
+      case EXPRESS_PROCESS -> {
         ExpressProcess expressProcess = updateExpressProcess(editedProcess.getId());
         this.editedProcess = new PortalExpressProcess(expressProcess);
-        break;
-      case EXTERNAL_LINK:
+      }
+      case EXTERNAL_LINK -> {
         ExternalLink externalLink = updateExternalLink(editedProcess.getId());
         this.editedProcess = new ExternalLinkProcessItem(externalLink);
-        break;
-      default:
-        break;
+      }
+      default -> {}
     }
     selectedIconProcess = null;
     updateStartProcessesList(oldProcessName);
@@ -296,6 +295,8 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
       externalLink.setIcon(this.selectedIconProcess);
       externalLink.setName(this.editedExternalLink.getName());
       externalLink.setDescription(this.editedExternalLink.getDescription());
+      externalLink.setNames(this.editedExternalLink.getNames());
+      externalLink.setDescriptions(this.editedExternalLink.getDescriptions());
       if (!Objects.equals(this.editedExternalLink.getImageLocation(), this.originalExternalLinkImage)) {
         removeOriginalExternalLinkImage(externalLink.getImageLocation(), externalLink.getImageType());
         externalLink.setImageLocation(this.editedExternalLink.getImageLocation());
@@ -420,7 +421,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   public void setEditedProcess(Process editedProcess) {
     this.editedProcess = editedProcess;
     setSelectedIconProcess(editedProcess.getIcon());
-    if (editedProcess.getType().equals(ProcessType.EXTERNAL_LINK)) {
+    if (editedProcess.getType() == ProcessType.EXTERNAL_LINK) {
       updateSeletedEditExternalLink(editedProcess);
     }
   }
@@ -445,6 +446,11 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
       this.selectedPermissionsForSavingEditedExternalLink = new ArrayList<>(permissions);
     } else {
       this.editedExternalLink.setIsPublic(false);
+    }
+    ExternalLink findById = ExternalLinkService.getInstance().findById(editedProcess.getId());
+    if (findById != null) {
+      this.editedExternalLink.setNames(findById.getNames());
+      this.editedExternalLink.setDescriptions(findById.getDescriptions());
     }
   }
 
@@ -558,5 +564,65 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   public void setSelectedPermissionsWhenEditingExternalLink(List<String> selectedPermissionsWhenEditingExternalLink) {
     this.selectedPermissionsWhenEditingExternalLink = new ArrayList<>(selectedPermissionsWhenEditingExternalLink);
+  }
+  
+  public void updateNameByLocale() {
+    String currentName = LanguageUtils.getLocalizedName(editedExternalLink.getNames(), editedExternalLink.getName());
+    initMultipleLanguagesForLinkName(currentName);
+    String currentLanguage = UserUtils.getUserLanguage();
+    Optional<DisplayName> optional = editedExternalLink.getNames().stream()
+        .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+    if (optional.isPresent()) {
+      optional.get().setValue(currentName);
+    }
+  }
+  
+  private void initMultipleLanguagesForLinkName(String currentName) {
+    Map<String, DisplayName> mapLanguage = editedExternalLink
+                                            .getNames()
+                                            .stream()
+                                            .collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
+    List<String> supportedLanguages = LanguageService.newInstance().findUserLanguages().getIvyLanguage().getSupportedLanguages();
+    for (String language : supportedLanguages) {
+      DisplayName localeLanguage = mapLanguage.get(language);
+      if (localeLanguage == null) {
+        DisplayName displayName = new DisplayName();
+        displayName.setLocale(Locale.forLanguageTag(language));
+        displayName.setValue(currentName);
+        editedExternalLink.getNames().add(displayName);
+      } else if (StringUtils.isBlank(localeLanguage.getValue())) {
+        localeLanguage.setValue(currentName);
+      }
+    }
+  }
+  
+  public void updateDescriptionByLocale() {
+    String currentDescription = LanguageUtils.getLocalizedName(editedExternalLink.getDescriptions(), editedExternalLink.getDescription());
+    initMultipleLanguagesForLinkDescription(currentDescription);
+    String currentLanguage = UserUtils.getUserLanguage();
+    Optional<DisplayName> optional = editedExternalLink.getDescriptions().stream()
+        .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+    if (optional.isPresent()) {
+      optional.get().setValue(currentDescription);
+    }
+  }
+  
+  private void initMultipleLanguagesForLinkDescription(String currentDescription) {
+    Map<String, DisplayName> mapLanguage = editedExternalLink
+                                            .getDescriptions()
+                                            .stream()
+                                            .collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
+    List<String> supportedLanguages = LanguageService.newInstance().findUserLanguages().getIvyLanguage().getSupportedLanguages();
+    for (String language : supportedLanguages) {
+      DisplayName localeLanguage = mapLanguage.get(language);
+      if (localeLanguage == null) {
+        DisplayName displayName = new DisplayName();
+        displayName.setLocale(Locale.forLanguageTag(language));
+        displayName.setValue(currentDescription);
+        editedExternalLink.getDescriptions().add(displayName);
+      } else if (StringUtils.isBlank(localeLanguage.getValue())) {
+        localeLanguage.setValue(currentDescription);
+      }
+    }
   }
 }
