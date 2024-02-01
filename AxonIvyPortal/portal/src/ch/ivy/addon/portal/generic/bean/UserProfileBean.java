@@ -18,6 +18,7 @@ import ch.ivy.addon.portalkit.enums.SortDirection;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 
@@ -94,4 +95,15 @@ public class UserProfileBean implements Serializable {
     return Ivy.cms().co(DEFAULT_OPTION, Arrays.asList(sortFieldName));
   }
 
+  public boolean canAccessProcessList() {
+    return PermissionUtils.checkAccessFullProcessListPermission();
+  }
+
+  public boolean canAccessTaskList() {
+    return PermissionUtils.checkAccessFullTaskListPermission();
+  }
+
+  public boolean canAccessCaseList() {
+    return PermissionUtils.checkAccessFullCaseListPermission();
+  }
 }
