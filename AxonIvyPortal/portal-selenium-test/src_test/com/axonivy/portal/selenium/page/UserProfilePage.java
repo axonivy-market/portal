@@ -23,15 +23,4 @@ public class UserProfilePage extends TemplatePage {
     WaitHelper.waitForNavigation(() -> save.click());
   }
 
-  public boolean isProcessSettingDisplayed() {
-    return $("div[id='my-profile-form:process-mode-selection']").is(Condition.appear);
-  }
-
-  public boolean isTaskListSettingDisplayed() {
-    return $("div[id='my-profile-form:task-sort-field-selection']").is(Condition.appear);
-  }
-
-  public boolean isCaseListSettingDisplayed() {
-    return $("div[id='my-profile-form:case-sort-field-selection']").is(Condition.appear);
-  }
 }
