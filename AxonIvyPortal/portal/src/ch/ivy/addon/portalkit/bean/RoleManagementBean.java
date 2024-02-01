@@ -22,6 +22,7 @@ import ch.ivy.addon.portalkit.role.RoleHolder;
 import ch.ivy.addon.portalkit.role.RoleTreeDataModel;
 import ch.ivy.addon.portalkit.role.UserAssignedDataModel;
 import ch.ivy.addon.portalkit.role.UserHolder;
+import com.axonivy.portal.components.util.HtmlParser;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.RoleUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -228,7 +229,7 @@ public class RoleManagementBean implements Serializable {
   }
 
   private String cms(String cmsURL, Object... param) {
-    return Ivy.cms().co(cmsURL, Arrays.asList(param));
+    return HtmlParser.sanitize(Ivy.cms().co(cmsURL, Arrays.asList(param)));
   }
 
   public RoleTreeDataModel getRoleTreeModel() {
