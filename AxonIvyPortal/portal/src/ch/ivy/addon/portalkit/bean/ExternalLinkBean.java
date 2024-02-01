@@ -3,10 +3,6 @@ package ch.ivy.addon.portalkit.bean;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -23,11 +19,10 @@ import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.Protocol;
-import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
+import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.util.Pair;
@@ -109,61 +104,16 @@ public class ExternalLinkBean implements Serializable {
   
   public void updateNameByLocale() {
     String currentName = LanguageUtils.getLocalizedName(externalLink.getNames(), externalLink.getName());
-    initMultipleLanguagesForLinkName(currentName);
-    String currentLanguage = UserUtils.getUserLanguage();
-    Optional<DisplayName> optional = externalLink.getNames().stream()
-        .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
-    if (optional.isPresent()) {
-      optional.get().setValue(currentName);
-    }
-  }
-  
-  private void initMultipleLanguagesForLinkName(String currentName) {
-    Map<String, DisplayName> mapLanguage = externalLink
-                                            .getNames()
-                                            .stream()
-                                            .collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
-    List<String> supportedLanguages = LanguageService.newInstance().findUserLanguages().getIvyLanguage().getSupportedLanguages();
-    for (String language : supportedLanguages) {
-      DisplayName localeLanguage = mapLanguage.get(language);
-      if (localeLanguage == null) {
-        DisplayName displayName = new DisplayName();
-        displayName.setLocale(Locale.forLanguageTag(language));
-        displayName.setValue(currentName);
-        externalLink.getNames().add(displayName);
-      } else if (StringUtils.isBlank(localeLanguage.getValue())) {
-        localeLanguage.setValue(currentName);
-      }
-    }
+    initAndSetValue(currentName, externalLink.getNames());
   }
   
   public void updateDescriptionByLocale() {
     String currentDescription = LanguageUtils.getLocalizedName(externalLink.getDescriptions(), externalLink.getDescription());
-    initMultipleLanguagesForLinkDescription(currentDescription);
-    String currentLanguage = UserUtils.getUserLanguage();
-    Optional<DisplayName> optional = externalLink.getDescriptions().stream()
-        .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
-    if (optional.isPresent()) {
-      optional.get().setValue(currentDescription);
-    }
+    initAndSetValue(currentDescription, externalLink.getDescriptions());
   }
   
-  private void initMultipleLanguagesForLinkDescription(String currentDescription) {
-    Map<String, DisplayName> mapLanguage = externalLink
-                                            .getDescriptions()
-                                            .stream()
-                                            .collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
-    List<String> supportedLanguages = LanguageService.newInstance().findUserLanguages().getIvyLanguage().getSupportedLanguages();
-    for (String language : supportedLanguages) {
-      DisplayName localeLanguage = mapLanguage.get(language);
-      if (localeLanguage == null) {
-        DisplayName displayName = new DisplayName();
-        displayName.setLocale(Locale.forLanguageTag(language));
-        displayName.setValue(currentDescription);
-        externalLink.getDescriptions().add(displayName);
-      } else if (StringUtils.isBlank(localeLanguage.getValue())) {
-        localeLanguage.setValue(currentDescription);
-      }
-    }
-  }
+  private void initAndSetValue(String value, List<DisplayName> values) {
+    DisplayNameConvertor.initMultipleLanguages(value, values);
+    DisplayNameConvertor.setValue(value, values);
+  }  
 }

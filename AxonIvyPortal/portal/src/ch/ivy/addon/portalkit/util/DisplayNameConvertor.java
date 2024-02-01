@@ -2,11 +2,18 @@ package ch.ivy.addon.portalkit.util;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.shaded.json.JSONException;
 import org.primefaces.shaded.json.JSONObject;
+
+import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 
 public class DisplayNameConvertor {
 
@@ -39,5 +46,32 @@ public class DisplayNameConvertor {
       displayName.add(Locale.forLanguageTag(key), value);
     }
     return displayName;
+  }
+  
+  public static void setValue(String currentValue, List<DisplayName> values) {
+    String currentLanguage = UserUtils.getUserLanguage();
+    Optional<DisplayName> optional = values.stream()
+        .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+    if (optional.isPresent()) {
+      optional.get().setValue(currentValue);
+    }
+  }
+  
+  public static void initMultipleLanguages(String currentValue, List<DisplayName> values) {
+    Map<String, DisplayName> mapLanguage = values
+                                            .stream()
+                                            .collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
+    List<String> supportedLanguages = LanguageService.newInstance().findUserLanguages().getIvyLanguage().getSupportedLanguages();
+    for (String language : supportedLanguages) {
+      DisplayName localeLanguage = mapLanguage.get(language);
+      if (localeLanguage == null) {
+        DisplayName displayName = new DisplayName();
+        displayName.setLocale(Locale.forLanguageTag(language));
+        displayName.setValue(currentValue);
+        values.add(displayName);
+      } else if (StringUtils.isBlank(localeLanguage.getValue())) {
+        localeLanguage.setValue(currentValue);
+      }
+    }
   }
 }
