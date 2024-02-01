@@ -1,5 +1,8 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,8 +16,10 @@ import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
+import portal.guitest.page.UserProfilePage;
 
 public class PortalPermissionTest extends BaseTest{
   
@@ -130,7 +135,27 @@ public class PortalPermissionTest extends BaseTest{
     caseDetailsPage.openActionMenu();
     Assert.assertTrue(caseDetailsPage.isShowDetailsDisplayed());
   }
-  
+
+  @Test
+  public void testShowHideMyProfileItems() {
+    denyAccessFullListPermissions();
+    showNewDashboard();
+    NewDashboardPage dashboard = new NewDashboardPage();
+    UserProfilePage userProfilePage = dashboard.openMyProfilePage();
+
+    assertFalse(userProfilePage.isProcessSettingDisplayed());
+    assertFalse(userProfilePage.isTaskListSettingDisplayed());
+    assertFalse(userProfilePage.isCaseListSettingDisplayed());
+
+    grantAccessFullListPermissions();
+    dashboard = new NewDashboardPage();
+    userProfilePage = dashboard.openMyProfilePage();
+
+    assertTrue(userProfilePage.isProcessSettingDisplayed());
+    assertTrue(userProfilePage.isTaskListSettingDisplayed());
+    assertTrue(userProfilePage.isCaseListSettingDisplayed());
+  }
+
   private void grantAccessFullListPermissions() {
     redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_PROCESS_LIST.getValue()));
     redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_CASE_LIST.getValue()));

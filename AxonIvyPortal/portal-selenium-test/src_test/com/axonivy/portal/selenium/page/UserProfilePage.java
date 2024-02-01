@@ -1,10 +1,9 @@
 package com.axonivy.portal.selenium.page;
 
+import static com.codeborne.selenide.Selenide.$;
+
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
-
-
-import static com.codeborne.selenide.Selenide.$;
 
 public class UserProfilePage extends TemplatePage {
   private static final String LANGUAGE_SELECTION_SELECTOR = "div[id$='language-selection'] div.ui-selectonemenu-trigger";
@@ -24,4 +23,15 @@ public class UserProfilePage extends TemplatePage {
     WaitHelper.waitForNavigation(() -> save.click());
   }
 
+  public boolean isProcessSettingDisplayed() {
+    return $("div[id='my-profile-form:process-mode-selection']").is(Condition.appear);
+  }
+
+  public boolean isTaskListSettingDisplayed() {
+    return $("div[id='my-profile-form:task-sort-field-selection']").is(Condition.appear);
+  }
+
+  public boolean isCaseListSettingDisplayed() {
+    return $("div[id='my-profile-form:case-sort-field-selection']").is(Condition.appear);
+  }
 }
