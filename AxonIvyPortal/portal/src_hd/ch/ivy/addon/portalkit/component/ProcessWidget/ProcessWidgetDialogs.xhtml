@@ -289,8 +289,8 @@
           maxlength="200" rows="3" />
         <p:commandButton id="add-description-language-button" icon="si si-chat-translate" 
           process="process-widget:add-external-link-form:external-description"
-          update="process-widget:text-area-multiple-languages-dialog"
-          oncomplete="PF('text-area-multiple-languages-dialog').show();" />
+          update="process-widget:text-area-add-multiple-languages-dialog"
+          oncomplete="PF('text-area-add-multiple-languages-dialog').show();" />
       </div>
 
       <!-- Type -->
@@ -408,8 +408,8 @@
     
   <p:dialog appendTo="@(body)" styleClass="setting-multiple-languages" width="500"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingMultipleLanguages')}"
-    resizable="false" id="text-area-multiple-languages-dialog" 
-    widgetVar="text-area-multiple-languages-dialog" dynamic="true" modal="true"
+    resizable="false" id="text-area-add-multiple-languages-dialog" 
+    widgetVar="text-area-add-multiple-languages-dialog" dynamic="true" modal="true"
     responsive="true">
     <h:form id="text-area-add-language-detail-form">
       <h:outputLabel
@@ -430,13 +430,13 @@
         <p:commandLink
           id="description-multi-language-cancel-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          onclick="PF('text-area-multiple-languages-dialog').hide();" />
+          onclick="PF('text-area-add-multiple-languages-dialog').hide();" />
         <p:spacer width="15px" rendered="#{!descriptions.isEmpty()}" />
         <p:commandButton
           id="description-multi-language-ok-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           update="process-widget:add-external-link-form:external-description" process="@form"
-          oncomplete="PF('text-area-multiple-languages-dialog').hide();"
+          oncomplete="PF('text-area-add-multiple-languages-dialog').hide();"
           rendered="#{!descriptions.isEmpty()}" />
       </div>
     </h:form>
