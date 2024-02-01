@@ -420,6 +420,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
   @Test
   public void testSortProcessCompactProcessModeCustomSorting() {
+    resizeBrowserTo2kResolution();
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectCompactMode();

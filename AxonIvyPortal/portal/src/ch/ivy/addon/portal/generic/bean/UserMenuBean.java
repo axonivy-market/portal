@@ -2,7 +2,6 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -17,7 +16,6 @@ import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.bo.QRCodeData;
-import com.axonivy.portal.components.generic.navigation.BaseNavigator;
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.enums.PortalCustomSignature;
 import com.google.gson.Gson;
@@ -39,6 +37,7 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.request.EngineUriResolver;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
@@ -354,7 +353,7 @@ public class UserMenuBean implements Serializable {
   
   public String getQRcodeData() {
     QRCodeData data = new QRCodeData();
-    data.setLoginUrl(BaseNavigator.buildAbsoluteUrl("Start Processes/PortalStart/DefaultLoginPage.ivp", new HashMap<>()));
+    data.setLoginUrl(EngineUriResolver.instance().external().toString());
     data.setUsername(Ivy.session().getSessionUserName());
     
     return new Gson().toJson(data);
