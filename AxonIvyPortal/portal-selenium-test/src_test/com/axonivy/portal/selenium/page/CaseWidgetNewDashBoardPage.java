@@ -6,8 +6,6 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import org.openqa.selenium.By;
-
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.codeborne.selenide.CollectionCondition;
@@ -279,7 +277,10 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     switch (type) {
       case STATE_TYPE:
         filterElement.$("div[id$=':states']").shouldBe(getClickableCondition()).click();
-        selectState(String.valueOf(values[0]));
+        for (int i=0; i < values.length; i++) {
+          getValueOfCheckBox(String.valueOf(values[i])).shouldBe(getClickableCondition()).click();
+        }
+        getCloseCheckBox().shouldBe(getClickableCondition()).click();
         break;
       case TEXT, NUMBER:
         var textField = filterElement.$("div[id$=':text-list-panel']").$(".ui-chips.ui-widget").$("input").shouldBe(appear);
@@ -297,38 +298,30 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
         }
         break;
       case CREATOR_TYPE:
-        var creatorInput = filterElement.$("div[id$=':creators']").shouldBe(appear);
-        creatorInput.$("button[id$=':creators_button']").shouldBe(getClickableCondition()).click();
-        var selectPanel = $("span[id$=':creators_panel'][style*='display: block']").shouldBe(appear);
+        var creatorInput = filterElement.$("div[id$=':creators']").$("input").shouldBe(appear);
         for (int i=0; i < values.length; i++) {
-//          filterElement.$("div[id$=':creators']").shouldBe(getClickableCondition()).click();
-          creatorInput.$("input").sendKeys(String.valueOf(values[i]));
+          creatorInput.clear();
+          creatorInput.sendKeys(String.valueOf(values[i]));
+          var selectPanel = $("span[id$=':creators_panel'][style*='display: block']").shouldBe(appear);
           selectPanel.$(".ui-avatar-text").shouldBe(appear);
           selectPanel.shouldBe(getClickableCondition()).click();
-//          var selectPanel = $$("span[id$=':creators_panel']").filter(Condition.visible);
-//          selectPanel.$("")
-//          waitForElementDisplayed($("div[id*='creators_panel'] .ui-avatar-text"), true);
-//          waitForElementClickableThenClick($(By.xpath("//*[contains(@id, 'filter-component:') and contains(@id, ':creators_panel')]")));
-//          creatorInput.pressEnter(); case-case_1:filter-form-1:filter-list:4:filter-component:j_id_t_2_8u_1_1_3_b6:creators_panel
+          selectPanel.shouldBe(disappear);
+          filterElement.$("div[id$=':creators']").$("ul li.ui-helper-hidden").should(disappear);
         }
         break;
       case CATEGORY_TYPE:
+        var catogoryField = filterElement.$("div[id$=':category-list-panel']").$("input").shouldBe(appear);
+        for (int i=0; i < values.length; i++) {
+          catogoryField.clear();
+          catogoryField.sendKeys(String.valueOf(values[i]));
+          catogoryField.pressEnter();
+        }
         break;
       default:
         break;
     }
   }
-  
-  public void filterByCreator(String text) {
-    waitForElementClickableThenClick(
-        $(By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']")));
-    $("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']").sendKeys(text);
-    waitForElementDisplayed($("div[id*='creator-filter'] .ui-avatar-text"), true);
-    waitForElementClickableThenClick(
-        "span[id$=':creator-filter:filter-input-form:creator-component:creator-select_panel']");
-    waitForElementClickableThenClick(
-        $(By.cssSelector("button[id$='creator-filter:filter-input-form:update-command']")));
-  }
+
   
   
 }
