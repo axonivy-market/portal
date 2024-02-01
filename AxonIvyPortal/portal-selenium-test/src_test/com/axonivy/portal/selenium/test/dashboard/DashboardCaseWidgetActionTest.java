@@ -11,13 +11,15 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.FilterOperator;
+import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.ElementsCollection;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class DashboardCaseWidgetActionTest extends BaseTest {
 
   // WIDGET NAME
@@ -76,11 +78,19 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
   private void filterByCaseState(String state) {
     CaseWidgetNewDashBoardPage caseWidget = new CaseWidgetNewDashBoardPage();
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+//    caseWidget.openFilterWidget();
+//    caseWidget.resetFilter();
     caseWidget.openFilterWidget();
-    caseWidget.resetFilter();
-    caseWidget.openFilterWidget();
-    caseWidget.filterCaseState();
-    caseWidget.selectState(state);
+    caseWidget.addFilter("State", null);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
+    caseWidget.addFilter("Id", null);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "loc", "loc2", "loc3");
+    caseWidget.addFilter("Finished Date", FilterOperator.BETWEEN);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.DATE, "alo", "kjhs");
+    caseWidget.addFilter("Creator", FilterOperator.NOT_IN);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.CREATOR_TYPE, "Backend Developer 1");
+//    caseWidget.filterCaseState();
+//    caseWidget.selectState(state);
     caseWidget.applyFilter();
   }
 }
