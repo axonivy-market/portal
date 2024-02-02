@@ -4,9 +4,14 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 import org.openqa.selenium.WebElement;
 
+import com.axonivy.portal.selenium.common.ComplexFilterHelper;
+import com.axonivy.portal.selenium.common.FilterOperator;
+import com.axonivy.portal.selenium.common.FilterValueType;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -75,13 +80,18 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     widgetTitle().sendKeys(name);
   }
 
-  public void preview() {
-    $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']")
-        .shouldBe(getClickableCondition()).click();
+//  public void preview() {
+//    $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']")
+//        .shouldBe(getClickableCondition()).click();
+//  }
+  
+  public void openFilter() {
+    $("button[id$=':show-filter']").shouldBe(getClickableCondition()).click();
   }
 
   public void filterCaseName(String caseName) {
-    getAvailableFilterInput(FILTER_CASE_NAME).sendKeys(caseName);
+    addFilter("Name", FilterOperator.IS);
+    inputValueOnLatestFilter(FilterValueType.TEXT, caseName);
   }
 
   public void filterCaseState() {
@@ -278,4 +288,21 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     getConfigurationDialog().$(".ui-dialog-footer").$("a").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id='new-widget-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
+  
+  public SelenideElement addFilter(String columnName, FilterOperator operator) {
+    $("div[id$=':filter-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
+    int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
+    $("button[id$=':add-filter']").shouldBe(getClickableCondition()).click();
+    $$("div[id$=':filter-component:filter-selection-panel']").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(currentIndex + 1));
+    ComplexFilterHelper.selectFilterColumnName(columnName, currentIndex);
+    if (operator != null) {
+      ComplexFilterHelper.selectFilterOperator(operator, currentIndex);
+    }
+    return ComplexFilterHelper.getNewFilter(currentIndex);
+  }
+
+  public void inputValueOnLatestFilter(FilterValueType type, Object... values) {
+    ComplexFilterHelper.inputValueOnLatestFilter(type, values);
+  }
+
 }

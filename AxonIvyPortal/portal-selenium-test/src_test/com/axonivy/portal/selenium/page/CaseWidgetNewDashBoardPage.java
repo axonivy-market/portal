@@ -6,9 +6,9 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.axonivy.portal.selenium.common.ComplexFilterHelper;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
-import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -223,84 +223,15 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
     $("button[id$=':add-filter']").shouldBe(getClickableCondition()).click();
     $$("div[id$=':filter-component:filter-selection-panel']").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(currentIndex + 1));
-    selectFilterColumnName(columnName, currentIndex);
+    ComplexFilterHelper.selectFilterColumnName(columnName, currentIndex);
     if (operator != null) {
-      selectFilterOperator(operator, currentIndex);
+      ComplexFilterHelper.selectFilterOperator(operator, currentIndex);
     }
-    return getNewFilter(currentIndex);
-  }
-  
-  public SelenideElement getNewFilter(int filterIndex) {
-    String latestFilter = String.format("div[id$=':%s:filter-component:filter-selection-panel']", filterIndex);
-    return $(latestFilter).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-  }
-  
-  public void selectFilterColumnName(String columnName, int filterIndex) {
-    var filterElement = getNewFilter(filterIndex);
-    filterElement.$("div[id$=':filter-component:field-selection']").shouldBe(getClickableCondition()).click();
-    String columnSelection = String.format("div[id$=':%s:filter-component:field-selection_panel']", filterIndex);
-    $(columnSelection).$$("ul li").filter(text(columnName)).first().click();
-  }
-  
-  public void selectFilterOperator(FilterOperator operator, int filterIndex) {
-    var filterElement = getNewFilter(filterIndex);
-    filterElement.$("div[id$=':operator-selection']").shouldBe(getClickableCondition()).click();
-    WaitHelper.waitForActionComplete(".dashboard-widget-filter__main-panel", () -> $("div[id$=':operator-selection_panel'] ul[id$=':operator-selection_items']").$$("li").filter(text(operator.getValue())).first().click());
-  }
-  
-  public void inputValueOnLatestFilter(FilterValueType type, Object... values) {
-    int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
-    if (currentIndex < 1) {
-      return;
-    }
-    var filterElement = getNewFilter(currentIndex - 1);
-    switch (type) {
-      case STATE_TYPE:
-        filterElement.$("div[id$=':states']").shouldBe(getClickableCondition()).click();
-        for (int i=0; i < values.length; i++) {
-          getValueOfCheckBox(String.valueOf(values[i])).shouldBe(getClickableCondition()).click();
-        }
-        getCloseCheckBox().shouldBe(getClickableCondition()).click();
-        break;
-      case TEXT, NUMBER:
-        var textField = filterElement.$("div[id$=':text-list-panel']").$(".ui-chips.ui-widget").$("input").shouldBe(Condition.editable);
-        for (int i=0; i < values.length; i++) {
-          textField.clear();
-          textField.sendKeys(String.valueOf(values[i]));
-          textField.pressEnter();
-        }
-        break;
-      case DATE:
-        var dateInput = filterElement.$$(".date-picker-panel input").shouldHave(CollectionCondition.sizeGreaterThanOrEqual(values.length));
-        for (int i=0; i < dateInput.size(); i++) {
-          dateInput.get(i).clear();
-          dateInput.get(i).sendKeys(String.valueOf(values[i]));
-        }
-        break;
-      case CREATOR_TYPE:
-        var creatorInput = filterElement.$("div[id$=':creators']").$("input").shouldBe(appear);
-        for (int i=0; i < values.length; i++) {
-          creatorInput.clear();
-          creatorInput.sendKeys(String.valueOf(values[i]));
-          var selectPanel = $("span[id$=':creators_panel'][style*='display: block']").shouldBe(appear);
-          selectPanel.$(".ui-avatar-text").shouldBe(appear);
-          selectPanel.shouldBe(getClickableCondition()).click();
-          selectPanel.shouldBe(disappear);
-          filterElement.$("div[id$=':creators']").$("ul li.ui-helper-hidden").should(disappear);
-        }
-        break;
-      case CATEGORY_TYPE:
-        var catogoryField = filterElement.$("div[id$=':category-list-panel']").$("input").shouldBe(appear);
-        for (int i=0; i < values.length; i++) {
-          catogoryField.clear();
-          catogoryField.sendKeys(String.valueOf(values[i]));
-          catogoryField.pressEnter();
-        }
-        break;
-      default:
-        break;
-    }
+    return ComplexFilterHelper.getNewFilter(currentIndex);
   }
 
+  public void inputValueOnLatestFilter(FilterValueType type, Object... values) {
+    ComplexFilterHelper.inputValueOnLatestFilter(type, values);
+  }
   
 }
