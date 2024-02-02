@@ -29,7 +29,6 @@ public class ProcessService implements IProcessService {
   private static final String PORTAL_START_REQUEST_PATH = "/DefaultApplicationHomePage.ivp";
   private static ProcessService instance;
   private static IvyProcessResultDTO ivyProcessResultDTO;
-  private static List<IWebStartable> customDashboardProcesses;
   private static String sessionUserId;
   private static String userLanguage; 
   public ProcessService() { }
@@ -47,7 +46,6 @@ public class ProcessService implements IProcessService {
     if (instance == null) {
       instance = new ProcessService();
       ivyProcessResultDTO = new IvyProcessResultDTO();
-      customDashboardProcesses = new ArrayList<>();
     }
     return instance;
   }
@@ -94,13 +92,8 @@ public class ProcessService implements IProcessService {
   }
 
   public List<IWebStartable> findCustomDashboardProcesses() {
-    if (isInSession() && isNotEmpty(customDashboardProcesses)) {
-      return customDashboardProcesses;
-    }
-    updateUserSessionAtributes();
-    customDashboardProcesses = new ArrayList<>(
+    return new ArrayList<>(
         Ivy.session().getAllStartables().filter(filterByCustomDashboardProcess()).collect(Collectors.toList()));
-    return customDashboardProcesses;
   }
 
   private Predicate<? super IWebStartable> filterByCustomDashboardProcess() {
