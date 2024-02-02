@@ -66,6 +66,9 @@ pipeline {
             '''
           }
 
+          downloadPortalRelease()
+          expressFile = findFiles(glob: 'archive/**/axonivy-express*.iar')[0].path
+
           utils.extractEngine(env.engineDir, params.engineDownloadURL)
 
           echo '====================Run script to copy decorate js and css to Portal===================='
@@ -123,6 +126,8 @@ def downloadPortalRelease() {
   def branchName = env.BRANCH_NAME.replaceAll('/', '%%2F')
   withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
     bat "curl --user ${credentials} --output archive.zip ${env.JENKINS_URL}job/portal-release/job/${branchName}/lastSuccessfulBuild/artifact/*zip*/archive.zip"
+    bat "curl --user ${credentials} --output archive-express.zip ${env.JENKINS_URL}job/axonivy-express-integration/job/feature%%2Fcreate-package-for-portal/lastSuccessfulBuild/artifact/*zip*/archive.zip"
   }
   unzip zipFile: 'archive.zip', quiet: true
+  unzip zipFile: 'archive-express.zip', quiet: true
 }
