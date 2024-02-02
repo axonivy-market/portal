@@ -79,5 +79,6 @@ public class NotificationDashboardWidget extends DashboardWidget {
   }
 
   @Override
-  public void cancelUserFilter() {}
+  public void cancelUserFilter() {
+  }
 }
