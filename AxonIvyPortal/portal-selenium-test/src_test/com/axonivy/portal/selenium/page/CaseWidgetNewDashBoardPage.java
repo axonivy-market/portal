@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -122,22 +123,10 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     return new CaseEditWidgetNewDashBoardPage();
   }
 
-  private SelenideElement getFilterInput(String inputField) {
-    return $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$$("div.widget-filter-panel div.ui-g").filter(text(inputField)).first().$("input.ui-inputfield");
-  }
-
   public void filterCaseName(String input) {
-    getFilterInput(FILTER_CASE_NAME).sendKeys(input);
+    addFilter("Name", FilterOperator.IS);
+    inputValueOnLatestFilter(FilterValueType.TEXT, input);
   }
-
-  public void clearFilterCaseName() {
-    getFilterInput(FILTER_CASE_NAME).clear();
-  }
-
-//  public void filterCaseState() {
-//    getFilterCheckBox(FILTER_CASE_STATE).shouldBe(getClickableCondition()).click();
-//  }
 
   public void selectStateAsDone() {
     getValueOfCheckBox("Done").shouldBe(getClickableCondition()).click();
@@ -147,11 +136,6 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public void selectStateAsOpen() {
     getValueOfCheckBox("Open").shouldBe(getClickableCondition()).click();
     getCloseCheckBox().shouldBe(getClickableCondition()).click();
-  }
-
-  private SelenideElement getFilterCheckBox(String inputField) {
-    return $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$$("div.widget-filter-panel div.ui-g").filter(text(inputField)).first();
   }
 
   private SelenideElement getCloseCheckBox() {
@@ -234,7 +218,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   ////////////////// 
   
   // Not support tree input like Category...
-  public SelenideElement addFilter(String columnName, FilterOperator operator, Object... values) {
+  public SelenideElement addFilter(String columnName, FilterOperator operator) {
     $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT);
     int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
     $("button[id$=':add-filter']").shouldBe(getClickableCondition()).click();
@@ -242,10 +226,6 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     selectFilterColumnName(columnName, currentIndex);
     if (operator != null) {
       selectFilterOperator(operator, currentIndex);
-    }
-    
-    if (values.length > 0) {
-      
     }
     return getNewFilter(currentIndex);
   }
@@ -265,7 +245,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public void selectFilterOperator(FilterOperator operator, int filterIndex) {
     var filterElement = getNewFilter(filterIndex);
     filterElement.$("div[id$=':operator-selection']").shouldBe(getClickableCondition()).click();
-    $("div[id$=':operator-selection_panel'] ul[id$=':operator-selection_items']").$$("li").filter(text(operator.getValue())).first().click();
+    WaitHelper.waitForActionComplete(".dashboard-widget-filter__main-panel", () -> $("div[id$=':operator-selection_panel'] ul[id$=':operator-selection_items']").$$("li").filter(text(operator.getValue())).first().click());
   }
   
   public void inputValueOnLatestFilter(FilterValueType type, Object... values) {
@@ -283,7 +263,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
         getCloseCheckBox().shouldBe(getClickableCondition()).click();
         break;
       case TEXT, NUMBER:
-        var textField = filterElement.$("div[id$=':text-list-panel']").$(".ui-chips.ui-widget").$("input").shouldBe(appear);
+        var textField = filterElement.$("div[id$=':text-list-panel']").$(".ui-chips.ui-widget").$("input").shouldBe(Condition.editable);
         for (int i=0; i < values.length; i++) {
           textField.clear();
           textField.sendKeys(String.valueOf(values[i]));
@@ -322,6 +302,5 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     }
   }
 
-  
   
 }
