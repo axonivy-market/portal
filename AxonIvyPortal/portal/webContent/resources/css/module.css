@@ -913,7 +913,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   }
 }
 
-@media screen and (max-width: 90.062em) {
+@media screen and (max-width: 101.062em) {
   .case-detail-body .name-column .case-description-value,
   .case-detail-body .case-details-related-task-table .related-task-name-column .task-description-value {
     display: block;
@@ -940,7 +940,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   }
 }
 
-@media screen and (min-width: 90.063em) {
+@media screen and (min-width: 101.062em) {
   .case-detail-body .name-column .case-description-value,
   .case-detail-body .case-details-related-task-table .related-task-name-column .task-description-value {
     display: none;
@@ -3056,6 +3056,11 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .my-profile-container .card {
   height: auto;
   float: left;
+  width: 100%;
+}
+
+.my-profile-container .portal-section-container.general-section-container {
+  height: 100%;
 }
 
 .dashboard-configuration__header h2,
@@ -5319,17 +5324,12 @@ border-top: 0.14rem dashed;
 }
 
 .security-member-tooltip .tooltip-header,
-.security-member-tooltip .tooltip-body,
 .security-member-tooltip .tooltip-body-item {
   margin: auto;
 }
 
 .security-member-tooltip .tooltip-body {
   padding-left: 14px;
-}
-
-.security-member-tooltip .tooltip-body.no-user {
-  padding-left: 0;
 }
 
 /* Activator selection */

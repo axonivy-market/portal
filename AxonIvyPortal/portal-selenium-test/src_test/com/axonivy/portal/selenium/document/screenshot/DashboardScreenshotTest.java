@@ -145,7 +145,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
   @Test
   public void screenshotNewDashboardUserGuide() throws IOException {
     showNewDashboard();
-    ScreenshotUtils.maximizeBrowser();
+    ScreenshotUtils.resizeBrowser(new Dimension(1800, 1400));
     homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "dashboard");

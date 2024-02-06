@@ -323,7 +323,7 @@
         </div>
         <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-8 ui-g-10 u-no-padding-left u-truncate-text">
           <p:commandLink id="related-case" styleClass="task-business-case" disabled="#{cc.attrs.readOnly}"
-            value="##{task.getCase().getBusinessCase().id} #{taskBean.displayCaseName(task)}"
+            value="#{taskBean.displayCaseName(task)}"
             actionListener="#{logic.navigateToRelatedCase(task.getCase().getBusinessCase())}">
           </p:commandLink>
         </div>
