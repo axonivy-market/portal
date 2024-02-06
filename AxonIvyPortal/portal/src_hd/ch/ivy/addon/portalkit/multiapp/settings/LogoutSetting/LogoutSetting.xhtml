@@ -39,10 +39,10 @@
       </h:panelGroup>
     </h:form>
     <f:facet name="message">
-      <h:outputText escape="false" rendered="#{task.state != 'CREATED'}" styleClass="ui-confirm-dialog-message"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLogout')}" />
-      <h:outputText escape="false" rendered="#{task.state == 'CREATED'}" styleClass="ui-confirm-dialog-message"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLogout')}" />
+      <h:outputText rendered="#{task.state != 'CREATED'}" styleClass="ui-confirm-dialog-message"
+                    escape="false" value="#{visibilityBean.sanitizeContent(ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLogout'))}" />
+      <h:outputText rendered="#{task.state == 'CREATED'}" styleClass="ui-confirm-dialog-message"
+                    escape="false" value="#{visibilityBean.sanitizeContent(ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLogout'))}" />
     </f:facet>
   </p:confirmDialog>
 
