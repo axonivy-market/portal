@@ -10,6 +10,6 @@
 </cc:interface>
 
 <cc:implementation>
-   <h:outputText  class="ui-md-hidden #{empty pageHeaderFooterBean.footer ? 'u-hidden' : ''}" escape="false" value="#{pageHeaderFooterBean.footer}" />
+   <h:outputText  class="ui-md-hidden #{empty pageHeaderFooterBean.footer ? 'u-hidden' : ''}" escape="false" value="#{visibilityBean.sanitizeContent(pageHeaderFooterBean.footer)}" />
 </cc:implementation>
 </html>
