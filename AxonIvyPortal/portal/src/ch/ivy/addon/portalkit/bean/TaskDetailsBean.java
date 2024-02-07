@@ -1,26 +1,47 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.EnumSet;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.taskdetails.TaskDetails;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.jsf.Attrs;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.ISession;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.TaskState;
 
 @ViewScoped
 @ManagedBean
 public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails> implements Serializable {
 
   private static final long serialVersionUID = 8566646437739271552L;
+  private static final String RESET_TASK_FRIENDLY_REQUEST_PATH = "Start Processes/PortaStart/ResetTask.ivp";
+  private static final String RESET_TASK_WARNING_CMS_URI = "/Dialogs/ch/ivy/addon/portalkit/component/TaskItemDetails/ResetTaskWarning";
+  private static final String CANNOT_WORK_ON_TASK_WARNING_CMS_URI = "/Dialogs/ch/ivy/addon/portalkit/component/TaskItemDetails/CannotWorkOnTaskWarning";
+  private static final String CANNOT_WORK_ON_DESTROYED_TASK_WARNING_CMS_URI = "/Dialogs/ch/ivy/addon/portalkit/component/TaskItemDetails/CannotWorkOnDestroyedTaskWarning";
+  private static final String CANNOT_RESET_TASK_WARNING_CMS_URI = "/Dialogs/ch/ivy/addon/portalkit/component/TaskItemDetails/CannotResetTaskWarning";
+  private static final String TASK_COMPLETED_BY_YOU_INFO_CMS_URI = "/Dialogs/ch/ivy/addon/portalkit/component/TaskItemDetails/TaskCompletedByYouInfo";
+  private static final String TASK_COMPLETED_BY_OTHER_INFO_CMS_URI = "/Dialogs/ch/ivy/addon/portalkit/component/TaskItemDetails/TaskCompletedByOtherInfo";
+  private static final String INVALID_STATE_INFO_CMS_URI = "/Dialogs/ch/ivy/addon/portalkit/component/TaskItemDetails/InvalidStateInfo";
+  private static final String UUID = "uuid";
   private boolean hasShowDurationTime;
   private String taskDetailsDescription;
   private String taskDetailsUrl;
@@ -121,5 +142,78 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
   @Override
   protected String getDefaultConfigId() {
     return "default-task-detail";
+  }
+
+  public void resetTask() {
+    TaskUtils.resetTask(getSelectedTaskFromData());
+  }
+
+  public boolean showInfoBanner() {
+    ITask selectedTask = getSelectedTaskFromData();
+    EnumSet<TaskState> activeTaskStates = EnumSet.of(TaskState.DONE, TaskState.READY_FOR_JOIN, TaskState.JOINING, TaskState.JOIN_FAILED, TaskState.CREATED, TaskState.RESUMED, TaskState.PARKED, TaskState.DESTROYED);
+    return isActivator() && activeTaskStates.contains(selectedTask.getState());
+  }
+
+  private boolean canResetTask() {
+    if (!PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_RESET_ACTION)) {
+      return false;
+    }
+    TaskActionBean taskActionBean = ManagedBeans.get("taskActionBean");
+    if (taskActionBean != null) {
+      ITask selectedTask = getSelectedTaskFromData();
+      return taskActionBean.canReset(selectedTask);
+    }
+    return false;
+  }
+
+  public String getInfoBannerSeverity() {
+    ITask selectedTask = getSelectedTaskFromData();
+    boolean validState = selectedTask.getState() == TaskState.RESUMED || selectedTask.getState() == TaskState.CREATED;
+    boolean notCurrentSession = selectedTask.getWorkerSession() != ISession.current();
+    return validState && notCurrentSession && isActivator() && currentIsWorkerUser() ? "warn" : "info";
+  }
+
+  public String getInfoBannerMessage() {
+    ITask selectedTask = getSelectedTaskFromData();
+    return switch (selectedTask.getState()) {
+    case CREATED, RESUMED, PARKED -> {
+      if (currentIsWorkerUser()) {
+        yield Ivy.cms().co(RESET_TASK_WARNING_CMS_URI, Arrays.asList(buildResetTaskUrl(selectedTask)));
+      } else if (canResetTask()) {
+        yield Ivy.cms().co(CANNOT_WORK_ON_TASK_WARNING_CMS_URI, Arrays.asList(selectedTask.getWorkerUser().getName()));
+      } else {
+        yield Ivy.cms().co(CANNOT_RESET_TASK_WARNING_CMS_URI);
+      }
+    }
+    case DONE, READY_FOR_JOIN, JOINING, JOIN_FAILED -> {
+      if (currentIsWorkerUser()) {
+        yield Ivy.cms().co(TASK_COMPLETED_BY_YOU_INFO_CMS_URI, Arrays.asList(formatDate(selectedTask.getEndTimestamp())));
+      } else {
+        yield Ivy.cms().co(TASK_COMPLETED_BY_OTHER_INFO_CMS_URI, Arrays.asList(selectedTask.getWorkerUser().getName(), formatDate(selectedTask.getEndTimestamp())));
+      }
+    }
+    case DESTROYED -> Ivy.cms().co(CANNOT_WORK_ON_DESTROYED_TASK_WARNING_CMS_URI);
+    default -> Ivy.cms().co(INVALID_STATE_INFO_CMS_URI);
+    };
+  }
+
+  private boolean isActivator() {
+    ITask selectedTask = getSelectedTaskFromData();
+    return selectedTask.getActivator() == null ? false : selectedTask.getActivator().isMember(ISession.current(), true);
+  }
+
+  private boolean currentIsWorkerUser() {
+    ITask selectedTask = getSelectedTaskFromData();
+    return selectedTask.getWorkerUser() == null ? false : selectedTask.getWorkerUser().equals(ISession.current().getSessionUser());
+  }
+
+  private String buildResetTaskUrl(ITask task) {
+    Map<String, String> params = new HashMap<>();
+    params.put(UUID, task.uuid());
+    return PortalNavigator.buildUrlByKeyword("ResetTask.ivp", RESET_TASK_FRIENDLY_REQUEST_PATH, params);
+  }
+
+  private String formatDate(Date datetime) {
+    return DateTimeGlobalSettingService.getInstance().getDefaultDateTimeFormatter().format(datetime);
   }
 }

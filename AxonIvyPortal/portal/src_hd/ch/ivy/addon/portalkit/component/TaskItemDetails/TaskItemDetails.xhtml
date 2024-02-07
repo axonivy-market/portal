@@ -64,6 +64,10 @@
     </h:panelGroup>
   </div>
 
+  <h:panelGroup id="task-status-banner" rendered="#{taskDetailsBean.showInfoBanner()}" layout="block" styleClass="ui-g task-status-banner MarTop10">
+    <p:staticMessage escape="false" severity="#{taskDetailsBean.getInfoBannerSeverity()}" detail="#{visibilityBean.sanitizeContent(taskDetailsBean.getInfoBannerMessage())}"></p:staticMessage>
+  </h:panelGroup>
+
   <h:panelGroup layout="block" styleClass="task-item-body " id="task-item-body">
     <h:panelGroup class="task-item-body-container task-details-widgets js-task-details-widgets u-padding-0 grid-stack" id="task-details-widgets"
       rendered="#{not empty taskDetailsBean.widgets}">
