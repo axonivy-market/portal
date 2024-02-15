@@ -441,6 +441,17 @@ function setLineClamp(element, number) {
 function removeStyle(element) {
   $(element).removeAttr('style');
 }
+function initTableWidget(table) {
+  if (table === undefined || table.cfg === undefined) {
+    return;
+  }
+
+  setTimeout(function(){
+    var $table = $(document.getElementById(table.id));
+    table.cfg.scrollHeight = $table.height().toString();
+    table.init(table.cfg);
+  }, 1000);
+}
 
 function searcNewhWidgetByNameOrDescription(input) {
   var keyword = input.value.toLowerCase();
