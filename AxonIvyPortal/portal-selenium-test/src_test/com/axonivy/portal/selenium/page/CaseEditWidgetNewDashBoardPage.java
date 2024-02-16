@@ -18,7 +18,6 @@ import com.codeborne.selenide.SelenideElement;
 
 public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
-  private static final String FILTER_CASE_NAME = "Case name";
   private static final String FILTER_CASE_STATE = "State";
 
   private String caseEditWidgetId;
@@ -80,10 +79,10 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     widgetTitle().sendKeys(name);
   }
 
-//  public void preview() {
-//    $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']")
-//        .shouldBe(getClickableCondition()).click();
-//  }
+  public void applyFilter() {
+    $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']")
+        .shouldBe(getClickableCondition()).click();
+  }
   
   public void openFilter() {
     $("button[id$=':show-filter']").shouldBe(getClickableCondition()).click();
@@ -100,7 +99,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
   private ElementsCollection getRowOfTableCasePreview() {
     return $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='case-widget-preview:dashboard-cases']")
-        .$$("table tbody tr");
+        .$$("table tbody tr:not(.ui-datatable-empty-message)");
   }
 
   public ElementsCollection countCases() {
@@ -305,4 +304,22 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     ComplexFilterHelper.inputValueOnLatestFilter(type, values);
   }
 
+  public void closeFilter() {
+    $("span[id$=':widget-title-group']").$("label").scrollIntoView(("{block: \"start\"}")).click();
+    $("div[id$=':filter-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
+    waitPreviewTableLoaded();
+  }
+
+  public void removeFilter(int index) {
+    $("div[id$=':filter-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
+    int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size(); 
+    String removeBtn = String.format("button[id$=':%s:filter-component:remove-filter']", index);
+    $(removeBtn).shouldBe(getClickableCondition()).click();
+    countFilterSelect().shouldBe(CollectionCondition.size(currentIndex -1), DEFAULT_TIMEOUT);
+  }
+  
+  public ElementsCollection countFilterSelect() {
+    return $$("[id$=':filter-component:field-selection_panel']");
+  }
+  
 }
