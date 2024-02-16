@@ -5,12 +5,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
@@ -101,5 +103,19 @@ public class BusinessEntityConverter {
           .build();
     }
     return objectMapper;
+  }
+
+  public static List<String> convertJsonToListString(String value)
+      throws JsonMappingException, JsonProcessingException {
+    if (StringUtils.isBlank(value)) {
+      return null;
+    }
+    try {
+      return Arrays.asList(objectMapper.readValue(value, String[].class));
+    } catch (Exception e) {
+      Arrays.asList(objectMapper.readValue(value, String.class));
+    }
+    return new ArrayList<>();
+
   }
 }
