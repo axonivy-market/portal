@@ -40,7 +40,8 @@ public class IvyLanguage {
     selectItems.clear();
     if (CollectionUtils.isNotEmpty(languages)) {
       for (String item : languages) {
-        SelectItem it = new SelectItem(item.toLowerCase(), toDisplayName(item.toLowerCase(), localeLoader, replaceParentheses));
+        SelectItem it =
+            new SelectItem(item.toLowerCase(), toDisplayName(item.toLowerCase(), localeLoader, replaceParentheses));
         selectItems.add(it);
       }
     }
@@ -56,7 +57,7 @@ public class IvyLanguage {
       }
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption", Arrays.asList(systemLanguage) );
     }
-    return Locale.forLanguageTag(languageTag).getDisplayName(contentLocale);
+    return Locale.forLanguageTag(languageTag).getDisplayName(contentLocale) + " (" + languageTag + ")";
   }
 
   /**
