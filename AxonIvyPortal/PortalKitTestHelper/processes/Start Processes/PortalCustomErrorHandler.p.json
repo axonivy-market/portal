@@ -26,9 +26,9 @@
     }, {
       "id" : "f3",
       "type" : "DialogCall",
-      "name" : "TestPortalCustomErrorHandler",
+      "name" : "PortalCustomErrorHandler",
       "config" : {
-        "dialog" : "ch.ivy.addon.portalkit.test.TestPortalCustomErrorHandler:start()"
+        "dialog" : "ch.ivy.addon.portalkit.test.PortalCustomErrorHandler:start()"
       },
       "visual" : {
         "at" : { "x" : 312, "y" : 64 },
