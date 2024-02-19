@@ -17,7 +17,7 @@ import com.axonivy.portal.selenium.page.DefaultExpressTaskPage;
 import com.axonivy.portal.selenium.page.ExpressProcessPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
-import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
+import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
 import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
@@ -46,8 +46,7 @@ public class AdhocScreenshotTest extends ScreenshotBaseTest {
     MainMenuPage menuPage = new MainMenuPage();
     TaskWidgetPage taskWidget = menuPage.openTaskList();
     taskWidget.openTask(mainTask);
-    TaskIFrameTemplatePage taskTemplatePage = new TaskIFrameTemplatePage();
-    taskTemplatePage.switchBackToParent();
+    TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     taskTemplatePage.clickActionButton();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.EXPRESS_FOLDER + "adhoc-start");
 

@@ -14,6 +14,7 @@ Enums:
 Labels:
   AxonIvyPortal: Axon Ivy Portal
   BackToCaseMap: Retour à la carte des cas
+  BackToHomePage: Retourner à la page d'accueil
   Cancel: Annuler
   CaseDetails: Détail du cas
   CaseMap:
@@ -45,7 +46,12 @@ Labels:
       submitRequest: Soumettre une demande
       verifierComment: Commentaire du vérificateur
       verifierSubmit: Soumission du vérificateur
+  Close: Fermer
+  ConfirmationHeader: Êtes-vous sûr ?
   Copyright: Copyright Ⓒ Axon Ivy Portal
+  ErrorAjaxMessage: Il y a une exception générale.
+  ErrorXhr: N'a pas réussi à mettre à jour le contenu du site Web
+  ForgotPassword: J'ai oublié mon mot de pas
   GoToDetail: Aller au détail
   HasPrecondition: Ce processus est soumis à une condition préalable
   LeaveRequest:
@@ -63,16 +69,26 @@ Labels:
     requesterComment: Commentaire du demandeur
     submitLeaveRequest: Soumettre une demande de congé
     to: Au
+  Loading: Chargement
+  Login: Connexion
   LoginErrorMessage: Vous n'êtes pas connecté ou votre nom d'utilisateur n'est pas connu par cette application. Veuillez consulter votre administrateur système.
   LoginFailed: Erreur de connexion
   LoginLogo: Logo login
+  LoginWith: Connectez-vous avec
+  More: Plus
   MoreInformation: Plus d'informations
   NextStage: Prochaine étape
+  Password: Mot de passe
+  PasswordRequiredMessage: Le mot de passe est obligatoire
   PreviousStage: Étape précédente
   RequiredFieldMessage: Ce champ est obligatoire
   Start: Démarrage
   TheCaseMap: La carte des cas
   TheProcess: Le processus
+  Username: Nom d'utilisateur
+  UsernameRequiredMessage: Le nom d'utilisateur est obligatoire
+  Warning: Attention
+  WelcomeToPortal: Bienvenue, veuillez vous connecter
   dateFromBiggerThanTo: '"Au" doit être ultérieur à "Depuis"'
 Processes:
   CaseMap:
