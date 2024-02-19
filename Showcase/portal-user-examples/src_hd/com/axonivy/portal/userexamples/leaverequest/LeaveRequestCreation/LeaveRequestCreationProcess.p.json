@@ -62,12 +62,9 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "import com.axonivy.portal.userexamples.dto.UserProcess;",
-            "import java.util.Arrays;",
             "import com.axonivy.portal.components.util.UserUtils;",
             "import com.axonivy.portal.userexamples.enums.LeaveType;",
             "import com.axonivy.portal.components.dto.UserDTO;",
-            "import java.util.Arrays;",
             "import org.apache.commons.lang3.StringUtils;",
             "import com.axonivy.portal.userexamples.leaverequest.LeaveRequest;",
             "",
