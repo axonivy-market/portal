@@ -216,6 +216,11 @@ let updateHistory = (newHref) => {
 }
 
 const convertProcessSteps = processSteps => {
+  // If process steps are not defined, don't do anything
+  if (processSteps === undefined) {
+    return '';
+  }
+
   // If the process steps is a valid array, convert to JSON
   if (Array.isArray(processSteps)) {
     return JSON.stringify(processSteps);
