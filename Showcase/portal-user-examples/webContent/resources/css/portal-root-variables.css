@@ -1,8 +1,0 @@
-:root {
-    /* AxonIvy Colors: */
-  --ivy-primary-color-black: hsl(0, 0%, 11%);
-  --ivy-primary-color-white: hsl(0, 0%, 100%);
-  --ivy-primary-color-dark: var(--primary-color);
-  --ivy-primary-color-medium: hsl(192, 63%, 56%);
-  --ivy-primary-color-light: hsl(186, 63%, 73%);
-}

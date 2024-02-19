@@ -14,9 +14,9 @@
     }, {
       "id" : "f5",
       "type" : "CallSubStart",
-      "name" : "handleUserExamplesEndPage()",
+      "name" : "handleEndPage()",
       "config" : {
-        "signature" : "handleUserExamplesEndPage",
+        "signature" : "handleEndPage",
         "result" : {
           "params" : [
             { "name" : "callbackUrl", "type" : "String", "desc" : "" }
@@ -45,7 +45,7 @@
           },
           "code" : [
             "in.caseId =  ivy.task.getCase().getBusinessCase().getId();",
-            "in.callbackUrl = ivy.html.startRef(\"1709A97D25EAB86E/start.ivp\")+\"?caseId=\" + in.caseId;"
+            "in.callbackUrl = ivy.html.startRef(\"1709A97D25EAB86E/start.ivp\")+\"?embedInFrame=true&caseId=\" + in.caseId;"
           ]
         },
         "sudo" : true
