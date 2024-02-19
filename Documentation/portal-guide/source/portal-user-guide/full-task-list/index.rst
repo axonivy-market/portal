@@ -82,7 +82,11 @@ handling tasks:
 Finally, you have the possibility to access the full set of the task
 data by clicking on the row containing the task Name and Description.
 
-The task details are separated into 3 different sections:
+The task details are separated into 4 different sections:
+
+#. Task status banner to display information that needs attention or that you should take action on.
+
+   |task-status-banner|
 
 #. Data and description, you find various metadata concerning the task and
    the respective case it is related to.
@@ -361,3 +365,4 @@ HowTo: Share Task Details
 .. |how-to-switch-to-edit-mode| image:: ../../screenshots/task-detail/how-to-switch-to-edit-mode.png
 .. |how-to-reset-to-default| image:: ../../screenshots/task-detail/how-to-reset-to-default.png
 .. |how-to-share-task-details| image:: ../../screenshots/task-detail/share-page-button.png
+.. |task-status-banner| image:: ../../screenshots/task-detail/task-status-banner.png
