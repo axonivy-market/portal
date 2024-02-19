@@ -11,12 +11,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidgetParam;
 import ch.ivy.addon.portalkit.enums.DashboardCustomWidgetType;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
-import ch.ivy.addon.portalkit.util.LanguageUtils;
-import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 import ch.ivyteam.ivy.workflow.start.StartParameter;
 
@@ -36,12 +33,6 @@ public class DashboardCustomWidgetData implements Serializable {
   private IvyProcessStartDTO ivyProcessStartDTO;
   @JsonIgnore
   private boolean hasParamChanged;
-  private List<DisplayName> names;
-  private List<DisplayName> descriptions;;
-  @JsonIgnore
-  private String name;
-  @JsonIgnore
-  private String description;
 
   public String getUrl() {
     return url;
@@ -115,41 +106,5 @@ public class DashboardCustomWidgetData implements Serializable {
 
   public void setIvyProcessStartDTO(IvyProcessStartDTO ivyProcessStartDTO) {
     this.ivyProcessStartDTO = ivyProcessStartDTO;
-  }
-
-  public List<DisplayName> getNames() {
-    return names;
-  }
-
-  public void setNames(List<DisplayName> names) {
-    this.names = names;
-  }
-
-  public List<DisplayName> getDescriptions() {
-    return descriptions;
-  }
-
-  public void setDescriptions(List<DisplayName> descriptions) {
-    this.descriptions = descriptions;
-  }
-
-  public String getName() {
-    return LanguageUtils.getLocalizedName(names, name);
-  }
-
-  public void setName(String name) {
-    NameResult nameResult = LanguageUtils.collectMultilingualNames(names, name);
-    this.names = nameResult.names();
-    this.name = nameResult.name();
-  }
-
-  public String getDescription() {
-    return LanguageUtils.getLocalizedName(descriptions, description);
-  }
-
-  public void setDescription(String description) {
-    NameResult nameResult = LanguageUtils.collectMultilingualNames(descriptions, description);
-    this.descriptions = nameResult.names();
-    this.description = nameResult.name();
   }
 }
