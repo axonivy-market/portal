@@ -1825,6 +1825,7 @@ i.dashboard-icon-drag-drop {
   visibility: visible;
   opacity: 1;
   overflow: hidden;
+  z-index: 100;
 }
 .filter-panel {
   background: var(--notification-panel-color);
