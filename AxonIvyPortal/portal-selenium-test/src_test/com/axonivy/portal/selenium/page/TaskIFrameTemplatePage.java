@@ -143,16 +143,18 @@ public class TaskIFrameTemplatePage extends TemplatePage {
     waitForElementDisplayed(By.id("form:invested-amount"), true);
     $(By.id("form:invested-amount")).sendKeys("1");
     clickByJavaScript($(By.id("form:save-btn")));
-    driver.switchTo().defaultContent();
+    switchToDefaultContent();
     WaitHelper.waitForPresenceOfElementLocatedInFrame("[id$='global-search-component:global-search-data']");
     return NavigationHelper.navigateToTaskList();
   }
 
   public String getTaskNameOutsideIFrameWithSkipTaskList() {
-    waitForCloseButtonDisplayAfterInputedAprrovalNote("1");
-    driver.switchTo().defaultContent();
+    switchToDefaultContent();
     String taskNameOutIFrameCssSelector = "span[id$='title']";
     String approveTaskNameOutIFrame = findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText();
+    switchToIFrameOfTask();
+    waitForCloseButtonDisplayAfterInputedAprrovalNote("1");
+    switchToDefaultContent();
     WaitHelper.assertTrueWithWait(() -> !approveTaskNameOutIFrame
         .equals(findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText()));
     return findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText();
@@ -172,7 +174,7 @@ public class TaskIFrameTemplatePage extends TemplatePage {
   public NewDashboardPage backToHomeInIFrameApprovalTask() {
     waitForElementDisplayed(By.id("content-form:home-btn"), true);
     clickByJavaScript($(By.id("content-form:home-btn")));
-    driver.switchTo().defaultContent();
+    switchToDefaultContent();
     return new NewDashboardPage();
   }
 
@@ -202,7 +204,7 @@ public class TaskIFrameTemplatePage extends TemplatePage {
 
   private void closeReviewPage() {
     clickByJavaScript($(By.id("content-form:close-btn")));
-    driver.switchTo().defaultContent();
+    switchToDefaultContent();
   }
 
   public TaskWidgetPage finishIFrameReviewTask() {
