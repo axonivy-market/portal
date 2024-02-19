@@ -3,14 +3,20 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-  <ui:composition template="/layouts/BasicTemplate.xhtml">
-    <ui:define name="pageContent">
+  <ui:composition template="/layouts/frame-10.xhtml">
+    <ui:define name="content">
       <h:form id="form">
         <h:panelGrid columns="1" styleClass="ui-g-12 TexAlCenter">
           <h3>#{ivy.cms.co("/Dialog/Common/endPageMessage")}</h3>
           <p:commandButton id="go-to-case-detail" actionListener="#{logic.close}" value="#{ivy.cms.co('/Dialog/Common/endPageButton')}" update="form" icon="ui-icon-check" />
         </h:panelGrid>
       </h:form>
+      <script>
+        window.isWorkingOnATask = false;
+        window.isHideCaseInfo = true;
+        window.isHideTaskName = true;
+        window.isHideTaskAction = true;
+      </script>
     </ui:define>
   </ui:composition>
 </h:body>
