@@ -38,11 +38,20 @@ public class IvyLanguage {
   
   private List<SelectItem> getLanguages(List<SelectItem> selectItems, List<String> languages, Function<LanguageConfigurator, Locale> localeLoader, boolean replaceParentheses){
     selectItems.clear();
+    Boolean isFirstElement = true;
     if (CollectionUtils.isNotEmpty(languages)) {
       for (String item : languages) {
-        SelectItem it =
-            new SelectItem(item.toLowerCase(), toDisplayName(item.toLowerCase(), localeLoader, replaceParentheses));
-        selectItems.add(it);
+        if (isFirstElement) {
+          SelectItem it =
+              new SelectItem(item.toLowerCase(), toDisplayName(item.toLowerCase(), localeLoader, replaceParentheses));
+          selectItems.add(it);
+          isFirstElement = false;
+        }
+        else {
+          SelectItem it =
+              new SelectItem(item.toLowerCase(), toDisplayName(item.toLowerCase(), localeLoader, replaceParentheses)+ " (" + item + ")");
+          selectItems.add(it);
+        }
       }
     }
     return selectItems;
@@ -57,7 +66,7 @@ public class IvyLanguage {
       }
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption", Arrays.asList(systemLanguage) );
     }
-    return Locale.forLanguageTag(languageTag).getDisplayName(contentLocale) + " (" + languageTag + ")";
+    return Locale.forLanguageTag(languageTag).getDisplayName(contentLocale);
   }
 
   /**
