@@ -14,6 +14,7 @@ Enums:
 Labels:
   AxonIvyPortal: Axon Ivy Portal
   BackToCaseMap: Volver al mapa de caso
+  BackToHomePage: Volver a la página de inicio
   Cancel: Cancelar
   CaseDetails: Detalles del caso
   CaseMap:
@@ -45,7 +46,12 @@ Labels:
       submitRequest: Presentar solicitud
       verifierComment: Comentario del verificador
       verifierSubmit: Solicitud del verificador
+  Close: Cerrar
+  ConfirmationHeader: ¿Está seguro?
   Copyright: Copyright Ⓒ Axon Ivy Portal
+  ErrorAjaxMessage: Error general
+  ErrorXhr: Error al actualizar el contenido web
+  ForgotPassword: Olvidé mi contraseña
   GoToDetail: Ir a detalles
   HasPrecondition: Este proceso tiene una precondición
   LeaveRequest:
@@ -63,16 +69,26 @@ Labels:
     requesterComment: Comentario del solicitante
     submitLeaveRequest: Presentar solicitud para ausencia
     to: Hasta
+  Loading: Cargando
+  Login: Iniciar sesión
   LoginErrorMessage: No está conectado o su usuario no existe en el sistema. Por favor, contacte con el administrador del sistema
   LoginFailed: error de inicio de sesion
   LoginLogo: Logo de inicio de sesión
+  LoginWith: Inicie sesión con
+  More: Mas
   MoreInformation: Más información
   NextStage: Siguiente etapa
+  Password: Contraseña
+  PasswordRequiredMessage: La contraseña es necesaria
   PreviousStage: Etapa anterior
   RequiredFieldMessage: este campo es obligatorio
   Start: Abrir
   TheCaseMap: El mapa de caso
   TheProcess: El proceso
+  Username: Nombre de usuario
+  UsernameRequiredMessage: UsernameRequiredMessage
+  Warning: Advertencia
+  WelcomeToPortal: Bienvenido, por favor inicie su sesión
   dateFromBiggerThanTo: Hasta' debe ser después de 'Desde'
 Processes:
   CaseMap:

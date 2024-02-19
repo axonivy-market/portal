@@ -431,43 +431,6 @@
         "at" : { "x" : 248, "y" : 704 }
       }
     }, {
-      "id" : "f66",
-      "type" : "RequestStart",
-      "name" : "testPortalCustomErrorHandler.ivp",
-      "config" : {
-        "signature" : "testPortalCustomErrorHandler",
-        "case" : {
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 752, "y" : 504 }
-      },
-      "connect" : [
-        { "id" : "f70", "to" : "f69" }
-      ]
-    }, {
-      "id" : "f67",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 752, "y" : 664 }
-      }
-    }, {
-      "id" : "f69",
-      "type" : "DialogCall",
-      "config" : {
-        "dialog" : "internaltest.TestPortalCustomErrorHandler:start()"
-      },
-      "visual" : {
-        "at" : { "x" : 752, "y" : 584 },
-        "size" : { "width" : 96, "height" : 48 }
-      },
-      "connect" : [
-        { "id" : "f68", "to" : "f67" }
-      ]
-    }, {
       "id" : "f86",
       "type" : "DialogCall",
       "name" : [
