@@ -19,6 +19,7 @@ import com.codeborne.selenide.SelenideElement;
 public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
   private static final String FILTER_CASE_STATE = "State";
+  private static final String FILTER_CASE_NAME = "Case name";
 
   private String caseEditWidgetId;
 
@@ -320,6 +321,25 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   
   public ElementsCollection countFilterSelect() {
     return $$("[id$=':filter-component:field-selection_panel']");
+  }
+  
+  public void addCustomField(String fieldName) {
+    selectCustomType();
+    getCustomFieldSelection().click();
+    SelenideElement customFieldPanel = $("span[id$='column-management-form:custom-field-selection_panel']");
+    customFieldPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement fieldElement = customFieldPanel.$$("li").filter(text(fieldName)).first()
+        .shouldBe(getClickableCondition());
+    fieldElement.getAttribute(FILTER_CASE_NAME);
+    fieldElement.click();
+    getColumnManagementDialog().$("button[id$='field-add-btn']").click();
+  }
+  
+  public void saveAfterAddingCustomField() {
+    $("button[id$='column-management-save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("button#widget-configuration-save-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("button#back-to-configuration").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("button#back-to-home-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
   }
   
 }
