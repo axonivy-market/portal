@@ -3,7 +3,6 @@ package com.axonivy.portal.selenium.test.dashboard;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
@@ -15,7 +14,6 @@ import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.CollectionCondition;
 
-@IvyWebTest(headless = false)
 public class DashboardEditCaseWidgetTest extends BaseTest{
   private NewDashboardPage newDashboardPage;
   private static final String NAME_STR = "Name";
@@ -113,8 +111,42 @@ public class DashboardEditCaseWidgetTest extends BaseTest{
     newDashboardDetailsEditPage.addWidget();
     CaseEditWidgetNewDashBoardPage caseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
     caseWidget.waitPreviewTableLoaded();
-    caseWidget.addFilter("Category", FilterOperator.IN);
-    caseWidget.inputValueOnLatestFilter(FilterValueType.CATEGORY_TYPE, "Leav");
+    caseWidget.openFilter();
+    caseWidget.addFilter("Category", null);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.CATEGORY_TYPE, "Leave Request");
+    caseWidget.applyFilter();
+    caseWidget.countCases().shouldBe(CollectionCondition.size(1));
+    
+    caseWidget.removeFilter(0);
+    caseWidget.addFilter("Category", FilterOperator.NO_CATEGORY);
+    caseWidget.applyFilter();
+    caseWidget.countCases().shouldBe(CollectionCondition.size(0));
+
+    caseWidget.removeFilter(0);
+    caseWidget.addFilter("Category", FilterOperator.NOT_CONTAINS);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Leave");
+    caseWidget.applyFilter();
+    caseWidget.countCases().shouldBe(CollectionCondition.size(0));
+  }
+  
+  @Test
+  public void filterDateTest() {
+    redirectToRelativeLink(createDataCreatedDate);
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
+    newDashboardDetailsEditPage.addWidget();
+    CaseEditWidgetNewDashBoardPage caseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
+    caseWidget.waitPreviewTableLoaded();
+    
+    caseWidget.openFilter();
+    caseWidget.addFilter("Created Date", FilterOperator.TODAY);
+    caseWidget.applyFilter();
+    caseWidget.countCases().shouldBe(CollectionCondition.size(2));
+    
+    caseWidget.removeFilter(0);
+    caseWidget.addFilter("Created Date", FilterOperator.CURRENT);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.DATE_CURRENT, "Month");
+    caseWidget.applyFilter();
+    caseWidget.countCases().shouldBe(CollectionCondition.size(6));
 
   }
   
