@@ -75,7 +75,9 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
   protected List<Process> findProcesses() {
     List<IWebStartable> processes = ProcessService.getInstance().findProcesses().getProcesses();
     List<Process> defaultPortalProcesses = new ArrayList<>();
-    processes.forEach(process -> defaultPortalProcesses.add(new DashboardProcess(process)));
+    if (CollectionUtils.isNotEmpty(processes)) {
+      processes.forEach(process -> defaultPortalProcesses.add(new DashboardProcess(process)));
+    }
     return defaultPortalProcesses;
   }
 
