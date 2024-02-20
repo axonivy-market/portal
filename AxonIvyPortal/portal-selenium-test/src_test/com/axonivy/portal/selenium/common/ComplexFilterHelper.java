@@ -99,6 +99,17 @@ public class ComplexFilterHelper {
         selectPanel.$$("ul li").filter(text(String.valueOf(values[0]))).first().shouldBe(getClickableCondition())
             .click();
         break;
+      case WITHIN:
+        var numberPeriodInput = filterElement.$("div[id$=':number-of-periods-panel']").$("input").shouldBe(appear);
+        numberPeriodInput.clear();
+        numberPeriodInput.shouldBe(Condition.empty, DEFAULT_TIMEOUT).sendKeys(String.valueOf(values[0]));
+
+        $("div[id$=':period-type-panel']").$("div[id$=':period-n-type-selection']")
+            .$("label[id$=':period-n-type-selection_label']").shouldBe(getClickableCondition()).click();
+
+        $$("li").filter(text(String.valueOf(values[1]))).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+            .click();
+        break;
       default:
         break;
     }
@@ -109,13 +120,11 @@ public class ComplexFilterHelper {
         .shouldBe(Condition.editable);
     fromInput.clear();
     fromInput.sendKeys(String.valueOf(values[0]));
-    fromInput.pressEnter();
 
     var toInput = filterElement.$("div[id$=':between-number-panel-to']").$("input[id$=':to-number_input']")
         .shouldBe(Condition.editable);
     toInput.clear();
     toInput.sendKeys(String.valueOf(values[1]));
-    toInput.pressEnter();
   }
 
   private static void setFromToValueDate(SelenideElement filterElement, Object... values) {
@@ -123,13 +132,11 @@ public class ComplexFilterHelper {
         .shouldBe(Condition.editable);
     fromInput.clear();
     fromInput.sendKeys(String.valueOf(values[0]));
-    fromInput.pressEnter();
 
     var toInput = filterElement.$("div[id$=':between-dates-panel-to']").$("input[id$=':to-date_input']")
         .shouldBe(Condition.editable);
     toInput.clear();
     toInput.sendKeys(String.valueOf(values[1]));
-    toInput.pressEnter();
   }
 
   private static SelenideElement getValueOfCheckBox(String value) {

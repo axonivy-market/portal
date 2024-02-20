@@ -30,7 +30,9 @@ public enum FilterOperator {
   NO_CATEGORY("No Category"),
   START_WITH("Starts With"),
   TODAY("Today"),
-  YESTERDAY("Yesterday");
+  YESTERDAY("Yesterday"),
+  WITHIN_NEXT("Within the next"),
+  WITHIN_LAST("Within the last");
 
   private String value;
 
