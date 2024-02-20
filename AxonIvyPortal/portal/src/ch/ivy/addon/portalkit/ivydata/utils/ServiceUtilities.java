@@ -39,7 +39,7 @@ public class ServiceUtilities {
    * @return list of user
    */
   @Deprecated(forRemoval = true, since = "9.4")
-  public static IUser findUser(final String username, @SuppressWarnings("unused") IApplication app) {
+  public static IUser findUser(final String username, IApplication app) {
     return findUser(username);
   }
   
@@ -55,7 +55,7 @@ public class ServiceUtilities {
    * @return users
    */
   @Deprecated(forRemoval=true, since = "9.4")
-  public static List<IUser> findAllUsers(@SuppressWarnings("unused") IApplication app) {
+  public static List<IUser> findAllUsers(IApplication app) {
     return findAllUsers();
   }
   
@@ -80,7 +80,7 @@ public class ServiceUtilities {
    * @return roles
    */
   @Deprecated(forRemoval=true, since = "9.4")
-  public static List<IRole> findAllRoles(@SuppressWarnings("unused") IApplication app) {
+  public static List<IRole> findAllRoles(IApplication app) {
     return findAllRoles();
   }
   

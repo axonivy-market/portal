@@ -12,78 +12,100 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ExternalLink extends AbstractConfiguration {
-    private static final String ROLE_EVERYBODY = "Everybody";
+  private static final String ROLE_EVERYBODY = "Everybody";
 
-    private String name;
-    private String link;
-    private Long creatorId;
-    private String icon;
-    private String description;
-    private List<String> permissions;
-    @JsonIgnore
-    private List<String> defaultPermissions = new ArrayList<>();
+  private String name;
+  private String link;
+  @Deprecated(forRemoval = true, since = "10.0.16")
+  private Long creatorId;
+  private String icon;
+  private String description;
+  private List<String> permissions;
+  @JsonIgnore
+  private List<String> defaultPermissions = new ArrayList<>();
+  private String securityMemberId;
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public String getLink() {
-        return link;
-    }
+  public String getLink() {
+    return link;
+  }
 
-    public void setLink(String link) {
-        this.link = link;
-    }
+  public void setLink(String link) {
+    this.link = link;
+  }
 
-    public Long getCreatorId() {
-        return creatorId;
-    }
+  /**
+   * @deprecated use {@link #getSecurityMemberId()}
+   * @return creator id
+   */
+  @Deprecated(forRemoval = true, since = "10.0.16")
+  public Long getCreatorId() {
+    return creatorId;
+  }
 
-    public void setCreatorId(Long creatorId) {
-        this.creatorId = creatorId;
-    }
+  /**
+   * @deprecated use {@link #setSecurityMemberId(String)}
+   * @param creatorId
+   */
+  @Deprecated(forRemoval = true, since = "10.0.16")
+  public void setCreatorId(Long creatorId) {
+    this.creatorId = creatorId;
+  }
 
-    @JsonIgnore
-    public boolean isAbleToEdit() {
-        return this.creatorId == null ? true : this.creatorId == Ivy.session().getSessionUser().getId();
-    }
+  @JsonIgnore
+  public boolean isAbleToEdit() {
+    return this.creatorId == null ? true : this.creatorId == Ivy.session().getSessionUser().getId();
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    @Override
-    public String toString() {
-        return String.format("ExternalLink {creatorId=%s, name=%s, link=%s, isPublic=%s, rolePermission=[%s], icon=%s}", creatorId, name, link,
-                getIsPublic(), String.join(", ", permissions), icon);
-    }
+  @Override
+  public String toString() {
+    return String.format(
+        "ExternalLink {creatorId=%s, name=%s, link=%s, isPublic=%s, rolePermission=[%s], icon=%s, securityMemberId=%s}",
+        creatorId, name, link, getIsPublic(), String.join(", ", permissions), icon, securityMemberId);
+  }
 
-    public String getIcon() {
-        return icon;
-    }
+  public String getIcon() {
+    return icon;
+  }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
+  public void setIcon(String icon) {
+    this.icon = icon;
+  }
 
-    public List<String> getPermissions() {
-        return this.getIsPublic() ? (CollectionUtils.isEmpty(permissions) ? getDefaultPermissions() : permissions) : new ArrayList<>();
-    }
+  public List<String> getPermissions() {
+    return this.getIsPublic() ? (CollectionUtils.isEmpty(permissions) ? getDefaultPermissions() : permissions)
+        : new ArrayList<>();
+  }
 
-    public void setPermissions(List<String> permissions) {
-        this.permissions = permissions;
-    }
+  public void setPermissions(List<String> permissions) {
+    this.permissions = permissions;
+  }
 
-    private List<String> getDefaultPermissions() {
-        defaultPermissions.add(ROLE_EVERYBODY);
-        return defaultPermissions;
-    }
+  private List<String> getDefaultPermissions() {
+    defaultPermissions.add(ROLE_EVERYBODY);
+    return defaultPermissions;
+  }
+
+  public String getSecurityMemberId() {
+    return securityMemberId;
+  }
+
+  public void setSecurityMemberId(String securityMemberId) {
+    this.securityMemberId = securityMemberId;
+  }
 }
