@@ -283,9 +283,9 @@ public class DashboardCasefWidgetFilterTest extends BaseTest {
     caseWidget.openFilterWidget();
     caseWidget.addFilter("Account Number", FilterOperator.NOT_EMPTY);
     caseWidget.addFilter("Invoice Subtotal Amount", FilterOperator.BETWEEN);
-    caseWidget.inputValueOnLatestFilter(FilterValueType.NUMBER, 100, 500);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.NUMBER_BETWEEN, 100, 500);
     caseWidget.addFilter("Invoice Subtotal Amount", FilterOperator.NOT_BETWEEN);
-    caseWidget.inputValueOnLatestFilter(FilterValueType.NUMBER, 0, 100);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.NUMBER_BETWEEN, 0, 100);
     caseWidget.applyFilter();
 
     caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
