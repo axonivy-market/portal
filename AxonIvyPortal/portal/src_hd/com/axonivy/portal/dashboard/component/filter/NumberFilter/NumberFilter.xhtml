@@ -42,6 +42,7 @@
       <f:attribute name="filterIndex" value="#{filterIndex}" />
       <f:attribute name="locale" value="#{localeBean.locale}" />
       <f:attribute name="messageId" value="#{messageId}" />
+      <p:ajax event="change" process="@(this)" partialSubmit="true" global="false" />
     </p:inputNumber>
   </h:panelGroup>
 
