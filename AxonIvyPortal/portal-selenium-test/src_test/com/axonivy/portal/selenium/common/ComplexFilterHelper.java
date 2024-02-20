@@ -52,7 +52,7 @@ public class ComplexFilterHelper {
         }
         getCloseCheckBox().shouldBe(getClickableCondition()).click();
         break;
-      case TEXT:
+      case TEXT, NUMBER:
         var textField = filterElement.$("div[id$=':text-list-panel']").$(".ui-chips.ui-widget").$("input")
             .shouldBe(Condition.editable);
         for (int i = 0; i < values.length; i++) {
@@ -61,7 +61,7 @@ public class ComplexFilterHelper {
           textField.pressEnter();
         }
         break;
-      case NUMBER:
+      case NUMBER_BETWEEN:
         if (filterElement.$("div[id$=':between-number-panel-and']").exists()) {
           filterElement.$("div[id$=':between-number-panel-from']").$("input[id$=':from-number_input']")
               .shouldBe(Condition.editable).sendKeys(String.valueOf(values[0]));
@@ -76,7 +76,6 @@ public class ComplexFilterHelper {
             numberField.pressEnter();
           }
         }
-
         break;
       case DATE:
         var dateInput = filterElement.$$(".date-picker-panel input")
