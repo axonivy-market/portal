@@ -62,20 +62,23 @@ public class ComplexFilterHelper {
         }
         break;
       case NUMBER_BETWEEN:
-        if (filterElement.$("div[id$=':between-number-panel-and']").exists()) {
-          filterElement.$("div[id$=':between-number-panel-from']").$("input[id$=':from-number_input']")
-              .shouldBe(Condition.editable).sendKeys(String.valueOf(values[0]));
-          filterElement.$("div[id$=':between-number-panel-to']").$("input[id$=':to-number_input']")
-              .shouldBe(Condition.editable).sendKeys(String.valueOf(values[1]));
-        } else {
-          var numberField = filterElement.$("div[id$=':number-panel']").$("span[id$=':number']").$("input")
-              .shouldBe(Condition.editable);
-          for (int i = 0; i < values.length; i++) {
-            numberField.clear();
-            numberField.sendKeys(String.valueOf(values[i]));
-            numberField.pressEnter();
-          }
-        }
+        filterElement.$("div[id$=':between-number-panel-from']").$("input[id$=':from-number_input']")
+            .shouldBe(Condition.editable).sendKeys(String.valueOf(values[0]));
+        filterElement.$("div[id$=':between-number-panel-to']").$("input[id$=':to-number_input']")
+            .shouldBe(Condition.editable).sendKeys(String.valueOf(values[1]));
+        break;
+      case DATE_BETWEEN:
+        var fromInput = filterElement.$("div[id$=':between-dates-panel-from']").$("input[id$=':from-date_input']")
+            .shouldBe(Condition.editable);
+        fromInput.clear();
+        fromInput.sendKeys(String.valueOf(values[0]));
+        fromInput.pressEnter();
+
+        var toInput = filterElement.$("div[id$=':between-dates-panel-to']").$("input[id$=':to-date_input']")
+            .shouldBe(Condition.editable);
+        toInput.clear();
+        toInput.sendKeys(String.valueOf(values[1]));
+        toInput.pressEnter();
         break;
       case DATE:
         var dateInput = filterElement.$$(".date-picker-panel input")
