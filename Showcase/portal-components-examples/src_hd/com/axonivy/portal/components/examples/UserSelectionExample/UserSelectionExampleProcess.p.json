@@ -59,8 +59,8 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
             "import ch.ivyteam.ivy.security.user.NewUser;",
-            "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
             "import java.util.Locale;",
             "import ch.ivyteam.ivy.security.IRole;",
             "import ch.ivyteam.ivy.security.IUser;",
@@ -80,7 +80,7 @@
             "in.selectedUserForReadOnlyField = new UserDTO(backendDev1);",
             "in.excludedUsernames = Arrays.asList(\"supporter\", \"tester\");",
             "in.excludeAllRoleNames = Arrays.asList(\"supporter\", \"tester\", \"backendDev1\", \"backendDev2\");",
-            "in.userSelectionSerenityExampleLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/UserSelectionExample/showUserSelectionExamplesSerenity.ivp\");",
+            "in.userSelectionSerenityExampleLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/UserSelectionExample/showUserSelectionExamplesSerenity.ivp\");",
             "in.nonExistedRoles = Arrays.asList(\"EmptyRole\");"
           ]
         },
