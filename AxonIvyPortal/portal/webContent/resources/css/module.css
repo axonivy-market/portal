@@ -1398,6 +1398,17 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   margin-right: 15px;
 }
 
+.external-link-description {
+  padding-right: 0.5em;
+}
+.external-link-input{
+  padding-left: 1em;
+  padding-top: 1em;
+}
+.exter-link-description-label{
+  padding-top: 1em;
+  float: left;
+}
 .favorite-process-name {
   max-width: 850px;
 }
@@ -3243,7 +3254,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .edit-process-dialog {
-  max-width: 550px;
+  max-width: 650px;
   overflow: hidden !important;
 }
 
@@ -3252,7 +3263,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
-  padding-right: .5em;}
+  padding-right: .5em;
+}
 
 .process-widget .process-input-switch-selection,
 .ui-inputswitch.ui-widget.ui-widget-content.process-input-switch-selection.ui-inputswitch-checked {
@@ -3273,7 +3285,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .edit-process-form .edit-process-detail-2nd-cell .ui-inplace-content input,
-.edit-process-form .edit-process-detail-2nd-cell .ui-inplace-content textarea {
+.edit-process-form .edit-process-detail-2nd-cell .ui-inplace-content textarea, 
+.edit-process-form .edit-process-detail-2nd-cell .ui-inplace-content div{
   flex-grow: 1;
 }
 

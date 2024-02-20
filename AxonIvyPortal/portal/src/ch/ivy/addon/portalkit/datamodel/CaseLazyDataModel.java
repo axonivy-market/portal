@@ -435,7 +435,7 @@ public class CaseLazyDataModel extends LazyDataModel7<ICase> {
    *
    * @param caseQuery case query {@link CaseQuery}
    */
-  public void extendSort(@SuppressWarnings("unused") CaseQuery caseQuery) {
+  public void extendSort(CaseQuery caseQuery) {
     // Placeholder for customization
   }
 
