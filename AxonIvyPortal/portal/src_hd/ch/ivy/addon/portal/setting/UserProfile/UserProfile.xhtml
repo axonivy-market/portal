@@ -214,10 +214,12 @@
                                  var="event"
                                  value="#{userProfileBean.events}"
                                  id="notification-Channels-Table"
+                                 rowIndexVar="rowIndex"
                                  lazy="false" styleClass="ui-fluid">
                                  <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/event')}"
-                                    sortBy="#{event}">
-                                    <h:outputText value="#{event}" />
+                                    sortBy="#{event.displayName}">
+                                    <h:outputText id="event" value="#{event.displayName}" />
+                                    <p:tooltip for ="my-profile-form:notification-Channels-Table:#{rowIndex}:event" value="#{event.description}" position="top"/>
                                  </p:column>
                                  <p:columns id="channels" var="channel"
                                     value="#{userProfileBean.channels}">
