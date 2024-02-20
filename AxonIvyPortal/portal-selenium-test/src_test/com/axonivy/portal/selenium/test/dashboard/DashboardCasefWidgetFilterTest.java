@@ -45,6 +45,9 @@ public class DashboardCasefWidgetFilterTest extends BaseTest {
 
     // Filter Case Name IS_NOT
     caseWidget.openFilterWidget();
+    caseWidget.addFilter("State", null);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
+
     caseWidget.addFilter("Name", FilterOperator.IS);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "TestCase");
     caseWidget.applyFilter();
@@ -52,19 +55,19 @@ public class DashboardCasefWidgetFilterTest extends BaseTest {
 
     // CONTAINS
     caseWidget.openFilterWidget();
-    caseWidget.changeOperator(FilterOperator.CONTAINS, "text");
+    caseWidget.changeOperator("Name", FilterOperator.CONTAINS, "text");
     caseWidget.applyFilter();
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(12));
 
     // START_WITH
     caseWidget.openFilterWidget();
-    caseWidget.changeOperator(FilterOperator.START_WITH, "text");
+    caseWidget.changeOperator("Name", FilterOperator.START_WITH, "text");
     caseWidget.applyFilter();
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(12));
 
     // END_WITH
     caseWidget.openFilterWidget();
-    caseWidget.changeOperator(FilterOperator.END_WITH, "text");
+    caseWidget.changeOperator("Name", FilterOperator.END_WITH, "text");
     caseWidget.applyFilter();
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(12));
   }
@@ -212,14 +215,14 @@ public class DashboardCasefWidgetFilterTest extends BaseTest {
     caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
 
     caseWidget.openFilterWidget();
-    caseWidget.changeOperator(FilterOperator.AFTER, "date");
+    caseWidget.changeOperator("Created Date", FilterOperator.AFTER, "date");
     caseWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2024");
     caseWidget.applyFilter();
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(12));
     caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
 
     caseWidget.openFilterWidget();
-    caseWidget.changeOperator(FilterOperator.CURRENT, "date");
+    caseWidget.changeOperator("Created Date", FilterOperator.CURRENT, "date");
     caseWidget.applyFilter();
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(12));
     caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
@@ -284,10 +287,14 @@ public class DashboardCasefWidgetFilterTest extends BaseTest {
     caseWidget.addFilter("Account Number", FilterOperator.NOT_EMPTY);
     caseWidget.addFilter("Invoice Subtotal Amount", FilterOperator.BETWEEN);
     caseWidget.inputValueOnLatestFilter(FilterValueType.NUMBER_BETWEEN, 100, 500);
-    caseWidget.addFilter("Invoice Subtotal Amount", FilterOperator.NOT_BETWEEN);
-    caseWidget.inputValueOnLatestFilter(FilterValueType.NUMBER_BETWEEN, 0, 100);
     caseWidget.applyFilter();
+    caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
+    caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(0));
 
+    caseWidget.openFilterWidget();
+    caseWidget.changeOperator("Invoice Subtotal Amount", FilterOperator.NOT_BETWEEN, "number");
+    caseWidget.inputValueOnLatestFilter(FilterValueType.NUMBER_BETWEEN, 100, 200);
+    caseWidget.applyFilter();
     caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(0));
   }
@@ -295,11 +302,9 @@ public class DashboardCasefWidgetFilterTest extends BaseTest {
   @Test
   public void testFilterDateOnCustomFields() {
     redirectToRelativeLink(testCaseListPermission);
-    login(TestAccount.DEMO_USER);
-    redirectToNewDashBoard();
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     addCustomFields(caseWidget, List.of("CreatedBillDate", "ShipmentDate"));
-    
+
     caseWidget.openFilterWidget();
     caseWidget.addFilter("Created Bill date", FilterOperator.IS_NOT);
     caseWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2024");
@@ -308,15 +313,15 @@ public class DashboardCasefWidgetFilterTest extends BaseTest {
     caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
 
     caseWidget.openFilterWidget();
-    caseWidget.changeOperator(FilterOperator.BEFORE, "date");
+    caseWidget.changeOperator("Created Bill date", FilterOperator.BEFORE, "date");
     caseWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2024");
     caseWidget.applyFilter();
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(0));
     caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
 
     caseWidget.openFilterWidget();
-    caseWidget.changeOperator(FilterOperator.AFTER, "date");
-    caseWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2018");
+    caseWidget.changeOperator("Created Bill date", FilterOperator.BETWEEN, "date");
+    caseWidget.inputValueOnLatestFilter(FilterValueType.DATE_BETWEEN, "01/01/2018", "01/01/2024");
     caseWidget.applyFilter();
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(0));
     caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
