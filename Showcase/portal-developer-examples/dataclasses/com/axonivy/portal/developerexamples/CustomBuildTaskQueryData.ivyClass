@@ -1,4 +1,0 @@
-CustomBuildTaskQueryData #class
-com.axonivy.portal.developerexamples #namespace
-taskQuery ch.ivyteam.ivy.workflow.query.TaskQuery #field
-isQueryForHomePage Boolean #field

@@ -51,9 +51,9 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
+            "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
             "",
-            "in.securityMemberNameAndAvatarSerenityExampleLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/SecurityMemberNameAndAvatarExample/showSecurityMemberNameAndAvatarExamplesSerenity.ivp\");"
+            "in.securityMemberNameAndAvatarSerenityExampleLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/SecurityMemberNameAndAvatarExample/showSecurityMemberNameAndAvatarExamplesSerenity.ivp\");"
           ]
         }
       },
