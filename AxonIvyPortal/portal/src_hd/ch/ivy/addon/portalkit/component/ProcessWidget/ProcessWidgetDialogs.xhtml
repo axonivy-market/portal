@@ -62,39 +62,31 @@
         </h:panelGrid>
 
         <!-- External link -->
-        <h:panelGroup styleClass="ui-g-12 u-no-padding-left" 
+        <h:panelGrid styleClass="ui-g-12 u-no-padding-left" columns="2" columnClasses="edit-process-detail-1st-cell, edit-process-detail-2nd-cell"
           rendered="#{!processWidgetBean.isExpressProcess(process)}">
           <!-- Process name -->
-          <div class="ui-g-3">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}" />
-          </div>
-          
-          <div class="ui-g-9">
-            <p:inplace editor="true" styleClass="md-inputfield" effectSpeed="fast"
-            saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-            cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
-              <f:facet name="output">
-                <h:outputText styleClass="u-mar-right-5" value="#{processWidgetBean.editedExternalLink.name}" />
-                <a href="#" class="si si-graphic-tablet-drawing-pen" />
-              </f:facet>
-              <div class="ui-fluid ui-inputgroup">
-                <p:inputText id="external-link-name" value="#{processWidgetBean.editedExternalLink.name}" required="true"
-                  maxlength="85" 
-                  requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
-                <p:commandButton id="edit-name-language-button"  icon="si si-chat-translate" 
-                  actionListener="#{processWidgetBean.updateNameByLocale()}"
-                  process="#{cc.clientId}:edit-process-form:external-link-name"
-                  update="#{cc.clientId}:edit-name-language-config:multiple-languages-dialog"
-                  oncomplete="PF('multiple-languages-dialog').show();" />
-              </div>
-            </p:inplace>
-          </div>
+          <p:inplace editor="true" styleClass="md-inputfield" effectSpeed="fast"
+          saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+          cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
+            <f:facet name="output">
+              <h:outputText styleClass="u-mar-right-5" value="#{processWidgetBean.editedExternalLink.name}" />
+              <a href="#" class="si si-graphic-tablet-drawing-pen" />
+            </f:facet>
+            <div class="ui-fluid ui-inputgroup">
+              <p:inputText id="external-link-name" value="#{processWidgetBean.editedExternalLink.name}" required="true"
+                maxlength="85" 
+                requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
+              <p:commandButton id="edit-name-language-button"  icon="si si-chat-translate" 
+                actionListener="#{processWidgetBean.updateNameByLocale()}"
+                process="#{cc.clientId}:edit-process-form:external-link-name"
+                update="#{cc.clientId}:edit-name-language-config:multiple-languages-dialog"
+                oncomplete="PF('multiple-languages-dialog').show();" />
+            </div>
+          </p:inplace>
 
           <!-- Start link -->
-          <div class="ui-g-3">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')}" />
-          </div>
-          <div class="ui-g-9">
           <p:inplace editor="true" styleClass="md-inputfield" effectSpeed="fast"
             saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
@@ -106,36 +98,28 @@
               requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
               placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/webLinkExample')}" />
           </p:inplace>
-          </div>
 
           <!-- Link description -->
-          <div class="ui-g-3">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/linkDescription')}" />
-          </div>
-
-          <div class="ui-g-9">
-            <p:inplace editor="true" styleClass="md-inputfield" effectSpeed="fast"
-            saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-            cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
-              <f:facet name="output">
-                <h:outputText styleClass="u-mar-right-5" value="#{processWidgetBean.editedExternalLink.description}" />
-                <a href="#" class="si si-graphic-tablet-drawing-pen" />
-              </f:facet>
-              <div class="ui-fluid ui-inputgroup">
-              <p:inputTextarea id="external-description" value="#{processWidgetBean.editedExternalLink.description}"
-                maxlength="200" rows="3" />
-              <p:commandButton id="edit-description-language-button" icon="si si-chat-translate" 
-                process="#{cc.clientId}:edit-process-form:external-description"
-                update="#{cc.clientId}:text-area-edit-multiple-languages-dialog"
-                oncomplete="PF('text-area-edit-multiple-languages-dialog').show();" />
-              </div>
-            </p:inplace>
-          </div>
+          <p:inplace editor="true" styleClass="md-inputfield" effectSpeed="fast"
+          saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+          cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
+            <f:facet name="output">
+              <h:outputText styleClass="u-mar-right-5" value="#{processWidgetBean.editedExternalLink.description}" />
+              <a href="#" class="si si-graphic-tablet-drawing-pen" />
+            </f:facet>
+            <div class="ui-fluid ui-inputgroup">
+            <p:inputTextarea id="external-description" value="#{processWidgetBean.editedExternalLink.description}"
+              maxlength="200" rows="3" />
+            <p:commandButton id="edit-description-language-button" icon="si si-chat-translate" 
+              process="#{cc.clientId}:edit-process-form:external-description"
+              update="#{cc.clientId}:text-area-edit-multiple-languages-dialog"
+              oncomplete="PF('text-area-edit-multiple-languages-dialog').show();" />
+            </div>
+          </p:inplace>
+          
           <!-- Role Permissions -->
-          <div class="ui-g-3">
           <h:outputText value="#{ivy.cms.co('/Labels/Permissions')}" rendered="#{processWidgetBean.editedExternalLink.isPublic}"/>
-          </div>
-          <div class="ui-g-9">
           <p:inplace editor="true" effectSpeed="fast" rendered="#{processWidgetBean.editedExternalLink.isPublic}" id="role-permissions-editor-for-external-link"
             styleClass="role-permissions-editor-for-external-link"
             saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
@@ -176,15 +160,11 @@
               </h:panelGroup>
             </f:facet>
           </p:inplace>
-          </div>
 
           <!-- Image -->
-          <div class="ui-g-3">
           <h:outputLabel id="editing-external-link-image-label"
             for="editing-external-link-image-upload"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/image')}" />
-          </div>
-          <div class="ui-g-9">
           <h:panelGroup id="file-upload-panel" layout="block"
             styleClass="#{empty processWidgetBean.editedExternalLink.imageLocation ? 'ui-g-12' : 'ui-g-12 ui-fluid u-padding-0 MarTop10 external-link-preview-image-panel'}">
             <p:fileUpload id="editing-external-link-image-upload"
@@ -214,8 +194,7 @@
             </h:panelGroup>
             <p:defaultCommand target="external-link-name"/>
           </h:panelGroup>
-          </div>
-        </h:panelGroup>
+        </h:panelGrid>
       </div>
     </h:form>
 
