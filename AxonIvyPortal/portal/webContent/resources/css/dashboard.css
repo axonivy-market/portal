@@ -706,6 +706,10 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   cursor: auto;
 }
 
+.dashboard__table--preview .ui-avatar.gravatar > img {
+  z-index: 0;
+}
+
 .widget-info__state {
   margin: 2px;
 }

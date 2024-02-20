@@ -129,13 +129,16 @@
     <p:selectOneMenu id="current-period-selection" value="#{filter.periodType}" disabled="#{readOnly}">
       <f:selectItems value="#{widgetDateFilterBean.currentFilterPeriodTypes}" var="period"
         itemValue="#{period}" itemLabel="#{period.label}" />
+      <p:ajax process="@(this)" partialSubmit="true" global="false" />
     </p:selectOneMenu>
   </h:panelGroup>
 
   <h:panelGroup id="number-of-periods-panel" layout="block"
     rendered="#{filter.operator == 'LAST' or filter.operator == 'NEXT'}"
     styleClass="number-of-periods-panel ui-fluid md-inputfield">
-    <p:spinner id="number-of-period" value="#{filter.periods}" min="1" disabled="#{readOnly}" />
+    <p:spinner id="number-of-period" value="#{filter.periods}" min="1" disabled="#{readOnly}">
+      <p:ajax process="@(this)" partialSubmit="true" global="false" />
+    </p:spinner>
   </h:panelGroup>
 
   <h:panelGroup id="period-type-panel" layout="block"
@@ -144,6 +147,7 @@
     <p:selectOneMenu id="period-n-type-selection" value="#{filter.periodType}" disabled="#{readOnly}">
       <f:selectItems value="#{widgetDateFilterBean.filterPeriodTypes}" var="period"
         itemValue="#{period}" itemLabel="#{period.pluralLabel}" />
+      <p:ajax process="@(this)" partialSubmit="true" global="false" />
     </p:selectOneMenu>
   </h:panelGroup>
 </cc:implementation>
