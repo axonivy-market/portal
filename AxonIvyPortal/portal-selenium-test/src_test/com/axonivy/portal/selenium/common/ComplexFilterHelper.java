@@ -63,30 +63,17 @@ public class ComplexFilterHelper {
         }
         break;
       case NUMBER_BETWEEN:
-        filterElement.$("div[id$=':between-number-panel-from']").$("input[id$=':from-number_input']")
-            .shouldBe(Condition.editable).sendKeys(String.valueOf(values[0]));
-        filterElement.$("div[id$=':between-number-panel-to']").$("input[id$=':to-number_input']")
-            .shouldBe(Condition.editable).sendKeys(String.valueOf(values[1]));
+        setFromToValueNumber(filterElement, values);
         break;
       case DATE_BETWEEN:
-        var fromInput = filterElement.$("div[id$=':between-dates-panel-from']").$("input[id$=':from-date_input']")
-            .shouldBe(Condition.editable);
-        fromInput.clear();
-        fromInput.sendKeys(String.valueOf(values[0]));
-        fromInput.pressEnter();
-
-        var toInput = filterElement.$("div[id$=':between-dates-panel-to']").$("input[id$=':to-date_input']")
-            .shouldBe(Condition.editable);
-        toInput.clear();
-        toInput.sendKeys(String.valueOf(values[1]));
-        toInput.pressEnter();
+        setFromToValueDate(filterElement, values);
         break;
       case DATE:
         var dateInput = filterElement.$$(".date-picker-panel input")
             .shouldHave(CollectionCondition.sizeGreaterThanOrEqual(values.length));
         for (int i = 0; i < dateInput.size(); i++) {
           dateInput.get(i).clear();
-          dateInput.get(i).sendKeys(String.valueOf(values[i]));
+          dateInput.get(i).shouldBe(Condition.empty, DEFAULT_TIMEOUT).sendKeys(String.valueOf(values[i]));
         }
         break;
       case CREATOR_TYPE:
@@ -109,11 +96,40 @@ public class ComplexFilterHelper {
         var date_current = filterElement.$("[id$='current-period-panel']").shouldBe(getClickableCondition());
         date_current.click();
         var selectPanel = $("div[id$=':current-period-selection_panel'][style*='display: block']").shouldBe(appear);
-        selectPanel.$$("ul li").filter(text(String.valueOf(values[0]))).first().shouldBe(getClickableCondition()).click();
+        selectPanel.$$("ul li").filter(text(String.valueOf(values[0]))).first().shouldBe(getClickableCondition())
+            .click();
         break;
       default:
         break;
     }
+  }
+
+  private static void setFromToValueNumber(SelenideElement filterElement, Object... values) {
+    var fromInput = filterElement.$("div[id$=':between-number-panel-from']").$("input[id$=':from-number_input']")
+        .shouldBe(Condition.editable);
+    fromInput.clear();
+    fromInput.sendKeys(String.valueOf(values[0]));
+    fromInput.pressEnter();
+
+    var toInput = filterElement.$("div[id$=':between-number-panel-to']").$("input[id$=':to-number_input']")
+        .shouldBe(Condition.editable);
+    toInput.clear();
+    toInput.sendKeys(String.valueOf(values[1]));
+    toInput.pressEnter();
+  }
+
+  private static void setFromToValueDate(SelenideElement filterElement, Object... values) {
+    var fromInput = filterElement.$("div[id$=':between-dates-panel-from']").$("input[id$=':from-date_input']")
+        .shouldBe(Condition.editable);
+    fromInput.clear();
+    fromInput.sendKeys(String.valueOf(values[0]));
+    fromInput.pressEnter();
+
+    var toInput = filterElement.$("div[id$=':between-dates-panel-to']").$("input[id$=':to-date_input']")
+        .shouldBe(Condition.editable);
+    toInput.clear();
+    toInput.sendKeys(String.valueOf(values[1]));
+    toInput.pressEnter();
   }
 
   private static SelenideElement getValueOfCheckBox(String value) {
@@ -128,10 +144,9 @@ public class ComplexFilterHelper {
   private static SelenideElement getCloseCheckBox() {
     return $("div.ui-selectcheckboxmenu-panel").shouldBe(appear, DEFAULT_TIMEOUT).$("a.ui-selectcheckboxmenu-close");
   }
-  
+
   private static void filterCategories(SelenideElement filterEl, String... categories) {
-    filterEl.$("[id$=':widget-filter-category']")
-        .shouldBe(getClickableCondition()).click();
+    filterEl.$("[id$=':widget-filter-category']").shouldBe(getClickableCondition()).click();
     var categoriesPanel = $("[id$=':widget-filter-category-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
     categoriesPanel.$("[id$=':widget-category-filter-tree']").$$(".ui-chkbox").first().shouldBe(getClickableCondition())
         .click();
@@ -149,5 +164,5 @@ public class ComplexFilterHelper {
     categoriesPanel.$("button[id$=':update-command']").shouldBe(getClickableCondition()).click();
     categoriesPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
-  
+
 }
