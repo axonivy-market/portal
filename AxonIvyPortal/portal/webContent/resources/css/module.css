@@ -3254,7 +3254,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .edit-process-dialog {
-  max-width: 700px;
+  max-width: 650px;
   overflow: hidden !important;
 }
 
@@ -3278,6 +3278,16 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   text-align: left;
   padding: 6px 0;
   vertical-align: top;
+}
+
+.edit-process-form .edit-process-detail-2nd-cell .ui-inplace-content {
+  display: flex;
+}
+
+.edit-process-form .edit-process-detail-2nd-cell .ui-inplace-content input,
+.edit-process-form .edit-process-detail-2nd-cell .ui-inplace-content textarea, 
+.edit-process-form .edit-process-detail-2nd-cell .ui-inplace-content div{
+  flex-grow: 1;
 }
 
 .edit-process-form .edit-external-link-name {
