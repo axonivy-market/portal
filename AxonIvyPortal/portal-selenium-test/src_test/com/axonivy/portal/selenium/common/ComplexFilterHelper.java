@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 import java.time.Duration;
+import java.util.Arrays;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -53,7 +54,7 @@ public class ComplexFilterHelper {
         getCloseCheckBox().shouldBe(getClickableCondition()).click();
         break;
       case TEXT:
-        var textField = filterElement.$("div[id$=':text-list-panel']").$(".ui-chips.ui-widget").$("input")
+        var textField = filterElement.$("div[id$='-list-panel']").$(".ui-chips.ui-widget").$("input")
             .shouldBe(Condition.editable);
         for (int i = 0; i < values.length; i++) {
           textField.clear();
@@ -76,7 +77,6 @@ public class ComplexFilterHelper {
             numberField.pressEnter();
           }
         }
-
         break;
       case DATE:
         var dateInput = filterElement.$$(".date-picker-panel input")
@@ -99,12 +99,14 @@ public class ComplexFilterHelper {
         }
         break;
       case CATEGORY_TYPE:
-        var catogoryField = filterElement.$("div[id$=':category-list-panel']").$("input").shouldBe(appear);
-        for (int i = 0; i < values.length; i++) {
-          catogoryField.clear();
-          catogoryField.sendKeys(String.valueOf(values[i]));
-          catogoryField.pressEnter();
-        }
+        String[] categories = Arrays.copyOf(values, values.length, String[].class);
+        filterCategories(filterElement, categories);
+        break;
+      case DATE_CURRENT:
+        var date_current = filterElement.$("[id$='current-period-panel']").shouldBe(getClickableCondition());
+        date_current.click();
+        var selectPanel = $("div[id$=':current-period-selection_panel'][style*='display: block']").shouldBe(appear);
+        selectPanel.$$("ul li").filter(text(String.valueOf(values[0]))).first().shouldBe(getClickableCondition()).click();
         break;
       default:
         break;
@@ -123,4 +125,26 @@ public class ComplexFilterHelper {
   private static SelenideElement getCloseCheckBox() {
     return $("div.ui-selectcheckboxmenu-panel").shouldBe(appear, DEFAULT_TIMEOUT).$("a.ui-selectcheckboxmenu-close");
   }
+  
+  private static void filterCategories(SelenideElement filterEl, String... categories) {
+    filterEl.$("[id$=':widget-filter-category']")
+        .shouldBe(getClickableCondition()).click();
+    var categoriesPanel = $("[id$=':widget-filter-category-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
+    categoriesPanel.$("[id$=':widget-category-filter-tree']").$$(".ui-chkbox").first().shouldBe(getClickableCondition())
+        .click();
+
+    categoriesPanel.$$(".ui-treenode").asDynamicIterable().forEach(leaf -> {
+      for (var category : categories) {
+        var leafValue = leaf.$(".ui-treenode-label").getText();
+        if (category.equalsIgnoreCase(leafValue)) {
+          leaf.$(".ui-chkbox").shouldBe(getClickableCondition()).click();
+          break;
+        }
+      }
+    });
+
+    categoriesPanel.$("button[id$=':update-command']").shouldBe(getClickableCondition()).click();
+    categoriesPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+  
 }

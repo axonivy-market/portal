@@ -148,6 +148,7 @@ public class BaseTest {
       "portal-developer-examples/162511D2577DBA88/CreateCustomActionCaseExample.ivp";
   protected String grantPortalPermission = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
   protected String testCaseListPermission = "internalSupport/14B2FC03D2E87141/TestCaseListPermissions.ivp";
+  protected String createDataCreatedDate = "portalKitTestHelper/18B031C59C3C7814/CreateDataForCreatedDate.ivp";
 
   protected void redirectToNewDashBoard() {
     open(EngineUrl.createProcessUrl(PORTAL_HOME_PAGE_URL));
