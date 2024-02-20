@@ -118,7 +118,7 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public boolean isTextField() {
-    return this.filterFormat == FilterFormat.TEXT || this.filterFormat == FilterFormat.STRING;
+    return (this.filterFormat == FilterFormat.TEXT || this.filterFormat == FilterFormat.STRING) && !isCategory() && !isId() && !isApplication();
   }
 
   @JsonIgnore
