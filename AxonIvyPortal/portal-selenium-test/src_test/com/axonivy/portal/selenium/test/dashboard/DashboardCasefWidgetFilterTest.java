@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
@@ -10,7 +12,9 @@ import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -222,6 +226,102 @@ public class DashboardCasefWidgetFilterTest extends BaseTest {
 
   }
 
+  @Test
+  public void testFilterAddComplexCustomFields() {
+    redirectToRelativeLink(testCaseListPermission);
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    addCustomFields(caseWidget, List.of("AccountNumber", "CustomerName", "ShipmentDate", "SupportData"));
+
+    caseWidget.openFilterWidget();
+
+    caseWidget.addFilter("Account Number", FilterOperator.NOT_EMPTY);
+    caseWidget.addFilter("Customer name", FilterOperator.NOT_EMPTY);
+    caseWidget.addFilter("Shipment date", FilterOperator.BEFORE);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2024");
+
+    caseWidget.applyFilter();
+
+    caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
+    caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(0));
+  }
+
+  @Test
+  public void testSavedFilterItemsWithCustomFields() {
+    redirectToRelativeLink(testCaseListPermission);
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    addCustomFields(caseWidget, List.of("AccountNumber", "CustomerName"));
+
+    caseWidget.openFilterWidget();
+    caseWidget.addFilter("Account Number", FilterOperator.NOT_EMPTY);
+    caseWidget.saveFilter("CasesAccountNumberNotEmpty");
+    caseWidget.resetFilter();
+
+    caseWidget.openFilterWidget();
+    caseWidget.addFilter("Customer name", FilterOperator.CONTAINS);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "CustomerName");
+    caseWidget.saveFilter("CasesContainCustomerName");
+    caseWidget.resetFilter();
+
+    caseWidget.openFilterWidget();
+    caseWidget.selectSavedFilter("CasesContainCustomerName");
+    caseWidget.selectSavedFilter("CasesAccountNumberNotEmpty");
+    caseWidget.applyFilter();
+
+    caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
+    caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(0));
+
+    caseWidget.openFilterWidget();
+    removeSavedFilterItemsIfExist(caseWidget);
+  }
+
+  @Test
+  public void testFilterNumberOnCustomFields() {
+    redirectToRelativeLink(testCaseListPermission);
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    addCustomFields(caseWidget, List.of("AccountNumber", "InvoiceSubtotalAmount"));
+
+    caseWidget.openFilterWidget();
+    caseWidget.addFilter("Account Number", FilterOperator.NOT_EMPTY);
+    caseWidget.addFilter("Invoice Subtotal Amount", FilterOperator.BETWEEN);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.NUMBER, 100, 500);
+    caseWidget.addFilter("Invoice Subtotal Amount", FilterOperator.NOT_BETWEEN);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.NUMBER, 0, 100);
+    caseWidget.applyFilter();
+
+    caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
+    caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(0));
+  }
+
+  @Test
+  public void testFilterDateOnCustomFields() {
+    redirectToRelativeLink(testCaseListPermission);
+    login(TestAccount.DEMO_USER);
+    redirectToNewDashBoard();
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    addCustomFields(caseWidget, List.of("CreatedBillDate", "ShipmentDate"));
+    
+    caseWidget.openFilterWidget();
+    caseWidget.addFilter("Created Bill date", FilterOperator.IS_NOT);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2024");
+    caseWidget.applyFilter();
+    caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(0));
+    caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
+
+    caseWidget.openFilterWidget();
+    caseWidget.changeOperator(FilterOperator.BEFORE, "date");
+    caseWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2024");
+    caseWidget.applyFilter();
+    caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(0));
+    caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
+
+    caseWidget.openFilterWidget();
+    caseWidget.changeOperator(FilterOperator.AFTER, "date");
+    caseWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2018");
+    caseWidget.applyFilter();
+    caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(0));
+    caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
+  }
+
   private void createSavedFilterItems(CaseWidgetNewDashBoardPage caseWidget) {
     removeSavedFilterItemsIfExist(caseWidget);
 
@@ -252,6 +352,19 @@ public class DashboardCasefWidgetFilterTest extends BaseTest {
       caseWidget.closeManageFilterDialog();
     } else
       caseWidget.resetFilter();
+  }
 
+  private void addCustomFields(CaseWidgetNewDashBoardPage caseWidget, List<String> fieldNameList) {
+    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    caseEditWidget.openColumnManagementDialog();
+    caseEditWidget.selectCustomType();
+    for (String fieldName : fieldNameList) {
+      caseEditWidget.addCustomField(fieldName);
+    }
+    caseEditWidget.saveAfterAddingCustomField();
   }
 }
