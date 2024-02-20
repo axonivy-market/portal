@@ -3059,6 +3059,11 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .my-profile-container .card {
   height: 100%;
   float: left;
+  width: 100%;
+}
+
+.my-profile-container .portal-section-container.general-section-container {
+  height: 100%;
 }
 
 .dashboard-configuration__header h2,
