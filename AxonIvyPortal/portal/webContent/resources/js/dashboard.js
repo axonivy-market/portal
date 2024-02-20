@@ -450,7 +450,7 @@ function initTableWidget(table) {
     var $table = $(document.getElementById(table.id));
     table.cfg.scrollHeight = $table.height().toString();
     table.init(table.cfg);
-  }, 1000);
+  }, 500);
 }
 
 function searcNewhWidgetByNameOrDescription(input) {
