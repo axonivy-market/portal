@@ -1830,7 +1830,7 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .dashboard-widget-filter__filter-panel > div.period-type-panel {
-  width: 4vw;
+  width: 8vw;
 }
 
 .dashboard-widget-filter__filter-panel > div:first-child {
@@ -1842,7 +1842,7 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .dashboard-widget-filter__filter-panel > div.number-panel {
-  max-width: 3vw;
+  max-width: 6vw;
 }
 
 .dashboard-widget-filter__filter-panel > div.and-text-panel {
