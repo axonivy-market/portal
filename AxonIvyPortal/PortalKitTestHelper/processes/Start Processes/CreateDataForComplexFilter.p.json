@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
   "id" : "18B031C59C3C7814",
   "config" : {
     "data" : "portalKit_test.Data"
@@ -40,9 +40,9 @@
             "",
             "//Alternativ is via api with which to trigger reindexing. ",
             "",
-            "for (int i = 0; i < IElasticsearchManager.instance().indices().size(); i++) {",
+            "for (int i = 0; i < IElasticsearchManager.instance().indicesCount(); i++) {",
             "  ",
-            "  IndexInfo indexInfo = IElasticsearchManager.instance().indices().get(i);",
+            "  IndexInfo indexInfo = IElasticsearchManager.instance().indices(0, 1000).get(i);",
             "  ivy.log.info(\"Reindexing STARTED for: \" + indexInfo.indexName().toString());",
             "  IElasticsearchManager.instance().reindexSync(indexInfo.indexName());",
             "  ivy.log.info(\"Reindexing DONE for: \" + indexInfo.indexName().toString());",
@@ -1861,9 +1861,9 @@
             "",
             "//Alternativ is via api with which to trigger reindexing. ",
             "",
-            "for (int i = 0; i < IElasticsearchManager.instance().indices().size(); i++) {",
+            "for (int i = 0; i < IElasticsearchManager.instance().indicesCount(); i++) {",
             "  ",
-            "  IndexInfo indexInfo = IElasticsearchManager.instance().indices().get(i);",
+            "  IndexInfo indexInfo = IElasticsearchManager.instance().indices(0, 1000).get(i);",
             "  ivy.log.info(\"Reindexing STARTED for: \" + indexInfo.indexName().toString());",
             "  IElasticsearchManager.instance().reindexSync(indexInfo.indexName());",
             "  ivy.log.info(\"Reindexing DONE for: \" + indexInfo.indexName().toString());",
