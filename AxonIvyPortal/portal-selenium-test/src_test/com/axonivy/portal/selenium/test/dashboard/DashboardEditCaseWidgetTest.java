@@ -147,7 +147,31 @@ public class DashboardEditCaseWidgetTest extends BaseTest{
     caseWidget.inputValueOnLatestFilter(FilterValueType.DATE_CURRENT, "Month");
     caseWidget.applyFilter();
     caseWidget.countCases().shouldBe(CollectionCondition.size(6));
+    
+  }
+  
+  @Test
+  public void filterMixFieldTest() {
+    redirectToRelativeLink(createDataCreatedDate);
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    redirectToRelativeLink(testCaseListPermission);
+    redirectToRelativeLink(testCaseListPermission);
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
+    newDashboardDetailsEditPage.addWidget();
+    CaseEditWidgetNewDashBoardPage caseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
+    caseWidget.waitPreviewTableLoaded();
+    caseWidget.addCustomColumns("AccountNumber", "ShipmentDate", "CustomerName",  "CustomerType", "InvoiceNumber");
+    
+    caseWidget.openFilter();
+    caseWidget.addFilter("Description", FilterOperator.CONTAINS);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Leave", "Test");
+    caseWidget.applyFilter();
+//    caseWidget.countCases().shouldBe(CollectionCondition.size(2));
 
+    
+//    caseWidget.countCases().shouldBe(CollectionCondition.size(6));
+
+//    caseWidget.addFilter()
   }
   
   private NewDashboardDetailsEditPage gotoEditPublicDashboardPage() {
