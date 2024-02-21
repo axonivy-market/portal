@@ -222,7 +222,8 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT);
     int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
     $("button[id$=':add-filter']").shouldBe(getClickableCondition()).click();
-    $$("div[id$=':filter-component:filter-selection-panel']").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(currentIndex + 1));
+    $$("div[id$=':filter-component:filter-selection-panel']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(currentIndex + 1));
     ComplexFilterHelper.selectFilterColumnName(columnName, currentIndex);
     if (operator != null) {
       ComplexFilterHelper.selectFilterOperator(operator, currentIndex);
@@ -234,11 +235,14 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     ComplexFilterHelper.inputValueOnLatestFilter(type, values);
   }
 
-  public void changeOperator(FilterOperator operator, String type) {
-    type = type + "-filter-operator-panel";
-    $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT);
-    $("div[id$=':" + type + "']").shouldBe(getClickableCondition()).$("label[id$=':operator-selection_label']").click();
-    $$("li").filter(text(operator.getValue())).first().click();
+  public void changeOperator(String filterLabel, FilterOperator operator, String type) {
+    String typeInput = String.format("div[id$=':%s-filter-operator-panel']", type);
+    $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$=':filter-container']")
+        .$$("label[id$=':field-selection_label']").filter(text(filterLabel)).first().shouldBe(appear, DEFAULT_TIMEOUT);
+
+    $(typeInput).shouldBe(getClickableCondition()).$("label[id$=':operator-selection_label']").click();
+
+    $$("li").filter(text(operator.getValue())).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void saveFilter(String widgetFilterName) {

@@ -1869,5 +1869,5 @@ body .ui-button.rounded-button.dashboard-widget-filter__remove-filter .ui-icon {
   min-width: 130px;
 }
 .text-list-filter{
-  max-width: 60%;
+  max-width: 100%;
 }
