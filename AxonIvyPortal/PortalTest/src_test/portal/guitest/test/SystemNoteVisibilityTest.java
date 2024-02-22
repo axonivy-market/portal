@@ -10,7 +10,9 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.Dimension;
 
+import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.Variable;
@@ -94,6 +96,7 @@ public class SystemNoteVisibilityTest extends BaseTest {
   @Test
   public void testSystemNoteVisibilityInTaskDetailForNormalUser() {
     updatePortalSetting(HIDE_SYSTEM_NOTES_FROM_HISTORY.getKey(), "true");
+    ScreenshotUtil.resizeBrowser(new Dimension(1900, 1000));
     TaskDetailsPage taskDetailsPage = openTaskDetails();
     String taskId = taskDetailsPage.getTaskId();
     List<String> taskNoteAuthors = taskDetailsPage.getTaskNoteAuthors();

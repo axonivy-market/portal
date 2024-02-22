@@ -13,12 +13,14 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.Dimension;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.util.ConfigurationJsonUtil;
+import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import ch.ivyteam.ivy.workflow.TaskState;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.CaseState;
@@ -66,7 +68,7 @@ public class CaseDetailsTest extends BaseTest {
   private void createTestingTask() {
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    MainMenuPage mainMenuPage = new MainMenuPage();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName(LEAVE_REQUEST_CASE_NAME);
   }
@@ -184,6 +186,7 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testRelatedTaskDelegateTask() {
     createTestingTask();
+    ScreenshotUtil.resizeBrowser(new Dimension(1900, 1000));
     assertEquals(TestRole.EVERYBODY_ROLE, detailsPage.getResponsibleOfRelatedTaskAt(2));
 
     detailsPage.openTaskDelegateDialog(2);
@@ -289,6 +292,7 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testRelatedTaskEnableAndDisableColumns() {
     createTestingTask();
+    ScreenshotUtil.resizeBrowser(new Dimension(1900, 1000));
     assertTrue(detailsPage.isRelatedTaskListColumnExist(RELATED_TASK_EXPIRY_COLUMN));
     assertTrue(detailsPage.isRelatedTaskListColumnExist(RELATED_TASK_STATE_COLUMN));
     detailsPage.clickRelatedTaskColumnsButton();

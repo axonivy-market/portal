@@ -10,11 +10,13 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.TimeoutException;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
+import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.CaseState;
 import portal.guitest.common.TestAccount;
@@ -287,6 +289,7 @@ public class CaseWidgetTest extends BaseTest {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     HomePage homePage = new HomePage();
     CaseWidgetPage casePage = homePage.openCaseList();
+    ScreenshotUtil.resizeBrowser(new Dimension(1900, 1000));
     CaseDetailsPage detailsPage = casePage.openDetailsOfCaseHasName(ORDER_PIZZA);
     assertTrue(detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_CREATED_COLUMN));
     assertTrue(detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_STATE_COLUMN));
