@@ -465,6 +465,10 @@ function highlightTaskDetailComponent() {
   appendStepAnnotation(histories, 3, 0, histories.width()/2);
 }
 
+function highlightTaskStatusBanner() {
+  createRedMediumOutline($("[id$=':task-status-banner']"));
+}
+
 function highlightUserExampleCard(cardIndex) {
   var userCardId = '#panel-' + cardIndex;
   createRedThickOutline($(userCardId).parent());
