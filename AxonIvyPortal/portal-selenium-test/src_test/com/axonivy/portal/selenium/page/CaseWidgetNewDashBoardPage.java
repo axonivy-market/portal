@@ -9,7 +9,6 @@ import static com.codeborne.selenide.Selenide.$$;
 import com.axonivy.portal.selenium.common.ComplexFilterHelper;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
-import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -215,20 +214,8 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     custom.shouldBe(getClickableCondition()).click();
   }
 
-  //////////////////
-
-  // Not support tree input like Category...
-  public SelenideElement addFilter(String columnName, FilterOperator operator) {
-    $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT);
-    int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
-    $("button[id$=':add-filter']").shouldBe(getClickableCondition()).click();
-    $$("div[id$=':filter-component:filter-selection-panel']")
-        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(currentIndex + 1));
-    ComplexFilterHelper.selectFilterColumnName(columnName, currentIndex);
-    if (operator != null) {
-      ComplexFilterHelper.selectFilterOperator(operator, currentIndex);
-    }
-    return ComplexFilterHelper.getNewFilter(currentIndex);
+  public void addFilter(String columnName, FilterOperator operator) {
+    ComplexFilterHelper.addFilter(columnName, operator);
   }
 
   public void inputValueOnLatestFilter(FilterValueType type, Object... values) {

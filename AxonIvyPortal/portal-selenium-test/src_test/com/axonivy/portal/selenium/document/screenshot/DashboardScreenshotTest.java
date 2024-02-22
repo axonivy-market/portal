@@ -10,6 +10,9 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
+import com.axonivy.portal.selenium.common.ComplexFilterHelper;
+import com.axonivy.portal.selenium.common.FilterOperator;
+import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
@@ -151,7 +154,11 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "dashboard");
 
     // Take screenshot of widget filter panel
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.openWidgetFilter(1),
+    homePage.openWidgetFilter(1);
+    ComplexFilterHelper.addFilter("Creator", FilterOperator.CURRENT_USER);
+    ComplexFilterHelper.addFilter("Name", FilterOperator.CONTAINS);
+    ComplexFilterHelper.inputValueOnLatestFilter(FilterValueType.TEXT, "Leave", "Request");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.getWidgetFilter(1),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-filter", new ScreenshotMargin(20));
     homePage.closeWidgetFilter(1);
 
@@ -218,8 +225,13 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     // Take screenshots of Case widget configuration dialog
     detailsEditPage.addWidget();
     CaseEditWidgetNewDashBoardPage caseConfigurationPage = detailsEditPage.addNewCaseWidget();
-    ScreenshotUtils.captureElementScreenshot(caseConfigurationPage.getConfigurationFilter(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-configuration");
+    caseConfigurationPage.openFilter();
+    ComplexFilterHelper.addFilter("Creator", FilterOperator.CURRENT_USER);
+    ComplexFilterHelper.addFilter("Name", FilterOperator.CONTAINS);
+    ComplexFilterHelper.inputValueOnLatestFilter(FilterValueType.TEXT, "Leave", "Request");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseConfigurationPage.getConfigurationFilter(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-configuration", new ScreenshotMargin(20));
+    caseConfigurationPage.closeFilter();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseConfigurationPage.openColumnManagementDialog(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-table-configuration", new ScreenshotMargin(20));
 
