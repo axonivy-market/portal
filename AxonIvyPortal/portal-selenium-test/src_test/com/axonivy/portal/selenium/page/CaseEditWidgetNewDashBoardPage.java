@@ -94,8 +94,9 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     inputValueOnLatestFilter(FilterValueType.TEXT, caseName);
   }
 
-  public void filterCaseState() {
-    getAvailableFilterCheckbox(FILTER_CASE_STATE).shouldBe(getClickableCondition()).click();
+  public void filterCaseState(String state) {
+    addFilter(FILTER_CASE_STATE, null);
+    inputValueOnLatestFilter(FilterValueType.STATE_TYPE, state);
   }
 
   private ElementsCollection getRowOfTableCasePreview() {

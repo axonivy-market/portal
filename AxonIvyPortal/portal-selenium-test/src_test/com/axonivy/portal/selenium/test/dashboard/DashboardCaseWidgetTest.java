@@ -206,9 +206,9 @@ public class DashboardCaseWidgetTest extends BaseTest {
     caseEditWidget.changeWidgetTitle("New Your Cases");
     caseEditWidget.openFilter();
     caseEditWidget.filterCaseName("TestCase");
-    caseEditWidget.filterCaseState();
-    caseEditWidget.selectStateAsOpen();
-//    caseEditWidget.preview();
+    caseEditWidget.filterCaseState("OPEN");
+    caseEditWidget.applyFilter();
+    // caseEditWidget.preview();
     caseEditWidget.countCases().shouldHave(size(12));
     caseEditWidget.save();
     // After Edit

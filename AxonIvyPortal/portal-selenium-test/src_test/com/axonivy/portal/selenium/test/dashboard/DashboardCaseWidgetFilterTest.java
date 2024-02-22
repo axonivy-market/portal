@@ -155,7 +155,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
     // Search on Name, Widget name and Type
     caseWidget.inputValueOnColumnWidgetHeader("Name", "CasesNameLeaveRequest");
     caseWidget.getSavedFilterItemsByFilterNameOnWidgetManagement().filter(Condition.text("CasesNameLeaveRequest"))
-        .shouldHave(CollectionCondition.size(0));
+        .shouldHave(CollectionCondition.size(1));
 
     caseWidget.inputValueOnColumnWidgetHeader("Widget name", "cases");
     caseWidget.getSavedFilterItemsByFilterNameOnWidgetManagement().shouldHave(CollectionCondition.size(3));
