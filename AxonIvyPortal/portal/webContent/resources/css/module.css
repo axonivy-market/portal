@@ -6069,3 +6069,11 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
 .combined-mode-loading-container {
   overflow: hidden;
 }
+
+.task-status-banner {
+  padding: 0.5em;
+}
+
+.task-status-banner-content {
+  width: 100%;
+}
