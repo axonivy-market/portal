@@ -1384,6 +1384,18 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   width: 100%;
 }
 
+.external-link-description {
+  padding-right: 0.5em;
+}
+.external-link-input{
+  padding-left: 1em;
+  padding-top: 1em;
+}
+.exter-link-description-label{
+  padding-top: 1em;
+  float: left;
+}
+
 .process-start-list-item-action.is-external-link {
   right: 50px;
   flex: 1 0 auto;
@@ -3247,7 +3259,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .edit-process-dialog {
-  max-width: 550px;
+  max-width: 650px;
   overflow: hidden !important;
 }
 
@@ -3277,7 +3289,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .edit-process-form .edit-process-detail-2nd-cell .ui-inplace-content input,
-.edit-process-form .edit-process-detail-2nd-cell .ui-inplace-content textarea {
+.edit-process-form .edit-process-detail-2nd-cell .ui-inplace-content textarea, 
+.edit-process-form .edit-process-detail-2nd-cell .ui-inplace-content div {
   flex-grow: 1;
 }
 
