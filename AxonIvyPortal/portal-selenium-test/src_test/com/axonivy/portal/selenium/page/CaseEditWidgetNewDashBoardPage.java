@@ -6,8 +6,6 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import org.openqa.selenium.WebElement;
-
 import com.axonivy.portal.selenium.common.ComplexFilterHelper;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
@@ -275,9 +273,10 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     return translationOverlay;
   }
 
-  public WebElement getConfigurationFilter() {
-    return $("[id='widget-configuration-form:new-widget-configuration-component:filter-container']").shouldBe(appear,
-        DEFAULT_TIMEOUT);
+  public SelenideElement getConfigurationFilter() {
+    $("[id$=':widget-filter-content']").$("strong").click();
+    $("[id$=':widget-filter-content']").scrollIntoView("{block: \"end\"}");
+    return $("[id$=':widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getConfigurationDialog() {
@@ -289,17 +288,8 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     $("div[id='new-widget-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
-  public SelenideElement addFilter(String columnName, FilterOperator operator) {
-    $("div[id$=':filter-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
-    int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
-    $("button[id$=':add-filter']").shouldBe(getClickableCondition()).click();
-    $$("div[id$=':filter-component:filter-selection-panel']")
-        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(currentIndex + 1));
-    ComplexFilterHelper.selectFilterColumnName(columnName, currentIndex);
-    if (operator != null) {
-      ComplexFilterHelper.selectFilterOperator(operator, currentIndex);
-    }
-    return ComplexFilterHelper.getNewFilter(currentIndex);
+  public void addFilter(String columnName, FilterOperator operator) {
+    ComplexFilterHelper.addFilter(columnName, operator);
   }
 
   public void inputValueOnLatestFilter(FilterValueType type, Object... values) {
@@ -308,7 +298,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void closeFilter() {
     $("span[id$=':widget-title-group']").$("label").scrollIntoView(("{block: \"start\"}")).click();
-    $("div[id$=':filter-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div[id$=':widget-filter-content']").shouldBe(disappear, DEFAULT_TIMEOUT);
     waitPreviewTableLoaded();
   }
 

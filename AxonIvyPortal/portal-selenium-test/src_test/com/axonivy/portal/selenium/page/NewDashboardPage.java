@@ -857,8 +857,12 @@ public class NewDashboardPage extends TemplatePage {
     getCaseWidgetTable().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
-  public SelenideElement openWidgetFilter(int index) {
+  public void openWidgetFilter(int index) {
     $("[id$='filter-sidebar-link-" + index + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement getWidgetFilter(int index) {
     var result = $("div[id$=':filter-overlay-panel-" + index + "']").shouldBe(appear, DEFAULT_TIMEOUT);
     result.$("[class*='js-loading-']").shouldBe(disappear, DEFAULT_TIMEOUT);
     result.$(".filter-overlay-panel__header").shouldBe(appear, DEFAULT_TIMEOUT).click();
