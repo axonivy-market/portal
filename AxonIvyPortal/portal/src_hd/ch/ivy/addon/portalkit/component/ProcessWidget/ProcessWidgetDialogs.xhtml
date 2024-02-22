@@ -73,8 +73,16 @@
               <h:outputText styleClass="u-mar-right-5" value="#{processWidgetBean.editedExternalLink.name}" />
               <a href="#" class="si si-graphic-tablet-drawing-pen" />
             </f:facet>
-            <p:inputText id="external-link-name" value="#{processWidgetBean.editedExternalLink.name}" required="true" maxlength="85"
-              requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
+            <div class="ui-fluid ui-inputgroup">
+              <p:inputText id="external-link-name" value="#{processWidgetBean.editedExternalLink.name}" required="true"
+                maxlength="85" 
+                requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
+              <p:commandButton id="edit-name-language-button"  icon="si si-chat-translate" 
+                actionListener="#{processWidgetBean.updateNameByLocale()}"
+                process="#{cc.clientId}:edit-process-form:external-link-name"
+                update="#{cc.clientId}:edit-name-language-config:multiple-languages-dialog"
+                oncomplete="PF('multiple-languages-dialog').show();" />
+            </div>
           </p:inplace>
 
           <!-- Start link -->
@@ -101,8 +109,15 @@
                 value="#{empty processWidgetBean.editedExternalLink.description ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : processWidgetBean.editedExternalLink.description}" />
               <a href="#" class="si si-graphic-tablet-drawing-pen" />
             </f:facet>
-            <p:inputTextarea id="external-description" value="#{processWidgetBean.editedExternalLink.description}" maxlength="200"
-              rows="3"/>
+            <div class="ui-fluid ui-inputgroup">
+            <p:inputTextarea id="external-description" value="#{processWidgetBean.editedExternalLink.description}"
+              maxlength="200" rows="3" />
+            <p:commandButton id="edit-description-language-button" icon="si si-chat-translate" 
+              actionListener="#{processWidgetBean.updateDescriptionByLocale()}"
+              process="#{cc.clientId}:edit-process-form:external-description"
+              update="#{cc.clientId}:text-area-edit-multiple-languages-dialog"
+              oncomplete="PF('text-area-edit-multiple-languages-dialog').show();" />
+            </div>
           </p:inplace>
           <!-- Role Permissions -->
           <h:outputText value="#{ivy.cms.co('/Labels/Permissions')}" rendered="#{processWidgetBean.editedExternalLink.isPublic}"/>
@@ -245,10 +260,15 @@
         <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}"
           for="external-link-name" />
       </div>
-      <div class="ui-g-12 ui-fluid">
+      <div class="ui-g-12 ui-fluid ui-inputgroup">
         <p:inputText id="external-link-name" value="#{externalLinkBean.externalLink.name}" required="true"
           maxlength="85"
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
+        <p:commandButton id="add-name-language-button"  icon="si si-chat-translate" 
+          actionListener="#{externalLinkBean.updateNameByLocale()}"
+          process="#{cc.clientId}:add-external-link-form:external-link-name"
+          update="#{cc.clientId}:name-language-config:multiple-languages-dialog"
+          oncomplete="PF('multiple-languages-dialog').show();" />
       </div>
 
       <!-- Start link -->
@@ -267,9 +287,14 @@
         <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/linkDescription')}"
           for="external-description" />
       </div>
-      <div class="ui-g-12 ui-fluid">
+      <div class="ui-g-12 ui-fluid ui-inputgroup">
         <p:inputTextarea id="external-description" value="#{externalLinkBean.externalLink.description}"
           styleClass="external-description-field" maxlength="200" rows="3" />
+        <p:commandButton id="add-description-language-button" icon="si si-chat-translate" 
+          actionListener="#{externalLinkBean.updateDescriptionByLocale()}"
+          process="#{cc.clientId}:add-external-link-form:external-description"
+          update="#{cc.clientId}:text-area-add-multiple-languages-dialog"
+          oncomplete="PF('text-area-add-multiple-languages-dialog').show();" />
       </div>
 
       <!-- Type -->
@@ -375,5 +400,89 @@
     </f:facet>
   </p:dialog>
   <!-- End External Link Dialogs -->
+  <!-- Multi language dialog-->
+  <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
+    managedBean="#{externalLinkBean}"
+    id="name-language-config" titles="#{externalLinkBean.externalLink.names}"
+    componentToUpdateOnCreate="#{cc.clientId}:add-external-link-form:external-link-name" 
+    componentToUpdateOnModify="#{cc.clientId}:add-external-link-form:external-link-name"/>
+    
+  <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
+    managedBean="#{processWidgetBean}"
+    id="edit-name-language-config" titles="#{processWidgetBean.editedExternalLink.names}"
+    componentToUpdateOnCreate="#{cc.clientId}:edit-process-form:external-link-name"
+    componentToUpdateOnModify="#{cc.clientId}:edit-process-form:external-link-name"/>
+    
+  <p:dialog appendTo="@(body)" width="500"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingMultipleLanguages')}"
+    resizable="false" id="text-area-add-multiple-languages-dialog" 
+    widgetVar="text-area-add-multiple-languages-dialog" dynamic="true" modal="true"
+    responsive="true">
+    <h:form id="text-area-add-language-detail-form">
+      <h:outputLabel
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/emptySupportedLanguages')}"
+        rendered="#{externalLinkBean.externalLink.descriptions.isEmpty()}" />
+      <h:dataTable value="#{externalLinkBean.externalLink.descriptions}" columnClasses="exter-link-description-label,w-full external-link-input" styleClass="external-link-description"
+        rendered="#{externalLinkBean.externalLink.descriptions.isEmpty() eq 'false'}" var="description">
+        <h:column >
+          <h:outputText
+            value="#{description.locale.getDisplayName(ivy.session.getContentLocale())}" />
+        </h:column>
+        <h:column>
+          <p:inputTextarea value="#{description.value}" maxlength="200" rows="3" styleClass="w-full" />
+        </h:column>
+      </h:dataTable>
+
+      <div class="u-dialog-footer-actions-group">
+        <p:commandLink
+          id="description-multi-language-cancel-button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          onclick="PF('text-area-add-multiple-languages-dialog').hide();" />
+        <p:spacer width="15px" rendered="#{!descriptions.isEmpty()}" />
+        <p:commandButton
+          id="description-multi-language-ok-button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+          update="#{cc.clientId}:add-external-link-form:external-description" process="@form"
+          oncomplete="PF('text-area-add-multiple-languages-dialog').hide();"
+          rendered="#{!descriptions.isEmpty()}" />
+      </div>
+    </h:form>
+  </p:dialog>
+  
+  <p:dialog appendTo="@(body)" width="500"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingMultipleLanguages')}"
+    resizable="false" id="text-area-edit-multiple-languages-dialog" 
+    widgetVar="text-area-edit-multiple-languages-dialog" dynamic="true" modal="true"
+    responsive="true">
+    <h:form id="text-area-edit-language-detail-form">
+      <h:outputLabel
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/emptySupportedLanguages')}"
+        rendered="#{processWidgetBean.editedExternalLink.descriptions.isEmpty()}" />
+      <h:dataTable value="#{processWidgetBean.editedExternalLink.descriptions}" columnClasses="exter-link-description-label,w-full external-link-input" styleClass="external-link-description"
+        rendered="#{processWidgetBean.editedExternalLink.descriptions.isEmpty() eq 'false'}" var="description">
+        <h:column >
+          <h:outputText
+            value="#{description.locale.getDisplayName(ivy.session.getContentLocale())}" />
+        </h:column>
+        <h:column>
+          <p:inputTextarea value="#{description.value}" maxlength="200" rows="3" styleClass="w-full" />
+        </h:column>
+      </h:dataTable>
+
+      <div class="u-dialog-footer-actions-group">
+        <p:commandLink
+          id="description-edit-multi-language-cancel-button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          onclick="PF('text-area-edit-multiple-languages-dialog').hide();" />
+        <p:spacer width="15px" rendered="#{!descriptions.isEmpty()}" />
+        <p:commandButton
+          id="description-edit-multi-language-ok-button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+          update="#{cc.clientId}:edit-process-form:external-description" process="@form"
+          oncomplete="PF('text-area-edit-multiple-languages-dialog').hide();"
+          rendered="#{!descriptions.isEmpty()}" />
+      </div>
+    </h:form>
+  </p:dialog>
 </ui:composition>
 </html>
