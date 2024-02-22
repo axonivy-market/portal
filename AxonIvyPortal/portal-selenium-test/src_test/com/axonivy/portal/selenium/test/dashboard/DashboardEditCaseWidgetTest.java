@@ -12,7 +12,6 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
-import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.CollectionCondition;
 
 @IvyWebTest
