@@ -21,7 +21,8 @@ public class JsonDashboardTemplateConverterFactory extends AbstractJsonConverter
     );
 
   private static final List<IJsonConverter> LE113 = List.of(
-      new com.axonivy.portal.migration.dashboard.converter.v113.DashboardCaseWidgetConverter()
+      new com.axonivy.portal.migration.dashboard.converter.v113.DashboardCaseWidgetConverter(),
+      new com.axonivy.portal.migration.dashboard.converter.v113.DashboardTaskWidgetConverter()
     );
 
   static {

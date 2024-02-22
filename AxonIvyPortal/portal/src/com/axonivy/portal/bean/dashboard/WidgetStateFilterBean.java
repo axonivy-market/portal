@@ -9,7 +9,10 @@ import javax.faces.bean.ViewScoped;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 
+import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
+import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 
 @ManagedBean
 @ViewScoped
@@ -22,8 +25,12 @@ public class WidgetStateFilterBean implements Serializable {
   private List<String> states;
   private String statesString;
 
-  public void init(DashboardFilter filter) {
-    states = CaseUtils.getValidStates().stream().map(businessState -> businessState.name()).toList();
+  public void init(DashboardFilter filter, DashboardWidget widget) {
+    if (DashboardWidgetType.TASK == widget.getType()) {
+      states = TaskUtils.getValidStates().stream().map(businessState -> businessState.name()).toList();
+    } else {
+      states = CaseUtils.getValidStates().stream().map(businessState -> businessState.name()).toList();
+    }
     statesString = String.join(", ", filter.getValues());
   }
 

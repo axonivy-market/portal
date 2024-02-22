@@ -18,18 +18,30 @@ import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCreatedDate;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldFinishedDate;
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomTimestamp;
+import com.axonivy.portal.util.filter.field.task.TaskFilterFieldCreatedDate;
+import com.axonivy.portal.util.filter.field.task.TaskFilterFieldExpiryDate;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
+import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class DashboardFilter implements Serializable {
   private static final long serialVersionUID = -2098346832426240167L;
+
+  @JsonIgnore
+  public static final String CATEGORY = "category";
+  @JsonIgnore
+  public static final String STATE = "state";
+  @JsonIgnore
+  public static final String APPLICATION = "application";
+  @JsonIgnore
+  public static final String ID = "id";
 
   @JsonIgnore
   public static final String DATE_FORMAT = "MM/dd/yyyy";
@@ -83,7 +95,12 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public boolean isCreatedDateField() {
-    return filterField instanceof CaseFilterFieldCreatedDate;
+    return filterField instanceof CaseFilterFieldCreatedDate || filterField instanceof TaskFilterFieldCreatedDate;
+  }
+
+  @JsonIgnore
+  public boolean isExpiryDateField() {
+    return filterField instanceof TaskFilterFieldExpiryDate;
   }
 
   @JsonIgnore
@@ -97,23 +114,33 @@ public class DashboardFilter implements Serializable {
   }
 
   @JsonIgnore
+  public boolean isResponsible() {
+    return this.field == DashboardStandardTaskColumn.RESPONSIBLE.getField();
+  }
+
+  @JsonIgnore
   public boolean isCategory() {
-    return this.field == DashboardStandardCaseColumn.CATEGORY.getField();
+    return this.field == CATEGORY;
   }
 
   @JsonIgnore
   public boolean isApplication() {
-    return this.field == DashboardStandardCaseColumn.APPLICATION.getField();
+    return this.field == APPLICATION;
   }
 
   @JsonIgnore
   public boolean isState() {
-    return this.field == DashboardStandardCaseColumn.STATE.getField();
+    return this.field == STATE;
+  }
+
+  @JsonIgnore
+  public boolean isPriority() {
+    return this.field == DashboardStandardTaskColumn.PRIORITY.getField();
   }
 
   @JsonIgnore
   public boolean isId() {
-    return this.field == DashboardStandardCaseColumn.ID.getField();
+    return this.field == ID;
   }
 
   @JsonIgnore

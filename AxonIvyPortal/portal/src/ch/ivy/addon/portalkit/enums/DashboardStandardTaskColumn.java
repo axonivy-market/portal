@@ -3,6 +3,8 @@ package ch.ivy.addon.portalkit.enums;
 import java.util.HashMap;
 import java.util.Map;
 
+import ch.ivyteam.ivy.environment.Ivy;
+
 public enum DashboardStandardTaskColumn {
   START("start"), 
   PRIORITY("priority"), 
@@ -10,7 +12,7 @@ public enum DashboardStandardTaskColumn {
   NAME("name"), 
   DESCRIPTION("description"), 
   RESPONSIBLE("activator"), 
-  STATE("state"), 
+  STATE("state"),
   CREATED("startTimestamp"), 
   EXPIRY("expiryTimestamp"), 
   CATEGORY("category"),
@@ -37,5 +39,9 @@ public enum DashboardStandardTaskColumn {
 
   public static DashboardStandardTaskColumn findBy(String field) {
     return map.get(field);
+  }
+  
+  public String getLabel() {
+    return Ivy.cms().co(String.format("/Labels/Enums/DashboardStandardTaskColumn/%s", this.name()));
   }
 }

@@ -16,6 +16,7 @@ import com.axonivy.portal.util.filter.operator.caze.createddate.CreatedDateYeste
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CaseFilterFieldCreatedDate extends FilterField {
 
@@ -60,4 +61,11 @@ public class CaseFilterFieldCreatedDate extends FilterField {
       default -> null;
     };
   }
+  
+  @Override
+  public TaskQuery generateFilterTaskQuery(DashboardFilter filter) {
+    return null;
+  }
+
 }
+

@@ -19,7 +19,6 @@ import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomNum
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomString;
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomText;
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomTimestamp;
-
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 
@@ -38,6 +37,7 @@ public class FilterFieldFactory {
     STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.CATEGORY.getField(), new CaseFilterFieldCategory());
     STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.STATE.getField(), new CaseFilterFieldState());
     STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.APPLICATION.getField(), new CaseFilterFieldApplication());
+
     for (ICustomFieldMeta customField : ICustomFieldMeta.cases()) {
       switch (customField.type()) {
         case STRING -> CUSTOM_FILTER_FIELD.put(customField.name(), new CaseFilterFieldCustomString(customField));

@@ -328,11 +328,28 @@ public class DashboardBean implements Serializable {
       caseWidget.setUserFilters(savedFilters);
       return;
     }
+    
+    if (widget.getType() == DashboardWidgetType.TASK) {
+      TaskDashboardWidget caseWidget = ((TaskDashboardWidget) widget);
+
+      if (CollectionUtils.isEmpty(caseWidget.getUserFilters())) {
+        caseWidget.setUserFilters(new ArrayList<>());
+      }
+
+      List<DashboardFilter> savedFilters = caseWidget.getUserFilterCollection()
+          .getSelectedWidgetFilters().stream()
+          .map(WidgetFilterModel::getUserFilters)
+          .filter(list -> CollectionUtils.isNotEmpty(list))
+          .collect(ArrayList::new, List::addAll, List::addAll);
+      caseWidget.setUserFilters(savedFilters);
+      return;
+    }
+
 
     var filterableColumns = new ArrayList<ColumnModel>();
-    if (DashboardWidgetType.TASK == widget.getType()) {
-      filterableColumns.addAll(((TaskDashboardWidget) widget).getFilterableColumns());
-    }
+//    if (DashboardWidgetType.TASK == widget.getType()) {
+//      filterableColumns.addAll(((TaskDashboardWidget) widget).getFilterableColumns());
+//    }
     if (DashboardWidgetType.PROCESS == widget.getType()) {
       filterableColumns.addAll(((CompactProcessDashboardWidget) widget).getFilterableColumns());
     }

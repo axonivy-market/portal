@@ -175,14 +175,24 @@ public class DashboardWidgetUtils {
     }
   }
 
-  public static List<ColumnModel> buildTaskFilterableColumns(List<TaskColumnModel> columns) {
-    if (CollectionUtils.isEmpty(columns)) {
-      return new ArrayList<>();
+  public static List<ColumnModel> buildTaskFilterableColumns(List<TaskColumnModel> taskColumns) {
+    List<ColumnModel> filterableColumns = new ArrayList<>();
+    if (CollectionUtils.isNotEmpty(taskColumns)) {
+      filterableColumns = taskColumns.stream().filter(Objects::nonNull)
+          .filter(col -> !StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardTaskColumn.START.name())
+              && !StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardTaskColumn.ID.toString()))
+          .collect(Collectors.toList());
     }
-    return columns.stream().filter(Objects::nonNull)
-        .filter(col -> !StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardTaskColumn.START.toString())
-            && !StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardTaskColumn.ID.toString()))
-        .collect(Collectors.toList());
+
+    return filterableColumns;
+
+//    if (CollectionUtils.isEmpty(columns)) {
+//      return new ArrayList<>();
+//    }
+//    return columns.stream().filter(Objects::nonNull)
+//        .filter(col -> !StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardTaskColumn.START.toString())
+//            && !StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardTaskColumn.ID.toString()))
+//        .collect(Collectors.toList());
   }
 
   public static CaseDashboardWidget buildCaseColumns(CaseDashboardWidget widget) {
@@ -472,6 +482,7 @@ public class DashboardWidgetUtils {
     widget.setSortField(TaskSortField.ID.toString());
     widget.setSortDescending(true);
     widget.setColumns(initStandardTaskColumns());
+    widget.setFilters(new ArrayList<>());
     return buildTaskColumns(widget);
   }
 

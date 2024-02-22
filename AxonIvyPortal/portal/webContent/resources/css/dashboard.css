@@ -1145,8 +1145,14 @@ body .ui-widget.new-widget-dialog__introduction {
   border-radius: 4px;
   box-shadow: 0 1px 2.5px 0 rgb(0 0 0 / 26%), 0 1px 5px 0 rgb(0 0 0 / 16%);
   cursor: pointer;
-  transition: background-color 0.3s;
-  transition: color 0.3s;
+  transition: background-color 0.3s, 
+              color 0.3s;
+
+/*note: lines below to handle name too long when save filter will remove after verified*/
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-wrap: pretty;
 }
 
 .saved-filter-node.selected, 

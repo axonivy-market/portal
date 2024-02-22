@@ -10,6 +10,7 @@ import com.axonivy.portal.util.filter.operator.caze.state.StateInOperatorHandler
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CaseFilterFieldState extends FilterField {
 
@@ -42,5 +43,10 @@ public class CaseFilterFieldState extends FilterField {
       case IN -> StateInOperatorHandler.getInstance().buildStateInQuery(filter);
       default -> null;
     };
+  }
+
+  @Override
+  public TaskQuery generateFilterTaskQuery(DashboardFilter filter) {
+    return null;
   }
 }
