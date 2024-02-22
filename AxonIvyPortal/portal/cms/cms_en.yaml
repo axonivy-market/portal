@@ -1571,11 +1571,11 @@ Dialogs:
             TaskItemDetails:
               CannotResetTaskWarning: Someone is currently working on this task.
               CannotWorkOnDestroyedTaskWarning: You cannot work on the task because it was destroyed.
-              CannotWorkOnTaskWarning: You cannot work on the task because user {0} is currently working on it.
+              CannotWorkOnTaskWarning: You cannot work on the task because user <strong>{0}</strong> is currently working on it.
               InvalidStateInfo: Invalid state.
               ResetTaskWarning: You are currently working on the task in a different session. You may reset the task and start it again if you have closed your browser. <a href="{0}">Reset</a>
               ShareTaskDetails: Share task details
-              TaskCompletedByOtherInfo: Task has already been completed by user {0} on {1}.
+              TaskCompletedByOtherInfo: Task has already been completed by user <strong>{0}</strong> on {1}.
               TaskCompletedByYouInfo: You already have completed the task on {0}.
   com:
     axonivy:

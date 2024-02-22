@@ -6065,10 +6065,10 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
   overflow: hidden;
 }
 
-.task-status-banner {
-	padding: 0.5em;
+.task-status-banner-container {
+  padding: 0.5em;
 }
 
-.task-status-banner .ui-staticmessage {
-	width: 100%;
+.task-status-banner-content {
+  width: 100%;
 }

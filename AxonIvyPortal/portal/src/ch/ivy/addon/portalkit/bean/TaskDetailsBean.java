@@ -22,6 +22,7 @@ import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISession;
@@ -180,7 +181,7 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
       if (currentIsWorkerUser()) {
         yield Ivy.cms().co(RESET_TASK_WARNING_CMS_URI, Arrays.asList(buildResetTaskUrl(selectedTask)));
       } else if (canResetTask()) {
-        yield Ivy.cms().co(CANNOT_WORK_ON_TASK_WARNING_CMS_URI, Arrays.asList(selectedTask.getWorkerUser().getName()));
+        yield Ivy.cms().co(CANNOT_WORK_ON_TASK_WARNING_CMS_URI, Arrays.asList(getWorkerUser(selectedTask)));
       } else {
         yield Ivy.cms().co(CANNOT_RESET_TASK_WARNING_CMS_URI);
       }
@@ -189,7 +190,7 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
       if (currentIsWorkerUser()) {
         yield Ivy.cms().co(TASK_COMPLETED_BY_YOU_INFO_CMS_URI, Arrays.asList(formatDate(selectedTask.getEndTimestamp())));
       } else {
-        yield Ivy.cms().co(TASK_COMPLETED_BY_OTHER_INFO_CMS_URI, Arrays.asList(selectedTask.getWorkerUser().getName(), formatDate(selectedTask.getEndTimestamp())));
+        yield Ivy.cms().co(TASK_COMPLETED_BY_OTHER_INFO_CMS_URI, Arrays.asList(getWorkerUser(selectedTask), formatDate(selectedTask.getEndTimestamp())));
       }
     }
     case DESTROYED -> Ivy.cms().co(CANNOT_WORK_ON_DESTROYED_TASK_WARNING_CMS_URI);
@@ -215,5 +216,9 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
 
   private String formatDate(Date datetime) {
     return DateTimeGlobalSettingService.getInstance().getDefaultDateTimeFormatter().format(datetime);
+  }
+
+  private String getWorkerUser(ITask selectedTask) {
+    return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(selectedTask.getWorkerUser(), selectedTask.getWorkerUser().getMemberName());
   }
 }
