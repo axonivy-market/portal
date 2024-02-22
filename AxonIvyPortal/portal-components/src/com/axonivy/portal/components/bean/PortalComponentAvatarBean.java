@@ -48,7 +48,6 @@ public class PortalComponentAvatarBean implements Serializable {
     return user.getEmail();
   }
 
-  @SuppressWarnings("unused")
   public String getEmailAddress(RoleDTO role) {
     return "";
   }
