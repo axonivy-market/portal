@@ -1806,8 +1806,9 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .dashboard-widget-filter__filter-panel > div {
   margin-left: 0.5em;
-  display: flex;
+  display: inline-block;
   align-items: flex-start;
+  max-width: 34vw;
 }
 
 .dashboard-widget-filter__filter-panel > div.remove-filter-panel {
