@@ -64,7 +64,7 @@
     </h:panelGroup>
   </div>
 
-  <h:panelGroup id="task-status-banner-container" layout="block" styleClass="ui-g #{taskDetailsBean.showInfoBanner()? 'task-status-banner-container' : ''}">
+  <h:panelGroup id="task-status-banner" layout="block" styleClass="ui-g #{taskDetailsBean.showInfoBanner()? 'task-status-banner' : ''}">
     <p:staticMessage rendered="#{taskDetailsBean.showInfoBanner()}" escape="false" severity="#{taskDetailsBean.getInfoBannerSeverity()}" styleClass="task-status-banner-content MarTop10" detail="#{visibilityBean.sanitizeContent(taskDetailsBean.getInfoBannerMessage())}"></p:staticMessage>
   </h:panelGroup>
 
@@ -112,7 +112,7 @@
                   actionLinkId="task-detail-more-step" panelWidgetVar="task-side-steps-panel-#{rowIndex}" isAdhocExcluded="false"
                   renderedAdditionalAction="#{taskActionBean.showAdditionalOptions(task)}" task="#{task}"
                   isDisabled="#{taskActionBean.noActionAvailable(task) or cc.attrs.readOnly}"
-                  componentToUpdate="#{informationWidgetComponent} #{historyWidgetComponent} #{cc.clientId}:task-status-banner-container" onDestroyComplete="PF('destroy-task-dialog').show()"
+                  componentToUpdate="#{informationWidgetComponent} #{historyWidgetComponent} #{cc.clientId}:task-status-banner" onDestroyComplete="PF('destroy-task-dialog').show()"
                   onEscalationComplete="PF('escalation-task-dialog').show()"
                   showInTaskList="false" onDelegateComplete="initDataToDelegate()" onWorkflowEventComplete="initWorkflowEventData()" />
               </h:panelGroup>
