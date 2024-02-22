@@ -74,4 +74,13 @@ public class DisplayNameConvertor {
       }
     }
   }
+  
+  public static void updateEmptyValue(String userLanguguage, List<DisplayName> values) {
+    DisplayName defaultValue = values.stream().filter(item -> item.getLocale().getLanguage().equals(userLanguguage)).findFirst().orElse(null);
+    for (DisplayName name : values) {
+      if (StringUtils.isBlank(name.getValue()) && defaultValue != null) {
+        name.setValue(defaultValue.getValue());
+      }
+    }
+  }
 }
