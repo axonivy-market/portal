@@ -21,7 +21,7 @@
   <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}" />
   <p:remoteCommand id="rcLoadTaskFirstTime" autoRun="true" actionListener="#{taskWidget.dataModel.loadFirstTime()}"
                    update="dashboard-tasks-container" global="false" async="true" process="@this"
-                   oncomplete="loadWidgetFirstTime('js-loading-#{taskWidget.id}', 'js-dashboard-tasks-container-#{taskWidget.id}'); PF('dashboard-tasks-#{taskWidget.id}').init(PF('dashboard-tasks-#{taskWidget.id}').cfg); #{cc.attrs.onCompleteLoadWidget}" />
+                   oncomplete="loadWidgetFirstTime('js-loading-#{taskWidget.id}', 'js-dashboard-tasks-container-#{taskWidget.id}'); initTableWidget(PF('dashboard-tasks-#{taskWidget.id}')); #{cc.attrs.onCompleteLoadWidget};" />
   <div class="ui-g">
     <h:outputText id="loading" styleClass="js-loading-#{taskWidget.id} task-dashboard-widget__loading-message" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
     <h:panelGroup id="dashboard-tasks-container" layout="block"

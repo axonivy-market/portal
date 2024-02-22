@@ -416,7 +416,7 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
    *
    * @param taskQuery task query {@link TaskQuery}
    */
-  public void extendSort(@SuppressWarnings("unused") TaskQuery taskQuery) {
+  public void extendSort(TaskQuery taskQuery) {
     // Placeholder for customization
   }
 
