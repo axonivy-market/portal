@@ -23,6 +23,7 @@ import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.util.Pair;
@@ -52,10 +53,18 @@ public class ExternalLinkBean implements Serializable {
     externalLink.setSecurityMemberId(sessionUser.getSecurityMemberId());
     String processLink = correctLink(externalLink.getLink());
     externalLink.setLink(processLink);
+    updateEmptyNameAndDescription(externalLink);
 
     externaLinkService.save(externalLink);
     return externalLink;
   }
+  
+  private void updateEmptyNameAndDescription(ExternalLink externalLink) {
+    String userLanguguage = UserUtils.getUserLanguage();
+    DisplayNameConvertor.updateEmptyValue(userLanguguage, externalLink.getNames());
+    DisplayNameConvertor.updateEmptyValue(userLanguguage, externalLink.getDescriptions());
+  }
+
 
   public boolean hasPublicLinkCreationPermission() {
     return PermissionUtils.checkPublicLinkCreationPermission();

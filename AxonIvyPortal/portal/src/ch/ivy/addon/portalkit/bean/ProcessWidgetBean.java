@@ -53,6 +53,7 @@ import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.IProcessStart;
@@ -303,6 +304,8 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
       if (CollectionUtils.isNotEmpty(this.selectedPermissionsForSavingEditedExternalLink)) {
         externalLink.setPermissions(this.selectedPermissionsForSavingEditedExternalLink);
       }
+      updateEmptyNameAndDescription(externalLink);
+      
       ExternalLinkBean externalLinkBean = ManagedBeans.get("externalLinkBean");
       String correctLink = externalLinkBean.correctLink(this.editedExternalLink.getLink());
       externalLink.setLink(correctLink);
@@ -310,6 +313,13 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     }
     return externalLink;
   }
+  
+  private void updateEmptyNameAndDescription(ExternalLink externalLink) {
+    String userLanguguage = UserUtils.getUserLanguage();
+    DisplayNameConvertor.updateEmptyValue(userLanguguage, externalLink.getNames());
+    DisplayNameConvertor.updateEmptyValue(userLanguguage, externalLink.getDescriptions());
+  }
+
 
   public void handleExternalLinkImageUpload(FileUploadEvent event) {
     if(this.editedExternalLink == null) {
