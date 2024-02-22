@@ -54,7 +54,7 @@ public class ComplexFilterHelper {
         getCloseCheckBox().shouldBe(getClickableCondition()).click();
         break;
       case TEXT, NUMBER:
-        var textField = filterElement.$("div[id$=':text-list-panel']").$(".ui-chips.ui-widget").$("input")
+        var textField = filterElement.$("div[id$='-list-panel']").$(".ui-chips.ui-widget").$("input")
             .shouldBe(Condition.editable);
         for (int i = 0; i < values.length; i++) {
           textField.clear();

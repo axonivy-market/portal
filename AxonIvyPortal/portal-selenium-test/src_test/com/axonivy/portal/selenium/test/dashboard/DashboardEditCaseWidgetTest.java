@@ -3,6 +3,7 @@ package com.axonivy.portal.selenium.test.dashboard;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
@@ -11,18 +12,18 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
-import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.CollectionCondition;
 
+@IvyWebTest
 public class DashboardEditCaseWidgetTest extends BaseTest{
-  private NewDashboardPage newDashboardPage;
   private static final String NAME_STR = "Name";
   
   @Override
   @BeforeEach
   public void setup() {
     super.setup();
-    newDashboardPage = new NewDashboardPage();
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(createTestingTasksUrl);
   }
   
   @Test
@@ -147,17 +148,53 @@ public class DashboardEditCaseWidgetTest extends BaseTest{
     caseWidget.inputValueOnLatestFilter(FilterValueType.DATE_CURRENT, "Month");
     caseWidget.applyFilter();
     caseWidget.countCases().shouldBe(CollectionCondition.size(6));
+    
+  }
+  
+  @Test
+  public void filterMixFieldTest() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(createDataCreatedDate);
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    redirectToRelativeLink(testCaseListPermission);
+    redirectToRelativeLink(testCaseListPermission);
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
+    newDashboardDetailsEditPage.addWidget();
+    CaseEditWidgetNewDashBoardPage caseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
+    caseWidget.waitPreviewTableLoaded();
+    caseWidget.addCustomColumns("AccountNumber", "ShipmentDate", "CustomerName",  "CustomerType", "InvoiceNumber");
+    
+    caseWidget.openFilter();
+    caseWidget.addFilter("Description", FilterOperator.CONTAINS);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Leave", "Test", "Create");
+    
+    caseWidget.addFilter("State", null);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN", "DONE");
+    
+    caseWidget.addFilter("Creator", FilterOperator.IN);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.CREATOR_TYPE, "demo", "admin");
+    
+    caseWidget.addFilter("Created Date", FilterOperator.WITHIN_LAST);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.WITHIN, "10", "Year(s)");
+    
+    caseWidget.addFilter("Account Number", FilterOperator.BETWEEN);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.NUMBER_BETWEEN, 5, 700);
 
+    caseWidget.addFilter("Shipment Date", FilterOperator.AFTER);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.DATE, "11/11/2017");
+
+    caseWidget.addFilter("Customer Name", FilterOperator.IS);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "ngan");
+
+    caseWidget.applyFilter();
+    caseWidget.countCases().shouldBe(CollectionCondition.size(0));
   }
   
   private NewDashboardDetailsEditPage gotoEditPublicDashboardPage() {
-    login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(createTestingTasksUrl);
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
     var modificationPage = configurationPage.openEditPublicDashboardsPage();
     return modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
   }
-  
   
 }

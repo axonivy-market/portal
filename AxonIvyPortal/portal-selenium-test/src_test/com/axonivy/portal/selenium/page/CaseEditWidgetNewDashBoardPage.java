@@ -344,5 +344,13 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     $("button#back-to-home-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
   }
-
+  
+  public void addCustomColumns(String... fieldNameList) {
+    openColumnManagementDialog();
+    selectCustomType();
+    for (String fieldName : fieldNameList) {
+      addCustomField(fieldName);
+    }
+    $("button[id$='column-management-save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+  }
 }
