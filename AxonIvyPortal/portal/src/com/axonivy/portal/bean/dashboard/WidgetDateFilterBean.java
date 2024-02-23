@@ -12,7 +12,12 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
+import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 
+import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
+import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -54,8 +59,19 @@ public class WidgetDateFilterBean implements Serializable {
         FilterFieldFactory.findBy(Optional.ofNullable(field).orElse("")).getLabel(), index + 1);
   }
 
-  public String getWrongFormatMessage(String field, int index) {
-    return String.join(": ", getMessagePrefix(field, index),
+  private String getTaskMessagePrefix(String field, int index) {
+    return String.format(MESSAGE_PREFIX_PATTERN,
+        TaskFilterFieldFactory.findBy(Optional.ofNullable(field).orElse("")).getLabel(), index + 1);
+  }
+
+  public String getWrongFormatMessage(String field, int index, DashboardWidget widget) {
+    String messagePrefix = "";
+    if (DashboardWidgetType.TASK == widget.getType()) {
+      messagePrefix = getTaskMessagePrefix(field, index);
+    } else {
+      messagePrefix = getMessagePrefix(field, index);
+    }
+    return String.join(": ", messagePrefix,
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat"));
   }
 
