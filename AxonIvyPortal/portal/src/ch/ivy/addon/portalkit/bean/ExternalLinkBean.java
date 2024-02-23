@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.bean;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -10,6 +11,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.util.Strings;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
 
@@ -36,6 +38,8 @@ public class ExternalLinkBean implements Serializable {
   private static final long serialVersionUID = 4772777911430826945L;
   private ExternalLink externalLink;
   private ExternalLinkService externaLinkService;
+  private String warningText;
+  private String translatedText;
   
   @PostConstruct
   public void init() {
@@ -138,5 +142,57 @@ public class ExternalLinkBean implements Serializable {
 
   public boolean isFocus(DisplayName title) {
     return !isShowTranslation(title) && title.getLocale().getLanguage().equals(UserUtils.getUserLanguage());
+  }
+
+  public String getWarningText() {
+    return warningText;
+  }
+
+  public void setWarningText(String warningText) {
+    this.warningText = warningText;
+  }
+
+  public String getTranslatedText() {
+    return translatedText;
+  }
+
+  public void setTranslatedText(String translatedText) {
+    this.translatedText = translatedText;
+  }
+  
+  public void translate(DisplayName title) {
+    translateValues(title, externalLink.getNames());
+  }
+  
+  public void translateTextArea(DisplayName title) {
+    translateValues(title, externalLink.getDescriptions());
+  }
+  
+  private void translateValues(DisplayName title, List<DisplayName> languages) {
+    translatedText = Strings.EMPTY;
+    warningText = Strings.EMPTY;
+
+    String currentLanguage = UserUtils.getUserLanguage();
+    if (!title.getLocale().getLanguage().equals(currentLanguage)) {
+      Optional<DisplayName> optional = languages.stream()
+          .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+      if (optional.isPresent()) {
+        try {
+          translatedText = DeepLTranslationService.getInstance().translate(optional.get().getValue(),
+              optional.get().getLocale(), title.getLocale());
+        } catch (Exception e) {
+          warningText = Ivy.cms()
+              .co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
+          Ivy.log().error("DeepL Translation Service error: ", e.getMessage());
+        }
+      }
+    }
+  }
+  
+  public void applyTranslatedText(DisplayName displayName) {
+    if (StringUtils.isNotBlank(translatedText)) {
+      displayName.setValue(translatedText);
+      translatedText = "";
+    }
   }
 }
