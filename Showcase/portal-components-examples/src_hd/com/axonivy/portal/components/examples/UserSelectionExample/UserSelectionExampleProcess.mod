@@ -87,11 +87,12 @@ Ds0 f4 @|UdExitEndIcon #fIcon
 Ds0 f8 guid 181607413244BEE7 #txt
 Ds0 f8 actionTable 'out=in;
 ' #txt
-Ds0 f8 actionCode 'import org.primefaces.PrimeFaces;
+Ds0 f8 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import org.primefaces.PrimeFaces;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-FacesContext.getCurrentInstance().addMessage("form:item-select-event-component:item-select-event-for-user-selection", new FacesMessage(FacesMessage.SEVERITY_INFO, "You selected " + in.selectedUserForInsertChildren.getDisplayName(), null));' #txt
+FacesContext.getCurrentInstance().addMessage("form:item-select-event-component:item-select-event-for-user-selection", FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, "You selected " + in.selectedUserForInsertChildren.getDisplayName(), null));' #txt
 Ds0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

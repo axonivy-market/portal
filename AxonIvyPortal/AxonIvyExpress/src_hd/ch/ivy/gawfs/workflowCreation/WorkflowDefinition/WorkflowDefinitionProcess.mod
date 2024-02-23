@@ -462,7 +462,8 @@ Fs0 f40 2 672 832 #addKink
 Fs0 f40 1 0.17229729729729729 0 -10 #arcLabel
 Fs0 f34 actionTable 'out=in;
 ' #txt
-Fs0 f34 actionCode 'import org.apache.commons.lang3.StringUtils;
+Fs0 f34 actionCode 'import ch.ivy.addon.portal.generic.util.FacesMessageUtils;
+import org.apache.commons.lang3.StringUtils;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
@@ -473,7 +474,7 @@ in.isValidAssignee = true;
 
 if (!(#selectedAssignee is initialized) || in.selectedAssigneeList.contains(selectedAssignee)) {
 	in.isValidAssignee = false;
-	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", ivy.cms.co("/Dialogs/agileBPM/define_WF/ErrorSelectInvalidAssignee")));
+	FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, "", ivy.cms.co("/Dialogs/agileBPM/define_WF/ErrorSelectInvalidAssignee")));
 }
 ' #txt
 Fs0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -748,10 +749,11 @@ Fs0 f53 outCond in.isValidated #txt
 Fs0 f53 1064 528 1136 528 #arcP
 Fs0 f66 actionTable 'out=in;
 ' #txt
-Fs0 f66 actionCode 'import javax.faces.context.FacesContext;
+Fs0 f66 actionCode 'import ch.ivy.addon.portal.generic.util.FacesMessageUtils;
+import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 
-FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/ProcessNameExists"), "");
+FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/ProcessNameExists"), "");
 FacesContext context = FacesContext.getCurrentInstance();
 context.addMessage(null, message);
 context.validationFailed();' #txt

@@ -105,7 +105,8 @@ Es0 f24 expr out #txt
 Es0 f24 77 160 128 160 #arcP
 Es0 f36 actionTable 'out=in;
 ' #txt
-Es0 f36 actionCode 'import org.primefaces.PrimeFaces;
+Es0 f36 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import org.primefaces.PrimeFaces;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting;
 import org.apache.commons.collections4.CollectionUtils;
 import javax.faces.context.FacesContext;
@@ -117,7 +118,7 @@ BeanUtils.invokeBeanMethodViaMethodExpression("#{errorDisplayBean.displayErrors}
 PrimeFaces primeFaces = PrimeFaces.current();
 boolean isEmailSettingsEmpty = CollectionUtils.isEmpty(in.emailSettings);
 if (isEmailSettingsEmpty) {
-	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, null, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/emailSetting/noSettingMsg")));
+	FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN, null, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/emailSetting/noSettingMsg")));
 }
 
 primeFaces.ajax().addCallbackParam("settingEmpty", isEmailSettingsEmpty);
@@ -260,10 +261,11 @@ Es0 f12 371 531 26 26 0 12 #rect
 Es0 f12 @|UdProcessEndIcon #fIcon
 Es0 f16 actionTable 'out=in;
 ' #txt
-Es0 f16 actionCode 'import javax.faces.application.FacesMessage;
+Es0 f16 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/note"), ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/emailSetting/saveEmailSettingsSuccessfully")));' #txt
+FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/note"), ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/emailSetting/saveEmailSettingsSuccessfully")));' #txt
 Es0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

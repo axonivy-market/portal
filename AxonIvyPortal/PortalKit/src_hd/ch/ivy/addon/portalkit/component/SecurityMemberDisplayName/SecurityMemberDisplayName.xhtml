@@ -28,11 +28,7 @@
       styleClass="security-member-tooltip"/>
     <ui:fragment rendered="#{alwaysShowAsText and renderUserOfRole}">
       <f:event listener="#{logic.loadUsersForTooltip(securityMember)}" type="preRenderComponent" />
-      <p:tooltip for="#{cc.attrs.textId}"
-        value="#{data.usersInTooltips}"
-        escape="false"
-        styleClass="security-member-tooltip"
-        hideEvent="mouseleave click" />
+      <p:tooltip for="#{cc.attrs.textId}" escape="false" value="#{htmlSanitizerBean.sanitizeContent(data.usersInTooltips)}" styleClass="security-member-tooltip" hideEvent="mouseleave click" />
     </ui:fragment>
   </h:panelGroup>
 

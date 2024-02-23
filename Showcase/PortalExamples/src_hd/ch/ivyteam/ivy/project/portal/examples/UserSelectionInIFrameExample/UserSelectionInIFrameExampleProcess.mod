@@ -87,11 +87,12 @@ Us0 f2 280 64 339 64 #arcP
 Us0 f8 guid 180AD4EB4B5B1604 #txt
 Us0 f8 actionTable 'out=in;
 ' #txt
-Us0 f8 actionCode 'import org.primefaces.PrimeFaces;
+Us0 f8 actionCode 'import ch.ivy.addon.portal.generic.util.FacesMessageUtils;
+import org.primefaces.PrimeFaces;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-FacesContext.getCurrentInstance().addMessage("form:item-select-event-component:item-select-event-for-user-selection", new FacesMessage(FacesMessage.SEVERITY_INFO, "You selected " + in.selectedUserForInsertChildren.getDisplayName(), null));' #txt
+FacesContext.getCurrentInstance().addMessage("form:item-select-event-component:item-select-event-for-user-selection", FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, "You selected " + in.selectedUserForInsertChildren.getDisplayName(), null));' #txt
 Us0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

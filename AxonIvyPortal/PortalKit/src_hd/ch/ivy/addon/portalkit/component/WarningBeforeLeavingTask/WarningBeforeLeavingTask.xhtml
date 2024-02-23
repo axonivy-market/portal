@@ -41,8 +41,8 @@
       </h:panelGroup>
     </h:form>
     <f:facet name="message">
-      <h:outputText escape="false" styleClass="ui-confirm-dialog-message"
-        value="#{ivy.cms.co(task.state == 'CREATED' ? '/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLeave' : '/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLeave')}" />
+      <h:outputText styleClass="ui-confirm-dialog-message"
+        escape="false" value="#{htmlSanitizerBean.sanitizeContent(ivy.cms.co(task.state == 'CREATED' ? '/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLeave' : '/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLeave'))}" />
     </f:facet>
   </p:confirmDialog>
 </cc:implementation>

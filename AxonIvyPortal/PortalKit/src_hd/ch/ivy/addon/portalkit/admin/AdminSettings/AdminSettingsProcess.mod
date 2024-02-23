@@ -518,7 +518,8 @@ As0 f116 expr out #txt
 As0 f116 544 524 544 554 #arcP
 As0 f117 actionTable 'out=in;
 ' #txt
-As0 f117 actionCode 'import ch.ivy.addon.portalkit.enums.ApplicationType;
+As0 f117 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import ch.ivy.addon.portalkit.enums.ApplicationType;
 import javax.faces.application.FacesMessage;
 import org.primefaces.component.inputtext.InputText;
 import javax.faces.context.FacesContext;
@@ -531,7 +532,7 @@ if(in.type == ApplicationType.IVY_APPLICATION) {
 	ui.valid = false;
 }
 
-FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/duplicatePortalLinkMsg"), null));
+FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/duplicatePortalLinkMsg"), null));
 FacesContext.getCurrentInstance().validationFailed();' #txt
 As0 f117 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1352,7 +1353,8 @@ As0 f9 1387 1483 26 26 -59 15 #rect
 As0 f9 @|UdEventIcon #fIcon
 As0 f10 actionTable 'out=in;
 ' #txt
-As0 f10 actionCode 'import javax.faces.application.FacesMessage;
+As0 f10 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
 import org.apache.commons.collections.CollectionUtils;
@@ -1375,7 +1377,7 @@ in.filteredSettingList = in.settingList;
 // Announcement tab
 in.announcements = AnnouncementService.getInstance().getAnnouncements();
 in.isAnnouncementActivated = AnnouncementService.getInstance().isAnnouncementActivated();
-FacesContext.getCurrentInstance().addMessage("adminui:adminTabView:announcement-table", new FacesMessage(FacesMessage.SEVERITY_INFO, 
+FacesContext.getCurrentInstance().addMessage("adminui:adminTabView:announcement-table", FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, 
 	ivy.cms.co(in.isAnnouncementActivated ? "/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled"
 	: "/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsDisabled"), null));
 ' #txt
@@ -1601,14 +1603,15 @@ As0 f77 371 2099 26 26 0 12 #rect
 As0 f77 @|UdProcessEndIcon #fIcon
 As0 f81 actionTable 'out=in;
 ' #txt
-As0 f81 actionCode 'import javax.faces.application.FacesMessage;
+As0 f81 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
 AnnouncementService service = AnnouncementService.getInstance();
 service.saveAll(in.announcements);
 service.activateAnnouncement();
 out.isAnnouncementActivated = true;
-FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
+FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, 
 	ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled"), null));
 ' #txt
 As0 f81 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1626,13 +1629,14 @@ As0 f78 expr out #txt
 As0 f78 96 2062 96 2099 #arcP
 As0 f85 actionTable 'out=in;
 ' #txt
-As0 f85 actionCode 'import javax.faces.application.FacesMessage;
+As0 f85 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
 AnnouncementService service = AnnouncementService.getInstance();
 service.deactivateAnnouncement();
 out.isAnnouncementActivated = false;
-FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
+FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, 
 	ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsDisabled"), null));
 ' #txt
 As0 f85 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1734,7 +1738,8 @@ As0 f16 192 877 192 938 #arcP
 As0 f13 192 982 192 1043 #arcP
 As0 f20 actionTable 'out=in;
 ' #txt
-As0 f20 actionCode 'import ch.ivyteam.ivy.environment.Ivy;
+As0 f20 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivy.addon.portalkit.enums.ApplicationType;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -1744,7 +1749,7 @@ if (in.type == ApplicationType.IVY_APPLICATION) {
 	try {
 	  CommonFormats.APPLICATION_PROCESS_MODEL_NAME.checkAndThrow(in.selectedApp.name);
 	} catch (RuntimeException ex) {
-	  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage(), null));
+	  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage(), null));
 	  FacesContext.getCurrentInstance().validationFailed();
 	}
 }

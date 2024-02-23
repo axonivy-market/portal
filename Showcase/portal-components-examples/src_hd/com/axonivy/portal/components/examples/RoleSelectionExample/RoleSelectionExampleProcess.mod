@@ -68,10 +68,11 @@ Ds0 f0 @|UdProcessEndIcon #fIcon
 Ds0 f1 guid 181467B2A51C1AB8 #txt
 Ds0 f1 actionTable 'out=in;
 ' #txt
-Ds0 f1 actionCode 'import javax.faces.application.FacesMessage;
+Ds0 f1 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-FacesContext.getCurrentInstance().addMessage("form:role-item-select-event-component:item-select-event-for-role-selection", new FacesMessage(FacesMessage.SEVERITY_INFO, "You selected " + in.selectedRoleForInsertChildren.getDisplayName(), null));' #txt
+FacesContext.getCurrentInstance().addMessage("form:role-item-select-event-component:item-select-event-for-role-selection", FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, "You selected " + in.selectedRoleForInsertChildren.getDisplayName(), null));' #txt
 Ds0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

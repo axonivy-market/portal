@@ -146,10 +146,11 @@ Ts0 f68 1075 275 26 26 0 12 #rect
 Ts0 f68 @|UdProcessEndIcon #fIcon
 Ts0 f76 actionTable 'out=in;
 ' #txt
-Ts0 f76 actionCode 'import javax.faces.application.FacesMessage;
+Ts0 f76 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, in.uploadDocumentCheckMessage, null));' #txt
+FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, in.uploadDocumentCheckMessage, null));' #txt
 Ts0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -240,10 +241,11 @@ Ts0 f22 755 627 26 26 0 12 #rect
 Ts0 f22 @|UdProcessEndIcon #fIcon
 Ts0 f46 actionTable 'out=in;
 ' #txt
-Ts0 f46 actionCode 'import javax.faces.application.FacesMessage;
+Ts0 f46 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-FacesContext.getCurrentInstance().addMessage("", new FacesMessage( in.uploadDocumentCheckMessage, "" ));' #txt
+FacesContext.getCurrentInstance().addMessage("", FacesMessageUtils.sanitizedMessage( in.uploadDocumentCheckMessage, "" ));' #txt
 Ts0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -269,10 +271,11 @@ Ts0 f27 424 288 488 288 #arcP
 Ts0 f27 0 0.2857142857142857 -2 -7 #arcLabel
 Ts0 f50 actionTable 'out=in;
 ' #txt
-Ts0 f50 actionCode 'import javax.faces.application.FacesMessage;
+Ts0 f50 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-FacesContext.getCurrentInstance().addMessage("task-document-global-messages", new FacesMessage(in.deleteDocumentMessage, "" ));' #txt
+FacesContext.getCurrentInstance().addMessage("task-document-global-messages", FacesMessageUtils.sanitizedMessage(in.deleteDocumentMessage, "" ));' #txt
 Ts0 f50 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

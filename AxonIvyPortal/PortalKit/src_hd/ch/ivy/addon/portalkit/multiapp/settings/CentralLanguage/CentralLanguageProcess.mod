@@ -212,7 +212,8 @@ Es0 f19 1 480 384 #addKink
 Es0 f19 1 0.13338566089674114 0 0 #arcLabel
 Es0 f24 actionTable 'out=in;
 ' #txt
-Es0 f24 actionCode 'import org.primefaces.PrimeFaces;
+Es0 f24 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import org.primefaces.PrimeFaces;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -220,7 +221,7 @@ import javax.faces.context.FacesContext;
 if (in.isWorkingOnATask) {
 	String messageId = "language-settings-form:language-settings:change-language-warning-message";
 	
-	FacesContext.getCurrentInstance().addMessage(messageId, new FacesMessage(FacesMessage.SEVERITY_WARN, 
+	FacesContext.getCurrentInstance().addMessage(messageId, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN, 
 		ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/languageSetting/warningMessageForChangeLanguage"), null));
 }' #txt
 Es0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

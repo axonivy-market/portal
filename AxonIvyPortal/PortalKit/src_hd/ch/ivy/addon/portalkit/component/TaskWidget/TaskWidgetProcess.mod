@@ -294,7 +294,8 @@ Ts0 f42 @|UdProcessEndIcon #fIcon
 Ts0 f43 109 672 371 672 #arcP
 Ts0 f45 actionTable 'out=in;
 ' #txt
-Ts0 f45 actionCode 'import ch.ivy.addon.portalkit.bean.PermissionBean;
+Ts0 f45 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import ch.ivy.addon.portalkit.bean.PermissionBean;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.FilterType;
@@ -313,7 +314,7 @@ if (in.filterType == FilterType.ALL_USERS) {
 TaskFilterService service = new TaskFilterService();
 in.isFilterExisted = false;
 if (service.isFilterExisted(in.filterSetName, in.filterType, in.taskFilterGroupId)) {
-	FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterExistedValidationError"), "");
+	FacesMessage message = FacesMessageUtils.sanitizedMessage( FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterExistedValidationError"), "");
 	FacesContext.getCurrentInstance().addMessage("", message);
 	FacesContext.getCurrentInstance().validationFailed();
 	in.isFilterExisted = true;
@@ -418,7 +419,8 @@ Ts0 f65 172 842 144 44 -69 -8 #rect
 Ts0 f65 @|StepIcon #fIcon
 Ts0 f56 actionTable 'out=in;
 ' #txt
-Ts0 f56 actionCode 'import org.primefaces.PrimeFaces;
+Ts0 f56 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import org.primefaces.PrimeFaces;
 import ch.ivy.addon.portalkit.util.Dates;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -426,7 +428,7 @@ import javax.faces.context.FacesContext;
 if (in.numberOfNewTask > 0){
 	FacesContext facesContext = FacesContext.getCurrentInstance();
 	String notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/newTaskNotification");
-	facesContext.addMessage("portal-global-growl-message", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
+	facesContext.addMessage("portal-global-growl-message", FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, notification, null));
 	PrimeFaces.current().ajax().update("portal-global-growl");        
 }' #txt
 Ts0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

@@ -12,6 +12,8 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
+import com.axonivy.portal.components.util.FacesMessageUtils;
+
 import ch.ivyteam.ivy.environment.Ivy;
 
 @FacesValidator("taskExpiryTimestampValidator")
@@ -25,7 +27,7 @@ public class TaskExpiryTimestampValidator implements Validator {
     LocalDateTime expiryTimestamp = ((Date) value).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 
     if (expiryTimestamp.isBefore(LocalDateTime.now())) {
-      FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+      FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskDetails/failedExpiryValidation"), null);
       context.addMessage("expiry-calendar", message);
       throw new ValidatorException(message);
