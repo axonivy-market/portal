@@ -90,11 +90,8 @@ public class CaseActionBean implements Serializable {
     String result = url;
     // Only migrate if URI is relative path
     if (result.startsWith("/")) {
-      // Get {process model} part
-      String projectPart = "/" + iCase.getProcessModel().getName();
-
       // get {process model}/{request path}
-      result = result.substring(url.indexOf(projectPart), result.length() - 1);
+      result = result.substring(url.indexOf(iCase.getProcessModel().getName()), result.length() - 1);
     }
     return result;
   }
