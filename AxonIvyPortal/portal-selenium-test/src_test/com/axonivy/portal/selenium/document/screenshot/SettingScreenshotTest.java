@@ -96,11 +96,12 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
     NewDashboardPage homePage = new NewDashboardPage();
 
     UserProfilePage userProfilePage = homePage.openMyProfilePage();
+    userProfilePage.restoreDefaultNotificationSettings();
     ScreenshotUtils.resizeBrowser(new Dimension(1400, 1400));
     ScreenshotUtils.captureElementScreenshot(userProfilePage.getUserSettingCard(),
         ScreenshotUtils.MY_PROFILE_FOLDER + "my-profile");
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 900));
-    userProfilePage.checkBoxTosubscribeChannel();
+    userProfilePage.subscribeAllChannels();
     ScreenshotUtils.executeDecorateJs("highlightNotificationChannelSettings()");
     ScreenshotUtils
         .captureHalfRightPageScreenShot(ScreenshotUtils.MY_PROFILE_FOLDER + "notification-channels-settings");

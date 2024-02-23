@@ -243,7 +243,7 @@
                                        <p:triStateCheckbox
                                           id="subscriptionCheckbox"
                                           value="#{subscription.stateAsString}">
-                                          <p:ajax event="change"
+                                          <p:ajax event="change" global="false"
                                              update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"
                                              listener="#{channel.setSubscriptionIconAndTitle(event)}" />
                                        </p:triStateCheckbox>
@@ -254,7 +254,8 @@
                               <div>
                                  <div class="u-text-align-right ui-g-12">
                                     <p:commandButton id="restore-to-default-button" icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
-                                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}" 
+                                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}"
+                                       global="false"
                                        actionListener="#{userProfileBean.resetAllChannel}" update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"
                                        styleClass="setting-tab-action-buttons" />
                                 </div>
