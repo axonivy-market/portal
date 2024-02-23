@@ -18,7 +18,6 @@ public class CreatedDateNumberOfPeriodsOperatorHandler {
     return instance;
   }
 
-  
   public TaskQuery buildLastPeriodQuery(DashboardFilter filter) {
     Long numberOfPeriods = filter.getPeriods();
     if (filter.getPeriodType() == null || numberOfPeriods == null || numberOfPeriods <= 0) {
@@ -47,8 +46,9 @@ public class CreatedDateNumberOfPeriodsOperatorHandler {
     }
   }
 
-  private TaskQuery queryCreatedDateByNUmberOfPeriod(FilterPeriodType dateFilterPeriodType, Long numberOfPeriods, boolean isPast) {
-    Long absNumberOfPeriods = isPast ?  -Math.abs(numberOfPeriods) : Math.abs(numberOfPeriods);
+  private TaskQuery queryCreatedDateByNUmberOfPeriod(FilterPeriodType dateFilterPeriodType, Long numberOfPeriods,
+      boolean isPast) {
+    Long absNumberOfPeriods = isPast ? -Math.abs(numberOfPeriods) : Math.abs(numberOfPeriods);
     Date today = new Date();
     TaskQuery query = TaskQuery.create();
     switch (dateFilterPeriodType) {

@@ -144,11 +144,11 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
       switch (widget.getType()) {
         case TASK:
           ((TaskDashboardWidget) widget).getUserFilters()
-            .addAll(Optional.ofNullable(userFilterOptions.getUserFilters()).orElse(new ArrayList<>()));
+              .addAll(Optional.ofNullable(userFilterOptions.getUserFilters()).orElse(new ArrayList<>()));
           break;
         case CASE:
           ((CaseDashboardWidget) widget).getUserFilters()
-            .addAll(Optional.ofNullable(userFilterOptions.getUserFilters()).orElse(new ArrayList<>()));
+              .addAll(Optional.ofNullable(userFilterOptions.getUserFilters()).orElse(new ArrayList<>()));
           break;
         case PROCESS:
           var processWidget = (ProcessDashboardWidget) widget;

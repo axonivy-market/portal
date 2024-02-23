@@ -36,6 +36,7 @@ public class TaskFilterFieldFactory {
     STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.STATE.getField(), new TaskFilterFieldState());
     STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.APPLICATION.getField(), new TaskFilterFieldApplication());
 
+//    Note: will handle in Complex Filter Custom Field
 //    for (ICustomFieldMeta customField : ICustomFieldMeta.tasks()) {
 //      switch (customField.type()) {
 //        case STRING -> CUSTOM_FILTER_FIELD.put(customField.name(), new TaskFilterFieldCustomString(customField));

@@ -18,7 +18,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 
-
 public abstract class AbstractTaskWidgetFilterBean implements Serializable {
 
   private static final long serialVersionUID = -7603133281018922252L;
@@ -37,21 +36,20 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
     this.filterFields = TaskFilterFieldFactory.getStandardFilterableFields();
 
     // Add custom fields which are selected by user.
-    this.widget.getFilterableColumns()
-      .stream().filter(col -> col.getType() == DashboardColumnType.CUSTOM)
-      .forEach(customColumn -> this.filterFields.add(TaskFilterFieldFactory.findCustomFieldBy(customColumn.getField())));
+    this.widget.getFilterableColumns().stream().filter(col -> col.getType() == DashboardColumnType.CUSTOM).forEach(
+        customColumn -> this.filterFields.add(TaskFilterFieldFactory.findCustomFieldBy(customColumn.getField())));
   }
 
   private void initFilters() {
-    if (CollectionUtils.isEmpty(Optional.ofNullable(this.widget)
-        .map(TaskDashboardWidget::getFilters).get())) {
+    if (CollectionUtils.isEmpty(Optional.ofNullable(this.widget).map(TaskDashboardWidget::getFilters).get())) {
       return;
     }
 
     // If the filter available in the filter list, initialize it
     for (DashboardFilter filter : this.widget.getFilters()) {
       if (isFilterAvaliable(filter)) {
-        FilterField filterField = TaskFilterFieldFactory.findBy(Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""));
+        FilterField filterField = TaskFilterFieldFactory
+            .findBy(Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""));
         if (filterField != null) {
           filterField.initFilter(filter);
         }
@@ -61,12 +59,13 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
 
   /**
    * Check if the filter is existing in the filter list or not
+   * 
    * @param filter
    * @return
    */
   private boolean isFilterAvaliable(DashboardFilter filter) {
-    return Optional.ofNullable(filter).map(DashboardFilter::getField).isPresent()
-        && filterFields.stream().filter(field -> filter.getField().contentEquals(filter.getField())).findFirst().isPresent();
+    return Optional.ofNullable(filter).map(DashboardFilter::getField).isPresent() && filterFields.stream()
+        .filter(field -> filter.getField().contentEquals(filter.getField())).findFirst().isPresent();
   }
 
   public List<FilterField> getFilterFields() {
@@ -83,9 +82,11 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
     }
 
     filterField.addNewFilter(filter);
+//    Note: will handle in Complex Filter Custom Field
 //    initCustomFieldNumberPattern(filter, field, filterField);
   }
 
+//    Note: will handle in Complex Filter Custom Field
 //  private void initCustomFieldNumberPattern(DashboardFilter filter, String field, FilterField filterField) {
 //    if (filterField instanceof CaseFilterFieldCustomNumber) {
 //      ColumnModel column = widget.getFilterableColumns().stream()

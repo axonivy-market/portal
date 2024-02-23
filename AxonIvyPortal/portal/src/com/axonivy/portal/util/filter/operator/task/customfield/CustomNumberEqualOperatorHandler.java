@@ -41,3 +41,4 @@ public class CustomNumberEqualOperatorHandler {
     return query;
   }
 }
+

@@ -18,26 +18,6 @@ public class ResponsibleInOperatorHandler {
     return instance;
   }
 
-  /**
-   * TongVu | NOTE
-   * Right query
-   *  SELECT  
-      FROM IWA_Task  
-      LEFT JOIN IWA_SecurityMember ACTIVATOR ON Column(IWA_Task.ActivatorId) = Column(IWA_SecurityMember.SecurityMemberId)
-      WHERE Column(ACTIVATOR.MemberName) = #demo 
-
-     Problem query
-      SELECT  
-      FROM IWA_Task  
-      LEFT JOIN IWA_SecurityMember ACTIVATOR ON Column(IWA_Task.ActivatorId) = Column(IWA_SecurityMember.SecurityMemberId)
-      WHERE Column(ACTIVATOR.MemberName) = demo 
-      
-      I don't know why we need to replace "#" with "" but the code actually rendered the query below and it 
-      make this responsible field didn't work.
-      
-      So I just temporarily change this like this, will discuss with a Nam Mai later
-   * */
-
   public TaskQuery buildInQuery(DashboardFilter filter) {
     if (CollectionUtils.isEmpty(filter.getValues())) {
       return null;

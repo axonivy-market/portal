@@ -27,7 +27,6 @@ public class TaskFilterFieldId extends FilterField {
     filter.setFilterField(this);
     filter.setFilterType(DashboardColumnType.STANDARD);
     filter.setField(getName());
-
   }
 
   @Override

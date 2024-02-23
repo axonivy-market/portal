@@ -24,7 +24,7 @@ public class ExpiryDateYesterdayOperatorHandler {
     return query;
   }
 
-  private void buildQuery(TaskQuery query, Date from, Date to) {;
+  private void buildQuery(TaskQuery query, Date from, Date to) {
     TaskQuery subQuery = TaskQuery.create();
     subQuery.where().expiryTimestamp().isGreaterOrEqualThan(from);
     subQuery.where().expiryTimestamp().isLowerOrEqualThan(to);

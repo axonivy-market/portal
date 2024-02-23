@@ -31,11 +31,11 @@ public class DashboardTaskWidgetConverter implements IJsonConverter {
 
   @Override
   public void convert(JsonNode jsonNode) {
-    List<JsonNode> taskWidgets = new JsonWidgetSearch(jsonNode)
-        .type(DashboardWidgetType.TASK.name()).findWidgets();
+    List<JsonNode> taskWidgets = new JsonWidgetSearch(jsonNode).type(DashboardWidgetType.TASK.name()).findWidgets();
 
-    for (JsonNode taskWidget  : taskWidgets) {
-      ArrayNode columns = Optional.ofNullable(taskWidget.get("columns")).filter(JsonNode::isArray).map(ArrayNode.class::cast).get();
+    for (JsonNode taskWidget : taskWidgets) {
+      ArrayNode columns = Optional.ofNullable(taskWidget.get("columns")).filter(JsonNode::isArray)
+          .map(ArrayNode.class::cast).get();
 
       columns.elements().forEachRemaining(col -> {
         DashboardStandardTaskColumn field = DashboardStandardTaskColumn.findBy(col.get("field").asText());
@@ -57,68 +57,50 @@ public class DashboardTaskWidgetConverter implements IJsonConverter {
 
   private void migrateStandardColumn(JsonNode taskWidget, JsonNode col, DashboardStandardTaskColumn field) {
     switch (field) {
-      case CREATED -> {
-        convertDateFilters(initFilterNode(taskWidget),
-            col.get("filterFrom"),
-            col.get("filterTo"),
-            DashboardStandardTaskColumn.CREATED.getField(),
-            true);
-      }
-      case EXPIRY -> {
-        convertDateFilters(initFilterNode(taskWidget),
-            col.get("filterFrom"),
-            col.get("filterTo"),
-            DashboardStandardTaskColumn.EXPIRY.getField(),
-            true);
-      }
-      case NAME -> {
-        convertStringFilters(initFilterNode(taskWidget),
-            col.get("filter"),
-            DashboardStandardTaskColumn.NAME.getField(),
-            true);
-      }
-      case DESCRIPTION -> {
-        convertStringFilters(initFilterNode(taskWidget),
-            col.get("filter"),
-            DashboardStandardTaskColumn.DESCRIPTION.getField(),
-            true);
-      }
-      case RESPONSIBLE -> {
-        convertListFilter(initFilterNode(taskWidget),
-            (ArrayNode)col.get("filterList"),
-            DashboardStandardTaskColumn.RESPONSIBLE.getField(),
-            true);
-      }
-      case STATE -> {
-        convertListFilter(initFilterNode(taskWidget),
-            (ArrayNode)col.get("filterList"),
-            DashboardStandardTaskColumn.STATE.getField(),
-            true);
-      }
-      case PRIORITY -> {
-        convertListFilter(initFilterNode(taskWidget),
-            (ArrayNode)col.get("filterList"),
-            DashboardStandardTaskColumn.PRIORITY .getField(),
-            true);
-      }
-      case CATEGORY -> {
-        convertCategoryFilter(initFilterNode(taskWidget),
-            (ArrayNode)col.get("filterList"),
-            DashboardStandardTaskColumn.CATEGORY.getField());
-      }
-      case APPLICATION -> {
-        convertListFilter(initFilterNode(taskWidget),
-            (ArrayNode)col.get("filterList"),
-            DashboardStandardTaskColumn.APPLICATION.getField(),
-            true);
-      }
-      default -> {}
+    case CREATED -> {
+      convertDateFilters(initFilterNode(taskWidget), col.get("filterFrom"), col.get("filterTo"),
+          DashboardStandardTaskColumn.CREATED.getField(), true);
+    }
+    case EXPIRY -> {
+      convertDateFilters(initFilterNode(taskWidget), col.get("filterFrom"), col.get("filterTo"),
+          DashboardStandardTaskColumn.EXPIRY.getField(), true);
+    }
+    case NAME -> {
+      convertStringFilters(initFilterNode(taskWidget), col.get("filter"), DashboardStandardTaskColumn.NAME.getField(),
+          true);
+    }
+    case DESCRIPTION -> {
+      convertStringFilters(initFilterNode(taskWidget), col.get("filter"),
+          DashboardStandardTaskColumn.DESCRIPTION.getField(), true);
+    }
+    case RESPONSIBLE -> {
+      convertListFilter(initFilterNode(taskWidget), (ArrayNode) col.get("filterList"),
+          DashboardStandardTaskColumn.RESPONSIBLE.getField(), true);
+    }
+    case STATE -> {
+      convertListFilter(initFilterNode(taskWidget), (ArrayNode) col.get("filterList"),
+          DashboardStandardTaskColumn.STATE.getField(), true);
+    }
+    case PRIORITY -> {
+      convertListFilter(initFilterNode(taskWidget), (ArrayNode) col.get("filterList"),
+          DashboardStandardTaskColumn.PRIORITY.getField(), true);
+    }
+    case CATEGORY -> {
+      convertCategoryFilter(initFilterNode(taskWidget), (ArrayNode) col.get("filterList"),
+          DashboardStandardTaskColumn.CATEGORY.getField());
+    }
+    case APPLICATION -> {
+      convertListFilter(initFilterNode(taskWidget), (ArrayNode) col.get("filterList"),
+          DashboardStandardTaskColumn.APPLICATION.getField(), true);
+    }
+    default -> {
+    }
     }
   }
-  
+
   private ArrayNode initFilterNode(JsonNode widget) {
     if (widget.get("filters") == null) {
-      return ((ObjectNode)widget).putArray("filters");
+      return ((ObjectNode) widget).putArray("filters");
     }
     return Optional.ofNullable(widget.get("filters")).filter(JsonNode::isArray).map(ArrayNode.class::cast).get();
   }
@@ -146,7 +128,7 @@ public class DashboardTaskWidgetConverter implements IJsonConverter {
       valuesNode.add(new TextNode(node.asText()));
     });
   }
-  
+
   private void convertDateFilters(ArrayNode filters, JsonNode filterFrom, JsonNode filterTo, String field, boolean isStandardField) {
     boolean isEmptyFilterFrom = filterFrom == null || StringUtils.isBlank(filterFrom.asText());
     boolean isEmptyFilterTo = filterTo == null || StringUtils.isBlank(filterTo.asText());
@@ -227,7 +209,7 @@ public class DashboardTaskWidgetConverter implements IJsonConverter {
       }
     });
   }
-  
+
   private void removeOldFiltersFields(JsonNode column) {
     ObjectNode columnObj = (ObjectNode) column;
     columnObj.remove("filter");

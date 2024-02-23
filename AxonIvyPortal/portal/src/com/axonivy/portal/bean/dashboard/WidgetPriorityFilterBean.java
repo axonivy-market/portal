@@ -24,7 +24,8 @@ public class WidgetPriorityFilterBean implements Serializable {
   private String prioritiesString;
 
   public void init(DashboardFilter filter) {
-    List<WorkflowPriority> wfPriority = Arrays.asList(WorkflowPriority.EXCEPTION, WorkflowPriority.HIGH, WorkflowPriority.NORMAL, WorkflowPriority.LOW);
+    List<WorkflowPriority> wfPriority = Arrays.asList(WorkflowPriority.EXCEPTION, WorkflowPriority.HIGH,
+        WorkflowPriority.NORMAL, WorkflowPriority.LOW);
     priorities = wfPriority.stream().map(priority -> priority.name()).toList();
 
     if (filter.getValues() != null) {

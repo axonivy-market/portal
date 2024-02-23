@@ -25,7 +25,7 @@ public class CreatedDateTodayOperatorHandler {
     return query;
   }
 
-  private void buildQuery(TaskQuery query, Date from, Date to) {;
+  private void buildQuery(TaskQuery query, Date from, Date to) {
     TaskQuery subQuery = TaskQuery.create();
     subQuery.where().startTimestamp().isGreaterOrEqualThan(from);
     subQuery.where().startTimestamp().isLowerOrEqualThan(to);

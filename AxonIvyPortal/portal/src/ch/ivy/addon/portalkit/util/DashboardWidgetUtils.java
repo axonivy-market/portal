@@ -185,14 +185,6 @@ public class DashboardWidgetUtils {
     }
 
     return filterableColumns;
-
-//    if (CollectionUtils.isEmpty(columns)) {
-//      return new ArrayList<>();
-//    }
-//    return columns.stream().filter(Objects::nonNull)
-//        .filter(col -> !StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardTaskColumn.START.toString())
-//            && !StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardTaskColumn.ID.toString()))
-//        .collect(Collectors.toList());
   }
 
   public static CaseDashboardWidget buildCaseColumns(CaseDashboardWidget widget) {

@@ -16,8 +16,6 @@ import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
-import ch.ivy.addon.portalkit.util.CaseUtils;
-import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -54,7 +52,7 @@ public class WidgetDateFilterBean implements Serializable {
     filter.setPeriods(null);
   }
 
-  private String getMessagePrefix(String field, int index) {
+  private String getCaseMessagePrefix(String field, int index) {
     return String.format(MESSAGE_PREFIX_PATTERN,
         FilterFieldFactory.findBy(Optional.ofNullable(field).orElse("")).getLabel(), index + 1);
   }
@@ -64,14 +62,16 @@ public class WidgetDateFilterBean implements Serializable {
         TaskFilterFieldFactory.findBy(Optional.ofNullable(field).orElse("")).getLabel(), index + 1);
   }
 
-  public String getWrongFormatMessage(String field, int index, DashboardWidget widget) {
-    String messagePrefix = "";
-    if (DashboardWidgetType.TASK == widget.getType()) {
-      messagePrefix = getTaskMessagePrefix(field, index);
-    } else {
-      messagePrefix = getMessagePrefix(field, index);
+  private String getMessagePrefix(String field, int index, DashboardWidgetType widgetType) {
+    if (DashboardWidgetType.TASK == widgetType) {
+      return getTaskMessagePrefix(field, index);
     }
-    return String.join(": ", messagePrefix,
+
+    return getCaseMessagePrefix(field, index);
+  }
+
+  public String getWrongFormatMessage(String field, int index, DashboardWidget widget) {
+    return String.join(": ", getMessagePrefix(field, index, widget.getType()),
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat"));
   }
 

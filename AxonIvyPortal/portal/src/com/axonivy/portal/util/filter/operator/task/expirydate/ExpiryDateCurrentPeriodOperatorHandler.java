@@ -27,7 +27,7 @@ public class ExpiryDateCurrentPeriodOperatorHandler {
     return queryCreatedDateByPeriod(filter.getPeriodType());
   }
 
-  private void buildQuery(TaskQuery query, Date from, Date to) {;
+  private void buildQuery(TaskQuery query, Date from, Date to) {
     query.where().expiryTimestamp().isGreaterOrEqualThan(from);
     query.where().expiryTimestamp().isLowerOrEqualThan(to);
   }

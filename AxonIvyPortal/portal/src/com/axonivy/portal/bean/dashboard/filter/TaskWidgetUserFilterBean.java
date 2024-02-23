@@ -22,7 +22,6 @@ public class TaskWidgetUserFilterBean extends AbstractTaskWidgetFilterBean imple
 
   private static final long serialVersionUID = 2329063671455796253L;
 
-
   private List<DashboardFilter> originalUserFilters;
 
   @Override
@@ -33,13 +32,13 @@ public class TaskWidgetUserFilterBean extends AbstractTaskWidgetFilterBean imple
   }
 
   private void initUSerFilters() {
-    if (CollectionUtils.isEmpty(Optional.ofNullable(this.widget)
-        .map(TaskDashboardWidget::getUserFilters).get())) {
+    if (CollectionUtils.isEmpty(Optional.ofNullable(this.widget).map(TaskDashboardWidget::getUserFilters).get())) {
       return;
     }
 
     for (DashboardFilter filter : this.widget.getUserFilters()) {
-      FilterField filterField = TaskFilterFieldFactory.findBy(Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""));
+      FilterField filterField = TaskFilterFieldFactory
+          .findBy(Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""));
       if (filterField != null) {
         filterField.initFilter(filter);
       }

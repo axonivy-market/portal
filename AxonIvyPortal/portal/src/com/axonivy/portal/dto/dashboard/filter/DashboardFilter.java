@@ -15,10 +15,8 @@ import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
 import com.axonivy.portal.util.filter.field.FilterField;
-import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCreatedDate;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldFinishedDate;
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomTimestamp;
-import com.axonivy.portal.util.filter.field.task.TaskFilterFieldCreatedDate;
 import com.axonivy.portal.util.filter.field.task.TaskFilterFieldExpiryDate;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -42,6 +40,8 @@ public class DashboardFilter implements Serializable {
   public static final String APPLICATION = "application";
   @JsonIgnore
   public static final String ID = "id";
+  @JsonIgnore
+  public static final String CREATED_DATE = "startTimestamp";
 
   @JsonIgnore
   public static final String DATE_FORMAT = "MM/dd/yyyy";
@@ -95,7 +95,7 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public boolean isCreatedDateField() {
-    return filterField instanceof CaseFilterFieldCreatedDate || filterField instanceof TaskFilterFieldCreatedDate;
+    return this.field == CREATED_DATE;
   }
 
   @JsonIgnore
@@ -145,7 +145,8 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public boolean isTextField() {
-    return (this.filterFormat == FilterFormat.TEXT || this.filterFormat == FilterFormat.STRING) && !isCategory() && !isId() && !isApplication();
+    return (this.filterFormat == FilterFormat.TEXT || this.filterFormat == FilterFormat.STRING) && !isCategory()
+        && !isId() && !isApplication();
   }
 
   @JsonIgnore
@@ -262,8 +263,7 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public List<SecurityMemberDTO> getCreators() {
-    return this.values.stream().map(this::findSecurityMember)
-        .filter(Objects::nonNull).collect(Collectors.toList());
+    return this.values.stream().map(this::findSecurityMember).filter(Objects::nonNull).collect(Collectors.toList());
   }
 
   private SecurityMemberDTO findSecurityMember(String memberName) {

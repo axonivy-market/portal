@@ -45,7 +45,8 @@ public class TaskWidgetConfigurationFilterBean extends AbstractTaskWidgetFilterB
       } else {
         memberName = String.format("%s (%s)", memberDTO.getDisplayName(), memberDTO.getName());
       }
-      return memberDTO.isEnabled() ? memberName : String.format("%s %s", Ivy.cms().co("/Labels/disabledUserPrefix"), memberName);
+      return memberDTO.isEnabled() ? memberName
+          : String.format("%s %s", Ivy.cms().co("/Labels/disabledUserPrefix"), memberName);
     }
     return memberName;
   }

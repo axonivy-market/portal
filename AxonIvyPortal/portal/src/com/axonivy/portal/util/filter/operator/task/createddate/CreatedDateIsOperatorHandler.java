@@ -20,8 +20,9 @@ public class CreatedDateIsOperatorHandler {
       return null;
     }
 
-    return TaskQuery.create().where().startTimestamp().isGreaterOrEqualThan(PortalDateUtils.getStartOfDate(filter.getFromDate()))
-        .and().startTimestamp().isLowerOrEqualThan(PortalDateUtils.getEndOfDate(filter.getFromDate()));
+    return TaskQuery.create().where().startTimestamp()
+        .isGreaterOrEqualThan(PortalDateUtils.getStartOfDate(filter.getFromDate())).and().startTimestamp()
+        .isLowerOrEqualThan(PortalDateUtils.getEndOfDate(filter.getFromDate()));
   }
 
   public TaskQuery buildIsNotQuery(DashboardFilter filter) {

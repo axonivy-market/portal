@@ -19,7 +19,6 @@ public class CreatedDateCurrentPeriodOperatorHandler {
     return instance;
   }
 
-  
   public TaskQuery buildQuery(DashboardFilter filter) {
     if (filter.getPeriodType() == null) {
       return null;
@@ -27,7 +26,7 @@ public class CreatedDateCurrentPeriodOperatorHandler {
     return queryCreatedDateByPeriod(filter.getPeriodType());
   }
 
-  private void buildQuery(TaskQuery query, Date from, Date to) {;
+  private void buildQuery(TaskQuery query, Date from, Date to) {
     query.where().startTimestamp().isGreaterOrEqualThan(from);
     query.where().startTimestamp().isLowerOrEqualThan(to);
   }

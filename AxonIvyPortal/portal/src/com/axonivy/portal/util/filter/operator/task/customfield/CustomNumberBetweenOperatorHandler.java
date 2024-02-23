@@ -25,8 +25,8 @@ public class CustomNumberBetweenOperatorHandler {
     TaskQuery query = TaskQuery.create();
 
     if (from != null && to != null) {
-      query.where().customField().numberField(filter.getField()).isLowerOrEqualThan(to)
-        .and().customField().numberField(filter.getField()).isGreaterOrEqualThan(from);
+      query.where().customField().numberField(filter.getField()).isLowerOrEqualThan(to).and().customField()
+        .numberField(filter.getField()).isGreaterOrEqualThan(from);
       return query;
     }
 
@@ -50,8 +50,8 @@ public class CustomNumberBetweenOperatorHandler {
     TaskQuery query = TaskQuery.create();
 
     if (from != null && to != null) {
-      query.where().customField().numberField(filter.getField()).isLowerOrEqualThan(from)
-        .or().customField().numberField(filter.getField()).isGreaterOrEqualThan(to);
+      query.where().customField().numberField(filter.getField()).isLowerOrEqualThan(from).or().customField()
+        .numberField(filter.getField()).isGreaterOrEqualThan(to);
       return query;
     }
 

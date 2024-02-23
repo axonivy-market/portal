@@ -50,13 +50,13 @@ public class WidgetCategoryFilterBean implements Serializable {
     filter.setValues(new ArrayList<>());
   }
 
-  public void loadCategories(DashboardFilter filter,  DashboardWidget widget) {
+  public void loadCategories(DashboardFilter filter, DashboardWidget widget) {
     if (DashboardWidgetType.TASK == widget.getType()) {
       this.categoryTree = TaskTreeUtils.buildTaskCategoryCheckboxTreeRoot();
     } else {
       this.categoryTree = CaseTreeUtils.buildCaseCategoryCheckboxTreeRootWithoutAllCategoriesNode();
     }
-    
+
     List<String> filterList = filter.getValues();
     if (CollectionUtils.isNotEmpty(filterList)) {
       CategoryUtils.recoverSelectedCategories(this.getCategoryTree(), filterList);

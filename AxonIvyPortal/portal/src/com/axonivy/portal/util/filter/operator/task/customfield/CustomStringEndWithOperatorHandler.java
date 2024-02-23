@@ -27,7 +27,7 @@ public class CustomStringEndWithOperatorHandler {
     filter.getValues().forEach(text -> {
       TaskQuery subQuery = TaskQuery.create();
       subQuery.where().customField().stringField(filter.getField())
-          .isLikeIgnoreCase(String.format(END_WTIH_FORMAT, text.toLowerCase()));
+        .isLikeIgnoreCase(String.format(END_WTIH_FORMAT, text.toLowerCase()));
       query.where().or(subQuery);
     });
     return query;
@@ -41,7 +41,7 @@ public class CustomStringEndWithOperatorHandler {
     filter.getValues().forEach(text -> {
       TaskQuery subQuery = TaskQuery.create();
       subQuery.where().customField().stringField(filter.getField())
-          .isNotLikeIgnoreCase(String.format(END_WTIH_FORMAT, text.toLowerCase()));
+        .isNotLikeIgnoreCase(String.format(END_WTIH_FORMAT, text.toLowerCase()));
       query.where().and(subQuery);
     });
     return query;
