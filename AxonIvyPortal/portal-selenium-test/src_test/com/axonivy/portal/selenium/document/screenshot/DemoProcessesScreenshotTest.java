@@ -96,7 +96,7 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
     taskWidgetPage.clickOnTaskActionLink(0);
     ScreenshotUtils.executeDecorateJs("highlightTaskActionItem(0, 1)");
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "lending-casemap-external-solvency-service");
-    taskWidgetPage.clickOnSideStepAction(0, 1);
+    taskWidgetPage.clickOnSideStepAction(0, 0);
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1150));
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "lending-casemap-approval-task");
   }

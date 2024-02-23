@@ -15,9 +15,9 @@ import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.codeborne.selenide.CollectionCondition;
 
 @IvyWebTest
-public class DashboardEditCaseWidgetTest extends BaseTest{
+public class DashboardEditCaseWidgetTest extends BaseTest {
   private static final String NAME_STR = "Name";
-  
+
   @Override
   @BeforeEach
   public void setup() {
@@ -25,7 +25,7 @@ public class DashboardEditCaseWidgetTest extends BaseTest{
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTestingTasksUrl);
   }
-  
+
   @Test
   public void toggleFilterDialogTest() {
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
@@ -35,7 +35,7 @@ public class DashboardEditCaseWidgetTest extends BaseTest{
     caseWidget.openFilter();
     caseWidget.closeFilter();
   }
-  
+
   @Test
   public void filterNameTest() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
@@ -45,21 +45,21 @@ public class DashboardEditCaseWidgetTest extends BaseTest{
     newDashboardDetailsEditPage.addWidget();
     CaseEditWidgetNewDashBoardPage caseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
     caseWidget.waitPreviewTableLoaded();
-    caseWidget.openFilter();  
+    caseWidget.openFilter();
     caseWidget.addFilter(NAME_STR, FilterOperator.NOT_EMPTY);
     caseWidget.addFilter(NAME_STR, FilterOperator.IS);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Leave Request");
     caseWidget.applyFilter();
     caseWidget.countCases().shouldBe(CollectionCondition.size(1));
-    
+
     caseWidget.removeFilter(0);
     caseWidget.removeFilter(0);
-    
+
     caseWidget.addFilter(NAME_STR, FilterOperator.CONTAINS);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "List", "Pi");
     caseWidget.applyFilter();
     caseWidget.countCases().shouldBe(CollectionCondition.size(2));
-    
+
     caseWidget.addFilter(NAME_STR, FilterOperator.EMPTY);
     caseWidget.applyFilter();
     caseWidget.countCases().shouldBe(CollectionCondition.size(0));
@@ -78,7 +78,7 @@ public class DashboardEditCaseWidgetTest extends BaseTest{
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Or", "Te");
     caseWidget.closeFilter();
   }
-  
+
   @Test
   public void filterCreatorTest() {
     login(TestAccount.DEMO_USER);
@@ -104,7 +104,7 @@ public class DashboardEditCaseWidgetTest extends BaseTest{
     caseWidget.applyFilter();
     caseWidget.countCases().shouldBe(CollectionCondition.size(0));
   }
-  
+
   @Test
   public void filterCategoryTest() {
     login(TestAccount.ADMIN_USER);
@@ -117,7 +117,7 @@ public class DashboardEditCaseWidgetTest extends BaseTest{
     caseWidget.inputValueOnLatestFilter(FilterValueType.CATEGORY_TYPE, "Leave Request");
     caseWidget.applyFilter();
     caseWidget.countCases().shouldBe(CollectionCondition.size(1));
-    
+
     caseWidget.removeFilter(0);
     caseWidget.addFilter("Category", FilterOperator.NO_CATEGORY);
     caseWidget.applyFilter();
@@ -129,7 +129,7 @@ public class DashboardEditCaseWidgetTest extends BaseTest{
     caseWidget.applyFilter();
     caseWidget.countCases().shouldBe(CollectionCondition.size(0));
   }
-  
+
   @Test
   public void filterDateTest() {
     redirectToRelativeLink(createDataCreatedDate);
@@ -137,20 +137,20 @@ public class DashboardEditCaseWidgetTest extends BaseTest{
     newDashboardDetailsEditPage.addWidget();
     CaseEditWidgetNewDashBoardPage caseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
     caseWidget.waitPreviewTableLoaded();
-    
+
     caseWidget.openFilter();
     caseWidget.addFilter("Created Date", FilterOperator.TODAY);
     caseWidget.applyFilter();
     caseWidget.countCases().shouldBe(CollectionCondition.size(2));
-    
+
     caseWidget.removeFilter(0);
     caseWidget.addFilter("Created Date", FilterOperator.CURRENT);
     caseWidget.inputValueOnLatestFilter(FilterValueType.DATE_CURRENT, "Month");
     caseWidget.applyFilter();
     caseWidget.countCases().shouldBe(CollectionCondition.size(6));
-    
+
   }
-  
+
   @Test
   public void filterMixFieldTest() {
     login(TestAccount.ADMIN_USER);
@@ -162,21 +162,21 @@ public class DashboardEditCaseWidgetTest extends BaseTest{
     newDashboardDetailsEditPage.addWidget();
     CaseEditWidgetNewDashBoardPage caseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
     caseWidget.waitPreviewTableLoaded();
-    caseWidget.addCustomColumns("AccountNumber", "ShipmentDate", "CustomerName",  "CustomerType", "InvoiceNumber");
-    
+    caseWidget.addCustomColumns("AccountNumber", "ShipmentDate", "CustomerName", "CustomerType", "InvoiceNumber");
+
     caseWidget.openFilter();
     caseWidget.addFilter("Description", FilterOperator.CONTAINS);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Leave", "Test", "Create");
-    
+
     caseWidget.addFilter("State", null);
     caseWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN", "DONE");
-    
+
     caseWidget.addFilter("Creator", FilterOperator.IN);
     caseWidget.inputValueOnLatestFilter(FilterValueType.CREATOR_TYPE, "demo", "admin");
-    
+
     caseWidget.addFilter("Created Date", FilterOperator.WITHIN_LAST);
     caseWidget.inputValueOnLatestFilter(FilterValueType.WITHIN, "10", "Year(s)");
-    
+
     caseWidget.addFilter("Account Number", FilterOperator.BETWEEN);
     caseWidget.inputValueOnLatestFilter(FilterValueType.NUMBER_BETWEEN, 5, 700);
 
@@ -189,12 +189,12 @@ public class DashboardEditCaseWidgetTest extends BaseTest{
     caseWidget.applyFilter();
     caseWidget.countCases().shouldBe(CollectionCondition.size(0));
   }
-  
+
   private NewDashboardDetailsEditPage gotoEditPublicDashboardPage() {
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
     var modificationPage = configurationPage.openEditPublicDashboardsPage();
     return modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
   }
-  
+
 }

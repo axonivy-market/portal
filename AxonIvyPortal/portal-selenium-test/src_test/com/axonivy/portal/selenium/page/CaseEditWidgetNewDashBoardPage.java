@@ -334,7 +334,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     $("button#back-to-home-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
   }
-  
+
   public void addCustomColumns(String... fieldNameList) {
     openColumnManagementDialog();
     selectCustomType();
