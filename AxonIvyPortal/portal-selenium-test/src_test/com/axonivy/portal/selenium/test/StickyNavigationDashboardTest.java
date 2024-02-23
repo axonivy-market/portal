@@ -41,6 +41,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"));
     newDashboardPage.selectDashboard(1);
+    newDashboardPage.waitForTaskListDisplay();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"));
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget("Your Tasks");
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
