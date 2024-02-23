@@ -102,7 +102,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void openFilterWidget() {
     getTaskWidgetHeader().$(".widget__filter-sidebar-link")
-        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    clickByJavaScript(getTaskWidgetHeader().$(".widget__filter-sidebar-link"));
     $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -321,7 +322,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnTaskActionLink(int taskIndex) {
-    getColumnOfCaseHasActionIndex(taskIndex, "Actions").shouldBe(getClickableCondition()).click();
+    getColumnOfCaseHasActionIndex(taskIndex, "Actions").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
   
   public void reserveTask(int taskIndex) {
