@@ -27,7 +27,7 @@ public class FinishedDateCurrentPeriodOperatorHandler {
     return queryCreatedDateByPeriod(filter.getPeriodType());
   }
 
-  private void buildQuery(CaseQuery query, Date from, Date to) {;
+  private void buildQuery(CaseQuery query, Date from, Date to) {
     query.where().endTimestamp().isGreaterOrEqualThan(from);
     query.where().endTimestamp().isLowerOrEqualThan(to);
   }
