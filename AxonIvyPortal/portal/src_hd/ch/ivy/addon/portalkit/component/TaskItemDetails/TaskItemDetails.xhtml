@@ -17,7 +17,7 @@
   <f:event listener="#{taskDetailsBean.init()}" type="preRenderComponent"/>
   <c:set var="task" value="#{data.task}" />
   <c:set var="generalContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('InformationWidget')}:task-detail-general-container" />
-  <c:set var="informationWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('InformationWidget') gt -1 ? generalContainerID:''}" />
+  <c:set var="informationWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('InformationWidget') gt -1 ? generalContainerID:''} #{cc.clientId}:task-status-banner" />
   <c:set var="documentsContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('DocumentWidget')}:task-documents:task-details-documents" />
   <c:set var="documentWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('DocumentWidget') gt -1 ? documentsContainerID:''}" />
   <c:set var="noteContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('HistoryWidget')}:task-detail-note-container" />
@@ -112,7 +112,7 @@
                   actionLinkId="task-detail-more-step" panelWidgetVar="task-side-steps-panel-#{rowIndex}" isAdhocExcluded="false"
                   renderedAdditionalAction="#{taskActionBean.showAdditionalOptions(task)}" task="#{task}"
                   isDisabled="#{taskActionBean.noActionAvailable(task) or cc.attrs.readOnly}"
-                  componentToUpdate="#{informationWidgetComponent} #{historyWidgetComponent} #{cc.clientId}:task-status-banner" onDestroyComplete="PF('destroy-task-dialog').show()"
+                  componentToUpdate="#{informationWidgetComponent} #{historyWidgetComponent}" onDestroyComplete="PF('destroy-task-dialog').show()"
                   onEscalationComplete="PF('escalation-task-dialog').show()"
                   showInTaskList="false" onDelegateComplete="initDataToDelegate()" onWorkflowEventComplete="initWorkflowEventData()" />
               </h:panelGroup>
