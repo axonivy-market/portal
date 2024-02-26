@@ -35,7 +35,7 @@
       <h:dataTable id="table-titles" value="#{titles}" rendered="#{titles.isEmpty() eq 'false'}" var="title" width="460" 
         columnClasses="#{cc.attrs.useInputText ? '' : 'multi-language-textarea-label,'}">
         <h:column>
-          <p:outputLabel value="#{title.locale.getDisplayName()}" for="#{cc.attrs.useInputText ? 'title-input' : 'title-textarea'}"
+          <p:outputLabel value="#{title.locale.getDisplayName(ivy.session.getContentLocale())}" for="#{cc.attrs.useInputText ? 'title-input' : 'title-textarea'}"
           styleClass="ui-g-12 #{cc.attrs.useInputText ? '' : 'external-link-description-label'}"/>
         </h:column>
         <h:column>
