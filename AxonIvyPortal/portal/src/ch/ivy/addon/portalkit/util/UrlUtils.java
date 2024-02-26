@@ -2,6 +2,9 @@ package ch.ivy.addon.portalkit.util;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -59,4 +62,47 @@ public class UrlUtils {
     return link + (link.contains("?") ? "&" : "?") + EMBED_IN_FRAME;
   }
 
+  /**
+   * Get Map of params from an URL
+   * 
+   * @param url
+   * @return
+   */
+  public static Map<String, String> getParamsFromUrl(final String url) {
+    Map<String, String> result = new HashMap<>();
+    if (StringUtils.isBlank(url) || !url.contains("?")) {
+      return result;
+    }
+
+    String paramString = url.substring(url.indexOf("?") + 1, url.length());
+    for (String param : paramString.split("&")) {
+      String[] paramParts = param.split("=");
+
+      if (paramParts.length == 2) {
+        result.put(paramParts[0], paramParts[1]);
+      } else {
+        result.put(param, "");
+      }
+    }
+    return result; 
+  }
+
+  /**
+   * Append a Map contains params to an URL which don't have any parameters.
+   * 
+   * @param params
+   * @param url
+   * @return
+   */
+  public static String appendParamsToNonParamsUrl(Map<String, String> params, final String url) {
+    String result = url;
+    for (Entry<String, String> param : params.entrySet()) {
+      result = result.concat(param.getKey());
+      if (StringUtils.isNotBlank(param.getValue())) {
+        result = result.concat("=").concat(param.getValue());
+      }
+      result = result.concat("&");
+    }
+    return result;
+  }
 }
