@@ -21,19 +21,17 @@ public class ProcessService {
   private static final String PORTAL_IN_TEAMS_REQUEST_PATH = "InTeams.ivp";
   private static final String PORTAL_START_REQUEST_PATH = "/DefaultApplicationHomePage.ivp";
   private static ProcessService instance;
-  private static List<IWebStartable> processes;
+
   public ProcessService() { }
 
   public static ProcessService getInstance() {
     if (instance == null) {
       instance = new ProcessService();
-      processes = new ArrayList<IWebStartable>();
     }
     return instance;
   }
 
-  @Override
-  public IvyProcessResultDTO findProcesses() {
+  public List<IWebStartable> findProcesses() {
     return Sudo.get(() -> {
       return findStartablesWithoutPortalHomeAndMSTeamsProcess(Ivy.session());
     });
@@ -57,5 +55,4 @@ public class ProcessService {
   private Predicate<? super IWebStartable> filterByCustomDashboardProcess() {
     return start -> BooleanUtils.toBoolean(start.customFields().value(IS_DASHBOARD_PROCESS));
   }
- 
 }
