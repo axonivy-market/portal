@@ -244,10 +244,10 @@ public class TaskDetailsTest extends BaseTest {
     openFirstTaskInTaskList();
     taskDetailsPage.clickOnSwitchToEditModeButton();
     taskDetailsPage.waitForSwitchToViewModeButtonDisplayed();
-    taskDetailsPage.dragAndDropWidgets("note", "document");
-    taskDetailsPage.dragAndDropWidgets("document", "note");
-    taskDetailsPage.dragAndDropWidgets("note", "document");
-    taskDetailsPage.dragAndDropWidgets("document", "note");
+    taskDetailsPage.drapAndDropWidgets("note", "document");
+    taskDetailsPage.drapAndDropWidgets("document", "note");
+    taskDetailsPage.drapAndDropWidgets("note", "document");
+    taskDetailsPage.drapAndDropWidgets("document", "note");
     taskDetailsPage.clickOnSwitchToViewModeButton();
     taskDetailsPage.clickOnSwitchToEditModeButton();
     taskDetailsPage.waitForResetButtonDisplayed();
