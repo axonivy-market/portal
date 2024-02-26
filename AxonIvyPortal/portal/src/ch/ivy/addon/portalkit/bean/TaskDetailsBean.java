@@ -169,7 +169,7 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
 
   public String getInfoBannerSeverity() {
     ITask selectedTask = getSelectedTaskFromData();
-    boolean validState = selectedTask.getState() == TaskState.RESUMED || selectedTask.getState() == TaskState.CREATED;
+    boolean validState = selectedTask.getState() == TaskState.RESUMED || selectedTask.getState() == TaskState.CREATED || selectedTask.getState() == TaskState.PARKED;
     boolean notCurrentSession = selectedTask.getWorkerSession() != ISession.current();
     return validState && notCurrentSession && isActivator() && currentIsWorkerUser() ? "warn" : "info";
   }
