@@ -118,7 +118,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
 
     taskDetails.clickOnSwitchToEditModeButton();
     taskDetails.waitForSwitchToViewModeButtonDisplayed();
-    taskDetails.dragAndDropWidgets("note", "document");
+    taskDetails.drapAndDropWidgets("note", "document");
     executeDecorateJs("highlightSwitchToViewMode()");
     WebElement switchToViewMode = taskDetails.getSwitchToViewModeButtonElement();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(switchToViewMode,
