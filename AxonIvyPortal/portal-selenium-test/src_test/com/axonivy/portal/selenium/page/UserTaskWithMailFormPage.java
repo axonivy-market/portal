@@ -7,8 +7,8 @@ import org.openqa.selenium.JavascriptExecutor;
 
 import com.codeborne.selenide.WebDriverRunner;
 
-
 public class UserTaskWithMailFormPage extends TemplatePage {
+
   @Override
   protected String getLoadedLocator() {
     return "[id='task-form']";

@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -15,6 +14,7 @@ import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
 
 public class ExpressFormDefinitionPage extends TemplatePage {
@@ -34,7 +34,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     clickOnFormCreationTabIndex(5);
     $("input[id$='form:create-tabs:file-upload-label']").sendKeys(label);
     $("[id='form:create-tabs:add-upload-file-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("input[id$='form:create-tabs:file-upload-label']").shouldBe(empty);
+    $("input[id$='form:create-tabs:file-upload-label']").shouldBe(Condition.empty);
   }
 
   public void moveAllElementToDragAndDrogPanel() {
@@ -144,7 +144,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     addRadioOptions(numberOfOption);
     $("input[id$='form:create-tabs:one-radio-label']").sendKeys(label);
     waitForElementClickableThenClick(By.id("form:create-tabs:add-radio-btn"));
-    $("input[id$='form:create-tabs:one-radio-label']").shouldBe(empty);
+    $("input[id$='form:create-tabs:one-radio-label']").shouldBe(Condition.empty);
   }
 
   private void addRadioOptions(int numberOfOptions) {
@@ -161,7 +161,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     $("input[id='form:create-tabs:many-checkbox-label']").sendKeys(label);
     addCheckboxOptions(numberOfSelection);
     waitForElementClickableThenClick(By.id("form:create-tabs:add-checkbox-btn"));
-    $("input[id='form:create-tabs:many-checkbox-label']").shouldBe(empty);
+    $("input[id='form:create-tabs:many-checkbox-label']").shouldBe(Condition.empty);
   }
 
   private void addCheckboxOptions(int numberOfSelection) {
@@ -180,13 +180,13 @@ public class ExpressFormDefinitionPage extends TemplatePage {
       waitForElementClickableThenClick(By.cssSelector("div[id='form:create-tabs:input-area-required']"));
     }
     waitForElementClickableThenClick(By.id("form:create-tabs:add-text-area-btn"));
-    $(By.id("form:create-tabs:input-area-label")).shouldBe(empty);
+    $(By.id("form:create-tabs:input-area-label")).shouldBe(Condition.empty);
   }
 
   public void createCheckboxFieldWithDataProvider(String label) {
     fillDataForCheckboxProvider(label);
     waitForElementClickableThenClick(By.id("form:create-tabs:add-checkbox-btn"));
-    $(By.id("form:create-tabs:many-checkbox-label")).shouldBe(empty);
+    $(By.id("form:create-tabs:many-checkbox-label")).shouldBe(Condition.empty);
   }
 
   public void fillDataForCheckboxProvider(String label) {
@@ -233,17 +233,8 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   }
 
   private void clickOnFormCreationTabIndex(int tabIndex) {
-    WaitHelper.waitForActionComplete("div[id$=':create-tabs']  ul", () -> waitForElementClickableThenClick(
+    WaitHelper.waitForActionComplete("#form\\:create-tabs ul", () -> waitForElementClickableThenClick(
         By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][" + tabIndex + "]")));
-  }
-
-  public void switchToCheckBoxTab() {
-    waitForElementDisplayed(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][3]"), true);
-    $(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][3]")).shouldBe(getClickableCondition()).click();
-    WaitHelper.assertTrueWithWait(() -> {
-      var checkboxTab = $(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][3]"));
-      return checkboxTab.getAttribute(CLASS_PROPERTY).contains("ui-state-active");
-    });
   }
 
 }

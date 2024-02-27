@@ -49,7 +49,7 @@ public class CaseDetailsTest extends BaseTest {
     mainMenuPage.openCaseList();
     CaseWidgetPage caseWidgetPage = new CaseWidgetPage();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
-    caseDetailsPage.getRelatedCasesComponent().shouldHave(sizeGreaterThanOrEqual(1));
+    caseDetailsPage.getRelatedCasesComponents().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.addNote(NOTE_BUSINESS_CASE);
     caseDetailsPage.getNotesWithContent(NOTE_BUSINESS_CASE).shouldHave(size(1));
@@ -67,7 +67,7 @@ public class CaseDetailsTest extends BaseTest {
     mainMenuPage.openCaseList();
     CaseWidgetPage caseWidgetPage = new CaseWidgetPage();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
-    caseDetailsPage.getRelatedCasesComponent().shouldHave(sizeGreaterThanOrEqual(1));
+    caseDetailsPage.getRelatedCasesComponents().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
     caseDetailsPage.getHitoriesComponent().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.addNote(NOTE_TECHNICAL_CASE);
@@ -89,7 +89,7 @@ public class CaseDetailsTest extends BaseTest {
     mainMenuPage.openCaseList();
     CaseWidgetPage caseWidgetPage = new CaseWidgetPage();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
-    caseDetailsPage.getRelatedCasesComponent().shouldHave(sizeGreaterThanOrEqual(1));
+    caseDetailsPage.getRelatedCasesComponents().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
     caseDetailsPage.getShareButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     caseDetailsPage.getShareDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
@@ -98,7 +98,7 @@ public class CaseDetailsTest extends BaseTest {
     redirectToNewDashBoard();
     mainMenuPage.openCaseList();
     caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
-    caseDetailsPage.getRelatedCasesComponent().shouldHave(sizeGreaterThanOrEqual(1));
+    caseDetailsPage.getRelatedCasesComponents().shouldHave(sizeGreaterThanOrEqual(1));
     caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
     caseDetailsPage.getShareButton().shouldBe(Condition.disappear);
   }

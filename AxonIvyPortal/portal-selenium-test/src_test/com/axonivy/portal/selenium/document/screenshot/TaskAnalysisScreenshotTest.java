@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
+import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
-import com.axonivy.portal.selenium.common.ScreenshotTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
@@ -19,8 +19,9 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.StatisticWidgetPage;
 import com.axonivy.portal.selenium.page.TaskAnalysisWidgetPage;
 
-@IvyWebTest
-public class TaskAnalysisScreenshotTest extends ScreenshotTest {
+@IvyWebTest(headless = false)
+public class TaskAnalysisScreenshotTest extends ScreenshotBaseTest {
+
   @Override
   @BeforeEach
   public void setup() {
@@ -58,6 +59,4 @@ public class TaskAnalysisScreenshotTest extends ScreenshotTest {
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskAnalysisWidgetPage.waitAndGetSavingFilterDialog(),
         ScreenshotUtils.TASK_ANALYSIS_FOLDER + "saved-filter", new ScreenshotMargin(20));
   }
-
 }
-

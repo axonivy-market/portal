@@ -7,13 +7,13 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
-import com.axonivy.portal.selenium.common.ScreenshotTest;
+import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.page.GlobalSearchResultPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 
-@IvyWebTest
-public class GlobalSearchScreenshotTest extends ScreenshotTest {
+@IvyWebTest(headless = false)
+public class GlobalSearchScreenshotTest extends ScreenshotBaseTest {
 
   @Override
   @BeforeEach
@@ -33,5 +33,4 @@ public class GlobalSearchScreenshotTest extends ScreenshotTest {
     resultPage.waitUtilProcessWidgetDisplayed();
     ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.SEARCH_FOLDER + "global-search-result");
   }
-
 }

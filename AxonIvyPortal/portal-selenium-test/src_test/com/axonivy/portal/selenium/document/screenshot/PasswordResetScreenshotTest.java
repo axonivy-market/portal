@@ -1,6 +1,6 @@
 package com.axonivy.portal.selenium.document.screenshot;
 
-import com.axonivy.portal.selenium.common.ScreenshotTest;
+
 import java.io.IOException;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -8,13 +8,14 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
+import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.PasswordResetPage;
 
-@IvyWebTest
-public class PasswordResetScreenshotTest extends ScreenshotTest {
+@IvyWebTest(headless = false)
+public class PasswordResetScreenshotTest extends ScreenshotBaseTest {
 
   @BeforeEach
   @Override

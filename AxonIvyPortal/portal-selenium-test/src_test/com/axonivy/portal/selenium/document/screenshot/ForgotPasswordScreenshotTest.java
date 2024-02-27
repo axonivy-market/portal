@@ -6,27 +6,22 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
-import com.axonivy.portal.selenium.common.BaseTest;
-import com.axonivy.portal.selenium.common.ScreenshotTest;
+import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.page.LoginPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 
-@IvyWebTest
-public class ForgotPasswordScreenshotTest extends ScreenshotTest {
+@IvyWebTest(headless = false)
+public class ForgotPasswordScreenshotTest extends ScreenshotBaseTest {
 
   @Test
   public void testForgotPassword() throws IOException {
-    NewDashboardPage newDashboardPage = new NewDashboardPage();
     showNewDashboard();
-    newDashboardPage.waitForDashboardPageAvailable();
-    redirectToRelativeLink(BaseTest.LOGOUT_URL);
-    
-    LoginPage loginPage = new LoginPage();
+    NewDashboardPage homePage = new NewDashboardPage();
+    LoginPage loginPage = homePage.clickOnLogout();
     loginPage.forgotPassword();
     ScreenshotUtils.resizeBrowser(new Dimension(1024, 768));
     loginPage.waitForEmailAddressIsFocused();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.FORGOT_PASSWORD + "send-email-screen");
   }
-
 }

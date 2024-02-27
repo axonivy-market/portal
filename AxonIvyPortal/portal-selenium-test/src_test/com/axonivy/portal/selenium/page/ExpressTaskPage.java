@@ -3,6 +3,8 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
 
+import org.openqa.selenium.By;
+
 import com.codeborne.selenide.SelenideElement;
 
 public class ExpressTaskPage extends TemplatePage {
@@ -28,4 +30,11 @@ public class ExpressTaskPage extends TemplatePage {
     $("[id='form:ok-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
+  public boolean isDocumentTableVisible() {
+    return isElementPresent(By.xpath("//div[contains(@id, 'fileUploadComponent:document-table')]"));
+  }
+
+  public boolean isDocumentUploadButtonVisible() {
+    return isElementPresent(By.xpath("//div[contains(@id, 'fileUploadComponent:document-upload')]"));
+  }
 }

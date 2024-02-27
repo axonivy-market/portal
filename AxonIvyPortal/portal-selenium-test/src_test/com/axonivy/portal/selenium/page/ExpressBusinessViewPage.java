@@ -10,7 +10,6 @@ import org.openqa.selenium.WebElement;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.SelenideElement;
 
-
 public class ExpressBusinessViewPage extends TemplatePage {
 
   @Override

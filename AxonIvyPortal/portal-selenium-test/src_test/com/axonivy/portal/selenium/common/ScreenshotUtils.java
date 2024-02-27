@@ -52,9 +52,6 @@ public class ScreenshotUtils {
   public static final String NOTIFICATION_FOLDER = "/notification/";
   public static final String MOBILE_FOLDER = "/mobile/";
 
-  public static final String TRUE = "true";
-  public static final String FALSE = "false";
-
   @PostConstruct
   public void initFolder() {
     new File(SCREENSHOT_FOLDER).mkdirs();
@@ -74,7 +71,7 @@ public class ScreenshotUtils {
   }
 
   public static void captureElementWithMarginOptionScreenshot(WebElement element, String screenshotName,
-    ScreenshotMargin screenshotMargin) throws IOException {
+      ScreenshotMargin screenshotMargin) throws IOException {
     WebDriver driver = WebDriverRunner.getWebDriver();
     File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
     File fileScreenShot = new File(SCREENSHOT_FOLDER + screenshotName + SCREENSHOT_EXTENSION);

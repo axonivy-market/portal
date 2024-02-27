@@ -28,20 +28,13 @@ public class ExpressProcessPage extends TemplatePage {
     }
     $("[id='" + String.format("form:defined-tasks-list:%d:default-task-responsible-link", taskIndex) + "']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-
-    //  ADD RESPONSIBLES
-    $("[id='choose-responsible-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
-    for (ExpressResponsible responsible : responsibles) {
-      chooseResponsible(responsible.getResponsibleName(), responsible.isGroup());
-    }
-    $("[id='assignee-selection-form:save-assignee-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("[id='choose-responsible-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    addResponsible(responsibles);
   }
 
-  public void addResponsible(List<ExpressResponsible> responsibles) {
+  private void addResponsible(List<ExpressResponsible> responsibles) {
     $("[id='choose-responsible-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     for (ExpressResponsible responsible : responsibles) {
-      chooseResponsible(responsible.getResponsibleName(), responsible.isGroup());
+      chooseResponsible(responsible.getResponsibleName(), responsible.getIsGroup());
     }
     $("[id='assignee-selection-form:save-assignee-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id='choose-responsible-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
@@ -132,7 +125,6 @@ public class ExpressProcessPage extends TemplatePage {
       $("[id='choose-responsible-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
       addResponsible(responsibles);
 
-      waitForElementDisplayed($("input[id$='form:defined-tasks-list:" + taskIndex + ":task-name']"), Boolean.TRUE);
       $(String.format(TASK_NAME_FORMAT, taskIndex)).shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(taskName);
       $(String.format("input[id$='%d:task-description']", taskIndex)).shouldBe(appear, DEFAULT_TIMEOUT)
           .sendKeys(taskDescription);
@@ -188,5 +180,4 @@ public class ExpressProcessPage extends TemplatePage {
     waitForElementClickableThenClick(By.id("form:process-owner-link"));
     addResponsible(responsibles);
   }
-
 }

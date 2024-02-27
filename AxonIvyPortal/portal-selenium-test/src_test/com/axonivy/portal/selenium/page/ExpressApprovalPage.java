@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Selenide.$;
 import com.axonivy.portal.selenium.common.WaitHelper;
 
 public class ExpressApprovalPage extends TemplatePage {
+
   @Override
   protected String getLoadedLocator() {
     return "[id='form']";

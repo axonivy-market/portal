@@ -5,7 +5,8 @@ import static com.codeborne.selenide.Selenide.$;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
-import static com.codeborne.selenide.Condition.appear;
+import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 public class CaseMapPage extends TemplatePage {
@@ -16,18 +17,18 @@ public class CaseMapPage extends TemplatePage {
   }
 
   public void waitForIFrameContentVisible() {
-    $("button[id='form:submit-request']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("button[id='form:submit-request']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public NewDashboardPage clickSubmitRequestButton() {
-    $("button[id$='submit-request']").shouldBe(appear, DEFAULT_TIMEOUT)
+    $("button[id$='submit-request']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     switchBackToParent();
     return new NewDashboardPage();
   }
 
   public NewDashboardPage clickSubmitButtonAndBackToTaskList() {
-    clickByJavaScript($("[id$='submit-button']"));
+    $("button[id$='submit-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     switchBackToParent();
     return new NewDashboardPage();
   }
@@ -98,9 +99,11 @@ public class CaseMapPage extends TemplatePage {
   }
 
   public TaskWidgetPage clickSubmitButton() {
-    $("button[id$='form:submit-button']").shouldBe(appear, DEFAULT_TIMEOUT)
+    $("button[id$='form:submit-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     switchBackToParent();
+    // return new NewDashboardPage();
+    // $("button[id$='form:submit-button']").shouldBe(getClickableCondition()).click();
     return new TaskWidgetPage();
   }
 
@@ -121,4 +124,5 @@ public class CaseMapPage extends TemplatePage {
     switchToDefaultContent();
     return new TaskWidgetPage();
   }
+
 }

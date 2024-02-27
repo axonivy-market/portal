@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import com.codeborne.selenide.WebDriverRunner;
 
 public class AnnouncementPage extends TemplatePage {
+
   @Override
   protected String getLoadedLocator() {
     return "[id='admin-setting-component:adminTabView:announcement-tab']";
@@ -28,4 +29,5 @@ public class AnnouncementPage extends TemplatePage {
   public void setAnnoucement(int Language, String content) {
     $("input[id$='" + Language + ":announcement-input']").sendKeys(content);
   }
+
 }

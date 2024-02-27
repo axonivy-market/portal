@@ -28,4 +28,3 @@ public class ProjectVersionPage extends TemplatePage {
     return $("[id='project-info-dialog']");
   }
 }
-

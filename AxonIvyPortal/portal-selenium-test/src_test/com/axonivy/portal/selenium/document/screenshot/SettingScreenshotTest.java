@@ -1,6 +1,5 @@
 package com.axonivy.portal.selenium.document.screenshot;
 
-import com.axonivy.portal.selenium.common.ScreenshotTest;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -9,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
+import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
@@ -22,9 +22,9 @@ import com.axonivy.portal.selenium.page.ProjectVersionPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 
+@IvyWebTest(headless = false)
+public class SettingScreenshotTest extends ScreenshotBaseTest {
 
-@IvyWebTest
-public class SettingScreenshotTest extends ScreenshotTest {
   private static final LocalDate TODAY = LocalDate.now();
   private static final LocalDate TOMORROW = TODAY.plusDays(1);
 
@@ -125,7 +125,7 @@ public class SettingScreenshotTest extends ScreenshotTest {
         ScreenshotUtils.SETTINGS_FOLDER + "new-absence", new ScreenshotMargin(20));
     newAbsencePage.closeAddAbsenceDialog();
     ScreenshotUtils.captureElementScreenshot(absencePage.getAbsenceForm(), ScreenshotUtils.SETTINGS_FOLDER + "absence");
-    absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getUsername(), TestAccount.GUEST_USER.getUsername()), 0);
+    absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName(), TestAccount.GUEST_USER.getFullName()), 0);
     ScreenshotUtils.captureElementScreenshot(absencePage.getAbsenceForm(),
         ScreenshotUtils.SETTINGS_FOLDER + "set-deputy");
   }
@@ -199,5 +199,4 @@ public class SettingScreenshotTest extends ScreenshotTest {
     ScreenshotUtils.executeDecorateJs("highlightDashboardConfiguration()");
     ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.SETTINGS_FOLDER + "dashboard-configuration");
   }
-
 }

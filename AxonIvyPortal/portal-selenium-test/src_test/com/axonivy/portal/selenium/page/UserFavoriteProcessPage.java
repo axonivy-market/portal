@@ -30,7 +30,7 @@ public class UserFavoriteProcessPage extends TemplatePage{
     $("input[id$='process-widget:new-process-name_input']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(ivyProcessName);
 
     String processSelector = String.format("tr[data-item-label='%s']", ivyProcessName);
-    clickByCssSelector(processSelector);
+    findElementByCssSelector(processSelector).click();
     WaitHelper.assertTrueWithWait(() -> !findElementByCssSelector("input[id$='process-widget:process-display-name']")
         .getAttribute("value").equalsIgnoreCase(""));
   }

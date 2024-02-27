@@ -11,8 +11,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
+import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
 import com.codeborne.selenide.CollectionCondition;
-import static com.codeborne.selenide.Condition.appear;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 public class LeaveRequestPage extends TaskTemplateIFramePage {
@@ -23,7 +24,7 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   }
 
   public void waitForIFrameContentVisible() {
-    $("div[id='content']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div[id='content']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public void fulfillAndSendMaternityLeaveRequest() {

@@ -1,6 +1,6 @@
 package com.axonivy.portal.selenium.document.screenshot;
 
-import com.axonivy.portal.selenium.common.ScreenshotTest;
+
 import java.io.IOException;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
+import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.page.CaseMapPage;
 import com.axonivy.portal.selenium.page.ExampleOverviewPage;
@@ -16,13 +17,14 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
-@IvyWebTest
-public class DemoProcessesScreenshotTest extends ScreenshotTest {
+@IvyWebTest(headless = false)
+public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
 
   private static String LEAVE_REQUEST_START_LINK = "portal-user-examples/170321BD7F5539D6/start.ivp";
   private static final String CASE_MAP_URL = "/portal-user-examples/70765b37-a3e8-418a-a8d5-c2b3a539408e.icm";
 
   private MainMenuPage mainMenuPage;
+  // private ExampleOverviewPage exampleOverviewPage;
   private static final int SCREENSHOT_WIDTH = 1400;
 
   @Override
