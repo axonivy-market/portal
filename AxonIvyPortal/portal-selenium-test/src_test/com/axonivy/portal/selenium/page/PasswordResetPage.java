@@ -1,15 +1,13 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.empty;
 
 import org.openqa.selenium.By;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
-public class PasswordResetPage extends TemplatePage{
+public class PasswordResetPage extends TemplatePage {
 
   private SelenideElement newPasswordTextField;
   private SelenideElement passwordConfirmationTextField;
@@ -30,20 +28,20 @@ public class PasswordResetPage extends TemplatePage{
     newPasswordTextField.sendKeys(newPassword);
     $(".login-footer").click();
     passwordConfirmationTextField.sendKeys(newPassword);
-    $("[id='password-reset:reset-password-form:password-confirmation_panel']").shouldBe(appear,
+    $("[id='password-reset:reset-password-form:password-confirmation_panel']").shouldBe(Condition.appear,
         DEFAULT_TIMEOUT);
     $(".login-footer").click();
     clickByJavaScript(resetButton);
 
     if (strongPasswordEnough) {
-      $("[id='password-reset:reset-password-form:result-message']").shouldBe(appear, DEFAULT_TIMEOUT);
+      $("[id='password-reset:reset-password-form:result-message']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     } else {
-      $("span[class='ui-messages-error-summary']").shouldBe(appear, DEFAULT_TIMEOUT);;
+      $("span[class='ui-messages-error-summary']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);;
     }
   }
 
   public void isReset() {
-    $(".result-message").shouldBe(Condition.not(empty));
+    $(".result-message").shouldBe(Condition.not(Condition.empty));
   }
 
   public void goHome() {

@@ -1,12 +1,11 @@
 package com.axonivy.portal.selenium.page.component;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Condition.appear;
 
 import com.axonivy.portal.selenium.page.TemplatePage;
+import com.codeborne.selenide.Condition;
 
 public class ProcessViewerComponentPage extends TemplatePage {
-
 
   @Override
   protected String getLoadedLocator() {
@@ -19,8 +18,7 @@ public class ProcessViewerComponentPage extends TemplatePage {
 
   public void waitForSprottyToolDisplayed() {
     switchToIframeWithId("process-viewer");
-    $("[id='sprotty']").shouldBe(appear, DEFAULT_TIMEOUT);
-    $(".sprotty-graph").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id='sprotty']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $(".sprotty-graph").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
-
 }

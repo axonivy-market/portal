@@ -1,7 +1,5 @@
 package com.axonivy.portal.selenium.document.screenshot;
 
-import com.axonivy.portal.selenium.common.ScreenshotTest;
-
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -13,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.bean.ExpressResponsible;
 import com.axonivy.portal.selenium.common.FileHelper;
+import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
@@ -31,8 +30,10 @@ import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.axonivy.portal.selenium.page.UserTaskWithMailFormPage;
 import com.codeborne.selenide.SelenideElement;
 
-@IvyWebTest
-public class PortalExpressScreenshotTest extends ScreenshotTest{
+
+@IvyWebTest(headless = false)
+public class PortalExpressScreenshotTest extends ScreenshotBaseTest {
+
   private static final int USER_TASK_INDEX = 0;
   private static final int USER_TASK_WITH_EMAIL_INDEX = 1;
   private static final int INFORMATION_EMAIL_INDEX = 2;
@@ -107,10 +108,6 @@ public class PortalExpressScreenshotTest extends ScreenshotTest{
     formDefinition.moveAllElementToDragAndDrogPanel();
     formDefinition.countElementPrepareToDrag(0);
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.EXPRESS_FOLDER + "express-workflow-dialog-editor");
-
-    formDefinition.switchToCheckBoxTab();
-    ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.EXPRESS_FOLDER + "express-workflow");
-
 
 
     showNewDashboard();
@@ -270,5 +267,4 @@ public class PortalExpressScreenshotTest extends ScreenshotTest{
     ExpressReviewPage expressReview = new ExpressReviewPage();
     expressReview.finish();
   }
-
 }

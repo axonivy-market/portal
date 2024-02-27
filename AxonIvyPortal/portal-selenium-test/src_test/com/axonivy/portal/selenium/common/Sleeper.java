@@ -1,6 +1,6 @@
 package com.axonivy.portal.selenium.common;
 
-public class Sleeper {
+public final class Sleeper {
   public static final void sleep(long milis) {
     try {
       org.openqa.selenium.support.ui.Sleeper.SYSTEM_SLEEPER.sleep(java.time.Duration.ofMillis(milis));

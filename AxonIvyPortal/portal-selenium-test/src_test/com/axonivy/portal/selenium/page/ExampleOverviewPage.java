@@ -2,7 +2,7 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
 
-import static com.codeborne.selenide.Condition.appear;;
+import com.codeborne.selenide.Condition;
 
 public class ExampleOverviewPage extends TemplatePage {
 
@@ -12,7 +12,7 @@ public class ExampleOverviewPage extends TemplatePage {
   }
 
   public void waitForIFrameContentVisible() {
-    $("div[id='content']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div[id='content']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public LeaveRequestOverviewPage openLeaveRequestOverview() {

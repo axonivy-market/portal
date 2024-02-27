@@ -1,15 +1,15 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.focused;
 import static com.codeborne.selenide.Selenide.$;
 
 import org.openqa.selenium.By;
 
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 public class LoginPage extends TemplatePage {
+
   public static final String ID_PROPERTY = "id";
   private static final long LOGIN_TIMEOUT = 60;
   private SelenideElement usernameTextField;
@@ -21,7 +21,7 @@ public class LoginPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "[id='login:login-form:login-command']";
+    return "#login\\:login-form\\:login-command";
   }
 
   public LoginPage(TestAccount testAccount) {
@@ -52,15 +52,14 @@ public class LoginPage extends TemplatePage {
 
   public void forgotPassword() {
     this.forgotPasswordLink.click();
-    $("button[id$='forgot-password:forgot-password-form:send-command']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("button[id$='forgot-password:forgot-password-form:send-command']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public void waitForEmailAddressIsFocused() {
-    $("input[id$='forgot-password:forgot-password-form:email']").shouldBe(focused, DEFAULT_TIMEOUT);
+    $("input[id$='forgot-password:forgot-password-form:email']").shouldBe(Condition.focused, DEFAULT_TIMEOUT);
   }
 
   public void waitForUsernameInputIsFocused() {
-    $("[id='login:login-form:username']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("input[id$='login:login-form:username']").shouldBe(Condition.focused, DEFAULT_TIMEOUT);
   }
-
 }

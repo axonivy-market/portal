@@ -7,8 +7,8 @@ import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.FileHelper;
+import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
-import com.axonivy.portal.selenium.common.ScreenshotTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
@@ -25,8 +25,8 @@ import com.axonivy.portal.selenium.page.component.RoleSelectionComponentPage;
 import com.axonivy.portal.selenium.page.component.SecurityMemberNameAndAvatarComponentPage;
 import com.axonivy.portal.selenium.page.component.UserSelectionComponentPage;
 
-@IvyWebTest
-public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
+@IvyWebTest(headless = false)
+public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
 
   @Test
   public void captureScreenshotForProcessChainComponent() throws IOException {
@@ -34,14 +34,13 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
     ScreenshotUtils.resizeBrowser(new Dimension(1300, 1150));
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.COMPONENTS_FOLDER + "process-chain");
   }
-  
+
   @Test
   public void captureScreenshotGrowlMessage() throws IOException {
     login(TestAccount.ADMIN_USER);
-    updatePortalSetting(Variable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.getKey(), ScreenshotUtils.TRUE);
-    updatePortalSetting(Variable.SHOW_LEGACY_UI .getKey(), "false");
+    updatePortalSetting(Variable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.getKey(), "true");
     redirectToRelativeLink(createTestingCaseContainOneTask);
-    ScreenshotUtils.resizeBrowser(new Dimension(1500, 1000));
+    ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
 
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     WaitHelper.waitForNavigation(() -> new NewDashboardPage().startTask(0));
@@ -64,7 +63,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
     ScreenshotUtils
         .captureHalfTopPageScreenShot(ScreenshotUtils.COMPONENTS_FOLDER + "example-global-growl-cancelled-task");
   }
-  
+
   @Test
   public void captureScreenshotProcessHistoryComponent() throws IOException {
     redirectToRelativeLink(createAlphaCompanyUrl);
@@ -77,12 +76,11 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
 
     redirectToRelativeLink(viewBetaCompanyProcessHistoryInDialogUrl);
     processHistoryPage = new ProcessHistoryPage();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(
-        processHistoryPage.getProcessHistoryDialog(),
-        ScreenshotUtils.COMPONENTS_FOLDER + "process-history-dialog-example", 
-        new ScreenshotMargin(200, 200));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(processHistoryPage.getProcessHistoryDialog(),
+        ScreenshotUtils.COMPONENTS_FOLDER + "process-history-dialog-example", new ScreenshotMargin(200, 200));
   }
-  
+
+
   @Test
   public void captureScreenshotDocumentTableComponent() throws IOException {
     redirectToRelativeLink(documentTableComponentUrl);
@@ -108,7 +106,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 1000));
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.COMPONENTS_FOLDER + "task-analysis");
   }
-  
+
   @Test
   public void captureScreenshotUserSelectionComponent() throws IOException {
     redirectToRelativeLink(userSelectionComponentShowcaseUrl);
@@ -134,6 +132,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(
         userSelectionComponentPage.getAjaxEventUserSelectionComponent(),
         ScreenshotUtils.COMPONENTS_FOLDER + "user-selection-component-ajax-expand", new ScreenshotMargin(20, 0, 60, 0));
+
   }
 
   @Test
@@ -167,7 +166,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
         roleSelectionComponentPage.getAjaxEventRoleSelectionComponent(),
         ScreenshotUtils.COMPONENTS_FOLDER + "role-selection-component-ajax-expand", new ScreenshotMargin(20, 0, 60, 0));
   }
-  
+
   @Test
   public void captureScreenshotProcessViewerPage() throws IOException {
     createTestingTasks();
@@ -182,7 +181,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
     processViewerPage.waitForSprottyToolDisplayed();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_WIDGET_FOLDER + "portal-process-viewer");
   }
-  
+
   @Test
   public void captureScreenshotProcessViewerComponent() throws IOException {
     redirectToRelativeLink(processViewerExampleInFrameUrl);
@@ -205,4 +204,5 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
         securityMemberNameAndAvatarComponentPage.getCurrentSessionRoleSecurityMemberNameAndAvatarComponentContainer(),
         ScreenshotUtils.COMPONENTS_FOLDER + "session-role-security-member-name-and-avatar");
   }
+
 }

@@ -71,6 +71,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void changeWidgetTitle(String name) {
     widgetTitle().clear();
+    widgetTitle().click();
     widgetTitle().sendKeys(name);
   }
 
@@ -106,9 +107,18 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void save() {
-    $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='widget-configuration-save-button']")
-        .shouldBe(getClickableCondition()).click();
+    $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id='widget-configuration-form:new-widget-configuration-component:case-widget-preview:dashboard-cases_head']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    $("button[id$='widget-configuration-save-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("button[id$='widget-configuration-save-button']").shouldBe(disappear, DEFAULT_TIMEOUT);
     $(caseEditWidgetId).shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public WebElement openColumnManagementDialog() {
+    $("div[id$='case-widget-preview:dashboard-cases-container']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("a[id$='column-toggler']").click();
+    return getColumnManagementDialog().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getColumnManagementDialog() {
@@ -126,19 +136,20 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private SelenideElement getCustomFieldCategory() {
-    return getColumnManagementDialog().$("input[id$=':column-management-form:custom-field-categories-selection_input']");
+    return getColumnManagementDialog()
+        .$("input[id$=':column-management-form:custom-field-categories-selection_input']");
   }
 
   public void selectFieldType(String type) {
     getColumnManagementDialog().$("div[id$='field-type-selection'] span.ui-icon-triangle-1-s")
-        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(Condition.enabled, DEFAULT_TIMEOUT).click();
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(Condition.enabled, DEFAULT_TIMEOUT).click();
     $("div[id$='column-management-form:field-type-selection_panel'] li[data-label='" + type + "']").click();
   }
 
   public void removeAddedField(String field) {
     SelenideElement removeLink = getAddedFieldRemoveLink(field);
     removeLink.click();
-    removeLink.shouldBe(disappear, DEFAULT_TIMEOUT);
+    removeLink.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getAddedFieldRemoveLink(String field) {
@@ -147,8 +158,8 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
   public SelenideElement getCustomField(String field) {
     getCustomFieldSelection().click();
-    SelenideElement customFieldPanel = $("span[id$='column-management-form:custom-field-selection_panel']");
-    customFieldPanel.shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement customFieldPanel = $("span[id$='column-management-form:custom-field-selection_panel']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return customFieldPanel.$("li[data-item-value='" + field + "']");
   }
 
@@ -156,32 +167,49 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     selectCustomType();
     getCustomFieldSelection().click();
     SelenideElement customFieldPanel = $("span[id$='column-management-form:custom-field-selection_panel']");
-    customFieldPanel.shouldBe(appear, DEFAULT_TIMEOUT);
+    customFieldPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     SelenideElement firstFieldElement = customFieldPanel.$("li").shouldBe(getClickableCondition());
     String field = firstFieldElement.getText();
     firstFieldElement.click();
 
     getColumnManagementDialog().$("button[id$='field-add-btn']").click();
 
-    getAddedFieldRemoveLink(field).shouldBe(appear, DEFAULT_TIMEOUT);
+    getAddedFieldRemoveLink(field).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return field;
+  }
+
+  public String addCustomColumnByName(String columnName) {
+    selectCustomType();
+    getCustomFieldSelection().click();
+    $("span[id$='column-management-form:custom-field-selection_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement result = $("span[id$='column-management-form:custom-field-selection_panel']").$$("li")
+        .filter(Condition.text(columnName)).first().shouldBe(getClickableCondition());
+    String field = result.getText();
+    result.click();
+    $("input[id$=':field-display-name'").shouldNot(Condition.empty, DEFAULT_TIMEOUT);
+
+    getColumnManagementDialog().$("button[id$='field-add-btn']").click();
+    getAddedFieldRemoveLink(field).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
     return field;
   }
 
   private SelenideElement getCustomFieldSelection() {
-    return getColumnManagementDialog().$("span[id$='custom-field-selection'] button");
+    return getColumnManagementDialog().$("span[id$='custom-field-selection'] button").shouldBe(clickable(),
+        DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getStandardField(String field) {
     getStandardFieldSelection().click();
     SelenideElement standardFieldPanel = $("div[id$='column-management-form:standard-field-selection_panel']");
-    standardFieldPanel.shouldBe(appear, DEFAULT_TIMEOUT);
+    standardFieldPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return standardFieldPanel.$("li[data-label='" + field + "']");
   }
 
   public String addFirstStandardField() {
     getStandardFieldSelection().click();
     SelenideElement standardFieldPanel = $("div[id$='column-management-form:standard-field-selection_panel']");
-    standardFieldPanel.shouldBe(appear, DEFAULT_TIMEOUT);
+    standardFieldPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     SelenideElement firstFieldElement = standardFieldPanel.$("li").shouldBe(getClickableCondition());
     String field = firstFieldElement.getText();
     firstFieldElement.click();
@@ -191,7 +219,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
     getColumnManagementDialog().$("button[id$='field-add-btn']").click();
 
-    getAddedFieldRemoveLink(field).shouldBe(appear, DEFAULT_TIMEOUT);
+    getAddedFieldRemoveLink(field).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return field;
   }
 
@@ -201,7 +229,8 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private SelenideElement getStandardFieldSelection() {
-    getColumnManagementDialog().$("div[id$='standard-field-selection'] .ui-selectonemenu-trigger").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    getColumnManagementDialog().$("div[id$='standard-field-selection'] .ui-selectonemenu-trigger")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     return getColumnManagementDialog().$("div[id$='standard-field-selection'] .ui-selectonemenu-trigger");
   }
 
@@ -216,7 +245,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
   public SelenideElement getAddLanguageButton() {
     SelenideElement addLanguageButton = $("button[id$='add-language-button']");
-    addLanguageButton.shouldBe(appear, DEFAULT_TIMEOUT);
+    addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     addLanguageButton.shouldBe(getClickableCondition());
     waitUntilElementToBeClickable(addLanguageButton);
     return addLanguageButton;
@@ -224,19 +253,21 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
   public SelenideElement getMultipleLanguageDialog() {
     SelenideElement addLanguageButton = $("div[id$='multiple-languages-dialog']");
-    addLanguageButton.shouldBe(appear, DEFAULT_TIMEOUT);
+    addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return addLanguageButton;
   }
-  
+
+  public SelenideElement getTranslationOverlayPanel(int index) {
+    SelenideElement translationOverlay = $(String.format("div[id$=':%s:overlay-panel-input']", index));
+    waitUntilElementToBeClickable(translationOverlay);
+    translationOverlay.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
+    return translationOverlay;
+  }
+
   public WebElement getConfigurationFilter() {
     return $("[id='widget-configuration-form:new-widget-configuration-component:filter-container']").shouldBe(appear,
         DEFAULT_TIMEOUT);
-  }
-  
-  public WebElement openColumnManagementDialog() {
-    $("div[id$='case-widget-preview:dashboard-cases-container']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$("a[id$='column-toggler']").click();
-    return getColumnManagementDialog().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getConfigurationDialog() {

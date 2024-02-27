@@ -58,4 +58,3 @@ public class ChangePasswordPage extends TemplatePage {
     return findElementById("change-password-dialog");
   }
 }
-

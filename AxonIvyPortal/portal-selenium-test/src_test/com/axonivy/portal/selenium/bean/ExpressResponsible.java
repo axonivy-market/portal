@@ -4,6 +4,10 @@ public class ExpressResponsible {
   
   private String responsibleName;
   private boolean isGroup;
+  
+  public ExpressResponsible() {
+  }
+
 
   public ExpressResponsible(String responsibleName, boolean isGroup) {
     super();
@@ -15,9 +19,17 @@ public class ExpressResponsible {
     return responsibleName;
   }
 
-  public boolean isGroup() {
+  public boolean getIsGroup() {
     return isGroup;
   }
 
+  public void setResponsibleName(String responsibleName) {
+    this.responsibleName = responsibleName;
+  }
+
+
+  public void setIsGroup(boolean isGroup) {
+    this.isGroup = isGroup;
+  }
 
 }

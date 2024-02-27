@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
+import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
-import com.axonivy.portal.selenium.common.ScreenshotTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
@@ -18,16 +18,16 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
-@IvyWebTest
-public class ChatScreenshotTest extends ScreenshotTest {
+@IvyWebTest(headless = false)
+public class ChatScreenshotTest extends ScreenshotBaseTest {
 
   @Override
   @BeforeEach
   public void setup() {
     super.setup();
     login(TestAccount.HR_ROLE_USER);
-    updatePortalSetting(Variable.ENABLE_GROUP_CHAT.getKey(), ScreenshotUtils.TRUE);
-    updatePortalSetting(Variable.ENABLE_PRIVATE_CHAT.getKey(), ScreenshotUtils.TRUE);
+    updatePortalSetting(Variable.ENABLE_GROUP_CHAT.getKey(), "true");
+    updatePortalSetting(Variable.ENABLE_PRIVATE_CHAT.getKey(), "true");
     redirectToRelativeLink(createTestingTasksUrl);
   }
 

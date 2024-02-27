@@ -1,6 +1,5 @@
 package com.axonivy.portal.selenium.document.screenshot;
 
-import com.axonivy.portal.selenium.common.ScreenshotTest;
 import java.io.IOException;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -9,19 +8,18 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
+import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
-import com.axonivy.portal.selenium.common.Variable;
-import com.axonivy.portal.selenium.page.HomePage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessInformationPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 
+@IvyWebTest(headless = false)
+public class PortalProcessesScreenshotTest extends ScreenshotBaseTest {
 
-@IvyWebTest
-public class PortalProcessesScreenshotTest extends ScreenshotTest{
   private static final int SCREENSHOT_WIDTH = 1440;
   private static final int SCREENSHOT_HD_WIDTH = 1920;
   private static final int SCREENSHOT_MOBILE_HEIGHT = 500;
@@ -135,48 +133,4 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest{
     ScreenshotUtils
         .captureHalfLeftPageScreenShot(ScreenshotUtils.PROCESSES_PROCESS_IMAGE_FOLDER + "image-process-list");
   }
-  
-  @Test
-  public void screenshotHowToEditUserProcess() throws IOException {
-    redirectToRelativeLink(createUserFavoriteProcess);
-
-    ScreenshotUtils.resizeBrowser(new Dimension(1920, 800));
-    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), ScreenshotUtils.TRUE);
-    HomePage homePage = new HomePage();
-
-    ScreenshotUtils.executeDecorateJs("highlightEditSwitchProcessButton()");
-    ScreenshotUtils.captureHalfLeftPageScreenShot(ScreenshotUtils.PROCESSES_WIDGET_FOLDER + "how-to-edit-process-favorites");
-
-    refreshPage();
-    homePage.waitUtilProcessWidgetUserFavoriteDisplayed();
-    homePage.clickEditSwitchLink();
-    ScreenshotUtils.executeDecorateJs("highlightEditStepUserProcess(true)");
-    ScreenshotUtils.captureHalfLeftPageScreenShot(ScreenshotUtils.PROCESSES_WIDGET_FOLDER + "how-to-delete-process-favorites");
-    
-    refreshPage();
-    homePage.waitUtilProcessWidgetUserFavoriteDisplayed();
-    homePage.clickEditSwitchLink();
-    ScreenshotUtils.executeDecorateJs("highlightEditStepUserProcess()");
-    ScreenshotUtils.captureHalfLeftPageScreenShot(ScreenshotUtils.PROCESSES_WIDGET_FOLDER + "how-to-order-process-favorites-individually");
-    
-    refreshPage();
-    homePage.waitUtilProcessWidgetUserFavoriteDisplayed();
-    ScreenshotUtils.executeDecorateJs("highlightSortUserProcess()");
-    ScreenshotUtils.captureHalfLeftPageScreenShot(ScreenshotUtils.PROCESSES_WIDGET_FOLDER + "how-to-order-process-favorites-by-name");
-  }
-  
-  @Test
-  public void screenshotHowtoAddProcessFavorite() throws IOException {
-    redirectToRelativeLink(createUserFavoriteProcess);
-    ScreenshotUtils.resizeBrowser(new Dimension(1920, 800));
-    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), ScreenshotUtils.TRUE);
-    HomePage homePage = new HomePage();
-
-    ScreenshotUtils.resizeBrowser(new Dimension(1366, SCREENSHOT_MOBILE_HEIGHT));
-    homePage.openNewProcessDialog();
-    ScreenshotUtils.executeDecorateJs("highlightAddFavoriteProcess()");
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.PROCESSES_WIDGET_FOLDER + "how-to-add-process-favorite");
-  }
-
-
 }

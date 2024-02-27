@@ -71,4 +71,6 @@ public class ScreenshotMargin {
   public void setMarginLeft(int marginLeft) {
     this.marginLeft = marginLeft;
   }
+
+
 }

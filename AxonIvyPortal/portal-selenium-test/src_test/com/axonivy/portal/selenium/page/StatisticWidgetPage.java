@@ -1,24 +1,22 @@
 package com.axonivy.portal.selenium.page;
 
+import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
-
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.CollectionCondition.size;
-
-import com.axonivy.portal.selenium.common.WaitHelper;
-import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebDriverRunner;
-
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-
+import com.axonivy.portal.selenium.common.WaitHelper;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 
 public class StatisticWidgetPage extends TemplatePage {
   public static final String TASK_BY_PRIORITY_CHART_NAME = "Task by priority chart";
@@ -35,15 +33,16 @@ public class StatisticWidgetPage extends TemplatePage {
   }
 
   public TaskAnalysisWidgetPage navigateToTaskAnalysisPage() {
+    waitForPageLoad();
     var taskAnalysLink = $("a[id='statistics-widget:task-analysis-page-navigation-link']")
-        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition());
-    WaitHelper.waitForNavigation(() -> taskAnalysLink.click());
-    $("[id='task-widget']").shouldBe(appear, DEFAULT_TIMEOUT);
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    WaitHelper.waitForNavigation(() -> waitForElementClickableThenClick(taskAnalysLink));
+    $("[id='task-widget']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return new TaskAnalysisWidgetPage();
   }
 
   public Set<String> getAllChartNames() {
-    $(By.id("chart-name-0")).shouldBe(appear, DEFAULT_TIMEOUT);
+    $(By.id("chart-name-0")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return $$("div[id$=':chart-name-container'] .chart-name").shouldHave(size(1), DEFAULT_TIMEOUT).asFixedIterable()
         .stream().map(e -> e.getText()).collect(Collectors.toSet());
   }
@@ -191,12 +190,11 @@ public class StatisticWidgetPage extends TemplatePage {
   }
 
   public void waitForAllChartLoaded() {
-    $("[id$='statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:period-time-filter-tab_header']").shouldBe(appear, DEFAULT_TIMEOUT);
-    $("[id$='statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:period-time-filter-tab_header']").shouldBe(getClickableCondition()).click();
-    $("[id$='statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:role-filter-tab_header']").shouldBe(getClickableCondition()).click();
-    $("[id$='statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:case-category-filter-tab_header']").shouldBe(getClickableCondition()).click();
-    $("[id$='statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:case-state-filter-tab_header']").shouldBe(getClickableCondition()).click();
-    $("[id$='statistics-widget:chart-creation-widget:chart-management-form:statistic-filter:statistic-filter-accordion-panel:task-priority-filter-tab_header']").shouldBe(getClickableCondition()).click();
+    SelenideElement element =
+        $("[id$='statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name-container'] a");
+    element.shouldBe(clickable(), DEFAULT_TIMEOUT).click();
+    $("[id$='statistics-widget:statistic-dashboard-widget:chart-details-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("button.ui-button-text-icon-left").shouldBe(appear, DEFAULT_TIMEOUT).click();
   }
 
   public void createTaskByPriorityChart() {
@@ -269,13 +267,4 @@ public class StatisticWidgetPage extends TemplatePage {
     return $("[id='statistics-widget:statistic-dashboard-widget:chart-details-dialog']").shouldBe(appear,
         DEFAULT_TIMEOUT);
   }
-  
-  public void clickChartInfoAndCloseToWaitAnimation() {
-    getChartInfoDialogOfChart(0);
-    pressESC();
-    
-    getChartInfoDialogOfChart(0);
-    pressESC();
-  }
-  
 }

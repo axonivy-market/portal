@@ -8,8 +8,8 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
+import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
-import com.axonivy.portal.selenium.common.ScreenshotTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
@@ -19,8 +19,9 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.StatisticWidgetPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
-@IvyWebTest
-public class StatisticScreenshotTest extends ScreenshotTest {
+@IvyWebTest(headless = false)
+public class StatisticScreenshotTest extends ScreenshotBaseTest {
+
   @Override
   @BeforeEach
   public void setup() {
@@ -44,6 +45,7 @@ public class StatisticScreenshotTest extends ScreenshotTest {
     WaitHelper.waitForNavigation(() -> redirectToRelativeLink(createTestingTasksUrl));
     homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
+    homePage.waitForGrowlMessageDisappear();
     mainMenu.expandMainMenu();
 
     ScreenshotUtils.executeDecorateJs("highlightStatisticNavigation()");
@@ -52,11 +54,7 @@ public class StatisticScreenshotTest extends ScreenshotTest {
 
     StatisticWidgetPage statisticWidgetPage = mainMenu.openStatisticPage();
     statisticWidgetPage.switchCreateMode();
-    statisticWidgetPage.waitForAllChartLoaded();
     mainMenu.closeMainMenu();
-    ScreenshotUtils.resizeBrowser(new Dimension(1386, 2210));
-    statisticWidgetPage.waitForAllChartLoaded();
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-creation-page");
 
     statisticWidgetPage.createTaskByPriorityChart();
     statisticWidgetPage.createTaskByExpiryChart();
@@ -70,16 +68,14 @@ public class StatisticScreenshotTest extends ScreenshotTest {
     refreshPage();
     statisticWidgetPage.waitForChartCreationPageRendered();
     statisticWidgetPage.backToDashboard();
-    statisticWidgetPage.clickChartInfoAndCloseToWaitAnimation();
+    statisticWidgetPage.waitForAllChartLoaded();
     ScreenshotUtils.executeDecorateJs("numberingChartPanel()");
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(statisticWidgetPage.waitAndGetChartPanelByIndex(1),
         ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-detail-with-annotation", new ScreenshotMargin(20, 10));
     refreshPage();
-    mainMenu.waitForPageLoad();
-    statisticWidgetPage.waitForPageLoad();
+    statisticWidgetPage.waitForAllChartLoaded();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(statisticWidgetPage.getChartInfoDialogOfChart(1),
         ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-info-dialog", new ScreenshotMargin(20, 10));
   }
 
 }
-

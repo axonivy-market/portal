@@ -50,6 +50,8 @@ public class PasswordValidationPage extends TemplatePage {
 
   public void clickOnSaveButton() {
     getSaveButton().click();
+    // waitForElementEnabled(By.cssSelector("[id$=':password-validation-component:password-validation-form:save-password-validation-btn']"),
+    // false, DEFAULT_TIMEOUT);
   }
 
   public boolean isCheckBoxInTableEnabled() {

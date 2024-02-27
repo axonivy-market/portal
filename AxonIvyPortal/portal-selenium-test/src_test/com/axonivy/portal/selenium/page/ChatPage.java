@@ -14,10 +14,12 @@ import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.bean.ExpressResponsible;
 import com.axonivy.portal.selenium.common.WaitHelper;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class ChatPage extends TemplatePage {
+
   @Override
   protected String getLoadedLocator() {
     return "[id='toggle-chat-panel-command']";
@@ -34,7 +36,7 @@ public class ChatPage extends TemplatePage {
   public void addUserToChatGroup(List<ExpressResponsible> responsibles) {
     waitForElementDisplayed(By.id("chat-assignee-dialog"), true);
     for (ExpressResponsible responsible : responsibles) {
-      chooseResponsible(responsible.getResponsibleName(), responsible.isGroup());
+      chooseResponsible(responsible.getResponsibleName(), responsible.getIsGroup());
     }
   }
 
@@ -92,12 +94,12 @@ public class ChatPage extends TemplatePage {
 
   public void isNotificationBadgeChat() {
     waitForElementDisplayed(By.cssSelector("a.notification-badge"), true);
-    $(By.cssSelector("a[data-badge=' ']")).shouldBe(appear, DEFAULT_TIMEOUT);
+    $(By.cssSelector("a[data-badge=' ']")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
 
   public void isNotificationContactChat() {
-    $(By.cssSelector("span[class$='js-notification']")).shouldBe(appear, DEFAULT_TIMEOUT);
+    $(By.cssSelector("span[class$='js-notification']")).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public void selectChatUser(String name) {

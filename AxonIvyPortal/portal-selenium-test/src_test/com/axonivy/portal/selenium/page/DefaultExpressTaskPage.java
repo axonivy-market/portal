@@ -20,5 +20,4 @@ public class DefaultExpressTaskPage extends TemplatePage {
   public void clickOK() {
     $("[id='form:ok-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
-
 }

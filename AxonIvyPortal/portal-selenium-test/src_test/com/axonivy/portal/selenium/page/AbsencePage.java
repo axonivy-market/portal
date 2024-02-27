@@ -181,4 +181,3 @@ public class AbsencePage extends TemplatePage {
     waitForElementDisplayed(By.id("deputy-setting"), isDisplay);
   }
 }
-
