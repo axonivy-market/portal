@@ -122,7 +122,7 @@ public class CaseActionBean implements Serializable {
     if (result.endsWith("&")) {
       result = result.substring(0, result.length() - 1);
     }
-    Ivy.log().error(result);
+
     return result;
   }
 
