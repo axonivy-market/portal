@@ -1564,7 +1564,6 @@ Dialogs:
             IconSelection:
               IconLinkTooltip: Cliquez pour changer d'icône
             TaskItemDetails:
-              CannotResetTaskWarning: Quelqu'un travaille actuellement sur cette tâche.
               CannotWorkOnDestroyedTaskWarning: Vous ne pouvez pas travailler sur la tâche parce qu'elle a été détruite.
               CannotWorkOnTaskWarning: Vous ne pouvez pas travailler sur cette tâche car l'utilisateur <strong>{0}</strong> y travaille déjà.
               InvalidStateInfo: État non valide.
