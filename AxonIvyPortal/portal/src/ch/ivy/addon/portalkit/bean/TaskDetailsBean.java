@@ -16,10 +16,8 @@ import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.taskdetails.TaskDetails;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.jsf.Attrs;
-import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
@@ -38,7 +36,6 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
   private static final String RESET_TASK_WARNING_CMS_URI = "/Dialogs/ch/ivy/addon/portalkit/component/TaskItemDetails/ResetTaskWarning";
   private static final String CANNOT_WORK_ON_TASK_WARNING_CMS_URI = "/Dialogs/ch/ivy/addon/portalkit/component/TaskItemDetails/CannotWorkOnTaskWarning";
   private static final String CANNOT_WORK_ON_DESTROYED_TASK_WARNING_CMS_URI = "/Dialogs/ch/ivy/addon/portalkit/component/TaskItemDetails/CannotWorkOnDestroyedTaskWarning";
-  private static final String CANNOT_RESET_TASK_WARNING_CMS_URI = "/Dialogs/ch/ivy/addon/portalkit/component/TaskItemDetails/CannotResetTaskWarning";
   private static final String TASK_COMPLETED_BY_YOU_INFO_CMS_URI = "/Dialogs/ch/ivy/addon/portalkit/component/TaskItemDetails/TaskCompletedByYouInfo";
   private static final String TASK_COMPLETED_BY_OTHER_INFO_CMS_URI = "/Dialogs/ch/ivy/addon/portalkit/component/TaskItemDetails/TaskCompletedByOtherInfo";
   private static final String INVALID_STATE_INFO_CMS_URI = "/Dialogs/ch/ivy/addon/portalkit/component/TaskItemDetails/InvalidStateInfo";
@@ -155,18 +152,6 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
     return isActivator() && activeTaskStates.contains(selectedTask.getState());
   }
 
-  private boolean canResetTask() {
-    if (!PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_RESET_ACTION)) {
-      return false;
-    }
-    TaskActionBean taskActionBean = ManagedBeans.get("taskActionBean");
-    if (taskActionBean != null) {
-      ITask selectedTask = getSelectedTaskFromData();
-      return taskActionBean.canReset(selectedTask);
-    }
-    return false;
-  }
-
   public String getInfoBannerSeverity() {
     ITask selectedTask = getSelectedTaskFromData();
     boolean validState = selectedTask.getState() == TaskState.RESUMED || selectedTask.getState() == TaskState.CREATED || selectedTask.getState() == TaskState.PARKED;
@@ -180,10 +165,8 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
     case CREATED, RESUMED, PARKED -> {
       if (currentIsWorkerUser()) {
         yield Ivy.cms().co(RESET_TASK_WARNING_CMS_URI, Arrays.asList(buildResetTaskUrl(selectedTask)));
-      } else if (canResetTask()) {
-        yield Ivy.cms().co(CANNOT_WORK_ON_TASK_WARNING_CMS_URI, Arrays.asList(getWorkerUser(selectedTask)));
       } else {
-        yield Ivy.cms().co(CANNOT_RESET_TASK_WARNING_CMS_URI);
+        yield Ivy.cms().co(CANNOT_WORK_ON_TASK_WARNING_CMS_URI, Arrays.asList(getWorkerUser(selectedTask)));
       }
     }
     case DONE, READY_FOR_JOIN, JOINING, JOIN_FAILED -> {

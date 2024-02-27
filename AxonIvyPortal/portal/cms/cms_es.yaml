@@ -1571,7 +1571,6 @@ Dialogs:
             IconSelection:
               IconLinkTooltip: Haga clic para cambiar el icono
             TaskItemDetails:
-              CannotResetTaskWarning: Alguien está trabajando actualmente en esta tarea.
               CannotWorkOnDestroyedTaskWarning: No puedes trabajar en la tarea porque ha sido destruida.
               CannotWorkOnTaskWarning: No puede procesar la tarea porque el usuario <strong>{0}</strong> está trabajando actualmente en ella.
               InvalidStateInfo: Estado no válido.
