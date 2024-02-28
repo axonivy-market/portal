@@ -12,7 +12,7 @@ import com.axonivy.portal.components.util.HtmlUtils;
 public class HtmlSanitizerBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public String sanitizeContent(String content) {
+  public String sanitize(String content) {
     return HtmlUtils.sanitize(content);
   }
 }

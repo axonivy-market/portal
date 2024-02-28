@@ -26,8 +26,7 @@
                 autoResize="false" />
             </f:facet>
             <f:facet name="output">
-              <h:outputText id="task-description-output" styleClass="task-detail-description-output"
-                escape="false" value="#{taskWidgetBean.sanitizeHTML(task.description)}" />
+              <h:outputText escape="false" value="#{taskWidgetBean.sanitizeHTML(task.description)}" id="task-description-output" styleClass="task-detail-description-output"/>
             </f:facet>
           </p:inplace>
         </div>

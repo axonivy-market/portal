@@ -83,7 +83,7 @@
               <h:panelGroup rendered="#{processHistoryComponentBean.dataModel.isSelectedColumn('NAME')}">
                 <h:outputText id="case-header-name-cell" styleClass="case-header-name-cell"
                   value="#{empty case.getName() ? ivy.cms.co('/Dialogs/com/axonivy/portal/components/ProcessHistory/CaseNameNotAvailable') : case.name}" />
-                <h:outputText id="description-cell" styleClass="case-header-desc-cell" escape="false" value="#{htmlSanitizerBean.sanitizeContent(processHistoryComponentBean.formatCaseDescription(case.description))}" />
+                <h:outputText escape="false" value="#{htmlSanitizerBean.sanitize(processHistoryComponentBean.formatCaseDescription(case.description))}" id="description-cell" styleClass="case-header-desc-cell"/>
               </h:panelGroup>
             </h:panelGroup>
 
