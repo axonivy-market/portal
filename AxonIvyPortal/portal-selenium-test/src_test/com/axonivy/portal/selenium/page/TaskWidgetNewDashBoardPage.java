@@ -104,7 +104,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     waitForGlobalGrowlDisappear();
     getTaskWidgetHeader().$(".widget__filter-sidebar-link").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
-    clickByJavaScript(getTaskWidgetHeader().$(".widget__filter-sidebar-link"));
+    waitForElementClickableThenClick(".widget__filter-sidebar-link");
     $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -129,7 +129,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void resetFilter() {
     $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='reset-button']")
-        .filter(text("Reset")).first().shouldBe(getClickableCondition()).click();
+        .filter(text("Reset")).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void filterPriority(String... priorities) {
@@ -479,7 +479,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     ElementsCollection elementsTH = $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
     for (int i = 0; i < elementsTH.size(); i++) {
       if (elementsTH.get(i).getText().equalsIgnoreCase(columnName)) {
-        elementsTH.get(i).click();
+        waitForElementClickableThenClick(elementsTH.get(i));
+        waitForPageLoad();
         elementsTH.get(i).shouldBe(Condition.cssClass("ui-state-active"), DEFAULT_TIMEOUT);
       }
     }
