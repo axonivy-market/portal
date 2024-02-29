@@ -66,13 +66,14 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
     boolean isPanelDisplayed = false;
     while(!isPanelDisplayed) {
       waitForElementClickableThenClick("[id='leave-request:leave-type']");
-      $("[id='leave-request:leave-type_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-      isPanelDisplayed = $("[id='leave-request:leave-type_panel']").isDisplayed();
+      isPanelDisplayed = $("[id='leave-request:leave-type_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+          .isDisplayed();
     }
 
     String leaveTypeSelector = "li[data-label='" + leaveType + "']";
     waitForElementDisplayed(By.cssSelector(leaveTypeSelector), true);
     waitForElementClickableThenClick(leaveTypeSelector);
+    waitForElementDisplayed($("[id='leave-request:leave-type_panel']"), false);
   }
 
   private void closePanelDatePicker(WebElement element) {
@@ -84,13 +85,14 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
     boolean isPanelDisplayed = false;
     while(!isPanelDisplayed) {
       waitForElementClickableThenClick("[id='leave-request:approver']");
-      $("[id='leave-request:approver_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-      isPanelDisplayed = $("[id='leave-request:approver_panel']").isDisplayed();
+      isPanelDisplayed = $("[id='leave-request:approver_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+          .isDisplayed();
     }
 
     String approverSelector = "li[data-label='" + approver + "']";
     waitForElementDisplayed(By.cssSelector(approverSelector), true);
     waitForElementClickableThenClick(approverSelector);
+    waitForElementDisplayed($("[id='leave-request:approver_panel']"), false);
   }
 
   public void enterApproverComment(String approverComment) {
@@ -106,6 +108,7 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   public TaskTemplatePage finishLeaveRequest() {
     waitForElementClickableThenClick(By.id("leave-request:finish-btn"));
     switchToDefaultContent();
+    waitForPageLoad();
     return new TaskTemplatePage();
   }
 
