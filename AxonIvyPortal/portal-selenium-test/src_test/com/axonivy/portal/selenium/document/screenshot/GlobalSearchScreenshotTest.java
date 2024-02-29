@@ -12,7 +12,7 @@ import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.page.GlobalSearchResultPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class GlobalSearchScreenshotTest extends ScreenshotBaseTest {
 
   @Override

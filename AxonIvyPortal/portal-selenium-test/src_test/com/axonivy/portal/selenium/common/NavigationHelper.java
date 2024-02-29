@@ -12,6 +12,8 @@ public class NavigationHelper {
   private static final String CASE_LIST_PAGE_URL = "portal/1549F58C18A6C562/CaseListPage.ivp";
   private static final String PROCESS_LIST_PAGE_URL = "portal/1549F58C18A6C562/DefaultProcessStartListPage.ivp";
   private static final String STATISTIC_PAGE_URL = "portal/1549F58C18A6C562/StatisticPage.ivp";
+  private static final String DEVELOPER_EXAMPLES_TASK_LIST_PAGE_URL  = "portal-developer-examples/164211E97C598DAA/DefaultTaskListPage.ivp";
+  
 
   public static void navigateToRelativeLink(String relativeProcessStartUrl) {
     try {
@@ -23,6 +25,11 @@ public class NavigationHelper {
 
   public static TaskWidgetPage navigateToTaskList() {
     navigateToRelativeLink(TASK_LIST_PAGE_URL);
+    return new TaskWidgetPage();
+  }
+
+  public static TaskWidgetPage navigateToDeveloperExamplesTaskList() {
+    navigateToRelativeLink(DEVELOPER_EXAMPLES_TASK_LIST_PAGE_URL);
     return new TaskWidgetPage();
   }
 

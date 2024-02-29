@@ -41,7 +41,9 @@ public enum Variable {
   GLOBAL_SEARCH_BY_CASE_FIELDS("Portal.SearchScope.ByCaseFields"), DEEPL_AUTH_KEY("Portal.DeepL.AuthKey"),
   ENABLE_DEEPL_TRANSLATION("Portal.DeepL.Enable"), DASHBOARD("Portal.Dashboard"),
   GLOBAL_FOOTER_INFO("Portal.GlobalFooterInfo"), USER_MENU("Portal.UserMenu"), DEFAULT_THEME_MODE("Portal.Theme.Mode"),
-  ENABLE_SWITCH_THEME_BUTTON("Portal.Theme.EnableSwitchThemeModeButton");
+  ENABLE_SWITCH_THEME_BUTTON("Portal.Theme.EnableSwitchThemeModeButton"),
+  SHOW_USER_GUIDE("Portal.Dashboard.ShowUserGuide"),
+  SHOW_LEGACY_UI("Portal.ShowLegacyUI");
 
   private String key;
 

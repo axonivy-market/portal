@@ -21,6 +21,7 @@ import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.DashboardNewsWidgetConfigurationPage;
 import com.axonivy.portal.selenium.page.DashboardNewsWidgetPage;
+import com.axonivy.portal.selenium.page.HomePage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -28,15 +29,18 @@ import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.ProcessViewerWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.StatisticEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DashboardScreenshotTest extends ScreenshotBaseTest {
   private NewDashboardPage homePage;
   private static final int SCREENSHOT_WIDTH = 1500;
   private static final String EXTERNAL_URL = "https://developer.axonivy.com";
   private static final String INVESTMENT_LIST = "Investment List (Example for Custom Widget on Dashboard)";
+  private static final String FOOTER_INFO = "Dev Team: Wawa, Env: Dev";
+  private static final int SCREENSHOT_HD_WIDTH = 1920;
 
   @Override
   @BeforeEach
@@ -112,29 +116,6 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.captureElementScreenshot(customWidgetPage.getConfigurationDialog(),
         ScreenshotUtils.DASHBOARD_FOLDER + "external-page-widget-configuration");
   }
-
-//  TEMPORARILY DISABLE SINCE DON'T SEE IT ON BRANCH RELEASE 10
-//  @Test
-//  public void screenshotConfigureNotificationsWidget() throws IOException {
-//    redirectToDashboardConfiguration();
-//    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
-//    configPage.selectPublicDashboardType();
-//    configPage.openEditPublicDashboardsPage();
-//    DashboardModificationPage editPage = new DashboardModificationPage();
-//    NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
-//    detailsEditPage.waitPageLoaded();
-//    detailsEditPage.addWidget();
-//
-//    DashboardNotificationWidgetConfigurationPage notiWidgetPage = detailsEditPage.addNotificationWidget();
-//    notiWidgetPage.changeFilter();
-//    ScreenshotUtils.captureElementScreenshot(notiWidgetPage.getConfigurationDialog(),
-//        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "notification-widget-configuration");
-//    notiWidgetPage.save();
-//    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
-//    DashboardNotificationWidgetPage notiPage = new DashboardNotificationWidgetPage();
-//    ScreenshotUtils.captureElementScreenshot(notiPage.getWidgetElement(),
-//        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "notification-widget");
-//  }
 
   @Test
   public void screenshotDashboardWithAnnotation() throws IOException {
@@ -228,7 +209,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     CaseEditWidgetNewDashBoardPage caseConfigurationPage = detailsEditPage.addNewCaseWidget();
     ScreenshotUtils.captureElementScreenshot(caseConfigurationPage.getConfigurationFilter(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-configuration");
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseConfigurationPage.openColumnManagementDialog(),
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseConfigurationPage.openColumnManagementDialogForScreenshot(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-table-configuration", new ScreenshotMargin(20));
 
     caseConfigurationPage.removeAddedField("category");
@@ -370,4 +351,53 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     detailsEditPage.addWidget();
     detailsEditPage.addWidgetByName(widgetName);
   }
+  
+  @Test
+  public void takeScreenshotOverlayGuide() throws IOException {
+    ScreenshotUtils.resizeBrowser(new Dimension(1200, 800));
+    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "true");
+    updatePortalSetting(Variable.SHOW_USER_GUIDE.getKey(), "true");
+    TaskTemplatePage homePage = new TaskTemplatePage();
+    homePage.waitForLeftMenuActive();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DASHBOARD_FOLDER + "overlay-guide");
+  }
+  
+  @Test
+  public void takeScreenshotWithEnvironmentInfo() throws IOException {
+    updatePortalSetting(Variable.GLOBAL_FOOTER_INFO.getKey(), FOOTER_INFO);
+    showNewDashboard();
+    ScreenshotUtils.resizeBrowser(new Dimension(1200, 500));
+    ScreenshotUtils.executeDecorateJs("highlightServerInfo()");
+    ScreenshotUtils.captureHalfRightPageScreenShot(ScreenshotUtils.DASHBOARD_FOLDER + "environment-info");
+  }
+  
+  @Test
+  public void screenshotDashboard() throws IOException {
+    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "true");
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+
+    HomePage homePage = new HomePage();
+    homePage.waitForPageLoad();
+
+    ScreenshotUtils.maximizeBrowser();
+    ScreenshotUtils.captureElementScreenshot(homePage.getProcessWidgetElement(), ScreenshotUtils.DASHBOARD_FOLDER + "process-widget");
+    ScreenshotUtils.captureElementScreenshot(homePage.getStatisticWidgetElement(), ScreenshotUtils.DASHBOARD_FOLDER + "statistic-widget");
+
+    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_HD_WIDTH, 800));
+    ScreenshotUtils.captureElementScreenshot(homePage.getTaskWidgetElement(), ScreenshotUtils.DASHBOARD_FOLDER + "task-widget");
+  }
+
+  @Test
+  public void screenshotCustomizedDashboard() throws IOException {
+    showNewCustomizedDashboard();
+    new MainMenuPage().openTaskList();
+
+    ScreenshotUtils.resizeBrowserAndCaptureWholeScreen(ScreenshotUtils.DASHBOARD_FOLDER + "page-header-footer", new Dimension(SCREENSHOT_WIDTH, 900));
+  }
+
+  private void showNewCustomizedDashboard() {
+    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "false");
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
+  }
+
 }

@@ -24,7 +24,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
 
   private MainMenuPage mainMenuPage;

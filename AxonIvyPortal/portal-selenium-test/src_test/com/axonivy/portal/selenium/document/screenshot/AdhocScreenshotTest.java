@@ -22,7 +22,7 @@ import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class AdhocScreenshotTest extends ScreenshotBaseTest {
 
   @Override

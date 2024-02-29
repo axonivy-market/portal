@@ -19,7 +19,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.StatisticWidgetPage;
 import com.axonivy.portal.selenium.page.TaskAnalysisWidgetPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class TaskAnalysisScreenshotTest extends ScreenshotBaseTest {
 
   @Override

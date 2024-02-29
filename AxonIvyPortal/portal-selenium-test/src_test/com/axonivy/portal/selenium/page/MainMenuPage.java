@@ -32,6 +32,10 @@ public class MainMenuPage extends TemplatePage {
     return NavigationHelper.navigateToTaskList();
   }
 
+  public TaskWidgetPage openDeveloperExamplesTaskList() {
+    return NavigationHelper.navigateToDeveloperExamplesTaskList();
+  }
+
   public CaseWidgetPage openCaseList() {
     return NavigationHelper.navigateToCaseList();
   }

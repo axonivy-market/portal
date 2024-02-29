@@ -26,9 +26,10 @@
 }
 
 .red-medium-outline {
-  outline-style: solid;
-  outline-color: red;
-  outline-width: medium;
+  outline-style: solid !important;
+  outline-color: red !important;
+  outline-width: medium !important;
+  
 }
 
 .red-medium-border {
