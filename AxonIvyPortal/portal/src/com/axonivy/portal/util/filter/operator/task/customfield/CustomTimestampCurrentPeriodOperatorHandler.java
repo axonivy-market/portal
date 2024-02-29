@@ -6,6 +6,7 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
 import com.axonivy.portal.util.PortalDateUtils;
 
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CustomTimestampCurrentPeriodOperatorHandler {
@@ -42,6 +43,19 @@ public class CustomTimestampCurrentPeriodOperatorHandler {
       case WEEK -> buildQuery(PortalDateUtils.getStartOfCurrentWeek(), PortalDateUtils.getEndOfCurrentWeek(), filter);
       case DAY -> buildQuery(PortalDateUtils.getStartOfToday(), PortalDateUtils.getEndOfToday(), filter);
     };
+    return query;
+  }
+
+  public TaskQuery buildQueryByCase(DashboardFilter filter) {
+    CaseQuery caseQuery = com.axonivy.portal.util.filter.operator.caze.customfield.CustomTimestampCurrentPeriodOperatorHandler
+        .getInstance().buildQuery(filter);
+
+    if (caseQuery == null) {
+      return null;
+    }
+
+    TaskQuery query = TaskQuery.create();
+    query.where().cases(caseQuery);
     return query;
   }
 }

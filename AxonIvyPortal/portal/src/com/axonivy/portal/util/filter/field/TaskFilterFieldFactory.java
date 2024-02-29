@@ -16,13 +16,25 @@ import com.axonivy.portal.util.filter.field.task.TaskFilterFieldName;
 import com.axonivy.portal.util.filter.field.task.TaskFilterFieldPriority;
 import com.axonivy.portal.util.filter.field.task.TaskFilterFieldResponsible;
 import com.axonivy.portal.util.filter.field.task.TaskFilterFieldState;
+import com.axonivy.portal.util.filter.field.task.custom.TaskFilterFieldCustomNumber;
+import com.axonivy.portal.util.filter.field.task.custom.TaskFilterFieldCustomString;
+import com.axonivy.portal.util.filter.field.task.custom.TaskFilterFieldCustomText;
+import com.axonivy.portal.util.filter.field.task.custom.TaskFilterFieldCustomTimestamp;
+import com.axonivy.portal.util.filter.field.task.custom.caze.TaskFilterCaseFieldCustomNumber;
+import com.axonivy.portal.util.filter.field.task.custom.caze.TaskFilterCaseFieldCustomString;
+import com.axonivy.portal.util.filter.field.task.custom.caze.TaskFilterCaseFieldCustomText;
+import com.axonivy.portal.util.filter.field.task.custom.caze.TaskFilterCaseFieldCustomTimestamp;
 
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 
 public class TaskFilterFieldFactory {
 
   private static final Map<String, FilterField> STANDARD_FILTER_FIELD = new HashMap<>();
   private static final Map<String, CustomFilterField> CUSTOM_FILTER_FIELD = new HashMap<>();
+  private static final Map<String, CustomFilterField> CUSTOM_CASE_FILTER_FIELD = new HashMap<>();
+
 
   static {
     STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.ID.getField(), new TaskFilterFieldId());
@@ -35,25 +47,17 @@ public class TaskFilterFieldFactory {
     STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.PRIORITY.getField(), new TaskFilterFieldPriority());
     STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.STATE.getField(), new TaskFilterFieldState());
     STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.APPLICATION.getField(), new TaskFilterFieldApplication());
-
-//    Note: will handle in Complex Filter Custom Field
-//    for (ICustomFieldMeta customField : ICustomFieldMeta.tasks()) {
-//      switch (customField.type()) {
-//        case STRING -> CUSTOM_FILTER_FIELD.put(customField.name(), new TaskFilterFieldCustomString(customField));
-//        case TEXT -> CUSTOM_FILTER_FIELD.put(customField.name(), new TaskFilterFieldCustomText(customField));
-//        case TIMESTAMP -> CUSTOM_FILTER_FIELD.put(customField.name(), new TaskFilterFieldCustomTimestamp(customField));
-//        case NUMBER -> CUSTOM_FILTER_FIELD.put(customField.name(), new TaskFilterFieldCustomNumber(customField));
-//        default -> throw new IllegalArgumentException("Unexpected value: " + customField.type());
-//      }
-//    }
   }
 
-  public static FilterField findBy(String field) {
-    FilterField result = STANDARD_FILTER_FIELD.get(field);
-    if (result == null) {
-      result = findCustomFieldBy(field);
-    }
-    return result;
+  public static FilterField findBy(String field, DashboardColumnType type) {
+    initCustomFields();
+
+    return switch (type) {
+    case STANDARD -> STANDARD_FILTER_FIELD.get(field);
+    case CUSTOM -> CUSTOM_FILTER_FIELD.get(field);
+    case CUSTOM_CASE -> CUSTOM_CASE_FILTER_FIELD.get(field);
+    default -> throw new IllegalArgumentException("Unexpected value: " + type.name());
+    };
   }
 
   public static CustomFilterField findCustomFieldBy(String field) {
@@ -70,4 +74,29 @@ public class TaskFilterFieldFactory {
     return new ArrayList<FilterField>(CUSTOM_FILTER_FIELD.values());
   }
 
+  private static void initCustomFields() {
+    for (ICustomFieldMeta customField : ICustomFieldMeta.tasks()) {
+      switch (customField.type()) {
+      case STRING -> CUSTOM_FILTER_FIELD.put(customField.name(), new TaskFilterFieldCustomString(customField));
+      case TEXT -> CUSTOM_FILTER_FIELD.put(customField.name(), new TaskFilterFieldCustomText(customField));
+      case TIMESTAMP -> CUSTOM_FILTER_FIELD.put(customField.name(), new TaskFilterFieldCustomTimestamp(customField));
+      case NUMBER -> CUSTOM_FILTER_FIELD.put(customField.name(), new TaskFilterFieldCustomNumber(customField));
+      default -> throw new IllegalArgumentException("Unexpected value: " + customField.type());
+      }
+    }
+
+    for (ICustomFieldMeta customCaseField : ICustomFieldMeta.cases()) {
+      switch (customCaseField.type()) {
+      case STRING ->
+        CUSTOM_CASE_FILTER_FIELD.put(customCaseField.name(), new TaskFilterCaseFieldCustomString(customCaseField));
+      case TEXT ->
+        CUSTOM_CASE_FILTER_FIELD.put(customCaseField.name(), new TaskFilterCaseFieldCustomText(customCaseField));
+      case TIMESTAMP ->
+        CUSTOM_CASE_FILTER_FIELD.put(customCaseField.name(), new TaskFilterCaseFieldCustomTimestamp(customCaseField));
+      case NUMBER ->
+        CUSTOM_CASE_FILTER_FIELD.put(customCaseField.name(), new TaskFilterCaseFieldCustomNumber(customCaseField));
+      default -> throw new IllegalArgumentException("Unexpected value: " + customCaseField.type());
+      }
+    }
+  }
 }
