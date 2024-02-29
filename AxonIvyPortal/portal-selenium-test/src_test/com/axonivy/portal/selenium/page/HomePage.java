@@ -65,6 +65,7 @@ public class HomePage extends TemplatePage {
 
   public void clickEditSwitchLink() {
     $(By.cssSelector("[id$='editing-switch-command']")).shouldBe(getClickableCondition()).click();
+    $(By.cssSelector("[id$='edit-process-item-form']")).shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
   public UserFavoriteProcessPage openNewProcessDialog() {

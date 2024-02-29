@@ -10,7 +10,7 @@ import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class LayoutTemplateScreenshotTest extends ScreenshotBaseTest {
   private String applicationShowcase = "portal-developer-examples/169BDE2F368D6EC4/ApplicationShowcase.ivp";
   

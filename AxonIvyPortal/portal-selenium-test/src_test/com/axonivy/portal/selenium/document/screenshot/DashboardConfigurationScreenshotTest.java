@@ -16,7 +16,7 @@ import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DashboardConfigurationScreenshotTest extends ScreenshotBaseTest {
   private NewDashboardPage newDashboardPage;
 

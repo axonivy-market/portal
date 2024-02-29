@@ -31,7 +31,7 @@ import com.axonivy.portal.selenium.page.UserTaskWithMailFormPage;
 import com.codeborne.selenide.SelenideElement;
 
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class PortalExpressScreenshotTest extends ScreenshotBaseTest {
 
   private static final int USER_TASK_INDEX = 0;
@@ -109,6 +109,8 @@ public class PortalExpressScreenshotTest extends ScreenshotBaseTest {
     formDefinition.countElementPrepareToDrag(0);
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.EXPRESS_FOLDER + "express-workflow-dialog-editor");
 
+    formDefinition.switchToCheckBoxTab();
+    ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.EXPRESS_FOLDER + "express-workflow");
 
     showNewDashboard();
     mainMenuPage = new MainMenuPage();

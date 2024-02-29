@@ -323,4 +323,14 @@ public class TaskTemplatePage extends TemplatePage {
     String url = element.getAttribute("href");
     ((JavascriptExecutor) driver).executeScript("window.open('" + url + "','_blank');");
   }
+  
+  public void waitForLeftMenuActive() {
+    $(".menu-item-dashboard").shouldBe(appear, DEFAULT_TIMEOUT);
+    $(".active-menuitem").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void waitForApprovalStepRendered() {
+    waitForElementDisplayed(By.id("iFrame"), true);
+    waitForElementDisplayed(By.id("task-template-title"), true);
+  }
 }

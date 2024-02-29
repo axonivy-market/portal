@@ -15,9 +15,10 @@ import com.axonivy.portal.selenium.page.ExampleOverviewPage;
 import com.axonivy.portal.selenium.page.LeaveRequestPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
 
   private static String LEAVE_REQUEST_START_LINK = "portal-user-examples/170321BD7F5539D6/start.ivp";
@@ -96,7 +97,8 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
     taskWidgetPage.clickOnTaskActionLink(0);
     ScreenshotUtils.executeDecorateJs("highlightTaskActionItem(0, 1)");
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "lending-casemap-external-solvency-service");
-    taskWidgetPage.clickOnSideStepAction(0, 1);
+    TaskTemplatePage newTaskTemplatePage = taskWidgetPage.clickOnSideStepAction(0, 1);
+    newTaskTemplatePage.waitForApprovalStepRendered();
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1150));
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "lending-casemap-approval-task");
   }

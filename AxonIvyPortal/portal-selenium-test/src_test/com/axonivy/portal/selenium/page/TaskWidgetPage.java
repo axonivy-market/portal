@@ -753,4 +753,8 @@ public class TaskWidgetPage extends TemplatePage {
     $(KEYWORD_FILTER_SELECTOR_EXPANDED_MODE).clear();
   }
 
+  public void clickColumnsButton() {
+    $("a[id$='task-widget:task-columns-configuration:task-config-command']").shouldBe(getClickableCondition()).click();
+    waitForElementDisplayed(By.cssSelector("label[for$=':columns-checkbox:3']"), Boolean.TRUE);
+  }
 }

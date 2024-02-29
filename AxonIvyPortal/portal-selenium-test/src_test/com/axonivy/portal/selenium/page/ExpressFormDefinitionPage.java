@@ -237,4 +237,13 @@ public class ExpressFormDefinitionPage extends TemplatePage {
         By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][" + tabIndex + "]")));
   }
 
+  public void switchToCheckBoxTab() {
+    waitForElementDisplayed(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][3]"), true);
+    $(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][3]")).shouldBe(getClickableCondition()).click();
+    WaitHelper.assertTrueWithWait(() -> {
+      var checkboxTab = $(By.xpath("//*[@id='form:create-tabs']/ul/li[@role='tab'][3]"));
+      return checkboxTab.getAttribute(CLASS_PROPERTY).contains("ui-state-active");
+    });
+  }
+
 }
