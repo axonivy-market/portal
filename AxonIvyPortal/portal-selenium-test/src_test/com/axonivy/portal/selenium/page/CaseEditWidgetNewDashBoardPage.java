@@ -118,6 +118,12 @@ clickByJavaScript($(caseEditWidgetId).$("button[id$='widget-configuration-save-b
         .$("a[id$='column-toggler']").click();
     getColumnManagementDialog().shouldBe(appear, DEFAULT_TIMEOUT);
   }
+  
+  public WebElement openColumnManagementDialogForScreenshot() {
+    $("div[id$='case-widget-preview:dashboard-cases-container']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("a[id$='column-toggler']").click();
+    return getColumnManagementDialog().shouldBe(appear, DEFAULT_TIMEOUT);
+  }
 
   public SelenideElement getColumnManagementDialog() {
     return $("div[id$='column-management-dialog']");

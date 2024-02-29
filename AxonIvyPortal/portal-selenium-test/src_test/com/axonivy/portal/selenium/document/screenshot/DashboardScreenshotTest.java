@@ -228,7 +228,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     CaseEditWidgetNewDashBoardPage caseConfigurationPage = detailsEditPage.addNewCaseWidget();
     ScreenshotUtils.captureElementScreenshot(caseConfigurationPage.getConfigurationFilter(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-configuration");
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseConfigurationPage.openColumnManagementDialog(),
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseConfigurationPage.openColumnManagementDialogForScreenshot(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-table-configuration", new ScreenshotMargin(20));
 
     caseConfigurationPage.removeAddedField("category");
