@@ -18,7 +18,7 @@
 
           <!-- General Setting card -->
           <div class="ui-g-6 ui-lg-6 ui-md-12 ui-sm-12">
-            <div class="portal-section-container card">
+            <div class="portal-section-container card general-section-container">
               <div class="ui-g-12">
                 <div class="setting-header ui-g-12">
                   <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/General')}</h2>
@@ -44,7 +44,8 @@
               </div>
 
               <!-- Process List Setting -->
-              <div class="ui-g-12">
+              <h:panelGroup layout="block" styleClass="ui-g-12"
+                rendered="#{userProfileBean.canAccessProcessList()}">
                 <div class="setting-header ui-g-12">
                   <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/ProcessList')}</h2>
                 </div>
@@ -57,10 +58,11 @@
                     </p:selectOneMenu>
                   </div>
                 </div>
-              </div>
+              </h:panelGroup>
 
               <!-- Task List Setting -->
-              <div class="ui-g-12">
+              <h:panelGroup layout="block" styleClass="ui-g-12"
+                rendered="#{userProfileBean.canAccessTaskList()}">
                 <div class="setting-header ui-g-12">
                   <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/TaskList')}</h2>
                 </div>
@@ -81,10 +83,11 @@
                     </p:selectOneMenu>
                   </div>
                 </div>
-              </div>
+              </h:panelGroup>
 
               <!-- Case List Setting -->
-              <div class="ui-g-12">
+              <h:panelGroup layout="block" styleClass="ui-g-12"
+                rendered="#{userProfileBean.canAccessCaseList()}">
                 <div class="setting-header ui-g-12">
                   <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/CaseList')}</h2>
                 </div>
@@ -105,7 +108,7 @@
                     </p:selectOneMenu>
                   </div>
                 </div>
-              </div>
+              </h:panelGroup>
             </div>
           </div>
 

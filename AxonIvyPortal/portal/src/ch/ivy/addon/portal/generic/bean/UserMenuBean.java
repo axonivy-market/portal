@@ -229,6 +229,10 @@ public class UserMenuBean implements Serializable {
         && (PermissionUtils.hasDashboardWriteOwnPermission() || PermissionUtils.hasDashboardWritePublicPermission());
   }
 
+  public boolean isMobileDevice() {
+    return RequestUtils.isMobileDevice();
+  }
+
   /**
    * We moved this method to PortalExceptionBean#getErrorDetailToEndUser
    * @return system configuration of ErrorDetailToEndUser

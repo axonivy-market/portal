@@ -107,18 +107,16 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void save() {
-    $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT);
-    $("[id='widget-configuration-form:new-widget-configuration-component:case-widget-preview:dashboard-cases_head']")
-        .shouldBe(appear, DEFAULT_TIMEOUT);
-    $("button[id$='widget-configuration-save-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("button[id$='widget-configuration-save-button']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='widget-configuration-save-button']")
+    .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+clickByJavaScript($(caseEditWidgetId).$("button[id$='widget-configuration-save-button']"));
     $(caseEditWidgetId).shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
-  public WebElement openColumnManagementDialog() {
+  public void openColumnManagementDialog() {
     $("div[id$='case-widget-preview:dashboard-cases-container']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("a[id$='column-toggler']").click();
-    return getColumnManagementDialog().shouldBe(appear, DEFAULT_TIMEOUT);
+    getColumnManagementDialog().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getColumnManagementDialog() {
@@ -136,8 +134,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private SelenideElement getCustomFieldCategory() {
-    return getColumnManagementDialog()
-        .$("input[id$=':column-management-form:custom-field-categories-selection_input']");
+    return getColumnManagementDialog().$("input[id$=':column-management-form:custom-field-categories-selection_input']");
   }
 
   public void selectFieldType(String type) {
@@ -195,8 +192,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private SelenideElement getCustomFieldSelection() {
-    return getColumnManagementDialog().$("span[id$='custom-field-selection'] button").shouldBe(clickable(),
-        DEFAULT_TIMEOUT);
+    return getColumnManagementDialog().$("span[id$='custom-field-selection'] button");
   }
 
   public SelenideElement getStandardField(String field) {

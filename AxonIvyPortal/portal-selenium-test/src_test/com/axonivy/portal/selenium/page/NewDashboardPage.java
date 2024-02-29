@@ -54,7 +54,8 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void waitForAbsencesGrowlMessageDisplay() {
-    $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-growl-message")
+    .shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void waitForTaskListDisplay() {
@@ -158,7 +159,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public WelcomeEditWidgetNewDashboardPage editWelcomeWidgetConfiguration(String widgetId) {
-    var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
+    var configurationPage = openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
@@ -744,6 +745,10 @@ public class NewDashboardPage extends TemplatePage {
     return new DashboardConfigurationPage();
   }
 
+  public void waitForDashboardPageAvailable() {
+    $(".js-dashboard__wrapper").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
   public ElementsCollection getDashboardCollection() {
     if (!$(".js-layout-wrapper").shouldBe(appear, DEFAULT_TIMEOUT).attr("class").contains("layout-static")) {
       $(".layout-menu-container").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
@@ -827,7 +832,8 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public boolean isDownloadCompleted() {
-    return $("#download-status-dialog").shouldBe(Condition.attribute("download-status", "completed"), DEFAULT_TIMEOUT)
+    return $("#download-status-dialog")
+        .shouldBe(Condition.attribute("download-status", "completed"), DEFAULT_TIMEOUT)
         .exists();
   }
 
@@ -837,17 +843,10 @@ public class NewDashboardPage extends TemplatePage {
 
   public GlobalSearchResultPage inputGlobalSearchKeyword(String keyword) {
     $(".topbar-item.search-item").shouldBe(appear, DEFAULT_TIMEOUT).click();
-    try {
-      $("input[id$='global-search-component:global-search-data']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable,
-          DEFAULT_TIMEOUT);
-    } catch (Error e) {
-      $(".topbar-item.search-item").shouldBe(appear, DEFAULT_TIMEOUT).click();
-      $("input[id$='global-search-component:global-search-data']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable,
-          DEFAULT_TIMEOUT);
-    }
+    $("input[id$='global-search-component:global-search-data']").shouldBe(appear, DEFAULT_TIMEOUT);
     getGlobalSearchInput().click();
     getGlobalSearchInput().sendKeys(keyword);
-    getGlobalSearchInput().sendKeys(Keys.RETURN);
+    getGlobalSearchInput().sendKeys(Keys.ENTER.toString());
     $("#search-results-tabview").shouldBe(appear, DEFAULT_TIMEOUT);
     return new GlobalSearchResultPage();
   }

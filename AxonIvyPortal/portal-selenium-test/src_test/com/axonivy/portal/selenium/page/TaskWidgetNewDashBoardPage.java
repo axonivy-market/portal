@@ -93,7 +93,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void startTask(int taskIndex) {
     $$("span.widget__filter-noti-number").first().shouldBe(appear, DEFAULT_TIMEOUT);
-    getColumnOfTaskHasIndex(taskIndex, "Start").shouldBe(getClickableCondition()).click();
+    getColumnOfTaskHasIndex(taskIndex, "Start").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public ElementsCollection countRelatedCases() {
@@ -101,9 +101,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void openFilterWidget() {
-    waitForGlobalGrowlDisappear();
-    getTaskWidgetHeader().$(".widget__filter-sidebar-link").shouldBe(appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition()).click();
+    getTaskWidgetHeader().$(".widget__filter-sidebar-link")
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    clickByJavaScript(getTaskWidgetHeader().$(".widget__filter-sidebar-link"));
     $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -140,7 +140,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     for (var item : priorityCheckboxOptions) {
       for (var prio : priorities) {
         if (item.getAttribute("data-item-value").equalsIgnoreCase(prio)) {
-          item.$(".ui-chkbox-box.ui-widget").shouldBe(getClickableCondition()).click();
+          item.$(".ui-chkbox-box.ui-widget").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
           break;
         }
       }
@@ -322,7 +322,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnTaskActionLink(int taskIndex) {
-    getColumnOfCaseHasActionIndex(taskIndex, "Actions").shouldBe(getClickableCondition()).click();
+    getColumnOfCaseHasActionIndex(taskIndex, "Actions").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void reserveTask(int taskIndex) {

@@ -7,7 +7,9 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 
+import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.Variable;
 import portal.guitest.common.WaitHelper;
@@ -127,6 +129,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     TaskTemplatePage startTask = taskWidget.startTask(0);
     startTask.openCaseInfo();
     startTask.switchToCaseInfoIframe();
+    ScreenshotUtil.resizeBrowser(new Dimension(2560, 1440));
     assertTrue(startTask.isCategoryColumnDisplayed());
   }
 }

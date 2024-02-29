@@ -9,8 +9,10 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
+import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
@@ -108,6 +110,7 @@ public class PortalExpressTest extends BaseTest {
 		formDefinition.createCheckboxField("Checkbox", 3);
 		formDefinition.createTextAreaField("Text area", true);
 		formDefinition.createCheckboxFieldWithDataProvider("Checkbox with data provider");
+    ScreenshotUtil.resizeBrowser(new Dimension(2560, 1440));
 		formDefinition.moveAllElementToDragAndDrogPanel();
 
 		Assert.assertEquals(14, formDefinition.countNumberOfElementsInPreviewDialog());
