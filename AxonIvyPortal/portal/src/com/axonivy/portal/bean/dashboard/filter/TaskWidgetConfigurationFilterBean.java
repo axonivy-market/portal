@@ -17,7 +17,6 @@ import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
-import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
@@ -57,10 +56,6 @@ public class TaskWidgetConfigurationFilterBean extends AbstractTaskWidgetFilterB
     }
     String displayState = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/businessTaskState/" + state.toString());
     return StringUtils.isBlank(displayState) ? state.name() : displayState;
-  }
-
-  public boolean hasPredefinedFilter(TaskDashboardWidget widget) {
-    return DashboardWidgetUtils.hasPredefinedFilter(widget);
   }
 
   public List<TaskBusinessState> getStates() {

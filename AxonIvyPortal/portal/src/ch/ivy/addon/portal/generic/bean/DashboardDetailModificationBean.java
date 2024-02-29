@@ -468,7 +468,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     updateWidgetPosition(widget);
     resetUserFilter();
     initMultipleLanguagesForWidgetName(this.widget.getName());
-    this.widget.buildPredefinedFilterData();
     if (widgets.contains(this.widget)) {
       widgets.set(widgets.indexOf(this.widget), this.widget);
     } else {

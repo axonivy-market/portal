@@ -183,11 +183,6 @@ public class TaskDashboardWidget extends DashboardWidget {
   }
 
   @Override
-  public void buildPredefinedFilterData() {
-    setHasPredefinedFilter(DashboardWidgetUtils.hasPredefinedTaskFilter(this));
-  }
-
-  @Override
   @JsonIgnore
   public void resetWidgetFilters() {
     setUserFilters(new ArrayList<>());

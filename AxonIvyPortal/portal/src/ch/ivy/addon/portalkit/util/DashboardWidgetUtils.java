@@ -4,10 +4,6 @@ import static ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix.CMS;
 import static ch.ivy.addon.portalkit.constant.DashboardConstants.MAX_NOTI_FILTERS;
 import static ch.ivy.addon.portalkit.constant.DashboardConstants.MAX_NOTI_PATTERN;
 import static ch.ivy.addon.portalkit.constant.DashboardConstants.WIDGET_ID_PATTERN;
-import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.NUMBER;
-import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.STRING;
-import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.TEXT;
-import static ch.ivy.addon.portalkit.enums.DashboardColumnFormat.TIMESTAMP;
 
 import java.text.Collator;
 import java.util.ArrayList;
@@ -334,46 +330,10 @@ public class DashboardWidgetUtils {
     return widgetLayouts;
   }
 
-  public static boolean hasPredefinedFilter(DashboardWidget widget) {
-    return switch (widget.getType()) {
-    case TASK -> hasPredefinedTaskFilter((TaskDashboardWidget) widget);
-    default -> false;
-    };
-  }
-
-  public static boolean hasPredefinedTaskFilter(TaskDashboardWidget widget) {
-    boolean hasPredefinedFilter = false;
-    List<ColumnModel> filterableColumns = widget.getFilterableColumns();
-    if (CollectionUtils.isEmpty(filterableColumns)) {
-      return hasPredefinedFilter;
-    }
-    for (ColumnModel col : filterableColumns) {
-      if (hasPredefinedFilter) {
-        break;
-      }
-      List<String> asList = Arrays.asList(DashboardStandardTaskColumn.PRIORITY.getField(),
-          DashboardStandardTaskColumn.STATE.getField(), DashboardStandardTaskColumn.RESPONSIBLE.getField(),
-          DashboardStandardTaskColumn.CATEGORY.getField(), DashboardStandardTaskColumn.APPLICATION.getField());
-      if (asList.stream().anyMatch(col.getField()::equalsIgnoreCase) && !CollectionUtils.isEmpty(col.getFilterList())) {
-        hasPredefinedFilter = true;
-      } else {
-        hasPredefinedFilter = hasPredefinedCustomField(col);
-      }
-    }
-    return hasPredefinedFilter;
-  }
-
-  public static boolean hasPredefinedCustomField(ColumnModel col) {
-    return ((TEXT == col.getFormat() || STRING == col.getFormat())
-        && !(CollectionUtils.isEmpty(col.getFilterList()) && StringUtils.isBlank(col.getFilter())))
-        || (NUMBER == col.getFormat()
-            && !(StringUtils.isBlank(col.getFilterFrom()) && StringUtils.isBlank(col.getFilterTo())))
-        || (TIMESTAMP == col.getFormat() && !(col.getDateFilterFrom() == null && col.getDateFilterTo() == null));
-  }
-
   public static Optional<String> countDefinedUserFilter(DashboardWidget widget) {
     long numberOfFilters = switch (widget.getType()) {
     case CASE -> countCaseFilters(widget);
+    case TASK -> countTaskFilters(widget);
     default -> 0;
     };
     if (numberOfFilters == 0) {
@@ -387,6 +347,12 @@ public class DashboardWidgetUtils {
   private static long countCaseFilters(DashboardWidget widget) {
     CaseDashboardWidget caseWidget = (CaseDashboardWidget) widget;
     return Optional.ofNullable(caseWidget.getUserFilters()).orElse(new ArrayList<>()).stream().filter(Objects::nonNull)
+        .filter(filter -> !filter.isTemp()).count();
+  }
+
+  private static long countTaskFilters(DashboardWidget widget) {
+    TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
+    return Optional.ofNullable(taskWidget.getUserFilters()).orElse(new ArrayList<>()).stream().filter(Objects::nonNull)
         .filter(filter -> !filter.isTemp()).count();
   }
 
