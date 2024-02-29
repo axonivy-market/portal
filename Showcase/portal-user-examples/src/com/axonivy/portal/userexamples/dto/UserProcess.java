@@ -6,7 +6,6 @@ import java.util.Locale;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.dto.DisplayName;
 import com.axonivy.portal.components.enums.ProcessType;
 
 import ch.ivyteam.ivy.environment.Ivy;
