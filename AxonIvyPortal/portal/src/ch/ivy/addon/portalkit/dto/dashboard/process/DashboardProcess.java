@@ -39,6 +39,7 @@ public class DashboardProcess implements Process {
   private Category category;
   private String sortIndex;
   private String processElementId;
+  private String portalProcessInformation;
   
   public DashboardProcess() {}
 
@@ -53,6 +54,7 @@ public class DashboardProcess implements Process {
     this.imageUrl = process.getImageUrl();
     this.application = process.getApplication();
     this.sortIndex = process.getSortIndex();
+    this.portalProcessInformation = process.getPortalProcessInformation();
   }
 
   public DashboardProcess(IWebStartable process) {
@@ -66,6 +68,7 @@ public class DashboardProcess implements Process {
     this.application = process.pmv().getApplication().getName();
     this.imageUrl = collectProcessImage(process);
     this.sortIndex = getSortIndexInCustomField(process);
+    this.portalProcessInformation = getPortalProcessInformation(process);
   }
 
   public DashboardProcess(ExpressProcess process) {
@@ -226,5 +229,10 @@ public class DashboardProcess implements Process {
 
   public void setProcessElementId(String processElementId) {
     this.processElementId = processElementId;
+  }
+  
+  @Override
+  public String getPortalProcessInformation() {
+    return portalProcessInformation;
   }
 }

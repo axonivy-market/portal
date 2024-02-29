@@ -151,6 +151,8 @@ Processes:
       #Zusammenfassung
       Antragssteller bekommt eine Zusammenfassung
       Ergebnis zur Kenntnis nehmen
+  MoreInformation:
+    description: Klicken Sie auf Weitere Informationen, um die benutzerdefinierte Prozessinformationsseite anzuzeigen.
   Payment:
     Tasks:
       Pay:

@@ -20,12 +20,12 @@
                 <span class="notifications-title-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationTitle')}</span>
                   
                   <div class="p-d-flex">
-                    <p:selectBooleanCheckbox id="notifications-only-unread" value="#{notificationBean.onlyUnread}"
+                    <p:selectBooleanCheckbox id="notifications-only-unread" value="#{notificationBean.dataModel.onlyUnread}"
                       itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/onlyUnread')}" styleClass="notification-checkbox" >
                       <p:ajax listener="#{notificationBean.dataModel.onSelectedFilter()}" oncomplete="Portal.updateLayoutContent()"
                       update="#{unreadNotificationsId}, #{notificationScrollerId}" global="false" partialSubmit="true"/>
                     </p:selectBooleanCheckbox>  
-                    <p:commandLink id="notification-full-page" 
+                    <p:commandLink id="notification-full-page"
                       actionListener="#{userMenuBean.navigateToNotificationOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"
                       styleClass="notifications-icon" global="false">
                       <i class="notifications-button si si-expand-6 " />
@@ -42,7 +42,7 @@
                     <p:tooltip for="notification-mark-all-as-read" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAllAsRead')}" />
                    
                     <p:commandLink id="notification-setting"  styleClass="notifications-icon"
-                      actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}" 
+                      actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"
                       oncomplete="Portal.updateLayoutContent()" global="false">
                       <i class="notifications-button si si-cog" />
                     </p:commandLink>
@@ -77,7 +77,7 @@
                             </p:commandLink>
                             <p:tooltip for="notification-mark-as-read" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
                           </div>
-                          <h:outputText id="notification-message" value="#{notification.message}" escape="false"/>
+                          <h:outputText id="notification-message" value="#{visibilityBean.sanitizeContent(notification.message)}" escape="false"/>
                         </div>
 
                         <div>

@@ -3,12 +3,10 @@ package com.axonivy.portal.selenium.test.task;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
-import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -116,7 +114,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     taskWidget.filterTasksInExpandedModeBy("sale department", 1);
     TaskIFrameTemplatePage startTask = taskWidget.startTaskIFrame(0);
     startTask.openCaseInfo();
-    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
+    resizeBrowserTo2kResolution();
     assertTrue(startTask.isCategoryColumnDisplayed());
   }
 }

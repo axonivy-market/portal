@@ -24,6 +24,10 @@ public class ProcessInformationTest extends BaseTest {
   private static String PROCESS_DESCRIPTION =
       "Create task for a process with three process steps which can be show in Porcess Information page";
 
+  private static String CUSTOM_PROCESS_NAME = "Custom Process Information";
+  private static String CUSTOM_PROCESS_DESCRIPTION = "Click on More Information to see the customized process information page.";
+  private static String CUSTOM_PROCESS_INFORMATION_HEADER = "Hello world example";
+
   @BeforeEach
   @Override
   public void setup() {
@@ -77,6 +81,25 @@ public class ProcessInformationTest extends BaseTest {
 
   private void navigateToProcessInformationPage() {
     String processName = "Process With Process Steps";
+    processWidget = NavigationHelper.navigateToProcessList();
+
+    processWidget.clickMoreInformationLink(processName);
+    processInformationPage = new ProcessInformationPage();
+  }
+
+  @Test
+  public void testClickOnCustomProcessInformationPage() {
+    navigateToCustomProcessInformationPage();
+    assertEquals(CUSTOM_PROCESS_NAME, processInformationPage.getProcessName());
+    assertEquals(CUSTOM_PROCESS_DESCRIPTION, processInformationPage.getProcessDescription());
+    assertEquals(CUSTOM_PROCESS_INFORMATION_HEADER, processInformationPage.getProcessInfoWrapperContent());
+
+    processInformationPage.back();
+  }
+  
+
+  private void navigateToCustomProcessInformationPage() {
+    String processName = CUSTOM_PROCESS_NAME;
     processWidget = NavigationHelper.navigateToProcessList();
 
     processWidget.clickMoreInformationLink(processName);

@@ -21,6 +21,8 @@ import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.DashboardNewsWidgetConfigurationPage;
 import com.axonivy.portal.selenium.page.DashboardNewsWidgetPage;
+import com.axonivy.portal.selenium.page.DashboardNotificationWidgetConfigurationPage;
+import com.axonivy.portal.selenium.page.DashboardNotificationWidgetPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -107,6 +109,27 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
   }
 
   @Test
+  public void screenshotConfigureNotificationsWidget() throws IOException {
+    redirectToDashboardConfiguration();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    DashboardModificationPage editPage = new DashboardModificationPage();
+    NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
+    detailsEditPage.waitPageLoaded();
+    detailsEditPage.addWidget();
+
+    DashboardNotificationWidgetConfigurationPage notiWidgetPage = detailsEditPage.addNotificationWidget();
+    notiWidgetPage.changeFilter();
+    ScreenshotUtils.captureElementScreenshot(notiWidgetPage.getConfigurationDialog(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "notification-widget-configuration");
+    notiWidgetPage.save();
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    DashboardNotificationWidgetPage notiPage = new DashboardNotificationWidgetPage();
+    ScreenshotUtils.captureElementScreenshot(notiPage.getWidgetElement(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "notification-widget");
+  }
+
+  @Test
   public void screenshotDashboardWithAnnotation() throws IOException {
     ScreenshotUtils.resizeBrowser(new Dimension(1100, 800));
     showNewDashboard();
@@ -122,7 +145,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
   @Test
   public void screenshotNewDashboardUserGuide() throws IOException {
     showNewDashboard();
-    ScreenshotUtils.maximizeBrowser();
+    ScreenshotUtils.resizeBrowser(new Dimension(1800, 1400));
     homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "dashboard");

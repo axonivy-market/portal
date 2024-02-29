@@ -566,8 +566,7 @@
             "param.taskSearchCriteria" : "in.taskSearchCriteria",
             "param.startIndex" : "in.startIndex",
             "param.count" : "in.count"
-          },
-          "code" : "ivy.log.warn(\"keyword {0}\", in.taskSearchCriteria.keyword);"
+          }
         },
         "output" : {
           "map" : {

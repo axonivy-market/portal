@@ -73,8 +73,16 @@
               <h:outputText styleClass="u-mar-right-5" value="#{processWidgetBean.editedExternalLink.name}" />
               <a href="#" class="si si-graphic-tablet-drawing-pen" />
             </f:facet>
-            <p:inputText id="external-link-name" value="#{processWidgetBean.editedExternalLink.name}" required="true" maxlength="85"
-              requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
+            <div class="ui-fluid ui-inputgroup">
+              <p:inputText id="external-link-name" value="#{processWidgetBean.editedExternalLink.name}" required="true"
+                maxlength="85" 
+                requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
+              <p:commandButton id="edit-name-language-button"  icon="si si-chat-translate" 
+                actionListener="#{processWidgetBean.updateNameByLocale()}"
+                process="#{cc.clientId}:edit-process-form:external-link-name"
+                update="#{cc.clientId}:edit-name-language-config:multiple-languages-dialog"
+                oncomplete="PF('multiple-languages-dialog').show();" />
+            </div>
           </p:inplace>
 
           <!-- Start link -->
@@ -101,8 +109,15 @@
                 value="#{empty processWidgetBean.editedExternalLink.description ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : processWidgetBean.editedExternalLink.description}" />
               <a href="#" class="si si-graphic-tablet-drawing-pen" />
             </f:facet>
-            <p:inputTextarea id="external-description" value="#{processWidgetBean.editedExternalLink.description}" maxlength="200"
-              rows="3"/>
+            <div class="ui-fluid ui-inputgroup">
+            <p:inputTextarea id="external-description" value="#{processWidgetBean.editedExternalLink.description}"
+              maxlength="200" rows="3" />
+            <p:commandButton id="edit-description-language-button" icon="si si-chat-translate" 
+              actionListener="#{processWidgetBean.updateDescriptionByLocale()}"
+              process="#{cc.clientId}:edit-process-form:external-description"
+              update="#{cc.clientId}:edit-description-language-config:multiple-languages-dialog"
+              oncomplete="PF('multiple-languages-dialog').show();" />
+            </div>
           </p:inplace>
           <!-- Role Permissions -->
           <h:outputText value="#{ivy.cms.co('/Labels/Permissions')}" rendered="#{processWidgetBean.editedExternalLink.isPublic}"/>
@@ -245,10 +260,15 @@
         <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}"
           for="external-link-name" />
       </div>
-      <div class="ui-g-12 ui-fluid">
+      <div class="ui-g-12 ui-fluid ui-inputgroup">
         <p:inputText id="external-link-name" value="#{externalLinkBean.externalLink.name}" required="true"
           maxlength="85"
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
+        <p:commandButton id="add-name-language-button"  icon="si si-chat-translate" 
+          actionListener="#{externalLinkBean.updateNameByLocale()}"
+          process="#{cc.clientId}:add-external-link-form:external-link-name"
+          update="#{cc.clientId}:name-language-config:multiple-languages-dialog"
+          oncomplete="PF('multiple-languages-dialog').show();" />
       </div>
 
       <!-- Start link -->
@@ -267,9 +287,14 @@
         <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/linkDescription')}"
           for="external-description" />
       </div>
-      <div class="ui-g-12 ui-fluid">
+      <div class="ui-g-12 ui-fluid ui-inputgroup">
         <p:inputTextarea id="external-description" value="#{externalLinkBean.externalLink.description}"
           styleClass="external-description-field" maxlength="200" rows="3" />
+        <p:commandButton id="add-description-language-button" icon="si si-chat-translate" 
+          actionListener="#{externalLinkBean.updateDescriptionByLocale()}"
+          process="#{cc.clientId}:add-external-link-form:external-description"
+          update="#{cc.clientId}:description-language-config:multiple-languages-dialog"
+          oncomplete="PF('multiple-languages-dialog').show();" />
       </div>
 
       <!-- Type -->
@@ -375,5 +400,30 @@
     </f:facet>
   </p:dialog>
   <!-- End External Link Dialogs -->
+  <!-- Multi language dialog-->
+  <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
+    managedBean="#{externalLinkBean}"
+    id="name-language-config" titles="#{externalLinkBean.externalLink.names}"
+    componentToUpdateOnCreate="#{cc.clientId}:add-external-link-form:external-link-name" 
+    componentToUpdateOnModify="#{cc.clientId}:add-external-link-form:external-link-name"/>
+    
+  <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
+    managedBean="#{processWidgetBean}"
+    id="edit-name-language-config" titles="#{processWidgetBean.editedExternalLink.names}"
+    componentToUpdateOnCreate="#{cc.clientId}:edit-process-form:external-link-name"
+    componentToUpdateOnModify="#{cc.clientId}:edit-process-form:external-link-name"/>
+    
+  <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
+    managedBean="#{externalLinkBean}" useInputText="false"
+    id="description-language-config" titles="#{externalLinkBean.externalLink.descriptions}"
+    componentToUpdateOnCreate="#{cc.clientId}:add-external-link-form:external-description" 
+    componentToUpdateOnModify="#{cc.clientId}:add-external-link-form:external-description"/>
+    
+  <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
+    managedBean="#{processWidgetBean}" useInputText="false"
+    id="edit-description-language-config" titles="#{processWidgetBean.editedExternalLink.descriptions}"
+    componentToUpdateOnCreate="#{cc.clientId}:edit-process-form:external-description" 
+    componentToUpdateOnModify="#{cc.clientId}:edit-process-form:external-description"/>
+    
 </ui:composition>
 </html>

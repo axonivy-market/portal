@@ -64,6 +64,8 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   public void testVisibilityTaskActionForNormalUser() {
     login(TestAccount.DEMO_USER);
     createTasksForTesting();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForTaskListDisplay();
     // TaskState : Ready for Join <=> TaskBusinessState : Done
     assertTaskActionsByTaskState("Done", Arrays.asList(DETAILS, PROCESS_VIEWER));
     // TaskState : Suspended <=> TaskBusinessState : Open
