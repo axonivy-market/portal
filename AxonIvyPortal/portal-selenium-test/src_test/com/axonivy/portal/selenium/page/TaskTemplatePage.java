@@ -341,6 +341,7 @@ public class TaskTemplatePage extends TemplatePage {
 
   public CaseDetailsPage goToCaseDetail() {
     waitForElementClickableThenClick("[id$='form:go-to-case-detail']");
+    waitForPageLoad();
     return new CaseDetailsPage();
   }
 
