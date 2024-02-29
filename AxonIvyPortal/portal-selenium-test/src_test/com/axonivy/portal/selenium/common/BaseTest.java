@@ -324,7 +324,6 @@ public class BaseTest {
   }
 
   public void goToCaseNoteHistoryPage(String caseId) {
-    // WaitHelper.waitForNavigation(() -> redirectToRelativeLink(String.format(showCaseNoteHistoryUrl, caseId)));
     redirectToRelativeLink(String.format(showCaseNoteHistoryUrl, caseId));
   }
 
