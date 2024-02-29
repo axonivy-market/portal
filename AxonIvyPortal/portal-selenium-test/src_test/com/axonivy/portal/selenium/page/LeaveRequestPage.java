@@ -41,6 +41,7 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   public String clickSubmitAndGetValidationMsg() {
     int numberOfErrors = $$("span.ui-messages-error-summary").size();
     clickSubmitLeaveRequest();
+    waitForPageLoad();
     $$("span.ui-messages-error-summary").shouldBe(CollectionCondition.sizeNotEqual(numberOfErrors), DEFAULT_TIMEOUT);
     return getValidationMsg();
   }
@@ -62,7 +63,13 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   }
 
   private void selectLeaveType(String leaveType) {
-    waitForElementClickableThenClick("#leave-request\\:leave-type_label");
+    boolean isPanelDisplayed = false;
+    while(!isPanelDisplayed) {
+      waitForElementClickableThenClick("[id='leave-request:leave-type']");
+      $("[id='leave-request:leave-type_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+      isPanelDisplayed = $("[id='leave-request:leave-type_panel']").isDisplayed();
+    }
+
     String leaveTypeSelector = "li[data-label='" + leaveType + "']";
     waitForElementDisplayed(By.cssSelector(leaveTypeSelector), true);
     waitForElementClickableThenClick(leaveTypeSelector);
@@ -74,7 +81,13 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   }
 
   private void selectApprover(String approver) {
-    findElementById("leave-request:approver_label").click();
+    boolean isPanelDisplayed = false;
+    while(!isPanelDisplayed) {
+      waitForElementClickableThenClick("[id='leave-request:approver']");
+      $("[id='leave-request:approver_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+      isPanelDisplayed = $("[id='leave-request:approver_panel']").isDisplayed();
+    }
+
     String approverSelector = "li[data-label='" + approver + "']";
     waitForElementDisplayed(By.cssSelector(approverSelector), true);
     waitForElementClickableThenClick(approverSelector);
