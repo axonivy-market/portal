@@ -26,7 +26,7 @@
     fitViewport="true" responsive="true" modal="true" width="70%"
     styleClass="import-dashboard-dialog"
     onShow="PF('#{cc.attrs.importDialogId}').initPosition()">
-    <h:form id="import-dashboard-form">
+    <h:form id="import-dashboard-form" onkeypress="if (event.keyCode == 13) { return false; }">
       <h:panelGroup id="dashboard-upload-panel" layout="block"
         styleClass="ui-g">
         <div class="ui-g-12">
@@ -63,72 +63,89 @@
      <p:tabView rendered="#{not empty managedBean.importedDashboards}" value="#{managedBean.importedDashboards}" var="dashboard" id="dashboards-information-form" activeIndex="#{dashboardImportBean.activeIndex}">
       <f:event listener="#{dashboardImportBean.tabInit()}" type="preRenderComponent" />
       <p:ajax event="tabChange" listener="#{dashboardImportBean.onTabChange(dashboard)}" />
-      <p:tab title="Dashboard #{dashboardImportBean.dashBoardIndex}" id="dashboard_#{dashboardImportBean.dashBoardIndex}">
-       <div class="ui-g-2 import-dashboard-label">
-        <p:outputLabel
-         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardIcon')}" />
-       </div>
-       <div class="ui-g-10">
-        <ic:ch.ivy.addon.portalkit.component.IconSelection value="#{dashboard.icon}" />
-       </div>
+            <p:tab
+              title="Dashboard #{dashboardImportBean.dashBoardIndex}"
+              id="dashboard_#{dashboardImportBean.dashBoardIndex}">
+              <div class="ui-g">
+                <div class="ui-g-4 manage-dashboard__label">
+                  <p:outputLabel
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardIcon')}" />
+                </div>
+                <div class="ui-g-8">
+                  <ic:ch.ivy.addon.portalkit.component.IconSelection
+                    value="#{dashboard.icon}" />
+                </div>
 
-       <div class="ui-g-2 import-dashboard-label">
-        <p:outputLabel for="import-dashboard-title" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}" />
-       </div>
-       <div class="ui-g-10 ui-fluid ui-inputgroup">
-        <p:inputText id="import-dashboard-title" value="#{dashboard.title}"
-          styleClass="manage-dashboard__input" required="true" />
-        <p:commandButton id="add-language-button" icon="si si-chat-translate"
-          actionListener="#{managedBean.updateDashboardTitleByLocale()}"
-          process="import-dashboard-title"
-          update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
-          oncomplete="PF('multiple-languages-dialog').show();" />
-       </div>
-       <h:panelGroup layout="block" styleClass="ui-g-2 import-dashboard-label" rendered="#{cc.attrs.isPublicDashboard}">
-        <p:outputLabel for="dashboard-permission" value="#{ivy.cms.co('/Labels/Permissions')}" />
-       </h:panelGroup>
-       <h:panelGroup layout="block" styleClass="ui-g-10 ui-fluid" rendered="#{cc.attrs.isPublicDashboard}">
-        <p:autoComplete id="dashboard-permission" scrollHeight="210"
-         dropdown="true" required="#{param['skipValidator'] == null}"
-         completeMethod="#{managedBean.completePermissions}"
-         styleClass="manage-dashboard__input"
-         inputStyleClass="manage-dashboard__autocomplete-input"
-         value="#{dashboard.permissionDTOs}" var="responsible"
-         itemValue="#{responsible}"
-         itemLabel="#{responsible.briefDisplayNameWithState}"
-         converter="pojoConverter" cache="true" maxResults="100"
-         multiple="true" dynamic="true" forceSelection="true">
-         <p:ajax event="itemSelect"
-          listener="#{managedBean.onSelectPermissionForDashboard}"
-          update="dashboard-permission" global="false" process="@this" />
-         <p:ajax event="itemUnselect"
-          listener="#{managedBean.onUnSelectPermissionForDashboard}"
-          update="dashboard-permission" global="false" process="@this"
-          immediate="true" />
-         <f:param name="skipValidator" value="true" />
-         <p:column>
-          <pc:securityMemberNameAndAvatar
-           displayName="#{dashboardTaskFilterBean.formatName(responsible)}"
-           securityMember="#{responsible}">
-           <f:facet name="alternativeAvatar">
-            <h:outputText rendered="#{not avatarBean.isShowAvatar()}"
-             styleClass="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
-           </f:facet>
-          </pc:securityMemberNameAndAvatar>
-         </p:column>
-        </p:autoComplete>
-       </h:panelGroup>
-       <div class="ui-g-2 import-dashboard-label">
-        <p:outputLabel for="dashboard-description"
-         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" />
-       </div>
-       <div class="ui-g-10 ui-fluid">
-        <p:inputText id="dashboard-description"
-         value="#{dashboard.description}" required="false"
-         styleClass="manage-dashboard__input" />
-       </div>
-      </p:tab>
-     </p:tabView>
+                <div class="ui-g-4 manage-dashboard__label">
+                  <p:outputLabel for="import-dashboard-title"
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/dashboardTitle')}" />
+                </div>
+                <div class="ui-g-8 ui-fluid ui-inputgroup">
+                  <p:inputText id="import-dashboard-title"
+                    value="#{dashboard.title}"
+                    styleClass="manage-dashboard__input" required="true" />
+                  <p:commandButton id="add-language-button"
+                    icon="si si-chat-translate"
+                    actionListener="#{managedBean.updateDashboardTitleByLocale()}"
+                    process="import-dashboard-title"
+                    update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
+                    oncomplete="PF('multiple-languages-dialog').show();" />
+                </div>
+                <h:panelGroup layout="block"
+                  styleClass="ui-g-4 manage-dashboard__label"
+                  rendered="#{cc.attrs.isPublicDashboard}">
+                  <p:outputLabel for="dashboard-permission"
+                    value="#{ivy.cms.co('/Labels/Permissions')}" />
+                </h:panelGroup>
+                <h:panelGroup layout="block"
+                  styleClass="ui-g-8 ui-fluid"
+                  rendered="#{cc.attrs.isPublicDashboard}">
+                  <p:autoComplete id="dashboard-permission"
+                    scrollHeight="210" dropdown="true"
+                    required="#{param['skipValidator'] == null}"
+                    completeMethod="#{managedBean.completePermissions}"
+                    styleClass="manage-dashboard__input"
+                    inputStyleClass="manage-dashboard__autocomplete-input"
+                    value="#{dashboard.permissionDTOs}"
+                    var="responsible" itemValue="#{responsible}"
+                    itemLabel="#{responsible.briefDisplayNameWithState}"
+                    converter="pojoConverter" cache="true"
+                    maxResults="100" multiple="true" dynamic="true"
+                    forceSelection="true">
+                    <p:ajax event="itemSelect"
+                      listener="#{managedBean.onSelectPermissionForDashboard}"
+                      update="dashboard-permission" global="false"
+                      process="@this" />
+                    <p:ajax event="itemUnselect"
+                      listener="#{managedBean.onUnSelectPermissionForDashboard}"
+                      update="dashboard-permission" global="false"
+                      process="@this" immediate="true" />
+                    <f:param name="skipValidator" value="true" />
+                    <p:column>
+                      <pc:securityMemberNameAndAvatar
+                        displayName="#{dashboardTaskFilterBean.formatName(responsible)}"
+                        securityMember="#{responsible}">
+                        <f:facet name="alternativeAvatar">
+                          <h:outputText
+                            rendered="#{not avatarBean.isShowAvatar()}"
+                            styleClass="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+                        </f:facet>
+                      </pc:securityMemberNameAndAvatar>
+                    </p:column>
+                  </p:autoComplete>
+                </h:panelGroup>
+                <div class="ui-g-4 manage-dashboard__label">
+                  <p:outputLabel for="dashboard-description"
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" />
+                </div>
+                <div class="ui-g-8 ui-fluid">
+                  <p:inputText id="dashboard-description"
+                    value="#{dashboard.description}" required="false"
+                    styleClass="manage-dashboard__input" />
+                </div>
+              </div>
+            </p:tab>
+          </p:tabView>
     </div>
 
    </h:panelGroup>

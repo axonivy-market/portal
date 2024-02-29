@@ -913,7 +913,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   }
 }
 
-@media screen and (max-width: 90.062em) {
+@media screen and (max-width: 101.062em) {
   .case-detail-body .name-column .case-description-value,
   .case-detail-body .case-details-related-task-table .related-task-name-column .task-description-value {
     display: block;
@@ -940,7 +940,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   }
 }
 
-@media screen and (min-width: 90.063em) {
+@media screen and (min-width: 101.062em) {
   .case-detail-body .name-column .case-description-value,
   .case-detail-body .case-details-related-task-table .related-task-name-column .task-description-value {
     display: none;
@@ -1382,6 +1382,13 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   padding-left: 4px;
   padding-top: 0;
   width: 100%;
+}
+
+.external-link-description {
+  padding-right: 0.5em;
+}
+.multi-language-textarea-label {
+  float: left;
 }
 
 .process-start-list-item-action.is-external-link {
@@ -3056,6 +3063,11 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .my-profile-container .card {
   height: auto;
   float: left;
+  width: 100%;
+}
+
+.my-profile-container .portal-section-container.general-section-container {
+  height: 100%;
 }
 
 .dashboard-configuration__header h2,
@@ -3242,7 +3254,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .edit-process-dialog {
-  max-width: 550px;
+  max-width: 650px;
   overflow: hidden !important;
 }
 
@@ -3272,7 +3284,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .edit-process-form .edit-process-detail-2nd-cell .ui-inplace-content input,
-.edit-process-form .edit-process-detail-2nd-cell .ui-inplace-content textarea {
+.edit-process-form .edit-process-detail-2nd-cell .ui-inplace-content textarea, 
+.edit-process-form .edit-process-detail-2nd-cell .ui-inplace-content div {
   flex-grow: 1;
 }
 
@@ -5319,17 +5332,12 @@ border-top: 0.14rem dashed;
 }
 
 .security-member-tooltip .tooltip-header,
-.security-member-tooltip .tooltip-body,
 .security-member-tooltip .tooltip-body-item {
   margin: auto;
 }
 
 .security-member-tooltip .tooltip-body {
   padding-left: 14px;
-}
-
-.security-member-tooltip .tooltip-body.no-user {
-  padding-left: 0;
 }
 
 /* Activator selection */
@@ -5645,6 +5653,24 @@ border-top: 0.14rem dashed;
 /* Process information page */
 .process-overview-layout-content .process-info-icon {
   line-height: 1.5;
+}
+
+.header-process-name {
+  height: 7rem;
+  display: flex;
+  align-items: center;
+}
+
+.header-process-name h2 {
+  margin: 0;
+}
+
+.process-information-container .process-info-description {
+  padding: 0.5em 0;
+}
+
+.process-info {
+  margin-top: -1rem;
 }
 
 @media screen and (min-width: 90.063em) {
@@ -6050,4 +6076,12 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
 
 .combined-mode-loading-container {
   overflow: hidden;
+}
+
+.task-status-banner {
+  padding: 0.5em;
+}
+
+.task-status-banner-content {
+  width: 100%;
 }

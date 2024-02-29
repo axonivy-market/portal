@@ -85,6 +85,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CUSTOM: Benutzerdefiniertes Widget
       NEW: Neues Widget
       NEWS: Nachrichten
+      NOTIFICATION: Benachrichtigungen
       PROCESS: Prozess-Widget
       PROCESS_VIEWER: Prozess-Viewer-Widget
       STATISTIC: Statistik-Widget
@@ -754,7 +755,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoData: Keine Daten
     NoSavedFilterMessage: Kein gespeicherter Filter gefunden. Versuchen Sie, einen neuen zu erstellen, indem Sie auf die Schaltfläche Filter speichern klicken.
     NoWidgetAvailable: Es gibt keine Widgets.
-    RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
+    RestoreDefaultDashboardMessage: Wenn Sie fortfahren, verlieren Sie alle von Ihnen erstellten Widgets. Es werden die Standardeinstellungen von <span class="dashboard-template-name-message">{0}</span> wiederhergestellt.
     SaveNewWidgetFilterHeader: Speichere neuen Widget-Filter
     SavedFilterHeader: Gespeicherte Filter
     SearchForFilter: Suche nach Filter
@@ -916,6 +917,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     widgetType: Widget-Typ
     yourCases: Ihre Vorgänge
     yourCustomWidget: Ihr benutzerdefiniertes Widget
+    yourNotifications: Ihre Benachrichtigungen
     yourProcessViewer: Ihr Prozessbetrachter
     yourProcesses: Ihre Prozesse
     yourStatistics: Ihre Statistiken
@@ -1567,7 +1569,13 @@ Dialogs:
             IconSelection:
               IconLinkTooltip: Zum Ändern des Symbols anklicken
             TaskItemDetails:
+              CannotWorkOnDestroyedTaskWarning: Sie können nicht an der Aufgabe arbeiten, weil sie zerstört wurde.
+              CannotWorkOnTaskWarning: Sie können die Aufgabe nicht bearbeiten, weil der Benutzer <strong>{0}</strong> gerade daran arbeitet.
+              InvalidStateInfo: Ungültiger Zustand.
+              ResetTaskWarning: Sie arbeiten gerade an der Aufgabe in einer anderen Sitzung. Sie können die Aufgabe zurücksetzen und erneut starten, wenn Sie Ihren Browser geschlossen haben. <a href="{0}">Zurücksetzen</a>
               ShareTaskDetails: Teilen Sie Aufgabendetails
+              TaskCompletedByOtherInfo: Die Aufgabe wurde bereits von Benutzer <strong>{0}</strong> an {1} durchgeführt.
+              TaskCompletedByYouInfo: Sie haben die Aufgabe auf {0} bereits erledigt.
   com:
     axonivy:
       portal:
@@ -1590,7 +1598,7 @@ Dialogs:
               NewsTitlePlaceholder: Titel der Nachricht eingeben
               NewsTitleValidateMessage: Nachrichtentitel in {0} ist erforderlich
               NoNewsAvailable: Es gibt noch keine Neuigkeiten
-              Publish: veröffentlichen.
+              Publish: Veröffentlichen
               RemoveNewsHeader: Die Nachrichten entfernen?
               SeeLess: Weniger sehen
               SeeMore: Mehr sehen
@@ -1602,6 +1610,12 @@ Dialogs:
               NewsWidgetConfiguration: Konfiguration des Newsfeed-Widgets
               NewsWidgetDescription: Dieses Widget teilt relevante Informationen als News Feed in Axon Ivy.
               NewsWidgetTitle: News-Feed-Widget
+            NotificationWidget:
+              NoNotificationAvailable: Es liegen noch keine Benachrichtigungen vor
+            NotificationWidgetConfiguration:
+              NotificationWidgetConfiguration: Konfiguration des Benachrichtigungs-Widgets
+              NotificationWidgetDescription: Dieses Widget zeigt alle Benachrichtigungen basierend auf Ihren Benachrichtigungseinstellungen an.
+              WidgetFilter: Widget-Filter
   components:
     CaseDocument:
       FileDate: Änderungsdatum

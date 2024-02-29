@@ -14,16 +14,26 @@ function loadIframe(recheckIndicator) {
 
   if (!recheckIndicator) {
     $(iframe).on('load', function () {
+      iframe.style.visibility = 'hidden';
       processIFrameData(iframe);
       clearTimeout(recheckFrameTimer);
+      setTimeout(function() {
+        if ($(iframe).attr('src') != 'about:blank') {
+          iframe.style.visibility = 'visible';
+          }
+        }, 500);
       return;
     });
   }
   else {
     const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    iframeDoc.onbeforeunload = function() {
+      $(iframe).addClass('u-hidden');
+    }
     if (iframeDoc.readyState == 'complete') {
       processIFrameData(iframe);
       clearTimeout(recheckFrameTimer);
+      iframe.style.visibility = 'visible';
       return;
     }
   }
@@ -49,7 +59,7 @@ function processIFrameData(iframe) {
     value: window.currentProcessStep
   }, {
     name: 'processSteps',
-    value: window.processSteps
+    value: convertProcessSteps(window.processSteps)
   }, {
     name: 'isShowAllSteps',
     value: window.isShowAllSteps
@@ -203,4 +213,30 @@ let updateHistory = (newHref) => {
   let historyUrl = new URL(window.location);
   historyUrl.searchParams.set('taskUrl', newHrefUrl.pathname + newHrefUrl.search);
   history.replaceState({}, "", historyUrl);
+}
+
+const convertProcessSteps = processSteps => {
+  // If process steps are not defined, don't do anything
+  if (processSteps === undefined) {
+    return '';
+  }
+
+  // If the process steps is a valid array, convert to JSON
+  if (Array.isArray(processSteps)) {
+    return JSON.stringify(processSteps);
+  }
+
+  // Regex for "a,b,c"
+  const onlyCommaRegex = /^[a-zA-Z0-9\s]+(,[a-zA-Z0-9\s]+)*$/;
+
+  // If process steps is a String in "a,b,c" format, split to array
+  // Then convert to JSON
+  if (onlyCommaRegex.test(processSteps)) {
+    const steps = processSteps.split(',');
+    const trimmedSteps = steps.map(item => item.trim());
+    return JSON.stringify(trimmedSteps);
+  }
+
+  // Otherwise return JSON of the process step
+  return JSON.stringify(processSteps);
 }

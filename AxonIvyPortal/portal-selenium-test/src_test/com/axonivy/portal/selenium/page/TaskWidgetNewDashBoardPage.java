@@ -103,7 +103,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void openFilterWidget() {
     waitForGlobalGrowlDisappear();
     getTaskWidgetHeader().$(".widget__filter-sidebar-link").shouldBe(appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition()).click();
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    clickByJavaScript(getTaskWidgetHeader().$(".widget__filter-sidebar-link"));
     $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -307,12 +308,12 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void selectState(String state) {
-    getStateFilterCheckBox(state).shouldBe(getClickableCondition()).click();
-    getCloseStateFilter().shouldBe(getClickableCondition()).click();
+    getStateFilterCheckBox(state).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    getCloseStateFilter().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void filterTaskState() {
-    getFilterCheckBox(FILTER_TASK_STATE).shouldBe(getClickableCondition()).click();
+    getFilterCheckBox(FILTER_TASK_STATE).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public ElementsCollection getActiveTaskActions(int taskIndex) {
@@ -322,7 +323,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnTaskActionLink(int taskIndex) {
-    getColumnOfCaseHasActionIndex(taskIndex, "Actions").shouldBe(getClickableCondition()).click();
+    getColumnOfCaseHasActionIndex(taskIndex, "Actions").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void reserveTask(int taskIndex) {
