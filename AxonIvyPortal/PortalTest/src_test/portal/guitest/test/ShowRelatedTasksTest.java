@@ -9,11 +9,13 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.TimeoutException;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
+import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.Variable;
@@ -79,6 +81,7 @@ public class ShowRelatedTasksTest extends BaseTest {
   public void testRelatedTasksWhenClickingRelatedTask() {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
+    ScreenshotUtil.resizeBrowser(new Dimension(1900, 1000));
     openCaseDetail();
     detailsPage.clickRelatedTaskColumnsButton();
     detailsPage.clickRelatedTaskDefaultCheckbox();

@@ -39,6 +39,8 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   public void testVisibilityTaskActionForNormalUser() {
     login(TestAccount.DEMO_USER);
     createTasksForTesting();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForTaskListDisplay();
     // Ready for Join
     assertTaskActionsByTaskState("Ready for joining", Arrays.asList("Details", "Process Viewer"));
     // Suspended
@@ -95,7 +97,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
   private void filterTaskByNameAndState(String name, String state) {
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
-    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
     taskWidget.openFilterWidget();
     taskWidget.resetFilter();
     taskWidget.openFilterWidget();

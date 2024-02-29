@@ -56,9 +56,9 @@ public class ApplicationColumnModel extends CaseColumnModel implements Serializa
     return false;
   }
   
-  public void updateApplications(@SuppressWarnings("unused") CaseDashboardWidget widget) {
+  public void updateApplications(CaseDashboardWidget widget) {
   }
-  public void initializeApplications(@SuppressWarnings("unused") CaseDashboardWidget widget) {
+  public void initializeApplications(CaseDashboardWidget widget) {
   }
   
   @Override

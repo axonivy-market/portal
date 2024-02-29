@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -16,9 +17,13 @@ import com.axonivy.portal.util.ExternalLinkUtils;
 
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.Protocol;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
+import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
+import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.util.Pair;
@@ -45,12 +50,21 @@ public class ExternalLinkBean implements Serializable {
   public ExternalLink saveNewExternalLink() {
     IUser sessionUser = Ivy.session().getSessionUser();
     externalLink.setCreatorId(sessionUser.getId());
+    externalLink.setSecurityMemberId(sessionUser.getSecurityMemberId());
     String processLink = correctLink(externalLink.getLink());
     externalLink.setLink(processLink);
+    updateEmptyNameAndDescription(externalLink);
 
     externaLinkService.save(externalLink);
     return externalLink;
   }
+  
+  private void updateEmptyNameAndDescription(ExternalLink externalLink) {
+    String userLanguguage = UserUtils.getUserLanguage();
+    DisplayNameConvertor.updateEmptyValue(userLanguguage, externalLink.getNames());
+    DisplayNameConvertor.updateEmptyValue(userLanguguage, externalLink.getDescriptions());
+  }
+
 
   public boolean hasPublicLinkCreationPermission() {
     return PermissionUtils.checkPublicLinkCreationPermission();
@@ -96,4 +110,19 @@ public class ExternalLinkBean implements Serializable {
   public void setExternalLink(ExternalLink externalLink) {
     this.externalLink = externalLink;
   }
+  
+  public void updateNameByLocale() {
+    String currentName = LanguageUtils.getLocalizedName(externalLink.getNames(), externalLink.getName());
+    initAndSetValue(currentName, externalLink.getNames());
+  }
+  
+  public void updateDescriptionByLocale() {
+    String currentDescription = LanguageUtils.getLocalizedName(externalLink.getDescriptions(), externalLink.getDescription());
+    initAndSetValue(currentDescription, externalLink.getDescriptions());
+  }
+  
+  private void initAndSetValue(String value, List<DisplayName> values) {
+    DisplayNameConvertor.initMultipleLanguages(value, values);
+    DisplayNameConvertor.setValue(value, values);
+  }  
 }

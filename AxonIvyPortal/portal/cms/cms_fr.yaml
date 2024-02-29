@@ -514,8 +514,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     hours: heures
     inactive: Désactivé
     information: Information
-    leave: Leave
-    leaveAndReserve: Leave and reserve
+    leave: Quitter
+    leaveAndReserve: Quitter et réserve
     linkToCaseDetails: Cliquez sur <a href="{0}" >ici</a> pour plus de détails.
     loading: Chargement
     loginLogo: Logo login
@@ -553,7 +553,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     remove: Retirer
     reorder: Réorganiser
     requiredFieldMessage: Ce champ est obligatoire
-    reserve: Réserver
+    reserve: Enregistrer
     reset: Réinitialiser
     resetSettingHeaderText: Rétablir le réglage ?
     resetTaskHeaderText: Réinitialiser cette tâche ?
@@ -794,7 +794,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ManageFilter: Gérer les filtres
     NoData: Pas de données
     NoSavedFilterMessage: Aucun filtre enregistré n'a été trouvé. Essayez d'en créer un nouveau en cliquant sur le bouton Enregistrer le filtre.
-    RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
+    RestoreDefaultDashboardMessage: Si vous procédez ainsi, vous perdrez tous les widgets que vous avez créés. Les paramètres standard de <span class="dashboard-template-name-message">{0}</span> seront appliqués.
     SaveNewWidgetFilterHeader: Save a new widget filter
     SavedFilterHeader: Saved filters
     SearchForFilter: Search for filter
@@ -1449,13 +1449,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Voir la liste complète des tâches
     sort: Trier
   taskWarning:
-    createdTaskLeave: 'Vous êtes sur le point de quitter cette page. Choisissez l''une des options suivantes: <UL><LI>&nbsp; &nbsp; Quitter: Annuler vos modifications et retourner au dernier écran.<LI>&nbsp; &nbsp; Annuler: Continuer à travailler sur cette tâche. </ UL>'
-    createdTaskLogout: 'Vous êtes sur le point de quitter cette page. Choisissez l''une des options suivantes: <UL> <LI> & nbsp; Déconnexion: supprimez vos modifications et déconnexion. <LI> & nbsp; Annuler: Continuez à travailler sur cette tâche. </ UL>'
-    resetParkTaskBeforeLeave: 'Vous êtes sur le point de laisser une tâche en cours. Choisissez l''une des options suivantes: <UL> <LI> Quitter: supprimez vos modifications et revenez au dernier écran. <LI> Réserver: annulez vos modifications et conservez la tâche dans votre liste de tâches personnelles.
-      <LI> Annuler: Continuer travailler cette tâche. </ UL>'
-    resetParkTaskBeforeLogout: 'Vous êtes sur le point de laisser une tâche en cours. Choisissez l''une des options suivantes: <UL> <LI> & nbsp; & nbsp; Déconnexion: supprimez vos modifications et déconnexion. <LI> & nbsp; & nbsp; Réserver: Annuler vos modifications et conserver la tâche dans votre liste
-      de tâches personnelle. Ensuite, déconnectez-vous. <LI> & nbsp; & nbsp; Annuler: Continuer à travailler sur cette tâche. </ UL>'
-    taskNotFound: Cette tâche n'existe pas ou vous n'avez pas l'autorisation de la voir.
+    createdTaskLeave: 'Vous êtes sur le point de quitter cette page. Choisissez l&apos;&apos;une des options suivantes : <UL><LI>    Quitter : abandonnez vos modifications et allez à la page choisie. <LI>    Annuler : continuez à travailler sur cette tâche. </UL>'
+    createdTaskLogout: 'Vous êtes sur le point de quitter cette page. Choisissez l&apos;&apos;une des options suivantes : <UL> <LI> &nbsp; Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI> &nbsp; Annuler : continuez à travailler sur cette tâche. </UL>'
+    resetParkTaskBeforeLeave: 'Vous êtes sur le point de laisser une tâche en cours. Choisissez l&apos;&apos;une des options suivantes : <UL> <LI> Quitter : abandonnez vos modifications et allez à la page choisie. <LI> Enregistrer : abandonnez vos modifications et conservez la tâche dans votre liste de tâches personnelles. Ensuite déconnectez-vous. 
+      <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
+    resetParkTaskBeforeLogout: 'Vous êtes sur le point de laisser une tâche en cours. Choisissez l&apos;&apos;une des options suivantes : <UL> <LI> &nbsp; &nbsp; Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI> &nbsp; &nbsp; Enregistrer : annulez vos modifications et conservez la tâche dans votre liste de tâches personnelles. Ensuite, déconnectez-vous. <LI> &nbsp; &nbsp; Annuler : continuez à travailler sur cette tâche. </UL>'
+    taskNotFound : cette tâche n'existe pas ou vous n'avez pas l'autorisation de la voir.
   userProfile:
     myProfileTitle: Mon profil
     saveUserSettingsSuccessfully: Les paramètres de l'utilisateur ont été enregistrés avec succès.
@@ -1568,7 +1567,7 @@ Dialogs:
               CaseOwner: Responsable de processus
               Finished: Terminé
               GlobalSearchText: Les cas contiennent le mot-clé "{0}" dans Id du dossier{1}.
-              ShowBusinessDetails: Détails de l'entreprise
+              ShowBusinessDetails: Détails de la demande
               caseNameNotAvailable: '[Nom de cas pas disponible]'
               defaultEmptyMessage: Il n'y a pas de dossiers
             IconSelection:

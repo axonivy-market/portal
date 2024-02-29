@@ -3,7 +3,6 @@ package ch.ivy.addon.portal.generic.bean;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,8 +20,10 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
-import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import com.axonivy.portal.components.util.HtmlParser;
+
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 import ch.ivyteam.ivy.dialog.execution.api.DialogInstance;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -149,7 +150,9 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   public void getDataFromIFrame() throws Exception {
     Map<String, String> requestParamMap = getRequestParameterMap();
     String currentProcessStepText = requestParamMap.get(CURRENT_PROCESS_STEP_PARAM);
-    processSteps = StringUtils.isNotBlank(requestParamMap.get(PROCESS_STEPS_PARAM)) ? Arrays.asList(requestParamMap.get(PROCESS_STEPS_PARAM).split("\\s*,\\s*")) : new ArrayList<>();
+    processSteps = StringUtils.isNotBlank(requestParamMap.get(PROCESS_STEPS_PARAM))
+            ? BusinessEntityConverter.convertJsonToListString(requestParamMap.get(PROCESS_STEPS_PARAM))
+            : new ArrayList<>();
     stepIndexes = new ArrayList<>();
     for (int i= 0; i < processSteps.size(); i++) {
       stepIndexes.add(String.valueOf(i));
