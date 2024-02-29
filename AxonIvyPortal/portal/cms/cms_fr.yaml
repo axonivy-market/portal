@@ -85,6 +85,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CUSTOM: Widget personnalisé
       NEW: Nouveau widget
       NEWS: Nouvelles
+      NOTIFICATION: Notifications
       PROCESS: Widget Processus
       PROCESS_VIEWER: Widget de visualisation des processus
       STATISTIC: Widget Statistiques
@@ -490,8 +491,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     hours: heures
     inactive: Désactivé
     information: Information
-    leave: Leave
-    leaveAndReserve: Leave and reserve
+    leave: Quitter
+    leaveAndReserve: Quitter et réserve
     linkToCaseDetails: Cliquez sur <a href="{0}" >ici</a> pour plus de détails.
     loading: Chargement
     loginLogo: Logo login
@@ -529,7 +530,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     remove: Retirer
     reorder: Réorganiser
     requiredFieldMessage: Ce champ est obligatoire
-    reserve: Réserver
+    reserve: Enregistrer
     reset: Réinitialiser
     resetSettingHeaderText: Rétablir le réglage ?
     resetTaskHeaderText: Réinitialiser cette tâche ?
@@ -750,7 +751,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoData: Pas de données
     NoSavedFilterMessage: Aucun filtre enregistré n'a été trouvé. Essayez d'en créer un nouveau en cliquant sur le bouton Enregistrer le filtre.
     NoWidgetAvailable: Il n'y a pas de widgets.
-    RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
+    RestoreDefaultDashboardMessage: Si vous procédez ainsi, vous perdrez tous les widgets que vous avez créés. Les paramètres standard de <span class="dashboard-template-name-message">{0}</span> seront appliqués.
     SaveNewWidgetFilterHeader: Save a new widget filter
     SavedFilterHeader: Saved filters
     SearchForFilter: Search for filter
@@ -912,6 +913,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     widgetType: Type de widget
     yourCases: Vos affaires
     yourCustomWidget: Votre widget personnalisé
+    yourNotifications: Vos notifications
     yourProcessViewer: Votre visualisateur de processus
     yourProcesses: Vos processus
     yourStatistics: Vos statistiques
@@ -1432,13 +1434,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Voir la liste complète des tâches
     sort: Trier
   taskWarning:
-    createdTaskLeave: 'Vous êtes sur le point de quitter cette page. Choisissez l''une des options suivantes: <UL><LI>&nbsp; &nbsp; Quitter: Annuler vos modifications et retourner au dernier écran.<LI>&nbsp; &nbsp; Annuler: Continuer à travailler sur cette tâche. </ UL>'
-    createdTaskLogout: 'Vous êtes sur le point de quitter cette page. Choisissez l''une des options suivantes: <UL> <LI> & nbsp; Déconnexion: supprimez vos modifications et déconnexion. <LI> & nbsp; Annuler: Continuez à travailler sur cette tâche. </ UL>'
-    resetParkTaskBeforeLeave: 'Vous êtes sur le point de laisser une tâche en cours. Choisissez l''une des options suivantes: <UL> <LI> Quitter: supprimez vos modifications et revenez au dernier écran. <LI> Réserver: annulez vos modifications et conservez la tâche dans votre liste de tâches personnelles.
-      <LI> Annuler: Continuer travailler cette tâche. </ UL>'
-    resetParkTaskBeforeLogout: 'Vous êtes sur le point de laisser une tâche en cours. Choisissez l''une des options suivantes: <UL> <LI> & nbsp; & nbsp; Déconnexion: supprimez vos modifications et déconnexion. <LI> & nbsp; & nbsp; Réserver: Annuler vos modifications et conserver la tâche dans votre liste
-      de tâches personnelle. Ensuite, déconnectez-vous. <LI> & nbsp; & nbsp; Annuler: Continuer à travailler sur cette tâche. </ UL>'
-    taskNotFound: Cette tâche n'existe pas ou vous n'avez pas l'autorisation de la voir.
+    createdTaskLeave: 'Vous êtes sur le point de quitter cette page. Choisissez l&apos;&apos;une des options suivantes : <UL><LI>    Quitter : abandonnez vos modifications et allez à la page choisie. <LI>    Annuler : continuez à travailler sur cette tâche. </UL>'
+    createdTaskLogout: 'Vous êtes sur le point de quitter cette page. Choisissez l&apos;&apos;une des options suivantes : <UL> <LI> &nbsp; Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI> &nbsp; Annuler : continuez à travailler sur cette tâche. </UL>'
+    resetParkTaskBeforeLeave: 'Vous êtes sur le point de laisser une tâche en cours. Choisissez l&apos;&apos;une des options suivantes : <UL> <LI> Quitter : abandonnez vos modifications et allez à la page choisie. <LI> Enregistrer : abandonnez vos modifications et conservez la tâche dans votre liste de tâches personnelles. Ensuite déconnectez-vous. 
+      <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
+    resetParkTaskBeforeLogout: 'Vous êtes sur le point de laisser une tâche en cours. Choisissez l&apos;&apos;une des options suivantes : <UL> <LI> &nbsp; &nbsp; Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI> &nbsp; &nbsp; Enregistrer : annulez vos modifications et conservez la tâche dans votre liste de tâches personnelles. Ensuite, déconnectez-vous. <LI> &nbsp; &nbsp; Annuler : continuez à travailler sur cette tâche. </UL>'
+    taskNotFound : cette tâche n'existe pas ou vous n'avez pas l'autorisation de la voir.
   userProfile:
     myProfileTitle: Mon profil
   warningBeforeLostSession:
@@ -1557,13 +1558,19 @@ Dialogs:
               CaseOwner: Responsable de processus
               Finished: Terminé
               GlobalSearchText: Les cas contiennent le mot-clé "{0}" dans Id du dossier{1}.
-              ShowBusinessDetails: Détails de l'entreprise
+              ShowBusinessDetails: Détails de la demande
               caseNameNotAvailable: '[Nom de cas pas disponible]'
               defaultEmptyMessage: Il n'y a pas de dossiers
             IconSelection:
               IconLinkTooltip: Cliquez pour changer d'icône
             TaskItemDetails:
+              CannotWorkOnDestroyedTaskWarning: Vous ne pouvez pas travailler sur la tâche parce qu'elle a été détruite.
+              CannotWorkOnTaskWarning: Vous ne pouvez pas travailler sur cette tâche car l'utilisateur <strong>{0}</strong> y travaille déjà.
+              InvalidStateInfo: État non valide.
+              ResetTaskWarning: Vous travaillez actuellement sur la tâche dans une autre session. Vous pouvez réinitialiser la tâche et la recommencer si vous avez fermé votre navigateur. <a href="{0}">Réinitialiser</a>
               ShareTaskDetails: Partager les détails de la tâche
+              TaskCompletedByOtherInfo: La tâche a déjà été effectuée par l'utilisateur <strong>{0}</strong> sur {1}.
+              TaskCompletedByYouInfo: Vous avez déjà accompli la tâche sur {0}.
   com:
     axonivy:
       portal:
@@ -1598,6 +1605,12 @@ Dialogs:
               NewsWidgetConfiguration: Configuration du widget de flux d'informations
               NewsWidgetDescription: Ce widget partage des informations pertinentes sous forme de fil d'actualité dans Axon Ivy.
               NewsWidgetTitle: Widget de flux d'informations
+            NotificationWidget:
+              NoNotificationAvailable: Il n'y a pas encore de notifications
+            NotificationWidgetConfiguration:
+              NotificationWidgetConfiguration: Configuration du widget de notification
+              NotificationWidgetDescription: Ce widget affiche toutes les notifications en fonction de vos paramètres de notification.
+              WidgetFilter: Filtre à widgets
   components:
     CaseDocument:
       FileDate: Modifié le

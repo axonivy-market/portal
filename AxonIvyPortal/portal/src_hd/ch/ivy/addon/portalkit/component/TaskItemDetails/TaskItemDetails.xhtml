@@ -17,7 +17,7 @@
   <f:event listener="#{taskDetailsBean.init()}" type="preRenderComponent"/>
   <c:set var="task" value="#{data.task}" />
   <c:set var="generalContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('InformationWidget')}:task-detail-general-container" />
-  <c:set var="informationWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('InformationWidget') gt -1 ? generalContainerID:''}" />
+  <c:set var="informationWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('InformationWidget') gt -1 ? generalContainerID:''} #{cc.clientId}:task-status-banner" />
   <c:set var="documentsContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('DocumentWidget')}:task-documents:task-details-documents" />
   <c:set var="documentWidgetComponent" value="#{taskDetailsBean.getWidgetPositionByType('DocumentWidget') gt -1 ? documentsContainerID:''}" />
   <c:set var="noteContainerID" value="#{cc.clientId}:widgets:#{taskDetailsBean.getWidgetPositionByType('HistoryWidget')}:task-detail-note-container" />
@@ -63,6 +63,10 @@
         icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid(); enableAllIFrameWhenEditLayout();"/>
     </h:panelGroup>
   </div>
+
+  <h:panelGroup id="task-status-banner" layout="block" styleClass="ui-g #{taskDetailsBean.showInfoBanner()? 'task-status-banner' : ''}">
+    <p:staticMessage rendered="#{taskDetailsBean.showInfoBanner()}" escape="false" severity="#{taskDetailsBean.getInfoBannerSeverity()}" styleClass="task-status-banner-content MarTop10" detail="#{visibilityBean.sanitizeContent(taskDetailsBean.getInfoBannerMessage())}"></p:staticMessage>
+  </h:panelGroup>
 
   <h:panelGroup layout="block" styleClass="task-item-body " id="task-item-body">
     <h:panelGroup class="task-item-body-container task-details-widgets js-task-details-widgets u-padding-0 grid-stack" id="task-details-widgets"

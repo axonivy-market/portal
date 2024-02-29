@@ -78,7 +78,8 @@ public class ExpressProcessPage extends TemplatePage {
   }
 
   public void clickSave() {
-    $("[id='form:save']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='form:save']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    clickByJavaScript($("[id='form:save']"));
     $("[id='form:save']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 

@@ -420,6 +420,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
   @Test
   public void testSortProcessCompactProcessModeCustomSorting() {
+    resizeBrowserTo2kResolution();
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectCompactMode();
@@ -432,7 +433,9 @@ public class DashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.getPreviewProcessElement(0).shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldHave(Condition.exactTextCaseSensitive(CLEAN_ABSENCES));
     int fromIndex = 0;
-    int toIndex = 4;
+    int toIndex = 6;
+    editProcessWidgetConfiguration.dragAndDropProcess(fromIndex, toIndex);
+    editProcessWidgetConfiguration.dragAndDropProcess(fromIndex, toIndex);
     editProcessWidgetConfiguration.dragAndDropProcess(fromIndex, toIndex);
     editProcessWidgetConfiguration.save();
     editProcessWidgetConfiguration = newDashboardPage.editProcessWidgetConfiguration();

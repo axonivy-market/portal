@@ -19,7 +19,7 @@
           <h:panelGroup styleClass="ui-g-12">
             <div class="unread-container">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/onlyUnread')} " styleClass="only-unread-toggle"/>
-              <p:toggleSwitch id="toggle-only-unread" value="#{notificationBean.onlyUnread}">
+              <p:toggleSwitch id="toggle-only-unread" value="#{notificationBean.dataModel.onlyUnread}">
                 <p:ajax listener="#{notificationBean.dataModel.onSelectedFilter()}" oncomplete="Portal.updateLayoutContent()"
                 update="notification-full-form" global="false" partialSubmit="true"/>
               </p:toggleSwitch>
@@ -44,7 +44,7 @@
                       <i class="notifications-button fa #{notification.read ? 'fa-circle-thin': 'fa-circle'}" id="#{notification.id}" />
                     </p:commandLink>
                     <p:tooltip for="notification-mark-as-read" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
-                    <h:outputText id="notification-message" value="#{notification.message}" escape="false"/>
+                    <h:outputText id="notification-message" value="#{visibilityBean.sanitizeContent(notification.message)}" escape="false"/>
                     <h:outputText value="#{notification.timeSince}" styleClass="time-since"/>
                   </div>
                 </div>

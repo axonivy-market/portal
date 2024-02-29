@@ -49,7 +49,9 @@ public class AdminSettingsTest extends BaseTest {
   @Test
   public void testDefaultEnvironmentInfo() {
     login(TestAccount.ADMIN_USER);
+    createTestingTasks();
     NewDashboardPage homePage = new NewDashboardPage();
+    homePage.waitForCaseWidgetLoaded();
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
     adminSettingsPage.setGlobalFooterInfo();
     assertTrue(homePage.getGlobalFooterInfo().contains("Wawa"));
