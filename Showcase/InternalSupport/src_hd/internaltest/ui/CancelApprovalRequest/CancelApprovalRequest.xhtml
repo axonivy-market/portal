@@ -4,10 +4,6 @@
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/frame-10-full-width.xhtml">
-    <ui:define name="login">
-      <ic:internaltest.ui.CustomLogin />
-    </ui:define>
-
     <ui:define name="taskName">
       <span class="fa fa-subway" />
       <h:outputText value="#{ivy.task.names().current()} #(#{ivy.task.getId()})"></h:outputText>
