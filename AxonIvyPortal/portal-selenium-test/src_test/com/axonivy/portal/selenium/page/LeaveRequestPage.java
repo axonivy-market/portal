@@ -40,10 +40,20 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
 
   public String clickSubmitAndGetValidationMsg() {
     int numberOfErrors = $$("span.ui-messages-error-summary").size();
+    try {
+      clickSubmitAndWaitValidationSummary(numberOfErrors);
+    } catch (AssertionError e) {
+      if (!$("[id='leave-request:leave-request-validation-msg']").isDisplayed()) {
+        clickSubmitAndWaitValidationSummary(numberOfErrors);
+      }
+    }
+    return getValidationMsg();
+  }
+
+  private void clickSubmitAndWaitValidationSummary(int numberOfErrors) {
     clickSubmitLeaveRequest();
     waitForPageLoad();
     $$("span.ui-messages-error-summary").shouldBe(CollectionCondition.sizeNotEqual(numberOfErrors), DEFAULT_TIMEOUT);
-    return getValidationMsg();
   }
 
   public String getValidationMsg() {
