@@ -66,8 +66,7 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
     boolean isPanelDisplayed = false;
     while(!isPanelDisplayed) {
       waitForElementClickableThenClick("[id='leave-request:leave-type']");
-      isPanelDisplayed = $("[id='leave-request:leave-type_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-          .isDisplayed();
+      isPanelDisplayed = $("[id='leave-request:leave-type_panel']").isDisplayed();
     }
 
     String leaveTypeSelector = "li[data-label='" + leaveType + "']";
@@ -85,8 +84,7 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
     boolean isPanelDisplayed = false;
     while(!isPanelDisplayed) {
       waitForElementClickableThenClick("[id='leave-request:approver']");
-      isPanelDisplayed = $("[id='leave-request:approver_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-          .isDisplayed();
+      isPanelDisplayed = $("[id='leave-request:approver_panel']").isDisplayed();
     }
 
     String approverSelector = "li[data-label='" + approver + "']";
