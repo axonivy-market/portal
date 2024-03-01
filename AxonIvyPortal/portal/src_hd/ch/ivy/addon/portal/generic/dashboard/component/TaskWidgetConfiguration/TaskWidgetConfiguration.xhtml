@@ -24,6 +24,14 @@
       </h:panelGroup>
       <h:panelGroup id="predefined-filter" layout="block" styleClass="ui-g dashboard-widget-filter__main-panel">
         <c:set var="filterComponentToUpdate" value="predefined-filter" />
+
+        <div class="ui-g">
+          <span class="task-configuration__chbox-work-on" />
+          <p:selectBooleanCheckbox id="can-work-on"
+            value="#{cc.attrs.taskWidget.canWorkOn}"
+            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/canWorkOn')}" />
+        </div>
+
         <ui:repeat id="filter-list" var="filter" value="#{widget.filters}" varStatus="status">
           <ic:com.axonivy.portal.dashboard.component.filter.DashboardFilter id="filter-component" filter="#{filter}" widget="#{widget}"
             managedBean="#{taskWidgetConfigurationFilterBean}"

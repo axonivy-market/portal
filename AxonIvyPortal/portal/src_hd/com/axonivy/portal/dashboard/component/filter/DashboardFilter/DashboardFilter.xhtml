@@ -63,10 +63,10 @@
       </h:panelGroup>
 
       <h:panelGroup layout="block" rendered="#{filter.isResponsible()}">
-        <ic:com.axonivy.portal.dashboard.component.filter.CreatorFilter filter="#{filter}"
+        <ic:com.axonivy.portal.dashboard.component.filter.ResponsibleFilter filter="#{filter}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"
-          creatorCompleteMethod="#{cc.attrs.managedBean.completeCreators}" />
+          responsibleCompleteMethod="#{cc.attrs.managedBean.completeOwners}" />
       </h:panelGroup>
 
       <h:panelGroup layout="block" rendered="#{filter.isCategory()}">

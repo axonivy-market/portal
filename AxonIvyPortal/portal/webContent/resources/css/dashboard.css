@@ -430,7 +430,9 @@ td.dashboard-tasks__category span {
 
 .task-configuration__chbox-work-on {
   width: 10%; 
-  display: inline-block;
+  display: block;
+  padding: 5px 0;
+
 }
 
 .task-configuration__input-text {
@@ -1871,6 +1873,7 @@ body .ui-button.rounded-button.dashboard-widget-filter__remove-filter .ui-icon {
 }
 .application-filter-operator-panel,
 .state-filter-operator-panel,
+.priority-filter-operator-panel,
 .id-filter-operator-panel {
   min-width: 130px;
 }
