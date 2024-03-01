@@ -19,6 +19,7 @@ import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CustomWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
@@ -35,6 +36,7 @@ import com.axonivy.portal.selenium.page.StatisticEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
+import com.codeborne.selenide.CollectionCondition;
 
 @IvyWebTest
 public class DashboardScreenshotTest extends ScreenshotBaseTest {
@@ -362,6 +364,95 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "news-feed-widget-overlay-panel");
     translation.findElement(By.cssSelector("span.ui-icon-closethick")).click();
     newDashboardPage.findTranslationButton(tabIndex);
+  }
+  
+  @Test
+  public void screenshotComplexFilter() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
+    homePage = new NewDashboardPage();
+    CaseWidgetNewDashBoardPage caseWidget = homePage.selectCaseWidget("Your Cases");
+    caseWidget.openFilterWidget();
+    caseWidget.addFilter("Name", FilterOperator.CONTAINS);
+    caseWidget.clickOnFilterOperator();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseWidget.getConfigurationFilter(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "filter-operator-dropdown", new ScreenshotMargin(25));
+    
+    redirectToDashboardConfiguration();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    DashboardModificationPage editPage = new DashboardModificationPage();
+    NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
+    detailsEditPage.waitForCaseWidgetLoaded();
+    detailsEditPage.editWidgetById(1);
+    CaseEditWidgetNewDashBoardPage caseConfig = new CaseEditWidgetNewDashBoardPage();
+    caseConfig.waitPreviewTableLoaded();
+    ScreenshotUtils.executeDecorateJs("highlightShowFilterButton();");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "edit-widget-show-filter");
+    ScreenshotUtils.executeDecorateJs("removeHighlightShowFilterButton();");
+    resizeBrowserTo2kResolution();
+    caseConfig.openColumnManagementDialog();
+    caseConfig.addCustomColumnByName("InvoiceQualityNumber");
+    caseConfig.saveColumn();
+    caseConfig.waitPreviewTableLoaded();
+    caseConfig.openFilter();
+    caseConfig.addFilter("Creator", FilterOperator.CURRENT_USER);
+    caseConfig.addFilter("Name", FilterOperator.CONTAINS);
+    caseConfig.inputValueOnLatestFilter(FilterValueType.TEXT, "Ticket", "Request");
+    
+    caseConfig.addFilter("State", null);
+    caseConfig.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN", "DONE");
+    
+    caseConfig.addFilter("Invoice quality number", FilterOperator.BETWEEN);
+    caseConfig.inputValueOnLatestFilter(FilterValueType.NUMBER_BETWEEN, 1, 40);
+    
+    caseConfig.closeFilter();
+    caseConfig.save();
+    
+    showNewDashboard();
+    homePage = new NewDashboardPage();
+    caseWidget = homePage.selectCaseWidget("Your Cases");
+    caseWidget.openFilterWidget();
+
+    caseWidget.addFilter("Created Date", FilterOperator.WITHIN_LAST);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.WITHIN, "2", "Year(s)");
+    
+    caseWidget.addFilter("Description", FilterOperator.CONTAINS);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Alex", "Nam", "Mike");
+    
+    caseWidget.removeFocusFilterDialog();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseWidget.getConfigurationFilter(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-task-widget-filter-combine", new ScreenshotMargin(20));
+
+  }
+  
+  @Test
+  public void screenshotSaveWidgetFilter() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
+    homePage = new NewDashboardPage();
+    CaseWidgetNewDashBoardPage caseWidget = homePage.selectCaseWidget("Your Cases");
+    caseWidget.openFilterWidget();
+    caseWidget.addFilter("Name", FilterOperator.CONTAINS);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Nam", "Mike");
+    
+    caseWidget.saveFilter("Filter Set A");
+    caseWidget.selectSavedFilter("Filter Set A");
+    
+    caseWidget.saveFilter("Filter Set B");
+    
+    ScreenshotUtils.captureElementScreenshot(homePage.getWidgetFilter(1),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-save-filter");
+    
+    resizeBrowserTo2kResolution();
+    homePage.clickOnManageFilterLink();
+    homePage.getTotalSavedFilterInManageFilterDialog().shouldBe(CollectionCondition.size(2), DEFAULT_TIMEOUT);
+    homePage.closeManageFilterDialog();
+    caseWidget.openFilterWidget();
+    homePage.clickOnManageFilterLink();
+    
+    ScreenshotUtils.captureElementScreenshot(homePage.getManageFilterDialog(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-filter-management"); //#delete-saved-filter-form\:quick-filter-table > div.ui-datatable-scrollable-body
   }
 
   private void redirectToDashboardConfiguration() {

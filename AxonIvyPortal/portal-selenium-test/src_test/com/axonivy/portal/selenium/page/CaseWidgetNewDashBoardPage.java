@@ -289,5 +289,18 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
             .$("div[id$=':widget-header-actions']").$("span[class*='widget__filter-noti-number']").getText();
     return Integer.parseInt(filterNotiNumber);
   }
+  
+  public void removeFocusFilterDialog() {
+    $("[id$=':widget-filter-content']").$("strong").click();
+    $("[id$=':widget-filter-content']").scrollIntoView("{block: \"end\"}");
+  }
+
+  public SelenideElement getConfigurationFilter() {
+    return $("div[class*='filter-overlay-panel'][style*='display: block']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void clickOnFilterOperator() {
+    $("div[id$='operator-selection']").shouldBe(getClickableCondition()).click();
+  }
 
 }

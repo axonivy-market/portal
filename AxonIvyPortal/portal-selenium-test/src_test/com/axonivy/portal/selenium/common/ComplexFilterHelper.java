@@ -21,13 +21,13 @@ public class ComplexFilterHelper {
 
   public static SelenideElement getNewFilter(int filterIndex) {
     String latestFilter = String.format("div[id$=':%s:filter-component:filter-selection-panel']", filterIndex);
-    return $(latestFilter).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $(".dashboard-widget-filter__main-panel").$(latestFilter).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public static void selectFilterColumnName(String columnName, int filterIndex) {
     var filterElement = getNewFilter(filterIndex);
     filterElement.$("div[id$=':filter-component:field-selection']").shouldBe(getClickableCondition()).click();
-    String columnSelection = String.format("div[id$=':%s:filter-component:field-selection_panel']", filterIndex);
+    String columnSelection = String.format("div[id$=':%s:filter-component:field-selection_panel'][style*='display: block']", filterIndex);
     $(columnSelection).$$("ul li").filter(text(columnName)).first().click();
   }
 
@@ -40,7 +40,7 @@ public class ComplexFilterHelper {
   }
 
   public static void inputValueOnLatestFilter(FilterValueType type, Object... values) {
-    int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
+    int currentIndex = $(".dashboard-widget-filter__main-panel").$$("div[id$=':filter-component:filter-selection-panel']").size();
     if (currentIndex < 1) {
       return;
     }
@@ -80,10 +80,10 @@ public class ComplexFilterHelper {
   
   public static SelenideElement addFilter(String columnName, FilterOperator operator) {
     $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT);
-    int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
+    int currentIndex = $(".dashboard-widget-filter__main-panel").$$("div[id$=':filter-component:filter-selection-panel']").size();
     $("button[id$=':add-filter']").shouldBe(getClickableCondition()).click();
-    $$("div[id$=':filter-component:filter-selection-panel']")
-        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(currentIndex + 1));
+    $(".dashboard-widget-filter__main-panel").$$("div[id$=':filter-component:filter-selection-panel']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(currentIndex + 1), DEFAULT_TIMEOUT);
     ComplexFilterHelper.selectFilterColumnName(columnName, currentIndex);
     if (operator != null) {
       ComplexFilterHelper.selectFilterOperator(operator, currentIndex);

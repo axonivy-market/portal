@@ -27,7 +27,6 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
 
   // WIDGET NAME
   private static final String YOUR_CASES_WIDGET = "Your Cases";
-  private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
 
   @Override
   @BeforeEach
