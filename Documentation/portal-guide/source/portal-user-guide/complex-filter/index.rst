@@ -39,6 +39,9 @@ How to use
 
 - To remove a filter, click on |remove-filter-icon| button.
 
+.. tip::
+    If the task/case widget has been pre-configured with filters in the dashboard configuration, these filters will be displayed as read-only filters.
+
 Save A Filter Set 
 -----------------
 
