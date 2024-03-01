@@ -8,16 +8,38 @@ public class TaskTemplateIFramePage extends TemplatePage {
   }
 
   public NewDashboardPage clickSubmitButton() {
-    waitForElementClickableThenClick("button[id$='button-submit']");
-    waitPageDisappear();
-    switchToDefaultContent();
+    clickSubmit();
+
+    try {
+      return new NewDashboardPage();
+    } catch (AssertionError e) {
+      switchToIFrameOfTask();
+      clickSubmit();
+    }
     return new NewDashboardPage();
   }
 
-  public NewDashboardPage clickCancelButton() {
-    waitForElementClickableThenClick("a[id$='button-cancel']");
-    waitPageDisappear();
+  private void clickSubmit() {
+    waitForElementClickableThenClick("button[id$='button-submit']");
     switchToDefaultContent();
+    waitPageDisappear();
+  }
+
+  public NewDashboardPage clickCancelButton() {
+    clickCancel();
+
+    try {
+      return new NewDashboardPage();
+    } catch (AssertionError e) {
+      switchToIFrameOfTask();
+      clickCancel();
+    }
     return new NewDashboardPage();
+  }
+
+  private void clickCancel() {
+    waitForElementClickableThenClick("a[id$='button-cancel']");
+    switchToDefaultContent();
+    waitPageDisappear();
   }
 }

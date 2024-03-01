@@ -479,11 +479,20 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     ElementsCollection elementsTH = $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
     elementsTH.asDynamicIterable().forEach(headerElem -> {
       if (headerElem.getText().equalsIgnoreCase(columnName)) {
-        waitForElementClickable(headerElem);
-        clickByJavaScript(headerElem);
+        waitForElementClickableThenClick(headerElem);
 
-        waitForElementClickable(headerElem);
-        headerElem.shouldBe(Condition.cssClass("ui-state-active"), DEFAULT_TIMEOUT);
+        // Sometimes browser click before JS of Primefaces loaded correctly.
+        // -> header has state focus instead of active.
+        // -> should check: after click, if header has state focus instead of active,
+        // click again.
+        try {
+          headerElem.shouldHave(Condition.cssClass("ui-state-active"), DEFAULT_TIMEOUT);
+        } catch (AssertionError e) {
+          if (headerElem.has(Condition.cssClass("ui-state-focus"))) {
+            waitForElementClickableThenClick(headerElem);
+            headerElem.shouldHave(Condition.cssClass("ui-state-active"), DEFAULT_TIMEOUT);
+          }
+        }
       }
     });
   }

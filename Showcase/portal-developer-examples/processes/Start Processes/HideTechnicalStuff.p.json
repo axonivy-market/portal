@@ -279,7 +279,8 @@
             "name" : "Report and hide case",
             "description" : "Report and hide case",
             "responsible" : {
-              "activator" : "AXONIVY_PORTAL_ADMIN"
+              "type" : "ROLE_FROM_ATTRIBUTE",
+              "activator" : "\"AXONIVY_PORTAL_ADMIN\""
             }
           }, {
             "id" : "TaskB",
