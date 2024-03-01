@@ -9,14 +9,15 @@ public class TaskTemplateIFramePage extends TemplatePage {
 
   public NewDashboardPage clickSubmitButton() {
     waitForElementClickableThenClick("button[id$='button-submit']");
+    waitPageDisappear();
     switchToDefaultContent();
     return new NewDashboardPage();
   }
 
   public NewDashboardPage clickCancelButton() {
     waitForElementClickableThenClick("a[id$='button-cancel']");
+    waitPageDisappear();
     switchToDefaultContent();
-    waitForPageLoad();
     return new NewDashboardPage();
   }
 }

@@ -98,8 +98,8 @@ public class GlobalGrowlTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
     taskTemplatePage.clickCancelAndLeftButton();
+    taskTemplatePage.waitPageDisappear();
     taskTemplatePage.switchBackToParent();
-    taskTemplatePage.waitForPageLoad();
     taskWidgetPage = new TaskWidgetPage();
     assertGrowlMessage(taskWidgetPage, CANCEL_MESSAGE_WITH_DETAILS);
   }

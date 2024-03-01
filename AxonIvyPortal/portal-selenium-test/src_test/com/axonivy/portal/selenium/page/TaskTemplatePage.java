@@ -138,7 +138,8 @@ public class TaskTemplatePage extends TemplatePage {
     WaitHelper.waitForIFrameAvailable(driver, "iFrame");
     waitForElementDisplayed(By.id("form:invested-amount"), true);
     $(By.id("form:invested-amount")).sendKeys("1");
-    clickByJavaScript($(By.id("form:save-btn")));
+    waitForElementClickableThenClick($(By.id("form:save-btn")));
+    waitPageDisappear();
     driver.switchTo().defaultContent();
     WaitHelper.waitForPresenceOfElementLocatedInFrame("[id$='global-search-component:global-search-data']");
     return NavigationHelper.navigateToTaskList();

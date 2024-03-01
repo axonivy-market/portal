@@ -99,16 +99,15 @@ public class CaseMapPage extends TemplatePage {
   }
 
   public TaskWidgetPage clickSubmitButton() {
-    $("button[id$='form:submit-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    waitForElementClickableThenClick("button[id$='form:submit-button']");
+    waitPageDisappear();
     switchBackToParent();
-    // return new NewDashboardPage();
-    // $("button[id$='form:submit-button']").shouldBe(getClickableCondition()).click();
     return new TaskWidgetPage();
   }
 
   public TaskWidgetPage clickApproveButton() {
     waitForElementClickableThenClick("button[id$='form:approval-button']");
+    waitPageDisappear();
     switchToDefaultContent();
     return new TaskWidgetPage();
   }
@@ -121,6 +120,7 @@ public class CaseMapPage extends TemplatePage {
 
   public TaskWidgetPage clickRejectButton() {
     waitForElementClickableThenClick("button[id$='form:rejected-button']");
+    waitPageDisappear();
     switchToDefaultContent();
     return new TaskWidgetPage();
   }

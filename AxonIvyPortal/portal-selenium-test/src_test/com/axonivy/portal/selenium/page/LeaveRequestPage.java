@@ -100,19 +100,21 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   public TaskWidgetPage clickApproveBtn() {
     waitForElementClickableThenClick(By.id("leave-request:approved-btn"));
     switchToDefaultContent();
+    waitPageDisappear();
     return new TaskWidgetPage();
   }
 
   public TaskTemplatePage finishLeaveRequest() {
     waitForElementClickableThenClick(By.id("leave-request:finish-btn"));
     switchToDefaultContent();
-    waitForPageLoad();
+    waitPageDisappear();
     return new TaskTemplatePage();
   }
 
   public TaskWidgetPage clickRejectBtn() {
     waitForElementClickableThenClick(By.id("leave-request:rejected-btn"));
     switchToDefaultContent();
+    waitPageDisappear();
     return new TaskWidgetPage();
   }
 }
