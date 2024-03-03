@@ -181,7 +181,7 @@ public class ComplexFilterHelper {
   }
 
   private static SelenideElement getValueOfCheckBox(String value) {
-    return $("div.ui-selectcheckboxmenu-items-wrapper").shouldBe(appear, DEFAULT_TIMEOUT)
+    return $("div.ui-selectcheckboxmenu-panel[style*='display: block']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("li.ui-selectcheckboxmenu-item").filter(text(value)).first().$("div.ui-chkbox-box");
   }
 
@@ -190,7 +190,7 @@ public class ComplexFilterHelper {
   }
 
   private static SelenideElement getCloseCheckBox() {
-    return $("div.ui-selectcheckboxmenu-panel").shouldBe(appear, DEFAULT_TIMEOUT).$("a.ui-selectcheckboxmenu-close");
+    return $("div.ui-selectcheckboxmenu-panel[style*='display: block']").shouldBe(appear, DEFAULT_TIMEOUT).$("a.ui-selectcheckboxmenu-close");
   }
 
   private static void filterCategories(SelenideElement filterEl, String... categories) {

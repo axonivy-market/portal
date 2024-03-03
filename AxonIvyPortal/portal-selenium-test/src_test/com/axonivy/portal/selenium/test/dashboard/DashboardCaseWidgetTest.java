@@ -208,7 +208,6 @@ public class DashboardCaseWidgetTest extends BaseTest {
     caseEditWidget.filterCaseName("TestCase");
     caseEditWidget.filterCaseState("OPEN");
     caseEditWidget.applyFilter();
-    // caseEditWidget.preview();
     caseEditWidget.countCases().shouldHave(size(12));
     caseEditWidget.save();
     // After Edit

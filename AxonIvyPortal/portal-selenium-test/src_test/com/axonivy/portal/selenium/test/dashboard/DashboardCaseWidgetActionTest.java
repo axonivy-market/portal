@@ -6,6 +6,7 @@ import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -78,19 +79,11 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
   private void filterByCaseState(String state) {
     CaseWidgetNewDashBoardPage caseWidget = new CaseWidgetNewDashBoardPage();
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-//    caseWidget.openFilterWidget();
-//    caseWidget.resetFilter();
+    caseWidget.openFilterWidget();
+    caseWidget.resetFilter();
     caseWidget.openFilterWidget();
     caseWidget.addFilter("State", null);
-    caseWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
-    caseWidget.addFilter("Id", null);
-    caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "loc", "loc2", "loc3");
-    caseWidget.addFilter("Finished Date", FilterOperator.BETWEEN);
-    caseWidget.inputValueOnLatestFilter(FilterValueType.DATE, "alo", "kjhs");
-    caseWidget.addFilter("Creator", FilterOperator.NOT_IN);
-    caseWidget.inputValueOnLatestFilter(FilterValueType.CREATOR_TYPE, "Backend Developer 1");
-//    caseWidget.filterCaseState();
-//    caseWidget.selectState(state);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, StringUtils.upperCase(state));
     caseWidget.applyFilter();
   }
 }
