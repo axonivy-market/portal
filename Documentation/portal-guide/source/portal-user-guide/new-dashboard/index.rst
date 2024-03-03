@@ -129,15 +129,14 @@ see and how.
 
 |case-list-widget|
 
-**Configuration panel**
+**Filters panel**
 
-On the left side, you can define the widget name, establish the main
-configuration for your widget, and get a preview of it by clicking on the
-preview button.
+By clicking on the ``Filter`` button, you can define configuration for your widget, and get a preview of it by clicking on the
+``apply`` button.
 
 |case-list-widget-configuration|
 
-**Table configuration panel**
+**Column Management**
 
 This panel allows you to:
 
