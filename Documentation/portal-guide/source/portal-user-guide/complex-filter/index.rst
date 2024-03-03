@@ -1,5 +1,3 @@
-.. _complex-filter:
-
 .. raw:: html
 
     <style>
@@ -8,8 +6,10 @@
       }
     </style>
 
+.. _complex-filter:
+
 Complex Filter 
-**************
+==============
 
 Introduction
 ------------
@@ -30,11 +30,8 @@ How to use
 
     |case-task-widget-filter-combine|
 
-- To remove a filter, click on |remove-filter-icon| button.
-
-.. tip::
-    If the task/case widget has been pre-configured with filters in the dashboard configuration, these filters will be displayed as read-only filters.
-    For more information about filter operators, please refer to the table :ref:`filter-operators`.
+- Click on |remove-filter-icon| button to remove a filter.
+- Click on ``Apply`` button to apply filters.
 
 .. tip::
     For example, within a case widget, these filters are applied:
@@ -43,6 +40,9 @@ How to use
 
     This configuration implies finding all cases where the state is OPEN, the name contains 'Mike', and they were created today.
 
+If the task/case widget has been pre-configured with filters in the dashboard configuration, these filters will be displayed as read-only filters.
+
+For more information about filter operators, please refer to the table :ref:`filter-operators`.
 
 Save A Filter Set 
 -----------------
