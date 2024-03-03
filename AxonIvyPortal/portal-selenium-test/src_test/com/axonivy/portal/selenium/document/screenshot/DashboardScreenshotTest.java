@@ -454,6 +454,26 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.captureElementScreenshot(homePage.getManageFilterDialog(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-filter-management"); //#delete-saved-filter-form\:quick-filter-table > div.ui-datatable-scrollable-body
   }
+  
+  @Test
+  public void screenshotFilterExample() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
+    homePage = new NewDashboardPage();
+    CaseWidgetNewDashBoardPage caseWidget = homePage.selectCaseWidget("Your Cases");
+    caseWidget.openFilterWidget();
+    caseWidget.addFilter("Name", FilterOperator.CONTAINS);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Mike");
+    
+    caseWidget.addFilter("State", null);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
+    
+    caseWidget.addFilter("Created Date", FilterOperator.TODAY);
+    
+    caseWidget.removeFocusFilterDialog();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseWidget.getConfigurationFilter(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "complex-filter-example", new ScreenshotMargin(10));
+  }
 
   private void redirectToDashboardConfiguration() {
     redirectToRelativeLink("portal/1549F58C18A6C562/PortalDashboardConfiguration.ivp");
