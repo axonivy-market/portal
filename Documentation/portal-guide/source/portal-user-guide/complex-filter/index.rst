@@ -19,19 +19,12 @@ This feature is available for the Case Widget and the Task Widget in Dashboard.
 How to use
 ----------
 
-- To open ``Available Filters`` dialog:
-
-  - On Dashboard, click the ``Available Filters`` button on the Task/Case Widget
-
-  - Alternatively, on Edit Widget, click on ``Filter`` button 
-
-    |edit-widget-filter-button|
+- The Filters dialog can be accessed by clicking on the 'Available Filters' button within the Task/Case Widget on the Dashboard, or by clicking on the 'Filter' button within the Edit Widget on the Edit Dashboard. 
+  Please refer to :ref:`new-dashboard` for more details. 
 
 - To add a filter, select ``Add filter``, then select the column and operator, and input value if needed.  
     
     |filter-operator-dropdown|
-
-- For more information about filter operators, please refer to the table :ref:`filter-operators`.
 
 - Portal allows you to combine filters, these filters connect to each other using the **AND** operator.
 
@@ -41,6 +34,15 @@ How to use
 
 .. tip::
     If the task/case widget has been pre-configured with filters in the dashboard configuration, these filters will be displayed as read-only filters.
+    For more information about filter operators, please refer to the table :ref:`filter-operators`.
+
+.. tip::
+    For example, within a case widget, these filters are applied:
+
+      |complex-filter-example|
+
+    This configuration implies finding all cases where the state is OPEN, the name contains 'Mike', and they were created today.
+
 
 Save A Filter Set 
 -----------------
@@ -191,8 +193,8 @@ Filter Operators
 
 .. include:: ../includes/_common-icon.rst
 
-.. |edit-widget-filter-button| image:: ../../screenshots/new-dashboard/edit-widget-show-filter.png
 .. |case-task-widget-filter-combine| image:: ../../screenshots/new-dashboard/case-task-widget-filter-combine.png
 .. |filter-operator-dropdown| image:: ../../screenshots/new-dashboard/filter-operator-dropdown.png
 .. |widget-filter-management| image:: ../../screenshots/new-dashboard/widget-filter-management.png
 .. |widget-save-filter| image:: ../../screenshots/new-dashboard/widget-save-filter.png
+.. |complex-filter-example| image:: ../../screenshots/new-dashboard/complex-filter-example.png
