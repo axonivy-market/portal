@@ -29,6 +29,7 @@ import ch.ivy.addon.portal.chat.ChatGroupUtils;
 import ch.ivy.addon.portal.chat.ChatReferencesContainer;
 import ch.ivy.addon.portal.chat.CreateGroupChatStatus;
 import ch.ivy.addon.portal.chat.GroupChat;
+import ch.ivy.addon.portal.generic.util.FacesMessageUtils;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.RoleDTO;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
@@ -119,7 +120,7 @@ public class ChatAssigneeBean implements Serializable {
     SecurityMemberDTO selectedAssignee = selectedUser != null ? SecurityMemberDTOMapper.mapFromUserDTO(selectedUser)
         : SecurityMemberDTOMapper.mapFromRoleDTO(selectedRole);
     if (selectedAssignee == null || isSelectedAssigneeExist(selectedAssignee)) {
-      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "",
+      FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, "",
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/errorSelectInvalidAssignee")));
       return;
     }
@@ -161,7 +162,7 @@ public class ChatAssigneeBean implements Serializable {
       if (CollectionUtils.isNotEmpty(assigneeNames)) {
         assigneeNames.add(Ivy.session().getSessionUser().getMemberName());
         String groupChatName = getGroupChatName(existedGroupChat);
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
+        FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO,
             Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/joinedProcessChat",
                 Arrays.asList(groupChatName)), null);
         CreateGroupChatStatus createGroupChatStatus = CreateGroupChatStatus.FAIL;
@@ -188,7 +189,7 @@ public class ChatAssigneeBean implements Serializable {
   }
 
   private FacesMessage generateErrorMessageWhenJoinGroupChat() {
-    return new FacesMessage(FacesMessage.SEVERITY_ERROR,
+    return FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/failureToJoinProcessChat"), null);
   }
 
@@ -235,14 +236,14 @@ public class ChatAssigneeBean implements Serializable {
     ICase iCase = task.getCase().ensureBusinessCase();
     GroupChat group = initGroupChat(iCase);
     String groupChatName = getGroupChatName(group);
-    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, Ivy.cms()
+    FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, Ivy.cms()
         .co("/ch.ivy.addon.portalkit.ui.jsf/chat/processChatIsCreated", Arrays.asList(groupChatName)), null);
     boolean isCreated = true;
 
     try {
       CreateGroupChatStatus createGroupChatStatus = saveGroupChat(group, false);
       if (createGroupChatStatus == CreateGroupChatStatus.ALREADY_EXIST) {
-        message = new FacesMessage(FacesMessage.SEVERITY_ERROR, getGroupChatExistMessage(), null);
+        message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, getGroupChatExistMessage(), null);
       } else if (createGroupChatStatus == CreateGroupChatStatus.SUSCCESS) {
         ChatReferencesContainer.getChatService().updateGroupList(group);
       } else {
@@ -274,7 +275,7 @@ public class ChatAssigneeBean implements Serializable {
   }
 
   private FacesMessage generateErrorMessageWhenCreateGroupChat() {
-    return new FacesMessage(FacesMessage.SEVERITY_ERROR,
+    return FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/failureToCreateProcessChat"), null);
   }
 
@@ -332,7 +333,7 @@ public class ChatAssigneeBean implements Serializable {
   private boolean checkGroupChatExist() {
     if (doesGroupChatExist()) {
       FacesContext.getCurrentInstance().addMessage(CHAT_ASSIGNEE_ERROR_MESSAGE_ID,
-          new FacesMessage(FacesMessage.SEVERITY_ERROR, "", getGroupChatExistMessage()));
+          FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, "", getGroupChatExistMessage()));
       PrimeFaces.current().ajax().update(CHAT_ASSIGNEE_ERROR_MESSAGE_ID);
       return true;
     }
@@ -341,7 +342,7 @@ public class ChatAssigneeBean implements Serializable {
 
   private boolean checkNoAssignees() {
     if (CollectionUtils.isEmpty(selectedAssignees)) {
-      FacesContext.getCurrentInstance().addMessage(CHAT_ASSIGNEE_ERROR_MESSAGE_ID, new FacesMessage(
+      FacesContext.getCurrentInstance().addMessage(CHAT_ASSIGNEE_ERROR_MESSAGE_ID, FacesMessageUtils.sanitizedMessage(
           FacesMessage.SEVERITY_ERROR, "", Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/noAssignees")));
       PrimeFaces.current().ajax().update(CHAT_ASSIGNEE_ERROR_MESSAGE_ID);
       return true;

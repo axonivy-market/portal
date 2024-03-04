@@ -131,10 +131,11 @@ Cs0 f7 83 275 26 26 -75 18 #rect
 Cs0 f7 @|UdMethodIcon #fIcon
 Cs0 f9 actionTable 'out=in;
 ' #txt
-Cs0 f9 actionCode 'import javax.faces.application.FacesMessage;
+Cs0 f9 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, in.uploadDocumentCheckMessage, null));' #txt
+FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, in.uploadDocumentCheckMessage, null));' #txt
 Cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -238,10 +239,11 @@ Cs0 f42 expr in #txt
 Cs0 f42 488 304 488 368 #arcP
 Cs0 f46 actionTable 'out=in;
 ' #txt
-Cs0 f46 actionCode 'import javax.faces.application.FacesMessage;
+Cs0 f46 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-FacesContext.getCurrentInstance().addMessage("", new FacesMessage( in.uploadDocumentCheckMessage, "" ));' #txt
+FacesContext.getCurrentInstance().addMessage("", FacesMessageUtils.sanitizedMessage( in.uploadDocumentCheckMessage, "" ));' #txt
 Cs0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -267,10 +269,11 @@ Cs0 f49 504 288 568 288 #arcP
 Cs0 f49 0 0.2857142857142857 0 -7 #arcLabel
 Cs0 f50 actionTable 'out=in;
 ' #txt
-Cs0 f50 actionCode 'import javax.faces.application.FacesMessage;
+Cs0 f50 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-FacesContext.getCurrentInstance().addMessage("", new FacesMessage(in.deleteDocumentMessage, "" ));' #txt
+FacesContext.getCurrentInstance().addMessage("", FacesMessageUtils.sanitizedMessage(in.deleteDocumentMessage, "" ));' #txt
 Cs0 f50 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

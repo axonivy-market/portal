@@ -220,14 +220,15 @@ Cs0 f29 555 467 26 26 0 12 #rect
 Cs0 f29 @|UdProcessEndIcon #fIcon
 Cs0 f45 actionTable 'out=in;
 ' #txt
-Cs0 f45 actionCode 'import javax.faces.application.FacesMessage;
+Cs0 f45 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 
 CaseFilterService service = new CaseFilterService();
 in.isFilterExisted = false;
 if (service.isFilterExisted(in.filterSetName, in.filterType, in.filterGroupId)) {
-	FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterExistedValidationError"), "");
+	FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterExistedValidationError"), "");
 	FacesContext.getCurrentInstance().addMessage("", message);
 	FacesContext.getCurrentInstance().validationFailed();
 	in.isFilterExisted = true;

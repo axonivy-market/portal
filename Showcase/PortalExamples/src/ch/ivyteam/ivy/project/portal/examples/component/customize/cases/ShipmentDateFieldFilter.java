@@ -9,6 +9,7 @@ import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import ch.ivy.addon.portal.generic.util.FacesMessageUtils;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
@@ -79,7 +80,7 @@ public class ShipmentDateFieldFilter extends CaseFilter {
       FacesContext.getCurrentInstance().validationFailed();
       FacesContext.getCurrentInstance().addMessage(
           "advanced-filter-error-messages",
-          new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co(
+          FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co(
               "/ch.ivy.addon.portalkit.ui.jsf/common/dateFromBiggerThanTo"), null));
     }
   }

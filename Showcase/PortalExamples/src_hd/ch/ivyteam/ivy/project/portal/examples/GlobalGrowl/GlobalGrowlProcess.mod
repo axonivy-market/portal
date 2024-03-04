@@ -60,11 +60,12 @@ Gs0 f4 403 147 26 26 0 12 #rect
 Gs0 f4 @|UdExitEndIcon #fIcon
 Gs0 f6 actionTable 'out=in;
 ' #txt
-Gs0 f6 actionCode 'import javax.faces.context.Flash;
+Gs0 f6 actionCode 'import ch.ivy.addon.portal.generic.util.FacesMessageUtils;
+import javax.faces.context.Flash;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 
-FacesMessage message = new FacesMessage("Task is done successfully");
+FacesMessage message = FacesMessageUtils.sanitizedMessage("Task is done successfully");
 FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
 
 Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
@@ -118,11 +119,12 @@ Gs0 f10 83 243 26 26 -15 12 #rect
 Gs0 f10 @|UdEventIcon #fIcon
 Gs0 f12 actionTable 'out=in;
 ' #txt
-Gs0 f12 actionCode 'import javax.faces.context.Flash;
+Gs0 f12 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import javax.faces.context.Flash;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 
-FacesMessage message = new FacesMessage("You have cancelled and left the task successfully");
+FacesMessage message = FacesMessageUtils.sanitizedMessage("You have cancelled and left the task successfully");
 FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
 
 Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();

@@ -40,7 +40,8 @@ Cs0 f3 173 29 20 20 13 0 #rect
 Cs0 f3 @|UdEventIcon #fIcon
 Cs0 f5 actionTable 'out=in;
 ' #txt
-Cs0 f5 actionCode 'import javax.faces.context.FacesContext;
+Cs0 f5 actionCode 'import ch.ivy.addon.portal.generic.util.FacesMessageUtils;
+import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 import ch.ivyteam.ivy.security.IUser;
 import java.util.Locale;
@@ -48,7 +49,7 @@ in.loginOk = ivy.session.loginSessionUser(in.username, in.password);
 out.password = null;
 if (!in.loginOk) 
 {
-	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/login/loginFailed"), ""));
+	FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/login/loginFailed"), ""));
 	FacesContext.getCurrentInstance().validationFailed();
 }' #txt
 Cs0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

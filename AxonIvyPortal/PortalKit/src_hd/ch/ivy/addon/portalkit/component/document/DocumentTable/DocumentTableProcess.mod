@@ -142,10 +142,11 @@ Ds0 f28 496 368 32 32 -54 -39 #rect
 Ds0 f28 @|AlternativeIcon #fIcon
 Ds0 f11 actionTable 'out=in;
 ' #txt
-Ds0 f11 actionCode 'import javax.faces.application.FacesMessage;
+Ds0 f11 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-FacesContext.getCurrentInstance().addMessage(in.messageComponentId, new FacesMessage(FacesMessage.SEVERITY_ERROR, in.message, null));' #txt
+FacesContext.getCurrentInstance().addMessage(in.messageComponentId, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, in.message, null));' #txt
 Ds0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -180,10 +181,11 @@ Ds0 f13 328 362 112 44 -48 -8 #rect
 Ds0 f13 @|CallSubIcon #fIcon
 Ds0 f46 actionTable 'out=in;
 ' #txt
-Ds0 f46 actionCode 'import javax.faces.application.FacesMessage;
+Ds0 f46 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-FacesContext.getCurrentInstance().addMessage(in.messageComponentId, new FacesMessage(in.message, ""));' #txt
+FacesContext.getCurrentInstance().addMessage(in.messageComponentId, FacesMessageUtils.sanitizedMessage(in.message, ""));' #txt
 Ds0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -251,10 +253,11 @@ Ds0 f20 160 618 112 44 -48 -8 #rect
 Ds0 f20 @|CallSubIcon #fIcon
 Ds0 f50 actionTable 'out=in;
 ' #txt
-Ds0 f50 actionCode 'import javax.faces.application.FacesMessage;
+Ds0 f50 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-FacesContext.getCurrentInstance().addMessage(in.messageComponentId, new FacesMessage(in.message, ""));' #txt
+FacesContext.getCurrentInstance().addMessage(in.messageComponentId, FacesMessageUtils.sanitizedMessage(in.message, ""));' #txt
 Ds0 f50 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

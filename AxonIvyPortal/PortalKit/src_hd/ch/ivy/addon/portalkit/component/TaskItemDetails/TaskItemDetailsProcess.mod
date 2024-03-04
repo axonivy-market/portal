@@ -177,7 +177,8 @@ Cs0 f68 595 563 26 26 0 12 #rect
 Cs0 f68 @|UdProcessEndIcon #fIcon
 Cs0 f66 actionTable 'out=in;
 ' #txt
-Cs0 f66 actionCode 'import org.primefaces.PrimeFaces;
+Cs0 f66 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import org.primefaces.PrimeFaces;
 import ch.ivyteam.ivy.security.IUser;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -200,7 +201,7 @@ if(in.task.getState() == TaskState.DONE){
 }
 
 facesContext.validationFailed();
-facesContext.addMessage("portal-global-growl-message", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
+facesContext.addMessage("portal-global-growl-message", FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, notification, null));
 PrimeFaces.current().ajax().update("portal-global-growl");  
 ' #txt
 Cs0 f66 security system #txt
