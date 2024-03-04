@@ -1,2 +1,2 @@
-<p class="tooltip-header">{0}</p>
-<ul class="tooltip-body {1}">{2}</ul>
+<p style="margin: auto;">{0}</p>
+<ul style="margin: auto; padding-left: 14px; {1}">{2}</ul>
