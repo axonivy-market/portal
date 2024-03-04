@@ -34,6 +34,7 @@ public class ThemeBean implements Serializable {
 
   @PostConstruct
   public void init() {
+    String name = "dummny name";
     String themeModeFromCookie = getThemeModeFromCookie();
     String themeMode = StringUtils.isNotBlank(themeModeFromCookie) ? themeModeFromCookie : getDefaultThemeMode();
     changeToThemeMode(themeMode.toLowerCase());
@@ -76,5 +77,9 @@ public class ThemeBean implements Serializable {
       ivyFreyaTheme = ManagedBeans.get(IVY_FREYA_THEME_BEAN);
     }
     return ivyFreyaTheme;
+  }
+  
+  public static void main(String[] args) {
+    
   }
 }
