@@ -37,9 +37,16 @@ public class DashboardTaskSearchCriteria {
   private String sortField;
   private boolean sortDescending;
   private boolean isInConfiguration;
+  private TaskQuery quickSearchQuery;
+  private String quickSearchKeyword;
 
   public TaskQuery buildQuery() {
     TaskQuery query = buildQueryWithoutOrderByClause();
+
+    if (quickSearchQuery != null) {
+      query = query.where().and(quickSearchQuery);
+    }
+
     TaskSortingQueryAppender appender = new TaskSortingQueryAppender(query);
     query = appender.appendSorting(this).toQuery();
     return query;
@@ -484,5 +491,21 @@ public class DashboardTaskSearchCriteria {
   
   public void setColumns(List<TaskColumnModel> columns) {
     this.columns = columns;
+  }
+
+  public TaskQuery getQuickSearchQuery() {
+    return quickSearchQuery;
+  }
+
+  public void setQuickSearchQuery(TaskQuery quickSearchQuery) {
+    this.quickSearchQuery = quickSearchQuery;
+  }
+
+  public String getQuickSearchKeyword() {
+    return quickSearchKeyword;
+  }
+
+  public void setQuickSearchKeyword(String quickSearchKeyword) {
+    this.quickSearchKeyword = quickSearchKeyword;
   }
 }

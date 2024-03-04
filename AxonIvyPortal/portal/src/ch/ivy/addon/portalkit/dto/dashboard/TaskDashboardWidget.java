@@ -5,8 +5,10 @@ import static ch.ivy.addon.portalkit.constant.DashboardConstants.REMOTE_COMMAND_
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.SortMeta;
 
@@ -14,17 +16,22 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
+import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardTaskSearchCriteria;
 import ch.ivy.addon.portalkit.service.DashboardWidgetInformationService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class TaskDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = 3048837559125720787L;
+  protected static final String LIKE_FORMAT = "%%%s%%";
 
   private int rowsPerPage = 5;
+
   @JsonIgnore
   private DashboardTaskLazyDataModel dataModel;
   @JsonIgnore
@@ -197,5 +204,40 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   public void setRowsPerPage(int rowsPerPage) {
     this.rowsPerPage = rowsPerPage;
+  }
+
+  @Override
+  public void buildKeywordQuery() {
+    if (Optional.ofNullable(this.getQuickSearchKeyword()).orElse("")
+        .contentEquals(Optional.ofNullable(this).map(TaskDashboardWidget::getDataModel)
+            .map(DashboardTaskLazyDataModel::getCriteria).map(DashboardTaskSearchCriteria::getQuickSearchKeyword)
+            .orElse(""))) {
+      return;
+    }
+
+    if (StringUtils.isBlank(getQuickSearchKeyword())) {
+      this.dataModel.getCriteria().setQuickSearchQuery(null);
+      this.dataModel.getCriteria().setQuickSearchKeyword(null);
+      return;
+    }
+
+    TaskQuery query = TaskQuery.create();
+
+    for (TaskColumnModel col : this.dataModel.getCriteria().getColumns()) {
+      DashboardStandardTaskColumn columnEnum = DashboardStandardTaskColumn.findBy(col.getField());
+      String formattedKeyword = String.format(LIKE_FORMAT, this.getQuickSearchKeyword());
+      switch (columnEnum) {
+      case NAME -> query.where().or().name().isLikeIgnoreCase(formattedKeyword);
+      case DESCRIPTION -> query.where().or().description().isLikeIgnoreCase(formattedKeyword);
+      case CATEGORY -> query.where().or().category().isLikeIgnoreCase(formattedKeyword);
+      case ID -> query.where().or().taskId().isLikeIgnoreCase(formattedKeyword);
+      case RESPONSIBLE -> query.where().or().activatorDisplayName().isLikeIgnoreCase(formattedKeyword);
+      case APPLICATION -> query.where().or().applicationId().isLikeIgnoreCase(formattedKeyword);
+      default -> {
+      }
+      }
+    }
+    this.dataModel.getCriteria().setQuickSearchQuery(query);
+    this.dataModel.getCriteria().setQuickSearchKeyword(this.getQuickSearchKeyword());
   }
 }
