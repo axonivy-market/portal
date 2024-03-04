@@ -78,8 +78,4 @@ public class ThemeBean implements Serializable {
     }
     return ivyFreyaTheme;
   }
-  
-  public static void main(String[] args) {
-    
-  }
 }
