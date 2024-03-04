@@ -132,7 +132,7 @@ see and how.
 **Filters panel**
 
 By clicking on the ``Filter`` button, you can define configuration for your widget, and get a preview of it by clicking on the
-``apply`` button. Please refer to :ref:`complex-filter` for more details.
+``apply`` button. Please refer to :ref:`Complex Filter <complex-filter>` for more details.
 
 |case-list-widget-configuration|
 

@@ -9,7 +9,7 @@
 .. _complex-filter:
 
 Complex Filter 
-==============
+**************
 
 Introduction
 ------------
