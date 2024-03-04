@@ -1,9 +1,10 @@
----
-name: Lint
+name: Lint Code Base
 
-on:  # yamllint disable-line rule:truthy
-  push: null
-  pull_request: null
+on:
+  pull_request:
+    branches: [ master ]
+  push:
+    branches: [ feature/IVYPORTAL-16459-OpenSource ]
 
 jobs:
   build:
@@ -25,9 +26,7 @@ jobs:
           fetch-depth: 0
 
       - name: Super-linter
-        uses: super-linter/super-linter@v6.0.0  # x-release-please-version
+        uses: super-linter/super-linter@v6.3.0  # x-release-please-version
         env:
-          DEFAULT_BRANCH: main
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-...
