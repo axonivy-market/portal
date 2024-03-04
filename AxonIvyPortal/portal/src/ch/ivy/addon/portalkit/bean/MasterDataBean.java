@@ -14,6 +14,7 @@ import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.enums.BasicDocumentType;
 import com.axonivy.portal.components.enums.DocumentType;
+import com.axonivy.portal.components.util.FacesMessageUtils;
 
 import ch.ivy.addon.portalkit.enums.ApplicationType;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
@@ -102,7 +103,7 @@ public class MasterDataBean implements Serializable {
   
   public void showLinkCopiedMessage() {
     String message = Ivy.cms().co("/Dialogs/com/axonivy/portal/component/ShareLinkDialog/LinkCopied");
-    FacesContext.getCurrentInstance().addMessage(GrowlMessageUtils.PORTAL_GLOBAL_GROWL_MESSAGE, new FacesMessage(FacesMessage.SEVERITY_INFO, message, null));
+    FacesContext.getCurrentInstance().addMessage(GrowlMessageUtils.PORTAL_GLOBAL_GROWL_MESSAGE, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, message, null));
     PrimeFaces.current().ajax().update(GrowlMessageUtils.PORTAL_GLOBAL_GROWL);
   }
 }
