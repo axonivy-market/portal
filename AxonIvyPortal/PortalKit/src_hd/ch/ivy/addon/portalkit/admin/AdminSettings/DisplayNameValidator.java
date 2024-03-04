@@ -9,6 +9,8 @@ import javax.faces.validator.ValidatorException;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.util.FacesMessageUtils;
+
 import ch.ivyteam.ivy.environment.Ivy;
 
 @FacesValidator(value = "displayNameValidator")
@@ -18,7 +20,7 @@ public class DisplayNameValidator implements Validator {
   public void validate(FacesContext facesContext, UIComponent component, Object value) throws ValidatorException {
     if (doValidation(facesContext)) {
       if (value == null || StringUtils.isBlank(value.toString())) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co(
+        FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co(
             "/ch.ivy.addon.portalkit.ui.jsf/adminSettings/appDisplayNameRequiredMsg"), "");
         throw new ValidatorException(message);
       }

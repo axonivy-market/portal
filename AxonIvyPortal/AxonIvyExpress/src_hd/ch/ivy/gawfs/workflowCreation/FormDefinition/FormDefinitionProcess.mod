@@ -562,7 +562,8 @@ Ds0 f31 1 416 480 #addKink
 Ds0 f31 1 0.09342369812886672 0 0 #arcLabel
 Ds0 f23 actionTable 'out=in;
 ' #txt
-Ds0 f23 actionCode 'import javax.faces.context.FacesContext;
+Ds0 f23 actionCode 'import ch.ivy.addon.portal.generic.util.FacesMessageUtils;
+import javax.faces.context.FacesContext;
 import ch.ivy.gawfs.ExpressProcessUtils;
 import javax.faces.application.FacesMessage;
 
@@ -570,7 +571,7 @@ ExpressProcessUtils utils = new ExpressProcessUtils();
 in.isAbleToExecute = utils.canFinishFormDefinition(in.data.definedTasks);
 if(!in.isAbleToExecute){
 	String growlTitle = ivy.cms.co("/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflowWarning");
-	FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_WARN, growlTitle, null);
+	FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN, growlTitle, null);
 	FacesContext.getCurrentInstance().addMessage(null, message);
 }' #txt
 Ds0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -672,7 +673,8 @@ Ds0 f32 400 968 480 968 #arcP
 Ds0 f32 0 0.4375 0 -9 #arcLabel
 Ds0 f43 actionTable 'out=in;
 ' #txt
-Ds0 f43 actionCode 'import javax.faces.context.FacesContext;
+Ds0 f43 actionCode 'import ch.ivy.addon.portal.generic.util.FacesMessageUtils;
+import javax.faces.context.FacesContext;
 import ch.ivy.gawfs.ExpressProcessUtils;
 import javax.faces.application.FacesMessage;
 
@@ -680,7 +682,7 @@ ExpressProcessUtils utils = new ExpressProcessUtils();
 in.isAbleToExecute = utils.canFinishFormDefinition(in.data.definedTasks);
 if(!in.isAbleToExecute){
 	String growlTitle = ivy.cms.co("/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflowWarning");
-	FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_WARN, growlTitle, null);
+	FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN, growlTitle, null);
 	FacesContext.getCurrentInstance().addMessage(null, message);
 }' #txt
 Ds0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

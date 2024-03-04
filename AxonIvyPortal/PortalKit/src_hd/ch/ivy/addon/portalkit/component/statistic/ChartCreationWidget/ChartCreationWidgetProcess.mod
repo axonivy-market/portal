@@ -96,7 +96,8 @@ Cs0 f35 method createStatisticChart(java.util.List<ch.ivy.addon.portalkit.statis
 Cs0 f35 inParameterDecl '<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList> param;' #txt
 Cs0 f35 inParameterMapAction 'out.statisticChartList=param.statisticChartList;
 ' #txt
-Cs0 f35 inActionCode 'import ch.ivy.addon.portalkit.dto.DisplayName;
+Cs0 f35 inActionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import javax.faces.context.FacesContext;
@@ -109,7 +110,7 @@ StatisticService service = new StatisticService();
 for (DisplayName name : out.chartNames) {
 	String chartName = name.value;
 	if (service.checkStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName.trim(), name.getLocale().toLanguageTag())) {
-	  FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/validationErrors/nameIsExisted"), "");
+	  FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/validationErrors/nameIsExisted"), "");
 	  FacesContext.getCurrentInstance().addMessage("chart-name-input", message);
   	FacesContext.getCurrentInstance().validationFailed();
 	  out.isChartNameExisted = true;
@@ -122,7 +123,7 @@ if (!out.isChartNameExisted) {
 	param.statisticChartList.add(newChart);
 	String growlTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/chartCreationSuccessTitle");
 	String growlDetail = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/chartCreationSuccessDetailMsg", Arrays.asList(service.getDisplayNameInUserLanguageForChart(newChart).value));
-	FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_INFO, growlTitle, growlDetail);
+	FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, growlTitle, growlDetail);
 	FacesContext.getCurrentInstance().addMessage("chart-creation-growl", message);
 }' #txt
 Cs0 f35 outParameterDecl '<> result;' #txt

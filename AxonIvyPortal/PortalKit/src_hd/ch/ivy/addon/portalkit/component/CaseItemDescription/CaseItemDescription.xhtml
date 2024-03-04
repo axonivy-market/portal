@@ -22,7 +22,7 @@
             <p:inputTextarea id="case-description-input" rows="3" styleClass="case-detail-description-input" value="#{case.description}" autoResize="false" />
           </f:facet>
           <f:facet name="output">
-            <h:outputText id="case-description-output" escape="false" value="#{caseWidgetBean.sanitizeHTML(case.description)}" />
+            <h:outputText escape="false" value="#{caseWidgetBean.sanitizeHTML(case.description)}" id="case-description-output"/>
           </f:facet>
         </p:inplace>
       </h:form>

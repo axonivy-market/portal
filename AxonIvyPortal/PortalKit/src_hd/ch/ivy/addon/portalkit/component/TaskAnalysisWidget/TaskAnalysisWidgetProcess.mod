@@ -289,13 +289,14 @@ Ts0 f42 @|UdProcessEndIcon #fIcon
 Ts0 f43 93 672 387 672 #arcP
 Ts0 f45 actionTable 'out=in;
 ' #txt
-Ts0 f45 actionCode 'import javax.faces.application.FacesMessage;
+Ts0 f45 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;
 TaskAnalysisFilterService service = new TaskAnalysisFilterService();
 in.isFilterExisted = false;
 if (service.isFilterExisted(in.filterSetName, in.filterType, in.taskFilterGroupId)) {
-	FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterExistedValidationError"), "");
+	FacesMessage message = FacesMessageUtils.sanitizedMessage( FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterExistedValidationError"), "");
 	FacesContext.getCurrentInstance().addMessage("", message);
 	FacesContext.getCurrentInstance().validationFailed();
 	in.isFilterExisted = true;

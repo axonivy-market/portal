@@ -60,7 +60,8 @@ Ls0 f3 208 54 20 20 13 0 #rect
 Ls0 f3 @|UdEventIcon #fIcon
 Ls0 f5 actionTable 'out=in;
 ' #txt
-Ls0 f5 actionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
+Ls0 f5 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 
@@ -68,7 +69,7 @@ in.loginOk = ivy.session.loginSessionUser(in.username, in.password);
 out.password = null;
 
 if (!in.loginOk) {
-	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/login/loginFailed"), ""));
+	FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/login/loginFailed"), ""));
 	FacesContext.getCurrentInstance().validationFailed();
 }else{
 	UserUtils.setLanguage();

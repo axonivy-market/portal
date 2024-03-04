@@ -31,7 +31,7 @@
       </p:inplace>
       </h:form>
     </span>
-    <h:outputText id="description-cell" styleClass="case-header-desc-cell" escape="false" value="#{caseWidgetBean.sanitizeHTML(case.description)}" />
+    <h:outputText escape="false" value="#{caseWidgetBean.sanitizeHTML(case.description)}" id="description-cell" styleClass="case-header-desc-cell"/>
   </h:panelGroup>
   <h:outputText styleClass="case-header-id-cell case-header-default-cell" value="#{case.id}" />
   <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText styleClass="case-header-creator-cell" fullname="#{case.creatorUser.fullName}"

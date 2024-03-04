@@ -1,6 +1,6 @@
 package ch.ivyteam.ivy.project.portal.examples.component.customize;
 
-import com.axonivy.portal.components.ivydata.bo.IvyDocument;
+import ch.ivy.addon.portalkit.ivydata.bo.IvyDocument;
 
 public class CustomizedIvyDocument extends IvyDocument {
   private String customer;

@@ -76,7 +76,7 @@
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcessItemHeader')}" closeOnEscape="true" modal="true"
     dynamic="true" appendTo="@(body)" resizable="false" responsive="true">
     <h:form id="delete-external-link-form">
-      <h:outputText escape="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcessItemConfirmation')}" />
+      <h:outputText escape="false" value="#{htmlSanitizerBean.sanitize(ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcessItemConfirmation'))}" />
       <br />
       <h:outputText value="#{processWidgetBean.deletedExternalLink.getName()}" styleClass="FontBold" />
       <div class="ui-dialog-footer u-dialog-footer">

@@ -110,7 +110,8 @@ As0 f1 371 51 26 26 0 12 #rect
 As0 f1 @|UdProcessEndIcon #fIcon
 As0 f11 actionTable 'out=in;
 ' #txt
-As0 f11 actionCode 'import org.apache.commons.io.FileUtils;
+As0 f11 actionCode 'import ch.ivy.addon.portal.generic.util.FacesMessageUtils;
+import org.apache.commons.io.FileUtils;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -123,7 +124,7 @@ if(!in.isStrongboxProcess){
 	}
 	else{
 		in.renderPdfVeiwer = false;
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, ivy.cms.co("/Dialogs/GdprRequest/Messages/warning"), ivy.cms.co("/Dialogs/GdprRequest/Messages/onlyPdfRendering")));
+		FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN, ivy.cms.co("/Dialogs/GdprRequest/Messages/warning"), ivy.cms.co("/Dialogs/GdprRequest/Messages/onlyPdfRendering")));
 	}	
 }' #txt
 As0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

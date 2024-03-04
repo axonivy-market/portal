@@ -80,10 +80,11 @@ Us0 f7 280 64 339 64 #arcP
 Us0 f8 guid 17089EC2B7B15880 #txt
 Us0 f8 actionTable 'out=in;
 ' #txt
-Us0 f8 actionCode 'import javax.faces.application.FacesMessage;
+Us0 f8 actionCode 'import ch.ivy.addon.portal.generic.util.FacesMessageUtils;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-FacesContext.getCurrentInstance().addMessage("form:item-select-event-component:item-select-event-for-role-selection", new FacesMessage(FacesMessage.SEVERITY_INFO, "You selected " + in.selectedRoleForInsertChildren.getDisplayName(), null));' #txt
+FacesContext.getCurrentInstance().addMessage("form:item-select-event-component:item-select-event-for-role-selection", FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, "You selected " + in.selectedRoleForInsertChildren.getDisplayName(), null));' #txt
 Us0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

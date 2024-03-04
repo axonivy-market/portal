@@ -73,7 +73,8 @@ Ds0 f7 245 213 22 22 14 0 #rect
 Ds0 f7 @|UdProcessEndIcon #fIcon
 Ds0 f9 actionTable 'out=in;
 ' #txt
-Ds0 f9 actionCode 'import ch.ivyteam.ivy.workflow.ITask;
+Ds0 f9 actionCode 'import ch.ivy.addon.portalkit.test.util.FacesMessageUtils;
+import ch.ivyteam.ivy.workflow.ITask;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 import ch.ivyteam.ivy.security.IPermission;
@@ -85,15 +86,15 @@ if(ivy.session.hasPermission(securityDescriptor,ch.ivyteam.ivy.security.IPermiss
 			if(task != null) {
 			if(ivy.session.hasPermission(securityDescriptor,ch.ivyteam.ivy.security.IPermission.TASK_DESTROY) && (task.getState().toString() != "DESTROYED")) {
 			ivy.wf.findTask(in.taskId).destroy();	
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Info: ","Successful!"));
+			FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN,"Info: ","Successful!"));
 			} else {
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Warning!","You don''t have permission or task state is Destroyed"));
+				FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN,"Warning!","You don''t have permission or task state is Destroyed"));
 			}
 		} else {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Warning!","Task is not exist"));
+			FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN,"Warning!","Task is not exist"));
 		}
 	} else {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Warning!","You don''t have permission"));
+		FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN,"Warning!","You don''t have permission"));
 }
 ' #txt
 Ds0 f9 238 148 36 24 20 -2 #rect

@@ -84,15 +84,16 @@ Ps0 f11 expr out #txt
 Ps0 f11 109 160 216 160 #arcP
 Ps0 f3 actionTable 'out=in;
 ' #txt
-Ps0 f3 actionCode 'import ch.ivy.addon.portalkit.enums.ChangePasswordStatus;
+Ps0 f3 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+import ch.ivy.addon.portalkit.enums.ChangePasswordStatus;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 if(in.status ==  ChangePasswordStatus.FAIL) {
-	FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/errorNotification") , in.message));
+	FacesContext.getCurrentInstance().addMessage(null,FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/errorNotification") , in.message));
 	FacesContext.getCurrentInstance().validationFailed();
 }
 else{
-	FacesContext.getCurrentInstance().addMessage("change-password-successful",new FacesMessage(FacesMessage.SEVERITY_INFO,ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/information") , in.message));
+	FacesContext.getCurrentInstance().addMessage("change-password-successful",FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO,ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/information") , in.message));
 }
 ' #txt
 Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
