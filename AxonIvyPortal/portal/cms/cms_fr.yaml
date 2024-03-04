@@ -1558,13 +1558,19 @@ Dialogs:
               CaseOwner: Responsable de processus
               Finished: Terminé
               GlobalSearchText: Les cas contiennent le mot-clé "{0}" dans Id du dossier{1}.
-              ShowBusinessDetails: Détails de l'entreprise
+              ShowBusinessDetails: Détails de la demande
               caseNameNotAvailable: '[Nom de cas pas disponible]'
               defaultEmptyMessage: Il n'y a pas de dossiers
             IconSelection:
               IconLinkTooltip: Cliquez pour changer d'icône
             TaskItemDetails:
+              CannotWorkOnDestroyedTaskWarning: Vous ne pouvez pas travailler sur la tâche parce qu'elle a été détruite.
+              CannotWorkOnTaskWarning: Vous ne pouvez pas travailler sur cette tâche car l'utilisateur <strong>{0}</strong> y travaille déjà.
+              InvalidStateInfo: État non valide.
+              ResetTaskWarning: Vous travaillez actuellement sur la tâche dans une autre session. Vous pouvez réinitialiser la tâche et la recommencer si vous avez fermé votre navigateur. <a href="{0}">Réinitialiser</a>
               ShareTaskDetails: Partager les détails de la tâche
+              TaskCompletedByOtherInfo: La tâche a déjà été effectuée par l'utilisateur <strong>{0}</strong> sur {1}.
+              TaskCompletedByYouInfo: Vous avez déjà accompli la tâche sur {0}.
   com:
     axonivy:
       portal:
