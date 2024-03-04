@@ -21,7 +21,8 @@
   <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}" />
   <p:remoteCommand id="rcLoadTaskFirstTime" autoRun="true" actionListener="#{taskWidget.dataModel.loadFirstTime()}"
                    update="dashboard-tasks-container" global="false" async="true" process="@this"
-                   oncomplete="loadWidgetFirstTime('js-loading-#{taskWidget.id}', 'js-dashboard-tasks-container-#{taskWidget.id}'); initTableWidget(PF('dashboard-tasks-#{taskWidget.id}')); #{cc.attrs.onCompleteLoadWidget};" />
+                   oncomplete="loadWidgetFirstTime('js-loading-#{taskWidget.id}', 'js-dashboard-tasks-container-#{taskWidget.id}'); #{cc.attrs.onCompleteLoadWidget};" />
+  <p:inputText type="hidden" value="dashboard-tasks-#{taskWidget.id}" styleClass="js-table-widget-var" />
   <div class="ui-g">
     <h:outputText id="loading" styleClass="js-loading-#{taskWidget.id} task-dashboard-widget__loading-message" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
     <h:panelGroup id="dashboard-tasks-container" layout="block"
@@ -35,14 +36,13 @@
       <p:dataTable id="dashboard-tasks" widgetVar="dashboard-tasks-#{taskWidget.id}" value="#{taskWidget.dataModel}" var="task"
         lazy="true" scrollRows="25"
         disabledSelection="#{isPreviewMode}"
-        liveScroll="true" scrollable="true" sortBy="#{taskWidget.sortBy}"      
+        liveScroll="true" scrollable="true" sortBy="#{taskWidget.sortBy}"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and taskWidget.taskCount lt 1 ? 'u-display-none' : ''}"
         rowStyleClass="dashboard-table--row-style"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
         <p:ajax event="rowSelect" listener="#{dashboardBean.handleRowSelectEventOnTaskWidget}" disabled="#{!isReadOnlyMode}" />
-        <p:ajax event="sort" update="dashboard-tasks" onstart="liveScroll()" />
-        
+
         <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name' or column.field eq 'actions') ? '' : 'u-hidden-sm-down'}"
           visible="#{column.visible}" field="#{column.field}" filterable="false"
           sortBy="#{column.field}" sortable="#{column.sortable}"
@@ -144,12 +144,5 @@
       </h:form>
     </ui:define>
   </ui:decorate>
-  <script type="text/javascript">
-      function liveScroll() {
-        PF('dashboard-tasks-#{taskWidget.id}').scrollOffset = 0;
-        PF('dashboard-tasks-#{taskWidget.id}').scrollBody.scrollTop(1);
-        PF('dashboard-tasks-#{taskWidget.id}').allLoadedLiveScroll = false;
-      }
-    </script>
 </cc:implementation>
 </html>

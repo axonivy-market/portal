@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
+import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -24,7 +25,6 @@ import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivyteam.ivy.environment.Ivy;
-import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
@@ -65,6 +65,10 @@ public abstract class DashboardWidget implements Serializable {
   @JsonIgnore
   protected UserFilterCollection userFilterCollection;
 
+  private boolean enableQuickSearch;
+  @JsonIgnore
+  private String quickSearchKeyword;
+
   public DashboardWidget() {}
 
   public DashboardWidget(DashboardWidget widget) {
@@ -88,6 +92,10 @@ public abstract class DashboardWidget implements Serializable {
 
   @JsonIgnore
   public void buildStatisticInfos() {}
+
+  @JsonIgnore
+  public void buildKeywordQuery() {
+  }
 
   @JsonIgnore
   public void onResetUserFilters() {
@@ -284,5 +292,28 @@ public abstract class DashboardWidget implements Serializable {
     } else if (!id.equals(other.id))
       return false;
     return true;
+  }
+
+  public boolean isEnableQuickSearch() {
+    return enableQuickSearch;
+  }
+
+  public void setEnableQuickSearch(boolean enableQuickSearch) {
+    this.enableQuickSearch = enableQuickSearch;
+  }
+
+  @JsonIgnore
+  public boolean canEnableQuickSearch() {
+    return this.enableQuickSearch && this.getType().canEnableQuickSearch();
+  }
+
+  @JsonIgnore
+  public String getQuickSearchKeyword() {
+    return quickSearchKeyword;
+  }
+
+  @JsonIgnore
+  public void setQuickSearchKeyword(String quickSearchKeyword) {
+    this.quickSearchKeyword = quickSearchKeyword;
   }
 }
