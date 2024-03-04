@@ -64,6 +64,10 @@ public class TaskDetailsPage extends TemplatePage {
     return $("div[id$='task-details-information-panel'").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
+  public SelenideElement getStatusBanner() {
+    return $("div[id$='task-detail-template:task-status-banner'");
+  }
+
   public void openActionPanel() {
     $("[id$=':additional-options:task-detail-more-step']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();

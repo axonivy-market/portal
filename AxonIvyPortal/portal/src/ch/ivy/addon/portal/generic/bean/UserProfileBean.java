@@ -1,7 +1,6 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,12 +20,12 @@ import ch.ivy.addon.portalkit.enums.SortDirection;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelSubcriptionDTO;
+import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationEventDTO;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.notification.channel.NotificationSubscription;
-import ch.ivyteam.ivy.notification.event.NotificationEvent;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
@@ -44,7 +43,7 @@ public class UserProfileBean implements Serializable {
   private ISecurityMember subscriber;
   private ISecurityContext securityContext;
 
-  private List<String> events;
+  private List<IvyNotificationEventDTO> events;
   private List<IvyNotificationChannelDTO> channels;
 
   public void init() {
@@ -131,8 +130,8 @@ public class UserProfileBean implements Serializable {
   }
 
   public void onloadChannel() {
-    events = new ArrayList<>(NotificationEvent.allAsString());
-    channels = IvyNotificationChannelDTO.all(subscriber, securityContext, events);
+    events = IvyNotificationEventDTO.all();
+    channels = IvyNotificationChannelDTO.all(subscriber, securityContext);
   }
 
   public void resetAllChannel() {
@@ -166,7 +165,7 @@ public class UserProfileBean implements Serializable {
     return channels;
   }
 
-  public List<String> getEvents() {
+  public List<IvyNotificationEventDTO> getEvents() {
     return events;
   }
 
