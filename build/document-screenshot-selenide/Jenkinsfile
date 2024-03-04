@@ -29,7 +29,7 @@ pipeline {
 
   environment {
     releaseDir = 'archive'
-    engineDir = $env.WORKSPACE + '/AxonIvyPortal/portal-selenium-test/engine'
+    engineDir = "$env.WORKSPACE/AxonIvyPortal/portal-selenium-test/engine"
     shareDir = 'C:/tools/shared/document-screenshots'
   }
 
