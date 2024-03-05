@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.test;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -78,5 +79,44 @@ public class MenuTest extends BaseTest {
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     mainMenuPage.clickThirdPartyApp();
     mainMenuPage.assertThirdPartyApp("https://www.google.com/");
+  }
+  
+  @Test
+  public void testCustomizeIconMainMenuEntry() {
+	redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    createJSonFile("MainMenuEntry.json", PortalVariable.MAIN_MENU_ENTRY.key);
+    login(TestAccount.DEMO_USER);
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
+	redirectToRelativeLink(createSampleDashboardUrl);
+    String iconClass = mainMenuPage.getIconClassMainMenuEntryAsString();
+    Assertions.assertEquals("si si-layout-bullets",iconClass);
+  }
+  
+  @Test
+  public void testCustomizeNameMainMenuEntry() {
+	redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    createJSonFile("MainMenuEntry.json", PortalVariable.MAIN_MENU_ENTRY.key);
+    login(TestAccount.DEMO_USER);
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
+	redirectToRelativeLink(createSampleDashboardUrl);
+    String menuName = mainMenuPage.getMainMenuName();
+    Assertions.assertEquals("Dashboard Test EN",menuName);	  
+  }
+  
+  @Test
+  public void testCustomizeMainMenuEntryMultiLanguage() {
+	redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+	createJSonFile("MainMenuEntry.json", PortalVariable.MAIN_MENU_ENTRY.key);
+	login(TestAccount.DEMO_USER);
+	NewDashboardPage newDashboardPage = new NewDashboardPage();
+	newDashboardPage.openMyProfilePage();
+	// Set French language
+	newDashboardPage.changeUserLanguage(2);
+	MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
+	redirectToRelativeLink(createSampleDashboardUrl);		
+	String menuName = mainMenuPage.getMainMenuName();
+	Assertions.assertEquals("Dashboard Test FR",menuName);
   }
 }

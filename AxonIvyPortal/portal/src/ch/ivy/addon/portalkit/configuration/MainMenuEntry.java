@@ -20,11 +20,11 @@ public class MainMenuEntry extends AbstractConfiguration {
 		this.names = names;
 	}
 
-	public String getMenuIcon() {
+	public String getIcon() {
 		return icon;
 	}
 
-	public void setMenuIcon(String menuIcon) {
-		this.icon = menuIcon;
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 }
