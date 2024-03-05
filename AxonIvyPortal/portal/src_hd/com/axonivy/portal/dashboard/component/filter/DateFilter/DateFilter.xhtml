@@ -132,6 +132,7 @@
       <f:selectItems value="#{widgetDateFilterBean.currentFilterPeriodTypes}" var="period"
         itemValue="#{period}" itemLabel="#{period.label}" />
       <p:ajax process="@(this)" partialSubmit="true" global="false" />
+      <f:param name="skipValidator" value="true" />
     </p:selectOneMenu>
   </h:panelGroup>
 
@@ -140,6 +141,7 @@
     styleClass="number-of-periods-panel ui-fluid md-inputfield">
     <p:spinner id="number-of-period" value="#{filter.periods}" min="1" disabled="#{readOnly}">
       <p:ajax process="@(this)" partialSubmit="true" global="false" />
+      <f:param name="skipValidator" value="true" />
     </p:spinner>
   </h:panelGroup>
 
@@ -150,6 +152,7 @@
       <f:selectItems value="#{widgetDateFilterBean.filterPeriodTypes}" var="period"
         itemValue="#{period}" itemLabel="#{period.pluralLabel}" />
       <p:ajax process="@(this)" partialSubmit="true" global="false" />
+      <f:param name="skipValidator" value="true" />
     </p:selectOneMenu>
   </h:panelGroup>
 </cc:implementation>

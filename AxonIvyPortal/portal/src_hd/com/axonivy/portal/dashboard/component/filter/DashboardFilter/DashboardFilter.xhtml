@@ -26,7 +26,7 @@
           <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/pleaseSelect')}" itemValue="#{null}" />
           <f:selectItems value="#{cc.attrs.managedBean.filterFields}" var="field"
             itemValue="#{field}" itemLabel="#{field.label}" />
-            <f:param name="skipValidator" value="true" />
+          <f:param name="skipValidator" value="true" />
           <p:ajax event="itemSelect" listener="#{cc.attrs.managedBean.onSelectFilter(filter)}" process="@(this)" update="filter-selection-panel" global="false" />
         </p:selectOneMenu>
       </div>
