@@ -22,7 +22,7 @@
   <f:event listener="#{widgetResponsibleFilterBean.init(cc.attrs.filter)}" type="preRenderComponent" />
 
   <h:panelGroup id="responsible-filter-operator-panel" layout="block"
-    styleClass="ui-fluid md-inputfield responsible-filter-operation-panel">
+    styleClass="ui-fluid md-inputfield responsible-filter-operator-panel">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
         <f:selectItems value="#{widgetResponsibleFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />

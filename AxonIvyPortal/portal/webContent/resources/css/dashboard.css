@@ -1874,6 +1874,7 @@ body .ui-button.rounded-button.dashboard-widget-filter__remove-filter .ui-icon {
 .application-filter-operator-panel,
 .state-filter-operator-panel,
 .priority-filter-operator-panel,
+.responsible-filter-operator-panel,
 .id-filter-operator-panel {
   min-width: 130px;
 }
