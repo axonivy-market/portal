@@ -1841,7 +1841,7 @@ i.dashboard-icon-drag-drop {
 
 }
 .table-configuration{
-  height:700px;
+  height: max-content;
 }
 .filter-panel .filter-area{
   height:90%;
