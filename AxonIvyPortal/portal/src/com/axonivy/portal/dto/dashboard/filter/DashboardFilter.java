@@ -95,7 +95,7 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public boolean isCreatedDateField() {
-    return this.field == CREATED_DATE;
+    return CREATED_DATE.equals(this.field);
   }
 
   @JsonIgnore
@@ -120,17 +120,17 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public boolean isCategory() {
-    return this.field == CATEGORY;
+    return CATEGORY.equals(this.field);
   }
 
   @JsonIgnore
   public boolean isApplication() {
-    return this.field == APPLICATION;
+    return APPLICATION.equals(this.field);
   }
 
   @JsonIgnore
   public boolean isState() {
-    return this.field == STATE;
+    return STATE.equals(this.field);
   }
 
   @JsonIgnore
@@ -140,7 +140,7 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public boolean isId() {
-    return this.field == ID;
+    return ID.equals(this.field);
   }
 
   @JsonIgnore
