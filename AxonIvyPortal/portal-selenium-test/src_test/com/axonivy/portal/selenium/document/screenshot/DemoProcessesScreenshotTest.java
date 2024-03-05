@@ -93,6 +93,7 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
     caseMapPage = new CaseMapPage();
     caseMapPage.switchToIFrameOfTask();
     caseMapPage.clickSubmitButtonAndBackToTaskList();
+    newDashboardPage.waitForPageLoad();
     TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
     taskWidgetPage.clickOnTaskActionLink(0);
     ScreenshotUtils.executeDecorateJs("highlightTaskActionItem(0, 1)");
