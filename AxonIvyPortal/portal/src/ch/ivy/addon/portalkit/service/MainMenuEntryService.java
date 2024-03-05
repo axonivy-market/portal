@@ -47,7 +47,7 @@ public class MainMenuEntryService extends JsonConfigurationService<MainMenuEntry
 	public String getMenuIcon() {
 		MainMenuEntry mainMenuEntry = getMainMenuEntry();
 		if (mainMenuEntry != null) {
-			return mainMenuEntry.getMenuIcon();
+			return mainMenuEntry.getIcon();
 		}
 		return "";
 	}
