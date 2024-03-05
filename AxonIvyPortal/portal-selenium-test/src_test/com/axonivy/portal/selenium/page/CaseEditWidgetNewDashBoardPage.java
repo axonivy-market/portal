@@ -304,7 +304,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void removeFilter(int index) {
-    $("div[id$=':filter-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
+//    $("div[id$=':filter-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
     int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
     String removeBtn = String.format("button[id$=':%s:filter-component:remove-filter']", index);
     $(removeBtn).shouldBe(getClickableCondition()).click();

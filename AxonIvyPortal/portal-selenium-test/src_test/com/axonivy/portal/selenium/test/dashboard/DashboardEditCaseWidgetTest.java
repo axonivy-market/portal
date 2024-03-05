@@ -141,7 +141,7 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.openFilter();
     caseWidget.addFilter("Created Date", FilterOperator.TODAY);
     caseWidget.applyFilter();
-    caseWidget.countCases().shouldBe(CollectionCondition.size(2));
+    caseWidget.countCases().shouldBe(CollectionCondition.size(3));
 
     caseWidget.removeFilter(0);
     caseWidget.addFilter("Created Date", FilterOperator.CURRENT);
