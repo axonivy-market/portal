@@ -44,7 +44,7 @@ public class ExpiryDateBetweenOperatorHandler {
 
     TaskQuery subQuery = TaskQuery.create();
     if (from != null && to != null) {
-      subQuery.where().expiryTimestamp().isLowerThan(from).or().endTimestamp().isGreaterThan(to);
+      subQuery.where().expiryTimestamp().isLowerThan(from).or().expiryTimestamp().isGreaterThan(to);
       return subQuery;
     }
 
