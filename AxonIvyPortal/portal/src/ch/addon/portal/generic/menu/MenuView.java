@@ -155,14 +155,14 @@ public class MenuView implements Serializable {
     }
     
     MainMenuEntryService mainMenuEntryService = new MainMenuEntryService();
-    String mainMenuDisplayName = mainMenuEntryService.getDisplayNameInCurrentLocale();
+    String mainMenuDisplayName = mainMenuEntryService.getNameInCurrentLocale();
     String mainMenuIcon = mainMenuEntryService.getMenuIcon();
-
+    
     var dashboards = getDashboardCache().dashboards;
     if (CollectionUtils.isNotEmpty(dashboards)) {
       DefaultSubMenu dashboardGroupMenu = DefaultSubMenu.builder()
-        .label(mainMenuDisplayName.isBlank() ? dashboardTitle : mainMenuDisplayName)
-        .icon(mainMenuIcon.isBlank() ? PortalMenuItem.DEFAULT_DASHBOARD_ICON : mainMenuIcon)
+        .label(StringUtils.isBlank(mainMenuDisplayName) ? dashboardTitle : mainMenuDisplayName)
+        .icon(StringUtils.isBlank(mainMenuIcon) ? PortalMenuItem.DEFAULT_DASHBOARD_ICON : mainMenuIcon)
         .id(String.format(DASHBOARD_MENU_PATTERN, MenuKind.DASHBOARD.name()))
         .styleClass(DASHBOARD_MENU_JS_CLASS)
         .build();

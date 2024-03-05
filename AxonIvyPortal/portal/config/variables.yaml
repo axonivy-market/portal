@@ -78,10 +78,12 @@ Variables:
     Dashboard:
       # Set to true to hide Statistic widget from homepage and application menu.
       HideStatisticWidget: false
+      
+      # Customize the name or the icon of the main menu entry in Portal
+      # [file: json]
+      MainMenuEntry:      
     
-    # Customize both the name and the icon of the main menu entry in Portal
-    # [file: json]
-    MainMenuEntry:      
+
     
     Processes:
       # The standard setting of view mode in the process list.

@@ -1,26 +1,30 @@
 package ch.ivy.addon.portalkit.configuration;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
+
+import ch.ivy.addon.portalkit.dto.DisplayName;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class MainMenuEntry extends AbstractConfiguration {
 
-	private String displayName;
-	private String menuIcon;
+	private List<DisplayName> names;
+	private String icon;
 
-	public String getDisplayName() {
-		return displayName;
+	public List<DisplayName> getNames() {
+		return names;
 	}
 
-	public void setDisplayName(String displayName) {
-		this.displayName = displayName;
+	public void setNames(List<DisplayName> names) {
+		this.names = names;
 	}
 
 	public String getMenuIcon() {
-		return menuIcon;
+		return icon;
 	}
 
 	public void setMenuIcon(String menuIcon) {
-		this.menuIcon = menuIcon;
+		this.icon = menuIcon;
 	}
 }
