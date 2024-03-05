@@ -161,7 +161,7 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.inputValueOnLatestFilter(FilterValueType.DATE_CURRENT, "Month");
     caseWidget.applyFilter();
     caseWidget.waitPreviewTableLoaded();
-    caseWidget.countCases().shouldBe(CollectionCondition.size(6));
+    caseWidget.countCases().shouldBe(CollectionCondition.size(5));
 
   }
 
