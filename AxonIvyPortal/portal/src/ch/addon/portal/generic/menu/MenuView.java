@@ -76,6 +76,7 @@ public class MenuView implements Serializable {
   private Map<String, List<String>> params;
 
   public void onClickMenuItem(ActionEvent event) throws IOException {
+    int dummyNumber = 1000;
     this.params = PortalMenuNavigator.extractMenuParams(event);
     if (PortalMenuNavigator.showWarningDialog(params)) {
       return;
