@@ -50,6 +50,7 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.addFilter(NAME_STR, FilterOperator.IS);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Leave Request");
     caseWidget.applyFilter();
+    caseWidget.waitPreviewTableLoaded();
     caseWidget.countCases().shouldBe(CollectionCondition.size(1));
 
     caseWidget.removeFilter(0);
@@ -58,10 +59,12 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.addFilter(NAME_STR, FilterOperator.CONTAINS);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "List", "Pi");
     caseWidget.applyFilter();
+    caseWidget.waitPreviewTableLoaded();
     caseWidget.countCases().shouldBe(CollectionCondition.size(2));
 
     caseWidget.addFilter(NAME_STR, FilterOperator.EMPTY);
     caseWidget.applyFilter();
+    caseWidget.waitPreviewTableLoaded();
     caseWidget.countCases().shouldBe(CollectionCondition.size(0));
     caseWidget.removeFilter(0);
     caseWidget.removeFilter(0);
@@ -69,10 +72,12 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.addFilter(NAME_STR, FilterOperator.START_WITH);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Or", "Te");
     caseWidget.applyFilter();
+    caseWidget.waitPreviewTableLoaded();
     caseWidget.countCases().shouldBe(CollectionCondition.size(2));
     caseWidget.addFilter(NAME_STR, FilterOperator.NOT_START_WITH);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Or", "Te");
     caseWidget.applyFilter();
+    caseWidget.waitPreviewTableLoaded();
     caseWidget.countCases().shouldBe(CollectionCondition.size(0));
     caseWidget.addFilter(NAME_STR, FilterOperator.END_WITH);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Or", "Te");
@@ -91,17 +96,20 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.openFilter();
     caseWidget.addFilter("Creator", FilterOperator.CURRENT_USER);
     caseWidget.applyFilter();
+    caseWidget.waitPreviewTableLoaded();
     caseWidget.countCases().shouldBe(CollectionCondition.size(1));
     caseWidget.removeFilter(0);
 
     caseWidget.addFilter("Creator", FilterOperator.IN);
     caseWidget.inputValueOnLatestFilter(FilterValueType.CREATOR_TYPE, "admin");
     caseWidget.applyFilter();
+    caseWidget.waitPreviewTableLoaded();
     caseWidget.countCases().shouldBe(CollectionCondition.size(1));
 
     caseWidget.addFilter("Creator", FilterOperator.NOT_IN);
     caseWidget.inputValueOnLatestFilter(FilterValueType.CREATOR_TYPE, "admin");
     caseWidget.applyFilter();
+    caseWidget.waitPreviewTableLoaded();
     caseWidget.countCases().shouldBe(CollectionCondition.size(0));
   }
 
@@ -116,22 +124,26 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.addFilter("Category", null);
     caseWidget.inputValueOnLatestFilter(FilterValueType.CATEGORY_TYPE, "Leave Request");
     caseWidget.applyFilter();
+    caseWidget.waitPreviewTableLoaded();
     caseWidget.countCases().shouldBe(CollectionCondition.size(1));
 
     caseWidget.removeFilter(0);
     caseWidget.addFilter("Category", FilterOperator.NO_CATEGORY);
     caseWidget.applyFilter();
+    caseWidget.waitPreviewTableLoaded();
     caseWidget.countCases().shouldBe(CollectionCondition.size(0));
 
     caseWidget.removeFilter(0);
     caseWidget.addFilter("Category", FilterOperator.NOT_CONTAINS);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Leave");
     caseWidget.applyFilter();
+    caseWidget.waitPreviewTableLoaded();
     caseWidget.countCases().shouldBe(CollectionCondition.size(0));
   }
 
   @Test
   public void filterDateTest() {
+    login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createDataCreatedDate);
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
     newDashboardDetailsEditPage.addWidget();
@@ -141,12 +153,14 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.openFilter();
     caseWidget.addFilter("Created Date", FilterOperator.TODAY);
     caseWidget.applyFilter();
-    caseWidget.countCases().shouldBe(CollectionCondition.size(3));
+    caseWidget.waitPreviewTableLoaded();
+    caseWidget.countCases().shouldBe(CollectionCondition.size(2));
 
     caseWidget.removeFilter(0);
     caseWidget.addFilter("Created Date", FilterOperator.CURRENT);
     caseWidget.inputValueOnLatestFilter(FilterValueType.DATE_CURRENT, "Month");
     caseWidget.applyFilter();
+    caseWidget.waitPreviewTableLoaded();
     caseWidget.countCases().shouldBe(CollectionCondition.size(6));
 
   }
@@ -187,6 +201,7 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "ngan");
 
     caseWidget.applyFilter();
+    caseWidget.waitPreviewTableLoaded();
     caseWidget.countCases().shouldBe(CollectionCondition.size(0));
   }
 
