@@ -52,7 +52,7 @@ public class WidgetCategoryFilterBean implements Serializable {
 
   public void loadCategories(DashboardFilter filter, DashboardWidget widget) {
     if (DashboardWidgetType.TASK == widget.getType()) {
-      this.categoryTree = TaskTreeUtils.buildTaskCategoryCheckboxTreeRoot();
+      this.categoryTree = TaskTreeUtils.buildTaskCategoryCheckboxTreeRootWithoutAllCategoriesNode();
     } else {
       this.categoryTree = CaseTreeUtils.buildCaseCategoryCheckboxTreeRootWithoutAllCategoriesNode();
     }

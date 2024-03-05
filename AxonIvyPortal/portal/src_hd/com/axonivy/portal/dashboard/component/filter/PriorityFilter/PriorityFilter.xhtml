@@ -22,7 +22,7 @@
 
   <h:panelGroup id="priority-filter-operator-panel" layout="block"
     styleClass="ui-fluid md-inputfield priority-filter-operator-panel">
-      <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="true">
+      <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
         <f:selectItems value="#{widgetPriorityFilterBean.priorityOperators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
       </p:selectOneMenu>
@@ -41,11 +41,11 @@
     </p:selectCheckboxMenu>
 
     <p:inputText id="priority-hidden" type="hidden" value="#{widgetPriorityFilterBean.prioritiesString}">
-<!--       <f:validator validatorId="dashboardSelectableListFilterValidator" disabled="#{param['skipValidator'] == 'true'}" /> -->
-<!--       <f:attribute name="filter" value="#{filter}" /> -->
-<!--       <f:attribute name="filterIndex" value="#{filterIndex}" /> -->
-<!--       <f:attribute name="messageId" value="#{messageId}" /> -->
-<!--       <f:attribute name="componentToValidate" value="priority" /> -->
+      <f:validator validatorId="dashboardSelectableListFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
+      <f:attribute name="filter" value="#{filter}" />
+      <f:attribute name="filterIndex" value="#{filterIndex}" />
+      <f:attribute name="messageId" value="#{messageId}" />
+      <f:attribute name="componentToValidate" value="priorities" />
     </p:inputText>
   </h:panelGroup>
 

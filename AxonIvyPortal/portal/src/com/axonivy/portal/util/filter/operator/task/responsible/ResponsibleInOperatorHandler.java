@@ -26,7 +26,7 @@ public class ResponsibleInOperatorHandler {
     TaskQuery query = TaskQuery.create();
     IFilterQuery filterQuery = query.where();
     for (String activator : filter.getValues()) {
-      filterQuery.or().activatorName().isEqual(HASH + activator);
+      filterQuery.or().activatorName().isEqual(activator.replace(HASH, ""));
     }
 
     return query;
@@ -40,7 +40,7 @@ public class ResponsibleInOperatorHandler {
     TaskQuery query = TaskQuery.create();
     IFilterQuery filterQuery = query.where();
     for (String activator : filter.getValues()) {
-      filterQuery.and().activatorName().isNotEqual(HASH + activator);
+      filterQuery.and().activatorName().isNotEqual(activator.replace(HASH, ""));
     }
 
     return query;

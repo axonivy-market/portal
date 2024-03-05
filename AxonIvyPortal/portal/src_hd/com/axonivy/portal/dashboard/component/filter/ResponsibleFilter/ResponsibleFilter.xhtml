@@ -10,9 +10,7 @@
   <cc:attribute name="filterIndex" />
   <cc:attribute name="readOnly" default="false" />
   <cc:attribute name="messageId" />
-<!--   <cc:attribute name="creatorCompleteMethod" required="true" method-signature="java.util.List creatorCompleteMethod(java.lang.String)" /> -->
   <cc:attribute name="responsibleCompleteMethod" required="true" method-signature="java.util.List responsibleCompleteMethod(java.lang.String)"/>
-  
 </cc:interface>
 
 <cc:implementation>
@@ -24,7 +22,7 @@
   <f:event listener="#{widgetResponsibleFilterBean.init(cc.attrs.filter)}" type="preRenderComponent" />
 
   <h:panelGroup id="responsible-filter-operator-panel" layout="block"
-    styleClass="ui-fluid md-inputfield responsible-filter-operation-panel">
+    styleClass="ui-fluid md-inputfield responsible-filter-operator-panel">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
         <f:selectItems value="#{widgetResponsibleFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
@@ -37,13 +35,13 @@
   <h:panelGroup id="responsible-list-panel" layout="block"
     styleClass="ui-fluid md-inputfield responsible-filter-list" rendered="#{filter.operator == 'IN' or filter.operator == 'NOT_IN'}">
 
-    <p:autoComplete id="responsible" scrollHeight="210" dropdown="true" size="35"
+    <p:autoComplete id="responsibles" scrollHeight="210" dropdown="true" size="35"
       completeMethod="#{cc.attrs.responsibleCompleteMethod}"
       value="#{widgetResponsibleFilterBean.selectedResponsibles}"
       var="responsible" itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}"
       converter="pojoConverter" cache="true" maxResults="100" multiple="true"
       moreTextSelect="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
-      unique="true" dynamic="true" forceSelection="true" styleClass="case-configuration__responsibles"
+      unique="true" dynamic="true" forceSelection="true" styleClass="task-configuration__responsibles"
       disabled="#{readOnly}">
       <p:ajax event="itemSelect" listener="#{widgetResponsibleFilterBean.onSelectResponsible}"
         update="responsibles" global="false" process="@this"/>
@@ -57,7 +55,7 @@
       <f:attribute name="messageId" value="#{messageId}" />
       <p:column>
         <pc:securityMemberNameAndAvatar
-          displayName="#{caseWidgetConfigurationFilterBean.formatName(responsible)}" securityMember="#{responsible}">
+          displayName="#{taskWidgetConfigurationFilterBean.formatName(responsible)}" securityMember="#{responsible}">
           <f:facet name="alternativeAvatar">
             <h:outputText  rendered="#{not avatarBean.isShowAvatar()}" styleClass="si #{responsible.isUser() ? 'si-single-neutral-actions' : 'si-multiple-neutral-1'} u-mar-right-5" />
           </f:facet>
