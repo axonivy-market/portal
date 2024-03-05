@@ -74,8 +74,8 @@
           <sourcepath>../../AxonIvyPortal/PortalKit/src</sourcepath>
           <subpackages>ch.ivy.addon.portalkit.publicapi, ch.ivy.addon.portalkit.datamodel, ch.ivy.addon.portalkit.taskfilter, ch.ivy.addon.portalkit.casefilter, ch.ivy.addon.portalkit.filter</subpackages>
           <sourceFileIncludes>
-            <include>../../AxonIvyPortal/portal-components/src/com/axonivy/portal/components/util/HtmlUtils.java</include>
-            <include>../../AxonIvyPortal/portal-components/src/com/axonivy/portal/components/util/FacesMessageUtils.java</include>
+            <include>../../../../../AxonIvyPortal/portal-components/src/com/axonivy/portal/components/util/HtmlUtils.java</include>
+            <include>../../../../../AxonIvyPortal/portal-components/src/com/axonivy/portal/components/util/FacesMessageUtils.java</include>
           </sourceFileIncludes>
           <additionalOptions>
             <additionalOption>-classpath</additionalOption>
