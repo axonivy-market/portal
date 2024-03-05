@@ -55,7 +55,7 @@ public class WidgetResponsibleFilterBean implements Serializable {
     onChangeResponsibles(filter);
   }
 
-  public void onUnselectresponsible(UnselectEvent<Object> event) {
+  public void onUnselectResponsible(UnselectEvent<Object> event) {
     DashboardFilter filter = (DashboardFilter) event.getComponent().getAttributes().get(FILTER);
     onChangeResponsibles(filter);
   }
