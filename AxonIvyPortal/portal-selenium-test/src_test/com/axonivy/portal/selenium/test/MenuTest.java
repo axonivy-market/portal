@@ -11,6 +11,7 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.StatisticWidgetPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.UserProfilePage;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
@@ -98,6 +99,7 @@ public class MenuTest extends BaseTest {
 	redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     createJSonFile("custom-main-menu-entry.json", PortalVariable.MAIN_MENU_ENTRY.key);
     login(TestAccount.DEMO_USER);
+	redirectToNewDashBoard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
 	redirectToRelativeLink(createSampleDashboardUrl);
@@ -111,12 +113,24 @@ public class MenuTest extends BaseTest {
 	createJSonFile("custom-main-menu-entry.json", PortalVariable.MAIN_MENU_ENTRY.key);
 	login(TestAccount.DEMO_USER);
 	NewDashboardPage newDashboardPage = new NewDashboardPage();
-	newDashboardPage.openMyProfilePage();
-	// Set French language
-	newDashboardPage.changeUserLanguage(2);
+	// Set French
+	setUserLanguage(newDashboardPage,2);
 	MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
-	redirectToRelativeLink(createSampleDashboardUrl);		
-	String menuName = mainMenuPage.getMainMenuName();
-	Assertions.assertEquals("Dashboard Test FR",menuName);
+	redirectToRelativeLink(createSampleDashboardUrl);
+	Assertions.assertEquals("Dashboard Test FR",mainMenuPage.getMainMenuName());
+	
+	// Set German
+	setUserLanguage(newDashboardPage,3);
+	Assertions.assertEquals("Dashboard Test DE",mainMenuPage.getMainMenuName());
+	
+	// Set English
+	setUserLanguage(newDashboardPage,1);
+	Assertions.assertEquals("Dashboard Test EN",mainMenuPage.getMainMenuName());
+  }
+  
+  private void setUserLanguage(NewDashboardPage newDashboardPage, int index) {
+	UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
+	userProfilePage.selectLanguage(index);
+    newDashboardPage = userProfilePage.save();
   }
 }

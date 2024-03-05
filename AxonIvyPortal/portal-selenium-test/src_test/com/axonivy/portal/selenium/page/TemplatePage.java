@@ -524,11 +524,4 @@ public abstract class TemplatePage extends AbstractPage {
     $("[id='mobile-app-item']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     return new QRCodePage();
   }
-  
-  public void changeUserLanguage(int index) {
-	  $("div#language-setting-container").shouldBe(appear, DEFAULT_TIMEOUT);
-	  $("div[id$='language-selection']").shouldBe(appear, DEFAULT_TIMEOUT).$("label[id*='my-profile-form']").click();
-	  $("div[id$='language-selection_panel']").shouldBe(appear, DEFAULT_TIMEOUT).$("ul").$$("li").get(index).click();
-	  $("button[id*='save-settings']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
-  }
 }
