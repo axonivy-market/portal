@@ -502,16 +502,23 @@ public class DashboardTaskSearchCriteria {
   }
 
   private void appendStandandFieldToQuickSearchQuery(TaskQuery subQuery, DashboardStandardTaskColumn columnEnum) {
-    String formattedKeyword = String.format(LIKE_FORMAT, this.getQuickSearchKeyword());
+    String formattedKeyword = String.format(LIKE_FORMAT, this.quickSearchKeyword);
     switch (columnEnum) {
     case NAME -> subQuery.where().or().name().isLikeIgnoreCase(formattedKeyword);
     case DESCRIPTION -> subQuery.where().or().description().isLikeIgnoreCase(formattedKeyword);
     case CATEGORY -> subQuery.where().or().category().isLikeIgnoreCase(formattedKeyword);
     case ID -> subQuery.where().or().taskId().isLikeIgnoreCase(formattedKeyword);
     case RESPONSIBLE -> subQuery.where().or().activatorDisplayName().isLikeIgnoreCase(formattedKeyword);
-    case APPLICATION -> subQuery.where().or().applicationId().isLikeIgnoreCase(formattedKeyword);
+    case APPLICATION -> queryApplicationByQuickSearch(subQuery, this.quickSearchKeyword);
     default -> {
     }
+    }
+  }
+
+  private void queryApplicationByQuickSearch(TaskQuery query, String app) {
+    final Optional<IApplication> appFindByName = IApplicationRepository.instance().findByName(app);
+    if (appFindByName.isPresent()) {
+      query.where().or().applicationId().isEqual(appFindByName.get().getId());
     }
   }
 
