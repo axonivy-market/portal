@@ -94,7 +94,20 @@ public abstract class DashboardWidget implements Serializable {
   public void buildStatisticInfos() {}
 
   @JsonIgnore
-  public void buildKeywordQuery() {
+  public void setQuickSearchKeyword() {
+  }
+
+  @JsonIgnore
+  public void updateQuickSearchKeyword() {
+    setQuickSearchKeyword();
+
+    if (this.userFilterCollection == null) {
+      this.userFilterCollection = new UserFilterCollection(id, getType());
+    }
+    this.userFilterCollection.setQuickSearchKeyword(getQuickSearchKeyword());
+
+    var filterService = WidgetFilterService.getInstance();
+    filterService.storeUserSelectedFiltersToSession(id, getType(), userFilterCollection);
   }
 
   @JsonIgnore
@@ -103,6 +116,11 @@ public abstract class DashboardWidget implements Serializable {
     this.setUserDefinedFiltersCount(Optional.empty());
     resetWidgetFilters();
     userFilterCollection = new UserFilterCollection(id, getType());
+
+    if (StringUtils.isNotBlank(this.quickSearchKeyword)) {
+      userFilterCollection.setQuickSearchKeyword(this.quickSearchKeyword);
+    }
+
     onApplyUserFilters();
   }
   
