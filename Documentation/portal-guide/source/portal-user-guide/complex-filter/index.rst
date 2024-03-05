@@ -144,7 +144,7 @@ Filter Operators
  * - Current
    - | Valid for a column that contains dates. Select Year, Month or Week.
      | Results include only records where the date in the column falls within the selected range specified in the filter.
-     | Specifically, it will be from the first day of the current year/month/week to end the last day of current year/month/week.
+     | Specifically, it will be from the first day of the current year/month/week to the end of the last day of the current year/month/week.
      |  
      | *Example*: Find all cases that were created in the current month.
      | :bdg-dark-line:`Created Date` :bdg-dark-line:`Current` :bdg-dark-line:`Month`

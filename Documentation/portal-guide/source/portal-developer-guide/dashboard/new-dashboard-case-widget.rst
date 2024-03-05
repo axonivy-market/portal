@@ -210,7 +210,7 @@ Filter Conditions
 
 You can predefined filter conditions for most columns of the case widget. Each
 column has different conditions. Some columns only accept a list, some only a
-string, and some only accept a string in a special format such as date-time. 
+string and some only accept a string in a special format such as date-time. 
 Please refer to :ref:`Complex Filter <complex-filter>` for more details.
 
 Base structure of filter json:
@@ -265,7 +265,7 @@ Base structure of filter json:
 
       -    
 
-There are additional fields dependent on the operator and many of specific filters for each field type. Below is the list of filterable columns and their corresponding filter
+There are additional fields dependent on the operator and many specific filters for each field type. Below is the list of filterable columns and their corresponding filter
 conditions.
 
 .. tip:: 
