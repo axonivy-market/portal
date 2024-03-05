@@ -37,16 +37,10 @@ public class DashboardTaskSearchCriteria {
   private String sortField;
   private boolean sortDescending;
   private boolean isInConfiguration;
-  private TaskQuery quickSearchQuery;
   private String quickSearchKeyword;
 
   public TaskQuery buildQuery() {
     TaskQuery query = buildQueryWithoutOrderByClause();
-
-    if (quickSearchQuery != null) {
-      query = query.where().and(quickSearchQuery);
-    }
-
     TaskSortingQueryAppender appender = new TaskSortingQueryAppender(query);
     query = appender.appendSorting(this).toQuery();
     return query;
@@ -56,6 +50,7 @@ public class DashboardTaskSearchCriteria {
     TaskQuery query = TaskQuery.create();
     queryFilters(query);
     queryCanWorkOn(query);
+    appendQuickSearchQuery(query);
     return query;
   }
 
@@ -477,6 +472,49 @@ public class DashboardTaskSearchCriteria {
     
   }
 
+  private void appendQuickSearchQuery(TaskQuery query) {
+    if (StringUtils.isNotBlank(this.quickSearchKeyword)) {
+      TaskQuery subQuery = TaskQuery.create();
+      for (ColumnModel column : columns) {
+        DashboardStandardTaskColumn columnEnum = DashboardStandardTaskColumn.findBy(column.getField());
+        if (columnEnum != null) {
+          appendStandandFieldToQuickSearchQuery(subQuery, columnEnum);
+        } else {
+          appendCustomFieldsForQuickSearchQuery(subQuery, column);
+        }
+      }
+      query.where().and(subQuery);
+    }
+  }
+
+  private void appendCustomFieldsForQuickSearchQuery(TaskQuery subQuery, ColumnModel column) {
+    switch (column.getType()) {
+    case CUSTOM_CASE -> {
+      CaseQuery subCaseQuery = applyCaseFilter(column, column.getField(), this.quickSearchKeyword, null, null, null);
+      subQuery.where().or().cases(subCaseQuery);
+    }
+    case CUSTOM -> {
+      TaskQuery taskSubQuery = applyFilter(column, column.getField(), this.quickSearchKeyword, null, null, null);
+      subQuery.where().or(taskSubQuery);
+    }
+    default -> {}
+    }
+  }
+
+  private void appendStandandFieldToQuickSearchQuery(TaskQuery subQuery, DashboardStandardTaskColumn columnEnum) {
+    String formattedKeyword = String.format(LIKE_FORMAT, this.getQuickSearchKeyword());
+    switch (columnEnum) {
+    case NAME -> subQuery.where().or().name().isLikeIgnoreCase(formattedKeyword);
+    case DESCRIPTION -> subQuery.where().or().description().isLikeIgnoreCase(formattedKeyword);
+    case CATEGORY -> subQuery.where().or().category().isLikeIgnoreCase(formattedKeyword);
+    case ID -> subQuery.where().or().taskId().isLikeIgnoreCase(formattedKeyword);
+    case RESPONSIBLE -> subQuery.where().or().activatorDisplayName().isLikeIgnoreCase(formattedKeyword);
+    case APPLICATION -> subQuery.where().or().applicationId().isLikeIgnoreCase(formattedKeyword);
+    default -> {
+    }
+    }
+  }
+
   public boolean getCanWorkOn() {
     return canWorkOn;
   }
@@ -491,14 +529,6 @@ public class DashboardTaskSearchCriteria {
   
   public void setColumns(List<TaskColumnModel> columns) {
     this.columns = columns;
-  }
-
-  public TaskQuery getQuickSearchQuery() {
-    return quickSearchQuery;
-  }
-
-  public void setQuickSearchQuery(TaskQuery quickSearchQuery) {
-    this.quickSearchQuery = quickSearchQuery;
   }
 
   public String getQuickSearchKeyword() {

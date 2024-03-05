@@ -39,12 +39,13 @@
     <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
 
     <h:panelGroup id="widget-header-quick-search-#{index}" layout="block"
-      styleClass="#{isReadOnlyMode ? 'u-mar-right-10' : 'u-mar-right-5'}" rendered="#{widget.canEnableQuickSearch()}">
+      styleClass="#{isReadOnlyMode ? 'u-mar-right-10' : 'u-mar-right-5'} widget-header-quick-search"
+      rendered="#{widget.canEnableQuickSearch()}">
       <h:form>
       <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
       <p:inputText id="quick-search-input-#{index}" value="#{widget.quickSearchKeyword}"
         placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}">
-        <p:ajax delay="800" listener="#{widget.buildKeywordQuery()}"
+        <p:ajax delay="800" listener="#{widget.updateQuickSearchKeyword()}"
           process="@(this)" partialSubmit="true" global="false"
           event="keyup" update="#{p:resolveFirstComponentWithId(panelId, view).clientId}" />
       </p:inputText>
