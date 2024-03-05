@@ -24,7 +24,7 @@
 
   <h:panelGroup id="state-filter-operator-panel" layout="block"
     styleClass="ui-fluid md-inputfield state-filter-operator-panel">
-      <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="true">
+      <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
         <f:selectItems value="#{widgetStateFilterBean.stateOperators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
       </p:selectOneMenu>

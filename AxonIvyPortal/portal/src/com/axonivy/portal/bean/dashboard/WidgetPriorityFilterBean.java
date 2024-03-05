@@ -28,11 +28,7 @@ public class WidgetPriorityFilterBean implements Serializable {
         WorkflowPriority.NORMAL, WorkflowPriority.LOW);
     priorities = wfPriority.stream().map(priority -> priority.name()).toList();
 
-    if (filter.getValues() != null) {
-      prioritiesString = String.join(", ", filter.getValues());
-      return;
-    }
-    prioritiesString = "";
+    prioritiesString = String.join(", ", filter.getValues());
   }
 
   public List<FilterOperator> getPriorityOperators() {
