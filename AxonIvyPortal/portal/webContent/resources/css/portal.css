@@ -1821,7 +1821,6 @@ i.dashboard-icon-drag-drop {
 
 .filter-panel.active {
   width: 60%;
-  height: 700px;
   visibility: visible;
   opacity: 1;
   overflow: hidden;
