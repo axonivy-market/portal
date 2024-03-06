@@ -476,11 +476,13 @@ public class DashboardTaskSearchCriteria {
     if (StringUtils.isNotBlank(this.quickSearchKeyword)) {
       TaskQuery subQuery = TaskQuery.create();
       for (ColumnModel column : columns) {
-        DashboardStandardTaskColumn columnEnum = DashboardStandardTaskColumn.findBy(column.getField());
-        if (columnEnum != null) {
-          appendStandandFieldToQuickSearchQuery(subQuery, columnEnum);
-        } else {
-          appendCustomFieldsForQuickSearchQuery(subQuery, column);
+        if (column.canQuickSearch()) {
+          DashboardStandardTaskColumn columnEnum = DashboardStandardTaskColumn.findBy(column.getField());
+          if (columnEnum != null) {
+            appendStandandFieldToQuickSearchQuery(subQuery, columnEnum);
+          } else {
+            appendCustomFieldsForQuickSearchQuery(subQuery, column);
+          }
         }
       }
       query.where().and(subQuery);
