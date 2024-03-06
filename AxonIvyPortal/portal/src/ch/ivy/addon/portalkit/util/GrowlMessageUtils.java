@@ -11,9 +11,10 @@ import javax.faces.context.Flash;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.util.FacesMessageUtils;
+
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import com.axonivy.portal.components.util.HtmlParser;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 
@@ -55,13 +56,13 @@ public final class GrowlMessageUtils {
   }
 
   private static FacesMessage addMessageWithoutCaseDetails(boolean isTaskFinished) {
-    return new FacesMessage(Ivy.cms().co(isTaskFinished ? TASK_FINISHED : TASK_LEFT), "");
+    return FacesMessageUtils.sanitizedMessage(Ivy.cms().co(isTaskFinished ? TASK_FINISHED : TASK_LEFT), "");
   }
 
   private static FacesMessage addMessageWithCaseDetails(boolean isTaskFinished, String caseDetailsUrl) {
     String message = isTaskFinished ? Ivy.cms().co(TASK_FINISHED) + "." : Ivy.cms().co(TASK_LEFT);
     String description = Ivy.cms().co(CASE_DETAILS, Arrays.asList(caseDetailsUrl));
-    return new FacesMessage(message, HtmlParser.sanitize(description));
+    return FacesMessageUtils.sanitizedMessage(message, description);
   }
 
   private static boolean isCaseDetailsAvailable(ICase iCase, String caseDetailsUrl) {

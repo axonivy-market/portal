@@ -65,7 +65,7 @@
   </div>
 
   <h:panelGroup id="task-status-banner" layout="block" styleClass="ui-g #{taskDetailsBean.showInfoBanner()? 'task-status-banner' : ''}">
-    <p:staticMessage rendered="#{taskDetailsBean.showInfoBanner()}" escape="false" severity="#{taskDetailsBean.getInfoBannerSeverity()}" styleClass="task-status-banner-content MarTop10" detail="#{visibilityBean.sanitizeContent(taskDetailsBean.getInfoBannerMessage())}"></p:staticMessage>
+    <p:staticMessage escape="false" detail="#{htmlSanitizerBean.sanitize(taskDetailsBean.getInfoBannerMessage())}" rendered="#{taskDetailsBean.showInfoBanner()}" severity="#{taskDetailsBean.getInfoBannerSeverity()}" styleClass="task-status-banner-content MarTop10" />
   </h:panelGroup>
 
   <h:panelGroup layout="block" styleClass="task-item-body " id="task-item-body">

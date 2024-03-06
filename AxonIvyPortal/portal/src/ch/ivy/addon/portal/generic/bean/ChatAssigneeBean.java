@@ -20,7 +20,8 @@ import org.primefaces.PrimeFaces;
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.dto.UserDTO;
-import com.axonivy.portal.components.util.HtmlParser;
+import com.axonivy.portal.components.util.FacesMessageUtils;
+import com.axonivy.portal.components.util.HtmlUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -79,7 +80,7 @@ public class ChatAssigneeBean implements Serializable {
   public void addAssignee() {
     SecurityMemberDTO selectedAssignee = selectedUser != null ? SecurityMemberDTOMapper.mapFromUserDTO(selectedUser) :  SecurityMemberDTOMapper.mapFromRoleDTO(selectedRole);
     if (selectedAssignee == null || isSelectedAssigneeExist(selectedAssignee)) {
-      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "",
+      FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, "",
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/errorSelectInvalidAssignee")));
       return;
     }
@@ -105,7 +106,7 @@ public class ChatAssigneeBean implements Serializable {
       CaseQuery caseQuery = queryCaseHasGroupChat();
       ICase iCase = Ivy.wf().getCaseQueryExecutor().getFirstResult(caseQuery);
       existedGroupChat = mapFromCustomField(iCase);
-      groupChatExistMessage = HtmlParser
+      groupChatExistMessage = HtmlUtils
           .sanitize(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/processChatWasCreated",
           Arrays.asList(getGroupChatName(existedGroupChat))));
     }
@@ -122,9 +123,8 @@ public class ChatAssigneeBean implements Serializable {
       if (CollectionUtils.isNotEmpty(assigneeNames)) {
         assigneeNames.add("#".concat(Long.toString(Ivy.session().getSessionUser().getId())));
         String groupChatName = getGroupChatName(existedGroupChat);
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
-            HtmlParser.sanitize(
-                Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/joinedProcessChat", Arrays.asList(groupChatName))),
+        FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO,
+            Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/joinedProcessChat", Arrays.asList(groupChatName)),
             null);
         CreateGroupChatStatus createGroupChatStatus = CreateGroupChatStatus.FAIL;
         boolean joinGroup = true;
@@ -150,7 +150,7 @@ public class ChatAssigneeBean implements Serializable {
   }
 
   private FacesMessage generateErrorMessageWhenJoinGroupChat() {
-    return new FacesMessage(FacesMessage.SEVERITY_ERROR,
+    return FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/failureToJoinProcessChat"), null);
   }
 
@@ -193,16 +193,15 @@ public class ChatAssigneeBean implements Serializable {
     ICase iCase = task.getCase().getBusinessCase();
     GroupChat group = initGroupChat(iCase);
     String groupChatName = getGroupChatName(group);
-    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
-        HtmlParser.sanitize(
-            Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/processChatIsCreated", Arrays.asList(groupChatName))),
+    FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO,
+        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/processChatIsCreated", Arrays.asList(groupChatName)),
         null);
     boolean isCreated = true;
 
     try {
       CreateGroupChatStatus createGroupChatStatus = saveGroupChat(group, false);
       if (createGroupChatStatus == CreateGroupChatStatus.ALREADY_EXIST) {
-        message = new FacesMessage(FacesMessage.SEVERITY_ERROR, getGroupChatExistMessage(), null);
+        message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, getGroupChatExistMessage(), null);
       } else if (createGroupChatStatus == CreateGroupChatStatus.SUSCCESS) {
         if (ChatReferencesContainer.getChatService() != null) {
           ChatReferencesContainer.getChatService().updateGroupList(group);
@@ -236,7 +235,7 @@ public class ChatAssigneeBean implements Serializable {
   }
 
   private FacesMessage generateErrorMessageWhenCreateGroupChat() {
-    return new FacesMessage(FacesMessage.SEVERITY_ERROR,
+    return FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/failureToCreateProcessChat"), null);
   }
 
@@ -255,7 +254,7 @@ public class ChatAssigneeBean implements Serializable {
         groupChatName = groupChatName.replace("{" + entry.getKey() + "}", entry.getValue().toString());
       }
     }
-    return HtmlParser.sanitize(groupChatName);
+    return HtmlUtils.sanitize(groupChatName);
   }
 
   private CreateGroupChatStatus saveGroupChat(GroupChat group, boolean isUpdate) throws JsonProcessingException {
@@ -287,7 +286,7 @@ public class ChatAssigneeBean implements Serializable {
   private boolean checkGroupChatExist() {
     if (doesGroupChatExist()) {
       FacesContext.getCurrentInstance().addMessage(CHAT_ASSIGNEE_ERROR_MESSAGE_ID,
-          new FacesMessage(FacesMessage.SEVERITY_ERROR, "", getGroupChatExistMessage()));
+          FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, "", getGroupChatExistMessage()));
       PrimeFaces.current().ajax().update(CHAT_ASSIGNEE_ERROR_MESSAGE_ID);
       return true;
     }
@@ -296,7 +295,7 @@ public class ChatAssigneeBean implements Serializable {
 
   private boolean checkNoAssignees() {
     if (CollectionUtils.isEmpty(selectedAssignees)) {
-      FacesContext.getCurrentInstance().addMessage(CHAT_ASSIGNEE_ERROR_MESSAGE_ID, new FacesMessage(
+      FacesContext.getCurrentInstance().addMessage(CHAT_ASSIGNEE_ERROR_MESSAGE_ID, FacesMessageUtils.sanitizedMessage(
           FacesMessage.SEVERITY_ERROR, "", Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/noAssignees")));
       PrimeFaces.current().ajax().update(CHAT_ASSIGNEE_ERROR_MESSAGE_ID);
       return true;
