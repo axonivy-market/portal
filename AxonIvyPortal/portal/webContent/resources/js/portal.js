@@ -413,3 +413,22 @@ function getWidgetVarById(id) {
   }
   return null;
 }
+
+function isPressedSpecialKeys(event) {
+  const ctrlPressed = event.ctrlKey || event.metaKey;
+
+  if (ctrlPressed && ((event.key === 'z') || (event.key === 'y') || (event.key === 'x') || (event.key === 'v'))) {
+    return false;
+  }
+
+  const specialKeys = ['Enter', 'Shift', 'Control',
+  'Alt', 'Pause', 'CapsLock', 'Escape',
+  'PageUp', 'PageDown', 'End', 'Home',
+  'PrintScreen', 'Insert', 'Delete', 'Meta',
+  'ContextMenu', 'NumLock', 'ScrollLock'];
+
+  if (specialKeys.includes(event.key)) {
+    return true;
+  }
+  return false;
+}
