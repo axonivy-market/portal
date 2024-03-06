@@ -19,11 +19,12 @@
   <c:set var="readOnly" value="#{cc.attrs.readOnly}" />
   <c:set var="messageId" value="#{cc.attrs.messageId}" />
   <c:set var="widget" value="#{cc.attrs.widget}" />
+  <c:set var="operators" value="#{cc.attrs.operators}" />
 
   <h:panelGroup id="date-filter-operator-panel" layout="block"
     styleClass="ui-fluid md-inputfield">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
-        <f:selectItems value="#{widgetDateFilterBean.operators}" var="operator"
+        <f:selectItems value="#{operators ne null ? operators : widgetDateFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
           <p:ajax event="itemSelect" listener="#{widgetDateFilterBean.onChangeOperator(filter)}"
             process="@(this)" update="#{cc.attrs.componentToUpdate}" />
