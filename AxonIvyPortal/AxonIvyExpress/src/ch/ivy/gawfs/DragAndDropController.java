@@ -11,6 +11,8 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.event.DragDropEvent;
 
+import com.axonivy.portal.components.util.FacesMessageUtils;
+
 import ch.ivy.gawfs.enums.FormElementType;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -147,7 +149,7 @@ public class DragAndDropController implements Serializable {
   }
 
   private void displayFileUploadPositionNotice() {
-    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
+    FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO,
         Ivy.cms().co("/Dialogs/components/CaseDocument/fileUploadElementPosition"), "");
     FacesContext.getCurrentInstance().addMessage("available-form-elements", message);
   }
@@ -160,7 +162,7 @@ public class DragAndDropController implements Serializable {
   }
 
   private void displayMaximumFileUploadElementError() {
-    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+    FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
         Ivy.cms().co("/Dialogs/components/CaseDocument/maximumFileUploadElement"), "");
     FacesContext.getCurrentInstance().addMessage("available-form-elements", message);
   }
