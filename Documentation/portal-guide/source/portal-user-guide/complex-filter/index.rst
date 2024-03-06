@@ -66,7 +66,7 @@ You can manage your saved filter set in the Widget Filter Management dialog.
 
 - In the ``Available Filters`` dialog, select ``Manage filters`` link.
 
-- To search for a filter set, type the search value into the input field at the top of every columns.
+- To search for a filter set, type the search value into the input field at the top of every column.
 
 - To delete filters, select the checkbox next to the filter set and then click the ``Remove`` button
 
