@@ -1806,8 +1806,9 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .dashboard-widget-filter__filter-panel > div {
   margin-left: 0.5em;
-  display: flex;
+  display: inline-block;
   align-items: flex-start;
+  max-width: 34vw;
 }
 
 .dashboard-widget-filter__filter-panel > div.remove-filter-panel {
@@ -1869,5 +1870,5 @@ body .ui-button.rounded-button.dashboard-widget-filter__remove-filter .ui-icon {
   min-width: 130px;
 }
 .text-list-filter{
-  max-width: 60%;
+  max-width: 100%;
 }
