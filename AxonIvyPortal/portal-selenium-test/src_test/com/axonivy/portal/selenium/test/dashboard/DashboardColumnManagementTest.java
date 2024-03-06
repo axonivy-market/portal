@@ -44,7 +44,6 @@ public class DashboardColumnManagementTest extends BaseTest {
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
     CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
-    caseEditWidget.preview();
     caseEditWidget.openColumnManagementDialog();
 
     caseEditWidget.removeAddedField("id");

@@ -1,4 +1,4 @@
-var filterPanelId = 'widget-configuration-form:new-widget-configuration-component:filter-panel';
+var filterPanelId = 'widget-configuration-form:new-widget-configuration-component:widget-filter-content';
 
 function openFilterPanel(event) {
   document.getElementById(filterPanelId).style.right = calculateRightPosition();
