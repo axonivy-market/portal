@@ -186,11 +186,11 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
-            "import com.axonivy.portal.components.util.HtmlParser;",
             "",
-            "FacesContext.getCurrentInstance().addMessage(\"task-document-global-messages\", new FacesMessage(HtmlParser.sanitize(in.deleteDocumentMessage), \"\" ));"
+            "FacesContext.getCurrentInstance().addMessage(\"task-document-global-messages\", FacesMessageUtils.sanitizedMessage(in.deleteDocumentMessage, \"\" ));"
           ]
         }
       },
