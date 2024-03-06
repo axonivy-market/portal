@@ -12,7 +12,7 @@ import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class MainMenuEntryService extends JsonConfigurationService<MainMenuEntry> {
-	private static final String MAIN_MENU_ENTRY = PortalVariable.MAIN_MENU_ENTRY.key;
+	private static final String MAIN_MENU_ENTRY = PortalVariable.DASHBOARD_MAIN_MENU_ENTRY.key;
 
 	public MainMenuEntryService() {
 	}
@@ -37,7 +37,7 @@ public class MainMenuEntryService extends JsonConfigurationService<MainMenuEntry
 		MainMenuEntry mainMenuEntry = getMainMenuEntry();
 
 		if (mainMenuEntry != null) {
-			String displayName = getNameFollowingLocale(mainMenuEntry.getNames(), currentLocale);
+			String displayName = getNameByLocale(mainMenuEntry.getNames(), currentLocale);
 			DisplayNameAdaptor displayNameAdaptor = new DisplayNameAdaptor(displayName, currentLocale);
 			return displayNameAdaptor.getDisplayNameAsString();
 		}
@@ -52,17 +52,16 @@ public class MainMenuEntryService extends JsonConfigurationService<MainMenuEntry
 		return "";
 	}
 
-	private String getNameFollowingLocale(List<DisplayName> displayNameList, Locale locale) {
-		List<Locale> localeList = displayNameList.stream().map(DisplayName::getLocale).toList();
-
-		if (CollectionUtils.isNotEmpty(displayNameList) && isContainsLocale(localeList, locale)) {
-			return displayNameList.stream().filter(item -> item.getLocale().equals(locale)).map(DisplayName::getValue)
-					.findAny().orElse(null);
+	private String getNameByLocale(List<DisplayName> displayNameList, Locale locale) {
+		if (CollectionUtils.isEmpty(displayNameList) || isNotValidDisplayName(displayNameList)) {
+			return "";
 		}
-		return "";
+
+		return displayNameList.stream().filter(item -> item.getLocale().equals(locale)).map(DisplayName::getValue)
+				.findFirst().orElse(null);
 	}
 
-	private boolean isContainsLocale(List<Locale> localeList, Locale locale) {
-		return localeList.contains(locale);
+	private boolean isNotValidDisplayName(List<DisplayName> displayNameList) {
+		return displayNameList.stream().anyMatch(item -> item.getValue() == null || item.getLocale() == null);
 	}
 }
