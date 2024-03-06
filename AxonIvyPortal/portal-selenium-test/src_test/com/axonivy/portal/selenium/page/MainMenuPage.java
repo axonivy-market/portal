@@ -37,7 +37,11 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public CaseWidgetPage openCaseList() {
-    return NavigationHelper.navigateToCaseList();
+    waitLeftMenuReady();
+    WaitHelper.waitForNavigation(() -> {
+      clickByJavaScript($(".layout-menu li[role='menuitem'] a.CASE").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()));
+    });
+    return new CaseWidgetPage();
   }
 
   public ProcessWidgetPage openProcessList() {
