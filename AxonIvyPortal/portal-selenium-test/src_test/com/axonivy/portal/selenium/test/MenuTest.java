@@ -85,7 +85,7 @@ public class MenuTest extends BaseTest {
   @Test
   public void testCustomizeIconMainMenuEntry() {
 	redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
-    createJSonFile("custom-main-menu-entry.json", PortalVariable.MAIN_MENU_ENTRY.key);
+    createJSonFile("custom-main-menu-entry.json", PortalVariable.DASHBOARD_MAIN_MENU_ENTRY.key);
     login(TestAccount.DEMO_USER);
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
@@ -97,7 +97,7 @@ public class MenuTest extends BaseTest {
   @Test
   public void testCustomizeNameMainMenuEntry() {
 	redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
-    createJSonFile("custom-main-menu-entry.json", PortalVariable.MAIN_MENU_ENTRY.key);
+    createJSonFile("custom-main-menu-entry.json", PortalVariable.DASHBOARD_MAIN_MENU_ENTRY.key);
     login(TestAccount.DEMO_USER);
 	redirectToNewDashBoard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
@@ -110,7 +110,7 @@ public class MenuTest extends BaseTest {
   @Test
   public void testCustomizeMainMenuEntryMultiLanguage() {
 	redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
-	createJSonFile("custom-main-menu-entry.json", PortalVariable.MAIN_MENU_ENTRY.key);
+	createJSonFile("custom-main-menu-entry.json", PortalVariable.DASHBOARD_MAIN_MENU_ENTRY.key);
 	login(TestAccount.DEMO_USER);
 	NewDashboardPage newDashboardPage = new NewDashboardPage();
 	// Set French
