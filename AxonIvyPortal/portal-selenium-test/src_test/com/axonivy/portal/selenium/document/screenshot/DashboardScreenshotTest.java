@@ -30,6 +30,7 @@ import com.axonivy.portal.selenium.page.ProcessViewerWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.StatisticEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
+import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 
@@ -119,15 +120,41 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
 
   @Test
   public void screenshotDashboardWithAnnotation() throws IOException {
+    updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "true");
+    updatePortalSetting(Variable.SHOW_USER_GUIDE.getKey(), "false");
+    HomePage homePage = new HomePage();
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    
+    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
+    ScreenshotUtils.executeDecorateJs("numberingStatisticWidget()");
+    ScreenshotUtils.captureElementScreenshot(homePage.getStatisticWidgetElement(), ScreenshotUtils.DASHBOARD_FOLDER + "statistics-key-information");
+
+
     ScreenshotUtils.resizeBrowser(new Dimension(1100, 800));
-    showNewDashboard();
-    homePage = new NewDashboardPage();
-    homePage.waitForCaseWidgetLoaded();
-    homePage.clickOnGlobalSearch();
+    homePage.clickByCssSelector("a[id='global-search-item']");
     ScreenshotUtils.executeDecorateJs("numberingTopBar()");
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.getTopBar(),
         ScreenshotUtils.DASHBOARD_FOLDER + "portal-header-with-numbering-annotation",
         new ScreenshotMargin(20, 20, 20, 120));
+    
+    ScreenshotUtils.resizeBrowser(new Dimension(1400, 800));
+    ScreenshotUtils.executeDecorateJs("numberingTaskItem();");
+    ScreenshotUtils.captureElementScreenshot(homePage.getTaskWidgetElement(), ScreenshotUtils.DASHBOARD_FOLDER + "personal-tasks-key-information");
+
+    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
+    refreshPage();
+    homePage.waitForWidgetsInDashboardLoaded();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DASHBOARD_FOLDER + "legacy-dashboard");
+    ScreenshotUtils.executeDecorateJs("highlightAndNumberingDashboardSections();");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DASHBOARD_FOLDER + "dashboard-3-sections");
+
+    refreshPage();
+    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_HD_WIDTH, 800));
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    homePage.waitForPageLoad();
+    taskWidgetPage.openCompactSortMenu();
+    ScreenshotUtils.executeDecorateJs("numberingTaskFilterAndSort();");
+    ScreenshotUtils.captureElementScreenshot(homePage.getTaskWidgetElement(), ScreenshotUtils.DASHBOARD_FOLDER + "personal-tasks-sort-and-search-features");
   }
 
   @Test
@@ -374,13 +401,16 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
   @Test
   public void screenshotDashboard() throws IOException {
     updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "true");
-    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    updatePortalSetting(Variable.SHOW_USER_GUIDE.getKey(), "false");
+    redirectToRelativeLink(createUserFavoriteProcess);
 
     HomePage homePage = new HomePage();
     homePage.waitForPageLoad();
 
     ScreenshotUtils.maximizeBrowser();
     ScreenshotUtils.captureElementScreenshot(homePage.getProcessWidgetElement(), ScreenshotUtils.DASHBOARD_FOLDER + "process-widget");
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    homePage.waitUntilStatisticLoaded();
     ScreenshotUtils.captureElementScreenshot(homePage.getStatisticWidgetElement(), ScreenshotUtils.DASHBOARD_FOLDER + "statistic-widget");
 
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_HD_WIDTH, 800));

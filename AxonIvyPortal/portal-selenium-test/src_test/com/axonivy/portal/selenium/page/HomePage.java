@@ -73,4 +73,10 @@ public class HomePage extends TemplatePage {
 
     return new UserFavoriteProcessPage();
   }
+  
+  public void waitUntilStatisticLoaded() {
+    $("div[id$='statistic-carousel']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div[id$='process-widget:default-user-processes-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div[id$='process-widget:process-list']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
 }

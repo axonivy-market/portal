@@ -16,6 +16,7 @@ import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.HomePage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.axonivy.portal.selenium.test.caze.CaseDetailsTest;
@@ -31,6 +32,9 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
   private static final int SCREENSHOT_WIDTH = 1500;
   private static final int SCREENSHOT_MEDIUM_WIDTH = 1100;
   private static final int SCREENSHOT_HEIGHT = 800;
+  private static final String CAPITALIZED_CREATOR = "Creator";
+  private static final String NORMAL_CREATOR = "creator";
+  private static final String DEMO = "Demo";
 
   @Override
   @BeforeEach
@@ -116,6 +120,31 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
     detailsPage.waitForShowNoteHistory();
     ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.CASE_WIDGET_FOLDER + "export-case-history",
         new Dimension(SCREENSHOT_MEDIUM_WIDTH, 1000));
+  }
+  
+  @Test
+  public void screenshotCustomCaseListColumnConfig() throws IOException {
+    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1400));
+    redirectToRelativeLink(createCasesForCaseListCustomization);
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
+    
+    CaseWidgetPage caseWidget = mainMenuPage.openCaseList();
+    caseWidget.clickColumnsButton();
+
+    ScreenshotUtils.executeDecorateJs("highlightCustomColumnsConfigOnCaseList()");
+    ScreenshotUtils.captureHalfTopRightPageScreenShot(ScreenshotUtils.CASE_WIDGET_CUSTOMIZATION_FOLDER + "case-columns-configuration");
+  }
+
+  @Test
+  public void screenshotCaseFilter() throws IOException {
+    ScreenshotUtils.maximizeBrowser();
+    CaseWidgetPage caseWidget = mainMenuPage.openCaseList();
+    caseWidget.openAdvancedFilter(CAPITALIZED_CREATOR, NORMAL_CREATOR);
+    caseWidget.filterByCreator(DEMO);
+    caseWidget.getCreator();
+    ScreenshotUtils.executeDecorateJs("highlightCaseCreatorFilter()");
+    ScreenshotUtils.captureHalfCenterTopPageScreenShot(ScreenshotUtils.CASE_WIDGET_CUSTOMIZATION_FOLDER + "case-filter");
   }
 
   @Test
@@ -228,4 +257,14 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils
         .captureHalfLeftPageScreenShot(ScreenshotUtils.PROCESSES_INFORMATION_WIDGET_FOLDER + "process-overview-link");
   }
+  
+  @Test
+  public void screenshotCustomCaseList() throws IOException {
+    mainMenuPage.openCaseList();
+    mainMenuPage.waitForPageLoad();
+    ScreenshotUtils.executeDecorateJs("highlightCustomCaseList()");
+    ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.CASE_WIDGET_CUSTOMIZATION_FOLDER + "case-list", new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT));
+  }
+
+
 }
