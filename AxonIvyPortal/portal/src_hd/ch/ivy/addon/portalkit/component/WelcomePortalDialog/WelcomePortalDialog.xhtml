@@ -26,8 +26,8 @@
       <span class="#{icon} guide-panel__icon" />
       <h2>#{title}</h2>
       <p class="guide-panel__content">
-        <h:outputText id="welcome-content" value="#{visibilityBean.sanitizeContent(content)}" escape="false" styleClass="u-hidden-1024-down" />
-        <h:outputText id="mobile-welcome-content" value="#{visibilityBean.sanitizeContent(mobileContent)}" escape="false" styleClass="u-hidden-1024-up" />
+        <h:outputText escape="false" value="#{htmlSanitizerBean.sanitize(content)}" id="welcome-content" styleClass="u-hidden-1024-down" />
+        <h:outputText escape="false" value="#{htmlSanitizerBean.sanitize(mobileContent)}" id="mobile-welcome-content" styleClass="u-hidden-1024-up" />
       </p>
       <div class="guide-panel__footer">
         <h:panelGroup id="guide-panel-buttons" layout="block" styleClass="guide-panel__buttons">
