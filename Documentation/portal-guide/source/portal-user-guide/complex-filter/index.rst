@@ -38,7 +38,7 @@ How to use
 
       |complex-filter-example|
 
-    This configuration implies finding all cases where the state is OPEN, the name contains 'Mike', and they were created today.
+    This filter configuration finds all cases in state OPEN, with their name containing 'Mike', created today.
 
 If the task/case widget has been pre-configured with filters in the dashboard configuration, these filters will be displayed as read-only filters.
 
@@ -49,11 +49,11 @@ Save A Filter Set
 
 On dashboard task/case widget, filters that have been added can be saved to a filter set by following these steps:
 
-- Click on ``Save filter`` button, then input filter set name and click ``Save``.
+- Click on ``Save filter`` button, then enter the filter set name and click ``Save``.
 
 - Saved filter sets will be displayed on the left side of the filter dialog.
 
-- Select a filter set name to apply it, and deselect it to remove the filter set.
+- Select a filter set to apply it, and deselect it to remove the filter set.
 
 - If a filter set name is bold, it means that filter set is currently applied.
 
@@ -83,16 +83,16 @@ Filter Operators
    - **Usage Guideline**
  * - In
    - | Valid for category, state, creator, application. Specify a single value or multiple values.
-     | Results include only records where the data in the column matches the value in the filter.
+     | Results include only records where the data in the column match the value in the filter.
  * - Not In
    - | Valid for category, creator. Specify a single value or multiple values.  
-     | Results include only records where the data in the column does not matches the value in the filter.
+     | Results include only records where the data in the column does not match the value in the filter.
  * - Contains
    - | Valid for category, ID and column that contains text. Specify a single value or multiple values.  
      | Results include only records where the data in the column contains the value in the filter.
  * - Doesn't Contains
    - | Valid for category, ID and column that contains text. Specify a single value or multiple values.  
-     | Results include only records where the data in the column not contains the value in the filter.
+     | Results include only records where the data in the column dóes not contain the value in the filter.
  * - Between
    - | Valid for a column that contains number, dates. Specify two values.  
      | Result include only records where the data in the column is between the two values in the filter.
@@ -101,34 +101,34 @@ Filter Operators
      | Result include only records where the data in the column is not between the two values in the filter.
  * - Equal
    - | Valid for a column that contains number. Specify a single value.  
-     | Results include only records where the data in the column matches the value in the filter.
+     | Results include only records where the data in the column match the value in the filter.
  * - Not Equal
    - | Valid for a column that contains number. Specify a single value.  
-     | Results include only records where the data in the column does not matches the value in the filter.
+     | Results include only records where the data in the column does not match the value in the filter.
  * - Less
    - | Valid for a column that contains number. Specify a single value.  
      | Results include only records where the data in the column is less than the value in the filter.
  * - Less or equal
    - | Valid for a column that contains number. Specify a single value.  
-     | Results include only records where the data in the column is less than or the same as the value in the filter.
+     | Results include only records where the data in the column is less than or the equal to the value in the filter.
  * - Greater
    - | Valid for a column that contains number. Specify a single value.  
      | Results include only records where the data in the column is greater than the value in the filter.
  * - Greater or equal
    - | Valid for a column that contains number. Specify a single value.  
-     | Results include only records where the data in the column is greater than or the same as the value in the filter.
+     | Results include only records where the data in the column is greater than or equal to the value in the filter.
  * - Is Empty
    - | Valid for a column that contains text, numbers, or dates. Do not specify a value.
-     | Results include only records where absence of data in the column.
+     | Results include only records that contain no data in the column.
  * - Is Not Empty
    - | Valid for a column that contains text, numbers, or dates. Do not specify a value.
-     | Results include only records where presence of data in the column.
+     | Results include only records that contain data in the column.
  * - Is
    - | Valid for a column that contains text, dates. Specify a single value or multiple values.
-     | Results include only records where the data in the column matches the value in the filter.
+     | Results include only records where the data in the column match the value in the filter.
  * - Is Not
    - | Valid for a column that contains text, dates. Specify a single value or multiple values.
-     | Results include only records where the data in the column not matches the value in the filter.
+     | Results include only records where the data in the column does not match the value in the filter.
  * - Today
    - | Valid for a column that contains dates. Do not specify a value.
      | Results include only records where the date in the column matches the current date.
@@ -143,17 +143,18 @@ Filter Operators
      | Results include only records where the date in the column is after the date in the filter.
  * - Current
    - | Valid for a column that contains dates. Select Year, Month or Week.
-     | Results include only records where the date in the column falls within the selected range specified in the filter.
-     | Specifically, it will be from the first day of the current year/month/week to the end of the last day of the current year/month/week.
-     |  
+     | Results include only records where the date in the column falls within the range specified in the filter.
+     | Specifically, it will be from the first day of the current year/month/week to the end of the last day of the current
+     | year/month/week.
+     | 
      | *Example*: Find all cases that were created in the current month.
      | :bdg-dark-line:`Created Date` :bdg-dark-line:`Current` :bdg-dark-line:`Month`
      |  
      | *Explanation*: Assuming today is ``2/27/2024 11:41:28``, the query will retrieve cases where the Created Date falls 
-     | within the period from ``2/1/2022 00:00:00`` to ``2/29/2024 23:59:59``.
+     | within the period from ``2/1/2024 00:00:00`` to ``2/29/2024 23:59:59``.
  * - Within the last
    - | Valid for a column that contains dates. Specify a single value then select Year(s), Month(s), Week(s) or Day(s).
-     | Results include only records where the date in the column falls within the selected range specified in the filter.
+     | Results include only records where the date in the column falls within the range specified in the filter.
      | Specifically, it will be from the beginning of the first day of the last <input_value> year(s)/month(s)/week(s) 
      | to the present moment.
      |
@@ -164,32 +165,33 @@ Filter Operators
      | within the period from ``2/27/2022 00:00:00`` to ``2/27/2024 11:41:28``.
  * - Within the next
    - | Valid for a column that contains dates. Specify a single value then select Year(s), Month(s), Week(s) or Day(s).
-     | Results include only records where the date in the column falls within the selected range specified in the filter.
-     | Specifically, it will be from the present moment to the end of the day of the next <input_value> year(s)/month(s)/week(s).
+     | Results include only records where the date in the column falls within the range specified in the filter.
+     | Specifically, it will be from the present moment to the end of the day of the next <input_value> 
+     | year(s)/month(s)/week(s).
      |
-     | *Example*: Find all cases with Invoice Due Date within the next 2 years
+     | *Example*: Find all cases with Invoice Due Date within the next 3 weeks
      | :bdg-dark-line:`Invoice Due Date` :bdg-dark-line:`Within the next` :bdg-dark-line:`3` :bdg-dark-line:`Week(s)`
      |  
      | *Explanation*: Assuming today is ``2/27/2024 11:41:28``, the query will retrieve cases where the Invoice Due Date falls 
      | within the period from ``2/27/2024 11:41:28`` to ``3/19/2024 23:59:59``.
  * - Starts with
    - | Valid for a column that contains text. Specify a single value or multiple values.
-     | Results include only records where the data in the column starts with the value in the filter.
+     | Results include only records where the data in the column start with the value in the filter.
  * - Doesn't start with
    - | Valid for a column that contains text. Specify a single value or multiple values.
-     | Results include only records where the data in the column does not starts with the value in the filter.
+     | Results include only records where the data in the column does not start with the value in the filter.
  * - Ends with
    - | Valid for a column that contains text. Specify a single value or multiple values.
-     | Results include only records where the data in the column ends with the value in the filter.
+     | Results include only records where the data in the column end with the value in the filter.
  * - Doesn't end with
    - | Valid for a column that contains text. Specify a single value or multiple values.
-     | Results include only records where the data in the column does not ends with the value in the filter.
+     | Results include only records where the data in the column does not end with the value in the filter.
  * - No Category
    - | Valid for category. Do not specify a value.
      | Results include only records where the data in the column has no category.
  * - Current user
    - | Valid for creator. Do not specify a value.
-     | Results include only records where the data in the column created by current user.
+     | Results include only records where the data in the column has been created by current user.
 
 .. include:: ../includes/_common-icon.rst
 

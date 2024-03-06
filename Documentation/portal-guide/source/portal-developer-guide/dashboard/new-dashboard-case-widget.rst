@@ -385,7 +385,7 @@ Standard Column:
       This column only accepts a list of usernames as filter value for the case creator's username. The available filter operators are ``in``, ``not_in`` and ``current_user``. 
       The ``current_user`` operator does not require value field.
 
-   - ``startTimestamp`` and ``endTimestamp``: Case's created date and finished date
+   - ``startTimestamp`` and ``endTimestamp``: created date and finished date of the Case
 
       .. code-block:: html
 
