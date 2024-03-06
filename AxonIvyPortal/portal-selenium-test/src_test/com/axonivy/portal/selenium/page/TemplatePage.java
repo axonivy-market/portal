@@ -524,4 +524,13 @@ public abstract class TemplatePage extends AbstractPage {
     $("[id='mobile-app-item']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     return new QRCodePage();
   }
+  
+  public void clickByCssSelector(String cssSelector) {
+    waitForElementDisplayed(By.cssSelector(cssSelector), true);
+    $(cssSelector).shouldBe(getClickableCondition()).click();
+  }
+  
+  public WebElement getTopBar() {
+    return findElementById("top-menu");
+  }
 }

@@ -757,4 +757,9 @@ public class TaskWidgetPage extends TemplatePage {
     $("a[id$='task-widget:task-columns-configuration:task-config-command']").shouldBe(getClickableCondition()).click();
     waitForElementDisplayed(By.cssSelector("label[for$=':columns-checkbox:3']"), Boolean.TRUE);
   }
+  
+  public void openCompactSortMenu() {
+    $("div[id$='sort-task-menu']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id$='sort-task-menu']").shouldBe(getClickableCondition()).click();
+  }
 }
