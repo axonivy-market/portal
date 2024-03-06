@@ -9,6 +9,8 @@ import static com.codeborne.selenide.Selenide.$;
 
 import java.util.ArrayList;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -46,5 +48,40 @@ public abstract class TemplatePage extends AbstractPage {
   public void waitForGrowlMessageDisappear() {
     $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT)
           .$("div.ui-growl-message").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public UserProfilePage openMyProfilePage() {
+    clickUserMenuItem("user-profile");
+    return new UserProfilePage();
+  }
+  
+  private void clickUserMenuItem(String menuItemSelector) {
+    $("div[id='user-settings-menu']").shouldBe(appear, DEFAULT_TIMEOUT);
+    try {
+      clickByJavaScript(findElementById("user-settings-menu"));
+      $("ul[id$='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    } catch (Error e) {
+      clickByJavaScript(findElementById("user-settings-menu"));
+    }
+    waitForElementDisplayed(By.id(menuItemSelector), true);
+    clickByJavaScript(findElementById(menuItemSelector));
+    waitForPageLoad();
+  }
+  
+  public SelenideElement findElementById(String selector) {
+    return $(String.format("[id$='%s']", selector)).shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void waitForElementDisplayed(By element, boolean expected) {
+    if (expected) {
+      $(element).shouldBe(appear, DEFAULT_TIMEOUT);
+    } else {
+      $(element).shouldBe(disappear, DEFAULT_TIMEOUT);
+    }
+  }
+  
+  public void waitForPageLoad() {
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(
+        webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
   }
 }
