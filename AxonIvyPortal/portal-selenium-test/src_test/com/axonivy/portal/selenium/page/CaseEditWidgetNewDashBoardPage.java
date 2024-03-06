@@ -113,6 +113,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void waitPreviewTableLoaded() {
     $(caseEditWidgetId).$("div[id$=':dashboard-cases-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $(caseEditWidgetId).$(".case-dashboard-widget__loading-message").shouldHave(Condition.cssClass("u-display-none"), DEFAULT_TIMEOUT);
   }
 
   public void save() {
@@ -306,9 +307,11 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   public void removeFilter(int index) {
 //    $("div[id$=':filter-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
     int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
-    String removeBtn = String.format("button[id$=':%s:filter-component:remove-filter']", index);
-    $(removeBtn).shouldBe(getClickableCondition()).click();
-    countFilterSelect().shouldBe(CollectionCondition.size(currentIndex - 1), DEFAULT_TIMEOUT);
+    if (currentIndex > 0) {
+      String removeBtn = String.format("button[id$=':%s:filter-component:remove-filter']", index);
+      $(removeBtn).shouldBe(getClickableCondition()).click();
+      countFilterSelect().shouldBe(CollectionCondition.size(currentIndex - 1), DEFAULT_TIMEOUT);
+    }
   }
 
   public ElementsCollection countFilterSelect() {

@@ -158,10 +158,10 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
 
     caseWidget.removeFilter(0);
     caseWidget.addFilter("Created Date", FilterOperator.CURRENT);
-    caseWidget.inputValueOnLatestFilter(FilterValueType.DATE_CURRENT, "Month");
+    caseWidget.inputValueOnLatestFilter(FilterValueType.DATE_CURRENT, "Year");
     caseWidget.applyFilter();
     caseWidget.waitPreviewTableLoaded();
-    caseWidget.countCases().shouldBe(CollectionCondition.size(5));
+    caseWidget.countCases().shouldBe(CollectionCondition.size(8));
 
   }
 
