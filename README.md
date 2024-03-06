@@ -4,7 +4,7 @@
 
 ## Documentation
 
-See the [Axon Ivy Portal on the Axon Ivy Market documentation](https://market.axonivy.com/portal) for details on how to use and customize it.
+See the [Axon Ivy Portal on the Axon Ivy Market](https://market.axonivy.com/portal) for details on how to use and customize it.
 
 ## License
 
