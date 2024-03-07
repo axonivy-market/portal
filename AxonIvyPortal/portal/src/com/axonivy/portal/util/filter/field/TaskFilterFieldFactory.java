@@ -59,6 +59,14 @@ public class TaskFilterFieldFactory {
     default -> throw new IllegalArgumentException("Unexpected value: " + type.name());
     };
   }
+  
+  public static FilterField findBy(String field) {
+    FilterField result = STANDARD_FILTER_FIELD.get(field);
+    if(result == null) {
+      result = findCustomFieldBy(field);
+    }
+    return result;
+  }
 
   public static CustomFilterField findCustomFieldBy(String field) {
     return CUSTOM_FILTER_FIELD.entrySet().stream().map(Entry<String,CustomFilterField>::getValue)

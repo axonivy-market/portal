@@ -13,7 +13,7 @@ import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.common.search.JsonWidgetSearch;
 import com.axonivy.portal.util.filter.field.FilterField;
-import com.axonivy.portal.util.filter.field.FilterFieldFactory;
+import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -26,6 +26,11 @@ import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 public class DashboardTaskWidgetConverter implements IJsonConverter {
 
   private static final String NO_CATEGORY = "[No Category]";
+  private static final String CUSTOM_CASE = "CUSTOM_CASE";
+  private static final String TYPE = "type";
+  private static final String FILTER = "filter";
+  private static final String FILTER_FROM = "filterFrom";
+  private static final String FILTER_TO = "filterTo";
 
   @Override
   public AbstractJsonVersion version() {
@@ -59,26 +64,35 @@ public class DashboardTaskWidgetConverter implements IJsonConverter {
    * @param col
    */
   private void migrateCustomColumn(JsonNode taskWidget, JsonNode col) {
-    FilterField filterField = FilterFieldFactory.findBy(col.get("field").asText());
+    DashboardColumnType dashboardColumnType = null;
+    if (CUSTOM_CASE.equals(col.get(TYPE).asText())) {
+      dashboardColumnType = DashboardColumnType.CUSTOM_CASE;
+    } else {
+      dashboardColumnType = DashboardColumnType.CUSTOM;
+    }
+
+    FilterField filterField = TaskFilterFieldFactory.findBy(col.get("field").asText(), dashboardColumnType);
+
     if (filterField != null) {
       DashboardFilter filter = new DashboardFilter();
       filterField.initFilter(filter);
+
       switch (filter.getFilterFormat()) {
       case STRING -> {
-        convertStringFilters(initFilterNode(taskWidget), col.get("filter"), filter.getField(),
-            DashboardColumnType.CUSTOM);
+        convertStringFilters(initFilterNode(taskWidget), col.get(FILTER), filter.getField(),
+            dashboardColumnType);
       }
       case TEXT -> {
-        convertStringFilters(initFilterNode(taskWidget), col.get("filter"), filter.getField(),
-            DashboardColumnType.CUSTOM);
+        convertStringFilters(initFilterNode(taskWidget), col.get(FILTER), filter.getField(),
+            dashboardColumnType);
       }
       case DATE -> {
-        convertDateFilters(initFilterNode(taskWidget), col.get("filterFrom"), col.get("filterTo"), filter.getField(),
-            DashboardColumnType.CUSTOM);
+        convertDateFilters(initFilterNode(taskWidget), col.get(FILTER_FROM), col.get(FILTER_TO), filter.getField(),
+            dashboardColumnType);
       }
       case NUMBER -> {
-        convertNumberFilters(initFilterNode(taskWidget), col.get("filterFrom"), col.get("filterTo"), filter.getField(),
-            DashboardColumnType.CUSTOM);
+        convertNumberFilters(initFilterNode(taskWidget), col.get(FILTER_FROM), col.get(FILTER_TO), filter.getField(),
+            dashboardColumnType);
       }
       default -> {
       }
