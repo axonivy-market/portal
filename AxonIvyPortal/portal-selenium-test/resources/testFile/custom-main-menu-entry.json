@@ -1,0 +1,23 @@
+[
+  {
+    "names": [
+      {
+        "locale": "en",
+        "value": "Dashboard EN"
+      },
+      {
+        "locale": "fr",
+        "value": "Dashboard FR"
+      },
+      {
+        "locale": "de",
+        "value": "Dashboard DE"
+      },
+      {
+        "locale": "es",
+        "value": "Dashboard ES"
+      }
+    ],
+    "icon": "si si-layout-dashboard"
+  }
+]

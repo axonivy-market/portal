@@ -14,7 +14,7 @@ import com.axonivy.portal.selenium.page.UserProfilePage;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class MenuTest extends BaseTest {
 
   @Test
@@ -36,7 +36,7 @@ public class MenuTest extends BaseTest {
 
   @Test
   public void testCustomizeIconMainMenuEntry() {
-    redirectToNewDashBoard();
+    redirectToRelativeLink(cleanupDataLink);
     createJSonFile("custom-main-menu-entry.json", PortalVariable.DASHBOARD_MAIN_MENU_ENTRY.key);
     login(TestAccount.DEMO_USER);
     NewDashboardPage newDashboardPage = new NewDashboardPage();
