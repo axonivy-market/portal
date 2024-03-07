@@ -1,7 +1,7 @@
 var grids;
 var originalGridstackHeight = 0;
 loadGrid();
-resizeTableBody();
+
 function loadGrid() {
   grids = GridStack.initAll({
     column: 12,

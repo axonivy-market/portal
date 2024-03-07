@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
@@ -475,8 +476,12 @@ public class DashboardTaskSearchCriteria {
   private void appendQuickSearchQuery(TaskQuery query) {
     if (StringUtils.isNotBlank(this.quickSearchKeyword)) {
       TaskQuery subQuery = TaskQuery.create();
-      for (ColumnModel column : columns) {
-        if (column.canQuickSearch()) {
+
+      List<TaskColumnModel> quickSearchColumns = columns.stream()
+          .filter(col -> Optional.ofNullable(col.getQuickSearch()).orElse(false)).collect(Collectors.toList());
+
+      if (CollectionUtils.isNotEmpty(quickSearchColumns)) {
+        for (ColumnModel column : quickSearchColumns) {
           DashboardStandardTaskColumn columnEnum = DashboardStandardTaskColumn.findBy(column.getField());
           if (columnEnum != null) {
             appendStandandFieldToQuickSearchQuery(subQuery, columnEnum);
@@ -484,8 +489,9 @@ public class DashboardTaskSearchCriteria {
             appendCustomFieldsForQuickSearchQuery(subQuery, column);
           }
         }
+
+        query.where().and(subQuery);
       }
-      query.where().and(subQuery);
     }
   }
 
