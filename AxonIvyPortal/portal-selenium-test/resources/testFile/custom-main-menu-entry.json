@@ -3,21 +3,21 @@
     "names": [
       {
         "locale": "en",
-        "value": "Dashboard EN"
+        "value": "Dashboard Test EN"
       },
       {
         "locale": "fr",
-        "value": "Dashboard FR"
+        "value": "Dashboard Test FR"
       },
       {
         "locale": "de",
-        "value": "Dashboard DE"
+        "value": "Dashboard Test DE"
       },
       {
         "locale": "es",
-        "value": "Dashboard ES"
+        "value": "Dashboard Test ES"
       }
     ],
-    "icon": "si si-layout-dashboard"
+    "icon": "si si-layout-bullets"
   }
 ]

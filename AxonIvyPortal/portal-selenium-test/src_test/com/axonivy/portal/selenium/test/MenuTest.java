@@ -14,7 +14,7 @@ import com.axonivy.portal.selenium.page.UserProfilePage;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class MenuTest extends BaseTest {
 
   @Test
@@ -48,7 +48,7 @@ public class MenuTest extends BaseTest {
 
   @Test
   public void testCustomizeNameMainMenuEntry() {
-    redirectToNewDashBoard();
+    redirectToRelativeLink(cleanupDataLink);
     createJSonFile("custom-main-menu-entry.json", PortalVariable.DASHBOARD_MAIN_MENU_ENTRY.key);
     login(TestAccount.DEMO_USER);
     redirectToNewDashBoard();
@@ -61,9 +61,10 @@ public class MenuTest extends BaseTest {
 
   @Test
   public void testCustomizeMainMenuEntryMultiLanguage() {
-    redirectToNewDashBoard();
+    redirectToRelativeLink(cleanupDataLink);
     createJSonFile("custom-main-menu-entry.json", PortalVariable.DASHBOARD_MAIN_MENU_ENTRY.key);
     login(TestAccount.DEMO_USER);
+    redirectToNewDashBoard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     // Set French
     setUserLanguage(newDashboardPage, 2);
