@@ -468,7 +468,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     updateWidgetPosition(widget);
     resetUserFilter();
     initMultipleLanguagesForWidgetName(this.widget.getName());
-    this.widget.buildPredefinedFilterData();
     if (widgets.contains(this.widget)) {
       widgets.set(widgets.indexOf(this.widget), this.widget);
     } else {
@@ -898,14 +897,14 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     DashboardWidget processWidget = getWidget();
     if (processWidget != null) {
       componentId = DEFAULT_WIDGET_TITLE_ID;
-      if (NEWS != processWidget.getType() && CASE != processWidget.getType()) {
+      if (NEWS != processWidget.getType() && CASE != processWidget.getType() && TASK != processWidget.getType()) {
         String userFilterId = String.format(DEFAULT_USER_FILTER_ID, processWidget.getId());
         componentId = componentId.concat(" ").concat(userFilterId);
       } 
       if (PROCESS == processWidget.getType()) {
         componentId = componentId.concat(" widget-configuration-form");
       }
-      if (CASE == processWidget.getType()) {
+      if (CASE == processWidget.getType() || TASK == processWidget.getType()) {
         String userFilterId = String.format(DEFAULT_COMPLEX_USER_FILTER_ID, processWidget.getId());
         componentId = componentId.concat(" ").concat(userFilterId);
       }

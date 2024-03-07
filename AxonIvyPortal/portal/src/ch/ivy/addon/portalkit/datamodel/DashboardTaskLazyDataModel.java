@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.datamodel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -86,7 +87,7 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
     Object memento = IvyThreadContext.saveToMemento();
     future = CompletableFuture.runAsync(() -> {
       IvyThreadContext.restoreFromMemento(memento);
-      foundTasks = DashboardTaskService.getInstance().findByTaskQuery(query, 0, 25);
+      foundTasks = Optional.ofNullable(DashboardTaskService.getInstance().findByTaskQuery(query, 0, 25)).orElse(new ArrayList<>());
       addDistict(tasks, foundTasks);
       mapTasks.putAll(foundTasks.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
       IvyThreadContext.reset();

@@ -15,8 +15,11 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 
 import ch.ivy.addon.portalkit.bo.CategoryNode;
+import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
+import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.util.CaseTreeUtils;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
+import ch.ivy.addon.portalkit.util.TaskTreeUtils;
 
 @ManagedBean
 @ViewScoped
@@ -30,8 +33,8 @@ public class WidgetCategoryFilterBean implements Serializable {
   private CheckboxTreeNode<CategoryNode>[] selectedCategoryNodes;
   private String selectedCategoriesString;
 
-  public void init(DashboardFilter filter) {
-    loadCategories(filter);
+  public void init(DashboardFilter filter, DashboardWidget widget) {
+    loadCategories(filter, widget);
 
     setSelectedCategoriesString("");
     if (CollectionUtils.isNotEmpty(filter.getValues())) {
@@ -47,9 +50,13 @@ public class WidgetCategoryFilterBean implements Serializable {
     filter.setValues(new ArrayList<>());
   }
 
-  public void loadCategories(DashboardFilter filter) {
-    var availableCategories = CaseTreeUtils.buildCaseCategoryCheckboxTreeRootWithoutAllCategoriesNode();
-    this.categoryTree = availableCategories;
+  public void loadCategories(DashboardFilter filter, DashboardWidget widget) {
+    if (DashboardWidgetType.TASK == widget.getType()) {
+      this.categoryTree = TaskTreeUtils.buildTaskCategoryCheckboxTreeRootWithoutAllCategoriesNode();
+    } else {
+      this.categoryTree = CaseTreeUtils.buildCaseCategoryCheckboxTreeRootWithoutAllCategoriesNode();
+    }
+
     List<String> filterList = filter.getValues();
     if (CollectionUtils.isNotEmpty(filterList)) {
       CategoryUtils.recoverSelectedCategories(this.getCategoryTree(), filterList);

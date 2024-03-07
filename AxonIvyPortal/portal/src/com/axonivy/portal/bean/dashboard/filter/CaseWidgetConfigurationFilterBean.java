@@ -18,7 +18,6 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.util.CaseUtils;
-import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 
@@ -56,10 +55,6 @@ public class CaseWidgetConfigurationFilterBean extends AbstractCaseWidgetFilterB
     }
     String displayState = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/businessCaseState/" + state.toString());
     return StringUtils.isBlank(displayState) ? state.name() : displayState;
-  }
-
-  public boolean hasPredefinedFilter(CaseDashboardWidget widget) {
-    return DashboardWidgetUtils.hasPredefinedFilter(widget);
   }
 
   public List<CaseBusinessState> getStates() {
