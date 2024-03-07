@@ -45,7 +45,7 @@
       <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
       <p:inputText id="quick-search-input-#{index}" value="#{widget.quickSearchKeyword}"
         placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}">
-        <p:ajax delay="500" listener="#{widget.updateQuickSearchKeyword()}"
+        <p:ajax delay="800" listener="#{widget.updateQuickSearchKeyword()}"
           onstart="if (isPressedSpecialKeys(event) == true) { return false; }"
           process="@(this)" partialSubmit="true" global="false"
           event="keyup" update="#{p:resolveFirstComponentWithId(panelId, view).clientId}" />
