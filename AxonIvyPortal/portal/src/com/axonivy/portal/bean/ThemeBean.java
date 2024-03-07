@@ -34,6 +34,7 @@ public class ThemeBean implements Serializable {
 
   @PostConstruct
   public void init() {
+    String name = "dummny name";
     String themeModeFromCookie = getThemeModeFromCookie();
     String themeMode = StringUtils.isNotBlank(themeModeFromCookie) ? themeModeFromCookie : getDefaultThemeMode();
     changeToThemeMode(themeMode.toLowerCase());
