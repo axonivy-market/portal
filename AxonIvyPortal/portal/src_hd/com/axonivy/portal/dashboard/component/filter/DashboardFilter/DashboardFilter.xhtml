@@ -26,19 +26,19 @@
           <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/pleaseSelect')}" itemValue="#{null}" />
           <f:selectItems value="#{cc.attrs.managedBean.filterFields}" var="field"
             itemValue="#{field}" itemLabel="#{field.label}" />
-            <f:param name="skipValidator" value="true" />
+          <f:param name="skipValidator" value="true" />
           <p:ajax event="itemSelect" listener="#{cc.attrs.managedBean.onSelectFilter(filter)}" process="@(this)" update="filter-selection-panel" global="false" />
         </p:selectOneMenu>
       </div>
   
-      <h:panelGroup layout="block" rendered="#{filter.isCustomDateField() or filter.isFinishedDateField()}">
-        <ic:com.axonivy.portal.dashboard.component.filter.DateFilter filter="#{filter}"
+      <h:panelGroup layout="block" rendered="#{filter.isCustomDateField() or filter.isFinishedDateField() or filter.isExpiryDateField()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.DateFilter filter="#{filter}" widget="#{widget}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"/>
       </h:panelGroup>
   
       <h:panelGroup layout="block" rendered="#{filter.isCreatedDateField()}">
-        <ic:com.axonivy.portal.dashboard.component.filter.CreatedDateFilter filter="#{filter}"
+        <ic:com.axonivy.portal.dashboard.component.filter.CreatedDateFilter filter="#{filter}" widget="#{widget}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"/>
       </h:panelGroup>
@@ -61,11 +61,21 @@
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"
           creatorCompleteMethod="#{cc.attrs.managedBean.completeCreators}" />
       </h:panelGroup>
-  
-      <h:panelGroup layout="block" rendered="#{filter.isCategory()}">
-        <ic:com.axonivy.portal.dashboard.component.filter.CategoryFilter filter="#{filter}"
+
+      <h:panelGroup layout="block" rendered="#{filter.isResponsible()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.ResponsibleFilter filter="#{filter}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
-          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"
+          responsibleCompleteMethod="#{cc.attrs.managedBean.completeOwners}" />
+      </h:panelGroup>
+
+      <h:panelGroup layout="block" rendered="#{filter.isCategory()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.CategoryFilter
+          filter="#{filter}" widget="#{widget}"
+          componentToUpdate="#{cc.attrs.componentToUpdate}"
+          filterIndex="#{cc.attrs.filterIndex}" readOnly="#{readOnly}"
+          messageId="#{cc.attrs.messageId}" />
+
       </h:panelGroup>
   
       <h:panelGroup layout="block" rendered="#{filter.isApplication()}">
@@ -76,9 +86,17 @@
   
       <h:panelGroup layout="block" rendered="#{filter.isState()}">
         <ic:com.axonivy.portal.dashboard.component.filter.StateFilter filter="#{filter}"
+          widget="#{widget}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
       </h:panelGroup>
+
+      <h:panelGroup layout="block" rendered="#{filter.isPriority()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.PriorityFilter filter="#{filter}"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
+      </h:panelGroup>
+      
   
       <h:panelGroup layout="block" rendered="#{filter.isId()}">
         <ic:com.axonivy.portal.dashboard.component.filter.IdFilter filter="#{filter}"

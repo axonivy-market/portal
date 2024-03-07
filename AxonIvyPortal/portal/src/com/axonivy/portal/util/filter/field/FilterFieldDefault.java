@@ -3,6 +3,7 @@ package com.axonivy.portal.util.filter.field;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class FilterFieldDefault extends FilterField {
 
@@ -24,6 +25,11 @@ public class FilterFieldDefault extends FilterField {
 
   @Override
   public CaseQuery generateFilterQuery(DashboardFilter filter) {
+    return null;
+  }
+
+  @Override
+  public TaskQuery generateFilterTaskQuery(DashboardFilter filter) {
     return null;
   }
 }

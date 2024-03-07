@@ -1616,6 +1616,8 @@ Dialogs:
               NotificationWidgetConfiguration: Configuración del widget de notificaciones
               NotificationWidgetDescription: Este widget muestra todas las notificaciones según la configuración de notificaciones.
               WidgetFilter: Filtro de widgets
+            TaskWidgetConfiguration:
+              AddFilter: Añadir filtro
   components:
     CaseDocument:
       FileDate: Modificado el
@@ -1741,6 +1743,19 @@ Labels:
       ID: Id
       NAME: Nombre
       OWNER: Propietario del caso
+      STATE: Estado
+    DashboardStandardTaskColumn:
+      ACTIONS: Acciones
+      APPLICATION: Aplicación
+      CATEGORY: Categoría
+      CREATED: Fecha de creación
+      DESCRIPTION: Descripción
+      EXPIRY: Expiración
+      ID: Id
+      NAME: Nombre
+      PRIORITY: Prioridad
+      RESPONSIBLE: Responsable
+      START: Inicio
       STATE: Estado
     FilterOperator:
       AFTER: Es Después

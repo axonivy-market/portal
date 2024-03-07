@@ -1614,6 +1614,8 @@ Dialogs:
               NotificationWidgetConfiguration: Konfiguration des Benachrichtigungs-Widgets
               NotificationWidgetDescription: Dieses Widget zeigt alle Benachrichtigungen basierend auf Ihren Benachrichtigungseinstellungen an.
               WidgetFilter: Widget-Filter
+            TaskWidgetConfiguration:
+              AddFilter: Filter hinzufügen
   components:
     CaseDocument:
       FileDate: Änderungsdatum
@@ -1739,6 +1741,19 @@ Labels:
       ID: Id
       NAME: Name
       OWNER: Eigentümer des Falles
+      STATE: Staat
+    DashboardStandardTaskColumn:
+      ACTIONS: Aktionen
+      APPLICATION: Anmeldung
+      CATEGORY: Kategorie
+      CREATED: Erstellt am
+      DESCRIPTION: Beschreibung
+      EXPIRY: Ablaufdatum
+      ID: Id
+      NAME: Name
+      PRIORITY: Priorität
+      RESPONSIBLE: Verantwortlich
+      START: Start
       STATE: Staat
     FilterOperator:
       AFTER: Ist nach

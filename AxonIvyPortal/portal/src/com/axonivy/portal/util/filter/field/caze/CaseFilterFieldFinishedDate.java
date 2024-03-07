@@ -17,6 +17,7 @@ import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateYes
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CaseFilterFieldFinishedDate extends FilterField {
 
@@ -62,5 +63,10 @@ public class CaseFilterFieldFinishedDate extends FilterField {
       case NOT_EMPTY -> FinishedDateEmptyOperatorHandler.getInstance().buildNotEmptyQuery();
       default -> null;
     };
+  }
+
+  @Override
+  public TaskQuery generateFilterTaskQuery(DashboardFilter filter) {
+    return null;
   }
 }

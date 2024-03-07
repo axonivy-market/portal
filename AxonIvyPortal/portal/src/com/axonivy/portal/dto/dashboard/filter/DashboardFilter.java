@@ -15,21 +15,33 @@ import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
 import com.axonivy.portal.util.filter.field.FilterField;
-import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCreatedDate;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldFinishedDate;
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomTimestamp;
+import com.axonivy.portal.util.filter.field.task.TaskFilterFieldExpiryDate;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
+import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class DashboardFilter implements Serializable {
   private static final long serialVersionUID = -2098346832426240167L;
+
+  @JsonIgnore
+  public static final String CATEGORY = "category";
+  @JsonIgnore
+  public static final String STATE = "state";
+  @JsonIgnore
+  public static final String APPLICATION = "application";
+  @JsonIgnore
+  public static final String ID = "id";
+  @JsonIgnore
+  public static final String CREATED_DATE = "startTimestamp";
 
   @JsonIgnore
   public static final String DATE_FORMAT = "MM/dd/yyyy";
@@ -83,7 +95,12 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public boolean isCreatedDateField() {
-    return filterField instanceof CaseFilterFieldCreatedDate;
+    return CREATED_DATE.equals(this.field);
+  }
+
+  @JsonIgnore
+  public boolean isExpiryDateField() {
+    return filterField instanceof TaskFilterFieldExpiryDate;
   }
 
   @JsonIgnore
@@ -97,28 +114,39 @@ public class DashboardFilter implements Serializable {
   }
 
   @JsonIgnore
+  public boolean isResponsible() {
+    return this.field == DashboardStandardTaskColumn.RESPONSIBLE.getField();
+  }
+
+  @JsonIgnore
   public boolean isCategory() {
-    return this.field == DashboardStandardCaseColumn.CATEGORY.getField();
+    return CATEGORY.equals(this.field);
   }
 
   @JsonIgnore
   public boolean isApplication() {
-    return this.field == DashboardStandardCaseColumn.APPLICATION.getField();
+    return APPLICATION.equals(this.field);
   }
 
   @JsonIgnore
   public boolean isState() {
-    return this.field == DashboardStandardCaseColumn.STATE.getField();
+    return STATE.equals(this.field);
+  }
+
+  @JsonIgnore
+  public boolean isPriority() {
+    return this.field == DashboardStandardTaskColumn.PRIORITY.getField();
   }
 
   @JsonIgnore
   public boolean isId() {
-    return this.field == DashboardStandardCaseColumn.ID.getField();
+    return ID.equals(this.field);
   }
 
   @JsonIgnore
   public boolean isTextField() {
-    return (this.filterFormat == FilterFormat.TEXT || this.filterFormat == FilterFormat.STRING) && !isCategory() && !isId() && !isApplication();
+    return (this.filterFormat == FilterFormat.TEXT || this.filterFormat == FilterFormat.STRING) && !isCategory()
+        && !isId() && !isApplication();
   }
 
   @JsonIgnore
@@ -235,8 +263,7 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public List<SecurityMemberDTO> getCreators() {
-    return this.values.stream().map(this::findSecurityMember)
-        .filter(Objects::nonNull).collect(Collectors.toList());
+    return this.values.stream().map(this::findSecurityMember).filter(Objects::nonNull).collect(Collectors.toList());
   }
 
   private SecurityMemberDTO findSecurityMember(String memberName) {

@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public abstract class FilterField {
 
@@ -29,6 +30,8 @@ public abstract class FilterField {
   public abstract void addNewFilter(DashboardFilter filter);
 
   public abstract CaseQuery generateFilterQuery(DashboardFilter filter);
+
+  public abstract TaskQuery generateFilterTaskQuery(DashboardFilter filter);
 
   @Override
   public int hashCode() {

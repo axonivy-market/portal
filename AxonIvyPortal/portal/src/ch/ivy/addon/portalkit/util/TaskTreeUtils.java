@@ -39,6 +39,25 @@ public class TaskTreeUtils {
     sortNode(root);
     return root;
   }
+  
+  public static CheckboxTreeNode<CategoryNode> buildTaskCategoryCheckboxTreeRootWithoutAllCategoriesNode(){
+    CheckboxTreeNode<CategoryNode> root = buildRootWithoutAllCategoriesNode();
+    CategoryTree allTaskCategories = findAllCategories();
+    convertToCheckboxTreeNode((CheckboxTreeNode<CategoryNode>) root, allTaskCategories);
+    sortNode(root);
+    return root;
+  }
+  
+  private static CategoryTree findAllCategories() {
+    TaskQuery taskQuery = Sudo.get(() -> {
+      return SubProcessCall.withPath(PortalConstants.BUILD_TASK_QUERY_CALLABLE).withStartSignature("buildTaskQuery()")
+          .call().get("taskQuery", TaskQuery.class);
+    });
+    
+    CategoryTree allTaskCategories = findAllTaskCategoryTree(taskQuery);
+    return allTaskCategories;
+  }
+
 
   private static CategoryTree findAllTaskCategoryTree(TaskQuery taskQuery) {
     Map<String, Object> params = new HashMap<>();
@@ -104,6 +123,17 @@ public class TaskTreeUtils {
     buildAllCategoriesNode(checkboxTreeNode);
     return checkboxTreeNode;
   }
+  
+  private static CheckboxTreeNode<CategoryNode> buildRootWithoutAllCategoriesNode() {
+    CategoryNode nodeData = new CategoryNode();
+    nodeData.setValue(StringUtils.EMPTY);
+    nodeData.setCategory(StringUtils.EMPTY);
+    CheckboxTreeNode<CategoryNode> checkboxTreeNode = new CheckboxTreeNode<>(StringUtils.EMPTY, nodeData, null);
+    checkboxTreeNode.setExpanded(true);
+    checkboxTreeNode.setSelected(true);
+    return checkboxTreeNode;
+  }
+
 
   private static void buildAllCategoriesNode(CheckboxTreeNode<CategoryNode> root) {
     CategoryNode nodeData = new CategoryNode();

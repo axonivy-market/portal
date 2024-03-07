@@ -49,7 +49,8 @@ public class NotificationDashboardWidget extends DashboardWidget {
   }
 
   @Override
-  public void resetWidgetFilters() { }
+  public void resetWidgetFilters() {
+  }
 
   @Override
   public DashboardWidgetType getType() {
@@ -79,6 +80,5 @@ public class NotificationDashboardWidget extends DashboardWidget {
   }
 
   @Override
-  public void cancelUserFilter() {
-  }
+  public void cancelUserFilter() { }
 }

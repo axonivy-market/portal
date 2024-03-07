@@ -58,8 +58,6 @@ public abstract class DashboardWidget implements Serializable {
   @JsonIgnore
   protected boolean autoPosition;
   @JsonIgnore
-  protected boolean hasPredefinedFilter;
-  @JsonIgnore
   protected Optional<String> userDefinedFiltersCount;
   @JsonIgnore
   protected String searchSavedFilterKeyword;
@@ -76,7 +74,6 @@ public abstract class DashboardWidget implements Serializable {
     names = widget.getNames();
     setLayout(widget.getLayout());
     autoPosition = widget.getAutoPosition();
-    hasPredefinedFilter = widget.isHasPredefinedFilter();
     userDefinedFiltersCount = widget.getUserDefinedFiltersCount();
     searchSavedFilterKeyword = widget.getSearchSavedFilterKeyword();
     savedFilters = widget.getSavedFilters();
@@ -120,9 +117,6 @@ public abstract class DashboardWidget implements Serializable {
     filterService.storeUserSelectedFiltersToSession(id, getType(), userFilterCollection);
     userDefinedFiltersCount = DashboardWidgetUtils.countDefinedUserFilter(this);
   }
-
-  @JsonIgnore
-  public void buildPredefinedFilterData() {}
 
   @JsonIgnore
   public void loadUserFilter() {
@@ -220,14 +214,6 @@ public abstract class DashboardWidget implements Serializable {
   
   public void setAutoPosition(boolean autoPosition) {
     this.autoPosition = autoPosition;
-  }
-
-  public boolean isHasPredefinedFilter() {
-    return hasPredefinedFilter;
-  }
-
-  public void setHasPredefinedFilter(boolean hasPredefinedFilter) {
-    this.hasPredefinedFilter = hasPredefinedFilter;
   }
 
   public Optional<String> getUserDefinedFiltersCount() {
