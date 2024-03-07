@@ -28,7 +28,7 @@ public class CaseMapPage extends TemplatePage {
   }
 
   public NewDashboardPage clickSubmitButtonAndBackToTaskList() {
-    $("button[id$='submit-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    clickByJavaScript($("[id$='submit-button']"));
     switchBackToParent();
     return new NewDashboardPage();
   }
