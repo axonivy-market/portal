@@ -15,6 +15,7 @@ import com.axonivy.portal.util.filter.operator.caze.customfield.CustomStringStar
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CaseFilterFieldCustomString extends CustomFilterField {
 
@@ -62,4 +63,10 @@ public class CaseFilterFieldCustomString extends CustomFilterField {
       default -> null;
     };
   }
+  
+  @Override
+  public TaskQuery generateFilterTaskQuery(DashboardFilter filter) {
+    return null;
+  }
+
 }

@@ -15,6 +15,7 @@ import com.axonivy.portal.util.filter.operator.caze.description.DescriptionStart
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CaseFilterFieldDescription extends FilterField {
 
@@ -57,4 +58,10 @@ public class CaseFilterFieldDescription extends FilterField {
       default -> null;
     };
   }
+  
+  @Override
+  public TaskQuery generateFilterTaskQuery(DashboardFilter filter) {
+    return null;
+  }
+
 }

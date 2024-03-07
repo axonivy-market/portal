@@ -14,12 +14,14 @@ import javax.faces.validator.ValidatorException;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 
+import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @FacesValidator(value = "dashboardDateFilterValidator")
 public class DashboardDateFilterValidator implements Validator {
 
   private static final String MESSAGE_PREFIX_PATTERN = "%s(%d)";
+  private static final String EXPIRY_TIMESTAMP = "expiryTimestamp";
 
   public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
   
@@ -76,6 +78,9 @@ public class DashboardDateFilterValidator implements Validator {
   }
 
   private String getMessagePrefix(String field, int index) {
+    if(EXPIRY_TIMESTAMP.equals(field)) {
+      return String.format(MESSAGE_PREFIX_PATTERN, DashboardStandardTaskColumn.findBy(Optional.ofNullable(field).orElse("")).getLabel(), index + 1);
+    }
     return String.format(MESSAGE_PREFIX_PATTERN,
         FilterFieldFactory.findBy(Optional.ofNullable(field).orElse("")).getLabel(), index + 1);
   }

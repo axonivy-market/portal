@@ -10,6 +10,7 @@
   <cc:attribute name="filterIndex" />
   <cc:attribute name="readOnly" default="false" />
   <cc:attribute name="messageId" />
+  <cc:attribute name="widget" required="true"/>
 </cc:interface>
 
 <cc:implementation>
@@ -17,8 +18,9 @@
   <c:set var="filterIndex" value="#{cc.attrs.filterIndex}" />
   <c:set var="readOnly" value="#{cc.attrs.readOnly}" />
   <c:set var="messageId" value="#{cc.attrs.messageId}" />
+  <c:set var="widget" value="#{cc.attrs.widget}" />
 
-  <f:event listener="#{widgetCategoryFilterBean.init(filter)}" type="preRenderComponent" />
+  <f:event listener="#{widgetCategoryFilterBean.init(filter, widget)}" type="preRenderComponent" />
   <h:panelGroup id="category-filter-operator-panel" layout="block"
     styleClass="ui-fluid md-inputfield category-filter-operation-panel">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">

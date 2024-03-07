@@ -15,6 +15,7 @@ import com.axonivy.portal.util.filter.operator.caze.name.NameStartWithOperatorHa
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CaseFilterFieldName extends FilterField {
 
@@ -56,5 +57,10 @@ public class CaseFilterFieldName extends FilterField {
       case NOT_EMPTY -> NameIsEmptyOperatorHandler.getInstance().buildNotEmptyQuery(filter);
       default -> null;
     };
+  }
+
+  @Override
+  public TaskQuery generateFilterTaskQuery(DashboardFilter filter) {
+    return null;
   }
 }

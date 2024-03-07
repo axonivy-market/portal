@@ -10,6 +10,7 @@ import com.axonivy.portal.util.filter.operator.caze.id.IdContainsOperatorHandler
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CaseFilterFieldId extends FilterField {
 
@@ -42,5 +43,10 @@ public class CaseFilterFieldId extends FilterField {
       case CONTAINS -> IdContainsOperatorHandler.getInstance().buildContainsQuery(filter);
       default -> null;
     };
+  }
+
+  @Override
+  public TaskQuery generateFilterTaskQuery(DashboardFilter filter) {
+    return null;
   }
 }

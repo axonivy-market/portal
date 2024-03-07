@@ -92,14 +92,15 @@ public class UserFilterCollection implements Serializable {
 
     if (widget.getType() == DashboardWidgetType.CASE) {
       latestFilterOption.setUserFilters(((CaseDashboardWidget) widget).getUserFilters());
-    } else {
-      if (DashboardWidgetType.TASK == widget.getType()) {
-        columns = ((TaskDashboardWidget) widget).getFilterableColumns();
-      } else if (DashboardWidgetType.PROCESS == widget.getType()) {
-        columns = ((CompactProcessDashboardWidget) widget).getFilterableColumns();
-      }
+    } 
+    if (widget.getType() == DashboardWidgetType.TASK) {
+      latestFilterOption.setUserFilters(((TaskDashboardWidget) widget).getUserFilters());
+    }
+    else if (DashboardWidgetType.PROCESS == widget.getType()) {
+      columns = ((CompactProcessDashboardWidget) widget).getFilterableColumns();
       latestFilterOption.addFilterableColumns(columns);
     }
+
     setSelectedWidgetFilterIds(ListUtilities.transformList(getSelectedWidgetFilters(), WidgetFilterModel::getId));
   }
 

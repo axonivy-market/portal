@@ -20,7 +20,7 @@
 
   <h:panelGroup id="text-filter-operator-panel" layout="block"
     styleClass="ui-fluid md-inputfield id-filter-operator-panel">
-      <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="true">
+      <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
         <f:selectItems value="#{widgetIdFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
           <p:ajax event="itemSelect" listener="#{widgetIdFilterBean.onChangeOperator(filter)}"

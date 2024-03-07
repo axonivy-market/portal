@@ -130,7 +130,6 @@
       </h:panelGroup>
     </h:panelGroup>
   </div>
-  
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
     <ui:param name="id" value="reset-task-confirmation-dialog" />
     <ui:param name="widgetVar" value="reset-task-confirmation-dialog" />
@@ -141,7 +140,7 @@
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
 
     <ui:define name="dialogFooter">
-      <h:form id="reset-task-confirmation-form">
+      <h:form id="reset-task-confirmation-form" rendered="#{!isPreviewMode}">
         <p:commandLink onclick="PF('reset-task-confirmation-dialog').hide()"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15" />
         <p:commandButton actionListener="#{dashboardBean.resetAndOpenTask}"

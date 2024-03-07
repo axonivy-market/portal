@@ -1,39 +1,25 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang3.time.DateUtils;
 
-import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
-import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
-import ch.ivy.addon.portalkit.enums.DashboardColumnType;
-import ch.ivy.addon.portalkit.enums.DashboardFilterType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
-import ch.ivy.addon.portalkit.util.Dates;
-import ch.ivy.addon.portalkit.util.TaskUtils;
-import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.application.app.IApplicationRepository;
-import ch.ivyteam.ivy.workflow.WorkflowPriority;
-import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
-import ch.ivyteam.ivy.workflow.query.TaskQuery.ICustomFieldFilterQuery;
-import ch.ivyteam.ivy.workflow.query.TaskQuery.ICustomFieldOrderBy;
-import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
-import ch.ivyteam.ivy.workflow.query.TaskQuery.IOrderByQueryColumns;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.OrderByColumnQuery;
-import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.util.filter.field.FilterField;
+import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 
 public class DashboardTaskSearchCriteria {
 
-  private static final String LIKE_FORMAT = "%%%s%%";
   private boolean canWorkOn;
   private List<TaskColumnModel> columns;
+  private List<DashboardFilter> filters;
+  private List<DashboardFilter> userFilters;
   private String sortField;
   private boolean sortDescending;
   private boolean isInConfiguration;
@@ -52,311 +38,37 @@ public class DashboardTaskSearchCriteria {
     return query;
   }
 
-  private void queryCreatedDate(TaskQuery query, Date from, Date to) {
-    if (from != null || to != null) {
-      TaskQuery subQuery = TaskQuery.create();
-      if (from != null) {
-        subQuery.where().startTimestamp().isGreaterOrEqualThan(from);
-      }
-
-      if (to != null) {
-        subQuery.where().startTimestamp().isLowerOrEqualThan(DateUtils.addDays(to, 1));
-      }
-      query.where().and(subQuery);
-    }
-  }
-
-  private void queryExpiryDate(TaskQuery query, Date from, Date to) {
-    if (from != null || to != null) {
-      TaskQuery subQuery = TaskQuery.create();
-      if (from != null) {
-        subQuery.where().expiryTimestamp().isGreaterOrEqualThan(from);
-      }
-
-      if (to != null) {
-        subQuery.where().expiryTimestamp().isLowerOrEqualThan(DateUtils.addDays(to, 1));
-      }
-      query.where().and(subQuery);
-    }
-  }
-
   private void queryCanWorkOn(TaskQuery query) {
     if (canWorkOn) {
       query.where().currentUserCanWorkOn();
     }
   }
 
-  private void queryName(TaskQuery query, String name) {
-    if (StringUtils.isNotBlank(name)) {
-      query.where().name().isLikeIgnoreCase(String.format(LIKE_FORMAT, name));
+  private void queryComplexFilter(TaskQuery query, List<DashboardFilter> filterList) {
+    if (CollectionUtils.isEmpty(filterList)) {
+      return;
     }
-  }
 
-  private void queryDescription(TaskQuery query, String description) {
-    if (StringUtils.isNotBlank(description)) {
-      query.where().description().isLikeIgnoreCase(String.format(LIKE_FORMAT, description));
-    }
-  }
-
-  private void queryPriorities(TaskQuery query, List<WorkflowPriority> priorities) {
-    if (CollectionUtils.isNotEmpty(priorities)) {
-      TaskQuery subQuery = TaskQuery.create();
-      IFilterQuery filterQuery = subQuery.where();
-      for (WorkflowPriority priority : priorities) {
-        filterQuery.or().priority().isEqual(priority);
+    for (DashboardFilter filter : filterList) {
+      if (Optional.ofNullable(filter).map(DashboardFilter::getOperator).isEmpty()) {
+        continue;
       }
 
-      query.where().and(subQuery);
-    }
-  }
-
-  private void queryStates(TaskQuery query, List<TaskBusinessState> states) {
-    if (CollectionUtils.isNotEmpty(states)) {
-      states = TaskUtils.filterStateByPermission(states);
-    } else {
-      states = TaskUtils.getValidStates();
-    }
-    TaskQuery subQuery = TaskQuery.create();
-    IFilterQuery filterQuery = subQuery.where();
-    for (TaskBusinessState state : states) {
-      filterQuery.or().businessState().isEqual(state);
-    }
-    query.where().and(subQuery);
-  }
-
-  private void queryResponsibles(TaskQuery query, List<String> responsibles) {
-    if (CollectionUtils.isNotEmpty(responsibles)) {
-      TaskQuery subQuery = TaskQuery.create();
-      IFilterQuery filterQuery = subQuery.where();
-      for (String responsible : responsibles) {
-        filterQuery.or().activatorName().isEqual(responsible);
+      FilterField filterField = TaskFilterFieldFactory.findBy(filter.getField());
+      if (filterField != null) {
+        TaskQuery filterQuery = filterField.generateFilterTaskQuery(filter);
+        if (filterQuery != null) {
+          query.where().and(filterQuery);
+        }
       }
-
-      query.where().and(subQuery);
     }
   }
 
-  private void queryCategory(TaskQuery query, List<String> categories) {
-    if (CollectionUtils.isNotEmpty(categories)) {
-      TaskQuery subQuery = TaskQuery.create();
-      IFilterQuery filterQuery = subQuery.where();
-      for (String category : categories) {
-        filterQuery.or().category().isEqual(category);
-      }
-      
-      query.where().and(subQuery);
-    }
-  }
-  
-  private void queryCustomFieldSelection(TaskQuery query, String field, List<String> filterList) {
-    if (CollectionUtils.isNotEmpty(filterList)) {
-      TaskQuery subQuery = TaskQuery.create();
-      IFilterQuery filterQuery = subQuery.where();
-      for (String filter : filterList) {
-        filterQuery.or().customField().stringField(field).isEqual(filter);
-      }
-      
-      query.where().and(subQuery);
-    }
-  }
-  
-  private void queryTextField(ICustomFieldFilterQuery filterQuery, String field, String filter) {
-    if (StringUtils.isNotBlank(filter)) {
-      filterQuery.textField(field).isLikeIgnoreCase(String.format(LIKE_FORMAT, filter));
-    }
-  }
-  
-  private void queryStringField(ICustomFieldFilterQuery filterQuery, String field, String filter) {
-    if (StringUtils.isNotBlank(filter)) {
-      filterQuery.stringField(field).isLikeIgnoreCase(String.format(LIKE_FORMAT, filter));
-    }
-  }
-
-  private void queryCaseTextField(ch.ivyteam.ivy.workflow.query.CaseQuery.ICustomFieldFilterQuery filterQuery,
-      String field, String filter) {
-    if (StringUtils.isNotBlank(filter)) {
-      filterQuery.textField(field).isLikeIgnoreCase(String.format(LIKE_FORMAT, filter));
-    }
-  }
-
-  private void queryCaseStringField(ch.ivyteam.ivy.workflow.query.CaseQuery.ICustomFieldFilterQuery filterQuery,
-      String field, String filter) {
-    if (StringUtils.isNotBlank(filter)) {
-      filterQuery.stringField(field).isLikeIgnoreCase(String.format(LIKE_FORMAT, filter));
-    }
-  }
   private void queryFilters(TaskQuery query) {
-    var states = new ArrayList<TaskBusinessState>();
-    for (ColumnModel column : columns) {
-      String field = column.getField();
-      String configuredFilter = column.getFilter();
-      List<String> configuredFilterList = column.getFilterList();
-      String configuredFilterFrom = column.getFilterFrom();
-      String configuredFilterTo = column.getFilterTo();
-      
-      String userFilter = column.getUserFilter();
-      List<String> userFilterList = column.getUserFilterList();
-      String userFilterFrom = column.getUserFilterFrom();
-      String userFilterTo = column.getUserFilterTo();
-      
-      List<String> filterList = CollectionUtils.isNotEmpty(userFilterList) && !isInConfiguration ? userFilterList : configuredFilterList;
-      String filterFrom = StringUtils.isNotBlank(userFilterFrom) && !isInConfiguration ? userFilterFrom : configuredFilterFrom;
-      String filterTo = StringUtils.isNotBlank(userFilterTo) && !isInConfiguration ? userFilterTo : configuredFilterTo;
-      
-      if (equals(column, DashboardStandardTaskColumn.PRIORITY)) {
-        List<WorkflowPriority> priorities = new ArrayList<>();
-        CollectionUtils.collect(filterList, WorkflowPriority::valueOf, priorities);
-        queryPriorities(query, priorities);
-        
-      } else if (equals(column, DashboardStandardTaskColumn.NAME)) {
-        queryName(query, configuredFilter);
-        if (!isInConfiguration) {
-          queryName(query, userFilter);
-        }
-      
-      } else if (equals(column, DashboardStandardTaskColumn.DESCRIPTION)) {
-        queryDescription(query, configuredFilter);
-        if (!isInConfiguration) {
-          queryDescription(query, userFilter);
-        }
-      
-      } else if (equals(column, DashboardStandardTaskColumn.STATE)) {
-        for (String state : filterList) {
-          states.add(TaskBusinessState.valueOf(state.toUpperCase()));
-        }
-      
-      } else if (equals(column, DashboardStandardTaskColumn.CATEGORY)) {
-        queryCategory(query, filterList);
-      
-      } else if (equals(column, DashboardStandardTaskColumn.RESPONSIBLE)) {
-        queryResponsibles(query, filterList);
-      
-      } else if (equals(column, DashboardStandardTaskColumn.CREATED)) {
-        queryCreatedDate(query, Dates.parse(filterFrom), Dates.parse(filterTo));
-      
-      } else if (equals(column, DashboardStandardTaskColumn.EXPIRY)) {
-        queryExpiryDate(query, Dates.parse(filterFrom), Dates.parse(filterTo));
-      
-      } else if (equals(column, DashboardStandardTaskColumn.APPLICATION)){
-        queryApplications(query, filterList);
-      
-      } else if (column.getFilterType() == DashboardFilterType.SELECTION || CollectionUtils.isNotEmpty(filterList)) {
-        queryCustomFieldSelection(query, field, filterList);
-      
-      } else if (isAnyNotBlank(configuredFilter, userFilter, filterFrom, filterTo)) {
-        if (column.getType() == DashboardColumnType.CUSTOM_CASE) {
-          CaseQuery subQuery = applyCaseFilter(column, field, configuredFilter, userFilter, filterFrom, filterTo);
-          query.where().cases(subQuery);
-        } else {
-          TaskQuery subQuery = applyFilter(column, field, configuredFilter, userFilter, filterFrom, filterTo);
-          query.where().and(subQuery);
-        }
-      }
+    List<DashboardFilter> allFilters = new ArrayList<>(CollectionUtils.union(filters, userFilters));
+    if (CollectionUtils.isNotEmpty(allFilters)) {
+      queryComplexFilter(query, allFilters);
     }
-    queryStates(query, states);
-  }
-  
-  private boolean isAnyNotBlank(String... elements){
-    for (String e : elements) {
-      if (StringUtils.isNotBlank(e)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  private boolean equals(ColumnModel column, DashboardStandardTaskColumn taskColumn) {
-    return StringUtils.equals(taskColumn.getField(), column.getField());
-  }
-  
-  private TaskQuery applyFilter(ColumnModel column, String field, String configuredFilter, String userFilter,
-      String filterFrom, String filterTo) {
-    TaskQuery subQuery = TaskQuery.create();
-    ICustomFieldFilterQuery filterQuery = subQuery.where().customField();
-    if (column.isNumber()) {
-      if (StringUtils.isNotBlank(filterFrom)) {
-        Number from = Double.parseDouble(filterFrom.toString());
-        filterQuery.numberField(field).isGreaterOrEqualThan(from);
-      }
- 
-      if (StringUtils.isNotBlank(filterTo)) {
-        Number to = Double.parseDouble(filterTo.toString());
-        filterQuery.numberField(field).isLowerOrEqualThan(to);
-      }
-    } else if (column.isDate()) {
-      Date from = Dates.parse(filterFrom);
-      Date to = Dates.parse(filterTo);
-      if (from != null) {
-        filterQuery.timestampField(field).isGreaterOrEqualThan(from);
-      }
- 
-      if (to != null) {
-        filterQuery.timestampField(field).isLowerOrEqualThan(DateUtils.addDays(to, 1));
-      }
-    } else if (column.isText()) {
-      queryTextField(filterQuery, field, configuredFilter);
-      if (!isInConfiguration) {
-        queryTextField(filterQuery, field, userFilter);
-      }
-    } else {
-      queryStringField(filterQuery, field, configuredFilter);
-      if (!isInConfiguration) {
-        queryStringField(filterQuery, field, userFilter);
-      }
-    }
-    return subQuery;
-  }
-  
-  private CaseQuery applyCaseFilter(ColumnModel column, String field, String configuredFilter, String userFilter,
-      String filterFrom, String filterTo) {
-    CaseQuery subQuery = CaseQuery.create();
-    ch.ivyteam.ivy.workflow.query.CaseQuery.ICustomFieldFilterQuery filterQuery = subQuery.where().customField();
-    if (column.isNumber()) {
-      if (StringUtils.isNotBlank(filterFrom)) {
-        Number from = Double.parseDouble(filterFrom.toString());
-        filterQuery.numberField(field).isGreaterOrEqualThan(from);
-      }
-
-      if (StringUtils.isNotBlank(filterTo)) {
-        Number to = Double.parseDouble(filterTo.toString());
-        filterQuery.numberField(field).isLowerOrEqualThan(to);
-      }
-    } else if (column.isDate()) {
-      Date from = Dates.parse(filterFrom);
-      Date to = Dates.parse(filterTo);
-      if (from != null) {
-        filterQuery.timestampField(field).isGreaterOrEqualThan(from);
-      }
-
-      if (to != null) {
-        filterQuery.timestampField(field).isLowerOrEqualThan(DateUtils.addDays(to, 1));
-      }
-    } else if (column.isText()) {
-      queryCaseTextField(filterQuery, field, configuredFilter);
-      if (!isInConfiguration) {
-        queryCaseTextField(filterQuery, field, userFilter);
-      }
-    } else {
-      queryCaseStringField(filterQuery, field, configuredFilter);
-      if (!isInConfiguration) {
-        queryCaseStringField(filterQuery, field, userFilter);
-      }
-    }
-    return subQuery;
-  }
-
-  private void queryApplications(TaskQuery query, List<String> applications) {
-    if (CollectionUtils.isNotEmpty(applications)) {
-      TaskQuery subQuery = TaskQuery.create();
-      IFilterQuery filterQuery = subQuery.where();
-      for (String app : applications) {
-        final Optional<IApplication> appFindByName = IApplicationRepository.instance().findByName(app);
-        if (appFindByName.isPresent()) {
-          filterQuery.or().applicationId().isEqual(appFindByName.get().getId());
-        }
-      }
-      query.where().and(subQuery);
-    } 
   }
   
   public String getSortField() {
@@ -398,73 +110,60 @@ public class DashboardTaskSearchCriteria {
     }
 
     public TaskSortingQueryAppender appendSorting(DashboardTaskSearchCriteria criteria) {
-      appendSortByFieldIfSet(criteria, DashboardStandardTaskColumn.PRIORITY, 
-                                      DashboardStandardTaskColumn.NAME, 
-                                      DashboardStandardTaskColumn.RESPONSIBLE, 
-                                      DashboardStandardTaskColumn.ID, 
-                                      DashboardStandardTaskColumn.CREATED, 
-                                      DashboardStandardTaskColumn.EXPIRY, 
-                                      DashboardStandardTaskColumn.STATE);
-      appendSortByCustomFieldIfSet(criteria);
-      if (criteria.isSortDescending()) {
+      appendSortByNameIfSet(criteria);
+      appendSortByResponsibleIfSet(criteria);
+      appendSortByIdIfSet(criteria);
+      appendSortByExpiryDateIfSet(criteria);
+      appendSortByStateIfSet(criteria);
+      appendSortByPriorityIfSet(criteria);
+      if (criteria.isSortDescending() && order != null) {
         order.descending();
       }
       return this;
     }
     
-    private void appendSortByFieldIfSet(DashboardTaskSearchCriteria criteria, DashboardStandardTaskColumn... columns) {
-      for (DashboardStandardTaskColumn column : columns) {
-        if (column.getField().equalsIgnoreCase(criteria.getSortField())) {
-          sortStandardColumn = true;
-          final IOrderByQueryColumns orderBy = query.orderBy();
-          switch (column) {
-            case PRIORITY:
-              order = orderBy.priority();
-              break;
-            case NAME:
-              order = orderBy.name();
-              break;
-            case RESPONSIBLE:
-              order = orderBy.activatorDisplayName();
-              break;
-            case ID:
-              order = orderBy.taskId();
-              break;
-            case CREATED:
-              order = orderBy.startTimestamp();
-              break;
-            case EXPIRY:
-              order = orderBy.expiryTimestamp();
-              break;
-            case STATE:
-              order = orderBy.state();
-              break;
-            default:
-              break;
-          }
-        }
-      }
-    }
-
-    private void appendSortByCustomFieldIfSet(DashboardTaskSearchCriteria criteria) {
-      if (!sortStandardColumn) {
-        String sortField = criteria.getSortField();
-        if (StringUtils.isNotBlank(sortField)) {
-          DashboardColumnFormat format = columns.stream()
-              .filter(c -> StringUtils.equalsIgnoreCase(sortField, c.getField())).map(ColumnModel::getFormat)
-              .findFirst().orElse(DashboardColumnFormat.STRING);
-          final ICustomFieldOrderBy customField = query.orderBy().customField();
-          if (format == DashboardColumnFormat.NUMBER) {
-            order = customField.numberField(sortField);
-          } else if (format == DashboardColumnFormat.TIMESTAMP) {
-            order = customField.timestampField(sortField);
-          } else {
-            order = customField.stringField(sortField);
-          }
-        }
+    private void appendSortByNameIfSet(DashboardTaskSearchCriteria criteria) {
+      if (DashboardStandardTaskColumn.NAME.getField().equalsIgnoreCase(criteria.getSortField())) {
+        order = query.orderBy().name();
+        sortStandardColumn = true;
       }
     }
     
+    private void appendSortByResponsibleIfSet(DashboardTaskSearchCriteria criteria) {
+      if (DashboardStandardTaskColumn.RESPONSIBLE.getField().equalsIgnoreCase(criteria.getSortField())) {
+        order = query.orderBy().activatorDisplayName();
+        sortStandardColumn = true;
+      }
+    }
+    
+    private void appendSortByIdIfSet(DashboardTaskSearchCriteria criteria) {
+      if (DashboardStandardTaskColumn.ID.getField().equalsIgnoreCase(criteria.getSortField())) {
+        order = query.orderBy().taskId();
+        sortStandardColumn = true;
+      }
+    }
+    
+    private void appendSortByStateIfSet(DashboardTaskSearchCriteria criteria) {
+      if (DashboardStandardTaskColumn.STATE.getField().equalsIgnoreCase(criteria.getSortField())) {
+        order = query.orderBy().state();
+        sortStandardColumn = true;
+      }
+    }
+
+    private void appendSortByExpiryDateIfSet(DashboardTaskSearchCriteria criteria) {
+      if (DashboardStandardTaskColumn.EXPIRY.getField().equalsIgnoreCase(criteria.getSortField())) {
+        order = query.orderBy().expiryTimestamp();
+        sortStandardColumn = true;
+      }
+    }
+
+    private void appendSortByPriorityIfSet(DashboardTaskSearchCriteria criteria) {
+      if (DashboardStandardTaskColumn.PRIORITY.getField().equalsIgnoreCase(criteria.getSortField())) {
+        order = query.orderBy().priority();
+        sortStandardColumn = true;
+      }
+    }
+
   }
 
   public boolean getCanWorkOn() {
@@ -482,4 +181,21 @@ public class DashboardTaskSearchCriteria {
   public void setColumns(List<TaskColumnModel> columns) {
     this.columns = columns;
   }
+  
+  public List<DashboardFilter> getFilters() {
+    return filters;
+  }
+
+  public void setFilters(List<DashboardFilter> filters) {
+    this.filters = filters;
+  }
+
+  public List<DashboardFilter> getUserFilters() {
+    return userFilters;
+  }
+
+  public void setUserFilters(List<DashboardFilter> userFilters) {
+    this.userFilters = userFilters;
+  }
+
 }

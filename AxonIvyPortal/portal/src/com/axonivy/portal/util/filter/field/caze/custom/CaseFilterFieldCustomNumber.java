@@ -13,6 +13,7 @@ import com.axonivy.portal.util.filter.operator.caze.customfield.CustomNumberLess
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CaseFilterFieldCustomNumber extends CustomFilterField {
 
@@ -62,4 +63,10 @@ public class CaseFilterFieldCustomNumber extends CustomFilterField {
       default -> null;
     };
   }
+  
+  @Override
+  public TaskQuery generateFilterTaskQuery(DashboardFilter filter) {
+    return null;
+  }
+
 }

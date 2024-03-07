@@ -71,7 +71,7 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
     var filterableColumns = new ArrayList<ColumnModel>();
 
     switch (widget.getType()) {
-      case TASK -> filterableColumns.addAll(((TaskDashboardWidget) widget).getFilterableColumns());
+      case TASK -> prepareSaveTaskFilter(filter, (TaskDashboardWidget) widget);
       case CASE -> prepareSaveCaseFilter(filter, (CaseDashboardWidget) widget);
       case PROCESS -> filterableColumns.addAll(((CompactProcessDashboardWidget) widget).getFilterableColumns());
       default -> {}
@@ -94,6 +94,16 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
     filter.setUserFilters(widget.getUserFilters().stream().filter(Objects::nonNull)
         .filter(userFilter -> StringUtils.isNotBlank(userFilter.getField())).collect(Collectors.toList()));
   }
+  
+  public void prepareSaveTaskFilter(WidgetFilterModel filter, TaskDashboardWidget widget) {
+    if (CollectionUtils.isEmpty(widget.getUserFilters())) {
+      return;
+    }
+
+    filter.setUserFilters(widget.getUserFilters().stream().filter(Objects::nonNull)
+        .filter(userFilter -> StringUtils.isNotBlank(userFilter.getField())).collect(Collectors.toList()));
+  }
+
 
   public void applyUserFilterFromSession(DashboardWidget widget) {
     var selectedFilterObject = Ivy.session().getAttribute(buildWidgetKey(widget.getId(), widget.getType()));
@@ -133,11 +143,12 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
       var widgetFilterableColumns = new ArrayList<ColumnModel>();
       switch (widget.getType()) {
         case TASK:
-          widgetFilterableColumns.addAll(((TaskDashboardWidget) widget).getFilterableColumns());
+          ((TaskDashboardWidget) widget).getUserFilters()
+              .addAll(Optional.ofNullable(userFilterOptions.getUserFilters()).orElse(new ArrayList<>()));
           break;
         case CASE:
           ((CaseDashboardWidget) widget).getUserFilters()
-            .addAll(Optional.ofNullable(userFilterOptions.getUserFilters()).orElse(new ArrayList<>()));
+              .addAll(Optional.ofNullable(userFilterOptions.getUserFilters()).orElse(new ArrayList<>()));
           break;
         case PROCESS:
           var processWidget = (ProcessDashboardWidget) widget;
@@ -221,9 +232,6 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
     Map<String, FilterColumnModel> filterOptionMap = widget.getUserFilterCollection().getSelectedFilterOptionMap();
     List<ColumnModel> filterableColumns = new ArrayList<>();
     switch (widget.getType()) {
-      case TASK:
-        filterableColumns = ((TaskDashboardWidget) widget).getFilterableColumns();
-        break;
       case PROCESS:
         filterableColumns = ((CompactProcessDashboardWidget) widget).getFilterableColumns();
         break;
