@@ -518,7 +518,7 @@ As0 f116 expr out #txt
 As0 f116 544 524 544 554 #arcP
 As0 f117 actionTable 'out=in;
 ' #txt
-As0 f117 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+As0 f117 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import ch.ivy.addon.portalkit.enums.ApplicationType;
 import javax.faces.application.FacesMessage;
 import org.primefaces.component.inputtext.InputText;
@@ -1353,7 +1353,7 @@ As0 f9 1387 1483 26 26 -59 15 #rect
 As0 f9 @|UdEventIcon #fIcon
 As0 f10 actionTable 'out=in;
 ' #txt
-As0 f10 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+As0 f10 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
@@ -1603,7 +1603,7 @@ As0 f77 371 2099 26 26 0 12 #rect
 As0 f77 @|UdProcessEndIcon #fIcon
 As0 f81 actionTable 'out=in;
 ' #txt
-As0 f81 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+As0 f81 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
@@ -1629,7 +1629,7 @@ As0 f78 expr out #txt
 As0 f78 96 2062 96 2099 #arcP
 As0 f85 actionTable 'out=in;
 ' #txt
-As0 f85 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+As0 f85 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
@@ -1738,7 +1738,7 @@ As0 f16 192 877 192 938 #arcP
 As0 f13 192 982 192 1043 #arcP
 As0 f20 actionTable 'out=in;
 ' #txt
-As0 f20 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+As0 f20 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivy.addon.portalkit.enums.ApplicationType;
 import javax.faces.application.FacesMessage;

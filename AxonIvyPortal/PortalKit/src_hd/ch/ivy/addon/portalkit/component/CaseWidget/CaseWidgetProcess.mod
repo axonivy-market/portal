@@ -220,7 +220,7 @@ Cs0 f29 555 467 26 26 0 12 #rect
 Cs0 f29 @|UdProcessEndIcon #fIcon
 Cs0 f45 actionTable 'out=in;
 ' #txt
-Cs0 f45 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+Cs0 f45 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.service.CaseFilterService;

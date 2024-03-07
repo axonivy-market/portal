@@ -212,7 +212,7 @@ Es0 f19 1 480 384 #addKink
 Es0 f19 1 0.13338566089674114 0 0 #arcLabel
 Es0 f24 actionTable 'out=in;
 ' #txt
-Es0 f24 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+Es0 f24 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import org.primefaces.PrimeFaces;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;

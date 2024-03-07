@@ -9,8 +9,7 @@ import javax.faces.validator.ValidatorException;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.util.FacesMessageUtils;
-
+import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @FacesValidator(value = "displayNameValidator")

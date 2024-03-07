@@ -7,9 +7,8 @@ import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-import com.axonivy.portal.components.util.FacesMessageUtils;
-
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
+import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 

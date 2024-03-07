@@ -105,7 +105,7 @@ Es0 f24 expr out #txt
 Es0 f24 77 160 128 160 #arcP
 Es0 f36 actionTable 'out=in;
 ' #txt
-Es0 f36 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+Es0 f36 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import org.primefaces.PrimeFaces;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting;
 import org.apache.commons.collections4.CollectionUtils;
@@ -261,7 +261,7 @@ Es0 f12 371 531 26 26 0 12 #rect
 Es0 f12 @|UdProcessEndIcon #fIcon
 Es0 f16 actionTable 'out=in;
 ' #txt
-Es0 f16 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+Es0 f16 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 

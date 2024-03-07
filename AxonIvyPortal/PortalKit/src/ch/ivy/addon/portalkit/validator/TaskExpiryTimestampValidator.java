@@ -12,8 +12,7 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
-import com.axonivy.portal.components.util.FacesMessageUtils;
-
+import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @FacesValidator("taskExpiryTimestampValidator")
