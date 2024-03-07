@@ -18,7 +18,7 @@
   <h:panelGroup rendered="#{cc.attrs.dataModel.isSelectedColumn('NAME')}">
     <h:outputText id="#{cc.attrs.caseNameId}" styleClass="case-header-name-cell #{cc.attrs.nameStyleClass} #{cc.attrs.responsiveStyleClass}"
       value="#{empty case.names().current() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable') : case.names().current()}" />
-    <h:outputText id="#{cc.attrs.caseDescriptionId}" styleClass="case-header-desc-cell" escape="false" value="#{caseWidgetBean.formatCaseDescription(case.descriptions().current())}" />
+    <h:outputText escape="false" value="#{caseWidgetBean.formatCaseDescription(case.descriptions().current())}" id="#{cc.attrs.caseDescriptionId}" styleClass="case-header-desc-cell" />
   </h:panelGroup>
 </cc:implementation>
 </html>
