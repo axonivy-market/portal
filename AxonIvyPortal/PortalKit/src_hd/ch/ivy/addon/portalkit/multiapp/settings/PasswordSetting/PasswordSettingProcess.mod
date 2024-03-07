@@ -84,7 +84,7 @@ Ps0 f11 expr out #txt
 Ps0 f11 109 160 216 160 #arcP
 Ps0 f3 actionTable 'out=in;
 ' #txt
-Ps0 f3 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+Ps0 f3 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import ch.ivy.addon.portalkit.enums.ChangePasswordStatus;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;

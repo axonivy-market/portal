@@ -96,7 +96,7 @@ Cs0 f35 method createStatisticChart(java.util.List<ch.ivy.addon.portalkit.statis
 Cs0 f35 inParameterDecl '<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList> param;' #txt
 Cs0 f35 inParameterMapAction 'out.statisticChartList=param.statisticChartList;
 ' #txt
-Cs0 f35 inActionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+Cs0 f35 inActionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;

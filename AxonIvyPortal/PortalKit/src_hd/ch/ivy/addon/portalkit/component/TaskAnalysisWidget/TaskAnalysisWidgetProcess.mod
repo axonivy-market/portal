@@ -289,7 +289,7 @@ Ts0 f42 @|UdProcessEndIcon #fIcon
 Ts0 f43 93 672 387 672 #arcP
 Ts0 f45 actionTable 'out=in;
 ' #txt
-Ts0 f45 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+Ts0 f45 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;

@@ -131,7 +131,7 @@ Cs0 f7 83 275 26 26 -75 18 #rect
 Cs0 f7 @|UdMethodIcon #fIcon
 Cs0 f9 actionTable 'out=in;
 ' #txt
-Cs0 f9 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+Cs0 f9 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -239,7 +239,7 @@ Cs0 f42 expr in #txt
 Cs0 f42 488 304 488 368 #arcP
 Cs0 f46 actionTable 'out=in;
 ' #txt
-Cs0 f46 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+Cs0 f46 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -269,7 +269,7 @@ Cs0 f49 504 288 568 288 #arcP
 Cs0 f49 0 0.2857142857142857 0 -7 #arcLabel
 Cs0 f50 actionTable 'out=in;
 ' #txt
-Cs0 f50 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+Cs0 f50 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
