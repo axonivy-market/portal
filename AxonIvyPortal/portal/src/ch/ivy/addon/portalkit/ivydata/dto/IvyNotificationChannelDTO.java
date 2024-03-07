@@ -32,7 +32,7 @@ public class IvyNotificationChannelDTO {
 
   private static IvyNotificationChannelDTO toChannel(ISecurityMember subscriber, NotificationChannel channel) {
     var subscriptions = channel.configFor(subscriber).subscriptions().stream()
-        .collect(Collectors.toMap(NotificationSubscription::event,
+        .collect(Collectors.toMap(NotificationSubscription::_event,
             subscription -> new IvyNotificationChannelSubcriptionDTO(subscription.state(),
                 subscription.isSubscribedByDefault())));
     return new IvyNotificationChannelDTO(channel, subscriptions);

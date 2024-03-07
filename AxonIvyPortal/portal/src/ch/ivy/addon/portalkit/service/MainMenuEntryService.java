@@ -2,6 +2,8 @@ package ch.ivy.addon.portalkit.service;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 
@@ -52,16 +54,21 @@ public class MainMenuEntryService extends JsonConfigurationService<MainMenuEntry
 		return "";
 	}
 
-	private String getNameByLocale(List<DisplayName> displayNameList, Locale locale) {
-		if (CollectionUtils.isEmpty(displayNameList) || isNotValidDisplayName(displayNameList)) {
+	private String getNameByLocale(List<DisplayName> displayNameList, Locale currentLocale) {
+	  
+		if (CollectionUtils.isEmpty(displayNameList) || isNotValidDisplayName(displayNameList) || notContainsLocale(displayNameList, currentLocale)) {
 			return "";
 		}
 
-		return displayNameList.stream().filter(item -> item.getLocale().equals(locale)).map(DisplayName::getValue)
+		return displayNameList.stream().filter(item -> item.getLocale().equals(currentLocale)).map(DisplayName::getValue)
 				.findFirst().orElse(null);
 	}
 
 	private boolean isNotValidDisplayName(List<DisplayName> displayNameList) {
 		return displayNameList.stream().anyMatch(item -> item.getValue() == null || item.getLocale() == null);
+	}
+	
+	private boolean notContainsLocale(List<DisplayName> displayNameList, Locale currentLocale) {
+	  return !displayNameList.stream().map(DisplayName::getLocale).collect(Collectors.toList()).contains(currentLocale);
 	}
 }
