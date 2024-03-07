@@ -3,11 +3,10 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Condition.and;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Condition.enabled;
-
 
 import java.util.ArrayList;
 
@@ -61,7 +60,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
   
   private void clickUserMenuItem(String menuItemSelector) {
-    $("div[id='user-settings-menu']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("a[id='user-settings-menu']").shouldBe(appear, DEFAULT_TIMEOUT);
     try {
       clickByJavaScript(findElementById("user-settings-menu"));
       $("ul[id$='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT);
