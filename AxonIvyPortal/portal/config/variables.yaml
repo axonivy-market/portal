@@ -88,6 +88,10 @@ Variables:
       # You can customize the name and icon of the main menu entry for Portal dashboards via this JSON file.
       # [file: json]
       FavoriteProcesses:
+      
+      # You can customize the name and icon of the main menu entry for Portal dashboards via this JSON file.
+      # [file: json]
+      MainMenuEntry: 
 
     Processes:
       # The standard setting of view mode in the process list.

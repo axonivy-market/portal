@@ -6,11 +6,14 @@ import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Condition.enabled;
+
 
 import java.util.ArrayList;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -19,6 +22,8 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
 public abstract class TemplatePage extends AbstractPage {
+  
+  public static final String CLASS_PROPERTY = "class";
 
   // If page load more than 45s, mark it failed by timeout
   protected long getTimeOutForLocator() {
@@ -84,4 +89,24 @@ public abstract class TemplatePage extends AbstractPage {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(
         webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
   }
+  
+  public void waitForElementClickableThenClick(SelenideElement element) {
+    waitForElementClickable(element).click();
+  }
+  
+  public SelenideElement waitForElementClickable(SelenideElement element) {
+    return element.shouldBe(clickable(), DEFAULT_TIMEOUT);
+  }
+  
+  protected Condition clickable() {
+    return and("should be clickable", visible, enabled);
+  }
+  
+  public boolean isMainMenuOpen() {
+    WebElement mainMenu = $(".layout-wrapper");
+    return mainMenu.getAttribute(CLASS_PROPERTY).indexOf("static") > 0;
+  }
+
+
+
 }
