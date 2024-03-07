@@ -426,7 +426,7 @@ As0 f6 83 883 26 26 -36 15 #rect
 As0 f6 @|UdEventIcon #fIcon
 As0 f7 actionTable 'out=in;
 ' #txt
-As0 f7 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+As0 f7 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
 import java.util.Set;
@@ -491,7 +491,7 @@ As0 f33 83 1075 26 26 -47 15 #rect
 As0 f33 @|UdEventIcon #fIcon
 As0 f44 actionTable 'out=in;
 ' #txt
-As0 f44 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+As0 f44 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -853,7 +853,7 @@ As0 f65 expr in #txt
 As0 f65 880 1760 928 1760 #arcP
 As0 f77 actionTable 'out=in;
 ' #txt
-As0 f77 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+As0 f77 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import java.util.Set;
 import javax.faces.application.FacesMessage;
@@ -1352,7 +1352,7 @@ As0 f48 1 928 1568 #addKink
 As0 f48 0 0.9165811121604647 0 0 #arcLabel
 As0 f75 actionTable 'out=in;
 ' #txt
-As0 f75 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+As0 f75 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import java.util.Set;
 import javax.faces.application.FacesMessage;

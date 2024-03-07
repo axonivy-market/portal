@@ -115,7 +115,7 @@ Ts0 f80 160 386 128 44 -56 -8 #rect
 Ts0 f80 @|StepIcon #fIcon
 Ts0 f66 actionTable 'out=in;
 ' #txt
-Ts0 f66 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+Ts0 f66 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import org.primefaces.PrimeFaces;
 import ch.ivyteam.ivy.security.IUser;
 import org.apache.commons.lang3.StringUtils;

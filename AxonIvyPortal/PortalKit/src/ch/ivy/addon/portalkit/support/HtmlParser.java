@@ -4,8 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import com.axonivy.portal.components.util.HtmlUtils;
-
+import ch.ivy.addon.portalkit.util.HtmlUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class HtmlParser {

@@ -142,7 +142,7 @@ Ds0 f28 496 368 32 32 -54 -39 #rect
 Ds0 f28 @|AlternativeIcon #fIcon
 Ds0 f11 actionTable 'out=in;
 ' #txt
-Ds0 f11 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+Ds0 f11 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -181,7 +181,7 @@ Ds0 f13 328 362 112 44 -48 -8 #rect
 Ds0 f13 @|CallSubIcon #fIcon
 Ds0 f46 actionTable 'out=in;
 ' #txt
-Ds0 f46 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+Ds0 f46 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -253,7 +253,7 @@ Ds0 f20 160 618 112 44 -48 -8 #rect
 Ds0 f20 @|CallSubIcon #fIcon
 Ds0 f50 actionTable 'out=in;
 ' #txt
-Ds0 f50 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+Ds0 f50 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 

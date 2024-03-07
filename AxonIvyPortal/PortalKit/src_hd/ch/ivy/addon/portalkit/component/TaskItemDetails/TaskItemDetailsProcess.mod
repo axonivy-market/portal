@@ -177,7 +177,7 @@ Cs0 f68 595 563 26 26 0 12 #rect
 Cs0 f68 @|UdProcessEndIcon #fIcon
 Cs0 f66 actionTable 'out=in;
 ' #txt
-Cs0 f66 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+Cs0 f66 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import org.primefaces.PrimeFaces;
 import ch.ivyteam.ivy.security.IUser;
 import org.apache.commons.lang3.StringUtils;

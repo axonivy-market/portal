@@ -294,7 +294,7 @@ Ts0 f42 @|UdProcessEndIcon #fIcon
 Ts0 f43 109 672 371 672 #arcP
 Ts0 f45 actionTable 'out=in;
 ' #txt
-Ts0 f45 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+Ts0 f45 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import ch.ivy.addon.portalkit.bean.PermissionBean;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.enums.FilterType;
@@ -419,7 +419,7 @@ Ts0 f65 172 842 144 44 -69 -8 #rect
 Ts0 f65 @|StepIcon #fIcon
 Ts0 f56 actionTable 'out=in;
 ' #txt
-Ts0 f56 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+Ts0 f56 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import org.primefaces.PrimeFaces;
 import ch.ivy.addon.portalkit.util.Dates;
 import javax.faces.application.FacesMessage;

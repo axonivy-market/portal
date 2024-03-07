@@ -13,9 +13,8 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.collections.CollectionUtils;
 import org.primefaces.PrimeFaces;
 
-import com.axonivy.portal.components.util.FacesMessageUtils;
-
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
+import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean

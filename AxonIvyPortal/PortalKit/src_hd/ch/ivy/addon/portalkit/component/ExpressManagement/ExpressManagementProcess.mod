@@ -41,7 +41,7 @@ Es0 f13 336 368 32 32 0 16 #rect
 Es0 f13 @|AlternativeIcon #fIcon
 Es0 f10 actionTable 'out=in;
 ' #txt
-Es0 f10 actionCode 'import com.axonivy.portal.components.util.FacesMessageUtils;
+Es0 f10 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import ch.ivy.addon.portalkit.service.CaseDocumentService;
 import org.apache.commons.io.FilenameUtils;
 
