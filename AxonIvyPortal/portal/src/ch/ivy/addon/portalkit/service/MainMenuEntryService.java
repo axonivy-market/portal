@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.service;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
