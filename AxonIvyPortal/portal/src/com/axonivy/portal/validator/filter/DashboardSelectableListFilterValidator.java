@@ -22,6 +22,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class DashboardSelectableListFilterValidator implements Validator {
 
   private static final String MESSAGE_PREFIX_PATTERN = "%s(%d)";
+  private static final String PRIORITY = "priority";
 
   public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
     DashboardFilter filter = (DashboardFilter) component.getAttributes().get("filter");
@@ -49,7 +50,7 @@ public class DashboardSelectableListFilterValidator implements Validator {
   }
 
   private String getMessagePrefix(String field, int index) {
-    if(field == "priority") {
+    if(PRIORITY.equals(field)) {
       return String.format(MESSAGE_PREFIX_PATTERN, DashboardStandardTaskColumn.findBy(Optional.ofNullable(field).orElse("")).getLabel(), index + 1);
     }
     return String.format(MESSAGE_PREFIX_PATTERN, DashboardStandardCaseColumn.findBy(Optional.ofNullable(field).orElse("")).getLabel(), index + 1);
