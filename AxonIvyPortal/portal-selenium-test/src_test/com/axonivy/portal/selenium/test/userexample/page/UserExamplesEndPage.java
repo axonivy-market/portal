@@ -7,11 +7,14 @@ public class UserExamplesEndPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "[id$='form:go-to-case-detail']";
+    return "[id='iFrame']";
   }
 
   public CaseDetailsPage goToCaseDetail() {
-    waitForElementClickableThenClick("[id$='form:go-to-case-detail']");
+    switchToIFrameOfTask();
+    waitForElementClickableThenClick("[id='form:go-to-case-detail']");
+    switchToDefaultContent();
+    waitPageDisappear();
     return new CaseDetailsPage();
   }
 
