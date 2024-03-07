@@ -71,6 +71,7 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     refreshPage();
     statisticWidgetPage.waitForChartCreationPageRendered();
     statisticWidgetPage.backToDashboard();
+    statisticWidgetPage.clickChartInfoAndCloseToWaitAnimation();
     ScreenshotUtils.executeDecorateJs("numberingChartPanel()");
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(statisticWidgetPage.waitAndGetChartPanelByIndex(1),
     ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-detail-with-annotation", new ScreenshotMargin(20, 10));

@@ -23,6 +23,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -533,4 +534,10 @@ public abstract class TemplatePage extends AbstractPage {
   public WebElement getTopBar() {
     return findElementById("top-menu");
   }
+  
+  public void pressESC() {
+    Actions action = new Actions(driver);
+    action.sendKeys(Keys.ESCAPE).build().perform();
+  }
+
 }

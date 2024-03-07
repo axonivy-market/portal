@@ -268,4 +268,13 @@ public class StatisticWidgetPage extends TemplatePage {
     return $("[id='statistics-widget:statistic-dashboard-widget:chart-details-dialog']").shouldBe(appear,
         DEFAULT_TIMEOUT);
   }
+  
+  public void clickChartInfoAndCloseToWaitAnimation() {
+    getChartInfoDialogOfChart(0);
+    pressESC();
+    
+    getChartInfoDialogOfChart(0);
+    pressESC();
+  }
+  
 }
