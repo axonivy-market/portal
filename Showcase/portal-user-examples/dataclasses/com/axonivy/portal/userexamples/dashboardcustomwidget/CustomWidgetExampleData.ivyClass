@@ -1,0 +1,6 @@
+CustomWidgetExampleData #class
+com.axonivy.portal.userexamples.dashboardcustomwidget #namespace
+startDate String #field
+customer String #field
+email String #field
+note String #field
