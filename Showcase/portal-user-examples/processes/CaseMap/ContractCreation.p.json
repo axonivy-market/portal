@@ -57,10 +57,11 @@
         "output" : {
           "code" : [
             "import java.util.Map;",
+            "import java.util.Arrays;",
             "import com.axonivy.portal.components.service.IvyAdapterService;",
             "",
-            "Map x = IvyAdapterService.startSubProcessInSecurityContext(\"handleUserExamplesEndPage()\", null);",
-            "String callbackUrl = x.get(\"callbackUrl\") as String;",
+            "Map result = IvyAdapterService.startSubProcessInProjectAndAllRequired(\"handleEndPage()\", null);",
+            "String callbackUrl = result.get(\"callbackUrl\") as String;",
             "ivy.task.customFields().stringField(\"expressEndPageUrl\").set(callbackUrl);"
           ]
         },
