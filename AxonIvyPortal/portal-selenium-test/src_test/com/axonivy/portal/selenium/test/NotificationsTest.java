@@ -65,15 +65,14 @@ public class NotificationsTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     NewDashboardPage homepage = new NewDashboardPage();
     UserProfilePage userProfilePage = homepage.openMyProfilePage();
-    userProfilePage.checkBoxTosubscribeChannel();
-    userProfilePage.checkBoxTosubscribeChannel();
+    userProfilePage.unsubscribeAllChannels();
     userProfilePage.save();
     homepage.hideNotificationsIcon();
     homepage.openMyProfilePage();
-    userProfilePage.checkBoxTosubscribeChannel();
+    userProfilePage = new UserProfilePage();
+    userProfilePage.subscribeAllChannels();
     userProfilePage.save();
     homepage.showNotificationsIcon();
-    
   }
 
 }

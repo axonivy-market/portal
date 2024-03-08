@@ -19,9 +19,7 @@
     <div class="ui-g-8 ui-sm-12 ui-fluid">
       <p:inputNumber id="from-number-field-input" value="#{cc.attrs.filterFrom}"
         styleClass="task-configuration__input-text" inputStyleClass="task-configuration__input-number"
-        minValue="#{empty cc.attrs.minFilterForm ? '-999999999.99' : cc.attrs.minFilterForm}">
-        <f:convertNumber pattern="#{cc.attrs.field.pattern}" />
-      </p:inputNumber>
+        minValue="#{empty cc.attrs.minFilterForm ? '-999999999.99' : cc.attrs.minFilterForm}"/>
     </div>
 
     <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down display-flex-center">
@@ -31,9 +29,7 @@
     <div class="ui-g-8 ui-sm-12 ui-fluid">
       <p:inputNumber id="to-number-field-input" value="#{cc.attrs.filterTo}" styleClass="task-configuration__input-text"
         inputStyleClass="task-configuration__input-number"
-        maxValue="#{empty cc.attrs.maxFilterTo ? '999999999.99' : cc.attrs.maxFilterTo}">
-        <f:convertNumber pattern="#{cc.attrs.field.pattern}" />
-      </p:inputNumber>
+        maxValue="#{empty cc.attrs.maxFilterTo ? '999999999.99' : cc.attrs.maxFilterTo}"/>
     </div>
   </h:panelGroup>
 </cc:implementation>

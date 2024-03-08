@@ -1,7 +1,6 @@
 package com.axonivy.portal.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -15,7 +14,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.notification.channel.NotificationChannel;
 import ch.ivyteam.ivy.notification.channel.NotificationChannelSystemConfig;
 import ch.ivyteam.ivy.notification.channel.NotificationSubscription;
-import ch.ivyteam.ivy.notification.event.NotificationEvent;
 import ch.ivyteam.ivy.notification.web.WebNotifications;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
@@ -35,18 +33,16 @@ public class NotificationBean implements Serializable {
   private List<IvyNotificationChannelDTO> channels;
   private ISecurityContext securityContext;
   private ISecurityMember subscriber;
-  private List<String> events;
   private Boolean isBellIconNeeded;
 
   public NotificationBean() {
-    this.events = new ArrayList<>(NotificationEvent.allAsString());
     this.webNotifications = WebNotifications.current();
     this.countAll = webNotifications.countAll();
     this.countUnread = webNotifications.countUnread();
     this.dataModel = new NotificationLazyModel(webNotifications);
     this.subscriber = Ivy.session().getSessionUser();
     this.securityContext = ISecurityContext.current();
-    this.channels = IvyNotificationChannelDTO.all(subscriber, securityContext, events);
+    this.channels = IvyNotificationChannelDTO.all(subscriber, securityContext);
     this.isBellIconNeeded = isNotificationBellRendered();
   }
 

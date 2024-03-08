@@ -18,6 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.components.util.HtmlUtils;
 import com.axonivy.portal.service.DeepLTranslationService;
 
 import ch.addon.portal.generic.menu.MenuView;
@@ -231,7 +232,7 @@ public class DashboardBean implements Serializable {
   }
 
   public String createParseTextFromHtml (String text) {
-	  return HtmlParser.parseTextFromHtml(text);
+    return HtmlUtils.parseTextFromHtml(text);
   }
 
   public int getCurrentTabIndex() {

@@ -17,7 +17,6 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardTaskSearchCriteria
 import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.util.threadcontext.IvyThreadContext;
 
 public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
@@ -27,7 +26,6 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
   private DashboardTaskSearchCriteria criteria;
   private List<ITask> tasks;
   private Map<Long, ITask> mapTasks;
-  private TaskQuery query;
   private int countLoad;
   private boolean isFirstTime = true;
   private CompletableFuture<Void> future;
@@ -64,10 +62,9 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
             criteria.setSortField(sortMeta.getField());
             criteria.setSortDescending(sortMeta.getOrder().isDescending());
           }
-          query = criteria.buildQuery();
         }
       }
-      foundTasks = DashboardTaskService.getInstance().findByTaskQuery(query, first, pageSize);
+      foundTasks = DashboardTaskService.getInstance().findByTaskQuery(criteria.buildQuery(), first, pageSize);
       addDistict(tasks, foundTasks);
       mapTasks.putAll(foundTasks.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
     }
@@ -83,11 +80,10 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
   }
 
   public void loadFirstTime() {
-    query = criteria.buildQuery();
     Object memento = IvyThreadContext.saveToMemento();
     future = CompletableFuture.runAsync(() -> {
       IvyThreadContext.restoreFromMemento(memento);
-      foundTasks = Optional.ofNullable(DashboardTaskService.getInstance().findByTaskQuery(query, 0, 25)).orElse(new ArrayList<>());
+      foundTasks = DashboardTaskService.getInstance().findByTaskQuery(criteria.buildQuery(), 0, 25);
       addDistict(tasks, foundTasks);
       mapTasks.putAll(foundTasks.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
       IvyThreadContext.reset();

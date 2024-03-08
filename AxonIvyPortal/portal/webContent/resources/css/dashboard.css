@@ -141,7 +141,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   padding-top: 0;
-  padding-bottom: 1.5rem;
+  padding-bottom: 0;
 }
 
 .dashboard__body.dashboard__body__iframe--disabled iframe {

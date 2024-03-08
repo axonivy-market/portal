@@ -7,6 +7,7 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.MainMenuPage;
+import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
 @IvyWebTest
@@ -25,7 +26,7 @@ public class CustomTaskDelegateTest extends BaseTest {
   @Test
   public void testCustomTaskDelegateOnlyToGroup() {
     login(TestAccount.HR_ROLE_USER);
-    redirectToNewDashBoard();
+    openDashboard();
     MainMenuPage menu = new MainMenuPage();
     menu.openTaskList();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
@@ -44,7 +45,7 @@ public class CustomTaskDelegateTest extends BaseTest {
   @Test
   public void testCustomTaskDelegateOnlyToUser() {
     login(TestAccount.HR_ROLE_USER);
-    redirectToNewDashBoard();
+    openDashboard();
     MainMenuPage menu = new MainMenuPage();
     menu.openTaskList();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
@@ -63,7 +64,7 @@ public class CustomTaskDelegateTest extends BaseTest {
   @Test
   public void testCustomTaskDelegateNoDelegateOption() {
     login(TestAccount.GUEST_USER);
-    redirectToNewDashBoard();
+    openDashboard();
     MainMenuPage menu = new MainMenuPage();
     menu.openTaskList();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
@@ -73,5 +74,11 @@ public class CustomTaskDelegateTest extends BaseTest {
     taskWidgetPage.openTaskDelegationDialog();
     assertFalse(taskWidgetPage.isDelegateTypeAvailable());
     assertEquals("This task cannot be delegated to any other user or group.", taskWidgetPage.getCannotDelegateText());
+  }
+
+  private void openDashboard() {
+    redirectToNewDashBoard();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForCaseWidgetLoaded();
   }
 }
