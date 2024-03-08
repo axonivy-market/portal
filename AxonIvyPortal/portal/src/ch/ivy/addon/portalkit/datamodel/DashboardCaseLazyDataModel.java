@@ -17,7 +17,6 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardCaseSearchCriteria
 import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardCaseService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.util.threadcontext.IvyThreadContext;
 
 public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
@@ -27,7 +26,6 @@ public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
   private DashboardCaseSearchCriteria criteria;
   private List<ICase> cases;
   private Map<Long, ICase> mapCases;
-  private CaseQuery query;
   private int countLoad;
   private boolean isFirstTime = true;
   private CompletableFuture<Void> future;
@@ -64,10 +62,9 @@ public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
             criteria.setSortField(sortMeta.getField());
             criteria.setSortDescending(sortMeta.getOrder().isDescending());
           }
-          query = criteria.buildQuery();
         }
       }
-      foundCases = DashboardCaseService.getInstance().findByCaseQuery(query, first, pageSize);
+      foundCases = DashboardCaseService.getInstance().findByCaseQuery(criteria.buildQuery(), first, pageSize);
       addDistict(cases, foundCases);
       mapCases.putAll(foundCases.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
     }
@@ -83,11 +80,10 @@ public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
   }
 
   public void loadFirstTime() {
-    query = criteria.buildQuery();
     Object memento = IvyThreadContext.saveToMemento();
     future = CompletableFuture.runAsync(() -> {
       IvyThreadContext.restoreFromMemento(memento);
-      foundCases = Optional.ofNullable(DashboardCaseService.getInstance().findByCaseQuery(query, 0, 25)).orElse(new ArrayList<>());
+      foundCases = DashboardCaseService.getInstance().findByCaseQuery(criteria.buildQuery(), 0, 25);
       addDistict(cases, foundCases);
       mapCases.putAll(foundCases.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
       IvyThreadContext.reset();

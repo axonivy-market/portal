@@ -1573,7 +1573,13 @@ Dialogs:
             IconSelection:
               IconLinkTooltip: Haga clic para cambiar el icono
             TaskItemDetails:
+              CannotWorkOnDestroyedTaskWarning: No puedes trabajar en la tarea porque ha sido destruida.
+              CannotWorkOnTaskWarning: No puede procesar la tarea porque el usuario <strong>{0}</strong> está trabajando actualmente en ella.
+              InvalidStateInfo: Estado no válido.
+              ResetTaskWarning: Actualmente está trabajando en la tarea en una sesión diferente. Puede reiniciar la tarea y empezarla de nuevo si ha cerrado el navegador. <a href="{0}">Restablecer</a>
               ShareTaskDetails: Compartir detalles de la tarea
+              TaskCompletedByOtherInfo: La tarea ya ha sido completada por el usuario <strong>{0}</strong> en {1}.
+              TaskCompletedByYouInfo: Ya ha completado la tarea en {0}.
   com:
     axonivy:
       portal:

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
+import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
@@ -15,6 +16,7 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.UserProfilePage;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
@@ -22,10 +24,8 @@ import ch.ivy.addon.portalkit.enums.PortalPermission;
 public class PortalPermissionTest extends BaseTest {
 
   protected NewDashboardPage newDashboardPage;
-  private String grantSpecificPortalPermissionLink =
-      "portalKitTestHelper/14DE09882B540AD5/grantSpecificPortalPermission.ivp?portalPermission=%s";
-  private String denySpecificPortalPermissionLink =
-      "portalKitTestHelper/14DE09882B540AD5/denySpecificPortalPermission.ivp?portalPermission=%s";
+  private String grantSpecificPortalPermissionLink = "portalKitTestHelper/14DE09882B540AD5/grantSpecificPortalPermission.ivp?portalPermission=%s";
+  private String denySpecificPortalPermissionLink = "portalKitTestHelper/14DE09882B540AD5/denySpecificPortalPermission.ivp?portalPermission=%s";
 
   @Override
   @BeforeEach
@@ -128,6 +128,30 @@ public class PortalPermissionTest extends BaseTest {
     caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
     caseDetailsPage.openActionMenu();
     assertTrue(caseDetailsPage.isShowDetailsDisplayed(true));
+  }
+
+  @Test
+  public void testShowHideMyProfileItems() {
+    login(TestAccount.DEMO_USER);
+    createTestingTasks();
+    denyAccessFullListPermissions();
+    showNewDashboard();
+    NewDashboardPage homePage = new NewDashboardPage();
+    homePage.waitForCaseWidgetLoaded();
+
+    UserProfilePage userProfilePage = homePage.openMyProfilePage();
+    assertFalse(userProfilePage.isProcessSettingDisplayed());
+    assertFalse(userProfilePage.isTaskListSettingDisplayed());
+    assertFalse(userProfilePage.isCaseListSettingDisplayed());
+
+    grantAccessFullListPermissions();
+    homePage = new NewDashboardPage();
+    homePage.waitForCaseWidgetLoaded();
+
+    userProfilePage = homePage.openMyProfilePage();
+    assertTrue(userProfilePage.isProcessSettingDisplayed());
+    assertTrue(userProfilePage.isTaskListSettingDisplayed());
+    assertTrue(userProfilePage.isCaseListSettingDisplayed());
   }
 
   private void grantAccessFullListPermissions() {
