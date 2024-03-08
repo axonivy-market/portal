@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -89,6 +90,16 @@ public class NewDashboardPage extends TemplatePage {
 
     $("div#new-widget-configuration-dialog").shouldBe(appear, DEFAULT_TIMEOUT);
     return new WelcomeEditWidgetNewDashboardPage();
+  }
+
+  public MainMenuPage openMainMenu() {
+    $(".dashboard-cases-container").shouldBe(appear, DEFAULT_TIMEOUT);
+    if (!isMainMenuOpen()) {
+      waitForElementDisplayed(By.id("left-menu"), true);
+      $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
+      waitForElementClickableThenClick($(By.id("user-menu-required-login:toggle-menu")));
+    }
+    return new MainMenuPage();
   }
 
   public void checkStartButtonAndImageShown() {

@@ -161,3 +161,47 @@ These templates are configurable using variable ``DashboardTemplates.json``.
    :maxdepth: 1
 
    new-dashboard-template
+
+Configure Main Menu Entry Dashboard
+-----------------------------------
+Portal supports customizing the main menu entry of dashboards.
+
+To customize the menu, you can edit the Portal variable
+``Portal.Dashboard.MainMenuEntry.json``. Below is an example JSON of a custom menu.
+
+.. code-block:: html
+
+   [
+      {
+         "names": [
+               {
+                  "locale": "en",
+                  "value": "Dashboard EN"
+               },
+               {
+                  "locale": "fr",
+                  "value": "Dashboard FR"
+               },
+               {
+                  "locale": "de",
+                  "value": "Dashboard DE"
+               },
+               {
+                  "locale": "es",
+                  "value": "Dashboard ES"
+               }
+            ],
+        "icon": "si si-layout-bullets"
+      }
+   ]
+
+..
+   
+Structure of the JSON:
+
+   ``names``: Multilingual name of the menu entry.
+
+   .. important:: 
+         The displayed name will follow the language setting of the account.
+
+   ``icon``: Icon of the menu entry. Portal supports both Streamline and FontAwesome icons.
