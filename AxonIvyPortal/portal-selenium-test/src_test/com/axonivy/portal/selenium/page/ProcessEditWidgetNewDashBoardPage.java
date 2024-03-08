@@ -430,12 +430,14 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     processList.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     List<SelenideElement> findAll = processList.findAll("li.ui-orderlist-item");
     if (findAll.size() > toIndex) {
-      SelenideElement fromElement = findAll.get(fromIndex).shouldBe(clickable(), DEFAULT_TIMEOUT);
-      SelenideElement toElement = findAll.get(toIndex).shouldBe(clickable(), DEFAULT_TIMEOUT);
+      SelenideElement fromElement = findAll.get(fromIndex).$(".process-start-list-item").shouldBe(clickable(),
+          DEFAULT_TIMEOUT);
+      SelenideElement toElement = findAll.get(toIndex).$(".process-start-list-item").shouldBe(clickable(),
+          DEFAULT_TIMEOUT);
 
       Actions builder = new Actions(WebDriverRunner.getWebDriver());
-      Action dragAndDrop = builder.clickAndHold(fromElement).pause(500).moveToElement(toElement).pause(500)
-          .release(toElement).build();
+      Action dragAndDrop = builder.clickAndHold(fromElement).pause(500).moveToElement(toElement).pause(1000)
+          .release(toElement).pause(1000).build();
       dragAndDrop.perform();
     }
   }

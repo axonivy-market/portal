@@ -12,7 +12,6 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardCaseService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.jsf.primefaces.legazy.LazyDataModel7;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.util.threadcontext.IvyThreadContext;
 
 @SuppressWarnings("deprecation")
@@ -27,7 +26,6 @@ public class DashboardProcessCaseLazyDataModel extends LazyDataModel7<ICase> {
   private boolean isFirstTime = true;
   private List<ICase> cases;
   private CompletableFuture<Void> future;
-  private CaseQuery query;
 
   public DashboardProcessCaseLazyDataModel(Long processStartId, String processName) {
     criteria = new DashboardProcessCaseSearchCriteria(processStartId, processName);
@@ -49,9 +47,9 @@ public class DashboardProcessCaseLazyDataModel extends LazyDataModel7<ICase> {
       if (first == 0) {
         criteria.setSortField(sortField);
         criteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
-        query = criteria.buildQuery();
       }
-      cases = DashboardCaseService.getInstance().findByCaseQuery(query, first, pageSize * (first <= pageSize ? QUERY_PAGES_AT_FIRST_TIME : QUERY_PAGES));
+      cases = DashboardCaseService.getInstance().findByCaseQuery(criteria.buildQuery(), first,
+          pageSize * (first <= pageSize ? QUERY_PAGES_AT_FIRST_TIME : QUERY_PAGES));
     }
     int rowCount = cases.size() + first;
     List<ICase> result = new ArrayList<>();
@@ -63,11 +61,11 @@ public class DashboardProcessCaseLazyDataModel extends LazyDataModel7<ICase> {
   }
 
   public void loadFirstTime() {
-    query = criteria.buildQuery();
     Object memento = IvyThreadContext.saveToMemento();
     future = CompletableFuture.runAsync(() -> {
       IvyThreadContext.restoreFromMemento(memento);
-      cases = DashboardCaseService.getInstance().findByCaseQuery(query, 0, getPageSize() * QUERY_PAGES_AT_FIRST_TIME);
+      cases = DashboardCaseService.getInstance().findByCaseQuery(criteria.buildQuery(), 0,
+          getPageSize() * QUERY_PAGES_AT_FIRST_TIME);
       IvyThreadContext.reset();
     });
     isFirstTime = true;
