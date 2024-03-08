@@ -116,6 +116,7 @@ public class TaskTemplatePage extends TemplatePage {
 
   public void waitUntilLayoutWrapperDisplayed() {
     waitForElementDisplayed(By.className("layout-wrapper"), Boolean.TRUE);
+    waitForElementDisplayed(By.id("iFrame"), true);
   }
 
   public void clickCancelLink() {

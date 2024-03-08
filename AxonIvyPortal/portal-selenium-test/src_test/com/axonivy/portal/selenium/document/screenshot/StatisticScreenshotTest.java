@@ -66,7 +66,7 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
 
     WebElement chartCreationDialog = statisticWidgetPage.getCaseByFinishedTaskCreationDialog();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(chartCreationDialog,
-        ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-creation-dialog", new ScreenshotMargin(10, 10));
+        ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-creation-dialog", new ScreenshotMargin(50, 50));
 
     refreshPage();
     statisticWidgetPage.waitForChartCreationPageRendered();

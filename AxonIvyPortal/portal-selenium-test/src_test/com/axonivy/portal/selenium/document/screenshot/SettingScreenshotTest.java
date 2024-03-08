@@ -16,6 +16,7 @@ import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.AbsencePage;
 import com.axonivy.portal.selenium.page.AdminSettingsPage;
 import com.axonivy.portal.selenium.page.ChangePasswordPage;
+import com.axonivy.portal.selenium.page.HomePage;
 import com.axonivy.portal.selenium.page.NewAbsencePage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProjectVersionPage;
@@ -156,14 +157,15 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
 
   @Test
   public void screenshotRoleManagement() throws IOException {
+    updateGlobalVariable(Variable.SHOW_LEGACY_UI.getKey(), "true");
+    updateGlobalVariable(Variable.SHOW_USER_GUIDE.getKey(), "false");
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     ScreenshotUtils.resizeBrowser(new Dimension(1200, 1000));
     showNewDashboard();
-    NewDashboardPage newDashboardPage = new NewDashboardPage();
-    newDashboardPage.waitForCaseWidgetLoaded();
+    HomePage homePage = new HomePage();
 
-    AdminSettingsPage adminSettingsPage = newDashboardPage.openAdminSettings();
+    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
     var roleManagementTab = adminSettingsPage.openRoleManagementTab();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.SETTINGS_FOLDER + "role-assignment-tab");
     ScreenshotUtils.maximizeBrowser();
