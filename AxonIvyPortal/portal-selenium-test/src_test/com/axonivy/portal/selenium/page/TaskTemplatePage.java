@@ -333,4 +333,8 @@ public class TaskTemplatePage extends TemplatePage {
     waitForElementDisplayed(By.id("iFrame"), true);
     waitForElementDisplayed(By.id("task-template-title"), true);
   }
+  
+  public void waitForMainAreaPanelRendered() {
+    $("div[id$='main-area-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
 }
