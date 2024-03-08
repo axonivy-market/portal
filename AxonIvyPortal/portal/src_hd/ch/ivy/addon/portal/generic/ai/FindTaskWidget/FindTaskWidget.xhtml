@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/restricted/IFrameWithoutMenuTemplate.xhtml">
+    <ui:param name="loadPortalScript" value="false" />
+    <ui:param name="loadSerenityScript" value="false" />
+    <ui:param name="loadOptionalSerenityCss" value="false" />
+    <ui:define name="pageContent">
+      <c:set var="taskWidget" value="#{data.taskWidget}" />
+      <h:panelGroup layout="block" rendered="#{not empty data.taskWidget.errors}">
+        <ui:repeat var="error" value="#{data.taskWidget.errors}">
+          <h:outputText value="#{error}" />
+        </ui:repeat>
+      </h:panelGroup>
+      <h:panelGroup layout="block" rendered="#{empty data.taskWidget.errors}">
+
+        <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidget id="task-component" taskWidget="#{data.taskWidget}"
+          isReadOnlyMode="#{true}"/>
+
+        <h:outputScript library="js" name="portal.js" />
+        <h:outputScript library="js" name="dashboard.js" />
+        <script type="text/javascript">
+            var dashboardToolKit = new DashboardToolKit();
+            $(function() {
+              var simpleScreen = new DashboardScreenHandler();
+              var responsiveToolkit = ResponsiveToolkit(simpleScreen);
+              Portal.init(responsiveToolkit);
+            });
+  
+            function startDownload() {
+              var statusDialog = PF('download-status-dialog');
+              statusDialog.jq.removeAttr("download-status");
+              statusDialog.show();
+            }
+  
+            function stopDownload() {
+              var statusDialog = PF('download-status-dialog');
+              statusDialog.jq.attr("download-status","completed");
+              statusDialog.hide();
+            }
+        </script>
+      </h:panelGroup>
+      
+        
+      
+
+      
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

@@ -10,7 +10,8 @@
     <ui:define name="head">
       <!-- Chatbot -->
       <h:outputScript library="js" name="chatbot-utils.js" />
-      <h:outputScript library="js" name="chatbot.js" />
+      <h:outputScript library="js" name="ajax-utils.js" />
+      <h:outputScript library="js" name="ai-assistant.js" />
       <h:outputStylesheet library="css" name="chatbot.css" />
 
       <!-- Highlight JS -->
@@ -26,10 +27,10 @@
 
               const userName = "#{ivy.session.getSessionUserName()}";
               const contextPath = "#{ivy.task.getApplication().getContextPath()}";
-              const resource = "#{chatbotEndPoint}";
-              const ivyResource = new IvyUri().rest() + "/chatbot";
+              const resource = "#{managedBean.endpoint}";
+              const ivyResource = new IvyUri().rest() + "/";
               const view = new View(resource);
-              const chatbot = new ChatBot(ivyResource, resource, view);
+              const chatbot = new Assistant(ivyResource, resource, view, `#{managedBean.assistant.toJson()}`, userName);
 
               $(document).ready(function(){
                 hljs.configure({
@@ -81,6 +82,7 @@
           </h:form>
         </div>
       </div>
+      <p:inputText type="hidden" styleClass="js-thread-id" />
     </ui:define>
 
   </ui:composition>
