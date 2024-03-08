@@ -6,6 +6,7 @@ const CODE_TAG = '```';
 const IFRAME_TAG_START = '<iframe>';
 const IFRAME_TAG_END = '</iframe>';
 const HLJS_LANGUAGE_PREFIX = 'language-';
+const IFRAME_REGEX = /<iframe>(.*?)<\/iframe>/;
 
 // Helper Functions
 
@@ -19,7 +20,7 @@ const isCode = paragraph => paragraph.startsWith(CODE_TAG);
 const isImageUrl = url => isUrl(url) && url.match(IMAGE_PATTERN);
 
 // Checks if a paragraph starts with an iframe tag.
-const isIFrame = paragraph => paragraph.startsWith(IFRAME_TAG_START);
+const isIFrame = paragraph => paragraph.includes(IFRAME_TAG_START);
 
 // Adds a link component to a word if it's a URL, otherwise returns the word unchanged.
 const addLink = word => (isUrl(word) ? generateLinkComponent(word) : word);
@@ -51,8 +52,20 @@ const convertCode = paragraph => {
 
 // Converts a iframe block paragraph to a Iframe component.
 const convertIFrame = paragraph => {
-  paragraph = paragraph.replace(IFRAME_TAG_START, '');
-  paragraph = paragraph.replace(IFRAME_TAG_END, '');
+  
+  const extractIframeString = paragraph => {
+    // Use the exec method to capture the content
+    const match = IFRAME_REGEX.exec(paragraph);
+
+    // Check if there's a match
+    if (match && match.length > 1) {
+        return match[1]; // Return the content between the tags
+    } else {
+        return paragraph; // Return null if no match is found
+    }
+  }
+
+  paragraph = extractIframeString(paragraph);
   return generateIFrameComponent(paragraph);
 }
 

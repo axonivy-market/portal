@@ -1,0 +1,199 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "id" : "18DD4CF26C1CCE45",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "portalkit.PortalCallableToolsData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "findUsers(String,String)",
+      "config" : {
+        "signature" : "findUsers",
+        "input" : {
+          "params" : [
+            { "name" : "username", "type" : "String", "desc" : "name of user" },
+            { "name" : "role", "type" : "String", "desc" : "role of user" }
+          ],
+          "map" : {
+            "out.role" : "param.role",
+            "out.username" : "param.username"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "result", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>", "desc" : "" }
+          ],
+          "map" : {
+            "result.result" : "in.users"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Find users",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "import java.util.Arrays;",
+            "import com.axonivy.portal.components.util.UserUtils;",
+            "",
+            "if (StringUtils.isNotBlank(in.role)) {",
+            "  in.users= UserUtils.findUsers(in.username, 0, 101, Arrays.asList(in.role), Arrays.asList(ivy.session.getSessionUserName()));",
+            "} else {",
+            "  in.users= UserUtils.findUsers(in.username, 0, 101, null, Arrays.asList(ivy.session.getSessionUserName()));",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "CallSubStart",
+      "name" : "findTasks(String,String,String,String)",
+      "config" : {
+        "signature" : "findTasks",
+        "input" : {
+          "params" : [
+            { "name" : "taskName", "type" : "String", "desc" : "" },
+            { "name" : "taskDescription", "type" : "String", "desc" : "" },
+            { "name" : "taskPriority", "type" : "String", "desc" : "" },
+            { "name" : "taskState", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.taskDescription" : "param.taskDescription",
+            "out.taskName" : "param.taskName",
+            "out.taskPriority" : "param.taskPriority",
+            "out.taskState" : "param.taskState"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "result", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "result.result" : "in.result"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 176 },
+        "labelOffset" : { "x" : 31, "y" : 51 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f10" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 752, "y" : 176 }
+      }
+    }, {
+      "id" : "f7",
+      "type" : "Script",
+      "name" : "generate result",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "import com.axonivy.portal.util.AssistantUtils;",
+            "",
+            "Map params = new HashMap();",
+            "params.put(\"taskName\", in.taskName);",
+            "params.put(\"taskDescription\", in.taskDescription);",
+            "params.put(\"taskState\", in.taskState);",
+            "params.put(\"taskPriority\", in.taskPriority);",
+            "",
+            "in.result = AssistantUtils.generateLinkToIvyProcess(\"designer/portal/AI Tool Processes/PortalTools/findTasksTool.ivp\", params);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 504, "y" : 176 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f14" }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "Validate data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "import com.axonivy.portal.util.AssistantUtils;",
+            "",
+            "in.validationError = AssistantUtils.validateTaskState(in.taskState);",
+            "if (StringUtils.isBlank(in.validationError)) {",
+            "  in.validationError = AssistantUtils.validateTaskPriority(in.taskPriority);",
+            "}",
+            "",
+            "if(StringUtils.isNotBlank(in.validationError)) {",
+            "  in.result = AssistantUtils.generateErrorResult(in.validationError);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 176 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f12" }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "Alternative",
+      "name" : "valid data?",
+      "config" : {
+        "conditions" : {
+          "f13" : "org.apache.commons.lang3.StringUtils.isBlank(in.validationError)"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 176 },
+        "labelOffset" : { "x" : 22, "y" : -22 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "f7", "label" : {
+            "name" : "yes"
+          } },
+        { "id" : "f16", "to" : "f14", "via" : [ { "x" : 352, "y" : 264 }, { "x" : 656, "y" : 264 } ], "label" : {
+            "name" : "no",
+            "segment" : 1.44
+          } }
+      ]
+    }, {
+      "id" : "f14",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 656, "y" : 176 }
+      },
+      "connect" : [
+        { "id" : "f15", "to" : "f6" }
+      ]
+    } ]
+}
