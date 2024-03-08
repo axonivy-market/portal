@@ -25,7 +25,7 @@ import com.axonivy.portal.selenium.page.component.RoleSelectionComponentPage;
 import com.axonivy.portal.selenium.page.component.SecurityMemberNameAndAvatarComponentPage;
 import com.axonivy.portal.selenium.page.component.UserSelectionComponentPage;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
 
   @Test
@@ -51,9 +51,8 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
         .captureHalfTopPageScreenShot(ScreenshotUtils.COMPONENTS_FOLDER + "example-global-growl-finished-task");
 
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
-    redirectToRelativeLink(cleanupDataLink);
     redirectToRelativeLink(createTestingTasksUrl);
-    WaitHelper.waitForNavigation(() -> new NewDashboardPage().startTask(1));
+    newDashboardPage.startTask(1);
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     WaitHelper.waitForNavigation(() -> taskTemplatePage.clickCancelButton());
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 800));
