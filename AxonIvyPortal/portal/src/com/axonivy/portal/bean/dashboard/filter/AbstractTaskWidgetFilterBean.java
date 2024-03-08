@@ -15,9 +15,12 @@ import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 import com.axonivy.portal.util.filter.field.task.custom.TaskFilterFieldCustomNumber;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 
 public abstract class AbstractTaskWidgetFilterBean implements Serializable {
@@ -107,5 +110,17 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
 
   public List<SecurityMemberDTO> completeOwners(String query) {
     return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
+  }
+
+  public abstract void resetTaskWidgetFilter(TaskDashboardWidget widget);
+
+  public abstract void resetCaseWidgetFilter(CaseDashboardWidget widget);
+
+  public void resetFilter(DashboardWidget widget) {
+    if (DashboardWidgetType.TASK.getLabel().equals(widget.getType().getLabel())) {
+      resetTaskWidgetFilter((TaskDashboardWidget) widget);
+      return;
+    }
+    resetCaseWidgetFilter((CaseDashboardWidget) widget);
   }
 }

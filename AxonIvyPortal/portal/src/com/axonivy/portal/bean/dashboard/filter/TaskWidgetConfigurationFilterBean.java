@@ -16,6 +16,7 @@ import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
+import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -93,5 +94,15 @@ public class TaskWidgetConfigurationFilterBean extends AbstractTaskWidgetFilterB
   @Override
   public void removeFilter(TaskDashboardWidget widget, DashboardFilter filter) {
     widget.getFilters().remove(filter);
+  }
+
+  @Override
+  public void resetTaskWidgetFilter(TaskDashboardWidget widget) {
+    widget.setFilters(new ArrayList<>());
+  }
+
+  @Override
+  public void resetCaseWidgetFilter(CaseDashboardWidget widget) {
+    widget.setFilters(new ArrayList<>());
   }
 }

@@ -77,6 +77,15 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
             styleClass="Fright preview-button u-hidden-sm-down" icon="si si-button-refresh-arrow"
             update="#{componentToUpdateOnPreview}" />
+          <p:commandButton id="reset-filter-2" icon="#{visibilityBean.generateButtonIcon('si si-recycling-trash-bin-2')}"
+            update="predefined-filter" process="predefined-filter" styleClass="Fright preview-button u-hidden-sm-down u-mar-right-5"
+            actionListener="#{taskWidgetConfigurationFilterBean.resetFilter(widget)}"
+            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/TaskWidgetConfiguration/ResetFilter')}"
+            title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/TaskWidgetConfiguration/ResetFilter')}"
+            oncomplete="PF('new-widget-configuration-dialog').initPosition();">
+              <f:param name="skipValidator" value="true" />
+          </p:commandButton>
+            
         </div>
       </div>
       <div class="ui-g-12 filter-area" >

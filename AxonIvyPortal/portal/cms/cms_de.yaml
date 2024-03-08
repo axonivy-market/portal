@@ -1616,6 +1616,7 @@ Dialogs:
               WidgetFilter: Widget-Filter
             TaskWidgetConfiguration:
               AddFilter: Filter hinzufügen
+              ResetFilter: Filter zurücksetzen
   components:
     CaseDocument:
       FileDate: Änderungsdatum

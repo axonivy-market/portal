@@ -1618,6 +1618,7 @@ Dialogs:
               WidgetFilter: Filtro de widgets
             TaskWidgetConfiguration:
               AddFilter: Añadir filtro
+              ResetFilter: Restablecer filtro
   components:
     CaseDocument:
       FileDate: Modificado el
