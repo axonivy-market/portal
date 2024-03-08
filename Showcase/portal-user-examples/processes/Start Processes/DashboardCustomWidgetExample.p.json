@@ -1,0 +1,67 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "id" : "18E18562D08DDFAD",
+  "config" : {
+    "data" : "com.axonivy.portal.userexamples.DashboardCustomWidgetExampleData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "investmentList",
+      "config" : {
+        "signature" : "investmentList",
+        "input" : {
+          "params" : [
+            { "name" : "date__startDate", "type" : "String", "desc" : "" },
+            { "name" : "user__customer", "type" : "String", "desc" : "" },
+            { "name" : "string__note", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.customer" : "param.user__customer",
+            "out.note" : "param.string__note",
+            "out.startDate" : "param.date__startDate"
+          }
+        },
+        "request" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/DashboardCustomWidget/name\")%>",
+          "category" : "<%=ivy.cms.co(\"/Processes/DashboardCustomWidget/category\")%>",
+          "customFields" : [
+            { "name" : "isDashboardProcess", "value" : "true" }
+          ],
+          "isVisibleOnStartList" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 360, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "InvestmentList",
+      "config" : {
+        "dialog" : "com.axonivy.portal.userexamples.InvestmentList:start(String,String,String)",
+        "call" : {
+          "map" : {
+            "param.startDate" : "in.startDate",
+            "param.note" : "in.note",
+            "param.user" : "in.customer"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1", "color" : "default" }
+      ]
+    } ]
+}
