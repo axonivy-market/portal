@@ -38,6 +38,9 @@ public class TaskDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
 
+  @JsonIgnore
+  private List<String> errors;
+
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
     setColumns(new ArrayList<>());
@@ -198,4 +201,12 @@ public class TaskDashboardWidget extends DashboardWidget {
   public void setRowsPerPage(int rowsPerPage) {
     this.rowsPerPage = rowsPerPage;
   }
+
+public List<String> getErrors() {
+	return errors;
+}
+
+public void setErrors(List<String> errors) {
+	this.errors = errors;
+}
 }

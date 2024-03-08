@@ -8,7 +8,7 @@
 <h:body>
   <ui:composition
     template="/layouts/includes/ChatDashboardTemplate.xhtml">
-    <ui:param name="chatbotEndPoint" value="#{chatDashboardBean.chatbotEndpoint}" />
+    <ui:param name="managedBean" value="#{portalSupportBean}" />
     <ui:define name="welcomeSection">
       <div class="welcome-container">
         <p>#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/ChatDashboard/WelcomeHeaderText')}</p>

@@ -1,0 +1,12 @@
+PortalCallableToolsData #class
+portalkit #namespace
+username String #field
+role String #field
+users java.util.List<com.axonivy.portal.components.dto.UserDTO> #field
+taskName String #field
+taskPriority String #field
+taskDescription String #field
+taskState String #field
+taskDashboardWidget ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget #field
+result String #field
+validationError String #field
