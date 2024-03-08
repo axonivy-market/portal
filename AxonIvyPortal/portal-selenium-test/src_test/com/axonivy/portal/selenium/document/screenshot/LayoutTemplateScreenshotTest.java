@@ -26,6 +26,7 @@ public class LayoutTemplateScreenshotTest extends ScreenshotBaseTest {
 
     redirectToRelativeLink(applicationShowcase);
     templatePage.waitUntilLayoutWrapperDisplayed();
+    templatePage.waitForLeftMenuActive();
     ScreenshotUtils.resizeBrowser(new Dimension(1200, 800));
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.LAYOUT_FOLDER + "task-template");
   }
