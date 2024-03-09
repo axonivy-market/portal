@@ -55,6 +55,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
 
   @Test
   public void screenshotNewDashboard() throws IOException {
+    login(TestAccount.DEMO_USER);
     showNewDashboard();
     homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
