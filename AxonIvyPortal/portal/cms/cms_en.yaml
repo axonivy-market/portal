@@ -781,7 +781,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     actionSelection: Action selection
     addField: Add field
     addWidget: Add widget
-    availableFilters: Available Filters
+    availableFilters: Filters
     canWorkOn: Can work on
     caseList: Case List
     caseListIntroduction: This widget displays relevant case information according to defined settings

@@ -224,6 +224,7 @@
                 update="save-filter-form" resetValues="true">
                 <f:setPropertyActionListener value="loadSaveFilters#{index}"
                   target="#{widgetFilterHelperBean.loadFiltersRemoteCommand}"/>
+                <f:param name="skipValidator" value="true" />
               </p:commandButton>
             </div>
           </div>
