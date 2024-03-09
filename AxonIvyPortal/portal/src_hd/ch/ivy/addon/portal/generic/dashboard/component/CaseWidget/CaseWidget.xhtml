@@ -19,7 +19,7 @@
 
   <p:remoteCommand id="rcLoadCaseFirstTime" autoRun="true" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
     update="dashboard-cases-container" global="false" async="true" process="@this"
-    oncomplete="loadWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); PF('dashboard-cases-#{caseWidget.id}').init(PF('dashboard-cases-#{caseWidget.id}').cfg); #{cc.attrs.onCompleteLoadWidget}" />
+    oncomplete="loadWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); initTableWidget(PF('dashboard-cases-#{caseWidget.id}')); #{cc.attrs.onCompleteLoadWidget}" />
 
   <div class="ui-g">
     <h:panelGroup layout="block"
@@ -42,12 +42,12 @@
 
       <p:dataTable id="dashboard-cases" widgetVar="dashboard-cases-#{caseWidget.id}" value="#{caseWidget.dataModel}" var="caseItem"
         lazy="true" scrollRows="25"
-        disabledSelection="#{isPreviewMode}"
         liveScroll="true" scrollable="true" sortBy="#{caseWidget.sortBy}"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-cases--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and caseWidget.caseCount lt 1 ? 'u-display-none' : ''}"
         rowStyleClass="dashboard-table--row-style"
-        emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
+        emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
+        disabledSelection="#{isPreviewMode}">
         <p:ajax event="rowSelect" listener="#{dashboardBean.navigateToSelectedCaseDetails}" disabled="#{!isReadOnlyMode}" />
         <p:ajax event="sort" update="dashboard-cases" onstart="liveScroll()" />
 

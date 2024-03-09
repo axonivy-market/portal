@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 

@@ -4,6 +4,7 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.PortalDateUtils;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CustomTimestampBeforeOperatorHandler {

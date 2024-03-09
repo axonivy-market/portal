@@ -58,8 +58,6 @@ public class DashboardTaskWidgetConverter implements IJsonConverter {
   }
 
   /**
-   * NEED ADAPT FOR CUSTOM_CASE
-   * 
    * @param taskWidget
    * @param col
    */

@@ -9,7 +9,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
-
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -100,6 +99,7 @@ public class DashboardTaskSearchCriteria {
 
     private TaskQuery query;
     private OrderByColumnQuery order;
+    @SuppressWarnings("unused")
     private boolean sortStandardColumn;
 
     public TaskSortingQueryAppender(TaskQuery query) {

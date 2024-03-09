@@ -1571,7 +1571,13 @@ Dialogs:
             IconSelection:
               IconLinkTooltip: Zum Ändern des Symbols anklicken
             TaskItemDetails:
+              CannotWorkOnDestroyedTaskWarning: Sie können nicht an der Aufgabe arbeiten, weil sie zerstört wurde.
+              CannotWorkOnTaskWarning: Sie können die Aufgabe nicht bearbeiten, weil der Benutzer <strong>{0}</strong> gerade daran arbeitet.
+              InvalidStateInfo: Ungültiger Zustand.
+              ResetTaskWarning: Sie arbeiten gerade an der Aufgabe in einer anderen Sitzung. Sie können die Aufgabe zurücksetzen und erneut starten, wenn Sie Ihren Browser geschlossen haben. <a href="{0}">Zurücksetzen</a>
               ShareTaskDetails: Teilen Sie Aufgabendetails
+              TaskCompletedByOtherInfo: Die Aufgabe wurde bereits von Benutzer <strong>{0}</strong> an {1} durchgeführt.
+              TaskCompletedByYouInfo: Sie haben die Aufgabe auf {0} bereits erledigt.
   com:
     axonivy:
       portal:
@@ -1616,7 +1622,10 @@ Dialogs:
               WidgetFilter: Widget-Filter
             TaskWidgetConfiguration:
               AddFilter: Filter hinzufügen
+<<<<<<< HEAD
               ResetFilter: Filter zurücksetzen
+=======
+>>>>>>> refs/heads/feature/IVYPORTAL-15543-SPIKE-Impl.-Approach-for-complex-filters-on-task-and-case-widget
   components:
     CaseDocument:
       FileDate: Änderungsdatum

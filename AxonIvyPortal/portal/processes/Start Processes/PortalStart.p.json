@@ -4650,5 +4650,77 @@
       "visual" : {
         "at" : { "x" : 376, "y" : 3848 }
       }
+    }, {
+      "id" : "f269",
+      "type" : "RequestStart",
+      "name" : "ResetTask.ivp",
+      "config" : {
+        "signature" : "ResetTask",
+        "input" : {
+          "params" : [
+            { "name" : "uuid", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.uuid" : "param.uuid"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 3952 }
+      },
+      "connect" : [
+        { "id" : "f273", "to" : "f271" }
+      ]
+    }, {
+      "id" : "f271",
+      "type" : "Script",
+      "name" : "Reset Task",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;",
+            "import ch.ivyteam.ivy.workflow.ITask;",
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "",
+            "ITask task = TaskService.newInstance().findTaskByUUID(in.uuid);",
+            "",
+            "if(task != null) {",
+            "  TaskUtils.resetTask(task);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 3952 }
+      },
+      "connect" : [
+        { "id" : "f277", "to" : "f278" }
+      ]
+    }, {
+      "id" : "f270",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 936, "y" : 3952 }
+      }
+    }, {
+      "id" : "f278",
+      "type" : "SubProcessCall",
+      "name" : "Functional Processes/Navigator",
+      "config" : {
+        "processCall" : "Functional Processes/Navigator:viewRelatedTask(String,Boolean)",
+        "call" : {
+          "map" : {
+            "param.taskUUID" : "in.uuid",
+            "param.showItemDetailsHeader" : "false"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 631, "y" : 3951 },
+        "size" : { "width" : 255, "height" : 61 }
+      },
+      "connect" : [
+        { "id" : "f279", "to" : "f270" }
+      ]
     } ]
 }

@@ -3,6 +3,7 @@ package com.axonivy.portal.util.filter.operator.task.customfield;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CustomTextIsEmptyOperatorHandler {

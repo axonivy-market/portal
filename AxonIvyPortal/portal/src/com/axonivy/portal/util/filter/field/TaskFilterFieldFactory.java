@@ -62,7 +62,7 @@ public class TaskFilterFieldFactory {
   
   public static FilterField findBy(String field) {
     FilterField result = STANDARD_FILTER_FIELD.get(field);
-    if(result == null) {
+    if (result == null) {
       result = findCustomFieldBy(field);
     }
     return result;

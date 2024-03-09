@@ -52,29 +52,26 @@ public class WidgetDateFilterBean implements Serializable {
     filter.setPeriods(null);
   }
 
-  private String getCaseMessagePrefix(DashboardFilter filter, int index) {
+  private String getCaseMessagePrefix(String field, int index) {
     return String.format(MESSAGE_PREFIX_PATTERN,
-        FilterFieldFactory.findBy(Optional.ofNullable(filter).map(DashboardFilter::getField).orElse("")).getLabel(),
-        index + 1);
+        FilterFieldFactory.findBy(Optional.ofNullable(field).orElse("")).getLabel(), index + 1);
   }
 
-  private String getTaskMessagePrefix(DashboardFilter filter, int index) {
+  private String getTaskMessagePrefix(String field, int index) {
     return String.format(MESSAGE_PREFIX_PATTERN,
-        TaskFilterFieldFactory.findBy(Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""),
-            Optional.ofNullable(filter).map(DashboardFilter::getFilterType).orElse(null)).getLabel(),
-        index + 1);
+        TaskFilterFieldFactory.findBy(Optional.ofNullable(field).orElse("")).getLabel(), index + 1);
   }
 
-  private String getMessagePrefix(DashboardFilter filter, int index, DashboardWidgetType widgetType) {
+  private String getMessagePrefix(String field, int index, DashboardWidgetType widgetType) {
     if (DashboardWidgetType.TASK == widgetType) {
-      return getTaskMessagePrefix(filter, index);
+      return getTaskMessagePrefix(field, index);
     }
 
-    return getCaseMessagePrefix(filter, index);
+    return getCaseMessagePrefix(field, index);
   }
 
-  public String getWrongFormatMessage(DashboardFilter filter, int index, DashboardWidget widget) {
-    return String.join(": ", getMessagePrefix(filter, index, widget.getType()),
+  public String getWrongFormatMessage(String field, int index, DashboardWidget widget) {
+    return String.join(": ", getMessagePrefix(field, index, widget.getType()),
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat"));
   }
 

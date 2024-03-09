@@ -4,17 +4,20 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
-import org.openqa.selenium.WebElement;
-
+import com.axonivy.portal.selenium.common.ComplexFilterHelper;
+import com.axonivy.portal.selenium.common.FilterOperator;
+import com.axonivy.portal.selenium.common.FilterValueType;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
-  private static final String FILTER_CASE_NAME = "Case name";
   private static final String FILTER_CASE_STATE = "State";
+  private static final String FILTER_CASE_NAME = "Case name";
 
   private String caseEditWidgetId;
 
@@ -75,22 +78,28 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     widgetTitle().sendKeys(name);
   }
 
-  public void preview() {
+  public void applyFilter() {
     $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']")
         .shouldBe(getClickableCondition()).click();
   }
 
-  public void filterCaseName(String caseName) {
-    getAvailableFilterInput(FILTER_CASE_NAME).sendKeys(caseName);
+  public void openFilter() {
+    $("button[id$=':show-filter']").shouldBe(getClickableCondition()).click();
   }
 
-  public void filterCaseState() {
-    getAvailableFilterCheckbox(FILTER_CASE_STATE).shouldBe(getClickableCondition()).click();
+  public void filterCaseName(String caseName) {
+    addFilter("Name", FilterOperator.IS);
+    inputValueOnLatestFilter(FilterValueType.TEXT, caseName);
+  }
+
+  public void filterCaseState(String state) {
+    addFilter(FILTER_CASE_STATE, null);
+    inputValueOnLatestFilter(FilterValueType.STATE_TYPE, state);
   }
 
   private ElementsCollection getRowOfTableCasePreview() {
     return $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='case-widget-preview:dashboard-cases']")
-        .$$("table tbody tr");
+        .$$("table tbody tr:not(.ui-datatable-empty-message)");
   }
 
   public ElementsCollection countCases() {
@@ -104,20 +113,22 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void waitPreviewTableLoaded() {
     $(caseEditWidgetId).$("div[id$=':dashboard-cases-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $(caseEditWidgetId).$(".case-dashboard-widget__loading-message").shouldHave(Condition.cssClass("u-display-none"), DEFAULT_TIMEOUT);
   }
 
   public void save() {
     $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT);
     $("[id='widget-configuration-form:new-widget-configuration-component:case-widget-preview:dashboard-cases_head']")
         .shouldBe(appear, DEFAULT_TIMEOUT);
-    $("button[id$='widget-configuration-save-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("button[id$='widget-configuration-save-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    clickByJavaScript($("button[id$='widget-configuration-save-button']"));
     $("button[id$='widget-configuration-save-button']").shouldBe(disappear, DEFAULT_TIMEOUT);
     $(caseEditWidgetId).shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
-  public WebElement openColumnManagementDialog() {
-    $("div[id$='case-widget-preview:dashboard-cases-container']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$("a[id$='column-toggler']").click();
+  public SelenideElement openColumnManagementDialog() {
+    $("div[id$='case-widget-preview:dashboard-cases-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("button[id$=':manage-column']").shouldBe(getClickableCondition()).click();
     return getColumnManagementDialog().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -240,7 +251,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return ".case-configuration__creators";
+    return ".widget-configuration__input-text";
   }
 
   public SelenideElement getAddLanguageButton() {
@@ -265,9 +276,10 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     return translationOverlay;
   }
 
-  public WebElement getConfigurationFilter() {
-    return $("[id='widget-configuration-form:new-widget-configuration-component:filter-container']").shouldBe(appear,
-        DEFAULT_TIMEOUT);
+  public SelenideElement getConfigurationFilter() {
+    $("[id$=':widget-filter-content']").$("strong").click();
+    $("[id$=':widget-filter-content']").scrollIntoView("{block: \"end\"}");
+    return $("[id$=':widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getConfigurationDialog() {
@@ -277,5 +289,62 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   public void closeConfigurationDialog() {
     getConfigurationDialog().$(".ui-dialog-footer").$("a").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id='new-widget-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public void addFilter(String columnName, FilterOperator operator) {
+    ComplexFilterHelper.addFilter(columnName, operator);
+  }
+
+  public void inputValueOnLatestFilter(FilterValueType type, Object... values) {
+    ComplexFilterHelper.inputValueOnLatestFilter(type, values);
+  }
+
+  public void closeFilter() {
+    $("span[id$=':widget-title-group']").$("label").scrollIntoView(("{block: \"start\"}")).click();
+    $("div[id$=':widget-filter-content']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    waitPreviewTableLoaded();
+  }
+
+  public void removeFilter(int index) {
+//    $("div[id$=':filter-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
+    int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
+    if (currentIndex > 0) {
+      String removeBtn = String.format("button[id$=':%s:filter-component:remove-filter']", index);
+      $(removeBtn).shouldBe(getClickableCondition()).click();
+      countFilterSelect().shouldBe(CollectionCondition.size(currentIndex - 1), DEFAULT_TIMEOUT);
+    }
+  }
+
+  public ElementsCollection countFilterSelect() {
+    return $$("[id$=':filter-component:field-selection_panel']");
+  }
+
+  public void addCustomField(String fieldName) {
+    selectCustomType();
+    getCustomFieldSelection().click();
+    SelenideElement customFieldPanel = $("span[id$='column-management-form:custom-field-selection_panel']");
+    customFieldPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement fieldElement =
+        customFieldPanel.$$("li").filter(text(fieldName)).first().shouldBe(getClickableCondition());
+    fieldElement.getAttribute(FILTER_CASE_NAME);
+    fieldElement.click();
+    getColumnManagementDialog().$("button[id$='field-add-btn']").click();
+  }
+
+  public void saveAfterAddingCustomField() {
+    $("button[id$='column-management-save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("button#widget-configuration-save-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("span#dashboard-header-action").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("button#back-to-configuration")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("button#back-to-home-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+  }
+
+  public void addCustomColumns(String... fieldNameList) {
+    openColumnManagementDialog();
+    selectCustomType();
+    for (String fieldName : fieldNameList) {
+      addCustomField(fieldName);
+    }
+    $("button[id$='column-management-save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
   }
 }
