@@ -15,6 +15,7 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
+import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.HomePage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
@@ -42,6 +43,7 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
     super.setup();
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
     redirectToRelativeLink(createTestingTasksUrl);
+    redirectToRelativeLink(createUserFavoriteProcess);
     redirectToRelativeLink(createTestingCaseMapUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     refreshPage();
@@ -151,9 +153,9 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
   public void screenshotCustomizeCaseDetails() throws IOException {
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 1200));
     redirectToRelativeLink(createNewPaymentUrl);
-    CaseWidgetPage caseWidget = mainMenuPage.openCaseList();
-
-    CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Create New Payment");
+    login(TestAccount.ADMIN_USER);
+    CaseWidgetNewDashBoardPage caseWidget = new CaseWidgetNewDashBoardPage();
+    CaseDetailsPage caseDetailsPage = caseWidget.openDetailsCase("Create New Payment");
     caseDetailsPage.waitForCaseDetailsDisplay();
     ScreenshotUtils.executeDecorateJs("highlightCaseDetailComponents()");
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-standard-1");
