@@ -389,6 +389,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     updatePortalSetting(Variable.SHOW_USER_GUIDE.getKey(), "true");
     TaskTemplatePage homePage = new TaskTemplatePage();
     homePage.waitForLeftMenuActive();
+    homePage.waitForOverlayGuideRendered();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DASHBOARD_FOLDER + "overlay-guide");
   }
   
