@@ -45,8 +45,9 @@
 
     <ui:fragment rendered="#{securityMemberDisplayNameBean.isRenderGroupUsersAsTooltip(securityMember, alwaysShowAsText)}">
       <f:event listener="#{logic.loadUsersForTooltip(securityMember)}" type="preRenderComponent" />
-      <p:tooltip escape="false" value="#{htmlSanitizerBean.sanitize(data.usersInTooltips)}" 
-        for="#{cc.clientId}:name-and-avatar:#{cc.attrs.textId}-text"
+      <p:tooltip for="#{cc.clientId}:name-and-avatar:#{cc.attrs.textId}-text"
+        value="#{visibilityBean.sanitizeContent(data.usersInTooltips)}"
+        escape="false"
         styleClass="security-member-tooltip"
         hideEvent="mouseleave click" />
     </ui:fragment>

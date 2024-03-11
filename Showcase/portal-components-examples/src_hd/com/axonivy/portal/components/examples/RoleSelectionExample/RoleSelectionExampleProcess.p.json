@@ -94,16 +94,16 @@
         "guid" : "18189A159B2FA96A",
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
+            "import com.axonivy.portal.components.util.HtmlParser;",
             "",
-            "FacesContext.getCurrentInstance().addMessage(\"form:role-item-select-event-component:item-select-event-for-role-selection\", FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, \"You selected \" + in.selectedRoleForInsertChildren.getDisplayName(), null));"
+            "FacesContext.getCurrentInstance().addMessage(\"form:role-item-select-event-component:item-select-event-for-role-selection\", new FacesMessage(FacesMessage.SEVERITY_INFO, \"You selected \" + HtmlParser.sanitize(in.selectedRoleForInsertChildren.getDisplayName()), null));"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 104, "y" : 256 },
+        "at" : { "x" : 96, "y" : 256 },
         "labelOffset" : { "x" : 46, "y" : 35 }
       },
       "connect" : { "id" : "f10", "to" : "f9" }

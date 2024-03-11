@@ -39,8 +39,10 @@
       </h:panelGroup>
     </h:form>
     <f:facet name="message">
-      <h:outputText escape="false" value="#{htmlSanitizerBean.sanitize(ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLogout'))}" rendered="#{task.state != 'CREATED'}" styleClass="ui-confirm-dialog-message" />
-      <h:outputText escape="false" value="#{htmlSanitizerBean.sanitize(ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLogout'))}" rendered="#{task.state == 'CREATED'}" styleClass="ui-confirm-dialog-message"/>
+      <h:outputText rendered="#{task.state != 'CREATED'}" styleClass="ui-confirm-dialog-message" escape="false"
+        value="#{visibilityBean.sanitizeContent(ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLogout'))}" />
+      <h:outputText rendered="#{task.state == 'CREATED'}" styleClass="ui-confirm-dialog-message" escape="false"
+        value="#{visibilityBean.sanitizeContent(ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLogout'))}" />
     </f:facet>
   </p:confirmDialog>
 
