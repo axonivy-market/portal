@@ -20,7 +20,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.util.FacesMessageUtils;
+import com.axonivy.portal.components.util.HtmlParser;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
@@ -160,7 +160,10 @@ public class ColumnManagementBean implements Serializable {
     }
     this.columnsBeforeSave.add(columnModel);
     this.fields.remove(columnModel.getField());
-    FacesMessage msg = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/fieldIsAdded", Arrays.asList(this.selectedField)), null);
+    FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+        HtmlParser.sanitize(
+            Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/fieldIsAdded", Arrays.asList(this.selectedField))),
+        null);
     FacesContext.getCurrentInstance().addMessage("field-msg", msg);
     resetValues();
   }
