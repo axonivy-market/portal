@@ -102,25 +102,6 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
   }
 
   @Test
-  public void screenshotConfigureExternalPageWidget() throws IOException {
-//    TEMPORARY DISABLE, WAIT FOR VERIFIER OPINION
-//    redirectToDashboardConfiguration();
-//    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
-//    configPage.selectPublicDashboardType();
-//    configPage.openEditPublicDashboardsPage();
-//    DashboardModificationPage editPage = new DashboardModificationPage();
-//    NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
-//    detailsEditPage.waitPageLoaded();
-//    detailsEditPage.addWidget();
-//    detailsEditPage.clickOnAddCustomWidget();
-//
-//    CustomWidgetNewDashBoardPage customWidgetPage = new CustomWidgetNewDashBoardPage();
-//    customWidgetPage.inputExternalUrlField(EXTERNAL_URL);
-//    ScreenshotUtils.captureElementScreenshot(customWidgetPage.getConfigurationDialog(),
-//        ScreenshotUtils.DASHBOARD_FOLDER + "external-page-widget-configuration");
-  }
-
-  @Test
   public void screenshotDashboardWithAnnotation() throws IOException {
     updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "true");
     updatePortalSetting(Variable.SHOW_USER_GUIDE.getKey(), "false");
