@@ -226,10 +226,15 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
 
   public String generateDashboardPermisisonForDisplay(Dashboard dashboard) {
+    extractRoleDisplayName(dashboard.getPermissions());
     return Optional.ofNullable(dashboard)
         .map(Dashboard::getPermissions)
         .filter(l -> CollectionUtils.isNotEmpty(l))
-        .isPresent() ? String.join(", ", dashboard.getPermissions()) : "";
+        .isPresent() ? String.join(", ", extractRoleDisplayName(dashboard.getPermissions())) : "";
+  }
+  
+  private List<String> extractRoleDisplayName(List<String> roles) {
+    return roles.stream().map(name -> RoleUtils.findRole(name)).filter(Objects::nonNull).map(roleDto -> roleDto.getDisplayName()).toList();
   }
 
   public void updateDashboardTitleByLocale() {
