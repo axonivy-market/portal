@@ -176,14 +176,16 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public void reorderPublicDashboard() {
     selectPublicDashboardType();
-    $("i.dashboard-icon-drag-drop").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
+    $("a[id$='reorder-dashboard-action']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
         .click();
+    $("[id$='reorder-dashboard-form:public-dashboard-table']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void reorderPrivateDashboard() {
     selectPrivateDashboardType();
-    $("i.dashboard-icon-drag-drop").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
+    $("a[id$='reorder-dashboard-action']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
         .click();
+    $("[id$='reorder-dashboard-form:dashboard-table']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   private void inputCreateDashboardDialog(String newName, String icon, String newDescription, List<String> permissions) {

@@ -52,8 +52,9 @@ public class DashboardConfigurationScreenshotTest extends ScreenshotBaseTest {
     dashboardConfigurationPage.openEditPrivateDashboardsPage();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "edit-private-dashboards", new ScreenshotMargin(10));
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(),
-        ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "reorder-your-dashboards", new ScreenshotMargin(10));
+    dashboardConfigurationPage.reorderPrivateDashboard();
+    ScreenshotUtils.captureElementScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(),
+        ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "reorder-your-dashboards");
     dashboardConfigurationPage.selectPublicDashboardType();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "public-dashboard-configuration", new ScreenshotMargin(10));
@@ -64,8 +65,9 @@ public class DashboardConfigurationScreenshotTest extends ScreenshotBaseTest {
     dashboardConfigurationPage.openEditPublicDashboardsPage();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "edit-public-dashboards", new ScreenshotMargin(10));
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(),
-        ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "reorder-public-dashboards", new ScreenshotMargin(10));
+    dashboardConfigurationPage.reorderPublicDashboard();
+    ScreenshotUtils.captureElementScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(),
+        ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "reorder-public-dashboards");
     dashboardConfigurationPage.openCreatePublicDashboardMenu();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardTemplates(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "dashboard-templates", new ScreenshotMargin(10));
