@@ -336,4 +336,9 @@ public class TaskTemplatePage extends TemplatePage {
   public void waitForMainAreaPanelRendered() {
     $("div[id$='main-area-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
+  
+  public void waitForOverlayGuideRendered() {
+    $("div[id$='welcome-portal-guide']").shouldBe(appear, DEFAULT_TIMEOUT);
+    
+  }
 }
