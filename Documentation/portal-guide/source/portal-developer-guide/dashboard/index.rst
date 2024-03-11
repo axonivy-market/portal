@@ -166,12 +166,11 @@ Configure Main Menu Entry Dashboard
 -----------------------------------
 Portal supports customizing the main menu entry of dashboards.
 
-To customize the menu, you can edit the Portal variable
+To customize the menu, you can edit the Portal 
 ``Portal.Dashboard.MainMenuEntry.json``. Below is an example JSON of a custom menu.
 
 .. code-block:: html
 
-   [
       {
          "names": [
                {
@@ -193,7 +192,6 @@ To customize the menu, you can edit the Portal variable
             ],
         "icon": "si si-layout-bullets"
       }
-   ]
 
 ..
    
