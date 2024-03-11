@@ -424,7 +424,7 @@ function isPressedSpecialKeys(event) {
   const specialKeys = ['Enter', 'Shift', 'Control',
   'Alt', 'Pause', 'CapsLock', 'Escape',
   'PageUp', 'PageDown', 'End', 'Home',
-  'PrintScreen', 'Insert', 'Delete', 'Meta',
+  'PrintScreen', 'Insert', 'Meta',
   'ContextMenu', 'NumLock', 'ScrollLock'];
 
   if (specialKeys.includes(event.key)) {
