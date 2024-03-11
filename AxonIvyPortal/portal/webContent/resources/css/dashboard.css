@@ -8,10 +8,6 @@
   padding-bottom: 1rem;
 }
 
-div#new-widget-dialog_content {
-  width: auto !important;
-}
-
 .new-widget-dialog__content .ui-datagrid-content{
   padding: 0;
   border: none;
