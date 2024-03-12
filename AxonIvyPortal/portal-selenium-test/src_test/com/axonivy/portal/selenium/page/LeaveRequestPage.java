@@ -102,10 +102,4 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
     switchToDefaultContent();
     return new TaskWidgetPage();
   }
-
-  public void waitForLeaveRequestStepRendered() {
-    waitForElementDisplayed(By.id("iFrame"), true);
-    $("div[id$='leave-request']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-  }
-
 }
