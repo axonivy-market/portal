@@ -162,4 +162,8 @@ public class CaseDashboardWidget extends DashboardWidget {
   public void setRowsPerPage(int rowsPerPage) {
     this.rowsPerPage = rowsPerPage;
   }
+
+  public void setQuickSearchKeword() {
+    this.dataModel.getCriteria().setQuickSearchKeyword(this.getQuickSearchKeyword());
+  }
 }
