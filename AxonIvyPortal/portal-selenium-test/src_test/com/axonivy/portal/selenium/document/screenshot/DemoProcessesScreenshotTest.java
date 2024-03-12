@@ -74,6 +74,7 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
     LeaveRequestPage leaveRequestPage = new LeaveRequestPage();
     leaveRequestPage.switchToIFrameOfTask();
     leaveRequestPage.waitForIFrameContentVisible();
+    leaveRequestPage.waitForLeaveRequestStepRendered();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "leave-request-creation");
   }
 
