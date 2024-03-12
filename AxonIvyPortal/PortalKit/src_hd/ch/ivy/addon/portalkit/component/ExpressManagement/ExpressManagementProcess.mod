@@ -53,16 +53,16 @@ in.importOutput = StringUtils.EMPTY;
 
 if (in.importExpressFile == null || in.importExpressFile.getFile().getSize() == 0) {
   in.isError = true;
-  in.validateMessage = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/fileEmptyMessage"), null);
+  in.validateMessage = FacesMessageUtils.message(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/fileEmptyMessage"), null);
 } else if (CaseDocumentService.enableVirusScannerForUploadedDocument() && CaseDocumentService.isDocumentTypeHasVirus(in.importExpressFile.getFile())) {
   in.isError = true;
-  in.validateMessage = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainVirus"), null);
+  in.validateMessage = FacesMessageUtils.message(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainVirus"), null);
 } else if (CaseDocumentService.enableScriptCheckingForUploadedDocument() && !CaseDocumentService.isDocumentSafe(in.importExpressFile.getFile())) {
   in.isError = true;
-  in.validateMessage = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
+  in.validateMessage = FacesMessageUtils.message(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
 } else if (!FilenameUtils.isExtension(in.importExpressFile.getFile().getFileName(), "json")) {
   in.isError = true;
-  in.validateMessage = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/Dialogs/components/CaseDocument/invalidFileMessage"), null);
+  in.validateMessage = FacesMessageUtils.message(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/Dialogs/components/CaseDocument/invalidFileMessage"), null);
 }' #txt
 Es0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
