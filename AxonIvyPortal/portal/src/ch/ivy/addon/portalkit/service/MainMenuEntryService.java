@@ -17,8 +17,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class MainMenuEntryService {
   private static final String MAIN_MENU_ENTRY = PortalVariable.DASHBOARD_MAIN_MENU_ENTRY.key;
 
-  public MainMenuEntryService() {
-  }
+  public MainMenuEntryService() {}
 
   public Class<MainMenuEntry> getType() {
     return MainMenuEntry.class;
