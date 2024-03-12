@@ -166,7 +166,7 @@ Configure Main Menu Entry Dashboard
 -----------------------------------
 Portal supports customizing the main menu entry of dashboards.
 
-To customize the menu, you can edit the Portal 
+To customize the menu, you can edit the Portal variable
 ``Portal.Dashboard.MainMenuEntry.json``. Below is an example JSON of a custom menu.
 
 .. code-block:: html
