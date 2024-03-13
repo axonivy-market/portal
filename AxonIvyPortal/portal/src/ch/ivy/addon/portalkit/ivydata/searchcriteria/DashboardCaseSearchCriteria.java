@@ -412,7 +412,7 @@ public class DashboardCaseSearchCriteria {
           .filter(col -> Optional.ofNullable(col.getQuickSearch()).orElse(false)).collect(Collectors.toList());
 
       if (CollectionUtils.isNotEmpty(quickSearchColumns)) {
-        for (ColumnModel column : columns) {
+        for (ColumnModel column : quickSearchColumns) {
           DashboardStandardCaseColumn columnEnum = DashboardStandardCaseColumn.findBy(column.getField());
           if (columnEnum != null) {
             appendStandardFieldsToQuickSearchQuery(subQuery, columnEnum);
