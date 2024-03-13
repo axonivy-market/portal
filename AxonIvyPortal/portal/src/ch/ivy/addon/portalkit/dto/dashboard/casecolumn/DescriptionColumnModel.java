@@ -16,7 +16,7 @@ public class DescriptionColumnModel extends CaseColumnModel implements Serializa
     this.style = defaultIfEmpty(this.style, getDefaultStyle());
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.sortable = defaultIfEmpty(this.sortable, getDefaultSortable());
-    this.quickSearch = defaultIfEmpty(this.quickSearch, false);
+    this.quickSearch = defaultIfEmpty(this.quickSearch, true);
   }
 
   @Override

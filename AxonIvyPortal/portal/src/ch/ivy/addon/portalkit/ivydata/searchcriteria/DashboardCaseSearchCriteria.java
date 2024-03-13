@@ -432,7 +432,7 @@ public class DashboardCaseSearchCriteria {
     case DESCRIPTION -> subQuery.where().or().description().isLikeIgnoreCase(formattedKeyword);
     case CATEGORY -> subQuery.where().or().category().isLikeIgnoreCase(formattedKeyword);
     case ID -> subQuery.where().or().caseId().isLikeIgnoreCase(formattedKeyword);
-    case CREATOR -> subQuery.where().or().creatorId().isLikeIgnoreCase(formattedKeyword);
+    case CREATOR -> subQuery.where().or().creatorUserDisplayName().isLikeIgnoreCase(formattedKeyword);
     case APPLICATION -> queryApplicationByQuickSearch(subQuery, this.quickSearchKeyword);
     default -> {
     }
@@ -469,7 +469,7 @@ public class DashboardCaseSearchCriteria {
     return quickSearchKeyword;
   }
 
-  public String setQuickSearchKeyword(String quickSearchKeyword) {
-    return this.quickSearchKeyword = quickSearchKeyword;
+  public void setQuickSearchKeyword(String quickSearchKeyword) {
+    this.quickSearchKeyword = quickSearchKeyword;
   }
 }
