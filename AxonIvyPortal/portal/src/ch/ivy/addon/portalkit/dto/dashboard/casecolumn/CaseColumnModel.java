@@ -53,6 +53,10 @@ public class CaseColumnModel extends ColumnModel {
     return column;
   }
 
+  /**
+   * Only allow quick search for custom String and Text fields
+   * 
+   */
   @Override
   public boolean canQuickSearch() {
     CustomFieldType type = switch (this.type) {

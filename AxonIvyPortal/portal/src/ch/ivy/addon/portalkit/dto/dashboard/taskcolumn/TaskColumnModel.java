@@ -56,7 +56,7 @@ public class TaskColumnModel extends ColumnModel {
         return new ExpiryDateColumnModel();
       } else if (equals(DashboardStandardTaskColumn.CATEGORY, field)) {
         return new CategoryColumnModel();
-      }  else if (equals(DashboardStandardTaskColumn.APPLICATION, field)) {
+      } else if (equals(DashboardStandardTaskColumn.APPLICATION, field)) {
         return new ApplicationColumnModel();
       } else if (equals(DashboardStandardTaskColumn.ACTIONS, field)) {
         return new ActionsColumnModel();
@@ -76,9 +76,9 @@ public class TaskColumnModel extends ColumnModel {
   @Override
   public boolean canQuickSearch() {
     CustomFieldType type = switch (this.type) {
-      case CUSTOM -> type = DashboardWidgetUtils.findTaskCustomFieldType(field);
-      case CUSTOM_CASE -> type = DashboardWidgetUtils.findCaseCustomFieldType(field);
-      default -> null;
+    case CUSTOM -> type = DashboardWidgetUtils.findTaskCustomFieldType(field);
+    case CUSTOM_CASE -> type = DashboardWidgetUtils.findCaseCustomFieldType(field);
+    default -> null;
     };
     return type == CustomFieldType.STRING || type == CustomFieldType.TEXT;
   }
