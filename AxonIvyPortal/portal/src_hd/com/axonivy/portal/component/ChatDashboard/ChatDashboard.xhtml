@@ -9,6 +9,52 @@
   <ui:composition
     template="/layouts/includes/ChatDashboardTemplate.xhtml">
     <ui:param name="managedBean" value="#{portalSupportBean}" />
+
+    <ui:define name="assistantManagementSection">
+      <div class="ui-g tools-panel">
+        <div class="ui-g-12 tool-header-text">
+          <h:outputText value="Tools" />
+        </div>
+        <ui:repeat var="tool" value="#{portalSupportBean.assistant.toolkit}" varStatus="index">
+          <p:toolbar id="toolbar-#{index}" styleClass="ui-g-12 assistant-toolbar">
+            <f:facet name="left">
+              <div class="ui-g">
+                <div class="tool-info-line tool-header-line">
+                  <div class="tool-name">
+                    <h:outputText styleClass="u-font-bold" value="#{tool.name}" />
+                    <p:spacer width="10" />
+                    <p:tag severity="#{portalSupportBean.getToolSeverity(tool.type.name())}" value="#{tool.type.label}" />
+                  </div>
+
+                  <div class="u-no-padding tool-actions">
+                    <p:commandButton id="configure-tool" icon="si si-cog"
+                      styleClass="rounded-button ui-button-outlined action-column-icon-button u-mar-right-5"
+                      title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}" />
+                    <p:commandButton id="remove-tool" icon="si si-bin-1"
+                      styleClass="rounded-button ui-button-outlined action-column-icon-button ui-button-danger" 
+                      title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"/>
+                  </div>
+                </div>
+                <div class="ui-g-12 tool-info-line">
+                  <h:outputText value="#{tool.description}" />
+                </div>
+
+                <div class="ui-g-12 tool-info-line">
+                  <h:outputText value="Permission:" />
+                  <p:spacer width="10" />
+                  <h:outputText value="#{portalSupportBean.renderPermissions(tool.permissions)}" />
+                </div>
+
+                <!-- <ui:include src="ToolAttributes.xhtml" /> -->
+              </div>
+            </f:facet>
+          </p:toolbar>
+          <p:spacer height="10" />
+          
+        </ui:repeat>
+      </div>
+    </ui:define>
+
     <ui:define name="welcomeSection">
       <div class="welcome-container">
         <p>#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/ChatDashboard/WelcomeHeaderText')}</p>

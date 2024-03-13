@@ -63,11 +63,14 @@ var Portal = {
       $('.js-left-sidebar').css({'height': 'calc(100vh - ' + (headerFooterHeight - envHeight) + 'px)','top': headerHeight + 'px'});
     }
 
-    if (headerFooterHeight === 0 && envHeight === 0) {
-      $layoutMain.removeAttr('style');
-    } else {
-      const layoutMainPaddingTop = headerHeight + layoutTopbarHeight + 20; // By default, Freya buffer 20px from topbar, refer to .layout-main class
-      $layoutMain.css({'padding-top': layoutMainPaddingTop + 'px', 'padding-bottom' : footerHeight + 'px'});
+    // Don't update layout if rendering AI result
+    if (!$layoutMain.parent('.iframe-body').hasClass('ai-result')) {
+      if (headerFooterHeight === 0 && envHeight === 0) {
+        $layoutMain.removeAttr('style');
+      } else {
+        const layoutMainPaddingTop = headerHeight + layoutTopbarHeight + 20; // By default, Freya buffer 20px from topbar, refer to .layout-main class
+        $layoutMain.css({'padding-top': layoutMainPaddingTop + 'px', 'padding-bottom' : footerHeight + 'px'});
+      }
     }
 
     var chatPanel = $('.js-chat-panel');

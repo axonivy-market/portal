@@ -1,7 +1,10 @@
 package ch.ivy.addon.portalkit.enums;
 
+import java.util.Collections;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public enum DashboardStandardCaseColumn {
   ID("id"), 
@@ -37,4 +40,7 @@ public enum DashboardStandardCaseColumn {
   public static DashboardStandardCaseColumn findBy(String field) {
     return map.get(field);
   }
+
+  public static final Set<DashboardStandardCaseColumn> AI_RESULT_COLUMNS = Collections
+      .unmodifiableSet(EnumSet.of(ID, NAME, OWNER, ACTIONS));
 }

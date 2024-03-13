@@ -20,17 +20,17 @@
 
     </ui:define>
     <ui:define name="pageContent">
-      <div class="ui-g">
+      <div class="ui-g assistant-main-panel">
         <div class="ui-g-12 chat-container js-chat-container card">
           <h:form id="chat-form">
             <script type="text/javascript">
 
               const userName = "#{ivy.session.getSessionUserName()}";
               const contextPath = "#{ivy.task.getApplication().getContextPath()}";
-              const resource = "#{managedBean.endpoint}";
+              const resource = "#{managedBean.assistantEndPoint}";
               const ivyResource = new IvyUri().rest() + "/";
               const view = new View(resource);
-              const chatbot = new Assistant(ivyResource, resource, view, `#{managedBean.assistant.toJson()}`, userName);
+              const chatbot = new Assistant(ivyResource, resource, view, `#{managedBean.getAssistantJson()}`, userName);
 
               $(document).ready(function(){
                 hljs.configure({
@@ -44,6 +44,24 @@
     
             <div id="chat-panel" class="chatbot-panel js-chatbot-panel">
               <div class="message-list js-message-list ui-g">
+                <div class="ui-g-9 u-padding-0 assistant-header-wrapper">
+                  <div class="assistant-header-panel">
+                    <div class="assistant-name">
+                      <h:outputText value="#{managedBean.assistant.name}" />
+                    </div>
+                    <div class="assistant-manage-button-container">
+                      <p:commandButton id="manage-button" styleClass="manage-button" value="Manage"
+                        onclick="PF('assistant-sidebar').show(); return false;" />
+                      <p:sidebar id="assistant-sidebar" widgetVar="assistant-sidebar"
+                        blockScroll="true" appendTo="@(body)" position="right" styleClass="manage-assistant-sidebar">
+                        <div class="assistant-info-panel">
+                          <ui:insert name="assistantManagementSection" />
+                        </div>
+                      </p:sidebar>
+                    </div>
+                  </div>
+                </div>
+
                 <h:panelGroup id="chat-message-list" layout="block"
                   styleClass="chatbot-message-list js-chatbot-message-list ui-g-9 ui-sm-12">
 

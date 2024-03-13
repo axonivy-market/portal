@@ -1,4 +1,4 @@
-package com.axonivy.portal.components.dto.ai;
+package ch.ivy.addon.portalkit.dto.ai;
 
 import java.io.Serializable;
 
@@ -14,7 +14,8 @@ public class IvyToolAttribute implements Serializable {
   private String description;
   private boolean isRequired;
 
-  public IvyToolAttribute() {}
+  public IvyToolAttribute() {
+  }
 
   public IvyToolAttribute(String name, String value, String description) {
     this.name = name;
@@ -32,18 +33,23 @@ public class IvyToolAttribute implements Serializable {
   public String getName() {
     return name;
   }
+
   public void setName(String name) {
     this.name = name;
   }
+
   public String getValue() {
     return value;
   }
+
   public void setValue(String value) {
     this.value = value;
   }
+
   public String getDescription() {
     return description;
   }
+
   public void setDescription(String description) {
     this.description = description;
   }

@@ -6,11 +6,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.axonivy.portal.components.dto.ai.IvyCallableTool;
-import com.axonivy.portal.components.dto.ai.IvyTool;
 import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;
 import com.axonivy.portal.payload.IvyToolPayload;
 
+import ch.ivy.addon.portalkit.dto.ai.IvyCallableTool;
+import ch.ivy.addon.portalkit.dto.ai.IvyTool;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

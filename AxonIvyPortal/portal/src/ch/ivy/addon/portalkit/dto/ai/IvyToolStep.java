@@ -1,4 +1,4 @@
-package com.axonivy.portal.components.dto.ai;
+package ch.ivy.addon.portalkit.dto.ai;
 
 import com.axonivy.portal.components.enums.ai.RunState;
 

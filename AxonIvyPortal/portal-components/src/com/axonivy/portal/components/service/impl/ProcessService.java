@@ -52,6 +52,19 @@ public class ProcessService {
     });
   }
 
+  public List<IWebStartable> findAllProcesses() {
+    if (isInSession() && isNotEmpty(processes)) {
+      return processes;
+    }
+    updateUserSessionAtributes();
+    processes = new ArrayList<>();
+    return Sudo.get(() -> {
+      return Ivy.session().getAllStartables()
+          .filter(process -> isNotPortalHomeAndMSTeamsProcess(process))
+          .collect(Collectors.toList());
+    });
+  }
+
   private void updateUserSessionAtributes() {
     sessionUserId = Ivy.session().getAttribute(SessionAttribute.SESSION_IDENTIFIER.toString()).toString();
     userLanguage = UserUtils.getUserLanguage();
