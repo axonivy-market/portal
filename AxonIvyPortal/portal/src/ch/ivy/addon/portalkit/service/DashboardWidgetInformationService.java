@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.service;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,6 +16,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
 import com.axonivy.portal.components.service.IvyAdapterService;
+import com.axonivy.portal.dto.dashboard.WidgetInformationCategoryStatisticData;
 
 import ch.ivy.addon.portalkit.bo.CaseCategoryStatistic;
 import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
@@ -102,15 +104,22 @@ public class DashboardWidgetInformationService {
     return numberOfTasksExpireMap;
   }
 
-  public Map<String, Long> buildStatisticOfTaskByCategory(DashboardTaskLazyDataModel dataModel) {
-    Map<String, Long> taskByCategoryStatistic = new HashMap<>();
+  public List<WidgetInformationCategoryStatisticData> buildStatisticOfTaskByCategory(DashboardTaskLazyDataModel dataModel) {
+    List<WidgetInformationCategoryStatisticData> taskByCategoryStatistic = new ArrayList<>();
     Map<String, Object> params = new HashMap<>();
     params.put(TASK_CRITERIA_PARAM, generateTaskSearchCriteriaWithoutOrderByClause(dataModel));
 
     Map<String, Object> response = IvyAdapterService.startSubProcessInProjectAndAllRequired(ANALYZE_TASK_CATEGORY, params);
 
     var taskCategoryStatistic = (TaskCategoryStatistic) response.get("taskCategoryStatistic");
-    taskByCategoryStatistic.putAll(taskCategoryStatistic.getNumberOfTasksByCategory());
+    
+    for (var entry : taskCategoryStatistic.getNumberOfTasksByCategory().entrySet()) {
+      WidgetInformationCategoryStatisticData data = new WidgetInformationCategoryStatisticData();
+      data.setCategoryTechnicalPath(entry.getKey());
+      data.setSummary(entry.getValue());
+      taskByCategoryStatistic.add(data);
+    }
+    
     return taskByCategoryStatistic;
   }
 
@@ -170,15 +179,21 @@ public class DashboardWidgetInformationService {
         LinkedHashMap::new);
   }
 
-  public Map<String, Long> buildStatisticOfCaseByCategory(DashboardCaseLazyDataModel dataModel) {
-    Map<String, Long> caseByCategoryStatistic = new HashMap<>();
+  public List<WidgetInformationCategoryStatisticData> buildStatisticOfCaseByCategory(DashboardCaseLazyDataModel dataModel) {
+    List<WidgetInformationCategoryStatisticData> caseByCategoryStatistic = new ArrayList<>();
     Map<String, Object> params = new HashMap<>();
     params.put(CASE_CRITERIA_PARAM, generateCaseSearchCriteriaWithoutOrderByClause(dataModel));
 
     var response = IvyAdapterService.startSubProcessInProjectAndAllRequired(ANALYZE_CASE_CATEGORY, params);
 
     var caseCategoryStatistic = (CaseCategoryStatistic) response.get("caseCategoryStatistic");
-    caseByCategoryStatistic.putAll(caseCategoryStatistic.getNumberOfCasesByCategory());
+    
+    for (var entry : caseCategoryStatistic.getNumberOfCasesByCategory().entrySet()) {
+      WidgetInformationCategoryStatisticData data = new WidgetInformationCategoryStatisticData();
+      data.setCategoryTechnicalPath(entry.getKey());
+      data.setSummary(entry.getValue());
+      caseByCategoryStatistic.add(data);
+    }
     return caseByCategoryStatistic;
   }
 
