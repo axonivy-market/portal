@@ -230,7 +230,7 @@
 
 .chatbot-panel .message-iframe {
   width: 68vw;
-  height: 70vh;
+  max-height: 70vh;
   border-radius: 10px;
   border: solid 1px var(--ivy-primary-color-grey-light);
   margin: auto;
@@ -333,5 +333,87 @@
   .ui-scrolltop.chatbot-message-list-scrolltop {
     bottom: 18vh;
   }
-  
+}
+
+.chatbot-panel .assistant-commands-panel {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  padding-top: 3rem;
+  padding-right: 3rem;
+}
+
+.manage-assistant-sidebar .assistant-info-panel {
+  padding-top: 2rem;
+}
+
+body .ui-sidebar.manage-assistant-sidebar {
+  width: 35vw;
+}
+
+body .ui-sidebar.manage-assistant-sidebar .assistant-toolbar {
+  padding: 0.5rem;
+}
+
+body .ui-sidebar.manage-assistant-sidebar .tool-header-text {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  padding-left: 0;
+}
+
+body .ui-sidebar.manage-assistant-sidebar .tools-panel {
+  overflow-y: auto;
+}
+
+body .ui-sidebar.manage-assistant-sidebar .tools-panel .tool-info-line {
+  padding-bottom: 3px;
+  padding-top: 3px;
+}
+
+body .ui-sidebar.manage-assistant-sidebar .tools-panel .tool-header-line {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+body .ui-sidebar.manage-assistant-sidebar .tools-panel .tool-header-line .tool-actions {
+  width: 80px;
+}
+
+body .ui-sidebar.manage-assistant-sidebar .tools-panel .tool-header-line .tool-name {
+  padding: .0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.assistant-header-wrapper {
+  margin: auto;
+}
+
+.assistant-header-wrapper .assistant-header-panel {
+  display: flex;
+  flex-direction: row;
+  align-content: stretch;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.assistant-header-wrapper .assistant-header-panel .assistant-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.assistant-header-panel .assistant-manage-button-container {
+  width: 100px;
+}
+
+.assistant-header-panel .assistant-manage-button-container .manage-button {
+  float: right;
 }

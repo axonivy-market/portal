@@ -1,14 +1,9 @@
 PortalToolsData #class
 portalkit #namespace
-tool com.axonivy.portal.components.dto.ai.IvyTool #field
-tool PERSISTENT #fieldModifier
+tool ch.ivy.addon.portalkit.dto.ai.IvyTool #field
 taskDashboardWidget ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget #field
-taskDashboardWidget PERSISTENT #fieldModifier
 name String #field
-name PERSISTENT #fieldModifier
 description String #field
-description PERSISTENT #fieldModifier
 priority String #field
-priority PERSISTENT #fieldModifier
 state String #field
-state PERSISTENT #fieldModifier
+caseDashboardWidget ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget #field

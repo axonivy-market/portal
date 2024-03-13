@@ -1,0 +1,51 @@
+[
+  {
+    "name" : "findTasks",
+    "type" : "IVY_CALLABLE",
+    "signature" : "findTasks(String,String,String,String)",
+    "permissions" : ["Developer", "CostObject"],
+    "description" : "This tool is helpful when user want to find tasks by attributes.",
+    "attributes" : [
+      {
+        "name" : "taskName",
+        "description" : "Name of the task"
+      } , {
+        "name" : "taskDescription",
+        "description" : "Description of the task"
+      } , {
+        "name" : "taskPriority",
+        "description" : "Priority of a task. Valid values for this attribute: low, normal, high, exception"
+      } , {
+        "name" : "taskState",
+        "description" : "State of the task. Valid values for this attribute: open, in progress, done"
+      }
+      
+    ]
+  } , {
+    "name" : "findCases",
+    "type" : "IVY_CALLABLE",
+    "signature" : "findCases(String,String,String)",
+    "permissions" : ["Developer", "#demo"],
+    "description" : "This tool is helpful when user want to find cases by attributes.",
+    "attributes" : [
+      {
+        "name" : "caseName",
+        "description" : "Name of the case"
+      } , {
+        "name" : "caseDescription",
+        "description" : "Description of the case"
+      } , {
+        "name" : "caseState",
+        "description" : "State of the case. Valid values for this attribute: open, done, destroyed"
+      }
+      
+    ]
+  } , {
+    "name" : "portal-support",
+    "type" : "RETRIEVAL_QA",
+    "default" : true,
+    "description" : "Helpful when user ask questions.",
+    "permissions" : ["Everybody"],
+    "collection" : "portal-user-guide"
+  }
+]

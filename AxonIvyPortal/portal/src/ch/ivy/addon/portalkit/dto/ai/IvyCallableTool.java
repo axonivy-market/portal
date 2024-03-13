@@ -1,4 +1,4 @@
-package com.axonivy.portal.components.dto.ai;
+package ch.ivy.addon.portalkit.dto.ai;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -7,13 +7,14 @@ import java.util.Map;
 
 import org.apache.commons.collections4.CollectionUtils;
 
-import com.axonivy.portal.components.enums.ToolType;
 import com.axonivy.portal.components.enums.ai.RunState;
 import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;
 import com.axonivy.portal.components.service.IvyAdapterService;
+import com.axonivy.portal.enums.ai.ToolType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.JsonNode;
 
-public class IvyCallableTool extends AbstractTool {
+public class IvyCallableTool extends AiTool {
 
   private static final long serialVersionUID = -5362479525475837795L;
 
@@ -60,7 +61,8 @@ public class IvyCallableTool extends AbstractTool {
     getAttributes().forEach(attr -> {
       params.put(attr.getName(), attr.getValue());
     });
-    Map<String, Object> result = IvyAdapterService.startSubProcessInProjectAndAllRequired(getSignature(), params);
+    Map<String, Object> result = IvyAdapterService
+        .startSubProcessInProjectAndAllRequired(getSignature(), params);
 
     if (CollectionUtils.isEmpty(getSteps())) {
       IvyToolStep step = new IvyToolStep();
@@ -73,12 +75,19 @@ public class IvyCallableTool extends AbstractTool {
         step.setDescription(getDescription());
         step.setState(RunState.DONE);
       } else {
-        step.setResult("Error happened when proceed your request, please try again.");
+        step.setResult(
+            "Error happened when proceed your request, please try again.");
         step.setState(RunState.ERROR);
       }
 
       setSteps(Arrays.asList(step));
     }
-    return BusinessEntityConverter.entityToJsonValue(getSteps().get(getWorkingStepNo()));
+    return BusinessEntityConverter
+        .entityToJsonValue(getSteps().get(getWorkingStepNo()));
+  }
+
+  @Override
+  public JsonNode buildJsonNode() {
+    return BusinessEntityConverter.entityToJsonNode(this);
   }
 }

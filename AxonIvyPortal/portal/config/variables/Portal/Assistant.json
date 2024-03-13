@@ -1,0 +1,7 @@
+[
+  {
+    "id" : "assistant-1",
+    "name" : "Portal Assistant",
+    "tools" : ["findTasks", "findCases", "portal-support"]
+  }
+]

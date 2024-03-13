@@ -195,5 +195,125 @@
       "connect" : [
         { "id" : "f15", "to" : "f6" }
       ]
+    }, {
+      "id" : "f17",
+      "type" : "CallSubStart",
+      "name" : "findCases(String,String,String)",
+      "config" : {
+        "signature" : "findCases",
+        "input" : {
+          "params" : [
+            { "name" : "caseName", "type" : "String", "desc" : "" },
+            { "name" : "caseDescription", "type" : "String", "desc" : "" },
+            { "name" : "caseState", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.taskDescription" : "param.caseDescription",
+            "out.taskName" : "param.caseName",
+            "out.taskState" : "param.caseState"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "result", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "result.result" : "in.result"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 352 },
+        "labelOffset" : { "x" : 31, "y" : 51 }
+      },
+      "connect" : [
+        { "id" : "f23", "to" : "f18" }
+      ]
+    }, {
+      "id" : "f18",
+      "type" : "Script",
+      "name" : "Validate data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "import com.axonivy.portal.util.AssistantUtils;",
+            "",
+            "in.validationError = AssistantUtils.validateCaseState(in.taskState);",
+            "if(StringUtils.isNotBlank(in.validationError)) {",
+            "  in.result = AssistantUtils.generateErrorResult(in.validationError);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 352 }
+      },
+      "connect" : [
+        { "id" : "f25", "to" : "f19" }
+      ]
+    }, {
+      "id" : "f19",
+      "type" : "Alternative",
+      "name" : "valid data?",
+      "config" : {
+        "conditions" : {
+          "f26" : "org.apache.commons.lang3.StringUtils.isBlank(in.validationError)"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 352 },
+        "labelOffset" : { "x" : 22, "y" : -22 }
+      },
+      "connect" : [
+        { "id" : "f26", "to" : "f20", "label" : {
+            "name" : "yes"
+          } },
+        { "id" : "f27", "to" : "f21", "via" : [ { "x" : 352, "y" : 440 }, { "x" : 656, "y" : 440 } ], "label" : {
+            "name" : "no",
+            "segment" : 1.44
+          } }
+      ]
+    }, {
+      "id" : "f20",
+      "type" : "Script",
+      "name" : "generate result",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "import com.axonivy.portal.util.AssistantUtils;",
+            "",
+            "Map params = new HashMap();",
+            "params.put(\"caseName\", in.taskName);",
+            "params.put(\"caseDescription\", in.taskDescription);",
+            "params.put(\"caseState\", in.taskState);",
+            "",
+            "in.result = AssistantUtils.generateLinkToIvyProcess(\"designer/portal/AI Tool Processes/PortalTools/findCasesTool.ivp\", params);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 504, "y" : 352 }
+      },
+      "connect" : [
+        { "id" : "f28", "to" : "f21" }
+      ]
+    }, {
+      "id" : "f21",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 656, "y" : 352 }
+      },
+      "connect" : [
+        { "id" : "f24", "to" : "f22" }
+      ]
+    }, {
+      "id" : "f22",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 752, "y" : 352 }
+      }
     } ]
 }

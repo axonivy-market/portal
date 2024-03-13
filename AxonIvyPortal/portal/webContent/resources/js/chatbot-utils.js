@@ -145,9 +145,14 @@ const generateCodeComponent = codeBlock => {
 
 // Generates an Iframe component with the given paragraph
 const generateIFrameComponent = paragraph => {
+  // generate ID for frame
+  let numberOfFrame = $('.js-message iframe').length;
+  
   const iframeElem = document.createElement('iframe');
-  iframeElem.className = 'message-iframe';
+  iframeElem.className = 'message-iframe u-invisibility';
+  iframeElem.id = 'result-frame-' + numberOfFrame;
   iframeElem.src = paragraph;
+  iframeElem.addEventListener('load', initializeResultIFrameAfterLoad(iframeElem));
   return elemToString(iframeElem);
 };
 
@@ -213,3 +218,47 @@ const parseMessage = message => {
   message = formattedParagraphs.join('\r\n');
   return message;
 };
+
+function initializeResultIFrameAfterLoad(frame) {
+  setTimeout( function() {
+    const iFrame = $('#' + frame.id);
+
+    // Initialize a small height for iFrame
+    iFrame.get(0).style.height = '10px';
+
+    // Get the result's content inside frame
+    const frameResult = iFrame.get(0).contentWindow.document.getElementsByClassName('js-layout-main')[0];
+
+    // Eliminate padding atributes of the result inside frame
+    $(frameResult)
+      .css('padding-top', '0')
+      .css('padding-bottom', '0');
+    
+    // Add class 'ai-result' for the 'iframe-body' div
+    $(frameResult).parent('.iframe-body').addClass('ai-result');
+
+    // if scroll height of the result content bigger than 400px
+    // set scroll height for the iframe = 400px
+    // otherwise set height of the iframe equals to the scroll height of the result content.
+    if (frameResult.scrollHeight > 420) {
+      iFrame.get(0).style.height = '420px';
+    } else {
+      iFrame.get(0).style.height = (frameResult.scrollHeight + 2) + 'px';
+    }
+
+    // Scroll to the bottom of the message list with animation
+    const $messageList = $('.js-message-list');
+    $messageList.animate({
+      scrollTop: $messageList[0].scrollHeight
+    }, 0);
+
+    // Restyle the parent message bubble
+    iFrame.parent('.js-message')
+      .css('padding', '0')
+      .css('box-shadow', 'none')
+      .css('background', 'transparent');
+
+    // Show the result iframe
+    iFrame.removeClass('u-invisibility');
+  }, 800);
+}

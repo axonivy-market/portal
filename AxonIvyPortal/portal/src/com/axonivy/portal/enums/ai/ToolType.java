@@ -1,10 +1,8 @@
-package com.axonivy.portal.components.enums;
+package com.axonivy.portal.enums.ai;
 
 public enum ToolType {
 
-  IVY("Ivy tool"),
-  IVY_CALLABLE("Ivy callable tool"),
-  RETRIEVAL_QA("Retrieval tool");
+  IVY("Ivy"), IVY_CALLABLE("Ivy"), RETRIEVAL_QA("Q&A");
 
   private String label;
 
