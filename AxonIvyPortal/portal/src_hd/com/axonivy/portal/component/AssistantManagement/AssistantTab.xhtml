@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf">
+  <h:panelGroup id="assistant-management-container" styleClass=" ui-g">
+    <div class="ui-g-12">
+      <p:commandButton value="New assistant"
+        actionListener="#{assistantManagementBean.onAddNewAssistant()}"
+        update="@(form)" oncomplete="PF('add-assistant-dialog').show();" />
+  
+      <p:dataTable id="assistant-table" value="#{assistantManagementBean.assistants}" var="assistant">
+        <p:column headerText="Name">
+          <h:outputText value="#{assistant.name}" />
+        </p:column>
+        <p:column headerText="Tools">
+          <h:panelGroup rendered="#{not empty assistant.toolkit}">
+            <ul>
+              <ui:repeat var="tool" value="#{assistant.toolkit}">
+                <h:outputText value="#{tool.type.label} : #{tool.name}" />
+              </ui:repeat>
+            </ul>
+          </h:panelGroup>
+        </p:column>
+      </p:dataTable>
+    </div>
+  </h:panelGroup>
+</html>

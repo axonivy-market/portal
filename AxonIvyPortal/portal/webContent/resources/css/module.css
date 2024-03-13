@@ -6051,3 +6051,11 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
 .combined-mode-loading-container {
   overflow: hidden;
 }
+
+/* AI result */
+
+.iframe-body.ai-result .layout-main,
+.iframe-body.ai-result .layout-content,
+.iframe-body.ai-result .grid-stack {
+  padding: 0;
+}

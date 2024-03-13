@@ -2,7 +2,7 @@ package com.axonivy.portal.ai.tool;
 
 import java.util.Arrays;
 
-import com.axonivy.portal.components.dto.ai.RetrievalQATool;
+import ch.ivy.addon.portalkit.dto.ai.RetrievalQATool;
 
 public class PortalSupport extends RetrievalQATool {
 

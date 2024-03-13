@@ -6,12 +6,12 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import com.axonivy.portal.components.dto.ai.AbstractTool;
-import com.axonivy.portal.components.dto.ai.Assistant;
-import com.axonivy.portal.components.dto.ai.IvyTool;
-import com.axonivy.portal.components.enums.ToolType;
 import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;
+import com.axonivy.portal.enums.ai.ToolType;
 
+import ch.ivy.addon.portalkit.dto.ai.AiTool;
+import ch.ivy.addon.portalkit.dto.ai.Assistant;
+import ch.ivy.addon.portalkit.dto.ai.IvyTool;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -24,17 +24,13 @@ public class AssistantManagementBean {
   private List<IvyTool> ivyTools;
 
   private Assistant selectedAssistant;
-  private AbstractTool selectedTool;
+  private AiTool selectedTool;
   private boolean isAddNewTool;
 
   public void init() {
     setAssistants(BusinessEntityConverter.jsonValueToEntities(Ivy.var().get("Assistants"), Assistant.class));
     setIvyTools(BusinessEntityConverter.jsonValueToEntities(Ivy.var().get("IvyTools"), IvyTool.class));
     this.isAddNewTool = false;
-  }
-
-  private void findIvyTools() {
-    
   }
 
   public List<Assistant> getAssistants() {
@@ -53,11 +49,11 @@ public class AssistantManagementBean {
     this.selectedAssistant = selectedAssistant;
   }
 
-  public AbstractTool getSelectedTool() {
+  public AiTool getSelectedTool() {
     return selectedTool;
   }
 
-  public void setSelectedTool(AbstractTool selectedTool) {
+  public void setSelectedTool(AiTool selectedTool) {
     this.selectedTool = selectedTool;
   }
 

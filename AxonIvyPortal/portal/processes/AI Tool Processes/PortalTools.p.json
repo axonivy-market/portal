@@ -7,7 +7,7 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "RequestStart",
-      "name" : "FindTask",
+      "name" : "findTasksTool",
       "config" : {
         "signature" : "findTasksTool",
         "input" : {
@@ -26,9 +26,9 @@
         },
         "request" : {
           "name" : "FindTask",
-          "description" : "This is a tool to handle request from user, don't use it to answer question. Helpful when user want to find tasks by attributes."
-        },
-        "triggerable" : true
+          "description" : "This is a tool to handle request from user, don't use it to answer question. Helpful when user want to find tasks by attributes.",
+          "isVisibleOnStartList" : false
+        }
       },
       "visual" : {
         "at" : { "x" : 88, "y" : 64 }
@@ -63,6 +63,7 @@
     }, {
       "id" : "f5",
       "type" : "Script",
+      "name" : "Initialize task widget",
       "config" : {
         "output" : {
           "code" : [
@@ -77,6 +78,77 @@
       },
       "connect" : [
         { "id" : "f6", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "RequestStart",
+      "name" : "findCasesTool",
+      "config" : {
+        "signature" : "findCasesTool",
+        "input" : {
+          "params" : [
+            { "name" : "caseName", "type" : "String", "desc" : "" },
+            { "name" : "caseDescription", "type" : "String", "desc" : "" },
+            { "name" : "caseState", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.description" : "param.caseDescription",
+            "out.name" : "param.caseName",
+            "out.state" : "param.caseState"
+          }
+        },
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 200 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f10" }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 512, "y" : 200 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "DialogCall",
+      "name" : "FindCaseWidget",
+      "config" : {
+        "dialog" : "ch.ivy.addon.portal.generic.ai.FindCaseWidget:start(ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget)",
+        "call" : {
+          "map" : {
+            "param.caseWidget" : "in.caseDashboardWidget"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 200 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "f8" }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "Initialize case widget",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.util.AssistantUtils;",
+            "in.caseDashboardWidget = AssistantUtils.convertIvyToolToCaseDashboardWidget(in.name, in.description, in.state);"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 200 }
+      },
+      "connect" : [
+        { "id" : "f12", "to" : "f9" }
       ]
     } ]
 }

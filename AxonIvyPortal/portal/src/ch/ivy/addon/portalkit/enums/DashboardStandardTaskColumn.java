@@ -1,7 +1,10 @@
 package ch.ivy.addon.portalkit.enums;
 
+import java.util.Collections;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public enum DashboardStandardTaskColumn {
   START("start"), 
@@ -38,4 +41,7 @@ public enum DashboardStandardTaskColumn {
   public static DashboardStandardTaskColumn findBy(String field) {
     return map.get(field);
   }
+  
+  public static final Set<DashboardStandardTaskColumn> AI_RESULT_COLUMNS = Collections
+      .unmodifiableSet(EnumSet.of(ID, NAME, RESPONSIBLE, ACTIONS));
 }

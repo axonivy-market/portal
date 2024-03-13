@@ -1,4 +1,4 @@
-package com.axonivy.portal.components.dto.ai;
+package ch.ivy.addon.portalkit.dto.ai;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,23 +10,23 @@ import java.util.Optional;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.enums.ToolType;
 import com.axonivy.portal.components.enums.ai.RunState;
 import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;
 import com.axonivy.portal.components.service.impl.ProcessService;
+import com.axonivy.portal.enums.ai.ToolType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 import ch.ivyteam.ivy.workflow.start.StartParameter;
 
-public class IvyTool extends AbstractTool {
+public class IvyTool extends AiTool {
 
   private static final long serialVersionUID = 7282285288129523071L;
 
   private List<IvyToolAttribute> attributes;
   private String processPath;
   private List<String> requirements;
-
 
   @JsonIgnore
   private IWebStartable startableProcessStart;
@@ -41,7 +41,8 @@ public class IvyTool extends AbstractTool {
 
     setName(getStartableProcessStart().getName());
     setDescription(getStartableProcessStart().getDescription());
-    setPermissions(Arrays.asList(getStartableProcessStart().getActivator().getMemberName()));
+    setPermissions(Arrays
+        .asList(getStartableProcessStart().getActivator().getMemberName()));
   }
 
   public List<IvyToolAttribute> getAttributes() {
@@ -64,7 +65,8 @@ public class IvyTool extends AbstractTool {
     setAttributes(new ArrayList<>());
     List<StartParameter> params = loadParametersOfProcess();
     for (StartParameter param : params) {
-      this.getAttributes().add(new IvyToolAttribute(param.name(), "", param.description()));
+      this.getAttributes()
+          .add(new IvyToolAttribute(param.name(), "", param.description()));
     }
 
   }
@@ -88,7 +90,8 @@ public class IvyTool extends AbstractTool {
   }
 
   private List<StartParameter> loadParametersOfProcess() {
-    return Optional.ofNullable(getStartableProcessStart()).map(IWebStartable::parameters).orElse(new ArrayList<>());
+    return Optional.ofNullable(getStartableProcessStart())
+        .map(IWebStartable::parameters).orElse(new ArrayList<>());
   }
 
   private void initWebStartable() {
@@ -116,17 +119,24 @@ public class IvyTool extends AbstractTool {
     if (CollectionUtils.isEmpty(getSteps())) {
       IvyToolStep step = new IvyToolStep();
       step.setStepNo(0);
-      step.setResult("<iframe>" + this.startableProcessStart.getLink().queryParams(params).getRelative() + "</iframe>");
+      step.setResult("<iframe>" + this.startableProcessStart.getLink()
+          .queryParams(params).getRelative() + "</iframe>");
       step.setState(RunState.DONE);
       step.setToolName(getName());
       setSteps(Arrays.asList(step));
       setWorkingStepNo(0);
     }
-    return BusinessEntityConverter.entityToJsonValue(getSteps().get(getWorkingStepNo()));
+    return BusinessEntityConverter
+        .entityToJsonValue(getSteps().get(getWorkingStepNo()));
   }
 
   @Override
   public ToolType getType() {
     return ToolType.IVY;
+  }
+
+  @Override
+  public JsonNode buildJsonNode() {
+    return BusinessEntityConverter.entityToJsonNode(this);
   }
 }

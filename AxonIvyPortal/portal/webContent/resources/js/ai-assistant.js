@@ -119,7 +119,7 @@ function Assistant(ivyUri, uri, view, assistant, username) {
         // Scroll to latest message
         view.scrollToLatestMessage();
 
-        chooseTool(this.ivyUri, this.uri, view, inputMessage, this.tools);
+        startThread(this.ivyUri, this.uri, view, inputMessage, this.assistant, this.username);
       });
     }
   };
@@ -175,7 +175,7 @@ function Assistant(ivyUri, uri, view, assistant, username) {
           'session_id': '123'
         }));
 
-      result = getResultFromStreamingResponse(response);
+      result = await getResultFromStreamingResponse(response);
       const assistantObj = $.parseJSON(assistant);
 
       if (result.startsWith(VALIDATE_ERROR_PREFIX)) {
@@ -234,7 +234,26 @@ function Assistant(ivyUri, uri, view, assistant, username) {
           'session_id': '123'
         }));
 
-      showResultFromStreamingResponse(response);
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder("utf-8");
+        result = '';
+    
+        while (true) {
+          streaming = true;
+          const { done, value } = await reader.read();
+          if (done) {
+            streaming = false;
+            view.removeStreamingClassFromMessage();
+            break;
+          }
+    
+          // Message and parse the chunk of data
+          const chunk = decoder.decode(value);
+          result += chunk;
+
+          view.renderMessage(result);
+          view.scrollToLatestMessage();
+        }
 
     } catch (error) {
       console.error('Error sending chat message:', error);
@@ -284,7 +303,7 @@ function Assistant(ivyUri, uri, view, assistant, username) {
           'thread_id': threadId,
           'session_id': '123'
         }));
-      showResultFromStreamingResponse(response);
+      await showResultFromStreamingResponse(response);
     } catch (error) {
       console.error('Error sending chat message:', error);
     }
@@ -310,7 +329,8 @@ function Assistant(ivyUri, uri, view, assistant, username) {
   }
 
   async function showResultFromStreamingResponse(response) {
-    view.renderMessage(getResultFromStreamingResponse(response));
+    const result = await getResultFromStreamingResponse(response);
+    view.renderMessage(result);
     view.scrollToLatestMessage();
   }
 }
