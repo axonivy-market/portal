@@ -262,7 +262,7 @@ function highlightCustomColumnsConfigOnCaseList() {
 }
 
 function highlightCaseCreatorFilter() {
-  var filterLabel = $("[id$=':creator-filter:filter-open-form:advanced-filter-command']").find("span.ui-button-text");
+  var filterLabel = $("[id$=':creator-filter:filter-open-form:advanced-filter-command']");
   createRedMediumOutline(filterLabel);
   appendStepAnnotation(filterLabel, "1", -25, -30);
   
@@ -358,7 +358,7 @@ function highlightCustomColumnsConfigOnTaskList() {
 
 
 function highlightTaskStateFilter() {
-  var filterLabel = $("[id$=':state-filter:filter-open-form:advanced-filter-command']").find("span.ui-button-text");
+  var filterLabel = $("[id$=':state-filter:filter-open-form:advanced-filter-command']");
   createRedMediumOutline(filterLabel);
   appendStepAnnotation(filterLabel, "1", -25, -30);
   
