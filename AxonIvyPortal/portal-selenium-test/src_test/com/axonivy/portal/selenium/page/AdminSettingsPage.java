@@ -32,6 +32,7 @@ public class AdminSettingsPage extends TemplatePage {
   public void openSettingTab() {
     waitForElementClickableThenClick("a[href$='#admin-setting-component:adminTabView:setting-tab']");
     waitForElementDisplayed(By.cssSelector("[id$=':adminTabView:settingForm']"), true);
+    waitForAjaxIndicatorDisplayNone();
   }
 
   private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
@@ -172,5 +173,5 @@ public class AdminSettingsPage extends TemplatePage {
         .$("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id='admin-setting-component:settingDialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
-
 }
+

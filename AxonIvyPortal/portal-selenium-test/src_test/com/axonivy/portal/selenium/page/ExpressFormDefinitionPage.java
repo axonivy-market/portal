@@ -93,6 +93,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 
   public void waitForEmailEditorDisplayed() {
     $("[id='form:information-email:email-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForAjaxIndicatorDisplayNone();
   }
 
   public WebElement getPageElement() {
