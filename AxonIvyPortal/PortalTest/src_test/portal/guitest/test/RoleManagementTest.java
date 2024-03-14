@@ -8,8 +8,10 @@ import java.util.UUID;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.Dimension;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
@@ -137,6 +139,7 @@ public class RoleManagementTest extends BaseTest {
 
   @Test
   public void testAssigningUsersToExistedRole() {
+    ScreenshotUtil.resizeBrowser(new Dimension(1900, 1000));
     grantSpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
     redirectToRelativeLink(String.format(GRANT_SPECIFIC_PERMISSION, "RoleCreate"));
     accessToRoleManagement();
