@@ -79,7 +79,7 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
     WaitHelper.waitForNavigation(() -> caseWidget.openDetailsOfCaseHasName("Order Pizza"));
     CaseDetailsPage detailsPage = new CaseDetailsPage();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(detailsPage.getGeneralInforBox(),
-        ScreenshotUtils.CASE_DETAIL_FOLDER + "case-details-data-description", new ScreenshotMargin(50, 10, 10, 10));
+        ScreenshotUtils.CASE_DETAIL_FOLDER + "case-details-data-description", new ScreenshotMargin(50, 0, 10, 10));
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_FOLDER + "case-details");
     ScreenshotUtils.captureElementScreenshot(detailsPage.getRelatedRunningTaskBox(),
         ScreenshotUtils.CASE_DETAIL_FOLDER + "case-details-related-tasks-cases");
@@ -91,14 +91,14 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
 
     detailsPage.addNoteContent("Take Order");
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(detailsPage.openAddAttachmentDialog(),
-        ScreenshotUtils.CASE_DETAIL_FOLDER + "how-to-attach-document-to-case", new ScreenshotMargin(10));
+        ScreenshotUtils.CASE_DETAIL_FOLDER + "how-to-attach-document-to-case", new ScreenshotMargin(0));
     detailsPage.closeAddAttachmentDialog();
     detailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
 
     refreshPage();
     detailsPage.waitForCaseDetailsDisplay();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(detailsPage.getDocumentBox(),
-        ScreenshotUtils.CASE_DETAIL_FOLDER + "case-details-documents", new ScreenshotMargin(10));
+        ScreenshotUtils.CASE_DETAIL_FOLDER + "case-details-documents", new ScreenshotMargin(0));
 
     ScreenshotUtils.executeDecorateJs("scrollToBottomOfLayoutContent()");
     ScreenshotUtils.captureElementScreenshot(detailsPage.getHistoriesBox(),
