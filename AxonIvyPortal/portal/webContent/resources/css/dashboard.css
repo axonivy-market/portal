@@ -893,7 +893,7 @@ span.new-widget-dialog__icon.si {
 }
 
 .dashboard-compact-process-item.process-start-list-item-name-text {
-  width: calc(100% - 40px);
+  width: calc(100% - 25px);
 }
 
 .dashboard-tasks--table .relevant-tasks__more {
