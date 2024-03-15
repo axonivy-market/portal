@@ -8,6 +8,7 @@ public class IvyToolStep {
   private String result;
   private RunState state;
   private String toolName;
+  private String postAction;
 
   public int getStepNo() {
     return stepNo;
@@ -38,5 +39,13 @@ public class IvyToolStep {
   }
   public void setToolName(String toolName) {
     this.toolName = toolName;
+  }
+
+  public String getPostAction() {
+    return postAction;
+  }
+
+  public void setPostAction(String postAction) {
+    this.postAction = postAction;
   }
 }

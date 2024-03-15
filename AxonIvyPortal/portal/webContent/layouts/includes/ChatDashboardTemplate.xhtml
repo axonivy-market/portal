@@ -20,17 +20,17 @@
 
     </ui:define>
     <ui:define name="pageContent">
-      <div class="ui-g assistant-main-panel">
+      <h:panelGroup id="assistant-main-panel" layout="block" styleClass="ui-g assistant-main-panel">
         <div class="ui-g-12 chat-container js-chat-container card">
           <h:form id="chat-form">
             <script type="text/javascript">
 
-              const userName = "#{ivy.session.getSessionUserName()}";
-              const contextPath = "#{ivy.task.getApplication().getContextPath()}";
-              const resource = "#{managedBean.assistantEndPoint}";
-              const ivyResource = new IvyUri().rest() + "/";
-              const view = new View(resource);
-              const chatbot = new Assistant(ivyResource, resource, view, `#{managedBean.getAssistantJson()}`, userName);
+              var userName = "#{ivy.session.getSessionUserName()}";
+              var contextPath = "#{ivy.task.getApplication().getContextPath()}";
+              var resource = "#{managedBean.assistantEndPoint}";
+              var ivyResource = new IvyUri().rest() + "/";
+              var view = new View(resource);
+              var chatbot = new Assistant(ivyResource, resource, view, `#{managedBean.getAssistantJson()}`, userName);
 
               $(document).ready(function(){
                 hljs.configure({
@@ -53,9 +53,26 @@
                       <p:commandButton id="manage-button" styleClass="manage-button" value="Manage"
                         onclick="PF('assistant-sidebar').show(); return false;" />
                       <p:sidebar id="assistant-sidebar" widgetVar="assistant-sidebar"
+                        modal="false" showCloseIcon="false"
                         blockScroll="true" appendTo="@(body)" position="right" styleClass="manage-assistant-sidebar">
                         <div class="assistant-info-panel">
                           <ui:insert name="assistantManagementSection" />
+                        </div>
+                        <p:divider />
+                        <div class="assistant-sidebar-footer">
+                          <div>
+                            <p:commandLink id="cancel-link" styleClass="u-mar-right-10" href="#"
+                              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                              actionListener="#{managedBean.onCancel()}"
+                              oncomplete="PF('assistant-sidebar').hide()"
+                              update="assistant-sidebar" global="false" />
+                          </div>
+                          <div>
+                            <p:commandButton id="save-btn" icon="si si-floppy-disk"
+                              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+                              actionListener="#{managedBean.save()}" update="assistant-main-panel"
+                              oncomplete="PF('assistant-sidebar').hide();" process="@this"/>
+                          </div>
                         </div>
                       </p:sidebar>
                     </div>
@@ -99,7 +116,7 @@
             </div>
           </h:form>
         </div>
-      </div>
+      </h:panelGroup>
       <p:inputText type="hidden" styleClass="js-thread-id" />
     </ui:define>
 

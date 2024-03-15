@@ -1,0 +1,90 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+  xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="isAddTool" default="false" />
+  <cc:attribute name="toolList" required="true" />
+  <cc:attribute name="managedBean" required="true" />
+  <cc:attribute name="componentToUpdate" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="isAddTool" value="#{cc.attrs.isAddTool}" />
+  <h:panelGroup id="no-tool-panel" layout="block" rendered="#{empty cc.attrs.toolList}">
+    <span>There is no available tool</span>
+  </h:panelGroup>
+  <ui:repeat var="tool" value="#{cc.attrs.toolList}">
+    <p:toolbar id="#{cc.clientId}-toolbar" styleClass="ui-g-12 assistant-toolbar">
+      <f:facet name="left">
+        <div class="ui-g">
+          <div class="tool-info-line tool-header-line">
+            <div class="tool-name">
+              <h:outputText styleClass="u-font-bold" value="#{tool.name}" />
+              <p:spacer width="10" />
+              <p:tag severity="#{tool.type.tagSeverity}" value="#{tool.type.label}" />
+            </div>
+
+            <div class="u-no-padding tool-actions">
+              <p:commandButton id="remove-tool" icon="si si-bin-1"
+                rendered="#{!isAddTool}"
+                styleClass="rounded-button ui-button-outlined action-column-icon-button ui-button-danger Fright" 
+                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+                update="#{cc.attrs.componentToUpdate}"
+                actionListener="#{cc.attrs.managedBean.removeTool(tool.id)}"/>
+              <p:commandButton id="add-tool" icon="si si-add"
+                rendered="#{isAddTool}"
+                styleClass="rounded-button ui-button-outlined action-column-icon-button Fright" 
+                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
+                actionListener="#{cc.attrs.managedBean.addTool(tool.id)}"
+                update="#{cc.attrs.componentToUpdate}"/>
+            </div>
+          </div>
+          <div class="ui-g-12 tool-info-line">
+            <h:outputText value="#{tool.description}" />
+          </div>
+
+          <p:divider />
+
+          <div class="ui-g-12 tool-info-line">
+            <h:outputText value="Permission" />
+            <p:spacer width="10" />
+            <h:outputText value="#{cc.attrs.managedBean.renderPermissions(tool.permissions)}" />
+          </div>
+
+          <h:panelGroup id="retrieval-attribute-#{index}" layout="block"
+            rendered="#{(isAddTool) and (tool.type eq 'RETRIEVAL_QA')}"
+            styleClass="ui-g-12">
+            <h:outputText value="Collection:" />
+            <p:spacer width="10" />
+            <h:outputText value="#{tool.collection}" />
+          </h:panelGroup>
+
+          <h:panelGroup id="ivy-attribute-#{index}" layout="block"
+            rendered="#{isAddTool and (tool.type eq 'IVY' || tool.type eq 'IVY_CALLABLE')}"
+            styleClass="ui-g-12 ivy-attribute-panel">
+            <h:outputText value="Attributes" />
+            <ul>
+              <ui:repeat var="attr" value="#{tool.attributes}">
+              <li>
+                  <h:outputText value="#{attr.name}:" />
+                  <p:spacer width="10" />
+                  <h:outputText value="#{attr.description}" />
+              </li>
+            </ui:repeat>
+            </ul>
+            
+          </h:panelGroup>
+        </div>
+      </f:facet>
+    </p:toolbar>
+  </ui:repeat>
+</cc:implementation>
+</html>

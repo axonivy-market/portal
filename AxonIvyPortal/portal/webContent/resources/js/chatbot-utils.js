@@ -260,5 +260,5 @@ function initializeResultIFrameAfterLoad(frame) {
 
     // Show the result iframe
     iFrame.removeClass('u-invisibility');
-  }, 800);
+  }, 1000);
 }
