@@ -14,7 +14,6 @@ import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({ @Type(value = IvyTool.class, name = "IVY"),
-    @Type(value = IvyCallableTool.class, name = "IVY_CALLABLE"),
     @Type(value = RetrievalQATool.class, name = "RETRIEVAL_QA") })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public abstract class AiTool extends AbstractConfiguration
@@ -100,7 +99,7 @@ public abstract class AiTool extends AbstractConfiguration
       return false;
     if (getClass() != obj.getClass())
       return false;
-    Assistant other = (Assistant) obj;
+    AiTool other = (AiTool) obj;
     if (getId() == null) {
       if (other.getId() != null)
         return false;

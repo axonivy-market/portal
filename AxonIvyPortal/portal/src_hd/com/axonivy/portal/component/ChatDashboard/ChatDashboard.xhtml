@@ -8,51 +8,37 @@
 <h:body>
   <ui:composition
     template="/layouts/includes/ChatDashboardTemplate.xhtml">
-    <ui:param name="managedBean" value="#{portalSupportBean}" />
+    <ui:param name="managedBean" value="#{assistantModificationBean}" />
 
     <ui:define name="assistantManagementSection">
-      <div class="ui-g tools-panel">
+      <h:panelGroup id="tools-panel" layout="block" styleClass="ui-g tools-panel">
         <div class="ui-g-12 tool-header-text">
-          <h:outputText value="Tools" />
+          <h:outputText value="#{assistantModificationBean.addTool ? 'Add tool' : 'Tools'}" />
+          <p:commandButton id="add-tool-button" value="Add" icon="si si-add" styleClass="Fright"
+            rendered="#{!assistantModificationBean.addTool}" process="@(this)" global="false"
+            update="tools-panel" actionListener="#{assistantModificationBean.onAddTool()}">
+          </p:commandButton>
+          <p:commandLink id="close-link" value="Back" styleClass="Fright"
+            rendered="#{assistantModificationBean.addTool}"
+            update="tools-panel" global="false" actionListener="#{assistantModificationBean.onBack()}" />
         </div>
-        <ui:repeat var="tool" value="#{portalSupportBean.assistant.toolkit}" varStatus="index">
-          <p:toolbar id="toolbar-#{index}" styleClass="ui-g-12 assistant-toolbar">
-            <f:facet name="left">
-              <div class="ui-g">
-                <div class="tool-info-line tool-header-line">
-                  <div class="tool-name">
-                    <h:outputText styleClass="u-font-bold" value="#{tool.name}" />
-                    <p:spacer width="10" />
-                    <p:tag severity="#{portalSupportBean.getToolSeverity(tool.type.name())}" value="#{tool.type.label}" />
-                  </div>
-
-                  <div class="u-no-padding tool-actions">
-                    <p:commandButton id="configure-tool" icon="si si-cog"
-                      styleClass="rounded-button ui-button-outlined action-column-icon-button u-mar-right-5"
-                      title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}" />
-                    <p:commandButton id="remove-tool" icon="si si-bin-1"
-                      styleClass="rounded-button ui-button-outlined action-column-icon-button ui-button-danger" 
-                      title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"/>
-                  </div>
-                </div>
-                <div class="ui-g-12 tool-info-line">
-                  <h:outputText value="#{tool.description}" />
-                </div>
-
-                <div class="ui-g-12 tool-info-line">
-                  <h:outputText value="Permission:" />
-                  <p:spacer width="10" />
-                  <h:outputText value="#{portalSupportBean.renderPermissions(tool.permissions)}" />
-                </div>
-
-                <!-- <ui:include src="ToolAttributes.xhtml" /> -->
-              </div>
-            </f:facet>
-          </p:toolbar>
-          <p:spacer height="10" />
-          
-        </ui:repeat>
-      </div>
+        <h:panelGroup id="add-tool-list-panel" layout="block"
+          rendered="#{assistantModificationBean.addTool}"
+          styleClass="tool-list-panel">
+          <ic:com.axonivy.portal.component.ToolList id="add-tool-panel" isAddTool="#{assistantModificationBean.addTool}"
+            toolList="#{assistantModificationBean.availableTools}"
+            managedBean="#{assistantModificationBean}"
+            componentToUpdate="#{p:resolveFirstComponentWithId('tools-panel', view).clientId}" />
+        </h:panelGroup>
+        <h:panelGroup id="tool-list-panel" layout="block"
+          rendered="#{!assistantModificationBean.addTool}">
+          <ic:com.axonivy.portal.component.ToolList id="assistant-tool-panel"
+            isAddTool="#{assistantModificationBean.addTool}"
+            toolList="#{assistantModificationBean.assistant.toolkit}"
+            managedBean="#{assistantModificationBean}"
+            componentToUpdate="#{p:resolveFirstComponentWithId('tools-panel', view).clientId}" />
+        </h:panelGroup>
+      </h:panelGroup>
     </ui:define>
 
     <ui:define name="welcomeSection">

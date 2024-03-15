@@ -2,12 +2,14 @@ package com.axonivy.portal.enums.ai;
 
 public enum ToolType {
 
-  IVY("Ivy"), IVY_CALLABLE("Ivy"), RETRIEVAL_QA("Q&A");
+  IVY("Ivy", "success"), RETRIEVAL_QA("Q&A", "info");
 
   private String label;
+  private String tagSeverity;
 
-  ToolType(String label) {
+  ToolType(String label, String tagSeverity) {
     this.label = label;
+    this.tagSeverity = tagSeverity;
   }
 
   public String getLabel() {
@@ -16,5 +18,13 @@ public enum ToolType {
 
   public void setLabel(String label) {
     this.label = label;
+  }
+
+  public String getTagSeverity() {
+    return tagSeverity;
+  }
+
+  public void setTagSeverity(String tagSeverity) {
+    this.tagSeverity = tagSeverity;
   }
 }

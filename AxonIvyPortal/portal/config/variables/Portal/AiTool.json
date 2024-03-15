@@ -1,9 +1,10 @@
 [
   {
-    "name" : "findTasks",
-    "type" : "IVY_CALLABLE",
+    "id" : "find-tasks",
+    "name" : "Find tasks",
+    "type" : "IVY",
     "signature" : "findTasks(String,String,String,String)",
-    "permissions" : ["Developer", "CostObject"],
+    "permissions" : ["Everybody"],
     "description" : "This tool is helpful when user want to find tasks by attributes.",
     "attributes" : [
       {
@@ -22,10 +23,11 @@
       
     ]
   } , {
-    "name" : "findCases",
-    "type" : "IVY_CALLABLE",
+    "id" : "find-cases",
+    "name" : "Find cases",
+    "type" : "IVY",
     "signature" : "findCases(String,String,String)",
-    "permissions" : ["Developer", "#demo"],
+    "permissions" : ["Everybody"],
     "description" : "This tool is helpful when user want to find cases by attributes.",
     "attributes" : [
       {
@@ -41,11 +43,30 @@
       
     ]
   } , {
-    "name" : "portal-support",
+    "id" : "portal-support",
+    "name" : "Portal support",
     "type" : "RETRIEVAL_QA",
     "default" : true,
-    "description" : "Helpful when user ask questions.",
+    "description" : "Helpful when user ask questions related to Portal.",
     "permissions" : ["Everybody"],
     "collection" : "portal-user-guide"
+  } , {
+    "id" : "find-users",
+    "name" : "Find users",
+    "type" : "IVY",
+    "signature" : "findUsers(String,String)",
+    "permissions" : ["Everybody"],
+    "description" : "This is a tool to find information of users.",
+    "attributes" : [
+      {
+        "name" : "username",
+        "description" : "Name of user"
+      } , {
+        "name" : "role",
+        "description" : "Role of user"
+      }
+      
+    ],
+    "postAction" : "For each user from the result, gather then show as list these informations as a list: name, display name, email, status (field enabled), if any field is null or empty, show blank space instead. Format: \nName: name\nDisplay Name: displayname\n Email: email\n... and so on"
   }
 ]

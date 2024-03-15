@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,17 +12,20 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.bean.ai.AssistantBean;
 import com.axonivy.portal.components.util.SecurityMemberDisplayNameUtils;
-import com.axonivy.portal.enums.ai.ToolType;
 
 import ch.ivy.addon.portalkit.enums.ChatbotCandidateQuestion;
+import ch.ivy.addon.portalkit.service.AssistantService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
 
 @ManagedBean
 @ViewScoped
-public class PortalSupportBean extends AssistantBean implements Serializable {
+public class AssistantModificationBean extends AssistantBean
+    implements Serializable {
 
   private static final long serialVersionUID = -894113970760912023L;
+
+  private boolean isAddTool;
 
   private ChatbotCandidateQuestion[] candidateQuestions = ChatbotCandidateQuestion
       .values();
@@ -29,22 +33,13 @@ public class PortalSupportBean extends AssistantBean implements Serializable {
   @PostConstruct
   public void init() {
     super.initBean();
+    isAddTool = false;
   }
 
   public ChatbotCandidateQuestion[] getCandidateQuestions() {
     return candidateQuestions;
   }
 
-  public String getToolSeverity(String type) {
-    ToolType typeEnum = ToolType.valueOf(type);
-    return switch (typeEnum) {
-    case IVY -> "success";
-    case IVY_CALLABLE -> "success";
-    case RETRIEVAL_QA -> "info";
-    default -> "warning";
-    };
-  }
-  
   public String renderPermissions(List<String> permissions) {
     String result = "";
 
@@ -61,5 +56,35 @@ public class PortalSupportBean extends AssistantBean implements Serializable {
           .generateBriefDisplayNameForSecurityMember(mem, permission);
     }
     return result;
+  }
+
+  public boolean isAddTool() {
+    return isAddTool;
+  }
+
+  public void setAddTool(boolean isAddTool) {
+    this.isAddTool = isAddTool;
+  }
+
+  public void onAddTool() {
+    setAddTool(true);
+  }
+
+  public void onBack() {
+    setAddTool(false);
+  }
+
+  @Override
+  public void save() {
+    AssistantService.getInstance()
+        .saveAllPublicConfig(Arrays.asList(getAssistant()));
+    setAssistantJson(getAssistant().buildDetailsJson());
+    onCancel();
+  }
+
+  @Override
+  public void onCancel() {
+    setAddTool(false);
+    init();
   }
 }

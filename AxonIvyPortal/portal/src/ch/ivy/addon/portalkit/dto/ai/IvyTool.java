@@ -1,49 +1,29 @@
 package ch.ivy.addon.portalkit.dto.ai;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.enums.ai.RunState;
 import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;
-import com.axonivy.portal.components.service.impl.ProcessService;
+import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.enums.ai.ToolType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.JsonNode;
 
-import ch.ivyteam.ivy.workflow.start.IWebStartable;
-import ch.ivyteam.ivy.workflow.start.StartParameter;
+import ch.ivyteam.ivy.environment.Ivy;
 
 public class IvyTool extends AiTool {
 
-  private static final long serialVersionUID = 7282285288129523071L;
+  private static final long serialVersionUID = -5362479525475837795L;
 
   private List<IvyToolAttribute> attributes;
-  private String processPath;
+  private String signature;
   private List<String> requirements;
-
-  @JsonIgnore
-  private IWebStartable startableProcessStart;
-
-  public IvyTool() {
-  }
-
-  @Override
-  public void init() {
-    initWebStartable();
-    initAttributes();
-
-    setName(getStartableProcessStart().getName());
-    setDescription(getStartableProcessStart().getDescription());
-    setPermissions(Arrays
-        .asList(getStartableProcessStart().getActivator().getMemberName()));
-  }
+  private String postAction;
 
   public List<IvyToolAttribute> getAttributes() {
     return attributes;
@@ -51,6 +31,14 @@ public class IvyTool extends AiTool {
 
   public void setAttributes(List<IvyToolAttribute> attributes) {
     this.attributes = attributes;
+  }
+
+  public String getSignature() {
+    return signature;
+  }
+
+  public void setSignature(String signature) {
+    this.signature = signature;
   }
 
   public List<String> getRequirements() {
@@ -61,73 +49,8 @@ public class IvyTool extends AiTool {
     this.requirements = requirements;
   }
 
-  private void initAttributes() {
-    setAttributes(new ArrayList<>());
-    List<StartParameter> params = loadParametersOfProcess();
-    for (StartParameter param : params) {
-      this.getAttributes()
-          .add(new IvyToolAttribute(param.name(), "", param.description()));
-    }
-
-  }
-
-  public String getProcessPath() {
-    return processPath;
-  }
-
-  public void setProcessPath(String processPath) {
-    this.processPath = processPath;
-  }
-
-  @JsonIgnore
-  public IWebStartable getStartableProcessStart() {
-    return startableProcessStart;
-  }
-
-  @JsonIgnore
-  public void setStartableProcessStart(IWebStartable startableProcessStart) {
-    this.startableProcessStart = startableProcessStart;
-  }
-
-  private List<StartParameter> loadParametersOfProcess() {
-    return Optional.ofNullable(getStartableProcessStart())
-        .map(IWebStartable::parameters).orElse(new ArrayList<>());
-  }
-
-  private void initWebStartable() {
-    ProcessService.getInstance().findProcesses().forEach(process -> {
-      if (process.getId().contentEquals(this.getProcessPath())) {
-        this.setStartableProcessStart(process);
-        return;
-      }
-    });
-  }
-
-  @JsonIgnore
-  public String getResult() {
-    if (startableProcessStart == null) {
-      initWebStartable();
-    }
-
-    Map<String, String> params = new HashMap<>();
-    getAttributes().forEach(attr -> {
-      if (StringUtils.isNotBlank(attr.getValue())) {
-        params.put(attr.getName(), attr.getValue());
-      }
-    });
-
-    if (CollectionUtils.isEmpty(getSteps())) {
-      IvyToolStep step = new IvyToolStep();
-      step.setStepNo(0);
-      step.setResult("<iframe>" + this.startableProcessStart.getLink()
-          .queryParams(params).getRelative() + "</iframe>");
-      step.setState(RunState.DONE);
-      step.setToolName(getName());
-      setSteps(Arrays.asList(step));
-      setWorkingStepNo(0);
-    }
-    return BusinessEntityConverter
-        .entityToJsonValue(getSteps().get(getWorkingStepNo()));
+  @Override
+  public void init() {
   }
 
   @Override
@@ -135,8 +58,85 @@ public class IvyTool extends AiTool {
     return ToolType.IVY;
   }
 
+  @JsonIgnore
+  public String getResult() {
+    if (!hasPermision()) {
+      setSteps(Arrays.asList(createNoPermisisonStep()));
+      setWorkingStepNo(0);
+      return BusinessEntityConverter
+          .entityToJsonValue(getSteps().get(getWorkingStepNo()));
+    }
+
+    Map<String, Object> params = new HashMap<>();
+    getAttributes().forEach(attr -> {
+      params.put(attr.getName(), attr.getValue());
+    });
+    Map<String, Object> result = IvyAdapterService
+        .startSubProcessInProjectAndAllRequired(getSignature(), params);
+
+    if (CollectionUtils.isEmpty(getSteps())) {
+      IvyToolStep step = new IvyToolStep();
+      step.setStepNo(0);
+      setWorkingStepNo(0);
+      step.setToolName(getName());
+      step.setPostAction(getPostAction());
+
+      if (result != null && !result.isEmpty()) {
+        step.setResult((String) result.get("result"));
+        step.setDescription(getDescription());
+        step.setState(RunState.DONE);
+      } else {
+        step.setResult(
+            "Error happened when proceed your request, please try again.");
+        step.setState(RunState.ERROR);
+      }
+
+      setSteps(Arrays.asList(step));
+    }
+    return BusinessEntityConverter
+        .entityToJsonValue(getSteps().get(getWorkingStepNo()));
+  }
+
   @Override
   public JsonNode buildJsonNode() {
     return BusinessEntityConverter.entityToJsonNode(this);
+  }
+
+  public String getPostAction() {
+    return postAction;
+  }
+
+  public void setPostAction(String postAction) {
+    this.postAction = postAction;
+  }
+
+  private boolean hasPermision() {
+    boolean hasPermission = false;
+    for (String permission : getPermissions()) {
+
+      // Check if username of login user equals to the permission.
+      if (permission.startsWith("#")) {
+        hasPermission = Ivy.session().getSessionUserName()
+            .contentEquals(permission.substring(1));
+      } else {
+        // Check if the permission is existing in the role list of login user.
+        hasPermission = Ivy.session().getSessionUser().getAllRoles().stream()
+            .anyMatch(role -> role.getName().contentEquals(permission));
+      }
+
+      if (hasPermission) {
+        break;
+      }
+    }
+    return hasPermission;
+  }
+
+  private IvyToolStep createNoPermisisonStep() {
+    IvyToolStep step = new IvyToolStep();
+    step.setStepNo(0);
+    step.setResult("Sorry, you don't have permission to proceed this request.");
+    step.setState(RunState.ERROR);
+    step.setToolName(getName());
+    return step;
   }
 }

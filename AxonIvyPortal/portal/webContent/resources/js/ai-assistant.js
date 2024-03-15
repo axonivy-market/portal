@@ -3,7 +3,6 @@ const isEdge = window.navigator.userAgent.includes('Edge');
 const isFireFox = navigator.userAgent.toLowerCase().includes('firefox');
 const isIphone = navigator.userAgent.match(/iPhone|iPod/i);
 const IVY_PREFIX = '__ivy__';
-const IVY_CALLABLE_PREFIX = '__ivy_callable__';
 const IVY_RETRIEVAL_QA_PREFIX = '__retrieval_qa__';
 const VALIDATE_ERROR_PREFIX = '__error__';
 
@@ -210,9 +209,6 @@ function Assistant(ivyUri, uri, view, assistant, username) {
       } else if (result.startsWith(IVY_PREFIX)) {
         result = result.slice(IVY_PREFIX.length);
         proceedIvyTool(uri, ivyUri, view, result, assistant);
-      } else if (result.startsWith(IVY_CALLABLE_PREFIX)) {
-        result = result.slice(IVY_CALLABLE_PREFIX.length);
-        proceedIvyCallableTool(uri, ivyUri, view, result, assistant);
       } else {
         view.renderMessage(result);
         view.scrollToLatestMessage();
@@ -266,21 +262,6 @@ function Assistant(ivyUri, uri, view, assistant, username) {
       // Send AJAX request to the chatbot server
       const response = await callJQueryAjaxToIvy(
         ivyUri + 'assistant/ivyTool',
-        JSON.stringify({ 'toolJson': toolJson })
-      );
-
-      continueThread(uri, response, $.parseJSON(toolJson).threadId, assistant, view);
-    } catch (error) {
-      console.error('Error sending chat message:', error);
-    }
-  }
-
-  // Function to proceed the ivy tool on Ivy engine
-  async function proceedIvyCallableTool(uri, ivyUri, view, toolJson, assistant) {
-    try {
-      // Send AJAX request to the chatbot server
-      const response = await callJQueryAjaxToIvy(
-        ivyUri + 'assistant/ivyCallableTool',
         JSON.stringify({ 'toolJson': toolJson })
       );
 
