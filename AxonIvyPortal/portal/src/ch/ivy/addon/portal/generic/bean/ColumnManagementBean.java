@@ -149,6 +149,7 @@ public class ColumnManagementBean implements Serializable {
     columnModel.initDefaultValue();
     columnModel.setHeader(this.fieldDisplayName);
     columnModel.setField(this.selectedField);
+    columnModel.setQuickSearch(false);
     if (this.selectedFieldType == DashboardColumnType.CUSTOM
         || this.selectedFieldType == DashboardColumnType.CUSTOM_CASE) {
       columnModel.setType(selectedFieldType);
