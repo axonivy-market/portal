@@ -23,10 +23,10 @@
         },
         "result" : {
           "params" : [
-            { "name" : "result", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>", "desc" : "" }
+            { "name" : "result", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "result.result" : "in.users"
+            "result.result" : "in.result"
           }
         }
       },
@@ -49,6 +49,8 @@
       "config" : {
         "output" : {
           "code" : [
+            "import org.apache.commons.collections4.CollectionUtils;",
+            "import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;",
             "import org.apache.commons.lang3.StringUtils;",
             "import java.util.Arrays;",
             "import com.axonivy.portal.components.util.UserUtils;",
@@ -57,6 +59,12 @@
             "  in.users= UserUtils.findUsers(in.username, 0, 101, Arrays.asList(in.role), Arrays.asList(ivy.session.getSessionUserName()));",
             "} else {",
             "  in.users= UserUtils.findUsers(in.username, 0, 101, null, Arrays.asList(ivy.session.getSessionUserName()));",
+            "}",
+            "",
+            "if (CollectionUtils.isNotEmpty(in.users)) {",
+            "  in.result = BusinessEntityConverter.entityToJsonValue(in.users);",
+            "} else {",
+            "  in.result = \"\";",
             "}"
           ]
         },

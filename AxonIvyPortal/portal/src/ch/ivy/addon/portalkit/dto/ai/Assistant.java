@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.dto.ai;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -10,6 +11,7 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;
 import com.axonivy.portal.components.service.exception.PortalException;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -26,35 +28,29 @@ public class Assistant extends AbstractConfiguration implements Serializable {
 
   private static final long serialVersionUID = 7885313923903511903L;
 
-  @JsonInclude
+  @JsonIgnore
   private List<AiTool> toolkit;
 
-  private String id;
   private String name;
   private List<String> tools;
 
   public Assistant() {
+    this.setIsPublic(true);
   }
 
   public void init(String id, String name) {
-    this.id = id;
+    setId(id);
     this.name = name;
   }
 
+  @JsonIgnore
   public List<AiTool> getToolkit() {
     return toolkit;
   }
 
+  @JsonIgnore
   public void setToolkit(List<AiTool> toolkit) {
     this.toolkit = toolkit;
-  }
-
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
   }
 
   public String getName() {
@@ -105,11 +101,12 @@ public class Assistant extends AbstractConfiguration implements Serializable {
   public void initToolkit() {
     if (CollectionUtils.isEmpty(tools)) {
       this.toolkit = new ArrayList<>();
+      this.tools = new ArrayList<>();
     }
 
     List<AiTool> allTools = AiToolService.getInstance().getPublicConfig();
     this.toolkit = allTools.stream()
-        .filter(tool -> this.tools.contains(tool.getName()))
+        .filter(tool -> this.tools.contains(tool.getId()))
         .collect(Collectors.toList());
   }
 
@@ -134,7 +131,7 @@ public class Assistant extends AbstractConfiguration implements Serializable {
       throw new PortalException(e);
     }
 
-    if (CollectionUtils.isEmpty(this.toolkit)) {
+    if (CollectionUtils.isNotEmpty(this.toolkit)) {
       ArrayNode toolkitNode = mapper.createArrayNode();
       for (AiTool tool : this.toolkit) {
         JsonNode node = tool.buildJsonNode();
@@ -152,6 +149,30 @@ public class Assistant extends AbstractConfiguration implements Serializable {
     } catch (JsonProcessingException e) {
       throw new PortalException(e);
     }
+  }
 
+  public void addTool(AiTool tool) {
+    this.toolkit.add(tool);
+    this.tools.add(Optional.ofNullable(tool).map(AiTool::getId).orElse(""));
+  }
+
+  public void removeTool(AiTool toolToRemove) {
+    if (Optional.ofNullable(toolToRemove).map(AiTool::getId).isEmpty()) {
+      return;
+    }
+
+    for (AiTool tool : toolkit) {
+      if (tool.getId().contentEquals(toolToRemove.getId())) {
+        toolkit.remove(tool);
+        break;
+      }
+    }
+
+    for (String toolId : tools) {
+      if (toolId.contentEquals(toolToRemove.getId())) {
+        tools.remove(toolId);
+        break;
+      }
+    }
   }
 }

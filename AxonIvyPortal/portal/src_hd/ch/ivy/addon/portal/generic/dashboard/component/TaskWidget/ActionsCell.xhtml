@@ -17,7 +17,7 @@
 
   <h:panelGroup styleClass="action-container" rendered="#{cc.attrs.isAIResult}">
     <p:link disabled="#{!cc.attrs.isAIResult}" target="_blank"
-      href="#{assistantBean.generateLinkToTaskDetails(task)}"
+      href="#{assistantResultBean.generateLinkToTaskDetails(task)}"
       styleClass="action-link #{cc.attrs.buttonStyleClass} portal-icon">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" styleClass="task-action-item-label" />
     </p:link>

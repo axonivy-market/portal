@@ -5,19 +5,3 @@
 # please add a 'variables.yaml' in the sub directory '_<environment>'.
 #
 Variables:
-  #URL to the REST service endpoint of Portal AI
-  PortalAiUrl: 'http://localhost:8018'
-
-  # [file: json]
-  Assistants:
-  
-  # [file: json]
-  IvyTools:
-  
-  # [file: json]
-  RetrievalTools:
-  
-  # [file: json]
-  Collections:
-  
-  

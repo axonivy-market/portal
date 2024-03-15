@@ -9,7 +9,6 @@ import javax.ws.rs.core.Response;
 import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;
 import com.axonivy.portal.payload.IvyToolPayload;
 
-import ch.ivy.addon.portalkit.dto.ai.IvyCallableTool;
 import ch.ivy.addon.portalkit.dto.ai.IvyTool;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -18,7 +17,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @Path(value = "assistant")
 @RolesAllowed(value = { ISecurityConstants.TOP_LEVEL_ROLE_NAME })
-public class AssistantService {
+public class AssistantRestService {
 
   @POST
   @Path(value = "/ivyTool")
@@ -26,15 +25,6 @@ public class AssistantService {
       @ApiResponse(responseCode = "200", content = { @Content(mediaType = MediaType.APPLICATION_JSON) }) })
   public Response proceedIvyTool(IvyToolPayload payload) {
     IvyTool tool = BusinessEntityConverter.jsonValueToEntity(payload.getToolJson(), IvyTool.class);
-    return Response.ok(tool.getResult()).build();
-  }
-
-  @POST
-  @Path(value = "/ivyCallableTool")
-  @ApiResponses(value = {
-      @ApiResponse(responseCode = "200", content = { @Content(mediaType = MediaType.APPLICATION_JSON) }) })
-  public Response proceedIvyCallableTool(IvyToolPayload payload) {
-    IvyCallableTool tool = BusinessEntityConverter.jsonValueToEntity(payload.getToolJson(), IvyCallableTool.class);
     return Response.ok(tool.getResult()).build();
   }
 }
