@@ -8,6 +8,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
+import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
@@ -38,7 +39,7 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     homePage.waitForCaseWidgetLoaded();
     MainMenuPage mainMenu = new MainMenuPage();
 
-    TaskWidgetPage taskWidgetPage = mainMenu.openTaskList();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToDeveloperExamplesTaskList();
     taskWidgetPage.openTask("SupportTicket");
 
     ScreenshotUtils.resizeBrowser(new Dimension(1460, 800));
