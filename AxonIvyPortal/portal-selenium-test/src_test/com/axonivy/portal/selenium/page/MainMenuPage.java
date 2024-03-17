@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -161,5 +162,11 @@ public class MainMenuPage extends TemplatePage {
   public WorkingTaskDialogPageOfApplicationMenu selectDashboardMenu() {
     waitForElementClickableThenClick(".layout-menu li[role='menuitem'] a.DASHBOARD");
     return new WorkingTaskDialogPageOfApplicationMenu();
+  }
+  
+  public void clickOnSupportTicketOnTaskWidget() {
+    $("td[class*='dashboard-tasks__name']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $$("td[class*='dashboard-tasks__name'] span").filter(text("SupportTicket")).first().click();
+
   }
 }

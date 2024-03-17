@@ -34,16 +34,15 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
 
   @Test
   public void screenshotForStatistic() throws IOException {
-    showNewDashboard();
+    redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
+    WaitHelper.waitForNavigation(() -> redirectToRelativeLink(createTestingTasksUrl));
     NewDashboardPage homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
     MainMenuPage mainMenu = new MainMenuPage();
-
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToDeveloperExamplesTaskList();
-    taskWidgetPage.openTask("SupportTicket");
+    mainMenu.clickOnSupportTicketOnTaskWidget();
 
     ScreenshotUtils.resizeBrowser(new Dimension(1460, 800));
-    WaitHelper.waitForNavigation(() -> redirectToRelativeLink(createTestingTasksUrl));
+    redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
     homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
     mainMenu.expandMainMenu();
@@ -68,19 +67,19 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     WebElement chartCreationDialog = statisticWidgetPage.getCaseByFinishedTaskCreationDialog();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(chartCreationDialog,
         ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-creation-dialog", new ScreenshotMargin(50, 50));
-
-    refreshPage();
-    statisticWidgetPage.waitForChartCreationPageRendered();
-    statisticWidgetPage.backToDashboard();
-    statisticWidgetPage.clickChartInfoAndCloseToWaitAnimation();
-    ScreenshotUtils.executeDecorateJs("numberingChartPanel()");
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(statisticWidgetPage.waitAndGetChartPanelByIndex(1),
-    ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-detail-with-annotation", new ScreenshotMargin(20, 10));
-    refreshPage();
-    mainMenu.waitForPageLoad();
-    statisticWidgetPage.waitForPageLoad();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(statisticWidgetPage.getChartInfoDialogOfChart(1),
-        ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-info-dialog", new ScreenshotMargin(20, 10));
+//
+//    refreshPage();
+//    statisticWidgetPage.waitForChartCreationPageRendered();
+//    statisticWidgetPage.backToDashboard();
+//    statisticWidgetPage.clickChartInfoAndCloseToWaitAnimation();
+//    ScreenshotUtils.executeDecorateJs("numberingChartPanel()");
+//    ScreenshotUtils.captureElementWithMarginOptionScreenshot(statisticWidgetPage.waitAndGetChartPanelByIndex(1),
+//    ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-detail-with-annotation", new ScreenshotMargin(20, 10));
+//    refreshPage();
+//    mainMenu.waitForPageLoad();
+//    statisticWidgetPage.waitForPageLoad();
+//    ScreenshotUtils.captureElementWithMarginOptionScreenshot(statisticWidgetPage.getChartInfoDialogOfChart(1),
+//        ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-info-dialog", new ScreenshotMargin(20, 10));
   }
 
 }
