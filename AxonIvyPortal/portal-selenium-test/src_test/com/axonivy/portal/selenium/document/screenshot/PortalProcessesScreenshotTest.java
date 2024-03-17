@@ -85,7 +85,7 @@ public class PortalProcessesScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.executeDecorateJs("highlightEditProcessDialog()");
     ScreenshotUtils.executeDecorateJs("highlightEditProcessIcon()");
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(processWidget.getEditProcessDialog(),
-        ScreenshotUtils.PROCESSES_WIDGET_FOLDER + "edit-process-dialog", new ScreenshotMargin(100));
+        ScreenshotUtils.PROCESSES_WIDGET_FOLDER + "edit-process-dialog", new ScreenshotMargin(250));
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 800));
     refreshPage();
     processWidget.waitUtilProcessWidgetDisplayed();
