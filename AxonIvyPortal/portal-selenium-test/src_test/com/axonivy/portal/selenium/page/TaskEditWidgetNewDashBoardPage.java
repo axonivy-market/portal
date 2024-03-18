@@ -197,6 +197,10 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     return getColumnManagementDialog().$("span[id$='custom-field-selection'] button");
   }
 
+  private SelenideElement getCustomCaseFieldSelection() {
+    return getColumnManagementDialog().$("span[id$='custom-case-field-selection'] button");
+  }
+
   public SelenideElement openColumnManagementDialog() {
     $("div[id$='task-widget-preview:dashboard-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("a[id$='column-toggler']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
@@ -270,8 +274,8 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public boolean isQuickSearchClicked(String fieldName) {
     return getColumnManagementDialog().$("div[id$='column-management-datatable']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("table tbody").$$("tr").filter(text(fieldName)).first()
-        .$("div[id$='quick-search-checkbox-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a").$("span")
-        .isSelected();
+        .$("div[id$='quick-search-checkbox-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a").$("span span")
+        .getAttribute("class").contains("ui-icon-check");
   }
 
   public void returnToDashboardPage() {
@@ -280,19 +284,24 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void addCustomFieldByCustomTypeAndFieldName(String customType, String fieldName) {
-    if (customType.equals(CUSTOM_FIELD)) {
+    switch (customType) {
+    case (CUSTOM_FIELD):
+      customType = "custom-field";
       selectCustomType();
-    } else if (customType.equals(CUSTOM_CASE_FIELD)) {
+      getCustomFieldSelection().click();
+      break;
+    case (CUSTOM_CASE_FIELD):
+      customType = "custom-case-field";
       selectCustomCaseType();
+      getCustomCaseFieldSelection().click();
+      break;
+    default:
+      break;
     }
-
-    getCustomFieldSelection().click();
-    SelenideElement customFieldPanel = $("span[id$='column-management-form:custom-field-selection_panel']");
-    customFieldPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    SelenideElement fieldElement = customFieldPanel.$$("li").filter(text(fieldName)).first()
-        .shouldBe(getClickableCondition());
-    fieldElement.getAttribute("Task name");
-    fieldElement.click();
+    customType.toLowerCase();
+    String spanId = String.format("span[id*='%s-selection_panel']", customType);
+    $(spanId).$("ul").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li")
+        .filter(text(fieldName)).first().click();
     getColumnManagementDialog().$("button[id$='field-add-btn']").click();
   }
 
