@@ -34,7 +34,7 @@ public class QuickSearchTest extends BaseTest {
   }
 
   @Test
-  public void testQuickSearchOnConfiguration() {
+  public void testVisibilityOfQuickSearchOnConfiguration() {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
@@ -91,19 +91,18 @@ public class QuickSearchTest extends BaseTest {
 
     taskEditWidget.openColumnManagementDialog();
     taskEditWidget.addFirstStandardField();
-    taskEditWidget.clickOnQuickSearchByField("description");
     taskEditWidget.clickOnQuickSearchByField("activator");
     taskEditWidget.clickOnQuickSearchByField("category");
     taskEditWidget.clickOnQuickSearchByField("application");
 
-    taskEditWidget.isQuickSearchClicked("description");
-    taskEditWidget.isQuickSearchClicked("activator");
-    taskEditWidget.isQuickSearchClicked("category");
-    taskEditWidget.isQuickSearchClicked("application");
+    assertTrue(taskEditWidget.isQuickSearchClicked("activator"));
+    assertTrue(taskEditWidget.isQuickSearchClicked("category"));
+    assertTrue(taskEditWidget.isQuickSearchClicked("application"));
   }
 
   @Test
   public void testQuickSearchForStandardFieldsOnDashboardConfigurationPage() {
+    login(TestAccount.DEMO_USER);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     login(TestAccount.ADMIN_USER);
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
@@ -134,6 +133,10 @@ public class QuickSearchTest extends BaseTest {
     taskWidget.clearQuickSearchInput();
     taskWidget.setInputForQuickSearch("everybody");
     taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(3));
+
+    taskWidget.clearQuickSearchInput();
+    taskWidget.setInputForQuickSearch("demo user");
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(2));
   }
 
   @Test
@@ -250,6 +253,7 @@ public class QuickSearchTest extends BaseTest {
 
   @Test
   public void testQuickSearchForCustomFieldsOnDashboardPage() {
+    login(TestAccount.DEMO_USER);
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
