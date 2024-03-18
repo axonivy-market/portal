@@ -504,16 +504,16 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void setInputForQuickSearch(String input) {
-    getQuickSearchInput().sendKeys(input);
+    getQuickSearchForm().$("input").sendKeys(input);
     waitPageLoaded();
   }
 
-  private SelenideElement getQuickSearchInput() {
-    return $("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form").$("input");
+  private SelenideElement getQuickSearchForm() {
+    return $("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
   }
 
   public void clearQuickSearchInput() {
-    getQuickSearchInput().clear();
+    getQuickSearchForm().$("input").clear();
     waitPageLoaded();
   }
 
@@ -531,4 +531,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     waitPageLoaded();
     return $(taskWidgetIndex).$("form").$("input").exists();
   }
+
+  public String getQuickSearchInput() {
+    return getQuickSearchForm().$("input").getValue();
+  }
+
 }

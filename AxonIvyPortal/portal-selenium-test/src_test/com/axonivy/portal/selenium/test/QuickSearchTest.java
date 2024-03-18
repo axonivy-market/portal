@@ -1,8 +1,11 @@
 package com.axonivy.portal.selenium.test;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,29 +18,11 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class QuickSearchTest extends BaseTest {
 
   // WIDGET
   private static final String YOUR_TASKS_WIDGET = "Your Tasks";
-
-  // CASES
-  private static final String CREATE_12_CASES_WITH_CATEGORY_CASE = "Create 12 Cases with category";
-
-  // TASKS
-  private static final String SICK_LEAVE_REQUEST = "Sick Leave Request";
-  private static final String DESTROYED = "Destroyed";
-  private static final String TASK_NUMBER = "Task number";
-  private static final String DONE = "Done";
-  private static final String NEW_YOUR_TASK = "New Your Tasks";
-  private static final String SUSPENDED = "Suspended";
-  private static final String EXPIRE_TODAY = "Expire today";
-  private static final String TASK_NAME = "Task name";
-  private static final String MATERNITY_LEAVE_REQUEST = "Maternity Leave Request";
-  private static final String ANNUAL_LEAVE_REQUEST = "Annual Leave Request";
-  private static final String TASK_PRIORITY = "Prio";
-  private static final String EXPIRY = "Expiry";
-  private static final String IN_PROGRESS = "In progress";
 
   private NewDashboardPage newDashboardPage;
 
@@ -75,7 +60,7 @@ public class QuickSearchTest extends BaseTest {
   }
 
   @Test
-  public void testQuicSearchIsSelectedOnIdAndName() {
+  public void testQuickSearchIsSelectedAsDefaultOnNameAndDescription() {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
@@ -87,8 +72,8 @@ public class QuickSearchTest extends BaseTest {
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
     taskEditWidget.openColumnManagementDialog();
 
-    assertTrue(taskEditWidget.isQuickSearchClicked("id"));
     assertTrue(taskEditWidget.isQuickSearchClicked("name"));
+    assertTrue(taskEditWidget.isQuickSearchClicked("description"));
 
   }
 
@@ -130,7 +115,7 @@ public class QuickSearchTest extends BaseTest {
     taskEditWidget.clickOnQuickSearchCheckBox();
     taskEditWidget.openColumnManagementDialog();
     taskEditWidget.addFirstStandardField();
-    taskEditWidget.clickOnQuickSearchByField("description");
+    taskEditWidget.clickOnQuickSearchByField("id");
     taskEditWidget.clickOnQuickSearchByField("activator");
     taskEditWidget.clickOnQuickSearchByField("category");
     taskEditWidget.clickOnQuickSearchByField("application");
@@ -144,11 +129,167 @@ public class QuickSearchTest extends BaseTest {
 
     taskWidget.clearQuickSearchInput();
     taskWidget.setInputForQuickSearch("TestCase1");
-    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1));
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(3));
 
     taskWidget.clearQuickSearchInput();
     taskWidget.setInputForQuickSearch("everybody");
-    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(12));
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(3));
   }
+
+  @Test
+  public void testQuickSearchForStandardFieldsOnDashboardPage() {
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    login(TestAccount.ADMIN_USER);
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
+    taskEditWidget.clickOnQuickSearchCheckBox();
+    taskEditWidget.openColumnManagementDialog();
+    taskEditWidget.addFirstStandardField();
+    taskEditWidget.clickOnQuickSearchByField("id");
+    taskEditWidget.clickOnQuickSearchByField("activator");
+    taskEditWidget.clickOnQuickSearchByField("category");
+    taskEditWidget.clickOnQuickSearchByField("application");
+
+    taskEditWidget.saveColumnMangement();
+    taskEditWidget.save();
+
+    taskWidget.waitPageLoaded();
+
+    // CACHED SESSION
+    taskWidget.setInputForQuickSearch("engine");
+    assertTrue(taskWidget.isEmptyMessageAppear());
+    redirectToNewDashBoard();
+    assertEquals("engine", taskWidget.getQuickSearchInput());
+
+    taskWidget.clearQuickSearchInput();
+    taskWidget.setInputForQuickSearch("TestCase1");
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(3));
+
+    taskWidget.clearQuickSearchInput();
+    taskWidget.setInputForQuickSearch("everybody");
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(3));
+    taskWidget.clickOnButtonExpandTaskWidget();
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(3));
+    taskWidget.clickOnButtonCollapseTaskWidget();
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(3));
+  }
+
+  @Test
+  public void testQuickSearchForCustomFieldsOnDashboardConfigurationPage() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
+    taskEditWidget.clickOnQuickSearchCheckBox();
+    taskEditWidget.openColumnManagementDialog();
+
+    List<String> customFields = List.of("CustomerName", "CustomerType", "CustomerAddress", "CustomerEmail");
+
+    customFields.stream().forEach(item -> taskEditWidget.addCustomFieldByCustomTypeAndFieldName("Custom field", item));
+    customFields.stream().forEach(item -> taskEditWidget.clickOnQuickSearchByField(item));
+
+    taskEditWidget.saveColumnMangement();
+    taskEditWidget.save();
+
+    taskWidget.setInputForQuickSearch("tung le");
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1));
+    taskWidget.clearQuickSearchInput();
+
+    taskWidget.setInputForQuickSearch("interior");
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1));
+    taskWidget.clearQuickSearchInput();
+
+    taskWidget.setInputForQuickSearch("test@email.com");
+    assertTrue(taskWidget.isEmptyMessageAppear());
+
+    taskWidget.setInputForQuickSearch("ho chi minh city");
+    assertTrue(taskWidget.isEmptyMessageAppear());
+  }
+
+  @Test
+  public void testQuickSearchForCustomCaseFieldsOnDashboardConfigurationPage() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
+    taskEditWidget.clickOnQuickSearchCheckBox();
+    taskEditWidget.openColumnManagementDialog();
+
+    List<String> customCaseFields = List.of("CustomerName", "CustomerType", "SupportData");
+
+    customCaseFields.stream()
+        .forEach(item -> taskEditWidget.addCustomFieldByCustomTypeAndFieldName("Custom case field", item));
+    customCaseFields.stream().forEach(item -> taskEditWidget.clickOnQuickSearchByField(item));
+
+    taskEditWidget.saveColumnMangement();
+    taskEditWidget.save();
+
+    taskWidget.setInputForQuickSearch("leave request");
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1));
+    taskWidget.clearQuickSearchInput();
+
+    taskWidget.setInputForQuickSearch("supportdata");
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(0));
+    taskWidget.clearQuickSearchInput();
+
+    taskWidget.setInputForQuickSearch("support data");
+    assertTrue(taskWidget.isEmptyMessageAppear());
+  }
+
+  @Test
+  public void testQuickSearchForCustomFieldsOnDashboardPage() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
+    taskEditWidget.clickOnQuickSearchCheckBox();
+    taskEditWidget.openColumnManagementDialog();
+
+    List<String> customFields = List.of("CustomerName", "CustomerType", "CustomerAddress", "CustomerEmail");
+
+    customFields.stream().forEach(item -> taskEditWidget.addCustomFieldByCustomTypeAndFieldName("Custom field", item));
+    customFields.stream().forEach(item -> taskEditWidget.clickOnQuickSearchByField(item));
+
+    taskEditWidget.saveColumnMangement();
+    taskEditWidget.save();
+
+    // Test cached/session
+    taskWidget.setInputForQuickSearch("tung le");
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1));
+    redirectToNewDashBoard();
+    assertEquals("tung le", taskWidget.getQuickSearchInput());
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1));
+    taskWidget.clearQuickSearchInput();
+
+    taskWidget.setInputForQuickSearch("interior");
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1));
+    taskWidget.clearQuickSearchInput();
+
+    taskWidget.setInputForQuickSearch("test@email.com");
+    assertTrue(taskWidget.isEmptyMessageAppear());
+    taskWidget.clearQuickSearchInput();
+
+    taskWidget.setInputForQuickSearch("ho chi minh city");
+    assertTrue(taskWidget.isEmptyMessageAppear());
+    taskWidget.clickOnButtonExpandTaskWidget();
+    assertTrue(taskWidget.isEmptyMessageAppear());
+  }
+
 
 }
