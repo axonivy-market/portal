@@ -11,6 +11,8 @@ import com.codeborne.selenide.SelenideElement;
 
 public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
 
+  private static final String CUSTOM_CASE_FIELD = "Custom case field";
+  private static final String CUSTOM_FIELD = "Custom field";
   private String taskEditWidgetId;
   private static final String TASK_NAME = "Task name";
   private static final String STATE = "State";
@@ -148,7 +150,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void selectCustomCaseType() {
-    selectFieldType("Custom case field");
+    selectFieldType(CUSTOM_CASE_FIELD);
     getCustomCaseFieldCategory().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -227,7 +229,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void selectCustomType() {
-    selectFieldType("Custom field");
+    selectFieldType(CUSTOM_FIELD);
     getCustomFieldCategory().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -268,7 +270,30 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public boolean isQuickSearchClicked(String fieldName) {
     return getColumnManagementDialog().$("div[id$='column-management-datatable']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("table tbody").$$("tr").filter(text(fieldName)).first()
-        .$("div[id$='quick-search-checkbox-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a").isSelected();
+        .$("div[id$='quick-search-checkbox-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a").$("span")
+        .isSelected();
+  }
+
+  public void returnToDashboardPage() {
+    $("div.layout-topbar-right").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span#breadcrumb-container")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("form nav a").click();
+  }
+
+  public void addCustomFieldByCustomTypeAndFieldName(String customType, String fieldName) {
+    if (customType.equals(CUSTOM_FIELD)) {
+      selectCustomType();
+    } else if (customType.equals(CUSTOM_CASE_FIELD)) {
+      selectCustomCaseType();
+    }
+
+    getCustomFieldSelection().click();
+    SelenideElement customFieldPanel = $("span[id$='column-management-form:custom-field-selection_panel']");
+    customFieldPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement fieldElement = customFieldPanel.$$("li").filter(text(fieldName)).first()
+        .shouldBe(getClickableCondition());
+    fieldElement.getAttribute("Task name");
+    fieldElement.click();
+    getColumnManagementDialog().$("button[id$='field-add-btn']").click();
   }
 
 }
