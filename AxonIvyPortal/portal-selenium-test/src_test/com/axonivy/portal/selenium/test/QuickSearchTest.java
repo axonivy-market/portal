@@ -60,7 +60,7 @@ public class QuickSearchTest extends BaseTest {
   }
 
   @Test
-  public void testQuickSearchIsSelectedAsDefaultOnNameAndDescription() {
+  public void testQuickSearchIsSelectedByDefaultOnNameAndDescriptionField() {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
@@ -162,7 +162,6 @@ public class QuickSearchTest extends BaseTest {
 
     taskWidget.waitPageLoaded();
 
-    // CACHED SESSION
     taskWidget.setInputForQuickSearch("engine");
     assertTrue(taskWidget.isEmptyMessageAppear());
     redirectToNewDashBoard();
@@ -179,6 +178,32 @@ public class QuickSearchTest extends BaseTest {
     taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(3));
     taskWidget.clickOnButtonCollapseTaskWidget();
     taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(3));
+  }
+
+  @Test
+  public void testQuickSearchKeywordIsKeptDuringUserSession() {
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    login(TestAccount.ADMIN_USER);
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
+    taskEditWidget.clickOnQuickSearchCheckBox();
+    taskEditWidget.openColumnManagementDialog();
+    taskEditWidget.addFirstStandardField();
+    taskEditWidget.clickOnQuickSearchByField("application");
+
+    taskEditWidget.saveColumnMangement();
+    taskEditWidget.save();
+
+    taskWidget.waitPageLoaded();
+
+    taskWidget.setInputForQuickSearch("engine");
+    assertTrue(taskWidget.isEmptyMessageAppear());
+    taskEditWidget.returnToDashboardPage();
+    assertEquals("engine", taskWidget.getQuickSearchInput());
   }
 
   @Test
@@ -273,7 +298,6 @@ public class QuickSearchTest extends BaseTest {
     taskEditWidget.saveColumnMangement();
     taskEditWidget.save();
 
-    // Test cached/session
     taskWidget.setInputForQuickSearch("tung le");
     taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1));
     redirectToNewDashBoard();
