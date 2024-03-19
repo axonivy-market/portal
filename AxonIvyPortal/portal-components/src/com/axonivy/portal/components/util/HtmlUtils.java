@@ -1,13 +1,17 @@
 package com.axonivy.portal.components.util;
 
-import org.primefaces.util.HtmlSanitizer;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
 
 public class HtmlUtils {
+  private static String HTML_PROTOCOL = "http:";
+
   public static String sanitize(String text) {
-    // Not use Jsoup.clean(text, Safelist.relaxed().addAttributes(":all", "style",
-    // "class")) because the result is href
-    // of tag a does not allow relative path. If allowing all protocols of tag a
-    // then it could lead to XSS
-    return text == null ? null : HtmlSanitizer.sanitizeHtml(text, true, true, true, true, true);
+    // Not use primefaces util HtmlSanitizer.sanitizeHtml(text, true, true, true,
+    // true, true); because string special character will be converted to html
+    // special character
+    // Use Jsoup.clean(text, Safelist.relaxed().addAttributes(":all", "style",
+    // "class")) and customize it to allow relative path for href of tag a
+    return Jsoup.clean(text, HTML_PROTOCOL, Whitelist.relaxed().addAttributes(":all", "style", "class").preserveRelativeLinks(true));
   }
 }
