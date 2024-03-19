@@ -167,6 +167,5 @@ public class MainMenuPage extends TemplatePage {
   public void clickOnSupportTicketOnTaskWidget() {
     $("td[class*='dashboard-tasks__name']").shouldBe(appear, DEFAULT_TIMEOUT);
     $$("td[class*='dashboard-tasks__name'] span").filter(text("SupportTicket")).first().click();
-
   }
 }
