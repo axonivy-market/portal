@@ -1,4 +1,8 @@
 /*****CSS FOR DECORATE SCREENSHOT******/
+html {
+  scrollbar-width: none;
+}
+
 .marker {
   position: absolute;
   z-index: 9999;
