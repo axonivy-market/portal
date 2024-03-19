@@ -1749,7 +1749,7 @@ if (in.type == ApplicationType.IVY_APPLICATION) {
 	try {
 	  CommonFormats.APPLICATION_PROCESS_MODEL_NAME.checkAndThrow(in.selectedApp.name);
 	} catch (RuntimeException ex) {
-	  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage(), null));
+	  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.message(FacesMessage.SEVERITY_ERROR, ex.getMessage(), null));
 	  FacesContext.getCurrentInstance().validationFailed();
 	}
 }
