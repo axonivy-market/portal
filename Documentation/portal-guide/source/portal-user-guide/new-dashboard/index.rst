@@ -138,6 +138,7 @@ In the view mode, when quick search is enable, a textbox will appear to allow yo
     #. The quick search input is kept during user session.
     #. The quick search is not affected by widget filter.
     #. When widget width is less than 400px, the textbox disappear.
+    #. The number of columns that allow for quick search will decide the scope of the feature.
 
 
 
