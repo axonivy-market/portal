@@ -8,7 +8,6 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
-import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
@@ -18,7 +17,6 @@ import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.StatisticWidgetPage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
 @IvyWebTest
 public class StatisticScreenshotTest extends ScreenshotBaseTest {
@@ -29,7 +27,7 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     super.setup();
     updatePortalSetting(Variable.ENABLE_GROUP_CHAT.getKey(), "true");
     redirectToRelativeLink(createTestingCaseContainOneTask);
-    login(TestAccount.ADMIN_USER);
+    login(TestAccount.DEMO_USER);
   }
 
   @Test
@@ -39,7 +37,7 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     NewDashboardPage homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
     MainMenuPage mainMenu = new MainMenuPage();
-    mainMenu.clickOnSupportTicketOnTaskWidget();
+    WaitHelper.waitForActionComplete("#theme-switcher", () -> mainMenu.clickOnSupportTicketOnTaskWidget());
 
     ScreenshotUtils.resizeBrowser(new Dimension(1460, 800));
     redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
@@ -67,19 +65,19 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     WebElement chartCreationDialog = statisticWidgetPage.getCaseByFinishedTaskCreationDialog();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(chartCreationDialog,
         ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-creation-dialog", new ScreenshotMargin(50, 50));
-//
-//    refreshPage();
-//    statisticWidgetPage.waitForChartCreationPageRendered();
-//    statisticWidgetPage.backToDashboard();
-//    statisticWidgetPage.clickChartInfoAndCloseToWaitAnimation();
-//    ScreenshotUtils.executeDecorateJs("numberingChartPanel()");
-//    ScreenshotUtils.captureElementWithMarginOptionScreenshot(statisticWidgetPage.waitAndGetChartPanelByIndex(1),
-//    ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-detail-with-annotation", new ScreenshotMargin(20, 10));
-//    refreshPage();
-//    mainMenu.waitForPageLoad();
-//    statisticWidgetPage.waitForPageLoad();
-//    ScreenshotUtils.captureElementWithMarginOptionScreenshot(statisticWidgetPage.getChartInfoDialogOfChart(1),
-//        ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-info-dialog", new ScreenshotMargin(20, 10));
+
+    refreshPage();
+    statisticWidgetPage.waitForChartCreationPageRendered();
+    statisticWidgetPage.backToDashboard();
+    statisticWidgetPage.clickChartInfoAndCloseToWaitAnimation();
+    ScreenshotUtils.executeDecorateJs("numberingChartPanel()");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(statisticWidgetPage.waitAndGetChartPanelByIndex(1),
+    ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-detail-with-annotation", new ScreenshotMargin(20, 10));
+    refreshPage();
+    mainMenu.waitForPageLoad();
+    statisticWidgetPage.waitForPageLoad();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(statisticWidgetPage.getChartInfoDialogOfChart(1),
+        ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-info-dialog", new ScreenshotMargin(20, 10));
   }
 
 }
