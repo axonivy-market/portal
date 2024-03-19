@@ -177,7 +177,7 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
 
   @Test
   public void testCustomWidgetInCaseDetails() throws IOException {
-    ScreenshotUtils.resizeBrowser(new Dimension(1366, 1000));
+    ScreenshotUtils.resizeBrowser(new Dimension(1366, 1100));
     redirectToRelativeLink(createEventTestUrl);
     CaseDetailsPage detailsPage = setupCustomWidgetByJSONFile("custom-case-details.json");
     ScreenshotUtils.executeDecorateJs("highlightCustomWidgetInCaseDetails()");
