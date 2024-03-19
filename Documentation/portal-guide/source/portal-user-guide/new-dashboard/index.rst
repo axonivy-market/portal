@@ -80,7 +80,7 @@ see and how.
 **Configuration panel**
 
 On the left side, define the widget name, establish the main configuration for
-your widget, and get a preview of it by clicking on the preview button.
+your widget, enable quick search function and get a preview of it by clicking on the preview button.
 
 |task-list-widget-configuration|
 
@@ -103,6 +103,7 @@ In the column management panel, you will find two sections:
    #. Columns section: configure the widget table itself as follows:
  
       - Enable visibility
+      - Enable quick search by selecting the quick search checkbox
       - Reorder the columns by drag and drop using the arrows |move-expand-vertical|
       - Remove columns
 
@@ -118,6 +119,28 @@ You can export all data of the task widget by clicking on the link ``Export to E
 
 If the number of exported tasks exceed the maximum row number of the Excel file, Portal will separate data into multiple Excel
 files and put them into a single zip file.
+
+**Quick search**
+
+At the Column management, for standard fields, quick search is selected for name
+and description by default.
+
+You may search for any keyword. Only fields that have type **STRING** can be applied quick search.
+
+    * Standard fields: Id, name, description, category, responsible (display name), application.
+    * Task custom fields: fields that have type **STRING**, **TEXT**.
+    * Case custom fields: fields that have type **STRING**, **TEXT**
+
+In the view mode, when quick search is enable, a textbox will appear to allow you to search.
+
+  .. important::
+    #. When you press certain special keys of the list, quick search does not function. ``Enter``, ``Shift``, ``Control``, ``Alt``, ``Pause``, ``CapsLock``, ``Escape``, ``PageUp``, ``PageDown``, ``End``, ``Home``, ``PrintScreen``, ``Insert``, ``Meta``, ``ContextMenu``, ``NumLock``, ``ScrollLock``.
+    #. The quick search input is kept during user session.
+    #. The quick search is not affected by widget filter.
+    #. When widget width is less than 400px, the textbox disappear.
+
+
+
 
 Case list widget
 ================
