@@ -344,33 +344,30 @@ Quick search is a useful function for user to search quickly on the Task widget.
 
 **JSON Structure**
 
-Below is a sample JSON definition of a task widget in the Portal dashboard that have two added new attributes for quick search function
+Below is a sample JSON definition of a task widget in the Portal dashboard that has two added new attributes for quick search function.
 
-.. code-block:: html
+      .. code-block:: html
 
-   {
-      "type": "task",
-      "id": "task_98ae4fc1c83f4f22be5244c8027ecf40",
-         
-      ...
-
-      "enableQuickSearch": "true",
-      "columns": [
          {
-            "field": "id",
-            "quickSearch": "false"
-         },
-         {
-            "field": "name",
-            "quickSearch": "true"
+            ...
+            "type": "task",
+            "id": "task_98ae4fc1c83f4f22be5244c8027ecf40"
+            ...
+            "enableQuickSearch": "true",
+            "columns": [
+               {
+                  "field": "id",
+                  "quickSearch": "false"
+               },
+               {
+                  "field": "name",
+                  "quickSearch": "true"
+               }
+            ]
+            ...
          }
-      ]
-         
-      ...
 
-   }
-
-..
+      ..
 
       * ``enableQuickSearch``
          * ``true``: show the quick search text

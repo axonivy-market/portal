@@ -135,10 +135,10 @@ In the view mode, when quick search is enable, a textbox will appear to allow yo
 
   .. important::
     #. When you press certain special keys of the list, quick search does not function. ``Enter``, ``Shift``, ``Control``, ``Alt``, ``Pause``, ``CapsLock``, ``Escape``, ``PageUp``, ``PageDown``, ``End``, ``Home``, ``PrintScreen``, ``Insert``, ``Meta``, ``ContextMenu``, ``NumLock``, ``ScrollLock``.
-    #. The quick search input is kept during user session.
-    #. The quick search is not affected by widget filter.
-    #. When widget width is less than 400px, the textbox disappear.
-    #. The number of columns that allow for quick search will decide the scope of the feature.
+    #. The quick search input persists throughout the user session.
+    #. Quick search function is unaffected by widget filters.
+    #. When widget width is less than 400px, the search textbox disappears.
+    #. The scope of the quick search feature is determined by the number of columns that allow for it.
 
 
 
