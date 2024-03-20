@@ -43,7 +43,8 @@ public enum Variable {
   GLOBAL_FOOTER_INFO("Portal.GlobalFooterInfo"), USER_MENU("Portal.UserMenu"), DEFAULT_THEME_MODE("Portal.Theme.Mode"),
   ENABLE_SWITCH_THEME_BUTTON("Portal.Theme.EnableSwitchThemeModeButton"),
   SHOW_USER_GUIDE("Portal.Dashboard.ShowUserGuide"),
-  SHOW_LEGACY_UI("Portal.ShowLegacyUI");
+  SHOW_LEGACY_UI("Portal.ShowLegacyUI"),
+  DASHBOARD_MAIN_MENU_ENTRY("Portal.Dashboard.MainMenuEntry");
 
   private String key;
 
