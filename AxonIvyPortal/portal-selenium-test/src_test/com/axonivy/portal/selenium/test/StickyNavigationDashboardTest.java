@@ -31,6 +31,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
   public void setup() {
     super.setup();
     login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(grantPortalPermission);
     newDashboardPage = new NewDashboardPage();
   }
 
