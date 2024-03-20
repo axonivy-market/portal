@@ -64,10 +64,6 @@ public abstract class TemplatePage extends AbstractPage {
     return and("should be clickable", visible, exist);
   }
 
-  protected Condition clickable() {
-    return and("should be clickable", visible, enabled);
-  }
-
   public WebDriver driver = WebDriverRunner.getWebDriver();
 
   public void switchLastBrowserTab() {
@@ -230,19 +226,6 @@ public abstract class TemplatePage extends AbstractPage {
     WaitHelper.waitForNavigation(
         () -> $("[id='logout-setting:logout-menu-item']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
     return new LoginPage();
-  }
-
-  private void clickUserMenuItem(String menuItemSelector) {
-    waitForElementDisplayed(By.id("user-settings-menu"), true);
-    try {
-      clickByJavaScript(findElementById("user-settings-menu"));
-      $("ul[id$='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT);
-    } catch (Error e) {
-      clickByJavaScript(findElementById("user-settings-menu"));
-    }
-    waitForElementDisplayed(By.id(menuItemSelector), true);
-    clickByJavaScript(findElementById(menuItemSelector));
-    waitForPageLoad();
   }
 
   public SelenideElement findElementById(String selector) {
@@ -443,11 +426,6 @@ public abstract class TemplatePage extends AbstractPage {
     return new ProjectVersionPage();
   }
 
-  public UserProfilePage openMyProfilePage() {
-    clickUserMenuItem("user-profile");
-    return new UserProfilePage();
-  }
-
   public AbsencePage openAbsencePage() {
     clickUserMenuItem("absence-menu-item");
     return new AbsencePage();
@@ -545,4 +523,26 @@ public abstract class TemplatePage extends AbstractPage {
         .until(ExpectedConditions.attributeContains(By.cssSelector("div[id='ajax-indicator:ajax-indicator-ajax-indicator_start']"), "style", "display: none"));
   }
 
+  public UserProfilePage openMyProfilePage() {
+    clickUserMenuItem("user-profile");
+    return new UserProfilePage();
+  }
+  
+  private void clickUserMenuItem(String menuItemSelector) {
+    $("a[id='user-settings-menu']").shouldBe(appear, DEFAULT_TIMEOUT);
+    try {
+      clickByJavaScript(findElementById("user-settings-menu"));
+      $("ul[id$='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    } catch (Error e) {
+      clickByJavaScript(findElementById("user-settings-menu"));
+    }
+    waitForElementDisplayed(By.id(menuItemSelector), true);
+    clickByJavaScript(findElementById(menuItemSelector));
+    waitForPageLoad();
+  }
+  
+  protected Condition clickable() {
+    return and("should be clickable", visible, enabled);
+  }
+  
 }

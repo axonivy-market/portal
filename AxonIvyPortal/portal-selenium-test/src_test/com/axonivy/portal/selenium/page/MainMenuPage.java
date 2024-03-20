@@ -168,4 +168,20 @@ public class MainMenuPage extends TemplatePage {
     $("td[class*='dashboard-tasks__name']").shouldBe(appear, DEFAULT_TIMEOUT);
     $$("td[class*='dashboard-tasks__name'] span").filter(text("SupportTicket")).first().click();
   }
+  
+  public String getIconClassMainMenuEntryAsString() {
+    return $("div[id='user-menu-required-login']").shouldBe(appear, DEFAULT_TIMEOUT)
+            .$("li[id*='main-menu__js__DASHBOARD-main-dashboard']").shouldBe(appear, DEFAULT_TIMEOUT)
+            .$("a").shouldBe(appear, DEFAULT_TIMEOUT)
+            .$("i").shouldBe(appear, DEFAULT_TIMEOUT)
+            .getAttribute("class").toString();      
+  }
+  
+  public String getMainMenuName() {
+    return $("div[id='user-menu-required-login']").shouldBe(appear, DEFAULT_TIMEOUT)
+            .$("li[id*='main-menu__js__DASHBOARD-main-dashboard']").shouldBe(appear, DEFAULT_TIMEOUT)
+            .$("a").shouldBe(appear, DEFAULT_TIMEOUT)
+            .$("span").shouldBe(appear, DEFAULT_TIMEOUT)
+            .getText();     
+  }
 }

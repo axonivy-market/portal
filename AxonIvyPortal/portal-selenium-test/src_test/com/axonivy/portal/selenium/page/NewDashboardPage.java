@@ -4,9 +4,7 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-
 import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -121,16 +119,6 @@ public class NewDashboardPage extends TemplatePage {
     return widget.ancestor(".grid-stack-item");
   }
 
-  public MainMenuPage openMainMenu() {
-    $(".dashboard-cases-container").shouldBe(appear, DEFAULT_TIMEOUT);
-    if (!isMainMenuOpen()) {
-      waitForElementDisplayed(By.id("left-menu"), true);
-      $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
-      waitForElementClickableThenClick($(By.id("user-menu-required-login:toggle-menu")));
-    }
-    return new MainMenuPage();
-  }
-
   public WebElement waitAndGetStatisticChart(int index) {
     var widget = $$(".statistic-chart-widget").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT)
         .get(index).shouldBe(appear, DEFAULT_TIMEOUT);
@@ -169,6 +157,16 @@ public class NewDashboardPage extends TemplatePage {
 
     $("div#new-widget-configuration-dialog").shouldBe(appear, DEFAULT_TIMEOUT);
     return new WelcomeEditWidgetNewDashboardPage();
+  }
+
+  public MainMenuPage openMainMenu() {
+    $(".dashboard-cases-container").shouldBe(appear, DEFAULT_TIMEOUT);
+    if (!isMainMenuOpen()) {
+      waitForElementDisplayed(By.id("left-menu"), true);
+      $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
+      waitForElementClickableThenClick($(By.id("user-menu-required-login:toggle-menu")));
+    }
+    return new MainMenuPage();
   }
 
   public void checkStartButtonAndImageShown() {
