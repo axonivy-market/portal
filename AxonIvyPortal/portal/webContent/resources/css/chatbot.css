@@ -244,6 +244,52 @@
   align-items: center;
   padding: 25px 0;
   max-width: 1143px;
+  position: relative;
+}
+
+.chatbot-panel .chatbot-send-form .typing {
+  position: absolute;
+  top: 0;
+}
+
+.chatbot-panel .chatbot-send-form .typing div {
+  position: relative;
+  
+}
+
+.chatbot-panel .chatbot-send-form .typing div span {
+  content: '';
+  animation: blink 1.5s infinite;
+  animation-fill-mode: both;
+  height: 7px;
+  width: 7px;
+  background: #3b5998;
+  position: absolute;
+  left:0;
+  top:0;
+  border-radius: 50%;
+
+  &:nth-child(2) {
+    animation-delay: .2s;
+    margin-left: calc(7px * 1.5);
+  }
+
+  &:nth-child(3) {
+    animation-delay: .4s;
+    margin-left: calc(7px * 3);
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: .1;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: .1;
+  }
 }
 
 .chatbot-send-form .chat-send-form-input-field {

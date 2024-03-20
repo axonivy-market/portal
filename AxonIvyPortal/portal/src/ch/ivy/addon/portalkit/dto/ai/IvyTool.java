@@ -22,7 +22,6 @@ public class IvyTool extends AiTool {
 
   private List<IvyToolAttribute> attributes;
   private String signature;
-  private List<String> requirements;
   private String postAction;
 
   public List<IvyToolAttribute> getAttributes() {
@@ -39,14 +38,6 @@ public class IvyTool extends AiTool {
 
   public void setSignature(String signature) {
     this.signature = signature;
-  }
-
-  public List<String> getRequirements() {
-    return requirements;
-  }
-
-  public void setRequirements(List<String> requirements) {
-    this.requirements = requirements;
   }
 
   @Override
@@ -78,7 +69,7 @@ public class IvyTool extends AiTool {
       IvyToolStep step = new IvyToolStep();
       step.setStepNo(0);
       setWorkingStepNo(0);
-      step.setToolName(getName());
+      step.setToolId(getId());
       step.setPostAction(getPostAction());
 
       if (result != null && !result.isEmpty()) {
@@ -136,7 +127,7 @@ public class IvyTool extends AiTool {
     step.setStepNo(0);
     step.setResult("Sorry, you don't have permission to proceed this request.");
     step.setState(RunState.ERROR);
-    step.setToolName(getName());
+    step.setToolId(getId());
     return step;
   }
 }

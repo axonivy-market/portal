@@ -219,6 +219,22 @@ const parseMessage = message => {
   return message;
 };
 
+const createTypingDots = containerClass => {
+  const mainDiv = document.createElement('div');
+  mainDiv.classList = 'typing';
+  const dotDiv = document.createElement('div');
+  for (var i = 0; i < 3; i++) {
+    dotDiv.appendChild(document.createElement('span'));
+  }
+
+  mainDiv.appendChild(dotDiv);
+  $('.' + containerClass).get(0).appendChild(mainDiv);
+}
+
+const removeTypingDots = containerClass => {
+  $('.' + containerClass).find('.typing').remove();
+}
+
 function initializeResultIFrameAfterLoad(frame) {
   setTimeout( function() {
     const iFrame = $('#' + frame.id);
