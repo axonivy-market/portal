@@ -1,13 +1,15 @@
 package ch.ivy.addon.portalkit.dto.ai;
 
 import com.axonivy.portal.components.enums.ai.RunState;
+import com.axonivy.portal.enums.ai.StepType;
 
 public class IvyToolStep {
   private int stepNo;
+  private StepType type;
   private String description;
   private String result;
   private RunState state;
-  private String toolName;
+  private String toolId;
   private String postAction;
 
   public int getStepNo() {
@@ -34,11 +36,13 @@ public class IvyToolStep {
   public void setState(RunState state) {
     this.state = state;
   }
-  public String getToolName() {
-    return toolName;
+
+  public String getToolId() {
+    return toolId;
   }
-  public void setToolName(String toolName) {
-    this.toolName = toolName;
+
+  public void setToolId(String toolId) {
+    this.toolId = toolId;
   }
 
   public String getPostAction() {
@@ -47,5 +51,12 @@ public class IvyToolStep {
 
   public void setPostAction(String postAction) {
     this.postAction = postAction;
+  }
+
+  public StepType getType() {
+    return type;
+  }
+  public void setType(StepType type) {
+    this.type = type;
   }
 }

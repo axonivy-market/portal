@@ -2,9 +2,9 @@
 const isEdge = window.navigator.userAgent.includes('Edge');
 const isFireFox = navigator.userAgent.toLowerCase().includes('firefox');
 const isIphone = navigator.userAgent.match(/iPhone|iPod/i);
-const IVY_PREFIX = '__ivy__';
-const IVY_RETRIEVAL_QA_PREFIX = '__retrieval_qa__';
-const VALIDATE_ERROR_PREFIX = '__error__';
+const IVY_PREFIX = 'IVY';
+const IVY_RETRIEVAL_QA_PREFIX = 'RETRIEVAL_QA';
+const VALIDATE_ERROR_PREFIX = 'ERROR';
 
 // Global variables
 let messages = [];
@@ -162,6 +162,8 @@ function Assistant(ivyUri, uri, view, assistant, username) {
 
   // Function to choose tool based on the chat message
   async function startThread(ivyUri, uri, view, request, assistant, username) {
+    view.disableSendButton();
+
     try {
       // Send AJAX request to the chatbot server
       const response = await callFetchApi(
@@ -170,56 +172,56 @@ function Assistant(ivyUri, uri, view, assistant, username) {
           'request': request,
           'assistant': assistant,
           'username': username,
-          'thread_id': '',
+          'threadId': '',
           'session_id': '123'
         }));
 
       result = await getResultFromStreamingResponse(response);
       const assistantObj = $.parseJSON(assistant);
 
-      if (result.startsWith(VALIDATE_ERROR_PREFIX)) {
-        view.renderMessage(result.slice(VALIDATE_ERROR_PREFIX.length));
+      result = $.parseJSON(result);
+      
+      if (result.toolType == VALIDATE_ERROR_PREFIX) {
+        view.renderMessage(result.response);
         view.scrollToLatestMessage();
+        view.enableSendButton();
         return;
       }
 
-      if (result.startsWith(IVY_RETRIEVAL_QA_PREFIX)) {
-        result = result.slice(IVY_RETRIEVAL_QA_PREFIX.length);
+      if (result.toolType == IVY_RETRIEVAL_QA_PREFIX) {
+        const resultTool = $.parseJSON(result.response);
         var selectedTool = null;
         for (const tool of assistantObj.toolkit) {
-          if (tool.name == result) {
+          if (tool.id == resultTool.id) {
             selectedTool = tool;
             break;
           }
         }
 
-        if (selectedTool == null || selectedTool.type != 'RETRIEVAL_QA') {
-          view.renderMessage(result);
+        if (selectedTool == null || selectedTool.type != IVY_RETRIEVAL_QA_PREFIX) {
+          view.renderMessage("Cannot find proper tool to fulfill your request");
           view.scrollToLatestMessage();
+          view.enableSendButton();
         } else {
-          answerQA(uri, view, request, selectedTool.collection);
+          answerQA(uri, view, request, selectedTool.collection, result);
         }
 
-        if (selectedTool == null) {
-          view.renderMessage(result);
-          view.scrollToLatestMessage();
-          return;
-        }
-
-      } else if (result.startsWith(IVY_PREFIX)) {
-        result = result.slice(IVY_PREFIX.length);
-        proceedIvyTool(uri, ivyUri, view, result, assistant);
+      } else if (result.toolType == IVY_PREFIX) {
+        const resultTool = $.parseJSON(result.response);
+        var selectedTool = null;
+        proceedIvyTool(uri, ivyUri, view, result.response, assistant, result.threadId);
       } else {
         view.renderMessage(result);
         view.scrollToLatestMessage();
       }
     } catch (error) {
       console.error('Error sending chat message:', error);
+      view.enableSendButton();
     }
   }
 
   // Function to answer user questions
-  async function answerQA(uri, view, request, collection) {
+  async function answerQA(uri, view, request, collection, info) {
     try {
       // Send AJAX request to the chatbot server
       const response = await callFetchApi(
@@ -251,13 +253,35 @@ function Assistant(ivyUri, uri, view, assistant, username) {
           view.scrollToLatestMessage();
         }
 
+        updateThread(uri, result, info.assistantId, info.username, info.threadId);
+
     } catch (error) {
       console.error('Error sending chat message:', error);
+      view.enableSendButton();
+    }
+  }
+
+  // Function to update thread
+  async function updateThread(uri, result, assistantId, username, threadId) {
+    try {
+      // Send AJAX request to the chatbot server
+      const response = await callFetchApi(
+        uri + 'updateThread/',
+        JSON.stringify({
+          'response': result,
+          'threadId': threadId,
+          'assistantId': assistantId,
+          'username': username,
+          'session_id': '123'
+        }));
+    } catch (error) {
+      console.error('Error when save thread message:', error);
+      view.enableSendButton();
     }
   }
 
   // Function to proceed the ivy tool on Ivy engine
-  async function proceedIvyTool(uri, ivyUri, view, toolJson, assistant) {
+  async function proceedIvyTool(uri, ivyUri, view, toolJson, assistant, threadId) {
     try {
       // Send AJAX request to the chatbot server
       const response = await callJQueryAjaxToIvy(
@@ -265,7 +289,7 @@ function Assistant(ivyUri, uri, view, assistant, username) {
         JSON.stringify({ 'toolJson': toolJson })
       );
 
-      continueThread(uri, response, $.parseJSON(toolJson).threadId, assistant, view);
+      continueThread(uri, response, threadId, assistant, view);
     } catch (error) {
       console.error('Error sending chat message:', error);
     }
@@ -281,7 +305,7 @@ function Assistant(ivyUri, uri, view, assistant, username) {
           'request': request,
           'assistant': assistant,
           'username': username,
-          'thread_id': threadId,
+          'threadId': threadId,
           'session_id': '123'
         }));
       await showResultFromStreamingResponse(response);
@@ -313,6 +337,7 @@ function Assistant(ivyUri, uri, view, assistant, username) {
     const result = await getResultFromStreamingResponse(response);
     view.renderMessage(result);
     view.scrollToLatestMessage();
+    view.removeStreamingClassFromMessage();
   }
 }
 
@@ -433,6 +458,7 @@ function View(uri) {
     const messageList = $(jsMessageList);
     const streamingMessage = messageList.find('.chat-message-container.streaming');
     streamingMessage.removeClass('streaming');
+    this.enableSendButton();
   }
 
   // Add new line to the textbox
@@ -485,5 +511,17 @@ function View(uri) {
     const paddingTop = parseFloat(getComputedStyle(textbox).paddingTop);
     const paddingBottom = parseFloat(getComputedStyle(textbox).paddingBottom);
     textbox.style.height = initialHeight + paddingTop + paddingBottom + 'px';
+  }
+
+  this.disableSendButton = function() {
+    $('.js-chat-send-form').find('.ui-button').addClass('ui-state-disabled');
+    $('.js-chat-send-form').find('.js-chatbot-input-message').addClass('ui-state-disabled');
+    createTypingDots('js-chat-send-form');
+  }
+
+  this.enableSendButton = function() {
+    $('.js-chat-send-form').find('.ui-button').removeClass('ui-state-disabled');
+    $('.js-chat-send-form').find('.js-chatbot-input-message').removeClass('ui-state-disabled');
+    removeTypingDots('js-chat-send-form');
   }
 }
