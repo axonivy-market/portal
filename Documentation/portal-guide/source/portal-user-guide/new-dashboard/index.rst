@@ -132,7 +132,11 @@ files and put them into a single zip file.
 
 **Quick search**
 
+|quick-search-column-management|
+
 In the view mode, when quick search is enable, a textbox will appear to allow you to search.
+
+|quick-search-checkbox|
 
   .. important::
 
@@ -313,6 +317,8 @@ After setting up everything, simply click on the :guilabel:`Share this dashboard
 .. |dashboard-multi-language-widget-dialog| image:: ../../screenshots/new-dashboard/dashboard-multi-language-widget-dialog.png
 .. |task-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-table-configuration.png
 .. |task-column-field-type-configuration| image:: ../../screenshots/new-dashboard/task-column-field-type-configuration.png
+.. |quick-search-checkbox| image:: ../../screenshots/new-dashboard/quick-search-checkbox.png
+.. |quick-search-column-management| image:: ../../screenshots/new-dashboard/quick-search-column-management.png
 
 .. |case-list-widget| image:: ../../screenshots/new-dashboard/case-list-widget.png
 .. |case-list-widget-configuration| image:: ../../screenshots/new-dashboard/case-list-widget-configuration.png
