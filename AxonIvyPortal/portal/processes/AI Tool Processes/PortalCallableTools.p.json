@@ -125,9 +125,9 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.AssistantUtils;",
             "import java.util.HashMap;",
             "import java.util.Map;",
-            "import com.axonivy.portal.util.AssistantUtils;",
             "",
             "Map params = new HashMap();",
             "params.put(\"taskName\", in.taskName);",
@@ -153,11 +153,12 @@
         "output" : {
           "code" : [
             "import org.apache.commons.lang3.StringUtils;",
-            "import com.axonivy.portal.util.AssistantUtils;",
+            "import com.axonivy.portal.components.util.AssistantUtils;",
+            "import com.axonivy.portal.util.AiToolUtils;",
             "",
-            "in.validationError = AssistantUtils.validateTaskState(in.taskState);",
+            "in.validationError = AiToolUtils.validateTaskState(in.taskState);",
             "if (StringUtils.isBlank(in.validationError)) {",
-            "  in.validationError = AssistantUtils.validateTaskPriority(in.taskPriority);",
+            "  in.validationError = AiToolUtils.validateTaskPriority(in.taskPriority);",
             "}",
             "",
             "if(StringUtils.isNotBlank(in.validationError)) {",
@@ -245,9 +246,10 @@
         "output" : {
           "code" : [
             "import org.apache.commons.lang3.StringUtils;",
-            "import com.axonivy.portal.util.AssistantUtils;",
+            "import com.axonivy.portal.util.AiToolUtils;",
+            "import com.axonivy.portal.components.util.AssistantUtils;",
             "",
-            "in.validationError = AssistantUtils.validateCaseState(in.taskState);",
+            "in.validationError = AiToolUtils.validateCaseState(in.taskState);",
             "if(StringUtils.isNotBlank(in.validationError)) {",
             "  in.result = AssistantUtils.generateErrorResult(in.validationError);",
             "}"
@@ -289,9 +291,9 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.AssistantUtils;",
             "import java.util.HashMap;",
             "import java.util.Map;",
-            "import com.axonivy.portal.util.AssistantUtils;",
             "",
             "Map params = new HashMap();",
             "params.put(\"caseName\", in.taskName);",

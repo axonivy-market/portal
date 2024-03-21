@@ -2,20 +2,11 @@
 const isEdge = window.navigator.userAgent.includes('Edge');
 const isFireFox = navigator.userAgent.toLowerCase().includes('firefox');
 const isIphone = navigator.userAgent.match(/iPhone|iPod/i);
-const IVY_PREFIX = 'IVY';
-const IVY_RETRIEVAL_QA_PREFIX = 'RETRIEVAL_QA';
-const VALIDATE_ERROR_PREFIX = 'ERROR';
+const IVY = 'IVY';
+const RETRIEVAL_QA = 'RETRIEVAL_QA';
+const VALIDATE_ERROR = 'ERROR';
 
 // Global variables
-let messages = [];
-let currentIndex;
-const numberOfLoad = 20;
-const numberToApplyLazyLoad = 50;
-const clientId = new Date().getTime();
-let isChatDeactivated = false;
-let hasPendingRequestForSendersOfUnreadMessages = false;
-let hidden, visibilityChange;
-
 let streaming = false;
 
 // Handling browser visibility change
@@ -160,7 +151,7 @@ function Assistant(ivyUri, uri, view, assistant, username) {
     this.sendMessage(textbox);
   };
 
-  // Function to choose tool based on the chat message
+  // Function to start the chat thread
   async function startThread(ivyUri, uri, view, request, assistant, username) {
     view.disableSendButton();
 
@@ -177,42 +168,23 @@ function Assistant(ivyUri, uri, view, assistant, username) {
         }));
 
       result = await getResultFromStreamingResponse(response);
-      const assistantObj = $.parseJSON(assistant);
-
       result = $.parseJSON(result);
-      
-      if (result.toolType == VALIDATE_ERROR_PREFIX) {
+
+      // If an error occurred when choosing tool,
+      // show the error and end thread. 
+      if (result.toolType == VALIDATE_ERROR) {
         view.renderMessage(result.response);
-        view.scrollToLatestMessage();
         view.enableSendButton();
         return;
       }
 
-      if (result.toolType == IVY_RETRIEVAL_QA_PREFIX) {
-        const resultTool = $.parseJSON(result.response);
-        var selectedTool = null;
-        for (const tool of assistantObj.toolkit) {
-          if (tool.id == resultTool.id) {
-            selectedTool = tool;
-            break;
-          }
-        }
-
-        if (selectedTool == null || selectedTool.type != IVY_RETRIEVAL_QA_PREFIX) {
-          view.renderMessage("Cannot find proper tool to fulfill your request");
-          view.scrollToLatestMessage();
-          view.enableSendButton();
-        } else {
-          answerQA(uri, view, request, selectedTool.collection, result);
-        }
-
-      } else if (result.toolType == IVY_PREFIX) {
-        const resultTool = $.parseJSON(result.response);
-        var selectedTool = null;
+      // Handle result based on the tool type.
+      if (result.toolType == RETRIEVAL_QA) {
+        handleRetrievalQATool(uri, view, request, result, $.parseJSON(assistant));
+      } else if (result.toolType == IVY) {
         proceedIvyTool(uri, ivyUri, view, result.response, assistant, result.threadId);
       } else {
         view.renderMessage(result);
-        view.scrollToLatestMessage();
       }
     } catch (error) {
       console.error('Error sending chat message:', error);
@@ -220,7 +192,32 @@ function Assistant(ivyUri, uri, view, assistant, username) {
     }
   }
 
-  // Function to answer user questions
+  // Function to handle retrieval QA tool
+  async function handleRetrievalQATool(uri, view, request, result, assistantObj) {
+    // Get the result tool from AI server
+    const resultTool = $.parseJSON(result.response);
+
+    // Loop the tools of the assistant to choose the correct tool.
+    var selectedTool = null;
+    for (const tool of assistantObj.toolkit) {
+      if (tool.id == resultTool.id) {
+        selectedTool = tool;
+        break;
+      }
+    }
+
+    // Handle the selected tool,
+    // If the selected tool is found and has the correct type, call AI server to answer the question
+    // Otherwise, show error.
+    if (selectedTool == null || selectedTool.type != RETRIEVAL_QA) {
+      view.renderMessage("Cannot find proper tool to fulfill your request");
+      view.enableSendButton();
+    } else {
+      answerQA(uri, view, request, selectedTool.collection, result);
+    }
+  }
+
+  // Function to use Retrieval QA tool to answer user questions
   async function answerQA(uri, view, request, collection, info) {
     try {
       // Send AJAX request to the chatbot server
@@ -250,7 +247,6 @@ function Assistant(ivyUri, uri, view, assistant, username) {
           result += chunk;
 
           view.renderMessage(result);
-          view.scrollToLatestMessage();
         }
 
         updateThread(uri, result, info.assistantId, info.username, info.threadId);
@@ -283,22 +279,23 @@ function Assistant(ivyUri, uri, view, assistant, username) {
   // Function to proceed the ivy tool on Ivy engine
   async function proceedIvyTool(uri, ivyUri, view, toolJson, assistant, threadId) {
     try {
-      // Send AJAX request to the chatbot server
+      // Send AJAX request to the AI server
       const response = await callJQueryAjaxToIvy(
         ivyUri + 'assistant/ivyTool',
         JSON.stringify({ 'toolJson': toolJson })
       );
 
+      // After get the result from ivy, use the response to continue the thread on the AI server
       continueThread(uri, response, threadId, assistant, view);
     } catch (error) {
       console.error('Error sending chat message:', error);
     }
   }
 
-  // Function to end the thread on AI server
+  // Function to continue the thread on the AI server
   async function continueThread(uri, request, threadId, assistant, view) {
     try {
-      // Send AJAX request to the chatbot server
+      // Send AJAX request to the AI server
       const response = await callFetchApi(
         uri + 'continueThread/',
         JSON.stringify({
@@ -314,6 +311,7 @@ function Assistant(ivyUri, uri, view, assistant, username) {
     }
   }
 
+  // Function to get the streaming result from an AJAX response
   async function getResultFromStreamingResponse(response) {
     // Read the response as a stream of data
     const reader = response.body.getReader();
@@ -336,7 +334,6 @@ function Assistant(ivyUri, uri, view, assistant, username) {
   async function showResultFromStreamingResponse(response) {
     const result = await getResultFromStreamingResponse(response);
     view.renderMessage(result);
-    view.scrollToLatestMessage();
     view.removeStreamingClassFromMessage();
   }
 }
@@ -368,6 +365,7 @@ function View(uri) {
     } else {
       renderNewMessageFunc(message, false);
     }
+    this.scrollToLatestMessage();
   };
 
   // Rendering user's own messages
@@ -439,6 +437,7 @@ function View(uri) {
     }
   }
 
+  // Function to update streaming message
   function updateStreamingMessage(cloneTemplate) {
     const messageList = $(jsMessageList);
     const streamingMessage = messageList.find('.chat-message-container.streaming');
@@ -454,6 +453,8 @@ function View(uri) {
     streamingMessage.get(0).innerHTML = cloneTemplate.innerHTML;
   }
 
+  // Function to remove the 'streaming' class from a message
+  // after the streaming process is done.
   this.removeStreamingClassFromMessage = function () {
     const messageList = $(jsMessageList);
     const streamingMessage = messageList.find('.chat-message-container.streaming');
@@ -513,12 +514,16 @@ function View(uri) {
     textbox.style.height = initialHeight + paddingTop + paddingBottom + 'px';
   }
 
+  // Disable the send button, input text
+  // and show typing dots.
   this.disableSendButton = function() {
     $('.js-chat-send-form').find('.ui-button').addClass('ui-state-disabled');
     $('.js-chat-send-form').find('.js-chatbot-input-message').addClass('ui-state-disabled');
     createTypingDots('js-chat-send-form');
   }
 
+  // Enable the send button, input text
+  // and show typing dots.
   this.enableSendButton = function() {
     $('.js-chat-send-form').find('.ui-button').removeClass('ui-state-disabled');
     $('.js-chat-send-form').find('.js-chatbot-input-message').removeClass('ui-state-disabled');

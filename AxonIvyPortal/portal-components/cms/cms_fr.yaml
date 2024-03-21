@@ -87,6 +87,9 @@ Dialogs:
               EXTERNAL_LINK: Lien externe
               IVY_PROCESS: Processus d'entreprise
 Labels:
+  AI:
+    Error:
+      ErrorWhenProceedRequest: An error has occurred while trying to process your request. Please, try again later.
   DisabledUserPrefix: (désactivé)
   NoName: Aucun nom
   NoResults: Aucun résultat
