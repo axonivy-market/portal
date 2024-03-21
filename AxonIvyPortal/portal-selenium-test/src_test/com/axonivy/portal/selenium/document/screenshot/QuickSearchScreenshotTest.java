@@ -44,15 +44,16 @@ public class QuickSearchScreenshotTest extends ScreenshotBaseTest {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    ScreenshotUtils.resizeBrowser(new Dimension(1000, 1000));
+    ScreenshotUtils.resizeBrowser(new Dimension(1366, 768));
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
 
     ScreenshotUtils.captureElementScreenshot(taskEditWidget.getConfigurationFilter(),
-        ScreenshotUtils.SEARCH_FOLDER + "quick-search-checkbox");
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "quick-search-checkbox");
     taskEditWidget.clickOnQuickSearchCheckBox();
     taskEditWidget.openColumnManagementDialog();
+    ScreenshotUtils.resizeBrowser(new Dimension(1366, 1000));
     ScreenshotUtils.captureElementScreenshot(taskEditWidget.getColumnManagementDialog(),
-        ScreenshotUtils.SEARCH_FOLDER + "quick-search-column-management");
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "quick-search-column-management");
 
     taskEditWidget.saveColumnMangement();
     taskEditWidget.save();
@@ -61,12 +62,15 @@ public class QuickSearchScreenshotTest extends ScreenshotBaseTest {
 
     taskWidget.setInputForQuickSearch("Task number 10");
     taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1));
+    taskWidget.clearQuickSearchInput();
     redirectToNewDashBoard();
+    ScreenshotUtils.resizeBrowser(new Dimension(1000, 1000));
     taskWidget.setInputForQuickSearch("Task number 10");
     taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.clearQuickSearchInput();
     taskWidget.clickOnButtonExpandTaskWidget();
-    ScreenshotUtils.resizeBrowserAndCaptureHalfRightScreen(ScreenshotUtils.SEARCH_FOLDER + "quick-search-textbox",
+    ScreenshotUtils.resizeBrowserAndCaptureHalfRightScreen(
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "quick-search-textbox",
         new Dimension(1000, 200));
   }
 }
