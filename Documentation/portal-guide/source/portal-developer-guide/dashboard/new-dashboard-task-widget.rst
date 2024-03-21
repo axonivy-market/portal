@@ -131,6 +131,9 @@ The basic JSON structure of a Task widget
       ``visible``: visibility of a column. The default value is "true".
       Set to "false" to hide the column.
 
+      ``quickSearch``: Apply search condition for the column when using the quick search feature. The default value is "false".
+      Set to "true" to apply search condition for the column.
+
    -  ``headers``: multilingual header of the column.
 
 Custom Columns
@@ -344,7 +347,12 @@ Quick search is a useful function for user to search quickly on the Task widget.
 
 **JSON Structure**
 
-Below is a sample JSON definition of a task widget in the Portal dashboard that has two added new attributes for quick search function.
+Below are definitions and JSON examples of two fields that you can use to configure the quick search feature.
+
+   * ``enableQuickSearch``
+
+      To enable/disable the quick search feature,
+      set the ``enableQuickSearch`` field of the Task widget as below.
 
       .. code-block:: html
 
@@ -354,27 +362,43 @@ Below is a sample JSON definition of a task widget in the Portal dashboard that 
             "id": "task_98ae4fc1c83f4f22be5244c8027ecf40"
             ...
             "enableQuickSearch": "true",
+            ...
+         }
+
+      ..
+
+      Valid values:
+
+      * ``true``: show the quick search textbox
+      * ``false``: hide the quick search textbox
+      * ``not define``: hide the quick search textbox
+
+   * ``quickSearch``
+
+      To choose which columns can be search by the quick search feature,
+      set the ``quickSearch`` field for each column as below.
+
+      .. code-block:: html
+
+         {
+            ...
+            "type": "task",
+            "id": "task_98ae4fc1c83f4f22be5244c8027ecf40"
+            ...
             "columns": [
                {
                   "field": "id",
                   "quickSearch": "false"
                },
-               {
-                  "field": "name",
-                  "quickSearch": "true"
-               }
+               ...
             ]
             ...
          }
 
       ..
 
-      * ``enableQuickSearch``
-         * ``true``: show the quick search text
-         * ``false``: hide the quick search textbox
-         * ``not define``: hide the quick search textbox
-      * ``quickSearch``
-         * ``true``: apply quick search for this column
-         * ``false``: do not apply quick search for this column
-         * ``not define``: do not apply quick search for this column
+      Valid values:
 
+      * ``true``: apply quick search for this column
+      * ``false``: do not apply quick search for this column
+      * ``not define``: do not apply quick search for this column

@@ -107,6 +107,16 @@ In the column management panel, you will find two sections:
       - Reorder the columns by drag and drop using the arrows |move-expand-vertical|
       - Remove columns
 
+  .. important::
+
+    Quick search feature is supporting these fields:
+
+      #. Standard fields: Id, name, description, category, responsible (display name), and application.
+      #. Task custom fields: fields that have type **STRING** or **TEXT**.
+      #. Case custom fields: fields that have type **STRING** or **TEXT**
+
+    Quick search is enabled for the standard field name and description by default.
+
 Portal supports to display custom case fields within the task list.
 
 |task-column-field-type-configuration|
@@ -122,26 +132,12 @@ files and put them into a single zip file.
 
 **Quick search**
 
-At the Column management, for standard fields, quick search is selected for name
-and description by default.
-
-You may search for any keyword. Only fields that have type **STRING** can be applied quick search.
-
-    * Standard fields: Id, name, description, category, responsible (display name), application.
-    * Task custom fields: fields that have type **STRING**, **TEXT**.
-    * Case custom fields: fields that have type **STRING**, **TEXT**
-
 In the view mode, when quick search is enable, a textbox will appear to allow you to search.
 
   .. important::
-    #. When you press certain special keys of the list, quick search does not function. ``Enter``, ``Shift``, ``Control``, ``Alt``, ``Pause``, ``CapsLock``, ``Escape``, ``PageUp``, ``PageDown``, ``End``, ``Home``, ``PrintScreen``, ``Insert``, ``Meta``, ``ContextMenu``, ``NumLock``, ``ScrollLock``.
-    #. The quick search input persists throughout the user session.
+
     #. Quick search function is unaffected by widget filters.
-    #. When widget width is less than 400px, the search textbox disappears.
-    #. The scope of the quick search feature is determined by the number of columns that allow for it.
-
-
-
+    #. The scope of the quick search feature can be defined in the configuration panel.
 
 Case list widget
 ================
