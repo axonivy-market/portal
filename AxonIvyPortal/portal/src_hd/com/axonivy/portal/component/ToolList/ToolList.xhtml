@@ -19,7 +19,7 @@
 <cc:implementation>
   <c:set var="isAddTool" value="#{cc.attrs.isAddTool}" />
   <h:panelGroup id="no-tool-panel" layout="block" rendered="#{empty cc.attrs.toolList}">
-    <span>There is no available tool</span>
+    <span>#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/ToolList/NoAvailableTools')}</span>
   </h:panelGroup>
   <ui:repeat var="tool" value="#{cc.attrs.toolList}">
     <p:toolbar id="#{cc.clientId}-toolbar" styleClass="ui-g-12 assistant-toolbar">
@@ -54,7 +54,7 @@
           <p:divider />
 
           <div class="ui-g-12 tool-info-line">
-            <h:outputText value="Permission" />
+            <h:outputText value="#{ivy.cms.co('/Labels/Permissions')}" />
             <p:spacer width="10" />
             <h:outputText value="#{cc.attrs.managedBean.renderPermissions(tool.permissions)}" />
           </div>
@@ -62,7 +62,7 @@
           <h:panelGroup id="retrieval-attribute-#{index}" layout="block"
             rendered="#{(isAddTool) and (tool.type eq 'RETRIEVAL_QA')}"
             styleClass="ui-g-12">
-            <h:outputText value="Collection:" />
+            <h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/ToolList/Collection')}:" />
             <p:spacer width="10" />
             <h:outputText value="#{tool.collection}" />
           </h:panelGroup>
@@ -70,7 +70,7 @@
           <h:panelGroup id="ivy-attribute-#{index}" layout="block"
             rendered="#{isAddTool and (tool.type eq 'IVY' || tool.type eq 'IVY_CALLABLE')}"
             styleClass="ui-g-12 ivy-attribute-panel">
-            <h:outputText value="Attributes" />
+            <h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/ToolList/Attributes')}" />
             <ul>
               <ui:repeat var="attr" value="#{tool.attributes}">
               <li>

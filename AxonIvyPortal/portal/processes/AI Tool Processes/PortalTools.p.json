@@ -67,8 +67,10 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.util.AssistantUtils;",
-            "in.taskDashboardWidget = AssistantUtils.convertIvyToolToTaskDashboardWidget(in.name, in.description, in.priority, in.state);"
+            "import com.axonivy.portal.util.AiToolUtils;",
+            "",
+            "in.taskDashboardWidget = AiToolUtils.convertIvyToolToTaskDashboardWidget(",
+            "  in.name, in.description, in.priority, in.state);"
           ]
         },
         "sudo" : true
@@ -138,8 +140,10 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.util.AssistantUtils;",
-            "in.caseDashboardWidget = AssistantUtils.convertIvyToolToCaseDashboardWidget(in.name, in.description, in.state);"
+            "import com.axonivy.portal.util.AiToolUtils;",
+            "",
+            "in.caseDashboardWidget = AiToolUtils.convertIvyToolToCaseDashboardWidget(",
+            "  in.name, in.description, in.state);"
           ]
         },
         "sudo" : true
