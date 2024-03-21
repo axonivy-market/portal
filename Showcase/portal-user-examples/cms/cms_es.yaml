@@ -100,9 +100,6 @@ Processes:
     verifyPersonalData: Compruebe datos personales
   ContractNegotiation:
     name: Negociación de contrato
-  DashboardCustomWidget:
-    category: Inversión
-    name: Lista de inversiones (ejemplo de widget personalizado en el panel de control)
   LeaveRequest:
     Approval:
       description1: Añada un comentario a la solicitud

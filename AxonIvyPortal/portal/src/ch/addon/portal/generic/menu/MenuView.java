@@ -46,7 +46,6 @@ import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
-import ch.ivy.addon.portalkit.service.MainMenuEntryService;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
@@ -157,17 +156,13 @@ public class MenuView implements Serializable {
     if (HomepageType.DASHBOARD != configHomepageType) {
       dashboardLink = getDefaultDashboardUrl();
     }
-    
-    MainMenuEntryService mainMenuEntryService = new MainMenuEntryService();
-    String mainMenuDisplayName = mainMenuEntryService.getNameInCurrentLocale();
-    String mainMenuIcon = mainMenuEntryService.getMenuIcon();
 
     if (!isShowLegacyUI()) {
       var dashboards = getDashboardCache().dashboards;
       if (CollectionUtils.isNotEmpty(dashboards)) {
         DefaultSubMenu dashboardGroupMenu = DefaultSubMenu.builder()
-                .label(StringUtils.isBlank(mainMenuDisplayName) ? dashboardTitle : mainMenuDisplayName)
-                .icon(StringUtils.isBlank(mainMenuIcon) ? PortalMenuItem.DEFAULT_DASHBOARD_ICON : mainMenuIcon)
+                .label(dashboardTitle)
+                .icon(PortalMenuItem.DEFAULT_DASHBOARD_ICON)
                 .id(String.format(DASHBOARD_MENU_PATTERN, MenuKind.DASHBOARD.name()))
                 .styleClass(DASHBOARD_MENU_JS_CLASS).build();
         if (dashboards.size() > 1) {

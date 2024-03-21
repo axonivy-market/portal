@@ -31,4 +31,5 @@ public class Announcement {
   public void setContents(List<LocalizationContent> contents) {
     this.contents = contents;
   }
+
 }

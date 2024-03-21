@@ -313,10 +313,6 @@ a.left-sidebar-menu-icon {
 .ui-confirm-dialog-message li {
   list-style-type: circle;
 }
-
-.ui-confirm-dialog-message ul {
-  line-height: 19px
-}
 /******** CHAT ********/
 .chat-add-assignee-button-grid, .chat-action-container {
   text-align: right;
