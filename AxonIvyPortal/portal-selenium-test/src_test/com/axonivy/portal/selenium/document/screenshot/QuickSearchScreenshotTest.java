@@ -66,6 +66,6 @@ public class QuickSearchScreenshotTest extends ScreenshotBaseTest {
     taskWidget.clearQuickSearchInput();
     taskWidget.clickOnButtonExpandTaskWidget();
     ScreenshotUtils.resizeBrowserAndCaptureHalfRightScreen(
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "quick-search-textbox", new Dimension(800, 300));
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "quick-search-textbox", new Dimension(800, 150));
   }
 }
