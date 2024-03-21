@@ -1573,11 +1573,17 @@ Dialogs:
       portal:
         component:
           ChatDashboard:
+            AddTool: Werkzeug hinzufügen
+            Tools: Werkzeuge
             WelcomeHeaderText: Willkommen bei Axon Ivy Portal!
             WelcomeText: Wir freuen uns, Sie an Bord zu haben. Das Axon Ivy Portal ist Ihr Tor zu einer nahtlosen und effizienten Erfahrung. Egal, ob Sie ein neuer Benutzer sind, der die Funktionen erkundet, oder ein wiederkehrender Besucher, wir sind hier, um Sie bei jedem Schritt zu unterstützen.
           ShareLinkDialog:
             CopyLink: Link kopieren
             LinkCopied: Link kopiert!
+          ToolList:
+            Attributes: Attribute
+            Collection: Sammlung
+            NoAvailableTools: Es gibt keine verfügbaren Tools
         dashboard:
           component:
             DashboardImportDetails:
@@ -1714,6 +1720,10 @@ Dialogs:
         ReqMsgGeneric: ' ist ein erforderliches Feld!'
     processStep: Prozessschritt
 Labels:
+  AI:
+    Error:
+      InvalidTaskPriority: 'Invalid task priority. Valid task priorities are: low, normal, high, or exception.'
+      InvalidTaskState: 'Invalid task state. Valid task states are: open, done, in progress, or error.'
   AdhocWorkflow: Beschreiben Sie Ihren Workflow
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
