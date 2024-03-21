@@ -123,25 +123,25 @@ files and put them into a single zip file.
 **Quick search**
 
 At the Column management, for standard fields, quick search is selected for name
-and description by default.
-
-You may search for any keyword. Only fields that have type **STRING** can be applied quick search.
+and description by default. You may search for any keyword. Only fields that
+have type **STRING** can be applied quick search.
 
     * Standard fields: Id, name, description, category, responsible (display name), application.
     * Task custom fields: fields that have type **STRING**, **TEXT**.
     * Case custom fields: fields that have type **STRING**, **TEXT**
 
+|quick-search-column-management|
+
 In the view mode, when quick search is enable, a textbox will appear to allow you to search.
+
+|quick-search-checkbox|
 
   .. important::
     #. When you press certain special keys of the list, quick search does not function. ``Enter``, ``Shift``, ``Control``, ``Alt``, ``Pause``, ``CapsLock``, ``Escape``, ``PageUp``, ``PageDown``, ``End``, ``Home``, ``PrintScreen``, ``Insert``, ``Meta``, ``ContextMenu``, ``NumLock``, ``ScrollLock``.
-    #. The quick search input persists throughout the user session.
-    #. Quick search function is unaffected by widget filters.
-    #. When widget width is less than 400px, the search textbox disappears.
+    #. The quick search input **persists** throughout the user session.
+    #. Quick search function is **unaffected** by widget filters.
+    #. When widget width is less than 400px, the search textbox **disappears**
     #. The scope of the quick search feature is determined by the number of columns that allow for it.
-
-
-
 
 Case list widget
 ================
@@ -317,6 +317,8 @@ After setting up everything, simply click on the :guilabel:`Share this dashboard
 .. |dashboard-multi-language-widget-dialog| image:: ../../screenshots/new-dashboard/dashboard-multi-language-widget-dialog.png
 .. |task-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-table-configuration.png
 .. |task-column-field-type-configuration| image:: ../../screenshots/new-dashboard/task-column-field-type-configuration.png
+.. |quick-search-checkbox| image:: ../../screenshots/new-dashboard/quick-search-checkbox.png
+.. |quick-search-column-management| image:: ../../screenshots/new-dashboard/quick-search-column-management.png
 
 .. |case-list-widget| image:: ../../screenshots/new-dashboard/case-list-widget.png
 .. |case-list-widget-configuration| image:: ../../screenshots/new-dashboard/case-list-widget-configuration.png

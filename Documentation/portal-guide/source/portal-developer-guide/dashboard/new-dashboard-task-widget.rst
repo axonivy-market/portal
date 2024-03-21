@@ -370,7 +370,7 @@ Below is a sample JSON definition of a task widget in the Portal dashboard that 
       ..
 
       * ``enableQuickSearch``
-         * ``true``: show the quick search text
+         * ``true``: show the quick search textbox
          * ``false``: hide the quick search textbox
          * ``not define``: hide the quick search textbox
       * ``quickSearch``
