@@ -5,7 +5,6 @@ import static com.codeborne.selenide.Selenide.$;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
-import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
@@ -98,24 +97,18 @@ public class CaseMapPage extends TemplatePage {
     $(By.id(id)).sendKeys(value);
   }
 
-  public TaskWidgetPage clickSubmitButton() {
+  public void clickSubmitButton() {
     waitForElementClickableThenClick("button[id$='form:submit-button']");
-    waitPageDisappear();
-    switchBackToParent();
-    return new TaskWidgetPage();
   }
 
-  public TaskWidgetPage clickApproveButton() {
+  public void clickApproveButton() {
     waitForElementClickableThenClick("button[id$='form:approval-button']");
-    waitPageDisappear();
-    switchToDefaultContent();
-    return new TaskWidgetPage();
   }
 
-  public UserExamplesEndPage clickSubmitContractButton() {
+  public TaskWidgetPage clickSubmitContractButton() {
     waitForElementClickableThenClick("button[id$='submit-contract-button']");
     switchToDefaultContent();
-    return new UserExamplesEndPage();
+    return new TaskWidgetPage();
   }
 
   public TaskWidgetPage clickRejectButton() {

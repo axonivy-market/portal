@@ -1,8 +1,6 @@
 Dialog:
   Common:
     approve: Aprobar
-    endPageButton: Ver los detalles del caso
-    endPageMessage: ¡Bien hecho! Ha terminado su proceso con éxito.
     finish: Acabar
     reject: Rechazar
     submit: Presentar

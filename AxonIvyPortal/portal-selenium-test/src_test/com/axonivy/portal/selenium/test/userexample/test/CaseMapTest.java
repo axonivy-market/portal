@@ -6,10 +6,9 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
-import com.axonivy.portal.selenium.page.CaseDetailsPage;
+import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseMapPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
-import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
@@ -30,6 +29,8 @@ public class CaseMapTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
+    login(TestAccount.DEMO_USER);
+    grantTaskReadAllPermissionsToCurrentUser();
     redirectToRelativeLinkWithEmbedInFrame(CASE_MAP_URL);
   }
 
@@ -62,9 +63,9 @@ public class CaseMapTest extends BaseTest {
     caseMapPage.clickApproveButton();
     startTaskByTaskName(CREATE_CONTRACT);
     assertInputData();
-    UserExamplesEndPage userExamplesEndPage = caseMapPage.clickSubmitContractButton();
-    CaseDetailsPage caseDetailsPage = userExamplesEndPage.goToCaseDetail();
-    assertEquals("Lending", caseDetailsPage.getCaseName());
+    TaskWidgetPage taskWidget = caseMapPage.clickSubmitContractButton();
+    taskWidget.waitForPageLoad();
+    assertTrue(taskWidget.checkNameOfTaskAt(0, "Create Contract"));
   }
 
   @Test
@@ -73,6 +74,7 @@ public class CaseMapTest extends BaseTest {
     caseMapPage.switchToIFrameOfTask();
     caseMapPage.inputFields("John", "Jack", "1.1.2019", "VN", "20000", "To buy a new car", "80000", "100000");
     caseMapPage.clickSubmitRequestButton();
+    NavigationHelper.navigateToTaskList();
     startTaskByTaskName(VERIFY_PERSONAL_DATA);
     assertInputData();
     caseMapPage.inputField("form:verifier-comment", "Ok");
@@ -93,7 +95,8 @@ public class CaseMapTest extends BaseTest {
   }
 
   private void startTaskByTaskName(String taskname) {
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    NavigationHelper.navigateToTaskList();
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksInExpandedModeBy(taskname);
     taskWidgetPage.startTaskIFrame(0);
   }
