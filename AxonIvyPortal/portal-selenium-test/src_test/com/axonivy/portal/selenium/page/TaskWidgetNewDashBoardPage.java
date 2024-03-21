@@ -537,5 +537,4 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public String getQuickSearchInput() {
     return getQuickSearchForm().$("input").getValue();
   }
-
 }

@@ -316,9 +316,13 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnQuickSearchCheckBox() {
-    $("div[id$='filter-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span[id$='quick-search-group']")
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    getQuickSearchCheckBox().click();
+  }
+
+  public WebElement getQuickSearchCheckBox() {
+    return $("div[id$='filter-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
 
   public void clickOnQuickSearchByField(String fieldName) {
