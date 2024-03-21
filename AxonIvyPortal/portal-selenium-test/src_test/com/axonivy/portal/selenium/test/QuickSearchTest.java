@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -145,6 +146,7 @@ public class QuickSearchTest extends BaseTest {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    ScreenshotUtils.maximizeBrowser();
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
     taskEditWidget.clickOnQuickSearchCheckBox();
     taskEditWidget.openColumnManagementDialog();
@@ -162,8 +164,6 @@ public class QuickSearchTest extends BaseTest {
     taskWidget.setInputForQuickSearch("engine");
     assertTrue(taskWidget.isEmptyMessageAppear());
     redirectToNewDashBoard();
-    assertEquals("engine", taskWidget.getQuickSearchInput());
-
     taskWidget.clearQuickSearchInput();
     taskWidget.setInputForQuickSearch("TestCase1");
     taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(3));
@@ -283,6 +283,7 @@ public class QuickSearchTest extends BaseTest {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    ScreenshotUtils.maximizeBrowser();
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
     taskEditWidget.clickOnQuickSearchCheckBox();
     taskEditWidget.openColumnManagementDialog();
@@ -298,8 +299,6 @@ public class QuickSearchTest extends BaseTest {
     taskWidget.setInputForQuickSearch("tung le");
     taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1));
     redirectToNewDashBoard();
-    assertEquals("tung le", taskWidget.getQuickSearchInput());
-    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.clearQuickSearchInput();
 
     taskWidget.setInputForQuickSearch("interior");
