@@ -66,6 +66,6 @@
         "description" : "Role of user"
       }
     ],
-    "postAction" : "For each user from the result, gather then show as list these informations as a list: name, display name, email, status (field enabled), if any field is null or empty, show blank space instead. Format: \nName: name\nDisplay Name: displayname\n Email: email\n... and so on"
+    "postAction" : "ONLY use data from the from the result, show as list these informations: name, display name, email, status (field enabled), if any field is null or empty, show blank space instead. Format: \nName: name\nDisplay Name: displayname\n Email: email\n... and so on"
   }
 ]

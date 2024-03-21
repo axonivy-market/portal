@@ -29,14 +29,15 @@
         </div>
         <h:panelGroup id="add-tool-list-panel" layout="block"
           rendered="#{assistantModificationBean.addTool}"
-          styleClass="tool-list-panel">
+          styleClass="add-tool-list-panel">
           <ic:com.axonivy.portal.component.ToolList id="add-tool-panel" isAddTool="#{assistantModificationBean.addTool}"
             toolList="#{assistantModificationBean.availableTools}"
             managedBean="#{assistantModificationBean}"
             componentToUpdate="#{p:resolveFirstComponentWithId('tools-panel', view).clientId}" />
         </h:panelGroup>
         <h:panelGroup id="tool-list-panel" layout="block"
-          rendered="#{!assistantModificationBean.addTool}">
+          rendered="#{!assistantModificationBean.addTool}"
+          styleClass="tool-list-panel">
           <ic:com.axonivy.portal.component.ToolList id="assistant-tool-panel"
             isAddTool="#{assistantModificationBean.addTool}"
             toolList="#{assistantModificationBean.assistant.toolkit}"

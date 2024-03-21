@@ -49,6 +49,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.AssistantUtils;",
             "import org.apache.commons.collections4.CollectionUtils;",
             "import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;",
             "import org.apache.commons.lang3.StringUtils;",
@@ -64,7 +65,7 @@
             "if (CollectionUtils.isNotEmpty(in.users)) {",
             "  in.result = BusinessEntityConverter.entityToJsonValue(in.users);",
             "} else {",
-            "  in.result = \"\";",
+            "  in.result = AssistantUtils.generateErrorResult(ivy.cms.co(\"/Labels/AI/Error/CannotFindUser\"));",
             "}"
           ]
         },
