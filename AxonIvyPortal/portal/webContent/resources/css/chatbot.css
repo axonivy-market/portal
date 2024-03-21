@@ -428,7 +428,7 @@ body .ui-sidebar.manage-assistant-sidebar .tools-panel {
   align-content: flex-start;
 }
 
-body .ui-sidebar.manage-assistant-sidebar .tools-panel .tool-list-panel {
+body .ui-sidebar.manage-assistant-sidebar .tools-panel .add-tool-list-panel {
   height: 92%;
   overflow: auto;
   display: grid;
@@ -436,6 +436,11 @@ body .ui-sidebar.manage-assistant-sidebar .tools-panel .tool-list-panel {
   justify-items: start;
   align-content: baseline;
   justify-content: start;
+}
+
+body .ui-sidebar.manage-assistant-sidebar .tools-panel .tool-list-panel {
+  max-height: 90%;
+  overflow: auto;
 }
 
 body .ui-sidebar.manage-assistant-sidebar .tools-panel .tool-info-line {

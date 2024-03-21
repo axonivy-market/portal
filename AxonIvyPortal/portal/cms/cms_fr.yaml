@@ -1718,6 +1718,7 @@ Dialogs:
 Labels:
   AI:
     Error:
+      CannotFindUser: Sorry, cannot find any user matched your request. Please try again.
       InvalidTaskPriority: 'Invalid task priority. Valid task priorities are: low, normal, high, or exception.'
       InvalidTaskState: 'Invalid task state. Valid task states are: open, done, in progress, or error.'
   AdhocWorkflow: Décrivez votre workflow
