@@ -51,7 +51,9 @@ public class SecurityService{
 
     if (CollectionUtils.isNotEmpty(fromRoles)) {
       UserQuery hasRolesQuery = queryHasRoles(fromRoles);
-      filterQuery.andOverall(hasRolesQuery);
+      if (hasRolesQuery != null) {
+        filterQuery.andOverall(hasRolesQuery);
+      }
     }
     excludeUsername(excludedUsernames, filterQuery);
 
@@ -97,6 +99,10 @@ public class SecurityService{
       } else {
         Ivy.log().warn("Cannot find role name: {0}", roleName);
       }
+    }
+
+    if (CollectionUtils.isEmpty(roles)) {
+      return null;
     }
 
     UserQuery hasRolesQuery = UserQuery.create();

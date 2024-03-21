@@ -85,7 +85,9 @@ public class AiToolUtils {
         case DESCRIPTION -> col.setFilter(description);
         case STATE -> {
           CaseBusinessState stateEnum = initCaseState(state);
-          col.setFilterList(Arrays.asList(stateEnum.name()));
+          if (stateEnum != null) {
+            col.setFilterList(Arrays.asList(stateEnum.name()));
+          }
         }
         default -> {}
       }

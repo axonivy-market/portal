@@ -68,7 +68,7 @@
           </h:panelGroup>
 
           <h:panelGroup id="ivy-attribute-#{index}" layout="block"
-            rendered="#{isAddTool and (tool.type eq 'IVY' || tool.type eq 'IVY_CALLABLE')}"
+            rendered="#{isAddTool and (tool.type eq 'IVY')}"
             styleClass="ui-g-12 ivy-attribute-panel">
             <h:outputText value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/ToolList/Attributes')}" />
             <ul>
