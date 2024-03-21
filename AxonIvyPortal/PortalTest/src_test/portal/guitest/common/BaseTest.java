@@ -327,7 +327,7 @@ public class BaseTest {
 
   protected void showNewDashboard() {
     updatePortalSetting(SHOW_LEGACY_UI.getKey(), "false");
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+//    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
   
 }
