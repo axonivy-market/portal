@@ -20,7 +20,7 @@
       </h:outputText>
     </div>
     <div class="news-item__content">
-      <h:outputText styleClass="news__content line-clamp-text-3" value="#{visibilityBean.sanitizeContent(news.description)}" escape="false" />
+      <h:outputText escape="false" value="#{htmlSanitizerBean.sanitize(news.description)}" styleClass="news__content line-clamp-text-3" />
     </div>
     <div class="news-item__actions">
       <p:commandLink id="news-item-see-more" styleClass="u-mar-right-5 hide"
