@@ -61,7 +61,7 @@
                     <p:tooltip for="notification-mark-as-read"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
                   </div>
-                  <h:outputText id="notification-message" value="#{notification.message}" escape="false" />
+                  <h:outputText escape="false" value="#{htmlSanitizerBean.sanitize(notification.message)}" id="notification-message" />
                 </div>
 
                 <div>

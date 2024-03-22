@@ -136,7 +136,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.HtmlParser;",
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import org.primefaces.PrimeFaces;",
             "import ch.ivyteam.ivy.security.IUser;",
             "import org.apache.commons.lang3.StringUtils;",
@@ -161,7 +161,7 @@
             "}",
             "",
             "facesContext.validationFailed();",
-            "facesContext.addMessage(\"portal-global-growl-message\", new FacesMessage(FacesMessage.SEVERITY_INFO, HtmlParser.sanitize(notification), null));",
+            "facesContext.addMessage(\"portal-global-growl-message\", FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, notification, null));",
             "PrimeFaces.current().ajax().update(\"portal-global-growl\");  "
           ]
         },
@@ -385,7 +385,9 @@
         "at" : { "x" : 288, "y" : 640 }
       },
       "connect" : [
-        { "id" : "f10", "to" : "f8", "via" : [ { "x" : 288, "y" : 752 } ] },
+        { "id" : "f10", "to" : "f8", "via" : [ { "x" : 288, "y" : 752 } ], "label" : {
+            "segment" : 1.14
+          } },
         { "id" : "f5", "to" : "f7" }
       ]
     }, {
@@ -424,7 +426,9 @@
         "at" : { "x" : 296, "y" : 160 }
       },
       "connect" : [
-        { "id" : "f12", "to" : "f49", "via" : [ { "x" : 480, "y" : 160 } ] }
+        { "id" : "f12", "to" : "f49", "via" : [ { "x" : 480, "y" : 160 } ], "label" : {
+            "segment" : 0.81
+          } }
       ]
     }, {
       "id" : "f30",
