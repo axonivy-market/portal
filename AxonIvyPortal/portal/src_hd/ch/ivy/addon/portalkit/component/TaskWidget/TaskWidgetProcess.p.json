@@ -247,13 +247,14 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
             "import ch.ivy.addon.portalkit.service.TaskFilterService;",
             "TaskFilterService service = new TaskFilterService();",
             "in.isFilterExisted = false;",
             "if (service.isFilterExisted(in.filterSetName, in.filterType, in.taskFilterGroupId)) {",
-            "  FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_ERROR, ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterExistedValidationError\"), \"\");",
+            "  FacesMessage message = FacesMessageUtils.sanitizedMessage( FacesMessage.SEVERITY_ERROR, ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterExistedValidationError\"), \"\");",
             "  FacesContext.getCurrentInstance().addMessage(\"\", message);",
             "  FacesContext.getCurrentInstance().validationFailed();",
             "  in.isFilterExisted = true;",
@@ -286,12 +287,12 @@
         { "id" : "f25", "to" : "f24", "label" : {
             "name" : "no",
             "segment" : 0.46,
-            "offset" : { "x" : 0, "y" : 10 }
+            "offset" : { "y" : 10 }
           } },
         { "id" : "f51", "to" : "f50", "via" : [ { "x" : 352, "y" : 336 } ], "label" : {
             "name" : "yes",
             "segment" : 1.51,
-            "offset" : { "x" : 0, "y" : -11 }
+            "offset" : { "y" : -11 }
           } }
       ]
     }, {
@@ -362,6 +363,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import org.primefaces.PrimeFaces;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
@@ -369,7 +371,7 @@
             "if (in.numberOfNewTask > 0){",
             "  FacesContext facesContext = FacesContext.getCurrentInstance();",
             "  String notification = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/taskList/newTaskNotification\");",
-            "  facesContext.addMessage(\"portal-global-growl-message\", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));",
+            "  facesContext.addMessage(\"portal-global-growl-message\", FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, notification, null));",
             "  PrimeFaces.current().ajax().update(\"portal-global-growl\");        ",
             "}"
           ]
@@ -425,7 +427,9 @@
       },
       "connect" : [
         { "id" : "f72", "to" : "f56" },
-        { "id" : "f63", "to" : "f59", "via" : [ { "x" : 512, "y" : 800 }, { "x" : 792, "y" : 800 } ] }
+        { "id" : "f63", "to" : "f59", "via" : [ { "x" : 512, "y" : 800 }, { "x" : 792, "y" : 800 } ], "label" : {
+            "segment" : 1.53
+          } }
       ]
     }, {
       "id" : "f13",
