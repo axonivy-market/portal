@@ -120,7 +120,7 @@ public class ChatAssigneeBean implements Serializable {
     SecurityMemberDTO selectedAssignee = selectedUser != null ? SecurityMemberDTOMapper.mapFromUserDTO(selectedUser)
         : SecurityMemberDTOMapper.mapFromRoleDTO(selectedRole);
     if (selectedAssignee == null || isSelectedAssigneeExist(selectedAssignee)) {
-      FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, "",
+      FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.message(FacesMessage.SEVERITY_ERROR, "",
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/errorSelectInvalidAssignee")));
       return;
     }
@@ -189,7 +189,7 @@ public class ChatAssigneeBean implements Serializable {
   }
 
   private FacesMessage generateErrorMessageWhenJoinGroupChat() {
-    return FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
+    return FacesMessageUtils.message(FacesMessage.SEVERITY_ERROR,
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/failureToJoinProcessChat"), null);
   }
 
@@ -275,7 +275,7 @@ public class ChatAssigneeBean implements Serializable {
   }
 
   private FacesMessage generateErrorMessageWhenCreateGroupChat() {
-    return FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
+    return FacesMessageUtils.message(FacesMessage.SEVERITY_ERROR,
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/failureToCreateProcessChat"), null);
   }
 
@@ -342,7 +342,7 @@ public class ChatAssigneeBean implements Serializable {
 
   private boolean checkNoAssignees() {
     if (CollectionUtils.isEmpty(selectedAssignees)) {
-      FacesContext.getCurrentInstance().addMessage(CHAT_ASSIGNEE_ERROR_MESSAGE_ID, FacesMessageUtils.sanitizedMessage(
+      FacesContext.getCurrentInstance().addMessage(CHAT_ASSIGNEE_ERROR_MESSAGE_ID, FacesMessageUtils.message(
           FacesMessage.SEVERITY_ERROR, "", Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/noAssignees")));
       PrimeFaces.current().ajax().update(CHAT_ASSIGNEE_ERROR_MESSAGE_ID);
       return true;

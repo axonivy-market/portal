@@ -55,7 +55,7 @@ public final class GrowlMessageUtils {
   }
 
   private static FacesMessage addMessageWithoutCaseDetails(boolean isTaskFinished) {
-    return FacesMessageUtils.sanitizedMessage(Ivy.cms().co(isTaskFinished ? TASK_FINISHED : TASK_LEFT));
+    return FacesMessageUtils.message(Ivy.cms().co(isTaskFinished ? TASK_FINISHED : TASK_LEFT));
   }
 
   private static FacesMessage addMessageWithCaseDetails(boolean isTaskFinished, String caseDetailsUrl) {

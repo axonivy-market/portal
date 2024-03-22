@@ -71,7 +71,7 @@ public class FourPanelDragAndDropController extends CommonDragAndDropController 
   }
 
   private void displayFileUploadPositionNotice() {
-    FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, Ivy.cms().co("/Dialogs/components/CaseDocument/fileUploadElementPosition"), "");
+    FacesMessage message = FacesMessageUtils.message(FacesMessage.SEVERITY_INFO, Ivy.cms().co("/Dialogs/components/CaseDocument/fileUploadElementPosition"), "");
     FacesContext.getCurrentInstance().addMessage(AVAILABLE_FORM_ELEMENTS, message);
   }
 

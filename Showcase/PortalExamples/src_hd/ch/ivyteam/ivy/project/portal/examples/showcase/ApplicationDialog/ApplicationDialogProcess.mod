@@ -124,7 +124,7 @@ if(!in.isStrongboxProcess){
 	}
 	else{
 		in.renderPdfVeiwer = false;
-		FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN, ivy.cms.co("/Dialogs/GdprRequest/Messages/warning"), ivy.cms.co("/Dialogs/GdprRequest/Messages/onlyPdfRendering")));
+		FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.message(FacesMessage.SEVERITY_WARN, ivy.cms.co("/Dialogs/GdprRequest/Messages/warning"), ivy.cms.co("/Dialogs/GdprRequest/Messages/onlyPdfRendering")));
 	}	
 }' #txt
 As0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
