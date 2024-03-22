@@ -26,7 +26,7 @@
 
     <ui:define name="processInfo">
       <div id="process-info-wrapper" class="process-info">
-        <h:outputText escape="false" value="#{htmlSanitizerBean.sanitize(data.portalProcessInformation)}" />
+        <h:outputText value="#{visibilityBean.sanitizeContent(data.portalProcessInformation)}" escape="false" />
       </div>
     </ui:define>
 

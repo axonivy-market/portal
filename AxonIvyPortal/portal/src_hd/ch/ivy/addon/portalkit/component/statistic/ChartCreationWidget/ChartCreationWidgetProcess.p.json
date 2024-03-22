@@ -101,9 +101,7 @@
         "at" : { "x" : 112, "y" : 448 }
       },
       "connect" : [
-        { "id" : "f45", "to" : "f43", "via" : [ { "x" : 448, "y" : 448 } ], "label" : {
-            "segment" : 0.58
-          } }
+        { "id" : "f45", "to" : "f43", "via" : [ { "x" : 448, "y" : 448 } ] }
       ]
     }, {
       "id" : "f42",
@@ -133,9 +131,7 @@
         "at" : { "x" : 112, "y" : 544 }
       },
       "connect" : [
-        { "id" : "f46", "to" : "f43", "via" : [ { "x" : 448, "y" : 544 } ], "label" : {
-            "segment" : 0.58
-          } }
+        { "id" : "f46", "to" : "f43", "via" : [ { "x" : 448, "y" : 544 } ] }
       ]
     }, {
       "id" : "f43",
@@ -237,9 +233,7 @@
         "at" : { "x" : 112, "y" : 352 }
       },
       "connect" : [
-        { "id" : "f44", "to" : "f43", "via" : [ { "x" : 448, "y" : 352 } ], "label" : {
-            "segment" : 0.72
-          } }
+        { "id" : "f44", "to" : "f43", "via" : [ { "x" : 448, "y" : 352 } ] }
       ]
     }, {
       "id" : "f13",
@@ -298,9 +292,7 @@
         "at" : { "x" : 112, "y" : 640 }
       },
       "connect" : [
-        { "id" : "f18", "to" : "f43", "via" : [ { "x" : 448, "y" : 640 } ], "label" : {
-            "segment" : 0.72
-          } }
+        { "id" : "f18", "to" : "f43", "via" : [ { "x" : 448, "y" : 640 } ] }
       ]
     }, {
       "id" : "f21",
@@ -315,9 +307,7 @@
       },
       "connect" : [
         { "id" : "f32", "to" : "f31" },
-        { "id" : "f20", "to" : "f11", "via" : [ { "x" : 648, "y" : 976 } ], "label" : {
-            "segment" : 0.87
-          } }
+        { "id" : "f20", "to" : "f11", "via" : [ { "x" : 648, "y" : 976 } ] }
       ]
     }, {
       "id" : "f10",
@@ -361,9 +351,7 @@
         "labelOffset" : { "x" : 23, "y" : 36 }
       },
       "connect" : [
-        { "id" : "f23", "to" : "f43", "via" : [ { "x" : 448, "y" : 736 } ], "label" : {
-            "segment" : 0.86
-          } }
+        { "id" : "f23", "to" : "f43", "via" : [ { "x" : 448, "y" : 736 } ] }
       ]
     }, {
       "id" : "f24",
@@ -393,9 +381,7 @@
         "at" : { "x" : 112, "y" : 832 }
       },
       "connect" : [
-        { "id" : "f25", "to" : "f43", "via" : [ { "x" : 448, "y" : 832 } ], "label" : {
-            "segment" : 1.0
-          } }
+        { "id" : "f25", "to" : "f43", "via" : [ { "x" : 448, "y" : 832 } ] }
       ]
     }, {
       "id" : "f28",
@@ -461,7 +447,6 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import ch.ivy.addon.portalkit.dto.DisplayName;",
             "import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;",
             "import javax.faces.context.FacesContext;",
@@ -475,7 +460,7 @@
             "for (DisplayName name : out.chartNames) {",
             "  String chartName = name.value;",
             "  if (service.checkStatisticChartNameExisted(chartName.trim(), name.getLocale().toLanguageTag())) {",
-            "    FacesMessage message = FacesMessageUtils.sanitizedMessage( FacesMessage.SEVERITY_ERROR, ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/statistic/validationErrors/nameIsExisted\"), \"\");",
+            "    FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_ERROR, ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/statistic/validationErrors/nameIsExisted\"), \"\");",
             "    FacesContext.getCurrentInstance().addMessage(\"chart-name-input\", message);",
             "    FacesContext.getCurrentInstance().validationFailed();",
             "    in.isChartNameExisted = true;",
@@ -502,7 +487,6 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import ch.ivyteam.ivy.language.LanguageConfigurator;",
             "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import org.apache.commons.lang3.StringUtils;",
@@ -514,6 +498,7 @@
             "import javax.faces.application.FacesMessage;",
             "import ch.ivy.addon.portalkit.service.StatisticService;",
             "import ch.ivy.addon.portalkit.statistics.StatisticChart;",
+            "import com.axonivy.portal.components.util.HtmlParser;",
             "",
             "// Update empty chart name",
             "String defaultEmailLanguage = new LanguageConfigurator(ISecurityContext.current()).content().toLanguageTag();",
@@ -536,7 +521,7 @@
             "",
             "String growlTitle = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/chartCreationSuccessTitle\");",
             "String growlDetail = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/chartCreationSuccessDetailMsg\", Arrays.asList(service.getDisplayNameInUserLanguageForChart(newChart).value));",
-            "FacesMessage message = FacesMessageUtils.sanitizedMessage( FacesMessage.SEVERITY_INFO, growlTitle, growlDetail);",
+            "FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_INFO, growlTitle, HtmlParser.sanitize(growlDetail));",
             "FacesContext.getCurrentInstance().addMessage(\"chart-creation-growl\", message);"
           ]
         },
@@ -623,9 +608,7 @@
         "labelOffset" : { "x" : -2, "y" : 35 }
       },
       "connect" : [
-        { "id" : "f49", "to" : "f43", "via" : [ { "x" : 448, "y" : 904 } ], "label" : {
-            "segment" : 1.09
-          } }
+        { "id" : "f49", "to" : "f43", "via" : [ { "x" : 448, "y" : 904 } ] }
       ]
     } ]
 }

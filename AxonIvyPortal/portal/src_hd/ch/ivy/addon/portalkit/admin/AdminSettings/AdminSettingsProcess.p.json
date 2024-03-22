@@ -347,7 +347,6 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import org.primefaces.component.inputtext.InputText;",
             "import javax.faces.context.FacesContext;",
@@ -356,7 +355,7 @@
             "ui.valid = false;",
             "",
             "",
-            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/duplicatePortalAppMsg\"), null));",
+            "FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/duplicatePortalAppMsg\"), null));",
             "FacesContext.getCurrentInstance().validationFailed();"
           ]
         }
@@ -573,12 +572,12 @@
         { "id" : "f211", "to" : "f173", "label" : {
             "name" : "yes",
             "segment" : 0.21,
-            "offset" : { "x" : -12 }
+            "offset" : { "x" : -12, "y" : 0 }
           } },
         { "id" : "f213", "to" : "f212", "via" : [ { "x" : 1224, "y" : 416 } ], "label" : {
             "name" : "no",
             "segment" : 0.42,
-            "offset" : { "y" : -11 }
+            "offset" : { "x" : 0, "y" : -11 }
           } }
       ]
     }, {
@@ -628,9 +627,7 @@
         "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : [
-        { "id" : "f13", "to" : "f88", "via" : [ { "x" : 1224, "y" : 608 } ], "label" : {
-            "segment" : 1.2
-          } }
+        { "id" : "f13", "to" : "f88", "via" : [ { "x" : 1224, "y" : 608 } ] }
       ]
     }, {
       "id" : "f92",
@@ -653,9 +650,7 @@
         "at" : { "x" : 632, "y" : 608 }
       },
       "connect" : [
-        { "id" : "f77", "to" : "f68", "via" : [ { "x" : 632, "y" : 784 } ], "label" : {
-            "segment" : 1.1
-          } }
+        { "id" : "f77", "to" : "f68", "via" : [ { "x" : 632, "y" : 784 } ] }
       ]
     }, {
       "id" : "f40",
@@ -847,9 +842,7 @@
         "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : [
-        { "id" : "f53", "to" : "f2", "via" : [ { "x" : 320, "y" : 1184 } ], "label" : {
-            "segment" : 1.32
-          } }
+        { "id" : "f53", "to" : "f2", "via" : [ { "x" : 320, "y" : 1184 } ] }
       ]
     }, {
       "id" : "f276",
@@ -874,9 +867,7 @@
         "at" : { "x" : 512, "y" : 1088 }
       },
       "connect" : [
-        { "id" : "f23", "to" : "f2", "via" : [ { "x" : 512, "y" : 1184 } ], "label" : {
-            "segment" : 1.18
-          } }
+        { "id" : "f23", "to" : "f2", "via" : [ { "x" : 512, "y" : 1184 } ] }
       ]
     }, {
       "id" : "f67",
@@ -984,7 +975,6 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
             "import ch.ivy.addon.portalkit.service.AnnouncementService;",
@@ -992,7 +982,7 @@
             "in.announcement.setEnabled(true);",
             "service.save(in.announcement);",
             "out.isAnnouncementActivated = true;",
-            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ",
+            "FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ",
             "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled\"), null));"
           ]
         }
@@ -1001,9 +991,7 @@
         "at" : { "x" : 320, "y" : 1472 }
       },
       "connect" : [
-        { "id" : "f27", "to" : "f16", "via" : [ { "x" : 320, "y" : 1568 } ], "label" : {
-            "segment" : 1.18
-          } }
+        { "id" : "f27", "to" : "f16", "via" : [ { "x" : 320, "y" : 1568 } ] }
       ]
     }, {
       "id" : "f85",
@@ -1012,14 +1000,13 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
             "import ch.ivy.addon.portalkit.service.AnnouncementService;",
             "AnnouncementService service = AnnouncementService.getInstance();",
             "service.deactivateAnnouncement();",
             "out.isAnnouncementActivated = false;",
-            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ",
+            "FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ",
             "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsDisabled\"), null));"
           ]
         }
@@ -1171,7 +1158,6 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
             "import ch.ivy.addon.portalkit.service.AnnouncementService;",
@@ -1179,7 +1165,7 @@
             "// Announcement tab",
             "in.announcement = AnnouncementService.getInstance().getAnnouncementWithAllSupportedLanguage();",
             "in.isAnnouncementActivated = AnnouncementService.getInstance().isAnnouncementActivated();",
-            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ",
+            "FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ",
             "  ivy.cms.co(in.isAnnouncementActivated ? \"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled\"",
             "  : \"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsDisabled\"), null));"
           ]
