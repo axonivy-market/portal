@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.page;
 
+import static com.codeborne.selenide.Selenide.$;
+
 public class TaskTemplateIFramePage extends TemplatePage {
 
   @Override
@@ -8,38 +10,16 @@ public class TaskTemplateIFramePage extends TemplatePage {
   }
 
   public NewDashboardPage clickSubmitButton() {
-    clickSubmit();
-
-    try {
-      return new NewDashboardPage();
-    } catch (AssertionError e) {
-      switchToIFrameOfTask();
-      clickSubmit();
-    }
-    return new NewDashboardPage();
-  }
-
-  private void clickSubmit() {
-    waitForElementClickableThenClick("button[id$='button-submit']");
+    clickByJavaScript($("button[id$='button-submit']"));
     waitPageDisappear();
     switchToDefaultContent();
+    return new NewDashboardPage();
   }
 
   public NewDashboardPage clickCancelButton() {
-    clickCancel();
-
-    try {
-      return new NewDashboardPage();
-    } catch (AssertionError e) {
-      switchToIFrameOfTask();
-      clickCancel();
-    }
-    return new NewDashboardPage();
-  }
-
-  private void clickCancel() {
-    waitForElementClickableThenClick("a[id$='button-cancel']");
+    clickByJavaScript($("a[id$='button-cancel']"));
     waitPageDisappear();
-    switchToDefaultContent();
+    switchBackToParent();
+    return new NewDashboardPage();
   }
 }
