@@ -372,6 +372,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import org.apache.commons.lang3.StringUtils;",
             "import javax.faces.application.FacesMessage;",
@@ -384,7 +385,7 @@
             "",
             "if (!(#selectedAssignee is initialized) || in.selectedAssigneeList.contains(selectedAssignee)) {",
             "  in.isValidAssignee = false;",
-            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, \"\", ivy.cms.co(\"/Dialogs/agileBPM/define_WF/ErrorSelectInvalidAssignee\")));",
+            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, \"\", ivy.cms.co(\"/Dialogs/agileBPM/define_WF/ErrorSelectInvalidAssignee\")));",
             "}"
           ]
         }
@@ -668,10 +669,11 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.context.FacesContext;",
             "import javax.faces.application.FacesMessage;",
             "",
-            "FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co(\"/Dialogs/workflowCreation/WorkflowDefinition/ProcessNameExists\"), \"\");",
+            "FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co(\"/Dialogs/workflowCreation/WorkflowDefinition/ProcessNameExists\"), \"\");",
             "FacesContext context = FacesContext.getCurrentInstance();",
             "context.addMessage(null, message);",
             "context.validationFailed();"

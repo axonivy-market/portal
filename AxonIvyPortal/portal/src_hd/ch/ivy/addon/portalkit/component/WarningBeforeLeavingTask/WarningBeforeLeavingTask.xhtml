@@ -27,7 +27,7 @@
     <ui:define name="dialogContentSection">
       <cc:insertFacet name="event" />
       <h:outputText escape="false" styleClass="ui-confirm-dialog-message"
-        value="#{visibilityBean.sanitizeContent(ivy.cms.co(cc.attrs.taskState == 'CREATED' ? '/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLeave' : '/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLeave'))}" />
+        value="#{htmlSanitizerBean.sanitize(ivy.cms.co(cc.attrs.taskState == 'CREATED' ? '/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLeave' : '/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLeave'))}" />
     </ui:define>
 
     <ui:define name="dialogFooter">
