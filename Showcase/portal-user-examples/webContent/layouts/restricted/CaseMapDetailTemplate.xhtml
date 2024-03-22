@@ -51,7 +51,7 @@
                                   <p:graphicImage library="ivy-cms" name="/Images/check-circle-1" height="20rem" />
                                 </div>
                                 <div class="ui-g-10">
-                                  <h:outputText escape="false" value="#{htmlSanitizerBean.sanitize(desc)}" styleClass="process-step-description" />
+                                  <h:outputText value="#{visibilityBean.sanitizeContent(desc)}" escape="false" styleClass="process-step-description" />
                                 </div>
                               </div>
                             </ui:repeat>
@@ -74,9 +74,8 @@
                             styleClass="ui-sm-hidden ui-md-hidden" />
                         </div>
                         <div class="dropdown-content">
-                          <a href="#">
-                            <h:outputText escape="false" value="#{htmlSanitizerBean.sanitize(ivy.cms.co('/Processes/CaseMap/availableSideStep'))}" />
-                          </a>
+                          <a href="#"><h:outputText escape="false"
+                              value="#{visibilityBean.sanitizeContent(ivy.cms.co('/Processes/CaseMap/availableSideStep'))}" /></a>
                         </div>
                       </div>
                       <div class="ui-g-12">
@@ -93,7 +92,7 @@
                                   <p:graphicImage library="ivy-cms" name="/Images/check-circle-1" height="20rem" />
                                 </div>
                                 <div class="ui-g-10">
-                                  <h:outputText escape="false" value="#{htmlSanitizerBean.sanitize(desc)}" styleClass="process-step-description" />
+                                  <h:outputText value="#{visibilityBean.sanitizeContent(desc)}" escape="false" styleClass="process-step-description" />
                                 </div>
                               </div>
                             </ui:repeat>

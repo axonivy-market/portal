@@ -132,6 +132,9 @@ Processes:
     verifyPersonalData: Verify Personal Data
   ContractNegotiation:
     name: Contract negotiation
+  DashboardCustomWidget:
+    category: Investment
+    name: Investment List (Example for Custom Widget on Dashboard)
   LeaveRequest:
     Approval:
       description1: Add a comment to the request
