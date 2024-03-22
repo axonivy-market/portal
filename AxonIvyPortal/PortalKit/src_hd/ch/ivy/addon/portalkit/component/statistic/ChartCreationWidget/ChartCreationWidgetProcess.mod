@@ -110,7 +110,7 @@ StatisticService service = new StatisticService();
 for (DisplayName name : out.chartNames) {
 	String chartName = name.value;
 	if (service.checkStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName.trim(), name.getLocale().toLanguageTag())) {
-	  FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/validationErrors/nameIsExisted"), "");
+	  FacesMessage message = FacesMessageUtils.message(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/validationErrors/nameIsExisted"), "");
 	  FacesContext.getCurrentInstance().addMessage("chart-name-input", message);
   	FacesContext.getCurrentInstance().validationFailed();
 	  out.isChartNameExisted = true;

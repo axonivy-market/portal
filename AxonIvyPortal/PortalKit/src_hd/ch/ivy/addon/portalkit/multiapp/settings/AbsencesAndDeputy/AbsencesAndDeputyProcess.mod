@@ -447,7 +447,7 @@ if (fromBiggerThanTill) {
 boolean doesNewAbsenceOverlap = AbsenceAndSubstituteUtils.doesNewAbsenceOverlap(in.absencesByUser.get(username) as Set, in.selectedAbsence);
 if (doesNewAbsenceOverlap) {
 	in.validationError = true;
-	FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/overlappingAbsence"), ""));
+	FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.message(FacesMessage.SEVERITY_ERROR,ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/overlappingAbsence"), ""));
 	FacesContext.getCurrentInstance().validationFailed();
 }
 ' #txt
@@ -495,7 +495,7 @@ As0 f44 actionCode 'import ch.ivy.addon.portalkit.util.FacesMessageUtils;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO,ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/information"), ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/saveSuccessfully")));' #txt
+FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.message(FacesMessage.SEVERITY_INFO,ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/information"), ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/saveSuccessfully")));' #txt
 As0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -872,7 +872,7 @@ if (fromBiggerThanTill) {
 boolean doesNewAbsenceOverlap = AbsenceAndSubstituteUtils.doesNewAbsenceOverlap(in.absencesByUser.get(username) as Set, in.selectedAbsence);
 if (doesNewAbsenceOverlap) {
 	in.validationError = true;
-	FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/overlappingAbsence"), ""));
+	FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.message(FacesMessage.SEVERITY_ERROR,ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/overlappingAbsence"), ""));
 }' #txt
 As0 f77 security system #txt
 As0 f77 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1371,7 +1371,7 @@ if (fromBiggerThanTill) {
 boolean doesNewAbsenceOverlap = AbsenceAndSubstituteUtils.doesNewAbsenceOverlap(in.absencesByUser.get(username) as Set, in.selectedAbsence);
 if (doesNewAbsenceOverlap) {
 	in.validationError = true;
-	FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/overlappingAbsence"), ""));
+	FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.message(FacesMessage.SEVERITY_ERROR,ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/overlappingAbsence"), ""));
 }' #txt
 As0 f75 security system #txt
 As0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

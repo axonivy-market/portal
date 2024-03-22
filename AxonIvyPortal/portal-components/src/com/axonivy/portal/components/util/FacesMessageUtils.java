@@ -5,6 +5,18 @@ import javax.faces.application.FacesMessage.Severity;
 
 public class FacesMessageUtils {
 
+  public static FacesMessage message(String summary) {
+    return new FacesMessage(summary);
+  }
+
+  public static FacesMessage message(String summary, String detail) {
+    return new FacesMessage(summary, detail);
+  }
+
+  public static FacesMessage message(Severity severity, String summary, String detail) {
+    return new FacesMessage(severity, summary, detail);
+  }
+
   public static FacesMessage sanitizedMessage(String summary) {
     return new FacesMessage(HtmlUtils.sanitize(summary));
   }

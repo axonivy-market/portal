@@ -86,15 +86,15 @@ if(ivy.session.hasPermission(securityDescriptor,ch.ivyteam.ivy.security.IPermiss
 			if(task != null) {
 			if(ivy.session.hasPermission(securityDescriptor,ch.ivyteam.ivy.security.IPermission.TASK_DESTROY) && (task.getState().toString() != "DESTROYED")) {
 			ivy.wf.findTask(in.taskId).destroy();	
-			FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN,"Info: ","Successful!"));
+			FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.message(FacesMessage.SEVERITY_WARN,"Info: ","Successful!"));
 			} else {
-				FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN,"Warning!","You don''t have permission or task state is Destroyed"));
+				FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.message(FacesMessage.SEVERITY_WARN,"Warning!","You don''t have permission or task state is Destroyed"));
 			}
 		} else {
-			FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN,"Warning!","Task is not exist"));
+			FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.message(FacesMessage.SEVERITY_WARN,"Warning!","Task is not exist"));
 		}
 	} else {
-		FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN,"Warning!","You don''t have permission"));
+		FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.message(FacesMessage.SEVERITY_WARN,"Warning!","You don''t have permission"));
 }
 ' #txt
 Ds0 f9 238 148 36 24 20 -2 #rect
