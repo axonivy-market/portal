@@ -401,4 +401,8 @@ Below are definitions and JSON examples of two fields that you can use to config
 
       * ``true``: apply quick search for this column
       * ``false``: do not apply quick search for this column
-      * ``not define``: do not apply quick search for this column
+      * ``not define``:
+         * ``name`` and ``description`` columns: set to ``true`` by default
+         * other columns: set to ``false`` by default
+      
+
