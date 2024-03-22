@@ -779,7 +779,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     actionSelection: Seleccionar acción
     addField: Añadir campo
     addWidget: Añadir widget
-    availableFilters: Filtros
     canWorkOn: Puede trabajar en
     caseList: Lista de casos
     caseListIntroduction: Este widget muestra la información relevante del caso según la configuración definida
@@ -855,6 +854,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}_{1}.{2}
     field: Campo
     fieldIsAdded: El campo {0} está añadido
+    filters: Filtros
     iconMessage:
       caseWidget:
         BEACH_PALM_SUNBED: Eres increíble - todos los casos están hechos. Recuéstate y disfruta.
@@ -1624,10 +1624,7 @@ Dialogs:
               WidgetFilter: Filtro de widgets
             TaskWidgetConfiguration:
               AddFilter: Añadir filtro
-<<<<<<< HEAD
               ResetFilter: Restablecer filtro
-=======
->>>>>>> refs/heads/feature/IVYPORTAL-15543-SPIKE-Impl.-Approach-for-complex-filters-on-task-and-case-widget
   components:
     CaseDocument:
       FileDate: Modificado el
