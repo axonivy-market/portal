@@ -42,12 +42,13 @@
             "out.taskId" : "param.taskId"
           },
           "code" : [
+            "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
             "import org.apache.commons.lang3.StringUtils;",
-            "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
+            "",
             "if (StringUtils.isNotBlank(out.processLink)) {",
-            "  out.processViewerForSerenityLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerExample/showProcessViewerOfLeaveRequestForSerenityUsingProcessLink.ivp\");",
+            "  out.processViewerForSerenityLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerExample/showProcessViewerOfLeaveRequestForSerenityUsingProcessLink.ivp\");",
             "} else {",
-            "  out.processViewerForSerenityLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerExample/showProcessViewerOfLeaveRequestForSerenityUsingCaseId.ivp\");",
+            "  out.processViewerForSerenityLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerExample/showProcessViewerOfLeaveRequestForSerenityUsingCaseId.ivp\");",
             "}"
           ]
         },

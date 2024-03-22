@@ -11,7 +11,7 @@ public final class CaseUtils {
   public static ICase findCase(long caseId) {
     return Sudo.get(() -> Ivy.wf().findCase(caseId));
   }
-  
+
   public static ICase findCase(String uuid) {
     return Sudo.get(() -> Ivy.wf().findCase(uuid));
   }

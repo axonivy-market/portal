@@ -9,9 +9,9 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.page.CaseMapPage;
 import com.axonivy.portal.selenium.page.ExampleOverviewPage;
 import com.axonivy.portal.selenium.page.LeaveRequestOverviewPage;
-import com.axonivy.portal.selenium.page.LeaveRequestPage;
 import com.axonivy.portal.selenium.page.LendingDetailPage;
 import com.axonivy.portal.selenium.page.LendingOverviewPage;
+import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.codeborne.selenide.Condition;
 
 @IvyWebTest
@@ -39,7 +39,7 @@ public class ExampleOverviewTest extends BaseTest {
     leaveRequestOverview.getStepName(1).shouldBe(Condition.text("Approval"));
     leaveRequestOverview.getStepName(2).shouldBe(Condition.text("Summary"));
 
-    LeaveRequestPage leaveRequest = leaveRequestOverview.start();
+    TaskTemplateIFramePage leaveRequest = leaveRequestOverview.start();
     assertEquals("Create leave request", leaveRequest.getPageTitle());
   }
 

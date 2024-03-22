@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.page;
 
+import static com.codeborne.selenide.Selenide.$;
+
 public class TaskTemplateIFramePage extends TemplatePage {
 
   @Override
@@ -8,9 +10,16 @@ public class TaskTemplateIFramePage extends TemplatePage {
   }
 
   public NewDashboardPage clickSubmitButton() {
-    waitForElementClickableThenClick("button[id$='button-submit']");
+    clickByJavaScript($("button[id$='button-submit']"));
+    waitPageDisappear();
     switchToDefaultContent();
     return new NewDashboardPage();
   }
 
+  public NewDashboardPage clickCancelButton() {
+    clickByJavaScript($("a[id$='button-cancel']"));
+    waitPageDisappear();
+    switchBackToParent();
+    return new NewDashboardPage();
+  }
 }

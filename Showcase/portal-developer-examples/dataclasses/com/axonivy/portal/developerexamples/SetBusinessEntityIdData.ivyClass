@@ -1,0 +1,3 @@
+SetBusinessEntityIdData #class
+com.axonivy.portal.developerexamples #namespace
+businessEntityId String #field

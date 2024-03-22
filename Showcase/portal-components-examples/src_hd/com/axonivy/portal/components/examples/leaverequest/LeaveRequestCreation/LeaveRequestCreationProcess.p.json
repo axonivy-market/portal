@@ -33,7 +33,7 @@
       "id" : "f1",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 352, "y" : 64 }
+        "at" : { "x" : 520, "y" : 64 }
       }
     }, {
       "id" : "f3",
@@ -88,7 +88,7 @@
         "at" : { "x" : 224, "y" : 64 }
       },
       "connect" : [
-        { "id" : "f2", "to" : "f1" }
+        { "id" : "f2", "to" : "f16" }
       ]
     }, {
       "id" : "f8",
@@ -157,5 +157,30 @@
       "visual" : {
         "at" : { "x" : 352, "y" : 256 }
       }
+    }, {
+      "id" : "f16",
+      "type" : "Script",
+      "name" : [
+        "Init process",
+        "steps"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.ArrayList;",
+            "",
+            "in.steps = new ArrayList();",
+            "in.steps.add(ivy.cms.co(\"/Labels/LeaveRequest/LeaveSteps/creation\"));",
+            "in.steps.add(ivy.cms.co(\"/Labels/LeaveRequest/LeaveSteps/approval\"));",
+            "in.steps.add(ivy.cms.co(\"/Labels/LeaveRequest/LeaveSteps/approvalResult\"));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 392, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f17", "to" : "f1" }
+      ]
     } ]
 }

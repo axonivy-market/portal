@@ -38,7 +38,7 @@ public class PasswordResetScreenshotTest extends ScreenshotBaseTest {
     redirectToRelativeLink(String.format(portalPasswordResetUrl, TestAccount.TEST_FORGOT_PASSWORD_USER.getPassword(),
         TestAccount.TEST_FORGOT_PASSWORD_USER.getUsername()));
     var passwordResetPage = new PasswordResetPage();
-    String newPassword = "a2C!";
+    String newPassword = "abcd2C!";
     passwordResetPage.resetPassword(newPassword, true);
     refreshPage();
     ScreenshotUtils.resizeBrowser(new Dimension(1024, 768));

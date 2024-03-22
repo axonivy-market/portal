@@ -4,7 +4,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 import org.openqa.selenium.By;
 
-public class DefaultExpresTaskPage extends TaskTemplatePage {
+public class DefaultExpresTaskPage extends TaskIFrameTemplatePage {
 
   @Override
   protected String getLoadedLocator() {

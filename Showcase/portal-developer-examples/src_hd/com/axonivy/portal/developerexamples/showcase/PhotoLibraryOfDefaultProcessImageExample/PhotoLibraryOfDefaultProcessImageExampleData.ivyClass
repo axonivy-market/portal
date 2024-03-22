@@ -1,6 +1,6 @@
 PhotoLibraryOfDefaultProcessImageExampleData #class
 com.axonivy.portal.developerexamples.showcase.PhotoLibraryOfDefaultProcessImageExample #namespace
-photoNames java.util.ArrayList<ch.ivy.addon.portalkit.enums.DefaultImage> #field
+photoNames java.util.ArrayList<com.axonivy.portal.developerexamples.enums.DefaultImage> #field
 photoNames PERSISTENT #fieldModifier
-photoName ch.ivy.addon.portalkit.enums.DefaultImage #field
+photoName com.axonivy.portal.developerexamples.enums.DefaultImage #field
 photoName PERSISTENT #fieldModifier

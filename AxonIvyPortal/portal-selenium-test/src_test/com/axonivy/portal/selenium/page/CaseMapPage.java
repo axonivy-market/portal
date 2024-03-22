@@ -5,32 +5,24 @@ import static com.codeborne.selenide.Selenide.$;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
-import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
-public class CaseMapPage extends TemplatePage {
-
-  @Override
-  protected String getLoadedLocator() {
-    return "[id$='content-container']";
-  }
+public class CaseMapPage extends TaskTemplatePage {
 
   public void waitForIFrameContentVisible() {
     $("button[id='form:submit-request']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
-  public NewDashboardPage clickSubmitRequestButton() {
+  public void clickSubmitRequestButton() {
     $("button[id$='submit-request']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     switchBackToParent();
-    return new NewDashboardPage();
   }
 
-  public NewDashboardPage clickSubmitButtonAndBackToTaskList() {
+  public void clickSubmitButtonAndBackToTaskList() {
     $("button[id$='submit-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     switchBackToParent();
-    return new NewDashboardPage();
   }
 
   public String getHeader() {
@@ -98,31 +90,28 @@ public class CaseMapPage extends TemplatePage {
     $(By.id(id)).sendKeys(value);
   }
 
-  public TaskWidgetPage clickSubmitButton() {
-    $("button[id$='form:submit-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  public void clickSubmitButtonCaseMap() {
+    clickByJavaScript($("button[id$='form:submit-button']"));
+    waitPageDisappear();
     switchBackToParent();
-    // return new NewDashboardPage();
-    // $("button[id$='form:submit-button']").shouldBe(getClickableCondition()).click();
-    return new TaskWidgetPage();
   }
 
-  public TaskWidgetPage clickApproveButton() {
-    waitForElementClickableThenClick("button[id$='form:approval-button']");
-    switchToDefaultContent();
-    return new TaskWidgetPage();
+  public void clickApproveButton() {
+    clickByJavaScript($("button[id$='form:approval-button']"));
+    waitPageDisappear();
+    switchBackToParent();
   }
 
-  public UserExamplesEndPage clickSubmitContractButton() {
-    waitForElementClickableThenClick("button[id$='submit-contract-button']");
-    switchToDefaultContent();
-    return new UserExamplesEndPage();
+  public void clickSubmitContractButton() {
+    clickByJavaScript($("button[id$='submit-contract-button']"));
+    waitPageDisappear();
+    switchBackToParent();
   }
 
-  public TaskWidgetPage clickRejectButton() {
-    waitForElementClickableThenClick("button[id$='form:rejected-button']");
-    switchToDefaultContent();
-    return new TaskWidgetPage();
+  public void clickRejectButton() {
+    clickByJavaScript($("button[id$='form:rejected-button']"));
+    waitPageDisappear();
+    switchBackToParent();
   }
 
 }

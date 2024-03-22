@@ -1,0 +1,41 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "id" : "18D596926C35B1DB",
+  "config" : {
+    "data" : "portalKit_test.Data"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "testPortalCustomErrorHandler.ivp",
+      "config" : {
+        "signature" : "testPortalCustomErrorHandler"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 536, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "PortalCustomErrorHandler",
+      "config" : {
+        "dialog" : "ch.ivy.addon.portalkit.test.PortalCustomErrorHandler:start()"
+      },
+      "visual" : {
+        "at" : { "x" : 312, "y" : 64 },
+        "size" : { "width" : 168, "height" : 60 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1" }
+      ]
+    } ]
+}

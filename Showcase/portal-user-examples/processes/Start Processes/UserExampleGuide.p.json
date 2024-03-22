@@ -204,7 +204,7 @@
             "Overview"
           ],
           "config" : {
-            "dialog" : "com.axonivy.portal.userexamples.leaverequest.LeaveRequestOverview:start(ch.ivy.addon.portalkit.configuration.UserProcess)",
+            "dialog" : "com.axonivy.portal.userexamples.leaverequest.LeaveRequestOverview:start(com.axonivy.portal.userexamples.dto.UserProcess)",
             "call" : {
               "map" : {
                 "param.userProcess" : "in.process"
@@ -229,7 +229,7 @@
           "type" : "DialogCall",
           "name" : "Lending overview",
           "config" : {
-            "dialog" : "com.axonivy.portal.userexamples.credit.LendingOverview:start(ch.ivy.addon.portalkit.configuration.UserProcess)",
+            "dialog" : "com.axonivy.portal.userexamples.credit.LendingOverview:start(com.axonivy.portal.userexamples.dto.UserProcess)",
             "call" : {
               "map" : {
                 "param.userProcess" : "in.process"
@@ -282,7 +282,7 @@
           "type" : "DialogCall",
           "name" : "LendingDetail",
           "config" : {
-            "dialog" : "com.axonivy.portal.userexamples.credit.LendingDetail:start(ch.ivy.addon.portalkit.bo.CaseMapDetail,Integer)",
+            "dialog" : "com.axonivy.portal.userexamples.credit.LendingDetail:start(com.axonivy.portal.userexamples.dto.CaseMapDetail,Integer)",
             "call" : {
               "map" : {
                 "param.caseMapDetail" : "in.caseMapDetail",

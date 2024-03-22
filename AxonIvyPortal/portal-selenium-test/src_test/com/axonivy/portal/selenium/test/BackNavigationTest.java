@@ -15,11 +15,11 @@ import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
-import com.axonivy.portal.selenium.page.TaskTemplatePage;
+import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class BackNavigationTest extends BaseTest {
   private static final String CASE_LIST_TITLE = "Cases";
   private static final String CASE_DETAILS_TITLE = "Case Details";
@@ -82,7 +82,7 @@ public class BackNavigationTest extends BaseTest {
     TaskDetailsPage taskDetailsPage = caseDetailsPage.openTasksOfCasePage("Sick Leave Request");
     taskDetailsPage.waitPageLoaded();
 
-    TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
+    TaskIFrameTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
     String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     String yesterday =
         LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
@@ -130,7 +130,7 @@ public class BackNavigationTest extends BaseTest {
 
     taskDetailsPage = caseDetailsPage.openTasksOfCasePage(PAYMENT_TASK_NAME);
 
-    TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
+    TaskIFrameTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
     taskTemplatePage.inputField("[id$='payment-request:fullname']", "Demo");
     String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskTemplatePage.inputField("[id$='payment-request:from_input']", today);
@@ -154,7 +154,7 @@ public class BackNavigationTest extends BaseTest {
 
     taskDetailsPage = caseDetailsPage.openTasksOfCasePage(PAYMENT_TASK_NAME);
 
-    TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
+    TaskIFrameTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
     taskTemplatePage.clickCancelLink();
     taskDetailsPage = new TaskDetailsPage();
     assertEquals(PAYMENT_TASK_NAME, taskDetailsPage.getTaskName());

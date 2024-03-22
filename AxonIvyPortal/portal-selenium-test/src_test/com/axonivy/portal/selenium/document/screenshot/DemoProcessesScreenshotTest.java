@@ -86,7 +86,8 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "lending-casemap-collect-personal-data");
 
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1000));
-    NewDashboardPage newDashboardPage = caseMapPage.clickSubmitRequestButton();
+    caseMapPage.clickSubmitRequestButton();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1500));
     newDashboardPage.startTask(0);
     caseMapPage = new CaseMapPage();
