@@ -17,6 +17,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 
+import com.axonivy.portal.components.util.HtmlUtils;
+
 import ch.addon.portal.generic.menu.MenuView;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
@@ -225,7 +227,7 @@ public class DashboardBean implements Serializable {
   }
 
   public String createParseTextFromHtml (String text) {
-	  return HtmlParser.parseTextFromHtml(text);
+    return HtmlUtils.parseTextFromHtml(text);
   }
 
   public int getCurrentTabIndex() {

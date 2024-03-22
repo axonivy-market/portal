@@ -377,6 +377,7 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import java.util.Set;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
@@ -394,7 +395,7 @@
             "boolean doesNewAbsenceOverlap = AbsenceAndSubstituteUtils.doesNewAbsenceOverlap(in.absencesByUser.get(username) as Set, in.selectedAbsence);",
             "if (doesNewAbsenceOverlap) {",
             "  in.validationError = true;",
-            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/overlappingAbsence\"), \"\"));",
+            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/overlappingAbsence\"), \"\"));",
             "}",
             "",
             "if (in.validationError) {",
@@ -404,7 +405,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 716, "y" : 640 }
+        "at" : { "x" : 712, "y" : 640 }
       },
       "connect" : { "id" : "f155", "to" : "f140" }
     }, {
@@ -802,6 +803,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;",
             "import java.util.Set;",
             "import javax.faces.application.FacesMessage;",
@@ -812,7 +814,7 @@
             "boolean doesNewAbsenceOverlap = AbsenceAndSubstituteUtils.doesNewAbsenceOverlap(in.absencesByUser.get(username) as Set, in.selectedAbsence);",
             "if (doesNewAbsenceOverlap) {",
             "  in.validationError = true;",
-            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/overlappingAbsence\"), \"\"));",
+            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/overlappingAbsence\"), \"\"));",
             "  FacesContext.getCurrentInstance().validationFailed();",
             "}"
           ]
@@ -1093,6 +1095,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import java.util.Arrays;",
             "import ch.ivy.addon.portalkit.enums.DeputyRoleType;",
@@ -1100,17 +1103,16 @@
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
             "import ch.ivyteam.ivy.security.ISecurityMember;",
-            "import com.axonivy.portal.components.util.HtmlParser;",
             "",
             "ISecurityMember selectedAssignee = in.#selectedDeputy is initialized ? ISecurityContext.current().members().find(in.selectedDeputy.getMemberName()) : null;",
             "if (!(#selectedAssignee is initialized) || in.selectedDeputies.contains(selectedAssignee)) {",
-            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, \"\", ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectInvalidDeputy\")));",
+            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, \"\", ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectInvalidDeputy\")));",
             "} else if (DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE.equals(in.selectedDeputyRole.deputyRoleType) && DeputyRoleUtils.isSecurityMemberSelectedInDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_PERMANENT, selectedAssignee)) {",
             "  String errorMessage = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectedInPersonalTaskPermanentDeputies\", Arrays.asList(ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskPermanentDeputies\")));",
-            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, \"\", HtmlParser.sanitize(errorMessage)));",
+            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, \"\", errorMessage));",
             "} else if (DeputyRoleType.PERSONAL_TASK_PERMANENT.equals(in.selectedDeputyRole.deputyRoleType) && DeputyRoleUtils.isSecurityMemberSelectedInDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE, selectedAssignee)) {",
             "  String errorMessage = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectedInPersonalTaskPermanentDeputies\", Arrays.asList(ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskDuringAbsenceDeputies\")));",
-            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, \"\", HtmlParser.sanitize(errorMessage)));",
+            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, \"\", errorMessage));",
             "} else {",
             "  in.selectedDeputies.add(selectedAssignee);",
             "}"
