@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class MainMenuEntry extends AbstractConfiguration {
+public class MainMenuEntry {
 
   private List<DisplayName> names;
   private String icon;

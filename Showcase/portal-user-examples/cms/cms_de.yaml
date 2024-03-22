@@ -132,6 +132,9 @@ Processes:
     verifyPersonalData: Persönliche Daten überprüfen
   ContractNegotiation:
     name: Vertragsverhandlung
+  DashboardCustomWidget:
+    category: Investition
+    name: Investitionsliste (Beispiel für benutzerdefiniertes Widget auf dem Dashboard)
   LeaveRequest:
     Approval:
       description1: Fügen Sie ein Kommentar zum Antrag hinzu

@@ -99,10 +99,14 @@ public class CaseMapPage extends TemplatePage {
 
   public void clickSubmitButton() {
     waitForElementClickableThenClick("button[id$='form:submit-button']");
+    switchToDefaultContent();
+    waitPageDisappear();
   }
 
   public void clickApproveButton() {
     waitForElementClickableThenClick("button[id$='form:approval-button']");
+    switchToDefaultContent();
+    waitPageDisappear();
   }
 
   public TaskWidgetPage clickSubmitContractButton() {

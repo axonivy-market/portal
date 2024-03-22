@@ -11,8 +11,6 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 
-import com.axonivy.portal.components.util.FacesMessageUtils;
-
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -59,7 +57,7 @@ public class FinishedDateColumnModel  extends CaseColumnModel implements Seriali
       LocalDate inputDate = Instant.ofEpochMilli(((Date) value).getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
       if (inputDate.getYear() > 9999) {
         String message = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/WrongDateFormat");
-        var faceMessage = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, message, null);
+        var faceMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null);
         FacesContext.getCurrentInstance().validationFailed();
         throw new ValidatorException(faceMessage);
       }
