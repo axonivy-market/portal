@@ -21,8 +21,8 @@ public class TaskTemplateIFramePage extends TemplatePage {
 
   private void clickSubmit() {
     waitForElementClickableThenClick("button[id$='button-submit']");
-    switchToDefaultContent();
     waitPageDisappear();
+    switchToDefaultContent();
   }
 
   public NewDashboardPage clickCancelButton() {
@@ -39,7 +39,7 @@ public class TaskTemplateIFramePage extends TemplatePage {
 
   private void clickCancel() {
     waitForElementClickableThenClick("a[id$='button-cancel']");
-    switchToDefaultContent();
     waitPageDisappear();
+    switchToDefaultContent();
   }
 }
