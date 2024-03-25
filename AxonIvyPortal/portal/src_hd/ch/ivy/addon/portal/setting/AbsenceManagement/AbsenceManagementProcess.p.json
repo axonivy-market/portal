@@ -211,7 +211,9 @@
           },
           "parentConnector" : "f26",
           "connect" : [
-            { "id" : "S10-f3", "to" : "S10-f71", "via" : [ { "x" : 272, "y" : 72 } ] }
+            { "id" : "S10-f3", "to" : "S10-f71", "via" : [ { "x" : 272, "y" : 72 } ], "label" : {
+                "segment" : 0.66
+              } }
           ]
         } ],
       "visual" : {
@@ -249,7 +251,9 @@
         "at" : { "x" : 1144, "y" : 592 }
       },
       "connect" : [
-        { "id" : "f58", "to" : "f47", "via" : [ { "x" : 1376, "y" : 592 } ] }
+        { "id" : "f58", "to" : "f47", "via" : [ { "x" : 1376, "y" : 592 } ], "label" : {
+            "segment" : 0.87
+          } }
       ]
     }, {
       "id" : "f98",
@@ -268,9 +272,11 @@
         { "id" : "f106", "to" : "f137", "via" : [ { "x" : 192, "y" : 640 } ], "label" : {
             "name" : "yes",
             "segment" : 1.25,
-            "offset" : { "x" : 0, "y" : 10 }
+            "offset" : { "y" : 10 }
           } },
-        { "id" : "f107", "to" : "f111", "via" : [ { "x" : 192, "y" : 528 } ] }
+        { "id" : "f107", "to" : "f111", "via" : [ { "x" : 192, "y" : 528 } ], "label" : {
+            "segment" : 1.2
+          } }
       ]
     }, {
       "id" : "f37",
@@ -386,7 +392,9 @@
         "at" : { "x" : 716, "y" : 320 }
       },
       "connect" : [
-        { "id" : "f50", "to" : "f47", "via" : [ { "x" : 1376, "y" : 320 } ] }
+        { "id" : "f50", "to" : "f47", "via" : [ { "x" : 1376, "y" : 320 } ], "label" : {
+            "segment" : 0.6
+          } }
       ]
     }, {
       "id" : "f19",
@@ -401,6 +409,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import java.util.Set;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
@@ -418,7 +427,7 @@
             "boolean doesNewAbsenceOverlap = AbsenceAndSubstituteUtils.doesNewAbsenceOverlap(in.absencesByUser.get(username) as Set, in.selectedAbsence);",
             "if (doesNewAbsenceOverlap) {",
             "  in.validationError = true;",
-            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/overlappingAbsence\"), \"\"));",
+            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/overlappingAbsence\"), \"\"));",
             "}",
             "",
             "if (in.validationError) {",
@@ -647,7 +656,9 @@
         "labelOffset" : { "x" : 18, "y" : 34 }
       },
       "connect" : [
-        { "id" : "f84", "to" : "f90", "via" : [ { "x" : 808, "y" : 1056 } ] }
+        { "id" : "f84", "to" : "f90", "via" : [ { "x" : 808, "y" : 1056 } ], "label" : {
+            "segment" : 0.97
+          } }
       ]
     }, {
       "id" : "f136",
@@ -669,8 +680,12 @@
         "labelOffset" : { "x" : 56, "y" : 7 }
       },
       "connect" : [
-        { "id" : "f158", "to" : "f129", "via" : [ { "x" : 840, "y" : 592 } ] },
-        { "id" : "f61", "to" : "f136", "via" : [ { "x" : 840, "y" : 680 } ] }
+        { "id" : "f158", "to" : "f129", "via" : [ { "x" : 840, "y" : 592 } ], "label" : {
+            "segment" : 1.18
+          } },
+        { "id" : "f61", "to" : "f136", "via" : [ { "x" : 840, "y" : 680 } ], "label" : {
+            "segment" : 1.45
+          } }
       ]
     }, {
       "id" : "f31",
@@ -853,6 +868,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;",
             "import java.util.Set;",
             "import javax.faces.application.FacesMessage;",
@@ -863,7 +879,7 @@
             "boolean doesNewAbsenceOverlap = AbsenceAndSubstituteUtils.doesNewAbsenceOverlap(in.absencesByUser.get(username) as Set, in.selectedAbsence);",
             "if (doesNewAbsenceOverlap) {",
             "  in.validationError = true;",
-            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/overlappingAbsence\"), \"\"));",
+            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/overlappingAbsence\"), \"\"));",
             "  FacesContext.getCurrentInstance().validationFailed();",
             "}"
           ]
@@ -1113,7 +1129,9 @@
         "at" : { "x" : 844, "y" : 528 }
       },
       "connect" : [
-        { "id" : "f27", "to" : "f47", "via" : [ { "x" : 1376, "y" : 528 } ] }
+        { "id" : "f27", "to" : "f47", "via" : [ { "x" : 1376, "y" : 528 } ], "label" : {
+            "segment" : 0.62
+          } }
       ]
     }, {
       "id" : "f66",
@@ -1128,7 +1146,9 @@
         "labelOffset" : { "x" : 2, "y" : 40 }
       },
       "connect" : [
-        { "id" : "f25", "to" : "S10", "via" : [ { "x" : 456, "y" : 216 } ] }
+        { "id" : "f25", "to" : "S10", "via" : [ { "x" : 456, "y" : 216 } ], "label" : {
+            "segment" : 0.69
+          } }
       ]
     }, {
       "id" : "f34",
@@ -1158,6 +1178,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import java.util.Arrays;",
             "import ch.ivy.addon.portalkit.enums.DeputyRoleType;",
@@ -1165,17 +1186,16 @@
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
             "import ch.ivyteam.ivy.security.ISecurityMember;",
-            "import com.axonivy.portal.components.util.HtmlParser;",
             "",
             "ISecurityMember selectedAssignee = in.#selectedDeputy is initialized ? ISecurityContext.current().members().find(in.selectedDeputy.getMemberName()) : null;",
             "if (!(#selectedAssignee is initialized) || in.selectedDeputies.contains(selectedAssignee)) {",
-            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, \"\", ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectInvalidDeputy\")));",
+            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, \"\", ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectInvalidDeputy\")));",
             "} else if (DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE.equals(in.selectedDeputyRole.deputyRoleType) && DeputyRoleUtils.isSecurityMemberSelectedInDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_PERMANENT, selectedAssignee)) {",
             "  String errorMessage = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectedInPersonalTaskPermanentDeputies\", Arrays.asList(ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskPermanentDeputies\")));",
-            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, \"\", HtmlParser.sanitize(errorMessage)));",
+            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, \"\", errorMessage));",
             "} else if (DeputyRoleType.PERSONAL_TASK_PERMANENT.equals(in.selectedDeputyRole.deputyRoleType) && DeputyRoleUtils.isSecurityMemberSelectedInDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE, selectedAssignee)) {",
             "  String errorMessage = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectedInPersonalTaskPermanentDeputies\", Arrays.asList(ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskDuringAbsenceDeputies\")));",
-            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, \"\", HtmlParser.sanitize(errorMessage)));",
+            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, \"\", errorMessage));",
             "} else {",
             "  in.selectedDeputies.add(selectedAssignee);",
             "}"
@@ -1227,7 +1247,9 @@
         "at" : { "x" : 96, "y" : 1472 }
       },
       "connect" : [
-        { "id" : "f79", "to" : "f78", "via" : [ { "x" : 440, "y" : 1472 } ] }
+        { "id" : "f79", "to" : "f78", "via" : [ { "x" : 440, "y" : 1472 } ], "label" : {
+            "segment" : 0.63
+          } }
       ]
     }, {
       "id" : "f73",
@@ -1330,7 +1352,9 @@
         "at" : { "x" : 440, "y" : 1408 }
       },
       "connect" : [
-        { "id" : "f81", "to" : "f76", "via" : [ { "x" : 672, "y" : 1408 } ] }
+        { "id" : "f81", "to" : "f76", "via" : [ { "x" : 672, "y" : 1408 } ], "label" : {
+            "segment" : 0.78
+          } }
       ]
     }, {
       "id" : "f51",
@@ -1409,7 +1433,9 @@
         "at" : { "x" : 1024, "y" : 1144 }
       },
       "connect" : [
-        { "id" : "f93", "to" : "f13", "via" : [ { "x" : 1144, "y" : 1144 } ] }
+        { "id" : "f93", "to" : "f13", "via" : [ { "x" : 1144, "y" : 1144 } ], "label" : {
+            "segment" : 1.1
+          } }
       ]
     } ]
 }
