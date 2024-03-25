@@ -120,7 +120,7 @@
         { "id" : "f40", "to" : "f39", "label" : {
             "name" : "YES",
             "segment" : 0.29,
-            "offset" : { "x" : 0, "y" : -7 }
+            "offset" : { "y" : -7 }
           } },
         { "id" : "f37", "to" : "f36" }
       ]
@@ -131,11 +131,11 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
-            "import com.axonivy.portal.components.util.HtmlParser;",
             "",
-            "FacesContext.getCurrentInstance().addMessage(in.messageComponentId, new FacesMessage(FacesMessage.SEVERITY_ERROR, HtmlParser.sanitize(in.message), null));"
+            "FacesContext.getCurrentInstance().addMessage(in.messageComponentId, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, in.message, null));"
           ]
         }
       },
@@ -192,11 +192,11 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
-            "import com.axonivy.portal.components.util.HtmlParser;",
             "",
-            "FacesContext.getCurrentInstance().addMessage(in.messageComponentId, new FacesMessage(HtmlParser.sanitize(in.message), \"\"));"
+            "FacesContext.getCurrentInstance().addMessage(in.messageComponentId, FacesMessageUtils.sanitizedMessage(in.message, \"\"));"
           ]
         }
       },
@@ -284,11 +284,11 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
-            "import com.axonivy.portal.components.util.HtmlParser;",
             "",
-            "FacesContext.getCurrentInstance().addMessage(in.messageComponentId, new FacesMessage(HtmlParser.sanitize(in.message), \"\"));"
+            "FacesContext.getCurrentInstance().addMessage(in.messageComponentId, FacesMessageUtils.sanitizedMessage(in.message, \"\"));"
           ]
         }
       },
@@ -385,9 +385,11 @@
       "connect" : [
         { "id" : "f33", "to" : "f13", "label" : {
             "name" : "YES",
-            "offset" : { "x" : 0, "y" : -11 }
+            "offset" : { "y" : -11 }
           } },
-        { "id" : "f35", "to" : "f34", "via" : [ { "x" : 224, "y" : 480 } ] }
+        { "id" : "f35", "to" : "f34", "via" : [ { "x" : 224, "y" : 480 } ], "label" : {
+            "segment" : 1.19
+          } }
       ]
     }, {
       "id" : "f34",
