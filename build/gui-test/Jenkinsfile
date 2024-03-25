@@ -1,5 +1,5 @@
 pipeline {
-  agent {label 'common'}
+  agent {label 'portal-slave'}
 
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '30'))
