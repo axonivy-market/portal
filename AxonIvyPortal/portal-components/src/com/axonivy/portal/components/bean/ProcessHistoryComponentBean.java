@@ -6,9 +6,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import com.axonivy.portal.components.datamodel.internal.CaseHistoryLazyDataModel;
-import com.axonivy.portal.components.util.HtmlUtils;
+import com.axonivy.portal.components.util.HtmlParser;
 import com.axonivy.portal.components.util.UserFormatUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
@@ -44,11 +46,17 @@ public class ProcessHistoryComponentBean implements Serializable {
   }
 
   public String formatCaseDescription(String text) {
-    String extractedText = HtmlUtils.parseTextFromHtml(text);
+    String extractedText = parseTextFromHtml(text);
     if (StringUtils.isBlank(extractedText)) {
       return Ivy.cms().co("/Dialogs/com/axonivy/portal/components/ProcessHistory/NoDescription");
     }
     return extractedText;
+  }
+
+  private String parseTextFromHtml(String text) {
+    String sanitizedText = HtmlParser.sanitize(text);
+    Document doc = Jsoup.parse(sanitizedText);
+    return doc.body().text();
   }
 
   public String getState(ICase iCase) {
