@@ -20,6 +20,6 @@ public class HtmlUtils {
     // special character
     // Use Jsoup.clean(text, Safelist.relaxed().addAttributes(":all", "style",
     // "class")) and customize it to allow relative path for href of tag a
-    return Jsoup.clean(text, HTML_PROTOCOL, Safelist.relaxed().addAttributes(":all", "style", "class").preserveRelativeLinks(true));
+    return text == null ? null : Jsoup.clean(text, HTML_PROTOCOL, Safelist.relaxed().addAttributes(":all", "style", "class").preserveRelativeLinks(true));
   }
 }
