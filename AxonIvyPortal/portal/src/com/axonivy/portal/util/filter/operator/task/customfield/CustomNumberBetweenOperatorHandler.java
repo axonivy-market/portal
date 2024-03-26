@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CustomNumberBetweenOperatorHandler {
@@ -66,5 +66,32 @@ public class CustomNumberBetweenOperatorHandler {
     }
 
     return null;
+  }
+
+  public TaskQuery buildEqualQueryByCase(DashboardFilter filter) {
+    CaseQuery caseQuery = com.axonivy.portal.util.filter.operator.caze.customfield.CustomNumberBetweenOperatorHandler
+        .getInstance().buildEqualQuery(filter);
+
+    if (caseQuery == null) {
+      return null;
+    }
+
+    TaskQuery query = TaskQuery.create();
+    query.where().cases(caseQuery);
+    return query;
+
+  }
+
+  public TaskQuery buildNotEqualQueryByCase(DashboardFilter filter) {
+    CaseQuery caseQuery = com.axonivy.portal.util.filter.operator.caze.customfield.CustomNumberBetweenOperatorHandler
+        .getInstance().buildNotEqualQuery(filter);
+
+    if (caseQuery == null) {
+      return null;
+    }
+
+    TaskQuery query = TaskQuery.create();
+    query.where().cases(caseQuery);
+    return query;
   }
 }

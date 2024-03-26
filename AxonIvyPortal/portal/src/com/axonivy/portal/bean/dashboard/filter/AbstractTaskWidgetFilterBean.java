@@ -12,10 +12,15 @@ import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
+import com.axonivy.portal.util.filter.field.task.custom.TaskFilterFieldCustomNumber;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 
 public abstract class AbstractTaskWidgetFilterBean implements Serializable {
@@ -36,8 +41,9 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
     this.filterFields = TaskFilterFieldFactory.getStandardFilterableFields();
 
     // Add custom fields which are selected by user.
-    this.widget.getFilterableColumns().stream().filter(col -> col.getType() == DashboardColumnType.CUSTOM).forEach(
-        customColumn -> this.filterFields.add(TaskFilterFieldFactory.findCustomFieldBy(customColumn.getField())));
+    this.widget.getFilterableColumns().stream().filter(column -> column.getType() != DashboardColumnType.STANDARD)
+        .forEach(
+            column -> this.filterFields.add(TaskFilterFieldFactory.findBy(column.getField(), column.getType())));
   }
 
   private void initFilters() {
@@ -49,7 +55,8 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
     for (DashboardFilter filter : this.widget.getFilters()) {
       if (isFilterAvaliable(filter)) {
         FilterField filterField = TaskFilterFieldFactory
-            .findBy(Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""));
+            .findBy(Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""),
+                Optional.ofNullable(filter).map(DashboardFilter::getFilterType).orElse(null));
         if (filterField != null) {
           filterField.initFilter(filter);
         }
@@ -75,25 +82,22 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
   public void onSelectFilter(DashboardFilter filter) {
     String field = Optional.ofNullable(filter).map(DashboardFilter::getFilterField).map(FilterField::getName)
         .orElse(StringUtils.EMPTY);
-    FilterField filterField = TaskFilterFieldFactory.findBy(field);
 
-    if (filterField == null) {
+    if (filter.getFilterField() == null) {
       return;
     }
 
-    filterField.addNewFilter(filter);
-//    Note: will handle in Complex Filter Custom Field
-//    initCustomFieldNumberPattern(filter, field, filterField);
+    filter.getFilterField().addNewFilter(filter);
+    initCustomFieldNumberPattern(filter, field, filter.getFilterField());
   }
 
-//    Note: will handle in Complex Filter Custom Field
-//  private void initCustomFieldNumberPattern(DashboardFilter filter, String field, FilterField filterField) {
-//    if (filterField instanceof CaseFilterFieldCustomNumber) {
-//      ColumnModel column = widget.getFilterableColumns().stream()
-//          .filter(col -> col.getField().contentEquals(field)).findFirst().orElse(new ColumnModel());
-//      filter.setNumberPattern(column.getPattern());
-//    }
-//  }
+  private void initCustomFieldNumberPattern(DashboardFilter filter, String field, FilterField filterField) {
+    if (filterField instanceof TaskFilterFieldCustomNumber) {
+      ColumnModel column = widget.getFilterableColumns().stream().filter(col -> col.getField().contentEquals(field))
+          .findFirst().orElse(new ColumnModel());
+      filter.setNumberPattern(column.getPattern());
+    }
+  }
 
   public abstract void removeFilter(TaskDashboardWidget widget, DashboardFilter filter);
 
@@ -106,5 +110,17 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
 
   public List<SecurityMemberDTO> completeOwners(String query) {
     return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
+  }
+
+  public abstract void resetTaskWidgetFilter(TaskDashboardWidget widget);
+
+  public abstract void resetCaseWidgetFilter(CaseDashboardWidget widget);
+
+  public void resetFilter(DashboardWidget widget) {
+    if (DashboardWidgetType.TASK.getLabel().equals(widget.getType().getLabel())) {
+      resetTaskWidgetFilter((TaskDashboardWidget) widget);
+      return;
+    }
+    resetCaseWidgetFilter((CaseDashboardWidget) widget);
   }
 }

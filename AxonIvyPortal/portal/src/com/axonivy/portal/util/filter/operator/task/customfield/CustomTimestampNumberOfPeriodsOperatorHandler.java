@@ -5,7 +5,7 @@ import java.util.Date;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
 import com.axonivy.portal.util.PortalDateUtils;
-
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CustomTimestampNumberOfPeriodsOperatorHandler {
@@ -63,5 +63,32 @@ public class CustomTimestampNumberOfPeriodsOperatorHandler {
       default -> TaskQuery.create();
     };
     return query;
+  }
+
+  public TaskQuery buildLastPeriodQueryByCase(DashboardFilter filter) {
+    CaseQuery caseQuery = com.axonivy.portal.util.filter.operator.caze.customfield.CustomTimestampNumberOfPeriodsOperatorHandler
+        .getInstance().buildLastPeriodQuery(filter);
+
+    if (caseQuery == null) {
+      return null;
+    }
+
+    TaskQuery query = TaskQuery.create();
+    query.where().cases(caseQuery);
+    return query;
+  }
+
+  public TaskQuery buildNextPeriodQueryByCase(DashboardFilter filter) {
+    CaseQuery caseQuery = com.axonivy.portal.util.filter.operator.caze.customfield.CustomTimestampNumberOfPeriodsOperatorHandler
+        .getInstance().buildNextPeriodQuery(filter);
+
+    if (caseQuery == null) {
+      return null;
+    }
+
+    TaskQuery query = TaskQuery.create();
+    query.where().cases(caseQuery);
+    return query;
+
   }
 }
