@@ -14,6 +14,7 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 
+import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 
 @ManagedBean
@@ -38,7 +39,8 @@ public class TaskWidgetUserFilterBean extends AbstractTaskWidgetFilterBean imple
 
     for (DashboardFilter filter : this.widget.getUserFilters()) {
       FilterField filterField = TaskFilterFieldFactory
-          .findBy(Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""));
+          .findBy(Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""),
+              Optional.ofNullable(filter).map(DashboardFilter::getFilterType).orElse(null));
       if (filterField != null) {
         filterField.initFilter(filter);
       }
@@ -65,4 +67,10 @@ public class TaskWidgetUserFilterBean extends AbstractTaskWidgetFilterBean imple
   public void onCancelUserFilters() {
     widget.setUserFilters(originalUserFilters);
   }
+
+  @Override
+  public void resetTaskWidgetFilter(TaskDashboardWidget widget) { }
+
+  @Override
+  public void resetCaseWidgetFilter(CaseDashboardWidget widget) { }
 }

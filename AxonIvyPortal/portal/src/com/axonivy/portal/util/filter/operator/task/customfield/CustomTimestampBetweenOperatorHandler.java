@@ -5,6 +5,8 @@ import java.util.Date;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.PortalDateUtils;
 
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
+
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CustomTimestampBetweenOperatorHandler {
@@ -60,5 +62,31 @@ public class CustomTimestampBetweenOperatorHandler {
     }
 
     return null;
+  }
+
+  public TaskQuery buildBetweenQueryByCase(DashboardFilter filter) {
+    CaseQuery caseQuery = com.axonivy.portal.util.filter.operator.caze.customfield.CustomTimestampBetweenOperatorHandler
+        .getInstance().buildBetweenQuery(filter);
+
+    if (caseQuery == null) {
+      return null;
+    }
+
+    TaskQuery query = TaskQuery.create();
+    query.where().cases(caseQuery);
+    return query;
+  }
+
+  public TaskQuery buildNotBetweenQueryByCase(DashboardFilter filter) {
+    CaseQuery caseQuery = com.axonivy.portal.util.filter.operator.caze.customfield.CustomTimestampBetweenOperatorHandler
+        .getInstance().buildNotBetweenQuery(filter);
+
+    if (caseQuery == null) {
+      return null;
+    }
+
+    TaskQuery query = TaskQuery.create();
+    query.where().cases(caseQuery);
+    return query;
   }
 }

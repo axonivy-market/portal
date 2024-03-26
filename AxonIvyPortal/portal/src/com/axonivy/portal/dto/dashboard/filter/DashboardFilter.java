@@ -18,6 +18,8 @@ import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldFinishedDate;
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomTimestamp;
 import com.axonivy.portal.util.filter.field.task.TaskFilterFieldExpiryDate;
+import com.axonivy.portal.util.filter.field.task.custom.TaskFilterFieldCustomTimestamp;
+import com.axonivy.portal.util.filter.field.task.custom.caze.TaskFilterCaseFieldCustomTimestamp;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -85,7 +87,9 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public boolean isCustomDateField() {
-    return filterField instanceof CaseFilterFieldCustomTimestamp;
+    return filterField instanceof CaseFilterFieldCustomTimestamp
+        || filterField instanceof TaskFilterCaseFieldCustomTimestamp
+        || filterField instanceof TaskFilterFieldCustomTimestamp;
   }
 
   @JsonIgnore

@@ -781,7 +781,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     actionSelection: Action selection
     addField: Add field
     addWidget: Add widget
-    availableFilters: Available Filters
     canWorkOn: Can work on
     caseList: Case List
     caseListIntroduction: This widget displays relevant case information according to defined settings
@@ -857,6 +856,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}_{1}.{2}
     field: Field
     fieldIsAdded: The {0} field is added
+    filters: Filters
     iconMessage:
       caseWidget:
         BEACH_PALM_SUNBED: You are awesome - all cases are done. Lean back and enjoy.
@@ -1622,6 +1622,7 @@ Dialogs:
               WidgetFilter: Widget Filter
             TaskWidgetConfiguration:
               AddFilter: Add filter
+              ResetFilter: Reset filter
   components:
     CaseDocument:
       FileDate: Modified at
