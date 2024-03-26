@@ -132,11 +132,11 @@ files and put them into a single zip file.
 
 **Quick search**
 
-|quick-search-column-management|
+|task-quick-search-column-management|
 
 In the view mode, when quick search is enable, a textbox will appear to allow you to search.
 
-|quick-search-checkbox|
+|task-quick-search-checkbox|
 
   .. important::
 
@@ -154,7 +154,7 @@ see and how.
 **Configuration panel**
 
 On the left side, you can define the widget name, establish the main
-configuration for your widget, and get a preview of it by clicking on the
+configuration for your widget, enable quick search function and get a preview of it by clicking on the
 preview button.
 
 |case-list-widget-configuration|
@@ -175,8 +175,18 @@ In the table configuration panel, you find two sections:
    #. Columns section: configure the widget table itself as follows:
 
       - Enable visibility
+      - Enable quick search by selecting the quick search checkbox
       - Reorder the columns by drag and drop using the arrows |move-expand-vertical|
       - Remove columns
+
+  .. important::
+
+    Quick search feature is supporting these fields:
+
+      #. Standard fields: Id, name, description, category, creator (display name), and application.
+      #. Custom fields: fields that have type **STRING** or **TEXT**
+
+    Quick search is enabled for the standard field name and description by default.
 
 **Excel export**
 
@@ -186,6 +196,19 @@ You can export all data of the case widget by clicking on the link ``Export to E
 
 If the number of exported cases exceed the maximum row number of the Excel file, Portal will separate data into multiple Excel
 files and put them into a single zip file.
+
+**Quick search**
+
+|case-quick-search-column-management|
+
+In the view mode, when quick search is enable, a textbox will appear to allow you to search.
+
+|case-quick-search-checkbox|
+
+  .. important::
+
+    #. Quick search function is unaffected by widget filters.
+    #. The scope of the quick search feature can be defined in the configuration panel.
 
 .. _new-dashboard-process-list-widget:
 
@@ -317,12 +340,14 @@ After setting up everything, simply click on the :guilabel:`Share this dashboard
 .. |dashboard-multi-language-widget-dialog| image:: ../../screenshots/new-dashboard/dashboard-multi-language-widget-dialog.png
 .. |task-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-table-configuration.png
 .. |task-column-field-type-configuration| image:: ../../screenshots/new-dashboard/task-column-field-type-configuration.png
-.. |quick-search-checkbox| image:: ../../screenshots/new-dashboard/quick-search-checkbox.png
-.. |quick-search-column-management| image:: ../../screenshots/new-dashboard/quick-search-column-management.png
+.. |task-quick-search-checkbox| image:: ../../screenshots/new-dashboard/task-quick-search-checkbox.png
+.. |task-quick-search-column-management| image:: ../../screenshots/new-dashboard/task-quick-search-column-management.png
 
 .. |case-list-widget| image:: ../../screenshots/new-dashboard/case-list-widget.png
 .. |case-list-widget-configuration| image:: ../../screenshots/new-dashboard/case-list-widget-configuration.png
 .. |case-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/case-list-widget-table-configuration.png
+.. |case-quick-search-checkbox| image:: ../../screenshots/new-dashboard/case-quick-search-checkbox.png
+.. |case-quick-search-column-management| image:: ../../screenshots/new-dashboard/case-quick-search-column-management.png
 
 .. |process-widget-modes| image:: ../../screenshots/new-dashboard/process-widget-modes.png
 .. |process-widget-combined-mode| image:: ../../screenshots/new-dashboard/process-widget-combined-mode.png

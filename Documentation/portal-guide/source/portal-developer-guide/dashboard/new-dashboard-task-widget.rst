@@ -99,7 +99,7 @@ The basic JSON structure of a Task widget
    can predefine filters, styles, visibility,... of columns and define custom
    columns, too:
 
-      ``field``: the field name of the column
+      - ``field``: the field name of the column
          
          For standard columns, ``field`` must be one of these:
          
@@ -126,15 +126,15 @@ The basic JSON structure of a Task widget
          For custom columns, ``field`` is the name of a task custom field.
          Portal will use the value of ``field`` to get the value of the column.
 
-      ``canWorkOn``: filter only tasks that the current user can work on. The default value is "false".
+      -  ``canWorkOn``: filter only tasks that the current user can work on. The default value is "false".
 
-      ``visible``: visibility of a column. The default value is "true".
-      Set to "false" to hide the column.
+      -  ``visible``: visibility of a column. The default value is "true".
+         Set to "false" to hide the column.
 
-      ``quickSearch``: Apply search condition for the column when using the quick search feature. The default value is "false".
-      Set to "true" to apply search condition for the column.
+      -  ``quickSearch``: Apply search condition for the column when using the quick search feature. The default value is "false".
+         Set to "true" to apply search condition for the column.
 
-   -  ``headers``: multilingual header of the column.
+      -  ``headers``: multilingual header of the column.
 
 Custom Columns
 --------------
@@ -404,5 +404,3 @@ Below are definitions and JSON examples of two fields that you can use to config
       * ``not define``:
          * ``name`` and ``description`` columns: set to ``true`` by default
          * other columns: set to ``false`` by default
-      
-
