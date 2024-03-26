@@ -99,7 +99,7 @@ import org.primefaces.component.donutchart.DonutChart;
 import org.primefaces.event.ItemSelectEvent;
 import org.primefaces.model.charts.ChartData;
 import org.primefaces.model.charts.axes.cartesian.CartesianAxes;
-import org.primefaces.model.charts.axes.cartesian.CartesianScaleLabel;
+import org.primefaces.model.charts.axes.cartesian.CartesianScaleTitle;
 import org.primefaces.model.charts.axes.cartesian.CartesianScales;
 import org.primefaces.model.charts.axes.cartesian.linear.CartesianLinearAxes;
 import org.primefaces.model.charts.axes.cartesian.linear.CartesianLinearTicks;
@@ -185,12 +185,12 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
         .filter(chart -> arrs.contains(chart.getType()) && CollectionUtils.isEmpty(chart.getFilter().getSelectedRoles()))
         .findFirst()
         .orElse(null);
-    
+
     if (firstChartUnselectAllRoles != null) {
       StatisticFilter filter = firstChartUnselectAllRoles.getFilter();
       filter.initRoles();
       roles = filter.getRoles();
-      
+
       // set all roles for other charts which unselect all roles
       for (StatisticChart chart : result) {
         if (arrs.contains(chart.getType()) && CollectionUtils.isEmpty(chart.getFilter().getSelectedRoles()) && !chart.getId().equals(firstChartUnselectAllRoles.getId())){
@@ -202,7 +202,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
 
   /**
    * Get Task by Priority statistic data
-   * 
+   *
    * @param taskQuery
    * @return Task by Priority statistic data
    */
@@ -217,7 +217,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
 
   /**
    * Get Task by Expiry statistic data
-   * 
+   *
    * @param taskQuery
    * @return Task by Expiry statistic data
    */
@@ -232,7 +232,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
 
   /**
    * Get Case by State statistic data
-   * 
+   *
    * @param caseQuery
    * @return Case by State statistic data
    */
@@ -247,7 +247,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
 
   /**
    * Get Elapsed time by Case Category data
-   * 
+   *
    * @param caseQuery
    * @return Elapsed time by Case Category data
    */
@@ -259,10 +259,10 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
         IvyAdapterService.startSubProcessInProjectAndAllRequired("analyzeElapsedTimeStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery)", params);
     return (ElapsedTimeStatistic) response.get(RESULT);
   }
-  
+
   /**
    * Get Cases by Case Category data
-   * 
+   *
    * @param caseQuery
    * @param categoryNodes
    * @return Cases by Case Category data
@@ -275,7 +275,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
         IvyAdapterService.startSubProcessInProjectAndAllRequired("analyzeCasesByCategoryStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery,java.util.List<String>)", params);
     return (CaseCategoryStatistic) response.get(RESULT);
   }
-  
+
   public CaseCategoryStatistic getCasesByCategoryDrilldownStatisticData(CaseQuery caseQuery, String categoryNode) {
     Map<String, Object> params = new HashMap<>();
     params.put(CASE_QUERY, caseQuery);
@@ -297,7 +297,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
 
   /**
    * generate data for "Task by Priority" chart
-   * 
+   *
    * @param priorityStatistic statistic data
    * @return generated data
    */
@@ -312,7 +312,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
 
   /**
    * generate data for "Task by Expiry" overview chart
-   * 
+   *
    * @param expiryStatistic statistic data
    * @param selectedValue selected value
    * @param previousSelectedMonth previous selected month
@@ -573,7 +573,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
         Date resultDate = StatisticChartTimeUtils.truncateMinutesPart(result.getKey());
         Calendar cal = Calendar.getInstance();
         cal.setTime(resultDate);
-  
+
         int thisYear = Year.now().getValue();
         if (cal.get(Calendar.YEAR) == thisYear) {
           int monthIndex = cal.get(Calendar.MONTH); // from JANUARY to DECEMBER, month index from 0 to 11
@@ -624,7 +624,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
           expiredTasks += result.getValue();
           continue; // Not include expired tasks to other bars
         }
-        
+
         if (today.compareTo(resultDate) == 0) {
           taskExpireToday += result.getValue();
         }
@@ -653,7 +653,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
   /**
    * generate data for "Case by State" chart
    * Build with correct order: CREATED, RUNNING, DONE, FAILED
-   * 
+   *
    * @param caseStateStatistic statistic data
    * @return generated data
    */
@@ -668,7 +668,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
 
   /**
    * generate data for "Elapsed Time by Case Category" chart
-   * 
+   *
    * @param elapsedTimeStatistic statistic data
    * @return generated data
    */
@@ -688,7 +688,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
 
   /**
    * Add statistic chart to business data
-   * 
+   *
    * @param filter filter to generate json query for statistic chart
    * @param chartNames chart names
    * @param chartType chart type
@@ -704,7 +704,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     statisticChart.setNames(chartNames);
     statisticChart.setPosition(getPrivateConfig().size() + getPublicConfig().size());
     statisticChart.setIsPublic(isDefault);
-    
+
     if (filter.getIsAllCaseStatesSelected()) {
       StatisticFilter newFilter = ObjectUtils.clone(filter);
       if (filter.getIsAllRolesSelected()) {
@@ -753,7 +753,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
 
   /**
    * Generate chart model for "Task By Priority" chart
-   * 
+   *
    * @param statisticData statistic data
    * @param isSetDefaultName
    * @return chart model for "Task By Priority" chart
@@ -793,7 +793,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
 
   /**
    * Generate chart model for "Task By Expiry" chart
-   * 
+   *
    * @param statisticData statistic data
    * @param isSetDefaultName
    * @param selectedValue selected value
@@ -866,21 +866,21 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     CartesianLinearAxes newAxesData = new CartesianLinearAxes();
     newAxesData.setPosition(position);
     CartesianLinearTicks ticks = new CartesianLinearTicks();
-    ticks.setBeginAtZero(true);
+    newAxesData.setBeginAtZero(true);
     newAxesData.setTicks(ticks);
 
-    CartesianScaleLabel scaleLabel = new CartesianScaleLabel();
+    CartesianScaleTitle scaleLabel = new CartesianScaleTitle();
     scaleLabel.setDisplay(true);
-    scaleLabel.setLabelString(axesLabel);
+    scaleLabel.setText(axesLabel);
 
-    newAxesData.setScaleLabel(scaleLabel);
+    newAxesData.setScaleTitle(scaleLabel);
 
     return newAxesData;
   }
 
   /**
    * Generate chart model for "Case By State" chart
-   * 
+   *
    * @param statisticData statistic data
    * @param chartType statistic chart type
    * @param isSetDefaultName
@@ -906,7 +906,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
 
   /**
    * Generate chart model for "Elapsed time by Case Category" chart
-   * 
+   *
    * @param statisticData statistic data
    * @param isSetDefaultName
    * @return chart model for "Elapsed time by Case Category" chart
@@ -921,11 +921,11 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     CartesianScales scales = new CartesianScales();
     if (chartData.size() != 0) {
       buildBarChartDataSet(new HashMap<>(chartData), data, dataSet);
-      
+
       scales.addXAxesData(createLinearAxes(CHART_LEGEND_POSITION_LEFT, Ivy.cms().co(CASE_CATEGORIES_CMS)));
       scales.addYAxesData(createLinearAxes(CHART_LEGEND_POSITION_BOTTOM, Ivy.cms().co(ELAPSED_TIME_DETAIL_CHART_NAME_CMS)));
     }
-    
+
     data.addChartDataSet(dataSet);
     if (isSetDefaultName) {
       options.setTitle(generateChartTitle(StatisticChartType.ELAPSED_TIME_BY_CASE_CATEGORY, false));
@@ -955,10 +955,10 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
 
     return new HashMap<>(caseCategoryToElapsedTime);
   }
-  
+
   /**
    * Generate chart model for "Cases By Category" chart
-   * 
+   *
    * @param statisticData statistic data
    * @param isSetDefaultName
    * @return chart model for "Cases By Category" chart
@@ -971,11 +971,11 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     CartesianScales scales = new CartesianScales();
     if (statisticData.getNumberOfCasesByCategory().size() != 0) {
       buildBarChartDataSet(new LinkedHashMap<>(statisticData.getNumberOfCasesByCategory()), data, dataSet);
-      
+
       scales.addXAxesData(createLinearAxes(CHART_LEGEND_POSITION_LEFT, Ivy.cms().co(CASE_CATEGORIES_CMS)));
       scales.addYAxesData(createLinearAxes(CHART_LEGEND_POSITION_BOTTOM, Ivy.cms().co(CATEGORIES_CMS)));
     }
-    
+
     data.addChartDataSet(dataSet);
     if (isSetDefaultName) {
       options.setTitle(generateChartTitle(StatisticChartType.CASES_BY_CATEGORY, false));
@@ -1003,8 +1003,8 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     List<CartesianAxes> scales = Optional.ofNullable(statisticChart.getBarChartModel()).map(BarChartModel::getOptions)
         .map(BarChartOptions::getScales).map(CartesianScales::getXAxes).orElse(new ArrayList<>());
     if (!scales.isEmpty()) {
-      taskScaleLabel = Optional.ofNullable(scales.get(0)).map(CartesianAxes::getScaleLabel)
-          .map(CartesianScaleLabel::getLabelString).orElse(StringUtils.EMPTY);
+      taskScaleLabel = Optional.ofNullable(scales.get(0)).map(CartesianAxes::getScaleTitle)
+          .map(CartesianScaleTitle::getText).orElse(StringUtils.EMPTY);
     }
 
     return statisticChart.getType() == StatisticChartType.TASK_BY_EXPIRY
@@ -1026,20 +1026,20 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
   public boolean isCaseByFinishedTime(StatisticChart statisticChart) {
     return statisticChart.getType() == StatisticChartType.CASES_BY_FINISHED_TIME;
   }
-  
+
   public boolean isCasesByCategory(StatisticChart statisticChart) {
     return statisticChart.getType() == StatisticChartType.CASES_BY_CATEGORY;
   }
 
   /**
-   * 
+   *
    * @param statisticChartList
    */
   public void generateChartModelForStatisticCharts(List<StatisticChart> statisticChartList) {
     if (!statisticChartList.isEmpty()) {
       initRolesForSavedChart(statisticChartList);
     }
-    
+
     for (StatisticChart statisticChart : statisticChartList) {
       switch (statisticChart.getType()) {
         case TASK_BY_PRIORITY:
@@ -1062,7 +1062,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
           break;
         case CASES_BY_CATEGORY:
           statisticChart.setBarChartModel(buildChartModelForCasesByCategory(statisticChart));
-          break;  
+          break;
         default:
           break;
       }
@@ -1110,7 +1110,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
   /**
    * Create a BarChart's placeholder when Statistic chart is loading
    * @return BarChartModel
-   * 
+   *
    */
   public BarChartModel createBarChartPlaceholder() {
     BarChartModel model = new BarChartModel();
@@ -1126,7 +1126,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
   /**
    * Create a DonutChart's placeholder when Statistic chart is loading
    * @return DonutChartModel
-   * 
+   *
    */
   public DonutChartModel createDonutChartPlaceholder() {
     DonutChartModel model = new DonutChartModel();
@@ -1196,7 +1196,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
     }
     return statisticChart.getBarChartModel();
   }
-  
+
   private BarChartModel buildChartModelForCasesByCategory(StatisticChart statisticChart) {
     if (!statisticChart.getId().contains("_")) {
       CaseCategoryStatistic casesByCategoryData = new CaseCategoryStatistic();
@@ -1286,7 +1286,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
         previousSelectedMonth, previousSelectedWeek));
     return newStatisticChart;
   }
-  
+
   public StatisticChart drilldownCasesByCategory(String selectedValue, StatisticChart selectedChart) {
     CaseCategoryStatistic caseCategoryStatisticData = getCasesByCategoryDrilldownStatisticData(
         StatisticChartQueryUtils.generateCaseQueryForCasesByCategoryChart(selectedChart.getFilter(), selectedValue), selectedValue);
@@ -1298,7 +1298,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
       newName.setLocale(name.getLocale());
       newName.setValue(name.getValue().concat(" - ").concat(selectedValue));
       newNames.add(newName);
-    }  
+    }
     newStatisticChart.setNames(newNames);
     newStatisticChart.setName(getDisplayNameInUserLanguageForChart(newStatisticChart).getValue());
     newStatisticChart.setFilter(selectedChart.getFilter());
@@ -1330,7 +1330,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
       return StringUtils.EMPTY;
     }
   }
-  
+
   /**
    * this method only for chart case by Category
    * the labels of chart is name category (CMS) + category delimiter + path category
@@ -1355,7 +1355,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
       return StringUtils.EMPTY;
     }
   }
-  
+
   public static Boolean hasChildNode(String value) {
     return !value.contains(PARENT_CATEGORY_DELIMITER);
   }
@@ -1384,7 +1384,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
   public boolean isDefaultChart(List<StatisticChart> statisticCharts) {
     return statisticCharts.stream().anyMatch(StatisticChart::getIsPublic);
   }
-  
+
   public boolean isSame(List<StatisticChart> first, List<StatisticChart> second) {
     if (CollectionUtils.isEmpty(first) || CollectionUtils.isEmpty(second) || first.size() != second.size()) {
       return false;
