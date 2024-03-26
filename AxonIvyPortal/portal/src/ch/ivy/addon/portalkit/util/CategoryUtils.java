@@ -153,4 +153,9 @@ public class CategoryUtils {
     return Category.createFor(process,
         new LocalizedTextResolverFactory().createFor("Categories", Ivy.request().getProcessModelVersion()));
   }
+  
+  public static Category buildCategoryFromTechnicalPath(String categoryTechnicalPath) {
+    return Category.createFor(new CategoryPath(categoryTechnicalPath),
+        new LocalizedTextResolverFactory().createFor("Categories", Ivy.request().getProcessModelVersion()));
+  }
 }
