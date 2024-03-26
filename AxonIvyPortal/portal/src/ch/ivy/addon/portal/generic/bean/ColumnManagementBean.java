@@ -356,6 +356,10 @@ public class ColumnManagementBean implements Serializable {
     column.setVisible(BooleanUtils.isFalse(column.getVisible()));
   }
 
+  public void handleQuickSearch(ColumnModel column) {
+    column.setQuickSearch(BooleanUtils.isFalse(column.getQuickSearch()));
+  }
+
   public class FetchingField {
     private DashboardColumnType type;
     private String field;

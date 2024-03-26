@@ -31,6 +31,7 @@ public class ResponsibleColumnModel extends TaskColumnModel implements Serializa
     this.style = defaultIfEmpty(this.style, getDefaultStyle());
     this.format = getDefaultFormat();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
+    this.quickSearch = defaultIfEmpty(this.quickSearch, false);
   }
 
   @Override
@@ -110,5 +111,10 @@ public class ResponsibleColumnModel extends TaskColumnModel implements Serializa
   
   private SecurityMemberDTO findSecurityMember(String memberName) {
     return ServiceUtilities.findSecurityMemberByName(memberName);
+  }
+
+  @Override
+  public boolean canQuickSearch() {
+    return true;
   }
 }
