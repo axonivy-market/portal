@@ -780,7 +780,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     actionSelection: Aktion auswählen
     addField: Feld hinzufügen
     addWidget: Widget hinzufügen
-    availableFilters: Verfügbare Filter
     canWorkOn: Kann arbeiten an
     caseList: Vorfall-Liste
     caseListIntroduction: Dieses Widget zeigt relevante Vorgangsinformationen entsprechend einiger definierter Parameter an
@@ -856,6 +855,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}_{1}.{2}
     field: Feld
     fieldIsAdded: Das Feld {0} wurde hinzugefügt
+    filters: Filter
     iconMessage:
       caseWidget:
         BEACH_PALM_SUNBED: Sie sind großartig - alle Vorgänge sind erledigt. Lehnen Sie sich zurück und genießen Sie.
@@ -1622,6 +1622,7 @@ Dialogs:
               WidgetFilter: Widget-Filter
             TaskWidgetConfiguration:
               AddFilter: Filter hinzufügen
+              ResetFilter: Filter zurücksetzen
   components:
     CaseDocument:
       FileDate: Änderungsdatum

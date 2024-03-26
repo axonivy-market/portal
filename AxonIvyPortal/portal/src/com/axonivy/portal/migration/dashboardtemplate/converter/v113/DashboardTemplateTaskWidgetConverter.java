@@ -14,7 +14,7 @@ import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.common.search.JsonWidgetSearch;
 import com.axonivy.portal.migration.common.visitor.JsonDashboardVisitor;
 import com.axonivy.portal.util.filter.field.FilterField;
-import com.axonivy.portal.util.filter.field.FilterFieldFactory;
+import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -27,6 +27,8 @@ import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 public class DashboardTemplateTaskWidgetConverter implements IJsonConverter {
 
   private static final String NO_CATEGORY = "[No Category]";
+  private static final String CUSTOM_CASE = "CUSTOM_CASE";
+  private static final String TYPE = "type";
 
   @Override
   public AbstractJsonVersion version() {
@@ -54,24 +56,31 @@ public class DashboardTemplateTaskWidgetConverter implements IJsonConverter {
   }
 
   private void migrateCustomColumn(JsonNode taskWidget, JsonNode col) {
-    FilterField filterField = FilterFieldFactory.findBy(col.get("field").asText());
+    DashboardColumnType dashboardColumnType = null;
+    if (CUSTOM_CASE.equals(col.get(TYPE).asText())) {
+      dashboardColumnType = DashboardColumnType.CUSTOM_CASE;
+    } else {
+      dashboardColumnType = DashboardColumnType.CUSTOM;
+    }
+    FilterField filterField = TaskFilterFieldFactory.findBy(col.get("field").asText(), dashboardColumnType);
+
     if (filterField != null) {
       DashboardFilter filter = new DashboardFilter();
       filterField.initFilter(filter);
       switch (filter.getFilterFormat()) {
       case STRING -> {
-        convertStringFilters(initFilterNode(taskWidget), col.get("filter"), filter.getField(), false);
+        convertStringFilters(initFilterNode(taskWidget), col.get("filter"), filter.getField(), dashboardColumnType);
       }
       case TEXT -> {
-        convertStringFilters(initFilterNode(taskWidget), col.get("filter"), filter.getField(), false);
+        convertStringFilters(initFilterNode(taskWidget), col.get("filter"), filter.getField(), dashboardColumnType);
       }
       case DATE -> {
         convertDateFilters(initFilterNode(taskWidget), col.get("filterFrom"), col.get("filterTo"), filter.getField(),
-            false);
+            dashboardColumnType);
       }
       case NUMBER -> {
         convertNumberFilters(initFilterNode(taskWidget), col.get("filterFrom"), col.get("filterTo"), filter.getField(),
-            false);
+            dashboardColumnType);
       }
       default -> { }
       }
@@ -82,19 +91,19 @@ public class DashboardTemplateTaskWidgetConverter implements IJsonConverter {
     switch (field) {
     case CREATED -> {
       convertDateFilters(initFilterNode(taskWidget), col.get("filterFrom"), col.get("filterTo"),
-          DashboardStandardTaskColumn.CREATED.getField(), true);
+          DashboardStandardTaskColumn.CREATED.getField(), DashboardColumnType.STANDARD);
     }
     case EXPIRY -> {
       convertDateFilters(initFilterNode(taskWidget), col.get("filterFrom"), col.get("filterTo"),
-          DashboardStandardTaskColumn.EXPIRY.getField(), true);
+          DashboardStandardTaskColumn.EXPIRY.getField(), DashboardColumnType.STANDARD);
     }
     case NAME -> {
       convertStringFilters(initFilterNode(taskWidget), col.get("filter"), DashboardStandardTaskColumn.NAME.getField(),
-          true);
+          DashboardColumnType.STANDARD);
     }
     case DESCRIPTION -> {
       convertStringFilters(initFilterNode(taskWidget), col.get("filter"),
-          DashboardStandardTaskColumn.DESCRIPTION.getField(), true);
+          DashboardStandardTaskColumn.DESCRIPTION.getField(), DashboardColumnType.STANDARD);
     }
     case RESPONSIBLE -> {
       convertListFilter(initFilterNode(taskWidget), (ArrayNode) col.get("filterList"),
@@ -130,7 +139,7 @@ public class DashboardTemplateTaskWidgetConverter implements IJsonConverter {
     return matches;
   }
 
-  private void convertDateFilters(ArrayNode filters, JsonNode filterFrom, JsonNode filterTo, String field, boolean isStandardField) {
+  private void convertDateFilters(ArrayNode filters, JsonNode filterFrom, JsonNode filterTo, String field, DashboardColumnType dashboardColumnType ) {
     boolean isEmptyFilterFrom = filterFrom == null || StringUtils.isBlank(filterFrom.asText());
     boolean isEmptyFilterTo = filterTo == null || StringUtils.isBlank(filterTo.asText());
 
@@ -144,7 +153,9 @@ public class DashboardTemplateTaskWidgetConverter implements IJsonConverter {
       }
     });
 
-    DashboardColumnType type = isStandardField ? DashboardColumnType.STANDARD : DashboardColumnType.CUSTOM;
+    DashboardColumnType type = dashboardColumnType == DashboardColumnType.STANDARD ? DashboardColumnType.STANDARD
+        : dashboardColumnType;
+
     ObjectNode newFilterNode = filters.addObject();
     newFilterNode.set("field", new TextNode(field));
     newFilterNode.set("type", new TextNode(type.getType()));
@@ -159,7 +170,7 @@ public class DashboardTemplateTaskWidgetConverter implements IJsonConverter {
     }
   }
 
-  private void convertStringFilters(ArrayNode filters, JsonNode filterText, String field, boolean isStandardField) {
+  private void convertStringFilters(ArrayNode filters, JsonNode filterText, String field, DashboardColumnType dashboardColumnType) {
     if (filterText == null || StringUtils.isBlank(filterText.asText())) {
       return;
     }
@@ -171,7 +182,9 @@ public class DashboardTemplateTaskWidgetConverter implements IJsonConverter {
       }
     });
 
-    DashboardColumnType type = isStandardField ? DashboardColumnType.STANDARD : DashboardColumnType.CUSTOM;
+    DashboardColumnType type = dashboardColumnType == DashboardColumnType.STANDARD ? DashboardColumnType.STANDARD
+        : dashboardColumnType;
+
     ObjectNode newFilterNode = filters.addObject();
     newFilterNode.set("field", new TextNode(field));
     newFilterNode.set("type", new TextNode(type.getType()));
@@ -240,9 +253,9 @@ public class DashboardTemplateTaskWidgetConverter implements IJsonConverter {
   }
 
   private void convertNumberFilters(ArrayNode filters, JsonNode filterFrom, JsonNode filterTo, String field,
-      boolean isStandardField) {
+      DashboardColumnType type) {
     // Currently convert number filters same as convert date filters
-    convertDateFilters(filters, filterFrom, filterTo, field, isStandardField);
+    convertDateFilters(filters, filterFrom, filterTo, field, type);
   }
 
   private void removeOldFiltersFields(JsonNode column) {

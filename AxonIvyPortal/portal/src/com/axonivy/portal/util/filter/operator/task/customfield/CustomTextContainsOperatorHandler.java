@@ -4,6 +4,8 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
+
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CustomTextContainsOperatorHandler {
@@ -44,6 +46,32 @@ public class CustomTextContainsOperatorHandler {
           .isNotLikeIgnoreCase(String.format(LIKE_FORMAT, text.toLowerCase()));
       query.where().and(subQuery);
     });
+    return query;
+  }
+
+  public TaskQuery buildContainsQueryByCase(DashboardFilter filter) {
+    CaseQuery caseQuery = com.axonivy.portal.util.filter.operator.caze.customfield.CustomTextContainsOperatorHandler
+        .getInstance().buildContainsQuery(filter);
+
+    if (caseQuery == null) {
+      return null;
+    }
+
+    TaskQuery query = TaskQuery.create();
+    query.where().cases(caseQuery);
+    return query;
+  }
+
+  public TaskQuery buildNotContainsQueryByCase(DashboardFilter filter) {
+    CaseQuery caseQuery = com.axonivy.portal.util.filter.operator.caze.customfield.CustomTextContainsOperatorHandler
+        .getInstance().buildNotContainsQuery(filter);
+
+    if (caseQuery == null) {
+      return null;
+    }
+
+    TaskQuery query = TaskQuery.create();
+    query.where().cases(caseQuery);
     return query;
   }
 }

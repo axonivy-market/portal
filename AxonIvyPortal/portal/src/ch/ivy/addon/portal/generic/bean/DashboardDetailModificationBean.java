@@ -490,6 +490,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       }
     }
   }
+  
+  public void onReset(DashboardWidget widget) {
+    resetUserFilter();
+  }
 
   private void updateApplicationForCompactProcess(CompactProcessDashboardWidget compactProcessWidget) {
     compactProcessWidget.getFilterableColumns().stream()

@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CustomNumberEqualOperatorHandler {
@@ -38,6 +38,40 @@ public class CustomNumberEqualOperatorHandler {
     TaskQuery query = TaskQuery.create();
     query.where().customField().numberField(filter.getField())
       .isNotEqual(BigDecimal.valueOf(NumberUtils.toDouble(filter.getValue())));
+    return query;
+  }
+
+  public TaskQuery buildEqualQueryByCase(DashboardFilter filter) {
+    if (StringUtils.isBlank(filter.getValue())) {
+      return null;
+    }
+
+    CaseQuery caseQuery = com.axonivy.portal.util.filter.operator.caze.customfield.CustomNumberEqualOperatorHandler
+        .getInstance().buildEqualQuery(filter);
+
+    if (caseQuery == null) {
+      return null;
+    }
+
+    TaskQuery query = TaskQuery.create();
+    query.where().cases(caseQuery);
+    return query;
+  }
+
+  public TaskQuery buildNotEqualQueryByCase(DashboardFilter filter) {
+    if (StringUtils.isBlank(filter.getValue())) {
+      return null;
+    }
+
+    CaseQuery caseQuery = com.axonivy.portal.util.filter.operator.caze.customfield.CustomNumberEqualOperatorHandler
+        .getInstance().buildNotEqualQuery(filter);
+
+    if (caseQuery == null) {
+      return null;
+    }
+
+    TaskQuery query = TaskQuery.create();
+    query.where().cases(caseQuery);
     return query;
   }
 }

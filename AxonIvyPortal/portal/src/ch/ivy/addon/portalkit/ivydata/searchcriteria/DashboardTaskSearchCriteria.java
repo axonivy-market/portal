@@ -6,13 +6,13 @@ import java.util.Optional;
 
 import org.apache.commons.collections4.CollectionUtils;
 
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.util.filter.field.FilterField;
+import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.OrderByColumnQuery;
-import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.util.filter.field.FilterField;
-import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 
 public class DashboardTaskSearchCriteria {
 
@@ -54,7 +54,7 @@ public class DashboardTaskSearchCriteria {
         continue;
       }
 
-      FilterField filterField = TaskFilterFieldFactory.findBy(filter.getField());
+      FilterField filterField = TaskFilterFieldFactory.findBy(filter.getField(), filter.getFilterType());
       if (filterField != null) {
         TaskQuery filterQuery = filterField.generateFilterTaskQuery(filter);
         if (filterQuery != null) {
@@ -99,6 +99,7 @@ public class DashboardTaskSearchCriteria {
 
     private TaskQuery query;
     private OrderByColumnQuery order;
+    @SuppressWarnings("unused")
     private boolean sortStandardColumn;
 
     public TaskSortingQueryAppender(TaskQuery query) {

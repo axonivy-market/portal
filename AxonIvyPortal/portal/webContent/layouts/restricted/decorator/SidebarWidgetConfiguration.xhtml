@@ -70,13 +70,22 @@
   <h:panelGroup id="widget-filter-content" layout="block" styleClass="filter-panel js-filter-panel" >
       <div class="ui-g-12 MarTop20">
         <div class="ui-g-4 ui-md-5">
-          <strong>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters")}</strong>
+          <strong>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/filters")}</strong>
         </div>
         <div class="ui-g-8 ui-md-7">
           <p:commandButton id="preview-button" oncomplete="registerClickOnPanelEvent();"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
-            styleClass="Fright preview-button u-hidden-sm-down" icon="si si-button-refresh-arrow"
+            styleClass="Fright preview-button u-hidden-sm-down" icon="si si-check-1"
             update="#{componentToUpdateOnPreview}" />
+          <p:commandButton id="reset-filter" icon="si si-button-refresh-arrows"
+            update="#{componentToUpdateOnPreview}" process="predefined-filter" styleClass="Fright preview-button u-hidden-sm-down u-mar-right-5"
+            actionListener="#{taskWidgetConfigurationFilterBean.resetFilter(widget)}"
+            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/TaskWidgetConfiguration/ResetFilter')}"
+            title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/TaskWidgetConfiguration/ResetFilter')}"
+            oncomplete="PF('new-widget-configuration-dialog').initPosition();">
+              <f:param name="skipValidator" value="true" />
+          </p:commandButton>
+            
         </div>
       </div>
       <div class="ui-g-12 filter-area" >
