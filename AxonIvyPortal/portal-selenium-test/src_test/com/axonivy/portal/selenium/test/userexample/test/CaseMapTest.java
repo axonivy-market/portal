@@ -96,7 +96,7 @@ public class CaseMapTest extends BaseTest {
   private void startTaskByTaskName(String taskname) {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksInExpandedModeBy(taskname);
-    taskWidgetPage.startTaskIFrame(0);
+    taskWidgetPage.startTask(0);
   }
 
   private void assertInputData() {
