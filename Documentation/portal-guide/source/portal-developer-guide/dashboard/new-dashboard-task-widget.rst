@@ -393,10 +393,8 @@ Quick search is a useful function for user to search quickly on the task widget.
 
       Valid values:
 
-      * ``true``: apply quick search for this column
-      * ``false``: do not apply quick search for this column
-      * ``not define``:
-         * ``name`` and ``description`` columns: set to ``true`` by default
-         * other columns: set to ``false`` by default
+      * ``true``: apply quick search for this column.
+      * ``false``: do not apply quick search for this column.
+      * ``not define``: the ``name`` and ``description`` columns are ``true``, other columns are ``false`` by default.
       
 
