@@ -31,10 +31,12 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
+import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TimesUtils;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivyteam.ivy.workflow.category.Category;
 
 public class DashboardWidgetInformationService {
 
@@ -116,6 +118,9 @@ public class DashboardWidgetInformationService {
     for (var entry : taskCategoryStatistic.getNumberOfTasksByCategory().entrySet()) {
       WidgetInformationCategoryStatisticData data = new WidgetInformationCategoryStatisticData();
       data.setCategoryTechnicalPath(entry.getKey());
+      Category category = CategoryUtils.buildCategoryFromTechnicalPath(data.getCategoryTechnicalPath());
+      data.setCategoryDisplayPath(category.getPath());
+      data.setCategoryDisplayName(category.getName());
       data.setSummary(entry.getValue());
       taskByCategoryStatistic.add(data);
     }
@@ -191,6 +196,9 @@ public class DashboardWidgetInformationService {
     for (var entry : caseCategoryStatistic.getNumberOfCasesByCategory().entrySet()) {
       WidgetInformationCategoryStatisticData data = new WidgetInformationCategoryStatisticData();
       data.setCategoryTechnicalPath(entry.getKey());
+      Category category = CategoryUtils.buildCategoryFromTechnicalPath(data.getCategoryTechnicalPath());
+      data.setCategoryDisplayPath(category.getPath());
+      data.setCategoryDisplayName(category.getName());
       data.setSummary(entry.getValue());
       caseByCategoryStatistic.add(data);
     }
