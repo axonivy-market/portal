@@ -847,4 +847,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       }
     }
   }
+
+  public boolean canEnableQuickSearch() {
+    return Optional.ofNullable(this.widget).map(DashboardWidget::getType).map(DashboardWidgetType::canEnableQuickSearch)
+        .orElse(false);
+  }
 }
