@@ -133,6 +133,9 @@ The basic JSON structure of the case widget
    -  ``visible``: visibility of a column. The default value is "true". Set to
       "false" to hide the column.
 
+   -  ``quickSearch``: apply search condition for the column when using the quick search feature. The default value is "false".
+      Set to "true" to apply search condition for the column.
+
    -  ``headers``: multilingual header of the column.
 
 Custom Columns
@@ -315,3 +318,68 @@ conditions.
       case widget will show cases with an expiry date between the dates defined.
 
       Acceptable date formats: ``dd.MM.yyyy`` and ``MM/dd/yyyy``.
+
+Quick Search
+------------
+
+Quick search is a useful function for user to search quickly on the Case widget. 
+
+**JSON Structure**
+
+Below are definitions and JSON examples of two fields that you can use to configure the quick search feature.
+
+   * ``enableQuickSearch``
+
+      To enable/disable the quick search feature,
+      set the ``enableQuickSearch`` field of the Case widget as below.
+
+      .. code-block:: html
+
+         {
+            ...
+            "type": "case",
+            "id": "case_98ae4fc1c83f4f22be5244c8027ecf40"
+            ...
+            "enableQuickSearch": "true",
+            ...
+         }
+
+      ..
+
+      Valid values:
+
+      * ``true``: show the quick search textbox
+      * ``false``: hide the quick search textbox
+      * ``not define``: hide the quick search textbox
+
+   * ``quickSearch``
+
+      To choose which columns can be search by the quick search feature,
+      set the ``quickSearch`` field for each column as below.
+
+      .. code-block:: html
+
+         {
+            ...
+            "type": "case",
+            "id": "case_98ae4fc1c83f4f22be5244c8027ecf40"
+            ...
+            "columns": [
+               {
+                  "field": "name",
+                  "quickSearch": "false"
+               },
+               ...
+            ]
+            ...
+         }
+
+      ..
+
+      Valid values:
+
+      * ``true``: apply quick search for this column
+      * ``false``: do not apply quick search for this column
+      * ``not define``:
+         * ``name`` and ``description`` columns: set to ``true`` by default
+         * other columns: set to ``false`` by default
