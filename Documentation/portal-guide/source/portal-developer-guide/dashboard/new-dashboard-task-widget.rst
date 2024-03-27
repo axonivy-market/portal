@@ -343,10 +343,25 @@ Below is the list of filterable columns and their corresponding filter condition
 Quick Search
 ------------
 
-Quick search is a useful function for user to search quickly on the task widget. 
+Quick search is a useful function for users to search quickly on the task widget.
+There are two attributes:
+   
+   * ``enableQuickSearch``: enables the quick search feature for the widget.
+
+   * ``quickSearch``: indicates that a column is searchable using the quick search feature.
+
+If you set the ``enableQuickSearch`` attribute to ``false``, the quick search feature will be disabled,
+regardless of the ``quickSearch`` attribute's value.
+
+Conversely, if you set the ``enableQuickSearch`` attribute to ``true``, the quick search feature will
+scan through the values of all columns that have the ``quickSearch`` attribute set to ``true``.
+If you haven't assigned the ``quickSearch`` attribute to any column in the task widget,
+the quick search feature will default to searching the name and description fields.
+
+Below are the definition of these attributes:
 
    * ``enableQuickSearch``: to enable/disable the quick search feature, set the
-     ``enableQuickSearch`` field of the Task widget as below.
+     ``enableQuickSearch`` field of the Task widget as shown below.
 
       .. code-block:: html
 
@@ -365,10 +380,10 @@ Quick search is a useful function for user to search quickly on the task widget.
 
       * ``true``: show the quick search text box.
       * ``false``: hide the quick search text box.
-      * ``not define``: hide the quick search text box.
+      * ``not defined``: hide the quick search text box.
 
-   * ``quickSearch``: to choose which columns can be search by the quick search
-     feature, set the ``quickSearch`` field for each column as below.
+   * ``quickSearch``: to choose which columns can be searched by the quick search
+     feature, set the ``quickSearch`` field for each column as shown below.
 
       .. code-block:: html
 
@@ -393,6 +408,8 @@ Quick search is a useful function for user to search quickly on the task widget.
 
       * ``true``: apply quick search for this column.
       * ``false``: do not apply quick search for this column.
-      * ``not define``: the ``name`` and ``description`` columns are ``true``, other columns are ``false`` by default.
+      * ``not defined``: the ``name`` and ``description`` columns are ``true``, other columns are ``false`` by default.
+
+
       
 
