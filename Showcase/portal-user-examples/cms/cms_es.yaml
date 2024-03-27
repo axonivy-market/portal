@@ -1,8 +1,6 @@
 Dialog:
   Common:
     approve: Aprobar
-    endPageButton: Ver los detalles del caso
-    endPageMessage: ¡Bien hecho! Ha terminado su proceso con éxito.
     finish: Acabar
     reject: Rechazar
     submit: Presentar
@@ -134,6 +132,9 @@ Processes:
     verifyPersonalData: Compruebe datos personales
   ContractNegotiation:
     name: Negociación de contrato
+  DashboardCustomWidget:
+    category: Inversión
+    name: Lista de inversiones (ejemplo de widget personalizado en el panel de control)
   LeaveRequest:
     Approval:
       description1: Añada un comentario a la solicitud

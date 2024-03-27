@@ -9,8 +9,6 @@ import javax.faces.validator.ValidatorException;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.util.FacesMessageUtils;
-
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -28,7 +26,7 @@ public class NewsEditorValidator implements Validator {
     content = HtmlParser.extractTextFromHtml(content);
     if (StringUtils.isNoneBlank(content)) {
       if (content.length() > MAX_NEWS_CONTENT_LENGTH) {
-        var message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
+        var message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
             Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/NewsContentMaxLengthMessage"),
             "");
         FacesContext.getCurrentInstance().addMessage(null, message);

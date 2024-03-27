@@ -6,13 +6,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
-
-import com.axonivy.portal.components.util.FacesMessageUtils;
 
 import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
@@ -159,7 +158,7 @@ public class UserProfileBean implements Serializable {
   }
 
   private void addMessage(String msg) {
-    FacesContext.getCurrentInstance().addMessage("notification-Message", FacesMessageUtils.sanitizedMessage(msg));
+    FacesContext.getCurrentInstance().addMessage("notification-Message", new FacesMessage(msg));
   }
 
   public List<IvyNotificationChannelDTO> getChannels() {
