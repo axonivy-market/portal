@@ -41,7 +41,7 @@
                               <i id="icon" class="si si-check-circle-1 process-step-icon" />
                             </div>
                             <div class="ui-g-10">
-                              <h:outputText escape="false" value="#{htmlSanitizerBean.sanitize(desc)}" styleClass="process-step-description" />
+                              <h:outputText value="#{visibilityBean.sanitizeContent(desc)}" escape="false" styleClass="process-step-description" />
                             </div>
                           </div>
                         </ui:repeat>

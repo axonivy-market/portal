@@ -175,7 +175,6 @@ To customize the menu, you can edit the Portal variable
 
 .. code-block:: html
 
-   [
       {
          "names": [
                {
@@ -197,7 +196,6 @@ To customize the menu, you can edit the Portal variable
             ],
         "icon": "si si-layout-bullets"
       }
-   ]
 
 ..
    
