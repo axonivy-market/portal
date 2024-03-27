@@ -95,17 +95,17 @@ public class CaseMapTest extends BaseTest {
   private void startTaskByTaskName(String taskname) {
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy(taskname);
-    taskWidgetPage.startTaskIFrame(0);
+    taskWidgetPage.clickOnStartTaskLink(0);
   }
 
   private void assertInputData() {
-    caseMapPage.getCustomerLastName().shouldHave(Condition.value("John"));
-    caseMapPage.getCustomerFirstName().shouldHave(Condition.value("Jack"));
-    caseMapPage.getCountry().shouldHave(Condition.value("VN"));
-    caseMapPage.getAmount().shouldHave(Condition.value("20000"));
-    caseMapPage.getReason().shouldHave(Condition.value("To buy a new car"));
-    caseMapPage.getSalary().shouldHave(Condition.value("80000"));
-    caseMapPage.getOtherCredits().shouldHave(Condition.value("100000"));
+    caseMapPage.getCustomerLastName().shouldHave(Condition.value("John"), DEFAULT_TIMEOUT);
+    caseMapPage.getCustomerFirstName().shouldHave(Condition.value("Jack"), DEFAULT_TIMEOUT);
+    caseMapPage.getCountry().shouldHave(Condition.value("VN"), DEFAULT_TIMEOUT);
+    caseMapPage.getAmount().shouldHave(Condition.value("20000"), DEFAULT_TIMEOUT);
+    caseMapPage.getReason().shouldHave(Condition.value("To buy a new car"), DEFAULT_TIMEOUT);
+    caseMapPage.getSalary().shouldHave(Condition.value("80000"), DEFAULT_TIMEOUT);
+    caseMapPage.getOtherCredits().shouldHave(Condition.value("100000"), DEFAULT_TIMEOUT);
   }
 
 
