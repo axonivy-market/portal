@@ -133,8 +133,8 @@ The basic JSON structure of the case widget
    -  ``visible``: visibility of a column. The default value is "true". Set to
       "false" to hide the column.
 
-   -  ``quickSearch``: apply search condition for the column when using the quick search feature. The default value is "false".
-      Set to "true" to apply search condition for the column.
+   -  ``quickSearch``: apply search condition for the column when using the quick search feature. The default value is ``false``.
+      Set to ``true`` to apply search condition for the column.
 
    -  ``headers``: multilingual header of the column.
 
@@ -322,16 +322,10 @@ conditions.
 Quick Search
 ------------
 
-Quick search is a useful function for user to search quickly on the Case widget. 
+Quick search is a useful function for user to search quickly on the case widget. 
 
-**JSON Structure**
-
-Below are definitions and JSON examples of two fields that you can use to configure the quick search feature.
-
-   * ``enableQuickSearch``
-
-      To enable/disable the quick search feature,
-      set the ``enableQuickSearch`` field of the Case widget as below.
+   * ``enableQuickSearch``: to enable/disable the quick search feature, set the
+     ``enableQuickSearch`` field of the case widget as below.
 
       .. code-block:: html
 
@@ -348,14 +342,12 @@ Below are definitions and JSON examples of two fields that you can use to config
 
       Valid values:
 
-      * ``true``: show the quick search textbox
-      * ``false``: hide the quick search textbox
-      * ``not define``: hide the quick search textbox
+      * ``true``: show the quick search text box.
+      * ``false``: hide the quick search text box.
+      * ``not define``: hide the quick search text box.
 
-   * ``quickSearch``
-
-      To choose which columns can be search by the quick search feature,
-      set the ``quickSearch`` field for each column as below.
+   * ``quickSearch``: to choose which columns can be search by the quick search
+     feature, set the ``quickSearch`` field for each column as below.
 
       .. code-block:: html
 
@@ -378,8 +370,6 @@ Below are definitions and JSON examples of two fields that you can use to config
 
       Valid values:
 
-      * ``true``: apply quick search for this column
-      * ``false``: do not apply quick search for this column
-      * ``not define``:
-         * ``name`` and ``description`` columns: set to ``true`` by default
-         * other columns: set to ``false`` by default
+      * ``true``: apply quick search for this column.
+      * ``false``: do not apply quick search for this column.
+      * ``not define``: the ``name`` and ``description`` columns are ``true``, other columns are ``false`` by default.

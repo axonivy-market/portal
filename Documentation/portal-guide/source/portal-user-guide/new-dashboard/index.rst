@@ -184,7 +184,7 @@ In the table configuration panel, you find two sections:
     Quick search feature is supporting these fields:
 
       #. Standard fields: Id, name, description, category, creator (display name), and application.
-      #. Custom fields: fields that have type **STRING** or **TEXT**
+      #. Custom fields: fields that have type ``STRING`` or ``TEXT``.
 
     Quick search is enabled for the standard field name and description by default.
 
@@ -201,7 +201,7 @@ files and put them into a single zip file.
 
 |case-quick-search-column-management|
 
-In the view mode, when quick search is enable, a textbox will appear to allow you to search.
+In the view mode, when quick search is enabled, a text box will appear to allow you to search.
 
 |case-quick-search-checkbox|
 
