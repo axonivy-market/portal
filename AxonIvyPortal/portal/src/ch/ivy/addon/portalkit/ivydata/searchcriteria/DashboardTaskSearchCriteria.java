@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
@@ -37,6 +38,7 @@ public class DashboardTaskSearchCriteria {
   private String sortField;
   private boolean sortDescending;
   private boolean isInConfiguration;
+  private String quickSearchKeyword;
 
   public TaskQuery buildQuery() {
     TaskQuery query = buildQueryWithoutOrderByClause();
@@ -49,6 +51,7 @@ public class DashboardTaskSearchCriteria {
     TaskQuery query = TaskQuery.create();
     queryFilters(query);
     queryCanWorkOn(query);
+    appendQuickSearchQuery(query);
     return query;
   }
 
@@ -470,6 +473,63 @@ public class DashboardTaskSearchCriteria {
     
   }
 
+  private void appendQuickSearchQuery(TaskQuery query) {
+    if (StringUtils.isNotBlank(this.quickSearchKeyword)) {
+      TaskQuery subQuery = TaskQuery.create();
+
+      List<TaskColumnModel> quickSearchColumns = columns.stream()
+          .filter(col -> Optional.ofNullable(col.getQuickSearch()).orElse(false)).collect(Collectors.toList());
+
+      if (CollectionUtils.isNotEmpty(quickSearchColumns)) {
+        for (ColumnModel column : quickSearchColumns) {
+          DashboardStandardTaskColumn columnEnum = DashboardStandardTaskColumn.findBy(column.getField());
+          if (columnEnum != null) {
+            appendStandandFieldsToQuickSearchQuery(subQuery, columnEnum);
+          } else {
+            appendCustomFieldsForQuickSearchQuery(subQuery, column);
+          }
+        }
+
+        query.where().and(subQuery);
+      }
+    }
+  }
+
+  private void appendCustomFieldsForQuickSearchQuery(TaskQuery subQuery, ColumnModel column) {
+    switch (column.getType()) {
+    case CUSTOM_CASE -> {
+      CaseQuery subCaseQuery = applyCaseFilter(column, column.getField(), this.quickSearchKeyword, null, null, null);
+      subQuery.where().or().cases(subCaseQuery);
+    }
+    case CUSTOM -> {
+      TaskQuery taskSubQuery = applyFilter(column, column.getField(), this.quickSearchKeyword, null, null, null);
+      subQuery.where().or(taskSubQuery);
+    }
+    default -> {}
+    }
+  }
+
+  private void appendStandandFieldsToQuickSearchQuery(TaskQuery subQuery, DashboardStandardTaskColumn columnEnum) {
+    String formattedKeyword = String.format(LIKE_FORMAT, this.quickSearchKeyword);
+    switch (columnEnum) {
+    case NAME -> subQuery.where().or().name().isLikeIgnoreCase(formattedKeyword);
+    case DESCRIPTION -> subQuery.where().or().description().isLikeIgnoreCase(formattedKeyword);
+    case CATEGORY -> subQuery.where().or().category().isLikeIgnoreCase(formattedKeyword);
+    case ID -> subQuery.where().or().taskId().isLikeIgnoreCase(formattedKeyword);
+    case RESPONSIBLE -> subQuery.where().or().activatorDisplayName().isLikeIgnoreCase(formattedKeyword);
+    case APPLICATION -> queryApplicationByQuickSearch(subQuery, this.quickSearchKeyword);
+    default -> {
+    }
+    }
+  }
+
+  private void queryApplicationByQuickSearch(TaskQuery query, String app) {
+    final Optional<IApplication> appFindByName = IApplicationRepository.instance().findByName(app);
+    if (appFindByName.isPresent()) {
+      query.where().or().applicationId().isEqual(appFindByName.get().getId());
+    }
+  }
+
   public boolean getCanWorkOn() {
     return canWorkOn;
   }
@@ -484,5 +544,13 @@ public class DashboardTaskSearchCriteria {
   
   public void setColumns(List<TaskColumnModel> columns) {
     this.columns = columns;
+  }
+
+  public String getQuickSearchKeyword() {
+    return quickSearchKeyword;
+  }
+
+  public void setQuickSearchKeyword(String quickSearchKeyword) {
+    this.quickSearchKeyword = quickSearchKeyword;
   }
 }

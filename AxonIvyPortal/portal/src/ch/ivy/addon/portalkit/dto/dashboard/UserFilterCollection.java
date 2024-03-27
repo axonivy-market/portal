@@ -24,6 +24,7 @@ public class UserFilterCollection implements Serializable {
   private List<WidgetFilterModel> selectedWidgetFilters;
   private List<String> selectedWidgetFilterIds;
   private WidgetFilterModel latestFilterOption;
+  private String quickSearchKeyword;
 
   @JsonIgnore
   private List<WidgetFilterModel> widgetFilterSelections;
@@ -109,5 +110,13 @@ public class UserFilterCollection implements Serializable {
 
   public void setSelectedFilterOptionMap(Map<String, FilterColumnModel> selectedFilterOptionMap) {
     this.selectedFilterOptionMap = selectedFilterOptionMap;
+  }
+
+  public String getQuickSearchKeyword() {
+    return quickSearchKeyword;
+  }
+
+  public void setQuickSearchKeyword(String quickSearchKeyword) {
+    this.quickSearchKeyword = quickSearchKeyword;
   }
 }

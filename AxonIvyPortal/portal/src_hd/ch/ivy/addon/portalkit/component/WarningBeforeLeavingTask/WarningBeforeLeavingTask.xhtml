@@ -33,17 +33,17 @@
       <!-- Warning message when navigate inside Portal -->
       <h:panelGroup layout="block" rendered="#{!cc.attrs.isLogout}">
         <h:outputText escape="false" styleClass="ui-confirm-dialog-message"
-          value="#{visibilityBean.sanitizeContent(ivy.cms.co(cc.attrs.taskState == 'CREATED' ? '/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLeave' : '/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLeave'))}" />
+          value="#{htmlSanitizerBean.sanitize(ivy.cms.co(cc.attrs.taskState == 'CREATED' ? '/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLeave' : '/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLeave'))}" />
       </h:panelGroup>
 
       <!-- Warning message when logout -->
       <h:panelGroup layout="block" rendered="#{cc.attrs.isLogout}">
         <h:outputText rendered="#{task.state != 'CREATED'}"
           escape="false" styleClass="ui-confirm-dialog-message"
-          value="#{visibilityBean.sanitizeContent(ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLogout'))}" />
+          value="#{htmlSanitizerBean.sanitize(ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLogout'))}" />
         <h:outputText rendered="#{task.state == 'CREATED'}"
           escape="false" styleClass="ui-confirm-dialog-message"
-          value="#{visibilityBean.sanitizeContent(ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLogout'))}" />
+          value="#{htmlSanitizerBean.sanitize(ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLogout'))}" />
       </h:panelGroup>
     </ui:define>
 
