@@ -6,8 +6,6 @@ import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-import com.axonivy.portal.components.util.FacesMessageUtils;
-
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
@@ -77,7 +75,7 @@ public class CaseFinishedDateFilter extends CaseFilter {
       FacesContext.getCurrentInstance().validationFailed();
       FacesContext.getCurrentInstance().addMessage(
           "advanced-filter-error-messages",
-          FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co(
+          new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co(
               "/ch.ivy.addon.portalkit.ui.jsf/common/dateFromBiggerThanTo"), null));
     }
   }
