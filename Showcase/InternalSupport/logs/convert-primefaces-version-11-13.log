@@ -1,0 +1,9 @@
+# Conversion log for project 'InternalSupport'
+# Convert project to use Primefaces version from 11 to 13
+# Using Axon Ivy Designer version 11.3.0.2403270809
+# Created on 27.03.2024 08:15:34
+27.03.2024 08:15:34 : New Task  : Converting project InternalSupport.
+27.03.2024 08:15:34 : Info      : Log is stored in 'logs/convert-primefaces-version-11-13.log'
+27.03.2024 08:15:34 : New Task  : Convert to Primefaces 13
+27.03.2024 08:15:34 : New Task  : Update project Primefaces version to actual version 13.
+27.03.2024 08:15:34 : New Task  : Finished conversion of project InternalSupport.

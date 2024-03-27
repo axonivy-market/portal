@@ -47,8 +47,8 @@
               <span class="notifications-group-title #{notification.markedToday} #{notification.markedToday ? '' : 'u-hidden'}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/todayText')}</span>
               <span class="notifications-group-title #{notification.markedOlder ? '' : 'u-hidden'}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/olderText')}</span>
               <div class="#{notification.style} notifications-container-top">
-                <div class="p-d-flex">
-                  <div class="p-d-flex">
+                <div class="flex">
+                  <div class="flex">
                     <p:commandLink id="notification-mark-as-read"
                       actionListener="#{widget.markAsRead(notification)}"
                       process="@this" partialSubmit="true"
