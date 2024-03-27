@@ -367,10 +367,8 @@ Quick search is a useful function for user to search quickly on the task widget.
       * ``false``: hide the quick search text box.
       * ``not define``: hide the quick search text box.
 
-   * ``quickSearch``
-
-      To choose which columns can be search by the quick search feature,
-      set the ``quickSearch`` field for each column as below.
+   * ``quickSearch``: to choose which columns can be search by the quick search
+     feature, set the ``quickSearch`` field for each column as below.
 
       .. code-block:: html
 
