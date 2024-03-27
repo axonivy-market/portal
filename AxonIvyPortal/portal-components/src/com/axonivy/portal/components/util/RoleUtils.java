@@ -166,4 +166,15 @@ public final class RoleUtils {
     result.sort((r1, r2) -> r1.getDisplayName().compareTo(r2.getDisplayName()));
     return result;
   }
+
+  /**
+   * Get a list of role display name from a list of role name.
+   * 
+   * @param roles
+   * @return extracted list of role name
+   */
+  public static List<String> getDisplayNameOfRoles(List<String> roles) {
+    return roles.stream().map(name -> findRole(name)).filter(Objects::nonNull).map(roleDto -> roleDto.getDisplayName())
+        .toList();
+  }
 }

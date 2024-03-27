@@ -224,7 +224,10 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
 
   public String generateDashboardPermisisonForDisplay(Dashboard dashboard) {
-    return String.join(", ", dashboard.getPermissions());
+    return Optional.ofNullable(dashboard)
+        .map(Dashboard::getPermissions)
+        .filter(l -> CollectionUtils.isNotEmpty(l))
+        .isPresent() ? String.join(", ", RoleUtils.getDisplayNameOfRoles(dashboard.getPermissions())) : "";
   }
   
   public void updateDashboardTitleByLocale() {
