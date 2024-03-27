@@ -112,8 +112,8 @@ In the column management panel, you will find two sections:
     Quick search feature is supporting these fields:
 
       #. Standard fields: Id, name, description, category, responsible (display name), and application.
-      #. Task custom fields: fields that have type **STRING** or **TEXT**.
-      #. Case custom fields: fields that have type **STRING** or **TEXT**
+      #. Task custom fields: fields that have type ``STRING`` or ``TEXT``.
+      #. Case custom fields: fields that have type ``STRING`` or ``TEXT``.
 
     Quick search is enabled for the standard field name and description by default.
 
@@ -134,7 +134,7 @@ files and put them into a single zip file.
 
 |task-quick-search-column-management|
 
-In the view mode, when quick search is enable, a textbox will appear to allow you to search.
+In the view mode, when quick search is enabled, a text box will appear to allow you to search.
 
 |task-quick-search-checkbox|
 

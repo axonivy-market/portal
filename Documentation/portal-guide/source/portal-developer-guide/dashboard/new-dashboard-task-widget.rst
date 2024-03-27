@@ -99,7 +99,7 @@ The basic JSON structure of a Task widget
    can predefine filters, styles, visibility,... of columns and define custom
    columns, too:
 
-      - ``field``: the field name of the column
+      ``field``: the field name of the column
          
          For standard columns, ``field`` must be one of these:
          
@@ -126,15 +126,15 @@ The basic JSON structure of a Task widget
          For custom columns, ``field`` is the name of a task custom field.
          Portal will use the value of ``field`` to get the value of the column.
 
-      -  ``canWorkOn``: filter only tasks that the current user can work on. The default value is "false".
+      ``canWorkOn``: filter only tasks that the current user can work on. The default value is "false".
 
-      -  ``visible``: visibility of a column. The default value is "true".
-         Set to "false" to hide the column.
+      ``visible``: visibility of a column. The default value is "true".
+      Set to "false" to hide the column.
 
-      -  ``quickSearch``: Apply search condition for the column when using the quick search feature. The default value is "false".
-         Set to "true" to apply search condition for the column.
+      ``quickSearch``: apply search condition for the column when using the quick search feature. The default value is ``false``.
+      Set to ``true`` to apply search condition for the column.
 
-      -  ``headers``: multilingual header of the column.
+   -  ``headers``: multilingual header of the column.
 
 Custom Columns
 --------------
@@ -343,16 +343,10 @@ Below is the list of filterable columns and their corresponding filter condition
 Quick Search
 ------------
 
-Quick search is a useful function for user to search quickly on the Task widget. 
+Quick search is a useful function for user to search quickly on the task widget. 
 
-**JSON Structure**
-
-Below are definitions and JSON examples of two fields that you can use to configure the quick search feature.
-
-   * ``enableQuickSearch``
-
-      To enable/disable the quick search feature,
-      set the ``enableQuickSearch`` field of the Task widget as below.
+   * ``enableQuickSearch``: to enable/disable the quick search feature, set the
+     ``enableQuickSearch`` field of the Task widget as below.
 
       .. code-block:: html
 
@@ -369,14 +363,12 @@ Below are definitions and JSON examples of two fields that you can use to config
 
       Valid values:
 
-      * ``true``: show the quick search textbox
-      * ``false``: hide the quick search textbox
-      * ``not define``: hide the quick search textbox
+      * ``true``: show the quick search text box.
+      * ``false``: hide the quick search text box.
+      * ``not define``: hide the quick search text box.
 
-   * ``quickSearch``
-
-      To choose which columns can be search by the quick search feature,
-      set the ``quickSearch`` field for each column as below.
+   * ``quickSearch``: to choose which columns can be search by the quick search
+     feature, set the ``quickSearch`` field for each column as below.
 
       .. code-block:: html
 
@@ -399,8 +391,6 @@ Below are definitions and JSON examples of two fields that you can use to config
 
       Valid values:
 
-      * ``true``: apply quick search for this column
-      * ``false``: do not apply quick search for this column
-      * ``not define``:
-         * ``name`` and ``description`` columns: set to ``true`` by default
-         * other columns: set to ``false`` by default
+      * ``true``: apply quick search for this column.
+      * ``false``: do not apply quick search for this column.
+      * ``not define``: the ``name`` and ``description`` columns are ``true``, other columns are ``false`` by default.
