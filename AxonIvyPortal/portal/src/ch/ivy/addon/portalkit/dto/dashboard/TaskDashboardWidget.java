@@ -10,6 +10,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.SortMeta;
 
+import com.axonivy.portal.dto.dashboard.WidgetInformationCategoryStatisticData;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
@@ -30,7 +31,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private Map<TaskBusinessState, Long> taskByStateStatistic;
   @JsonIgnore
-  private Map<String, Long> taskByCategoryStatistic;
+  private List<WidgetInformationCategoryStatisticData> taskByCategoryStatistic;
   @JsonIgnore
   private Long numberOfTasksExpireThisWeek;
   @JsonIgnore
@@ -167,11 +168,11 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.numberOfTasksExpireToday = numberOfTasksExpireToday;
   }
 
-  public Map<String, Long> getTaskByCategoryStatistic() {
+  public List<WidgetInformationCategoryStatisticData> getTaskByCategoryStatistic() {
     return taskByCategoryStatistic;
   }
 
-  public void setTaskByCategoryStatistic(Map<String, Long> taskByCategoryStatistic) {
+  public void setTaskByCategoryStatistic(List<WidgetInformationCategoryStatisticData> taskByCategoryStatistic) {
     this.taskByCategoryStatistic = taskByCategoryStatistic;
   }
 
