@@ -7,7 +7,9 @@
   header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/createWidget')}"
   appendTo="@(body)" closeOnEscape="true"
   fitViewport="true" responsive="true"
-  modal="true" position="center center"
+  resizable="false"
+  modal="true" dynamic="true"
+  position="center center"
   onShow="PF('new-widget-dialog').initPosition()">
   <div class="new-widget-dialog__search">
     <p:inputText id="search-input" styleClass="js-search-input new-widget-dialog__search-input"
