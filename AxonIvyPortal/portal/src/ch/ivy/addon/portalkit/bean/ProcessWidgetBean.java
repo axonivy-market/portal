@@ -375,6 +375,8 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
       processes.add(editedProcess);
       sortProcesses(processes);
       processesByAlphabet.put(firstLetter, processes);
+      getPortalProcesses().removeIf(process -> process.getId().equals(processId));
+      getPortalProcesses().add(this.editedProcess);
     }
   }
 
