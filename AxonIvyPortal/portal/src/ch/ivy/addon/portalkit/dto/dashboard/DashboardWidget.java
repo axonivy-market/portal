@@ -58,8 +58,6 @@ public abstract class DashboardWidget implements Serializable {
   @JsonIgnore
   protected boolean autoPosition;
   @JsonIgnore
-  protected boolean hasPredefinedFilter;
-  @JsonIgnore
   protected Optional<String> userDefinedFiltersCount;
   @JsonIgnore
   protected String searchSavedFilterKeyword;
@@ -76,7 +74,6 @@ public abstract class DashboardWidget implements Serializable {
     names = widget.getNames();
     setLayout(widget.getLayout());
     autoPosition = widget.getAutoPosition();
-    hasPredefinedFilter = widget.isHasPredefinedFilter();
     userDefinedFiltersCount = widget.getUserDefinedFiltersCount();
     searchSavedFilterKeyword = widget.getSearchSavedFilterKeyword();
     savedFilters = widget.getSavedFilters();
@@ -105,8 +102,13 @@ public abstract class DashboardWidget implements Serializable {
   public abstract void resetWidgetFilters();
 
   @JsonIgnore
-  public void onCancelUserFilters() {}
-  
+  public void onCancelUserFilters() {
+    cancelUserFilter();
+  }
+
+  @JsonIgnore
+  public abstract void cancelUserFilter();
+
   @JsonIgnore
   public void onApplyUserFilters() {
     var filterService = WidgetFilterService.getInstance();
@@ -117,12 +119,8 @@ public abstract class DashboardWidget implements Serializable {
   }
 
   @JsonIgnore
-  public void buildPredefinedFilterData() {}
-
-  @JsonIgnore
   public void loadUserFilter() {
     updateSavedFiltersSelection();
-
     var latestUserFilterOptions = getUserFilterCollection().getLatestFilterOption();
     WidgetFilterService.getInstance().updateFilterOptionsData(this, latestUserFilterOptions);
   }
@@ -216,14 +214,6 @@ public abstract class DashboardWidget implements Serializable {
   
   public void setAutoPosition(boolean autoPosition) {
     this.autoPosition = autoPosition;
-  }
-
-  public boolean isHasPredefinedFilter() {
-    return hasPredefinedFilter;
-  }
-
-  public void setHasPredefinedFilter(boolean hasPredefinedFilter) {
-    this.hasPredefinedFilter = hasPredefinedFilter;
   }
 
   public Optional<String> getUserDefinedFiltersCount() {

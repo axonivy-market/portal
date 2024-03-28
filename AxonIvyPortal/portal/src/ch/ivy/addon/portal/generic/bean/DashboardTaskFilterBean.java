@@ -17,7 +17,6 @@ import com.axonivy.portal.components.dto.UserDTO;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
-import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -80,10 +79,6 @@ public class DashboardTaskFilterBean {
 
     return Ivy.cms().co(TASK_PRIORITY_CMS_PATH + priority + "_LOWERCASE");
 
-  }
-
-  public boolean hasPredefinedFilter(TaskDashboardWidget widget) {
-    return DashboardWidgetUtils.hasPredefinedFilter(widget);
   }
 
   public List<TaskBusinessState> getStates() {

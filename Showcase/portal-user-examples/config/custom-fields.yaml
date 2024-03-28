@@ -9,10 +9,18 @@ CustomFields:
   #      Description: This new task custom field can be used to ...
   #      Type: STRING        
   Cases:
-  #   MyCaseCustomField:
-  #      Label: My case custom field
-  #      Description: This new case custom field can be used to ...
-  #      Type: STRING        
+     MyCaseCustomField:
+        Label: My case custom field STRING
+        Description: This new case custom field can be used to ...
+        Type: STRING
+     MyCaseCustomField:
+        Label: My case custom field TEXT
+        Description: This new case custom field can be used to ...
+        Type: TEXT
+     MyCaseCustomField:
+        Label: My case custom field NUMBER
+        Description: This new case custom field can be used to ...
+        Type: NUMBER
   Starts:
 #   MyStartCustomField:
 #      Label: My start custom field

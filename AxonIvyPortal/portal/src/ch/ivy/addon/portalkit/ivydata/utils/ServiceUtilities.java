@@ -104,7 +104,10 @@ public class ServiceUtilities {
 
   public static SecurityMemberDTO findSecurityMemberByName(String securityMemberName) {
     if (securityMemberName.startsWith("#")) {
-      return findSecurityUserByName(securityMemberName.replace("#", ""));
+      String memberName = securityMemberName.replace("#", "");
+      SecurityMemberDTO foundMemberName = findSecurityUserByName(memberName);
+      return foundMemberName != null ? foundMemberName
+          : findSecurityRoleByName(memberName);
     } 
     return findSecurityRoleByName(securityMemberName);
   }

@@ -24,7 +24,7 @@
         dynamic="true" forceSelection="true" styleClass="case-configuration__owners">
         <p:column>
           <pc:securityMemberNameAndAvatar
-            displayName="#{dashboardCaseFilterBean.formatName(owner)}" securityMember="#{owner}">
+            displayName="#{caseWidgetConfigurationFilterBean.formatName(owner)}" securityMember="#{owner}">
             <f:facet name="alternativeAvatar">
               <h:outputText rendered="#{not avatarBean.isShowAvatar()}" styleClass="si #{owner.isUser() ? 'si-single-neutral-actions' : 'si-multiple-neutral-1'} u-mar-right-5" />
             </f:facet>

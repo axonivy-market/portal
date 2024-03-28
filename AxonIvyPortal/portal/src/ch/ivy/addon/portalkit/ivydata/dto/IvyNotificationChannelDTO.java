@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.notification.channel.Event;
 import ch.ivyteam.ivy.notification.channel.NotificationChannel;
 import ch.ivyteam.ivy.notification.channel.NotificationSubscription;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -14,16 +13,16 @@ import ch.ivyteam.ivy.security.ISecurityMember;
 public class IvyNotificationChannelDTO {
 
   private final NotificationChannel channel;
-  private final Map<Event, IvyNotificationChannelSubcriptionDTO> subscriptions;
-
+  private final Map<String, IvyNotificationChannelSubcriptionDTO> subscriptions;
+  
   private IvyNotificationChannelDTO(NotificationChannel channel,
-      Map<Event, IvyNotificationChannelSubcriptionDTO> subscriptions) {
+      Map<String, IvyNotificationChannelSubcriptionDTO> subscriptions) {
     this.channel = channel;
     this.subscriptions = subscriptions;
   }
 
-  public static List<IvyNotificationChannelDTO> all(ISecurityMember subscriber, ISecurityContext securityContext) {
-    var events = Event.all();
+  public static List<IvyNotificationChannelDTO> all(ISecurityMember subscriber, ISecurityContext securityContext,
+      List<String> events) {
     var channels = NotificationChannel.all(securityContext).stream().filter(channel -> channel.config().enabled())
         .map(channel -> toChannel(subscriber, channel)).toList();
     channels.forEach(channel -> events.forEach(event -> channel.setSubscriptionIconAndTitle(event)));
@@ -42,19 +41,15 @@ public class IvyNotificationChannelDTO {
     return channel;
   }
 
-  public Map<Event, IvyNotificationChannelSubcriptionDTO> getSubscriptions() {
+  public Map<String, IvyNotificationChannelSubcriptionDTO> getSubscriptions() {
     return subscriptions;
   }
 
-  public IvyNotificationChannelSubcriptionDTO getSubscription(IvyNotificationEventDTO event) {
-    return subscriptions.get(event.getEvent());
+  public IvyNotificationChannelSubcriptionDTO getSubscription(String event) {
+    return subscriptions.get(event);
   }
 
-  public void setSubscriptionIconAndTitle(IvyNotificationEventDTO event) {
-    setSubscriptionIconAndTitle(event.getEvent());
-  }
-
-  private void setSubscriptionIconAndTitle(Event event) {
+  public void setSubscriptionIconAndTitle(String event) {
     var subscription = subscriptions.get(event);
     if (subscription != null) {
       var state = subscription.getState();

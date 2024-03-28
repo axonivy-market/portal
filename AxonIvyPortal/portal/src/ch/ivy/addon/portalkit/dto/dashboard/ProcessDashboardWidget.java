@@ -119,4 +119,6 @@ public class ProcessDashboardWidget extends DashboardWidget {
     this.criteria.setApplications(applications);
   }
 
+  @Override
+  public void cancelUserFilter() {}
 }

@@ -606,3 +606,11 @@ function highlightNotificationIcon(){
 function highlightMobileApp() {
   createRedMediumOutline($("#mobile-app-item"));
 }
+
+function highlightShowFilterButton() {
+  createRedMediumOutline($("button[id$=':show-filter']"));
+}
+
+function removeHighlightShowFilterButton() {
+  clearRedMediumOutline($("button[id$=':show-filter']"));
+}
