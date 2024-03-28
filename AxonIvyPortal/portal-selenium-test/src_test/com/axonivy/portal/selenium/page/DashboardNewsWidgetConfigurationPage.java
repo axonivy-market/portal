@@ -17,15 +17,18 @@ public class DashboardNewsWidgetConfigurationPage extends TemplatePage {
 
   public void changeWidgetTitle(String newWidgetName) {
     SelenideElement widgetTitle = $(".widget-configuration.news-widget-configuration").shouldBe(appear, DEFAULT_TIMEOUT)
-      .$("[id$=':new-widget-configuration-component:widget-title']").shouldBe(editable, DEFAULT_TIMEOUT);
+        .$("[id$=':new-widget-configuration-component:widget-title']").shouldBe(editable, DEFAULT_TIMEOUT);
     widgetTitle.clear();
     widgetTitle.sendKeys(newWidgetName);
   }
 
   public void save() {
     $("button[id$='widget-configuration-save-button']").shouldBe(appear, DEFAULT_TIMEOUT)
-      .shouldBe(getClickableCondition()).click();
+        .shouldBe(getClickableCondition()).click();
     $("div[id$='new-widget-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
+  public SelenideElement getConfigurationDialog() {
+    return $("div[id='new-widget-configuration-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
 }

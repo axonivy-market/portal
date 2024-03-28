@@ -20,13 +20,13 @@ public class PropertyLoader {
   }
 
   private static void loadProperties() {
-		try {
-			InputStream inputStream = new FileInputStream(getPropertyFileName());
-			properties = new Properties();
-			properties.load(inputStream);
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+    try {
+      InputStream inputStream = new FileInputStream(getPropertyFileName());
+      properties = new Properties();
+      properties.load(inputStream);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   private static String getPropertyFileName() {
@@ -51,5 +51,5 @@ public class PropertyLoader {
   public static String getBrowserType() {
     return properties.getProperty(BROWSER_TYPE);
   }
-  
+
 }

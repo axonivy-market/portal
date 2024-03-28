@@ -15,6 +15,7 @@ public class WelcomeWidgetNewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getWelcomeText(String widgetId) {
-    return $("[id = '" + String.format(WELCOME_TEXT_ID_PATTERN, widgetId) + "']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $("[id = '" + String.format(WELCOME_TEXT_ID_PATTERN, widgetId) + "']").shouldBe(Condition.appear,
+        DEFAULT_TIMEOUT);
   }
 }

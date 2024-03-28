@@ -25,7 +25,7 @@
           "h": 6
         },
         "data": {
-          "processPath": "designer/portal-developer-examples/Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
+          "processPath": "Start Processes/TaskDetailsCustomWidgetExample/invoiceDetails.ivp",
           "params": {
             "startedTaskId": "task.id",
             "startedTaskCategory": "task.category",
@@ -37,3 +37,4 @@
     ]
   }
 ]
+
