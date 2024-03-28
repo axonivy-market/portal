@@ -39,7 +39,6 @@ public class CategoryColumnModel extends TaskColumnModel {
     this.format = getDefaultFormat();
     this.sortable = getDefaultSortable();
     this.sorted = false;
-    this.quickSearch = defaultIfEmpty(this.quickSearch, false);
   }
 
   @Override
@@ -164,8 +163,4 @@ public class CategoryColumnModel extends TaskColumnModel {
     }
   }
 
-  @Override
-  public boolean canQuickSearch() {
-    return true;
-  }
 }

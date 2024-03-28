@@ -98,8 +98,6 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
       userFilterCollection.setWidgetFilterSelections(availableWidgetFilters);
     }
     widget.setUserFilterCollection(userFilterCollection);
-    widget.setQuickSearchKeyword(userFilterCollection.getQuickSearchKeyword());
-    widget.updateQuickSearchKeyword();
     updateFilterOptionsData(widget, userFilterCollection.getLatestFilterOption());
   }
 

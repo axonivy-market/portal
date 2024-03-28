@@ -15,10 +15,7 @@ function loadIframe(recheckIndicator) {
 
   if (!recheckIndicator) {
     $(iframe).on('load', function() {
-      if (!document.documentURI.endsWith('?taskUrl=blank')) {
-        iframe.style.visibility = 'hidden';
-      }
-
+      iframe.style.visibility = 'hidden';
       processIFrameData(iframe);
       clearTimeout(recheckFrameTimer);
       setTimeout(function() {

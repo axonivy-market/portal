@@ -38,28 +38,6 @@
     <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">#{widget.name}</h:panelGroup>
     <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
 
-    <h:panelGroup id="widget-header-quick-search-#{index}" layout="block"
-      styleClass="#{isReadOnlyMode ? 'u-mar-right-10' : 'u-mar-right-5'} widget-header-quick-search"
-      rendered="#{widget.canEnableQuickSearch()}">
-      <h:form onkeydown="if (isPressedSpecialKeys(event) == true) { return false; }">
-      <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
-      <p:inputText id="quick-search-input-#{index}" value="#{widget.quickSearchKeyword}"
-        placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}">
-        <p:ajax delay="800" listener="#{widget.updateQuickSearchKeyword()}"
-          onstart="if (isPressedSpecialKeys(event) == true) { return false; }"
-          process="@(this)" partialSubmit="true" global="false"
-          event="keyup" update="#{p:resolveFirstComponentWithId(panelId, view).clientId}" />
-
-        <p:ajax delay="100" listener="#{widget.updateQuickSearchKeyword()}"
-          process="@(this)" partialSubmit="true" global="false"
-          event="cut" update="#{p:resolveFirstComponentWithId(panelId, view).clientId}" />
-
-        <p:ajax delay="100" listener="#{widget.updateQuickSearchKeyword()}"
-          process="@(this)" partialSubmit="true" global="false"
-          event="paste" update="#{p:resolveFirstComponentWithId(panelId, view).clientId}" />
-      </p:inputText>
-      </h:form>
-    </h:panelGroup>
     <h:panelGroup id="widget-header-actions" styleClass="widget__header-actions" layout="block">
       <!-- remote-command to load data for saved filter panel -->
       <p:remoteCommand id="load-user-filter-command-#{index}" name="loadUserFilters#{index}"

@@ -1601,14 +1601,3 @@ span.new-widget-dialog__icon.si {
   height:100%;
   border:none;
 }
-
-.grid-stack-item {
-  container-type: inline-size;
-  container-name: grid-stack-item;
-}
-
-@container grid-stack-item (max-width: 400px) {
-  .widget-header-quick-search {
-    display: none;
-  }
-}

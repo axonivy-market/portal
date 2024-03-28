@@ -51,7 +51,6 @@ public abstract class AbstractColumn implements Serializable {
   protected String style;
   protected String fieldStyle;
   protected Boolean visible;
-  protected Boolean quickSearch;
   protected Boolean sortable;
   protected DashboardColumnFormat format;
   protected String pattern;
@@ -229,14 +228,6 @@ public abstract class AbstractColumn implements Serializable {
 
   public void setVisible(Boolean visible) {
     this.visible = visible;
-  }
-
-  public Boolean getQuickSearch() {
-    return quickSearch;
-  }
-
-  public void setQuickSearch(Boolean quickSearch) {
-    this.quickSearch = quickSearch;
   }
 
   public Boolean getSortable() {

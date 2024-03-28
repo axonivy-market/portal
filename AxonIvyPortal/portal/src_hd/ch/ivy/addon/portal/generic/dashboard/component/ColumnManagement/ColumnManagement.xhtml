@@ -10,7 +10,7 @@
 <cc:implementation>
   <f:event listener="#{columnManagementBean.preRender(cc.attrs.widget)}" type="preRenderComponent" />
   <p:dialog id="column-management-dialog" widgetVar="column-management-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/columnManagement')}"
-    appendTo="@(body)" fitViewport="true" width="800" closeOnEscape="true" draggable="false" dynamic="true"
+    appendTo="@(body)" fitViewport="true" width="700" closeOnEscape="true" draggable="false" dynamic="true"
     responsive="true" modal="true">
     <h:form id="column-management-form">
       <ui:include src="FieldAdd.xhtml" />
@@ -21,7 +21,7 @@
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/visible')}" width="70" styleClass="u-text-align-center">
           <p:commandLink id="toggle-visibility" styleClass="ui-selectbooleancheckbox ui-chkbox ui-widget" process="@this"
             actionListener="#{columnManagementBean.handleVisibility(column)}"
-            global="false" update="column-management-datatable" partialSubmit="true" immediate="true">
+            update="column-management-datatable" partialSubmit="true" immediate="true">
             <h:panelGroup styleClass="ui-chkbox-box ui-widget ui-corner-all ui-state-default #{column.visible ? 'ui-state-active':''}">
               <span class="ui-chkbox-icon ui-icon ui-c #{column.visible ? 'ui-icon-check':'ui-icon-blank'}"></span>
             </h:panelGroup>
@@ -32,18 +32,6 @@
         </p:column>
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}">
           #{column.headerText}
-        </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}" width="90" styleClass="u-text-align-center">
-          <h:panelGroup layout="block" id="quick-search-checkbox-panel"
-            rendered="#{column.canQuickSearch()}">
-            <p:commandLink id="toggle-quick-search" styleClass="ui-selectbooleancheckbox ui-chkbox ui-widget" process="@this"
-              actionListener="#{columnManagementBean.handleQuickSearch(column)}"
-              global="false" update="column-management-datatable" partialSubmit="true" immediate="true">
-              <h:panelGroup styleClass="ui-chkbox-box ui-widget ui-corner-all ui-state-default #{column.quickSearch ? 'ui-state-active':''}">
-                <span class="ui-chkbox-icon ui-icon ui-c #{column.quickSearch ? 'ui-icon-check':'ui-icon-blank'}"></span>
-              </h:panelGroup>
-            </p:commandLink>
-          </h:panelGroup>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reorder')}" width="70" styleClass="u-text-align-center column-management-datatable__reorder">
           <i class="si si-move-expand-vertical" />

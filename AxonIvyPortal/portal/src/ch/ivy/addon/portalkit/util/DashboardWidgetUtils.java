@@ -59,7 +59,6 @@ import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 
 public class DashboardWidgetUtils {
@@ -757,23 +756,5 @@ public class DashboardWidgetUtils {
     }
     return result;
     
-  }
-
-  public static CustomFieldType findTaskCustomFieldType(String field) {
-    for (ICustomFieldMeta customField : ICustomFieldMeta.tasks()) {
-      if (customField.name().contentEquals(field)) {
-        return customField.type();
-      }
-    }
-    return null;
-  }
-
-  public static CustomFieldType findCaseCustomFieldType(String field) {
-    for (ICustomFieldMeta customField : ICustomFieldMeta.cases()) {
-      if (customField.name().contentEquals(field)) {
-        return customField.type();
-      }
-    }
-    return null;
   }
 }
