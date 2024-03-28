@@ -45,6 +45,24 @@
       </div>
     </h:panelGroup>
 
+    <h:panelGroup id="quick-search-group"
+      rendered="#{managedBean.canEnableQuickSearch()}"
+      styleClass="ui-g-12 u-padding-0 ui-fluid">
+      <div class="ui-g-4">
+        <p:outputLabel for="quick-search" styleClass="u-mar-right-5"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}" />
+        <h:outputText id="quick-search-info" styleClass="si si-information-circle" />
+        <p:tooltip for="quick-search-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearchInfo')}" />
+      </div>
+      <div class="ui-g-8 ui-inputgroup">
+        <p:selectBooleanCheckbox id="quick-search"
+          value="#{widget.enableQuickSearch}">
+          <p:ajax process="quick-search-group" update="quick-search-group"
+            partialSubmit="true" global="false" />
+        </p:selectBooleanCheckbox>
+      </div>
+    </h:panelGroup>
+
     <div class="ui-g-12 MarTop20 u-padding-0">
       <div class="ui-g-4 ui-md-5">
         <strong>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters")}</strong>
