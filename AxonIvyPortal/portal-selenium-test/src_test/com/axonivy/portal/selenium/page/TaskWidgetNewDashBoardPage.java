@@ -504,4 +504,37 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     $("div.info-overlay-panel__footer").$(".dashboard-excel-export-form").$("a").shouldBe(getClickableCondition())
         .click();
   }
+
+  public void setInputForQuickSearch(String input) {
+    getQuickSearchForm().$("input").sendKeys(input);
+    waitPageLoaded();
+  }
+
+  private SelenideElement getQuickSearchForm() {
+    return $("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
+  }
+
+  public void clearQuickSearchInput() {
+    getQuickSearchForm().$("input").clear();
+    waitPageLoaded();
+  }
+
+  public ElementsCollection getCaseList() {
+    return $("div[id$='dashboard-tasks']").shouldBe(appear, DEFAULT_TIMEOUT).$(".ui-datatable-scrollable-body")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$("table tbody").$$("tr");
+  }
+
+  public boolean isEmptyMessageAppear() {
+    return $("div[id$='empty-message-container']").exists();
+  }
+
+  public boolean isQuickSearchInputShow(String widgetIndex) {
+    String taskWidgetIndex = String.format("div[id*='task-task_%s']", widgetIndex);
+    waitPageLoaded();
+    return $(taskWidgetIndex).$("form").$("input").exists();
+  }
+
+  public String getQuickSearchInput() {
+    return getQuickSearchForm().$("input").getValue();
+  }
 }
