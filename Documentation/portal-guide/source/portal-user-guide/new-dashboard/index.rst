@@ -80,7 +80,7 @@ see and how.
 **Configuration panel**
 
 On the left side, define the widget name, establish the main configuration for
-your widget, and get a preview of it by clicking on the preview button.
+your widget, enable quick search function and get a preview of it by clicking on the preview button.
 
 |task-list-widget-configuration|
 
@@ -103,10 +103,21 @@ In the column management panel, you will find two sections:
    #. Columns section: configure the widget table itself as follows:
  
       - Enable visibility
+      - Enable quick search by selecting the quick search checkbox
       - Reorder the columns by drag and drop using the arrows |move-expand-vertical|
       - Remove columns
 
-Portal supports to display custom case fields within the task list.
+  .. important::
+
+    Quick search feature is supporting these fields:
+
+      #. Standard fields: Id, name, description, category, responsible (display name), and application.
+      #. Task custom fields: fields that have type ``STRING`` or ``TEXT``.
+      #. Case custom fields: fields that have type ``STRING`` or ``TEXT``.
+
+    Quick search is enabled for the standard field name and description by default.
+
+Portal supports the display of custom case fields within the task list.
 
 |task-column-field-type-configuration|
 
@@ -116,8 +127,21 @@ You can export all data of the task widget by clicking on the link ``Export to E
 
 |task-export-excel|
 
-If the number of exported tasks exceed the maximum row number of the Excel file, Portal will separate data into multiple Excel
+If the number of exported tasks exceeds the maximum row number of the Excel file, Portal will separate data into multiple Excel
 files and put them into a single zip file.
+
+**Quick search**
+
+|quick-search-column-management|
+
+In view mode, when quick search is enabled, a text box will appear to allow searching.
+
+|quick-search-checkbox|
+
+  .. important::
+
+    #. The quick search function is unaffected by widget filters.
+    #. You can define the scope of the quick search feature in the configuration panel.
 
 Case list widget
 ================
@@ -293,6 +317,8 @@ After setting up everything, simply click on the :guilabel:`Share this dashboard
 .. |dashboard-multi-language-widget-dialog| image:: ../../screenshots/new-dashboard/dashboard-multi-language-widget-dialog.png
 .. |task-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-table-configuration.png
 .. |task-column-field-type-configuration| image:: ../../screenshots/new-dashboard/task-column-field-type-configuration.png
+.. |quick-search-checkbox| image:: ../../screenshots/new-dashboard/quick-search-checkbox.png
+.. |quick-search-column-management| image:: ../../screenshots/new-dashboard/quick-search-column-management.png
 
 .. |case-list-widget| image:: ../../screenshots/new-dashboard/case-list-widget.png
 .. |case-list-widget-configuration| image:: ../../screenshots/new-dashboard/case-list-widget-configuration.png
