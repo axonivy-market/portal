@@ -415,6 +415,7 @@
       <h:outputLabel
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/emptySupportedLanguages')}"
         rendered="#{externalLinkBean.externalLink.descriptions.isEmpty()}" />
+    <div class="scroll-table">
       <h:dataTable value="#{externalLinkBean.externalLink.descriptions}" columnClasses="exter-link-description-label,w-full external-link-input" styleClass="external-link-description"
         rendered="#{externalLinkBean.externalLink.descriptions.isEmpty() eq 'false'}" var="description">
         <h:column >
@@ -425,7 +426,7 @@
           <p:inputTextarea value="#{description.value}" maxlength="200" rows="3" styleClass="w-full" />
         </h:column>
       </h:dataTable>
-
+    </div>
       <div class="u-dialog-footer-actions-group">
         <p:commandLink
           id="description-multi-language-cancel-button"
@@ -461,7 +462,6 @@
           <p:inputTextarea value="#{description.value}" maxlength="200" rows="3" styleClass="w-full" />
         </h:column>
       </h:dataTable>
-
       <div class="u-dialog-footer-actions-group">
         <p:commandLink
           id="description-edit-multi-language-cancel-button"

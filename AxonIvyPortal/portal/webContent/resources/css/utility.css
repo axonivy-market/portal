@@ -393,3 +393,8 @@
 .w-full {
   width: 100%;
 }
+
+.scroll-table{
+  overflow: auto;
+  max-height: 50vh;
+}
