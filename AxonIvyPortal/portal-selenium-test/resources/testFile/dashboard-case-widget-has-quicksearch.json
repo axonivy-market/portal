@@ -1,0 +1,78 @@
+[{
+    "id": "1",
+    "templateId": "default-portal-dashboard-template",
+    "titles": [
+      {
+        "locale": "en",
+        "value": "Dashboard"
+      },
+      {
+        "locale": "fr",
+        "value": "Dashboard"
+      },
+      {
+        "locale": "de",
+        "value": "Dashboard"
+      },
+      {
+        "locale": "es",
+        "value": "Dashboard"
+      }
+    ],
+    "icon": "si-pie-line-graph",
+    "widgets": [
+      {
+        "type": "case",
+        "id": "case_1",
+        "names": [
+          {
+            "locale": "en",
+            "value": "Your Cases"
+          }
+        ],
+        "layout": {
+          "w": 9,
+          "h": 4,
+          "x": 0,
+          "y": 4
+        },
+        "rowsPerPage": 5,
+        "sortDescending": true,
+        "sortField": "startTimestamp",
+        "enableQuickSearch": "true",
+        "columns": [
+          {
+            "field": "id"
+          },
+          {
+            "field": "name"
+          },
+          {
+            "field": "description",
+            "visible": false
+          },
+          {
+            "field": "state"
+          },
+          {
+            "field": "creator"
+          },
+          {
+            "field": "startTimestamp"
+          },
+          {
+            "field": "endTimestamp",
+            "visible": false
+          },
+          {
+            "field": "category",
+            "visible": false
+          },
+          {
+            "field": "actions"
+          }
+        ]
+      }
+    ]
+  }
+]
