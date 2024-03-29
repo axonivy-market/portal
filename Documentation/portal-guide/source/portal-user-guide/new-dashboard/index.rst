@@ -132,11 +132,9 @@ files and put them into a single zip file.
 
 **Quick search**
 
-|task-quick-search-column-management|
-
 In view mode, when quick search is enabled, a text box will appear to allow searching.
 
-|task-quick-search-checkbox|
+|task-quick-search-textbox|
 
   .. important::
 
@@ -194,21 +192,19 @@ You can export all data of the case widget by clicking on the link ``Export to E
 
 |case-export-excel|
 
-If the number of exported cases exceed the maximum row number of the Excel file, Portal will separate data into multiple Excel
+If the number of exported cases exceeds the maximum row number of the Excel file, Portal will separate data into multiple Excel
 files and put them into a single zip file.
 
 **Quick search**
 
-|case-quick-search-column-management|
+In the view mode, when quick search is enabled, a text box will appear to allow you to searching.
 
-In the view mode, when quick search is enabled, a text box will appear to allow you to search.
-
-|case-quick-search-checkbox|
+|case-quick-search-textbox|
 
   .. important::
 
-    #. Quick search function is unaffected by widget filters.
-    #. The scope of the quick search feature can be defined in the configuration panel.
+    #. The quick search function is unaffected by widget filters.
+    #. You can define the scope of the quick search feature in the configuration panel.
 
 .. _new-dashboard-process-list-widget:
 
@@ -340,14 +336,12 @@ After setting up everything, simply click on the :guilabel:`Share this dashboard
 .. |dashboard-multi-language-widget-dialog| image:: ../../screenshots/new-dashboard/dashboard-multi-language-widget-dialog.png
 .. |task-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-table-configuration.png
 .. |task-column-field-type-configuration| image:: ../../screenshots/new-dashboard/task-column-field-type-configuration.png
-.. |task-quick-search-checkbox| image:: ../../screenshots/new-dashboard/task-quick-search-checkbox.png
-.. |task-quick-search-column-management| image:: ../../screenshots/new-dashboard/task-quick-search-column-management.png
+.. |task-quick-search-textbox| image:: ../../screenshots/new-dashboard/task-quick-search-textbox.png
 
 .. |case-list-widget| image:: ../../screenshots/new-dashboard/case-list-widget.png
 .. |case-list-widget-configuration| image:: ../../screenshots/new-dashboard/case-list-widget-configuration.png
 .. |case-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/case-list-widget-table-configuration.png
-.. |case-quick-search-checkbox| image:: ../../screenshots/new-dashboard/case-quick-search-checkbox.png
-.. |case-quick-search-column-management| image:: ../../screenshots/new-dashboard/case-quick-search-column-management.png
+.. |case-quick-search-textbox| image:: ../../screenshots/new-dashboard/case-quick-search-textbox.png
 
 .. |process-widget-modes| image:: ../../screenshots/new-dashboard/process-widget-modes.png
 .. |process-widget-combined-mode| image:: ../../screenshots/new-dashboard/process-widget-combined-mode.png
