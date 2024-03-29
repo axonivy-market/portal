@@ -20,7 +20,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.util.HtmlParser;
+import com.axonivy.portal.components.util.FacesMessageUtils;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
@@ -149,6 +149,7 @@ public class ColumnManagementBean implements Serializable {
     columnModel.initDefaultValue();
     columnModel.setHeader(this.fieldDisplayName);
     columnModel.setField(this.selectedField);
+    columnModel.setQuickSearch(false);
     if (this.selectedFieldType == DashboardColumnType.CUSTOM
         || this.selectedFieldType == DashboardColumnType.CUSTOM_CASE) {
       columnModel.setType(selectedFieldType);
@@ -160,10 +161,7 @@ public class ColumnManagementBean implements Serializable {
     }
     this.columnsBeforeSave.add(columnModel);
     this.fields.remove(columnModel.getField());
-    FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
-        HtmlParser.sanitize(
-            Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/fieldIsAdded", Arrays.asList(this.selectedField))),
-        null);
+    FacesMessage msg = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/fieldIsAdded", Arrays.asList(this.selectedField)), null);
     FacesContext.getCurrentInstance().addMessage("field-msg", msg);
     resetValues();
   }
@@ -357,6 +355,10 @@ public class ColumnManagementBean implements Serializable {
 
   public void handleVisibility(ColumnModel column) {
     column.setVisible(BooleanUtils.isFalse(column.getVisible()));
+  }
+
+  public void handleQuickSearch(ColumnModel column) {
+    column.setQuickSearch(BooleanUtils.isFalse(column.getQuickSearch()));
   }
 
   public class FetchingField {

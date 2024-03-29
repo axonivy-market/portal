@@ -14,6 +14,7 @@ public class IdColumnModel extends TaskColumnModel implements Serializable {
     super.initDefaultValue();
     this.field = DashboardStandardTaskColumn.ID.getField();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
+    this.quickSearch = defaultIfEmpty(this.quickSearch, false);
   }
 
   @Override
@@ -32,5 +33,10 @@ public class IdColumnModel extends TaskColumnModel implements Serializable {
       return null;
     }
     return task.getId();
+  }
+
+  @Override
+  public boolean canQuickSearch() {
+    return true;
   }
 }

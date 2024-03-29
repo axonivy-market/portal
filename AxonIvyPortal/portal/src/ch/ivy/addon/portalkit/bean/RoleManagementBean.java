@@ -17,12 +17,13 @@ import javax.faces.context.FacesContext;
 
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.UserDTO;
+import com.axonivy.portal.components.util.FacesMessageUtils;
+import com.axonivy.portal.components.util.HtmlUtils;
 
 import ch.ivy.addon.portalkit.role.RoleHolder;
 import ch.ivy.addon.portalkit.role.RoleTreeDataModel;
 import ch.ivy.addon.portalkit.role.UserAssignedDataModel;
 import ch.ivy.addon.portalkit.role.UserHolder;
-import com.axonivy.portal.components.util.HtmlParser;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.RoleUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -128,7 +129,7 @@ public class RoleManagementBean implements Serializable {
     var isReloadTree = false;
     var existedRole = RoleUtils.findRole(selectedRole.getName());
     if (isCreationMode && nonNull(existedRole)) {
-      var message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+      var message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
           cms("/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/DuplicateRole", existedRole.getName()),
           EMPTY);
       FacesContext.getCurrentInstance().addMessage(null, message);
@@ -218,18 +219,18 @@ public class RoleManagementBean implements Serializable {
   }
 
   private void addRoleGrowlMessage(Severity severity, String cmsURL, Object... cmsParam) {
-    var message = new FacesMessage(severity, cms(cmsURL, cmsParam), EMPTY);
+    var message = FacesMessageUtils.sanitizedMessage(severity, cms(cmsURL, cmsParam), EMPTY);
     FacesContext.getCurrentInstance().addMessage("role-management-growl-message", message);
   }
 
   public String getRoleInformationHeaderDialog() {
     var roleName = isNull(getSelectedRole()) ? EMPTY : getSelectedRole().getName();
     var cmsURL = isCreationMode() ? "/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/RoleCreation" : "/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/RoleDetails";
-    return cms(cmsURL, roleName);
+    return HtmlUtils.sanitize(cms(cmsURL, roleName));
   }
 
   private String cms(String cmsURL, Object... param) {
-    return HtmlParser.sanitize(Ivy.cms().co(cmsURL, Arrays.asList(param)));
+    return Ivy.cms().co(cmsURL, Arrays.asList(param));
   }
 
   public RoleTreeDataModel getRoleTreeModel() {

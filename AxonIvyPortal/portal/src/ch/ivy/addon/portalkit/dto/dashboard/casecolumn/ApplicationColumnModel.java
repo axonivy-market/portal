@@ -26,6 +26,7 @@ public class ApplicationColumnModel extends CaseColumnModel implements Serializa
     this.style = defaultIfEmpty(this.style, TINY_WIDTH);
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__priority u-text-align-center");
     this.format = DashboardColumnFormat.CUSTOM;
+    this.quickSearch = defaultIfEmpty(this.quickSearch, false);
   }
   
   @Override
@@ -68,5 +69,10 @@ public class ApplicationColumnModel extends CaseColumnModel implements Serializa
     }
     
     return this.userFilterListOptions;
+  }
+
+  @Override
+  public boolean canQuickSearch() {
+    return true;
   }
 }
