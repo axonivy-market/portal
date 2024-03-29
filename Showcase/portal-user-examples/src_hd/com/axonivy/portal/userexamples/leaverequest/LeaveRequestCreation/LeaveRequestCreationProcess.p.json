@@ -114,6 +114,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
             "in.isValid = in.leaveRequestData.from.compareTo(in.leaveRequestData.to) > 0? false : true;",
@@ -121,7 +122,7 @@
             "FacesContext.getCurrentInstance().validationFailed();",
             "FacesContext.getCurrentInstance().addMessage(",
             "          null,",
-            "          new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co(",
+            "          FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co(",
             "              \"/Labels/dateFromBiggerThanTo\"), null));",
             "}"
           ]
