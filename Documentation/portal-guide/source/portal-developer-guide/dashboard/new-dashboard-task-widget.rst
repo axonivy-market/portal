@@ -409,7 +409,3 @@ Below are the definition of these attributes:
       * ``true``: apply quick search for this column.
       * ``false``: do not apply quick search for this column.
       * ``not defined``: the ``name`` and ``description`` columns are ``true``, other columns are ``false`` by default.
-
-
-      
-
