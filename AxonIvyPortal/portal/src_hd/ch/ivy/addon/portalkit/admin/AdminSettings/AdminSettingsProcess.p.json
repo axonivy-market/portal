@@ -316,6 +316,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import org.primefaces.component.inputtext.InputText;",
             "import javax.faces.context.FacesContext;",
@@ -324,7 +325,7 @@
             "ui.valid = false;",
             "",
             "",
-            "FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/duplicatePortalAppMsg\"), null));",
+            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/duplicatePortalAppMsg\"), null));",
             "FacesContext.getCurrentInstance().validationFailed();"
           ]
         }
@@ -895,6 +896,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
             "import ch.ivy.addon.portalkit.service.AnnouncementService;",
@@ -902,7 +904,7 @@
             "in.announcement.setEnabled(true);",
             "service.save(in.announcement);",
             "out.isAnnouncementActivated = true;",
-            "FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ",
+            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ",
             "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled\"), null));"
           ]
         }
@@ -918,13 +920,14 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
             "import ch.ivy.addon.portalkit.service.AnnouncementService;",
             "AnnouncementService service = AnnouncementService.getInstance();",
             "service.deactivateAnnouncement();",
             "out.isAnnouncementActivated = false;",
-            "FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ",
+            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ",
             "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsDisabled\"), null));"
           ]
         }
@@ -1065,6 +1068,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
             "import ch.ivy.addon.portalkit.service.AnnouncementService;",
@@ -1072,7 +1076,7 @@
             "// Announcement tab",
             "in.announcement = AnnouncementService.getInstance().getAnnouncementWithAllSupportedLanguage();",
             "in.isAnnouncementActivated = AnnouncementService.getInstance().isAnnouncementActivated();",
-            "FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ",
+            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ",
             "  ivy.cms.co(in.isAnnouncementActivated ? \"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled\"",
             "  : \"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsDisabled\"), null));"
           ]

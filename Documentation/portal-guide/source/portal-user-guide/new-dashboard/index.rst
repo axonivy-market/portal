@@ -117,7 +117,7 @@ In the column management panel, you will find two sections:
 
     Quick search is enabled for the standard field name and description by default.
 
-Portal supports to display custom case fields within the task list.
+Portal supports the display of custom case fields within the task list.
 
 |task-column-field-type-configuration|
 
@@ -127,21 +127,21 @@ You can export all data of the task widget by clicking on the link ``Export to E
 
 |task-export-excel|
 
-If the number of exported tasks exceed the maximum row number of the Excel file, Portal will separate data into multiple Excel
+If the number of exported tasks exceeds the maximum row number of the Excel file, Portal will separate data into multiple Excel
 files and put them into a single zip file.
 
 **Quick search**
 
 |task-quick-search-column-management|
 
-In the view mode, when quick search is enabled, a text box will appear to allow you to search.
+In view mode, when quick search is enabled, a text box will appear to allow searching.
 
 |task-quick-search-checkbox|
 
   .. important::
 
-    #. Quick search function is unaffected by widget filters.
-    #. The scope of the quick search feature can be defined in the configuration panel.
+    #. The quick search function is unaffected by widget filters.
+    #. You can define the scope of the quick search feature in the configuration panel.
 
 Case list widget
 ================

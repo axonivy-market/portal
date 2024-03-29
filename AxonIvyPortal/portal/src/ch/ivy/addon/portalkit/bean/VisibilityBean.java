@@ -10,7 +10,6 @@ import org.apache.commons.lang.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import com.axonivy.portal.components.util.HtmlParser;
 
 @ManagedBean
 @ViewScoped
@@ -35,9 +34,5 @@ public class VisibilityBean implements Serializable {
 
   public boolean isShowLoginFooter() {
     return globalSettingService.findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_LOGIN_FOOTER);
-  }
-  
-  public String sanitizeContent(String content) {
-    return HtmlParser.sanitize(content);
   }
 }
