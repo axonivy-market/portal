@@ -854,6 +854,11 @@ public class NewDashboardPage extends TemplatePage {
     getCaseWidgetTable().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
+  public void waitForTaskWidgetLoaded() {
+    checkDisplayedTaskWidgetContainer();
+    getTaskWidgetTable().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
   public SelenideElement openWidgetFilter(int index) {
     $("[id$='filter-sidebar-link-" + index + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     var result = $("div[id$=':filter-overlay-panel-" + index + "']").shouldBe(appear, DEFAULT_TIMEOUT);
