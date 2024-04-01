@@ -1,4 +1,4 @@
-var sessionCounter = 0,
+// var sessionCounter = 0,
 sessionCounterUpdatedOn = new Date(),
 isLogOut = false;
 
@@ -11,8 +11,10 @@ var PortalSessionWarning = function() {
   init = function(clientSideTimeOut) {
     timeout = clientSideTimeOut,
     timeOutSeconds = timeout / 1000,
-    sessionCounter = timeOutSeconds,
+    setExpireTimeToStorage(timeOutSeconds),
+    // sessionCounter = timeOutSeconds,
     isLogOut = false,
+    // add a day
     intervalCheckSessionTimeout = setInterval(function() {
         timerDecrement();
         if (isLogOut) {
@@ -56,10 +58,8 @@ var PortalSessionWarning = function() {
   },
 
   timerDecrement = function() {
-    timeOutSeconds = timeOutSeconds - 1;
-
     // when timed out, close the warning dialog and make a request to server to show session timeout dialog
-    if (timeOutSeconds < 0 && isLogOut == false) {
+    if (getTimeOutSeccondInStorage() < 0 && isLogOut == false) {
         hideWarningDialog();
         logoutAndShowDialog();
         isLogOut = true;
@@ -68,8 +68,7 @@ var PortalSessionWarning = function() {
       }
 
     // perform check interaction when timeout less than 60 seconds and the warning dialog is hiding
-    if (timeOutSeconds < 60 && warningDialogShow == false && isLogOut == false) {
-
+    if (getTimeOutSeccondInStorage() < 60 && warningDialogShow == false && isLogOut == false) {
       // If have interaction, send a request to server to keep session
       if (isInteractedTaskTemplate == true) {
         keepSession();
@@ -92,12 +91,12 @@ var PortalSessionWarning = function() {
     hideWarningDialog();
     isInteractedTaskTemplate = false;
     isInteractedInIframeTaskTemplate = false;
-    timeOutSeconds = timeout / 1000;
+    setExpireTimeToStorage(timeOutSeconds);
   },
 
   updateInteractedTaskTemplate = function() {
     isInteractedTaskTemplate = true;
-  }
+  },
 
   updateInteractionStatusInIFrame = function() {
     isInteractedInIframeTaskTemplate = true;
@@ -106,7 +105,7 @@ var PortalSessionWarning = function() {
   hideWarningDialog = function() {
     warningDialogShow = false;
     PF('timeout-warning-dialog').hide();
-  }
+  },
   
   stopAvailableChartPolling = function () {
     let polls = $("div[id*=':chart_model_dashboard_poll-']");
@@ -115,7 +114,7 @@ var PortalSessionWarning = function() {
     stopChartPolling(polls);
     polls = $("div[id$=':chart_model_poll']");
     stopChartPolling(polls);
-  }
+  },
   
   stopChartPolling = function (polls) {
     for (const poll of polls) {
@@ -124,6 +123,21 @@ var PortalSessionWarning = function() {
         widgetVar.stop();
       }
     }
+  },
+
+  getExpireTimeInStorage = function() {
+    return new Date(localStorage.getItem("session_expired_time"));
+  },
+
+  getTimeOutSeccondInStorage = function() {
+    const diff = getExpireTimeInStorage() - new Date();
+    return diff/1000;
+  },
+
+  setExpireTimeToStorage = function(timeInSeccond) {
+    let currentDate = new Date();
+    currentDate.setSeconds(currentDate.getSeconds() + timeInSeccond);
+    localStorage.setItem("session_expired_time", currentDate);
   }
 
   return {
