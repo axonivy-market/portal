@@ -289,4 +289,14 @@ public class PermissionUtils {
   public static boolean checkReadAllWorkflowEventPermission() {
     return hasPermission(IPermission.WORKFLOW_EVENT_READ_ALL);
   }
+
+  /**
+   * Check if current user has the permission to read all cases which his roles
+   * involved.
+   *
+   * @return True : has the permission to read all cases which his roles involved.
+   */
+  public static boolean checkCaseReadAllOwnRoleInvolvedPermission() {
+    return hasPermission(IPermission.CASE_READ_ALL_OWN_ROLE_INVOLVED);
+  }
 }
