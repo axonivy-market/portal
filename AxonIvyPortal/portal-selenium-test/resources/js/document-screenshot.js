@@ -585,3 +585,7 @@ function clearHighlightUserName() {
 function highlightWidgetExportToExcelLinkForCase() {
   createRedMediumOutline($("form[id$=':export-to-excel-form-1'] > a"));
 }
+
+function highlightQuickSearchTextbox() {
+  createRedMediumOutline($(".widget__header .widget-header-quick-search > form"));
+}

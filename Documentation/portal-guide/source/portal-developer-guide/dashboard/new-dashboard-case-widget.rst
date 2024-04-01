@@ -133,6 +133,9 @@ The basic JSON structure of the case widget
    -  ``visible``: visibility of a column. The default value is "true". Set to
       "false" to hide the column.
 
+   -  ``quickSearch``: apply search condition for the column when using the quick search feature. The default value is ``false``.
+      Set to ``true`` to apply search condition for the column.
+
    -  ``headers``: multilingual header of the column.
 
 Custom Columns
@@ -315,3 +318,73 @@ conditions.
       case widget will show cases with an expiry date between the dates defined.
 
       Acceptable date formats: ``dd.MM.yyyy`` and ``MM/dd/yyyy``.
+
+Quick Search
+------------
+
+Quick search is a useful function for users to search quickly on the case widget.
+There are two attributes:
+   
+   * ``enableQuickSearch``: enables the quick search feature for the widget.
+
+   * ``quickSearch``: indicates that a column is searchable using the quick search feature.
+
+If you set the ``enableQuickSearch`` attribute to ``false``, the quick search feature will be disabled,
+regardless of the ``quickSearch`` attribute's value.
+
+Conversely, if you set the ``enableQuickSearch`` attribute to ``true``, the quick search feature will
+scan through the values of all columns that have the ``quickSearch`` attribute set to ``true``.
+If you haven't assigned the ``quickSearch`` attribute to any column in the case widget,
+the quick search feature will default to searching the name and description fields.
+
+Below are the definition of these attributes:
+
+   * ``enableQuickSearch``: to enable/disable the quick search feature, set the
+     ``enableQuickSearch`` field of the case widget as shown below.
+
+      .. code-block:: html
+
+         {
+            ...
+            "type": "case",
+            "id": "case_98ae4fc1c83f4f22be5244c8027ecf40"
+            ...
+            "enableQuickSearch": "true",
+            ...
+         }
+
+      ..
+
+      Valid values:
+
+      * ``true``: show the quick search text box.
+      * ``false``: hide the quick search text box.
+      * ``not defined``: hide the quick search text box.
+
+   * ``quickSearch``: to choose which columns can be searched by the quick search
+     feature, set the ``quickSearch`` field for each column as shown below.
+
+      .. code-block:: html
+
+         {
+            ...
+            "type": "case",
+            "id": "case_98ae4fc1c83f4f22be5244c8027ecf40"
+            ...
+            "columns": [
+               {
+                  "field": "id",
+                  "quickSearch": "false"
+               },
+               ...
+            ]
+            ...
+         }
+
+      ..
+
+      Valid values:
+
+      * ``true``: apply quick search for this column.
+      * ``false``: do not apply quick search for this column.
+      * ``not defined``: the ``name`` and ``description`` columns are ``true``, other columns are ``false`` by default.

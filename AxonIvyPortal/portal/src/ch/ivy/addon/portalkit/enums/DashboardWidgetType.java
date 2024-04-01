@@ -19,6 +19,6 @@ public enum DashboardWidgetType {
   }
 
   public boolean canEnableQuickSearch() {
-    return name() == TASK.name();
+    return name() == TASK.name() || name() == CASE.name();
   }
 }
