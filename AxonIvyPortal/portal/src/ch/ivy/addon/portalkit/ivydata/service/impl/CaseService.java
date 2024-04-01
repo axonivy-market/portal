@@ -32,11 +32,14 @@ import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
+import ch.ivyteam.ivy.security.IRole;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.query.CaseQuery.FilterLink;
 
 public class CaseService implements ICaseService {
 
@@ -105,11 +108,20 @@ public class CaseService implements ICaseService {
   }
 
   private CaseQuery queryForCurrentUser(CaseQuery caseQuery) {
-    caseQuery.where().or().currentUserIsInvolved();
+    FilterLink currentUserIsInvolved = caseQuery.where().or().currentUserIsInvolved();
+
     if (GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
-      caseQuery.where().or().currentUserIsOwner();
+      currentUserIsInvolved.where().or().currentUserIsOwner();
     }
-    return caseQuery;
+
+    if (PermissionUtils.checkCaseReadAllOwnRoleInvolvedPermission()) {
+      IUser user = Ivy.session().getSessionUser();
+      for (IRole role : user.getRoles()) {
+        currentUserIsInvolved.where().or().roleIsInvolved(role);
+      }
+    }
+
+    return currentUserIsInvolved;
   }
 
   @Override
