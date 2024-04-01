@@ -11,7 +11,7 @@
 
 <cc:implementation>
    <span id="server-infor" jsf:rendered="#{not empty globalFooterInfoBean.info}" class="show-environment-info">
-   <h:outputText escape="false" value="#{visibilityBean.sanitizeContent(globalFooterInfoBean.info)}" /> 
+   <h:outputText escape="false" value="#{htmlSanitizerBean.sanitize(globalFooterInfoBean.info)}" /> 
   </span>
 </cc:implementation>
 </html>
