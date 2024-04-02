@@ -470,7 +470,6 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.context.FacesContext;",
             "import ch.ivy.gawfs.ExpressProcessUtils;",
             "import javax.faces.application.FacesMessage;",
@@ -479,7 +478,7 @@
             "in.isAbleToExecute = utils.canFinishFormDefinition(in.data.definedTasks);",
             "if(!in.isAbleToExecute){",
             "  String growlTitle = ivy.cms.co(\"/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflowWarning\");",
-            "  FacesMessage message = FacesMessageUtils.sanitizedMessage( FacesMessage.SEVERITY_WARN, growlTitle, null);",
+            "  FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_WARN, growlTitle, null);",
             "  FacesContext.getCurrentInstance().addMessage(null, message);",
             "}"
           ]
@@ -582,7 +581,6 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.context.FacesContext;",
             "import ch.ivy.gawfs.ExpressProcessUtils;",
             "import javax.faces.application.FacesMessage;",
@@ -591,7 +589,7 @@
             "in.isAbleToExecute = utils.canFinishFormDefinition(in.data.definedTasks);",
             "if(!in.isAbleToExecute){",
             "  String growlTitle = ivy.cms.co(\"/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflowWarning\");",
-            "  FacesMessage message = FacesMessageUtils.sanitizedMessage( FacesMessage.SEVERITY_WARN, growlTitle, null);",
+            "  FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_WARN, growlTitle, null);",
             "  FacesContext.getCurrentInstance().addMessage(null, message);",
             "}"
           ]
