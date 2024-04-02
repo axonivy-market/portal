@@ -80,7 +80,7 @@ see and how.
 **Configuration panel**
 
 On the left side, define the widget name, establish the main configuration for
-your widget, and get a preview of it by clicking on the preview button.
+your widget, enable quick search function and get a preview of it by clicking on the preview button.
 
 |task-list-widget-configuration|
 
@@ -103,10 +103,21 @@ In the column management panel, you will find two sections:
    #. Columns section: configure the widget table itself as follows:
  
       - Enable visibility
+      - Enable quick search by selecting the quick search checkbox
       - Reorder the columns by drag and drop using the arrows |move-expand-vertical|
       - Remove columns
 
-Portal supports to display custom case fields within the task list.
+  .. important::
+
+    Quick search feature is supporting these fields:
+
+      #. Standard fields: Id, name, description, category, responsible (display name), and application.
+      #. Task custom fields: fields that have type ``STRING`` or ``TEXT``.
+      #. Case custom fields: fields that have type ``STRING`` or ``TEXT``.
+
+    Quick search is enabled for the standard field name and description by default.
+
+Portal supports the display of custom case fields within the task list.
 
 |task-column-field-type-configuration|
 
@@ -116,8 +127,19 @@ You can export all data of the task widget by clicking on the link ``Export to E
 
 |task-export-excel|
 
-If the number of exported tasks exceed the maximum row number of the Excel file, Portal will separate data into multiple Excel
+If the number of exported tasks exceeds the maximum row number of the Excel file, Portal will separate data into multiple Excel
 files and put them into a single zip file.
+
+**Quick search**
+
+In view mode, when quick search is enabled, a text box will appear to allow searching.
+
+|task-quick-search-textbox|
+
+  .. important::
+
+    #. The quick search function is unaffected by widget filters.
+    #. You can define the scope of the quick search feature in the configuration panel.
 
 Case list widget
 ================
@@ -130,7 +152,7 @@ see and how.
 **Configuration panel**
 
 On the left side, you can define the widget name, establish the main
-configuration for your widget, and get a preview of it by clicking on the
+configuration for your widget, enable quick search function and get a preview of it by clicking on the
 preview button.
 
 |case-list-widget-configuration|
@@ -151,8 +173,18 @@ In the table configuration panel, you find two sections:
    #. Columns section: configure the widget table itself as follows:
 
       - Enable visibility
+      - Enable quick search by selecting the quick search checkbox
       - Reorder the columns by drag and drop using the arrows |move-expand-vertical|
       - Remove columns
+
+  .. important::
+
+    Quick search feature is supporting these fields:
+
+      #. Standard fields: Id, name, description, category, creator (display name), and application.
+      #. Custom fields: fields that have type ``STRING`` or ``TEXT``.
+
+    Quick search is enabled for the standard field name and description by default.
 
 **Excel export**
 
@@ -160,8 +192,19 @@ You can export all data of the case widget by clicking on the link ``Export to E
 
 |case-export-excel|
 
-If the number of exported cases exceed the maximum row number of the Excel file, Portal will separate data into multiple Excel
+If the number of exported cases exceeds the maximum row number of the Excel file, Portal will separate data into multiple Excel
 files and put them into a single zip file.
+
+**Quick search**
+
+In the view mode, when quick search is enabled, a text box will appear to allow you to searching.
+
+|case-quick-search-textbox|
+
+  .. important::
+
+    #. The quick search function is unaffected by widget filters.
+    #. You can define the scope of the quick search feature in the configuration panel.
 
 .. _new-dashboard-process-list-widget:
 
@@ -293,10 +336,12 @@ After setting up everything, simply click on the :guilabel:`Share this dashboard
 .. |dashboard-multi-language-widget-dialog| image:: ../../screenshots/new-dashboard/dashboard-multi-language-widget-dialog.png
 .. |task-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-table-configuration.png
 .. |task-column-field-type-configuration| image:: ../../screenshots/new-dashboard/task-column-field-type-configuration.png
+.. |task-quick-search-textbox| image:: ../../screenshots/new-dashboard/task-quick-search-textbox.png
 
 .. |case-list-widget| image:: ../../screenshots/new-dashboard/case-list-widget.png
 .. |case-list-widget-configuration| image:: ../../screenshots/new-dashboard/case-list-widget-configuration.png
 .. |case-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/case-list-widget-table-configuration.png
+.. |case-quick-search-textbox| image:: ../../screenshots/new-dashboard/case-quick-search-textbox.png
 
 .. |process-widget-modes| image:: ../../screenshots/new-dashboard/process-widget-modes.png
 .. |process-widget-combined-mode| image:: ../../screenshots/new-dashboard/process-widget-combined-mode.png
