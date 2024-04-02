@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
-import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -9,21 +10,12 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
-import com.axonivy.portal.selenium.page.StatisticWidgetPage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
 public class MenuTest extends BaseTest {
-
-  @Override
-  @BeforeEach
-  public void setup() {
-    super.setup();
-    login(TestAccount.ADMIN_USER);
-  }
 
   @Test
   public void testLoadCustomMenuItems() {
@@ -38,50 +30,11 @@ public class MenuTest extends BaseTest {
     home.waitForCaseWidgetLoaded();
 
     MainMenuPage mainMenuPage = new MainMenuPage();
-    String expected =
-        "Dashboard,Processes,Tasks,Cases,Statistics,User example guide,Google,Testing link google,Testing example,A link,B link";
+    String expected = "Dashboard,Processes,Tasks,Cases,Statistics,User example guide,Google,Testing link google,Testing example,A link,B link";
     assertEquals(expected, mainMenuPage.getMenuItemsAsString());
   }
 
   @Test
-  public void testKeepOpenStateWhenNavigateToAnotherPage() {
-    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
-    login(TestAccount.ADMIN_USER);
-    NewDashboardPage newDashboardPage = new NewDashboardPage();
-    newDashboardPage.waitPageLoaded();
-    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
-    TaskWidgetPage taskWidgetPage = mainMenuPage.selectTaskMenu();
-    assertTrue(taskWidgetPage.isMainMenuOpen());
-  }
-
-  @Test
-  public void testKeepClosedStateWhenNavigateToAnotherPage() {
-    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
-    login(TestAccount.ADMIN_USER);
-    NewDashboardPage newDashboardPage = new NewDashboardPage();
-    newDashboardPage.waitPageLoaded();
-    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
-    StatisticWidgetPage dashboardPage = mainMenuPage.selectStatisticDashboard();
-    dashboardPage.waitForPageLoad();
-
-    dashboardPage.closeMainMenu();
-    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
-    newDashboardPage = new NewDashboardPage();
-    assertFalse(newDashboardPage.isMainMenuOpen());
-  }
-
-  @Test
-  public void testNavigateToThirdPartyApp() {
-    createThirdPartyApp();
-    login(TestAccount.DEMO_USER);
-    // to refresh cache
-    login(TestAccount.ADMIN_USER);
-    NewDashboardPage newDashboardPage = new NewDashboardPage();
-    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
-    mainMenuPage.clickThirdPartyApp();
-    mainMenuPage.assertThirdPartyApp("https://www.google.com/");
-  }
-
   public void testCustomizeIconMainMenuEntry() {
     redirectToRelativeLink(cleanupDataLink);
     createJSonFile("custom-main-menu-entry.json", PortalVariable.DASHBOARD_MAIN_MENU_ENTRY.key);

@@ -484,7 +484,7 @@ public class DashboardTaskSearchCriteria {
         for (ColumnModel column : quickSearchColumns) {
           DashboardStandardTaskColumn columnEnum = DashboardStandardTaskColumn.findBy(column.getField());
           if (columnEnum != null) {
-            appendStandandFieldToQuickSearchQuery(subQuery, columnEnum);
+            appendStandandFieldsToQuickSearchQuery(subQuery, columnEnum);
           } else {
             appendCustomFieldsForQuickSearchQuery(subQuery, column);
           }
@@ -509,7 +509,7 @@ public class DashboardTaskSearchCriteria {
     }
   }
 
-  private void appendStandandFieldToQuickSearchQuery(TaskQuery subQuery, DashboardStandardTaskColumn columnEnum) {
+  private void appendStandandFieldsToQuickSearchQuery(TaskQuery subQuery, DashboardStandardTaskColumn columnEnum) {
     String formattedKeyword = String.format(LIKE_FORMAT, this.quickSearchKeyword);
     switch (columnEnum) {
     case NAME -> subQuery.where().or().name().isLikeIgnoreCase(formattedKeyword);

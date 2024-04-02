@@ -72,6 +72,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import ch.ivyteam.ivy.workflow.ITask;",
             "import javax.faces.context.FacesContext;",
@@ -85,15 +86,15 @@
             "      if(task != null) {",
             "      if(ivy.session.hasPermission(securityDescriptor,ch.ivyteam.ivy.security.IPermission.TASK_DESTROY) && (task.getState().toString() != \"DESTROYED\")) {",
             "      ivy.wf.findTask(in.taskId).destroy();  ",
-            "      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,\"Info: \",\"Successful!\"));",
+            "      FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN,\"Info: \",\"Successful!\"));",
             "      } else {",
-            "        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,\"Warning!\",\"You don't have permission or task state is Destroyed\"));",
+            "        FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN,\"Warning!\",\"You don't have permission or task state is Destroyed\"));",
             "      }",
             "    } else {",
-            "      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,\"Warning!\",\"Task is not exist\"));",
+            "      FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN,\"Warning!\",\"Task is not exist\"));",
             "    }",
             "  } else {",
-            "    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,\"Warning!\",\"You don't have permission\"));",
+            "    FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN,\"Warning!\",\"You don't have permission\"));",
             "}"
           ]
         }
