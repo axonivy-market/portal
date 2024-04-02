@@ -10,6 +10,7 @@ import org.openqa.selenium.Dimension;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseMapPage;
 import com.axonivy.portal.selenium.page.ExampleOverviewPage;
 import com.axonivy.portal.selenium.page.LeaveRequestPage;
@@ -78,6 +79,7 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
 
   @Test
   public void screenshotCaseMapProcess() throws IOException {
+    login(TestAccount.DEMO_USER);
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 900));
     redirectToRelativeLinkWithEmbedInFrame(CASE_MAP_URL);
     CaseMapPage caseMapPage = new CaseMapPage();
@@ -86,7 +88,8 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "lending-casemap-collect-personal-data");
 
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1000));
-    NewDashboardPage newDashboardPage = caseMapPage.clickSubmitRequestButton();
+    caseMapPage.clickSubmitRequestButton();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1500));
     newDashboardPage.startTask(0);
     caseMapPage = new CaseMapPage();
