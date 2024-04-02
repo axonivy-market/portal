@@ -19,7 +19,7 @@ import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class BackNavigationTest extends BaseTest {
   private static final String CASE_LIST_TITLE = "Cases";
   private static final String CASE_DETAILS_TITLE = "Case Details";
