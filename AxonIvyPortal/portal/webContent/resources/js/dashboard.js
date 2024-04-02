@@ -261,22 +261,6 @@ function collapseFullscreen(index, widgetId) {
 }
 
 function loadWidgetFirstTime(loadingClass, widgetClass) {
-  var loading = $('.' + loadingClass);
-  if (loading.length > 0) {
-    loading.addClass('u-display-none');
-  }
-  var widget = $('.' + widgetClass);
-  if (widget.length == 0) {
-    widget = $("[data-process-id='" + widgetClass + "']");
-  }
-  if (widget.length > 0) {
-    widget.removeClass('u-display-none');
-    widget.removeClass('u-invisibility');
-  }
-  resizeTableBody();
-}
-
-function loadCaseAndTaskWidgetFirstTime(loadingClass, widgetClass) {
 
   resizeTableBody();
 

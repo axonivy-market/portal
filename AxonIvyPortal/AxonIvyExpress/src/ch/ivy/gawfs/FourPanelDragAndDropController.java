@@ -12,8 +12,6 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.DragDropEvent;
 
-import com.axonivy.portal.components.util.FacesMessageUtils;
-
 import ch.ivy.gawfs.enums.FormElementType;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -72,7 +70,7 @@ public class FourPanelDragAndDropController extends CommonDragAndDropController 
   }
 
   private void displayFileUploadPositionNotice() {
-    FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, Ivy.cms().co("/Dialogs/components/CaseDocument/fileUploadElementPosition"), "");
+    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, Ivy.cms().co("/Dialogs/components/CaseDocument/fileUploadElementPosition"), "");
     FacesContext.getCurrentInstance().addMessage(AVAILABLE_FORM_ELEMENTS, message);
   }
 

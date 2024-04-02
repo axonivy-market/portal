@@ -18,7 +18,7 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
-import com.axonivy.portal.components.util.FacesMessageUtils;
+import com.axonivy.portal.components.util.HtmlParser;
 import com.axonivy.portal.util.UploadDocumentUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
@@ -148,7 +148,8 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
   }
 
   private void displayedMessage(String validateMessage) {
-    FacesContext.getCurrentInstance().addMessage("import-dashboard-form:import-dashboard-dialog-message", FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, validateMessage, null));
+    FacesContext.getCurrentInstance().addMessage("import-dashboard-form:import-dashboard-dialog-message",
+        new FacesMessage(FacesMessage.SEVERITY_ERROR, HtmlParser.sanitize(validateMessage), null));
   }
 
   private void resetDialog() {

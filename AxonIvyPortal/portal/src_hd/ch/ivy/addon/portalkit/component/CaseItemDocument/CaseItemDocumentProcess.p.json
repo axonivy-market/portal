@@ -77,11 +77,11 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
+            "import com.axonivy.portal.components.util.HtmlParser;",
             "",
-            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, in.uploadDocumentCheckMessage, null));"
+            "FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, HtmlParser.sanitize(in.uploadDocumentCheckMessage), null));"
           ]
         }
       },
@@ -225,11 +225,11 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
+            "import com.axonivy.portal.components.util.HtmlParser;",
             "",
-            "FacesContext.getCurrentInstance().addMessage(\"\", FacesMessageUtils.sanitizedMessage(in.uploadDocumentCheckMessage, \"\" ));"
+            "FacesContext.getCurrentInstance().addMessage(\"\", new FacesMessage(HtmlParser.sanitize(in.uploadDocumentCheckMessage), \"\" ));"
           ]
         }
       },
@@ -248,11 +248,11 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
+            "import com.axonivy.portal.components.util.HtmlParser;",
             "",
-            "FacesContext.getCurrentInstance().addMessage(\"\", FacesMessageUtils.sanitizedMessage(in.deleteDocumentMessage, \"\" ));"
+            "FacesContext.getCurrentInstance().addMessage(\"\", new FacesMessage(HtmlParser.sanitize(in.deleteDocumentMessage), \"\" ));"
           ]
         }
       },
