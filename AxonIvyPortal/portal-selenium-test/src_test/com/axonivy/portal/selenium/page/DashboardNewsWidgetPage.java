@@ -38,7 +38,7 @@ public class DashboardNewsWidgetPage extends TemplatePage {
     manageNewsDialogShouldBe(appear).$("[id$=':news-icon:awesome-icon-selection']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public void enterNewsItemData(String languageTag, String icon, String title, String content) {
+  public String enterNewsItemData(String languageTag, String icon, String title, String content) {
     // Select language
     var tabIndex = selectNewsLanguage(languageTag);
     // News Icon
@@ -47,11 +47,12 @@ public class DashboardNewsWidgetPage extends TemplatePage {
     enterNewsTitle(title, tabIndex);
     // News content
     enterNewsContent(content, tabIndex);
+    return tabIndex;
   }
 
   private void enterNewsContent(String content, String tabIndex) {
-    $(String.format(MANAGE_NEWS_TABVIEW_FORMAT, tabIndex, "news-content_editor"))
-        .$(".ql-editor").shouldBe(appear, DEFAULT_TIMEOUT).setValue(content);
+    $(String.format(MANAGE_NEWS_TABVIEW_FORMAT, tabIndex, "news-content_editor")).$(".ql-editor")
+        .shouldBe(appear, DEFAULT_TIMEOUT).setValue(content);
   }
 
   private void enterNewsTitle(String title, String tabIndex) {
@@ -62,10 +63,10 @@ public class DashboardNewsWidgetPage extends TemplatePage {
   }
 
   private void selectNewsIcon(String icon, String tabIndex) {
-    $(String.format(MANAGE_NEWS_TABVIEW_FORMAT, tabIndex, "manage-news-details-container"))
-        .shouldBe(appear, DEFAULT_TIMEOUT);
-    $(String.format(MANAGE_NEWS_TABVIEW_FORMAT, tabIndex, "news-icon:icon-link"))
-        .shouldBe(getClickableCondition()).click();
+    $(String.format(MANAGE_NEWS_TABVIEW_FORMAT, tabIndex, "manage-news-details-container")).shouldBe(appear,
+        DEFAULT_TIMEOUT);
+    $(String.format(MANAGE_NEWS_TABVIEW_FORMAT, tabIndex, "news-icon:icon-link")).shouldBe(getClickableCondition())
+        .click();
     String selectIconDialogId = String.format(MANAGE_NEWS_TABVIEW_FORMAT, tabIndex, "news-icon:select-icon-dialog");
     $(selectIconDialogId).shouldBe(appear, DEFAULT_TIMEOUT);
     SelenideElement selectIconDialog = $(selectIconDialogId);
@@ -74,12 +75,12 @@ public class DashboardNewsWidgetPage extends TemplatePage {
     $(selectIconDialogId).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
-  private String selectNewsLanguage(String languageTag) {
+  public String selectNewsLanguage(String languageTag) {
     var languageTabClass = "li.ui-tabs-header.news-language-tab-" + languageTag;
-    $("[id$=':manage-news-tabview']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$("ul.ui-tabs-nav").$(languageTabClass).shouldBe(getClickableCondition()).click();
-    return $(languageTabClass).shouldBe(appear, DEFAULT_TIMEOUT)
-        .shouldHave(Condition.cssClass("ui-tabs-selected")).attr("data-index");
+    $("[id$=':manage-news-tabview']").shouldBe(appear, DEFAULT_TIMEOUT).$("ul.ui-tabs-nav").$(languageTabClass)
+        .shouldBe(getClickableCondition()).click();
+    return $(languageTabClass).shouldBe(appear, DEFAULT_TIMEOUT).shouldHave(Condition.cssClass("ui-tabs-selected"))
+        .attr("data-index");
   }
 
   public void clickOnCancelAddingNewsItem() {
@@ -121,11 +122,13 @@ public class DashboardNewsWidgetPage extends TemplatePage {
   }
 
   public SelenideElement getNewsItemIcon(int index) {
-    return getNewsItem(index).$(String.format(NEWS_ITEM_ATTR_FORMAT, index, "news-icon:awesome-icon-display")).shouldBe(appear, DEFAULT_TIMEOUT);
+    return getNewsItem(index).$(String.format(NEWS_ITEM_ATTR_FORMAT, index, "news-icon:awesome-icon-display"))
+        .shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getNewsItemTitle(int index) {
-    return getNewsItem(index).$(String.format(NEWS_ITEM_ATTR_FORMAT, index, "news__title")).shouldBe(appear, DEFAULT_TIMEOUT);
+    return getNewsItem(index).$(String.format(NEWS_ITEM_ATTR_FORMAT, index, "news__title")).shouldBe(appear,
+        DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getNewsItemContent(int index) {
@@ -139,13 +142,31 @@ public class DashboardNewsWidgetPage extends TemplatePage {
   }
 
   private SelenideElement getNewsItem(int index) {
-    return $("[id$=':news-list']").shouldBe(appear, DEFAULT_TIMEOUT).$$(".news-item").get(index)
-        .shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("[id$=':news-list']").shouldBe(appear, DEFAULT_TIMEOUT).$$(".news-item").get(index).shouldBe(appear,
+        DEFAULT_TIMEOUT);
   }
 
   public void confirmAndRemoveNewsItem() {
     $("[id$=':delete-news-dialog']").shouldBe(appear, DEFAULT_TIMEOUT).$("[id$=':remove-widget-button']")
         .shouldBe(getClickableCondition()).click();
     $("[id$=':delete-news-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getTranslationOverlayPanel(int index) {
+    SelenideElement translationOverlay = $(String.format("div[id$=':%s:overlay-panel-input']", index));
+    waitUntilElementToBeClickable(translationOverlay);
+    translationOverlay.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
+    return translationOverlay;
+  }
+
+  public void clickOnTitle(String tabIndex) {
+    SelenideElement newsTitleInput = $("input" + String.format(MANAGE_NEWS_TABVIEW_FORMAT, tabIndex, "news-title"))
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    newsTitleInput.click();
+  }
+
+  public void findTranslationButton(String tabIndex) {
+    $(String.format("[id$=':%s:translate-language-button']", tabIndex)).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 }
