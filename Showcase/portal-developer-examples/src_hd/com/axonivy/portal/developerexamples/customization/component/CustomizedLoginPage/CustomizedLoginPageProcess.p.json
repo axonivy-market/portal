@@ -35,7 +35,6 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.context.FacesContext;",
             "import javax.faces.application.FacesMessage;",
             "import ch.ivyteam.ivy.security.IUser;",
@@ -44,7 +43,7 @@
             "out.password = null;",
             "if (!in.loginOk) ",
             "{",
-            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/login/loginFailed\"), \"\"));",
+            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/login/loginFailed\"), \"\"));",
             "  FacesContext.getCurrentInstance().validationFailed();",
             "}"
           ]

@@ -38,7 +38,6 @@ public class CategoryColumnModel extends CaseColumnModel {
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.format = getDefaultFormat();
     this.sortable = getDefaultSortable();
-    this.quickSearch = defaultIfEmpty(this.quickSearch, false);
   }
 
   @Override
@@ -163,8 +162,4 @@ public class CategoryColumnModel extends CaseColumnModel {
     }
   }
 
-  @Override
-  public boolean canQuickSearch() {
-    return true;
-  }
 }
