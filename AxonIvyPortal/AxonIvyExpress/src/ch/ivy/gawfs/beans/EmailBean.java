@@ -24,7 +24,7 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.file.UploadedFile;
 
-import com.axonivy.portal.components.util.HtmlParser;
+import com.axonivy.portal.components.util.FacesMessageUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpressUserEmail;
 import ch.ivy.addon.portalkit.dto.ExpressAttachment;
@@ -66,7 +66,7 @@ public class EmailBean implements Serializable {
     String uploadDocumentCheckMessage = checkFileSize(uploadedFile);
     if (!StringUtils.isEmpty(uploadDocumentCheckMessage)) {
       FacesContext.getCurrentInstance().addMessage(null,
-          new FacesMessage(FacesMessage.SEVERITY_ERROR, HtmlParser.sanitize(uploadDocumentCheckMessage), null));
+          FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, uploadDocumentCheckMessage, null));
       return;
     }
 
@@ -120,10 +120,7 @@ public class EmailBean implements Serializable {
 
   private void addFileDuplicationMessage(FileUploadEvent event, String fileName) {
     String panelId = (String) event.getComponent().getAttributes().get("panelId");
-    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-        HtmlParser.sanitize(
-            Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadFileExists", Arrays.asList(fileName))),
-        null);
+    FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadFileExists", Arrays.asList(fileName)), null);
     FacesContext.getCurrentInstance().addMessage(panelId, message);
   }
 

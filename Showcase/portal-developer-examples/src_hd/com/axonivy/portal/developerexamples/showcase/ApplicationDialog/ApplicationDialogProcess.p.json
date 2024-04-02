@@ -89,6 +89,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import org.apache.commons.io.FileUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
@@ -106,7 +107,7 @@
             "  }",
             "  else{",
             "    in.renderPdfVeiwer = false;",
-            "    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, ivy.cms.co(\"/Dialogs/GdprRequest/Messages/warning\"), ivy.cms.co(\"/Dialogs/GdprRequest/Messages/onlyPdfRendering\")));",
+            "    FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN, ivy.cms.co(\"/Dialogs/GdprRequest/Messages/warning\"), ivy.cms.co(\"/Dialogs/GdprRequest/Messages/onlyPdfRendering\")));",
             "  }  ",
             "}"
           ]

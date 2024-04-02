@@ -421,7 +421,7 @@ function isPressedSpecialKeys(event) {
     return false;
   }
 
-  const specialKeys = ['Enter', 'Shift', 'Control',
+  const specialKeys = ['Enter', 'Control',
   'Alt', 'Pause', 'CapsLock', 'Escape',
   'PageUp', 'PageDown', 'End', 'Home',
   'PrintScreen', 'Insert', 'Meta',

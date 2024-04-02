@@ -3,7 +3,9 @@ package ch.ivy.addon.portalkit.dto.dashboard.casecolumn;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
+import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
 
 public class CaseColumnModel extends ColumnModel {
@@ -51,4 +53,16 @@ public class CaseColumnModel extends ColumnModel {
     return column;
   }
 
+  /**
+   * Only allow quick search for custom String and Text fields
+   * 
+   */
+  @Override
+  public boolean canQuickSearch() {
+    CustomFieldType type = switch (this.type) {
+    case CUSTOM -> type = DashboardWidgetUtils.findCaseCustomFieldType(field);
+    default -> null;
+    };
+    return type == CustomFieldType.STRING || type == CustomFieldType.TEXT;
+  }
 }
