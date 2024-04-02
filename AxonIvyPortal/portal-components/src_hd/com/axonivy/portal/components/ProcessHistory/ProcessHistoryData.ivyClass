@@ -2,8 +2,8 @@ ProcessHistoryData #class
 com.axonivy.portal.components.ProcessHistory #namespace
 businessEntityId String #field
 businessEntityId PERSISTENT #fieldModifier
-iCase ch.ivyteam.ivy.workflow.ICase #field
-iCase PERSISTENT #fieldModifier
+caze ch.ivyteam.ivy.workflow.ICase #field
+caze PERSISTENT #fieldModifier
 isOpenInFrame Boolean #field
 isOpenInFrame PERSISTENT #fieldModifier
 caseDetailsUrl String #field

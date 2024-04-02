@@ -271,7 +271,7 @@
           </p:column>
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/information')}">
             <h:outputText styleClass="role-membership"
-              value="#{showInheritedMembership ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/InheritedMembership'):''}" />
+              value="#{ivy.cms.co(showInheritedMembership ? '/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/InheritedMembership' : '')}" />
           </p:column>
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
             styleClass="action-group u-text-align-center" width="100px">

@@ -204,13 +204,13 @@
                             <!--  RESPONSIBLE -->
                             <h:panelGroup layout="block" styleClass="ui-g-12" rendered="#{gtask.taskType ne 'EMAIL'}">
                               <p:outputLabel for="task-responsible"
-                                value="#{data.data.processType == 'REPEAT' and gtask.position eq 1? ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart'):ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:"
+                                value="#{ivy.cms.co(data.data.processType == 'REPEAT' and gtask.position eq 1? '/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart':'/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}"
                                 styleClass="express-title-header task-responsible-label" />
                             </h:panelGroup>
                             <h:panelGroup layout="block" id="task-responsible-input-container" styleClass="ui-g-12"
                               rendered="#{gtask.taskType ne 'EMAIL'}">
                               <h:inputHidden id="task-responsible" value="#{gtask.responsibleDisplayName}" required="true"
-                                requiredMessage="#{data.data.processType == 'REPEAT' and gtask.position eq 1 ? ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart'):ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
+                                requiredMessage="#{ivy.cms.co(data.data.processType == 'REPEAT' and gtask.position eq 1 ? '/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart' : '/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
                               <p:commandLink id="task-responsible-link" immediate="true" styleClass="task-responsible-link"
                                 value="#{not empty gtask.responsibleDisplayName ? gtask.responsibleDisplayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
                                 actionListener="#{logic.initAssginement(gtask)}" oncomplete="PF('choose-responsible-dialog').show();"
@@ -269,11 +269,11 @@
                           <!-- RESPONSIBLE -->
                           <div class="ui-g-12 u-no-padding-bottom">
                             <p:outputLabel rendered="#{gtask.position >= 1}" for="default-task-responsible" styleClass="express-workflow-label"
-                              value="#{data.data.processType == 'REPEAT' and gtask.position eq 1? ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart'):ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" />
+                              value="#{ivy.cms.co(data.data.processType == 'REPEAT' and gtask.position eq 1?'/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart':'/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" />
                           </div>
                           <h:panelGroup layout="block" id="default-task-responsible-input-container" styleClass="ui-g-12">
                             <h:inputHidden id="default-task-responsible" value="#{gtask.responsibleDisplayName}" required="true"
-                              requiredMessage="#{data.data.processType == 'REPEAT' and gtask.position eq 1 ? ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart'):ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
+                              requiredMessage="#{ivy.cms.co(data.data.processType == 'REPEAT' and gtask.position eq 1 ? '/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart':'/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
                             <p:commandLink id="default-task-responsible-link" immediate="true" styleClass="task-responsible-link"
                               value="#{not empty gtask.responsibleDisplayName ? gtask.responsibleDisplayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
                               actionListener="#{logic.initAssginement(gtask)}" oncomplete="PF('choose-responsible-dialog').show();"

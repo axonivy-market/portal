@@ -15,15 +15,14 @@
           "code" : [
             "import ch.ivyteam.ivy.workflow.ICase;",
             "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
-            "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
-            "import ch.ivyteam.ivy.workflow.IProcessStart;",
-            "IProcessStart processStart = ProcessStartUtils.findProcessStartByUserFriendlyRequestPath(\"Start Processes/LeaveRequest/start.ivp\");",
-            "CaseQuery caseQuery = CaseQuery.businessCases().where().taskStartId().isEqual(processStart.getId()).orderBy().caseId().descendingNullLast();",
+            "",
+            "CaseQuery caseQuery = CaseQuery.businessCases().where().name().isEqual(\"Leave Request\");",
             "ICase caze = ivy.wf.getCaseQueryExecutor().getFirstResult(caseQuery) as ICase;",
             "out.selectedCaseId = caze != null ? caze.getId() : 0;"
           ]
         },
-        "startName" : "Show Process Viewer Using Case ID"
+        "startName" : "Show Process Viewer Using Case ID",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 200, "y" : 296 },
@@ -49,7 +48,8 @@
             "out.selectedProcessLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/LeaveRequest/start.ivp\");"
           ]
         },
-        "startName" : "Show Process Viewer Using Process Link"
+        "startName" : "Show Process Viewer Using Process Link",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 200, "y" : 488 },
@@ -93,7 +93,8 @@
             "out.selectedProcessLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/LeaveRequest/start.ivp\");"
           ]
         },
-        "startName" : "Show Process Viewer Using Process Link (Serenity theme)"
+        "startName" : "Show Process Viewer Using Process Link (Serenity theme)",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 200, "y" : 584 },
@@ -124,15 +125,14 @@
           "code" : [
             "import ch.ivyteam.ivy.workflow.ICase;",
             "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
-            "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
-            "import ch.ivyteam.ivy.workflow.IProcessStart;",
-            "IProcessStart processStart = ProcessStartUtils.findProcessStartByUserFriendlyRequestPath(\"Start Processes/LeaveRequest/start.ivp\");",
-            "CaseQuery caseQuery = CaseQuery.businessCases().where().taskStartId().isEqual(processStart.getId()).orderBy().caseId().descendingNullLast();",
+            "",
+            "CaseQuery caseQuery = CaseQuery.businessCases().where().name().isEqual(\"Leave Request\");",
             "ICase caze = ivy.wf.getCaseQueryExecutor().getFirstResult(caseQuery) as ICase;",
             "out.selectedCaseId = caze != null ? caze.getId() : 0;"
           ]
         },
-        "startName" : "Show Process Viewer Using Case ID (Serenity theme)"
+        "startName" : "Show Process Viewer Using Case ID (Serenity theme)",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 200, "y" : 392 },
@@ -248,20 +248,17 @@
         "outLink" : "showProcessViewerOfLeaveRequestUsingTaskId.ivp",
         "input" : {
           "code" : [
-            "import com.axonivy.portal.components.util.TaskUtils;",
-            "import ch.ivyteam.ivy.workflow.ICase;",
+            "import ch.ivyteam.ivy.workflow.TaskState;",
+            "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
             "import ch.ivyteam.ivy.workflow.ITask;",
-            "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
-            "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
-            "import ch.ivyteam.ivy.workflow.IProcessStart;",
-            "IProcessStart processStart = ProcessStartUtils.findProcessStartByUserFriendlyRequestPath(\"Start Processes/LeaveRequest/start.ivp\");",
-            "CaseQuery caseQuery = CaseQuery.businessCases().where().taskStartId().isEqual(processStart.getId()).orderBy().caseId().descendingNullLast();",
-            "ICase caze = ivy.wf.getCaseQueryExecutor().getFirstResult(caseQuery) as ICase;",
-            "List<ITask> suspendedTasks = TaskUtils.getSuspendedTasksByCase(caze);",
-            "out.selectedTaskId = suspendedTasks.size() > 0 ? suspendedTasks.get(0).getId() : 0;"
+            "",
+            "TaskQuery taskQuery = TaskQuery.create().where().name().isLikeIgnoreCase(\"%Leave Request%\").and().state().isEqual(TaskState.SUSPENDED);",
+            "ITask task = ivy.wf.getTaskQueryExecutor().getFirstResult(taskQuery) as ITask;",
+            "out.selectedTaskId = task != null ? task.getId():0;"
           ]
         },
-        "startName" : "Show Process Viewer Using Task ID"
+        "startName" : "Show Process Viewer Using Task ID",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 208, "y" : 32 },
@@ -313,20 +310,17 @@
         "showInStartList" : false,
         "input" : {
           "code" : [
-            "import com.axonivy.portal.components.util.TaskUtils;",
-            "import ch.ivyteam.ivy.workflow.ICase;",
+            "import ch.ivyteam.ivy.workflow.TaskState;",
+            "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
             "import ch.ivyteam.ivy.workflow.ITask;",
-            "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
-            "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
-            "import ch.ivyteam.ivy.workflow.IProcessStart;",
-            "IProcessStart processStart = ProcessStartUtils.findProcessStartByUserFriendlyRequestPath(\"Start Processes/LeaveRequest/start.ivp\");",
-            "CaseQuery caseQuery = CaseQuery.businessCases().where().taskStartId().isEqual(processStart.getId()).orderBy().caseId().descendingNullLast();",
-            "ICase caze = ivy.wf.getCaseQueryExecutor().getFirstResult(caseQuery) as ICase;",
-            "List<ITask> suspendedTasks = TaskUtils.getSuspendedTasksByCase(caze);",
-            "out.selectedTaskId = suspendedTasks.size() > 0 ? suspendedTasks.get(0).getId() : 0;"
+            "",
+            "TaskQuery taskQuery = TaskQuery.create().where().name().isLikeIgnoreCase(\"%Leave Request%\").and().state().isEqual(TaskState.SUSPENDED);",
+            "ITask task = ivy.wf.getTaskQueryExecutor().getFirstResult(taskQuery) as ITask;",
+            "out.selectedTaskId = task != null ? task.getId():0;"
           ]
         },
-        "startName" : "Show Process Viewer Using Task ID (Serenity theme)"
+        "startName" : "Show Process Viewer Using Task ID (Serenity theme)",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 200, "y" : 168 },

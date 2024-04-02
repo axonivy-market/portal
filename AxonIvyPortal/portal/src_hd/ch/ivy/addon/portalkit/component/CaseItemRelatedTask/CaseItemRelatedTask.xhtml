@@ -50,9 +50,7 @@
         </p:dataScroller>
 
         <h:outputText rendered="#{empty data.relatedTasks}" styleClass="ui-g-12 no-running-task-case"
-          value="#{cc.attrs.case.state eq 'DONE' 
-          ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noRunningTask') 
-          : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noRunningTasksAndCasesPermission')}" />
+          value="#{ivy.cms.co(cc.attrs.case.state eq 'DONE' ? '/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noRunningTask':'/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noRunningTasksAndCasesPermission')}" />
 
       </div>
     </div>

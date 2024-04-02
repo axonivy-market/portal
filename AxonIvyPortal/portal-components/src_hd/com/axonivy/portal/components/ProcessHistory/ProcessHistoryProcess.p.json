@@ -42,7 +42,7 @@
             { "name" : "isOpenInFrame", "type" : "Boolean" }
           ],
           "map" : {
-            "param.caseView" : "in.iCase",
+            "param.caseView" : "in.caze",
             "param.isShowBackButton" : "true",
             "param.isOpenInFrame" : "in.isOpenInFrame"
           }
@@ -60,11 +60,11 @@
         "callSignature" : "openDetails",
         "input" : {
           "params" : [
-            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "caze", "type" : "ch.ivyteam.ivy.workflow.ICase" },
             { "name" : "isOpenInFrame", "type" : "Boolean" }
           ],
           "map" : {
-            "out.iCase" : "param.iCase",
+            "out.caze" : "param.caze",
             "out.isOpenInFrame" : "param.isOpenInFrame"
           }
         },

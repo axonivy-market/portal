@@ -18,7 +18,9 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
-import org.primefaces.model.SortOrder;
+import org.primefaces.model.FilterMeta;
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortMeta;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
@@ -44,7 +46,6 @@ import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.jsf.primefaces.legazy.LazyDataModel7;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -56,10 +57,7 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
  * Lazy data model for task. Only override method which is mentioned in Portal document
  *
  */
-public class TaskLazyDataModel extends LazyDataModel7<ITask> {
-  /**
-   * @hidden
-   */
+public class TaskLazyDataModel extends LazyDataModel<ITask> {
   public static final String DESCRIPTION = "DESCRIPTION";
 
   private static final long serialVersionUID = -6615871274830927272L;
@@ -104,7 +102,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   protected boolean isSelectedAllFilters;
 
   /**
-   * @hidden
    * @param taskWidgetComponentId
    */
   public TaskLazyDataModel(String taskWidgetComponentId) {
@@ -138,7 +135,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @return default task filter data
    */
   public TaskFilterData buildDefaultTaskFilterData() {
@@ -152,16 +148,10 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
     return defaultTaskFilterData;
   }
 
-  /**
-   * @hidden
-   */
   public TaskLazyDataModel() {
     this("task-widget");
   }
 
-  /**
-   * @hidden
-   */
   public void updateDisableTaskCount() {
     disableTaskCount = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.DISABLE_TASK_COUNT);
   }
@@ -181,7 +171,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @throws ReflectiveOperationException
    */
   public void initFilters() throws ReflectiveOperationException {
@@ -261,12 +250,8 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
     return !isRelatedTaskDisplayed && !isNotKeepFilter;
   }
 
-  /**
-   * @hidden
-   * Lazy load task
-   */
   @Override
-  public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+  public List<ITask> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
     if (isGuide && compactMode) {
       return createDummyDataForGuide();
     } else {
@@ -303,7 +288,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @return isGuide
    */
   public boolean getIsGuide() {
@@ -311,7 +295,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param isGuide
    */
   public void setIsGuide(boolean isGuide) {
@@ -421,7 +404,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param sortField
    * @param sortDescending
    */
@@ -438,7 +420,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param category
    */
   public void setCategory(String category) {
@@ -446,7 +427,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param isAdminQuery
    */
   public void setAdminQuery(boolean isAdminQuery) {
@@ -457,7 +437,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * No need since 9.2, always take login username
    * @param involvedUsername
    */
@@ -467,7 +446,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param taskId
    */
   public void setTaskId(Long taskId) {
@@ -477,7 +455,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param caseId
    */
   public void setCaseId(Long caseId) {
@@ -485,7 +462,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param isQueryByBusinessCaseId
    */
   public void setQueryByBusinessCaseId(boolean isQueryByBusinessCaseId) {
@@ -493,7 +469,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param assigneeType
    */
   public void setTaskAssigneeType(TaskAssigneeType assigneeType) {
@@ -501,7 +476,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @return criteria.getSortField()
    */
   public String getSortField() {
@@ -509,7 +483,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @return criteria.isSortDescending()
    */
   public boolean isSortDescending() {
@@ -517,7 +490,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param includedStates
    */
   public void setIncludedStates(List<TaskState> includedStates) {
@@ -526,7 +498,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param includedStates task state list
    */
   public void addIncludedStates(List<TaskState> includedStates) {
@@ -535,7 +506,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * Setter for task search criteria
    * @param criteria
    */
@@ -552,7 +522,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * Detect whether task list is in compact mode
    * @return compactMode
    */
@@ -561,7 +530,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * Set compact mode. If true also clear selected filter
    * @param compactMode
    */
@@ -573,7 +541,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @return caseName
    */
   public String getCaseName() {
@@ -581,7 +548,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param caseName
    */
   public void setCaseName(String caseName) {
@@ -589,7 +555,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * Return all filters of data model
    * @return filters
    */
@@ -598,7 +563,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * Return all selected filters of data model
    * @return selectedFilters
    */
@@ -607,7 +571,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * Set selected filters for data model
    * @param selectedFilters
    */
@@ -616,7 +579,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * Return task filter container
    * @return filterContainer
    */
@@ -625,7 +587,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param filterContainer
    */
   public void setFilterContainer(TaskFilterContainer filterContainer) {
@@ -633,7 +594,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @return selectedTaskFilterData
    */
   public TaskFilterData getSelectedTaskFilterData() {
@@ -641,7 +601,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param selectedTaskFilterData
    */
   public void setSelectedTaskFilterData(TaskFilterData selectedTaskFilterData) {
@@ -649,7 +608,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param filter
    */
   public void removeFilter(TaskFilter filter) {
@@ -659,7 +617,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @throws ReflectiveOperationException
    */
   public void resetFilters() throws ReflectiveOperationException {
@@ -671,7 +628,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param filterToBeRemoved
    * @return is same task filter data
    */
@@ -685,7 +641,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * Save all filter settings to business data
    *
    * @param filterName
@@ -728,7 +683,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param event
    */
   @SuppressWarnings("unchecked")
@@ -736,9 +690,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
     oldSelectedFilters = (List<TaskFilter>) event.getOldValue();
   }
 
-  /**
-   * @hidden
-   */
   @SuppressWarnings("unchecked")
   public void updateSelectedFilter() {
     List<TaskFilter> toggleFilters = null;
@@ -755,9 +706,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
     submittedFilterSelection = new ArrayList<>(selectedFilters);
   }
 
-  /**
-   * @hidden
-   */
   public void restoreFiltersSelection() {
     if (CollectionUtils.isNotEmpty(submittedFilterSelection)) {
       selectedFilters = new ArrayList<>(submittedFilterSelection);
@@ -765,16 +713,10 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
     isSelectedAllFilters = selectedFilters.size() == filters.size();
   }
 
-  /**
-   * @hidden
-   */
   public void onFilterApply() {
     resetFilterData();
   }
 
-  /**
-   * @hidden
-   */
   public void onKeywordChange() {
     resetFilterData();
   }
@@ -787,7 +729,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @return PermissionUtils.checkReadAllTasksPermission()
    */
   public boolean hasReadAllTasksPermisson() {
@@ -863,9 +804,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
     }
   }
 
-  /**
-   * @hidden
-   */
   public void initColumnsConfiguration() {
     if (CollectionUtils.isEmpty(allColumns)) {
       allColumns.addAll(getDefaultColumns());
@@ -892,9 +830,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
     setDisableSelectionCheckboxes(isAutoHideColumns);
   }
 
-  /**
-   * @hidden
-   */
   @Override
   public void setRowIndex(int index) {
     int idx = index;
@@ -907,16 +842,12 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   /**
    * super.setRowIndex(index);
    *
-   * @hidden
    * @param index
    */
   public void setRowIndexAtSuper(int index) {
     super.setRowIndex(index);
   }
 
-  /**
-   * @hidden
-   */
   @Override
   public ITask getRowData() {
     if (rowIndex >= 0 && rowIndex < data.size()) {
@@ -927,16 +858,12 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @return super.getRowData();
    */
   public ITask getRowDataAtSuper() {
     return super.getRowData();
   }
 
-  /**
-   * @hidden
-   */
   @Override
   public boolean isRowAvailable() {
     if (data == null) {
@@ -946,7 +873,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @return super.isRowAvailable();
    */
   public boolean isRowAvailableAtSuper() {
@@ -990,9 +916,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/" + column);
   }
 
-  /**
-   * @hidden
-   */
   public void saveColumnsConfiguration() {
     // avoid duplicating
     for (String requiredColumn : portalRequiredColumns) {
@@ -1034,7 +957,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param selectedColumns
    */
   public void setSelectedColumns(List<String> selectedColumns) {
@@ -1042,7 +964,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @return selectedColumns
    */
   public List<String> getSelectedColumns() {
@@ -1050,7 +971,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @return allColumns
    */
   public List<String> getAllColumns() {
@@ -1067,7 +987,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @return portalRequiredColumns
    */
   public List<String> getPortalRequiredColumns() {
@@ -1075,7 +994,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @return isAutoHideColumns
    */
   public boolean isAutoHideColumns() {
@@ -1083,7 +1001,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param isAutoHideColumns
    */
   public void setAutoHideColumns(boolean isAutoHideColumns) {
@@ -1091,7 +1008,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @return isDisableSelectionCheckboxes
    */
   public boolean isDisableSelectionCheckboxes() {
@@ -1099,7 +1015,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param isDisableSelectionCheckboxes
    */
   public void setDisableSelectionCheckboxes(boolean isDisableSelectionCheckboxes) {
@@ -1107,7 +1022,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @return isRelatedTaskDisplayed
    */
   public boolean isRelatedTaskDisplayed() {
@@ -1115,7 +1029,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param isRelatedTaskDisplayed
    */
   public void setRelatedTaskDisplayed(boolean isRelatedTaskDisplayed) {
@@ -1123,7 +1036,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @return isNotKeepFilter
    */
   public boolean isNotKeepFilter() {
@@ -1131,7 +1043,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param isNotKeepFilter
    */
   public void setNotKeepFilter(boolean isNotKeepFilter) {
@@ -1183,7 +1094,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
 
 
   /**
-   * @hidden
    * @param sortField
    */
   public void sort(String sortField) {
@@ -1209,7 +1119,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param sortField
    * @return standardSortFields.contains(sortField)
    */
@@ -1218,7 +1127,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @return disableTaskCount
    */
   public boolean getDisableTaskCount() {
@@ -1226,7 +1134,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param disableTaskCount
    */
   public void setDisableTaskCount(boolean disableTaskCount) {
@@ -1234,7 +1141,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param defaultTaskFilterData
    */
   public void setDefaultTaskFilterData(TaskFilterData defaultTaskFilterData) {
@@ -1242,7 +1148,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @return defaultTaskFilterData
    */
   public TaskFilterData getDefaultTaskFilterData() {
@@ -1250,7 +1155,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @return isSelectedDefaultFilter
    */
   public boolean isSelectedDefaultFilter() {
@@ -1258,7 +1162,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param isSelectedDefaultFilter
    */
   public void setSelectedDefaultFilter(boolean isSelectedDefaultFilter) {
@@ -1266,7 +1169,6 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @return isSelectedAllFilters
    */
   public boolean isSelectedAllFilters() {
@@ -1274,16 +1176,12 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   /**
-   * @hidden
    * @param isSelectedAllFilters
    */
   public void setSelectedAllFilters(boolean isSelectedAllFilters) {
     this.isSelectedAllFilters = isSelectedAllFilters;
   }
 
-  /**
-   * @hidden
-   */
   public void onSelectedAllFilters() {
     if (isSelectedAllFilters) {
       selectedFilters = new ArrayList<>(filters);
@@ -1292,10 +1190,12 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
     }
   }
 
-  /**
-   * @hidden
-   */
   public void onSelectedFilter() {
     isSelectedAllFilters = selectedFilters.size() == filters.size();
+  }
+
+  @Override
+  public int count(Map<String, FilterMeta> filterBy) {
+    return 0;
   }
 }

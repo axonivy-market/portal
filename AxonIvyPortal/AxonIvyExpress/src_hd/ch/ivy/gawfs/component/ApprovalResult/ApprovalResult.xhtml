@@ -35,7 +35,7 @@
           </p:column>
           <p:column headerText="#{ivy.cms.co('/Dialogs/WorkflowExecution/FinalReviewForm/approvalStatus')}">
             <h:outputText
-              value="#{approval.isApproved ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" />
+              value="#{ivy.cms.co(approval.isApproved ? '/ch.ivy.addon.portalkit.ui.jsf/common/yes' : '/ch.ivy.addon.portalkit.ui.jsf/common/no')}" />
           </p:column>
         </p:dataTable>
       </div>

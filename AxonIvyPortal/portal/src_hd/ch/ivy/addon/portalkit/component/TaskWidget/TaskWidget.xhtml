@@ -349,7 +349,7 @@
             itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/typeOnlyMe')}"
             itemValue="ONLY_ME" />
           <f:selectItem id="all-users" itemDisabled="#{!permissionBean.hasAdminPermission()}"
-            itemLabel="#{taskWidgetBean.adminTaskStateIncluded ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/typeAdmin') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/typeAllUsers')}"
+            itemLabel="#{ivy.cms.co(taskWidgetBean.adminTaskStateIncluded ? '/ch.ivy.addon.portalkit.ui.jsf/common/typeAdmin':'/ch.ivy.addon.portalkit.ui.jsf/common/typeAllUsers')}"
             itemValue="#{taskWidgetBean.adminTaskStateIncluded ? 'ALL_ADMINS' : 'ALL_USERS'}" />
         </p:selectOneRadio>
       </h:panelGrid>

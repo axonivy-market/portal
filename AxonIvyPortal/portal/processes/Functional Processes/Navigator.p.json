@@ -487,7 +487,7 @@
             { "name" : "isShowBackButton", "type" : "Boolean" }
           ],
           "map" : {
-            "param.caseData" : "in.iCase",
+            "param.caseData" : "in.caze",
             "param.isShowBackButton" : "true"
           }
         }
@@ -546,7 +546,7 @@
             "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
             "import ch.ivyteam.ivy.workflow.ICase;",
             "",
-            "out.iCase = ivy.wf.getGlobalContext().getCaseQueryExecutor().createCaseQuery().where().caseId().isEqual(in.caseId.id()).executor().firstResult() as ICase;"
+            "out.caze = ivy.wf.getGlobalContext().getCaseQueryExecutor().createCaseQuery().where().caseId().isEqual(in.caseId.id()).executor().firstResult() as ICase;"
           ]
         }
       },
@@ -606,7 +606,7 @@
             "import ch.ivyteam.ivy.workflow.ITask;",
             "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
             "",
-            "out.iTask = ivy.wf.getGlobalContext().getTaskQueryExecutor().createTaskQuery().where().taskId().isEqual(in.taskId).executor().firstResult() as ITask;"
+            "out.task = ivy.wf.getGlobalContext().getTaskQueryExecutor().createTaskQuery().where().taskId().isEqual(in.taskId).executor().firstResult() as ITask;"
           ]
         }
       },
@@ -629,7 +629,7 @@
             { "name" : "showItemDetailsHeader", "type" : "Boolean" }
           ],
           "map" : {
-            "param.task" : "in.iTask",
+            "param.task" : "in.task",
             "param.portalPage" : "ch.ivy.addon.portalkit.enums.PortalPage.CASE_DETAIL_FROM_TASK",
             "param.isFromTaskList" : "false",
             "param.showItemDetailsHeader" : "in.showItemDetailsHeader"
@@ -637,8 +637,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 2856, "y" : 1616 },
-        "size" : { "width" : 48, "height" : 24 }
+        "at" : { "x" : 2855, "y" : 1612 },
+        "size" : { "width" : 159, "height" : 64 }
       },
       "connect" : { "id" : "f55", "to" : "f18" }
     }, {
@@ -825,7 +825,7 @@
             "import ch.ivyteam.ivy.workflow.ITask;",
             "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
             "",
-            "out.iTask = ivy.wf.getGlobalContext().getTaskQueryExecutor().createTaskQuery().where().taskId().isEqual(in.taskId).executor().firstResult() as ITask;"
+            "out.task = ivy.wf.getGlobalContext().getTaskQueryExecutor().createTaskQuery().where().taskId().isEqual(in.taskId).executor().firstResult() as ITask;"
           ]
         }
       },
@@ -847,15 +847,15 @@
             { "name" : "isFromTaskList", "type" : "Boolean" }
           ],
           "map" : {
-            "param.task" : "in.iTask",
+            "param.task" : "in.task",
             "param.portalPage" : "ch.ivy.addon.portalkit.enums.PortalPage.CASE_DETAIL_FROM_TASK",
             "param.isFromTaskList" : "false"
           }
         }
       },
       "visual" : {
-        "at" : { "x" : 2440, "y" : 1992 },
-        "size" : { "width" : 48, "height" : 24 }
+        "at" : { "x" : 2440, "y" : 2008 },
+        "size" : { "width" : 144, "height" : 56 }
       },
       "connect" : { "id" : "f82", "to" : "f79" }
     }, {
