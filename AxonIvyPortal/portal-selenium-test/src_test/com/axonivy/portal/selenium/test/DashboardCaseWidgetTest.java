@@ -111,7 +111,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     CaseDetailsPage detailsCase = caseWidget.openDetailsCase(ORDER_PIZZA);
-    assertEquals(1, detailsCase.countRelatedCases());
+    detailsCase.countRelatedCases().shouldHave(size(1));
   }
   
   @Test
