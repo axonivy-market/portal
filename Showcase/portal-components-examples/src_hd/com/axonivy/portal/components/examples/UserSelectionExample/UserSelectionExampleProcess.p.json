@@ -94,12 +94,12 @@
         "guid" : "18189B78B8650A2F",
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import org.primefaces.PrimeFaces;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
+            "import com.axonivy.portal.components.util.HtmlParser;",
             "",
-            "FacesContext.getCurrentInstance().addMessage(\"form:item-select-event-component:item-select-event-for-user-selection\", FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, \"You selected \" + in.selectedUserForInsertChildren.getDisplayName(), null));"
+            "FacesContext.getCurrentInstance().addMessage(\"form:item-select-event-component:item-select-event-for-user-selection\", new FacesMessage(FacesMessage.SEVERITY_INFO, \"You selected \" + HtmlParser.sanitize(in.selectedUserForInsertChildren.getDisplayName()), null));"
           ]
         }
       },

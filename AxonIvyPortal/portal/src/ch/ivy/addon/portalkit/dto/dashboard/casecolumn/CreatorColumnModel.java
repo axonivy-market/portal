@@ -31,7 +31,6 @@ public class CreatorColumnModel extends CaseColumnModel implements Serializable 
     this.style = defaultIfEmpty(this.style, getDefaultStyle());
     this.format = getDefaultFormat();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
-    this.quickSearch = defaultIfEmpty(this.quickSearch, false);
   }
 
   @Override
@@ -111,11 +110,6 @@ public class CreatorColumnModel extends CaseColumnModel implements Serializable 
   
   private SecurityMemberDTO findSecurityMember(String memberName) {
     return ServiceUtilities.findSecurityMemberByName(memberName);
-  }
-
-  @Override
-  public boolean canQuickSearch() {
-    return true;
   }
 
 }

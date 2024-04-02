@@ -383,7 +383,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public TaskEditWidgetNewDashBoardPage openEditTaskWidget() {
     $$("div.table-widget-panel div.widget__header").filter(text(taskWidgetName)).first()
         .shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='edit-widget']")
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+        .shouldBe(getClickableCondition()).click();
     return new TaskEditWidgetNewDashBoardPage();
   }
 
@@ -507,7 +507,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void setInputForQuickSearch(String input) {
     getQuickSearchForm().$("input").sendKeys(input);
-    waitForPageLoad();
+    waitPageLoaded();
   }
 
   private SelenideElement getQuickSearchForm() {
@@ -516,7 +516,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void clearQuickSearchInput() {
     getQuickSearchForm().$("input").clear();
-    waitForPageLoad();
+    waitPageLoaded();
   }
 
   public ElementsCollection getCaseList() {
@@ -525,8 +525,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public boolean isEmptyMessageAppear() {
-    return $("div[id$='empty-message-container'][class='empty-message-container ']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .isDisplayed();
+    return $("div[id$='empty-message-container']").exists();
   }
 
   public boolean isQuickSearchInputShow(String widgetIndex) {

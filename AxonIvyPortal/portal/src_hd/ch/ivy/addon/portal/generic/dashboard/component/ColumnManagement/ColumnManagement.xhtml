@@ -38,7 +38,7 @@
             rendered="#{column.canQuickSearch()}">
             <p:commandLink id="toggle-quick-search" styleClass="ui-selectbooleancheckbox ui-chkbox ui-widget" process="@this"
               actionListener="#{columnManagementBean.handleQuickSearch(column)}"
-              update="column-management-datatable" partialSubmit="true" immediate="true">
+              global="false" update="column-management-datatable" partialSubmit="true" immediate="true">
               <h:panelGroup styleClass="ui-chkbox-box ui-widget ui-corner-all ui-state-default #{column.quickSearch ? 'ui-state-active':''}">
                 <span class="ui-chkbox-icon ui-icon ui-c #{column.quickSearch ? 'ui-icon-check':'ui-icon-blank'}"></span>
               </h:panelGroup>

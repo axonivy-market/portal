@@ -280,27 +280,4 @@ clickByJavaScript($(caseEditWidgetId).$("button[id$='widget-configuration-save-b
     getConfigurationDialog().$(".ui-dialog-footer").$("a").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id='new-widget-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
-
-  public void clickOnQuickSearchCheckBox() {
-    getQuickSearchCheckBox().click();
-  }
-
-  public WebElement getQuickSearchCheckBox() {
-    return $("div[id$='filter-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
-  }
-
-  public void clickOnQuickSearchByField(String fieldName) {
-    getColumnManagementDialog().$("div[id$='column-management-datatable']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("table tbody").$$("tr").filter(text(fieldName)).first().$("div[id$='quick-search-checkbox-panel']")
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-  }
-
-  public boolean isQuickSearchClicked(String fieldName) {
-    return getColumnManagementDialog().$("div[id$='column-management-datatable']")
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("table tbody").$$("tr").filter(text(fieldName)).first()
-        .$("div[id$='quick-search-checkbox-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a").$("span span")
-        .getAttribute("class").contains("ui-icon-check");
-  }
 }
