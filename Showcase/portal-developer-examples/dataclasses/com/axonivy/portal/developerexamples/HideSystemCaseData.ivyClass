@@ -1,0 +1,3 @@
+HideSystemCaseData #class
+com.axonivy.portal.developerexamples #namespace
+hideBusinessCase Boolean #field
