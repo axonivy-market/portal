@@ -6044,8 +6044,7 @@ a.dashboard-action-container label {
   justify-content: center;
 }
 
-.external-link-preview-image-panel .external-link-preview-image-overlay-panel
-  {
+.external-link-preview-image-panel .external-link-preview-image-overlay-panel {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -6054,8 +6053,7 @@ a.dashboard-action-container label {
   display: none;
 }
 
-.external-link-preview-image-panel:hover .external-link-preview-image-overlay-panel
-  {
+.external-link-preview-image-panel:hover .external-link-preview-image-overlay-panel{
   display: block;
 }
 
@@ -6065,6 +6063,19 @@ a.dashboard-action-container label {
   top: 7px;
   z-index: 1;
   border-radius: 50%;
+}
+
+.external-link-edit-block {
+  width: 500px;
+  display: inline-block;
+}
+
+.external-link-edit-display-text {
+  max-width: 460px;
+  display: table-cell;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 /* ============ DASHBOARD ======== */
