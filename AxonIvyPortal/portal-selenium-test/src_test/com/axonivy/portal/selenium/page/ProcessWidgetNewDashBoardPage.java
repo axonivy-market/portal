@@ -31,18 +31,18 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
     this.processWidgetId = processWidgetId;
     this.processWidgetName = processWidgetName;
   }
-
+  
   public ElementsCollection expand() {
     return $$("div.widget__header").filter(text(processWidgetName));
   }
-
+  
   public void startProcessByName(String processName) {
-    var startProcess = $(processWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("span.process-start-list-item")
-        .filter(text(processName)).first().$("a");
+    var startProcess = $(processWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("span.process-start-list-item").filter(text(processName))
+        .first().$("a");
     waitUntilElementToBeClickable(startProcess);
     startProcess.click();
   }
-
+  
   public void deleteProcessWidget() {
     $$("div.table-widget-panel div.widget__header").filter(text(processWidgetName)).first()
         .shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='delete-widget']")

@@ -10,6 +10,8 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
+import com.axonivy.portal.components.util.FacesMessageUtils;
+
 import ch.ivyteam.ivy.environment.Ivy;
 
 @FacesValidator("emailValidator")
@@ -22,7 +24,7 @@ public class EmailValidator implements Validator {
     String strValue = value == null ? null : value.toString();
     Matcher matcher = pattern.matcher(strValue);
     if (!matcher.matches()) {
-      FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+      FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/emailSetting/invalidEmailFormat"), null);
       throw new ValidatorException(message);
     }
