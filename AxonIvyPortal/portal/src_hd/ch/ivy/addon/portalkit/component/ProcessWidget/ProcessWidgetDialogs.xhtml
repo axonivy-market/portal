@@ -70,7 +70,7 @@
             saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
             <f:facet name="output">
-              <h:outputText styleClass="u-mar-right-5" value="#{processWidgetBean.editedExternalLink.name}" />
+              <h:outputText styleClass="u-mar-right-5 external-link-edit-display-text" value="#{processWidgetBean.editedExternalLink.name}" />
               <a href="#" class="si si-graphic-tablet-drawing-pen" />
             </f:facet>
             <div class="ui-fluid ui-inputgroup">
@@ -87,11 +87,11 @@
 
           <!-- Start link -->
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')}" />
-          <p:inplace editor="true" styleClass="md-inputfield" effectSpeed="fast"
+          <p:inplace editor="true" styleClass="md-inputfield external-link-edit-block" effectSpeed="fast"
             saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
             <f:facet name="output">
-              <h:outputText styleClass="u-mar-right-5" value="#{processWidgetBean.editedExternalLink.link}" />
+              <h:outputText styleClass="u-mar-right-5 external-link-edit-display-text" value="#{processWidgetBean.editedExternalLink.link}" />
               <a href="#" class="si si-graphic-tablet-drawing-pen" />
             </f:facet>
             <p:inputText id="external-link" value="#{processWidgetBean.editedExternalLink.link}" required="true"
