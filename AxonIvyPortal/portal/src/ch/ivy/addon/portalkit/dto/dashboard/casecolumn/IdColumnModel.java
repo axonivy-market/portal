@@ -14,7 +14,6 @@ public class IdColumnModel extends CaseColumnModel implements Serializable {
     super.initDefaultValue();
     this.field = DashboardStandardCaseColumn.ID.getField();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
-    this.quickSearch = defaultIfEmpty(this.quickSearch, false);
   }
 
   @Override
@@ -33,10 +32,5 @@ public class IdColumnModel extends CaseColumnModel implements Serializable {
       return null;
     }
     return caze.getId();
-  }
-
-  @Override
-  public boolean canQuickSearch() {
-    return true;
   }
 }

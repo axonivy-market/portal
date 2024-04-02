@@ -94,7 +94,8 @@ public abstract class DashboardWidget implements Serializable {
   public void buildStatisticInfos() {}
 
   @JsonIgnore
-  public void setQuickSearchKeyword() {}
+  public void setQuickSearchKeyword() {
+  }
 
   @JsonIgnore
   public void updateQuickSearchKeyword() {

@@ -301,7 +301,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getColumnManagementDialog() {
-    return $("div[id$='column-management-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("div[id$='column-management-dialog']");
   }
 
   public void removeAddedField(String field) {
@@ -332,7 +332,6 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public boolean isQuickSearchClicked(String fieldName) {
-    waitForPageLoad();
     return getColumnManagementDialog().$("div[id$='column-management-datatable']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("table tbody").$$("tr").filter(text(fieldName)).first()
         .$("div[id$='quick-search-checkbox-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a").$("span span")
