@@ -13,7 +13,7 @@
         "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "caseMapDetail", "type" : "com.axonivy.portal.userexamples.dto.CaseMapDetail", "desc" : "" },
+            { "name" : "caseMapDetail", "type" : "ch.ivy.addon.portalkit.bo.CaseMapDetail", "desc" : "" },
             { "name" : "index", "type" : "Integer", "desc" : "" }
           ],
           "map" : {
@@ -93,7 +93,7 @@
         "signature" : "navigate",
         "input" : {
           "params" : [
-            { "name" : "caseMapDetail", "type" : "com.axonivy.portal.userexamples.dto.CaseMapDetail", "desc" : "" },
+            { "name" : "caseMapDetail", "type" : "ch.ivy.addon.portalkit.bo.CaseMapDetail", "desc" : "" },
             { "name" : "stageIndex", "type" : "Integer", "desc" : "" }
           ],
           "map" : {

@@ -65,7 +65,8 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
+            "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
+            "import ch.ivyteam.ivy.environment.Ivy;",
             "import com.axonivy.portal.components.dto.RoleDTO;",
             "import ch.ivyteam.ivy.security.IRole;",
             "import java.util.Arrays;",
@@ -73,7 +74,7 @@
             "String everybodyRoleName = \"Everybody\";",
             "IRole everybodyRole = ivy.wf.getSecurityContext().roles().find(everybodyRoleName);",
             "in.selectedRoleForReadOnlyField = new RoleDTO(everybodyRole);",
-            "ivy.log.info(\"selected Role for read only field: \" + in.selectedRoleForReadOnlyField.getDisplayName());",
+            "Ivy.log().info(\"selected Role for read only field: \" + in.selectedRoleForReadOnlyField.getDisplayName());",
             "IRole backendDev = ivy.wf.getSecurityContext().roles().find(\"BackendDeveloper\");",
             "if (backendDev == null) {",
             "   ivy.wf.getSecurityContext().roles().create(\"BackendDeveloper\");",
@@ -81,7 +82,7 @@
             "in.excludedRoleNames = Arrays.asList(\"Tester\", \"Supporter\");",
             "in.definedRoleNames = Arrays.asList(\"Everybody\");",
             "in.emptyRoleNames = Arrays.asList(\"\");",
-            "in.roleSelectionSerenityExampleLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/RoleSelectionExample/showRoleSelectionExamplesSerenity.ivp\");"
+            "in.roleSelectionSerenityExampleLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/RoleSelectionExample/showRoleSelectionExamplesSerenity.ivp\");"
           ]
         },
         "sudo" : true

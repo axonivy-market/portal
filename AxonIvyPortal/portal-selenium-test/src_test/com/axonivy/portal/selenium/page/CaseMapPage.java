@@ -5,24 +5,33 @@ import static com.codeborne.selenide.Selenide.$;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
+import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
-public class CaseMapPage extends TaskTemplatePage {
+public class CaseMapPage extends TemplatePage {
+
+  @Override
+  protected String getLoadedLocator() {
+    return "[id$='content-container']";
+  }
 
   public void waitForIFrameContentVisible() {
     $("button[id='form:submit-request']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
-  public void clickSubmitRequestButton() {
+  public NewDashboardPage clickSubmitRequestButton() {
     $("button[id$='submit-request']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     switchBackToParent();
+    return new NewDashboardPage();
   }
 
-  public void clickSubmitButtonAndBackToTaskList() {
-    $("button[id$='submit-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+  public NewDashboardPage clickSubmitButtonAndBackToTaskList() {
+    $("[id$='form:verifier-comment']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).sendKeys("OK");
+    $("button[id$='submit-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     switchBackToParent();
+    return new NewDashboardPage();
   }
 
   public String getHeader() {
@@ -90,28 +99,31 @@ public class CaseMapPage extends TaskTemplatePage {
     $(By.id(id)).sendKeys(value);
   }
 
-  public void clickSubmitButtonCaseMap() {
-    clickByJavaScript($("button[id$='form:submit-button']"));
-    waitPageDisappear();
+  public TaskWidgetPage clickSubmitButton() {
+    $("button[id$='form:submit-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     switchBackToParent();
+    // return new NewDashboardPage();
+    // $("button[id$='form:submit-button']").shouldBe(getClickableCondition()).click();
+    return new TaskWidgetPage();
   }
 
-  public void clickApproveButton() {
-    clickByJavaScript($("button[id$='form:approval-button']"));
-    waitPageDisappear();
-    switchBackToParent();
+  public TaskWidgetPage clickApproveButton() {
+    waitForElementClickableThenClick("button[id$='form:approval-button']");
+    switchToDefaultContent();
+    return new TaskWidgetPage();
   }
 
-  public void clickSubmitContractButton() {
-    clickByJavaScript($("button[id$='submit-contract-button']"));
-    waitPageDisappear();
-    switchBackToParent();
+  public UserExamplesEndPage clickSubmitContractButton() {
+    waitForElementClickableThenClick("button[id$='submit-contract-button']");
+    switchToDefaultContent();
+    return new UserExamplesEndPage();
   }
 
-  public void clickRejectButton() {
-    clickByJavaScript($("button[id$='form:rejected-button']"));
-    waitPageDisappear();
-    switchBackToParent();
+  public TaskWidgetPage clickRejectButton() {
+    waitForElementClickableThenClick("button[id$='form:rejected-button']");
+    switchToDefaultContent();
+    return new TaskWidgetPage();
   }
 
 }

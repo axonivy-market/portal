@@ -1,30 +1,37 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
-  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-  <ui:composition template="/layouts/frame-10-full-width.xhtml">
-    <ui:define name="taskName">
-      <span class="fa fa-subway" />
-      <h:outputText value="#{ivy.task.names().current()} #(#{ivy.task.getId()})"></h:outputText>
-    </ui:define>
+	<ui:composition template="/layouts/TaskTemplate-8.xhtml">
+		<ui:define name="login">
+			<ic:internaltest.ui.CustomLogin />
+		</ui:define>
 
-    <ui:define name="content">
-      <h3>Cancel Approval Request</h3>
-      <h:form prependId="false" id="myForm">
-        <p:messages></p:messages>
-        <h:panelGrid columns="2">
-          <p:outputLabel for="cancelReason"
-            value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/cancelReason')}" />
-          <p:inputText id="cancelReason" value="#{data.cancelReason}"></p:inputText>
-        </h:panelGrid>
-        <h:panelGroup layout="block" styleClass="MarTop20">
-          <p:commandButton value="Submit" icon="fa fa-paper-plane"
-            actionListener="#{logic.cancelApprovalRequest(ivy.case.getBusinessCase().getId())}" />
-          <p:spacer width="5px" />
-        </h:panelGroup>
-      </h:form>
-    </ui:define>
-  </ui:composition>
+		<ui:define name="taskName">
+			<span class="fa fa-subway" />
+			<h:outputText value="#{ivy.task.names().current()} #(#{ivy.task.getId()})"></h:outputText>
+		</ui:define>
+
+		<ui:define name="content">
+			<h3>Cancel Approval Request</h3>
+			<h:form prependId="false" id="myForm">
+				<p:messages></p:messages>
+				<h:panelGrid columns="2">
+					<p:outputLabel for="cancelReason"
+						value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/cancelReason')}" />
+					<p:inputText id="cancelReason" value="#{data.cancelReason}"></p:inputText>
+				</h:panelGrid>
+				 <h:panelGroup layout="block" styleClass="MarTop20">
+					<p:commandButton value="Submit"
+						icon="fa fa-paper-plane" actionListener="#{logic.cancelApprovalRequest(ivy.case.getBusinessCase().getId())}" />
+					<p:spacer width="5px"/>
+	      		</h:panelGroup>
+			</h:form>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

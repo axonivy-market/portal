@@ -44,6 +44,7 @@ public class ChatScreenshotTest extends ScreenshotBaseTest {
     taskWidgetPage.openTask("Maternity Leave Request");
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
 
+
     taskTemplatePage.clickActionButton();
     ScreenshotUtils.executeDecorateJs("highlightJoinGroupChatOption()");
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CHAT_FOLDER + "create-new-group-chat");

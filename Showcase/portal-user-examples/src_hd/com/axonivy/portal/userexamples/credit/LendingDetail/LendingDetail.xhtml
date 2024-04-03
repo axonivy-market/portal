@@ -23,19 +23,19 @@
       <div class="ui-g-5">
         <i class="fa fa-chevron-left ui-md-hidden ui-sm-hidden" style="color:var(--primary-color);"/>
         <p:spacer width="5rem" styleClass="ui-md-hidden ui-sm-hidden"/>
-        <p:commandLink value="#{ivy.cms.co('/Labels/BackToCaseMap')}"
+        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/backToCaseMap')}"
           id="back-to-case-map"
           actionListener="#{logic.navigateToOverviewPage}" />
       </div>
       <div class="ui-g-7 TexAlRight">
         <i class="fa fa-chevron-left ui-md-hidden ui-sm-hidden" style="color:var(--primary-color);" jsf:rendered="#{stageIndex > 0}" />
         <p:spacer width="5rem" styleClass=" ui-md-hidden ui-sm-hidden"/>
-        <p:commandLink value="#{ivy.cms.co('/Labels/PreviousStage')}" 
+        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/previousStage')}" 
           id="previous-stage"
           actionListener="#{logic.navigate(data.caseMapDetail, data.stageIndex - 1)}" 
           rendered="#{stageIndex > 0}"/>
         <p:spacer width="10rem" rendered="#{caseMapDetailBean.renderNextLink(caseMapDetail,stageIndex)}"/>
-        <p:commandLink value="#{ivy.cms.co('/Labels/NextStage')}" 
+        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/nextStage')}" 
           actionListener="#{logic.navigate(data.caseMapDetail, data.stageIndex + 1)}"
           id="next-stage" 
           rendered="#{caseMapDetailBean.renderNextLink(caseMapDetail,stageIndex)}"/>
@@ -46,10 +46,10 @@
     
     <ui:define name="actionButtons">
       <h:form>
-      <p:commandLink value="#{ivy.cms.co('/Labels/Cancel')}"
+      <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         actionListener="#{logic.cancel}" />
       <p:spacer width="20px" />
-      <p:commandButton value="#{ivy.cms.co('/Labels/Start')} #{caseMapDetail.name}"
+      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')} #{caseMapDetail.name}"
         actionListener="#{caseMapDetailBean.startCaseMap(caseMapDetail.startLink)}" />
       </h:form>
     </ui:define>

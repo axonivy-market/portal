@@ -24,7 +24,7 @@
         },
         "case" : {
           "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
           ]
         }
       },

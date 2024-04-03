@@ -20,7 +20,7 @@
           "map" : {
             "out.name" : "param.user",
             "out.note" : "param.note",
-            "out.startDate" : "com.axonivy.portal.userexamples.utils.Dates.parse(param.startDate)"
+            "out.startDate" : "ch.ivy.addon.portalkit.util.Dates.parse(param.startDate)"
           }
         },
         "guid" : "18E18511EDFBFDE3"

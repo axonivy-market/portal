@@ -1,10 +1,13 @@
 pipeline {
-  agent {label 'danh-pc'}
+  agent {label 'portal-slave'}
   
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
   }
 
+  triggers {
+    cron('0 23 * * *')
+  }
 
   tools {
     maven '3.8' 

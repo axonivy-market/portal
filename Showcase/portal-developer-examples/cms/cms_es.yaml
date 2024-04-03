@@ -98,7 +98,43 @@ CustomFields:
     ShipmentDate:
       Description: Columna de fecha de envío, por ejemplo
       Label: Fecha de envío
+DefaultColumns:
+  ACTIVATOR: Responsabl
+  APPLICATION: Aplicación
+  CREATION_TIME: Creado
+  CustomerName: Nombre del cliente
+  EXPIRY_TIME: Expiración
+  ID: ID de la tarea
+  NAME: Nombre / Descripción
+  PRIORITY: Prioridad
+  STATE: Estado
+  ShipmentDate: Fecha de envío
+  caseList:
+    APPLICATION: Aplicación
+    CREATION_TIME: Creado
+    CREATOR: Creador
+    CustomerName: Nombre del cliente
+    FINISHED_TIME: Finalizado
+    ID: ID del caso
+    NAME: Nombre / Descripción
+    OWNER: Propietario
+    STATE: Estado
+    ShipmentDate: Fecha de envío
 Dialogs:
+  Lists:
+    Completeness:
+      ADDITIONAL_IDENTIFICATION_NEEDED: Información adicional necesaria
+      NO_INFORMATION: No hay información disponible
+      PERSON_LEGITIMIZED: Identidad confirmada
+      REQUEST_PROOF: Solicitar documento de identidad
+    ProcessState:
+      APPLICATION: Solicitud
+      DONE: Finalizado
+      IDENTITY_CHECK: Confirmación de identidad
+      INFORMATION: Información
+      INQUIRY: Investigación
+      PROCESSING: Editar
+      VERIFICATION: Verificar
   ch:
     ivyteam:
       ivy:
@@ -113,16 +149,25 @@ Dialogs:
                   Representation: Representante
                   To: Hasta
 Labels:
-  changePasswordWSError: Se produjo un error al cambiar su contraseña. Póngase en contacto con su administrador si este problema persiste.
-  forgotPasswordError: Ha habido un error mientras se procesaba su solicitud. Por favor inténtelo más tarde.
-  passwordResetEmailCantSend: 'Ha habido un problema para enviarle un E-Mail. Por favor inténtelo más tarde. '
-  passwordResetEmailContent: <html>Hola {0},<br/><br/>por favor haga click en este link para restablecer su contraseña <a href="{1}">Restablecer contraseña</a><br/><br/>Saludos</html>
-  passwordResetEmailSent: Si esta dirección de correo electrónico está registrada, le hemos enviado un enlace para recuperar la contraseña.
-  passwordResetEmailSubject: E-Mail para restablecer su contraseña
-  updatePasswordSuccessfully: Contraseña actualizada exitosamente.
-  userNotFound: Si esta dirección de correo electrónico está registrada, le hemos enviado un enlace para recuperar la contraseña.
-  usersHaveSameEmail: Hay varios usuarios usando el mismo E-Mail. Por favor contacte con su administrador.
-  wrongPassword: Error de autenticación, ¡su contraseña parece no ser la correcta!
+  address: Calle / Número
+  cancel: Cancelar
+  caseId: ID del caso
+  city: /Ciudad
+  date: Fecha
+  delete: Eliminar
+  email: Courrier électronique
+  firstName: Nombre
+  personalData: Datos personales
+  phoneNumber: Número de teléfono
+  proceed: Proceder
+  reason: Razón
+  request: Solicitud
+  requestType: Tipo de solicitud
+  surName: Apellido
+  tableDelete: Eliminar
+  tableDownload: Descargar
+  tableName: Nombre
+  zip: Codigo postal
 Processes:
   CategoriedLeaveRequest:
     Cases:
@@ -160,6 +205,9 @@ Processes:
       Signal:
         name: Señal de creación de un nuevo pago
     name: Crear un nuevo pago
+  ProcessWithIndex:
+    name1: ''
+    name2: ''
   TasksForTaskListCustomization:
     Cases:
       Party:
@@ -177,3 +225,14 @@ Processes:
         name: Pedido de pizza
     description: Crear 3 tareas, cada tarea tiene CustomerName y ShipmentDate
     name: Crear tareas para la personalización de la lista de tareas
+sortFields:
+  CREATION_TIME_ASC: Fecha de creación (antiguos primero)
+  CREATION_TIME_DESC: Fecha de creación (nuevos primero)
+  CustomerName_ASC: Nombre del cliente (A -> Z)
+  CustomerName_DESC: Nombre del cliente (Z -> A)
+  EXPIRY_TIME_ASC: Fecha de caducidad (antiguos primero)
+  EXPIRY_TIME_DESC: Fecha de caducidad (nuevos primero)
+  PRIORITY_ASC: Prioridad (alta -> baja)
+  PRIORITY_DESC: Prioridad (baja -> alta)
+  ShipmentDate_ASC: Fecha de envío (antiguos primero)
+  ShipmentDate_DESC: Fecha de envío (nuevos primero)

@@ -34,7 +34,6 @@ public class AbsenceTest extends BaseTest {
     super.setupWithAlternativeLinkAndAccount(cleanUpAbsencesAndSubstituesLink, TestAccount.DEMO_USER);
     updatePortalSetting(HIDE_YEAR.getKey(), "false");
     updatePortalSetting(GLOBAL_FOOTER_INFO.getKey(), "");
-    createTestingTasks();
   }
 
   @Test
@@ -98,9 +97,6 @@ public class AbsenceTest extends BaseTest {
   @Test
   public void testAddDeputyInPermanentToDuringAbsence() {
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadAbsencesPermission.ivp");
-    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateAbsencePermission.ivp");
-    redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateSubstitutePermission.ivp");
     AbsencePage absencePage = openAbsencePage();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     List<String> deputyNames = Arrays.asList(TestAccount.CASE_OWNER_USER.getFullName());
@@ -159,7 +155,6 @@ public class AbsenceTest extends BaseTest {
 
   private AbsencePage openAbsencePage() {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
-    newDashboardPage.waitForGrowlMessageDisappear();
     return newDashboardPage.openAbsencePage();
   }
 

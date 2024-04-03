@@ -33,6 +33,28 @@
         "at" : { "x" : 484, "y" : 64 }
       }
     }, {
+      "id" : "f5",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "HINT: build your task query",
+        "",
+        "out.taskQuery = TaskQuery.create().where().customField().stringField(\"SupportData\").isLike(\"%HELLO WORLD%\");",
+        "",
+        "If you want to differentiate the customization in home page from customization in other places like task list, ",
+        "just check  the attribute isQueryForHomePage",
+        "",
+        "if (in.isQueryForHomePage) { // in home page",
+        "\tin.taskQuery = TaskQuery.create().where().activatorId().isNotNull();",
+        "}"
+      ],
+      "visual" : {
+        "at" : { "x" : 548, "y" : 226 },
+        "size" : { "width" : 640, "height" : 172 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f2" }
+      ]
+    }, {
       "id" : "f2",
       "type" : "Script",
       "name" : "Build task query",
