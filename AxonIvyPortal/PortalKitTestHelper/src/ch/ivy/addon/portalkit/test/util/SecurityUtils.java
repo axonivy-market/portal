@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.security.IPermission;
@@ -36,60 +38,59 @@ import ch.ivyteam.ivy.workflow.IWorkflowSession;
 public class SecurityUtils {
   private static final IPermission ADMIN_PERMISSIONS[] = {
 
-  USER_READ_ABSENCES,
+      USER_READ_ABSENCES,
 
-  USER_READ_SUBSTITUTES,
+      USER_READ_SUBSTITUTES,
 
-  USER_CREATE_ABSENCE,
+      USER_CREATE_ABSENCE,
 
-  USER_CREATE_SUBSTITUTE,
+      USER_CREATE_SUBSTITUTE,
 
-  USER_DELETE_ABSENCE,
+      USER_DELETE_ABSENCE,
 
-  CASE_READ_ALL,
+      CASE_READ_ALL,
 
-  CASE_DESTROY,
+      CASE_DESTROY,
 
-  CASE_WRITE_NAME,
+      CASE_WRITE_NAME,
 
-  CASE_WRITE_DESCRIPTION,
+      CASE_WRITE_DESCRIPTION,
 
-  TASK_READ_ALL,
+      TASK_READ_ALL,
 
-  TASK_PARK_OWN_WORKING_TASK,
+      TASK_PARK_OWN_WORKING_TASK,
 
-  TASK_WRITE_NAME,
+      TASK_WRITE_NAME,
 
-  TASK_WRITE_DESCRIPTION,
+      TASK_WRITE_DESCRIPTION,
 
-  TASK_WRITE_ORIGINAL_PRIORITY,
+      TASK_WRITE_ORIGINAL_PRIORITY,
 
-  TASK_WRITE_ACTIVATOR,
+      TASK_WRITE_ACTIVATOR,
 
-  TASK_RESET_OWN_WORKING_TASK,
+      TASK_RESET_OWN_WORKING_TASK,
 
-  DOCUMENT_OF_INVOLVED_CASE_WRITE,
+      DOCUMENT_OF_INVOLVED_CASE_WRITE,
 
-  IPermissionRepository.instance().findByName("ShowCaseDetails")
-  };
+      IPermissionRepository.instance().findByName("ShowCaseDetails")};
   private static final IPermission DEMO_DENIED_PERMISSIONS[] = {
 
-  TASK_READ_ALL,
+      TASK_READ_ALL,
 
-  CASE_READ_ALL,
+      CASE_READ_ALL,
 
-  USER_READ_ABSENCES,
+      USER_READ_ABSENCES,
 
-  USER_CREATE_ABSENCE,
+      USER_CREATE_ABSENCE,
 
-  USER_DELETE_ABSENCE
+      USER_DELETE_ABSENCE
 
   };
   private static final IPermission DEMO_GRANTED_PERMISSIONS[] = {
 
-  TASK_WRITE_EXPIRY_TIMESTAMP,
+      TASK_WRITE_EXPIRY_TIMESTAMP,
 
-  DOCUMENT_OF_INVOLVED_CASE_WRITE
+      DOCUMENT_OF_INVOLVED_CASE_WRITE
 
   };
 
@@ -104,41 +105,40 @@ public class SecurityUtils {
    * @throws Exception user
    */
   public static boolean hasRole(final IUser user, final String rolename) throws PersistencyException, Exception {
-   // this is faster because  no additional security issue
-    return Sudo.call(
-        () -> {
-          int t = 5; // number retries
-          while (t >= 0) {
-            try {
-              IRole role = ISecurityContext.current().roles().find(rolename);
-              if (role != null) {
-                // return role.getAllUsers().contains(user);
-                return user.getAllRoles().contains(role); // allowed by EON-Security, configured
-                                                          // correctly in
-                                                          // LDAP-Setting of server (do not use
-                                                          // "groups of a user")
-              }
-              t = -1;
-            } catch (Exception ise) {
-              Ivy.log().error("Cannot connect for roles:" + ise);
-              Ivy.log().error("Retries left:" + t);
-              t--;
-              int s = 1;
-              if (Ivy.session() != null) {
-                s = Ivy.session().getIdentifier() + 1;
-                while (s > 10) {
-                  s = s / 2;
-                }
-              }
-              try {
-                Thread.sleep(1000 * s); // wait N secs
-              } catch (InterruptedException ie) {
-                // NOP
-              }
+    // this is faster because no additional security issue
+    return Sudo.call(() -> {
+      int t = 5; // number retries
+      while (t >= 0) {
+        try {
+          IRole role = ISecurityContext.current().roles().find(rolename);
+          if (role != null) {
+            // return role.getAllUsers().contains(user);
+            return user.getAllRoles().contains(role); // allowed by EON-Security, configured
+                                                      // correctly in
+                                                      // LDAP-Setting of server (do not use
+                                                      // "groups of a user")
+          }
+          t = -1;
+        } catch (Exception ise) {
+          Ivy.log().error("Cannot connect for roles:" + ise);
+          Ivy.log().error("Retries left:" + t);
+          t--;
+          int s = 1;
+          if (Ivy.session() != null) {
+            s = Ivy.session().getIdentifier() + 1;
+            while (s > 10) {
+              s = s / 2;
             }
           }
-          return false;
-        });
+          try {
+            Thread.sleep(1000 * s); // wait N secs
+          } catch (InterruptedException ie) {
+            // NOP
+          }
+        }
+      }
+      return false;
+    });
   }
 
   /**
@@ -151,36 +151,35 @@ public class SecurityUtils {
    * @throws Exception Exception
    */
   public static boolean hasRole(final IWorkflowSession session, final String rolename) throws Exception {
-    return Sudo.call(
-        () -> {
-          int t = 5; // number retries
-          while (t >= 0) {
-            try {
-              IRole role = ISecurityContext.current().roles().find(rolename);
-              if (role != null) {
-                return session.hasRole(role, true);
-              }
-              t = -1;
-            } catch (Exception ise) {
-              Ivy.log().error("Cannot connect for roles:" + ise);
-              Ivy.log().error("Retries left:" + t);
-              t--;
-              int s = 1;
-              if (Ivy.session() != null) {
-                s = Ivy.session().getIdentifier() + 1;
-                while (s > 10) {
-                  s = s / 2;
-                }
-              }
-              try {
-                Thread.sleep(1000 * s); // wait N secs
-              } catch (InterruptedException ie) {
-                // NOP
-              }
+    return Sudo.call(() -> {
+      int t = 5; // number retries
+      while (t >= 0) {
+        try {
+          IRole role = ISecurityContext.current().roles().find(rolename);
+          if (role != null) {
+            return session.hasRole(role, true);
+          }
+          t = -1;
+        } catch (Exception ise) {
+          Ivy.log().error("Cannot connect for roles:" + ise);
+          Ivy.log().error("Retries left:" + t);
+          t--;
+          int s = 1;
+          if (Ivy.session() != null) {
+            s = Ivy.session().getIdentifier() + 1;
+            while (s > 10) {
+              s = s / 2;
             }
           }
-          return false;
-        });
+          try {
+            Thread.sleep(1000 * s); // wait N secs
+          } catch (InterruptedException ie) {
+            // NOP
+          }
+        }
+      }
+      return false;
+    });
   }
 
 
@@ -193,15 +192,14 @@ public class SecurityUtils {
   public static List<IUser> findUsersForRole(final String rolename) {
     List<IUser> result = new ArrayList<IUser>();
     try {
-      result = Sudo.call(
-              () -> {
-                List<IUser> result1 = new ArrayList<IUser>();
-                IRole role = ISecurityContext.current().roles().find(rolename);
-                if (role != null) {
-                  result1 = role.users().allPaged().stream().collect(Collectors.toList());
-                }
-                return result1;
-              });
+      result = Sudo.call(() -> {
+        List<IUser> result1 = new ArrayList<IUser>();
+        IRole role = ISecurityContext.current().roles().find(rolename);
+        if (role != null) {
+          result1 = role.users().allPaged().stream().collect(Collectors.toList());
+        }
+        return result1;
+      });
     } catch (Exception e) {
     }
     return result;
@@ -215,17 +213,17 @@ public class SecurityUtils {
   public static List<IUser> findAllUsers() {
     List<IUser> result = new ArrayList<IUser>();
     try {
-      result = Sudo.call(
-          () -> {
-            List<IUser> result1 = new ArrayList<IUser>();
-            List<IUser> users = ISecurityContext.current().users().paged().stream().collect(Collectors.toList());
-            for (IUser u : users) {
-              if (u.getId() != ISecurityContext.current().users().system().getId()) {
-                result1.add(u);
-              }
-            }
-            return result1;
-          });
+      result = Sudo.call(() -> {
+        List<IUser> result1 = new ArrayList<IUser>();
+        List<IUser> users = ISecurityContext.current().users().paged().stream().collect(Collectors.toList());
+        for (IUser u : users) {
+          if (!StringUtils.equals(u.getSecurityMemberId(),
+              ISecurityContext.current().users().system().getSecurityMemberId())) {
+            result1.add(u);
+          }
+        }
+        return result1;
+      });
     } catch (Exception e) {
     }
     return result;

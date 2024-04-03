@@ -4,26 +4,39 @@ import ch.ivyteam.ivy.security.IRole;
 
 public class RoleDTO {
 
+  @Deprecated(forRemoval = true, since = "10.0.20")
   private long id;
   private String name;
   private String displayName;
   private String memberName;
+  private String securityMemberId;
 
   public RoleDTO() {
     super();
   }
 
   public RoleDTO(IRole iRole) {
-    id = iRole.getId();
-    name = iRole.getName();
-    displayName = iRole.getDisplayName();
-    memberName = iRole.getMemberName();
+    this.id = iRole.getId();
+    this.name = iRole.getName();
+    this.displayName = iRole.getDisplayName();
+    this.memberName = iRole.getMemberName();
+    this.securityMemberId = iRole.getSecurityMemberId();
   }
 
+  /**
+   * @deprecated use {@link #getSecurityMemberId()}
+   * @return
+   */
+  @Deprecated(forRemoval = true, since = "10.0.20")
   public long getId() {
     return id;
   }
 
+  /**
+   * @deprecated use {@link #setSecurityMemberId(String)}
+   * @param id
+   */
+  @Deprecated(forRemoval = true, since = "10.0.20")
   public void setId(long id) {
     this.id = id;
   }
@@ -50,5 +63,13 @@ public class RoleDTO {
 
   public void setMemberName(String memberName) {
     this.memberName = memberName;
+  }
+
+  public String getSecurityMemberId() {
+    return securityMemberId;
+  }
+
+  public void setSecurityMemberId(String securityMemberId) {
+    this.securityMemberId = securityMemberId;
   }
 }

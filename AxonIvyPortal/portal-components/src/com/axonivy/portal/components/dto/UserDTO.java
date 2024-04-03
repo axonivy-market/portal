@@ -6,13 +6,14 @@ import ch.ivyteam.ivy.security.IUser;
 
 public class UserDTO {
 
+  @Deprecated(forRemoval = true, since = "10.0.20")
   private long id;
   private String name;
   private String displayName;
   private String memberName;
   private String email;
   private boolean isEnabled;
-  
+  private String securityMemberId;
   public UserDTO() {}
 
   public UserDTO(IUser user) {
@@ -22,6 +23,7 @@ public class UserDTO {
     this.email = user.getEMailAddress();
     this.id = user.getId();
     this.isEnabled = user.isEnabled();
+    this.securityMemberId = user.getSecurityMemberId();
   }
   
   public UserDTO(Record record) {
@@ -38,6 +40,7 @@ public class UserDTO {
     this.displayName = user.getDisplayName();
     this.id = user.getId();
     this.isEnabled = user.isEnabled();
+    this.securityMemberId = user.getSecurityMemberId();
   }
 
   public String getName() {
@@ -64,10 +67,20 @@ public class UserDTO {
     this.email = email;
   }
 
+  /**
+   * @deprecated use {@link #getSecurityMemberId()} 
+   * @return
+   */
+  @Deprecated(forRemoval = true, since = "10.0.20")
   public long getId() {
     return id;
   }
 
+  /**
+   * @deprecated use {@link #setSecurityMemberId(String)}
+   * @param id
+   */
+  @Deprecated(forRemoval = true, since = "10.0.20")
   public void setId(long id) {
     this.id = id;
   }
@@ -93,5 +106,13 @@ public class UserDTO {
       return this.displayName;
     }
     return Ivy.cms().co("/Labels/disabledUserPrefix") + " " + this.displayName;
+  }
+
+  public String getSecurityMemberId() {
+    return securityMemberId;
+  }
+
+  public void setSecurityMemberId(String securityMemberId) {
+    this.securityMemberId = securityMemberId;
   }
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -61,6 +62,9 @@ public class ExternalLink extends AbstractConfiguration {
 
   @JsonIgnore
   public boolean isAbleToEdit() {
+    if (StringUtils.isNotBlank(this.securityMemberId)) {
+      return this.securityMemberId.equals(Ivy.session().getSessionUser().getSecurityMemberId());
+    }
     return this.creatorId == null ? true : this.creatorId == Ivy.session().getSessionUser().getId();
   }
 

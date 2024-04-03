@@ -10,6 +10,7 @@ import ch.ivyteam.ivy.security.IUser;
 public class SecurityMemberDTO implements Serializable {
 
   private static final long serialVersionUID = 5152412894300680832L;
+  @Deprecated(forRemoval = true, since = "10.0.20")
   private long id;
   private String name;
   private String displayName;
@@ -17,6 +18,7 @@ public class SecurityMemberDTO implements Serializable {
   private String eMailAddress;
   private boolean isUser;
   private boolean isEnabled;
+  private String securityMemberId;
 
   public SecurityMemberDTO() {}
 
@@ -34,12 +36,23 @@ public class SecurityMemberDTO implements Serializable {
     else {
       this.isEnabled = true;
     }
+    this.securityMemberId = securityMember.getSecurityMemberId();
   }
 
+  /**
+   * @deprecated use {@link #getSecurityMemberId()}
+   * @return
+   */
+  @Deprecated(since = "10.0.20")
   public long getId() {
     return id;
   }
 
+  /**
+   * @deprecated use {@link #setSecurityMemberId(String)}
+   * @param id
+   */
+  @Deprecated(since = "10.0.20")
   public void setId(long id) {
     this.id = id;
   }
@@ -97,5 +110,13 @@ public class SecurityMemberDTO implements Serializable {
       return this.displayName;
     }
     return Ivy.cms().co("/Labels/disabledUserPrefix") + " " + this.displayName;
+  }
+
+  public String getSecurityMemberId() {
+    return securityMemberId;
+  }
+
+  public void setSecurityMemberId(String securityMemberId) {
+    this.securityMemberId = securityMemberId;
   }
 }
