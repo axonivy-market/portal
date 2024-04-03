@@ -1818,3 +1818,9 @@ i.dashboard-icon-drag-drop {
 .global-search-input.global-small-search-bar {
   width: 200px;
 }
+
+.multiple-language-data-table{
+  overflow: auto;
+  max-height: 50vh;
+  width: fit-content;
+}
