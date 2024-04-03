@@ -16,8 +16,8 @@ import ch.ivy.addon.portalkit.enums.DeputyRoleType;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AbsencePage;
-import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.NewAbsencePage;
+import portal.guitest.page.NewDashboardPage;
 import portal.guitest.page.TemplatePage;
 
 public class AbsenceTest extends BaseTest {
