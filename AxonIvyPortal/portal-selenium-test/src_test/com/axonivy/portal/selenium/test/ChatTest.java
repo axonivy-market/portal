@@ -13,8 +13,8 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.ChatPage;
-import com.axonivy.portal.selenium.page.ExpressTaskPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
 import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
@@ -128,7 +128,7 @@ public class ChatTest extends BaseTest {
     ChatPage chatPage = new NewDashboardPage().getChat();
     // Create chat group via task
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    ExpressTaskPage taskTemplatePage = taskWidgetPage.startExpressTask(0);
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.clickChatGroup();
     if (participants.length != 0) {
@@ -155,7 +155,7 @@ public class ChatTest extends BaseTest {
     login(userJoined);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy("Sick Leave Request Default Case Details Page");
-    ExpressTaskPage taskTemplatePage = taskWidgetPage.startExpressTask(0);
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.clickChatGroup();
     taskTemplatePage.joinProcessChatAlreadyCreated();

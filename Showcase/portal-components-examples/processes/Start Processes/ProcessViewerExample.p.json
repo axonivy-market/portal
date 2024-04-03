@@ -13,13 +13,12 @@
         "input" : {
           "map" : { },
           "code" : [
-            "import com.axonivy.portal.components.util.ProcessStartUtils;",
             "import ch.ivyteam.ivy.workflow.ICase;",
             "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
+            "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
             "import ch.ivyteam.ivy.workflow.IProcessStart;",
-            "",
             "IProcessStart processStart = ProcessStartUtils.findProcessStartByUserFriendlyRequestPath(\"Start Processes/LeaveRequest/start.ivp\");",
-            "CaseQuery caseQuery = CaseQuery.businessCases().where().taskStartId().isEqual(processStart.getTaskStart().getId()).orderBy().caseId().descendingNullLast();",
+            "CaseQuery caseQuery = CaseQuery.businessCases().where().taskStartId().isEqual(processStart.getId()).orderBy().caseId().descendingNullLast();",
             "ICase caze = ivy.wf.getCaseQueryExecutor().getFirstResult(caseQuery) as ICase;",
             "out.selectedCaseId = caze != null ? caze.getId() : 0;"
           ]
@@ -50,9 +49,8 @@
         "input" : {
           "map" : { },
           "code" : [
-            "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
-            "",
-            "out.selectedProcessLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/LeaveRequest/start.ivp\");"
+            "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
+            "out.selectedProcessLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/LeaveRequest/start.ivp\");"
           ]
         },
         "request" : {
@@ -94,9 +92,8 @@
         "input" : {
           "map" : { },
           "code" : [
-            "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
-            "",
-            "out.selectedProcessLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/LeaveRequest/start.ivp\");"
+            "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
+            "out.selectedProcessLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/LeaveRequest/start.ivp\");"
           ]
         },
         "request" : {
@@ -132,13 +129,12 @@
         "input" : {
           "map" : { },
           "code" : [
-            "import com.axonivy.portal.components.util.ProcessStartUtils;",
             "import ch.ivyteam.ivy.workflow.ICase;",
             "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
+            "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
             "import ch.ivyteam.ivy.workflow.IProcessStart;",
-            "",
             "IProcessStart processStart = ProcessStartUtils.findProcessStartByUserFriendlyRequestPath(\"Start Processes/LeaveRequest/start.ivp\");",
-            "CaseQuery caseQuery = CaseQuery.businessCases().where().taskStartId().isEqual(processStart.getTaskStart().getId()).orderBy().caseId().descendingNullLast();",
+            "CaseQuery caseQuery = CaseQuery.businessCases().where().taskStartId().isEqual(processStart.getId()).orderBy().caseId().descendingNullLast();",
             "ICase caze = ivy.wf.getCaseQueryExecutor().getFirstResult(caseQuery) as ICase;",
             "out.selectedCaseId = caze != null ? caze.getId() : 0;"
           ]
@@ -252,15 +248,14 @@
         "input" : {
           "map" : { },
           "code" : [
-            "import com.axonivy.portal.components.util.ProcessStartUtils;",
             "import com.axonivy.portal.components.util.TaskUtils;",
             "import ch.ivyteam.ivy.workflow.ICase;",
             "import ch.ivyteam.ivy.workflow.ITask;",
             "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
+            "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
             "import ch.ivyteam.ivy.workflow.IProcessStart;",
-            "",
             "IProcessStart processStart = ProcessStartUtils.findProcessStartByUserFriendlyRequestPath(\"Start Processes/LeaveRequest/start.ivp\");",
-            "CaseQuery caseQuery = CaseQuery.businessCases().where().taskStartId().isEqual(processStart.getTaskStart().getId()).orderBy().caseId().descendingNullLast();",
+            "CaseQuery caseQuery = CaseQuery.businessCases().where().taskStartId().isEqual(processStart.getId()).orderBy().caseId().descendingNullLast();",
             "ICase caze = ivy.wf.getCaseQueryExecutor().getFirstResult(caseQuery) as ICase;",
             "List<ITask> openTasks = TaskUtils.getOpenTasksByCase(caze);",
             "out.selectedTaskId = openTasks.size() > 0 ? openTasks.get(0).getId() : 0;"
@@ -317,15 +312,14 @@
         "input" : {
           "map" : { },
           "code" : [
-            "import com.axonivy.portal.components.util.ProcessStartUtils;",
             "import com.axonivy.portal.components.util.TaskUtils;",
             "import ch.ivyteam.ivy.workflow.ICase;",
             "import ch.ivyteam.ivy.workflow.ITask;",
             "import ch.ivyteam.ivy.workflow.query.CaseQuery;",
+            "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
             "import ch.ivyteam.ivy.workflow.IProcessStart;",
-            "",
             "IProcessStart processStart = ProcessStartUtils.findProcessStartByUserFriendlyRequestPath(\"Start Processes/LeaveRequest/start.ivp\");",
-            "CaseQuery caseQuery = CaseQuery.businessCases().where().taskStartId().isEqual(processStart.getTaskStart().getId()).orderBy().caseId().descendingNullLast();",
+            "CaseQuery caseQuery = CaseQuery.businessCases().where().taskStartId().isEqual(processStart.getId()).orderBy().caseId().descendingNullLast();",
             "ICase caze = ivy.wf.getCaseQueryExecutor().getFirstResult(caseQuery) as ICase;",
             "List<ITask> openTasks = TaskUtils.getOpenTasksByCase(caze);",
             "out.selectedTaskId = openTasks.size() > 0 ? openTasks.get(0).getId() : 0;"

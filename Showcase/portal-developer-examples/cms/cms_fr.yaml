@@ -98,7 +98,43 @@ CustomFields:
     ShipmentDate:
       Description: Colonne de date d'expédition par exemple
       Label: Date d'expédition
+DefaultColumns:
+  ACTIVATOR: Responsable
+  APPLICATION: Application
+  CREATION_TIME: Créé
+  CustomerName: Nom du client
+  EXPIRY_TIME: Délai
+  ID: Id de tâche
+  NAME: Nom / Description
+  PRIORITY: Priorité
+  STATE: Etat
+  ShipmentDate: Date d'expédition
+  caseList:
+    APPLICATION: Application
+    CREATION_TIME: Créé
+    CREATOR: Créateur
+    CustomerName: Nom du client
+    FINISHED_TIME: Terminé
+    ID: Id du dossier
+    NAME: Nom / Description
+    OWNER: Propriétaire
+    STATE: Etat
+    ShipmentDate: Date d'expédition
 Dialogs:
+  Lists:
+    Completeness:
+      ADDITIONAL_IDENTIFICATION_NEEDED: Identification supplémentaire nécessaire
+      NO_INFORMATION: Aucune information disponible
+      PERSON_LEGITIMIZED: Personne légalisée
+      REQUEST_PROOF: Demander une preuve d'identité
+    ProcessState:
+      APPLICATION: Candidature
+      DONE: Terminé
+      IDENTITY_CHECK: Contrôle d'identité
+      INFORMATION: Informations
+      INQUIRY: Enquête
+      PROCESSING: Éditer
+      VERIFICATION: Vérification
   ch:
     ivyteam:
       ivy:
@@ -113,16 +149,25 @@ Dialogs:
                   Representation: Représentation
                   To: À l'adresse suivante
 Labels:
-  changePasswordWSError: Une error s'est produite lors du changement de mot de passe. Veuillez contacter votre administrateur si le problème persiste après plusieurs essais.
-  forgotPasswordError: Une erreur s'est produite lors du traitement de votre demande. Veuillez réessayer plus tard.
-  passwordResetEmailCantSend: Exception lors de l'envoi d'un courrier électronique. Veuillez réessayer plus tard.
-  passwordResetEmailContent: '<html>Cher/e {0},<br/><br/>Veuillez cliquer sur ce lien pour réinitialiser votre mot de passe : <a href="{1}">Réinitialisation du mot de passe</a><br/><br/>Bonnes salutations</html>.'
-  passwordResetEmailSent: Si cette adresse e-mail est enregistrée, nous lui avons envoyé un lien de récupération du mot de passe.
-  passwordResetEmailSubject: Courriel de réinitialisation du mot de passe
-  updatePasswordSuccessfully: Le mot de passe a été modifié avec succès.
-  userNotFound: Si cette adresse e-mail est enregistrée, nous lui avons envoyé un lien de récupération du mot de passe.
-  usersHaveSameEmail: De nombreux utilisateurs utilisent ce courrier électronique. Veuillez contacter votre administrateur.
-  wrongPassword: Le mot de passe est erroné !
+  address: Rue/No.
+  cancel: Annuler
+  caseId: Identification du cas
+  city: /Ville
+  date: Date
+  delete: Supprimer
+  email: Courriel
+  firstName: Nom
+  personalData: Données personnelles
+  phoneNumber: Numéro de téléphone
+  proceed: Poursuivre
+  reason: Motif
+  request: Demande
+  requestType: Type de demande
+  surName: Nom de famille
+  tableDelete: Supprimer
+  tableDownload: Télécharger
+  tableName: Nom
+  zip: Code postal
 Processes:
   CategoriedLeaveRequest:
     Cases:
@@ -160,6 +205,9 @@ Processes:
       Signal:
         name: Signal de création d'un nouveau paiement
     name: Créer un nouveau paiement
+  ProcessWithIndex:
+    name1: ''
+    name2: ''
   TasksForTaskListCustomization:
     Cases:
       Party:
@@ -177,3 +225,14 @@ Processes:
         name: Commande de pizzas
     description: Créez 3 tâches, chaque tâche a le nom du client et la date d'expédition.
     name: Créer des tâches pour la personnalisation de la liste de tâches
+sortFields:
+  CREATION_TIME_ASC: Date de création (le plus ancien en premier)
+  CREATION_TIME_DESC: Date de création (le plus récent en premier)
+  CustomerName_ASC: Nom du client (A -> Z)
+  CustomerName_DESC: Nom du client (Z -> A)
+  EXPIRY_TIME_ASC: Expiration (le plus ancien en premier)
+  EXPIRY_TIME_DESC: Expiration (le plus récent en premier)
+  PRIORITY_ASC: Priorité (de haute à basse)
+  PRIORITY_DESC: Priorité (de basse à haute)
+  ShipmentDate_ASC: Date d'expédition (ancienne en premier)
+  ShipmentDate_DESC: Date d'expédition (récente en premier)

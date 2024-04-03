@@ -1,0 +1,6 @@
+GdprRequestData #class
+com.axonivy.portal.developerexamples.showcase #namespace
+taskName String #field
+taskName PERSISTENT #fieldModifier
+gdprRequest com.axonivy.portal.developerexamples.showcase.GdprRequest #field
+gdprRequest PERSISTENT #fieldModifier

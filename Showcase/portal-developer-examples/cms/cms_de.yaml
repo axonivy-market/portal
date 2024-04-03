@@ -98,7 +98,43 @@ CustomFields:
     ShipmentDate:
       Description: Spalte Sendungsdatum zum Beispiel
       Label: Versanddatum
+DefaultColumns:
+  ACTIVATOR: Verantwortlich
+  APPLICATION: Anwendung
+  CREATION_TIME: Erstellt
+  CustomerName: Kundenname
+  EXPIRY_TIME: Ablaufdatum
+  ID: Aufgaben ID
+  NAME: Name / Beschreibung
+  PRIORITY: Priorität
+  STATE: Status
+  ShipmentDate: Versanddatum
+  caseList:
+    APPLICATION: Anwendung
+    CREATION_TIME: Erstellt
+    CREATOR: Ersteller
+    CustomerName: Kundenname
+    FINISHED_TIME: Erledigt
+    ID: Vorgangs Id
+    NAME: Name / Beschreibung
+    OWNER: Owner
+    STATE: Status
+    ShipmentDate: Versanddatum
 Dialogs:
+  Lists:
+    Completeness:
+      ADDITIONAL_IDENTIFICATION_NEEDED: Weitere Informationen anfordern
+      NO_INFORMATION: Keine Information verfügbar
+      PERSON_LEGITIMIZED: Person legitimiert
+      REQUEST_PROOF: Identifikationsnachweis anfordern
+    ProcessState:
+      APPLICATION: Antrag
+      DONE: Erledigt
+      IDENTITY_CHECK: Identitätscheck
+      INFORMATION: Informieren
+      INQUIRY: Recherche
+      PROCESSING: Bearbeiten
+      VERIFICATION: Prüfen
   ch:
     ivyteam:
       ivy:
@@ -113,16 +149,24 @@ Dialogs:
                   Representation: Vertretung
                   To: Bis
 Labels:
-  changePasswordWSError: Ein Fehler ist während der Passwortänderung aufgetreten. Bitte, kontaktieren Sie Ihren Administrator falls das Problem nach mehreren Versuchen besteht.
-  forgotPasswordError: Bei der Bearbeitung Ihrer Anfrage ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.
-  passwordResetEmailCantSend: Ausnahme beim Senden der E-Mail an Sie. Bitte versuchen Sie es später erneut.
-  passwordResetEmailContent: '<html>Hallo {0},<br/><br/>Bitte klicken Sie auf diesen Link, um Ihr Passwort zurückzusetzen: <a href="{1}">Passwort zurücksetzen</a><br/><br/>Mit freundlichen Grüßen</html>'
-  passwordResetEmailSent: Wenn diese E-Mail-Adresse registriert ist, haben wir einen Link zur Wiederherstellung des Passworts an diese Adresse geschickt.
-  passwordResetEmailSubject: E-Mail zum Zurücksetzen des Passworts
-  updatePasswordSuccessfully: Das Passwort wurde erfolgreich geändert.
-  userNotFound: Wenn diese E-Mail-Adresse registriert ist, haben wir einen Link zur Wiederherstellung des Passworts an diese Adresse geschickt.
-  usersHaveSameEmail: Es gibt viele Benutzer, die diese E-Mail verwenden. Bitte wenden Sie sich an Ihren Administrator.
-  wrongPassword: Das angegebene Passwort wurde abgelehnt!
+  address: Strasse/Hausnr.
+  cancel: Abbrechen
+  caseId: Vorgangs Id
+  city: /Stadt
+  date: Datum
+  delete: Löschen
+  email: E-Mail
+  firstName: Vorname
+  personalData: Personendaten
+  phoneNumber: Telefonnummer
+  proceed: Weiter
+  reason: Begründung
+  request: Anfrage
+  requestType: Begehrenstyp
+  surName: Name
+  tableDelete: Löschen
+  tableName: Name
+  zip: PLZ
 Processes:
   CategoriedLeaveRequest:
     Cases:
@@ -160,6 +204,9 @@ Processes:
       Signal:
         name: Signal erstellen Neue Zahlung
     name: Neue Zahlung erstellen
+  ProcessWithIndex:
+    name1: Ä (eh)
+    name2: Ö (ouh)
   TasksForTaskListCustomization:
     Cases:
       Party:
@@ -177,3 +224,14 @@ Processes:
         name: Pizza bestellen
     description: 3 Aufgaben erstellen, jede Aufgabe hat CustomerName und ShipmentDate
     name: Aufgaben für die Anpassung der Aufgabenliste erstellen
+sortFields:
+  CREATION_TIME_ASC: Erstellungsdatum (Ältestes zuerst)
+  CREATION_TIME_DESC: Erstellungsdatum (Neuestes zuerst)
+  CustomerName_ASC: Kundenname (A -> Z)
+  CustomerName_DESC: 'Kundenname (Z -> A) '
+  EXPIRY_TIME_ASC: Ablauf (Älteste zuerst)
+  EXPIRY_TIME_DESC: Ablauf (Neuste zuerst)
+  PRIORITY_ASC: Priorität (hoch -> tief)
+  PRIORITY_DESC: Priorität (tief -> hoch)
+  ShipmentDate_ASC: Versanddatum (älteste zuerst)
+  ShipmentDate_DESC: Versanddatum (neuerste zuerst)

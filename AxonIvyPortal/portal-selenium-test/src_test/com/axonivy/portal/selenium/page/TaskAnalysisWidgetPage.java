@@ -205,7 +205,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     });
   }
 
-  public boolean loadFilterSet(String filterSetName, boolean isPersonalFilter) {
+  public void loadFilterSet(String filterSetName, boolean isPersonalFilter) {
     waitPageLoaded();
     waitForElementDisplayed($("a[id$='task-widget:filter-selection-form:filter-name']"), true);
     waitForElementClickableThenClick("a[id$='task-widget:filter-selection-form:filter-name']");
@@ -216,12 +216,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     } else {
       filterContainer = findElementById("task-widget:filter-selection-form:public-filters");
     }
-
-    if (!filterContainer.$(By.linkText(filterSetName)).isDisplayed()) {
-      return false;
-    }
     clickByJavaScript(filterContainer.$(By.linkText(filterSetName)).shouldBe(appear, DEFAULT_TIMEOUT));
-    return true;
   }
 
   public String getFilterName() {

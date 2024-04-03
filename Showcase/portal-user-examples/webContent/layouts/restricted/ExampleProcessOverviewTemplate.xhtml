@@ -21,7 +21,7 @@
           <h:panelGroup layout="block" styleClass="ui-g-12 portal-card-container" rendered="#{not empty processSteps}">
             <div class="card ui-g-12">
               <div class="ui-g-12">
-                <h:outputText value="#{ivy.cms.co('/Labels/TheProcess')}"
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/theProcess')}"
                   styleClass="title-text" />
               </div>
               <ui:repeat var="step" value="#{processSteps}" varStatus="stepStatus">

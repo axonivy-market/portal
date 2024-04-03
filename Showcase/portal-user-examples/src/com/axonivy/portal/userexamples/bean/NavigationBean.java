@@ -8,13 +8,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import com.axonivy.portal.userexamples.dto.UserProcess;
+import ch.ivy.addon.portalkit.configuration.UserProcess;
 
 @ManagedBean
 @ViewScoped
 public class NavigationBean implements Serializable {
 
-  private static final long serialVersionUID = -4420507462322859147L;
+  private static final long serialVersionUID = -4420507462312859147L;
 
   public void startProcess(UserProcess userProcess) throws IOException {
     Objects.requireNonNull(userProcess, "User process must not be null");

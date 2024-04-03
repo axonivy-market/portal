@@ -315,7 +315,6 @@ public class NewDashboardPage extends TemplatePage {
 
   public void startCombinedModeProcessFirstTask() {
     getCombinedModeProcessFirstTaskStartAction().shouldBe(Condition.appear).click();
-    switchToIFrameOfTask();
   }
 
   public void openCombinedModeProcessFirstTask() {

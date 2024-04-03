@@ -13,9 +13,9 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
-import com.axonivy.portal.selenium.page.LeaveRequestIFramePage;
+import com.axonivy.portal.selenium.page.LeaveRequestPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
-import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
+import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
 @IvyWebTest
@@ -78,7 +78,7 @@ public class TaskActionTest extends BaseTest {
         Arrays.asList(DETAILS, DELEGATE, RESET, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));
 
     // In progress
-    TaskIFrameTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
+    TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
     taskTemplatePage.clickCancelLink();
     taskDetailsPage = new TaskDetailsPage();
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
@@ -109,7 +109,7 @@ public class TaskActionTest extends BaseTest {
         WORKFLOW_EVENTS, TRIGGER_ESCALATION, PROCESS_VIEWER, ADD_AD_HOC_TASK));
 
     // In progress
-    TaskIFrameTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
+    TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
     taskTemplatePage.clickCancelLink();
     taskDetailsPage = new TaskDetailsPage();
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
@@ -138,7 +138,7 @@ public class TaskActionTest extends BaseTest {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
 
     taskWidgetPage.clickOnStartTaskLink(4);
-    LeaveRequestIFramePage leaveRequestPage = new LeaveRequestIFramePage();
+    LeaveRequestPage leaveRequestPage = new LeaveRequestPage();
     leaveRequestPage.fulfillAndSendMaternityLeaveRequest();
 
     redirectToRelativeLink(createTaskWithSystemState);

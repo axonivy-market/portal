@@ -19,7 +19,6 @@ public class LayoutTemplateScreenshotTest extends ScreenshotBaseTest {
     redirectToRelativeLink(templateInFrameExampleInFrameUrl);
 
     TaskTemplatePage templatePage = new TaskTemplatePage();
-    templatePage.switchToIFrameOfTask();
     templatePage.getElementInPortalIFramTask("[id='form:save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     templatePage.switchBackToParent();
     ScreenshotUtils.resizeBrowser(new Dimension(1200, 800));

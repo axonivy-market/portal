@@ -98,7 +98,43 @@ CustomFields:
     ShipmentDate:
       Description: Shipment date column for example
       Label: Shipment date
+DefaultColumns:
+  ACTIVATOR: Responsible
+  APPLICATION: Application
+  CREATION_TIME: Created
+  CustomerName: Customer name
+  EXPIRY_TIME: Expiry
+  ID: Task Id
+  NAME: Name / Description
+  PRIORITY: Priority
+  STATE: State
+  ShipmentDate: Shipment date
+  caseList:
+    APPLICATION: Application
+    CREATION_TIME: Created
+    CREATOR: Creator
+    CustomerName: Customer name
+    FINISHED_TIME: Finished
+    ID: Case Id
+    NAME: Name / Description
+    OWNER: Owner
+    STATE: State
+    ShipmentDate: Shipment date
 Dialogs:
+  Lists:
+    Completeness:
+      ADDITIONAL_IDENTIFICATION_NEEDED: Additional identification needed
+      NO_INFORMATION: No information available
+      PERSON_LEGITIMIZED: Person legitmized
+      REQUEST_PROOF: Request proof of identification
+    ProcessState:
+      APPLICATION: Application
+      DONE: Done
+      IDENTITY_CHECK: Identity Check
+      INFORMATION: Information
+      INQUIRY: Inquiry
+      PROCESSING: Edit
+      VERIFICATION: Verification
   ch:
     ivyteam:
       ivy:
@@ -113,16 +149,26 @@ Dialogs:
                   Representation: Representation
                   To: To
 Labels:
-  changePasswordWSError: An error occurred while changing your password. Please contact your administrator if this problem persists.
-  forgotPasswordError: An error occurred while processing your request. Please try again later.
-  passwordResetEmailCantSend: Exception while sending email to you. Please try again later.
-  passwordResetEmailContent: '<html>Dear {0},<br/><br/>Please click to this link to reset your password: <a href="{1}">Reset Password</a><br/><br/>Best regards</html>'
-  passwordResetEmailSent: If this e-mail address is registered then we have sent a password recovery link to it.
-  passwordResetEmailSubject: Email to reset your password
-  updatePasswordSuccessfully: Password updated successfully.
-  userNotFound: If this e-mail address is registered then we have sent a password recovery link to it.
-  usersHaveSameEmail: There are many users using this email. Please contact your administrator.
-  wrongPassword: Authentication failed, your password seems to be wrong!
+  address: Street/No.
+  cancel: Cancel
+  caseId: Case ID
+  city: /City
+  date: Date
+  delete: Delete
+  email: E-Mail
+  firstName: First name
+  id: ID
+  personalData: Personal data
+  phoneNumber: Phone number
+  proceed: Proceed
+  reason: Reason
+  request: Request
+  requestType: Request type
+  surName: Surname
+  tableDelete: Delete
+  tableDownload: Download
+  tableName: Name
+  zip: ZIP
 Processes:
   CategoriedLeaveRequest:
     Cases:
@@ -254,6 +300,9 @@ Processes:
       Signal:
         name: Signal create New Payment
     name: Create New Payment
+  ProcessWithIndex:
+    name1: Process With Index 1
+    name2: Process With Index 2
   TasksForTaskListCustomization:
     Cases:
       Party:
@@ -271,3 +320,14 @@ Processes:
         name: Pizza Order
     description: Create 3 tasks, each task has CustomerName and ShipmentDate
     name: Create Tasks For Task List Customization
+sortFields:
+  CREATION_TIME_ASC: Creation date (Oldest first)
+  CREATION_TIME_DESC: Creation date (Newest first)
+  CustomerName_ASC: Customer name (A -> Z)
+  CustomerName_DESC: Customer name (Z -> A)
+  EXPIRY_TIME_ASC: Expiry (Oldest first)
+  EXPIRY_TIME_DESC: Expiry (Newest first)
+  PRIORITY_ASC: Priority (High -> low)
+  PRIORITY_DESC: Priority (Low -> high)
+  ShipmentDate_ASC: Shipment date (Oldest first)
+  ShipmentDate_DESC: Shipment date (Newest first)

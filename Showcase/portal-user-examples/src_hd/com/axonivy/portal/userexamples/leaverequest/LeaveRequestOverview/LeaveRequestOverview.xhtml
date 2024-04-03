@@ -19,9 +19,9 @@
     </ui:define>
     <ui:define name="actionButtons">
       <h:form>
-      <p:commandLink value="#{ivy.cms.co('/Labels/Cancel')}" actionListener="#{logic.cancel}"/>
+      <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" actionListener="#{logic.cancel}"/>
       <p:spacer width="20px" />
-      <p:commandButton value="#{ivy.cms.co('/Labels/Start')} #{data.userProcess.processName}"
+      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')} #{data.userProcess.processName}"
         id="start"
         actionListener="#{navigationBean.startProcess(data.userProcess)}" />
       </h:form>

@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
 
-public class AdhocPage extends TaskIFrameTemplatePage {
+public class AdhocPage extends TaskTemplatePage {
 
   @Override
   protected String getLoadedLocator() {
