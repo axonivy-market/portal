@@ -161,7 +161,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getColumnManagementDialog() {
-    return $("div[id$='column-management-dialog']");
+    return $("div[id$='column-management-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public void removeAddedField(String field) {
@@ -255,7 +255,8 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public void selectFieldType(String type) {
     getColumnManagementDialog().$("div[id$='field-type-selection'] span.ui-icon-triangle-1-s")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(Condition.enabled, DEFAULT_TIMEOUT).click();
-    $("div[id$='column-management-form:field-type-selection_panel'] li[data-label='" + type + "']").click();
+    waitForElementClickableThenClick(
+        $("div[id$='column-management-form:field-type-selection_panel'] li[data-label='" + type + "']"));
   }
 
   public SelenideElement getCustomField(String field) {

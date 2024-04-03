@@ -37,4 +37,25 @@ public class ExpressTaskPage extends TemplatePage {
   public boolean isDocumentUploadButtonVisible() {
     return isElementPresent(By.xpath("//div[contains(@id, 'fileUploadComponent:document-upload')]"));
   }
+
+  public void clickTaskActionMenu() {
+    clickByJavaScript($("button[id$='horizontal-task-actions']"));
+    waitForElementDisplayed(By.cssSelector("[id$=':horizontal-task-action-menu']"), true);
+  }
+
+  public void clickChatGroup() {
+    $("a[id$='chat-group']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void clickCreateGroupChatBtn() {
+    waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-group-create-button"), true);
+    waitForElementClickableThenClick(By.id("chat-assignee-selection-form:chat-group-create-button"));
+    waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-group-create-button"), false);
+  }
+
+  public void joinProcessChatAlreadyCreated() {
+    waitForElementDisplayed(By.id("chat-group-join-form:chat-group-join-button"), true);
+    waitForElementClickableThenClick($(By.id("chat-group-join-form:chat-group-join-button")));
+    waitForElementDisplayed(By.id("chat-form:group-chat-container"), true);
+  }
 }
