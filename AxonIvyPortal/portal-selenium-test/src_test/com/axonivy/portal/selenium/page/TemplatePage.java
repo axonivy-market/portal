@@ -380,7 +380,6 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void clickOnLogo() {
-    switchBackToParent();
     openMainMenu();
     waitForElementClickableThenClick($("a[id$='logo']"));
   }

@@ -16,7 +16,6 @@ import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
-import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
@@ -65,12 +64,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.filterTaskName(SICK_LEAVE_REQUEST);
     taskWidget.applyFilter();
     taskWidget.startFirstTaskAndWaitShowHomePageButton();
-
-    TaskTemplateIFramePage templatePage = new TaskTemplateIFramePage();
-    templatePage.switchToIFrameOfTask();
-    newDashboardPage = templatePage.clickCancelButton();
-
-    taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget.clickCancelTask();
     taskWidget.stateOfFirstTask().shouldHave(text(IN_PROGRESS));
   }
 

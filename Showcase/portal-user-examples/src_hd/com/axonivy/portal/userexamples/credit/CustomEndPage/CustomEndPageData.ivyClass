@@ -1,0 +1,6 @@
+CustomEndPageData #class
+com.axonivy.portal.userexamples.credit.CustomEndPage #namespace
+caseId Long #field
+caseId PERSISTENT #fieldModifier
+caseSelected ch.ivyteam.ivy.workflow.ICase #field
+caseSelected PERSISTENT #fieldModifier

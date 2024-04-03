@@ -12,9 +12,9 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
-import com.axonivy.portal.userexamples.dto.UserProcess;
 import com.axonivy.portal.components.service.impl.ProcessService;
 
+import ch.ivy.addon.portalkit.configuration.UserProcess;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -29,8 +29,8 @@ public class ExampleHomeBean implements Serializable {
   @PostConstruct
   public void initData() {
     processes = new ArrayList<>();
-    String leaveRequestStartLink =
-        ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/LeaveRequest/start.ivp");
+    String leaveRequestStartLink = ProcessStartAPI
+        .findStartableLinkByUserFriendlyRequestPath("Start Processes/LeaveRequest/start.ivp");
     if (!StringUtils.isEmpty(leaveRequestStartLink)) {
       UserProcess userProcess = new UserProcess();
       userProcess.setLink(leaveRequestStartLink);

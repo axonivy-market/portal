@@ -53,7 +53,7 @@
           "code" : [
             "import java.util.ArrayList;",
             "import java.util.EnumSet;",
-            "import com.axonivy.portal.developerexamples.enums.DefaultImage;",
+            "import ch.ivy.addon.portalkit.enums.DefaultImage;",
             "",
             "in.photoNames = new ArrayList<DefaultImage>(DefaultImage.values());",
             "if (in.photoNames.size() > 0) {",

@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
+import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -19,7 +20,7 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "[id='content-container']";
+    return "div[id='content-container']";
   }
 
   public void waitForIFrameContentVisible() {
@@ -40,20 +41,9 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
 
   public String clickSubmitAndGetValidationMsg() {
     int numberOfErrors = $$("span.ui-messages-error-summary").size();
-    try {
-      clickSubmitAndWaitValidationSummary(numberOfErrors);
-    } catch (AssertionError e) {
-      if (!$("[id='leave-request:leave-request-validation-msg']").isDisplayed()) {
-        clickSubmitAndWaitValidationSummary(numberOfErrors);
-      }
-    }
-    return getValidationMsg();
-  }
-
-  private void clickSubmitAndWaitValidationSummary(int numberOfErrors) {
     clickSubmitLeaveRequest();
-    waitForPageLoad();
     $$("span.ui-messages-error-summary").shouldBe(CollectionCondition.sizeNotEqual(numberOfErrors), DEFAULT_TIMEOUT);
+    return getValidationMsg();
   }
 
   public String getValidationMsg() {
@@ -73,16 +63,10 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   }
 
   private void selectLeaveType(String leaveType) {
-    boolean isPanelDisplayed = false;
-    while(!isPanelDisplayed) {
-      waitForElementClickableThenClick("[id='leave-request:leave-type']");
-      isPanelDisplayed = $("[id='leave-request:leave-type_panel']").isDisplayed();
-    }
-
+    waitForElementClickableThenClick("#leave-request\\:leave-type_label");
     String leaveTypeSelector = "li[data-label='" + leaveType + "']";
     waitForElementDisplayed(By.cssSelector(leaveTypeSelector), true);
     waitForElementClickableThenClick(leaveTypeSelector);
-    waitForElementDisplayed($("[id='leave-request:leave-type_panel']"), false);
   }
 
   private void closePanelDatePicker(WebElement element) {
@@ -91,16 +75,10 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   }
 
   private void selectApprover(String approver) {
-    boolean isPanelDisplayed = false;
-    while(!isPanelDisplayed) {
-      waitForElementClickableThenClick("[id='leave-request:approver']");
-      isPanelDisplayed = $("[id='leave-request:approver_panel']").isDisplayed();
-    }
-
+    findElementById("leave-request:approver_label").click();
     String approverSelector = "li[data-label='" + approver + "']";
     waitForElementDisplayed(By.cssSelector(approverSelector), true);
     waitForElementClickableThenClick(approverSelector);
-    waitForElementDisplayed($("[id='leave-request:approver_panel']"), false);
   }
 
   public void enterApproverComment(String approverComment) {
@@ -109,22 +87,19 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
 
   public TaskWidgetPage clickApproveBtn() {
     waitForElementClickableThenClick(By.id("leave-request:approved-btn"));
-    waitPageDisappear();
-    switchBackToParent();
+    switchToDefaultContent();
     return new TaskWidgetPage();
   }
 
-  public TaskTemplatePage finishLeaveRequest() {
+  public UserExamplesEndPage finishLeaveRequest() {
     waitForElementClickableThenClick(By.id("leave-request:finish-btn"));
-    waitPageDisappear();
-    switchBackToParent();
-    return new TaskTemplatePage();
+    switchToDefaultContent();
+    return new UserExamplesEndPage();
   }
 
   public TaskWidgetPage clickRejectBtn() {
     waitForElementClickableThenClick(By.id("leave-request:rejected-btn"));
-    waitPageDisappear();
-    switchBackToParent();
+    switchToDefaultContent();
     return new TaskWidgetPage();
   }
 }

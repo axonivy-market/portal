@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"      
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+<cc:interface componentType="IvyComponent">
+<cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/welcomeToPortal')}"></cc:attribute>
+</cc:interface>
+<cc:implementation>
+	<h:panelGroup layout="block" styleClass="login-container">
+		<h:form id="main-form" styleClass="login-block" >
+			<h:outputText value="Custom Login" styleClass="font-xx-large"/>
+			<br /><br />
+			<p:messages showDetail="true" escape="false" />
+			<h:panelGrid columns="1" >
+				<p:inputText id="username" styleClass="login-text-field" value="#{data.username}" placeholder="Enter username..."/>
+				<p:password id="password" styleClass="login-text-field" value="#{data.password}" placeholder="Enter password..."/>
+				<p:spacer height="5" />
+				<p:commandButton id="loginButton" oncomplete="if (args &amp;&amp; !args.validationFailed){location.reload()}"
+					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/login')}"
+					actionListener="#{logic.login}" update="@all" />
+			</h:panelGrid>
+		</h:form>
+	</h:panelGroup>
+</cc:implementation>
+</html>

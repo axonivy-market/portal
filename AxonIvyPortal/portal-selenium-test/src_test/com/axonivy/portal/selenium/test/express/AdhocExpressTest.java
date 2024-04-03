@@ -12,7 +12,7 @@ import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.DefaultExpresTaskPage;
 import com.axonivy.portal.selenium.page.ExpressProcessPage;
-import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
+import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.WorkingTaskDialogPage;
 import com.codeborne.selenide.CollectionCondition;
@@ -43,7 +43,7 @@ public class AdhocExpressTest extends BaseTest {
     taskWidgetPage.filterTasksInExpandedModeBy(taskNamePrefix, 1);
     taskWidgetPage.countTasks().shouldHave(CollectionCondition.size(1));
     String taskId = taskWidgetPage.getTaskId();
-    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
 
     // create adhoc from Maternity task
     assertEquals(true, taskTemplatePage.isShowAdhocHistoryBtnNotExist());
@@ -103,7 +103,7 @@ public class AdhocExpressTest extends BaseTest {
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
     dialogPage.leaveTask();
     taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
+    taskTemplatePage = taskWidgetPage.startTask(0);
 
     taskTemplatePage.getAdhocHistoryDialog().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
 

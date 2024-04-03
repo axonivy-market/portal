@@ -1,10 +1,10 @@
 LendingOverviewData #class
 com.axonivy.portal.userexamples.credit.LendingOverview #namespace
-caseMapDetail com.axonivy.portal.userexamples.dto.CaseMapDetail #field
+caseMapDetail ch.ivy.addon.portalkit.bo.CaseMapDetail #field
 caseMapDetail PERSISTENT #fieldModifier
 stageIndex Integer #field
 stageIndex PERSISTENT #fieldModifier
-userProcess com.axonivy.portal.userexamples.dto.UserProcess #field
+userProcess ch.ivy.addon.portalkit.configuration.UserProcess #field
 userProcess PERSISTENT #fieldModifier
 state com.axonivy.portal.userexamples.enums.RequestState #field
 state PERSISTENT #fieldModifier

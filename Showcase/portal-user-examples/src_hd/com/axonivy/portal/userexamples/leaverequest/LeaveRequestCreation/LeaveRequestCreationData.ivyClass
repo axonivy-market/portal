@@ -12,5 +12,3 @@ approvers java.util.List<com.axonivy.portal.components.dto.UserDTO> #field
 approvers PERSISTENT #fieldModifier
 isValid Boolean #field
 isValid PERSISTENT #fieldModifier
-steps java.util.List<String> #field
-steps PERSISTENT #fieldModifier

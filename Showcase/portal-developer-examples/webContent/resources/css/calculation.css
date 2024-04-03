@@ -1,0 +1,173 @@
+.calculation-form label {
+  float: right;
+  text-align: right;
+}
+
+.debitor-label-container {
+  width: 25%;
+}
+
+_:-ms-input-placeholder,
+:root .debitor-label-container.small {
+  width: 16.5%;
+}
+
+@media (max-width: 1366px) {
+
+  .debitor-label-container.small,
+  _:-ms-input-placeholder,
+  :root .debitor-label-container.small {
+    width: 25% !important;
+  }
+}
+
+.debitor-label-container label {
+  line-height: 2.3;
+}
+
+.debitor-label-container label {
+  margin-right: 17px;
+}
+
+.Wid11 {
+  width: 11%;
+}
+
+.Wid38 {
+  width: 38%;
+}
+
+.Wid74 {
+  width: 74%;
+}
+
+.Wid89 {
+  width: 89%;
+}
+
+.customer-since .ui-inputfield {
+  width: 50%;
+}
+
+.calculation-form .header-section label {
+  float: left !important;
+}
+
+.calculation-form .header-inputfield.ui-inputfield.ui-inputtext {
+  width: auto;
+  min-width: 20%;
+  max-width: 100%;
+}
+
+_:-ms-input-placeholder,
+:root .ui-g .ui-outputlabel {
+  line-height: 2;
+  margin-top: 0 !important;
+}
+
+.debitor-details {
+  padding: 10px 20px 20px 20px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+  width: 100%;
+}
+
+.debitor-details-container {
+  padding: 20px;
+  border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.calculation-form .footer-button:not(:first-child) {
+  margin-right: 20px;
+}
+
+.calculation-form .footer-button {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.calculation-form .header-section.fixed {
+  position: fixed;
+  top: 60px;
+  width: 92%;
+  z-index: 100;
+}
+
+/* FIRST LEVEL TAB MENU */
+.first-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem {
+  width: 12.29%;
+}
+
+@media (max-width: 1025px) {
+  .first-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem {
+    width: 20% !important;
+  }
+}
+
+.first-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-hover a {
+  color: #e8323f !important;
+	border-color: #e8323f !important;
+}
+
+.first-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-active {
+  background-color: #e8323f !important;
+	border-color: #e8323f !important;
+}
+
+.first-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-active a {
+  color: #fff !important;
+}
+
+.first-level-tab-menu.fixed {
+  display: block;
+  position: fixed;
+  top: 95px;
+  width: 92%;
+  margin-top: 0 !important;
+  z-index: 100;
+}
+
+.first-level-tab-menu.fixed .ui-tabmenu-nav {
+  width: 100%;
+}
+
+.first-level-tab-menu.fixed .ui-tabmenu-nav .ui-tabmenuitem {
+  width: 12.28%;
+}
+
+/* SECOND LEVEL TAB MENU */
+.second-level-tab-menu {
+	margin-left: 1rem;
+}
+
+.second-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-active {
+  border-bottom: solid 2px #e8323f !important;
+}
+
+.second-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-active a,
+.second-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-hover a {
+  color: #e8323f !important;
+}
+
+.second-level-tab-menu.fixed {
+  display: block;
+  position: fixed;
+  top: 137px;
+  z-index: 100;
+  width: 90%;
+}
+
+_:-ms-input-placeholder,
+:root .second-level-tab-menu.fixed {
+  top: 124px;
+}
+
+.Height100 {
+  height: 100% !important;
+}
+
+/* TEXT INPUT AUTO INCREASE WIDTH */
+.calculation-form .ui-inputfield.ui-inputtext {
+  width: 100%;
+}

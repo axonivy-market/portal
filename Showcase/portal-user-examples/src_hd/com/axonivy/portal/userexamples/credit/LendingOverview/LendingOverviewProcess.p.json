@@ -13,7 +13,7 @@
         "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "userProcess", "type" : "com.axonivy.portal.userexamples.dto.UserProcess", "desc" : "" }
+            { "name" : "userProcess", "type" : "ch.ivy.addon.portalkit.configuration.UserProcess", "desc" : "" }
           ],
           "map" : {
             "out.userProcess" : "param.userProcess"
@@ -23,7 +23,7 @@
           "params" : [
             { "name" : "state", "type" : "com.axonivy.portal.userexamples.enums.RequestState", "desc" : "" },
             { "name" : "stageIndex", "type" : "Integer", "desc" : "" },
-            { "name" : "caseMapDetail", "type" : "com.axonivy.portal.userexamples.dto.CaseMapDetail", "desc" : "" }
+            { "name" : "caseMapDetail", "type" : "ch.ivy.addon.portalkit.bo.CaseMapDetail", "desc" : "" }
           ],
           "map" : {
             "result.state" : "in.state",
@@ -76,7 +76,7 @@
             "import java.util.Map;",
             "import java.util.HashMap;",
             "import java.util.Arrays;",
-            "import com.axonivy.portal.userexamples.dto.CaseMapDetail;",
+            "import ch.ivy.addon.portalkit.bo.CaseMapDetail;",
             "import ch.ivyteam.ivy.casemap.runtime.model.IStage;",
             "import ch.ivyteam.ivy.casemap.runtime.model.ICaseMap;",
             "",

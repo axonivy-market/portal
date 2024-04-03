@@ -225,14 +225,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     taskAnalysisWidgetPage.countSavedFilter(2);
     statisticWidgetPage = taskAnalysisWidgetPage.navigateToStatisticPage();
     TaskAnalysisWidgetPage secondTaskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
-    boolean isFilterSetloaded = secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, false);
-
-    // Sometimes ES take longer time to save data...
-    if (!isFilterSetloaded) {
-      refreshPage();
-      secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, false);
-    }
-
+    secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, false);
     secondTaskAnalysisWidgetPage.waitForTaskDataChangeToSpecificSize(1);
     List<WebElement> resultCells = secondTaskAnalysisWidgetPage.getRowsInTaskTable().get(0)
         .findElements(By.cssSelector("td:not([class='ui-helper-hidden'])"));
@@ -251,14 +244,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     taskAnalysisWidgetPage.countSavedFilter(2);
     statisticWidgetPage = taskAnalysisWidgetPage.navigateToStatisticPage();
     TaskAnalysisWidgetPage secondTaskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
-    boolean isFilterSetloaded = secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, true);
-
-    // Sometimes ES take longer time to save data...
-    if (!isFilterSetloaded) {
-      refreshPage();
-      secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, true);
-    }
-
+    secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, true);
     secondTaskAnalysisWidgetPage.waitForTaskDataChangeToSpecificSize(1);
 
     List<WebElement> resultCells = secondTaskAnalysisWidgetPage.getRowsInTaskTable().get(0)

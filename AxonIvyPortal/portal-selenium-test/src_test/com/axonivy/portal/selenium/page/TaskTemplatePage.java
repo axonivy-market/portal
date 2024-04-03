@@ -16,6 +16,7 @@ import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 
 public class TaskTemplatePage extends TemplatePage {
   private static final String ADHOC_HISTORY_TABLE_CSS_SELECTOR = "div[id*='adhoc-task-history-table'] table>tbody>tr";
@@ -63,6 +64,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public SelenideElement getElementInPortalIFramTask(String cssSelector) {
+    WaitHelper.waitForIFrameAvailable(WebDriverRunner.getWebDriver(), "iFrame");
     return $(cssSelector);
   }
 
@@ -98,7 +100,6 @@ public class TaskTemplatePage extends TemplatePage {
     return $("div[id$='adhoc-task-history-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  // moved
   public void clickChatGroup() {
     $("a[id$='chat-group']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
@@ -114,12 +115,11 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public String getTaskName() {
-    return $("#title").getText();
+    return getTextOfCurrentBreadcrumb().replace("Task: ", "");
   }
 
   public void clickCancelLink() {
-    clickByJavaScript($(By.linkText("Cancel")));
-    switchBackToParent();
+    waitForElementClickableThenClick($(By.linkText("Cancel")));
   }
 
   public boolean isTaskNameDisplayed() {
@@ -138,8 +138,7 @@ public class TaskTemplatePage extends TemplatePage {
     WaitHelper.waitForIFrameAvailable(driver, "iFrame");
     waitForElementDisplayed(By.id("form:invested-amount"), true);
     $(By.id("form:invested-amount")).sendKeys("1");
-    waitForElementClickableThenClick($(By.id("form:save-btn")));
-    waitPageDisappear();
+    clickByJavaScript($(By.id("form:save-btn")));
     driver.switchTo().defaultContent();
     WaitHelper.waitForPresenceOfElementLocatedInFrame("[id$='global-search-component:global-search-data']");
     return NavigationHelper.navigateToTaskList();
@@ -219,7 +218,6 @@ public class TaskTemplatePage extends TemplatePage {
     return $$("td.related-task-name-column").size();
   }
 
-  // moved
   public void clickTaskActionMenu() {
     clickByJavaScript($("button[id$='horizontal-task-actions']"));
     waitForElementDisplayed(By.cssSelector("[id$=':horizontal-task-action-menu']"), true);
@@ -250,14 +248,8 @@ public class TaskTemplatePage extends TemplatePage {
     return new TaskWidgetPage();
   }
 
-  public void clickSubmitButtonProceed() {
-    $("button[id='form:proceed']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
-    $("button[id='form:proceed']").shouldBe(disappear, DEFAULT_TIMEOUT);
-  }
-
   public void clickOnSubmitButton() {
     clickByJavaScript($("button[id$=':button-submit']"));
-    switchBackToParent();
   }
 
   public void clickAdhocCreationButton() {
@@ -304,22 +296,21 @@ public class TaskTemplatePage extends TemplatePage {
     return elem.findAll(By.xpath("td")).get(3).getText();
   }
 
-  // moved
   public void joinProcessChatAlreadyCreated() {
     waitForElementDisplayed(By.id("chat-group-join-form:chat-group-join-button"), true);
     waitForElementClickableThenClick($(By.id("chat-group-join-form:chat-group-join-button")));
     waitForElementDisplayed(By.id("chat-form:group-chat-container"), true);
   }
 
-  // moved
   public void clickCreateGroupChatBtn() {
     waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-group-create-button"), true);
     waitForElementClickableThenClick(By.id("chat-assignee-selection-form:chat-group-create-button"));
     waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-group-create-button"), false);
   }
 
-  public void clickCancelAndLeftButton() {
+  public TaskWidgetPage clickCancelAndLeftButton() {
     waitForElementClickableThenClick("a[id$='button-cancel']");
+    return new TaskWidgetPage();
   }
 
   public int countSideSteps() {
@@ -332,18 +323,4 @@ public class TaskTemplatePage extends TemplatePage {
     String url = element.getAttribute("href");
     ((JavascriptExecutor) driver).executeScript("window.open('" + url + "','_blank');");
   }
-
-  public void inputFields(String employee, String from, String to, String representation) {
-    $(By.id("leave-request:fullname")).sendKeys(employee);;
-    $(By.id("leave-request:from_input")).sendKeys(from);;
-    $(By.id("leave-request:to_input")).sendKeys(to);;
-    $(By.id("leave-request:substitute")).sendKeys(representation);;
-  }
-
-  public CaseDetailsPage goToCaseDetail() {
-    waitForElementClickableThenClick("[id$='form:go-to-case-detail']");
-    waitForPageLoad();
-    return new CaseDetailsPage();
-  }
-
 }

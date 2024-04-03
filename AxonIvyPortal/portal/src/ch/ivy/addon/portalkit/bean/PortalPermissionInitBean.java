@@ -11,7 +11,6 @@ import java.util.stream.Stream;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalPermissionGroup;
 import ch.ivy.addon.portalkit.security.PortalSecurity;
-import ch.ivy.addon.portalkit.util.SecuritySystemUtils;
 import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
 import ch.ivyteam.ivy.process.eventstart.IProcessStartEventBeanRuntime;
 import ch.ivyteam.ivy.process.extension.ProgramConfig;
@@ -123,7 +122,8 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
   }
 
   private boolean isIvySecuritySystem() {
-    return SecuritySystemUtils.isIvySecuritySystem();
+    return ISecurityContext.current()
+        .getExternalSecuritySystemName().equals(ISecurityConstants.IVY_ENGINE_SECURITY_SYSTEM_PROVIDER_NAME);
   }
 
   private List<IPermission> getCasePermissions() {

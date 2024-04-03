@@ -19,7 +19,7 @@ import com.axonivy.portal.selenium.page.ExpressProcessPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.SearchResultPage;
-import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
+import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.TemplatePage;
 import com.axonivy.portal.selenium.page.TemplatePage.GlobalSearch;
@@ -39,13 +39,6 @@ public class GlobalGrowlTest extends BaseTest {
       "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.";
   private static final String CANCEL_MESSAGE_WITH_DETAILS =
       "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.\nClick here for details.";
-  private static final String CUSTOM_FINISH_MESSAGE = "Task is done successfully\nClick here for details.";
-  private static final String CUSTOM_CANCEL_MESSAGE =
-      "You have cancelled and left the task successfully\nClick here for details.";
-  private static final String CUSTOM_GROWL_URL =
-      "portal-developer-examples/16A7BB2ADC9580A8/frame8CustomizedMessage.ivp";
-  private static final String SKIP_TASK_LIST_URL =
-      "portal-developer-examples/16A7BB2ADC9580A8/frame8StandardMessageAndSkipTasklist.ivp";
 
   @Override
   @BeforeEach
@@ -55,79 +48,36 @@ public class GlobalGrowlTest extends BaseTest {
   }
 
   // TODO Write test for Growl in IFrame, in version 10 it has the test public void
-  // This test is ignored cause by this bug: https://1ivy.atlassian.net/browse/IVYPORTAL-16400
-  // @Test
-  public void testDisplayCustomGrowlAfterFinishTask() {
-    redirectToRelativeLink(CUSTOM_GROWL_URL);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
-    taskTemplatePage.clickSubmitButtonProceed();
-    taskTemplatePage.switchBackToParent();
-    assertGrowlMessage(taskWidgetPage, CUSTOM_FINISH_MESSAGE);
-  }
+  // testDisplayCustomGrowlAfterFinishTask()
 
   @Test
   public void testDisplayDefaultGrowlAfterFinishTask() {
     redirectToRelativeLink(createTestingTasksUrl);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskTemplatePage.inputValue("Employee", today, today, "Representation");
-    taskTemplatePage.clickOnSubmitButton();
-    taskTemplatePage.switchBackToParent();
-    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage = taskTemplatePage.clickSubmitButton();
     assertGrowlMessage(taskWidgetPage, FINISH_MESSAGE_WITH_DETAILS);
   }
 
   // TODO Write test for Growl in IFrame, in version 10 it has the test public void
-  // This test is ignored cause by this bug: https://1ivy.atlassian.net/browse/IVYPORTAL-16400
-  // @Test
-  public void testDisplayDefaultGrowlAfterFinishFirstTask() {
-    redirectToRelativeLink(SKIP_TASK_LIST_URL);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
-    taskTemplatePage.clickSubmitButtonProceed();
-    taskTemplatePage.switchBackToParent();
-    TaskWidgetPage homePage = new TaskWidgetPage();
-    assertGrowlMessage(homePage, FINISH_MESSAGE_WITH_DETAILS);
-  }
+  // testDisplayDefaultGrowlAfterFinishFirstTask()
 
   @Test
   public void testDisplayDefaultGrowlAfterCancelTask() {
     redirectToRelativeLink(createTestingTasksUrl);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
-    taskTemplatePage.waitForIFrameContentVisible();
-    taskTemplatePage.clickCancelAndLeftButton();
-    taskTemplatePage.switchBackToParent();
-    taskWidgetPage = new TaskWidgetPage();
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    taskWidgetPage = taskTemplatePage.clickCancelAndLeftButton();
     assertGrowlMessage(taskWidgetPage, CANCEL_MESSAGE_WITH_DETAILS);
   }
 
   // TODO Write test for Growl in IFrame, in version 10 it has the test public void
-  // This test is ignored cause by this bug: https://1ivy.atlassian.net/browse/IVYPORTAL-16400
-  // @Test
-  public void testDisplayCustomGrowlAfterCancelTask() {
-    redirectToRelativeLink(CUSTOM_GROWL_URL);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
-    taskTemplatePage.clickCancelAndLeftButton();//
-    taskTemplatePage.switchBackToParent();
-    taskWidgetPage = new TaskWidgetPage();
-    assertGrowlMessage(taskWidgetPage, CUSTOM_CANCEL_MESSAGE);
-  }
+  // testDisplayCustomGrowlAfterCancelTask()
 
   // TODO Write test for Growl in IFrame, in version 10 it has the test public void
-  // This test is ignored cause by this bug: https://1ivy.atlassian.net/browse/IVYPORTAL-16400
-  // @Test
-  public void testDisplayDefaultGrowlAfterCancelFirstTask() {
-    redirectToRelativeLink(SKIP_TASK_LIST_URL);
-    TaskIFrameTemplatePage taskTemplatePage = new TaskIFrameTemplatePage();
-    taskTemplatePage.switchToIFrameOfTask();
-    taskTemplatePage.clickCancelAndLeftButton();
-    taskTemplatePage = new TaskIFrameTemplatePage();
-    assertGrowlMessage(taskTemplatePage, CANCEL_MESSAGE_WITH_DETAILS);
-  }
+  // testDisplayDefaultGrowlAfterCancelFirstTask()
 
   @Test
   public void testSaveExpressFormDefinition() {

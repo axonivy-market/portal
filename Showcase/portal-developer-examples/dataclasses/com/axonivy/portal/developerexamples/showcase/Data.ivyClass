@@ -1,5 +1,7 @@
 Data #class
 com.axonivy.portal.developerexamples.showcase #namespace
+gdprRequest com.axonivy.portal.developerexamples.showcase.GdprRequest #field
+gdprRequest PERSISTENT #fieldModifier
 processChainDirection String #field
 processChainShape String #field
 actuaStepIndex Integer #field

@@ -1,6 +1,8 @@
 Dialog:
   Common:
     approve: Genehmigen
+    endPageButton: Zu den Vorgangsdetails
+    endPageMessage: 'Gut gemacht! Sie haben den Prozess erfolgreich beendet. '
     finish: Beenden
     reject: Ablehnen
     submit: Einreichen
@@ -10,11 +12,6 @@ Enums:
     MATERNITY_LEAVE: Mutterschaftsurlaub
     SICK_LEAVE: Krankenstand
 Labels:
-  AxonIvyPortal: Axon Ivy Portal
-  BackToCaseMap: Zurück zur Case Map
-  BackToHomePage: Zurück zur Home Page
-  Cancel: Abbrechen
-  CaseDetails: Vorgangsdetails
   CaseMap:
     Credit:
       address: Adresse
@@ -44,14 +41,6 @@ Labels:
       submitRequest: Antrag einreichen
       verifierComment: Kommentar des Prüfers
       verifierSubmit: Einreichen des Prüfers
-  Close: Schließen
-  ConfirmationHeader: Sind Sie sicher?
-  Copyright: Copyright Ⓒ Axon Ivy Portal
-  ErrorAjaxMessage: Es gibt einen allgemeinen Fehler!
-  ErrorXhr: Fehler beim aktualisieren der Webseiteinhalte
-  ForgotPassword: Ich habe mein Passwort vergessen.
-  GoToDetail: Zu den Details
-  HasPrecondition: Dieser Prozess hat eine Vorbedingung
   LeaveRequest:
     LeaveSteps:
       approval: Genehmigung
@@ -67,27 +56,6 @@ Labels:
     requesterComment: Kommentar des Antragstellers
     submitLeaveRequest: Urlaubsantrag einreichen
     to: Bis
-  Loading: Lädt
-  Login: Anmeldung
-  LoginErrorMessage: Sie sind nicht angemeldet oder Ihr Benutzer ist im System nicht vorhanden. Bitte kontaktieren Sie den Systemadministrator
-  LoginFailed: Anmeldung fehlgeschlagen
-  LoginLogo: Login Logo
-  LoginWith: Anmelden mit
-  More: Mehr
-  MoreInformation: Mehr information
-  NextStage: Nächste Stufe
-  Password: Passwort
-  PasswordRequiredMessage: Das Passwort ist erforderlich
-  PreviousStage: Vorherige Stufe
-  RequiredFieldMessage: Dies ist ein Pflichtfeld
-  Start: Start
-  TheCaseMap: Die Case Map
-  TheProcess: Der Prozess
-  Username: Benutzername
-  UsernameRequiredMessage: Der Nutzername ist erforderlich
-  Warning: Warnung
-  WelcomeToPortal: Willkommen, bitte melden Sie sich an
-  dateFromBiggerThanTo: Das 'bis' Datum muss nach dem 'von' Datum liegen.
 Processes:
   CaseMap:
     ApprovalLevel12:

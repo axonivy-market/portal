@@ -288,7 +288,6 @@ public class TaskWidgetPage extends TemplatePage {
     input.click();
     input.sendKeys(text);
     waitForElementClickableThenClick($("span[id$='responsible-filter:filter-input-form:responsible_panel'] .gravatar"));
-    $("span[id$='responsible-filter:filter-input-form:responsible_panel'] .gravatar").shouldBe(disappear, DEFAULT_TIMEOUT);
     waitForElementClickableThenClick(
         $(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']")));
   }
@@ -368,24 +367,12 @@ public class TaskWidgetPage extends TemplatePage {
     return !$(".action-link").getAttribute("class").contains("ui-state-disabled");
   }
 
-  public ExpressTaskPage startExpressTask(int index) {
-    waitTaskAppearThenClick(index);
-    $(By.id(TASK_ACTION)).shouldBe(appear, DEFAULT_TIMEOUT);
-    return new ExpressTaskPage();
-  }
-
-  public TaskIFrameTemplatePage startTaskIFrame(int index) {
-    waitTaskAppearThenClick(index);
-    $(By.id(TASK_ACTION)).shouldBe(appear, DEFAULT_TIMEOUT);
-    switchToIFrameOfTask();
-    return new TaskIFrameTemplatePage();
-  }
-
   public TaskTemplatePage startTask(int index) {
     waitTaskAppearThenClick(index);
     $(By.id(TASK_ACTION)).shouldBe(appear, DEFAULT_TIMEOUT);
     return new TaskTemplatePage();
   }
+
   public boolean isTaskStateReserved(int index) {
     try {
       $(By.id(String.format(TASK_STATE_COMPONENT_ID, index))).$(By.className("open-task-state"));
@@ -577,7 +564,6 @@ public class TaskWidgetPage extends TemplatePage {
         String.format("a[id$='task-list-scroller:%d:task-item:task-action:task-action-component']", index);
     refreshAndWaitElement(startLinkId);
     waitForElementClickableThenClick(findElementByCssSelector(startLinkId));
-    switchToIFrameOfTask();
   }
 
   public void resetFilter() {
@@ -627,10 +613,9 @@ public class TaskWidgetPage extends TemplatePage {
         taskWidgetId + ":task-list-scroller:%d:task-item:general-info:priority-form:edit-priority-inplace", index)));
   }
 
-  public TaskIFrameTemplatePage startTaskWithouWaitForTaskActionPresent(int index) {
+  public TaskTemplatePage startTaskWithouWaitForTaskActionPresent(int index) {
     waitTaskAppearThenClick(index);
-    switchToIFrameOfTask();
-    return new TaskIFrameTemplatePage();
+    return new TaskTemplatePage();
   }
 
   public boolean isTaskStateOpen(int index) {

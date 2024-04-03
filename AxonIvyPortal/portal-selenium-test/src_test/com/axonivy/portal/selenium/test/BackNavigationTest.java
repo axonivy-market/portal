@@ -15,7 +15,7 @@ import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
-import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
+import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
 
@@ -82,7 +82,7 @@ public class BackNavigationTest extends BaseTest {
     TaskDetailsPage taskDetailsPage = caseDetailsPage.openTasksOfCasePage("Sick Leave Request");
     taskDetailsPage.waitPageLoaded();
 
-    TaskIFrameTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
+    TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
     String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     String yesterday =
         LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
@@ -130,7 +130,7 @@ public class BackNavigationTest extends BaseTest {
 
     taskDetailsPage = caseDetailsPage.openTasksOfCasePage(PAYMENT_TASK_NAME);
 
-    TaskIFrameTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
+    TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
     taskTemplatePage.inputField("[id$='payment-request:fullname']", "Demo");
     String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskTemplatePage.inputField("[id$='payment-request:from_input']", today);
@@ -154,7 +154,7 @@ public class BackNavigationTest extends BaseTest {
 
     taskDetailsPage = caseDetailsPage.openTasksOfCasePage(PAYMENT_TASK_NAME);
 
-    TaskIFrameTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
+    TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
     taskTemplatePage.clickCancelLink();
     taskDetailsPage = new TaskDetailsPage();
     assertEquals(PAYMENT_TASK_NAME, taskDetailsPage.getTaskName());

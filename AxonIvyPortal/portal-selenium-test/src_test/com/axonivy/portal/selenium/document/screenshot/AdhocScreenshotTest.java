@@ -47,6 +47,7 @@ public class AdhocScreenshotTest extends ScreenshotBaseTest {
     TaskWidgetPage taskWidget = menuPage.openTaskList();
     taskWidget.openTask(mainTask);
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
+    taskTemplatePage.switchBackToParent();
     taskTemplatePage.clickActionButton();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.EXPRESS_FOLDER + "adhoc-start");
 

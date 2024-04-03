@@ -1,6 +1,8 @@
 Dialog:
   Common:
     approve: Approve
+    endPageButton: Go to case detail
+    endPageMessage: Well Done! You have finalized your process.
     finish: Finish
     reject: Reject
     submit: Submit
@@ -10,11 +12,6 @@ Enums:
     MATERNITY_LEAVE: Maternity Leave
     SICK_LEAVE: Sick Leave
 Labels:
-  AxonIvyPortal: Axon Ivy Portal
-  BackToCaseMap: Back to case map
-  BackToHomePage: Back To Home Page
-  Cancel: Cancel
-  CaseDetails: Case Details
   CaseMap:
     Credit:
       address: Address
@@ -44,14 +41,6 @@ Labels:
       submitRequest: Submit Request
       verifierComment: Verifier Comment
       verifierSubmit: Verifier Submit
-  Close: Close
-  ConfirmationHeader: Are you sure?
-  Copyright: Copyright Ⓒ Axon Ivy Portal
-  ErrorAjaxMessage: There is a general exception.
-  ErrorXhr: Failed to update website content
-  ForgotPassword: Forgot my password
-  GoToDetail: Go to detail
-  HasPrecondition: This process has precondition
   LeaveRequest:
     LeaveSteps:
       approval: Approval
@@ -67,27 +56,6 @@ Labels:
     requesterComment: Requester comment
     submitLeaveRequest: Submit leave request
     to: To
-  Loading: Loading
-  Login: Login
-  LoginErrorMessage: You are not logged in or your username is not known by this application. Please consult your system administrator.
-  LoginFailed: Login failed
-  LoginLogo: Login logo
-  LoginWith: Log in with
-  More: More
-  MoreInformation: More information
-  NextStage: Next stage
-  Password: Password
-  PasswordRequiredMessage: The password is required
-  PreviousStage: Previous stage
-  RequiredFieldMessage: This field is required
-  Start: Start
-  TheCaseMap: The case map
-  TheProcess: The process
-  Username: Username
-  UsernameRequiredMessage: The username is required
-  Warning: Warning
-  WelcomeToPortal: Welcome, please login
-  dateFromBiggerThanTo: '''To'' must be later than ''From''.'
 Processes:
   CaseMap:
     ApprovalLevel12:
