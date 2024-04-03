@@ -216,4 +216,10 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
         .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("div.info-overlay-panel__footer").$(".dashboard-excel-export-form").$("a").shouldBe(getClickableCondition()).click();
   }
+
+  public boolean isEmptyMessageAppear() {
+    return $(
+        "div[id$='empty-message-container'][class='empty-message-container ']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
+  }
 }

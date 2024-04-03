@@ -11,7 +11,8 @@
       "config" : {
         "callSignature" : "grantAllPermissionsToCurrentUser",
         "outLink" : "grantAllPermissionsToCurrentUser.ivp",
-        "startName" : "Grant all permissions to current user in Designer"
+        "startName" : "Grant all permissions to current user in Designer",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 80, "y" : 96 },
@@ -50,7 +51,8 @@
       "config" : {
         "callSignature" : "updatePermissionsOfTestUsers",
         "outLink" : "updatePermissionsOfTestUsers.ivp",
-        "startDescription" : "updatePermissionsOfDefaultUsersAsPreconditionToRunTests"
+        "startDescription" : "updatePermissionsOfDefaultUsersAsPreconditionToRunTests",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 408, "y" : 96 },
@@ -87,7 +89,8 @@
       "config" : {
         "callSignature" : "grantTaskReadAllPermissionsToCurrentUser",
         "outLink" : "grantTaskReadAllPermissionsToCurrentUser.ivp",
-        "startName" : "Grant TASK_READ_ALL to current user in Designer"
+        "startName" : "Grant TASK_READ_ALL to current user in Designer",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 79, "y" : 464 },
@@ -120,7 +123,8 @@
       "config" : {
         "callSignature" : "grantCaseReadAllPermissionsToCurrentUser",
         "outLink" : "grantCaseReadAllPermissionsToCurrentUser.ivp",
-        "startName" : "Grant CASE_READ_ALL permissions to current user in Designer"
+        "startName" : "Grant CASE_READ_ALL permissions to current user in Designer",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 79, "y" : 527 },
@@ -170,7 +174,8 @@
       "config" : {
         "callSignature" : "grantTaskReadOwnCaseTaskPermissionsToCurrentUser",
         "outLink" : "grantTaskReadOwnCaseTaskPermissionsToCurrentUser.ivp",
-        "startName" : "Grant TASK_READ_OWN_CASE_TASKS permissions to current user in Designer"
+        "startName" : "Grant TASK_READ_OWN_CASE_TASKS permissions to current user in Designer",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 79, "y" : 594 },
@@ -210,7 +215,8 @@
       "config" : {
         "callSignature" : "denyReadAllPermissionFromCurrentUser",
         "outLink" : "denyReadAllPermissionFromCurrentUser.ivp",
-        "startName" : "deny ReadAll permissions to current user in Designer"
+        "startName" : "deny ReadAll permissions to current user in Designer",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 80, "y" : 653 },
@@ -223,7 +229,8 @@
       "name" : "grantDocumentOfInvolvedCaseWritePemission.ivp",
       "config" : {
         "callSignature" : "grantDocumentOfInvolvedCaseWritePemission",
-        "outLink" : "grantDocumentOfInvolvedCaseWritePemission.ivp"
+        "outLink" : "grantDocumentOfInvolvedCaseWritePemission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 80, "y" : 704 },
@@ -236,7 +243,8 @@
       "name" : "denyDocumentOfInvolvedCaseWritePemission.ivp",
       "config" : {
         "callSignature" : "denyDocumentOfInvolvedCaseWritePemission",
-        "outLink" : "denyDocumentOfInvolvedCaseWritePemission.ivp"
+        "outLink" : "denyDocumentOfInvolvedCaseWritePemission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 80, "y" : 768 },
@@ -289,7 +297,8 @@
       "name" : "grantOnlyDelegateOwnTasksPermission.ivp",
       "config" : {
         "callSignature" : "grantOnlyDelegateOwnTasksPermission",
-        "outLink" : "grantOnlyDelegateOwnTasksPermission.ivp"
+        "outLink" : "grantOnlyDelegateOwnTasksPermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 848 },
@@ -330,7 +339,8 @@
       "name" : "undoOnlyDelegateOwnTasksPermission.ivp",
       "config" : {
         "callSignature" : "undoOnlyDelegateOwnTasksPermission",
-        "outLink" : "undoOnlyDelegateOwnTasksPermission.ivp"
+        "outLink" : "undoOnlyDelegateOwnTasksPermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 56, "y" : 944 },
@@ -370,7 +380,8 @@
       "name" : "denyPortalPermission.ivp",
       "config" : {
         "callSignature" : "denyPortalPermission",
-        "outLink" : "denyPortalPermission.ivp"
+        "outLink" : "denyPortalPermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 48, "y" : 1040 },
@@ -383,7 +394,8 @@
       "name" : "grantPortalPermission.ivp",
       "config" : {
         "callSignature" : "grantPortalPermission",
-        "outLink" : "grantPortalPermission.ivp"
+        "outLink" : "grantPortalPermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 48, "y" : 1136 },
@@ -479,7 +491,8 @@
           }
         },
         "outLink" : "denySpecificPortalPermission.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 48, "y" : 1232 },
@@ -626,7 +639,8 @@
           }
         },
         "outLink" : "grantSpecificPortalPermission.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 48, "y" : 1296 },
@@ -639,7 +653,8 @@
       "name" : "denyAccessFullListPermissions.ivp",
       "config" : {
         "callSignature" : "denyAccessFullListPermissions",
-        "outLink" : "denyAccessFullListPermissions.ivp"
+        "outLink" : "denyAccessFullListPermissions.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 48, "y" : 1360 },
@@ -652,7 +667,8 @@
       "name" : "grantAccessFullListPermissions.ivp",
       "config" : {
         "callSignature" : "grantAccessFullListPermissions",
-        "outLink" : "grantAccessFullListPermissions.ivp"
+        "outLink" : "grantAccessFullListPermissions.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 48, "y" : 1424 },
@@ -754,7 +770,8 @@
             "out.portalPermission" : "param.portalPermission"
           }
         },
-        "outLink" : "denySpecificPermission.ivp"
+        "outLink" : "denySpecificPermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 48, "y" : 1488 },
@@ -800,7 +817,8 @@
             "out.portalPermission" : "param.portalPermission"
           }
         },
-        "outLink" : "grantSpecificPermission.ivp"
+        "outLink" : "grantSpecificPermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 48, "y" : 1552 },
@@ -893,7 +911,8 @@
       "name" : "denyResetTaskReadyForJoin.ivp",
       "config" : {
         "callSignature" : "denyResetTaskReadyForJoin",
-        "outLink" : "denyResetTaskReadyForJoin.ivp"
+        "outLink" : "denyResetTaskReadyForJoin.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 464 },
@@ -958,7 +977,8 @@
       "name" : "grantResetTaskReadyForJoin.ivp",
       "config" : {
         "callSignature" : "grantResetTaskReadyForJoin",
-        "outLink" : "grantResetTaskReadyForJoin.ivp"
+        "outLink" : "grantResetTaskReadyForJoin.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 528 },
@@ -971,7 +991,8 @@
       "name" : "grantDestroyTaskPermission.ivp",
       "config" : {
         "callSignature" : "grantDestroyTaskPermission",
-        "outLink" : "grantDestroyTaskPermission.ivp"
+        "outLink" : "grantDestroyTaskPermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 592 },
@@ -1003,7 +1024,8 @@
       "name" : "denyDestroyTaskPermission.ivp",
       "config" : {
         "callSignature" : "denyDestroyTaskPermission",
-        "outLink" : "denyDestroyTaskPermission.ivp"
+        "outLink" : "denyDestroyTaskPermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 652 },
@@ -1035,7 +1057,8 @@
       "name" : "grantReadAbsencesPermission.ivp",
       "config" : {
         "callSignature" : "grantReadAbsencesPermission",
-        "outLink" : "grantReadAbsencesPermission.ivp"
+        "outLink" : "grantReadAbsencesPermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 704 },
@@ -1072,7 +1095,8 @@
       "name" : "grantReadOwnAbsencesPermission.ivp",
       "config" : {
         "callSignature" : "grantReadOwnAbsencesPermission",
-        "outLink" : "grantReadOwnAbsencesPermission.ivp"
+        "outLink" : "grantReadOwnAbsencesPermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 768 },
@@ -1123,7 +1147,8 @@
       "name" : "grantCreateAbsencePermission.ivp",
       "config" : {
         "callSignature" : "grantCreateAbsencePermission",
-        "outLink" : "grantCreateAbsencePermission.ivp"
+        "outLink" : "grantCreateAbsencePermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 848 },
@@ -1156,7 +1181,8 @@
       "name" : "grantDeleteAbsencePermission.ivp",
       "config" : {
         "callSignature" : "grantDeleteAbsencePermission",
-        "outLink" : "grantDeleteAbsencePermission.ivp"
+        "outLink" : "grantDeleteAbsencePermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 920 },
@@ -1193,7 +1219,8 @@
       "name" : "grantCreateSubstitutePermission.ivp",
       "config" : {
         "callSignature" : "grantCreateSubstitutePermission",
-        "outLink" : "grantCreateSubstitutePermission.ivp"
+        "outLink" : "grantCreateSubstitutePermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 992 },
@@ -1206,7 +1233,8 @@
       "name" : "grantCreateOwnSubstitutePermission.ivp",
       "config" : {
         "callSignature" : "grantCreateOwnSubstitutePermission",
-        "outLink" : "grantCreateOwnSubstitutePermission.ivp"
+        "outLink" : "grantCreateOwnSubstitutePermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 1056 },
@@ -1262,7 +1290,8 @@
       "name" : "denyReadSubstitutesPermission.ivp",
       "config" : {
         "callSignature" : "denyReadSubstitutesPermission",
-        "outLink" : "denyReadSubstitutesPermission.ivp"
+        "outLink" : "denyReadSubstitutesPermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 1120 },
@@ -1300,7 +1329,8 @@
       "name" : "grantDashboardWriteOwnPermission.ivp",
       "config" : {
         "callSignature" : "grantDashboardWriteOwnPermission",
-        "outLink" : "grantDashboardWriteOwnPermission.ivp"
+        "outLink" : "grantDashboardWriteOwnPermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 1184 },
@@ -1313,7 +1343,8 @@
       "name" : "denyDashboardWriteOwnPermission.ivp",
       "config" : {
         "callSignature" : "denyDashboardWriteOwnPermission",
-        "outLink" : "denyDashboardWriteOwnPermission.ivp"
+        "outLink" : "denyDashboardWriteOwnPermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 1248 },
@@ -1376,7 +1407,8 @@
       "name" : "grantDashboardWritePublicPermission.ivp",
       "config" : {
         "callSignature" : "grantDashboardWritePublicPermission",
-        "outLink" : "grantDashboardWritePublicPermission.ivp"
+        "outLink" : "grantDashboardWritePublicPermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 1312 },
@@ -1415,7 +1447,8 @@
       "name" : "denyDashboardWritePublicPermission.ivp",
       "config" : {
         "callSignature" : "denyDashboardWritePublicPermission",
-        "outLink" : "denyDashboardWritePublicPermission.ivp"
+        "outLink" : "denyDashboardWritePublicPermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 1376 },
@@ -1428,7 +1461,8 @@
       "name" : "grantDashboardExportPublicPermission.ivp",
       "config" : {
         "callSignature" : "grantDashboardExportPublicPermission",
-        "outLink" : "grantDashboardExportPublicPermission.ivp"
+        "outLink" : "grantDashboardExportPublicPermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 1440 },
@@ -1491,7 +1525,8 @@
       "name" : "denyDashboardExportPublicPermission.ivp",
       "config" : {
         "callSignature" : "denyDashboardExportPublicPermission",
-        "outLink" : "denyDashboardExportPublicPermission.ivp"
+        "outLink" : "denyDashboardExportPublicPermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 1504 },
@@ -1504,7 +1539,8 @@
       "name" : "grantDashboardExportOwnPermission.ivp",
       "config" : {
         "callSignature" : "grantDashboardExportOwnPermission",
-        "outLink" : "grantDashboardExportOwnPermission.ivp"
+        "outLink" : "grantDashboardExportOwnPermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 1568 },
@@ -1567,7 +1603,8 @@
       "name" : "denyDashboardExportOwnPermission.ivp",
       "config" : {
         "callSignature" : "denyDashboardExportOwnPermission",
-        "outLink" : "denyDashboardExportOwnPermission.ivp"
+        "outLink" : "denyDashboardExportOwnPermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 1632 },
@@ -1581,7 +1618,8 @@
       "config" : {
         "callSignature" : "grantDashboardImportPublicPermission",
         "outLink" : "grantDashboardImportPublicPermission.ivp",
-        "startName" : "Grant Dashboard Import Public Permission"
+        "startName" : "Grant Dashboard Import Public Permission",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 1696 },
@@ -1645,7 +1683,8 @@
       "config" : {
         "callSignature" : "denyDashboardImportPublicPermission",
         "outLink" : "denyDashboardImportPublicPermission.ivp",
-        "startName" : "Deny Dashboard Import Public Permission"
+        "startName" : "Deny Dashboard Import Public Permission",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 1760 },
@@ -1659,7 +1698,8 @@
       "config" : {
         "callSignature" : "grantDashboardImportOwnPermission",
         "outLink" : "grantDashboardImportOwnPermission.ivp",
-        "startName" : "Grant Dashboard Import Own Permission"
+        "startName" : "Grant Dashboard Import Own Permission",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 1824 },
@@ -1723,7 +1763,8 @@
       "config" : {
         "callSignature" : "denyDashboardImportOwnPermission",
         "outLink" : "denyDashboardImportOwnPermission.ivp",
-        "startName" : "Deny Dashboard Import Own Permission"
+        "startName" : "Deny Dashboard Import Own Permission",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 1888 },
@@ -1762,7 +1803,8 @@
       "config" : {
         "callSignature" : "grantDashboardShareLinkPermission",
         "outLink" : "grantDashboardShareLinkPermission.ivp",
-        "startName" : "Grant Share Link Dashboard Permision"
+        "startName" : "Grant Share Link Dashboard Permision",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 1952 },
@@ -1801,7 +1843,8 @@
       "config" : {
         "callSignature" : "denyDashboardShareLinkPermission",
         "outLink" : "denyDashboardShareLinkPermission.ivp",
-        "startName" : "Deny Share Link Dashboard Permision"
+        "startName" : "Deny Share Link Dashboard Permision",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 896, "y" : 2016 },
@@ -1840,7 +1883,8 @@
       "config" : {
         "callSignature" : "grantShareLinkTaskDetailsPermission",
         "outLink" : "grantShareLinkTaskDetailsPermission.ivp",
-        "startName" : "Grant Share Link Task Details Permision"
+        "startName" : "Grant Share Link Task Details Permision",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 48, "y" : 1624 },
@@ -1879,7 +1923,8 @@
       "config" : {
         "callSignature" : "denyShareLinkTaskDetailsPermission",
         "outLink" : "denyShareLinkTaskDetailsPermission.ivp",
-        "startName" : "Deny Share Link Task Details Permision"
+        "startName" : "Deny Share Link Task Details Permision",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 48, "y" : 1688 },
@@ -1918,7 +1963,8 @@
       "config" : {
         "callSignature" : "grantShareLinkCaseDetailsPermission",
         "outLink" : "grantShareLinkCaseDetailsPermission.ivp",
-        "startName" : "Grant Share Link Case Details Permision"
+        "startName" : "Grant Share Link Case Details Permision",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 48, "y" : 1752 },
@@ -1957,13 +2003,94 @@
       "config" : {
         "callSignature" : "denyShareLinkCaseDetailsPermission",
         "outLink" : "denyShareLinkCaseDetailsPermission.ivp",
-        "startName" : "Deny Share Link Case Details Permision"
+        "startName" : "Deny Share Link Case Details Permision",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 48, "y" : 1816 },
         "labelOffset" : { "x" : 97, "y" : 33 }
       },
       "connect" : { "id" : "f189", "to" : "f187" }
+    }, {
+      "id" : "f195",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import java.util.Objects;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(IPermission.CASE_READ_ALL_OWN_ROLE_INVOLVED.getName());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ISecurityContext.current().securityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 1888 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f201", "to" : "f7", "via" : [ { "x" : 408, "y" : 1888 } ] }
+    }, {
+      "id" : "f196",
+      "type" : "RequestStart",
+      "name" : "grantCaseReadAllOwnRoleInvolvedPermission.ivp",
+      "config" : {
+        "callSignature" : "grantCaseReadAllOwnRoleInvolvedPermission",
+        "outLink" : "grantCaseReadAllOwnRoleInvolvedPermission.ivp",
+        "startName" : "Grant Case Read All Own Role Involved Permission",
+        "case" : { }
+      },
+      "visual" : {
+        "at" : { "x" : 48, "y" : 1888 },
+        "labelOffset" : { "x" : 97, "y" : 41 }
+      },
+      "connect" : { "id" : "f199", "to" : "f195" }
+    }, {
+      "id" : "f197",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import java.util.Objects;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(IPermission.CASE_READ_ALL_OWN_ROLE_INVOLVED.getName());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ISecurityContext.current().securityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 1952 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : { "id" : "f202", "to" : "f7", "via" : [ { "x" : 408, "y" : 1952 } ] }
+    }, {
+      "id" : "f198",
+      "type" : "RequestStart",
+      "name" : "denyCaseReadAllOwnRoleInvolvedPermission.ivp",
+      "config" : {
+        "callSignature" : "denyCaseReadAllOwnRoleInvolvedPermission",
+        "outLink" : "denyCaseReadAllOwnRoleInvolvedPermission.ivp",
+        "startName" : "Deny Case Read All Own Role Involved Permission",
+        "case" : { }
+      },
+      "visual" : {
+        "at" : { "x" : 48, "y" : 1952 },
+        "labelOffset" : { "x" : 97, "y" : 33 }
+      },
+      "connect" : { "id" : "f200", "to" : "f197" }
     } ],
   "layout" : {
     "lanes" : [ {
