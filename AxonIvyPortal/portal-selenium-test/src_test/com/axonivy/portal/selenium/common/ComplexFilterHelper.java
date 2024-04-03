@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.common;
 
 import static com.codeborne.selenide.Condition.and;
+
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.exist;
@@ -49,8 +50,11 @@ public class ComplexFilterHelper {
       case STATE_TYPE:
         handleFilterState(filterElement, values);
         break;
-      case TEXT, NUMBER:
-        handleFilterTextAndNumber(filterElement, values);
+      case TEXT:
+        handleFilterText(filterElement, values);
+        break;
+      case NUMBER:
+        handleFilterNumber(filterElement, values);
         break;
       case NUMBER_BETWEEN:
         handleFilterNumberBetween(filterElement, values);
@@ -99,8 +103,18 @@ public class ComplexFilterHelper {
     getCloseCheckBox().shouldBe(getClickableCondition()).click();
   }
 
-  private static void handleFilterTextAndNumber(SelenideElement filterElement, Object... values) {
-    var textField = filterElement.$("div[id$='-list-panel']").$(".ui-chips.ui-widget").$("input")
+  private static void handleFilterText(SelenideElement filterElement, Object... values) {
+    var textField = filterElement.$("div[id$='-list-panel']").$("div[class*='ui-chips ui-widget']").$("input")
+        .shouldBe(Condition.editable);
+    for (int i = 0; i < values.length; i++) {
+      textField.clear();
+      textField.sendKeys(String.valueOf(values[i]));
+      textField.pressEnter();
+    }
+  }
+  
+  private static void handleFilterNumber(SelenideElement filterElement, Object... values) {
+    var textField = filterElement.$("div[id*='number-panel']").$("span[class*='ui-widget']").$("input")
         .shouldBe(Condition.editable);
     for (int i = 0; i < values.length; i++) {
       textField.clear();

@@ -1,11 +1,14 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
+
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.axonivy.portal.selenium.common.ComplexFilterHelper;
+import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -505,4 +508,68 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     $("div.info-overlay-panel__footer").$(".dashboard-excel-export-form").$("a").shouldBe(getClickableCondition())
         .click();
   }
+  
+  public void addFilter(String columnName, com.axonivy.portal.selenium.common.FilterOperator operator) {
+    ComplexFilterHelper.addFilter(columnName, operator);
+  }
+  
+  public void inputValueOnLatestFilter(FilterValueType type, Object... values) {
+    ComplexFilterHelper.inputValueOnLatestFilter(type, values);
+  }
+  
+  public void saveFilter(String widgetFilterName) {
+    $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='save-filter']")
+        .filter(text("Save filter")).first().shouldBe(getClickableCondition()).click();
+    $("div#save-widget-filter-dialog").$("input[id='save-filter-form:save-filter-name']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).setValue(widgetFilterName);
+    $("button[id$=':save-widget-filter-button']").click();
+    $("div[id$=':widget-saved-filters-items']").$$("div.saved-filter__items").filter(text(widgetFilterName)).first()
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void openManageFiltersDialog() {
+    $("div.saved-filter-content").shouldBe(appear, DEFAULT_TIMEOUT)
+    .$("a[class*='saved-filter__manage-filter']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+  }
+  
+  public void removeAllFilterItems() {
+    $("div[id='manage-filter-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div[id$=':quick-filter-table_head_checkbox']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("button[id='delete-saved-filter-form:delete-widget-filter-btn']").click();
+  }
+  
+  public void closeManageFilterDialog() {
+    $("a[id*='delete-saved-filter-form']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+  }
+  
+  public void selectSavedFilter(String filterName) {
+    getSavedFilterItems().filter(text(filterName)).first().shouldBe(getClickableCondition()).click();
+  }
+  
+  
+  public void searchSavedFilters(String input) {
+    $("div[class*='saved-filter--search-container']").$("input[id$=':search-saved-filter-input']").setValue(input);
+  }
+  
+  public void inputValueOnColumnWidgetHeader(String columnName, String value) {
+    columnName = columnName + ": activate to sort column ascending";
+    $("div[id='manage-filter-dialog']").$("div[id$=':quick-filter-table']")
+        .$("div.ui-datatable-scrollable-header-box table thead tr")
+        .$$("th[id*='delete-saved-filter-form:quick-filter-table']")
+        .filter(Condition.attribute("aria-label", columnName)).first().$("input").setValue(value);
+  }
+  
+  public ElementsCollection getSavedFilterItemsByFilterNameOnWidgetManagement() {
+    ElementsCollection elements = $("div[id='manage-filter-dialog']").$("div.ui-datatable-scrollable-body table tbody")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$$("tr").filter(Condition.attribute("data-rk"));
+    return elements;
+  }
+  
+  public Integer getFilterNotiNumber() {
+    String filterNotiNumber =
+        $$("div.table-widget-panel").filter(text(taskWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT)
+            .$("div[id$=':widget-header-actions']").$("span[class*='widget__filter-noti-number']").getText();
+    return Integer.parseInt(filterNotiNumber);
+  }
+
 }
