@@ -18,7 +18,7 @@ import com.axonivy.portal.selenium.common.ScreenshotUtils;
 
 @IvyWebTest
 public class HandleErrorPageScreenshotTest extends ScreenshotBaseTest {
-  private String portalCustomErrorUrl = "InternalSupport/14B2FC03D2E87141/testPortalCustomErrorHandler.ivp";
+  private String portalCustomErrorUrl = "PortalKitTestHelper/18D596926C35B1DB/testPortalCustomErrorHandler.ivp";
   private String showIvyErrorPageUrl = "portal-developer-examples/169BDE2F368D6EC4/StartShowIvyErrorPage.ivp";
   private String portalCustom404ErrorUrl = "portal/1549F58C18A6C562/Error404Page.ivp";
   private String portalCustom500ErrorUrl = "portal/1549F58C18A6C562/Error500Page.ivp";

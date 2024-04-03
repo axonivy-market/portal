@@ -1,6 +1,4 @@
 {
+  /HTML_DIALOG *
   /PROCESS *
-  /HTML_DIALOG {
-    /ch.ivy.addon.portal.component.ProcessInformation "com.axonivy.portal.developerexamples.customization.CustomizedProcessInformation"
-  }
 }
