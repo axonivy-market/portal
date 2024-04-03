@@ -10,5 +10,13 @@
         <password>david</password>
         <fullName>david</fullName>
         <role>HR</role>
+        <role>TestRoleInvolved</role>
+    </user>
+    <user>
+        <username>peter</username>
+        <password>peter</password>
+        <fullName>peter</fullName>
+        <role>HR</role>
+        <role>TestRoleInvolved</role>
     </user>
 </userConfig>

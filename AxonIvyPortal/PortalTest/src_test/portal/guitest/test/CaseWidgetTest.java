@@ -306,4 +306,33 @@ public class CaseWidgetTest extends BaseTest {
     WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_CREATED_COLUMN));
     WaitHelper.assertTrueWithWait(() -> !detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_STATE_COLUMN));
   }
+
+  @Test
+  public void testCaseReadAllOwnRoleInvolved() {
+    redirectToRelativeLink(createTaskForRoleInvolved);
+    initHomePage(TestAccount.HR_ROLE_USER);
+    homePage.waitForPageLoaded();
+    TaskWidgetPage taskWidgetPage = homePage.openTaskList();
+    taskWidgetPage.waitForPageLoaded();
+    taskWidgetPage.filterTasksInExpandedModeBy("Task for role involved", 1);
+
+    WaitHelper.waitForNavigation(taskWidgetPage, () -> {
+      taskWidgetPage.waitTaskAppearThenClick(0);
+    });
+
+    login(TestAccount.HR_ROLE_USER_2);
+    redirectToRelativeLink(grantCaseReadAllOwnRoleInvolvedPermission);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    homePage = new HomePage();
+    CaseWidgetPage casePage = homePage.openCaseList();
+    casePage.waitForPageLoaded();
+    assertTrue(casePage.isCaseDisplayed("Test Process: role involved"));
+
+    redirectToRelativeLink(denyCaseReadAllOwnRoleInvolvedPermission);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    homePage = new HomePage();
+    casePage = homePage.openCaseList();
+    casePage.waitForPageLoaded();
+    assertFalse(casePage.isCaseDisplayed("Test Process: role involved"));
+  }
 }

@@ -45,6 +45,7 @@ public class BaseTest {
   protected String createTestingCaseUrlForDefaultAdditionalCaseDetails = "internalSupport/14B2FC03D2E87141/DefaultAdditionalCaseDetails.ivp";
   protected String createTestingCaseContainOneTask = "internalSupport/14B2FC03D2E87141/CreateSupportTicket.ivp";
   protected String createTaskWithNotExistedActivatorUrl = "internalSupport/14B2FC03D2E87141/createTaskWithNotExistedActivator.ivp";
+  protected String createTaskForRoleInvolved = "InternalSupport/171E2BB0DB49C362/roleInvolved.ivp";
   protected String expressStartLink = "axonIvyExpress/15798655494F25E1/AxonIvyExpressWF.ivp";
   protected String cleanupDataLink = "portalKitTestHelper/1511A66AF619A768/cleanData.ivp";
   protected String createAlphaCompanyUrl = "portal-components-examples/1818977D467E3129/createAlphaCompany.ivp";
@@ -91,6 +92,8 @@ public class BaseTest {
   protected String denyShareLinkCaseDetailsPermission = "PortalKitTestHelper/14DE09882B540AD5/denyShareLinkCaseDetailsPermission.ivp";
   protected String grantShareLinkTaskDetailsPermission = "PortalKitTestHelper/14DE09882B540AD5/grantShareLinkTaskDetailsPermission.ivp";
   protected String denyShareLinkTaskDetailsPermission = "PortalKitTestHelper/14DE09882B540AD5/denyShareLinkTaskDetailsPermission.ivp";
+  protected String grantCaseReadAllOwnRoleInvolvedPermission = "PortalKitTestHelper/14DE09882B540AD5/grantCaseReadAllOwnRoleInvolvedPermission.ivp";
+  protected String denyCaseReadAllOwnRoleInvolvedPermission = "PortalKitTestHelper/14DE09882B540AD5/denyCaseReadAllOwnRoleInvolvedPermission.ivp";
 
   protected void redirectToNewDashBoard() {
     open(EngineUrl.createProcessUrl(PORTAL_HOME_PAGE_URL));
