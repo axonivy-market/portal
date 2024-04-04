@@ -571,5 +571,24 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
             .$("div[id$=':widget-header-actions']").$("span[class*='widget__filter-noti-number']").getText();
     return Integer.parseInt(filterNotiNumber);
   }
+  
+  public void clickOnFilterOperator(Integer index) {
+    $("div[class*='dashboard-widget-filter__main-panel']").shouldBe(getClickableCondition())
+    .$$("div[class*='dashboard-widget-filter__filter-wrapper']").get(index).shouldBe(getClickableCondition())
+    .$("div[id$='operator-selection']").shouldBe(getClickableCondition()).click();
+  }
+  
+  public SelenideElement getConfigurationFilter() {
+    return $("div[class*='filter-overlay-panel'][style*='display: block']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void removeFocusFilterDialog() {
+    $("[id$=':widget-filter-content']").$("strong").click();
+    $("[id$=':widget-filter-content']").scrollIntoView("{block: \"end\"}");
+  }
+  
+  public boolean isEmptyMessageAppear() {
+    return $("div[id$='empty-message-container']").exists();
+  }
 
 }

@@ -68,6 +68,9 @@ public class ComplexFilterHelper {
       case CREATOR_TYPE:
         handleFilterCreator(filterElement, values);
         break;
+      case RESPONSIBLE_TYPE:
+        handleFilterResponsible(filterElement, values);
+        break;
       case CATEGORY_TYPE:
         handleFilterCategory(filterElement, values);
         break;
@@ -158,6 +161,19 @@ public class ComplexFilterHelper {
       selectPanel.shouldBe(getClickableCondition()).click();
       selectPanel.shouldBe(disappear);
       filterElement.$("div[id$=':creators']").$("ul li.ui-helper-hidden").should(disappear);
+    }
+  }
+  
+  private static void handleFilterResponsible(SelenideElement filterElement, Object... values) {
+    var creatorInput = filterElement.$("div[id$=':responsibles']").$("input").shouldBe(appear);
+    for (int i = 0; i < values.length; i++) {
+      creatorInput.clear();
+      creatorInput.sendKeys(String.valueOf(values[i]));
+      var selectPanel = $("span[id$=':responsibles_panel'][style*='display: block']").shouldBe(appear);
+      selectPanel.$(".ui-avatar-text").shouldBe(appear);
+      selectPanel.shouldBe(getClickableCondition()).click();
+      selectPanel.shouldBe(disappear);
+      filterElement.$("div[id$=':responsibles']").$("ul li.ui-helper-hidden").should(disappear);
     }
   }
 
