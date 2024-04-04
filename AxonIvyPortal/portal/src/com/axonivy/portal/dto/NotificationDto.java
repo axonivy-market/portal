@@ -6,6 +6,7 @@ import org.apache.commons.lang3.time.DateUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.notification.web.WebNotification;
+import ch.ivyteam.ivy.notification.web.WebNotificationAction;
 
 public class NotificationDto {
   private String id;
@@ -15,6 +16,8 @@ public class NotificationDto {
   private String timeSince;
   private boolean isMarkedToday;
   private boolean isMarkedOlder;
+  private NotificationActionDTO info;
+  private NotificationActionDTO run;
 
   public boolean isMarkedToday() {
     return isMarkedToday;
@@ -49,6 +52,8 @@ public class NotificationDto {
     this.setRead(noti.isRead());
     this.setCreatedAt(Date.from(noti.createdAt()));
     this.setTimeSince(getTimeSince(this.getCreatedAt()));
+    this.setInfo(toNotificationActionDTO(notification.details()));
+    this.setRun(toNotificationActionDTO(notification.start()));
   }
 
   private String getTimeSince(Date date) {
@@ -113,6 +118,22 @@ public class NotificationDto {
   public boolean isRead() {
     return this.isRead;
   }
+  
+  public NotificationActionDTO getInfoAction() {
+    return info;
+  }
+
+  public void setInfo(NotificationActionDTO info) {
+    this.info = info;
+  }
+
+  public NotificationActionDTO getRunAction() {
+    return run;
+  }
+
+  public void setRun(NotificationActionDTO run) {
+    this.run = run;
+  }
 
   public String getStyle() {
     if (this.isRead) {
@@ -120,5 +141,8 @@ public class NotificationDto {
     }
     return "p-text-bold";
   }
-
+  
+  private static NotificationActionDTO toNotificationActionDTO(WebNotificationAction action) {
+    return action != null ? new NotificationActionDTO(action.link(), action.title()) : null;
+  }
 }

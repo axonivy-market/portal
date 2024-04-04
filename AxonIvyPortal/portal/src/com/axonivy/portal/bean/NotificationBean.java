@@ -9,6 +9,7 @@ import javax.faces.bean.ViewScoped;
 import com.axonivy.portal.datamodel.NotificationLazyModel;
 import com.axonivy.portal.dto.NotificationDto;
 
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelDTO;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.notification.channel.NotificationChannel;
@@ -126,4 +127,15 @@ public class NotificationBean implements Serializable {
     } else
       return false;
   }
+  
+  public void startTaskFromNoti(NotificationDto dto) {
+    markAsRead(dto);
+    PortalNavigator.redirect(dto.getRunAction().getLink().getRelative());
+  }
+  
+  public void goToTaskDetail(NotificationDto dto) {
+    markAsRead(dto);
+    PortalNavigator.redirect(dto.getInfoAction().getLink().getRelative());
+  }
+  
 }

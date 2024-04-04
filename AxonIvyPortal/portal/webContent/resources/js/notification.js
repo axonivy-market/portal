@@ -13,7 +13,6 @@ function closeNotificationPanel() {
 function markAsRead(notiId) {
     $('i#' + notiId).each(function(index) {
       if ($(this) !== undefined) {
-      $(this).addClass('fa-circle-thin');
       $(this).removeClass('fa-circle');
       $(this).parents('.notifications-container-top').removeClass('p-text-bold');
     }

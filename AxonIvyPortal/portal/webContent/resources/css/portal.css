@@ -1615,7 +1615,8 @@ body.in-dialog .ui-widget-overlay {
   display: inline;
 }
 
-/* Notifications */
+/*-----------------------------NOTIFICATION---------------------------------------*/
+
 .notifications-badge {
   width:24px;
   height:22px;
@@ -1633,8 +1634,14 @@ body.in-dialog .ui-widget-overlay {
   font-size: var(--default-font-size);
 }
 
-.notifications-button.fa {
-  font-size: var(--default-font-size);
+.notifications-indicator {
+  width: 1rem;
+  justify-content: center;
+  flex: 0 0 1.5rem;
+}
+
+.notifications-indicator-icon {
+  font-size: var(--notification-indicator-size);
   padding-right: 5px;
 }
 
@@ -1648,13 +1655,16 @@ body.in-dialog .ui-widget-overlay {
 }
 
 .notifications-container-top {
-  padding:0.3rem;
-  padding-left:0px;
-  padding-right:0px;
-  margin-bottom:0.15em;
-  margin-top:0.15em;
+  padding:0.8rem 0;
+  margin-bottom:0.5rem;
   border-radius: 6px;
+  padding-left: 0.2rem;
 }
+
+.notifications-container-top:hover {
+  background-color: var(--notification-hover-message-color);
+}
+
 body .notification-scroll>.ui-datascroller-content  {
   border: 0px;
   padding: 2px;
@@ -1676,12 +1686,9 @@ body .notification-checkbox .ui-chkbox-box {
   width: 1rem;
   height: 1rem;
 }
-.notification-checkbox .ui-chkbox-label {
-  var(--notification-label-font-size);
-}
 
 .notifications-item-container {
-  padding: 20px 10px 5px 10px;
+  padding: 20px 15px 5px 15px;
   display: block;
   overflow: hidden;
   background-color: var(--notification-title-color)
@@ -1728,7 +1735,7 @@ body .notification-checkbox .ui-chkbox-box {
 
 .notifications-item-time-since {
   font-size: var(--notification-label-item-font-size);
-  padding-left: 1.3rem;
+  margin-top: 0.3rem
 }
 .time-since {
   padding-left: 1rem;
@@ -1740,28 +1747,45 @@ body .notification-checkbox .ui-chkbox-box {
   display: contents;
 }
 
-.notifications-group-name {
+.notifications-group-name hr{
+  margin: 0.3rem 0;
+}
+
+.only-unread-block-text {
+  margin-left: 0.4rem;
+  font-weight: 500; 
+}
+
+.only-unread-block {
+    margin: 0.5rem 0 1.3rem 0;
+}
+
+.notification-action-block {
+  margin-left: auto;
+  flex: 0 0 4rem;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0.5rem;
+}
+
+.notification-start-task {
+  background-color: var(--item-background-hover);
+  width: 2rem;
+  height: 2rem;
   position: relative;
-  display: block;
+  border-radius: 50%
 }
 
-.notifications-group-name:after {
+.notification-start-task-icon {
   position: absolute;
-  content: "";
-  height: 1px;
-  background-color: var(--ivy-primary-color-black);
-  width: 100%;
-  margin-left: 15px;
   top: 50%;
+  left: 50%;
+  transform: translate(-40%, -50%);
 }
 
-.only-unread-toggle{
-  padding-right:10px;
-}
-.unread-container{
-  display:flex;
-  align-items:center;
-  justify-content:end;
+.notification-message {
+  text-decoration: none !important;
+  color: var(--text-color) !important;
 }
 
 i.dashboard-icon-drag-drop {
