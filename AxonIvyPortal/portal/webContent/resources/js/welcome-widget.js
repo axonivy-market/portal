@@ -121,7 +121,7 @@ WelcomeWidget = {
   init : function(widgetId, welcomeTextColor, welcomeTextPosition, welcomeTextSize, welcomeImageFit, imageInlineStyle) {
     this.updateWelcomeTextStyles(widgetId, welcomeTextColor, welcomeTextPosition, welcomeTextSize);
     this.updateImageFit(widgetId, welcomeImageFit);
-    this.updateImageInlineStyle(imageInlineStyle);
+    this.updateImageInlineStyle(widgetId,imageInlineStyle);
   },
 
   updateWelcomeTextStyles : function(widgetId, welcomeTextColor, welcomeTextPosition, welcomeTextSize) {
@@ -174,10 +174,11 @@ WelcomeWidget = {
 	
   },
 
-  updateImageInlineStyle:function(imageInlineStyle) {
-    var image = document.getElementsByClassName('js-welcome-image');
-    for (var i = 0; i < image.length; i++) {
-      image[i].style.cssText = imageInlineStyle;
+  updateImageInlineStyle: function(widgetId, imageInlineStyle) {
+    var widget = $('div.grid-stack-item[gs-id="' + widgetId + '"]');
+    var images = widget.find('.js-welcome-image');
+    for (var i = 0; i < images.length; i++) {
+        images[i].style.cssText = imageInlineStyle;
     }
   }
 }
