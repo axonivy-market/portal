@@ -34,11 +34,12 @@ import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.ProcessViewerWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.StatisticEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 import com.codeborne.selenide.CollectionCondition;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class DashboardScreenshotTest extends ScreenshotBaseTest {
   private NewDashboardPage homePage;
   private static final int SCREENSHOT_WIDTH = 1500;
@@ -384,7 +385,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     DashboardModificationPage editPage = new DashboardModificationPage();
     NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
     detailsEditPage.waitForCaseWidgetLoaded();
-    detailsEditPage.editWidgetById(1);
+    detailsEditPage.editWidgetById(1); 
     CaseEditWidgetNewDashBoardPage caseConfig = new CaseEditWidgetNewDashBoardPage();
     caseConfig.waitPreviewTableLoaded();
     ScreenshotUtils.executeDecorateJs("highlightShowFilterButton();");
@@ -423,7 +424,60 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     caseWidget.removeFocusFilterDialog();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseWidget.getConfigurationFilter(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-task-widget-filter-combine", new ScreenshotMargin(20));
+  }
+  
+  @Test
+  public void screenshotComplexFilterTaskWidget() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
+    homePage = new NewDashboardPage();
+    TaskWidgetNewDashBoardPage taskWidget = homePage.selectTaskWidget("Your Tasks");
+    ScreenshotUtils.maximizeBrowser();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Description", FilterOperator.EMPTY);
+    taskWidget.clickOnFilterOperator(0);
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskWidget.getConfigurationFilter(),ScreenshotUtils.NEW_DASHBOARD_FOLDER + "filter-operator-dropdown", new ScreenshotMargin(25));
+    redirectToDashboardConfiguration();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    DashboardModificationPage editPage = new DashboardModificationPage();
+    NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
+    detailsEditPage.waitForTaskWidgetLoaded();
+    detailsEditPage.editWidgetById(1);
+    TaskEditWidgetNewDashBoardPage taskConfig = new TaskEditWidgetNewDashBoardPage();
+    ScreenshotUtils.executeDecorateJs("highlightShowFilterButton();");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "edit-widget-show-filter");
+    ScreenshotUtils.executeDecorateJs("removeHighlightShowFilterButton();");
+    resizeBrowserTo2kResolution();
+    taskConfig.addCustomColumns("CustomerName");
+    taskConfig.openFilter();
+    taskConfig.addFilter("Responsible", FilterOperator.CURRENT_USER);
+    taskConfig.addFilter("Name", FilterOperator.CONTAINS);
+    taskConfig.inputValueOnLatestFilter(FilterValueType.TEXT, "Leave","Request");
+    
+    taskConfig.addFilter("State", null);
+    taskConfig.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN","DONE");
+    
+    taskConfig.addFilter("Customer name", FilterOperator.CONTAINS);
+    taskConfig.inputValueOnLatestFilter(FilterValueType.TEXT, "Anh","Long");
+    
+    taskConfig.closeFilter();
+    taskConfig.save();
+    
+    showNewDashboard();
+    homePage = new NewDashboardPage();
+    taskWidget = homePage.selectTaskWidget("Your Tasks");
+    taskWidget.openFilterWidget();
 
+    taskWidget.addFilter("Created Date", FilterOperator.WITHIN_NEXT);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.WITHIN, "2", "Year(s)");
+    
+    taskWidget.addFilter("Description", FilterOperator.CONTAINS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Leave", "Request");
+    
+    taskWidget.removeFocusFilterDialog();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskWidget.getConfigurationFilter(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-task-widget-filter-combine", new ScreenshotMargin(20));
   }
   
   @Test

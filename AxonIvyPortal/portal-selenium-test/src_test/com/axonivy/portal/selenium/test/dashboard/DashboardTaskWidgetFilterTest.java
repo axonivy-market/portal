@@ -2,7 +2,6 @@ package com.axonivy.portal.selenium.test.dashboard;
 
 import java.util.List;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -229,6 +228,39 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(15));
   }
   
+  @Test
+  public void testFilterDateOnCustomCaseFields() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.DEMO_USER);
+    redirectToNewDashBoard();
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASK_WIDGET);
+    ScreenshotUtils.maximizeBrowser();
+    addCustomCaseFields(taskWidget, List.of("InvoiceDate","CreatedBillDate"));
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Invoice date", FilterOperator.TODAY);
+    taskWidget.addFilter("Created Bill date", FilterOperator.BEFORE);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2024");
+
+    taskWidget.applyFilter();
+    assertTrue(taskWidget.isEmptyMessageAppear());
+  }
+  
+  @Test
+  public void testFilterNumberOnCustomCaseFields() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.DEMO_USER);
+    redirectToNewDashBoard();
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASK_WIDGET);
+    ScreenshotUtils.maximizeBrowser();
+    addCustomCaseFields(taskWidget, List.of("InvoiceNumber","InvoiceSubTotalAmount"));
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Additional Case Data 1", FilterOperator.NOT_EMPTY);
+    taskWidget.addFilter("Invoice Subtotal Amount", FilterOperator.EQUAL);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.NUMBER, "1000");
+
+    taskWidget.applyFilter();
+    assertTrue(taskWidget.isEmptyMessageAppear());
+  }
   
   
   private void createSavedFilterItems(TaskWidgetNewDashBoardPage taskWidget) {
@@ -247,7 +279,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.saveFilter("TaskNameLeaveRequest");
     taskWidget.resetFilter();
     
-    taskWidget.openFilterWidget();
+    taskWidget.openFilterWidget();  
     taskWidget.addFilter("Name", FilterOperator.EMPTY);
     taskWidget.addFilter("Description", FilterOperator.EMPTY);
     taskWidget.saveFilter("TaskNameAndDescriptionEmpty");
@@ -274,6 +306,19 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskEditWidget.selectCustomType();
     for(String fieldName : fieldNameList) {
       taskEditWidget.addCustomFields(fieldName);
+    }
+    taskEditWidget.saveAfterAddingCustomField();
+  }
+  
+  private void addCustomCaseFields(TaskWidgetNewDashBoardPage taskWidget, List<String> fieldNameList) {
+    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
+    taskEditWidget.openColumnManagementDialog();
+    taskEditWidget.selectCustomCaseType();
+    for(String fieldName : fieldNameList) {
+      taskEditWidget.addCustomCaseFields(fieldName);
     }
     taskEditWidget.saveAfterAddingCustomField();
   }
