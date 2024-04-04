@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.configuration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -9,6 +10,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -32,7 +35,7 @@ public class ExternalLink extends AbstractConfiguration {
   private List<String> defaultPermissions = new ArrayList<>();
   private String securityMemberId;
   private List<DisplayName> names;
-  private List<DisplayName> descriptions;;
+  private List<DisplayName> descriptions;
   
   public ExternalLink() {
   }
@@ -148,7 +151,22 @@ public class ExternalLink extends AbstractConfiguration {
   }
 
   public List<DisplayName> getNames() {
+    if (CollectionUtils.isEmpty(names)) {
+      IvyLanguage ivyLanguage = LanguageService.newInstance().findUserLanguages().getIvyLanguage();
+      names = initDisplayName(ivyLanguage);
+    }
     return names;
+  }
+  
+  private List<DisplayName> initDisplayName(IvyLanguage ivyLanguage){
+    List<DisplayName> result = new ArrayList<>();
+    for (String language : ivyLanguage.getSupportedLanguages()) {
+      DisplayName newItem = new DisplayName();
+      newItem.setLocale(Locale.forLanguageTag(language));
+      newItem.setValue("");
+      result.add(newItem);
+    }
+    return result;
   }
 
   public void setNames(List<DisplayName> names) {
@@ -156,6 +174,10 @@ public class ExternalLink extends AbstractConfiguration {
   }
 
   public List<DisplayName> getDescriptions() {
+    if (CollectionUtils.isEmpty(descriptions)) {
+      IvyLanguage ivyLanguage = LanguageService.newInstance().findUserLanguages().getIvyLanguage();
+      descriptions = initDisplayName(ivyLanguage);
+    }  
     return descriptions;
   }
 
