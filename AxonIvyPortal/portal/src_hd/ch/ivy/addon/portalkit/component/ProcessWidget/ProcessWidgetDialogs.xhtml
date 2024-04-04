@@ -112,6 +112,7 @@
             <p:inputTextarea id="external-description" value="#{processWidgetBean.editedExternalLink.description}"
               maxlength="200" rows="3" />
             <p:commandButton id="edit-description-language-button" icon="si si-chat-translate" 
+              actionListener="#{processWidgetBean.updateDescriptionByLocale()}"
               process="#{cc.clientId}:edit-process-form:external-description"
               update="#{cc.clientId}:text-area-edit-multiple-languages-dialog"
               oncomplete="PF('text-area-edit-multiple-languages-dialog').show();" />
