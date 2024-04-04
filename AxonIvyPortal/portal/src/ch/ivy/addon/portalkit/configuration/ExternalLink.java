@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.configuration;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -10,8 +9,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
-import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;
-import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -38,27 +35,8 @@ public class ExternalLink extends AbstractConfiguration {
   private List<DisplayName> descriptions;;
   
   public ExternalLink() {
-    IvyLanguage ivyLanguage = LanguageService.newInstance().findUserLanguages().getIvyLanguage();
-    if (CollectionUtils.isEmpty(names)) {
-      names = initDisplayName(ivyLanguage);
-    }
-    
-    if (CollectionUtils.isEmpty(descriptions)) {
-      descriptions = initDisplayName(ivyLanguage);
-    }        
   }
   
-  private List<DisplayName> initDisplayName(IvyLanguage ivyLanguage){
-    List<DisplayName> result = new ArrayList<>();
-    for (String language : ivyLanguage.getSupportedLanguages()) {
-      DisplayName newItem = new DisplayName();
-      newItem.setLocale(Locale.forLanguageTag(language));
-      newItem.setValue("");
-      result.add(newItem);
-    }
-    return result;
-  }
-
   public String getName() {
     return LanguageUtils.getLocalizedName(names, name);
   }

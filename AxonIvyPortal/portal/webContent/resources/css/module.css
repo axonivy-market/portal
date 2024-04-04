@@ -1401,6 +1401,9 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .external-link-description {
   padding-right: 0.5em;
 }
+.multi-language-textarea-label {
+  float: left;
+}
 .external-link-input{
   padding-left: 1em;
   padding-top: 1em;
