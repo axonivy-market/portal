@@ -292,11 +292,6 @@
           process="#{cc.clientId}:add-external-link-form:external-description"
           update="#{cc.clientId}:text-area-add-multiple-languages-dialog"
           oncomplete="PF('text-area-add-multiple-languages-dialog').show();" />
-          <p:commandButton id="add-name-language-button1" icon="si si-chat-translate" 
-          actionListener="#{externalLinkBean.updateNameByLocale()}"
-          process="#{cc.clientId}:add-external-link-form:external-link-name"
-          update="#{cc.clientId}:name-language-config:multiple-languages-dialog"
-          oncomplete="PF('multiple-languages-dialog').show();" />
       </div>
 
       <!-- Type -->
