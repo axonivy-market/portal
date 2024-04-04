@@ -40,7 +40,7 @@
                   </div>
                 </div>
 
-                <div class="p-d-flex p-jc-between only-unread-block">
+                <h:panelGroup rendered="#{notificationBean.hasNotifications()}" class="p-d-flex p-jc-between only-unread-block">
                   <div class="p-d-flex p-ai-center">
                     <p:toggleSwitch id="notifications-only-unread"
                       value="#{notificationBean.dataModel.onlyUnread}"
@@ -65,7 +65,7 @@
                       icon="si si-check-double-1">
                     </p:commandButton>
                   </div>
-                </div>
+                </h:panelGroup>
 
                 <h:panelGroup id="no-notifications" rendered="#{!notificationBean.hasNotifications()}">
                   <div class="p-text-center message">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/noNotificationText')}</div>
