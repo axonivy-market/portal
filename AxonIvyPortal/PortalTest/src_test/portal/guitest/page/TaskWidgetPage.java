@@ -2,13 +2,13 @@ package portal.guitest.page;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 import com.jayway.awaitility.Awaitility;
@@ -645,7 +645,7 @@ public class TaskWidgetPage extends TemplatePage {
     return findElementByCssSelector("span[id$='" + taskIndex + "\\:task-item\\:task-start-item-view\\:task-start-task-id']").getText();
   }
 
-	private void waitTaskAppearThenClick(int index) {
+  public void waitTaskAppearThenClick(int index) {
 		WebElement taskListElement = findElementById(taskWidgetId + ":task-list-scroller");
 		if (taskListElement.getAttribute(CLASS).contains("compact-mode")) {
       List<WebElement> taskItems = taskListElement.findElements(By.className("compact-task-start-link"));
@@ -874,5 +874,16 @@ public class TaskWidgetPage extends TemplatePage {
     enterKeys(inputID, taskID);
     clickByCssSelector("[id$=':task-id-filter:filter-input-form:update-command']");
     waitForElementDisplayed(By.cssSelector("[id$=':task-id-filter:filter-input-form:advanced-filter-panel']"), false);
+  }
+
+  public void filterTasksInExpandedModeBy(String keyword,
+      int... expectedNumberOfTasksAfterFiltering) {
+    waitForElementDisplayed(
+        By.cssSelector(KEYWORD_FILTER_SELECTOR_EXPANDED_MODE), true);
+    WebElement keywordFilter = findElementByCssSelector(
+        KEYWORD_FILTER_SELECTOR_EXPANDED_MODE);
+    keywordFilter.clear();
+    keywordFilter.sendKeys(keyword);
+    waitForNumberOfTasks(expectedNumberOfTasksAfterFiltering);
   }
 }
