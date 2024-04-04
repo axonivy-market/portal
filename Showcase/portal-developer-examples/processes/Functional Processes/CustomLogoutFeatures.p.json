@@ -64,7 +64,11 @@
           "params" : [
             { "name" : "isTaskReserve", "type" : "Boolean" },
             { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask" }
-          ]
+          ],
+          "map" : {
+            "out.isTaskReserve" : "param.isTaskReserve",
+            "out.task" : "param.task"
+          }
         }
       },
       "visual" : {
