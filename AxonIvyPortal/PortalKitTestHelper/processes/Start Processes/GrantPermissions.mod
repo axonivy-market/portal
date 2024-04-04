@@ -147,6 +147,14 @@ Is0 @GridStep f132 '' #zField
 Is0 @StartRequest f133 '' #zField
 Is0 @PushWFArc f134 '' #zField
 Is0 @PushWFArc f135 '' #zField
+Is0 @StartRequest f136 '' #zField
+Is0 @GridStep f137 '' #zField
+Is0 @GridStep f138 '' #zField
+Is0 @StartRequest f139 '' #zField
+Is0 @PushWFArc f140 '' #zField
+Is0 @PushWFArc f141 '' #zField
+Is0 @PushWFArc f142 '' #zField
+Is0 @PushWFArc f143 '' #zField
 >Proto Is0 Is0 GrantPermissions #zField
 Is0 f0 outLink grantAllPermissionsToCurrentUser.ivp #txt
 Is0 f0 inParamDecl '<> param;' #txt
@@ -1641,6 +1649,77 @@ Is0 f134 777 1278 644 1278 #arcP
 Is0 f135 604 1278 408 543 #arcP
 Is0 f135 1 408 1278 #addKink
 Is0 f135 1 0.36810228802153433 0 0 #arcLabel
+Is0 f136 outLink grantCaseReadAllOwnRoleInvolvedPermission.ivp #txt
+Is0 f136 inParamDecl '<> param;' #txt
+Is0 f136 requestEnabled true #txt
+Is0 f136 triggerEnabled false #txt
+Is0 f136 callSignature grantCaseReadAllOwnRoleInvolvedPermission() #txt
+Is0 f136 startName 'Grant Case Read All Own Role Involved Permission' #txt
+Is0 f136 caseData businessCase.attach=true #txt
+Is0 f136 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>grantCaseReadAllOwnRoleInvolvedPermission.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f136 @C|.responsibility Everybody #txt
+Is0 f136 33 1769 30 30 -35 24 #rect
+Is0 f136 @|StartRequestIcon #fIcon
+Is0 f137 actionTable 'out=in;
+' #txt
+Is0 f137 actionCode 'import ch.ivyteam.ivy.security.IPermission;
+import java.util.Objects;
+import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
+import ch.ivyteam.ivy.security.IPermission;
+
+IPermission iPermission = IPermissionRepository.get().findByName(IPermission.CASE_READ_ALL_OWN_ROLE_INVOLVED.getName());
+if (Objects.nonNull(iPermission)){
+  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());
+}' #txt
+Is0 f137 security system #txt
+Is0 f137 220 1852 40 24 0 -8 #rect
+Is0 f137 @|StepIcon #fIcon
+Is0 f138 actionTable 'out=in;
+' #txt
+Is0 f138 actionCode 'import ch.ivyteam.ivy.security.IPermission;
+import java.util.Objects;
+import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
+import ch.ivyteam.ivy.security.IPermission;
+
+IPermission iPermission = IPermissionRepository.get().findByName(IPermission.CASE_READ_ALL_OWN_ROLE_INVOLVED.getName());
+if (Objects.nonNull(iPermission)){
+  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());
+}' #txt
+Is0 f138 security system #txt
+Is0 f138 216 1772 48 24 0 -8 #rect
+Is0 f138 @|StepIcon #fIcon
+Is0 f139 outLink denyCaseReadAllOwnRoleInvolvedPermission.ivp #txt
+Is0 f139 inParamDecl '<> param;' #txt
+Is0 f139 requestEnabled true #txt
+Is0 f139 triggerEnabled false #txt
+Is0 f139 callSignature denyCaseReadAllOwnRoleInvolvedPermission() #txt
+Is0 f139 startName 'Deny Case Read All Own Role Involved Permission' #txt
+Is0 f139 caseData businessCase.attach=true #txt
+Is0 f139 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>denyCaseReadAllOwnRoleInvolvedPermission.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f139 @C|.responsibility Everybody #txt
+Is0 f139 33 1849 30 30 -36 19 #rect
+Is0 f139 @|StartRequestIcon #fIcon
+Is0 f140 63 1864 220 1864 #arcP
+Is0 f141 63 1784 216 1784 #arcP
+Is0 f141 0 0.3438914027149321 0 0 #arcLabel
+Is0 f142 264 1784 408 543 #arcP
+Is0 f142 1 408 1784 #addKink
+Is0 f142 1 0.4419822723609992 0 0 #arcLabel
+Is0 f143 260 1864 408 543 #arcP
+Is0 f143 1 408 1864 #addKink
+Is0 f143 1 0.44398183194549584 0 0 #arcLabel
 >Proto Is0 .type portalKit_test.GrantPermissionsData #txt
 >Proto Is0 .processKind NORMAL #txt
 >Proto Is0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1789,3 +1868,11 @@ Is0 f133 mainOut f134 tail #connect
 Is0 f134 head f132 mainIn #connect
 Is0 f132 mainOut f135 tail #connect
 Is0 f135 head f7 mainIn #connect
+Is0 f136 mainOut f141 tail #connect
+Is0 f141 head f138 mainIn #connect
+Is0 f139 mainOut f140 tail #connect
+Is0 f140 head f137 mainIn #connect
+Is0 f138 mainOut f142 tail #connect
+Is0 f142 head f7 mainIn #connect
+Is0 f137 mainOut f143 tail #connect
+Is0 f143 head f7 mainIn #connect

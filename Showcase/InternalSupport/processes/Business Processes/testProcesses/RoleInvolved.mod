@@ -39,7 +39,7 @@ Rd0 f3 actionTable 'out=in1;
 ' #txt
 Rd0 f3 outLinks "TaskA.ivp" #txt
 Rd0 f3 taskData 'TaskA.NAM=Task for role involved
-TaskA.ROL=TestRoleInvolved
+TaskA.ROL=HR
 TaskA.TYPE=0' #txt
 Rd0 f3 176 48 32 32 0 16 #rect
 Rd0 f3 @|TaskSwitchIcon #fIcon
