@@ -39,7 +39,6 @@ import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
-import ch.ivyteam.ivy.workflow.query.CaseQuery.FilterLink;
 
 public class CaseService implements ICaseService {
 
@@ -108,20 +107,20 @@ public class CaseService implements ICaseService {
   }
 
   private CaseQuery queryForCurrentUser(CaseQuery caseQuery) {
-    FilterLink currentUserIsInvolved = caseQuery.where().or().currentUserIsInvolved();
+    caseQuery.where().or().currentUserIsInvolved();
 
     if (GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
-      currentUserIsInvolved.where().or().currentUserIsOwner();
+      caseQuery.where().or().currentUserIsOwner();
     }
 
     if (PermissionUtils.checkCaseReadAllOwnRoleInvolvedPermission()) {
       IUser user = Ivy.session().getSessionUser();
       for (IRole role : user.getRoles()) {
-        currentUserIsInvolved.where().or().roleIsInvolved(role);
+        caseQuery.where().or().roleIsInvolved(role);
       }
     }
 
-    return currentUserIsInvolved;
+    return caseQuery;
   }
 
   @Override
