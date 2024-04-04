@@ -268,6 +268,10 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   private SelenideElement getCustomFieldSelection() {
     return getColumnManagementDialog().$("span[id$='custom-field-selection'] button");
   }
+  
+  private SelenideElement getCustomCaseFieldSelection() {
+    return getColumnManagementDialog().$("span[id$='custom-case-field-selection'] button");
+  }
 
   public SelenideElement openColumnManagementDialog() {
     $("div[id$='new-widget-configuration-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT)
@@ -323,6 +327,17 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     getColumnManagementDialog().$("button[id$='field-add-btn']").click();
   }
   
+  public void addCustomCaseFields(String fieldName) {
+    selectCustomCaseType();
+    getCustomCaseFieldSelection().click();;
+    SelenideElement customCaseFieldPanel = $("span[id$='column-management-form:custom-case-field-selection_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement fieldElement =
+        customCaseFieldPanel.$$("li").filter(text(fieldName)).first().shouldBe(getClickableCondition());
+    fieldElement.getAttribute(FILTER_TASK_NAME);
+    fieldElement.click();
+    getColumnManagementDialog().$("button[id$='field-add-btn']").click();
+  }
+  
   public void saveAfterAddingCustomField() {
     $("button[id$='column-management-save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     $("button#widget-configuration-save-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
@@ -360,5 +375,20 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
 
 public ElementsCollection countFilterSelect() {
   return $$("[id$=':filter-component:field-selection_panel']");
+}
+public void addCustomColumns(String... fieldNameList) {
+  openColumnManagementDialog();
+  selectCustomType();
+  
+  for(String fieldName : fieldNameList) {
+    addCustomFields(fieldName);
+  }
+  $("button[id$='column-management-save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+}
+
+public void closeFilter() {
+  $("span[id$=':widget-title-group']").$("label").scrollIntoView(("{block: \"start\"}")).click();
+  $("div[id$=':widget-filter-content']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  waitPreviewTableLoaded();
 }
 }

@@ -14,7 +14,7 @@ import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.codeborne.selenide.CollectionCondition;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DashboardEditTaskWidgetTest extends BaseTest {
   private NewDashboardDetailsEditPage newDashboardDetailsEditPage;
   
@@ -110,4 +110,54 @@ public class DashboardEditTaskWidgetTest extends BaseTest {
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(0));
   }
   
+  @Test
+  public void testFilterMixedFields() {
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    var configurationPage = new DashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    
+    newDashboardDetailsEditPage.addWidget();
+    TaskEditWidgetNewDashBoardPage taskWidget = newDashboardDetailsEditPage.addNewTaskWidget();
+    taskWidget.waitPreviewTableLoaded();
+    taskWidget.addCustomColumns("CustomerName", "AccountNumber", "ShipmentDate");
+    taskWidget.openFilter();
+    taskWidget.addFilter("Name", FilterOperator.CONTAINS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Leave");
+    
+    taskWidget.addFilter("Description", FilterOperator.NOT_EMPTY);
+    
+    taskWidget.addFilter("Created Date", FilterOperator.WITHIN_NEXT);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.WITHIN, "2", "Year(s)");
+    
+    taskWidget.addFilter("Customer name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Anh Nguyen");
+    
+    taskWidget.addFilter("AccountNumber", FilterOperator.NOT_EMPTY);
+    
+    taskWidget.addFilter("Shipment date", FilterOperator.TODAY);
+    
+    taskWidget.applyFilter();
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(0));
+  }
+  
+  @Test
+  public void testFilterResponsible() {
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    var configurationPage = new DashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    
+    newDashboardDetailsEditPage.addWidget();
+    TaskEditWidgetNewDashBoardPage taskWidget = newDashboardDetailsEditPage.addNewTaskWidget();
+    taskWidget.waitPreviewTableLoaded();
+    taskWidget.openFilter();
+    taskWidget.addFilter("Responsible", FilterOperator.CURRENT_USER);
+    taskWidget.addFilter("Responsible", FilterOperator.IN);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.RESPONSIBLE_TYPE, "Everybody");
+    taskWidget.addFilter("Responsible", FilterOperator.NOT_IN);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.RESPONSIBLE_TYPE, "costObject1");
+    taskWidget.applyFilter();
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(0));
+  }
 }
