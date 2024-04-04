@@ -15,6 +15,7 @@
   <cc:attribute name="componentToUpdateOnCreate" />
   <cc:attribute name="componentToUpdateOnModify" />
   <cc:attribute name="updateCurrentLanguage" />
+  <cc:attribute name="useInputText" default="true" shortDescription="if true uses render input text, otherwise uses text area"/>
 </cc:interface>
 
 <cc:implementation>
@@ -23,21 +24,24 @@
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingMultipleLanguages')}"
     resizable="false" id="multiple-languages-dialog"
     widgetVar="multiple-languages-dialog" dynamic="true" modal="true"
-    responsive="true">
+    responsive="true" width="500">
     <h:form id="add-language-detail-form">
       <h:outputLabel
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/emptySupportedLanguages')}"
         rendered="#{titles.isEmpty()}" />
     <div class="scroll-table">
-      <h:dataTable value="#{titles}"
-        rendered="#{titles.isEmpty() eq 'false'}" var="title">
+      <h:dataTable value="#{titles}" width="450" 
+        rendered="#{titles.isEmpty() eq 'false'}" var="title"
+        columnClasses="#{cc.attrs.useInputText ? '' : 'multi-language-textarea-label,w-full'}">
         <h:column>
-          <h:outputText styleClass="ui-g-12"
+          <h:outputText styleClass="ui-g-12" 
             value="#{title.locale.getDisplayName(ivy.session.getContentLocale())}" />
         </h:column>
         <h:column>
           <div class="ui-g-12 ui-fluid">
-            <p:inputText value="#{title.value}" />
+            <p:inputText rendered="#{cc.attrs.useInputText}" value="#{title.value}" styleClass="w-full"/>
+            <p:inputTextarea value="#{title.value}" maxlength="200" rows="3" styleClass="w-full" id="title-textarea" rendered="#{!cc.attrs.useInputText}">              
+            </p:inputTextarea>
           </div>
         </h:column>
       </h:dataTable>
