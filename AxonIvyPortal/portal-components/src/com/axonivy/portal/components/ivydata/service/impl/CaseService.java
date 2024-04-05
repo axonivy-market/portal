@@ -12,6 +12,7 @@ import com.axonivy.portal.components.ivydata.exception.PortalIvyDataException;
 import com.axonivy.portal.components.ivydata.searchcriteria.CaseSearchCriteria;
 import com.axonivy.portal.components.ivydata.service.ICaseService;
 import com.axonivy.portal.components.util.IvyExecutor;
+import com.axonivy.portal.components.util.PermissionUtils;
 
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
@@ -95,6 +96,12 @@ public class CaseService implements ICaseService {
       caseQuery.where().or().userIsInvolved(involvedUsername, app);
       if (criteria.isCaseOwnerEnabled()) {
         caseQuery.where().or().isOwner("#" + involvedUsername, app);
+      }
+
+      if (PermissionUtils.checkCaseReadAllOwnRoleInvolvedPermission()) {
+        Ivy.session().getSessionUser().getRoles().forEach(role -> {
+          caseQuery.where().or().roleIsInvolved(role);
+        });
       }
     });
     return caseQuery;
