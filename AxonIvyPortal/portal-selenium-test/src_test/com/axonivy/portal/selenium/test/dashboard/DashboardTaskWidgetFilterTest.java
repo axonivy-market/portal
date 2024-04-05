@@ -48,7 +48,6 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.addFilter("Description", FilterOperator.NOT_EMPTY);
     taskWidget.addFilter("Created Date", FilterOperator.TODAY);
     taskWidget.applyFilter();
-    
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(1));
   }
   
@@ -60,6 +59,9 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     ScreenshotUtils.maximizeBrowser();
     
     // Create and save filter
+    taskWidget.openFilterWidget();
+    removeSavedFilterItemsIfExist(taskWidget);
+    
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Created Date", FilterOperator.YESTERDAY);
     taskWidget.addFilter("State", null);
@@ -178,7 +180,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
   @Test
   public void testFilterDateOnCustomFields() {
     redirectToRelativeLink(createTestingTasksUrl);
-    login(TestAccount.DEMO_USER);
+    login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASK_WIDGET);
     ScreenshotUtils.maximizeBrowser();
@@ -193,7 +195,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
   @Test
   public void testFilterNumberOnCustomFields() {
     redirectToRelativeLink(createTestingTasksUrl);
-    login(TestAccount.DEMO_USER);
+    login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASK_WIDGET);
     ScreenshotUtils.maximizeBrowser();
@@ -217,7 +219,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
   @Test
   public void testFilterTaskState() {
     redirectToRelativeLink(createTestingTasksUrl);
-    login(TestAccount.DEMO_USER);
+    login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASK_WIDGET);
     ScreenshotUtils.maximizeBrowser();
@@ -231,16 +233,19 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
   @Test
   public void testFilterDateOnCustomCaseFields() {
     redirectToRelativeLink(createTestingTasksUrl);
-    login(TestAccount.DEMO_USER);
+    login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASK_WIDGET);
     ScreenshotUtils.maximizeBrowser();
     addCustomCaseFields(taskWidget, List.of("InvoiceDate","CreatedBillDate"));
     taskWidget.openFilterWidget();
-    taskWidget.addFilter("Invoice date", FilterOperator.TODAY);
     taskWidget.addFilter("Created Bill date", FilterOperator.BEFORE);
     taskWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2024");
-
+    taskWidget.applyFilter();
+    assertTrue(taskWidget.isEmptyMessageAppear());
+    
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Invoice date", FilterOperator.TODAY);
     taskWidget.applyFilter();
     assertTrue(taskWidget.isEmptyMessageAppear());
   }
@@ -248,16 +253,20 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
   @Test
   public void testFilterNumberOnCustomCaseFields() {
     redirectToRelativeLink(createTestingTasksUrl);
-    login(TestAccount.DEMO_USER);
+    login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASK_WIDGET);
     ScreenshotUtils.maximizeBrowser();
     addCustomCaseFields(taskWidget, List.of("InvoiceNumber","InvoiceSubTotalAmount"));
+    
     taskWidget.openFilterWidget();
-    taskWidget.addFilter("Additional Case Data 1", FilterOperator.NOT_EMPTY);
     taskWidget.addFilter("Invoice Subtotal Amount", FilterOperator.EQUAL);
     taskWidget.inputValueOnLatestFilter(FilterValueType.NUMBER, "1000");
-
+    taskWidget.applyFilter();
+    assertTrue(taskWidget.isEmptyMessageAppear());
+    
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Invoice Subtotal Amount", FilterOperator.NOT_EMPTY);
     taskWidget.applyFilter();
     assertTrue(taskWidget.isEmptyMessageAppear());
   }
