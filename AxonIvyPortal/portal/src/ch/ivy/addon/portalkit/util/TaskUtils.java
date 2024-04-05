@@ -16,6 +16,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
+import com.axonivy.portal.components.util.FacesMessageUtils;
+
 import ch.ivy.addon.portalkit.constant.DummyTask;
 import ch.ivy.addon.portalkit.datamodel.internal.RelatedTaskLazyDataModel;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
@@ -24,7 +26,6 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.service.TaskInforActionService;
-import com.axonivy.portal.components.util.HtmlParser;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
@@ -257,7 +258,7 @@ public final class TaskUtils {
       FacesContext facesContext = FacesContext.getCurrentInstance();
       facesContext.validationFailed();
       facesContext.addMessage(PORTAL_GLOBAL_GROWL_MESSAGE,
-          new FacesMessage(FacesMessage.SEVERITY_INFO, HtmlParser.sanitize(notification), null));
+          FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, notification, null));
       PrimeFaces.current().ajax().update(PORTAL_GLOBAL_GROWL);
     }
     return StringUtils.isBlank(notification);
