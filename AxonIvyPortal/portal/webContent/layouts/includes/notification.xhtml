@@ -20,13 +20,13 @@
                   <span class="notifications-title-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationTitle')}</span>
                   <div class="p-d-flex">
                     <h:form>
-                      <p:menuButton icon="si si-navigation-menu-horizontal" buttonStyleClass="ui-button-flat" buttonStyle="color: var(--text-color)">
-                        <p:menuitem value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/linkToNotificationSettings')}"
+                      <p:menuButton id="notification-more-option" icon="si si-navigation-menu-horizontal" buttonStyleClass="ui-button-flat" buttonStyle="color: var(--text-color)">
+                        <p:menuitem id="notification-setting" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/linkToNotificationSettings')}"
                           icon="notifications-button si si-cog"
                           actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"
                           oncomplete="Portal.updateLayoutContent()" global="false" />
                         <p:divider />
-                        <p:menuitem value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/linkToFullScreen')}"
+                        <p:menuitem id="notification-full-page" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/linkToFullScreen')}"
                           actionListener="#{userMenuBean.navigateToNotificationOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"
                           icon="si si-expand-6" />
                       </p:menuButton>

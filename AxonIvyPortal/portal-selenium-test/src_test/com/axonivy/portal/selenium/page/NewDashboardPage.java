@@ -1000,7 +1000,8 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void clickNotificationSetting() {
-    $("[id='notification-setting']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("button[id$=':notification-more-option_button']").shouldBe(getClickableCondition()).click();
+    $("[id$=':notification-setting']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
   
   public void waitForUserProfileDisplay() {
@@ -1008,7 +1009,8 @@ public class NewDashboardPage extends TemplatePage {
   }
   
   public void clickNotificationFullPage() {
-    $("[id='notification-full-page']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("button[id$=':notification-more-option_button']").shouldBe(getClickableCondition()).click();
+    $("[id$=':notification-full-page']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
   public void waitForNotificationFullpageDisplay() {
     $("form[id='notification-full-form']").shouldBe(appear, DEFAULT_TIMEOUT);
