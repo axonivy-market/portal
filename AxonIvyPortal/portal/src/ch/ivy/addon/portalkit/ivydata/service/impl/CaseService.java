@@ -113,7 +113,8 @@ public class CaseService implements ICaseService {
       caseQuery.where().or().currentUserIsOwner();
     }
 
-    if (PermissionUtils.checkCaseReadAllOwnRoleInvolvedPermission()) {
+    if (com.axonivy.portal.components.util.PermissionUtils
+        .checkCaseReadAllOwnRoleInvolvedPermission()) {
       IUser user = Ivy.session().getSessionUser();
       for (IRole role : user.getRoles()) {
         caseQuery.where().or().roleIsInvolved(role);
