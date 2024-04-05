@@ -145,7 +145,7 @@ public class BaseTest {
       "/portal-developer-examples/162511D2577DBA88/createTaskWithFrameTemplate.ivp?embedInFrame";
   protected String createEventTestUrl = "portal-developer-examples/17A2C6D73AB4186E/CreateEventTest.ivp";
   protected String createCustomActionCaseExampleUrl =
-      "portal-developer-examples/162511D2577DBA88/CreateCustomActionCaseExample.ivp";
+      "portal-developer-examples/18B4240043B838C5/CreateCustomActionCaseExample.ivp";
   protected String grantPortalPermission = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
   protected String testCaseListPermission = "internalSupport/14B2FC03D2E87141/TestCaseListPermissions.ivp";
   protected String createDataCreatedDate = "portalKitTestHelper/18B031C59C3C7814/CreateDataForCreatedDate.ivp";
@@ -325,7 +325,7 @@ public class BaseTest {
   }
 
   public void goToCaseNoteHistoryPage(String caseId) {
-    WaitHelper.waitForNavigation(() -> redirectToRelativeLink(String.format(showCaseNoteHistoryUrl, caseId)));
+    redirectToRelativeLink(String.format(showCaseNoteHistoryUrl, caseId));
   }
 
   public void createJSonFile(String jsonFile, String key) {

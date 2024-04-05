@@ -49,6 +49,7 @@ public class UserMenuConfigurationTest extends BaseTest {
     userMenu.findMenu("Create Investment").shouldBe(Condition.appear);
     userMenu.accessMenu("Create Investment");
     TaskTemplatePage templatePage = new TaskTemplatePage();
+    templatePage.switchToIFrameOfTask();
     templatePage.getElementInPortalIFramTask("[id$=':investment-table']").shouldBe(Condition.appear);
   }
 
