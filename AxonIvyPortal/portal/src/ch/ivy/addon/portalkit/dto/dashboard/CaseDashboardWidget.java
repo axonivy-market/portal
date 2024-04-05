@@ -10,7 +10,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.SortMeta;
 
-import com.axonivy.portal.dto.dashboard.WidgetInformationCategoryStatisticData;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardCaseLazyDataModel;
@@ -31,7 +30,7 @@ public class CaseDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private Map<CaseState, Long> caseByStateStatistic;
   @JsonIgnore
-  private List<WidgetInformationCategoryStatisticData> caseByCategoryStatistic;
+  private Map<String, Long> caseByCategoryStatistic;
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
 
@@ -136,7 +135,7 @@ public class CaseDashboardWidget extends DashboardWidget {
   }
 
   @JsonIgnore
-  public List<WidgetInformationCategoryStatisticData> getCaseByCategoryStatistic() {
+  public Map<String, Long> getCaseByCategoryStatistic() {
     return caseByCategoryStatistic;
   }
 
