@@ -27,9 +27,8 @@ public class CaseMapPage extends TemplatePage {
     return new NewDashboardPage();
   }
 
-  public NewDashboardPage clickSubmitButtonAndBackToTaskList() {
-    $("[id$='form:verifier-comment']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).sendKeys("OK");
-    $("button[id$='submit-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+  public void clickSubmitButtonAndBackToTaskList() {
+    $("button[id$='submit-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     switchBackToParent();
     return new NewDashboardPage();
   }
