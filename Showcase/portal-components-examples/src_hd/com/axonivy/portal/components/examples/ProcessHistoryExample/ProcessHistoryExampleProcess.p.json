@@ -21,12 +21,12 @@
             "out.showProcessHistoriesOfBetaCompany" : "param.showProcessHistoriesOfBetaCompany"
           },
           "code" : [
-            "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
+            "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
             "",
             "if (param.showProcessHistoriesOfAlphaCompany) {",
-            "  out.processHistoryExampleSerenityLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessHistoryExample/viewProcessHistoryOfAlphaCompanySerenity.ivp\");",
+            "  out.processHistoryExampleSerenityLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessHistoryExample/viewProcessHistoryOfAlphaCompanySerenity.ivp\");",
             "} else {",
-            "  out.processHistoryExampleSerenityLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessHistoryExample/viewProcessHistoryOfBetaCompanySerenity.ivp\");",
+            "  out.processHistoryExampleSerenityLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessHistoryExample/viewProcessHistoryOfBetaCompanySerenity.ivp\");",
             "}"
           ]
         },
