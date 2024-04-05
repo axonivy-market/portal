@@ -174,9 +174,63 @@ Filter Conditions
 
 You can predefine filter conditions for most columns of the task widget. Each
 column has different conditions, some columns only accept a list, some only a
-string, and some only a string in a special format such as date-time.
+string and some only a string in a special format such as date-time. Please
+refer to :ref:`Complex Filter <complex-filter>` for more details.
 
-Below is the list of filterable columns and their corresponding filter conditions.
+Base structure of filter json:
+
+   .. code-block:: html
+
+         {
+            ...
+
+            "columns" : [
+               {
+                  "field" : "description"
+               }
+            ],
+            "filters" : [
+                  {
+                     "field" : "description",
+                     "values" : [ "Leave Request" ],
+                     "operator" : "contains",
+                     "type" : "standard"
+                  }
+            ]
+         }
+
+   ..
+
+ .. _configure-new-dashboard-task-widget-filter-structure:
+
+   - ``field``: filter field name corresponding with column name
+   - ``values``: filter value, could be a list or string...
+   - ``operator``: filter operator, operators can be difference depend on each field type.
+
+      - **String column**: is, is_not, empty, not_empty, contains, not_contains, start_with, not_start_with, end_with, not_end_with
+
+      - **Number column**: between, not_between, empty, not_empty, equal, not_equal, less, less_or_equal, greater, greater_or_equal
+
+      - **Date column**: today, yesterday, is, is_not, before, after, between, not_between, current, last, next, empty, not_empty
+
+   - ``type``: ``standard`` for standard column or ``custom`` for custom column
+
+   - Date type additional field:
+
+      - ``periodType``: string value. E.g.: ``YEAR``, ``MONTH``, ``WEEK``, ``DAY``
+
+      - ``from``: string value. E.g.: "04/04/2024"
+
+      - ``to``: string value. E.g.: "05/05/2024"
+
+There are additional fields dependent on the operator and many specific filters
+for each field type. Below is the list of filterable columns and their
+corresponding filter conditions.
+
+.. tip::
+   We encourage utilizing dashboard configurations to edit widgets and then leveraging the export dashboard feature to ensure better expectations when customizing these widgets.
+
+Standard Column:
 
    - ``activator``
 
@@ -187,18 +241,24 @@ Below is the list of filterable columns and their corresponding filter condition
       
             "columns": [
                {
+                  "field": "activator"
+               }
+            ],
+            "filters": [
+               {
                   "field": "activator",
-                  "filterList": ["PO","#peter"]
+                  "values": [ "backendDev2" ],
+                  "operator": "not_in",
+                  "type": "standard"
                }
             ]
          }
 
       ..
 
-      This column only accepts a list of role names or usernames (if you want to
-      filter by username, put a hashtag before the name) as filter conditions
-      for the task's responsible username. If you define a string such as
-      "#peter", the task widget will show tasks that have been created by "peter".
+      This column only accepts a list of role names or usernames as filter conditions
+      for the task's responsible username. The available filter operators are ``in``, ``not_in`` and ``current_user``.
+      The ``current_user`` operator does not require value field.
 
    - ``name``
 
@@ -209,16 +269,23 @@ Below is the list of filterable columns and their corresponding filter condition
       
             "columns": [
                {
-                  "field": "name",
-                  "filter": "request"
+                  "field": "name"
                }
+            ],
+            "filters" : [
+               {
+                  "field": "name",
+                  "values": [ "Task", "Leave Request" ],
+                  "operator": "contains",
+                  "type": "standard"
+               }
+
             ]
          }
       ..
 
-      This column only accepts a string as the filter condition for the task name.
-      If you define a string such as "request", the task widget will show tasks that
-      contain the "request" word in its name.
+      This column accepts all operators available for String column.
+      Additionally, it accepts ``value`` as a list of string.
 
    - ``description``
 
@@ -229,17 +296,22 @@ Below is the list of filterable columns and their corresponding filter condition
       
             "columns": [
                {
+                  "field": "description"
+               }
+            ],
+            "filters": [
+               {
                   "field": "description",
-                  "filter": "request"
+                  "values": [ "leave request" ],
+                  "operator": "contains",
+                  "type": "standard"
                }
             ]
          }
 
       ..
 
-      This column only accepts a string as the filter condition for the task description.
-      If you define a string such as "request", the task widget will show tasks that
-      contain the "request" word in its description.
+      This column accepts all operators available for String column. Additionally, it accepts ``value`` as a list of string.
 
    - ``priority``
 
@@ -250,17 +322,23 @@ Below is the list of filterable columns and their corresponding filter condition
       
             "columns": [
                {
+                  "field": "priority"
+               }
+            ],
+            "filters": [
+               {
                   "field": "priority",
-                  "filterList": ["LOW","NORMAL"]
+                  "values": [ "HIGH", "NORMAL", "LOW" ],
+                  "operator": "in",
+                  "type": "standard"
                }
             ]
          }
 
       ..
 
-      This column only accepts a list of priorities' names as the filter condition.
-      If you define a list of priorities in ``filterList``, the task widget will show
-      tasks that have priority listed in ``filterList``.
+      This column only accepts a list of priorities' names as the filter
+      condition. The available filter operator is ``in``.
 
       Refer to :dev-url:`Task Priority </doc/|version|/public-api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` for
       available task priorities.
@@ -274,22 +352,28 @@ Below is the list of filterable columns and their corresponding filter condition
       
             "columns": [
                {
-                  "field": "state",
-                  "filterList": ["IN_PROGRESS","DONE"]
+                  "field": "state"
                },
+            ],
+            "filters": [
+               {
+                  "field": "state",
+                  "value": [ "DELAYED", "DESTROYED" ],
+                  "operator" : "in",
+                  "type" : "standard"
+               }
             ]
          }
       ..
 
-      This column only accepts a list of task business state names as its filter condition.
-      If you define a list of business states in ``filterList``, the task widget will show
-      tasks that are in one of the states listed in ``filterList``. 
+      This column only accepts a list of task business state names as its filter
+      condition. The available filter operator is ``in``. 
 
       Refer to :dev-url:`Task Business States </doc/|version|/public-api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` for
       available task business states.
 
 
-   - ``startTimestamp``
+   - ``startTimestamp`` and ``expiryTimestamp`` : created date and finished date of the Task
 
       .. code-block:: html
 
@@ -297,42 +381,62 @@ Below is the list of filterable columns and their corresponding filter condition
             ...
       
             "columns": [
+               {
+                  "field": "startTimestamp"
+               }
+            ],
+            "filters" : [
                {
                   "field": "startTimestamp",
-                  "filterFrom": "04/11/2021",
-                  "filterTo": "05/28/2021"
+                  "operator": "today",
+                  "type" : "standard"
                },
+               {
+                  "field" : "startTimestamp",
+                  "from" : "04/04/2024",
+                  "operator" : "before",
+                  "type" : "standard"
+               },
+               {
+                  "field" : "expiryTimestamp",
+                  "from" : "04/04/2024",
+                  "to" : "04/06/2024",
+                  "operator" : "between",
+                  "type" : "standard"
+               },
+               {
+                  "field" : "expiryTimestamp",
+                  "operator" : "last",
+                  "periods" : 1,
+                  "periodType" : "YEAR",
+                  "type" : "standard"
+               }       
             ]
          }
 
       ..
 
-      This column accepts two filter conditions ``filterFrom`` and ``filterTo`` as boundaries
-      of a range of dates. If you define dates for ``filterFrom`` and ``filterTo``,
-      the task widget will show tasks that have been created between the dates defined.
+      This column accepts all operators available for Date column. Fields may
+      vary depending on the operator. The JSON example above covers most use
+      cases for the Date field. Acceptable date formats: ``dd.MM.yyyy`` and
+      ``MM/dd/yyyy``.
 
-      Acceptable date formats: ``dd.MM.yyyy`` and ``MM/dd/yyyy``.
-
-   - ``expiryTimestamp``
+   - ``application``
 
       .. code-block:: html
 
          {
             ...
-      
+
             "columns": [
                {
-                  "field": "expiryTimestamp",
-                  "filterFrom": "04/11/2021",
-                  "filterTo": "05/28/2021"
-               },
+                  "field": "application"
+               }
             ]
          }
 
-      ..
+Custom Field Column:
 
-      This column accepts two filter conditions ``filterFrom`` and ``filterTo`` as boundaries
-      of a range of dates. If you define dates for ``filterFrom`` and ``filterTo``,
-      the task widget will show tasks that have expiry dates between the dates defined.
-
-      Acceptable date formats: ``dd.MM.yyyy`` and ``MM/dd/yyyy``.
+   -  :ref:`configure-new-dashboard-task-widget-custom-columns` are using the
+      same operator as :ref:`Standard Column
+      <configure-new-dashboard-task-widget-filter-structure>` 
