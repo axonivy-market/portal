@@ -1,18 +1,18 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
+
+import com.axonivy.portal.components.util.FacesMessageUtils;
 
 import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
@@ -21,11 +21,12 @@ import ch.ivy.addon.portalkit.enums.SortDirection;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelSubcriptionDTO;
+import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationEventDTO;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.notification.channel.NotificationSubscription;
-import ch.ivyteam.ivy.notification.event.NotificationEvent;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
@@ -37,12 +38,13 @@ public class UserProfileBean implements Serializable {
   private static final long serialVersionUID = 4952280551311826903L;
   private static final String DEFAULT = UserSettingService.DEFAULT;
 
-  public UserProfileBean() {}
+  public UserProfileBean() {
+  }
 
   private ISecurityMember subscriber;
   private ISecurityContext securityContext;
 
-  private List<String> events;
+  private List<IvyNotificationEventDTO> events;
   private List<IvyNotificationChannelDTO> channels;
 
   public void init() {
@@ -67,9 +69,9 @@ public class UserProfileBean implements Serializable {
       String defaultSortField = globalSettingService
           .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_FIELD_OF_TASK_LIST).getValue();
 
-      String displaySortField =
-          sortFieldNames.contains(defaultSortField) ? TaskSortField.valueOf(defaultSortField).getLabel()
-              : defaultSortField;
+      String displaySortField = sortFieldNames.contains(defaultSortField)
+          ? TaskSortField.valueOf(defaultSortField).getLabel()
+          : defaultSortField;
       return getDefaultSelection(displaySortField);
     }
 
@@ -83,9 +85,9 @@ public class UserProfileBean implements Serializable {
       String defaultSortField = globalSettingService
           .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_FIELD_OF_CASE_LIST).getValue();
 
-      String displaySortField =
-          sortFieldNames.contains(defaultSortField) ? CaseSortField.valueOf(defaultSortField).getLabel()
-              : defaultSortField;
+      String displaySortField = sortFieldNames.contains(defaultSortField)
+          ? CaseSortField.valueOf(defaultSortField).getLabel()
+          : defaultSortField;
       return getDefaultSelection(displaySortField);
     }
 
@@ -99,8 +101,9 @@ public class UserProfileBean implements Serializable {
       String defaultDirection = globalSettingService
           .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST).getValue();
 
-      String displayDirection =
-          sortDirectionNames.contains(defaultDirection) ? SortDirection.valueOf(defaultDirection).getLabel() : "";
+      String displayDirection = sortDirectionNames.contains(defaultDirection)
+          ? SortDirection.valueOf(defaultDirection).getLabel()
+          : "";
       return getDefaultSelection(displayDirection);
     }
 
@@ -114,11 +117,11 @@ public class UserProfileBean implements Serializable {
       String defaultDirection = globalSettingService
           .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST).getValue();
 
-      String displayDirection =
-          sortDirectionNames.contains(defaultDirection) ? SortDirection.valueOf(defaultDirection).getLabel() : "";
+      String displayDirection = sortDirectionNames.contains(defaultDirection)
+          ? SortDirection.valueOf(defaultDirection).getLabel()
+          : "";
       return getDefaultSelection(displayDirection);
     }
-
 
     return sortDirectionNames.contains(sortDirection) ? SortDirection.valueOf(sortDirection).getLabel() : "";
   }
@@ -128,8 +131,8 @@ public class UserProfileBean implements Serializable {
   }
 
   public void onloadChannel() {
-    events = new ArrayList<>(NotificationEvent.allAsString());
-    channels = IvyNotificationChannelDTO.all(subscriber, securityContext, events);
+    events = IvyNotificationEventDTO.all();
+    channels = IvyNotificationChannelDTO.all(subscriber, securityContext);
   }
 
   public void resetAllChannel() {
@@ -156,15 +159,26 @@ public class UserProfileBean implements Serializable {
   }
 
   private void addMessage(String msg) {
-    FacesContext.getCurrentInstance().addMessage("notification-Message", new FacesMessage(msg));
+    FacesContext.getCurrentInstance().addMessage("notification-Message", FacesMessageUtils.sanitizedMessage(msg));
   }
 
   public List<IvyNotificationChannelDTO> getChannels() {
     return channels;
   }
 
-  public List<String> getEvents() {
+  public List<IvyNotificationEventDTO> getEvents() {
     return events;
   }
 
+  public boolean canAccessProcessList() {
+    return PermissionUtils.checkAccessFullProcessListPermission();
+  }
+
+  public boolean canAccessTaskList() {
+    return PermissionUtils.checkAccessFullTaskListPermission();
+  }
+
+  public boolean canAccessCaseList() {
+    return PermissionUtils.checkAccessFullCaseListPermission();
+  }
 }
