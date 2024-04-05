@@ -34,7 +34,7 @@ public class PasswordResetTest extends BaseTest {
     redirectToRelativeLink(String.format(portalPasswordResetUrl, TestAccount.TEST_FORGOT_PASSWORD_USER.getPassword(),
         TestAccount.TEST_FORGOT_PASSWORD_USER.getUsername()));
     passwordResetPage = new PasswordResetPage();
-    String newPassword = "a2C!";
+    String newPassword = "abcd2C!";
     passwordResetPage.resetPassword(newPassword, true);
     passwordResetPage.isReset();
     refreshPage();
