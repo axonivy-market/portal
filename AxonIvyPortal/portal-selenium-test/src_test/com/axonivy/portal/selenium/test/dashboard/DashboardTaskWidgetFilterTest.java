@@ -19,7 +19,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DashboardTaskWidgetFilterTest extends BaseTest {
   // WIDGET NAME
   private static final String YOUR_TASK_WIDGET = "Your Tasks";
