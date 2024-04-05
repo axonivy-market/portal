@@ -1730,6 +1730,7 @@ body .ui-widget.new-widget-dialog__introduction {
   border: none;
   height: 100%;
   padding: 0;
+  padding-right: 15px;
 }
 
 .notifications-group-title {

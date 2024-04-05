@@ -1773,7 +1773,8 @@ body .notification-checkbox .ui-chkbox-box {
   width: 2rem;
   height: 2rem;
   position: relative;
-  border-radius: 50%
+  border-radius: 50%;
+  display: block;
 }
 
 .notification-start-task-icon {

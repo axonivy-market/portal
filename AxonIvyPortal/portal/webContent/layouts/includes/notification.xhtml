@@ -20,19 +20,13 @@
                   <span class="notifications-title-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationTitle')}</span>
                   <div class="p-d-flex">
                     <h:form>
-                      <p:menuButton
-                        icon="si si-navigation-menu-horizontal"
-                        buttonStyleClass="ui-button-flat"
-                        buttonStyle="color: var(--text-color)">
-                        <p:menuitem
-                          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/linkToNotificationSettings')}"
+                      <p:menuButton icon="si si-navigation-menu-horizontal" buttonStyleClass="ui-button-flat" buttonStyle="color: var(--text-color)">
+                        <p:menuitem value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/linkToNotificationSettings')}"
                           icon="notifications-button si si-cog"
                           actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"
-                          oncomplete="Portal.updateLayoutContent()"
-                          global="false" />
+                          oncomplete="Portal.updateLayoutContent()" global="false" />
                         <p:divider />
-                        <p:menuitem
-                          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/linkToFullScreen')}"
+                        <p:menuitem value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/linkToFullScreen')}"
                           actionListener="#{userMenuBean.navigateToNotificationOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"
                           icon="si si-expand-6" />
                       </p:menuButton>
@@ -40,29 +34,21 @@
                   </div>
                 </div>
 
-                <h:panelGroup rendered="#{notificationBean.hasNotifications()}" class="p-d-flex p-jc-between only-unread-block">
+                <h:panelGroup rendered="#{notificationBean.hasNotifications()}" styleClass="p-d-flex p-jc-between only-unread-block">
                   <div class="p-d-flex p-ai-center">
-                    <p:toggleSwitch id="notifications-only-unread"
-                      value="#{notificationBean.dataModel.onlyUnread}"
+                    <p:toggleSwitch id="notifications-only-unread" value="#{notificationBean.dataModel.onlyUnread}"
                       styleClass="only-unread-block-toggle">
-                      <p:ajax
-                        listener="#{notificationBean.dataModel.onSelectedFilter()}"
-                        oncomplete="Portal.updateLayoutContent()"
-                        update="#{unreadNotificationsId}, #{notificationScrollerId}"
-                        global="false" partialSubmit="true" />
+                      <p:ajax listener="#{notificationBean.dataModel.onSelectedFilter()}" oncomplete="Portal.updateLayoutContent()"
+                        update="#{unreadNotificationsId}, #{notificationScrollerId}" global="false" partialSubmit="true" />
                     </p:toggleSwitch>
-                    <h:outputText styleClass="only-unread-block-text"
-                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/onlyUnread')}" />
+                    <h:outputText styleClass="only-unread-block-text" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/onlyUnread')}" />
                   </div>
                   <div class="p-d-flex p-ai-center">
-                    <p:commandButton id="notification-mark-all-as-read"
-                      styleClass="notifications-icon ui-button-outlined"
+                    <p:commandButton id="notification-mark-all-as-read" styleClass="notifications-icon ui-button-outlined"
                       disabled="#{!notificationBean.hasUnreadNotifications()}"
                       update="#{unreadNotificationsId}, #{notificationScrollerId} notification-mark-all-as-read"
-                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAllAsRead')}"
-                      oncomplete="Portal.updateLayoutContent()"
-                      actionListener="#{notificationBean.readAll()}"
-                      icon="si si-check-double-1">
+                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAllAsRead')}" oncomplete="Portal.updateLayoutContent()"
+                      actionListener="#{notificationBean.readAll()}" icon="si si-check-double-1">
                     </p:commandButton>
                   </div>
                 </h:panelGroup>
@@ -71,78 +57,46 @@
                   <div class="p-text-center message">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/noNotificationText')}</div>
                 </h:panelGroup>
 
-                <h:panelGroup id="has-notifications"
-                  rendered="#{notificationBean.hasNotifications()}">
-                  <h:outputText
-                    styleClass="#{notificationBean.render ? 'u-hidden' : ''}"
+                <h:panelGroup id="has-notifications" rendered="#{notificationBean.hasNotifications()}">
+                  <h:outputText styleClass="#{notificationBean.render ? 'u-hidden' : ''}"
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}" />
-                  <h:form id="notification-compact-form"
-                    onmouseover="Portal.updateLayoutContent()">
-                    <p:dataScroller id="notifications-scroller"
-                      lazy="true" styleClass="notification-scroll"
-                      value="#{notificationBean.dataModel}"
-                      var="notification"
-                      rendered="#{notificationBean.render}"
-                      chunkSize="20" mode="inline"
-                      widgetVar="notifications-scroller">
-                      <h:panelGroup class="notifications-group-name"
-                        rendered="#{notification.markedToday}">
-                        <h:outputText
-                          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/todayText')}" />
+                  <h:form id="notification-compact-form" onmouseover="Portal.updateLayoutContent()">
+                    <p:dataScroller id="notifications-scroller" lazy="true" styleClass="notification-scroll" value="#{notificationBean.dataModel}"
+                      var="notification" rendered="#{notificationBean.render}" chunkSize="20" mode="inline" widgetVar="notifications-scroller">
+                      <h:panelGroup class="notifications-group-name" rendered="#{notification.markedToday}">
+                        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/todayText')}" />
                         <hr />
                       </h:panelGroup>
 
-                      <h:panelGroup class="notifications-group-name"
-                        rendered="#{notification.markedOlder}">
-                        <h:outputText
-                          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/olderText')}" />
+                      <h:panelGroup class="notifications-group-name" rendered="#{notification.markedOlder}">
+                        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/olderText')}" />
                         <hr />
                       </h:panelGroup>
-                      <div
-                        class="#{notification.style} notifications-container-top">
+                      <div class="#{notification.style} notifications-container-top">
                         <div class="p-d-flex">
                           <div class="p-d-flex notifications-indicator">
-                            <p:commandLink
-                              id="notification-mark-as-read"
-                              actionListener="#{notificationBean.markAsRead(notification)}"
-                              process="@this"
-                              partialSubmit="true"
-                              global="false"
-                              onclick="markAsRead('#{notification.id}')"
-                              oncomplete="Portal.updateLayoutContent();"
-                              update="#{unreadNotificationsId} notification-mark-all-as-read">
-                              <i class="notifications-indicator-icon fa #{notification.read ? '': 'fa-circle'}"
-                                id="#{notification.id}" />
+                            <p:commandLink id="notification-mark-as-read" actionListener="#{notificationBean.markAsRead(notification)}"
+                              process="@this" partialSubmit="true" global="false" onclick="markAsRead('#{notification.id}')"
+                              oncomplete="Portal.updateLayoutContent();" update="#{unreadNotificationsId} notification-mark-all-as-read">
+                              <i class="notifications-indicator-icon fa #{notification.read ? '': 'fa-circle'}" id="#{notification.id}" />
                             </p:commandLink>
                             <p:tooltip for="notification-mark-as-read"
                               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
                           </div>
-                          <div
-                            class="p-d-flex notification-message-block p-flex-column">
-                            <p:commandLink id="notification-message"
-                              styleClass="notification-message"
-                              actionListener="#{notificationBean.goToTaskDetail(notification)}"
-                              rendered="#{notification.runAction != null}">
-                              <h:outputText
-                                value="#{htmlSanitizerBean.sanitize(notification.message)}" />
+                          <div class="p-d-flex notification-message-block p-flex-column">
+                            <p:commandLink id="notification-message" styleClass="notification-message"
+                              actionListener="#{notificationBean.goToTaskDetail(notification)}" rendered="#{notification.infoAction != null}">
+                              <h:outputText value="#{htmlSanitizerBean.sanitize(notification.message)}" />
                             </p:commandLink>
-                            <p:tooltip for="notification-message"
-                              value="#{notification.infoAction.title}" />
-                            <h:outputText
-                              value="#{notification.timeSince}"
-                              styleClass="p-text-normal notifications-item-time-since" />
+                            <p:tooltip for="notification-message" value="#{notification.infoAction.title}" />
+                            <h:outputText value="#{notification.timeSince}" styleClass="p-text-normal notifications-item-time-since" />
                           </div>
-                          <div
-                            class="p-d-flex notification-action-block">
-                            <p:commandLink id="notification-start-task"
-                              styleClass="notification-start-task"
-                              actionListener="#{notificationBean.startTaskFromNoti(notification)}"
-                              rendered="#{notification.runAction != null}">
-                              <i
-                                class="fa fa-play notification-start-task-icon" />
+                          <div class="p-d-flex notification-action-block">
+                            <p:commandLink id="notification-start-task" styleClass="notification-start-task"
+                              actionListener="#{notificationBean.startTaskFromNoti(notification)}" rendered="#{notification.runAction != null}">
+                              <i class="fa fa-play notification-start-task-icon" />
                             </p:commandLink>
-                            <p:tooltip for="notification-start-task"
-                              value="#{notification.runAction.title}" />
+                            <p:tooltip for="notification-start-task" value="#{notification.runAction.title}" />
                           </div>
                         </div>
                       </div>
