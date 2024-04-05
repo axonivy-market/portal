@@ -255,7 +255,7 @@ Base structure of filter json:
 
    - Date type additional field:
 
-      - ``periodType``: string value, .``YEAR``, ``MONTH``, ``WEEK``, ``DAY``
+      - ``periodType``: string value, ``YEAR``, ``MONTH``, ``WEEK``, ``DAY``
 
       - ``from``: string value. E.g.: "03/19/2024"
 
@@ -263,7 +263,10 @@ Base structure of filter json:
    
    - Number type additional field:
 
-      -    
+      - ``from``: string value. E.g.: "3.0"
+
+      - ``to``: string value. E.g.: "55.2"
+
 
 There are additional fields dependent on the operator and many specific filters for each field type. Below is the list of filterable columns and their corresponding filter
 conditions.
