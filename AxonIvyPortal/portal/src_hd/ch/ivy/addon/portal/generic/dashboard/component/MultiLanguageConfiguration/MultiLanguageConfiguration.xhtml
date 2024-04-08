@@ -28,6 +28,7 @@
       <h:outputLabel
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/emptySupportedLanguages')}"
         rendered="#{titles.isEmpty()}" />
+    <div class="scroll-table">
       <h:dataTable value="#{titles}"
         rendered="#{titles.isEmpty() eq 'false'}" var="title">
         <h:column>
@@ -40,7 +41,7 @@
           </div>
         </h:column>
       </h:dataTable>
-
+    </div>
       <div class="u-dialog-footer-actions-group">
         <p:commandLink
           id="multi-language-cancel-button"
