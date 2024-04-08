@@ -183,6 +183,7 @@ public class ComplexFilterHelper {
     for (int i = 0; i < dateInput.size(); i++) {
       dateInput.get(i).clear();
       dateInput.get(i).shouldBe(Condition.empty, DEFAULT_TIMEOUT).sendKeys(String.valueOf(values[i]));
+      filterElement.$("span button").$("span[class*='ui-icon-calendar']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     }
   }
 
@@ -208,6 +209,7 @@ public class ComplexFilterHelper {
         .shouldBe(Condition.editable);
     toInput.clear();
     toInput.sendKeys(String.valueOf(values[1]));
+    filterElement.$("div[id$=':between-dates-panel-to']").$("button").$("span[class*='ui-icon-calendar']").shouldBe(appear, DEFAULT_TIMEOUT).click();
   }
 
   private static SelenideElement getValueOfCheckBox(String value) {
