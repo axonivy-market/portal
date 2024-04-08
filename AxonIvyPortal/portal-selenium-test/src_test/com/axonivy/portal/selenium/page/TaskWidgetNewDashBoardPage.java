@@ -7,6 +7,8 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import org.openqa.selenium.WebElement;
+
 import com.axonivy.portal.selenium.common.ComplexFilterHelper;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.WaitHelper;
@@ -589,6 +591,11 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   
   public boolean isEmptyMessageAppear() {
     return $("div[id$='empty-message-container']").exists();
+  }
+  
+  public WebElement getFilterOverlayPanel(Integer index) {
+    String widgetIndex = String.format("div[id$='filter-overlay-panel-%d']", index);
+    return $(widgetIndex).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
 }
