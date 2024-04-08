@@ -47,6 +47,10 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.addFilter("Name", FilterOperator.IS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Annual Leave Request");
     taskWidget.addFilter("Description", FilterOperator.NOT_EMPTY);
+    taskWidget.applyFilter();
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(1));
+    
+    taskWidget.openFilterWidget();
     taskWidget.addFilter("Created Date", FilterOperator.TODAY);
     taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(1));
