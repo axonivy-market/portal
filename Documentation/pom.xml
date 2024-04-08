@@ -4,7 +4,7 @@
     <parent>
         <groupId>ch.ivyteam.ivy.project.portal</groupId>
         <artifactId>doc-config</artifactId>
-        <version>${revision}</version>
+        <version>10.0.17.1</version>
         <relativePath>maven</relativePath>
     </parent>
 
