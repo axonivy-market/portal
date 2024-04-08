@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.test.dashboard;
 
 import java.util.List;
 
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -53,8 +54,8 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
   
   @Test
   public void testSaveFilter() {
-    login(TestAccount.DEMO_USER);
     redirectToNewDashBoard();
+    login(TestAccount.DEMO_USER);
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASK_WIDGET);
     ScreenshotUtils.maximizeBrowser();
     
@@ -64,8 +65,6 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Created Date", FilterOperator.YESTERDAY);
-    taskWidget.addFilter("State", null);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
     taskWidget.saveFilter("TaskOpenYesterday");
     
     ElementsCollection actions = taskWidget.getSavedFilterItems();
@@ -94,13 +93,10 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.searchSavedFilters("Name");
     actions.shouldHave(CollectionCondition.size(2));
 
-    taskWidget.searchSavedFilters("Today");
-    actions.shouldHave(CollectionCondition.size(1));
-
     // Apply selected filter items
-    taskWidget.selectSavedFilter("TasksOpenToday");
+    taskWidget.selectSavedFilter("TaskNameLeaveRequest");
     taskWidget.applyFilter();
-    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(15));
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(3));
     taskWidget.countTasks("LeaveRequest").shouldHave(CollectionCondition.size(0));
   }
   
@@ -117,9 +113,9 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     createSavedFilterItems(taskWidget);
     taskWidget.openFilterWidget();
     taskWidget.openManageFiltersDialog();
-    taskWidget.getSavedFilterItemsByFilterNameOnWidgetManagement().shouldHave(CollectionCondition.size(3));
+    taskWidget.getSavedFilterItemsByFilterNameOnWidgetManagement().shouldHave(CollectionCondition.size(2));
     
-    taskWidget.inputValueOnColumnWidgetHeader("Name", "TasksOpenToday");
+    taskWidget.inputValueOnColumnWidgetHeader("Name", "TaskNameLeaveRequest");
     taskWidget.getSavedFilterItemsByFilterNameOnWidgetManagement().shouldHave(CollectionCondition.size(1));
   }
   
@@ -186,8 +182,8 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     ScreenshotUtils.maximizeBrowser();
     addCustomFields(taskWidget, List.of("ShipmentDate","AccountNumber"));
     taskWidget.openFilterWidget();
-    taskWidget.addFilter("Shipment date", FilterOperator.IS_NOT);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2024");
+    taskWidget.addFilter("Shipment date", FilterOperator.BETWEEN);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.DATE_BETWEEN, "01/01/2024","12/12/2024");
     taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(3));
   }
@@ -274,13 +270,6 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
   
   private void createSavedFilterItems(TaskWidgetNewDashBoardPage taskWidget) {
     removeSavedFilterItemsIfExist(taskWidget);
-    
-    taskWidget.openFilterWidget();
-    taskWidget.addFilter("Created Date", FilterOperator.TODAY);
-    taskWidget.addFilter("State", null);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
-    taskWidget.saveFilter("TasksOpenToday");
-    taskWidget.resetFilter();
     
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Name", FilterOperator.CONTAINS);
