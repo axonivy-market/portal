@@ -41,7 +41,7 @@ import com.codeborne.selenide.CollectionCondition;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DashboardScreenshotTest extends ScreenshotBaseTest {
   private NewDashboardPage homePage;
   private static final int SCREENSHOT_WIDTH = 1500;
