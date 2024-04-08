@@ -39,6 +39,8 @@ import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 import com.codeborne.selenide.CollectionCondition;
 
+import ch.ivy.addon.portalkit.enums.PortalVariable;
+
 @IvyWebTest(headless = false)
 public class DashboardScreenshotTest extends ScreenshotBaseTest {
   private NewDashboardPage homePage;
@@ -428,6 +430,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
   
   @Test
   public void screenshotComplexFilterTaskWidget() throws IOException {
+    createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
     login(TestAccount.ADMIN_USER);
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
     homePage = new NewDashboardPage();
@@ -443,41 +446,17 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     DashboardModificationPage editPage = new DashboardModificationPage();
     NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
     detailsEditPage.waitForTaskWidgetLoaded();
-    detailsEditPage.editWidgetById(1);
-    TaskEditWidgetNewDashBoardPage taskConfig = new TaskEditWidgetNewDashBoardPage();
-    ScreenshotUtils.executeDecorateJs("highlightShowFilterButton();");
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "edit-widget-show-filter");
-    ScreenshotUtils.executeDecorateJs("removeHighlightShowFilterButton();");
-    resizeBrowserTo2kResolution();
-    taskConfig.addCustomColumns("CustomerName");
-    taskConfig.openFilter();
-    taskConfig.addFilter("Responsible", FilterOperator.CURRENT_USER);
-    taskConfig.addFilter("Name", FilterOperator.CONTAINS);
-    taskConfig.inputValueOnLatestFilter(FilterValueType.TEXT, "Leave","Request");
-    
-    taskConfig.addFilter("State", null);
-    taskConfig.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN","DONE");
-    
-    taskConfig.addFilter("Customer name", FilterOperator.CONTAINS);
-    taskConfig.inputValueOnLatestFilter(FilterValueType.TEXT, "Anh","Long");
-    
-    taskConfig.closeFilter();
-    taskConfig.save();
-    
-    showNewDashboard();
-    homePage = new NewDashboardPage();
-    taskWidget = homePage.selectTaskWidget("Your Tasks");
+    TaskEditWidgetNewDashBoardPage taskConfig = taskWidget.openEditTaskWidget();
+    taskConfig.openColumnManagementDialog();
+    taskConfig.addCustomFields("CustomerName");
+    taskConfig.saveAfterAddingCustomField();
     taskWidget.openFilterWidget();
-
-    taskWidget.addFilter("Created Date", FilterOperator.WITHIN_NEXT);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.WITHIN, "2", "Year(s)");
-    
-    taskWidget.addFilter("Description", FilterOperator.CONTAINS);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Leave", "Request");
-    
-    taskWidget.removeFocusFilterDialog();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskWidget.getConfigurationFilter(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-task-widget-filter-combine", new ScreenshotMargin(20));
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Annual Leave Request");
+    taskWidget.addFilter("Description", FilterOperator.NOT_EMPTY);
+    taskWidget.addFilter("Customer name", FilterOperator.CONTAINS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Anh Le");
+    ScreenshotUtils.captureElementScreenshot(taskWidget.getFilterOverlayPanel(0),ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-widget-filter-options");
   }
   
   @Test
