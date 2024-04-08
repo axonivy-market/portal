@@ -56,6 +56,7 @@
                 <div class="p-d-flex">
                   <div class="p-d-flex notifications-indicator">
                     <p:commandLink id="notification-mark-as-read"
+                      disabled="#{!isReadOnlyMode}"
                       actionListener="#{widget.markAsRead(notification)}"
                       process="@this" partialSubmit="true"
                       global="false"
@@ -68,8 +69,8 @@
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
                   </div>
                   <div class="p-d-flex notification-message-block p-flex-column">
-                      <p:commandLink id="notification-message" styleClass="notification-message"
-                        actionListener="#{widget.goToTaskDetail(notification)}" rendered="#{notification.infoAction != null}">
+                      <p:commandLink id="notification-message" styleClass="notification-message" actionListener="#{widget.goToTaskDetail(notification)}"
+                         rendered="#{notification.infoAction != null}" disabled="#{!isReadOnlyMode}" >
                         <h:outputText value="#{htmlSanitizerBean.sanitize(notification.message)}" />
                       </p:commandLink>
                       <p:tooltip for="notification-message" value="#{notification.infoAction.title}" /> 
@@ -77,8 +78,8 @@
                     <h:outputText value="#{notification.timeSince}" styleClass="p-text-normal notifications-item-time-since" />
                   </div>
                   <div class="p-d-flex notification-action-block">
-                    <p:commandLink id="notification-start-task" styleClass="notification-start-task"
-                      actionListener="#{widget.startTaskFromNoti(notification)}" rendered="#{notification.runAction != null}">
+                    <p:commandLink disabled="#{!isReadOnlyMode}" id="notification-start-task" styleClass="notification-start-task"
+                      actionListener="#{widget.startTaskFromNoti(notification)}" rendered="#{notification.runAction != null}" >
                       <i class="fa fa-play notification-start-task-icon" />
                     </p:commandLink>
                     <p:tooltip for="notification-start-task" value="#{notification.runAction.title}" />
