@@ -133,6 +133,8 @@ The basic JSON structure of a Task widget
 
    -  ``headers``: multilingual header of the column.
 
+.. _configure-new-dashboard-task-widget-custom-columns:
+
 Custom Columns
 --------------
 
@@ -201,7 +203,7 @@ Base structure of filter json:
 
    ..
 
- .. _configure-new-dashboard-task-widget-filter-structure:
+..  _configure-new-dashboard-task-widget-filter-structure:
 
    - ``field``: filter field name corresponding with column name
    - ``values``: filter value, could be a list or string...
@@ -416,7 +418,7 @@ Standard Column:
 
       ..
 
-      This column accepts all operators available for Date column. Fields may
+      These columns accept all operators available for Date column. Fields may
       vary depending on the operator. The JSON example above covers most use
       cases for the Date field. Acceptable date formats: ``dd.MM.yyyy`` and
       ``MM/dd/yyyy``.
@@ -432,11 +434,42 @@ Standard Column:
                {
                   "field": "application"
                }
+            ],
+            "filters": [
+               {
+               "field" : "application",
+               "values" : [ "designer" ],
+               "operator" : "in",
+               "type" : "standard"
+               }
             ]
          }
 
-Custom Field Column:
+Custom Field Column :
 
    -  :ref:`configure-new-dashboard-task-widget-custom-columns` are using the
       same operator as :ref:`Standard Column
-      <configure-new-dashboard-task-widget-filter-structure>` 
+      <configure-new-dashboard-task-widget-filter-structure>`.
+
+   - ``type`` field must be ``custom`` for Custom Field and ``custom_case`` for Custom Case Field.
+
+   .. code-block:: html
+      
+         {
+            ...
+
+            "columns": [
+               {
+                  "field" : "CustomerName"
+               }
+            ],
+            "filters": [
+               {
+                  "field" : "CustomerName",
+                  "operator" : "not_empty",
+                  "type" : "custom"
+               }
+            ]
+         }
+   
+   ..
