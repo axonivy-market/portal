@@ -329,7 +329,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   
   public void addCustomCaseFields(String fieldName) {
     selectCustomCaseType();
-    getCustomCaseFieldSelection().click();;
+    getCustomCaseFieldSelection().click();
     SelenideElement customCaseFieldPanel = $("span[id$='column-management-form:custom-case-field-selection_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     SelenideElement fieldElement =
         customCaseFieldPanel.$$("li").filter(text(fieldName)).first().shouldBe(getClickableCondition());
