@@ -366,11 +366,9 @@
         },
         "result" : {
           "params" : [
-            { "name" : "categoryTree", "type" : "ch.ivyteam.ivy.workflow.category.CategoryTree" },
             { "name" : "caseByCategoryStatistic", "type" : "List<ch.ivy.addon.portalkit.bo.ItemByCategoryStatistic>" }
           ],
           "map" : {
-            "result.categoryTree" : "in.categoryTree",
             "result.caseByCategoryStatistic" : "in.caseByCategoryStatistic"
           }
         }
