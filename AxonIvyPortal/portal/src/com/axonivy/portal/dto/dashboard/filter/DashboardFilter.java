@@ -47,6 +47,9 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public static final String DATE_FORMAT = "MM/dd/yyyy";
+  
+  @JsonIgnore
+  public static final String DMY_DATE_FORMAT = "dd.MM.yyyy";
 
   private String field;
 
@@ -219,7 +222,7 @@ public class DashboardFilter implements Serializable {
   public Date getFromDate() {
     if (fromDate == null && StringUtils.isNotBlank(from)) {
       try {
-        fromDate = DateUtils.parseDate(from, DATE_FORMAT);
+        fromDate = DateUtils.parseDate(from, DATE_FORMAT, DMY_DATE_FORMAT);
       } catch (ParseException e) {
         throw new PortalException("Cannot parse date " + from, e);
       }
@@ -236,7 +239,7 @@ public class DashboardFilter implements Serializable {
   public Date getToDate() {
     if (toDate == null && StringUtils.isNotBlank(to)) {
       try {
-        toDate = DateUtils.parseDate(to, DATE_FORMAT);
+        toDate = DateUtils.parseDate(to, DATE_FORMAT, DMY_DATE_FORMAT);
       } catch (ParseException e) {
         throw new PortalException("Cannot parse date " + to, e);
       }
