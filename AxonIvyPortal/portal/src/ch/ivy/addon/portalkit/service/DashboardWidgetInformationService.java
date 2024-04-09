@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.service;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,11 +16,11 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
 import com.axonivy.portal.components.service.IvyAdapterService;
+import com.axonivy.portal.dto.dashboard.WidgetInformationCategoryStatisticData;
 
-import ch.ivy.addon.portalkit.bo.CaseCategoryStatistic;
 import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
-import ch.ivy.addon.portalkit.bo.TaskCategoryStatistic;
+import ch.ivy.addon.portalkit.bo.ItemByCategoryStatistic;
 import ch.ivy.addon.portalkit.bo.TaskStateStatistic;
 import ch.ivy.addon.portalkit.datamodel.DashboardCaseLazyDataModel;
 import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
@@ -102,15 +103,23 @@ public class DashboardWidgetInformationService {
     return numberOfTasksExpireMap;
   }
 
-  public Map<String, Long> buildStatisticOfTaskByCategory(DashboardTaskLazyDataModel dataModel) {
-    Map<String, Long> taskByCategoryStatistic = new HashMap<>();
+  @SuppressWarnings("unchecked")
+  public List<WidgetInformationCategoryStatisticData> buildStatisticOfTaskByCategory(DashboardTaskLazyDataModel dataModel) {
+    List<WidgetInformationCategoryStatisticData> taskByCategoryStatistic = new ArrayList<>();
+
     Map<String, Object> params = new HashMap<>();
     params.put(TASK_CRITERIA_PARAM, generateTaskSearchCriteriaWithoutOrderByClause(dataModel));
 
     Map<String, Object> response = IvyAdapterService.startSubProcessInProjectAndAllRequired(ANALYZE_TASK_CATEGORY, params);
 
-    var taskCategoryStatistic = (TaskCategoryStatistic) response.get("taskCategoryStatistic");
-    taskByCategoryStatistic.putAll(taskCategoryStatistic.getNumberOfTasksByCategory());
+    List<ItemByCategoryStatistic> taskByCategoryStatistics = (List<ItemByCategoryStatistic>) response.get("taskByCategoryStatistics");
+    taskByCategoryStatistics.forEach(cate -> {
+      WidgetInformationCategoryStatisticData data = new WidgetInformationCategoryStatisticData();
+      data.setCategoryDisplayName(cate.getDisplayName());
+      data.setCategoryDisplayPath(cate.getDisplayPath());
+      data.setSummary(cate.getValue());
+      taskByCategoryStatistic.add(data);
+    });
     return taskByCategoryStatistic;
   }
 
@@ -170,16 +179,21 @@ public class DashboardWidgetInformationService {
         LinkedHashMap::new);
   }
 
-  public Map<String, Long> buildStatisticOfCaseByCategory(DashboardCaseLazyDataModel dataModel) {
-    Map<String, Long> caseByCategoryStatistic = new HashMap<>();
+  @SuppressWarnings("unchecked")
+  public List<WidgetInformationCategoryStatisticData> buildStatisticOfCaseByCategory(DashboardCaseLazyDataModel dataModel) {
+    List<WidgetInformationCategoryStatisticData> caseByCategoryStatistics = new ArrayList<>();
     Map<String, Object> params = new HashMap<>();
     params.put(CASE_CRITERIA_PARAM, generateCaseSearchCriteriaWithoutOrderByClause(dataModel));
-
     var response = IvyAdapterService.startSubProcessInProjectAndAllRequired(ANALYZE_CASE_CATEGORY, params);
-
-    var caseCategoryStatistic = (CaseCategoryStatistic) response.get("caseCategoryStatistic");
-    caseByCategoryStatistic.putAll(caseCategoryStatistic.getNumberOfCasesByCategory());
-    return caseByCategoryStatistic;
+    List<ItemByCategoryStatistic> caseByCategoryStatistic = (List<ItemByCategoryStatistic>) response.get("caseByCategoryStatistic"); 
+    caseByCategoryStatistic.forEach(cate -> {
+      WidgetInformationCategoryStatisticData data = new WidgetInformationCategoryStatisticData();
+      data.setCategoryDisplayName(cate.getDisplayName());
+      data.setCategoryDisplayPath(cate.getDisplayPath());
+      data.setSummary(cate.getValue());
+      caseByCategoryStatistics.add(data);
+    });
+    return caseByCategoryStatistics;
   }
 
   private CaseSearchCriteria generateCaseSearchCriteriaWithoutOrderByClause(DashboardCaseLazyDataModel dataModel) {

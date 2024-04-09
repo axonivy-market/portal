@@ -20,6 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.bo.CaseCategoryStatistic;
 import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
+import ch.ivy.addon.portalkit.bo.ItemByCategoryStatistic;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
@@ -246,31 +247,17 @@ public class CaseService implements ICaseService {
       return result;
     });
   }
-
+  
   @Override
   public IvyCaseResultDTO analyzeCaseCategoryStatistic(CaseSearchCriteria criteria) {
     return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       CaseQuery finalQuery = extendQuery(criteria);
-      finalQuery.aggregate().countRows().groupBy().category().orderBy().category();
-
-      Recordset recordSet = Ivy.wf().getCaseQueryExecutor().getRecordset(finalQuery);
-      CaseCategoryStatistic caseCategoryStatistic = createCaseCategoryStatistic(recordSet);
-      result.setCaseCategoryStatistic(caseCategoryStatistic);
+      result.setCategoryTree(CategoryTree.createFor(finalQuery));
+      List<ItemByCategoryStatistic> statistics = CategoryUtils.createItemCategoryStatistic(result.getCategoryTree());
+      result.setItemByCategoryStatistic(statistics);
       return result;
     });
-  }
-
-  private CaseCategoryStatistic createCaseCategoryStatistic(Recordset recordSet) {
-    CaseCategoryStatistic caseCategoryStatistic = new CaseCategoryStatistic();
-    caseCategoryStatistic.setNumberOfCasesByCategory(new HashMap<>());
-    if (recordSet != null) {
-      recordSet.getRecords().forEach(record -> {
-        long numberOfCases = ((Number) record.getField("COUNT")).longValue();
-        caseCategoryStatistic.getNumberOfCasesByCategory().put(record.getField("CATEGORY").toString(), numberOfCases);
-      });
-    }
-    return caseCategoryStatistic;
   }
   
   @Override

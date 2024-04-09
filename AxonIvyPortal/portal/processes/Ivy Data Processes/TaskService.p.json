@@ -346,10 +346,10 @@
         },
         "result" : {
           "params" : [
-            { "name" : "taskCategoryStatistic", "type" : "ch.ivy.addon.portalkit.bo.TaskCategoryStatistic" }
+            { "name" : "taskByCategoryStatistics", "type" : "List<ch.ivy.addon.portalkit.bo.ItemByCategoryStatistic>" }
           ],
           "map" : {
-            "result.taskCategoryStatistic" : "in.taskCategoryStatistic"
+            "result.taskByCategoryStatistics" : "in.taskByCategoryStatistics"
           }
         }
       },
@@ -367,7 +367,7 @@
     }, {
       "id" : "f29",
       "type" : "Script",
-      "name" : "Analyze expiry statistic",
+      "name" : "Analyze task by category statistic",
       "config" : {
         "output" : {
           "code" : [
@@ -375,7 +375,7 @@
             "import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;",
             "",
             "IvyTaskResultDTO dto = TaskService.newInstance().analyzeTaskCategoryStatistic(in.taskSearchCriteria);",
-            "out.taskCategoryStatistic = dto.taskCategoryStatistic;"
+            "out.taskByCategoryStatistics = dto.itemByCategoryStatistic;"
           ]
         }
       },
