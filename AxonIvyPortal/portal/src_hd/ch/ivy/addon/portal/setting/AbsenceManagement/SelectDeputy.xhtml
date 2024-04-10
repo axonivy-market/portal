@@ -7,7 +7,7 @@
     <p:messages id="error-message" showSummary="false" showDetail="true">
       <p:autoUpdate/>
     </p:messages>
-    <p:panelGrid id="deputy-selection-panel" columns="1" styleClass="deputy-selection-panel ui-g-12">
+    <p:panelGrid id="deputy-selection-panel" columns="1" styleClass="deputy-selection-panel ui-g-12" layout="tabular">
       <h:panelGroup id="select-deputy" layout="block" styleClass="select-deputy">
         <ic:com.axonivy.portal.components.UserSelection id="user-selection-component"
           completeMethod="#{logic.autoCompleteForSubstituteOnApp}"
@@ -30,7 +30,7 @@
       <p:fieldset id="selected-deputy-fieldset" styleClass="selected-deputy-panel"
         legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/selectedDeputies')}">
         <ui:repeat var="deputy" value="#{data.selectedDeputies}">
-          <p:panelGrid id="selected-deputy-panel" styleClass="deputy-selection" columns="3" columnClasses="deputy-type-col,deputy-name-col">
+          <p:panelGrid id="selected-deputy-panel" styleClass="deputy-selection" columns="3" columnClasses="deputy-type-col,deputy-name-col" layout="tabular">
             <p:column>
               <h:outputText rendered="#{not avatarBean.isShowAvatar()}" id="deputy-type-icon" class="si si-single-neutral-actions" />
             </p:column>
