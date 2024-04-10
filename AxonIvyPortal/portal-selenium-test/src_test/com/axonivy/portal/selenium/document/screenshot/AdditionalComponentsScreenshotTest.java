@@ -55,8 +55,10 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     WaitHelper.waitForNavigation(() -> new NewDashboardPage().startTask(1));
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
-    WaitHelper.waitForNavigation(() -> taskTemplatePage.clickCancelButton());
+    taskTemplatePage.switchToIFrameOfTask();
+    taskTemplatePage.clickCancelButton();
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 800));
+    taskTemplatePage.switchToDefaultContent();
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForTaskStartButtonDisplay(1);
     newDashboardPage.waitForGrowlMessageDisplayClearly();

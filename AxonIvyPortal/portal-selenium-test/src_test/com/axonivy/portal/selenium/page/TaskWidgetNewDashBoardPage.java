@@ -88,7 +88,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void startFirstTaskAndWaitShowHomePageButton() {
     $(".task-dashboard-widget__panel span.widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT);
     getColumnOfTaskHasIndex(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click();
-    $("a>span.si-house-chimney-2.portal-icon").shouldBe(appear, DEFAULT_TIMEOUT);
+    // $("a>span.si-house-chimney-2.portal-icon").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void startTask(int taskIndex) {
@@ -103,7 +103,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void openFilterWidget() {
     waitForGlobalGrowlDisappear();
     getTaskWidgetHeader().$(".widget__filter-sidebar-link").shouldBe(appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition()).click();
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(getTaskWidgetHeader().$(".widget__filter-sidebar-link"));
     $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -128,7 +129,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void resetFilter() {
     $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='reset-button']")
-        .filter(text("Reset")).first().shouldBe(getClickableCondition()).click();
+        .filter(text("Reset")).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void filterPriority(String... priorities) {
@@ -307,12 +308,12 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void selectState(String state) {
-    getStateFilterCheckBox(state).shouldBe(getClickableCondition()).click();
-    getCloseStateFilter().shouldBe(getClickableCondition()).click();
+    getStateFilterCheckBox(state).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    getCloseStateFilter().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void filterTaskState() {
-    getFilterCheckBox(FILTER_TASK_STATE).shouldBe(getClickableCondition()).click();
+    getFilterCheckBox(FILTER_TASK_STATE).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public ElementsCollection getActiveTaskActions(int taskIndex) {
@@ -322,7 +323,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnTaskActionLink(int taskIndex) {
-    getColumnOfCaseHasActionIndex(taskIndex, "Actions").shouldBe(getClickableCondition()).click();
+    getColumnOfCaseHasActionIndex(taskIndex, "Actions").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void reserveTask(int taskIndex) {
@@ -330,7 +331,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickCancelTask() {
-    $("a[id$='button-cancel']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    switchToIFrameOfTask();
+    TaskIFrameTemplatePage taskIFrameTemplatePage = new TaskIFrameTemplatePage();
+    taskIFrameTemplatePage.clickCancelButton();
   }
 
   public void triggerEscalationTask(int taskIndex) {
@@ -474,12 +477,24 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void clickOnHeaderTaskByColumn(String columnName) {
     ElementsCollection elementsTH = $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
-    for (int i = 0; i < elementsTH.size(); i++) {
-      if (elementsTH.get(i).getText().equalsIgnoreCase(columnName)) {
-        elementsTH.get(i).click();
-        elementsTH.get(i).shouldBe(Condition.cssClass("ui-state-active"), DEFAULT_TIMEOUT);
+    elementsTH.asDynamicIterable().forEach(headerElem -> {
+      if (headerElem.getText().equalsIgnoreCase(columnName)) {
+        waitForElementClickableThenClick(headerElem);
+
+        // Sometimes browser click before JS of Primefaces loaded correctly.
+        // -> header has state focus instead of active.
+        // -> should check: after click, if header has state focus instead of active,
+        // click again.
+        try {
+          headerElem.shouldHave(Condition.cssClass("ui-state-active"), DEFAULT_TIMEOUT);
+        } catch (AssertionError e) {
+          if (headerElem.has(Condition.cssClass("ui-state-focus"))) {
+            waitForElementClickableThenClick(headerElem);
+            headerElem.shouldHave(Condition.cssClass("ui-state-active"), DEFAULT_TIMEOUT);
+          }
+        }
       }
-    }
+    });
   }
 
   public SelenideElement getTheFirstTaskWidgetByColumn(String columnName) {

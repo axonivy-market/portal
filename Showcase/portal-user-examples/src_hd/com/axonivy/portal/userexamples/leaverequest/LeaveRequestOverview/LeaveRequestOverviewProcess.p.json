@@ -13,7 +13,7 @@
         "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "userProcess", "type" : "ch.ivy.addon.portalkit.configuration.UserProcess", "desc" : "" }
+            { "name" : "userProcess", "type" : "com.axonivy.portal.userexamples.dto.UserProcess", "desc" : "" }
           ],
           "map" : {
             "out.userProcess" : "param.userProcess"
@@ -67,8 +67,8 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.userexamples.dto.ProcessStep;",
             "import java.util.Arrays;",
-            "import ch.ivy.addon.portalkit.bo.ProcessStep;",
             "",
             "ProcessStep creationStep = new ProcessStep();",
             "creationStep.setName(ivy.cms.co(\"/Processes/LeaveRequest/Creation/name\"));",

@@ -57,8 +57,8 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.enums.AdditionalProperty;",
             "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "import ch.ivy.addon.portalkit.enums.AdditionalProperty;",
             "import com.axonivy.portal.components.publicapi.RoleAPI;",
             "import ch.ivyteam.ivy.security.IRole;",
             "IRole role = ISecurityContext.current().roles().find(\"PortalSystem\");",
@@ -82,8 +82,8 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.enums.AdditionalProperty;",
             "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "import ch.ivy.addon.portalkit.enums.AdditionalProperty;",
             "import com.axonivy.portal.components.publicapi.RoleAPI;",
             "import ch.ivyteam.ivy.security.IRole;",
             "IRole role = ISecurityContext.current().roles().find(\"PortalSystem\");",
@@ -94,7 +94,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 367, "y" : 173 },
+        "at" : { "x" : 368, "y" : 176 },
         "size" : { "width" : 160, "height" : 60 }
       },
       "connect" : [
@@ -216,7 +216,7 @@
       "id" : "f26",
       "type" : "ProcessAnnotation",
       "name" : [
-        "This example demonstates the hide technical cases feature of Portal",
+        "This example demonstrates the hide technical cases feature of Portal",
         "",
         "HOW TO RUN THIS EXAMPLE",
         "Run createHiddenTechnicalCase.ivp to create a case named \"Create hidden technical case\" and 2 tasks: \"Report\" & \"Report and hide case\".",
@@ -279,7 +279,8 @@
             "name" : "Report and hide case",
             "description" : "Report and hide case",
             "responsible" : {
-              "activator" : "AXONIVY_PORTAL_ADMIN"
+              "type" : "ROLE_FROM_ATTRIBUTE",
+              "activator" : "\"AXONIVY_PORTAL_ADMIN\""
             }
           }, {
             "id" : "TaskB",

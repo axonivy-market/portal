@@ -8,3 +8,5 @@ userProcesses java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartable> #field
 userProcesses PERSISTENT #fieldModifier
 selectedProcess ch.ivy.addon.portalkit.configuration.UserProcess #field
 selectedProcess PERSISTENT #fieldModifier
+portalProcessInformation String #field
+portalProcessInformation PERSISTENT #fieldModifier

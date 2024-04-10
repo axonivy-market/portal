@@ -83,10 +83,11 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
             "",
-            "FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, in.uploadDocumentCheckMessage, null));"
+            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, in.uploadDocumentCheckMessage, null));"
           ]
         }
       },
@@ -95,7 +96,9 @@
         "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : [
-        { "id" : "f15", "to" : "f33", "via" : [ { "x" : 976, "y" : 384 } ] }
+        { "id" : "f15", "to" : "f33", "via" : [ { "x" : 976, "y" : 384 } ], "label" : {
+            "segment" : 0.7
+          } }
       ]
     }, {
       "id" : "f51",
@@ -222,7 +225,7 @@
         { "id" : "f49", "to" : "f46", "label" : {
             "name" : "YES",
             "segment" : 0.29,
-            "offset" : { "x" : 0, "y" : -7 }
+            "offset" : { "y" : -7 }
           } },
         { "id" : "f42", "to" : "f36" }
       ]
@@ -245,10 +248,11 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
             "",
-            "FacesContext.getCurrentInstance().addMessage(\"\", new FacesMessage( in.uploadDocumentCheckMessage, \"\" ));"
+            "FacesContext.getCurrentInstance().addMessage(\"\", FacesMessageUtils.sanitizedMessage(in.uploadDocumentCheckMessage, \"\" ));"
           ]
         }
       },
@@ -269,10 +273,11 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
             "",
-            "FacesContext.getCurrentInstance().addMessage(\"\", new FacesMessage(in.deleteDocumentMessage, \"\" ));"
+            "FacesContext.getCurrentInstance().addMessage(\"\", FacesMessageUtils.sanitizedMessage(in.deleteDocumentMessage, \"\" ));"
           ]
         }
       },

@@ -64,7 +64,7 @@
       },
       "visual" : {
         "at" : { "x" : 280, "y" : 248 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       },
       "connect" : [
         { "id" : "f3", "to" : "f4" }
@@ -91,7 +91,7 @@
       },
       "visual" : {
         "at" : { "x" : 496, "y" : 248 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       },
       "connect" : [
         { "id" : "f2", "to" : "f16" }
@@ -112,10 +112,10 @@
       },
       "visual" : {
         "at" : { "x" : 720, "y" : 248 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       },
       "connect" : [
-        { "id" : "f1", "to" : "f28" }
+        { "id" : "f1", "to" : "f13" }
       ]
     }, {
       "id" : "f5",
@@ -154,7 +154,7 @@
       ],
       "visual" : {
         "at" : { "x" : 984, "y" : 64 },
-        "size" : { "width" : 336, "height" : 60 }
+        "size" : { "width" : 336 }
       },
       "connect" : [
         { "id" : "f10", "to" : "f16" }
@@ -174,36 +174,10 @@
         { "id" : "f12", "to" : "f0" }
       ]
     }, {
-      "id" : "f28",
-      "type" : "Script",
-      "name" : "Set end page",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.constant.CustomFields;",
-            "import java.util.Map;",
-            "import ch.ivy.addon.portalkit.enums.PortalLibrary;",
-            "import java.util.Arrays;",
-            "import com.axonivy.portal.components.service.IvyAdapterService;",
-            "",
-            "Map x = IvyAdapterService.startSubProcessInSecurityContext(\"handleUserExamplesEndPage()\", null);",
-            "String callbackUrl = x.get(\"callbackUrl\") as String;",
-            "ivy.task.customFields().stringField(CustomFields.EXPRESS_END_PAGE_URL.toString()).set(callbackUrl);"
-          ]
-        },
-        "sudo" : true
-      },
-      "visual" : {
-        "at" : { "x" : 920, "y" : 248 }
-      },
-      "connect" : [
-        { "id" : "f14", "to" : "f13" }
-      ]
-    }, {
       "id" : "f13",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1056, "y" : 248 }
+        "at" : { "x" : 864, "y" : 248 }
       }
     } ]
 }

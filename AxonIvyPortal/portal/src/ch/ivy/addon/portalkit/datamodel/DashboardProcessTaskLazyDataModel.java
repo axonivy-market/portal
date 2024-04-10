@@ -12,7 +12,6 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.jsf.primefaces.legazy.LazyDataModel7;
 import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.util.threadcontext.IvyThreadContext;
 
 @SuppressWarnings("deprecation")
@@ -27,7 +26,6 @@ public class DashboardProcessTaskLazyDataModel extends LazyDataModel7<ITask> {
   private boolean isFirstTime = true;
   private List<ITask> tasks;
   private CompletableFuture<Void> future;
-  private TaskQuery query;
 
   public DashboardProcessTaskLazyDataModel(Long processStartId, String expressProcessName) {
     criteria = new DashboardProcessTaskSearchCriteria(processStartId, expressProcessName);
@@ -49,9 +47,9 @@ public class DashboardProcessTaskLazyDataModel extends LazyDataModel7<ITask> {
       if (first == 0) {
         criteria.setSortField(sortField);
         criteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
-        query = criteria.buildQuery();
       }
-      tasks = DashboardTaskService.getInstance().findByTaskQuery(query, first, pageSize * (first <= pageSize ? QUERY_PAGES_AT_FIRST_TIME : QUERY_PAGES));
+      tasks = DashboardTaskService.getInstance().findByTaskQuery(criteria.buildQuery(), first,
+          pageSize * (first <= pageSize ? QUERY_PAGES_AT_FIRST_TIME : QUERY_PAGES));
     }
     int rowCount = tasks.size() + first;
     List<ITask> result = new ArrayList<>();
@@ -63,11 +61,11 @@ public class DashboardProcessTaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   public void loadFirstTime() {
-    query = criteria.buildQuery();
     Object memento = IvyThreadContext.saveToMemento();
     future = CompletableFuture.runAsync(() -> {
       IvyThreadContext.restoreFromMemento(memento);
-      tasks = DashboardTaskService.getInstance().findByTaskQuery(query, 0, getPageSize() * QUERY_PAGES_AT_FIRST_TIME);
+      tasks = DashboardTaskService.getInstance().findByTaskQuery(criteria.buildQuery(), 0,
+          getPageSize() * QUERY_PAGES_AT_FIRST_TIME);
       IvyThreadContext.reset();
     });
     isFirstTime = true;

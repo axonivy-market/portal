@@ -3,7 +3,6 @@ package com.axonivy.portal.selenium.page;
 import static com.axonivy.portal.selenium.common.Variable.CLIENT_SIDE_TIMEOUT;
 import static com.axonivy.portal.selenium.common.Variable.GLOBAL_FOOTER_INFO;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -11,7 +10,6 @@ import org.openqa.selenium.WebElement;
 import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class AdminSettingsPage extends TemplatePage {
@@ -37,11 +35,15 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
-    $("button[id$='admin-setting-component:adminTabView:restore-all-to-default-button']").shouldBe(Condition.appear)
-        .shouldBe(getClickableCondition());
-    ElementsCollection tableRows = $$(".setting-key").filter(Condition.text(variableName));
-    if (!tableRows.isEmpty()) {
-      SelenideElement editButton = tableRows.get(0).ancestor("tr").$(By.cssSelector("a[id$=edit]"));
+    $("button[id$='admin-setting-component:adminTabView:restore-all-to-default-button']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition());
+    waitForElementDisplayed(By.id("admin-setting-component:adminTabView:settingTable"), true);
+
+    var variableRow = $("[id='admin-setting-component:adminTabView:settingTable']").$$(".setting-key")
+        .filter(Condition.text(variableName)).get(0);
+
+    if (variableRow != null) {
+      SelenideElement editButton = variableRow.ancestor("tr").$(By.cssSelector("a[id$=edit]"));
       editButton.shouldBe(clickable(), DEFAULT_TIMEOUT).click();
     }
     waitForElementDisplayed(By.cssSelector("[id$=':settingDialogForm']"), true);

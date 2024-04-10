@@ -20,10 +20,10 @@ public class LeaveRequestOverviewPage extends TemplatePage {
     return findElementByCssSelector(String.format("[id$=':%d:process-step']", index));
   }
 
-  public LeaveRequestPage start() {
+  public TaskTemplateIFramePage start() {
     clickByJavaScript($("button[id$='start']"));
     waitForElementDisplayed(By.cssSelector("[id$='leave-request']"), true);
     switchBackToParent();
-    return new LeaveRequestPage();
+    return new TaskTemplateIFramePage();
   }
 }

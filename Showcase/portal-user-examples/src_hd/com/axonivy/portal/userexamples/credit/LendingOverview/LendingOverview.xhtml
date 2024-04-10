@@ -21,16 +21,16 @@
     <ui:define name="detailButton">
       <h:form id="detail-form">
       <div class="ui-g-12 TexAlCenter">
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/goToDetail')} #{stage}" 
+        <p:commandButton value="#{ivy.cms.co('/Labels/GoToDetail')} #{stage}" 
           actionListener="#{logic.navigateToDetail(stageStatus.index)}" id="detail-stage"/>
       </div>
       </h:form>
     </ui:define>
     
     <ui:define name="actionButtons">
-      <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" actionListener="#{logic.cancel}"/>
+      <p:commandLink value="#{ivy.cms.co('/Labels/Cancel')}" actionListener="#{logic.cancel}"/>
       <p:spacer width="20px" />
-      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')} #{data.userProcess.processName}"
+      <p:commandButton value="#{ivy.cms.co('/Labels/Start')} #{data.userProcess.processName}"
         id="start"
         actionListener="#{navigationBean.startProcess(data.userProcess)}" />
     </ui:define>

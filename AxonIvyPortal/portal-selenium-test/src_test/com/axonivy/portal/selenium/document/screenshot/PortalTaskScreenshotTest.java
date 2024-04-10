@@ -62,6 +62,8 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest {
     NewDashboardPage homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
     TaskWidgetPage taskWidget = mainMenuPage.openTaskList();
+    taskWidget.startTask(0);
+    mainMenuPage.openTaskList();
     WaitHelper.waitForNavigation(() -> taskWidget.openTaskDetail(0));
     TaskDetailsPage detailsPage = new TaskDetailsPage();
     detailsPage.waitUtilsTaskDetailsDisplayed();
@@ -122,8 +124,15 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForCaseWidgetLoaded();
     TaskWidgetPage taskWidget = mainMenuPage.openTaskList();
+    taskWidget.startTask(0);
+    showNewDashboard();
+    mainMenuPage.openTaskList();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetail(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
+
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
+    ScreenshotUtils.executeDecorateJs("highlightTaskStatusBanner()");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_FOLDER + "task-status-banner");
 
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskDetails.getTaskGeneralInformation(),

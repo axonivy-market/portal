@@ -17,6 +17,7 @@ import org.primefaces.model.StreamedContent;
 import org.primefaces.model.file.UploadedFile;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
+import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
@@ -93,7 +94,7 @@ public class ExpressManagementBean implements Serializable {
     importExpressFile = event.getFile();
     String validateStr = UploadDocumentUtils.validateUploadedFile(importExpressFile);
     if (StringUtils.isNotEmpty(validateStr)) {
-      validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, validateStr, null); 
+      validateMessage = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, validateStr, null);
       displayedMessage();
     } else {
       importExpressProcesses();
