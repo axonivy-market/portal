@@ -18,6 +18,7 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.CaseState;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.AdditionalCaseDetailsPage;
 import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseDetailsPage;
@@ -226,5 +227,34 @@ public class CaseWidgetTest extends BaseTest {
     assertTrue(StringUtils.equalsIgnoreCase("Created", selectedSortColumn));
     String caseName = caseWidgetPage.getCaseNameAt(0);
     assertTrue(StringUtils.equalsIgnoreCase("Leave Request", caseName));
+  }
+
+  @Test
+  public void testCaseReadAllOwnRoleInvolved() {
+    redirectToRelativeLink(createTaskForRoleInvolved);
+    initHomePage(TestAccount.HR_ROLE_USER);
+    homePage.waitForPageLoaded();
+    TaskWidgetPage taskWidgetPage = homePage.openTaskList();
+    taskWidgetPage.waitForPageLoaded();
+    taskWidgetPage.filterTasksInExpandedModeBy("Task for role involved", 1);
+
+    WaitHelper.waitForNavigation(taskWidgetPage, () -> {
+      taskWidgetPage.waitTaskAppearThenClick(0);
+    });
+
+    login(TestAccount.HR_ROLE_USER_2);
+    redirectToRelativeLink(grantCaseReadAllOwnRoleInvolvedPermission);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    homePage = new HomePage();
+    CaseWidgetPage casePage = homePage.openCaseList();
+    casePage.waitForPageLoaded();
+    assertTrue(casePage.isCaseDisplayed("Test Process: role involved"));
+
+    redirectToRelativeLink(denyCaseReadAllOwnRoleInvolvedPermission);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    homePage = new HomePage();
+    casePage = homePage.openCaseList();
+    casePage.waitForPageLoaded();
+    assertFalse(casePage.isCaseDisplayed("Test Process: role involved"));
   }
 }
