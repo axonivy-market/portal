@@ -7,7 +7,7 @@ import javax.faces.view.ViewScoped;
 
 import com.axonivy.portal.components.enums.DocumentType;
 import com.axonivy.portal.components.examples.enums.ExtendedDocumentType;
-import com.axonivy.portal.components.examples.utils.ProcessStartUtils;
+import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 
 @ManagedBean
 @ViewScoped
@@ -20,10 +20,10 @@ public class DocumentTableExampleBean implements Serializable {
   }
 
   public String getSerenityExampleLink() {
-    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath("Start Processes/DocumentTableExample/showDefaultDocumentTableExampleSerenity.ivp");
+    return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath("Start Processes/DocumentTableExample/showDefaultDocumentTableExampleSerenity.ivp");
   }
 
   public String getSerenityCustomExampleLink() {
-    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath("Start Processes/DocumentTableExample/showCustomizedDocumentTableExampleSerenity.ivp");
+    return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath("Start Processes/DocumentTableExample/showCustomizedDocumentTableExampleSerenity.ivp");
   }
 }

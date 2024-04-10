@@ -64,6 +64,10 @@ public class TaskDetailsPage extends TemplatePage {
     return $("div[id$='task-details-information-panel'").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
+  public SelenideElement getStatusBanner() {
+    return $("div[id$='task-detail-template:task-status-banner'");
+  }
+
   public void openActionPanel() {
     $("[id$=':additional-options:task-detail-more-step']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
@@ -313,9 +317,10 @@ public class TaskDetailsPage extends TemplatePage {
     return new TaskWidgetPage();
   }
 
-  public TaskTemplatePage clickStartTask() {
+  public TaskIFrameTemplatePage clickStartTask() {
     findElementByCssSelector("[id$=':task-detail-start-command']").click();
-    return new TaskTemplatePage();
+    switchToIFrameOfTask();
+    return new TaskIFrameTemplatePage();
   }
 
   public void changePriorityOfTask(int priorityValue) {

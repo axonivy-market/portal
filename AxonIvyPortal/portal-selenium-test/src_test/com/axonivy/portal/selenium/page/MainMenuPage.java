@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
+
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -115,7 +116,6 @@ public class MainMenuPage extends TemplatePage {
   public void clickThirdPartyApp() {
     waitForElementDisplayed(By.cssSelector("li[class*='thirdparty-menu-item'] > a"), true);
     waitForElementClickableThenClick("li[class*='thirdparty-menu-item'] > a");
-
   }
 
   public void assertThirdPartyApp(String url) {
@@ -153,5 +153,21 @@ public class MainMenuPage extends TemplatePage {
   public WorkingTaskDialogPageOfApplicationMenu selectDashboardMenu() {
     waitForElementClickableThenClick(".layout-menu li[role='menuitem'] a.DASHBOARD");
     return new WorkingTaskDialogPageOfApplicationMenu();
+  }
+  
+  public String getIconClassMainMenuEntryAsString() {
+	  return $("div[id='user-menu-required-login']").shouldBe(appear, DEFAULT_TIMEOUT)
+			  .$("li[id*='main-menu__js__DASHBOARD-main-dashboard']").shouldBe(appear, DEFAULT_TIMEOUT)
+			  .$("a").shouldBe(appear, DEFAULT_TIMEOUT)
+			  .$("i").shouldBe(appear, DEFAULT_TIMEOUT)
+			  .getAttribute("class").toString();	  
+  }
+  
+  public String getMainMenuName() {
+	  return $("div[id='user-menu-required-login']").shouldBe(appear, DEFAULT_TIMEOUT)
+			  .$("li[id*='main-menu__js__DASHBOARD-main-dashboard']").shouldBe(appear, DEFAULT_TIMEOUT)
+			  .$("a").shouldBe(appear, DEFAULT_TIMEOUT)
+			  .$("span").shouldBe(appear, DEFAULT_TIMEOUT)
+			  .getText();	  
   }
 }

@@ -14,7 +14,7 @@
         "result" : {
           "params" : [
             { "name" : "state", "type" : "com.axonivy.portal.userexamples.enums.RequestState", "desc" : "" },
-            { "name" : "process", "type" : "ch.ivy.addon.portalkit.configuration.UserProcess", "desc" : "" }
+            { "name" : "process", "type" : "com.axonivy.portal.userexamples.dto.UserProcess", "desc" : "" }
           ],
           "map" : {
             "result.state" : "in.state",
@@ -68,7 +68,7 @@
         "signature" : "navigate",
         "input" : {
           "params" : [
-            { "name" : "process", "type" : "ch.ivy.addon.portalkit.configuration.UserProcess", "desc" : "" }
+            { "name" : "process", "type" : "com.axonivy.portal.userexamples.dto.UserProcess", "desc" : "" }
           ],
           "map" : {
             "out.process" : "param.process"

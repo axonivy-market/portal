@@ -229,7 +229,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     return Optional.ofNullable(dashboard)
         .map(Dashboard::getPermissions)
         .filter(l -> CollectionUtils.isNotEmpty(l))
-        .isPresent() ? String.join(", ", dashboard.getPermissions()) : "";
+        .isPresent() ? String.join(", ", RoleUtils.getDisplayNameOfRoles(dashboard.getPermissions())) : "";
   }
 
   public void updateDashboardTitleByLocale() {

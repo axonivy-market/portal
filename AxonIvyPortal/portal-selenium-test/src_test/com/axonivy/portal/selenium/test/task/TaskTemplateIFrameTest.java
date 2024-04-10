@@ -3,15 +3,14 @@ package com.axonivy.portal.selenium.test.task;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
-import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
@@ -34,7 +33,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     redirectToRelativeLink(CUSTOM_PARAMS_TEMPLATE_TASK_URL);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy("IFrame task with custom params");
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTaskWithouWaitForTaskActionPresent(0);
+    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskWithouWaitForTaskActionPresent(0);
     assertFalse(taskTemplatePage.isTaskNameDisplayed());
     assertFalse(taskTemplatePage.isTaskActionDisplayed());
     assertFalse(taskTemplatePage.isCaseInfoButtonDisplayed());
@@ -44,7 +43,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
   public void testDisplayWarningInIFrameTaskTemplate() {
     redirectToRelativeLink(IFRAME_TASK_URL);
     waitForTemplateRender();
-    final TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
+    TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     taskTemplatePage.clickOnLogo();
     By leaveButton = By.id("task-leave-warning-component:leave-button");
     WaitHelper.assertTrueWithWait(() -> taskTemplatePage.isElementDisplayed(leaveButton));
@@ -57,7 +56,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
     TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
     taskWidgetPage.filterTasksInExpandedModeBy("Approve Investment", 1);
-    TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(0);
+    TaskIFrameTemplatePage taskTemplatePage2 = taskWidgetPage.startTaskIFrame(0);
     taskTemplatePage2.clickOnLogo();
     new NewDashboardPage();
   }
@@ -70,7 +69,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
     TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
     taskWidgetPage.filterTasksInExpandedModeBy("Approve Investment", 1);
-    TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(0);
+    TaskIFrameTemplatePage taskTemplatePage2 = taskWidgetPage.startTaskIFrame(0);
     taskTemplatePage2.backToHomeInIFrameApprovalTask();
     new NewDashboardPage();
   }
@@ -83,7 +82,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     TaskWidgetPage taskWidgetPage1 = taskTemplatePage1.finishCreateInvestmentTask();
     taskWidgetPage1 = taskWidgetPage1.openTaskList();
     taskWidgetPage1.filterTasksInExpandedModeBy("Approve Investment", 1);
-    TaskTemplatePage taskTemplatePage2 = taskWidgetPage1.startTask(0);
+    TaskIFrameTemplatePage taskTemplatePage2 = taskWidgetPage1.startTaskIFrame(0);
     TaskWidgetPage taskWidgetPage2 = taskTemplatePage2.finishIFrameReviewTask();
     WaitHelper
         .assertTrueWithWait(() -> taskWidgetPage2.isElementDisplayed(By.cssSelector("[id$='task-config-command']")));
@@ -101,7 +100,8 @@ public class TaskTemplateIFrameTest extends BaseTest {
     TaskWidgetPage taskWidgetPage1 = taskTemplatePage1.finishCreateInvestmentTask();
     taskWidgetPage1 = taskWidgetPage1.openTaskList();
     taskWidgetPage1.filterTasksInExpandedModeBy("Approve Investment", 1);
-    TaskTemplatePage taskTemplatePage2 = taskWidgetPage1.startTask(0);
+    TaskIFrameTemplatePage taskTemplatePage2 = taskWidgetPage1.startTaskIFrame(0);
+    taskTemplatePage2.waitForIFrameContentVisible();
     assertEquals("Review Request (Skip Tasklist in IFrame)",
         taskTemplatePage2.getTaskNameOutsideIFrameWithSkipTaskList());
   }
@@ -112,9 +112,9 @@ public class TaskTemplateIFrameTest extends BaseTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     TaskWidgetPage taskWidget = newDashboardPage.openTaskList();
     taskWidget.filterTasksInExpandedModeBy("sale department", 1);
-    TaskTemplatePage startTask = taskWidget.startTask(0);
+    TaskIFrameTemplatePage startTask = taskWidget.startTaskIFrame(0);
     startTask.openCaseInfo();
-    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
+    resizeBrowserTo2kResolution();
     assertTrue(startTask.isCategoryColumnDisplayed());
   }
 }

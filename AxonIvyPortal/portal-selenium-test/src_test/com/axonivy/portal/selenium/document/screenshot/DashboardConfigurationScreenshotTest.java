@@ -65,7 +65,7 @@ public class DashboardConfigurationScreenshotTest extends ScreenshotBaseTest {
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "edit-public-dashboards", new ScreenshotMargin(10));
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "reorder-public-dashboards", new ScreenshotMargin(10));
-    dashboardConfigurationPage.openCreatePrivateDashboardMenu();
+    dashboardConfigurationPage.openCreatePublicDashboardMenu();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardTemplates(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "dashboard-templates", new ScreenshotMargin(10));
     dashboardConfigurationPage.openImportPublicDashboards();

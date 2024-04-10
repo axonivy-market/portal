@@ -2,12 +2,18 @@ package ch.ivy.addon.portalkit.configuration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.commons.collections4.CollectionUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import ch.ivy.addon.portalkit.util.LanguageUtils;
+import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -28,13 +34,39 @@ public class ExternalLink extends AbstractConfiguration {
   @JsonIgnore
   private List<String> defaultPermissions = new ArrayList<>();
   private String securityMemberId;
+  private List<DisplayName> names;
+  private List<DisplayName> descriptions;
+  
+  public ExternalLink() {
+    IvyLanguage ivyLanguage = LanguageService.newInstance().getIvyLanguageOfUser();
+    if (CollectionUtils.isEmpty(names)) {
+      names = initDisplayName(ivyLanguage);
+    }
+    
+    if (CollectionUtils.isEmpty(descriptions)) {
+      descriptions = initDisplayName(ivyLanguage);
+    }        
+  }
+  
+  private List<DisplayName> initDisplayName(IvyLanguage ivyLanguage){
+    List<DisplayName> result = new ArrayList<>();
+    for (String language : ivyLanguage.getSupportedLanguages()) {
+      DisplayName newItem = new DisplayName();
+      newItem.setLocale(Locale.forLanguageTag(language));
+      newItem.setValue("");
+      result.add(newItem);
+    }
+    return result;
+  }
 
   public String getName() {
-    return name;
+    return LanguageUtils.getLocalizedName(names, name);
   }
 
   public void setName(String name) {
-    this.name = name;
+    NameResult nameResult = LanguageUtils.collectMultilingualNames(names, name);
+    this.names = nameResult.names();
+    this.name = nameResult.name();
   }
 
   public String getLink() {
@@ -69,11 +101,13 @@ public class ExternalLink extends AbstractConfiguration {
   }
 
   public String getDescription() {
-    return description;
+    return LanguageUtils.getLocalizedName(descriptions, description);
   }
 
   public void setDescription(String description) {
-    this.description = description;
+    NameResult nameResult = LanguageUtils.collectMultilingualNames(descriptions, description);
+    this.descriptions = nameResult.names();
+    this.description = nameResult.name();
   }
 
   public String getImageLocation() {
@@ -102,8 +136,8 @@ public class ExternalLink extends AbstractConfiguration {
 
   @Override
   public String toString() {
-    return String.format("ExternalLink {creatorId=%s, name=%s, link=%s, isPublic=%s, rolePermission=[%s], icon=%s}", creatorId, name, link,
-        getIsPublic(), String.join(", ", permissions), icon);
+    return String.format("ExternalLink {creatorId=%s, name=%s, link=%s, isPublic=%s, rolePermission=[%s], icon=%s, securityMemberId=%s}", creatorId, name, link,
+        getIsPublic(), String.join(", ", permissions), icon, securityMemberId);
   }
 
   public String getIcon() {
@@ -133,5 +167,21 @@ public class ExternalLink extends AbstractConfiguration {
 
   public void setSecurityMemberId(String securityMemberId) {
     this.securityMemberId = securityMemberId;
+  }
+  
+  public List<DisplayName> getNames() {
+    return names;
+  }
+
+  public void setNames(List<DisplayName> names) {
+    this.names = names;
+  }
+
+  public List<DisplayName> getDescriptions() {
+    return descriptions;
+  }
+
+  public void setDescriptions(List<DisplayName> descriptions) {
+    this.descriptions = descriptions;
   }
 }

@@ -16,8 +16,8 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.ProcessInformationPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
+import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
-import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
@@ -276,7 +276,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     backToNewDashboardPage();
     newDashboardPage.startCombinedModeProcessFirstTask();
 
-    TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
+    TaskIFrameTemplatePage taskTemplatePage = new TaskIFrameTemplatePage();
     taskTemplatePage.getDisplayedTaskTitle().shouldHave(Condition.attribute(TITLE_ATTRIBUTE, SICK_LEAVE_REQUEST));
   }
 
@@ -294,7 +294,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     newDashboardPage.expandCombindedModeProcess();
     newDashboardPage.startCombinedModeProcessFirstTask();
 
-    TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
+    TaskIFrameTemplatePage taskTemplatePage = new TaskIFrameTemplatePage();
     taskTemplatePage.getDisplayedTaskTitle().shouldHave(Condition.attribute(TITLE_ATTRIBUTE, SICK_LEAVE_REQUEST));
   }
 
@@ -420,6 +420,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
   @Test
   public void testSortProcessCompactProcessModeCustomSorting() {
+    resizeBrowserTo2kResolution();
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectCompactMode();
@@ -432,7 +433,9 @@ public class DashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.getPreviewProcessElement(0).shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldHave(Condition.exactTextCaseSensitive(CLEAN_ABSENCES));
     int fromIndex = 0;
-    int toIndex = 4;
+    int toIndex = 6;
+    editProcessWidgetConfiguration.dragAndDropProcess(fromIndex, toIndex);
+    editProcessWidgetConfiguration.dragAndDropProcess(fromIndex, toIndex);
     editProcessWidgetConfiguration.dragAndDropProcess(fromIndex, toIndex);
     editProcessWidgetConfiguration.save();
     editProcessWidgetConfiguration = newDashboardPage.editProcessWidgetConfiguration();

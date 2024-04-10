@@ -12,10 +12,9 @@ import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.NoteHistoryPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
-import com.axonivy.portal.selenium.page.TaskTemplatePage;
+import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.WorkingTaskDialogPage;
-import com.codeborne.selenide.WebDriverRunner;
 
 @IvyWebTest
 public class TaskTemplateTest extends BaseTest {
@@ -31,14 +30,14 @@ public class TaskTemplateTest extends BaseTest {
   @Test
   public void testCaseDetailsTabDisplayed() {
     createTestData();
-    TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
+    TaskIFrameTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     assertTrue(taskTemplatePage.containsCaseDetails());
   }
 
   @Test
   public void testAddingANote() {
     createTestData();
-    TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
+    TaskIFrameTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     assertEquals(0, taskTemplatePage.countNoteItems());
     taskTemplatePage.addNewNote("Sample note message");
     assertEquals(1, taskTemplatePage.countNoteItems());
@@ -48,22 +47,19 @@ public class TaskTemplateTest extends BaseTest {
   public void testOpeningRelatedTask() {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
     createTestData();
-    TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
+    TaskIFrameTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
 
     TaskDetailsPage taskDetailsPage = taskTemplatePage.openRelatedTaskInList(ANNUAL_LEAVE_REQUEST_TASK);
     assertEquals("Task: Annual Leave Request", taskDetailsPage.getTaskNameInDialog());
 
     taskDetailsPage.clickBackButton();
-    WebDriverRunner.getWebDriver().switchTo().defaultContent();
-    taskTemplatePage = new TaskTemplatePage();
-    taskDetailsPage.switchToCaseInfoIframe();
     assertTrue(taskTemplatePage.countRelatedTasks() > 0);
   }
 
   @Test
   public void testOpeningDocumentUploading() {
     createTestData();
-    TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
+    TaskIFrameTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     taskTemplatePage.openDocumentUploadingDialog();
     assertTrue(taskTemplatePage.isDocumentUploadingDialogDisplayed());
   }
@@ -71,7 +67,7 @@ public class TaskTemplateTest extends BaseTest {
   @Test
   public void testLeaveWorkingTaskByClickingOnLogo() {
     createTestData();
-    TaskTemplatePage taskTemplatePage = startATask();
+    TaskIFrameTemplatePage taskTemplatePage = startATask();
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
     dialogPage.leaveTask();
@@ -86,7 +82,7 @@ public class TaskTemplateTest extends BaseTest {
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     NewDashboardPage home = new NewDashboardPage();
     home.waitPageLoaded();
-    TaskTemplatePage taskTemplatePage = startATask();
+    TaskIFrameTemplatePage taskTemplatePage = startATask();
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
     dialogPage.reserveTask();
@@ -99,7 +95,7 @@ public class TaskTemplateTest extends BaseTest {
     redirectToRelativeLink(createTestingCaseMapUrl);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     int latestTask = taskWidgetPage.countTasks().size() - 1;
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(latestTask);
+    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(latestTask);
     taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.startSideStep();
     TaskWidgetPage taskWidget = NavigationHelper.navigateToTaskList();
@@ -111,15 +107,15 @@ public class TaskTemplateTest extends BaseTest {
     new NewDashboardPage();
   }
 
-  private TaskTemplatePage startATask() {
+  private TaskIFrameTemplatePage startATask() {
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
     return taskTemplatePage;
   }
 
-  private TaskTemplatePage startATaskAndOpenCaseInfo() {
+  private TaskIFrameTemplatePage startATaskAndOpenCaseInfo() {
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
     taskTemplatePage.openCaseInfo();
     return taskTemplatePage;
   }
@@ -135,7 +131,7 @@ public class TaskTemplateTest extends BaseTest {
   @Test
   public void testOpeningFinishedTaskInHistoryArea() {
     createTestData();
-    TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
+    TaskIFrameTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     taskTemplatePage.openFinishedTaskInHistoryArea();
     taskTemplatePage.switchLastBrowserTab();
     NoteHistoryPage caseHistoryPage = new NoteHistoryPage();

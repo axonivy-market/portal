@@ -6,10 +6,9 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
-import com.axonivy.portal.selenium.page.CaseDetailsPage;
+import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseMapPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
-import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
@@ -30,6 +29,7 @@ public class CaseMapTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
+    login(TestAccount.DEMO_USER);
     redirectToRelativeLinkWithEmbedInFrame(CASE_MAP_URL);
   }
 
@@ -39,37 +39,32 @@ public class CaseMapTest extends BaseTest {
     caseMapPage.switchToIFrameOfTask();
     caseMapPage.inputFields("John", "Jack", "1.1.2019", "VN", "20000", "To buy a new car", "80000", "100000");
     caseMapPage.clickSubmitRequestButton();
+    NavigationHelper.navigateToTaskList();
     startTaskByTaskName(VERIFY_PERSONAL_DATA);
-    caseMapPage.switchToIFrameOfTask();
     assertInputData();
     caseMapPage.inputField("form:verifier-comment", "Ok");
-    caseMapPage.clickSubmitButton();
+    caseMapPage.clickSubmitButtonCaseMap();
     startTaskByTaskName(INTERNAL_SOLVENCY_CHECK);
-    caseMapPage.switchToIFrameOfTask();
     assertInputData();
     caseMapPage.getVerifierComment().shouldHave(Condition.value("OK"));
     caseMapPage.inputField("form:internal-comment", "Pass");
-    caseMapPage.clickSubmitButton();
+    caseMapPage.clickSubmitButtonCaseMap();
     startTaskByTaskName(APPROVAL_LEVEL_1);
-    caseMapPage.switchToIFrameOfTask();
     assertInputData();
     caseMapPage.getVerifierComment().shouldHave(Condition.value("OK"));
     caseMapPage.getInternalCreditComment().shouldHave(Condition.value("Pass"));
-
     caseMapPage.clickApproveButton();
     startTaskByTaskName(APPROVAL_LEVEL_2);
-    caseMapPage.switchToIFrameOfTask();
     assertInputData();
     caseMapPage.getVerifierComment().shouldHave(Condition.value("OK"));
     caseMapPage.getInternalCreditComment().shouldHave(Condition.value("Pass"));
-
     caseMapPage.clickApproveButton();
     startTaskByTaskName(CREATE_CONTRACT);
-    caseMapPage.switchToIFrameOfTask();
     assertInputData();
-    UserExamplesEndPage userExamplesEndPage = caseMapPage.clickSubmitContractButton();
-    CaseDetailsPage caseDetailsPage = userExamplesEndPage.goToCaseDetail();
-    assertEquals("Lending", caseDetailsPage.getCaseName());
+    caseMapPage.clickSubmitContractButton();
+    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.waitForPageLoad();
+    taskWidgetPage.countTasks().shouldHave(CollectionCondition.size(0));
   }
 
   @Test
@@ -78,19 +73,17 @@ public class CaseMapTest extends BaseTest {
     caseMapPage.switchToIFrameOfTask();
     caseMapPage.inputFields("John", "Jack", "1.1.2019", "VN", "20000", "To buy a new car", "80000", "100000");
     caseMapPage.clickSubmitRequestButton();
+    NavigationHelper.navigateToTaskList();
     startTaskByTaskName(VERIFY_PERSONAL_DATA);
-    caseMapPage.switchToIFrameOfTask();
     assertInputData();
     caseMapPage.inputField("form:verifier-comment", "Ok");
-    caseMapPage.clickSubmitButton();
+    caseMapPage.clickSubmitButtonCaseMap();
     startTaskByTaskName(INTERNAL_SOLVENCY_CHECK);
-    caseMapPage.switchToIFrameOfTask();
     assertInputData();
     caseMapPage.getVerifierComment().shouldHave(Condition.value("OK"));
     caseMapPage.inputField("form:internal-comment", "Fail");
-    caseMapPage.clickSubmitButton();
+    caseMapPage.clickSubmitButtonCaseMap();
     startTaskByTaskName(APPROVAL_LEVEL_1);
-    caseMapPage.switchToIFrameOfTask();
     assertInputData();
     caseMapPage.getVerifierComment().shouldHave(Condition.value("Ok"));
     caseMapPage.getInternalCreditComment().shouldHave(Condition.value("Fail"));
@@ -101,19 +94,19 @@ public class CaseMapTest extends BaseTest {
   }
 
   private void startTaskByTaskName(String taskname) {
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksInExpandedModeBy(taskname);
-    taskWidgetPage.startTask(0);
+    taskWidgetPage.clickOnStartTaskLink(0);
   }
 
   private void assertInputData() {
-    caseMapPage.getCustomerLastName().shouldHave(Condition.value("John"));
-    caseMapPage.getCustomerFirstName().shouldHave(Condition.value("Jack"));
-    caseMapPage.getCountry().shouldHave(Condition.value("VN"));
-    caseMapPage.getAmount().shouldHave(Condition.value("20000"));
-    caseMapPage.getReason().shouldHave(Condition.value("To buy a new car"));
-    caseMapPage.getSalary().shouldHave(Condition.value("80000"));
-    caseMapPage.getOtherCredits().shouldHave(Condition.value("100000"));
+    caseMapPage.getCustomerLastName().shouldHave(Condition.value("John"), DEFAULT_TIMEOUT);
+    caseMapPage.getCustomerFirstName().shouldHave(Condition.value("Jack"), DEFAULT_TIMEOUT);
+    caseMapPage.getCountry().shouldHave(Condition.value("VN"), DEFAULT_TIMEOUT);
+    caseMapPage.getAmount().shouldHave(Condition.value("20000"), DEFAULT_TIMEOUT);
+    caseMapPage.getReason().shouldHave(Condition.value("To buy a new car"), DEFAULT_TIMEOUT);
+    caseMapPage.getSalary().shouldHave(Condition.value("80000"), DEFAULT_TIMEOUT);
+    caseMapPage.getOtherCredits().shouldHave(Condition.value("100000"), DEFAULT_TIMEOUT);
   }
 
 

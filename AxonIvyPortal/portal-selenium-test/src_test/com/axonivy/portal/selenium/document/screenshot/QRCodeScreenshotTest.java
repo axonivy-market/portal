@@ -15,7 +15,7 @@ import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.QRCodePage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class QRCodeScreenshotTest extends ScreenshotBaseTest {
   @Override
   @BeforeEach

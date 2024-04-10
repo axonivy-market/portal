@@ -18,6 +18,7 @@
   <cc:attribute name="updateCurrentLanguage" />
   <cc:attribute name="titleRequired" default="true"/>
   <cc:attribute name="dynamic" default="false" />
+  <cc:attribute name="useInputText" default="true" shortDescription="if true uses render input text, otherwise uses text area"/>
 </cc:interface>
 
 <cc:implementation>
@@ -31,22 +32,29 @@
     <h:form id="add-language-detail-form">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/emptySupportedLanguages')}"
         rendered="#{titles.isEmpty()}" />
-      <h:dataTable id="table-titles" value="#{titles}" rendered="#{titles.isEmpty() eq 'false'}" var="title" width="460" >
+      <h:dataTable id="table-titles" value="#{titles}" rendered="#{titles.isEmpty() eq 'false'}" var="title" width="460" 
+        columnClasses="#{cc.attrs.useInputText ? '' : 'multi-language-textarea-label,'}">
         <h:column>
-          <p:outputLabel styleClass="ui-g-12" value="#{title.locale.getDisplayName()}" for="title-input"/>
+          <p:outputLabel value="#{title.locale.getDisplayName(ivy.session.getContentLocale())}" for="#{cc.attrs.useInputText ? 'title-input' : 'title-textarea'}"
+          styleClass="ui-g-12 #{cc.attrs.useInputText ? '' : 'external-link-description-label'}"/>
         </h:column>
         <h:column>
           <div class="ui-g-12 ui-fluid">
-          <p:focus for="title-input" rendered="#{managedBean.isFocus(title)}" />
-            <p:inputText value="#{title.value}" id="title-input" autocomplete="off"
+            <p:focus for="#{cc.attrs.useInputText ? 'title-input' : 'title-textarea'}" rendered="#{managedBean.isFocus(title)}" />
+            <p:inputText value="#{title.value}" id="title-input" autocomplete="off" rendered="#{cc.attrs.useInputText}"
               required="#{managedBean.isRequiredField(title) and titleRequired}"
               requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
                <p:ajax event="click" listener="#{managedBean.translate(title)}"
                disabled="#{managedBean.isShowTranslation(title) eq 'false'}"
                process="@form" partialSubmit="true" global="false" update="translated-text-panel, tranlate-link" />
             </p:inputText>
+            <p:inputTextarea value="#{title.value}" maxlength="200" rows="3" styleClass="w-full" id="title-textarea" rendered="#{!cc.attrs.useInputText}"> 
+              <p:ajax event="click" listener="#{managedBean.translateTextArea(title)}"
+               disabled="#{managedBean.isShowTranslation(title) eq 'false'}"
+               process="@form" partialSubmit="true" global="false" update="translated-text-panel, tranlate-link" />
+            </p:inputTextarea>
             <p:overlayPanel rendered="#{managedBean.isShowTranslation(title)}"
-             for="title-input" appendTo="@(body)" my="right top" at="right bottom"
+             for="#{cc.attrs.useInputText ? 'title-input' : 'title-textarea'}" appendTo="@(body)" my="right top" at="right bottom"
              id="overlay-panel-input"
              styleClass="filter-name-overlay-panel" dynamic="false" dismissable="true" showCloseIcon="true">
               <p:commandLink id="tranlate-link" actionListener="#{managedBean.applyTranslatedText(title)}" update="@form" process="@this" partialSubmit="true" disabled="#{not empty managedBean.warningText}">

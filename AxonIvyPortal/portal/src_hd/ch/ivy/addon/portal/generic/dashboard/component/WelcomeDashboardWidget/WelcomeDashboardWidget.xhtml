@@ -41,7 +41,7 @@
           </p:menu>
         </h:panelGroup>
       </h:form>
-      <h:outputText id="welcome-text" styleClass="welcome-text #{widget.welcomeTextStyleClass}" value="#{dashboardWelcomeWidgetBean.sanitizeHTML(widget.welcomeText)}" escape="false" />
+      <h:outputText escape="false" value="#{dashboardWelcomeWidgetBean.sanitizeHTML(widget.welcomeText)}" id="welcome-text" styleClass="welcome-text #{widget.welcomeTextStyleClass}"/>
 
       <p:graphicImage id="default-image" cache="true" styleClass="welcome-image default-welcome-image js-welcome-image #{widget.imageStyleClass}"
         library="ivy-cms" rendered="#{empty widget.imageLocation}" name="#{dashboardWelcomeWidgetBean.defaultImageLink}" />
