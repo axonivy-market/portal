@@ -112,6 +112,13 @@ Portal supports to display custom case fields within the task list.
 
 |task-column-field-type-configuration|
 
+**Filters panel**
+
+By clicking on the ``Filter`` button, you can define the configuration for your widget, and get a preview of it by clicking on the
+``apply`` button. Please refer to :ref:`Complex Filter <complex-filter>` for more details.
+
+|task-filter-widget-configuration|
+
 **Excel export**
 
 You can export all data of the task widget by clicking on the link ``Export to Excel`` at the bottom left corner of the widget information panel.
