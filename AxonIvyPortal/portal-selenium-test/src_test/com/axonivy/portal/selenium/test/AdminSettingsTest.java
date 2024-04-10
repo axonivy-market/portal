@@ -49,7 +49,9 @@ public class AdminSettingsTest extends BaseTest {
   @Test
   public void testDefaultEnvironmentInfo() {
     login(TestAccount.ADMIN_USER);
+    createTestingTasks();
     NewDashboardPage homePage = new NewDashboardPage();
+    homePage.waitForCaseWidgetLoaded();
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
     adminSettingsPage.setGlobalFooterInfo();
     assertTrue(homePage.getGlobalFooterInfo().contains("Wawa"));
@@ -61,8 +63,7 @@ public class AdminSettingsTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     NewDashboardPage homePage = new NewDashboardPage();
     // Customize environment info in portal example
-    redirectToRelativeLinkWithEmbedInFrame(createTaskWithIframe);
-
+    createTestingTasks();
     assertTrue(homePage.getGlobalFooterInfo().contains("Wawa"));
   }
 

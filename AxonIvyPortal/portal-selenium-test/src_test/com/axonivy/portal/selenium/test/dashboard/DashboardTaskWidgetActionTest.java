@@ -13,6 +13,7 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.ElementsCollection;
 
@@ -63,6 +64,8 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   public void testVisibilityTaskActionForNormalUser() {
     login(TestAccount.DEMO_USER);
     createTasksForTesting();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForTaskListDisplay();
     // TaskState : Ready for Join <=> TaskBusinessState : Done
     assertTaskActionsByTaskState("Done", Arrays.asList(DETAILS, PROCESS_VIEWER));
     // TaskState : Suspended <=> TaskBusinessState : Open
@@ -105,7 +108,9 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     filterTaskByNameAndState("Sick Leave Request", OPEN);
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     taskWidget.startTask(0);
-    taskWidget.clickCancelTask();
+    TaskTemplateIFramePage templatePage = new TaskTemplateIFramePage();
+    templatePage.switchToIFrameOfTask();
+    newDashboardPage = templatePage.clickCancelButton();
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
 
     // In progress for admin user
@@ -117,7 +122,9 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     createTasksForTesting();
     filterTaskByNameAndState("Sick Leave Request", OPEN);
     taskWidget.startTask(0);
-    taskWidget.clickCancelTask();
+    templatePage = new TaskTemplateIFramePage();
+    templatePage.switchToIFrameOfTask();
+    newDashboardPage = templatePage.clickCancelButton();
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     // In progress for normal user
     newDashboardPage.waitForGrowlMessageDisappear();

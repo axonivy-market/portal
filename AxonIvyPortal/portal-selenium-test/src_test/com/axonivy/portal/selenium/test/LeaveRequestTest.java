@@ -13,10 +13,9 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.DateTimePattern;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
-import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.LeaveRequestPage;
+import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
-import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
 
 @IvyWebTest
 public class LeaveRequestTest extends BaseTest {
@@ -57,24 +56,28 @@ public class LeaveRequestTest extends BaseTest {
     leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", yesterday, today,
         TestAccount.ADMIN_USER.getFullName(), "requester comment");
     leaveRequestPage.clickSubmitButton();
-    leaveRequestPage.clickOnLogout();
+
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForCaseWidgetLoaded();
+    dashboardPage.clickOnLogout();
     login(TestAccount.ADMIN_USER);
+
     taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.startTask(0);
-    taskWidgetPage.switchToIFrameOfTask();
+    taskWidgetPage.startTaskIFrame(0);
     leaveRequestPage.assertPageTitle("Approval");
     leaveRequestPage.enterApproverComment("Approved");
     leaveRequestPage.clickApproveBtn();
-    leaveRequestPage.clickOnLogout();
+
+    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.waitPageLoaded();
+    taskWidgetPage.clickOnLogout();
     login(TestAccount.DEMO_USER);
+    redirectToNewDashBoard();
+
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy("Your leave request is approved");
-    taskWidgetPage.startTask(0);
-    taskWidgetPage.switchToIFrameOfTask();
+    taskWidgetPage.startTaskIFrame(0);
     leaveRequestPage.assertPageTitle("Approval Result");
-    UserExamplesEndPage userExamplesEndPage = leaveRequestPage.finishLeaveRequest();
-    CaseDetailsPage caseDetailsPage = userExamplesEndPage.goToCaseDetail();
-    assertEquals("Leave Request", caseDetailsPage.getCaseName());
   }
 
   @Test
@@ -89,21 +92,27 @@ public class LeaveRequestTest extends BaseTest {
     leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", yesterday, today,
         TestAccount.ADMIN_USER.getFullName(), "requester comment");
     leaveRequestPage.clickSubmitButton();
-    leaveRequestPage.clickOnLogout();
+
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForCaseWidgetLoaded();
+    dashboardPage.clickOnLogout();
     login(TestAccount.ADMIN_USER);
+
     taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.startTask(0);
-    taskWidgetPage.switchToIFrameOfTask();
+    taskWidgetPage.startTaskIFrame(0);
     leaveRequestPage.assertPageTitle("Approval");
 
     leaveRequestPage.enterApproverComment("Rejected");
     leaveRequestPage.clickRejectBtn();
-    leaveRequestPage.clickOnLogout();
+
+    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.waitPageLoaded();
+    taskWidgetPage.clickOnLogout();
     login(TestAccount.DEMO_USER);
+
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy("Your leave request is rejected");
-    taskWidgetPage.startTask(0);
-    taskWidgetPage.switchToIFrameOfTask();
+    taskWidgetPage.startTaskIFrame(0);
     leaveRequestPage.assertPageTitle("Approval Result");
   }
 

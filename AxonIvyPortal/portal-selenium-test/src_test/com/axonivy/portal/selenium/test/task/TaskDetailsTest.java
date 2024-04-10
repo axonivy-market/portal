@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.TaskState;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
@@ -98,5 +99,43 @@ public class TaskDetailsTest extends BaseTest {
     mainMenuPage.openTaskList();
     taskWidgetPage.openTask(TAKE_ORDER);
     taskDetailsPage.getShareButton().shouldBe(Condition.disappear);
+  }
+
+  @Test
+  public void testShowTaskStatusBannerOnTaskDetails() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    mainMenuPage.openTaskList();
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+
+    taskWidgetPage.openTask("Maternity Leave Request");
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.clickStartTask();
+    redirectToNewDashBoard();
+    mainMenuPage.openTaskList();
+    taskWidgetPage.openTask("Maternity Leave Request");
+    taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
+    mainMenuPage.openTaskList();
+    taskWidgetPage.filterTasksBy("Sick Leave Request");
+    taskWidgetPage.waitTillNameOfFirstTaskToBe("Sick Leave Request");
+    taskWidgetPage.isTaskDestroyEnabled(0);
+    taskWidgetPage.destroyTask(0);
+    taskWidgetPage.confimDestruction();
+    taskWidgetPage.checkTaskState(0, TaskState.DESTROYED.getValue());
+    taskWidgetPage.openTask("Sick Leave Request");
+    taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    mainMenuPage.openTaskList();
+    taskWidgetPage.filterTasksBy(TAKE_ORDER);
+    taskWidgetPage.waitTillNameOfFirstTaskToBe(TAKE_ORDER);
+    taskWidgetPage.startTaskWithoutUI(0);
+    redirectToNewDashBoard();
+    mainMenuPage.openTaskList();
+    taskWidgetPage.openTask(TAKE_ORDER);
+    taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 }

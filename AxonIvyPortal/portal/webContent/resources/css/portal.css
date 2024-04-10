@@ -729,7 +729,7 @@ body .ui-datepicker .ui-timepicker-div dl dd {
   font-size: var(--large-font-size); }
 
 .not-display-result-tab-view {
-  font-size: var(--small-font-size); }
+  font-size: var(--default-font-size); }
 
 /** Style for Task Template * --------------------------------------*/
 .task-template-title {

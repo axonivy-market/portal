@@ -15,6 +15,7 @@ import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
+import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
@@ -118,7 +119,12 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
     taskWidgetNewDashBoardPage.filterTaskName(TASK_MATERNITY_LEAVE_REQUEST);
     taskWidgetNewDashBoardPage.applyFilter();
     taskWidgetNewDashBoardPage.startFirstTaskAndWaitShowHomePageButton();
-    taskWidgetNewDashBoardPage.clickCancelTask();
+
+    TaskTemplateIFramePage templatePage = new TaskTemplateIFramePage();
+    templatePage.switchToIFrameOfTask();
+
+    NewDashboardPage newDashboardPage = templatePage.clickCancelButton();
+    taskWidgetNewDashBoardPage = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidgetNewDashBoardPage.stateOfFirstTask().shouldHave(text(IN_PROGRESS));
   }
 }

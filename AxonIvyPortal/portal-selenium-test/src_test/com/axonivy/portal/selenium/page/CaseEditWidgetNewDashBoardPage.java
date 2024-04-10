@@ -110,7 +110,8 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT);
     $("[id='widget-configuration-form:new-widget-configuration-component:case-widget-preview:dashboard-cases_head']")
         .shouldBe(appear, DEFAULT_TIMEOUT);
-    $("button[id$='widget-configuration-save-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("button[id$='widget-configuration-save-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    clickByJavaScript($("button[id$='widget-configuration-save-button']"));
     $("button[id$='widget-configuration-save-button']").shouldBe(disappear, DEFAULT_TIMEOUT);
     $(caseEditWidgetId).shouldBe(disappear, DEFAULT_TIMEOUT);
   }
@@ -143,7 +144,8 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   public void selectFieldType(String type) {
     getColumnManagementDialog().$("div[id$='field-type-selection'] span.ui-icon-triangle-1-s")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(Condition.enabled, DEFAULT_TIMEOUT).click();
-    $("div[id$='column-management-form:field-type-selection_panel'] li[data-label='" + type + "']").click();
+    waitForElementClickableThenClick(
+        $("div[id$='column-management-form:field-type-selection_panel'] li[data-label='" + type + "']"));
   }
 
   public void removeAddedField(String field) {

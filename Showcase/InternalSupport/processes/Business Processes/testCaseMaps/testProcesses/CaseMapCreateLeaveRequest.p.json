@@ -41,7 +41,10 @@
       "config" : {
         "dialog" : "internaltest.ui.NewLeaveRequest:start()",
         "task" : {
-          "name" : "Case Map Leave Request"
+          "name" : "Case Map Leave Request",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
+          ]
         },
         "case" : {
           "name" : "Case Map: Leave Request",

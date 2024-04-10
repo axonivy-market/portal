@@ -64,6 +64,8 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivy.addon.portalkit.constant.CustomFields;",
+            "import ch.ivy.addon.portalkit.support.HtmlParser;",
             "import ch.ivy.addon.portal.generic.util.ProcessStepUtils;",
             "import ch.ivy.addon.portalkit.mapper.UserProcessMapper;",
             "import ch.ivyteam.ivy.workflow.start.IWebStartable;",
@@ -71,6 +73,7 @@
             "for (IWebStartable process : in.userProcesses) {",
             "  if (process.getId().contentEquals(in.processId)) {",
             "    in.setSelectedProcess(UserProcessMapper.toUserProcess(process));",
+            "    in.portalProcessInformation = HtmlParser.sanitizeHTML(process.customFields().value(CustomFields.PROCESS_INFORMATION));",
             "  }",
             "}",
             "",

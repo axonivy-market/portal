@@ -69,6 +69,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import ch.ivy.addon.portalkit.util.UserUtils;",
             "import javax.faces.context.FacesContext;",
             "import javax.faces.application.FacesMessage;",
@@ -76,7 +77,7 @@
             "in.loginOk = ivy.session.loginSessionUser(in.username, in.password);",
             "out.password = null;",
             "if (!in.loginOk) {",
-            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/login/loginFailed\"), \"\"));",
+            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/login/loginFailed\"), \"\"));",
             "  FacesContext.getCurrentInstance().validationFailed();",
             "} else {    ",
             "  UserUtils.setLanguage();",
@@ -105,7 +106,9 @@
       },
       "connect" : [
         { "id" : "f11", "to" : "f10" },
-        { "id" : "f12", "to" : "f13", "via" : [ { "x" : 128, "y" : 224 } ] }
+        { "id" : "f12", "to" : "f13", "via" : [ { "x" : 128, "y" : 224 } ], "label" : {
+            "segment" : 0.99
+          } }
       ]
     }, {
       "id" : "f10",
