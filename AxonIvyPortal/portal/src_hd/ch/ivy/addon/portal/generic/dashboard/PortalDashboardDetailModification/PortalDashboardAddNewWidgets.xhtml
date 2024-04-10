@@ -23,7 +23,7 @@
       legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StandardWidgets')}"
       styleClass="new-widget-dialog__fieldset js-widget-fieldset">
       <div class="new-widget-dialog__item-container">
-        <p:repeat id="new-widget-dialog-content"
+        <ui:repeat id="new-widget-dialog-content"
           var="sample"
           value="#{dashboardDetailModificationBean.samples}">
           <div class="new-widget-dialog__item card js-widget">
@@ -47,7 +47,7 @@
               
             </div>
           </div>
-        </p:repeat>
+        </ui:repeat>
       </div>
     </p:fieldset>
 
@@ -56,7 +56,7 @@
       legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CustomWidgets')}"
       styleClass="new-widget-dialog__fieldset js-widget-fieldset">
       <div class="new-widget-dialog__item-container">
-        <p:repeat id="new-custom-widget-dialog-content"
+        <ui:repeat id="new-custom-widget-dialog-content"
          var="widget" value="#{dashboardDetailModificationBean.customWidgets}">
           <div class="new-widget-dialog__item card js-widget">
 
@@ -82,7 +82,7 @@
               
             </div>
           </div>
-        </p:repeat>
+        </ui:repeat>
       </div>
     </p:fieldset>
     <div class="js-no-widget u-hidden new-widget-dialog__no-widget-text">
