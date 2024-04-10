@@ -456,7 +456,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     taskWidget.addFilter("Description", FilterOperator.NOT_EMPTY);
     taskWidget.addFilter("Customer name", FilterOperator.CONTAINS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Anh Le");
-    ScreenshotUtils.captureElementScreenshot(taskWidget.getFilterOverlayPanel(0),ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-widget-filter-options");
+    ScreenshotUtils.captureElementScreenshot(taskWidget.getFilterOverlayPanel(0),ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-widget-complex-filter-configuration");
   }
   
   @Test
