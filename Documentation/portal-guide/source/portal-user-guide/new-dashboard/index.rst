@@ -114,10 +114,10 @@ Portal supports to display custom case fields within the task list.
 
 **Filters panel**
 
-By clicking on the ``Filter`` button, you can define the configuration for your widget, and get a preview of it by clicking on the
+By clicking on the ``Filter`` button, you can configure the complex filter for your widget, and get a preview of it by clicking on the
 ``apply`` button. Please refer to :ref:`Complex Filter <complex-filter>` for more details.
 
-|task-filter-widget-configuration|
+|task-widget-complex-filter-configuration|
 
 **Excel export**
 
@@ -324,6 +324,7 @@ You can define a Notifications widget to display all Notifications based on your
 .. |task-list-widget-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-configuration.png
 .. |task-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-table-configuration.png
 .. |task-column-field-type-configuration| image:: ../../screenshots/new-dashboard/task-column-field-type-configuration.png
+.. |task-widget-complex-filter-configuration| image:: ../../screenshots/new-dashboard/task-widget-complex-filter-configuration.png
 
 .. |case-list-widget| image:: ../../screenshots/new-dashboard/case-list-widget.png
 .. |case-list-widget-configuration| image:: ../../screenshots/new-dashboard/case-list-widget-configuration.png
