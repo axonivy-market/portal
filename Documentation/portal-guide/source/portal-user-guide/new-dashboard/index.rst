@@ -81,25 +81,24 @@ see and how.
 
 |task-list-widget|
 
-**Configuration panel**
+**Filters panel**
 
-On the left side, define the widget name, establish the main configuration for
-your widget, and get a preview of it by clicking on the preview button.
+By clicking on the ``Filter`` button, you can configure the complex filter for your widget, and get a preview of it by clicking on the
+``apply`` button. Please refer to :ref:`Complex Filter <complex-filter>` for more details.
 
-|task-list-widget-configuration|
+|task-widget-complex-filter-configuration|
 
-To set multi languages for the widget title, see at :ref:`portal-multi-language`:
+**Column Management**
 
-**Table configuration panel**
+This panel allows you to:
 
-Edit the default sort order of the table rows by clicking on the column headers
-and define the order of the columns as well as the displayed set of columns by
-clicking on the link ``Manage Columns`` at the top right. You get the following
-dialog:
+-  Edit the default sort order of the table rows by clicking on the column headers
+-  define the order of the columns 
+-  define the displayed set of columns by clicking on the link ``Manage Columns`` at the top right. You get the following dialog:
 
 |task-list-widget-table-configuration|
 
-In the column management panel, you will find two sections:
+In the table configuration panel, you find two sections:
 
    #. Add field section: add any available field to your widget table
    #. Columns section: configure the widget table itself as follows:
@@ -108,16 +107,7 @@ In the column management panel, you will find two sections:
       - Reorder the columns by drag and drop using the arrows |move-expand-vertical|
       - Remove columns
 
-Portal supports to display custom case fields within the task list.
-
-|task-column-field-type-configuration|
-
-**Filters panel**
-
-By clicking on the ``Filter`` button, you can configure the complex filter for your widget, and get a preview of it by clicking on the
-``apply`` button. Please refer to :ref:`Complex Filter <complex-filter>` for more details.
-
-|task-widget-complex-filter-configuration|
+Portal supports to display **custom case fields** within the task list.
 
 **Excel export**
 
