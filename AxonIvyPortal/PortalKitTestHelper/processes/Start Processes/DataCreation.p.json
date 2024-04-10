@@ -1816,7 +1816,7 @@
             "",
             "ExternalLink externalLink = new ExternalLink();",
             "externalLink.name = \"A sample for External link to Google\";",
-            "externalLink.creatorId = ISecurityContext.current().users().find(\"demo\").getId();",
+            "externalLink.securityMemberId = ISecurityContext.current().users().find(\"demo\").getSecurityMemberId();",
             "externalLink.setIsPublic(true);",
             "externalLink.link = \"google.com\";",
             "ExternalLinkService externalLinkService = ExternalLinkService.getInstance();",

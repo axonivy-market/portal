@@ -487,7 +487,7 @@
             { "name" : "result", "type" : "ch.ivy.addon.portalkit.bo.CaseCategoryStatistic", "desc" : "" }
           ],
           "map" : {
-            "result.result" : "in.CaseCategoryStatisticResult"
+            "result.result" : "in.caseCategoryStatisticResult"
           }
         }
       },
@@ -571,7 +571,7 @@
             { "name" : "result", "type" : "ch.ivy.addon.portalkit.bo.CaseCategoryStatistic", "desc" : "" }
           ],
           "map" : {
-            "result.result" : "in.CaseCategoryStatisticResult"
+            "result.result" : "in.caseCategoryStatisticResult"
           }
         }
       },
