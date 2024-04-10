@@ -156,7 +156,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public WebElement getConfigurationFilter() {
-    return $("[id='widget-configuration-form:new-widget-configuration-component:filter-container']").shouldBe(appear,
+    return $("[id='widget-configuration-form:new-widget-configuration-component:widget-filter-content']").shouldBe(appear,
         DEFAULT_TIMEOUT);
   }
 

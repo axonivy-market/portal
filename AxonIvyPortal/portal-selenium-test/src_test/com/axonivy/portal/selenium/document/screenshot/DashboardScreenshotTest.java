@@ -209,8 +209,11 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "dashboard-multi-language-widget-dialog", new ScreenshotMargin(20));
 
     taskConfigurationPage.cancelMultiLanguageDialogWhenAddWidget();
+    taskConfigurationPage.openFilter();
+    taskConfigurationPage.addFilter("name", FilterOperator.EMPTY);
     ScreenshotUtils.captureElementScreenshot(taskConfigurationPage.getConfigurationFilter(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-configuration");
+    taskConfigurationPage.closeFilter();
     WebElement columnManagementDialog = taskConfigurationPage.openColumnManagementDialog();
     ScreenshotUtils.captureElementScreenshot(columnManagementDialog,
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-table-configuration");
