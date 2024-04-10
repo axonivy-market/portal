@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "1718293B3F6E5478",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.CustomParamForTaskTemplatesData"
@@ -54,7 +54,7 @@
       },
       "visual" : {
         "at" : { "x" : 352, "y" : 160 },
-        "size" : { "width" : 160, "height" : 60 }
+        "size" : { "width" : 160 }
       },
       "connect" : [
         { "id" : "f2", "to" : "f1" }

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "153358BE9219FD4C",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -214,7 +214,7 @@
       },
       "visual" : {
         "at" : { "x" : 864, "y" : 768 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       }
     }, {
       "id" : "f26",
@@ -231,7 +231,7 @@
       },
       "visual" : {
         "at" : { "x" : 888, "y" : 592 },
-        "size" : { "width" : 176, "height" : 60 }
+        "size" : { "width" : 176 }
       }
     }, {
       "id" : "f28",
@@ -253,7 +253,7 @@
       },
       "visual" : {
         "at" : { "x" : 648, "y" : 288 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f21", "to" : "f9", "var" : "in2" }
@@ -273,7 +273,7 @@
       },
       "visual" : {
         "at" : { "x" : 248, "y" : 488 },
-        "size" : { "width" : 160, "height" : 60 }
+        "size" : { "width" : 160 }
       },
       "connect" : [
         { "id" : "f36", "to" : "f31" }
@@ -337,7 +337,7 @@
       },
       "visual" : {
         "at" : { "x" : 544, "y" : 592 },
-        "size" : { "width" : 176, "height" : 60 }
+        "size" : { "width" : 176 }
       },
       "connect" : [
         { "id" : "f48", "to" : "f46" }
@@ -359,7 +359,7 @@
       },
       "visual" : {
         "at" : { "x" : 544, "y" : 768 },
-        "size" : { "width" : 176, "height" : 60 }
+        "size" : { "width" : 176 }
       },
       "connect" : [
         { "id" : "f24", "to" : "f22" }
@@ -501,7 +501,7 @@
       },
       "visual" : {
         "at" : { "x" : 888, "y" : 872 },
-        "size" : { "width" : 176, "height" : 60 }
+        "size" : { "width" : 176 }
       }
     }, {
       "id" : "f46",
@@ -535,7 +535,7 @@
       },
       "visual" : {
         "at" : { "x" : 912, "y" : 680 },
-        "size" : { "width" : 224, "height" : 60 }
+        "size" : { "width" : 224 }
       }
     } ]
 }
