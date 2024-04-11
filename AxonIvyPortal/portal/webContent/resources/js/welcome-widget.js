@@ -69,9 +69,8 @@ updatePreviewImageFit : function() {
 
   updatePreviewTextColor : function() {
     var previewDialog = $('#new-widget-configuration-dialog');
-    var selectedColor = '#' + previewDialog.find('.js-welcome-text-color input[type = "hidden"]').get(0).value;
+    var selectedColor = previewDialog.find('.js-welcome-text-color').get(0).value;
     previewDialog.find('.js-preview-text').css({'color': selectedColor});
-    previewDialog.find('.js-selected-welcome-text-color').get(0).innerHTML = selectedColor;
   },
 
   updatePreviewTextSize : function() {
@@ -128,7 +127,7 @@ WelcomeWidget = {
     var widget = $('div.grid-stack-item[gs-id = ' + widgetId + ']');
     var welcomeText = widget.find('[id $= "welcome-text"]');
     welcomeText.css({
-      'color' : '#' + welcomeTextColor,
+      'color' : welcomeTextColor,
     });
 
     switch(welcomeTextPosition) {
