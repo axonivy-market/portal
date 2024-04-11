@@ -10,11 +10,11 @@
     <h1>Deny Specific Permission</h1>
   </h:panelGroup>
   <h:form>
-    <p:panelGrid columns="2">
+    <p:panelGrid columns="2" layout="tabular">
       <p:outputLabel value="Enter permission: " />
       <p:inputText value="#{data.permission}" />
     </p:panelGrid>
-    <p:panelGrid columns="1" style="margin-top:10px;">
+    <p:panelGrid columns="1" style="margin-top:10px;" layout="tabular">
       <p:commandButton rendered="#{data.isGrantPermission}" value="Grant permission" actionListener="#{logic.close}" />
       <p:commandButton rendered="#{!data.isGrantPermission}" value="Deny permission" actionListener="#{logic.close}" />
     </p:panelGrid>

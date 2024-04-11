@@ -16,10 +16,10 @@
           <div class="notifications-container-content">
             <div class="notifications-item-container" >
               <h:panelGroup id="notifications">
-                <div class="p-d-flex p-jc-between">
+                <div class="flex justify-content-between">
                 <span class="notifications-title-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationTitle')}</span>
                   
-                  <div class="p-d-flex">
+                  <div class="flex">
                     <p:selectBooleanCheckbox id="notifications-only-unread" value="#{notificationBean.dataModel.onlyUnread}"
                       itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/onlyUnread')}" styleClass="notification-checkbox" >
                       <p:ajax listener="#{notificationBean.dataModel.onSelectedFilter()}" oncomplete="Portal.updateLayoutContent()"
@@ -37,7 +37,7 @@
                       update="#{unreadNotificationsId}, #{notificationScrollerId}"
                       oncomplete="Portal.updateLayoutContent()"
                       actionListener="#{notificationBean.readAll()}">
-                      <i class="notifications-button si si-check-double-1 p-mr-1" />
+                      <i class="notifications-button si si-check-double-1 mr-1" />
                     </p:commandLink>
                     <p:tooltip for="notification-mark-all-as-read" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAllAsRead')}" />
                    
@@ -52,7 +52,7 @@
                 </div>
 
                 <h:panelGroup id="no-notifications" rendered="#{!notificationBean.hasNotifications()}">
-                  <div class="p-text-center message">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/noNotificationText')}</div>
+                  <div class="text-center message">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/noNotificationText')}</div>
                 </h:panelGroup>
                 
                 <h:panelGroup id="has-notifications" rendered="#{notificationBean.hasNotifications()}">
@@ -63,8 +63,8 @@
                       <span class="notifications-group-name #{notification.markedToday} #{notification.markedToday ? '' : 'u-hidden'}" >#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/todayText')}</span>
                       <span class="notifications-group-name #{notification.markedOlder ? '' : 'u-hidden'}" >#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/olderText')}</span>
                       <div class="#{notification.style} notifications-container-top">
-                        <div class="p-d-flex">
-                          <div class="p-d-flex">
+                        <div class="flex">
+                          <div class="flex">
                             <p:commandLink id="notification-mark-as-read"
                               actionListener="#{notificationBean.markAsRead(notification)}"
                               process="@this"

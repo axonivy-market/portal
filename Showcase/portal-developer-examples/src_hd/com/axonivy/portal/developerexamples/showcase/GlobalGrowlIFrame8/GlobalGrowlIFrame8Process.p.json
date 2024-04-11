@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "178A0F7DD8A74A94",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -137,7 +137,7 @@
       },
       "visual" : {
         "at" : { "x" : 640, "y" : 192 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f16", "to" : "f12" }
