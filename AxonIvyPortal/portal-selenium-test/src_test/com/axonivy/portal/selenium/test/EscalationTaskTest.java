@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
@@ -117,7 +118,7 @@ public class EscalationTaskTest extends BaseTest {
     taskWidget.openFilterWidget();
     taskWidget.resetFilter();
     taskWidget.openFilterWidget();
-    taskWidget.filterTaskName(name);
+    taskWidget.filterTaskName(name, FilterOperator.IS);
     taskWidget.filterTaskState();
     taskWidget.selectState(state);
     taskWidget.applyFilter();
