@@ -227,7 +227,8 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   public String getDisplayNameOfPermissionsWhenEditingExternalLink() {
-    return String.join(", ", getSelectedPermissionsWhenEditingExternalLink());
+    List<String> displayNames = getselectedSecurityMemberDTOsWhenEditingExternalLink().stream().map(dto -> dto.getDisplayName()).toList();
+    return String.join(", ", displayNames);
   }
 
   public void editExpressWorkflow(ExpressProcess process) throws IOException {
