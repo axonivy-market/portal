@@ -29,7 +29,7 @@
               var contextPath = "#{ivy.task.getApplication().getContextPath()}";
               var resource = "#{managedBean.assistantEndPoint}";
               var ivyResource = new IvyUri().rest() + "/";
-              var view = new View(resource);
+              var view = new ViewAI(resource);
               var chatbot = new Assistant(ivyResource, resource, view, `#{managedBean.getAssistantJson()}`, userName);
 
               $(document).ready(function(){
