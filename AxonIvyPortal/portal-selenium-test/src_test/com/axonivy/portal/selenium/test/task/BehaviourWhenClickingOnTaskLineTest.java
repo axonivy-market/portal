@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
@@ -115,7 +116,7 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidgetNewDashBoardPage = new NewDashboardPage().selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidgetNewDashBoardPage.openFilterWidget();
-    taskWidgetNewDashBoardPage.filterTaskName(TASK_MATERNITY_LEAVE_REQUEST);
+    taskWidgetNewDashBoardPage.filterTaskName(TASK_MATERNITY_LEAVE_REQUEST, FilterOperator.IS);
     taskWidgetNewDashBoardPage.applyFilter();
     taskWidgetNewDashBoardPage.startFirstTaskAndWaitShowHomePageButton();
     taskWidgetNewDashBoardPage.clickCancelTask();

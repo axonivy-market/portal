@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.ComplexFilterHelper;
+import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
@@ -113,11 +114,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public void filterTaskName(String input) {
-    var taskNameFilter = $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$(".ui-inputfield.text-field-input-name");
-    taskNameFilter.clear();
-    taskNameFilter.sendKeys(input);
+  public void filterTaskName(String input, FilterOperator operator) {
+    addFilter("Name", operator);
+    inputValueOnLatestFilter(FilterValueType.TEXT, input);
   }
 
   public String getTaskNameFilterValue() {
@@ -135,43 +134,6 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void resetFilter() {
     $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='reset-button']")
         .filter(text("Reset")).first().shouldBe(getClickableCondition()).click();
-  }
-
-  public void filterPriority(String... priorities) {
-    $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$=':priorities']")
-        .$(".ui-selectcheckboxmenu-trigger.ui-corner-right").shouldBe(getClickableCondition()).click();
-    var priorityCheckboxOptions = $("[id$=':priorities_panel']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$$(".ui-selectcheckboxmenu-item.ui-selectcheckboxmenu-list-item")
-        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(1));
-    for (var item : priorityCheckboxOptions) {
-      for (var prio : priorities) {
-        if (item.getAttribute("data-item-value").equalsIgnoreCase(prio)) {
-          item.$(".ui-chkbox-box.ui-widget").shouldBe(getClickableCondition()).click();
-          break;
-        }
-      }
-    }
-  }
-
-  public void filterCategories(String... categories) {
-    $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT).$("[id$=':widget-filter-category']")
-        .shouldBe(getClickableCondition()).click();
-    var categoriesPanel = $("[id$=':widget-filter-category-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
-    categoriesPanel.$("[id$=':widget-category-filter-tree']").$$(".ui-chkbox").first().shouldBe(getClickableCondition())
-        .click();
-
-    categoriesPanel.$$(".ui-treenode").asDynamicIterable().forEach(leaf -> {
-      for (var category : categories) {
-        var leafValue = leaf.$(".ui-treenode-label").getText();
-        if (category.equalsIgnoreCase(leafValue)) {
-          leaf.$(".ui-chkbox").shouldBe(getClickableCondition()).click();
-          break;
-        }
-      }
-    });
-
-    categoriesPanel.$("button[id$=':update-command']").shouldBe(getClickableCondition()).click();
-    categoriesPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void clickOnSaveFilterButton() {
