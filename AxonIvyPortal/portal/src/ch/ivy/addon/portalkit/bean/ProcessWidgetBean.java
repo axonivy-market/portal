@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.bean;
 
-import static ch.ivy.addon.portalkit.constant.PortalConstants.MAX_USERS_IN_AUTOCOMPLETE;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.io.IOException;
@@ -466,7 +465,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   private List<SecurityMemberDTO> getSecurityMemberDTOsFromPermissions(List<String> permissions) {
     Map<String, SecurityMemberDTO> nameToSecurityMemberDTO = SecurityMemberUtils
-        .findSecurityMembers("", 0, MAX_USERS_IN_AUTOCOMPLETE)
+        .findSecurityMembers("", 0, -1)
         .stream().filter(securityMember -> !securityMember.isUser())
         .collect(Collectors.toMap(SecurityMemberDTO::getMemberName, v -> v));
     var responsibles = permissions.stream().filter(Objects::nonNull).distinct()
