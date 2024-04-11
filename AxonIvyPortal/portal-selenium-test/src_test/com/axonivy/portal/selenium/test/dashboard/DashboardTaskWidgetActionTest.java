@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
+import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
@@ -21,9 +22,10 @@ import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
 public class DashboardTaskWidgetActionTest extends BaseTest {
+  private static final String NO_SIDESTEP_AVAILABLE = "No Sidestep available";
   static final String DONE = "Done";
   static final String SUSPENDED = "Suspended";
-  static final String IN_PROGRESS = "In progress";
+  static final String IN_PROGRESS = "In_progress";
   static final String READY_FOR_JOINING = "Ready for joining";
   static final String RESERVED = "Reserved";
   static final String DELAYED = "Delayed";
@@ -113,8 +115,11 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
     // In progress for admin user
     newDashboardPage.waitForGrowlMessageDisappear();
+    taskWidget.openFilterWidget();
+    taskWidget.removeFilter(1);
+    taskWidget.applyFilter();
     assertTaskActionsByTaskState(IN_PROGRESS, Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, DESTROY,
-        WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        WORKFLOW_EVENTS, PROCESS_VIEWER, NO_SIDESTEP_AVAILABLE));
 
     login(TestAccount.DEMO_USER);
     createTasksForTesting();
@@ -124,8 +129,11 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     // In progress for normal user
     newDashboardPage.waitForGrowlMessageDisappear();
+    taskWidget.openFilterWidget();
+    taskWidget.removeFilter(1);
+    taskWidget.applyFilter();
     assertTaskActionsByTaskState(IN_PROGRESS,
-        Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, PROCESS_VIEWER, NO_SIDESTEP_AVAILABLE));
   }
 
   private void filterTaskByNameAndState(String name, String state) {
@@ -135,8 +143,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.resetFilter();
     taskWidget.openFilterWidget();
     taskWidget.filterTaskName(name, FilterOperator.IS);
-    taskWidget.filterTaskState();
-    taskWidget.selectState(state);
+    taskWidget.filterTaskState(state);
     taskWidget.applyFilter();
   }
 
@@ -151,7 +158,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
     // Reserved for admin user
     assertTaskActionsByTaskState(OPEN, Arrays.asList(DETAILS, DELEGATE, RESET, CLEAR_EXPIRY, DESTROY,
-        TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER, NO_SIDESTEP_AVAILABLE));
 
     login(TestAccount.DEMO_USER);
     createTasksForTesting();
@@ -183,7 +190,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     assertTaskActionsByTaskStateAndName(ERROR, "Signal create Technical task",
         Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
     // waiting for event
-    assertTaskActionsByTaskState(OPEN, Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+    assertTaskActionsByTaskState(ERROR, Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
   }
 
   private void assertTaskActionsByTaskState(String state, List<String> taskActionsInTask) {
@@ -208,10 +215,8 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.openFilterWidget();
-    taskWidget.resetFilter();
-    taskWidget.openFilterWidget();
-    taskWidget.filterTaskState();
-    taskWidget.selectState(state);
+    taskWidget.addFilter("State", null);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, state);
     taskWidget.applyFilter();
   }
 }
