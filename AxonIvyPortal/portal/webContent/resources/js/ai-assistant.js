@@ -339,7 +339,7 @@ function Assistant(ivyUri, uri, view, assistant, username) {
 }
 
 // View class for rendering chat messages
-function View(uri) {
+function ViewAI(uri) {
   this.init = function () {
     $('.js-layout-main').addClass('chatbot-layout-main');
     // Set chatbot panel height to content height
