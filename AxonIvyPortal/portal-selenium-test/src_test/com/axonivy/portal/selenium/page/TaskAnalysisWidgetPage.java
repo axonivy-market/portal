@@ -95,7 +95,8 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   }
 
   public ElementsCollection getRowsInTaskTable() {
-    return findElementById("task-widget:statistic-result-form:task-table_data").$$(By.cssSelector("tr[role='row']"));
+    return findElementById("task-widget:statistic-result-form:task-table_data")
+        .$$(By.cssSelector("tr.ui-widget-content"));
   }
 
   private SelenideElement findCaseFilterButton() {
