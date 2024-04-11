@@ -93,6 +93,9 @@ public class WelcomeDashboardWidget extends DashboardWidget {
   }
 
   public String getWelcomeTextColor() {
+    if (!welcomeTextColor.startsWith("#")) {
+      welcomeTextColor = "#" + welcomeTextColor;
+    }
     return welcomeTextColor;
   }
 
