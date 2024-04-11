@@ -147,9 +147,9 @@
           </div>
           <div class="ui-g-8">
             <h:outputText value="#{field.filter}" rendered="#{field.filterType eq 'LIKE'}" />
-            <p:repeat var="selection" value="#{field.filterList}">
+            <ui:repeat var="selection" value="#{field.filterList}">
               <h:outputText value="#{selection}" />
-            </p:repeat>
+            </ui:repeat>
           </div>
         </h:panelGroup>
 
@@ -205,9 +205,9 @@
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/APPLICATION')}" />
           </h:panelGroup>
           <h:panelGroup layout="block" styleClass="ui-g-8 category-panel" rendered="#{not empty field.filterList}">
-            <p:repeat var="selection" value="#{field.filterList}">
+            <ui:repeat var="selection" value="#{field.filterList}">
               <h:outputText value="#{selection}" /><br/>
-            </p:repeat>
+            </ui:repeat>
           </h:panelGroup>
         </h:panelGroup>
         

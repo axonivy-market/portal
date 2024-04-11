@@ -9,7 +9,7 @@ priorityStatisticResult ch.ivy.addon.portalkit.bo.PriorityStatistic #field
 taskSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria #field
 caseCustomFields java.util.List<String> #field
 caseCustomFieldSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria #field
-CaseCategoryStatisticResult ch.ivy.addon.portalkit.bo.CaseCategoryStatistic #field
+caseCategoryStatisticResult ch.ivy.addon.portalkit.bo.CaseCategoryStatistic #field
 selectedCategories java.util.List<String> #field
 selectedCategory String #field
 taskStateStatisticResult ch.ivy.addon.portalkit.bo.TaskStateStatistic #field
