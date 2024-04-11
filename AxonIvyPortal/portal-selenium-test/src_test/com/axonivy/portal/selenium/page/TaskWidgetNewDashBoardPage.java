@@ -278,9 +278,10 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     getStateFilterCheckBox(state).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     getCloseStateFilter().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
-
-  public void filterTaskState() {
-    getFilterCheckBox(FILTER_TASK_STATE).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  
+  public void filterTaskState(Object... states) {
+    addFilter("State", null);
+    inputValueOnLatestFilter(FilterValueType.STATE_TYPE, states);
   }
 
   public ElementsCollection getActiveTaskActions(int taskIndex) {
@@ -559,5 +560,17 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     String widgetIndex = String.format("div[id$='filter-overlay-panel-%d']", index);
     return $(widgetIndex).shouldBe(appear, DEFAULT_TIMEOUT);
   }
+  
+  public void removeFilter(int index) {
+  int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
+  if (currentIndex > 0) {
+    String removeBtn = String.format("button[id$=':%s:filter-component:remove-filter']", index);
+    $(removeBtn).shouldBe(getClickableCondition()).click();
+    countFilterSelect().shouldBe(CollectionCondition.size(currentIndex - 1), DEFAULT_TIMEOUT);
+  }
+  }
 
+  public ElementsCollection countFilterSelect() {
+    return $$("[id$=':filter-component:field-selection_panel']");
+  }
 }
