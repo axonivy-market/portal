@@ -443,22 +443,13 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     taskWidget.addFilter("Description", FilterOperator.EMPTY);
     taskWidget.clickOnFilterOperator(0);
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskWidget.getConfigurationFilter(),ScreenshotUtils.NEW_DASHBOARD_FOLDER + "filter-operator-dropdown", new ScreenshotMargin(25));
-    redirectToDashboardConfiguration();
-    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
-    configPage.selectPublicDashboardType();
-    DashboardModificationPage editPage = new DashboardModificationPage();
-    NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
-    detailsEditPage.waitForTaskWidgetLoaded();
-    TaskEditWidgetNewDashBoardPage taskConfig = taskWidget.openEditTaskWidget();
-    taskConfig.openColumnManagementDialog();
-    taskConfig.addCustomFields("CustomerName");
-    taskConfig.saveAfterAddingCustomField();
-    taskWidget.openFilterWidget();
+    taskWidget.removeFilter(0);
+    taskWidget.removeFilter(0);
     taskWidget.addFilter("Name", FilterOperator.IS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Annual Leave Request");
     taskWidget.addFilter("Description", FilterOperator.NOT_EMPTY);
-    taskWidget.addFilter("Customer name", FilterOperator.CONTAINS);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Anh Le");
+    taskWidget.addFilter("State", null);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
     ScreenshotUtils.captureElementScreenshot(taskWidget.getFilterOverlayPanel(0),ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-widget-complex-filter-configuration");
   }
   
