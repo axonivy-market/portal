@@ -178,7 +178,6 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.clickToExpandNumberOfTaskByState();
     taskWidget.getFirstStateLabelInWidgetInfo().shouldHave(text(OPEN));
     taskWidget.clickToExpandNumberOfTaskByCategory();
-    taskWidget.clickToExpandPredefinedFilters();
     taskWidget.closeWidgetInformationDialog();
   }
 
