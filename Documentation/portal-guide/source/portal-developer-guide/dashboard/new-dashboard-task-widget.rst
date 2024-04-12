@@ -206,7 +206,7 @@ Base structure of filter json:
 ..  _configure-new-dashboard-task-widget-filter-structure:
 
    - ``field``: filter field name corresponding with column name
-   - ``values``: filter value, could be a list or string...
+   - ``values``: filter value, could be a list, a string or a number
    - ``operator``: filter operator, operators can be difference depend on each field type.
 
       - **String column**: is, is_not, empty, not_empty, contains, not_contains, start_with, not_start_with, end_with, not_end_with
