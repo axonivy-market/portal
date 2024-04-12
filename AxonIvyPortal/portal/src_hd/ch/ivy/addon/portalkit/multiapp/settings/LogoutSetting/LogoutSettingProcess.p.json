@@ -88,10 +88,10 @@
         "guid" : "15EF0CF6DE58BE72"
       },
       "visual" : {
-        "at" : { "x" : 64, "y" : 450 },
+        "at" : { "x" : 64, "y" : 448 },
         "labelOffset" : { "x" : 23, "y" : 35 }
       },
-      "connect" : { "id" : "f29", "to" : "f28" }
+      "connect" : { "id" : "f14", "to" : "f11" }
     }, {
       "id" : "f11",
       "type" : "SubProcessCall",
@@ -110,15 +110,9 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 352, "y" : 448 }
+        "at" : { "x" : 192, "y" : 448 }
       },
-      "connect" : { "id" : "f6", "to" : "f15" }
-    }, {
-      "id" : "f15",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 480, "y" : 450 }
-      }
+      "connect" : { "id" : "f15", "to" : "f6" }
     }, {
       "id" : "f7",
       "type" : "Alternative",
@@ -240,22 +234,10 @@
         "at" : { "x" : 640, "y" : 64 }
       }
     }, {
-      "id" : "f28",
-      "type" : "Script",
-      "name" : "Reserve task",
-      "config" : {
-        "security" : "system",
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.util.TaskUtils;",
-            "",
-            "TaskUtils.parkTask(in.#task != null ? in.task : ivy.task);"
-          ]
-        }
-      },
+      "id" : "f6",
+      "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 192, "y" : 448 }
-      },
-      "connect" : { "id" : "f14", "to" : "f11" }
+        "at" : { "x" : 320, "y" : 448 }
+      }
     } ]
 }
