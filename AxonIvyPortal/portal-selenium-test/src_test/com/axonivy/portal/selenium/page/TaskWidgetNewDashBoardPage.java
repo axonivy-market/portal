@@ -573,4 +573,11 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public ElementsCollection countFilterSelect() {
     return $$("[id$=':filter-component:field-selection_panel']");
   }
+  
+  public int getNumberOfFilter() {
+    return $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT)
+    .$("div[class*='filter-overlay-panel__content']").shouldBe(appear, DEFAULT_TIMEOUT)
+    .$("div[id$='filter-container']").shouldBe(appear, DEFAULT_TIMEOUT)
+    .$$("div[class*='dashboard-widget-filter__filter-wrapper']").size();
+  }
 }
