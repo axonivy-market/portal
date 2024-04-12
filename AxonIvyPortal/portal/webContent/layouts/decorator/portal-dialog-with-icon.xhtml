@@ -26,7 +26,9 @@
   <h:panelGroup layout="block" rendered="#{not empty dialogContent}" class="u-text-align-center portal-dialog-content">
     <h:outputText escape="false" value="#{htmlSanitizerBean.sanitize(dialogContent)}" />
   </h:panelGroup>
-  
+
+  <ui:insert name="additionalDialogContent" />
+
   <f:facet name="footer">
     <ui:insert name="dialogFooter" />
   </f:facet>

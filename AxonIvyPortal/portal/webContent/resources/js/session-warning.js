@@ -1,6 +1,8 @@
 var sessionCounter = 0,
 sessionCounterUpdatedOn = new Date(),
 isLogOut = false;
+var tabInteractions = [];
+const tabId = 'tab_' + (Date.now()).toString();
 
 var PortalSessionWarning = function() {
   var warningDialogShow = false,
@@ -9,6 +11,9 @@ var PortalSessionWarning = function() {
   intervalCheckSessionTimeout,
 
   init = function(clientSideTimeOut) {
+
+    callKeepSessionCmd();
+
     timeout = clientSideTimeOut,
     timeOutSeconds = timeout / 1000,
     sessionCounter = timeOutSeconds,
@@ -72,19 +77,17 @@ var PortalSessionWarning = function() {
 
       // If have interaction, send a request to server to keep session
       if (isInteractedTaskTemplate == true) {
-        keepSession();
+        callKeepSessionCmd();
+        warningDialogShow = false;
         return;
       }
 
       // If have interaction inside an iframe, send a request to server to keep session
       if ($("#iFrame").length > 0 && isInteractedInIframeTaskTemplate == true) {
-        keepSessionInIFrame();
+        callKeepSessionCmd();
+        warningDialogShow = false;
         return;
       }
-
-      // If don't have interaction, show the warning dialog
-      warningDialogShow = true;
-      PF('timeout-warning-dialog').show();
     }
   },
 
@@ -126,9 +129,71 @@ var PortalSessionWarning = function() {
     }
   }
 
+  callKeepSessionCmd = function() {
+    keepSession([{name:'tabId', value:tabId}, {name : 'title', value:document.title}]);
+  }
+
+  callKeepSessionInIFrameCmd = function() {
+    keepSessionInIFrame([{name:'tabId', value:tabId}, {name : 'title', value:document.title}]);
+  }
+
+  getTabInteractionsAsJsonCmd = function() {
+    console.log(warningDialogShow);
+    if (warningDialogShow == true) {
+      return;
+    }
+
+    var sessionInfos = $('.js-session-info-container').find('input').val();
+    if (sessionInfos == '') {
+      return;
+    }
+
+    var otherTabsTimedOut = [];
+    console.log(sessionInfos);
+    sessionInfos = JSON.parse(sessionInfos);
+
+    var isShowWarningForCurrentTab = false;
+
+    // Check sessionInfos for interactions in all open tabs
+    for (var i = 0; i < sessionInfos.length; i++) {
+      var info = sessionInfos[i];
+      var timeOutSeconds = info.millisecondsToTimeout / 1000;
+
+      // If an session info will be expire within one minute
+      if (timeOutSeconds <= 60) {
+        warningDialogShow = true;
+        if (info.tabId == tabId) {
+          isShowWarningForCurrentTab = true;
+        } else {
+          otherTabsTimedOut.push(info.title);
+        }
+      }
+    }
+
+    if (warningDialogShow) {
+      showTimeoutDialog([
+        {name:'tabs', value:JSON.stringify(otherTabsTimedOut)},
+        {name:'isShowWarningForCurrentTab', isShowWarningForCurrentTab}
+      ]);
+    }
+  }
+
+  unloadTabSessionCmd = function() {
+    unloadTabSession([{name:'tabId', value:tabId}]);
+  }
+
   return {
     init: init,
     resetCounterAndTimeout: resetCounterAndTimeout,
-    hideWarningDialog: hideWarningDialog
+    hideWarningDialog: hideWarningDialog,
+    callKeepSessionCmd : callKeepSessionCmd,
+    callKeepSessionInIFrameCmd : callKeepSessionInIFrameCmd,
+    getTabInteractionsAsJsonCmd : getTabInteractionsAsJsonCmd,
+    unloadTabSessionCmd : unloadTabSessionCmd
   };
 }();
+
+// Wire up the events as soon as the DOM tree is ready
+$(document).ready(function() {
+  window.onbeforeunload = PortalSessionWarning.unloadTabSessionCmd;
+});

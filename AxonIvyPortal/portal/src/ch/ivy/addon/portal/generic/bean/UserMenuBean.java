@@ -12,7 +12,6 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.service.IvyAdapterService;
@@ -43,7 +42,6 @@ import ch.ivyteam.ivy.workflow.TaskState;
 public class UserMenuBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final long TIME_BEFORE_LOST_SESSION = 3 * DateUtils.MILLIS_PER_MINUTE; // 3 minutes
   public static final String TASK_LEAVE_WARNING_COMPONENT = "task-leave-warning-component";
   private static String expressStartLink;
   private String targetPage = StringUtils.EMPTY;
@@ -103,17 +101,6 @@ public class UserMenuBean implements Serializable {
   
   public boolean getIsShowGlobalSearch() {
     return isShowGlobalSearch;
-  }
-
-  public long getClientSideTimeout() {
-    String clientSideTimeoutInMinute = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT);
-    if (StringUtils.isNotBlank(clientSideTimeoutInMinute)) {
-      Long timeoutInMinute = Long.valueOf(clientSideTimeoutInMinute);
-      if (timeoutInMinute > 0) {
-        return timeoutInMinute * DateUtils.MILLIS_PER_MINUTE;
-      }
-    }
-    return getDefaultClientSideTimeout();
   }
 
   public String getLogoutPage() {
@@ -278,12 +265,6 @@ public class UserMenuBean implements Serializable {
 
   private String getPortalManagementUrl() {
     return PortalNavigator.buildPortalManagementUrl();
-  }
-
-  private long getDefaultClientSideTimeout() {
-    ExternalContext externalContext = getExternalContext();
-    long serverSideTimeOutInMillisecond = externalContext.getSessionMaxInactiveInterval() * DateUtils.MILLIS_PER_SECOND;
-    return serverSideTimeOutInMillisecond - TIME_BEFORE_LOST_SESSION;
   }
 
   private ExternalContext getExternalContext() {

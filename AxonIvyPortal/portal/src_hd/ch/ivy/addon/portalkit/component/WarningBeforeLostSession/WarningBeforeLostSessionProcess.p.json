@@ -107,5 +107,56 @@
       "visual" : {
         "at" : { "x" : 352, "y" : 384 }
       }
+    }, {
+      "id" : "f14",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "showTimeoutDialog()",
+      "config" : {
+        "callSignature" : "showTimeoutDialog",
+        "guid" : "18EBD0A20CECAA28"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 496 }
+      },
+      "connect" : { "id" : "f18", "to" : "f17" }
+    }, {
+      "id" : "f15",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 360, "y" : 496 }
+      }
+    }, {
+      "id" : "f17",
+      "type" : "Script",
+      "name" : [
+        "Init dialog",
+        "then show it"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.apache.commons.lang3.BooleanUtils;",
+            "import org.primefaces.PrimeFaces;",
+            "import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;",
+            "import java.util.Map;",
+            "import javax.faces.context.FacesContext;",
+            "",
+            "Map params = FacesContext.getCurrentInstance()",
+            "  .getExternalContext().getRequestParameterMap();",
+            "",
+            "in.timedoutTabs = BusinessEntityConverter",
+            "  .convertJsonToListString(params.get(\"tabs\") as String);",
+            " ",
+            "in.isShowWarningForCurrentTab ",
+            "  = BooleanUtils.toBoolean(params.get(\"isShowWarningForCurrentTab\") as String);",
+            "",
+            "PrimeFaces.current().executeScript(\"PF('timeout-warning-dialog').show()\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 496 }
+      },
+      "connect" : { "id" : "f16", "to" : "f15" }
     } ]
 }
