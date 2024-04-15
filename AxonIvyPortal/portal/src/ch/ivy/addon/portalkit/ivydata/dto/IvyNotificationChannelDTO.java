@@ -15,7 +15,6 @@ public class IvyNotificationChannelDTO {
 
   private final NotificationChannel channel;
   private final Map<Event, IvyNotificationChannelSubcriptionDTO> subscriptions;
-
   
   private IvyNotificationChannelDTO(NotificationChannel channel,
       Map<Event, IvyNotificationChannelSubcriptionDTO> subscriptions) {
