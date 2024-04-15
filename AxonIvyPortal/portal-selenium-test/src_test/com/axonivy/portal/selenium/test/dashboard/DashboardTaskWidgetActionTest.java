@@ -22,7 +22,6 @@ import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
 public class DashboardTaskWidgetActionTest extends BaseTest {
-  private static final String NO_SIDESTEP_AVAILABLE = "No Sidestep available";
   static final String DONE = "Done";
   static final String SUSPENDED = "Suspended";
   static final String IN_PROGRESS = "In_progress";
