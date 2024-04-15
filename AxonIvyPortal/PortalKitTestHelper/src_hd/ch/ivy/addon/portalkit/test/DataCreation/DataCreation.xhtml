@@ -5,7 +5,7 @@
 <h:body>
   <h1>Create tasks</h1>
   <h:form>
-    <p:panelGrid columns="2">
+    <p:panelGrid columns="2" layout="tabular">
       <p:outputLabel value="Number of categories" />
       <p:inputText value="#{data.numOfCats}" />
       <p:outputLabel value="Number of sub categories" />
@@ -15,7 +15,7 @@
       <p:outputLabel value="Attach to one business case" />
       <p:selectBooleanCheckbox value="#{data.attachToBusinessCase}"/>
     </p:panelGrid>
-    <p:panelGrid columns="1">
+    <p:panelGrid columns="1" layout="tabular">
       <h:outputText
         value="*** Note that each case has 4 tasks (1 done task and 3 open task). So the number of tasks will be created = number of categories * number of sub categories * number of cases per sub category * 4" />
       <p:commandButton value="Create tasks" actionListener="#{logic.close}" />
