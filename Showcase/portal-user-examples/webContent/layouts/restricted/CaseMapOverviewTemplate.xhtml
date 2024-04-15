@@ -23,7 +23,7 @@
             <div class="card ui-g-12">
               <div class="ui-g-12">
                 <div class="ui-g-12">
-                  <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/theCasemap')}"
+                  <h:outputText value="#{ivy.cms.co('/Labels/TheCaseMap')}"
                     styleClass="title-text" />
                 </div>
                 <ui:repeat var="stage" value="#{caseMapDetail.stages}" varStatus="stageStatus">
@@ -59,7 +59,7 @@
                             <div class="ui-g-12"
                               jsf:rendered="#{caseMapDetailBean.renderPreCondition(caseMapDetail, desc)}">
                               <i class="fa fa-diamond precondition-icon"
-                                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/hasPrecondition')}" />
+                                title="#{ivy.cms.co('/Labels/HasPrecondition')}" />
                             </div>
                           </div>
                         </ui:repeat>
@@ -80,7 +80,7 @@
                             <div class="ui-g-12"
                               jsf:rendered="#{caseMapDetailBean.renderPreCondition(caseMapDetail, desc)}">
                               <span class="fa fa-diamond precondition-icon"
-                                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/hasPrecondition')}" />
+                                title="#{ivy.cms.co('/Labels/HasPrecondition')}" />
                             </div>
                           </div>
                         </ui:repeat>
