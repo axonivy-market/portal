@@ -151,7 +151,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     for (WebElement resultRow : results) {
       List<WebElement> resultCells = resultRow.findElements(By.cssSelector("td:not([class='ui-helper-hidden'])"));
       assertTrue(resultCells.get(0).getText().toLowerCase().contains(keyword));
-      assertTrue(resultCells.get(1).getText().equals("RUNNING"));
+      assertTrue("RUNNING".equals(resultCells.get(1).getText()));
     }
   }
 
@@ -167,6 +167,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
 
   @Test
   public void testApplyCaseCategoryFilter() {
+    resizeBrowserTo2kResolution();
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
     taskAnalysisWidgetPage.openAdvancedCaseFilter("Case category", "case-category");
     taskAnalysisWidgetPage.filterByCaseCategory("Leave Request");
@@ -237,7 +238,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     List<WebElement> resultCells = secondTaskAnalysisWidgetPage.getRowsInTaskTable().get(0)
         .findElements(By.cssSelector("td:not([class='ui-helper-hidden'])"));
     assertTrue(resultCells.get(0).getText().toLowerCase().contains("request"));
-    assertTrue(resultCells.get(1).getText().equals("RUNNING"));
+    assertTrue("RUNNING".equals(resultCells.get(1).getText()));
     assertTrue(resultCells.get(2).getText().toLowerCase().contains("annual"));
   }
 
@@ -264,7 +265,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     List<WebElement> resultCells = secondTaskAnalysisWidgetPage.getRowsInTaskTable().get(0)
         .findElements(By.cssSelector("td:not([class='ui-helper-hidden'])"));
     assertTrue(resultCells.get(0).getText().toLowerCase().contains("request"));
-    assertTrue(resultCells.get(1).getText().equals("RUNNING"));
+    assertTrue("RUNNING".equals(resultCells.get(1).getText()));
     assertTrue(resultCells.get(2).getText().toLowerCase().contains("annual"));
   }
 
