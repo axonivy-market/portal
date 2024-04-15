@@ -1,6 +1,6 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
-  "id" : "16150F67EE2A7F31",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "id" : "18D596926C35B1DB",
   "config" : {
     "data" : "internaltest.TestStatisticWidgetData"
   },
@@ -35,7 +35,8 @@
         "dialog" : "internalPortal.TestStatisticWidgetPage:start()"
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 64 }
+        "at" : { "x" : 312, "y" : 64 },
+        "size" : { "width" : 168 }
       },
       "connect" : [
         { "id" : "f2", "to" : "f1" }

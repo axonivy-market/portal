@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "17727FBAA8BC2EDF",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -93,7 +93,7 @@
       },
       "visual" : {
         "at" : { "x" : 248, "y" : 384 },
-        "size" : { "width" : 160, "height" : 60 }
+        "size" : { "width" : 160 }
       },
       "connect" : [
         { "id" : "f36", "to" : "f31" }
@@ -287,7 +287,7 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 672 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f87", "to" : "f79" }
@@ -321,7 +321,7 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 480 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f60", "to" : "f77" }
@@ -414,7 +414,7 @@
       },
       "visual" : {
         "at" : { "x" : 480, "y" : 480 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f10", "to" : "f46" }
@@ -476,7 +476,7 @@
       },
       "visual" : {
         "at" : { "x" : 480, "y" : 768 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f84", "to" : "f15" }
