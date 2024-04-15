@@ -131,8 +131,7 @@ public class ComplexFilterHelper {
     numberPeriodInput.clear();
     numberPeriodInput.shouldBe(Condition.empty, DEFAULT_TIMEOUT).sendKeys(String.valueOf(values[0]));
 
-    $("div[id$=':period-type-panel']").$("div[id$=':period-n-type-selection']")
-        .$("label[id$=':period-n-type-selection_label']").shouldBe(getClickableCondition()).click();
+    $("div[id$=':period-type-panel']").shouldBe(getClickableCondition()).click();
 
     $$("li").filter(text(String.valueOf(values[1]))).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
         .click();
