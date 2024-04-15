@@ -157,7 +157,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
   @Test
   public void testFilterDateOnStandardFields() {
     redirectToRelativeLink(createTestingTasksUrl);
-    login(TestAccount.DEMO_USER);
+    login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASK_WIDGET);
     ScreenshotUtils.maximizeBrowser();
