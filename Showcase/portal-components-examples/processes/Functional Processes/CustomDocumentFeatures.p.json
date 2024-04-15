@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "189F33E127423286",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -66,7 +66,7 @@
       },
       "visual" : {
         "at" : { "x" : 544, "y" : 384 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f8", "to" : "f46" }
@@ -128,7 +128,7 @@
       },
       "visual" : {
         "at" : { "x" : 560, "y" : 552 },
-        "size" : { "width" : 160, "height" : 60 }
+        "size" : { "width" : 160 }
       },
       "connect" : [
         { "id" : "f6", "to" : "f48" }
@@ -214,7 +214,7 @@
       },
       "visual" : {
         "at" : { "x" : 544, "y" : 712 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f13", "to" : "f50" }
@@ -324,7 +324,7 @@
         { "id" : "f19", "to" : "f71", "label" : {
             "name" : "YES",
             "segment" : 0.3,
-            "offset" : { "x" : 0, "y" : -12 }
+            "offset" : { "y" : -12 }
           } },
         { "id" : "f88", "to" : "f73" }
       ]
@@ -362,7 +362,7 @@
       },
       "visual" : {
         "at" : { "x" : 1344, "y" : 160 },
-        "size" : { "width" : 160, "height" : 60 }
+        "size" : { "width" : 160 }
       },
       "connect" : [
         { "id" : "f22", "to" : "f17" }
@@ -455,7 +455,7 @@
         { "id" : "f87", "to" : "f38", "label" : {
             "name" : "OK",
             "segment" : 0.33,
-            "offset" : { "x" : 0, "y" : -8 }
+            "offset" : { "y" : -8 }
           } },
         { "id" : "f90", "to" : "f74" }
       ]
@@ -483,7 +483,7 @@
       },
       "visual" : {
         "at" : { "x" : 776, "y" : 160 },
-        "size" : { "width" : 176, "height" : 60 }
+        "size" : { "width" : 176 }
       },
       "connect" : [
         { "id" : "f80", "to" : "f53" }
@@ -508,7 +508,7 @@
       },
       "visual" : {
         "at" : { "x" : 1536, "y" : 160 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f18", "to" : "f29" }

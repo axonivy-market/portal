@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "14DE09882B540AD5",
   "config" : {
     "data" : "portalKit_test.GrantPermissionsData"
@@ -270,7 +270,7 @@
       },
       "visual" : {
         "at" : { "x" : 80, "y" : 768 },
-        "labelOffset" : { "x" : 85, "y" : 35 }
+        "labelOffset" : { "x" : 85 }
       },
       "connect" : [
         { "id" : "f34", "to" : "f33" }
@@ -923,7 +923,7 @@
       },
       "visual" : {
         "at" : { "x" : 176, "y" : 1488 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       },
       "connect" : [
         { "id" : "f72", "to" : "f69" }
@@ -948,7 +948,7 @@
       },
       "visual" : {
         "at" : { "x" : 176, "y" : 1552 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       },
       "connect" : [
         { "id" : "f73", "to" : "f71" }
