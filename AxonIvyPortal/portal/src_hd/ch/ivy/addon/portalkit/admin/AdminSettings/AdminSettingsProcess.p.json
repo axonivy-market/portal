@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "150F0B4F8F3CB2CB",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -76,7 +76,7 @@
       },
       "visual" : {
         "at" : { "x" : 856, "y" : 256 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f34", "to" : "f33" }
@@ -281,7 +281,7 @@
       },
       "visual" : {
         "at" : { "x" : 1072, "y" : 784 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f43", "to" : "f68" }
@@ -436,7 +436,7 @@
       },
       "visual" : {
         "at" : { "x" : 1472, "y" : 256 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f208", "to" : "f194" }
@@ -472,7 +472,7 @@
       },
       "visual" : {
         "at" : { "x" : 1472, "y" : 640 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       },
       "connect" : [
         { "id" : "f71", "to" : "f188" }
@@ -551,7 +551,7 @@
       },
       "visual" : {
         "at" : { "x" : 1072, "y" : 512 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f3", "to" : "f88" }
@@ -625,12 +625,10 @@
       },
       "visual" : {
         "at" : { "x" : 1224, "y" : 512 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       },
       "connect" : [
-        { "id" : "f13", "to" : "f88", "via" : [ { "x" : 1224, "y" : 608 } ], "label" : {
-            "segment" : 1.2
-          } }
+        { "id" : "f13", "to" : "f88", "via" : [ { "x" : 1224, "y" : 608 } ] }
       ]
     }, {
       "id" : "f92",
@@ -653,9 +651,7 @@
         "at" : { "x" : 632, "y" : 608 }
       },
       "connect" : [
-        { "id" : "f77", "to" : "f68", "via" : [ { "x" : 632, "y" : 784 } ], "label" : {
-            "segment" : 1.1
-          } }
+        { "id" : "f77", "to" : "f68", "via" : [ { "x" : 632, "y" : 784 } ] }
       ]
     }, {
       "id" : "f40",
@@ -844,12 +840,10 @@
       },
       "visual" : {
         "at" : { "x" : 320, "y" : 1088 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
-        { "id" : "f53", "to" : "f2", "via" : [ { "x" : 320, "y" : 1184 } ], "label" : {
-            "segment" : 1.32
-          } }
+        { "id" : "f53", "to" : "f2", "via" : [ { "x" : 320, "y" : 1184 } ] }
       ]
     }, {
       "id" : "f276",
@@ -874,9 +868,7 @@
         "at" : { "x" : 512, "y" : 1088 }
       },
       "connect" : [
-        { "id" : "f23", "to" : "f2", "via" : [ { "x" : 512, "y" : 1184 } ], "label" : {
-            "segment" : 1.18
-          } }
+        { "id" : "f23", "to" : "f2", "via" : [ { "x" : 512, "y" : 1184 } ] }
       ]
     }, {
       "id" : "f67",
@@ -1001,9 +993,7 @@
         "at" : { "x" : 320, "y" : 1472 }
       },
       "connect" : [
-        { "id" : "f27", "to" : "f16", "via" : [ { "x" : 320, "y" : 1568 } ], "label" : {
-            "segment" : 1.18
-          } }
+        { "id" : "f27", "to" : "f16", "via" : [ { "x" : 320, "y" : 1568 } ] }
       ]
     }, {
       "id" : "f85",

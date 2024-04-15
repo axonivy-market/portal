@@ -282,6 +282,10 @@ function taskByExpiryChartClickEvent(event, activeElement) {
     PF(widgetVar).show();
     topValue = event.native.offsetY + 50;
     leftValue = event.native.offsetX - 60;
+
+    setTimeout(function() {
+      updateDrillDownPanelPosition(PF(widgetVar));
+    }, 0);
   }
 }
 
@@ -661,5 +665,8 @@ function casesByCategoryChartClickEvent(event, activeElement) {
     PF(widgetVar).show();
     topValue = event.native.offsetY + 50;
     leftValue = event.native.offsetX - 60;
+    setTimeout(function() {
+      updateDrillDownPanelPosition(PF(widgetVar));
+    }, 0);
   }
 }
