@@ -68,7 +68,7 @@
                   icon="#{visibilityBean.generateButtonIcon('si si-house-chimney-2')}"
                   title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}" />
                 <p:commandButton id="create-dashboard-action" 
-                  listener="#{dashboardConfigurationBean.addNewDashboard(isPublicDashboard)}"
+                  actionListener="#{dashboardConfigurationBean.addNewDashboard(isPublicDashboard)}"
                   value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/NewDashboard')}" 
                   styleClass="dashboard-action-container-icon #{selectedDashboardTypeStyleClass}"
                   icon="si si-add" partialSubmit="true"
