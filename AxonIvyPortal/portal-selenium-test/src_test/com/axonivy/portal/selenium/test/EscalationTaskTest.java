@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.test;
 
 import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
+import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
@@ -109,18 +109,18 @@ public class EscalationTaskTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     filterTaskByNameAndState(SICK_LEAVE_REQUEST, OPEN);
     taskWidget.triggerEscalationTask(0);
+    taskWidget.openFilterWidget();
+    taskWidget.resetFilter();
     filterTaskByNameAndState(SICK_LEAVE_REQUEST, DESTROYED);
   }
 
   private void filterTaskByNameAndState(String name, String state) {
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
-    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.openFilterWidget();
-    taskWidget.resetFilter();
-    taskWidget.openFilterWidget();
-    taskWidget.filterTaskName(name, FilterOperator.IS);
-    taskWidget.filterTaskState();
-    taskWidget.selectState(state);
+    taskWidget.addFilter("State", null);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, state);
+    taskWidget.addFilter("Name", FilterOperator.CONTAINS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, name);
     taskWidget.applyFilter();
   }
 }
