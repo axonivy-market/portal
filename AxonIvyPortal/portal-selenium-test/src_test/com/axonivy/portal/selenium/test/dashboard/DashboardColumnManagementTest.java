@@ -82,7 +82,6 @@ public class DashboardColumnManagementTest extends BaseTest {
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
-    taskEditWidget.preview();
     taskEditWidget.openColumnManagementDialog();
 
     taskEditWidget.removeAddedField("id");
