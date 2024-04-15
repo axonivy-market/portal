@@ -318,6 +318,10 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   private ElementsCollection getTasksOfTaskWidgetHasName(String taskName) {
     return getAllTasksOfTaskWidget().filter(text(taskName));
   }
+  
+  public void clickOnTaskName(String taskName) {
+    getAllTasksOfTaskWidget().filter(text(taskName)).first().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    }
 
   private ElementsCollection getAllTasksOfTaskWidget() {
     return getColumnsOfTableWidget().filter(Condition.cssClass("dashboard-tasks__name"));

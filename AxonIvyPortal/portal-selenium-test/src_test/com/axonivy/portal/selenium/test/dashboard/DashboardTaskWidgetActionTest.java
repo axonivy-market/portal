@@ -70,7 +70,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     newDashboardPage.waitForTaskListDisplay();
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     // TaskState : Ready for Join <=> TaskBusinessState : Done
-    assertTaskActionsByTaskState("Done", Arrays.asList(DETAILS, PROCESS_VIEWER));
+    assertTaskActionsByTaskState("Done", Arrays.asList(DETAILS, PROCESS_VIEWER, RESET, DELEGATE, RESERVE, TRIGGER_ESCALATION));
     // TaskState : Suspended <=> TaskBusinessState : Open
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
@@ -92,7 +92,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
     // Ready for Join
     assertTaskActionsByTaskStateAndName(DONE, "Task Switch A",
-        Arrays.asList(DETAILS, RESET, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
+        Arrays.asList(DETAILS, RESET, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER, DELEGATE, RESERVE));
 
     // Suspended
     taskWidget.openFilterWidget();
@@ -127,9 +127,8 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   public void testVisibilityTaskActionForInprogressTasks() {
     login(TestAccount.ADMIN_USER);
     createTasksForTesting();
-    filterTaskByNameAndState("Sick Leave Request", OPEN);
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
-    taskWidget.startTask(0);
+    taskWidget.clickOnTaskName("Sick Leave Request");
     TaskTemplateIFramePage templatePage = new TaskTemplateIFramePage();
     templatePage.switchToIFrameOfTask();
     newDashboardPage = templatePage.clickCancelButton();
@@ -180,7 +179,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
     // Reserved for admin user
     assertTaskActionsByTaskState(OPEN, Arrays.asList(DETAILS, DELEGATE, RESET, CLEAR_EXPIRY, DESTROY,
-        TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK, RESERVE));
 
     login(TestAccount.DEMO_USER);
     createTasksForTesting();
@@ -207,7 +206,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     // Failed
     resizeBrowserTo2kResolution();
     assertTaskActionsByTaskStateAndName(ERROR, "Signal create Task failed",
-        Arrays.asList(DETAILS, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+        Arrays.asList(DETAILS, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER, DELEGATE, RESERVE, TRIGGER_ESCALATION));
     // Join failed
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
