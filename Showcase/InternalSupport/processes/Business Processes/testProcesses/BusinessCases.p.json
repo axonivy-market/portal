@@ -342,7 +342,10 @@
         "dialog" : "internaltest.ui.SaleDepartment:start()",
         "task" : {
           "name" : "Work with sale department",
-          "category" : "SALE/SIGNCONTRACT"
+          "category" : "SALE/SIGNCONTRACT",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
+          ]
         },
         "case" : {
           "customFields" : [

@@ -4,14 +4,12 @@
 package ch.ivyteam.ivy.process.intermediateevent;
 
 import ch.ivyteam.ivy.persistence.PersistencyException;
-import ch.ivyteam.ivy.process.extension.ui.ExtensionUiBuilder;
-import ch.ivyteam.ivy.process.extension.ui.IUiFieldEditor;
-import ch.ivyteam.ivy.process.extension.ui.UiEditorExtension;
 
-public class TestNewProcessIntermediateEventBean extends AbstractProcessIntermediateEventBean {
+public final class TestNewProcessIntermediateEventBean extends AbstractProcessIntermediateEventBean {
 
   /**
-   * 
+   * This is a bean to create task with state WAITING_FOR_INTERMEDIATE_EVENT
+   * for the example of how Portal show technical tasks
    */
   public TestNewProcessIntermediateEventBean() {
     super("TestNewProcessIntermediateEventBean", "Description of TestNewProcessIntermediateEventBean", String.class);
@@ -46,43 +44,4 @@ public class TestNewProcessIntermediateEventBean extends AbstractProcessIntermed
       }
     }
   }
-
-  /**
-   * @author nqhoan
-   *
-   */
-  public static class Editor extends UiEditorExtension {
-
-    /**
-     * 
-     */
-    private IUiFieldEditor demoField;
-
-    @Override
-    public void initUiFields(ExtensionUiBuilder ui) {
-      // ===> Add here your code to create new ui widgets <===
-
-      demoField = ui.scriptField().create();
-    }
-
-    @Override
-    protected void loadUiDataFromConfiguration() {
-      // ===> Add here your code to load data from the configuration to the ui widgets <===
-      // You can use the getBeanConfiguration() or getBeanConfigurationProperty() methods to load the configuration
-      demoField.setText(getBeanConfigurationProperty("demo"));
-    }
-
-    @Override
-    protected boolean saveUiDataToConfiguration() {
-      // Clear the bean configuration and all its properties to flush outdated configurations.
-      clearBeanConfiguration();
-
-      // ===> Add here your code to save the data in the ui widgets to the configuration <===
-      // You can use the setBeanConfiguration() or setBeanConfigurationProperty() methods to save the configuration
-
-      setBeanConfigurationProperty("demo", demoField.getText());
-      return true;
-    }
-  }
-
 }

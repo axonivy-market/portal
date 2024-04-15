@@ -612,7 +612,7 @@
               { "name" : "CustomerName", "type" : "STRING", "value" : "\"Tung Le\"" },
               { "name" : "CustomerType", "type" : "STRING", "value" : "\"Interior\"" },
               { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" },
-              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
             ]
           }, {
             "id" : "TaskA",
@@ -631,7 +631,7 @@
               { "name" : "CustomerName", "type" : "STRING", "value" : "\"Long Do\"" },
               { "name" : "CustomerType", "type" : "STRING", "value" : "\"Exterior\"" },
               { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" },
-              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
             ]
           }, {
             "id" : "TaskC",
@@ -649,7 +649,7 @@
               { "name" : "CustomerName", "type" : "STRING", "value" : "\"Anh Nguyen\"" },
               { "name" : "CustomerType", "type" : "STRING", "value" : "\"Interior\"" },
               { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" },
-              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
             ]
           } ],
         "case" : {
@@ -662,7 +662,7 @@
         },
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.enums.AdditionalProperty;",
+            "import com.axonivy.portal.components.enums.AdditionalProperty;",
             "",
             "ivy.case.getBusinessCase().customFields().textField(AdditionalProperty.CASE_BUSINESS_ENTITY_PROPERTY.toString()).set(\"leave_request\");"
           ]
@@ -845,10 +845,7 @@
       "config" : {
         "dialog" : "com.axonivy.portal.developerexamples.testdata.NewPayment:start()",
         "task" : {
-          "name" : "<%=ivy.cms.co(\"/Processes/Payment/Tasks/Pay/name\")%>",
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
-          ]
+          "name" : "<%=ivy.cms.co(\"/Processes/Payment/Tasks/Pay/name\")%>"
         }
       },
       "visual" : {
@@ -982,7 +979,7 @@
         },
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.enums.AdditionalProperty;",
+            "import com.axonivy.portal.components.enums.AdditionalProperty;",
             "",
             "ivy.case.getBusinessCase().customFields().textField(AdditionalProperty.CASE_BUSINESS_ENTITY_PROPERTY.toString()).set(\"leave_request\");"
           ]
@@ -1913,49 +1910,5 @@
       "visual" : {
         "at" : { "x" : 416, "y" : 2184 }
       }
-    }, {
-      "id" : "f119",
-      "type" : "RequestStart",
-      "name" : "CreateCustomActionCaseExample",
-      "config" : {
-        "signature" : "CreateCustomActionCaseExample",
-        "request" : {
-          "name" : "Create Custom Action Case Example",
-          "description" : "This will create a Case has a custom-field which is Custom Action type"
-        },
-        "case" : {
-          "customFields" : [
-            { "name" : "DestroyCaseAction", "type" : "STRING", "value" : "\"Start Processes/CustomAction/CustomActionForCase.ivp\"" }
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 16, "y" : 2304 }
-      },
-      "connect" : [
-        { "id" : "f122", "to" : "f124" }
-      ]
-    }, {
-      "id" : "f120",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 576, "y" : 2304 }
-      }
-    }, {
-      "id" : "f124",
-      "type" : "TaskSwitchEvent",
-      "name" : "Custom Action for Case",
-      "config" : {
-        "task" : {
-          "name" : "CustomActionForCase"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 200, "y" : 2304 },
-        "labelOffset" : { "x" : 14, "y" : 34 }
-      },
-      "connect" : [
-        { "id" : "f121", "to" : "f120" }
-      ]
     } ]
 }

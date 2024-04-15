@@ -1,6 +1,0 @@
-HandleEndPageData #class
-com.axonivy.portal.userexamples.credit #namespace
-callbackUrl String #field
-callbackUrl PERSISTENT #fieldModifier
-caseId Long #field
-caseId PERSISTENT #fieldModifier

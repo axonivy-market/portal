@@ -43,14 +43,17 @@ public class ExpressProcessPage extends TemplatePage {
 
   private void chooseResponsible(String responsible, boolean isGroup) {
     if (isGroup) {
-      $("label[for='assignee-selection-form:assignee-type:1']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+      $("label[for='assignee-selection-form:assignee-type:1']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+          .click();
       $("[id='assignee-selection-form:role-selection-component:role-selection_input']")
           .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).clear();
       $("[id='assignee-selection-form:role-selection-component:role-selection_input']").sendKeys(responsible);
       $("[id='assignee-selection-form:role-selection-component:role-selection_panel']").shouldBe(appear,
           DEFAULT_TIMEOUT);
       $("span[id='assignee-selection-form:role-selection-component:role-selection_panel'] .gravatar")
-          .shouldBe(appear, DEFAULT_TIMEOUT).click();
+          .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+      $("span[id='assignee-selection-form:role-selection-component:role-selection_panel'] .gravatar")
+          .shouldBe(disappear, DEFAULT_TIMEOUT);
     } else {
       $("[id='assignee-selection-form:user-selection-component:user-selection_input']")
           .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).clear();
@@ -59,6 +62,8 @@ public class ExpressProcessPage extends TemplatePage {
           DEFAULT_TIMEOUT);
       $("span[id='assignee-selection-form:user-selection-component:user-selection_panel'] .gravatar")
           .shouldBe(appear, DEFAULT_TIMEOUT).click();
+      $("span[id='assignee-selection-form:user-selection-component:user-selection_panel'] .gravatar")
+          .shouldBe(disappear, DEFAULT_TIMEOUT);
     }
 
     $("[id='assignee-selection-form:add-assignee-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
@@ -75,6 +80,7 @@ public class ExpressProcessPage extends TemplatePage {
   public void clickSave() {
     $("[id='form:save']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     clickByJavaScript($("[id='form:save']"));
+    $("[id='form:save']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public ExpressFormDefinitionPage goToFormDefinition() {
