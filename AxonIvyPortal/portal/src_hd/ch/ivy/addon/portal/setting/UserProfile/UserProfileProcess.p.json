@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "172546E1FDEB1FF7",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -78,7 +78,7 @@
           },
           "visual" : {
             "at" : { "x" : 216, "y" : 160 },
-            "size" : { "width" : 160, "height" : 60 }
+            "size" : { "width" : 160 }
           },
           "connect" : [
             { "id" : "S70-f1", "to" : "S70-g1" }
@@ -107,7 +107,7 @@
         } ],
       "visual" : {
         "at" : { "x" : 456, "y" : 280 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f5", "to" : "S90" }
@@ -155,7 +155,7 @@
           },
           "visual" : {
             "at" : { "x" : 200, "y" : 160 },
-            "size" : { "width" : 128, "height" : 60 }
+            "size" : { "width" : 128 }
           },
           "connect" : [
             { "id" : "S60-f1", "to" : "S60-g1" }
@@ -422,7 +422,7 @@
           },
           "visual" : {
             "at" : { "x" : 344, "y" : 160 },
-            "size" : { "width" : 128, "height" : 60 }
+            "size" : { "width" : 128 }
           },
           "connect" : [
             { "id" : "S30-f1", "to" : "S30-g1" }
@@ -653,7 +653,7 @@
           "id" : "S00-g0",
           "type" : "EmbeddedStart",
           "visual" : {
-            "at" : { "x" : 0, "y" : 256 }
+            "at" : { "y" : 256 }
           },
           "parentConnector" : "f9",
           "connect" : [
@@ -680,7 +680,7 @@
           },
           "visual" : {
             "at" : { "x" : 288, "y" : 256 },
-            "size" : { "width" : 128, "height" : 60 }
+            "size" : { "width" : 128 }
           },
           "connect" : [
             { "id" : "S00-f0", "to" : "S00-g1" }
@@ -688,7 +688,7 @@
         } ],
       "visual" : {
         "at" : { "x" : 840, "y" : 280 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f17", "to" : "f6" }
@@ -746,7 +746,7 @@
       },
       "visual" : {
         "at" : { "x" : 336, "y" : 512 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       },
       "connect" : [
         { "id" : "f29", "to" : "f28" }
