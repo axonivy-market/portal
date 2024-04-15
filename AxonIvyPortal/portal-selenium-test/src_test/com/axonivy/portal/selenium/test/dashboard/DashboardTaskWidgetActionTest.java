@@ -81,7 +81,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
-    assertTaskActionsByTaskState("Done", Arrays.asList(DETAILS, PROCESS_VIEWER));
+    assertTaskActionsByTaskState("Done", Arrays.asList(DETAILS, PROCESS_VIEWER, RESET, DELEGATE, RESERVE, TRIGGER_ESCALATION));
   }
 
   @Test
@@ -120,7 +120,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     removeAllExistingFilter();
     taskWidget.applyFilter();
     assertTaskActionsByTaskStateAndName(DESTROYED, "Task Switch B",
-        Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
+        Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER, RESET, DELEGATE, RESERVE, DESTROY, TRIGGER_ESCALATION));
   }
 
   @Test
@@ -212,7 +212,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     removeAllExistingFilter();
     taskWidget.applyFilter();
     assertTaskActionsByTaskStateAndName(ERROR, "Signal create Technical task",
-        Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+        Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER, RESET, DELEGATE, TRIGGER_ESCALATION, RESERVE));
     // waiting for event
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
