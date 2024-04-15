@@ -76,7 +76,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     removeAllExistingFilter();
     taskWidget.applyFilter();
     assertTaskActionsByTaskState("Open",
-        Arrays.asList(DETAILS, DELEGATE, RESERVE, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        Arrays.asList(DETAILS, DELEGATE, RESERVE, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK, RESET, TRIGGER_ESCALATION));
     // TaskState : Done <=> TaskBusinessState : Done
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
@@ -99,7 +99,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     removeAllExistingFilter();
     taskWidget.applyFilter();
     assertTaskActionsByTaskStateAndName(OPEN, "Sick Leave Request", Arrays.asList(DETAILS, DELEGATE, RESERVE,
-        CLEAR_EXPIRY, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        CLEAR_EXPIRY, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK, RESET));
 
     // Done
     taskWidget.openFilterWidget();
@@ -140,7 +140,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.removeFilter(1);
     taskWidget.applyFilter();
     assertTaskActionsByTaskState(IN_PROGRESS, Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, DESTROY,
-        WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK, DELEGATE, TRIGGER_ESCALATION));
 
     login(TestAccount.DEMO_USER);
     createTasksForTesting();
@@ -184,7 +184,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     createTasksForTesting();
     // Reserved for normal user
-    assertTaskActionsByTaskState(OPEN, Arrays.asList(DETAILS, PROCESS_VIEWER));
+    assertTaskActionsByTaskState(OPEN, Arrays.asList(DETAILS, PROCESS_VIEWER, RESET, DELEGATE, RESERVE, TRIGGER_ESCALATION));
   }
 
   private void createTasksForTesting() {
@@ -217,7 +217,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
-    assertTaskActionsByTaskState(ERROR, Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+    assertTaskActionsByTaskState(ERROR, Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER, RESET, DELEGATE, TRIGGER_ESCALATION, RESERVE));
   }
 
   private void assertTaskActionsByTaskState(String state, List<String> taskActionsInTask) {
