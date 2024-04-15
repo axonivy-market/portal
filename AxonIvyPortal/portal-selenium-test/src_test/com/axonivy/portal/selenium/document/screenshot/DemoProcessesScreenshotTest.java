@@ -77,7 +77,7 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "leave-request-creation");
   }
 
-//  @Test
+  @Test
   public void screenshotCaseMapProcess() throws IOException {
     login(TestAccount.DEMO_USER);
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 900));
