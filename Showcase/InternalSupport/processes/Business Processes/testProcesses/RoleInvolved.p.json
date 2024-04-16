@@ -41,7 +41,7 @@
             "id" : "TaskA",
             "name" : "Task for role involved",
             "responsible" : {
-              "activator" : "TestRoleInvolved"
+              "activator" : "HR"
             }
           } ]
       },
