@@ -160,7 +160,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.removeFilter(1);
     taskWidget.applyFilter();
     assertTaskActionsByTaskState(IN_PROGRESS,
-        Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK, DELEGATE, TRIGGER_ESCALATION));
   }
 
   private void filterTaskByNameAndState(String name, String state) {
