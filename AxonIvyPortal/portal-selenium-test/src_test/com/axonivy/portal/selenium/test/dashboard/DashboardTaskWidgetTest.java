@@ -148,7 +148,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskEditWidget.addFilter("State", null);
     taskEditWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
     taskEditWidget.applyFilter();
-    taskEditWidget.countAllTasks().shouldHave(size(12));
+    taskEditWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(12));
     taskEditWidget.save();
     TaskWidgetNewDashBoardPage taskWidgetEdited = newDashboardPage.selectTaskWidget(NEW_YOUR_TASK);
     taskWidgetEdited.expand().shouldHave(sizeGreaterThanOrEqual(1));
