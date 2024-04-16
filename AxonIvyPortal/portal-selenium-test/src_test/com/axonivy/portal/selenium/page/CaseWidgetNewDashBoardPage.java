@@ -227,4 +227,10 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     SelenideElement custom = $("a[id$=':custom-description']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     custom.shouldBe(getClickableCondition()).click();
   }
+
+  public boolean isEmptyMessageAppear() {
+    return $(
+        "div[id$='empty-message-container'][class='empty-message-container ']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
+  }
 }
