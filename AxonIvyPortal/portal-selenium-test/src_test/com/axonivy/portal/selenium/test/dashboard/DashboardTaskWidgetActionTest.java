@@ -149,7 +149,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     createTasksForTesting();
     filterTaskByNameAndState("Sick Leave Request", OPEN);
-    taskWidget.startTask(0);
+    taskWidget.clickOnTaskName("Sick Leave Request");
     templatePage = new TaskTemplateIFramePage();
     templatePage.switchToIFrameOfTask();
     newDashboardPage = templatePage.clickCancelButton();
