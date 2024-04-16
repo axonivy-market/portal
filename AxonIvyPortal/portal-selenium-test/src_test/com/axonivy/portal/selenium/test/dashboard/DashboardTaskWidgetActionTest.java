@@ -113,7 +113,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     removeAllExistingFilter();
     taskWidget.applyFilter();
     assertTaskActionsByTaskStateAndName(DELAYED, "Task Switch C",
-        Arrays.asList(DETAILS, DELEGATE, CLEAR_DELAY, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        Arrays.asList(DETAILS, DELEGATE, CLEAR_DELAY, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK, RESET, TRIGGER_ESCALATION, RESERVE));
 
     // Destroyed
     taskWidget.openFilterWidget();
@@ -134,6 +134,8 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.clickOnTaskName("Sick Leave Request");
     if(newDashboardPage.isAjaxErrorDialogDisplayed()) {
       newDashboardPage.clickOnBackToHomeButtonOnAjaxErrorDialog();
+      taskWidget.clickOnTaskName("Sick Leave Request");
+    } else {
       taskWidget.clickOnTaskName("Sick Leave Request");
     }
 
