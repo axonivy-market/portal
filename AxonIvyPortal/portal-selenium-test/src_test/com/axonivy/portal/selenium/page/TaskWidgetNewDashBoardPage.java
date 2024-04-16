@@ -597,4 +597,12 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     .$("div[id$='filter-container']").shouldBe(appear, DEFAULT_TIMEOUT)
     .$$("div[class*='dashboard-widget-filter__filter-wrapper']").size();
   }
+  
+  public void clickOnBackToHomeButtonOnAjaxErrorDialog() {
+    $("div[id*='ajax-indicator:ajax-indicator-error-ajax-dialog']").shouldBe(appear, DEFAULT_TIMEOUT).$("div[id*='ajax-indicator:ajax-indicator-error-ajax-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT).$("button").click();
+  }
+  
+  public boolean isAjaxErrorDialogDisplayed() {
+    return $("div[id*='ajax-indicator:ajax-indicator-error-ajax-dialog']").exists();
+  }
 }
