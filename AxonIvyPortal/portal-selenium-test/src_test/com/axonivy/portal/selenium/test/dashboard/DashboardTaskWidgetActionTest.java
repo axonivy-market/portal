@@ -21,7 +21,7 @@ import com.codeborne.selenide.ElementsCollection;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class DashboardTaskWidgetActionTest extends BaseTest {
   static final String DONE = "Done";
   static final String SUSPENDED = "Suspended";
@@ -106,7 +106,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     removeAllExistingFilter();
     taskWidget.applyFilter();
     assertTaskActionsByTaskStateAndName(DONE, "Categoried Leave Request",
-        Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
+        Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER, RESET, DELEGATE, RESERVE, DESTROY, TRIGGER_ESCALATION));
 
     // Delayed
     taskWidget.openFilterWidget();
