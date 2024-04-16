@@ -13,8 +13,66 @@
   <c:set var="isPortalInTeams" value="#{masterDataBean.portalInTeams}" />
   <h:outputScript library="js" name="session-warning.js" />
 
-  <ui:include src="WarningDialog.xhtml" />
-  <ui:include src="SessionExpiredDialog.xhtml" />
+  <!-- Warning before lost session dialog -->
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="timeout-warning-dialog" />
+    <ui:param name="widgetVar" value="timeout-warning-dialog" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="si si-road-sign-warning" />
+    <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" />
+    <ui:param name="dialogContent" value="#{data.isShowWarningForCurrentTab ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/warningMessage') : null}" />
+    <ui:param name="dynamic" value="true" />
+
+    <ui:define name="customDialogContent">
+      <h:panelGroup layout="block" id="other-tabs-warnings-panel" rendered="#{not empty data.timedoutTabs}">
+        <span>There are some tabs will be expired within 1 minute:</span>
+        <br/>
+
+        <ul>
+          <ui:repeat var="tabTitle" value="#{data.timedoutTabs}">
+            <li class="u-text-align-left">#{tabTitle}</li>
+          </ui:repeat>
+        </ul>
+      </h:panelGroup>
+    </ui:define>
+
+    <ui:define name="dialogFooter">
+      <h:panelGroup layout="block" id="timeout-warning-dialog-footer">
+        <p:commandButton rendered="#{!isPortalInTeams and data.isShowWarningForCurrentTab}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
+          icon="#{visibilityBean.generateButtonIcon('si si-logout-1')}" styleClass="secondary-btn"
+          actionListener="#{logic.logout(task)}" oncomplete="returnHomePage()" />
+  
+        <p:commandButton rendered="#{data.isShowWarningForCurrentTab}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/extend')}"
+          icon="#{visibilityBean.generateButtonIcon('si si-monitor-refresh')}" actionListener="#{logic.extendSession}"
+          oncomplete="PortalSessionWarning.resetCounterAndTimeout(); PortalSessionWarning.callKeepSessionCmd();" />
+  
+        <p:commandButton rendered="#{not empty data.timedoutTabs}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+          icon="#{visibilityBean.generateButtonIcon('si si-monitor-refresh')}" 
+          onclick="PortalSessionWarning.resetCounterAndTimeout(); return false;" />
+      </h:panelGroup>
+    </ui:define>
+  </ui:decorate>
+
+  <!-- Session expired dialog -->
+  <c:set var="sessionExpriedMsg" value="#{isPortalInTeams ? '/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpriedInTeams' : '/ch.ivy.addon.portalkit.ui.jsf/common/viewExpired'}" />
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="timeout-dialog" />
+    <ui:param name="widgetVar" value="timeout-dialog" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="si si-road-sign-warning" />
+    <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" />
+    <ui:param name="dialogContent" value="#{ivy.cms.co(sessionExpriedMsg)}" />
+
+    <ui:define name="dialogFooter">
+      <p:commandButton rendered="#{!isPortalInTeams}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="redirectDefaultPage();"
+        icon="#{visibilityBean.generateButtonIcon('si si-check-1')}" type="button" />
+    </ui:define>
+  </ui:decorate>
 
   <h:form>
     <h:panelGroup id="session-info-container" styleClass="js-session-info-container">
@@ -26,16 +84,13 @@
 
     <p:remoteCommand name="keepSession" global="false" process="@this" update="session-info-container"
       actionListener="#{sessionBean.keepSession()}"
-      oncomplete="PortalSessionWarning.getTabInteractionsAsJsonCmd();" />
-
-    <p:remoteCommand name="keepSessionWithoutCheck" global="false" process="@this" update="session-info-container"
-      actionListener="#{sessionBean.keepSession()}"
-      oncomplete="PortalSessionWarning.getTabInteractionsAsJsonCmd();" />
+      oncomplete="PortalSessionWarning.resetCounterAndTimeout(); PortalSessionWarning.getTabInteractionsAsJsonCmd();" />
 
     <p:remoteCommand name="unloadTabSession" global="false" process="@this" update="@this"
       actionListener="#{sessionBean.unloadTabSession()}" />
 
-    <p:remoteCommand name="showTimeoutDialog" global="false" process="@this" update="@this"
+    <p:remoteCommand name="showTimeoutDialog" global="false" process="@this"
+      update="#{p:resolveFirstComponentWithId('other-tabs-warnings-panel', view).clientId} #{p:resolveFirstComponentWithId('timeout-warning-dialog-footer', view).clientId}"
       actionListener="#{logic.showTimeoutDialog()}" />
   </h:form>
   <script type="text/javascript">

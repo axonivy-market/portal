@@ -88,6 +88,13 @@ var PortalSessionWarning = function() {
         warningDialogShow = false;
         return;
       }
+
+      // If there is no interaction, show timeout dialog
+      warningDialogShow = true;
+      showTimeoutDialog([
+        {name:'tabs', value:null},
+        {name:'isShowWarningForCurrentTab', value:true}
+      ]);
     }
   },
 
@@ -138,11 +145,6 @@ var PortalSessionWarning = function() {
   }
 
   getTabInteractionsAsJsonCmd = function() {
-    console.log(warningDialogShow);
-    if (warningDialogShow == true) {
-      return;
-    }
-
     var sessionInfos = $('.js-session-info-container').find('input').val();
     if (sessionInfos == '') {
       return;
