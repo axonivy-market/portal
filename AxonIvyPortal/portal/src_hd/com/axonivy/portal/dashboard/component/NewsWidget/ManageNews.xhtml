@@ -65,7 +65,7 @@
             </div>
 
             <div class="management-news__content-group">
-              <p:textEditor id="news-content" height="300" value="#{news.description}"
+              <p:textEditor id="news-content" height="300px" value="#{news.description}"
                 placeholder="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/NewsContentPlaceHolder')}"
                 required="#{requiredLanguage and param['skipValidator'] == null}"
                 requiredMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/NewsContentValidateMessage', [news.locale.displayLanguage.toLowerCase()])}">

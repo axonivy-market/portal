@@ -225,9 +225,9 @@
                                     value="#{userProfileBean.channels}">
                                     <div>
                                        <f:facet name="header">
-                                          <div class="p-d-flex">
+                                          <div class="flex">
                                              <i
-                                                class="#{channel.channel.displayIcon()} table-icon p-mr-2 p-mt-1" />
+                                                class="#{channel.channel.displayIcon()} table-icon mr-2 mt-1" />
                                              <h:outputText
                                                 value="#{channel.channel.displayName()}">
                                              </h:outputText>
@@ -236,9 +236,9 @@
                                     </div>
                                     <c:set var="subscription"
                                        value="#{channel.getSubscription(event)}" />
-                                    <div class="p-d-flex">
+                                    <div class="flex">
                                        <i
-                                          class="p-mr-2 p-mt-1 si table-icon si-#{subscription.icon} subscription-icon "
+                                          class="mr-2 mt-1 si table-icon si-#{subscription.icon} subscription-icon "
                                           title="#{subscription.title}" />
                                        <p:triStateCheckbox
                                           id="subscriptionCheckbox"

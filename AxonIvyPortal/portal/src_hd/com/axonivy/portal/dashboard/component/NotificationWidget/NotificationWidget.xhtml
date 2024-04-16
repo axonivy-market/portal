@@ -53,8 +53,8 @@
                 <hr />
               </h:panelGroup>
               <div class="#{notification.style} notifications-container-top">
-                <div class="p-d-flex">
-                  <div class="p-d-flex notifications-indicator">
+                <div class="flex">
+                  <div class="flex notifications-indicator">
                     <p:commandLink id="notification-mark-as-read"
                       disabled="#{!isReadOnlyMode}"
                       actionListener="#{widget.markAsRead(notification)}"
@@ -68,16 +68,16 @@
                     <p:tooltip for="notification-mark-as-read"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
                   </div>
-                  <div class="p-d-flex notification-message-block p-flex-column">
+                  <div class="flex notification-message-block flex-column">
                       <p:commandLink id="notification-message" styleClass="notification-message" actionListener="#{widget.goToTaskDetail(notification)}"
                          rendered="#{notification.infoAction != null}" disabled="#{!isReadOnlyMode}" >
                         <h:outputText value="#{htmlSanitizerBean.sanitize(notification.message)}" />
                       </p:commandLink>
                       <p:tooltip for="notification-message" value="#{notification.infoAction.title}" /> 
                     <p:tooltip for="notification-message" value="#{notification.infoAction.title}" />
-                    <h:outputText value="#{notification.timeSince}" styleClass="p-text-normal notifications-item-time-since" />
+                    <h:outputText value="#{notification.timeSince}" styleClass="font-normal notifications-item-time-since" />
                   </div>
-                  <div class="p-d-flex notification-action-block">
+                  <div class="flex notification-action-block">
                     <p:commandLink disabled="#{!isReadOnlyMode}" id="notification-start-task" styleClass="notification-start-task"
                       actionListener="#{widget.startTaskFromNoti(notification)}" rendered="#{notification.runAction != null}" >
                       <i class="fa fa-play notification-start-task-icon" />

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "182E92730FF57035",
   "config" : {
     "data" : "com.axonivy.portal.components.examples.LeaveRequestProcessData"
@@ -69,7 +69,7 @@
       },
       "visual" : {
         "at" : { "x" : 352, "y" : 192 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       },
       "connect" : [
         { "id" : "f34", "to" : "f23" }
@@ -90,7 +90,7 @@
       },
       "visual" : {
         "at" : { "x" : 928, "y" : 192 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       },
       "connect" : [
         { "id" : "f28", "to" : "f20" }
@@ -117,7 +117,7 @@
       },
       "visual" : {
         "at" : { "x" : 640, "y" : 192 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       },
       "connect" : [
         { "id" : "f32", "to" : "f29" }
@@ -132,7 +132,7 @@
       ],
       "visual" : {
         "at" : { "x" : 928, "y" : 64 },
-        "size" : { "width" : 336, "height" : 60 }
+        "size" : { "width" : 336 }
       },
       "connect" : [
         { "id" : "f3", "to" : "f29" }

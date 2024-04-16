@@ -139,7 +139,7 @@ public class NotificationDto {
     if (this.isRead) {
       return "";
     }
-    return "p-text-bold";
+    return "font-bold";
   }
   
   private static NotificationActionDTO toNotificationActionDTO(WebNotificationAction action) {
