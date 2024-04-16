@@ -132,10 +132,6 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.filterTaskName("Sick Leave Request", FilterOperator.IS);
     taskWidget.applyFilter();
     taskWidget.clickOnTaskName("Sick Leave Request");
-    if(taskWidget.isAjaxErrorDialogDisplayed()) {
-      taskWidget.clickOnBackToHomeButtonOnAjaxErrorDialog();
-      taskWidget.clickOnTaskName("Sick Leave Request");
-    }
     
     TaskTemplateIFramePage templatePage = new TaskTemplateIFramePage();
     templatePage.switchToIFrameOfTask();
