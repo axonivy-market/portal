@@ -128,7 +128,11 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     createTasksForTesting();
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
+    taskWidget.openFilterWidget();
+    taskWidget.filterTaskName("Sick Leave Request", FilterOperator.IS);
+    taskWidget.applyFilter();
     taskWidget.clickOnTaskName("Sick Leave Request");
+
     TaskTemplateIFramePage templatePage = new TaskTemplateIFramePage();
     templatePage.switchToIFrameOfTask();
     newDashboardPage = templatePage.clickCancelButton();
@@ -137,7 +141,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     // In progress for admin user
     newDashboardPage.waitForGrowlMessageDisappear();
     taskWidget.openFilterWidget();
-    taskWidget.removeFilter(1);
+    taskWidget.removeFilter(0);
     taskWidget.applyFilter();
     assertTaskActionsByTaskState(IN_PROGRESS, Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, DESTROY,
         WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK, DELEGATE, TRIGGER_ESCALATION));
