@@ -124,7 +124,11 @@ public class TaskDetailsPage extends TemplatePage {
   public List<String> getActiveTaskAction() {
     openActionPanel();
     WebElement actionPanel = findElementByCssSelector("div[id$=':additional-options:side-steps-panel']");
-    return actionPanel.findElements(By.cssSelector("a[class*='option-item']")).stream().map(WebElement::getText)
+    return actionPanel.findElements(By.cssSelector("a[class*='option-item']"))
+        .stream()
+        .filter(
+            elem -> !elem.getAttribute("class").contains("ui-state-disabled"))
+        .map(WebElement::getText)
         .collect(Collectors.toList());
   }
 
