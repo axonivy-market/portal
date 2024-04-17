@@ -278,7 +278,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getCompactModeProcessDisabledFirstProcessItem() {
-    return $(".widget-preview--compact span.ui-commandlink.process-item");
+    return $(".widget-preview--compact .ui-commandlink.process-item");
   }
 
   public SelenideElement getCompactModeProcessDisabledFirstProcessItemName() {

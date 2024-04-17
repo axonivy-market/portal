@@ -95,7 +95,9 @@ public class GlobalGrowlTest extends BaseTest {
   @Test
   public void testDisplayDefaultGrowlAfterCancelTask() {
     redirectToRelativeLink(createTestingTasksUrl);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    NavigationHelper.navigateToTaskList();
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.waitForPageLoad();
     TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
     taskTemplatePage.waitForIFrameContentVisible();
     taskTemplatePage.clickCancelAndLeftButton();
