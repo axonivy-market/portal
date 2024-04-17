@@ -19,8 +19,8 @@
 
   <p:remoteCommand id="rcLoadCaseFirstTime" autoRun="true" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
     update="dashboard-cases-container" global="false" async="true" process="@this"
-    oncomplete="loadWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); initTableWidget(PF('dashboard-cases-#{caseWidget.id}')); #{cc.attrs.onCompleteLoadWidget}" />
-
+    oncomplete="loadWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); #{cc.attrs.onCompleteLoadWidget}" />
+  <p:inputText type="hidden" value="dashboard-cases-#{caseWidget.id}" styleClass="js-table-widget-var" />
   <div class="ui-g">
     <h:panelGroup layout="block"
       styleClass="js-loading-#{caseWidget.id} case-dashboard-widget__loading-message ui-g-12">

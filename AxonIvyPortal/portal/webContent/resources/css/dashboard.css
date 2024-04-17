@@ -798,6 +798,17 @@ span.new-widget-dialog__icon.si {
   line-height: 1.8;
 }
 
+.grid-stack-item {
+  container-type: inline-size;
+  container-name: grid-stack-item;
+}
+
+@container grid-stack-item (max-width: 400px) {
+  .widget-header-quick-search {
+    display: none;
+  }
+}
+
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
   .new-widget-dialog__image {
   width: 75px;
