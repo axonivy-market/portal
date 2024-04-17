@@ -183,7 +183,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASK_WIDGET);
-    ScreenshotUtils.maximizeBrowser();
+    resizeBrowserTo2kResolution();
     addCustomFields(taskWidget, List.of("ShipmentDate","AccountNumber"));
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Shipment date", FilterOperator.BETWEEN);
