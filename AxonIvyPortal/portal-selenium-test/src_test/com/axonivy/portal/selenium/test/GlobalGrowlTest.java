@@ -14,6 +14,7 @@ import com.axonivy.portal.selenium.common.DateTimePattern;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.ExpressFormDefinitionPage;
 import com.axonivy.portal.selenium.page.ExpressProcessPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
@@ -100,8 +101,12 @@ public class GlobalGrowlTest extends BaseTest {
     taskWidgetPage.waitForPageLoad();
     TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
     taskTemplatePage.waitForIFrameContentVisible();
-    taskTemplatePage.clickCancelAndLeftButton();
-    taskTemplatePage.switchBackToParent();
+
+    WaitHelper.waitForNavigation(() -> {
+      taskTemplatePage.clickCancelAndLeftButton();
+      taskTemplatePage.switchBackToParent();
+    });
+
     taskWidgetPage = new TaskWidgetPage();
     assertGrowlMessage(taskWidgetPage, CANCEL_MESSAGE_WITH_DETAILS);
   }

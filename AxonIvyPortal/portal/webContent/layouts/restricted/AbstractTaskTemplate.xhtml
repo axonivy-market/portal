@@ -70,7 +70,7 @@
               <p:menu id="vertical-task-action-menu" overlay="true" trigger="vertical-task-actions" my="right top" at="right bottom"
                 styleClass="action-steps-panel task-actions-menu">
                 <p:menuitem id="show-adhoc-history" rendered="#{abstractTaskTemplateBean.hasAdhocTasks(currentTask) }"
-                  icon="si si-synchronize-arrow-clock" oncomplete="PF('adhoc-task-history-dialog').show()"
+                  icon="si si-synchronize-arrow-clock" onclick="PF('adhoc-task-history-dialog').show()"
                   value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistory')}"
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistoryTooltip')}" />
 
@@ -127,7 +127,7 @@
               <p:menu id="horizontal-task-action-menu" overlay="true" trigger="horizontal-task-actions" my="right top" at="right bottom"
                 styleClass="action-steps-panel task-actions-menu" rendered="#{!isHideTaskAction}">
                 <p:menuitem id="show-adhoc-history" rendered="#{abstractTaskTemplateBean.hasAdhocTasks(currentTask)}"
-                  icon="si si-synchronize-arrow-clock" oncomplete="PF('adhoc-task-history-dialog').show()"
+                  icon="si si-synchronize-arrow-clock" onclick="PF('adhoc-task-history-dialog').show()"
                   value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistory')}"
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistoryTooltip')}" />
     
