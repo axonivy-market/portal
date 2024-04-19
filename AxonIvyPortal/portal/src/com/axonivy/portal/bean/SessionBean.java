@@ -114,7 +114,7 @@ public class SessionBean implements Serializable {
     setSessionInfos(newInfos);
   }
 
-  public void unloadTabSession() throws JsonProcessingException {
+  public void unloadSession() throws JsonProcessingException {
     if (sessionInfos == null) {
       return;
     }
@@ -124,7 +124,6 @@ public class SessionBean implements Serializable {
         break;
       }
     }
-
   }
 
   private long updateMillisecondsToTimeout(PortalSessionInfo info) {

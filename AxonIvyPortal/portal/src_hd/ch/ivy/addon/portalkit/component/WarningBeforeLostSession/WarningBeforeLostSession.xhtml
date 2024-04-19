@@ -21,7 +21,7 @@
     <ui:param name="iconClass" value="si si-road-sign-warning" />
     <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" />
-    <ui:param name="dialogContent" value="#{data.isShowWarningForCurrentTab ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/warningMessage') : null}" />
+    <ui:param name="dialogContent" value="#{empty data.timedoutTabs ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/warningMessage') : null}" />
     <ui:param name="dynamic" value="true" />
 
     <ui:define name="customDialogContent">
@@ -45,14 +45,17 @@
           actionListener="#{logic.logout(task)}" oncomplete="returnHomePage()" />
   
         <p:commandButton rendered="#{data.isShowWarningForCurrentTab}"
+          global="false"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/extend')}"
           icon="#{visibilityBean.generateButtonIcon('si si-monitor-refresh')}" actionListener="#{logic.extendSession}"
-          oncomplete="PortalSessionWarning.resetCounterAndTimeout(); PortalSessionWarning.callKeepSessionCmd();" />
+          oncomplete="PortalSessionWarning.resetCounterAndTimeout(); PortalSessionWarning.callKeepSessionWithoutCheckTimeoutCmd();" />
   
-        <p:commandButton rendered="#{not empty data.timedoutTabs}"
+        <p:commandButton rendered="#{not empty data.timedoutTabs and (not data.isShowWarningForCurrentTab)}"
+          global="false"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
           icon="#{visibilityBean.generateButtonIcon('si si-monitor-refresh')}" 
-          onclick="PortalSessionWarning.resetCounterAndTimeout(); return false;" />
+          actionListener="#{logic.extendSession}"
+          oncomplete="PortalSessionWarning.resetCounterAndTimeout(); PortalSessionWarning.callKeepSessionWithoutCheckTimeoutCmd();" />
       </h:panelGroup>
     </ui:define>
   </ui:decorate>
@@ -86,8 +89,12 @@
       actionListener="#{sessionBean.keepSession()}"
       oncomplete="PortalSessionWarning.resetCounterAndTimeout(); PortalSessionWarning.getTabInteractionsAsJsonCmd();" />
 
+    <p:remoteCommand name="keepSessionWithoutCheckTimeout" global="false" process="@this" update="session-info-container"
+      actionListener="#{sessionBean.keepSession()}"
+      oncomplete="PortalSessionWarning.resetCounterAndTimeout();" />
+
     <p:remoteCommand name="unloadTabSession" global="false" process="@this" update="@this"
-      actionListener="#{sessionBean.unloadTabSession()}" />
+      actionListener="#{sessionBean.unloadSession()}" />
 
     <p:remoteCommand name="showTimeoutDialog" global="false" process="@this"
       update="#{p:resolveFirstComponentWithId('other-tabs-warnings-panel', view).clientId} #{p:resolveFirstComponentWithId('timeout-warning-dialog-footer', view).clientId}"

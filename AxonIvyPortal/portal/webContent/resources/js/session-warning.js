@@ -144,17 +144,23 @@ var PortalSessionWarning = function() {
     keepSessionInIFrame([{name:'tabId', value:tabId}, {name : 'title', value:document.title}]);
   }
 
+  callKeepSessionWithoutCheckTimeoutCmd = function() {
+    keepSessionWithoutCheckTimeout([{name:'tabId', value:tabId}, {name : 'title', value:document.title}]);
+  }
+
   getTabInteractionsAsJsonCmd = function() {
+    resetCounterAndTimeout;
     var sessionInfos = $('.js-session-info-container').find('input').val();
     if (sessionInfos == '') {
-      return;
+      logoutAndShowDialog();
     }
 
-    var otherTabsTimedOut = [];
+    var tabsTimedOut = [];
     console.log(sessionInfos);
     sessionInfos = JSON.parse(sessionInfos);
 
     var isShowWarningForCurrentTab = false;
+    var isCurrentTabExpired = true;
 
     // Check sessionInfos for interactions in all open tabs
     for (var i = 0; i < sessionInfos.length; i++) {
@@ -166,15 +172,29 @@ var PortalSessionWarning = function() {
         warningDialogShow = true;
         if (info.tabId == tabId) {
           isShowWarningForCurrentTab = true;
-        } else {
-          otherTabsTimedOut.push(info.title);
         }
+        tabsTimedOut.push(info.title);
+      } else if (info.tabId == tabId) {
+        // If session of this tab still in the list of session info, it mean the session of it don't expired yet.
+        isCurrentTabExpired = false;
       }
+    }
+
+    // If the current tab is expired, show the view expired dialog
+    if (isCurrentTabExpired == true) {
+      warningDialogShow = true;
+      logoutAndShowDialog();
+      return;
+    }
+
+    // If only the current tab has session expire in 1 minute, clear the time out list
+    if (tabsTimedOut.length == 1 && isShowWarningForCurrentTab) {
+      tabsTimedOut = [];
     }
 
     if (warningDialogShow) {
       showTimeoutDialog([
-        {name:'tabs', value:JSON.stringify(otherTabsTimedOut)},
+        {name:'tabs', value:JSON.stringify(tabsTimedOut)},
         {name:'isShowWarningForCurrentTab', isShowWarningForCurrentTab}
       ]);
     }
@@ -190,6 +210,7 @@ var PortalSessionWarning = function() {
     hideWarningDialog: hideWarningDialog,
     callKeepSessionCmd : callKeepSessionCmd,
     callKeepSessionInIFrameCmd : callKeepSessionInIFrameCmd,
+    callKeepSessionWithoutCheckTimeoutCmd : callKeepSessionWithoutCheckTimeoutCmd,
     getTabInteractionsAsJsonCmd : getTabInteractionsAsJsonCmd,
     unloadTabSessionCmd : unloadTabSessionCmd
   };
