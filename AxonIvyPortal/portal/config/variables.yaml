@@ -57,7 +57,9 @@ Variables:
 
     # For switch on/off the display legacy UI.
     ShowLegacyUI: false
-
+    
+    ApplicationName: Axon Ivy
+    
     # You can define the own user menu via this JSON file.
     # It will be shown as the your user menu in the user menu settings.
     # [file: json]
