@@ -22,7 +22,7 @@
     styleClass="ui-fluid md-inputfield">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
         <f:selectItems value="#{widgetTextFilterBean.operators}" var="operator"
-          itemValue="#{operator}" itemLabel="#{operator.label}" />
+          itemValue="#{operator}" itemLabel="#{operator.label}"/>
           <p:ajax event="itemSelect" listener="#{widgetTextFilterBean.onChangeOperator(filter)}"
             process="@(this)" update="#{cc.attrs.componentToUpdate}" />
           <f:param name="skipValidator" value="true" />
