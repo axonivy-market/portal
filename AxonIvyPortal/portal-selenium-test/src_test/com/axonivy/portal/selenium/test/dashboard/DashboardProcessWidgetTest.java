@@ -421,6 +421,9 @@ public class DashboardProcessWidgetTest extends BaseTest {
   @Test
   public void testSortProcessCompactProcessModeCustomSorting() {
     resizeBrowserTo2kResolution();
+    createTestingTasks();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForCaseWidgetLoaded();
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectCompactMode();
