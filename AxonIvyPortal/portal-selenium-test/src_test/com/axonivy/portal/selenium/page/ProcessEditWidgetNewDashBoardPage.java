@@ -190,7 +190,8 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getFirstTaskDisplayedDisabledStartAction() {
-    return $("div[id$=':dashboard-process-tasks-container'] span.start-task-action").shouldBe(Condition.appear,
+    return $("div[id$=':dashboard-process-tasks-container'] .start-task-action")
+        .shouldBe(Condition.appear,
         DEFAULT_TIMEOUT);
   }
 

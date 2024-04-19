@@ -75,10 +75,10 @@
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistoryTooltip')}" />
 
                 <p:menuitem id="start-adhoc"
-                  rendered="#{empty isShowStartAdhocButton? (abstractTaskTemplateBean.hasExpressAdhocWF() and currentTask.isPersistent()) : isShowStartAdhocButton}"
+                  rendered="#{abstractTaskTemplateBean.canStartAdhoc(isShowStartAdhocButton, currentTask.isPersistent())}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHoc')}"
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}"
-                  icon="si si-move-to-bottom" oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()" />
+                  icon="si si-move-to-bottom" onclick="PF('adhoc-task-reset-confirmation-dialog').show()" />
 
                 <p:divider styleClass="separator"
                   rendered="#{abstractTaskTemplateBean.hasAdhocTasks(currentTask) or (empty isShowStartAdhocButton? (abstractTaskTemplateBean.hasExpressAdhocWF() and currentTask.isPersistent()) : isShowStartAdhocButton)}" />
@@ -132,10 +132,10 @@
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistoryTooltip')}" />
     
                 <p:menuitem id="start-adhoc"
-                  rendered="#{empty isShowStartAdhocButton? (abstractTaskTemplateBean.hasExpressAdhocWF() and currentTask.isPersistent()) : isShowStartAdhocButton}"
+                  rendered="#{abstractTaskTemplateBean.canStartAdhoc(isShowStartAdhocButton, currentTask.isPersistent())}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHoc')}"
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}"
-                  icon="si si-move-to-bottom" oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()" />
+                  icon="si si-move-to-bottom" onclick="PF('adhoc-task-reset-confirmation-dialog').show()" />
     
                 <p:menuitem id="chat-group" icon="si si-messages-bubble-add" action="#{chatAssigneeBean.createGroupChatForConfiguredRoleList(currentTask)}"
                   rendered="#{chatRendererBean.isGroupChatRendered and !(currentTask.state eq 'CREATED') and !chatRendererBean.isExpressCreationTask()}"
