@@ -438,8 +438,6 @@ public class DashboardProcessWidgetTest extends BaseTest {
     int fromIndex = 0;
     int toIndex = 6;
     editProcessWidgetConfiguration.dragAndDropProcess(fromIndex, toIndex);
-    editProcessWidgetConfiguration.dragAndDropProcess(fromIndex, toIndex);
-    editProcessWidgetConfiguration.dragAndDropProcess(fromIndex, toIndex);
     editProcessWidgetConfiguration.save();
     editProcessWidgetConfiguration = newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName()
