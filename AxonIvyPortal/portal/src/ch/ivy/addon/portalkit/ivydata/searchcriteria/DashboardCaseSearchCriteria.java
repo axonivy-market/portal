@@ -3,18 +3,22 @@ package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
+import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.OrderByColumnQuery;
@@ -27,6 +31,7 @@ public class DashboardCaseSearchCriteria {
   private String sortField;
   private boolean sortDescending;
   private boolean isInConfiguration;
+  private String quickSearchKeyword;
 
   public CaseQuery buildQuery() {
     CaseQuery query = buildQueryWithoutOrderByClause();
@@ -38,6 +43,7 @@ public class DashboardCaseSearchCriteria {
   public CaseQuery buildQueryWithoutOrderByClause() {
     CaseQuery query = CaseQuery.businessCases();
     queryFilters(query);
+    appendQuickSearchQuery(query);
     return query;
   }
 
@@ -70,6 +76,58 @@ public class DashboardCaseSearchCriteria {
     }
   }
 
+  private void appendQuickSearchQuery(CaseQuery query) {
+    if (StringUtils.isNotBlank(this.quickSearchKeyword)) {
+      CaseQuery subQuery = CaseQuery.create();
+
+      List<CaseColumnModel> quickSearchColumns = columns.stream()
+          .filter(col -> Optional.ofNullable(col.getQuickSearch()).orElse(false)).collect(Collectors.toList());
+
+      if (CollectionUtils.isNotEmpty(quickSearchColumns)) {
+        for (ColumnModel column : quickSearchColumns) {
+          DashboardStandardTaskColumn columnEnum = DashboardStandardTaskColumn.findBy(column.getField());
+          if (columnEnum != null) {
+            appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectStandandFieldToQuickSearchQuery(columnEnum));
+          } else {
+            appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column));
+          }
+        }
+
+        query.where().and(subQuery);
+      }
+    }
+  }
+  
+  private void appendQuickSearchCaseQueryByDashboardFilter(CaseQuery query, DashboardFilter filter) {
+    FilterField filterField = FilterFieldFactory.findBy(filter.getField());
+    if (filterField != null) {
+      CaseQuery filterQuery = filterField.generateFilterQuery(filter);
+      if (filterQuery != null) {
+        query.where().or(filterQuery);
+      }
+    }
+  }
+  
+  private DashboardFilter selectStandandFieldToQuickSearchQuery(DashboardStandardTaskColumn columnEnum) {
+    return switch (columnEnum) {
+      case APPLICATION -> buildQuickSearchToDashboardFilter(columnEnum.getField(), FilterOperator.IN, DashboardColumnType.STANDARD);
+      default -> buildQuickSearchToDashboardFilter(columnEnum.getField(), FilterOperator.CONTAINS, DashboardColumnType.STANDARD);
+    };
+  }
+  
+  private DashboardFilter selectCustomFieldToQuickSearchQuery(ColumnModel column) {
+    return buildQuickSearchToDashboardFilter(column.getField(), FilterOperator.CONTAINS, DashboardColumnType.CUSTOM);
+  }
+  
+  private DashboardFilter buildQuickSearchToDashboardFilter(String columnField, FilterOperator operator, DashboardColumnType type) {
+    DashboardFilter filter = new DashboardFilter();
+    filter.setField(columnField);
+    filter.setFilterType(type);
+    filter.setOperator(operator);
+    filter.setValues(List.of(this.quickSearchKeyword));
+    return filter;
+  }
+  
   public String getSortField() {
     return sortField;
   }
@@ -214,5 +272,13 @@ public class DashboardCaseSearchCriteria {
 
   public void setUserFilters(List<DashboardFilter> userFilters) {
     this.userFilters = userFilters;
+  }
+  
+  public String getQuickSearchKeyword() {
+    return quickSearchKeyword;
+  }
+
+  public void setQuickSearchKeyword(String quickSearchKeyword) {
+    this.quickSearchKeyword = quickSearchKeyword;
   }
 }

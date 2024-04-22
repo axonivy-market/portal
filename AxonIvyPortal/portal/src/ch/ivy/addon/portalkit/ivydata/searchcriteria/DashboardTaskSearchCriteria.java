@@ -23,7 +23,6 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.OrderByColumnQuery;
 
 public class DashboardTaskSearchCriteria {
-  private static final String LIKE_FORMAT = "%%%s%%";
 
   private boolean canWorkOn;
   private List<TaskColumnModel> columns;
@@ -65,11 +64,17 @@ public class DashboardTaskSearchCriteria {
         continue;
       }
 
-      appendTaskQueryByDashboardFilter(query, filter);
+      FilterField filterField = TaskFilterFieldFactory.findBy(filter.getField(), filter.getFilterType());
+      if (filterField != null) {
+        TaskQuery filterQuery = filterField.generateFilterTaskQuery(filter);
+        if (filterQuery != null) {
+          query.where().and(filterQuery);
+        }
+      }
     }
   }
 
-  private void appendTaskQueryByDashboardFilter(TaskQuery query, DashboardFilter filter) {
+  private void appendQuickSearchTaskQueryByDashboardFilter(TaskQuery query, DashboardFilter filter) {
     FilterField filterField = TaskFilterFieldFactory.findBy(filter.getField(), filter.getFilterType());
     if (filterField != null) {
       TaskQuery filterQuery = filterField.generateFilterTaskQuery(filter);
@@ -79,7 +84,7 @@ public class DashboardTaskSearchCriteria {
     }
   }
   
-  private void appendCaseQueryByDashboardFilter(TaskQuery query, DashboardFilter filter) {
+  private void appendQuickSearchCaseQueryByDashboardFilter(TaskQuery query, DashboardFilter filter) {
     FilterField filterField = FilterFieldFactory.findBy(filter.getField());
     if (filterField != null) {
       CaseQuery filterQuery = filterField.generateFilterQuery(filter);
@@ -107,7 +112,7 @@ public class DashboardTaskSearchCriteria {
         for (ColumnModel column : quickSearchColumns) {
           DashboardStandardTaskColumn columnEnum = DashboardStandardTaskColumn.findBy(column.getField());
           if (columnEnum != null) {
-            appendTaskQueryByDashboardFilter(subQuery, selectStandandFieldToQuickSearchQuery(columnEnum));
+            appendQuickSearchTaskQueryByDashboardFilter(subQuery, selectStandandFieldToQuickSearchQuery(columnEnum));
           } else {
             appendCustomFieldsForQuickSearchQuery(subQuery, column);
           }
@@ -120,25 +125,16 @@ public class DashboardTaskSearchCriteria {
 
   private void appendCustomFieldsForQuickSearchQuery(TaskQuery subQuery, ColumnModel column) {
     switch (column.getType()) {
-    case CUSTOM_CASE -> {
-      appendCaseQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column));
-//      CaseQuery subCaseQuery = applyCaseFilter(column, column.getField(), this.quickSearchKeyword, null, null, null);
-//      subQuery.where().or().cases(subCaseQuery);
-    }
-    case CUSTOM -> {
-      appendTaskQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column));
-//      TaskQuery taskSubQuery = applyFilter(column, column.getField(), this.quickSearchKeyword, null, null, null);
-//      subQuery.where().or(taskSubQuery);
-    }
+    case CUSTOM_CASE -> appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column));
+    case CUSTOM -> appendQuickSearchTaskQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column));
     default -> {}
     }
   }
   
   private DashboardFilter selectStandandFieldToQuickSearchQuery(DashboardStandardTaskColumn columnEnum) {
     return switch (columnEnum) {
-      case NAME, DESCRIPTION, ID, CATEGORY, RESPONSIBLE -> buildQuickSearchToDashboardFilter(columnEnum.getField(), FilterOperator.CONTAINS, DashboardColumnType.STANDARD);
       case APPLICATION -> buildQuickSearchToDashboardFilter(columnEnum.getField(), FilterOperator.IN, DashboardColumnType.STANDARD);
-      default -> new DashboardFilter();
+      default -> buildQuickSearchToDashboardFilter(columnEnum.getField(), FilterOperator.CONTAINS, DashboardColumnType.STANDARD);
     };
   }
   
@@ -154,92 +150,6 @@ public class DashboardTaskSearchCriteria {
     filter.setValues(List.of(this.quickSearchKeyword));
     return filter;
   }
-  
-//
-//  private void queryApplicationByQuickSearch(TaskQuery query, String app) {
-//    final Optional<IApplication> appFindByName = IApplicationRepository.instance().findByName(app);
-//    if (appFindByName.isPresent()) {
-//      query.where().or().applicationId().isEqual(appFindByName.get().getId());
-//    }
-//  }
-//  
-//  
-//  private TaskQuery applyFilter(ColumnModel column, String field, String configuredFilter, String userFilter,
-//      String filterFrom, String filterTo) {
-//    TaskQuery subQuery = TaskQuery.create();
-//    ICustomFieldFilterQuery filterQuery = subQuery.where().customField();
-//    if (column.isNumber()) {
-//      if (StringUtils.isNotBlank(filterFrom)) {
-//        Number from = Double.parseDouble(filterFrom.toString());
-//        filterQuery.numberField(field).isGreaterOrEqualThan(from);
-//      }
-//
-//      if (StringUtils.isNotBlank(filterTo)) {
-//        Number to = Double.parseDouble(filterTo.toString());
-//        filterQuery.numberField(field).isLowerOrEqualThan(to);
-//      }
-//    } else if (column.isDate()) {
-//      Date from = Dates.parse(filterFrom);
-//      Date to = Dates.parse(filterTo);
-//      if (from != null) {
-//        filterQuery.timestampField(field).isGreaterOrEqualThan(from);
-//      }
-//
-//      if (to != null) {
-//        filterQuery.timestampField(field).isLowerOrEqualThan(DateUtils.addDays(to, 1));
-//      }
-//    } else if (column.isText()) {
-//      queryTextField(filterQuery, field, configuredFilter);
-//      if (!isInConfiguration) {
-//        queryTextField(filterQuery, field, userFilter);
-//      }
-//    } else {
-//      queryStringField(filterQuery, field, configuredFilter);
-//      if (!isInConfiguration) {
-//        queryStringField(filterQuery, field, userFilter);
-//      }
-//    }
-//    return subQuery;
-//  }
-//
-//  private CaseQuery applyCaseFilter(ColumnModel column, String field, String configuredFilter, String userFilter,
-//      String filterFrom, String filterTo) {
-//    CaseQuery subQuery = CaseQuery.create();
-//    ch.ivyteam.ivy.workflow.query.CaseQuery.ICustomFieldFilterQuery filterQuery = subQuery.where().customField();
-//    if (column.isNumber()) {
-//      if (StringUtils.isNotBlank(filterFrom)) {
-//        Number from = Double.parseDouble(filterFrom.toString());
-//        filterQuery.numberField(field).isGreaterOrEqualThan(from);
-//      }
-//
-//      if (StringUtils.isNotBlank(filterTo)) {
-//        Number to = Double.parseDouble(filterTo.toString());
-//        filterQuery.numberField(field).isLowerOrEqualThan(to);
-//      }
-//    } else if (column.isDate()) {
-//      Date from = Dates.parse(filterFrom);
-//      Date to = Dates.parse(filterTo);
-//      if (from != null) {
-//        filterQuery.timestampField(field).isGreaterOrEqualThan(from);
-//      }
-//
-//      if (to != null) {
-//        filterQuery.timestampField(field).isLowerOrEqualThan(DateUtils.addDays(to, 1));
-//      }
-//    } else if (column.isText()) {
-//      queryCaseTextField(filterQuery, field, configuredFilter);
-//      if (!isInConfiguration) {
-//        queryCaseTextField(filterQuery, field, userFilter);
-//      }
-//    } else {
-//      queryCaseStringField(filterQuery, field, configuredFilter);
-//      if (!isInConfiguration) {
-//        queryCaseStringField(filterQuery, field, userFilter);
-//      }
-//    }
-//    return subQuery;
-//  }
-
   
   public String getSortField() {
     return sortField;
