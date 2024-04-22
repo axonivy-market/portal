@@ -22,12 +22,14 @@ public class ClientSideTimeoutTest extends BaseTest {
 
   @Test
   public void testShowWarningDialog() {
+    resizeBrowserTo2kResolution();
     AdminSettingsPage adminSettingPage = setupClientSideTimeout2Minutes();
     assertTrue(adminSettingPage.isWarningDialogShowWhenTimeoutIsLosing());
   }
 
   @Test
   public void testShowInformDialog() {
+    resizeBrowserTo2kResolution();
     AdminSettingsPage adminSettingPage = setupClientSideTimeout2Minutes();
     assertTrue(adminSettingPage.isInformDialogShowAfterTimeout());
   }

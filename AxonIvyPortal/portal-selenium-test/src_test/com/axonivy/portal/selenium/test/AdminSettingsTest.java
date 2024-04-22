@@ -48,6 +48,7 @@ public class AdminSettingsTest extends BaseTest {
 
   @Test
   public void testDefaultEnvironmentInfo() {
+    resizeBrowserTo2kResolution();
     login(TestAccount.ADMIN_USER);
     createTestingTasks();
     NewDashboardPage homePage = new NewDashboardPage();
