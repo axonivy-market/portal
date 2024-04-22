@@ -5,7 +5,7 @@
 
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
-    <ui:define name="title">#{managedBean.getSelectedDashboardName()}</ui:define>
+    <ui:define name="title">#{managedBean.getSelectedDashboardName() == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dashboard') : managedBean.getSelectedDashboardName()}</ui:define>
     <ui:param name="loadGridStack" value="true" />
 
     <ui:define name="pageContent">
