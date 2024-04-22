@@ -51,20 +51,15 @@ public class TaskAnalysisWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testNavigateToAnalysisPage() {
-    TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
-    assertTrue(taskAnalysisWidgetPage.isDisplayed());
-  }
-
-  @Test
   public void testBackToStatisticPage() {
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
+    assertTrue(taskAnalysisWidgetPage.isDisplayed());
     statisticWidgetPage = taskAnalysisWidgetPage.navigateToStatisticPage();
     assertTrue(statisticWidgetPage.isDisplayed());
   }
 
   @Test
-  public void testAddColumns() {
+  public void testAddAndRemoveColumns() {
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
 
     taskAnalysisWidgetPage.clickOnColumnToggler();
@@ -80,25 +75,26 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     int numberOfColumns = taskAnalysisWidgetPage.findElementById("task-widget:statistic-result-form:task-table_head")
         .findElements(By.cssSelector("th[scope='col']:not(.ui-helper-hidden)")).size();
     assertEquals(numberOfColumns, numberOfCheckboxes);
-  }
 
-  @Test
-  public void testRemoveColumns() {
-    TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
-
+    refreshPage();
+    taskAnalysisWidgetPage.waitPageLoaded();
     taskAnalysisWidgetPage.clickOnColumnToggler();
+    List<SelenideElement> selectedColumnCheckboxes = columnContainer
+        .$$(By.cssSelector(".ui-chkbox-box.ui-state-active"));
 
-    SelenideElement columnContainer = taskAnalysisWidgetPage.findColumnContainer();
-    List<SelenideElement> selectedColumnCheckboxes =
-        columnContainer.$$(By.cssSelector(".ui-chkbox-box.ui-state-active"));
-    selectedColumnCheckboxes.get(0).shouldBe(Condition.and("should be clickable", visible, exist), DEFAULT_TIMEOUT)
+    selectedColumnCheckboxes.get(0)
+        .shouldBe(Condition.and("should be clickable", visible, exist),
+            DEFAULT_TIMEOUT)
         .click();
-    selectedColumnCheckboxes.get(1).shouldBe(Condition.and("should be clickable", visible, exist), DEFAULT_TIMEOUT)
+    selectedColumnCheckboxes.get(1)
+        .shouldBe(Condition.and("should be clickable", visible, exist),
+            DEFAULT_TIMEOUT)
         .click();
 
     taskAnalysisWidgetPage.waitPageLoaded();
 
-    int numberOfColumns = taskAnalysisWidgetPage.findElementById("task-widget:statistic-result-form:task-table_head")
+    numberOfColumns = taskAnalysisWidgetPage
+        .findElementById("task-widget:statistic-result-form:task-table_head")
         .$$(By.cssSelector("th[scope='col']:not(.ui-helper-hidden)"))
         .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0)).size();
 
@@ -151,28 +147,30 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     for (WebElement resultRow : results) {
       List<WebElement> resultCells = resultRow.findElements(By.cssSelector("td:not([class='ui-helper-hidden'])"));
       assertTrue(resultCells.get(0).getText().toLowerCase().contains(keyword));
-      assertTrue(resultCells.get(1).getText().equals("RUNNING"));
+      assertTrue("RUNNING".equals(resultCells.get(1).getText()));
     }
   }
 
   @Test
-  public void testApplyTaskCategoryFilter() {
+  public void testApplyCategoryFilters() {
+    resizeBrowserTo2kResolution();
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
+
+    // Task category filter
     taskAnalysisWidgetPage.openAdvancedTaskFilter("Category", "task-category");
     taskAnalysisWidgetPage.filterByTaskCategory("Other Leave");
     taskAnalysisWidgetPage.clickApplyFilter();
     ElementsCollection results = taskAnalysisWidgetPage.getRowsInTaskTable();
     results.shouldHave(CollectionCondition.size(2), DEFAULT_TIMEOUT);
-  }
 
-  @Test
-  public void testApplyCaseCategoryFilter() {
-    TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
-    taskAnalysisWidgetPage.openAdvancedCaseFilter("Case category", "case-category");
+    // Case category filter
+    taskAnalysisWidgetPage.resetFilter();
+    taskAnalysisWidgetPage.openAdvancedCaseFilter("Case category",
+        "case-category");
     taskAnalysisWidgetPage.filterByCaseCategory("Leave Request");
     taskAnalysisWidgetPage.clickApplyFilter();
 
-    ElementsCollection results = taskAnalysisWidgetPage.getRowsInTaskTable();
+    results = taskAnalysisWidgetPage.getRowsInTaskTable();
     results.shouldHave(CollectionCondition.size(4), DEFAULT_TIMEOUT);
   }
 
@@ -188,7 +186,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     taskAnalysisWidgetPage.clickApplyFilter();
 
     ElementsCollection results = taskAnalysisWidgetPage.getRowsInTaskTable();
-    assertEquals(2, results.size());
+    results.shouldHave(CollectionCondition.size(2), DEFAULT_TIMEOUT);
     updatePortalSetting(ENABLE_CASE_OWNER_SETTING, "false");
   }
 
@@ -237,7 +235,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     List<WebElement> resultCells = secondTaskAnalysisWidgetPage.getRowsInTaskTable().get(0)
         .findElements(By.cssSelector("td:not([class='ui-helper-hidden'])"));
     assertTrue(resultCells.get(0).getText().toLowerCase().contains("request"));
-    assertTrue(resultCells.get(1).getText().equals("RUNNING"));
+    assertTrue("RUNNING".equals(resultCells.get(1).getText()));
     assertTrue(resultCells.get(2).getText().toLowerCase().contains("annual"));
   }
 
@@ -264,7 +262,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     List<WebElement> resultCells = secondTaskAnalysisWidgetPage.getRowsInTaskTable().get(0)
         .findElements(By.cssSelector("td:not([class='ui-helper-hidden'])"));
     assertTrue(resultCells.get(0).getText().toLowerCase().contains("request"));
-    assertTrue(resultCells.get(1).getText().equals("RUNNING"));
+    assertTrue("RUNNING".equals(resultCells.get(1).getText()));
     assertTrue(resultCells.get(2).getText().toLowerCase().contains("annual"));
   }
 

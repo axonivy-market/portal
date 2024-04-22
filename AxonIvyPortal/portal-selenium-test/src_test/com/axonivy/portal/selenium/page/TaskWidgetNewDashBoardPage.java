@@ -324,7 +324,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public ElementsCollection getActiveTaskActions(int taskIndex) {
     clickOnTaskActionLink(taskIndex);
     return $$(String.format("div.js-task-side-steps-panel-task_1-%d", taskIndex)).filter(appear).first()
-        .shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='option-item']");
+        .shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content")
+        .$$("a[class*='option-item']")
+        .filter(Condition.not(Condition.cssClass("ui-state-disabled")));
   }
 
   public void clickOnTaskActionLink(int taskIndex) {

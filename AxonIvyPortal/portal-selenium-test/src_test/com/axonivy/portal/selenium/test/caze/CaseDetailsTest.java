@@ -523,7 +523,7 @@ public class CaseDetailsTest extends BaseTest {
     relatedCaseDetailsPage.getNumberOfHistoryForRelatedCaseLink().shouldHave(size(0), DEFAULT_TIMEOUT);
     detailsPage = relatedCaseDetailsPage.openBusinessCaseFromTechnicalCase();
     detailsPage.getNumberOfHistory().shouldHave(size(4), DEFAULT_TIMEOUT);
-    detailsPage.getNumberOfHistoryForRelatedCaseLink().shouldHave(size(2), DEFAULT_TIMEOUT);
+    detailsPage.getNumberOfHistoryForRelatedCaseLink().shouldHave(size(4), DEFAULT_TIMEOUT);
     var relaledCaseName = detailsPage.getContentOfHistoryTableRelatedCaseColumn(0);
     assertTrue(relaledCaseName.startsWith("#"));
     assertTrue(relaledCaseName.contains(subCaseId));
