@@ -265,6 +265,10 @@ function handleError(xhr, renderDetail, isShowErrorLog){
   if (xhr.statusText === 'abort') {
     return;
   }
+
+  // Hide AJAX loader that block the error dialog
+  $('.portal-ajax-loader').hide();
+
   if (renderDetail) {
     $("a[id$='ajax-indicator:ajax-indicator-show-more']").click(function() {
       $("[id$='ajax-indicator:error-code']").text(xhr.status);
