@@ -30,6 +30,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 @SessionScoped
 public class MasterDataBean implements Serializable {
 
+  private static final String PORTAL_NAME = " - Portal - ";
   private static final long serialVersionUID = 1L;
   private static final String APPLICATION_NAME = GlobalVariable.APPLICATION_NAME.getKey();
 
@@ -111,6 +112,6 @@ public class MasterDataBean implements Serializable {
 
   public String getPageTitle() {
     String applicationName = Ivy.var().get(APPLICATION_NAME);
-    return " - Portal - " + applicationName;
+    return PORTAL_NAME + applicationName;
   }
 }
