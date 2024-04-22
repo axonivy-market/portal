@@ -360,7 +360,11 @@ public class TaskWidgetPage extends TemplatePage {
     clickOnTaskActionLink(taskIndex);
     WebElement actionPanel = findElementByCssSelector(String.format(
         "div[id$='task-list-scroller:%d:task-item:task-action:additional-options:side-steps-panel']", taskIndex));
-    return actionPanel.findElements(By.cssSelector("a[class*='option-item']")).stream().map(WebElement::getText)
+    return actionPanel.findElements(By.cssSelector("a[class*='option-item']"))
+        .stream()
+        .filter(
+            elem -> !elem.getAttribute("class").contains("ui-state-disabled"))
+        .map(WebElement::getText)
         .collect(Collectors.toList());
   }
 

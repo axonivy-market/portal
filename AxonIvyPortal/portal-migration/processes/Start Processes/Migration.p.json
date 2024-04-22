@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "175F92F71BC45295",
   "config" : {
     "data" : "portalmigration.Data"
@@ -98,7 +98,7 @@
         } ],
       "visual" : {
         "at" : { "x" : 336, "y" : 192 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f11", "to" : "f1" }
