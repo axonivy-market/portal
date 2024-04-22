@@ -1828,6 +1828,7 @@ body .ui-widget.new-widget-dialog__introduction {
   display: inline-block;
   align-items: flex-start;
   max-width: 34vw;
+  overflow-wrap: anywhere;
 }
 
 .dashboard-widget-filter__filter-panel > div.remove-filter-panel {
@@ -1838,6 +1839,7 @@ body .ui-widget.new-widget-dialog__introduction {
   margin-left: 0.5em;
   display: flex;
   align-items: center;
+  min-width: 2vw;
 }
 
 .dashboard-widget-filter__filter-panel > div.filter-selection-panel,

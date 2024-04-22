@@ -1672,10 +1672,6 @@ body .notification-full-scroll>.ui-datascroller-content  {
   overflow:auto;
 }
 
-body .notification-checkbox .ui-chkbox-box {
-  width: 1rem;
-  height: 1rem;
-}
 .notification-checkbox .ui-chkbox-label {
   var(--notification-label-font-size);
 }
@@ -1845,4 +1841,8 @@ i.dashboard-icon-drag-drop {
 .filter-panel .filter-area{
   height:90%;
   overflow:auto;
+}
+
+.ui-selectonemenu-label {
+  padding-right: 3rem !important;
 }
