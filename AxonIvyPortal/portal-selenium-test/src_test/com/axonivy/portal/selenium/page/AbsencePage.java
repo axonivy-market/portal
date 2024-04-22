@@ -59,7 +59,9 @@ public class AbsencePage extends TemplatePage {
 
   public String getMyDisabledDeputy(int deputyRoleIndex) {
     String deputiesSelector = String
-        .format("span[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
+        .format(
+            "a[id$='absences-management-form:substitute-table:%d:selected-deputies-link']",
+            deputyRoleIndex);
     return $(deputiesSelector).shouldBe(appear, DEFAULT_TIMEOUT).getText();
   }
 
