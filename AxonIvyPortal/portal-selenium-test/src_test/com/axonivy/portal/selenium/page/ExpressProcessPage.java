@@ -146,7 +146,7 @@ public class ExpressProcessPage extends TemplatePage {
     }
 
     final String TASK_TYPE_FORMAT = "li[id$=':%d:task-type_%d']";
-    final String TASK_TYPE_LABEL_FORMAT = "label[id$=':%d:task-type_label']";
+    final String TASK_TYPE_LABEL_FORMAT = "span[id$=':%d:task-type_label']";
 
     $(String.format(TASK_TYPE_LABEL_FORMAT, taskIndex)).shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();

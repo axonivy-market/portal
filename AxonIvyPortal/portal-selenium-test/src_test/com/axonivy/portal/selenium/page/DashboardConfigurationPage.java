@@ -311,7 +311,8 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   private SelenideElement findPrivateDashboardRowByName(String dashboardName) {
-    return $("[id$=':dashboard-table_data']").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr[role='row']").asFixedIterable()
+    return $("[id$=':dashboard-table_data']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$$("tr.ui-widget-content").asFixedIterable()
         .stream().filter(row -> row.getText().contains(dashboardName)).findFirst().get();
   }
 
@@ -338,7 +339,8 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   private SelenideElement findPublicDashboardRowByName(String dashboardName) {
-    return $("[id$=':dashboard-table_data']").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr[role='row']").asFixedIterable()
+    return $("[id$=':dashboard-table_data']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$$("tr.ui-widget-content").asFixedIterable()
         .stream().filter(row -> row.getText().contains(dashboardName)).findFirst().get();
   }
 
