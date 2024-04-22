@@ -421,6 +421,9 @@ public class DashboardProcessWidgetTest extends BaseTest {
   @Test
   public void testSortProcessCompactProcessModeCustomSorting() {
     resizeBrowserTo2kResolution();
+    createTestingTasks();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForCaseWidgetLoaded();
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectCompactMode();
@@ -434,8 +437,6 @@ public class DashboardProcessWidgetTest extends BaseTest {
         .shouldHave(Condition.exactTextCaseSensitive(CLEAN_ABSENCES));
     int fromIndex = 0;
     int toIndex = 6;
-    editProcessWidgetConfiguration.dragAndDropProcess(fromIndex, toIndex);
-    editProcessWidgetConfiguration.dragAndDropProcess(fromIndex, toIndex);
     editProcessWidgetConfiguration.dragAndDropProcess(fromIndex, toIndex);
     editProcessWidgetConfiguration.save();
     editProcessWidgetConfiguration = newDashboardPage.editProcessWidgetConfiguration();
