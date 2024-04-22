@@ -208,34 +208,38 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   }
 
   public boolean loadFilterSet(String filterSetName, boolean isPersonalFilter) {
-    try {
-      waitPageLoaded();
-      waitForElementDisplayed(
-          $("a[id$='task-widget:filter-selection-form:filter-name']"), true);
-      waitForElementClickableThenClick(
-          "a[id$='task-widget:filter-selection-form:filter-name']");
-      waitForElementDisplayed(
-          findElementById(
-              "task-widget:filter-selection-form:filter-name-overlay-panel"),
-          true);
-      SelenideElement filterContainer = null;
-      if (isPersonalFilter) {
+    waitPageLoaded();
+    waitForElementDisplayed(
+        $("a[id$='task-widget:filter-selection-form:filter-name']"), true);
+    waitForElementClickableThenClick(
+        "a[id$='task-widget:filter-selection-form:filter-name']");
+    waitForElementDisplayed(
+        findElementById(
+            "task-widget:filter-selection-form:filter-name-overlay-panel"),
+        true);
+    SelenideElement filterContainer = null;
+    if (isPersonalFilter) {
+      try {
         filterContainer = findElementById(
             "task-widget:filter-selection-form:private-filters");
-      } else {
-        filterContainer = findElementById(
-            "task-widget:filter-selection-form:public-filters");
-      }
-
-      if (!filterContainer.$(By.linkText(filterSetName)).isDisplayed()) {
+      } catch (NoSuchElementException e) {
         return false;
       }
-      clickByJavaScript(filterContainer.$(By.linkText(filterSetName))
-          .shouldBe(appear, DEFAULT_TIMEOUT));
-      return true;
-    } catch (NoSuchElementException e) {
+    } else {
+      try {
+        filterContainer = findElementById(
+            "task-widget:filter-selection-form:public-filters");
+      } catch (NoSuchElementException e) {
+        return false;
+      }
+    }
+
+    if (!filterContainer.$(By.linkText(filterSetName)).isDisplayed()) {
       return false;
     }
+    clickByJavaScript(filterContainer.$(By.linkText(filterSetName))
+        .shouldBe(appear, DEFAULT_TIMEOUT));
+    return true;
   }
 
   public String getFilterName() {
