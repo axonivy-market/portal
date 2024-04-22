@@ -112,6 +112,7 @@
             <p:inputTextarea id="external-description" value="#{processWidgetBean.editedExternalLink.description}"
               maxlength="200" rows="3" />
             <p:commandButton id="edit-description-language-button" icon="si si-chat-translate" 
+              actionListener="#{processWidgetBean.updateDescriptionByLocale()}"
               process="#{cc.clientId}:edit-process-form:external-description"
               update="#{cc.clientId}:text-area-edit-multiple-languages-dialog"
               oncomplete="PF('text-area-edit-multiple-languages-dialog').show();" />
@@ -261,7 +262,7 @@
         <p:inputText id="external-link-name" value="#{externalLinkBean.externalLink.name}" required="true"
           maxlength="85" 
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
-        <p:commandButton id="add-name-language-button"  icon="si si-chat-translate" 
+        <p:commandButton id="add-name-language-button" icon="si si-chat-translate" 
           actionListener="#{externalLinkBean.updateNameByLocale()}"
           process="#{cc.clientId}:add-external-link-form:external-link-name"
           update="#{cc.clientId}:name-language-config:multiple-languages-dialog"
