@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.bean;
 
-import static ch.ivy.addon.portalkit.constant.PortalConstants.MAX_USERS_IN_AUTOCOMPLETE;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.io.IOException;
@@ -28,6 +27,7 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
+import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.util.ExternalLinkUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
@@ -52,7 +52,6 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.exec.Sudo;
@@ -228,7 +227,8 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   public String getDisplayNameOfPermissionsWhenEditingExternalLink() {
-    return String.join(", ", getSelectedPermissionsWhenEditingExternalLink());
+    List<String> displayNames = getselectedSecurityMemberDTOsWhenEditingExternalLink().stream().map(dto -> dto.getDisplayName()).toList();
+    return String.join(", ", displayNames);
   }
 
   public void editExpressWorkflow(ExpressProcess process) throws IOException {
@@ -464,16 +464,21 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     }
   }
 
-  private List<SecurityMemberDTO> getSecurityMemberDTOsFromPermissions(List<String> permissions) {
-    Map<String, SecurityMemberDTO> nameToSecurityMemberDTO = SecurityMemberUtils
-        .findSecurityMembers("", 0, MAX_USERS_IN_AUTOCOMPLETE)
-        .stream().filter(securityMember -> !securityMember.isUser())
-        .collect(Collectors.toMap(SecurityMemberDTO::getMemberName, v -> v));
-    var responsibles = permissions.stream().filter(Objects::nonNull).distinct()
-        .filter(permission -> !permission.startsWith("#"))
-        .map(permission -> nameToSecurityMemberDTO.get(permission))
-        .filter(Objects::nonNull).collect(Collectors.toSet());
-    return new ArrayList<>(responsibles);
+  private List<SecurityMemberDTO> getSecurityMemberDTOsFromPermissions(
+      List<String> permissions) {
+    if (CollectionUtils.isEmpty(permissions)) {
+      return new ArrayList<>();
+    }
+
+    return permissions.stream().filter(Objects::nonNull).distinct()
+        .map(permission -> findSecurityMemberDtoByName(permission))
+        .collect(Collectors.toList());
+  }
+
+  private SecurityMemberDTO findSecurityMemberDtoByName(String permission) {
+    return permission.startsWith("#")
+        ? new SecurityMemberDTO(UserUtils.findUserByUsername(permission))
+        : new SecurityMemberDTO(RoleUtils.findRole(permission));
   }
 
   public Map<String, List<Process>> getProcessesByAlphabet() {
