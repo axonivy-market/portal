@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.common;
 
 import static com.codeborne.selenide.Condition.and;
-
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.exist;
@@ -34,7 +33,7 @@ public class ComplexFilterHelper {
 
   public static void selectFilterOperator(FilterOperator operator, int filterIndex) {
     var filterElement = getNewFilter(filterIndex);
-    filterElement.$("div[id$=':operator-selection']").shouldBe(getClickableCondition()).click();
+    filterElement.$("div[id$=':operator-selection']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     WaitHelper.waitForActionComplete(".dashboard-widget-filter__main-panel",
         () -> $("div[id$=':operator-selection_panel'] ul[id$=':operator-selection_items']").$$("li")
             .filter(text(operator.getValue())).first().click());
