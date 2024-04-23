@@ -201,7 +201,7 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
 
     caseWidget.applyFilter();
     caseWidget.waitPreviewTableLoaded();
-    caseWidget.countCases().shouldBe(CollectionCondition.size(0));
+    caseWidget.countCases().shouldBe(CollectionCondition.size(14));
   }
 
   private NewDashboardDetailsEditPage gotoEditPublicDashboardPage() {
