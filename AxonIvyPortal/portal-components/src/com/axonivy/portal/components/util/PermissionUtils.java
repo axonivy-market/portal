@@ -17,4 +17,17 @@ public class PermissionUtils {
   public static boolean checkReadAllCasesPermission() {
     return Ivy.session().hasPermission(ISecurityContext.current().securityDescriptor(), IPermission.CASE_READ_ALL);
   }
+
+  /**
+   * Check if current user has the permission to read all cases which his roles
+   * involved.
+   *
+   * @return True : has the permission to read all cases which his roles
+   *         involved.
+   */
+  public static boolean checkCaseReadAllOwnRoleInvolvedPermission() {
+    return Ivy.session().hasPermission(
+        ISecurityContext.current().securityDescriptor(),
+        IPermission.CASE_READ_ALL_OWN_ROLE_INVOLVED);
+  }
 }

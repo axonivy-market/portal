@@ -1,6 +1,5 @@
 package ch.ivy.addon.portal.generic.bean;
 
-import static ch.ivy.addon.portalkit.constant.PortalConstants.MAX_USERS_IN_AUTOCOMPLETE;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.WELCOME;
 
 import java.io.ByteArrayInputStream;
@@ -44,7 +43,6 @@ import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -82,22 +80,32 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     this.selectedDashboardPermissions = new ArrayList<>();
     this.selectedDashboard = dashboard;
     if (StringUtils.isBlank(this.selectedDashboard.getIcon())) {
-      this.selectedDashboard.setIcon(this.isPublicDashboard ? PUBLIC_DASHBOARD_DEFAULT_ICON : PRIVATE_DASHBOARD_DEFAULT_ICON);
+      this.selectedDashboard
+          .setIcon(this.isPublicDashboard ? PUBLIC_DASHBOARD_DEFAULT_ICON
+              : PRIVATE_DASHBOARD_DEFAULT_ICON);
     }
-    dashboard.setPermissionDTOs(new ArrayList<>());
-    Map<String, SecurityMemberDTO> nameToSecurityMemberDTO = SecurityMemberUtils.findSecurityMembers("", 0, MAX_USERS_IN_AUTOCOMPLETE)
-            .stream().filter(securityMember -> !securityMember.isUser())
-            .collect(Collectors.toMap(SecurityMemberDTO::getMemberName, v -> v));
-    List<String> permissions = dashboard.getPermissions();
-    if (CollectionUtils.isNotEmpty(permissions)) {
-      var responsibles = permissions.stream().filter(Objects::nonNull).distinct()
-          .filter(permission -> !permission.startsWith("#")).map(permission -> nameToSecurityMemberDTO.get(permission))
-          .filter(Objects::nonNull).collect(Collectors.toSet());
-      this.selectedDashboardPermissions = responsibles.stream().map(SecurityMemberDTO::getName).collect(Collectors.toList());
-      dashboard.setPermissionDTOs(new ArrayList<>(responsibles));
-    }
+
+    initDashboardPermissions(dashboard);
+  }
+
+  private void initDashboardPermissions(Dashboard dashboard) {
+    dashboard.setPermissionDTOs(Optional.ofNullable(dashboard)
+        .map(Dashboard::getPermissions).orElse(new ArrayList<>()).stream()
+        .filter(Objects::nonNull).distinct()
+        .map(permission -> findSecurityMemberDtoByName(permission))
+        .collect(Collectors.toList()));
+
+    this.selectedDashboardPermissions = Optional.ofNullable(dashboard)
+        .map(Dashboard::getPermissionDTOs).orElse(new ArrayList<>()).stream()
+        .map(SecurityMemberDTO::getName).collect(Collectors.toList());
   }
   
+  private SecurityMemberDTO findSecurityMemberDtoByName(String permission) {
+    return permission.startsWith("#")
+        ? new SecurityMemberDTO(UserUtils.findUserByUsername(permission))
+        : new SecurityMemberDTO(RoleUtils.findRole(permission));
+  }
+
   public List<SecurityMemberDTO> completePermissions(String query) {
     return RoleUtils.findRoles(null, selectedDashboardPermissions, query).stream()
         .map(SecurityMemberDTOMapper::mapFromRoleDTO).collect(Collectors.toList());
@@ -224,10 +232,9 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
 
   public String generateDashboardPermisisonForDisplay(Dashboard dashboard) {
-    return Optional.ofNullable(dashboard)
-        .map(Dashboard::getPermissions)
-        .filter(l -> CollectionUtils.isNotEmpty(l))
-        .isPresent() ? String.join(", ", RoleUtils.getDisplayNameOfRoles(dashboard.getPermissions())) : "";
+    return CollectionUtils.isNotEmpty(Optional.ofNullable(dashboard).map(Dashboard::getPermissions).get())
+        ? String.join(", ", RoleUtils.getDisplayNameOfRoles(dashboard.getPermissions()))
+        : "";
   }
   
   public void updateDashboardTitleByLocale() {

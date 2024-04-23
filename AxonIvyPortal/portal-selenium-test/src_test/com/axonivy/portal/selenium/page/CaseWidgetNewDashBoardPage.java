@@ -278,4 +278,10 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     return $("div[id$='empty-message-container'][class='empty-message-container ']").shouldBe(appear, DEFAULT_TIMEOUT)
         .isDisplayed();
   }
+
+  public boolean isEmptyMessageAppear() {
+    return $(
+        "div[id$='empty-message-container'][class='empty-message-container ']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
+  }
 }

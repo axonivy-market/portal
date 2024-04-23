@@ -63,9 +63,9 @@ public class BaseTest {
   protected String createTestingCaseUrlForDefaultAdditionalCaseDetails =
       "internalSupport/14B2FC03D2E87141/DefaultAdditionalCaseDetails.ivp";
   protected String createTestingCaseContainOneTask = "internalSupport/14B2FC03D2E87141/CreateSupportTicket.ivp";
-  protected String createTaskWithNotExistedActivatorUrl =
-      "internalSupport/14B2FC03D2E87141/createTaskWithNotExistedActivator.ivp";
-  protected String expressStartLink = "axonivy-express/15798655494F25E1/AxonIvyExpressWF.ivp";
+  protected String createTaskWithNotExistedActivatorUrl = "internalSupport/14B2FC03D2E87141/createTaskWithNotExistedActivator.ivp";
+  protected String createTaskForRoleInvolved = "InternalSupport/171E2BB0DB49C362/roleInvolved.ivp";
+  protected String expressStartLink = "axonIvyExpress/15798655494F25E1/AxonIvyExpressWF.ivp";
   protected String cleanupDataLink = "portalKitTestHelper/1511A66AF619A768/cleanData.ivp";
   protected String complexPaymentUrl = "portal-developer-examples/162511D2577DBA88/complexPayment.ivp";
   protected String createAlphaCompanyUrl = "portal-components-examples/1818977D467E3129/createAlphaCompany.ivp";
@@ -151,7 +151,8 @@ public class BaseTest {
   protected String grantPortalPermission = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
   protected String defaultProcessImageSelectionExampleUrl = "portal-developer-examples/179D499523153784/start.ivp";
   protected String createUserFavoriteProcess = "portalKitTestHelper/153CACC26D0D4C3D/createTestUserFavoriteProcess.ivp";
-
+  protected String grantCaseReadAllOwnRoleInvolvedPermission = "PortalKitTestHelper/14DE09882B540AD5/grantCaseReadAllOwnRoleInvolvedPermission.ivp";
+  protected String denyCaseReadAllOwnRoleInvolvedPermission = "PortalKitTestHelper/14DE09882B540AD5/denyCaseReadAllOwnRoleInvolvedPermission.ivp";
 
   protected void redirectToNewDashBoard() {
     open(EngineUrl.createProcessUrl(PORTAL_HOME_PAGE_URL));
