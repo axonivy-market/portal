@@ -225,9 +225,9 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public void changeOperator(String filterLabel, FilterOperator operator, String type) {
     String typeInput = String.format("div[id$=':%s-filter-operator-panel']", type);
     $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$=':filter-container']")
-        .$$("label[id$=':field-selection_label']").filter(text(filterLabel)).first().shouldBe(appear, DEFAULT_TIMEOUT);
+        .$$("span[id$=':field-selection_label']").filter(text(filterLabel)).first().shouldBe(appear, DEFAULT_TIMEOUT);
 
-    $(typeInput).shouldBe(getClickableCondition()).$("label[id$=':operator-selection_label']").click();
+    $(typeInput).shouldBe(getClickableCondition()).$("span[id$=':operator-selection_label']").click();
 
     $$("li").filter(text(operator.getValue())).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
