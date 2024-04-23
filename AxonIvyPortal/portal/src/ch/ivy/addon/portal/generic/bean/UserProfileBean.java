@@ -23,6 +23,7 @@ import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelSubcriptionDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationEventDTO;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.notification.channel.NotificationSubscription;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -166,4 +167,15 @@ public class UserProfileBean implements Serializable {
     return events;
   }
 
+  public boolean canAccessProcessList() {
+    return PermissionUtils.checkAccessFullProcessListPermission();
+  }
+
+  public boolean canAccessTaskList() {
+    return PermissionUtils.checkAccessFullTaskListPermission();
+  }
+
+  public boolean canAccessCaseList() {
+    return PermissionUtils.checkAccessFullCaseListPermission();
+  }
 }
