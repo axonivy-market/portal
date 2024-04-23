@@ -334,8 +334,8 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void saveAfterAddingCustomField() {
-    $("button[id$='column-management-save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("button#widget-configuration-save-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    saveColumn();
+    save();
     $("span#dashboard-header-action").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("button#back-to-configuration")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     $("button#back-to-home-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
@@ -347,6 +347,6 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     for (String fieldName : fieldNameList) {
       addCustomField(fieldName);
     }
-    $("button[id$='column-management-save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    saveColumn();
   }
 }
