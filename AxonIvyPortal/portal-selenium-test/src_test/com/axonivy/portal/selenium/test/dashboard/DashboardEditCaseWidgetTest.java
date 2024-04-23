@@ -51,7 +51,7 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Leave Request");
     caseWidget.applyFilter();
     caseWidget.waitPreviewTableLoaded();
-    caseWidget.countCases().shouldBe(CollectionCondition.size(1));
+    caseWidget.countCases().shouldBe(CollectionCondition.size(1), DEFAULT_TIMEOUT);
 
     caseWidget.removeFilter(0);
     caseWidget.removeFilter(0);
@@ -60,7 +60,7 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "List", "Pi");
     caseWidget.applyFilter();
     caseWidget.waitPreviewTableLoaded();
-    caseWidget.countCases().shouldBe(CollectionCondition.size(2));
+    caseWidget.countCases().shouldBe(CollectionCondition.size(2), DEFAULT_TIMEOUT);
 
     caseWidget.addFilter(NAME_STR, FilterOperator.EMPTY);
     caseWidget.applyFilter();
@@ -73,12 +73,12 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Or", "Te");
     caseWidget.applyFilter();
     caseWidget.waitPreviewTableLoaded();
-    caseWidget.countCases().shouldBe(CollectionCondition.size(2));
+    caseWidget.countCases().shouldBe(CollectionCondition.size(2), DEFAULT_TIMEOUT);
     caseWidget.addFilter(NAME_STR, FilterOperator.NOT_START_WITH);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Or", "Te");
     caseWidget.applyFilter();
     caseWidget.waitPreviewTableLoaded();
-    caseWidget.countCases().shouldBe(CollectionCondition.size(0));
+    caseWidget.countCases().shouldBe(CollectionCondition.size(0), DEFAULT_TIMEOUT);
     caseWidget.addFilter(NAME_STR, FilterOperator.END_WITH);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Or", "Te");
     caseWidget.closeFilter();
