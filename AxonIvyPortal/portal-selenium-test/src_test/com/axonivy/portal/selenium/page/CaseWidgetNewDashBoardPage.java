@@ -108,7 +108,8 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   public void openFilterWidget() {
     $$("div.table-widget-panel").filter(text(caseWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT)
-        .$(".widget__filter-sidebar-link").shouldBe(getClickableCondition()).click();
+        .$(".widget__filter-sidebar-link")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
