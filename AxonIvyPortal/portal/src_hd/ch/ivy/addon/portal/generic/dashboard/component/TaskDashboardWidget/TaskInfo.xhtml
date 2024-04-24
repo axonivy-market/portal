@@ -70,9 +70,10 @@
         </div>
         <p:tooltip for="category" value="#{empty entry.categoryDisplayPath ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noCategory') : entry.categoryDisplayPath}"
           trackMouse="true" />
-        <div class="ui-g-4">
-          <span>#{entry.summary} #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks")}</span>
-        </div>
+        <h:panelGroup styleClass="ui-g-4 p-text-right" id="task-summary" layout="block">
+          <h:outputText styleClass="task-summary" value="#{entry.summary}"></h:outputText>
+        </h:panelGroup>
+        <p:tooltip for="task-summary" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks')}" trackMouse="true" />
       </ui:repeat>
     </div>
     <div class="ui-g" jsf:rendered="#{empty widget.taskByCategoryStatistic}">
