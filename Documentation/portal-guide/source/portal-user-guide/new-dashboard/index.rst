@@ -93,8 +93,8 @@ By clicking on the ``Filter`` button, you can configure the complex filter for y
 This panel allows you to:
 
 -  Edit the default sort order of the table rows by clicking on the column headers
--  define the order of the columns 
--  define the displayed set of columns by clicking on the link ``Manage Columns`` at the top right. You get the following dialog:
+-  Define the order of the columns 
+-  Define the displayed set of columns by clicking on the link ``Manage Columns`` at the top right. You get the following dialog:
 
 |task-list-widget-table-configuration|
 
@@ -108,6 +108,8 @@ In the table configuration panel, you find two sections:
       - Remove columns
 
 Portal supports to display **custom case fields** within the task list.
+
+|task-column-field-type-configuration|
 
 **Excel export**
 
