@@ -1818,6 +1818,7 @@ body .ui-widget.new-widget-dialog__introduction {
   align-items: flex-start;
   max-width: 34vw;
   overflow-wrap: anywhere;
+  width: calc(15% + 2.357rem)
 }
 
 .dashboard-widget-filter__filter-panel > div.remove-filter-panel {
@@ -1846,6 +1847,7 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .dashboard-widget-filter__filter-panel > div:first-child {
   margin-left: 0;
+  width: calc(12% + 2.357rem);
 }
 
 .dashboard-widget-filter__filter-panel .creator-filter-operation-panel {
@@ -1880,7 +1882,4 @@ body .ui-button.rounded-button.dashboard-widget-filter__remove-filter .ui-icon {
 .responsible-filter-operator-panel,
 .id-filter-operator-panel {
   min-width: 130px;
-}
-.text-list-filter{
-  max-width: 100%;
 }
