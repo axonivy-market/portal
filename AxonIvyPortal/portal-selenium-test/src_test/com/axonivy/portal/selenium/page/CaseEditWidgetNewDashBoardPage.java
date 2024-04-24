@@ -115,6 +115,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   public void waitPreviewTableLoaded() {
     $(caseEditWidgetId).$("div[id$=':dashboard-cases-container']").shouldBe(appear, DEFAULT_TIMEOUT);
     $(caseEditWidgetId).$(".case-dashboard-widget__loading-message").shouldHave(Condition.cssClass("u-display-none"), DEFAULT_TIMEOUT);
+    $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']").shouldNotHave(Condition.attribute("disabled", "disabled"),DEFAULT_TIMEOUT);
   }
 
   public void save() {
