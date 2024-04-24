@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
@@ -183,7 +184,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASK_WIDGET);
-    ScreenshotUtils.maximizeBrowser();
+    ScreenshotUtils.resizeBrowser(new Dimension(1980, 1080));
     addCustomFields(taskWidget, List.of("ShipmentDate","AccountNumber"));
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Shipment date", FilterOperator.BETWEEN);
@@ -198,7 +199,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASK_WIDGET);
-    ScreenshotUtils.maximizeBrowser();
+    ScreenshotUtils.resizeBrowser(new Dimension(1980, 1080));
     addCustomFields(taskWidget, List.of("ShipmentDate","AccountNumber"));
     
     taskWidget.openFilterWidget();
