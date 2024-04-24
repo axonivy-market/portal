@@ -1860,6 +1860,7 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .dashboard-widget-filter__filter-panel > div.and-text-panel {
   align-self: center;
+  width: 3%;
 }
 
 body .ui-button.rounded-button.dashboard-widget-filter__remove-filter {
