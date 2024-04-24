@@ -137,9 +137,9 @@ public class ComplexFilterHelper {
   }
 
   private static void handleFilterDateCurrent(SelenideElement filterElement, Object... values) {
-    var date_current = filterElement.$("[id$='current-period-panel']").shouldBe(getClickableCondition());
+    var date_current = filterElement.$("[id$=':current-period-selection']").shouldBe(getClickableCondition());
     date_current.click();
-    var selectPanel = $("div[id$=':current-period-selection_panel'][style*='display: block']").shouldBe(appear);
+    var selectPanel = $("div[id$=':current-period-selection_panel']").shouldBe(appear);
     selectPanel.$$("ul li").filter(text(String.valueOf(values[0]))).first().shouldBe(getClickableCondition())
         .click();
   }
