@@ -28,7 +28,7 @@
     <!-- Warning before leaving task -->
   <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="warning-before-leaving-task-component" componentId="task-leave-warning-dialog"
     widgetVar="logoutConfirmation" renderedDialog="#{data.isWorkingOnATask}" taskState="#{task.state}"
-    reserveActionListener="#{logic.reserveTask(task)}" reserveOnComplete="returnHomePage();"
+    reserveActionListener="#{logic.reserveTask(task)}" reserveOnComplete="hideErrorDialogAfterReserve(); returnHomePage();"
     cancelOnClick="PF('logoutConfirmation').hide();"
     isLogout="true" logoutActionListener="#{logic.logoutInDialog(task)}" logoutOnComplete="returnHomePage()">
   </ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask>
@@ -38,6 +38,10 @@
       showConfirmDialogBeforeUnload = false;
       window.open('#{userMenuBean.logoutPage}', '_self');
 	}
+
+    function hideErrorDialogAfterReserve() {
+      $('.js-notification-container').hide();
+    }
   </script>
 </cc:implementation>
 </html>
