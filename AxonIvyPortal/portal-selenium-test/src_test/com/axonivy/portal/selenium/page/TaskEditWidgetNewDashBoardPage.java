@@ -20,7 +20,8 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
 
   private static final String FILTER_TASK_NAME = "Task name";
   private String taskEditWidgetId;
-  private static final String TASK_NAME = FILTER_TASK_NAME;
+  private static final String CUSTOM_CASE_FIELD = "Custom case field";
+  private static final String CUSTOM_FIELD = "Custom field";
   private static final String STATE = "State";
 
   public TaskEditWidgetNewDashBoardPage() {
@@ -65,7 +66,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void filterTaskName(String taskName) {
-    getAvailableFilterInput(TASK_NAME).sendKeys(taskName);
+    getAvailableFilterInput(FILTER_TASK_NAME).sendKeys(taskName);
   }
 
   public void clickOnStateToShowDropdown() {
@@ -366,30 +367,76 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void removeFilter(int index) {
-  int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
-  if (currentIndex > 0) {
-    String removeBtn = String.format("button[id$=':%s:filter-component:remove-filter']", index);
-    $(removeBtn).shouldBe(getClickableCondition()).click();
-    countFilterSelect().shouldBe(CollectionCondition.size(currentIndex - 1), DEFAULT_TIMEOUT);
+    int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
+    if (currentIndex > 0) {
+      String removeBtn = String.format("button[id$=':%s:filter-component:remove-filter']", index);
+      $(removeBtn).shouldBe(getClickableCondition()).click();
+      countFilterSelect().shouldBe(CollectionCondition.size(currentIndex - 1), DEFAULT_TIMEOUT);
+    }
   }
-}
 
-public ElementsCollection countFilterSelect() {
-  return $$("[id$=':filter-component:field-selection_panel']");
-}
-public void addCustomColumns(String... fieldNameList) {
-  openColumnManagementDialog();
-  selectCustomType();
+  public ElementsCollection countFilterSelect() {
+    return $$("[id$=':filter-component:field-selection_panel']");
+  }
   
-  for(String fieldName : fieldNameList) {
-    addCustomFields(fieldName);
+  public void addCustomColumns(String... fieldNameList) {
+    openColumnManagementDialog();
+    selectCustomType();
+    
+    for(String fieldName : fieldNameList) {
+      addCustomFields(fieldName);
+    }
+    $("button[id$='column-management-save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
   }
-  $("button[id$='column-management-save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-}
+  
+  public void closeFilter() {
+    $("span[id$=':widget-title-group']").$("label").scrollIntoView(("{block: \"start\"}")).click();
+    $("div[id$=':widget-filter-content']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    waitPreviewTableLoaded();
+  }
 
-public void closeFilter() {
-  $("span[id$=':widget-title-group']").$("label").scrollIntoView(("{block: \"start\"}")).click();
-  $("div[id$=':widget-filter-content']").shouldBe(disappear, DEFAULT_TIMEOUT);
-  waitPreviewTableLoaded();
-}
+  public WebElement getQuickSearchCheckBox() {
+    return $("div[id$='filter-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+  }
+
+  public void clickOnQuickSearchCheckBox() {
+    getQuickSearchCheckBox().click();
+  }
+  
+  public boolean isQuickSearchClicked(String fieldName) {
+    return getColumnManagementDialog().$("div[id$='column-management-datatable']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("table tbody").$$("tr").filter(text(fieldName)).first()
+        .$("div[id$='quick-search-checkbox-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a").$("span span")
+        .getAttribute("class").contains("ui-icon-check");
+  }
+  
+  public void clickOnQuickSearchByField(String fieldName) {
+    getColumnManagementDialog().$("div[id$='column-management-datatable']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("table tbody").$$("tr").filter(text(fieldName)).first().$("div[id$='quick-search-checkbox-panel']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void addCustomFieldByCustomTypeAndFieldName(String customType, String fieldName) {
+    switch (customType) {
+    case (CUSTOM_FIELD):
+      customType = "custom-field";
+      selectCustomType();
+      getCustomFieldSelection().click();
+      break;
+    case (CUSTOM_CASE_FIELD):
+      customType = "custom-case-field";
+      selectCustomCaseType();
+      getCustomCaseFieldSelection().click();
+      break;
+    default:
+      break;
+    }
+    customType.toLowerCase();
+    String spanId = String.format("span[id*='%s-selection_panel']", customType);
+    $(spanId).$("ul").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li")
+        .filter(text(fieldName)).first().click();
+    getColumnManagementDialog().$("button[id$='field-add-btn']").click();
+  }
 }

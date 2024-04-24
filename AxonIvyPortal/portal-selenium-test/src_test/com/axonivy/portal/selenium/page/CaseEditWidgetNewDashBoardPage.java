@@ -6,6 +6,8 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import org.openqa.selenium.WebElement;
+
 import com.axonivy.portal.selenium.common.ComplexFilterHelper;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
@@ -349,5 +351,81 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
       addCustomField(fieldName);
     }
     saveColumn();
+  }
+  
+
+  public void clickOnQuickSearchCheckBox() {
+    getQuickSearchCheckBox().click();
+  }
+
+  public WebElement getQuickSearchCheckBox() {
+    return $("div[id$='filter-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+  }
+
+  public void clickOnQuickSearchByField(String fieldName) {
+    getColumnManagementDialog().$("div[id$='column-management-datatable']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("table tbody").$$("tr").filter(text(fieldName)).first().$("div[id$='quick-search-checkbox-panel']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public boolean isQuickSearchClicked(String fieldName) {
+    return getColumnManagementDialog().$("div[id$='column-management-datatable']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("table tbody").$$("tr").filter(text(fieldName)).first()
+        .$("div[id$='quick-search-checkbox-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a").$("span span")
+        .getAttribute("class").contains("ui-icon-check");
+  }
+  
+
+  public boolean isQuickSearchInputShow(String widgetIndex) {
+    String taskWidgetIndex = String.format("div[id*='case-case_%s']", widgetIndex);
+    waitPageLoaded();
+    return $(taskWidgetIndex).$("form").$("input").exists();
+  }
+
+  public String getQuickSearchInput() {
+    return getQuickSearchForm().$("input").getValue();
+  }
+
+  public void setInputForQuickSearch(String input) {
+    getQuickSearchForm().$("input").sendKeys(input);
+    waitForPageLoad();
+  }
+
+  private SelenideElement getQuickSearchForm() {
+    return $("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
+  }
+
+  public void clearQuickSearchInput() {
+    getQuickSearchForm().$("input").clear();
+    waitForPageLoad();
+  }
+//
+//  private SelenideElement getCaseWidgetHeader() {
+//    return $$("div.table-widget-panel").filter(text(caseWidgetName)).first();
+//  }
+//
+//  public void clickOnButtonExpandCaseWidget() {
+//    getCaseWidgetHeader().$(".expand-link").shouldBe(appear, DEFAULT_TIMEOUT)
+//        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+//  }
+//
+//  public void clickOnButtonCollapseCaseWidget() {
+//    getCaseWidgetHeader().$(".collapse-link").shouldBe(appear, DEFAULT_TIMEOUT)
+//        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+//  }
+//
+//  public ElementsCollection countAllCases() {
+//    return getAllCasesOfCaseWidget();
+//  }
+
+//  private ElementsCollection getAllCasesOfCaseWidget() {
+//    return getColumnsOfTableWidget().filter(Condition.cssClass("dashboard-cases__name"));
+//  }
+
+  public boolean isEmptyMessageAppear() {
+    return $("div[id$='empty-message-container'][class='empty-message-container ']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .isDisplayed();
   }
 }
