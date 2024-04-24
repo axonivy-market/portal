@@ -167,15 +167,15 @@ public class UserProfileBean implements Serializable {
     return events;
   }
 
-  public boolean canAccessProcessList() {
+  public Boolean canAccessProcessList() {
     return PermissionUtils.checkAccessFullProcessListPermission();
   }
 
-  public boolean canAccessTaskList() {
+  public Boolean canAccessTaskList() {
     return PermissionUtils.checkAccessFullTaskListPermission();
   }
 
-  public boolean canAccessCaseList() {
+  public Boolean canAccessCaseList() {
     return PermissionUtils.checkAccessFullCaseListPermission();
   }
 }

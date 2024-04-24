@@ -2,6 +2,8 @@ package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
@@ -93,7 +95,8 @@ public class WelcomeDashboardWidget extends DashboardWidget {
   }
 
   public String getWelcomeTextColor() {
-    if (!welcomeTextColor.startsWith("#")) {
+    if (StringUtils.isNotBlank(welcomeTextColor)
+        && !welcomeTextColor.startsWith("#")) {
       welcomeTextColor = "#" + welcomeTextColor;
     }
     return welcomeTextColor;

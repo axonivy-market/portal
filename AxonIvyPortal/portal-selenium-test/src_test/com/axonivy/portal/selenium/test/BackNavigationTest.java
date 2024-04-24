@@ -86,6 +86,7 @@ public class BackNavigationTest extends BaseTest {
     String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     String yesterday =
         LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
+    taskTemplatePage.waitForPageLoad();
     taskTemplatePage.inputValue("tester", yesterday, today, "tester");
     taskTemplatePage.clickOnSubmitButton();
 
