@@ -334,6 +334,7 @@ public class DashboardWidgetUtils {
     long numberOfFilters = switch (widget.getType()) {
     case CASE -> countCaseFilters(widget);
     case TASK -> countTaskFilters(widget);
+    case PROCESS -> countProcessFilters(widget);
     default -> 0;
     };
     if (numberOfFilters == 0) {
@@ -342,6 +343,22 @@ public class DashboardWidgetUtils {
 
     return Optional.of(numberOfFilters <= MAX_NOTI_FILTERS ? String.valueOf(numberOfFilters)
         : String.format(MAX_NOTI_PATTERN, MAX_NOTI_FILTERS));
+  }
+  
+  private static long countProcessFilters(DashboardWidget widget) {
+    List<ColumnModel> filterableColumns = ((CompactProcessDashboardWidget) widget).getFilterableColumns();
+    int numberOfFilters = 0;
+    for (ColumnModel col : filterableColumns) {
+      if (StringUtils.isNotEmpty(col.getUserFilter()) || CollectionUtils.isNotEmpty(col.getUserFilterList())
+          || StringUtils.isNotEmpty(col.getUserFilterFrom()) || col.getUserDateFilterFrom() != null
+          || StringUtils.isNotEmpty(col.getUserFilterTo()) || col.getUserDateFilterTo() != null) {
+        numberOfFilters++;
+      }
+      if (numberOfFilters > MAX_NOTI_FILTERS) {
+        break;
+      }
+    }
+    return numberOfFilters;
   }
 
   private static long countCaseFilters(DashboardWidget widget) {
