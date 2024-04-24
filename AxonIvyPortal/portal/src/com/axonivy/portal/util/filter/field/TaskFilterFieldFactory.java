@@ -61,11 +61,18 @@ public class TaskFilterFieldFactory {
   }
   
   public static FilterField findBy(String field) {
-    FilterField result = STANDARD_FILTER_FIELD.get(field);
-    if (result == null) {
-      result = findCustomFieldBy(field);
+    
+    if (STANDARD_FILTER_FIELD.containsKey(field)) {
+      return STANDARD_FILTER_FIELD.get(field);
     }
-    return result;
+    else if (CUSTOM_FILTER_FIELD.containsKey(field)) {
+      return CUSTOM_FILTER_FIELD.get(field);
+    }
+    else if (CUSTOM_CASE_FILTER_FIELD.containsKey(field)) {
+      return CUSTOM_CASE_FILTER_FIELD.get(field);
+    }
+    return null;
+    
   }
 
   public static CustomFilterField findCustomFieldBy(String field) {

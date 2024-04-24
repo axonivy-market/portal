@@ -34,9 +34,12 @@ import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.ProcessViewerWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.StatisticEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 import com.codeborne.selenide.CollectionCondition;
+
+import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
 public class DashboardScreenshotTest extends ScreenshotBaseTest {
@@ -206,8 +209,11 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "dashboard-multi-language-widget-dialog", new ScreenshotMargin(20));
 
     taskConfigurationPage.cancelMultiLanguageDialogWhenAddWidget();
+    taskConfigurationPage.openFilter();
+    taskConfigurationPage.addFilter("name", FilterOperator.EMPTY);
     ScreenshotUtils.captureElementScreenshot(taskConfigurationPage.getConfigurationFilter(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-configuration");
+    taskConfigurationPage.closeFilter();
     WebElement columnManagementDialog = taskConfigurationPage.openColumnManagementDialog();
     ScreenshotUtils.captureElementScreenshot(columnManagementDialog,
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-table-configuration");
@@ -384,7 +390,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     DashboardModificationPage editPage = new DashboardModificationPage();
     NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
     detailsEditPage.waitForCaseWidgetLoaded();
-    detailsEditPage.editWidgetById(1);
+    detailsEditPage.editWidgetById(1); 
     CaseEditWidgetNewDashBoardPage caseConfig = new CaseEditWidgetNewDashBoardPage();
     caseConfig.waitPreviewTableLoaded();
     ScreenshotUtils.executeDecorateJs("highlightShowFilterButton();");
@@ -423,7 +429,28 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     caseWidget.removeFocusFilterDialog();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseWidget.getConfigurationFilter(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-task-widget-filter-combine", new ScreenshotMargin(20));
-
+  }
+  
+  @Test
+  public void screenshotComplexFilterTaskWidget() throws IOException {
+    createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
+    login(TestAccount.ADMIN_USER);
+    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
+    homePage = new NewDashboardPage();
+    TaskWidgetNewDashBoardPage taskWidget = homePage.selectTaskWidget("Your Tasks");
+    ScreenshotUtils.maximizeBrowser();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Description", FilterOperator.EMPTY);
+    taskWidget.clickOnFilterOperator(0);
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskWidget.getConfigurationFilter(),ScreenshotUtils.NEW_DASHBOARD_FOLDER + "filter-operator-dropdown", new ScreenshotMargin(25));
+    taskWidget.removeFilter(0);
+    taskWidget.removeFilter(0);
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Annual Leave Request");
+    taskWidget.addFilter("Description", FilterOperator.NOT_EMPTY);
+    taskWidget.addFilter("State", null);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
+    ScreenshotUtils.captureElementScreenshot(taskWidget.getFilterOverlayPanel(0),ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-widget-complex-filter-configuration");
   }
   
   @Test

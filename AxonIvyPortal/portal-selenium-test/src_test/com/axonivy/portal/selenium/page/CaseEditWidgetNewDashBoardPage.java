@@ -81,6 +81,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   public void applyFilter() {
     $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']")
         .shouldBe(getClickableCondition()).click();
+    $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']").shouldNotHave(Condition.attribute("disabled", "disabled"),DEFAULT_TIMEOUT);
   }
 
   public void openFilter() {
@@ -114,6 +115,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   public void waitPreviewTableLoaded() {
     $(caseEditWidgetId).$("div[id$=':dashboard-cases-container']").shouldBe(appear, DEFAULT_TIMEOUT);
     $(caseEditWidgetId).$(".case-dashboard-widget__loading-message").shouldHave(Condition.cssClass("u-display-none"), DEFAULT_TIMEOUT);
+    $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']").shouldNotHave(Condition.attribute("disabled", "disabled"),DEFAULT_TIMEOUT);
   }
 
   public void save() {
@@ -333,8 +335,8 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void saveAfterAddingCustomField() {
-    $("button[id$='column-management-save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("button#widget-configuration-save-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    saveColumn();
+    save();
     $("span#dashboard-header-action").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("button#back-to-configuration")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     $("button#back-to-home-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
@@ -346,6 +348,6 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     for (String fieldName : fieldNameList) {
       addCustomField(fieldName);
     }
-    $("button[id$='column-management-save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    saveColumn();
   }
 }
