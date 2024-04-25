@@ -1,7 +1,9 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -23,6 +25,7 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PortalProcessViewerUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivyteam.ivy.IvyConstants;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.workflow.ICase;
 
@@ -46,8 +49,7 @@ public class CaseActionBean implements Serializable {
   public String getAdditionalCaseDetailsPageUri(ICase iCase) {
     String additionalCaseDetailsPageUri = StringUtils.EMPTY;
     if (isExpressCase(iCase)) {
-      additionalCaseDetailsPageUri = ExpressProcessService.getInstance().findExpressBusinessViewStartLink() + "?caseId="
-          + iCase.getId();
+      additionalCaseDetailsPageUri = ExpressProcessService.getInstance().findExpressBusinessViewStartLink() + "?caseId=" + iCase.getId();
     } else {
       additionalCaseDetailsPageUri = getBusinessDetailURLFromCustomField(iCase);
     }
@@ -55,41 +57,23 @@ public class CaseActionBean implements Serializable {
   }
 
   private String getBusinessDetailURLFromCustomField(ICase iCase) {
-    // Get additional case details page URI from the new custom field
-    // businessDetails
-    String additionalCaseDetailsPageUri = iCase.customFields()
-        .stringField(com.axonivy.portal.components.constant.CustomFields.BUSINESS_DETAILS).getOrNull();
-
-    // If cannot find additional case details page URI, find again with the old
-    // custom field CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE
+    String additionalCaseDetailsPageUri =
+        iCase.customFields().stringField(com.axonivy.portal.components.constant.CustomFields.BUSINESS_DETAILS)
+        .getOrNull();
     if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
       additionalCaseDetailsPageUri = iCase.customFields()
           .textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).getOrNull();
-    }
-
-    if (StringUtils.isNotEmpty(additionalCaseDetailsPageUri)) {
-      // Only adapt for relative paths URL (start with '/')
-      if (additionalCaseDetailsPageUri.startsWith("/")) {
-        // If found custom additional case details page URI
-        // adapt it to format {process model}/{request path}
-        additionalCaseDetailsPageUri = getProcessModelAndRequestPath(additionalCaseDetailsPageUri, iCase);
-
-        // Add caseId and embedInFrame to params of the url
-        additionalCaseDetailsPageUri = appendParamsToUrl(additionalCaseDetailsPageUri, iCase);
-
-        // Append application and process prefix parts to the url
-        additionalCaseDetailsPageUri = appendApplicationPartsToUrl(additionalCaseDetailsPageUri, iCase);
+      if (StringUtils.isNotEmpty(additionalCaseDetailsPageUri)) {
+        additionalCaseDetailsPageUri += (additionalCaseDetailsPageUri.contains("?") ? "&" : "?").concat("embedInFrame");
       }
-
-    } else {
-      // If cannot find custom additional case details page URI
-      // Set the default additional case details page URI
+    }
+    if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
       Map<String, String> params = new HashMap<>();
       params.put("caseId", String.valueOf(iCase.getId()));
-      additionalCaseDetailsPageUri = PortalNavigator.buildUrlByKeyword("showAdditionalCaseDetails",
-          START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE, params);
+      additionalCaseDetailsPageUri = PortalNavigator.buildUrlByKeyword("showAdditionalCaseDetails", START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE, params);
+    } else {
+      migrateOldAdditionalDetailsLink(additionalCaseDetailsPageUri, iCase);
     }
-
     return additionalCaseDetailsPageUri;
   }
 
@@ -180,5 +164,69 @@ public class CaseActionBean implements Serializable {
 
   public boolean showProcessViewer(ICase caze) {
     return PortalProcessViewerUtils.isShowProcessViewer(caze);
+  }
+  
+  /**
+   * Check if additionalCaseDetailsPageUri is an old ivy link format:
+   * /{WebServer.IvyContextName}/pro/{application}/{process model}/{request
+   * path}
+   * 
+   * @param additionalCaseDetailsPageUri
+   * @return
+   */
+  private boolean isOldAdditionalDetailsLink(
+      String additionalCaseDetailsPageUri) {
+    if (!additionalCaseDetailsPageUri.startsWith("/")) {
+      return false;
+    }
+
+    String linkToCheck = additionalCaseDetailsPageUri.substring(1);
+    List<String> linkParts = Arrays.asList(StringUtils.split(linkToCheck, "/"));
+
+    // If the link start with WebServer.IvyContextName
+    // followed by "pro"
+    // followed by the application name
+    // then it's an old ivy link.
+    if (additionalCaseDetailsPageUri
+        .startsWith(IApplication.current().getContextPath())
+        && (linkParts.indexOf("pro") == 1)
+        && (linkParts.indexOf(IApplication.current().getName()) == 2)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  public void migrateOldAdditionalDetailsLink(
+      String additionalCaseDetailsPageUri, ICase iCase) {
+    if (isOldAdditionalDetailsLink(additionalCaseDetailsPageUri)) {
+      String ivyContextNameAndApp = "/"
+          + IApplication.current().getContextPath() + "/"
+          + iCase.getApplication().getName();
+
+      String contextPart = "";
+      if (additionalCaseDetailsPageUri.startsWith(ivyContextNameAndApp)) {
+        contextPart = "/" + IApplication.current().getContextPath();
+      }
+
+      // If found custom additional case details page URI
+      // adapt it to format {process model}/{request path}
+      additionalCaseDetailsPageUri = getProcessModelAndRequestPath(
+          additionalCaseDetailsPageUri, iCase);
+
+      // Add caseId and embedInFrame to params of the url
+      additionalCaseDetailsPageUri = appendParamsToUrl(
+          additionalCaseDetailsPageUri, iCase);
+
+      // Append application and process prefix parts to the url
+      additionalCaseDetailsPageUri = appendApplicationPartsToUrl(
+          additionalCaseDetailsPageUri, iCase);
+
+      // Append context part
+      if (StringUtils.isNotBlank(contextPart)) {
+        additionalCaseDetailsPageUri = String.join("/", contextPart,
+            additionalCaseDetailsPageUri);
+      }
+    }
   }
 }
