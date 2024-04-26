@@ -36,7 +36,7 @@ pipeline {
                 if (changeLog) {
                   sh """
                     git commit -a -m "Updated all pom build.plugin.version=${params.buildPluginVersion}, ivy.engine.version=${params.ivyEngineVersion}"
-					git checkout -b ${params.branchToPush}
+                    git checkout -b ${params.branchToPush}
                     git push origin -u ${params.branchToPush}
                   """
                 } else {
