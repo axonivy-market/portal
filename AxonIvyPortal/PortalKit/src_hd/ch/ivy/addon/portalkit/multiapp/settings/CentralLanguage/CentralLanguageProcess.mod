@@ -221,7 +221,7 @@ import javax.faces.context.FacesContext;
 if (in.isWorkingOnATask) {
 	String messageId = "language-settings-form:language-settings:change-language-warning-message";
 	
-	FacesContext.getCurrentInstance().addMessage(messageId, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN, 
+	FacesContext.getCurrentInstance().addMessage(messageId, FacesMessageUtils.message(FacesMessage.SEVERITY_WARN, 
 		ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/languageSetting/warningMessageForChangeLanguage"), null));
 }' #txt
 Es0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

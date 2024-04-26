@@ -314,7 +314,7 @@ if (in.filterType == FilterType.ALL_USERS) {
 TaskFilterService service = new TaskFilterService();
 in.isFilterExisted = false;
 if (service.isFilterExisted(in.filterSetName, in.filterType, in.taskFilterGroupId)) {
-	FacesMessage message = FacesMessageUtils.sanitizedMessage( FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterExistedValidationError"), "");
+	FacesMessage message = FacesMessageUtils.message( FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterExistedValidationError"), "");
 	FacesContext.getCurrentInstance().addMessage("", message);
 	FacesContext.getCurrentInstance().validationFailed();
 	in.isFilterExisted = true;
@@ -428,7 +428,7 @@ import javax.faces.context.FacesContext;
 if (in.numberOfNewTask > 0){
 	FacesContext facesContext = FacesContext.getCurrentInstance();
 	String notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/newTaskNotification");
-	facesContext.addMessage("portal-global-growl-message", FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, notification, null));
+	facesContext.addMessage("portal-global-growl-message", FacesMessageUtils.message(FacesMessage.SEVERITY_INFO, notification, null));
 	PrimeFaces.current().ajax().update("portal-global-growl");        
 }' #txt
 Ts0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

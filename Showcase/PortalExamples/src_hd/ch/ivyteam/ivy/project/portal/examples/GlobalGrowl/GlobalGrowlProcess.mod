@@ -65,7 +65,7 @@ import javax.faces.context.Flash;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 
-FacesMessage message = FacesMessageUtils.sanitizedMessage("Task is done successfully");
+FacesMessage message = FacesMessageUtils.message("Task is done successfully");
 FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
 
 Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
@@ -124,7 +124,7 @@ import javax.faces.context.Flash;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 
-FacesMessage message = FacesMessageUtils.sanitizedMessage("You have cancelled and left the task successfully");
+FacesMessage message = FacesMessageUtils.message("You have cancelled and left the task successfully");
 FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
 
 Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();

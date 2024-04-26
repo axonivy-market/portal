@@ -571,7 +571,7 @@ ExpressProcessUtils utils = new ExpressProcessUtils();
 in.isAbleToExecute = utils.canFinishFormDefinition(in.data.definedTasks);
 if(!in.isAbleToExecute){
 	String growlTitle = ivy.cms.co("/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflowWarning");
-	FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN, growlTitle, null);
+	FacesMessage message = FacesMessageUtils.message(FacesMessage.SEVERITY_WARN, growlTitle, null);
 	FacesContext.getCurrentInstance().addMessage(null, message);
 }' #txt
 Ds0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -682,7 +682,7 @@ ExpressProcessUtils utils = new ExpressProcessUtils();
 in.isAbleToExecute = utils.canFinishFormDefinition(in.data.definedTasks);
 if(!in.isAbleToExecute){
 	String growlTitle = ivy.cms.co("/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflowWarning");
-	FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN, growlTitle, null);
+	FacesMessage message = FacesMessageUtils.message(FacesMessage.SEVERITY_WARN, growlTitle, null);
 	FacesContext.getCurrentInstance().addMessage(null, message);
 }' #txt
 Ds0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

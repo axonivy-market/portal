@@ -148,7 +148,7 @@ public class DragAndDropController implements Serializable {
   }
 
   private void displayFileUploadPositionNotice() {
-    FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO,
+    FacesMessage message = FacesMessageUtils.message(FacesMessage.SEVERITY_INFO,
         Ivy.cms().co("/Dialogs/components/CaseDocument/fileUploadElementPosition"), "");
     FacesContext.getCurrentInstance().addMessage("available-form-elements", message);
   }
@@ -161,7 +161,7 @@ public class DragAndDropController implements Serializable {
   }
 
   private void displayMaximumFileUploadElementError() {
-    FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
+    FacesMessage message = FacesMessageUtils.message(FacesMessage.SEVERITY_ERROR,
         Ivy.cms().co("/Dialogs/components/CaseDocument/maximumFileUploadElement"), "");
     FacesContext.getCurrentInstance().addMessage("available-form-elements", message);
   }

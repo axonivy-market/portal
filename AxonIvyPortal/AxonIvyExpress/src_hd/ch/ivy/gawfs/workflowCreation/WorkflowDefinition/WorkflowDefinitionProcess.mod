@@ -474,7 +474,7 @@ in.isValidAssignee = true;
 
 if (!(#selectedAssignee is initialized) || in.selectedAssigneeList.contains(selectedAssignee)) {
 	in.isValidAssignee = false;
-	FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, "", ivy.cms.co("/Dialogs/agileBPM/define_WF/ErrorSelectInvalidAssignee")));
+	FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.message(FacesMessage.SEVERITY_ERROR, "", ivy.cms.co("/Dialogs/agileBPM/define_WF/ErrorSelectInvalidAssignee")));
 }
 ' #txt
 Fs0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -753,7 +753,7 @@ Fs0 f66 actionCode 'import ch.ivy.addon.portal.generic.util.FacesMessageUtils;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 
-FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/ProcessNameExists"), "");
+FacesMessage message = FacesMessageUtils.message(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/ProcessNameExists"), "");
 FacesContext context = FacesContext.getCurrentInstance();
 context.addMessage(null, message);
 context.validationFailed();' #txt
