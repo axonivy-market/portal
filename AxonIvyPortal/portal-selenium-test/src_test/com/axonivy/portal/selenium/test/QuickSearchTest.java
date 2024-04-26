@@ -19,7 +19,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class QuickSearchTest extends BaseTest {
 
   private static final String YOUR_TASKS_WIDGET = "Your Tasks";
@@ -61,25 +61,6 @@ public class QuickSearchTest extends BaseTest {
   }
 
   @Test
-  public void testTaskQuickSearchDefaultFields() {
-    redirectToRelativeLink(create12CasesWithCategoryUrl);
-    login(TestAccount.ADMIN_USER);
-    redirectToNewDashBoard();
-    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
-
-    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
-    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
-    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    ScreenshotUtils.maximizeBrowser();
-    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
-    taskEditWidget.openColumnManagementDialog();
-
-    assertTrue(taskEditWidget.isQuickSearchClicked("name"));
-    assertTrue(taskEditWidget.isQuickSearchClicked("description"));
-
-  }
-
-  @Test
   public void testTaskQuickSearchStandardFields() {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     login(TestAccount.ADMIN_USER);
@@ -92,6 +73,10 @@ public class QuickSearchTest extends BaseTest {
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
     taskEditWidget.clickOnQuickSearchCheckBox();
     taskEditWidget.openColumnManagementDialog();
+    
+    assertTrue(taskEditWidget.isQuickSearchClicked("name"));
+    assertTrue(taskEditWidget.isQuickSearchClicked("description"));
+
     taskEditWidget.addFirstStandardField();
     taskEditWidget.clickOnQuickSearchByField("id");
     taskEditWidget.clickOnQuickSearchByField("activator");
@@ -231,35 +216,9 @@ public class QuickSearchTest extends BaseTest {
     taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
   }
 
-  // Case
-//  @Test
-//  public void testVisibilityOfQuickSearchOnCaseWidget() {
-//    redirectToRelativeLink(create12CasesWithCategoryUrl);
-//    login(TestAccount.ADMIN_USER);
-//    redirectToNewDashBoard();
-//    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
-//
-//    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
-//    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
-//    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-//    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
-//
-//    caseEditWidget.clickOnQuickSearchCheckBox();
-//    caseEditWidget.save();
-//    caseWidget.isQuickSearchInputShow("0");
-//
-//    caseWidget.setInputForQuickSearch("Create 12 cases with");
-//    caseWidget.countAllCases().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
-//    caseWidget.clearQuickSearchInput();
-//
-//    caseWidget.openEditWidget();
-//    caseEditWidget.clickOnQuickSearchCheckBox();
-//    caseEditWidget.save();
-//    assertFalse(caseWidget.isQuickSearchInputShow("0"));
-//  }
-
+//   Case
   @Test
-  public void testCaseQuickSearchDefaultFields() {
+  public void testVisibilityOfQuickSearchOnCaseWidget() {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
@@ -268,117 +227,127 @@ public class QuickSearchTest extends BaseTest {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+
+    caseEditWidget.clickOnQuickSearchCheckBox();
+    caseEditWidget.save();
+    caseWidget.isQuickSearchInputShow("0");
+
+    caseWidget.setInputForQuickSearch("Create 12 cases with");
+    caseWidget.countAllCases().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
+    caseWidget.clearQuickSearchInput();
+
+    caseWidget.openEditWidget();
+    caseEditWidget.clickOnQuickSearchCheckBox();
+    caseEditWidget.save();
+    assertFalse(caseWidget.isQuickSearchInputShow("0"));
+  }
+
+  @Test
+  public void testCaseQuickSearchStandardFields() {
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    login(TestAccount.ADMIN_USER);
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     ScreenshotUtils.maximizeBrowser();
     CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    caseEditWidget.clickOnQuickSearchCheckBox();
     caseEditWidget.openColumnManagementDialog();
-
     assertTrue(caseEditWidget.isQuickSearchClicked("name"));
     assertTrue(caseEditWidget.isQuickSearchClicked("description"));
 
+    caseEditWidget.addFirstStandardField();
+    caseEditWidget.clickOnQuickSearchByField("id");
+    caseEditWidget.clickOnQuickSearchByField("creator");
+    caseEditWidget.clickOnQuickSearchByField("category");
+    caseEditWidget.clickOnQuickSearchByField("application");
+
+    caseEditWidget.saveColumn();
+    caseEditWidget.save();
+
+    caseWidget.waitPageLoaded();
+
+    caseWidget.setInputForQuickSearch("engine");
+    assertTrue(caseWidget.isEmptyMessageAppear());
+    redirectToNewDashBoard();
+    caseWidget.clearQuickSearchInput();
+    caseWidget.setInputForQuickSearch("TestCase1");
+    caseWidget.countAllCases().shouldHave(size(3), DEFAULT_TIMEOUT);
+    caseWidget.clickOnButtonExpandCaseWidget();
+    caseWidget.countAllCases().shouldHave(size(3), DEFAULT_TIMEOUT);
+    caseWidget.clickOnButtonCollapseCaseWidget();
+    caseWidget.countAllCases().shouldHave(size(3), DEFAULT_TIMEOUT);
   }
 
-//  @Test
-//  public void testCaseQuickSearchStandardFields() {
-//    redirectToRelativeLink(create12CasesWithCategoryUrl);
-//    login(TestAccount.ADMIN_USER);
-//    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
-//
-//    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
-//    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
-//    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-//    ScreenshotUtils.maximizeBrowser();
-//    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
-//    caseEditWidget.clickOnQuickSearchCheckBox();
-//    caseEditWidget.openColumnManagementDialog();
-//    caseEditWidget.addFirstStandardField();
-//    caseEditWidget.clickOnQuickSearchByField("id");
-//    caseEditWidget.clickOnQuickSearchByField("creator");
-//    caseEditWidget.clickOnQuickSearchByField("category");
-//    caseEditWidget.clickOnQuickSearchByField("application");
-//
-//    caseEditWidget.saveColumn();
-//    caseEditWidget.save();
-//
-//    caseWidget.waitPageLoaded();
-//
-//    caseWidget.setInputForQuickSearch("engine");
-//    assertTrue(caseWidget.isEmptyMessageAppear());
-//    redirectToNewDashBoard();
-//    caseWidget.clearQuickSearchInput();
-//    caseWidget.setInputForQuickSearch("TestCase1");
-//    caseWidget.countAllCases().shouldHave(size(3), DEFAULT_TIMEOUT);
-//    caseWidget.clickOnButtonExpandCaseWidget();
-//    caseWidget.countAllCases().shouldHave(size(3), DEFAULT_TIMEOUT);
-//    caseWidget.clickOnButtonCollapseCaseWidget();
-//    caseWidget.countAllCases().shouldHave(size(3), DEFAULT_TIMEOUT);
-//  }
-//
-//  @Test
-//  public void testCaseQuickSearchKeywordSessionCache() {
-//    redirectToRelativeLink(create12CasesWithCategoryUrl);
-//    login(TestAccount.ADMIN_USER);
-//    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
-//
-//    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
-//    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
-//    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-//    ScreenshotUtils.maximizeBrowser();
-//
-//    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
-//    caseEditWidget.clickOnQuickSearchCheckBox();
-//    caseEditWidget.save();
-//
-//    caseWidget.waitPageLoaded();
-//
-//    caseWidget.setInputForQuickSearch("Create 12 cases");
-//    caseWidget.countAllCases().shouldHave(size(1), DEFAULT_TIMEOUT);
-//
-//    redirectToNewDashBoard();
-//    newDashboardPage = new NewDashboardPage();
-//    newDashboardPage.waitForCaseWidgetLoaded();
-//
-//    caseWidget = new CaseWidgetNewDashBoardPage();
-//    assertEquals("Create 12 cases", caseWidget.getQuickSearchInput());
-//    caseWidget.countAllCases().shouldHave(size(1), DEFAULT_TIMEOUT);
-//  }
-//
-//  @Test
-//  public void testCaseQuickSearchCustomFields() {
-//    redirectToRelativeLink(createTestingTasksUrl);
-//    login(TestAccount.ADMIN_USER);
-//    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
-//
-//    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
-//    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
-//    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-//    ScreenshotUtils.maximizeBrowser();
-//    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
-//    caseEditWidget.clickOnQuickSearchCheckBox();
-//    caseEditWidget.openColumnManagementDialog();
-//
-//    List<String> customFields = List.of("CustomerType", "SupportData");
-//
-//    customFields.stream().forEach(item -> caseEditWidget.addCustomColumnByName(item));
-//    customFields.stream().forEach(item -> caseEditWidget.clickOnQuickSearchByField(item));
-//
-//    caseEditWidget.saveColumn();
-//    caseEditWidget.save();
-//
-//    redirectToNewDashBoard();
-//    newDashboardPage = new NewDashboardPage();
-//    newDashboardPage.waitForCaseWidgetLoaded();
-//
-//    caseWidget = new CaseWidgetNewDashBoardPage();
-//    caseWidget.setInputForQuickSearch("Leave Request Type");
-//    caseWidget.countAllCases().shouldHave(size(1), DEFAULT_TIMEOUT);
-//    caseWidget.clearQuickSearchInput();
-//
-//    caseWidget.setInputForQuickSearch("test@email.com");
-//    assertTrue(caseWidget.isEmptyMessageAppear());
-//    caseWidget.clearQuickSearchInput();
-//
-//    caseWidget.setInputForQuickSearch("SupportData");
-//    caseWidget.countAllCases().shouldHave(size(1), DEFAULT_TIMEOUT);
-//    caseWidget.clearQuickSearchInput();
-//  }
+  @Test
+  public void testCaseQuickSearchKeywordSessionCache() {
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    login(TestAccount.ADMIN_USER);
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    ScreenshotUtils.maximizeBrowser();
+
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    caseEditWidget.clickOnQuickSearchCheckBox();
+    caseEditWidget.save();
+
+    caseWidget.waitPageLoaded();
+
+    caseWidget.setInputForQuickSearch("Create 12 cases");
+    caseWidget.countAllCases().shouldHave(size(1), DEFAULT_TIMEOUT);
+
+    redirectToNewDashBoard();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForCaseWidgetLoaded();
+
+    caseWidget = new CaseWidgetNewDashBoardPage();
+    assertEquals("Create 12 cases", caseWidget.getQuickSearchInput());
+    caseWidget.countAllCases().shouldHave(size(1), DEFAULT_TIMEOUT);
+  }
+
+  @Test
+  public void testCaseQuickSearchCustomFields() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    ScreenshotUtils.maximizeBrowser();
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    caseEditWidget.clickOnQuickSearchCheckBox();
+    caseEditWidget.openColumnManagementDialog();
+
+    List<String> customFields = List.of("CustomerType", "SupportData");
+
+    customFields.stream().forEach(item -> caseEditWidget.addCustomColumnByName(item));
+    customFields.stream().forEach(item -> caseEditWidget.clickOnQuickSearchByField(item));
+
+    caseEditWidget.saveColumn();
+    caseEditWidget.save();
+
+    redirectToNewDashBoard();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForCaseWidgetLoaded();
+
+    caseWidget = new CaseWidgetNewDashBoardPage();
+    caseWidget.setInputForQuickSearch("Leave Request Type");
+    caseWidget.countAllCases().shouldHave(size(1), DEFAULT_TIMEOUT);
+    caseWidget.clearQuickSearchInput();
+
+    caseWidget.setInputForQuickSearch("test@email.com");
+    assertTrue(caseWidget.isEmptyMessageAppear());
+    caseWidget.clearQuickSearchInput();
+
+    caseWidget.setInputForQuickSearch("SupportData");
+    caseWidget.countAllCases().shouldHave(size(1), DEFAULT_TIMEOUT);
+    caseWidget.clearQuickSearchInput();
+  }
 }

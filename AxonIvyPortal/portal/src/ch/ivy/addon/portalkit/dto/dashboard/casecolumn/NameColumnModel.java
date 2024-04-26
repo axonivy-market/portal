@@ -1,3 +1,4 @@
+
 package ch.ivy.addon.portalkit.dto.dashboard.casecolumn;
 
 import java.io.Serializable;
@@ -14,7 +15,7 @@ public class NameColumnModel extends CaseColumnModel implements Serializable {
     super.initDefaultValue();
     this.field = DashboardStandardCaseColumn.NAME.getField();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
-    this.quickSearch = defaultIfEmpty(this.quickSearch, false);
+    this.quickSearch = defaultIfEmpty(this.quickSearch, true);
   }
 
   @Override

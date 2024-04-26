@@ -396,7 +396,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public WebElement getQuickSearchCheckBox() {
-    return $("div[id$='filter-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    return $("div[id$='widget-preview']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
@@ -409,13 +409,14 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     return getColumnManagementDialog().$("div[id$='column-management-datatable']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("table tbody").$$("tr").filter(text(fieldName)).first()
         .$("div[id$='quick-search-checkbox-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a").$("span span")
-        .getAttribute("class").contains("ui-icon-check");
+        .getAttribute("class").contains("ui-chkbox-icon");
   }
   
   public void clickOnQuickSearchByField(String fieldName) {
-    getColumnManagementDialog().$("div[id$='column-management-datatable']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    var quickSeatchChkbox = getColumnManagementDialog().$("div[id$='column-management-datatable']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("table tbody").$$("tr").filter(text(fieldName)).first().$("div[id$='quick-search-checkbox-panel']")
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    quickSeatchChkbox.click();
   }
 
   public void addCustomFieldByCustomTypeAndFieldName(String customType, String fieldName) {
