@@ -15,7 +15,8 @@ public class ReponsibleCurrentUserOperatorHandler {
 
   public TaskQuery buildQuery() {
     TaskQuery query = TaskQuery.create();
-    query.where().activatorName().isEqual(Ivy.session().getSessionUser().getName());
+    query.where().activatorName()
+        .isEqual(Ivy.session().getSessionUser().getMemberName());
     return query;
   }
 }
