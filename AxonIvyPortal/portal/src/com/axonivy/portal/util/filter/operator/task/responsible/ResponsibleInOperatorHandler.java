@@ -9,7 +9,6 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
 public class ResponsibleInOperatorHandler {
   private static ResponsibleInOperatorHandler instance;
-  private static final String HASH = "#";
 
   public static ResponsibleInOperatorHandler getInstance() {
     if (instance == null) {
@@ -26,7 +25,7 @@ public class ResponsibleInOperatorHandler {
     TaskQuery query = TaskQuery.create();
     IFilterQuery filterQuery = query.where();
     for (String activator : filter.getValues()) {
-      filterQuery.or().activatorName().isEqual(activator.replace(HASH, ""));
+      filterQuery.or().activatorName().isEqual(activator);
     }
 
     return query;
@@ -40,7 +39,7 @@ public class ResponsibleInOperatorHandler {
     TaskQuery query = TaskQuery.create();
     IFilterQuery filterQuery = query.where();
     for (String activator : filter.getValues()) {
-      filterQuery.and().activatorName().isNotEqual(activator.replace(HASH, ""));
+      filterQuery.and().activatorName().isNotEqual(activator);
     }
 
     return query;
