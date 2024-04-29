@@ -33,12 +33,12 @@
   </h:panelGroup>
 
   <h:panelGroup id="category-list-panel" layout="block"
-    styleClass="ui-fluid md-inputfield category-filter-list" rendered="#{filter.operator ne 'NO_CATEGORY'}">
+    styleClass="category-filter-list" rendered="#{filter.operator ne 'NO_CATEGORY'}">
 
-    <h:panelGroup styleClass="ui-fluid" layout="block"
+    <h:panelGroup layout="block"
       rendered="#{widgetCategoryFilterBean.isShowCategorySelectionPanel(filter)}">
       <p:inputText id="widget-filter-category" readonly="true"
-        styleClass="widget-configuration__input-text #{cc.attrs.inputCategoryStyleClass}"
+        styleClass="category-input #{cc.attrs.inputCategoryStyleClass}"
         value="#{widgetCategoryFilterBean.selectedCategoriesString}"
         disabled="#{readOnly}">
         <p:ajax event="click" oncomplete="PF('widget-filter-category-panel-#{cc.clientId}').show();" />

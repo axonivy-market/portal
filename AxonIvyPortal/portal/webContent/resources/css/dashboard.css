@@ -1806,6 +1806,7 @@ body .ui-widget.new-widget-dialog__introduction {
 .dashboard-widget-filter__filter-panel {
   display: flex;
   margin-top: 10px;
+  align-items: stretch;
 }
 
 .dashboard-widget-filter__filter-panel:first-child {
@@ -1814,11 +1815,15 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .dashboard-widget-filter__filter-panel > div {
   margin-left: 0.5em;
-  display: inline-block;
+  display: flex;
   align-items: flex-start;
   max-width: 34vw;
   overflow-wrap: anywhere;
   width: calc(15% + 2.357rem)
+}
+
+.dashboard-widget-filter__filter-panel > div.text-list-filter {
+  align-items: stretch;
 }
 
 .dashboard-widget-filter__filter-panel > div.remove-filter-panel {
@@ -1860,7 +1865,24 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .dashboard-widget-filter__filter-panel > div.and-text-panel {
   align-self: center;
-  width: 3%;
+  width: 2vw;
+  flex-direction: column;
+  margin: auto;
+}
+
+@media (max-width: 1700px) {
+  .dashboard-widget-filter__filter-panel > div.and-text-panel {
+    width: 3vw;
+  }
+}
+
+
+.dashboard-widget-filter__filter-panel > div.and-text-panel span {
+  margin: auto;
+}
+
+.dashboard-widget-filter__filter-panel .category-filter-list .category-input {
+  width: 100%;
 }
 
 body .ui-button.rounded-button.dashboard-widget-filter__remove-filter {
