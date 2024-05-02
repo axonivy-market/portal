@@ -69,7 +69,7 @@ public final class WaitHelper {
     $(cssSelector).getCssValue("background-color");
     $(cssSelector).shouldHave(Condition.cssValue("background-color", "rgb(250, 0, 0)"));
     action.run();
-    $(cssSelector).shouldNotHave(Condition.cssValue("background-color", "rgb(250, 0, 0)"),DEFAULT_TIMEOUT);
+    $(cssSelector).shouldNotHave(Condition.cssValue("background-color", "rgb(250, 0, 0)"), DEFAULT_TIMEOUT);
   }
 
   /**

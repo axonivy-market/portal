@@ -129,7 +129,8 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void waitPreviewTableLoaded() {
-    $(taskEditWidgetId).$("div[id$=':dashboard-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $(taskEditWidgetId).$(".task-dashboard-widget__loading-message").shouldHave(Condition.cssClass("u-display-none"), DEFAULT_TIMEOUT);
+    $(taskEditWidgetId).$("div[id$=':dashboard-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT).shouldNotHave(Condition.cssClass("u-display-none"));
   }
 
   public SelenideElement getAddLanguageButton() {
@@ -363,33 +364,42 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public void applyFilter() {
     $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']")
         .shouldBe(getClickableCondition()).click();
+    $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']").shouldHave(Condition.cssClass("ui-state-loading"));
+    $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']").shouldNotHave(Condition.cssClass("ui-state-loading"), DEFAULT_TIMEOUT);
   }
   
   public void removeFilter(int index) {
-  int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
-  if (currentIndex > 0) {
-    String removeBtn = String.format("button[id$=':%s:filter-component:remove-filter']", index);
-    $(removeBtn).shouldBe(getClickableCondition()).click();
-    countFilterSelect().shouldBe(CollectionCondition.size(currentIndex - 1), DEFAULT_TIMEOUT);
+    int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
+    if (currentIndex > 0) {
+      String removeBtn = String.format("button[id$=':%s:filter-component:remove-filter']", index);
+      $(removeBtn).shouldBe(getClickableCondition()).click();
+      countFilterSelect().shouldBe(CollectionCondition.size(currentIndex - 1), DEFAULT_TIMEOUT);
+    }
   }
-}
 
-public ElementsCollection countFilterSelect() {
-  return $$("[id$=':filter-component:field-selection_panel']");
-}
-public void addCustomColumns(String... fieldNameList) {
-  openColumnManagementDialog();
-  selectCustomType();
+  public ElementsCollection countFilterSelect() {
+    return $$("[id$=':filter-component:field-selection_panel']");
+  }
   
-  for(String fieldName : fieldNameList) {
-    addCustomFields(fieldName);
+  public void addCustomColumns(String... fieldNameList) {
+    openColumnManagementDialog();
+    selectCustomType();
+    
+    for(String fieldName : fieldNameList) {
+      addCustomFields(fieldName);
+    }
+    $("button[id$='column-management-save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
   }
-  $("button[id$='column-management-save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-}
+  
+  public void closeFilter() {
+    $("span[id$=':widget-title-group']").$("label").scrollIntoView(("{block: \"start\"}")).click();
+    $("div[id$=':widget-filter-content']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    waitPreviewTableLoaded();
+  }
+  
+  public void resetFilter() {
+    $("button[id$=':reset-filter']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    countFilterSelect().shouldBe(CollectionCondition.size(0), DEFAULT_TIMEOUT);
+  }
 
-public void closeFilter() {
-  $("span[id$=':widget-title-group']").$("label").scrollIntoView(("{block: \"start\"}")).click();
-  $("div[id$=':widget-filter-content']").shouldBe(disappear, DEFAULT_TIMEOUT);
-  waitPreviewTableLoaded();
-}
 }

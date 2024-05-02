@@ -43,13 +43,13 @@ public class DashboardEditTaskWidgetTest extends BaseTest {
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(4));
     taskWidget.waitPreviewTableLoaded();
 
-    taskWidget.removeFilter(0);
+    taskWidget.resetFilter();
     taskWidget.addFilter("Name",FilterOperator.NOT_EMPTY);
     taskWidget.applyFilter();
     taskWidget.waitPreviewTableLoaded();
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(4));
-    
-    taskWidget.removeFilter(0);
+
+    taskWidget.resetFilter();
     taskWidget.addFilter("Name",FilterOperator.END_WITH);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "request");
     
@@ -57,7 +57,7 @@ public class DashboardEditTaskWidgetTest extends BaseTest {
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "sick");
     taskWidget.applyFilter();
     taskWidget.waitPreviewTableLoaded();
-    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(1));
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(1), DEFAULT_TIMEOUT);
   }
   
   @Test
