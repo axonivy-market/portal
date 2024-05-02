@@ -50,7 +50,7 @@
             <c:forEach var="authProvider" items="#{data.oauthProviders}">
               <li>
                 <h:outputLink value="${authProvider.link}">
-                  <h:outputText escape="false" value="${htmlSanitizerBean.sanitize(authProvider.image)}" />
+                  <h:outputText escape="false" value="${htmlSanitizerBean.sanitizeIgnoredWithAwareness(authProvider.image)}" />
                     <span>
                       #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/LoginWith')} <h:outputText value="${authProvider.displayName}" />
                     </span>
