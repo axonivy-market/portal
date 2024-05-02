@@ -24,7 +24,7 @@
         <f:selectItems value="#{widgetNumberFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
           <p:ajax event="itemSelect" listener="#{widgetNumberFilterBean.onChangeOperator(filter)}"
-            process="@(this)" update="#{cc.attrs.componentToUpdate}" />
+            update="#{cc.attrs.componentToUpdate}" />
           <f:param name="skipValidator" value="true" />
       </p:selectOneMenu>
   </h:panelGroup>
@@ -42,7 +42,7 @@
       <f:attribute name="filterIndex" value="#{filterIndex}" />
       <f:attribute name="locale" value="#{localeBean.locale}" />
       <f:attribute name="messageId" value="#{messageId}" />
-      <p:ajax event="change" process="@(this)" partialSubmit="true" global="false" />
+      <p:ajax event="change" partialSubmit="true" global="false" />
     </p:inputNumber>
   </h:panelGroup>
 
@@ -58,7 +58,7 @@
       <f:attribute name="filterIndex" value="#{filterIndex}" />
       <f:attribute name="locale" value="#{localeBean.locale}" />
       <f:attribute name="messageId" value="#{messageId}" />
-      <p:ajax event="change" process="@(this)" partialSubmit="true" global="false" />
+      <p:ajax event="change" partialSubmit="true" global="false" />
     </p:inputNumber>
   </h:panelGroup>
 
@@ -81,7 +81,7 @@
       <f:attribute name="filterIndex" value="#{filterIndex}" />
       <f:attribute name="locale" value="#{localeBean.locale}" />
       <f:attribute name="messageId" value="#{messageId}" />
-      <p:ajax event="change" process="@(this)" partialSubmit="true" global="false" />
+      <p:ajax event="change" partialSubmit="true" global="false" />
     </p:inputNumber>
   </h:panelGroup>
 
