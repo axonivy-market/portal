@@ -201,7 +201,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASK_WIDGET);
     ScreenshotUtils.resizeBrowser(new Dimension(1980, 1080));
     addCustomFields(taskWidget, List.of("ShipmentDate","AccountNumber"));
-    
+    redirectToNewDashBoard();
     taskWidget.openFilterWidget();
     taskWidget.addFilter("AccountNumber", FilterOperator.BETWEEN);
     taskWidget.inputValueOnLatestFilter(FilterValueType.NUMBER_BETWEEN, "1","20");

@@ -340,13 +340,8 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void saveAfterAddingCustomField() {
-    $("button[id$='column-management-save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("button#widget-configuration-save-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    waitForPageLoad();
-    $("div[class*='portal-layout-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span#dashboard-header-action").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("button#back-to-configuration")
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    waitForPageLoad();
-    $("div[class*='u-text-align-right']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("button#back-to-home-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    saveColumn();
+    save();
   }
   
   public void openFilter() {
