@@ -49,6 +49,7 @@ public enum GlobalVariable {
   CLIENT_SIDE_TIMEOUT("Portal.ClientSideTimeout", GlobalVariableType.NUMBER, "0", "clientSideTimeoutNote"),
   EMBED_IN_FRAME("Portal.EmbedInFrame", GlobalVariableType.SELECTION, Option.TRUE.toString(), "embedInFrame"),
   SHOW_GLOBAL_SEARCH("Portal.ShowGlobalSearch", GlobalVariableType.SELECTION, Option.TRUE.toString(), "showGlobalSearch"),
+  SHOW_QUICK_GLOBAL_SEARCH("Portal.ShowQuickGlobalSearch", GlobalVariableType.SELECTION, Option.FALSE.toString(), "showQuickGlobalSearch"),
   SHOW_BUTTON_ICON("Portal.ShowButtonIcon", GlobalVariableType.SELECTION, Option.TRUE.toString(), "showButtonIcon"),
   DISPLAY_USERS_OF_ROLE("Portal.DisplayUsersOfRole", GlobalVariableType.SELECTION, Option.FALSE.toString(), "displayAllUsersOfTaskActivator"),
   SHOW_PROCESS_INFORMATION("Portal.Processes.ShowInformation", GlobalVariableType.SELECTION, Option.TRUE.toString(), "showProcessInformation"),
@@ -77,7 +78,8 @@ public enum GlobalVariable {
       getSearchScopeCaseFields(), "SearchScopeCaseFields", getSearchScopeCaseFields()),
   GLOBAL_FOOTER_INFO("Portal.GlobalFooterInfo", GlobalVariableType.TEXT, "GlobalFooterInfo"),
   DEEPL_AUTH_KEY("Portal.DeepL.AuthKey", GlobalVariableType.PASSWORD, "", "deepLAuthKey"), ENABLE_DEEPL_TRANSLATION(
-      "Portal.DeepL.Enable", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableDeepLTranslation");
+      "Portal.DeepL.Enable", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableDeepLTranslation"),
+  SHOW_QR_CODE("Portal.UserMenu.ShowQRCode", GlobalVariableType.SELECTION, Option.FALSE.toString(), "ShowQRCode");
 
   private String key;
   private GlobalVariableType type;

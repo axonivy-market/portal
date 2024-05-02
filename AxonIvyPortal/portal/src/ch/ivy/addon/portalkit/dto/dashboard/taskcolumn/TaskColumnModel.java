@@ -11,7 +11,16 @@ public class TaskColumnModel extends ColumnModel {
   private static final long serialVersionUID = -6363817685343055544L;
 
   public Object display(ITask task) {
-    ICustomFields customFields = task.customFields();
+    if (type == DashboardColumnType.CUSTOM_CASE) {
+      ICustomFields customFields = task.getCase().customFields();
+      return getCustomFieldValue(customFields);
+    } else {
+      ICustomFields customFields = task.customFields();
+      return getCustomFieldValue(customFields);
+    }
+  }
+
+  private Object getCustomFieldValue(ICustomFields customFields) {
     if (isNumber()) {
       return customFields.numberField(field).getOrNull();
     } else if (isDate()) {

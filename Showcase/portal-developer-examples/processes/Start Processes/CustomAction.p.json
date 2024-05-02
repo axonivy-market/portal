@@ -1,0 +1,116 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "id" : "18B4240043B838C5",
+  "config" : {
+    "data" : "com.axonivy.portal.developerexamples.Data"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "CustomActionForCase",
+      "config" : {
+        "signature" : "CustomActionForCase",
+        "input" : {
+          "params" : [
+            { "name" : "uuid", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.caseId" : "param.uuid"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 200 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 392, "y" : 200 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Destroy Case",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.ICase;",
+            "import com.axonivy.portal.components.util.CaseUtils;",
+            "",
+            "ICase iCase = CaseUtils.findCase(in.caseId);",
+            "iCase.destroy();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 200 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "This example demonstrates the custom action button on the Dashboard Case Widget",
+        "",
+        "HOW TO RUN THIS EXAMPLE:",
+        "",
+        "1. Run CreateCustomActionCaseExample.ivp to create a case with the DestroyCaseAction custom field",
+        "2. After the case is created, you should see a custom button in the column named 'Destroy Case Action.'",
+        "3. Clicking on that button will trigger the process CustomActionForCase.ivp"
+      ],
+      "visual" : {
+        "at" : { "x" : 799, "y" : 136 },
+        "size" : { "width" : 495, "height" : 132 }
+      }
+    }, {
+      "id" : "f119",
+      "type" : "RequestStart",
+      "name" : "CreateCustomActionCaseExample",
+      "config" : {
+        "signature" : "CreateCustomActionCaseExample",
+        "request" : {
+          "name" : "Create Custom Action Case Example",
+          "description" : "This will create a Case has a custom-field which is Custom Action type"
+        },
+        "case" : {
+          "customFields" : [
+            { "name" : "DestroyCaseAction", "type" : "STRING", "value" : "\"Start Processes/CustomAction/CustomActionForCase.ivp\"" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 80 }
+      },
+      "connect" : [
+        { "id" : "f122", "to" : "f124" }
+      ]
+    }, {
+      "id" : "f120",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 80 }
+      }
+    }, {
+      "id" : "f124",
+      "type" : "TaskSwitchEvent",
+      "name" : "Custom Action for Case",
+      "config" : {
+        "task" : {
+          "name" : "CustomActionForCase"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 80 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f121", "to" : "f120" }
+      ]
+    } ]
+}

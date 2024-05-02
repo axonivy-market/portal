@@ -7,6 +7,11 @@ The **Full Process List** page gives you an overview of all the processes in the
 application available to you. To open the page, click :guilabel:`Processes` in
 the |ivy| Portal menu.
 
+.. note::
+
+   Grant permission :bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>` to allow a user to see the full process list (:guilabel:`Processes`) in the |ivy| Portal menu.
+
+
 |navigate-to-full-process-list|
 
 On the **Full Process List** page, you see a list of all processes. They
@@ -92,9 +97,15 @@ HowTo: Add an external link
 
 #. For the :guilabel:`Process name`, define the best name for it.
 
+#. In :guilabel:`Process name`, click on the icon to the right (show icon graphic here) to define a name for the external link. You can define it in multiple languages by filling in the various language fields. If you don't fill in a language field, the default language name will be used.
+
 #. For the :guilabel:`Start link`, add the URL of your external link.
 
-#. This step is only for a user granted ``CreatePublicExternalLink`` Portal permission. 
+#. For the :guilabel:`Description`, add the description of your external link.
+
+#. In :guilabel:`Description`, click on the icon to the right (show icon graphic here) to define a description for the external link. You can define it in multiple languages by filling in the various language fields. If you don't fill in a language field, the default language description will be used.
+
+#. Grant permission :bdg-ref-warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>` to allow a user to create public links to external sites. 
    This user can set this link as a public link by selecting :guilabel:`All users` .
    By default, :guilabel:`Visibility` field is not displayed and this new external link is a private link.
 

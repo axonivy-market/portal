@@ -42,7 +42,7 @@
             </p:inplace>
             <h:panelGroup id="task-description-output"
               styleClass="js-task-description-output task-description-output">
-              <h:outputText escape="false" styleClass="task-detail-description-output" value="#{taskWidgetBean.sanitizeHTML(task.descriptions().current())}" />
+              <h:outputText escape="false" value="#{taskWidgetBean.sanitizeHTML(task.descriptions().current())}" styleClass="task-detail-description-output" />
             </h:panelGroup>
           </div>
           <p:commandLink onclick="displayMoreText()" id="icon-more-link" styleClass="icon-more-link" global="false" process="@this" partialSubmit="true">

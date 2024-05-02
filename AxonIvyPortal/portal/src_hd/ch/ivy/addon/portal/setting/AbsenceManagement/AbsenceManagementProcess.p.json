@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "1756E0BE3BCBAD12",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -82,7 +82,7 @@
         } ],
       "visual" : {
         "at" : { "x" : 704, "y" : 96 },
-        "size" : { "width" : 176, "height" : 60 }
+        "size" : { "width" : 176 }
       },
       "connect" : [
         { "id" : "f59", "to" : "f117" }
@@ -110,7 +110,7 @@
           },
           "visual" : {
             "at" : { "x" : 272, "y" : 160 },
-            "size" : { "width" : 208, "height" : 60 }
+            "size" : { "width" : 208 }
           },
           "connect" : [
             { "id" : "S10-f75", "to" : "S10-f67" }
@@ -150,7 +150,7 @@
           },
           "visual" : {
             "at" : { "x" : 752, "y" : 160 },
-            "size" : { "width" : 128, "height" : 60 }
+            "size" : { "width" : 128 }
           },
           "connect" : [
             { "id" : "S10-f1", "to" : "S10-g1" }
@@ -268,7 +268,7 @@
         { "id" : "f106", "to" : "f137", "via" : [ { "x" : 192, "y" : 640 } ], "label" : {
             "name" : "yes",
             "segment" : 1.25,
-            "offset" : { "x" : 0, "y" : 10 }
+            "offset" : { "y" : 10 }
           } },
         { "id" : "f107", "to" : "f111", "via" : [ { "x" : 192, "y" : 528 } ] }
       ]
@@ -401,6 +401,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import java.util.Set;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
@@ -418,7 +419,7 @@
             "boolean doesNewAbsenceOverlap = AbsenceAndSubstituteUtils.doesNewAbsenceOverlap(in.absencesByUser.get(username) as Set, in.selectedAbsence);",
             "if (doesNewAbsenceOverlap) {",
             "  in.validationError = true;",
-            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/overlappingAbsence\"), \"\"));",
+            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/overlappingAbsence\"), \"\"));",
             "}",
             "",
             "if (in.validationError) {",
@@ -775,7 +776,7 @@
       },
       "visual" : {
         "at" : { "x" : 336, "y" : 640 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       },
       "connect" : [
         { "id" : "f148", "to" : "f147" }
@@ -835,7 +836,7 @@
       },
       "visual" : {
         "at" : { "x" : 960, "y" : 864 },
-        "size" : { "width" : 192, "height" : 60 }
+        "size" : { "width" : 192 }
       },
       "connect" : [
         { "id" : "f15", "to" : "f10" }
@@ -853,6 +854,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;",
             "import java.util.Set;",
             "import javax.faces.application.FacesMessage;",
@@ -863,7 +865,7 @@
             "boolean doesNewAbsenceOverlap = AbsenceAndSubstituteUtils.doesNewAbsenceOverlap(in.absencesByUser.get(username) as Set, in.selectedAbsence);",
             "if (doesNewAbsenceOverlap) {",
             "  in.validationError = true;",
-            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/overlappingAbsence\"), \"\"));",
+            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/overlappingAbsence\"), \"\"));",
             "  FacesContext.getCurrentInstance().validationFailed();",
             "}"
           ]
@@ -1059,7 +1061,7 @@
       },
       "visual" : {
         "at" : { "x" : 1384, "y" : 96 },
-        "size" : { "width" : 160, "height" : 60 }
+        "size" : { "width" : 160 }
       },
       "connect" : [
         { "id" : "f4", "to" : "f1" }
@@ -1158,6 +1160,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import ch.ivyteam.ivy.security.ISecurityContext;",
             "import java.util.Arrays;",
             "import ch.ivy.addon.portalkit.enums.DeputyRoleType;",
@@ -1168,13 +1171,13 @@
             "",
             "ISecurityMember selectedAssignee = in.#selectedDeputy is initialized ? ISecurityContext.current().members().find(in.selectedDeputy.getMemberName()) : null;",
             "if (!(#selectedAssignee is initialized) || in.selectedDeputies.contains(selectedAssignee)) {",
-            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, \"\", ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectInvalidDeputy\")));",
+            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, \"\", ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectInvalidDeputy\")));",
             "} else if (DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE.equals(in.selectedDeputyRole.deputyRoleType) && DeputyRoleUtils.isSecurityMemberSelectedInDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_PERMANENT, selectedAssignee)) {",
             "  String errorMessage = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectedInPersonalTaskPermanentDeputies\", Arrays.asList(ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskPermanentDeputies\")));",
-            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, \"\", errorMessage));",
+            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, \"\", errorMessage));",
             "} else if (DeputyRoleType.PERSONAL_TASK_PERMANENT.equals(in.selectedDeputyRole.deputyRoleType) && DeputyRoleUtils.isSecurityMemberSelectedInDeputyRoleByType(in.deputyRoles, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE, selectedAssignee)) {",
             "  String errorMessage = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/errorSelectedInPersonalTaskPermanentDeputies\", Arrays.asList(ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTaskDuringAbsenceDeputies\")));",
-            "  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, \"\", errorMessage));",
+            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, \"\", errorMessage));",
             "} else {",
             "  in.selectedDeputies.add(selectedAssignee);",
             "}"
@@ -1273,7 +1276,7 @@
       },
       "visual" : {
         "at" : { "x" : 256, "y" : 1408 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       },
       "connect" : [
         { "id" : "f80", "to" : "f78" }
@@ -1370,7 +1373,7 @@
       },
       "visual" : {
         "at" : { "x" : 496, "y" : 528 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       },
       "connect" : [
         { "id" : "f21", "to" : "f121" }

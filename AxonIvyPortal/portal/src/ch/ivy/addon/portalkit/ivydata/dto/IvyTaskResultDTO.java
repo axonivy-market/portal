@@ -9,7 +9,7 @@ import ch.ivy.addon.portalkit.bo.TaskStateStatistic;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
 
-public class IvyTaskResultDTO extends AbstractResultDTO {
+public class IvyTaskResultDTO {
 
   private List<ITask> tasks;
   private long totalTasks;

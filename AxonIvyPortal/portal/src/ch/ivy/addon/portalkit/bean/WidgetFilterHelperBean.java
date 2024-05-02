@@ -9,6 +9,8 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.util.FacesMessageUtils;
+
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -25,7 +27,7 @@ public class WidgetFilterHelperBean implements Serializable {
   public void saveNewWidgetFilter() {
     if (isDuplicatedFilter()) {
       FacesContext.getCurrentInstance().validationFailed();
-      FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+      FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterExistedValidationError"), null);
       FacesContext.getCurrentInstance().addMessage("save-filter-form", message);
       return;

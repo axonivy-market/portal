@@ -27,6 +27,7 @@ pipeline {
     stage('build') {
       steps {
         script {
+          currentBuild.description = "On ${env.NODE_NAME}"
           configs = [node1: [engineDir: "$env.WORKSPACE\\AxonIvyPortal\\PortalTest\\engine1", engineService: "Axon.ivy-master-cluster-gui-test-1", configDir: "master-cluster-node1"], 
             node2: [engineDir: "$env.WORKSPACE\\AxonIvyPortal\\PortalTest\\engine2", engineService: "Axon.ivy-master-cluster-gui-test-2", configDir: "master-cluster-node2"]]
           masterNode = configs['node1']
@@ -62,8 +63,8 @@ pipeline {
 
           bat """
             ${masterNodeDir}\\bin\\EngineConfigCli.exe create-db
-            ${masterNodeDir}\\bin\\EngineConfigCli.exe config-cluster 10.123.1.193 8021
-            ${configs['node2']['engineDir']}\\bin\\EngineConfigCli.exe config-cluster 10.123.1.193 8022
+            ${masterNodeDir}\\bin\\EngineConfigCli.exe config-cluster portal02.server.ivy-cloud.com 8021
+            ${configs['node2']['engineDir']}\\bin\\EngineConfigCli.exe config-cluster portal02.server.ivy-cloud.com 8022
           """
 
           utils.startWindowsService("ivy-elasticsearch-master-cluster")

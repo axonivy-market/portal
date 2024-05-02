@@ -75,9 +75,8 @@
                       </p:barChart>
 
                       <p:overlayPanel styleClass="context-menu-#{chartStatus.index} expiry-chart-context-menu options-panel"
-                        widgetVar="context-menu-#{chartStatus.index}"
-                        rendered="#{statisticDashboardBean.isTaskByExpiry(chart) and !statisticDashboardBean.isTaskByExpiryHour(chart)}"
-                        onShow="updateDrillDownPanelPosition(this);">
+                        widgetVar="context-menu-#{chartStatus.index}" for="expiry-chart"
+                        rendered="#{statisticDashboardBean.isTaskByExpiry(chart) and !statisticDashboardBean.isTaskByExpiryHour(chart)}">
                         <p:commandLink id="expiry-chart-drill-down" styleClass="js-expiry-chart-drill-down option-item"
                           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/contextMenuDrilldown')}"
                           action="#{cc.attrs.drillDownExpiryChartListener}" actionListener="#{statisticDashboardBean.drilldownTaskByExpiry}"
@@ -112,16 +111,15 @@
                         <p:ajax event="itemSelect" listener="#{statisticDashboardBean.drilldownCaseByState}" />
                       </p:donutChart>
                       
-                       <p:barChart styleClass="statistic-chart dashboard-statistic-chart-cases-by-category" model="#{chart.barChartModel}"
+                       <p:barChart id="cases-by-category-chart" styleClass="statistic-chart dashboard-statistic-chart-cases-by-category" model="#{chart.barChartModel}"
                         rendered="#{statisticDashboardBean.isCasesByCategory(chart)}" >
                         <f:attribute name="selectedChartId" value="#{chart.id}" />
                         <p:ajax event="itemSelect" listener="#{statisticDashboardBean.onSelectDrilldownCasesByCategory}" global="false" />
                       </p:barChart>
                       
                       <p:overlayPanel styleClass="context-menu-#{chartStatus.index} expiry-chart-context-menu options-panel"
-                        widgetVar="context-menu-#{chartStatus.index}"
-                        rendered="#{statisticDashboardBean.isCasesByCategory(chart)}"
-                        onShow="updateDrillDownPanelPosition(this);">
+                        widgetVar="context-menu-#{chartStatus.index}" for="cases-by-category-chart"
+                        rendered="#{statisticDashboardBean.isCasesByCategory(chart)}">
                         <p:commandLink id="cases-by-category-chart-drill-down" styleClass="js-cases-by-category-chart-drill-down option-item"
                           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/contextMenuDrilldown')}"
                           action="#{cc.attrs.drillDownCasesByCategoryListener}" actionListener="#{statisticDashboardBean.drilldownCasesByCategory}"

@@ -111,9 +111,9 @@ Portal variable
 +++++++++++++++
 
 Beside the callable subprocess approach, you can also define custom menu items in the Portal variable
-``Portal.Menu.CustomMenuItems``.
+``Portal.CustomMenuItems``.
 
-Here's an example of custom menu items in the Portal.Menu.CustomMenuItems variable.
+Here's an example of custom menu items in the Portal.CustomMenuItems variable.
 
    .. code-block:: json
 

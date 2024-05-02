@@ -16,6 +16,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
+import com.axonivy.portal.components.util.FacesMessageUtils;
+
 import ch.ivy.addon.portalkit.datamodel.internal.RelatedTaskLazyDataModel;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.enums.PortalPage;
@@ -266,7 +268,7 @@ public final class TaskUtils {
       FacesContext facesContext = FacesContext.getCurrentInstance();
       facesContext.validationFailed();
       facesContext.addMessage(PORTAL_GLOBAL_GROWL_MESSAGE,
-          new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
+          FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, notification, null));
       PrimeFaces.current().ajax().update(PORTAL_GLOBAL_GROWL);
     }
     return StringUtils.isBlank(notification);

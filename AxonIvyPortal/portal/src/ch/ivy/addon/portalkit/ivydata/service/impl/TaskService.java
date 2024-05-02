@@ -32,9 +32,9 @@ import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
-import ch.ivy.addon.portalkit.ivydata.service.ITaskService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.persistence.query.IPagedResult;
 import ch.ivyteam.ivy.scripting.objects.Record;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.security.IRole;
@@ -48,7 +48,7 @@ import ch.ivyteam.ivy.workflow.query.ITaskQueryExecutor;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.FilterLink;
 
-public class TaskService implements ITaskService {
+public class TaskService {
 
   protected TaskService() {}
 
@@ -56,7 +56,6 @@ public class TaskService implements ITaskService {
     return new TaskService();
   }
   
-  @Override
   public IvyTaskResultDTO findTasksByCriteria(TaskSearchCriteria criteria, int startIndex, int count) { 
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
@@ -66,7 +65,17 @@ public class TaskService implements ITaskService {
     });
   }
   
-  @Override
+  public IvyTaskResultDTO findGlobalSearchTasksByCriteria(TaskSearchCriteria criteria, int startIndex, int count) {
+    return Sudo.get(() -> {
+      IvyTaskResultDTO result = new IvyTaskResultDTO();
+      TaskQuery finalQuery = extendQueryWithUserHasPermissionToSee(criteria);
+      IPagedResult<ITask> iTask = Ivy.wf().getTaskQueryExecutor().getResultsPaged(finalQuery);
+      result.setTasks(iTask.window(startIndex, count));
+      result.setTotalTasks(iTask.count());
+      return result;
+    });
+  }
+
   public IvyTaskResultDTO countTasksByCriteria(TaskSearchCriteria criteria) { 
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
@@ -88,7 +97,6 @@ public class TaskService implements ITaskService {
     return TaskQuery.create().where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull();
   }
 
-  @Override
   public IvyTaskResultDTO findCategoriesByCriteria(TaskCategorySearchCriteria criteria) { 
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
@@ -103,7 +111,6 @@ public class TaskService implements ITaskService {
     });
   }
   
-  @Override
   public IvyTaskResultDTO analyzePriorityStatistic(TaskSearchCriteria criteria) {
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
@@ -122,7 +129,7 @@ public class TaskService implements ITaskService {
     if (recordSet != null) {
       recordSet.getRecords().forEach(record -> {
         int priority = Integer.parseInt(record.getField("PRIORITY").toString());
-        long numberOfTasks = ((BigDecimal)(record.getField("COUNT"))).longValue();
+        long numberOfTasks = ((Number)(record.getField("COUNT"))).longValue();
         if (priority == WorkflowPriority.EXCEPTION.intValue()) {
           priorityStatistic.setException(numberOfTasks);
         } else if (priority == WorkflowPriority.HIGH.intValue()) {
@@ -137,7 +144,6 @@ public class TaskService implements ITaskService {
     return priorityStatistic;
   }
   
-  @Override
   public IvyTaskResultDTO analyzeExpiryStatistic(TaskSearchCriteria criteria) {
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
@@ -156,7 +162,6 @@ public class TaskService implements ITaskService {
     });
   }
   
-  @Override
   public IvyTaskResultDTO analyzeTaskBusinessStateStatistic(TaskSearchCriteria criteria) {
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
@@ -175,14 +180,13 @@ public class TaskService implements ITaskService {
     if (recordSet != null) {
       recordSet.getRecords().forEach(record -> {
         int state = Integer.parseInt(record.getField("BUSINESSSTATE").toString());
-        long numberOfTasks = ((BigDecimal) (record.getField("COUNT"))).longValue();
+        long numberOfTasks = ((Number) (record.getField("COUNT"))).longValue();
         taskStateStatistic.getNumberOfTasksByState().put(state, numberOfTasks);
       });
     }
     return taskStateStatistic;
   }
 
-  @Override
   public IvyTaskResultDTO analyzeTaskCategoryStatistic(TaskSearchCriteria criteria) {
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
@@ -201,7 +205,7 @@ public class TaskService implements ITaskService {
     taskCategoryStatistic.setNumberOfTasksByCategory(new HashMap<>());
     if (recordSet != null) {
       recordSet.getRecords().forEach(record -> {
-        long numberOfTasks = ((BigDecimal)(record.getField("COUNT"))).longValue();
+        long numberOfTasks = ((Number)(record.getField("COUNT"))).longValue();
         taskCategoryStatistic.getNumberOfTasksByCategory().put(record.getField("CATEGORY").toString(), numberOfTasks);
       });
     }
@@ -226,7 +230,8 @@ public class TaskService implements ITaskService {
               SimpleDateFormat mySqlDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
               date = mySqlDateFormat.parse(record.getField("EXPIRYTIMESTAMP").toString());
             }
-            numberOfTasksByExpiryTime.put(date, Long.valueOf(record.getField("COUNT").toString()));
+            long numberOfTasks = ((Number)(record.getField("COUNT"))).longValue();
+            numberOfTasksByExpiryTime.put(date, numberOfTasks);
           }
         }
       }
@@ -260,8 +265,7 @@ public class TaskService implements ITaskService {
     TaskQuery finalQuery = criteria.getFinalTaskQuery();
     TaskQuery clonedQuery = TaskQuery.fromJson(finalQuery.asJson()); // clone to keep the final query in TaskSearchCriteria
     if (!criteria.isAdminQuery()) {
-      FilterLink currentUserIsInvolved = TaskQuery.create().where().or().currentUserIsInvolved();
-      clonedQuery.where().and(currentUserIsInvolved);
+      clonedQuery.where().and(queryInvolvedTasks());
     } 
     if (isHiddenTasksCasesExcluded()) {
       clonedQuery.where().and(queryExcludeHiddenTasks());

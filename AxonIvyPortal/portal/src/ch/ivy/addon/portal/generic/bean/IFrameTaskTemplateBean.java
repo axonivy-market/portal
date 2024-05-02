@@ -3,7 +3,6 @@ package ch.ivy.addon.portal.generic.bean;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +20,10 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
+import com.axonivy.portal.components.util.FacesMessageUtils;
+
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 import ch.ivyteam.ivy.dialog.execution.api.DialogInstance;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -50,6 +52,8 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private static final String VIEW_NAME = "viewName";
   private static final String TASK_NAME = "taskName";
   public static final String PORTAL_GROWL_MESSGE_PARAM = "portalGrowlMessage";
+  private static final String DEFAULT_TASK_ICON = "si si-task-list-edit";
+  private static final String TASK_ICON = "taskIcon";
 
   private int currentProcessStep;
   private List<String> processSteps;
@@ -58,14 +62,15 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private String processChainDirection;
   private String processChainShape;
   private boolean announcementInvisible = true;
-  //In Iframe, when initial loading the page we hide both 
-  //3 items: task action, task name and case info, to avoid blinking problem
+  //In Iframe, when initial loading the page we hide  
+  //3 items: task action, task name and case info to avoid blinking problem
   private boolean isHideTaskAction = true;
   private boolean isHideTaskName = true;
   private boolean isHideCaseInfo = true;
   private boolean isWorkingOnATask = true;
   private String taskName;
   private Map<String, Object> overridePortalGrowlMap = new HashMap<>();
+  private String taskIcon;
 
   private Long caseId = null;
 
@@ -93,7 +98,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
       Boolean overridePortalGrowl = (Boolean) overridePortalGrowlMap.get(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL + taskId);
       if (overridePortalGrowl != null && overridePortalGrowl) {
         String portalGlobalGrowlMessage = String.valueOf(overridePortalGrowlMap.get(IFrameTaskTemplateBean.PORTAL_GROWL_MESSGE_PARAM + taskId));
-        FacesMessage message = new FacesMessage(portalGlobalGrowlMessage, "");
+        FacesMessage message = FacesMessageUtils.sanitizedMessage(portalGlobalGrowlMessage, "");
         FacesContext.getCurrentInstance().addMessage(GrowlMessageUtils.PORTAL_GLOBAL_GROWL_MESSAGE, message);
 
         Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
@@ -145,7 +150,9 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   public void getDataFromIFrame() throws Exception {
     Map<String, String> requestParamMap = getRequestParameterMap();
     String currentProcessStepText = requestParamMap.get(CURRENT_PROCESS_STEP_PARAM);
-    processSteps = StringUtils.isNotBlank(requestParamMap.get(PROCESS_STEPS_PARAM)) ? Arrays.asList(requestParamMap.get(PROCESS_STEPS_PARAM).split("\\s*,\\s*")) : new ArrayList<>();
+    processSteps = StringUtils.isNotBlank(requestParamMap.get(PROCESS_STEPS_PARAM))
+        ? BusinessEntityConverter.convertJsonToListString(requestParamMap.get(PROCESS_STEPS_PARAM))
+        : new ArrayList<>();
     stepIndexes = new ArrayList<>();
     for (int i= 0; i < processSteps.size(); i++) {
       stepIndexes.add(String.valueOf(i));
@@ -163,6 +170,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     isWorkingOnATask = Optional.ofNullable(requestParamMap.get(IS_WORKING_ON_A_TASK)).map(p -> StringUtils.isNotBlank(p) ? BooleanUtils.toBoolean(p) : true).get();
     caseId = Optional.ofNullable(requestParamMap.get(CASE_ID_PARAM)).map(p -> StringUtils.isNotBlank(p) ? Long.parseLong(p) : null).orElse(null);
     taskName = Optional.ofNullable(requestParamMap.get(TASK_NAME)).orElse(StringUtils.EMPTY);
+    taskIcon = StringUtils.defaultIfBlank(requestParamMap.get(TASK_ICON), DEFAULT_TASK_ICON);
   }
 
   private Map<String, String> getRequestParameterMap() {
@@ -238,5 +246,13 @@ public void setCaseId(Long caseId) {
 
   public void setStepIndexes(List<String> stepIndexes) {
     this.stepIndexes = stepIndexes;
+  }
+
+  public String getTaskIcon() {
+    return taskIcon;
+  }
+
+  public void setTaskIcon(String taskIcon) {
+    this.taskIcon = taskIcon;
   }
 }

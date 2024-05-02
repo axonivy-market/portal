@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
@@ -239,5 +240,15 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
 
   public void setTask(ITask task) {
     this.task = task;
+  }
+
+  public boolean canStartAdhoc(String isShowStartAdhocButton,
+      Boolean isCurrentTaskPersistent) {
+    return StringUtils.isBlank(isShowStartAdhocButton)
+        ? (hasExpressAdhocWF() && isCurrentTaskPersistent)
+        : BooleanUtils.toBoolean(isShowStartAdhocButton);
+  }
+
+  public void doNothing() {
   }
 }

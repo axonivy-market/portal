@@ -186,7 +186,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public TaskDetailsPage openTasksOfCasePage(int index) {
     caseItem.findElement(By.cssSelector("div[id$='related-tasks']"))
-    .findElements(By.cssSelector("td.related-task-name-column")).get(index).click();
+    .findElements(By.cssSelector("td.related-task-id-column")).get(index).click();
     return new TaskDetailsPage();
   }
 

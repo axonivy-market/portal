@@ -73,10 +73,10 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
 
   @Override
   protected List<Process> findProcesses() {
-    List<IWebStartable> processes = ProcessService.getInstance().findProcesses().getProcesses();
+    List<IWebStartable> processes = ProcessService.getInstance().findProcesses();
     List<Process> defaultPortalProcesses = new ArrayList<>();
     // TODO fix static ProcessService#ivyProcessResultDTO, maybe cause error when Jmeter 10 user NavigateToGlobalSearch
-    if (processes != null) {
+    if (CollectionUtils.isNotEmpty(processes)) {
       processes.forEach(process -> defaultPortalProcesses.add(new DashboardProcess(process)));
     }
     return defaultPortalProcesses;

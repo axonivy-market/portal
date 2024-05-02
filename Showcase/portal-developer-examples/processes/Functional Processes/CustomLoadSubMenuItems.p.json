@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "1657E6622F0C0122",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -43,7 +43,6 @@
             "import com.axonivy.portal.components.configuration.CustomSubMenuItem;",
             "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
             "import org.apache.commons.lang3.StringUtils;",
-            "",
             "",
             "String userExampleGuideLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(\"Start Processes/UserExampleGuide/userExampleGuide.ivp\");",
             "if (!StringUtils.isEmpty(userExampleGuideLink)){  ",

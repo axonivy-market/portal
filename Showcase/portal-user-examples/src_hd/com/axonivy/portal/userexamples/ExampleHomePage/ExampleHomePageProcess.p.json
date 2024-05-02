@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "1723A6F0283D003D",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -14,7 +14,7 @@
         "result" : {
           "params" : [
             { "name" : "state", "type" : "com.axonivy.portal.userexamples.enums.RequestState", "desc" : "" },
-            { "name" : "process", "type" : "ch.ivy.addon.portalkit.configuration.UserProcess", "desc" : "" }
+            { "name" : "process", "type" : "com.axonivy.portal.userexamples.dto.UserProcess", "desc" : "" }
           ],
           "map" : {
             "result.state" : "in.state",
@@ -68,7 +68,7 @@
         "signature" : "navigate",
         "input" : {
           "params" : [
-            { "name" : "process", "type" : "ch.ivy.addon.portalkit.configuration.UserProcess", "desc" : "" }
+            { "name" : "process", "type" : "com.axonivy.portal.userexamples.dto.UserProcess", "desc" : "" }
           ],
           "map" : {
             "out.process" : "param.process"

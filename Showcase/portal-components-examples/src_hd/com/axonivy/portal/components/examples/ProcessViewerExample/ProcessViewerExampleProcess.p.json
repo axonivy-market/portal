@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "1821596E460CDACC",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -42,12 +42,13 @@
             "out.taskId" : "param.taskId"
           },
           "code" : [
+            "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
             "import org.apache.commons.lang3.StringUtils;",
-            "import com.axonivy.portal.components.examples.utils.ProcessStartUtils;",
+            "",
             "if (StringUtils.isNotBlank(out.processLink)) {",
-            "  out.processViewerForSerenityLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerExample/showProcessViewerOfLeaveRequestForSerenityUsingProcessLink.ivp\");",
+            "  out.processViewerForSerenityLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerExample/showProcessViewerOfLeaveRequestForSerenityUsingProcessLink.ivp\");",
             "} else {",
-            "  out.processViewerForSerenityLink = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerExample/showProcessViewerOfLeaveRequestForSerenityUsingCaseId.ivp\");",
+            "  out.processViewerForSerenityLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerExample/showProcessViewerOfLeaveRequestForSerenityUsingCaseId.ivp\");",
             "}"
           ]
         },

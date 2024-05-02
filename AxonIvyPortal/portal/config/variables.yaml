@@ -30,7 +30,10 @@ Variables:
 
     # For switch on/off the display of global search.
     ShowGlobalSearch: true
-
+    
+    # For switch on/off the display of quick global search.
+    ShowQuickGlobalSearch: false
+    
     # For switch on/off the display icon in button.
     ShowButtonIcon: true
 
@@ -70,6 +73,9 @@ Variables:
       # Set to true, the change password option in top menu will be hidden, otherwise it will be shown.
       # [boolean]
       HideChangePasswordMenu: false
+      
+      # For switch on/off the display of QR code.
+      ShowQRCode: false
 
     # You can configure the look and feel for dashboard according to your needs via this json file.
     # This setting will be taken over for all other dashboard.
@@ -77,7 +83,13 @@ Variables:
     Dashboard:
       # Set to true to hide Statistic widget from homepage and application menu.
       HideStatisticWidget: false
+      
+      # You can customize the name and icon of the main menu entry for Portal dashboards via this JSON file.
+      # [file: json]
+      MainMenuEntry:      
+    
 
+    
     Processes:
       # The standard setting of view mode in the process list.
       # [enum: COMPACT, IMAGE, GRID]
@@ -292,10 +304,10 @@ Variables:
   # If set to false, redirect to login error page.
   PortalLoginPageDisplay: true
 
-  # Cron expression define the time to clean up data of obsoleted users.
-  # Ex. expression for at 6AM every day  is '0 0 6 * * ?'
-  # Refer to http://quartz-scheduler.org/documentation/quartz-2.1.x/tutorials/crontrigger
-  PortalStartTimeCleanObsoletedDataExpression: '0 0 6 * * ?'
+  # @Deprecated(Since 11.2)
+  # Cron expression define the time to clean up obsoleted data.
+  # Please refer to Axon Ivy CRON job pattern documentation.
+  PortalStartTimeCleanObsoletedDataExpression: '0 6 * * *'
 
   # The delay time of search function at top menu
   PortalSearchDelayInMilliseconds: 500

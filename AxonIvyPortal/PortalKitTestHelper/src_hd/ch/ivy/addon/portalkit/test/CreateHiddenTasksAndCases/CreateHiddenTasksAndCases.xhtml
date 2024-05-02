@@ -5,11 +5,11 @@
 <h:body>
   <h1>Create multiple test user</h1>
   <h:form>
-    <p:panelGrid columns="2">
+    <p:panelGrid columns="2" layout="tabular">
       <p:outputLabel value="Enter hidden cases you want to create" />
       <p:inputText value="#{data.numberOfCases}" />
     </p:panelGrid>
-    <p:panelGrid columns="1">
+    <p:panelGrid columns="1" layout="tabular">
       <h:outputText
         value="*** Note that 1 hidden cases contains 2 hidden tasks" />
       <p:commandButton value="Create hidden tasks and cases" actionListener="#{logic.close}" />

@@ -6,6 +6,13 @@ Introduction
 Portal Developer Guide provides information to set up, configure, customize
 Portal so that it could fit customer need.
 
+.. _introduction-new-and-note-worthy-11.2:
+
+New & Noteworthy 11.2
+---------------------
+
+Check out more information on `release 11.2 <https://dev.axonivy.com/news/11.2>`__ and `release 11.1 <https://dev.axonivy.com/news/11.1>`__.
+
 .. _introduction-new-and-note-worthy-10.0:
 
 New & Noteworthy 10
