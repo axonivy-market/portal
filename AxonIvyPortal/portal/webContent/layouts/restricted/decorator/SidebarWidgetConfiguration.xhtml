@@ -73,10 +73,10 @@
           <h4 class="filter-panel-title">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/filters")}</h4>
         </div>
         <div class="ui-g-8 ui-md-7">
-          <p:commandButton id="preview-button" oncomplete="registerClickOnPanelEvent();"
+          <p:commandButton id="preview-button" oncomplete="registerClickOnPanelEvent(); closeFilterPanel();"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
             styleClass="Fright preview-button u-hidden-sm-down" icon="si si-check-1"
-            update="#{componentToUpdateOnPreview}" />
+            update="#{componentToUpdateOnPreview}" /> 
           <p:commandButton id="reset-filter" icon="si si-button-refresh-arrows"
             update="#{componentToUpdateOnPreview}" process="predefined-filter" styleClass="Fright preview-button u-hidden-sm-down u-mar-right-5"
             actionListener="#{taskWidgetConfigurationFilterBean.resetFilter(widget)}"

@@ -1817,9 +1817,9 @@ body .ui-widget.new-widget-dialog__introduction {
   margin-left: 0.5em;
   display: flex;
   align-items: flex-start;
-  max-width: 34vw;
+  min-width: 10vw;
+  max-width: 15vw;
   overflow-wrap: anywhere;
-  width: calc(15% + 2.357rem)
 }
 
 .dashboard-widget-filter__filter-panel > div.text-list-filter {
@@ -1863,11 +1863,11 @@ body .ui-widget.new-widget-dialog__introduction {
   max-width: 6vw;
 }
 
-.dashboard-widget-filter__filter-panel > div.and-text-panel {
+.dashboard-widget-filter__filter-panel .and-text-panel {
   align-self: center;
-  width: 2vw;
-  flex-direction: column;
-  margin: auto;
+  max-width: 60px;
+  min-width: 30px;
+  margin-left: 10px;
 }
 
 @media (max-width: 1700px) {

@@ -24,7 +24,7 @@
         <f:selectItems value="#{widgetIdFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
           <p:ajax event="itemSelect" listener="#{widgetIdFilterBean.onChangeOperator(filter)}"
-            process="@(this)" update="#{cc.attrs.componentToUpdate}" />
+            update="#{cc.attrs.componentToUpdate}" />
           <f:param name="skipValidator" value="true" />
       </p:selectOneMenu>
   </h:panelGroup>
@@ -33,8 +33,8 @@
   <h:panelGroup id="text-list-panel" layout="block"
     styleClass="ui-fluid md-inputfield text-list-filter" >
     <p:chips value="#{filter.values}" unique="true" addOnPaste="true" disabled="#{readOnly}">
-      <p:ajax event="itemSelect" process="@(this)" update="@(this)" partialSubmit="true" global="false" />
-      <p:ajax event="itemUnselect" process="@(this)" update="@(this)" partialSubmit="true" global="false" />
+      <p:ajax event="itemSelect" update="@this" partialSubmit="true" global="false" />
+      <p:ajax event="itemUnselect" update="@this" partialSubmit="true" global="false" />
       <f:validator validatorId="dashboardDefaultListFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
       <f:param name="skipValidator" value="true" />
       <f:attribute name="filter" value="#{filter}" />
