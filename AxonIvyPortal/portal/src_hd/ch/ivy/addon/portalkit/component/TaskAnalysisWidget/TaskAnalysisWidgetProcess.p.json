@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "163DD68942416255",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -268,13 +268,14 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
             "import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;",
             "TaskAnalysisFilterService service = new TaskAnalysisFilterService();",
             "in.isFilterExisted = false;",
             "if (service.isFilterExisted(in.filterSetName, in.filterType, in.taskFilterGroupId)) {",
-            "  FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_ERROR, ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterExistedValidationError\"), \"\");",
+            "  FacesMessage message = FacesMessageUtils.sanitizedMessage( FacesMessage.SEVERITY_ERROR, ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterExistedValidationError\"), \"\");",
             "  FacesContext.getCurrentInstance().addMessage(\"\", message);",
             "  FacesContext.getCurrentInstance().validationFailed();",
             "  in.isFilterExisted = true;",
@@ -412,7 +413,7 @@
       },
       "visual" : {
         "at" : { "x" : 232, "y" : 880 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       },
       "connect" : [
         { "id" : "f12", "to" : "f4" }

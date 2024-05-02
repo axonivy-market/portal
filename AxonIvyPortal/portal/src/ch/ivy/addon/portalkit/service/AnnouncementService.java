@@ -16,7 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.configuration.Announcement;
 import ch.ivy.addon.portalkit.configuration.LocalizationContent;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
-import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
+import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -98,9 +98,9 @@ public class AnnouncementService {
       languageToAnnouncements = new HashMap<>();
     }
     
-    IvyLanguageResultDTO ivyLanguage = LanguageService.newInstance().findUserLanguages();
+    IvyLanguage ivyLanguage = LanguageService.newInstance().getIvyLanguageOfUser();
 
-    List<String> supportedLanguages = ivyLanguage.getIvyLanguage().getSupportedLanguages();
+    List<String> supportedLanguages = ivyLanguage.getSupportedLanguages();
     
 
     List<LocalizationContent> contentsWithAllSupportedLanguages = supportedLanguages.stream().map(language -> {

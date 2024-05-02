@@ -155,6 +155,11 @@ The ``AxonIvyExpress`` module is renamed to ``axonivy-express`` and becomes an i
 - Restart Engine.
 - Open **Portal**, go to **Setting** -> **Express Management**. Import the configuration which is exported at the first step.
 
+
+- If you override ``PortalStartTimeCleanObsoletedDataExpression`` variable, please update it to new Ivy CRON job pattern.
+- Refer to Axon Ivy CRON job pattern: `CRON Expression <https://developer.axonivy.com/doc/|version|/engine-guide/configuration/advanced-configuration.html#cron-expression>`_.
+- Example: Change ``0 0 1 * * ?`` to ``0 1 * * *`` for job trigger 01:00 AM everyday.
+
 Migrate 10.0.12 To 10.0.13
 --------------------------
 
@@ -405,7 +410,7 @@ Migrate 9.1 To 9.2
 
    .. important:: The callable process which is supporting to open customization dialog will be removed in the future, do not use it in the new project
 
-#. We remove ivy-icon.css and replace current classes with new classes from `Streamline icons <https://dev.demo.ivyteam.io/demo-app/faces/view/html-dialog-demos$1/icons.xhtml>`_. So that you need to update your files that are using classes in ivy-icon.css.
+#. We remove ivy-icon.css and replace current classes with new classes from Streamline icons, which can be found in the `HTML Dialog Demo <https://market.axonivy.com/html-dialog-demo>`_. So that you need to update your files that are using classes in ivy-icon.css.
 
 #. If you have taskItemDetailCustomPanelTop, taskItemDetailCustomPanelBottom customization, follow :ref:`How to override TaskItemDetail <customization-task-item-details>` to add custom widgets.
 
@@ -559,7 +564,7 @@ Changes in 9.2
 
 - Included new CaseState ``Destroyed`` in Portal Case list, also in Case State filter.
 
-- Introduced :ref:`Workflow Events table <how-to-show-workflow-events>`, user who has permission ``WORKFLOW_EVENT_READ_ALL`` can see all ``WORKFLOW_EVENTS``.
+- Introduced :ref:`Workflow Events table <how-to-show-workflow-events>`, user who has permission :bdg-warning:`🔑WorkflowEventReadAll` can see all ``WORKFLOW_EVENTS``.
 
 - Introduced the ``Portal.Homepage`` Portal setting to set the default homepage, each user can change it via user profile.
 

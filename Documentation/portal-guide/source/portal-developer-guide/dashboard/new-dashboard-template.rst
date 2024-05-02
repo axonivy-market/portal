@@ -56,8 +56,7 @@ The structure of JSON of dashboard template
    template` dialog.
 
    ``icon``: Icon of the template item in dialog :guilabel:`Select your
-   template`. Portal only supports `Streamline icons
-   <https://dev.demo.ivyteam.io/demo-app/faces/view/html-dialog-demos$1/icons.xhtml>`_.
+   template`. Portal only supports Streamline icons, which can be found in the `HTML Dialog Demo <https://market.axonivy.com/html-dialog-demo>`_.
 
    ``dashboard``: Details of the dashboard will be used as the template. Refer
    to :ref:`Configure dashboard <customization-new-dashboard>` for details

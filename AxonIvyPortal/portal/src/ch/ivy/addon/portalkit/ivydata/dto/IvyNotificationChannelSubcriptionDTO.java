@@ -2,7 +2,7 @@ package ch.ivy.addon.portalkit.ivydata.dto;
 
 import ch.ivyteam.ivy.notification.channel.NotificationSubscription;
 
-public class IvyNotificationChannelSubcriptionDTO extends AbstractResultDTO {
+public class IvyNotificationChannelSubcriptionDTO {
 
   private State state;
   private final boolean isSubscribedByDefault;

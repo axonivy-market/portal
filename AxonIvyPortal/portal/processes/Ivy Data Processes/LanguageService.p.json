@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "14BE80F25BC9033C",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -40,18 +40,15 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;",
             "import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;",
             "",
-            "",
-            "IvyLanguageResultDTO dto = LanguageService.newInstance().findUserLanguages();",
-            "out.language = dto.ivyLanguage;"
+            "out.language = LanguageService.newInstance().getIvyLanguageOfUser();"
           ]
         }
       },
       "visual" : {
         "at" : { "x" : 328, "y" : 256 },
-        "size" : { "width" : 240, "height" : 60 }
+        "size" : { "width" : 240 }
       },
       "connect" : [
         { "id" : "f3", "to" : "f18" }
@@ -105,7 +102,7 @@
       },
       "visual" : {
         "at" : { "x" : 272, "y" : 160 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f1", "to" : "f32" }
@@ -139,16 +136,15 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;",
             "import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;",
             "",
-            "out.language = LanguageService.newInstance().findUserLanguages().getIvyLanguage();"
+            "out.language = LanguageService.newInstance().getIvyLanguageOfUser();"
           ]
         }
       },
       "visual" : {
         "at" : { "x" : 272, "y" : 64 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f7", "to" : "f4" }

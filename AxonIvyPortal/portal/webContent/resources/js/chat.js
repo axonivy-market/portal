@@ -1,6 +1,5 @@
 var isEdge = window.navigator.userAgent.indexOf("Edge") > -1;
 var isFireFox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
-var isIE11 = navigator.userAgent.toLowerCase().indexOf("trident") > -1 && navigator.userAgent.toLowerCase().indexOf("rv:11") > -1;
 var isIphone = navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i);
 
 var messages = [];
@@ -309,12 +308,6 @@ function Chat(uri, view) {
       }
       view.renderChatMessagePanelUIWhenOpen();
 
-      // Hide environment info when open chat
-      var portalEnvironment = $('.js-portal-environment');
-      if (portalEnvironment.length > 0) {
-        portalEnvironment.addClass('u-hidden');
-      }
-
       if ($(".js-top-menu").hasClass("mod-chat-active")) {
         if (isChatGroupEnabled === 'true'){
           getGroups();
@@ -502,7 +495,6 @@ function View(uri)
           messagePanel.scrollTop = 10;
         }
         currentIndex -= numberOfLoad;
-        updateMessageListForIE11();
       }
     }
     
@@ -514,19 +506,16 @@ function View(uri)
     this.renderMessage = function(message) {
       setValueForMessageComponent();
       renderMessageFunc(message, false, true);
-      updateMessageListForIE11();
     }
 
     this.renderMyMessage = function(message) {
       setValueForMessageComponent();
       renderMessageFunc(message, true, true);
-      updateMessageListForIE11();
     }
 
     this.renderGroupMessage = function(message) {
       setValueForMessageComponent();
       renderMessageFunc(message, message.sender === userName, true);
-      updateMessageListForIE11();
     }
     
     this.renderMessageListForGroup = function(messageList, recipientName) {
@@ -546,7 +535,6 @@ function View(uri)
         var messagePanel = document.getElementById("chat-message-list");
         messagePanel.scrollTop = messagePanel.scrollHeight;
       }
-      updateMessageListForIE11();
     }
     
     this.renderMessageList = function(messageList, recipientName) {
@@ -566,7 +554,6 @@ function View(uri)
         var messagePanel = document.getElementById("chat-message-list");
         messagePanel.scrollTop = messagePanel.scrollHeight;
       }
-      updateMessageListForIE11();
     }
 
     function renderMessageFunc(message, isMyMessage, isRenderedAtTheEnd) {
@@ -610,7 +597,7 @@ function View(uri)
     
     function appendMessageToList(cloneTemplate, isRenderedAtTheEnd) {
       var $messageList = $(jsMessageList);
-      if (isEdge || isFireFox || isIE11) {
+      if (isEdge || isFireFox) {
         isRenderedAtTheEnd ? $messageList.append(cloneTemplate) : $messageList.prepend(cloneTemplate);
 
         if (!$(cloneTemplate).hasClass("my-message") && isFireFox) {
@@ -623,10 +610,10 @@ function View(uri)
         isRenderedAtTheEnd ? $messageList.prepend(cloneTemplate) : $messageList.append(cloneTemplate);
       }
 
-      if ($(cloneTemplate).hasClass("my-message") || isIE11) {
+      if ($(cloneTemplate).hasClass("my-message")) {
         var $chatMessages = $(".js-chat-panel.active").find(".js-message-list").find(".chat-message");
         setTimeout(function(){
-         if (isEdge || isFireFox || isIE11) {
+         if (isEdge || isFireFox) {
            $messageList.animate({
                scrollTop: $messageList.scrollTop() + $chatMessages.last().offset().top}
            , 0);
@@ -835,12 +822,6 @@ function View(uri)
     this.closeChatPanel = function() {
         closeChatMessagePanel();
         this.renderChatMessagePanelUIWhenOpen();
-
-        // Show environment info when open chat
-        var portalEnvironment = $('.js-portal-environment');
-        if (portalEnvironment.length > 0) {
-          portalEnvironment.removeClass('u-hidden');
-        }
     }
 
     function updateExistingGroups() {
@@ -892,7 +873,7 @@ function View(uri)
     }
 
     function getSenderOfPreviousMessage() {
-      if (isEdge || isFireFox || isIE11) {
+      if (isEdge || isFireFox) {
         var senders = $(".js-message-list")[0].getElementsByClassName("js-sender");
         return senders[senders.length - 1];
       } else {
@@ -901,7 +882,7 @@ function View(uri)
     }
 
     function getTimestampOfPreviousMessage() {
-      if (isEdge || isFireFox || isIE11) {
+      if (isEdge || isFireFox) {
         var previousTimeElem = $(".js-message-list")[0].getElementsByClassName("js-time");
         return previousTimeElem[previousTimeElem.length - 1];
       } else {
@@ -909,19 +890,6 @@ function View(uri)
       }
     }
     
-    function updateMessageListForIE11() {
-        if (isIE11) {
-            $(".js-message-list").css("height", "auto");
-            var margin = $('.message-list-content').get(0).offsetHeight - $(".js-message-list").get(0).scrollHeight - $('.js-chat-send-form').outerHeight(true);
-            if (margin < 0) {
-              $(".js-message-list").css("margin-top", "");
-              $(".js-message-list").css("height", "calc(100% - 235px)");
-            } else {
-              $(".js-message-list").css("height", "auto");
-              $(".js-message-list").css("margin-top", margin + "px");
-            }
-          }
-      }
     this.updateUnreadUserBadge = function() {
       $("#toggle-chat-panel-command").removeAttr("data-badge");
       $(".js-notification").each(function(){
@@ -942,7 +910,6 @@ function View(uri)
     }
     
     $(window).resize(function() {
-      updateMessageListForIE11();
       scrollToLastedMessage();
     })
 

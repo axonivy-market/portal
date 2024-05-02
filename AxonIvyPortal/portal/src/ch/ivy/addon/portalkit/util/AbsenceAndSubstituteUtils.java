@@ -12,6 +12,8 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
+import com.axonivy.portal.components.util.FacesMessageUtils;
+
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -29,7 +31,7 @@ public final class AbsenceAndSubstituteUtils {
   public static boolean checkFromBiggerThanTill(IvyAbsence ivyAbsence) {
     if (isFromDateAfterTill(ivyAbsence)) {
       FacesContext.getCurrentInstance().addMessage(null,
-          new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co(
+          FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co(
               "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/fromBiggerThanTill"), ""));
       return true;
     }

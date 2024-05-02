@@ -4,7 +4,7 @@ import java.util.List;
 
 import ch.ivyteam.ivy.workflow.ICase;
 
-public class IvyCaseResultDTO extends AbstractResultDTO {
+public class IvyCaseResultDTO {
 
   private List<ICase> cases;
   private long totalCases;

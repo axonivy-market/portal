@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "176CBAB201D2F3E8",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -71,15 +71,15 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;",
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI;",
             "",
-            "PortalNavigatorAPI.navigateToPortalEndPage();"
+            "PortalNavigatorInFrameAPI.navigateToPortalEndPage();"
           ]
         }
       },
       "visual" : {
         "at" : { "x" : 240, "y" : 256 },
-        "size" : { "width" : 160, "height" : 60 }
+        "size" : { "width" : 160 }
       },
       "connect" : [
         { "id" : "f8", "to" : "f7" }

@@ -32,7 +32,7 @@ public class ScreenshotMargin {
     this.marginBottom = margin;
     this.marginLeft = margin;
   }
-  
+
   public ScreenshotMargin(int topBottom, int leftRight) {
     this.marginTop = topBottom;
     this.marginRight = leftRight;

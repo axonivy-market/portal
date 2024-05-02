@@ -148,7 +148,8 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
 
   private void mergeUserFilterInput(WidgetFilterModel userFilterOptions, ColumnModel column) {
     userFilterOptions.getFilterableColumns().stream()
-    .filter(userSelected -> userSelected.getField().equals(column.getField())).findFirst()
+    .filter(userSelected -> userSelected.getField().equals(column.getField()) 
+        && userSelected.getType( )== column.getType()).findFirst()
     .ifPresent(selectedColumn -> {
       column.setUserFilter(selectedColumn.getUserFilter());
       column.setUserFilterList(selectedColumn.getUserFilterList());
@@ -176,7 +177,8 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
 
       for (var selected : widget.getUserFilterCollection().getSelectedWidgetFilters()) {
         var selectedColumn = selected.getFilterableColumns().stream()
-            .filter(compare -> compare.getField().equals(widgetColumn.getField())).findFirst().orElse(null);
+            .filter(compare -> compare.getField().equals(widgetColumn.getField())
+                && compare.getType() == widgetColumn.getType()).findFirst().orElse(null);
         if (selectedColumn != null) {
           if (StringUtils.isNotEmpty(selectedColumn.getUserFilter())) {
             userFilter = userFilter.concat(selectedColumn.getUserFilter());

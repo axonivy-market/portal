@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "17B2F3DF898D03CF",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -20,7 +20,7 @@
           "map" : {
             "out.name" : "param.user",
             "out.note" : "param.note",
-            "out.startDate" : "ch.ivy.addon.portalkit.util.Dates.parse(param.startDate)"
+            "out.startDate" : "com.axonivy.portal.developerexamples.util.Dates.parse(param.startDate)"
           }
         },
         "guid" : "17B2F3DF8A22ADB7"

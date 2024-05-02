@@ -29,6 +29,7 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TimesUtils;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
@@ -115,6 +116,7 @@ public class DashboardWidgetInformationService {
   private TaskSearchCriteria generateTaskSearchCriteriaWithoutOrderByClause(DashboardTaskLazyDataModel dataModel) {
     var taskSearchCriteria = new TaskSearchCriteria();
     taskSearchCriteria.setFinalTaskQuery(dataModel.getCriteria().buildQueryWithoutOrderByClause());
+    taskSearchCriteria.setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
     return taskSearchCriteria;
   }
 
@@ -178,6 +180,7 @@ public class DashboardWidgetInformationService {
   private CaseSearchCriteria generateCaseSearchCriteriaWithoutOrderByClause(DashboardCaseLazyDataModel dataModel) {
     var caseSearchCriteria = new CaseSearchCriteria();
     caseSearchCriteria.setFinalCaseQuery(dataModel.getCriteria().buildQueryWithoutOrderByClause());
+    caseSearchCriteria.setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
     return caseSearchCriteria;
   }
 

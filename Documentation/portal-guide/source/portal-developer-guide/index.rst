@@ -17,4 +17,5 @@ Developer Guide
    iframe/index
    customization/index
    troubleshooting/index
+   permissions/index
    public-api/index

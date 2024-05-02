@@ -62,7 +62,7 @@ public class CategoryColumnModel extends CaseColumnModel {
 
   @Override
   public String getDefaultStyleClass() {
-    return "dashboard-tasks__category u-text-align-center";
+    return "dashboard-cases__category u-text-align-center";
   }
 
   @Override

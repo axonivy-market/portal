@@ -8,7 +8,6 @@ import javax.faces.bean.RequestScoped;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.support.HtmlParser;
 
 @ManagedBean
 @RequestScoped
@@ -19,7 +18,7 @@ public class GlobalFooterInfoBean implements Serializable {
 
   @PostConstruct
   public void init() {
-    this.info = HtmlParser.sanitize(GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.GLOBAL_FOOTER_INFO).toString());
+    this.info = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.GLOBAL_FOOTER_INFO).toString();
   }
 
   public String getInfo() {

@@ -7,8 +7,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
-import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.security.IUser;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -134,8 +134,7 @@ public class ExpressProcess extends AbstractConfiguration implements Serializabl
 
   public IUser getProcessOwnerUser() {
     if (processOwnerUser == null) {
-      processOwnerUser = ServiceUtilities
-          .findUser(SecurityMemberDisplayNameUtils.stripSharpCharacterFromSecurityMemberName(processOwner));
+      processOwnerUser = UserUtils.findUserByUsername(SecurityMemberDisplayNameUtils.stripSharpCharacterFromSecurityMemberName(processOwner));
     }
     return processOwnerUser;
   }

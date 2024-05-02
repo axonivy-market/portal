@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "15B1EA24CCF377E8",
   "config" : {
     "data" : "internaltest.Data"
@@ -342,7 +342,10 @@
         "dialog" : "internaltest.ui.SaleDepartment:start()",
         "task" : {
           "name" : "Work with sale department",
-          "category" : "SALE/SIGNCONTRACT"
+          "category" : "SALE/SIGNCONTRACT",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
+          ]
         },
         "case" : {
           "customFields" : [

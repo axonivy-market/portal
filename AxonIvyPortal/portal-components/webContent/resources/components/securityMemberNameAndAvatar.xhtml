@@ -23,7 +23,7 @@
     <pc:avatar securityMember="#{cc.attrs.securityMember}" rendered="#{cc.attrs.securityMember != null}" renderedAvatar="#{cc.attrs.isShowAvatar}" />
     <cc:renderFacet name="alternativeAvatar" />
     <h:outputText id="#{cc.attrs.displayNameId}" value="#{cc.attrs.displayName}"
-      rendered="#{cc.attrs.displayNameRendered}"
+      rendered="#{cc.attrs.displayNameRendered and !userMenuBean.isMobileDevice()}"
       styleClass="#{cc.attrs.isShowAvatar ? 'name-after-avatar' : ''} #{cc.attrs.displayNameStyleClass} #{cc.attrs.securityMember == null ? 'u-no-padding-left' : ''}">
     </h:outputText>
     <cc:renderFacet name="afterName" />

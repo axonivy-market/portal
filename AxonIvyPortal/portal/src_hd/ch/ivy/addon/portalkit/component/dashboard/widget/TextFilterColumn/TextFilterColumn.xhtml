@@ -11,7 +11,7 @@
 </cc:interface>
 
 <cc:implementation>
-  <h:panelGroup rendered="#{cc.attrs.field.format eq 'STRING' or cc.attrs.field.format eq 'TEXT'}">
+  <h:panelGroup rendered="#{!cc.attrs.field.isCustomAction and (cc.attrs.field.format eq 'STRING' or cc.attrs.field.format eq 'TEXT')}">
     <p:focus for="text-field-input" rendered="#{cc.attrs.focusOnTextField}" />
 
     <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down display-flex-center">

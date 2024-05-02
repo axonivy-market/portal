@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "150CB86EFC2F2972",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -124,7 +124,7 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 424 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f87", "to" : "f79" }
@@ -136,6 +136,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import org.primefaces.PrimeFaces;",
             "import ch.ivyteam.ivy.security.IUser;",
             "import org.apache.commons.lang3.StringUtils;",
@@ -160,7 +161,7 @@
             "}",
             "",
             "facesContext.validationFailed();",
-            "facesContext.addMessage(\"portal-global-growl-message\", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));",
+            "facesContext.addMessage(\"portal-global-growl-message\", FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, notification, null));",
             "PrimeFaces.current().ajax().update(\"portal-global-growl\");  "
           ]
         },
@@ -236,7 +237,7 @@
       },
       "visual" : {
         "at" : { "x" : 480, "y" : 232 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f9", "to" : "f46" }
@@ -298,7 +299,7 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 232 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f60", "to" : "f77" }
@@ -370,7 +371,7 @@
       },
       "visual" : {
         "at" : { "x" : 488, "y" : 640 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       }
     }, {
       "id" : "f3",
@@ -404,7 +405,7 @@
       },
       "visual" : {
         "at" : { "x" : 488, "y" : 752 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       }
     }, {
       "id" : "f35",

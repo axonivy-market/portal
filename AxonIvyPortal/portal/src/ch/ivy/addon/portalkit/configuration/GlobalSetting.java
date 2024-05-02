@@ -108,24 +108,24 @@ public class GlobalSetting extends AbstractConfiguration {
   }
 
   private String getDisplayValue(Object object) {
-    if (object instanceof TaskSortField) {
-      return ((TaskSortField)object).getLabel();
-    } else if (object instanceof CaseSortField) {
-      return ((CaseSortField)object).getLabel();
-    } else if (object instanceof SortDirection) {
-      return ((SortDirection)object).getLabel();
-    } else if (object instanceof ProcessMode) {
-      return ((ProcessMode)object).getLabel();
-    } else if (object instanceof BehaviourWhenClickingOnLineInTaskList) {
-      return ((BehaviourWhenClickingOnLineInTaskList)object).getLabel();
-    } else if (object instanceof DefaultImage) {
-      return ((DefaultImage)object).getLabel();
-    } else if (object instanceof ThemeMode) {
-      return ((ThemeMode)object).getLabel();
-    } else if (object instanceof SearchScopeTaskField) {
-      return ((SearchScopeTaskField)object).getLabel();
-    } else if (object instanceof SearchScopeCaseField) {
-      return ((SearchScopeCaseField)object).getLabel();
+    if (object instanceof TaskSortField castObject) {
+      return castObject.getLabel();
+    } else if (object instanceof CaseSortField castObject) {
+      return castObject.getLabel();
+    } else if (object instanceof SortDirection castObject) {
+      return castObject.getLabel();
+    } else if (object instanceof ProcessMode castObject) {
+      return castObject.getLabel();
+    } else if (object instanceof BehaviourWhenClickingOnLineInTaskList castObject) {
+      return castObject.getLabel();
+    } else if (object instanceof DefaultImage castObject) {
+      return castObject.getLabel();
+    } else if (object instanceof ThemeMode castObject) {
+      return castObject.getLabel();
+    } else if (object instanceof SearchScopeTaskField castObject) {
+      return castObject.getLabel();
+    } else if (object instanceof SearchScopeCaseField castObject) {
+      return castObject.getLabel();
     } else {
       return (String)object;
     }

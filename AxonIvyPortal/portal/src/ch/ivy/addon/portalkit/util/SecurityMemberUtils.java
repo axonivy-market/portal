@@ -57,12 +57,14 @@ public class SecurityMemberUtils {
   }
 
   public static ISecurityMember findISecurityMemberFromUserDTO(UserDTO userDTO) {
-    return UserUtils.findUserByUserId(userDTO.getId());
+    return Sudo.get(() -> {
+      return ISecurityContext.current().users().findById(userDTO.getSecurityMemberId());
+    });
   }
 
   public static ISecurityMember findISecurityMemberFromRoleDTO(RoleDTO roleDTO) {
     return Sudo.get(() -> {
-      return ISecurityContext.current().findRole(roleDTO.getId());
+      return ISecurityContext.current().roles().findById(roleDTO.getSecurityMemberId());
     });
   }
 
@@ -79,7 +81,7 @@ public class SecurityMemberUtils {
       if (CollectionUtils.isEmpty(users)) {
         String noUsers = cms("noUser");
         usersBuilder.append(cms("roleMemberLineFormat", Arrays.asList(noUsers)));
-        return cms("roleMembersTooltipFormat", Arrays.asList(header, "no-user", usersBuilder));
+        return cms("roleMembersTooltipFormat", Arrays.asList(header, "padding-left: 0;", usersBuilder));
       }
 
       for (IUser user : users) {
@@ -90,7 +92,7 @@ public class SecurityMemberUtils {
         usersBuilder.append(cms("roleMemberLineFormat",
             Arrays.asList(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/more").concat(" ..."))));
       }
-      return cms("roleMembersTooltipFormat", Arrays.asList(header, "", usersBuilder));
+      return cms("roleMembersTooltipFormat", Arrays.asList(header, "padding-left: 14px;", usersBuilder));
     });
   }
   

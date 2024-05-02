@@ -86,6 +86,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CUSTOM: Benutzerdefiniertes Widget
       NEW: Neues Widget
       NEWS: Nachrichten
+      NOTIFICATION: Benachrichtigungen
       PROCESS: Prozess-Widget
       PROCESS_VIEWER: Prozess-Viewer-Widget
       STATISTIC: Statistik-Widget
@@ -216,6 +217,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SearchScopeCaseFields: Festlegung der Felder, die bei der globalen Suche verwendet werden sollen, um neben der Fallnummer übereinstimmende Fälle zu finden (dies kann die Leistung der Suche beeinflussen)
       SearchScopeTaskFields: Festlegung der Felder, die die globale Suche neben der Aufgabenkennung verwendet, um passende Aufgaben zu finden (dies kann die Leistung der Suche beeinflussen)
       ShowLoginPageFooter: Zum Ein-/Ausschalten der Anzeige der Fußzeile auf der Anmeldeseite.
+      ShowQRCode: Zum Ein- und Ausschalten der Anzeige des QR-Codes.
       behaviourWhenClickingOnLineInTaskList: Zum Umschalten des Verhaltens (Ausführen der Aufgabe oder Aufrufen der Aufgabendetails) beim Klicken auf eine Zeile in der Aufgabenliste, im Aufgaben-Widget des Dashboards und bei verwandten Aufgaben auf der Seite mit den Vorgangsdetails.
       chatMaxConnection: 'Die gesetzte Nummer steuert die Anzahl der erlaubten Tabs mit aktiven Chat. Falls mehr Tabs geöffnet werden, wird der Chat in inaktive Tabs deaktiviert. Erlaubte Werte zw. 1-5 '
       chatResponseTimeout: Chat-Antwort-Time-out in Sekunden, Standardwert ist 0 und bedeutet kein Time-out. Wenn Chat-Nachrichten durch den Reverse-Proxy Nginx gehen, muss das Chat-Antwort-Time-out kleiner sein als das Nginx-Time-out, z. B. kleiner als 60 Sekunden.
@@ -265,6 +267,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showErrorLogToConsole: Auf true setzen, um Fehlerprotokoll in die Browserkonsole zu schreiben
       showGlobalSearch: Zum Ein-/Ausschalten der Anzeige der globalen Suche.
       showProcessInformation: Auf "false" setzen, um die Verknüpfung zu Informationen des Prozesses auf der Seite Prozesse (Gittermodus) und Falldetails anzeigen zu deaktivieren.
+      showQuickGlobalSearch: Zum Ein-/Ausschalten der Anzeige der globalen Schnellsuche.
       showTaskDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Aufgabendetailseite.
       statisticChartScalingInterval: Intervall in Sekunden, in dem die Skalierung des statistischen Diagramms regelmäßig angefordert wird. Ist der Intervallwert kleiner als 10, wird die periodische Skalierung des statistischen Diagramms deaktiviert.
       uploadDocumentWhiteListExtensionNote: 'Leer lassen, falls Sie alle Formate erlauben. Falls Sie nur eine geringe Anzahl an Formate erlauben möchten (White list), können Sie diese hier, mit Komma getrennt, aufführen. Z.B.: pdf, txt, doc, docx.'
@@ -291,13 +294,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     resetAllSettingsConfirmation: 'Sind Sie sicher, dass Sie alle Einstellungen auf Standardwerte zurücksetzen möchten? '
     resetSettingConfirmation: Sind Sie sicher, dass Sie die Einstellung auf den Standardwert zurücksetzen möchten?
     restoreAllToDefault: Alle auf Standard Zurücksetzen
-    restoreDefault: Auf Standard Zurücksetzen.
+    restoreDefault: Wiederherstellung der Standardwerte
     settingApplicationName: Anwendungsname angeben
     settingMultipleLanguages: Einstellung mehrerer Sprachen
     usernameHint: Benutzername eines System Administrators.
     usernameRequiredMsg: Bitte geben Sie den Benutzernamen an.
     value: Wert
   applicationMenuHeader:
+    MobileApp: Verbinden Sie die Axon Ivy Mobile App
     adminSettings: Administration
     changePassword: Passwort ändern
   businessCaseState:
@@ -752,7 +756,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoData: Keine Daten
     NoSavedFilterMessage: Kein gespeicherter Filter gefunden. Versuchen Sie, einen neuen zu erstellen, indem Sie auf die Schaltfläche Filter speichern klicken.
     NoWidgetAvailable: Es gibt keine Widgets.
-    RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
+    RestoreDefaultDashboardMessage: Wenn Sie fortfahren, verlieren Sie alle von Ihnen erstellten Widgets. Es werden die Standardeinstellungen von <span class="dashboard-template-name-message">{0}</span> wiederhergestellt.
     SaveNewWidgetFilterHeader: Speichere neuen Widget-Filter
     SavedFilterHeader: Gespeicherte Filter
     SearchForFilter: Suche nach Filter
@@ -785,6 +789,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfCase: Vorfälle
     category: Kategorie
     columnManagement: Spaltenverwaltung
+    columnType:
+      CUSTOM: Benutzerdefiniertes Feld
+      CUSTOM_CASE: Benutzerdefiniertes Fallfeld
+      STANDARD: Standard-Säule
     configuration:
       CustomWidgetExternalLinkWarning: Einige Websites sind aufgrund von Sicherheitsbedenken nicht mit iframe kompatibel. Bitte wenden Sie sich an Ihren Administrator, wenn die externe Website nicht ordnungsgemäß funktioniert.
       CustomWidgetTitlePlaceholder: Lassen Sie es leer, um die Kopfzeile des Widgets auszublenden
@@ -912,6 +920,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     widgetType: Widget-Typ
     yourCases: Ihre Vorgänge
     yourCustomWidget: Ihr benutzerdefiniertes Widget
+    yourNotifications: Ihre Benachrichtigungen
     yourProcessViewer: Ihr Prozessbetrachter
     yourProcesses: Ihre Prozesse
     yourStatistics: Ihre Statistiken
@@ -995,6 +1004,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     username: Benutzername
   logoutSetting:
     logout: Abmelden
+  mobile:
+    MenuName: Mobile App
+    QRCodeDescription: Um Ihre Axon Ivy Mobile App zu verbinden, scannen Sie bitte diesen QR-Code und geben Sie Ihre Zugangsdaten in der App ein.
   noteHistory:
     author: Autor
     caseExportedFileNamePrefix: Verlauf_Vorgangsnotizen_{0}
@@ -1014,7 +1026,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     wroteAt: Erstellt am
   notifications:
     linkToFullScreen: Link zum Vollbild
-    linkToNotificationSettings: Link zu den Benachrichtigungseinstellungen
+    linkToNotificationSettings: Benachrichtigungseinstellungen
     markAllAsRead: Alle als gelesen markieren
     markAsRead: Als gelesen markieren
     noNotificationText: Keine Benachrichtigungen
@@ -1527,6 +1539,9 @@ Dialogs:
             expressWorkflowName: 'Business Details des Vorgangs: #{0}'
         portal:
           generic:
+            GlobalSearch:
+              ViewAllResults: Alle Ergebnisse anzeigen
+              noResultsText: Es liegen keine Ergebnisse vor.
             dashboard:
               PortalDashboardConfiguration:
                 NewDashboard: Neues Dashboard
@@ -1557,7 +1572,13 @@ Dialogs:
             IconSelection:
               IconLinkTooltip: Zum Ändern des Symbols anklicken
             TaskItemDetails:
+              CannotWorkOnDestroyedTaskWarning: Sie können nicht an der Aufgabe arbeiten, weil sie zerstört wurde.
+              CannotWorkOnTaskWarning: Sie können die Aufgabe nicht bearbeiten, weil der Benutzer <strong>{0}</strong> gerade daran arbeitet.
+              InvalidStateInfo: Ungültiger Zustand.
+              ResetTaskWarning: Sie arbeiten gerade an der Aufgabe in einer anderen Sitzung. Sie können die Aufgabe zurücksetzen und erneut starten, wenn Sie Ihren Browser geschlossen haben. <a href="{0}">Zurücksetzen</a>
               ShareTaskDetails: Teilen Sie Aufgabendetails
+              TaskCompletedByOtherInfo: Die Aufgabe wurde bereits von Benutzer <strong>{0}</strong> an {1} durchgeführt.
+              TaskCompletedByYouInfo: Sie haben die Aufgabe auf {0} bereits erledigt.
   com:
     axonivy:
       portal:
@@ -1582,7 +1603,7 @@ Dialogs:
               NewsTitlePlaceholder: Titel der Nachricht eingeben
               NewsTitleValidateMessage: Nachrichtentitel in {0} ist erforderlich
               NoNewsAvailable: Es gibt noch keine Neuigkeiten
-              Publish: veröffentlichen.
+              Publish: Veröffentlichen
               RemoveNewsHeader: Die Nachrichten entfernen?
               SeeLess: Weniger sehen
               SeeMore: Mehr sehen
@@ -1594,6 +1615,12 @@ Dialogs:
               NewsWidgetConfiguration: Konfiguration des Newsfeed-Widgets
               NewsWidgetDescription: Dieses Widget teilt relevante Informationen als News Feed in Axon Ivy.
               NewsWidgetTitle: News-Feed-Widget
+            NotificationWidget:
+              NoNotificationAvailable: Es liegen noch keine Benachrichtigungen vor
+            NotificationWidgetConfiguration:
+              NotificationWidgetConfiguration: Konfiguration des Benachrichtigungs-Widgets
+              NotificationWidgetDescription: Dieses Widget zeigt alle Benachrichtigungen basierend auf Ihren Benachrichtigungseinstellungen an.
+              WidgetFilter: Widget-Filter
   components:
     CaseDocument:
       FileDate: Änderungsdatum
@@ -1728,6 +1755,7 @@ Labels:
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails
   TaskUser-Explain: Kommaseparierte Liste von Benutzern
+  ViewAllResults: Alle Ergebnisse anzeigen
   adhocTaskRequired: Zumindest eine Aufgabe ist erforderlich.
   disabledUserPrefix: (inaktiv)
   title: Self Service Ad-hoc Workflow

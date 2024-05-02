@@ -5,10 +5,6 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '60'))
   }
 
-  triggers {
-    cron('0 23 * * *')
-  }
-
   tools {
     maven '3.8'
     jdk '17'
@@ -22,19 +18,21 @@ pipeline {
       -Divy.engine.download.url=file:///C:/wawa/engine/AxonIvyEngineX.X.X.X_Windows_x64.zip for downloaded engine
       -Divy.engine.list.url=https://jenkins.ivyteam.io/job/core_product/job/release%252F9.4/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.server.product/target/products/ -Divy.engine.os.arch=Windows_x64 for last successful build 9.4
     ''')
-    booleanParam(name: 'deployToRepo', defaultValue: false, description: 'Force deploy new version of screenshots. CAUTION: Only enable this option when you run with default test pattern.')
+    booleanParam(name: 'useForDocumentation', defaultValue: false, description: 'Make screenshots available to use in upcomming documentation builds. CAUTION: Only enable this option when you run with default test pattern.')
     booleanParam(name: 'checkoutCodeFromLatestReleaseTag', defaultValue: false, description: 'Turn on when you want to release new Portal screenshots, it will checkout the code from latest release tag')
   }
 
   environment {
     releaseDir = 'archive'
     engineDir = "$env.WORKSPACE/AxonIvyPortal/portal-selenium-test/engine"
+    shareDir = 'C:/tools/shared/document-screenshots'
   }
 
   stages {
     stage('build') {
       steps {
         script {
+          currentBuild.description = "On ${env.NODE_NAME}"
           def utils = load 'build/common/utils.groovy'
           utils.init()
           utils.stopAllEngines()
@@ -64,6 +62,9 @@ pipeline {
             '''
           }
 
+          downloadPortalRelease()
+          expressFile = findFiles(glob: 'archive/**/axonivy-express*.iar')[0].path
+
           utils.extractEngine(env.engineDir, params.engineDownloadURL)
 
           echo '====================Run script to copy decorate js and css to Portal===================='
@@ -88,8 +89,7 @@ pipeline {
           utils.killUnnecessaryProcessesToRunTest()
 
           echo '====================Execute maven for testing===================='
-          def mavenGoal = params.deployToRepo? 'deploy' : 'install'
-          bat "mvn clean ${mavenGoal} -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
+          bat "mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
           utils.cleanDisk()
 
           echo '====================Copy ElasticSearch log===================='
@@ -97,7 +97,12 @@ pipeline {
             $LOG= $env:engineDir + "/elasticsearch/logs/ivy-elasticsearch-*.log"
             Copy-Item $LOG -Destination AxonIvyPortal/portal-selenium-test/target
           '''
-
+          if (params.useForDocumentation) {
+            echo '====================Copy screenshots to shared directory===================='
+            powershell """
+              Copy-Item  AxonIvyPortal/portal-selenium-test/target/*.zip -Destination ${shareDir}
+            """
+          }
         }
       }
     }
@@ -106,7 +111,7 @@ pipeline {
   post {
     always {
       archiveArtifacts artifacts: 'AxonIvyPortal/portal-selenium-test/target/*.zip', allowEmptyArchive: true
-      archiveArtifacts artifacts: 'AxonIvyPortal/portal-selenium-test/target/selenide/reports/*/*/*.png, AxonIvyPortal/portal-selenium-test/target/testEngineOut.log, AxonIvyPortal/portal-selenium-test/target/ivy-elasticsearch-*.log', allowEmptyArchive: true
+      archiveArtifacts artifacts: 'AxonIvyPortal/portal-selenium-test/target/selenide/reports/**/*.*, AxonIvyPortal/portal-selenium-test/target/testEngineOut.log, AxonIvyPortal/portal-selenium-test/target/ivy-elasticsearch-*.log', allowEmptyArchive: true
       junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
     }
   }
@@ -117,6 +122,8 @@ def downloadPortalRelease() {
   def branchName = env.BRANCH_NAME.replaceAll('/', '%%2F')
   withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
     bat "curl --user ${credentials} --output archive.zip ${env.JENKINS_URL}job/portal-release/job/${branchName}/lastSuccessfulBuild/artifact/*zip*/archive.zip"
+    bat "curl --user ${credentials} --output archive-express.zip ${env.JENKINS_URL}job/axonivy-express-integration/job/develop/lastSuccessfulBuild/artifact/*zip*/archive.zip"
   }
   unzip zipFile: 'archive.zip', quiet: true
+  unzip zipFile: 'archive-express.zip', quiet: true
 }

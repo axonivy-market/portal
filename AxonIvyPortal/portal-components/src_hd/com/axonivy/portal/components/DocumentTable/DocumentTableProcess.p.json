@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "16B1B70EE89C4939",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -120,7 +120,7 @@
         { "id" : "f40", "to" : "f39", "label" : {
             "name" : "YES",
             "segment" : 0.29,
-            "offset" : { "x" : 0, "y" : -7 }
+            "offset" : { "y" : -7 }
           } },
         { "id" : "f37", "to" : "f36" }
       ]
@@ -131,16 +131,17 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
             "",
-            "FacesContext.getCurrentInstance().addMessage(in.messageComponentId, new FacesMessage(FacesMessage.SEVERITY_ERROR, in.message, null));"
+            "FacesContext.getCurrentInstance().addMessage(in.messageComponentId, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, in.message, null));"
           ]
         }
       },
       "visual" : {
         "at" : { "x" : 640, "y" : 480 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f48", "to" : "f45" }
@@ -191,16 +192,17 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
             "",
-            "FacesContext.getCurrentInstance().addMessage(in.messageComponentId, new FacesMessage(in.message, \"\"));"
+            "FacesContext.getCurrentInstance().addMessage(in.messageComponentId, FacesMessageUtils.sanitizedMessage(in.message, \"\"));"
           ]
         }
       },
       "visual" : {
         "at" : { "x" : 800, "y" : 384 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f47", "to" : "f45" }
@@ -282,10 +284,11 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
             "",
-            "FacesContext.getCurrentInstance().addMessage(in.messageComponentId, new FacesMessage(in.message, \"\"));"
+            "FacesContext.getCurrentInstance().addMessage(in.messageComponentId, FacesMessageUtils.sanitizedMessage(in.message, \"\"));"
           ]
         }
       },
@@ -352,7 +355,7 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 736 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f27", "to" : "f26" }
@@ -382,7 +385,7 @@
       "connect" : [
         { "id" : "f33", "to" : "f13", "label" : {
             "name" : "YES",
-            "offset" : { "x" : 0, "y" : -11 }
+            "offset" : { "y" : -11 }
           } },
         { "id" : "f35", "to" : "f34", "via" : [ { "x" : 224, "y" : 480 } ] }
       ]
@@ -400,7 +403,7 @@
       },
       "visual" : {
         "at" : { "x" : 368, "y" : 480 },
-        "size" : { "width" : 208, "height" : 60 }
+        "size" : { "width" : 208 }
       },
       "connect" : [
         { "id" : "f38", "to" : "f36" }
@@ -435,7 +438,7 @@
       },
       "visual" : {
         "at" : { "x" : 640, "y" : 384 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       },
       "connect" : [
         { "id" : "f41", "to" : "f46" }

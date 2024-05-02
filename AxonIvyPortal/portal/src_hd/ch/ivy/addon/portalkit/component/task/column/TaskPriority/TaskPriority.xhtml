@@ -19,7 +19,7 @@
   <c:set var="priority" value="#{cc.attrs.priority}" />
   <c:set var="showIconWithText" value="#{cc.attrs.showIconWithText}" />
   <c:set var="showEditIcon" value="#{cc.attrs.showEditIcon}" />
-  <c:set var="showPriority" value="#{cc.attrs.dataModel.compactMode or cc.attrs.dataModel.isSelectedColumn('PRIORITY') or showIconWithText or cc.attrs.alwaysShowPriority}" />
+  <c:set var="showPriority" value="#{cc.attrs.dataModel.isSelectedColumn('PRIORITY') or showIconWithText or cc.attrs.alwaysShowPriority}" />
 
   <h:panelGroup id="#{cc.attrs.componentId}" styleClass="priority-cell #{cc.attrs.priorityStyleClass} #{cc.attrs.responsiveStyleClass}"
     rendered="#{showPriority}" >

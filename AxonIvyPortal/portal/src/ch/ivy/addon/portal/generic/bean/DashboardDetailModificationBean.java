@@ -1,9 +1,11 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CASE;
+
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CLIENT_STATISTIC;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CUSTOM;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NEWS;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NOTIFICATION;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS_VIEWER;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.STATISTIC;
@@ -44,6 +46,7 @@ import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.dto.News;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.service.ClientStatisticService;
+import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
@@ -77,7 +80,6 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.ProcessSorting;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
-import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessStartDTO;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.DashboardService;
@@ -133,7 +135,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void initSampleWidgets() {
     if (CollectionUtils.isEmpty(samples)) {
       samples = List.of(taskSample(), caseSample(), processSample(), statisticSample(), externalPageSample(),
-          processViewerSample(), welcomeWidgetSample(), newsSample());
+          processViewerSample(), welcomeWidgetSample(), newsSample(), notificationSample());
       samples = samples.stream().sorted(Comparator.comparing(WidgetSample::getName)).collect(Collectors.toList());
     }
     initCustomWidgets();
@@ -223,6 +225,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         translate("/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/NewsWidgetDescription"), true);
   }
 
+  private WidgetSample notificationSample() {
+    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/NOTIFICATION"),
+        NOTIFICATION, "si si-alarm-bell", translate("/Dialogs/com/axonivy/portal/dashboard/component/NotificationWidgetConfiguration/NotificationWidgetDescription"), true);
+  }
+
   public void restore() {
     removeWelcomeWidgetImagesOfDashboard(getSelectedDashboard());
     selectedDashboardId = getSelectedDashboard().getId();
@@ -289,6 +296,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         newWidgetHeader = translate("/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/NewsWidgetConfiguration");
         widget = getDefaultNewsWidget();
       }
+      case NOTIFICATION -> {
+        newWidgetHeader = translate("/Dialogs/com/axonivy/portal/dashboard/component/NotificationWidgetConfiguration/NotificationWidgetConfiguration");
+        widget = getDefaultNotificationWidget();
+      }
       default -> {}
     }
   }
@@ -308,16 +319,18 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     customWidget.getData().setType(DashboardCustomWidgetType.PROCESS);
     
     var iWebStartable = ProcessService.getInstance()
-        .findCustomDashboardProcessInSecurityContextByProcessId(process.getId());
+        .findCustomDashboardProcesses()
+        .stream()
+        .filter(startable -> StringUtils.endsWith(startable.getId(), process.getId()))
+        .findFirst().orElse(null);
 
     if (Objects.isNull(iWebStartable)) {
       return;
     }
 
-    var ivyProcessStartDTO = new IvyProcessStartDTO(iWebStartable);
-    customWidget.getData().setIvyProcessStartDTO(ivyProcessStartDTO);
-    customWidget.getData().setProcessPath(ivyProcessStartDTO.getStartableProcessStart().getId());
-    customWidget.getData().setStartRequestPath(ivyProcessStartDTO.getStartableProcessStart().getLink().getRelative());
+    customWidget.getData().setStartableProcessStart(iWebStartable);
+    customWidget.getData().setProcessPath(iWebStartable.getId());
+    customWidget.getData().setStartRequestPath(iWebStartable.getLink().getRelative());
     customWidget.loadParametersFromProcess();
   }
 
@@ -413,6 +426,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void saveClientStatisticWidget(ClientStatistic clientStatistic) {
     createClientStatisticWidget(clientStatistic);
     saveWidget();
+  }
+  private NotificationDashboardWidget getDefaultNotificationWidget() {
+    String widgetId = DashboardWidgetUtils.generateNewWidgetId(NOTIFICATION);
+    String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourNotifications");
+    return NotificationDashboardWidget.buildDefaultWidget(widgetId, widgetName);
   }
 
   public void saveWidget() {
@@ -593,8 +611,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     if (customWidget.getData().getType() == DashboardCustomWidgetType.PROCESS) {
       // Update processPath to latest
       IWebStartable startable = Optional.ofNullable(customWidget.getData())
-          .map(DashboardCustomWidgetData::getIvyProcessStartDTO)
-          .map(IvyProcessStartDTO::getStartableProcessStart).orElse(null);
+          .map(DashboardCustomWidgetData::getStartableProcessStart).orElse(null);
       if (Objects.isNull(startable)) {
         startable = CustomWidgetUtils.findStartableOfCustomDashboardProcess(customWidget.getData().getProcessPath());
       }

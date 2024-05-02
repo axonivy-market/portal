@@ -38,6 +38,8 @@ The following default widgets are available:
 
 #. **External page widget**: This widget displays an external webpage on your dashboard.
 
+#. **Notifications widget**: This widget displays all Notifications based on your notification settings.
+
 In addition, a developer can provide custom widgets to add relevant project information to your dashboard.
 
 **Task list widget, Case list widget, Process list widget (compact mode)** has the following standard features:
@@ -110,6 +112,10 @@ In the column management panel, you will find two sections:
       - Reorder the columns by drag and drop using the arrows |move-expand-vertical|
       - Remove columns
 
+Portal supports to display custom case fields within the task list.
+
+|task-column-field-type-configuration|
+
 **Excel export**
 
 You can export all data of the task widget by clicking on the link ``Export to Excel`` at the bottom left corner of the widget information panel.
@@ -162,6 +168,8 @@ You can export all data of the case widget by clicking on the link ``Export to E
 
 If the number of exported cases exceed the maximum row number of the Excel file, Portal will separate data into multiple Excel
 files and put them into a single zip file.
+
+.. _new-dashboard-process-list-widget:
 
 Process list widget
 ===================
@@ -317,7 +325,7 @@ You can define a news feed widget to display all news entries to the user
 
 **Manage news feed content**
 
-.. note:: The user has to have permission ``NewsManagement`` to manage the content of the news feed.
+.. note:: Grant permission :bdg-ref-warning:`🔑NewsManagement <NewsManagement>` to allow a user to manage the content of the news feed.
 
 If the user has permission, then the user can:
 
@@ -354,6 +362,19 @@ You enter an URL to embed an external webpage into the Portal dashboard.
 
 |external-page-widget-configuration|
 
+.. _add-new-notification-widget:
+
+Notifications widget
+====================
+
+You can define a Notifications widget to display all Notifications based on your notification settings.
+
+|notification-widget-configuration|
+
+- This is the sample output of the widget configured above:
+
+|notification-widget|
+
 .. include:: ../includes/_common-icon.rst
 
 .. |dash-board| image:: ../../screenshots/new-dashboard/dashboard.png
@@ -367,6 +388,7 @@ You enter an URL to embed an external webpage into the Portal dashboard.
 .. |task-list-widget| image:: ../../screenshots/new-dashboard/task-list-widget.png
 .. |task-list-widget-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-configuration.png
 .. |task-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-table-configuration.png
+.. |task-column-field-type-configuration| image:: ../../screenshots/new-dashboard/task-column-field-type-configuration.png
 
 .. |case-list-widget| image:: ../../screenshots/new-dashboard/case-list-widget.png
 .. |case-list-widget-configuration| image:: ../../screenshots/new-dashboard/case-list-widget-configuration.png
@@ -390,9 +412,13 @@ You enter an URL to embed an external webpage into the Portal dashboard.
 .. |news-feed-widget-overlay-panel| image:: ../../screenshots/new-dashboard/news-feed-widget-overlay-panel.png
 
 .. |external-page-widget-configuration| image:: ../../screenshots/dashboard/external-page-widget-configuration.png
+
 .. |chart-task-by-priority| image:: ../../screenshots/new-dashboard/task-by-priority-statistic-chart-widget.png
 .. |chart-task-grouped-by-priority| image:: ../../screenshots/new-dashboard/task-grouped-by-priority-statistic-chart-widget.png
 .. |chart-number-of-open-tasks| image:: ../../screenshots/new-dashboard/number-of-open-tasks-statistic-chart-widget.png
 .. |chart-started-cases-per-day| image:: ../../screenshots/new-dashboard/started-cases-per-day-statistic-chart-widget.png
 .. |chart-completed-tasks-per-day| image:: ../../screenshots/new-dashboard/completed-tasks-per-day-statistic-chart-widget.png
 .. |add-statistic-widget| image:: ../../screenshots/new-dashboard/add-client-statistic-widget.png
+
+.. |notification-widget-configuration| image:: ../../screenshots/new-dashboard/notification-widget-configuration.png
+.. |notification-widget| image:: ../../screenshots/new-dashboard/notification-widget.png

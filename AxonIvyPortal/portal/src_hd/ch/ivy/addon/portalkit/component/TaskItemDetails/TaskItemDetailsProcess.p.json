@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "16BFA568D95D2EA0",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -143,7 +143,7 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 480 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f20", "to" : "f77" }
@@ -182,6 +182,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import org.primefaces.PrimeFaces;",
             "import ch.ivyteam.ivy.security.IUser;",
             "import org.apache.commons.lang3.StringUtils;",
@@ -205,7 +206,7 @@
             "}",
             "",
             "facesContext.validationFailed();",
-            "facesContext.addMessage(\"portal-global-growl-message\", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));",
+            "facesContext.addMessage(\"portal-global-growl-message\", FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, notification, null));",
             "PrimeFaces.current().ajax().update(\"portal-global-growl\");  "
           ]
         },
@@ -251,7 +252,7 @@
       },
       "visual" : {
         "at" : { "x" : 480, "y" : 480 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f5", "to" : "f15" }
@@ -360,7 +361,7 @@
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 672 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f87", "to" : "f79" }
@@ -404,7 +405,7 @@
       },
       "visual" : {
         "at" : { "x" : 320, "y" : 800 },
-        "size" : { "width" : 256, "height" : 60 }
+        "size" : { "width" : 256 }
       },
       "connect" : [
         { "id" : "f21", "to" : "f19" }

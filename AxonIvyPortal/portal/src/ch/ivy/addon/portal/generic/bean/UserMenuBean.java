@@ -15,8 +15,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.PrimeFaces;
 
+import com.axonivy.portal.bo.QRCodeData;
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.enums.PortalCustomSignature;
+import com.google.gson.Gson;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
@@ -35,6 +37,7 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.request.EngineUriResolver;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
@@ -49,6 +52,7 @@ public class UserMenuBean implements Serializable {
   private String targetPage = StringUtils.EMPTY;
   private String loggedInUser;
   private boolean isShowGlobalSearch;
+  private boolean isShowQuickGlobalSearch;
 
   public String getLoggedInUser() {
     return loggedInUser;
@@ -70,6 +74,7 @@ public class UserMenuBean implements Serializable {
       };
     }
     isShowGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_GLOBAL_SEARCH);
+    isShowQuickGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_QUICK_GLOBAL_SEARCH);
   }
 
   public boolean isShowCaseDurationTime() {
@@ -97,6 +102,9 @@ public class UserMenuBean implements Serializable {
     return isShowGlobalSearch;
   }
 
+  public boolean getIsShowQuickGlobalSearch() {
+    return isShowQuickGlobalSearch;
+  }
   public long getClientSideTimeout() {
     String clientSideTimeoutInMinute = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT);
     if (StringUtils.isNotBlank(clientSideTimeoutInMinute)) {
@@ -221,6 +229,10 @@ public class UserMenuBean implements Serializable {
         && (PermissionUtils.hasDashboardWriteOwnPermission() || PermissionUtils.hasDashboardWritePublicPermission());
   }
 
+  public boolean isMobileDevice() {
+    return RequestUtils.isMobileDevice();
+  }
+
   /**
    * We moved this method to PortalExceptionBean#getErrorDetailToEndUser
    * @return system configuration of ErrorDetailToEndUser
@@ -244,7 +256,7 @@ public class UserMenuBean implements Serializable {
     return AnnouncementService.getInstance().isAnnouncementActivated();
   }
   
-  private void navigateToHomePage() throws IOException {
+  public void navigateToHomePage() throws IOException {
     getExternalContext().redirect(getHomePageURL());
   }
   
@@ -319,5 +331,31 @@ public class UserMenuBean implements Serializable {
       expressStartLink = ExpressProcessService.getInstance().findExpressWorkflowStartLink();
     }
     return expressStartLink;
+  }
+  
+  public void navigateToNotificationOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) {
+    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+      openTaskLosingConfirmationDialog();
+      targetPage = getNotificationFullPageUrl();
+    } else {
+      executeJSResetPortalMenuState();
+      PortalNavigator.navigateToNotificationFullPage();
+    }
+  }
+  
+  private String getNotificationFullPageUrl() {
+    return PortalNavigator.buildNotificationFullPageUrl();
+  }
+  
+  public boolean isShowQRCode() {
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_QR_CODE);
+  }
+  
+  public String getQRcodeData() {
+    QRCodeData data = new QRCodeData();
+    data.setLoginUrl(EngineUriResolver.instance().external().toString());
+    data.setUsername(Ivy.session().getSessionUserName());
+    
+    return new Gson().toJson(data);
   }
 }

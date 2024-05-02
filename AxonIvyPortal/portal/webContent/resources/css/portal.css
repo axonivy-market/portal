@@ -729,7 +729,7 @@ body .ui-datepicker .ui-timepicker-div dl dd {
   font-size: var(--large-font-size); }
 
 .not-display-result-tab-view {
-  font-size: var(--small-font-size); }
+  font-size: var(--default-font-size); }
 
 /** Style for Task Template * --------------------------------------*/
 .task-template-title {
@@ -1637,11 +1637,22 @@ body.in-dialog .ui-widget-overlay {
   font-size: var(--default-font-size);
   padding-right: 5px;
 }
+
+.notifications-action-button.si {
+  font-size: var(--default-font-size);
+}
+
+.notifications-action-button.fa {
+  font-size: var(--default-font-size);
+  padding-right: 10px;
+}
+
 .notifications-container-top {
-  padding:10px;
+  padding:0.3rem;
   padding-left:0px;
   padding-right:0px;
   margin-bottom:0.15em;
+  margin-top:0.15em;
   border-radius: 6px;
 }
 body .notification-scroll>.ui-datascroller-content  {
@@ -1651,13 +1662,20 @@ body .notification-scroll>.ui-datascroller-content  {
 body .notification-scroll>.ui-datascroller-content::-webkit-scrollbar {
   display: none;
 }
-body .notification-checkbox .ui-chkbox-box {
-  width: 1rem;
-  height: 1rem;
+body .notification-full-scroll>.ui-datascroller-content  {
+  border: 0px;
+  padding: 2px;
 }
+.notifications-scroller-container .ui-datascroller .ui-datascroller-content{
+  border: 0px;
+  height:600px;
+  overflow:auto;
+}
+
 .notification-checkbox .ui-chkbox-label {
   var(--notification-label-font-size);
 }
+
 .notifications-item-container {
   padding: 20px 10px 5px 10px;
   display: block;
@@ -1694,6 +1712,7 @@ body .notification-checkbox .ui-chkbox-box {
   width: 400px;
   visibility: visible;
   opacity: 1;
+  overflow: hidden;
 }
 .notifications-item-list {
   width: 400px;
@@ -1706,6 +1725,9 @@ body .notification-checkbox .ui-chkbox-box {
 .notifications-item-time-since {
   font-size: var(--notification-label-item-font-size);
   padding-left: 1.3rem;
+}
+.time-since {
+  padding-left: 1rem;
 }
 .notifications-title-header {
   flex: 1;
@@ -1729,6 +1751,15 @@ body .notification-checkbox .ui-chkbox-box {
   top: 50%;
 }
 
+.only-unread-toggle{
+  padding-right:10px;
+}
+.unread-container{
+  display:flex;
+  align-items:center;
+  justify-content:end;
+}
+
 i.dashboard-icon-drag-drop {
     border: 1px solid var(--ivy-primary-color);
     color: var(--ivy-primary-color);
@@ -1739,4 +1770,47 @@ i.dashboard-icon-drag-drop {
     vertical-align: unset;
     cursor: move
 
+}
+
+.global-search-form {
+  width: 600px;
+}
+
+.global-search-icon {
+  position: absolute;
+  left: 0.9rem;
+  top: 50%;
+  margin-top: -0.35rem;
+  z-index: 1;
+}
+.ui-inputfield.global-search-input {
+  padding-left: 2.5rem;
+  width: 100%;
+  min-width:100px;
+}
+.task-priority-item {
+  padding: 0.1rem;
+}
+
+@media (max-width: 767px) {
+  .global-search-form {
+    width: 330px;
+  }
+  .ui-inputfield.global-search-input {
+    max-width: 200px;
+  }
+}
+
+.global-search-all-results {
+  padding-top: 0.5rem;
+}
+.global-search-input.global-default-search-bar {
+  width: 100%;
+}
+.global-search-input.global-large-search-bar {
+  width: 600px;
+}
+
+.global-search-input.global-small-search-bar {
+  width: 200px;
 }
