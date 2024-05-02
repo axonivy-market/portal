@@ -33,8 +33,8 @@
     styleClass="ui-fluid md-inputfield text-list-filter text-list-panel-#{cc.attrs.filterIndex}"
     rendered="#{widgetTextFilterBean.isShowTextListPanel(filter)}">
     <p:chips value="#{filter.values}" unique="true" addOnPaste="true" disabled="#{readOnly}" addOnBlur="true">
-      <p:ajax event="itemSelect" process="@this" update="@this" partialSubmit="true" global="false" />
-      <p:ajax event="itemUnselect" process="@this" update="@this" partialSubmit="true" global="false" />
+      <p:ajax event="itemSelect" update="@this" partialSubmit="true" />
+      <p:ajax event="itemUnselect" update="@this" partialSubmit="true" />
       <f:validator validatorId="dashboardDefaultListFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
       <f:param name="skipValidator" value="true" />
       <f:attribute name="filter" value="#{filter}" />
