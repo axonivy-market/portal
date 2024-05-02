@@ -155,4 +155,5 @@
   --notification-label-font-size: 12px;
   --notification-label-item-font-size: 0.75em;
   --notifications-title-header-font-weight: bold;
+  --notification-indicator-size: 0.65rem
 }
