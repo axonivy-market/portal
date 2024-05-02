@@ -130,6 +130,7 @@
                         isReadOnlyMode="#{managedBean.isReadOnlyMode}"
                         index="#{status.index}"
                         id="client-statistic-#{widget.id}" />
+                    </c:if>
                     
                     <!-- Notification widget -->
                     <c:if test="#{widget.type eq 'NOTIFICATION'}">
