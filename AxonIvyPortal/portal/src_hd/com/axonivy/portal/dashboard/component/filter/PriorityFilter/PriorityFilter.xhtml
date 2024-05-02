@@ -36,8 +36,10 @@
       disabled="#{readOnly}">
       <f:selectItems value="#{widgetPriorityFilterBean.priorities}" var="priority" itemValue="#{priority}" />
       <f:param name="skipValidator" value="true" />
-      <p:ajax event="change" update="priority-hidden" process="@(this)" listener="#{widgetPriorityFilterBean.updatePrioritiesString(cc.attrs.filter.values)}" global="false" />
-      <p:ajax event="toggleSelect" update="priority-hidden" process="@(this)" listener="#{widgetPriorityFilterBean.updatePrioritiesString(cc.attrs.filter.values)}" global="false" />
+      <p:ajax event="change" update="priority-hidden"
+        listener="#{widgetPriorityFilterBean.updatePrioritiesString(cc.attrs.filter.values)}" global="false" />
+      <p:ajax event="toggleSelect" update="priority-hidden"
+        listener="#{widgetPriorityFilterBean.updatePrioritiesString(cc.attrs.filter.values)}" global="false" />
     </p:selectCheckboxMenu>
 
     <p:inputText id="priority-hidden" type="hidden" value="#{widgetPriorityFilterBean.prioritiesString}">
