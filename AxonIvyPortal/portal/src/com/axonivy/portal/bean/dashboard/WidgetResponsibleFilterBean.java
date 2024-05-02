@@ -75,7 +75,7 @@ public class WidgetResponsibleFilterBean implements Serializable {
     }
     filter.getValues().clear();
     for (SecurityMemberDTO responsible : selectedResponsibles) {
-      filter.getValues().add(responsible.getName());
+      filter.getValues().add(responsible.getMemberName());
     }
   }
 }
