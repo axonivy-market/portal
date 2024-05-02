@@ -39,7 +39,7 @@
   <script src="#{resource['ivy-webcontent:layouts/js/cookie-helper.js']}" />
   <h:outputStylesheet library="css" name="portal-root-variables.css" />
   <h:outputStylesheet library="css" name="portal-variables-#{ivyFreyaTheme.mode}.css" />
-  <h:outputStylesheet library="primeflex" name="primeflex-2.min.css" />
+  <h:outputStylesheet library="primeflex" name="primeflex-3.min.css" />
   <h:outputStylesheet library="css" name="utility.css" />
   <h:outputStylesheet library="css" name="template.css" />
   <h:outputStylesheet library="css" name="module.css" />
@@ -85,6 +85,7 @@
         listener="#{facesContext.externalContext.response.setHeader('Cache-Control', 'no-cache, no-store')}" />
         
       <c:set var="showGlobalSearch" value="#{userMenuBean.isShowGlobalSearch}" />
+      <c:set var="showQuickGlobalSearch" value="#{userMenuBean.isShowQuickGlobalSearch}" />
         
      <div id="portal-template-header" class="js-portal-template-header #{showMainArea eq true ? '' : 'u-invisibility'}">
         <ic:ch.ivy.addon.portalkit.component.PageHeader />
@@ -101,6 +102,7 @@
               <ui:param name="isNotRequiredLogin" value="#{isNotRequiredLogin}" />
               <ui:param name="hasMainMenu" value="#{empty hasMainMenu ? true : hasMainMenu}" />
               <ui:param name="showGlobalSearch" value="#{showGlobalSearch}" />
+              <ui:param name="showQuickGlobalSearch" value="#{showQuickGlobalSearch}" />
               <ui:param name="enablesChat" value="#{enablesChat}" />
               <ui:param name="viewName" value="#{viewName}" />
               <ui:param name="case" value="#{case}" />

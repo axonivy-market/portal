@@ -234,4 +234,8 @@ public class DashboardWidgetConfigurationDialogPage extends TemplatePage {
             "widget-configuration-form:new-widget-configuration-component:title-language-config:multiple-languages-dialog");
   }
 
+  public WebElement getAddingFieldColumnType() {
+    return findElementById(
+        "widget-configuration-form:new-widget-configuration-component:column-management-component:column-management-form:field-type-selection_label");
+  }
 }

@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.bean;
 
-import static ch.ivy.addon.portalkit.constant.PortalConstants.MAX_USERS_IN_AUTOCOMPLETE;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.io.IOException;
@@ -14,6 +13,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -23,11 +23,14 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.util.Strings;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
+import com.axonivy.portal.service.DeepLTranslationService;
+import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.util.ExternalLinkUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
@@ -37,6 +40,7 @@ import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.configuration.GlobalSetting;
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.ProcessMode;
@@ -48,8 +52,10 @@ import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
+import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.IProcessStart;
@@ -77,6 +83,9 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   private List<String> selectedPermissionsForSavingEditedExternalLink;
   private IProcessStart createExpressWorkflowProcessStart;
   private Map<String, List<Process>> processesByAlphabet;
+  
+  private String warningText;
+  private String translatedText;
 
   public void initConfiguration() {
     initProcessViewMode();
@@ -224,7 +233,8 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   public String getDisplayNameOfPermissionsWhenEditingExternalLink() {
-    return String.join(", ", getSelectedPermissionsWhenEditingExternalLink());
+    List<String> displayNames = getselectedSecurityMemberDTOsWhenEditingExternalLink().stream().map(dto -> dto.getDisplayName()).toList();
+    return String.join(", ", displayNames);
   }
 
   public void editExpressWorkflow(ExpressProcess process) throws IOException {
@@ -238,14 +248,9 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     }
 
     switch (deletedProcess.getType()) {
-      case EXPRESS_PROCESS:
-        deleteExpressWorkflow();
-        break;
-      case EXTERNAL_LINK:
-        deleteExternalLink();
-        break;
-      default:
-        break;
+      case EXPRESS_PROCESS -> deleteExpressWorkflow();
+      case EXTERNAL_LINK -> deleteExternalLink();
+      default -> {}
     }
   }
 
@@ -262,16 +267,15 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     }
     String oldProcessName = this.editedProcess.getName();
     switch (this.editedProcess.getType()) {
-      case EXPRESS_PROCESS:
+      case EXPRESS_PROCESS -> {
         ExpressProcess expressProcess = updateExpressProcess(editedProcess.getId());
         this.editedProcess = new PortalExpressProcess(expressProcess);
-        break;
-      case EXTERNAL_LINK:
+      }
+      case EXTERNAL_LINK -> {
         ExternalLink externalLink = updateExternalLink(editedProcess.getId());
         this.editedProcess = new ExternalLinkProcessItem(externalLink);
-        break;
-      default:
-        break;
+      }
+      default -> {}
     }
     selectedIconProcess = null;
     updateStartProcessesList(oldProcessName);
@@ -304,12 +308,21 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
       if (CollectionUtils.isNotEmpty(this.selectedPermissionsForSavingEditedExternalLink)) {
         externalLink.setPermissions(this.selectedPermissionsForSavingEditedExternalLink);
       }
+      externalLink.setNames(this.editedExternalLink.getNames());
+      externalLink.setDescriptions(this.editedExternalLink.getDescriptions());
+      updateEmptyNameAndDescription(externalLink);
       ExternalLinkBean externalLinkBean = ManagedBeans.get("externalLinkBean");
       String correctLink = externalLinkBean.correctLink(this.editedExternalLink.getLink());
       externalLink.setLink(correctLink);
       externalLinkService.save(externalLink);
     }
     return externalLink;
+  }
+  
+  private void updateEmptyNameAndDescription(ExternalLink externalLink) {
+    String userLanguguage = UserUtils.getUserLanguage();
+    DisplayNameConvertor.updateEmptyValue(userLanguguage, externalLink.getNames());
+    DisplayNameConvertor.updateEmptyValue(userLanguguage, externalLink.getDescriptions());
   }
 
   public void handleExternalLinkImageUpload(FileUploadEvent event) {
@@ -362,6 +375,8 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
       processes.add(editedProcess);
       sortProcesses(processes);
       processesByAlphabet.put(firstLetter, processes);
+      getPortalProcesses().removeIf(process -> process.getId().equals(processId));
+      getPortalProcesses().add(this.editedProcess);
     }
   }
 
@@ -446,18 +461,28 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     } else {
       this.editedExternalLink.setIsPublic(false);
     }
+    ExternalLink findById = ExternalLinkService.getInstance().findById(editedProcess.getId());
+    if (findById != null) {
+      this.editedExternalLink.setNames(findById.getNames());
+      this.editedExternalLink.setDescriptions(findById.getDescriptions());
+    }
   }
 
-  private List<SecurityMemberDTO> getSecurityMemberDTOsFromPermissions(List<String> permissions) {
-    Map<String, SecurityMemberDTO> nameToSecurityMemberDTO = SecurityMemberUtils
-        .findSecurityMembers("", 0, MAX_USERS_IN_AUTOCOMPLETE)
-        .stream().filter(securityMember -> !securityMember.isUser())
-        .collect(Collectors.toMap(SecurityMemberDTO::getMemberName, v -> v));
-    var responsibles = permissions.stream().filter(Objects::nonNull).distinct()
-        .filter(permission -> !permission.startsWith("#"))
-        .map(permission -> nameToSecurityMemberDTO.get(permission))
-        .filter(Objects::nonNull).collect(Collectors.toSet());
-    return new ArrayList<>(responsibles);
+  private List<SecurityMemberDTO> getSecurityMemberDTOsFromPermissions(
+      List<String> permissions) {
+    if (CollectionUtils.isEmpty(permissions)) {
+      return new ArrayList<>();
+    }
+
+    return permissions.stream().filter(Objects::nonNull).distinct()
+        .map(permission -> findSecurityMemberDtoByName(permission))
+        .collect(Collectors.toList());
+  }
+
+  private SecurityMemberDTO findSecurityMemberDtoByName(String permission) {
+    return permission.startsWith("#")
+        ? new SecurityMemberDTO(UserUtils.findUserByUsername(permission))
+        : new SecurityMemberDTO(RoleUtils.findRole(permission));
   }
 
   public Map<String, List<Process>> getProcessesByAlphabet() {
@@ -558,5 +583,86 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   public void setSelectedPermissionsWhenEditingExternalLink(List<String> selectedPermissionsWhenEditingExternalLink) {
     this.selectedPermissionsWhenEditingExternalLink = new ArrayList<>(selectedPermissionsWhenEditingExternalLink);
+  }
+  
+  public void updateNameByLocale() {
+    String currentName = LanguageUtils.getLocalizedName(editedExternalLink.getNames(), editedExternalLink.getName());
+    initAndSetValue(currentName, editedExternalLink.getNames());
+  }
+  
+  public void updateDescriptionByLocale() {
+    String currentDescription = LanguageUtils.getLocalizedName(editedExternalLink.getDescriptions(), editedExternalLink.getDescription());
+    initAndSetValue(currentDescription, editedExternalLink.getDescriptions());
+  }
+  
+  private void initAndSetValue(String value, List<DisplayName> values) {
+    DisplayNameConvertor.initMultipleLanguages(value, values);
+    DisplayNameConvertor.setValue(value, values);
+  }
+  
+  public boolean isRequiredField(DisplayName displayName) {
+    String currentLanguage = UserUtils.getUserLanguage();
+    String displayLanguage = displayName.getLocale().getLanguage();
+    return currentLanguage.equals(displayLanguage);
+  }
+  
+  public boolean isShowTranslation(DisplayName title) {
+    return DeepLTranslationService.getInstance().isShowTranslation(title.getLocale());
+  }
+
+  public boolean isFocus(DisplayName title) {
+    return !isShowTranslation(title) && title.getLocale().getLanguage().equals(UserUtils.getUserLanguage());
+  }
+
+  public String getWarningText() {
+    return warningText;
+  }
+
+  public String getTranslatedText() {
+    return translatedText;
+  }
+
+  public void setWarningText(String warningText) {
+    this.warningText = warningText;
+  }
+
+  public void setTranslatedText(String translatedText) {
+    this.translatedText = translatedText;
+  }
+  
+  public void translate(DisplayName title) {
+    translateValues(title, editedExternalLink.getNames());
+  }
+  
+  public void translateTextArea(DisplayName title) {
+    translateValues(title, editedExternalLink.getDescriptions());
+  }
+  
+  private void translateValues(DisplayName title, List<DisplayName> languages) {
+    translatedText = Strings.EMPTY;
+    warningText = Strings.EMPTY;
+
+    String currentLanguage = UserUtils.getUserLanguage();
+    if (!title.getLocale().getLanguage().equals(currentLanguage)) {
+      Optional<DisplayName> optional = languages.stream()
+          .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+      if (optional.isPresent()) {
+        try {
+          translatedText = DeepLTranslationService.getInstance().translate(optional.get().getValue(),
+              optional.get().getLocale(), title.getLocale());
+        } catch (Exception e) {
+          warningText = Ivy.cms()
+              .co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
+          Ivy.log().error("DeepL Translation Service error: ", e.getMessage());
+        }
+      }
+    }
+  }
+  
+  public void applyTranslatedText(DisplayName displayName) {
+    if (StringUtils.isNotBlank(translatedText)) {
+      displayName.setValue(translatedText);
+      translatedText = "";
+    }
   }
 }

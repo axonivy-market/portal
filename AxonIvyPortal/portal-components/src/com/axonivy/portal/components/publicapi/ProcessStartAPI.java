@@ -84,7 +84,7 @@ public final class ProcessStartAPI {
 	}
 
 	private static boolean isStartableProcessStart(String processRelativeLink) {
-		return ProcessService.getInstance().findProcesses().getProcesses().stream().map(IWebStartable::getLink)
+		return ProcessService.getInstance().findProcesses().stream().map(IWebStartable::getLink)
 				.filter(webLink -> webLink.getRelative().equals(processRelativeLink)).findFirst().isPresent();
 	}
 

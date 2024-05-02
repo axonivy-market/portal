@@ -1,8 +1,10 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.disabled;
 import static com.codeborne.selenide.Selenide.$;
+
+import org.openqa.selenium.By;
+
+import com.codeborne.selenide.WebDriverRunner;
 
 public class AnnouncementPage extends TemplatePage {
 
@@ -12,20 +14,20 @@ public class AnnouncementPage extends TemplatePage {
   }
 
   public String getInfoSummary() {
-    return $("div[id$='messages'] span[class$='summary']").shouldBe(appear, DEFAULT_TIMEOUT).getText();
+    return WebDriverRunner.getWebDriver().findElement(By.cssSelector("div[id$='messages'] span[class$='summary']"))
+        .getText();
   }
 
   public void publish() {
-    $("button[id$='publish-announcement']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("button[id$='publish-announcement']").shouldBe(disabled, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick("button[id$='publish-announcement']");
   }
 
   public void dePublish() {
-    $("button[id$='delete-announcement']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("button[id$='delete-announcement']").shouldBe(disabled, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick("button[id$='delete-announcement']");
   }
 
   public void setAnnoucement(int Language, String content) {
-    $("input[id$='" + Language + ":announcement-input']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(content);
+    $("input[id$='" + Language + ":announcement-input']").sendKeys(content);
   }
+
 }

@@ -7,14 +7,13 @@ import java.util.List;
 import com.axonivy.portal.components.enums.AdditionalProperty;
 import com.axonivy.portal.components.ivydata.dto.IvyCaseResultDTO;
 import com.axonivy.portal.components.ivydata.searchcriteria.CaseSearchCriteria;
-import com.axonivy.portal.components.ivydata.service.ICaseService;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-public class CaseService implements ICaseService {
+public class CaseService{
 
   private CaseService() {}
 
@@ -22,7 +21,6 @@ public class CaseService implements ICaseService {
     return new CaseService();
   }
 
-  @Override
   public IvyCaseResultDTO findCasesByCriteria(CaseSearchCriteria criteria, int startIndex, int count) {
     return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
@@ -32,7 +30,6 @@ public class CaseService implements ICaseService {
     });
   }
 
-  @Override
   public IvyCaseResultDTO countCasesByCriteria(CaseSearchCriteria criteria) {
     return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();

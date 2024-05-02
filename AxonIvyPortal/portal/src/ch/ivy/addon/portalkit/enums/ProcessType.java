@@ -22,7 +22,7 @@ public enum ProcessType {
   }
 
   public String getLabel() {
-    String label = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/Enums/ProcessSorting" + name());
+    String label = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/Enums/ProcessType/" + name());
     return StringUtils.isBlank(label) ? name() : label;
   }
   

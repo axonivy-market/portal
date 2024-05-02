@@ -130,6 +130,13 @@
                         isReadOnlyMode="#{managedBean.isReadOnlyMode}"
                         index="#{status.index}"
                         id="client-statistic-#{widget.id}" />
+                    
+                    <!-- Notification widget -->
+                    <c:if test="#{widget.type eq 'NOTIFICATION'}">
+                      <ic:com.axonivy.portal.dashboard.component.NotificationWidget widget="#{widget}"
+                        isReadOnlyMode="#{managedBean.isReadOnlyMode}"
+                        index="#{status.index}"
+                        id="notification-#{widget.id}" />
                     </c:if>
                   </div>
                 </div>

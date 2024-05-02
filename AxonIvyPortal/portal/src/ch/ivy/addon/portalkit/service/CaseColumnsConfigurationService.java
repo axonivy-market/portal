@@ -35,7 +35,7 @@ public class CaseColumnsConfigurationService extends BusinessDataService<CaseCol
               .and().numberField("processModelId").isEqualTo(processModelId);
     return query.limit(1).execute().getFirst();
   }
-
+  
   /**
    * Get total count of Case configuration by application id
    * @param applicationId

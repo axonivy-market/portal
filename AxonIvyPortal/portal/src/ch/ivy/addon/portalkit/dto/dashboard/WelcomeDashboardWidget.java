@@ -2,6 +2,8 @@ package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
@@ -34,6 +36,8 @@ public class WelcomeDashboardWidget extends DashboardWidget {
   private String welcomeText;
   @JsonIgnore
   private ContentObject imageContentObject;
+  @JsonIgnore
+  private String internalId;
 
   @JsonIgnore
   public static WelcomeDashboardWidget buildDefaultWidget(String id, String name) {
@@ -91,6 +95,10 @@ public class WelcomeDashboardWidget extends DashboardWidget {
   }
 
   public String getWelcomeTextColor() {
+    if (StringUtils.isNotBlank(welcomeTextColor)
+        && !welcomeTextColor.startsWith("#")) {
+      welcomeTextColor = "#" + welcomeTextColor;
+    }
     return welcomeTextColor;
   }
 
@@ -168,5 +176,13 @@ public class WelcomeDashboardWidget extends DashboardWidget {
 
   public void setImageContent(String imageContent) {
     this.imageContent = imageContent;
+  }
+
+  public String getInternalId() {
+    return internalId;
+  }
+
+  public void setInternalId(String internalId) {
+    this.internalId = internalId;
   }
 }

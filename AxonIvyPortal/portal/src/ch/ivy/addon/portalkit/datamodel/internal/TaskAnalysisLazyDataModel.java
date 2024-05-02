@@ -12,6 +12,8 @@ import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
+import org.primefaces.model.FilterMeta;
+import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
@@ -35,6 +37,7 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.jsf.primefaces.sort.SortMetaConverter;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -85,12 +88,12 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   public void initFilterContainer() {
     filterContainer = new TaskAnalysisTaskFilterContainer(criteria.isAdminQuery());
   }
-
+  
   @Override
-  public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder,
-      Map<String, Object> filters) {
-    criteria.setSortField(sortField);
-    criteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
+  public List<ITask> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
+    SortMetaConverter sort = new SortMetaConverter(sortBy);
+    criteria.setSortField(sort.toField());
+    criteria.setSortDescending(sort.toOrder() == SortOrder.DESCENDING);
 
     if (first == 0) {
       initializedDataModel(criteria);
@@ -193,6 +196,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     List<CaseFilter> filtersToSave = new ArrayList<>(selectedCaseFilters);
     taskAnalysisFilterData.setCaseFilters(filtersToSave);
     taskAnalysisFilterData.setUserId(Ivy.session().getSessionUser().getId());
+    taskAnalysisFilterData.setSecurityMemberId(Ivy.session().getSessionUser().getSecurityMemberId());
     taskAnalysisFilterData.setFilterGroupId(taskFilterGroupId);
     taskAnalysisFilterData.setFilterName(filterName);
     taskAnalysisFilterData.setType(filterType);
@@ -224,7 +228,8 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   protected void buildQueryToSearchCriteria() {
     if (criteria.getCustomTaskQuery() == null) {
       TaskQuery taskQuery = SubProcessCall.withPath(PortalConstants.BUILD_TASK_QUERY_CALLABLE)
-          .withStartSignature("buildTaskQuery(Boolean)").withParam("isQueryForHomePage", compactMode).call()
+          .withStartSignature("buildTaskQuery()")
+          .call()
           .get("taskQuery", TaskQuery.class);
       criteria.setCustomTaskQuery(taskQuery);
     }
@@ -286,39 +291,18 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
 
   private void buildSortTaskQuery(TaskQuery taskQuery) {
     TaskAndCaseAnalysisColumn sortColumn = TaskAndCaseAnalysisColumn.valueOf(criteria.getSortField());
-    OrderByColumnQuery orderQuery = null;
-    switch (sortColumn) {
-      case TASK_ACTIVATOR:
-        orderQuery = taskQuery.orderBy().activatorDisplayName();
-        break;
-      case TASK_CATEGORY:
-        orderQuery = taskQuery.orderBy().category();
-        break;
-      case TASK_CREATION_TIME:
-        orderQuery = taskQuery.orderBy().startTimestamp();
-        break;
-      case TASK_EXPIRY_TIME:
-        orderQuery = taskQuery.orderBy().expiryTimestamp();
-        break;
-      case TASK_FINISHED_TIME:
-        orderQuery = taskQuery.orderBy().endTimestamp();
-        break;
-      case TASK_NAME:
-        orderQuery = taskQuery.orderBy().name();
-        break;
-      case TASK_PRIORITY:
-        orderQuery = taskQuery.orderBy().priority();
-        break;
-      case TASK_STATE:
-        orderQuery = taskQuery.orderBy().state();
-        break;
-      case TASK_WORKER:
-        orderQuery = taskQuery.orderBy().workerUserDisplayName();
-        break;
-      default:
-        orderQuery = taskQuery.orderBy().taskId();
-        break;
-    }
+    OrderByColumnQuery orderQuery = switch (sortColumn) {
+      case TASK_ACTIVATOR -> taskQuery.orderBy().activatorDisplayName();
+      case TASK_CATEGORY -> taskQuery.orderBy().category();
+      case TASK_CREATION_TIME -> taskQuery.orderBy().startTimestamp();
+      case TASK_EXPIRY_TIME -> taskQuery.orderBy().expiryTimestamp();
+      case TASK_FINISHED_TIME -> taskQuery.orderBy().endTimestamp();
+      case TASK_NAME -> taskQuery.orderBy().name();
+      case TASK_PRIORITY -> taskQuery.orderBy().priority();
+      case TASK_STATE -> taskQuery.orderBy().state();
+      case TASK_WORKER -> taskQuery.orderBy().workerUserDisplayName();
+      default -> taskQuery.orderBy().taskId();
+    };
     
     if (sortColumn == TaskAndCaseAnalysisColumn.TASK_EXPIRY_TIME) {
       if (criteria.isSortDescending()) {

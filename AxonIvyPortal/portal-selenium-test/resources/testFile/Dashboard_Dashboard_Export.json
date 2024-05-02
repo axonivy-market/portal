@@ -646,7 +646,7 @@
           "y": 23
         },
         "data": {
-          "url": "http://10.123.1.216:8080/"
+          "url": "http://portal01.server.ivy-cloud.com:8080/"
         }
       }
     ],

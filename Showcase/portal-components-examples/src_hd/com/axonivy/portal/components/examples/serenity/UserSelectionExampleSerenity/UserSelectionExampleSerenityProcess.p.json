@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "1825C575D08BF214",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -25,11 +25,12 @@
         "guid" : "1825C579D79F270B",
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
             "import org.primefaces.PrimeFaces;",
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
             "",
-            "FacesContext.getCurrentInstance().addMessage(\"form:item-select-event-component:item-select-event-for-user-selection\", new FacesMessage(FacesMessage.SEVERITY_INFO, \"You selected \" + in.selectedUserForInsertChildren.getDisplayName(), null));"
+            "FacesContext.getCurrentInstance().addMessage(\"form:item-select-event-component:item-select-event-for-user-selection\", FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, \"You selected \" + in.selectedUserForInsertChildren.getDisplayName(), null));"
           ]
         }
       },

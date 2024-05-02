@@ -12,7 +12,6 @@ import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
-import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.ProcessType;
@@ -27,6 +26,7 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 public class DashboardProcess implements Process {
   private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
   private String id;
+  @Deprecated(forRemoval = true, since = "11.2.0")
   private Long processStartId;
   private ProcessType type;
   private String name;
@@ -38,6 +38,8 @@ public class DashboardProcess implements Process {
   private String application;
   private Category category;
   private String sortIndex;
+  private String processElementId;
+  private String portalProcessInformation;
   
   public DashboardProcess() {}
 
@@ -52,6 +54,7 @@ public class DashboardProcess implements Process {
     this.imageUrl = process.getImageUrl();
     this.application = process.getApplication();
     this.sortIndex = process.getSortIndex();
+    this.portalProcessInformation = process.getPortalProcessInformation();
   }
 
   public DashboardProcess(IWebStartable process) {
@@ -65,6 +68,7 @@ public class DashboardProcess implements Process {
     this.application = process.pmv().getApplication().getName();
     this.imageUrl = collectProcessImage(process);
     this.sortIndex = getSortIndexInCustomField(process);
+    this.portalProcessInformation = getPortalProcessInformation(process);
   }
 
   public DashboardProcess(ExpressProcess process) {
@@ -75,15 +79,6 @@ public class DashboardProcess implements Process {
     this.icon = process.getIcon();
     this.category = CategoryUtils.buildExpressCategory(process.getProcessName());
     this.application = IApplication.current().getName();
-  }
-
-  public DashboardProcess(ExternalLink externalLink) {
-    this.id = String.valueOf(externalLink.getId());
-    this.type = ProcessType.EXTERNAL_LINK;
-    this.name = externalLink.getName();
-    this.description = externalLink.getDescription();
-    this.startLink = externalLink.getLink();
-    this.icon = externalLink.getIcon();
   }
 
   @Override
@@ -173,10 +168,20 @@ public class DashboardProcess implements Process {
     return ExpressProcessService.getInstance().findExpressWorkflowStartLink() + EXPRESS_WORKFLOW_ID_PARAM + this.id;
   }
 
+  /**
+   * @deprecated use {@link #setProcessElementId(String)}
+   * @return process start id
+   */
+  @Deprecated(forRemoval = true, since = "11.2.0")
   public Long getProcessStartId() {
     return processStartId;
   }
 
+  /**
+   * @deprecated use {@link #setProcessElementId(String)} 
+   * @param processStartId
+   */
+  @Deprecated(forRemoval = true, since = "11.2.0")
   public void setProcessStartId(Long processStartId) {
     this.processStartId = processStartId;
   }
@@ -216,5 +221,18 @@ public class DashboardProcess implements Process {
   @Override
   public String getSortIndex() {
     return sortIndex;
+  }
+
+  public String getProcessElementId() {
+    return processElementId;
+  }
+
+  public void setProcessElementId(String processElementId) {
+    this.processElementId = processElementId;
+  }
+  
+  @Override
+  public String getPortalProcessInformation() {
+    return portalProcessInformation;
   }
 }

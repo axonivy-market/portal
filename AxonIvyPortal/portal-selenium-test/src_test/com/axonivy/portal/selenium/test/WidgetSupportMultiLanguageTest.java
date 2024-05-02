@@ -7,10 +7,12 @@ import static com.codeborne.selenide.CollectionCondition.size;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.LinkNavigator;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
@@ -51,7 +53,7 @@ public class WidgetSupportMultiLanguageTest extends BaseTest {
     String updatedTitle = "German Your New Cases";
     newCaseWidget.changeWidgetTitle(widgetTitle);
     var addLanguageButton = newCaseWidget.getAddLanguageButton();
-    addLanguageButton.click();
+    addLanguageButton.shouldBe(Condition.visible, DEFAULT_TIMEOUT).click();
     var multipleLanguageDialog = newCaseWidget.getMultipleLanguageDialog();
     multipleLanguageDialog.getText();
     var elementsInput = multipleLanguageDialog.$$("td input");
@@ -63,9 +65,9 @@ public class WidgetSupportMultiLanguageTest extends BaseTest {
     elementsInput.get(2).setValue(updatedTitle);
     elementsInput.get(1).click();
     SelenideElement translation = newCaseWidget.getTranslationOverlayPanel(1);
-    translation.$("span.ui-icon-closethick").click();
+    translation.shouldBe(Condition.visible, DEFAULT_TIMEOUT).$("span.ui-icon-closethick").click();
 
-    multipleLanguageDialog.$("button[type='submit']").click();
+    multipleLanguageDialog.$("button[type='submit']").shouldBe(Condition.visible, DEFAULT_TIMEOUT).click();
     multipleLanguageDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
 
     newCaseWidget.save();
@@ -104,8 +106,9 @@ public class WidgetSupportMultiLanguageTest extends BaseTest {
     newTaskWidget.save();
 
     changeUserLanguage();
-    var taskWidget = newDashboardPage.selectTaskWidget(widgetTitle);
-    taskWidget.expand().shouldHave(size(1));
+    var taskWidget = newDashboardPage.selectTaskWidget(updatedTitle);
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
+    taskWidget.expand().shouldHave(size(1), DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -155,6 +158,7 @@ public class WidgetSupportMultiLanguageTest extends BaseTest {
     configurationPage.backToHomePage();
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openUserSettingMenu();
+    mainMenuPage.waitCaseContainerAppear();
     UserMenuPage userMenuPage = new UserMenuPage();
     userMenuPage.accessMenu("My profile");
     UserProfilePage userProfilePage = new UserProfilePage();

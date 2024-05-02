@@ -15,10 +15,6 @@ import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
-/**
- * Lazy data model for search. Only override method which is mentioned in Portal document
- *
- */
 public class SearchResultsDataModel implements Serializable {
 
   private static final long serialVersionUID = -472756089365264117L;
@@ -30,10 +26,10 @@ public class SearchResultsDataModel implements Serializable {
   protected CaseLazyDataModel caseDataModel;
   protected List<SearchScopeTaskField> searchScopeTaskFields;
   protected List<SearchScopeCaseField> searchScopeCaseFields;
+  private static final String SEARCH_TASK_PREFIX = "task: ";
+  private static final String SEARCH_CASE_PREFIX = "case: ";
+  private static final String SEARCH_PROCESS_PREFIX = "process: ";
 
-  /**
-   * @hidden
-   */
   public SearchResultsDataModel() {
     boolean hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();
     boolean hasReadAllCasesPermission = PermissionUtils.checkReadAllCasesPermission();
@@ -75,14 +71,11 @@ public class SearchResultsDataModel implements Serializable {
       }
     }
   }
-
-  /**
-   * Implement your custom search function by override this function
-   */
+  
   public void search() {
     // Placeholder for customization
   }
-
+  
   protected TaskLazyDataModel initTaskDataModel() {
     return new TaskLazyDataModel(TASK_WIDGET_COMPONENT_ID);
   }
@@ -91,22 +84,15 @@ public class SearchResultsDataModel implements Serializable {
     return new CaseLazyDataModel(CASE_WIDGET_COMPONENT_ID);
   }
 
-  /**
-   * @hidden
-   * @return keyword
-   */
   public String getKeyword() {
     return keyword;
   }
 
-  /**
-   * @hidden
-   * @param keyword
-   */
   public void setKeyword(String keyword) {
     this.keyword = keyword;
-    this.taskDataModel.getCriteria().setKeyword(keyword);
-    this.caseDataModel.getCriteria().setKeyword(keyword);
+    analyzeKeyword(keyword.toLowerCase());
+    this.taskDataModel.getCriteria().setKeyword(this.keyword);
+    this.caseDataModel.getCriteria().setKeyword(this.keyword);
 
     this.taskDataModel.getCriteria().setGlobalSearch(true);
     this.caseDataModel.getCriteria().setGlobalSearch(true);
@@ -120,34 +106,39 @@ public class SearchResultsDataModel implements Serializable {
     }
   }
 
-  /**
-   * @hidden
-   * @return taskDataModel
-   */
+  public static int getActiveTabIndexByKeyword(String keyword) {
+    if (keyword.toLowerCase().startsWith(SEARCH_TASK_PREFIX)) {
+      return 1;
+    }
+    if (keyword.toLowerCase().startsWith(SEARCH_CASE_PREFIX)) {
+      return 2;
+    }
+    return 0;
+  }
+
+  private void analyzeKeyword(String keyword) {
+    if (keyword.startsWith(SEARCH_PROCESS_PREFIX)) {
+      this.keyword = StringUtils.substringAfter(keyword, SEARCH_PROCESS_PREFIX);
+    } else if (keyword.startsWith(SEARCH_TASK_PREFIX)) {
+      this.keyword = StringUtils.substringAfter(keyword, SEARCH_TASK_PREFIX);
+    } else if (keyword.startsWith(SEARCH_CASE_PREFIX)) {
+      this.keyword = StringUtils.substringAfter(keyword, SEARCH_CASE_PREFIX);
+    }
+
+  }
+
   public TaskLazyDataModel getTaskDataModel() {
     return taskDataModel;
   }
 
-  /**
-   * @hidden
-   * @param taskDataModel
-   */
   public void setTaskDataModel(TaskLazyDataModel taskDataModel) {
     this.taskDataModel = taskDataModel;
   }
 
-  /**
-   * @hidden
-   * @param caseDataModel
-   */
   public void setCaseDataModel(CaseLazyDataModel caseDataModel) {
     this.caseDataModel = caseDataModel;
   }
 
-  /**
-   * @hidden
-   * @return caseDataModel
-   */
   public CaseLazyDataModel getCaseDataModel() {
     return caseDataModel;
   }

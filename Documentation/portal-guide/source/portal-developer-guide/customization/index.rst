@@ -27,6 +27,7 @@ You find ``portal-developer-examples`` in the engine demo mode or import them in
    business-details-page
    document-processes
    process-image
+   process-information
 
 .. |engine-demo-mode| image:: images/customization/engine-demo-mode.png
 .. |import-portal-examples| image:: images/customization/import-portal-examples.png

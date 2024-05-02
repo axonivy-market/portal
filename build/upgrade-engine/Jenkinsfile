@@ -15,6 +15,7 @@ pipeline {
     stage('backupDatabase') {
       steps {
         script {
+          currentBuild.description = "On ${env.NODE_NAME}"
           today = new Date().format('dd-MM-yyyy_HH-mm')
           config = [master:[engine: 'master', systemDatabase: 'AxonIvySystemDatabase-master'], 
           performanceTest:[engine:'performance-master', systemDatabase: 'AxonIvySystemDatabase-performance-master']]
@@ -61,6 +62,8 @@ pipeline {
               docker compose stop
               docker compose pull
               docker compose up -d
+              # Wait engine starting so that Autoconvert: true takes affect
+              sleep 100
             """
           }
           

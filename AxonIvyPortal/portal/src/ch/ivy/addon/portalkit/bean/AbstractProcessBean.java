@@ -21,6 +21,7 @@ import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.bo.ProcessStep;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
+import ch.ivy.addon.portalkit.constant.CustomFields;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.ProcessType;
@@ -35,6 +36,9 @@ public abstract class AbstractProcessBean implements Serializable {
 
   private static final long serialVersionUID = -8450309463672220642L;
   protected static final String SLASH = "/";
+  protected static final String UNDERSCORE_BLANK = "_blank";
+  protected static final String UNDERSCORE_SELF  = "_self";
+  protected static final String DOT_ICM  = ".icm";
   private List<Process> portalProcesses;
 
   public synchronized void init() {
@@ -122,11 +126,11 @@ public abstract class AbstractProcessBean implements Serializable {
   }
 
   public boolean isCaseMap(Process process) {
-    return !Objects.isNull(process) && process.getStartLink().endsWith(".icm");
+    return !Objects.isNull(process) && process.getStartLink().endsWith(DOT_ICM);
   }
 
   public String targetToStartProcess(Process process) {
-    return process.getType() == ProcessType.EXTERNAL_LINK ? "_blank" : "_self";
+    return process.getType() == ProcessType.EXTERNAL_LINK ? UNDERSCORE_BLANK : UNDERSCORE_SELF;
   }
 
   public String getDisplayProcessCategory(Process process) {
@@ -147,12 +151,17 @@ public abstract class AbstractProcessBean implements Serializable {
     Boolean hasProcessInfo = false;
     List<ProcessStep> processSteps = null;
     Object nestedProcess = process.getProcess();
+    String portalProcessInformation = null;
+    Boolean isProcessInfoDefined = false;
     if (nestedProcess instanceof IWebStartable) {
       processSteps = ProcessStepUtils.findProcessStepsOfProcess(UserProcessMapper.toUserProcess(((IWebStartable) nestedProcess)));
+      portalProcessInformation  = ((IWebStartable) nestedProcess).customFields().value(CustomFields.PROCESS_INFORMATION);
     } else if (nestedProcess instanceof DashboardProcess) {
       processSteps = ProcessStepUtils.findProcessStepsOfProcess(UserProcessMapper.toUserProcess(((DashboardProcess) nestedProcess)));
+      portalProcessInformation = ((DashboardProcess) nestedProcess).getPortalProcessInformation();
     }
-    hasProcessInfo = processSteps != null && processSteps.size() > 0;
+    isProcessInfoDefined  =  StringUtils.isNotEmpty(portalProcessInformation);
+    hasProcessInfo = (processSteps != null && processSteps.size() > 0) || isProcessInfoDefined;
     return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_PROCESS_INFORMATION) && hasProcessInfo;
   }
 }

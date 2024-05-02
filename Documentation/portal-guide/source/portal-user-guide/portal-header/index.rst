@@ -38,7 +38,8 @@ Dashboard Configuration
 -----------------------
 
 Menu entry :ref:`dashboard-configuration` contains dashboards settings,
-only available for users who have the permission ``DASHBOARD_WRITE_OWN`` or ``DASHBOARD_WRITE_PUBLIC``.
+grant either :bdg-ref-warning:`🔑DashboardWriteOwn <DashboardWriteOwn>` or :bdg-ref-warning:`🔑DashboardWritePublic <DashboardWritePublic>` 
+to allow a user to define dashboard settings either for their own private dashboards or public dashboards, respectively.
 
 Absences
 --------
@@ -75,6 +76,11 @@ HowTo: Add absence
 
 |how-to-add-an-absence|
 
+.. note::
+
+   Grant either permission :bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` or :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>` 
+   to allow a user to create own, personal absences or public absences, respectively.
+
 HowTo: Set substitute
 ^^^^^^^^^^^^^^^^^^^^^
 
@@ -95,6 +101,11 @@ HowTo: Set substitute
 #. Confirm your substitutes with the button :guilabel:`Save`.
 
 |how-to-set-absence-substitutes|
+
+.. note::
+
+   Grant either permission :bdg-ref-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>` or :bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>` 
+   to allow a user to create their own substitute definitions or create substitute definitions for all users, respectively.
 
 Change Password
 ---------------

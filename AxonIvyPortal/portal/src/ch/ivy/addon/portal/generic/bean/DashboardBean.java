@@ -17,6 +17,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 
+import com.axonivy.portal.components.util.HtmlUtils;
 import com.axonivy.portal.service.DeepLTranslationService;
 
 import ch.addon.portal.generic.menu.MenuView;
@@ -41,7 +42,6 @@ import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
 import ch.ivy.addon.portalkit.exporter.Exporter;
-import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
@@ -226,16 +226,12 @@ public class DashboardBean implements Serializable {
     buildWidgetModels(selectedDashboard);
   }
 
-  public void startTask(ITask task) throws IOException {
-    FacesContext.getCurrentInstance().getExternalContext().redirect(task.getStartLinkEmbedded().getRelative());
-  }
-
   public String createExtractedTextFromHtml(String text) {
     return HtmlParser.extractTextFromHtml(text);
   }
 
   public String createParseTextFromHtml (String text) {
-	  return HtmlParser.parseTextFromHtml(text);
+    return HtmlUtils.parseTextFromHtml(text);
   }
 
   public int getCurrentTabIndex() {
@@ -410,8 +406,7 @@ public class DashboardBean implements Serializable {
   }
 
   protected List<String> getSupportedLanguages() {
-    IvyLanguage ivyLanguage = LanguageService.newInstance().findUserLanguages().getIvyLanguage();
-    return ivyLanguage.getSupportedLanguages();
+    return LanguageService.newInstance().getIvyLanguageOfUser().getSupportedLanguages();
   }
 
   public boolean isShowTranslation(DisplayName title) {

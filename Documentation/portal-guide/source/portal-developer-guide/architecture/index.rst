@@ -36,7 +36,7 @@ portal-components
 **Contains a set of public UI components**
 
 This module contains Ivy components such as User Selection, Role Selection,
-Document Table, Process Chain, Process History, and Process Viewer,... These components are independent
+Document Table, Process Chain, Process History, and Process Viewer,... These components provide the public API for the portal, but are independent
 of the modules portal and axonivy-express. You can use them in your own applications.
 
 .. _architecture-portal:

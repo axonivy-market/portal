@@ -17,13 +17,14 @@ import org.primefaces.model.StreamedContent;
 import org.primefaces.model.file.UploadedFile;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
+import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.ExpressMessageType;
-import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.ExpressManagementUtils;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
@@ -83,7 +84,7 @@ public class ExpressManagementBean implements Serializable {
         displayName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
       }
     } else {
-      IUser user = ServiceUtilities.findUser(activatorName);
+      IUser user = UserUtils.findUserByUsername(activatorName);
       displayName = StringUtils.isBlank(user.getDisplayName()) ? user.getName() : user.getDisplayName();
     }
     return displayName;
@@ -93,7 +94,7 @@ public class ExpressManagementBean implements Serializable {
     importExpressFile = event.getFile();
     String validateStr = UploadDocumentUtils.validateUploadedFile(importExpressFile);
     if (StringUtils.isNotEmpty(validateStr)) {
-      validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, validateStr, null); 
+      validateMessage = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, validateStr, null);
       displayedMessage();
     } else {
       importExpressProcesses();

@@ -29,7 +29,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       fromBiggerThanTill: '''Hasta'' debe ser posterior a ''Desde''.'
       overlappingAbsence: La ausencia se superpone con otra ausencia.
       userNameRequired: '''Nombre de usuario'' no debe estar vacío.'
-    absences: Ausencias
+    absences: Sustitución de permisos
     addAbsence: Agregar ausencia
     deputies: Sustitutos
     description: Establezca sus vacaciones, enfermedades u otras obligaciones externas que lleven a cualquier ausencia.
@@ -86,6 +86,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CUSTOM: Widget personalizado
       NEW: Nuevo widget
       NEWS: Noticias
+      NOTIFICATION: Notificaciones
       PROCESS: Widget de procesos
       PROCESS_VIEWER: Widget del visor de procesos
       STATISTIC: Widget de estadísticas
@@ -216,6 +217,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SearchScopeCaseFields: Definición de los campos que la búsqueda global utilizará para encontrar casos coincidentes además del Id de caso (esto puede influir en el rendimiento de la búsqueda)
       SearchScopeTaskFields: Definir los campos que la búsqueda global utilizará para encontrar tareas coincidentes junto al Id de tarea (esto puede influir en el rendimiento de la búsqueda).
       ShowLoginPageFooter: Para activar/desactivar la visualización del pie de página en la página de acceso.
+      ShowQRCode: Para activar/desactivar la visualización del código QR.
       behaviourWhenClickingOnLineInTaskList: Para cambiar los comportamientos (ejecutar la tarea o acceder a los detalles de la tarea) al hacer clic en una línea de la lista de tareas, el widget de tareas del tablero y las tareas relacionadas en la página de detalles del caso.
       chatMaxConnection: 'El número establecido controla la cantidad de pestañas permitidas con el chat activo. Si se abren más pestañas, el chat se desactivará en las pestañas inactivas. Valores permitidos entre 1-5 '
       chatResponseTimeout: Tiempo de respuesta del chat en segundos, el valor por defecto es 0 y significa que no hay tiempo de espera. Si los mensajes de chat pasan por el proxy inverso Nginx, el tiempo de espera de la respuesta del chat debe ser menor que el tiempo de espera de Nginx, por ejemplo, menos
@@ -266,6 +268,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showErrorLogToConsole: Establecer en true para activar el registro de errores en la consola del navegador
       showGlobalSearch: Para activar o desactivar la visualización de la búsqueda global.
       showProcessInformation: Cambiar a falso para desactivar el enlace "Más información" en la página de Procesos (modo cuadrícula) y Detalles del caso.
+      showQuickGlobalSearch: Para activar/desactivar la visualización de la búsqueda global rápida.
       showTaskDurationTime: Activar o desactivar la visibilidad de la duración de la tarea en detalles de tarea.
       statisticChartScalingInterval: Intervalo en segundos para realizar peticiones periódicas de escalado de gráficos estadísticos. Si el valor del intervalo es inferior a 10, se desactiva el escalado periódico de gráficos estadísticos.
       uploadDocumentWhiteListExtensionNote: 'Dejar libre, sie quiere permitir todos los anexos. Si quiere reducir los formatos permitidos, cree una lista separada por coma. Por ejemplo: pdf, txt, doc, docx.'
@@ -292,13 +295,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     resetAllSettingsConfirmation: 'Seguro que quiere reestablecer todos los valores iniciales? '
     resetSettingConfirmation: 'Seguro que quiere reestablecer el valor inicial? '
     restoreAllToDefault: Restaurar todos los valores predeterminados
-    restoreDefault: Restaurar valor predeterminado
+    restoreDefault: Restablecer valores por defecto
     settingApplicationName: Definir el nombre de la aplicación
     settingMultipleLanguages: Establecer varios idiomas
     usernameHint: Nombre de usuario de un administrador de sistema.
     usernameRequiredMsg: Por favor ingrese nombre de usuario.
     value: Valor
   applicationMenuHeader:
+    MobileApp: Conectar la aplicación móvil Axon Ivy
     adminSettings: Configuración de administrador
     changePassword: Cambiar contraseña
   businessCaseState:
@@ -722,22 +726,22 @@ ch.ivy.addon.portalkit.ui.jsf:
     DashboardConfiguration:
       CreateFromScratch: Crear desde cero
       CreateFromScratchDescription: Cree su propio panel de control desde cero
-      CreateNewPrivateDashboard: Crear un nuevo panel de control privado
-      CreateNewPublicDashboard: Crear un tablero público
-      Description: En esta área, puede configurar los cuadros de mando según sus necesidades.
+      CreateNewPrivateDashboard: Crear un nuevo cuadro de mando personalizado
+      CreateNewPublicDashboard: Crear un dashboard público
+      Description: En esta sección puedes configurar los cuadros de mando según tus necesidades.
       DoNotSupportMobile: La configuración del panel de control no es compatible con los dispositivos móviles.
-      EditPrivateDashboards: Editar sus tableros privados
-      EditPublicDashboards: Editar tableros públicos
+      EditPrivateDashboards: Editar tu cuadro de mando
+      EditPublicDashboards: Editar dashboard públicos
       ExportDashboard: Exportar el cuadro de mandos
-      PrivateDashboard: Cuadros de mando privados
+      PrivateDashboard: Dashboard - Configuración  personalizada
       PrivateDashboardConfiguration: Configuración de tableros privados
-      PublicDashboard: Cuadros de mando públicos
+      PublicDashboard: Dashboard - Configuración pública
       PublicDashboardConfiguration: Configuración de tableros públicos
-      ReorderPrivateDashboards: Reordenar tableros privados
-      ReorderPublicDashboards: Reordenar tableros públicos
+      ReorderPrivateDashboards: Reorganizar tu cuadro de mando
+      ReorderPublicDashboards: Reordenar dashboard públicos
       SelectAction: Seleccione la acción
       SomeThingWentWrong: Algo salió mal
-      Title: Configuración de tablero
+      Title: Configuración Dashboard
     EmptyFilterMessage: No se ha encontrado ningún filtro de widget
     ExternalPageWidget: Página externa
     ExternalPageWidgetIntroduction: Este widget puede mostrar una página web externa.
@@ -751,7 +755,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoData: No hay datos
     NoSavedFilterMessage: No se ha encontrado ningún filtro guardado. Intente crear uno nuevo haciendo clic en el botón Guardar filtro
     NoWidgetAvailable: No existen widgets.
-    RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
+    RestoreDefaultDashboardMessage: Si continúa, perderá todos los widgets creados por usted. Se aplicará la configuración estándar de <span class="dashboard-template-name-message">{0}</span>.
     SaveNewWidgetFilterHeader: Guardar un nuevo filtro de widget
     SavedFilterHeader: Filtros guardados
     SearchForFilter: Búsqueda del filtro
@@ -784,6 +788,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfCase: caso(s)
     category: Categoría
     columnManagement: Gestión de columnas
+    columnType:
+      CUSTOM: Campo personalizado
+      CUSTOM_CASE: Campo de caso personalizado
+      STANDARD: Columna estándar
     configuration:
       CustomWidgetExternalLinkWarning: Algunas webs no son compatibles con iframe por motivos de seguridad. Póngase en contacto con su administrador si la web externa no funciona correctamente.
       CustomWidgetTitlePlaceholder: Déjalo en blanco para ocultar la cabecera del widget
@@ -816,7 +824,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       import: Importar
       importFromJsonFile: Importar desde archivo JSON
       newWidgetHeader: Nueva {0} configuración del widget
-      pageTitle: Configuración del panel de control
+      pageTitle: Configuración Dashboard
       processConfigurationDescription: Puede configurar su widget en esta área de configuración. Por favor, defina los filtros requeridos así como las propiedades a mostrar.
       processViewerConfigurationDescription: Puede configurar su widget en esta área de configuración. Defina la información que se mostrará.
       tableConfiguration: Configuración de la tabla
@@ -911,6 +919,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     widgetType: Tipo de widget
     yourCases: Sus casos
     yourCustomWidget: Su widget personalizado
+    yourNotifications: Sus notificaciones
     yourProcessViewer: Su visor de procesos
     yourProcesses: Sus procesos
     yourStatistics: Sus estadísticas
@@ -994,6 +1003,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     username: Nombre de usuario
   logoutSetting:
     logout: Cerrar sesión
+  mobile:
+    MenuName: Aplicación móvil
+    QRCodeDescription: Para conectar su aplicación móvil Axon Ivy, escanee este código QR e introduzca sus credenciales en el interior de la aplicación.
   noteHistory:
     author: Autor
     caseExportedFileNamePrefix: Historia_Notas_del_caso_ {0}
@@ -1013,7 +1025,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     wroteAt: escribió en
   notifications:
     linkToFullScreen: Enlace a la pantalla completa
-    linkToNotificationSettings: Enlace a la configuración de notificaciones
+    linkToNotificationSettings: Ajustes de notificación
     markAllAsRead: Marcar todo como leído
     markAsRead: Marcar como leído
     noNotificationText: Notificaciones
@@ -1529,6 +1541,9 @@ Dialogs:
             expressWorkflowName: 'Detalles de negocio del caso #{0}'
         portal:
           generic:
+            GlobalSearch:
+              ViewAllResults: Ver todos los resultados
+              noResultsText: No hay resultados.
             dashboard:
               PortalDashboardConfiguration:
                 NewDashboard: Nuevo panel de control
@@ -1559,7 +1574,13 @@ Dialogs:
             IconSelection:
               IconLinkTooltip: Haga clic para cambiar el icono
             TaskItemDetails:
+              CannotWorkOnDestroyedTaskWarning: No puedes trabajar en la tarea porque ha sido destruida.
+              CannotWorkOnTaskWarning: No puede procesar la tarea porque el usuario <strong>{0}</strong> está trabajando actualmente en ella.
+              InvalidStateInfo: Estado no válido.
+              ResetTaskWarning: Actualmente está trabajando en la tarea en una sesión diferente. Puede reiniciar la tarea y empezarla de nuevo si ha cerrado el navegador. <a href="{0}">Restablecer</a>
               ShareTaskDetails: Compartir detalles de la tarea
+              TaskCompletedByOtherInfo: La tarea ya ha sido completada por el usuario <strong>{0}</strong> en {1}.
+              TaskCompletedByYouInfo: Ya ha completado la tarea en {0}.
   com:
     axonivy:
       portal:
@@ -1596,6 +1617,12 @@ Dialogs:
               NewsWidgetConfiguration: Configuración del widget de noticias
               NewsWidgetDescription: Este widget comparte información relevante como un News Feed en Axon Ivy.
               NewsWidgetTitle: Widget de noticias
+            NotificationWidget:
+              NoNotificationAvailable: Aún no hay notificaciones
+            NotificationWidgetConfiguration:
+              NotificationWidgetConfiguration: Configuración del widget de notificaciones
+              NotificationWidgetDescription: Este widget muestra todas las notificaciones según la configuración de notificaciones.
+              WidgetFilter: Filtro de widgets
   components:
     CaseDocument:
       FileDate: Modificado el
@@ -1730,6 +1757,7 @@ Labels:
   Task: Tarea
   TaskItemDetail: Detalles de la tarea
   TaskUser-Explain: Lista de usuario separados por coma
+  ViewAllResults: Ver todos los resultados
   adhocTaskRequired: Deberá agregar al menos una tarea.
   disabledUserPrefix: (inactivo)
   title: Flujo de trabajo Ad-hoc de auto servicio

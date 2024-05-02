@@ -6,6 +6,7 @@ import ch.ivyteam.ivy.workflow.document.ModificationInfo;
 
 public class IvyDocument {
   private String uuid;
+  @Deprecated(forRemoval = true, since = "11.2.0")
   private String id;
   private String name;
   private String path;
@@ -15,10 +16,20 @@ public class IvyDocument {
   private ModificationInfo lastModification;
   private DocumentType type;
 
+  /**
+   * @deprecated use {@link #getUuid()}
+   * @return id
+   */
+  @Deprecated(forRemoval = true, since = "11.2.0")
   public String getId() {
     return id;
   }
 
+  /**
+   * @deprecated use {@link #setUuid(String)}
+   * @param id
+   */
+  @Deprecated(forRemoval = true, since = "11.2.0")
   public void setId(String id) {
     this.id = id;
   }

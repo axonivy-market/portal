@@ -13,6 +13,8 @@ import org.primefaces.component.tabview.TabView;
 import org.primefaces.event.ReorderEvent;
 import org.primefaces.event.TabChangeEvent;
 
+import com.axonivy.portal.components.util.FacesMessageUtils;
+
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.enums.GlobalVariable.Option;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -118,7 +120,7 @@ public class AdminSettingBean implements Serializable {
   }
 
   public static void updatePortalManagementMessages() {
-    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN,
+    FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN,
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/dialogclosinginformation/informMessage"),
         null);
     FacesContext.getCurrentInstance().addMessage(PORTAL_MESSAGE_INFO, message);
