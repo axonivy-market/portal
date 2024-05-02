@@ -9,6 +9,10 @@ function openFilterPanel(event) {
 }
 
 function closeFilterPanel() {
+  if (filterHasValidationError()) {
+    return;
+  }
+
   $('#new-widget-configuration-dialog').find('#widget-configuration-save-button').show();
   document.getElementById(filterPanelId).classList.remove("active");
 }
@@ -27,11 +31,16 @@ $(document).ready(function () {
 function registerClickOnPanelEvent(){
   document.getElementById('widget-configuration-form:new-widget-configuration-component:widget-preview')
   .addEventListener('click', function (event) {
+
     if (document.getElementById(filterPanelId).offsetWidth > 0){
-      closeFilterPanel();
       document.getElementById("widget-configuration-form:new-widget-configuration-component:preview-button").click();
     }
   });
+}
+
+function filterHasValidationError() {
+  var filterPanel = $(document.getElementById(filterPanelId));
+  return filterPanel.find('[id $= ":filter-messages"]').find('.ui-messages-error').length != 0;
 }
 
 function calculatePaneltPosition(){
