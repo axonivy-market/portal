@@ -335,7 +335,8 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getCompactModeProcessDisplayedDisabledFirstProcessItemName() {
-    return $(".compact-processes-container span.ui-commandlink.process-item span[id$=':process-name-process-item']")
+    return $(
+        ".compact-processes-container .ui-commandlink.process-item span[id$=':process-name-process-item']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 

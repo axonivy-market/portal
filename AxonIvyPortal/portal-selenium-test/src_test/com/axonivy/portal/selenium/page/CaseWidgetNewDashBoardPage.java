@@ -108,14 +108,20 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   public void openFilterWidget() {
     $$("div.table-widget-panel").filter(text(caseWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT)
-        .$(".widget__filter-sidebar-link").shouldBe(getClickableCondition()).click();
+        .$(".widget__filter-sidebar-link")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  private SelenideElement getEditWidgetLink() {
+    return $$("div.table-widget-panel div.widget__header")
+        .filter(text(caseWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("div[id$='widget-header-actions']").$("[id*='edit-widget']");
+  }
+
   public CaseEditWidgetNewDashBoardPage openEditWidget() {
-    $$("div.table-widget-panel div.widget__header").filter(text(caseWidgetName)).first()
-        .shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='edit-widget']")
-        .shouldBe(getClickableCondition()).click();
+    getEditWidgetLink().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(getEditWidgetLink());
     return new CaseEditWidgetNewDashBoardPage();
   }
 
@@ -173,7 +179,8 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   public void resetFilter() {
     $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='reset-button']")
-        .filter(text("Reset")).first().shouldBe(getClickableCondition()).click();
+        .filter(text("Reset")).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void selectState(String state) {

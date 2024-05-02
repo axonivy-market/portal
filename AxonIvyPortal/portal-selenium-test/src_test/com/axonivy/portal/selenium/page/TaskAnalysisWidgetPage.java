@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -95,7 +96,8 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   }
 
   public ElementsCollection getRowsInTaskTable() {
-    return findElementById("task-widget:statistic-result-form:task-table_data").$$(By.cssSelector("tr[role='row']"));
+    return findElementById("task-widget:statistic-result-form:task-table_data")
+        .$$(By.cssSelector("tr.ui-widget-content"));
   }
 
   private SelenideElement findCaseFilterButton() {
@@ -207,20 +209,36 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
 
   public boolean loadFilterSet(String filterSetName, boolean isPersonalFilter) {
     waitPageLoaded();
-    waitForElementDisplayed($("a[id$='task-widget:filter-selection-form:filter-name']"), true);
-    waitForElementClickableThenClick("a[id$='task-widget:filter-selection-form:filter-name']");
-    waitForElementDisplayed(findElementById("task-widget:filter-selection-form:filter-name-overlay-panel"), true);
+    waitForElementDisplayed(
+        $("a[id$='task-widget:filter-selection-form:filter-name']"), true);
+    waitForElementClickableThenClick(
+        "a[id$='task-widget:filter-selection-form:filter-name']");
+    waitForElementDisplayed(
+        findElementById(
+            "task-widget:filter-selection-form:filter-name-overlay-panel"),
+        true);
     SelenideElement filterContainer = null;
     if (isPersonalFilter) {
-      filterContainer = findElementById("task-widget:filter-selection-form:private-filters");
+      try {
+        filterContainer = findElementById(
+            "task-widget:filter-selection-form:private-filters");
+      } catch (NoSuchElementException e) {
+        return false;
+      }
     } else {
-      filterContainer = findElementById("task-widget:filter-selection-form:public-filters");
+      try {
+        filterContainer = findElementById(
+            "task-widget:filter-selection-form:public-filters");
+      } catch (NoSuchElementException e) {
+        return false;
+      }
     }
 
     if (!filterContainer.$(By.linkText(filterSetName)).isDisplayed()) {
       return false;
     }
-    clickByJavaScript(filterContainer.$(By.linkText(filterSetName)).shouldBe(appear, DEFAULT_TIMEOUT));
+    clickByJavaScript(filterContainer.$(By.linkText(filterSetName))
+        .shouldBe(appear, DEFAULT_TIMEOUT));
     return true;
   }
 
