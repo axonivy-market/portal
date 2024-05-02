@@ -23,7 +23,6 @@
 
   <h:panelGroup id="date-filter-operator-panel" layout="block"
     styleClass="ui-fluid md-inputfield">
-      <h:outputText value="#{cc.attrs.componentToUpdate}"></h:outputText>
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
         <f:selectItems value="#{operators ne null ? operators : widgetDateFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
