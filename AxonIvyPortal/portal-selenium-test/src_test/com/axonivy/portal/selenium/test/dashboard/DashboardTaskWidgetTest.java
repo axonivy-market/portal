@@ -10,7 +10,10 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.FilterOperator;
+import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.LinkNavigator;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
@@ -62,9 +65,9 @@ public class DashboardTaskWidgetTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.openFilterWidget();
-    taskWidget.filterTaskName(SICK_LEAVE_REQUEST);
+    taskWidget.filterTaskName(SICK_LEAVE_REQUEST, FilterOperator.IS);
     taskWidget.applyFilter();
-    taskWidget.startFirstTaskAndWaitShowHomePageButton();
+    taskWidget.clickOnTaskName(SICK_LEAVE_REQUEST);
 
     TaskTemplateIFramePage templatePage = new TaskTemplateIFramePage();
     templatePage.switchToIFrameOfTask();
@@ -83,7 +86,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.openFilterWidget();
-    taskWidget.filterTaskName(SICK_LEAVE_REQUEST);
+    taskWidget.filterTaskName(SICK_LEAVE_REQUEST, FilterOperator.IS);
     taskWidget.applyFilter();
     taskWidget.clickOnTaskActionLink(0);
     taskWidget.destroy();
@@ -98,7 +101,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.openFilterWidget();
-    taskWidget.filterTaskName(SICK_LEAVE_REQUEST);
+    taskWidget.filterTaskName(SICK_LEAVE_REQUEST, FilterOperator.IS);
     taskWidget.applyFilter();
     taskWidget.clickOnTaskActionLink(0);
     taskWidget.destroyTaskLink().shouldNotHave(visible);
@@ -114,17 +117,16 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     // Filter Task Name
     taskWidget.openFilterWidget();
-    taskWidget.filterTaskName(TASK_NUMBER);
+    taskWidget.filterTaskName(TASK_NUMBER, FilterOperator.CONTAINS);
     taskWidget.applyFilter();
-    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(5));
+    taskWidget.countAllTasks().shouldHave(size(12));
     // Filter State
     taskWidget.openFilterWidget();
-    taskWidget.filterTaskName(CREATE_12_CASES_WITH_CATEGORY_CASE);
-    taskWidget.filterTaskState();
-    taskWidget.selectState(DONE);
+    taskWidget.filterTaskName(CREATE_12_CASES_WITH_CATEGORY_CASE, FilterOperator.IS);
+    taskWidget.addFilter("State", null);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN"); 
     taskWidget.applyFilter();
-    taskWidget.countAllTasks().shouldHave(size(1));
-    taskWidget.stateOfFirstTask().shouldHave(text(DONE));
+    assertTrue(taskWidget.isEmptyMessageAppear());
   }
 
   @Test
@@ -139,14 +141,14 @@ public class DashboardTaskWidgetTest extends BaseTest {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    resizeBrowserTo2kResolution();
+    ScreenshotUtils.maximizeBrowser();
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
     taskEditWidget.changeWidgetTitle(NEW_YOUR_TASK);
-    taskEditWidget.filterTaskName(TASK_NUMBER);
-    taskEditWidget.clickOnStateToShowDropdown();
-    taskEditWidget.selectState(OPEN);
-    taskEditWidget.preview();
-    taskEditWidget.countAllTasks().shouldHave(size(12));
+    taskEditWidget.openFilter();
+    taskEditWidget.addFilter("State", null);
+    taskEditWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
+    taskEditWidget.applyFilter();
+    taskEditWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(12));
     taskEditWidget.save();
     TaskWidgetNewDashBoardPage taskWidgetEdited = newDashboardPage.selectTaskWidget(NEW_YOUR_TASK);
     taskWidgetEdited.expand().shouldHave(sizeGreaterThanOrEqual(1));
@@ -183,7 +185,6 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.clickToExpandNumberOfTaskByState();
     taskWidget.getFirstStateLabelInWidgetInfo().shouldHave(text(OPEN));
     taskWidget.clickToExpandNumberOfTaskByCategory();
-    taskWidget.clickToExpandPredefinedFilters();
     taskWidget.closeWidgetInformationDialog();
   }
 
@@ -207,7 +208,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
-
+    ScreenshotUtils.maximizeBrowser();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
 
