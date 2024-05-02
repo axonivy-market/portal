@@ -7,6 +7,11 @@ import javax.faces.bean.ViewScoped;
 
 import com.axonivy.portal.components.util.HtmlUtils;
 
+/**
+ * To prevent XSS, all outputText escape="false" need to use this class. It would help us check XSS easier to search all
+ * escape="false" in xhtml files and checking HtmlSanitizerBean is used for value attribute.
+ *
+ */
 @ManagedBean
 @ViewScoped
 public class HtmlSanitizerBean implements Serializable {
@@ -15,5 +20,12 @@ public class HtmlSanitizerBean implements Serializable {
 
   public String sanitize(String content) {
     return HtmlUtils.sanitize(content);
+  }
+
+  /**
+   * This method is used to clearly mark XSS is considered.
+   */
+  public String sanitizeIgnoredWithAwareness(String content) {
+    return content;
   }
 }
