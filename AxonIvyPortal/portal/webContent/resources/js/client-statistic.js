@@ -27,8 +27,9 @@ function isNumeric(n) {
 }
 
 function formatISODate(dt) {
+    const correctMonth = dt.getMonth() + 1;
     let year = dt.getFullYear();
-    let month = dt.getMonth() < 10 ? '0' + dt.getMonth() : dt.getMonth();
+    let month = correctMonth < 10 ? '0' + correctMonth : correctMonth;
     let date = dt.getDate() < 10 ? '0' + dt.getDate() : dt.getDate();
     return year + '-' + month + '-' + date;
 }
