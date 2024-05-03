@@ -2,7 +2,6 @@ package com.axonivy.portal.selenium.test.dashboard;
 
 import java.util.List;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
@@ -186,6 +185,11 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASK_WIDGET);
     ScreenshotUtils.resizeBrowser(new Dimension(1980, 1080));
     addCustomFields(taskWidget, List.of("ShipmentDate","AccountNumber"));
+
+    redirectToNewDashBoard();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForTaskListDisplay();
+    taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASK_WIDGET);
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Shipment date", FilterOperator.BETWEEN);
     taskWidget.inputValueOnLatestFilter(FilterValueType.DATE_BETWEEN, "01/01/2024","12/12/2024");
@@ -239,6 +243,11 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASK_WIDGET);
     ScreenshotUtils.maximizeBrowser();
     addCustomCaseFields(taskWidget, List.of("InvoiceDate","CreatedBillDate"));
+
+    redirectToNewDashBoard();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForTaskListDisplay();
+    taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASK_WIDGET);
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Created Bill date", FilterOperator.BEFORE);
     taskWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2024");
@@ -259,7 +268,10 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASK_WIDGET);
     ScreenshotUtils.maximizeBrowser();
     addCustomCaseFields(taskWidget, List.of("InvoiceNumber","InvoiceSubTotalAmount"));
-    
+    redirectToNewDashBoard();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForTaskListDisplay();
+
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Invoice Subtotal Amount", FilterOperator.EQUAL);
     taskWidget.inputValueOnLatestFilter(FilterValueType.NUMBER, "1000");

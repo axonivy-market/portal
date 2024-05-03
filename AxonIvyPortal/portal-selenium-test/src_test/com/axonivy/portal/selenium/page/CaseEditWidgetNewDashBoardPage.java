@@ -29,30 +29,6 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     this.caseEditWidgetId = caseWidgetId;
   }
 
-  private int getIndexFiltertByName(String name) {
-    ElementsCollection elementsTH =
-        $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='user-filter']").$$("div");
-    for (int i = 0; i < elementsTH.size(); i++) {
-      if (elementsTH.get(i).getText().equalsIgnoreCase(name)) {
-        return i;
-      }
-    }
-    return 0;
-  }
-
-  private SelenideElement getAvailableFilterInput(String filterName) {
-    int index = getIndexFiltertByName(filterName);
-    return $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='user-filter']").$$("div").get(index + 1)
-        .$("input");
-  }
-
-  private SelenideElement getAvailableFilterCheckbox(String filterName) {
-    int index = getIndexFiltertByName(filterName);
-    return $(caseEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='user-filter']").$$("div").get(index + 1)
-        .$(".ui-selectcheckboxmenu");
-  }
-
-
   private SelenideElement getValueOfCheckBox(String value) {
     return $("div.ui-selectcheckboxmenu-items-wrapper").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("li.ui-selectcheckboxmenu-item").filter(text(value)).first().$("div.ui-chkbox-box");
@@ -339,9 +315,6 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   public void saveAfterAddingCustomField() {
     saveColumn();
     save();
-    $("span#dashboard-header-action").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("button#back-to-configuration")
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("button#back-to-home-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
   }
 
   public void addCustomColumns(String... fieldNameList) {

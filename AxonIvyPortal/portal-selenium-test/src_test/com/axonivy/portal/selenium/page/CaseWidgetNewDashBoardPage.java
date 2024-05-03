@@ -16,8 +16,6 @@ import com.codeborne.selenide.SelenideElement;
 public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   private static final String YOUR_CASES_WIDGET = "Your Cases";
-  private static final String FILTER_CASE_NAME = "Case name";
-  private static final String FILTER_CASE_STATE = "State";
 
   private String caseWidgetId;
   private String caseWidgetName;
@@ -160,7 +158,11 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   public void resetFilter() {
     $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='reset-button']")
-        .filter(text("Reset")).first().shouldBe(getClickableCondition()).click();
+        .filter(text("Reset")).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    waitForElementClickable($$("div.table-widget-panel")
+        .filter(text(caseWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT)
+        .$(".widget__filter-sidebar-link"));
+    
   }
 
   public void selectState(String state) {

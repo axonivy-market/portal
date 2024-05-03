@@ -110,8 +110,12 @@ public class ComplexFilterHelper {
         .shouldBe(Condition.editable);
     for (int i = 0; i < values.length; i++) {
       textField.clear();
+      String textFieldIdSelector = "[id=\"" + textField.getAttribute("id")
+          + "\"]";
       textField.sendKeys(String.valueOf(values[i]));
-      textField.pressEnter();
+      WaitHelper.waitForActionComplete(textFieldIdSelector, () -> {
+        textField.pressEnter();
+      });
     }
   }
   

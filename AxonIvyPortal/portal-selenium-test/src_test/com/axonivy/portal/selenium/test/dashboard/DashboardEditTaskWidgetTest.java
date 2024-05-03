@@ -43,12 +43,14 @@ public class DashboardEditTaskWidgetTest extends BaseTest {
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(4));
     taskWidget.waitPreviewTableLoaded();
 
+    taskWidget.openFilter();
     taskWidget.resetFilter();
     taskWidget.addFilter("Name",FilterOperator.NOT_EMPTY);
     taskWidget.applyFilter();
     taskWidget.waitPreviewTableLoaded();
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(4));
 
+    taskWidget.openFilter();
     taskWidget.resetFilter();
     taskWidget.addFilter("Name",FilterOperator.END_WITH);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "request");
@@ -74,7 +76,8 @@ public class DashboardEditTaskWidgetTest extends BaseTest {
     taskWidget.addFilter("Created Date",FilterOperator.TODAY);
     taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(4));
-    
+
+    taskWidget.openFilter();
     taskWidget.removeFilter(0);
     taskWidget.addFilter("Created Date", FilterOperator.WITHIN_NEXT);
     taskWidget.inputValueOnLatestFilter(FilterValueType.WITHIN, "2","Year(s)");
@@ -97,12 +100,14 @@ public class DashboardEditTaskWidgetTest extends BaseTest {
     taskWidget.inputValueOnLatestFilter(FilterValueType.CATEGORY_TYPE, "Leave Request");
     taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(CollectionCondition.sizeGreaterThanOrEqual(2));
-    
+
+    taskWidget.openFilter();
     taskWidget.removeFilter(0);
     taskWidget.addFilter("Category", FilterOperator.NO_CATEGORY);
     taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(1));
-    
+
+    taskWidget.openFilter();
     taskWidget.removeFilter(0);
     taskWidget.addFilter("Category", FilterOperator.CONTAINS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT,"Annual Leave");  
