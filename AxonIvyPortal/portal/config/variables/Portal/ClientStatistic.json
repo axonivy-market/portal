@@ -2,6 +2,7 @@
   {
     "id": "1",
     "aggregates": "priority",
+    "filter": "businessState:OPEN,canWorkOn",
     "chartTarget": "TASK",
     "permissions": [
       "Everybody"
@@ -49,7 +50,7 @@
   {
     "id": "2",
     "aggregates": "expiryTimestamp",
-    "filter": "expiryTimestamp:>=now <=now+4d/d",
+    "filter": "expiryTimestamp:>=now <=now+3d/d,canWorkOn",
     "chartTarget": "TASK",
     "permissions": [
       "Everybody"
@@ -271,9 +272,9 @@
   },
   {
     "id": "5",
-    "aggregates": "expiryTimestamp",
-    "filter": "expiryTimestamp:>=now <=now+2M/d",
-    "chartTarget": "TASK",
+    "aggregates": "startTimestamp",
+    "filter":"startTimestamp:>=now-5d/d,isInvolved",
+    "chartTarget": "CASE",
     "permissions": [
       "Everybody"
     ],
@@ -354,6 +355,94 @@
         }
       ]
      }
+  },
+  {
+    "id": "6",
+    "aggregates": "category,businessRuntime:avg",
+    "filter": "businessRuntime:>0",
+    "permissions": [
+      "Everybody"
+    ] ,
+    "chartTarget": "CASE",
+    "chartType": "bar",
+    "names": [
+      {
+        "locale": "de",
+        "value": "Erledigte Aufgaben pro Tag"
+      },
+      {
+        "locale": "en",
+        "value": "Average runtime of cases by category"
+      },
+      {
+        "locale": "fr",
+        "value": "Tâches accomplies par jour"
+      },
+      {
+        "locale": "es",
+        "value": "Tareas completadas por día"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "de",
+        "value": "Erledigte Aufgaben pro Tag"
+      },
+      {
+        "locale": "en",
+        "value": "Average runtime of cases by category"
+      },
+      {
+        "locale": "fr",
+        "value": "Tâches accomplies par jour"
+      },
+      {
+        "locale": "es",
+        "value": "Tareas completadas por día"
+      }
+    ],
+    "icon": "si si-pie-line-graph",
+    "refreshInterval": 10,
+    "barChartConfig": {
+      "xTitles": [
+        {
+          "locale": "de",
+          "value": "Tag"
+        },
+        {
+          "locale": "en",
+          "value": "Category"
+        },
+        {
+          "locale": "fr",
+          "value": "Jour"
+        },
+        {
+          "locale": "es",
+          "value": "Día"
+        }
+      ],
+      "yTitles": [
+        {
+          "locale": "de",
+          "value": "Anzahl der Aufgaben"
+        },
+        {
+          "locale": "en",
+          "value": "Average runtime"
+        },
+        {
+          "locale": "fr",
+          "value": "Nombre de tâches"
+        },
+        {
+          "locale": "es",
+          "value": "Número de tareas"
+        }
+      ],
+      "yValue": "time"
+     }
+
   }
   
 ]
