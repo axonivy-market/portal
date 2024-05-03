@@ -15,6 +15,7 @@ public abstract class ColumnChartConfig {
   private List<DisplayName> yTitles;
   @JsonProperty(access = Access.READ_ONLY)
   private String yTitle;
+  private String yValue;
 
   public List<DisplayName> getxTitles() {
     return xTitles;
@@ -40,5 +41,9 @@ public abstract class ColumnChartConfig {
 
   public String getyTitle() {
     return yTitle;
+  }
+  
+  public String getyValue() {
+    return yValue;
   }
 }
