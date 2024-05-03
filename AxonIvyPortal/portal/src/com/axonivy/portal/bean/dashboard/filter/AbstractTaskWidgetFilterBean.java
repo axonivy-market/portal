@@ -123,4 +123,22 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
     }
     resetCaseWidgetFilter((CaseDashboardWidget) widget);
   }
+
+  public void updateWidgetFilterBeforeApply(DashboardWidget widget) {
+    if (widget instanceof TaskDashboardWidget) {
+      TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
+      removeEmptyFilters(taskWidget.getFilters());
+    } else {
+      CaseDashboardWidget caseWidget = (CaseDashboardWidget) widget;
+      removeEmptyFilters(caseWidget.getFilters());
+    }
+  }
+
+  private void removeEmptyFilters(List<DashboardFilter> filters) {
+    if (CollectionUtils.isNotEmpty(filters)) {
+      filters.removeAll(filters.stream()
+          .filter(filter -> StringUtils.isBlank(filter.getField()))
+          .collect(Collectors.toList()));
+    }
+  }
 }

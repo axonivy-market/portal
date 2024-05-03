@@ -75,8 +75,9 @@
         <div class="ui-g-8 ui-md-7">
           <p:commandButton id="preview-button" oncomplete="registerClickOnPanelEvent(); closeFilterPanel();"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
+            actionListener="#{taskWidgetConfigurationFilterBean.updateWidgetFilterBeforeApply(widget)}"
             styleClass="Fright preview-button u-hidden-sm-down" icon="si si-check-1"
-            update="#{componentToUpdateOnPreview}" /> 
+            update="#{componentToUpdateOnPreview} predefined-filter configuration-filter-messages-panel" /> 
           <p:commandButton id="reset-filter" icon="si si-button-refresh-arrows"
             update="predefined-filter configuration-filter-messages-panel" process="predefined-filter" styleClass="Fright ui-button-secondary preview-button u-hidden-sm-down u-mar-right-5"
             actionListener="#{taskWidgetConfigurationFilterBean.resetFilter(widget)}"

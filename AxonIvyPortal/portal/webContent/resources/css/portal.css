@@ -1822,12 +1822,6 @@ i.dashboard-icon-drag-drop {
   overflow: hidden;
 }
 
-@media (max-width: 1700px) {
-  .filter-panel.active {
-    width: 50vw;
-  }
-}
-
 .filter-panel {
   background: var(--notification-panel-color);
   position: fixed;
@@ -1858,7 +1852,17 @@ i.dashboard-icon-drag-drop {
   width: 95vw;
   overflow: auto;
 }
+
 .filter-panel .filter-area {
   height:90%;
   overflow:auto;
+}
+
+@media (max-width: 1700px) {
+  .filter-panel.active {
+    width: 50vw;
+  }
+  .table-configuration {
+    height: 66vh;
+  }
 }
