@@ -5,7 +5,7 @@ function openFilterPanel(event) {
   var filterPanel = document.getElementById(filterPanelId);
   filterPanel.classList.add("active");
   $('#new-widget-configuration-dialog').find('#widget-configuration-save-button').hide();
-  calculatePaneltPosition();
+  calculateFilterPaneltPosition();
 }
 
 function closeFilterPanel() {
@@ -20,7 +20,7 @@ function closeFilterPanel() {
 $(document).ready(function () {
   registerClickOnPanelEvent();
 
-  calculatePaneltPosition();
+  calculateFilterPaneltPosition();
   
   let validationMsg = document.getElementById("widget-configuration-form:new-widget-configuration-component:filter-messages").textContent;
   if (validationMsg !== ""){
@@ -43,7 +43,7 @@ function filterHasValidationError() {
   return filterPanel.find('[id $= ":filter-messages"]').find('.ui-messages-error').length != 0;
 }
 
-function calculatePaneltPosition(){
+function calculateFilterPaneltPosition(){
   var newWidgetDialog = document.getElementById('new-widget-configuration-dialog');
   var filterPanel = document.getElementById(filterPanelId);
 

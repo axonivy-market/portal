@@ -19,7 +19,7 @@
 
   <p:remoteCommand id="rcLoadCaseFirstTime" autoRun="true" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
     update="dashboard-cases-container" global="false" async="true" process="@this"
-    oncomplete="loadWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); initTableWidget(PF('dashboard-cases-#{caseWidget.id}')); #{cc.attrs.onCompleteLoadWidget}" />
+    oncomplete="loadWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); initTableWidget(PF('dashboard-cases-#{caseWidget.id}')); #{cc.attrs.onCompleteLoadWidget} #{cc.attrs.isPreviewMode ? 'calculateFilterPaneltPosition();' : ''}" />
 
   <div class="ui-g">
     <h:panelGroup layout="block"
