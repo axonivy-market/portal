@@ -291,6 +291,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
 
   @Test
   public void testFilterDateOnCustomFields() {
+    login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(testCaseListPermission);
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     addCustomFields(caseWidget, List.of("CreatedBillDate", "ShipmentDate"));
@@ -361,5 +362,6 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
       caseEditWidget.addCustomField(fieldName);
     }
     caseEditWidget.saveAfterAddingCustomField();
+    redirectToNewDashBoard();
   }
 }

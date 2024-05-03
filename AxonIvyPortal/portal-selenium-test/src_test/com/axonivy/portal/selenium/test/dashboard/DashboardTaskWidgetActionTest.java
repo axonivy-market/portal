@@ -25,7 +25,7 @@ import ch.ivy.addon.portalkit.enums.PortalVariable;
 public class DashboardTaskWidgetActionTest extends BaseTest {
   static final String DONE = "Done";
   static final String SUSPENDED = "Suspended";
-  static final String IN_PROGRESS = "In_progress";
+  static final String IN_PROGRESS = "In Progress";
   static final String READY_FOR_JOINING = "Ready for joining";
   static final String RESERVED = "Reserved";
   static final String DELAYED = "Delayed";
