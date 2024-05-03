@@ -121,6 +121,9 @@ function renderBarLineChart(result, chart, config) {
                         title: {
                             text: (config.chartType === "bar" ? config.barChartConfig : config.lineChartConfig).yTitle,
                             display: true
+                        },
+                        ticks: {
+                            stepSize: 1
                         }
                     },
                     x: {
