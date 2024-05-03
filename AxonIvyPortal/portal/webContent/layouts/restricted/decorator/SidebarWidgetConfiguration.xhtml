@@ -78,11 +78,10 @@
             styleClass="Fright preview-button u-hidden-sm-down" icon="si si-check-1"
             update="#{componentToUpdateOnPreview}" /> 
           <p:commandButton id="reset-filter" icon="si si-button-refresh-arrows"
-            update="#{componentToUpdateOnPreview}" process="predefined-filter" styleClass="Fright preview-button u-hidden-sm-down u-mar-right-5"
+            update="predefined-filter" process="predefined-filter" styleClass="Fright preview-button u-hidden-sm-down u-mar-right-5"
             actionListener="#{taskWidgetConfigurationFilterBean.resetFilter(widget)}"
             value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/TaskWidgetConfiguration/ResetFilter')}"
-            title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/TaskWidgetConfiguration/ResetFilter')}"
-            oncomplete="PF('new-widget-configuration-dialog').initPosition();">
+            title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/TaskWidgetConfiguration/ResetFilter')}">
               <f:param name="skipValidator" value="true" />
           </p:commandButton>
             
