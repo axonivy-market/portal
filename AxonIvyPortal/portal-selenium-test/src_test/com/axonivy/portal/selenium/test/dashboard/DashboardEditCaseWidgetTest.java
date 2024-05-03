@@ -2,12 +2,14 @@ package com.axonivy.portal.selenium.test.dashboard;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.LinkNavigator;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
@@ -53,6 +55,7 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.waitPreviewTableLoaded();
     caseWidget.countCases().shouldBe(CollectionCondition.size(1), DEFAULT_TIMEOUT);
 
+    caseWidget.openFilter();
     caseWidget.removeFilter(0);
     caseWidget.removeFilter(0);
 
@@ -62,26 +65,34 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.waitPreviewTableLoaded();
     caseWidget.countCases().shouldBe(CollectionCondition.size(2), DEFAULT_TIMEOUT);
 
+    caseWidget.openFilter();
     caseWidget.addFilter(NAME_STR, FilterOperator.EMPTY);
     caseWidget.applyFilter();
     caseWidget.waitPreviewTableLoaded();
     caseWidget.countCases().shouldBe(CollectionCondition.size(0));
-    caseWidget.removeFilter(0);
-    caseWidget.removeFilter(0);
 
+    caseWidget.openFilter();
+    caseWidget.removeFilter(0);
+    caseWidget.removeFilter(0);
     caseWidget.addFilter(NAME_STR, FilterOperator.START_WITH);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Or", "Te");
     caseWidget.applyFilter();
     caseWidget.waitPreviewTableLoaded();
     caseWidget.countCases().shouldBe(CollectionCondition.size(2), DEFAULT_TIMEOUT);
+
+    caseWidget.openFilter();
     caseWidget.addFilter(NAME_STR, FilterOperator.NOT_START_WITH);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Or", "Te");
     caseWidget.applyFilter();
     caseWidget.waitPreviewTableLoaded();
     caseWidget.countCases().shouldBe(CollectionCondition.size(0), DEFAULT_TIMEOUT);
+
+    caseWidget.openFilter();
     caseWidget.addFilter(NAME_STR, FilterOperator.END_WITH);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Or", "Te");
     caseWidget.closeFilter();
+    caseWidget.countCases().shouldBe(CollectionCondition.size(0),
+        DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -98,14 +109,16 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.applyFilter();
     caseWidget.waitPreviewTableLoaded();
     caseWidget.countCases().shouldBe(CollectionCondition.size(1));
-    caseWidget.removeFilter(0);
 
+    caseWidget.openFilter();
+    caseWidget.removeFilter(0);
     caseWidget.addFilter("Creator", FilterOperator.IN);
     caseWidget.inputValueOnLatestFilter(FilterValueType.CREATOR_TYPE, "admin");
     caseWidget.applyFilter();
     caseWidget.waitPreviewTableLoaded();
     caseWidget.countCases().shouldBe(CollectionCondition.size(1));
 
+    caseWidget.openFilter();
     caseWidget.addFilter("Creator", FilterOperator.NOT_IN);
     caseWidget.inputValueOnLatestFilter(FilterValueType.CREATOR_TYPE, "admin");
     caseWidget.applyFilter();
@@ -127,12 +140,14 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.waitPreviewTableLoaded();
     caseWidget.countCases().shouldBe(CollectionCondition.size(1));
 
+    caseWidget.openFilter();
     caseWidget.removeFilter(0);
     caseWidget.addFilter("Category", FilterOperator.NO_CATEGORY);
     caseWidget.applyFilter();
     caseWidget.waitPreviewTableLoaded();
     caseWidget.countCases().shouldBe(CollectionCondition.size(0));
 
+    caseWidget.openFilter();
     caseWidget.removeFilter(0);
     caseWidget.addFilter("Category", FilterOperator.NOT_CONTAINS);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Leave");
@@ -154,8 +169,9 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.addFilter("Created Date", FilterOperator.TODAY);
     caseWidget.applyFilter();
     caseWidget.waitPreviewTableLoaded();
-    caseWidget.countCases().shouldBe(CollectionCondition.size(2));
+    caseWidget.countCases().shouldBe(CollectionCondition.size(2), DEFAULT_TIMEOUT);
 
+    caseWidget.openFilter();
     caseWidget.removeFilter(0);
     caseWidget.addFilter("Created Date", FilterOperator.CURRENT);
     caseWidget.inputValueOnLatestFilter(FilterValueType.DATE_CURRENT, "Year");
@@ -172,6 +188,7 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     redirectToRelativeLink(testCaseListPermission);
     redirectToRelativeLink(testCaseListPermission);
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
+    ScreenshotUtils.resizeBrowser(new Dimension(1900, 1400));
     newDashboardDetailsEditPage.addWidget();
     CaseEditWidgetNewDashBoardPage caseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
     caseWidget.waitPreviewTableLoaded();
