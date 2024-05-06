@@ -1852,7 +1852,7 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .dashboard-widget-filter__filter-panel > div:first-child {
   margin-left: 0;
-  width: calc(12% + 2.357rem);
+  width: 9vw;
 }
 
 .dashboard-widget-filter__filter-panel .creator-filter-operation-panel {
