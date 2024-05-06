@@ -51,6 +51,9 @@ public class DashboardFilter implements Serializable {
   @JsonIgnore
   public static final String DMY_DATE_FORMAT = "dd.MM.yyyy";
 
+  @JsonIgnore
+  private static final String DEFAULT = "default";
+
   private String field;
 
   private String from;
@@ -153,7 +156,12 @@ public class DashboardFilter implements Serializable {
   @JsonIgnore
   public boolean isTextField() {
     return (this.filterFormat == FilterFormat.TEXT || this.filterFormat == FilterFormat.STRING) && !isCategory()
-        && !isId() && !isApplication();
+        && !isId() && !isApplication() && !isDefaultField();
+  }
+
+  @JsonIgnore
+  public boolean isDefaultField() {
+    return StringUtils.isBlank(this.field);
   }
 
   @JsonIgnore
