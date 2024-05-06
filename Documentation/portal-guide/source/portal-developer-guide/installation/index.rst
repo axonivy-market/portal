@@ -145,6 +145,13 @@ In Engine
 
 #. Follow detailed migration notes for each version below.
 
+Migrate 10.0.19 To 10.0.20
+--------------------------
+
+- So far, Portal supports configuring process steps of :ref:`Process chain <components-layout-templates-iframe-task-template>` with String or Array format.
+With String format, it could not show process steps that contains comma characters,  i.e., `Collect, Check, and Approve`. We deprecated the String format
+but still support it for backward compatibility. We recommend you use the Array format.
+
 Migrate 10.0.12 To 10.0.13
 --------------------------
 
