@@ -1818,8 +1818,8 @@ body .ui-widget.new-widget-dialog__introduction {
   margin-left: 0.5em;
   display: flex;
   align-items: flex-start;
-  min-width: 12vw;
-  max-width: 15vw;
+  min-width: 8vw;
+  max-width: 10vw;
   overflow-wrap: anywhere;
 }
 
@@ -1843,21 +1843,13 @@ body .ui-widget.new-widget-dialog__introduction {
   min-width: 5vw;
 }
 
-.dashboard-widget-filter__filter-panel > div.number-of-periods-panel {
-  width: 100px;
-}
-
 .dashboard-widget-filter__filter-panel > div.period-type-panel {
   width: 8vw;
 }
 
 .dashboard-widget-filter__filter-panel > div:first-child {
   margin-left: 0;
-  width: 9vw;
-}
-
-.dashboard-widget-filter__filter-panel .creator-filter-operation-panel {
-  width: 130px;
+  width: 7vw;
 }
 
 .dashboard-widget-filter__filter-panel > div.number-panel {
@@ -1872,8 +1864,17 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 @media (max-width: 1700px) {
+  .dashboard-widget-filter__filter-panel > div:first-child {
+    width: 9vw;
+  }
+
   .dashboard-widget-filter__filter-panel > div.and-text-panel {
     width: 3vw;
+  }
+  
+  .dashboard-widget-filter__filter-panel > div {
+    min-width: 12vw;
+    max-width: 15vw;
   }
 }
 
