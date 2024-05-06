@@ -114,10 +114,15 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  private SelenideElement getEditWidgetLink() {
+    return $$("div.table-widget-panel div.widget__header")
+        .filter(text(caseWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("div[id$='widget-header-actions']").$("[id*='edit-widget']");
+  }
+
   public CaseEditWidgetNewDashBoardPage openEditWidget() {
-    $$("div.table-widget-panel div.widget__header").filter(text(caseWidgetName)).first()
-        .shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='edit-widget']")
-        .shouldBe(getClickableCondition()).click();
+    getEditWidgetLink().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(getEditWidgetLink());
     return new CaseEditWidgetNewDashBoardPage();
   }
 
