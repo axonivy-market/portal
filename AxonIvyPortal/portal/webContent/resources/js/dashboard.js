@@ -219,15 +219,12 @@ function resizeTableBody() {
     const resizeObserver = new ResizeObserver(() => {
       let tableBody = $(sb);
       let parentHeight = tableBody.parents('.grid-stack-item-content.card.dashboard-card').height();
-      tableBody.height(parentHeight * 0.85);
       if (!window.matchMedia("(max-width: 767px)").matches) {
         tableBody.height(parentHeight - 100);
-        tableBody.attr('attr-item-size', parentHeight - 100);
       } else {
-        tableBody.height(parentHeight * 0.85);
-        tableBody.attr('attr-item-size', parentHeight * 0.85);
+        tableBody.height(parentHeight * 0.9);
       }
-      
+
       const widgetName = tableBody.parents('.grid-stack-item').find('.js-table-widget-var').val();
       if (widgetName === undefined) {
         return;
@@ -264,8 +261,25 @@ function collapseFullscreen(index, widgetId) {
 }
 
 function loadWidgetFirstTime(loadingClass, widgetClass) {
+  var loading = $('.' + loadingClass);
+  if (loading.length > 0) {
+    loading.addClass('u-display-none');
+  }
+  var widget = $('.' + widgetClass);
+  if (widget.length == 0) {
+    widget = $("[data-process-id='" + widgetClass + "']");
+  }
+  if (widget.length > 0) {
+    widget.removeClass('u-display-none');
+    widget.removeClass('u-invisibility');
+  }
+  resizeTableBody();
+}
+
+function loadCaseAndTaskWidgetFirstTime(loadingClass, widgetClass) {
 
   resizeTableBody();
+
   setTimeout(function() {
     var loading = $('.' + loadingClass);
     if (loading.length > 0) {
@@ -280,7 +294,6 @@ function loadWidgetFirstTime(loadingClass, widgetClass) {
       widget.removeClass('u-invisibility');
     }
   }, 50);
-  
 }
 
 function hideAllDashboardOverlayPanels() {
