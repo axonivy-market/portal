@@ -187,8 +187,9 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
 
     caseWidget.destroyCase(0);
+    caseWidget.waitTableLoaded();
     caseWidget.destroyCase(1);
-
+    caseWidget.waitTableLoaded();
     caseWidget.openFilterWidget();
     caseWidget.addFilter("State", null);
     caseWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "DESTROYED");
