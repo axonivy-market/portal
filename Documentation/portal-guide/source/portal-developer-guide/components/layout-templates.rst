@@ -101,7 +101,7 @@ Inside your UI, you can configure these parameters as follows; they will be rend
 ::
 
    <script>
-      // Set process steps directly as array.
+      // Set process steps directly as Array.
       window.processSteps = ["Create Investment Request", "Approve Investment Request"];
 
       // If process steps are set in HTML dialog logic or java code, convert it to JSON format
