@@ -115,7 +115,7 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public boolean isNumberField() {
-    return this.filterFormat == FilterFormat.NUMBER;
+    return (this.filterFormat == FilterFormat.NUMBER) && !isDefaultField();
   }
 
   @JsonIgnore
