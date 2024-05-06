@@ -459,6 +459,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
     homePage = new NewDashboardPage();
     CaseWidgetNewDashBoardPage caseWidget = homePage.selectCaseWidget("Your Cases");
+    resizeBrowserTo2kResolution();
     caseWidget.openFilterWidget();
     caseWidget.addFilter("Name", FilterOperator.CONTAINS);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Nam", "Mike");
@@ -471,7 +472,6 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.captureElementScreenshot(homePage.getWidgetFilter(1),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-save-filter");
     
-    resizeBrowserTo2kResolution();
     homePage.clickOnManageFilterLink();
     homePage.getTotalSavedFilterInManageFilterDialog().shouldBe(CollectionCondition.size(2), DEFAULT_TIMEOUT);
     homePage.closeManageFilterDialog();

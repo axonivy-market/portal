@@ -105,7 +105,8 @@
   styleClass="new-widget-configuration-dialog" closable="false"
   header="#{dashboardDetailModificationBean.newWidgetHeader}"
   appendTo="@(body)" closeOnEscape="true"
-  fitViewport="true" responsive="true" modal="true">
+  fitViewport="true" responsive="true" modal="true"
+  resizable="false" draggable="false">
   <c:set var="widget" value="#{dashboardDetailModificationBean.widget}" />
   <c:set var="widgetType" value="#{dashboardDetailModificationBean.widget.type}" />
 

@@ -1753,6 +1753,7 @@ body .ui-widget.new-widget-dialog__introduction {
   border: none;
   height: 100%;
   padding: 0;
+  padding-right: 15px;
 }
 
 .notifications-group-title {
@@ -1817,6 +1818,7 @@ body .ui-widget.new-widget-dialog__introduction {
 .dashboard-widget-filter__filter-panel {
   display: flex;
   margin-top: 10px;
+  align-items: stretch;
 }
 
 .dashboard-widget-filter__filter-panel:first-child {
@@ -1825,11 +1827,15 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .dashboard-widget-filter__filter-panel > div {
   margin-left: 0.5em;
-  display: inline-block;
+  display: flex;
   align-items: flex-start;
-  max-width: 34vw;
+  min-width: 12vw;
+  max-width: 15vw;
   overflow-wrap: anywhere;
-  width: calc(15% + 2.357rem)
+}
+
+.dashboard-widget-filter__filter-panel > div.text-list-filter {
+  align-items: stretch;
 }
 
 .dashboard-widget-filter__filter-panel > div.remove-filter-panel {
@@ -1869,8 +1875,26 @@ body .ui-widget.new-widget-dialog__introduction {
   max-width: 6vw;
 }
 
-.dashboard-widget-filter__filter-panel > div.and-text-panel {
+.dashboard-widget-filter__filter-panel .and-text-panel {
   align-self: center;
+  max-width: 60px;
+  min-width: 30px;
+  margin-left: 10px;
+}
+
+@media (max-width: 1700px) {
+  .dashboard-widget-filter__filter-panel > div.and-text-panel {
+    width: 3vw;
+  }
+}
+
+
+.dashboard-widget-filter__filter-panel > div.and-text-panel span {
+  margin: auto;
+}
+
+.dashboard-widget-filter__filter-panel .category-filter-list .category-input {
+  width: 100%;
 }
 
 body .ui-button.rounded-button.dashboard-widget-filter__remove-filter {

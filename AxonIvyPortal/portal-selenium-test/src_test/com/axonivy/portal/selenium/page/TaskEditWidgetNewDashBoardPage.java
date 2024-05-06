@@ -130,7 +130,8 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void waitPreviewTableLoaded() {
-    $(taskEditWidgetId).$("div[id$=':dashboard-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $(taskEditWidgetId).$(".task-dashboard-widget__loading-message").shouldHave(Condition.cssClass("u-display-none"), DEFAULT_TIMEOUT);
+    $(taskEditWidgetId).$("div[id$=':dashboard-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT).shouldNotHave(Condition.cssClass("u-display-none"));
   }
 
   public SelenideElement getAddLanguageButton() {
@@ -340,13 +341,8 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void saveAfterAddingCustomField() {
-    $("button[id$='column-management-save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("button#widget-configuration-save-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    waitForPageLoad();
-    $("div[class*='portal-layout-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span#dashboard-header-action").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("button#back-to-configuration")
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    waitForPageLoad();
-    $("div[class*='u-text-align-right']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("button#back-to-home-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    saveColumn();
+    save();
   }
   
   public void openFilter() {
@@ -364,6 +360,8 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public void applyFilter() {
     $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']")
         .shouldBe(getClickableCondition()).click();
+    $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']").shouldHave(Condition.cssClass("ui-state-loading"));
+    $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']").shouldNotHave(Condition.cssClass("ui-state-loading"), DEFAULT_TIMEOUT);
   }
   
   public void removeFilter(int index) {
@@ -393,6 +391,11 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     $("span[id$=':widget-title-group']").$("label").scrollIntoView(("{block: \"start\"}")).click();
     $("div[id$=':widget-filter-content']").shouldBe(disappear, DEFAULT_TIMEOUT);
     waitPreviewTableLoaded();
+  }
+  
+  public void resetFilter() {
+    $("button[id$=':reset-filter']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    countFilterSelect().shouldBe(CollectionCondition.size(0), DEFAULT_TIMEOUT);
   }
 
   public WebElement getQuickSearchCheckBox() {
