@@ -306,4 +306,8 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     $("div[id$='operator-selection']").shouldBe(getClickableCondition()).click();
   }
 
+  public void waitTableLoaded() {
+    $(getLoadedLocator()).shouldHave(Condition.cssClass("u-display-none"), DEFAULT_TIMEOUT);
+    $(getLoadedLocator()).shouldNotHave(Condition.cssClass("u-display-none"), DEFAULT_TIMEOUT);
+  }
 }
