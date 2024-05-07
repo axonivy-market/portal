@@ -58,7 +58,8 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public SelenideElement getBreadcrumbLastDisplayedItem() {
-    return $$("span.ui-menuitem-text").last().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $("nav[id='portal-breadcrumb:breadcrumb-form:breadcrumb']").$$("span.ui-menuitem-text").last()
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getInformationPanel() {
