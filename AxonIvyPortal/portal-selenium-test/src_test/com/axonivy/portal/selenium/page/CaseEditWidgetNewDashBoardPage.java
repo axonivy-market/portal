@@ -260,7 +260,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getConfigurationFilter() {
-    $("[id$=':widget-filter-content']").$("strong").click();
+    $("[id$=':widget-filter-content']").$(".filter-panel-title").click();
     $("[id$=':widget-filter-content']").scrollIntoView("{block: \"end\"}");
     return $("[id$=':widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
