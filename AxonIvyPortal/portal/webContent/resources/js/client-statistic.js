@@ -90,26 +90,32 @@ function initWidgetHeaderName(chart, widgetName) {
     widgetHeader.textContent = widgetName;
 }
 
-function getDataFromResult(result) {
-    const values = [];
-    result.forEach((bucket) => {
-        if (bucket.key.trim().length !== 0) {
-            bucket.aggs.forEach((item) => {
-                values.push({
-                    key: bucket.key,
-                    count: item.value
-                });
+function processData(result, yValue) {
+    switch (yValue) {
+        case 'time': {
+            const values = [];
+            result.forEach((bucket) => {
+                if (bucket.key.trim().length !== 0) {
+                    bucket.aggs.forEach((item) => {
+                        values.push({
+                            key: bucket.key,
+                            count: item.value
+                        });
+                    });
+                }
             });
-        }
-    });
-    return values;
+            return values;
+        };
+        default:
+            return result;
+    }
 }
 
 function renderBarLineChart(result, chart, config) {
     if (result.length == 0) {
         return renderEmptyStatistics(chart, config.additionalConfig);
     } else {
-        let data = config.barChartConfig?.yValue === 'time' ? getDataFromResult(result) : result;
+        let data = config.barChartConfig?.yValue ? processData(result, config.barChartConfig?.yValue) : result;
         let stepSize = config.barChartConfig?.yValue === 'time' ? 200 : 2;
         let html = renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
         $(chart).html(html);
@@ -182,8 +188,8 @@ function initRefresh(refreshInfos) {
 
 async function refreshChart(chartInfo) {
     let chartId = chartInfo.chartId;
-    const response = await instance.post(statisticApiURL, {"chartId": chartId});
-    let data = await response.data;
+    const response = await instance.post(statisticApiURL, { "chartId": chartId });
+    let data = await response.data.then(data => chartInfo?.barChartConfig?.yValue ? getDataFromResult(data) : data);
     let result = data.result.aggs?.[0]?.buckets ?? [];
     let chartData = chartInfo.chartData;
     if (chartInfo.chartType !== 'number') {
