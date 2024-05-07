@@ -22,7 +22,7 @@
 
   <p:remoteCommand id="rcLoadTaskFirstTime" autoRun="true" actionListener="#{taskWidget.dataModel.loadFirstTime()}"
                    update="dashboard-tasks-container" global="false" async="true" process="@this"
-                   oncomplete="loadWidgetFirstTime('js-loading-#{taskWidget.id}', 'js-dashboard-tasks-container-#{taskWidget.id}'); initTableWidget(PF('dashboard-tasks-#{taskWidget.id}')); #{cc.attrs.onCompleteLoadWidget};" />
+                   oncomplete="loadWidgetFirstTime('js-loading-#{taskWidget.id}', 'js-dashboard-tasks-container-#{taskWidget.id}'); initTableWidget(PF('dashboard-tasks-#{taskWidget.id}')); #{cc.attrs.onCompleteLoadWidget}; #{cc.attrs.isPreviewMode ? 'calculateFilterPaneltPosition();' : ''}" />
   <div class="ui-g">
     <h:panelGroup layout="block"
       styleClass="js-loading-#{taskWidget.id} task-dashboard-widget__loading-message ui-g-12">
@@ -130,7 +130,6 @@
       </h:panelGroup>
     </h:panelGroup>
   </div>
-  
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
     <ui:param name="id" value="reset-task-confirmation-dialog" />
     <ui:param name="widgetVar" value="reset-task-confirmation-dialog" />
@@ -141,7 +140,7 @@
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
 
     <ui:define name="dialogFooter">
-      <h:form id="reset-task-confirmation-form">
+      <h:form id="reset-task-confirmation-form" rendered="#{!isPreviewMode}">
         <p:commandLink onclick="PF('reset-task-confirmation-dialog').hide()"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15" />
         <p:commandButton actionListener="#{dashboardBean.resetAndOpenTask}"
@@ -153,9 +152,11 @@
   </ui:decorate>
   <script type="text/javascript">
       function liveScroll() {
-        PF('dashboard-tasks-#{taskWidget.id}').scrollOffset = 0;
-        PF('dashboard-tasks-#{taskWidget.id}').scrollBody.scrollTop(1);
-        PF('dashboard-tasks-#{taskWidget.id}').allLoadedLiveScroll = false;
+        if (PF('dashboard-tasks-#{taskWidget.id}') != null) {
+          PF('dashboard-tasks-#{taskWidget.id}').scrollOffset = 0;
+          PF('dashboard-tasks-#{taskWidget.id}').scrollBody.scrollTop(1);
+          PF('dashboard-tasks-#{taskWidget.id}').allLoadedLiveScroll = false;
+        }
       }
     </script>
 </cc:implementation>

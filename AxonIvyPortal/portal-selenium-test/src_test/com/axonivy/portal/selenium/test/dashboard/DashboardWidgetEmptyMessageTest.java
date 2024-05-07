@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -70,7 +71,7 @@ public class DashboardWidgetEmptyMessageTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.openFilterWidget();
-    taskWidget.filterTaskName(WRONG_TASK_NAME);
+    taskWidget.filterTaskName(WRONG_TASK_NAME, FilterOperator.IS);
     taskWidget.applyFilter();
     newDashboardPage.getTaskWidgetEmptyMessageWhenFilter().shouldBe(Condition.appear);
     newDashboardPage.getTaskWidgetTable().shouldBe(Condition.disappear);
