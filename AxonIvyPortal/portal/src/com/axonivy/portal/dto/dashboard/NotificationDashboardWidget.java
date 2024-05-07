@@ -50,7 +50,8 @@ public class NotificationDashboardWidget extends DashboardWidget {
   }
 
   @Override
-  public void resetWidgetFilters() { }
+  public void resetWidgetFilters() {
+  }
 
   @Override
   public DashboardWidgetType getType() {
@@ -78,6 +79,9 @@ public class NotificationDashboardWidget extends DashboardWidget {
   public boolean hasNotifications() {
     return this.onlyUnread ? countUnread != 0 : countAll != 0;
   }
+
+  @Override
+  public void cancelUserFilter() { }
   
   public void startTaskFromNoti(NotificationDto dto) {
     markAsRead(dto);
