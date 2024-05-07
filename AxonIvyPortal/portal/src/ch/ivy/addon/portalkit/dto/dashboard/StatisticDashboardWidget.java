@@ -110,4 +110,7 @@ public class StatisticDashboardWidget extends DashboardWidget {
     }
     return StatisticChartConstants.DEFAULT_CHART_ICON;
   }
+
+  @Override
+  public void cancelUserFilter() {}
 }
