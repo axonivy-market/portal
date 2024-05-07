@@ -2,7 +2,7 @@
   {
     "id": "1",
     "aggregates": "priority",
-    "filter": "businessState:OPEN,canWorkOn",
+    "filter": "businessState:OPEN IN_PROGRESS,canWorkOn",
     "chartTarget": "TASK",
     "permissions": [
       "Everybody"
@@ -49,8 +49,8 @@
   },
   {
     "id": "2",
-    "aggregates": "expiryTimestamp",
-    "filter": "expiryTimestamp:>=now <=now+3d/d,canWorkOn",
+    "aggregates": "priority",
+    "filter": "expiryTimestamp:>=now <=now+3d/d,businessState:OPEN IN_PROGRESS,canWorkOn",
     "chartTarget": "TASK",
     "permissions": [
       "Everybody"
@@ -59,37 +59,37 @@
     "names": [
       {
         "locale": "de",
-        "value": "Aufgaben gruppiert nach Ablaufdatum"
+        "value": "Aufgaben (die der Benutzer bearbeiten kann) gruppiert nach Ablauf der nächsten 3 Tage"
       },
       {
         "locale": "en",
-        "value": "Tasks grouped by expiry"
+        "value": "Tasks (that the user can work on) grouped expiry of the next 3 days"
       },
       {
         "locale": "fr",
-        "value": "Tâches regroupées par échéance"
+        "value": "Tâches (sur lesquelles l'utilisateur peut travailler) groupées à échéance des 3 prochains jours"
       },
       {
         "locale": "es",
-        "value": "Tareas agrupadas por vencimiento"
+        "value": "Tareas (en las que el usuario puede trabajar) agrupadas vencimiento de los próximos 3 días"
       }
     ],
     "descriptions": [
       {
         "locale": "de",
-        "value": "Aufgaben gruppiert nach Ablaufdatum"
+        "value": "Aufgaben (die der Benutzer bearbeiten kann) gruppiert nach Ablauf der nächsten 3 Tage"
       },
       {
         "locale": "en",
-        "value": "Tasks grouped by expiry"
+        "value": "Tasks (that the user can work on) grouped expiry of the next 3 days"
       },
       {
         "locale": "fr",
-        "value": "Tâches regroupées par échéance"
+        "value": "Tâches (sur lesquelles l'utilisateur peut travailler) groupées à échéance des 3 prochains jours"
       },
       {
         "locale": "es",
-        "value": "Tareas agrupadas por vencimiento"
+        "value": "Tareas (en las que el usuario puede trabajar) agrupadas vencimiento de los próximos 3 días"
       }
     ],
     "icon": "si si-pie-line-graph",
@@ -136,11 +136,11 @@
   {
     "id": "3",
     "aggregates": "businessState",
-    "filter": "businessState:OPEN",
+    "filter": "isInvolved,tasks.canWorkOn,businessState:OPEN",
     "permissions": [
       "Everybody"
     ] ,
-    "chartTarget": "TASK",
+    "chartTarget": "CASE",
     "chartType": "number",
     "names": [
       {
@@ -149,7 +149,7 @@
       },
       {
         "locale": "en",
-        "value": "Number of OPEN Tasks"
+        "value": "Number of RUNNING Cases"
       },
       {
         "locale": "fr",
@@ -167,7 +167,7 @@
       },
       {
         "locale": "en",
-        "value": "Tasks Number of OPEN tasks"
+        "value": "Cases number of RUNNING Cases"
       },
       {
         "locale": "fr",
@@ -181,13 +181,13 @@
     "icon": "si si-pie-line-graph",
     "refreshInterval": 10,
     "numberChartConfig": {
-       "suffixSymbol": ""
+       "suffixSymbol": "ABCDEFG"
      }
   },
   {
     "id": "4",
     "aggregates": "endTimestamp",
-    "filter": "endTimestamp:>=now-4d/d <=now+1d,businessState:DONE",
+    "filter": "endTimestamp:>=now-5d/d <=now+1d,businessState:DONE",
     "permissions": [
       "Everybody"
     ] ,
@@ -273,7 +273,7 @@
   {
     "id": "5",
     "aggregates": "startTimestamp",
-    "filter":"startTimestamp:>=now-5d/d,isInvolved",
+    "filter":"startTimestamp:>=now-5d/d <=now/d,isInvolved",
     "chartTarget": "CASE",
     "permissions": [
       "Everybody"
@@ -368,7 +368,7 @@
     "names": [
       {
         "locale": "de",
-        "value": "Erledigte Aufgaben pro Tag"
+        "value": "Durchschnittliche Laufzeit der Fälle nach Kategorie"
       },
       {
         "locale": "en",
@@ -376,17 +376,17 @@
       },
       {
         "locale": "fr",
-        "value": "Tâches accomplies par jour"
+        "value": "Durée moyenne des affaires par catégorie"
       },
       {
         "locale": "es",
-        "value": "Tareas completadas por día"
+        "value": "Duración media de los casos por categoría"
       }
     ],
     "descriptions": [
       {
         "locale": "de",
-        "value": "Erledigte Aufgaben pro Tag"
+        "value": "Durchschnittliche Laufzeit der Fälle nach Kategorie"
       },
       {
         "locale": "en",
@@ -394,11 +394,11 @@
       },
       {
         "locale": "fr",
-        "value": "Tâches accomplies par jour"
+        "value": "Durée moyenne des affaires par catégorie"
       },
       {
         "locale": "es",
-        "value": "Tareas completadas por día"
+        "value": "Duración media de los casos por categoría"
       }
     ],
     "icon": "si si-pie-line-graph",
@@ -407,7 +407,7 @@
       "xTitles": [
         {
           "locale": "de",
-          "value": "Tag"
+          "value": "Kategorie"
         },
         {
           "locale": "en",
@@ -415,17 +415,17 @@
         },
         {
           "locale": "fr",
-          "value": "Jour"
+          "value": "Catégorie"
         },
         {
           "locale": "es",
-          "value": "Día"
+          "value": "Categoría"
         }
       ],
       "yTitles": [
         {
           "locale": "de",
-          "value": "Anzahl der Aufgaben"
+          "value": "Durchschnittliche Laufzeit"
         },
         {
           "locale": "en",
@@ -433,16 +433,100 @@
         },
         {
           "locale": "fr",
-          "value": "Nombre de tâches"
+          "value": "Durée d'exécution moyenne"
         },
         {
           "locale": "es",
-          "value": "Número de tareas"
+          "value": "Tiempo medio de ejecución"
         }
       ],
       "yValue": "time"
      }
-
+  },
+  {
+    "id": "7",
+    "aggregates": "endTimestamp",
+    "filter": "endTimestamp:>=now-4d/d <=now/d,isInvolved",
+    "permissions": [
+      "Everybody"
+    ] ,
+    "chartTarget": "CASE",
+    "chartType": "line",
+    "names": [
+      {
+        "locale": "de",
+        "value": "Abgeschlossene Fälle pro Tag"
+      },
+      {
+        "locale": "en",
+        "value": "Finished cases per day"
+      },
+      {
+        "locale": "fr",
+        "value": "Cas finis par jour"
+      },
+      {
+        "locale": "es",
+        "value": "Cajas terminadas por día"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "de",
+        "value": "Abgeschlossene Fälle pro Tag"
+      },
+      {
+        "locale": "en",
+        "value": "Finished cases per day"
+      },
+      {
+        "locale": "fr",
+        "value": "Cas finis par jour"
+      },
+      {
+        "locale": "es",
+        "value": "Cajas terminadas por día"
+      }
+    ],
+    "icon": "si si-pie-line-graph",
+    "refreshInterval": 10,
+    "lineChartConfig": {
+      "xTitles": [
+        {
+          "locale": "de",
+          "value": "Datum"
+        },
+        {
+          "locale": "en",
+          "value": "Date"
+        },
+        {
+          "locale": "fr",
+          "value": "Date"
+        },
+        {
+          "locale": "es",
+          "value": "Fecha"
+        }
+      ],
+      "yTitles": [
+        {
+          "locale": "de",
+          "value": "Abgeschlossene Fälle"
+        },
+        {
+          "locale": "en",
+          "value": "Finished cases"
+        },
+        {
+          "locale": "fr",
+          "value": "Cas finis"
+        },
+        {
+          "locale": "es",
+          "value": "Cajas acabadas"
+        }
+      ]
+     }
   }
-  
 ]
