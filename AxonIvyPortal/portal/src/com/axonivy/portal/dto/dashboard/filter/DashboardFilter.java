@@ -282,7 +282,7 @@ public class DashboardFilter implements Serializable {
   }
 
   private SecurityMemberDTO findSecurityMember(String memberName) {
-    return ServiceUtilities.findSecurityMemberByName("#".concat(memberName));
+    return ServiceUtilities.findSecurityMemberByName(memberName);
   }
 
   public String getValue() {
