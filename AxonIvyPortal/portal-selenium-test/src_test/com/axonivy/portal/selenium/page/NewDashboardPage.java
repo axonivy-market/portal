@@ -1047,4 +1047,9 @@ public class NewDashboardPage extends TemplatePage {
     $("[id$=':manage-filter-action']").$("a").shouldBe(getClickableCondition()).click();
     $("[id$='manage-filter-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
+
+  public void waitForTaskWidgetLoaded() {
+    checkDisplayedTaskWidgetContainer();
+    getTaskWidgetTable().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
 }
