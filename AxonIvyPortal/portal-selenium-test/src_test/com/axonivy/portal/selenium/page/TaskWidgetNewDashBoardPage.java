@@ -493,6 +493,30 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
         .click();
   }
   
+  public boolean isQuickSearchInputShow(String widgetIndex) {
+    String taskWidgetIndex = String.format("div[id*='task-task_%s']", widgetIndex);
+    waitPageLoaded();
+    return $(taskWidgetIndex).$("form").$("input").exists();
+  }
+  
+  public void setInputForQuickSearch(String input) {
+    getQuickSearchForm().$("input").sendKeys(input);
+    waitPageLoaded();
+  }
+  
+  private SelenideElement getQuickSearchForm() {
+    return $("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
+  }
+  
+  public void clearQuickSearchInput() {
+    getQuickSearchForm().$("input").clear();
+    waitPageLoaded();
+  }
+
+  public boolean isEmptyMessageAppear() {
+    return $("div[id$='empty-message-container']").exists();
+  }
+
   public void addFilter(String columnName, com.axonivy.portal.selenium.common.FilterOperator operator) {
     ComplexFilterHelper.addFilter(columnName, operator);
   }
@@ -569,10 +593,6 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void removeFocusFilterDialog() {
     $("[id$=':widget-filter-content']").$("strong").click();
     $("[id$=':widget-filter-content']").scrollIntoView("{block: \"end\"}");
-  }
-  
-  public boolean isEmptyMessageAppear() {
-    return $("div[id$='empty-message-container']").exists();
   }
   
   public WebElement getFilterOverlayPanel(Integer index) {
