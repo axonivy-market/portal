@@ -241,7 +241,7 @@ Base structure of filter json:
 
    - ``field``: filter field name corresponding with column name
 
-   - ``values``: filter value, could be a list or string...
+   - ``values``: filter value, could be a list, a string or a number
 
    - ``operator``: filter operator, operators can be difference depend on each field type.
 
