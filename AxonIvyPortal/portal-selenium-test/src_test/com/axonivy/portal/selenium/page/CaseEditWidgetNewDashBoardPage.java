@@ -377,28 +377,6 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     getQuickSearchForm().$("input").clear();
     waitForPageLoad();
   }
-//
-//  private SelenideElement getCaseWidgetHeader() {
-//    return $$("div.table-widget-panel").filter(text(caseWidgetName)).first();
-//  }
-//
-//  public void clickOnButtonExpandCaseWidget() {
-//    getCaseWidgetHeader().$(".expand-link").shouldBe(appear, DEFAULT_TIMEOUT)
-//        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-//  }
-//
-//  public void clickOnButtonCollapseCaseWidget() {
-//    getCaseWidgetHeader().$(".collapse-link").shouldBe(appear, DEFAULT_TIMEOUT)
-//        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-//  }
-//
-//  public ElementsCollection countAllCases() {
-//    return getAllCasesOfCaseWidget();
-//  }
-
-//  private ElementsCollection getAllCasesOfCaseWidget() {
-//    return getColumnsOfTableWidget().filter(Condition.cssClass("dashboard-cases__name"));
-//  }
 
   public boolean isEmptyMessageAppear() {
     return $("div[id$='empty-message-container'][class='empty-message-container ']").shouldBe(appear, DEFAULT_TIMEOUT)

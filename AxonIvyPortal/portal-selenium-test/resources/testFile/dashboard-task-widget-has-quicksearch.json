@@ -61,8 +61,7 @@
             "field": "activator"
           },
           {
-            "field": "state",
-            "filterList": ["PARKED", "RESUMED", "SUSPENDED"]
+            "field": "state"
           },
           {
             "field": "startTimestamp"
