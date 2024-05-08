@@ -8,6 +8,7 @@ const instance = axios.create({
 });
 const DATA_CHART_ID = 'data-chart-id';
 const WIDGET_HEADER_TITLE = '.widget__header-title';
+const AVERAGE_BUSINESS_RUNTIME = "avg-businessRuntime";
 
 const chartColors = () => {
     let chartColors = [];
@@ -90,17 +91,19 @@ function initWidgetHeaderName(chart, widgetName) {
     widgetHeader.textContent = widgetName;
 }
 
-function processData(result, yValue) {
+function processBarChartYValue(result, yValue) {
     switch (yValue) {
         case 'time': {
             const values = [];
             result.forEach((bucket) => {
                 if (bucket.key.trim().length !== 0) {
                     bucket.aggs.forEach((item) => {
-                        values.push({
-                            key: bucket.key,
-                            count: item.value
-                        });
+                        if(item['name'] === AVERAGE_BUSINESS_RUNTIME){
+                            values.push({
+                                key: bucket.key,
+                                count: item.value
+                            });
+                        }
                     });
                 }
             });
@@ -115,7 +118,8 @@ function renderBarLineChart(result, chart, config) {
     if (result.length == 0) {
         return renderEmptyStatistics(chart, config.additionalConfig);
     } else {
-        let data = config.barChartConfig?.yValue ? processData(result, config.barChartConfig?.yValue) : result;
+        //If the target type for the Y axis is 'time', get average time from sub aggregate of the result.
+        let data = config.barChartConfig?.yValue ? processBarChartYValue(result, config.barChartConfig?.yValue) : result;
         let stepSize = config.barChartConfig?.yValue === 'time' ? 200 : 2;
         let html = renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
         $(chart).html(html);
