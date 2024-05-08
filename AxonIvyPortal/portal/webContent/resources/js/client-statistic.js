@@ -196,10 +196,13 @@ function initRefresh(refreshInfos) {
 }
 
 async function refreshChart(chartInfo) {
-    let chartId = chartInfo.chartId;
+    let chartId = chartInfo.chartId;    
     const response = await instance.post(statisticApiURL, { "chartId": chartId });
-    let data = await response.data.then(data => chartInfo?.barChartConfig?.yValue ? getDataFromResult(data) : data);
-    let result = data.result.aggs?.[0]?.buckets ?? [];
+    let rawData = await response.data;
+    // Check if contain yValue in bar chart config
+    let data = rawData.chartConfig.barChartConfig?.yValue ? processBarChartYValue(rawData.result.aggs?.[0]?.buckets ?? [], rawData.chartConfig.barChartConfig?.yValue) : rawData;
+    let result = data?.result ? data.result.aggs?.[0]?.buckets ?? [] : data;
+
     let chartData = chartInfo.chartData;
     if (chartInfo.chartType !== 'number') {
         chartData.data.labels = result.map(bucket => formatChartLabel(bucket.key));
