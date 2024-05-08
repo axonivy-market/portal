@@ -46,7 +46,7 @@ function renderNumberChart(chart, data) {
     let config = data.chartConfig;
     initWidgetHeaderName(chart, config.name);
     let filters = getChartFilters(data);
-    let result = fillUpResultBasedOnFilter(dataResult, filters);
+    let result = fillUpResultBasedOnFilter(config.aggregates, dataResult, filters);
 
     let multipleKPI = renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol);
     return $(chart).html(multipleKPI);
@@ -124,6 +124,9 @@ function renderBarLineChart(result, chart, config) {
         let data = config.barChartConfig?.yValue ? processBarChartYValue(result, config.barChartConfig?.yValue) : result;
         let stepSize = config.barChartConfig?.yValue === 'time' ? 200 : 2;
         let html = renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
+
+        const chartTitleConfig = config.chartType === 'bar' ? config.barChartConfig : config.lineChartConfig;
+
         $(chart).html(html);
         let canvasObject = $(chart).find('canvas');
         return new Chart(canvasObject, {
@@ -148,7 +151,7 @@ function renderBarLineChart(result, chart, config) {
                     y: {
                         beginAtZero: true,
                         title: {
-                            text: (config.chartType === "bar" ? config.barChartConfig : config.lineChartConfig).yTitle,
+                            text: chartTitleConfig.yTitle,
                             display: true
                         },
                         ticks: {
@@ -157,7 +160,7 @@ function renderBarLineChart(result, chart, config) {
                     },
                     x: {
                         title: {
-                            text: (config.chartType === "bar" ? config.barChartConfig : config.lineChartConfig).xTitle,
+                            text: chartTitleConfig.xTitle,
                             display: true
                         }
                     }
@@ -205,7 +208,7 @@ async function refreshChart(chartInfo) {
     } else {
         let config = response.data.chartConfig;
         let filters = getChartFilters(data);
-        result = fillUpResultBasedOnFilter(result, filters);
+        result = fillUpResultBasedOnFilter(config.aggregates, result, filters);
 
         let multipleKPI = renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol);
         $(chartData).html(multipleKPI);
@@ -334,27 +337,26 @@ function renderMultipleNumberChartInHTML(result, suffixSymbold) {
 }
 
 function getChartFilters(data) {
-    const EMPTY_SPACE = '';
-    const WHITE_SPACE = ' ';
-    let filters = data.chartConfig.filter?.replace(data.chartConfig.aggregates + ':', EMPTY_SPACE);
-    filters = filters.split(WHITE_SPACE);
-
-    return filters;
+    return data.chartConfig.filter?.split(',');
 }
 
-function fillUpResultBasedOnFilter(result, filters) {
+function fillUpResultBasedOnFilter(aggregateType, result, filters) {
     if (result.length == filters.length) {
         return result;
     }
 
     if (result.length == 0) {
-        filters.forEach(filter => {
-            result.push({
-                key: filter,
+        // Handle empty result in case of aggregate type is 'businessState'
+        if (aggregateType === "businessState") {
+            return fillEmptyResultForBusinessStateAggregate(filters);
+        }
+
+        // For generic aggregate type, just show 0 when the result is empty.
+        result.push({
+                key: '',
                 count: 0,
                 aggs: []
             })
-        });
     } else if (result.length < filters.length) {
         let currentResult = result.map(item => item.key);
         let missingPieces = filters.filter(item => !currentResult.includes(item));
@@ -367,5 +369,33 @@ function fillUpResultBasedOnFilter(result, filters) {
         });
     }
 
+    return result;
+}
+
+function fillEmptyResultForBusinessStateAggregate(filters) {
+    const BUSINESS_STATE_FILTER = 'businessState:';
+    let result = [];
+
+    filters.filter(filter => filter.startsWith(BUSINESS_STATE_FILTER))
+        .forEach(filter => {
+            // Get states from filter. Expected result: ['OPEN','DONE']
+            const states = filter.replace(/^businessState:/, "").split(' ');
+
+            // Put states to an array of results.
+            states.forEach(state => {
+
+                // Only add state to the result array when it's not existed in the result.
+                const isExisted = result.find(item => item.key === state);
+
+                if (!isExisted) {
+                    result.push({
+                        key: state,
+                        count: 0,
+                        aggs: []
+                    });
+                }
+            });
+        });
+    
     return result;
 }
