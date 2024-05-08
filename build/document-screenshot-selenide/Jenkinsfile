@@ -64,10 +64,10 @@ pipeline {
                 copy -path ../patch/master -recurse -force -destination .
               }
             '''
+            downloadExpressIntegration()
+            expressFile = findFiles(glob: 'archive/**/axonivy-express*.iar')[0].path
           }
 
-          downloadPortalRelease()
-          expressFile = findFiles(glob: 'archive/**/axonivy-express*.iar')[0].path
 
           utils.extractEngine(env.engineDir, params.engineDownloadURL)
 
@@ -126,8 +126,16 @@ def downloadPortalRelease() {
   def branchName = env.BRANCH_NAME.replaceAll('/', '%%2F')
   withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
     bat "curl --user ${credentials} --output archive.zip ${env.JENKINS_URL}job/portal-release/job/${branchName}/lastSuccessfulBuild/artifact/*zip*/archive.zip"
-    bat "curl --user ${credentials} --output archive-express.zip ${env.JENKINS_URL}job/axonivy-express-integration/job/develop/lastSuccessfulBuild/artifact/*zip*/archive.zip"
   }
   unzip zipFile: 'archive.zip', quiet: true
+}
+
+def downloadExpressIntegration() {
+  echo '====================Download Express latest successful integration===================='
+  def branchName = env.BRANCH_NAME.replaceAll('/', '%%2F')
+  withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
+    bat "curl --user ${credentials} --output archive-express.zip ${env.JENKINS_URL}job/axonivy-express-integration/job/develop/lastSuccessfulBuild/artifact/*zip*/archive.zip"
+  }
   unzip zipFile: 'archive-express.zip', quiet: true
 }
+
