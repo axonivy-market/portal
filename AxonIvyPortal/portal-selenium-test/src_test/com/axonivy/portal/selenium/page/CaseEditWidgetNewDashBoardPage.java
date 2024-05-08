@@ -63,6 +63,7 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void openFilter() {
     $("button[id$=':show-filter']").shouldBe(getClickableCondition()).click();
+    $(".filter-panel-header").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void filterCaseName(String caseName) {
@@ -287,13 +288,17 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void removeFilter(int index) {
-//    $("div[id$=':filter-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
     int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
     if (currentIndex > 0) {
       String removeBtn = String.format("button[id$=':%s:filter-component:remove-filter']", index);
       $(removeBtn).shouldBe(getClickableCondition()).click();
       countFilterSelect().shouldBe(CollectionCondition.size(currentIndex - 1), DEFAULT_TIMEOUT);
     }
+  }
+  
+  public void resetFilter() {
+    $("button[id$=':reset-filter']").shouldBe(getClickableCondition()).click();
+    countFilterSelect().shouldBe(CollectionCondition.size(0), DEFAULT_TIMEOUT);
   }
 
   public ElementsCollection countFilterSelect() {
