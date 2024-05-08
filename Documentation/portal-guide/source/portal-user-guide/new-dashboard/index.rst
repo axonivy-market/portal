@@ -105,13 +105,13 @@ In the column management panel, you will find two sections:
    #. Columns section: configure the widget table itself as follows:
  
       - Enable visibility
-      - Enable quick search by selecting the quick search checkbox
+      - Enable the quick search by selecting the quick search checkbox
       - Reorder the columns by drag and drop using the arrows |move-expand-vertical|
       - Remove columns
 
   .. important::
 
-    Quick search feature is supporting these fields:
+    The Quick search feature is supporting these fields:
 
       #. Standard fields: Id, name, description, category, responsible (display name), and application.
       #. Task custom fields: fields that have type ``STRING`` or ``TEXT``.
