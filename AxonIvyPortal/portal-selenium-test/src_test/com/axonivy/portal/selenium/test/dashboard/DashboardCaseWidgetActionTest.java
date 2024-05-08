@@ -62,6 +62,7 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
     // Destroyed
     filterByCaseState("Open");
     caseWidget.destroyCase(0);
+    caseWidget.waitTableLoaded();
     assertCaseActionsByCaseState("Destroyed",
         Arrays.asList("Details", "Process overview", "Business details", "Process Viewer"));
   }
