@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivyteam.ivy.environment.Ivy;
 
 public class ClientStatistic extends AbstractConfiguration {
   private String aggregates;
@@ -30,7 +31,8 @@ public class ClientStatistic extends AbstractConfiguration {
   @JsonProperty(access = Access.READ_ONLY)
   private List<Entry<String, String>> additionalConfig;
   private String icon;
-
+  private String locale = Ivy.session().getFormattingLocale().toString();
+  
   public String getIcon() {
     return icon;
   }
@@ -140,5 +142,8 @@ public String getFilter() {
   public void setAdditionalConfig(List<Entry<String, String>> additionalConfig) {
     this.additionalConfig = additionalConfig;
   }
-
+  
+  public String getLocale() {
+    return this.locale;
+  }
 }
