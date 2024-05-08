@@ -56,8 +56,7 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.countCases().shouldBe(CollectionCondition.size(1), DEFAULT_TIMEOUT);
 
     caseWidget.openFilter();
-    caseWidget.removeFilter(0);
-    caseWidget.removeFilter(0);
+    caseWidget.resetFilter();
 
     caseWidget.addFilter(NAME_STR, FilterOperator.CONTAINS);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "List", "Pi");
