@@ -131,7 +131,7 @@ The basic JSON structure of a Task widget
       ``visible``: visibility of a column. The default value is "true".
       Set to "false" to hide the column.
 
-      ``quickSearch``: apply search condition for the column when using the quick search feature. The default value is ``false``.
+      ``quickSearch``: Adds this field to the search scope of the quick search. The default value is ``false``.
       Set to ``true`` to apply search condition for the column.
 
    -  ``headers``: multilingual header of the column.
@@ -343,8 +343,8 @@ Below is the list of filterable columns and their corresponding filter condition
 Quick Search
 ------------
 
-Quick search is a useful function for users to search quickly on the task widget.
-There are two attributes:
+The Quick search is a useful function for users to quickly search the tasks within the task widget.
+The configuration of the quick search has two attributes::
    
    * ``enableQuickSearch``: enables the quick search feature for the widget.
 
@@ -354,7 +354,7 @@ If you set the ``enableQuickSearch`` attribute to ``false``, the quick search fe
 regardless of the ``quickSearch`` attribute's value.
 
 Conversely, if you set the ``enableQuickSearch`` attribute to ``true``, the quick search feature will
-scan through the values of all columns that have the ``quickSearch`` attribute set to ``true``.
+search within the values of all columns that have the ``quickSearch`` attribute set to ``true``.
 If you haven't assigned the ``quickSearch`` attribute to any column in the task widget,
 the quick search feature will default to searching the name and description fields.
 
