@@ -215,4 +215,9 @@ public class CaseDashboardWidget extends DashboardWidget {
     var latestUserFilterOptions = getUserFilterCollection().getLatestFilterOption();
     WidgetFilterService.getInstance().updateFilterOptionsData(this, latestUserFilterOptions);
   }
+
+  @Override
+  public void setQuickSearchKeyword() {
+    this.dataModel.getCriteria().setQuickSearchKeyword(this.getQuickSearchKeyword());
+  }
 }

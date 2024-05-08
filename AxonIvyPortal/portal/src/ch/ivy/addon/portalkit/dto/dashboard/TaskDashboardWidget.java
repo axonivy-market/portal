@@ -28,6 +28,7 @@ import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 public class TaskDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = 3246735956282078091L;
+  protected static final String LIKE_FORMAT = "%%%s%%";
 
   private int rowsPerPage = 5;
   @JsonIgnore
@@ -199,6 +200,11 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   public void setRowsPerPage(int rowsPerPage) {
     this.rowsPerPage = rowsPerPage;
+  }
+
+  @Override
+  public void setQuickSearchKeyword() {
+    this.dataModel.getCriteria().setQuickSearchKeyword(this.getQuickSearchKeyword());
   }
 
   public List<DashboardFilter> getFilters() {

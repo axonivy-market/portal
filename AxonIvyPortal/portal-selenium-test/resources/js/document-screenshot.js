@@ -614,3 +614,7 @@ function highlightShowFilterButton() {
 function removeHighlightShowFilterButton() {
   clearRedMediumOutline($("button[id$=':show-filter']"));
 }
+
+function highlightQuickSearchTextbox() {
+  createRedMediumOutline($(".widget__header .widget-header-quick-search > form"));
+}

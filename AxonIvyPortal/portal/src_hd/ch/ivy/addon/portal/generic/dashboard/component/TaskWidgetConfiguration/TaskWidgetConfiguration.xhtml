@@ -59,7 +59,7 @@
         componentToUpdate="#{cc.attrs.componentToUpdate}" />
       <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidget id="task-widget-preview" isReadOnlyMode="#{cc.attrs.isReadOnlyMode}"
         taskWidget="#{widget}" renderColumnConfiguration="false" isPreviewMode="true"
-        onCompleteLoadWidget="PF('new-widget-configuration-dialog').initPosition();"/>
+        onCompleteLoadWidget="setTimeout(function() { PF('new-widget-configuration-dialog').initPosition(); }, 100);"/>
     </ui:define>
 
     <ui:define name="multiLanguageDialog">

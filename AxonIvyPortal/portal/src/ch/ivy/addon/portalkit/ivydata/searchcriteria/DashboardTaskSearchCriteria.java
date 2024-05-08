@@ -3,14 +3,22 @@ package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.util.filter.field.FilterField;
+import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
+
+import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.OrderByColumnQuery;
 
@@ -23,11 +31,13 @@ public class DashboardTaskSearchCriteria {
   private String sortField;
   private boolean sortDescending;
   private boolean isInConfiguration;
+  private String quickSearchKeyword;
 
   public TaskQuery buildQuery() {
     TaskQuery query = buildQueryWithoutOrderByClause();
     TaskSortingQueryAppender appender = new TaskSortingQueryAppender(query);
     query = appender.appendSorting(this).toQuery();
+    appendQuickSearchQuery(query);
     return query;
   }
 
@@ -64,11 +74,81 @@ public class DashboardTaskSearchCriteria {
     }
   }
 
+  private void appendQuickSearchTaskQueryByDashboardFilter(TaskQuery query, DashboardFilter filter) {
+    FilterField filterField = TaskFilterFieldFactory.findBy(filter.getField(), filter.getFilterType());
+    if (filterField != null) {
+      TaskQuery filterQuery = filterField.generateFilterTaskQuery(filter);
+      if (filterQuery != null) {
+        query.where().or(filterQuery);
+      }
+    }
+  }
+  
+  private void appendQuickSearchCaseQueryByDashboardFilter(TaskQuery query, DashboardFilter filter) {
+    FilterField filterField = FilterFieldFactory.findBy(filter.getField());
+    if (filterField != null) {
+      CaseQuery filterQuery = filterField.generateFilterQuery(filter);
+      if (filterQuery != null) {
+        query.where().or().cases(filterQuery);
+      }
+    }
+  }
+
   private void queryFilters(TaskQuery query) {
     List<DashboardFilter> allFilters = new ArrayList<>(CollectionUtils.union(filters, userFilters));
     if (CollectionUtils.isNotEmpty(allFilters)) {
       queryComplexFilter(query, allFilters);
     }
+  }
+  
+  private void appendQuickSearchQuery(TaskQuery query) {
+    if (StringUtils.isNotBlank(this.quickSearchKeyword)) {
+      TaskQuery subQuery = TaskQuery.create();
+
+      List<TaskColumnModel> quickSearchColumns = columns.stream()
+          .filter(col -> Optional.ofNullable(col.getQuickSearch()).orElse(false)).collect(Collectors.toList());
+
+      if (CollectionUtils.isNotEmpty(quickSearchColumns)) {
+        for (ColumnModel column : quickSearchColumns) {
+          DashboardStandardTaskColumn columnEnum = DashboardStandardTaskColumn.findBy(column.getField());
+          if (columnEnum != null) {
+            appendQuickSearchTaskQueryByDashboardFilter(subQuery, selectStandandFieldToQuickSearchQuery(columnEnum));
+          } else {
+            appendCustomFieldsForQuickSearchQuery(subQuery, column);
+          }
+        }
+
+        query.where().and(subQuery);
+      }
+    }
+  }
+
+  private void appendCustomFieldsForQuickSearchQuery(TaskQuery subQuery, ColumnModel column) {
+    switch (column.getType()) {
+    case CUSTOM_CASE -> appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column));
+    case CUSTOM -> appendQuickSearchTaskQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column));
+    default -> {}
+    }
+  }
+  
+  private DashboardFilter selectStandandFieldToQuickSearchQuery(DashboardStandardTaskColumn columnEnum) {
+    return switch (columnEnum) {
+      case APPLICATION -> buildQuickSearchToDashboardFilter(columnEnum.getField(), FilterOperator.IN, DashboardColumnType.STANDARD);
+      default -> buildQuickSearchToDashboardFilter(columnEnum.getField(), FilterOperator.CONTAINS, DashboardColumnType.STANDARD);
+    };
+  }
+  
+  private DashboardFilter selectCustomFieldToQuickSearchQuery(ColumnModel column) {
+    return buildQuickSearchToDashboardFilter(column.getField(), FilterOperator.CONTAINS, DashboardColumnType.CUSTOM);
+  }
+
+  private DashboardFilter buildQuickSearchToDashboardFilter(String columnField, FilterOperator operator, DashboardColumnType type) {
+    DashboardFilter filter = new DashboardFilter();
+    filter.setField(columnField);
+    filter.setFilterType(type);
+    filter.setOperator(operator);
+    filter.setValues(List.of(this.quickSearchKeyword));
+    return filter;
   }
   
   public String getSortField() {
@@ -199,4 +279,11 @@ public class DashboardTaskSearchCriteria {
     this.userFilters = userFilters;
   }
 
+  public String getQuickSearchKeyword() {
+    return quickSearchKeyword;
+  }
+
+  public void setQuickSearchKeyword(String quickSearchKeyword) {
+    this.quickSearchKeyword = quickSearchKeyword;
+  }
 }

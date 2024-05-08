@@ -20,7 +20,8 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
 
   private static final String FILTER_TASK_NAME = "Task name";
   private String taskEditWidgetId;
-  private static final String TASK_NAME = FILTER_TASK_NAME;
+  private static final String CUSTOM_CASE_FIELD = "Custom case field";
+  private static final String CUSTOM_FIELD = "Custom field";
   private static final String STATE = "State";
 
   public TaskEditWidgetNewDashBoardPage() {
@@ -65,7 +66,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void filterTaskName(String taskName) {
-    getAvailableFilterInput(TASK_NAME).sendKeys(taskName);
+    getAvailableFilterInput(FILTER_TASK_NAME).sendKeys(taskName);
   }
 
   public void clickOnStateToShowDropdown() {
@@ -397,4 +398,49 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     countFilterSelect().shouldBe(CollectionCondition.size(0), DEFAULT_TIMEOUT);
   }
 
+  public WebElement getQuickSearchCheckBox() {
+    return $("div[id$='widget-preview']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+  }
+
+  public void clickOnQuickSearchCheckBox() {
+    getQuickSearchCheckBox().click();
+  }
+  
+  public boolean isQuickSearchClicked(String fieldName) {
+    return getColumnManagementDialog().$("div[id$='column-management-datatable']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("table tbody").$$("tr").filter(text(fieldName)).first()
+        .$("div[id$='quick-search-checkbox-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a").$("span span")
+        .getAttribute("class").contains("ui-chkbox-icon");
+  }
+  
+  public void clickOnQuickSearchByField(String fieldName) {
+    var quickSeatchChkbox = getColumnManagementDialog().$("div[id$='column-management-datatable']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("table tbody").$$("tr").filter(text(fieldName)).first().$("div[id$='quick-search-checkbox-panel']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    quickSeatchChkbox.click();
+  }
+
+  public void addCustomFieldByCustomTypeAndFieldName(String customType, String fieldName) {
+    switch (customType) {
+    case (CUSTOM_FIELD):
+      customType = "custom-field";
+      selectCustomType();
+      getCustomFieldSelection().click();
+      break;
+    case (CUSTOM_CASE_FIELD):
+      customType = "custom-case-field";
+      selectCustomCaseType();
+      getCustomCaseFieldSelection().click();
+      break;
+    default:
+      break;
+    }
+    customType.toLowerCase();
+    String spanId = String.format("span[id*='%s-selection_panel']", customType);
+    $(spanId).$("ul").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li")
+        .filter(text(fieldName)).first().click();
+    getColumnManagementDialog().$("button[id$='field-add-btn']").click();
+  }
 }

@@ -180,6 +180,7 @@ public class ColumnManagementBean implements Serializable {
     columnModel.initDefaultValue();
     columnModel.setHeader(this.fieldDisplayName);
     columnModel.setField(this.selectedField);
+    columnModel.setQuickSearch(false);
     if (this.selectedFieldType == DashboardColumnType.CUSTOM
         || this.selectedFieldType == DashboardColumnType.CUSTOM_CASE) {
       columnModel.setType(selectedFieldType);
@@ -389,6 +390,10 @@ public class ColumnManagementBean implements Serializable {
     column.setVisible(BooleanUtils.isFalse(column.getVisible()));
   }
 
+  public void handleQuickSearch(ColumnModel column) {
+    column.setQuickSearch(BooleanUtils.isFalse(column.getQuickSearch()));
+  }
+  
   public class FetchingField {
     private DashboardColumnType type;
     private String field;
