@@ -9,6 +9,8 @@ const instance = axios.create({
 const DATA_CHART_ID = 'data-chart-id';
 const WIDGET_HEADER_TITLE = '.widget__header-title';
 const AVERAGE_BUSINESS_RUNTIME = "avg-businessRuntime";
+// Default value of locale is 'de'  
+let locale = 'de';
 
 const chartColors = () => {
     let chartColors = [];
@@ -27,12 +29,12 @@ function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
-function formatISODate(dt) {
-    const correctMonth = dt.getMonth() + 1;
-    let year = dt.getFullYear();
-    let month = correctMonth < 10 ? '0' + correctMonth : correctMonth;
-    let date = dt.getDate() < 10 ? '0' + dt.getDate() : dt.getDate();
-    return year + '-' + month + '-' + date;
+function formatDateFollowLocale(dt) {
+    const options = {day: 'numeric',month: 'long',year: 'numeric'};
+    // Format locale
+    locale = locale.replace('_', '-');
+    const formatter = new Intl.DateTimeFormat(locale,options);
+    return formatter.format(dt);
 }
 
 $(document).ready(function () {
@@ -227,7 +229,7 @@ function initStatistics() {
         let chartType = config.chartType;
         let refreshInterval = config.refreshInterval;
         let chartData;
-
+        locale = config.locale;
         updateTitle(chartId, chartType, config.name);
         if ('number' === chartType) {
             chartData = renderNumberChart(chart, data);
@@ -257,7 +259,7 @@ function initStatistics() {
 
 function formatChartLabel(label) {
     if (isNumeric((new Date(label)).getTime())) {
-        return formatISODate(new Date(label));
+        return formatDateFollowLocale(new Date(label));
     }
     return label
 }
