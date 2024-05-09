@@ -31,7 +31,6 @@ function isNumeric(n) {
 }
 
 function filterOptionsForDateTimeFormatter(pattern) {
-    console.log(datePattern);
     let options = {day: 'numeric',month: 'long',year: 'numeric'};
     let patternArr = pattern.includes('.') ? pattern.split('.') : pattern.split(' ');
     patternArr.forEach((element,index) => {
