@@ -1894,4 +1894,10 @@ i.dashboard-icon-drag-drop {
   .table-configuration {
     height: 66vh;
   }
+}  
+
+.multiple-language-data-table{
+  overflow: auto;
+  max-height: 50vh;
+  width: fit-content;
 }
