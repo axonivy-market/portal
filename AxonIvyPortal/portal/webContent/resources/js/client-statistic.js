@@ -14,20 +14,22 @@ let locale = 'de';
 let datePattern = 'dd.MM.yyyy';
 
 const chartColors = () => {
-    let chartColors = [];
-    chartColors.push(getComputedStyle(document.body).getPropertyValue('--statistics-1-color'));
-    chartColors.push(getComputedStyle(document.body).getPropertyValue('--statistics-2-color'));
-    chartColors.push(getComputedStyle(document.body).getPropertyValue('--statistics-3-color'));
-    chartColors.push(getComputedStyle(document.body).getPropertyValue('--statistics-4-color'));
-    chartColors.push(getComputedStyle(document.body).getPropertyValue('--statistics-5-color'));
-    chartColors.push(getComputedStyle(document.body).getPropertyValue('--statistics-6-color'));
-    chartColors.push(getComputedStyle(document.body).getPropertyValue('--statistics-7-color'));
-    chartColors.push(getComputedStyle(document.body).getPropertyValue('--statistics-8-color'));
-    return chartColors;
+    return [getCssVariable('--statistics-1-color'),
+	getCssVariable('--statistics-2-color'),
+	getCssVariable('--statistics-3-color'),
+	getCssVariable('--statistics-4-color'),
+	getCssVariable('--statistics-5-color'),
+	getCssVariable('--statistics-6-color'),
+	getCssVariable('--statistics-7-color'),
+	getCssVariable('--statistics-8-color')];
 }
 
-function isNumeric(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
+const getCssVariable = variableName => {
+	return getComputedStyle(document.body).getPropertyValue(variableName);
+}
+
+const isNumeric = number => {
+    return !isNaN(parseFloat(number)) && isFinite(number);
 }
 
 function filterOptionsForDateTimeFormatter(pattern) {
@@ -62,148 +64,17 @@ function formatDateFollowLocale(dt) {
     return formatter.format(dt);
 }
 
+function formatISODate(dt) {
+    const correctMonth = dt.getMonth() + 1;
+    let year = dt.getFullYear();
+    let month = correctMonth < 10 ? '0' + correctMonth : correctMonth;
+    let date = dt.getDate() < 10 ? '0' + dt.getDate() : dt.getDate();
+    return year + '-' + month + '-' + date;
+}
+
 $(document).ready(function () {
     initStatistics();
 });
-
-function renderNumberChart(chart, data) {
-    let dataResult = data.result.aggs?.[0]?.buckets ?? [];
-    let config = data.chartConfig;
-    initWidgetHeaderName(chart, config.name);
-    let filters = getChartFilters(data);
-    let result = fillUpResultBasedOnFilter(config.aggregates, dataResult, filters);
-
-    let multipleKPI = renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol);
-    return $(chart).html(multipleKPI);
-}
-
-function renderPieChart(chart, data) {
-    let result = data.result.aggs?.[0]?.buckets ?? [];
-    let config = data.chartConfig;
-    if (result.length == 0) {
-        return renderEmptyStatistics(chart, config.additionalConfig);
-    } else {
-        let html = renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
-        $(chart).html(html);
-        let canvasObject = $(chart).find('canvas');
-        return new Chart(canvasObject, {
-            type: config.chartType,
-            label: config.name,
-            data: {
-                labels: result.map(bucket => formatChartLabel(bucket.key)),
-                datasets: [{
-                    label: config.name,
-                    data: result.map(bucket => bucket.count),
-                    backgroundColor: chartColors
-                }],
-                hoverOffset: 4
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false
-            }
-        });
-    }
-}
-
-function renderBarChart(chart, data) {
-    let result = data.result.aggs?.[0]?.buckets ?? [];
-    return renderBarLineChart(result, chart, data.chartConfig);
-}
-
-function initWidgetHeaderName(chart, widgetName) {
-    let widgetHeader = $(chart).parents(".card-widget-panel")
-        .find(".widget__header")
-        .find(".widget__header-title").get(0);
-    widgetHeader.textContent = widgetName;
-}
-
-function processBarChartYValue(result, yValue) {
-    switch (yValue) {
-        case 'time': {
-            const values = [];
-            result.forEach((bucket) => {
-                if (bucket.key.trim().length !== 0) {
-                    bucket.aggs.forEach((item) => {
-                        if(item['name'] === AVERAGE_BUSINESS_RUNTIME){
-                            values.push({
-                                key: bucket.key,
-                                count: item.value
-                            });
-                        }
-                    });
-                }
-            });
-            return values;
-        };
-        default:
-            return result;
-    }
-}
-
-function renderBarLineChart(result, chart, config) {
-    if (result.length == 0) {
-        return renderEmptyStatistics(chart, config.additionalConfig);
-    } else {
-        //If the target type for the Y axis is 'time', get average time from sub aggregate of the result.
-        let data = config.barChartConfig?.yValue ? processBarChartYValue(result, config.barChartConfig?.yValue) : result;
-        let stepSize = config.barChartConfig?.yValue === 'time' ? 200 : 2;
-        let html = renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
-
-        const chartTitleConfig = config.chartType === 'bar' ? config.barChartConfig : config.lineChartConfig;
-
-        $(chart).html(html);
-        let canvasObject = $(chart).find('canvas');
-        return new Chart(canvasObject, {
-            type: config.chartType,
-            data: {
-                labels: data.map(bucket => formatChartLabel(bucket.key)),
-                datasets: [{
-                    label: config.name,
-                    data: data.map(bucket => bucket.count),
-                    backgroundColor: chartColors
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            text: chartTitleConfig.yTitle,
-                            display: true
-                        },
-                        ticks: {
-                            stepSize: stepSize
-                        }
-                    },
-                    x: {
-                        title: {
-                            text: chartTitleConfig.xTitle,
-                            display: true
-                        }
-                    }
-                }
-            }
-        });
-    }
-}
-
-function updateTitle(chartId, chartType, title) {
-    $('.dashboard__widget').each(function () {
-        if ($(this).find('div[' + DATA_CHART_ID + '=' + chartId + ']').length
-            && 'number' !== chartType) {
-            $(this).find(WIDGET_HEADER_TITLE).text(title);
-            return;
-        }
-    });
-}
 
 function initRefresh(refreshInfos) {
     for (let i = 0; i < refreshInfos.length; i++) {
@@ -223,24 +94,7 @@ function initRefresh(refreshInfos) {
 async function refreshChart(chartInfo) {
     let chartId = chartInfo.chartId;    
     const response = await instance.post(statisticApiURL, { "chartId": chartId });
-    let rawData = await response.data;
-    // Check if contain yValue in bar chart config
-    let data = rawData.chartConfig.barChartConfig?.yValue ? processBarChartYValue(rawData.result.aggs?.[0]?.buckets ?? [], rawData.chartConfig.barChartConfig?.yValue) : rawData;
-    let result = data?.result ? data.result.aggs?.[0]?.buckets ?? [] : data;
-
-    let chartData = chartInfo.chartData;
-    if (chartInfo.chartType !== 'number') {
-        chartData.data.labels = result.map(bucket => formatChartLabel(bucket.key));
-        chartData.data.datasets.forEach(dataset => dataset.data = result.map(bucket => bucket.count));
-        chartData.update();
-    } else {
-        let config = response.data.chartConfig;
-        let filters = getChartFilters(data);
-        result = fillUpResultBasedOnFilter(config.aggregates, result, filters);
-
-        let multipleKPI = renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol);
-        $(chartData).html(multipleKPI);
-    }
+    chartInfo.chart.update(await response.data);
 }
 
 function initStatistics() {
@@ -251,34 +105,21 @@ function initStatistics() {
         try {
             response = await instance.post(statisticApiURL, {"chartId": chartId});
         } catch (error) {
-            renderNoPermissionStatistics(chart, error.response.data);
+            (new ClientChart()).renderNoPermissionStatistics(chart, error.response.data);
             return;
         }
-        let data = await response.data;
-        let result = data.result.aggs?.[0]?.buckets ?? [];
-        let config = data.chartConfig;
-        let chartType = config.chartType;
-        let refreshInterval = config.refreshInterval;
-        let chartData;
-        locale = config.locale;
-        datePattern = config.datePattern;
+		let data = await response.data;
+		let chartData = generateChart(chart, data);
+		const config = data.chartConfig;
+		locale = config.locale;
+		datePattern = config.datePattern;
 
-        updateTitle(chartId, chartType, config.name);
-        if ('number' === chartType) {
-            chartData = renderNumberChart(chart, data);
-        }
-        if ('bar' === chartType || 'line' === chartType) {
-            chartData = renderBarChart(chart, data);
-        }
-        if ('pie' === chartType || 'doughnut' === chartType) {
-            chartData = renderPieChart(chart, data);
-        }
-
+		chartData.render();
         let chartObject = {
-            'chartData': chartData,
-            'chartType': chartType,
+            'chart': chartData,
+            'chartType': config.chartType,
             'chartId': chartId,
-            'refreshInterval': refreshInterval
+            'refreshInterval': config.refreshInterval
         }
 
         if (chartData !== undefined) {
@@ -290,142 +131,347 @@ function initStatistics() {
     });
 }
 
-function formatChartLabel(label) {
-    if (isNumeric((new Date(label)).getTime())) {
-        return formatDateFollowLocale(new Date(label));
-    }
-    return label
+const generateChart = (chart, data) => {
+	switch(data.chartConfig.chartType) {
+		case 'number': return data.chartConfig.aggregates === 'businessState' ? 
+			new BusinessStateNumberChart(chart, data) : 
+			new ClientNumberChart(chart, data);
+		case 'bar': return new ClientBarChart(chart, data);
+		case 'line': return new ClientLineChart(chart, data);
+		case 'pie': return new ClientPieChart(chart, data);
+		case 'doughnut': return new ClientPieChart(chart, data);
+	}
+	return undefined;
 }
 
-function renderEmptyStatistics(chart, additionalConfig) {
-    let emptyChartDataMessage;
-    additionalConfig.find(function (item) {
-        if (Object.keys(item)[0] === "emptyChartDataMessage") {
-            emptyChartDataMessage = item.emptyChartDataMessage;
-        }
-    });
-    let emptyChartHtml =
-        '<div class="empty-message-container">' +
-        '    <i class="si si-analytics-pie-2 empty-message-icon"></i>' +
-        '    <p class="empty-message-text">' + emptyChartDataMessage + '</p>' +
-        '</div>';
-    $(chart).html(emptyChartHtml);
+class ClientChart {
+	constructor(chart, data) {
+		this.chart = chart;
+		this.data = data;
+	}
+
+	// abstract methods
+	render() {}
+	formatChartLabel() {}
+	update(newData) {
+		this.data = newData;
+		this.render();
+		this.dataResult = newData.result.aggs?.[0]?.buckets ?? [];
+	}
+
+	// Other methods
+
+	
+	renderEmptyStatistics(chart, additionalConfig) {
+		let emptyChartDataMessage;
+		additionalConfig.find(function (item) {
+			if (Object.keys(item)[0] === "emptyChartDataMessage") {
+				emptyChartDataMessage = item.emptyChartDataMessage;
+			}
+		});
+		let emptyChartHtml =
+			'<div class="empty-message-container">' +
+			'    <i class="si si-analytics-pie-2 empty-message-icon"></i>' +
+			'    <p class="empty-message-text">' + emptyChartDataMessage + '</p>' +
+			'</div>';
+		$(chart).html(emptyChartHtml);
+	}
+	
+	renderNoPermissionStatistics(chart, noPermissionChartMessage) {
+		let noPermissionChartHtml =
+			'<div class="process-dashboard-widget__empty-process empty-message-container">' +
+			'    <i class="si si-lock-1 empty-message-icon"></i>' +
+			'    <br><span class="empty-message-text">' + noPermissionChartMessage + '</span>' +
+			'</div>';
+		$(chart).html(noPermissionChartHtml);
+	}
 }
 
-function renderNoPermissionStatistics(chart, noPermissionChartMessage) {
-    let noPermissionChartHtml =
-        '<div class="process-dashboard-widget__empty-process empty-message-container">' +
-        '    <i class="si si-lock-1 empty-message-icon"></i>' +
-        '    <br><span class="empty-message-text">' + noPermissionChartMessage + '</span>' +
-        '</div>';
-    $(chart).html(noPermissionChartHtml);
+class ClientCanvasChart extends ClientChart {
+	constructor(chart, data) {
+		super(chart, data);
+	}
+
+	renderChartCanvas(chartId) {
+		return '<canvas id="' + chartId + '" />';
+	};
+
+	formatChartLabel(label) {
+		if (isNumeric((new Date(label)).getTime())) {
+			return formatDateFollowLocale(new Date(label));
+		}
+		return label;
+	}
+
+	initWidgetTitle() {
+		$(this.chart).parents('.dashboard__widget').find('.widget__header > .widget__header-title')
+		    .text(this.data.chartConfig.name);
+	}
 }
 
-function renderChartCanvas(chartId) {
-    let html = '<canvas id="' + chartId + '" />';
-    return html;
-};
+class ClientPieChart extends ClientCanvasChart {
+	render() {
+		this.initWidgetTitle();
 
-function renderNumberChartHtml(label, number, suffixSymbol) {
-    label = formatChartLabel(label);
-    let html =
-        '<div class="u-text-align-center chart-content-card">' +
-        '    <div class="chart-icon-font-size chart-number-animation">' +
-        '        <i class="fa-solid fa-chart-line"></i>' +
-        '    </div>' +
-        '    <div>' +
-        '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
-        '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +
-        '    </div>' +
-        '    <div>' +
-        '        <span class="card-name chart-name-font-size chart-number-animation">' + normalizeLabel(label) + '</span>' +
-        '    </div>' +
-        '</div>';
-    return html;
-};
+		let result = this.data.result.aggs?.[0]?.buckets ?? [];
+		let config = this.data.chartConfig;
+		let chart = this.chart;
 
-function normalizeLabel(label) {
-    if (label === 'IN_PROGRESS') {
-        return 'In Progress';
-    }
-
-    return label.charAt(0) + label.slice(1).toLowerCase();
+		if (result.length == 0) {
+			return this.renderEmptyStatistics(chart, config.additionalConfig);
+		} else {
+			let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
+			$(chart).html(html);
+			let canvasObject = $(chart).find('canvas');
+			return new Chart(canvasObject, {
+				type: config.chartType,
+				label: config.name,
+				data: {
+					labels: result.map(bucket => this.formatChartLabel(bucket.key)),
+					datasets: [{
+						label: config.name,
+						data: result.map(bucket => bucket.count),
+						backgroundColor: chartColors
+					}],
+					hoverOffset: 4
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false
+				}
+			});
+		}
+	}
 }
 
-function renderMultipleNumberChartInHTML(result, suffixSymbold) {
-    let multipleNumberChartInHTML = '';
+class ClientCartesianChart extends ClientCanvasChart {
+	constructor(chart, data) {
+		super(chart, data);
+		this.dataResult = data.result.aggs?.[0]?.buckets ?? [];
+	}
 
-    if (result.length > 0) {
-        for (item of result) {
-            let htmlString = renderNumberChartHtml(item.key, item.count, suffixSymbold);
-            multipleNumberChartInHTML += htmlString;
-        }
-    } else {
-        multipleNumberChartInHTML = renderNumberChartHtml('', '0', suffixSymbold);
-    }
-    return multipleNumberChartInHTML;
+	render() {
+		this.initWidgetTitle();
+
+		let result = this.dataResult;
+		let config = this.data.chartConfig;
+		let chart = this.chart;
+
+		if (result.length == 0) {
+			return this.renderEmptyStatistics(chart, config.additionalConfig);
+		} else {
+			//If the target type for the Y axis is 'time', get average time from sub aggregate of the result.
+			const chartTypeConfig = this.getChartTypeConfig();
+			let data = config?.yValue ? this.processBarChartYValue(result, config?.yValue ) : result;
+			let stepSize = chartTypeConfig?.yValue === 'time' ? 200 : 2;
+			let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
+
+			$(chart).html(html);
+			let canvasObject = $(chart).find('canvas');
+			return new Chart(canvasObject, {
+				type: config.chartType,
+				data: {
+					labels: data.map(bucket => this.formatChartLabel(bucket.key)),
+					datasets: [{
+						label: config.name,
+						data: data.map(bucket => bucket.count),
+						backgroundColor: chartColors
+					}]
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					plugins: {
+						legend: {
+							display: false
+						}
+					},
+					scales: {
+						y: {
+							beginAtZero: true,
+							title: {
+								text: chartTypeConfig.yTitle,
+								display: true
+							},
+							ticks: {
+								stepSize: stepSize
+							}
+						},
+						x: {
+							title: {
+								text: chartTypeConfig.xTitle,
+								display: true
+							}
+						}
+					}
+				}
+			});
+		}
+	}
+
+	// abstract methods
+	getChartTitleConfig() {}
+	
+	processBarChartYValue(result, yValue) {
+		switch (yValue) {
+			case 'time': {
+				const values = [];
+				result.forEach((bucket) => {
+					if (bucket.key.trim().length !== 0) {
+						bucket.aggs.forEach((item) => {
+							if(item['name'] === AVERAGE_BUSINESS_RUNTIME){
+								values.push({
+									key: bucket.key,
+									count: item.value
+								});
+							}
+						});
+					}
+				});
+				return values;
+			};
+			default:
+				return result;
+		}
+	}
 }
 
-function getChartFilters(data) {
-    return data.chartConfig.filter?.split(',');
+class ClientBarChart extends ClientCartesianChart {
+	getChartTypeConfig() {
+		return this.data.chartConfig.barChartConfig;
+	}
 }
 
-function fillUpResultBasedOnFilter(aggregateType, result, filters) {
-    if (result.length == filters.length) {
-        return result;
-    }
-
-    if (result.length == 0) {
-        // Handle empty result in case of aggregate type is 'businessState'
-        if (aggregateType === "businessState") {
-            return fillEmptyResultForBusinessStateAggregate(filters);
-        }
-
-        // For generic aggregate type, just show 0 when the result is empty.
-        result.push({
-                key: '',
-                count: 0,
-                aggs: []
-            })
-    } else if (result.length < filters.length) {
-        let currentResult = result.map(item => item.key);
-        let missingPieces = filters.filter(item => !currentResult.includes(item));
-        missingPieces.forEach(piece => {
-            result.push({
-                key: piece,
-                count: 0,
-                aggs: []
-            })
-        });
-    }
-
-    return result;
+class ClientLineChart extends ClientCartesianChart {
+	getChartTypeConfig() {
+		return this.data.chartConfig.lineChartConfig;
+	}
 }
 
-function fillEmptyResultForBusinessStateAggregate(filters) {
-    const BUSINESS_STATE_FILTER = 'businessState:';
-    let result = [];
+class ClientNumberChart extends ClientChart {
+	constructor(chartElem, data) {
+		super(chartElem, data);
+		this.filters = data.chartConfig.filter?.split(',');
+		this.dataResult = data.result.aggs?.[0]?.buckets ?? [];
+	}
 
-    filters.filter(filter => filter.startsWith(BUSINESS_STATE_FILTER))
-        .forEach(filter => {
-            // Get states from filter. Expected result: ['OPEN','DONE']
-            const states = filter.replace(/^businessState:/, "").split(' ');
+	fillResult() {}
+	fillEmptyResult() {}
 
-            // Put states to an array of results.
-            states.forEach(state => {
+	formatChartLabel(label) {
+		return label;
+	}
 
-                // Only add state to the result array when it's not existed in the result.
-                const isExisted = result.find(item => item.key === state);
+	render() {
+		let config = this.data.chartConfig;
+		this.initWidgetHeaderName(this.chart, config.name);
+		let result = this.fillResult();
 
-                if (!isExisted) {
-                    result.push({
-                        key: state,
-                        count: 0,
-                        aggs: []
-                    });
-                }
-            });
-        });
-    
-    return result;
+		let multipleKPI = this.renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol);
+		return $(this.chart).html(multipleKPI);
+	}
+
+	initWidgetHeaderName(chart, widgetName) {
+		let widgetHeader = $(chart).parents(".card-widget-panel")
+			.find(".widget__header")
+			.find(".widget__header-title").get(0);
+		if (widgetHeader) {
+			widgetHeader.textContent = widgetName;
+		}
+	}
+
+	renderMultipleNumberChartInHTML(result, suffixSymbold) {
+		let multipleNumberChartInHTML = '';
+	
+		if (result.length > 0) {
+			result.forEach((item) => {
+				let htmlString = this.generateItemHtml(item.key, item.count, suffixSymbold);
+				multipleNumberChartInHTML += htmlString;
+			});
+		} else {
+			multipleNumberChartInHTML = this.generateItemHtml('', '0', suffixSymbold);
+		}
+		return multipleNumberChartInHTML;
+	}
+
+	generateItemHtml(label, number, suffixSymbol) {
+		label = this.formatChartLabel(label);
+		let html =
+			'<div class="u-text-align-center chart-content-card">' +
+			'    <div class="chart-icon-font-size chart-number-animation">' +
+			'        <i class="fa-solid fa-chart-line"></i>' +
+			'    </div>' +
+			'    <div>' +
+			'        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
+			'        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +
+			'    </div>' +
+			'    <div>' +
+			'        <span class="card-name chart-name-font-size chart-number-animation">' + this.formatChartLabel(label) + '</span>' +
+			'    </div>' +
+			'</div>';
+		return html;
+	};
+}
+
+class BusinessStateNumberChart extends ClientNumberChart {
+	constructor(chartElem, data) {
+		super(chartElem, data);
+		this.states = this.getStatesFromFilters();
+	}
+
+	fillResult() {
+		let result = this.dataResult;
+		if (result.length == 0) {
+			result = this.fillEmptyResult();
+		}
+
+		let dataResultKeys = result.map(item => item.key);
+		this.states.forEach((state) => {
+			if (!dataResultKeys.includes(state)) {
+				result.push({
+					key: state,
+					count: 0,
+					aggs: []
+				})
+			}
+		});
+
+		return result;
+	}
+
+	fillEmptyResult() {
+		let result = [];
+		this.states.forEach(state => {
+			result.push({
+				key: state,
+				count: 0,
+				aggs: []
+			});
+		});
+		return result;
+	}
+
+	getStatesFromFilters() {
+		const BUSINESS_STATE_FILTER = 'businessState:';
+		const BUSINESS_STATE_FILTER_REGEX = /^businessState:/;
+		let result = [];
+		let x = this.filters.filter(filter => filter.startsWith(BUSINESS_STATE_FILTER));
+		this.filters.filter(filter => filter.startsWith(BUSINESS_STATE_FILTER))
+			.forEach(filter => {
+				// Get states from filter. Expected result: ['OPEN','DONE']
+				filter.replace(BUSINESS_STATE_FILTER_REGEX, "").split(' ')
+				    .forEach((state) => result.push(state));
+			});
+		
+		// Remove duplicated states if any. ['OPEN','DONE', 'OPEN'] => ['OPEN','DONE']
+		return result.filter((item, index) =>  result.indexOf(item) == index);
+	}
+
+	formatChartLabel(label) {
+		if (label === 'IN_PROGRESS') {
+			return 'In Progress';
+		}
+
+		return label.charAt(0) + label.slice(1).toLowerCase();
+	}
 }
