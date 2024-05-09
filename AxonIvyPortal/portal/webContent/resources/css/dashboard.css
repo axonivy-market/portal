@@ -1315,7 +1315,7 @@ body .ui-widget.new-widget-dialog__introduction {
   align-items: center;
   flex-direction: row;
   gap: 30px;
-  overflow: auto;
+  cursor: default;
 }
 
 .chart-information-container {
