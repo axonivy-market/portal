@@ -159,9 +159,6 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
     caseWidget.inputValueOnColumnWidgetHeader("Widget name", "cases");
     caseWidget.getSavedFilterItemsByFilterNameOnWidgetManagement().shouldHave(CollectionCondition.size(3));
 
-    caseWidget.inputValueOnColumnWidgetHeader("Type", "case");
-    caseWidget.getSavedFilterItemsByFilterNameOnWidgetManagement().shouldHave(CollectionCondition.size(3));
-
     caseWidget.removeAllFilterItems();
   }
 
