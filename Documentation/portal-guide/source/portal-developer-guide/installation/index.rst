@@ -148,8 +148,8 @@ In Engine
 Migrate 10.0.19 To 10.0.20
 --------------------------
 
-So far, Portal supports configuring process steps of :ref:`Process chain <components-layout-templates-iframe-task-template>` with String or Array format. 
-We deprecated the String format but still support it for backward compatibility. We recommend you use the Array format. You could change as follows:
+So far, Portal supported configuring the process steps of the :ref:`Process chain <components-layout-templates-iframe-task-template>` with a String or Array format. 
+We deprecated the String format but still support it for backward compatibility. We recommend you use the Array format. We recommend the following implemenation:
 
 - Change ``window.processSteps = "Create Investment Request,Approve Investment Request";`` to ``window.processSteps = ["Create Investment Request", "Approve Investment Request"];``
 
