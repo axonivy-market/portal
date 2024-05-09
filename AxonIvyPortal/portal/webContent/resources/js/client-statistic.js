@@ -11,6 +11,7 @@ const WIDGET_HEADER_TITLE = '.widget__header-title';
 const AVERAGE_BUSINESS_RUNTIME = "avg-businessRuntime";
 // Default value of locale is 'de'  
 let locale = 'de';
+let datePattern = 'dd.MM.yyyy';
 
 const chartColors = () => {
     let chartColors = [];
@@ -29,8 +30,33 @@ function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
+function filterOptionsForDateTimeFormatter(pattern) {
+    console.log(datePattern);
+    let options = {day: 'numeric',month: 'long',year: 'numeric'};
+    let patternArr = pattern.includes('.') ? pattern.split('.') : pattern.split(' ');
+    patternArr.forEach((element,index) => {
+        switch (element) {
+            case 'd': 
+            case 'dd': 
+            case 'ddd': 
+            case 'dddd': options.day = '2-digit'; break;
+
+            case 'M':
+            case 'MM': options.month = '2-digit'; break;
+            case 'MMM': options.month = 'short'; break;
+            case 'MMMM': options.month = 'long'; break;
+
+            case 'y':
+            case 'yy':
+            case 'yyy':
+            case 'yyyy': options.year = 'numeric'; break;
+        }
+    })
+    return options;
+}
+
 function formatDateFollowLocale(dt) {
-    const options = {day: 'numeric',month: 'long',year: 'numeric'};
+    const options = filterOptionsForDateTimeFormatter(datePattern);
     // Format locale
     locale = locale.replace('_', '-');
     const formatter = new Intl.DateTimeFormat(locale,options);
@@ -236,6 +262,8 @@ function initStatistics() {
         let refreshInterval = config.refreshInterval;
         let chartData;
         locale = config.locale;
+        datePattern = config.datePattern;
+
         updateTitle(chartId, chartType, config.name);
         if ('number' === chartType) {
             chartData = renderNumberChart(chart, data);
