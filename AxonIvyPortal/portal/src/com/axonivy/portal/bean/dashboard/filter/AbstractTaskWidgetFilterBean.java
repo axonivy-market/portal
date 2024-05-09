@@ -1,6 +1,7 @@
 package com.axonivy.portal.bean.dashboard.filter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -11,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.filter.field.FilterField;
+import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 import com.axonivy.portal.util.filter.field.task.custom.TaskFilterFieldCustomNumber;
 
@@ -38,7 +40,10 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
   }
 
   private void initFilterFields() {
-    this.filterFields = TaskFilterFieldFactory.getStandardFilterableFields();
+    this.filterFields = new ArrayList<>();
+    this.filterFields.add(TaskFilterFieldFactory.getDefaultFilterField());
+    this.filterFields
+        .addAll(TaskFilterFieldFactory.getStandardFilterableFields());
 
     // Add custom fields which are selected by user.
     this.widget.getFilterableColumns().stream().filter(column -> column.getType() != DashboardColumnType.STANDARD)
@@ -83,7 +88,11 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
     String field = Optional.ofNullable(filter).map(DashboardFilter::getFilterField).map(FilterField::getName)
         .orElse(StringUtils.EMPTY);
 
-    if (filter.getFilterField() == null) {
+    FilterField filterField = TaskFilterFieldFactory.findBy(field);
+
+    if (filterField.getName()
+        .contentEquals(FilterFieldFactory.DEFAULT_FILTER_FIELD)) {
+      filterField.addNewFilter(filter);
       return;
     }
 
@@ -122,5 +131,23 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
       return;
     }
     resetCaseWidgetFilter((CaseDashboardWidget) widget);
+  }
+
+  public void updateWidgetFilterBeforeApply(DashboardWidget widget) {
+    if (widget instanceof TaskDashboardWidget) {
+      TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
+      removeEmptyFilters(taskWidget.getFilters());
+    } else {
+      CaseDashboardWidget caseWidget = (CaseDashboardWidget) widget;
+      removeEmptyFilters(caseWidget.getFilters());
+    }
+  }
+
+  private void removeEmptyFilters(List<DashboardFilter> filters) {
+    if (CollectionUtils.isNotEmpty(filters)) {
+      filters.removeAll(filters.stream()
+          .filter(filter -> StringUtils.isBlank(filter.getField()))
+          .collect(Collectors.toList()));
+    }
   }
 }

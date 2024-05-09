@@ -47,6 +47,12 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public static final String DATE_FORMAT = "MM/dd/yyyy";
+  
+  @JsonIgnore
+  public static final String DMY_DATE_FORMAT = "dd.MM.yyyy";
+
+  @JsonIgnore
+  private static final String DEFAULT = "default";
 
   private String field;
 
@@ -109,7 +115,7 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public boolean isNumberField() {
-    return this.filterFormat == FilterFormat.NUMBER;
+    return (this.filterFormat == FilterFormat.NUMBER) && !isDefaultField();
   }
 
   @JsonIgnore
@@ -150,7 +156,12 @@ public class DashboardFilter implements Serializable {
   @JsonIgnore
   public boolean isTextField() {
     return (this.filterFormat == FilterFormat.TEXT || this.filterFormat == FilterFormat.STRING) && !isCategory()
-        && !isId() && !isApplication();
+        && !isId() && !isApplication() && !isDefaultField();
+  }
+
+  @JsonIgnore
+  public boolean isDefaultField() {
+    return StringUtils.isBlank(this.field);
   }
 
   @JsonIgnore
@@ -219,7 +230,7 @@ public class DashboardFilter implements Serializable {
   public Date getFromDate() {
     if (fromDate == null && StringUtils.isNotBlank(from)) {
       try {
-        fromDate = DateUtils.parseDate(from, DATE_FORMAT);
+        fromDate = DateUtils.parseDate(from, DATE_FORMAT, DMY_DATE_FORMAT);
       } catch (ParseException e) {
         throw new PortalException("Cannot parse date " + from, e);
       }
@@ -236,7 +247,7 @@ public class DashboardFilter implements Serializable {
   public Date getToDate() {
     if (toDate == null && StringUtils.isNotBlank(to)) {
       try {
-        toDate = DateUtils.parseDate(to, DATE_FORMAT);
+        toDate = DateUtils.parseDate(to, DATE_FORMAT, DMY_DATE_FORMAT);
       } catch (ParseException e) {
         throw new PortalException("Cannot parse date " + to, e);
       }
@@ -267,10 +278,21 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public List<SecurityMemberDTO> getCreators() {
-    return this.values.stream().map(this::findSecurityMember).filter(Objects::nonNull).collect(Collectors.toList());
+    return this.values.stream().map(this::findUser)
+        .filter(Objects::nonNull).collect(Collectors.toList());
+  }
+
+  @JsonIgnore
+  public List<SecurityMemberDTO> getResponsibles() {
+    return this.values.stream().map(this::findSecurityMember)
+        .filter(Objects::nonNull).collect(Collectors.toList());
   }
 
   private SecurityMemberDTO findSecurityMember(String memberName) {
+    return ServiceUtilities.findSecurityMemberByName(memberName);
+  }
+
+  private SecurityMemberDTO findUser(String memberName) {
     return ServiceUtilities.findSecurityMemberByName("#".concat(memberName));
   }
 

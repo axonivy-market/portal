@@ -63,7 +63,7 @@ public class DashboardTaskWidgetConverter implements IJsonConverter {
    */
   private void migrateCustomColumn(JsonNode taskWidget, JsonNode col) {
     DashboardColumnType dashboardColumnType = null;
-    if (CUSTOM_CASE.equals(col.get(TYPE).asText())) {
+    if (col.get(TYPE) != null && CUSTOM_CASE.equals(col.get(TYPE).asText())) {
       dashboardColumnType = DashboardColumnType.CUSTOM_CASE;
     } else {
       dashboardColumnType = DashboardColumnType.CUSTOM;

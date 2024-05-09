@@ -35,7 +35,6 @@ public class TaskFilterFieldFactory {
   private static final Map<String, CustomFilterField> CUSTOM_FILTER_FIELD = new HashMap<>();
   private static final Map<String, CustomFilterField> CUSTOM_CASE_FILTER_FIELD = new HashMap<>();
 
-
   static {
     STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.ID.getField(), new TaskFilterFieldId());
     STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.NAME.getField(), new TaskFilterFieldName());
@@ -61,11 +60,19 @@ public class TaskFilterFieldFactory {
   }
   
   public static FilterField findBy(String field) {
-    FilterField result = STANDARD_FILTER_FIELD.get(field);
-    if (result == null) {
-      result = findCustomFieldBy(field);
+    if (STANDARD_FILTER_FIELD.containsKey(field)) {
+      return STANDARD_FILTER_FIELD.get(field);
     }
-    return result;
+    else if (CUSTOM_FILTER_FIELD.containsKey(field)) {
+      return CUSTOM_FILTER_FIELD.get(field);
+    }
+    else if (CUSTOM_CASE_FILTER_FIELD.containsKey(field)) {
+      return CUSTOM_CASE_FILTER_FIELD.get(field);
+    }
+    return FilterFieldFactory.DEFAULT_FILTER_FIELD.contentEquals(field)
+        ? new FilterFieldDefault()
+        : null;
+    
   }
 
   public static CustomFilterField findCustomFieldBy(String field) {
@@ -106,5 +113,9 @@ public class TaskFilterFieldFactory {
       default -> throw new IllegalArgumentException("Unexpected value: " + customCaseField.type());
       }
     }
+  }
+
+  public static FilterField getDefaultFilterField() {
+    return new FilterFieldDefault();
   }
 }

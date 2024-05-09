@@ -33,7 +33,7 @@ public class ComplexFilterHelper {
 
   public static void selectFilterOperator(FilterOperator operator, int filterIndex) {
     var filterElement = getNewFilter(filterIndex);
-    filterElement.$("div[id$=':operator-selection']").shouldBe(getClickableCondition()).click();
+    filterElement.$("div[id$=':operator-selection']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     WaitHelper.waitForActionComplete(".dashboard-widget-filter__main-panel",
         () -> $("div[id$=':operator-selection_panel'] ul[id$=':operator-selection_items']").$$("li")
             .filter(text(operator.getValue())).first().click());
@@ -49,8 +49,11 @@ public class ComplexFilterHelper {
       case STATE_TYPE:
         handleFilterState(filterElement, values);
         break;
-      case TEXT, NUMBER:
-        handleFilterTextAndNumber(filterElement, values);
+      case TEXT:
+        handleFilterText(filterElement, values);
+        break;
+      case NUMBER:
+        handleFilterNumber(filterElement, values);
         break;
       case NUMBER_BETWEEN:
         handleFilterNumberBetween(filterElement, values);
@@ -63,6 +66,9 @@ public class ComplexFilterHelper {
         break;
       case CREATOR_TYPE:
         handleFilterCreator(filterElement, values);
+        break;
+      case RESPONSIBLE_TYPE:
+        handleFilterResponsible(filterElement, values);
         break;
       case CATEGORY_TYPE:
         handleFilterCategory(filterElement, values);
@@ -99,8 +105,22 @@ public class ComplexFilterHelper {
     getCloseCheckBox().shouldBe(getClickableCondition()).click();
   }
 
-  private static void handleFilterTextAndNumber(SelenideElement filterElement, Object... values) {
-    var textField = filterElement.$("div[id$='-list-panel']").$(".ui-chips.ui-widget").$("input")
+  private static void handleFilterText(SelenideElement filterElement, Object... values) {
+    var textField = filterElement.$("div[id$='-list-panel']").$("div[class*='ui-chips ui-widget']").$("input")
+        .shouldBe(Condition.editable);
+    for (int i = 0; i < values.length; i++) {
+      textField.clear();
+      String textFieldIdSelector = "[id=\"" + textField.getAttribute("id")
+          + "\"]";
+      textField.sendKeys(String.valueOf(values[i]));
+      WaitHelper.waitForActionComplete(textFieldIdSelector, () -> {
+        textField.pressEnter();
+      });
+    }
+  }
+  
+  private static void handleFilterNumber(SelenideElement filterElement, Object... values) {
+    var textField = filterElement.$("div[id*='number-panel']").$("span[class*='ui-widget']").$("input")
         .shouldBe(Condition.editable);
     for (int i = 0; i < values.length; i++) {
       textField.clear();
@@ -114,17 +134,16 @@ public class ComplexFilterHelper {
     numberPeriodInput.clear();
     numberPeriodInput.shouldBe(Condition.empty, DEFAULT_TIMEOUT).sendKeys(String.valueOf(values[0]));
 
-    $("div[id$=':period-type-panel']").$("div[id$=':period-n-type-selection']")
-        .$("label[id$=':period-n-type-selection_label']").shouldBe(getClickableCondition()).click();
+    $("div[id$=':period-type-panel']").shouldBe(getClickableCondition()).click();
 
     $$("li").filter(text(String.valueOf(values[1]))).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
         .click();
   }
 
   private static void handleFilterDateCurrent(SelenideElement filterElement, Object... values) {
-    var date_current = filterElement.$("[id$='current-period-panel']").shouldBe(getClickableCondition());
+    var date_current = filterElement.$("[id$=':current-period-selection']").shouldBe(getClickableCondition());
     date_current.click();
-    var selectPanel = $("div[id$=':current-period-selection_panel'][style*='display: block']").shouldBe(appear);
+    var selectPanel = $("div[id$=':current-period-selection_panel']").shouldBe(appear);
     selectPanel.$$("ul li").filter(text(String.valueOf(values[0]))).first().shouldBe(getClickableCondition())
         .click();
   }
@@ -146,6 +165,19 @@ public class ComplexFilterHelper {
       filterElement.$("div[id$=':creators']").$("ul li.ui-helper-hidden").should(disappear);
     }
   }
+  
+  private static void handleFilterResponsible(SelenideElement filterElement, Object... values) {
+    var creatorInput = filterElement.$("div[id$=':responsibles']").$("input").shouldBe(appear);
+    for (int i = 0; i < values.length; i++) {
+      creatorInput.clear();
+      creatorInput.sendKeys(String.valueOf(values[i]));
+      var selectPanel = $("span[id$=':responsibles_panel'][style*='display: block']").shouldBe(appear);
+      selectPanel.$(".ui-avatar-text").shouldBe(appear);
+      selectPanel.shouldBe(getClickableCondition()).click();
+      selectPanel.shouldBe(disappear);
+      filterElement.$("div[id$=':responsibles']").$("ul li.ui-helper-hidden").should(disappear);
+    }
+  }
 
   private static void handleFilterDate(SelenideElement filterElement, Object... values) {
     var dateInput = filterElement.$$(".date-picker-panel input")
@@ -153,6 +185,7 @@ public class ComplexFilterHelper {
     for (int i = 0; i < dateInput.size(); i++) {
       dateInput.get(i).clear();
       dateInput.get(i).shouldBe(Condition.empty, DEFAULT_TIMEOUT).sendKeys(String.valueOf(values[i]));
+      filterElement.$("span button").$("span[class*='ui-icon-calendar']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     }
   }
 
@@ -178,6 +211,7 @@ public class ComplexFilterHelper {
         .shouldBe(Condition.editable);
     toInput.clear();
     toInput.sendKeys(String.valueOf(values[1]));
+    filterElement.$("div[id$=':between-dates-panel-to']").$("button").$("span[class*='ui-icon-calendar']").shouldBe(appear, DEFAULT_TIMEOUT).click();
   }
 
   private static SelenideElement getValueOfCheckBox(String value) {

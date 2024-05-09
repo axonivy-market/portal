@@ -27,6 +27,7 @@ public class FilterFieldFactory {
 
   private static final Map<String, FilterField> STANDARD_FILTER_FIELD = new HashMap<>();
   private static final Map<String, CustomFilterField> CUSTOM_FILTER_FIELD = new HashMap<>();
+  public static final String DEFAULT_FILTER_FIELD = "default";
 
   static {
     STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.ID.getField(), new CaseFilterFieldId());
@@ -47,6 +48,7 @@ public class FilterFieldFactory {
         default -> throw new IllegalArgumentException("Unexpected value: " + customField.type());
       }
     }
+
   }
 
   public static FilterField findBy(String field) {
@@ -54,7 +56,8 @@ public class FilterFieldFactory {
     if (result == null) {
       result = findCustomFieldBy(field);
     }
-    return result;
+    return DEFAULT_FILTER_FIELD.contentEquals(field) ? new FilterFieldDefault()
+        : result;
   }
 
   public static CustomFilterField findCustomFieldBy(String field) {
@@ -69,5 +72,9 @@ public class FilterFieldFactory {
 
   public static List<FilterField> getCustomFilterableFields() {
     return new ArrayList<FilterField>(CUSTOM_FILTER_FIELD.values());
+  }
+
+  public static FilterField getDefaultFilterField() {
+    return new FilterFieldDefault();
   }
 }

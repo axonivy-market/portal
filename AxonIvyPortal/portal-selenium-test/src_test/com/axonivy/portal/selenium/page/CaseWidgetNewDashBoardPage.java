@@ -16,8 +16,6 @@ import com.codeborne.selenide.SelenideElement;
 public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   private static final String YOUR_CASES_WIDGET = "Your Cases";
-  private static final String FILTER_CASE_NAME = "Case name";
-  private static final String FILTER_CASE_STATE = "State";
 
   private String caseWidgetId;
   private String caseWidgetName;
@@ -116,10 +114,15 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  private SelenideElement getEditWidgetLink() {
+    return $$("div.table-widget-panel div.widget__header")
+        .filter(text(caseWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("div[id$='widget-header-actions']").$("[id*='edit-widget']");
+  }
+
   public CaseEditWidgetNewDashBoardPage openEditWidget() {
-    $$("div.table-widget-panel div.widget__header").filter(text(caseWidgetName)).first()
-        .shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='edit-widget']")
-        .shouldBe(getClickableCondition()).click();
+    getEditWidgetLink().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(getEditWidgetLink());
     return new CaseEditWidgetNewDashBoardPage();
   }
 
@@ -160,7 +163,11 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   public void resetFilter() {
     $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='reset-button']")
-        .filter(text("Reset")).first().shouldBe(getClickableCondition()).click();
+        .filter(text("Reset")).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    waitForElementClickable($$("div.table-widget-panel")
+        .filter(text(caseWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT)
+        .$(".widget__filter-sidebar-link"));
+    
   }
 
   public void selectState(String state) {
@@ -226,9 +233,9 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public void changeOperator(String filterLabel, FilterOperator operator, String type) {
     String typeInput = String.format("div[id$=':%s-filter-operator-panel']", type);
     $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$=':filter-container']")
-        .$$("label[id$=':field-selection_label']").filter(text(filterLabel)).first().shouldBe(appear, DEFAULT_TIMEOUT);
+        .$$("span[id$=':field-selection_label']").filter(text(filterLabel)).first().shouldBe(appear, DEFAULT_TIMEOUT);
 
-    $(typeInput).shouldBe(getClickableCondition()).$("label[id$=':operator-selection_label']").click();
+    $(typeInput).shouldBe(getClickableCondition()).$("span[id$=':operator-selection_label']").click();
 
     $$("li").filter(text(operator.getValue())).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
@@ -303,5 +310,61 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public void clickOnFilterOperator() {
     $("div[id$='operator-selection']").shouldBe(getClickableCondition()).click();
   }
+  
 
+  public boolean isQuickSearchInputShow(String widgetIndex) {
+    String taskWidgetIndex = String.format("div[id*='case-case_%s']", widgetIndex);
+    waitPageLoaded();
+    return $(taskWidgetIndex).$("form").$("input").exists();
+  }
+
+  public String getQuickSearchInput() {
+    return getQuickSearchForm().$("input").getValue();
+  }
+
+  public void setInputForQuickSearch(String input) {
+    getQuickSearchForm().$("input").sendKeys(input);
+    waitForPageLoad();
+  }
+
+  private SelenideElement getQuickSearchForm() {
+    return $("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
+  }
+
+  public void clearQuickSearchInput() {
+    getQuickSearchForm().$("input").clear();
+    waitForPageLoad();
+  }
+
+  private SelenideElement getCaseWidgetHeader() {
+    return $$("div.table-widget-panel").filter(text(caseWidgetName)).first();
+  }
+
+  public void clickOnButtonExpandCaseWidget() {
+    getCaseWidgetHeader().$(".expand-link").shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void clickOnButtonCollapseCaseWidget() {
+    getCaseWidgetHeader().$(".collapse-link").shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public ElementsCollection countAllCases() {
+    return getAllCasesOfCaseWidget();
+  }
+
+  private ElementsCollection getAllCasesOfCaseWidget() {
+    return getColumnsOfTableWidget().filter(Condition.cssClass("dashboard-cases__name"));
+  }
+
+  public boolean isEmptyMessageAppear() {
+    return $("div[id$='empty-message-container'][class='empty-message-container ']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .isDisplayed();
+  }
+
+  public void waitTableLoaded() {
+    $(getLoadedLocator()).shouldHave(Condition.cssClass("u-display-none"), DEFAULT_TIMEOUT);
+    $(getLoadedLocator()).shouldNotHave(Condition.cssClass("u-display-none"), DEFAULT_TIMEOUT);
+  }
 }

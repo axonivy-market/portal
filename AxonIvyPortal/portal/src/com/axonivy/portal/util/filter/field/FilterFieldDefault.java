@@ -2,26 +2,31 @@ package com.axonivy.portal.util.filter.field;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class FilterFieldDefault extends FilterField {
 
-  public FilterFieldDefault() {}
-
-  public FilterFieldDefault(String name) {
-    super(name);
+  public FilterFieldDefault() {
+    super(FilterFieldFactory.DEFAULT_FILTER_FIELD);
   }
 
   public String getLabel() {
-    return getName();
+    return Ivy.cms()
+        .co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/pleaseSelect");
   }
 
   @Override
-  public void initFilter(DashboardFilter filter) {}
+  public void initFilter(DashboardFilter filter) {
+    filter.setFilterField(null);
+    filter.setField(null);
+  }
 
   @Override
-  public void addNewFilter(DashboardFilter filter) {}
+  public void addNewFilter(DashboardFilter filter) {
+    initFilter(filter);
+  }
 
   @Override
   public CaseQuery generateFilterQuery(DashboardFilter filter) {

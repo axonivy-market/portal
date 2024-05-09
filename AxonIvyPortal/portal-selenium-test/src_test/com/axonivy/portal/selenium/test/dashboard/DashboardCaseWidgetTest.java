@@ -11,6 +11,7 @@ import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
@@ -60,7 +61,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.openFilterWidget();
-    taskWidget.filterTaskName(REPORT_HIDE_CASE);
+    taskWidget.filterTaskName(REPORT_HIDE_CASE, FilterOperator.IS);
     taskWidget.applyFilter();
     taskWidget.startFirstTask();
     redirectToNewDashBoard();
@@ -208,7 +209,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     caseEditWidget.filterCaseName("TestCase");
     caseEditWidget.filterCaseState("OPEN");
     caseEditWidget.applyFilter();
-    caseEditWidget.countCases().shouldHave(size(12));
+    caseEditWidget.countCases().shouldHave(size(13));
     caseEditWidget.save();
     // After Edit
     CaseWidgetNewDashBoardPage caseWidgetEdited = newDashboardPage.selectCaseWidget("New Your Cases");

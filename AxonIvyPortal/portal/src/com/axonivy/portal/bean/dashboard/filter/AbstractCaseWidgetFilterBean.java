@@ -1,6 +1,7 @@
 package com.axonivy.portal.bean.dashboard.filter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -35,7 +36,9 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
   }
 
   private void initFilterFields() {
-    this.filterFields = FilterFieldFactory.getStandardFilterableFields();
+    this.filterFields = new ArrayList<>();
+    this.filterFields.add(FilterFieldFactory.getDefaultFilterField());
+    this.filterFields.addAll(FilterFieldFactory.getStandardFilterableFields());
 
     // Add custom fields which are selected by user.
     this.widget.getFilterableColumns()
@@ -79,7 +82,9 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
         .orElse(StringUtils.EMPTY);
     FilterField filterField = FilterFieldFactory.findBy(field);
 
-    if (filterField == null) {
+    if (filterField.getName()
+        .contentEquals(FilterFieldFactory.DEFAULT_FILTER_FIELD)) {
+      filterField.addNewFilter(filter);
       return;
     }
 

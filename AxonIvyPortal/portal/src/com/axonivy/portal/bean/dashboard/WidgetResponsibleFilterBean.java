@@ -32,7 +32,7 @@ public class WidgetResponsibleFilterBean implements Serializable {
   public void init(DashboardFilter filter) {
     selectedResponsibles = new ArrayList<>();
     if (CollectionUtils.isNotEmpty(filter.getValues())) {
-      selectedResponsibles.addAll(filter.getCreators());
+      selectedResponsibles.addAll(filter.getResponsibles());
     }
   }
 
@@ -75,7 +75,7 @@ public class WidgetResponsibleFilterBean implements Serializable {
     }
     filter.getValues().clear();
     for (SecurityMemberDTO responsible : selectedResponsibles) {
-      filter.getValues().add(responsible.getName());
+      filter.getValues().add(responsible.getMemberName());
     }
   }
 }

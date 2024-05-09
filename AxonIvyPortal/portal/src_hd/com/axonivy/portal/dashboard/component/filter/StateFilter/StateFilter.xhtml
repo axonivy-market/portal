@@ -36,10 +36,11 @@
       panelStyleClass="task-configuration__selectcheckboxmenu-panel"
       styleClass="task-configuration__selectcheckboxmenu"
       disabled="#{readOnly}">
-      <f:selectItems value="#{widgetStateFilterBean.states}" var="state" itemValue="#{state}" />
+      <f:selectItems value="#{widgetStateFilterBean.states}" var="state" itemValue="#{state}"
+        itemLabel="#{widgetStateFilterBean.getUserFriendlyState(state, widget)}" />
       <f:param name="skipValidator" value="true" />
-      <p:ajax event="change" update="states-hidden" process="@(this)" listener="#{widgetStateFilterBean.updateStatesString(cc.attrs.filter.values)}" global="false" />
-      <p:ajax event="toggleSelect" update="states-hidden" process="@(this)" listener="#{widgetStateFilterBean.updateStatesString(cc.attrs.filter.values)}" global="false" />
+      <p:ajax event="change" update="states-hidden" listener="#{widgetStateFilterBean.updateStatesString(cc.attrs.filter.values)}" global="false" />
+      <p:ajax event="toggleSelect" update="states-hidden" listener="#{widgetStateFilterBean.updateStatesString(cc.attrs.filter.values)}" global="false" />
     </p:selectCheckboxMenu>
 
     <p:inputText id="states-hidden" type="hidden" value="#{widgetStateFilterBean.statesString}">

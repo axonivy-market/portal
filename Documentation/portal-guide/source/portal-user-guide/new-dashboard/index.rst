@@ -83,25 +83,24 @@ see and how.
 
 |task-list-widget|
 
-**Configuration panel**
+**Filters panel**
 
-On the left side, define the widget name, establish the main configuration for
-your widget, enable quick search function and get a preview of it by clicking on the preview button.
+By clicking on the ``Filter`` button, you can configure the complex filter for your widget, enable quick search function and get a preview of it by clicking on the
+``apply`` button. Please refer to :ref:`Complex Filter <complex-filter>` for more details.
 
-|task-list-widget-configuration|
+|task-widget-complex-filter-configuration|
 
-To set multi languages for the widget title, see at :ref:`portal-multi-language`:
+**Column Management**
 
-**Table configuration panel**
+This panel allows you to:
 
-Edit the default sort order of the table rows by clicking on the column headers
-and define the order of the columns as well as the displayed set of columns by
-clicking on the link ``Manage Columns`` at the top right. You get the following
-dialog:
+-  Edit the default sort order of the table rows by clicking on the column headers
+-  Define the order of the columns 
+-  Define the displayed set of columns by clicking on the link ``Manage Columns`` at the top right. You get the following dialog:
 
 |task-list-widget-table-configuration|
 
-In the column management panel, you will find two sections:
+In the table configuration panel, you find two sections:
 
    #. Add field section: add any available field to your widget table
    #. Columns section: configure the widget table itself as follows:
@@ -121,7 +120,7 @@ In the column management panel, you will find two sections:
 
     Quick search is enabled for the standard field name and description by default.
 
-Portal supports the display of custom case fields within the task list.
+Portal supports to display **custom case fields** within the task list.
 
 |task-column-field-type-configuration|
 
@@ -364,6 +363,7 @@ You can define a Notifications widget to display all Notifications based on your
 .. |task-list-widget-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-configuration.png
 .. |task-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-table-configuration.png
 .. |task-column-field-type-configuration| image:: ../../screenshots/new-dashboard/task-column-field-type-configuration.png
+.. |task-widget-complex-filter-configuration| image:: ../../screenshots/new-dashboard/task-widget-complex-filter-configuration.png
 
 .. |case-list-widget| image:: ../../screenshots/new-dashboard/case-list-widget.png
 .. |case-list-widget-configuration| image:: ../../screenshots/new-dashboard/case-list-widget-configuration.png
