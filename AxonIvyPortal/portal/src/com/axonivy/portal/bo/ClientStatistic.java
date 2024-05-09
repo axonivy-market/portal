@@ -1,5 +1,6 @@
 package com.axonivy.portal.bo;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -7,8 +8,10 @@ import com.axonivy.portal.util.DisplayNameUtils;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+import ch.ivy.addon.portalkit.bean.DateTimePatternBean;
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class ClientStatistic extends AbstractConfiguration {
@@ -32,6 +35,7 @@ public class ClientStatistic extends AbstractConfiguration {
   private List<Entry<String, String>> additionalConfig;
   private String icon;
   private String locale = Ivy.session().getFormattingLocale().toString();
+  private String datePattern;
   
   public String getIcon() {
     return icon;
@@ -145,5 +149,11 @@ public String getFilter() {
   
   public String getLocale() {
     return this.locale;
+  }
+  
+  public String getDatePattern() {
+    DateTimeGlobalSettingService dateTimePatternService = DateTimeGlobalSettingService.getInstance();
+    this.datePattern = dateTimePatternService.getDatePattern();
+    return this.datePattern;
   }
 }
