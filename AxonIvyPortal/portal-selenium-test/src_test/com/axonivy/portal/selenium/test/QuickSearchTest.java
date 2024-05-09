@@ -206,6 +206,7 @@ public class QuickSearchTest extends BaseTest {
 
     taskWidget.setInputForQuickSearch("ho chi minh city");
     assertTrue(taskWidget.isEmptyMessageAppear());
+    resizeBrowserTo2kResolution();
     taskWidget.clickOnButtonExpandTaskWidget();
     assertTrue(taskWidget.isEmptyMessageAppear());
     taskWidget.clearQuickSearchInput();
