@@ -101,11 +101,11 @@ Inside your UI, you can configure these parameters as follows; they will be rend
 ::
 
    <script>
-      // Set process steps directly as Array.
+      // Set the process steps directly as Array.
       window.processSteps = ["Create Investment Request", "Approve Investment Request"];
 
-      // If process steps are set in HTML dialog logic or java code, convert it to JSON format
-      // Use this code if process steps are a Java String list
+      // If the process steps are set in HTML dialog logic or java code, convert it to JSON format
+      // Use this code if the process steps are a Java String list
       window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)};
 
       // Current process step could be a number or String:
