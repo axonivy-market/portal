@@ -38,6 +38,29 @@
     <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">#{widget.name}</h:panelGroup>
     <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
 
+    <h:panelGroup id="widget-header-quick-search-#{index}" layout="block"
+      styleClass="#{isReadOnlyMode ? 'u-mar-right-10' : 'u-mar-right-5'} widget-header-quick-search"
+      rendered="#{widget.canEnableQuickSearch()}">
+      <h:form onkeydown="if (isPressedSpecialKeys(event) == true) { return false; }">
+      <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
+      <p:inputText id="quick-search-input-#{index}" value="#{widget.quickSearchKeyword}"
+        placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}">
+        <p:ajax delay="800" listener="#{widget.updateQuickSearchKeyword()}"
+          onstart="if (isPressedSpecialKeys(event) == true) { return false; }"
+          process="@(this)" partialSubmit="true" global="false"
+          event="keyup" update="#{p:resolveFirstComponentWithId(panelId, view).clientId}" />
+
+        <p:ajax delay="100" listener="#{widget.updateQuickSearchKeyword()}"
+          process="@(this)" partialSubmit="true" global="false"
+          event="cut" update="#{p:resolveFirstComponentWithId(panelId, view).clientId}" />
+
+        <p:ajax delay="100" listener="#{widget.updateQuickSearchKeyword()}"
+          process="@(this)" partialSubmit="true" global="false"
+          event="paste" update="#{p:resolveFirstComponentWithId(panelId, view).clientId}" />
+      </p:inputText>
+      </h:form>
+    </h:panelGroup>
+
     <h:panelGroup id="widget-header-actions" styleClass="widget__header-actions" layout="block">
       <!-- remote-command to load data for saved filter panel -->
       <p:remoteCommand id="load-user-filter-command-#{index}" name="loadUserFilters#{index}"
@@ -73,12 +96,12 @@
       <span class="u-mar-right-5">
         <c:set var="countFilter" value="#{widget.userDefinedFiltersCount.isPresent() ? widget.userDefinedFiltersCount.get():0}"/>
         <p:badge value="#{countFilter}"
-          id="filter-sidebar-link-#{index}" visible="#{countFilter != 0}"
+          id="filter-sidebar-link-#{index}" visible="#{countFilter ne '0'}"
           rendered="#{renderFilter}" styleClass="widget__filter-noti-number">
           <p:commandButton type="button" icon="si si-filter-1"
             styleClass="rounded-button widget__filter-sidebar-link ui-button-outlined" />
         </p:badge>
-        <p:tooltip for="filter-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters')}"
+        <p:tooltip for="filter-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/filters')}"
           trackMouse="true" hideEvent="mouseleave click" rendered="#{renderFilter}" />
       </span>
 
@@ -168,7 +191,7 @@
         onShow="loadUserFilters#{index}(); #{onFilterOverlayPanelShow};">
         <h:form id="filter-form-#{index}">
           <h:panelGroup id="filter-overlaypanel-content-#{index}" styleClass="ui-g" layout="block">
-            <h:panelGroup id="saved-filters-container" styleClass="ui-g-4 u-padding-0 saved-filter ui-sm-12" layout="block">
+            <h:panelGroup id="saved-filters-container" styleClass="ui-g-3 u-padding-0 saved-filter ui-sm-12" layout="block">
               <div class="saved-filter-content">
               <ui:include src="/layouts/restricted/includes/WidgetFilter.xhtml">
                 <ui:param name="widget" value="#{widget}" />
@@ -179,7 +202,7 @@
               </div>
             </h:panelGroup>
   
-            <h:panelGroup id="widget-filter-content" styleClass="ui-g-8 u-padding-0 ui-sm-12"
+            <h:panelGroup id="widget-filter-content" styleClass="ui-g-9 u-padding-0 ui-sm-12"
               layout="block">
               <div class="ui-g-12 filter-overlay-panel__header">
                 <strong class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterOptionHeader')}</strong>
@@ -194,8 +217,10 @@
             <div class="ui-g-12 u-text-align-right">
               <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                 styleClass="u-mar-right-15 ui-overlaypanel-footer__cancel"
-                onclick="PF('filter-overlay-panel-#{index}').hide(); return false;"
-                global="false"/>
+                oncomplete="PF('filter-overlay-panel-#{index}').hide(); return false;"
+                actionListener="#{widget.onCancelUserFilters()}"
+                update="filter-form-#{index}"
+                immediate="true" global="false"/>
   
               <p:commandButton id="reset-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
                 styleClass="secondary-btn u-mar-right-5" partialSubmit="true"

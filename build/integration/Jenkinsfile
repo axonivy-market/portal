@@ -12,7 +12,7 @@ pipeline {
 
   parameters {
       string(name: 'testPatternToRun', defaultValue: 'com.axonivy.portal.selenium.test.**.*Test,!*Express*Test', description: 'Test pattern to run')
-      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
+      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-11.3/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
         -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip for nightly master
         -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine-windows.zip for dev master
         -Divy.engine.download.url=file:///C:/wawa/engine/AxonIvyEngineX.X.X.X_Windows_x64.zip for downloaded engine
@@ -104,7 +104,7 @@ def downloadPortalRelease() {
   def branchName = env.BRANCH_NAME.replaceAll("/", "%%2F")
   withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
     bat "curl --user ${credentials} --output archive.zip ${env.JENKINS_URL}job/portal-release/job/${branchName}/lastSuccessfulBuild/artifact/*zip*/archive.zip"
-    bat "curl --user ${credentials} --output archive-express.zip ${env.JENKINS_URL}job/axonivy-express-integration/job/feature%%2Fcreate-package-for-portal/lastSuccessfulBuild/artifact/*zip*/archive.zip"
+    bat "curl --user ${credentials} --output archive-express.zip ${env.JENKINS_URL}job/axonivy-express-integration/job/develop/lastSuccessfulBuild/artifact/*zip*/archive.zip"
   }
   unzip zipFile: 'archive.zip', quiet: true
   unzip zipFile: 'archive-express.zip', quiet: true

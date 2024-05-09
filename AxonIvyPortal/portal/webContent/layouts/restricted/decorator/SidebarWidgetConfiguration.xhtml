@@ -1,0 +1,120 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
+
+<!-- DASHBOARD ADD NEW WIDGET DECORATOR: uses for displaying the widget in Dashboard configuration pop up.
+    DEFINED 2 SECTIONS: widget configuration and widget preview.
+    - WIDGET CONFIGURATION: shows widget filters by defined widgetFilterContent tag.
+    - WIDGET PREVIEW: shows widget content by define widgetPreviewContent tag.
+
+    *** REQUIRED PARAMS:
+    * widget: widget model.
+    * onCompletePreviewAction: AJAX method which will be call when the preview button is clicked.
+-->
+
+<h:outputScript library="js" name="sidebar-widget-configuration.js" />
+
+<!-- Table configuration -->
+<h:panelGroup id="widget-preview" styleClass="card table-configuration u-hidden-sm-down" layout="block">
+  <div class="ui-g">
+    <div class="ui-g-12 widget-preview__header">
+      <h4>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/tableConfiguration')}</h4>
+    </div>
+    
+    <h:panelGroup id="widget-title-group"
+      styleClass="ui-g-4 u-padding-0 ui-fluid">
+      <div class="ui-g-3">
+        <p:outputLabel for="widget-title"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetTitle')}" />
+      </div>
+      <div class="ui-g-9 ui-inputgroup">
+        <p:inputText id="widget-title"
+          styleClass="widget-configuration__input-text"
+          value="#{widget.name}" />
+        <!-- Add language button -->
+        <p:commandButton styleClass="app-setting-button"
+          icon="si si-chat-translate" id="add-language-button">
+          <p:ajax event="click"
+            listener="#{managedBean.updateWidgetNameByLocale()}"
+            process="widget-title"
+            update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
+            oncomplete="PF('multiple-languages-dialog').show();" />
+        </p:commandButton>
+      </div>
+    </h:panelGroup>  
+    <div class="ui-g-4">
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/tableConfigurationDesc')}" />
+    </div>
+    <div class="ui-g-4">
+      <p:commandButton id="show-filter" styleClass="Fright" icon="si si-filter-1" 
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}"
+        type="button" onclick="openFilterPanel(event);"/>
+      <p:commandButton id="manage-column"
+        icon="si si-layers-grid-settings" 
+        styleClass="Fright u-mar-right-15"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
+        update="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" 
+        oncomplete="PF('column-management-dialog').show()" 
+        process="@this" 
+        global="false" >
+        <p:resetInput target="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" />
+      </p:commandButton>
+    </div>
+    
+    <h:panelGroup id="quick-search-group"
+      rendered="#{managedBean.canEnableQuickSearch()}"
+      styleClass="ui-g-6 u-padding-0 ui-fluid">
+      <div class="ui-g-2">
+        <p:outputLabel for="quick-search" styleClass="u-mar-right-5"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}" />
+        <h:outputText id="quick-search-info" styleClass="si si-information-circle" />
+        <p:tooltip for="quick-search-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearchInfo')}" />
+      </div>
+      <div class="ui-g-9 ui-inputgroup">
+        <p:selectBooleanCheckbox id="quick-search"
+          value="#{widget.enableQuickSearch}">
+          <p:ajax process="quick-search-group" update="quick-search-group"
+            partialSubmit="true" global="false" />
+        </p:selectBooleanCheckbox>
+      </div>
+    </h:panelGroup>
+
+    <!-- Widget data -->
+    <div class="ui-g-12">
+      <ui:insert name="widgetPreviewContent" />
+    </div>
+  </div>
+</h:panelGroup>
+
+  <h:panelGroup id="widget-filter-content" layout="block" styleClass="filter-panel js-filter-panel" >
+      <div class="ui-g ui-g-12 MarTop20 filter-panel-header">
+        <div class="ui-g-4 ui-md-5">
+          <h4 class="filter-panel-title">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/filters")}</h4>
+        </div>
+        <div class="ui-g-8 ui-md-7">
+          <p:remoteCommand id="updateComponentOnPreviewCmd" name="updateComponentOnPreviewCmd"
+            process="@none" update="#{componentToUpdateOnPreview}"
+            oncomplete="registerClickOnPanelEvent();" />
+          <p:commandButton id="preview-button"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
+            actionListener="#{taskWidgetConfigurationFilterBean.updateWidgetFilterBeforeApply(widget)}"
+            styleClass="Fright preview-button u-hidden-sm-down" icon="si si-check-1"
+            update="predefined-filter configuration-filter-messages-panel"
+            oncomplete="closeFilterPanel(); if (args &amp;&amp; !args.validationFailed) { updateComponentOnPreviewCmd(); }" />
+          <p:commandButton id="reset-filter" icon="si si-button-refresh-arrows"
+            update="predefined-filter configuration-filter-messages-panel" process="predefined-filter" styleClass="Fright ui-button-secondary preview-button u-hidden-sm-down u-mar-right-5"
+            actionListener="#{taskWidgetConfigurationFilterBean.resetFilter(widget)}"
+            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/TaskWidgetConfiguration/ResetFilter')}"
+            title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/TaskWidgetConfiguration/ResetFilter')}">
+              <f:param name="skipValidator" value="true" />
+          </p:commandButton>
+            
+        </div>
+      </div>
+      <div class="ui-g-12 filter-area" >
+        <ui:insert name="widgetFilterContent" />
+      </div>
+      <ui:insert name="multiLanguageDialog" />
+  </h:panelGroup>
+ 
+
+</html>

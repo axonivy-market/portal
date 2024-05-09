@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 
 import org.apache.commons.collections4.CollectionUtils;
 
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -22,6 +23,7 @@ public class WidgetFilterModel extends AbstractConfiguration implements Serializ
   private String widgetName;
   private DashboardWidgetType widgetType;
   private List<FilterColumnModel> filterableColumns;
+  private List<DashboardFilter> userFilters;
 
   public WidgetFilterModel() {}
 
@@ -88,5 +90,13 @@ public class WidgetFilterModel extends AbstractConfiguration implements Serializ
   @JsonIgnore
   public static Predicate<? super WidgetFilterModel> isEqualFilter(WidgetFilterModel filter) {
     return selectedFilter -> selectedFilter.getId().equals(filter.getId());
+  }
+
+  public List<DashboardFilter> getUserFilters() {
+    return userFilters;
+  }
+
+  public void setUserFilters(List<DashboardFilter> userFilters) {
+    this.userFilters = userFilters;
   }
 }

@@ -4,17 +4,24 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 import org.openqa.selenium.WebElement;
 
+import com.axonivy.portal.selenium.common.ComplexFilterHelper;
+import com.axonivy.portal.selenium.common.FilterOperator;
+import com.axonivy.portal.selenium.common.FilterValueType;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
 
+  private static final String FILTER_TASK_NAME = "Task name";
   private String taskEditWidgetId;
-  private static final String TASK_NAME = "Task name";
+  private static final String CUSTOM_CASE_FIELD = "Custom case field";
+  private static final String CUSTOM_FIELD = "Custom field";
   private static final String STATE = "State";
 
   public TaskEditWidgetNewDashBoardPage() {
@@ -27,7 +34,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return ".task-configuration__responsibles";
+    return ".widget-configuration__input-text";
   }
 
   private SelenideElement widgetTitle() {
@@ -59,7 +66,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void filterTaskName(String taskName) {
-    getAvailableFilterInput(TASK_NAME).sendKeys(taskName);
+    getAvailableFilterInput(FILTER_TASK_NAME).sendKeys(taskName);
   }
 
   public void clickOnStateToShowDropdown() {
@@ -123,7 +130,8 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void waitPreviewTableLoaded() {
-    $(taskEditWidgetId).$("div[id$=':dashboard-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $(taskEditWidgetId).$(".task-dashboard-widget__loading-message").shouldHave(Condition.cssClass("u-display-none"), DEFAULT_TIMEOUT);
+    $(taskEditWidgetId).$("div[id$=':dashboard-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT).shouldNotHave(Condition.cssClass("u-display-none"));
   }
 
   public SelenideElement getAddLanguageButton() {
@@ -149,7 +157,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public WebElement getConfigurationFilter() {
-    return $("[id='widget-configuration-form:new-widget-configuration-component:filter-container']").shouldBe(appear,
+    return $("[id='widget-configuration-form:new-widget-configuration-component:widget-filter-content']").shouldBe(appear,
         DEFAULT_TIMEOUT);
   }
 
@@ -262,10 +270,14 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   private SelenideElement getCustomFieldSelection() {
     return getColumnManagementDialog().$("span[id$='custom-field-selection'] button");
   }
+  
+  private SelenideElement getCustomCaseFieldSelection() {
+    return getColumnManagementDialog().$("span[id$='custom-case-field-selection'] button");
+  }
 
   public SelenideElement openColumnManagementDialog() {
-    $("div[id$='task-widget-preview:dashboard-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$("a[id$='column-toggler']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div[id$='new-widget-configuration-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("button[id$='manage-column']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return getColumnManagementDialog().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -305,5 +317,130 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     standardFieldPanel.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return standardFieldPanel.$("li[data-label='" + field + "']");
   }
+  
+  public void addCustomFields(String fieldName) {
+    selectCustomType();
+    getCustomFieldSelection().click();
+    SelenideElement customFieldPanel = $("span[id$='column-management-form:custom-field-selection_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement fieldElement =
+        customFieldPanel.$$("li").filter(text(fieldName)).first().shouldBe(getClickableCondition());
+    fieldElement.getAttribute(FILTER_TASK_NAME);
+    fieldElement.click();
+    getColumnManagementDialog().$("button[id$='field-add-btn']").click();
+  }
+  
+  public void addCustomCaseFields(String fieldName) {
+    selectCustomCaseType();
+    getCustomCaseFieldSelection().click();
+    SelenideElement customCaseFieldPanel = $("span[id$='column-management-form:custom-case-field-selection_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement fieldElement =
+        customCaseFieldPanel.$$("li").filter(text(fieldName)).first().shouldBe(getClickableCondition());
+    fieldElement.getAttribute(FILTER_TASK_NAME);
+    fieldElement.click();
+    getColumnManagementDialog().$("button[id$='field-add-btn']").click();
+  }
+  
+  public void saveAfterAddingCustomField() {
+    saveColumn();
+    save();
+  }
+  
+  public void openFilter() {
+    $("button[id$=':show-filter']").shouldBe(getClickableCondition()).click();
+  }
+  
+  public void addFilter(String columnName, FilterOperator operator) {
+    ComplexFilterHelper.addFilter(columnName, operator);
+  }
+  
+  public void inputValueOnLatestFilter(FilterValueType type, Object... values) {
+    ComplexFilterHelper.inputValueOnLatestFilter(type, values);
+  }
+  
+  public void applyFilter() {
+    $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']")
+        .shouldBe(getClickableCondition()).click();
+    $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']").shouldHave(Condition.cssClass("ui-state-loading"));
+    $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']").shouldNotHave(Condition.cssClass("ui-state-loading"), DEFAULT_TIMEOUT);
+  }
+  
+  public void removeFilter(int index) {
+    int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
+    if (currentIndex > 0) {
+      String removeBtn = String.format("button[id$=':%s:filter-component:remove-filter']", index);
+      $(removeBtn).shouldBe(getClickableCondition()).click();
+      countFilterSelect().shouldBe(CollectionCondition.size(currentIndex - 1), DEFAULT_TIMEOUT);
+    }
+  }
 
+  public ElementsCollection countFilterSelect() {
+    return $$("[id$=':filter-component:field-selection_panel']");
+  }
+  
+  public void addCustomColumns(String... fieldNameList) {
+    openColumnManagementDialog();
+    selectCustomType();
+    
+    for(String fieldName : fieldNameList) {
+      addCustomFields(fieldName);
+    }
+    $("button[id$='column-management-save-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+  }
+  
+  public void closeFilter() {
+    $("span[id$=':widget-title-group']").$("label").scrollIntoView(("{block: \"start\"}")).click();
+    $("div[id$=':widget-filter-content']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    waitPreviewTableLoaded();
+  }
+  
+  public void resetFilter() {
+    $("button[id$=':reset-filter']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    countFilterSelect().shouldBe(CollectionCondition.size(0), DEFAULT_TIMEOUT);
+  }
+
+  public WebElement getQuickSearchCheckBox() {
+    return $("div[id$='widget-preview']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+  }
+
+  public void clickOnQuickSearchCheckBox() {
+    getQuickSearchCheckBox().click();
+  }
+  
+  public boolean isQuickSearchClicked(String fieldName) {
+    return getColumnManagementDialog().$("div[id$='column-management-datatable']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("table tbody").$$("tr").filter(text(fieldName)).first()
+        .$("div[id$='quick-search-checkbox-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a").$("span span")
+        .getAttribute("class").contains("ui-chkbox-icon");
+  }
+  
+  public void clickOnQuickSearchByField(String fieldName) {
+    var quickSeatchChkbox = getColumnManagementDialog().$("div[id$='column-management-datatable']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("table tbody").$$("tr").filter(text(fieldName)).first().$("div[id$='quick-search-checkbox-panel']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    quickSeatchChkbox.click();
+  }
+
+  public void addCustomFieldByCustomTypeAndFieldName(String customType, String fieldName) {
+    switch (customType) {
+    case (CUSTOM_FIELD):
+      customType = "custom-field";
+      selectCustomType();
+      getCustomFieldSelection().click();
+      break;
+    case (CUSTOM_CASE_FIELD):
+      customType = "custom-case-field";
+      selectCustomCaseType();
+      getCustomCaseFieldSelection().click();
+      break;
+    default:
+      break;
+    }
+    customType.toLowerCase();
+    String spanId = String.format("span[id*='%s-selection_panel']", customType);
+    $(spanId).$("ul").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li")
+        .filter(text(fieldName)).first().click();
+    getColumnManagementDialog().$("button[id$='field-add-btn']").click();
+  }
 }

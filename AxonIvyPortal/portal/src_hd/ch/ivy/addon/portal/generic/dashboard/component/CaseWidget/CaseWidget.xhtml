@@ -10,7 +10,6 @@
   <cc:attribute name="isReadOnlyMode" default="false"/>
   <cc:attribute name="isPreviewMode" default="false"/>
   <cc:attribute name="onCompleteLoadWidget" />
-  <cc:attribute name="componentToUpdateCaseWidget" />
 </cc:interface>
 
 <cc:implementation>
@@ -20,7 +19,8 @@
 
   <p:remoteCommand id="rcLoadCaseFirstTime" autoRun="true" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
     update="dashboard-cases-container" global="false" async="true" process="@this"
-    oncomplete="loadWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); initTableWidget(PF('dashboard-cases-#{caseWidget.id}')); #{cc.attrs.onCompleteLoadWidget}" />
+    oncomplete="loadCaseAndTaskWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); #{cc.attrs.onCompleteLoadWidget} #{cc.attrs.isPreviewMode ? 'calculateFilterPaneltPosition();' : ''}" />
+  <p:inputText type="hidden" value="dashboard-cases-#{caseWidget.id}" styleClass="js-table-widget-var" rendered="#{!isPreviewMode}" />
   <div class="ui-g">
     <h:panelGroup layout="block"
       styleClass="js-loading-#{caseWidget.id} case-dashboard-widget__loading-message ui-g-12">
@@ -42,13 +42,12 @@
 
       <p:dataTable id="dashboard-cases" widgetVar="dashboard-cases-#{caseWidget.id}" value="#{caseWidget.dataModel}" var="caseItem"
         lazy="true" scrollRows="25"
-        disabledSelection="#{isPreviewMode}"
         liveScroll="true" scrollable="true" sortBy="#{caseWidget.sortBy}"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-cases--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and caseWidget.caseCount lt 1 ? 'u-display-none' : ''}"
         rowStyleClass="dashboard-table--row-style"
-        emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" >
-        
+        emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
+        disabledSelection="#{isPreviewMode}">
         <p:ajax event="rowSelect" listener="#{dashboardBean.navigateToSelectedCaseDetails}" disabled="#{!isReadOnlyMode}" />
         <p:ajax event="sort" update="dashboard-cases" onstart="liveScroll()" />
 
@@ -137,9 +136,11 @@
   </div>
   <script type="text/javascript">
       function liveScroll() {
-        PF('dashboard-cases-#{caseWidget.id}').scrollOffset = 0;
-        PF('dashboard-cases-#{caseWidget.id}').scrollBody.scrollTop(1);
-        PF('dashboard-cases-#{caseWidget.id}').allLoadedLiveScroll = false;
+        if (PF('dashboard-cases-#{caseWidget.id}') != null) {
+          PF('dashboard-cases-#{caseWidget.id}').scrollOffset = 0;
+          PF('dashboard-cases-#{caseWidget.id}').scrollBody.scrollTop(1);
+          PF('dashboard-cases-#{caseWidget.id}').allLoadedLiveScroll = false;
+        }
       }
 
     </script>

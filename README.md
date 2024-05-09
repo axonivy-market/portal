@@ -8,4 +8,14 @@ See the [Axon Ivy Portal on the Axon Ivy Market](https://market.axonivy.com/port
 
 ## License
 
-See the [LICENSE](LICENSE) file for license rights and limitations (GPL).
+See the [LICENSE](LICENSE) file for license rights and limitations (Apache License 2.0).
+
+
+## Supported Versions
+
+| Version | Supported          |
+| ------- | ------------------ |
+| 11.x.x  | :white_check_mark: |
+| 10.0.x  | :white_check_mark:  |
+|  8.0.x   | :white_check_mark: |
+| <= 7.x.x   | :x:                |

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "16B6880352B52912",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -85,7 +85,7 @@
       },
       "visual" : {
         "at" : { "x" : 432, "y" : 160 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       }
     }, {
       "id" : "f9",
@@ -103,7 +103,7 @@
       "connect" : [
         { "id" : "f8", "to" : "f7", "label" : {
             "name" : "yes",
-            "offset" : { "x" : 0, "y" : -16 }
+            "offset" : { "y" : -16 }
           } },
         { "id" : "f12", "to" : "f11", "via" : [ { "x" : 224, "y" : 256 } ] }
       ]
@@ -122,7 +122,7 @@
       },
       "visual" : {
         "at" : { "x" : 440, "y" : 256 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       }
     } ]
 }

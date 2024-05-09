@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "14B2FC03D2E87141",
   "config" : {
     "data" : "internaltest.Data"
@@ -1104,7 +1104,7 @@
       },
       "visual" : {
         "at" : { "x" : 1112, "y" : 920 },
-        "size" : { "width" : 112, "height" : 56 }
+        "size" : { "height" : 56 }
       },
       "connect" : [
         { "id" : "f175", "to" : "f171", "var" : "in1" }
@@ -1154,7 +1154,7 @@
       },
       "visual" : {
         "at" : { "x" : 1416, "y" : 920 },
-        "size" : { "width" : 112, "height" : 48 }
+        "size" : { "height" : 48 }
       },
       "connect" : [
         { "id" : "f180", "to" : "f179" }
@@ -1182,7 +1182,7 @@
       },
       "visual" : {
         "at" : { "x" : 544, "y" : 580 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       },
       "connect" : [
         { "id" : "f61", "to" : "f60", "var" : "in1" }
@@ -1218,7 +1218,7 @@
       },
       "visual" : {
         "at" : { "x" : 544, "y" : 664 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f63", "to" : "f62", "condition" : "ivp==\"TaskA.ivp\"" }

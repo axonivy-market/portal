@@ -43,8 +43,10 @@ import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.dto.News;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
+import com.google.common.base.Predicate;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
@@ -95,6 +97,7 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 public class DashboardDetailModificationBean extends DashboardBean implements Serializable, PropertyChangeListener {
 
   private static final long serialVersionUID = -5272278165636659596L;
+  private static final String DEFAULT_COMPLEX_USER_FILTER_ID = "widget-configuration-form:new-widget-configuration-component:predefined-filter";
   private static final String DEFAULT_USER_FILTER_ID = "widget-configuration-form:new-widget-configuration-component:user-filter";
   private static final String DEFAULT_WIDGET_TITLE_ID = "widget-configuration-form:new-widget-configuration-component:widget-title-group";
   private static final String PROCESS_ICON_CUSTOM_FIELD = "cssIcon";
@@ -457,12 +460,14 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       case WELCOME -> {
         updateWelcomeWidget(widget);
       }
+      case CASE -> {
+        updateCaseWidget(widget);
+      }
       default -> {}
     }
     updateWidgetPosition(widget);
     resetUserFilter();
     initMultipleLanguagesForWidgetName(this.widget.getName());
-    this.widget.buildPredefinedFilterData();
     if (widgets.contains(this.widget)) {
       widgets.set(widgets.indexOf(this.widget), this.widget);
     } else {
@@ -484,6 +489,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         welcomeWidget.setImageLocation(null);
       }
     }
+  }
+  
+  public void onReset(DashboardWidget widget) {
+    resetUserFilter();
   }
 
   private void updateApplicationForCompactProcess(CompactProcessDashboardWidget compactProcessWidget) {
@@ -532,6 +541,22 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         tempImageFile.delete();
       }
     }
+  }
+
+  private void updateCaseWidget(DashboardWidget widget) {
+    var caseWidget = (CaseDashboardWidget) widget;
+    if (CollectionUtils.isNotEmpty(caseWidget.getFilters())) {
+      caseWidget.setFilters(caseWidget.getFilters().stream()
+          .filter(Objects::nonNull).filter(checkValidFilter()).collect(Collectors.toList()));
+    }
+  }
+
+  private Predicate<DashboardFilter> checkValidFilter() {
+    return filter -> {
+      return StringUtils.isNotBlank(filter.getField())
+          && filter.getOperator() != null
+          && filter.getFilterType() != null;
+    };
   }
 
   private void removeTempImageOfWelcomeWidget(DashboardWidget widget) {
@@ -876,11 +901,16 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     DashboardWidget processWidget = getWidget();
     if (processWidget != null) {
       componentId = DEFAULT_WIDGET_TITLE_ID;
-      if (NEWS != processWidget.getType()) {
-        componentId = componentId.concat(" ").concat(DEFAULT_USER_FILTER_ID);
+      if (NEWS != processWidget.getType() && CASE != processWidget.getType() && TASK != processWidget.getType()) {
+        String userFilterId = String.format(DEFAULT_USER_FILTER_ID, processWidget.getId());
+        componentId = componentId.concat(" ").concat(userFilterId);
       } 
       if (PROCESS == processWidget.getType()) {
         componentId = componentId.concat(" widget-configuration-form");
+      }
+      if (CASE == processWidget.getType() || TASK == processWidget.getType()) {
+        String userFilterId = String.format(DEFAULT_COMPLEX_USER_FILTER_ID, processWidget.getId());
+        componentId = componentId.concat(" ").concat(userFilterId);
       }
     }
     return componentId;
@@ -948,4 +978,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void setCustomWidgets(List<DashboardProcess> customWidgets) {
     this.customWidgets = customWidgets;
   }
+
+  public boolean canEnableQuickSearch() {
+    return Optional.ofNullable(this.widget).map(DashboardWidget::getType).map(DashboardWidgetType::canEnableQuickSearch)
+        .orElse(false);
+  }
+
 }

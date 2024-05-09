@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "15FFC669C88F7E0B",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -101,9 +101,7 @@
         "at" : { "x" : 112, "y" : 448 }
       },
       "connect" : [
-        { "id" : "f45", "to" : "f43", "via" : [ { "x" : 448, "y" : 448 } ], "label" : {
-            "segment" : 0.58
-          } }
+        { "id" : "f45", "to" : "f43", "via" : [ { "x" : 448, "y" : 448 } ] }
       ]
     }, {
       "id" : "f42",
@@ -133,9 +131,7 @@
         "at" : { "x" : 112, "y" : 544 }
       },
       "connect" : [
-        { "id" : "f46", "to" : "f43", "via" : [ { "x" : 448, "y" : 544 } ], "label" : {
-            "segment" : 0.58
-          } }
+        { "id" : "f46", "to" : "f43", "via" : [ { "x" : 448, "y" : 544 } ] }
       ]
     }, {
       "id" : "f43",
@@ -237,9 +233,7 @@
         "at" : { "x" : 112, "y" : 352 }
       },
       "connect" : [
-        { "id" : "f44", "to" : "f43", "via" : [ { "x" : 448, "y" : 352 } ], "label" : {
-            "segment" : 0.72
-          } }
+        { "id" : "f44", "to" : "f43", "via" : [ { "x" : 448, "y" : 352 } ] }
       ]
     }, {
       "id" : "f13",
@@ -298,9 +292,7 @@
         "at" : { "x" : 112, "y" : 640 }
       },
       "connect" : [
-        { "id" : "f18", "to" : "f43", "via" : [ { "x" : 448, "y" : 640 } ], "label" : {
-            "segment" : 0.72
-          } }
+        { "id" : "f18", "to" : "f43", "via" : [ { "x" : 448, "y" : 640 } ] }
       ]
     }, {
       "id" : "f21",
@@ -315,9 +307,7 @@
       },
       "connect" : [
         { "id" : "f32", "to" : "f31" },
-        { "id" : "f20", "to" : "f11", "via" : [ { "x" : 648, "y" : 976 } ], "label" : {
-            "segment" : 0.87
-          } }
+        { "id" : "f20", "to" : "f11", "via" : [ { "x" : 648, "y" : 976 } ] }
       ]
     }, {
       "id" : "f10",
@@ -361,9 +351,7 @@
         "labelOffset" : { "x" : 23, "y" : 36 }
       },
       "connect" : [
-        { "id" : "f23", "to" : "f43", "via" : [ { "x" : 448, "y" : 736 } ], "label" : {
-            "segment" : 0.86
-          } }
+        { "id" : "f23", "to" : "f43", "via" : [ { "x" : 448, "y" : 736 } ] }
       ]
     }, {
       "id" : "f24",
@@ -393,9 +381,7 @@
         "at" : { "x" : 112, "y" : 832 }
       },
       "connect" : [
-        { "id" : "f25", "to" : "f43", "via" : [ { "x" : 448, "y" : 832 } ], "label" : {
-            "segment" : 1.0
-          } }
+        { "id" : "f25", "to" : "f43", "via" : [ { "x" : 448, "y" : 832 } ] }
       ]
     }, {
       "id" : "f28",
@@ -487,7 +473,7 @@
       },
       "visual" : {
         "at" : { "x" : 256, "y" : 976 },
-        "size" : { "width" : 160, "height" : 60 }
+        "size" : { "width" : 160 }
       },
       "connect" : [
         { "id" : "f16", "to" : "f21" }
@@ -544,7 +530,7 @@
       },
       "visual" : {
         "at" : { "x" : 392, "y" : 1072 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       },
       "connect" : [
         { "id" : "f19", "to" : "f13" }
@@ -623,9 +609,7 @@
         "labelOffset" : { "x" : -2, "y" : 35 }
       },
       "connect" : [
-        { "id" : "f49", "to" : "f43", "via" : [ { "x" : 448, "y" : 904 } ], "label" : {
-            "segment" : 1.09
-          } }
+        { "id" : "f49", "to" : "f43", "via" : [ { "x" : 448, "y" : 904 } ] }
       ]
     } ]
 }

@@ -49,7 +49,7 @@
         icon="si si-add"
         actionListener="#{dashboardDetailModificationBean.initSampleWidgets()}"
         update="new-widget-dialog"
-        process="@this"
+        process="@this" global="false"
         oncomplete="PF('new-widget-dialog').show()" styleClass="u-hidden-md-down" />
     </ui:define>
 
