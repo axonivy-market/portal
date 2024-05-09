@@ -7,7 +7,7 @@ Define Task Widget
 ------------------
 
 The Task widget of the Portal dashboard is an interactive task list. Refer
-to (link to task widget of the dashboard) for details.
+to :ref:`Task List Widget <new-dashboard-task-list-widget>` for details.
 
 Below is a sample JSON definition of a task widget in the Portal dashboard
 
@@ -344,7 +344,7 @@ Quick Search
 ------------
 
 The Quick search is a useful function for users to quickly search the tasks within the task widget.
-The configuration of the quick search has two attributes::
+The configuration of the quick search has two attributes:
    
    * ``enableQuickSearch``: enables the quick search feature for the widget.
 
