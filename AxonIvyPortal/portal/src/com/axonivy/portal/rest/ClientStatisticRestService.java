@@ -7,6 +7,8 @@ import javax.naming.NoPermissionException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
@@ -27,11 +29,10 @@ public class ClientStatisticRestService {
 
   @POST
   @Path(value = "data")
+  @Produces(MediaType.APPLICATION_JSON)
   @ApiResponses(value = {
       @ApiResponse(responseCode = "200", description = "Get chart data by Id", content = {
           @Content(mediaType = "application/json", schema = @Schema(implementation = AggregationResult.class)) }),
-      @ApiResponse(responseCode = "404", description = "Chart Id not found"),
-      @ApiResponse(responseCode = "403", description = "Don't have permission to get the data"),
       @ApiResponse(responseCode = "406", description = "Invalid call") })
   public Response getData(ClientStatisticDto payload) {
     if (Optional.ofNullable(payload).map(ClientStatisticDto::getChartId).isEmpty()) {
@@ -41,9 +42,9 @@ public class ClientStatisticRestService {
       ClientStatisticResponse result = ClientStatisticService.getInstance().getStatisticData(payload);
       return Response.ok(result).build();
     } catch (NotFoundException e) {
-      return Response.status(Status.NOT_FOUND).entity(e.getMessage()).build();
+      return Response.ok(e.getMessage()).build();
     } catch (NoPermissionException e) {
-      return Response.status(Status.FORBIDDEN).entity(e.getMessage()).build();
+      return Response.ok(e.getMessage()).build();
     }
   }
 
