@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.naming.NoPermissionException;
 import javax.ws.rs.NotFoundException;
@@ -83,8 +85,9 @@ public class ClientStatisticService extends JsonConfigurationService<ClientStati
   }
 
   private List<Entry<String, String>> getAdditionalConfig() {
-    return List.of(new SimpleEntry<>(AdditionalChartConfig.EMPTY_CHART_DATA_MESSAGE.getKey(),
-        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/EmptyChartDataMessage")));
+    return Stream.of(AdditionalChartConfig.values()).flatMap(Stream::of)
+        .map(config -> new SimpleEntry<>(config.getKey(), config.getCms()))
+        .collect(Collectors.toList());
   }
 
   private boolean isPermissionValid(ClientStatistic data) {

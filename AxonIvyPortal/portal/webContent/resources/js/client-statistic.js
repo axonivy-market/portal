@@ -27,17 +27,17 @@ const isNumeric = number => {
 }
 
 async function postFetchApi(uri, content) {
-    const response = await fetch(uri, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Requested-By': 'ivy',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST',
-      },
-      body: content
-    });
-    return response;
+  const response = await fetch(uri, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Requested-By': 'ivy',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST',
+    },
+    body: content
+  });
+  return response;
 }
 
 function filterOptionsForDateTimeFormatter(pattern) {
@@ -81,23 +81,23 @@ function formatISODate(dt) {
 }
 
 async function fetchChartData(chart, chartId) {
-	let data;
-	let cloneResponse;
+  let data;
+  let cloneResponse;
 
-	try {
-		const response = await postFetchApi(statisticApiURL, JSON.stringify({ "chartId": chartId }));
-		cloneResponse = await response.clone();
-		data = await response.json();
-		return await data;
-	} catch (error) {
-		(new ClientChart()).renderNoPermissionStatistics(chart, await cloneResponse.text());
-		return;
-	}
+  try {
+    const response = await postFetchApi(statisticApiURL, JSON.stringify({ "chartId": chartId }));
+    cloneResponse = await response.clone();
+    data = await response.json();
+    return await data;
+  } catch (error) {
+    (new ClientChart()).renderNoPermissionStatistics(chart, await cloneResponse.text());
+    return;
+  }
 }
 
 async function refreshChart(chartInfo) {
-    data = await fetchChartData(chartInfo.chart.chart, chartInfo.chartId);
-	chartInfo.chart.update(data);
+  data = await fetchChartData(chartInfo.chart.chart, chartInfo.chartId);
+  chartInfo.chart.update(data);
 }
 
 function initRefresh(refreshInfos) {
@@ -126,11 +126,11 @@ function initClientCharts(statisticEndpoint) {
 
   charts.forEach(async chart => {
     let chartId = chart.getAttribute(DATA_CHART_ID);
-	let data = await fetchChartData(chart, chartId);
+    let data = await fetchChartData(chart, chartId);
 
-	if (!data) {
-		return;
-	}
+    if (!data) {
+      return;
+    }
 
     let chartData = generateChart(chart, data);
     const config = data.chartConfig;
@@ -232,9 +232,24 @@ class ClientCanvasChart extends ClientChart {
 
   // Method to format chart label
   formatChartLabel(label) {
+    // Handle date time label
     if (isNumeric((new Date(label)).getTime())) {
       return formatDateFollowLocale(new Date(label));
     }
+
+    // Handle category label
+    if (this.data.chartConfig.aggregates.startsWith('category')) {
+      if (label === '') {
+        this.data.chartConfig.additionalConfig.find(function (item) {
+          if (Object.keys(item)[0] === 'noCategory') {
+            label = Object.values(item)[0];
+            return label;
+          }
+        });
+      }
+      return label;
+    }
+
     return label;
   }
 
@@ -300,7 +315,7 @@ class ClientCartesianChart extends ClientCanvasChart {
     } else {
       //If the target type for the Y axis is 'time', get average time from sub aggregate of the result.
       const chartTypeConfig = this.getChartTypeConfig();
-      let data = config?.yValue ? this.processBarChartYValue(result, config?.yValue) : result;
+      let data = chartTypeConfig?.yValue ? this.processBarChartYValue(result, chartTypeConfig?.yValue) : result;
       let stepSize = chartTypeConfig?.yValue === 'time' ? 200 : 2;
       let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
 
@@ -355,16 +370,14 @@ class ClientCartesianChart extends ClientCanvasChart {
       case 'time': {
         const values = [];
         result.forEach((bucket) => {
-          if (bucket.key.trim().length !== 0) {
-            bucket.aggs.forEach((item) => {
-              if (item['name'] === AVERAGE_BUSINESS_RUNTIME) {
-                values.push({
-                  key: bucket.key,
-                  count: item.value
-                });
-              }
-            });
-          }
+          bucket.aggs.forEach((item) => {
+            if (item['name'] === AVERAGE_BUSINESS_RUNTIME) {
+              values.push({
+                key: bucket.key,
+                count: item.value
+              });
+            }
+          });
         });
         return values;
       };
@@ -500,6 +513,10 @@ class ClientNumberChart extends ClientChart {
   // Method to format chart label.
   // Example: IN_PROGRESS -> In Progess
   formatChartLabel(label) {
+    if (isNumeric((new Date(label)).getTime())) {
+      return formatDateFollowLocale(new Date(label));
+    }
+
     return label.toLowerCase()
       .split('_')
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))
