@@ -134,7 +134,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public void initSampleWidgets() {
     if (CollectionUtils.isEmpty(samples)) {
-      samples = List.of(taskSample(), caseSample(), processSample(), statisticSample(), externalPageSample(),
+      samples = List.of(taskSample(), caseSample(), processSample(), externalPageSample(),
           processViewerSample(), welcomeWidgetSample(), newsSample(), notificationSample());
       samples = samples.stream().sorted(Comparator.comparing(WidgetSample::getName)).collect(Collectors.toList());
     }
