@@ -357,19 +357,19 @@
       "xTitles": [
         {
           "locale": "de",
-          "value": "Tag"
+          "value": "Datum"
         },
         {
           "locale": "en",
-          "value": "Day"
+          "value": "Date"
         },
         {
           "locale": "fr",
-          "value": "Jour"
+          "value": "Date"
         },
         {
           "locale": "es",
-          "value": "Día"
+          "value": "Fecha"
         }
       ],
       "yTitles": [
@@ -632,7 +632,7 @@
     }
   },
   {
-    "id": "9",
+    "id": "10",
     "aggregates": "businessState",
     "filter": "canWorkOn",
     "permissions": [
@@ -684,8 +684,8 @@
   },
   {
     "id": "11",
-    "aggregates": "exprityTimestamp:bucket:day",
-    "filter": "canWorkOn,exprityTimestamp:>=now/d <now/d+d",
+    "aggregates": "expiryTimestamp:bucket:day",
+    "filter": "canWorkOn,expiryTimestamp:>=now/d <now/d+d",
     "permissions": [
       "Everybody"
     ],
