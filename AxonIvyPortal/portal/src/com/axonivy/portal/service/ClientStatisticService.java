@@ -11,7 +11,8 @@ import java.util.Optional;
 import javax.naming.NoPermissionException;
 import javax.ws.rs.NotFoundException;
 
-import com.axonivy.portal.bo.ChartTarget;
+import org.apache.commons.lang3.StringUtils;
+
 import com.axonivy.portal.bo.ClientStatistic;
 import com.axonivy.portal.dto.ClientStatisticDto;
 import com.axonivy.portal.enums.AdditionalChartConfig;
@@ -38,31 +39,47 @@ public class ClientStatisticService extends JsonConfigurationService<ClientStati
     return findAll();
   }
 
-  public ClientStatisticResponse getStatisticData(ClientStatisticDto payload) throws NotFoundException, NoPermissionException {
+  /**
+   * get client chart by payload then call Ivy API to get statistic data from
+   * ElasticSearch
+   * 
+   * @param payload
+   * @return Ivy statistic data from ElasticSearch
+   * @throws NotFoundException
+   * @throws NoPermissionException
+   */
+  public ClientStatisticResponse getStatisticData(ClientStatisticDto payload)
+      throws NotFoundException, NoPermissionException {
     ClientStatistic chart = findById(payload.getChartId());
+    validateChart(payload.getChartId(), chart);
+    AggregationResult result = getChartData(chart);
+    chart.setAdditionalConfig(getAdditionalConfig());
+    return new ClientStatisticResponse(result, chart);
+  }
+
+  private void validateChart(String chartId, ClientStatistic chart)
+      throws NotFoundException, NoPermissionException {
     if (chart == null) {
       throw new NotFoundException(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/exception/idNotFound",
-          Arrays.asList(payload.getChartId())));
+          Arrays.asList(chartId)));
     }
 
     if (!isPermissionValid(chart)) {
       throw new NoPermissionException(
           Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/ClientStatisticWidget/NoPermissionChartMessage"));
     }
-    AggregationResult result = getChartData(chart);
-    chart.setAdditionalConfig(getAdditionalConfig());
-    return new ClientStatisticResponse(result, chart);
   }
 
   private AggregationResult getChartData(ClientStatistic chart) {
-    if (ChartTarget.CASE.equals(chart.getChartTarget())) {
-      return WorkflowStats.current().caze().aggregate(chart.getAggregates(), chart.getFilter());
-    } else if (ChartTarget.TASK.equals(chart.getChartTarget())) {
-      return WorkflowStats.current().task().aggregate(chart.getAggregates(), chart.getFilter());
-    } else {
-      throw new InvalidParameterException();
-    }
+    chart.setFilter(StringUtils.stripToNull(chart.getFilter()));
 
+    return switch (chart.getChartTarget()) {
+    case CASE -> WorkflowStats.current().caze().aggregate(chart.getAggregates(),
+        chart.getFilter());
+    case TASK -> WorkflowStats.current().task().aggregate(chart.getAggregates(),
+        chart.getFilter());
+    default -> throw new InvalidParameterException();
+    };
   }
 
   private List<Entry<String, String>> getAdditionalConfig() {
