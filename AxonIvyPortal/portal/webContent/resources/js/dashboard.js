@@ -456,14 +456,11 @@ function initTableWidget(table) {
 function searchNewWidgetByNameOrDescription(input) {
   var keyword = input.value.toLowerCase();
   $('.js-widget').each(function() {
-    var hasKeyword = false;
-
     if ($(this).find('.new-widget-dialog__item-title span').text().toLowerCase().includes(keyword)) {
-      hasKeyword = true;
-      return;
+      $(this).removeClass('u-hidden');
+    } else {
+      $(this).addClass('u-hidden');
     }
-
-    hasKeyword ? $(this).removeClass('u-hidden') : $(this).addClass('u-hidden');
   });
 
   var noResult = true;
