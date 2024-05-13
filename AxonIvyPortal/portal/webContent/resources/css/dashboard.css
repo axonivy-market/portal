@@ -810,7 +810,6 @@ span.new-widget-dialog__icon.si {
   font-weight: var(--new-widget-dialog-title-font-weight);
   font-style: var(--new-widget-dialog-title-font-style);
   font-size: var(--new-widget-dialog-title-font-size);
-  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   display: block;
