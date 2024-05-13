@@ -27,6 +27,7 @@
     <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode or isPreviewMode}" />
     <ui:param name="isRenderInfo" value="false" />
     <ui:param name="isRenderEdit" value="false" />
+    <ui:param name="widgetContentStyleClass" value="client-statistic" />
 
     <ui:define name="widgetContent">
       <h:panelGroup id="stat-chart-widget__content" rendered="#{widget.id ne null}" layout="block"

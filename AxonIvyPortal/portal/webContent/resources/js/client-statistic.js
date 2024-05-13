@@ -431,9 +431,9 @@ class ClientNumberChart extends ClientChart {
       return result;
     }
 
-    // If cannot recognize result, render only 1 result with key is the aggregate of chart 
+    // If cannot recognize result, render only 1 result with empty key
     return [{
-      key: this.data.chartConfig.aggregates,
+      key: '',
       count: 0,
       aggs: []
     }];
@@ -452,6 +452,7 @@ class ClientNumberChart extends ClientChart {
       result = this.fillEmptyResult();
     }
 
+    $(this.chart).parents('.statistic-chart-widget__chart').addClass('client-number-chart');
     let multipleKPI = this.renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol);
     return $(this.chart).html(multipleKPI);
   }
@@ -490,7 +491,7 @@ class ClientNumberChart extends ClientChart {
       '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
       '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +
       '    </div>' +
-      '    <div>' +
+      '    <div class="chart-label-container">' +
       '        <span class="card-name chart-name-font-size chart-number-animation">' + this.formatChartLabel(label) + '</span>' +
       '    </div>' +
       '</div>';
@@ -498,12 +499,13 @@ class ClientNumberChart extends ClientChart {
   };
 
   // Method to format chart label.
-  // Example: IN_PROGRESS -> In Progess
   formatChartLabel(label) {
+    // Format date
     if (isNumeric((new Date(label)).getTime())) {
       return formatDateFollowLocale(new Date(label));
     }
 
+    // Format enum. Example: IN_PROGRESS -> In Progess
     return label.toLowerCase()
       .split('_')
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))
