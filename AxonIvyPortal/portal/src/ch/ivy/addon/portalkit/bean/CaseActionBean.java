@@ -39,6 +39,7 @@ public class CaseActionBean implements Serializable {
   private static final String FULL_RELATIVE_URL_FORMAT = "/%s/%s/%s";
   private static final String CASE_ID_PARAM = "caseId";
   private static final String EMBED_IN_FRAME_PARAM = "embedInFrame";
+  private static final String PRO = "pro";
   private boolean isShowCaseDetails;
 
   @PostConstruct
@@ -65,14 +66,13 @@ public class CaseActionBean implements Serializable {
           .textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).getOrNull();
       if (StringUtils.isNotEmpty(additionalCaseDetailsPageUri)) {
         additionalCaseDetailsPageUri += (additionalCaseDetailsPageUri.contains("?") ? "&" : "?").concat("embedInFrame");
+        migrateOldAdditionalDetailsLink(additionalCaseDetailsPageUri, iCase);
       }
     }
     if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
       Map<String, String> params = new HashMap<>();
       params.put("caseId", String.valueOf(iCase.getId()));
       additionalCaseDetailsPageUri = PortalNavigator.buildUrlByKeyword("showAdditionalCaseDetails", START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE, params);
-    } else {
-      migrateOldAdditionalDetailsLink(additionalCaseDetailsPageUri, iCase);
     }
     return additionalCaseDetailsPageUri;
   }
@@ -183,13 +183,11 @@ public class CaseActionBean implements Serializable {
     String linkToCheck = additionalCaseDetailsPageUri.substring(1);
     List<String> linkParts = Arrays.asList(StringUtils.split(linkToCheck, "/"));
 
-    // If the link start with WebServer.IvyContextName
+    // If the link start with the old WebServer.IvyContextName
     // followed by "pro"
     // followed by the application name
     // then it's an old ivy link.
-    if (additionalCaseDetailsPageUri
-        .startsWith(IApplication.current().getContextPath())
-        && (linkParts.indexOf("pro") == 1)
+    if ((linkParts.indexOf(PRO) == 1)
         && (linkParts.indexOf(IApplication.current().getName()) == 2)) {
       return true;
     }
@@ -198,11 +196,11 @@ public class CaseActionBean implements Serializable {
   }
 
   public void migrateOldAdditionalDetailsLink(
-      String additionalCaseDetailsPageUri, ICase iCase) {
+      String additionalCaseDetailsPageUri, ICase iCase) { 
     if (isOldAdditionalDetailsLink(additionalCaseDetailsPageUri)) {
-      String ivyContextNameAndApp = "/"
-          + IApplication.current().getContextPath() + "/"
-          + iCase.getApplication().getName();
+      String ivyContextNameAndApp = String.format(FULL_RELATIVE_URL_FORMAT,
+          IApplication.current().getContextPath(), PRO,
+          iCase.getApplication().getName());
 
       String contextPart = "";
       if (additionalCaseDetailsPageUri.startsWith(ivyContextNameAndApp)) {
