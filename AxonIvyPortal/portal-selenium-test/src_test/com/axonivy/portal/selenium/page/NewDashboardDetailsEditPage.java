@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
 import org.openqa.selenium.WebElement;
@@ -9,7 +10,6 @@ import org.openqa.selenium.WebElement;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-
 public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public static final String TASK_WIDGET = "Task List";
@@ -231,5 +231,9 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     SelenideElement statisticElement = $("div[id^='client-statistic-client_statistic']").shouldBe(appear, DEFAULT_TIMEOUT).scrollTo();
     $("canvas").shouldBe(appear, DEFAULT_TIMEOUT);
     return statisticElement;
+  }
+  
+  public void scrollToStatistic() {
+    $(byText("Statistic Widgets")).shouldBe(Condition.appear, DEFAULT_TIMEOUT).scrollIntoView("{block: \"start\", inline: \"start\"}");
   }
 }
