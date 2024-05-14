@@ -19,6 +19,8 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.StatisticWidgetPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
+import ch.ivy.addon.portalkit.enums.PortalVariable;
+
 @IvyWebTest
 public class StatisticScreenshotTest extends ScreenshotBaseTest {
 
@@ -89,7 +91,19 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     WebElement newWidgetDialog = newDashboardDetailsEditPage.addWidget();
     newDashboardDetailsEditPage.scrollToStatistic();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(newWidgetDialog,
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "statistic-widget-list", new ScreenshotMargin(20));
+        ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "statistic-widget-list", new ScreenshotMargin(20));
+  }
+  
+  @Test
+  public void screenshotStatisticStandardDemo() throws IOException {
+    redirectToRelativeLink(createDataCreatedDate);
+    redirectToRelativeLink(createDataForStatisticWidget);
+    createJSonFile("dashboard-statistic-widget-demo.json", PortalVariable.DASHBOARD.key);
+    redirectToNewDashBoard();
+    ScreenshotUtils.resizeBrowser(new Dimension(1386, 1100));
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitStatisticChartLoaded();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "dashboard-statistic-widget-demo");
   }
   
 }
