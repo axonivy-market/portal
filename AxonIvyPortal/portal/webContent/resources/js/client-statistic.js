@@ -78,6 +78,12 @@ function formatISODate(dt) {
   let date = dt.getDate() < 10 ? '0' + dt.getDate() : dt.getDate();
   return year + '-' + month + '-' + date;
 }
+const convertSecondsToHour = seconds => {
+  if (!isNumeric(seconds)) {
+    return 0;
+  }
+  return seconds / 60;
+}
 
 async function fetchChartData(chart, chartId) {
   let data;
@@ -188,6 +194,7 @@ class ClientChart {
   constructor(chart, data) {
     this.chart = chart;
     this.data = data;
+    this.clientChartConfig = null;
   }
 
   // Abstract method to render client chart
@@ -200,8 +207,10 @@ class ClientChart {
   update(newData) {
     this.data = newData;
     this.dataResult = newData.result.aggs?.[0]?.buckets ?? [];
-    this.render();
+    this.updateClientChart();
   }
+
+  updateClientChart() { }
 
   // Method to render empty chart
   renderEmptyChart(chart, additionalConfig) {
@@ -259,6 +268,35 @@ class ClientCanvasChart extends ClientChart {
     $(this.chart).parents('.dashboard__widget').find('.widget__header > .widget__header-title')
       .text(this.data.chartConfig.name);
   }
+
+  updateClientChart() {
+    this.initWidgetTitle();
+
+    let result = this.data.result.aggs?.[0]?.buckets ?? [];
+    let config = this.data.chartConfig;
+    let chart = this.chart;
+
+    // Render empty chart when result empty 
+    if (result.length == 0) {
+      return this.renderEmptyChart(chart, config.additionalConfig);
+    }
+
+    // If there is no chart from the beginning, init chart config
+    if ($(this.chart).find('.empty-message-container').length > 0) {
+      this.render();
+      return;
+    }
+
+    // Update client chart config by new data
+    this.clientChartConfig.data.labels = result.map(bucket => this.formatChartLabel(bucket.key));
+    this.clientChartConfig.data.datasets = [{
+      label: config.name,
+      data: result.map(bucket => bucket.count),
+      backgroundColor: chartColors
+    }]
+
+    this.clientChartConfig.update("none");
+  }
 }
 
 // Class for pie charts
@@ -276,7 +314,7 @@ class ClientPieChart extends ClientCanvasChart {
       let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
       $(chart).html(html);
       let canvasObject = $(chart).find('canvas');
-      return new Chart(canvasObject, {
+      this.clientChartConfig = new Chart(canvasObject, {
         type: config.chartType,
         label: config.name,
         data: {
@@ -316,13 +354,13 @@ class ClientCartesianChart extends ClientCanvasChart {
     } else {
       //If the target type for the Y axis is 'time', get average time from sub aggregate of the result.
       const chartTypeConfig = this.getChartTypeConfig();
-      let data = chartTypeConfig?.yValue ? this.processBarChartYValue(result, chartTypeConfig?.yValue) : result;
+      let data = chartTypeConfig?.yValue ? this.processYValue(result, chartTypeConfig?.yValue) : result;
       let stepSize = chartTypeConfig?.yValue === 'time' ? 200 : 2;
       let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
 
       $(chart).html(html);
       let canvasObject = $(chart).find('canvas');
-      return new Chart(canvasObject, {
+      this.clientChartConfig = new Chart(canvasObject, {
         type: config.chartType,
         data: {
           labels: data.map(bucket => this.formatChartLabel(bucket.key)),
@@ -366,7 +404,7 @@ class ClientCartesianChart extends ClientCanvasChart {
   // abstract methods
   getChartTitleConfig() { }
 
-  processBarChartYValue(result, yValue) {
+  processYValue(result, yValue) {
     switch (yValue) {
       case 'time': {
         const values = [];
@@ -376,7 +414,7 @@ class ClientCartesianChart extends ClientCanvasChart {
               if (item['name'] === AVERAGE_BUSINESS_RUNTIME) {
                 values.push({
                   key: bucket.key,
-                  count: item.value
+                  count: convertSecondsToHour(item.value)
                 });
               }
             });
@@ -541,5 +579,9 @@ class ClientNumberChart extends ClientChart {
       });
     // Remove duplicated states if any. ['OPEN','DONE', 'OPEN'] => ['OPEN','DONE']
     return result.filter((item, index) => result.indexOf(item) == index);
+  }
+
+  updateClientChart() {
+    this.render();
   }
 }
