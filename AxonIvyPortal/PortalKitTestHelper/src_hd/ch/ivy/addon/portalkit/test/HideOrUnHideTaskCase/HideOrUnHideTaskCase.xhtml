@@ -8,13 +8,13 @@
 <h:body>
   <h1>Hide or unhide task/case</h1>
   <h:form>
-    <p:panelGrid columns="2">
+    <p:panelGrid columns="2" layout="tabular">
       <h:outputText value="Enter case id you want to hide or unhide" />
       <p:inputText value="#{data.caseId}" />
       <h:outputText value="Enter task id you want to hide or unhide" />
       <p:inputText value="#{data.taskId}" />
     </p:panelGrid>
-    <p:panelGrid columns="1">
+    <p:panelGrid columns="1" layout="tabular">
       <p:commandButton value="Hide" actionListener="#{logic.hide}" />
       <p:commandButton value="UnHide" actionListener="#{logic.unhide}" />
     </p:panelGrid>

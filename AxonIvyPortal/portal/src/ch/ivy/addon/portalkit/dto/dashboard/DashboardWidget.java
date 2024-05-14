@@ -58,8 +58,6 @@ public abstract class DashboardWidget implements Serializable {
   @JsonIgnore
   protected boolean autoPosition;
   @JsonIgnore
-  protected boolean hasPredefinedFilter;
-  @JsonIgnore
   protected Optional<String> userDefinedFiltersCount;
   @JsonIgnore
   protected String searchSavedFilterKeyword;
@@ -67,6 +65,9 @@ public abstract class DashboardWidget implements Serializable {
   protected List<WidgetFilterModel> savedFilters;
   @JsonIgnore
   protected UserFilterCollection userFilterCollection;
+  private boolean enableQuickSearch;
+  @JsonIgnore
+  private String quickSearchKeyword;
 
   public DashboardWidget() {}
 
@@ -76,7 +77,6 @@ public abstract class DashboardWidget implements Serializable {
     names = widget.getNames();
     setLayout(widget.getLayout());
     autoPosition = widget.getAutoPosition();
-    hasPredefinedFilter = widget.isHasPredefinedFilter();
     userDefinedFiltersCount = widget.getUserDefinedFiltersCount();
     searchSavedFilterKeyword = widget.getSearchSavedFilterKeyword();
     savedFilters = widget.getSavedFilters();
@@ -93,11 +93,33 @@ public abstract class DashboardWidget implements Serializable {
   public void buildStatisticInfos() {}
 
   @JsonIgnore
+  public void setQuickSearchKeyword() {
+  }
+
+  @JsonIgnore
+  public void updateQuickSearchKeyword() {
+    setQuickSearchKeyword();
+
+    if (this.userFilterCollection == null) {
+      this.userFilterCollection = new UserFilterCollection(id, getType());
+    }
+    this.userFilterCollection.setQuickSearchKeyword(getQuickSearchKeyword());
+
+    var filterService = WidgetFilterService.getInstance();
+    filterService.storeUserSelectedFiltersToSession(id, getType(), userFilterCollection);
+  }
+
+  @JsonIgnore
   public void onResetUserFilters() {
     setSearchSavedFilterKeyword("");
     this.setUserDefinedFiltersCount(Optional.empty());
     resetWidgetFilters();
     userFilterCollection = new UserFilterCollection(id, getType());
+    
+    if (StringUtils.isNotBlank(this.quickSearchKeyword)) {
+      userFilterCollection.setQuickSearchKeyword(this.quickSearchKeyword);
+    }
+
     onApplyUserFilters();
   }
   
@@ -105,8 +127,13 @@ public abstract class DashboardWidget implements Serializable {
   public abstract void resetWidgetFilters();
 
   @JsonIgnore
-  public void onCancelUserFilters() {}
-  
+  public void onCancelUserFilters() {
+    cancelUserFilter();
+  }
+
+  @JsonIgnore
+  public abstract void cancelUserFilter();
+
   @JsonIgnore
   public void onApplyUserFilters() {
     var filterService = WidgetFilterService.getInstance();
@@ -117,12 +144,8 @@ public abstract class DashboardWidget implements Serializable {
   }
 
   @JsonIgnore
-  public void buildPredefinedFilterData() {}
-
-  @JsonIgnore
   public void loadUserFilter() {
     updateSavedFiltersSelection();
-
     var latestUserFilterOptions = getUserFilterCollection().getLatestFilterOption();
     WidgetFilterService.getInstance().updateFilterOptionsData(this, latestUserFilterOptions);
   }
@@ -218,14 +241,6 @@ public abstract class DashboardWidget implements Serializable {
     this.autoPosition = autoPosition;
   }
 
-  public boolean isHasPredefinedFilter() {
-    return hasPredefinedFilter;
-  }
-
-  public void setHasPredefinedFilter(boolean hasPredefinedFilter) {
-    this.hasPredefinedFilter = hasPredefinedFilter;
-  }
-
   public Optional<String> getUserDefinedFiltersCount() {
     return userDefinedFiltersCount;
   }
@@ -292,5 +307,28 @@ public abstract class DashboardWidget implements Serializable {
     } else if (!id.equals(other.id))
       return false;
     return true;
+  }
+
+  public boolean isEnableQuickSearch() {
+    return enableQuickSearch;
+  }
+
+  public void setEnableQuickSearch(boolean enableQuickSearch) {
+    this.enableQuickSearch = enableQuickSearch;
+  }
+
+  @JsonIgnore
+  public boolean canEnableQuickSearch() {
+    return this.enableQuickSearch && this.getType().canEnableQuickSearch();
+  }
+
+  @JsonIgnore
+  public String getQuickSearchKeyword() {
+    return quickSearchKeyword;
+  }
+
+  @JsonIgnore
+  public void setQuickSearchKeyword(String quickSearchKeyword) {
+    this.quickSearchKeyword = quickSearchKeyword;
   }
 }

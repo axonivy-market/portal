@@ -24,6 +24,7 @@ public class UserFilterCollection implements Serializable {
   private List<WidgetFilterModel> selectedWidgetFilters;
   private List<String> selectedWidgetFilterIds;
   private WidgetFilterModel latestFilterOption;
+  private String quickSearchKeyword;
 
   @JsonIgnore
   private List<WidgetFilterModel> widgetFilterSelections;
@@ -89,14 +90,18 @@ public class UserFilterCollection implements Serializable {
   public void updateUserFilterOptionValue(DashboardWidget widget) {
     latestFilterOption = new WidgetFilterModel(widget.getName(), widget.getType());
     List<ColumnModel> columns = new ArrayList<>();
-    if (DashboardWidgetType.TASK == widget.getType()) {
-      columns = ((TaskDashboardWidget) widget).getFilterableColumns();
-    } else if (DashboardWidgetType.CASE == widget.getType()) {
-      columns = ((CaseDashboardWidget) widget).getFilterableColumns();
-    } else if (DashboardWidgetType.PROCESS == widget.getType()) {
-      columns = ((CompactProcessDashboardWidget) widget).getFilterableColumns();
+
+    if (widget.getType() == DashboardWidgetType.CASE) {
+      latestFilterOption.setUserFilters(((CaseDashboardWidget) widget).getUserFilters());
+    } 
+    if (widget.getType() == DashboardWidgetType.TASK) {
+      latestFilterOption.setUserFilters(((TaskDashboardWidget) widget).getUserFilters());
     }
-    latestFilterOption.addFilterableColumns(columns);
+    else if (DashboardWidgetType.PROCESS == widget.getType()) {
+      columns = ((CompactProcessDashboardWidget) widget).getFilterableColumns();
+      latestFilterOption.addFilterableColumns(columns);
+    }
+
     setSelectedWidgetFilterIds(ListUtilities.transformList(getSelectedWidgetFilters(), WidgetFilterModel::getId));
   }
 
@@ -109,5 +114,13 @@ public class UserFilterCollection implements Serializable {
 
   public void setSelectedFilterOptionMap(Map<String, FilterColumnModel> selectedFilterOptionMap) {
     this.selectedFilterOptionMap = selectedFilterOptionMap;
+  }
+  
+  public String getQuickSearchKeyword() {
+    return quickSearchKeyword;
+  }
+
+  public void setQuickSearchKeyword(String quickSearchKeyword) {
+    this.quickSearchKeyword = quickSearchKeyword;
   }
 }

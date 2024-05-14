@@ -4,6 +4,7 @@ import com.axonivy.portal.datamodel.NotificationLazyModel;
 import com.axonivy.portal.dto.NotificationDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
@@ -49,7 +50,8 @@ public class NotificationDashboardWidget extends DashboardWidget {
   }
 
   @Override
-  public void resetWidgetFilters() { }
+  public void resetWidgetFilters() {
+  }
 
   @Override
   public DashboardWidgetType getType() {
@@ -77,4 +79,18 @@ public class NotificationDashboardWidget extends DashboardWidget {
   public boolean hasNotifications() {
     return this.onlyUnread ? countUnread != 0 : countAll != 0;
   }
+
+  @Override
+  public void cancelUserFilter() { }
+  
+  public void startTaskFromNoti(NotificationDto dto) {
+    markAsRead(dto);
+    PortalNavigator.redirect(dto.getRunAction().getLink().getRelative());
+  }
+  
+  public void goToTaskDetail(NotificationDto dto) {
+    markAsRead(dto);
+    PortalNavigator.redirect(dto.getInfoAction().getLink().getRelative());
+  }
+
 }

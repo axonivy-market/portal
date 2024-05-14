@@ -44,7 +44,6 @@ public class DashboardColumnManagementTest extends BaseTest {
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
     CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
-    caseEditWidget.preview();
     caseEditWidget.openColumnManagementDialog();
 
     caseEditWidget.removeAddedField("id");
@@ -83,7 +82,6 @@ public class DashboardColumnManagementTest extends BaseTest {
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
-    taskEditWidget.preview();
     taskEditWidget.openColumnManagementDialog();
 
     taskEditWidget.removeAddedField("id");
