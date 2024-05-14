@@ -731,7 +731,8 @@
     "refreshInterval": 10,
     "numberChartConfig": {
       "suffixSymbol": ""
-    }
+    },
+    "hideLabel": true
   }
 
 ]
