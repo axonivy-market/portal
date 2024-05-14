@@ -11,6 +11,8 @@ import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.FilterOperator;
+import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
@@ -59,7 +61,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.openFilterWidget();
-    taskWidget.filterTaskName(REPORT_HIDE_CASE);
+    taskWidget.filterTaskName(REPORT_HIDE_CASE, FilterOperator.IS);
     taskWidget.applyFilter();
     taskWidget.startFirstTask();
     redirectToNewDashBoard();
@@ -173,10 +175,9 @@ public class DashboardCaseWidgetTest extends BaseTest {
 
     // Filter State Done
     caseWidget.openFilterWidget();
-    caseWidget.clearFilterCaseName();
     caseWidget.filterCaseName(CREATE_12_CASES_WITH_CATEGORY_CASE);
-    caseWidget.filterCaseState();
-    caseWidget.selectStateAsDone();
+    caseWidget.addFilter("State", null);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "DONE");
     caseWidget.applyFilter();
     caseWidget.stateOfFirstCase().shouldHave(text("Done"));
     caseWidget.openFilterWidget();
@@ -184,8 +185,8 @@ public class DashboardCaseWidgetTest extends BaseTest {
 
     // Filter State Open
     caseWidget.openFilterWidget();
-    caseWidget.filterCaseState();
-    caseWidget.selectStateAsOpen();
+    caseWidget.addFilter("State", null);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
     caseWidget.applyFilter();
     caseWidget.stateOfFirstCase().shouldHave(text("Open"));
   }
@@ -204,11 +205,11 @@ public class DashboardCaseWidgetTest extends BaseTest {
 
     CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
     caseEditWidget.changeWidgetTitle("New Your Cases");
+    caseEditWidget.openFilter();
     caseEditWidget.filterCaseName("TestCase");
-    caseEditWidget.filterCaseState();
-    caseEditWidget.selectStateAsOpen();
-    caseEditWidget.preview();
-    caseEditWidget.countCases().shouldHave(size(12));
+    caseEditWidget.filterCaseState("OPEN");
+    caseEditWidget.applyFilter();
+    caseEditWidget.countCases().shouldHave(size(13));
     caseEditWidget.save();
     // After Edit
     CaseWidgetNewDashBoardPage caseWidgetEdited = newDashboardPage.selectCaseWidget("New Your Cases");
@@ -278,7 +279,6 @@ public class DashboardCaseWidgetTest extends BaseTest {
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
     CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
-    caseEditWidget.preview();
     caseEditWidget.openColumnManagementDialog();
 
     caseEditWidget.removeAddedField("id");

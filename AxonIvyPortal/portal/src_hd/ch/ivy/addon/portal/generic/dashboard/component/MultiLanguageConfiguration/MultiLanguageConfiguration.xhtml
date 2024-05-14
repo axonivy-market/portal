@@ -32,6 +32,7 @@
     <h:form id="add-language-detail-form">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/emptySupportedLanguages')}"
         rendered="#{titles.isEmpty()}" />
+    <h:panelGroup id="multiple-language-panel" layout="block" styleClass="multiple-language-data-table">
       <h:dataTable id="table-titles" value="#{titles}" rendered="#{titles.isEmpty() eq 'false'}" var="title" width="460" 
         columnClasses="#{cc.attrs.useInputText ? '' : 'multi-language-textarea-label,'}">
         <h:column>
@@ -70,7 +71,7 @@
           </div>
         </h:column>
       </h:dataTable>
-      
+    </h:panelGroup>
       <div class="u-dialog-footer-actions-group">
         <p:commandLink id="multi-language-cancel-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"

@@ -404,6 +404,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewParticipant: Mostrar participantes
   common:
     All: Todas
+    And: y
     BusinessCaseInformation: Información sobre el caso de negocio
     CollapseAll: Cerrar todo
     ExpandAll: Abrir todo
@@ -521,6 +522,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noRecordsFound: No se encuentran registros
     notAvailable: N/A
     note: Nota
+    numberFromBiggerThanTo: Para" debe ser mayor que "De".
     numberOfSelectedFilter: Filtros seleccionados
     ok: Ok
     'on': en
@@ -755,6 +757,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoData: No hay datos
     NoSavedFilterMessage: No se ha encontrado ningún filtro guardado. Intente crear uno nuevo haciendo clic en el botón Guardar filtro
     NoWidgetAvailable: No existen widgets.
+    QuickSearch: Búsqueda rápida
+    QuickSearchInfo: Puede personalizar el alcance de la búsqueda rápida en la gestión de columnas de widgets. La búsqueda se realiza en función de "contiene", pero tenga en cuenta el rendimiento al agregar numerosas columnas.
     RestoreDefaultDashboardMessage: Si continúa, perderá todos los widgets creados por usted. Se aplicará la configuración estándar de <span class="dashboard-template-name-message">{0}</span>.
     SaveNewWidgetFilterHeader: Guardar un nuevo filtro de widget
     SavedFilterHeader: Filtros guardados
@@ -778,7 +782,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     actionSelection: Seleccionar acción
     addField: Añadir campo
     addWidget: Añadir widget
-    availableFilters: Filtros disponibles
     canWorkOn: Puede trabajar en
     caseList: Lista de casos
     caseListIntroduction: Este widget muestra la información relevante del caso según la configuración definida
@@ -854,6 +857,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}_{1}.{2}
     field: Campo
     fieldIsAdded: El campo {0} está añadido
+    filters: Filtros
     iconMessage:
       caseWidget:
         BEACH_PALM_SUNBED: Eres increíble - todos los casos están hechos. Recuéstate y disfruta.
@@ -1592,6 +1596,8 @@ Dialogs:
           component:
             ClientStatisticWidget:
               NoPermissionChartMessage: No tiene permiso para ver este gráfico.
+            CaseWidgetConfiguration:
+              AddFilter: Añadir filtro
             DashboardImportDetails:
               FileInfomation: Informacion del archivo
               ImportPrivate: Importar panel privado
@@ -1623,6 +1629,9 @@ Dialogs:
               NotificationWidgetConfiguration: Configuración del widget de notificaciones
               NotificationWidgetDescription: Este widget muestra todas las notificaciones según la configuración de notificaciones.
               WidgetFilter: Filtro de widgets
+            TaskWidgetConfiguration:
+              AddFilter: Añadir filtro
+              ResetFilter: Restablecer filtro
   components:
     CaseDocument:
       FileDate: Modificado el
@@ -1737,6 +1746,72 @@ Labels:
   AppendTheTask: Anexar la tarea
   CreateNewDashboard: Crear un nuevo cuadro de mandos
   Enums:
+    DashboardStandardCaseColumn:
+      ACTIONS: Acciones
+      APPLICATION: Aplicación
+      CATEGORY: Categoría
+      CREATED: Fecha de creación
+      CREATOR: Creador
+      DESCRIPTION: Descripción
+      FINISHED: Fecha de finalización
+      ID: Id
+      NAME: Nombre
+      OWNER: Propietario del caso
+      STATE: Estado
+    DashboardStandardTaskColumn:
+      ACTIONS: Acciones
+      APPLICATION: Aplicación
+      CATEGORY: Categoría
+      CREATED: Fecha de creación
+      DESCRIPTION: Descripción
+      EXPIRY: Expiración
+      ID: Id
+      NAME: Nombre
+      PRIORITY: Prioridad
+      RESPONSIBLE: Responsable
+      START: Inicio
+      STATE: Estado
+    FilterOperator:
+      AFTER: Es Después
+      BEFORE: Es Antes
+      BETWEEN: Entre
+      CONTAINS: Contiene
+      CURRENT: Actual
+      CURRENT_USER: Usuario actual
+      CURRENT_USER_CAN_WORK_ON: El usuario actual puede trabajar en
+      EMPTY: Está vacío
+      END_WITH: Termina con
+      EQUAL: Igualdad
+      GREATER: Greater
+      GREATER_OR_EQUAL: Greater or equal
+      IN: En
+      IS: Es
+      IS_NOT: No es
+      LAST: En los últimos
+      LESS: Less
+      LESS_OR_EQUAL: Less or equal
+      NEXT: En los próximos
+      NOT_BETWEEN: No entre
+      NOT_CONTAINS: No contiene
+      NOT_EMPTY: No está vacío
+      NOT_END_WITH: No termina con
+      NOT_EQUAL: No es igual
+      NOT_IN: No en
+      NOT_START_WITH: No empieza por
+      NO_CATEGORY: Sin categoría
+      START_WITH: Empieza por
+      TODAY: Hoy
+      YESTERDAY: Ayer
+    FilterPeriodType:
+      DAY: Día
+      MONTH: Mes
+      Plural:
+        DAY: Día(s)
+        MONTH: Mes(es)
+        WEEK: Semana(s)
+        YEAR: Año(s)
+      WEEK: Semana
+      YEAR: Año
     SearchScopeCaseField:
       CUSTOM: Campos de cadena personalizados
       DESCRIPTION: Descripción
