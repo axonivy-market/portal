@@ -63,7 +63,7 @@
       },
       {
         "locale": "en",
-        "value": "Tasks grouped by expiry of the next 3 days."
+        "value": "Tasks grouped by Priority expiring within the Next 3 Days."
       },
       {
         "locale": "fr",
