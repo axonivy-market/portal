@@ -656,7 +656,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     actionSelection: Action selection
     addField: Add field
     addWidget: Add widget
-    availableFilters: Available Filters
     canWorkOn: Can work on
     caseList: Case List
     caseListIntroduction: This widget displays relevant case information according to defined settings
@@ -700,6 +699,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     expiryTo: Expiry To
     field: Field
     fieldIsAdded: The {0} field is added
+    filters: Filters
     iconMessage:
       caseWidget:
         BEACH_PALM_SUNBED: You are awesome - all cases are done. Lean back and enjoy.
@@ -1500,6 +1500,11 @@ Labels:
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
   CreateNewDashboard: Create new dashboard
+  Enums:
+    DashboardStandardTaskColumn:
+      EXPIRY: Expiry
+      PRIORITY: Priority
+      RESPONSIBLE: Responsible
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
   Task: Task

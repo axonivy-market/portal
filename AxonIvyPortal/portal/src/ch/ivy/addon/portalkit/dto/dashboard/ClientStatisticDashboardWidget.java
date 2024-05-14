@@ -29,5 +29,10 @@ public class ClientStatisticDashboardWidget extends DashboardWidget {
   public void setChartId(String chartId) {
     this.chartId = chartId;
   }
+  
+  @JsonIgnore
+  @Override
+  public void cancelUserFilter() {    
+  }
 
 }
