@@ -16,7 +16,7 @@
     <ui:define name="pageContent">
         <script>
           function initStatistics() {
-            initClientCharts("#{managedBean.clientStatisticApiUri}");
+            initClientCharts("#{managedBean.clientStatisticApiUri}" , "#{localeBean.locale}", "#{dateTimePatternBean.datePattern}");
           }
 
           $(document).ready(function () {
