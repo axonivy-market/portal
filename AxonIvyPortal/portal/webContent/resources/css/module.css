@@ -6018,8 +6018,14 @@ a.dashboard-action-container label {
 }
 
 .external-link-edit-block {
-  width: 500px;
+  width: 98%;
   display: inline-block;
+}
+
+.external-link-edit-block .ui-inplace-display {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .external-link-edit-display-text {
