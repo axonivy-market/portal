@@ -240,6 +240,8 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   
   public void editWidgetById(int id) {
     $(String.format("[id$=':edit-widget-%s']", id)).shouldBe(getClickableCondition()).click();
+  }
+  
   public void scrollToStatistic() {
     $(byText("Statistic Widgets")).shouldBe(Condition.appear, DEFAULT_TIMEOUT).scrollIntoView("{block: \"start\", inline: \"start\"}");
   }
