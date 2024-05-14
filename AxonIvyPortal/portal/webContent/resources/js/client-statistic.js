@@ -535,7 +535,7 @@ class ClientNumberChart extends ClientChart {
   }
 
   generateItemHtml(label, number, suffixSymbol) {
-    label = this.formatChartLabel(label);
+    label = this.data.chartConfig.hideLabel === true ? '' : this.formatChartLabel(label) ;
     let html =
       '<div class="u-text-align-center chart-content-card">' +
       '    <div class="chart-icon-font-size chart-number-animation">' +
@@ -546,7 +546,7 @@ class ClientNumberChart extends ClientChart {
       '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +
       '    </div>' +
       '    <div class="chart-label-container">' +
-      '        <span class="card-name chart-name-font-size chart-number-animation">' + this.formatChartLabel(label) + '</span>' +
+      '        <span class="card-name chart-name-font-size chart-number-animation">' + label + '</span>' +
       '    </div>' +
       '</div>';
     return html;
