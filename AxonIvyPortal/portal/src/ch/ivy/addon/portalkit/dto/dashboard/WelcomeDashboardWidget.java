@@ -185,4 +185,10 @@ public class WelcomeDashboardWidget extends DashboardWidget {
   public void setInternalId(String internalId) {
     this.internalId = internalId;
   }
+
+  @Override
+  public void cancelUserFilter() {
+    // TODO Auto-generated method stub
+    
+  }
 }

@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.FilterOperator;
+import com.axonivy.portal.selenium.common.FilterValueType;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
@@ -52,18 +55,8 @@ public class DashboardFilterWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testApplySavedFilters() {
-    TaskWidgetNewDashBoardPage taskWidget = createWidgetFilterForDemoUser();
-    assumeTrue(taskWidget.hasSavedFilterItem("Tasks filter"));
-    taskWidget.clickOnResetFilter();
-    taskWidget.openFilterWidget();
-    var filterId = taskWidget.clickOnASavedFilterItem("Tasks filter");
-    taskWidget.getSelectedFilter(filterId).shouldHave(Condition.cssClass("selected"));
-    assertEquals("Task", taskWidget.getTaskNameFilterValue());
-  }
-
-  @Test
   public void testStickyWidgetFilters() {
+    resizeBrowserTo2kResolution();
     TaskWidgetNewDashBoardPage taskWidget = createWidgetFilterForDemoUser();
     assumeTrue(taskWidget.hasSavedFilterItem("Tasks filter"));
     taskWidget.clickOnResetFilter();
@@ -95,13 +88,15 @@ public class DashboardFilterWidgetTest extends BaseTest {
   }
 
   private TaskWidgetNewDashBoardPage createWidgetFilterForDemoUser() {
+    ScreenshotUtils.maximizeBrowser();
     loginAndGoToDashboard(TestAccount.DEMO_USER);
     TaskWidgetNewDashBoardPage taskWidget = openTaskWidgetFilter();
-    taskWidget.filterTaskName("Task");
-    taskWidget.filterCategories("TaskGroup");
-    taskWidget.filterPriority("Normal", "Low");
-    taskWidget.clickOnSaveFilterButton();
-    taskWidget.saveANewWidgetFilter("Tasks filter");
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Task");
+    taskWidget.addFilter("Description", FilterOperator.NOT_EMPTY);
+    taskWidget.addFilter("Expiry", FilterOperator.WITHIN_NEXT);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.WITHIN, "2","Year(s)");
+    taskWidget.saveFilter("Tasks filter");
     return taskWidget;
   }
 

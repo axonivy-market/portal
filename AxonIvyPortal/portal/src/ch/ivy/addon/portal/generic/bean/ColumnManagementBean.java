@@ -21,6 +21,7 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.util.FacesMessageUtils;
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
@@ -104,13 +105,43 @@ public class ColumnManagementBean implements Serializable {
       List<TaskColumnModel> taskColumns = new ArrayList<>();
       columnsBeforeSave.forEach(column -> taskColumns.add((TaskColumnModel) column));
       taskWidget.setColumns(taskColumns);
+      updateFiltersForTaskWidget(taskWidget);
     } else if (widget.getType() == DashboardWidgetType.CASE) {
       CaseDashboardWidget caseDashboardWidget = (CaseDashboardWidget) this.widget;
       List<CaseColumnModel> caseColumns = new ArrayList<>();
       columnsBeforeSave.forEach(column -> caseColumns.add((CaseColumnModel) column));
       caseDashboardWidget.setColumns(caseColumns);
+      updateFiltersForCaseWidget(caseDashboardWidget);
     }
     DashboardWidgetUtils.buildWidgetColumns(widget);
+  }
+
+  private void updateFiltersForTaskWidget(TaskDashboardWidget taskWidget) {
+    if (CollectionUtils.isEmpty(taskWidget.getColumns())) {
+      return;
+    }
+    List<String> fieldNames = taskWidget.getColumns().stream()
+        .map(TaskColumnModel::getField).collect(Collectors.toList());
+
+    List<DashboardFilter> filterToKeep = taskWidget.getFilters().stream()
+        .filter(filter -> fieldNames.contains(filter.getField()))
+        .collect(Collectors.toList());
+
+    taskWidget.setFilters(filterToKeep);
+  }
+
+  private void updateFiltersForCaseWidget(CaseDashboardWidget caseWidget) {
+    if (CollectionUtils.isEmpty(caseWidget.getColumns())) {
+      return;
+    }
+    List<String> fieldNames = caseWidget.getColumns().stream()
+        .map(CaseColumnModel::getField).collect(Collectors.toList());
+
+    List<DashboardFilter> filterToKeep = caseWidget.getFilters().stream()
+        .filter(filter -> fieldNames.contains(filter.getField()))
+        .collect(Collectors.toList());
+
+    caseWidget.setFilters(filterToKeep);
   }
 
   public void remove(ColumnModel col) {
@@ -149,6 +180,7 @@ public class ColumnManagementBean implements Serializable {
     columnModel.initDefaultValue();
     columnModel.setHeader(this.fieldDisplayName);
     columnModel.setField(this.selectedField);
+    columnModel.setQuickSearch(false);
     if (this.selectedFieldType == DashboardColumnType.CUSTOM
         || this.selectedFieldType == DashboardColumnType.CUSTOM_CASE) {
       columnModel.setType(selectedFieldType);
@@ -358,6 +390,10 @@ public class ColumnManagementBean implements Serializable {
     column.setVisible(BooleanUtils.isFalse(column.getVisible()));
   }
 
+  public void handleQuickSearch(ColumnModel column) {
+    column.setQuickSearch(BooleanUtils.isFalse(column.getQuickSearch()));
+  }
+  
   public class FetchingField {
     private DashboardColumnType type;
     private String field;

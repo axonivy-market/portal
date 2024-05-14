@@ -6,6 +6,9 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.axonivy.portal.selenium.common.ComplexFilterHelper;
+import com.axonivy.portal.selenium.common.FilterOperator;
+import com.axonivy.portal.selenium.common.FilterValueType;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -13,8 +16,6 @@ import com.codeborne.selenide.SelenideElement;
 public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   private static final String YOUR_CASES_WIDGET = "Your Cases";
-  private static final String FILTER_CASE_NAME = "Case name";
-  private static final String FILTER_CASE_STATE = "State";
 
   private String caseWidgetId;
   private String caseWidgetName;
@@ -125,21 +126,9 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     return new CaseEditWidgetNewDashBoardPage();
   }
 
-  private SelenideElement getFilterInput(String inputField) {
-    return $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$$("div.widget-filter-panel div.ui-g").filter(text(inputField)).first().$("input.ui-inputfield");
-  }
-
   public void filterCaseName(String input) {
-    getFilterInput(FILTER_CASE_NAME).sendKeys(input);
-  }
-
-  public void clearFilterCaseName() {
-    getFilterInput(FILTER_CASE_NAME).clear();
-  }
-
-  public void filterCaseState() {
-    getFilterCheckBox(FILTER_CASE_STATE).shouldBe(getClickableCondition()).click();
+    addFilter("Name", FilterOperator.IS);
+    inputValueOnLatestFilter(FilterValueType.TEXT, input);
   }
 
   public void selectStateAsDone() {
@@ -150,11 +139,6 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public void selectStateAsOpen() {
     getValueOfCheckBox("Open").shouldBe(getClickableCondition()).click();
     getCloseCheckBox().shouldBe(getClickableCondition()).click();
-  }
-
-  private SelenideElement getFilterCheckBox(String inputField) {
-    return $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$$("div.widget-filter-panel div.ui-g").filter(text(inputField)).first();
   }
 
   private SelenideElement getCloseCheckBox() {
@@ -179,8 +163,11 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   public void resetFilter() {
     $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='reset-button']")
-        .filter(text("Reset")).first()
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+        .filter(text("Reset")).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    waitForElementClickable($$("div.table-widget-panel")
+        .filter(text(caseWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT)
+        .$(".widget__filter-sidebar-link"));
+    
   }
 
   public void selectState(String state) {
@@ -233,5 +220,151 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public void clickOnCustomActionButton(int rowIndex, String columnName) {
     SelenideElement custom = $("a[id$=':custom-description']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     custom.shouldBe(getClickableCondition()).click();
+  }
+
+  public void addFilter(String columnName, FilterOperator operator) {
+    ComplexFilterHelper.addFilter(columnName, operator);
+  }
+
+  public void inputValueOnLatestFilter(FilterValueType type, Object... values) {
+    ComplexFilterHelper.inputValueOnLatestFilter(type, values);
+  }
+
+  public void changeOperator(String filterLabel, FilterOperator operator, String type) {
+    String typeInput = String.format("div[id$=':%s-filter-operator-panel']", type);
+    $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$=':filter-container']")
+        .$$("span[id$=':field-selection_label']").filter(text(filterLabel)).first().shouldBe(appear, DEFAULT_TIMEOUT);
+
+    $(typeInput).shouldBe(getClickableCondition()).$("span[id$=':operator-selection_label']").click();
+
+    $$("li").filter(text(operator.getValue())).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void saveFilter(String widgetFilterName) {
+    $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='save-filter']")
+        .filter(text("Save filter")).first().shouldBe(getClickableCondition()).click();
+    $("div#save-widget-filter-dialog").$("input[id='save-filter-form:save-filter-name']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).setValue(widgetFilterName);
+    $("button[id$=':save-widget-filter-button']").click();
+    $("div[id$=':widget-saved-filters-items']").$$("div.saved-filter__items").filter(text(widgetFilterName)).first()
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void searchFilter(String input) {
+    $("div[class*='saved-filter--search-container']").$("input[id$=':search-saved-filter-input']").setValue(input);
+  }
+
+  public void removeAllFilterItems() {
+    $("div[id='manage-filter-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div[id$=':quick-filter-table_head_checkbox']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("button[id='delete-saved-filter-form:delete-widget-filter-btn']").click();
+  }
+
+  public void openManageFiltersDialog() {
+    $("a[id*='case-case_1:filter-form-1']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+  }
+
+  public void closeManageFilterDialog() {
+    $("a[id*='delete-saved-filter-form']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+  }
+
+  public ElementsCollection getSavedFilterItemsByFilterNameOnWidgetManagement() {
+    ElementsCollection elements = $("div[id='manage-filter-dialog']").$("div.ui-datatable-scrollable-body table tbody")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$$("tr").filter(Condition.attribute("data-rk"));
+    return elements;
+  }
+
+  public ElementsCollection getSavedFilterItems() {
+    return $("div[id$=':saved-filters-container']").$("div[id$=':widget-saved-filters-items']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$$("span.saved-filter-node__text");
+  }
+
+  public void selectSavedFilter(String filterName) {
+    getSavedFilterItems().filter(text(filterName)).first().shouldBe(getClickableCondition()).click();
+  }
+
+  public void inputValueOnColumnWidgetHeader(String columnName, String value) {
+    columnName = columnName + ": activate to sort column ascending";
+    $("div[id='manage-filter-dialog']").$("div[id$=':quick-filter-table']")
+        .$("div.ui-datatable-scrollable-header-box table thead tr")
+        .$$("th[id*='delete-saved-filter-form:quick-filter-table']")
+        .filter(Condition.attribute("aria-label", columnName)).first().$("input").setValue(value);
+  }
+
+  public Integer getFilterNotiNumber() {
+    String filterNotiNumber =
+        $$("div.table-widget-panel").filter(text(caseWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT)
+            .$("div[id$=':widget-header-actions']").$("span[class*='widget__filter-noti-number']").getText();
+    return Integer.parseInt(filterNotiNumber);
+  }
+  
+  public void removeFocusFilterDialog() {
+    $("[id$=':widget-filter-content']").$("strong").click();
+    $("[id$=':widget-filter-content']").scrollIntoView("{block: \"end\"}");
+  }
+
+  public SelenideElement getConfigurationFilter() {
+    return $("div[class*='filter-overlay-panel'][style*='display: block']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void clickOnFilterOperator() {
+    $("div[id$='operator-selection']").shouldBe(getClickableCondition()).click();
+  }
+  
+
+  public boolean isQuickSearchInputShow(String widgetIndex) {
+    String taskWidgetIndex = String.format("div[id*='case-case_%s']", widgetIndex);
+    waitPageLoaded();
+    return $(taskWidgetIndex).$("form").$("input").exists();
+  }
+
+  public String getQuickSearchInput() {
+    return getQuickSearchForm().$("input").getValue();
+  }
+
+  public void setInputForQuickSearch(String input) {
+    getQuickSearchForm().$("input").sendKeys(input);
+    waitForPageLoad();
+  }
+
+  private SelenideElement getQuickSearchForm() {
+    return $("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
+  }
+
+  public void clearQuickSearchInput() {
+    getQuickSearchForm().$("input").clear();
+    waitForPageLoad();
+  }
+
+  private SelenideElement getCaseWidgetHeader() {
+    return $$("div.table-widget-panel").filter(text(caseWidgetName)).first();
+  }
+
+  public void clickOnButtonExpandCaseWidget() {
+    getCaseWidgetHeader().$(".expand-link").shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void clickOnButtonCollapseCaseWidget() {
+    getCaseWidgetHeader().$(".collapse-link").shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public ElementsCollection countAllCases() {
+    return getAllCasesOfCaseWidget();
+  }
+
+  private ElementsCollection getAllCasesOfCaseWidget() {
+    return getColumnsOfTableWidget().filter(Condition.cssClass("dashboard-cases__name"));
+  }
+
+  public boolean isEmptyMessageAppear() {
+    return $("div[id$='empty-message-container'][class='empty-message-container ']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .isDisplayed();
+  }
+
+  public void waitTableLoaded() {
+    $(getLoadedLocator()).shouldHave(Condition.cssClass("u-display-none"), DEFAULT_TIMEOUT);
+    $(getLoadedLocator()).shouldNotHave(Condition.cssClass("u-display-none"), DEFAULT_TIMEOUT);
   }
 }

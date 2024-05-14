@@ -232,4 +232,13 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     $("canvas").shouldBe(appear, DEFAULT_TIMEOUT);
     return statisticElement;
   }
+  
+  public void waitForTaskWidgetLoaded() {
+    $("div[id$='dashboard-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='dashboard-tasks']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void editWidgetById(int id) {
+    $(String.format("[id$=':edit-widget-%s']", id)).shouldBe(getClickableCondition()).click();
+  }
 }

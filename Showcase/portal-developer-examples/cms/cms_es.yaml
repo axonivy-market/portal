@@ -77,7 +77,7 @@ CustomFields:
       Label: Fecha de envío
     SupportData:
       Description: Propiedad de la página de detalles del Caso Adicional
-      Label: Datos de apoyo
+      Label: Datos de soporte
   Categories:
     CustomCaseWidget: CaseWidget personalizado
     CustomTaskWidget: TaskWidget personalizado
