@@ -545,7 +545,7 @@
       },
       {
         "locale": "en",
-        "value": "Tasks that expire until the end of the week"
+        "value": "Tasks that expire by the end of the week"
       },
       {
         "locale": "fr",
@@ -698,7 +698,7 @@
       },
       {
         "locale": "en",
-        "value": "Tasks that expiry today"
+        "value": "Tasks that expire today"
       },
       {
         "locale": "fr",
