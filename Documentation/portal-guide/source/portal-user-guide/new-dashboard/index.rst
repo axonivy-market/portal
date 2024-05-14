@@ -266,15 +266,7 @@ You can define the widget name and process to be displayed.
 Statistic chart widget
 ======================
 
-You can select the chart to be displayed.
-
-- Configuration of a statistic chart widget:
-
-  |statistic-chart-widget-configuration|
-
-- This is the sample output of the widget configured above:
-
-  |statistic-chart-widget|
+Portal offers a wide range of standard statistical charts. For more information, please refer to the :ref:`statistic-chart` section.
 
 Welcome widget
 ==============
