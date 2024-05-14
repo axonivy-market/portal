@@ -77,5 +77,19 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(statisticWidgetPage.getChartInfoDialogOfChart(1),
         ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-info-dialog", new ScreenshotMargin(20, 10));
   }
-
+  
+  @Test
+  public void screenshotStatisticWidgetList() throws IOException {
+    showNewDashboard();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    var newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    resizeBrowserTo2kResolution();
+    WebElement newWidgetDialog = newDashboardDetailsEditPage.addWidget();
+    newDashboardDetailsEditPage.scrollToStatistic();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(newWidgetDialog,
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "statistic-widget-list", new ScreenshotMargin(20));
+  }
+  
 }
