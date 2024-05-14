@@ -1,10 +1,9 @@
 const DATA_CHART_ID = 'data-chart-id';
 const WIDGET_HEADER_TITLE = '.widget__header-title';
 const AVERAGE_BUSINESS_RUNTIME = "avg-businessRuntime";
-
-// Default value of locale is 'de'  
-let locale = 'de';
-let datePattern = 'dd.MM.yyyy';
+  
+let locale;
+let datePattern;
 var statisticApiURL = '';
 
 const chartColors = () => {
@@ -86,7 +85,7 @@ async function fetchChartData(chart, chartId) {
 
   try {
     const response = await postFetchApi(statisticApiURL, JSON.stringify({ "chartId": chartId }));
-    cloneResponse = await response.clone();
+    cloneResponse = response.clone();
     data = await response.json();
     return await data;
   } catch (error) {
@@ -115,15 +114,27 @@ function initRefresh(refreshInfos) {
   }
 }
 
-function initClientCharts(statisticEndpoint) {
+function initClientCharts(statisticEndpoint, defaultLocale, defaultDatePattern) {
+  // If locale didn't initialized, set the default locale to it.
+  if (!locale) {
+    locale = defaultLocale;
+  }
+
+  // If date pattern didn't initialized, set the default locale to it.
+  if (!datePattern) {
+    datePattern = defaultDatePattern;
+  }
+
+  // Find HTML elements of client charts widget
   const charts = Array.from(document.getElementsByClassName('js-client-statistic-chart'));
   if (!charts || charts.length == 0) {
     return;
   }
-
+ 
   statisticApiURL = window.location.origin + statisticEndpoint;
   let refreshInfos = [];
 
+  // Use AJAX to call REST API to fetch data for each chart elements
   charts.forEach(async chart => {
     let chartId = chart.getAttribute(DATA_CHART_ID);
     let data = await fetchChartData(chart, chartId);
@@ -132,12 +143,16 @@ function initClientCharts(statisticEndpoint) {
       return;
     }
 
+    // proceed chart data
     let chartData = generateChart(chart, data);
     const config = data.chartConfig;
-    locale = config.locale;
-    datePattern = config.datePattern;
+    locale = config?.locale ? config.locale : defaultLocale;
+    datePattern = config?.datePattern ? config.datePattern : defaultDatePattern;
 
 
+    // If chart data is fetched succesfully:
+    // Render chart
+    // Prepare info for refresh routine of each chart
     if (chartData) {
       chartData.render();
 
@@ -151,6 +166,7 @@ function initClientCharts(statisticEndpoint) {
       refreshInfos.push(chartObject);
     }
 
+    // Init refresh routine for charts
     initRefresh(refreshInfos);
   });
 }
