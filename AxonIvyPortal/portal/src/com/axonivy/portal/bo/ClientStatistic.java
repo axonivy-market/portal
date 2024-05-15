@@ -1,6 +1,5 @@
 package com.axonivy.portal.bo;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -8,7 +7,6 @@ import com.axonivy.portal.util.DisplayNameUtils;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
-import ch.ivy.addon.portalkit.bean.DateTimePatternBean;
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
@@ -37,6 +35,8 @@ public class ClientStatistic extends AbstractConfiguration {
   private String locale = Ivy.session().getFormattingLocale().toString();
   private String datePattern;
   private Boolean hideLabel = false;
+  @JsonProperty(access = Access.READ_ONLY)
+  private String manipulateValueBy;
   
   public String getIcon() {
     return icon;
@@ -160,5 +160,13 @@ public String getFilter() {
   
   public Boolean getHideLabel() {
     return this.hideLabel;
+  }
+
+  public String getManipulateValueBy() {
+    return manipulateValueBy;
+  }
+
+  public void setManipulateValueBy(String manipulateValueBy) {
+    this.manipulateValueBy = manipulateValueBy;
   }
 }

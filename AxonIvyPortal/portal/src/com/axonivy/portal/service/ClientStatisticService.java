@@ -53,7 +53,9 @@ public class ClientStatisticService extends JsonConfigurationService<ClientStati
     ClientStatistic chart = findById(payload.getChartId());
     validateChart(payload.getChartId(), chart);
     AggregationResult result = getChartData(chart);
-    chart.setAdditionalConfig(getAdditionalConfig());
+    chart.setAdditionalConfig(new ArrayList<>());
+    chart.getAdditionalConfig().addAll(getAdditionalConfig());
+    chart.getAdditionalConfig().add(getManipulateValueBy(chart));
     return new ClientStatisticResponse(result, chart);
   }
 
@@ -90,6 +92,16 @@ public class ClientStatisticService extends JsonConfigurationService<ClientStati
   private boolean isPermissionValid(ClientStatistic data) {
     return Optional.ofNullable(data.getPermissions()).orElse(new ArrayList<>()).stream()
         .anyMatch(permission -> Ivy.session().getSessionUser().has().role(permission));
+  }
+  
+  private Entry<String, String> getManipulateValueBy(ClientStatistic data) {
+    var manipulatedBy = Optional.ofNullable(data)
+        .map(ClientStatistic::getManipulateValueBy);
+
+    return manipulatedBy.isPresent()
+        ? new SimpleEntry<>(AdditionalChartConfig.MANIPULATE_BY.getKey(),
+            manipulatedBy.get())
+        : null;
   }
 
   @Override
