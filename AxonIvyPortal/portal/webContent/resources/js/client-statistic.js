@@ -1,7 +1,12 @@
 const DATA_CHART_ID = 'data-chart-id';
 const WIDGET_HEADER_TITLE = '.widget__header-title';
 const AVERAGE_BUSINESS_RUNTIME = "avg-businessRuntime";
-  
+
+
+// Additional configs
+const EMPTY_CHART_MESSAGE =  'emptyChartDataMessage';
+const MANIPULATE_BY = 'manipulateValueBy';
+
 let locale;
 let datePattern;
 var statisticApiURL = '';
@@ -78,11 +83,34 @@ function formatISODate(dt) {
   let date = dt.getDate() < 10 ? '0' + dt.getDate() : dt.getDate();
   return year + '-' + month + '-' + date;
 }
-const convertSecondsToHour = seconds => {
-  if (!isNumeric(seconds)) {
-    return 0;
+const convertYValue = (value, config) => {
+  if (!value || !config) {
+    return value;
   }
-  return seconds / 60;
+  
+  let valueNumber = 0;
+  try {
+     valueNumber = Number(value);
+
+     additionalConfig.find(function (config) {
+      if (Object.keys(config)[0] === MANIPULATE_BY) {
+        let operator = config.manipulateValueBy.charAt(0);
+        let manipulateValueBy = Number(config.substring(1));
+  
+        switch (operator) {
+          case '/':  return valueNumber / manipulateValueBy;
+          case '*': return valueNumber * manipulateValueBy;
+          default: return value;
+        };
+      }
+    });
+  } catch(error) {
+    return value;
+  }
+
+  
+  
+  return value / 60;
 }
 
 async function fetchChartData(chart, chartId) {
@@ -414,7 +442,7 @@ class ClientCartesianChart extends ClientCanvasChart {
               if (item['name'] === AVERAGE_BUSINESS_RUNTIME) {
                 values.push({
                   key: bucket.key,
-                  count: convertSecondsToHour(item.value)
+                  count: convertYValue(item.value, this.data.chartConfig.additionalConfig)
                 });
               }
             });
