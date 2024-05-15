@@ -12,4 +12,4 @@ taskSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCrite
 totalTasks Long #field
 taskStateStatistic ch.ivy.addon.portalkit.bo.TaskStateStatistic #field
 taskQuery ch.ivyteam.ivy.workflow.query.TaskQuery #field
-taskCategoryStatistic ch.ivy.addon.portalkit.bo.TaskCategoryStatistic #field
+taskByCategoryStatistics List<ch.ivy.addon.portalkit.bo.ItemByCategoryStatistic> #field

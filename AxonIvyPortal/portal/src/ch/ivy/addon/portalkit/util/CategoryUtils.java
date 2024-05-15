@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -8,10 +9,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.CheckboxTreeNode;
 
 import ch.ivy.addon.portalkit.bo.CategoryNode;
+import ch.ivy.addon.portalkit.bo.ItemByCategoryStatistic;
 import ch.ivyteam.ivy.cm.exec.LocalizedTextResolverFactory;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.category.Category;
 import ch.ivyteam.ivy.workflow.category.CategoryPath;
+import ch.ivyteam.ivy.workflow.category.CategoryTree;
 
 public class CategoryUtils {
 
@@ -152,5 +155,40 @@ public class CategoryUtils {
     CategoryPath process = rootExpress.append(categoryName.trim());
     return Category.createFor(process,
         new LocalizedTextResolverFactory().createFor("Categories", Ivy.request().getProcessModelVersion()));
+  }
+  
+  private static ItemByCategoryStatistic getNoCategoryCase(CategoryTree category) {
+    var nonEmptyChildrenCount = category.getChildren().stream().map(CategoryTree::count).mapToInt(Long::intValue).sum();
+    var emptyChildrenCount = category.count() - nonEmptyChildrenCount;
+    if(emptyChildrenCount > 0) {
+      return new ItemByCategoryStatistic(Ivy.cms().co(CategoryUtils.NO_CATEGORY_CMS), 
+          Ivy.cms().co(CategoryUtils.NO_CATEGORY_CMS), 
+          emptyChildrenCount);
+    }
+    return null;
+  }
+  
+  public static List<ItemByCategoryStatistic> createItemCategoryStatistic(CategoryTree categoryTree) {
+    List<ItemByCategoryStatistic> statistic = new LinkedList<>();
+    if (categoryTree != null) {
+      ItemByCategoryStatistic noCate = CategoryUtils.getNoCategoryCase(categoryTree);
+      if (noCate != null) {
+        statistic.add(noCate);
+      }
+      categoryTree.getChildren().forEach(category -> {
+        findChildNode(category, statistic);
+      });
+    }
+    return statistic;
+  }
+  
+  private static void findChildNode(CategoryTree category, List<ItemByCategoryStatistic> statistics) {
+    if (!category.getChildren().isEmpty()) {
+      category.getChildren().forEach(categoryChil -> {
+        findChildNode(categoryChil, statistics);
+      });
+    } else {
+      statistics.add(new ItemByCategoryStatistic(category.getCategory().getName(), category.getCategory().getPath(), category.count()));
+    }
   }
 }
