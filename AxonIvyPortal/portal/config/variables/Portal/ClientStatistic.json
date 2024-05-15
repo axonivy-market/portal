@@ -45,7 +45,7 @@
       }
     ],
     "icon": "si si-analytics-pie-2",
-    "refreshInterval": 10
+    "refreshInterval": 500
   },
   {
     "id": "2",
@@ -93,7 +93,7 @@
       }
     ],
     "icon": "si si-analytics-bars",
-    "refreshInterval": 10,
+    "refreshInterval": 500,
     "barChartConfig": {
       "xTitles": [
         {
@@ -179,7 +179,7 @@
       }
     ],
     "icon": "si si-analytics-bars",
-    "refreshInterval": 10,
+    "refreshInterval": 500,
     "barChartConfig": {
       "xTitles": [
         {
@@ -265,7 +265,7 @@
       }
     ],
     "icon": "si si-analytics-bars",
-    "refreshInterval": 10,
+    "refreshInterval": 500,
     "barChartConfig": {
       "xTitles": [
         {
@@ -288,19 +288,19 @@
       "yTitles": [
         {
           "locale": "de",
-          "value": "Durchschnittliche Laufzeit (Sekunden)"
+          "value": "Durchschnittliche Laufzeit (Stunden)"
         },
         {
           "locale": "en",
-          "value": "Average runtime (seconds)"
+          "value": "Average runtime (hours)"
         },
         {
           "locale": "fr",
-          "value": "Durée d'exécution moyenne (Sekunden)"
+          "value": "Durée d'exécution moyenne (heures)"
         },
         {
           "locale": "es",
-          "value": "Tiempo medio de ejecución (Sekunden)"
+          "value": "Tiempo medio de ejecución (horas)"
         }
       ],
       "yValue": "time"
@@ -352,7 +352,7 @@
       }
     ],
     "icon": "si si-analytics-board-graph-line",
-    "refreshInterval": 10,
+    "refreshInterval": 500,
     "lineChartConfig": {
       "xTitles": [
         {
@@ -438,7 +438,7 @@
       }
     ],
     "icon": "si si-analytics-board-graph-line",
-    "refreshInterval": 10,
+    "refreshInterval": 500,
     "lineChartConfig": {
       "xTitles": [
         {
@@ -524,7 +524,7 @@
       }
     ],
     "icon": "si si-pie-line-graph",
-    "refreshInterval": 10,
+    "refreshInterval": 500,
     "numberChartConfig": {
       "suffixSymbol": ""
     }
@@ -575,7 +575,7 @@
       }
     ],
     "icon": "si si-pie-line-graph",
-    "refreshInterval": 10,
+    "refreshInterval": 500,
     "numberChartConfig": {
       "suffixSymbol": ""
     }
@@ -626,7 +626,7 @@
       }
     ],
     "icon": "si si-pie-line-graph",
-    "refreshInterval": 10,
+    "refreshInterval": 500,
     "numberChartConfig": {
       "suffixSymbol": ""
     }
@@ -677,7 +677,7 @@
       }
     ],
     "icon": "si si-pie-line-graph",
-    "refreshInterval": 10,
+    "refreshInterval": 500,
     "numberChartConfig": {
       "suffixSymbol": ""
     }
@@ -728,7 +728,7 @@
       }
     ],
     "icon": "si si-pie-line-graph",
-    "refreshInterval": 10,
+    "refreshInterval": 500,
     "numberChartConfig": {
       "suffixSymbol": ""
     }
