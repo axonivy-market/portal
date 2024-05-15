@@ -84,10 +84,10 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
   public void screenshotStatisticWidgetList() throws IOException {
     showNewDashboard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
+    ScreenshotUtils.resizeBrowser(new Dimension(1386, 1200));
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     var modificationPage = configurationPage.openEditPublicDashboardsPage();
     var newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    resizeBrowserTo2kResolution();
     WebElement newWidgetDialog = newDashboardDetailsEditPage.addWidget();
     newDashboardDetailsEditPage.scrollToStatistic();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(newWidgetDialog,
