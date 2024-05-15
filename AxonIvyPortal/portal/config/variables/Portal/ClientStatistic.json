@@ -223,6 +223,7 @@
     "id": "4",
     "aggregates": "category,businessRuntime:avg",
     "filter": "businessRuntime:>0",
+    "manipulateValueBy": "/3600",
     "permissions": [
       "Everybody"
     ],

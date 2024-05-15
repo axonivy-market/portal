@@ -1,7 +1,8 @@
 package com.axonivy.portal.enums;
 
 public enum AdditionalChartConfig {
-  EMPTY_CHART_DATA_MESSAGE("emptyChartDataMessage");
+  EMPTY_CHART_DATA_MESSAGE("emptyChartDataMessage"),
+  MANIPULATE_BY("manipulateValueBy");
 
   private String key;
 
