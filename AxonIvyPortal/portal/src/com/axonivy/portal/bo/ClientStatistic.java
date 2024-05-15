@@ -36,6 +36,7 @@ public class ClientStatistic extends AbstractConfiguration {
   private String icon;
   private String locale = Ivy.session().getFormattingLocale().toString();
   private String datePattern;
+  private Boolean hideLabel = false;
   
   public String getIcon() {
     return icon;
@@ -155,5 +156,9 @@ public String getFilter() {
     DateTimeGlobalSettingService dateTimePatternService = DateTimeGlobalSettingService.getInstance();
     this.datePattern = dateTimePatternService.getDatePattern();
     return this.datePattern;
+  }
+  
+  public Boolean getHideLabel() {
+    return this.hideLabel;
   }
 }
