@@ -209,7 +209,7 @@
   overflow: auto;
   padding: 20px;
   height: auto;
-  max-height: calc(100% - 44px);
+  max-height: calc(100% - 10px);
   width:100%;
 }
 
@@ -1313,7 +1313,7 @@ body .ui-widget.new-widget-dialog__introduction {
 .statistic-chart-widget__content {
   overflow: hidden;
   width: 100%;
-  height: calc(100% - 44px);
+  height: calc(100% - 5px);
   position: relative;
   padding: 0;
 }
@@ -1325,7 +1325,7 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .statistic-chart-widget__chart.client-number-chart {
-  overflow: auto;
+  overflow: hidden;
 }
 
 .statistic-chart-widget__chart--small {
@@ -1587,7 +1587,7 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .card-widget__content.widget__content {
-  padding-top: 30px;
+  padding-top: 0;
 }
 
 .card-widget-info-overlay-panel__footer .info-overlay-panel__close-link {
@@ -1778,6 +1778,20 @@ body .ui-widget.new-widget-dialog__introduction {
 
   .chart-content-card .chart-number-font-size {
     font-size: max(2rem, 1.5rem + 10cqh);
+  }
+}
+
+@container (max-height: 150px) {
+  .chart-content-card .chart-icon-font-size {
+    font-size: max(2rem, 1.5rem + 5cqh);
+  }
+
+  .chart-content-card .chart-name-font-size {
+    font-size: max(1.5rem, 1rem + 5cqw);
+  }
+
+  .chart-content-card .chart-number-font-size {
+    font-size: max(2rem, 1.5rem + 5cqh);
   }
 }
 
