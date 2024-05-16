@@ -244,11 +244,10 @@ class ClientChart {
   renderEmptyChart(chart, additionalConfig) {
     let emptyChartDataMessage;
     additionalConfig.find(function (item) {
-      if (Object.keys(item)[0] === 'emptyChartDataMessage') {
+      if (Object.keys(item || {})[0] === 'emptyChartDataMessage') {
         emptyChartDataMessage = item.emptyChartDataMessage;
       }
     });
-
     // HTML element for the empty chart
     let emptyChartHtml =
       '<div class="empty-message-container">' +
