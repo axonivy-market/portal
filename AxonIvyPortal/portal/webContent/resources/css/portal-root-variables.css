@@ -141,7 +141,7 @@
   --new-widget-dialog-description-font-style: normal;
   --new-widget-dialog-description-font-size: 1rem;
   --dashboard-table-empty-message-icon-font-size: 6rem;
-  --new-widget-dialog-title-font-weight: 700;
+  --new-widget-dialog-title-font-weight: bold;
   --new-widget-dialog-title-font-style: normal;
   --new-widget-dialog-title-font-size: 1.1rem;
 
@@ -149,6 +149,16 @@
   --news-feed-item-border-radius: 1rem;
   --news-feed-item-title-line-height: 1rem;
   --news-feed-item-title-font-weight: bold;
+
+  /* Statistics color pallete */
+  --statistics-1-color: #00a8e1;
+  --statistics-2-color: #0095c7;
+  --statistics-3-color: #0082ae;
+  --statistics-4-color: #006f94;
+  --statistics-5-color: #005c7b;
+  --statistics-6-color: #004961;
+  --statistics-7-color: #003648;
+  --statistics-8-color: #00232f;
   
   /* Notification */
   --notification-background-color: #293241;
