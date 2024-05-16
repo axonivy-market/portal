@@ -74,25 +74,30 @@
           </a>
           <ul id="user-setting-container">
              <li><p:commandLink id="user-profile" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle')}"
+               process="@this"
                actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}" />
              </li>
 
             <li jsf:rendered="#{userMenuBean.showDashboardConfigurationMenu}">
               <p:commandLink id="dashboard-configuration"
+                process="@this"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}"
                 actionListener="#{userMenuBean.navigateToDashboardConfigurationOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"/>
             </li>
 
             <li jsf:rendered="#{userMenuBean.showAdminSetting}">
               <p:commandLink id="adminui-menu-item" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}"
+                process="@this"
                 actionListener="#{userMenuBean.navigateToPortalManagementDisplayWorkingTaskWarning(isWorkingOnATask, task)}" />
             </li>
 
             <li><p:commandLink id="absence-menu-item" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
+                  process="@this"
                   actionListener="#{userMenuBean.navigateToAbsencesOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"
                   rendered="#{absenceManagementBean.ownAbsencesReadable}" /></li>
 
             <li><p:commandLink id="change-password-menu-item"
+                process="@this"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}"
                 rendered="#{not userMenuBean.hiddenChangePassword}" oncomplete="PF('changePasswordDialog').show(); $('#user-setting-container').click()"
                 resetValues="true" update="change-password-form">
@@ -100,7 +105,7 @@
               </p:commandLink></li>
 
             <li><p:link id="project-info-menu-item" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/info')}"
-                onclick="rcProjectInfo(); $('#user-setting-container').click()" /></li>
+                onclick="rcProjectInfo(); $('#user-setting-container').click();" /></li>
             
             <li><p:link id="mobile-app-item" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/mobile/MenuName')}" rendered="#{userMenuBean.isShowQRCode()}"
                 onclick="PF('mobile-app-dialog').show();" /></li>
@@ -162,6 +167,7 @@
 
       <h:form>
         <p:remoteCommand name="rcProjectInfo" actionListener="#{projectVersionBean.loadProjectVesion}" oncomplete="PF('project-info-dialog').show()"
+          process="@this"
           update="project-info-dialog" />
       </h:form>
     </ui:insert>
