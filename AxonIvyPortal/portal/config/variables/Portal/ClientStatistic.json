@@ -19,7 +19,7 @@
       },
       {
         "locale": "fr",
-        "value": "Tãches par Priorité"
+        "value": "Tâches par Priorité"
       },
       {
         "locale": "es",
@@ -59,7 +59,7 @@
     "names": [
       {
         "locale": "de",
-        "value": "Aufgaben gruppiert Ablauf der nächsten 3 Tage."
+        "value": "Nach Priorität gruppierte Aufgaben, die innerhalb der nächsten 3 Tage ablaufen."
       },
       {
         "locale": "en",
@@ -67,17 +67,17 @@
       },
       {
         "locale": "fr",
-        "value": "Tâches groupées à échéance des 3 prochains jours."
+        "value": "Tâches regroupées par priorité expirant dans les 3 prochains jours."
       },
       {
         "locale": "es",
-        "value": "Tareas agrupadas vencimiento de los próximos 3 días."
+        "value": "Tareas agrupadas por Prioridad que vencen en los Próximos 3 Días."
       }
     ],
     "descriptions": [
       {
         "locale": "de",
-        "value": "Dieses Diagramm zeigt alle Aufgaben, an denen der Benutzer arbeiten kann, gruppiert nach Ablauf innerhalb der nächsten 3 Tage."
+        "value": "Dieses Diagramm zeigt alle Aufgaben an, an denen der Benutzer arbeiten kann, gruppiert nach Ablauf innerhalb der nächsten 3 Tage."
       },
       {
         "locale": "en",
@@ -153,7 +153,7 @@
       },
       {
         "locale": "fr",
-        "value": "Tãches par priorité"
+        "value": "Tâches par priorité"
       },
       {
         "locale": "es",
@@ -163,7 +163,7 @@
     "descriptions": [
       {
         "locale": "de",
-        "value": "Dieses Balkendiagramm zeigt alle Aufgaben nach Priorität an, an denen der Benutzer arbeiten kann."
+        "value": "Dieses Balkendiagramm zeigt alle Aufgaben nach Priorität an, die der Benutzer bearbeiten kann."
       },
       {
         "locale": "en",
@@ -171,7 +171,7 @@
       },
       {
         "locale": "fr",
-        "value": "Ce diagramme à barres affiche toutes les tâches par priorité sur lesquelles l'utilisateur peut travailler.s"
+        "value": "Ce diagramme à barres affiche toutes les tâches par priorité sur lesquelles l'utilisateur peut travailler."
       },
       {
         "locale": "es",
@@ -345,11 +345,11 @@
       },
       {
         "locale": "fr",
-        "value": "Cas initiés par jour"
+        "value": "Ce graphique montre tous les cas entamés par jour au cours des 5 derniers jours."
       },
       {
         "locale": "es",
-        "value": "Casos iniciados por día"
+        "value": "Este gráfico muestra todos los casos iniciados por día en los últimos 5 días."
       }
     ],
     "icon": "si si-analytics-board-graph-line",
@@ -423,19 +423,19 @@
     "descriptions": [
       {
         "locale": "de",
-        "value": "Abgeschlossene Fälle pro Tag"
+        "value": "Diese Grafik zeigt alle abgeschlossenen Fälle pro Tag in den letzten 5 Tagen."
       },
       {
         "locale": "en",
-        "value": "This chart shows all finished cases per day within the last 5 days"
+        "value": "This chart shows all finished cases per day within the last 5 days."
       },
       {
         "locale": "fr",
-        "value": "Cas finis par jour"
+        "value": "Ce graphique montre toutes les affaires terminées par jour au cours des 5 derniers jours."
       },
       {
         "locale": "es",
-        "value": "Cajas terminadas por día"
+        "value": "Este gráfico muestra todos los casos terminados por día en los últimos 5 días."
       }
     ],
     "icon": "si si-analytics-board-graph-line",
@@ -491,7 +491,7 @@
     "names": [
       {
         "locale": "de",
-        "value": "Anzahl der RUNNING-Fälle, an denen der Benutzer beteiligt ist"
+        "value": "Anzahl der laufenden Fälle, an denen der Benutzer beteiligt ist"
       },
       {
         "locale": "en",
@@ -503,25 +503,25 @@
       },
       {
         "locale": "es",
-        "value": "Número de casos en los que el usuario está implicado"
+        "value": "Número de casos en curso en los que participa el usuario"
       }
     ],
     "descriptions": [
       {
         "locale": "de",
-        "value": "Anzahl der RUNNING-Fälle, an denen der Benutzer beteiligt ist"
+        "value": "Anzahl der RUNNING-Fälle, an denen der Benutzer beteiligt ist."
       },
       {
         "locale": "en",
-        "value": "This chart shows all running cases in which the user is involved"
+        "value": "This chart shows all running cases in which the user is involved."
       },
       {
         "locale": "fr",
-        "value": "Nombre d'affaires en cours dans lesquelles l'utilisateur est impliqué"
+        "value": "Ce graphique montre tous les cas en cours dans lesquels l'utilisateur est impliqué."
       },
       {
         "locale": "es",
-        "value": "Número de casos en los que el usuario está implicado"
+        "value": "Este gráfico muestra todos los casos en curso en los que está implicado el usuario"
       }
     ],
     "icon": "si si-pie-line-graph",
@@ -554,25 +554,25 @@
       },
       {
         "locale": "es",
-        "value": "Tareas que expiran hasta el final de la semana"
+        "value": "Tareas que expiran al final de la semana"
       }
     ],
     "descriptions": [
       {
         "locale": "de",
-        "value": "Aufgaben, die bis zum Ende der Woche ablaufen"
+        "value": "Dieses Diagramm zeigt alle Aufgaben, die bis zum Ende der Woche ablaufen."
       },
       {
         "locale": "en",
-        "value": "This chart shows all tasks that expire until the end of the week"
+        "value": "This chart shows all tasks that expire by the end of the week."
       },
       {
         "locale": "fr",
-        "value": "Tâches expirant à la fin de la semaine"
+        "value": "Ce graphique montre toutes les tâches qui expirent à la fin de la semaine."
       },
       {
         "locale": "es",
-        "value": "Tareas que expiran hasta el final de la semana"
+        "value": "Este gráfico muestra todas las tareas que vencen al final de la semana."
       }
     ],
     "icon": "si si-pie-line-graph",
@@ -593,7 +593,7 @@
     "names": [
       {
         "locale": "de",
-        "value": "Anzahl der Aufgaben nach Priorität, an denen der Benutzer arbeiten kann."
+        "value": "Anzahl der Aufgaben nach Priorität, an denen der Benutzer arbeiten kann"
       },
       {
         "locale": "en",
@@ -601,29 +601,29 @@
       },
       {
         "locale": "fr",
-        "value": "Nombre de tâches par priorité sur lesquelles l'utilisateur peut travailler."
+        "value": "Nombre de tâches par priorité sur lesquelles l'utilisateur peut travailler"
       },
       {
         "locale": "es",
-        "value": "Número de tareas por Prioridad en las que puede trabajar el usuario."
+        "value": "Número de tareas por prioridad en las que puede trabajar el usuario"
       }
     ],
     "descriptions": [
       {
         "locale": "de",
-        "value": "Anzahl der OFFENEN Aufgaben"
+        "value": "Dieses Diagramm zeigt alle Aufgaben, an denen der Benutzer arbeiten kann, nach Priorität an."
       },
       {
         "locale": "en",
-        "value": "This chart shows all tasks the user can work on by priority"
+        "value": "This chart shows all tasks the user can work on by priority."
       },
       {
         "locale": "fr",
-        "value": "Nombre de tâches OUVERTES"
+        "value": "Ce graphique montre toutes les tâches sur lesquelles l'utilisateur peut travailler, par ordre de priorité."
       },
       {
         "locale": "es",
-        "value": "Número de tareas ABIERTAS"
+        "value": "Este gráfico muestra todas las tareas en las que puede trabajar el usuario por prioridad."
       }
     ],
     "icon": "si si-pie-line-graph",
@@ -656,25 +656,25 @@
       },
       {
         "locale": "es",
-        "value": "Número de tareas en las que puede trabajar el usuario."
+        "value": "Número de tareas en las que puede trabajar el usuario"
       }
     ],
     "descriptions": [
       {
         "locale": "de",
-        "value": "Anzahl der OFFENEN Aufgaben"
+        "value": "Dieses Diagramm zeigt alle Aufgaben an, die der Benutzer bearbeiten kann."
       },
       {
         "locale": "en",
-        "value": "This chart shows all tasks the user can work on"
+        "value": "This chart shows all tasks the user can work on."
       },
       {
         "locale": "fr",
-        "value": "Nombre de tâches OUVERTES"
+        "value": "Ce tableau montre toutes les tâches sur lesquelles l'utilisateur peut travailler."
       },
       {
         "locale": "es",
-        "value": "Número de tareas ABIERTAS"
+        "value": "Este gráfico muestra todas las tareas en las que puede trabajar el usuario."
       }
     ],
     "icon": "si si-pie-line-graph",
@@ -713,19 +713,19 @@
     "descriptions": [
       {
         "locale": "de",
-        "value": "Aufgaben, die heute ablaufen"
+        "value": "Dieses Diagramm zeigt alle Aufgaben, die heute ablaufen."
       },
       {
         "locale": "en",
-        "value": "This chart shows all tasks that expire today"
+        "value": "This chart shows all tasks that expire today."
       },
       {
         "locale": "fr",
-        "value": "Tâches qui expirent aujourd'hui"
+        "value": "Ce tableau montre toutes les tâches qui expirent aujourd'hui."
       },
       {
         "locale": "es",
-        "value": "Tareas que expiran hoy"
+        "value": "Este gráfico muestra todas las tareas que vencen hoy."
       }
     ],
     "icon": "si si-pie-line-graph",
