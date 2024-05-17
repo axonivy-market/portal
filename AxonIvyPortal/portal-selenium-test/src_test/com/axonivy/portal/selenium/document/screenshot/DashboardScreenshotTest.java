@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.document.screenshot;
 
 import java.io.IOException;
-
 import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -33,13 +32,12 @@ import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.ProcessViewerWidgetNewDashBoardPage;
-import com.axonivy.portal.selenium.page.StatisticEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
-import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.SelenideElement;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
@@ -317,23 +315,6 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
   }
 
   @Test
-  public void screenshotStatisticChartWidget() throws IOException {
-    ScreenshotUtils.maximizeBrowser();
-    addPublicWidget(NewDashboardDetailsEditPage.STATISTIC_WIDGET);
-    StatisticEditWidgetNewDashboardPage statisticPage = new StatisticEditWidgetNewDashboardPage();
-    statisticPage.selectFirstChart();
-    statisticPage.clickPreviewButton();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(statisticPage.getConfigurationDialog(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "statistic-chart-widget-configuration", new ScreenshotMargin(20));
-
-    statisticPage.save();
-    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
-    homePage = new NewDashboardPage();
-    ScreenshotUtils.captureElementScreenshot(homePage.waitAndGetStatisticChart(0),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "statistic-chart-widget");
-  }
-
-  @Test
   public void screenshotAddClientStatisticWidget() throws IOException {
     // Take screenshot of Add new widget dialog
     redirectToDashboardConfiguration();
@@ -365,70 +346,6 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     homePage = new NewDashboardPage();
     ScreenshotUtils.captureElementScreenshot(homePage.waitAndGetClientStatisticChart(0),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-by-priority-statistic-chart-widget");
-  }
-
-  @Test
-  public void screenshotTaskGroupedByPriorityClientStatisticChartWidget() throws IOException {
-    ScreenshotUtils.maximizeBrowser();
-
-    addPublicStatisticWidget(NewDashboardDetailsEditPage.TASK_GROUPED_BY_PRIORITY);
-    NewDashboardDetailsEditPage newDashboard = new NewDashboardDetailsEditPage();
-    newDashboard.waitPageLoaded();
-    SelenideElement clientStatisticWidget = newDashboard.getStatisticWidgetConfigurationDialog();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(clientStatisticWidget,
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-grouped-by-priority-statistic-widget-configuration", new ScreenshotMargin(20));
-    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
-    homePage = new NewDashboardPage();
-    ScreenshotUtils.captureElementScreenshot(homePage.waitAndGetClientStatisticChart(0),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-grouped-by-priority-statistic-chart-widget");
-  }
-
-  @Test
-  public void screenshotNumberOfOpenTasksClientStatisticChartWidget() throws IOException {
-    ScreenshotUtils.maximizeBrowser();
-
-    addPublicStatisticWidget(NewDashboardDetailsEditPage.NUMBER_OF_OPEN_TASKS);
-    NewDashboardDetailsEditPage newDashboard = new NewDashboardDetailsEditPage();
-    newDashboard.waitPageLoaded();
-    SelenideElement clientStatisticWidget = newDashboard.getStatisticWidgetConfigurationDialog();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(clientStatisticWidget,
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "number-of-open-tasks-statistic-widget-configuration", new ScreenshotMargin(20));
-    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
-    homePage = new NewDashboardPage();
-    ScreenshotUtils.captureElementScreenshot(homePage.waitAndGetClientStatisticChart(0),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "number-of-open-tasks-statistic-chart-widget");
-  }
-
-  @Test
-  public void screenshotCompletedTasksPerDaylientStatisticChartWidget() throws IOException {
-    ScreenshotUtils.maximizeBrowser();
-
-    addPublicStatisticWidget(NewDashboardDetailsEditPage.COMPLETED_TASKS_PER_DAY);
-    NewDashboardDetailsEditPage newDashboard = new NewDashboardDetailsEditPage();
-    newDashboard.waitPageLoaded();
-    SelenideElement clientStatisticWidget = newDashboard.getStatisticWidgetConfigurationDialog();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(clientStatisticWidget,
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "completed-tasks-per-day-statistic-widget-configuration", new ScreenshotMargin(20));
-    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
-    homePage = new NewDashboardPage();
-    ScreenshotUtils.captureElementScreenshot(homePage.waitAndGetClientStatisticChart(0),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "completed-tasks-per-day-statistic-chart-widget");
-  }
-
-  @Test
-  public void screenshotStartedCasesPerDaylientStatisticChartWidget() throws IOException {
-    ScreenshotUtils.maximizeBrowser();
-
-    addPublicStatisticWidget(NewDashboardDetailsEditPage.STARTED_CASES_PER_DAY);
-    NewDashboardDetailsEditPage newDashboard = new NewDashboardDetailsEditPage();
-    newDashboard.waitPageLoaded();
-    SelenideElement clientStatisticWidget = newDashboard.getStatisticWidgetConfigurationDialog();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(clientStatisticWidget,
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "started-cases-per-day-statistic-widget-configuration", new ScreenshotMargin(20));
-    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
-    homePage = new NewDashboardPage();
-    ScreenshotUtils.captureElementScreenshot(homePage.waitAndGetClientStatisticChart(0),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "started-cases-per-day-statistic-chart-widget");
   }
 
   @Test
