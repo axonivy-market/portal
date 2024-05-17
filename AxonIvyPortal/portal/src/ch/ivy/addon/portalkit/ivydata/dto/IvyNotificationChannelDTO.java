@@ -50,7 +50,7 @@ public class IvyNotificationChannelDTO {
     return subscriptions.get(event.getEvent());
   }
 
-  private void setSubscriptionIconAndTitle(Event event) {
+  public void setSubscriptionIconAndTitle(Event event) {
     var subscription = subscriptions.get(event);
     if (subscription != null) {
       var state = subscription.getState();

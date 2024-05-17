@@ -258,7 +258,8 @@
                 <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                   oncomplete="PF('save-widget-filter-dialog').hide();" styleClass="u-mar-right-10"
                   process="@this" update="save-filter-form" resetValues="true"
-                  partialSubmit="true" immediate="true"/>
+                  partialSubmit="true" immediate="true"
+                  global="false"/>
                 <p:commandButton id="save-widget-filter-button"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
                   actionListener="#{widgetFilterHelperBean.saveNewWidgetFilter()}"
