@@ -21,10 +21,6 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   public static final String WELCOME_WIDGET = "Welcome widget";
   public static final String NEWS_WIDGET = "News feed widget";
   public static final String TASK_BY_PRIORITY = "Tasks by Priority";
-  public static final String TASK_GROUPED_BY_PRIORITY = "Tasks grouped by expiry";
-  public static final String NUMBER_OF_OPEN_TASKS = "Number of OPEN Tasks";
-  public static final String COMPLETED_TASKS_PER_DAY = "Completed Tasks per Day";
-  public static final String STARTED_CASES_PER_DAY = "Started Cases per Day";
   public static final String NOTIFICATION_WIDGET = "Notifications";
 
   @Override
