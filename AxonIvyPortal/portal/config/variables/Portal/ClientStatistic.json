@@ -29,19 +29,19 @@
     "descriptions": [
       {
         "locale": "de",
-        "value": "Dieses Kreisdiagramm zeigt alle Aufgaben nach Priorität an."
+        "value": "Dieses Tortendiagramm zeigt alle Aufgaben nach Priorität an, an denen der Benutzer arbeiten kann."
       },
       {
         "locale": "en",
-        "value": "This pie chart displays all tasks by priority."
+        "value": "This pie chart displays all tasks by priority the user can work on."
       },
       {
         "locale": "fr",
-        "value": "Ce diagramme à secteurs affiche toutes les tâches par priorité."
+        "value": "Ce diagramme à secteurs affiche toutes les tâches par ordre de priorité sur lesquelles l'utilisateur peut travailler."
       },
       {
         "locale": "es",
-        "value": "Este gráfico circular muestra todas las tareas por prioridad."
+        "value": "Este gráfico circular muestra todas las tareas por prioridad en las que puede trabajar el usuario."
       }
     ],
     "icon": "si si-analytics-pie-2",
