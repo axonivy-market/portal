@@ -42,7 +42,8 @@
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
                   actionListener="#{dashboardDetailModificationBean.create(sample)}" update="new-widget-configuration-dialog widget-configuration-form"
                   oncomplete="PF('new-widget-configuration-dialog').show(); PF('new-widget-dialog').hide();"
-                  icon="si si-add" onstart="getPortalGridsCurrentRow();"/>
+                  icon="si si-add" onstart="getPortalGridsCurrentRow();"
+                  process="@this"/>
               </h:panelGroup>
               
             </div>
