@@ -92,10 +92,11 @@ const convertYValue = (value, config) => {
   try {
      valueNumber = Number(value);
 
-     additionalConfig.find(function (config) {
-      if (Object.keys(config)[0] === MANIPULATE_BY) {
-        let operator = config.manipulateValueBy.charAt(0);
-        let manipulateValueBy = Number(config.substring(1));
+     config.find(function (item) {
+      if (Object.keys(item || {})[0] === MANIPULATE_BY) {
+        let itemVal = Object.values(item)[0];
+        let operator = itemVal.charAt(0);
+        let manipulateValueBy = Number(itemVal.substring(1));
   
         switch (operator) {
           case '/':  return valueNumber / manipulateValueBy;
