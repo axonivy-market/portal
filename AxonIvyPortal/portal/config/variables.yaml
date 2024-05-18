@@ -16,6 +16,11 @@ Variables:
     # Default value is 0, it means default client side timeout is applied. Default client side timeout is server side timeout minus 3 minutes.
     ClientSideTimeout: 0
 
+    # You can define the standard client statistic via this JSON file.
+    # You can configure dashboards to show the statistics to dashboards.
+    # [file: json]
+    ClientStatistic:
+
     # A feedback message will be displayed after user finishes or leaves a task.
     DisplayMessageAfterFinishTask: true
 
@@ -189,7 +194,7 @@ Variables:
       MaxConnection: 3
 
       # Endpoint URL for the RESTful service of Portal chatbot
-      ChatBotEndpoint: 
+      ChatBotEndpoint: localhost:8018
 
     Histories:
       # If true, case note does not display any system tasks for non-administrator users.

@@ -16,6 +16,7 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.DefaultExpresTaskPage;
 import com.axonivy.portal.selenium.page.ExpressApprovalPage;
 import com.axonivy.portal.selenium.page.ExpressEndPage;
@@ -185,7 +186,9 @@ public class PortalExpressTest extends BaseTest {
     expressProcessPage.createDefaultTask(0, "Default Task", Arrays.asList(demoResponsible));
     expressProcessPage.addNewTask(0);
     expressProcessPage.createDefaultTask(1, "Next Default Task", Arrays.asList(demoResponsible));
-    expressProcessPage.executeDirectly();
+    WaitHelper.waitForNavigation(() -> {
+      expressProcessPage.executeDirectly();
+    });
 
     DefaultExpresTaskPage defaultExpresTaskPage = new DefaultExpresTaskPage();
     defaultExpresTaskPage.enterTextToDefaultTask("Test input");

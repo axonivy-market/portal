@@ -16,6 +16,7 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -57,7 +58,8 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public SelenideElement getBreadcrumbLastDisplayedItem() {
-    return $$("span.ui-menuitem-text").last().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $("nav[id='portal-breadcrumb:breadcrumb-form:breadcrumb']").$$("span.ui-menuitem-text").last()
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getInformationPanel() {
@@ -124,7 +126,11 @@ public class TaskDetailsPage extends TemplatePage {
   public List<String> getActiveTaskAction() {
     openActionPanel();
     WebElement actionPanel = findElementByCssSelector("div[id$=':additional-options:side-steps-panel']");
-    return actionPanel.findElements(By.cssSelector("a[class*='option-item']")).stream().map(WebElement::getText)
+    return actionPanel.findElements(By.cssSelector("a[class*='option-item']"))
+        .stream()
+        .filter(
+            elem -> !elem.getAttribute("class").contains("ui-state-disabled"))
+        .map(WebElement::getText)
         .collect(Collectors.toList());
   }
 
@@ -318,7 +324,9 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public TaskIFrameTemplatePage clickStartTask() {
-    findElementByCssSelector("[id$=':task-detail-start-command']").click();
+    WaitHelper.waitForNavigation(() ->  {
+      findElementByCssSelector("[id$=':task-detail-start-command']").click();
+    });
     switchToIFrameOfTask();
     return new TaskIFrameTemplatePage();
   }

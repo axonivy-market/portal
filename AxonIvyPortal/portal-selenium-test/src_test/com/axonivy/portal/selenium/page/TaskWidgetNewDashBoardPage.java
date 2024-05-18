@@ -6,6 +6,11 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import org.openqa.selenium.WebElement;
+
+import com.axonivy.portal.selenium.common.ComplexFilterHelper;
+import com.axonivy.portal.selenium.common.FilterOperator;
+import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -108,11 +113,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public void filterTaskName(String input) {
-    var taskNameFilter = $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$(".ui-inputfield.text-field-input-name");
-    taskNameFilter.clear();
-    taskNameFilter.sendKeys(input);
+  public void filterTaskName(String input, FilterOperator operator) {
+    addFilter("Name", operator);
+    inputValueOnLatestFilter(FilterValueType.TEXT, input);
   }
 
   public String getTaskNameFilterValue() {
@@ -130,43 +133,6 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void resetFilter() {
     $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='reset-button']")
         .filter(text("Reset")).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-  }
-
-  public void filterPriority(String... priorities) {
-    $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$=':priorities']")
-        .$(".ui-selectcheckboxmenu-trigger.ui-corner-right").shouldBe(getClickableCondition()).click();
-    var priorityCheckboxOptions = $("[id$=':priorities_panel']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$$(".ui-selectcheckboxmenu-item.ui-selectcheckboxmenu-list-item")
-        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(1));
-    for (var item : priorityCheckboxOptions) {
-      for (var prio : priorities) {
-        if (item.getAttribute("data-item-value").equalsIgnoreCase(prio)) {
-          item.$(".ui-chkbox-box.ui-widget").shouldBe(getClickableCondition()).click();
-          break;
-        }
-      }
-    }
-  }
-
-  public void filterCategories(String... categories) {
-    $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT).$("[id$=':widget-filter-category']")
-        .shouldBe(getClickableCondition()).click();
-    var categoriesPanel = $("[id$=':widget-filter-category-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
-    categoriesPanel.$("[id$=':widget-category-filter-tree']").$$(".ui-chkbox").first().shouldBe(getClickableCondition())
-        .click();
-
-    categoriesPanel.$$(".ui-treenode").asDynamicIterable().forEach(leaf -> {
-      for (var category : categories) {
-        var leafValue = leaf.$(".ui-treenode-label").getText();
-        if (category.equalsIgnoreCase(leafValue)) {
-          leaf.$(".ui-chkbox").shouldBe(getClickableCondition()).click();
-          break;
-        }
-      }
-    });
-
-    categoriesPanel.$("button[id$=':update-command']").shouldBe(getClickableCondition()).click();
-    categoriesPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void clickOnSaveFilterButton() {
@@ -311,15 +277,18 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     getStateFilterCheckBox(state).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     getCloseStateFilter().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
-
-  public void filterTaskState() {
-    getFilterCheckBox(FILTER_TASK_STATE).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  
+  public void filterTaskState(Object... states) {
+    addFilter("State", null);
+    inputValueOnLatestFilter(FilterValueType.STATE_TYPE, states);
   }
 
   public ElementsCollection getActiveTaskActions(int taskIndex) {
     clickOnTaskActionLink(taskIndex);
     return $$(String.format("div.js-task-side-steps-panel-task_1-%d", taskIndex)).filter(appear).first()
-        .shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='option-item']");
+        .shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content")
+        .$$("a[class*='option-item']")
+        .filter(Condition.not(Condition.cssClass("ui-state-disabled")));
   }
 
   public void clickOnTaskActionLink(int taskIndex) {
@@ -351,6 +320,10 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   private ElementsCollection getTasksOfTaskWidgetHasName(String taskName) {
     return getAllTasksOfTaskWidget().filter(text(taskName));
   }
+  
+  public void clickOnTaskName(String taskName) {
+    getAllTasksOfTaskWidget().filter(text(taskName)).first().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    }
 
   private ElementsCollection getAllTasksOfTaskWidget() {
     return getColumnsOfTableWidget().filter(Condition.cssClass("dashboard-tasks__name"));
@@ -518,5 +491,140 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     clickOnButtonWidgetInformation();
     $("div.info-overlay-panel__footer").$(".dashboard-excel-export-form").$("a").shouldBe(getClickableCondition())
         .click();
+  }
+  
+  public boolean isQuickSearchInputShow(String widgetIndex) {
+    String taskWidgetIndex = String.format("div[id*='task-task_%s']", widgetIndex);
+    waitPageLoaded();
+    return $(taskWidgetIndex).$("form").$("input").exists();
+  }
+  
+  public void setInputForQuickSearch(String input) {
+    getQuickSearchForm().$("input").sendKeys(input);
+    waitPageLoaded();
+  }
+  
+  private SelenideElement getQuickSearchForm() {
+    return $("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
+  }
+  
+  public void clearQuickSearchInput() {
+    getQuickSearchForm().$("input").clear();
+    waitPageLoaded();
+  }
+
+  public boolean isEmptyMessageAppear() {
+    return $("div[id$='empty-message-container']").exists();
+  }
+
+  public void addFilter(String columnName, com.axonivy.portal.selenium.common.FilterOperator operator) {
+    ComplexFilterHelper.addFilter(columnName, operator);
+  }
+  
+  public void inputValueOnLatestFilter(FilterValueType type, Object... values) {
+    ComplexFilterHelper.inputValueOnLatestFilter(type, values);
+  }
+  
+  public void saveFilter(String widgetFilterName) {
+    $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='save-filter']")
+        .filter(text("Save filter")).first().shouldBe(getClickableCondition()).click();
+    $("div#save-widget-filter-dialog").$("input[id='save-filter-form:save-filter-name']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).setValue(widgetFilterName);
+    $("button[id$=':save-widget-filter-button']").click();
+    $("div[id$=':widget-saved-filters-items']").$$("div.saved-filter__items").filter(text(widgetFilterName)).first()
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void openManageFiltersDialog() {
+    $("div.saved-filter-content").shouldBe(appear, DEFAULT_TIMEOUT)
+    .$("a[class*='saved-filter__manage-filter']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+  }
+  
+  public void removeAllFilterItems() {
+    $("div[id='manage-filter-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div[id$=':quick-filter-table_head_checkbox']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("button[id='delete-saved-filter-form:delete-widget-filter-btn']").click();
+  }
+  
+  public void closeManageFilterDialog() {
+    $("a[id*='delete-saved-filter-form']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+  }
+  
+  public void selectSavedFilter(String filterName) {
+    getSavedFilterItems().filter(text(filterName)).first().shouldBe(getClickableCondition()).click();
+  }
+  
+  
+  public void searchSavedFilters(String input) {
+    $("div[class*='saved-filter--search-container']").$("input[id$=':search-saved-filter-input']").setValue(input);
+  }
+  
+  public void inputValueOnColumnWidgetHeader(String columnName, String value) {
+    columnName = columnName + ": activate to sort column ascending";
+    $("div[id='manage-filter-dialog']").$("div[id$=':quick-filter-table']")
+        .$("div.ui-datatable-scrollable-header-box table thead tr")
+        .$$("th[id*='delete-saved-filter-form:quick-filter-table']")
+        .filter(Condition.attribute("aria-label", columnName)).first().$("input").setValue(value);
+  }
+  
+  public ElementsCollection getSavedFilterItemsByFilterNameOnWidgetManagement() {
+    ElementsCollection elements = $("div[id='manage-filter-dialog']").$("div.ui-datatable-scrollable-body table tbody")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$$("tr").filter(Condition.attribute("data-rk"));
+    return elements;
+  }
+  
+  public Integer getFilterNotiNumber() {
+    String filterNotiNumber =
+        $$("div.table-widget-panel").filter(text(taskWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT)
+            .$("div[id$=':widget-header-actions']").$("span[class*='widget__filter-noti-number']").getText();
+    return Integer.parseInt(filterNotiNumber);
+  }
+  
+  public void clickOnFilterOperator(Integer index) {
+    $("div[class*='dashboard-widget-filter__main-panel']").shouldBe(getClickableCondition())
+    .$$("div[class*='dashboard-widget-filter__filter-wrapper']").get(index).shouldBe(getClickableCondition())
+    .$("div[id$='operator-selection']").shouldBe(getClickableCondition()).click();
+  }
+  
+  public SelenideElement getConfigurationFilter() {
+    return $("div[class*='filter-overlay-panel'][style*='display: block']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void removeFocusFilterDialog() {
+    $("[id$=':widget-filter-content']").$("strong").click();
+    $("[id$=':widget-filter-content']").scrollIntoView("{block: \"end\"}");
+  }
+  
+  public WebElement getFilterOverlayPanel(Integer index) {
+    String widgetIndex = String.format("div[id$='filter-overlay-panel-%d']", index);
+    return $(widgetIndex).shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void removeFilter(int index) {
+  int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
+  if (currentIndex > 0) {
+    String removeBtn = String.format("button[id$=':%s:filter-component:remove-filter']", index);
+    $(removeBtn).shouldBe(getClickableCondition()).click();
+    countFilterSelect().shouldBe(CollectionCondition.size(currentIndex - 1), DEFAULT_TIMEOUT);
+  }
+  }
+
+  public ElementsCollection countFilterSelect() {
+    return $$("[id$=':filter-component:field-selection_panel']");
+  }
+  
+  public int getNumberOfFilter() {
+    return $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT)
+    .$("div[class*='filter-overlay-panel__content']").shouldBe(appear, DEFAULT_TIMEOUT)
+    .$("div[id$='filter-container']").shouldBe(appear, DEFAULT_TIMEOUT)
+    .$$("div[class*='dashboard-widget-filter__filter-wrapper']").size();
+  }
+  
+  public void clickOnBackToHomeButtonOnAjaxErrorDialog() {
+    $("div[id*='ajax-indicator:ajax-indicator-error-ajax-dialog']").shouldBe(appear, DEFAULT_TIMEOUT).$("div[id*='ajax-indicator:ajax-indicator-error-ajax-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT).$("button").click();
+  }
+  
+  public boolean isAjaxErrorDialogDisplayed() {
+    return $("div[id*='ajax-indicator:ajax-indicator-error-ajax-dialog']").exists();
   }
 }

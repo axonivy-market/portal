@@ -7,7 +7,7 @@ Define Case Widget
 ------------------
 
 The case widget of the Portal dashboard is an interactive case list. Refer
-to (link to case widget of the dashboard) for details.
+to :ref:`Case List Widget <new-dashboard-case-list-widget>` for details.
 
 Below is a sample JSON definition of the case widget in the Portal dashboard.
 
@@ -133,6 +133,9 @@ The basic JSON structure of the case widget
    -  ``visible``: visibility of a column. The default value is "true". Set to
       "false" to hide the column.
 
+   -  ``quickSearch``: Adds this field to the search scope of the quick search. The default value is ``false``.
+      Set to ``true`` to apply search condition for the column.
+
    -  ``headers``: multilingual header of the column.
 
 .. _configure-new-dashboard-case-widget-custom-columns:
@@ -210,10 +213,71 @@ Filter Conditions
 
 You can predefined filter conditions for most columns of the case widget. Each
 column has different conditions. Some columns only accept a list, some only a
-string, and some only accept a string in a special format such as date-time.
+string and some only accept a string in a special format such as date-time. 
+Please refer to :ref:`Complex Filter <complex-filter>` for more details.
 
-Below is the list of filterable columns and their corresponding filter
+Base structure of filter json:
+
+   .. code-block:: html
+
+         {
+            ...
+      
+            "columns": [
+               {
+                  "field": "name"
+               }
+            ],
+            "filters" : [
+               {
+                  "field" : "name",
+                  "values" : [ "Mike ", "Nam" ],
+                  "operator" : "contains",
+                  "type" : "standard"
+               } 
+            ]
+         }
+
+   ..
+   
+.. _configure-new-dashboard-case-widget-filter-structure:
+
+   - ``field``: filter field name corresponding with column name
+
+   - ``values``: filter value, could be a list, a string or a number
+
+   - ``operator``: filter operator, operators can be difference depend on each field type.
+
+     - **String column**: is, is_not, empty, not_empty, contains, not_contains, start_with, not_start_with, end_with, not_end_with
+
+     - **Number column**: between, not_between, empty, not_empty, equal, not_equal, less, less_or_equal, greater, greater_or_equal
+
+     - **Date column**: today, yesterday, is, is_not, before, after, between, not_between, current, last, next, empty, not_empty
+
+   - ``type``: ``standard`` for standard column or ``custom`` for custom column
+
+   - Date type additional field:
+
+      - ``periodType``: string value, ``YEAR``, ``MONTH``, ``WEEK``, ``DAY``
+
+      - ``from``: string value. E.g.: "03/19/2024"
+
+      - ``to``: string value. E.g.: "01/01/2024"
+   
+   - Number type additional field:
+
+      - ``from``: string value. E.g.: "3.0"
+
+      - ``to``: string value. E.g.: "55.2"
+
+
+There are additional fields dependent on the operator and many specific filters for each field type. Below is the list of filterable columns and their corresponding filter
 conditions.
+
+.. tip:: 
+   We encourage utilizing dashboard configurations to edit widgets and then leveraging the export dashboard feature to ensure better expectations when customizing these widgets.  
+
+Standard Column:
 
    - ``name``
 
@@ -224,17 +288,22 @@ conditions.
       
             "columns": [
                {
-                  "field": "name",
-                  "filter": "request"
+                  "field": "name"
                }
+            ],
+            "filters" : [ 
+               {
+                  "field" : "name",
+                  "values" : [ "Mike ", "Nam" ],
+                  "operator" : "contains",
+                  "type" : "standard"
+               } 
             ]
          }
 
       ..
 
-      This column only accepts a string as the filter condition for the case
-      name. If you define a string such as "request", the case widget will only
-      show cases that contain the word "request" in their name.
+      This column accepts all operators available for String column. Additionally, it accepts ``values`` as a list of strings .
 
    - ``description``
 
@@ -245,17 +314,22 @@ conditions.
       
             "columns": [
                {
-                  "field": "description",
-                  "filter": "request"
+                  "field": "description"
                }
+            ],
+            "filters" : [ 
+               {
+                  "field" : "description",
+                  "values" : [ "Leave" ],
+                  "operator" : "not_end_with",
+                  "type" : "standard"
+               } 
             ]
          }
 
       ..
 
-      This column only accepts a string as the filter condition for the case description.
-      If you define a string such as "request", the case widget will only show cases that
-      contain the word "request" in their description.
+      This column accepts all operators available for String column. Additionally, it accepts ``values`` as a list of strings .
 
    - ``state``: Case business state
 
@@ -266,16 +340,21 @@ conditions.
       
             "columns": [
                {
-                  "field": "state",
-                  "filterList": ["OPEN","DONE","DESTROYED"]
+                  "field": "state"
                }
+            ],
+            "filters" : [ 
+               {
+                  "field" : "state",
+                  "values" : [ "DESTROYED", "DONE", "OPEN" ],
+                  "operator" : "in",
+                  "type" : "standard"
+               } 
             ]
          }
       ..
 
-      This column only accepts a list of case business state names as the filter condition.
-      If you define a list of business states in ``filterList``, the case widget will only show cases that have
-      business states listed in ``filterList``. 
+      This column only accepts a list of case business state names as the filter value. The available filter operator is ``in``.
 
       Refer to :dev-url:`Case business states </doc/|version|/public-api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` for
       available case business states.
@@ -289,20 +368,30 @@ conditions.
       
             "columns": [
                {
-                  "field": "creator",
-                  "filterList": ["PO","#peter"]
+                  "field": "creator"
                }
+            ],
+            "filters" : [ 
+               {
+                  "field" : "creator",
+                  "values" : [ "backendDev2", "gm1" ],
+                  "operator" : "in",
+                  "type" : "standard"
+               },
+               {
+                  "field" : "creator",
+                  "operator" : "current_user",
+                  "type" : "standard"
+               } 
             ]
          }
 
       ..
 
-      This column only accepts a list of role names or usernames (if you want to
-      filter by username, put a hashtag (#) before the name) as filter conditions
-      for the case creator's username. If you define a string such as
-      "#peter", the case widget will show cases that have been created by "peter".
+      This column only accepts a list of usernames as filter value for the case creator's username. The available filter operators are ``in``, ``not_in`` and ``current_user``. 
+      The ``current_user`` operator does not require value field.
 
-   - ``startTimestamp``: Case's created date
+   - ``startTimestamp`` and ``endTimestamp``: created date and finished date of the Case
 
       .. code-block:: html
 
@@ -311,22 +400,56 @@ conditions.
       
             "columns": [
                {
-                  "field": "startTimestamp",
-                  "filterFrom": "04/11/2021",
-                  "filterTo": "05/28/2021"
+                  "field": "creator"
+               }
+            ],
+            "filters" : [ 
+               {
+                  "field" : "startTimestamp",
+                  "to" : "03/12/2024",
+                  "operator" : "after",
+                  "type" : "standard"
+               },
+               {
+                  "field" : "startTimestamp",
+                  "operator" : "current",
+                  "periodType" : "MONTH",
+                  "type" : "standard"               
+               },
+               {
+                  "field" : "startTimestamp",
+                  "from" : "03/01/2024",
+                  "to" : "03/17/2024",
+                  "operator" : "between",
+                  "type" : "standard"
+               },
+               {
+                  "field" : "startTimestamp",
+                  "operator" : "last",
+                  "periods" : 2,
+                  "periodType" : "YEAR",
+                  "type" : "standard"
+               },
+               {
+                  "field" : "startTimestamp",
+                  "from" : "03/19/2024",
+                  "operator" : "is",
+                  "type" : "standard"
+               },
+               {
+                  "field" : "startTimestamp",
+                  "operator" : "empty",
+                  "type" : "standard"
                }
             ]
          }
 
       ..
 
-      This column accepts two filter conditions ``filterFrom`` and ``filterTo`` as boundaries
-      of a range of dates. If you define dates for ``filterFrom`` and ``filterTo``,
-      the case widget will show cases with a created date between the dates defined.
-
+      This column accepts all operators available for Date column. Fields may vary depending on the operator. The JSON example above covers most use cases for the Date field.
       Acceptable date formats: ``dd.MM.yyyy`` and ``MM/dd/yyyy``.
 
-   - ``expiryTimestamp``: Case's expiry date
+   - ``category``
 
       .. code-block:: html
 
@@ -335,20 +458,121 @@ conditions.
       
             "columns": [
                {
-                  "field": "expiryTimestamp",
-                  "filterFrom": "04/11/2021",
-                  "filterTo": "05/28/2021"
+                  "field": "category"
+               }
+            ],
+            "filters" : [ 
+               {
+                  "field" : "category",
+                  "values" : [ "LeaveRequest", "Leave_Request_1" ],
+                  "operator" : "in",
+                  "type" : "standard"
                }
             ]
          }
 
       ..
 
-      This column accepts two filter conditions ``filterFrom`` and ``filterTo`` as boundaries
-      of a range of dates. If you define dates for ``filterFrom`` and ``filterTo``,
-      case widget will show cases with an expiry date between the dates defined.
+      The available filter operators are ``in``, ``not_in``, ``no_category``, ``contains`` and ``not_contains``. 
+      The ``no_category`` operator does not require value field.
 
-      Acceptable date formats: ``dd.MM.yyyy`` and ``MM/dd/yyyy``.
+Custom Field Column: 
+
+   - :ref:`configure-new-dashboard-case-widget-custom-columns` are using the same operator as :ref:`Standard Column <configure-new-dashboard-case-widget-filter-structure>`
+
+   - ``type`` field must be ``custom``
+
+   .. code-block:: html
+
+      {
+         ...
+
+         "columns": [
+            {
+               "field": "InvoiceNumber"
+            }
+         ],
+         "filters" : [ 
+            {
+               "field" : "InvoiceNumber",
+               "value" : "566.00",
+               "operator" : "less_or_equal",
+               "type" : "custom"
+            }
+         ]
+      }
+
+   ..
+
+Quick Search
+------------
+
+The Quick search is a useful function for users to quickly search the cases within the case widget.
+The configuration of the quick search has two attributes:
+   
+   * ``enableQuickSearch``: enables the quick search feature for the widget.
+
+   * ``quickSearch``: indicates that a column is searchable using the quick search feature.
+
+If you set the ``enableQuickSearch`` attribute to ``false``, the quick search feature will be disabled,
+regardless of the ``quickSearch`` attribute's value.
+
+Conversely, if you set the ``enableQuickSearch`` attribute to ``true``, the quick search feature will
+search within the values of all columns that have the ``quickSearch`` attribute set to ``true``.
+If you haven't assigned the ``quickSearch`` attribute to any column in the case widget,
+the quick search feature will default to searching the name and description fields.
+
+Below are the definition of these attributes:
+
+   * ``enableQuickSearch``: to enable/disable the quick search feature, set the
+     ``enableQuickSearch`` field of the case widget as shown below.
+
+      .. code-block:: html
+
+         {
+            ...
+            "type": "case",
+            "id": "case_98ae4fc1c83f4f22be5244c8027ecf40"
+            ...
+            "enableQuickSearch": "true",
+            ...
+         }
+
+      ..
+
+      Valid values:
+
+      * ``true``: show the quick search text box.
+      * ``false``: hide the quick search text box.
+      * ``not defined``: hide the quick search text box.
+
+   * ``quickSearch``: to choose which columns can be searched by the quick search
+     feature, set the ``quickSearch`` field for each column as shown below.
+
+      .. code-block:: html
+
+         {
+            ...
+            "type": "case",
+            "id": "case_98ae4fc1c83f4f22be5244c8027ecf40"
+            ...
+            "columns": [
+               {
+                  "field": "id",
+                  "quickSearch": "false"
+               },
+               ...
+            ]
+            ...
+         }
+
+      ..
+
+      Valid values:
+
+      * ``true``: apply quick search for this column.
+      * ``false``: do not apply quick search for this column.
+      * ``not defined``: the ``name`` and ``description`` columns are ``true``, other columns are ``false`` by default.
 
 .. |custom-action-button-custom-field| image:: images/new-dashboard-case-widget/custom-action-button-custom-field.png
 .. |custom-action-button-process-demo| image:: images/new-dashboard-case-widget/custom-action-button-process-demo.png

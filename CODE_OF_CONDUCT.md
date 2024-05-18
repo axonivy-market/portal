@@ -60,7 +60,7 @@ representative at an online or offline event.
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement at
-[safety@home-assistant.io][email] or by using the report/flag feature of
+[support@axonivy.com][email] or by using the report/flag feature of
 the medium used. All complaints will be reviewed and investigated promptly and
 fairly.
 
@@ -131,10 +131,3 @@ blog post.
 For answers to common questions about this code of conduct, see the FAQ at
 <https://www.contributor-covenant.org/faq>. Translations are available at
 <https://www.contributor-covenant.org/translations>.
-
-[coc-blog]: https://www.home-assistant.io/blog/2017/01/21/home-assistant-governance/
-[coc2-blog]: https://www.home-assistant.io/blog/2020/05/25/code-of-conduct-updated/
-[email]: mailto:safety@home-assistant.io
-[homepage]: http://contributor-covenant.org
-[mozilla]: https://github.com/mozilla/diversity
-[version]: https://www.contributor-covenant.org/version/2/0/code_of_conduct.html

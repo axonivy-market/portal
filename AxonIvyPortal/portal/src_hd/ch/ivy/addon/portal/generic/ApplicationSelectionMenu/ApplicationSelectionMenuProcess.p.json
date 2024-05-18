@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "156A1AA176DE2A21",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -79,7 +79,7 @@
       },
       "visual" : {
         "at" : { "x" : 248, "y" : 592 },
-        "size" : { "width" : 112, "height" : 40 }
+        "size" : { "height" : 40 }
       },
       "connect" : [
         { "id" : "f13", "to" : "f19", "via" : [ { "x" : 480, "y" : 592 } ] }
@@ -148,13 +148,19 @@
           "code" : [
             "import ch.ivy.addon.portalkit.util.GrowlMessageUtils;",
             "",
-            "GrowlMessageUtils.addFeedbackMessage(false, (in.#workingTask != null ? in.workingTask : ivy.task).getCase());"
+            "try {",
+            "  GrowlMessageUtils.addFeedbackMessage(false, (in.#workingTask != null ? in.workingTask : ivy.task).getCase());",
+            "} catch (Exception e) {",
+            "  // Could be Error calling method getCase() on an object of class ch.ivyteam.ivy.workflow.internal.Task.",
+            "  // Due to PersistentObjectDeletedException of ch.ivyteam.ivy.workflow.internal.data.TaskData",
+            "  GrowlMessageUtils.addFeedbackMessage(false);",
+            "}"
           ]
         }
       },
       "visual" : {
         "at" : { "x" : 480, "y" : 496 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       },
       "connect" : [
         { "id" : "f1", "to" : "f5" }
@@ -355,7 +361,7 @@
       },
       "visual" : {
         "at" : { "x" : 256, "y" : 688 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f21", "to" : "f16" }
