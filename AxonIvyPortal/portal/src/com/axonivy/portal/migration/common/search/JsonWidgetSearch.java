@@ -32,7 +32,7 @@ public class JsonWidgetSearch {
     return null;
   }
 
-  private List<JsonNode> findWidgets() {
+  public List<JsonNode> findWidgets() {
     List<JsonNode> matches = new ArrayList<>();
     new JsonDashboardVisitor(dashboard).visitWidgets(element -> {
       if (filter.test(element)) {

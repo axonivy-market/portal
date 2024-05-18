@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "1485F329FE84F01E",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -57,7 +57,7 @@
       },
       "visual" : {
         "at" : { "x" : 464, "y" : 256 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       },
       "connect" : [
         { "id" : "f8", "to" : "f7" }
@@ -252,7 +252,7 @@
       },
       "visual" : {
         "at" : { "x" : 464, "y" : 448 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       },
       "connect" : [
         { "id" : "f3", "to" : "f2" }

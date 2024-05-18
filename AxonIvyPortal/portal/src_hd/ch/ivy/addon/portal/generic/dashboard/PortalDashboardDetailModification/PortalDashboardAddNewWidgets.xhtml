@@ -14,7 +14,7 @@
   <div class="new-widget-dialog__search">
     <p:inputText id="search-input" styleClass="js-search-input new-widget-dialog__search-input"
       placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}"
-      onkeyup="searcNewhWidgetByNameOrDescription(this);" />
+      onkeyup="searchNewWidgetByNameOrDescription(this);" />
       <span class="si si-search new-widget-dialog__search-icon" />
   </div>
   <div class="new-widget-dialog__content">
@@ -23,12 +23,12 @@
       legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StandardWidgets')}"
       styleClass="new-widget-dialog__fieldset js-widget-fieldset">
       <div class="new-widget-dialog__item-container">
-        <p:repeat id="new-widget-dialog-content"
+        <ui:repeat id="new-widget-dialog-content"
           var="sample"
           value="#{dashboardDetailModificationBean.samples}">
           <div class="new-widget-dialog__item card js-widget">
             <div class="new-widget-dialog__item-title">
-              <p:outputLabel id="widget-name" value="#{sample.name}" styleClass="new-widget-dialog__widget-name"/>
+              <h:outputText id="widget-name" value="#{sample.name}" styleClass="new-widget-dialog__widget-name"/>
             </div>
             <div class="new-widget-dialog__item-details">
               <p:graphicImage library="images" name="#{sample.image}" styleClass="new-widget-dialog__image" rendered="#{!sample.useIcon}" />
@@ -37,7 +37,7 @@
               </h:panelGroup>
 
               <h:panelGroup layout="block" styleClass="ui-panelgrid-blank new-widget-dialog__item-content">
-                <p:outputLabel value="#{sample.introduction}" styleClass="new-widget-dialog__introduction"/>
+                <h:outputText value="#{sample.introduction}" styleClass="new-widget-dialog__introduction"/>
                 <p:commandButton id="add-widget" styleClass="new-widget-dialog__add-widget-button"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
                   actionListener="#{dashboardDetailModificationBean.create(sample)}" update="new-widget-configuration-dialog widget-configuration-form"
@@ -47,7 +47,45 @@
               
             </div>
           </div>
-        </p:repeat>
+        </ui:repeat>
+      </div>
+    </p:fieldset>
+    
+    <p:fieldset id="statistic-widget-fieldset" toggleable="true"
+      rendered="#{not empty dashboardDetailModificationBean.statisticWidgets}"
+      legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticWidgets')}"
+      styleClass="new-widget-dialog__fieldset js-widget-fieldset">
+      <div class="new-widget-dialog__item-container">
+        <ui:repeat id="new-statistic-widget-dialog-content"
+         var="widget" value="#{dashboardDetailModificationBean.statisticWidgets}">
+          <div class="new-widget-dialog__item card js-widget">
+
+            <div class="new-widget-dialog__item-title">
+              <h:outputText id="statistic-widget-name" value="#{widget.name}" styleClass="new-widget-dialog__widget-name"/>
+              <p:tooltip id="statistic-widget-name-tooltip" for="statistic-widget-name" value="#{widget.name}" trackMouse="true" />
+            </div>
+
+            <div class="new-widget-dialog__item-details">
+              <h:panelGroup layout="block" styleClass="new-widget-dialog__image" >
+                <span class="#{widget.icon} new-widget-dialog__icon" />
+              </h:panelGroup>
+
+              <h:panelGroup layout="block" styleClass="ui-panelgrid-blank new-widget-dialog__item-content">
+                <h:outputText id="statistic-widget-description" value="#{widget.description}" styleClass="new-widget-dialog__introduction"/>
+                <p:tooltip id="statistic-widget-description-tooltip" for="statistic-widget-description" value="#{widget.description}" trackMouse="true" />
+
+                <p:commandButton id="add-widget" styleClass="new-widget-dialog__add-widget-button"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
+                  actionListener="#{dashboardDetailModificationBean.saveClientStatisticWidget(widget)}"
+                  oncomplete="loadGridAfterAddedNewWidget(); initStatistics();"
+                  update="widget-configuration-form load-grid-after-added-new-widget-cmd"
+                  partialSubmit="true"
+                  icon="si si-add"/>
+              </h:panelGroup>
+              
+            </div>
+          </div>
+        </ui:repeat>
       </div>
     </p:fieldset>
 
@@ -56,12 +94,12 @@
       legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CustomWidgets')}"
       styleClass="new-widget-dialog__fieldset js-widget-fieldset">
       <div class="new-widget-dialog__item-container">
-        <p:repeat id="new-custom-widget-dialog-content"
+        <ui:repeat id="new-custom-widget-dialog-content"
          var="widget" value="#{dashboardDetailModificationBean.customWidgets}">
           <div class="new-widget-dialog__item card js-widget">
 
             <div class="new-widget-dialog__item-title">
-              <p:outputLabel id="widget-name" value="#{widget.name}" styleClass="new-widget-dialog__widget-name"/>
+              <h:outputText id="widget-name" value="#{widget.name}" styleClass="new-widget-dialog__widget-name"/>
               <p:tooltip id="widget-name-tooltip" for="widget-name" value="#{widget.name}" trackMouse="true" />
             </div>
 
@@ -71,7 +109,7 @@
               </h:panelGroup>
 
               <h:panelGroup layout="block" styleClass="ui-panelgrid-blank new-widget-dialog__item-content">
-                <p:outputLabel value="#{widget.description}" styleClass="new-widget-dialog__introduction"/>
+                <h:outputText value="#{widget.description}" styleClass="new-widget-dialog__introduction"/>
                 <p:commandButton id="add-widget" styleClass="new-widget-dialog__add-widget-button"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
                   actionListener="#{dashboardDetailModificationBean.createCustomDashboardWidget(widget)}" 
@@ -82,7 +120,7 @@
               
             </div>
           </div>
-        </p:repeat>
+        </ui:repeat>
       </div>
     </p:fieldset>
     <div class="js-no-widget u-hidden new-widget-dialog__no-widget-text">
@@ -104,63 +142,65 @@
 <p:dialog id="new-widget-configuration-dialog" widgetVar="new-widget-configuration-dialog"
   styleClass="new-widget-configuration-dialog" closable="false"
   header="#{dashboardDetailModificationBean.newWidgetHeader}"
-  appendTo="@(body)" closeOnEscape="true" dynamic="true"
-  fitViewport="true" responsive="true" modal="true">
+  appendTo="@(body)" closeOnEscape="true"
+  fitViewport="true" responsive="true" modal="true"
+  resizable="false" draggable="false">
   <c:set var="widget" value="#{dashboardDetailModificationBean.widget}" />
+  <c:set var="widgetType" value="#{dashboardDetailModificationBean.widget.type}" />
 
   <h:form id="widget-configuration-form" styleClass="ui-g" onkeypress="if (event.keyCode == 13) { return false; }">
-    <c:if test="#{widget.type eq 'TASK'}">
+    <c:if test="#{widgetType eq 'TASK'}">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidgetConfiguration id="new-widget-configuration-component" taskWidget="#{widget}"
         managedBean="#{dashboardDetailModificationBean}"
         componentToUpdate="widget-configuration-form" />
     </c:if>
 
-    <c:if test="#{widget.type eq 'CASE'}">
+    <c:if test="#{widgetType eq 'CASE'}">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidgetConfiguration id="new-widget-configuration-component" caseWidget="#{widget}"
         managedBean="#{dashboardDetailModificationBean}"
         componentToUpdate="widget-configuration-form" />
     </c:if>
 
-    <c:if test="#{widget.type eq 'PROCESS'}">
+    <c:if test="#{widgetType eq 'PROCESS'}">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessWidgetConfiguration id="new-widget-configuration-component" processWidget="#{widget}"
         componentToUpdate="widget-configuration-form" isPublicDashboard="#{dashboardDetailModificationBean.publicDashboard}"
         managedBean="#{dashboardDetailModificationBean}"/>
     </c:if>
 
-    <c:if test="#{widget.type eq 'STATISTIC'}">
+    <c:if test="#{widgetType eq 'STATISTIC'}">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.StatisticChartWidgetConfiguration id="new-widget-configuration-component"
         widget="#{widget}" componentToUpdate="widget-configuration-form" isPublicDashboard="#{isPublicDashboard}"/>
     </c:if>
 
-   <c:if test="#{widget.type eq 'CUSTOM'}">
+   <c:if test="#{widgetType eq 'CUSTOM'}">
      <ic:ch.ivy.addon.portal.generic.dashboard.component.CustomWidgetConfiguration id="new-widget-configuration-component"
        widget="#{widget}"
        componentToUpdate="#{p:resolveFirstComponentWithId('widget-title', view).clientId}"
        managedBean="#{dashboardDetailModificationBean}"/>
    </c:if>
 
-   <c:if test="#{widget.type eq 'PROCESS_VIEWER'}">
+   <c:if test="#{widgetType eq 'PROCESS_VIEWER'}">
      <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessViewerWidgetConfiguration id="new-widget-configuration-component"
        widget="#{widget}"
        componentToUpdate="widget-configuration-form"
        managedBean="#{dashboardDetailModificationBean}"/>
    </c:if>
 
-   <c:if test="#{widget.type eq 'WELCOME'}">
+   <c:if test="#{widgetType eq 'WELCOME'}">
      <ic:ch.ivy.addon.portal.generic.dashboard.component.WelcomeWidgetConfiguration id="new-widget-configuration-component"
        widget="#{widget}"
        componentToUpdate="widget-configuration-form"
        managedBean="#{dashboardDetailModificationBean}"/>
    </c:if>
 
-   <c:if test="#{widget.type eq 'NEWS'}">
+   <c:if test="#{widgetType eq 'NEWS'}">
      <ic:com.axonivy.portal.dashboard.component.NewsWidgetConfiguration id="new-widget-configuration-component"
        widget="#{widget}"
        managedBean="#{dashboardDetailModificationBean}"
        componentToUpdate="widget-configuration-form"/>
    </c:if>
    
-   <c:if test="#{widget.type eq 'NOTIFICATION'}">
+   <c:if test="#{widgetType eq 'NOTIFICATION'}">
      <ic:com.axonivy.portal.dashboard.component.NotificationWidgetConfiguration id="new-widget-configuration-component"
        widget="#{widget}"
        managedBean="#{dashboardDetailModificationBean}"
@@ -169,21 +209,31 @@
   </h:form>
 
   <f:facet name="footer">
-    <p:commandLink id="task-configuration-cancel-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+  <div class="widget-configuration-footer-panel">
+    <p:commandLink id="task-configuration-cancel-link-welcome-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
       styleClass="u-mar-right-10"
+      rendered="#{widgetType eq 'WELCOME'}"
       global="false"
       oncomplete="PF('new-widget-configuration-dialog').hide()"
       actionListener="#{dashboardDetailModificationBean.onCancel(widget)}">
       <p:resetInput target="widget-configuration-form" />
     </p:commandLink>
 
+    <p:commandLink id="task-configuration-cancel-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+      styleClass="u-mar-right-10"
+      rendered="#{widgetType ne 'WELCOME'}"
+      onclick="PF('new-widget-configuration-dialog').hide(); return false;">
+      <p:resetInput target="widget-configuration-form" />
+    </p:commandLink>
+
     <p:commandButton id="widget-configuration-save-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
       actionListener="#{dashboardDetailModificationBean.saveWidget()}" icon="si si-floppy-disk"
-      oncomplete="if (args &amp;&amp; !args.validationFailed){PF('new-widget-configuration-dialog').hide();loadGridAfterAddedNewWidget();}"
+      oncomplete="if (args &amp;&amp; !args.validationFailed){PF('new-widget-configuration-dialog').hide();loadGridAfterAddedNewWidget(); initStatistics();}"
       process="#{dashboardDetailModificationBean.componentToProcessOnSave}"
       partialSubmit="true"
       update="widget-configuration-form load-grid-after-added-new-widget-cmd"
-      disabled="#{empty widget}"/>
+      disabled="#{widget eq null}"/>
+  </div>
   </f:facet>
 </p:dialog>
 

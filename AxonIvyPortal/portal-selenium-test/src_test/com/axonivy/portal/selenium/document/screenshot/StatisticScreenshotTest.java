@@ -19,6 +19,8 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.StatisticWidgetPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
+import ch.ivy.addon.portalkit.enums.PortalVariable;
+
 @IvyWebTest
 public class StatisticScreenshotTest extends ScreenshotBaseTest {
 
@@ -77,5 +79,31 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(statisticWidgetPage.getChartInfoDialogOfChart(1),
         ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "chart-info-dialog", new ScreenshotMargin(20, 10));
   }
-
+  
+  @Test
+  public void screenshotStatisticWidgetList() throws IOException {
+    showNewDashboard();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    ScreenshotUtils.resizeBrowser(new Dimension(1386, 1200));
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    var newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    WebElement newWidgetDialog = newDashboardDetailsEditPage.addWidget();
+    newDashboardDetailsEditPage.scrollToStatistic();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(newWidgetDialog,
+        ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "statistic-widget-list", new ScreenshotMargin(20));
+  }
+  
+  @Test
+  public void screenshotStatisticStandardDemo() throws IOException {
+    redirectToRelativeLink(createDataCreatedDate);
+    redirectToRelativeLink(createDataForStatisticWidget);
+    createJSonFile("dashboard-statistic-widget-demo.json", PortalVariable.DASHBOARD.key);
+    redirectToNewDashBoard();
+    ScreenshotUtils.resizeBrowser(new Dimension(1386, 1100));
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitStatisticChartLoaded();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "dashboard-statistic-widget-demo");
+  }
+  
 }

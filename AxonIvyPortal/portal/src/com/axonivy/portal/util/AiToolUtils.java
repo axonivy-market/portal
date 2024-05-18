@@ -59,7 +59,6 @@ public class AiToolUtils {
     }
 
     result.buildFilterableColumns(columns);
-    result.buildPredefinedFilterData();
 
     return result;
   }
@@ -94,7 +93,6 @@ public class AiToolUtils {
     }
 
     result.buildFilterableColumns(columns);
-    result.buildPredefinedFilterData();
 
     return result;
   }

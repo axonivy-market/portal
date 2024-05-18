@@ -23,7 +23,8 @@
 
   <p:remoteCommand id="rcLoadTaskFirstTime" autoRun="true" actionListener="#{taskWidget.dataModel.loadFirstTime()}"
                    update="dashboard-tasks-container" global="false" async="true" process="@this"
-                   oncomplete="loadWidgetFirstTime('js-loading-#{taskWidget.id}', 'js-dashboard-tasks-container-#{taskWidget.id}'); initTableWidget(PF('dashboard-tasks-#{taskWidget.id}')); #{cc.attrs.onCompleteLoadWidget};" />
+                   oncomplete="loadCaseAndTaskWidgetFirstTime('js-loading-#{taskWidget.id}', 'js-dashboard-tasks-container-#{taskWidget.id}'); #{cc.attrs.onCompleteLoadWidget}; #{cc.attrs.isPreviewMode ? 'calculateFilterPaneltPosition();' : ''}" />
+  <p:inputText type="hidden" value="dashboard-tasks-#{taskWidget.id}" styleClass="js-table-widget-var" rendered="#{!isPreviewMode}" />
   <div class="ui-g">
     <h:panelGroup layout="block"
       styleClass="js-loading-#{taskWidget.id} task-dashboard-widget__loading-message ui-g-12">
@@ -49,7 +50,6 @@
         rowStyleClass="dashboard-table--row-style"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
         <p:ajax event="rowSelect" listener="#{dashboardBean.handleRowSelectEventOnTaskWidget}" disabled="#{!isReadOnlyMode}" />
-        <p:ajax event="sort" update="dashboard-tasks" onstart="liveScroll()" />
         
         <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name' or column.field eq 'actions') ? '' : 'u-hidden-sm-down'}"
           visible="#{column.visible}" field="#{column.field}" filterable="false"
@@ -131,7 +131,6 @@
       </h:panelGroup>
     </h:panelGroup>
   </div>
-  
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
     <ui:param name="id" value="reset-task-confirmation-dialog" />
     <ui:param name="widgetVar" value="reset-task-confirmation-dialog" />
@@ -142,7 +141,7 @@
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
 
     <ui:define name="dialogFooter">
-      <h:form id="reset-task-confirmation-form">
+      <h:form id="reset-task-confirmation-form" rendered="#{!isPreviewMode}">
         <p:commandLink onclick="PF('reset-task-confirmation-dialog').hide()"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15" />
         <p:commandButton actionListener="#{dashboardBean.resetAndOpenTask}"
@@ -152,12 +151,5 @@
       </h:form>
     </ui:define>
   </ui:decorate>
-  <script type="text/javascript">
-      function liveScroll() {
-        PF('dashboard-tasks-#{taskWidget.id}').scrollOffset = 0;
-        PF('dashboard-tasks-#{taskWidget.id}').scrollBody.scrollTop(1);
-        PF('dashboard-tasks-#{taskWidget.id}').allLoadedLiveScroll = false;
-      }
-    </script>
 </cc:implementation>
 </html>
