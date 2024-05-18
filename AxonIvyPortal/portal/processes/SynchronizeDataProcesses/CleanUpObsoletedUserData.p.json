@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "1626C02D46BF5153",
   "description" : "This is a scheduled process of Portal",
   "config" : {
@@ -49,7 +49,7 @@
       },
       "visual" : {
         "at" : { "x" : 120, "y" : 208 },
-        "size" : { "width" : 144, "height" : 60 }
+        "size" : { "width" : 144 }
       },
       "connect" : [
         { "id" : "f1", "to" : "f6" }

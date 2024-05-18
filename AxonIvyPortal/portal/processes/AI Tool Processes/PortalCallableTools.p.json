@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "18DD4CF26C1CCE45",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -126,6 +126,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.application.IApplication;",
             "import com.axonivy.portal.components.util.AssistantUtils;",
             "import java.util.HashMap;",
             "import java.util.Map;",
@@ -136,7 +137,7 @@
             "params.put(\"taskState\", in.taskState);",
             "params.put(\"taskPriority\", in.taskPriority);",
             "",
-            "in.result = AssistantUtils.generateLinkToIvyProcess(\"designer/portal/AI Tool Processes/PortalTools/findTasksTool.ivp\", params);"
+            "in.result = AssistantUtils.generateLinkToIvyProcess(IApplication.current().getName() + \"/portal/AI Tool Processes/PortalTools/findTasksTool.ivp\", params);"
           ]
         }
       },
@@ -292,6 +293,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.application.IApplication;",
             "import com.axonivy.portal.components.util.AssistantUtils;",
             "import java.util.HashMap;",
             "import java.util.Map;",
@@ -301,7 +303,7 @@
             "params.put(\"caseDescription\", in.taskDescription);",
             "params.put(\"caseState\", in.taskState);",
             "",
-            "in.result = AssistantUtils.generateLinkToIvyProcess(\"designer/portal/AI Tool Processes/PortalTools/findCasesTool.ivp\", params);"
+            "in.result = AssistantUtils.generateLinkToIvyProcess(IApplication.current().getName() + \"/portal/AI Tool Processes/PortalTools/findCasesTool.ivp\", params);"
           ]
         }
       },

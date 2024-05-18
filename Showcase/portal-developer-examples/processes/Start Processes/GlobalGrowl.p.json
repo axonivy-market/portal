@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.2.2/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
   "id" : "16A7BB2ADC9580A8",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.GlobalGrowlData"
@@ -18,7 +18,7 @@
       },
       "visual" : {
         "at" : { "x" : 320, "y" : 128 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f24", "to" : "f18" }
@@ -92,7 +92,7 @@
       },
       "visual" : {
         "at" : { "x" : 824, "y" : 128 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f25", "to" : "f11", "via" : [ { "x" : 896, "y" : 128 } ] }
@@ -111,7 +111,7 @@
       },
       "visual" : {
         "at" : { "x" : 320, "y" : 192 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f39", "to" : "f11", "via" : [ { "x" : 888, "y" : 192 } ] }
@@ -130,7 +130,7 @@
       },
       "visual" : {
         "at" : { "x" : 576, "y" : 128 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f17", "to" : "f21" }
@@ -198,7 +198,7 @@
       },
       "visual" : {
         "at" : { "x" : 824, "y" : 256 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f44", "to" : "f11", "via" : [ { "x" : 896, "y" : 256 } ] }
@@ -237,7 +237,7 @@
       },
       "visual" : {
         "at" : { "x" : 576, "y" : 256 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f33", "to" : "f16" }
@@ -334,7 +334,7 @@
       },
       "visual" : {
         "at" : { "x" : 320, "y" : 256 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f30", "to" : "f14" }
@@ -353,7 +353,7 @@
       },
       "visual" : {
         "at" : { "x" : 320, "y" : 320 },
-        "size" : { "width" : 128, "height" : 60 }
+        "size" : { "width" : 128 }
       },
       "connect" : [
         { "id" : "f45", "to" : "f11", "via" : [ { "x" : 896, "y" : 320 } ] }

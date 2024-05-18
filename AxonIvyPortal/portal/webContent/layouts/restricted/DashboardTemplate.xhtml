@@ -5,10 +5,24 @@
 
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:define name="head">
+      <h:outputScript library="primefaces" name="chartjs/chartjs.js" />
+      <h:outputScript name="client-statistic.js" library="js" />
+    </ui:define>
+
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dashboard')}</ui:define>
     <ui:param name="loadGridStack" value="true" />
 
     <ui:define name="pageContent">
+        <script>
+          function initStatistics() {
+            initClientCharts("#{managedBean.clientStatisticApiUri}" , "#{localeBean.locale}", "#{dateTimePatternBean.datePattern}");
+          }
+
+          $(document).ready(function () {
+            initStatistics();
+          });
+      </script>
       <h:form id="remote-command-group">
         <p:remoteCommand id="reset-active-menu-items-rc" name="resetActiveMenuItems" autoRun="true"
           onstart="resetPortalLeftMenuState();"
@@ -32,7 +46,7 @@
 
         <h:form id="dashboard-remote-command-form" prependId="false">
           <h:inputHidden id="dashboard-view-mode" value="#{managedBean.isReadOnlyMode}"/>
-          <p:remoteCommand name="updateDashboardWidget" update="grid-stack" oncomplete="loadGrid();dashboardToolKit.responsive();" />
+          <p:remoteCommand name="updateDashboardWidget" update="grid-stack" oncomplete="loadGrid();dashboardToolKit.responsive(); initStatistics('#{managedBean.clientStatisticApiUri}');" />
           <p:remoteCommand name="loadAllWidgetSavedFilters" actionListener="#{managedBean.loadAllWidgetSavedFilters()}"
             global="false" process="@this" immediate="true" partialSubmit="true"
             update="delete-saved-filter-form:quick-filter-table"
@@ -122,6 +136,14 @@
                         isReadOnlyMode="#{managedBean.isReadOnlyMode}"
                         index="#{status.index}"
                         id="news-#{widget.id}" />
+                    </c:if>
+
+                    <!-- Client statistic widget -->
+                    <c:if test="#{widget.type eq 'CLIENT_STATISTIC'}">
+                      <ic:com.axonivy.portal.dashboard.component.ClientStatisticWidget widget="#{widget}"
+                        isReadOnlyMode="#{managedBean.isReadOnlyMode}"
+                        index="#{status.index}"
+                        id="client-statistic-#{widget.id}" />
                     </c:if>
                     
                     <!-- Notification widget -->
@@ -236,7 +258,8 @@
                 <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                   oncomplete="PF('save-widget-filter-dialog').hide();" styleClass="u-mar-right-10"
                   process="@this" update="save-filter-form" resetValues="true"
-                  partialSubmit="true" immediate="true"/>
+                  partialSubmit="true" immediate="true"
+                  global="false"/>
                 <p:commandButton id="save-widget-filter-button"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
                   actionListener="#{widgetFilterHelperBean.saveNewWidgetFilter()}"

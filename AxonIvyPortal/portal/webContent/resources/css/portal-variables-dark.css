@@ -565,6 +565,7 @@
   /* Notification */
   --notification-title-color: var(--notification-background-color);
   --notification-panel-color: var(--notification-background-color);
+  --notification-hover-message-color: #394457;
     /*Notification channels*/
   --state-active: var(--case-state-done-color);
   --state-inactive: var(--task-state-failed-color);
