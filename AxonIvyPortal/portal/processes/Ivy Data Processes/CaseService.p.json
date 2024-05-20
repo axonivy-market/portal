@@ -341,12 +341,12 @@
             "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
             "",
             "IvyCaseResultDTO dto = CaseService.newInstance().analyzeCaseCategoryStatistic(in.caseSearchCriteria);",
-            "out.caseCategoryStatistic = dto.caseCategoryStatistic;"
+            "out.caseByCategoryStatistic = dto.itemByCategoryStatistic;"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 256, "y" : 704 },
+        "at" : { "x" : 280, "y" : 704 },
         "size" : { "width" : 144, "height" : 60 }
       },
       "connect" : { "id" : "f19", "to" : "f16" }
@@ -366,10 +366,10 @@
         },
         "result" : {
           "params" : [
-            { "name" : "caseCategoryStatistic", "type" : "ch.ivy.addon.portalkit.bo.CaseCategoryStatistic" }
+            { "name" : "caseByCategoryStatistic", "type" : "List<ch.ivy.addon.portalkit.bo.ItemByCategoryStatistic>" }
           ],
           "map" : {
-            "result.caseCategoryStatistic" : "in.#caseCategoryStatistic"
+            "result.caseByCategoryStatistic" : "in.caseByCategoryStatistic"
           }
         }
       },
