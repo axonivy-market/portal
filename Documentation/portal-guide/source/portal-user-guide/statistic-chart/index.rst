@@ -29,9 +29,9 @@ Available Standard Charts
     - Displays all open Tasks available for the user by Priority.
     - Chart type: :bdg-info:`Pie`, :bdg-info:`Bar`
 
-- Number of running Cases
+- Number of running cases
 
-    - Displays number of running Cases involving the user 
+    - Displays number of running cases involving the user 
     - Chart type: :bdg-info:`KPI`
 
 - Number of user tasks by priority
@@ -69,5 +69,5 @@ Available Standard Charts
     - Displays tasks that the user can work on, categorized by their Priority within the upcoming 3 days
     - Chart type: :bdg-info:`Bar`
 
-.. |statistic-widget-list-page| image:: ../../screenshots/statistic/statistic-widget-list-page.png
+.. |statistic-widget-list-page| image:: ../../screenshots/statistic/statistic-widget-list.png
 .. |dashboard-statistic-widget-demo| image:: ../../screenshots/statistic/dashboard-statistic-widget-demo.png

@@ -217,15 +217,17 @@
             <div class="ui-g-12 u-text-align-right">
               <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                 styleClass="u-mar-right-15 ui-overlaypanel-footer__cancel"
-                oncomplete="PF('filter-overlay-panel-#{index}').hide(); return false;"
+                oncomplete="PF('filter-overlay-panel-#{index}').hide();"
                 actionListener="#{widget.onCancelUserFilters()}"
                 update="filter-form-#{index}"
+                process="filter-form-#{index}"
                 immediate="true" global="false"/>
   
               <p:commandButton id="reset-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
                 styleClass="secondary-btn u-mar-right-5" partialSubmit="true"
-                update="filter-form-#{index} #{cc.clientId}:widget-header-actions #{componentToUpdateOnResetFilter}"
-                oncomplete="#{onCompleteResetFilters}; #{onCompleteApplyFilters}; PF('filter-overlay-panel-#{index}').hide(); resizeTableBody();"
+                process="filter-form-#{index}"
+                update="filter-form-#{index} #{componentToUpdateOnResetFilter}"
+                oncomplete="#{onCompleteResetFilters}; {applyWidgetFilterCommand#{index}();} initWidgetFilterHtml('#{widget.id}');"
                 actionListener="#{widget.onResetUserFilters()}"
                 icon="si si-button-refresh-arrows" resetValues="true"/>
   

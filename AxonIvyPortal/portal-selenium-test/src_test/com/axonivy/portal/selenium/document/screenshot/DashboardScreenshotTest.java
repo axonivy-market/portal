@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.document.screenshot;
 
 import java.io.IOException;
+
 import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -37,6 +38,7 @@ import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
+import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.CollectionCondition;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
@@ -54,6 +56,9 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
+
+    redirectToRelativeLink(grantDashboardWritePublicPermissionUrl);
+    redirectToRelativeLink(grantDashboardWriteOwnPermissionUrl);
   }
 
   @Test
@@ -329,6 +334,104 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
   }
 
   @Test
+  public void screenshotAddClientStatisticWidget() throws IOException {
+    // Take screenshot of Add new widget dialog
+    redirectToDashboardConfiguration();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    DashboardModificationPage editPage = new DashboardModificationPage();
+    NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
+    detailsEditPage.waitPageLoaded();
+    WebElement newWidgetDialog = detailsEditPage.addWidget();
+    detailsEditPage.collapseStandardWidgets();
+    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(newWidgetDialog,
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "add-client-statistic-widget", new ScreenshotMargin(20));
+  }
+
+  @Test
+  public void screenshotTaskByPriorityClientStatisticChartWidget() throws IOException {
+    ScreenshotUtils.maximizeBrowser();
+
+    addPublicStatisticWidget(NewDashboardDetailsEditPage.TASK_BY_PRIORITY);
+    NewDashboardDetailsEditPage newDashboard = new NewDashboardDetailsEditPage();
+    newDashboard.waitPageLoaded();
+
+    SelenideElement clientStatisticWidget = newDashboard.getStatisticWidgetConfigurationDialog();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "edit-statistic-widget");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(clientStatisticWidget,
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-by-priority-statistic-widget-configuration", new ScreenshotMargin(20));
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    homePage = new NewDashboardPage();
+    ScreenshotUtils.captureElementScreenshot(homePage.waitAndGetClientStatisticChart(0),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-by-priority-statistic-chart-widget");
+  }
+
+  @Test
+  public void screenshotTaskGroupedByPriorityClientStatisticChartWidget() throws IOException {
+    ScreenshotUtils.maximizeBrowser();
+
+    addPublicStatisticWidget(NewDashboardDetailsEditPage.TASK_GROUPED_BY_PRIORITY);
+    NewDashboardDetailsEditPage newDashboard = new NewDashboardDetailsEditPage();
+    newDashboard.waitPageLoaded();
+    SelenideElement clientStatisticWidget = newDashboard.getStatisticWidgetConfigurationDialog();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(clientStatisticWidget,
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-grouped-by-priority-statistic-widget-configuration", new ScreenshotMargin(20));
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    homePage = new NewDashboardPage();
+    ScreenshotUtils.captureElementScreenshot(homePage.waitAndGetClientStatisticChart(0),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-grouped-by-priority-statistic-chart-widget");
+  }
+
+  @Test
+  public void screenshotNumberOfOpenTasksClientStatisticChartWidget() throws IOException {
+    ScreenshotUtils.maximizeBrowser();
+
+    addPublicStatisticWidget(NewDashboardDetailsEditPage.NUMBER_OF_OPEN_TASKS);
+    NewDashboardDetailsEditPage newDashboard = new NewDashboardDetailsEditPage();
+    newDashboard.waitPageLoaded();
+    SelenideElement clientStatisticWidget = newDashboard.getStatisticWidgetConfigurationDialog();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(clientStatisticWidget,
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "number-of-open-tasks-statistic-widget-configuration", new ScreenshotMargin(20));
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    homePage = new NewDashboardPage();
+    ScreenshotUtils.captureElementScreenshot(homePage.waitAndGetClientStatisticChart(0),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "number-of-open-tasks-statistic-chart-widget");
+  }
+
+  @Test
+  public void screenshotCompletedTasksPerDaylientStatisticChartWidget() throws IOException {
+    ScreenshotUtils.maximizeBrowser();
+
+    addPublicStatisticWidget(NewDashboardDetailsEditPage.COMPLETED_TASKS_PER_DAY);
+    NewDashboardDetailsEditPage newDashboard = new NewDashboardDetailsEditPage();
+    newDashboard.waitPageLoaded();
+    SelenideElement clientStatisticWidget = newDashboard.getStatisticWidgetConfigurationDialog();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(clientStatisticWidget,
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "completed-tasks-per-day-statistic-widget-configuration", new ScreenshotMargin(20));
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    homePage = new NewDashboardPage();
+    ScreenshotUtils.captureElementScreenshot(homePage.waitAndGetClientStatisticChart(0),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "completed-tasks-per-day-statistic-chart-widget");
+  }
+
+  @Test
+  public void screenshotStartedCasesPerDaylientStatisticChartWidget() throws IOException {
+    ScreenshotUtils.maximizeBrowser();
+
+    addPublicStatisticWidget(NewDashboardDetailsEditPage.STARTED_CASES_PER_DAY);
+    NewDashboardDetailsEditPage newDashboard = new NewDashboardDetailsEditPage();
+    newDashboard.waitPageLoaded();
+    SelenideElement clientStatisticWidget = newDashboard.getStatisticWidgetConfigurationDialog();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(clientStatisticWidget,
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "started-cases-per-day-statistic-widget-configuration", new ScreenshotMargin(20));
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    homePage = new NewDashboardPage();
+    ScreenshotUtils.captureElementScreenshot(homePage.waitAndGetClientStatisticChart(0),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "started-cases-per-day-statistic-chart-widget");
+  }
+
+  @Test
   public void screenshotWelcomeWidget() throws IOException {
     ScreenshotUtils.maximizeBrowser();
     addPublicWidget(NewDashboardDetailsEditPage.WELCOME_WIDGET);
@@ -516,5 +619,16 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     detailsEditPage.waitPageLoaded();
     detailsEditPage.addWidget();
     detailsEditPage.addWidgetByName(widgetName);
+  }
+
+  private void addPublicStatisticWidget(String widgetName) {
+    redirectToDashboardConfiguration();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    DashboardModificationPage editPage = new DashboardModificationPage();
+    NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
+    detailsEditPage.waitPageLoaded();
+    detailsEditPage.addWidget();
+    detailsEditPage.addStatisticWidgetByName(widgetName);
   }
 }

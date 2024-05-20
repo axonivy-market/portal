@@ -26,7 +26,11 @@ The following default widgets are available:
 
 #. **Process viewer widget**: This widget provides a visual representation of the process flow.
 
+#. **Legacy statistic chart widget**: This widget provides graphical display of legacy statistical data.
+
 #. **Statistic chart widget**: This widget provides graphical display of statistical data.
+
+#. **Client Statistic chart widget**: This widget provides graphical display of client statistical data.
 
 #. **Welcome widget**: This widget greets the user based on the local time and enables a friendlier approach.
 
@@ -266,7 +270,8 @@ You can define the widget name and process to be displayed.
 Statistic chart widget
 ======================
 
-Portal offers a wide range of standard statistical charts. For more information, please refer to the :ref:`statistic-chart` section.
+Portal has deprecated the legacy statistic chart widget and now offers a wide range of new standard statistical charts. For more information, please refer to the :ref:`statistic-chart` section.
+
 
 Welcome widget
 ==============
@@ -369,8 +374,8 @@ You can define a Notifications widget to display all Notifications based on your
 .. |process-viewer-widget| image:: ../../screenshots/new-dashboard/process-viewer-widget.png
 .. |process-viewer-widget-configuration| image:: ../../screenshots/new-dashboard/process-viewer-widget-configuration.png
 
-.. |statistic-chart-widget-configuration| image:: ../../screenshots/new-dashboard/statistic-chart-widget-configuration.png
-.. |statistic-chart-widget| image:: ../../screenshots/new-dashboard/statistic-chart-widget.png
+.. |legacy-statistic-chart-widget-configuration| image:: ../../screenshots/new-dashboard/statistic-chart-widget-configuration.png
+.. |legacy-statistic-chart-widget| image:: ../../screenshots/new-dashboard/statistic-chart-widget.png
 
 .. |welcome-widget-configuration| image:: ../../screenshots/new-dashboard/welcome-widget-configuration.png
 .. |news-feed-widget-configuration| image:: ../../screenshots/new-dashboard/news-feed-widget-configuration.png
@@ -379,6 +384,9 @@ You can define a Notifications widget to display all Notifications based on your
 .. |news-feed-widget-overlay-panel| image:: ../../screenshots/new-dashboard/news-feed-widget-overlay-panel.png
 
 .. |external-page-widget-configuration| image:: ../../screenshots/dashboard/external-page-widget-configuration.png
+
+.. |add-statistic-widget| image:: ../../screenshots/new-dashboard/add-client-statistic-widget.png
+
 .. |notification-widget-configuration| image:: ../../screenshots/new-dashboard/notification-widget-configuration.png
 .. |notification-widget| image:: ../../screenshots/new-dashboard/notification-widget.png
 .. |task-quick-search-textbox| image:: ../../screenshots/new-dashboard/task-quick-search-textbox.png
