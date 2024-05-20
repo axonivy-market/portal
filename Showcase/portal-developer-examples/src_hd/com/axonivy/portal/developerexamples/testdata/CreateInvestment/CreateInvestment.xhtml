@@ -68,8 +68,7 @@
         </div>
       </h:form>
       <script>
-        // window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)};
-         window.processSteps = "Create Investment Request,Approve Investment Request1";
+        window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)};
         window.currentProcessStep = 0;
         window.processChainDirection = "VERTICAL";
         window.processChainShape = "LINE";
