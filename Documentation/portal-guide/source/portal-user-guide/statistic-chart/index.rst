@@ -26,7 +26,7 @@ Available Standard Charts
 
 - Tasks by priority
 
-    - Displays all open Tasks available for the user by Priority.
+    - Displays all open tasks available for the user by priority.
     - Chart type: :bdg-info:`Pie`, :bdg-info:`Bar`
 
 - Number of running cases
@@ -46,7 +46,7 @@ Available Standard Charts
 
 - Number of task expiring end of week
 
-    - Displays the number of tasks expiring by the end of the current week.
+    - Displays number of tasks expiring by the end of the current week.
     - Chart type: :bdg-info:`KPI`
 
 - Finished cases per day
