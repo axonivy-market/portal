@@ -78,7 +78,13 @@ You can configure those options by using Javascript from your HTML dialog as fol
       <ui:composition template="/layouts/frame-10.xhtml">
          ...
          <script>
+            // Set the process steps directly as Array.
             window.processSteps = ["Create Investment Request", "Approve Investment Request"];
+
+            // If the process steps are set in HTML dialog logic or java code, convert it to JSON format
+            // Use this code if the process steps are a Java String list
+            window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)};
+
             window.currentProcessStep = 0;
             window.currentProcessStep = #{data.currentProcessStep};
             window.isHideTaskName= false;
