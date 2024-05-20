@@ -374,9 +374,6 @@ You can define a Notifications widget to display all Notifications based on your
 .. |process-viewer-widget| image:: ../../screenshots/new-dashboard/process-viewer-widget.png
 .. |process-viewer-widget-configuration| image:: ../../screenshots/new-dashboard/process-viewer-widget-configuration.png
 
-.. |legacy-statistic-chart-widget-configuration| image:: ../../screenshots/new-dashboard/statistic-chart-widget-configuration.png
-.. |legacy-statistic-chart-widget| image:: ../../screenshots/new-dashboard/statistic-chart-widget.png
-
 .. |welcome-widget-configuration| image:: ../../screenshots/new-dashboard/welcome-widget-configuration.png
 .. |news-feed-widget-configuration| image:: ../../screenshots/new-dashboard/news-feed-widget-configuration.png
 .. |news-feed-widget| image:: ../../screenshots/new-dashboard/news-feed-widget.png
