@@ -186,7 +186,7 @@
               <p:commandButton id="confirm-destruction-dashboard-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
                icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
                actionListener="#{taskWidgetBean.destroyTask(taskWidgetBean.selectedTaskItemId)}"
-               oncomplete="PF('destroy-task-dialog').hide();loadGrid();"
+               oncomplete="PF('destroy-task-dialog').hide();loadGrid(); initStatistics();"
                update="grid-stack dashboard-title-container" />
             </ui:define>
            </ui:decorate>
@@ -208,13 +208,13 @@
               <p:commandButton id="confirm-escalation-dashboard-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
                icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
                actionListener="#{taskWidgetBean.expiryTask(taskWidgetBean.selectedTaskItemId)}"
-               oncomplete="PF('escalation-task-dialog').hide();loadGrid();" update="grid-stack dashboard-title-container" />
+               oncomplete="PF('escalation-task-dialog').hide();loadGrid();initStatistics();" update="grid-stack dashboard-title-container" />
             </ui:define>
            </ui:decorate>
            
            <!-- Delegate Task Dialog -->
            <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate id="dashboard-tasks-item-delegate"
-            taskId="#{taskWidgetBean.selectedTaskItemId}" componentToUpdate="grid-stack dashboard-title-container" onCompletedCallback="loadGrid();"/>
+            taskId="#{taskWidgetBean.selectedTaskItemId}" componentToUpdate="grid-stack dashboard-title-container" onCompletedCallback="loadGrid(); initStatistics();"/>
            
            <!-- Workflow Event of Task Dialog -->
            <ic:ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents id="dashboard-tasks-workflow-event"
