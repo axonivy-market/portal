@@ -78,7 +78,7 @@ You can configure those options by using Javascript from your HTML dialog as fol
       <ui:composition template="/layouts/frame-10.xhtml">
          ...
          <script>
-            window.processSteps = "Create Investment Request,Approve Investment Request";
+            window.processSteps = ["Create Investment Request", "Approve Investment Request"];
             window.currentProcessStep = 0;
             window.currentProcessStep = #{data.currentProcessStep};
             window.isHideTaskName= false;
