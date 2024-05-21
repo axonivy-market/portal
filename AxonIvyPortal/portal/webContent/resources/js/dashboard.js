@@ -135,12 +135,6 @@ function disabledResetDashboardActions() {
   $('.cancel-reset-dashboard-link').addClass('ui-state-disabled');
 }
 
-function removeWidgetContent(widgetId) {
-  var removeWidgetId = '.grid-stack-item[gs-id="' + widgetId + '"]';
-  $(removeWidgetId).remove();
-  updateDashboardWidget();
-}
-
 function DashboardToolKit() {
   return {
     setupScrollbar: function () {
