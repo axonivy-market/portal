@@ -44,6 +44,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   private Long numberOfTasksExpireToday;
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
+  private boolean enableQuickSearch;
 
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
@@ -225,7 +226,15 @@ public class TaskDashboardWidget extends DashboardWidget {
   public void setUserFilters(List<DashboardFilter> userFilters) {
     this.dataModel.getCriteria().setUserFilters(userFilters);
   }
-  
+
+  public boolean isEnableQuickSearch() {
+    return enableQuickSearch;
+  }
+
+  public void setEnableQuickSearch(boolean enableQuickSearch) {
+    this.enableQuickSearch = enableQuickSearch;
+  }
+
   @JsonIgnore
   public void loadUserFilter() {
     updateSavedFiltersSelection();

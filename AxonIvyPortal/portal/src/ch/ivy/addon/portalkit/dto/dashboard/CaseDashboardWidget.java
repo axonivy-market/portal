@@ -39,6 +39,7 @@ public class CaseDashboardWidget extends DashboardWidget {
   private List<WidgetInformationCategoryStatisticData> caseByCategoryStatistic;
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
+  private boolean enableQuickSearch;
 
   public CaseDashboardWidget() {
     dataModel = new DashboardCaseLazyDataModel();
@@ -144,6 +145,14 @@ public class CaseDashboardWidget extends DashboardWidget {
   @JsonIgnore
   public List<WidgetInformationCategoryStatisticData> getCaseByCategoryStatistic() {
     return caseByCategoryStatistic;
+  }
+
+  public boolean isEnableQuickSearch() {
+    return enableQuickSearch;
+  }
+
+  public void setEnableQuickSearch(boolean enableQuickSearch) {
+    this.enableQuickSearch = enableQuickSearch;
   }
 
   @Override
