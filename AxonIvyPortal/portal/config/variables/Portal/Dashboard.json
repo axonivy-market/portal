@@ -218,11 +218,6 @@
           "x": 8,
           "y": 4
         },
-        "processPaths": [
-          "designer/portal-components-examples/Start Processes/BusinessDetails/createInvestmentRequest.ivp",
-          "designer/PresalesHelper/Business Processes/DemoTasks/start.ivp",
-          "designer/portal-components-examples/Start Processes/LeaveRequest/start.ivp"
-        ],
         "sorting": "BY_ALPHABETICALLY"
       },
       {
