@@ -13,7 +13,6 @@ import static ch.ivyteam.ivy.workflow.TaskState.RESUMED;
 import static ch.ivyteam.ivy.workflow.TaskState.SUSPENDED;
 import static ch.ivyteam.ivy.workflow.TaskState.WAITING_FOR_INTERMEDIATE_EVENT;
 
-import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,14 +23,16 @@ import java.util.Map;
 
 import org.apache.commons.lang3.time.DateUtils;
 
+import com.axonivy.portal.bo.ItemByCategoryStatistic;
+
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
-import ch.ivy.addon.portalkit.bo.TaskCategoryStatistic;
 import ch.ivy.addon.portalkit.bo.TaskStateStatistic;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
+import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.query.IPagedResult;
@@ -191,26 +192,24 @@ public class TaskService {
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       TaskQuery finalQuery = extendQueryWithInvolvedUser(criteria);
-      finalQuery.aggregate().countRows().groupBy().category().orderBy().category();
-
-      Recordset recordSet = taskQueryExecutor().getRecordset(finalQuery);
-      TaskCategoryStatistic taskStateStatistic = createTaskCategoryStatistic(recordSet);
-      result.setTaskCategoryStatistic(taskStateStatistic);
+      result.setCategoryTree(CategoryTree.createFor(finalQuery));
+      List<ItemByCategoryStatistic> statistics = CategoryUtils.createItemCategoryStatistic(result.getCategoryTree());
+      result.setItemByCategoryStatistic(statistics);
       return result;
     });
   }
 
-  private TaskCategoryStatistic createTaskCategoryStatistic(Recordset recordSet) {
-    TaskCategoryStatistic taskCategoryStatistic = new TaskCategoryStatistic();
-    taskCategoryStatistic.setNumberOfTasksByCategory(new HashMap<>());
-    if (recordSet != null) {
-      recordSet.getRecords().forEach(record -> {
-        long numberOfTasks = ((Number)(record.getField("COUNT"))).longValue();
-        taskCategoryStatistic.getNumberOfTasksByCategory().put(record.getField("CATEGORY").toString(), numberOfTasks);
-      });
-    }
-    return taskCategoryStatistic;
-  }
+//  private TaskCategoryStatistic createTaskCategoryStatistic(Recordset recordSet) {
+//    TaskCategoryStatistic taskCategoryStatistic = new TaskCategoryStatistic();
+//    taskCategoryStatistic.setNumberOfTasksByCategory(new HashMap<>());
+//    if (recordSet != null) {
+//      recordSet.getRecords().forEach(record -> {
+//        long numberOfTasks = ((Number)(record.getField("COUNT"))).longValue();
+//        taskCategoryStatistic.getNumberOfTasksByCategory().put(record.getField("CATEGORY").toString(), numberOfTasks);
+//      });
+//    }
+//    return taskCategoryStatistic;
+//  }
 
   private ExpiryStatistic createExpiryTimeStampToCountMap(Recordset recordSet) throws ParseException {
       ExpiryStatistic expiryStatistic = new ExpiryStatistic();

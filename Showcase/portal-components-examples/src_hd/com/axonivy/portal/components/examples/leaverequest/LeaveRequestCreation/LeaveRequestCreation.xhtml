@@ -82,7 +82,7 @@
         </h:panelGroup>
       </h:form>
       <script>
-        window.processSteps = "#{fn:join(data.steps.toArray(), ',')}";
+        window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)};
         window.currentProcessStep = 0;
       </script>
 
