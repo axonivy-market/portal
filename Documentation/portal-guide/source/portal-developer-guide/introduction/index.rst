@@ -8,10 +8,10 @@ Portal so that it could fit customer need.
 
 .. _introduction-new-and-note-worthy-11.2:
 
-New & Noteworthy 11.2
----------------------
+New & Noteworthy 11
+-------------------
 
-Check out more information on `release 11.2 <https://dev.axonivy.com/news/11.2>`__ and `release 11.1 <https://dev.axonivy.com/news/11.1>`__.
+Check out more information on `release 11.3 <https://dev.axonivy.com/news/11.3>`__, `release 11.2 <https://dev.axonivy.com/news/11.2>`__ and `release 11.1 <https://dev.axonivy.com/news/11.1>`__.
 
 .. _introduction-new-and-note-worthy-10.0:
 
