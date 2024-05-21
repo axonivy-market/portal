@@ -218,7 +218,6 @@
           "x": 8,
           "y": 4
         },
-        "enableQuickSearch": false,
         "processPaths": [
           "designer/portal-components-examples/Start Processes/BusinessDetails/createInvestmentRequest.ivp",
           "designer/PresalesHelper/Business Processes/DemoTasks/start.ivp",
@@ -274,7 +273,6 @@
           "x": 8,
           "y": 2
         },
-        "enableQuickSearch": false,
         "chartId": "10"
       },
       {
@@ -286,7 +284,6 @@
           "x": 10,
           "y": 2
         },
-        "enableQuickSearch": false,
         "chartId": "11"
       },
       {
@@ -298,7 +295,6 @@
           "x": 0,
           "y": 11
         },
-        "enableQuickSearch": false,
         "chartId": "7"
       },
       {
@@ -310,7 +306,6 @@
           "x": 0,
           "y": 8
         },
-        "enableQuickSearch": false,
         "chartId": "3"
       },
       {
@@ -322,7 +317,6 @@
           "x": 0,
           "y": 14
         },
-        "enableQuickSearch": false,
         "chartId": "5"
       },
       {
@@ -334,7 +328,6 @@
           "x": 3,
           "y": 14
         },
-        "enableQuickSearch": false,
         "chartId": "4"
       }
     ],
