@@ -96,8 +96,6 @@
             "field": "actions"
           }
         ],
-        "sortDescending": true,
-        "sortField": "startTimestamp",
         "canWorkOn": true,
         "filters": [
           {
@@ -139,7 +137,6 @@
           "x": 3,
           "y": 8
         },
-        "enableQuickSearch": false,
         "rowsPerPage": 5,
         "columns": [
           {
@@ -178,8 +175,6 @@
             "field": "actions"
           }
         ],
-        "sortDescending": true,
-        "sortField": "startTimestamp",
         "filters": [
           {
             "field": "state",
@@ -218,7 +213,6 @@
           "x": 8,
           "y": 4
         },
-        "sorting": "BY_ALPHABETICALLY"
       },
       {
         "type": "welcome",
