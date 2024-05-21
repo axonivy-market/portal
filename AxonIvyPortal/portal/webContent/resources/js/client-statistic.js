@@ -108,8 +108,6 @@ const convertYValue = (value, config) => {
   } catch(error) {
     return value;
   }
-
-  
   
   return value / 60;
 }
