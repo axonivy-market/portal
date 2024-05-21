@@ -236,7 +236,7 @@
             <p:commandButton id="confirm-destruction-dashboard-cases" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
               icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
               actionListener="#{caseWidgetBean.destroyCase(caseWidgetBean.selectedCase)}"
-              oncomplete="PF('destroy-case-dialog').hide();loadGrid();"
+              oncomplete="PF('destroy-case-dialog').hide();loadGrid();initStatistics();"
               update="grid-stack dashboard-title-container" />
            </ui:define>
           </ui:decorate>
