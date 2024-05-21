@@ -45,7 +45,7 @@
       }
     ],
     "icon": "si si-analytics-pie-2",
-    "refreshInterval": 500
+    "refreshInterval": 300
   },
   {
     "id": "2",
@@ -93,7 +93,7 @@
       }
     ],
     "icon": "si si-analytics-bars",
-    "refreshInterval": 500,
+    "refreshInterval": 300,
     "barChartConfig": {
       "xTitles": [
         {
@@ -179,7 +179,7 @@
       }
     ],
     "icon": "si si-analytics-bars",
-    "refreshInterval": 500,
+    "refreshInterval": 300,
     "barChartConfig": {
       "xTitles": [
         {
@@ -266,7 +266,7 @@
       }
     ],
     "icon": "si si-analytics-bars",
-    "refreshInterval": 500,
+    "refreshInterval": 300,
     "barChartConfig": {
       "xTitles": [
         {
@@ -353,7 +353,7 @@
       }
     ],
     "icon": "si si-analytics-board-graph-line",
-    "refreshInterval": 500,
+    "refreshInterval": 300,
     "lineChartConfig": {
       "xTitles": [
         {
@@ -439,7 +439,7 @@
       }
     ],
     "icon": "si si-analytics-board-graph-line",
-    "refreshInterval": 500,
+    "refreshInterval": 300,
     "lineChartConfig": {
       "xTitles": [
         {
@@ -525,7 +525,7 @@
       }
     ],
     "icon": "si si-pie-line-graph",
-    "refreshInterval": 500,
+    "refreshInterval": 300,
     "numberChartConfig": {
       "suffixSymbol": ""
     }
@@ -576,7 +576,7 @@
       }
     ],
     "icon": "si si-pie-line-graph",
-    "refreshInterval": 500,
+    "refreshInterval": 300,
     "numberChartConfig": {
       "suffixSymbol": ""
     }
@@ -627,7 +627,7 @@
       }
     ],
     "icon": "si si-pie-line-graph",
-    "refreshInterval": 500,
+    "refreshInterval": 300,
     "numberChartConfig": {
       "suffixSymbol": ""
     }
@@ -678,7 +678,7 @@
       }
     ],
     "icon": "si si-pie-line-graph",
-    "refreshInterval": 500,
+    "refreshInterval": 300,
     "numberChartConfig": {
       "suffixSymbol": ""
     },
@@ -730,7 +730,7 @@
       }
     ],
     "icon": "si si-pie-line-graph",
-    "refreshInterval": 500,
+    "refreshInterval": 300,
     "numberChartConfig": {
       "suffixSymbol": ""
     },
