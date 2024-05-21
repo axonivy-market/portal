@@ -682,7 +682,7 @@
     "numberChartConfig": {
       "suffixSymbol": ""
     },
-    "hideLabel": true
+    "hideLabel": false
   },
   {
     "id": "11",
