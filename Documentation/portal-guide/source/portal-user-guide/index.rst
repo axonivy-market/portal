@@ -24,3 +24,4 @@ User Guide
    portal-multi-language/index
    qr-code/index
    complex-filter/index
+   statistic-chart/index
