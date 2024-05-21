@@ -160,6 +160,16 @@ The ``AxonIvyExpress`` module is renamed to ``axonivy-express`` and becomes an i
 - Refer to Axon Ivy CRON job pattern: `CRON Expression <https://developer.axonivy.com/doc/|version|/engine-guide/configuration/advanced-configuration.html#cron-expression>`_.
 - Example: Change ``0 0 1 * * ?`` to ``0 1 * * *`` for job trigger 01:00 AM everyday.
 
+Migrate 10.0.19 To 10.0.20
+--------------------------
+
+So far, Portal supports configuring process steps of :ref:`Process chain <components-portal-components-process-chain>` with String or Array format. 
+We deprecated the String format but still support it for backward compatibility. We recommend you use the Array format. You could change as follows:
+
+- Change ``window.processSteps = "Create Investment Request,Approve Investment Request";`` to ``window.processSteps = ["Create Investment Request", "Approve Investment Request"];``
+
+- Change ``window.processSteps = "#{fn:join(data.steps.toArray(), ',')}";`` to ``window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)};``
+
 Migrate 10.0.12 To 10.0.13
 --------------------------
 
