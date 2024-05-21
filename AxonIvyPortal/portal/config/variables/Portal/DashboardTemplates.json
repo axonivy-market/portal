@@ -117,8 +117,6 @@
               "field": "actions"
             }
           ],
-          "sortField": "startTimestamp",
-          "sortDescending": true,
           "filters": [
             {
               "field": "state",
@@ -198,8 +196,6 @@
               "field": "actions"
             }
           ],
-          "sortField": "startTimestamp",
-          "sortDescending": true,
           "filters": [
             {
               "field": "state",
@@ -237,8 +233,7 @@
             "h": 4,
             "x": 8,
             "y": 4
-          },
-          "sorting": "BY_ALPHABETICALLY"
+          }
         },
         {
           "type": "welcome",
@@ -411,7 +406,6 @@
             "y": 0
           },
           "rowsPerPage": 5,
-          "sortDescending": true,
           "columns": [
             {
               "field": "start"
@@ -454,8 +448,7 @@
               "field": "actions"
             }
           ],
-          "canWorkOn": true,
-          "sortField": "id"
+          "canWorkOn": true
         },
         {
           "type": "task",
@@ -473,7 +466,6 @@
             "y": 5
           },
           "rowsPerPage": 5,
-          "sortDescending": true,
           "columns": [
             {
               "field": "start"
@@ -517,8 +509,7 @@
               "field": "actions"
             }
           ],
-          "canWorkOn": false,
-          "sortField": "id"
+          "canWorkOn": false
         },
         {
           "type": "compact-process",
