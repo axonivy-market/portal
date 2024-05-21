@@ -35,7 +35,6 @@ public class ClientStatistic extends AbstractConfiguration {
   private String locale = Ivy.session().getFormattingLocale().toString();
   private String datePattern;
   private Boolean hideLabel = false;
-  @JsonProperty(access = Access.READ_ONLY)
   private String manipulateValueBy;
   
   public String getIcon() {
