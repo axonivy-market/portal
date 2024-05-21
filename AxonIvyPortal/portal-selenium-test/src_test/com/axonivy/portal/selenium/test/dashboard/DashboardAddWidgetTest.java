@@ -55,17 +55,6 @@ public class DashboardAddWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testAddNewStatisticChart() {
-    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
-    newDashboardDetailsEditPage.addWidget();
-    var newStatisticWidget = newDashboardDetailsEditPage.addNewStatisticWidget();
-    newStatisticWidget.selectFirstChart();
-    newStatisticWidget.save();
-    var chartWidget = newDashboardPage.selectStatisticWidget();
-    chartWidget.countStatisticCharts().shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
-  }
-
-  @Test
   public void testAddClientStatisticChart() {
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
     newDashboardDetailsEditPage.addWidget();
