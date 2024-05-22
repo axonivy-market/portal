@@ -22,7 +22,7 @@
     "descriptions": [
       {
         "locale": "en",
-        "value": "Create a dashboard with a welcome widget, one Task list, one Case list, a Process list widget and some standard charts."
+        "value": "Create a dashboard with a welcome widget, a task list, a case list, a process list widget, and some standard charts"
       },
       {
         "locale": "fr",
