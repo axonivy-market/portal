@@ -33,10 +33,11 @@ function loadGrid() {
 
     gridItems.forEach(ele => grid.addWidget(ele));
     grid.commit();
+
   })
 
   grids.forEach(function (grid, i) {
-    grid.on('change', function () {
+    grid.on('change', function (e) {
       let serializedData = [];
       let isReadOnlyMode = false;
       let dashboardViewModeInput = $("input[id$='dashboard-view-mode']");
@@ -74,7 +75,6 @@ function loadGrid() {
       if (descriptionElement.length > 0) {
         setupImageProcessWidgetDescription(descriptionElement);
       }
-
       setupGridProcessWidget();
     });
 
@@ -133,12 +133,6 @@ function toggleCategoryInfo(e) {
 function disabledResetDashboardActions() {
   PF('reset-dashboard-button').disable();
   $('.cancel-reset-dashboard-link').addClass('ui-state-disabled');
-}
-
-function removeWidgetContent(widgetId) {
-  var removeWidgetId = '.grid-stack-item[gs-id="' + widgetId + '"]';
-  $(removeWidgetId).remove();
-  updateDashboardWidget();
 }
 
 function DashboardToolKit() {
@@ -469,19 +463,14 @@ function removeStyle(element) {
   $(element).removeAttr('style');
 }
 
-function searcNewhWidgetByNameOrDescription(input) {
+function searchNewWidgetByNameOrDescription(input) {
   var keyword = input.value.toLowerCase();
   $('.js-widget').each(function() {
-    var hasKeyword = false;
-
-    $(this).find('label').each(function() {
-      if (this.innerText.toLowerCase().includes(keyword)) {
-        hasKeyword = true;
-        return;
-      }
-    });
-
-    hasKeyword ? $(this).removeClass('u-hidden') : $(this).addClass('u-hidden');
+    if ($(this).find('.new-widget-dialog__item-title span').text().toLowerCase().includes(keyword)) {
+      $(this).removeClass('u-hidden');
+    } else {
+      $(this).addClass('u-hidden');
+    }
   });
 
   var noResult = true;

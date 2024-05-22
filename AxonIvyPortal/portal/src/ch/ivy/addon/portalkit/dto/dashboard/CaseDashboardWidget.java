@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.SortMeta;
 
+import com.axonivy.portal.dto.dashboard.WidgetInformationCategoryStatisticData;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -35,9 +36,10 @@ public class CaseDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private Map<CaseBusinessState, Long> caseByStateStatistic;
   @JsonIgnore
-  private Map<String, Long> caseByCategoryStatistic;
+  private List<WidgetInformationCategoryStatisticData> caseByCategoryStatistic;
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
+  private boolean enableQuickSearch;
 
   public CaseDashboardWidget() {
     dataModel = new DashboardCaseLazyDataModel();
@@ -141,8 +143,16 @@ public class CaseDashboardWidget extends DashboardWidget {
   }
 
   @JsonIgnore
-  public Map<String, Long> getCaseByCategoryStatistic() {
+  public List<WidgetInformationCategoryStatisticData> getCaseByCategoryStatistic() {
     return caseByCategoryStatistic;
+  }
+
+  public boolean isEnableQuickSearch() {
+    return enableQuickSearch;
+  }
+
+  public void setEnableQuickSearch(boolean enableQuickSearch) {
+    this.enableQuickSearch = enableQuickSearch;
   }
 
   @Override
