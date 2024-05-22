@@ -36,10 +36,10 @@
           icon="si si-chat-translate" id="add-language-button"
           actionListener="#{managedBean.updateWidgetNameByLocale()}"
           process="widget-title"
+          partialSubmit="true"
           update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
           oncomplete="PF('multiple-languages-dialog').show();"
-          global="false">
-        </p:commandButton>
+          global="false"/>
       </div>
     </h:panelGroup>
 
