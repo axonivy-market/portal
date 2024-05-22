@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.SortMeta;
 
+import com.axonivy.portal.dto.dashboard.WidgetInformationCategoryStatisticData;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -36,13 +37,14 @@ public class TaskDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private Map<TaskBusinessState, Long> taskByStateStatistic;
   @JsonIgnore
-  private Map<String, Long> taskByCategoryStatistic;
+  private List<WidgetInformationCategoryStatisticData> taskByCategoryStatistic;
   @JsonIgnore
   private Long numberOfTasksExpireThisWeek;
   @JsonIgnore
   private Long numberOfTasksExpireToday;
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
+  private boolean enableQuickSearch;
 
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
@@ -55,8 +57,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   public void buildStatisticInfos() {
     String combinedAjaxCommand = String.format(REMOTE_COMMAND_PATTERN, "buildStatisticTaskExpiry", id)
         .concat(String.format(REMOTE_COMMAND_PATTERN, "buildStatisticTaskStates", id))
-        .concat(String.format(REMOTE_COMMAND_PATTERN, "buildStatisticTaskCategory", id))
-        .concat(String.format(REMOTE_COMMAND_PATTERN, "buildTaskDefinedFilter", id));
+        .concat(String.format(REMOTE_COMMAND_PATTERN, "buildStatisticTaskCategory", id));
     PrimeFaces.current().executeScript(combinedAjaxCommand);
   }
 
@@ -175,11 +176,11 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.numberOfTasksExpireToday = numberOfTasksExpireToday;
   }
 
-  public Map<String, Long> getTaskByCategoryStatistic() {
+  public List<WidgetInformationCategoryStatisticData> getTaskByCategoryStatistic() {
     return taskByCategoryStatistic;
   }
 
-  public void setTaskByCategoryStatistic(Map<String, Long> taskByCategoryStatistic) {
+  public void setTaskByCategoryStatistic(List<WidgetInformationCategoryStatisticData> taskByCategoryStatistic) {
     this.taskByCategoryStatistic = taskByCategoryStatistic;
   }
 
@@ -224,7 +225,15 @@ public class TaskDashboardWidget extends DashboardWidget {
   public void setUserFilters(List<DashboardFilter> userFilters) {
     this.dataModel.getCriteria().setUserFilters(userFilters);
   }
-  
+
+  public boolean isEnableQuickSearch() {
+    return enableQuickSearch;
+  }
+
+  public void setEnableQuickSearch(boolean enableQuickSearch) {
+    this.enableQuickSearch = enableQuickSearch;
+  }
+
   @JsonIgnore
   public void loadUserFilter() {
     updateSavedFiltersSelection();
