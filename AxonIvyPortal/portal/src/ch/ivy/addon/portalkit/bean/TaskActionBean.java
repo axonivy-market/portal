@@ -53,7 +53,7 @@ public class TaskActionBean implements Serializable {
     isShowReadWorkflowEvent = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_WORKFLOW_EVENT_ACTION);
   }
 
-  public boolean canReset(ITask task) {
+  public static boolean canReset(ITask task) {
     if (task == null) {
       return false;
     }
@@ -105,7 +105,7 @@ public class TaskActionBean implements Serializable {
     return hasPermission(task, permission) && !hasPermission(task, IPermission.TASK_WRITE_ACTIVATOR);
   }
 
-  public boolean canResume(ITask task) {
+  public static boolean canResume(ITask task) {
     return TaskUtils.canResume(task);
   }
 
@@ -119,7 +119,7 @@ public class TaskActionBean implements Serializable {
     return hasPermission(task, IPermission.TASK_PARK_OWN_WORKING_TASK);
   }
 
-  private boolean hasPermission(ITask task, IPermission permission) {
+  private static boolean hasPermission(ITask task, IPermission permission) {
     if (task == null || permission == null) {
       return false;
     }
