@@ -238,7 +238,7 @@ function Assistant(ivyUri, uri, view, assistant, username) {
           const { done, value } = await reader.read();
           if (done) {
             streaming = false;
-            view.removeStreamingClassFromMessage();
+            view.removeStreamingClassFromMessage(result);
             break;
           }
     
@@ -334,7 +334,7 @@ function Assistant(ivyUri, uri, view, assistant, username) {
   async function showResultFromStreamingResponse(response) {
     const result = await getResultFromStreamingResponse(response);
     view.renderMessage(result);
-    view.removeStreamingClassFromMessage();
+    view.removeStreamingClassFromMessage(result);
   }
 }
 
@@ -386,9 +386,12 @@ function ViewAI(uri) {
     cloneTemplate.getElementsByClassName('js-message')[0].innerHTML = message;
     $(cloneTemplate).removeClass('u-hidden').removeClass('js-message-template');
 
-    // Set width to auto if has iframe inside the chat message
+    // Set width to iframe inside the chat message
     if (cloneTemplate.querySelector('iframe') != null) {
       $(cloneTemplate).find('.chatbot-meta').get(0).style.width = 'auto';
+      setTimeout(function () {
+        $(cloneTemplate).find('iframe').width($(cloneTemplate).get(0).offsetWidth);
+      }, 50);
     }
 
     if (isMyMessage) {
@@ -455,10 +458,12 @@ function ViewAI(uri) {
 
   // Function to remove the 'streaming' class from a message
   // after the streaming process is done.
-  this.removeStreamingClassFromMessage = function () {
+  this.removeStreamingClassFromMessage = function (result) {
     const messageList = $(jsMessageList);
     const streamingMessage = messageList.find('.chat-message-container.streaming');
     streamingMessage.removeClass('streaming');
+    $(streamingMessage).find('.js-message').get(0).innerHTML = parseFinalMessage(result);
+
     this.enableSendButton();
   }
 

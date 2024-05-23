@@ -7,6 +7,8 @@ const IFRAME_TAG_START = '<iframe>';
 const IFRAME_TAG_END = '</iframe>';
 const HLJS_LANGUAGE_PREFIX = 'language-';
 const IFRAME_REGEX = /<iframe>(.*?)<\/iframe>/;
+const DOUBLE_ASTERISKS_REGEX = /\*\*(.*?)\*\*/g;
+const SINGLE_ASTERISK_REGEX = /\*(.*?)\*/g;
 
 // Helper Functions
 
@@ -24,6 +26,23 @@ const isIFrame = paragraph => paragraph.includes(IFRAME_TAG_START);
 
 // Adds a link component to a word if it's a URL, otherwise returns the word unchanged.
 const addLink = word => (isUrl(word) ? generateLinkComponent(word) : word);
+
+// Add a bold word component if it matched bold format.
+const addBoldWord = word => (isBoldWord(word) ? generateBoldWordComponent(word) : word);
+
+// Helper function to detect if a word is inside double asterisks.
+const isDoubleAsterisksWord = word => {
+  return DOUBLE_ASTERISKS_REGEX.test(word);
+};
+
+// Helper function to detect if a word is inside single asterisks.
+const isSingleAsterisksWord = word => {
+  return SINGLE_ASTERISK_REGEX.test(word);
+};
+
+const isBoldWord = word => {
+  return isDoubleAsterisksWord(word) || isSingleAsterisksWord(word);
+}
 
 // Code Generation Functions
 
@@ -80,6 +99,15 @@ const generateLinkComponent = url => {
   clone.classList.remove('js-external-link');
   return elemToString(clone);
 };
+
+// Generate a bold word element
+const generateBoldWordComponent = word => {
+  // Replace double asterisks with the text inside
+  word = word.replace(DOUBLE_ASTERISKS_REGEX, '$1');
+  // Replace single asterisks with the text inside
+  word = word.replace(SINGLE_ASTERISK_REGEX, '$1');
+  return `<b>${word}</b>`;
+}
 
 // Generates a formatted code component with syntax highlighting.
 const generateCodeComponent = codeBlock => {
@@ -211,10 +239,69 @@ const parseParagraph = paragraph => {
   return paragraph;
 };
 
+const parseFinalParagraph = paragraph => {
+  paragraph = paragraph.trim();
+
+  if (isCode(paragraph)) {
+    paragraph = convertCode(paragraph);
+  } else if (isImageUrl(paragraph)) {
+    paragraph = convertImage(paragraph);
+  } else if (isIFrame(paragraph)) {
+    paragraph = convertIFrame(paragraph);
+  } else {
+    const lines = paragraph.split('\n');
+    const formattedLines = lines.map(line => parseLine(line));
+    paragraph = formattedLines.join('\n');
+    paragraph = convertParagraph(paragraph);
+  }
+
+  return paragraph;
+}
+
+const parseLine = line => {
+  // check link: start with 'https' 'http' or 'www.' and end with ' ' '.' ')' '>'
+  const URL_PATTERN = /\b(https?:\/\/[^\s)>\]]+|www\.[^\s)>\]]+)(?=[.)>\]]?\s|$)/gi;
+  const matchedLinks = new Set();
+  let matchLink;
+
+  // Loop through all matches and extract URLs without trailing characters
+  while ((matchLink = URL_PATTERN.exec(line)) !== null) {
+    matchedLinks.add(matchLink[1]); // Capture the URL part without trailing characters
+  }
+  if(matchedLinks) {
+    matchedLinks.forEach(link => {
+      line = line.replace(link, addLink(link));
+    });
+  }
+
+  // check bold: inside double asterisks ** **
+  const matchedBoldWords = new Set();
+  let matchBold;
+  while ((matchBold = DOUBLE_ASTERISKS_REGEX.exec(line)) !== null) {
+    matchedBoldWords.add(matchBold[0]); // Capture the URL part without trailing characters
+  }
+  if(matchedBoldWords) {
+    matchedBoldWords.forEach(bold => {
+      line = line.replace(bold, addBoldWord(bold));
+    });
+  }
+
+  return line;
+  
+};
+
 // Parses a message by splitting it into paragraphs and formatting each paragraph.
 const parseMessage = message => {
   const paragraphs = message.split(/\r?\n\n/);
   const formattedParagraphs = paragraphs.map(p => parseParagraph(p));
+  message = formattedParagraphs.join('\r\n');
+  return message;
+};
+
+// Parses a message by splitting it into paragraphs and formatting each paragraph.
+const parseFinalMessage = message => {
+  const paragraphs = message.split(/\r?\n\n/);
+  const formattedParagraphs = paragraphs.map(p => parseFinalParagraph(p));
   message = formattedParagraphs.join('\r\n');
   return message;
 };
