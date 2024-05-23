@@ -22,11 +22,11 @@
     "descriptions": [
       {
         "locale": "en",
-        "value": "Create dashboard with a welcome, one Task list, one Case list, and one Process list widget"
+        "value": "Create a dashboard with a welcome widget, a task list, a case list, a process list widget, and some standard charts"
       },
       {
         "locale": "fr",
-        "value": "Créez un tableau de bord avec un widget de bienvenue, une liste de tâches, une liste de cas et une liste de processus."
+        "value": "Créez un tableau de bord avec un widget d'accueil, une liste de tâches, une liste de cas et une liste de processus, ainsi que quelques graphiques standard."
       },
       {
         "locale": "de",
@@ -34,7 +34,7 @@
       },
       {
         "locale": "es",
-        "value": "Crear un panel de control con un widget de bienvenida, una lista de tareas, una lista de casos y una lista de procesos"
+        "value": "Crear un panel de control con un widget de bienvenida, una lista de tareas, una lista de casos y un widget de lista de procesos y algunos gráficos estándar."
       }
     ],
     "icon": "si-pie-line-graph",
@@ -64,12 +64,14 @@
             }
           ],
           "layout": {
-            "w": 9,
-            "h": 5,
+            "w": 8,
+            "h": 6,
             "x": 0,
             "y": 2
           },
+          "enableQuickSearch": true,
           "rowsPerPage": 5,
+          "canWorkOn": true,
           "columns": [
             {
               "field": "start"
@@ -79,25 +81,25 @@
             },
             {
               "field": "id",
-              "visible": false
+              "visible": false,
+              "quickSearch": false
             },
             {
-              "field": "name"
+              "field": "name",
+              "quickSearch": true
             },
             {
-              "field": "description"
+              "field": "description",
+              "visible": false,
+              "quickSearch": true
             },
             {
-              "field": "activator"
+              "field": "activator",
+              "quickSearch": false
             },
             {
               "field": "state",
-              "visible": false,
-              "filterList": [
-                "OPEN",
-                "IN_PROGRESS",
-                "DONE"
-              ]
+              "visible": false
             },
             {
               "field": "startTimestamp",
@@ -108,15 +110,27 @@
             },
             {
               "field": "category",
-              "visible": false
+              "visible": false,
+              "quickSearch": false
             },
             {
               "field": "actions"
             }
           ],
-          "sortDescending": true,
           "sortField": "startTimestamp",
-          "canWorkOn": true
+          "sortDescending": true,
+          "filters": [
+            {
+              "field": "state",
+              "values": [
+                "DONE",
+                "IN_PROGRESS",
+                "OPEN"
+              ],
+              "operator": "in",
+              "type": "standard"
+            }
+          ]
         },
         {
           "type": "case",
@@ -140,31 +154,32 @@
             }
           ],
           "layout": {
-            "w": 12,
-            "h": 5,
-            "x": 0,
-            "y": 7
+            "w": 9,
+            "h": 6,
+            "x": 3,
+            "y": 8
           },
           "rowsPerPage": 5,
           "columns": [
             {
-              "field": "id"
+              "field": "id",
+              "quickSearch": false
             },
             {
-              "field": "name"
+              "field": "name",
+              "quickSearch": true
             },
             {
               "field": "description",
-              "visible": false
+              "visible": false,
+              "quickSearch": true
             },
             {
-              "field": "state",
-              "filterList": [
-                "OPEN"
-              ]
+              "field": "state"
             },
             {
-              "field": "creator"
+              "field": "creator",
+              "quickSearch": false
             },
             {
               "field": "startTimestamp"
@@ -175,14 +190,25 @@
             },
             {
               "field": "category",
-              "visible": false
+              "visible": false,
+              "quickSearch": false
             },
             {
               "field": "actions"
             }
           ],
+          "sortField": "startTimestamp",
           "sortDescending": true,
-          "sortField": "startTimestamp"
+          "filters": [
+            {
+              "field": "state",
+              "values": [
+                "OPEN"
+              ],
+              "operator": "in",
+              "type": "standard"
+            }
+          ]
         },
         {
           "type": "compact-process",
@@ -206,10 +232,10 @@
             }
           ],
           "layout": {
-            "w": 3,
-            "h": 5,
-            "x": 9,
-            "y": 2
+            "w": 4,
+            "h": 4,
+            "x": 8,
+            "y": 4
           }
         },
         {
@@ -229,7 +255,7 @@
           },
           "welcomeTextPosition": "TOP_LEFT",
           "welcomeTextSize": "HEADING_3",
-          "welcomeTextColor": "ffffff",
+          "welcomeTextColor": "#ffffff",
           "welcomeTexts": [
             {
               "locale": "en",
@@ -248,7 +274,74 @@
               "value": ", bienvenido al portal Axon Ivy!"
             }
           ],
+          "welcomeImageFit": "COVER",
           "greeting": true
+        },
+        {
+          "type": "client-statistic",
+          "id": "client_statistic_1",
+          "layout": {
+            "w": 2,
+            "h": 2,
+            "x": 8,
+            "y": 2
+          },
+          "chartId": "10"
+        },
+        {
+          "type": "client-statistic",
+          "id": "client_statistic_2",
+          "layout": {
+            "w": 2,
+            "h": 2,
+            "x": 10,
+            "y": 2
+          },
+          "chartId": "11"
+        },
+        {
+          "type": "client-statistic",
+          "id": "client_statistic_3",
+          "layout": {
+            "w": 3,
+            "h": 3,
+            "x": 0,
+            "y": 11
+          },
+          "chartId": "7"
+        },
+        {
+          "type": "client-statistic",
+          "id": "client_statistic_4",
+          "layout": {
+            "w": 3,
+            "h": 3,
+            "x": 0,
+            "y": 8
+          },
+          "chartId": "3"
+        },
+        {
+          "type": "client-statistic",
+          "id": "client_statistic_5",
+          "layout": {
+            "w": 3,
+            "h": 3,
+            "x": 0,
+            "y": 14
+          },
+          "chartId": "5"
+        },
+        {
+          "type": "client-statistic",
+          "id": "client_statistic_6",
+          "layout": {
+            "w": 9,
+            "h": 3,
+            "x": 3,
+            "y": 14
+          },
+          "chartId": "4"
         }
       ],
       "permissions": [

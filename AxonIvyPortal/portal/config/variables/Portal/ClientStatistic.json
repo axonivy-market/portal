@@ -29,23 +29,23 @@
     "descriptions": [
       {
         "locale": "de",
-        "value": "Dieses Tortendiagramm zeigt alle Aufgaben nach Priorität an, an denen der Benutzer arbeiten kann."
+        "value": "Dieses Kreisdiagramm zeigt alle Aufgaben nach Priorität an."
       },
       {
         "locale": "en",
-        "value": "This pie chart displays all tasks by priority the user can work on."
+        "value": "This pie chart displays all tasks by priority."
       },
       {
         "locale": "fr",
-        "value": "Ce diagramme à secteurs affiche toutes les tâches par ordre de priorité sur lesquelles l'utilisateur peut travailler."
+        "value": "Ce diagramme à secteurs affiche toutes les tâches par priorité."
       },
       {
         "locale": "es",
-        "value": "Este gráfico circular muestra todas las tareas por prioridad en las que puede trabajar el usuario."
+        "value": "Este gráfico circular muestra todas las tareas por prioridad."
       }
     ],
     "icon": "si si-analytics-pie-2",
-    "refreshInterval": 500
+    "refreshInterval": 300
   },
   {
     "id": "2",
@@ -59,19 +59,19 @@
     "names": [
       {
         "locale": "de",
-        "value": "Nach Priorität gruppierte Aufgaben, die innerhalb der nächsten 3 Tage ablaufen."
+        "value": "Priorität (3 Tage)"
       },
       {
         "locale": "en",
-        "value": "Tasks grouped by Priority expiring within the Next 3 Days."
+        "value": "Top Priority: 3 days"
       },
       {
         "locale": "fr",
-        "value": "Tâches regroupées par priorité expirant dans les 3 prochains jours."
+        "value": "Priorité : 3 jours"
       },
       {
         "locale": "es",
-        "value": "Tareas agrupadas por Prioridad que vencen en los Próximos 3 Días."
+        "value": "Prioridad: 3 días"
       }
     ],
     "descriptions": [
@@ -93,7 +93,7 @@
       }
     ],
     "icon": "si si-analytics-bars",
-    "refreshInterval": 500,
+    "refreshInterval": 300,
     "barChartConfig": {
       "xTitles": [
         {
@@ -179,7 +179,7 @@
       }
     ],
     "icon": "si si-analytics-bars",
-    "refreshInterval": 500,
+    "refreshInterval": 300,
     "barChartConfig": {
       "xTitles": [
         {
@@ -232,11 +232,11 @@
     "names": [
       {
         "locale": "de",
-        "value": "Durchschnittliche Laufzeit der Fälle nach Kategorie"
+        "value": "Durchschnittliche Vorgangslaufzeit nach Kategorie "
       },
       {
         "locale": "en",
-        "value": "Average runtime of cases by Category"
+        "value": "Case Category Avg. Runtime"
       },
       {
         "locale": "fr",
@@ -266,7 +266,7 @@
       }
     ],
     "icon": "si si-analytics-bars",
-    "refreshInterval": 500,
+    "refreshInterval": 300,
     "barChartConfig": {
       "xTitles": [
         {
@@ -319,25 +319,25 @@
     "names": [
       {
         "locale": "de",
-        "value": "Angefangene fälle pro tag"
+        "value": "Neue Vorgänge pro Tag"
       },
       {
         "locale": "en",
-        "value": "Started cases per day"
+        "value": "New Cases per day"
       },
       {
         "locale": "fr",
-        "value": "Cas initiés par jour"
+        "value": "Nouveaux cas par jour"
       },
       {
         "locale": "es",
-        "value": "Casos iniciados por día"
+        "value": "Nuevos casos por día"
       }
     ],
     "descriptions": [
       {
         "locale": "de",
-        "value": "Dieses Diagramm zeigt alle begonnenen Fälle pro Tag in den letzten 5 Tagen."
+        "value": "Dieses Diagramm zeigt die Summe aller gestarteten Vorgänge der letzten 5 Tage."
       },
       {
         "locale": "en",
@@ -353,7 +353,7 @@
       }
     ],
     "icon": "si si-analytics-board-graph-line",
-    "refreshInterval": 500,
+    "refreshInterval": 300,
     "lineChartConfig": {
       "xTitles": [
         {
@@ -409,7 +409,7 @@
       },
       {
         "locale": "en",
-        "value": "Finished cases per day"
+        "value": "Completed Cases per day"
       },
       {
         "locale": "fr",
@@ -423,7 +423,7 @@
     "descriptions": [
       {
         "locale": "de",
-        "value": "Diese Grafik zeigt alle abgeschlossenen Fälle pro Tag in den letzten 5 Tagen."
+        "value": "Diese Grafik zeigt alle abgeschlossenen Fälle pro Tag der letzten 5 Tagen."
       },
       {
         "locale": "en",
@@ -439,7 +439,7 @@
       }
     ],
     "icon": "si si-analytics-board-graph-line",
-    "refreshInterval": 500,
+    "refreshInterval": 300,
     "lineChartConfig": {
       "xTitles": [
         {
@@ -491,25 +491,25 @@
     "names": [
       {
         "locale": "de",
-        "value": "Anzahl der laufenden Fälle, an denen der Benutzer beteiligt ist"
+        "value": "Laufende Vorgänge"
       },
       {
         "locale": "en",
-        "value": "Number of running cases the user is involved"
+        "value": "Running Cases"
       },
       {
         "locale": "fr",
-        "value": "Nombre d'affaires en cours dans lesquelles l'utilisateur est impliqué"
+        "value": "Cas en Cours"
       },
       {
         "locale": "es",
-        "value": "Número de casos en curso en los que participa el usuario"
+        "value": "Casos en Curso"
       }
     ],
     "descriptions": [
       {
         "locale": "de",
-        "value": "Anzahl der RUNNING-Fälle, an denen der Benutzer beteiligt ist."
+        "value": "Anzahl der aktuell laufenden Vorgänge an denen der Benutzer beteiligt ist."
       },
       {
         "locale": "en",
@@ -525,7 +525,7 @@
       }
     ],
     "icon": "si si-pie-line-graph",
-    "refreshInterval": 500,
+    "refreshInterval": 300,
     "numberChartConfig": {
       "suffixSymbol": ""
     }
@@ -576,7 +576,7 @@
       }
     ],
     "icon": "si si-pie-line-graph",
-    "refreshInterval": 500,
+    "refreshInterval": 300,
     "numberChartConfig": {
       "suffixSymbol": ""
     }
@@ -593,19 +593,19 @@
     "names": [
       {
         "locale": "de",
-        "value": "Anzahl der Aufgaben nach Priorität, an denen der Benutzer arbeiten kann"
+        "value": "Aufgaben nach Priorität"
       },
       {
         "locale": "en",
-        "value": "Number of tasks by Priority the user can work on"
+        "value": "Tasks by Priority"
       },
       {
         "locale": "fr",
-        "value": "Nombre de tâches par priorité sur lesquelles l'utilisateur peut travailler"
+        "value": "Tâches par Priorité"
       },
       {
         "locale": "es",
-        "value": "Número de tareas por prioridad en las que puede trabajar el usuario"
+        "value": "Tareas por Prioridad"
       }
     ],
     "descriptions": [
@@ -627,7 +627,7 @@
       }
     ],
     "icon": "si si-pie-line-graph",
-    "refreshInterval": 500,
+    "refreshInterval": 300,
     "numberChartConfig": {
       "suffixSymbol": ""
     }
@@ -644,19 +644,19 @@
     "names": [
       {
         "locale": "de",
-        "value": "Anzahl der Aufgaben, an denen der Benutzer arbeiten kann"
+        "value": "Offene Aufgaben"
       },
       {
         "locale": "en",
-        "value": "Number of tasks the user can work on"
+        "value": "Open Tasks"
       },
       {
         "locale": "fr",
-        "value": "Nombre de tâches sur lesquelles l'utilisateur peut travailler"
+        "value": "Tâches Ouvertes"
       },
       {
         "locale": "es",
-        "value": "Número de tareas en las que puede trabajar el usuario"
+        "value": "Tareas Abiertas"
       }
     ],
     "descriptions": [
@@ -678,10 +678,11 @@
       }
     ],
     "icon": "si si-pie-line-graph",
-    "refreshInterval": 500,
+    "refreshInterval": 300,
     "numberChartConfig": {
       "suffixSymbol": ""
-    }
+    },
+    "hideLabel": false
   },
   {
     "id": "11",
@@ -695,19 +696,19 @@
     "names": [
       {
         "locale": "de",
-        "value": "Aufgaben, die heute ablaufen"
+        "value": "Fällig Heute"
       },
       {
         "locale": "en",
-        "value": "Tasks that expire today"
+        "value": "Due Today"
       },
       {
         "locale": "fr",
-        "value": "Tâches qui expirent aujourd'hui"
+        "value": "Dû Aujourd'hui"
       },
       {
         "locale": "es",
-        "value": "Tareas que expiran hoy"
+        "value": "Vence Hoy"
       }
     ],
     "descriptions": [
@@ -729,11 +730,10 @@
       }
     ],
     "icon": "si si-pie-line-graph",
-    "refreshInterval": 500,
+    "refreshInterval": 300,
     "numberChartConfig": {
       "suffixSymbol": ""
     },
     "hideLabel": true
   }
-
 ]

@@ -17,6 +17,8 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.bo.ItemByCategoryStatistic;
+
 import ch.ivy.addon.portalkit.bo.CaseCategoryStatistic;
 import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
@@ -288,26 +290,24 @@ public class CaseService{
     return Sudo.get(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       CaseQuery finalQuery = extendQuery(criteria);
-      finalQuery.aggregate().countRows().groupBy().category().orderBy().category();
-
-      Recordset recordSet = Ivy.wf().getCaseQueryExecutor().getRecordset(finalQuery);
-      CaseCategoryStatistic caseCategoryStatistic = createCaseCategoryStatistic(recordSet);
-      result.setCaseCategoryStatistic(caseCategoryStatistic);
+      result.setCategoryTree(CategoryTree.createFor(finalQuery));
+      List<ItemByCategoryStatistic> statistics = CategoryUtils.createItemCategoryStatistic(result.getCategoryTree());
+      result.setItemByCategoryStatistic(statistics);
       return result;
     });
   }
 
-  private CaseCategoryStatistic createCaseCategoryStatistic(Recordset recordSet) {
-    CaseCategoryStatistic caseCategoryStatistic = new CaseCategoryStatistic();
-    caseCategoryStatistic.setNumberOfCasesByCategory(new HashMap<>());
-    if (recordSet != null) {
-      recordSet.getRecords().forEach(record -> {
-        long numberOfCases = ((Number)(record.getField("COUNT"))).longValue();
-        caseCategoryStatistic.getNumberOfCasesByCategory().put(record.getField("CATEGORY").toString(), numberOfCases);
-      });
-    }
-    return caseCategoryStatistic;
-  }
+//  private CaseCategoryStatistic createCaseCategoryStatistic(Recordset recordSet) {
+//    CaseCategoryStatistic caseCategoryStatistic = new CaseCategoryStatistic();
+//    caseCategoryStatistic.setNumberOfCasesByCategory(new HashMap<>());
+//    if (recordSet != null) {
+//      recordSet.getRecords().forEach(record -> {
+//        long numberOfCases = ((Number)(record.getField("COUNT"))).longValue();
+//        caseCategoryStatistic.getNumberOfCasesByCategory().put(record.getField("CATEGORY").toString(), numberOfCases);
+//      });
+//    }
+//    return caseCategoryStatistic;
+//  }
   
   public IvyCaseResultDTO analyzeCasesByCategoryStatistic(CaseSearchCriteria criteria, List<String> selectedCategories) {
     return Sudo.get(() -> {
