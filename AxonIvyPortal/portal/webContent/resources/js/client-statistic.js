@@ -4,7 +4,7 @@ const AVERAGE_BUSINESS_RUNTIME = "avg-businessRuntime";
 
 
 // Additional configs
-const EMPTY_CHART_MESSAGE =  'emptyChartDataMessage';
+const EMPTY_CHART_MESSAGE = 'emptyChartDataMessage';
 const MANIPULATE_BY = 'manipulateValueBy';
 
 let locale;
@@ -87,32 +87,32 @@ const convertYValue = (value, config) => {
   if (!value || !config) {
     return value;
   }
-  
+
   let valueNumber = 0;
   try {
-     valueNumber = Number(value);
+    valueNumber = Number(value);
 
-     config.find(function (item) {
+    config.find(function (item) {
       if (Object.keys(item || {})[0] === MANIPULATE_BY) {
         let itemVal = Object.values(item)[0];
         let operator = itemVal.charAt(0);
         let manipulateValueBy = Number(itemVal.substring(1));
         switch (operator) {
-          case '/': 
-             value = (valueNumber / manipulateValueBy);
-             break;
+          case '/':
+            value = (valueNumber / manipulateValueBy);
+            break;
           case '*':
-             value =  valueNumber * manipulateValueBy;
-             break;
+            value = valueNumber * manipulateValueBy;
+            break;
           default:
-             break;
+            break;
         };
       }
     });
-  } catch(error) {
+  } catch (error) {
     return value;
   }
-  
+
   return value;
 }
 
@@ -167,7 +167,7 @@ function initClientCharts(statisticEndpoint, defaultLocale, defaultDatePattern) 
   if (!charts || charts.length == 0) {
     return;
   }
- 
+
   statisticApiURL = window.location.origin + statisticEndpoint;
   let refreshInfos = [];
 
@@ -297,7 +297,12 @@ class ClientCanvasChart extends ClientChart {
   initWidgetTitle() {
     $(this.chart).parents('.dashboard__widget').find('.widget__header > .widget__header-title')
       .text(this.data.chartConfig.name);
-  }
+    
+    $(this.chart).parents(".freya")
+      .find(`.js-widget-header-tooltip-${this.data.chartConfig.id}`)
+      .find(".ui-tooltip-text")
+      .text(this.data.chartConfig.name);
+    }
 
   updateClientChart() {
     this.initWidgetTitle();
@@ -542,11 +547,19 @@ class ClientNumberChart extends ClientChart {
   }
 
   initWidgetHeaderName(chart, widgetName) {
+    let widgetId = $(chart).attr('data-chart-id');
     let widgetHeader = $(chart).parents(".card-widget-panel")
       .find(".widget__header")
       .find(".widget__header-title").get(0);
+
+    let widgetTooltip = $(chart).parents(".freya")
+      .find(`.js-widget-header-tooltip-${widgetId}`)
+      .find(".ui-tooltip-text")
+      .get(0);
+
     if (widgetHeader) {
       widgetHeader.textContent = widgetName;
+      widgetTooltip.textContent = widgetName;
     }
   }
 
@@ -565,7 +578,7 @@ class ClientNumberChart extends ClientChart {
   }
 
   generateItemHtml(label, number, suffixSymbol) {
-    label = this.data.chartConfig.hideLabel === true ? '' : this.formatChartLabel(label) ;
+    label = this.data.chartConfig.hideLabel === true ? '' : this.formatChartLabel(label);
     let html =
       '<div class="u-text-align-center chart-content-card">' +
       '    <div class="chart-icon-font-size chart-number-animation">' +

@@ -25,10 +25,10 @@
   <c:set var="renderInfo" value="#{isReadOnlyMode and (empty isRenderInfo ? 'true': isRenderInfo)}"/>
   <c:set var="renderEdit" value="#{not isReadOnlyMode and (empty isRenderEdit ? 'true': isRenderEdit)}"/>
   <c:set var="renderExpandCollapse" value="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"/>
-
+    
   <div class="widget__header">
     <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">#{widget.name}</h:panelGroup>
-    <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
+    <p:tooltip for="widget__header" trackMouse="true" hideEvent="mouseleave click" styleClass="js-widget-header-tooltip-#{widget.chartId}" />
 
     <h:panelGroup id="widget-header-actions" styleClass="widget__header-actions" layout="block">
       <p:commandButton id="info-sidebar-link-#{index}" type="button" icon="si si-statistics-daytum"
