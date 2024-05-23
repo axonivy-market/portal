@@ -5,7 +5,7 @@
     "type" : "IVY",
     "signature" : "findTasks(String,String,String,String)",
     "permissions" : ["Everybody"],
-    "description" : "This tool is helpful when user want to find tasks by attributes.",
+    "description" : "This tool is helpful when user want to find tasks by attributes. ONLY useful for task",
     "attributes" : [
       {
         "name" : "taskName",
@@ -28,7 +28,7 @@
     "type" : "IVY",
     "signature" : "findCases(String,String,String)",
     "permissions" : ["Everybody"],
-    "description" : "This tool is helpful when user want to find cases by attributes.",
+    "description" : "This tool is helpful when user want to find cases by attributes. ONLY useful for case",
     "attributes" : [
       {
         "name" : "caseName",
