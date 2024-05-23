@@ -552,14 +552,15 @@ class ClientNumberChart extends ClientChart {
       .find(".widget__header")
       .find(".widget__header-title").get(0);
 
-    let widgetTooltip = $(chart).parents(".freya")
-      .find(`.js-widget-header-tooltip-${widgetId}`)
-      .find(".ui-tooltip-text")
-      .get(0);
+    
 
     if (widgetHeader) {
       widgetHeader.textContent = widgetName;
-      widgetTooltip.textContent = widgetName;
+
+      // Update value of tooltip
+      $(chart).parents(".freya")
+      .find(`.js-widget-header-tooltip-${widgetId}`)
+      .find(".ui-tooltip-text").text(widgetName);
     }
   }
 
