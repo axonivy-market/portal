@@ -2,6 +2,8 @@ package ch.ivy.addon.portalkit.ivydata.dto;
 
 import java.util.List;
 
+import com.axonivy.portal.bo.ItemByCategoryStatistic;
+
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
 import ch.ivy.addon.portalkit.bo.TaskCategoryStatistic;
@@ -18,7 +20,8 @@ public class IvyTaskResultDTO {
   private ExpiryStatistic expiryStatistic;
   private TaskStateStatistic taskStateStatistic;
   private TaskCategoryStatistic taskCategoryStatistic;
-
+  private List<ItemByCategoryStatistic> itemByCategoryStatistic;
+  
   public List<ITask> getTasks() {
     return tasks;
   }
@@ -73,6 +76,14 @@ public class IvyTaskResultDTO {
 
   public void setTaskCategoryStatistic(TaskCategoryStatistic taskCategoryStatistic) {
     this.taskCategoryStatistic = taskCategoryStatistic;
+  }
+
+  public List<ItemByCategoryStatistic> getItemByCategoryStatistic() {
+    return itemByCategoryStatistic;
+  }
+
+  public void setItemByCategoryStatistic(List<ItemByCategoryStatistic> itemByCategoryStatistic) {
+    this.itemByCategoryStatistic = itemByCategoryStatistic;
   }
 
 }
