@@ -27,6 +27,7 @@ import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivyteam.ivy.IvyConstants;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.security.IPermission;
+import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.workflow.ICase;
 
 @SuppressWarnings("restriction")
@@ -66,7 +67,8 @@ public class CaseActionBean implements Serializable {
           .textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).getOrNull();
       if (StringUtils.isNotEmpty(additionalCaseDetailsPageUri)) {
         additionalCaseDetailsPageUri += (additionalCaseDetailsPageUri.contains("?") ? "&" : "?").concat("embedInFrame");
-        migrateOldAdditionalDetailsLink(additionalCaseDetailsPageUri, iCase);
+        additionalCaseDetailsPageUri = migrateOldAdditionalDetailsLink(
+            additionalCaseDetailsPageUri, iCase);
       }
     }
     if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
@@ -75,13 +77,6 @@ public class CaseActionBean implements Serializable {
       additionalCaseDetailsPageUri = PortalNavigator.buildUrlByKeyword("showAdditionalCaseDetails", START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE, params);
     }
     return additionalCaseDetailsPageUri;
-  }
-
-  private String getProcessModelAndRequestPath(String url, ICase iCase) {
-    // get {process model}/{request path}?{params}
-    String result = url.substring(url.indexOf(iCase.getProcessModel().getName()), url.length());
-    return result;
-
   }
 
   private String appendParamsToUrl(String url, ICase iCase) {
@@ -195,22 +190,15 @@ public class CaseActionBean implements Serializable {
     return false;
   }
 
-  public void migrateOldAdditionalDetailsLink(
+  public String migrateOldAdditionalDetailsLink(
       String additionalCaseDetailsPageUri, ICase iCase) { 
     if (isOldAdditionalDetailsLink(additionalCaseDetailsPageUri)) {
       String ivyContextNameAndApp = String.format(FULL_RELATIVE_URL_FORMAT,
-          IApplication.current().getContextPath(), PRO,
-          iCase.getApplication().getName());
+          "ivy", PRO, iCase.getApplication().getName()) + "/";
 
-      String contextPart = "";
-      if (additionalCaseDetailsPageUri.startsWith(ivyContextNameAndApp)) {
-        contextPart = "/" + IApplication.current().getContextPath();
-      }
-
-      // If found custom additional case details page URI
-      // adapt it to format {process model}/{request path}
-      additionalCaseDetailsPageUri = getProcessModelAndRequestPath(
-          additionalCaseDetailsPageUri, iCase);
+      // Remove obsoleted parts from old url
+      additionalCaseDetailsPageUri = additionalCaseDetailsPageUri
+          .replace(ivyContextNameAndApp, "");
 
       // Add caseId and embedInFrame to params of the url
       additionalCaseDetailsPageUri = appendParamsToUrl(
@@ -220,11 +208,14 @@ public class CaseActionBean implements Serializable {
       additionalCaseDetailsPageUri = appendApplicationPartsToUrl(
           additionalCaseDetailsPageUri, iCase);
 
-      // Append context part
-      if (StringUtils.isNotBlank(contextPart)) {
-        additionalCaseDetailsPageUri = String.join("/", contextPart,
-            additionalCaseDetailsPageUri);
+      // If base context path is defined, append it to the url
+      String contextPath = ISecurityConstants.BASE_CONTEXT_PATH;
+      if (StringUtils.isNotBlank(contextPath)) {
+        additionalCaseDetailsPageUri = contextPath
+            + additionalCaseDetailsPageUri;
       }
+
     }
+    return additionalCaseDetailsPageUri;
   }
 }
