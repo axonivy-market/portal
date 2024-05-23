@@ -97,21 +97,23 @@ const convertYValue = (value, config) => {
         let itemVal = Object.values(item)[0];
         let operator = itemVal.charAt(0);
         let manipulateValueBy = Number(itemVal.substring(1));
-  
         switch (operator) {
-          case '/':  return valueNumber / manipulateValueBy;
-          case '*': return valueNumber * manipulateValueBy;
-          default: return value;
+          case '/': 
+             value = (valueNumber / manipulateValueBy);
+             break;
+          case '*':
+             value =  valueNumber * manipulateValueBy;
+             break;
+          default:
+             break;
         };
       }
     });
   } catch(error) {
     return value;
   }
-
   
-  
-  return value / 60;
+  return value;
 }
 
 async function fetchChartData(chart, chartId) {

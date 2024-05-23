@@ -1,7 +1,6 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CASE;
-
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CLIENT_STATISTIC;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CUSTOM;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NEWS;
@@ -45,9 +44,9 @@ import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.dto.News;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
-import com.axonivy.portal.service.ClientStatisticService;
 import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.service.ClientStatisticService;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 import com.google.common.base.Predicate;
@@ -1024,7 +1023,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
   
   public boolean canEnableQuickSearch() {
-    return Optional.ofNullable(this.widget).map(DashboardWidget::getType).map(DashboardWidgetType::canEnableQuickSearch)
+    return Optional.ofNullable(this.widget).map(DashboardWidget::getType)
+        .map(DashboardWidgetType::canEnableQuickSearch)
         .orElse(false);
   }
 }

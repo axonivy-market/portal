@@ -1294,6 +1294,11 @@ body .ui-widget.new-widget-dialog__introduction {
   padding-bottom: 0;
 }
 
+.client-statistic.widget__content .empty-message-container {
+  text-align: center;
+  margin: auto;
+}
+
 .statistic-chart-widget {
   position: relative;
   margin: auto;
@@ -1756,34 +1761,20 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .chart-content-card .chart-icon-font-size {
-  font-size: max(2rem, 1.5rem + 10cqh);
+  font-size: max(1rem, 1.5rem + 5cqh);
 }
 
 .chart-content-card .chart-name-font-size {
-  font-size: max(1.5rem, 1rem + 10cqh);
+  font-size: max(1.5rem, 1rem + 5cqh);
 }
 
 .chart-content-card .chart-number-font-size {
-    font-size: max(2rem, 1.5rem + 10cqh);
+    font-size: max(7rem, 1.5rem + 20cqh);
 }
 
 @container (max-width: 200px) {
   .chart-content-card .chart-icon-font-size {
-    font-size: max(2rem, 1.5rem + 10cqh);
-  }
-
-  .chart-content-card .chart-name-font-size {
-    font-size: max(1.5rem, 1rem + 10cqw);
-  }
-
-  .chart-content-card .chart-number-font-size {
-    font-size: max(2rem, 1.5rem + 10cqh);
-  }
-}
-
-@container (max-height: 150px) {
-  .chart-content-card .chart-icon-font-size {
-    font-size: max(2rem, 1.5rem + 5cqh);
+    font-size: max(2rem, 1.5rem + 1cqh);
   }
 
   .chart-content-card .chart-name-font-size {
@@ -1791,7 +1782,21 @@ body .ui-widget.new-widget-dialog__introduction {
   }
 
   .chart-content-card .chart-number-font-size {
-    font-size: max(2rem, 1.5rem + 5cqh);
+    font-size: max(2rem, 1.5rem + 15cqh);
+  }
+}
+
+@container (max-height: 200px) {
+  .chart-content-card .chart-icon-font-size {
+    font-size: max(1rem, 1.5rem + 1cqh);
+  }
+
+  .chart-content-card .chart-name-font-size {
+    font-size: max(1.5rem, 1rem + 2cqw);
+  }
+
+  .chart-content-card .chart-number-font-size {
+    font-size: max(3rem, 1.5rem + 10cqh);
   }
 }
 
