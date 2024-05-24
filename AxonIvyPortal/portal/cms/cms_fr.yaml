@@ -1005,7 +1005,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   logoutSetting:
     logout: Se déconnecter
   mobile:
-    MenuName: Application mobile
+    MenuName: Application mobile Connect
     QRCodeDescription: Pour vous connecter à l'application mobile Axon Ivy, scannez ce code QR et entrez vos informations d'identification dans l'application.
   noteHistory:
     author: Auteur
@@ -1597,10 +1597,10 @@ Dialogs:
             NoAvailableTools: Il n'y a pas d'outils disponibles
         dashboard:
           component:
-            ClientStatisticWidget:
-              NoPermissionChartMessage: Vous n'avez pas l'autorisation requise pour consulter ce graphique.
             CaseWidgetConfiguration:
               AddFilter: Ajouter un filtre
+            ClientStatisticWidget:
+              NoPermissionChartMessage: Vous n'avez pas l'autorisation requise pour consulter ce graphique.
             DashboardImportDetails:
               FileInfomation: Informations sur le fichier
               ImportPrivate: Importer un tableau de bord privé
@@ -1754,6 +1754,16 @@ Labels:
   AppendTheTask: Ajouter la tâche
   CreateNewDashboard: Créer un nouveau tableau de bord
   Enums:
+    ChatbotCandidateQuestion:
+      EXPLORE:
+        header: Explore
+        question: What are the key features of Portal?
+      INTERACT:
+        header: Interact
+        question: List out tasks that require completion within the current week.
+      TUTORIAL:
+        header: Tutorial
+        question: Are there Portal  tutorials or documentation available for new users?
     DashboardStandardCaseColumn:
       ACTIONS: Actions
       APPLICATION: Application
@@ -1819,16 +1829,6 @@ Labels:
         YEAR: Année(s)
       WEEK: Semaine
       YEAR: Année
-    ChatbotCandidateQuestion:
-      EXPLORE:
-        header: Explore
-        question: What are the key features of Portal?
-      INTERACT:
-        header: Interact
-        question: List out tasks that require completion within the current week.
-      TUTORIAL:
-        header: Tutorial
-        question: Are there Portal  tutorials or documentation available for new users?
     ThemeMode:
       DARK: Dark
       LIGHT: Lumière
