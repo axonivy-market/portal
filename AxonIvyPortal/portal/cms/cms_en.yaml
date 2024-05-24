@@ -1010,7 +1010,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   logoutSetting:
     logout: Logout
   mobile:
-    MenuName: Mobile app
+    MenuName: Connect Mobile App
     QRCodeDescription: To connect your Axon Ivy Mobile App, please scan this QR Code and enter your credentials in the inside the app.
   noteHistory:
     author: Author
@@ -1601,10 +1601,10 @@ Dialogs:
             NoAvailableTools: There are no available tools
         dashboard:
           component:
-            ClientStatisticWidget:
-              NoPermissionChartMessage: You do not have the required permission to see this chart.
             CaseWidgetConfiguration:
               AddFilter: Add filter
+            ClientStatisticWidget:
+              NoPermissionChartMessage: You do not have the required permission to see this chart.
             DashboardImportDetails:
               FileInfomation: File Infomation
               ImportPrivate: Import Private Dashboard
@@ -1761,6 +1761,16 @@ Labels:
   AppendTheTask: Append the task
   CreateNewDashboard: Create new dashboard
   Enums:
+    ChatbotCandidateQuestion:
+      EXPLORE:
+        header: Explore
+        question: What are the key features of Portal?
+      INTERACT:
+        header: Interact
+        question: List out tasks that require completion within the current week.
+      TUTORIAL:
+        header: Tutorial
+        question: Are there Portal tutorials or documentation available for new users?
     DashboardStandardCaseColumn:
       ACTIONS: Actions
       APPLICATION: Application
@@ -1827,16 +1837,6 @@ Labels:
         YEAR: Year(s)
       WEEK: Week
       YEAR: Year
-    ChatbotCandidateQuestion:
-      EXPLORE:
-        header: Explore
-        question: What are the key features of Portal?
-      INTERACT:
-        header: Interact
-        question: List out tasks that require completion within the current week.
-      TUTORIAL:
-        header: Tutorial
-        question: Are there Portal tutorials or documentation available for new users?
     SearchScopeCaseField:
       CUSTOM: Custom string fields
       DESCRIPTION: Description

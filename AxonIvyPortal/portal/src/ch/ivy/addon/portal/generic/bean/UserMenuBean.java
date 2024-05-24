@@ -38,6 +38,7 @@ import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.EngineUriResolver;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
@@ -361,7 +362,12 @@ public class UserMenuBean implements Serializable {
   
   public String getQRcodeData() {
     QRCodeData data = new QRCodeData();
-    data.setLoginUrl(EngineUriResolver.instance().external().toString());
+    String baseUrl = EngineUriResolver.instance().external().toString();
+    String securityContextName = ISecurityContext.current().getName();
+    if (!ISecurityContext.DEFAULT.equals(securityContextName)) {
+      baseUrl = baseUrl + "/" + securityContextName;
+    }
+    data.setLoginUrl(baseUrl);
     data.setUsername(Ivy.session().getSessionUserName());
     
     return new Gson().toJson(data);
