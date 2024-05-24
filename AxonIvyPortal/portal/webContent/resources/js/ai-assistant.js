@@ -309,6 +309,7 @@ function Assistant(ivyUri, uri, view, assistant, username) {
     } catch (error) {
       console.error('Error sending chat message:', error);
     }
+    view.enableSendButton();
   }
 
   // Function to get the streaming result from an AJAX response
