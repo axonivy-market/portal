@@ -462,8 +462,13 @@ function ViewAI(uri) {
   this.removeStreamingClassFromMessage = function (result) {
     const messageList = $(jsMessageList);
     const streamingMessage = messageList.find('.chat-message-container.streaming');
-    streamingMessage.removeClass('streaming');
-    $(streamingMessage).find('.js-message').get(0).innerHTML = parseFinalMessage(result);
+    if (streamingMessage.length > 0) {
+      streamingMessage.removeClass('streaming');
+      $(streamingMessage).find('.js-message').get(0).innerHTML = parseFinalMessage(result);
+    } else {
+      const messages = messageList.find('.chat-message-container .js-message');
+      messages.get(messages.length - 1).innerHTML = parseFinalMessage(result);
+    }
 
     this.enableSendButton();
   }
