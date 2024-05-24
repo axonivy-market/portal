@@ -1008,7 +1008,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   logoutSetting:
     logout: Cerrar sesión
   mobile:
-    MenuName: Aplicación móvil
+    MenuName: Aplicación móvil Connect
     QRCodeDescription: Para conectar su aplicación móvil Axon Ivy, escanee este código QR e introduzca sus credenciales en el interior de la aplicación.
   noteHistory:
     author: Autor
@@ -1603,10 +1603,10 @@ Dialogs:
             NoAvailableTools: No hay herramientas disponibles
         dashboard:
           component:
-            ClientStatisticWidget:
-              NoPermissionChartMessage: No tiene permiso para ver este gráfico.
             CaseWidgetConfiguration:
               AddFilter: Añadir filtro
+            ClientStatisticWidget:
+              NoPermissionChartMessage: No tiene permiso para ver este gráfico.
             DashboardImportDetails:
               FileInfomation: Informacion del archivo
               ImportPrivate: Importar panel privado
@@ -1760,6 +1760,16 @@ Labels:
   AppendTheTask: Anexar la tarea
   CreateNewDashboard: Crear un nuevo cuadro de mandos
   Enums:
+    ChatbotCandidateQuestion:
+      EXPLORE:
+        header: Explore
+        question: What are the key features of Portal?
+      INTERACT:
+        header: Interact
+        question: List out tasks that require completion within the current week.
+      TUTORIAL:
+        header: Tutorial
+        question: Are there Portal tutorials or documentation available for new users?
     DashboardStandardCaseColumn:
       ACTIONS: Acciones
       APPLICATION: Aplicación
@@ -1826,16 +1836,6 @@ Labels:
         YEAR: Año(s)
       WEEK: Semana
       YEAR: Año
-    ChatbotCandidateQuestion:
-      EXPLORE:
-        header: Explore
-        question: What are the key features of Portal?
-      INTERACT:
-        header: Interact
-        question: List out tasks that require completion within the current week.
-      TUTORIAL:
-        header: Tutorial
-        question: Are there Portal tutorials or documentation available for new users?
     SearchScopeCaseField:
       CUSTOM: Campos de cadena personalizados
       DESCRIPTION: Descripción

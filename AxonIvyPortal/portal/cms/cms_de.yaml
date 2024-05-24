@@ -1009,7 +1009,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   logoutSetting:
     logout: Abmelden
   mobile:
-    MenuName: Mobile App
+    MenuName: Mobile App verbinden
     QRCodeDescription: Um Ihre Axon Ivy Mobile App zu verbinden, scannen Sie bitte diesen QR-Code und geben Sie Ihre Zugangsdaten in der App ein.
   noteHistory:
     author: Autor
@@ -1601,10 +1601,10 @@ Dialogs:
             NoAvailableTools: Es gibt keine verfügbaren Tools
         dashboard:
           component:
-            ClientStatisticWidget:
-              NoPermissionChartMessage: Sie haben nicht die erforderliche Berechtigung, um diese Karte zu sehen.
             CaseWidgetConfiguration:
               AddFilter: Filter hinzufügen
+            ClientStatisticWidget:
+              NoPermissionChartMessage: Sie haben nicht die erforderliche Berechtigung, um diese Karte zu sehen.
             DashboardImportDetails:
               FileInfomation: Dateiinformationen
               ImportPrivate: Privates Dashboard importieren
@@ -1758,6 +1758,16 @@ Labels:
   AppendTheTask: Aufgabe anhängen
   CreateNewDashboard: Neues Dashboard erstellen
   Enums:
+    ChatbotCandidateQuestion:
+      EXPLORE:
+        header: Explore
+        question: What are the key features of Portal?
+      INTERACT:
+        header: Interact
+        question: List out tasks that require completion within the current week.
+      TUTORIAL:
+        header: Tutorial
+        question: Are there Portal tutorials or documentation available for new users?
     DashboardStandardCaseColumn:
       ACTIONS: Aktionen
       APPLICATION: Anmeldung
@@ -1824,16 +1834,6 @@ Labels:
         YEAR: Jahr(e)
       WEEK: Woche
       YEAR: Jahr
-    ChatbotCandidateQuestion:
-      EXPLORE:
-        header: Explore
-        question: What are the key features of Portal?
-      INTERACT:
-        header: Interact
-        question: List out tasks that require completion within the current week.
-      TUTORIAL:
-        header: Tutorial
-        question: Are there Portal tutorials or documentation available for new users?
     SearchScopeCaseField:
       CUSTOM: Benutzerdefinierte Stringfelder
       DESCRIPTION: Beschreibung
