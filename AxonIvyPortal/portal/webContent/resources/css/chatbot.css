@@ -184,6 +184,10 @@
   max-width: 100%;
 }
 
+.chatbot-panel .message-block a {
+  font-size: 1.1rem;
+}
+
 .chatbot-panel .message-block .chat-message {
   align-self: flex-start;
 }

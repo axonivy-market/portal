@@ -54,7 +54,7 @@
           "visual" : {
             "at" : { "x" : 488, "y" : 144 }
           },
-          "parentConnector" : "f286"
+          "parentConnector" : "f196"
         }, {
           "id" : "S41-f2",
           "type" : "Script",
@@ -79,7 +79,7 @@
         "at" : { "x" : 344, "y" : 2920 }
       },
       "connect" : [
-        { "id" : "f286", "to" : "f143" }
+        { "id" : "f196", "to" : "f143" }
       ]
     }, {
       "id" : "S32",
@@ -715,7 +715,7 @@
           "visual" : {
             "at" : { "x" : 64, "y" : 144 }
           },
-          "parentConnector" : "f129",
+          "parentConnector" : "f98",
           "connect" : [
             { "id" : "S51-f0", "to" : "S51-f184" }
           ]
@@ -830,7 +830,7 @@
           "visual" : {
             "at" : { "x" : 64, "y" : 144 }
           },
-          "parentConnector" : "f98",
+          "parentConnector" : "f53",
           "connect" : [
             { "id" : "S31-f0", "to" : "S31-f194" }
           ]
@@ -1121,7 +1121,7 @@
           "visual" : {
             "at" : { "x" : 64, "y" : 144 }
           },
-          "parentConnector" : "f7",
+          "parentConnector" : "f283",
           "connect" : [
             { "id" : "S50-f0", "to" : "S50-f178" }
           ]
@@ -1163,7 +1163,7 @@
         "labelOffset" : { "x" : -23, "y" : 41 }
       },
       "connect" : [
-        { "id" : "f23", "to" : "f4" }
+        { "id" : "f7", "to" : "f4" }
       ]
     }, {
       "id" : "f11",
@@ -1226,7 +1226,7 @@
         "at" : { "x" : 488, "y" : 400 }
       },
       "connect" : [
-        { "id" : "f53", "to" : "f1" }
+        { "id" : "f2", "to" : "f1" }
       ]
     }, {
       "id" : "f28",
@@ -1401,7 +1401,7 @@
         "labelOffset" : { "x" : -39, "y" : 41 }
       },
       "connect" : [
-        { "id" : "f136", "to" : "f4", "via" : [ { "x" : 344, "y" : 480 } ] }
+        { "id" : "f13", "to" : "f4", "via" : [ { "x" : 344, "y" : 480 } ] }
       ]
     }, {
       "id" : "f32",
@@ -1532,7 +1532,7 @@
         "labelOffset" : { "x" : -47, "y" : 41 }
       },
       "connect" : [
-        { "id" : "f7", "to" : "S50" }
+        { "id" : "f283", "to" : "S50" }
       ]
     }, {
       "id" : "f62",
@@ -2048,7 +2048,7 @@
         "labelOffset" : { "x" : -71, "y" : 41 }
       },
       "connect" : [
-        { "id" : "f98", "to" : "S31" }
+        { "id" : "f53", "to" : "S31" }
       ]
     }, {
       "id" : "f56",
@@ -2403,7 +2403,7 @@
         "labelOffset" : { "x" : -47, "y" : 41 }
       },
       "connect" : [
-        { "id" : "f129", "to" : "S51" }
+        { "id" : "f98", "to" : "S51" }
       ]
     }, {
       "id" : "f132",
@@ -2452,7 +2452,7 @@
         "at" : { "x" : 200, "y" : 2440 }
       },
       "connect" : [
-        { "id" : "f196", "to" : "f133" }
+        { "id" : "f136", "to" : "f133" }
       ]
     }, {
       "id" : "f139",
@@ -2476,7 +2476,7 @@
         "size" : { "height" : 62 }
       },
       "connect" : [
-        { "id" : "f285", "to" : "f22" }
+        { "id" : "f23", "to" : "f22" }
       ]
     }, {
       "id" : "S60",
@@ -3774,7 +3774,7 @@
         "at" : { "x" : 344, "y" : 3480 }
       },
       "connect" : [
-        { "id" : "f155", "to" : "f41" }
+        { "id" : "f129", "to" : "f41" }
       ]
     }, {
       "id" : "f241",
@@ -4101,7 +4101,7 @@
           "visual" : {
             "at" : { "x" : 488, "y" : 144 }
           },
-          "parentConnector" : "f287"
+          "parentConnector" : "f155"
         }, {
           "id" : "S42-f2",
           "type" : "Script",
@@ -4126,7 +4126,7 @@
         "at" : { "x" : 344, "y" : 3000 }
       },
       "connect" : [
-        { "id" : "f287", "to" : "f152" }
+        { "id" : "f155", "to" : "f152" }
       ]
     }, {
       "id" : "f249",
@@ -4663,13 +4663,16 @@
           "map" : {
             "out.uuid" : "param.uuid"
           }
+        },
+        "request" : {
+          "isVisibleOnStartList" : false
         }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 4056 }
       },
       "connect" : [
-        { "id" : "f13", "to" : "f271" }
+        { "id" : "f273", "to" : "f281" }
       ]
     }, {
       "id" : "f271",
@@ -4691,10 +4694,10 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 240, "y" : 4056 }
+        "at" : { "x" : 488, "y" : 4056 }
       },
       "connect" : [
-        { "id" : "f2", "to" : "f278" }
+        { "id" : "f277", "to" : "f278" }
       ]
     }, {
       "id" : "f270",
@@ -4716,7 +4719,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 631, "y" : 4055 },
+        "at" : { "x" : 703, "y" : 4055 },
         "size" : { "width" : 255, "height" : 61 }
       },
       "connect" : [
@@ -4814,35 +4817,126 @@
       ]
     }, {
       "id" : "f281",
+      "type" : "Script",
+      "name" : "Find task",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;",
+            "in.taskSelected = TaskService.newInstance().findTaskByUUID(in.uuid);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 4056 }
+      },
+      "connect" : [
+        { "id" : "f293", "to" : "S02" }
+      ]
+    }, {
+      "id" : "S02",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S02-f285",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S02-f1" : "in.isAuthorized"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 296, "y" : 160 },
+            "labelOffset" : { "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S02-f1", "to" : "S02-g1" },
+            { "id" : "S02-f292", "to" : "S02-f290" }
+          ]
+        }, {
+          "id" : "S02-f282",
+          "type" : "Script",
+          "name" : "Init isAuthorized",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.bean.TaskActionBean;",
+                "in.isAuthorized = in.#taskSelected is initialized && TaskActionBean.canReset(in.#taskSelected);"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 192, "y" : 160 }
+          },
+          "connect" : [
+            { "id" : "S02-f287", "to" : "S02-f285" }
+          ]
+        }, {
+          "id" : "S02-f290",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 296, "y" : 232 }
+          }
+        }, {
+          "id" : "S02-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 },
+            "labelOffset" : { "x" : 3, "y" : 23 }
+          },
+          "parentConnector" : "f293",
+          "connect" : [
+            { "id" : "S02-f0", "to" : "S02-f282" }
+          ]
+        }, {
+          "id" : "S02-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 384, "y" : 160 },
+            "labelOffset" : { "x" : 3, "y" : 23 }
+          },
+          "parentConnector" : "f294"
+        } ],
+      "visual" : {
+        "at" : { "x" : 344, "y" : 4056 }
+      },
+      "connect" : [
+        { "id" : "f294", "to" : "f271" }
+      ]
+    }, {
+      "id" : "f282",
       "type" : "RequestStart",
       "name" : "PortalChatDashboard",
       "config" : {
         "signature" : "PortalChatDashboard"
       },
       "visual" : {
-        "at" : { "x" : 88, "y" : 4184 }
+        "at" : { "x" : 96, "y" : 4192 }
       },
       "connect" : [
-        { "id" : "f273", "to" : "f283" }
+        { "id" : "f287", "to" : "f285" }
       ]
     }, {
-      "id" : "f282",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 432, "y" : 4184 }
-      }
-    }, {
-      "id" : "f283",
+      "id" : "f285",
       "type" : "DialogCall",
       "name" : "ChatDashboard",
       "config" : {
         "dialog" : "com.axonivy.portal.component.ChatDashboard:start()"
       },
       "visual" : {
-        "at" : { "x" : 248, "y" : 4184 }
+        "at" : { "x" : 280, "y" : 4192 }
       },
       "connect" : [
-        { "id" : "f277", "to" : "f282" }
+        { "id" : "f290", "to" : "f286" }
       ]
+    }, {
+      "id" : "f286",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 464, "y" : 4192 }
+      }
     } ]
 }
