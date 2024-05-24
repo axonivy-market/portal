@@ -7,10 +7,16 @@ import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.util.filter.field.FilterField;
+import com.axonivy.portal.util.filter.field.FilterFieldFactory;
+import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
+
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
@@ -31,6 +37,9 @@ public class AiToolUtils {
         .buildDefaultTaskWidget(DEFAULT_AI_WIDGET_ID, DEFAULT_AI_WIDGET_ID);
     List<TaskColumnModel> columns = new ArrayList<>();
 
+    result.setFilters(new ArrayList<>());
+    
+
     for (TaskColumnModel col : result.getColumns()) {
       DashboardStandardTaskColumn colEnum = DashboardStandardTaskColumn
           .findBy(col.getField());
@@ -39,21 +48,13 @@ public class AiToolUtils {
       }
 
       switch (colEnum) {
-        case ID, ACTIONS -> col.setStyle(DEFAULT_MAX_WIDTH_STYLE);
-        case NAME -> col.setFilter(name);
-        case DESCRIPTION -> col.setFilter(description);
-        case PRIORITY -> {
-          WorkflowPriority priorityEnum = initPriority(priority);
-          if (priorityEnum != null) {
-            col.setFilterList(Arrays.asList(priorityEnum.name()));
-          }
-        }
-        case STATE -> {
-          TaskBusinessState stateEnum = initTaskState(state);
-          if (stateEnum != null) {
-            col.setFilterList(Arrays.asList(stateEnum.name()));
-          }
-        }
+      case ID, ACTIONS -> col.setStyle(DEFAULT_MAX_WIDTH_STYLE);
+      case NAME -> result.getFilters().add(initTaskNameFilter(name));
+        case DESCRIPTION ->
+        result.getFilters().add(initTaskDescriptionFilter(description));
+      case PRIORITY ->
+        result.getFilters().add(initTaskPriorityFilter(priority));
+      case STATE -> result.getFilters().add(initTaskStateFilter(state));
         default -> {}
       }
     }
@@ -63,12 +64,76 @@ public class AiToolUtils {
     return result;
   }
 
+  private static DashboardFilter initTaskNameFilter(String name) {
+    DashboardFilter filter = new DashboardFilter();
+    filter.setField(DashboardStandardTaskColumn.NAME.getField());
+    filter.setFilterType(DashboardColumnType.STANDARD);
+
+    FilterField field = TaskFilterFieldFactory
+        .findBy(DashboardStandardTaskColumn.NAME.getField());
+    filter.setFilterField(field);
+    field.addNewFilter(filter);
+    filter.setValues(Arrays.asList(name));
+    return filter;
+  }
+  
+  private static DashboardFilter initTaskDescriptionFilter(String description) {
+    DashboardFilter filter = new DashboardFilter();
+    filter.setField(DashboardStandardTaskColumn.DESCRIPTION.getField());
+    filter.setFilterType(DashboardColumnType.STANDARD);
+
+    FilterField field = TaskFilterFieldFactory
+        .findBy(DashboardStandardTaskColumn.DESCRIPTION.getField());
+    filter.setFilterField(field);
+    field.addNewFilter(filter);
+    filter.setValues(Arrays.asList(description));
+    return filter;
+  }
+
+  private static DashboardFilter initTaskPriorityFilter(String priority) {
+    WorkflowPriority priorityEnum = initPriority(priority);
+    if (priorityEnum != null) {
+      DashboardFilter filter = new DashboardFilter();
+      filter.setField(DashboardStandardTaskColumn.PRIORITY.getField());
+      filter.setFilterType(DashboardColumnType.STANDARD);
+
+      FilterField field = TaskFilterFieldFactory
+          .findBy(DashboardStandardTaskColumn.PRIORITY.getField());
+      filter.setFilterField(field);
+      field.addNewFilter(filter);
+      filter.setValues(Arrays.asList(priorityEnum.name()));
+      return filter;
+    }
+
+    return null;
+  }
+
+  private static DashboardFilter initTaskStateFilter(String state) {
+    TaskBusinessState stateEnum = initTaskState(state);
+    if (stateEnum != null) {
+      DashboardFilter filter = new DashboardFilter();
+      filter.setField(DashboardStandardTaskColumn.STATE.getField());
+      filter.setFilterType(DashboardColumnType.STANDARD);
+
+      FilterField field = TaskFilterFieldFactory
+          .findBy(DashboardStandardTaskColumn.STATE.getField());
+      filter.setFilterField(field);
+      field.addNewFilter(filter);
+      filter.setValues(Arrays.asList(stateEnum.name()));
+      return filter;
+    }
+
+    return null;
+  }
+
   public static CaseDashboardWidget convertIvyToolToCaseDashboardWidget(
       String name, String description, String state) {
 
     CaseDashboardWidget result = DashboardWidgetUtils
         .buildDefaultCaseWidget(DEFAULT_AI_WIDGET_ID, DEFAULT_AI_WIDGET_ID);
     List<CaseColumnModel> columns = new ArrayList<>();
+
+    result.setFilters(new ArrayList<>());
 
     for (CaseColumnModel col : result.getColumns()) {
       DashboardStandardCaseColumn colEnum = DashboardStandardCaseColumn
@@ -80,14 +145,10 @@ public class AiToolUtils {
 
       switch (colEnum) {
         case ID, ACTIONS -> col.setStyle(DEFAULT_MAX_WIDTH_STYLE);
-        case NAME -> col.setFilter(name);
-        case DESCRIPTION -> col.setFilter(description);
-        case STATE -> {
-          CaseBusinessState stateEnum = initCaseState(state);
-          if (stateEnum != null) {
-            col.setFilterList(Arrays.asList(stateEnum.name()));
-          }
-        }
+        case NAME -> result.getFilters().add(initCaseNameFilter(name));
+        case DESCRIPTION ->
+          result.getFilters().add(initCaseDescriptionFilter(name));
+        case STATE -> result.getFilters().add(initCaseStateFilter(state));
         default -> {}
       }
     }
@@ -95,6 +156,50 @@ public class AiToolUtils {
     result.buildFilterableColumns(columns);
 
     return result;
+  }
+
+  private static DashboardFilter initCaseNameFilter(String name) {
+    DashboardFilter filter = new DashboardFilter();
+    filter.setField(DashboardStandardCaseColumn.NAME.getField());
+    filter.setFilterType(DashboardColumnType.STANDARD);
+
+    FilterField field = FilterFieldFactory
+        .findBy(DashboardStandardCaseColumn.NAME.getField());
+    filter.setFilterField(field);
+    field.addNewFilter(filter);
+    filter.setValues(Arrays.asList(name));
+    return filter;
+  }
+
+  private static DashboardFilter initCaseDescriptionFilter(String description) {
+    DashboardFilter filter = new DashboardFilter();
+    filter.setField(DashboardStandardCaseColumn.DESCRIPTION.getField());
+    filter.setFilterType(DashboardColumnType.STANDARD);
+
+    FilterField field = FilterFieldFactory
+        .findBy(DashboardStandardCaseColumn.DESCRIPTION.getField());
+    filter.setFilterField(field);
+    field.addNewFilter(filter);
+    filter.setValues(Arrays.asList(description));
+    return filter;
+  }
+
+  private static DashboardFilter initCaseStateFilter(String state) {
+    CaseBusinessState stateEnum = initCaseState(state);
+    if (stateEnum != null) {
+      DashboardFilter filter = new DashboardFilter();
+      filter.setField(DashboardStandardCaseColumn.STATE.getField());
+      filter.setFilterType(DashboardColumnType.STANDARD);
+
+      FilterField field = FilterFieldFactory
+          .findBy(DashboardStandardCaseColumn.STATE.getField());
+      filter.setFilterField(field);
+      field.addNewFilter(filter);
+      filter.setValues(Arrays.asList(stateEnum.name()));
+      return filter;
+    }
+
+    return null;
   }
 
   private static WorkflowPriority initPriority(String priority) {
