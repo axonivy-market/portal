@@ -54,5 +54,5 @@ public enum DashboardStandardCaseColumn {
   }
 
   public static final Set<DashboardStandardCaseColumn> AI_RESULT_COLUMNS = Collections
-      .unmodifiableSet(EnumSet.of(ID, NAME, OWNER, ACTIONS));
+      .unmodifiableSet(EnumSet.of(ID, NAME, OWNER, STATE, ACTIONS));
 }
