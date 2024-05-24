@@ -40,7 +40,6 @@ public class CaseActionBean implements Serializable {
   private static final String FULL_RELATIVE_URL_FORMAT = "/%s/%s/%s";
   private static final String CASE_ID_PARAM = "caseId";
   private static final String EMBED_IN_FRAME_PARAM = "embedInFrame";
-  private static final String PRO = "pro";
   private boolean isShowCaseDetails;
 
   @PostConstruct
@@ -182,7 +181,7 @@ public class CaseActionBean implements Serializable {
     // followed by "pro"
     // followed by the application name
     // then it's an old ivy link.
-    if ((linkParts.indexOf(PRO) == 1)
+    if ((linkParts.indexOf(IvyConstants.REQUEST_PATH_PROCESS) == 1)
         && (linkParts.indexOf(IApplication.current().getName()) == 2)) {
       return true;
     }
@@ -194,7 +193,8 @@ public class CaseActionBean implements Serializable {
       String additionalCaseDetailsPageUri, ICase iCase) { 
     if (isOldAdditionalDetailsLink(additionalCaseDetailsPageUri)) {
       String ivyContextNameAndApp = String.format(FULL_RELATIVE_URL_FORMAT,
-          "ivy", PRO, iCase.getApplication().getName()) + "/";
+          "ivy", IvyConstants.REQUEST_PATH_PROCESS,
+          iCase.getApplication().getName()) + "/";
 
       // Remove obsoleted parts from old url
       additionalCaseDetailsPageUri = additionalCaseDetailsPageUri
