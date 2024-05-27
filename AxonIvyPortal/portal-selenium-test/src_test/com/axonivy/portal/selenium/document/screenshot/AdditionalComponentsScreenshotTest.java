@@ -52,6 +52,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
 
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
     redirectToRelativeLink(cleanupDataLink);
+    updatePortalSetting(Variable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.getKey(), "true");
     redirectToRelativeLink(createTestingTasksUrl);
     WaitHelper.waitForNavigation(() -> new NewDashboardPage().startTask(1));
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
@@ -60,7 +61,6 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 800));
     taskTemplatePage.switchToDefaultContent();
     newDashboardPage = new NewDashboardPage();
-    newDashboardPage.waitForTaskStartButtonDisplay(1);
     newDashboardPage.waitForGrowlMessageDisplayClearly();
     ScreenshotUtils
         .captureHalfTopPageScreenShot(ScreenshotUtils.COMPONENTS_FOLDER + "example-global-growl-cancelled-task");
