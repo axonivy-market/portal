@@ -25,7 +25,7 @@ import com.axonivy.portal.selenium.page.component.RoleSelectionComponentPage;
 import com.axonivy.portal.selenium.page.component.SecurityMemberNameAndAvatarComponentPage;
 import com.axonivy.portal.selenium.page.component.UserSelectionComponentPage;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
 
   @Test
