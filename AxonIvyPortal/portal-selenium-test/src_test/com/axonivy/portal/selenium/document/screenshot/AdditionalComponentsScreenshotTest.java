@@ -61,7 +61,6 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 800));
     taskTemplatePage.switchToDefaultContent();
     newDashboardPage = new NewDashboardPage();
-//    newDashboardPage.waitForTaskStartButtonDisplay(1);
     newDashboardPage.waitForGrowlMessageDisplayClearly();
     ScreenshotUtils
         .captureHalfTopPageScreenShot(ScreenshotUtils.COMPONENTS_FOLDER + "example-global-growl-cancelled-task");
