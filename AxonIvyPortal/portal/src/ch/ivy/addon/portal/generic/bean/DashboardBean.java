@@ -430,4 +430,7 @@ public class DashboardBean implements Serializable {
     this.importedDashboards = importedDashboards;
   }
 
+  public boolean canEnableQuickSearch(DashboardWidget widget) {
+    return widget.getType().canEnableQuickSearch();
+  }
 }
