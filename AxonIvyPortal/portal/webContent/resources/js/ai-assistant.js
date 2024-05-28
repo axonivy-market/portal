@@ -35,6 +35,10 @@ function Assistant(ivyUri, uri, view, assistant, username) {
   this.assistant = assistant;
   this.username = username;
 
+  this.updateAssistant = function(assistant) {
+    this.assistant = assistant;
+  }
+
   // Bind events for UI elements
   this.bindEvents = function () {
     // Bind event for window

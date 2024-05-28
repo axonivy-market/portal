@@ -1587,7 +1587,7 @@ Dialogs:
             AddTool: Ajouter un outil
             Tools: Outils
             WelcomeHeaderText: Bienvenue sur le portail Axon Ivy !
-            WelcomeText: Nous sommes ravis de vous compter parmi nous. Axon Ivy Portal est votre porte d'entrée pour une expérience transparente et efficace. Que vous soyez un nouvel utilisateur explorant les fonctionnalités ou un visiteur habituel, nous sommes là pour vous aider à chaque étape du processus.
+            WelcomeText: Nous sommes ravis de vous compter parmi nous. Le portail Axon Ivy est votre porte d'entrée pour une expérience transparente et efficace. Que vous soyez un nouvel utilisateur qui explore les fonctionnalités ou un visiteur habituel, nous sommes là pour vous aider à chaque étape.
           ShareLinkDialog:
             CopyLink: Copier le lien
             LinkCopied: Lien copié !
@@ -1757,13 +1757,13 @@ Labels:
     ChatbotCandidateQuestion:
       EXPLORE:
         header: Explore
-        question: What are the key features of Portal?
+        question: Quelles sont les principales caractéristiques du portail Axon Ivy ?
       INTERACT:
         header: Interact
-        question: List out tasks that require completion within the current week.
+        question: Listez toutes les tâches qui doivent être accomplies dans la semaine en cours
       TUTORIAL:
         header: Tutorial
-        question: Are there Portal  tutorials or documentation available for new users?
+        question: Où puis-je trouver la documentation ou les tutoriels pour le portail Axon Ivy ?
     DashboardStandardCaseColumn:
       ACTIONS: Actions
       APPLICATION: Application

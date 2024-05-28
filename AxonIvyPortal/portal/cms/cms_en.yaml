@@ -1590,8 +1590,8 @@ Dialogs:
           ChatDashboard:
             AddTool: Add tool
             Tools: Tools
-            WelcomeHeaderText: Welcome to Axon Ivy Portal!
-            WelcomeText: We are delighted to have you on board. Axon Ivy Portal is your gateway to a seamless and efficient experience. Whether you are a new user exploring the features or a returning visitor, we're here to assist you every step of the way.
+            WelcomeHeaderText: Welcome to the Axon Ivy Portal!
+            WelcomeText: We are delighted to have you on board. The Axon Ivy Portal is your gateway to a seamless and efficient experience. Whether you are a new user exploring the features or a returning visitor, we're here to assist you every step of the way.
           ShareLinkDialog:
             CopyLink: Copy link
             LinkCopied: Link copied!
@@ -1764,13 +1764,13 @@ Labels:
     ChatbotCandidateQuestion:
       EXPLORE:
         header: Explore
-        question: What are the key features of Portal?
+        question: What are the key features of the Axon Ivy Portal?
       INTERACT:
         header: Interact
-        question: List out tasks that require completion within the current week.
+        question: List me all the tasks that need completion within the current week
       TUTORIAL:
         header: Tutorial
-        question: Are there Portal tutorials or documentation available for new users?
+        question: Where can I find the documentation or tutorials for the Axon Ivy Portal?
     DashboardStandardCaseColumn:
       ACTIONS: Actions
       APPLICATION: Application
