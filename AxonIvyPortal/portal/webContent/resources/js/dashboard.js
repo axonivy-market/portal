@@ -135,12 +135,6 @@ function disabledResetDashboardActions() {
   $('.cancel-reset-dashboard-link').addClass('ui-state-disabled');
 }
 
-function removeWidgetContent(widgetId) {
-  var removeWidgetId = '.grid-stack-item[gs-id="' + widgetId + '"]';
-  $(removeWidgetId).remove();
-  updateDashboardWidget();
-}
-
 function DashboardToolKit() {
   return {
     setupScrollbar: function () {
@@ -232,8 +226,10 @@ function resizeTableBody() {
 
       // Update scrolling of the Primefaces widget
       const widget = PF(widgetName);
-      widget.cfg.scrollHeight = tableBody.parents('.ui-datatable-scrollable').height().toString();
-      widget.setupScrolling();
+      if (widget) {
+        widget.cfg.scrollHeight = tableBody.parents('.ui-datatable-scrollable').height().toString();
+        widget.setupScrolling();
+      }
     });
     setTimeout(function() {
       resizeObserver.observe(sb);
