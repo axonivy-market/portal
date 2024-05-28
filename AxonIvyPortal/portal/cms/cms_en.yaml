@@ -1010,7 +1010,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   logoutSetting:
     logout: Logout
   mobile:
-    MenuName: Mobile app
+    MenuName: Connect Mobile App
     QRCodeDescription: To connect your Axon Ivy Mobile App, please scan this QR Code and enter your credentials in the inside the app.
   noteHistory:
     author: Author
@@ -1592,10 +1592,10 @@ Dialogs:
             LinkCopied: Link copied!
         dashboard:
           component:
-            ClientStatisticWidget:
-              NoPermissionChartMessage: You do not have the required permission to see this chart.
             CaseWidgetConfiguration:
               AddFilter: Add filter
+            ClientStatisticWidget:
+              NoPermissionChartMessage: You do not have the required permission to see this chart.
             DashboardImportDetails:
               FileInfomation: File Infomation
               ImportPrivate: Import Private Dashboard
