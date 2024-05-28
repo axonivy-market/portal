@@ -463,6 +463,38 @@ class ClientBarChart extends ClientCartesianChart {
   getChartTypeConfig() {
     return this.data.chartConfig.barChartConfig;
   }
+
+  updateClientChart() {
+    let result = this.data.result.aggs?.[0]?.buckets ?? [];
+    let config = this.data.chartConfig;
+    let chart = this.chart;
+
+    // Render empty chart when result empty 
+    if (result.length == 0) {
+      return this.renderEmptyChart(chart, config.additionalConfig);
+    } 
+    else if (result.length > 0) {
+      // Update y value in case y value is time
+      if (config.barChartConfig?.yValue === 'time') {
+        result = this.processYValue(result, config.barChartConfig.yValue);
+      }
+      let data = result;
+      this.clientChartConfig.data.labels = result.map(bucket => this.formatChartLabel(bucket.key));
+      this.clientChartConfig.data.datasets = [{
+        label: config.name,
+        data: data.map(bucket => bucket.count),
+        backgroundColor: chartColors
+      }]
+    }
+
+    // If there is no chart from the beginning, init chart config
+    if ($(this.chart).find('.empty-message-container').length > 0) {
+      this.render();
+      return;
+    }
+
+    this.clientChartConfig.update("none");
+  }
 }
 
 // Class for line chart
