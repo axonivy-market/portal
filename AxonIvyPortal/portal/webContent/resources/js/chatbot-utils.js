@@ -7,8 +7,6 @@ const IFRAME_TAG_START = '<iframe>';
 const IFRAME_TAG_END = '</iframe>';
 const HLJS_LANGUAGE_PREFIX = 'language-';
 const IFRAME_REGEX = /<iframe>(.*?)<\/iframe>/;
-const DOUBLE_ASTERISKS_REGEX = /\*\*(.*?)\*\*/g;
-const SINGLE_ASTERISK_REGEX = /\*(.*?)\*/g;
 
 // Helper Functions
 
@@ -26,23 +24,6 @@ const isIFrame = paragraph => paragraph.includes(IFRAME_TAG_START);
 
 // Adds a link component to a word if it's a URL, otherwise returns the word unchanged.
 const addLink = word => (isUrl(word) ? generateLinkComponent(word) : word);
-
-// Add a bold word component if it matched bold format.
-const addBoldWord = word => (isBoldWord(word) ? generateBoldWordComponent(word) : word);
-
-// Helper function to detect if a word is inside double asterisks.
-const isDoubleAsterisksWord = word => {
-  return DOUBLE_ASTERISKS_REGEX.test(word);
-};
-
-// Helper function to detect if a word is inside single asterisks.
-const isSingleAsterisksWord = word => {
-  return SINGLE_ASTERISK_REGEX.test(word);
-};
-
-const isBoldWord = word => {
-  return isDoubleAsterisksWord(word) || isSingleAsterisksWord(word);
-}
 
 // Code Generation Functions
 
@@ -102,11 +83,7 @@ const generateLinkComponent = url => {
 
 // Generate a bold word element
 const generateBoldWordComponent = word => {
-  // Replace double asterisks with the text inside
-  word = word.replace(DOUBLE_ASTERISKS_REGEX, '$1');
-  // Replace single asterisks with the text inside
-  word = word.replace(SINGLE_ASTERISK_REGEX, '$1');
-  return `<b>${word}</b>`;
+  return `<b>${word.slice(2, -2)}</b>`;
 }
 
 // Generates a formatted code component with syntax highlighting.
@@ -261,31 +238,31 @@ const parseFinalParagraph = paragraph => {
 const parseLine = line => {
   // check link: start with 'https' 'http' or 'www.' and end with ' ' '.' ')' '>'
   const URL_PATTERN = /\b(https?:\/\/[^\s)>\]]+|www\.[^\s)>\]]+)(?=[.)>\]]?\s|$)/gi;
-  const matchedLinks = new Set();
-  let matchLink;
+  const IMAGE_TAG_PATTERN = /<image>(.*?)<\/image>/ig;
+  const ASTERISKS_PATTERN = /\*\*(.*?)\*\*/g;
 
-  // Loop through all matches and extract URLs without trailing characters
-  while ((matchLink = URL_PATTERN.exec(line)) !== null) {
-    matchedLinks.add(matchLink[1]); // Capture the URL part without trailing characters
-  }
-  if(matchedLinks) {
+  const matchedLinks =[...line.matchAll(URL_PATTERN)].map(match => match[1]);
+  if (matchedLinks) {
     matchedLinks.forEach(link => {
       line = line.replace(link, addLink(link));
-    });
+    })
   }
 
   // check bold: inside double asterisks ** **
-  const matchedBoldWords = new Set();
-  let matchBold;
-  while ((matchBold = DOUBLE_ASTERISKS_REGEX.exec(line)) !== null) {
-    matchedBoldWords.add(matchBold[0]); // Capture the URL part without trailing characters
-  }
-  if(matchedBoldWords) {
-    matchedBoldWords.forEach(bold => {
-      line = line.replace(bold, addBoldWord(bold));
-    });
+  const matchedBoldWords =[...line.matchAll(ASTERISKS_PATTERN)].map(match => match[0]);
+  if (matchedBoldWords) {
+    matchedBoldWords.forEach(word => {
+      line = line.replace(word, generateBoldWordComponent(word));
+    })
   }
 
+  // Check image inside <image></image> tags
+  const matchedImages = [...line.matchAll(IMAGE_TAG_PATTERN)].map(match => match[1]);
+  if (matchedImages) {
+    matchedImages.forEach(img => {
+      line = line.replace(img, convertImage(img));
+    })
+  }
   return line;
   
 };
