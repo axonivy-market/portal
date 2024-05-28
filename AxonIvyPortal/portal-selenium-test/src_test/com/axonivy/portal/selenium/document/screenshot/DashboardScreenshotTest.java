@@ -121,6 +121,8 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
 
   @Test
   public void screenshotConfigureNotificationsWidget() throws IOException {
+    redirectToRelativeLink(createTestingTasksUrl);
+    redirectToRelativeLink(createTestingTasksUrl);
     redirectToDashboardConfiguration();
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
     configPage.selectPublicDashboardType();
