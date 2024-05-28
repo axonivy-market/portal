@@ -5,6 +5,9 @@ let updateIframeSrc = (newSrc) => {
   getPortalIframe().src = newSrc;
 }
 if (taskUrl){
+  if(taskUrl.endsWith('blank')){
+    window.history.back(document.referrer);
+  }
   updateIframeSrc(taskUrl)
 }
 loadIframe(false);
