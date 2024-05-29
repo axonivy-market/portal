@@ -42,6 +42,7 @@
           target="_blank" url="#{processItemActionBean.getProcessViewerPageUri(process)}"
           rendered="#{showProcessViewer}" />
         <p:menuitem id="edit-process"
+          styleClass="ui-sm-hidden"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
           icon="si si-graphic-tablet-drawing-pen"
           oncomplete="#{cc.attrs.onCompleteEditProcess}"
