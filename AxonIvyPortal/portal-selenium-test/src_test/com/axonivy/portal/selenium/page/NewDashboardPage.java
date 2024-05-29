@@ -81,7 +81,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration() {
-    var configurationPage = openDashboardConfigurationPage();
+    var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
@@ -143,6 +143,14 @@ public class NewDashboardPage extends TemplatePage {
     return widget.ancestor(".grid-stack-item");
   }
 
+  public SelenideElement waitAndGetClientStatisticChart(int index) {
+    var widget = $$("[id^='client-statistic-client_statistic']").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT)
+        .get(index)
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    widget.$("[id$='loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    waitForWidgetLoadedByExpandThenCollapse(widget);
+    return widget.ancestor(".grid-stack-item");
+  }
   public WebElement waitAndGetNewsWidget(int index) {
     var widget = $$(".news-widget").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT).get(index)
         .shouldBe(appear, DEFAULT_TIMEOUT);
@@ -859,8 +867,12 @@ public class NewDashboardPage extends TemplatePage {
     getCaseWidgetTable().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
-  public SelenideElement openWidgetFilter(int index) {
+  public void openWidgetFilter(int index) {
     $("[id$='filter-sidebar-link-" + index + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement getWidgetFilter(int index) {
     var result = $("div[id$=':filter-overlay-panel-" + index + "']").shouldBe(appear, DEFAULT_TIMEOUT);
     result.$("[class*='js-loading-']").shouldBe(disappear, DEFAULT_TIMEOUT);
     result.$(".filter-overlay-panel__header").shouldBe(appear, DEFAULT_TIMEOUT).click();
@@ -1001,7 +1013,8 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void clickNotificationSetting() {
-    $("[id='notification-setting']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("button[id$=':notification-more-option_button']").shouldBe(getClickableCondition()).click();
+    $("[id$=':notification-setting']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
   
   public void waitForUserProfileDisplay() {
@@ -1009,7 +1022,8 @@ public class NewDashboardPage extends TemplatePage {
   }
   
   public void clickNotificationFullPage() {
-    $("[id='notification-full-page']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("button[id$=':notification-more-option_button']").shouldBe(getClickableCondition()).click();
+    $("[id$=':notification-full-page']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
   public void waitForNotificationFullpageDisplay() {
     $("form[id='notification-full-form']").shouldBe(appear, DEFAULT_TIMEOUT);
@@ -1019,5 +1033,40 @@ public class NewDashboardPage extends TemplatePage {
     $("[id='open-notifications-panel']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id='notification-compact-form:notifications-scroller:0:notification-mark-as-read']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     return new NotificationCompactPage();
+  }
+  
+  public void clickOnManageFilterLink() {
+    var savedFilterContainer = $("[id$=':saved-filters-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    savedFilterContainer.$(".ui-commandlink.saved-filter__manage-filter").shouldBe(getClickableCondition()).click();
+    $("[id$='manage-filter-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement getManageFilterDialog() {
+    return $("[id$='manage-filter-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public ElementsCollection getTotalSavedFilterInManageFilterDialog() {
+    var deleteSavedFilterForm = $("#delete-saved-filter-form").shouldBe(appear, DEFAULT_TIMEOUT);
+    return deleteSavedFilterForm.$(".ui-datatable-data").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$$(".saved-filter-selection-column");
+  }
+  
+  public void closeManageFilterDialog() {
+    $("[id$=':manage-filter-action']").$("a").shouldBe(getClickableCondition()).click();
+    $("[id$='manage-filter-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public void waitForTaskWidgetLoaded() {
+    checkDisplayedTaskWidgetContainer();
+    getTaskWidgetTable().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void waitStatisticChartLoaded() {
+    $("div[data-chart-id='11']").shouldBe(appear, DEFAULT_TIMEOUT).$(".card-number").shouldNotBe(Condition.empty, DEFAULT_TIMEOUT);
+    $("div[data-chart-id='10']").shouldBe(appear, DEFAULT_TIMEOUT).$(".card-number").shouldBe(Condition.text("2"), DEFAULT_TIMEOUT);
+    $("a[id$='user-settings-menu']").shouldBe(appear).click();
+    $("ul[id='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT).$("a[id='user-profile']").shouldHave(Condition.text("My profile"), DEFAULT_TIMEOUT);
+    $("a[id$='user-settings-menu']").shouldBe(appear).click();
+    $("ul[id='user-setting-container']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 }

@@ -82,6 +82,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS: Axon Ivy Prozess
     DashboardWidgetType:
       CASE: Vorfall-Widget
+      CLIENT_STATISTIC: Statistik-Widget
       CUSTOM: Benutzerdefiniertes Widget
       NEW: Neues Widget
       NEWS: Nachrichten
@@ -402,6 +403,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewParticipant: Teilnehmer anzeigen
   common:
     All: Alles
+    And: und
     BusinessCaseInformation: Business Case Informationen
     CollapseAll: Alles zuklappen
     ExpandAll: Alles aufklappen
@@ -519,6 +521,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noRecordsFound: Keine Ergebnisse gefunden.
     notAvailable: N/V
     note: NOTIZ
+    numberFromBiggerThanTo: Nach" muss größer sein als "Von".
     numberOfSelectedFilter: Ausgewählte Filter
     ok: Ok
     'on': am
@@ -755,6 +758,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoData: Keine Daten
     NoSavedFilterMessage: Kein gespeicherter Filter gefunden. Versuchen Sie, einen neuen zu erstellen, indem Sie auf die Schaltfläche Filter speichern klicken.
     NoWidgetAvailable: Es gibt keine Widgets.
+    QuickSearch: Schnellsuche
+    QuickSearchInfo: Sie können den Bereich der Schnellsuche in der Spaltenverwaltung der Widgets anpassen. Die Suche erfolgt nach dem Kriterium "enthält", aber achten Sie darauf, die Leistung nicht zu beeinträchtigen, wenn Sie viele Spalten hinzufügen.
     RestoreDefaultDashboardMessage: Wenn Sie fortfahren, verlieren Sie alle von Ihnen erstellten Widgets. Es werden die Standardeinstellungen von <span class="dashboard-template-name-message">{0}</span> wiederhergestellt.
     SaveNewWidgetFilterHeader: Speichere neuen Widget-Filter
     SavedFilterHeader: Gespeicherte Filter
@@ -778,7 +783,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     actionSelection: Aktion auswählen
     addField: Feld hinzufügen
     addWidget: Widget hinzufügen
-    availableFilters: Verfügbare Filter
     canWorkOn: Kann arbeiten an
     caseList: Vorfall-Liste
     caseListIntroduction: Dieses Widget zeigt relevante Vorgangsinformationen entsprechend einiger definierter Parameter an
@@ -854,6 +858,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}_{1}.{2}
     field: Feld
     fieldIsAdded: Das Feld {0} wurde hinzugefügt
+    filters: Filter
     iconMessage:
       caseWidget:
         BEACH_PALM_SUNBED: Sie sind großartig - alle Vorgänge sind erledigt. Lehnen Sie sich zurück und genießen Sie.
@@ -890,6 +895,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       noPermissionToSee: Sie besitzen nicht die erforderlichen Rechte um diesen Prozess zu starten.
       noProcessSelected: Bitte wählen Sie einen Prozess
     removeWidgetHeader: Widget "{0}" löschen
+    removeWidgetHeaderWithoutWidgetName: Entfernen Sie das Widget
     removeWidgetMessage: Möchten Sie es wirklich löschen?
     reorder:
       dashboardType: Dashboard-Typ
@@ -901,6 +907,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     startATask: Aufgabe starten
     statisticChartIntroduction: Dieses Widget zeigt die verfügbaren statistischen Diagramme an.
     statisticChartWidget: Statistisches Diagramm
+    statisticWidgets: Statistik-Widgets
     switchToViewMode: Ansichtsmodus
     tasWidgetkInfo:
       expireToday: Ablaufdatum heute
@@ -1002,7 +1009,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   logoutSetting:
     logout: Abmelden
   mobile:
-    MenuName: Mobile App
+    MenuName: Mobile App verbinden
     QRCodeDescription: Um Ihre Axon Ivy Mobile App zu verbinden, scannen Sie bitte diesen QR-Code und geben Sie Ihre Zugangsdaten in der App ein.
   noteHistory:
     author: Autor
@@ -1585,6 +1592,10 @@ Dialogs:
             LinkCopied: Link kopiert!
         dashboard:
           component:
+            CaseWidgetConfiguration:
+              AddFilter: Filter hinzufügen
+            ClientStatisticWidget:
+              NoPermissionChartMessage: Sie haben nicht die erforderliche Berechtigung, um diese Karte zu sehen.
             DashboardImportDetails:
               FileInfomation: Dateiinformationen
               ImportPrivate: Privates Dashboard importieren
@@ -1616,6 +1627,9 @@ Dialogs:
               NotificationWidgetConfiguration: Konfiguration des Benachrichtigungs-Widgets
               NotificationWidgetDescription: Dieses Widget zeigt alle Benachrichtigungen basierend auf Ihren Benachrichtigungseinstellungen an.
               WidgetFilter: Widget-Filter
+            TaskWidgetConfiguration:
+              AddFilter: Filter hinzufügen
+              ResetFilter: Filter zurücksetzen
   components:
     CaseDocument:
       FileDate: Änderungsdatum
@@ -1730,6 +1744,72 @@ Labels:
   AppendTheTask: Aufgabe anhängen
   CreateNewDashboard: Neues Dashboard erstellen
   Enums:
+    DashboardStandardCaseColumn:
+      ACTIONS: Aktionen
+      APPLICATION: Anmeldung
+      CATEGORY: Kategorie
+      CREATED: Erstellt am
+      CREATOR: Schöpfer
+      DESCRIPTION: Beschreibung
+      FINISHED: Beendetes Datum
+      ID: Id
+      NAME: Name
+      OWNER: Eigentümer des Falles
+      STATE: Staat
+    DashboardStandardTaskColumn:
+      ACTIONS: Aktionen
+      APPLICATION: Anmeldung
+      CATEGORY: Kategorie
+      CREATED: Erstellt am
+      DESCRIPTION: Beschreibung
+      EXPIRY: Ablaufdatum
+      ID: Id
+      NAME: Name
+      PRIORITY: Priorität
+      RESPONSIBLE: Verantwortlich
+      START: Start
+      STATE: Staat
+    FilterOperator:
+      AFTER: Ist nach
+      BEFORE: Ist vor
+      BETWEEN: Zwischen
+      CONTAINS: Enthält
+      CURRENT: Aktuell
+      CURRENT_USER: Aktueller Benutzer
+      CURRENT_USER_CAN_WORK_ON: Aktueller Benutzer kann arbeiten an
+      EMPTY: Ist leer
+      END_WITH: Endet mit
+      EQUAL: Gleichberechtigt
+      GREATER: Greater
+      GREATER_OR_EQUAL: Greater or equal
+      IN: Unter
+      IS: Ist
+      IS_NOT: Ist nicht
+      LAST: In den letzten
+      LESS: Less
+      LESS_OR_EQUAL: Less or equal
+      NEXT: Innerhalb der nächsten
+      NOT_BETWEEN: Nicht zwischen
+      NOT_CONTAINS: Enthält nicht
+      NOT_EMPTY: Ist nicht leer
+      NOT_END_WITH: Endet nicht mit
+      NOT_EQUAL: Nicht gleich
+      NOT_IN: Nicht in
+      NOT_START_WITH: Beginnt nicht mit
+      NO_CATEGORY: Keine Kategorie
+      START_WITH: Beginnt mit
+      TODAY: Heute
+      YESTERDAY: Yesterday
+    FilterPeriodType:
+      DAY: Tag
+      MONTH: Monat
+      Plural:
+        DAY: Tag(e)
+        MONTH: Monat(e)
+        WEEK: Woche(n)
+        YEAR: Jahr(e)
+      WEEK: Woche
+      YEAR: Jahr
     SearchScopeCaseField:
       CUSTOM: Benutzerdefinierte Stringfelder
       DESCRIPTION: Beschreibung

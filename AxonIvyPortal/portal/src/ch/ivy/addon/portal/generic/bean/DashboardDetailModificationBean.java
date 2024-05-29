@@ -1,6 +1,7 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CASE;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CLIENT_STATISTIC;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CUSTOM;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NEWS;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NOTIFICATION;
@@ -38,13 +39,17 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.util.Strings;
 import org.primefaces.PrimeFaces;
 
+import com.axonivy.portal.bo.ClientStatistic;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.dto.News;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.service.ClientStatisticService;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
+import com.google.common.base.Predicate;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
@@ -52,6 +57,7 @@ import ch.ivy.addon.portalkit.constant.DashboardConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.ClientStatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CombinedProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
@@ -95,10 +101,11 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 public class DashboardDetailModificationBean extends DashboardBean implements Serializable, PropertyChangeListener {
 
   private static final long serialVersionUID = -5272278165636659596L;
+  private static final String DEFAULT_COMPLEX_USER_FILTER_ID = "widget-configuration-form:new-widget-configuration-component:predefined-filter";
   private static final String DEFAULT_USER_FILTER_ID = "widget-configuration-form:new-widget-configuration-component:user-filter";
   private static final String DEFAULT_WIDGET_TITLE_ID = "widget-configuration-form:new-widget-configuration-component:widget-title-group";
   private static final String PROCESS_ICON_CUSTOM_FIELD = "cssIcon";
-  private static final String DEFAULT_PROCESS_ICON = "si si si-hierarchy-6 si-rotate-270";
+  private static final String DEFAULT_PROCESS_ICON = "si si-hierarchy-6 si-rotate-270";
 
   private List<WidgetSample> samples;
   private String newWidgetHeader;
@@ -112,6 +119,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private String restoreDashboardMessage;
   private Optional<DashboardTemplate> foundTemplate;
   private List<DashboardProcess> customWidgets;
+  private List<ClientStatistic> statisticWidgets;
 
   @PostConstruct
   public void initConfigration() {
@@ -128,11 +136,17 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public void initSampleWidgets() {
     if (CollectionUtils.isEmpty(samples)) {
-      samples = List.of(taskSample(), caseSample(), processSample(), statisticSample(), externalPageSample(),
+      samples = List.of(taskSample(), caseSample(), processSample(), externalPageSample(),
           processViewerSample(), welcomeWidgetSample(), newsSample(), notificationSample());
       samples = samples.stream().sorted(Comparator.comparing(WidgetSample::getName)).collect(Collectors.toList());
     }
     initCustomWidgets();
+    initStatisticWidgets();
+  }
+
+  private void initStatisticWidgets() {
+    setStatisticWidgets(new ArrayList<>());
+    getStatisticWidgets().addAll(ClientStatisticService.getInstance().findAllCharts());
   }
 
   private void initCustomWidgets() {
@@ -232,7 +246,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
           selectedDashboard.setWidgets(new ArrayList<>(template.getDashboard().getWidgets()));
         }
       });
-      for(DashboardWidget widget : getSelectedDashboard().getWidgets()) {
+      for (DashboardWidget widget : getSelectedDashboard().getWidgets()) {
         widget.setId(DashboardWidgetUtils.generateNewWidgetId(widget.getType()));
       }
     }
@@ -291,7 +305,13 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       default -> {}
     }
   }
-  
+
+  public void createClientStatisticWidget(ClientStatistic clientStatistic) {
+    newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
+        Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticChartWidget")));
+    widget = getDefaultClientStatisticDashboardWidget(clientStatistic.getName(), clientStatistic.getId());
+  }
+
   public void createCustomDashboardWidget(DashboardProcess process) {
     newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
         Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/statistic/timePeriod/custom")));
@@ -373,6 +393,15 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     return (StatisticDashboardWidget) DashboardWidgetUtils.buildDefaultWidget(widgetId, widgetName, STATISTIC);
   }
 
+  private ClientStatisticDashboardWidget getDefaultClientStatisticDashboardWidget(String widgetName, String chartId) {
+    String widgetId = DashboardWidgetUtils.generateNewWidgetId(CLIENT_STATISTIC);
+    ClientStatisticDashboardWidget widget = null;
+    widget = (ClientStatisticDashboardWidget) DashboardWidgetUtils.buildDefaultWidget(widgetId, widgetName,
+        CLIENT_STATISTIC);
+    widget.setChartId(chartId);
+    return widget;
+  }
+
   private CustomDashboardWidget getDefaultCustomDashboardWidget() {
     String widgetId = DashboardWidgetUtils.generateNewWidgetId(CUSTOM);
     return CustomDashboardWidget.buildDefaultWidget(widgetId, StringUtils.EMPTY);
@@ -396,6 +425,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     return NewsDashboardWidget.buildDefaultWidget(widgetId, widgetName);
   }
 
+  public void saveClientStatisticWidget(ClientStatistic clientStatistic) {
+    createClientStatisticWidget(clientStatistic);
+    saveWidget();
+  }
   private NotificationDashboardWidget getDefaultNotificationWidget() {
     String widgetId = DashboardWidgetUtils.generateNewWidgetId(NOTIFICATION);
     String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourNotifications");
@@ -457,12 +490,18 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       case WELCOME -> {
         updateWelcomeWidget(widget);
       }
+      case CASE -> {
+        updateCaseWidget(widget);
+      }
       default -> {}
     }
     updateWidgetPosition(widget);
     resetUserFilter();
-    initMultipleLanguagesForWidgetName(this.widget.getName());
-    this.widget.buildPredefinedFilterData();
+
+    if (widget.getType() != DashboardWidgetType.CLIENT_STATISTIC) {
+      initMultipleLanguagesForWidgetName(this.widget.getName());
+    }
+
     if (widgets.contains(this.widget)) {
       widgets.set(widgets.indexOf(this.widget), this.widget);
     } else {
@@ -484,6 +523,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         welcomeWidget.setImageLocation(null);
       }
     }
+  }
+  
+  public void onReset(DashboardWidget widget) {
+    resetUserFilter();
   }
 
   private void updateApplicationForCompactProcess(CompactProcessDashboardWidget compactProcessWidget) {
@@ -532,6 +575,22 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         tempImageFile.delete();
       }
     }
+  }
+
+  private void updateCaseWidget(DashboardWidget widget) {
+    var caseWidget = (CaseDashboardWidget) widget;
+    if (CollectionUtils.isNotEmpty(caseWidget.getFilters())) {
+      caseWidget.setFilters(caseWidget.getFilters().stream()
+          .filter(Objects::nonNull).filter(checkValidFilter()).collect(Collectors.toList()));
+    }
+  }
+
+  private Predicate<DashboardFilter> checkValidFilter() {
+    return filter -> {
+      return StringUtils.isNotBlank(filter.getField())
+          && filter.getOperator() != null
+          && filter.getFilterType() != null;
+    };
   }
 
   private void removeTempImageOfWelcomeWidget(DashboardWidget widget) {
@@ -688,6 +747,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         widget.getLayout().setAxisX(nextAxisX);
         widget.getLayout().setAxisY(lastWidget.getLayout().getAxisY());
       } else {
+        portalGridsCurrentRow = Long.valueOf(lastWidget.getLayout().getAxisY() + lastWidget.getLayout().getHeight());
         widget.getLayout().setAxisX(0);
         widget.getLayout().setAxisY(portalGridsCurrentRow.intValue());
       }
@@ -724,7 +784,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   private List<String> getProcessPaths(List<DashboardProcess> processes) {
     List<String> processPaths = new ArrayList<>();
-    for (DashboardProcess process: processes) {
+    for (DashboardProcess process : processes) {
       processPaths.add(process.getId());
     }
 
@@ -876,11 +936,16 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     DashboardWidget processWidget = getWidget();
     if (processWidget != null) {
       componentId = DEFAULT_WIDGET_TITLE_ID;
-      if (NEWS != processWidget.getType()) {
-        componentId = componentId.concat(" ").concat(DEFAULT_USER_FILTER_ID);
+      if (NEWS != processWidget.getType() && CASE != processWidget.getType() && TASK != processWidget.getType()) {
+        String userFilterId = String.format(DEFAULT_USER_FILTER_ID, processWidget.getId());
+        componentId = componentId.concat(" ").concat(userFilterId);
       } 
       if (PROCESS == processWidget.getType()) {
         componentId = componentId.concat(" widget-configuration-form");
+      }
+      if (CASE == processWidget.getType() || TASK == processWidget.getType()) {
+        String userFilterId = String.format(DEFAULT_COMPLEX_USER_FILTER_ID, processWidget.getId());
+        componentId = componentId.concat(" ").concat(userFilterId);
       }
     }
     return componentId;
@@ -947,5 +1012,19 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public void setCustomWidgets(List<DashboardProcess> customWidgets) {
     this.customWidgets = customWidgets;
+  }
+
+  public List<ClientStatistic> getStatisticWidgets() {
+    return statisticWidgets;
+  }
+
+  public void setStatisticWidgets(List<ClientStatistic> statisticWidgets) {
+    this.statisticWidgets = statisticWidgets;
+  }
+  
+  public boolean canEnableQuickSearch() {
+    return Optional.ofNullable(this.widget).map(DashboardWidget::getType)
+        .map(DashboardWidgetType::canEnableQuickSearch)
+        .orElse(false);
   }
 }

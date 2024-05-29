@@ -57,6 +57,8 @@
             update="saved-filter-node #{widgetFilterContentId}"
             listener="#{dashboardBean.onClickSavedFilterItem(filter, widget)}" />
         </h:panelGroup>
+        <!-- note: to handle for long saved-filter name -->
+        <p:tooltip for="saved-filter-node" trackMouse="true" value="#{filter.name}" />
       </ui:repeat>
     </h:panelGroup>
   </h:panelGroup>

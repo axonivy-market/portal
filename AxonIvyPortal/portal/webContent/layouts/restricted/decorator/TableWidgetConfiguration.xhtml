@@ -8,13 +8,11 @@
 
     *** REQUIRED PARAMS:
     * widget: widget model.
-    * componentToUpdateOnPreviewAction: component id which will be updated when the preview button is clicked.
-    * componentToProcessOnPreviewAction: component id which will be updated when the preview button is clicked.
     * onCompletePreviewAction: AJAX method which will be call when the preview button is clicked.
 -->
 
 <!-- Configuration -->
-<h:panelGroup id="filter-container" layout="block" styleClass="card dashboard-card widget-configuration">
+<h:panelGroup id="filter-container" layout="block" styleClass="card dashboard-card widget-configuration #{filterContainerStyleClass}">
   <div class="filter-container ui-g dashboard-configuration-filter-container">
     <div class="ui-g-12 filter-container__header">
       <h4>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}</h4>
@@ -38,24 +36,22 @@
           icon="si si-chat-translate" id="add-language-button"
           actionListener="#{managedBean.updateWidgetNameByLocale()}"
           process="widget-title"
+          partialSubmit="true"
           update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
           oncomplete="PF('multiple-languages-dialog').show();"
-          global="false">
-        </p:commandButton>
+          global="false"/>
       </div>
     </h:panelGroup>
 
     <div class="ui-g-12 MarTop20 u-padding-0">
       <div class="ui-g-4 ui-md-5">
-        <strong>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters")}</strong>
+        <strong>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/filters")}</strong>
       </div>
       <div class="ui-g-8 ui-md-7">
         <p:commandButton id="preview-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}"
           styleClass="Fright preview-button u-hidden-sm-down" icon="si si-search"
-          update="#{componentToUpdateOnPreviewAction}"
-          process="#{componentToProcessOnPreviewAction} widget-title-group"
-          oncomplete="#{onCompletePreviewAction}" />
+          update="#{componentToUpdateOnPreview}" />
       </div>
     </div>
 

@@ -82,6 +82,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS: Processus Axon Ivy
     DashboardWidgetType:
       CASE: Widget de cas
+      CLIENT_STATISTIC: Widget Statistiques
       CUSTOM: Widget personnalisé
       NEW: Nouveau widget
       NEWS: Nouvelles
@@ -400,6 +401,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewParticipant: Voir les participants
   common:
     All: Toutes
+    And: et
     BusinessCaseInformation: Informations sur les cas d'affaires
     CollapseAll: Réduire tout
     ExpandAll: Ouvrir tout
@@ -517,6 +519,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noRecordsFound: Aucun résultat
     notAvailable: '-'
     note: NOTE
+    numberFromBiggerThanTo: L'adresse de destination doit être plus grande que l'adresse de départ.
     numberOfSelectedFilter: filtres sélectionnés
     ok: Ok
     'on': le
@@ -751,6 +754,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoData: Pas de données
     NoSavedFilterMessage: Aucun filtre enregistré n'a été trouvé. Essayez d'en créer un nouveau en cliquant sur le bouton Enregistrer le filtre.
     NoWidgetAvailable: Il n'y a pas de widgets.
+    QuickSearch: Recherche rapide
+    QuickSearchInfo: Vous pouvez personnaliser la portée de la recherche rapide dans la gestion des colonnes des widgets. La recherche se fait sur la base du critère "contient", mais soyez attentif à la performance lorsque vous ajoutez de nombreuses colonnes.
     RestoreDefaultDashboardMessage: Si vous procédez ainsi, vous perdrez tous les widgets que vous avez créés. Les paramètres standard de <span class="dashboard-template-name-message">{0}</span> seront appliqués.
     SaveNewWidgetFilterHeader: Save a new widget filter
     SavedFilterHeader: Saved filters
@@ -774,7 +779,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     actionSelection: Sélection des actions
     addField: Ajouter un champ
     addWidget: Ajouter un widget
-    availableFilters: Filtres disponibles
     canWorkOn: Peut travailler sur
     caseList: Liste des cas
     caseListIntroduction: Ce widget affiche les informations pertinentes sur l'affaire en fonction des paramètres définis.
@@ -850,6 +854,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}_{1}.{2}
     field: Champ
     fieldIsAdded: Le champ {0} est ajouté
+    filters: Filtres
     iconMessage:
       caseWidget:
         BEACH_PALM_SUNBED: Vous êtes géniale - toutes les affaires sont réglées. Détendez-vous et profitez-en.
@@ -886,6 +891,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       noPermissionToSee: Vous n'avez pas l'autorisation requise pour lancer ce processus.
       noProcessSelected: Veuillez sélectionner un processus
     removeWidgetHeader: Supprimer le widget "{0}"
+    removeWidgetHeaderWithoutWidgetName: Supprimer le widget
     removeWidgetMessage: Voulez-vous vraiment le supprimer ?
     reorder:
       dashboardType: Type de tableau de bord
@@ -897,6 +903,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     startATask: Commencer la tâche
     statisticChartIntroduction: Ce widget affiche les graphiques statistiques disponibles.
     statisticChartWidget: Graphique de statistiques
+    statisticWidgets: Widgets Statistiques
     switchToViewMode: Mode d'affichage
     tasWidgetkInfo:
       expireToday: Expire aujourd'hui
@@ -998,7 +1005,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   logoutSetting:
     logout: Se déconnecter
   mobile:
-    MenuName: Application mobile
+    MenuName: Application mobile Connect
     QRCodeDescription: Pour vous connecter à l'application mobile Axon Ivy, scannez ce code QR et entrez vos informations d'identification dans l'application.
   noteHistory:
     author: Auteur
@@ -1436,10 +1443,11 @@ ch.ivy.addon.portalkit.ui.jsf:
   taskWarning:
     createdTaskLeave: 'Vous êtes sur le point de quitter cette page. Choisissez l&apos;&apos;une des options suivantes : <UL><LI>    Quitter : abandonnez vos modifications et allez à la page choisie. <LI>    Annuler : continuez à travailler sur cette tâche. </UL>'
     createdTaskLogout: 'Vous êtes sur le point de quitter cette page. Choisissez l&apos;&apos;une des options suivantes : <UL> <LI> &nbsp; Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI> &nbsp; Annuler : continuez à travailler sur cette tâche. </UL>'
-    resetParkTaskBeforeLeave: 'Vous êtes sur le point de laisser une tâche en cours. Choisissez l&apos;&apos;une des options suivantes : <UL> <LI> Quitter : abandonnez vos modifications et allez à la page choisie. <LI> Enregistrer : abandonnez vos modifications et conservez la tâche dans votre liste de tâches personnelles. Ensuite déconnectez-vous. 
-      <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
-    resetParkTaskBeforeLogout: 'Vous êtes sur le point de laisser une tâche en cours. Choisissez l&apos;&apos;une des options suivantes : <UL> <LI> &nbsp; &nbsp; Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI> &nbsp; &nbsp; Enregistrer : annulez vos modifications et conservez la tâche dans votre liste de tâches personnelles. Ensuite, déconnectez-vous. <LI> &nbsp; &nbsp; Annuler : continuez à travailler sur cette tâche. </UL>'
-    taskNotFound : cette tâche n'existe pas ou vous n'avez pas l'autorisation de la voir.
+    resetParkTaskBeforeLeave: 'Vous êtes sur le point de laisser une tâche en cours. Choisissez l&apos;&apos;une des options suivantes : <UL> <LI> Quitter : abandonnez vos modifications et allez à la page choisie. <LI> Enregistrer : abandonnez vos modifications et conservez la tâche dans votre liste de
+      tâches personnelles. Ensuite déconnectez-vous. <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
+    resetParkTaskBeforeLogout: 'Vous êtes sur le point de laisser une tâche en cours. Choisissez l&apos;&apos;une des options suivantes : <UL> <LI> &nbsp; &nbsp; Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI> &nbsp; &nbsp; Enregistrer : annulez vos modifications et conservez la tâche
+      dans votre liste de tâches personnelles. Ensuite, déconnectez-vous. <LI> &nbsp; &nbsp; Annuler : continuez à travailler sur cette tâche. </UL>'
+    taskNotFound: cette tâche n'existe pas ou vous n'avez pas l'autorisation de la voir.
   userProfile:
     myProfileTitle: Mon profil
   warningBeforeLostSession:
@@ -1580,6 +1588,10 @@ Dialogs:
             LinkCopied: Lien copié !
         dashboard:
           component:
+            CaseWidgetConfiguration:
+              AddFilter: Ajouter un filtre
+            ClientStatisticWidget:
+              NoPermissionChartMessage: Vous n'avez pas l'autorisation requise pour consulter ce graphique.
             DashboardImportDetails:
               FileInfomation: Informations sur le fichier
               ImportPrivate: Importer un tableau de bord privé
@@ -1611,6 +1623,9 @@ Dialogs:
               NotificationWidgetConfiguration: Configuration du widget de notification
               NotificationWidgetDescription: Ce widget affiche toutes les notifications en fonction de vos paramètres de notification.
               WidgetFilter: Filtre à widgets
+            TaskWidgetConfiguration:
+              AddFilter: Ajouter un filtre
+              ResetFilter: Réinitialiser le filtre
   components:
     CaseDocument:
       FileDate: Modifié le
@@ -1725,6 +1740,71 @@ Labels:
   AppendTheTask: Ajouter la tâche
   CreateNewDashboard: Créer un nouveau tableau de bord
   Enums:
+    DashboardStandardCaseColumn:
+      ACTIONS: Actions
+      APPLICATION: Application
+      CATEGORY: Catégorie
+      CREATED: Date de création
+      CREATOR: Créateur
+      DESCRIPTION: Description
+      FINISHED: Date d'achèvement
+      ID: Id
+      NAME: Nom
+      OWNER: Propriétaire du dossier
+      STATE: État
+    DashboardStandardTaskColumn:
+      ACTIONS: Actions
+      APPLICATION: Application
+      CATEGORY: Catégorie
+      CREATED: Date de création
+      DESCRIPTION: Description
+      EXPIRY: Délai
+      ID: Id
+      NAME: Nom
+      PRIORITY: Priorité
+      RESPONSIBLE: Responsable
+      START: Démarrage
+      STATE: État
+    FilterOperator:
+      AFTER: Est après
+      BEFORE: Est avant
+      BETWEEN: Entre
+      CONTAINS: Contient
+      CURRENT: Actuel
+      CURRENT_USER: Utilisateur actuel
+      CURRENT_USER_CAN_WORK_ON: L'utilisateur actuel peut travailler sur
+      EMPTY: Est vide
+      END_WITH: Se termine par
+      EQUAL: Égalité
+      GREATER_OR_EQUAL: Greater or equal
+      IN: En
+      IS: Est
+      IS_NOT: N'est pas
+      LAST: Au cours des dernières
+      LESS: Less
+      LESS_OR_EQUAL: Less or equal
+      NEXT: Dans les prochains
+      NOT_BETWEEN: Pas entre
+      NOT_CONTAINS: Ne contient pas
+      NOT_EMPTY: N'est pas vide
+      NOT_END_WITH: Ne se termine pas par
+      NOT_EQUAL: Pas d'égalité
+      NOT_IN: Pas dans
+      NOT_START_WITH: Ne commence pas par
+      NO_CATEGORY: Pas de catégorie
+      START_WITH: Commence par
+      TODAY: Aujourd'hui
+      YESTERDAY: Hier
+    FilterPeriodType:
+      DAY: Jour
+      MONTH: Mois
+      Plural:
+        DAY: Jour(s)
+        MONTH: Mois
+        WEEK: Semaine(s)
+        YEAR: Année(s)
+      WEEK: Semaine
+      YEAR: Année
     ThemeMode:
       DARK: Dark
       LIGHT: Lumière

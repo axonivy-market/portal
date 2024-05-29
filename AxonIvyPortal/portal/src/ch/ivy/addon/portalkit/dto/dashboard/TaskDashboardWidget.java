@@ -5,24 +5,31 @@ import static ch.ivy.addon.portalkit.constant.DashboardConstants.REMOTE_COMMAND_
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.SortMeta;
 
+import com.axonivy.portal.dto.dashboard.WidgetInformationCategoryStatisticData;
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.service.DashboardWidgetInformationService;
+import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 public class TaskDashboardWidget extends DashboardWidget {
 
-  private static final long serialVersionUID = 3048837559125720787L;
+  private static final long serialVersionUID = 3246735956282078091L;
+  protected static final String LIKE_FORMAT = "%%%s%%";
 
   private int rowsPerPage = 5;
   @JsonIgnore
@@ -30,25 +37,27 @@ public class TaskDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private Map<TaskBusinessState, Long> taskByStateStatistic;
   @JsonIgnore
-  private Map<String, Long> taskByCategoryStatistic;
+  private List<WidgetInformationCategoryStatisticData> taskByCategoryStatistic;
   @JsonIgnore
   private Long numberOfTasksExpireThisWeek;
   @JsonIgnore
   private Long numberOfTasksExpireToday;
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
+  private boolean enableQuickSearch;
 
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
     setColumns(new ArrayList<>());
+    setFilters(new ArrayList<>());
+    setUserFilters(new ArrayList<>());
   }
 
   @Override
   public void buildStatisticInfos() {
     String combinedAjaxCommand = String.format(REMOTE_COMMAND_PATTERN, "buildStatisticTaskExpiry", id)
         .concat(String.format(REMOTE_COMMAND_PATTERN, "buildStatisticTaskStates", id))
-        .concat(String.format(REMOTE_COMMAND_PATTERN, "buildStatisticTaskCategory", id))
-        .concat(String.format(REMOTE_COMMAND_PATTERN, "buildTaskDefinedFilter", id));
+        .concat(String.format(REMOTE_COMMAND_PATTERN, "buildStatisticTaskCategory", id));
     PrimeFaces.current().executeScript(combinedAjaxCommand);
   }
 
@@ -167,23 +176,18 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.numberOfTasksExpireToday = numberOfTasksExpireToday;
   }
 
-  public Map<String, Long> getTaskByCategoryStatistic() {
+  public List<WidgetInformationCategoryStatisticData> getTaskByCategoryStatistic() {
     return taskByCategoryStatistic;
   }
 
-  public void setTaskByCategoryStatistic(Map<String, Long> taskByCategoryStatistic) {
+  public void setTaskByCategoryStatistic(List<WidgetInformationCategoryStatisticData> taskByCategoryStatistic) {
     this.taskByCategoryStatistic = taskByCategoryStatistic;
-  }
-
-  @Override
-  public void buildPredefinedFilterData() {
-    setHasPredefinedFilter(DashboardWidgetUtils.hasPredefinedTaskFilter(this));
   }
 
   @Override
   @JsonIgnore
   public void resetWidgetFilters() {
-    DashboardWidgetUtils.resetUserFilterOnColumns(getColumns());
+    setUserFilters(new ArrayList<>());
   }
 
   @Override
@@ -198,4 +202,71 @@ public class TaskDashboardWidget extends DashboardWidget {
   public void setRowsPerPage(int rowsPerPage) {
     this.rowsPerPage = rowsPerPage;
   }
+
+  @Override
+  public void setQuickSearchKeyword() {
+    this.dataModel.getCriteria().setQuickSearchKeyword(this.getQuickSearchKeyword());
+  }
+
+  public List<DashboardFilter> getFilters() {
+    return this.dataModel.getCriteria().getFilters();
+  }
+
+  public void setFilters(List<DashboardFilter> filters) {
+    this.dataModel.getCriteria().setFilters(filters);
+  }
+  
+  @JsonIgnore
+  public List<DashboardFilter> getUserFilters() {
+    return this.dataModel.getCriteria().getUserFilters();
+  }
+
+  @JsonIgnore
+  public void setUserFilters(List<DashboardFilter> userFilters) {
+    this.dataModel.getCriteria().setUserFilters(userFilters);
+  }
+
+  public boolean isEnableQuickSearch() {
+    return enableQuickSearch;
+  }
+
+  public void setEnableQuickSearch(boolean enableQuickSearch) {
+    this.enableQuickSearch = enableQuickSearch;
+  }
+
+  @JsonIgnore
+  public void loadUserFilter() {
+    updateSavedFiltersSelection();
+
+    // Don't load user filters when already loaded from session
+    if (CollectionUtils.isNotEmpty(getUserFilters())) {
+      return;
+    }
+
+    var latestUserFilterOptions = getUserFilterCollection().getLatestFilterOption();
+    WidgetFilterService.getInstance().updateFilterOptionsData(this, latestUserFilterOptions);
+  }
+  
+
+  @JsonIgnore
+  @Override
+  public void onApplyUserFilters() {
+    setUserFilters(this.getUserFilters().stream()
+      .filter(Objects::nonNull)
+        .filter(filter -> StringUtils.isNotBlank(filter.getField()))
+      .collect(Collectors.toList()));
+
+    getUserFilters().forEach(filter -> filter.setTemp(false));
+
+    var filterService = WidgetFilterService.getInstance();
+    userFilterCollection.updateUserFilterOptionValue(this);    
+    filterService.storeUserSelectedFiltersToSession(id, getType(), userFilterCollection);
+    userDefinedFiltersCount = DashboardWidgetUtils.countDefinedUserFilter(this);
+  }
+
+  @Override
+  public void cancelUserFilter() {
+    setUserFilters(getUserFilters().stream().filter(filter -> !filter.isTemp()).collect(Collectors.toList()));
+  }
+
 }

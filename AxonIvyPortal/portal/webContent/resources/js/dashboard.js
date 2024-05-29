@@ -1,7 +1,7 @@
 var grids;
 var originalGridstackHeight = 0;
 loadGrid();
-resizeTableBody();
+// resizeTableBody();
 function loadGrid() {
   grids = GridStack.initAll({
     column: 12,
@@ -33,10 +33,11 @@ function loadGrid() {
 
     gridItems.forEach(ele => grid.addWidget(ele));
     grid.commit();
+
   })
 
   grids.forEach(function (grid, i) {
-    grid.on('change', function () {
+    grid.on('change', function (e) {
       let serializedData = [];
       let isReadOnlyMode = false;
       let dashboardViewModeInput = $("input[id$='dashboard-view-mode']");
@@ -74,7 +75,6 @@ function loadGrid() {
       if (descriptionElement.length > 0) {
         setupImageProcessWidgetDescription(descriptionElement);
       }
-
       setupGridProcessWidget();
     });
 
@@ -133,12 +133,6 @@ function toggleCategoryInfo(e) {
 function disabledResetDashboardActions() {
   PF('reset-dashboard-button').disable();
   $('.cancel-reset-dashboard-link').addClass('ui-state-disabled');
-}
-
-function removeWidgetContent(widgetId) {
-  var removeWidgetId = '.grid-stack-item[gs-id="' + widgetId + '"]';
-  $(removeWidgetId).remove();
-  updateDashboardWidget();
 }
 
 function DashboardToolKit() {
@@ -219,14 +213,21 @@ function resizeTableBody() {
     const resizeObserver = new ResizeObserver(() => {
       let tableBody = $(sb);
       let parentHeight = tableBody.parents('.grid-stack-item-content.card.dashboard-card').height();
-      tableBody.height(parentHeight * 0.85);
       if (!window.matchMedia("(max-width: 767px)").matches) {
         tableBody.height(parentHeight - 100);
-        tableBody.attr('attr-item-size', parentHeight - 100);
       } else {
-        tableBody.height(parentHeight * 0.85);
-        tableBody.attr('attr-item-size', parentHeight * 0.85);
+        tableBody.height(parentHeight * 0.9);
       }
+
+      const widgetName = tableBody.parents('.grid-stack-item').find('.js-table-widget-var').val();
+      if (widgetName === undefined) {
+        return;
+      }
+
+      // Update scrolling of the Primefaces widget
+      const widget = PF(widgetName);
+      widget.cfg.scrollHeight = tableBody.parents('.ui-datatable-scrollable').height().toString();
+      widget.setupScrolling();
     });
     setTimeout(function() {
       resizeObserver.observe(sb);
@@ -267,6 +268,26 @@ function loadWidgetFirstTime(loadingClass, widgetClass) {
     widget.removeClass('u-invisibility');
   }
   resizeTableBody();
+}
+
+function loadCaseAndTaskWidgetFirstTime(loadingClass, widgetClass) {
+
+  resizeTableBody();
+
+  setTimeout(function() {
+    var loading = $('.' + loadingClass);
+    if (loading.length > 0) {
+      loading.addClass('u-display-none');
+    }
+    var widget = $('.' + widgetClass);
+    if (widget.length == 0) {
+      widget = $("[data-process-id='" + widgetClass + "']");
+    }
+    if (widget.length > 0) {
+      widget.removeClass('u-display-none');
+      widget.removeClass('u-invisibility');
+    }
+  }, 50);
 }
 
 function hideAllDashboardOverlayPanels() {
@@ -441,31 +462,15 @@ function setLineClamp(element, number) {
 function removeStyle(element) {
   $(element).removeAttr('style');
 }
-function initTableWidget(table) {
-  if (table === undefined || table.cfg === undefined) {
-    return;
-  }
 
-  setTimeout(function(){
-    var $table = $(document.getElementById(table.id));
-    table.cfg.scrollHeight = $table.height().toString();
-    table.init(table.cfg);
-  }, 500);
-}
-
-function searcNewhWidgetByNameOrDescription(input) {
+function searchNewWidgetByNameOrDescription(input) {
   var keyword = input.value.toLowerCase();
   $('.js-widget').each(function() {
-    var hasKeyword = false;
-
-    $(this).find('label').each(function() {
-      if (this.innerText.toLowerCase().includes(keyword)) {
-        hasKeyword = true;
-        return;
-      }
-    });
-
-    hasKeyword ? $(this).removeClass('u-hidden') : $(this).addClass('u-hidden');
+    if ($(this).find('.new-widget-dialog__item-title span').text().toLowerCase().includes(keyword)) {
+      $(this).removeClass('u-hidden');
+    } else {
+      $(this).addClass('u-hidden');
+    }
   });
 
   var noResult = true;
