@@ -166,7 +166,6 @@ public class CaseActionBean implements Serializable {
    * path}
    * 
    * @param additionalCaseDetailsPageUri
-   * @return
    */
   private boolean isOldAdditionalDetailsLink(
       String additionalCaseDetailsPageUri) {
@@ -192,27 +191,30 @@ public class CaseActionBean implements Serializable {
   public String migrateOldAdditionalDetailsLink(
       String additionalCaseDetailsPageUri, ICase iCase) { 
     if (isOldAdditionalDetailsLink(additionalCaseDetailsPageUri)) {
-      String ivyContextNameAndApp = String.format(FULL_RELATIVE_URL_FORMAT,
-          "ivy", IvyConstants.REQUEST_PATH_PROCESS,
-          iCase.getApplication().getName()) + "/";
-
-      // Remove obsoleted parts from old url
-      additionalCaseDetailsPageUri = additionalCaseDetailsPageUri
-          .replace(ivyContextNameAndApp, "");
-
-      // Add caseId and embedInFrame to params of the url
-      additionalCaseDetailsPageUri = appendParamsToUrl(
-          additionalCaseDetailsPageUri, iCase);
-
-      // Append application and process prefix parts to the url
-      additionalCaseDetailsPageUri = appendApplicationPartsToUrl(
-          additionalCaseDetailsPageUri, iCase);
-
-      // If base context path is defined, append it to the url
-      String contextPath = ISecurityConstants.BASE_CONTEXT_PATH;
-      if (StringUtils.isNotBlank(contextPath)) {
-        additionalCaseDetailsPageUri = contextPath
-            + additionalCaseDetailsPageUri;
+      String splitParam = iCase.getApplication().getName() + "/";
+      String[] urlSplit = additionalCaseDetailsPageUri.split(splitParam);
+      if (urlSplit.length > 0) {
+        
+        String ivyContextNameAndApp = urlSplit[0] + splitParam;
+        // Remove obsoleted parts from old url
+        additionalCaseDetailsPageUri = additionalCaseDetailsPageUri
+            .replace(ivyContextNameAndApp, "");
+        
+        // Add caseId and embedInFrame to params of the url
+        additionalCaseDetailsPageUri = appendParamsToUrl(
+            additionalCaseDetailsPageUri, iCase);
+        
+        // Append application and process prefix parts to the url
+        additionalCaseDetailsPageUri = appendApplicationPartsToUrl(
+            additionalCaseDetailsPageUri, iCase);
+        
+        // If base context path is defined, append it to the url
+        String contextPath = ISecurityConstants.BASE_CONTEXT_PATH;
+        if (StringUtils.isNotBlank(contextPath)) {
+          additionalCaseDetailsPageUri = contextPath
+              + additionalCaseDetailsPageUri;
+        }
+        
       }
 
     }
