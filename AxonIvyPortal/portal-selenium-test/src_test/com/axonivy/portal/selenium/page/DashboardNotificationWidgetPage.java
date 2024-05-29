@@ -27,6 +27,7 @@ public class DashboardNotificationWidgetPage extends TemplatePage {
   }
 
   public SelenideElement getWidgetElement() {
+    $(".notifications-group-name").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return $(
         "div[id='notification-notification_" + widgetId + ":notification-widget-notification_" + widgetId + "-panel']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT);

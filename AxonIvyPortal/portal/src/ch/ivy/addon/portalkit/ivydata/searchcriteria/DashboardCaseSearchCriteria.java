@@ -1,37 +1,37 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang3.time.DateUtils;
+
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+import com.axonivy.portal.util.filter.field.FilterField;
+import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
-import ch.ivy.addon.portalkit.enums.DashboardFilterType;
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
+import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.util.CaseUtils;
-import ch.ivy.addon.portalkit.util.Dates;
-import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.application.app.IApplicationRepository;
-import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
-import ch.ivyteam.ivy.workflow.query.CaseQuery.ICustomFieldFilterQuery;
-import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.OrderByColumnQuery;
 
 public class DashboardCaseSearchCriteria {
 
-  private static final String LIKE_FORMAT = "%%%s%%";
   private List<CaseColumnModel> columns;
+  private List<DashboardFilter> filters;
+  private List<DashboardFilter> userFilters;
   private String sortField;
   private boolean sortDescending;
   private boolean isInConfiguration;
+  private String quickSearchKeyword;
 
   public CaseQuery buildQuery() {
     CaseQuery query = buildQueryWithoutOrderByClause();
@@ -43,240 +43,91 @@ public class DashboardCaseSearchCriteria {
   public CaseQuery buildQueryWithoutOrderByClause() {
     CaseQuery query = CaseQuery.businessCases();
     queryFilters(query);
+    appendQuickSearchQuery(query);
     return query;
   }
 
-  private void queryCreatedDate(CaseQuery query, Date from, Date to) {
-    if (from != null || to != null) {
-      CaseQuery subQuery = CaseQuery.create();
-      if (from != null) {
-        subQuery.where().startTimestamp().isGreaterOrEqualThan(from);
+  private void queryComplexFilter(CaseQuery query, List<DashboardFilter> filterList) {
+    if (CollectionUtils.isEmpty(filterList)) {
+      return;
+    }
+
+    for (DashboardFilter filter : filterList) {
+      if (Optional.ofNullable(filter).map(DashboardFilter::getOperator).isEmpty()) {
+        continue;
       }
 
-      if (to != null) {
-        subQuery.where().startTimestamp().isLowerOrEqualThan(DateUtils.addDays(to, 1));
+      FilterField filterField = FilterFieldFactory.findBy(filter.getField());
+      if (filterField != null) {
+        CaseQuery filterQuery = filterField.generateFilterQuery(filter);
+        if (filterQuery != null) {
+          query.where().and(filterQuery);
+        }
       }
-      query.where().and(subQuery);
     }
   }
 
-  private void queryName(CaseQuery query, String name) {
-    if (StringUtils.isNotBlank(name)) {
-      query.where().name().isLikeIgnoreCase(String.format(LIKE_FORMAT, name));
-    }
-  }
-
-  private void queryDescription(CaseQuery query, String description) {
-    if (StringUtils.isNotBlank(description)) {
-      query.where().description().isLikeIgnoreCase(String.format(LIKE_FORMAT, description));
-    }
-  }
-
-  private void queryStates(CaseQuery query, List<CaseBusinessState> states) {
-    if (CollectionUtils.isNotEmpty(states)) {
-      states = CaseUtils.filterStateByPermission(states);
-    } else {
-      states = CaseUtils.getValidStates();
-    }
-    CaseQuery subQuery = CaseQuery.create();
-    IFilterQuery filterQuery = subQuery.where();
-    for (CaseBusinessState state : states) {
-      filterQuery.or().businessState().isEqual(state);
-    }
-    query.where().and(subQuery);
-  }
-
-  private void queryCreator(CaseQuery query, List<String> creators) {
-    if (CollectionUtils.isNotEmpty(creators)) {
-      CaseQuery subQuery = CaseQuery.create();
-      IFilterQuery filterQuery = subQuery.where();
-      for (String creator : creators) {
-        filterQuery.or().creatorUserName().isEqual(creator.replace("#", ""));
-      }
-
-      query.where().and(subQuery);
-    }
-  }
-
-  private void queryCategory(CaseQuery query, List<String> categories) {
-    if (CollectionUtils.isNotEmpty(categories)) {
-      CaseQuery subQuery = CaseQuery.create();
-      IFilterQuery filterQuery = subQuery.where();
-      for (String category : categories) {
-        filterQuery.or().category().isEqual(category);
-      }
-      
-      query.where().and(subQuery);
-    }
-  }
-  
-  private void queryCustomFieldSelection(CaseQuery query, String field, List<String> filterList) {
-    if (CollectionUtils.isNotEmpty(filterList)) {
-      CaseQuery subQuery = CaseQuery.create();
-      IFilterQuery filterQuery = subQuery.where();
-      for (String filter : filterList) {
-        filterQuery.or().customField().stringField(field).isEqual(filter);
-      }
-      
-      query.where().and(subQuery);
-    }
-  }
-  
-  private void queryTextField(ICustomFieldFilterQuery filterQuery, String field, String filter) {
-    if (StringUtils.isNotBlank(filter)) {
-      filterQuery.textField(field).isLikeIgnoreCase(String.format(LIKE_FORMAT, filter));
-    }
-  }
-  
-  private void queryStringField(ICustomFieldFilterQuery filterQuery, String field, String filter) {
-    if (StringUtils.isNotBlank(filter)) {
-      filterQuery.stringField(field).isLikeIgnoreCase(String.format(LIKE_FORMAT, filter));
-    }
-  }
-  
+  @SuppressWarnings("unchecked")
   private void queryFilters(CaseQuery query) {
-    var states = new ArrayList<CaseBusinessState>();
-    for (ColumnModel column : columns) {
-      String field = column.getField();
-      String configuredFilter = column.getFilter();
-      List<String> configuredFilterList = column.getFilterList();
-      String configuredFilterFrom = column.getFilterFrom();
-      String configuredFilterTo = column.getFilterTo();
-      
-      String userFilter = column.getUserFilter();
-      List<String> userFilterList = column.getUserFilterList();
-      String userFilterFrom = column.getUserFilterFrom();
-      String userFilterTo = column.getUserFilterTo();
-      
-      List<String> filterList = CollectionUtils.isNotEmpty(userFilterList) && !isInConfiguration ? userFilterList : configuredFilterList;
-      String filterFrom = StringUtils.isNotBlank(userFilterFrom) && !isInConfiguration ? userFilterFrom : configuredFilterFrom;
-      String filterTo = StringUtils.isNotBlank(userFilterTo) && !isInConfiguration ? userFilterTo : configuredFilterTo;
-      
-      if (equals(DashboardStandardCaseColumn.NAME, column)) {
-        queryName(query, configuredFilter);
-        if (!isInConfiguration) {
-          queryName(query, userFilter);
-        }
-      } else if (equals(DashboardStandardCaseColumn.DESCRIPTION, column)) {
-        queryDescription(query, configuredFilter);
-        if (!isInConfiguration) {
-          queryDescription(query, userFilter);
-        }
-      } else if (equals(DashboardStandardCaseColumn.STATE, column)) {
-        for (String state : filterList) {
-          states.add(CaseBusinessState.valueOf(state.toUpperCase()));
-        }
-      } else if (equals(DashboardStandardCaseColumn.CREATOR, column)) {
-        queryCreator(query, filterList);
-      } else if (equals(DashboardStandardCaseColumn.OWNER, column)) {
-        queryOwner(query, filterList);
-      } else if (equals(DashboardStandardCaseColumn.CATEGORY, column)) {
-        queryCategory(query, filterList);
-      } else if (equals(DashboardStandardCaseColumn.CREATED, column)) {
-        Date from = Dates.parse(filterFrom);
-        Date to = Dates.parse(filterTo);
-        queryCreatedDate(query, from, to);
-      } else if (equals(DashboardStandardCaseColumn.FINISHED, column)) {
-        Date from = Dates.parse(filterFrom);
-        Date to = Dates.parse(filterTo);
-        queryFinishedDate(query, from, to);
-      } else if (equals(DashboardStandardCaseColumn.APPLICATION, column)) {
-        queryApplications(query, filterList);
-      } else if (column.getFilterType() == DashboardFilterType.SELECTION || CollectionUtils.isNotEmpty(filterList)) {
-        queryCustomFieldSelection(query, field, filterList);
-      } else {
-        if (StringUtils.isNotBlank(configuredFilter) || StringUtils.isNotBlank(userFilter) || StringUtils.isNotBlank(filterFrom) || StringUtils.isNotBlank(filterTo)) {
-          CaseQuery subQuery = applyFilter(column, field, configuredFilter, userFilter, filterFrom, filterTo);
-          query.where().and(subQuery);
-        }
-      }
+    List<DashboardFilter> allFilters =
+        new ArrayList<>(CollectionUtils.union(filters, userFilters));
+    if (CollectionUtils.isNotEmpty(allFilters)) {
+      queryComplexFilter(query, allFilters);
     }
-    queryStates(query, states);
   }
 
-  private boolean equals(DashboardStandardCaseColumn caseColumn, ColumnModel column) {
-    return StringUtils.equals(caseColumn.getField(), column.getField());
-  }
-
-  private CaseQuery applyFilter(ColumnModel column, String field, String configuredFilter, String userFilter,
-      String filterFrom, String filterTo) {
-    CaseQuery subQuery = CaseQuery.create();
-    ICustomFieldFilterQuery filterQuery = subQuery.where().customField();
-    if (column.isNumber()) {
-      if (StringUtils.isNotBlank(filterFrom)) {
-        Number from = Double.parseDouble(filterFrom.toString());
-        filterQuery.numberField(field).isGreaterOrEqualThan(from);
-      }
- 
-      if (StringUtils.isNotBlank(filterTo)) {
-        Number to = Double.parseDouble(filterTo.toString());
-        filterQuery.numberField(field).isLowerOrEqualThan(to);
-      }
-    } else if (column.isDate()) {
-      Date from = Dates.parse(filterFrom);
-      Date to = Dates.parse(filterTo);
-      if (from != null) {
-        filterQuery.timestampField(field).isGreaterOrEqualThan(from);
-      }
- 
-      if (to != null) {
-        filterQuery.timestampField(field).isLowerOrEqualThan(DateUtils.addDays(to, 1));
-      }
-    } else if (column.isText()) {
-      queryTextField(filterQuery, field, configuredFilter);
-      if (!isInConfiguration) {
-        queryTextField(filterQuery, field, userFilter);
-      }
-    } else {
-      queryStringField(filterQuery, field, configuredFilter);
-      if (!isInConfiguration) {
-        queryStringField(filterQuery, field, userFilter);
-      }
-    }
-    return subQuery;
-  }
-  
-  private void queryFinishedDate(CaseQuery query, Date from, Date to) {
-    if (from != null || to != null) {
+  private void appendQuickSearchQuery(CaseQuery query) {
+    if (StringUtils.isNotBlank(this.quickSearchKeyword)) {
       CaseQuery subQuery = CaseQuery.create();
-      if (from != null) {
-        subQuery.where().endTimestamp().isGreaterOrEqualThan(from);
-      }
 
-      if (to != null) {
-        subQuery.where().endTimestamp().isLowerOrEqualThan(DateUtils.addDays(to, 1));
-      }
-      query.where().and(subQuery);
-    }
-  }
+      List<CaseColumnModel> quickSearchColumns = columns.stream()
+          .filter(col -> Optional.ofNullable(col.getQuickSearch()).orElse(false)).collect(Collectors.toList());
 
-  private void queryOwner(CaseQuery query, List<String> owners) {
-    if (CollectionUtils.isNotEmpty(owners)
-        && GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
-      CaseQuery subQuery = CaseQuery.create();
-      IFilterQuery filterQuery = subQuery.where();
-      for (String owner : owners) {
-        filterQuery.or().ownerName().isEqual(owner);
-      }
+      if (CollectionUtils.isNotEmpty(quickSearchColumns)) {
+        for (ColumnModel column : quickSearchColumns) {
+          DashboardStandardTaskColumn columnEnum = DashboardStandardTaskColumn.findBy(column.getField());
+          if (columnEnum != null) {
+            appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectStandandFieldToQuickSearchQuery(columnEnum));
+          } else {
+            appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column));
+          }
+        }
 
-      query.where().and(subQuery);
+        query.where().and(subQuery);
+      }
     }
   }
   
-  private void queryApplications(CaseQuery query, List<String> applications) {
-    if (CollectionUtils.isNotEmpty(applications)) {
-      CaseQuery subQuery = CaseQuery.create();
-      IFilterQuery filterQuery = subQuery.where();
-      for (String app : applications) {
-        final Optional<IApplication> appFindByName = IApplicationRepository.instance().findByName(app);
-        if (appFindByName.isPresent()) {
-          filterQuery.or().applicationId().isEqual(appFindByName.get().getId());
-        }
+  private void appendQuickSearchCaseQueryByDashboardFilter(CaseQuery query, DashboardFilter filter) {
+    FilterField filterField = FilterFieldFactory.findBy(filter.getField());
+    if (filterField != null) {
+      CaseQuery filterQuery = filterField.generateFilterQuery(filter);
+      if (filterQuery != null) {
+        query.where().or(filterQuery);
       }
-      query.where().and(subQuery);
     }
   }
-
+  
+  private DashboardFilter selectStandandFieldToQuickSearchQuery(DashboardStandardTaskColumn columnEnum) {
+    return switch (columnEnum) {
+      case APPLICATION -> buildQuickSearchToDashboardFilter(columnEnum.getField(), FilterOperator.IN, DashboardColumnType.STANDARD);
+      default -> buildQuickSearchToDashboardFilter(columnEnum.getField(), FilterOperator.CONTAINS, DashboardColumnType.STANDARD);
+    };
+  }
+  
+  private DashboardFilter selectCustomFieldToQuickSearchQuery(ColumnModel column) {
+    return buildQuickSearchToDashboardFilter(column.getField(), FilterOperator.CONTAINS, DashboardColumnType.CUSTOM);
+  }
+  
+  private DashboardFilter buildQuickSearchToDashboardFilter(String columnField, FilterOperator operator, DashboardColumnType type) {
+    DashboardFilter filter = new DashboardFilter();
+    filter.setField(columnField);
+    filter.setFilterType(type);
+    filter.setOperator(operator);
+    filter.setValues(List.of(this.quickSearchKeyword));
+    return filter;
+  }
+  
   public String getSortField() {
     return sortField;
   }
@@ -292,11 +143,11 @@ public class DashboardCaseSearchCriteria {
   public void setSortDescending(boolean sortDescending) {
     this.sortDescending = sortDescending;
   }
-  
+
   public boolean isInConfiguration() {
     return isInConfiguration;
   }
-  
+
   public void setInConfiguration(boolean isInConfiguration) {
     this.isInConfiguration = isInConfiguration;
   }
@@ -402,8 +253,32 @@ public class DashboardCaseSearchCriteria {
   public List<CaseColumnModel> getColumns() {
     return columns;
   }
-  
+
   public void setColumns(List<CaseColumnModel> columns) {
     this.columns = columns;
+  }
+
+  public List<DashboardFilter> getFilters() {
+    return filters;
+  }
+
+  public void setFilters(List<DashboardFilter> filters) {
+    this.filters = filters;
+  }
+
+  public List<DashboardFilter> getUserFilters() {
+    return userFilters;
+  }
+
+  public void setUserFilters(List<DashboardFilter> userFilters) {
+    this.userFilters = userFilters;
+  }
+  
+  public String getQuickSearchKeyword() {
+    return quickSearchKeyword;
+  }
+
+  public void setQuickSearchKeyword(String quickSearchKeyword) {
+    this.quickSearchKeyword = quickSearchKeyword;
   }
 }

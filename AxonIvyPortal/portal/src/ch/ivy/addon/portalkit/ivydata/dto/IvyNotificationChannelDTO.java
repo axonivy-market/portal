@@ -15,7 +15,7 @@ public class IvyNotificationChannelDTO {
 
   private final NotificationChannel channel;
   private final Map<Event, IvyNotificationChannelSubcriptionDTO> subscriptions;
-
+  
   private IvyNotificationChannelDTO(NotificationChannel channel,
       Map<Event, IvyNotificationChannelSubcriptionDTO> subscriptions) {
     this.channel = channel;
@@ -50,11 +50,7 @@ public class IvyNotificationChannelDTO {
     return subscriptions.get(event.getEvent());
   }
 
-  public void setSubscriptionIconAndTitle(IvyNotificationEventDTO event) {
-    setSubscriptionIconAndTitle(event.getEvent());
-  }
-
-  private void setSubscriptionIconAndTitle(Event event) {
+  public void setSubscriptionIconAndTitle(Event event) {
     var subscription = subscriptions.get(event);
     if (subscription != null) {
       var state = subscription.getState();

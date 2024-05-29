@@ -49,7 +49,7 @@
         icon="si si-add"
         actionListener="#{dashboardDetailModificationBean.initSampleWidgets()}"
         update="new-widget-dialog"
-        process="@this"
+        process="@this" global="false"
         oncomplete="PF('new-widget-dialog').show()" styleClass="u-hidden-md-down" />
     </ui:define>
 
@@ -84,6 +84,7 @@
           <p:commandButton id="reset-dashboard-button" widgetVar="reset-dashboard-button"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
             actionListener="#{dashboardDetailModificationBean.restore()}"
+            process="@this"
             update="grid-stack dashboard-title-container dashboard-header-action"
             icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
             onclick="disabledResetDashboardActions()"/>
@@ -96,7 +97,10 @@
         <ui:param name="appendTo" value="@(body)" />
         <ui:param name="iconClass" value="si si-delete-1" />
         <ui:param name="iconStyleClass" value="portal-dialog-error-icon portal-dialog-icon" />
-        <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/removeWidgetHeader', [dashboardDetailModificationBean.deleteWidget.name])}" />
+        <ui:param name="headerText"
+          value="#{dashboardDetailModificationBean.deleteWidget.name eq null 
+        ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/removeWidgetHeaderWithoutWidgetName')
+        : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/removeWidgetHeader', [dashboardDetailModificationBean.deleteWidget.name])}" />
         <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/removeWidgetMessage')}" />
 
         <ui:define name="dialogFooter">
@@ -105,7 +109,8 @@
           <p:commandButton id="remove-widget-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
             actionListener="#{dashboardDetailModificationBean.removeWidget()}"
             icon="#{visibilityBean.generateButtonIcon('si si-remove-circle')}"
-            oncomplete="PF('remove-widget-dialog').hide(); removeWidgetContent('#{dashboardDetailModificationBean.deleteWidget.id}'); return false;"/>
+            process="@this"
+            oncomplete="PF('remove-widget-dialog').hide(); updateDashboardWidget(); return false;"/>
         </ui:define>
       </ui:decorate>
     </ui:define>

@@ -10,12 +10,16 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
+import com.axonivy.portal.selenium.common.ComplexFilterHelper;
+import com.axonivy.portal.selenium.common.FilterOperator;
+import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CustomWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
@@ -28,10 +32,14 @@ import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.ProcessViewerWidgetNewDashBoardPage;
-import com.axonivy.portal.selenium.page.StatisticEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.SelenideElement;
+
+import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
 public class DashboardScreenshotTest extends ScreenshotBaseTest {
@@ -46,6 +54,9 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
+
+    redirectToRelativeLink(grantDashboardWritePublicPermissionUrl);
+    redirectToRelativeLink(grantDashboardWriteOwnPermissionUrl);
   }
 
   @Test
@@ -110,6 +121,8 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
 
   @Test
   public void screenshotConfigureNotificationsWidget() throws IOException {
+    redirectToRelativeLink(createTestingTasksUrl);
+    redirectToRelativeLink(createTestingTasksUrl);
     redirectToDashboardConfiguration();
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
     configPage.selectPublicDashboardType();
@@ -151,7 +164,11 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "dashboard");
 
     // Take screenshot of widget filter panel
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.openWidgetFilter(1),
+    homePage.openWidgetFilter(1);
+    ComplexFilterHelper.addFilter("Creator", FilterOperator.CURRENT_USER);
+    ComplexFilterHelper.addFilter("Name", FilterOperator.CONTAINS);
+    ComplexFilterHelper.inputValueOnLatestFilter(FilterValueType.TEXT, "Leave", "Request");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.getWidgetFilter(1),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-filter", new ScreenshotMargin(20));
     homePage.closeWidgetFilter(1);
 
@@ -197,8 +214,11 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "dashboard-multi-language-widget-dialog", new ScreenshotMargin(20));
 
     taskConfigurationPage.cancelMultiLanguageDialogWhenAddWidget();
+    taskConfigurationPage.openFilter();
+    taskConfigurationPage.addFilter("name", FilterOperator.EMPTY);
     ScreenshotUtils.captureElementScreenshot(taskConfigurationPage.getConfigurationFilter(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-configuration");
+    taskConfigurationPage.closeFilter();
     WebElement columnManagementDialog = taskConfigurationPage.openColumnManagementDialog();
     ScreenshotUtils.captureElementScreenshot(columnManagementDialog,
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-table-configuration");
@@ -218,8 +238,13 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     // Take screenshots of Case widget configuration dialog
     detailsEditPage.addWidget();
     CaseEditWidgetNewDashBoardPage caseConfigurationPage = detailsEditPage.addNewCaseWidget();
-    ScreenshotUtils.captureElementScreenshot(caseConfigurationPage.getConfigurationFilter(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-configuration");
+    caseConfigurationPage.openFilter();
+    ComplexFilterHelper.addFilter("Creator", FilterOperator.CURRENT_USER);
+    ComplexFilterHelper.addFilter("Name", FilterOperator.CONTAINS);
+    ComplexFilterHelper.inputValueOnLatestFilter(FilterValueType.TEXT, "Leave", "Request");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseConfigurationPage.getConfigurationFilter(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-configuration", new ScreenshotMargin(20));
+    caseConfigurationPage.closeFilter();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseConfigurationPage.openColumnManagementDialog(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-table-configuration", new ScreenshotMargin(20));
 
@@ -292,20 +317,37 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
   }
 
   @Test
-  public void screenshotStatisticChartWidget() throws IOException {
-    ScreenshotUtils.maximizeBrowser();
-    addPublicWidget(NewDashboardDetailsEditPage.STATISTIC_WIDGET);
-    StatisticEditWidgetNewDashboardPage statisticPage = new StatisticEditWidgetNewDashboardPage();
-    statisticPage.selectFirstChart();
-    statisticPage.clickPreviewButton();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(statisticPage.getConfigurationDialog(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "statistic-chart-widget-configuration", new ScreenshotMargin(20));
+  public void screenshotAddClientStatisticWidget() throws IOException {
+    // Take screenshot of Add new widget dialog
+    redirectToDashboardConfiguration();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    DashboardModificationPage editPage = new DashboardModificationPage();
+    NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
+    detailsEditPage.waitPageLoaded();
+    WebElement newWidgetDialog = detailsEditPage.addWidget();
+    detailsEditPage.collapseStandardWidgets();
+    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(newWidgetDialog,
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "add-client-statistic-widget", new ScreenshotMargin(20));
+  }
 
-    statisticPage.save();
+  @Test
+  public void screenshotTaskByPriorityClientStatisticChartWidget() throws IOException {
+    ScreenshotUtils.maximizeBrowser();
+
+    addPublicStatisticWidget(NewDashboardDetailsEditPage.TASK_BY_PRIORITY);
+    NewDashboardDetailsEditPage newDashboard = new NewDashboardDetailsEditPage();
+    newDashboard.waitPageLoaded();
+
+    SelenideElement clientStatisticWidget = newDashboard.getStatisticWidgetConfigurationDialog();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "edit-statistic-widget");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(clientStatisticWidget,
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-by-priority-statistic-widget-configuration", new ScreenshotMargin(20));
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     homePage = new NewDashboardPage();
-    ScreenshotUtils.captureElementScreenshot(homePage.waitAndGetStatisticChart(0),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "statistic-chart-widget");
+    ScreenshotUtils.captureElementScreenshot(homePage.waitAndGetClientStatisticChart(0),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-by-priority-statistic-chart-widget");
   }
 
   @Test
@@ -351,6 +393,136 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     translation.findElement(By.cssSelector("span.ui-icon-closethick")).click();
     newDashboardPage.findTranslationButton(tabIndex);
   }
+  
+  @Test
+  public void screenshotComplexFilter() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
+    homePage = new NewDashboardPage();
+    CaseWidgetNewDashBoardPage caseWidget = homePage.selectCaseWidget("Your Cases");
+    caseWidget.openFilterWidget();
+    caseWidget.addFilter("Name", FilterOperator.CONTAINS);
+    caseWidget.clickOnFilterOperator();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseWidget.getConfigurationFilter(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "filter-operator-dropdown", new ScreenshotMargin(25));
+    
+    redirectToDashboardConfiguration();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    DashboardModificationPage editPage = new DashboardModificationPage();
+    NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
+    detailsEditPage.waitForCaseWidgetLoaded();
+    detailsEditPage.editWidgetById(1); 
+    CaseEditWidgetNewDashBoardPage caseConfig = new CaseEditWidgetNewDashBoardPage();
+    caseConfig.waitPreviewTableLoaded();
+    ScreenshotUtils.executeDecorateJs("highlightShowFilterButton();");
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "edit-widget-show-filter");
+    ScreenshotUtils.executeDecorateJs("removeHighlightShowFilterButton();");
+    resizeBrowserTo2kResolution();
+    caseConfig.openColumnManagementDialog();
+    caseConfig.addCustomColumnByName("InvoiceQualityNumber");
+    caseConfig.saveColumn();
+    caseConfig.waitPreviewTableLoaded();
+    caseConfig.openFilter();
+    caseConfig.addFilter("Creator", FilterOperator.CURRENT_USER);
+    caseConfig.addFilter("Name", FilterOperator.CONTAINS);
+    caseConfig.inputValueOnLatestFilter(FilterValueType.TEXT, "Ticket", "Request");
+    
+    caseConfig.addFilter("State", null);
+    caseConfig.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN", "DONE");
+    
+    caseConfig.addFilter("Invoice quality number", FilterOperator.BETWEEN);
+    caseConfig.inputValueOnLatestFilter(FilterValueType.NUMBER_BETWEEN, 1, 40);
+    
+    caseConfig.closeFilter();
+    caseConfig.save();
+    
+    showNewDashboard();
+    homePage = new NewDashboardPage();
+    caseWidget = homePage.selectCaseWidget("Your Cases");
+    caseWidget.openFilterWidget();
+
+    caseWidget.addFilter("Created Date", FilterOperator.WITHIN_LAST);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.WITHIN, "2", "Year(s)");
+    
+    caseWidget.addFilter("Description", FilterOperator.CONTAINS);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Alex", "Nam", "Mike");
+    
+    caseWidget.removeFocusFilterDialog();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseWidget.getConfigurationFilter(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-task-widget-filter-combine", new ScreenshotMargin(20));
+  }
+  
+  @Test
+  public void screenshotComplexFilterTaskWidget() throws IOException {
+    createJSonFile("dashboard-has-one-task-widget.json", PortalVariable.DASHBOARD.key);
+    login(TestAccount.ADMIN_USER);
+    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
+    homePage = new NewDashboardPage();
+    TaskWidgetNewDashBoardPage taskWidget = homePage.selectTaskWidget("Your Tasks");
+    ScreenshotUtils.maximizeBrowser();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Description", FilterOperator.EMPTY);
+    taskWidget.clickOnFilterOperator(0);
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskWidget.getConfigurationFilter(),ScreenshotUtils.NEW_DASHBOARD_FOLDER + "filter-operator-dropdown", new ScreenshotMargin(25));
+    taskWidget.removeFilter(0);
+    taskWidget.removeFilter(0);
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Annual Leave Request");
+    taskWidget.addFilter("Description", FilterOperator.NOT_EMPTY);
+    taskWidget.addFilter("State", null);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
+    ScreenshotUtils.captureElementScreenshot(taskWidget.getFilterOverlayPanel(0),ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-widget-complex-filter-configuration");
+  }
+  
+  @Test
+  public void screenshotSaveWidgetFilter() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
+    homePage = new NewDashboardPage();
+    CaseWidgetNewDashBoardPage caseWidget = homePage.selectCaseWidget("Your Cases");
+    resizeBrowserTo2kResolution();
+    caseWidget.openFilterWidget();
+    caseWidget.addFilter("Name", FilterOperator.CONTAINS);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Nam", "Mike");
+    
+    caseWidget.saveFilter("Filter Set A");
+    caseWidget.selectSavedFilter("Filter Set A");
+    
+    caseWidget.saveFilter("Filter Set B");
+    
+    ScreenshotUtils.captureElementScreenshot(homePage.getWidgetFilter(1),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-save-filter");
+    
+    homePage.clickOnManageFilterLink();
+    homePage.getTotalSavedFilterInManageFilterDialog().shouldBe(CollectionCondition.size(2), DEFAULT_TIMEOUT);
+    homePage.closeManageFilterDialog();
+    caseWidget.openFilterWidget();
+    homePage.clickOnManageFilterLink();
+    
+    ScreenshotUtils.captureElementScreenshot(homePage.getManageFilterDialog(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-filter-management"); //#delete-saved-filter-form\:quick-filter-table > div.ui-datatable-scrollable-body
+  }
+  
+  @Test
+  public void screenshotFilterExample() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
+    homePage = new NewDashboardPage();
+    CaseWidgetNewDashBoardPage caseWidget = homePage.selectCaseWidget("Your Cases");
+    caseWidget.openFilterWidget();
+    caseWidget.addFilter("Name", FilterOperator.CONTAINS);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Mike");
+    
+    caseWidget.addFilter("State", null);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
+    
+    caseWidget.addFilter("Created Date", FilterOperator.TODAY);
+    
+    caseWidget.removeFocusFilterDialog();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseWidget.getConfigurationFilter(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "complex-filter-example", new ScreenshotMargin(10));
+  }
 
   private void redirectToDashboardConfiguration() {
     redirectToRelativeLink("portal/1549F58C18A6C562/PortalDashboardConfiguration.ivp");
@@ -366,5 +538,16 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     detailsEditPage.waitPageLoaded();
     detailsEditPage.addWidget();
     detailsEditPage.addWidgetByName(widgetName);
+  }
+
+  private void addPublicStatisticWidget(String widgetName) {
+    redirectToDashboardConfiguration();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    DashboardModificationPage editPage = new DashboardModificationPage();
+    NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
+    detailsEditPage.waitPageLoaded();
+    detailsEditPage.addWidget();
+    detailsEditPage.addStatisticWidgetByName(widgetName);
   }
 }

@@ -245,7 +245,7 @@
                                           value="#{subscription.stateAsString}">
                                           <p:ajax event="change" global="false"
                                              update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"
-                                             listener="#{channel.setSubscriptionIconAndTitle(event)}" />
+                                             listener="#{channel.setSubscriptionIconAndTitle(event.event)}" />
                                        </p:triStateCheckbox>
                                     </div>
                                  </p:columns>
