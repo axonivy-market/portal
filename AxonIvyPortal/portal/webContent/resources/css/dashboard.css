@@ -1001,7 +1001,7 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .dashboard-compact-process-item.process-start-list-item-name-text {
-  width: calc(100% - 40px);
+  width: auto;
 }
 
 .dashboard-tasks--table .relevant-tasks__more {
