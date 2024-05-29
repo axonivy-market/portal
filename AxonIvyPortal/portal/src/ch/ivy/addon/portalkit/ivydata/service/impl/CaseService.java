@@ -123,10 +123,7 @@ public class CaseService{
 
     if (com.axonivy.portal.components.util.PermissionUtils
         .checkCaseReadAllOwnRoleInvolvedPermission()) {
-      IUser user = Ivy.session().getSessionUser();
-      for (IRole role : user.getRoles()) {
-        caseQuery.where().or().roleIsInvolved(role);
-      }
+        caseQuery.where().or().currentUserOrHisRolesAreInvolved();
     }
 
     return caseQuery;
