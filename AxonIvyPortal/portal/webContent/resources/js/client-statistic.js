@@ -385,6 +385,12 @@ class ClientCartesianChart extends ClientCanvasChart {
       //If the target type for the Y axis is 'time', get average time from sub aggregate of the result.
       const chartTypeConfig = this.getChartTypeConfig();
       let data = chartTypeConfig?.yValue ? this.processYValue(result, chartTypeConfig?.yValue) : result;
+
+      // Because processYValue removes bucket which has empty key, if the returned result is empty, render empty chart
+      if (data.length == 0) {
+        return this.renderEmptyChart(chart, config.additionalConfig);
+      }
+
       let stepSize = chartTypeConfig?.yValue === 'time' ? 200 : 2;
       let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
 
@@ -477,6 +483,11 @@ class ClientBarChart extends ClientCartesianChart {
       // Update y value in case y value is time
       if (config.barChartConfig?.yValue === 'time') {
         result = this.processYValue(result, config.barChartConfig.yValue);
+
+        // Because processYValue removes bucket which has empty key, if the returned result is empty, render empty chart
+        if (result.length == 0) {
+          return this.renderEmptyChart(chart, config.additionalConfig);
+        }
       }
       let data = result;
       this.clientChartConfig.data.labels = result.map(bucket => this.formatChartLabel(bucket.key));
@@ -496,6 +507,7 @@ class ClientBarChart extends ClientCartesianChart {
     this.clientChartConfig.update("none");
   }
 }
+
 
 // Class for line chart
 class ClientLineChart extends ClientCartesianChart {
