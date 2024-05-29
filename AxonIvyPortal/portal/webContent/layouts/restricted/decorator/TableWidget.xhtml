@@ -47,16 +47,16 @@
         placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}">
         <p:ajax delay="800" listener="#{widget.updateQuickSearchKeyword()}"
           onstart="if (isPressedSpecialKeys(event) == true) { return false; }"
-          process="@(this)" partialSubmit="true" global="false"
-          event="keyup" update="#{p:resolveFirstComponentWithId(panelId, view).clientId}" />
+          event="keyup" process="@this"
+          update="#{componentToUpdateOnResetFilter}" />
 
         <p:ajax delay="100" listener="#{widget.updateQuickSearchKeyword()}"
-          process="@(this)" partialSubmit="true" global="false"
-          event="cut" update="#{p:resolveFirstComponentWithId(panelId, view).clientId}" />
+          event="cut" process="@this"
+          update="#{componentToUpdateOnResetFilter}" />
 
         <p:ajax delay="100" listener="#{widget.updateQuickSearchKeyword()}"
-          process="@(this)" partialSubmit="true" global="false"
-          event="paste" update="#{p:resolveFirstComponentWithId(panelId, view).clientId}" />
+          event="paste" process="@this"
+          update="#{componentToUpdateOnResetFilter}" />
       </p:inputText>
       </h:form>
     </h:panelGroup>
