@@ -1220,7 +1220,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .compact-processes-container .process-start-list-item-name,
 .compact-default-processes-container .process-start-list-item-name {
   padding-left: 0 !important;
-  width: calc(100% - 75px) !important;
 }
 
 .process-start-list-item-action {
@@ -1259,9 +1258,8 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .process-item-action-container {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  position: absolute;
   vertical-align: middle;
   height: 100%;
   right: 18px;
@@ -1364,7 +1362,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   margin: auto;
   margin-bottom: 12px;
   padding: 0;
-  padding-right: 40px;
+  padding-right: 15px;
 }
 
 .add-external-link-icon {
