@@ -148,6 +148,10 @@ public class BaseTest {
   protected String createCustomActionCaseExampleUrl =
       "portal-developer-examples/18B4240043B838C5/CreateCustomActionCaseExample.ivp";
   protected String grantPortalPermission = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
+  protected String testCaseListPermission = "internalSupport/14B2FC03D2E87141/TestCaseListPermissions.ivp";
+  protected String createDataCreatedDate = "portalKitTestHelper/18B031C59C3C7814/CreateDataForCreatedDate.ivp";
+  protected String createDataForStatisticWidget = "InternalSupport/14B2FC03D2E87141/CategoriedLeaveRequest.ivp";
+  
   protected String grantCaseReadAllOwnRoleInvolvedPermission = "PortalKitTestHelper/14DE09882B540AD5/grantCaseReadAllOwnRoleInvolvedPermission.ivp";
   protected String denyCaseReadAllOwnRoleInvolvedPermission = "PortalKitTestHelper/14DE09882B540AD5/denyCaseReadAllOwnRoleInvolvedPermission.ivp";
 

@@ -82,6 +82,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS: Axon Ivy process
     DashboardWidgetType:
       CASE: Case widget
+      CLIENT_STATISTIC: Statistic widget
       CUSTOM: Custom widget
       NEW: New widget
       NEWS: News feed
@@ -400,6 +401,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewParticipant: View participants
   common:
     All: All
+    And: and
     BusinessCaseInformation: Business Case Information
     CollapseAll: Collapse all
     ExpandAll: Expand all
@@ -517,6 +519,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noRecordsFound: No records found.
     notAvailable: N/A
     note: NOTE
+    numberFromBiggerThanTo: '''To'' must be bigger than ''From''.'
     numberOfSelectedFilter: selected filters
     ok: Ok
     'on': 'on'
@@ -756,6 +759,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoData: No data
     NoSavedFilterMessage: No saved filter found. Try to create a new by click on Save Filter button
     NoWidgetAvailable: There are no widgets.
+    QuickSearch: Quick search
+    QuickSearchInfo: You can customize the Quick Search's scope in the widgets column management. It searches based on "contains," but be mindful of performance when adding numerous columns.
     RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
     SaveNewWidgetFilterHeader: Save a new widget filter
     SavedFilterHeader: Saved filters
@@ -779,7 +784,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     actionSelection: Action selection
     addField: Add field
     addWidget: Add widget
-    availableFilters: Available Filters
     canWorkOn: Can work on
     caseList: Case List
     caseListIntroduction: This widget displays relevant case information according to defined settings
@@ -855,6 +859,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}_{1}.{2}
     field: Field
     fieldIsAdded: The {0} field is added
+    filters: Filters
     iconMessage:
       caseWidget:
         BEACH_PALM_SUNBED: You are awesome - all cases are done. Lean back and enjoy.
@@ -891,6 +896,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       noPermissionToSee: You do not have the required permission to start this process.
       noProcessSelected: Please select a process
     removeWidgetHeader: Remove the "{0}" widget
+    removeWidgetHeaderWithoutWidgetName: Remove the widget
     removeWidgetMessage: Do you really want to remove it?
     reorder:
       dashboardType: Dashboard type
@@ -902,6 +908,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     startATask: Start task
     statisticChartIntroduction: This widget displays available statistic charts.
     statisticChartWidget: Statistic chart
+    statisticWidgets: Statistic Widgets
     switchToViewMode: View Mode
     tasWidgetkInfo:
       expireToday: Expire today
@@ -1003,7 +1010,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   logoutSetting:
     logout: Logout
   mobile:
-    MenuName: Mobile app
+    MenuName: Connect Mobile App
     QRCodeDescription: To connect your Axon Ivy Mobile App, please scan this QR Code and enter your credentials in the inside the app.
   noteHistory:
     author: Author
@@ -1585,6 +1592,10 @@ Dialogs:
             LinkCopied: Link copied!
         dashboard:
           component:
+            CaseWidgetConfiguration:
+              AddFilter: Add filter
+            ClientStatisticWidget:
+              NoPermissionChartMessage: You do not have the required permission to see this chart.
             DashboardImportDetails:
               FileInfomation: File Infomation
               ImportPrivate: Import Private Dashboard
@@ -1616,6 +1627,9 @@ Dialogs:
               NotificationWidgetConfiguration: Notification widget configuration
               NotificationWidgetDescription: This widget displays all Notifications based on your notification settings.
               WidgetFilter: Widget Filter
+            TaskWidgetConfiguration:
+              AddFilter: Add filter
+              ResetFilter: Reset filter
   components:
     CaseDocument:
       FileDate: Modified at
@@ -1733,6 +1747,72 @@ Labels:
   AppendTheTask: Append the task
   CreateNewDashboard: Create new dashboard
   Enums:
+    DashboardStandardCaseColumn:
+      ACTIONS: Actions
+      APPLICATION: Application
+      CATEGORY: Category
+      CREATED: Created Date
+      CREATOR: Creator
+      DESCRIPTION: Description
+      FINISHED: Finished Date
+      ID: Id
+      NAME: Name
+      OWNER: Case Owner
+      STATE: State
+    DashboardStandardTaskColumn:
+      ACTIONS: Actions
+      APPLICATION: Application
+      CATEGORY: Category
+      CREATED: Created Date
+      DESCRIPTION: Description
+      EXPIRY: Expiry
+      ID: Id
+      NAME: Name
+      PRIORITY: Priority
+      RESPONSIBLE: Responsible
+      START: Start
+      STATE: State
+    FilterOperator:
+      AFTER: Is After
+      BEFORE: Is Before
+      BETWEEN: Between
+      CONTAINS: Contains
+      CURRENT: Current
+      CURRENT_USER: Current user
+      CURRENT_USER_CAN_WORK_ON: Current user can work on
+      EMPTY: Is Empty
+      END_WITH: Ends With
+      EQUAL: Equal
+      GREATER: Greater
+      GREATER_OR_EQUAL: Greater or equal
+      IN: In
+      IS: Is
+      IS_NOT: Is Not
+      LAST: Within the last
+      LESS: Less
+      LESS_OR_EQUAL: Less or equal
+      NEXT: Within the next
+      NOT_BETWEEN: Not Between
+      NOT_CONTAINS: Doesn’t Contain
+      NOT_EMPTY: Is Not Empty
+      NOT_END_WITH: Doesn’t end with
+      NOT_EQUAL: Not equal
+      NOT_IN: Not In
+      NOT_START_WITH: Doesn’t start with
+      NO_CATEGORY: No Category
+      START_WITH: Starts With
+      TODAY: Today
+      YESTERDAY: Yesterday
+    FilterPeriodType:
+      DAY: Day
+      MONTH: Month
+      Plural:
+        DAY: Day(s)
+        MONTH: Month(s)
+        WEEK: Week(s)
+        YEAR: Year(s)
+      WEEK: Week
+      YEAR: Year
     SearchScopeCaseField:
       CUSTOM: Custom string fields
       DESCRIPTION: Description

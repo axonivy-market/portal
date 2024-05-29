@@ -1,0 +1,120 @@
+[ {
+  "id" : "673e6e542ba14331aa27c0c8977bc812",
+  "templateId" : "create-from-scratch",
+  "titles" : [ {
+    "locale" : "ak",
+    "value" : "Dashboard"
+  }, {
+    "locale" : "be",
+    "value" : "Dashboard"
+  }, {
+    "locale" : "yue",
+    "value" : "Dashboard"
+  }, {
+    "locale" : "en",
+    "value" : "Dashboard"
+  }, {
+    "locale" : "fr",
+    "value" : "Dashboard"
+  }, {
+    "locale" : "de",
+    "value" : "Dashboard"
+  }, {
+    "locale" : "is",
+    "value" : "Dashboard"
+  }, {
+    "locale" : "lo",
+    "value" : "Dashboard"
+  }, {
+    "locale" : "mi",
+    "value" : "Dashboard"
+  }, {
+    "locale" : "pl",
+    "value" : "Dashboard"
+  }, {
+    "locale" : "sat",
+    "value" : "Dashboard"
+  }, {
+    "locale" : "es",
+    "value" : "Dashboard"
+  }, {
+    "locale" : "vi",
+    "value" : "Dashboard"
+  }, {
+    "locale" : "zu",
+    "value" : "Dashboard"
+  } ],
+  "icon" : "si-network-share",
+  "widgets" : [ {
+    "type" : "client-statistic",
+    "id" : "client_statistic_ce83809afd3b464799007293fe8047fa",
+    "layout" : {
+      "w" : 3,
+      "h" : 4,
+      "x" : 9,
+      "y" : 0
+    },
+    "chartId" : "1"
+  }, {
+    "type" : "client-statistic",
+    "id" : "client_statistic_812629d550df4f928324d155facb9016",
+    "layout" : {
+      "w" : 6,
+      "h" : 4,
+      "x" : 3,
+      "y" : 0
+    },
+    "chartId" : "2"
+  }, {
+    "type" : "client-statistic",
+    "id" : "client_statistic_c1e0eea72f2441f6a3f0146b7db45da2",
+    "layout" : {
+      "w" : 4,
+      "h" : 4,
+      "x" : 3,
+      "y" : 4
+    },
+    "chartId" : "3"
+  }, {
+    "type" : "client-statistic",
+    "id" : "client_statistic_0696d45b9aae4ec2b39fb85d03e1e783",
+    "layout" : {
+      "w" : 5,
+      "h" : 4,
+      "x" : 7,
+      "y" : 4
+    },
+    "chartId" : "5"
+  }, {
+    "type" : "client-statistic",
+    "id" : "client_statistic_4c14f19f0cd74c4d85e5b7b359ae240b",
+    "layout" : {
+      "w" : 3,
+      "h" : 3,
+      "x" : 0,
+      "y" : 0
+    },
+    "chartId" : "7"
+  }, {
+    "type" : "client-statistic",
+    "id" : "client_statistic_5ffe2f26ecf44904a0d138124b5db13b",
+    "layout" : {
+      "w" : 3,
+      "h" : 3,
+      "x" : 0,
+      "y" : 3
+    },
+    "chartId" : "10"
+  }, {
+    "type" : "client-statistic",
+    "id" : "client_statistic_323654ddd0724cbaaabb81b231069ebb",
+    "layout" : {
+      "w" : 3,
+      "h" : 3,
+      "x" : 0,
+      "y" : 6
+    },
+    "chartId" : "11"
+  } ],
+  "permissions" : [ "Everybody" ]
+} ]

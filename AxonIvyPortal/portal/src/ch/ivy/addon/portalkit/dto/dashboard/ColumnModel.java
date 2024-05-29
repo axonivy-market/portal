@@ -35,4 +35,9 @@ public class ColumnModel extends AbstractColumn implements Serializable {
   @JsonIgnore
   @SuppressWarnings("unused")
   public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {}
+  
+  @JsonIgnore
+  public boolean canQuickSearch() {
+    return false;
+  }
 }

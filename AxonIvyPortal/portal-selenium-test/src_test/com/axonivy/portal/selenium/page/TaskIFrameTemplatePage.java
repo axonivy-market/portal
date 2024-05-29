@@ -15,6 +15,7 @@ import org.openqa.selenium.WebElement;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -239,14 +240,14 @@ public class TaskIFrameTemplatePage extends TemplatePage {
   }
 
   public void inputValue(String employee, String from, String to, String representation) {
-    $(By.id("leave-request:fullname")).sendKeys(employee);
+    $(By.id("leave-request:fullname")).shouldBe(Condition.appear).shouldBe(Condition.editable).sendKeys(employee);
     $(By.id("leave-request:substitute")).sendKeys(representation);
     $(By.id("leave-request:from_input")).sendKeys(from);
     $(By.id("leave-request:to_input")).sendKeys(to);
   }
 
   public void inputField(String cssSelector, String value) {
-    $(cssSelector).sendKeys(value);
+    $(cssSelector).shouldBe(Condition.appear).shouldBe(Condition.editable).sendKeys(value);
   }
 
   public TaskWidgetPage clickSubmitButton() {

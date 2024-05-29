@@ -42,6 +42,9 @@ public class DashboardTaskWidgetFilterConverter implements IJsonConverter{
   }
 
   private void convertToTaskBusinessState(JsonNode statesNode) {
+    if (Objects.isNull(statesNode)) {
+      return;
+    }
     List<TextNode> newStates = new ArrayList<>();
     
     statesNode.elements().forEachRemaining(node -> {

@@ -17,6 +17,7 @@ public class SecurityMemberDTOMapper {
     SecurityMemberDTO result = new SecurityMemberDTO();
     
     result.setId(userDTO.getId());
+    result.setSecurityMemberId(userDTO.getSecurityMemberId());
     result.setDisplayName(userDTO.getDisplayName());
     result.setMemberName(userDTO.getMemberName());
     result.setName(userDTO.getName());
@@ -31,6 +32,7 @@ public class SecurityMemberDTOMapper {
     SecurityMemberDTO result = new SecurityMemberDTO();
     
     result.setId(roleDTO.getId());
+    result.setSecurityMemberId(roleDTO.getSecurityMemberId());
     result.setDisplayName(roleDTO.getDisplayName());
     result.setMemberName(roleDTO.getMemberName());
     result.setName(roleDTO.getName());
