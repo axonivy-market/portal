@@ -33,7 +33,9 @@
   <c:set var="renderFilter" value="#{isReadOnlyMode and (empty isRenderFilter ? 'true': isRenderFilter)}"/>
   <c:set var="renderInfo" value="#{isReadOnlyMode and (empty isRenderInfo ? 'true': isRenderInfo)}"/>
   <c:set var="renderExpandCollapse" value="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"/>
-
+  
+    <f:event listener="#{dashboardBean.setSearchScope(widget)}" type="preRenderComponent" />
+  
   <h:panelGroup layout="block" class="widget__header" rendered="#{not isHeaderHidden}">
     <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">#{widget.name}</h:panelGroup>
     <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
@@ -45,6 +47,7 @@
       <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
       <p:inputText id="quick-search-input-#{index}" value="#{widget.quickSearchKeyword}"
         placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}">
+        <p:tooltip styleClass="quick-search-input-tooltip"  for="quick-search-input-#{index}" value="#{dashboardBean.searchScope}" position="top" />
         <p:ajax delay="800" listener="#{widget.updateQuickSearchKeyword()}"
           onstart="if (isPressedSpecialKeys(event) == true) { return false; }"
           event="keyup" process="@this"
@@ -56,7 +59,7 @@
 
         <p:ajax delay="100" listener="#{widget.updateQuickSearchKeyword()}"
           event="paste" process="@this"
-          update="#{componentToUpdateOnResetFilter}" />
+          update="#{componentToUpdateOnResetFilter}" />          
       </p:inputText>
       </h:form>
     </h:panelGroup>
