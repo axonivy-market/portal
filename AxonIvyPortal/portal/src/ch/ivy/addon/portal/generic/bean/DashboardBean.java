@@ -3,6 +3,7 @@ package ch.ivy.addon.portal.generic.bean;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -437,45 +438,27 @@ public class DashboardBean implements Serializable {
   }
 
   public void setSearchScope(DashboardWidget widget) {
-    String searchScope = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearchScope");
-    if (widget instanceof TaskDashboardWidget) {
-      TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
-      this.searchScope = getSearchScopeFromTaskWidget(searchScope, taskWidget);
+    if (widget instanceof TaskDashboardWidget taskWidget) {
+      this.searchScope = getSearchScopeFromWidget(taskWidget.getFilterableColumns());
     }
     
-    if (widget instanceof CaseDashboardWidget) {
-      CaseDashboardWidget caseWidget = (CaseDashboardWidget) widget;
-      this.searchScope = getSearchScopeFromCaseWidget(searchScope, caseWidget);
+    if (widget instanceof CaseDashboardWidget caseWidget) {
+      this.searchScope = getSearchScopeFromWidget(caseWidget.getFilterableColumns());
     }
   }
 
-  private String getSearchScopeFromTaskWidget(String searchScope, TaskDashboardWidget taskWidget) {
-    List<String> fieldList = taskWidget.getFilterableColumns().stream()
-        .filter(col -> col.getQuickSearch() != null && col.getQuickSearch().equals(Boolean.TRUE))
+  private String getSearchScopeFromWidget(List<ColumnModel> filterableColumns) {
+    List<String> fieldList = filterableColumns.stream().filter(col -> Boolean.TRUE.equals(col.getQuickSearch()))
         .map(ColumnModel::getHeaderText).collect(Collectors.toList());
     StringBuilder fieldNameList = appendFieldNameList(fieldList);
-    searchScope = searchScope + fieldNameList.toString();
-    return searchScope;
-  }
-
-  private String getSearchScopeFromCaseWidget(String searchScope, CaseDashboardWidget caseWidget) {
-    List<String> fieldList = caseWidget.getFilterableColumns().stream()
-        .filter(col -> col.getQuickSearch() != null && col.getQuickSearch().equals(Boolean.TRUE))
-        .map(ColumnModel::getHeaderText).collect(Collectors.toList());
-    StringBuilder fieldNameList = appendFieldNameList(fieldList);
-    searchScope = searchScope + fieldNameList.toString();
-    return searchScope;
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearchScope",
+        Arrays.asList(fieldNameList.toString()));
   }
 
   private StringBuilder appendFieldNameList(List<String> fieldList) {
     StringBuilder fieldNameList = new StringBuilder();
-    if (fieldList.size() > 0) {
-      for (int i = 0; i < fieldList.size(); i++) {
-        fieldNameList.append(fieldList.get(i));
-        if (i == (fieldList.size() - 1))
-          break; // avoid adding comma at the end
-        fieldNameList.append(", ");
-      }
+    if (!fieldList.isEmpty()) {
+      fieldNameList.append(String.join(", ", fieldList));
     } else {
       fieldNameList.append("none");
     }
