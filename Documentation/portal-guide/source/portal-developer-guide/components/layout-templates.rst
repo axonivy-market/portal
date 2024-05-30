@@ -101,16 +101,12 @@ Inside your UI, you can configure these parameters as follows; they will be rend
 ::
 
    <script>
-      // Follow one of these formats to set process steps:
+      // Set the process steps directly as Array.
       window.processSteps = ["Create Investment Request", "Approve Investment Request"];
-      window.processSteps = "Create Investment Request,Approve Investment Request";
 
-      // If process steps are set in HTML dialog logic or Java code, convert it to one of above formats by jstl (following code) or Java code
-      // Include this namespace xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions" to the "html" tag
-      // Use this code if process steps are a Java String list
-      window.processSteps = "#{fn:join(data.steps.toArray(), ',')}";
-      // Use this code if process steps are a Java String array
-      window.processSteps = "#{fn:join(data.steps, ',')}";
+      // If the process steps are set in HTML dialog logic or java code, convert it to JSON format
+      // Use this code if the process steps are a Java String list
+      window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)};
 
       // Current process step could be a number or String:
       window.currentProcessStep = 0;
@@ -137,9 +133,6 @@ Inside your UI, you can configure these parameters as follows; they will be rend
 .. note::
        Do not use or refer to this template in your Dialog. This will be done automatically by Portal if you use our IFrame Approach.
        Refer to IFrameTaskTemplate.xhtml in the portal project to see detailed information about how to use and pass parameters.
-
-       When you define parameter processSteps, please make sure that you add the jsp function tag to your XHTML file:
-       ``xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions``
 
 In case your project has a navigation button that does not complete a task, e.g Cancel, to
 
