@@ -248,7 +248,7 @@ public class TaskWidgetPage extends TemplatePage {
     return expectedNumber;
   }
 
-  public void waitTaskAppearThenClick(int index) {
+  private void waitTaskAppearThenClick(int index) {
     SelenideElement taskStartElement =
         findElementById(taskWidgetId + ":task-list-scroller").$$(By.className("start-task-action")).get(index);
     if (taskStartElement.getAttribute("id").contains(":task-action:resume-task-action-component")) {
