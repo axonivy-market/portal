@@ -80,6 +80,8 @@ public class DashboardBean implements Serializable {
   private List<DashboardTemplate> dashboardTemplates;
   protected String dashboardUrl;
   protected List<Dashboard> importedDashboards;
+  private String searchScope;
+
 
   @PostConstruct
   public void init() {
@@ -432,5 +434,55 @@ public class DashboardBean implements Serializable {
 
   public boolean canEnableQuickSearch(DashboardWidget widget) {
     return widget.getType().canEnableQuickSearch();
+  }
+
+  public void setSearchScope(DashboardWidget widget) {
+    String searchScope = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearchScope");
+    if (widget instanceof TaskDashboardWidget) {
+      TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
+      this.searchScope = getSearchScopeFromTaskWidget(searchScope, taskWidget);
+    }
+    
+    if (widget instanceof CaseDashboardWidget) {
+      CaseDashboardWidget caseWidget = (CaseDashboardWidget) widget;
+      this.searchScope = getSearchScopeFromCaseWidget(searchScope, caseWidget);
+    }
+  }
+
+  private String getSearchScopeFromTaskWidget(String searchScope, TaskDashboardWidget taskWidget) {
+    List<String> fieldList = taskWidget.getFilterableColumns().stream()
+        .filter(col -> col.getQuickSearch() != null && col.getQuickSearch().equals(Boolean.TRUE))
+        .map(ColumnModel::getHeaderText).collect(Collectors.toList());
+    StringBuilder fieldNameList = appendFieldNameList(fieldList);
+    searchScope = searchScope + fieldNameList.toString();
+    return searchScope;
+  }
+
+  private String getSearchScopeFromCaseWidget(String searchScope, CaseDashboardWidget caseWidget) {
+    List<String> fieldList = caseWidget.getFilterableColumns().stream()
+        .filter(col -> col.getQuickSearch() != null && col.getQuickSearch().equals(Boolean.TRUE))
+        .map(ColumnModel::getHeaderText).collect(Collectors.toList());
+    StringBuilder fieldNameList = appendFieldNameList(fieldList);
+    searchScope = searchScope + fieldNameList.toString();
+    return searchScope;
+  }
+
+  private StringBuilder appendFieldNameList(List<String> fieldList) {
+    StringBuilder fieldNameList = new StringBuilder();
+    if (fieldList.size() > 0) {
+      for (int i = 0; i < fieldList.size(); i++) {
+        fieldNameList.append(fieldList.get(i));
+        if (i == (fieldList.size() - 1))
+          break; // avoid adding comma at the end
+        fieldNameList.append(", ");
+      }
+    } else {
+      fieldNameList.append("none");
+    }
+    return fieldNameList;
+  }
+
+  public String getSearchScope() {
+    return this.searchScope;
   }
 }
