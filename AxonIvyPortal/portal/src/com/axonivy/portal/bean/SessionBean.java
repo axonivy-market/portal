@@ -2,6 +2,7 @@ package com.axonivy.portal.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
+import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.dto.PortalSessionInfo;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -21,6 +23,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivyteam.ivy.environment.Ivy;
 
 @SessionScoped
 @ManagedBean
@@ -28,7 +31,6 @@ public class SessionBean implements Serializable {
 
   private static final long serialVersionUID = 7126184987391824473L;
   private List<PortalSessionInfo> sessionInfos;
-  private String sessionInfosJson;
 
   public static final long TIME_BEFORE_LOST_SESSION = 3
       * DateUtils.MILLIS_PER_MINUTE; // 3 minutes
@@ -92,6 +94,16 @@ public class SessionBean implements Serializable {
   }
 
   public void keepSession() throws JsonProcessingException {
+    keepSession(true);
+  }
+
+  public void keepSession(boolean shouldCheckOtherTabs)
+      throws JsonProcessingException {
+    if (Ivy.session().isSessionUserUnknown()) {
+      sessionInfos = null;
+      return;
+    }
+
     if (sessionInfos == null) {
       sessionInfos = new ArrayList<>();
     }
@@ -108,10 +120,18 @@ public class SessionBean implements Serializable {
         newInfos.add(info);
       }
     }
+
     newInfos.add(newTabInteraction);
-    sessionInfosJson = BusinessEntityConverter.getObjectMapper()
-        .writeValueAsString(newInfos);
     setSessionInfos(newInfos);
+
+    String jsonValue = shouldCheckOtherTabs
+        ? BusinessEntityConverter.entityToJsonValue(getSessionInfos())
+        : BusinessEntityConverter
+          .entityToJsonValue(Arrays.asList(newTabInteraction));
+
+    PrimeFaces.current()
+        .executeScript("PortalSessionWarning.getTabInteractionsAsJsonCmd('"
+            + jsonValue + "')");
   }
 
   public void unloadSession() throws JsonProcessingException {
@@ -137,13 +157,5 @@ public class SessionBean implements Serializable {
 
   public void setSessionInfos(List<PortalSessionInfo> sessionInfos) {
     this.sessionInfos = sessionInfos;
-  }
-
-  public String getSessionInfosJson() {
-    return sessionInfosJson;
-  }
-
-  public void setSessionInfosJson(String sessionInfosJson) {
-    this.sessionInfosJson = sessionInfosJson;
   }
 }

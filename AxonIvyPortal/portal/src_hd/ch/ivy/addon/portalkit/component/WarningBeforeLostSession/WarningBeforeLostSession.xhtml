@@ -78,19 +78,15 @@
   </ui:decorate>
 
   <h:form>
-    <h:panelGroup id="session-info-container" styleClass="js-session-info-container">
-      <h:inputHidden id="session-info" value="#{sessionBean.sessionInfosJson}" />
-    </h:panelGroup>
-
     <p:remoteCommand id="logout-and-show-dialog" name="logoutAndShowDialog" actionListener="#{logic.logout(task)}"
       onstart="PF('timeout-warning-dialog').hide()" oncomplete="PF('timeout-dialog').show()" />
 
-    <p:remoteCommand name="keepSession" global="false" process="@this" update="session-info-container"
+    <p:remoteCommand name="keepSession" global="false" process="@this"
       actionListener="#{sessionBean.keepSession()}"
-      oncomplete="PortalSessionWarning.resetCounterAndTimeout(); PortalSessionWarning.getTabInteractionsAsJsonCmd();" />
+      oncomplete="PortalSessionWarning.resetCounterAndTimeout();" />
 
-    <p:remoteCommand name="keepSessionWithoutCheckTimeout" global="false" process="@this" update="session-info-container"
-      actionListener="#{sessionBean.keepSession()}"
+    <p:remoteCommand name="keepSessionWithoutCheckTimeout" global="false" process="@this"
+      actionListener="#{sessionBean.keepSession(false)}"
       oncomplete="PortalSessionWarning.resetCounterAndTimeout();" />
 
     <p:remoteCommand name="unloadTabSession" global="false" process="@this" update="@this"

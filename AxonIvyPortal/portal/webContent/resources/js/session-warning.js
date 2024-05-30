@@ -148,9 +148,7 @@ var PortalSessionWarning = function() {
     keepSessionWithoutCheckTimeout([{name:'tabId', value:tabId}, {name : 'title', value:document.title}]);
   }
 
-  getTabInteractionsAsJsonCmd = function() {
-    resetCounterAndTimeout;
-    var sessionInfos = $('.js-session-info-container').find('input').val();
+  getTabInteractionsAsJsonCmd = function(sessionInfos) {
     if (sessionInfos == '') {
       logoutAndShowDialog();
     }
@@ -218,5 +216,7 @@ var PortalSessionWarning = function() {
 
 // Wire up the events as soon as the DOM tree is ready
 $(document).ready(function() {
-  window.onbeforeunload = PortalSessionWarning.unloadTabSessionCmd;
+  $(window).bind("beforeunload", function() {
+    PortalSessionWarning.unloadTabSessionCmd();
+  });
 });
