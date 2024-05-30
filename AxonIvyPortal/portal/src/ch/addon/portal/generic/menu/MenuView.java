@@ -127,8 +127,8 @@ public class MenuView implements Serializable {
   }
 
   private boolean isExternalLink(SubMenuItem subMenuItem) {
-    return subMenuItem.getMenuKind() == MenuKind.EXTERNAL_LINK || subMenuItem.getMenuKind() == MenuKind.THIRD_PARTY
-        || !UrlUtils.isIvyUrl(subMenuItem.getLink());
+    return subMenuItem.getMenuKind() == MenuKind.EXTERNAL_LINK
+        || subMenuItem.getMenuKind() == MenuKind.THIRD_PARTY;
   }
 
   public boolean isShowLegacyUI() {
