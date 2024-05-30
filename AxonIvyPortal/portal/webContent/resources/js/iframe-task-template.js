@@ -183,19 +183,8 @@ const convertProcessSteps = processSteps => {
   // If the process steps is a valid array, convert to JSON
   if (Array.isArray(processSteps)) {
     return JSON.stringify(processSteps);
+  } else { // Compatible with Portal 8, process steps could be String
+    let stepsCompatibleWithPortal8 = processSteps.split(',');
+    return JSON.stringify(stepsCompatibleWithPortal8);
   }
-
-  // Regex for "a,b,c"
-  const onlyCommaRegex = /^[a-zA-Z0-9\s]+(,[a-zA-Z0-9\s]+)*$/;
-
-  // If process steps is a String in "a,b,c" format, split to array
-  // Then convert to JSON
-  if (onlyCommaRegex.test(processSteps)) {
-    const steps = processSteps.split(',');
-    const trimmedSteps = steps.map(item => item.trim());
-    return JSON.stringify(trimmedSteps);
-  }
-
-  // Otherwise return JSON of the process step
-  return JSON.stringify(processSteps);
 }

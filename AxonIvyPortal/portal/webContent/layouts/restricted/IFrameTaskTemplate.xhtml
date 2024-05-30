@@ -23,16 +23,12 @@
     <!-- caseId: ID of case to be displayed in case information -->
     <!-- PASS PARAMS TO THIS TEMPLATE VIA JAVASCRIPT IN YOUR HTML DIALOG: -->
     <!-- <script> -->
-    <!--   // Follow one of these formats to set process steps: -->
+    <!--   // Set process steps directly as Array. -->
     <!--   window.processSteps = ["Create Investment Request", "Approve Investment Request"]; -->
-    <!--   window.processSteps = "Create Investment Request,Approve Investment Request"; -->
     
-    <!--   // If process steps are set in HTML dialog logic or java code, convert it to one of above formats by jstl (following code) or java code -->
-    <!--   // Include this namespace xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions" to the "html" tag -->
+    <!--   // If process steps are set in HTML dialog logic or java code, convert it to JSON format -->
     <!--   // Use this code if process steps are a java String list -->
-    <!--   window.processSteps = "#{fn:join(data.steps.toArray(), ',')}"; -->
-    <!--   // Use this code if process steps are a java String array -->
-    <!--   window.processSteps = "#{fn:join(data.steps, ',')}"; -->
+    <!--   window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)}; -->
     
     <!--   // Current process step could be a number or String: -->
     <!--   window.currentProcessStep = 0; -->
@@ -53,9 +49,6 @@
            by send the case ID of that case. -->
     <!--   window.caseId = 123456; -->
     <!-- </script> -->
-
-    <!-- When define param processSteps, please make sure that you added jsp function tag to your XHTML file: -->
-    <!-- xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions -->
 
     <ui:param name="contentContainerStyleClass" value="task-frame-container js-task-frame-container" />
     <ui:param name="layoutContentStyleClass" value="frame-container" />

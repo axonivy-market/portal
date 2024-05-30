@@ -3,8 +3,8 @@ package ch.ivy.addon.portalkit.ivydata.dto;
 import java.util.List;
 
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
+import ch.ivy.addon.portalkit.bo.ItemByCategoryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
-import ch.ivy.addon.portalkit.bo.TaskCategoryStatistic;
 import ch.ivy.addon.portalkit.bo.TaskStateStatistic;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
@@ -17,8 +17,8 @@ public class IvyTaskResultDTO extends AbstractResultDTO {
   private PriorityStatistic priorityStatistic;
   private ExpiryStatistic expiryStatistic;
   private TaskStateStatistic taskStateStatistic;
-  private TaskCategoryStatistic taskCategoryStatistic;
-
+  private List<ItemByCategoryStatistic> itemByCategoryStatistic;
+  
   public List<ITask> getTasks() {
     return tasks;
   }
@@ -67,12 +67,12 @@ public class IvyTaskResultDTO extends AbstractResultDTO {
     this.taskStateStatistic = taskStateStatistic;
   }
 
-  public TaskCategoryStatistic getTaskCategoryStatistic() {
-    return taskCategoryStatistic;
+  public List<ItemByCategoryStatistic> getItemByCategoryStatistic() {
+    return itemByCategoryStatistic;
   }
 
-  public void setTaskCategoryStatistic(TaskCategoryStatistic taskCategoryStatistic) {
-    this.taskCategoryStatistic = taskCategoryStatistic;
+  public void setItemByCategoryStatistic(List<ItemByCategoryStatistic> itemByCategoryStatistic) {
+    this.itemByCategoryStatistic = itemByCategoryStatistic;
   }
 
 }

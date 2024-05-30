@@ -91,7 +91,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   private void initDashboardPermissions(Dashboard dashboard) {
     dashboard.setPermissionDTOs(Optional.ofNullable(dashboard)
         .map(Dashboard::getPermissions).orElse(new ArrayList<>()).stream()
-        .filter(Objects::nonNull).distinct().filter(Objects::nonNull)
+        .filter(Objects::nonNull).distinct()
         .map(permission -> findSecurityMemberDtoByName(permission))
         .collect(Collectors.toList()));
 

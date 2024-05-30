@@ -35,30 +35,11 @@ public class ExternalLink extends AbstractConfiguration {
   private List<String> defaultPermissions = new ArrayList<>();
   private String securityMemberId;
   private List<DisplayName> names;
-  private List<DisplayName> descriptions;;
+  private List<DisplayName> descriptions;
   
   public ExternalLink() {
-    IvyLanguage ivyLanguage = LanguageService.newInstance().findUserLanguages().getIvyLanguage();
-    if (CollectionUtils.isEmpty(names)) {
-      names = initDisplayName(ivyLanguage);
-    }
-    
-    if (CollectionUtils.isEmpty(descriptions)) {
-      descriptions = initDisplayName(ivyLanguage);
-    }        
   }
   
-  private List<DisplayName> initDisplayName(IvyLanguage ivyLanguage){
-    List<DisplayName> result = new ArrayList<>();
-    for (String language : ivyLanguage.getSupportedLanguages()) {
-      DisplayName newItem = new DisplayName();
-      newItem.setLocale(Locale.forLanguageTag(language));
-      newItem.setValue("");
-      result.add(newItem);
-    }
-    return result;
-  }
-
   public String getName() {
     return LanguageUtils.getLocalizedName(names, name);
   }
@@ -170,7 +151,22 @@ public class ExternalLink extends AbstractConfiguration {
   }
 
   public List<DisplayName> getNames() {
+    if (CollectionUtils.isEmpty(names)) {
+      IvyLanguage ivyLanguage = LanguageService.newInstance().findUserLanguages().getIvyLanguage();
+      names = initDisplayName(ivyLanguage);
+    }
     return names;
+  }
+  
+  private List<DisplayName> initDisplayName(IvyLanguage ivyLanguage){
+    List<DisplayName> result = new ArrayList<>();
+    for (String language : ivyLanguage.getSupportedLanguages()) {
+      DisplayName newItem = new DisplayName();
+      newItem.setLocale(Locale.forLanguageTag(language));
+      newItem.setValue("");
+      result.add(newItem);
+    }
+    return result;
   }
 
   public void setNames(List<DisplayName> names) {
@@ -178,6 +174,10 @@ public class ExternalLink extends AbstractConfiguration {
   }
 
   public List<DisplayName> getDescriptions() {
+    if (CollectionUtils.isEmpty(descriptions)) {
+      IvyLanguage ivyLanguage = LanguageService.newInstance().findUserLanguages().getIvyLanguage();
+      descriptions = initDisplayName(ivyLanguage);
+    }  
     return descriptions;
   }
 
