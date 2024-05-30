@@ -799,7 +799,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     QuickSearch: Quick Search
     QuickSearchCaution: Be mindful of performance when adding numerous columns.
     QuickSearchInfo: You can customize the Quick Search's scope in the widgets column management. It searches based on "contains," but be mindful of performance when adding numerous columns.
-    QuickSearchScope: 'Search Scope: '
+    QuickSearchScope: 'Search Scope: {0}'
     RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
     SaveNewWidgetFilterHeader: Save a new widget filter
     SavedFilterHeader: Saved filters

@@ -1616,3 +1616,7 @@ span.new-widget-dialog__icon.si {
 .quick-search-input-tooltip {
   height: 2.5rem;
 }
+
+.quick-search-infor-icon {
+  padding-left: 5%;
+}
