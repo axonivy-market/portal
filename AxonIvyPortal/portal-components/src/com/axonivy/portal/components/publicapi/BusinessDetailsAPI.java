@@ -59,7 +59,7 @@ public class BusinessDetailsAPI {
   private static void setToCustomField(BusinessDetailsDTO businessDetailDTO, String customField) {
     businessDetailDTO.getCase().customFields().stringField(CustomFields.BUSINESS_DETAILS).set(customField);
     businessDetailDTO.getCase().customFields().numberField(CustomFields.EMBED_IN_FRAME)
-        .set(businessDetailDTO.isEmbedInFrame() ? 0 : 1);
+        .set(businessDetailDTO.isEmbedInFrame() ? 1 : 0);
   }
 
   private static String createPageUrl(BusinessDetailsDTO businessDetailsDTO) {
