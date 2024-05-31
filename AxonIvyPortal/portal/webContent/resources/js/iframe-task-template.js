@@ -113,7 +113,6 @@ function checkUrl(iFrame, appName) {
   
   $(iFrame).on('load', function() {
     document.title = "redirect";    
-    return;
   });
 
   var path = getPortalIframePath(iFrame);
