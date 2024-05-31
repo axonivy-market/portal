@@ -3,6 +3,7 @@ package ch.ivy.addon.portal.generic.bean;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -81,6 +82,8 @@ public class DashboardBean implements Serializable {
   protected String dashboardUrl;
   protected List<Dashboard> importedDashboards;
   public String selectedDashboardName;
+  private String searchScope;
+
 
   @PostConstruct
   public void init() {
@@ -446,5 +449,37 @@ public class DashboardBean implements Serializable {
 
   public boolean canEnableQuickSearch(DashboardWidget widget) {
     return widget.getType().canEnableQuickSearch();
+  }
+
+  public void setSearchScope(DashboardWidget widget) {
+    if (widget instanceof TaskDashboardWidget taskWidget) {
+      this.searchScope = getSearchScopeFromWidget(taskWidget.getFilterableColumns());
+    }
+    
+    if (widget instanceof CaseDashboardWidget caseWidget) {
+      this.searchScope = getSearchScopeFromWidget(caseWidget.getFilterableColumns());
+    }
+  }
+
+  private String getSearchScopeFromWidget(List<ColumnModel> filterableColumns) {
+    List<String> fieldList = filterableColumns.stream().filter(col -> Boolean.TRUE.equals(col.getQuickSearch()))
+        .map(ColumnModel::getHeaderText).collect(Collectors.toList());
+    StringBuilder fieldNameList = appendFieldNameList(fieldList);
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearchScope",
+        Arrays.asList(fieldNameList.toString()));
+  }
+
+  private StringBuilder appendFieldNameList(List<String> fieldList) {
+    StringBuilder fieldNameList = new StringBuilder();
+    if (!fieldList.isEmpty()) {
+      fieldNameList.append(String.join(", ", fieldList));
+    } else {
+      fieldNameList.append("none");
+    }
+    return fieldNameList;
+  }
+
+  public String getSearchScope() {
+    return this.searchScope;
   }
 }
