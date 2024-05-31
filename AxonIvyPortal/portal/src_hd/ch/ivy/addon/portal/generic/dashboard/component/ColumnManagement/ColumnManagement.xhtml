@@ -33,7 +33,14 @@
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}">
           #{column.headerText}
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}" width="90" styleClass="u-text-align-center">
+        <p:column id="quick-search-header" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}" width="120" styleClass="u-text-align-center">
+          <f:facet name="header">
+          <h:panelGroup layout="block">
+            <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}</span>
+            <h:outputText id="quick-search-infor-icon" styleClass="si si-information-circle quick-search-infor-icon"/>
+          </h:panelGroup>
+            <p:tooltip for="quick-search-infor-icon" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearchCaution')}"></p:tooltip>
+          </f:facet>
           <h:panelGroup layout="block" id="quick-search-checkbox-panel"
             rendered="#{column.canQuickSearch()}">
             <p:commandLink id="toggle-quick-search" styleClass="ui-selectbooleancheckbox ui-chkbox ui-widget" process="@this"
