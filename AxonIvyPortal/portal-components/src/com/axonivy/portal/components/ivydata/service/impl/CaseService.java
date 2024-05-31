@@ -11,8 +11,6 @@ import com.axonivy.portal.components.ivydata.service.ICaseService;
 import com.axonivy.portal.components.util.PermissionUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.IRole;
-import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -87,10 +85,7 @@ public class CaseService implements ICaseService {
     }
 
     if (PermissionUtils.checkCaseReadAllOwnRoleInvolvedPermission()) {
-      IUser user = Ivy.session().getSessionUser();
-      for (IRole role : user.getRoles()) {
-        caseQuery.where().or().roleIsInvolved(role);
-      }
+      caseQuery.where().or().currentUserOrHisRolesAreInvolved();
     }
 
     return caseQuery;
