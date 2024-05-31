@@ -30,6 +30,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 @SessionScoped
 public class MasterDataBean implements Serializable {
 
+  private static final String DEFAULT_APPLICATION_NAME = "Axon Ivy";
   private static final String PORTAL_NAME = " - Portal - ";
   private static final long serialVersionUID = 1L;
   private static final String APPLICATION_NAME = GlobalVariable.APPLICATION_NAME.getKey();
@@ -110,8 +111,12 @@ public class MasterDataBean implements Serializable {
     PrimeFaces.current().ajax().update(GrowlMessageUtils.PORTAL_GLOBAL_GROWL);
   }
 
-  public String getPageTitle() {
+  public String getPortalApplicationName() {
+    return PORTAL_NAME + getApplicationName();
+  }
+
+  public String getApplicationName() {
     String applicationName = Ivy.var().get(APPLICATION_NAME);
-    return PORTAL_NAME + applicationName;
+    return applicationName.isBlank() ? DEFAULT_APPLICATION_NAME : applicationName;
   }
 }
