@@ -30,8 +30,9 @@ import ch.ivyteam.ivy.environment.Ivy;
 @SessionScoped
 public class MasterDataBean implements Serializable {
 
-  private static final String DEFAULT_APPLICATION_NAME = "Axon Ivy";
-  private static final String PORTAL_NAME = " - Portal - ";
+  private static final String DEFAULT_APPLICATION_NAME =
+      Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/defaultApplicationName");
+  private static final String PORTAL_NAME = Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalName/PortalName");
   private static final long serialVersionUID = 1L;
   private static final String APPLICATION_NAME = GlobalVariable.APPLICATION_NAME.getKey();
 
@@ -112,7 +113,7 @@ public class MasterDataBean implements Serializable {
   }
 
   public String getPortalApplicationName() {
-    return PORTAL_NAME + getApplicationName();
+    return String.join(" - ", PORTAL_NAME, getApplicationName());
   }
 
   public String getApplicationName() {

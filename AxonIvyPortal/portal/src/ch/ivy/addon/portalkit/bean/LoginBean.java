@@ -3,20 +3,19 @@ package ch.ivy.addon.portalkit.bean;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ViewScoped
 public class LoginBean implements Serializable {
-  @ManagedProperty(value = "masterDataBean")
   private MasterDataBean masterDataBean;
 
   public LoginBean() {
-    masterDataBean = new MasterDataBean();
+    masterDataBean = (MasterDataBean) ManagedBeans.get("masterDataBean");
   }
 
   private static final long serialVersionUID = 2771794439843278846L;
