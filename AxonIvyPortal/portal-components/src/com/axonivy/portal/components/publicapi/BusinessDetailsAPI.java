@@ -32,8 +32,14 @@ public class BusinessDetailsAPI {
    * @param businessDetailsDTO BusinessDetailsDTO
    */
   public static void create(BusinessDetailsDTO businessDetailsDTO) {
+    String customField;
     String pageUrl = createPageUrl(businessDetailsDTO);
-    setToCustomField(businessDetailsDTO, pageUrl);
+    if (detectExternalLink(pageUrl)) {
+      customField = pageUrl;
+    } else {
+      customField = IWebStartableAPI.findIWebStartableByProcessRelativeLink(pageUrl).getId();
+    }
+    setToCustomField(businessDetailsDTO, customField);
   }
   
   /**
@@ -50,8 +56,10 @@ public class BusinessDetailsAPI {
     create(businessDetailsDTO);
   }
   
-  private static void setToCustomField(BusinessDetailsDTO businessDetailDTO, String casePageUrl) {
-    businessDetailDTO.getCase().customFields().stringField(CustomFields.BUSINESS_DETAILS).set(casePageUrl);
+  private static void setToCustomField(BusinessDetailsDTO businessDetailDTO, String customField) {
+    businessDetailDTO.getCase().customFields().stringField(CustomFields.BUSINESS_DETAILS).set(customField);
+    businessDetailDTO.getCase().customFields().numberField(CustomFields.EMBED_IN_FRAME)
+        .set(businessDetailDTO.isEmbedInFrame() ? 0 : 1);
   }
 
   private static String createPageUrl(BusinessDetailsDTO businessDetailsDTO) {
@@ -59,16 +67,17 @@ public class BusinessDetailsAPI {
     if (detectExternalLink(businessDetailsDTO.getPath())) {
       casePageUrl = businessDetailsDTO.getPath();
     } else {
-      String processPath = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(businessDetailsDTO.getPath());
+      String processPath =
+          ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(businessDetailsDTO.getPath());
       if (StringUtils.isEmpty(processPath)) {
         throw new PortalException(String.format("Cannot find process path [%s].", businessDetailsDTO.getPath()));
       }
-      casePageUrl = processPath + "?uuid=" + businessDetailsDTO.getCase().uuid() + (businessDetailsDTO.isEmbedInFrame() ? "&embedInFrame" : "");
+      casePageUrl = processPath;
     }
     return casePageUrl;
   }
 
   private static boolean detectExternalLink(String path) {
-    return StringUtils.startsWithIgnoreCase(path, "http");
+    return StringUtils.startsWithIgnoreCase(path, "http") || StringUtils.startsWithIgnoreCase(path, "https");
   }
 }
