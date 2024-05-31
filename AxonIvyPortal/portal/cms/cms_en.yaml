@@ -26,6 +26,8 @@ ch.ivy.addon.portal.generic:
   PortalCaseMenu:
     AllCases: All cases
     MyCases: My cases
+  PortalName:
+    PortalName: Portal
   PortalTaskMenu:
     AllTasks: All tasks
     GroupTasks: Group tasks
@@ -221,6 +223,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationtype:
       thirdPartyApplication: Third Party Application
     currentValue: Current value
+    defaultApplicationName: Axon Ivy
     defaultValue: Default value
     deleteAppConfirmation: Are you sure to delete this application ?
     dialogclosinginformation:

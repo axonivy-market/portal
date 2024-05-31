@@ -103,7 +103,6 @@ public class DashboardBean implements Serializable {
           .filter(displayName -> displayName.getLocale().equals(Ivy.session().getContentLocale())).findAny().get()
           .getValue();
       setSelectedDashboardName(selectedDashboardName);
-      selectedDashboardName = "Dashboard";
       initShareDashboardLink(selectedDashboard);
       // can not find dashboard by dashboard id session in view mode
       if (StringUtils.isBlank(selectedDashboardId)
