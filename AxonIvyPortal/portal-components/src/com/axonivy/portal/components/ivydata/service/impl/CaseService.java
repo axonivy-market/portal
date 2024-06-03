@@ -39,7 +39,6 @@ public class CaseService implements ICaseService {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       CaseQuery finalQuery = extendQuery(criteria);
       result.setTotalCases(countCases(finalQuery));
-     
       return result;
     });
   }
@@ -79,13 +78,14 @@ public class CaseService implements ICaseService {
       caseQuery = CaseQuery.businessCases();
     }
 
-    caseQuery.where().or().currentUserIsInvolved();
     if (isCaseOwnerEnabled) {
       caseQuery.where().or().currentUserIsOwner();
     }
 
     if (PermissionUtils.checkCaseReadAllOwnRoleInvolvedPermission()) {
       caseQuery.where().or().currentUserOrHisRolesAreInvolved();
+    } else {
+      caseQuery.where().or().currentUserIsInvolved();
     }
 
     return caseQuery;
