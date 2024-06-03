@@ -62,6 +62,7 @@ public class BaseTest {
   protected String createTestingCaseUrlForDefaultAdditionalCaseDetails = "internalSupport/14B2FC03D2E87141/DefaultAdditionalCaseDetails.ivp";
   protected String createTestingCaseContainOneTask = "internalSupport/14B2FC03D2E87141/CreateSupportTicket.ivp";
   protected String createTaskWithNotExistedActivatorUrl = "internalSupport/14B2FC03D2E87141/createTaskWithNotExistedActivator.ivp";
+  protected String createTaskForRoleInvolved = "InternalSupport/171E2BB0DB49C362/roleInvolved.ivp";
   protected String expressStartLink = "axonIvyExpress/15798655494F25E1/AxonIvyExpressWF.ivp";
   protected String cleanupDataLink = "portalKitTestHelper/1511A66AF619A768/cleanData.ivp";
   protected String createAlphaCompanyUrl = "portal-components-examples/1818977D467E3129/createAlphaCompany.ivp";
@@ -94,6 +95,8 @@ public class BaseTest {
   protected String processViewerExampleInFrameUrl = "portal-components-examples/1821592826979C20/showProcessViewerOfLeaveRequestUsingProcessLink.ivp";
   protected String defaultProcessImageSelectionExampleUrl = "portal-developer-examples/179D499523153784/start.ivp";
   protected String securityMemberNameAndAvatarExampleInFrameUrl = "/portal-components-examples/182A5FCAF7FC6B1A/showSecurityMemberNameAndAvatarExamples.ivp?embedInFrame";
+  protected String grantCaseReadAllOwnRoleInvolvedPermission = "PortalKitTestHelper/14DE09882B540AD5/grantCaseReadAllOwnRoleInvolvedPermission.ivp";
+  protected String denyCaseReadAllOwnRoleInvolvedPermission = "PortalKitTestHelper/14DE09882B540AD5/denyCaseReadAllOwnRoleInvolvedPermission.ivp";
 
   @Rule
   public ScreenshotFailedTestRule screenshotTestRule = new ScreenshotFailedTestRule();
