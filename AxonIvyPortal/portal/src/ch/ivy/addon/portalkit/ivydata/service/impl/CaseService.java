@@ -79,7 +79,6 @@ public class CaseService implements ICaseService {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       CaseQuery finalQuery = extendQuery(criteria);
       result.setTotalCases(countCases(finalQuery));
-     
       return result;
     });
   }
@@ -106,10 +105,17 @@ public class CaseService implements ICaseService {
   }
 
   private CaseQuery queryForCurrentUser(CaseQuery caseQuery) {
-    caseQuery.where().or().currentUserIsInvolved();
     if (GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
       caseQuery.where().or().currentUserIsOwner();
     }
+
+    if (com.axonivy.portal.components.util.PermissionUtils
+        .checkCaseReadAllOwnRoleInvolvedPermission()) {
+      caseQuery.where().or().currentUserOrHisRolesAreInvolved();
+    } else {
+      caseQuery.where().or().currentUserIsInvolved();
+    }
+
     return caseQuery;
   }
 
