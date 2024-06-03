@@ -93,15 +93,14 @@ public class CaseService implements ICaseService {
     }
 
     apps.forEach(app -> {
-      caseQuery.where().or().userIsInvolved(involvedUsername, app);
       if (criteria.isCaseOwnerEnabled()) {
         caseQuery.where().or().isOwner("#" + involvedUsername, app);
       }
 
       if (PermissionUtils.checkCaseReadAllOwnRoleInvolvedPermission()) {
-        Ivy.session().getSessionUser().getRoles().forEach(role -> {
-          caseQuery.where().or().roleIsInvolved(role);
-        });
+        caseQuery.where().or().currentUserOrHisRolesAreInvolved();
+      } else {
+        caseQuery.where().or().userIsInvolved(involvedUsername, app);
       }
     });
     return caseQuery;

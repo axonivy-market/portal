@@ -58,6 +58,11 @@ Ca0 @PushWFArc f38 '' #zField
 Ca0 @GridStep f40 '' #zField
 Ca0 @PushWFArc f41 '' #zField
 Ca0 @PushWFArc f39 '' #zField
+Ca0 @StartRequest f42 '' #zField
+Ca0 @EndTask f43 '' #zField
+Ca0 @GridStep f44 '' #zField
+Ca0 @PushWFArc f45 '' #zField
+Ca0 @PushWFArc f46 '' #zField
 >Proto Ca0 Ca0 CleanData #zField
 Ca0 f0 outLink cleanCompletedCases.ivp #txt
 Ca0 f0 inParamDecl '<> param;' #txt
@@ -506,6 +511,43 @@ Ca0 f40 @|StepIcon #fIcon
 Ca0 f41 expr out #txt
 Ca0 f41 64 428 64 466 #arcP
 Ca0 f39 64 510 64 547 #arcP
+Ca0 f42 outLink cleanDestroyedCases.ivp #txt
+Ca0 f42 inParamDecl '<> param;' #txt
+Ca0 f42 requestEnabled true #txt
+Ca0 f42 triggerEnabled false #txt
+Ca0 f42 callSignature cleanDestroyedCases() #txt
+Ca0 f42 persist false #txt
+Ca0 f42 startName 'Clean destroyed cases' #txt
+Ca0 f42 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Ca0 f42 showInStartList 1 #txt
+Ca0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>cleanDestroyedCases.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Ca0 f42 @C|.responsibility Everybody #txt
+Ca0 f42 211 355 26 26 -57 -34 #rect
+Ca0 f42 @|StartRequestIcon #fIcon
+Ca0 f43 211 547 26 26 14 0 #rect
+Ca0 f43 @|EndIcon #fIcon
+Ca0 f44 actionTable 'out=in;
+' #txt
+Ca0 f44 actionCode 'import ch.ivy.addon.portalkit.test.util.TaskUtils;
+TaskUtils.deleteDestroyedCases();' #txt
+Ca0 f44 security system #txt
+Ca0 f44 206 460 36 24 20 -2 #rect
+Ca0 f44 @|StepIcon #fIcon
+Ca0 f45 expr out #txt
+Ca0 f45 224 484 224 547 #arcP
+Ca0 f46 expr out #txt
+Ca0 f46 224 381 224 460 #arcP
 >Proto Ca0 .type portalKit_test.Data #txt
 >Proto Ca0 .processKind NORMAL #txt
 >Proto Ca0 0 0 32 24 18 0 #rect
@@ -548,3 +590,7 @@ Ca0 f36 mainOut f41 tail #connect
 Ca0 f41 head f40 mainIn #connect
 Ca0 f40 mainOut f39 tail #connect
 Ca0 f39 head f35 mainIn #connect
+Ca0 f42 mainOut f46 tail #connect
+Ca0 f46 head f44 mainIn #connect
+Ca0 f44 mainOut f45 tail #connect
+Ca0 f45 head f43 mainIn #connect
