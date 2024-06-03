@@ -61,7 +61,7 @@ public enum Variable {
   SHOW_AVATAR("Portal.ShowAvatar"),
   GLOBAL_SEARCH_BY_TASK_FIELDS("Portal.SearchScope.ByTaskFields"),
   GLOBAL_SEARCH_BY_CASE_FIELDS("Portal.SearchScope.ByCaseFields"),
-  DASHBOARD_MAIN_MENU_ENTRY("Portal.Dashboard.MainMenuEntry");
+  DASHBOARD_MAIN_MENU_ENTRY("Portal.Dashboard.MainMenuEntry"), APPLICATION_NAME("Portal.ApplicationName");
 
   private String key;
 
