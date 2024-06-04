@@ -1069,4 +1069,8 @@ public class NewDashboardPage extends TemplatePage {
     $("a[id$='user-settings-menu']").shouldBe(appear).click();
     $("ul[id='user-setting-container']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
+  
+  public ClientStatisticWidgetNewDashboardPage selectClientStatisticChartWidget(String chartName) {
+    return new ClientStatisticWidgetNewDashboardPage(chartName);
+  }
 }
