@@ -15,7 +15,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.CollectionCondition;
 
 
-@IvyWebTest( headless = false)
+@IvyWebTest
 public class ClientStatisticWidgetTest extends BaseTest {
   private NewDashboardPage newDashboardPage;
 
