@@ -14,7 +14,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.StatisticWidgetPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 
-@IvyWebTest
+@IvyWebTest( headless = false)
 public class StatisticWidgetTest extends BaseTest {
   private static final String TASK_BY_PRIORITY_DEFAULT_CHART_NAME = "Tasks by Priority";
   public static final String TASK_BY_PRIORITY_CHART_NAME = "Task by priority chart";

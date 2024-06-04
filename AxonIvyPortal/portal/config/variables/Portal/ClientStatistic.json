@@ -678,7 +678,7 @@
       }
     ],
     "icon": "si si-pie-line-graph",
-    "refreshInterval": 300,
+    "refreshInterval": 30,
     "numberChartConfig": {
       "suffixSymbol": ""
     },
