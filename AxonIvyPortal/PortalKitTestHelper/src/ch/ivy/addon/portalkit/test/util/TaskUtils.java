@@ -83,6 +83,19 @@ public class TaskUtils {
     });
   }
 
+  public static void deleteDestroyedCases() throws Exception {
+    Sudo.call(() -> {
+      IPropertyFilter<CaseProperty> noFilter = null;
+      IQueryResult<ICase> qr = Ivy.wf().findCases(noFilter, null, 0, -1, true);
+      for (ICase ivyCase : qr.getResultList()) {
+        if (ivyCase.getState() == CaseState.DESTROYED) {
+          Ivy.wf().deleteCompletedCase(ivyCase);
+        }
+      }
+      return null;
+    });
+  }
+
   public static void destroyTaskByCustomField(String customFieldName) throws Exception {
     Sudo.call(() -> {
       ITask selectedTask = Ivy.wf().getTaskQueryExecutor().createTaskQuery().where().customField()

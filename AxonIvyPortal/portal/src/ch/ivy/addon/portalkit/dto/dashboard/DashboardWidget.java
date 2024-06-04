@@ -65,7 +65,6 @@ public abstract class DashboardWidget implements Serializable {
   @JsonIgnore
   protected UserFilterCollection userFilterCollection;
 
-  private boolean enableQuickSearch;
   @JsonIgnore
   private String quickSearchKeyword;
 
@@ -309,19 +308,6 @@ public abstract class DashboardWidget implements Serializable {
     } else if (!id.equals(other.id))
       return false;
     return true;
-  }
-
-  public boolean isEnableQuickSearch() {
-    return enableQuickSearch;
-  }
-
-  public void setEnableQuickSearch(boolean enableQuickSearch) {
-    this.enableQuickSearch = enableQuickSearch;
-  }
-
-  @JsonIgnore
-  public boolean canEnableQuickSearch() {
-    return this.enableQuickSearch && this.getType().canEnableQuickSearch();
   }
 
   @JsonIgnore
