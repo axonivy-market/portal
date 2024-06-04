@@ -105,7 +105,7 @@
           <p:commandButton id="remove-widget-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
             actionListener="#{dashboardDetailModificationBean.removeWidget()}"
             icon="#{visibilityBean.generateButtonIcon('si si-remove-circle')}"
-            oncomplete="PF('remove-widget-dialog').hide(); removeWidgetContent('#{dashboardDetailModificationBean.deleteWidget.id}'); return false;"/>
+            oncomplete="PF('remove-widget-dialog').hide(); updateDashboardWidget(); return false;"/>
         </ui:define>
       </ui:decorate>
     </ui:define>

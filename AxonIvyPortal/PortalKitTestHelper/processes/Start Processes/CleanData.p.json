@@ -11,7 +11,8 @@
       "config" : {
         "callSignature" : "cleanCompletedCases",
         "outLink" : "cleanCompletedCases.ivp",
-        "startName" : "Clean completed cases"
+        "startName" : "Clean completed cases",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 96 },
@@ -75,7 +76,8 @@
       "config" : {
         "callSignature" : "CleanFavoriteProcess",
         "outLink" : "CleanFavoriteProcess.ivp",
-        "startName" : "(For autotest) Clean all favorite processes"
+        "startName" : "(For autotest) Clean all favorite processes",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 240, "y" : 96 },
@@ -135,7 +137,8 @@
       "config" : {
         "callSignature" : "cleanAbsencesAndSubstitues",
         "outLink" : "cleanAbsencesAndSubstitues.ivp",
-        "startName" : "(For autotest) Clean absences"
+        "startName" : "(For autotest) Clean absences",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 600, "y" : 96 },
@@ -212,7 +215,8 @@
       "name" : "cleanupGlobalVars",
       "config" : {
         "callSignature" : "cleanupGlobalVars",
-        "outLink" : "cleanupGlobalVars.ivp"
+        "outLink" : "cleanupGlobalVars.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 864, "y" : 96 },
@@ -249,7 +253,8 @@
       "config" : {
         "callSignature" : "cleanPortalPermissions",
         "outLink" : "cleanPortalPermissions.ivp",
-        "startName" : "Clean Portal permissions"
+        "startName" : "Clean Portal permissions",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 1056, "y" : 96 },
@@ -303,7 +308,8 @@
       "config" : {
         "callSignature" : "resetLanguageOfCurrentUser",
         "outLink" : "resetLanguageOfCurrentUser.ivp",
-        "startName" : "Reset language of current user"
+        "startName" : "Reset language of current user",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 1224, "y" : 96 },
@@ -397,7 +403,8 @@
       "config" : {
         "callSignature" : "cleanData",
         "outLink" : "cleanData.ivp",
-        "startName" : "Clean data"
+        "startName" : "Clean data",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 368 },
@@ -443,7 +450,8 @@
       "name" : "cleanNewsFeed.ivp",
       "config" : {
         "callSignature" : "cleanNewsFeed",
-        "outLink" : "cleanNewsFeed.ivp"
+        "outLink" : "cleanNewsFeed.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 240, "y" : 368 },
@@ -484,5 +492,42 @@
         "at" : { "x" : 240, "y" : 480 }
       },
       "connect" : { "id" : "f44", "to" : "f43" }
+    }, {
+      "id" : "f47",
+      "type" : "RequestStart",
+      "name" : "cleanDestroyedCases.ivp",
+      "config" : {
+        "callSignature" : "cleanDestroyedCases",
+        "outLink" : "cleanDestroyedCases.ivp",
+        "startName" : "Clean destroyed cases",
+        "case" : { }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 376 },
+        "labelOffset" : { "x" : 24, "y" : -14 }
+      },
+      "connect" : { "id" : "f51", "to" : "f49" }
+    }, {
+      "id" : "f48",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 408, "y" : 568 }
+      }
+    }, {
+      "id" : "f49",
+      "type" : "Script",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.test.util.TaskUtils;",
+            "TaskUtils.deleteDestroyedCases();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 480 }
+      },
+      "connect" : { "id" : "f50", "to" : "f48" }
     } ]
 }

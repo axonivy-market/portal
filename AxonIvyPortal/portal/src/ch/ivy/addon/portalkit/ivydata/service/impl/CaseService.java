@@ -33,8 +33,6 @@ import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
-import ch.ivyteam.ivy.security.IRole;
-import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -81,7 +79,6 @@ public class CaseService implements ICaseService {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       CaseQuery finalQuery = extendQuery(criteria);
       result.setTotalCases(countCases(finalQuery));
-     
       return result;
     });
   }
@@ -108,18 +105,15 @@ public class CaseService implements ICaseService {
   }
 
   private CaseQuery queryForCurrentUser(CaseQuery caseQuery) {
-    caseQuery.where().or().currentUserIsInvolved();
-
     if (GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
       caseQuery.where().or().currentUserIsOwner();
     }
 
     if (com.axonivy.portal.components.util.PermissionUtils
         .checkCaseReadAllOwnRoleInvolvedPermission()) {
-      IUser user = Ivy.session().getSessionUser();
-      for (IRole role : user.getRoles()) {
-        caseQuery.where().or().roleIsInvolved(role);
-      }
+      caseQuery.where().or().currentUserOrHisRolesAreInvolved();
+    } else {
+      caseQuery.where().or().currentUserIsInvolved();
     }
 
     return caseQuery;
