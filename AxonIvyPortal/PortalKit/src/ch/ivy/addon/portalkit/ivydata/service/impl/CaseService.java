@@ -107,7 +107,7 @@ public class CaseService implements ICaseService {
       }
 
       if (PermissionUtils.checkCaseReadAllOwnRoleInvolvedPermission()) {
-        caseQuery.where().or().currentUserOrHisRolesAreInvolved();
+        caseQuery.where().or().userOrHisRolesAreInvolved(involvedUsername, app);
       } else {
         caseQuery.where().or().userIsInvolved(involvedUsername, app);
       }
