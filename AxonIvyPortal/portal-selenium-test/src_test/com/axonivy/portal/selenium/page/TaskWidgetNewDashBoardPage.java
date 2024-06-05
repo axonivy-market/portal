@@ -496,7 +496,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public boolean isQuickSearchInputShow(String widgetIndex) {
     String taskWidgetIndex = String.format("div[id*='task-task_%s']", widgetIndex);
     waitPageLoaded();
-    return $(taskWidgetIndex).$("form").$("input").exists();
+    return $(taskWidgetIndex).$("form").$("input").isDisplayed();
   }
   
   public void setInputForQuickSearch(String input) {
@@ -505,7 +505,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
   
   private SelenideElement getQuickSearchForm() {
-    return $("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
+    return getTaskWidgetHeader().$("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
   }
   
   public void clearQuickSearchInput() {
