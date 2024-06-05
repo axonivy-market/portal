@@ -106,7 +106,7 @@ public class CaseService implements ICaseService {
         caseQuery.where().or().isOwner("#" + involvedUsername, app);
       }
 
-      if (PermissionUtils.checkCaseReadAllOwnRoleInvolvedPermission()) {
+      if (PermissionUtils.checkCaseReadAllOwnRoleInvolvedPermission(app)) {
         caseQuery.where().or().userOrHisRolesAreInvolved(involvedUsername, app);
       } else {
         caseQuery.where().or().userIsInvolved(involvedUsername, app);
