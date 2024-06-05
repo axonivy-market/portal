@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -17,6 +18,7 @@ import ch.ivyteam.ivy.security.ISecurityDescriptor;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
+import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 
@@ -240,12 +242,23 @@ public class PermissionUtils {
    * Check if current user has the permission to read all cases of an
    * application which his roles involved.
    *
+   * @param app Application name
+   *
    * @return True : has the permission to read all cases which his roles
    *         involved.
    */
-  public static boolean checkCaseReadAllOwnRoleInvolvedPermission() {
-    return Ivy.session().hasPermission(
-        Ivy.request().getApplication().getSecurityDescriptor(),
+  public static boolean checkCaseReadAllOwnRoleInvolvedPermission(
+      String app) {
+    if (StringUtils.isBlank(app)) {
+      return false;
+    }
+    
+    IApplication application = IvyExecutor.executeAsSystem(() -> {
+      return ServerFactory.getServer().getApplicationConfigurationManager()
+          .findApplication(app);
+    });
+
+    return Ivy.session().hasPermission(application.getSecurityDescriptor(),
         IPermission.CASE_READ_ALL_OWN_ROLE_INVOLVED);
   }
 }
