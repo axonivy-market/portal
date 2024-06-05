@@ -3,20 +3,15 @@ package com.axonivy.portal.service;
 import java.security.InvalidParameterException;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Optional;
-
 import javax.naming.NoPermissionException;
 import javax.ws.rs.NotFoundException;
-
 import org.apache.commons.lang3.StringUtils;
-
 import com.axonivy.portal.bo.ClientStatistic;
 import com.axonivy.portal.dto.ClientStatisticDto;
 import com.axonivy.portal.enums.AdditionalChartConfig;
-
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.service.JsonConfigurationService;
 import ch.ivy.addon.portalkit.statistics.ClientStatisticResponse;
@@ -62,8 +57,7 @@ public class ClientStatisticService extends JsonConfigurationService<ClientStati
   private void validateChart(String chartId, ClientStatistic chart)
       throws NotFoundException, NoPermissionException {
     if (chart == null) {
-      throw new NotFoundException(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/exception/idNotFound",
-          Arrays.asList(chartId)));
+      throw new NotFoundException(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/exception/idNotFound", List.of(chartId)));
     }
 
     if (!isPermissionValid(chart)) {
@@ -90,18 +84,16 @@ public class ClientStatisticService extends JsonConfigurationService<ClientStati
   }
 
   private boolean isPermissionValid(ClientStatistic data) {
-    return Optional.ofNullable(data.getPermissions()).orElse(new ArrayList<>()).stream()
-        .anyMatch(permission -> Ivy.session().getSessionUser().has().role(permission));
+    return Optional.ofNullable(data.getPermissions())
+                   .orElse(List.of())
+                   .stream()
+                   .anyMatch(permission -> Ivy.session().getSessionUser().has().role(permission));
   }
-  
-  private Entry<String, String> getManipulateValueBy(ClientStatistic data) {
-    var manipulatedBy = Optional.ofNullable(data)
-        .map(ClientStatistic::getManipulateValueBy);
 
-    return manipulatedBy.isPresent()
-        ? new SimpleEntry<>(AdditionalChartConfig.MANIPULATE_BY.getKey(),
-            manipulatedBy.get())
-        : null;
+  private Entry<String, String> getManipulateValueBy(ClientStatistic data) {
+    return Optional.ofNullable(data.getManipulateValueBy())
+                   .map(value -> new SimpleEntry<>(AdditionalChartConfig.MANIPULATE_BY.getKey(), value))
+                   .orElse(null);
   }
 
   @Override

@@ -1,14 +1,17 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.service.IvyCacheService;
+
+import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;
 import ch.ivy.addon.portalkit.util.ListUtilities;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -21,12 +24,19 @@ import ch.ivyteam.ivy.security.exec.Sudo;
 
 public class LanguageService {
 
-  private static final Comparator<Locale> LOCALE_COMPARATOR = Comparator.comparing(Locale::getDisplayName, String.CASE_INSENSITIVE_ORDER);
+  private static volatile LanguageService instance;
 
   private LanguageService() {}
 
   public static LanguageService newInstance() {
-    return new LanguageService();
+    if (instance == null) {
+      synchronized (LanguageService.class) {
+        if (instance == null) {
+          instance = new LanguageService();
+        }
+      }
+    }
+    return instance;
   }
 
   public IvyLanguage getIvyLanguageOfUser() {
@@ -73,37 +83,55 @@ public class LanguageService {
     Sudo.get(() -> {
       IUser currentUser = Ivy.session().getSessionUser();
       
-      Locale userLanguage = null;
-      if (StringUtils.isNotBlank(language.getUserLanguage())) {
-        userLanguage = Locale.forLanguageTag(language.getUserLanguage());
-      } 
+      Locale userLanguage = StringUtils.isNotBlank(language.getUserLanguage()) 
+          ? Locale.forLanguageTag(language.getUserLanguage()) 
+          : null;
       currentUser.setLanguage(userLanguage);
       
-      Locale userFormatLocale = null;
-      if (language.getItemFormattingLanguage() != null && 
-          language.getItemFormattingLanguage().getValue() != null && 
-          StringUtils.isNotBlank(language.getItemFormattingLanguage().getValue().toString())) {
-        userFormatLocale = Locale.forLanguageTag(language.getItemFormattingLanguage().getValue().toString());
-      }
+      Locale userFormatLocale = language.getItemFormattingLanguage() != null 
+          && language.getItemFormattingLanguage().getValue() != null 
+          && StringUtils.isNotBlank(language.getItemFormattingLanguage().getValue().toString()) 
+          ? Locale.forLanguageTag(language.getItemFormattingLanguage().getValue().toString()) 
+          : null;
       currentUser.setFormattingLanguage(userFormatLocale);
       return Void.class;
     });
   }
   
+  @SuppressWarnings("unchecked")
   public List<Locale> getContentLocales() {
-    return locales(LanguageRepository::allContent);
+    String sessionUserId = (String) Ivy.session().getAttribute(SessionAttribute.SESSION_IDENTIFIER.toString());
+    IvyCacheService cacheService = IvyCacheService.newInstance();
+    Optional<Object> result = cacheService.getSessionCacheValue(IvyCacheIdentifier.PORTAL_CONTENT_LOCALES,
+        sessionUserId);
+    if (result.isPresent()) {
+      return (List<Locale>) result.get();
+    }
+    
+    List<Locale> locales = locales(LanguageRepository::allContent);
+    cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_CONTENT_LOCALES, sessionUserId, locales);
+    return locales;
   }
-  
+
+  @SuppressWarnings("unchecked")
   public List<Locale> getFormattingLocales() {
-    return locales(LanguageRepository::allFormatting);
+    String sessionUserId = (String) Ivy.session().getAttribute(SessionAttribute.SESSION_IDENTIFIER.toString());
+    IvyCacheService cacheService = IvyCacheService.newInstance();
+    Optional<Object> result = cacheService.getSessionCacheValue(IvyCacheIdentifier.PORTAL_FORMATTING_LOCALES,
+        sessionUserId);
+    if (result.isPresent()) {
+      return (List<Locale>) result.get();
+    }
+
+    List<Locale> locales = locales(LanguageRepository::allFormatting);
+    cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_FORMATTING_LOCALES, sessionUserId, locales);
+    return locales;
   }
 
   private List<Locale> locales(Function<LanguageRepository, List<Locale>> loader) {
-    return loader.apply(LanguageManager.instance().languages(ISecurityContext.current()))
-              .stream()
-              .distinct()
-              .sorted(LOCALE_COMPARATOR)
-              .collect(Collectors.toList());
+    LanguageManager languageManager = LanguageManager.instance();
+    ISecurityContext securityContext = ISecurityContext.current();
+    return loader.apply(languageManager.languages(securityContext));
   }
 
   public Locale getDefaultEmailLanguage() {

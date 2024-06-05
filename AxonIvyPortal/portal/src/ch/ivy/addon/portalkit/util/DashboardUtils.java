@@ -4,12 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -48,39 +45,32 @@ public class DashboardUtils {
       List<String> permissions = dashboard.getPermissions();
       if (permissions == null) {
         return false;
-      } else {
-        for (String permission : permissions) {
-          if (isSessionUserHasPermisson(permission)) {
-            return false;
-          }
-        }
       }
-      return true;
+      return permissions.stream().noneMatch(DashboardUtils::isSessionUserHasPermisson);
     });
     return dashboards;
   }
 
   private static boolean isSessionUserHasPermisson(String permission) {
-    return StringUtils.startsWith(permission, "#") ? StringUtils.equals(currentUser().getMemberName(), permission)
+    return StringUtils.startsWith(permission, "#") 
+        ? StringUtils.equals(currentUser().getMemberName(), permission)
         : PermissionUtils.doesSessionUserHaveRole(permission);
   }
 
   public static List<Dashboard> jsonToDashboards(String dashboardJSON) {
     if (StringUtils.isBlank(dashboardJSON)) {
-      return new ArrayList<>();
+      return Collections.emptyList();
     }
 
     List<Dashboard> mappingDashboards = convertDashboardsToLatestVersion(dashboardJSON);
-    mappingDashboards.forEach(dashboard -> initDefaultPermission());
+    mappingDashboards.forEach(initDefaultPermission());
     return mappingDashboards;
   }
 
   private static Consumer<Dashboard> initDefaultPermission() {
     return dashboard -> {
       if (CollectionUtils.isEmpty(dashboard.getPermissions())) {
-        ArrayList<String> defaultPermissions = new ArrayList<>();
-        defaultPermissions.add(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
-        dashboard.setPermissions(defaultPermissions);
+        dashboard.setPermissions(Collections.singletonList(ISecurityConstants.TOP_LEVEL_ROLE_NAME));
       }
     };
   }
@@ -93,9 +83,8 @@ public class DashboardUtils {
     List<Dashboard> collectedDashboards = new ArrayList<>();
     String dashboardInUserProperty = readDashboardBySessionUser();
     try {
-      collectedDashboards = getVisiblePublicDashboards();
-      List<Dashboard> myDashboards = jsonToDashboards(dashboardInUserProperty);
-      collectedDashboards.addAll(myDashboards);
+      collectedDashboards.addAll(getVisiblePublicDashboards());
+      collectedDashboards.addAll(jsonToDashboards(dashboardInUserProperty));
     } catch (PortalException e) {
       // If errors like parsing JSON errors, ignore them
       Ivy.log().error(e);
@@ -123,7 +112,7 @@ public class DashboardUtils {
   }
 
   public static void setDashboardAsPublic(List<Dashboard> visibleDashboards) {
-    visibleDashboards.stream().forEach(dashboard -> dashboard.setIsPublic(true));
+    visibleDashboards.forEach(dashboard -> dashboard.setIsPublic(true));
   }
 
   public static List<DashboardOrder> getDashboardOrdersOfSessionUser() {
@@ -132,9 +121,8 @@ public class DashboardUtils {
   }
 
   public static Map<String, Dashboard> createMapIdToDashboard(List<Dashboard> dashboards) {
-    Map<String, Dashboard> idToDashboard = new LinkedHashMap<>();
-    dashboards.forEach(dashboard -> idToDashboard.put(dashboard.getId(), dashboard));
-    return idToDashboard;
+    return dashboards.stream()
+            .collect(Collectors.toMap(Dashboard::getId, dashboard -> dashboard, (a, b) -> b, LinkedHashMap::new));
   }
 
   public static String generateId() {
@@ -172,13 +160,12 @@ public class DashboardUtils {
   }
 
   public static void updateSelectedDashboardToSession(String selectedMenuItemId) {
-    if (StringUtils.endsWith(selectedMenuItemId, DASHBOARD_MENU_POSTFIX)
-        || StringUtils.endsWith(selectedMenuItemId, DASHBOARD_MENU_ITEM_POSTFIX)) {
-      var menuIds = selectedMenuItemId.split(":");
-      var dashboardIds = menuIds[menuIds.length - 1].split(DASHBOARD_MENU_PREFIX);
-      var dashboardId = dashboardIds[dashboardIds.length - 1];
-      dashboardId = dashboardId.replace(DASHBOARD_MENU_POSTFIX, "");
-      dashboardId = dashboardId.replace(DASHBOARD_MENU_ITEM_POSTFIX, "");
+    if (StringUtils.endsWithAny(selectedMenuItemId, DASHBOARD_MENU_POSTFIX, DASHBOARD_MENU_ITEM_POSTFIX)) {
+      String[] menuIds = selectedMenuItemId.split(":");
+      String[] dashboardIds = menuIds[menuIds.length - 1].split(DASHBOARD_MENU_PREFIX);
+      String dashboardId = dashboardIds[dashboardIds.length - 1]
+              .replace(DASHBOARD_MENU_POSTFIX, "")
+              .replace(DASHBOARD_MENU_ITEM_POSTFIX, "");
       Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), dashboardId);
     }
   }
@@ -191,27 +178,24 @@ public class DashboardUtils {
     } catch (JsonProcessingException ex) {
       Ivy.log().error("Failed to read dashboard from JSON {0}", ex, json);
     }
-    return null;
+    return Collections.emptyList();
   }
 
-  public static List<Dashboard> convertDashboardsFromUploadFileToLastestVersion(InputStream inputStream)
-      throws IOException {
-    new InputStreamReader(inputStream, StandardCharsets.UTF_8);
-    try {
+  public static List<Dashboard> convertDashboardsFromUploadFileToLatestVersion(InputStream inputStream) throws IOException {
+    try (InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
       ObjectMapper mapper = new ObjectMapper();
-      JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(inputStream));
+      JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(reader));
       return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), Dashboard.class);
     } catch (JsonProcessingException e) {
       Ivy.log().error("Failed to read dashboard from JSON {0}", e);
     }
-    return null;
+    return Collections.emptyList();
   }
 
   public static Dashboard convertDashboardToLatestVersion(InputStream inputStream) throws IOException {
-    new InputStreamReader(inputStream, StandardCharsets.UTF_8);
-    try {
+    try (InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
       ObjectMapper mapper = new ObjectMapper();
-      JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(inputStream));
+      JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(reader));
       return BusinessEntityConverter.convertJsonNodeToEntity(migrator.migrate(), Dashboard.class);
     } catch (JsonProcessingException ex) {
       Ivy.log().error("Failed to read dashboard from JSON {0}", ex);
@@ -227,7 +211,7 @@ public class DashboardUtils {
     } catch (JsonProcessingException ex) {
       Ivy.log().error("Failed to read dashboard template from JSON {0}", ex, json);
     }
-    return null;
+    return Collections.emptyList();
   }
   
   

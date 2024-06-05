@@ -17,11 +17,16 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.exec.Sudo;
 
 public class IvyCacheService {
+  
+  private static final IvyCacheService INSTANCE = new IvyCacheService();
 
   private IvyCacheService() {}
 
   public static IvyCacheService newInstance() {
-    return new IvyCacheService();
+    if (INSTANCE == null) {
+      return new IvyCacheService();
+    }
+    return INSTANCE;
   }
 
   /**
