@@ -94,6 +94,24 @@ public class TaskUtils {
     });
   }
 
+  public static void deleteDestroyedCases() throws Exception {
+    SecurityManagerFactory.getSecurityManager()
+        .executeAsSystem(new Callable<Void>() {
+          @Override
+          public Void call() {
+            IPropertyFilter<CaseProperty> noFilter = null;
+            IQueryResult<ICase> qr = Ivy.wf().findCases(noFilter, null, 0, -1,
+                true);
+            for (ICase ivyCase : qr.getResultList()) {
+              if (ivyCase.getState() == CaseState.DESTROYED) {
+                Ivy.wf().deleteCompletedCase(ivyCase);
+              }
+            }
+            return null;
+          }
+        });
+  }
+
   public static void destroyTaskByCustomField(String customFieldName) throws Exception {
     SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Void>() {
       @Override

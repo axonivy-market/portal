@@ -102,9 +102,14 @@ public class CaseService implements ICaseService {
   private CaseQuery queryForUsers(String involvedUsername, List<String> apps, CaseQuery caseQuery) {
     boolean isCaseOwnerEnabled = isCaseOwnerEnabled();
     apps.forEach(app -> {
-      caseQuery.where().or().userIsInvolved(involvedUsername, app);
       if (isCaseOwnerEnabled) {
         caseQuery.where().or().isOwner("#" + involvedUsername, app);
+      }
+
+      if (PermissionUtils.checkCaseReadAllOwnRoleInvolvedPermission()) {
+        caseQuery.where().or().userOrHisRolesAreInvolved(involvedUsername, app);
+      } else {
+        caseQuery.where().or().userIsInvolved(involvedUsername, app);
       }
     });
     return caseQuery;
