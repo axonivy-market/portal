@@ -4,13 +4,11 @@ import java.util.Date;
 
 public class PortalSessionInfo {
   private String tabId;
-  private String title;
   private Date activeTime;
   private long millisecondsToTimeout;
 
-  public PortalSessionInfo(String tabId, String title) {
+  public PortalSessionInfo(String tabId) {
     this.tabId = tabId;
-    this.title = title;
     this.activeTime = new Date();
   }
 
@@ -20,14 +18,6 @@ public class PortalSessionInfo {
 
   public void setTabId(String tabId) {
     this.tabId = tabId;
-  }
-
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
   }
 
   public Date getActiveTime() {

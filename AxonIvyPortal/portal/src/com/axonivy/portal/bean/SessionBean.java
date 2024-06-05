@@ -2,7 +2,6 @@ package com.axonivy.portal.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -81,8 +80,7 @@ public class SessionBean implements Serializable {
         .getExternalContext().getRequestParameterMap();
 
     PortalSessionInfo info = new PortalSessionInfo(
-        Optional.ofNullable(params.get("tabId")).orElse(""),
-        Optional.ofNullable(params.get("title")).orElse(""));
+        Optional.ofNullable(params.get("tabId")).orElse(""));
     info.setMillisecondsToTimeout(getClientSideTimeout());
     return info;
   }
@@ -97,7 +95,7 @@ public class SessionBean implements Serializable {
     keepSession(true);
   }
 
-  public void keepSession(boolean shouldCheckOtherTabs)
+  public synchronized void keepSession(boolean shouldCheckOtherTabs)
       throws JsonProcessingException {
     if (Ivy.session().isSessionUserUnknown()) {
       sessionInfos = null;
@@ -124,14 +122,11 @@ public class SessionBean implements Serializable {
     newInfos.add(newTabInteraction);
     setSessionInfos(newInfos);
 
-    String jsonValue = shouldCheckOtherTabs
-        ? BusinessEntityConverter.entityToJsonValue(getSessionInfos())
-        : BusinessEntityConverter
-          .entityToJsonValue(Arrays.asList(newTabInteraction));
-
     PrimeFaces.current()
-        .executeScript("PortalSessionWarning.getTabInteractionsAsJsonCmd('"
-            + jsonValue + "')");
+        .executeScript(
+            "PortalSessionWarning.getSessionInfoCmd('"
+                + BusinessEntityConverter.entityToJsonValue(newTabInteraction)
+                + "')");
   }
 
   public void unloadSession() throws JsonProcessingException {
