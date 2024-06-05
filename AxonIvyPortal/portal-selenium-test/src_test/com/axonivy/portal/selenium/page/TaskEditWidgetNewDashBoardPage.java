@@ -420,6 +420,12 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     quickSeatchChkbox.click();
   }
+  
+  public void clickOnVisibilityCheckBoxByField(String fieldName) {
+    var visibilityCheckBox = getColumnManagementDialog().$("div[id$='column-management-datatable']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("table tbody").$$("tr").filter(text(fieldName)).first().$("a[id$='toggle-visibility']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    visibilityCheckBox.click();
+  }
 
   public void addCustomFieldByCustomTypeAndFieldName(String customType, String fieldName) {
     switch (customType) {
