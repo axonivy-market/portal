@@ -10,8 +10,6 @@ import com.axonivy.portal.components.ivydata.searchcriteria.CaseSearchCriteria;
 import com.axonivy.portal.components.util.PermissionUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.IRole;
-import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -78,13 +76,14 @@ public class CaseService{
       caseQuery = CaseQuery.businessCases();
     }
 
-    caseQuery.where().or().currentUserIsInvolved();
     if (isCaseOwnerEnabled) {
       caseQuery.where().or().currentUserIsOwner();
     }
 
     if (PermissionUtils.checkCaseReadAllOwnRoleInvolvedPermission()) {
       caseQuery.where().or().currentUserOrHisRolesAreInvolved();
+    } else {
+      caseQuery.where().or().currentUserIsInvolved();
     }
 
     return caseQuery;
