@@ -67,7 +67,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
 
     ScreenshotUtils.resizeBrowser(new Dimension(1800, 1400));
     ScreenshotUtils.resizeBrowserAndCaptureWholeScreen(ScreenshotUtils.DASHBOARD_FOLDER + "dashboard",
-        new Dimension(1800, 1400));
+        new Dimension(1800, 1900));
 
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
     ScreenshotUtils.executeDecorateJs("highlightLogo();");
