@@ -308,7 +308,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void clickOnFilterOperator() {
-    $("div[id$='operator-selection']").shouldBe(getClickableCondition()).click();
+    $("div[id$='text-filter-operator-panel']").shouldBe(getClickableCondition()).click();
   }
   
 
@@ -328,7 +328,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private SelenideElement getQuickSearchForm() {
-    return $("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
+    return getCaseWidgetHeader().$("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
   }
 
   public void clearQuickSearchInput() {

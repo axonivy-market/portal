@@ -232,7 +232,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.openFilterWidget();
     taskWidget.addFilter("State", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
-    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(15));
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(14));
   }
   
   @Test

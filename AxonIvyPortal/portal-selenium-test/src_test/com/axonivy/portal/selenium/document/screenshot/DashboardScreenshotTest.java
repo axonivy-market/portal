@@ -41,7 +41,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class DashboardScreenshotTest extends ScreenshotBaseTest {
   private NewDashboardPage homePage;
   private static final int SCREENSHOT_WIDTH = 1500;
@@ -397,7 +397,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
   @Test
   public void screenshotComplexFilter() throws IOException {
     login(TestAccount.ADMIN_USER);
-    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
+    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1000));
     homePage = new NewDashboardPage();
     CaseWidgetNewDashBoardPage caseWidget = homePage.selectCaseWidget("Your Cases");
     caseWidget.openFilterWidget();
