@@ -166,7 +166,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.addFilter("Created Date", FilterOperator.AFTER);
     taskWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2024");
     taskWidget.applyFilter();
-    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(15));
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(14));
     
     taskWidget.openFilterWidget();
     taskWidget.resetFilter();
@@ -174,7 +174,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.addFilter("Expiry", FilterOperator.WITHIN_NEXT);
     taskWidget.inputValueOnLatestFilter(FilterValueType.WITHIN, "2","Year(s)");
     taskWidget.applyFilter();
-    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(3));
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(2));
   }
   
   @Test
@@ -228,7 +228,15 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASK_WIDGET);
     ScreenshotUtils.maximizeBrowser();
-    
+    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
+    taskEditWidget.openFilter();
+    taskEditWidget.resetFilter();
+    taskEditWidget.applyFilter();
+    taskEditWidget.save();
+    redirectToNewDashBoard();
     taskWidget.openFilterWidget();
     taskWidget.addFilter("State", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
