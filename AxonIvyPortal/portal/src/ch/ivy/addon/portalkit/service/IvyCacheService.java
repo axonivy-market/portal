@@ -18,15 +18,19 @@ import ch.ivyteam.ivy.security.exec.Sudo;
 
 public class IvyCacheService {
   
-  private static final IvyCacheService INSTANCE = new IvyCacheService();
+  private static volatile IvyCacheService instance;
 
   private IvyCacheService() {}
 
   public static IvyCacheService newInstance() {
-    if (INSTANCE == null) {
-      return new IvyCacheService();
+    if (instance == null) {
+      synchronized (IvyCacheService.class) {
+        if (instance == null) {
+          instance = new IvyCacheService();
+        }
+      }
     }
-    return INSTANCE;
+    return instance;
   }
 
   /**

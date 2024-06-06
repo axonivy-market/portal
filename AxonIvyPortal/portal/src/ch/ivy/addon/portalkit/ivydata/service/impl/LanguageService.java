@@ -98,6 +98,12 @@ public class LanguageService {
     });
   }
   
+  /**
+   * From IVYPORTAL-16987
+   * We use session cache to reduce loading time in new dash board template
+   * 
+   * @return
+   */
   @SuppressWarnings("unchecked")
   public List<Locale> getContentLocales() {
     String sessionUserId = (String) Ivy.session().getAttribute(SessionAttribute.SESSION_IDENTIFIER.toString());
@@ -113,6 +119,12 @@ public class LanguageService {
     return locales;
   }
 
+  /**
+   * From IVYPORTAL-16987
+   * We use session cache to reduce loading time in new dash board template
+   * 
+   * @return
+   */
   @SuppressWarnings("unchecked")
   public List<Locale> getFormattingLocales() {
     String sessionUserId = (String) Ivy.session().getAttribute(SessionAttribute.SESSION_IDENTIFIER.toString());
