@@ -729,7 +729,8 @@ public class TaskWidgetPage extends TemplatePage {
     // click download
     SelenideElement downloadLink = getExportToExcelLink();
     if (downloadLink != null) {
-      downloadLink.click();
+      downloadLink.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+      clickByJavaScript(downloadLink);
     }
   }
 
