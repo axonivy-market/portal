@@ -30,6 +30,7 @@ public class LoginBean implements Serializable {
   }
 
   public String loginPageTitle() {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/login/login") + masterDataBean.getPortalApplicationName();
+    return String.join(" - ", Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/login/login"),
+        masterDataBean.getApplicationName());
   }
 }
