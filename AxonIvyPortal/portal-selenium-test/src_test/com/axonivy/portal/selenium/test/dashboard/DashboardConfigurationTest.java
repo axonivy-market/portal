@@ -255,7 +255,7 @@ public class DashboardConfigurationTest extends BaseTest {
     processWidget.deleteProcessWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectTaskWidget(" ").expand().shouldHave(size(8));
+    newDashboardPage.selectTaskWidget(" ").expand().shouldHave(size(2));
   }
 
   @Test
