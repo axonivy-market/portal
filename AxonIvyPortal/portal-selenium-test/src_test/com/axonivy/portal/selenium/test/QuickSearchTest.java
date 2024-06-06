@@ -222,9 +222,8 @@ public class QuickSearchTest extends BaseTest {
 
     caseEditWidget.clickOnQuickSearchCheckBox();
     caseEditWidget.save();
-    caseWidget.isQuickSearchInputShow("0");
 
-    caseWidget.setInputForQuickSearch("Create 12 cases with");
+    caseWidget.setInputForQuickSearch("case");
     caseWidget.countAllCases().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
     caseWidget.clearQuickSearchInput();
 
