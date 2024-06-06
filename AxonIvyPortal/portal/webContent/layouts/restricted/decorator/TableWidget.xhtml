@@ -40,23 +40,23 @@
 
     <h:panelGroup id="widget-header-quick-search-#{index}" layout="block"
       styleClass="#{isReadOnlyMode ? 'u-mar-right-10' : 'u-mar-right-5'} widget-header-quick-search"
-      rendered="#{widget.canEnableQuickSearch()}">
+      rendered="#{dashboardBean.canEnableQuickSearch(widget) and widget.isEnableQuickSearch()}">
       <h:form onkeydown="if (isPressedSpecialKeys(event) == true) { return false; }">
       <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
       <p:inputText id="quick-search-input-#{index}" value="#{widget.quickSearchKeyword}"
         placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}">
         <p:ajax delay="800" listener="#{widget.updateQuickSearchKeyword()}"
           onstart="if (isPressedSpecialKeys(event) == true) { return false; }"
-          process="@(this)" partialSubmit="true" global="false"
-          event="keyup" update="#{p:resolveFirstComponentWithId(panelId, view).clientId}" />
+          event="keyup" process="@this"
+          update="#{componentToUpdateOnResetFilter}" />
 
         <p:ajax delay="100" listener="#{widget.updateQuickSearchKeyword()}"
-          process="@(this)" partialSubmit="true" global="false"
-          event="cut" update="#{p:resolveFirstComponentWithId(panelId, view).clientId}" />
+          event="cut" process="@this"
+          update="#{componentToUpdateOnResetFilter}" />
 
         <p:ajax delay="100" listener="#{widget.updateQuickSearchKeyword()}"
-          process="@(this)" partialSubmit="true" global="false"
-          event="paste" update="#{p:resolveFirstComponentWithId(panelId, view).clientId}" />
+          event="paste" process="@this"
+          update="#{componentToUpdateOnResetFilter}" />
       </p:inputText>
       </h:form>
     </h:panelGroup>
@@ -217,15 +217,17 @@
             <div class="ui-g-12 u-text-align-right">
               <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                 styleClass="u-mar-right-15 ui-overlaypanel-footer__cancel"
-                oncomplete="PF('filter-overlay-panel-#{index}').hide(); return false;"
+                oncomplete="PF('filter-overlay-panel-#{index}').hide();"
                 actionListener="#{widget.onCancelUserFilters()}"
                 update="filter-form-#{index}"
+                process="filter-form-#{index}"
                 immediate="true" global="false"/>
   
               <p:commandButton id="reset-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
                 styleClass="secondary-btn u-mar-right-5" partialSubmit="true"
-                update="filter-form-#{index} #{cc.clientId}:widget-header-actions #{componentToUpdateOnResetFilter}"
-                oncomplete="#{onCompleteResetFilters}; #{onCompleteApplyFilters}; PF('filter-overlay-panel-#{index}').hide(); resizeTableBody();"
+                process="filter-form-#{index}"
+                update="filter-form-#{index} #{componentToUpdateOnResetFilter}"
+                oncomplete="#{onCompleteResetFilters}; {applyWidgetFilterCommand#{index}();} initWidgetFilterHtml('#{widget.id}');"
                 actionListener="#{widget.onResetUserFilters()}"
                 icon="si si-button-refresh-arrows" resetValues="true"/>
   

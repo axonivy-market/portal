@@ -346,7 +346,9 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void openFilter() {
-    $("button[id$=':show-filter']").shouldBe(getClickableCondition()).click();
+    $("button[id$=':show-filter']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(".filter-panel-header").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
   
   public void addFilter(String columnName, FilterOperator operator) {
@@ -359,9 +361,8 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   
   public void applyFilter() {
     $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']")
-        .shouldBe(getClickableCondition()).click();
-    $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']").shouldHave(Condition.cssClass("ui-state-loading"));
-    $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']").shouldNotHave(Condition.cssClass("ui-state-loading"), DEFAULT_TIMEOUT);
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(".filter-panel-header").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
   
   public void removeFilter(int index) {

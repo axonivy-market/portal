@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
 import org.openqa.selenium.WebElement;
@@ -9,7 +10,6 @@ import org.openqa.selenium.WebElement;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-
 public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public static final String TASK_WIDGET = "Task List";
@@ -20,6 +20,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   public static final String STATISTIC_WIDGET = "Statistic chart";
   public static final String WELCOME_WIDGET = "Welcome widget";
   public static final String NEWS_WIDGET = "News feed widget";
+  public static final String TASK_BY_PRIORITY = "Tasks by Priority";
   public static final String NOTIFICATION_WIDGET = "Notifications";
 
   @Override
@@ -30,6 +31,11 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   public WebElement addWidget() {
     $("button[id='add-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return $("div[id$='new-widget-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void collapseStandardWidgets() {
+    $(".ui-fieldset-legend.ui-corner-all.ui-state-default").click();
+    $(".ui-fieldset-content").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public TaskEditWidgetNewDashBoardPage addNewTaskWidget() {
@@ -72,6 +78,12 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
         .click();
   }
 
+  public void addStatisticWidgetByName(String name) {
+    $("[id='search-input']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(name);
+    $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT).$$("div.new-widget-dialog__item").filter(text(name)).first()
+        .$("button[id^='new-statistic-widget-dialog-content']").shouldBe(getClickableCondition()).click();
+    $("[id='new-widget-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
   private void addCustomWidgetByName(String name) {
     $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT).$$("div.new-widget-dialog__item")
         .filter(text(name)).first().$("button[id^='new-custom-widget-dialog-content']")
@@ -166,8 +178,10 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   public void clickOnRestoreDashboard() {
-    $("[id$='restore-button-group']").shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='restore-button']")
-        .shouldBe(Condition.enabled, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    SelenideElement restoreButton = $("[id$='restore-button-group']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='restore-button']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    clickByJavaScript(restoreButton);
     $("div[id$='restore-confirm-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -201,6 +215,22 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
   
+  public void clickToAddClientStatisticWidget() {
+    $("button[id$='new-statistic-widget-dialog-content:0:add-widget']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    
+  }
+
+  public ElementsCollection countStatisticCharts() {
+    return $("div[id='dashboard-body']").$$(".statistic-chart-widget__chart");
+  }
+
+  public SelenideElement getStatisticWidgetConfigurationDialog() {
+    $("[id$=':case-component:dashboard-cases']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement statisticElement = $("div[id^='client-statistic-client_statistic']").shouldBe(appear, DEFAULT_TIMEOUT).scrollTo();
+    $("canvas").shouldBe(appear, DEFAULT_TIMEOUT);
+    return statisticElement;
+  }
+  
   public void waitForTaskWidgetLoaded() {
     $("div[id$='dashboard-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='dashboard-tasks']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
@@ -208,5 +238,9 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   
   public void editWidgetById(int id) {
     $(String.format("[id$=':edit-widget-%s']", id)).shouldBe(getClickableCondition()).click();
+  }
+  
+  public void scrollToStatistic() {
+    $(byText("Statistic Widgets")).shouldBe(Condition.appear, DEFAULT_TIMEOUT).scrollIntoView("{block: \"start\", inline: \"start\"}");
   }
 }

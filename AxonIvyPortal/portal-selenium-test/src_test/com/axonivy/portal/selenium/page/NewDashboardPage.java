@@ -81,7 +81,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration() {
-    var configurationPage = openDashboardConfigurationPage();
+    var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
@@ -143,6 +143,14 @@ public class NewDashboardPage extends TemplatePage {
     return widget.ancestor(".grid-stack-item");
   }
 
+  public SelenideElement waitAndGetClientStatisticChart(int index) {
+    var widget = $$("[id^='client-statistic-client_statistic']").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT)
+        .get(index)
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+    widget.$("[id$='loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    waitForWidgetLoadedByExpandThenCollapse(widget);
+    return widget.ancestor(".grid-stack-item");
+  }
   public WebElement waitAndGetNewsWidget(int index) {
     var widget = $$(".news-widget").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT).get(index)
         .shouldBe(appear, DEFAULT_TIMEOUT);
@@ -762,10 +770,13 @@ public class NewDashboardPage extends TemplatePage {
         .filter(menuItem -> menuItem.parent().has(Condition.cssClass("active-menuitem"))).findFirst().get();
   }
 
-  public void selectDashboard(int index) {
+  public NewDashboardPage selectDashboard(int index) {
     var selectDashboard = getDashboardCollection().get(index);
-    selectDashboard.shouldBe(getClickableCondition()).click();
+    WaitHelper.waitForNavigation(() -> {
+      selectDashboard.shouldBe(getClickableCondition()).click();
+    });
     selectDashboard.parent().shouldBe(Condition.cssClass("active-menuitem"), DEFAULT_TIMEOUT);
+    return new NewDashboardPage();
   }
 
   public StatisticWidgetDashboardPage selectStatisticWidget() {
@@ -1051,5 +1062,14 @@ public class NewDashboardPage extends TemplatePage {
   public void waitForTaskWidgetLoaded() {
     checkDisplayedTaskWidgetContainer();
     getTaskWidgetTable().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void waitStatisticChartLoaded() {
+    $("div[data-chart-id='11']").shouldBe(appear, DEFAULT_TIMEOUT).$(".card-number").shouldNotBe(Condition.empty, DEFAULT_TIMEOUT);
+    $("div[data-chart-id='10']").shouldBe(appear, DEFAULT_TIMEOUT).$(".card-number").shouldBe(Condition.text("2"), DEFAULT_TIMEOUT);
+    $("a[id$='user-settings-menu']").shouldBe(appear).click();
+    $("ul[id='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT).$("a[id='user-profile']").shouldHave(Condition.text("My profile"), DEFAULT_TIMEOUT);
+    $("a[id$='user-settings-menu']").shouldBe(appear).click();
+    $("ul[id='user-setting-container']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 }

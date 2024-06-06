@@ -70,7 +70,7 @@
         </div>
       </h:form>
       <script>
-        window.processSteps = "#{fn:join(data.steps.toArray(), ',')}";
+        window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)};
         window.currentProcessStep = 0;
         window.processChainShape = "LINE";
         window.viewName = "TASK_DETAIL";

@@ -2,6 +2,8 @@ package ch.ivy.addon.portalkit.ivydata.dto;
 
 import java.util.List;
 
+import com.axonivy.portal.bo.ItemByCategoryStatistic;
+
 import ch.ivy.addon.portalkit.bo.CaseCategoryStatistic;
 import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
@@ -17,7 +19,8 @@ public class IvyCaseResultDTO {
   private CaseCategoryStatistic caseCategoryStatistic;
   private ElapsedTimeStatistic elapsedTimeStatistic;
   private List<String> customFields;
-
+  private List<ItemByCategoryStatistic> itemByCategoryStatistic;
+  
   public List<ICase> getCases() {
     return cases;
   }
@@ -72,5 +75,13 @@ public class IvyCaseResultDTO {
 
   public void setCaseCategoryStatistic(CaseCategoryStatistic caseCategoryStatistic) {
     this.caseCategoryStatistic = caseCategoryStatistic;
+  }
+
+  public List<ItemByCategoryStatistic> getItemByCategoryStatistic() {
+    return itemByCategoryStatistic;
+  }
+
+  public void setItemByCategoryStatistic(List<ItemByCategoryStatistic> itemByCategoryStatistic) {
+    this.itemByCategoryStatistic = itemByCategoryStatistic;
   }
 }

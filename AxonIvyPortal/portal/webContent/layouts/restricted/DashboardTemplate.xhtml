@@ -5,10 +5,24 @@
 
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:define name="head">
+      <h:outputScript library="primefaces" name="chartjs/chartjs.js" />
+      <h:outputScript name="client-statistic.js" library="js" />
+    </ui:define>
+
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dashboard')}</ui:define>
     <ui:param name="loadGridStack" value="true" />
 
     <ui:define name="pageContent">
+        <script>
+          function initStatistics() {
+            initClientCharts("#{managedBean.clientStatisticApiUri}" , "#{localeBean.locale}", "#{dateTimePatternBean.datePattern}");
+          }
+
+          $(document).ready(function () {
+            initStatistics();
+          });
+      </script>
       <h:form id="remote-command-group">
         <p:remoteCommand id="reset-active-menu-items-rc" name="resetActiveMenuItems" autoRun="true"
           onstart="resetPortalLeftMenuState();"
@@ -32,7 +46,7 @@
 
         <h:form id="dashboard-remote-command-form" prependId="false">
           <h:inputHidden id="dashboard-view-mode" value="#{managedBean.isReadOnlyMode}"/>
-          <p:remoteCommand name="updateDashboardWidget" update="grid-stack" oncomplete="loadGrid();dashboardToolKit.responsive();" />
+          <p:remoteCommand name="updateDashboardWidget" update="grid-stack" oncomplete="loadGrid();dashboardToolKit.responsive(); initStatistics('#{managedBean.clientStatisticApiUri}');" />
           <p:remoteCommand name="loadAllWidgetSavedFilters" actionListener="#{managedBean.loadAllWidgetSavedFilters()}"
             global="false" process="@this" immediate="true" partialSubmit="true"
             update="delete-saved-filter-form:quick-filter-table"
@@ -123,6 +137,14 @@
                         index="#{status.index}"
                         id="news-#{widget.id}" />
                     </c:if>
+
+                    <!-- Client statistic widget -->
+                    <c:if test="#{widget.type eq 'CLIENT_STATISTIC'}">
+                      <ic:com.axonivy.portal.dashboard.component.ClientStatisticWidget widget="#{widget}"
+                        isReadOnlyMode="#{managedBean.isReadOnlyMode}"
+                        index="#{status.index}"
+                        id="client-statistic-#{widget.id}" />
+                    </c:if>
                     
                     <!-- Notification widget -->
                     <c:if test="#{widget.type eq 'NOTIFICATION'}">
@@ -164,7 +186,7 @@
               <p:commandButton id="confirm-destruction-dashboard-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
                icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
                actionListener="#{taskWidgetBean.destroyTask(taskWidgetBean.selectedTaskItemId)}"
-               oncomplete="PF('destroy-task-dialog').hide();loadGrid();"
+               oncomplete="PF('destroy-task-dialog').hide();loadGrid(); initStatistics();"
                update="grid-stack dashboard-title-container" />
             </ui:define>
            </ui:decorate>
@@ -186,13 +208,13 @@
               <p:commandButton id="confirm-escalation-dashboard-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
                icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
                actionListener="#{taskWidgetBean.expiryTask(taskWidgetBean.selectedTaskItemId)}"
-               oncomplete="PF('escalation-task-dialog').hide();loadGrid();" update="grid-stack dashboard-title-container" />
+               oncomplete="PF('escalation-task-dialog').hide();loadGrid();initStatistics();" update="grid-stack dashboard-title-container" />
             </ui:define>
            </ui:decorate>
            
            <!-- Delegate Task Dialog -->
            <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate id="dashboard-tasks-item-delegate"
-            taskId="#{taskWidgetBean.selectedTaskItemId}" componentToUpdate="grid-stack dashboard-title-container" onCompletedCallback="loadGrid();"/>
+            taskId="#{taskWidgetBean.selectedTaskItemId}" componentToUpdate="grid-stack dashboard-title-container" onCompletedCallback="loadGrid(); initStatistics();"/>
            
            <!-- Workflow Event of Task Dialog -->
            <ic:ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents id="dashboard-tasks-workflow-event"
@@ -214,7 +236,7 @@
             <p:commandButton id="confirm-destruction-dashboard-cases" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
               icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
               actionListener="#{caseWidgetBean.destroyCase(caseWidgetBean.selectedCase)}"
-              oncomplete="PF('destroy-case-dialog').hide();loadGrid();"
+              oncomplete="PF('destroy-case-dialog').hide();loadGrid();initStatistics();"
               update="grid-stack dashboard-title-container" />
            </ui:define>
           </ui:decorate>
@@ -236,7 +258,8 @@
                 <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                   oncomplete="PF('save-widget-filter-dialog').hide();" styleClass="u-mar-right-10"
                   process="@this" update="save-filter-form" resetValues="true"
-                  partialSubmit="true" immediate="true"/>
+                  partialSubmit="true" immediate="true"
+                  global="false"/>
                 <p:commandButton id="save-widget-filter-button"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
                   actionListener="#{widgetFilterHelperBean.saveNewWidgetFilter()}"

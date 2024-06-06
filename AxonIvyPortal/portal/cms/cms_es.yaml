@@ -82,6 +82,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS: Proceso de Axon Ivy
     DashboardWidgetType:
       CASE: Widget del caso
+      CLIENT_STATISTIC: Widget de estadísticas
       CUSTOM: Widget personalizado
       NEW: Nuevo widget
       NEWS: Noticias
@@ -893,6 +894,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       noPermissionToSee: Usted no tiene el permiso necesario para iniciar este proceso.
       noProcessSelected: Seleccione un proceso
     removeWidgetHeader: Eliminar el widget "{0}"
+    removeWidgetHeaderWithoutWidgetName: Quitar el widget
     removeWidgetMessage: ¿Realmente quieres eliminarlo?
     reorder:
       dashboardType: Tipo de tablero
@@ -904,6 +906,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     startATask: Iniciar tarea
     statisticChartIntroduction: Este widget muestra los gráficos estadísticos disponibles.
     statisticChartWidget: Gráfico estadístico
+    statisticWidgets: Widgets estadísticos
     switchToViewMode: Modo de visualización
     tasWidgetkInfo:
       expireToday: Expira hoy
@@ -1591,6 +1594,8 @@ Dialogs:
             LinkCopied: ¡Enlace copiado!
         dashboard:
           component:
+            ClientStatisticWidget:
+              NoPermissionChartMessage: No tiene permiso para ver este gráfico.
             CaseWidgetConfiguration:
               AddFilter: Añadir filtro
             DashboardImportDetails:

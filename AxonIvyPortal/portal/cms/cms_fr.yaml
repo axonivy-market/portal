@@ -82,6 +82,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS: Processus Axon Ivy
     DashboardWidgetType:
       CASE: Widget de cas
+      CLIENT_STATISTIC: Widget Statistiques
       CUSTOM: Widget personnalisé
       NEW: Nouveau widget
       NEWS: Nouvelles
@@ -890,6 +891,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       noPermissionToSee: Vous n'avez pas l'autorisation requise pour lancer ce processus.
       noProcessSelected: Veuillez sélectionner un processus
     removeWidgetHeader: Supprimer le widget "{0}"
+    removeWidgetHeaderWithoutWidgetName: Supprimer le widget
     removeWidgetMessage: Voulez-vous vraiment le supprimer ?
     reorder:
       dashboardType: Type de tableau de bord
@@ -901,6 +903,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     startATask: Commencer la tâche
     statisticChartIntroduction: Ce widget affiche les graphiques statistiques disponibles.
     statisticChartWidget: Graphique de statistiques
+    statisticWidgets: Widgets Statistiques
     switchToViewMode: Mode d'affichage
     tasWidgetkInfo:
       expireToday: Expire aujourd'hui
@@ -1002,7 +1005,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   logoutSetting:
     logout: Se déconnecter
   mobile:
-    MenuName: Application mobile
+    MenuName: Application mobile Connect
     QRCodeDescription: Pour vous connecter à l'application mobile Axon Ivy, scannez ce code QR et entrez vos informations d'identification dans l'application.
   noteHistory:
     author: Auteur
@@ -1587,6 +1590,8 @@ Dialogs:
           component:
             CaseWidgetConfiguration:
               AddFilter: Ajouter un filtre
+            ClientStatisticWidget:
+              NoPermissionChartMessage: Vous n'avez pas l'autorisation requise pour consulter ce graphique.
             DashboardImportDetails:
               FileInfomation: Informations sur le fichier
               ImportPrivate: Importer un tableau de bord privé
