@@ -49,17 +49,21 @@ public abstract class JsonConfigurationService<T extends AbstractConfiguration> 
     List<T> publicConfigs = getPublicConfig();
     List<T> privateConfigs = getPrivateConfig();
     if (publicConfigs.isEmpty() && privateConfigs.isEmpty()) {
-      return publicConfigs;
+      return emptyList();
     }
     List<T> allConfigs = new ArrayList<>(publicConfigs);
     allConfigs.addAll(privateConfigs);
     return allConfigs;
   }
+  
+  public List<T> emptyList() {
+    return new ArrayList<>();
+  }
 
   public List<T> getPublicConfig() {
     String jsonValue = Ivy.var().get(getConfigKey());
     if (StringUtils.isBlank(jsonValue)) {
-      return new ArrayList<>();
+      return emptyList();
     }
     List<T> entities = BusinessEntityConverter.jsonValueToEntities(jsonValue, getType());
     entities.forEach(e -> e.setIsPublic(true));
@@ -69,7 +73,7 @@ public abstract class JsonConfigurationService<T extends AbstractConfiguration> 
   public List<T> getPrivateConfig() {
     String jsonValue = sessionUser().getProperty(getConfigKey());
     if (StringUtils.isBlank(jsonValue)) {
-      return new ArrayList<>();
+      return emptyList();
     }
     return Optional.ofNullable(convertToLatestVersion(jsonValue))
       .orElseGet(() -> BusinessEntityConverter.jsonValueToEntities(jsonValue, getType()));

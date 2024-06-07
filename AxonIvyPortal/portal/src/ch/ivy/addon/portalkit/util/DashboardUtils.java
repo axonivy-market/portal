@@ -180,7 +180,7 @@ public class DashboardUtils {
     } catch (JsonProcessingException ex) {
       Ivy.log().error("Failed to read dashboard from JSON {0}", ex, json);
     }
-    return Collections.emptyList();
+    return null;
   }
 
   public static List<Dashboard> convertDashboardsFromUploadFileToLatestVersion(InputStream inputStream) throws IOException {
@@ -191,7 +191,7 @@ public class DashboardUtils {
     } catch (JsonProcessingException e) {
       Ivy.log().error("Failed to read dashboard from JSON {0}", e);
     }
-    return Collections.emptyList();
+    return null;
   }
 
   public static Dashboard convertDashboardToLatestVersion(InputStream inputStream) throws IOException {

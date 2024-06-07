@@ -24,7 +24,7 @@ import ch.ivyteam.ivy.security.exec.Sudo;
 
 public class LanguageService {
 
-  private static volatile LanguageService instance;
+  private static LanguageService instance;
 
   private LanguageService() {}
 
@@ -100,7 +100,7 @@ public class LanguageService {
   
   /**
    * From IVYPORTAL-16987
-   * We use session cache to reduce loading time in new dash board template
+   * We use session cache to reduce loading time in new dashboard template
    * 
    * @return
    */
@@ -121,7 +121,7 @@ public class LanguageService {
 
   /**
    * From IVYPORTAL-16987
-   * We use session cache to reduce loading time in new dash board template
+   * We use session cache to reduce loading time in new dashboard template
    * 
    * @return
    */
