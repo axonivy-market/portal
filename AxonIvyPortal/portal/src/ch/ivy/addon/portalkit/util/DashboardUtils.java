@@ -59,7 +59,7 @@ public class DashboardUtils {
 
   public static List<Dashboard> jsonToDashboards(String dashboardJSON) {
     if (StringUtils.isBlank(dashboardJSON)) {
-      return Collections.emptyList();
+      return new ArrayList<>();
     }
 
     List<Dashboard> mappingDashboards = convertDashboardsToLatestVersion(dashboardJSON);
@@ -70,7 +70,9 @@ public class DashboardUtils {
   private static Consumer<Dashboard> initDefaultPermission() {
     return dashboard -> {
       if (CollectionUtils.isEmpty(dashboard.getPermissions())) {
-        dashboard.setPermissions(Collections.singletonList(ISecurityConstants.TOP_LEVEL_ROLE_NAME));
+        ArrayList<String> defaultPermissions = new ArrayList<>();
+        defaultPermissions.add(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
+        dashboard.setPermissions(defaultPermissions);
       }
     };
   }
@@ -211,7 +213,7 @@ public class DashboardUtils {
     } catch (JsonProcessingException ex) {
       Ivy.log().error("Failed to read dashboard template from JSON {0}", ex, json);
     }
-    return Collections.emptyList();
+    return null;
   }
   
   
