@@ -17,6 +17,7 @@ import com.axonivy.portal.components.enums.DocumentType;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 
 import ch.ivy.addon.portalkit.enums.ApplicationType;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
@@ -29,7 +30,11 @@ import ch.ivyteam.ivy.environment.Ivy;
 @SessionScoped
 public class MasterDataBean implements Serializable {
 
+  private static final String DEFAULT_APPLICATION_NAME =
+      Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/defaultApplicationName");
+  private static final String PORTAL_NAME = Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalName/PortalName");
   private static final long serialVersionUID = 1L;
+  private static final String APPLICATION_NAME = GlobalVariable.APPLICATION_NAME.getKey();
 
   public AwesomeIcon[] getAwesomeIcons() {
     return AwesomeIcon.values();
@@ -105,5 +110,14 @@ public class MasterDataBean implements Serializable {
     String message = Ivy.cms().co("/Dialogs/com/axonivy/portal/component/ShareLinkDialog/LinkCopied");
     FacesContext.getCurrentInstance().addMessage(GrowlMessageUtils.PORTAL_GLOBAL_GROWL_MESSAGE, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, message, null));
     PrimeFaces.current().ajax().update(GrowlMessageUtils.PORTAL_GLOBAL_GROWL);
+  }
+
+  public String getPortalApplicationName() {
+    return String.join(" - ", PORTAL_NAME, getApplicationName());
+  }
+
+  public String getApplicationName() {
+    String applicationName = Ivy.var().get(APPLICATION_NAME);
+    return applicationName.isBlank() ? DEFAULT_APPLICATION_NAME : applicationName;
   }
 }

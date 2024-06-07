@@ -105,4 +105,8 @@ public abstract class TemplatePage extends AbstractPage {
     WebElement mainMenu = $(".layout-wrapper");
     return mainMenu.getAttribute(CLASS_PROPERTY).indexOf("static") > 0;
   }
+
+  public String getPageTitle() {
+    return WebDriverRunner.getWebDriver().getTitle();
+  }
 }
