@@ -21,7 +21,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class StatisticScreenshotTest extends ScreenshotBaseTest {
 
   @Override
