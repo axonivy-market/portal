@@ -15,6 +15,7 @@
   <c:set var="widget" value="#{cc.attrs.widget}" />
   <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
   <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}" />
+  <f:event listener="#{securityMemberDisplayNameFormatBean.init()}" type="preRenderView" />
 
   <p:remoteCommand id="rcLoadCaseFirstTime" autoRun="true" actionListener="#{widget.caseDataModel.loadFirstTime()}"
     update="dashboard-process-cases-container" global="false" async="true" process="@this"

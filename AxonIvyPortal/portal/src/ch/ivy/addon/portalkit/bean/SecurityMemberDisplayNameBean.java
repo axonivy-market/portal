@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.BooleanUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.UserDTO;
 
@@ -22,18 +23,30 @@ public class SecurityMemberDisplayNameBean implements Serializable {
   private static final long serialVersionUID = 4105979446859094503L;
 
   private boolean isDisplayUserOfRole;
+  private boolean isDisplayGlobalCreator;
+  private String globalCreatorName;
 
   public void init() {
-    isDisplayUserOfRole = GlobalSettingService.getInstance()
-        .findGlobalSettingValueAsBoolean(GlobalVariable.DISPLAY_USERS_OF_ROLE);
+    isDisplayUserOfRole =
+        GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.DISPLAY_USERS_OF_ROLE);
+    globalCreatorName = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.CASE_CREATOR);
+    isDisplayGlobalCreator = !StringUtils.isEmpty(globalCreatorName);
   }
 
   public String getBriefDisplayName(ISecurityMember securityMember, String memberName) {
-    return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(securityMember, memberName);
+    if (isDisplayGlobalCreator) {
+      return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(null, globalCreatorName);
+    } else {
+      return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(securityMember, memberName);
+    }
   }
 
   public String getFullDisplayName(ISecurityMember securityMember, String memberName) {
-    return SecurityMemberDisplayNameUtils.generateFullDisplayNameForSecurityMember(securityMember, memberName);
+    if (isDisplayGlobalCreator) {
+      return SecurityMemberDisplayNameUtils.generateFullDisplayNameForSecurityMember(null, globalCreatorName);
+    } else {
+      return SecurityMemberDisplayNameUtils.generateFullDisplayNameForSecurityMember(securityMember, memberName);
+    }
   }
 
   public String getFullDisplayNameForUserDTO(UserDTO user) {
@@ -41,19 +54,16 @@ public class SecurityMemberDisplayNameBean implements Serializable {
   }
 
   public boolean isRenderGroupUsersAsTooltip(ISecurityMember securityMember, String alwaysShowAsText) {
-    return BooleanUtils.toBoolean(alwaysShowAsText)
-        && isDisplayUserOfRole
-        && Objects.nonNull(securityMember) && !securityMember.isUser();
+    return BooleanUtils.toBoolean(alwaysShowAsText) && isDisplayUserOfRole && Objects.nonNull(securityMember)
+        && !securityMember.isUser();
   }
 
   public boolean isRenderDisplayNameTooltip(ISecurityMember securityMember) {
-    return isDisplayUserOfRole
-        && Objects.nonNull(securityMember) && securityMember.isUser();
+    return isDisplayUserOfRole && Objects.nonNull(securityMember) && securityMember.isUser();
   }
 
   public boolean isRenderUsersOverlaySearch(ISecurityMember securityMember, String alwaysShowAsText) {
-    return isDisplayUserOfRole
-        && Objects.nonNull(securityMember) && !securityMember.isUser()
+    return isDisplayUserOfRole && Objects.nonNull(securityMember) && !securityMember.isUser()
         && !BooleanUtils.toBoolean(alwaysShowAsText);
   }
 
@@ -61,4 +71,7 @@ public class SecurityMemberDisplayNameBean implements Serializable {
     return isDisplayUserOfRole;
   }
 
+  public boolean isDisplayGlobalCreator() {
+    return isDisplayGlobalCreator;
+  }
 }

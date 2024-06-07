@@ -175,6 +175,9 @@ Variables:
   
       # Set to true, the document section in case detail page will be hidden, otherwise it will be shown.
       HideDocument: false
+  
+      # Globally stores the name of the user who initiated a new case.
+      CaseCreator: 'HAHA'
 
     Chat:
       # Set this property to true to enable group chat function.
