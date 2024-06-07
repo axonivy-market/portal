@@ -893,7 +893,7 @@ span.new-widget-dialog__icon.si {
 }
 
 .dashboard-compact-process-item.process-start-list-item-name-text {
-  width: calc(100% - 40px);
+  width: auto;
 }
 
 .dashboard-tasks--table .relevant-tasks__more {
@@ -1611,4 +1611,12 @@ span.new-widget-dialog__icon.si {
   .widget-header-quick-search {
     display: none;
   }
+}
+
+.quick-search-input-tooltip {
+  height: 2.5rem;
+}
+
+.quick-search-infor-icon {
+  padding-left: 5%;
 }

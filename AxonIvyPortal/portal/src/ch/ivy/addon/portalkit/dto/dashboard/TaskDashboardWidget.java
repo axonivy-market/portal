@@ -10,6 +10,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.SortMeta;
 
+import com.axonivy.portal.dto.dashboard.WidgetInformationCategoryStatisticData;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
@@ -32,13 +33,14 @@ public class TaskDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private Map<TaskState, Long> taskByStateStatistic;
   @JsonIgnore
-  private Map<String, Long> taskByCategoryStatistic;
+  private List<WidgetInformationCategoryStatisticData> taskByCategoryStatistic;
   @JsonIgnore
   private Long numberOfTasksExpireThisWeek;
   @JsonIgnore
   private Long numberOfTasksExpireToday;
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
+  private boolean enableQuickSearch;
 
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
@@ -169,11 +171,11 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.numberOfTasksExpireToday = numberOfTasksExpireToday;
   }
 
-  public Map<String, Long> getTaskByCategoryStatistic() {
+  public List<WidgetInformationCategoryStatisticData> getTaskByCategoryStatistic() {
     return taskByCategoryStatistic;
   }
 
-  public void setTaskByCategoryStatistic(Map<String, Long> taskByCategoryStatistic) {
+  public void setTaskByCategoryStatistic(List<WidgetInformationCategoryStatisticData> taskByCategoryStatistic) {
     this.taskByCategoryStatistic = taskByCategoryStatistic;
   }
 
@@ -186,6 +188,14 @@ public class TaskDashboardWidget extends DashboardWidget {
   @JsonIgnore
   public void resetWidgetFilters() {
     DashboardWidgetUtils.resetUserFilterOnColumns(getColumns());
+  }
+
+  public boolean isEnableQuickSearch() {
+    return enableQuickSearch;
+  }
+
+  public void setEnableQuickSearch(boolean enableQuickSearch) {
+    this.enableQuickSearch = enableQuickSearch;
   }
 
   @Override
