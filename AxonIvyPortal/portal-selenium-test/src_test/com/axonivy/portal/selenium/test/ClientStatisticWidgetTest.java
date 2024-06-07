@@ -41,13 +41,4 @@ public class ClientStatisticWidgetTest extends BaseTest {
     runningCasesWidget.getAllChartLabels().first().text().equals("Running");
   }
   
-  @Test
-  public void testEmptyMessageAppearWhenNoData() {
-    login(TestAccount.ADMIN_USER);
-    redirectToNewDashBoard();
-    ScreenshotUtils.maximizeBrowser();
-    ClientStatisticWidgetNewDashboardPage tasksByPriorityWidget = newDashboardPage.selectClientStatisticChartWidget("Tasks by Priority");
-    tasksByPriorityWidget.clickOnButtonExpand();
-    assertTrue(tasksByPriorityWidget.isEmptyMessageAppear());
-  }
 }

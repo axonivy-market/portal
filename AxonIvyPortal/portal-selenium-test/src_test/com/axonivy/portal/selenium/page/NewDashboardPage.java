@@ -259,10 +259,13 @@ public class NewDashboardPage extends TemplatePage {
 
   public void resizeCombinedModeProcess() {
     SelenideElement gridStackItem = getStartButton().closest(".grid-stack-item");
-    updateElementAttribute(gridStackItem, "gs-w", "7");
+    updateElementAttribute(gridStackItem, "gs-w", "12");
+    updateElementAttribute(gridStackItem, "gs-h", "5");
     updateElementAttribute(gridStackItem, "gs-x", "0");
-    gridStackItem.shouldBe(Condition.attribute("gs-x", "0"), DEFAULT_TIMEOUT).shouldBe(Condition.attribute("gs-w", "7"),
-        DEFAULT_TIMEOUT);
+    updateElementAttribute(gridStackItem, "gs-y", "3");
+
+    gridStackItem.shouldBe(Condition.attribute("gs-h", "5"), DEFAULT_TIMEOUT).shouldBe(Condition.attribute("gs-w", "12"),
+        DEFAULT_TIMEOUT).shouldBe(Condition.attribute("gs-x", "0"), DEFAULT_TIMEOUT).shouldBe(Condition.attribute("gs-y", "3"), DEFAULT_TIMEOUT);
   }
 
   private void updateElementAttribute(SelenideElement element, String attribute, String value) {
