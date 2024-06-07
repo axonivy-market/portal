@@ -5,7 +5,6 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
@@ -212,12 +211,12 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
   @Test
   public void testChangeCombinedModeProcess() {
+    ScreenshotUtils.maximizeBrowser();
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
-    ScreenshotUtils.maximizeBrowser();
-    newDashboardPage.getStartButton().shouldBe(Condition.disabled);
     newDashboardPage.resizeCombinedModeProcess();
+    newDashboardPage.getStartButton().shouldBe(Condition.disabled);
     newDashboardPage.checkTasksTabDisplayedDataContainer();
 
     editProcessWidgetConfiguration = newDashboardPage.editCombinedModeProcess();
@@ -245,6 +244,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CREATE_INVESTMENT_IFRAME);
+    ScreenshotUtils.maximizeBrowser();
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
 
     backToNewDashboardPage();
