@@ -182,7 +182,6 @@ public class DashboardCaseWidgetTest extends BaseTest {
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.sizeGreaterThanOrEqual(4));
     caseWidget.openFilterWidget();
     caseWidget.resetFilter();
-    caseWidget.applyFilter();
 
     // Filter State Open
     caseWidget.stateOfFirstCase().shouldHave(text("Open"));
