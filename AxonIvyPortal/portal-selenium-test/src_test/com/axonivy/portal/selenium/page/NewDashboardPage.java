@@ -1066,7 +1066,7 @@ public class NewDashboardPage extends TemplatePage {
 
   public void waitStatisticChartLoaded() {
     $("div[data-chart-id='11']").shouldBe(appear, DEFAULT_TIMEOUT).$(".card-number").shouldNotBe(Condition.empty, DEFAULT_TIMEOUT);
-    $("div[data-chart-id='10']").shouldBe(appear, DEFAULT_TIMEOUT).$(".card-number").shouldBe(Condition.text("2"), DEFAULT_TIMEOUT);
+    $("div[data-chart-id='10']").shouldBe(appear, DEFAULT_TIMEOUT).$(".card-number").shouldBe(Condition.text("14"), DEFAULT_TIMEOUT);
     $("a[id$='user-settings-menu']").shouldBe(appear).click();
     $("ul[id='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT).$("a[id='user-profile']").shouldHave(Condition.text("My profile"), DEFAULT_TIMEOUT);
     $("a[id$='user-settings-menu']").shouldBe(appear).click();
