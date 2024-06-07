@@ -24,50 +24,55 @@ Available Standard Charts
 
 |dashboard-statistic-widget-demo|
 
-- Tasks by priority
+- Tasks by Priority
 
-    - Displays all open tasks available for the user by priority.
-    - Chart type: :bdg-info:`Pie`, :bdg-info:`Bar`
+    - This pie chart displays all tasks by priority.
+    - Chart type: :bdg-info:`Pie`
 
-- Number of running cases
+- Top Priority: 3 days
 
-    - Displays number of running cases involving the user 
-    - Chart type: :bdg-info:`KPI`
-
-- Number of user tasks by priority
-
-    - Displays number of user tasks by priority involving the user 
-    - Chart type: :bdg-info:`KPI`
-
-- Number of task expiring today
-
-    - Displays number of tasks set to expire on the current day 
-    - Chart type: :bdg-info:`KPI`
-
-- Number of task expiring end of week
-
-    - Displays number of tasks expiring by the end of the current week.
-    - Chart type: :bdg-info:`KPI`
-
-- Finished cases per day
-
-    - Display number of cases completed over the past 5 days
-    - Chart type: :bdg-info:`Line`
-
-- Started cases per day
-
-    - Display number of cases started over the past 5 days
-    - Chart type: :bdg-info:`Line`
-
-- Average runtime of cases by category
-
-    - Presents the average duration of cases categorized by their respective categories
+    - This chart displays all tasks that the user can work on, grouped by expiry within the next 3 days.
     - Chart type: :bdg-info:`Bar`
 
-- Tasks grouped by priority expiring within the next 3 days
+- Tasks by Priority
 
-    - Displays tasks that the user can work on, categorized by their Priority within the upcoming 3 days
+    - This bar chart displays all tasks by priority that the user can work on.
     - Chart type: :bdg-info:`Bar`
+
+- Case Category Avg. Runtime
+
+    - This chart shows the average time of cases by category. 
+    - Chart type: :bdg-info:`Bar`
+
+- New Cases per day
+
+    - This chart shows all started cases per day within the last 5 days.
+    - Chart type: :bdg-info:`Line`
+
+- Completed Cases per day
+
+    - This chart shows all finished cases per day within the last 5 days.
+    - Chart type: :bdg-info:`Line`
+
+- Running Cases
+
+    - This chart shows all running cases in which the user is involved.
+    - Chart type: :bdg-info:`KPI`
+
+- Tasks that expire by the end of the week
+
+    - This chart shows all tasks that expire by the end of the week.
+    - Chart type: :bdg-info:`KPI`
+
+- Tasks by Priority
+
+    - This chart shows all tasks the user can work on by priority.
+    - Chart type: :bdg-info:`KPI`
+
+- Open Tasks
+
+    - This chart shows all tasks the user can work on.
+    - Chart type: :bdg-info:`KPI`
 
 .. |statistic-widget-list-page| image:: ../../screenshots/statistic/statistic-widget-list.png
 .. |dashboard-statistic-widget-demo| image:: ../../screenshots/statistic/dashboard-statistic-widget-demo.png
