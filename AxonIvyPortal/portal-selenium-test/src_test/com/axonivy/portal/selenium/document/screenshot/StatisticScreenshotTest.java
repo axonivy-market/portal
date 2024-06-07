@@ -98,9 +98,11 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
   public void screenshotStatisticStandardDemo() throws IOException {
     redirectToRelativeLink(createDataCreatedDate);
     redirectToRelativeLink(createDataForStatisticWidget);
+    redirectToRelativeLink(createDataFinishedDate);
+    redirectToRelativeLink(createCasesForCaseListCustomization);
     createJSonFile("dashboard-statistic-widget-demo.json", PortalVariable.DASHBOARD.key);
     redirectToNewDashBoard();
-    ScreenshotUtils.resizeBrowser(new Dimension(1386, 1100));
+    ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitStatisticChartLoaded();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "dashboard-statistic-widget-demo");
