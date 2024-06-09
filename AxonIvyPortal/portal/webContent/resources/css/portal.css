@@ -1901,3 +1901,15 @@ i.dashboard-icon-drag-drop {
   max-height: 50vh;
   width: fit-content;
 }
+
+.qr-container {
+  position: relative;
+  display: inline-block;
+}
+
+#qr-code-image{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-60%, -60%);
+}

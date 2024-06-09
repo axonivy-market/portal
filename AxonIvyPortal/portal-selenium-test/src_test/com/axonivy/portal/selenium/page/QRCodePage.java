@@ -24,4 +24,15 @@ public class QRCodePage extends TemplatePage {
     $("button[id='mobile-app-close-button']").shouldBe(appear, DEFAULT_TIMEOUT).click();
   }
 
+  public void openApplePlatformDownload() {
+    $("a[href*='apple-tab']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+  }
+
+  public boolean isAppleQRCodeDisplayed() {
+    return $("[id='apple-qr-code']").isDisplayed();
+  }
+  public WebElement getAppleQRCodeDialog() {
+    return $("#platform-QR-code").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
 }

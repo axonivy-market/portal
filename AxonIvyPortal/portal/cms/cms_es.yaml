@@ -1008,7 +1008,11 @@ ch.ivy.addon.portalkit.ui.jsf:
   logoutSetting:
     logout: Cerrar sesión
   mobile:
+    AppleStore: Apple Store
+    DownloadMobileApp: 'Para descargar la aplicación Axon Ivy Mobile:'
+    GooglePlay: Google Play
     MenuName: Aplicación móvil
+    Platform: 'Plataforma:'
     QRCodeDescription: Para conectar su aplicación móvil Axon Ivy, escanee este código QR e introduzca sus credenciales en el interior de la aplicación.
   noteHistory:
     author: Autor
@@ -1594,10 +1598,10 @@ Dialogs:
             LinkCopied: ¡Enlace copiado!
         dashboard:
           component:
-            ClientStatisticWidget:
-              NoPermissionChartMessage: No tiene permiso para ver este gráfico.
             CaseWidgetConfiguration:
               AddFilter: Añadir filtro
+            ClientStatisticWidget:
+              NoPermissionChartMessage: No tiene permiso para ver este gráfico.
             DashboardImportDetails:
               FileInfomation: Informacion del archivo
               ImportPrivate: Importar panel privado

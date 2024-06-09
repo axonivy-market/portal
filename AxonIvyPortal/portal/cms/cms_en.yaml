@@ -1010,7 +1010,11 @@ ch.ivy.addon.portalkit.ui.jsf:
   logoutSetting:
     logout: Logout
   mobile:
+    AppleStore: Apple Store
+    DownloadMobileApp: 'To download your Axon Ivy Mobile App:'
+    GooglePlay: Google Play
     MenuName: Connect Mobile App
+    Platform: 'Platform:'
     QRCodeDescription: To connect your Axon Ivy Mobile App, please scan this QR Code and enter your credentials in the inside the app.
   noteHistory:
     author: Author
