@@ -52,8 +52,7 @@ public class DashboardUtils {
   }
 
   private static boolean isSessionUserHasPermisson(String permission) {
-    return StringUtils.startsWith(permission, "#") 
-        ? StringUtils.equals(currentUser().getMemberName(), permission)
+    return StringUtils.startsWith(permission, "#") ? StringUtils.equals(currentUser().getMemberName(), permission)
         : PermissionUtils.doesSessionUserHaveRole(permission);
   }
 
@@ -63,7 +62,7 @@ public class DashboardUtils {
     }
 
     List<Dashboard> mappingDashboards = convertDashboardsToLatestVersion(dashboardJSON);
-    mappingDashboards.forEach(initDefaultPermission());
+    mappingDashboards.forEach(dashboard -> initDefaultPermission());
     return mappingDashboards;
   }
 
@@ -123,8 +122,9 @@ public class DashboardUtils {
   }
 
   public static Map<String, Dashboard> createMapIdToDashboard(List<Dashboard> dashboards) {
-    return dashboards.stream()
-            .collect(Collectors.toMap(Dashboard::getId, dashboard -> dashboard, (a, b) -> b, LinkedHashMap::new));
+    Map<String, Dashboard> idToDashboard = new LinkedHashMap<>();
+    dashboards.forEach(dashboard -> idToDashboard.put(dashboard.getId(), dashboard));
+    return idToDashboard;
   }
 
   public static String generateId() {

@@ -1,5 +1,4 @@
 package ch.ivy.addon.portalkit.service;
-
 import java.util.List;
 
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
@@ -25,9 +24,5 @@ public class DashboardService extends JsonConfigurationService<Dashboard> {
   public String getConfigKey() {
     return PortalVariable.DASHBOARD.key;
   }
-  
-  @Override
-  public List<Dashboard> emptyList() {
-    return null;
-  }
+
 }

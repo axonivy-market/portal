@@ -3,15 +3,20 @@ package com.axonivy.portal.service;
 import java.security.InvalidParameterException;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Optional;
+
 import javax.naming.NoPermissionException;
 import javax.ws.rs.NotFoundException;
+
 import org.apache.commons.lang3.StringUtils;
+
 import com.axonivy.portal.bo.ClientStatistic;
 import com.axonivy.portal.dto.ClientStatisticDto;
 import com.axonivy.portal.enums.AdditionalChartConfig;
+
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.service.JsonConfigurationService;
 import ch.ivy.addon.portalkit.statistics.ClientStatisticResponse;
@@ -57,7 +62,8 @@ public class ClientStatisticService extends JsonConfigurationService<ClientStati
   private void validateChart(String chartId, ClientStatistic chart)
       throws NotFoundException, NoPermissionException {
     if (chart == null) {
-      throw new NotFoundException(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/exception/idNotFound", List.of(chartId)));
+      throw new NotFoundException(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/exception/idNotFound",
+          Arrays.asList(chartId)));
     }
 
     if (!isPermissionValid(chart)) {
