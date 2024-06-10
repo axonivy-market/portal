@@ -1913,10 +1913,11 @@ i.dashboard-icon-drag-drop {
 	left: 50%;
 	width: 50px;	
 	height: 50px;
-	background-color: white;
+	background-color: var(--ivy-primary-color-white);
 	transform: translate(-50%, -50%);
 	border-radius: 6px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);/* Adjust the shadow as needed */}
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
 #qr-code-image {
 	position: absolute;
