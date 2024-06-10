@@ -24,7 +24,7 @@ public final class RoleAPI {
   public static void setProperty(IRole role, String key, String value) {
     Sudo.get(() -> {
       role.setProperty(key, value);
-      IvyCacheService.newInstance().invalidateSessionEntry(ISecurityContext.current().getName(),
+      IvyCacheService.getInstance().invalidateSessionEntry(ISecurityContext.current().getName(),
           IvyCacheIdentifier.ROLES_IN_SECURITY_CONTEXT);
       return Void.class;
     });
@@ -39,7 +39,7 @@ public final class RoleAPI {
   public static void removeProperty(IRole role, String key) {
     Sudo.get(() -> {
       role.removeProperty(key);
-      IvyCacheService.newInstance().invalidateSessionEntry(ISecurityContext.current().getName(),
+      IvyCacheService.getInstance().invalidateSessionEntry(ISecurityContext.current().getName(),
           IvyCacheIdentifier.ROLES_IN_SECURITY_CONTEXT);
       return Void.class;
     });
