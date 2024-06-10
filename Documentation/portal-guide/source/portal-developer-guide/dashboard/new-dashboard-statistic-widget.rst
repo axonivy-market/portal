@@ -61,32 +61,22 @@ Below is a sample JSON definition of a statistics widget in the Portal dashboard
 
 The basic JSON structure of a statistics widget
 
-   ``type``: type of the widget. Use ``statistic`` for a statistics widget
-
    ``id``: ID of the widget
 
-   ``layout``: layout definition of the statistics widget
+   ``aggregates``: the aggregation query to make bucket (grouping) or metric aggregations. Please refer to :ref:`Portal.StatisticCharts <portal-statistic-charts>` for more information.
 
-      ``x``: HTML DOM Style ``left`` is calculated as formula ``x / 12 * 100%``
+   ``filter``: list of filters to apply for each chart. Please refer to :ref:`Portal.StatisticCharts <portal-statistic-charts>` for more information.
 
-      ``y``: HTML DOM Style ``top`` is calculated as formula ``y / 12 * 100%``
+   ``chartTarget``: the chart target of the widget, ``TASK`` or ``CASE``.
 
-      ``w``: HTML DOM Style ``width`` is calculated as formula ``60 * w + 20 * (w - 1)``
+   ``chartType``: type of the chart such as ``Pie``, ``Bar``, ``Line`` and ``KPI``. For ``KPI`` chart, you have to set the type as ``Number`` instead of ``KPI``.
 
-      ``h``: HTML DOM Style ``height`` is calculated as formula ``60 * h + 20 * (h - 1)``
+   ``names``: the multilingual display name of the chart.
 
-      ``styleClass`` (optional): add CSS Classes to HTML DOM of the widget
+   ``descriptions``: the multilingual description of the chart.
 
-      ``style`` (optional): add inline style to HTML DOM of the widget
+   ``icon``: the icon of each widget.
+   
+   ``refreshInterval``: statistic widget refresh interval in seconds 
 
-   ``chart``: the chart data model of the widget
-
-      ``id``: the identification of the chart. It is an auto-generated UUID.
-
-      ``names``: the multilingual display name of the chart.
-
-      ``type``: type of chart such as ``TASK_BY_PRIORITY``, ``CASES_BY_STATE``,
-      ``CASES_BY_FINISHED_TASK``, ``CASES_BY_FINISHED_TIME``, ``TASK_BY_EXPIRY``,
-      ``ELAPSED_TIME_BY_CASE_CATEGORY``, and ``CASES_BY_CATEGORY``
-
-      ``filter``: list of filters to apply for each chart. Please refer to :ref:`Portal.StatisticCharts <portal-statistic-charts>` for more information.
+For a specific chart such as ``Bar``, ``Line`` or ``KPI`` chart, it requires some additional fields. Please refer to :ref:`Portal.StatisticCharts <portal-statistic-charts>` for more information.

@@ -578,7 +578,7 @@
     "icon": "si si-pie-line-graph",
     "refreshInterval": 300,
     "numberChartConfig": {
-      "suffixSymbol": ""
+      "suffixSymbol": ":d"
     }
   },
   {
