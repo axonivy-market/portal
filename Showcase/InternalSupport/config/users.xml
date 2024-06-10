@@ -11,4 +11,9 @@
         <fullName>david</fullName>
         <role>HR</role>
     </user>
+    <user>
+        <username>peter</username>
+        <password>peter</password>
+        <role>HR</role>
+    </user>
 </userConfig>
