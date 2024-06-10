@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.service;
 
+
 import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
@@ -48,22 +49,15 @@ public abstract class JsonConfigurationService<T extends AbstractConfiguration> 
   public List<T> findAll() {
     List<T> publicConfigs = getPublicConfig();
     List<T> privateConfigs = getPrivateConfig();
-    if (publicConfigs.isEmpty() && privateConfigs.isEmpty()) {
-      return emptyList();
-    }
     List<T> allConfigs = new ArrayList<>(publicConfigs);
     allConfigs.addAll(privateConfigs);
     return allConfigs;
-  }
-  
-  public List<T> emptyList() {
-    return new ArrayList<>();
   }
 
   public List<T> getPublicConfig() {
     String jsonValue = Ivy.var().get(getConfigKey());
     if (StringUtils.isBlank(jsonValue)) {
-      return emptyList();
+      return new ArrayList<>();
     }
     List<T> entities = BusinessEntityConverter.jsonValueToEntities(jsonValue, getType());
     entities.forEach(e -> e.setIsPublic(true));
@@ -73,7 +67,7 @@ public abstract class JsonConfigurationService<T extends AbstractConfiguration> 
   public List<T> getPrivateConfig() {
     String jsonValue = sessionUser().getProperty(getConfigKey());
     if (StringUtils.isBlank(jsonValue)) {
-      return emptyList();
+      return new ArrayList<>();
     }
     return Optional.ofNullable(convertToLatestVersion(jsonValue))
       .orElseGet(() -> BusinessEntityConverter.jsonValueToEntities(jsonValue, getType()));

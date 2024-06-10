@@ -28,7 +28,7 @@ public class LanguageService {
 
   private LanguageService() {}
 
-  public static LanguageService newInstance() {
+  public static LanguageService getInstance() {
     if (instance == null) {
       synchronized (LanguageService.class) {
         if (instance == null) {
@@ -107,7 +107,7 @@ public class LanguageService {
   @SuppressWarnings("unchecked")
   public List<Locale> getContentLocales() {
     String sessionUserId = (String) Ivy.session().getAttribute(SessionAttribute.SESSION_IDENTIFIER.toString());
-    IvyCacheService cacheService = IvyCacheService.newInstance();
+    IvyCacheService cacheService = IvyCacheService.getInstance();
     Optional<Object> result = cacheService.getSessionCacheValue(IvyCacheIdentifier.PORTAL_CONTENT_LOCALES,
         sessionUserId);
     if (result.isPresent()) {
@@ -128,7 +128,7 @@ public class LanguageService {
   @SuppressWarnings("unchecked")
   public List<Locale> getFormattingLocales() {
     String sessionUserId = (String) Ivy.session().getAttribute(SessionAttribute.SESSION_IDENTIFIER.toString());
-    IvyCacheService cacheService = IvyCacheService.newInstance();
+    IvyCacheService cacheService = IvyCacheService.getInstance();
     Optional<Object> result = cacheService.getSessionCacheValue(IvyCacheIdentifier.PORTAL_FORMATTING_LOCALES,
         sessionUserId);
     if (result.isPresent()) {

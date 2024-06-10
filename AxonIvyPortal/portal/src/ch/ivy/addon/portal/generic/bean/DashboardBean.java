@@ -430,7 +430,7 @@ public class DashboardBean implements Serializable {
   }
 
   protected List<String> getSupportedLanguages() {
-    return LanguageService.newInstance().getIvyLanguageOfUser().getSupportedLanguages();
+    return LanguageService.getInstance().getIvyLanguageOfUser().getSupportedLanguages();
   }
 
   public boolean isShowTranslation(DisplayName title) {
