@@ -13,37 +13,49 @@ Below is a sample JSON definition of a statistics widget in the Portal dashboard
 .. code-block:: html
 
    {
-      "type": "statistic",
-      "id": "statistic_1",
-      "layout": {
-         "styleClass": "new-widget",
-         "w": 5,
-         "h": 5,
-         "x": 0,
-         "y": 0
-      },
-      "chart": {
-         "id": "0",
-         "names": [
-            {
-               "locale": "de",
-               "value": "Aufgaben nach Priorität"
-            }, {
-               "locale": "en",
-               "value": "Tasks by Priority"
-            }, {
-               "locale": "fr",
-               "value": "Tãches par priorité"
-            }, {
-               "locale": "es",
-               "value": "Tareas por prioridad"
-            }
-         ],
-         "type": "TASK_BY_PRIORITY",
-         "filter": {
-            "timePeriodSelection": "CUSTOM"
+      "id": "1",
+      "aggregates": "priority",
+      "filter": "businessState:OPEN IN_PROGRESS,canWorkOn",
+      "chartTarget": "TASK",
+      "chartType": "pie",
+      "names": [
+         {
+            "locale": "de",
+            "value": "Aufgaben nach Prioritäten"
+         },
+         {
+            "locale": "en",
+            "value": "Tasks by Priority"
+         },
+         {
+            "locale": "fr",
+            "value": "Tâches par Priorité"
+         },
+         {
+            "locale": "es",
+            "value": "Tareas por Prioridad"
          }
-      }
+         ],
+      "descriptions": [
+         {
+            "locale": "de",
+            "value": "Dieses Kreisdiagramm zeigt alle Aufgaben nach Priorität an."
+         },
+         {
+            "locale": "en",
+            "value": "This pie chart displays all tasks by priority."
+         },
+         {
+            "locale": "fr",
+            "value": "Ce diagramme à secteurs affiche toutes les tâches par priorité."
+         },
+         {
+            "locale": "es",
+            "value": "Este gráfico circular muestra todas las tareas por prioridad."
+         }
+      ],
+      "icon": "si si-analytics-pie-2",
+      "refreshInterval": 300
    }
 ..
 
