@@ -79,4 +79,4 @@ The basic JSON structure of a statistics widget
    
    ``refreshInterval``: statistic widget refresh interval in seconds 
 
-For a specific chart such as ``Bar``, ``Line`` or ``KPI`` chart, it requires some additional fields. Please refer to :ref:`Portal.StatisticCharts <portal-statistic-charts>` for more information.
+For a specific chart such as ``Bar``, ``Line`` or ``KPI`` chart, it requires some additional and required fields. Please refer to :ref:`Portal.StatisticCharts <portal-statistic-charts>` for more information.
