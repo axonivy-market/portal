@@ -493,35 +493,35 @@ Data model:
    }]
 
 - ``id``: ID of the widget
-- ``aggregates``: the aggregation query to make bucket (grouping) or metric aggregations.
-- ``filter``: list of filters to apply for each chart.
-- ``chartTarget``: the chart target of the widget, ``TASK`` or ``CASE``.
-- ``chartType``: type of the chart such as ``Pie``, ``Bar``, ``Line`` and ``KPI``. For ``KPI`` chart, you have to set the type as ``Number`` instead of ``KPI``.
-- ``names``: the multilingual display name of the chart.
-- ``descriptions``: the multilingual description of the chart.
-- ``icon``: the icon of each widget. 
-- ``refreshInterval``: statistic widget refresh interval in seconds.
+- ``aggregates``: the aggregation query to make bucket (grouping) or metric aggregations. Please visit `Task Aggregation and Filter`_ and `Case Aggregation and Filter`_ for more details
+- ``filter``: list of filters to apply for each chart. Please visit `Task Aggregation and Filter`_ and `Case Aggregation and Filter`_ for more details
+- ``chartTarget``: the chart target of the widget, ``TASK`` or ``CASE``
+- ``names``: the multilingual display name of the chart
+- ``descriptions``: the multilingual description of the chart
+- ``icon``: the icon of each widget. Portal supports both Streamline and FontAwesome icons
+- ``refreshInterval``: statistic widget refresh interval in seconds
+- ``chartType``: type of the chart such as ``Pie``, ``Bar``, ``Line`` and ``KPI``
 
-Additional fields for specific chart type:
+      .. important::
+         For choosing ``KPI`` chart, you have to set the type as ``Number`` instead of ``KPI``
 
-   Bar chart:
-      - ``barChartConfig``: 
-         - ``xTitles``: the multilingual display title for the x-axis.
-         - ``yTitles``: the multilingual display title for the y-axis.
-         - ``yValue``: currently we support showing the time value on the y-axis, you need to add the ``yValue`` field with ``time`` value.
+For some specific chart type such as ``Bar``, ``Line`` or ``KPI``, there are additional and required fields:
 
-   Line chart:
-      - ``lineChartConfig``:
-         - ``xTitles``: the multilingual display title for the x-axis.
-         - ``yTitles``: the multilingual display title for the y-axis.
+- ``barChartConfig``: required fields for configuring the ``Bar`` chart, please add them when chart type is ``Bar`` 
 
-   KPI chart:
-      - ``numberChartConfig``:
-         - ``suffixSymbol``: 
+   - ``xTitles``: the multilingual display title for the x-axis
+   - ``yTitles``: the multilingual display title for the y-axis
+   - ``yValue``: add this field with **time** value when you want to display time on the y-axis
+
+- ``lineChartConfig``: required fields for configuring the ``Line`` chart, please add them when chart type is ``Line``
+
+   - ``xTitles``: the multilingual display title for the x-axis
+   - ``yTitles``: the multilingual display title for the y-axis
+
+- ``numberChartConfig``: additional fields for configuring the ``KPI`` chart, you could define when chart type is ``Number``
+
+   - ``suffixSymbol``: icon next to the number. Portal supports both Streamline and FontAwesome icons
    
-
-
-
 .. _portal-process-external-link:
 
 Portal Processes External Links
@@ -661,3 +661,6 @@ Data model:
 .. |global-setting-edit| image:: ../../screenshots/settings/edit-global-settings.png
 .. |select-admin-settings| image:: ../../screenshots/settings/select-admin-settings.png
 .. |export-cms| image:: images/export-cms.png
+
+.. _Task Aggregation and Filter: https://developer.axonivy.com/api-browser?configUrl=https%3A%2F%2Fdeveloper.axonivy.com%2Fdoc%2F11.3%2Fopenapi%2Fconfig.json&urls.primaryName=default#/workflow/stats_1 
+.. _Case Aggregation and Filter: https://developer.axonivy.com/api-browser?configUrl=https%3A%2F%2Fdeveloper.axonivy.com%2Fdoc%2F11.3%2Fopenapi%2Fconfig.json&urls.primaryName=default#/workflow/stats
