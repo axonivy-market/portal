@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
@@ -211,10 +212,10 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
   @Test
   public void testChangeCombinedModeProcess() {
-    ScreenshotUtils.maximizeBrowser();
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
     newDashboardPage.resizeCombinedModeProcess();
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
     newDashboardPage.checkTasksTabDisplayedDataContainer();
@@ -229,11 +230,10 @@ public class DashboardProcessWidgetTest extends BaseTest {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
-    ScreenshotUtils.maximizeBrowser();
-    newDashboardPage.getStartButton().shouldBe(Condition.disabled);
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
     newDashboardPage.resizeCombinedModeProcess();
+    newDashboardPage.getStartButton().shouldBe(Condition.disabled);
     newDashboardPage.checkTasksTabDisplayedDataContainer();
-
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.deleteCombinedModeProcess();
     newDashboardPage.getCombinedModeProcessContainer().shouldNotBe(Condition.exist);
