@@ -118,7 +118,7 @@ public class UserMenuBean implements Serializable {
   }
 
   public String getLogoutPage() {
-    IvyCacheService cacheService = IvyCacheService.newInstance();
+    IvyCacheService cacheService = IvyCacheService.getInstance();
     String logoutPageUrl = cacheService.getLogoutPageFromCache();
     if (StringUtils.isNotBlank(logoutPageUrl)){
       return logoutPageUrl;
