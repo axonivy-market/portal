@@ -152,7 +152,8 @@
         appendTo="@(body)" dynamic="true" responsive="true" fitViewport="true">
         <div class="ui-g-12">
           <div class="ui-g-5 qr-container">
-            <p:barcode id="qr-code" value="#{userMenuBean.getQRcodeData()}" type="qr" width="200" height="200" />
+            <p:barcode id="qr-code" value="#{userMenuBean.getQRcodeData()}" type="qr" width="100%" height="100%" />
+            <div class="qr-logo-background"></div>
             <p:graphicImage id="qr-code-image" cache="true" library="ivy-cms" name="#{userMenuBean.mobileImageLink}" />
           </div>
           <div class="ui-g-7">

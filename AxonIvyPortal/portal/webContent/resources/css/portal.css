@@ -1903,13 +1903,26 @@ i.dashboard-icon-drag-drop {
 }
 
 .qr-container {
-  position: relative;
-  display: inline-block;
+	position: relative;
+	display: inline-block;
 }
 
-#qr-code-image{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-60%, -60%);
+.qr-logo-background {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 50px;	
+	height: 50px;
+	background-color: white;
+	transform: translate(-50%, -50%);
+	border-radius: 6px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);/* Adjust the shadow as needed */}
+
+#qr-code-image {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 40px;
+	height: 40px;
 }

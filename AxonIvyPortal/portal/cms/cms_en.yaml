@@ -1011,7 +1011,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     logout: Logout
   mobile:
     AppleStore: Apple Store
-    DownloadMobileApp: 'To download your Axon Ivy Mobile App:'
+    DownloadMobileApp: To download your Axon Ivy Mobile App
     GooglePlay: Google Play
     MenuName: Connect Mobile App
     Platform: 'Platform:'

@@ -1010,7 +1010,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     logout: Abmelden
   mobile:
     AppleStore: Apple Store
-    DownloadMobileApp: 'Um Ihre Axon Ivy Mobile-App herunterzuladen:'
+    DownloadMobileApp: Um Ihre Axon Ivy Mobile App herunterzuladen
     GooglePlay: Google Play
     MenuName: Mobile App verbinden
     Platform: 'Plattform:'
