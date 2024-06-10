@@ -126,9 +126,9 @@ The basic JSON structure of the case widget
             - ``actions``: for further actions like ``access case details``,
               ``case business details``, ``destroy case``
 
-         For custom columns, ``field`` is the name of a case custom field.
-         Portal will use the value of the ``field`` attribute to get the value
-         of the column.
+For custom columns, ``field`` is the name of a case custom field.
+Portal will use the value of the ``field`` attribute to get the value
+of the column.
 
    -  ``visible``: visibility of a column. The default value is "true". Set to
       "false" to hide the column.

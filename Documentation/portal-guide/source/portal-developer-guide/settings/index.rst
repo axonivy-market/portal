@@ -437,59 +437,90 @@ Data model:
 
 Portal Statistic Charts
 ^^^^^^^^^^^^^^^^^^^^^^^
-You can define the standard statistic charts via the following JSON file. They
-will be shown as the default charts on the statistic page.
+You can define the standard statistic widgets via the following JSON file. They
+will be displayed as the widgets on the dashboard page.
 
-Filename: ``variables.Portal.StatisticCharts.json``
+Filename: ``variables.Portal.ClientStatistic.json``
 
 Data model:
 
 .. code-block:: html
 
-   [{ "id": "42e2d9afd9824abc8d3a70b9d9867dba",
-      "names": [{
+   [{
+      "id": "1",
+      "aggregates": "priority",
+      "filter": "businessState:OPEN IN_PROGRESS,canWorkOn",
+      "chartTarget": "TASK",
+      "chartType": "pie",
+      "names": [
+         {
+            "locale": "de",
+            "value": "Aufgaben nach Prioritäten"
+         },
+         {
             "locale": "en",
-            "value": "Task chart"
-         }],
-      "type": "TASK_BY_EXPIRY",
-      "filter": {
-         "timePeriodSelection": "LAST_WEEK",
-         "createdDateFrom": null,
-         "createdDateTo": null,
-         "selectedCaseCategories": ["Alpha_Company"],
-         "selectedRoles": ["Everybody"],
-         "isAllRolesSelected": false,
-         "selectedCaseStates": ["RUNNING"],
-         "isAllCaseStatesSelected": false,
-         "selectedTaskPriorities": ["HIGH"],
-         "isAllTaskPrioritiesSelected": false,
-         "customFieldFilters": {
-            "CustomVarCharField": ["Request for new computer"]
+            "value": "Tasks by Priority"
+         },
+         {
+            "locale": "fr",
+            "value": "Tâches par Priorité"
+         },
+         {
+            "locale": "es",
+            "value": "Tareas por Prioridad"
          }
-      },
-      "position": 1
+         ],
+      "descriptions": [
+         {
+            "locale": "de",
+            "value": "Dieses Kreisdiagramm zeigt alle Aufgaben nach Priorität an."
+         },
+         {
+            "locale": "en",
+            "value": "This pie chart displays all tasks by priority."
+         },
+         {
+            "locale": "fr",
+            "value": "Ce diagramme à secteurs affiche toutes les tâches par priorité."
+         },
+         {
+            "locale": "es",
+            "value": "Este gráfico circular muestra todas las tareas por prioridad."
+         }
+      ],
+      "icon": "si si-analytics-pie-2",
+      "refreshInterval": 300
    }]
 
--  ``id``: the identification of chart. An auto-generated UUID.
--  ``names``: the multilingual display name of the chart.
--  ``type``: type of chart such as ``TASK_BY_PRIORITY``, ``CASES_BY_STATE``, ``CASES_BY_FINISHED_TASK``, ``CASES_BY_FINISHED_TIME``, ``TASK_BY_EXPIRY`` and ``ELAPSED_TIME_BY_CASE_CATEGORY``
--  ``filter``: list filters to apply for each chart
+- ``id``: ID of the widget
+- ``aggregates``: the aggregation query to make bucket (grouping) or metric aggregations.
+- ``filter``: list of filters to apply for each chart.
+- ``chartTarget``: the chart target of the widget, ``TASK`` or ``CASE``.
+- ``chartType``: type of the chart such as ``Pie``, ``Bar``, ``Line`` and ``KPI``. For ``KPI`` chart, you have to set the type as ``Number`` instead of ``KPI``.
+- ``names``: the multilingual display name of the chart.
+- ``descriptions``: the multilingual description of the chart.
+- ``icon``: the icon of each widget. 
+- ``refreshInterval``: statistic widget refresh interval in seconds.
 
-   -  ``timePeriodSelection``: type of period filter such as ``CUSTOM``, ``LAST_WEEK``, ``LAST_MONTH`` and ``LAST_6_MONTH``
-   -  ``createdDateFrom``: start time for custom period filter
-   -  ``createdDateTo``: end time for custom period filter
-   -  ``selectedCaseCategories``: case category filter
-   -  ``selectedRoles``: role filter
-   -  ``isAllRolesSelected``: indicator to inform if all roles are selected.
-   -  ``selectedCaseStates``: case state filter
-   -  ``isAllCaseStatesSelected``: indicator to inform if all case states are selected.
-   -  ``selectedTaskPriorities``: task priority filter
-   -  ``isAllTaskPrioritiesSelected``: indicator to inform if all priorities are selected.
-   -  ``customFieldFilters``: list CustomField name filters, define by ``ICase.customFields()``
+Additional fields for specific chart type:
 
-      -  ``CustomVarCharField``: name of ``ICase.customFields()``
+   Bar chart:
+      - ``barChartConfig``: 
+         - ``xTitles``: the multilingual display title for the x-axis.
+         - ``yTitles``: the multilingual display title for the y-axis.
+         - ``yValue``: currently we support showing the time value on the y-axis, you need to add the ``yValue`` field with ``time`` value.
 
--  ``position``: position index of chart. Used to order the charts in the UI
+   Line chart:
+      - ``lineChartConfig``:
+         - ``xTitles``: the multilingual display title for the x-axis.
+         - ``yTitles``: the multilingual display title for the y-axis.
+
+   KPI chart:
+      - ``numberChartConfig``:
+         - ``suffixSymbol``: 
+   
+
+
 
 .. _portal-process-external-link:
 
