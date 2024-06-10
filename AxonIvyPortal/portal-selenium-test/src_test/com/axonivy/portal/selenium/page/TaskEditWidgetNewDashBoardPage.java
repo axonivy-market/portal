@@ -276,7 +276,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement openColumnManagementDialog() {
-    $("div[id$='new-widget-configuration-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT)
+    $("div#new-widget-configuration-dialog").shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='new-widget-configuration-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("button[id$='manage-column']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return getColumnManagementDialog().shouldBe(appear, DEFAULT_TIMEOUT);
   }
