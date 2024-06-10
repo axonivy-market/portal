@@ -1,10 +1,12 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -135,7 +137,10 @@ public class LanguageService {
       return (List<Locale>) result.get();
     }
 
-    List<Locale> locales = locales(LanguageRepository::allFormatting);
+    List<Locale> locales = locales(LanguageRepository::allFormatting)
+        .stream()
+        .sorted(Comparator.comparing(Locale::getDisplayName, String.CASE_INSENSITIVE_ORDER))
+        .collect(Collectors.toList());
     cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_FORMATTING_LOCALES, sessionUserId, locales);
     return locales;
   }
