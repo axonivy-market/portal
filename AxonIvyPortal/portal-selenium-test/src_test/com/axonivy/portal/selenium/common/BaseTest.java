@@ -63,6 +63,7 @@ public class BaseTest {
   protected String createTestingCaseContainOneTask = "internalSupport/14B2FC03D2E87141/CreateSupportTicket.ivp";
   protected String createTaskWithNotExistedActivatorUrl =
       "internalSupport/14B2FC03D2E87141/createTaskWithNotExistedActivator.ivp";
+  protected String createTaskForRoleInvolved = "InternalSupport/171E2BB0DB49C362/roleInvolved.ivp";
   protected String expressStartLink = "axonivy-express/15798655494F25E1/AxonIvyExpressWF.ivp";
   protected String cleanupDataLink = "portalKitTestHelper/1511A66AF619A768/cleanData.ivp";
   protected String complexPaymentUrl = "portal-developer-examples/162511D2577DBA88/complexPayment.ivp";
@@ -151,6 +152,10 @@ public class BaseTest {
   protected String createDataCreatedDate = "portalKitTestHelper/18B031C59C3C7814/CreateDataForCreatedDate.ivp";
   protected String createDataForStatisticWidget = "InternalSupport/14B2FC03D2E87141/CategoriedLeaveRequest.ivp";
   
+  protected String grantCaseReadAllOwnRoleInvolvedPermission = "PortalKitTestHelper/14DE09882B540AD5/grantCaseReadAllOwnRoleInvolvedPermission.ivp";
+  protected String denyCaseReadAllOwnRoleInvolvedPermission = "PortalKitTestHelper/14DE09882B540AD5/denyCaseReadAllOwnRoleInvolvedPermission.ivp";
+
+
   protected void redirectToNewDashBoard() {
     open(EngineUrl.createProcessUrl(PORTAL_HOME_PAGE_URL));
   }
