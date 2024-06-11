@@ -1907,23 +1907,34 @@ i.dashboard-icon-drag-drop {
 	display: inline-block;
 }
 
+.qr-code {
+	height: 100%;
+	width: 100%;
+}
 .qr-logo-background {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	width: 50px;	
+	width: 50px;
 	height: 50px;
-	background-color: var(--ivy-primary-color-white);
-	transform: translate(-50%, -50%);
+	background-color: white;
 	border-radius: 6px;
+	transform: translate(-50%, -50%);
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	z-index: 0;
 }
 
-#qr-code-image {
+.qr-code-image {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	width: 40px;
 	height: 40px;
+	z-index: 1; 
+}
+
+.platform-image {
+	max-width: 50%;
+	margin: -15px 0;
 }

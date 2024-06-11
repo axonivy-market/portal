@@ -299,7 +299,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     usernameRequiredMsg: Please input username.
     value: Value
   applicationMenuHeader:
-    MobileApp: Connect the Axon Ivy Mobile App
+    MobileApp: Download and Connect to Axon Ivy Mobile App
     adminSettings: Admin settings
     changePassword: Change password
   businessCaseState:
@@ -1011,11 +1011,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     logout: Logout
   mobile:
     AppleStore: Apple Store
+    AxonIvyMobile: Axon Ivy Mobile
     DownloadMobileApp: To download your Axon Ivy Mobile App
     GooglePlay: Google Play
     MenuName: Connect Mobile App
     Platform: 'Platform:'
     QRCodeDescription: To connect your Axon Ivy Mobile App, please scan this QR Code and enter your credentials in the inside the app.
+    QRCodeDownloadDescription: Scan the code below with your mobile camera or with a QR reader app.
   noteHistory:
     author: Author
     caseExportedFileNamePrefix: Note_history_of_case_{0}

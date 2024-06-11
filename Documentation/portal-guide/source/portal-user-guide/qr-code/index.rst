@@ -13,7 +13,7 @@ You can turn on QR code with this Portal setting: Portal.UserMenu.ShowQRCode.
 HowTo: Change base Portal URL for Axon Ivy Mobile application
 -------------------------------------------------------------
 
-You can turn on QR code with this Portal setting: Portal.UserMenu.BaseQRCodeUrl.
+You can change the base Portal URL with this Portal setting: Portal.UserMenu.BaseQRCodeUrl.
 
 See :ref:`Update Portal settings <update-portal-settings>`.
 

@@ -56,7 +56,7 @@ public class UserMenuBean implements Serializable {
   private boolean isShowQuickGlobalSearch;
   private String baseUrlVariable;
   private String appleStoreUrlVariable;
-  private String GooglePlayUrlVariable;
+  private String googlePlayUrlVariable;
   protected static final String MOBILE_LOGO_IMAGE_CMS_URI = "/images/MenuQRCode/MobileAppLogo/MobileAppLogo";
   protected static final String APPLE_STORE_IMAGE_CMS_URL = "/images/MenuQRCode/AppleStore/AppleStore";
   protected static final String GOOGLE_PLAY_IMAGE_CMS_URL = "/images/MenuQRCode/GooglePlay/GooglePlay";
@@ -71,7 +71,7 @@ public class UserMenuBean implements Serializable {
       String format = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.LOGGED_IN_USER_FORMAT);
       baseUrlVariable = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.BASE_QR_CODE_URL);
       appleStoreUrlVariable = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.APPLE_STORE_URL);
-      GooglePlayUrlVariable = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.GOOGLE_PLAY_URL);
+      googlePlayUrlVariable = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.GOOGLE_PLAY_URL);
       GlobalVariable.Option option = GlobalVariable.Option.valueOf(format);
       String fullName = Ivy.session().getSessionUser().getFullName();
       String userName = Ivy.session().getSessionUserName();
@@ -384,7 +384,7 @@ public class UserMenuBean implements Serializable {
   }
 
   public String getGooglePlayDownloadLink() {
-    return GooglePlayUrlVariable;
+    return googlePlayUrlVariable;
   }
   public String getMobileImageLink() {
     return MOBILE_LOGO_IMAGE_CMS_URI;
@@ -394,7 +394,7 @@ public class UserMenuBean implements Serializable {
     return APPLE_STORE_IMAGE_CMS_URL;
   }
 
-  public String getGooglePlayLink() {
+  public String getGooglePlayImageLink() {
     return GOOGLE_PLAY_IMAGE_CMS_URL;
   }
 

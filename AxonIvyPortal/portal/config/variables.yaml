@@ -79,9 +79,9 @@ Variables:
       
       # Set Base URL for QR code to display
       BaseQRCodeUrl: ''
-      # Set URL to download app on Apple Store
+      # Set URL to download Axon Ivy mobile app on Apple Store.
       AppleStoreURL: 'https://apps.apple.com/us/app/axon-ivy/id6474303078'
-      # Set URL to download app on Google Play
+      # Set URL to download Axon Ivy mobile app on Google Play.
       GooglePlayURL: 'https://play.google.com/store/apps/details?id=com.axonivy&pli=1'
 
     # You can configure the look and feel for dashboard according to your needs via this json file.
