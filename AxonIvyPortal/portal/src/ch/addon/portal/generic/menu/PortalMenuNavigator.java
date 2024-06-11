@@ -118,7 +118,7 @@ public class PortalMenuNavigator {
       Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
     }
     String sessionUserId = (String) Ivy.session().getAttribute(sessionIdAttribute);
-    IvyCacheService cacheService = IvyCacheService.newInstance();
+    IvyCacheService cacheService = IvyCacheService.getInstance();
     PortalSubMenuItemWrapper portalSubMenuItemWrapper = null;
     try {
       portalSubMenuItemWrapper = (PortalSubMenuItemWrapper) cacheService
