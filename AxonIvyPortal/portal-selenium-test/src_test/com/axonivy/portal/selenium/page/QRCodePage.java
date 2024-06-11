@@ -31,8 +31,5 @@ public class QRCodePage extends TemplatePage {
   public boolean isAppleQRCodeDisplayed() {
     return $("[id='apple-qr-code']").isDisplayed();
   }
-  public WebElement getAppleQRCodeDialog() {
-    return $("#platform-QR-code").shouldBe(appear, DEFAULT_TIMEOUT);
-  }
 
 }
