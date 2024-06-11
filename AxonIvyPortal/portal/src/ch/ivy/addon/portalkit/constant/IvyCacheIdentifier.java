@@ -9,6 +9,10 @@ public final class IvyCacheIdentifier {
   public static final String ROLES_IN_SECURITY_CONTEXT = "ROLES_IN_SECURITY_CONTEXT";
   public static final String PORTAL_MENU = "PORTAL_MENU";
   public static final String PORTAL_DASHBOARDS = "PORTAL_DASHBOARDS";
+  
+  // for caching locales
+  public static final String PORTAL_CONTENT_LOCALES = "PORTAL_CONTENT_LOCALES";
+  public static final String PORTAL_FORMATTING_LOCALES = "PORTAL_FORMATTING_LOCALES";
 
   private IvyCacheIdentifier() {}
 }
