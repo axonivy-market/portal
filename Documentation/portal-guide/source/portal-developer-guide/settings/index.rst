@@ -500,25 +500,25 @@ Data model:
 - ``descriptions``: the multilingual description of the chart
 - ``icon``: the icon of each widget. Portal supports both Streamline and FontAwesome icons
 - ``refreshInterval``: statistic widget refresh interval in seconds
-- ``chartType``: type of the chart such as ``Pie``, ``Bar``, ``Line`` and ``KPI``
+- ``chartType``: type of the chart such as ``pie``, ``bar``, ``line`` 
 
       .. important::
-         For choosing ``KPI`` chart, you have to set the type as ``Number`` instead of ``KPI``
+         For choosing ``KPI`` chart, you have to set the type as ``number`` instead of ``kpi``
 
-For some specific chart type such as ``Bar``, ``Line`` or ``KPI``, there are additional and required fields:
+For some specific chart such as ``Bar``, ``Line`` or ``KPI``, there are additional and required fields:
 
-- ``barChartConfig``: required fields for configuring the ``Bar`` chart, please add them when chart type is ``Bar`` 
-
-   - ``xTitles``: the multilingual display title for the x-axis
-   - ``yTitles``: the multilingual display title for the y-axis
-   - ``yValue``: add this field with **time** value when you want to display time on the y-axis
-
-- ``lineChartConfig``: required fields for configuring the ``Line`` chart, please add them when chart type is ``Line``
+- ``barChartConfig``: required fields for configuring the ``Bar`` chart, please add them when chart type is ``bar`` 
 
    - ``xTitles``: the multilingual display title for the x-axis
    - ``yTitles``: the multilingual display title for the y-axis
+   - ``yValue``: add this field with **time** value when you want to show the amount of time on the y-axis
 
-- ``numberChartConfig``: additional fields for configuring the ``KPI`` chart, you could define when chart type is ``Number``
+- ``lineChartConfig``: required fields for configuring the ``Line`` chart, please add them when chart type is ``line``
+
+   - ``xTitles``: the multilingual display title for the x-axis
+   - ``yTitles``: the multilingual display title for the y-axis
+
+- ``numberChartConfig``: additional fields for configuring the ``KPI`` chart, you could add when chart type is ``number``
 
    - ``suffixSymbol``: icon next to the number. Portal supports both Streamline and FontAwesome icons
    
