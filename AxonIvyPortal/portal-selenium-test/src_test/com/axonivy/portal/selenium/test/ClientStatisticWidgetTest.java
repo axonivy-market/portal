@@ -41,4 +41,20 @@ public class ClientStatisticWidgetTest extends BaseTest {
     runningCasesWidget.getAllChartLabels().first().text().equals("Running");
   }
   
+  @Test
+  public void testStatisticChartAction() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    redirectToNewDashBoard();
+    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    ScreenshotUtils.maximizeBrowser();
+    configurationPage.clickOnAddWidgetButton();
+    ClientStatisticWidgetNewDashboardPage runningCasesWidget = configurationPage.addNewStatisticWidget("Running Cases");
+    runningCasesWidget.getAllChartLabels().first().text().equals("Running");
+    
+  }
+  
 }

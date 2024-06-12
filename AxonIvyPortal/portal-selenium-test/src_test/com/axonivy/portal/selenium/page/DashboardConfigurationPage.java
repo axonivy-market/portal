@@ -475,4 +475,29 @@ public class DashboardConfigurationPage extends TemplatePage {
   public void clickOkCreateDashboard() {
     $("button[id$='dashboard-creation-component:dashboard-create-button']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
+  
+  public void clickOnAddWidgetButton() {
+    $("span#dashboard-header-action").shouldBe(appear, DEFAULT_TIMEOUT).$("button#add-button").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("div#new-widget-dialog").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public ClientStatisticWidgetNewDashboardPage addNewStatisticWidget(String widgetName) {
+    setSearchInput(widgetName);
+    $("div.new-widget-dialog__content").shouldBe(appear, DEFAULT_TIMEOUT)
+    .$$("div.new-widget-dialog__item").filter(Condition.visible).first().shouldBe(appear, DEFAULT_TIMEOUT)
+    .$("div.new-widget-dialog__item-details").shouldBe(appear, DEFAULT_TIMEOUT)
+    .$("button[id$='add-widget']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    return new NewDashboardPage().selectClientStatisticChartWidget(widgetName);
+  }
+  
+  public SelenideElement getStatisticWidgetItem(String widgetName) {
+    return  $("fieldset#statistic-widget-fieldset").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("div.new-widget-dialog__item-container").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$$("div.new-widget-dialog__item > div.new-widget-dialog__item-title").filter(Condition.text(widgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void setSearchInput(String widgetName) {
+    $("div.new-widget-dialog__search").shouldBe(appear, DEFAULT_TIMEOUT)
+    .$("input#search-input").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(widgetName);
+  }
 }
