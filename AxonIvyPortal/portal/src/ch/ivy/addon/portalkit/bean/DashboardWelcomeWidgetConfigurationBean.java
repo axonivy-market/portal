@@ -61,7 +61,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
 
     if (CollectionUtils.isEmpty(getWidget().getWelcomeTexts())) {
       getWidget().setWelcomeTexts(new ArrayList<>());
-      for(String lang : LanguageService.getInstance().getIvyLanguageOfUser().getSupportedLanguages()) {
+      for(String lang : LanguageService.newInstance().getIvyLanguageOfUser().getSupportedLanguages()) {
         DisplayName displayName = new DisplayName();
         displayName.setLocale(Locale.forLanguageTag(lang));
         displayName.setValue(Ivy.cms().coLocale(DEFAULT_WELCOME_CMS, displayName.getLocale()));
@@ -135,7 +135,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
   }
 
   public boolean isApplicationDefaultEmailLanguage(String language) {
-    Locale defaultLocale = LanguageService.getInstance().getDefaultEmailLanguage();
+    Locale defaultLocale = LanguageService.newInstance().getDefaultEmailLanguage();
     return defaultLocale.toLanguageTag().equalsIgnoreCase(language);
   }
 
