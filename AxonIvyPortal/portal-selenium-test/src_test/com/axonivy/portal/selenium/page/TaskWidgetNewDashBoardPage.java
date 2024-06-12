@@ -85,14 +85,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     return getColumnOfTableWidget(index).get(startIndex);
   }
 
-  public void waitForFilterNotificationAppear() {
-    $(".task-dashboard-widget__panel span.widget__filter-noti-number")
-        .shouldBe(appear, DEFAULT_TIMEOUT);
-  }
-
   public void startFirstTask() {
-    WaitHelper.waitForNavigation(() -> getColumnOfTaskHasIndex(0, "Start")
-        .shouldBe(appear, DEFAULT_TIMEOUT).click());
+    $(".task-dashboard-widget__panel span.widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT);
+    WaitHelper.waitForNavigation(() -> getColumnOfTaskHasIndex(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click());
   }
 
   public void startFirstTaskAndWaitShowHomePageButton() {
