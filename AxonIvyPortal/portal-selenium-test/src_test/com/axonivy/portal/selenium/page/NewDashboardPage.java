@@ -773,10 +773,13 @@ public class NewDashboardPage extends TemplatePage {
         .filter(menuItem -> menuItem.parent().has(Condition.cssClass("active-menuitem"))).findFirst().get();
   }
 
-  public void selectDashboard(int index) {
+  public NewDashboardPage selectDashboard(int index) {
     var selectDashboard = getDashboardCollection().get(index);
-    selectDashboard.shouldBe(getClickableCondition()).click();
+    WaitHelper.waitForNavigation(() -> {
+      selectDashboard.shouldBe(getClickableCondition()).click();
+    });
     selectDashboard.parent().shouldBe(Condition.cssClass("active-menuitem"), DEFAULT_TIMEOUT);
+    return new NewDashboardPage();
   }
 
   public StatisticWidgetDashboardPage selectStatisticWidget() {
