@@ -39,7 +39,7 @@ public class AnnouncementService {
   public boolean isDefaultApplicationLanguage(String language) {
     return Sudo.get(
         () -> {
-          Locale content = LanguageService.getInstance().getDefaultEmailLanguage();
+          Locale content = LanguageService.newInstance().getDefaultEmailLanguage();
           return content.getLanguage().equalsIgnoreCase(language);
         });
   }
@@ -98,7 +98,7 @@ public class AnnouncementService {
       languageToAnnouncements = new HashMap<>();
     }
     
-    IvyLanguage ivyLanguage = LanguageService.getInstance().getIvyLanguageOfUser();
+    IvyLanguage ivyLanguage = LanguageService.newInstance().getIvyLanguageOfUser();
 
     List<String> supportedLanguages = ivyLanguage.getSupportedLanguages();
     
@@ -117,7 +117,7 @@ public class AnnouncementService {
 
 
   private String getDefaultEmailLanguage() {
-    return LanguageService.getInstance().getDefaultEmailLanguage().toLanguageTag();
+    return LanguageService.newInstance().getDefaultEmailLanguage().toLanguageTag();
   }
 
   private Announcement getAnnouncement() {
@@ -136,17 +136,17 @@ public class AnnouncementService {
   }
 
   private void cacheAnnouncement(Announcement announcement) {
-    IvyCacheService.getInstance().setApplicationCache(PORTAL_ANNOUNCEMENT_CACHE_GROUP_NAME, ANNOUNCEMENT_CACHE_ENTRY,
+    IvyCacheService.newInstance().setApplicationCache(PORTAL_ANNOUNCEMENT_CACHE_GROUP_NAME, ANNOUNCEMENT_CACHE_ENTRY,
         announcement);
   }
 
   private Announcement getAnnouncementFromCache() {
-    return (Announcement) IvyCacheService.getInstance().getApplicationCache(PORTAL_ANNOUNCEMENT_CACHE_GROUP_NAME,
+    return (Announcement) IvyCacheService.newInstance().getApplicationCache(PORTAL_ANNOUNCEMENT_CACHE_GROUP_NAME,
         ANNOUNCEMENT_CACHE_ENTRY);
   }
 
   private void invalidateCache() {
-    IvyCacheService.getInstance()
+    IvyCacheService.newInstance()
         .invalidateApplicationCacheForAllAvailableApplications(PORTAL_ANNOUNCEMENT_CACHE_GROUP_NAME);
   }
 
