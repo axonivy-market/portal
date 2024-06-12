@@ -248,7 +248,7 @@ public class TaskWidgetPage extends TemplatePage {
     return expectedNumber;
   }
 
-  private void waitTaskAppearThenClick(int index) {
+  public void waitTaskAppearThenClick(int index) {
     SelenideElement taskStartElement =
         findElementById(taskWidgetId + ":task-list-scroller").$$(By.className("start-task-action")).get(index);
     if (taskStartElement.getAttribute("id").contains(":task-action:resume-task-action-component")) {
@@ -729,7 +729,8 @@ public class TaskWidgetPage extends TemplatePage {
     // click download
     SelenideElement downloadLink = getExportToExcelLink();
     if (downloadLink != null) {
-      downloadLink.click();
+      downloadLink.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+      clickByJavaScript(downloadLink);
     }
   }
 

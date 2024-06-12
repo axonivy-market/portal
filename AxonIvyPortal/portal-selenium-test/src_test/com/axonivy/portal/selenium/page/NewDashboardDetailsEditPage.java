@@ -178,8 +178,10 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   public void clickOnRestoreDashboard() {
-    $("[id$='restore-button-group']").shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='restore-button']")
-        .shouldBe(Condition.enabled, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    SelenideElement restoreButton = $("[id$='restore-button-group']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='restore-button']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    clickByJavaScript(restoreButton);
     $("div[id$='restore-confirm-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 

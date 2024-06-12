@@ -12,7 +12,7 @@ public class IvyCacheService {
 
   private IvyCacheService() {}
   
-  public static IvyCacheService newInstance() {
+  public static IvyCacheService getInstance() {
     return new IvyCacheService();
   }
   
