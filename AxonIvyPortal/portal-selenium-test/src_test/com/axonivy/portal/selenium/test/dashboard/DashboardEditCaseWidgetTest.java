@@ -194,6 +194,7 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.addCustomColumns("AccountNumber", "ShipmentDate", "CustomerName", "CustomerType", "InvoiceNumber");
 
     caseWidget.openFilter();
+    caseWidget.resetFilter();
     caseWidget.addFilter("Description", FilterOperator.CONTAINS);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Leave", "Test", "Create");
 
