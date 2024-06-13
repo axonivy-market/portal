@@ -42,7 +42,7 @@ public class ClientStatisticWidgetTest extends BaseTest {
   }
   
   @Test
-  public void testStatisticChartAction() {
+  public void testAddNewClientStatisticWidget() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
@@ -54,7 +54,5 @@ public class ClientStatisticWidgetTest extends BaseTest {
     configurationPage.clickOnAddWidgetButton();
     ClientStatisticWidgetNewDashboardPage runningCasesWidget = configurationPage.addNewStatisticWidget("Running Cases");
     runningCasesWidget.getAllChartLabels().first().text().equals("Running");
-    
   }
-  
 }

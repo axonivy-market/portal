@@ -490,12 +490,6 @@ public class DashboardConfigurationPage extends TemplatePage {
     return new NewDashboardPage().selectClientStatisticChartWidget(widgetName);
   }
   
-  public SelenideElement getStatisticWidgetItem(String widgetName) {
-    return  $("fieldset#statistic-widget-fieldset").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$("div.new-widget-dialog__item-container").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$$("div.new-widget-dialog__item > div.new-widget-dialog__item-title").filter(Condition.text(widgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT);
-  }
-  
   public void setSearchInput(String widgetName) {
     $("div.new-widget-dialog__search").shouldBe(appear, DEFAULT_TIMEOUT)
     .$("input#search-input").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(widgetName);
