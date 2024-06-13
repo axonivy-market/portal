@@ -54,30 +54,36 @@ public class CaseActionBean implements Serializable {
   }
 
   private String getBusinessDetailURLFromCustomField(ICase iCase) {
-    String customFieldValue = getCustomFieldValue(iCase);
+    // Flag to indicate if the current version is 8
+    Boolean isVersion8 = false;
+
+    // Attempt to fetch the custom field value from BUSINESS_DETAILS, if not found, try
+    // CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE
+    String customFieldValue = iCase.customFields()
+        .stringField(com.axonivy.portal.components.constant.CustomFields.BUSINESS_DETAILS).getOrNull();
+    if (StringUtils.isEmpty(customFieldValue)) {
+      customFieldValue = iCase.customFields()
+          .textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).getOrNull();
+      // If the link is from this custom field -> the link is from V8
+      isVersion8 = true;
+    }
 
     if (StringUtils.isNotEmpty(customFieldValue)) {
       if (customFieldValue.startsWith(IApplication.current().getName())) {
+        // Custom field is IWebStartable id
         return iWebStartableCustomfield(iCase, customFieldValue);
+        // Custom field is external link
       } else if (detectExternalLink(customFieldValue)) {
         return customFieldValue;
+        // Custom field is link need to migrate from ver 8/10 link to IWebStartableId
       } else {
-        return processPathUrlCustomField(iCase, customFieldValue);
+        return processPathUrlCustomField(iCase, customFieldValue, isVersion8);
       }
     } else {
       return constructDefaultURL(iCase);
     }
   }
 
-  private String getCustomFieldValue(ICase iCase) {
-    String customFieldValue = iCase.customFields()
-        .stringField(com.axonivy.portal.components.constant.CustomFields.BUSINESS_DETAILS).getOrNull();
-    if (StringUtils.isEmpty(customFieldValue)) {
-      customFieldValue = iCase.customFields()
-          .textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).getOrNull();
-    }
-    return customFieldValue;
-  }
 
   private String iWebStartableCustomfield(ICase iCase, String customFieldValue) {
     Boolean isEmbedInFrame =
@@ -90,14 +96,21 @@ public class CaseActionBean implements Serializable {
     return StringUtils.EMPTY;
   }
 
-  private String processPathUrlCustomField(ICase iCase, String customFieldValue) {
+  private String processPathUrlCustomField(ICase iCase, String customFieldValue, Boolean isVerion8) {
     Boolean isEmbedInFrame = customFieldValue.contains("embedInFrame");
     String processUrl = removeQueryParameters(customFieldValue);
-    IWebStartable iWebStartable = IWebStartableAPI.findIWebStartableByProcessRelativeLink(processUrl);
+
+    // Find the IWebStartable object based on the process relative link and version
+    IWebStartable iWebStartable = isVerion8 ? IWebStartableAPI.findIWebStartableByProcessRelativeLinkVer8(processUrl)
+        : IWebStartableAPI.findIWebStartableByProcessRelativeLinkVer10(processUrl);
+    updateCustomFields(iCase, iWebStartable, isEmbedInFrame);
+    return buildURL(iCase, iWebStartable.getLink().getRelative(), isEmbedInFrame);
+  }
+
+  private void updateCustomFields(ICase iCase, IWebStartable iWebStartable, Boolean isEmbedInFrame) {
     iCase.customFields().stringField(com.axonivy.portal.components.constant.CustomFields.BUSINESS_DETAILS)
         .set(iWebStartable.getId());
     iCase.customFields().numberField(CustomFields.EMBED_IN_FRAME).set(isEmbedInFrame ? 1 : 0);
-    return buildURL(iCase, iWebStartable.getLink().getRelative(), isEmbedInFrame);
   }
 
   private String constructDefaultURL(ICase iCase) {

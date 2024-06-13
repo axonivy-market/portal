@@ -183,7 +183,7 @@
             "import com.axonivy.portal.components.dto.BusinessDetailsDTO;",
             "import com.axonivy.portal.components.publicapi.BusinessDetailsAPI;",
             "",
-            "BusinessDetailsAPI.create(BusinessDetailsDTO.builder()",
+            "BusinessDetailsAPI.create(BusinessDetailsDTO.builder().iCase(in.caze)",
             "  .path(\"Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp\").isEmbedInFrame(false).build());"
           ]
         }
@@ -324,7 +324,7 @@
         "case" : {
           "name" : "create Investment Request With Portal 8",
           "customFields" : [
-            { "name" : "CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE", "type" : "TEXT", "value" : "\"ivy/pro/portal-components-examples/176465FBFE257CF3/showInvestmentRequestCustomFields.ivp?uuid=b56abc5a-c897-4df4-8b2b-2126a9232e3e\"" }
+            { "name" : "CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE", "type" : "TEXT", "value" : "\"/ivy/pro/designer/portal-components-examples/176465FBFE257CF3/showInvestmentRequestCustomFields.ivp?caseId=10\"" }
           ]
         }
       },
