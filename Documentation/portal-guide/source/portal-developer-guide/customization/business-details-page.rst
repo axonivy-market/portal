@@ -18,6 +18,12 @@ You can modify this page for each case by providing a relative URL to the case.
 How to
 ------
 
+#. Create a new business details page UI and a start process that will display
+   the new UI.
+
+   |customization-business-details-page|
+
+
 #. Store path of the start process just created above when creating a task. There are 2 ways to perform this:
    
    * Use the ``SetBusinessDetailsPage.p.json`` callable process, and pass the friendly URL of this process as a parameter.
@@ -28,14 +34,10 @@ How to
 
       |customize-business-details-with-public-api|
 
-
-#. Create a new business details page UI and a start process that will display the new UI.
-
-   |customization-business-details-page|
-
-   .. tip:: 
+      .. tip:: 
          The business details page also supports external links in case the business details site is outside of |ivy|.
          You can replace the path with any URL. The Portal will take care of the rest. E.g., ``BusinessDetailsAPI.create("https://google.com")``
+
 Customization
 -------------
 -  If your custom Business Details page uses an IFrame, you may want to set some additional

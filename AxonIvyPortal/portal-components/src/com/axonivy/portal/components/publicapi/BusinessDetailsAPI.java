@@ -6,8 +6,6 @@ import com.axonivy.portal.components.constant.CustomFields;
 import com.axonivy.portal.components.dto.BusinessDetailsDTO;
 import com.axonivy.portal.components.service.exception.PortalException;
 
-import ch.ivyteam.ivy.environment.Ivy;
-
 /**
  * Portal API for modify business case details
  *
@@ -41,7 +39,6 @@ public class BusinessDetailsAPI {
     } else {
       customField = IWebStartableAPI.findIWebStartableByProcessRelativeLinkVer10(pageUrl).getId();
     }
-    Ivy.log().error(pageUrl);
     setToCustomField(businessDetailsDTO, customField);
   }
   
@@ -61,8 +58,6 @@ public class BusinessDetailsAPI {
   
   private static void setToCustomField(BusinessDetailsDTO businessDetailDTO, String customField) {
     businessDetailDTO.getCase().customFields().stringField(CustomFields.BUSINESS_DETAILS).set(customField);
-    businessDetailDTO.getCase().customFields().numberField(CustomFields.EMBED_IN_FRAME)
-        .set(businessDetailDTO.isEmbedInFrame() ? 1 : 0);
   }
 
   private static String createPageUrl(BusinessDetailsDTO businessDetailsDTO) {
