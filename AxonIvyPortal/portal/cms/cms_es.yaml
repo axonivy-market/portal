@@ -210,8 +210,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     embedInFrame: Empezar un proceso o tarea en modo iFrames
     emptySupportedLanguages: No se admiten idiomas adicionales
     globalVariableNote:
+      AppleStoreURL: Establezca la URL para descargar la aplicación móvil Axon Ivy en Apple Store.
+      BaseQRCodeUrl: Establezca la URL base para mostrar el código QR.
       DefaultThemeMode: El modo de tema por defecto de la aplicación
       EnableSwitchThemeModeButton: Establecer en true para habilitar el botón de cambio de tema.
+      GooglePlayURL: Establece la URL para descargar la aplicación móvil Axon Ivy en Google Play.
       RoleDirectChildrenLimit: 'El número establecido controla la cantidad de roles hijos directos que se muestra en la pestaña de gestión de roles. Número válido: 10, 50, 100'
       RoleParentLimit: 'El número establecido controla la cantidad de roles padre que se muestra al filtrar los roles en la pestaña Gestión de roles. Número válido: 5, 10, 20'
       SearchScopeCaseFields: Definición de los campos que la búsqueda global utilizará para encontrar casos coincidentes además del Id de caso (esto puede influir en el rendimiento de la búsqueda)
