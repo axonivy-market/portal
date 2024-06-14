@@ -100,6 +100,7 @@ public class ColumnManagementBean implements Serializable {
 
   public void save() {
     if (widget.getType() == DashboardWidgetType.TASK) {
+//      handleWidth();
       TaskDashboardWidget taskWidget = (TaskDashboardWidget) this.widget;
       List<TaskColumnModel> taskColumns = new ArrayList<>();
       columnsBeforeSave.forEach(column -> taskColumns.add((TaskColumnModel) column));
@@ -359,6 +360,14 @@ public class ColumnManagementBean implements Serializable {
 
   public void handleQuickSearch(ColumnModel column) {
     column.setQuickSearch(BooleanUtils.isFalse(column.getQuickSearch()));
+  }
+  
+  public void handleUnit(ColumnModel column) {
+    column.setUnit(column.getUnit());
+  }
+  
+  public List<String> getUnits() {
+    return List.of("px", "%");
   }
 
   public class FetchingField {

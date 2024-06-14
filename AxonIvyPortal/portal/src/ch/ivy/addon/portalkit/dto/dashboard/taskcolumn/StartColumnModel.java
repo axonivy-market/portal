@@ -15,6 +15,7 @@ public class StartColumnModel extends TaskColumnModel implements Serializable {
     this.style = defaultIfEmpty(this.style, getDefaultStyle());
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.sortable = getDefaultSortable();
+    this.width = defaultIfEmpty(this.width, "50");
   }
 
   @Override
@@ -36,4 +37,5 @@ public class StartColumnModel extends TaskColumnModel implements Serializable {
   public String getDefaultStyleClass() {
     return "dashboard-tasks__start u-text-align-center";
   }
+  
 }
