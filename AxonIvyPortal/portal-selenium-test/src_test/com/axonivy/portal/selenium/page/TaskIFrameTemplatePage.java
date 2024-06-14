@@ -264,6 +264,11 @@ public class TaskIFrameTemplatePage extends TemplatePage {
     clickByJavaScript($("button[id$=':button-submit']"));
     switchBackToParent();
   }
+  
+  public void clickOnCancelButton() {
+    clickByJavaScript($("a[id$=':button-cancel']"));
+    switchBackToParent();
+  }
 
   public void clickAdhocCreationButton() {
     clickTaskActionMenu();
