@@ -86,57 +86,52 @@ public class CaseActionBean implements Serializable {
 
 
   private String iWebStartableCustomfield(ICase iCase, String customFieldValue) {
-    Boolean isEmbedInFrame =
-        iCase.customFields().numberField(com.axonivy.portal.components.constant.CustomFields.EMBED_IN_FRAME).get()
-            .orElse(1).intValue() == 1;
-    IWebStartable iWebStartable = IWorkflowSession.current().findStartable(customFieldValue).orElse(null);
+    String parts[] = customFieldValue.split("\\?", 2);
+    String iWebStartableId = parts[0];
+    String params = parts[1];
+    IWebStartable iWebStartable = IWorkflowSession.current().findStartable(iWebStartableId).orElse(null);
     if (iWebStartable != null) {
-      return buildURL(iCase, iWebStartable.getLink().getRelative(), isEmbedInFrame);
+      return buildURL(iWebStartable.getLink().getRelative(), params);
     }
     return StringUtils.EMPTY;
   }
 
   private String processPathUrlCustomField(ICase iCase, String customFieldValue, Boolean isVerion8) {
     Boolean isEmbedInFrame = customFieldValue.contains("embedInFrame");
-    String processUrl = removeQueryParameters(customFieldValue);
-
+    String[] parts = customFieldValue.split("\\?", 2);
+    String processUrl = parts[0];
+    String params = StringUtils.EMPTY;
+    if (isEmbedInFrame) {
+      params = "?uuid=" + iCase.uuid() + "&embedInFrame=";
+    } else {
+      params = "?uuid=" + iCase.uuid();
+    }
     // Find the IWebStartable object based on the process relative link and version
     IWebStartable iWebStartable = isVerion8 ? IWebStartableAPI.findIWebStartableByProcessRelativeLinkVer8(processUrl)
         : IWebStartableAPI.findIWebStartableByProcessRelativeLinkVer10(processUrl);
-    updateCustomFields(iCase, iWebStartable, isEmbedInFrame);
-    return buildURL(iCase, iWebStartable.getLink().getRelative(), isEmbedInFrame);
+    updateCustomFields(iCase, iWebStartable, params);
+    return buildURL(iWebStartable.getLink().getRelative(), params);
   }
 
-  private void updateCustomFields(ICase iCase, IWebStartable iWebStartable, Boolean isEmbedInFrame) {
+  private void updateCustomFields(ICase iCase, IWebStartable iWebStartable, String params) {
     iCase.customFields().stringField(com.axonivy.portal.components.constant.CustomFields.BUSINESS_DETAILS)
-        .set(iWebStartable.getId());
-    iCase.customFields().numberField(CustomFields.EMBED_IN_FRAME).set(isEmbedInFrame ? 1 : 0);
+        .set(iWebStartable.getId() + params);
   }
 
   private String constructDefaultURL(ICase iCase) {
     Map<String, String> params = new HashMap<>();
-    params.put("uuid", String.valueOf(iCase.uuid()));
+    params.put("uuid=", String.valueOf(iCase.uuid()));
     return PortalNavigator.buildUrlByKeyword("showAdditionalCaseDetails",
         START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE, params);
   }
 
-  private String buildURL(ICase iCase, String relativeLink, boolean isEmbedInFrame) {
-    return relativeLink + "?uuid=" + iCase.uuid() + (isEmbedInFrame ? "&embedInFrame" : "");
+  private String buildURL(String relativeLink, String params) {
+    return relativeLink + params;
   }
 
   private static boolean detectExternalLink(String path) {
-    return StringUtils.startsWithIgnoreCase(path, "http") || StringUtils.startsWithIgnoreCase(path, "https");
+    return StringUtils.startsWithIgnoreCase(path, "http");
   }
-
-  private String removeQueryParameters(String url) {
-    int queryIndex = url.indexOf("?");
-    if (queryIndex != -1) {
-      return url.substring(0, queryIndex);
-    } else {
-      return url;
-    }
-  }
-
 
   public String getProcessViewerPageUri(ICase selectedCase) {
     return PortalProcessViewerUtils.getStartProcessViewerPageUri(selectedCase);
