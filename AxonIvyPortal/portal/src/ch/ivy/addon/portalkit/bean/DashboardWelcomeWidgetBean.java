@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.bean;
 import static org.apache.commons.lang3.StringUtils.SPACE;
 
 import java.io.Serializable;
+import java.util.Base64;
 import java.util.Optional;
 
 import javax.faces.bean.ManagedBean;
@@ -67,7 +68,12 @@ public class DashboardWelcomeWidgetBean implements Serializable {
     if (WelcomeWidgetUtils.isObsoleteImageData(widget.getImageLocation(), widget.getId())) {
       WelcomeWidgetUtils.migrateWelcomeWidget(widget.getId(), widget.getImageType(), widget.getImageLocation());
     }
-    return WelcomeWidgetUtils.getImageContentObject(widget.getImageLocation(), widget.getImageType());
+    ContentObject imageContent = WelcomeWidgetUtils.getImageContentObject(widget.getImageLocation(), widget.getImageType());
+    byte[] byteContent = WelcomeWidgetUtils.getImageAsByteData(imageContent.uri());
+    if (byteContent == null) {
+      WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageContent).write().bytes(Base64.getDecoder().decode(widget.getImageContent()));
+    }
+    return imageContent;
   }
 
   public void updateWelcomeText(WelcomeDashboardWidget welcomeWidget) {
