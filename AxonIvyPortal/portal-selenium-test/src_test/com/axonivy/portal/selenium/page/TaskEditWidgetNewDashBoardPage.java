@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.ComplexFilterHelper;
@@ -347,6 +348,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   
   public void openFilter() {
     $("button[id$=':show-filter']").shouldBe(getClickableCondition()).click();
+    waitForElementDisplayed($("div[id$='widget-filter-content']"), isDisplayed());
   }
   
   public void addFilter(String columnName, FilterOperator operator) {
