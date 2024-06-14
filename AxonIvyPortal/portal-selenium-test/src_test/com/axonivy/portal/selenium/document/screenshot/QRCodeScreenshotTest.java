@@ -28,9 +28,17 @@ public class QRCodeScreenshotTest extends ScreenshotBaseTest {
   @Test
   public void screenshotQRCode() throws IOException {
     NewDashboardPage homePage = new NewDashboardPage();
-    
     QRCodePage qrCodePage = homePage.openQRCode();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(qrCodePage.getQRCodeDialog(), ScreenshotUtils.MOBILE_FOLDER + "qr-code", new ScreenshotMargin(5, 5));
+  }
+  
+  @Test
+  public void screenshotPlatformQRCode() throws IOException {
+    NewDashboardPage homePage = new NewDashboardPage();
+
+    QRCodePage qrCodePage = homePage.openQRCode();
+    qrCodePage.openApplePlatformDownload();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(qrCodePage.getQRCodeDialog(),ScreenshotUtils.MOBILE_FOLDER + "platform-qr-code", new ScreenshotMargin(5, 5));
   }
   
   @Test
