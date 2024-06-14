@@ -74,7 +74,9 @@ public abstract class AbstractColumn implements Serializable {
   protected Date userDateFilterFrom;
   protected Date userDateFilterTo;
   protected List<String> userFilterListOptions;
-
+  protected String width;
+  protected String unit;
+  
   public void initDefaultValue() {
     if (isNull(this.visible)) {
       this.visible = true;
@@ -413,6 +415,22 @@ public abstract class AbstractColumn implements Serializable {
     this.userFilterTo = Dates.format(userDateFilterTo);
   }
   
+  public String getWidth() {
+    return width;
+  }
+
+  public void setWidth(String width) {
+    this.width = width;
+  }
+
+  public String getUnit() {
+    return unit;
+  }
+
+  public void setUnit(String unit) {
+    this.unit = unit;
+  }
+
   @JsonIgnore
   public void resetUserFilter() {
     setUserFilter(StringUtils.EMPTY);
