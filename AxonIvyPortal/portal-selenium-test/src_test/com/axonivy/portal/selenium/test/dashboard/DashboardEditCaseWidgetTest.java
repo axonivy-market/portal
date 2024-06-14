@@ -16,7 +16,7 @@ import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.codeborne.selenide.CollectionCondition;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class DashboardEditCaseWidgetTest extends BaseTest {
   private static final String NAME_STR = "Name";
 
