@@ -437,8 +437,8 @@ Data model:
 
 Portal Statistic Charts
 ^^^^^^^^^^^^^^^^^^^^^^^
-You can define the standard statistic widgets via the following JSON file. They
-will be displayed as the widgets on the dashboard page.
+You can define filter logic, appearance, and other settings for all statistic
+charts that can be used by the :ref:`Statistic widget <portal-statistic-widget>` of Portal dashboard.
 
 Filename: ``variables.Portal.ClientStatistic.json``
 
@@ -494,18 +494,31 @@ Data model:
 
 - ``id``: ID of the widget
 - ``aggregates``: the aggregation query to make bucket (grouping) or metric aggregations. Please visit `Task Aggregation and Filter`_ and `Case Aggregation and Filter`_ for more details
-- ``filter``: list of filters to apply for each chart. Please visit `Task Aggregation and Filter`_ and `Case Aggregation and Filter`_ for more details
-- ``chartTarget``: the chart target of the widget, ``TASK`` or ``CASE``
+- ``filter``: filter conditions for the statistic chart. Multiple conditions is
+  supported. Please note that some filters may be incompatible with certain
+  chart types. Please visit `Task Aggregation and Filter`_ and `Case Aggregation
+  and Filter`_ for more details
+- ``chartTarget``: the entity type that you want to use as the target  of the chart. We are supporting the main entity types of the ivy workflow:
+   
+   ``Task``: Ivy Task
+
+   ``Case``: Ivy Case
+
 - ``names``: the multilingual display name of the chart
 - ``descriptions``: the multilingual description of the chart
 - ``icon``: the icon of each widget. Portal supports both Streamline and FontAwesome icons
-- ``refreshInterval``: statistic widget refresh interval in seconds
-- ``chartType``: type of the chart such as ``pie``, ``bar``, ``line`` 
+- ``refreshInterval``: statistic chart refresh interval in seconds
+- ``chartType``: chart type that you want to show on the UI. There are 4 chart types:
+   
+   ``Pie``: Pie chart
 
-      .. important::
-         For choosing ``KPI`` chart, you have to set the type as ``number`` instead of ``kpi``
+   ``Bar``: Bar chart
 
-For some specific chart such as ``Bar``, ``Line`` or ``KPI``, there are additional and required fields:
+   ``Line``: Line chart
+
+   ``Number``: Labelled number chart
+
+For some specific chart such as ``Bar``, ``Line`` or ``NUmber``, there are additional and required fields:
 
 - ``barChartConfig``: required fields for configuring the ``Bar`` chart, please add them when chart type is ``bar`` 
 
@@ -518,7 +531,7 @@ For some specific chart such as ``Bar``, ``Line`` or ``KPI``, there are addition
    - ``xTitles``: the multilingual display title for the x-axis
    - ``yTitles``: the multilingual display title for the y-axis
 
-- ``numberChartConfig``: additional fields for configuring the ``KPI`` chart, you could add when chart type is ``number``
+- ``numberChartConfig``: additional fields for configuring the ``Number`` chart, you could add when chart type is ``number``
 
    - ``suffixSymbol``: icon next to the number. Portal supports both Streamline and FontAwesome icons
    
