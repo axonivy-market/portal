@@ -37,13 +37,12 @@ public abstract class JsonConfigurationService<T extends AbstractConfiguration> 
   }
 
   public T findById(String id) {
-    return getPrivateConfig().stream()
-      .filter(e -> e.getId().equals(id))
-      .findFirst()
-      .orElseGet(() -> getPublicConfig().stream()
-        .filter(e -> e.getId().equals(id))
-        .findFirst()
-        .orElse(null));
+    T entity = getPrivateConfig().stream().filter(e -> e.getId().equals(id)).findFirst().orElse(null);
+    if (entity != null) {
+      return entity;
+    } else {
+      return getPublicConfig().stream().filter(e -> e.getId().equals(id)).findFirst().orElse(null);
+    }
   }
 
   public List<T> findAll() {
@@ -60,7 +59,7 @@ public abstract class JsonConfigurationService<T extends AbstractConfiguration> 
       return new ArrayList<>();
     }
     List<T> entities = BusinessEntityConverter.jsonValueToEntities(jsonValue, getType());
-    entities.forEach(e -> e.setIsPublic(true));
+    entities.stream().forEach(e -> e.setIsPublic(true));
     return entities;
   }
 
@@ -70,7 +69,7 @@ public abstract class JsonConfigurationService<T extends AbstractConfiguration> 
       return new ArrayList<>();
     }
     return Optional.ofNullable(convertToLatestVersion(jsonValue))
-      .orElseGet(() -> BusinessEntityConverter.jsonValueToEntities(jsonValue, getType()));
+        .orElse(BusinessEntityConverter.jsonValueToEntities(jsonValue, getType()));
   }
 
   private List<T> convertToLatestVersion(String jsonValue) {
@@ -88,11 +87,13 @@ public abstract class JsonConfigurationService<T extends AbstractConfiguration> 
 
   public T save(T entity) {
     boolean isExisted = findById(entity.getId()) != null;
-    List<T> entities = entity.getIsPublic() ? getPublicConfig() : getPrivateConfig();
-    updateEntities(isExisted, entity, entities);
     if (entity.getIsPublic()) {
+      List<T> entities = getPublicConfig();
+      updateEntities(isExisted, entity, entities);
       savePublicConfig(entities);
     } else {
+      List<T> entities = getPrivateConfig();
+      updateEntities(isExisted, entity, entities);
       savePrivateConfig(entities);
     }
     return entity;
@@ -141,10 +142,10 @@ public abstract class JsonConfigurationService<T extends AbstractConfiguration> 
 
   private void updateEntities(boolean isExisted, T entity, List<T> entities) {
     if (isExisted) {
-      for (int i = 0; i < entities.size(); i++) {
-        if (entities.get(i).getId().equals(entity.getId())) {
-          entities.set(i, entity);
-          return;
+      for (T e : entities) {
+        if (e.getId().equals(entity.getId())) {
+          entities.set(entities.indexOf(e), entity);
+          break;
         }
       }
     } else {

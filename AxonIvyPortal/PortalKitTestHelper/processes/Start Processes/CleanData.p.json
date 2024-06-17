@@ -477,45 +477,5 @@
       "connect" : [
         { "id" : "f44", "to" : "f43" }
       ]
-    }, {
-      "id" : "f5",
-      "type" : "RequestStart",
-      "name" : "cleanDestroyedCases.ivp",
-      "config" : {
-        "signature" : "cleanDestroyedCases",
-        "request" : {
-          "name" : "Clean destroyed cases"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 232, "y" : 96 },
-        "labelOffset" : { "x" : 24, "y" : -14 }
-      },
-      "connect" : [
-        { "id" : "f9", "to" : "f6" }
-      ]
-    }, {
-      "id" : "f6",
-      "type" : "Script",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.test.util.TaskUtils;",
-            "TaskUtils.deleteDestroyedCases();"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 232, "y" : 200 }
-      },
-      "connect" : [
-        { "id" : "f8", "to" : "f7" }
-      ]
-    }, {
-      "id" : "f7",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 232, "y" : 288 }
-      }
     } ]
 }

@@ -90,16 +90,18 @@ public class ClientStatisticService extends JsonConfigurationService<ClientStati
   }
 
   private boolean isPermissionValid(ClientStatistic data) {
-    return Optional.ofNullable(data.getPermissions())
-                   .orElse(List.of())
-                   .stream()
-                   .anyMatch(permission -> Ivy.session().getSessionUser().has().role(permission));
+    return Optional.ofNullable(data.getPermissions()).orElse(new ArrayList<>()).stream()
+        .anyMatch(permission -> Ivy.session().getSessionUser().has().role(permission));
   }
-
+  
   private Entry<String, String> getManipulateValueBy(ClientStatistic data) {
-    return Optional.ofNullable(data.getManipulateValueBy())
-                   .map(value -> new SimpleEntry<>(AdditionalChartConfig.MANIPULATE_BY.getKey(), value))
-                   .orElse(null);
+    var manipulatedBy = Optional.ofNullable(data)
+        .map(ClientStatistic::getManipulateValueBy);
+
+    return manipulatedBy.isPresent()
+        ? new SimpleEntry<>(AdditionalChartConfig.MANIPULATE_BY.getKey(),
+            manipulatedBy.get())
+        : null;
   }
 
   @Override
