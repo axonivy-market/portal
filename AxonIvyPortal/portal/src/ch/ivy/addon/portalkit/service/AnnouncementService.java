@@ -39,7 +39,7 @@ public class AnnouncementService {
   public boolean isDefaultApplicationLanguage(String language) {
     return Sudo.get(
         () -> {
-          Locale content = LanguageService.newInstance().getDefaultEmailLanguage();
+          Locale content = LanguageService.getInstance().getDefaultEmailLanguage();
           return content.getLanguage().equalsIgnoreCase(language);
         });
   }
@@ -98,7 +98,7 @@ public class AnnouncementService {
       languageToAnnouncements = new HashMap<>();
     }
     
-    IvyLanguage ivyLanguage = LanguageService.newInstance().getIvyLanguageOfUser();
+    IvyLanguage ivyLanguage = LanguageService.getInstance().getIvyLanguageOfUser();
 
     List<String> supportedLanguages = ivyLanguage.getSupportedLanguages();
     
@@ -117,7 +117,7 @@ public class AnnouncementService {
 
 
   private String getDefaultEmailLanguage() {
-    return LanguageService.newInstance().getDefaultEmailLanguage().toLanguageTag();
+    return LanguageService.getInstance().getDefaultEmailLanguage().toLanguageTag();
   }
 
   private Announcement getAnnouncement() {
