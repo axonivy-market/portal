@@ -1,5 +1,5 @@
 pipeline {
-  agent {label 'luat-pc'}
+  agent {label 'common'}
 
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '60'))
