@@ -207,7 +207,7 @@ public class MenuView implements Serializable {
 
   public PortalDashboardItemWrapper getDashboardCache() {
     String sessionUserId = getSessionUserId();
-    IvyCacheService cacheService = IvyCacheService.getInstance();
+    IvyCacheService cacheService = IvyCacheService.newInstance();
     PortalDashboardItemWrapper portalDashboardItemWrapper = null;
     try {
       portalDashboardItemWrapper = getPortalDashboardItemWrapper(sessionUserId, cacheService);
@@ -226,7 +226,7 @@ public class MenuView implements Serializable {
 
   public void updateDashboardCache(List<Dashboard> dashboards) {
     String sessionUserId = getSessionUserId();
-    IvyCacheService cacheService = IvyCacheService.getInstance();
+    IvyCacheService cacheService = IvyCacheService.newInstance();
 
     synchronized(PortalDashboardItemWrapper.class) {
       cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId,

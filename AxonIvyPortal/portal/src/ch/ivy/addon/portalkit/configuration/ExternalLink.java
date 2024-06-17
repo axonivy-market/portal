@@ -160,7 +160,7 @@ public class ExternalLink extends AbstractConfiguration {
   
   public List<DisplayName> getNames() {
     if (CollectionUtils.isEmpty(names)) {
-      IvyLanguage ivyLanguage = LanguageService.getInstance().getIvyLanguageOfUser();
+      IvyLanguage ivyLanguage = LanguageService.newInstance().getIvyLanguageOfUser();
       names = initDisplayName(ivyLanguage);
     }
     return names;
@@ -172,7 +172,7 @@ public class ExternalLink extends AbstractConfiguration {
 
   public List<DisplayName> getDescriptions() {
     if (CollectionUtils.isEmpty(descriptions)) {
-      IvyLanguage ivyLanguage = LanguageService.getInstance().getIvyLanguageOfUser();
+      IvyLanguage ivyLanguage = LanguageService.newInstance().getIvyLanguageOfUser();
       descriptions = initDisplayName(ivyLanguage);
     } 
     return descriptions;
