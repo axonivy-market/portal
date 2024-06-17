@@ -94,7 +94,7 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
 
   private void filterByCaseState(String state) {
     CaseWidgetNewDashBoardPage caseWidget = new CaseWidgetNewDashBoardPage();
-    caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+    caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
     caseWidget.openFilterWidget();
     caseWidget.resetFilter();
     caseWidget.openFilterWidget();
