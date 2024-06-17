@@ -4,8 +4,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.function.Consumer;
+
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
@@ -43,8 +48,14 @@ public class DashboardUtils {
       List<String> permissions = dashboard.getPermissions();
       if (permissions == null) {
         return false;
+      } else {
+        for (String permission : permissions) {
+          if (isSessionUserHasPermisson(permission)) {
+            return false;
+          }
+        }
       }
-      return permissions.stream().noneMatch(DashboardUtils::isSessionUserHasPermisson);
+      return true;
     });
     return dashboards;
   }
@@ -82,8 +93,9 @@ public class DashboardUtils {
     List<Dashboard> collectedDashboards = new ArrayList<>();
     String dashboardInUserProperty = readDashboardBySessionUser();
     try {
-      collectedDashboards.addAll(getVisiblePublicDashboards());
-      collectedDashboards.addAll(jsonToDashboards(dashboardInUserProperty));
+      collectedDashboards = getVisiblePublicDashboards();
+      List<Dashboard> myDashboards = jsonToDashboards(dashboardInUserProperty);
+      collectedDashboards.addAll(myDashboards);
     } catch (PortalException e) {
       // If errors like parsing JSON errors, ignore them
       Ivy.log().error(e);
@@ -111,7 +123,7 @@ public class DashboardUtils {
   }
 
   public static void setDashboardAsPublic(List<Dashboard> visibleDashboards) {
-    visibleDashboards.forEach(dashboard -> dashboard.setIsPublic(true));
+    visibleDashboards.stream().forEach(dashboard -> dashboard.setIsPublic(true));
   }
 
   public static List<DashboardOrder> getDashboardOrdersOfSessionUser() {
@@ -160,12 +172,13 @@ public class DashboardUtils {
   }
 
   public static void updateSelectedDashboardToSession(String selectedMenuItemId) {
-    if (StringUtils.endsWithAny(selectedMenuItemId, DASHBOARD_MENU_POSTFIX, DASHBOARD_MENU_ITEM_POSTFIX)) {
-      String[] menuIds = selectedMenuItemId.split(":");
-      String[] dashboardIds = menuIds[menuIds.length - 1].split(DASHBOARD_MENU_PREFIX);
-      String dashboardId = dashboardIds[dashboardIds.length - 1]
-              .replace(DASHBOARD_MENU_POSTFIX, "")
-              .replace(DASHBOARD_MENU_ITEM_POSTFIX, "");
+    if (StringUtils.endsWith(selectedMenuItemId, DASHBOARD_MENU_POSTFIX)
+        || StringUtils.endsWith(selectedMenuItemId, DASHBOARD_MENU_ITEM_POSTFIX)) {
+      var menuIds = selectedMenuItemId.split(":");
+      var dashboardIds = menuIds[menuIds.length - 1].split(DASHBOARD_MENU_PREFIX);
+      var dashboardId = dashboardIds[dashboardIds.length - 1];
+      dashboardId = dashboardId.replace(DASHBOARD_MENU_POSTFIX, "");
+      dashboardId = dashboardId.replace(DASHBOARD_MENU_ITEM_POSTFIX, "");
       Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), dashboardId);
     }
   }
@@ -181,10 +194,12 @@ public class DashboardUtils {
     return null;
   }
 
-  public static List<Dashboard> convertDashboardsFromUploadFileToLatestVersion(InputStream inputStream) throws IOException {
-    try (InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
+  public static List<Dashboard> convertDashboardsFromUploadFileToLastestVersion(InputStream inputStream)
+      throws IOException {
+    new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+    try {
       ObjectMapper mapper = new ObjectMapper();
-      JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(reader));
+      JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(inputStream));
       return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), Dashboard.class);
     } catch (JsonProcessingException e) {
       Ivy.log().error("Failed to read dashboard from JSON {0}", e);
@@ -193,9 +208,10 @@ public class DashboardUtils {
   }
 
   public static Dashboard convertDashboardToLatestVersion(InputStream inputStream) throws IOException {
-    try (InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
+    new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+    try {
       ObjectMapper mapper = new ObjectMapper();
-      JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(reader));
+      JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(inputStream));
       return BusinessEntityConverter.convertJsonNodeToEntity(migrator.migrate(), Dashboard.class);
     } catch (JsonProcessingException ex) {
       Ivy.log().error("Failed to read dashboard from JSON {0}", ex);
