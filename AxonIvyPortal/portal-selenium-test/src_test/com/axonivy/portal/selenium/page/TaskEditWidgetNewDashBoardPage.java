@@ -363,7 +363,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   
   public void applyFilter() {
     $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']")
-        .shouldBe(getClickableCondition()).click();
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $(".filter-panel-header").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
   
