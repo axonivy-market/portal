@@ -150,7 +150,7 @@ public class StatisticDashboardBean implements Serializable {
 
   private List<DisplayName> generateNamesForEmptyChart() {
     List<DisplayName> namesForEmptyChart = new ArrayList<>();
-    IvyLanguage ivyLanguage = LanguageService.newInstance().getIvyLanguageOfUser();
+    IvyLanguage ivyLanguage = LanguageService.getInstance().getIvyLanguageOfUser();
     for (String language : ivyLanguage.getSupportedLanguages()) {
       DisplayName name = new DisplayName();
       name.setLocale(Locale.forLanguageTag(language));

@@ -62,6 +62,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     taskWidget.openFilterWidget();
     taskWidget.filterTaskName(REPORT_HIDE_CASE, FilterOperator.IS);
     taskWidget.applyFilter();
+    taskWidget.waitForFilterNotificationAppear();
     taskWidget.startFirstTask();
     redirectToNewDashBoard();
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
@@ -296,5 +297,36 @@ public class DashboardCaseWidgetTest extends BaseTest {
     caseWidget.clickOnCustomActionButton(0, customColumn);
     caseWidget.stateOfFirstCase().shouldHave(text("Destroyed"));
 
+  }
+
+  @Test
+  public void testCaseReadAllOwnRoleInvolved() {
+    redirectToRelativeLink(createTaskForRoleInvolved);
+    login(TestAccount.HR_ROLE_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForTaskListDisplay();
+
+    TaskWidgetNewDashBoardPage taskWidget = dashboardPage
+        .selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget.startFirstTask();
+    taskWidget.waitForPageLoad();
+
+    login(TestAccount.HR_ROLE_USER_2);
+    redirectToRelativeLink(grantCaseReadAllOwnRoleInvolvedPermission);
+    redirectToNewDashBoard();
+    dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForPageLoad();
+    CaseWidgetNewDashBoardPage caseWidget = dashboardPage
+        .selectCaseWidget(YOUR_CASES_WIDGET);
+    caseWidget.countCases("Test Process: role involved").shouldHave(size(1),
+        DEFAULT_TIMEOUT);
+
+    redirectToRelativeLink(denyCaseReadAllOwnRoleInvolvedPermission);
+    redirectToNewDashBoard();
+    dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForPageLoad();
+    caseWidget = dashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    assertTrue(caseWidget.isEmptyMessageAppear());
   }
 }
