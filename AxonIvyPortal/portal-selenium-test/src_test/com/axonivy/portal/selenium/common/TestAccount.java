@@ -11,6 +11,8 @@ public enum TestAccount {
   ADMIN_USER(nameOfAdminUser(), passwordOfAdminUser(), "Portal Admin User"),
 
   HR_ROLE_USER(nameOfHrRoleUser(), passwordOfHrRoleUser(), "david"),
+  
+  HR_ROLE_USER_2("peter", "peter", "peter"),
 
   TEST_CHANGE_PASSWORD_USER("test_change_password_user", "123", "Elton"),
 
