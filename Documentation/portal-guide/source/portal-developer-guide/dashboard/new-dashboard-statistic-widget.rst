@@ -3,6 +3,7 @@
 Configure Statistics Widget
 ===========================
 
+.. _portal-statistic-widget:
 Define Statistics Widget
 ------------------------
 
@@ -13,49 +14,15 @@ Below is a sample JSON definition of a statistics widget in the Portal dashboard
 .. code-block:: html
 
    {
-      "id": "1",
-      "aggregates": "priority",
-      "filter": "businessState:OPEN IN_PROGRESS,canWorkOn",
-      "chartTarget": "TASK",
-      "chartType": "pie",
-      "names": [
-         {
-            "locale": "de",
-            "value": "Aufgaben nach Prioritäten"
-         },
-         {
-            "locale": "en",
-            "value": "Tasks by Priority"
-         },
-         {
-            "locale": "fr",
-            "value": "Tâches par Priorité"
-         },
-         {
-            "locale": "es",
-            "value": "Tareas por Prioridad"
-         }
-         ],
-      "descriptions": [
-         {
-            "locale": "de",
-            "value": "Dieses Kreisdiagramm zeigt alle Aufgaben nach Priorität an."
-         },
-         {
-            "locale": "en",
-            "value": "This pie chart displays all tasks by priority."
-         },
-         {
-            "locale": "fr",
-            "value": "Ce diagramme à secteurs affiche toutes les tâches par priorité."
-         },
-         {
-            "locale": "es",
-            "value": "Este gráfico circular muestra todas las tareas por prioridad."
-         }
-      ],
-      "icon": "si si-analytics-pie-2",
-      "refreshInterval": 300
+      "type": "client-statistic",
+      "id": "client_statistic_1",
+      "layout": {
+         "w" : 2,
+         "h" : 2,
+         "x" : 8,
+         "y" : 2
+      },
+      "chartId": "10"
    }
 ..
 
@@ -63,20 +30,16 @@ The basic JSON structure of a statistics widget
 
    ``id``: ID of the widget
 
-   ``aggregates``: the aggregation query to make bucket (grouping) or metric aggregations. Please refer to :ref:`Portal.StatisticCharts <portal-statistic-charts>` for more information.
+   ``type``: type of the widget. Use ``client-statistic`` for a client statistic widget
 
-   ``filter``: list of filters to apply for each chart. Please refer to :ref:`Portal.StatisticCharts <portal-statistic-charts>` for more information.
+   ``layout``: layout definition of the client statistic widget
 
-   ``chartTarget``: the chart target of the widget, ``TASK`` or ``CASE``.
+      - ``x``: HTML DOM Style ``left`` is calculated as formula ``x / 12 * 100%``
 
-   ``chartType``: type of the chart such as ``Pie``, ``Bar``, ``Line`` and ``KPI``. For ``KPI`` chart, you have to set the type as ``Number`` instead of ``KPI``.
+      - ``y``: HTML DOM Style ``top`` is calculated as formula ``y / 12 * 100%``
 
-   ``names``: the multilingual display name of the chart.
+      - ``w``: HTML DOM Style ``width`` is calculated as formula ``60 * w + 20 * (w - 1)``
 
-   ``descriptions``: the multilingual description of the chart.
-
-   ``icon``: the icon of each widget.
+      - ``h``: HTML DOM Style ``height`` is calculated as formula ``60 * h + 20 * (h - 1)``
    
-   ``refreshInterval``: statistic widget refresh interval in seconds 
-
-For a specific chart such as ``Bar``, ``Line`` or ``KPI`` chart, it requires some additional and required fields. Please refer to :ref:`Portal.StatisticCharts <portal-statistic-charts>` for more information.
+   ``chartId``: ID of the standard client statistic chart. For more information, please refer to :ref:`Portal.StatisticCharts <portal-statistic-charts>`.
