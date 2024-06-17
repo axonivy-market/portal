@@ -493,10 +493,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
         .click();
   }
   
-  public boolean isQuickSearchInputShow(String widgetIndex) {
-    String taskWidgetIndex = String.format("div[id*='task-task_%s']", widgetIndex);
-    waitPageLoaded();
-    return $(taskWidgetIndex).$("form").$("input").isDisplayed();
+  public boolean isQuickSearchInputShow() {
+    return getTaskWidgetHeader().$("div.widget__header").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("div[class*='widget-header-quick-search']").isDisplayed();
   }
   
   public void setInputForQuickSearch(String input) {
