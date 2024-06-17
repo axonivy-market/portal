@@ -42,7 +42,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;",
             "",
-            "out.language = LanguageService.newInstance().getIvyLanguageOfUser();"
+            "out.language = LanguageService.getInstance().getIvyLanguageOfUser();"
           ]
         }
       },
@@ -96,7 +96,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;",
             "",
-            "LanguageService.newInstance().saveUserLanguage(in.language);"
+            "LanguageService.getInstance().saveUserLanguage(in.language);"
           ]
         }
       },
@@ -138,7 +138,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;",
             "",
-            "out.language = LanguageService.newInstance().getIvyLanguageOfUser();"
+            "out.language = LanguageService.getInstance().getIvyLanguageOfUser();"
           ]
         }
       },
