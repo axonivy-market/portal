@@ -1,13 +1,14 @@
 package com.axonivy.portal.selenium.page;
 
 import org.openqa.selenium.By;
-
+import org.openqa.selenium.WebElement;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
@@ -38,6 +39,10 @@ public class ClientStatisticWidgetNewDashboardPage extends TemplatePage {
 
   public ElementsCollection getAllChartLabels() {
     return $(widgetId).$$("div.chart-content-card > div.chart-label-container");
+  }
+  
+  public WebElement getWidget() {
+    return $$("div.card-widget-panel").filter(Condition.text(widgetName)).first();
   }
   
   public void clickOnButtonExpand() {
