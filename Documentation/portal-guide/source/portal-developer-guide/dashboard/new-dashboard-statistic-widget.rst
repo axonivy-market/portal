@@ -5,7 +5,7 @@ Configure Statistics Widget
 
 .. _portal-statistic-widget:
 Define Statistics Widget
-------------------------
+-------------------------
 
 The Statistics widget of the Portal dashboard displays statistics and charts.
 
@@ -26,7 +26,7 @@ Below is a sample JSON definition of a statistics widget in the Portal dashboard
    }
 ..
 
-The basic JSON structure of a statistics widget
+The basic JSON structure of a statistic widget
 
    ``id``: ID of the widget
 
