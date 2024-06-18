@@ -111,9 +111,9 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     ClientStatisticWidgetNewDashboardPage newCasesWidget = newDashboardPage.selectClientStatisticChartWidget("New Cases per day");
     ClientStatisticWidgetNewDashboardPage tasksByPriorWidget = newDashboardPage.selectClientStatisticChartWidget("Tasks by Priority");
     ClientStatisticWidgetNewDashboardPage topPriorWidget = newDashboardPage.selectClientStatisticChartWidget("Top Priority: 3 days");
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(runningCasesWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "number-chart", new ScreenshotMargin(15, 10));
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(newCasesWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "line-chart", new ScreenshotMargin(15, 10));
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(tasksByPriorWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "pie-chart", new ScreenshotMargin(15, 10));
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(topPriorWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "bar-chart", new ScreenshotMargin(15, 10));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(runningCasesWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "number-chart", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(newCasesWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "line-chart", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(tasksByPriorWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "pie-chart", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(topPriorWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "bar-chart", new ScreenshotMargin(5, 5));
   }
 }
