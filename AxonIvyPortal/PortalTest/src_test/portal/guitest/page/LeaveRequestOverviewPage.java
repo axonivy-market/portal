@@ -1,6 +1,5 @@
 package portal.guitest.page;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import portal.guitest.userexamples.page.LeaveRequestPage;
@@ -23,7 +22,6 @@ public class LeaveRequestOverviewPage extends TemplatePage {
   
   public LeaveRequestPage start() {
     clickByCssSelector("button[id$='start']");
-    waitForElementDisplayed(By.cssSelector("[id$='leave-request']"), true);
     return new LeaveRequestPage();
   }
 }

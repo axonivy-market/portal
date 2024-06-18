@@ -17,6 +17,7 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class ProcessInformationTest extends BaseTest {
 
+  private static final String CASE_DETAILS_TITLE = "Case Details";
   private HomePage homePage;
   private ProcessWidgetPage processWidget;
   private ProcessInformationPage processInformationPage;
@@ -71,7 +72,7 @@ public class ProcessInformationTest extends BaseTest {
 
     processInformationPage.back();
     caseDetails = new CaseDetailsPage();
-    assertEquals("Case Details", caseDetails.getPageTitle());
+    assertEquals(CASE_DETAILS_TITLE, caseDetails.getPageTitle());
     assertEquals(PROCESS_NAME, caseDetails.getDescription());
   }
 
