@@ -164,6 +164,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public void resetFilter() {
     $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='reset-button']")
         .filter(text("Reset")).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div.filter-overlay-panel__footer").shouldBe(disappear, DEFAULT_TIMEOUT);
     waitForElementClickable($$("div.table-widget-panel")
         .filter(text(caseWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT)
         .$(".widget__filter-sidebar-link"));
