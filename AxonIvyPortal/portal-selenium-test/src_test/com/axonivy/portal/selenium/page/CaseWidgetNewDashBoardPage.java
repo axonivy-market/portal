@@ -368,9 +368,4 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     $(getLoadedLocator()).shouldNotHave(Condition.cssClass("u-display-none"), DEFAULT_TIMEOUT);
   }
 
-  public boolean isEmptyMessageAppear() {
-    return $(
-        "div[id$='empty-message-container'][class='empty-message-container ']")
-        .shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
-  }
 }
