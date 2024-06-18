@@ -511,15 +511,19 @@ Data model:
 - ``chartType``: chart type that you want to show on the UI. There are 4 chart types:
    
    ``Pie``: Pie chart
+
    |pie-chart|
 
    ``Bar``: Bar chart
+
    |bar-chart|
 
    ``Line``: Line chart
+
    |line-chart|
 
    ``Number``: Labelled number chart
+   
    |number-chart|
 
 For some specific chart such as ``Bar``, ``Line`` or ``NUmber``, there are additional and required fields:
