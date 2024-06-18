@@ -511,12 +511,16 @@ Data model:
 - ``chartType``: chart type that you want to show on the UI. There are 4 chart types:
    
    ``Pie``: Pie chart
+   |pie-chart|
 
    ``Bar``: Bar chart
+   |bar-chart|
 
    ``Line``: Line chart
+   |line-chart|
 
    ``Number``: Labelled number chart
+   |number-chart|
 
 For some specific chart such as ``Bar``, ``Line`` or ``NUmber``, there are additional and required fields:
 
@@ -677,3 +681,8 @@ Data model:
 
 .. _Task Aggregation and Filter: https://developer.axonivy.com/api-browser?configUrl=https%3A%2F%2Fdeveloper.axonivy.com%2Fdoc%2F11.3%2Fopenapi%2Fconfig.json&urls.primaryName=default#/workflow/stats_1 
 .. _Case Aggregation and Filter: https://developer.axonivy.com/api-browser?configUrl=https%3A%2F%2Fdeveloper.axonivy.com%2Fdoc%2F11.3%2Fopenapi%2Fconfig.json&urls.primaryName=default#/workflow/stats
+   
+.. |pie-chart| image:: ../../screenshots/statistic/pie-chart.png
+.. |bar-chart| image:: ../../screenshots/statistic/bar-chart.png
+.. |line-chart| image:: ../../screenshots/statistic/line-chart.png
+.. |number-chart| image:: ../../screenshots/statistic/number-chart.png
