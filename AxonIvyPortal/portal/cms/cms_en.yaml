@@ -939,7 +939,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       noMatchingProcess: No matching processes.
       noPermissionToSee: You do not have the required permission to start this process.
       noProcessSelected: Please select a process
-    removeWidgetHeader: Remove the "{0}" widget
+    removeWidgetHeader: Remove this widget
     removeWidgetMessage: Do you really want to remove it?
     reorder:
       dashboardType: Dashboard type

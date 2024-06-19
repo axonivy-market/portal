@@ -795,7 +795,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       emptyProcess: You have not defined any processes.
       noMatchingProcess: No matching processes.
       noProcessSelected: Please select a process
-    removeWidgetHeader: Remove the "{0}" widget
+    removeWidgetHeader: Remove this widget
     removeWidgetMessage: Do you really want to remove it?
     reorder:
       dashboardType: Dashboard type
