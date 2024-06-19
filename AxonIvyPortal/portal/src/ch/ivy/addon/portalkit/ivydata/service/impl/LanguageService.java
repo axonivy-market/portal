@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -108,7 +109,7 @@ public class LanguageService {
    */
   @SuppressWarnings("unchecked")
   public List<Locale> getContentLocales() {
-    String sessionUserId = (String) Ivy.session().getAttribute(SessionAttribute.SESSION_IDENTIFIER.toString());
+    String sessionUserId = getSessionUserId();
     IvyCacheService cacheService = IvyCacheService.getInstance();
     Optional<Object> result = cacheService.getSessionCacheValue(IvyCacheIdentifier.PORTAL_CONTENT_LOCALES,
         sessionUserId);
@@ -129,7 +130,7 @@ public class LanguageService {
    */
   @SuppressWarnings("unchecked")
   public List<Locale> getFormattingLocales() {
-    String sessionUserId = (String) Ivy.session().getAttribute(SessionAttribute.SESSION_IDENTIFIER.toString());
+    String sessionUserId = getSessionUserId();
     IvyCacheService cacheService = IvyCacheService.getInstance();
     Optional<Object> result = cacheService.getSessionCacheValue(IvyCacheIdentifier.PORTAL_FORMATTING_LOCALES,
         sessionUserId);
@@ -143,6 +144,14 @@ public class LanguageService {
         .collect(Collectors.toList());
     cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_FORMATTING_LOCALES, sessionUserId, locales);
     return locales;
+  }
+
+  private String getSessionUserId() {
+    String sessionIdAttribute = SessionAttribute.SESSION_IDENTIFIER.toString();
+    if (Ivy.session().getAttribute(sessionIdAttribute) == null) {
+      Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
+    }
+    return (String) Ivy.session().getAttribute(sessionIdAttribute);
   }
 
   private List<Locale> locales(Function<LanguageRepository, List<Locale>> loader) {
