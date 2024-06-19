@@ -492,7 +492,7 @@ Data model:
       "refreshInterval": 300
    }]
 
-- ``id``: ID of the widget
+- ``id``: ID of the statistic chart
 - ``aggregates``: the aggregation query to make bucket (grouping) or metric aggregations. Please visit `Task Aggregation and Filter`_ and `Case Aggregation and Filter`_ for more details
 - ``filter``: filter conditions for the statistic chart. Multiple conditions is
   supported. Please note that some filters may be incompatible with certain
@@ -500,9 +500,9 @@ Data model:
   and Filter`_ for more details
 - ``chartTarget``: the entity type that you want to use as the target  of the chart. We are supporting the main entity types of the ivy workflow:
    
-   ``Task``: Ivy Task
+   ``TASK``: Ivy Task
 
-   ``Case``: Ivy Case
+   ``CASE``: Ivy Case
 
 - ``names``: the multilingual display name of the chart
 - ``descriptions``: the multilingual description of the chart
@@ -510,23 +510,23 @@ Data model:
 - ``refreshInterval``: statistic chart refresh interval in seconds
 - ``chartType``: chart type that you want to show on the UI. There are 4 chart types:
    
-   ``Pie``: Pie chart
+   ``pie``: Pie chart
 
    |pie-chart|
 
-   ``Bar``: Bar chart
+   ``bar``: Bar chart
 
    |bar-chart|
 
-   ``Line``: Line chart
+   ``line``: Line chart
 
    |line-chart|
 
-   ``Number``: Labelled number chart
+   ``number``: Labelled number chart
    
    |number-chart|
 
-For some specific chart such as ``Bar``, ``Line`` or ``NUmber``, there are additional and required fields:
+For some specific chart such as ``Bar``, ``Line`` or ``Number``, there are additional and required fields:
 
 - ``barChartConfig``: required fields for configuring the ``Bar`` chart, please add them when chart type is ``bar`` 
 
