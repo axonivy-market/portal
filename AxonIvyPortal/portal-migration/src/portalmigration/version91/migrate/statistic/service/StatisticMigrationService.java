@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+
 import ch.ivyteam.ivy.business.data.store.search.Result;
 import ch.ivyteam.ivy.environment.Ivy;
 import portalmigration.dto.DisplayName;
@@ -38,7 +39,7 @@ public class StatisticMigrationService extends BusinessDataService<StatisticChar
       return;
     }
 
-    List<Locale> supportedLocales = LanguageService.getInstance().findUserLanguages().getIvyLanguage().getSupportedLanguages().stream()
+    List<Locale> supportedLocales = LanguageService.newInstance().findUserLanguages().getIvyLanguage().getSupportedLanguages().stream()
         .map(languageString -> Locale.forLanguageTag(languageString))
         .collect(Collectors.toList());
 
