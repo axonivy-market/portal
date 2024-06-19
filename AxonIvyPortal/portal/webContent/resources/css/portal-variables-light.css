@@ -580,4 +580,7 @@
   /*Notification channels*/
   --state-active: var(--case-state-done-color);
   --state-inactive: var(--task-state-failed-color);
+
+  /* Dashboard commandlink hover */
+  --ivy-primary-color-command-link-hover: var(--ivy-primary-color);
 }
