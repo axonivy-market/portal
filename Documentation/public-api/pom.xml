@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>public-api</artifactId>
-  <version>11.3.0.2</version>
+  <version>11.3.1</version>
   <properties>
     <build.plugin.version>10.0.3</build.plugin.version>
     <ivy.engine.version>11.1.0</ivy.engine.version>
