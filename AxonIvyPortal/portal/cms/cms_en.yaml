@@ -1601,10 +1601,10 @@ Dialogs:
             LinkCopied: Link copied!
         dashboard:
           component:
-            ClientStatisticWidget:
-              NoPermissionChartMessage: You do not have the required permission to see this chart.
             CaseWidgetConfiguration:
               AddFilter: Add filter
+            ClientStatisticWidget:
+              NoPermissionChartMessage: You do not have the required permission to see this chart.
             DashboardImportDetails:
               FileInfomation: File Infomation
               ImportPrivate: Import Private Dashboard

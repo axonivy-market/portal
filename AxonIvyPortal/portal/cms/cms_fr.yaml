@@ -1597,10 +1597,10 @@ Dialogs:
             LinkCopied: Lien copié !
         dashboard:
           component:
-            ClientStatisticWidget:
-              NoPermissionChartMessage: Vous n'avez pas l'autorisation requise pour consulter ce graphique.
             CaseWidgetConfiguration:
               AddFilter: Ajouter un filtre
+            ClientStatisticWidget:
+              NoPermissionChartMessage: Vous n'avez pas l'autorisation requise pour consulter ce graphique.
             DashboardImportDetails:
               FileInfomation: Informations sur le fichier
               ImportPrivate: Importer un tableau de bord privé

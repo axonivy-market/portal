@@ -144,7 +144,7 @@ public class DashboardConfigurationTest extends BaseTest {
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
     newDashboardDetailsEditPage.getIconByIndex(0, icon).shouldBe(Condition.appear);
-    newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(4));
+    newDashboardDetailsEditPage.getWidgets().shouldBe(CollectionCondition.size(10));
 
     goBackConfigurationAndVerifyDashboards(name, description, newDashboardDetailsEditPage, true);
   }
@@ -255,7 +255,7 @@ public class DashboardConfigurationTest extends BaseTest {
     processWidget.deleteProcessWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectTaskWidget(" ").expand().shouldHave(size(2));
+    newDashboardPage.selectTaskWidget(" ").expand().shouldHave(size(8));
   }
 
   @Test
@@ -267,7 +267,7 @@ public class DashboardConfigurationTest extends BaseTest {
     taskWidget.deleteTaskWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectCaseWidget(" ").expand().shouldHave(size(2));
+    newDashboardPage.selectCaseWidget(" ").expand().shouldHave(size(8));
   }
 
   @Test
@@ -280,7 +280,7 @@ public class DashboardConfigurationTest extends BaseTest {
     caseWidget.deleteCaseWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectTaskWidget(" ").expand().shouldHave(size(2));
+    newDashboardPage.selectTaskWidget(" ").expand().shouldHave(size(8));
   }
 
   @Test
@@ -293,7 +293,7 @@ public class DashboardConfigurationTest extends BaseTest {
     processWidget.deleteProcessWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.clickOnRemoveWidgetButton();
-    newDashboardPage.selectTaskWidget(" ").expand().shouldHave(size(2));
+    newDashboardPage.selectTaskWidget(" ").expand().shouldHave(size(8));
   }
 
   @Test
