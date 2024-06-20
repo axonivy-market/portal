@@ -16,6 +16,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.primefaces.event.SelectEvent;
 
 import com.axonivy.portal.components.util.HtmlUtils;
@@ -23,6 +24,7 @@ import com.axonivy.portal.components.util.HtmlUtils;
 import ch.addon.portal.generic.menu.MenuView;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.dto.dashboard.AbstractColumn;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
@@ -483,5 +485,23 @@ public class DashboardBean implements Serializable {
 
   public String getSearchScope() {
     return this.searchScope;
+  }
+
+  public String calculateColumnWidth(AbstractColumn column) {
+    String unit = "";
+    if (StringUtils.isEmpty(column.getUnit())
+        || (!column.getUnit().contentEquals("px")
+            && !column.getUnit().contentEquals("%"))) {
+      unit = "px";
+    } else {
+      unit = column.getUnit().trim();
+    }
+
+    Integer width = NumberUtils.toInt(column.getWidth(), -1);
+    if (width <= 0) {
+      return "width: auto";
+    }
+
+    return "width: " + column.getWidth().trim() + unit;
   }
 }

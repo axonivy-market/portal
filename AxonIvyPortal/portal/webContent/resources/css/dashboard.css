@@ -1620,3 +1620,7 @@ span.new-widget-dialog__icon.si {
 .quick-search-infor-icon {
   padding-left: 5%;
 }
+
+.dashboard-tasks--table .widget-column {
+  box-sizing: border-box;
+}
