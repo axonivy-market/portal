@@ -494,8 +494,8 @@ Data model:
 
 - ``id``: ID of the statistic chart
 - ``aggregates``: the aggregation query to make bucket (grouping) or metric aggregations. Please visit `Task Aggregation and Filter`_ and `Case Aggregation and Filter`_ for more details
-- ``filter``: filter conditions for the statistic chart. Multiple conditions is
-  supported. Please note that some filters may be incompatible with certain
+- ``filter``: filter conditions for the statistic chart. Multiple conditions are
+  supported. Please note that some filters are incompatible with certain
   chart types. Please visit `Task Aggregation and Filter`_ and `Case Aggregation
   and Filter`_ for more details
 - ``chartTarget``: the entity type that you want to use as the target  of the chart. We are supporting the main entity types of the ivy workflow:
@@ -526,20 +526,20 @@ Data model:
    
    |number-chart|
 
-For some specific chart such as ``Bar``, ``Line`` or ``Number``, there are additional and required fields:
+For some specific charts such as ``Bar``, ``Line`` or ``Number``, there are additional and required fields:
 
-- ``barChartConfig``: required fields for configuring the ``Bar`` chart, please add them when chart type is ``bar`` 
+- ``barChartConfig``: required fields for configuring the ``Bar`` chart, please add them if chart type is ``bar`` 
 
    - ``xTitles``: the multilingual display title for the x-axis
    - ``yTitles``: the multilingual display title for the y-axis
    - ``yValue``: add this field with **time** value when you want to show the amount of time on the y-axis
 
-- ``lineChartConfig``: required fields for configuring the ``Line`` chart, please add them when chart type is ``line``
+- ``lineChartConfig``: required fields for configuring the ``Line`` chart, please add them if chart type is ``line``
 
    - ``xTitles``: the multilingual display title for the x-axis
    - ``yTitles``: the multilingual display title for the y-axis
 
-- ``numberChartConfig``: additional fields for configuring the ``Number`` chart, you could add when chart type is ``number``
+- ``numberChartConfig``: additional fields for configuring the ``Number`` chart, you can add if chart type is ``number``
 
    - ``suffixSymbol``: icon next to the number. Portal supports both Streamline and FontAwesome icons
    
@@ -686,7 +686,7 @@ Data model:
 .. _Task Aggregation and Filter: https://developer.axonivy.com/api-browser?configUrl=https%3A%2F%2Fdeveloper.axonivy.com%2Fdoc%2F11.3%2Fopenapi%2Fconfig.json&urls.primaryName=default#/workflow/stats_1 
 .. _Case Aggregation and Filter: https://developer.axonivy.com/api-browser?configUrl=https%3A%2F%2Fdeveloper.axonivy.com%2Fdoc%2F11.3%2Fopenapi%2Fconfig.json&urls.primaryName=default#/workflow/stats
    
-.. |pie-chart| image:: ../../screenshots/statistic/pie-chart.png
-.. |bar-chart| image:: ../../screenshots/statistic/bar-chart.png
-.. |line-chart| image:: ../../screenshots/statistic/line-chart.png
-.. |number-chart| image:: ../../screenshots/statistic/number-chart.png
+.. |pie-chart| image:: ../../screenshots/statistic/tasks-by-prior-pie-chart.png
+.. |bar-chart| image:: ../../screenshots/statistic/tasks-by-prior-bar-chart.png
+.. |number-chart| image:: ../../screenshots/statistic/tasks-by-prior-number-chart.png
+.. |line-chart| image:: ../../screenshots/statistic/completed-cases-chart.png
