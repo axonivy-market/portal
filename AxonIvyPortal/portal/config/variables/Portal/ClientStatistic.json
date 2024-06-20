@@ -11,19 +11,19 @@
     "names": [
       {
         "locale": "de",
-        "value": "Aufgaben nach Prioritäten"
+        "value": "Aufgaben nach Priorität"
       },
       {
         "locale": "en",
-        "value": "Tasks by Priority"
+        "value": "Tasks By Priority"
       },
       {
         "locale": "fr",
-        "value": "Tâches par Priorité"
+        "value": "Tâches par priorité"
       },
       {
         "locale": "es",
-        "value": "Tareas por Prioridad"
+        "value": "Tareas por prioridad"
       }
     ],
     "descriptions": [
@@ -59,19 +59,19 @@
     "names": [
       {
         "locale": "de",
-        "value": "Priorität (3 Tage)"
+        "value": "Oberste Priorität: 3 Tage"
       },
       {
         "locale": "en",
-        "value": "Top Priority: 3 days"
+        "value": "Top Priority: 3 Days"
       },
       {
         "locale": "fr",
-        "value": "Priorité : 3 jours"
+        "value": "Priorité absolue : 3 jours"
       },
       {
         "locale": "es",
-        "value": "Prioridad: 3 días"
+        "value": "Máxima prioridad: 3 días"
       }
     ],
     "descriptions": [
@@ -149,7 +149,7 @@
       },
       {
         "locale": "en",
-        "value": "Tasks by Priority"
+        "value": "Tasks By Priority"
       },
       {
         "locale": "fr",
@@ -161,21 +161,21 @@
       }
     ],
     "descriptions": [
-      {
+      { 
         "locale": "de",
-        "value": "Dieses Balkendiagramm zeigt alle Aufgaben nach Priorität an, die der Benutzer bearbeiten kann."
+        "value": "Dieses Balkendiagramm zeigt alle Aufgaben an, die der Benutzer bearbeiten kann, gruppiert nach Priorität."
       },
       {
         "locale": "en",
-        "value": "This bar chart displays all tasks by priority that the user can work on."
+        "value": "This bar chart displays all tasks that the user can work on grouped by priority."
       },
       {
         "locale": "fr",
-        "value": "Ce diagramme à barres affiche toutes les tâches par priorité sur lesquelles l'utilisateur peut travailler."
+        "value": "Ce diagramme à barres affiche toutes les tâches sur lesquelles l'utilisateur peut travailler, regroupées par priorité."
       },
       {
         "locale": "es",
-        "value": "Este gráfico de barras muestra todas las tareas por prioridad en las que puede trabajar el usuario."
+        "value": "Este gráfico de barras muestra todas las tareas en las que puede trabajar el usuario agrupadas por prioridad."
       }
     ],
     "icon": "si si-analytics-bars",
@@ -250,19 +250,19 @@
     "descriptions": [
       {
         "locale": "de",
-        "value": "Dieses Diagramm zeigt die durchschnittliche Dauer der Fälle nach Kategorien."
+        "value": "Dieses Diagramm zeigt die durchschnittliche Bearbeitungszeit der Fälle nach Kategorien."
       },
       {
         "locale": "en",
-        "value": "This chart shows the average time of cases by category."
+        "value": "This chart shows the average processing time of cases by category."
       },
       {
         "locale": "fr",
-        "value": "Ce graphique montre la durée moyenne des affaires par catégorie."
+        "value": "Ce graphique montre le temps de traitement moyen des dossiers par catégorie.."
       },
       {
         "locale": "es",
-        "value": "Este gráfico muestra el tiempo medio de los casos por categoría."
+        "value": "Este gráfico muestra el tiempo medio de tramitación de los expedientes por categoría."
       }
     ],
     "icon": "si si-analytics-bars",
@@ -323,7 +323,7 @@
       },
       {
         "locale": "en",
-        "value": "New Cases per day"
+        "value": "New Cases Per Day"
       },
       {
         "locale": "fr",
@@ -409,7 +409,7 @@
       },
       {
         "locale": "en",
-        "value": "Completed Cases per day"
+        "value": "Completed Cases Per Day"
       },
       {
         "locale": "fr",
@@ -423,19 +423,19 @@
     "descriptions": [
       {
         "locale": "de",
-        "value": "Diese Grafik zeigt alle abgeschlossenen Fälle pro Tag der letzten 5 Tagen."
+        "value": "Dieses Diagramm zeigt die Anzahl der pro Tag eingeleiteten Verfahren für die letzten 5 Tage."
       },
       {
         "locale": "en",
-        "value": "This chart shows all finished cases per day within the last 5 days."
+        "value": "This chart shows the number of cases started per day for the last 5 days."
       },
       {
         "locale": "fr",
-        "value": "Ce graphique montre toutes les affaires terminées par jour au cours des 5 derniers jours."
+        "value": "Ce graphique montre le nombre de dossiers entamés par jour au cours des 5 derniers jours."
       },
       {
         "locale": "es",
-        "value": "Este gráfico muestra todos los casos terminados por día en los últimos 5 días."
+        "value": "Este gráfico muestra el número de casos iniciados por día durante los últimos 5 días."
       }
     ],
     "icon": "si si-analytics-board-graph-line",
@@ -466,7 +466,7 @@
         },
         {
           "locale": "en",
-          "value": "Finished cases"
+          "value": "Finished Cases"
         },
         {
           "locale": "fr",
@@ -597,7 +597,7 @@
       },
       {
         "locale": "en",
-        "value": "Tasks by Priority"
+        "value": "Tasks By Priority"
       },
       {
         "locale": "fr",
