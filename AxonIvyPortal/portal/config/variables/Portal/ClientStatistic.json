@@ -337,19 +337,19 @@
     "descriptions": [
       {
         "locale": "de",
-        "value": "Dieses Diagramm zeigt die Summe aller gestarteten Vorgänge der letzten 5 Tage."
+        "value": "Dieses Diagramm zeigt die Anzahl der pro Tag eingeleiteten Verfahren für die letzten 5 Tage."
       },
       {
         "locale": "en",
-        "value": "This chart shows all started cases per day within the last 5 days"
+        "value": "This chart shows the number of cases started per day for the last 5 days."
       },
       {
         "locale": "fr",
-        "value": "Ce graphique montre tous les cas entamés par jour au cours des 5 derniers jours."
+        "value": "Ce graphique montre le nombre de dossiers entamés par jour au cours des 5 derniers jours."
       },
       {
         "locale": "es",
-        "value": "Este gráfico muestra todos los casos iniciados por día en los últimos 5 días."
+        "value": "Este gráfico muestra el número de casos iniciados por día durante los últimos 5 días."
       }
     ],
     "icon": "si si-analytics-board-graph-line",
@@ -423,19 +423,19 @@
     "descriptions": [
       {
         "locale": "de",
-        "value": "Dieses Diagramm zeigt die Anzahl der pro Tag eingeleiteten Verfahren für die letzten 5 Tage."
+        "value": "Diese Grafik zeigt die Anzahl der abgeschlossenen Fälle pro Tag für die letzten 5 Tage."
       },
       {
         "locale": "en",
-        "value": "This chart shows the number of cases started per day for the last 5 days."
+        "value": "This chart shows the number of cases finished per day for the last 5 days."
       },
       {
         "locale": "fr",
-        "value": "Ce graphique montre le nombre de dossiers entamés par jour au cours des 5 derniers jours."
+        "value": "Ce graphique montre le nombre d'affaires terminées par jour pour les 5 derniers jours."
       },
       {
         "locale": "es",
-        "value": "Este gráfico muestra el número de casos iniciados por día durante los últimos 5 días."
+        "value": "Este gráfico muestra el número de casos terminados por día durante los últimos 5 días."
       }
     ],
     "icon": "si si-analytics-board-graph-line",
