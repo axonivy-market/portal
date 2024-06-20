@@ -107,13 +107,54 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitStatisticChartLoaded();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "dashboard-statistic-widget-demo");
+    ClientStatisticWidgetNewDashboardPage tasksByPriorWidget = newDashboardPage.selectClientStatisticChartWidget("Tasks By Priority");
+    ClientStatisticWidgetNewDashboardPage topPriorWidget = newDashboardPage.selectClientStatisticChartWidget("Top Priority: 3 Days");
     ClientStatisticWidgetNewDashboardPage runningCasesWidget = newDashboardPage.selectClientStatisticChartWidget("Running Cases");
-    ClientStatisticWidgetNewDashboardPage newCasesWidget = newDashboardPage.selectClientStatisticChartWidget("New Cases per day");
-    ClientStatisticWidgetNewDashboardPage tasksByPriorWidget = newDashboardPage.selectClientStatisticChartWidget("Tasks by Priority");
-    ClientStatisticWidgetNewDashboardPage topPriorWidget = newDashboardPage.selectClientStatisticChartWidget("Top Priority: 3 days");
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(runningCasesWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "number-chart", new ScreenshotMargin(5, 5));
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(newCasesWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "line-chart", new ScreenshotMargin(5, 5));
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(tasksByPriorWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "pie-chart", new ScreenshotMargin(5, 5));
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(topPriorWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "bar-chart", new ScreenshotMargin(5, 5));
+    ClientStatisticWidgetNewDashboardPage newCasesWidget = newDashboardPage.selectClientStatisticChartWidget("New Cases Per Day");
+    ClientStatisticWidgetNewDashboardPage avgRuntimeWidget = newDashboardPage.selectClientStatisticChartWidget("Case Category Avg. Runtime");
+    ClientStatisticWidgetNewDashboardPage dueTodayWidget = newDashboardPage.selectClientStatisticChartWidget("Due Today");
+    ClientStatisticWidgetNewDashboardPage completedCasesPerDayWidget = newDashboardPage.selectClientStatisticChartWidget("Completed Cases Per Day");
+    ClientStatisticWidgetNewDashboardPage tasksExpireTheEndOfWeek = newDashboardPage.selectClientStatisticChartWidget("Tasks that expire by the end of the week");
+    ClientStatisticWidgetNewDashboardPage openTasksWidget = newDashboardPage.selectClientStatisticChartWidget("Open Tasks");
+
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(tasksByPriorWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "tasks-by-prior-pie-chart", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(topPriorWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "top-prior-chart", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(runningCasesWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "running-cases-chart", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(newCasesWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "new-cases-chart", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(avgRuntimeWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "avg-runtime-chart", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(dueTodayWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "due-today-chart", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(completedCasesPerDayWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "completed-cases-chart", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(tasksExpireTheEndOfWeek.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "tasks-expire-end-week-chart", new ScreenshotMargin(5, 5));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(openTasksWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "open-tasks-chart", new ScreenshotMargin(5, 5));
+  }
+  
+  @Test
+  public void screenshotBarChart() throws IOException {
+    redirectToRelativeLink(createDataCreatedDate);
+    redirectToRelativeLink(createDataForStatisticWidget);
+    redirectToRelativeLink(createDataFinishedDate);
+    redirectToRelativeLink(createCasesForCaseListCustomization);
+    createJSonFile("dashboard-has-one-bar-chart.json", PortalVariable.DASHBOARD.key);
+    redirectToNewDashBoard();
+    ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitStatisticChartLoaded();
+    ClientStatisticWidgetNewDashboardPage tasksByPriorWidget = newDashboardPage.selectClientStatisticChartWidget("Tasks By Priority");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(tasksByPriorWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "tasks-by-prior-bar-chart", new ScreenshotMargin(5, 5));
+  }
+  
+  @Test
+  public void screenshotNumberChart() throws IOException {
+    redirectToRelativeLink(createDataCreatedDate);
+    redirectToRelativeLink(createDataForStatisticWidget);
+    redirectToRelativeLink(createDataFinishedDate);
+    redirectToRelativeLink(createCasesForCaseListCustomization);
+    createJSonFile("dashboard-has-one-number-chart.json", PortalVariable.DASHBOARD.key);
+    redirectToNewDashBoard();
+    ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitStatisticChartLoaded();
+    ClientStatisticWidgetNewDashboardPage tasksByPriorWidget = newDashboardPage.selectClientStatisticChartWidget("Tasks By Priority");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(tasksByPriorWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "tasks-by-prior-number-chart", new ScreenshotMargin(5, 5));
   }
 }
