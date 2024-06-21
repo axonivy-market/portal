@@ -1,5 +1,1 @@
 Databases:
-  AxonIvySystemDatabase:
-    Url: jdbc:hsqldb:mem:AxonIvySystemDatabase
-    Driver: org.hsqldb.jdbc.JDBCDriver
-    Password: ${decrypt:}
