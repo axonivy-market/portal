@@ -1,80 +1,45 @@
 .. _configure-new-dashboard-statistic-widget:
 
-Configure Statistics Widget
+Configure Statistic Widget
 ===========================
 
-Define Statistics Widget
-------------------------
+.. _portal-statistic-widget:
+Define Statistic Widget
+-------------------------
 
-The Statistics widget of the Portal dashboard displays statistics and charts.
+The Statistic widget of the Portal dashboard displays statistic and charts.
 
-Below is a sample JSON definition of a statistics widget in the Portal dashboard
+Below is a sample JSON definition of a statistic widget in the Portal dashboard
 
 .. code-block:: html
 
    {
-      "type": "statistic",
-      "id": "statistic_1",
+      "type": "client-statistic",
+      "id": "client_statistic_1",
       "layout": {
-         "styleClass": "new-widget",
-         "w": 5,
-         "h": 5,
-         "x": 0,
-         "y": 0
+         "w" : 2,
+         "h" : 2,
+         "x" : 8,
+         "y" : 2
       },
-      "chart": {
-         "id": "0",
-         "names": [
-            {
-               "locale": "de",
-               "value": "Aufgaben nach Priorität"
-            }, {
-               "locale": "en",
-               "value": "Tasks by Priority"
-            }, {
-               "locale": "fr",
-               "value": "Tãches par priorité"
-            }, {
-               "locale": "es",
-               "value": "Tareas por prioridad"
-            }
-         ],
-         "type": "TASK_BY_PRIORITY",
-         "filter": {
-            "timePeriodSelection": "CUSTOM"
-         }
-      }
+      "chartId": "10"
    }
 ..
 
-The basic JSON structure of a statistics widget
-
-   ``type``: type of the widget. Use ``statistic`` for a statistics widget
+The basic JSON structure of a statistic widget
 
    ``id``: ID of the widget
 
-   ``layout``: layout definition of the statistics widget
+   ``type``: type of the widget. Use ``client-statistic`` for a client statistic widget
 
-      ``x``: HTML DOM Style ``left`` is calculated as formula ``x / 12 * 100%``
+   ``layout``: layout definition of the client statistic widget
 
-      ``y``: HTML DOM Style ``top`` is calculated as formula ``y / 12 * 100%``
+      - ``x``: HTML DOM Style ``left`` is calculated as formula ``x / 12 * 100%``
 
-      ``w``: HTML DOM Style ``width`` is calculated as formula ``60 * w + 20 * (w - 1)``
+      - ``y``: HTML DOM Style ``top`` is calculated as formula ``y / 12 * 100%``
 
-      ``h``: HTML DOM Style ``height`` is calculated as formula ``60 * h + 20 * (h - 1)``
+      - ``w``: HTML DOM Style ``width`` is calculated as formula ``60 * w + 20 * (w - 1)``
 
-      ``styleClass`` (optional): add CSS Classes to HTML DOM of the widget
-
-      ``style`` (optional): add inline style to HTML DOM of the widget
-
-   ``chart``: the chart data model of the widget
-
-      ``id``: the identification of the chart. It is an auto-generated UUID.
-
-      ``names``: the multilingual display name of the chart.
-
-      ``type``: type of chart such as ``TASK_BY_PRIORITY``, ``CASES_BY_STATE``,
-      ``CASES_BY_FINISHED_TASK``, ``CASES_BY_FINISHED_TIME``, ``TASK_BY_EXPIRY``,
-      ``ELAPSED_TIME_BY_CASE_CATEGORY``, and ``CASES_BY_CATEGORY``
-
-      ``filter``: list of filters to apply for each chart. Please refer to :ref:`Portal.StatisticCharts <portal-statistic-charts>` for more information.
+      - ``h``: HTML DOM Style ``height`` is calculated as formula ``60 * h + 20 * (h - 1)``
+   
+   ``chartId``: ID of the standard client statistic chart. For more information, please refer to :ref:`Portal.StatisticCharts <portal-statistic-charts>`.
