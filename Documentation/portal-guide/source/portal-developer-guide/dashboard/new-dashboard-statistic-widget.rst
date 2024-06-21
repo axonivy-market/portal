@@ -1,15 +1,15 @@
 .. _configure-new-dashboard-statistic-widget:
 
-Configure Statistics Widget
+Configure Statistic Widget
 ===========================
 
 .. _portal-statistic-widget:
-Define Statistics Widget
+Define Statistic Widget
 -------------------------
 
-The Statistics widget of the Portal dashboard displays statistics and charts.
+The Statistic widget of the Portal dashboard displays statistic and charts.
 
-Below is a sample JSON definition of a statistics widget in the Portal dashboard
+Below is a sample JSON definition of a statistic widget in the Portal dashboard
 
 .. code-block:: html
 
