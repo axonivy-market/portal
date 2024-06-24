@@ -21,10 +21,12 @@ public class SearchResultPage extends TemplatePage {
   }
 
   public void openTaskTab() {
+    waitForPageLoad();
     waitForElementClickableThenClick($(By.cssSelector("li[class*='task-tab-title']")));
   }
 
   public void openCaseTab() {
+    waitForPageLoad();
     waitForElementClickableThenClick($(By.cssSelector("li[class*='case-tab-title']")));
   }
 
@@ -137,6 +139,7 @@ public class SearchResultPage extends TemplatePage {
   }
 
   public boolean isCaseCategoryColumnDisplayed() {
+    waitForPageLoad();
     return findElementByCssSelector("span[id$=':case-category-cell']").isDisplayed();
   }
 
