@@ -85,14 +85,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     return getColumnOfTableWidget(index).get(startIndex);
   }
 
-  public void waitForFilterNotificationAppear() {
-    $(".task-dashboard-widget__panel span.widget__filter-noti-number")
-        .shouldBe(appear, DEFAULT_TIMEOUT);
-  }
-
   public void startFirstTask() {
-    WaitHelper.waitForNavigation(() -> getColumnOfTaskHasIndex(0, "Start")
-        .shouldBe(appear, DEFAULT_TIMEOUT).click());
+    $(".task-dashboard-widget__panel span.widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT);
+    WaitHelper.waitForNavigation(() -> getColumnOfTaskHasIndex(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click());
   }
 
   public void startFirstTaskAndWaitShowHomePageButton() {
@@ -498,10 +493,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
         .click();
   }
   
-  public boolean isQuickSearchInputShow(String widgetIndex) {
-    String taskWidgetIndex = String.format("div[id*='task-task_%s']", widgetIndex);
-    waitPageLoaded();
-    return $(taskWidgetIndex).$("form").$("input").exists();
+  public boolean isQuickSearchInputShow() {
+    return getTaskWidgetHeader().$("div.widget__header").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("div[class*='widget-header-quick-search']").isDisplayed();
   }
   
   public void setInputForQuickSearch(String input) {
@@ -510,7 +504,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
   
   private SelenideElement getQuickSearchForm() {
-    return $("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
+    return getTaskWidgetHeader().$("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
   }
   
   public void clearQuickSearchInput() {
