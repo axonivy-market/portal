@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
 import org.junit.jupiter.api.Assertions;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,11 +13,18 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.StatisticWidgetPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
+import com.axonivy.portal.selenium.common.Variable;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
 public class MenuTest extends BaseTest {
+
+  private static final String CASES_PAGE_TITLE = "Cases - Portal - Axon Ivy";
+  private static final String TASKS_PAGE_TITLE = "Tasks - Portal - Axon Ivy";
+  private static final String PROCESSES_PAGE_TITLE = "Processes - Portal - Axon Ivy";
+  private static final String DASHBOARD_PAGE_TITLE = "Dashboard - Portal - Axon Ivy";
+
 
   @Override
   @BeforeEach
@@ -127,6 +135,25 @@ public class MenuTest extends BaseTest {
 	setUserLanguage(newDashboardPage,1);
 	Assertions.assertEquals("Dashboard Test EN",mainMenuPage.getMainMenuName());
   }
+  
+  @Test
+  public void testBrowserTitleChangeFollowPage() {
+    redirectToRelativeLink(cleanupDataLink);
+    createJSonFile("application-name.json", Variable.APPLICATION_NAME.getKey());
+    login(TestAccount.DEMO_USER);
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    assertEquals(DASHBOARD_PAGE_TITLE, newDashboardPage.getPageTitle());
+
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
+    String processesPageTitle = mainMenuPage.openProcessList().getPageTitle();
+    String taskListPageTitle = mainMenuPage.openTaskList().getPageTitle();
+    String caseListPageTitle = mainMenuPage.openCaseList().getPageTitle();
+
+    assertEquals(PROCESSES_PAGE_TITLE, processesPageTitle);
+    assertEquals(TASKS_PAGE_TITLE, taskListPageTitle);
+    assertEquals(CASES_PAGE_TITLE, caseListPageTitle);
+  }
+
   
   private void setUserLanguage(NewDashboardPage newDashboardPage, int index) {
 	UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
