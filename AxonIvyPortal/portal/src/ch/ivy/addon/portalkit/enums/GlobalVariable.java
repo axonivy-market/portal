@@ -83,7 +83,9 @@ public enum GlobalVariable {
       "ShowQRCode"),
   BASE_QR_CODE_URL("Portal.UserMenu.BaseQRCodeUrl", GlobalVariableType.TEXT, "BaseQRCodeUrl"), APPLE_STORE_URL(
       "Portal.UserMenu.AppleStoreURL", GlobalVariableType.TEXT,
-      "AppleStoreURL"), GOOGLE_PLAY_URL("Portal.UserMenu.GooglePlayURL", GlobalVariableType.TEXT, "GooglePlayURL");
+      "AppleStoreURL"), GOOGLE_PLAY_URL("Portal.UserMenu.GooglePlayURL", GlobalVariableType.TEXT, "GooglePlayURL"),
+  APPLICATION_NAME("Portal.ApplicationName", GlobalVariableType.TEXT, "Axon Ivy", "ApplicationName");
+;
 
 
   private String key;
