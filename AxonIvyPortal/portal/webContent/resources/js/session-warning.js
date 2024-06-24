@@ -1,6 +1,8 @@
 var sessionCounter = 0,
 sessionCounterUpdatedOn = new Date(),
 isLogOut = false;
+var tabInteractions = [];
+const tabId = 'tab_' + (Date.now()).toString();
 
 var PortalSessionWarning = function() {
   var warningDialogShow = false,
@@ -9,6 +11,9 @@ var PortalSessionWarning = function() {
   intervalCheckSessionTimeout,
 
   init = function(clientSideTimeOut) {
+
+    callKeepSessionCmd();
+
     timeout = clientSideTimeOut,
     timeOutSeconds = timeout / 1000,
     sessionCounter = timeOutSeconds,
@@ -60,10 +65,7 @@ var PortalSessionWarning = function() {
 
     // when timed out, close the warning dialog and make a request to server to show session timeout dialog
     if (timeOutSeconds < 0 && isLogOut == false) {
-        hideWarningDialog();
-        logoutAndShowDialog();
-        isLogOut = true;
-        stopAvailableChartPolling();
+        handleLogout();
         return;
       }
 
@@ -72,21 +74,29 @@ var PortalSessionWarning = function() {
 
       // If have interaction, send a request to server to keep session
       if (isInteractedTaskTemplate == true) {
-        keepSession();
+        callKeepSessionCmd();
+        warningDialogShow = false;
         return;
       }
 
       // If have interaction inside an iframe, send a request to server to keep session
       if ($("#iFrame").length > 0 && isInteractedInIframeTaskTemplate == true) {
-        keepSessionInIFrame();
+        callKeepSessionCmd();
+        warningDialogShow = false;
         return;
       }
 
-      // If don't have interaction, show the warning dialog
-      warningDialogShow = true;
-      PF('timeout-warning-dialog').show();
+      // If there is no interaction, show timeout dialog
+      showWarningDialog();
     }
   },
+
+  handleLogout = function() {
+    hideWarningDialog();
+    logoutAndShowDialog();
+    isLogOut = true;
+    stopAvailableChartPolling();
+  }
 
   resetCounterAndTimeout = function() {
     hideWarningDialog();
@@ -108,6 +118,11 @@ var PortalSessionWarning = function() {
     PF('timeout-warning-dialog').hide();
   }
   
+  showWarningDialog = function() {
+    warningDialogShow = true;
+    PF('timeout-warning-dialog').show();
+  }
+  
   stopAvailableChartPolling = function () {
     let polls = $("div[id*=':chart_model_dashboard_poll-']");
     stopChartPolling(polls);
@@ -126,9 +141,51 @@ var PortalSessionWarning = function() {
     }
   }
 
+  callKeepSessionCmd = function() {
+    keepSession([{name:'tabId', value:tabId}]);
+  }
+
+  callKeepSessionWithoutCheckTimeoutCmd = function() {
+    keepSessionWithoutCheckTimeout([{name:'tabId', value:tabId}]);
+  }
+
+  getSessionInfoCmd = function(sessionInfo) {
+    // If server does not send session info
+    // show log out dialog
+    if (sessionInfo == '') {
+      handleLogout();
+    }
+
+    sessionInfo = JSON.parse(sessionInfo);
+    tabId = sessionInfo.tabId;
+    this.init(sessionInfo.millisecondsToTimeout);
+  }
+
+  unloadTabSessionCmd = function() {
+    unloadTabSession([{name:'tabId', value:tabId}]);
+  }
+
   return {
     init: init,
     resetCounterAndTimeout: resetCounterAndTimeout,
-    hideWarningDialog: hideWarningDialog
+    hideWarningDialog: hideWarningDialog,
+    callKeepSessionCmd : callKeepSessionCmd,
+    callKeepSessionWithoutCheckTimeoutCmd : callKeepSessionWithoutCheckTimeoutCmd,
+    getSessionInfoCmd : getSessionInfoCmd,
+    unloadTabSessionCmd : unloadTabSessionCmd
   };
 }();
+
+
+$(document).ready(function() {
+  // add event listener to call remote command to delete
+  // session info of this tab on the server when the webpage is unload.
+  $(window).bind("beforeunload", function() {
+    PortalSessionWarning.unloadTabSessionCmd();
+  });
+  $(window).bind("visibilitychange", function() {
+    if (!document.hidden) {
+      PortalSessionWarning.callKeepSessionCmd();
+    }
+  });
+});

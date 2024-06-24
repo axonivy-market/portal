@@ -46,6 +46,7 @@
 			});
 			
 			function promptWarningOnLeavePage() {
+				PortalSessionWarning.unloadTabSessionCmd();
 				if (showConfirmDialogBeforeUnload) {
 					return confirmMessage; 
 				}
