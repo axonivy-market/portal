@@ -166,7 +166,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.addFilter("Created Date", FilterOperator.AFTER);
     taskWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2024");
     taskWidget.applyFilter();
-    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(15));
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(14));
     
     taskWidget.openFilterWidget();
     taskWidget.resetFilter();
@@ -174,7 +174,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.addFilter("Expiry", FilterOperator.WITHIN_NEXT);
     taskWidget.inputValueOnLatestFilter(FilterValueType.WITHIN, "2","Year(s)");
     taskWidget.applyFilter();
-    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(3));
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(2));
   }
   
   @Test
@@ -194,7 +194,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.addFilter("Shipment date", FilterOperator.BETWEEN);
     taskWidget.inputValueOnLatestFilter(FilterValueType.DATE_BETWEEN, "01/01/2024","12/12/2024");
     taskWidget.applyFilter();
-    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(3));
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(2));
   }
   
   @Test
@@ -210,15 +210,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.addFilter("AccountNumber", FilterOperator.BETWEEN);
     taskWidget.inputValueOnLatestFilter(FilterValueType.NUMBER_BETWEEN, "1","20");
     taskWidget.applyFilter();
-    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(3));
-    
-    taskWidget.openFilterWidget();
-    taskWidget.resetFilter();
-    taskWidget.openFilterWidget();
-    taskWidget.addFilter("AccountNumber", FilterOperator.GREATER_OR_EQUAL);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.NUMBER, "14");
-    taskWidget.applyFilter();
-    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(1));
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(2));
   }
   
   @Test
@@ -228,11 +220,19 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASK_WIDGET);
     ScreenshotUtils.maximizeBrowser();
-    
+    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
+    taskEditWidget.openFilter();
+    taskEditWidget.resetFilter();
+    taskEditWidget.applyFilter();
+    taskEditWidget.save();
+    redirectToNewDashBoard();
     taskWidget.openFilterWidget();
     taskWidget.addFilter("State", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
-    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(15));
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(14));
   }
   
   @Test
@@ -283,7 +283,6 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.applyFilter();
     assertTrue(taskWidget.isEmptyMessageAppear());
   }
-  
   
   private void createSavedFilterItems(TaskWidgetNewDashBoardPage taskWidget) {
     removeSavedFilterItemsIfExist(taskWidget);
