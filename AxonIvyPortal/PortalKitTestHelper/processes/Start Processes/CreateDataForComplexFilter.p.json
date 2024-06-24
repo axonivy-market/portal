@@ -437,7 +437,7 @@
           "id" : "S10-f103",
           "type" : "TaskEnd",
           "visual" : {
-            "at" : { "x" : 872, "y" : 160 }
+            "at" : { "x" : 1176, "y" : 160 }
           }
         }, {
           "id" : "S10-f104",
@@ -475,7 +475,7 @@
             "at" : { "x" : 744, "y" : 160 }
           },
           "connect" : [
-            { "id" : "S10-f111", "to" : "S10-f103" }
+            { "id" : "S10-f4", "to" : "S10-f3" }
           ]
         }, {
           "id" : "S10-f19",
@@ -762,7 +762,7 @@
           "id" : "S10-f1",
           "type" : "TaskEnd",
           "visual" : {
-            "at" : { "x" : 872, "y" : 256 }
+            "at" : { "x" : 1176, "y" : 256 }
           }
         }, {
           "id" : "S10-f74",
@@ -864,7 +864,7 @@
             "at" : { "x" : 744, "y" : 256 }
           },
           "connect" : [
-            { "id" : "S10-f11", "to" : "S10-f1" }
+            { "id" : "S10-f9", "to" : "S10-f8" }
           ]
         }, {
           "id" : "S10-f80",
@@ -944,6 +944,52 @@
           },
           "connect" : [
             { "id" : "S10-f16", "to" : "S10-f20" }
+          ]
+        }, {
+          "id" : "S10-f3",
+          "type" : "Database",
+          "name" : "update working time",
+          "config" : {
+            "query" : {
+              "dbName" : "IvySystemDatabase",
+              "sql" : {
+                "kind" : "UPDATE",
+                "table" : "IWA_CASE",
+                "fields" : {
+                  "WORKINGTIME" : "1000",
+                  "CATEGORY" : "\"LeaveRequest/Vacation\""
+                }
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 984, "y" : 160 }
+          },
+          "connect" : [
+            { "id" : "S10-f6", "to" : "S10-f103" }
+          ]
+        }, {
+          "id" : "S10-f8",
+          "type" : "Database",
+          "name" : "update working time",
+          "config" : {
+            "query" : {
+              "dbName" : "IvySystemDatabase",
+              "sql" : {
+                "kind" : "UPDATE",
+                "table" : "IWA_CASE",
+                "fields" : {
+                  "WORKINGTIME" : "1000",
+                  "CATEGORY" : "\"LeaveRequest/Holiday\""
+                }
+              }
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 984, "y" : 256 }
+          },
+          "connect" : [
+            { "id" : "S10-f11", "to" : "S10-f1" }
           ]
         } ],
       "visual" : {
