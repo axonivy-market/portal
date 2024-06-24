@@ -4,6 +4,7 @@ Configure Statistic Widget
 ===========================
 
 .. _portal-statistic-widget:
+
 Define Statistic Widget
 -------------------------
 
