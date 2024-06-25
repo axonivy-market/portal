@@ -21,9 +21,6 @@ var PortalSessionWarning = function() {
       }
     });
 
-    // Scrolling is not considered as interaction
-    // document.onscroll = updateInteractedTaskTemplate;
-    // Using IFrame Task template
     if ($("#iFrame").length > 0) {
 
       $("#iFrame").on("load", function () {
@@ -42,18 +39,10 @@ var PortalSessionWarning = function() {
           updateInteractionStatusInIFrame();
         });
 
-        // Scrolling is not considered as interaction
-        // iframeContent.addEventListener("scroll", function (event) {
-        //   updateInteractionStatusInIFrame();
-        // });
-
         iframeContent.addEventListener("click", function (event) {
           updateInteractionStatusInIFrame();
         });
 
-        // iframeWindow.addEventListener("focus", function (event) {
-        //   backToTab();
-        // });
       });
     }
   },
