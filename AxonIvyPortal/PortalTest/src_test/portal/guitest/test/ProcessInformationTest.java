@@ -17,7 +17,7 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class ProcessInformationTest extends BaseTest {
 
-  private static final String CASE_DETAILS_TITLE = "Case Details";
+  private static final String CASE_DETAILS_TITLE = "Case Details - Portal - Axon Ivy";
   private HomePage homePage;
   private ProcessWidgetPage processWidget;
   private ProcessInformationPage processInformationPage;
