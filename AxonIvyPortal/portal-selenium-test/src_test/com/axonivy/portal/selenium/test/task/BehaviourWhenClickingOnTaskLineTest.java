@@ -13,9 +13,11 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
+import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
@@ -126,6 +128,18 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
 
     NewDashboardPage newDashboardPage = templatePage.clickCancelButton();
     taskWidgetNewDashBoardPage = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidgetNewDashBoardPage.openEditTaskWidget();
+    taskEditWidget.openFilter();
+    taskEditWidget.resetFilter();
+    taskEditWidget.applyFilter();
+    taskEditWidget.openColumnManagementDialog();
+    taskEditWidget.clickOnVisibilityCheckBoxByField("State");
+    taskEditWidget.saveColumn();
+    taskEditWidget.save();
+    redirectToNewDashBoard();
     taskWidgetNewDashBoardPage.stateOfFirstTask().shouldHave(text(IN_PROGRESS));
   }
 }
