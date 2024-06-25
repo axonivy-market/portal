@@ -8,7 +8,6 @@ var PortalSessionWarning = function() {
   intervalCheckSessionTimeout;
 
   init = function(clientSideTimeOut) {
-    console.log(clientSideTimeOut);
     timeout = clientSideTimeOut;
     window.onload = resetCounterAndTimeout;
     document.onkeydown = updateInteractedTaskTemplate;
@@ -60,7 +59,6 @@ var PortalSessionWarning = function() {
   },
 
   timerDecrement = function() {
-    console.log(getRemainingTimeInSeccond());
 
     if (getRemainingTimeInSeccond() < 0 && isEndSession == false) {
       stopAvailableChartPolling();
@@ -85,33 +83,27 @@ var PortalSessionWarning = function() {
 
   resetCounterAndTimeout = function() {
     clearInterval(intervalCheckSessionTimeout);
-    console.log("reset counter");
     hideWarningDialog();
     isInteractedTaskTemplate = false;
     isInteractedInIframeTaskTemplate = false;
     isEndSession = false;
     resetDateTimeout();
-    console.log(`timeout: ${timeout}`);
-    console.log(`new Date: ${new Date().getSeconds()}`);
     intervalCheckSessionTimeout = setInterval(function() {
       timerDecrement();
       if (isEndSession) {
-        console.log("clearInterval");
         clearInterval(intervalCheckSessionTimeout);
       }
     }, 1000); // Call every second, stop when user is logged out
-    console.log(sessionCounterUpdatedOn);
   },
 
   keepPortalAlive = function() {
-    console.log("keep me alive");
     keepSession();
   },
 
   resetDateTimeout = function () {
     sessionCounterUpdatedOn = new Date();
     sessionCounterUpdatedOn.setSeconds(new Date().getSeconds() + (timeout / 1000) + 60);
-  }
+  },
 
   updateInteractedTaskTemplate = function() {
     isInteractedTaskTemplate = true;
@@ -124,12 +116,11 @@ var PortalSessionWarning = function() {
   hideWarningDialog = function() {
     warningDialogShow = false;
     PF('timeout-warning-dialog').hide();
-  }
+  },
 
   backToTab = function() {
-    console.log('onTabFocus');
     keepPortalAlive();
-  }
+  },
   
   stopAvailableChartPolling = function () {
     let polls = $("div[id*=':chart_model_dashboard_poll-']");
@@ -147,7 +138,7 @@ var PortalSessionWarning = function() {
         widgetVar.stop();
       }
     }
-  }
+  },
 
   getRemainingTimeInSeccond  = function () {
     return (sessionCounterUpdatedOn.getTime() - new Date().getTime()) / 1000;
