@@ -66,9 +66,7 @@ public class BusinessDetailsDTO {
      * @param iCase
      *
      * @return Builder
-     * @deprecated This method is deprecated from 12.0.0
      */
-    @Deprecated(forRemoval = true, since = "12.0.0")
     public Builder iCase(ICase iCase) {
       this.iCase = iCase;
       return this;
