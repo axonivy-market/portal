@@ -29,7 +29,7 @@ import portal.guitest.page.TaskDetailsPage;
 
 public class ShowRelatedTasksTest extends BaseTest {
   
-  private static final String TASK_DETAILS_TITLE = "Task Details";
+  private static final String TASK_DETAILS_TITLE = "Task Details - Portal - Axon Ivy";
   private CaseDetailsPage detailsPage;
   private HomePage homePage;
   NoteHistoryPage caseHistoryPage;
