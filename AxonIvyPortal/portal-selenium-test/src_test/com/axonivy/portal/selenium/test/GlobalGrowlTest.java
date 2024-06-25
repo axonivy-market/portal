@@ -96,18 +96,15 @@ public class GlobalGrowlTest extends BaseTest {
   @Test
   public void testDisplayDefaultGrowlAfterCancelTask() {
     redirectToRelativeLink(createTestingTasksUrl);
-    NavigationHelper.navigateToTaskList();
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    TaskWidgetPage taskWidgetPage = newDashboardPage.openTaskList();
     taskWidgetPage.waitForPageLoad();
     TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
     taskTemplatePage.waitForIFrameContentVisible();
+    
+    taskTemplatePage.clickOnCancelButton();
+    taskTemplatePage.switchBackToParent();
 
-    WaitHelper.waitForNavigation(() -> {
-      taskTemplatePage.clickCancelAndLeftButton();
-      taskTemplatePage.switchBackToParent();
-    });
-
-    taskWidgetPage = new TaskWidgetPage();
     assertGrowlMessage(taskWidgetPage, CANCEL_MESSAGE_WITH_DETAILS);
   }
 
