@@ -146,6 +146,7 @@ var PortalSessionWarning = function() {
   return {
     init: init,
     resetCounterAndTimeout: resetCounterAndTimeout,
-    hideWarningDialog: hideWarningDialog
+    hideWarningDialog: hideWarningDialog,
+    keepPortalAlive: keepPortalAlive
   };
 }();
