@@ -59,7 +59,7 @@
             <h:panelGroup id="vertical-task-template-tasks-command" class="task-template-tasks-command" rendered="#{!(isHideCaseInfo and isHideTaskAction) and processChainDirection eq 'VERTICAL'}">
               <p:commandButton id="vertical-case-info" type="button" styleClass="rounded-button ui-button-outlined"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="si si-folder-search"
-                onclick="openCaseInfo()" rendered="#{!isHideCaseInfo}"
+                onclick="openCaseInfo();" rendered="#{!isHideCaseInfo}"
                 global="false" />
               <p:spacer width="10" />
               <p:commandButton id="vertical-task-actions" type="button" rendered="#{!isHideTaskAction}" styleClass="rounded-button ui-button-outlined"
@@ -194,7 +194,7 @@
                     class="case-information-frame  js-iFrame-case-details" scrolling="no" frameborder="0"/>
                   <p:poll rendered="#{taskTemplateBean.intervalForPollingWhenOpenCaseDetails ne null}" interval="#{taskTemplateBean.intervalForPollingWhenOpenCaseDetails}"
                     process="@this" update="@this"
-                    oncomplete="PortalSessionWarning.resetCounterAndTimeout();" global="false" />
+                    oncomplete="keepSession();" global="false" />
                 </div>
               </div>
             </h:panelGroup>
