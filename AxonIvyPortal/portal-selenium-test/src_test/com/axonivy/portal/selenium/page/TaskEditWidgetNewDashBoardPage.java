@@ -14,6 +14,8 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   private String taskEditWidgetId;
   private static final String TASK_NAME = "Task name";
   private static final String STATE = "State";
+  private static final String CUSTOM_CASE_FIELD = "Custom case field";
+  private static final String CUSTOM_FIELD = "Custom field";
 
   public TaskEditWidgetNewDashBoardPage() {
     this("div[id='new-widget-configuration-dialog']");
@@ -247,5 +249,60 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public SelenideElement getAddedFieldRemoveLink(String field) {
     return getColumnManagementDialog().$("tbody td.js-column-field-" + field + " a").shouldBe(getClickableCondition(),
         DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement getQuickSearchCheckBox() {
+    return $("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+  }
+
+  public void clickOnQuickSearchCheckBox() {
+    getQuickSearchCheckBox().click();
+  }
+  
+  public boolean isQuickSearchClicked(String fieldName) {
+    return getColumnManagementDialog().$("div[id$='column-management-datatable']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("table tbody").$$("tr").filter(text(fieldName)).first()
+        .$("div[id$='quick-search-checkbox-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a").$("span span")
+        .getAttribute("class").contains("ui-chkbox-icon");
+  }
+  
+  public void clickOnQuickSearchByField(String fieldName) {
+    var quickSeatchChkbox = getColumnManagementDialog().$("div[id$='column-management-datatable']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("table tbody").$$("tr").filter(text(fieldName)).first().$("div[id$='quick-search-checkbox-panel']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    quickSeatchChkbox.click();
+  }
+  
+  public void addCustomFieldByCustomTypeAndFieldName(String customType, String fieldName) {
+    switch (customType) {
+    case (CUSTOM_FIELD):
+      customType = "custom-field";
+      selectCustomType();
+      getCustomFieldSelection().click();
+      break;
+    case (CUSTOM_CASE_FIELD):
+      customType = "custom-case-field";
+      selectCustomCaseType();
+      getCustomCaseFieldSelection().click();
+      break;
+    default:
+      break;
+    }
+    customType.toLowerCase();
+    String spanId = String.format("span[id*='%s-selection_panel']", customType);
+    $(spanId).$("ul").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li")
+        .filter(text(fieldName)).first().click();
+    getColumnManagementDialog().$("button[id$='field-add-btn']").click();
+  }
+  
+  private SelenideElement getCustomCaseFieldSelection() {
+    return getColumnManagementDialog().$("span[id$='custom-case-field-selection'] button");
+  }
+  
+  public void saveColumn() {
+    getColumnManagementDialog().$("button[id$='column-management-save-btn']").click();
+    $("div[id$=':column-management-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    waitPreviewTableLoaded();
   }
 }

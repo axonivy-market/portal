@@ -222,4 +222,51 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
         "div[id$='empty-message-container'][class='empty-message-container ']")
         .shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
   }
+  
+
+  public boolean isQuickSearchInputShow(String widgetIndex) {
+    String taskWidgetIndex = String.format("div[id*='case-case_%s']", widgetIndex);
+    waitPageLoaded();
+    return $(taskWidgetIndex).$("form").$("input").exists();
+  }
+
+  public String getQuickSearchInput() {
+    return getQuickSearchForm().$("input").getValue();
+  }
+
+  public void setInputForQuickSearch(String input) {
+    getQuickSearchForm().$("input").sendKeys(input);
+    waitForPageLoad();
+  }
+
+  private SelenideElement getQuickSearchForm() {
+    return $("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
+  }
+
+  public void clearQuickSearchInput() {
+    getQuickSearchForm().$("input").clear();
+    waitForPageLoad();
+  }
+  
+  public ElementsCollection countAllCases() {
+    return getAllCasesOfCaseWidget();
+  }
+
+  private ElementsCollection getAllCasesOfCaseWidget() {
+    return getColumnsOfTableWidget().filter(Condition.cssClass("dashboard-cases__name"));
+  }
+  
+  private SelenideElement getCaseWidgetHeader() {
+    return $$("div.table-widget-panel").filter(text(caseWidgetName)).first();
+  }
+  
+  public void clickOnButtonExpandCaseWidget() {
+    getCaseWidgetHeader().$(".expand-link").shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void clickOnButtonCollapseCaseWidget() {
+    getCaseWidgetHeader().$(".collapse-link").shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
 }

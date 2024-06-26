@@ -418,21 +418,43 @@ function getWidgetVarById(id) {
   return null;
 }
 
-function isPressedSpecialKeys(event) {
-  const ctrlPressed = event.ctrlKey || event.metaKey;
-
-  if (ctrlPressed && ((event.key === 'z') || (event.key === 'y') || (event.key === 'x') || (event.key === 'v'))) {
-    return false;
+function handleKeyDown(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    }
+    if (isPressedSpecialKeys(event)) {
+      event.stopPropagation();
+    }
   }
 
-  const specialKeys = ['Enter', 'Control',
-  'Alt', 'Pause', 'CapsLock', 'Escape',
-  'PageUp', 'PageDown', 'End', 'Home',
-  'PrintScreen', 'Insert', 'Meta',
-  'ContextMenu', 'NumLock', 'ScrollLock'];
-
-  if (specialKeys.includes(event.key)) {
-    return true;
+  function shouldTriggerAjax(event) {
+    return !isPressedSpecialKeys(event);
   }
-  return false;
-}
+
+  function isPressedSpecialKeys(event) {
+    const ctrlPressed = event.ctrlKey || event.metaKey;
+    const shiftPressed = event.shiftKey;
+    
+    const ctrlKeyActions = ['z', 'y', 'x', 'c', 'v', 'a'];
+    const arrowKeys = [37, 38, 39, 40]; // Arrow Left, Arrow Up, Arrow Right, Arrow Down
+
+    if (ctrlPressed && ctrlKeyActions.includes(event.key.toLowerCase())) {
+        return true;
+    }
+    
+    if (shiftPressed && arrowKeys.includes(event.keyCode)) {
+        return true;
+    }
+
+    if (arrowKeys.includes(event.keyCode)) {
+      return true;
+    }
+    
+    const specialKeys = [
+      'Control', 'Alt', 'Pause', 'CapsLock', 'Escape',
+      'PageUp', 'PageDown', 'PrintScreen', 'Insert', 'Meta',
+      'ContextMenu', 'NumLock', 'ScrollLock', 'Home', 'End'
+    ];
+
+    return specialKeys.includes(event.key);
+  }
