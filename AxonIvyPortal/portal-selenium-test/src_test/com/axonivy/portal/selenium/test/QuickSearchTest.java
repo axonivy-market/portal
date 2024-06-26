@@ -115,6 +115,7 @@ public class QuickSearchTest extends BaseTest {
     taskEditWidget.save();
 
     taskWidget.waitPageLoaded();
+    refreshPage();
     taskWidget.setInputForQuickSearch("Task number 10");
     taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
 
@@ -266,6 +267,7 @@ public class QuickSearchTest extends BaseTest {
     caseEditWidget.save();
 
     caseWidget.waitPageLoaded();
+    refreshPage();
 
     caseWidget.setInputForQuickSearch("engine");
     assertTrue(caseWidget.isEmptyMessageAppear());
