@@ -1,5 +1,5 @@
 var sessionCounterUpdatedOn = new Date(),
-isEndSession = false, isKeepSessionSuccess = false;
+isEndSession = false;
 
 var PortalSessionWarning = function() {
   var warningDialogShow = false,
@@ -71,7 +71,6 @@ var PortalSessionWarning = function() {
   },
 
   resetCounterAndTimeout = function() {
-    isKeepSessionSuccess = true;
     clearInterval(intervalCheckSessionTimeout);
     hideWarningDialog();
     isInteractedTaskTemplate = false;
@@ -87,14 +86,13 @@ var PortalSessionWarning = function() {
   },
 
   keepPortalAlive = function() {
-    isKeepSessionSuccess = false;
-    keepSession();
-    setTimeout(function() {
-      if (!isKeepSessionSuccess) {
-        PF('timeout-warning-dialog').hide();
-        PF('view-expired-exception-dialog').show();
+    keepSession().then(responseData => {
+      if (!responseData.document){
+        showTimeoutDialog();
       }
-    }, 3000); 
+    }).catch(function (error) {
+      showTimeoutDialog();
+    });
   },
 
   resetDateTimeout = function () {
