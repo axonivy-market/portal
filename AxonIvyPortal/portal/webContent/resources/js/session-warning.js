@@ -135,6 +135,10 @@ var PortalSessionWarning = function() {
     }
   },
 
+  showTimeoutDialog = function () {
+    PF('timeout-warning-dialog').hide();
+    PF('view-expired-exception-dialog').show();
+  }
   getRemainingTimeInSeccond  = function () {
     return (sessionCounterUpdatedOn.getTime() - new Date().getTime()) / 1000;
   }
