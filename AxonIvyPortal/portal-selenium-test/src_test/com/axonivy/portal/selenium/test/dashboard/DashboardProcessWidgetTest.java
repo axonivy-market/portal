@@ -5,9 +5,11 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
@@ -213,8 +215,9 @@ public class DashboardProcessWidgetTest extends BaseTest {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
-    newDashboardPage.getStartButton().shouldBe(Condition.disabled);
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
     newDashboardPage.resizeCombinedModeProcess();
+    newDashboardPage.getStartButton().shouldBe(Condition.disabled);
     newDashboardPage.checkTasksTabDisplayedDataContainer();
 
     editProcessWidgetConfiguration = newDashboardPage.editCombinedModeProcess();
@@ -227,10 +230,10 @@ public class DashboardProcessWidgetTest extends BaseTest {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
-    newDashboardPage.getStartButton().shouldBe(Condition.disabled);
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
     newDashboardPage.resizeCombinedModeProcess();
+    newDashboardPage.getStartButton().shouldBe(Condition.disabled);
     newDashboardPage.checkTasksTabDisplayedDataContainer();
-
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.deleteCombinedModeProcess();
     newDashboardPage.getCombinedModeProcessContainer().shouldNotBe(Condition.exist);
@@ -241,6 +244,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CREATE_INVESTMENT_IFRAME);
+    ScreenshotUtils.maximizeBrowser();
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
 
     backToNewDashboardPage();

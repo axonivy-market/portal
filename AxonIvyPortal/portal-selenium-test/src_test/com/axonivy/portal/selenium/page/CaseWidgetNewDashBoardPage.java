@@ -164,6 +164,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public void resetFilter() {
     $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='reset-button']")
         .filter(text("Reset")).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div.filter-overlay-panel__footer").shouldBe(disappear, DEFAULT_TIMEOUT);
     waitForElementClickable($$("div.table-widget-panel")
         .filter(text(caseWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT)
         .$(".widget__filter-sidebar-link"));
@@ -308,7 +309,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void clickOnFilterOperator() {
-    $("div[id$='operator-selection']").shouldBe(getClickableCondition()).click();
+    $("div[id$='text-filter-operator-panel']").shouldBe(getClickableCondition()).click();
   }
   
 
@@ -328,7 +329,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private SelenideElement getQuickSearchForm() {
-    return $("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
+    return getCaseWidgetHeader().$("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
   }
 
   public void clearQuickSearchInput() {
