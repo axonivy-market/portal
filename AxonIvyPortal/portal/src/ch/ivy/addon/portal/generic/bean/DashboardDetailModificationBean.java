@@ -201,11 +201,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         "process-widget-sample.png", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processListIntroduction"));
   }
 
-  private WidgetSample statisticSample() {
-    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticChartWidget"), STATISTIC,
-        "statistic-widget-sample.png", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticChartIntroduction"));
-  }
-
   private WidgetSample externalPageSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/ExternalPageWidget"), CUSTOM,
         "si si-network-arrow", translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/ExternalPageWidgetIntroduction"), true);

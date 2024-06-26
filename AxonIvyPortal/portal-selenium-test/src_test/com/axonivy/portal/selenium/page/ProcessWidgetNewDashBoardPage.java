@@ -44,8 +44,9 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void deleteProcessWidget() {
-    $$("div.table-widget-panel div.widget__header").filter(text(processWidgetName)).first()
+    $$("div.table-widget-panel div.widget__header")
+        .filter(text(processWidgetName)).first()
         .shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='delete-widget']")
-        .shouldBe(getClickableCondition()).click();
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 }

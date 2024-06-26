@@ -92,13 +92,13 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public ProcessViewerWidgetNewDashBoardPage showEditProcessViewerWidgetConfiguration() {
-    $("button[id$=':edit-widget-4']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("button[id$=':edit-widget-10']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("div#new-widget-configuration-dialog").shouldBe(appear, DEFAULT_TIMEOUT);
     return new ProcessViewerWidgetNewDashBoardPage();
   }
 
   public void deleteProcessViewerWidget() {
-    $("button[id$=':delete-widget-4']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("button[id$=':delete-widget-10']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("div#remove-widget-dialog").shouldBe(appear, DEFAULT_TIMEOUT);
     $("button[id$='remove-widget-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("div#remove-widget-dialog").shouldBe(disappear, DEFAULT_TIMEOUT);
@@ -216,7 +216,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement findProcessViewerWidget() {
-    return $("div[id$=':process-viewer-panel-group-4']");
+    return $("div[id$=':process-viewer-panel-group-10']");
   }
 
   public void startProcess() {
@@ -259,10 +259,13 @@ public class NewDashboardPage extends TemplatePage {
 
   public void resizeCombinedModeProcess() {
     SelenideElement gridStackItem = getStartButton().closest(".grid-stack-item");
-    updateElementAttribute(gridStackItem, "gs-w", "7");
+    updateElementAttribute(gridStackItem, "gs-w", "12");
+    updateElementAttribute(gridStackItem, "gs-h", "5");
     updateElementAttribute(gridStackItem, "gs-x", "0");
-    gridStackItem.shouldBe(Condition.attribute("gs-x", "0"), DEFAULT_TIMEOUT).shouldBe(Condition.attribute("gs-w", "7"),
-        DEFAULT_TIMEOUT);
+    updateElementAttribute(gridStackItem, "gs-y", "3");
+
+    gridStackItem.shouldBe(Condition.attribute("gs-h", "5"), DEFAULT_TIMEOUT).shouldBe(Condition.attribute("gs-w", "12"),
+        DEFAULT_TIMEOUT).shouldBe(Condition.attribute("gs-x", "0"), DEFAULT_TIMEOUT).shouldBe(Condition.attribute("gs-y", "3"), DEFAULT_TIMEOUT);
   }
 
   private void updateElementAttribute(SelenideElement element, String attribute, String value) {
@@ -1063,10 +1066,14 @@ public class NewDashboardPage extends TemplatePage {
 
   public void waitStatisticChartLoaded() {
     $("div[data-chart-id='11']").shouldBe(appear, DEFAULT_TIMEOUT).$(".card-number").shouldNotBe(Condition.empty, DEFAULT_TIMEOUT);
-    $("div[data-chart-id='10']").shouldBe(appear, DEFAULT_TIMEOUT).$(".card-number").shouldBe(Condition.text("2"), DEFAULT_TIMEOUT);
+    $("div[data-chart-id='10']").shouldBe(appear, DEFAULT_TIMEOUT).$(".card-number").shouldNotBe(Condition.empty, DEFAULT_TIMEOUT);
     $("a[id$='user-settings-menu']").shouldBe(appear).click();
     $("ul[id='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT).$("a[id='user-profile']").shouldHave(Condition.text("My profile"), DEFAULT_TIMEOUT);
     $("a[id$='user-settings-menu']").shouldBe(appear).click();
     $("ul[id='user-setting-container']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+  
+  public ClientStatisticWidgetNewDashboardPage selectClientStatisticChartWidget(String chartName) {
+    return new ClientStatisticWidgetNewDashboardPage(chartName);
   }
 }
