@@ -64,7 +64,5 @@ public class DashboardWelcomeWidgetTest extends BaseTest {
     redirectToNewDashBoard();
     welcomePage = new WelcomeWidgetNewDashboardPage();
     welcomePage.getWelcomeText(WIDGET_ID).shouldHave(Condition.text("new widget (German)"));
-
-    resetLanguageOfCurrentUser();
   }
 }
