@@ -52,6 +52,7 @@ public class QuickSearchTest extends BaseTest {
     taskEditWidget.save();
     taskWidget.isQuickSearchInputShow("0");
 
+    refreshPage();
     taskWidget.setInputForQuickSearch("Task number 10");
     taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
     taskWidget.clearQuickSearchInput();
@@ -232,6 +233,7 @@ public class QuickSearchTest extends BaseTest {
     caseEditWidget.save();
     caseWidget.isQuickSearchInputShow("0");
 
+    refreshPage();
     caseWidget.setInputForQuickSearch("Create 12 cases with");
     caseWidget.countAllCases().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
     caseWidget.clearQuickSearchInput();
