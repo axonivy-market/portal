@@ -45,7 +45,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 144, "y" : 328 },
+        "at" : { "x" : 136, "y" : 328 },
         "labelOffset" : { "x" : 26, "y" : 37 },
         "description" : "Investment Request for Customized Case Detail Page with public API example"
       },
@@ -128,11 +128,7 @@
           }
         },
         "request" : {
-          "name" : "show Investment Request Custom Fields",
           "isVisibleOnStartList" : false
-        },
-        "case" : {
-          "attachToBusinessCase" : false
         }
       },
       "visual" : {
@@ -183,8 +179,8 @@
             "import com.axonivy.portal.components.dto.BusinessDetailsDTO;",
             "import com.axonivy.portal.components.publicapi.BusinessDetailsAPI;",
             "",
-            "BusinessDetailsAPI.create(BusinessDetailsDTO.builder().iCase(in.caze)",
-            "  .path(\"Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp\").isEmbedInFrame(false).build());"
+            "BusinessDetailsAPI.create(BusinessDetailsDTO.builder()",
+            "  .path(\"Start Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp\").build());"
           ]
         }
       },
@@ -243,118 +239,5 @@
       "visual" : {
         "at" : { "x" : 608, "y" : 200 }
       }
-    }, {
-      "id" : "f22",
-      "type" : "RequestStart",
-      "name" : "createInvestmentRequestWithPublicAPIExternal.ivp",
-      "config" : {
-        "signature" : "createInvestmentRequestWithPublicAPIExternal",
-        "request" : {
-          "name" : "create Investment Request With Public API (External Business Details)",
-          "description" : "<%=ivy.cms.co(\"/Processes/CreateInvestmentWithPublicAPI/description\")%>",
-          "category" : "Investment"
-        },
-        "case" : {
-          "name" : "<%=ivy.cms.co(\"/Processes/CreateInvestmentWithPublicAPI/name\")%>",
-          "description" : "<%=ivy.cms.co(\"/Processes/CreateInvestmentWithPublicAPI/description\")%>",
-          "customFields" : [
-            { "name" : "AccountNumber", "type" : "NUMBER", "value" : "100" },
-            { "name" : "CustomerName", "type" : "STRING", "value" : "\"Apartment A\"" },
-            { "name" : "InvoiceNumber", "type" : "NUMBER", "value" : "2000" },
-            { "name" : "SupportData", "type" : "STRING", "value" : "\"Request for new computer\"" }
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 144, "y" : 456 },
-        "labelOffset" : { "x" : 26, "y" : 37 },
-        "description" : "Investment Request for Customized Case Detail Page with public API example"
-      },
-      "connect" : [
-        { "id" : "f28", "to" : "f25" }
-      ]
-    }, {
-      "id" : "f23",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 600, "y" : 456 }
-      }
-    }, {
-      "id" : "f24",
-      "type" : "TaskSwitchEvent",
-      "config" : {
-        "task" : {
-          "name" : "<%=ivy.cms.co(\"/Processes/CreateInvestment/Tasks/Request/name\")%>"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 520, "y" : 456 }
-      },
-      "connect" : [
-        { "id" : "f26", "to" : "f23", "condition" : "ivp==\"TaskA.ivp\"" }
-      ]
-    }, {
-      "id" : "f25",
-      "type" : "Script",
-      "name" : "Set business details page using Public API",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.components.dto.BusinessDetailsDTO;",
-            "import com.axonivy.portal.components.publicapi.BusinessDetailsAPI;",
-            "",
-            "BusinessDetailsAPI.create(BusinessDetailsDTO.builder()",
-            "  .path(\"https://www.axonivy.com/\").build());"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 336, "y" : 456 },
-        "size" : { "width" : 176, "height" : 62 }
-      },
-      "connect" : [
-        { "id" : "f27", "to" : "f24" }
-      ]
-    }, {
-      "id" : "f29",
-      "type" : "RequestStart",
-      "name" : "createInvestmentRequestWithPortal8",
-      "config" : {
-        "signature" : "createInvestmentRequestWithPortal8",
-        "case" : {
-          "name" : "create Investment Request With Portal 8",
-          "customFields" : [
-            { "name" : "CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE", "type" : "TEXT", "value" : "\"/ivy/pro/designer/portal-components-examples/176465FBFE257CF3/showInvestmentRequestCustomFields.ivp?caseId=10\"" }
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 144, "y" : 568 }
-      },
-      "connect" : [
-        { "id" : "f31", "to" : "f32" }
-      ]
-    }, {
-      "id" : "f30",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 336, "y" : 568 },
-        "labelOffset" : { "x" : 13, "y" : 33 }
-      }
-    }, {
-      "id" : "f32",
-      "type" : "TaskSwitchEvent",
-      "config" : {
-        "task" : {
-          "name" : "create Investment Request With Portal 8"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 240, "y" : 568 },
-        "labelOffset" : { "x" : 14, "y" : 34 }
-      },
-      "connect" : [
-        { "id" : "f33", "to" : "f30", "color" : "default" }
-      ]
     } ]
 }
