@@ -100,7 +100,8 @@ public class DashboardBean implements Serializable {
       currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
       selectedDashboard = dashboards.get(currentDashboardIndex);
       String selectedDashboardName = selectedDashboard.getTitles().stream()
-          .filter(displayName -> displayName.getLocale().equals(Ivy.session().getContentLocale())).findAny().get()
+          .filter(displayName -> displayName.getLocale().equals(Ivy.session().getContentLocale())).findFirst()
+          .orElseGet(() -> selectedDashboard.getTitles().get(0))
           .getValue();
       setSelectedDashboardName(selectedDashboardName);
       initShareDashboardLink(selectedDashboard);
