@@ -18,14 +18,10 @@ You can modify this page for each case by providing a relative URL to the case.
 How to
 ------
 
-#. Create a customiztion business details page UI and a start process that will display
+#. Create a new business details page UI and a start process that will display
    the new UI.
 
-   * Develop a start request that contains the necessary case information to display on the custom business details page.
-      |customization-business-details-page-start-request|
-   
-   * Pass case information to the New business details page UI
-      |customization-business-details-page|
+   |customization-business-details-page|
 
 
 #. Store path of the start process just created above when creating a task. There are 2 ways to perform this:
@@ -69,14 +65,6 @@ Customization
    - Use API ``ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(String)`` to find the process path.
    - Set process path to a customfield in your specific case ``Ivy.wfCase().customFields().stringField("businessDetails").set(your-process-path-url)``
 
-.. note::
-
-   - Ensure the new UI aligns with the overall design and functionality requirements of your application.
-
-   - Test the integration thoroughly to confirm that the case information is accurately passed and displayed.
-
-   - When using external links, verify that the links are secure and accessible from your application environment.
-
 Permission Setting
 ------------------
 
@@ -91,4 +79,3 @@ Or search :bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>` in the permis
 .. |customization-business-details-page| image:: images/business-details-page/customization-business-details-page.png
 .. |set-business-details-page-callable-process| image:: images/business-details-page/set-business-details-page-callable-process.png
 .. |customize-business-details-with-public-api| image:: images/business-details-page/customize-business-details-with-public-api.png
-.. |customization-business-details-page-start-request| image:: images/business-details-page/customization-business-details-page-start-request.png
