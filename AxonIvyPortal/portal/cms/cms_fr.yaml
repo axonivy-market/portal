@@ -21,6 +21,8 @@ ch.ivy.addon.portal.generic:
     resultFromAdhocProcess: Résultats du processus ad hoc
     startAdHoc: Démarrer ad-hoc
     startAdHocTooltip: Rediriger ce processus en ajoutant une étape ad hoc.
+  PortalName:
+    PortalName: Portal
 ch.ivy.addon.portalkit.ui.jsf:
   AbsenceAndDeputy:
     Messages:
@@ -199,6 +201,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationtype:
       thirdPartyApplication: Application tierce
     currentValue: Valeur actuelle
+    defaultApplicationName: Axon Ivy
     defaultValue: Valeur par défaut
     deleteAppConfirmation: Etes-vous sûr de vouloir supprimer cette application ?
     dialogclosinginformation:
@@ -211,6 +214,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     emptySupportedLanguages: Il n'y a pas langue supplémentaire supportée
     globalVariableNote:
       AppleStoreURL: Définir l'URL pour télécharger l'application mobile Axon Ivy sur l'Apple Store.
+      ApplicationName: Le nom de l'application par défaut qui sera affiché dans le titre de la page.
       BaseQRCodeUrl: Définir l'URL de base du code QR à afficher.
       DefaultThemeMode: Le mode de thème par défaut de l'application
       EnableSwitchThemeModeButton: Défini à true pour activer le bouton de changement de thème.
