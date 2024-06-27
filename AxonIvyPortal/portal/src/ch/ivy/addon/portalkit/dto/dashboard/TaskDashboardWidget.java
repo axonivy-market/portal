@@ -41,7 +41,9 @@ public class TaskDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
   private boolean enableQuickSearch;
-  private boolean showWidgetInfoIcon;
+  private boolean showWidgetInfoIcon = true;
+  private boolean showExtendIcon = true;
+
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
     setColumns(new ArrayList<>());
@@ -217,6 +219,14 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   public boolean isShowWidgetInfoIcon() {
     return showWidgetInfoIcon;
+  }
+
+  public void setShowExtendIcon(boolean showExtendIcon) {
+    this.showExtendIcon = showExtendIcon;
+  }
+
+  public boolean isShowExtendIcon() {
+    return showExtendIcon;
   }
 
   @Override
