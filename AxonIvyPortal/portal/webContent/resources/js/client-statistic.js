@@ -615,7 +615,7 @@ class ClientNumberChart extends ClientChart {
       '    <div class="chart-icon-font-size chart-number-animation">' +
       '        <i class="fa-solid fa-chart-line"></i>' +
       '    </div>' +
-      '    <div>' +
+      '    <div class="chart-number-container">' +
       '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
       '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +
       '    </div>' +

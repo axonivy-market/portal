@@ -45,21 +45,21 @@
     "value" : "Dashboard"
   } ],
   "icon" : "si-network-share",
-  "widgets" : [ {
+  "widgets" : [  {
     "type" : "client-statistic",
-    "id" : "client_statistic_ce83809afd3b464799007293fe8047fa",
+    "id" : "client_statistic_3d9d80486efe4567acdcfe72c535a06d",
     "layout" : {
       "w" : 3,
       "h" : 4,
-      "x" : 9,
+      "x" : 0,
       "y" : 0
     },
     "chartId" : "1"
   }, {
     "type" : "client-statistic",
-    "id" : "client_statistic_812629d550df4f928324d155facb9016",
+    "id" : "client_statistic_0d1edfa81c2a428b8e4e5b795bc1f49c",
     "layout" : {
-      "w" : 6,
+      "w" : 3,
       "h" : 4,
       "x" : 3,
       "y" : 0
@@ -67,54 +67,94 @@
     "chartId" : "2"
   }, {
     "type" : "client-statistic",
-    "id" : "client_statistic_c1e0eea72f2441f6a3f0146b7db45da2",
+    "id" : "client_statistic_354ada3c0cd74f629446af86366a3051",
     "layout" : {
-      "w" : 4,
+      "w" : 3,
       "h" : 4,
-      "x" : 3,
-      "y" : 4
+      "x" : 6,
+      "y" : 0
     },
     "chartId" : "3"
   }, {
     "type" : "client-statistic",
-    "id" : "client_statistic_0696d45b9aae4ec2b39fb85d03e1e783",
+    "id" : "client_statistic_84f4b03ba5be4580a04eccb7d8494c56",
     "layout" : {
-      "w" : 5,
+      "w" : 3,
       "h" : 4,
-      "x" : 7,
+      "x" : 0,
+      "y" : 4
+    },
+    "chartId" : "4"
+  }, {
+    "type" : "client-statistic",
+    "id" : "client_statistic_981beb304f834bebaa9a0e2df40d4a55",
+    "layout" : {
+      "w" : 3,
+      "h" : 4,
+      "x" : 3,
       "y" : 4
     },
     "chartId" : "5"
   }, {
     "type" : "client-statistic",
-    "id" : "client_statistic_4c14f19f0cd74c4d85e5b7b359ae240b",
+    "id" : "client_statistic_2b30102e732649eb85da4d6a74cebb4a",
     "layout" : {
       "w" : 3,
-      "h" : 3,
+      "h" : 5,
       "x" : 0,
+      "y" : 8
+    },
+    "chartId" : "6"
+  }, {
+    "type" : "client-statistic",
+    "id" : "client_statistic_9d70f08311524bc79fdd2cfea10022c4",
+    "layout" : {
+      "w" : 3,
+      "h" : 4,
+      "x" : 9,
       "y" : 0
     },
     "chartId" : "7"
   }, {
     "type" : "client-statistic",
-    "id" : "client_statistic_5ffe2f26ecf44904a0d138124b5db13b",
+    "id" : "client_statistic_03421a68b3514984bc522616e4412006",
     "layout" : {
       "w" : 3,
-      "h" : 3,
-      "x" : 0,
-      "y" : 3
+      "h" : 5,
+      "x" : 3,
+      "y" : 8
+    },
+    "chartId" : "8"
+  }, {
+    "type" : "client-statistic",
+    "id" : "client_statistic_9a5d4fa9589243d190a50b6f382104d4",
+    "layout" : {
+      "w" : 3,
+      "h" : 4,
+      "x" : 6,
+      "y" : 4
+    },
+    "chartId" : "9"
+  }, {
+    "type" : "client-statistic",
+    "id" : "client_statistic_c403f4ce676948bc98fca90d191c7157",
+    "layout" : {
+      "w" : 3,
+      "h" : 5,
+      "x" : 6,
+      "y" : 8
     },
     "chartId" : "10"
   }, {
     "type" : "client-statistic",
-    "id" : "client_statistic_323654ddd0724cbaaabb81b231069ebb",
+    "id" : "client_statistic_01361f6e6d27494b90640425b0c6a1ac",
     "layout" : {
       "w" : 3,
-      "h" : 3,
-      "x" : 0,
-      "y" : 6
+      "h" : 4,
+      "x" : 9,
+      "y" : 4
     },
     "chartId" : "11"
-  } ],
+  }  ],
   "permissions" : [ "Everybody" ]
 } ]
