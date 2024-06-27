@@ -40,9 +40,9 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 @RequestScoped
 public class CaseActionBean implements Serializable {
 
+  private static final long serialVersionUID = 7468665222036995531L;
   private static final String CASE_ID = "caseId";
   private static final String UUID = "uuid";
-  private static final long serialVersionUID = 7468665222036995531L;
   private static final String START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE = "Start Processes/PortalStart/showAdditionalCaseDetails.ivp";
   private boolean isShowCaseDetails;
 
@@ -66,20 +66,20 @@ public class CaseActionBean implements Serializable {
   /**
    * Attempt to fetch the custom field businessDetails, if not found, try CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.
    * <p/>
-   * Version 8, custom field name CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE, value like
+   * Version 8, text custom field name CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE, value like
    * /ivy/pro/designer/PortalExamples/1624D1F5CBEA5332/showInvestmentRequestCustomFields.ivp?caseId=10
    * <p/>
-   * Version 10.0.0 to 10.0.11, custom field name CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE, value like
+   * Version 10.0.0 to 10.0.10, text custom field name CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE, value like
    * /designer/pro/portal-components-examples/176465FBFE257CF3/showInvestmentRequestCustomFields.ivp?caseId=3
    * <p/>
-   * Version 10.0.12 to 11.3.1, custom field name businessDetails, value like
+   * Version 10.0.11 to 11.3.1, string custom field name businessDetails, value like
    * /designer/pro/portal-components-examples/1624D1F5CBEA5332/showInvestmentRequestCustomFields.ivp?caseId=3&embedInFrame
    * <p/>
-   * Version after 11.3.x, custom field name businessDetails, if migrated, value is IWebStartable ID + existing
+   * Version after 11.3.x, string custom field name businessDetails, if migrated, value is IWebStartable ID + existing
    * queryString
    * <p/>
-   * Version after 11.3.x, custom field name businessDetails, if new cases, value is IWebStartable ID + queryString.
-   * QueryString does not contain caseId, uuid. It could be embedInFrame or empty. The value is like
+   * Version after 11.3.x, string custom field name businessDetails, if new cases, value is IWebStartable ID +
+   * queryString. QueryString does not contain caseId, uuid. It could be embedInFrame or empty. The value is like
    * designer/portal-components-examples/Start
    * Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp?embedInFrame
    * <p/>
