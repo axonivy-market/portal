@@ -2004,3 +2004,7 @@ body .ui-button.rounded-button.dashboard-widget-filter__remove-filter .ui-icon {
 .id-filter-operator-panel {
   min-width: 130px;
 }
+
+body .ui-commandlink:hover, body .ui-link:active {
+  color: var(--ivy-primary-color-command-link-hover);
+}

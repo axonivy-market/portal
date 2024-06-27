@@ -13,9 +13,12 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterValueType;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
+import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.ElementsCollection;
 
@@ -52,7 +55,20 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToNewDashBoard();
+    
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    ScreenshotUtils.maximizeBrowser();
+    caseWidget.waitPageLoaded();
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    caseEditWidget.openFilter();
+    caseEditWidget.resetFilter();
+    caseEditWidget.applyFilter();
+    caseEditWidget.save();
+    redirectToNewDashBoard();
+
     // In progress
     assertCaseActionsByCaseState("Open",
         Arrays.asList("Details", "Process overview", "Business details", "Destroy", "Process Viewer"));
@@ -78,7 +94,7 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
 
   private void filterByCaseState(String state) {
     CaseWidgetNewDashBoardPage caseWidget = new CaseWidgetNewDashBoardPage();
-    caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+    caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
     caseWidget.openFilterWidget();
     caseWidget.resetFilter();
     caseWidget.openFilterWidget();
