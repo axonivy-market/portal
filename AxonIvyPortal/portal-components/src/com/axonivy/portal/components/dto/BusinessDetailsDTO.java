@@ -62,7 +62,6 @@ public class BusinessDetailsDTO {
 
     /**
      * Set {@code ICase}
-     * 
      * @param iCase
      *
      * @return Builder
