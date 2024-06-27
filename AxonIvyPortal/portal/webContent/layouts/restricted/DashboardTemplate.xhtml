@@ -10,7 +10,7 @@
       <h:outputScript name="client-statistic.js" library="js" />
     </ui:define>
 
-    <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dashboard')}</ui:define>
+    <ui:define name="title">#{managedBean.getSelectedDashboardName()}</ui:define>
     <ui:param name="loadGridStack" value="true" />
 
     <ui:define name="pageContent">

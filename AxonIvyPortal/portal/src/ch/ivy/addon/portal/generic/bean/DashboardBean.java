@@ -85,6 +85,7 @@ public class DashboardBean implements Serializable {
   protected String dashboardUrl;
   protected List<Dashboard> importedDashboards;
   private String clientStatisticApiUri;
+  private String selectedDashboardName;
 
   @PostConstruct
   public void init() {
@@ -100,6 +101,10 @@ public class DashboardBean implements Serializable {
       selectedDashboardId = readDashboardFromSession();
       currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
       selectedDashboard = dashboards.get(currentDashboardIndex);
+      String selectedDashboardName = selectedDashboard.getTitles().stream()
+          .filter(displayName -> displayName.getLocale().equals(Ivy.session().getContentLocale())).findFirst()
+          .orElseGet(() -> selectedDashboard.getTitles().get(0)).getValue();
+      setSelectedDashboardName(selectedDashboardName);
       initShareDashboardLink(selectedDashboard);
       // can not find dashboard by dashboard id session in view mode
       if (StringUtils.isBlank(selectedDashboardId)
@@ -491,5 +496,16 @@ public class DashboardBean implements Serializable {
 
   public boolean canEnableQuickSearch(DashboardWidget widget) {
     return widget.getType().canEnableQuickSearch();
+  }
+  
+  public void setSelectedDashboardName(String dashboardName) {
+    this.selectedDashboardName = dashboardName;
+  }
+  
+  public String getSelectedDashboardName() {
+    if (selectedDashboardName.isBlank()) {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/dashboard");
+    }
+    return selectedDashboardName;
   }
 }
