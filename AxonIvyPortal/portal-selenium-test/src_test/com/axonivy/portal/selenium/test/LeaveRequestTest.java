@@ -20,6 +20,10 @@ import com.axonivy.portal.selenium.page.TaskWidgetPage;
 @IvyWebTest
 public class LeaveRequestTest extends BaseTest {
   private static final String LEAVE_REQUEST_START_LINK = "portal-user-examples/170321BD7F5539D6/start.ivp";
+  private static final String APPROVAL_RESULT_TITLE = "Approval Result - Axon Ivy";
+  private static final String APPROVAL_TITLE = "Approval - Axon Ivy";
+  private static final String CREATE_LEAVE_REQUEST_TITLE = "Create leave request - Axon Ivy";
+  
   private LeaveRequestPage leaveRequestPage;
   private TaskWidgetPage taskWidgetPage;
 
@@ -47,7 +51,7 @@ public class LeaveRequestTest extends BaseTest {
   @Test
   public void testApproveScenario() {
     leaveRequestPage = startLeaveRequestProcess();
-    assertEquals("Create leave request", leaveRequestPage.getPageTitle());
+    assertEquals(CREATE_LEAVE_REQUEST_TITLE, leaveRequestPage.getPageTitle());
     String today =
         LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
     String yesterday = LocalDateTime.now().minusDays(1)
@@ -64,7 +68,7 @@ public class LeaveRequestTest extends BaseTest {
 
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.startTaskIFrame(0);
-    leaveRequestPage.assertPageTitle("Approval");
+    leaveRequestPage.assertPageTitle(APPROVAL_TITLE);
     leaveRequestPage.enterApproverComment("Approved");
     leaveRequestPage.clickApproveBtn();
 
@@ -77,13 +81,13 @@ public class LeaveRequestTest extends BaseTest {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy("Your leave request is approved");
     taskWidgetPage.startTaskIFrame(0);
-    leaveRequestPage.assertPageTitle("Approval Result");
+    leaveRequestPage.assertPageTitle(APPROVAL_RESULT_TITLE);
   }
 
   @Test
   public void testRejectScenario() {
     leaveRequestPage = startLeaveRequestProcess();
-    leaveRequestPage.assertPageTitle("Create leave request");
+    leaveRequestPage.assertPageTitle(CREATE_LEAVE_REQUEST_TITLE);
 
     String today =
         LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
@@ -100,7 +104,7 @@ public class LeaveRequestTest extends BaseTest {
 
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.startTaskIFrame(0);
-    leaveRequestPage.assertPageTitle("Approval");
+    leaveRequestPage.assertPageTitle(APPROVAL_TITLE);
 
     leaveRequestPage.enterApproverComment("Rejected");
     leaveRequestPage.clickRejectBtn();
@@ -113,7 +117,7 @@ public class LeaveRequestTest extends BaseTest {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy("Your leave request is rejected");
     taskWidgetPage.startTaskIFrame(0);
-    leaveRequestPage.assertPageTitle("Approval Result");
+    leaveRequestPage.assertPageTitle(APPROVAL_RESULT_TITLE);
   }
 
   private LeaveRequestPage startLeaveRequestProcess() {
