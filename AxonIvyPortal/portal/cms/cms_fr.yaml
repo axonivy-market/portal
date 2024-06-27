@@ -235,6 +235,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     embedInFrame: Démarrer un processus/une tâche en mode IFrame
     emptySupportedLanguages: Il n'y a pas langue supplémentaire supportée
     globalVariableNote:
+      ApplicationName: Le nom de l'application par défaut qui sera affiché dans le titre de la page.
       DefaultThemeMode: Le mode de thème par défaut de l'application
       EnableSwitchThemeModeButton: Défini à true pour activer le bouton de changement de thème.
       RoleDirectChildrenLimit: 'Le nombre défini contrôle la quantité de rôles d''enfants directs qui est affichée dans l''onglet Gestion des rôles. Nombre valide : 10, 50, 100'
@@ -295,7 +296,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showUserGuide: 'Active le guide d''utilisation interactif "premiers pas" dans le portail lors de la première connexion. '
       statisticChartScalingInterval: Intervalle en secondes pour effectuer les demandes de mise à l'échelle périodique des graphiques statistiques. Si la valeur de l'intervalle est inférieure à 10, la mise à l'échelle périodique des graphiques statistiques est désactivée.
       uploadDocumentWhiteListExtensionNote: 'Laissez la valeur vide si vous autorisez toutes les extensions. Si juste autoriser quelques extensions, listez les extensions ici, séparées par des virgules. Exemple: pdf, txt, doc, docx.'
-      ApplicationName: Le nom de l'application par défaut qui sera affiché dans le titre de la page.
     key: Clé
     link: Lien
     loading: CHARGEMENT
@@ -902,6 +902,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}_{1}.{2}
     field: Champ
     fieldIsAdded: Le champ {0} est ajouté
+    fullscreenMode: Mode plein écran
     iconMessage:
       caseWidget:
         BEACH_PALM_SUNBED: Vous êtes géniale - toutes les affaires sont réglées. Détendez-vous et profitez-en.
@@ -961,6 +962,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: Ce widget affiche des informations pertinentes sur les tâches selon les paramètres définis.
     taskWidgetConfiguration: Configuration du widget de tâches
     widgetInfo: Informations sur le widget
+    widgetInfoIcon: Icône d'information du widget
     widgetTitle: Titre du widget
     widgetType: Type de widget
     yourCases: Vos affaires

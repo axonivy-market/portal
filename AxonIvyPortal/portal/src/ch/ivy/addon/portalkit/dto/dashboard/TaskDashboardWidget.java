@@ -41,7 +41,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
   private boolean enableQuickSearch;
-
+  private boolean showWidgetInfoIcon;
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
     setColumns(new ArrayList<>());
@@ -209,6 +209,14 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   public void setRowsPerPage(int rowsPerPage) {
     this.rowsPerPage = rowsPerPage;
+  }
+
+  public void setShowWidgetInfoIcon(boolean showWidgetInfoIcon) {
+    this.showWidgetInfoIcon = showWidgetInfoIcon;
+  }
+
+  public boolean isShowWidgetInfoIcon() {
+    return showWidgetInfoIcon;
   }
 
   @Override
