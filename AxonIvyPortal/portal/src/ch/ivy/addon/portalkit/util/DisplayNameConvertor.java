@@ -61,7 +61,7 @@ public class DisplayNameConvertor {
     Map<String, DisplayName> mapLanguage = values
                                             .stream()
                                             .collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
-    List<String> supportedLanguages = LanguageService.newInstance().getIvyLanguageOfUser().getSupportedLanguages();
+    List<String> supportedLanguages = LanguageService.getInstance().getIvyLanguageOfUser().getSupportedLanguages();
     for (String language : supportedLanguages) {
       DisplayName localeLanguage = mapLanguage.get(language);
       if (localeLanguage == null) {

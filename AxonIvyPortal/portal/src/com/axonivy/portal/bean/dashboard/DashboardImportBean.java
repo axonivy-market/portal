@@ -77,7 +77,7 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
       return;
     }
     try {
-      importedDashboards = DashboardUtils.convertDashboardsFromUploadFileToLastestVersion(importFile.getInputStream());
+      importedDashboards = DashboardUtils.convertDashboardsFromUploadFileToLatestVersion(importFile.getInputStream());
     } catch (Exception e) {
       isError = true;
       displayedMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileCouldNotParse"));

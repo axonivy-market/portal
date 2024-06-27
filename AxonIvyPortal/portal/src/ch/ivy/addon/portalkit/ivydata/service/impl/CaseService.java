@@ -116,11 +116,17 @@ public class CaseService{
   }
 
   private CaseQuery queryForCurrentUser(CaseQuery caseQuery) {
-    caseQuery.where().or().currentUserIsInvolved();
     if (GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
       caseQuery.where().or().currentUserIsOwner();
     }
-    
+
+    if (com.axonivy.portal.components.util.PermissionUtils
+        .checkCaseReadAllOwnRoleInvolvedPermission()) {
+        caseQuery.where().or().currentUserOrHisRolesAreInvolved();
+      } else {
+        caseQuery.where().or().currentUserIsInvolved();
+    }
+
     return caseQuery;
   }
 
