@@ -21,6 +21,8 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 
+import ch.ivy.addon.portalkit.enums.PortalVariable;
+
 @IvyWebTest
 public class QuickSearchTest extends BaseTest {
 
@@ -33,6 +35,7 @@ public class QuickSearchTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
+    createJSonFile("default-dashboard-quicksearch.json", PortalVariable.DASHBOARD.key);
     newDashboardPage = new NewDashboardPage();
   }
 
@@ -356,19 +359,7 @@ public class QuickSearchTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
-
-    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
-    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
-    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
-
-    taskEditWidget.clickOnQuickSearchCheckBox();
-    taskEditWidget.save();
-    taskWidget.waitPageLoaded();
-    taskWidget.setInputForQuickSearch("Task number 10");
-    taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
     
-    redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForCaseWidgetLoaded();
 
