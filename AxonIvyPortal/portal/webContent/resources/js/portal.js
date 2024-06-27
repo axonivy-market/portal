@@ -419,42 +419,42 @@ function getWidgetVarById(id) {
 }
 
 function handleKeyDown(event) {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-    }
-    if (isPressedSpecialKeys(event)) {
-      event.stopPropagation();
-    }
+  if (event.key === 'Enter') {
+    event.preventDefault();
   }
-
-  function shouldTriggerAjax(event) {
-    return !isPressedSpecialKeys(event);
+  if (isPressedSpecialKeys(event)) {
+    event.stopPropagation();
   }
+}
 
-  function isPressedSpecialKeys(event) {
-    const ctrlPressed = event.ctrlKey || event.metaKey;
-    const shiftPressed = event.shiftKey;
-    
-    const ctrlKeyActions = ['z', 'y', 'x', 'c', 'v', 'a'];
-    const arrowKeys = [37, 38, 39, 40]; // Arrow Left, Arrow Up, Arrow Right, Arrow Down
+function shouldTriggerAjax(event) {
+  return !isPressedSpecialKeys(event);
+}
 
-    if (ctrlPressed && ctrlKeyActions.includes(event.key.toLowerCase())) {
-        return true;
-    }
-    
-    if (shiftPressed && arrowKeys.includes(event.keyCode)) {
-        return true;
-    }
+function isPressedSpecialKeys(event) {
+  const ctrlPressed = event.ctrlKey || event.metaKey;
+  const shiftPressed = event.shiftKey;
 
-    if (arrowKeys.includes(event.keyCode)) {
+  const ctrlKeyActions = ['z', 'y', 'x', 'c', 'v', 'a'];
+  const arrowKeys = [37, 38, 39, 40]; // Arrow Left, Arrow Up, Arrow Right, Arrow Down
+
+  if (ctrlPressed && ctrlKeyActions.includes(event.key.toLowerCase())) {
       return true;
-    }
-    
-    const specialKeys = [
-      'Control', 'Alt', 'Pause', 'CapsLock', 'Escape',
-      'PageUp', 'PageDown', 'PrintScreen', 'Insert', 'Meta',
-      'ContextMenu', 'NumLock', 'ScrollLock', 'Home', 'End'
-    ];
-
-    return specialKeys.includes(event.key);
   }
+
+  if (shiftPressed && arrowKeys.includes(event.keyCode)) {
+      return true;
+  }
+
+  if (arrowKeys.includes(event.keyCode)) {
+    return true;
+  }
+
+  const specialKeys = [
+    'Control', 'Alt', 'Pause', 'CapsLock', 'Escape',
+    'PageUp', 'PageDown', 'PrintScreen', 'Insert', 'Meta',
+    'ContextMenu', 'NumLock', 'ScrollLock', 'Home', 'End'
+  ];
+
+  return specialKeys.includes(event.key);
+}
