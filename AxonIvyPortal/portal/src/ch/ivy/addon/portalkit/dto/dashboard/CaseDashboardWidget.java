@@ -35,7 +35,8 @@ public class CaseDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
   private boolean enableQuickSearch;
-  private boolean showWidgetInfoIcon;
+  private boolean showWidgetInfoIcon = true;
+  private boolean showExtendIcon = true;
 
   public CaseDashboardWidget() {
     dataModel = new DashboardCaseLazyDataModel();
@@ -180,6 +181,14 @@ public class CaseDashboardWidget extends DashboardWidget {
 
   public boolean isShowWidgetInfoIcon() {
     return this.showWidgetInfoIcon;
+  }
+
+  public void setShowExtendIcon(boolean showExtendIcon) {
+    this.showExtendIcon = showExtendIcon;
+  }
+
+  public boolean isShowExtendIcon() {
+    return showExtendIcon;
   }
 
   @Override

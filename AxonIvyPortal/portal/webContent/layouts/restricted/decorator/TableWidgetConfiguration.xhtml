@@ -66,7 +66,7 @@
       </div>
     </h:panelGroup>
 
-    <h:panelGroup id="widget-info-icon-group" rendered="true"
+    <h:panelGroup id="widget-info-icon-group" rendered="#{managedBean.displayWidgetInfoOption()}"
       styleClass="ui-g-12 u-padding-0 ui-fluid">
       <div class="ui-g-6">
         <p:outputLabel
@@ -77,8 +77,23 @@
         <p:selectBooleanCheckbox id="widget-info"
           value="#{widget.showWidgetInfoIcon}">
           <p:ajax process="widget-info-icon-group"
-            update="widget-info-icon-group" partialSubmit="true"
-            global="false" />
+            update="widget-info-icon-group" partialSubmit="true"/>
+        </p:selectBooleanCheckbox>
+      </div>
+    </h:panelGroup>
+
+    <h:panelGroup id="extend-icon-group" rendered="#{managedBean.displayExtendOption()}"
+      styleClass="ui-g-12 u-padding-0 ui-fluid">
+      <div class="ui-g-6">
+        <p:outputLabel
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/fullscreenMode')}"
+          styleClass="u-mar-right-5" />
+      </div>
+      <div class="ui-g-6 ui-inputgroup">
+        <p:selectBooleanCheckbox id="extend-option"
+          value="#{widget.showExtendIcon}">
+          <p:ajax process="extend-icon-group"
+            update="extend-icon-group" partialSubmit="true"/>
         </p:selectBooleanCheckbox>
       </div>
     </h:panelGroup>
