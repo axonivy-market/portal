@@ -20,6 +20,10 @@ function createRedMediumOutline($element) {
   $element.addClass("red-medium-outline");
 }
 
+function clearRedMediumOutline($element) {
+  $element.removeClass("red-medium-outline");
+}
+
 function createRedMediumBorder($element) {
   $element.addClass("red-medium-border");
 }
@@ -123,17 +127,29 @@ function highlightAddExternalDialogItem() {
   var linkName = $("label[for$='add-external-link-form:external-link-name']");
   appendStepAnnotation(linkName, "3", -5, linkName.width());
   
+  var translateName = $("button[id$='process-widget:add-external-link-form:add-name-language-button']");
+  appendStepAnnotation(translateName, "4", -5, translateName.width());
+  
   var startLink = $("label[for$='add-external-link-form:external-link']");
-  appendStepAnnotation(startLink, "4", -5, startLink.width());
+  appendStepAnnotation(startLink, "5", -5, startLink.width());
+  
+  var linkDescription = $("label[for$='process-widget:add-external-link-form:external-description']");
+  appendStepAnnotation(linkDescription, "6", -5, linkDescription.width());
+  
+  var translateDescription = $("button[id$='process-widget:add-external-link-form:add-description-language-button']");
+  appendStepAnnotation(translateDescription, "7", -5, translateDescription.width());
   
   var visibility = $("label[for$='add-external-link-form:external-link-type-radio']");
-  appendStepAnnotation(visibility, "5", -5, visibility.width());
+  appendStepAnnotation(visibility, "8", -5, visibility.width());
   
   var icon = $("[id$='add-external-link-form:external-link-icon:awesome-icon-selection']");
-  appendStepAnnotation(icon, "6", -10, icon.width());
+  appendStepAnnotation(icon, "9", -10, icon.width());
+  
+  var uploadButton = $("[id$='add-external-link-form:external-link-image-upload']");
+  appendStepAnnotation(uploadButton, "10", 0, 80);
   
   var addButton = $("[id$='process-widget:adding-new-external-link-command']");
-  appendStepAnnotation(addButton, "7", -25, -5);
+  appendStepAnnotation(addButton, "11", -25, -5);
 }
 
 function highlightProcessItems() {
@@ -246,7 +262,7 @@ function highlightCustomColumnsConfigOnCaseList() {
 }
 
 function highlightCaseCreatorFilter() {
-  var filterLabel = $("[id$=':creator-filter:filter-open-form:advanced-filter-command']").find("span.ui-button-text");
+  var filterLabel = $("[id$=':creator-filter:filter-open-form:advanced-filter-command']");
   createRedMediumOutline(filterLabel);
   appendStepAnnotation(filterLabel, "1", -25, -30);
   
@@ -342,7 +358,7 @@ function highlightCustomColumnsConfigOnTaskList() {
 
 
 function highlightTaskStateFilter() {
-  var filterLabel = $("[id$=':state-filter:filter-open-form:advanced-filter-command']").find("span.ui-button-text");
+  var filterLabel = $("[id$=':state-filter:filter-open-form:advanced-filter-command']");
   createRedMediumOutline(filterLabel);
   appendStepAnnotation(filterLabel, "1", -25, -30);
   
@@ -552,4 +568,24 @@ function highlightProcessDisplayModePanel() {
 
 function highlightDashboardConfiguration() {
    createRedMediumOutline($("#dashboard-configuration"));
+}
+
+function highlightSharePageButton() {
+  createRedMediumOutline($("button[id$=':share-page-button']"));
+}
+
+function highlightWidgetExportToExcelLinkForTask() {
+  createRedMediumOutline($("form[id$=':export-to-excel-form-0'] > a"));
+}
+
+function clearHighlightUserName() {
+  clearRedMediumOutline($('#user-settings-menu'));
+}
+
+function highlightWidgetExportToExcelLinkForCase() {
+  createRedMediumOutline($("form[id$=':export-to-excel-form-1'] > a"));
+}
+
+function highlightQuickSearchTextbox() {
+  createRedMediumOutline($(".widget__header .widget-header-quick-search > form"));
 }

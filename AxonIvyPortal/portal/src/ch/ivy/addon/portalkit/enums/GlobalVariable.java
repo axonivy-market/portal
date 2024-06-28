@@ -77,9 +77,7 @@ public enum GlobalVariable {
   DEFAULT_THEME_MODE("Portal.Theme.Mode", GlobalVariableType.EXTERNAL_SELECTION, ThemeMode.LIGHT.toString(), "DefaultThemeMode", getThemeModes()),
   SEARCH_SCOPE_BY_TASK_FIELDS("Portal.SearchScope.ByTaskFields", GlobalVariableType.MULTI_EXTERNAL_SELECTIONS, getSearchScopeTaskFields(), "SearchScopeTaskFields", getSearchScopeTaskFields()),
   GLOBAL_FOOTER_INFO("Portal.GlobalFooterInfo", GlobalVariableType.TEXT, "GlobalFooterInfo"),
-  SEARCH_SCOPE_BY_CASE_FIELDS("Portal.SearchScope.ByCaseFields", GlobalVariableType.MULTI_EXTERNAL_SELECTIONS,
-      getSearchScopeCaseFields(), "SearchScopeCaseFields", getSearchScopeCaseFields()), APPLICATION_NAME(
-          "Portal.ApplicationName", GlobalVariableType.TEXT, "Axon Ivy", "ApplicationName");
+  SEARCH_SCOPE_BY_CASE_FIELDS("Portal.SearchScope.ByCaseFields", GlobalVariableType.MULTI_EXTERNAL_SELECTIONS, getSearchScopeCaseFields(), "SearchScopeCaseFields", getSearchScopeCaseFields());
 
   private String key;
   private GlobalVariableType type;

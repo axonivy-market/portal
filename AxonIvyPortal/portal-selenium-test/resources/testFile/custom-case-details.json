@@ -75,7 +75,7 @@
           "x": 6, "y": 0, "w": 6, "h": 8
         },
         "data": {
-          "processPath": "designer/portal-developer-examples/Start Processes/CaseDetailsCustomWidgetExample/startReview.ivp",
+          "processPath": "Start Processes/CaseDetailsCustomWidgetExample/startReview.ivp",
           "params": {
             "startedCaseId": "case.id",
             "startedCaseCategory": "case.category",

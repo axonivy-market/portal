@@ -19,9 +19,6 @@ import portal.guitest.userexamples.page.LeaveRequestPage;
 import portal.guitest.userexamples.page.UserExamplesEndPage;
 
 public class LeaveRequestTest extends BaseTest {
-  private static final String APPROVAL_RESULT_TITLE = "Approval Result - Axon Ivy";
-  private static final String APPROVAL_TITLE = "Approval - Axon Ivy";
-  private static final String CREATE_LEAVE_REQUEST_TITLE = "Create leave request - Axon Ivy";
   private static final String LEAVE_REQUEST_START_LINK = "portal-user-examples/170321BD7F5539D6/start.ivp";
   private LeaveRequestPage leaveRequestPage;
   private TaskWidgetPage taskWidgetPage;
@@ -50,7 +47,7 @@ public class LeaveRequestTest extends BaseTest {
   @Test
   public void testApproveScenario() {
     leaveRequestPage = startLeaveRequestProcess();
-    Assert.assertEquals(CREATE_LEAVE_REQUEST_TITLE, leaveRequestPage.getPageTitle());
+    Assert.assertEquals("Create leave request", leaveRequestPage.getPageTitle());
     String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
     String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
     leaveRequestPage.waitForIFrameContentVisible();
@@ -61,7 +58,7 @@ public class LeaveRequestTest extends BaseTest {
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.startTask(0);
     taskWidgetPage.switchToIFrameOfTask();
-    WaitHelper.assertTrueWithWait(() -> APPROVAL_TITLE.equals(leaveRequestPage.getPageTitle()));
+    WaitHelper.assertTrueWithWait(() -> "Approval".equals(leaveRequestPage.getPageTitle()));
     leaveRequestPage.enterApproverComment("Approved");
     leaveRequestPage.clickApproveBtn();
     leaveRequestPage.clickOnLogout();
@@ -70,7 +67,7 @@ public class LeaveRequestTest extends BaseTest {
     taskWidgetPage.filterTasksBy("Your leave request is approved");
     taskWidgetPage.startTask(0);
     taskWidgetPage.switchToIFrameOfTask();
-    WaitHelper.assertTrueWithWait(() -> APPROVAL_RESULT_TITLE.equals(leaveRequestPage.getPageTitle()));
+    WaitHelper.assertTrueWithWait(() -> "Approval Result".equals(leaveRequestPage.getPageTitle()));
     UserExamplesEndPage userExamplesEndPage = leaveRequestPage.finishLeaveRequest();
     CaseDetailsPage caseDetailsPage = userExamplesEndPage.goToCaseDetail();
     Assert.assertEquals("Leave Request", caseDetailsPage.getCaseName());
@@ -79,7 +76,7 @@ public class LeaveRequestTest extends BaseTest {
   @Test
   public void testRejectScenario() {
     leaveRequestPage = startLeaveRequestProcess();
-    Assert.assertEquals(CREATE_LEAVE_REQUEST_TITLE, leaveRequestPage.getPageTitle());
+    Assert.assertEquals("Create leave request", leaveRequestPage.getPageTitle());
     String today =  LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
     String yesterday =  LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
     leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", yesterday, today, TestAccount.ADMIN_USER.getFullName(), "requester comment");
@@ -89,7 +86,7 @@ public class LeaveRequestTest extends BaseTest {
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.startTask(0);
     taskWidgetPage.switchToIFrameOfTask();
-    WaitHelper.assertTrueWithWait(() -> APPROVAL_TITLE.equals(leaveRequestPage.getPageTitle()));
+    WaitHelper.assertTrueWithWait(() -> "Approval".equals(leaveRequestPage.getPageTitle()));
     leaveRequestPage.enterApproverComment("Rejected");
     leaveRequestPage.clickRejectBtn();
     leaveRequestPage.clickOnLogout();
@@ -98,7 +95,7 @@ public class LeaveRequestTest extends BaseTest {
     taskWidgetPage.filterTasksBy("Your leave request is rejected");
     taskWidgetPage.startTask(0);
     taskWidgetPage.switchToIFrameOfTask();
-    WaitHelper.assertTrueWithWait(() -> APPROVAL_RESULT_TITLE.equals(leaveRequestPage.getPageTitle()));
+    WaitHelper.assertTrueWithWait(() -> "Approval Result".equals(leaveRequestPage.getPageTitle()));
   }
   
   private LeaveRequestPage startLeaveRequestProcess() {
