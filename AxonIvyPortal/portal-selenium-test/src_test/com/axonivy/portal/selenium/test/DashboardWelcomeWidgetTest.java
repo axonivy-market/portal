@@ -3,6 +3,7 @@ package com.axonivy.portal.selenium.test;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,6 +28,11 @@ public class DashboardWelcomeWidgetTest extends BaseTest {
   public void setup() {
     super.setup();
     newDashboardPage = new NewDashboardPage();
+  }
+
+  @AfterEach
+  public void clear() {
+    resetLanguageOfCurrentUser();
   }
 
   @Test
@@ -58,7 +64,5 @@ public class DashboardWelcomeWidgetTest extends BaseTest {
     redirectToNewDashBoard();
     welcomePage = new WelcomeWidgetNewDashboardPage();
     welcomePage.getWelcomeText(WIDGET_ID).shouldHave(Condition.text("new widget (German)"));
-
-    resetLanguageOfCurrentUser();
   }
 }
