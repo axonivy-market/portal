@@ -18,9 +18,9 @@ Portal supports customizing this page for each case.
 How to customize the business details page
 ------------------------------------------
 
-#. Create the business details process. In this process, create a request start that has the parameter ``uuid``. The idea is when clicking
-   on ``Business details`` in the case details page, Portal will call this process and pass the case UUID as parameter ``uuid``. 
-   Create UI for the business details page in this process.
+#. Create the business details process. In this process, define a request start event that accepts the ``uuid`` parameter. 
+   When the ``Business details`` button on the case details page is clicked, Portal will call this process and pass the case UUID as 
+   the ``uuid`` parameter. Design and implement the user interface for the business details page within this process.
 
    |customization-business-details-page-start-request|
 
