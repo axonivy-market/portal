@@ -1,6 +1,7 @@
 package com.axonivy.portal.bean.dashboard;
 
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,6 +28,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+import ch.ivy.addon.portalkit.util.DashboardMigrationUtils;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.RoleUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
@@ -78,7 +80,12 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
       return;
     }
     try {
-      importedDashboards = BusinessEntityConverter.inputStreamToEntities(importFile.getInputStream(), Dashboard.class);
+      String dashboardsJson = new String(importFile.getContent(),
+          StandardCharsets.UTF_8);
+      importedDashboards = BusinessEntityConverter
+          .jsonValueToEntities(
+              DashboardMigrationUtils.migrateOldDashboards(dashboardsJson),
+              Dashboard.class);
     } catch (Exception e) {
       isError = true;
       displayedMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileCouldNotParse"));
