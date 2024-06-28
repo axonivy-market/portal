@@ -76,13 +76,6 @@
             "} else if (\"#guest\".equalsIgnoreCase(in.currentUser.getMemberName())) {",
             "  in.users = new ArrayList();",
             "  in.roles = new ArrayList();",
-            "} else {",
-            "  List roles = RoleDTO.toRoles(ivy.wf.getSecurityContext().roles().all());",
-            "  List users = UserUtils.getAllUsers();",
-            "  // Filter users by roles",
-            "  List filteredUsers = UserUtils.filterUsers(users, roles);",
-            "  in.users = filteredUsers;",
-            "  in.roles = roles;",
             "}"
           ]
         }
