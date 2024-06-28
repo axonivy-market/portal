@@ -26,6 +26,8 @@ ch.ivy.addon.portal.generic:
   PortalCaseMenu:
     AllCases: Tous les dossiers
     MyCases: Mes dossiers
+  PortalName:
+    PortalName: Portal
   PortalTaskMenu:
     AllTasks: Toutes les tâches
     GroupTasks: Tâches de groupe
@@ -221,6 +223,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationtype:
       thirdPartyApplication: Application tierce
     currentValue: Valeur actuelle
+    defaultApplicationName: Axon Ivy
     defaultValue: Valeur par défaut
     deleteAppConfirmation: Etes-vous sûr de vouloir supprimer cette application ?
     dialogclosinginformation:
@@ -292,6 +295,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showUserGuide: 'Active le guide d''utilisation interactif "premiers pas" dans le portail lors de la première connexion. '
       statisticChartScalingInterval: Intervalle en secondes pour effectuer les demandes de mise à l'échelle périodique des graphiques statistiques. Si la valeur de l'intervalle est inférieure à 10, la mise à l'échelle périodique des graphiques statistiques est désactivée.
       uploadDocumentWhiteListExtensionNote: 'Laissez la valeur vide si vous autorisez toutes les extensions. Si juste autoriser quelques extensions, listez les extensions ici, séparées par des virgules. Exemple: pdf, txt, doc, docx.'
+      ApplicationName: Le nom de l'application par défaut qui sera affiché dans le titre de la page.
     key: Clé
     link: Lien
     loading: CHARGEMENT

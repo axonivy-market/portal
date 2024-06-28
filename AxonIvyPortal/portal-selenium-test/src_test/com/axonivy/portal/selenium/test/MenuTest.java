@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.StatisticWidgetPage;
@@ -126,6 +127,24 @@ public class MenuTest extends BaseTest {
     // Set English
     setUserLanguage(newDashboardPage, 1);
     Assertions.assertEquals("Dashboard Test EN", mainMenuPage.getMainMenuName());
+  }
+
+  @Test
+  public void testBrowserTitleChangeFollowPage() {
+    redirectToRelativeLink(cleanupDataLink);
+    createJSonFile("application-name.json", Variable.APPLICATION_NAME.getKey());
+    login(TestAccount.DEMO_USER);
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    assertEquals("Dashboard - Portal - Axon Ivy", newDashboardPage.getPageTitle());
+
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
+    String processesPageTitle = mainMenuPage.openProcessList().getPageTitle();
+    String taskListPageTitle = mainMenuPage.openTaskList().getPageTitle();
+    String caseListPageTitle = mainMenuPage.openCaseList().getPageTitle();
+
+    assertEquals("Processes - Portal - Axon Ivy", processesPageTitle);
+    assertEquals("Tasks - Portal - Axon Ivy", taskListPageTitle);
+    assertEquals("Cases - Portal - Axon Ivy", caseListPageTitle);
   }
 
   private void setUserLanguage(NewDashboardPage newDashboardPage, int index) {

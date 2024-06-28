@@ -38,7 +38,7 @@ public class ExampleOverviewTest extends BaseTest {
     assertEquals("Summary", leaveRequestOverview.getStepName(2));
     
     LeaveRequestPage leaveRequest = leaveRequestOverview.start();
-    Assert.assertEquals("Create leave request", leaveRequest.getPageTitle());
+    Assert.assertEquals("Create leave request - Axon Ivy", leaveRequest.getPageTitle());
   }
   
   @Test
