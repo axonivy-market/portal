@@ -19,13 +19,12 @@ import javax.faces.bean.RequestScoped;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.service.exception.PortalException;
-
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.CustomFields;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PortalProcessViewerUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
@@ -66,19 +65,19 @@ public class CaseActionBean implements Serializable {
   /**
    * Attempt to fetch the custom field businessDetails, if not found, try CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.
    * <p/>
-   * Version 8, text custom field name CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE, value like
+   * Version 8, custom field name CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE, value like
    * /ivy/pro/designer/PortalExamples/1624D1F5CBEA5332/showInvestmentRequestCustomFields.ivp?caseId=10
    * <p/>
-   * Version 10.0.0 to 10.0.10, text custom field name CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE, value like
+   * Version 10.0.0 to 10.0.10, text custom text field name CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE, value like
    * /designer/pro/portal-components-examples/176465FBFE257CF3/showInvestmentRequestCustomFields.ivp?caseId=3
    * <p/>
-   * Version 10.0.11 to 11.3.1, string custom field name businessDetails, value like
+   * Version 10.0.11 to 11.3.1, custom string field name businessDetails, value like
    * /designer/pro/portal-components-examples/1624D1F5CBEA5332/showInvestmentRequestCustomFields.ivp?caseId=3&embedInFrame
    * <p/>
-   * Version after 11.3.x, string custom field name businessDetails, if migrated, value is IWebStartable ID + existing
+   * Version after 11.3.x, custom string field name businessDetails, if migrated, value is IWebStartable ID + existing
    * queryString
    * <p/>
-   * Version after 11.3.x, string custom field name businessDetails, if new cases, value is IWebStartable ID +
+   * Version after 11.3.x, custom string field name businessDetails, if new cases, value is IWebStartable ID +
    * queryString. QueryString does not contain caseId, uuid. It could be embedInFrame or empty. The value is like
    * designer/portal-components-examples/Start
    * Processes/BusinessDetails/showInvestmentRequestCustomFields.ivp?embedInFrame
