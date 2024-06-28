@@ -40,9 +40,6 @@ import portal.guitest.page.TaskTemplatePage;
 
 public class CaseDetailsTest extends BaseTest {
 
-  private static final String ADDITIONAL_CASE_DETAILS_TITLE = "Additional Case Details - Portal - Axon Ivy";
-  private static final String TASK_DETAILS_TITLE = "Task Details - Portal - Axon Ivy";
-  private static final String CASE_DETAILS_TITLE = "Case Details - Portal - Axon Ivy";
   private static final String RELATED_TASK_STATE_COLUMN = "related-task-state-column";
   private static final String RELATED_TASK_EXPIRY_COLUMN = "related-task-expiry-column";
   private HomePage homePage;
@@ -51,7 +48,6 @@ public class CaseDetailsTest extends BaseTest {
   private static final String BUSINESS_CASE_MAP_LEAVE_REQUEST = "Business Case Map: Leave Request";
   private static final String LEAVE_REQUEST_CASE_NAME = "Leave Request";
   private static final String ORDER_PIZZA = "Order Pizza";
-  private static final String APPLICATION_NAME = " - Portal - Axon Ivy";
   private static final String GRANT_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL =
       "portalKitTestHelper/14DE09882B540AD5/grantOnlyDelegateOwnTasksPermission.ivp";
   private static final String DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL =
@@ -138,8 +134,7 @@ public class CaseDetailsTest extends BaseTest {
     // open related case detail - technical case detail
     detailsPage.clickRelatedCaseActionButton(0);
     CaseDetailsPage technicalCaseDetailsPage = detailsPage.openCasesOfCasePageViaDetailsAction(0);
-    WaitHelper
-        .assertTrueWithWait(() -> CASE_DETAILS_TITLE.equals(technicalCaseDetailsPage.getPageTitle()));
+    WaitHelper.assertTrueWithWait(() -> "Case Details".equals(technicalCaseDetailsPage.getPageTitle()));
 
     // check business case information is displayed in technical case
     WaitHelper.assertTrueWithWait(() -> detailsPage.isBusinessCaseInformationSectionDisplayed());
@@ -221,7 +216,7 @@ public class CaseDetailsTest extends BaseTest {
     createTestingTask();
     detailsPage.clickRelatedTaskActionButton(0);
     TaskDetailsPage taskDetailsPage = detailsPage.openTasksOfCasePageViaDetailsAction(0);
-    WaitHelper.assertTrueWithWait(() -> TASK_DETAILS_TITLE.equals(taskDetailsPage.getPageTitle()));
+    WaitHelper.assertTrueWithWait(() -> "Task Details".equals(taskDetailsPage.getPageTitle()));
   }
 
   @Test
@@ -229,7 +224,7 @@ public class CaseDetailsTest extends BaseTest {
     createTestingCaseContainTechnicalCases();
     detailsPage.clickRelatedCaseActionButton(0);
     CaseDetailsPage caseDetailsPage = detailsPage.openCasesOfCasePageViaDetailsAction(0);
-    WaitHelper.assertTrueWithWait(() -> CASE_DETAILS_TITLE.equals(caseDetailsPage.getPageTitle()));
+    WaitHelper.assertTrueWithWait(() -> "Case Details".equals(caseDetailsPage.getPageTitle()));
   }
 
   @Test
@@ -240,8 +235,7 @@ public class CaseDetailsTest extends BaseTest {
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> caseDetailsPage.countBrowserTab() > 1);
     caseDetailsPage.switchLastBrowserTab();
     AdditionalCaseDetailsPage additionalCaseDetailsPage = new AdditionalCaseDetailsPage();
-    WaitHelper.assertTrueWithWait(
-        () -> ADDITIONAL_CASE_DETAILS_TITLE.equals(additionalCaseDetailsPage.getPageTitle()));
+    WaitHelper.assertTrueWithWait(() -> "Additional Case Details".equals(additionalCaseDetailsPage.getPageTitle()));
   }
 
   @Test
@@ -417,7 +411,7 @@ public class CaseDetailsTest extends BaseTest {
     assertEquals("This is note on business case", detailsPage.getLatestHistoryContent());
     detailsPage.clickRelatedCaseActionButton(0);
     var relatedCaseDetailsPage = detailsPage.openCasesOfCasePageViaDetailsAction(0);
-    WaitHelper.assertTrueWithWait(() -> CASE_DETAILS_TITLE.equals(relatedCaseDetailsPage.getPageTitle()));
+    WaitHelper.assertTrueWithWait(() -> "Case Details".equals(relatedCaseDetailsPage.getPageTitle()));
     relatedCaseDetailsPage.addNote("The first note of sub-case");
     relatedCaseDetailsPage.addNote("The second note of sub-case");
     var subCaseId = relatedCaseDetailsPage.getCaseId();

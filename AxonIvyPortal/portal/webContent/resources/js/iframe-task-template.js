@@ -47,9 +47,8 @@ function loadIframe(recheckIndicator) {
 }
 
 function processIFrameData(iframe) {
-    var appName = $('#application-name-for-title').get(0).value;
     var window = iframe.contentWindow;
-    checkUrl(iframe, appName);
+    checkUrl(iframe);
     if (invalidIFrameSrcPath) {
       invalidIFrameSrcPath = false;
       return;
@@ -99,18 +98,14 @@ function processIFrameData(iframe) {
     }]);
 }
 
-function checkUrl(iFrame, appName) {
+function checkUrl(iFrame) {
   const iframeDoc = iFrame.contentDocument;
   if (iframeDoc === undefined || iframeDoc === null) {
     console.log("The iframe content docment is undefined");
     invalidIFrameSrcPath = true;
     return;
   }
-
-  // Update title
-  const title = iframeDoc.title.concat(" - ", appName);
-  document.title = title; 
-
+  document.title = iframeDoc.title;
   var path = getPortalIframePath(iFrame);
   if (path === '' || invalidIFrameSrcPath) {
     return;
