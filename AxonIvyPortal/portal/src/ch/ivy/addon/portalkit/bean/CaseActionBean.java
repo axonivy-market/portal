@@ -65,10 +65,10 @@ public class CaseActionBean implements Serializable {
   /**
    * Attempt to fetch the custom field businessDetails, if not found, try CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.
    * <p/>
-   * Version 8, custom field name CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE, value like
+   * Version 8, custom text field name CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE, value like
    * /ivy/pro/designer/PortalExamples/1624D1F5CBEA5332/showInvestmentRequestCustomFields.ivp?caseId=10
    * <p/>
-   * Version 10.0.0 to 10.0.10, text custom text field name CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE, value like
+   * Version 10.0.0 to 10.0.10, custom text field name CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE, value like
    * /designer/pro/portal-components-examples/176465FBFE257CF3/showInvestmentRequestCustomFields.ivp?caseId=3
    * <p/>
    * Version 10.0.11 to 11.3.1, custom string field name businessDetails, value like
@@ -91,14 +91,17 @@ public class CaseActionBean implements Serializable {
    * <p/>
    * How to get business details URL from IWebStartable ID? Find IWebStartable, IWebStartable.getLink().getRelative(),
    * get queryString from custom field, append caseId, uuid if missing
+   * If migrated from custom text field, add embedInFrame in query string.
    **/
   private String getBusinessDetailUrlFromCustomField(ICase iCase) {
     String customFieldValue = iCase.customFields().stringField(BUSINESS_DETAILS).getOrNull();
     if (StringUtils.isEmpty(customFieldValue)) {
       customFieldValue = iCase.customFields().textField(CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.name()).getOrNull();
-    }
-    if (StringUtils.isEmpty(customFieldValue)) {
-      return constructDefaultBusinessDetailsUrl(iCase);
+      if (StringUtils.isEmpty(customFieldValue)) {
+        return constructDefaultBusinessDetailsUrl(iCase);
+      } else {
+        customFieldValue += "&embedInFrame";
+      }
     }
     if (isExternalLink(customFieldValue)) {
       return customFieldValue;
