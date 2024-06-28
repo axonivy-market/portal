@@ -76,7 +76,6 @@ public class QuickSearchTest extends BaseTest {
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
-    taskEditWidget.clickOnQuickSearchCheckBox();
     taskEditWidget.openColumnManagementDialog();
     
     assertTrue(taskEditWidget.isQuickSearchClicked("name"));
@@ -97,12 +96,12 @@ public class QuickSearchTest extends BaseTest {
     assertTrue(taskWidget.isEmptyMessageAppear());
     redirectToNewDashBoard();
     taskWidget.clearQuickSearchInput();
-    taskWidget.setInputForQuickSearch("TestCase1");
-    taskWidget.countAllTasks().shouldHave(size(3), DEFAULT_TIMEOUT);
+    taskWidget.setInputForQuickSearch("Task number 10");
+    taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
     taskWidget.clickOnButtonExpandTaskWidget();
-    taskWidget.countAllTasks().shouldHave(size(3), DEFAULT_TIMEOUT);
+    taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
     taskWidget.clickOnButtonCollapseTaskWidget();
-    taskWidget.countAllTasks().shouldHave(size(3), DEFAULT_TIMEOUT);
+    taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -115,7 +114,6 @@ public class QuickSearchTest extends BaseTest {
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
-    taskEditWidget.clickOnQuickSearchCheckBox();
     taskEditWidget.save();
 
     taskWidget.waitPageLoaded();
@@ -142,7 +140,6 @@ public class QuickSearchTest extends BaseTest {
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
-    taskEditWidget.clickOnQuickSearchCheckBox();
     taskEditWidget.openColumnManagementDialog();
 
     List<String> customCaseFields = List.of("CustomerName", "CustomerType", "SupportData");
@@ -183,7 +180,6 @@ public class QuickSearchTest extends BaseTest {
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
-    taskEditWidget.clickOnQuickSearchCheckBox();
     taskEditWidget.openColumnManagementDialog();
 
     List<String> customFields = List.of("CustomerName", "CustomerType", "CustomerAddress", "CustomerEmail");
@@ -324,7 +320,6 @@ public class QuickSearchTest extends BaseTest {
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
-    caseEditWidget.clickOnQuickSearchCheckBox();
     caseEditWidget.openColumnManagementDialog();
 
     List<String> customFields = List.of("CustomerType", "SupportData");
