@@ -79,8 +79,10 @@ see and how.
 
 **Configuration panel**
 
-On the left side, define the widget name, establish the main configuration for
-your widget, enable quick search function and get a preview of it by clicking on the preview button.
+On the left side, define the widget name, enable quick search function,
+show/hide widget information icon and fullscreen mode, establish the main
+configuration for your widget and get a preview of it by clicking on the preview
+button.
 
 |task-list-widget-configuration|
 
@@ -151,9 +153,10 @@ see and how.
 
 **Configuration panel**
 
-On the left side, you can define the widget name, establish the main
-configuration for your widget, enable quick search function and get a preview of it by clicking on the
-preview button.
+On the left side, define the widget name, enable quick search function,
+show/hide widget information icon and fullscreen mode, establish the main
+configuration for your widget and get a preview of it by clicking on the preview
+button.
 
 |case-list-widget-configuration|
 
