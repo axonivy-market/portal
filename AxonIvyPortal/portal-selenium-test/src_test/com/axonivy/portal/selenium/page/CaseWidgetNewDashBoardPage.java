@@ -58,6 +58,10 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     return 0;
   }
 
+  private SelenideElement getCaseWidgetHeader() {
+    return $$("div.table-widget-panel").filter(text(caseWidgetName)).first();
+  }
+
   private ElementsCollection getColumnsOfTableWidget() {
     return $(caseWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr td");
   }
@@ -221,5 +225,13 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     return $(
         "div[id$='empty-message-container'][class='empty-message-container ']")
         .shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
+  }
+
+  public boolean isWidgetInfomationIconAppear() {
+    return getCaseWidgetHeader().$(".widget__info-sidebar-link").isDisplayed();
+  }
+
+  public boolean isExpandButtonAppear() {
+    return getCaseWidgetHeader().$(".expand-link").isDisplayed();
   }
 }

@@ -248,4 +248,32 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     return getColumnManagementDialog().$("tbody td.js-column-field-" + field + " a").shouldBe(getClickableCondition(),
         DEFAULT_TIMEOUT);
   }
+
+  public SelenideElement getWidgetInfoIconCheckbox() {
+    return getConfigurationFilterContainer().$("span[id$='widget-info-icon-group']").shouldBe(Condition.appear,
+        DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("div[id$='widget-info']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[class*='ui-chkbox-box']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("span");
+  }
+
+  public void clickOnWidgetInfoIconCheckbox() {
+    getWidgetInfoIconCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public SelenideElement getConfigurationFilterContainer() {
+    return $("form#widget-configuration-form").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("div[id$='filter-container']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getFullscreenModeCheckbox() {
+    return getConfigurationFilterContainer().$("span[id$='extend-icon-group']").shouldBe(Condition.appear,
+        DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("div[id$='extend-option']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void clickOnFullscreenModeCheckbox() {
+    getFullscreenModeCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
 }

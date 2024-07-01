@@ -4,6 +4,7 @@ import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -279,5 +280,44 @@ public class DashboardCaseWidgetTest extends BaseTest {
     caseWidget = dashboardPage
         .selectCaseWidget(YOUR_CASES_WIDGET);
     assertTrue(caseWidget.isEmptyMessageAppear());
+  }
+
+  @Test
+  public void testHideWidgetInfoIcon() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    CaseWidgetNewDashBoardPage caseWidget = dashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage =
+        modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    caseEditWidget.clickOnWidgetInfoIconCheckbox();
+    caseEditWidget.save();
+    newDashboardDetailsEditPage.backToConfigurationPage();
+    redirectToNewDashBoard();
+    assertFalse(caseWidget.isWidgetInfomationIconAppear());
+  }
+
+  @Test
+  public void testHideExpandMode() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    CaseWidgetNewDashBoardPage caseWidget = dashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage =
+        modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    caseEditWidget.clickOnFullscreenModeCheckbox();
+    caseEditWidget.save();
+    newDashboardDetailsEditPage.backToConfigurationPage();
+    redirectToNewDashBoard();
+    assertFalse(caseWidget.isExpandButtonAppear());
   }
 }
