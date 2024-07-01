@@ -250,14 +250,14 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
         .$("div[id$='filter-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
-  private SelenideElement getFullscreenModeCheckbox() {
-    return getConfigurationFilterContainer().$("span[id$='extend-icon-group']")
+  private SelenideElement getExpandModeCheckbox() {
+    return getConfigurationFilterContainer().$("span[id$='expand-mode-group']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']")
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='extend-option']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='expand-option']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
-  public void clickOnFullscreenModeCheckbox() {
-    getFullscreenModeCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  public void clickOnExpandModeCheckbox() {
+    getExpandModeCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 }

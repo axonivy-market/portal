@@ -290,7 +290,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     NewDashboardDetailsEditPage newDashboardDetailsEditPage =
         modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
-    taskEditWidget.clickOnFullscreenModeCheckbox();
+    taskEditWidget.clickOnExpandModeCheckbox();
     taskEditWidget.save();
     newDashboardDetailsEditPage.backToConfigurationPage();
     redirectToNewDashBoard();
