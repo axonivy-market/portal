@@ -231,7 +231,8 @@
       "name" : "DestroyTask",
       "config" : {
         "callSignature" : "destroyTask",
-        "outLink" : "destroyTask.ivp"
+        "outLink" : "destroyTask.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 480 },
@@ -262,7 +263,8 @@
       "config" : {
         "callSignature" : "createTestUser",
         "outLink" : "createTestUser.ivp",
-        "startName" : "Create test user"
+        "startName" : "Create test user",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 576 }
@@ -307,7 +309,8 @@
       "name" : "createRelatedTasksTestUser.ivp",
       "config" : {
         "callSignature" : "createRelatedTasksTestUser",
-        "outLink" : "createRelatedTasksTestUser.ivp"
+        "outLink" : "createRelatedTasksTestUser.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 736 },
@@ -355,7 +358,8 @@
         "callSignature" : "createTestUsers",
         "outLink" : "createTestUsers.ivp",
         "startDescription" : "Create multiple test users",
-        "startName" : "Create multiple test users"
+        "startName" : "Create multiple test users",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 608, "y" : 384 },
@@ -672,7 +676,8 @@
           }
         },
         "triggerEnabled" : true,
-        "requestEnabled" : false
+        "requestEnabled" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 224 },
@@ -714,7 +719,8 @@
       "name" : "hideOrUnHideTaskCase.ivp",
       "config" : {
         "callSignature" : "hideOrUnHideTaskCase",
-        "outLink" : "hideOrUnHideTaskCase.ivp"
+        "outLink" : "hideOrUnHideTaskCase.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 864 },
@@ -747,7 +753,8 @@
       "config" : {
         "callSignature" : "createCaseHaveCategoryTreeWithCMS",
         "outLink" : "createCaseHaveCategoryTreeWithCMS.ivp",
-        "startName" : "Create Case Have Category Tree With CMS"
+        "startName" : "Create Case Have Category Tree With CMS",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 992 },
@@ -927,7 +934,8 @@
       "config" : {
         "callSignature" : "disableVisibilityUser",
         "outLink" : "disableVisibilityUser.ivp",
-        "startName" : "Create and disable visibility user"
+        "startName" : "Create and disable visibility user",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 992, "y" : 920 },
@@ -1031,7 +1039,8 @@
       "config" : {
         "callSignature" : "enableVisibilityUser",
         "outLink" : "enableVisibilityUser.ivp",
-        "startName" : "Enable visibility user"
+        "startName" : "Enable visibility user",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 992, "y" : 848 },
@@ -1215,7 +1224,8 @@
       "config" : {
         "callSignature" : "createTestUserFavoriteProcess",
         "outLink" : "createTestUserFavoriteProcess.ivp",
-        "startName" : "Create Test UserFavorite Processes"
+        "startName" : "Create Test UserFavorite Processes",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 824, "y" : 1152 },
@@ -1320,7 +1330,8 @@
           }
         },
         "outLink" : "createSampleExpressWorkflowProcess.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 816, "y" : 1280 },
@@ -1365,7 +1376,8 @@
         "callSignature" : "createThirdPartyApp",
         "outLink" : "createThirdPartyApp.ivp",
         "startDescription" : "Create third party app",
-        "startName" : "Create third party app"
+        "startName" : "Create third party app",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 1280 },
@@ -1417,7 +1429,8 @@
       "name" : "testThrowableError.ivp",
       "config" : {
         "callSignature" : "testThrowableError",
-        "outLink" : "testThrowableError.ivp"
+        "outLink" : "testThrowableError.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 1408 },
@@ -1436,7 +1449,8 @@
       "name" : "startTest500.ivp",
       "config" : {
         "callSignature" : "startTest500",
-        "outLink" : "startTest500.ivp"
+        "outLink" : "startTest500.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 1536 },
@@ -1484,7 +1498,8 @@
       "name" : "createUserTaskWidgetFilters.ivp",
       "config" : {
         "callSignature" : "createUserTaskWidgetFilters",
-        "outLink" : "createUserTaskWidgetFilters.ivp"
+        "outLink" : "createUserTaskWidgetFilters.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 672, "y" : 1408 },
@@ -1542,7 +1557,8 @@
           }
         },
         "outLink" : "createJSonFile.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 1664 },
@@ -1587,7 +1603,8 @@
         "callSignature" : "create5kRoles",
         "outLink" : "create5kRoles.ivp",
         "startDescription" : "Create 5000 roles to test IVYPORTAL-13607",
-        "startName" : "Create 5000 roles"
+        "startName" : "Create 5000 roles",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 576, "y" : 1632 },
@@ -1655,7 +1672,8 @@
       "name" : "testProcessViewerPermission.ivp",
       "config" : {
         "callSignature" : "testProcessViewerPermission",
-        "outLink" : "testProcessViewerPermission.ivp"
+        "outLink" : "testProcessViewerPermission.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 1792 }
@@ -1696,7 +1714,8 @@
       "name" : "createSampleNewsFeed.ivp",
       "config" : {
         "callSignature" : "createSampleNewsFeed",
-        "outLink" : "createSampleNewsFeed.ivp"
+        "outLink" : "createSampleNewsFeed.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 64, "y" : 1896 }
@@ -1728,10 +1747,10 @@
     }, {
       "id" : "f185",
       "type" : "RequestStart",
-      "name" : "create5kRolesThenAssignToDemo.ivp",
+      "name" : "create1kUsersHas5kRoles.ivp",
       "config" : {
-        "callSignature" : "create5kRolesThenAssignToDemo",
-        "outLink" : "create5kRolesThenAssignToDemo.ivp",
+        "callSignature" : "create1kUsersHas5kRoles",
+        "outLink" : "create1kUsersHas5kRoles.ivp",
         "startDescription" : "Create 5000 roles to test IVYPORTAL-13607",
         "startName" : "Create 5000 roles then assign to user  demo",
         "case" : { }
@@ -1816,6 +1835,7 @@
       "type" : "Script",
       "name" : "Create 1000 users test",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",

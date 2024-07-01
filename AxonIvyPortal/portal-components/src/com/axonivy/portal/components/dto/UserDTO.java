@@ -30,7 +30,7 @@ public class UserDTO {
   
   public static UserDTO newUserWithRoles(IUser iUser) {
     UserDTO user = new UserDTO(iUser);
-    user.setRoles(iUser.getRoles().stream().map(RoleDTO::new).collect(Collectors.toList()));
+    user.setRoles(iUser.getAllRoles().stream().map(RoleDTO::new).collect(Collectors.toList()));
     return user;
   }
 
