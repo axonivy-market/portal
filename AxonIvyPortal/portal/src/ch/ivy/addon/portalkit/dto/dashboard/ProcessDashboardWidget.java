@@ -32,7 +32,7 @@ public class ProcessDashboardWidget extends DashboardWidget {
   @JsonIgnore
   protected DashboardProcessSearchCriteria criteria;
   @JsonIgnore
-  private boolean showWidgetInfoIcon;
+  private boolean showWidgetInfo;
 
   public ProcessDashboardWidget() {
     criteria = new DashboardProcessSearchCriteria();
@@ -121,7 +121,7 @@ public class ProcessDashboardWidget extends DashboardWidget {
     this.criteria.setApplications(applications);
   }
 
-  public boolean isShowWidgetInfoIcon() {
-    return this.showWidgetInfoIcon = true;
+  public boolean isShowWidgetInfo() {
+    return this.showWidgetInfo = true;
   }
 }

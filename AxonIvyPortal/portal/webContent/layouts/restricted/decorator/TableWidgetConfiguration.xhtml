@@ -74,14 +74,14 @@
       </div>
       <div class="ui-g-6 ui-inputgroup">
         <p:selectBooleanCheckbox id="widget-info"
-          value="#{widget.showWidgetInfoIcon}">
+          value="#{widget.showWidgetInfo}">
           <p:ajax process="widget-info-icon-group"
             update="widget-info-icon-group" partialSubmit="true"/>
         </p:selectBooleanCheckbox>
       </div>
     </h:panelGroup>
 
-    <h:panelGroup id="extend-icon-group" rendered="#{managedBean.displayExtendOption()}"
+    <h:panelGroup id="expand-mode-group" rendered="#{managedBean.displayExtendOption()}"
       styleClass="ui-g-12 u-padding-0 ui-fluid">
       <div class="ui-g-6">
         <p:outputLabel
@@ -89,10 +89,10 @@
           styleClass="u-mar-right-5" />
       </div>
       <div class="ui-g-6 ui-inputgroup">
-        <p:selectBooleanCheckbox id="extend-option"
-          value="#{widget.showExtendIcon}">
-          <p:ajax process="extend-icon-group"
-            update="extend-icon-group" partialSubmit="true"/>
+        <p:selectBooleanCheckbox id="expand-option"
+          value="#{widget.showExpandMode}">
+          <p:ajax process="expand-mode-group"
+            update="expand-mode-group" partialSubmit="true"/>
         </p:selectBooleanCheckbox>
       </div>
     </h:panelGroup>
