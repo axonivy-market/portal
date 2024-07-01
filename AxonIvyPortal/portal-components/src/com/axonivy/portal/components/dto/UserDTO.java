@@ -1,5 +1,8 @@
 package com.axonivy.portal.components.dto;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Record;
 import ch.ivyteam.ivy.security.IUser;
@@ -12,6 +15,7 @@ public class UserDTO {
   private String memberName;
   private String email;
   private boolean isEnabled;
+  private List<RoleDTO> roles;
   
   public UserDTO() {}
 
@@ -24,6 +28,12 @@ public class UserDTO {
     this.isEnabled = user.isEnabled();
   }
   
+  public static UserDTO newUserWithRoles(IUser iUser) {
+    UserDTO user = new UserDTO(iUser);
+    user.setRoles(iUser.getAllRoles().stream().map(RoleDTO::new).collect(Collectors.toList()));
+    return user;
+  }
+
   public UserDTO(Record record) {
     this.id = Long.valueOf(record.getField("USERID").toString());
     this.name = record.getField("NAME").toString();
@@ -93,5 +103,13 @@ public class UserDTO {
       return this.displayName;
     }
     return Ivy.cms().co("/Labels/disabledUserPrefix") + " " + this.displayName;
+  }
+
+  public List<RoleDTO> getRoles() {
+    return roles;
+  }
+
+  public void setRoles(List<RoleDTO> roles) {
+    this.roles = roles;
   }
 }
