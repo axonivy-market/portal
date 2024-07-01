@@ -405,6 +405,10 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
         .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
   
+  public boolean isWidgetInfomationIconAppear() {
+    return getTaskWidgetHeader().$(".widget__info-sidebar-link").isDisplayed();
+  }
+
   public SelenideElement getExpiryTodayLabelInWidgetInfo() {
     return $("[id$='expiry-tab']").shouldBe(appear, DEFAULT_TIMEOUT).$("div div").shouldBe(appear, DEFAULT_TIMEOUT);
   }
@@ -443,6 +447,10 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
         .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
   
+  public boolean isExpandButtonAppear() {
+    return getTaskWidgetHeader().$(".expand-link").isDisplayed();
+  }
+
   public ElementsCollection getExpandedTaskWidget() {
     return $("div.expand-fullscreen").$$("div.widget__header").filter(text(taskWidgetName));
   }
