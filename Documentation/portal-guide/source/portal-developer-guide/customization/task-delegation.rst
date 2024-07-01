@@ -43,4 +43,10 @@ Portal will call subprocesses with the details above and then combine all
 ``roles`` and ``users`` from the results into a list of roles and users the task can be delegate to.
 To skip the result of one callable subprocess, please set the result variable ``status`` to ``"SKIP"``.
 
+.. tip::
+    Portal provided the standard ``users`` list as a parameter for the callable together with their roles.
+    Please filter the ``users`` list instead of create a new user list. It will help you increase the performance.
+
+    In case you want to filter specific users by some roles, please use the method ``getRoles()`` of each user.
+
 .. |calculate-task-delegate| image:: images/task-widget/calculate-task-delegate.png
