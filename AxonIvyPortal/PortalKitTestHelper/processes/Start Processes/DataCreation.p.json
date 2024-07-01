@@ -1836,5 +1836,132 @@
       "visual" : {
         "at" : { "x" : 384, "y" : 2000 }
       }
+    }, {
+      "id" : "f185",
+      "type" : "RequestStart",
+      "name" : "create1kUsersHas5kRoles.ivp",
+      "config" : {
+        "signature" : "create1kUsersHas5kRoles",
+        "request" : {
+          "name" : "Create 1k users has 5000 roles",
+          "description" : "Create 1k users has 5000 roles to test IVYPORTAL-13607"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 568, "y" : 1832 },
+        "labelOffset" : { "x" : 36, "y" : 37 }
+      },
+      "connect" : [
+        { "id" : "f188", "to" : "f190" }
+      ]
+    }, {
+      "id" : "f186",
+      "type" : "Script",
+      "name" : "Create 5k roles",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.persistence.query.IPagedResult;",
+            "import ch.ivyteam.ivy.security.IUser;",
+            "import ch.ivyteam.ivy.security.IRole;",
+            "import ch.ivyteam.ivy.security.role.NewRole;",
+            "import ch.ivyteam.ivy.security.user.NewUser;",
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import java.util.ArrayList;",
+            "",
+            "// CLEAN UP\",",
+            "ivy.security.roles().delete(\"SERVICE_INTEGRATION_TEAM\");",
+            "ivy.security.roles().delete(\"PROJECT_EDITOR\");",
+            "           ",
+            "for (int i = 0; i < 5000; i ++){",
+            "  ivy.security.roles().delete(\"PROJECT_EDITOR_\" + i);",
+            "}",
+            "",
+            "// CREATE",
+            "NewRole serviceIntegrationTeamNewRole = NewRole",
+            ".create(\"SERVICE_INTEGRATION_TEAM\")",
+            ".displayName(\"Service Integration Team\")",
+            ".description(\"Service Integration Team\")",
+            ".toNewRole();",
+            "",
+            "IRole serviceIntegrationTeam = ivy.security.roles().create(serviceIntegrationTeamNewRole);",
+            "",
+            "NewRole projectEditorNewRole = NewRole",
+            ".create(\"PROJECT_EDITOR\")",
+            ".displayName(\"Project Editor\")",
+            ".description(\"Project Editor\")",
+            ".toNewRole();",
+            "",
+            "IPagedResult<IUser> allUsers = ivy.security.users().paged(1000);",
+            "List iRoles = new ArrayList();",
+            "IRole projectEditor = ivy.security.roles().create(projectEditorNewRole);",
+            "for (int i = 0; i < 5000; i ++){",
+            "  IRole role = ivy.security.roles().create(\"PROJECT_EDITOR_\" + i);",
+            "  projectEditor.addRoleMember(role);",
+            "  role.addRoleMember(serviceIntegrationTeam);",
+            "  ",
+            "  iRoles.add(role);  ",
+            "}",
+            "  ",
+            "for (IUser iuser : allUsers) {",
+            "  for (IRole role : iRoles) {",
+            "    iuser.addRole(role);",
+            "  }",
+            "}",
+            "",
+            "ivy.session.getSessionUser().addRole(serviceIntegrationTeam);"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 984, "y" : 1832 }
+      },
+      "connect" : [
+        { "id" : "f189", "to" : "f187" }
+      ]
+    }, {
+      "id" : "f187",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1136, "y" : 1832 }
+      }
+    }, {
+      "id" : "f190",
+      "type" : "Script",
+      "name" : "Create 1k users",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import java.util.Locale;",
+            "import ch.ivyteam.ivy.security.user.NewUser;",
+            "",
+            "",
+            "for (int i = 0; i < 1000; i++) {",
+            "  String username = \"testuser_\" + i;",
+            "  ",
+            "  if (ISecurityContext.current().users().find(username) != null) {",
+            "    ISecurityContext.current().users().delete(username);",
+            "  }",
+            "  ",
+            "  NewUser user = NewUser",
+            "      .create(username)",
+            "      .fullName(username)",
+            "      .password(\"+d3m0++\")",
+            "      .language(java.util.Locale.ENGLISH)",
+            "      .toNewUser();",
+            "  ISecurityContext.current().users().create(user);",
+            "  in.counter++;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 744, "y" : 1832 }
+      },
+      "connect" : [
+        { "id" : "f191", "to" : "f186", "color" : "default" }
+      ]
     } ]
 }
