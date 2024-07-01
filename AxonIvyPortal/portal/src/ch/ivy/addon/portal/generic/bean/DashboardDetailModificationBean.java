@@ -856,11 +856,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public boolean displayWidgetInfoOption() {
     return Optional.ofNullable(this.widget).map(DashboardWidget::getType)
-        .map(DashboardWidgetType::canShowWidgetInfoIcon).orElse(false);
+        .map(DashboardWidgetType::canShowWidgetInfoOption).orElse(false);
   }
 
   public boolean displayExtendOption() {
     return Optional.ofNullable(this.widget).map(DashboardWidget::getType)
-        .map(DashboardWidgetType::canShowExtendIcon).orElse(false);
+        .map(DashboardWidgetType::canShowExpandModeOption).orElse(false);
   }
 }

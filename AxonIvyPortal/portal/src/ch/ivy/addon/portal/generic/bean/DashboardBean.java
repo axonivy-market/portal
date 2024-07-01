@@ -455,7 +455,7 @@ public class DashboardBean implements Serializable {
   }
 
   public boolean canShowWidgetInfoIcon(DashboardWidget widget) {
-    return widget.getType().canShowWidgetInfoIcon();
+    return widget.getType().canShowWidgetInfoOption();
   }
 
   public void setSearchScope(DashboardWidget widget) {

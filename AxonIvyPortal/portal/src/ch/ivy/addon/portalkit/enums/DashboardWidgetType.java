@@ -22,11 +22,11 @@ public enum DashboardWidgetType {
     return this == TASK || this == CASE;
   }
 
-  public boolean canShowWidgetInfoIcon() {
+  public boolean canShowWidgetInfoOption() {
     return this == TASK || this == CASE;
   }
 
-  public boolean canShowExtendIcon() {
+  public boolean canShowExpandModeOption() {
     return this == TASK || this == CASE;
   }
 }
