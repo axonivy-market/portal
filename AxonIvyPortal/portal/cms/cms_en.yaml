@@ -21,6 +21,8 @@ ch.ivy.addon.portal.generic:
     resultFromAdhocProcess: Results from the Ad-Hoc Process
     startAdHoc: Start Adhoc
     startAdHocTooltip: Reroute this process using ad-hoc steps
+  PortalName:
+    PortalName: Portal
 ch.ivy.addon.portalkit.ui.jsf:
   AbsenceAndDeputy:
     Messages:
@@ -199,6 +201,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationtype:
       thirdPartyApplication: Third Party Application
     currentValue: Current value
+    defaultApplicationName: Axon Ivy
     defaultValue: Default value
     deleteAppConfirmation: Are you sure to delete this application ?
     dialogclosinginformation:
@@ -210,8 +213,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     embedInFrame: Start a process/task in IFrame mode
     emptySupportedLanguages: No additional languages are supported
     globalVariableNote:
+      AppleStoreURL: Set URL to download Axon Ivy mobile app on Apple Store.
+      ApplicationName: The default application name that will be displayed on the page title.
+      BaseQRCodeUrl: Set Base URL for QR code to display.
       DefaultThemeMode: The default theme mode of the application
       EnableSwitchThemeModeButton: Set to true to enable the switch theme button.
+      GooglePlayURL: Set URL to download Axon Ivy mobile app on Google Play.
       RoleDirectChildrenLimit: 'The set number controls the amount of direct children roles that is shown in Role Management tab. Valid number: 10, 50, 100'
       RoleParentLimit: 'The set number controls the amount of parent roles that is shown when filtering roles in Role Management tab. Valid number: 5, 10, 20'
       SearchScopeCaseFields: Defining the fields that the global search will use to find matching cases beside case Id (this can influence the performance of the search)
@@ -299,7 +306,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     usernameRequiredMsg: Please input username.
     value: Value
   applicationMenuHeader:
-    MobileApp: Connect the Axon Ivy Mobile App
+    MobileApp: Download and Connect to Axon Ivy Mobile App
     adminSettings: Admin settings
     changePassword: Change password
   businessCaseState:
@@ -1010,8 +1017,14 @@ ch.ivy.addon.portalkit.ui.jsf:
   logoutSetting:
     logout: Logout
   mobile:
+    AppleStore: Apple Store
+    AxonIvyMobile: Axon Ivy Mobile
+    DownloadMobileApp: To download your Axon Ivy Mobile App
+    GooglePlay: Google Play
     MenuName: Connect Mobile App
+    Platform: 'Platform:'
     QRCodeDescription: To connect your Axon Ivy Mobile App, please scan this QR Code and enter your credentials in the inside the app.
+    QRCodeDownloadDescription: Scan the code below with your mobile camera or with a QR reader app.
   noteHistory:
     author: Author
     caseExportedFileNamePrefix: Note_history_of_case_{0}

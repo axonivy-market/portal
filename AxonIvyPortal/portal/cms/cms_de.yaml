@@ -21,6 +21,8 @@ ch.ivy.addon.portal.generic:
     resultFromAdhocProcess: Ergebnisse aus dem Ad-Hoc Prozess
     startAdHoc: Start Adhoc
     startAdHocTooltip: Neue Aufgabe hinzufügen, und den aktuellen Prozess umleiten.
+  PortalName:
+    PortalName: Portal
 ch.ivy.addon.portalkit.ui.jsf:
   AbsenceAndDeputy:
     Messages:
@@ -199,6 +201,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationtype:
       thirdPartyApplication: 3rd Party Anwendung
     currentValue: Aktueller Wert
+    defaultApplicationName: Axon Ivy
     defaultValue: Standard Wert
     deleteAppConfirmation: Sind Sie sicher, dass Sie diese Anwendung entfernen möchten?
     dialogclosinginformation:
@@ -210,8 +213,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     embedInFrame: Prozess/Task in Iframes Modus starten
     emptySupportedLanguages: Es werden keine weiteren Sprachen unterstützt
     globalVariableNote:
+      AppleStoreURL: Legen Sie die URL für den Download der Axon Ivy Mobile App im Apple Store fest.
+      ApplicationName: Der Standard-Anwendungsname, der im Seitentitel angezeigt wird.
+      BaseQRCodeUrl: Legen Sie die Basis-URL für den anzuzeigenden QR-Code fest.
       DefaultThemeMode: Der Standardthemenmodus der Anwendung
       EnableSwitchThemeModeButton: Setzen Sie diesen Wert auf true, um die Schaltfläche "Thema wechseln" zu aktivieren.
+      GooglePlayURL: Legen Sie die URL fest, um die Axon Ivy-Mobilanwendung auf Google Play herunterzuladen.
       RoleDirectChildrenLimit: 'Die eingestellte Zahl steuert die Anzahl der direkten untergeordneten Rollen, die auf der Registerkarte Rollenverwaltung angezeigt werden. Gültige Zahl: 10, 50, 100'
       RoleParentLimit: 'Die eingestellte Zahl steuert die Anzahl der übergeordneten Rollen, die beim Filtern von Rollen auf der Registerkarte Rollenverwaltung angezeigt werden. Gültige Zahl: 5, 10, 20'
       SearchScopeCaseFields: Festlegung der Felder, die bei der globalen Suche verwendet werden sollen, um neben der Fallnummer übereinstimmende Fälle zu finden (dies kann die Leistung der Suche beeinflussen)
@@ -301,7 +308,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     usernameRequiredMsg: Bitte geben Sie den Benutzernamen an.
     value: Wert
   applicationMenuHeader:
-    MobileApp: Verbinden Sie die Axon Ivy Mobile App
+    MobileApp: Herunterladen und Verbinden mit der Axon Ivy Mobile App
     adminSettings: Administration
     changePassword: Passwort ändern
   businessCaseState:
@@ -1009,8 +1016,14 @@ ch.ivy.addon.portalkit.ui.jsf:
   logoutSetting:
     logout: Abmelden
   mobile:
+    AppleStore: Apple Store
+    AxonIvyMobile: Axon Ivy Mobile
+    DownloadMobileApp: Um Ihre Axon Ivy Mobile App herunterzuladen
+    GooglePlay: Google Play
     MenuName: Mobile App verbinden
+    Platform: 'Plattform:'
     QRCodeDescription: Um Ihre Axon Ivy Mobile App zu verbinden, scannen Sie bitte diesen QR-Code und geben Sie Ihre Zugangsdaten in der App ein.
+    QRCodeDownloadDescription: Scannen Sie den unten stehenden Code mit Ihrer Handykamera oder einer QR-Reader-Anwendung.
   noteHistory:
     author: Autor
     caseExportedFileNamePrefix: Verlauf_Vorgangsnotizen_{0}

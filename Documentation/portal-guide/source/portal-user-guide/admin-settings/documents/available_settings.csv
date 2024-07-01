@@ -1,4 +1,5 @@
 Key,Default value,Note
+Portal.ApplicationName,"Axon Ivy",The default application name that will be displayed on the page title.
 Portal.CaseDetails.HideDocument,FALSE,"Set to true, the document section in case detail page will be hidden, otherwise it will be shown."
 Portal.CaseDetails.HideUploadDocumentForDoneCase,FALSE,Set to true to deny upload (also delete) document after a case is done.
 Portal.CaseDetails.ShowDurationTime,TRUE,For switch on/off the display of the duration time in case details page.
@@ -73,3 +74,6 @@ Portal.DeepL.AuthKey,,DeepL Authentication Key (should end with :fx)
 Portal.DeepL.Enable,FALSE,Set this property to true to enable the DeepL translation support
 Portal.ShowQuickGlobalSearch,FALSE,For switch on/off the display of the quick global search.
 Portal.UserMenu.ShowQRCode,FALSE,For switch on/off the display of the QR code.
+Portal.UserMenu.BaseQRCodeUrl,"",Set Base URL for QR code to display.
+Portal.UserMenu.AppleStoreURL,"",Set URL to download Axon Ivy mobile app on Apple Store.
+Portal.UserMenu.GooglePlayURL,"",Set URL to download Axon Ivy mobile app on Google Play.
