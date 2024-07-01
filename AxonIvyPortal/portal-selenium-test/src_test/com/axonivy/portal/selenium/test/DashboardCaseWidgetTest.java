@@ -314,7 +314,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     NewDashboardDetailsEditPage newDashboardDetailsEditPage =
         modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
-    caseEditWidget.clickOnFullscreenModeCheckbox();
+    caseEditWidget.clickOnExpandModeCheckbox();
     caseEditWidget.save();
     newDashboardDetailsEditPage.backToConfigurationPage();
     redirectToNewDashBoard();
