@@ -7,7 +7,7 @@ Define Case Widget
 ------------------
 
 The case widget of the Portal dashboard is an interactive case list. Refer
-to (link to case widget of the dashboard) for details.
+to :ref:`new-dashboard-case-list-widget` for details.
 
 Below is a sample JSON definition of the case widget in the Portal dashboard.
 
@@ -94,14 +94,14 @@ The basic JSON structure of the case widget
 -  ``sortField``: default sort field for the Case widget
 
 -  ``sortDescending``: default sort direction of the default sort field. The
-   default value is "false" (sort direction is ascending)
+   default value is ``false`` (sort direction is ascending)
 
 -  ``rowsPerPage``: maximum number of cases that are displayed on one page of
    the case widget. The default is 10 rows per page
 
 - ``showWidgetInfo``: visibility of the widget information. The default value ``true``, set to ``false`` to hide the widget information
 
-- ``showExpandMode``: visibility of the fullscreen mode. The default value is ``true``, set to ``false`` to hide the expand mode
+- ``showExpandMode``: visibility of the fullscreen mode. The default value is ``true``, set to ``false`` to hide the fullscreen mode
 
 -  ``columns``: column configurations for each column in the case widget. You
    can predefine filters, styles, visibility,... of columns and define custom
