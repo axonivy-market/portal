@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
@@ -216,7 +218,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
       if (StringUtils.isNotBlank(clientSideTimeoutInMinute)) {
         Long timeoutInMinute = Long.valueOf(clientSideTimeoutInMinute);
         if (timeoutInMinute < 1) {
-          return null;
+          timeoutInMinute = (long) FacesContext.getCurrentInstance().getExternalContext().getSessionMaxInactiveInterval() / 60;
         }
         // interval value should be one minute and 5 seconds before client side timeout to hide Extend session dialog
         Long intervalValue = (timeoutInMinute - 1)*60 - 5;

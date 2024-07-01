@@ -5,24 +5,10 @@
 <body>
   <ui:composition>
     <c:set var="isPortalInTeams" value="#{masterDataBean.portalInTeams}" />
-
-    <ui:fragment rendered="#{isPortalInTeams}">
-      <!-- Exception Handler for ViewExpiredExceptions -->
-      <p:ajaxExceptionHandler type="javax.faces.application.ViewExpiredException"
-        update="ms-teams-view-expired-exception-dialog"
-        onexception="PF('ms-teams-view-expired-exception-dialog').show();" />
-
-      <!-- Error Dialog shown if a view or session has expired -->
-      <p:confirmDialog id="ms-teams-view-expired-exception-dialog"
-        header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}"
-        message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpriedInTeams')}"
-        widgetVar="ms-teams-view-expired-exception-dialog" appendTo="@(body)" closable="false" responsive="true">
-      </p:confirmDialog>
-    </ui:fragment>
     <ui:fragment rendered="#{!isPortalInTeams}">
       <!-- Exception Handler for ViewExpiredExceptions -->
       <p:ajaxExceptionHandler type="javax.faces.application.ViewExpiredException" update="view-expired-exception-dialog"
-        onexception="PF('view-expired-exception-dialog').show();" />
+        onexception="PF('timeout-warning-dialog').hide();PF('view-expired-exception-dialog').show();" />
 
       <!-- Error Dialog shown if a view or session has expired -->
       <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
@@ -32,7 +18,7 @@
         <ui:param name="iconClass" value="si si-road-sign-warning" />
         <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
         <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" />
-        <ui:param name="dialogContent" value="#{session.isNew()? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpried') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/viewExpired')}" />
+        <ui:param name="dialogContent" value="#{ivy.session.isSessionUserUnknown() ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpried') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/viewExpired')}" />
         
         <ui:define name="dialogFooter">
           <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
@@ -40,6 +26,20 @@
         </ui:define>
       </ui:decorate>
     </ui:fragment>
+    <ui:fragment rendered="#{isPortalInTeams}">
+      <!-- Exception Handler for ViewExpiredExceptions -->
+      <p:ajaxExceptionHandler type="javax.faces.application.ViewExpiredException"
+        update="ms-teams-view-expired-exception-dialog"
+        onexception="PF('timeout-warning-dialog').hide();PF('ms-teams-view-expired-exception-dialog').show();" />
+
+      <!-- Error Dialog shown if a view or session has expired -->
+      <p:confirmDialog id="ms-teams-view-expired-exception-dialog"
+        header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}"
+        message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpriedInTeams')}"
+        widgetVar="ms-teams-view-expired-exception-dialog" appendTo="@(body)" closable="false" responsive="true">
+      </p:confirmDialog>
+    </ui:fragment>
+    
 
     <!--  Exception Handler for any other Exception -->
     <c:set var="defaultNotificationMessage"
