@@ -118,8 +118,7 @@
           ],
           "sortDescending": true,
           "sortField": "startTimestamp",
-          "canWorkOn": true,
-          "showWidgetInfoIcon": true
+          "canWorkOn": true
         },
         {
           "type": "case",
