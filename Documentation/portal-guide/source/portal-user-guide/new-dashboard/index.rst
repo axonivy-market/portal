@@ -69,8 +69,6 @@ button and select one of the available widgets to add:
 
 |add-widget|
 
-.. _new-dashboard-task-list-widget:
-
 Task list widget
 ================
 
@@ -142,8 +140,6 @@ In view mode, when quick search is enabled, a text box will appear to allow sear
 
     #. The quick search function is unaffected by widget filters.
     #. You can define the scope of the quick search feature in the configuration panel.
-
-.. _new-dashboard-case-list-widget:
 
 Case list widget
 ================

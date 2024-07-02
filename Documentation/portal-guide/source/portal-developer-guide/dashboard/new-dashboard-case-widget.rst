@@ -7,7 +7,7 @@ Define Case Widget
 ------------------
 
 The case widget of the Portal dashboard is an interactive case list. Refer
-to :ref:`new-dashboard-case-list-widget` for details.
+to (link to case widget of the dashboard) for details.
 
 Below is a sample JSON definition of the case widget in the Portal dashboard.
 

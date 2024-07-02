@@ -7,7 +7,7 @@ Define Task Widget
 ------------------
 
 The Task widget of the Portal dashboard is an interactive task list. Refer
-to :ref:`new-dashboard-task-list-widget` for details.
+to (link to task widget of the dashboard) for details.
 
 Below is a sample JSON definition of a task widget in the Portal dashboard
 
