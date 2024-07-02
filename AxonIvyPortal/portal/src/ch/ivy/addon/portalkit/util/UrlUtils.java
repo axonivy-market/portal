@@ -2,6 +2,10 @@ package ch.ivy.addon.portalkit.util;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -59,4 +63,13 @@ public class UrlUtils {
     return link + (link.contains("?") ? "&" : "?") + EMBED_IN_FRAME;
   }
 
+  public static String buildUrlQueryString(Map<String, String> params) {
+    if (params == null || params.isEmpty()) {
+      return StringUtils.EMPTY;
+    }
+    String queryString = params.entrySet().stream().map(e -> {
+      return e.getKey() + "=" + URLEncoder.encode(e.getValue(), StandardCharsets.ISO_8859_1);
+    }).collect(Collectors.joining("&"));
+    return queryString;
+  }
 }
