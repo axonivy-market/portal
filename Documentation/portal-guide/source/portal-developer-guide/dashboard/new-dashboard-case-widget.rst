@@ -94,7 +94,7 @@ The basic JSON structure of the case widget
 -  ``sortField``: default sort field for the Case widget
 
 -  ``sortDescending``: default sort direction of the default sort field. The
-   default value is ``false`` (sort direction is ascending)
+   default value is "false" (sort direction is ascending)
 
 -  ``rowsPerPage``: maximum number of cases that are displayed on one page of
    the case widget. The default is 10 rows per page
