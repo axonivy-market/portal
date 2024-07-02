@@ -56,6 +56,7 @@
         "security" : "system",
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.persistence.query.IPagedResult;",
             "import com.axonivy.portal.components.enums.CustomProcessStatus;",
             "import com.axonivy.portal.components.dto.RoleDTO;",
             "import com.axonivy.portal.components.dto.UserDTO;",

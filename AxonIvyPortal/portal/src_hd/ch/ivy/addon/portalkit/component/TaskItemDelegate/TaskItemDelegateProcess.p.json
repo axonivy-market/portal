@@ -76,7 +76,7 @@
       "type" : "SubProcessCall",
       "name" : "SecurityService - Find Users",
       "config" : {
-        "processCall" : "Ivy Data Processes/SecurityService:findUsers(String,Integer,Integer,java.util.List<String>,java.util.List<String>)",
+        "processCall" : "Ivy Data Processes/SecurityService:findUsersWithRoles(String,Integer,Integer,java.util.List<String>,java.util.List<String>)",
         "output" : {
           "map" : {
             "out" : "in",
@@ -467,7 +467,7 @@
       "type" : "SubProcessCall",
       "name" : "SecurityService - Find Users",
       "config" : {
-        "processCall" : "Ivy Data Processes/SecurityService:findUsers(String,Integer,Integer,java.util.List<String>,java.util.List<String>)",
+        "processCall" : "Ivy Data Processes/SecurityService:findUsersWithRoles(String,Integer,Integer,java.util.List<String>,java.util.List<String>)",
         "output" : {
           "map" : {
             "out" : "in",

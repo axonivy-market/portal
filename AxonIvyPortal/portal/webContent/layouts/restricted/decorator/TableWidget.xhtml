@@ -46,11 +46,13 @@
       <h:form onkeydown="if (isPressedSpecialKeys(event) == true) { return false; }">
       <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
       <p:inputText id="quick-search-input-#{index}" value="#{widget.quickSearchKeyword}"
-        placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}">
+        placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}"
+        onkeydown="handleKeyDown(event)">
         <p:tooltip styleClass="quick-search-input-tooltip"  for="quick-search-input-#{index}" value="#{dashboardBean.searchScope}" position="top" />
+        
         <p:ajax delay="800" listener="#{widget.updateQuickSearchKeyword()}"
-          onstart="if (isPressedSpecialKeys(event) == true) { return false; }"
-          event="keyup" process="@this"
+           onstart="return shouldTriggerAjax(event)"
+          event="keydown" process="@this"
           update="#{componentToUpdateOnResetFilter}" />
 
         <p:ajax delay="100" listener="#{widget.updateQuickSearchKeyword()}"

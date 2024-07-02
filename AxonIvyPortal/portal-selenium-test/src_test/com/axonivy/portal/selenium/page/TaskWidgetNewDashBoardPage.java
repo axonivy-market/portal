@@ -6,6 +6,8 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import org.openqa.selenium.Keys;
+
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -514,5 +516,54 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     $("div.info-overlay-panel__footer")
     .$(".dashboard-excel-export-form").$("a")
     .shouldBe(getClickableCondition()).click();
+  }
+  
+  public boolean isQuickSearchInputShow(String widgetIndex) {
+    String taskWidgetIndex = String.format("div[id*='task-task_%s']", widgetIndex);
+    waitPageLoaded();
+    return $(taskWidgetIndex).$("form").$("input").exists();
+  }
+
+  public String getQuickSearchInput() {
+    return getQuickSearchForm().$("input").getValue();
+  }
+
+  public void setInputForQuickSearch(String input) {
+    getQuickSearchForm().$("input").sendKeys(input);
+    waitForPageLoad();
+  }
+
+  private SelenideElement getQuickSearchForm() {
+    return $("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
+  }
+
+  public void clearQuickSearchInput() {
+    getQuickSearchForm().$("input").clear();
+    waitForPageLoad();
+  }
+  
+  public void copyAndPasteOnQuickSearchInput() {
+    SelenideElement searchInput = getQuickSearchForm().$("input");
+    searchInput.click();
+    searchInput.sendKeys(Keys.HOME);
+    searchInput.sendKeys(Keys.LEFT_SHIFT, Keys.END);
+    searchInput.sendKeys(Keys.CONTROL, "C");
+    searchInput.sendKeys(Keys.DELETE);
+    searchInput.sendKeys(Keys.CONTROL, "V");
+    searchInput.sendKeys(Keys.ENTER);
+    waitForPageLoad();
+  }
+  
+  public void shiftAndArrowKeyOnQuickSearchInput() {
+    SelenideElement searchInput = getQuickSearchForm().$("input");
+    searchInput.click();
+    searchInput.sendKeys(Keys.HOME);
+    searchInput.sendKeys(Keys.LEFT_SHIFT, Keys.RIGHT, Keys.RIGHT, Keys.RIGHT, Keys.RIGHT);
+    searchInput.sendKeys(Keys.ENTER);
+    waitForPageLoad();
+  }
+  
+  public boolean isEmptyMessageAppear() {
+    return $("div[id$='empty-message-container']").exists();
   }
 }
