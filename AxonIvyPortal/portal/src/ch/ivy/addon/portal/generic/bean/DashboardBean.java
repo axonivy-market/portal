@@ -503,7 +503,7 @@ public class DashboardBean implements Serializable {
   }
   
   public boolean canShowExpandMode(DashboardWidget widget) {
-    return widget.getType().canShowExpandMode();
+    return widget.getType().canShowFullscreenMode();
   }
   
   public void setSelectedDashboardName(String dashboardName) {

@@ -46,7 +46,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   private List<ColumnModel> filterableColumns;
   private boolean enableQuickSearch;
   private boolean showWidgetInfo;
-  private boolean showExpandMode;
+  private boolean showFullscreenMode;
 
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
@@ -54,7 +54,7 @@ public class TaskDashboardWidget extends DashboardWidget {
     setFilters(new ArrayList<>());
     setUserFilters(new ArrayList<>());
     setShowWidgetInfo(true);
-    setShowExpandMode(true);
+    setShowFullscreenMode(true);
   }
 
   @Override
@@ -246,12 +246,12 @@ public class TaskDashboardWidget extends DashboardWidget {
     return showWidgetInfo;
   }
   
-  public void setShowExpandMode(boolean showExpandMode) {
-    this.showExpandMode = showExpandMode;
+  public void setShowFullscreenMode(boolean showFullscreenMode) {
+    this.showFullscreenMode = showFullscreenMode;
   }
   
-  public boolean isShowExpandMode() {
-    return showExpandMode;
+  public boolean isShowFullscreenMode() {
+    return showFullscreenMode;
   }
 
   @JsonIgnore
