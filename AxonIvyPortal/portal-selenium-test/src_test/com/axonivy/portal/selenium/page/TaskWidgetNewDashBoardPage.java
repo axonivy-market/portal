@@ -626,4 +626,12 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public boolean isAjaxErrorDialogDisplayed() {
     return $("div[id*='ajax-indicator:ajax-indicator-error-ajax-dialog']").exists();
   }
+  
+  public boolean isExpandButtonAppear() {
+    return getTaskWidgetHeader().$(".expand-link").isDisplayed();
+  }
+  
+  public boolean isWidgetInfomationIconAppear() {
+    return getTaskWidgetHeader().$(".widget__info-sidebar-link").isDisplayed();
+  }
 }
