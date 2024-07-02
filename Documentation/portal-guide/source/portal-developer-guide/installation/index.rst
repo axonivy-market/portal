@@ -145,6 +145,14 @@ In Engine
 
 #. Follow detailed migration notes for each version below.
 
+Migrate 10.0.21 To 10.0.22
+--------------------------
+
+- Since Portal is using a new session timeout approach, the ``Portal.ClientSideTimeout`` variable will be deprecated. 
+If you need to configure the session timeout, we highly recommend doing so in the ``web.xml`` file instead. 
+For more information, please refer to the :dev-url:`Engine Guide web.xml </doc/|version|/engine-guide/configuration/files/web-xml.html>`.
+
+
 Migrate 10.0.19 To 10.0.20
 --------------------------
 
