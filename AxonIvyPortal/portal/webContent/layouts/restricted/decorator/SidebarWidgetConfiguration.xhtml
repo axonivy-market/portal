@@ -93,17 +93,17 @@
       </div>
     </h:panelGroup>
     
-    <h:panelGroup id="expand-mode-group"
-      rendered="#{managedBean.displayExpandMode()}"
+    <h:panelGroup id="fullscreen-mode-group"
+      rendered="#{managedBean.displayFullscreenMode()}"
       styleClass="ui-g-6 u-padding-0 ui-fluid">
       <div class="ui-g-3">
-        <p:outputLabel for="expand-mode" styleClass="u-mar-right-5"
+        <p:outputLabel for="fullscreen-mode" styleClass="u-mar-right-5"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/fullscreenMode')}"/>
       </div>
       <div class="ui-g-2 ui-inputgroup">
-        <p:selectBooleanCheckbox id="expand-mode"
-          value="#{widget.showExpandMode}">
-          <p:ajax process="expand-mode-group" update="expand-mode-group"
+        <p:selectBooleanCheckbox id="fullscreen-mode"
+          value="#{widget.showFullscreenMode}">
+          <p:ajax process="fullscreen-mode-group" update="fullscreen-mode-group"
             partialSubmit="true" />
         </p:selectBooleanCheckbox>
       </div>

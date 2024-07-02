@@ -26,7 +26,7 @@ public enum DashboardWidgetType {
     return this == TASK || this == CASE; 
   }
   
-  public boolean canShowExpandMode() {
+  public boolean canShowFullscreenMode() {
     return this == TASK || this == CASE; 
   }
 }
