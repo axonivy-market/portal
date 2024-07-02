@@ -62,17 +62,49 @@
     <h:panelGroup id="quick-search-group"
       rendered="#{managedBean.canEnableQuickSearch()}"
       styleClass="ui-g-6 u-padding-0 ui-fluid">
-      <div class="ui-g-2">
+      <div class="ui-g-3">
         <p:outputLabel for="quick-search" styleClass="u-mar-right-5"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}" />
         <h:outputText id="quick-search-info" styleClass="si si-information-circle" />
         <p:tooltip for="quick-search-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearchInfo')}" />
       </div>
-      <div class="ui-g-9 ui-inputgroup">
+      <div class="ui-g-2 ui-inputgroup">
         <p:selectBooleanCheckbox id="quick-search"
           value="#{widget.enableQuickSearch}">
           <p:ajax process="quick-search-group" update="quick-search-group"
-            partialSubmit="true" global="false" />
+            partialSubmit="true" />
+        </p:selectBooleanCheckbox>
+      </div>
+    </h:panelGroup>
+    
+    <h:panelGroup id="widget-info-group"
+      rendered="#{managedBean.displayWidgetInfoOption()}"
+      styleClass="ui-g-6 u-padding-0 ui-fluid">
+      <div class="ui-g-3">
+        <p:outputLabel for="widget-info" styleClass="u-mar-right-5"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfoIcon')}"/>
+      </div>
+      <div class="ui-g-2 ui-inputgroup">
+        <p:selectBooleanCheckbox id="widget-info"
+          value="#{widget.showWidgetInfo}">
+          <p:ajax process="widget-info-group" update="widget-info-group"
+            partialSubmit="true" />
+        </p:selectBooleanCheckbox>
+      </div>
+    </h:panelGroup>
+    
+    <h:panelGroup id="expand-mode-group"
+      rendered="#{managedBean.displayExpandMode()}"
+      styleClass="ui-g-6 u-padding-0 ui-fluid">
+      <div class="ui-g-3">
+        <p:outputLabel for="expand-mode" styleClass="u-mar-right-5"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/fullscreenMode')}"/>
+      </div>
+      <div class="ui-g-2 ui-inputgroup">
+        <p:selectBooleanCheckbox id="expand-mode"
+          value="#{widget.showExpandMode}">
+          <p:ajax process="expand-mode-group" update="expand-mode-group"
+            partialSubmit="true" />
         </p:selectBooleanCheckbox>
       </div>
     </h:panelGroup>
