@@ -304,6 +304,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     getColumnManagementDialog().$("button[id$='column-management-save-btn']").click();
     $("div[id$=':column-management-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
     waitPreviewTableLoaded();
+  }
 
   public SelenideElement getWidgetInfoIconCheckbox() {
     return getConfigurationFilterContainer().$("span[id$='widget-info-icon-group']").shouldBe(Condition.appear,
