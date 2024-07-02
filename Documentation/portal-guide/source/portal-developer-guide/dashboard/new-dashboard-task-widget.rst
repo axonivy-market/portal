@@ -90,14 +90,10 @@ The basic JSON structure of a Task widget
 
    ``sortField``: default sort field for the widget
 
-   ``sortDescending``: sort direction of the default sort field. The default value is ``false`` (sort ascending)
+   ``sortDescending``: sort direction of the default sort field. The default value is "false" (sort ascending)
 
    ``rowsPerPage``: maximum number of tasks can be displayed on one page of the task widget. 
    The default value is 10 rows per page
-
-   ``showWidgetInfo``: visibility of the widget information. The default value is ``true``, set to ``false`` to hide the widget information
-
-   ``showExpandMode``: visibility of the fullscreen mode. The default value is ``true``, set to ``false`` to hide the expand mode
 
    ``columns``: column configurations for each of the columns in the widget. You
    can predefine filters, styles, visibility,... of columns and define custom
