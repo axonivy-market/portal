@@ -471,9 +471,9 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getExpandModeCheckbox() {
-    return getWidgetConfigurationForm().$("span[id$='expand-mode-group']").shouldBe(Condition.appear,
+    return getWidgetConfigurationForm().$("span[id$='fullscreen-mode-group']").shouldBe(Condition.appear,
         DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("div[id$='expand-mode']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+        .$("div[id$='fullscreen-mode']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public void clickOnExpandModeCheckbox() {
