@@ -1,5 +1,8 @@
 package com.axonivy.portal.components.dto;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import ch.ivyteam.ivy.security.IRole;
 
 public class RoleDTO {
@@ -21,6 +24,11 @@ public class RoleDTO {
     this.memberName = iRole.getMemberName();
     this.securityMemberId = iRole.getSecurityMemberId();
   }
+  
+  public static List<RoleDTO> toRoles(List<IRole> iroles) {
+    return iroles.stream().map(RoleDTO::new).collect(Collectors.toList());
+  }
+
   
   /**
    * @deprecated use {@link #getSecurityMemberId()}

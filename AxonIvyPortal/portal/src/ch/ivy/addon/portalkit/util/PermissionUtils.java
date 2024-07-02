@@ -138,9 +138,9 @@ public class PermissionUtils {
     int indexOfExternalId = memberName.indexOf(EXTERNAL_ID_PREFIX);
     return indexOfExternalId > -1 ? memberName.substring(0, indexOfExternalId) : memberName;
   }
-
+  
   public static boolean isSessionUserHasAdminRole() {
-    return Ivy.session().hasRole(ISecurityContext.current().roles().find(ADMIN_ROLE), false);
+    return doesSessionUserHaveRole(ADMIN_ROLE);
   }
 
   public static boolean doesSessionUserHaveRole(String roleName) {
