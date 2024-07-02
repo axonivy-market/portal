@@ -7,7 +7,7 @@ Define Process Widget
 ---------------------
 
 The Process widget of the Portal dashboard is a flexible Process list with three modes.
-Refer to (link to process widget of the dashboard) for details.
+Refer to :ref:`new-dashboard-process-list-widget` for details.
 
 The basic structure of the JSON of a process widget is as follows:
 
