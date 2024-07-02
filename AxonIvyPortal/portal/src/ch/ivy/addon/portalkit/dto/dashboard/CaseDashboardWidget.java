@@ -35,12 +35,14 @@ public class CaseDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
   private boolean enableQuickSearch;
-  private boolean showWidgetInfo = true;
-  private boolean showExpandMode = true;
+  private boolean showWidgetInfo;
+  private boolean showExpandMode;
 
   public CaseDashboardWidget() {
     dataModel = new DashboardCaseLazyDataModel();
     setColumns(new ArrayList<>());
+    setShowWidgetInfo(true);
+    setShowExpandMode(true);
   }
 
   @JsonIgnore
