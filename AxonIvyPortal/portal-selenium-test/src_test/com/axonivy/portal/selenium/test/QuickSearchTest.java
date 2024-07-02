@@ -332,4 +332,29 @@ public class QuickSearchTest extends BaseTest {
     caseWidget.countAllCases().shouldHave(size(1), DEFAULT_TIMEOUT);
     caseWidget.clearQuickSearchInput();
   }
+  
+  @Test
+  public void testCopyAndPasteKeywordOnQuickSearch() {
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForCaseWidgetLoaded();
+
+    taskWidget = new TaskWidgetNewDashBoardPage();
+    refreshPage();
+
+    taskWidget.clearQuickSearchInput();
+    taskWidget.setInputForQuickSearch("Task number 10");
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
+    
+    taskWidget.copyAndPasteOnQuickSearchInput();
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
+    
+    taskWidget.shiftAndArrowKeyOnQuickSearchInput();
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
+    
+  }
 }
