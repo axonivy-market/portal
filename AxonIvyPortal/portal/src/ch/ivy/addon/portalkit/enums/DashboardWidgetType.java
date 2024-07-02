@@ -21,4 +21,12 @@ public enum DashboardWidgetType {
   public boolean canEnableQuickSearch() {
     return this == TASK || this == CASE;
   }
+
+  public boolean canShowWidgetInfoOption() {
+    return this == TASK || this == CASE;
+  }
+
+  public boolean canShowExpandModeOption() {
+    return this == TASK || this == CASE;
+  }
 }

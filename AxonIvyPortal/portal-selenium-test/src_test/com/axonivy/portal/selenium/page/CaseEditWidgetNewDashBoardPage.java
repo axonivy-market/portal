@@ -300,4 +300,32 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     return field;
   }
 
+
+  public SelenideElement getWidgetInfoIconCheckbox() {
+    return getConfigurationFilterContainer().$("span[id$='widget-info-icon-group']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='widget-info']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[class*='ui-chkbox-box']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span");
+  }
+
+  public void clickOnWidgetInfoIconCheckbox() {
+    getWidgetInfoIconCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  private SelenideElement getConfigurationFilterContainer() {
+    return $("form#widget-configuration-form").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("div[id$='filter-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement getExpandModeCheckbox() {
+    return getConfigurationFilterContainer().$("span[id$='expand-mode-group']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='expand-option']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void clickOnExpandModeCheckbox() {
+    getExpandModeCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
 }

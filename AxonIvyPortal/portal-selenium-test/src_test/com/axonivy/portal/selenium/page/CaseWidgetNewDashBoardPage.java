@@ -58,6 +58,10 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     return 0;
   }
 
+  private SelenideElement getCaseWidgetHeader() {
+    return $$("div.table-widget-panel").filter(text(caseWidgetName)).first();
+  }
+
   private ElementsCollection getColumnsOfTableWidget() {
     return $(caseWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr td");
   }
@@ -256,10 +260,6 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     return getColumnsOfTableWidget().filter(Condition.cssClass("dashboard-cases__name"));
   }
   
-  private SelenideElement getCaseWidgetHeader() {
-    return $$("div.table-widget-panel").filter(text(caseWidgetName)).first();
-  }
-  
   public void clickOnButtonExpandCaseWidget() {
     getCaseWidgetHeader().$(".expand-link").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
@@ -268,5 +268,13 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public void clickOnButtonCollapseCaseWidget() {
     getCaseWidgetHeader().$(".collapse-link").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public boolean isWidgetInfomationIconAppear() {
+    return getCaseWidgetHeader().$(".widget__info-sidebar-link").isDisplayed();
+  }
+
+  public boolean isExpandButtonAppear() {
+    return getCaseWidgetHeader().$(".expand-link").isDisplayed();
   }
 }

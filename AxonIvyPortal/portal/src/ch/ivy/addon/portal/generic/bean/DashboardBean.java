@@ -454,6 +454,10 @@ public class DashboardBean implements Serializable {
     return widget.getType().canEnableQuickSearch();
   }
 
+  public boolean canShowWidgetInfoIcon(DashboardWidget widget) {
+    return widget.getType().canShowWidgetInfoOption();
+  }
+
   public void setSearchScope(DashboardWidget widget) {
     if (widget instanceof TaskDashboardWidget taskWidget) {
       this.searchScope = getSearchScopeFromWidget(taskWidget.getFilterableColumns());

@@ -35,10 +35,14 @@ public class CaseDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
   private boolean enableQuickSearch;
+  private boolean showWidgetInfo;
+  private boolean showExpandMode;
 
   public CaseDashboardWidget() {
     dataModel = new DashboardCaseLazyDataModel();
     setColumns(new ArrayList<>());
+    setShowWidgetInfo(true);
+    setShowExpandMode(true);
   }
 
   @JsonIgnore
@@ -171,6 +175,22 @@ public class CaseDashboardWidget extends DashboardWidget {
 
   public void setRowsPerPage(int rowsPerPage) {
     this.rowsPerPage = rowsPerPage;
+  }
+
+  public void setShowWidgetInfo(boolean showWidgetInfo) {
+    this.showWidgetInfo = showWidgetInfo;
+  }
+
+  public boolean isShowWidgetInfo() {
+    return this.showWidgetInfo;
+  }
+
+  public void setShowExpandMode(boolean showExpandMode) {
+    this.showExpandMode = showExpandMode;
+  }
+
+  public boolean isShowExpandMode() {
+    return showExpandMode;
   }
 
   @Override

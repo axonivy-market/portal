@@ -235,6 +235,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     embedInFrame: Empezar un proceso o tarea en modo iFrames
     emptySupportedLanguages: No se admiten idiomas adicionales
     globalVariableNote:
+      ApplicationName: El nombre por defecto de la aplicación que se mostrará en el título de la página.
       DefaultThemeMode: El modo de tema por defecto de la aplicación
       EnableSwitchThemeModeButton: Establecer en true para habilitar el botón de cambio de tema.
       RoleDirectChildrenLimit: 'El número establecido controla la cantidad de roles hijos directos que se muestra en la pestaña de gestión de roles. Número válido: 10, 50, 100'
@@ -296,7 +297,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showUserGuide: Activa la guía de usuario interactiva "primeros pasos" en el portal durante el primer acceso del usuario.
       statisticChartScalingInterval: Intervalo en segundos para realizar peticiones periódicas de escalado de gráficos estadísticos. Si el valor del intervalo es inferior a 10, se desactiva el escalado periódico de gráficos estadísticos.
       uploadDocumentWhiteListExtensionNote: 'Dejar libre, sie quiere permitir todos los anexos. Si quiere reducir los formatos permitidos, cree una lista separada por coma. Por ejemplo: pdf, txt, doc, docx.'
-      ApplicationName: El nombre por defecto de la aplicación que se mostrará en el título de la página.
     key: Llave
     link: Enlazar
     loading: CARGANDO
@@ -902,6 +902,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}_{1}.{2}
     field: Campo
     fieldIsAdded: El campo {0} está añadido
+    fullscreenMode: Modo de pantalla completa
     iconMessage:
       caseWidget:
         BEACH_PALM_SUNBED: Eres increíble - todos los casos están hechos. Recuéstate y disfruta.
@@ -961,6 +962,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: Este widget muestra la información relevante de la tarea según la configuración definida.
     taskWidgetConfiguration: Configuración del widget de tareas
     widgetInfo: Información del widget
+    widgetInfoIcon: Icono de información del widget
     widgetTitle: Título del widget
     widgetType: Tipo de widget
     yourCases: Sus casos
