@@ -144,6 +144,13 @@ In Engine
 
 #. Follow detailed migration notes for each version below.
 
+Migrate 11.3.2 To 12.0.0
+------------------------
+
+Custom field values for business details pages are migrated silently from the process link relative path 
+to its :dev-url:`IWebStartable ID </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>`. 
+You don't need to do anything, this is just for your information.
+
 Migrate 11.1.0 To 11.2.0
 ------------------------
 
