@@ -68,7 +68,7 @@
     <h:panelGroup id="widget-info-icon-group" rendered="#{managedBean.displayWidgetInfoOption()}"
       styleClass="ui-g-12 u-padding-0 ui-fluid">
       <div class="ui-g-6">
-        <p:outputLabel
+        <p:outputLabel for="widget-info"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfoIcon')}"
           styleClass="u-mar-right-5" />
       </div>
@@ -84,7 +84,7 @@
     <h:panelGroup id="expand-mode-group" rendered="#{managedBean.displayExtendOption()}"
       styleClass="ui-g-12 u-padding-0 ui-fluid">
       <div class="ui-g-6">
-        <p:outputLabel
+        <p:outputLabel for="expand-option"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/fullscreenMode')}"
           styleClass="u-mar-right-5" />
       </div>
