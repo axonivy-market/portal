@@ -17,15 +17,17 @@ async function callFetchApi(uri, content) {
 }
 
 async function callJQueryAjaxToIvy(uri, content) {
-  try {
-    const response = await $.ajax({
-      type: 'POST',
-      contentType: 'application/json',
-      url: uri,
-      crossDomain: true,
-      cache: false,
-      headers: { 'X-Requested-By': 'ivy' },
-      data: content
+try {
+    const response = await fetch(uri, {
+      method: 'POST',
+      async: true,
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Requested-By': 'ivy',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST',
+      },
+      body: content
     });
     return response;
   } catch (error) {
