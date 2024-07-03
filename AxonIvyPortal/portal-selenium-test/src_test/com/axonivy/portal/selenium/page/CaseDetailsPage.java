@@ -166,4 +166,10 @@ public class CaseDetailsPage extends TemplatePage {
   public SelenideElement getShareDialog() {
     return $("div[id$=':share-case-details-dialog']");
   }
+
+  public void clickShowOnlyOpenTasks() {
+
+    $("div[id$=':show-only-open-tasks'] .ui-chkbox-box")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
 }
