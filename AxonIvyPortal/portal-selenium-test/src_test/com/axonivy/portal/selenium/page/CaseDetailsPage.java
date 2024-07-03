@@ -1023,5 +1023,11 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementClickableThenClick(showTaskNoteLink);
     return taskName;
   }
+
+  public void clickShowOnlyOpenTasks() {
+
+    $("div[id$=':show-only-open-tasks'] .ui-chkbox-box")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
 }
 
