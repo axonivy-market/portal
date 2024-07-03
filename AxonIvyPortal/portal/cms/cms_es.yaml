@@ -937,7 +937,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       noMatchingProcess: No hay procesos que coincidan.
       noPermissionToSee: Usted no tiene el permiso necesario para iniciar este proceso.
       noProcessSelected: Seleccione un proceso
-    removeWidgetHeader: Eliminar el widget "{0}"
+    removeWidgetHeader: Eliminar este widget
     removeWidgetMessage: ¿Realmente quieres eliminarlo?
     reorder:
       dashboardType: Tipo de tablero
