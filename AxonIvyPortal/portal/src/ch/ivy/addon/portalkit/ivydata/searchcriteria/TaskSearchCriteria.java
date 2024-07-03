@@ -32,6 +32,7 @@ import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 public class TaskSearchCriteria {
 
   public final static List<TaskState> STANDARD_STATES = Arrays.asList(CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN);
+  public final static List<TaskState> OPEN_STATES = Arrays.asList(CREATED, SUSPENDED, RESUMED);
   public final static List<TaskState> ADVANCE_STATES = Arrays.asList(DONE, DELAYED, DESTROYED, TaskState.JOIN_FAILED, TaskState.FAILED, TaskState.WAITING_FOR_INTERMEDIATE_EVENT);
 
   public final static List<TaskBusinessState> STANDARD_BUSINESS_STATES = Arrays.asList(TaskBusinessState.OPEN,
@@ -59,6 +60,7 @@ public class TaskSearchCriteria {
   private boolean sortDescending;
   private boolean isSorted = true;
   private TaskQuery customTaskQuery;
+  private boolean isOnlyShowOpenTask;
 
   private TaskQuery finalTaskQuery;
 
@@ -314,6 +316,9 @@ public class TaskSearchCriteria {
    */
   public void extendStatesQueryByPermission(boolean isAdminPermission) {
     this.setAdminQuery(isAdminPermission);
+    if (isOnlyShowOpenTask) {
+      return;
+    }
     if (isAdminPermission) {
       List<TaskState> adminStateNotIncluded = ADVANCE_STATES.stream()
           .filter(item -> !includedStates.contains(item)).collect(Collectors.toList());
@@ -521,6 +526,14 @@ public class TaskSearchCriteria {
 
   public void setSearchScopeTaskFields(List<SearchScopeTaskField> searchScopeTaskFields) {
     this.searchScopeTaskFields = searchScopeTaskFields;
+  }
+
+  public boolean isOnlyShowOpenTask() {
+    return isOnlyShowOpenTask;
+  }
+
+  public void setOnlyShowOpenTask(boolean isOnlyShowOpenTask) {
+    this.isOnlyShowOpenTask = isOnlyShowOpenTask;
   }
 
 }
