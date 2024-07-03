@@ -69,6 +69,13 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
 
   @Override
   public List<ITask> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
+    if (isOnlyShowOpenTask()) {
+      criteria.setIncludedStates(
+          new ArrayList<>(TaskSearchCriteria.OPEN_STATES));
+    } else {
+      updateCriteria();
+    }
+
     SortMetaConverter sort = new SortMetaConverter(sortBy);
     criteria.setSortField(sort.toField());
     criteria.setSortDescending(sort.toOrder() == SortOrder.DESCENDING);

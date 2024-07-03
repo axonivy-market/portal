@@ -1023,6 +1023,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     QRCodeDescription: Para conectar su aplicación móvil Axon Ivy, escanee este código QR e introduzca sus credenciales en el interior de la aplicación.
     QRCodeDownloadDescription: Escanee el siguiente código con la cámara de su móvil o con una aplicación de lectura QR.
   noteHistory:
+    ShowOnlyOpenTasks: Mostrar sólo las tareas abiertas
     author: Autor
     caseExportedFileNamePrefix: Historia_Notas_del_caso_ {0}
     caseHistoriesTitle: Historial
