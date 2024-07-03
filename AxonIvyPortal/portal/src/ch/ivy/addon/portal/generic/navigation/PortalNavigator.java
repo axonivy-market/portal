@@ -4,6 +4,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -14,9 +15,12 @@ import com.axonivy.portal.components.util.ProcessStartUtils;
 
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.service.AiProcessService;
 import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.model.value.WebLink;
 import ch.ivyteam.ivy.request.IHttpRequest;
+import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
 
 public final class PortalNavigator extends BaseNavigator{
@@ -40,7 +44,6 @@ public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_NEW_DASHBOARD_CONFIGURATION = "Start Processes/PortalStart/PortalDashboardConfiguration.ivp";
   private static final String PORTAL_PROCESS_INFO = "Start Processes/PortalStart/ProcessInformation.ivp";
   private static final String PORTAL_DASHBOARD_DETAILS = "Start Processes/PortalStart/DashboardDetails.ivp";
-  private static final String PORTAL_CHATBOT = "Start Processes/PortalStart/PortalChatDashboard.ivp";
 
   public static final String PORTAL_DASHBOARD_START = "/DefaultDashboardPage.ivp";
   public static final String PORTAL_PROCESS_START = "/DefaultProcessStartListPage.ivp";
@@ -279,7 +282,10 @@ public final class PortalNavigator extends BaseNavigator{
     return buildUrlByKeyword(PORTAL_NOTIFICATION_FULLPAGE_START, PORTAL_NOTIFICATION_FULLPAGE, new HashMap<>());
   }
 
-  public static String buildChatbotUrl() {
-    return buildUrlByKeyword("PortalChatDashboard.ivp", PORTAL_CHATBOT, new HashMap<>());
+  public static String buildAssistantDashboardUrl() {
+    IProcessStart process = AiProcessService.getInstance()
+        .findAssistantDashboardProcess();
+    return Optional.ofNullable(process).map(IProcessStart::getLinkEmbedded)
+        .map(WebLink::getRelative).orElse("");
   }
 }
