@@ -49,7 +49,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.util.AssistantUtils;",
+            "import com.axonivy.portal.ai.utils.AssistantUtils;",
             "import org.apache.commons.collections4.CollectionUtils;",
             "import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;",
             "import org.apache.commons.lang3.StringUtils;",
@@ -127,7 +127,7 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.application.IApplication;",
-            "import com.axonivy.portal.components.util.AssistantUtils;",
+            "import com.axonivy.portal.ai.utils.AssistantUtils;",
             "import java.util.HashMap;",
             "import java.util.Map;",
             "",
@@ -155,7 +155,7 @@
         "output" : {
           "code" : [
             "import org.apache.commons.lang3.StringUtils;",
-            "import com.axonivy.portal.components.util.AssistantUtils;",
+            "import com.axonivy.portal.ai.utils.AssistantUtils;",
             "import com.axonivy.portal.util.AiToolUtils;",
             "",
             "in.validationError = AiToolUtils.validateTaskState(in.taskState);",
@@ -249,7 +249,7 @@
           "code" : [
             "import org.apache.commons.lang3.StringUtils;",
             "import com.axonivy.portal.util.AiToolUtils;",
-            "import com.axonivy.portal.components.util.AssistantUtils;",
+            "import com.axonivy.portal.ai.utils.AssistantUtils;",
             "",
             "in.validationError = AiToolUtils.validateCaseState(in.taskState);",
             "if(StringUtils.isNotBlank(in.validationError)) {",
@@ -294,7 +294,7 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.application.IApplication;",
-            "import com.axonivy.portal.components.util.AssistantUtils;",
+            "import com.axonivy.portal.ai.utils.AssistantUtils;",
             "import java.util.HashMap;",
             "import java.util.Map;",
             "",
