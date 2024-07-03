@@ -42,6 +42,13 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
     updateCriteria();
   }
   
+  public RelatedTaskLazyDataModel(ICase iCase, Boolean isShowOnlyOpen) {
+    super();
+    this.iCase = iCase;
+    this.setOnlyShowOpenTask(isShowOnlyOpen);
+    updateCriteria();
+  }
+
   @Override
   public List<String> getDefaultColumns() {
     return Arrays.asList(TaskSortField.PRIORITY.name(), TaskSortField.NAME.name(), TaskSortField.ACTIVATOR.name(), TaskSortField.ID.name(),
@@ -66,6 +73,13 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
 
   @Override
   public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+    if (isOnlyShowOpenTask()) {
+      criteria.setIncludedStates(
+          new ArrayList<>(TaskSearchCriteria.OPEN_STATES));
+    } else {
+      updateCriteria();
+    }
+
     criteria.setSortField(sortField);
     criteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
 
@@ -182,5 +196,13 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
       isAutoHideColumns = true;
     }
     setDisableSelectionCheckboxes(isAutoHideColumns);
+  }
+
+  public boolean isOnlyShowOpenTask() {
+    return this.criteria.isOnlyShowOpenTask();
+  }
+
+  public void setOnlyShowOpenTask(boolean isOnlyShowOpenTask) {
+    this.criteria.setOnlyShowOpenTask(isOnlyShowOpenTask);
   }
 }
