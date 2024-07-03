@@ -29,6 +29,8 @@ Below is a sample JSON definition of a task widget in the Portal dashboard
       },
       "sortField": "name",
       "rowsPerPage": 20,
+      "showWidgetInfo": true,
+      "showFullscreenMode": true,
       "columns": [
          {
             "field": "start"
@@ -95,9 +97,11 @@ The basic JSON structure of a Task widget
    ``rowsPerPage``: maximum number of tasks can be displayed on one page of the task widget. 
    The default value is 10 rows per page
 
-   ``showWidgetInfo``: visibility of the widget information. The default value is ``true``, set to ``false`` to hide the widget information
+   ``showWidgetInfo``: visibility of the widget information icon. The default
+   value is ``true``, set to ``false`` to hide the icon
 
-   ``showExpandMode``: visibility of the fullscreen mode. The default value is ``true``, set to ``false`` to hide the expand mode
+   ``showFullscreenMode``: visibility of the fullscreen mode icon. The default
+   value is ``true``, set to ``false`` to hide the icon
 
    ``columns``: column configurations for each of the columns in the widget. You
    can predefine filters, styles, visibility,... of columns and define custom

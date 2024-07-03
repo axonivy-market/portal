@@ -82,7 +82,7 @@ see and how.
 **Configuration panel**
 
 On the left side, define the widget name, enable quick search function,
-show/hide widget information icon and fullscreen mode, establish the main
+show or hide widget information and fullscreen mode icons, establish the main
 configuration for your widget and get a preview of it by clicking on the preview
 button.
 
@@ -158,7 +158,7 @@ see and how.
 **Configuration panel**
 
 On the left side, define the widget name, enable quick search function,
-show/hide widget information icon and fullscreen mode, establish the main
+show or hide widget information and fullscreen mode icons, establish the main
 configuration for your widget and get a preview of it by clicking on the preview
 button.
 
