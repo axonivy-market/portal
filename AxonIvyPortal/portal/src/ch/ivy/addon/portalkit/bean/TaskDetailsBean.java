@@ -204,4 +204,12 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
   private String getWorkerUser(ITask selectedTask) {
     return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(selectedTask.getWorkerUser(), selectedTask.getWorkerUser().getMemberName());
   }
+
+  public SortMeta getSortByCreationTimestampTime() {
+    return SortFieldUtil.buildSortMeta("creationTimestamp", true);
+  }
+
+  public SortMeta getSortByCreationTimestamp() {
+    return SortFieldUtil.buildSortMeta("creation.timestamp", true);
+  }
 }
