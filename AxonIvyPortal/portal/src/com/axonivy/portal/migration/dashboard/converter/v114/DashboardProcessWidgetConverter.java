@@ -10,7 +10,6 @@ import com.fasterxml.jackson.databind.node.TextNode;
 
 public class DashboardProcessWidgetConverter implements IJsonConverter {
 
-  private static final String WIDGETS_NODE = "widgets";
   private static final String TYPE = "type";
   private static final String PROCESS = "process";
   private static final String DISPLAY_MODE = "displayMode";
