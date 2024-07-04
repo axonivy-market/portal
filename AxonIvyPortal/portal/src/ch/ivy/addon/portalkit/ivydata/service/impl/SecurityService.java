@@ -42,7 +42,6 @@ public class SecurityService {
   
   public IvySecurityResultDTO findUsersWithRoles(String query, int startIndex,
       int count, List<String> fromRoles, List<String> excludedUsernames) {
-    Ivy.log().warn("findUsersWithRoles");
     return Sudo.get(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       result.setUsers(
