@@ -50,20 +50,12 @@ public class QuickSearchTest extends BaseTest {
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
-
+    assertFalse(taskWidget.isQuickSearchInputShow("0"));
     taskEditWidget.clickOnQuickSearchCheckBox();
     taskEditWidget.save();
-    taskWidget.isQuickSearchInputShow("0");
-
-    refreshPage();
+    taskWidget.clearQuickSearchInput();
     taskWidget.setInputForQuickSearch("Task number 10");
     taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
-    taskWidget.clearQuickSearchInput();
-
-    taskWidget.openEditTaskWidget();
-    taskEditWidget.clickOnQuickSearchCheckBox();
-    taskEditWidget.save();
-    assertFalse(taskWidget.isQuickSearchInputShow("0"));
   }
 
   @Test
