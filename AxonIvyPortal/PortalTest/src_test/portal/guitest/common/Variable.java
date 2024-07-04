@@ -37,7 +37,6 @@ public enum Variable {
   DEFAULT_PROCESS_IMAGE("Portal.Processes.DefaultImage"),
   DISPLAY_MESSAGE_AFTER_FINISH_TASK("Portal.DisplayMessageAfterFinishTask"),
   EXPRESS_END_PAGE("Portal.ExpressEndPage"),
-  CLIENT_SIDE_TIMEOUT("Portal.ClientSideTimeout"),
   EMBED_IN_FRAME("Portal.EmbedInFrame"),
   LOGGED_IN_USER_FORMAT("Portal.LoggedInUserFormat"),
   SHOW_GLOBAL_SEARCH("Portal.ShowGlobalSearch"),

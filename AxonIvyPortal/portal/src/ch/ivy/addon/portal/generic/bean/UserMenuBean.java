@@ -106,13 +106,6 @@ public class UserMenuBean implements Serializable {
   }
 
   public long getClientSideTimeout() {
-    String clientSideTimeoutInMinute = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT);
-    if (StringUtils.isNotBlank(clientSideTimeoutInMinute)) {
-      Long timeoutInMinute = Long.valueOf(clientSideTimeoutInMinute);
-      if (timeoutInMinute > 0) {
-        return timeoutInMinute * DateUtils.MILLIS_PER_MINUTE;
-      }
-    }
     return getDefaultClientSideTimeout();
   }
 
