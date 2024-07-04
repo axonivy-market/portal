@@ -4622,7 +4622,7 @@ _:-ms-fullscreen, :root .content-link-history {
   align-items: center;
 }
 
-.related-task-export-to-excel,
+.related-task-show-only-open-tasks,
 .related-case-export-to-excel {
   margin-left: auto;
 }

@@ -120,17 +120,18 @@ public class BackNavigationTest extends BaseTest {
   @Test
   public void testNavigateAfterFinishedTaskToCaseDetails() {
     redirectToRelativeLink(simplePaymentUrl);
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     caseWidgetPage = homePage.openCaseList();
 
     caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName(PAYMENT_CASE_NAME);
     assertEquals(PAYMENT_CASE_NAME, caseDetailsPage.getCaseName());
 
-    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(1);
+    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(0);
     assertEquals(PAYMENT_TASK_NAME, taskDetailsPage.getTaskName());
     caseDetailsPage = taskDetailsPage.backToCaseDetails();
     assertEquals(PAYMENT_CASE_NAME, caseDetailsPage.getCaseName());
 
-    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(1);
+    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(0);
     assertEquals(PAYMENT_TASK_NAME, taskDetailsPage.getTaskName());
 
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
@@ -149,12 +150,13 @@ public class BackNavigationTest extends BaseTest {
   @Test
   public void testNavigateAfterCancelTaskToCaseDetails() {
     redirectToRelativeLink(simplePaymentUrl);
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     caseWidgetPage = homePage.openCaseList();
 
     caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName(PAYMENT_CASE_NAME);
     assertEquals(PAYMENT_CASE_NAME, caseDetailsPage.getCaseName());
 
-    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(1);
+    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(0);
     assertEquals(PAYMENT_TASK_NAME, taskDetailsPage.getTaskName());
 
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
