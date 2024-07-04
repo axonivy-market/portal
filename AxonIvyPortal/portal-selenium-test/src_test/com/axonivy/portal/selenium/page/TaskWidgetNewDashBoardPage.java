@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.ComplexFilterHelper;
@@ -266,11 +267,6 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   private SelenideElement getCloseStateFilter() {
     return $("div[id$='states_panel']").shouldBe(appear, DEFAULT_TIMEOUT).$("a.ui-selectcheckboxmenu-close");
-  }
-
-  private SelenideElement getFilterCheckBox(String inputField) {
-    return $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$$("div.widget-filter-panel div.ui-g").filter(text(inputField)).first();
   }
 
   public void selectState(String state) {
@@ -626,4 +622,26 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public boolean isAjaxErrorDialogDisplayed() {
     return $("div[id*='ajax-indicator:ajax-indicator-error-ajax-dialog']").exists();
   }
+  
+  public void copyAndPasteOnQuickSearchInput() {
+    SelenideElement searchInput = getQuickSearchForm().$("input");
+    searchInput.click();
+    searchInput.sendKeys(Keys.HOME);
+    searchInput.sendKeys(Keys.LEFT_SHIFT, Keys.END);
+    searchInput.sendKeys(Keys.CONTROL, "C");
+    searchInput.sendKeys(Keys.DELETE);
+    searchInput.sendKeys(Keys.CONTROL, "V");
+    searchInput.sendKeys(Keys.ENTER);
+    waitForPageLoad();
+  }
+  
+  public void shiftAndArrowKeyOnQuickSearchInput() {
+    SelenideElement searchInput = getQuickSearchForm().$("input");
+    searchInput.click();
+    searchInput.sendKeys(Keys.HOME);
+    searchInput.sendKeys(Keys.LEFT_SHIFT, Keys.RIGHT, Keys.RIGHT, Keys.RIGHT, Keys.RIGHT);
+    searchInput.sendKeys(Keys.ENTER);
+    waitForPageLoad();
+  }
+  
 }
