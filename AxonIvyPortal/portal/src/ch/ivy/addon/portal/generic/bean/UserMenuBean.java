@@ -22,7 +22,6 @@ import com.google.gson.Gson;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
-import ch.ivy.addon.portalkit.bean.PermissionBean;
 import ch.ivy.addon.portalkit.bean.PortalExceptionBean;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.dto.UserMenu;
@@ -227,7 +226,7 @@ public class UserMenuBean implements Serializable {
   }
 
   public boolean hasAdminPermission() {
-    return new PermissionBean().hasAdminPermission();
+    return PermissionUtils.isSessionUserHasAdminRole();
   }
 
   public boolean isShowAdminSetting() {
