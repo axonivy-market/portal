@@ -27,12 +27,6 @@
       <version>9.1.0.0-SNAPSHOT</version>
       <type>iar</type>
     </dependency>
-    <dependency>
-      <groupId>portal.ai</groupId>
-      <artifactId>portal-ai</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
-      <type>iar</type>
-    </dependency>
   </dependencies>
   <repositories>
     <repository>

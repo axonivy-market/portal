@@ -49,7 +49,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.ai.utils.AssistantUtils;",
+            "import com.axonivy.portal.components.publicapi.AiAssistantAPI;",
             "import org.apache.commons.collections4.CollectionUtils;",
             "import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;",
             "import org.apache.commons.lang3.StringUtils;",
@@ -65,7 +65,7 @@
             "if (CollectionUtils.isNotEmpty(in.users)) {",
             "  in.result = BusinessEntityConverter.entityToJsonValue(in.users);",
             "} else {",
-            "  in.result = AssistantUtils.generateErrorResult(ivy.cms.co(\"/Labels/AI/Error/CannotFindUser\"));",
+            "  in.result = AiAssistantAPI.generateErrorResult(ivy.cms.co(\"/Labels/AI/Error/CannotFindUser\"));",
             "}"
           ]
         },
@@ -126,8 +126,8 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.publicapi.AiAssistantAPI;",
             "import ch.ivyteam.ivy.application.IApplication;",
-            "import com.axonivy.portal.ai.utils.AssistantUtils;",
             "import java.util.HashMap;",
             "import java.util.Map;",
             "",
@@ -137,7 +137,7 @@
             "params.put(\"taskState\", in.taskState);",
             "params.put(\"taskPriority\", in.taskPriority);",
             "",
-            "in.result = AssistantUtils.generateLinkToIvyProcess(IApplication.current().getName() + \"/portal/AI Tool Processes/PortalTools/findTasksTool.ivp\", params);"
+            "in.result = AiAssistantAPI.generateLinkToIvyProcess(IApplication.current().getName() + \"/portal/AI Tool Processes/PortalTools/findTasksTool.ivp\", params);"
           ]
         }
       },
@@ -154,8 +154,8 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.publicapi.AiAssistantAPI;",
             "import org.apache.commons.lang3.StringUtils;",
-            "import com.axonivy.portal.ai.utils.AssistantUtils;",
             "import com.axonivy.portal.util.AiToolUtils;",
             "",
             "in.validationError = AiToolUtils.validateTaskState(in.taskState);",
@@ -164,7 +164,7 @@
             "}",
             "",
             "if(StringUtils.isNotBlank(in.validationError)) {",
-            "  in.result = AssistantUtils.generateErrorResult(in.validationError);",
+            "  in.result = AiAssistantAPI.generateErrorResult(in.validationError);",
             "}"
           ]
         }
@@ -247,13 +247,13 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.publicapi.AiAssistantAPI;",
             "import org.apache.commons.lang3.StringUtils;",
             "import com.axonivy.portal.util.AiToolUtils;",
-            "import com.axonivy.portal.ai.utils.AssistantUtils;",
             "",
             "in.validationError = AiToolUtils.validateCaseState(in.taskState);",
             "if(StringUtils.isNotBlank(in.validationError)) {",
-            "  in.result = AssistantUtils.generateErrorResult(in.validationError);",
+            "  in.result = AiAssistantAPI.generateErrorResult(in.validationError);",
             "}"
           ]
         }
@@ -293,8 +293,8 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.publicapi.AiAssistantAPI;",
             "import ch.ivyteam.ivy.application.IApplication;",
-            "import com.axonivy.portal.ai.utils.AssistantUtils;",
             "import java.util.HashMap;",
             "import java.util.Map;",
             "",
@@ -303,7 +303,7 @@
             "params.put(\"caseDescription\", in.taskDescription);",
             "params.put(\"caseState\", in.taskState);",
             "",
-            "in.result = AssistantUtils.generateLinkToIvyProcess(IApplication.current().getName() + \"/portal/AI Tool Processes/PortalTools/findCasesTool.ivp\", params);"
+            "in.result = AiAssistantAPI.generateLinkToIvyProcess(IApplication.current().getName() + \"/portal/AI Tool Processes/PortalTools/findCasesTool.ivp\", params);"
           ]
         }
       },
