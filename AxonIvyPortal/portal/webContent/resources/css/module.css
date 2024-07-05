@@ -4619,9 +4619,10 @@ _:-ms-fullscreen, :root .content-link-history {
   position: relative;
   white-space: nowrap;
   align-items: center;
+  justify-content: flex-end;
 }
 
-.related-task-export-to-excel,
+.related-task-show-only-open-tasks,
 .related-case-export-to-excel {
   margin-left: auto;
 }
