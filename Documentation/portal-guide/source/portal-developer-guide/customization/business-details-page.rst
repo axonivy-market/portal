@@ -29,7 +29,7 @@ How to customize the business details page
    
    * Use the ``SetBusinessDetailsPage.p.json`` callable process, and pass the IWebStartable ID of the business details process as the 
      parameter. To make it more flexible, Portal supports passing the end part of IWebStartable ID as the parameter 
-     but you need to make sure only one process in the security context has IWebStartable ID ends with the parameter.
+     but you need to ensure that only one process in the security context has the IWebStartable ID that ends with the parameter.
 
       |set-business-details-page-callable-process|
 
