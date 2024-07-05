@@ -148,7 +148,7 @@ In Engine
 Migrate 10.0.21 To 10.0.22
 --------------------------
 
-- Since Portal is using new session timeout approach, the ``Portal.ClientSideTimeout`` variable will be removed. 
+- Since Portal is using new approach for session timeout warning, the ``Portal.ClientSideTimeout`` variable will be removed. 
   If you need to configure the session timeout, we highly recommend doing so in the ``web.xml`` file instead. 
   For more information, please refer to the :dev-url:`Engine Guide web.xml </doc/|version|/engine-guide/configuration/files/web-xml.html>`.
 
