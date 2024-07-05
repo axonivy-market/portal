@@ -50,9 +50,12 @@ public class DashboardMigrationUtils {
     JsonNode dashboardsNode = BusinessEntityConverter.getObjectMapper()
         .readTree(dashboardJson);
     dashboardsNode.forEach(dashboard -> {
-      dashboard.get(WIDGETS_NODE).forEach(widget -> {
-        migrateOldProcessWidgetTypes((ObjectNode) widget);
-      });
+      JsonNode widgetsNode = dashboard.get(WIDGETS_NODE);
+      if (widgetsNode != null) {
+        widgetsNode.forEach(widget -> {
+          migrateOldProcessWidgetTypes((ObjectNode) widget);
+        });
+      }
     });
 
     return dashboardsNode.toString();
