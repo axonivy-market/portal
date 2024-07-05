@@ -17,6 +17,7 @@ import com.codeborne.selenide.Condition;
 @IvyWebTest
 public class ExampleOverviewTest extends BaseTest {
 
+  private static final String CREATE_LEAVE_REQUEST_TITLE = "Create leave request - Axon Ivy";
   public final static String PORTAL_EXAMPLES_PROCESS_CHAIN =
       "portal-user-examples/17236DB1D3DA14C0/userExampleGuide.ivp";
   private ExampleOverviewPage exampleOverviewPage;
@@ -40,7 +41,7 @@ public class ExampleOverviewTest extends BaseTest {
     leaveRequestOverview.getStepName(2).shouldBe(Condition.text("Summary"));
 
     TaskTemplateIFramePage leaveRequest = leaveRequestOverview.start();
-    assertEquals("Create leave request", leaveRequest.getPageTitle());
+    assertEquals(CREATE_LEAVE_REQUEST_TITLE, leaveRequest.getPageTitle());
   }
 
   @Test

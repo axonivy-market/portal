@@ -45,7 +45,7 @@
         <c:set var="case" value="#{caseId ne null ? caseWidgetBean.findCase(caseId) : currentTask.getCase().getBusinessCase()}" />
         <c:set var="isSideStepDisabled" value="#{!abstractTaskTemplateBean.checkSideStepsEnabled(case)}" scope="request" />
         <ui:insert name="breadCrumb" />
-  
+        <h:inputHidden id="application-name-for-title" value="#{masterDataBean.applicationName}"/>
         <h:panelGroup id="header-container" layout="block" styleClass="task-header-container js-task-header-container #{processChainDirection eq 'VERTICAL' ? '' : 'task-template-title-horizontal-container'}">
           <h:panelGroup id="task-template-title" layout="block" rendered="#{currentTask ne null}"
             styleClass="task-template-title #{processChainDirection eq 'VERTICAL' ? 'task-name-vertical-process-chain js-task-name-vertical-process-chain' : ''} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
