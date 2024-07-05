@@ -25,7 +25,6 @@ var PortalSessionWarning = function() {
 
       $("#iFrame").on("load", function () {
         var iframeContent = $("#iFrame").get(0).contentDocument || $("#iFrame").get(0).contentWindow.document;
-        var iframeWindow = $("#iFrame").get(0).contentWindow;
 
         iframeContent.addEventListener("keypress", function (event) {
           updateInteractionStatusInIFrame();
@@ -138,7 +137,8 @@ var PortalSessionWarning = function() {
   showTimeoutDialog = function () {
     PF('timeout-warning-dialog').hide();
     PF('view-expired-exception-dialog').show();
-  }
+  },
+  
   getRemainingTimeInSeccond  = function () {
     return (sessionCounterUpdatedOn.getTime() - new Date().getTime()) / 1000;
   }
