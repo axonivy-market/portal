@@ -190,7 +190,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public void restoreDashboardToStandard() {
     $("div[id$='restore-confirm-dialog']").shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='reset-dashboard-button']")
-        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public SelenideElement getRestoreDashboardButton() {

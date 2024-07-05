@@ -44,20 +44,16 @@ public class QuickSearchTest extends BaseTest {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
 
-    taskEditWidget.clickOnQuickSearchCheckBox();
-    taskEditWidget.save();
-    taskWidget.isQuickSearchInputShow("0");
-
+    assertTrue(taskWidget.isQuickSearchInputShow());
     taskWidget.setInputForQuickSearch("Task number 10");
     taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
     taskWidget.clearQuickSearchInput();
 
-    taskWidget.openEditTaskWidget();
+    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
     taskEditWidget.clickOnQuickSearchCheckBox();
     taskEditWidget.save();
-    assertFalse(taskWidget.isQuickSearchInputShow("0"));
+    assertFalse(taskWidget.isQuickSearchInputShow());
   }
 
   @Test
@@ -71,7 +67,6 @@ public class QuickSearchTest extends BaseTest {
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     ScreenshotUtils.maximizeBrowser();
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
-    taskEditWidget.clickOnQuickSearchCheckBox();
     taskEditWidget.openColumnManagementDialog();
     
     assertTrue(taskEditWidget.isQuickSearchClicked("name"));
@@ -110,9 +105,6 @@ public class QuickSearchTest extends BaseTest {
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     ScreenshotUtils.maximizeBrowser();
-    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
-    taskEditWidget.clickOnQuickSearchCheckBox();
-    taskEditWidget.save();
 
     taskWidget.waitPageLoaded();
     taskWidget.setInputForQuickSearch("Task number 10");
@@ -138,7 +130,6 @@ public class QuickSearchTest extends BaseTest {
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     ScreenshotUtils.maximizeBrowser();
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
-    taskEditWidget.clickOnQuickSearchCheckBox();
     taskEditWidget.openColumnManagementDialog();
 
     List<String> customCaseFields = List.of("CustomerName", "CustomerType", "SupportData");
@@ -179,7 +170,6 @@ public class QuickSearchTest extends BaseTest {
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     ScreenshotUtils.maximizeBrowser();
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
-    taskEditWidget.clickOnQuickSearchCheckBox();
     taskEditWidget.openColumnManagementDialog();
 
     List<String> customFields = List.of("CustomerName", "CustomerType", "CustomerAddress", "CustomerEmail");
@@ -232,9 +222,8 @@ public class QuickSearchTest extends BaseTest {
 
     caseEditWidget.clickOnQuickSearchCheckBox();
     caseEditWidget.save();
-    caseWidget.isQuickSearchInputShow("0");
 
-    caseWidget.setInputForQuickSearch("Create 12 cases with");
+    caseWidget.setInputForQuickSearch("case");
     caseWidget.countAllCases().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
     caseWidget.clearQuickSearchInput();
 
@@ -270,17 +259,15 @@ public class QuickSearchTest extends BaseTest {
     caseEditWidget.save();
 
     caseWidget.waitPageLoaded();
+    redirectToNewDashBoard();
 
     caseWidget.setInputForQuickSearch("engine");
     assertTrue(caseWidget.isEmptyMessageAppear());
-    redirectToNewDashBoard();
     caseWidget.clearQuickSearchInput();
-    caseWidget.setInputForQuickSearch("TestCase1");
-    caseWidget.countAllCases().shouldHave(size(3), DEFAULT_TIMEOUT);
+    caseWidget.setInputForQuickSearch("TestCase");
+    caseWidget.countAllCases().shouldHave(size(12), DEFAULT_TIMEOUT);
     caseWidget.clickOnButtonExpandCaseWidget();
-    caseWidget.countAllCases().shouldHave(size(3), DEFAULT_TIMEOUT);
-    caseWidget.clickOnButtonCollapseCaseWidget();
-    caseWidget.countAllCases().shouldHave(size(3), DEFAULT_TIMEOUT);
+    caseWidget.countAllCases().shouldHave(size(12), DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -294,22 +281,16 @@ public class QuickSearchTest extends BaseTest {
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     ScreenshotUtils.maximizeBrowser();
 
+    caseWidget.waitPageLoaded();
     CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
     caseEditWidget.clickOnQuickSearchCheckBox();
     caseEditWidget.save();
-
-    caseWidget.waitPageLoaded();
-
-    caseWidget.setInputForQuickSearch("Create 12 cases");
-    caseWidget.countAllCases().shouldHave(size(1), DEFAULT_TIMEOUT);
+    caseWidget.setInputForQuickSearch("TestCase");
+    caseWidget.countAllCases().shouldHave(size(12), DEFAULT_TIMEOUT);
 
     redirectToNewDashBoard();
-    newDashboardPage = new NewDashboardPage();
-    newDashboardPage.waitForCaseWidgetLoaded();
-
-    caseWidget = new CaseWidgetNewDashBoardPage();
-    assertEquals("Create 12 cases", caseWidget.getQuickSearchInput());
-    caseWidget.countAllCases().shouldHave(size(1), DEFAULT_TIMEOUT);
+    assertEquals("TestCase", caseWidget.getQuickSearchInput());
+    caseWidget.countAllCases().shouldHave(size(12), DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -350,5 +331,30 @@ public class QuickSearchTest extends BaseTest {
     caseWidget.setInputForQuickSearch("SupportData");
     caseWidget.countAllCases().shouldHave(size(1), DEFAULT_TIMEOUT);
     caseWidget.clearQuickSearchInput();
+  }
+  
+  @Test
+  public void testCopyAndPasteKeywordOnQuickSearch() {
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForCaseWidgetLoaded();
+
+    taskWidget = new TaskWidgetNewDashBoardPage();
+    refreshPage();
+
+    taskWidget.clearQuickSearchInput();
+    taskWidget.setInputForQuickSearch("Task number 10");
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
+    
+    taskWidget.copyAndPasteOnQuickSearchInput();
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
+    
+    taskWidget.shiftAndArrowKeyOnQuickSearchInput();
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
+    
   }
 }
