@@ -1,5 +1,8 @@
 package com.axonivy.portal.components.dto;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 
@@ -13,6 +16,7 @@ public class UserDTO {
   private String email;
   private boolean isEnabled;
   private String securityMemberId;
+  private List<RoleDTO> roles;
   
   public UserDTO() {}
 
@@ -33,6 +37,12 @@ public class UserDTO {
     this.id = user.getId();
     this.isEnabled = user.isEnabled();
     this.securityMemberId = user.getSecurityMemberId();
+  }
+  
+  public static UserDTO newUserWithRoles(IUser iUser) {
+    UserDTO user = new UserDTO(iUser);
+    user.setRoles(iUser.getAllRoles().stream().map(RoleDTO::new).collect(Collectors.toList()));
+    return user;
   }
 
   public String getName() {
@@ -106,5 +116,13 @@ public class UserDTO {
 
   public void setSecurityMemberId(String securityMemberId) {
     this.securityMemberId = securityMemberId;
+  }
+  
+  public List<RoleDTO> getRoles() {
+    return roles;
+  }
+
+  public void setRoles(List<RoleDTO> roles) {
+    this.roles = roles;
   }
 }
