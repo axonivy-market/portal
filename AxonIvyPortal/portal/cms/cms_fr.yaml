@@ -21,6 +21,8 @@ ch.ivy.addon.portal.generic:
     resultFromAdhocProcess: Résultats du processus ad hoc
     startAdHoc: Démarrer ad-hoc
     startAdHocTooltip: Rediriger ce processus en ajoutant une étape ad hoc.
+  PortalName:
+    PortalName: Portal
 ch.ivy.addon.portalkit.ui.jsf:
   AbsenceAndDeputy:
     Messages:
@@ -199,6 +201,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationtype:
       thirdPartyApplication: Application tierce
     currentValue: Valeur actuelle
+    defaultApplicationName: Axon Ivy
     defaultValue: Valeur par défaut
     deleteAppConfirmation: Etes-vous sûr de vouloir supprimer cette application ?
     dialogclosinginformation:
@@ -210,8 +213,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     embedInFrame: Démarrer un processus/une tâche en mode IFrame
     emptySupportedLanguages: Il n'y a pas langue supplémentaire supportée
     globalVariableNote:
+      AppleStoreURL: Définir l'URL pour télécharger l'application mobile Axon Ivy sur l'Apple Store.
+      ApplicationName: Le nom de l'application par défaut qui sera affiché dans le titre de la page.
+      BaseQRCodeUrl: Définir l'URL de base du code QR à afficher.
       DefaultThemeMode: Le mode de thème par défaut de l'application
       EnableSwitchThemeModeButton: Défini à true pour activer le bouton de changement de thème.
+      GooglePlayURL: Définir l'URL pour télécharger l'application mobile Axon Ivy sur Google Play.
       RoleDirectChildrenLimit: 'Le nombre défini contrôle la quantité de rôles d''enfants directs qui est affichée dans l''onglet Gestion des rôles. Nombre valide : 10, 50, 100'
       RoleParentLimit: 'Le nombre défini contrôle la quantité de rôles parents qui est affichée lors du filtrage des rôles dans l''onglet Gestion des rôles. Nombre valide : 5, 10, 20'
       ShowLoginPageFooter: Pour activer/désactiver l'affichage du pied de page sur la page de connexion.
@@ -299,7 +306,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     usernameRequiredMsg: Veuillez rentrer le nom d'utilisateur
     value: Valeur
   applicationMenuHeader:
-    MobileApp: Connecter l'application mobile Axon Ivy
+    MobileApp: Télécharger et se connecter à l'application mobile Axon Ivy
     adminSettings: Administration
     changePassword: Modifier le mot de passe
   businessCaseState:
@@ -890,8 +897,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       noMatchingProcess: Aucun processus correspondant.
       noPermissionToSee: Vous n'avez pas l'autorisation requise pour lancer ce processus.
       noProcessSelected: Veuillez sélectionner un processus
-    removeWidgetHeader: Supprimer le widget "{0}"
-    removeWidgetHeaderWithoutWidgetName: Supprimer le widget
+    removeWidgetHeader: Supprimer ce widget
     removeWidgetMessage: Voulez-vous vraiment le supprimer ?
     reorder:
       dashboardType: Type de tableau de bord
@@ -1005,8 +1011,14 @@ ch.ivy.addon.portalkit.ui.jsf:
   logoutSetting:
     logout: Se déconnecter
   mobile:
+    AppleStore: Apple Store
+    AxonIvyMobile: Axon Ivy Mobile
+    DownloadMobileApp: 'Pour télécharger l''application Axon Ivy Mobile '
+    GooglePlay: Google Play
     MenuName: Application mobile Connect
+    Platform: 'Plate-forme :'
     QRCodeDescription: Pour vous connecter à l'application mobile Axon Ivy, scannez ce code QR et entrez vos informations d'identification dans l'application.
+    QRCodeDownloadDescription: Scannez le code ci-dessous à l'aide de votre appareil photo mobile ou d'une application de lecture QR.
   noteHistory:
     author: Auteur
     caseExportedFileNamePrefix: Histoire_de_notes_de_dossier_{0}

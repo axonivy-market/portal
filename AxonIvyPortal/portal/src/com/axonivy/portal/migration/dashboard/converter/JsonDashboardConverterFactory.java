@@ -24,9 +24,14 @@ public class JsonDashboardConverterFactory extends AbstractJsonConverterFactory 
       new com.axonivy.portal.migration.dashboard.converter.v113.DashboardCaseWidgetConverter(),
       new com.axonivy.portal.migration.dashboard.converter.v113.DashboardTaskWidgetConverter()
     );
+  
+    private static final List<IJsonConverter> LE114 = List.of(
+      new com.axonivy.portal.migration.dashboard.converter.v114.DashboardProcessWidgetConverter()
+    );
 
   static {
     CONVERTERS.addAll(LE112);
     CONVERTERS.addAll(LE113);
+    CONVERTERS.addAll(LE114);
   }
 }

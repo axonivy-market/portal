@@ -18,6 +18,7 @@ import com.axonivy.portal.selenium.page.TaskDetailsPage;
 @IvyWebTest
 public class ShowRelatedTasksTest extends BaseTest {
 
+  private static final String TASK_DETAILS_TITLE = "Task Details - Portal - Axon Ivy";
   private CaseDetailsPage detailsPage;
   private NewDashboardPage newDashboardPage;
 
@@ -74,7 +75,7 @@ public class ShowRelatedTasksTest extends BaseTest {
     detailsPage.waitPageLoaded();
     WaitHelper.waitForNavigation(() -> detailsPage.openTasksOfCasePage("Sick Leave Request"));
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
-    WaitHelper.assertTrueWithWait(() -> "Task Details".equals(taskDetailsPage.getPageTitle()));
+    WaitHelper.assertTrueWithWait(() -> TASK_DETAILS_TITLE.equals(taskDetailsPage.getPageTitle()));
   }
 
   @Test

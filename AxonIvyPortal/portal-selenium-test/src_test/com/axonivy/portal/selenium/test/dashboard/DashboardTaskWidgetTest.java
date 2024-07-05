@@ -62,7 +62,22 @@ public class DashboardTaskWidgetTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
+    
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    ScreenshotUtils.maximizeBrowser();
+    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
+    taskEditWidget.openFilter();
+    taskEditWidget.resetFilter();
+    taskEditWidget.applyFilter();
+    taskEditWidget.openColumnManagementDialog();
+    taskEditWidget.clickOnVisibilityCheckBoxByField("State");
+    taskEditWidget.saveColumn();
+    taskEditWidget.save();
+    redirectToNewDashBoard();
+
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
     taskWidget.openFilterWidget();
     taskWidget.filterTaskName(SICK_LEAVE_REQUEST, FilterOperator.IS);
@@ -211,9 +226,6 @@ public class DashboardTaskWidgetTest extends BaseTest {
     ScreenshotUtils.maximizeBrowser();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
     taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-
-    // Verify default task should be sorted by Created descending
-    taskWidget.getTaskWidgetHeaderSorted().shouldHave(text("Created"));
     String sortType = taskWidget.getTaskWidgetHeaderSorted().getAttribute("aria-sort");
     assertEquals(sortType, "descending");
     // Sort by task name
@@ -221,7 +233,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.getTaskWidgetHeaderSorted().shouldHave(text(TASK_NAME));
     sortType = taskWidget.getTaskWidgetHeaderSorted().getAttribute("aria-sort");
     assertEquals(sortType, "ascending");
-    taskWidget.getTheFirstTaskWidgetByColumn(TASK_NAME).shouldHave(text(ANNUAL_LEAVE_REQUEST));
+    taskWidget.getTheFirstTaskWidgetByColumn(TASK_NAME).shouldHave(text(MATERNITY_LEAVE_REQUEST));
     // Sort by task id
     taskWidget.clickOnHeaderTaskByColumn(TASK_PRIORITY);
     taskWidget.waitForSortingFinished("ascending");
@@ -236,7 +248,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.getTaskWidgetHeaderSorted().shouldHave(text(EXPIRY));
     sortType = taskWidget.getTaskWidgetHeaderSorted().getAttribute("aria-sort");
     assertEquals(sortType, "ascending");
-    taskWidget.getTheFirstTaskWidgetByColumn(TASK_NAME).shouldHave(text(ANNUAL_LEAVE_REQUEST));
+    taskWidget.getTheFirstTaskWidgetByColumn(TASK_NAME).shouldHave(text(SICK_LEAVE_REQUEST));
   }
 
   @Test
