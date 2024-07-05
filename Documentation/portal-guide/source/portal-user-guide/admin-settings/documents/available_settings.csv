@@ -14,9 +14,6 @@ Portal.Chat.MaxConnection,3,"| The set number controls the amount of tabs allowe
 | the chat will be disabled in inactive tabs. Allowed values are 1 to 5."
 Portal.Chat.ResponseTimeout,0,"| Chat response timeout in seconds, default value is 0 and means no timeout. If chat messages go through 
 | the reverse proxy Nginx, chat response timeout must be less than the Nginx timeout, e.g. less than 60 seconds."
-Portal.ClientSideTimeout,0,"| Client side timeout in minutes. Has to be more than 0 and less than the server side timeout (e.g. 25 minutes).
-| Default value is 0, which means that the default client side timeout is applied.
-| Default client side timeout is server side timeout minus 3 minutes."
 Portal.Dashboard.HideStatisticWidget,FALSE,"If true, hide Statistic widget from homepage and application menu."
 Portal.Dashboard.ShowUserFavorites,TRUE,"If true, display user favorites section of process list in Portal home."
 Portal.Dashboard.ShowUserGuide,TRUE,"If true, show interactive user guide ""first steps"" in the portal at first login."
