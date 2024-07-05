@@ -79,7 +79,14 @@ public enum GlobalVariable {
   GLOBAL_FOOTER_INFO("Portal.GlobalFooterInfo", GlobalVariableType.TEXT, "GlobalFooterInfo"),
   DEEPL_AUTH_KEY("Portal.DeepL.AuthKey", GlobalVariableType.PASSWORD, "", "deepLAuthKey"), ENABLE_DEEPL_TRANSLATION(
       "Portal.DeepL.Enable", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableDeepLTranslation"),
-  SHOW_QR_CODE("Portal.UserMenu.ShowQRCode", GlobalVariableType.SELECTION, Option.FALSE.toString(), "ShowQRCode");
+  SHOW_QR_CODE("Portal.UserMenu.ShowQRCode", GlobalVariableType.SELECTION, Option.FALSE.toString(),
+      "ShowQRCode"),
+  BASE_QR_CODE_URL("Portal.UserMenu.BaseQRCodeUrl", GlobalVariableType.TEXT, "BaseQRCodeUrl"), APPLE_STORE_URL(
+      "Portal.UserMenu.AppleStoreURL", GlobalVariableType.TEXT,
+      "AppleStoreURL"), GOOGLE_PLAY_URL("Portal.UserMenu.GooglePlayURL", GlobalVariableType.TEXT, "GooglePlayURL"),
+  APPLICATION_NAME("Portal.ApplicationName", GlobalVariableType.TEXT, "Axon Ivy", "ApplicationName");
+;
+
 
   private String key;
   private GlobalVariableType type;

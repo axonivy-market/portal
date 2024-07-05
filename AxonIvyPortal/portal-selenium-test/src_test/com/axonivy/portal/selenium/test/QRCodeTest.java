@@ -28,4 +28,13 @@ public class QRCodeTest extends BaseTest {
     qrCodePage.closeQRCodeDialog();
   }
 
+  @Test
+  public void testOpenPlatformQRCode() {
+    NewDashboardPage homePage = new NewDashboardPage();
+    QRCodePage qrCodePage = homePage.openQRCode();
+    qrCodePage.isQRCodeDisplayed();
+    qrCodePage.openApplePlatformDownload();
+    qrCodePage.isAppleQRCodeDisplayed();
+    qrCodePage.closeQRCodeDialog();
+  }
 }

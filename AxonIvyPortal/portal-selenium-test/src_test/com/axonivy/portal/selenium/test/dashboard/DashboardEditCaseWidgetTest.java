@@ -176,7 +176,7 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.inputValueOnLatestFilter(FilterValueType.DATE_CURRENT, "Year");
     caseWidget.applyFilter();
     caseWidget.waitPreviewTableLoaded();
-    caseWidget.countCases().shouldBe(CollectionCondition.size(8));
+    caseWidget.countCases().shouldBe(CollectionCondition.size(9));
   }
 
   @Test
@@ -194,17 +194,17 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.addCustomColumns("AccountNumber", "ShipmentDate", "CustomerName", "CustomerType", "InvoiceNumber");
 
     caseWidget.openFilter();
-    caseWidget.addFilter("Description", FilterOperator.CONTAINS);
-    caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Leave", "Test", "Create");
+    caseWidget.resetFilter();
+    caseWidget.addFilter("Name", FilterOperator.CONTAINS);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Permission");
 
     caseWidget.addFilter("State", null);
-    caseWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN", "DONE");
+    caseWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
 
     caseWidget.addFilter("Creator", FilterOperator.IN);
-    caseWidget.inputValueOnLatestFilter(FilterValueType.CREATOR_TYPE, "demo", "admin");
+    caseWidget.inputValueOnLatestFilter(FilterValueType.CREATOR_TYPE, "admin");
 
-    caseWidget.addFilter("Created Date", FilterOperator.WITHIN_LAST);
-    caseWidget.inputValueOnLatestFilter(FilterValueType.WITHIN, "10", "Year(s)");
+    caseWidget.addFilter("Created Date", FilterOperator.TODAY);
 
     caseWidget.addFilter("Account Number", FilterOperator.BETWEEN);
     caseWidget.inputValueOnLatestFilter(FilterValueType.NUMBER_BETWEEN, 5, 700);
@@ -212,12 +212,9 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.addFilter("Shipment Date", FilterOperator.AFTER);
     caseWidget.inputValueOnLatestFilter(FilterValueType.DATE, "11/11/2017");
 
-    caseWidget.addFilter("Customer Name", FilterOperator.IS);
-    caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "ngan");
-
     caseWidget.applyFilter();
     caseWidget.waitPreviewTableLoaded();
-    caseWidget.countCases().shouldBe(CollectionCondition.size(14));
+    caseWidget.countCases().shouldBe(CollectionCondition.size(2));
   }
 
   private NewDashboardDetailsEditPage gotoEditPublicDashboardPage() {

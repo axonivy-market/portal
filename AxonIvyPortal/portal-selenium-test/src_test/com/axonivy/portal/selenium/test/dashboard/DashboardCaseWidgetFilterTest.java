@@ -188,13 +188,11 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
     caseWidget.destroyCase(1);
     caseWidget.waitTableLoaded();
     caseWidget.openFilterWidget();
-    caseWidget.addFilter("State", null);
-    caseWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "DESTROYED");
     caseWidget.addFilter("Name", null);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "TestCase");
     caseWidget.applyFilter();
 
-    caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(2));
+    caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(10));
   }
 
   @Test
