@@ -276,7 +276,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement openColumnManagementDialog() {
-    $("div[id$='new-widget-configuration-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT)
+    $("div#new-widget-configuration-dialog").shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='new-widget-configuration-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("button[id$='manage-column']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return getColumnManagementDialog().shouldBe(appear, DEFAULT_TIMEOUT);
   }
@@ -346,7 +346,10 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void openFilter() {
-    $("button[id$=':show-filter']").shouldBe(getClickableCondition()).click();
+    $("div#new-widget-configuration-dialog").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    .$("button[id$=':show-filter']").shouldBe(getClickableCondition()).click();
+    $("div[id$='widget-filter-content']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    waitForElementDisplayed($("div[id$='widget-filter-content']"), isDisplayed());
   }
   
   public void addFilter(String columnName, FilterOperator operator) {
@@ -359,7 +362,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   
   public void applyFilter() {
     $(taskEditWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='preview-button']")
-        .shouldBe(getClickableCondition()).click();
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $(".filter-panel-header").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
   
@@ -419,6 +422,12 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
         .$("table tbody").$$("tr").filter(text(fieldName)).first().$("div[id$='quick-search-checkbox-panel']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     quickSeatchChkbox.click();
+  }
+  
+  public void clickOnVisibilityCheckBoxByField(String fieldName) {
+    var visibilityCheckBox = getColumnManagementDialog().$("div[id$='column-management-datatable']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("table tbody").$$("tr").filter(text(fieldName)).first().$("a[id$='toggle-visibility']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    visibilityCheckBox.click();
   }
 
   public void addCustomFieldByCustomTypeAndFieldName(String customType, String fieldName) {

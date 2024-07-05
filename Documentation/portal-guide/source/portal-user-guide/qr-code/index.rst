@@ -10,10 +10,28 @@ HowTo: Activate the QR code
 
 You can turn on QR code with this Portal setting: Portal.UserMenu.ShowQRCode.
 
+HowTo: Change base Portal URL for Axon Ivy Mobile application
+-------------------------------------------------------------
+
+You can change the base Portal URL with this Portal setting: Portal.UserMenu.BaseQRCodeUrl.
+
 See :ref:`Update Portal settings <update-portal-settings>`.
 
-HowTo: Connect to the Axon Ivy application using the QR code
-------------------------------------------------------------
+HowTo: Download the Axon Ivy Mobile application using the QR code
+-----------------------------------------------------------------
+
+#. Select the :guilabel:`Mobile app` user menu item.
+
+   |mobile-app-menu|
+
+#. Choose your mobile device platform (e.g., iOS for Apple devices, Google Play for Android)
+
+   |platform-qr-code|
+   
+#. Open your mobile device and scan this QR code to download.
+
+HowTo: Connect To the Axon Ivy Mobile application using the QR code
+-------------------------------------------------------------------
 
 #. Select the :guilabel:`Mobile app` user menu item.
 
@@ -27,3 +45,4 @@ HowTo: Connect to the Axon Ivy application using the QR code
 
 .. |qr-code| image:: ../../screenshots/mobile/qr-code.png
 .. |mobile-app-menu| image:: ../../screenshots/mobile/mobile-app-menu.png
+.. |platform-qr-code| image:: ../../screenshots/mobile/platform-qr-code.png

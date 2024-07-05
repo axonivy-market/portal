@@ -54,7 +54,7 @@ public class ServiceUtilities {
   @SuppressWarnings("unchecked")
   public static List<IRole> findAllRoles() {
     Optional<Object> cacheValueOpt =
-        IvyCacheService.newInstance().getSessionCacheValue(ISecurityContext.current().getName(), IvyCacheIdentifier.ROLES_IN_SECURITY_CONTEXT);
+        IvyCacheService.getInstance().getSessionCacheValue(ISecurityContext.current().getName(), IvyCacheIdentifier.ROLES_IN_SECURITY_CONTEXT);
     if (cacheValueOpt.isPresent()) {
       return (List<IRole>) cacheValueOpt.get();
     }
@@ -63,7 +63,7 @@ public class ServiceUtilities {
     roles.removeIf(role -> role.getProperty(AdditionalProperty.HIDE.toString()) != null);
     roles.sort((u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName()));
 
-    IvyCacheService.newInstance().setSessionCache(ISecurityContext.current().getName(), IvyCacheIdentifier.ROLES_IN_SECURITY_CONTEXT, roles);
+    IvyCacheService.getInstance().setSessionCache(ISecurityContext.current().getName(), IvyCacheIdentifier.ROLES_IN_SECURITY_CONTEXT, roles);
     return roles;
   }
   
