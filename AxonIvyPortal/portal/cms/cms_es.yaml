@@ -21,6 +21,8 @@ ch.ivy.addon.portal.generic:
     resultFromAdhocProcess: Resultados del proceso AdHoc
     startAdHoc: Comenzar Adhoc
     startAdHocTooltip: Redirija este proceso usando pasos ad-hoc
+  PortalName:
+    PortalName: Portal
 ch.ivy.addon.portalkit.ui.jsf:
   AbsenceAndDeputy:
     Messages:
@@ -199,6 +201,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationtype:
       thirdPartyApplication: Aplicación de terceros
     currentValue: Valor actual
+    defaultApplicationName: Axon Ivy
     defaultValue: Valor estándard
     deleteAppConfirmation: ¿Seguro que quiere eliminar esta aplicación?
     dialogclosinginformation:
@@ -211,6 +214,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     emptySupportedLanguages: No se admiten idiomas adicionales
     globalVariableNote:
       AppleStoreURL: Establezca la URL para descargar la aplicación móvil Axon Ivy en Apple Store.
+      ApplicationName: El nombre por defecto de la aplicación que se mostrará en el título de la página.
       BaseQRCodeUrl: Establezca la URL base para mostrar el código QR.
       DefaultThemeMode: El modo de tema por defecto de la aplicación
       EnableSwitchThemeModeButton: Establecer en true para habilitar el botón de cambio de tema.
@@ -896,8 +900,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       noMatchingProcess: No hay procesos que coincidan.
       noPermissionToSee: Usted no tiene el permiso necesario para iniciar este proceso.
       noProcessSelected: Seleccione un proceso
-    removeWidgetHeader: Eliminar el widget "{0}"
-    removeWidgetHeaderWithoutWidgetName: Quitar el widget
+    removeWidgetHeader: Eliminar este widget
     removeWidgetMessage: ¿Realmente quieres eliminarlo?
     reorder:
       dashboardType: Tipo de tablero
