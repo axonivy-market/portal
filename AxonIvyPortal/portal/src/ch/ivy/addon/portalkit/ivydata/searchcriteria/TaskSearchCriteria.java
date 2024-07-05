@@ -32,7 +32,6 @@ import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 public class TaskSearchCriteria {
 
   public final static List<TaskState> STANDARD_STATES = Arrays.asList(CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN);
-  public final static List<TaskState> OPEN_STATES = Arrays.asList(CREATED, SUSPENDED, RESUMED);
   public final static List<TaskState> ADVANCE_STATES = Arrays.asList(DONE, DELAYED, DESTROYED, TaskState.JOIN_FAILED, TaskState.FAILED, TaskState.WAITING_FOR_INTERMEDIATE_EVENT);
 
   public final static List<TaskBusinessState> STANDARD_BUSINESS_STATES = Arrays.asList(TaskBusinessState.OPEN,
