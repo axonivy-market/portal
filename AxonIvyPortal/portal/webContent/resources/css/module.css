@@ -6046,6 +6046,7 @@ a.dashboard-action-container label {
   position: relative;
   display: flex;
   justify-content: center;
+  max-width: 500px;
 }
 
 .external-link-preview-image-panel .external-link-preview-image-overlay-panel {
@@ -6055,6 +6056,7 @@ a.dashboard-action-container label {
   background: linear-gradient(180deg, rgba(27, 27, 27, 0) 21.68%,
     rgba(27, 27, 27, 1) 100%);
   display: none;
+  object-fit: contain;
 }
 
 .external-link-preview-image-panel:hover .external-link-preview-image-overlay-panel{
