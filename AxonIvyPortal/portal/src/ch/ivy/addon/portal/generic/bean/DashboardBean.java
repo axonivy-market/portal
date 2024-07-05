@@ -121,7 +121,7 @@ public class DashboardBean implements Serializable {
   }
 
   public String getSelectedDashboardName() {
-    if (selectedDashboardName.isBlank()) {
+    if (StringUtils.isBlank(selectedDashboardName)) {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/dashboard");
     }
     return selectedDashboardName;
