@@ -22,7 +22,6 @@ import com.google.gson.Gson;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
-import ch.ivy.addon.portalkit.bean.PermissionBean;
 import ch.ivy.addon.portalkit.bean.PortalExceptionBean;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.dto.UserMenu;
@@ -54,6 +53,12 @@ public class UserMenuBean implements Serializable {
   private String loggedInUser;
   private boolean isShowGlobalSearch;
   private boolean isShowQuickGlobalSearch;
+  private String baseUrlVariable;
+  private String appleStoreUrlVariable;
+  private String googlePlayUrlVariable;
+  protected static final String MOBILE_LOGO_IMAGE_CMS_URI = "/images/MenuQRCode/MobileAppLogo/MobileAppLogo";
+  protected static final String APPLE_STORE_IMAGE_CMS_URL = "/images/MenuQRCode/AppleStore/AppleStore";
+  protected static final String GOOGLE_PLAY_IMAGE_CMS_URL = "/images/MenuQRCode/GooglePlay/GooglePlay";
 
   public String getLoggedInUser() {
     return loggedInUser;
@@ -63,6 +68,9 @@ public class UserMenuBean implements Serializable {
   public void init() {
     if (!Ivy.session().isSessionUserUnknown()) {
       String format = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.LOGGED_IN_USER_FORMAT);
+      baseUrlVariable = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.BASE_QR_CODE_URL);
+      appleStoreUrlVariable = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.APPLE_STORE_URL);
+      googlePlayUrlVariable = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.GOOGLE_PLAY_URL);
       GlobalVariable.Option option = GlobalVariable.Option.valueOf(format);
       String fullName = Ivy.session().getSessionUser().getFullName();
       String userName = Ivy.session().getSessionUserName();
@@ -118,7 +126,7 @@ public class UserMenuBean implements Serializable {
   }
 
   public String getLogoutPage() {
-    IvyCacheService cacheService = IvyCacheService.newInstance();
+    IvyCacheService cacheService = IvyCacheService.getInstance();
     String logoutPageUrl = cacheService.getLogoutPageFromCache();
     if (StringUtils.isNotBlank(logoutPageUrl)){
       return logoutPageUrl;
@@ -218,7 +226,7 @@ public class UserMenuBean implements Serializable {
   }
 
   public boolean hasAdminPermission() {
-    return new PermissionBean().hasAdminPermission();
+    return PermissionUtils.isSessionUserHasAdminRole();
   }
 
   public boolean isShowAdminSetting() {
@@ -361,8 +369,13 @@ public class UserMenuBean implements Serializable {
   }
   
   public String getQRcodeData() {
+    String baseUrl = "";
     QRCodeData data = new QRCodeData();
-    String baseUrl = EngineUriResolver.instance().external().toString();
+    if (StringUtils.isNotBlank(baseUrlVariable)) {
+      baseUrl = baseUrlVariable;
+    } else {
+      baseUrl = EngineUriResolver.instance().external().toString();
+    }
     String securityContextName = ISecurityContext.current().getName();
     if (!ISecurityContext.DEFAULT.equals(securityContextName)) {
       baseUrl = baseUrl + "/" + securityContextName;
@@ -372,6 +385,26 @@ public class UserMenuBean implements Serializable {
     
     return new Gson().toJson(data);
   }
+
+  public String getAppleStoreDownloadLink() {
+    return appleStoreUrlVariable;
+  }
+
+  public String getGooglePlayDownloadLink() {
+    return googlePlayUrlVariable;
+  }
+  public String getMobileImageLink() {
+    return MOBILE_LOGO_IMAGE_CMS_URI;
+  }
+
+  public String getAppleStoreImageLink() {
+    return APPLE_STORE_IMAGE_CMS_URL;
+  }
+
+  public String getGooglePlayImageLink() {
+    return GOOGLE_PLAY_IMAGE_CMS_URL;
+  }
+
 
   public void navigateToChatBotOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {

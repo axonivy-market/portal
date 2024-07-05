@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.ComplexFilterHelper;
@@ -268,11 +269,6 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     return $("div[id$='states_panel']").shouldBe(appear, DEFAULT_TIMEOUT).$("a.ui-selectcheckboxmenu-close");
   }
 
-  private SelenideElement getFilterCheckBox(String inputField) {
-    return $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .$$("div.widget-filter-panel div.ui-g").filter(text(inputField)).first();
-  }
-
   public void selectState(String state) {
     getStateFilterCheckBox(state).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     getCloseStateFilter().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
@@ -493,10 +489,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
         .click();
   }
   
-  public boolean isQuickSearchInputShow(String widgetIndex) {
-    String taskWidgetIndex = String.format("div[id*='task-task_%s']", widgetIndex);
-    waitPageLoaded();
-    return $(taskWidgetIndex).$("form").$("input").exists();
+  public boolean isQuickSearchInputShow() {
+    return getTaskWidgetHeader().$("div.widget__header").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("div[class*='widget-header-quick-search']").isDisplayed();
   }
   
   public void setInputForQuickSearch(String input) {
@@ -505,7 +500,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
   
   private SelenideElement getQuickSearchForm() {
-    return $("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
+    return getTaskWidgetHeader().$("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
   }
   
   public void clearQuickSearchInput() {
@@ -627,4 +622,26 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public boolean isAjaxErrorDialogDisplayed() {
     return $("div[id*='ajax-indicator:ajax-indicator-error-ajax-dialog']").exists();
   }
+  
+  public void copyAndPasteOnQuickSearchInput() {
+    SelenideElement searchInput = getQuickSearchForm().$("input");
+    searchInput.click();
+    searchInput.sendKeys(Keys.HOME);
+    searchInput.sendKeys(Keys.LEFT_SHIFT, Keys.END);
+    searchInput.sendKeys(Keys.CONTROL, "C");
+    searchInput.sendKeys(Keys.DELETE);
+    searchInput.sendKeys(Keys.CONTROL, "V");
+    searchInput.sendKeys(Keys.ENTER);
+    waitForPageLoad();
+  }
+  
+  public void shiftAndArrowKeyOnQuickSearchInput() {
+    SelenideElement searchInput = getQuickSearchForm().$("input");
+    searchInput.click();
+    searchInput.sendKeys(Keys.HOME);
+    searchInput.sendKeys(Keys.LEFT_SHIFT, Keys.RIGHT, Keys.RIGHT, Keys.RIGHT, Keys.RIGHT);
+    searchInput.sendKeys(Keys.ENTER);
+    waitForPageLoad();
+  }
+  
 }
