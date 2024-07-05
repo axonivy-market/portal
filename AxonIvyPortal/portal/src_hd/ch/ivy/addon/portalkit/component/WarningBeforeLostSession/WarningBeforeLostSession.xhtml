@@ -5,7 +5,7 @@
   xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="clientSideTimeOut" />
+  <cc:attribute name="serverSideTimeout" />
   <cc:attribute name="task" />
 </cc:interface>
 <cc:implementation>
@@ -50,7 +50,7 @@
   </h:form>
   <script type="text/javascript">
       $(function() { 
-        PortalSessionWarning.init(#{cc.attrs.clientSideTimeOut});
+        PortalSessionWarning.init(#{cc.attrs.serverSideTimeout});
       });
     </script>
 

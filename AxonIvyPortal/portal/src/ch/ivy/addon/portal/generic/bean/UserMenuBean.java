@@ -105,10 +105,6 @@ public class UserMenuBean implements Serializable {
     return isShowGlobalSearch;
   }
 
-  public long getClientSideTimeout() {
-    return getDefaultClientSideTimeout();
-  }
-
   public String getLogoutPage() {
     IvyCacheService cacheService = IvyCacheService.newInstance();
     String logoutPageUrl = cacheService.getLogoutPageFromCache();
@@ -273,7 +269,7 @@ public class UserMenuBean implements Serializable {
     return PortalNavigator.buildPortalManagementUrl();
   }
 
-  private long getDefaultClientSideTimeout() {
+  public long getServerSideTimeout() {
     ExternalContext externalContext = getExternalContext();
     long serverSideTimeOutInMillisecond = externalContext.getSessionMaxInactiveInterval() * DateUtils.MILLIS_PER_SECOND;
     return serverSideTimeOutInMillisecond - TIME_BEFORE_LOST_SESSION;

@@ -7,8 +7,8 @@ var PortalSessionWarning = function() {
   isInteractedTaskTemplate = false,
   intervalCheckSessionTimeout;
 
-  init = function(clientSideTimeOut) {
-    timeout = clientSideTimeOut;
+  init = function(serverSideTimeout) {
+    timeout = serverSideTimeout;
     window.onload = resetCounterAndTimeout;
     document.onkeydown = updateInteractedTaskTemplate;
     document.onclick = updateInteractedTaskTemplate;
