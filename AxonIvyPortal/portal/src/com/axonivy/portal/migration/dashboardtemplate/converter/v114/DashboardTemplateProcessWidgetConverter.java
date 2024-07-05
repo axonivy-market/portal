@@ -49,9 +49,12 @@ public class DashboardTemplateProcessWidgetConverter implements IJsonConverter {
   @Override
   public void convert(JsonNode jsonNode) {
     jsonNode.forEach(dashboard -> {
-      dashboard.get(WIDGETS_NODE).forEach(widget -> {
-        migrateOldProcessWidgetTypes((ObjectNode) widget);
-      });
+      JsonNode widgetsNode = dashboard.get(WIDGETS_NODE);
+      if (widgetsNode != null) {
+        widgetsNode.forEach(widget -> {
+          migrateOldProcessWidgetTypes((ObjectNode) widget);
+        });
+      }
     });
   }
 
