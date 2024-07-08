@@ -247,8 +247,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       behaviourWhenClickingOnLineInTaskList: Zum Umschalten des Verhaltens (Ausführen der Aufgabe oder Aufrufen der Aufgabendetails) beim Klicken auf eine Zeile in der Aufgabenliste, im Aufgaben-Widget des Dashboards und bei verwandten Aufgaben auf der Seite mit den Vorgangsdetails.
       chatMaxConnection: 'Die gesetzte Nummer steuert die Anzahl der erlaubten Tabs mit aktiven Chat. Falls mehr Tabs geöffnet werden, wird der Chat in inaktive Tabs deaktiviert. Erlaubte Werte zw. 1-5 '
       chatResponseTimeout: Chat-Antwort-Time-out in Sekunden, Standardwert ist 0 und bedeutet kein Time-out. Wenn Chat-Nachrichten durch den Reverse-Proxy Nginx gehen, muss das Chat-Antwort-Time-out kleiner sein als das Nginx-Time-out, z. B. kleiner als 60 Sekunden.
-      clientSideTimeoutNote: Cientseitiges Time-out in Minuten, muss größer als 0 und kleiner als das serverseitige Time-out sein (z. B. 25 Sekunden). Der Standardwert ist 0, d. h., das standardmäßige clientseitige Time-out wird angewendet. Das standardmäßige clientseitige Time-out ist das serverseitige
-        Time-out minus 3 Minuten.
       dateFilterWithTime: Setzen Sie diesen Wert auf true, um die Datumsfilterung mit Uhrzeit zu aktivieren. Diese Einstellung wirkt sich auf die Aufgabenliste, die Fallliste und die Statistik aus.
       defaultHomepage: Zum Einstellen der Standard-Homepage, zu der umgeleitet wird, wenn Sie auf das Home-Symbol oder das Logo klicken. Diese Einstellung gilt auch für die Endeseite nach Beendigung einer Aufgabe.
       defaultProcessImage: Die Standardeinstellung des Standardbildes, das in der Bildprozessliste angezeigt wird.
@@ -1471,8 +1469,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     myProfileTitle: Mein Profil
     saveUserSettingsSuccessfully: Benutzereinstellungen erfolgreich gespeichert.
   warningBeforeLostSession:
-    extend: Erweitern
-    warningMessage: Ihre Sitzung läuft in 1 Minute ab. Möchten Sie diese verlängern?
+    refreshSession: Sitzung aktualisieren
+    warningMessage: Ihre Sitzung kann bald ablaufen. Bitte aktualisieren Sie Ihre Sitzung, um die Anwendung weiter zu nutzen.
 Dialogs:
   Cases:
     EditWorkflow:

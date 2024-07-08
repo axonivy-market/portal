@@ -248,8 +248,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       chatMaxConnection: 'El número establecido controla la cantidad de pestañas permitidas con el chat activo. Si se abren más pestañas, el chat se desactivará en las pestañas inactivas. Valores permitidos entre 1-5 '
       chatResponseTimeout: Tiempo de respuesta del chat en segundos, el valor por defecto es 0 y significa que no hay tiempo de espera. Si los mensajes de chat pasan por el proxy inverso Nginx, el tiempo de espera de la respuesta del chat debe ser menor que el tiempo de espera de Nginx, por ejemplo, menos
         de 60 segundos.
-      clientSideTimeoutNote: Tiempo de espera del lado del cliente en minutos, debe ser mayor que 0 y menor que el tiempo de espera del lado del servidor (por ejemplo, 25 segundos). El valor por defecto es 0, lo que significa que se aplica el tiempo de espera por defecto del lado del cliente. El tiempo
-        de espera por defecto del lado del cliente es el tiempo de espera del lado del servidor menos 3 minutos.
       dateFilterWithTime: Cambiar a "True" para activar filtros de fecha con tiempo. Esta configuración afectará la lista de tareas, de casos y estadísticas.
       defaultHomepage: Para establecer la página de inicio estándar a la que se redirigirá al hacer clic en el icono de inicio o en el logotipo. Esta configuración también se aplica a la página final después de terminar una tarea.
       defaultProcessImage: La configuración estándar de la imagen por defecto que se mostrará en la lista de procesos de imagen.
@@ -1473,8 +1471,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     myProfileTitle: Mi perfil
     saveUserSettingsSuccessfully: Propiedades de usuario guardadas con éxito.
   warningBeforeLostSession:
-    extend: Ampliar
-    warningMessage: Su sesión caducará en 1 minuto. ¿Le gustaría extenderla?
+    refreshSession: Sesión de actualización
+    warningMessage: Su sesión puede expirar pronto. Actualice su sesión para seguir utilizando la aplicación.
 Dialogs:
   Cases:
     EditWorkflow:

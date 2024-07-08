@@ -106,17 +106,6 @@ public class UserMenuBean implements Serializable {
     return isShowGlobalSearch;
   }
 
-  public long getClientSideTimeout() {
-    String clientSideTimeoutInMinute = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT);
-    if (StringUtils.isNotBlank(clientSideTimeoutInMinute)) {
-      Long timeoutInMinute = Long.valueOf(clientSideTimeoutInMinute);
-      if (timeoutInMinute > 0) {
-        return timeoutInMinute * DateUtils.MILLIS_PER_MINUTE;
-      }
-    }
-    return getDefaultClientSideTimeout();
-  }
-
   public String getLogoutPage() {
     IvyCacheService cacheService = IvyCacheService.newInstance();
     String logoutPageUrl = cacheService.getLogoutPageFromCache();
@@ -281,7 +270,7 @@ public class UserMenuBean implements Serializable {
     return PortalNavigator.buildPortalManagementUrl();
   }
 
-  private long getDefaultClientSideTimeout() {
+  public long getServerSideTimeout() {
     ExternalContext externalContext = getExternalContext();
     long serverSideTimeOutInMillisecond = externalContext.getSessionMaxInactiveInterval() * DateUtils.MILLIS_PER_SECOND;
     return serverSideTimeOutInMillisecond - TIME_BEFORE_LOST_SESSION;
