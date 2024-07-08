@@ -1461,8 +1461,8 @@ ch.ivy.addon.portalkit.ui.jsf:
   userProfile:
     myProfileTitle: Mon profil
   warningBeforeLostSession:
-    extend: Étendre le site
-    warningMessage: Votre session expirera dans 1 minute. Voulez-vous prolonger?
+    refreshSession: Session de rafraîchissement
+    warningMessage: Votre session pourrait bientôt expirer. Veuillez actualiser votre session pour continuer à utiliser l'application.
 Dialogs:
   Cases:
     EditWorkflow:

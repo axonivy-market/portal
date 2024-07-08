@@ -1465,8 +1465,8 @@ ch.ivy.addon.portalkit.ui.jsf:
   userProfile:
     myProfileTitle: Mein Profil
   warningBeforeLostSession:
-    extend: Erweitern
-    warningMessage: Ihre Sitzung läuft in 1 Minute ab. Möchten Sie diese verlängern?
+    refreshSession: Sitzung aktualisieren
+    warningMessage: Ihre Sitzung kann bald ablaufen. Bitte aktualisieren Sie Ihre Sitzung, um die Anwendung weiter zu nutzen.
 Dialogs:
   Cases:
     EditWorkflow:
