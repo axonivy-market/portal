@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
 import static com.codeborne.selenide.CollectionCondition.size;
-
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;

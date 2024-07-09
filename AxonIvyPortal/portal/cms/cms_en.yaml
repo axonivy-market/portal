@@ -1025,6 +1025,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     QRCodeDescription: To connect your Axon Ivy Mobile App, please scan this QR Code and enter your credentials in the inside the app.
     QRCodeDownloadDescription: Scan the code below with your mobile camera or with a QR reader app.
   noteHistory:
+    ShowOnlyOpenTasks: Show only open tasks
     author: Author
     caseExportedFileNamePrefix: Note_history_of_case_{0}
     caseHistoriesTitle: Histories
