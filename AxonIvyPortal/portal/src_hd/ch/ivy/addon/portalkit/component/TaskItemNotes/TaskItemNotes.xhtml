@@ -47,7 +47,8 @@
         paginatorPosition="bottom" rendered="#{not empty data.notes}"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" paginatorAlwaysVisible="false"
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-        currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}" lazy="false">
+        currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}" lazy="false"
+        sortBy="#{taskDetailsBean.sortByCreationTimestampTime}">
         <p:ajax event="page" oncomplete="ResponsiveTable.init(':task-note-table')"/>
         <p:ajax event="sort" oncomplete="ResponsiveTable.init(':task-note-table')"/>
 
@@ -66,7 +67,8 @@
           <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName securityMemberName="#{note.writterName}" securityMember="#{note.writter}" />
         </p:column>
 
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" sortBy="#{note.creationTimestamp}"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}"
+          sortBy="#{note.creationTimestamp}" field="creationTimestamp" filterable="false"
           styleClass="task-history-date js-column-priority-3" width="150px">
           <h:outputText value="#{note.creationTimestamp.time}">
             <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>

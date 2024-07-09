@@ -783,6 +783,13 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   white-space: pre-wrap;
 }
 
+.case-history-component .case-details-note-add {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
 @media screen and (max-width: 40em) {
   .case-detail-body .card.case-history-component,
   .case-detail-body .card.case-related-task-component,
@@ -924,13 +931,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   .case-detail-body .owner-column,
   .case-detail-body .expiry-column,
   .case-detail-body .category-column,
-  .case-detail-body .related-case-column-config,
   .case-detail-body .case-details-related-task-table .related-task-description-column,
   .case-detail-body .case-details-related-task-table .related-task-responsible-column,
   .case-detail-body .case-details-related-task-table .related-task-created-column,
   .case-detail-body .case-details-related-task-table .related-task-expiry-column,
-  .case-detail-body .case-details-related-task-table .related-task-complete-on-column,
-  .case-detail-body .related-task-column-config {
+  .case-detail-body .case-details-related-task-table .related-task-complete-on-column {
     display: none;
   }
 
@@ -4613,9 +4618,11 @@ _:-ms-fullscreen, :root .content-link-history {
   padding: 0 !important;
   position: relative;
   white-space: nowrap;
+  align-items: center;
+  justify-content: flex-end;
 }
 
-.related-task-export-to-excel,
+.related-task-show-only-open-tasks,
 .related-case-export-to-excel {
   margin-left: auto;
 }
