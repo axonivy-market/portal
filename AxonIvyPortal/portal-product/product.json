@@ -1,0 +1,30 @@
+{
+    "installers": [
+        {
+            "id": "maven-import",
+            "data": {
+                "projects": [
+                    {
+                        "groupId": "com.axonivy.portal",
+                        "artifactId": "portal-components-examples",
+                        "version": "${version}",
+                        "type": "iar"
+                    },
+                    {
+                        "groupId": "ch.ivyteam.ivy.project.portal",
+                        "artifactId": "portalExamples",
+                        "version": "${version}",
+                        "type": "iar"
+                    }
+                ],
+                "repositories": [
+                    {
+                        "id": "maven.axonivy.com",
+                        "url": "https://maven.axonivy.com"
+                    }
+                ]
+            }
+        }
+    ],
+    "name": "Axon Ivy Portal"
+}
