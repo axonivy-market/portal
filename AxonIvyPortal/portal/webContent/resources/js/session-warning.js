@@ -47,9 +47,8 @@ var PortalSessionWarning = function() {
   },
 
   timerDecrement = function() {
-
     if (getRemainingTimeInSeccond() < 0 && isEndSession == false) {
-      stopAvailableChartPolling();
+      clearChartInterval();
       isEndSession = true;
       return;
     }
@@ -115,28 +114,14 @@ var PortalSessionWarning = function() {
   backToTab = function() {
     keepPortalAlive();
   },
-  
-  stopAvailableChartPolling = function () {
-    let polls = $("div[id*=':chart_model_dashboard_poll-']");
-    stopChartPolling(polls);
-    polls = $("div[id$=':task-polling']");
-    stopChartPolling(polls);
-    polls = $("div[id$=':chart_model_poll']");
-    stopChartPolling(polls);
-  }
-  
-  stopChartPolling = function (polls) {
-    for (const poll of polls) {
-      let widgetVar = getWidgetVarById(poll.id);
-      if(widgetVar) {
-        widgetVar.stop();
-      }
-    }
-  },
 
   showTimeoutDialog = function () {
     PF('timeout-warning-dialog').hide();
     PF('view-expired-exception-dialog').show();
+    isEndSession = true;
+    try {
+      clearChartInterval();
+    } catch (ignore) {}
   },
   
   getRemainingTimeInSeccond  = function () {
@@ -147,6 +132,7 @@ var PortalSessionWarning = function() {
     init: init,
     resetCounterAndTimeout: resetCounterAndTimeout,
     hideWarningDialog: hideWarningDialog,
-    keepPortalAlive: keepPortalAlive
+    keepPortalAlive: keepPortalAlive,
+    showTimeoutDialog: showTimeoutDialog
   };
 }();
