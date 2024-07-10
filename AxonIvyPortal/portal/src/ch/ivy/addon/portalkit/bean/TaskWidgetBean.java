@@ -16,6 +16,7 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.enums.GlobalSearchScopeCategory;
 import com.axonivy.portal.enums.SearchScopeTaskField;
 
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
@@ -206,5 +207,19 @@ public class TaskWidgetBean implements Serializable {
       result = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskView/GlobalSearchText", Arrays.asList(keyword, searchScopeTaskFieldsString));
     }
     return result;
+  }
+  
+  public boolean isShowGlobalSearchScope() {
+    String globalSearchScopeCategoriesString = Ivy.var().get(GlobalVariable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey());
+    if (StringUtils.isNotBlank(globalSearchScopeCategoriesString)) {
+      String[] fieldArray = globalSearchScopeCategoriesString.split(",");
+      for (String field : fieldArray) {
+        GlobalSearchScopeCategory fieldEnum = GlobalSearchScopeCategory.valueOf(field.toUpperCase());
+        if (fieldEnum != null && fieldEnum.equals(GlobalSearchScopeCategory.TASKS)) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 }

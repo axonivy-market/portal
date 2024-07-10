@@ -218,6 +218,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       BaseQRCodeUrl: Legen Sie die Basis-URL für den anzuzeigenden QR-Code fest.
       DefaultThemeMode: Der Standardthemenmodus der Anwendung
       EnableSwitchThemeModeButton: Setzen Sie diesen Wert auf true, um die Schaltfläche "Thema wechseln" zu aktivieren.
+      GlobalSearchScopeCategoriesNote: Festlegung der Typen, nach denen bei der globalen Suche gesucht werden soll
       GooglePlayURL: Legen Sie die URL fest, um die Axon Ivy-Mobilanwendung auf Google Play herunterzuladen.
       RoleDirectChildrenLimit: 'Die eingestellte Zahl steuert die Anzahl der direkten untergeordneten Rollen, die auf der Registerkarte Rollenverwaltung angezeigt werden. Gültige Zahl: 10, 50, 100'
       RoleParentLimit: 'Die eingestellte Zahl steuert die Anzahl der übergeordneten Rollen, die beim Filtern von Rollen auf der Registerkarte Rollenverwaltung angezeigt werden. Gültige Zahl: 5, 10, 20'
@@ -1756,6 +1757,10 @@ Labels:
   AppendTheTask: Aufgabe anhängen
   CreateNewDashboard: Neues Dashboard erstellen
   Enums:
+    GlobalSearchScopeCategory:
+      CASES: Fälle
+      PROCESSES: Prozesse
+      TASKS: Aufgaben
     DashboardStandardCaseColumn:
       ACTIONS: Aktionen
       APPLICATION: Anmeldung
