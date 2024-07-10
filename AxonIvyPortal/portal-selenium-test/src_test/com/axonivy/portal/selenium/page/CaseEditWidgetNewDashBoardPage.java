@@ -387,4 +387,31 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     return $("div[id$='empty-message-container'][class='empty-message-container ']").shouldBe(appear, DEFAULT_TIMEOUT)
         .isDisplayed();
   }
+  
+  public SelenideElement getWidgetInfoIconCheckbox() {
+    return getWidgetConfigurationForm().$("span[id$='widget-info-icon-group']").shouldBe(Condition.appear,
+        DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("div[id$='widget-info']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[class*='ui-chkbox-box']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("span");
+  }
+
+  public void clickOnWidgetInfoIconCheckbox() {
+    getWidgetInfoIconCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public SelenideElement getWidgetConfigurationForm() {
+    return $("div#new-widget-configuration-dialog").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("form#widget-configuration-form").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getExpandModeCheckbox() {
+    return getWidgetConfigurationForm().$("span[id$='fullscreen-mode-group']").shouldBe(Condition.appear,
+        DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("div[id$='fullscreen-mode']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void clickOnExpandModeCheckbox() {
+    getExpandModeCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  } 
 }
