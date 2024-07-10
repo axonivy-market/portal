@@ -40,12 +40,16 @@ public class CaseDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
   private boolean enableQuickSearch;
-
+  private boolean showWidgetInfo;
+  private boolean showFullscreenMode;
+  
   public CaseDashboardWidget() {
     dataModel = new DashboardCaseLazyDataModel();
     setColumns(new ArrayList<>());
     setFilters(new ArrayList<>());
     setUserFilters(new ArrayList<>());
+    setShowWidgetInfo(true);
+    setShowFullscreenMode(true);
   }
 
   @JsonIgnore
@@ -201,6 +205,22 @@ public class CaseDashboardWidget extends DashboardWidget {
 
   public void setFilters(List<DashboardFilter> filters) {
     this.dataModel.getCriteria().setFilters(filters);
+  }
+  
+  public void setShowWidgetInfo(boolean showWidgetInfo) {
+    this.showWidgetInfo = showWidgetInfo;
+  }
+  
+  public boolean isShowWidgetInfo() {
+    return showWidgetInfo;
+  }
+  
+  public void setShowFullscreenMode(boolean showFullscreenMode) {
+    this.showFullscreenMode = showFullscreenMode;
+  }
+  
+  public boolean isShowFullscreenMode() {
+    return showFullscreenMode;
   }
 
   @JsonIgnore

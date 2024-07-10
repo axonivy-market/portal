@@ -644,4 +644,11 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     waitForPageLoad();
   }
   
+  public boolean isExpandButtonAppear() {
+    return getTaskWidgetHeader().$(".expand-link").isDisplayed();
+  }
+  
+  public boolean isWidgetInfomationIconAppear() {
+    return getTaskWidgetHeader().$(".widget__info-sidebar-link").isDisplayed();
+  }
 }

@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
 import static com.codeborne.selenide.CollectionCondition.size;
-
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -296,5 +295,44 @@ public class DashboardCaseWidgetTest extends BaseTest {
     caseWidget.clickOnCustomActionButton(0, customColumn);
     caseWidget.stateOfFirstCase().shouldHave(text("Destroyed"));
 
+  }
+  
+  @Test
+  public void testHideWidgetInfoIcon() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    CaseWidgetNewDashBoardPage caseWidget = dashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage =
+        modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    caseEditWidget.clickOnWidgetInfoIconCheckbox();
+    caseEditWidget.save();
+    newDashboardDetailsEditPage.backToConfigurationPage();
+    redirectToNewDashBoard();
+    assertFalse(caseWidget.isWidgetInfomationIconAppear());
+  }
+
+  @Test
+  public void testHideExpandMode() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    CaseWidgetNewDashBoardPage caseWidget = dashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage =
+        modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    caseEditWidget.clickOnExpandModeCheckbox();
+    caseEditWidget.save();
+    newDashboardDetailsEditPage.backToConfigurationPage();
+    redirectToNewDashBoard();
+    assertFalse(caseWidget.isExpandButtonAppear());
   }
 }
