@@ -11,6 +11,8 @@ import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.primefaces.model.SortMeta;
+
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -21,6 +23,7 @@ import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
+import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISession;
@@ -203,5 +206,13 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
 
   private String getWorkerUser(ITask selectedTask) {
     return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(selectedTask.getWorkerUser(), selectedTask.getWorkerUser().getMemberName());
+  }
+
+  public SortMeta getSortByCreationTimestampTime() {
+    return SortFieldUtil.buildSortMeta("creationTimestamp", true);
+  }
+
+  public SortMeta getSortByCreationTimestamp() {
+    return SortFieldUtil.buildSortMeta("creation.timestamp", true);
   }
 }

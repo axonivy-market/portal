@@ -151,16 +151,13 @@ function initRefresh(refreshInfos) {
   }
 }
 
-function initClientCharts(statisticEndpoint, defaultLocale, defaultDatePattern) {
+function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig) {
   // If locale didn't initialized, set the default locale to it.
   if (!locale) {
     locale = defaultLocale;
   }
 
-  // If date pattern didn't initialized, set the default locale to it.
-  if (!datePattern) {
-    datePattern = defaultDatePattern;
-  }
+  datePattern = datePatternConfig;
 
   // Find HTML elements of client charts widget
   const charts = Array.from(document.getElementsByClassName('js-client-statistic-chart'));
@@ -184,8 +181,6 @@ function initClientCharts(statisticEndpoint, defaultLocale, defaultDatePattern) 
     let chartData = generateChart(chart, data);
     const config = data.chartConfig;
     locale = config?.locale ? config.locale : defaultLocale;
-    datePattern = config?.datePattern ? config.datePattern : defaultDatePattern;
-
 
     // If chart data is fetched succesfully:
     // Render chart
@@ -615,7 +610,7 @@ class ClientNumberChart extends ClientChart {
       '    <div class="chart-icon-font-size chart-number-animation">' +
       '        <i class="fa-solid fa-chart-line"></i>' +
       '    </div>' +
-      '    <div>' +
+      '    <div class="chart-number-container">' +
       '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
       '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +
       '    </div>' +

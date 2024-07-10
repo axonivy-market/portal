@@ -97,8 +97,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
     createJSonFile("multi-dashboards.json", PortalVariable.DASHBOARD.key);
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"), DEFAULT_TIMEOUT);
-    newDashboardPage = newDashboardPage.selectDashboard(1);
-    newDashboardPage.waitForPageLoad();
+    newDashboardPage.selectDashboard(1);
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"), DEFAULT_TIMEOUT);
     ProcessWidgetNewDashBoardPage processWidget = new ProcessWidgetNewDashBoardPage();
     processWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));

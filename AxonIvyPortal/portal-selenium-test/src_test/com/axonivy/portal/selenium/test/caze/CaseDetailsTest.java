@@ -41,10 +41,14 @@ import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 @IvyWebTest
 public class CaseDetailsTest extends BaseTest {
+  private static final String BUSINESS_DETAILS_TITLE = "Business Details - Portal - Axon Ivy";
   private static final String ORDER_PIZZA = "Order Pizza";
   private static final String TAKE_ORDER = "Take Order";
   private static final String TAKE_ORDER_AND_MAKE_PIZZA = "Take Order and Make Pizza";
 
+  private static final String TASK_DETAILS_TITLE = "Task Details - Portal - Axon Ivy";
+  private static final String CASE_DETAILS_TITLE = "Case Details - Portal - Axon Ivy";
+  
   // NOTE CONTENT
   private static final String NOTE_TECHNICAL_CASE = "Note is added on Technical Case";
   private static final String NOTE_BUSINESS_CASE = "Note is added on Business Case";
@@ -217,7 +221,7 @@ public class CaseDetailsTest extends BaseTest {
     // open related case detail - technical case detail
     detailsPage.clickRelatedCaseActionButton(0);
     CaseDetailsPage technicalCaseDetailsPage = detailsPage.openCasesOfCasePageViaDetailsAction(0);
-    WaitHelper.assertTrueWithWait(() -> "Case Details".equals(technicalCaseDetailsPage.getPageTitle()));
+    WaitHelper.assertTrueWithWait(() -> CASE_DETAILS_TITLE.equals(technicalCaseDetailsPage.getPageTitle()));
 
     // check business case information is displayed in technical case
     WaitHelper.assertTrueWithWait(() -> detailsPage.isBusinessCaseInformationSectionDisplayed());
@@ -297,6 +301,7 @@ public class CaseDetailsTest extends BaseTest {
   public void testRelatedTaskDisplayDelegateButton() {
     createTestingTask();
     redirectToRelativeLink(GRANT_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
+    redirectToNewDashBoard();
     // MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = NavigationHelper.navigateToCaseList();
     detailsPage = casePage.openDetailsOfCaseHasName(LEAVE_REQUEST_CASE_NAME);
@@ -311,7 +316,7 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
     int index = detailsPage.getTaskRowIndexFromDetailPage(SICK_LEAVE_REQUEST_TASK);
     TaskDetailsPage taskDetailsPage = detailsPage.openTasksOfCasePageViaDetailsAction(index);
-    WaitHelper.assertTrueWithWait(() -> "Task Details".equals(taskDetailsPage.getPageTitle()));
+    WaitHelper.assertTrueWithWait(() -> TASK_DETAILS_TITLE.equals(taskDetailsPage.getPageTitle()));
   }
 
   @Test
@@ -319,7 +324,7 @@ public class CaseDetailsTest extends BaseTest {
     createTestingCaseContainTechnicalCases();
     detailsPage.clickRelatedCaseActionButton(0);
     CaseDetailsPage caseDetailsPage = detailsPage.openCasesOfCasePageViaDetailsAction(0);
-    WaitHelper.assertTrueWithWait(() -> "Case Details".equals(caseDetailsPage.getPageTitle()));
+    WaitHelper.assertTrueWithWait(() -> CASE_DETAILS_TITLE.equals(caseDetailsPage.getPageTitle()));
   }
 
   @Test
@@ -331,7 +336,7 @@ public class CaseDetailsTest extends BaseTest {
         .until((webDriver) -> caseDetailsPage.countBrowserTab() > 1);
     caseDetailsPage.switchLastBrowserTab();
     AdditionalCaseDetailsPage additionalCaseDetailsPage = new AdditionalCaseDetailsPage();
-    WaitHelper.assertTrueWithWait(() -> "Business Details".equals(additionalCaseDetailsPage.getPageTitle()));
+    WaitHelper.assertTrueWithWait(() -> BUSINESS_DETAILS_TITLE.equals(additionalCaseDetailsPage.getPageTitle()));
   }
 
   @Test
@@ -514,7 +519,7 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.clickRelatedCaseActionButton(0);
     var relatedCaseDetailsPage = detailsPage.openCasesOfCasePageViaDetailsAction(0);
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
-        .until((webDriver) -> "Case Details".equals(relatedCaseDetailsPage.getPageTitle()));
+        .until((webDriver) -> CASE_DETAILS_TITLE.equals(relatedCaseDetailsPage.getPageTitle()));
     relatedCaseDetailsPage.addNote("The first note of sub-case");
     relatedCaseDetailsPage.addNote("The second note of sub-case");
     var subCaseId = relatedCaseDetailsPage.getCaseId();
