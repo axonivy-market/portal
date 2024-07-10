@@ -1,13 +1,14 @@
 package ch.ivy.addon.portalkit.configuration;
 
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.enums.GlobalSearchScopeCategory;
 import com.axonivy.portal.enums.SearchScopeCaseField;
 import com.axonivy.portal.enums.SearchScopeTaskField;
 import com.axonivy.portal.enums.ThemeMode;
@@ -94,7 +95,7 @@ public class GlobalSetting extends AbstractConfiguration {
       if (StringUtils.isBlank(value)) {
         return value;
       }
-      HashMap<String, Object> valueMap = new HashMap<>();
+      LinkedHashMap<String, Object> valueMap = new LinkedHashMap<>();
       for (String val : Arrays.asList(value.split(","))) {
         if (variable.getExternalOptions().get(val) != null) {
           valueMap.put(val, variable.getExternalOptions().get(val));
@@ -124,7 +125,9 @@ public class GlobalSetting extends AbstractConfiguration {
       return ((SearchScopeTaskField)object).getLabel();
     } else if (object instanceof SearchScopeCaseField) {
       return ((SearchScopeCaseField)object).getLabel();
-    } else {
+    } else if (object instanceof GlobalSearchScopeCategory) {
+      return ((GlobalSearchScopeCategory)object).getLabel();
+    }else {
       return (String)object;
     }
   }

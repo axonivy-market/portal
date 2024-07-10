@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.enums.GlobalSearchScopeCategory;
 import com.axonivy.portal.enums.SearchScopeCaseField;
 import com.axonivy.portal.enums.SearchScopeTaskField;
 
@@ -30,6 +31,7 @@ public class SearchResultsDataModel implements Serializable {
   protected CaseLazyDataModel caseDataModel;
   protected List<SearchScopeTaskField> searchScopeTaskFields;
   protected List<SearchScopeCaseField> searchScopeCaseFields;
+  protected List<GlobalSearchScopeCategory> globalSearchScopeCategories;
 
   /**
    * @hidden
@@ -46,6 +48,7 @@ public class SearchResultsDataModel implements Serializable {
 
     initSearchScopeTaskFields();
     initSearchScopeCaseFields();
+    initGlobalSearchScopeCategories();
   }
 
   private void initSearchScopeTaskFields() {
@@ -76,6 +79,19 @@ public class SearchResultsDataModel implements Serializable {
     }
   }
 
+  private void initGlobalSearchScopeCategories() {
+    String globalSearchScopeCategoriesString = Ivy.var().get(GlobalVariable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey());
+    if (StringUtils.isNotBlank(globalSearchScopeCategoriesString)) {
+      globalSearchScopeCategories = new ArrayList<>();
+      String[] fieldArray = globalSearchScopeCategoriesString.split(",");
+      for(String field : fieldArray) {
+        GlobalSearchScopeCategory fieldEnum = GlobalSearchScopeCategory.valueOf(field.toUpperCase());
+        if (fieldEnum != null) {
+          globalSearchScopeCategories.add(fieldEnum);
+        }
+      }
+    }
+  }
   /**
    * Implement your custom search function by override this function
    */
@@ -117,6 +133,11 @@ public class SearchResultsDataModel implements Serializable {
 
     if (CollectionUtils.isNotEmpty(searchScopeCaseFields)) {
       this.caseDataModel.getCriteria().setSearchScopeCaseFields(searchScopeCaseFields);
+    }
+
+    if (CollectionUtils.isNotEmpty(globalSearchScopeCategories)) {
+      this.caseDataModel.getCriteria().setGlobalSearchScope(globalSearchScopeCategories.contains(GlobalSearchScopeCategory.CASES));
+      this.taskDataModel.getCriteria().setGlobalSearchScope(globalSearchScopeCategories.contains(GlobalSearchScopeCategory.TASKS));
     }
   }
 

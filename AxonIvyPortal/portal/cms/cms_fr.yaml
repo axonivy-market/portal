@@ -235,6 +235,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ApplicationName: Le nom de l'application par défaut qui sera affiché dans le titre de la page.
       DefaultThemeMode: Le mode de thème par défaut de l'application
       EnableSwitchThemeModeButton: Défini à true pour activer le bouton de changement de thème.
+      GlobalSearchScopeCategoriesNote: Définition des types recherchés par la recherche globale
       RoleDirectChildrenLimit: 'Le nombre défini contrôle la quantité de rôles d''enfants directs qui est affichée dans l''onglet Gestion des rôles. Nombre valide : 10, 50, 100'
       RoleParentLimit: 'Le nombre défini contrôle la quantité de rôles parents qui est affichée lors du filtrage des rôles dans l''onglet Gestion des rôles. Nombre valide : 5, 10, 20'
       SearchScopeCaseFields: Définir les champs que la recherche globale utilisera pour trouver les cas correspondants en plus de l'identifiant du cas (cela peut influencer les performances de la recherche).
@@ -1725,6 +1726,10 @@ Labels:
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
   Enums:
+    GlobalSearchScopeCategory:
+      CASES: Cas
+      PROCESSES: Processus
+      TASKS: Tâches
     SearchScopeCaseField:
       CUSTOM: Champs de chaînes personnalisées
       DESCRIPTION: Description

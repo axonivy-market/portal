@@ -1,12 +1,17 @@
 package ch.ivy.addon.portalkit.enums;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.enums.GlobalSearchScopeCategory;
 import com.axonivy.portal.enums.SearchScopeCaseField;
 import com.axonivy.portal.enums.SearchScopeTaskField;
 import com.axonivy.portal.enums.ThemeMode;
@@ -76,7 +81,12 @@ public enum GlobalVariable {
   DEFAULT_THEME_MODE("Portal.Theme.Mode", GlobalVariableType.EXTERNAL_SELECTION, ThemeMode.LIGHT.toString(), "DefaultThemeMode", getThemeModes()),
   SEARCH_SCOPE_BY_TASK_FIELDS("Portal.SearchScope.ByTaskFields", GlobalVariableType.MULTI_EXTERNAL_SELECTIONS, getSearchScopeTaskFields(), "SearchScopeTaskFields", getSearchScopeTaskFields()),
   GLOBAL_FOOTER_INFO("Portal.GlobalFooterInfo", GlobalVariableType.TEXT, "GlobalFooterInfo"),
-  SEARCH_SCOPE_BY_CASE_FIELDS("Portal.SearchScope.ByCaseFields", GlobalVariableType.MULTI_EXTERNAL_SELECTIONS, getSearchScopeCaseFields(), "SearchScopeCaseFields", getSearchScopeCaseFields());
+  SEARCH_SCOPE_BY_CASE_FIELDS("Portal.SearchScope.ByCaseFields", GlobalVariableType.MULTI_EXTERNAL_SELECTIONS,
+      getSearchScopeCaseFields(), "SearchScopeCaseFields", getSearchScopeCaseFields()),
+  GLOBAL_SEARCH_SCOPE_BY_CATEGORIES("Portal.GlobalSearchScopeCategories", GlobalVariableType.MULTI_EXTERNAL_SELECTIONS,
+      getGlobalSearchScopeCategories(), "GlobalSearchScopeCategoriesNote", getGlobalSearchScopeCategories()),
+  APPLICATION_NAME(
+          "Portal.ApplicationName", GlobalVariableType.TEXT, "Axon Ivy", "ApplicationName");
 
   private String key;
   private GlobalVariableType type;
@@ -273,6 +283,19 @@ public enum GlobalVariable {
     for (SearchScopeCaseField field : SearchScopeCaseField.values()) {
       result.put(field.name(), field);
     }
+    return result;
+  }
+
+  private static Map<String, Object> getGlobalSearchScopeCategories() {
+    Map<String, Object> result = new LinkedHashMap<>();
+
+    List<GlobalSearchScopeCategory> fields = Arrays.asList(GlobalSearchScopeCategory.values());
+    fields.sort(Comparator.comparingInt(GlobalSearchScopeCategory::getPriority));
+
+    for (GlobalSearchScopeCategory field : fields) {
+      result.put(field.name(), field);
+    }
+
     return result;
   }
 
