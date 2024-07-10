@@ -85,8 +85,8 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("div.ui-dialog[aria-hidden='false']"), true);
     SelenideElement addNoteDialog = findElementByCssSelector("div.ui-dialog[aria-hidden='false']");
     waitForElementDisplayed(By.cssSelector("div.ui-dialog[aria-hidden='false']"), true);
-    SelenideElement textArea =
-        addNoteDialog.$(By.cssSelector("textarea[id$='note-content']")).shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement textArea = addNoteDialog.$(By.cssSelector("textarea[id$='note-content']")).shouldBe(appear,
+        DEFAULT_TIMEOUT);
     textArea.shouldBe(clickable(), DEFAULT_TIMEOUT).click();
     textArea.sendKeys(noteContent);
     SelenideElement saveButton = addNoteDialog.$(By.cssSelector("button[id$='save-add-note-command']"));
@@ -99,8 +99,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void gotoTaskDetailsPageOfRelatedTask(String taskName) {
-    $$("div[id$='case-details-related-task-table'] table tbody tr td span")
-        .filter(text(taskName)).first().click();
+    $$("div[id$='case-details-related-task-table'] table tbody tr td span").filter(text(taskName)).first().click();
   }
 
   public void gotoCaseDetailsPageOfRelatedCase(String caseName) {
@@ -119,27 +118,24 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void openTaskWithRunTheTaskBehaviour(String taskName) {
     getRelatedTasksPanel().shouldBe(appear, DEFAULT_TIMEOUT);
-    var taskItem = $$(
-        "div[id$='case-details-related-task-table'] table tbody tr td span.task-name-value")
-        .filter(text(taskName)).first()
-      .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    var taskItem = $$("div[id$='case-details-related-task-table'] table tbody tr td span.task-name-value")
+        .filter(text(taskName)).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     waitUntilElementToBeClickable(taskItem);
     waitUntilElementToBeClickable(taskItem.parent());
     taskItem.parent().click();
   }
-  
+
   public SelenideElement getNameOfRelatedTask(int index) {
     getRelatedTasksPanel().shouldBe(appear, DEFAULT_TIMEOUT);
-    return $("div[id$='case-details-related-task-table'] table tbody")
-        .shouldBe(appear, DEFAULT_TIMEOUT).$$("tr").get(index).$$("td")
-        .findBy(Condition.attributeMatching("class", ".*related-task-name-column.*")).$("span");
+    return $("div[id$='case-details-related-task-table'] table tbody").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr")
+        .get(index).$$("td").findBy(Condition.attributeMatching("class", ".*related-task-name-column.*")).$("span");
   }
-  
+
   public SelenideElement getStateOfRelatedTask(int index) {
     getRelatedTasksPanel().shouldBe(appear, DEFAULT_TIMEOUT);
-    return $("div[id$='case-details-related-task-table'] table tbody")
-        .shouldBe(appear, DEFAULT_TIMEOUT).$$("tr").get(index).$$("td")
-        .findBy(Condition.attributeMatching("class", ".*related-task-state-column.*")).$("span span");
+    return $("div[id$='case-details-related-task-table'] table tbody").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr")
+        .get(index).$$("td").findBy(Condition.attributeMatching("class", ".*related-task-state-column.*"))
+        .$("span span");
   }
 
   public void clickRelatedTaskActionButton(int index) {
@@ -295,12 +291,12 @@ public class CaseDetailsPage extends TemplatePage {
   public void drapAndDropWidgets(String sourceName, String destinationName) {
     $(By.cssSelector(String.format("[id='case-details-%s-panel']", sourceName))).shouldBe(Condition.visible,
         DEFAULT_TIMEOUT);
-    SelenideElement sourceElement =
-        $(String.format("[id='case-details-%s-panel']", sourceName)).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    SelenideElement sourceElement = $(String.format("[id='case-details-%s-panel']", sourceName))
+        .shouldBe(Condition.visible, DEFAULT_TIMEOUT);
     $(By.cssSelector(String.format("[id='case-details-%s-panel']", destinationName))).shouldBe(Condition.visible,
         DEFAULT_TIMEOUT);
-    SelenideElement destinationElement =
-        $(String.format("[id='case-details-%s-panel']", destinationName)).shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    SelenideElement destinationElement = $(String.format("[id='case-details-%s-panel']", destinationName))
+        .shouldBe(Condition.visible, DEFAULT_TIMEOUT);
     Actions actions = new Actions(getDriver());
     Action moveWidget = actions.dragAndDrop(sourceElement, destinationElement).build();
     moveWidget.perform();
@@ -419,8 +415,8 @@ public class CaseDetailsPage extends TemplatePage {
   public void clickRelatedCaseActionButton(int index) {
     WebElement element = $$(".related-cases .more-column .action-link").get(index);
     element.click();
-    String actionPanel =
-        String.format("[id$='related-cases-widget:related-cases:%d:action-step-component:action-steps-panel']", index);
+    String actionPanel = String
+        .format("[id$='related-cases-widget:related-cases:%d:action-step-component:action-steps-panel']", index);
     waitForElementDisplayed(By.cssSelector(actionPanel), true);
   }
 
@@ -615,7 +611,7 @@ public class CaseDetailsPage extends TemplatePage {
     columnCheckbox.shouldBe(Condition.visible, DEFAULT_TIMEOUT).click();
     WaitHelper.assertTrueWithWait(() -> !findElementByCssSelector(
         "label[for$='task-widget:task-columns-configuration:select-columns-form:columns-checkbox:5']")
-            .getAttribute("class").equals("ui-state-disabled"));
+        .getAttribute("class").equals("ui-state-disabled"));
   }
 
   public void clickRelatedTaskColumnsButton() {
@@ -631,11 +627,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void clickShowOnlyOpenTasks() {
-
-    $("div[id$=':show-only-open-tasks'] .ui-chkbox-box")
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div[id$=':show-only-open-tasks'] .ui-chkbox-box").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
-}
 
   public void clickExportToExcelLink(String linkId, String statusDialogId) {
     // Ensure that attribute is removed before downloading
@@ -669,8 +662,8 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void reserveTask(String taskName) {
     Integer index = getTaskRowIndex(taskName);
-    String reserveCommandButton =
-        String.format("[id$='task-widget:related-tasks:%d:additional-options:task-reserve-command']", index);
+    String reserveCommandButton = String
+        .format("[id$='task-widget:related-tasks:%d:additional-options:task-reserve-command']", index);
     waitForElementDisplayed(By.cssSelector(reserveCommandButton), true);
     findElementByCssSelector(reserveCommandButton).click();
   }
@@ -679,14 +672,14 @@ public class CaseDetailsPage extends TemplatePage {
     Integer index = getTaskRowIndex(taskName);
     $(String.format("[id$=':related-tasks:%d:additional-options:task-side-steps-menu']", index))
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    String actionPanel =
-        String.format("[id$='task-widget:related-tasks:%d:additional-options:side-steps-panel']", index);
+    String actionPanel = String.format("[id$='task-widget:related-tasks:%d:additional-options:side-steps-panel']",
+        index);
     waitForElementDisplayed(By.cssSelector(actionPanel), true);
   }
 
   public ExpressProcessPage addAdHocTask(int index) {
-    String commandButton =
-        String.format("[id$='task-widget:related-tasks:%d:additional-options:task-additional-actions']", index);
+    String commandButton = String
+        .format("[id$='task-widget:related-tasks:%d:additional-options:task-additional-actions']", index);
     waitForElementDisplayed(By.cssSelector(commandButton), true);
     findElementByCssSelector(commandButton).click();
     return new ExpressProcessPage();
@@ -700,8 +693,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void openRelatedTaskWorkflowEvents(int index) {
-    String commandButton =
-        String.format("[id$='task-widget:related-tasks:%d:additional-options:task-workflow-event-command", index);
+    String commandButton = String
+        .format("[id$='task-widget:related-tasks:%d:additional-options:task-workflow-event-command", index);
     waitForElementDisplayed(By.cssSelector(commandButton), true);
     findElementByCssSelector(commandButton).click();
   }
@@ -732,8 +725,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public TaskDetailsPage openTasksOfCasePageViaDetailsAction(int index) {
-    String openDetailsCommandButton =
-        String.format("[id$='task-widget:related-tasks:%d:additional-options:task-open-detail-command']", index);
+    String openDetailsCommandButton = String
+        .format("[id$='task-widget:related-tasks:%d:additional-options:task-open-detail-command']", index);
     waitForElementDisplayed(By.cssSelector(openDetailsCommandButton), true);
     findElementByCssSelector(openDetailsCommandButton).click();
     return new TaskDetailsPage();
@@ -756,8 +749,8 @@ public class CaseDetailsPage extends TemplatePage {
   public boolean isTaskDelegateOptionDisable(String taskName) {
     clickRelatedTaskActionButton(taskName);
     Integer index = getTaskRowIndex(taskName);
-    String commandButton =
-        String.format("[id$='task-widget:related-tasks:%d:additional-options:task-delegate-command", index);
+    String commandButton = String.format("[id$='task-widget:related-tasks:%d:additional-options:task-delegate-command",
+        index);
     waitForElementDisplayed(By.cssSelector(commandButton), true);
     WebElement delegateButton = findElementByCssSelector(commandButton);
     return delegateButton.getAttribute(CLASS).contains("ui-state-disabled");
@@ -809,8 +802,8 @@ public class CaseDetailsPage extends TemplatePage {
 
   public WebElement findDestroyCommand(String taskName) {
     Integer index = getTaskRowIndex(taskName);
-    String destroyCommandButton =
-        String.format("[id$='task-widget:related-tasks:%d:additional-options:task-destroy-command", index);
+    String destroyCommandButton = String
+        .format("[id$='task-widget:related-tasks:%d:additional-options:task-destroy-command", index);
     waitForElementDisplayed(By.cssSelector(destroyCommandButton), true);
     return findElementByCssSelector(destroyCommandButton).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
@@ -827,8 +820,8 @@ public class CaseDetailsPage extends TemplatePage {
 
   public String getEventTypeInWorkflowEvents() {
     waitForElementDisplayed(By.cssSelector("[id$=':task-widget:workflow-event-component:events-table_data']"), true);
-    var eventTypeList =
-        findElementByCssSelector("[id$=':task-widget:workflow-event-component:events-table_data']").getText();
+    var eventTypeList = findElementByCssSelector("[id$=':task-widget:workflow-event-component:events-table_data']")
+        .getText();
     return eventTypeList;
   }
 
@@ -846,8 +839,8 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void resetTask(String taskName) {
     Integer index = getTaskRowIndex(taskName);
-    String resetCommandButton =
-        String.format("[id$='task-widget:related-tasks:%d:additional-options:task-reset-command", index);
+    String resetCommandButton = String
+        .format("[id$='task-widget:related-tasks:%d:additional-options:task-reset-command", index);
     waitForElementDisplayed(By.cssSelector(resetCommandButton), true);
     findElementByCssSelector(resetCommandButton).click();
   }
@@ -898,8 +891,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public boolean checkCaseName(String name) {
-    ElementsCollection breadcrumbs =
-        $("[id='breadcrumb-container']").shouldBe(appear, DEFAULT_TIMEOUT).$("ol.ui-breadcrumb-items").$$("li");
+    ElementsCollection breadcrumbs = $("[id='breadcrumb-container']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("ol.ui-breadcrumb-items").$$("li");
     return breadcrumbs.get(breadcrumbs.size() - 1).is(Condition.text("Case: " + name));
   }
 
@@ -933,12 +926,11 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void clickRelatedCaseDefaultCheckbox() {
-    String xpath =
-        "//*[contains(@id,\":related-cases-widget:case-columns-configuration:select-columns-form:default-columns\")]/div[2]";
+    String xpath = "//*[contains(@id,\":related-cases-widget:case-columns-configuration:select-columns-form:default-columns\")]/div[2]";
     waitForElementClickableThenClick($(By.xpath(xpath)));
     WaitHelper.assertTrueWithWait(() -> !findElementByCssSelector(
         "label[for$='related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox:3']")
-            .getAttribute("class").equals("ui-state-disabled"));
+        .getAttribute("class").equals("ui-state-disabled"));
   }
 
   public void clickRelatedCaseApplyButton() {
@@ -1013,8 +1005,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public List<String> getCaseNoteAuthors() {
-    List<SelenideElement> noteAuthorElements =
-        $$("span.history-fullname").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT);
+    List<SelenideElement> noteAuthorElements = $$("span.history-fullname")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT);
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
 
@@ -1034,4 +1026,3 @@ public class CaseDetailsPage extends TemplatePage {
     return taskName;
   }
 }
-

@@ -61,24 +61,24 @@ public class QuickSearchTest extends BaseTest {
     assertFalse(taskWidget.isQuickSearchInputShow("0"));
    }
 
-  @Test
-  public void testTaskQuickSearchStandardFields() {
-    redirectToRelativeLink(create12CasesWithCategoryUrl);
-    login(TestAccount.ADMIN_USER);
-    redirectToNewDashBoard();
-    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
-
-    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
-    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
-    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    ScreenshotUtils.maximizeBrowser();
-    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
-    taskEditWidget.openColumnManagementDialog();
-
-    assertTrue(taskEditWidget.isQuickSearchClicked("name"));
-    assertTrue(taskEditWidget.isQuickSearchClicked("description"));
-
-  }
+//  @Test
+//  public void testTaskQuickSearchStandardFields() {
+//    redirectToRelativeLink(create12CasesWithCategoryUrl);
+//    login(TestAccount.ADMIN_USER);
+//    redirectToNewDashBoard();
+//    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+//
+//    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+//    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+//    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+//    ScreenshotUtils.maximizeBrowser();
+//    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
+//    taskEditWidget.openColumnManagementDialog();
+//
+//    assertTrue(taskEditWidget.isQuickSearchClicked("name"));
+//    assertTrue(taskEditWidget.isQuickSearchClicked("description"));
+//
+//  }
 
   @Test
   public void testTaskQuickSearchStandardFields() {

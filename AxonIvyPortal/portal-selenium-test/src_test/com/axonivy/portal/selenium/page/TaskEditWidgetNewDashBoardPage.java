@@ -159,11 +159,11 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
         DEFAULT_TIMEOUT);
   }
 
-  public void saveColumn() {
-    getColumnManagementDialog().$("button[id$='column-management-save-btn']").click();
-    $("div[id$=':column-management-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
-    waitPreviewTableLoaded();
-  }
+//  public void saveColumn() {
+//    getColumnManagementDialog().$("button[id$='column-management-save-btn']").click();
+//    $("div[id$=':column-management-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+//    waitPreviewTableLoaded();
+//  }
 
   private SelenideElement getMultiLanguageDialogWhenAddWidget() {
     return $(
@@ -252,10 +252,10 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   private SelenideElement getCustomFieldSelection() {
     return getColumnManagementDialog().$("span[id$='custom-field-selection'] button");
   }
-
-  private SelenideElement getCustomCaseFieldSelection() {
-    return getColumnManagementDialog().$("span[id$='custom-case-field-selection'] button");
-  }
+//
+//  private SelenideElement getCustomCaseFieldSelection() {
+//    return getColumnManagementDialog().$("span[id$='custom-case-field-selection'] button");
+//  }
 
   public SelenideElement openColumnManagementDialog() {
     $("div[id$='task-widget-preview:dashboard-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT)
@@ -315,56 +315,56 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
         DEFAULT_TIMEOUT);
   }
 
-  public void clickOnQuickSearchCheckBox() {
-    getQuickSearchCheckBox().click();
-  }
-
-  public WebElement getQuickSearchCheckBox() {
-    return $("div[id$='filter-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
-  }
-
-  public void clickOnQuickSearchByField(String fieldName) {
-    getColumnManagementDialog().$("div[id$='column-management-datatable']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("table tbody").$$("tr").filter(text(fieldName)).first().$("div[id$='quick-search-checkbox-panel']")
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-  }
-
-  public boolean isQuickSearchClicked(String fieldName) {
-    waitForPageLoad();
-    return getColumnManagementDialog().$("div[id$='column-management-datatable']")
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("table tbody").$$("tr").filter(text(fieldName)).first()
-        .$("div[id$='quick-search-checkbox-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a").$("span span")
-        .getAttribute("class").contains("ui-icon-check");
-  }
-
-  public void returnToDashboardPage() {
-    $("div.layout-topbar-right").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span#breadcrumb-container")
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("form nav a").click();
-  }
-
-  public void addCustomFieldByCustomTypeAndFieldName(String customType, String fieldName) {
-    switch (customType) {
-    case (CUSTOM_FIELD):
-      customType = "custom-field";
-      selectCustomType();
-      getCustomFieldSelection().click();
-      break;
-    case (CUSTOM_CASE_FIELD):
-      customType = "custom-case-field";
-      selectCustomCaseType();
-      getCustomCaseFieldSelection().click();
-      break;
-    default:
-      break;
-    }
-    customType.toLowerCase();
-    String spanId = String.format("span[id*='%s-selection_panel']", customType);
-    $(spanId).$("ul").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li")
-        .filter(text(fieldName)).first().click();
-    getColumnManagementDialog().$("button[id$='field-add-btn']").click();
-  }
+//  public void clickOnQuickSearchCheckBox() {
+//    getQuickSearchCheckBox().click();
+//  }
+//
+//  public WebElement getQuickSearchCheckBox() {
+//    return $("div[id$='filter-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+//        .$("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
+//        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+//  }
+//
+//  public void clickOnQuickSearchByField(String fieldName) {
+//    getColumnManagementDialog().$("div[id$='column-management-datatable']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+//        .$("table tbody").$$("tr").filter(text(fieldName)).first().$("div[id$='quick-search-checkbox-panel']")
+//        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+//  }
+//
+//  public boolean isQuickSearchClicked(String fieldName) {
+//    waitForPageLoad();
+//    return getColumnManagementDialog().$("div[id$='column-management-datatable']")
+//        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("table tbody").$$("tr").filter(text(fieldName)).first()
+//        .$("div[id$='quick-search-checkbox-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a").$("span span")
+//        .getAttribute("class").contains("ui-icon-check");
+//  }
+//
+//  public void returnToDashboardPage() {
+//    $("div.layout-topbar-right").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span#breadcrumb-container")
+//        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("form nav a").click();
+//  }
+//
+//  public void addCustomFieldByCustomTypeAndFieldName(String customType, String fieldName) {
+//    switch (customType) {
+//    case (CUSTOM_FIELD):
+//      customType = "custom-field";
+//      selectCustomType();
+//      getCustomFieldSelection().click();
+//      break;
+//    case (CUSTOM_CASE_FIELD):
+//      customType = "custom-case-field";
+//      selectCustomCaseType();
+//      getCustomCaseFieldSelection().click();
+//      break;
+//    default:
+//      break;
+//    }
+//    customType.toLowerCase();
+//    String spanId = String.format("span[id*='%s-selection_panel']", customType);
+//    $(spanId).$("ul").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li")
+//        .filter(text(fieldName)).first().click();
+//    getColumnManagementDialog().$("button[id$='field-add-btn']").click();
+//  }
 
   public SelenideElement getQuickSearchCheckBox() {
     return $("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
