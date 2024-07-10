@@ -866,6 +866,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     field: Feld
     fieldIsAdded: Das Feld {0} wurde hinzugefügt
     filters: Filter
+    fullscreenMode: Vollbildmodus
     iconMessage:
       caseWidget:
         BEACH_PALM_SUNBED: Sie sind großartig - alle Vorgänge sind erledigt. Lehnen Sie sich zurück und genießen Sie.
@@ -926,6 +927,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: Dieses Widget zeigt relevante Aufgabeninformationen gemäß der definierten Einstellungen an
     taskWidgetConfiguration: Aufgaben-Widget-Konfiguration
     widgetInfo: Widget-Informationen
+    widgetInfoIcon: Widget-Informations-Symbol
     widgetTitle: Widget-Titel
     widgetType: Widget-Typ
     yourCases: Ihre Vorgänge
