@@ -48,14 +48,12 @@ var PortalSessionWarning = function() {
 
   timerDecrement = function() {
     if (getRemainingTimeInSeccond() < 0 && isEndSession == false) {
-      clearChartInterval();
       isEndSession = true;
       return;
     }
 
     // perform check interaction when timeout less than 60 seconds and the warning dialog is hiding
     if (getRemainingTimeInSeccond() < 60 && warningDialogShow == false) {
-
       // If have interaction, send a request to server to keep session
       if (isInteractedTaskTemplate == true || ($("#iFrame").length > 0 && isInteractedInIframeTaskTemplate == true)) {
         keepPortalAlive();
@@ -65,6 +63,7 @@ var PortalSessionWarning = function() {
       // If don't have interaction, show the warning dialog
       warningDialogShow = true;
       PF('timeout-warning-dialog').show();
+      tryClearChartInterval();
     }
   },
 
@@ -87,7 +86,9 @@ var PortalSessionWarning = function() {
     keepSession().then(responseData => {
       if (!responseData.document){
         showTimeoutDialog();
+        return;
       }
+      tryInitRefreshChart();
     }).catch(function (error) {
       showTimeoutDialog();
     });
@@ -119,13 +120,23 @@ var PortalSessionWarning = function() {
     PF('timeout-warning-dialog').hide();
     PF('view-expired-exception-dialog').show();
     isEndSession = true;
-    try {
-      clearChartInterval();
-    } catch (ignore) {}
+    tryClearChartInterval();
   },
   
   getRemainingTimeInSeccond  = function () {
     return (sessionCounterUpdatedOn.getTime() - new Date().getTime()) / 1000;
+  },
+
+  tryClearChartInterval = function() {
+    try {
+      clearChartInterval();
+    } catch (ignore) {}
+  },
+
+  tryInitRefreshChart = function() {
+    try {
+      initRefresh();
+    } catch (ignore) {}
   }
 
   return {

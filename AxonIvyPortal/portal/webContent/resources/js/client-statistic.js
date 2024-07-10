@@ -137,7 +137,7 @@ async function refreshChart(chartInfo) {
   chartInfo.chart.update(data);
 }
 
-function initRefresh(refreshInfos) {
+function initRefresh() {
   for (let i = 0; i < refreshInfos.length; i++) {
     let refreshInfo = refreshInfos[i];
     if (refreshInfo.refreshInterval && refreshInfo.refreshInterval > 0) {
@@ -199,7 +199,7 @@ function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig) {
     }
 
     // Init refresh routine for charts
-    initRefresh(refreshInfos);
+    initRefresh();
   });
 }
 
