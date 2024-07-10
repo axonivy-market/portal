@@ -70,3 +70,4 @@ Portal.Theme.Mode,LIGHT,The default theme mode of the application.
 Portal.SearchScope.ByCaseFields,"NAME,DESCRIPTION,CUSTOM",Defining the fields that the global search will use to find matching cases beside case Id (this can influence the performance of the search)
 Portal.SearchScope.ByTaskFields,"NAME,DESCRIPTION",Defining the fields that the global search will use to find matching tasks beside task Id (this can influence the performance of the search)
 Portal.GlobalFooterInfo,"Default",Defining the global environment footer info
+Portal.GlobalSearchScopeCategories,"PROCESSES,TASKS,CASES",Defining the types that the global search will search for
