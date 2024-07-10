@@ -267,7 +267,7 @@
   <p:dialog header="#{data.dialogTitle}" id="settingDialog" onShow="$('body').css({overflow:'hidden'})" width="60%"
     onHide="$('body').css({overflow:'inherit'})" widgetVar="settingDialog" dynamic="true" modal="true" resizable="false"
     appendTo="@(body)" styleClass="setting-dialog"
-    responsive="true" fitViewport="true" position="center center" positionType="absolute">
+    responsive="true" fitViewport="true" position="center center" positionType="fixed">
     <h:form prependId="false" id="settingDialogForm">
       <p:messages />
       <p:outputPanel id="settingOverview">
