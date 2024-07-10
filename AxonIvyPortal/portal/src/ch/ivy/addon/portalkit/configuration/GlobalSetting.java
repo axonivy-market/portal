@@ -127,7 +127,7 @@ public class GlobalSetting extends AbstractConfiguration {
       return ((SearchScopeCaseField)object).getLabel();
     } else if (object instanceof GlobalSearchScopeCategory) {
       return ((GlobalSearchScopeCategory)object).getLabel();
-    }else {
+    } else {
       return (String)object;
     }
   }
