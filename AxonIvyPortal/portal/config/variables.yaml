@@ -277,6 +277,8 @@ Variables:
       # Defining the fields that the global search will use to find matching cases beside case Id (this can influence the performance of the search)
       # [Enum: NAME, DESCRIPTION, CUSTOM]
       ByCaseFields: NAME,DESCRIPTION,CUSTOM
+    # Defining the types that the global search will search for
+    GlobalSearchScopeCategories: PROCESSES,TASKS,CASES
 
     # Additional menu items for the main menu of Portal. Could be an Ivy process or an external link.
     # [file: json]

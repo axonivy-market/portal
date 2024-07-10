@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
+import com.axonivy.portal.enums.GlobalSearchScopeCategory;
 import com.axonivy.portal.enums.SearchScopeCaseField;
 
 import ch.ivy.addon.portalkit.enums.CaseSortField;
@@ -45,6 +46,7 @@ public class CaseSearchCriteria {
 
   private boolean isGlobalSearch;
   private List<SearchScopeCaseField> searchScopeCaseFields;
+  private boolean isGlobalSearchScope;
 
   public CaseQuery createQuery() {
     CaseQuery finalQuery;
@@ -405,6 +407,14 @@ public class CaseSearchCriteria {
 
   public void setGlobalSearch(boolean isGlobalSearch) {
     this.isGlobalSearch = isGlobalSearch;
+  }
+
+  public boolean isGlobalSearchScope() {
+    return isGlobalSearchScope;
+  }
+
+  public void setGlobalSearchScope(boolean isGlobalSearchScope) {
+    this.isGlobalSearchScope = isGlobalSearchScope;
   }
 
 }

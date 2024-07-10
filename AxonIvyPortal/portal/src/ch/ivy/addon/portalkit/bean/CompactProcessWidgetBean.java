@@ -22,6 +22,7 @@ import org.apache.commons.collections4.map.HashedMap;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.service.impl.ProcessService;
+import com.axonivy.portal.enums.GlobalSearchScopeCategory;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
@@ -70,11 +71,13 @@ private static final long serialVersionUID = -5889375917550618261L;
   private boolean isUserFavoritesEnabled;
   private boolean isDisplayShowAllProcessesLink;
   private boolean isGuide;
+  private boolean isGlobalSearchScope;
   
   @PostConstruct
   public void init() {
     // used in global search page
     isDisplayShowAllProcessesLink = PermissionUtils.checkAccessFullProcessListPermission();
+    setGlobalSearchScope(isEnableGlobalSearchScopeProcesses());
   }
   
   public void preRender() {
@@ -97,6 +100,20 @@ private static final long serialVersionUID = -5889375917550618261L;
     userProcesses = findUserProcesses();
     defaultProcesses = findStartableDefaultProcesses();
     isDisplayShowAllProcessesLink = PermissionUtils.checkAccessFullProcessListPermission();
+  }
+  
+  private boolean isEnableGlobalSearchScopeProcesses() {
+    String globalSearchScopeCategoriesString = Ivy.var().get(GlobalVariable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey());
+    if (StringUtils.isNotBlank(globalSearchScopeCategoriesString)) {
+      String[] fieldArray = globalSearchScopeCategoriesString.split(",");
+      for(String field : fieldArray) {
+        GlobalSearchScopeCategory fieldEnum = GlobalSearchScopeCategory.valueOf(field.toUpperCase());
+        if (fieldEnum != null && fieldEnum.equals(GlobalSearchScopeCategory.PROCESSES)) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
   
   private void createDummyDataForGuide() {
@@ -497,5 +514,13 @@ private static final long serialVersionUID = -5889375917550618261L;
 
   public boolean isExpressProcess(UserProcess process) {
     return process != null && process.getProcessType() == ProcessType.EXPRESS_PROCESS;
+  }
+
+  public boolean isGlobalSearchScope() {
+    return isGlobalSearchScope;
+  }
+
+  public void setGlobalSearchScope(boolean isGlobalSearchScope) {
+    this.isGlobalSearchScope = isGlobalSearchScope;
   }
 }

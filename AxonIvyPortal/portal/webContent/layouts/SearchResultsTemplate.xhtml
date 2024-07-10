@@ -32,7 +32,7 @@
         <p:tabView id="search-results-tabview" widgetVar="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview js-search-results-tabview"
           rendered="#{isShowResultTabView}">
           <p:tab id="process-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" titleStyleClass="process-tab-title"
-            rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink}">
+            rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink and compactProcessWidgetBean.globalSearchScope}">
             <div class="js-process-list-container">
               <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-results" hideProcessNavigation="true" hideHeader="true"
                 hideExpressCreation="true" processListStyleClass="process-in-search" />
@@ -40,7 +40,7 @@
           </p:tab>
           
           <p:tab id="task-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" titleStyleClass="task-tab-title"
-            rendered="#{taskWidgetBean.showFullTaskList}">
+            rendered="#{dataModel.taskDataModel.criteria.globalSearchScope and taskWidgetBean.showFullTaskList}">
             <div class="task-list-container js-task-list-container js-for-search-result">
               <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-results" listHeaderStyleClass="task-in-search"
                 keyword="#{dataModel.taskDataModel.criteria.keyword}" hideTaskFilter="true" currentPortalPage="SEARCH_RESULTS"
@@ -96,7 +96,7 @@
           </p:tab>
           
           <p:tab id="case-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}" titleStyleClass="case-tab-title"
-            rendered="#{caseWidgetBean.showFullCaseList}">
+            rendered="#{dataModel.caseDataModel.criteria.globalSearchScope and caseWidgetBean.showFullCaseList}">
             <div class="js-case-default-widget-container case-default-widget-container js-for-search-result">
               <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-results" hideWidgetHeader="true"
                 dataModel="#{dataModel.caseDataModel}" hideCaseFilter="true" listHeaderStyleClass="case-in-search">
