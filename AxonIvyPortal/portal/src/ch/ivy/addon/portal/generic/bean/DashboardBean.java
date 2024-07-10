@@ -498,6 +498,14 @@ public class DashboardBean implements Serializable {
     return widget.getType().canEnableQuickSearch();
   }
   
+  public boolean canShowWidgetInfoIcon(DashboardWidget widget) {
+    return widget.getType().canShowWidgetInfoOption();
+  }
+  
+  public boolean canShowExpandMode(DashboardWidget widget) {
+    return widget.getType().canShowFullscreenMode();
+  }
+  
   public void setSelectedDashboardName(String dashboardName) {
     this.selectedDashboardName = dashboardName;
   }

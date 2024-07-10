@@ -296,4 +296,43 @@ public class DashboardCaseWidgetTest extends BaseTest {
     caseWidget.stateOfFirstCase().shouldHave(text("Destroyed"));
 
   }
+  
+  @Test
+  public void testHideWidgetInfoIcon() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    CaseWidgetNewDashBoardPage caseWidget = dashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage =
+        modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    caseEditWidget.clickOnWidgetInfoIconCheckbox();
+    caseEditWidget.save();
+    newDashboardDetailsEditPage.backToConfigurationPage();
+    redirectToNewDashBoard();
+    assertFalse(caseWidget.isWidgetInfomationIconAppear());
+  }
+
+  @Test
+  public void testHideExpandMode() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    CaseWidgetNewDashBoardPage caseWidget = dashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage =
+        modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    caseEditWidget.clickOnExpandModeCheckbox();
+    caseEditWidget.save();
+    newDashboardDetailsEditPage.backToConfigurationPage();
+    redirectToNewDashBoard();
+    assertFalse(caseWidget.isExpandButtonAppear());
+  }
 }
