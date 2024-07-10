@@ -44,8 +44,6 @@ public enum Variable {
   ENABLE_SWITCH_THEME_BUTTON("Portal.Theme.EnableSwitchThemeModeButton"),
   SHOW_USER_GUIDE("Portal.Dashboard.ShowUserGuide"),
   SHOW_LEGACY_UI("Portal.ShowLegacyUI"),
-  DASHBOARD_MAIN_MENU_ENTRY("Portal.Dashboard.MainMenuEntry");
-  GLOBAL_SEARCH_BY_CASE_FIELDS("Portal.SearchScope.ByCaseFields"),
   GLOBAL_SEARCH_SCOPE_BY_CATEGORIES("Portal.GlobalSearchScopeCategories"),
   DASHBOARD_MAIN_MENU_ENTRY("Portal.Dashboard.MainMenuEntry"), APPLICATION_NAME("Portal.ApplicationName");
 

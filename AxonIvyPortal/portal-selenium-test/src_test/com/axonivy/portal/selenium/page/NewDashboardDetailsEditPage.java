@@ -73,12 +73,6 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
         .click();
   }
 
-//  private void addCustomWidgetByName(String name) {
-//    $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT).$$("div.new-widget-dialog__item")
-//        .filter(text(name)).first().$("button[id^='new-custom-widget-dialog-content']")
-//        .shouldBe(getClickableCondition()).click();
-//  }
-
   public DashboardConfigurationPage backToConfigurationPage() {
     clickByJavaScript($("[id='back-to-configuration']"));
     return new DashboardConfigurationPage();

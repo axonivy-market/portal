@@ -2,6 +2,8 @@ package com.axonivy.portal.selenium.page;
 
 import static com.axonivy.portal.selenium.common.Variable.CLIENT_SIDE_TIMEOUT;
 import static com.axonivy.portal.selenium.common.Variable.GLOBAL_FOOTER_INFO;
+import static com.axonivy.portal.selenium.common.Variable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES;
+
 import static com.codeborne.selenide.Selenide.$;
 
 import org.openqa.selenium.By;
@@ -173,5 +175,24 @@ public class AdminSettingsPage extends TemplatePage {
         .$("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id='admin-setting-component:settingDialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
+  
+  public WebElement getEditSettingDialogOfGlobalSearchScope() {
+    openSettingTab();
+    String variableName = GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey();
+    $("button[id$='admin-setting-component:adminTabView:restore-all-to-default-button']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition());
+    waitForElementDisplayed(By.id("admin-setting-component:adminTabView:settingTable"), true);
+
+    var variableRow = $("[id='admin-setting-component:adminTabView:settingTable']").$$(".setting-key")
+        .filter(Condition.text(variableName)).get(0);
+
+    if (variableRow != null) {
+      SelenideElement editButton = variableRow.ancestor("tr").$(By.cssSelector("a[id$=edit]"));
+      editButton.shouldBe(clickable(), DEFAULT_TIMEOUT).click();
+    }
+    waitForElementDisplayed(By.cssSelector("[id$=':settingDialogForm']"), true);
+    return getAdminSettingContainer();
+  }
+
 }
 
