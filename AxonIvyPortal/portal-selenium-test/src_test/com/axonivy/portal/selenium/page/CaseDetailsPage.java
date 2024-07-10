@@ -99,7 +99,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void gotoTaskDetailsPageOfRelatedTask(String taskName) {
-    $$("div[id='case-details-related-task-table'] table tbody tr td span").filter(text(taskName)).first().click();
+    $$("div[id$='case-details-related-task-table'] table tbody tr td span")
+        .filter(text(taskName)).first().click();
   }
 
   public void gotoCaseDetailsPageOfRelatedCase(String caseName) {
@@ -118,24 +119,27 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void openTaskWithRunTheTaskBehaviour(String taskName) {
     getRelatedTasksPanel().shouldBe(appear, DEFAULT_TIMEOUT);
-    var taskItem = $$("div[id='case-details-related-task-table'] table tbody tr td span.task-name-value")
-        .filter(text(taskName)).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    var taskItem = $$(
+        "div[id$='case-details-related-task-table'] table tbody tr td span.task-name-value")
+        .filter(text(taskName)).first()
+      .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     waitUntilElementToBeClickable(taskItem);
     waitUntilElementToBeClickable(taskItem.parent());
     taskItem.parent().click();
   }
-
+  
   public SelenideElement getNameOfRelatedTask(int index) {
     getRelatedTasksPanel().shouldBe(appear, DEFAULT_TIMEOUT);
-    return $("div[id='case-details-related-task-table'] table tbody").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr")
-        .get(index).$$("td").findBy(Condition.attributeMatching("class", ".*related-task-name-column.*")).$("span");
+    return $("div[id$='case-details-related-task-table'] table tbody")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$$("tr").get(index).$$("td")
+        .findBy(Condition.attributeMatching("class", ".*related-task-name-column.*")).$("span");
   }
-
+  
   public SelenideElement getStateOfRelatedTask(int index) {
     getRelatedTasksPanel().shouldBe(appear, DEFAULT_TIMEOUT);
-    return $("div[id='case-details-related-task-table'] table tbody").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr")
-        .get(index).$$("td").findBy(Condition.attributeMatching("class", ".*related-task-state-column.*"))
-        .$("span span");
+    return $("div[id$='case-details-related-task-table'] table tbody")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$$("tr").get(index).$$("td")
+        .findBy(Condition.attributeMatching("class", ".*related-task-state-column.*")).$("span span");
   }
 
   public void clickRelatedTaskActionButton(int index) {
@@ -394,7 +398,7 @@ public class CaseDetailsPage extends TemplatePage {
   private WebElement getRelatedCasesComponent() {
     return findElementByCssSelector(RELATED_CASES_COMPONENT_ID);
   }
-  
+
   public String getLatestHistoryContent() {
     return caseItem.findElement(By.cssSelector(LATEST_HISTORY_LIST_CSS_SELECTOR)).getText();
   }
@@ -625,6 +629,13 @@ public class CaseDetailsPage extends TemplatePage {
     $(By.cssSelector("button[id$='task-widget:task-columns-configuration:select-columns-form:update-command']"))
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
+
+  public void clickShowOnlyOpenTasks() {
+
+    $("div[id$=':show-only-open-tasks'] .ui-chkbox-box")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+}
 
   public void clickExportToExcelLink(String linkId, String statusDialogId) {
     // Ensure that attribute is removed before downloading

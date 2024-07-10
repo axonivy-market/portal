@@ -2,6 +2,9 @@ package com.axonivy.portal.selenium.test;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
@@ -19,6 +22,8 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 
+import ch.ivy.addon.portalkit.enums.PortalVariable;
+
 @IvyWebTest
 public class QuickSearchTest extends BaseTest {
 
@@ -32,6 +37,7 @@ public class QuickSearchTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
+    createJSonFile("default-dashboard-quicksearch.json", PortalVariable.DASHBOARD.key);
     newDashboardPage = new NewDashboardPage();
   }
 
@@ -46,24 +52,17 @@ public class QuickSearchTest extends BaseTest {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
-
-    taskEditWidget.clickOnQuickSearchCheckBox();
-    taskEditWidget.save();
-    taskWidget.isQuickSearchInputShow("0");
-
+    taskWidget.clearQuickSearchInput();
     taskWidget.setInputForQuickSearch("Task number 10");
     taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
-    taskWidget.clearQuickSearchInput();
-
-    taskWidget.openEditTaskWidget();
+    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
     taskEditWidget.clickOnQuickSearchCheckBox();
     taskEditWidget.save();
     assertFalse(taskWidget.isQuickSearchInputShow("0"));
-  }
+   }
 
   @Test
-  public void testTaskQuickSearchDefaultFields() {
+  public void testTaskQuickSearchStandardFields() {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
@@ -115,6 +114,12 @@ public class QuickSearchTest extends BaseTest {
     taskWidget.countAllTasks().shouldHave(size(3), DEFAULT_TIMEOUT);
     taskWidget.clickOnButtonCollapseTaskWidget();
     taskWidget.countAllTasks().shouldHave(size(3), DEFAULT_TIMEOUT);
+//      taskWidget.setInputForQuickSearch("Task number 10");
+//      taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
+//      taskWidget.clickOnButtonExpandTaskWidget();
+//      taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
+//      taskWidget.clickOnButtonCollapseTaskWidget();
+//      taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -132,6 +137,7 @@ public class QuickSearchTest extends BaseTest {
     taskEditWidget.save();
 
     taskWidget.waitPageLoaded();
+    refreshPage();
     taskWidget.setInputForQuickSearch("Task number 10");
     taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
 
@@ -172,6 +178,7 @@ public class QuickSearchTest extends BaseTest {
     newDashboardPage.waitForCaseWidgetLoaded();
 
     taskWidget = new TaskWidgetNewDashBoardPage();
+    refreshPage();
     taskWidget.setInputForQuickSearch("leave request");
     taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
     taskWidget.clearQuickSearchInput();
@@ -213,6 +220,7 @@ public class QuickSearchTest extends BaseTest {
     newDashboardPage.waitForCaseWidgetLoaded();
 
     taskWidget = new TaskWidgetNewDashBoardPage();
+    refreshPage();
     taskWidget.setInputForQuickSearch("interior");
     taskWidget.countAllTasks().shouldHave(size(2), DEFAULT_TIMEOUT);
     taskWidget.clearQuickSearchInput();
@@ -233,7 +241,6 @@ public class QuickSearchTest extends BaseTest {
     taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
   }
 
-  // Case
   @Test
   public void testVisibilityOfQuickSearchOnCaseWidget() {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
@@ -250,6 +257,7 @@ public class QuickSearchTest extends BaseTest {
     caseEditWidget.save();
     caseWidget.isQuickSearchInputShow("0");
 
+    refreshPage();
     caseWidget.setInputForQuickSearch("Create 12 cases with");
     caseWidget.countAllCases().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
     caseWidget.clearQuickSearchInput();
@@ -292,6 +300,9 @@ public class QuickSearchTest extends BaseTest {
     CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
     caseEditWidget.clickOnQuickSearchCheckBox();
     caseEditWidget.openColumnManagementDialog();
+    assertTrue(caseEditWidget.isQuickSearchClicked("name"));
+    assertTrue(caseEditWidget.isQuickSearchClicked("description"));
+
     caseEditWidget.addFirstStandardField();
     caseEditWidget.clickOnQuickSearchByField("id");
     caseEditWidget.clickOnQuickSearchByField("creator");
@@ -302,6 +313,7 @@ public class QuickSearchTest extends BaseTest {
     caseEditWidget.save();
 
     caseWidget.waitPageLoaded();
+    refreshPage();
 
     caseWidget.setInputForQuickSearch("engine");
     assertTrue(caseWidget.isEmptyMessageAppear());
@@ -383,4 +395,30 @@ public class QuickSearchTest extends BaseTest {
     caseWidget.countAllCases().shouldHave(size(1), DEFAULT_TIMEOUT);
     caseWidget.clearQuickSearchInput();
   }
+
+  @Test
+  public void testCopyAndPasteKeywordOnQuickSearch() {
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForCaseWidgetLoaded();
+
+    taskWidget = new TaskWidgetNewDashBoardPage();
+    refreshPage();
+
+    taskWidget.clearQuickSearchInput();
+    taskWidget.setInputForQuickSearch("Task number 10");
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
+
+    taskWidget.copyAndPasteOnQuickSearchInput();
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
+
+    taskWidget.shiftAndArrowKeyOnQuickSearchInput();
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
+
+  }
+
 }

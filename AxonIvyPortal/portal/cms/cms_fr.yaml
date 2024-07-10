@@ -232,6 +232,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     embedInFrame: Démarrer un processus/une tâche en mode IFrame
     emptySupportedLanguages: Il n'y a pas langue supplémentaire supportée
     globalVariableNote:
+      ApplicationName: Le nom de l'application par défaut qui sera affiché dans le titre de la page.
       DefaultThemeMode: Le mode de thème par défaut de l'application
       EnableSwitchThemeModeButton: Défini à true pour activer le bouton de changement de thème.
       RoleDirectChildrenLimit: 'Le nombre défini contrôle la quantité de rôles d''enfants directs qui est affichée dans l''onglet Gestion des rôles. Nombre valide : 10, 50, 100'
@@ -242,8 +243,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       behaviourWhenClickingOnLineInTaskList: Pour changer de comportement (exécuter la tâche ou accéder aux détails de la tâche) en cliquant sur une ligne dans la liste des tâches, le widget des tâches du tableau de bord et les tâches liées dans la page des détails du cas.
       chatMaxConnection: Si le nombre de tabs du browser est supérieur à ce nombre maximum, le chat sera désactivé sur les tabs inactifs du browser. Les valeurs valides sont 1, 2, 3, 4, 5.
       chatResponseTimeout: Délai de réponse au chat en secondes, la valeur par défaut est 0 et signifie aucun délai. Si les messages de chat passent par le proxy inverse Nginx, le délai de réponse du chat doit être inférieur au délai de Nginx, par exemple moins de 60 secondes.
-      clientSideTimeoutNote: Délai d'attente côté client en minutes, doit être supérieur à 0 et inférieur au délai d'attente côté serveur (par exemple 25 secondes). La valeur par défaut est 0, ce qui signifie que le délai d'attente côté client par défaut est appliqué. Le délai d'attente côté client par
-        défaut est le délai d'attente côté serveur moins 3 minutes.
       dateFilterWithTime: Défini à true pour activer le filtrage de la date avec l'heure. Ce paramètre s'applique à la liste des tâches, à la liste des cas et aux statistiques.
       defaultHomepage: Pour définir la page d'accueil standard vers laquelle sera redirigée la personne qui clique sur l'icône d'accueil ou le logo. Ce paramètre s'applique également à la page de fin après avoir terminé une tâche.
       defaultProcessImage: Le paramètre standard de l'image par défaut qui sera affichée dans la liste de traitement des images.
@@ -933,7 +932,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       noMatchingProcess: Aucun processus correspondant.
       noPermissionToSee: Vous n'avez pas l'autorisation requise pour lancer ce processus.
       noProcessSelected: Veuillez sélectionner un processus
-    removeWidgetHeader: Supprimer le widget "{0}"
+    removeWidgetHeader: Supprimer ce widget
     removeWidgetMessage: Voulez-vous vraiment le supprimer ?
     reorder:
       dashboardType: Type de tableau de bord
@@ -1048,6 +1047,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   logoutSetting:
     logout: Se déconnecter
   noteHistory:
+    ShowOnlyOpenTasks: Afficher uniquement les tâches en cours
     author: Auteur
     caseExportedFileNamePrefix: Histoire_de_notes_de_dossier_{0}
     caseHistoriesTitle: Histoires
@@ -1464,8 +1464,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     myProfileTitle: Mon profil
     saveUserSettingsSuccessfully: Les paramètres de l'utilisateur ont été enregistrés avec succès.
   warningBeforeLostSession:
-    extend: Étendre le site
-    warningMessage: Votre session expirera dans 1 minute. Voulez-vous prolonger?
+    refreshSession: Session de rafraîchissement
+    warningMessage: Votre session pourrait bientôt expirer. Veuillez actualiser votre session pour continuer à utiliser l'application.
 Dialogs:
   Cases:
     EditWorkflow:

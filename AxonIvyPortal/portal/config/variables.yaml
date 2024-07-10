@@ -12,10 +12,6 @@ Variables:
     # [file: json]
     Announcement:
 
-    # Client side timeout in minute, must be more than 1 and less than server side timeout (e.g. 25).
-    # Default value is 0, it means default client side timeout is applied. Default client side timeout is server side timeout minus 3 minutes.
-    ClientSideTimeout: 0
-
     # A feedback message will be displayed after user finishes or leaves a task.
     DisplayMessageAfterFinishTask: true
 

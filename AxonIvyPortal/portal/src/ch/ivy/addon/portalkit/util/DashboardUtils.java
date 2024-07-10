@@ -56,7 +56,15 @@ public class DashboardUtils {
   }
 
   public static List<Dashboard> jsonToDashboards(String dashboardJSON) {
-    List<Dashboard> mappingDashboards = BusinessEntityConverter.jsonValueToEntities(dashboardJSON, Dashboard.class);
+    List<Dashboard> mappingDashboards;
+    try {
+      mappingDashboards = BusinessEntityConverter.jsonValueToEntities(
+          DashboardMigrationUtils.migrateOldDashboards(dashboardJSON),
+          Dashboard.class);
+    } catch (Exception e) {
+      return new ArrayList<>();
+    }
+
     for (Dashboard dashboard : mappingDashboards) {
       if (CollectionUtils.isEmpty(dashboard.getPermissions())) {
         ArrayList<String> defaultPermissions = new ArrayList<>();

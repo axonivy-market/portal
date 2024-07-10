@@ -100,12 +100,29 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 384 }
       },
-      "connect" : { "id" : "f13", "to" : "f12" }
+      "connect" : { "id" : "f15", "to" : "f14" }
     }, {
       "id" : "f12",
       "type" : "HtmlDialogEnd",
       "visual" : {
         "at" : { "x" : 352, "y" : 384 }
       }
+    }, {
+      "id" : "f14",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.primefaces.PrimeFaces;",
+            "",
+            "",
+            "PrimeFaces.current().executeScript(\"PortalSessionWarning.resetCounterAndTimeout();\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 384 }
+      },
+      "connect" : { "id" : "f13", "to" : "f12" }
     } ]
 }
