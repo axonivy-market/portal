@@ -61,12 +61,13 @@ Portal.ShowErrorLogToConsole,FALSE,"If true, write error log to browser console.
 Portal.ShowAvatar,TRUE,"If true, switch on the display of user/role avatars."
 Portal.StatisticChartScalingInterval,0,"Interval in seconds to do periodic statistic chart scaling requests. If the interval value is less than 10, periodic statistic chart scaling is disabled."
 Portal.RoleDirectChildrenLimit,50,"| Controls the number of direct child roles that are shown in the Role Management tab.
-| Valid numbers: 10, 50, 100"
+| Valid numbers: 10, 50, 100."
 Portal.RoleParentLimit,10,"| Controls the number of parent roles that are shown when filtering roles in the Role Management tab.
-| Valid numbers: 5, 10, 20"
+| Valid numbers: 5, 10, 20."
 Portal.LoginPage.ShowFooter,TRUE,Set to false to hide the footer on the login page.
 Portal.Theme.EnableSwitchThemeModeButton,TRUE,"If false, the Switch Theme Mode button is disabled."
 Portal.Theme.Mode,LIGHT,The default theme mode of the application.
-Portal.SearchScope.ByCaseFields,"NAME,DESCRIPTION,CUSTOM",Defining the fields that the global search will use to find matching cases beside case Id (this can influence the performance of the search)
-Portal.SearchScope.ByTaskFields,"NAME,DESCRIPTION",Defining the fields that the global search will use to find matching tasks beside task Id (this can influence the performance of the search)
-Portal.GlobalFooterInfo,"Default",Defining the global environment footer info
+Portal.SearchScope.ByCaseFields,"NAME,DESCRIPTION,CUSTOM",Defining the fields that the global search will use to find matching cases besides case Id (this can influence the performance of the search).
+Portal.SearchScope.ByTaskFields,"NAME,DESCRIPTION",Defining the fields that the global search will use to find matching tasks besides task Id (this can influence the performance of the search).
+Portal.GlobalFooterInfo,"Default",Defining the global environment footer info.
+Portal.GlobalSearchScopeCategories,"PROCESSES,TASKS,CASES",Defining the types that the global search will search for.
