@@ -24,7 +24,8 @@
     <ui:param name="componentToUpdateOnApplyFilter" value="#{component.parent.namingContainer.clientId}:task-component:dashboard-tasks #{component.parent.namingContainer.clientId}:task-component:empty-message-container" />
     <ui:param name="componentToUpdateOnResetFilter" value="#{cc.clientId}:task-component:dashboard-tasks #{cc.clientId}:task-component:empty-message-container" />
     <ui:param name="onCompleteApplyFilters" value="PF('dashboard-tasks-#{widget.id}').filter()" />
-    <ui:param name="isRenderExpandCollapse" value="true" />
+    <ui:param name="isRenderExpandCollapse" value="#{widget.isShowFullscreenMode()}" />
+    <ui:param name="isRenderInfo" value="#{widget.isShowWidgetInfo()}" />
     <ui:param name="widgetContentStyleClass" value="task-widget" />
     <ui:define name="widgetInformationContent">
       <ui:include src="TaskInfo.xhtml">
