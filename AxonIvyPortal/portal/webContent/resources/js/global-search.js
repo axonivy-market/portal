@@ -103,19 +103,6 @@ if (document) {
 
   }
 
-  function getTabActiveIndex2() {
-    let processTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].process-tab-title").length;
-    let taskTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].task-tab-title").length;
-    let caseTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].case-tab-title").length;
-    if (processTab) {
-      return processTabIndex;
-    } else if (taskTab) {
-      return taskTabIndex;
-    } else if (caseTab) {
-      return caseTabIndex
-    }
-  }
-
   function getTabActiveIndex() {
     let activeTab = $("li.ui-tabs-header.search-bar[aria-selected='true']");
     return activeTab.attr('data-index') * 1;
