@@ -66,6 +66,7 @@ public class TaskSearchCriteria {
   private List<SearchScopeTaskField> searchScopeTaskFields;
   private boolean isGlobalSearch;
   private boolean isQuickGlobalSearch;
+  private boolean isGlobalSearchScope;
 
   public TaskQuery createQueryToFindLatestTasks(TaskQuery taskQuery, Date timeStamp) {
     if (isAdminQuery) {
@@ -525,6 +526,14 @@ public class TaskSearchCriteria {
 
   public void setSearchScopeTaskFields(List<SearchScopeTaskField> searchScopeTaskFields) {
     this.searchScopeTaskFields = searchScopeTaskFields;
+  }
+
+  public boolean isGlobalSearchScope() {
+    return isGlobalSearchScope;
+  }
+
+  public void setGlobalSearchScope(boolean isGlobalSearchScope) {
+    this.isGlobalSearchScope = isGlobalSearchScope;
   }
 
   public boolean isOnlyShowOpenTask() {
