@@ -176,15 +176,7 @@ if (document) {
     if (analyzedInput.explicit) {
       let activeTab = $("li.ui-tabs-header.search-bar[data-index='" + tabIndex + "']");
       activeTab.click();
-      console.log('3dd')
-      setTimeout(function() {
-        $(eleSearchId)[0].scrollIntoView();
-
-        // Thực hiện click
-        $(eleSearchId)[0].click();
-      }, 100);;
     } else {
-      //search(keyword.trim(), tabIndex);
       let processTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].process-tab-title").length;
       let taskTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].task-tab-title").length;
       let caseTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].case-tab-title").length;
