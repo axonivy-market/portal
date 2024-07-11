@@ -200,9 +200,6 @@ Variables:
       # [enum: 1, 2, 3, 4, 5]
       MaxConnection: 3
 
-      # Endpoint URL for the RESTful service of Portal chatbot
-      ChatBotEndpoint: localhost:8018
-
     Histories:
       # If true, case note does not display any system tasks for non-administrator users.
       HideSystemTasks: true
@@ -301,17 +298,6 @@ Variables:
       AuthKey: ''
       # Set this property to true to enable the DeepL translation support
       Enable: false
-
-    # You can define AI assistants here
-    # [file: json]
-    Assistant:
-
-    # You can define AI Tools
-    # [file: json]
-    AiTool:
-
-  #URL to the REST service endpoint of Portal AI
-  PortalAiUrl: 'http://localhost:8018'
 
     # You can define the application name via this JSON file.
     # It will be shown with the page title

@@ -1,6 +1,5 @@
 PortalToolsData #class
 portalkit #namespace
-tool ch.ivy.addon.portalkit.dto.ai.IvyTool #field
 taskDashboardWidget ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget #field
 name String #field
 description String #field

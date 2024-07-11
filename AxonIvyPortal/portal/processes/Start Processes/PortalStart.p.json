@@ -4906,37 +4906,5 @@
       "connect" : [
         { "id" : "f294", "to" : "f271" }
       ]
-    }, {
-      "id" : "f282",
-      "type" : "RequestStart",
-      "name" : "PortalChatDashboard",
-      "config" : {
-        "signature" : "PortalChatDashboard"
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 4192 }
-      },
-      "connect" : [
-        { "id" : "f287", "to" : "f285" }
-      ]
-    }, {
-      "id" : "f285",
-      "type" : "DialogCall",
-      "name" : "ChatDashboard",
-      "config" : {
-        "dialog" : "com.axonivy.portal.component.ChatDashboard:start()"
-      },
-      "visual" : {
-        "at" : { "x" : 280, "y" : 4192 }
-      },
-      "connect" : [
-        { "id" : "f290", "to" : "f286" }
-      ]
-    }, {
-      "id" : "f286",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 464, "y" : 4192 }
-      }
     } ]
 }

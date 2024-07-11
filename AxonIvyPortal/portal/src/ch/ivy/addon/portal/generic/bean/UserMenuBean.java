@@ -273,8 +273,8 @@ public class UserMenuBean implements Serializable {
     getExternalContext().redirect(getUserProfileUrl());
   }
 
-  public void navigateToChatbotDashboard() throws IOException {
-    getExternalContext().redirect(getChatbotUrl());
+  public void navigateToAssistantDashboard() throws IOException {
+    getExternalContext().redirect(getAssistantDashboardUrl());
   }
 
   private void navigateToTargetPage() throws IOException {
@@ -285,8 +285,8 @@ public class UserMenuBean implements Serializable {
     return PortalNavigator.buildUserProfileUrl();
   }
 
-  private String getChatbotUrl() {
-    return PortalNavigator.buildChatbotUrl();
+  private String getAssistantDashboardUrl() {
+    return PortalNavigator.buildAssistantDashboardUrl();
   }
 
   private void navigateToPortalManagement() throws IOException {
@@ -409,10 +409,10 @@ public class UserMenuBean implements Serializable {
   public void navigateToChatBotOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {
       openTaskLosingConfirmationDialog();
-      targetPage = getChatbotUrl();
+      targetPage = getAssistantDashboardUrl();
     } else {
       executeJSResetPortalMenuState();
-      navigateToChatbotDashboard();
+      navigateToAssistantDashboard();
     }
   }
 }
