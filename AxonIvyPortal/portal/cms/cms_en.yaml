@@ -218,6 +218,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       BaseQRCodeUrl: Set Base URL for QR code to display.
       DefaultThemeMode: The default theme mode of the application
       EnableSwitchThemeModeButton: Set to true to enable the switch theme button.
+      GlobalSearchScopeCategoriesNote: Defining the types that the global search will search for
       GooglePlayURL: Set URL to download Axon Ivy mobile app on Google Play.
       RoleDirectChildrenLimit: 'The set number controls the amount of direct children roles that is shown in Role Management tab. Valid number: 10, 50, 100'
       RoleParentLimit: 'The set number controls the amount of parent roles that is shown when filtering roles in Role Management tab. Valid number: 5, 10, 20'
@@ -1762,6 +1763,10 @@ Labels:
   AppendTheTask: Append the task
   CreateNewDashboard: Create new dashboard
   Enums:
+    GlobalSearchScopeCategory:
+      CASES: Cases
+      PROCESSES: Processes
+      TASKS: Tasks
     DashboardStandardCaseColumn:
       ACTIONS: Actions
       APPLICATION: Application
