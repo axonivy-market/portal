@@ -43,11 +43,8 @@
     </ui:define>
   </ui:decorate>
 
-  <h:form>
-
-    <p:remoteCommand name="keepSession" global="false" process="@this" update="@this"
-      actionListener="#{logic.extendSession}" />
-  </h:form>
+  <p:remoteCommand name="keepSession" global="false" process="@this" update="@this"
+    actionListener="#{logic.extendSession}" />
   <script type="text/javascript">
       $(function() { 
         PortalSessionWarning.init(#{cc.attrs.serverSideTimeout});
