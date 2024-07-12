@@ -8,5 +8,5 @@ taskPriority String #field
 taskDescription String #field
 taskState String #field
 taskDashboardWidget ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget #field
-result String #field
+result com.axonivy.portal.components.dto.AiResultDTO #field
 validationError String #field
