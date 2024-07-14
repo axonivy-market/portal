@@ -11,7 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.AiResultDTO;
 import com.axonivy.portal.components.dto.UserDTO;
-import com.axonivy.portal.components.enums.AiResultState;
+import com.axonivy.portal.components.enums.AIState;
 import com.axonivy.portal.components.publicapi.AiAssistantAPI;
 import com.axonivy.portal.components.util.UserUtils;
 import com.axonivy.portal.util.AiToolUtils;
@@ -56,7 +56,7 @@ public class AiService {
     String processPath = IApplication.current().getName().concat(TASK_PROCESS_PATH);
     AiAssistantAPI.addIvyProcessLinkToAiResult(processPath, params, result);
 
-    if (result.getState() == AiResultState.ERROR) {
+    if (result.getState() == AIState.ERROR) {
       return result;
     }
 
@@ -79,7 +79,7 @@ public class AiService {
 
     result.setResultForAI(foundTasksStr);
     result.setIsMemory(true);
-    result.setState(AiResultState.DONE);
+    result.setState(AIState.DONE);
     return result;
   }
   
@@ -95,7 +95,7 @@ public class AiService {
     String processPath = IApplication.current().getName().concat(CASE_PROCESS_PATH);
     AiAssistantAPI.addIvyProcessLinkToAiResult(processPath, params, result);
 
-    if (result.getState() == AiResultState.ERROR) {
+    if (result.getState() == AIState.ERROR) {
       return result;
     }
 
@@ -117,7 +117,7 @@ public class AiService {
 
     result.setResultForAI(foundCasesStr);
     result.setIsMemory(true);
-    result.setState(AiResultState.DONE);
+    result.setState(AIState.DONE);
     return result;
   }
   
@@ -146,7 +146,7 @@ public class AiService {
       result.setResultForAI(foundUsersStr);
       result.setResult(foundUsersStr);
       result.setIsMemory(true);
-      result.setState(AiResultState.DONE);
+      result.setState(AIState.DONE);
       return result;
 
     } else {
