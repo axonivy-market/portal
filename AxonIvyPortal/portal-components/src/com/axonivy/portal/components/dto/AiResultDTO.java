@@ -1,11 +1,11 @@
 package com.axonivy.portal.components.dto;
 
-import com.axonivy.portal.components.enums.AiResultState;
+import com.axonivy.portal.components.enums.AIState;
 
 public class AiResultDTO {
   private String result;
   private String resultForAI;
-  private AiResultState state;
+  private AIState state;
   private Boolean isMemory;
 
   public String getResult() {
@@ -24,11 +24,11 @@ public class AiResultDTO {
     this.resultForAI = resultForAI;
   }
 
-  public AiResultState getState() {
+  public AIState getState() {
     return state;
   }
 
-  public void setState(AiResultState state) {
+  public void setState(AIState state) {
     this.state = state;
   }
 
