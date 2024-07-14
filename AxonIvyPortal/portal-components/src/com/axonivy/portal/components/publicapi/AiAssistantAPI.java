@@ -5,7 +5,7 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.AiResultDTO;
-import com.axonivy.portal.components.enums.AiResultState;
+import com.axonivy.portal.components.enums.AIState;
 import com.axonivy.portal.components.service.impl.ProcessService;
 
 import ch.ivyteam.ivy.environment.Ivy;
@@ -43,7 +43,7 @@ public class AiAssistantAPI {
     result.setIsMemory(false);
     result.setResult(errorDescription.concat("\n")
         .concat(ExceptionUtil.getAllMessages(error)));
-    result.setState(AiResultState.ERROR);
+    result.setState(AIState.ERROR);
 
     return result;
   }
@@ -52,7 +52,7 @@ public class AiAssistantAPI {
     AiResultDTO result = new AiResultDTO();
     result.setIsMemory(false);
     result.setResult(error);
-    result.setState(AiResultState.ERROR);
+    result.setState(AIState.ERROR);
 
     return result;
   }
