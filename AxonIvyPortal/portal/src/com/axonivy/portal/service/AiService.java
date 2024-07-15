@@ -13,6 +13,7 @@ import com.axonivy.portal.components.dto.AiResultDTO;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.enums.AIState;
 import com.axonivy.portal.components.publicapi.AiAssistantAPI;
+import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.util.UserUtils;
 import com.axonivy.portal.util.AiToolUtils;
 
@@ -24,13 +25,14 @@ import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class AiService {
 
   private static final String FIND_TASK_AI_RESULT_DEFAULT_PATTERN = "ID: %s, Name: %s, Description: %s, State: %s, Priority %s";
   private static final String FIND_CASE_AI_RESULT_DEFAULT_PATTERN = "ID: %s, Name: %s, Description: %s, State: %s";
   private static final String FIND_USERS_AI_RESULT_DEFAULT_PATTERN = "Username: %s, Name: %s, Email: %s, State: %s";
-  
+
   private static final String TASK_PROCESS_PATH = "/portal/AI Tool Processes/PortalTools/findTasksTool.ivp";
   private static final String CASE_PROCESS_PATH = "/portal/AI Tool Processes/PortalTools/findCasesTool.ivp";
 
@@ -53,7 +55,8 @@ public class AiService {
     params.put("taskState", taskState);
     params.put("taskPriority", taskPriority);
 
-    String processPath = IApplication.current().getName().concat(TASK_PROCESS_PATH);
+    String processPath = IApplication.current().getName()
+        .concat(TASK_PROCESS_PATH);
     AiAssistantAPI.addIvyProcessLinkToAiResult(processPath, params, result);
 
     if (result.getState() == AIState.ERROR) {
@@ -71,10 +74,12 @@ public class AiService {
     // Create result for AI based on found tasks
     String foundTasksStr = "Found tasks:".concat(System.lineSeparator());
     for (ITask task : foundTasks) {
-      foundTasksStr.concat(String.format(FIND_TASK_AI_RESULT_DEFAULT_PATTERN,
-          Long.valueOf(task.getId()).toString(), task.getName(),
-          task.getBusinessState().name(), task.getPriority().name()));
-      foundTasksStr.concat(System.lineSeparator());
+      foundTasksStr = foundTasksStr
+          .concat(String.format(FIND_TASK_AI_RESULT_DEFAULT_PATTERN,
+              Long.valueOf(task.getId()).toString(), task.getName(),
+              task.getDescription(), task.getBusinessState().name(),
+              task.getPriority().name()))
+          .concat(System.lineSeparator());
     }
 
     result.setResultForAI(foundTasksStr);
@@ -82,7 +87,7 @@ public class AiService {
     result.setState(AIState.DONE);
     return result;
   }
-  
+
   public AiResultDTO generateFindCasesAiResult(String caseName,
       String caseDescription, String caseState) {
     AiResultDTO result = new AiResultDTO();
@@ -92,7 +97,8 @@ public class AiService {
     params.put("caseDescription", caseDescription);
     params.put("caseState", caseState);
 
-    String processPath = IApplication.current().getName().concat(CASE_PROCESS_PATH);
+    String processPath = IApplication.current().getName()
+        .concat(CASE_PROCESS_PATH);
     AiAssistantAPI.addIvyProcessLinkToAiResult(processPath, params, result);
 
     if (result.getState() == AIState.ERROR) {
@@ -100,7 +106,8 @@ public class AiService {
     }
 
     CaseDashboardWidget caseWidget = AiToolUtils
-        .convertIvyToolToCaseDashboardWidget(caseName, caseDescription, caseState);
+        .convertIvyToolToCaseDashboardWidget(caseName, caseDescription,
+            caseState);
 
     // we only show 10 first matched results
     List<ICase> foundCases = DashboardCaseService.getInstance().findByCaseQuery(
@@ -120,7 +127,7 @@ public class AiService {
     result.setState(AIState.DONE);
     return result;
   }
-  
+
   public AiResultDTO generateFindUsersAiResult(String username, String role) {
     List<String> roleList = StringUtils.isNotBlank(role) ? Arrays.asList(role)
         : null;
@@ -153,5 +160,23 @@ public class AiService {
       return AiAssistantAPI.generateErrorAiResult(
           Ivy.cms().co("/Labels/AI/Error/CannotFindUser"));
     }
+  }
+
+  public AiResultDTO generateStartTasksAiResult(String taskId) {
+    TaskQuery query = TaskQuery.create();
+    query.where().taskId().isEqual(Long.valueOf(taskId));
+
+    ITask foundTask = DashboardTaskService.getInstance()
+        .findByTaskQuery(query, 0, 1).get(0);
+
+    AiResultDTO result = new AiResultDTO();
+
+    result.setResult(PortalNavigatorAPI
+        .buildUrlToPortalTaskDetailsPageById(foundTask.getId()));
+    result.setResultForAI(null);
+    result.setIsMemory(false);
+    result.setState(AIState.DONE);
+    return result;
+
   }
 }
