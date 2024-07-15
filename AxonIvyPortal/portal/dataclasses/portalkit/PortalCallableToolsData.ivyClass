@@ -10,3 +10,5 @@ taskState String #field
 taskDashboardWidget ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget #field
 result com.axonivy.portal.components.dto.AiResultDTO #field
 validationError String #field
+taskId String #field
+taskId PERSISTENT #fieldModifier
