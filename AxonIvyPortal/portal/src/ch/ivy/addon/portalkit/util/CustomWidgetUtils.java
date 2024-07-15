@@ -245,9 +245,7 @@ public class CustomWidgetUtils {
   }
 
   public static List<IWebStartable> getAllCustomDashboardProcesses() {
-    if (CollectionUtils.isEmpty(allCustomDashboardProcesses)) {
-      allCustomDashboardProcesses = ProcessService.getInstance().findCustomDashboardProcesses();
-    }
+    allCustomDashboardProcesses = ProcessService.getInstance().findCustomDashboardProcesses();
     return allCustomDashboardProcesses;
   }
 }
