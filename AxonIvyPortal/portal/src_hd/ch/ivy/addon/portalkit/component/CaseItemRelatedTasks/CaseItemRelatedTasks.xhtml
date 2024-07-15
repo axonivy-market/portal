@@ -63,13 +63,13 @@
             priority="#{task.priority}" dataModel="#{data.dataModel}" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}"
-          styleClass="related-task-name-column u-truncate-text ui-sm-10" field="NAME" sortBy="#{NAME}" filterable="false"
+          styleClass="related-task-name-column ui-sm-10" field="NAME" sortBy="#{NAME}" filterable="false"
           visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldName)}">
           <h:outputText value="#{task.names().current()}" title="#{task.names().current()}" styleClass="task-name-value"/>
           <h:outputText value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.descriptions().current())}" styleClass="task-description-value"/>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="false"
-          styleClass="related-task-description-column u-truncate-text">
+          styleClass="related-task-description-column">
           <h:outputText value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.descriptions().current())}" title="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.descriptions().current())}"/>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}"
