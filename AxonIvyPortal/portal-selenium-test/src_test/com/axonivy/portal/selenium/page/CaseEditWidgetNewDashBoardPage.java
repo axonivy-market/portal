@@ -319,9 +319,9 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private SelenideElement getExpandModeCheckbox() {
-    return getConfigurationFilterContainer().$("span[id$='expand-mode-group']")
+    return getConfigurationFilterContainer().$("span[id$='fullscreen-mode-group']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']")
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='expand-option']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='fullscreen-option']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
