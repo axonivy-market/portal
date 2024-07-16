@@ -5,9 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import com.axonivy.portal.components.dto.AiResultDTO;
 import com.axonivy.portal.components.dto.UserDTO;
@@ -163,13 +165,22 @@ public class AiService {
   }
 
   public AiResultDTO generateStartTasksAiResult(String taskId) {
+    if (!NumberUtils.isDigits(taskId)) {
+      return AiAssistantAPI.generateErrorAiResult("Cannot find task");
+    }
     TaskQuery query = TaskQuery.create();
     query.where().taskId().isEqual(Long.valueOf(taskId));
 
-    ITask foundTask = DashboardTaskService.getInstance()
-        .findByTaskQuery(query, 0, 1).get(0);
+    ITask foundTask = Optional.ofNullable(
+        DashboardTaskService.getInstance().findByTaskQuery(query, 0, 1).get(0))
+        .orElse(null);
 
     AiResultDTO result = new AiResultDTO();
+
+    if (foundTask == null) {
+      return AiAssistantAPI.generateErrorAiResult(
+          "Cannot find task");
+    }
 
     result.setResult(PortalNavigatorAPI
         .buildUrlToPortalTaskDetailsPageById(foundTask.getId()));
