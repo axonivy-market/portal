@@ -62,7 +62,7 @@
       <p:tabView style="height: 250px">
         <p:tab id="process-tab-search" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}"
           titleStyleClass="search-bar process-tab-title"
-          rendered="#{processWidgetBean.isShowGlobalSearchScope()}">
+          rendered="#{processWidgetBean.showFullProcessList and processWidgetBean.isShowGlobalSearchScope()}">
          <div class="js-case-default-widget-container case-default-widget-container js-for-search-result"
           id="process-search-results">
          </div>

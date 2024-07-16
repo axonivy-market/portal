@@ -84,6 +84,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   private List<String> selectedPermissionsForSavingEditedExternalLink;
   private IProcessStart createExpressWorkflowProcessStart;
   private Map<String, List<Process>> processesByAlphabet;
+  private boolean isShowFullProcessList = false;
   
   private String warningText;
   private String translatedText;
@@ -91,6 +92,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   public void initConfiguration() {
     initProcessViewMode();
     createExpressWorkflowProcessStart = ExpressProcessService.getInstance().findExpressCreationProcess();
+    setShowFullProcessList(PermissionUtils.checkAccessFullProcessListPermission());
   }
 
   public void initProcesses() {
@@ -680,4 +682,13 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     }
     return false;
   }
+
+  public boolean isShowFullProcessList() {
+    return isShowFullProcessList;
+  }
+
+  public void setShowFullProcessList(boolean isShowFullProcessList) {
+    this.isShowFullProcessList = isShowFullProcessList;
+  }
+
 }
