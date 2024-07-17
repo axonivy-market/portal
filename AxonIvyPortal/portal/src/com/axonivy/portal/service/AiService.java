@@ -166,7 +166,7 @@ public class AiService {
 
   public AiResultDTO generateStartTasksAiResult(String taskId) {
     if (!NumberUtils.isDigits(taskId)) {
-      return AiAssistantAPI.generateErrorAiResult("Cannot find task");
+      return AiAssistantAPI.generateErrorAiResult("Cannot start task");
     }
     TaskQuery query = TaskQuery.create();
     query.where().taskId().isEqual(Long.valueOf(taskId));
@@ -179,7 +179,7 @@ public class AiService {
 
     if (foundTask == null) {
       return AiAssistantAPI.generateErrorAiResult(
-          "Cannot find task");
+          "Cannot start task");
     }
 
     result.setResult(PortalNavigatorAPI
