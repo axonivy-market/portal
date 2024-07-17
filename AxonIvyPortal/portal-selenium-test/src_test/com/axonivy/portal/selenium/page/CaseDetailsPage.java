@@ -754,6 +754,10 @@ public class CaseDetailsPage extends TemplatePage {
     WebElement delegateButton = findElementByCssSelector(commandButton);
     return delegateButton.getAttribute(CLASS).contains("ui-state-disabled");
   }
+  
+  public void clickOutOfOverlayPanel() {
+    $("div.task-details-panel-title").click();
+  }  
 
   public boolean isRelatedTaskDestroyEnabled(String taskName) {
     WebElement destroyButton = findDestroyCommand(taskName);
