@@ -52,6 +52,7 @@ public class AiAssistantAPI {
     AiResultDTO result = new AiResultDTO();
     result.setIsMemory(false);
     result.setResult(error);
+    result.setResultForAI(error);
     result.setState(AIState.ERROR);
 
     return result;
