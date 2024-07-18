@@ -17,6 +17,7 @@ import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardProcessSearchCriteria;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
+import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ProcessDashboardWidget extends DashboardWidget {
@@ -50,6 +51,7 @@ public class ProcessDashboardWidget extends DashboardWidget {
 
   @JsonIgnore
   public void buildProcessDataFirstTime(boolean isInConfiguration) {
+    Ivy.log().info("error");
     setInConfiguration(isInConfiguration);
     DashboardWidgetUtils.loadProcessesOfWidget(this);
   }
