@@ -17,8 +17,15 @@
   <c:set var="displayMode" value="#{widget.displayMode}" />
   <c:set var="index" value="#{cc.attrs.index}" />
 
+  <h:form rendered="#{cc.attrs.isAIResult}">
+    <p:remoteCommand id="rcLoadProcessFirstTimeAIResult"
+      autoRun="true" actionListener="#{widget.buildProcessDataFirstTime(cc.attrs.isInConfiguration)}"
+      process="@this" update=":#{p:resolveFirstComponentWithId('dashboard-processes-container', view).clientId}"
+      global="false" async="true" 
+      oncomplete="loadWidgetFirstTime('js-loading-#{widget.id}', 'js-dashboard-processes-container-#{widget.id}'); #{cc.attrs.onLoadProcessComplete}; respondProcessWidget('#{displayMode}')" />
+  </h:form>
 
-  <p:remoteCommand id="rcLoadProcessFirstTime"
+  <p:remoteCommand id="rcLoadProcessFirstTime" rendered="#{!cc.attrs.isAIResult}"
     autoRun="true" actionListener="#{widget.buildProcessDataFirstTime(cc.attrs.isInConfiguration)}"
     update="dashboard-processes-container" process="@this"
     global="false" async="true" 
