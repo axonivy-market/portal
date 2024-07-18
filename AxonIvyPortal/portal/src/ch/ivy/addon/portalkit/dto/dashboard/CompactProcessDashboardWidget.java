@@ -15,6 +15,7 @@ import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardProcessSearchCriteria;
 import ch.ivy.addon.portalkit.service.DashboardWidgetInformationService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
@@ -60,6 +61,13 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
     setDisplayMode(COMPACT_MODE);
     filterableColumns = new ArrayList<>();
     processes = new ArrayList<>();
+  }
+  
+  @Override
+  public void buildProcessDataFirstTime(boolean isInConfiguration) {
+    Ivy.log().info("error");
+    setInConfiguration(isInConfiguration);
+    DashboardWidgetUtils.loadProcessesOfWidget(this);
   }
 
   public List<DashboardProcess> getDisplayProcesses() {

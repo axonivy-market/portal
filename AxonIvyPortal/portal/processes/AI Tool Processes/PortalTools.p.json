@@ -154,5 +154,72 @@
       "connect" : [
         { "id" : "f12", "to" : "f9" }
       ]
+    }, {
+      "id" : "f14",
+      "type" : "RequestStart",
+      "name" : "findProcessesTool",
+      "config" : {
+        "signature" : "findProcessesTool",
+        "input" : {
+          "params" : [
+            { "name" : "processName", "type" : "String", "desc" : "" },
+            { "name" : "processDescription", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.description" : "param.processDescription",
+            "out.name" : "param.processName"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 336 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f15" }
+      ]
+    }, {
+      "id" : "f15",
+      "type" : "Script",
+      "name" : "Initialize process widget",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.util.AiToolUtils;",
+            "",
+            "in.processDashboardWidget = AiToolUtils.convertIvyToolToProcessDashboardWidget(in.name, in.description);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 336 }
+      },
+      "connect" : [
+        { "id" : "f18", "to" : "f17" }
+      ]
+    }, {
+      "id" : "f17",
+      "type" : "DialogCall",
+      "name" : "FindProcessWidget",
+      "config" : {
+        "dialog" : "ch.ivy.addon.portal.generic.ai.FindProcessWidget:start(ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget)",
+        "call" : {
+          "map" : {
+            "param.processWidget" : "in.processDashboardWidget"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 400, "y" : 336 }
+      },
+      "connect" : [
+        { "id" : "f20", "to" : "f19" }
+      ]
+    }, {
+      "id" : "f19",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 512, "y" : 336 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
     } ]
 }
