@@ -16,16 +16,14 @@
   <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
   <c:set var="displayMode" value="#{widget.displayMode}" />
   <c:set var="index" value="#{cc.attrs.index}" />
-  
-  <p:remoteCommand id="rcLoadProcessFirstTimeAIResult" rendered="false"
-                   autoRun="true" action="#{cc.attrs.processWidget.xxx(cc.attrs.isAIResult ? 'true' : 'false')}" 
-                   update="dashboard-processes-container" global="false" process="@this"
-                   async="true"
-                   oncomplete="loadWidgetFirstTime('js-loading-#{widget.id}', 'js-dashboard-processes-container-#{widget.id}'); #{cc.attrs.onLoadProcessComplete}; respondProcessWidget('#{displayMode}');" />
-  
-  <p:remoteCommand id="rcLoadProcessFirstTime" rendered="true" autoRun="true" update="dashboard-processes-container" global="false" async="true" process="@this"
+
+
+  <p:remoteCommand id="rcLoadProcessFirstTime"
+    autoRun="true" actionListener="#{widget.buildProcessDataFirstTime(cc.attrs.isInConfiguration)}"
+    update="dashboard-processes-container" process="@this"
+    global="false" async="true" 
     oncomplete="loadWidgetFirstTime('js-loading-#{widget.id}', 'js-dashboard-processes-container-#{widget.id}'); #{cc.attrs.onLoadProcessComplete}; respondProcessWidget('#{displayMode}')"
-    actionListener="#{widget.buildProcessDataFirstTime(cc.attrs.isInConfiguration)}" />
+     />
 
   <div class="ui-g widget-height-100 #{displayMode eq 'COMBINED_MODE' ? 'widget-overflow-auto' : ''} #{displayMode eq 'IMAGE_MODE' ? 'image-process-container' : ''}">
     <h:panelGroup layout="block"
