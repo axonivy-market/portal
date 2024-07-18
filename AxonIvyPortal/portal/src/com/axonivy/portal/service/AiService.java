@@ -35,6 +35,7 @@ public class AiService {
 
   private static final String TASK_PROCESS_PATH = "/portal/AI Tool Processes/PortalTools/findTasksTool.ivp";
   private static final String CASE_PROCESS_PATH = "/portal/AI Tool Processes/PortalTools/findCasesTool.ivp";
+  private static final String PROCESS_PROCESS_PATH = "/portal/AI Tool Processes/PortalTools/findProcessesTool.ivp";
 
   private static AiService instance;
 
@@ -125,6 +126,19 @@ public class AiService {
     result.setResultForAI(foundCasesStr);
     result.setIsMemory(true);
     result.setState(AIState.DONE);
+    return result;
+  }
+  
+  public AiResultDTO generateFindProcessesAiResult(String processName, String processDescription) {
+    AiResultDTO result = new AiResultDTO();
+    Map<String, String> params = new HashMap<>();
+    params.put("processName", processName);
+    params.put("processDescription", processDescription);
+    
+    String processPath = IApplication.current().getName().concat(PROCESS_PROCESS_PATH);
+    AiAssistantAPI.addIvyProcessLinkToAiResult(processPath, params, result);
+    String foundProcessStr = "Found processes:".concat(System.lineSeparator());
+    result.setResultForAI(foundProcessStr);
     return result;
   }
 

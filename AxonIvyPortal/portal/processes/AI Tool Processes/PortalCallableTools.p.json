@@ -260,5 +260,63 @@
       "visual" : {
         "at" : { "x" : 352, "y" : 424 }
       }
+    }, {
+      "id" : "f16",
+      "type" : "CallSubStart",
+      "name" : "findProcesses(String,String)",
+      "config" : {
+        "signature" : "findProcesses",
+        "input" : {
+          "params" : [
+            { "name" : "processName", "type" : "String", "desc" : "" },
+            { "name" : "processDescription", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.taskDescription" : "param.processDescription",
+            "out.taskName" : "param.processName"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "result", "type" : "com.axonivy.portal.components.dto.AiResultDTO", "desc" : "" }
+          ],
+          "map" : {
+            "result.result" : "in.result"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 536, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f20", "to" : "f19" }
+      ]
+    }, {
+      "id" : "f19",
+      "type" : "Script",
+      "name" : "Find processes",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.environment.Ivy;",
+            "import com.axonivy.portal.service.AiService;",
+            "",
+            "in.result = AiService.getInstance().generateFindProcessesAiResult(in.taskName, in.taskDescription);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 736, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f24", "to" : "f21" }
+      ]
+    }, {
+      "id" : "f21",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 920, "y" : 64 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
     } ]
 }

@@ -13,11 +13,16 @@ import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.process.ProcessColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
+import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -155,6 +160,11 @@ public class AiToolUtils {
 
     result.buildFilterableColumns(columns);
 
+    return result;
+  }
+  
+  public static ProcessDashboardWidget convertIvyToolToProcessDashboardWidget(String name, String description) {
+    ProcessDashboardWidget result = DashboardWidgetUtils.buildDefaultProcessWidget(DEFAULT_AI_WIDGET_ID, DEFAULT_AI_WIDGET_ID);
     return result;
   }
 
