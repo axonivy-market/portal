@@ -51,7 +51,6 @@ public class ProcessDashboardWidget extends DashboardWidget {
 
   @JsonIgnore
   public void buildProcessDataFirstTime(boolean isInConfiguration) {
-    Ivy.log().info("error");
     setInConfiguration(isInConfiguration);
     DashboardWidgetUtils.loadProcessesOfWidget(this);
   }
