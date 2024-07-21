@@ -121,6 +121,7 @@ public class AiService {
     for (ICase caze : foundCases) {
       foundCasesStr.concat(String.format(FIND_CASE_AI_RESULT_DEFAULT_PATTERN,
           Long.valueOf(caze.getId()).toString(), caze.getName(),
+          caze.getDescription(),
           caze.getBusinessState().name()));
       foundCasesStr.concat(System.lineSeparator());
     }
