@@ -161,7 +161,8 @@ public class AiService {
             : Ivy.cms().coLocale(
                 "/ch.ivy.addon.portalkit.ui.jsf/common/inactive",
                 Locale.ENGLISH);
-        foundUsersStr.concat(String.format(FIND_USERS_AI_RESULT_DEFAULT_PATTERN,
+        foundUsersStr = foundUsersStr.concat(String.format(
+            FIND_USERS_AI_RESULT_DEFAULT_PATTERN,
             user.getName(), user.getDisplayName(), user.getEmail(), userState))
             .concat(System.lineSeparator());
       }
