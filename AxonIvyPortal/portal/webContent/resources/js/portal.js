@@ -421,6 +421,11 @@ function getWidgetVarById(id) {
   return null;
 }
 
+
+function resizeIframeAfterChangingThemeMode() {
+  document.getElementById("iFrame").style.height = "1057px";
+}
+
 function handleKeyDown(event) {
   if (event.key === 'Enter') {
     event.preventDefault();
