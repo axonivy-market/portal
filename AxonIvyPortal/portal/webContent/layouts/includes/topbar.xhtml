@@ -46,8 +46,8 @@
           <p:commandLink id="theme-switcher" disabled="#{!themeBean.enableSwitchThemeButton}"
             onclick="PrimeFaces.FreyaConfigurator.changeLayout('ivy', '#{ivyFreyaTheme.mode == 'light' ? 'dark' : 'light'}');Portal.changePortalVariableTheme('#{ivyFreyaTheme.mode == 'light' ? 'dark' : 'light'}');">
             <i class="topbar-icon pi pi-#{ivyFreyaTheme.mode == 'light' ? 'moon' : 'sun'}" />
-            <p:ajax onstart="PrimeFaces.FreyaConfigurator.beforeResourceChange();" oncomplete="changeThemeModeRefeshCharts();"
-              listener="#{themeBean.toggleTheme()}" update="theme-switcher" />
+            <p:ajax onstart="PrimeFaces.FreyaConfigurator.beforeResourceChange();" oncomplete="changeThemeModeRefeshCharts(); resizeIframeAfterChangingThemeMode();"
+              listener="#{themeBean.toggleTheme()}" update="theme-switcher #{p:resolveFirstComponentWithId('content-container', view).clientId}" />
           </p:commandLink>
         </li>
         <li class="topbar-item">
