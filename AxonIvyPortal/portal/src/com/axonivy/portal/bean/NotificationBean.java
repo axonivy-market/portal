@@ -2,15 +2,19 @@ package com.axonivy.portal.bean;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.function.Consumer;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import com.axonivy.portal.datamodel.NotificationLazyModel;
 import com.axonivy.portal.dto.NotificationDto;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelDTO;
+import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.notification.channel.NotificationChannel;
 import ch.ivyteam.ivy.notification.channel.NotificationChannelSystemConfig;
@@ -18,12 +22,17 @@ import ch.ivyteam.ivy.notification.channel.NotificationSubscription;
 import ch.ivyteam.ivy.notification.web.WebNotifications;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
+import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.TaskState;
 
 @ViewScoped
 @ManagedBean
 public class NotificationBean implements Serializable {
 
   private static final long serialVersionUID = 4467991301954952570L;
+  private static final String TASK_START = "TASK_START";
+  private static final String TASK_DETAIL = "TASK_DETAIL";
+  
   private final WebNotifications webNotifications;
   private final NotificationLazyModel dataModel;
   private final String WEB = "web";
@@ -63,9 +72,7 @@ public class NotificationBean implements Serializable {
   }
 
   public void markAsRead(NotificationDto dto) {
-    if (!dto.isRead()) {
       dataModel.markAsRead(dto.getNotification());
-    }
   }
 
   public boolean hasNotifications() {
@@ -133,9 +140,52 @@ public class NotificationBean implements Serializable {
     PortalNavigator.redirect(dto.getRunAction().getLink().getRelative());
   }
   
+  public void startTaskFromNotiId() {
+    String notificationId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("notificationId");
+    NotificationDto dto = dataModel.findById(notificationId);
+    markAsRead(dto);
+    PortalNavigator.redirect(dto.getRunAction().getLink().getRelative());
+  }
+  
   public void goToTaskDetail(NotificationDto dto) {
     markAsRead(dto);
     PortalNavigator.redirect(dto.getInfoAction().getLink().getRelative());
   }
   
+  public void goToTaskDetail() {
+    String notificationId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("notificationId");
+    NotificationDto dto = dataModel.findById(notificationId);
+    goToTaskDetail(dto);
+  }
+  
+  public void leaveTask() {
+    handleTask(TaskUtils::resetTask);
+  }
+
+  public void reserveTask() {
+    handleTask(TaskUtils::parkTask);
+  }
+
+  private void handleTask(Consumer<ITask> taskHandler) {
+    FacesContext context = FacesContext.getCurrentInstance();
+    String redirectType = context.getExternalContext().getRequestParameterMap().get("redirectType");
+    String taskId = context.getExternalContext().getRequestParameterMap().get("taskId");
+    ITask task = TaskUtils.findTaskById(Long.valueOf(taskId));
+
+    taskHandler.accept(task);
+
+    switch (redirectType) {
+    case TASK_START:
+      startTaskFromNotiId();
+      break;
+    case TASK_DETAIL:
+      goToTaskDetail();
+      break;
+    }
+
+    if (task.getState() != TaskState.DONE) {
+      GrowlMessageUtils.addFeedbackMessage(task.getState() == TaskState.DONE, task.getCase());
+    }
+  }
+
 }
