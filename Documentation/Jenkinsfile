@@ -46,6 +46,11 @@ pipeline {
       }
     }
   }
+  post {
+    always {
+      cleanWs()
+    }
+  }
 }
 
 def getCurrentVersion() {
