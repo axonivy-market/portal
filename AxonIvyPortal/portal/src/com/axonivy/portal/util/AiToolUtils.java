@@ -56,13 +56,27 @@ public class AiToolUtils {
 
       switch (colEnum) {
       case ID, ACTIONS -> col.setStyle(DEFAULT_MAX_WIDTH_STYLE);
-      case NAME -> result.getFilters().add(initTaskNameFilter(name));
-        case DESCRIPTION ->
-        result.getFilters().add(initTaskDescriptionFilter(description));
-      case PRIORITY ->
-        result.getFilters().add(initTaskPriorityFilter(priority));
-      case STATE -> result.getFilters().add(initTaskStateFilter(state));
-        default -> {}
+      case NAME ->  { 
+        if (StringUtils.isNotBlank(name)) {
+          result.getFilters().add(initTaskNameFilter(name));
+        }
+      }
+      case DESCRIPTION -> {
+        if (StringUtils.isNotBlank(description)) {
+          result.getFilters().add(initTaskDescriptionFilter(description));
+        }
+      }
+      case PRIORITY ->{
+        if (StringUtils.isNotBlank(priority)) {
+          result.getFilters().add(initTaskPriorityFilter(priority));
+        }
+      }
+      case STATE -> {
+        if (StringUtils.isNotBlank(state)) {
+        result.getFilters().add(initTaskStateFilter(state));
+        }
+      }
+      default -> {}
       }
     }
 
@@ -152,10 +166,21 @@ public class AiToolUtils {
 
       switch (colEnum) {
         case ID, ACTIONS -> col.setStyle(DEFAULT_MAX_WIDTH_STYLE);
-        case NAME -> result.getFilters().add(initCaseNameFilter(name));
-        case DESCRIPTION ->
-          result.getFilters().add(initCaseDescriptionFilter(name));
-        case STATE -> result.getFilters().add(initCaseStateFilter(state));
+        case NAME -> {
+          if (StringUtils.isNotBlank(name)) {
+            result.getFilters().add(initCaseNameFilter(name));
+          }
+        }
+        case DESCRIPTION -> {
+          if (StringUtils.isNotBlank(description)) {
+            result.getFilters().add(initCaseDescriptionFilter(name));
+          }
+        }
+        case STATE -> {
+          if (StringUtils.isNotBlank(state)) {
+            result.getFilters().add(initCaseStateFilter(state));
+          }
+        }
         default -> {}
       }
     }
