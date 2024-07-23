@@ -12,7 +12,9 @@ import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 
+import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
@@ -165,7 +167,7 @@ public class AiToolUtils {
   
   public static ProcessDashboardWidget convertIvyToolToProcessDashboardWidget(
       String name, String description) {
-    ProcessDashboardWidget result = DashboardWidgetUtils
+    CompactProcessDashboardWidget result = (CompactProcessDashboardWidget) DashboardWidgetUtils
         .buildDefaultProcessWidget(DEFAULT_AI_WIDGET_ID, DEFAULT_AI_WIDGET_ID);
     List<ProcessColumnModel> columns = new ArrayList<>();
 
@@ -185,6 +187,11 @@ public class AiToolUtils {
     }
 
     result.buildFilterableColumns(columns);
+
+    // Init processes
+    DashboardProcessBean bean = new DashboardProcessBean();
+    bean.init();
+    result.setOriginalDisplayProcesses(bean.getPortalDashboardProcesses());
     return result;
   }
 
