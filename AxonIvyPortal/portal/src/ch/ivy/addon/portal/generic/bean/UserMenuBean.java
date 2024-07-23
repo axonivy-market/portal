@@ -82,8 +82,10 @@ public class UserMenuBean implements Serializable {
         default -> String.format(fullDisplayFormat, userName, fullName);
       };
     }
-    isShowGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_GLOBAL_SEARCH);
-    isShowQuickGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_QUICK_GLOBAL_SEARCH);
+    boolean isDefinedSearchScope = StringUtils.isNotBlank(GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES));
+    isShowGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_GLOBAL_SEARCH)
+            && isDefinedSearchScope;
+    isShowQuickGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_QUICK_GLOBAL_SEARCH) && isDefinedSearchScope;
   }
 
   public boolean isShowCaseDurationTime() {

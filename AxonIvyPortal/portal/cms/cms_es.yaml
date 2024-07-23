@@ -218,6 +218,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       BaseQRCodeUrl: Establezca la URL base para mostrar el código QR.
       DefaultThemeMode: El modo de tema por defecto de la aplicación
       EnableSwitchThemeModeButton: Establecer en true para habilitar el botón de cambio de tema.
+      GlobalSearchScopeCategoriesNote: Definición de los tipos que buscará la búsqueda global
       GooglePlayURL: Establece la URL para descargar la aplicación móvil Axon Ivy en Google Play.
       RoleDirectChildrenLimit: 'El número establecido controla la cantidad de roles hijos directos que se muestra en la pestaña de gestión de roles. Número válido: 10, 50, 100'
       RoleParentLimit: 'El número establecido controla la cantidad de roles padre que se muestra al filtrar los roles en la pestaña Gestión de roles. Número válido: 5, 10, 20'
@@ -863,6 +864,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     field: Campo
     fieldIsAdded: El campo {0} está añadido
     filters: Filtros
+    fullscreenMode: Modo de pantalla completa
     iconMessage:
       caseWidget:
         BEACH_PALM_SUNBED: Eres increíble - todos los casos están hechos. Recuéstate y disfruta.
@@ -923,6 +925,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: Este widget muestra la información relevante de la tarea según la configuración definida.
     taskWidgetConfiguration: Configuración del widget de tareas
     widgetInfo: Información del widget
+    widgetInfoIcon: Icono de información del widget
     widgetTitle: Título del widget
     widgetType: Tipo de widget
     yourCases: Sus casos
@@ -1021,6 +1024,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     QRCodeDescription: Para conectar su aplicación móvil Axon Ivy, escanee este código QR e introduzca sus credenciales en el interior de la aplicación.
     QRCodeDownloadDescription: Escanee el siguiente código con la cámara de su móvil o con una aplicación de lectura QR.
   noteHistory:
+    ShowOnlyOpenTasks: Mostrar sólo las tareas abiertas
     author: Autor
     caseExportedFileNamePrefix: Historia_Notas_del_caso_ {0}
     caseHistoriesTitle: Historial
@@ -1756,6 +1760,10 @@ Labels:
   AppendTheTask: Anexar la tarea
   CreateNewDashboard: Crear un nuevo cuadro de mandos
   Enums:
+    GlobalSearchScopeCategory:
+      CASES: Casos
+      PROCESSES: Procesos
+      TASKS: Tareas
     DashboardStandardCaseColumn:
       ACTIONS: Acciones
       APPLICATION: Aplicación

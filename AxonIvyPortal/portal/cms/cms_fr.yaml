@@ -218,6 +218,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       BaseQRCodeUrl: Définir l'URL de base du code QR à afficher.
       DefaultThemeMode: Le mode de thème par défaut de l'application
       EnableSwitchThemeModeButton: Défini à true pour activer le bouton de changement de thème.
+      GlobalSearchScopeCategoriesNote: Définition des types recherchés par la recherche globale
       GooglePlayURL: Définir l'URL pour télécharger l'application mobile Axon Ivy sur Google Play.
       RoleDirectChildrenLimit: 'Le nombre défini contrôle la quantité de rôles d''enfants directs qui est affichée dans l''onglet Gestion des rôles. Nombre valide : 10, 50, 100'
       RoleParentLimit: 'Le nombre défini contrôle la quantité de rôles parents qui est affichée lors du filtrage des rôles dans l''onglet Gestion des rôles. Nombre valide : 5, 10, 20'
@@ -860,6 +861,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     field: Champ
     fieldIsAdded: Le champ {0} est ajouté
     filters: Filtres
+    fullscreenMode: Mode plein écran
     iconMessage:
       caseWidget:
         BEACH_PALM_SUNBED: Vous êtes géniale - toutes les affaires sont réglées. Détendez-vous et profitez-en.
@@ -920,6 +922,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: Ce widget affiche des informations pertinentes sur les tâches selon les paramètres définis.
     taskWidgetConfiguration: Configuration du widget de tâches
     widgetInfo: Informations sur le widget
+    widgetInfoIcon: Icône d'information du widget
     widgetTitle: Titre du widget
     widgetType: Type de widget
     yourCases: Vos affaires
@@ -1018,6 +1021,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     QRCodeDescription: Pour vous connecter à l'application mobile Axon Ivy, scannez ce code QR et entrez vos informations d'identification dans l'application.
     QRCodeDownloadDescription: Scannez le code ci-dessous à l'aide de votre appareil photo mobile ou d'une application de lecture QR.
   noteHistory:
+    ShowOnlyOpenTasks: Afficher uniquement les tâches en cours
     author: Auteur
     caseExportedFileNamePrefix: Histoire_de_notes_de_dossier_{0}
     caseHistoriesTitle: Histoires
@@ -1750,6 +1754,10 @@ Labels:
   AppendTheTask: Ajouter la tâche
   CreateNewDashboard: Créer un nouveau tableau de bord
   Enums:
+    GlobalSearchScopeCategory:
+      CASES: Cas
+      PROCESSES: Processus
+      TASKS: Tâches
     DashboardStandardCaseColumn:
       ACTIONS: Actions
       APPLICATION: Application

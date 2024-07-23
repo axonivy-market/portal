@@ -218,6 +218,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       BaseQRCodeUrl: Set Base URL for QR code to display.
       DefaultThemeMode: The default theme mode of the application
       EnableSwitchThemeModeButton: Set to true to enable the switch theme button.
+      GlobalSearchScopeCategoriesNote: Defining the types that the global search will search for
       GooglePlayURL: Set URL to download Axon Ivy mobile app on Google Play.
       RoleDirectChildrenLimit: 'The set number controls the amount of direct children roles that is shown in Role Management tab. Valid number: 10, 50, 100'
       RoleParentLimit: 'The set number controls the amount of parent roles that is shown when filtering roles in Role Management tab. Valid number: 5, 10, 20'
@@ -866,6 +867,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     field: Field
     fieldIsAdded: The {0} field is added
     filters: Filters
+    fullscreenMode: Fullscreen Mode
     iconMessage:
       caseWidget:
         BEACH_PALM_SUNBED: You are awesome - all cases are done. Lean back and enjoy.
@@ -926,6 +928,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: This widget displays relevant task information according to defined settings.
     taskWidgetConfiguration: Task Widget Configuration
     widgetInfo: Widget information
+    widgetInfoIcon: Widget Information Icon
     widgetTitle: Widget Title
     widgetType: Widget type
     yourCases: Your Cases
@@ -1024,6 +1027,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     QRCodeDescription: To connect your Axon Ivy Mobile App, please scan this QR Code and enter your credentials in the inside the app.
     QRCodeDownloadDescription: Scan the code below with your mobile camera or with a QR reader app.
   noteHistory:
+    ShowOnlyOpenTasks: Show only open tasks
     author: Author
     caseExportedFileNamePrefix: Note_history_of_case_{0}
     caseHistoriesTitle: Histories
@@ -1758,6 +1762,10 @@ Labels:
   AppendTheTask: Append the task
   CreateNewDashboard: Create new dashboard
   Enums:
+    GlobalSearchScopeCategory:
+      CASES: Cases
+      PROCESSES: Processes
+      TASKS: Tasks
     DashboardStandardCaseColumn:
       ACTIONS: Actions
       APPLICATION: Application
