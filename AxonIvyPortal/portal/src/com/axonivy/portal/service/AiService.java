@@ -20,7 +20,10 @@ import com.axonivy.portal.components.util.UserUtils;
 import com.axonivy.portal.util.AiToolUtils;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardCaseService;
 import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;
 import ch.ivyteam.ivy.application.IApplication;
@@ -34,6 +37,7 @@ public class AiService {
   private static final String FIND_TASK_AI_RESULT_DEFAULT_PATTERN = "ID: %s, Name: %s, Description: %s, State: %s, Priority %s";
   private static final String FIND_CASE_AI_RESULT_DEFAULT_PATTERN = "ID: %s, Name: %s, Description: %s, State: %s";
   private static final String FIND_USERS_AI_RESULT_DEFAULT_PATTERN = "Username: %s, Name: %s, Email: %s, State: %s";
+  private static final String FIND_PROCESS_AI_RESULT_DEFAULT_PATTERN = "ID: %s, Name: %s, Description: %s";
 
   private static final String TASK_PROCESS_PATH = "/portal/AI Tool Processes/PortalTools/findTasksTool.ivp";
   private static final String CASE_PROCESS_PATH = "/portal/AI Tool Processes/PortalTools/findCasesTool.ivp";
@@ -140,8 +144,22 @@ public class AiService {
     
     String processPath = IApplication.current().getName().concat(PROCESS_PROCESS_PATH);
     AiAssistantAPI.addIvyProcessLinkToAiResult(processPath, params, result);
+    
+    CompactProcessDashboardWidget resultWidget = (CompactProcessDashboardWidget) AiToolUtils.convertIvyToolToProcessDashboardWidget(processName, processDescription);
+    resultWidget.filterProcessesByUser();
+    List<DashboardProcess> processes = resultWidget.getDisplayProcesses();
+    if (CollectionUtils.isEmpty(processes)) {
+      return AiAssistantAPI.generateErrorAiResult(
+          Ivy.cms().co("No matching processes."));
+    }
     String foundProcessStr = "Found processes:".concat(System.lineSeparator());
+    for(var process : processes) {
+      foundProcessStr = foundProcessStr.concat(String.format(FIND_PROCESS_AI_RESULT_DEFAULT_PATTERN,
+          process.getId(), process.getName(), process.getDescription())).concat(System.lineSeparator());
+    }
     result.setResultForAI(foundProcessStr);
+    result.setIsMemory(true);
+    result.setState(AIState.DONE);
     return result;
   }
 
