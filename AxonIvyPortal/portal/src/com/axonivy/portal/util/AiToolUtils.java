@@ -2,6 +2,7 @@ package com.axonivy.portal.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -130,21 +131,31 @@ public class AiToolUtils {
   }
 
   private static DashboardFilter initTaskStateFilter(String state) {
-    TaskBusinessState stateEnum = initTaskState(state);
-    if (stateEnum != null) {
-      DashboardFilter filter = new DashboardFilter();
-      filter.setField(DashboardStandardTaskColumn.STATE.getField());
-      filter.setFilterType(DashboardColumnType.STANDARD);
+    Optional<List<String>> states = Optional
+        .ofNullable(Arrays.asList(state.split(",")));
 
-      FilterField field = TaskFilterFieldFactory
-          .findBy(DashboardStandardTaskColumn.STATE.getField());
-      filter.setFilterField(field);
-      field.addNewFilter(filter);
-      filter.setValues(Arrays.asList(stateEnum.name()));
-      return filter;
+    if (states.isEmpty()) {
+      return null;
     }
 
-    return null;
+    DashboardFilter filter = new DashboardFilter();
+    filter.setField(DashboardStandardTaskColumn.STATE.getField());
+    filter.setFilterType(DashboardColumnType.STANDARD);
+
+    FilterField field = TaskFilterFieldFactory
+        .findBy(DashboardStandardTaskColumn.STATE.getField());
+    filter.setFilterField(field);
+    field.addNewFilter(filter);
+    filter.setValues(new ArrayList<>());
+
+    for (String stateStr : states.get()) {
+      TaskBusinessState stateEnum = initTaskState(stateStr);
+      if (stateEnum != null) {
+        filter.getValues().add(stateEnum.name());
+      }
+    }
+
+  return filter;
   }
 
   public static CaseDashboardWidget convertIvyToolToCaseDashboardWidget(
@@ -247,21 +258,31 @@ public class AiToolUtils {
   }
 
   private static DashboardFilter initCaseStateFilter(String state) {
-    CaseBusinessState stateEnum = initCaseState(state);
-    if (stateEnum != null) {
-      DashboardFilter filter = new DashboardFilter();
-      filter.setField(DashboardStandardCaseColumn.STATE.getField());
-      filter.setFilterType(DashboardColumnType.STANDARD);
+    Optional<List<String>> states = Optional
+        .ofNullable(Arrays.asList(state.split(",")));
 
-      FilterField field = FilterFieldFactory
-          .findBy(DashboardStandardCaseColumn.STATE.getField());
-      filter.setFilterField(field);
-      field.addNewFilter(filter);
-      filter.setValues(Arrays.asList(stateEnum.name()));
-      return filter;
+    if (states.isEmpty()) {
+      return null;
     }
 
-    return null;
+    DashboardFilter filter = new DashboardFilter();
+    filter.setField(DashboardStandardCaseColumn.STATE.getField());
+    filter.setFilterType(DashboardColumnType.STANDARD);
+
+    FilterField field = FilterFieldFactory
+        .findBy(DashboardStandardCaseColumn.STATE.getField());
+    filter.setFilterField(field);
+    field.addNewFilter(filter);
+    filter.setValues(new ArrayList<>());
+
+    for (String stateStr : states.get()) {
+      CaseBusinessState stateEnum = initCaseState(stateStr);
+      if (stateEnum != null) {
+        filter.getValues().add(stateEnum.name());
+      }
+    }
+
+    return filter;
   }
 
   private static WorkflowPriority initPriority(String priority) {
@@ -299,10 +320,17 @@ public class AiToolUtils {
       return null;
     }
 
-    TaskBusinessState stateEnum = initTaskState(stateStr);
-    if (stateEnum == null) {
-      return Ivy.cms().co("/Labels/AI/Error/InvalidTaskState");
+    List<String> states = Optional
+        .ofNullable(Arrays.asList(stateStr.split(",")))
+        .orElse(Collections.emptyList());
+
+    for (String state : states) {
+      TaskBusinessState stateEnum = initTaskState(state);
+      if (stateEnum == null) {
+        return Ivy.cms().co("/Labels/AI/Error/InvalidTaskState");
+      }
     }
+
     return null;
   }
 
@@ -323,9 +351,15 @@ public class AiToolUtils {
       return null;
     }
 
-    CaseBusinessState stateEnum = initCaseState(stateStr);
-    if (stateEnum == null) {
-      return Ivy.cms().co("/Labels/AI/Error/InvalidTaskState");
+    List<String> states = Optional
+        .ofNullable(Arrays.asList(stateStr.split(",")))
+        .orElse(Collections.emptyList());
+
+    for (String state : states) {
+      CaseBusinessState stateEnum = initCaseState(state);
+      if (stateEnum == null) {
+        return Ivy.cms().co("/Labels/AI/Error/InvalidTaskState");
+      }
     }
     return null;
   }
