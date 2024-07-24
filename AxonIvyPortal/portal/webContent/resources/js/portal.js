@@ -422,8 +422,11 @@ function getWidgetVarById(id) {
 }
 
 
-function resizeIframeAfterChangingThemeMode() {
-  document.getElementById("iFrame").style.height = "1057px";
+function reloadIframes() {
+  var iframes = document.querySelectorAll('iframe');
+  iframes.forEach(function(iframe) {
+      iframe.contentWindow.location.reload();
+  });
 }
 
 function handleKeyDown(event) {
