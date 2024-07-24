@@ -61,6 +61,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     updatePortalSetting(GLOBAL_FOOTER_INFO.getKey(), "Dev Team: Wawa, Env: Dev");
     showNewDashboard();
     newDashboardPage = new NewDashboardPage();
+    newDashboardPage.openCaseList();
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 500));
     executeDecorateJs("highlightServerInfo()");
     ScreenshotUtil.captureHalfRightPageScreenShot(ScreenshotUtil.DASHBOARD_FOLDER + "environment-info");
