@@ -145,6 +145,13 @@ In Engine
 
 #. Follow detailed migration notes for each version below.
 
+Migrate 10.0.21 To 10.0.22
+--------------------------
+
+- Since Portal is using new approach for session timeout warning, the ``Portal.ClientSideTimeout`` variable will be removed. 
+  If you need to configure the session timeout, we highly recommend doing so in the ``web.xml`` file instead, because it affects all applications. 
+  For more information, please refer to the :dev-url:`Engine Guide web.xml </doc/|version|/engine-guide/configuration/files/web-xml.html>`.
+
 Migrate 10.0.19 To 10.0.20
 --------------------------
 
@@ -265,35 +272,6 @@ Migrate 9.3 To 9.4
 #. If you have customized PortalStyle, please refer to
    :ref:`Customization Portal Logos And Colors <customization-portal-logos-and-colors>` to override login background, favicon & logo images.
    If you have changed the CMS in ``PortalStyle``, please adapt the ``portal`` CMS accordingly.
-
-#. If you configured Process widgets in your own dashboards as described in :ref:`configure-new-dashboard-proces-widget`,
-   you need to adapt JSON as follows:
-
-   * Search text ``"type":"process"``, then find related ``displayMode`` of that Process widget.
-   * If ``displayMode`` is ``COMPACT_MODE``, change ``type`` to ``compact-process``.
-   * If ``displayMode`` is ``COMBINED_MODE``, change ``type`` to ``combined-process``.
-   * If ``displayMode`` is ``FULL_MODE``, change ``type`` to ``full-process``.
-   * If ``displayMode`` is ``IMAGE_MODE``, change ``type`` to ``image-process``.
-
-   For example:
-
-   In 9.3, JSON is
-
-   .. code-block:: json
-
-      {"type":"process","displayMode":"COMPACT_MODE","id":"process_1","name":"Your Processes1",
-      "layout":{"id":null,"styleClass":null,"style":null,"w":3,"h":8,"x":5,"y":0}}
-
-   ..
-
-   In 9.4, update JSON to
-
-   .. code-block:: json
-
-      {"type":"compact-process","displayMode":"COMPACT_MODE","id":"process_1","name":"Your Processes1",
-      "layout":{"id":null,"styleClass":null,"style":null,"w":3,"h":8,"x":5,"y":0}}
-
-   ..
 
 #. The ``customization.css`` file has been removed, in case you use it in your project, please switch to using
    :dev-url:`Engine Branding </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>` to customize styling

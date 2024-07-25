@@ -18,7 +18,7 @@ import com.codeborne.selenide.Condition;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
-@IvyWebTest 
+@IvyWebTest
 public class CaseDetailsTest extends BaseTest {
   private static final String ORDER_PIZZA = "Order Pizza";
   private static final String TAKE_ORDER = "Take Order";
@@ -102,6 +102,20 @@ public class CaseDetailsTest extends BaseTest {
     caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
     caseDetailsPage.getShareButton().shouldBe(Condition.disappear);
   }
-  
-    
+
+  @Test
+  public void testShowOnlyOpenTasks() {
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    mainMenuPage.openCaseList();
+    CaseWidgetPage caseWidgetPage = new CaseWidgetPage();
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
+    caseDetailsPage.clickShowOnlyOpenTasks();
+    caseDetailsPage.countRelatedTasks().shouldBe(size(2));
+    caseDetailsPage.clickShowOnlyOpenTasks();
+    caseDetailsPage.countRelatedTasks().shouldBe(size(3));
+
+  }
 }

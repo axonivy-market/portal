@@ -849,6 +849,10 @@ public class NewDashboardPage extends TemplatePage {
     return new GlobalSearchResultPage();
   }
 
+  public boolean isInputGlobalSearchDisabled() {
+    return $(".topbar-item.search-item").isDisplayed();
+  }
+  
   public void waitForCaseWidgetLoaded() {
     checkDisplayedCaseWidgetContainer();
     getCaseWidgetTable().shouldBe(Condition.appear, DEFAULT_TIMEOUT);

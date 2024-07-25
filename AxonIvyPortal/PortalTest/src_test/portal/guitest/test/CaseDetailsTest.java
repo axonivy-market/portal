@@ -150,27 +150,27 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testRelatedTaskStartButtonStatus() {
     createTestingTask();
-    assertFalse(detailsPage.isRelatedTaskStartEnabled(1));
-    assertTrue(detailsPage.isRelatedTaskStartEnabled(2));
+    assertFalse(detailsPage.isRelatedTaskStartEnabled(2));
+    assertTrue(detailsPage.isRelatedTaskStartEnabled(1));
   }
 
   @Test
   public void testRelatedTaskStartTask() {
     createTestingTask();
-    TaskTemplatePage taskTemplate = detailsPage.startRelatedTask(2);
+    TaskTemplatePage taskTemplate = detailsPage.startRelatedTask(1);
     assertEquals("Sick Leave Request", taskTemplate.getTaskName());
   }
 
   @Test
   public void testRelatedTaskReserveTask() {
     createTestingTask();
-    detailsPage.clickRelatedTaskActionButton(2);
-    detailsPage.reserveTask(2);
-    assertTrue(detailsPage.isTaskState(2, TaskState.PARKED));
+    detailsPage.clickRelatedTaskActionButton(1);
+    detailsPage.reserveTask(1);
+    assertTrue(detailsPage.isTaskState(1, TaskState.PARKED));
 
-    detailsPage.clickRelatedTaskActionButton(2);
-    detailsPage.resetTask(2);
-    assertTrue(detailsPage.isTaskState(2, TaskState.SUSPENDED));
+    detailsPage.clickRelatedTaskActionButton(1);
+    detailsPage.resetTask(1);
+    assertTrue(detailsPage.isTaskState(1, TaskState.SUSPENDED));
   }
 
   @Test
@@ -187,16 +187,16 @@ public class CaseDetailsTest extends BaseTest {
   public void testRelatedTaskDelegateTask() {
     createTestingTask();
     ScreenshotUtil.resizeBrowser(new Dimension(1900, 1000));
-    assertEquals(TestRole.EVERYBODY_ROLE, detailsPage.getResponsibleOfRelatedTaskAt(2));
+    assertEquals(TestRole.EVERYBODY_ROLE, detailsPage.getResponsibleOfRelatedTaskAt(1));
 
-    detailsPage.openTaskDelegateDialog(2);
+    detailsPage.openTaskDelegateDialog(1);
     WaitHelper.assertTrueWithWait(() -> detailsPage.isDelegateTypeSelectAvailable());
     detailsPage.selectDelegateResponsible(TestAccount.HR_ROLE_USER.getFullName(), false);
-    assertEquals(TestAccount.HR_ROLE_USER.getFullName(), detailsPage.getResponsibleOfRelatedTaskAt(2));
+    assertEquals(TestAccount.HR_ROLE_USER.getFullName(), detailsPage.getResponsibleOfRelatedTaskAt(1));
 
-    detailsPage.openTaskDelegateDialog(2);
+    detailsPage.openTaskDelegateDialog(1);
     detailsPage.selectDelegateResponsible(TestRole.HR_ROLE, true);
-    assertEquals(TestRole.HR_ROLE, detailsPage.getResponsibleOfRelatedTaskAt(2));
+    assertEquals(TestRole.HR_ROLE, detailsPage.getResponsibleOfRelatedTaskAt(1));
   }
 
   @Test
@@ -206,8 +206,8 @@ public class CaseDetailsTest extends BaseTest {
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName(LEAVE_REQUEST_CASE_NAME);
-    assertFalse(detailsPage.isTaskDelegateOptionDisable(2));
-    assertTrue(detailsPage.isTaskDelegateOptionDisable(1));
+    assertFalse(detailsPage.isTaskDelegateOptionDisable(1));
+    assertTrue(detailsPage.isTaskDelegateOptionDisable(2));
     redirectToRelativeLink(DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
   }
 
@@ -270,8 +270,8 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testRelatedTaskAddAdHocTask() {
     createTestingTask();
-    detailsPage.clickRelatedTaskActionButton(2);
-    ExpressProcessPage expressProcessPage = detailsPage.addAdHocTask(2);
+    detailsPage.clickRelatedTaskActionButton(1);
+    ExpressProcessPage expressProcessPage = detailsPage.addAdHocTask(1);
     assertTrue(expressProcessPage.getProcessName().endsWith("Sick Leave Request"));
   }
 

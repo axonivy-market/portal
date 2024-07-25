@@ -232,8 +232,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     embedInFrame: Start a process/task in IFrame mode
     emptySupportedLanguages: No additional languages are supported
     globalVariableNote:
+      ApplicationName: The default application name that will be displayed on the page title.
       DefaultThemeMode: The default theme mode of the application
       EnableSwitchThemeModeButton: Set to true to enable the switch theme button.
+      GlobalSearchScopeCategoriesNote: Defining the types that the global search will search for
       RoleDirectChildrenLimit: 'The set number controls the amount of direct children roles that is shown in Role Management tab. Valid number: 10, 50, 100'
       RoleParentLimit: 'The set number controls the amount of parent roles that is shown when filtering roles in Role Management tab. Valid number: 5, 10, 20'
       SearchScopeCaseFields: Defining the fields that the global search will use to find matching cases beside case Id (this can influence the performance of the search)
@@ -242,7 +244,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       behaviourWhenClickingOnLineInTaskList: For switch behaviours (run the task or access task details) when clicking on a line in task list, task widget of dashboard and related tasks  in case details page.
       chatMaxConnection: 'The set number controls the amount of tabs allowed with active chat. If more tabs are opened, the chat will be disabled in inactive tabs. Allowed values between 1-5 '
       chatResponseTimeout: Chat response timeout in seconds, default value is 0 and means no timeout. If chat messages go through the reverse proxy Nginx, chat response timeout must be less than the Nginx timeout, e.g. less than 60 seconds.
-      clientSideTimeoutNote: Client side timeout in minutes, must be more than 0 and less than the server side timeout (e.g. 25 seconds). Default value is 0, it means default client side timeout is applied. Default client side timeout is server side timeout minus 3 minutes.
       dateFilterWithTime: Set to true to enable date filtering with time. This setting affects on task list, case list, and statistics.
       defaultHomepage: To set the standard homepage which will be redirect to when clicking on home icon or logo. This setting also applies to the ends page after finished a task.
       defaultProcessImage: The standard setting of default image that will be displayed in the image process list.
@@ -900,6 +901,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}_{1}.{2}
     field: Field
     fieldIsAdded: The {0} field is added
+    fullscreenMode: Fullscreen Mode
     iconMessage:
       caseWidget:
         BEACH_PALM_SUNBED: You are awesome - all cases are done. Lean back and enjoy.
@@ -935,7 +937,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       noMatchingProcess: No matching processes.
       noPermissionToSee: You do not have the required permission to start this process.
       noProcessSelected: Please select a process
-    removeWidgetHeader: Remove the "{0}" widget
+    removeWidgetHeader: Remove this widget
     removeWidgetMessage: Do you really want to remove it?
     reorder:
       dashboardType: Dashboard type
@@ -959,6 +961,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: This widget displays relevant task information according to defined settings.
     taskWidgetConfiguration: Task Widget Configuration
     widgetInfo: Widget information
+    widgetInfoIcon: Widget Information Icon
     widgetTitle: Widget Title
     widgetType: Widget type
     yourCases: Your Cases
@@ -1050,6 +1053,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   logoutSetting:
     logout: Logout
   noteHistory:
+    ShowOnlyOpenTasks: Show only open tasks
     author: Author
     caseExportedFileNamePrefix: Note_history_of_case_{0}
     caseHistoriesTitle: Histories
@@ -1465,8 +1469,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     myProfileTitle: My profile
     saveUserSettingsSuccessfully: User settings saved successfully.
   warningBeforeLostSession:
-    extend: Extend
-    warningMessage: Your session will expire in 1 minute. Would you like to extend it?
+    refreshSession: Refresh session
+    warningMessage: Your session may expire soon. Please refresh your session to continue using the application.
 Dialogs:
   Cases:
     EditWorkflow:
@@ -1729,6 +1733,10 @@ Labels:
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
   Enums:
+    GlobalSearchScopeCategory:
+      CASES: Cases
+      PROCESSES: Processes
+      TASKS: Tasks
     SearchScopeCaseField:
       CUSTOM: Custom string fields
       DESCRIPTION: Description

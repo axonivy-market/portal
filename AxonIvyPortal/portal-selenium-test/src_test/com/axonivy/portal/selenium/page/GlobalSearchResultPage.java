@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -32,6 +33,10 @@ public class GlobalSearchResultPage extends TemplatePage {
     $("li[class*='case-tab-title']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("li[class*='case-tab-title']").click();
     $("div[id='search-results-tabview:case-tab']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void caseTabShouldBeDisappear() {
+    $("li[class*='case-tab-title']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public int countTasks() {

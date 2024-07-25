@@ -41,11 +41,13 @@
       </script>
       <p:growl id="task-template-growl" />
       <div class="task-template-container #{taskTemplateContainerStyleClass}">
-      
+      <p:poll autoStart="false" widgetVar="caseInfoPoll" interval="#{taskTemplateBean.intervalForPollingWhenOpenCaseDetails}"
+                    process="@this" update="@this"
+                    oncomplete="keepSession();" global="false" />
         <c:set var="case" value="#{caseId ne null ? caseWidgetBean.findCase(caseId) : currentTask.getCase().getBusinessCase()}" />
         <c:set var="isSideStepDisabled" value="#{!abstractTaskTemplateBean.checkSideStepsEnabled(case)}" scope="request" />
         <ui:insert name="breadCrumb" />
-  
+        <p:inputText id="application-name-for-title" value="#{masterDataBean.applicationName}" type="hidden"/>
         <h:panelGroup id="header-container" layout="block" styleClass="task-header-container js-task-header-container #{processChainDirection eq 'VERTICAL' ? '' : 'task-template-title-horizontal-container'}">
           <h:panelGroup id="task-template-title" layout="block" rendered="#{currentTask ne null}"
             styleClass="task-template-title #{processChainDirection eq 'VERTICAL' ? 'task-name-vertical-process-chain js-task-name-vertical-process-chain' : ''} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
@@ -59,7 +61,7 @@
             <h:panelGroup id="vertical-task-template-tasks-command" class="task-template-tasks-command" rendered="#{!(isHideCaseInfo and isHideTaskAction) and processChainDirection eq 'VERTICAL'}">
               <p:commandButton id="vertical-case-info" type="button" styleClass="rounded-button ui-button-outlined"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="si si-folder-search"
-                onclick="openCaseInfo()" rendered="#{!isHideCaseInfo}"
+                onclick="openCaseInfo();" rendered="#{!isHideCaseInfo}"
                 global="false" />
               <p:spacer width="10" />
               <p:commandButton id="vertical-task-actions" type="button" rendered="#{!isHideTaskAction}" styleClass="rounded-button ui-button-outlined"
@@ -177,6 +179,8 @@
            oncomplete="PF('case-info-dialog').show()" />
         <p:dialog id="case-info-dialog" resizable="false" fitViewport="true" width="95vw" height="80vh"
           closeOnEscape="true" draggable="false" responsive="true"
+          onHide="PF('caseInfoPoll').stop();"
+          onShow="PF('caseInfoPoll').start();"
           widgetVar="case-info-dialog" appendTo="@(body)" modal="true" styleClass="case-info-dialog">
           <f:facet name="header">
             <h:panelGroup styleClass="case-infor-title u-truncate-text">
@@ -192,9 +196,6 @@
                 <div class="ui-g-12 u-padding-0">
                   <iframe id="i-frame-case-details" src="#{taskTemplateBean.caseDetailsLink}" onload="setupHeightForIFrame();"
                     class="case-information-frame  js-iFrame-case-details" scrolling="no" frameborder="0"/>
-                  <p:poll rendered="#{taskTemplateBean.intervalForPollingWhenOpenCaseDetails ne null}" interval="#{taskTemplateBean.intervalForPollingWhenOpenCaseDetails}"
-                    process="@this" update="@this"
-                    oncomplete="PortalSessionWarning.resetCounterAndTimeout();" global="false" />
                 </div>
               </div>
             </h:panelGroup>

@@ -69,6 +69,8 @@ button and select one of the available widgets to add:
 
 |add-widget|
 
+.. _new-dashboard-task-list-widget:
+
 Task list widget
 ================
 
@@ -79,8 +81,10 @@ see and how.
 
 **Configuration panel**
 
-On the left side, define the widget name, establish the main configuration for
-your widget, enable quick search function and get a preview of it by clicking on the preview button.
+On the left side, define the widget name, enable quick search function,
+show or hide widget information and fullscreen mode icons, establish the main
+configuration for your widget and get a preview of it by clicking on the preview
+button.
 
 |task-list-widget-configuration|
 
@@ -141,6 +145,8 @@ In view mode, when quick search is enabled, a text box will appear to allow sear
     #. The quick search function is unaffected by widget filters.
     #. You can define the scope of the quick search feature in the configuration panel.
 
+.. _new-dashboard-case-list-widget:
+
 Case list widget
 ================
 
@@ -151,9 +157,10 @@ see and how.
 
 **Configuration panel**
 
-On the left side, you can define the widget name, establish the main
-configuration for your widget, enable quick search function and get a preview of it by clicking on the
-preview button.
+On the left side, define the widget name, enable quick search function,
+show or hide widget information and fullscreen mode icons, establish the main
+configuration for your widget and get a preview of it by clicking on the preview
+button.
 
 |case-list-widget-configuration|
 
