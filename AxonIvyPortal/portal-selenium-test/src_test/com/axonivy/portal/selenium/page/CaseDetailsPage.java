@@ -628,11 +628,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void clickShowOnlyOpenTasks() {
-
-    $("div[id$=':show-only-open-tasks'] .ui-chkbox-box")
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div[id$=':show-only-open-tasks'] .ui-chkbox-box").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
-}
 
   public void clickExportToExcelLink(String linkId, String statusDialogId) {
     // Ensure that attribute is removed before downloading
