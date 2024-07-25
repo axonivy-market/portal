@@ -34,4 +34,8 @@ public class VisibilityBean implements Serializable {
   public boolean isShowLoginFooter() {
     return globalSettingService.findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_LOGIN_FOOTER);
   }
+
+  public boolean isHideCaseCreator() {
+    return globalSettingService.isHideCaseCreator();
+  }
 }

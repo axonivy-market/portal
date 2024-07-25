@@ -59,6 +59,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
   private String caseDetailsDescription;
   private String caseDetailsUrl;
   private Boolean isShowShareButton;
+  private boolean isHideCaseCreator;
 
   public void init() {
     super.initConfig();
@@ -66,6 +67,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     caseActionBean = ManagedBeans.get("caseActionBean");
     isFirstTime = true;
     isShowShareButton = PermissionUtils.hasShareCaseDetailsPermission();
+    isHideCaseCreator = GlobalSettingService.getInstance().isHideCaseCreator();
     isRunningTaskWhenClickingOnTaskInList = new GlobalSettingService()
         .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
         .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
@@ -324,4 +326,13 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
   public void setIsShowShareButton(Boolean isShowShareButton) {
     this.isShowShareButton = isShowShareButton;
   }
+
+  public boolean isHideCaseCreator() {
+    return isHideCaseCreator;
+  }
+
+  public void setHideCaseCreator(boolean isHideCaseCreator) {
+    this.isHideCaseCreator = isHideCaseCreator;
+  }
+
 }

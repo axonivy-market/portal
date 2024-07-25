@@ -58,6 +58,10 @@ public class CaseBean implements Serializable {
     return new GlobalSettingService().isCaseOwnerEnabled();
   }
 
+  public boolean isHideCaseCreator() {
+    return GlobalSettingService.getInstance().isHideCaseCreator();
+  }
+
   public String getDurationOfCase(ICase iCase) {
     return iCase.getEndTimestamp() != null ? getElapsedTimeForDoneCase(iCase) : getElapsedTimeForRunningCase(iCase);
   }

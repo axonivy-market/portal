@@ -1,13 +1,13 @@
 package ch.ivy.addon.portalkit.enums;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -88,10 +88,12 @@ public enum GlobalVariable {
       "Portal.DeepL.Enable", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableDeepLTranslation"),
   SHOW_QR_CODE("Portal.UserMenu.ShowQRCode", GlobalVariableType.SELECTION, Option.FALSE.toString(),
       "ShowQRCode"),
-  BASE_QR_CODE_URL("Portal.UserMenu.BaseQRCodeUrl", GlobalVariableType.TEXT, "BaseQRCodeUrl"), APPLE_STORE_URL(
+  BASE_QR_CODE_URL("Portal.UserMenu.BaseQRCodeUrl", GlobalVariableType.TEXT, "baseQRCodeUrl"), APPLE_STORE_URL(
       "Portal.UserMenu.AppleStoreURL", GlobalVariableType.TEXT,
-      "AppleStoreURL"), GOOGLE_PLAY_URL("Portal.UserMenu.GooglePlayURL", GlobalVariableType.TEXT, "GooglePlayURL"),
-  APPLICATION_NAME("Portal.ApplicationName", GlobalVariableType.TEXT, "Axon Ivy", "ApplicationName");
+      "appleStoreURL"), GOOGLE_PLAY_URL("Portal.UserMenu.GooglePlayURL", GlobalVariableType.TEXT,
+          "googlePlayURL"),
+  APPLICATION_NAME("Portal.ApplicationName", GlobalVariableType.TEXT, "Axon Ivy", "ApplicationName"), HIDE_CASE_CREATOR(
+      "Portal.Cases.HideCaseCreator", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideCaseCreator");
 ;
 
 
