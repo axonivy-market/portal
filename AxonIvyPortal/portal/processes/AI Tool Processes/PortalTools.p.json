@@ -15,13 +15,17 @@
             { "name" : "taskName", "type" : "String", "desc" : "Name of the task" },
             { "name" : "taskDescription", "type" : "String", "desc" : "Description of the task" },
             { "name" : "taskPriority", "type" : "String", "desc" : "Priority of a task. Valid values for this attribute: low, normal, high, exception" },
-            { "name" : "taskState", "type" : "String", "desc" : "state of the task. Valid values for this attribute: open, in progress, done" }
+            { "name" : "taskState", "type" : "String", "desc" : "state of the task. Valid values for this attribute: open, in progress, done" },
+            { "name" : "taskExpiryDateFrom", "type" : "String", "desc" : "" },
+            { "name" : "taskExpiryDateTo", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.description" : "param.taskDescription",
             "out.name" : "param.taskName",
             "out.priority" : "param.taskPriority",
-            "out.state" : "param.taskState"
+            "out.state" : "param.taskState",
+            "out.taskExpiryDateFrom" : "param.taskExpiryDateFrom",
+            "out.taskExpiryDateTo" : "param.taskExpiryDateTo"
           }
         },
         "request" : {
@@ -70,7 +74,7 @@
             "import com.axonivy.portal.util.AiToolUtils;",
             "",
             "in.taskDashboardWidget = AiToolUtils.convertIvyToolToTaskDashboardWidget(",
-            "  in.name, in.description, in.priority, in.state);"
+            "  in.name, in.description, in.priority, in.state, in.taskExpiryDateFrom, in.taskExpiryDateTo);"
           ]
         },
         "sudo" : true
@@ -169,6 +173,9 @@
             "out.description" : "param.processDescription",
             "out.name" : "param.processName"
           }
+        },
+        "request" : {
+          "isVisibleOnStartList" : false
         }
       },
       "visual" : {

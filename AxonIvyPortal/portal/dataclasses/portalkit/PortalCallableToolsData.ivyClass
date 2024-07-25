@@ -12,3 +12,7 @@ result com.axonivy.portal.components.dto.AiResultDTO #field
 validationError String #field
 taskId String #field
 taskId PERSISTENT #fieldModifier
+dateFrom String #field
+dateFrom PERSISTENT #fieldModifier
+dateTo String #field
+dateTo PERSISTENT #fieldModifier
