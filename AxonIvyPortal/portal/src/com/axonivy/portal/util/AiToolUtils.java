@@ -1,8 +1,10 @@
 package com.axonivy.portal.util;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +29,7 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
@@ -39,7 +42,8 @@ public class AiToolUtils {
   private static final String DEFAULT_MAX_WIDTH_STYLE = "max-width: 150px;";
 
   public static TaskDashboardWidget convertIvyToolToTaskDashboardWidget(
-      String name, String description, String priority, String state) {
+      String name, String description, String priority, String state,
+      String taskExpiryDateFrom, String taskExpiryDateTo) {
 
     TaskDashboardWidget result = DashboardWidgetUtils
         .buildDefaultTaskWidget(DEFAULT_AI_WIDGET_ID, DEFAULT_AI_WIDGET_ID);
@@ -75,6 +79,13 @@ public class AiToolUtils {
       case STATE -> {
         if (StringUtils.isNotBlank(state)) {
         result.getFilters().add(initTaskStateFilter(state));
+        }
+      }
+      case EXPIRY -> {
+        if (StringUtils.isNotBlank(taskExpiryDateFrom)
+            || StringUtils.isNotBlank(taskExpiryDateTo)) {
+          result.getFilters().add(
+              initTaskExpiryDateFilter(taskExpiryDateFrom, taskExpiryDateTo));
         }
       }
       default -> {}
@@ -113,21 +124,31 @@ public class AiToolUtils {
   }
 
   private static DashboardFilter initTaskPriorityFilter(String priority) {
-    WorkflowPriority priorityEnum = initPriority(priority);
-    if (priorityEnum != null) {
-      DashboardFilter filter = new DashboardFilter();
-      filter.setField(DashboardStandardTaskColumn.PRIORITY.getField());
-      filter.setFilterType(DashboardColumnType.STANDARD);
+    Optional<List<String>> priorities = Optional
+        .ofNullable(Arrays.asList(priority.split(",")));
 
-      FilterField field = TaskFilterFieldFactory
-          .findBy(DashboardStandardTaskColumn.PRIORITY.getField());
-      filter.setFilterField(field);
-      field.addNewFilter(filter);
-      filter.setValues(Arrays.asList(priorityEnum.name()));
-      return filter;
+    if (priorities.isEmpty()) {
+      return null;
     }
 
-    return null;
+    DashboardFilter filter = new DashboardFilter();
+    filter.setField(DashboardStandardTaskColumn.PRIORITY.getField());
+    filter.setFilterType(DashboardColumnType.STANDARD);
+
+    FilterField field = TaskFilterFieldFactory
+        .findBy(DashboardStandardTaskColumn.PRIORITY.getField());
+    filter.setFilterField(field);
+    field.addNewFilter(filter);
+    filter.setValues(new ArrayList<>());
+
+    for (String priorityStr : priorities.get()) {
+      WorkflowPriority priorityEnum = initPriority(priorityStr);
+      if (priorityEnum != null) {
+        filter.getValues().add(priorityEnum.name());
+      }
+    }
+
+    return filter;
   }
 
   private static DashboardFilter initTaskStateFilter(String state) {
@@ -156,6 +177,35 @@ public class AiToolUtils {
     }
 
   return filter;
+  }
+
+  private static DashboardFilter initTaskExpiryDateFilter(String expiryDateFrom,
+      String expiryDateTo) {
+    Date fromDate = null;
+    Date toDate = null;
+    try {
+      fromDate = DateTimeGlobalSettingService.getInstance()
+          .getDefaultDateFormatter().parse(expiryDateFrom);
+      toDate = DateTimeGlobalSettingService.getInstance()
+          .getDefaultDateFormatter().parse(expiryDateTo);
+    } catch (ParseException e) {
+      return null;
+    }
+
+    DashboardFilter filter = new DashboardFilter();
+    filter.setField(DashboardStandardTaskColumn.EXPIRY.getField());
+    filter.setFilterType(DashboardColumnType.STANDARD);
+
+    FilterField field = TaskFilterFieldFactory
+        .findBy(DashboardStandardTaskColumn.EXPIRY.getField());
+    filter.setFilterField(field);
+    field.addNewFilter(filter);
+
+    filter.setFrom(expiryDateFrom);
+    filter.setFromDate(fromDate);
+    filter.setTo(expiryDateTo);
+    filter.setToDate(toDate);
+    return filter;
   }
 
   public static CaseDashboardWidget convertIvyToolToCaseDashboardWidget(
@@ -339,10 +389,17 @@ public class AiToolUtils {
       return null;
     }
 
-    WorkflowPriority priorityEnum = initPriority(priorityStr);
-    if (priorityEnum == null) {
-      return Ivy.cms().co("/Labels/AI/Error/InvalidTaskPriority");
+    List<String> priorities = Optional
+        .ofNullable(Arrays.asList(priorityStr.split(",")))
+        .orElse(Collections.emptyList());
+
+    for (String priority : priorities) {
+      WorkflowPriority priorityEnum = initPriority(priority);
+      if (priorityEnum == null) {
+        return Ivy.cms().co("/Labels/AI/Error/InvalidTaskPriority");
+      }
     }
+
     return null;
   }
 

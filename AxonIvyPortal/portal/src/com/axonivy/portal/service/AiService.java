@@ -52,7 +52,8 @@ public class AiService {
   }
 
   public AiResultDTO generateFindTasksAiResult(String taskName,
-      String taskDescription, String taskState, String taskPriority) {
+      String taskDescription, String taskState, String taskPriority,
+      String taskExpiryDateFrom, String taskExpiryDateTo) {
     AiResultDTO result = new AiResultDTO();
 
     Map<String, String> params = new HashMap<>();
@@ -60,6 +61,8 @@ public class AiService {
     params.put("taskDescription", taskDescription);
     params.put("taskState", taskState);
     params.put("taskPriority", taskPriority);
+    params.put("taskExpiryDateFrom", taskExpiryDateFrom);
+    params.put("taskExpiryDateTo", taskExpiryDateTo);
 
     String processPath = IApplication.current().getName()
         .concat(TASK_PROCESS_PATH);
@@ -71,7 +74,7 @@ public class AiService {
 
     TaskDashboardWidget taskWidget = AiToolUtils
         .convertIvyToolToTaskDashboardWidget(taskName, taskDescription,
-            taskPriority, taskState);
+            taskPriority, taskState, taskExpiryDateFrom, taskExpiryDateTo);
 
     // we only show 10 first matched results
     List<ITask> foundTasks = DashboardTaskService.getInstance().findByTaskQuery(
