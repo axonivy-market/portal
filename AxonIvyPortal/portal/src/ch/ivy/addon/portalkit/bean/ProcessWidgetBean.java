@@ -29,9 +29,9 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
-import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.components.util.RoleUtils;
-import com.axonivy.portal.enums.GlobalSearchScopeCategory;
+import com.axonivy.portal.service.DeepLTranslationService;
+import com.axonivy.portal.service.GlobalSearchService;
 import com.axonivy.portal.util.ExternalLinkUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
@@ -668,20 +668,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
   
   public boolean isShowGlobalSearchScope() {
-    boolean isShowFullProcessList = PermissionUtils.checkAccessFullProcessListPermission();
-    String globalSearchScopeCategoriesString = Ivy.var().get(GlobalVariable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey());
-    boolean isHasSearchScope = false;
-    if (StringUtils.isNotBlank(globalSearchScopeCategoriesString)) {
-      String[] fieldArray = globalSearchScopeCategoriesString.split(",");
-      for (String field : fieldArray) {
-        GlobalSearchScopeCategory fieldEnum = GlobalSearchScopeCategory.valueOf(field.toUpperCase());
-        if (fieldEnum != null && fieldEnum.equals(GlobalSearchScopeCategory.PROCESSES)) {
-          isHasSearchScope = true;
-          break;
-        }
-      }
-    }
-    return isShowFullProcessList && isHasSearchScope;
+    return GlobalSearchService.getInstance().isShowGlobalSearchByProcesses();
   }
 
 }

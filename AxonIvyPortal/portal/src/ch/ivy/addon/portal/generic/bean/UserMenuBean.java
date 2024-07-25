@@ -18,6 +18,7 @@ import org.primefaces.PrimeFaces;
 import com.axonivy.portal.bo.QRCodeData;
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.enums.PortalCustomSignature;
+import com.axonivy.portal.service.GlobalSearchService;
 import com.google.gson.Gson;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -82,15 +83,14 @@ public class UserMenuBean implements Serializable {
         default -> String.format(fullDisplayFormat, userName, fullName);
       };
     }
-    boolean isDefinedSearchScope = StringUtils.isNotBlank(GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES));
+    boolean isShowGlobalSearchByProcesses = GlobalSearchService.getInstance().isShowGlobalSearchByProcesses();
+    boolean isShowGlobalSearchByTasks = GlobalSearchService.getInstance().isShowGlobalSearchByTasks();
+    boolean isShowGlobalSearchByCases = GlobalSearchService.getInstance().isShowGlobalSearchByCases();
     isShowGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_GLOBAL_SEARCH)
-            && isDefinedSearchScope;
-    boolean isShowFullTaskList = PermissionUtils.checkAccessFullTaskListPermission();
-    boolean isShowFullCaseList = PermissionUtils.checkAccessFullCaseListPermission();
-    boolean isShowFullProcessList = PermissionUtils.checkAccessFullProcessListPermission();
+        && (isShowGlobalSearchByProcesses || isShowGlobalSearchByCases || isShowGlobalSearchByTasks);;
     isShowQuickGlobalSearch = GlobalSettingService.getInstance()
-        .findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_QUICK_GLOBAL_SEARCH) && isDefinedSearchScope
-        && (isShowFullTaskList || isShowFullCaseList || isShowFullProcessList);
+        .findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_QUICK_GLOBAL_SEARCH)
+        && (isShowGlobalSearchByProcesses || isShowGlobalSearchByCases || isShowGlobalSearchByTasks);
   }
 
   public boolean isShowCaseDurationTime() {
