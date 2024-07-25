@@ -7,3 +7,7 @@ priority String #field
 state String #field
 caseDashboardWidget ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget #field
 processDashboardWidget ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget #field
+taskExpiryDateFrom String #field
+taskExpiryDateFrom PERSISTENT #fieldModifier
+taskExpiryDateTo String #field
+taskExpiryDateTo PERSISTENT #fieldModifier
