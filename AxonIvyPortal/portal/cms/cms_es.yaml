@@ -271,7 +271,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableVirusScannerForUploadedDocumentNote: Cambiar a "true" para habilitar el escáner de virus para el documento cargado. Actualmente esta función utiliza la API VIRUSTOTAL.
       expressEndPageNote: Mostrar la página de final de flujo de trabajo express propia.
       hideCaseDocument: Cambiar a "true" para ocultar el área de documentos en detalle de casos
-      hideChangePasswordButtonNote: Cambiar a "true" para ocultar la posibilidad de cambiar contraseña.
+      hideChangePasswordButtonNote: Establezca esta variable a true para ocultar la opción "Cambiar contraseña" en el menú superior y la opción "Contraseña olvidada" en la página de inicio de sesión. Si se establece en false, estas opciones se mostrarán.
       hideLogoutButtonNote: Cambiar a "true" para ocultar la opción de logout.
       hideRelatedCaseInfoFromHistory: Si es verdadero, el historial de casos no muestra la información de los casos relacionados en la tabla de historial.
       hideStatisticWidget: Cambiar a "true" para ocultar la estadística de la página principal y del menu lateral

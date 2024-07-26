@@ -269,7 +269,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableVirusScannerForUploadedDocumentNote: Set to true to enable virus scanner for uploaded document. Currently this function is using API VIRUSTOTAL.
       expressEndPageNote: Display the custom end page at the end of each Express process.
       hideCaseDocument: Set to true, the document section in case detail page will be hidden, otherwise it will be shown.
-      hideChangePasswordButtonNote: Set to true, the change password option in top menu will be hidden, otherwise it will be shown.
+      hideChangePasswordButtonNote: Set this variable to true to hide the "Change Password" option in the top menu and the "Forgotten Password" option on the login page. If set to false, these options will be shown.
       hideLogoutButtonNote: If true, the logout button on top menu will be hidden, otherwise it will be shown.
       hideRelatedCaseInfoFromHistory: If true, case history does not display the related case information in the history table.
       hideStatisticWidget: Set to true to hide Statistic widget from homepage and application menu.

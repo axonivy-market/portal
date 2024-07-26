@@ -270,7 +270,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableVirusScannerForUploadedDocumentNote: Définie sur true pour activer le scanner de virus pour le document téléchargé. Actuellement, cette fonction utilise l'API VIRUSTOTAL.
       expressEndPageNote: Affiche la page de fin personnalisée à la fin de chaque processus Express.
       hideCaseDocument: Si vous choisissez "true", la section du document dans la page de détail du cas sera invisible, sinon elle sera visible.
-      hideChangePasswordButtonNote: Définie sur true, l'option de modification du mot de passe dans le menu supérieur sera masquée, sinon elle sera affichée.
+      hideChangePasswordButtonNote: Attribuez la valeur true à cette variable pour masquer l'option "Changer de mot de passe" dans le menu supérieur et l'option "Mot de passe oublié" sur la page de connexion. Si elle vaut false, ces options seront affichées.
       hideLogoutButtonNote: Si true, le bouton de déconnexion du menu supérieur sera masqué, sinon il sera affiché.
       hideRelatedCaseInfoFromHistory: Si la valeur est vraie, l'historique des cas n'affiche pas les informations relatives aux cas dans le tableau de l'historique.
       hideStatisticWidget: Définissez la valeur sur "true" pour masquer le widget de statistiques de la page d'accueil et du menu de l'application.
@@ -1731,10 +1731,6 @@ Labels:
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
   Enums:
-    GlobalSearchScopeCategory:
-      CASES: Cas
-      PROCESSES: Processus
-      TASKS: Tâches
     SearchScopeCaseField:
       CUSTOM: Champs de chaînes personnalisées
       DESCRIPTION: Description
@@ -1742,6 +1738,10 @@ Labels:
     SearchScopeTaskField:
       DESCRIPTION: Description
       NAME: Nom
+    GlobalSearchScopeCategory:
+      CASES: Cas
+      PROCESSES: Processus
+      TASKS: Tâches
     ThemeMode:
       DARK: Dark
       LIGHT: Lumière
