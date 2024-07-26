@@ -8,6 +8,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.PrimeFaces;
+
 import com.axonivy.portal.datamodel.NotificationLazyModel;
 import com.axonivy.portal.dto.NotificationDto;
 
@@ -135,7 +137,11 @@ public class NotificationBean implements Serializable {
       return false;
   }
   
-  public void startTaskFromNoti(NotificationDto dto) {
+  public void startTaskFromNotification(NotificationDto dto, boolean isWorkingTask, ITask task) {
+    if (isWorkingTask && task.getState() != TaskState.DONE) {
+      PrimeFaces.current().executeScript(String.format("checkWarningLogForTaskStart('%s', '%s')", dto.getId(), task.getId()));
+      return;
+    }
     markAsRead(dto);
     PortalNavigator.redirect(dto.getRunAction().getLink().getRelative());
   }
@@ -145,6 +151,15 @@ public class NotificationBean implements Serializable {
     NotificationDto dto = dataModel.findById(notificationId);
     markAsRead(dto);
     PortalNavigator.redirect(dto.getRunAction().getLink().getRelative());
+  }
+  
+  public void goToNotificationDetail(NotificationDto dto, boolean isWorkingTask, ITask task) {
+    if (isWorkingTask && task.getState() != TaskState.DONE) {
+      PrimeFaces.current().executeScript(String.format("checkWarningLogForTaskDetail('%s', '%s')", dto.getId(), task.getId()));
+      return;
+    }
+    markAsRead(dto);
+    PortalNavigator.redirect(dto.getInfoAction().getLink().getRelative());
   }
   
   public void goToTaskDetail(NotificationDto dto) {

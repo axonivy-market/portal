@@ -85,8 +85,7 @@
                           </div>
                           <div class="flex notification-message-block flex-column">
                             <p:commandLink id="notification-message" styleClass="notification-message"
-                              onclick="return checkWarningLogForTaskDetail('#{notification.id}', '#{task.id}');"
-                              actionListener="#{notificationBean.goToTaskDetail(notification)}"
+                              actionListener="#{notificationBean.goToNotificationDetail(notification, isWorkingOnATask, task)}"
                               rendered="#{notification.infoAction != null}">
                               <h:outputText value="#{htmlSanitizerBean.sanitize(notification.message)}" />
                             </p:commandLink>
@@ -96,8 +95,7 @@
                           <div class="flex notification-action-block">
                             <p:commandLink id="notification-start-task"
                               styleClass="notification-start-task"
-                              actionListener="#{notificationBean.startTaskFromNoti(notification)}"
-                              onclick="return checkWarningLogForTaskStart('#{notification.id}', '#{task.id}');">
+                              actionListener="#{notificationBean.startTaskFromNotification(notification, isWorkingOnATask, task)}">
                               <i class="fa fa-play notification-start-task-icon" />
                             </p:commandLink>
                             <p:tooltip for="notification-start-task" value="#{notification.runAction.title}" />

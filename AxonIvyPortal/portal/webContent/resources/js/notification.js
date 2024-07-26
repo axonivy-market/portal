@@ -54,17 +54,13 @@ function checkWarningLogForTaskDetail(notificationId, taskId) {
     setNotificationId(notificationId);
     setNotiTaskId(taskId);
     setRedirectType('TASK_DETAIL');
-    if (!showNotificationConfirmationDialog()) {
-        return false;
-    }
+    showNotificationConfirmationDialog();
 }
 function checkWarningLogForTaskStart(notificationId, taskId) {
     setNotificationId(notificationId);
     setNotiTaskId(taskId);
     setRedirectType('TASK_START');
-    if (!showNotificationConfirmationDialog()) {
-        return false;
-    }
+    showNotificationConfirmationDialog();
 }
 function showNotificationConfirmationDialog() {
     if (PrimeFaces.widgets['notification-task-losing-confirmation-dialog']) {
