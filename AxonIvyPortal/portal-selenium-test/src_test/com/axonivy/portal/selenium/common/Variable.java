@@ -25,7 +25,7 @@ public enum Variable {
   HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE("Portal.CaseDetails.HideUploadDocumentForDoneCase"),
   DEFAULT_PROCESS_MODE("Portal.Processes.Mode"), DEFAULT_PROCESS_IMAGE("Portal.Processes.DefaultImage"),
   DISPLAY_MESSAGE_AFTER_FINISH_TASK("Portal.DisplayMessageAfterFinishTask"), EXPRESS_END_PAGE("Portal.ExpressEndPage"),
-  CLIENT_SIDE_TIMEOUT("Portal.ClientSideTimeout"), EMBED_IN_FRAME("Portal.EmbedInFrame"),
+  EMBED_IN_FRAME("Portal.EmbedInFrame"),
   LOGGED_IN_USER_FORMAT("Portal.LoggedInUserFormat"), SHOW_GLOBAL_SEARCH("Portal.ShowGlobalSearch"),
   SHOW_BUTTON_ICON("Portal.ShowButtonIcon"), DEFAULT_HOMEPAGE("Portal.Homepage"),
   HIDE_RELATED_CASE_INFO_FROM_HISTORY("Portal.Histories.HideRelatedCaseInfo"),
