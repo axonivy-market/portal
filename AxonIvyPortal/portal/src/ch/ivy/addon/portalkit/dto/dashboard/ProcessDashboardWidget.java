@@ -31,9 +31,13 @@ public class ProcessDashboardWidget extends DashboardWidget {
   private boolean isPreview;
   @JsonIgnore
   protected DashboardProcessSearchCriteria criteria;
+  private boolean showFullscreenMode;
+  private boolean showWidgetInfo;
 
   public ProcessDashboardWidget() {
     criteria = new DashboardProcessSearchCriteria();
+    setShowFullscreenMode(true);
+    setShowWidgetInfo(true);
   }
 
   public ProcessDashboardWidget(ProcessDashboardWidget widget) {
@@ -41,6 +45,8 @@ public class ProcessDashboardWidget extends DashboardWidget {
     criteria = widget.getCriteria();
     displayMode = widget.getDisplayMode();
     isPreview = widget.isPreview();
+    showFullscreenMode = widget.showFullscreenMode;
+    showWidgetInfo = widget.showWidgetInfo;
   }
 
   @Override
@@ -117,5 +123,21 @@ public class ProcessDashboardWidget extends DashboardWidget {
   
   public void setApplications(List<String> applications) {
     this.criteria.setApplications(applications);
+  }
+
+  public void setShowFullscreenMode(boolean showFullscreenMode) {
+    this.showFullscreenMode = showFullscreenMode;
+  }
+
+  public boolean isShowFullscreenMode() {
+    return showFullscreenMode;
+  }
+
+  public void setShowWidgetInfo(boolean showWidgetInfo) {
+    this.showWidgetInfo = showWidgetInfo;
+  }
+
+  public boolean isShowWidgetInfo() {
+    return showWidgetInfo;
   }
 }
