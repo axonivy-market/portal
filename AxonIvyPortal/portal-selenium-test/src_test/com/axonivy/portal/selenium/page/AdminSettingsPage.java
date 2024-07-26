@@ -1,6 +1,5 @@
 package com.axonivy.portal.selenium.page;
 
-import static com.axonivy.portal.selenium.common.Variable.CLIENT_SIDE_TIMEOUT;
 import static com.axonivy.portal.selenium.common.Variable.GLOBAL_FOOTER_INFO;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -75,12 +74,6 @@ public class AdminSettingsPage extends TemplatePage {
 
   public void clickOnbackToNewDashboardPageOnAdminSetting() {
     WaitHelper.waitForNavigation(() -> waitForElementClickableThenClick(findElementById("back-to-home-button")));
-  }
-
-  public void setClientSideTimeout(String timeout) {
-    openSettingTab();
-    editGlobalVariable(CLIENT_SIDE_TIMEOUT.getKey(), timeout, false);
-    closeConfirmationDialog();
   }
 
   public void closeConfirmationDialog() {
