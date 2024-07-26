@@ -253,7 +253,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableVirusScannerForUploadedDocumentNote: Auf true setzen, um den Virenscanner für das hochgeladene Dokument zu aktivieren. Derzeit verwendet diese Funktion die API VIRUSTOTAL.
       expressEndPageNote: Anzeigen der angepassten Endseite nach dem Ende eines Express Prozesses.
       hideCaseDocument: Auf "true" setzen, um die Dokumentensektion in Vorgangsdetails auszublenden.
-      hideChangePasswordButtonNote: 'Auf "true" setzen, um die Option "Passwort ändern" im Top Menu zu deaktivieren. '
+      hideChangePasswordButtonNote: Setzen Sie diese Variable auf true, um die Option "Passwort ändern" im oberen Menü und die Option "Passwort vergessen" auf der Anmeldeseite auszublenden. Wenn sie auf false gesetzt ist, werden diese Optionen angezeigt.
       hideLogoutButtonNote: 'Auf "true" setzen, um die Logout Funktion im Top Menu zu deaktivieren. '
       hideRelatedCaseInfoFromHistory: Wenn diese Option auf "true" gesetzt ist, werden die zugehörigen Fallinformationen nicht in der Tabelle "Historie" angezeigt.
       hideStatisticWidget: Setzen Sie den Wert auf "true", um das Statistik-Widget auf der Startseite und im Anwendungsmenü auszublenden.
@@ -1758,10 +1758,6 @@ Labels:
   AppendTheTask: Aufgabe anhängen
   CreateNewDashboard: Neues Dashboard erstellen
   Enums:
-    GlobalSearchScopeCategory:
-      CASES: Fälle
-      PROCESSES: Prozesse
-      TASKS: Aufgaben
     DashboardStandardCaseColumn:
       ACTIONS: Aktionen
       APPLICATION: Anmeldung
@@ -1828,6 +1824,10 @@ Labels:
         YEAR: Jahr(e)
       WEEK: Woche
       YEAR: Jahr
+    GlobalSearchScopeCategory:
+      CASES: Fälle
+      PROCESSES: Prozesse
+      TASKS: Aufgaben
     SearchScopeCaseField:
       CUSTOM: Benutzerdefinierte Stringfelder
       DESCRIPTION: Beschreibung
