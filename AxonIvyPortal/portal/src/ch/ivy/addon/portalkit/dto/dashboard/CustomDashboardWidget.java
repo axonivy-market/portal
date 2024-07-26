@@ -62,6 +62,7 @@ public class CustomDashboardWidget extends DashboardWidget {
     result.getLayout().setAxisX(0);
     result.getLayout().setAxisY(0);
     result.setData(new DashboardCustomWidgetData());
+    result.setShowFullscreenMode(true);
     return result;
   }
 
