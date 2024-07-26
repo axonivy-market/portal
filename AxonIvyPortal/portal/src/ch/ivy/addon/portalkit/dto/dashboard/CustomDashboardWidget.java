@@ -28,6 +28,7 @@ public class CustomDashboardWidget extends DashboardWidget {
   private String errorMessage;
   @JsonIgnore
   private String errorIcon;
+  private boolean showFullscreenMode;
 
   @Override
   public DashboardWidgetType getType() {
@@ -165,5 +166,13 @@ public class CustomDashboardWidget extends DashboardWidget {
 
   public void setErrorIcon(String errorIcon) {
     this.errorIcon = errorIcon;
+  }
+
+  public void setShowFullscreenMode(boolean showFullscreenMode) {
+    this.showFullscreenMode = showFullscreenMode;
+  }
+
+  public boolean isShowFullscreenMode() {
+    return showFullscreenMode;
   }
 }
