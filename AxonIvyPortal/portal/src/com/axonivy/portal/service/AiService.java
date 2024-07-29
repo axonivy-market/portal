@@ -147,14 +147,18 @@ public class AiService {
     String processPath = IApplication.current().getName().concat(PROCESS_PROCESS_PATH);
     AiAssistantAPI.addIvyProcessLinkToAiResult(processPath, params, result);
     
-    CompactProcessDashboardWidget resultWidget = (CompactProcessDashboardWidget) AiToolUtils.convertIvyToolToProcessDashboardWidget(processName, processDescription);
+    CompactProcessDashboardWidget resultWidget = (CompactProcessDashboardWidget) AiToolUtils
+        .convertIvyToolToProcessDashboardWidget(processName,
+            processDescription);
     resultWidget.filterProcessesByUser();
     List<DashboardProcess> processes = resultWidget.getDisplayProcesses();
     if (CollectionUtils.isEmpty(processes)) {
       return AiAssistantAPI.generateErrorAiResult(
           Ivy.cms().co("No matching processes."));
     }
-    String foundProcessStr = "Found processes:".concat(System.lineSeparator());
+    String foundProcessStr = "Found processes: "
+        .concat(Integer.toString(processes.size()))
+        .concat(System.lineSeparator());
     for(var process : processes) {
       foundProcessStr = foundProcessStr.concat(String.format(FIND_PROCESS_AI_RESULT_DEFAULT_PATTERN,
           process.getId(), process.getName(), process.getDescription())).concat(System.lineSeparator());
