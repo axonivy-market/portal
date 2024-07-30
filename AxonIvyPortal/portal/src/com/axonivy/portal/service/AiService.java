@@ -250,7 +250,7 @@ public class AiService {
 
   }
 
-  public static AiResultDTO generateAIResultForWebstartableInfoById(
+  public AiResultDTO generateAIResultForWebstartableInfoById(
       String processId) {
     Optional<IWebStartable> foundProcessOptional = ProcessService.getInstance()
         .findAllProcesses().stream()
