@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -12,10 +14,8 @@ import org.primefaces.PrimeFaces;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bo.AdhocHistory;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.AdhocHistoryService;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
@@ -212,18 +212,10 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
   }
 
   public Long getIntervalForPollingWhenOpenCaseDetails() {
-    String clientSideTimeoutInMinute =
-        new GlobalSettingService().findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT);
-      if (StringUtils.isNotBlank(clientSideTimeoutInMinute)) {
-        Long timeoutInMinute = Long.valueOf(clientSideTimeoutInMinute);
-        if (timeoutInMinute < 1) {
-          return null;
-        }
-        // interval value should be one minute and 5 seconds before client side timeout to hide Extend session dialog
-        Long intervalValue = (timeoutInMinute - 1)*60 - 5;
-        return intervalValue < 0 ? null : intervalValue;
-      }
-    return null;
+    Long timeoutInMinute = Long.valueOf(FacesContext.getCurrentInstance().getExternalContext().getSessionMaxInactiveInterval() / 60);
+    // interval value should be one minute and 5 seconds before client side timeout to hide Extend session dialog
+    Long intervalValue = (timeoutInMinute - 1)*60 - 5;
+    return intervalValue < 0 ? null : intervalValue;
   }
 
   public String getCaseDetailsLink() {
