@@ -11,8 +11,7 @@ taskDashboardWidget ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget #fi
 result com.axonivy.portal.components.dto.AiResultDTO #field
 validationError String #field
 taskId String #field
-taskId PERSISTENT #fieldModifier
 dateFrom String #field
-dateFrom PERSISTENT #fieldModifier
 dateTo String #field
-dateTo PERSISTENT #fieldModifier
+processId String #field
+parameters String #field
