@@ -322,5 +322,118 @@
         "at" : { "x" : 920, "y" : 64 },
         "labelOffset" : { "x" : 13, "y" : 33 }
       }
+    }, {
+      "id" : "f25",
+      "type" : "CallSubStart",
+      "name" : "startProcess(String,String)",
+      "config" : {
+        "signature" : "startProcess",
+        "input" : {
+          "params" : [
+            { "name" : "processId", "type" : "String", "desc" : "" },
+            { "name" : "parameters", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.parameters" : "param.parameters",
+            "out.processId" : "param.processId"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "result", "type" : "com.axonivy.portal.components.dto.AiResultDTO", "desc" : "" }
+          ],
+          "map" : {
+            "result.result" : "in.result"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 536, "y" : 296 }
+      },
+      "connect" : [
+        { "id" : "f28", "to" : "f26" }
+      ]
+    }, {
+      "id" : "f26",
+      "type" : "Script",
+      "name" : "Generate a link to start the process",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.environment.Ivy;",
+            "import com.axonivy.portal.service.AiService;",
+            "",
+            "in.result = AiService.getInstance().generateAiResultForStartProcess(in.processId, in.parameters);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 736, "y" : 296 }
+      },
+      "connect" : [
+        { "id" : "f29", "to" : "f27" }
+      ]
+    }, {
+      "id" : "f27",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 920, "y" : 296 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f30",
+      "type" : "CallSubStart",
+      "name" : "getProcessInfo(String)",
+      "config" : {
+        "signature" : "getProcessInfo",
+        "input" : {
+          "params" : [
+            { "name" : "processId", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.processId" : "param.processId"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "result", "type" : "com.axonivy.portal.components.dto.AiResultDTO", "desc" : "" }
+          ],
+          "map" : {
+            "result.result" : "in.result"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 536, "y" : 176 }
+      },
+      "connect" : [
+        { "id" : "f33", "to" : "f31" }
+      ]
+    }, {
+      "id" : "f31",
+      "type" : "Script",
+      "name" : "Get process info",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.service.AiService;",
+            "",
+            "in.result = AiService.generateAIResultForWebstartableInfoById(in.processId);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 736, "y" : 176 }
+      },
+      "connect" : [
+        { "id" : "f34", "to" : "f32" }
+      ]
+    }, {
+      "id" : "f32",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 920, "y" : 176 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
     } ]
 }

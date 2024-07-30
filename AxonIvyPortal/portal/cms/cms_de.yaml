@@ -1763,8 +1763,31 @@ Labels:
   AI:
     Error:
       CannotFindUser: Sorry, cannot find any user matched your request. Please try again.
+      CannotStartTask: Cannot start task
       InvalidTaskPriority: 'Invalid task priority. Valid task priorities are: low, normal, high, or exception.'
       InvalidTaskState: 'Invalid task state. Valid task states are: open, done, in progress, or error.'
+      NoMatchingProcesses: No matching processes.
+    FindCaseAIResult: 'ID: {0}, Name: {1}, Description: {2}, State: {3}'
+    FindProcessAIResult: 'ID: {0}, Name: {1}, Description: {2}'
+    FindTaskAIResult: 'ID: {0}, Name: {1}, Description: {2}, State: {3}, Priority {4}'
+    FindUserAIResult: 'Username: {0}, Name: {1}, Email: {2}, State: {3}'
+    FoundCaseHeader: 'Found cases:'
+    FoundProcessesHeader: 'Found processes:'
+    FoundUsersHeader: 'Found users:'
+    ProcessInfoHeader: |-
+      **Process name:** {0}
+      **Process description:** {1}
+    ProcessInfoHeaderWithParameters: |-
+      **Process name:** {0}
+      **Process description:** {1}
+      **Number of parameters: ** {2}
+    ProcessParameterInfo: |-
+      - Name: {0}
+        Description: {1}
+    ProcessParameterInfoWithValue: |-
+      - Name: {0}
+        Description: {1}
+        Value:
   AdhocWorkflow: Beschreiben Sie Ihren Workflow
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
