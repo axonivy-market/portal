@@ -63,12 +63,12 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
 
   public void init() {
     super.initConfig();
-    isHideCaseDocument = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CASE_DOCUMENT);
+    isHideCaseDocument = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CASE_DOCUMENT);
     caseActionBean = ManagedBeans.get("caseActionBean");
     isFirstTime = true;
     isShowShareButton = PermissionUtils.hasShareCaseDetailsPermission();
     isHideCaseCreator = GlobalSettingService.getInstance().isHideCaseCreator();
-    isRunningTaskWhenClickingOnTaskInList = new GlobalSettingService()
+    isRunningTaskWhenClickingOnTaskInList = GlobalSettingService.getInstance()
         .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
         .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
   }

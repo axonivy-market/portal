@@ -128,7 +128,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   }
 
   public void updateDisableCaseCount() {
-    disableCaseCount = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.DISABLE_CASE_COUNT);
+    disableCaseCount = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.DISABLE_CASE_COUNT);
   }
 
   @Override
@@ -451,7 +451,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   private String getDefaultSortField() {
     String defaultSortField = UserSettingService.newInstance().getDefaultSortFieldOfCaseList();
     if (StringUtils.isBlank(defaultSortField) || UserSettingService.DEFAULT.equals(defaultSortField)) {
-      GlobalSettingService globalSettingService = new GlobalSettingService();
+      GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
       defaultSortField = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_FIELD_OF_CASE_LIST);
     }
     return defaultSortField;
@@ -460,7 +460,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   private boolean isSortedDescendingByDefault() {
     String defaultSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfCaseList();
     if (StringUtils.isBlank(defaultSortDirection) || UserSettingService.DEFAULT.equals(defaultSortDirection)) {
-      GlobalSettingService globalSettingService = new GlobalSettingService();
+      GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
       defaultSortDirection =
           globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST);
     }
@@ -498,7 +498,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   }
 
   public void initColumnsConfiguration() {
-    if (new GlobalSettingService().isCaseOwnerEnabled()) {
+    if (GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
       portalDefaultColumns = List.of(CaseSortField.NAME.name(), 
                                       CaseSortField.ID.name(), 
                                       CaseSortField.CREATOR.name(), 

@@ -20,9 +20,16 @@ public class GlobalSettingService {
 
   private static GlobalSettingService instance;
 
+  private GlobalSettingService() {
+  }
+
   public static GlobalSettingService getInstance() {
-    if (instance == null) {
-      instance = new GlobalSettingService();
+    if (instance == null) { // First check (no locking)
+      synchronized (GlobalSettingService.class) {
+        if (instance == null) { // Second check (with locking)
+          instance = new GlobalSettingService();
+        }
+      }
     }
     return instance;
   }

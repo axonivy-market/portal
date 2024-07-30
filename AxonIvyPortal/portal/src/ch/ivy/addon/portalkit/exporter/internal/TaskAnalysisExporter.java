@@ -158,6 +158,7 @@ public class TaskAnalysisExporter extends Exporter{
   }
   
   private boolean isColumnVisible(TaskAndCaseAnalysisColumn column) {
+    Ivy.log().error(column.name());
     return taskAnalysisColumnsVisibility.get(column.name());
   }
 
