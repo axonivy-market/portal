@@ -33,6 +33,7 @@
     <ui:param name="panelStyleClass" value="statistic-chart-widget" />
     <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode or isPreviewMode}" />
     <ui:param name="isRenderInfo" value="#{!isPreviewMode}"/>
+    <ui:param name="isRenderExpandCollapse" value="#{widget.isShowFullscreenMode()}" />
 
     <ui:define name="widgetInfoContent">
       <ic:ch.ivy.addon.portalkit.component.statistic.ChartInformationDialog selectedStatisticChart="#{chart}" />

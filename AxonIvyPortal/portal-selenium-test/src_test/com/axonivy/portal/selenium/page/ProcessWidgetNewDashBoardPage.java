@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 
 public class ProcessWidgetNewDashBoardPage extends TemplatePage {
 
@@ -47,5 +48,17 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
     $$("div.table-widget-panel div.widget__header").filter(text(processWidgetName)).first()
         .shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='delete-widget']")
         .shouldBe(getClickableCondition()).click();
+  }
+
+  private SelenideElement getProcessWidgetHeader() {
+    return $$("div.table-widget-panel").filter(text(processWidgetName)).first();
+  }
+
+  public boolean isExpandButtonAppear() {
+    return getProcessWidgetHeader().$(".expand-link").isDisplayed();
+  }
+
+  public boolean isWidgetInfoIconAppear() {
+    return getProcessWidgetHeader().$(".widget__info-sidebar-link").isDisplayed();
   }
 }
