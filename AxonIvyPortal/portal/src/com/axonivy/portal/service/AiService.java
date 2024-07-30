@@ -269,10 +269,11 @@ public class AiService {
     return result;
   }
 
-  private static void updateResultForWebstartableInfo(AiResultDTO resultDTO,
+  private void updateResultForWebstartableInfo(AiResultDTO resultDTO,
       IWebStartable process) {
-    List<Object> params = Arrays.asList(process.getDisplayName(),
-        process.getDescription());
+    List<Object> params = new ArrayList<>();
+    params.addAll(Arrays.asList(process.getDisplayName(),
+        process.getDescription()));
 
     if (CollectionUtils.isEmpty(process.parameters())) {
       String resultStr = Ivy.cms().co("/Labels/AI/ProcessInfoHeader", params);
@@ -282,10 +283,12 @@ public class AiService {
     } else {
       params.add(Integer.toString(process.parameters().size()));
       String resultStr = Ivy.cms()
-          .co("/Labels/AI/ProcessInfoHeaderWithParameters", params);
+          .co("/Labels/AI/ProcessInfoHeaderWithParameters", params)
+          .concat(System.lineSeparator());
 
       String resultForAIStr = Ivy.cms()
-          .co("/Labels/AI/ProcessInfoHeaderWithParameters", params);
+          .co("/Labels/AI/ProcessInfoHeaderWithParameters", params)
+          .concat(System.lineSeparator());
 
       for (var param : process.parameters()) {
         List<Object> subParams = Arrays.asList(param.name(),
