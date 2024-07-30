@@ -14,8 +14,9 @@ import ch.ivyteam.util.ExceptionUtil;
 
 public class AiAssistantAPI {
   private static final String IFRAME_RESULT_PATTERN = "<iframe>%s</iframe>";
+  private static final String EXECUTE_RESULT_PATTERN = "<execute>%s</execute>";
 
-  public static void addIvyProcessLinkToAiResult(String link,
+  public static void addIframeIvyProcessLinkToAiResult(String link,
       Map<String, String> params, AiResultDTO result) {
     try {
       IWebStartable process = initWebStartable(link);
@@ -25,6 +26,10 @@ public class AiAssistantAPI {
       result = generateErrorAiResult(e,
           Ivy.cms().co("/Labels/AI/Error/ErrorWhenProceedRequest"));
     }
+  }
+  
+  public static String generateExecutableResult(String link) {
+    return String.format(EXECUTE_RESULT_PATTERN, link);
   }
 
   private static IWebStartable initWebStartable(String processPath) {
@@ -55,6 +60,14 @@ public class AiAssistantAPI {
     result.setResultForAI(error);
     result.setState(AIState.ERROR);
 
+    return result;
+  }
+
+  public static AiResultDTO createSomethingWentWrongError() {
+    AiResultDTO result = new AiResultDTO();
+    result.setIsMemory(false);
+    result.setResult(Ivy.cms().co("/Labels/AI/Error/SomethingWentWrong"));
+    result.setState(AIState.ERROR);
     return result;
   }
 }

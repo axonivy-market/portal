@@ -1,5 +1,7 @@
 package com.axonivy.portal.service;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -14,9 +16,12 @@ import org.apache.commons.lang3.math.NumberUtils;
 import com.axonivy.portal.components.dto.AiResultDTO;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.enums.AIState;
+import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;
 import com.axonivy.portal.components.publicapi.AiAssistantAPI;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
+import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.components.util.UserUtils;
+import com.axonivy.portal.dto.IvyToolParameter;
 import com.axonivy.portal.util.AiToolUtils;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
@@ -30,13 +35,10 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class AiService {
-
-  private static final String FIND_TASK_AI_RESULT_DEFAULT_PATTERN = "ID: %s, Name: %s, Description: %s, State: %s, Priority %s";
-  private static final String FIND_CASE_AI_RESULT_DEFAULT_PATTERN = "ID: %s, Name: %s, Description: %s, State: %s";
-  private static final String FIND_USERS_AI_RESULT_DEFAULT_PATTERN = "Username: %s, Name: %s, Email: %s, State: %s";
-  private static final String FIND_PROCESS_AI_RESULT_DEFAULT_PATTERN = "ID: %s, Name: %s, Description: %s";
+  private static final String START_PROCESS_SUCCESSFULLY_FORMAT = "Process **%s** is started successfully";
 
   private static final String TASK_PROCESS_PATH = "/portal/AI Tool Processes/PortalTools/findTasksTool.ivp";
   private static final String CASE_PROCESS_PATH = "/portal/AI Tool Processes/PortalTools/findCasesTool.ivp";
@@ -66,7 +68,8 @@ public class AiService {
 
     String processPath = IApplication.current().getName()
         .concat(TASK_PROCESS_PATH);
-    AiAssistantAPI.addIvyProcessLinkToAiResult(processPath, params, result);
+    AiAssistantAPI.addIframeIvyProcessLinkToAiResult(processPath, params,
+        result);
 
     if (result.getState() == AIState.ERROR) {
       return result;
@@ -84,10 +87,10 @@ public class AiService {
     String foundTasksStr = "Found tasks:".concat(System.lineSeparator());
     for (ITask task : foundTasks) {
       foundTasksStr = foundTasksStr
-          .concat(String.format(FIND_TASK_AI_RESULT_DEFAULT_PATTERN,
-              Long.valueOf(task.getId()).toString(), task.getName(),
-              task.getDescription(), task.getBusinessState().name(),
-              task.getPriority().name()))
+          .concat(Ivy.cms().co("/Labels/AI/FindTaskAIResult",
+              Arrays.asList(Long.valueOf(task.getId()).toString(),
+                  task.getName(), task.getDescription(),
+                  task.getBusinessState().name(), task.getPriority().name())))
           .concat(System.lineSeparator());
     }
 
@@ -108,7 +111,8 @@ public class AiService {
 
     String processPath = IApplication.current().getName()
         .concat(CASE_PROCESS_PATH);
-    AiAssistantAPI.addIvyProcessLinkToAiResult(processPath, params, result);
+    AiAssistantAPI.addIframeIvyProcessLinkToAiResult(processPath, params,
+        result);
 
     if (result.getState() == AIState.ERROR) {
       return result;
@@ -123,13 +127,16 @@ public class AiService {
         caseWidget.getDataModel().getCriteria().buildQuery(), 0, 10);
 
     // Create result for AI based on found tasks
-    String foundCasesStr = "Found cases:".concat(System.lineSeparator());
+    String foundCasesStr = Ivy.cms().co("/Labels/AI/FoundCaseHeader")
+        .concat(System.lineSeparator());
+
     for (ICase caze : foundCases) {
-      foundCasesStr.concat(String.format(FIND_CASE_AI_RESULT_DEFAULT_PATTERN,
-          Long.valueOf(caze.getId()).toString(), caze.getName(),
-          caze.getDescription(),
-          caze.getBusinessState().name()));
-      foundCasesStr.concat(System.lineSeparator());
+      foundCasesStr = foundCasesStr
+          .concat(Ivy.cms().co("/Labels/AI/FindCaseAIResult",
+              Arrays.asList(Long.valueOf(caze.getId()).toString(),
+                  caze.getName(), caze.getDescription(),
+                  caze.getBusinessState().name())))
+          .concat(System.lineSeparator());
     }
 
     result.setResultForAI(foundCasesStr);
@@ -137,16 +144,19 @@ public class AiService {
     result.setState(AIState.DONE);
     return result;
   }
-  
-  public AiResultDTO generateFindProcessesAiResult(String processName, String processDescription) {
+
+  public AiResultDTO generateFindProcessesAiResult(String processName,
+      String processDescription) {
     AiResultDTO result = new AiResultDTO();
     Map<String, String> params = new HashMap<>();
     params.put("processName", processName);
     params.put("processDescription", processDescription);
-    
-    String processPath = IApplication.current().getName().concat(PROCESS_PROCESS_PATH);
-    AiAssistantAPI.addIvyProcessLinkToAiResult(processPath, params, result);
-    
+
+    String processPath = IApplication.current().getName()
+        .concat(PROCESS_PROCESS_PATH);
+    AiAssistantAPI.addIframeIvyProcessLinkToAiResult(processPath, params,
+        result);
+
     CompactProcessDashboardWidget resultWidget = (CompactProcessDashboardWidget) AiToolUtils
         .convertIvyToolToProcessDashboardWidget(processName,
             processDescription);
@@ -154,14 +164,18 @@ public class AiService {
     List<DashboardProcess> processes = resultWidget.getDisplayProcesses();
     if (CollectionUtils.isEmpty(processes)) {
       return AiAssistantAPI.generateErrorAiResult(
-          Ivy.cms().co("No matching processes."));
+          Ivy.cms().co("/Labels/AI/Error/NoMatchingProcesses"));
     }
-    String foundProcessStr = "Found processes: "
+    String foundProcessStr = Ivy.cms().co("/Labels/AI/FoundProcessesHeader")
         .concat(Integer.toString(processes.size()))
         .concat(System.lineSeparator());
-    for(var process : processes) {
-      foundProcessStr = foundProcessStr.concat(String.format(FIND_PROCESS_AI_RESULT_DEFAULT_PATTERN,
-          process.getId(), process.getName(), process.getDescription())).concat(System.lineSeparator());
+    for (var process : processes) {
+      foundProcessStr = foundProcessStr
+          .concat(
+              Ivy.cms().co("/Labels/AI/FindProcessAIResult",
+                  Arrays.asList(process.getId(), process.getName(),
+                      process.getDescription())))
+          .concat(System.lineSeparator());
     }
     result.setResultForAI(foundProcessStr);
     result.setIsMemory(true);
@@ -177,7 +191,9 @@ public class AiService {
 
     if (CollectionUtils.isNotEmpty(foundUsers)) {
       // Create result for AI based on found users
-      String foundUsersStr = "Found users:".concat(System.lineSeparator());
+      String foundUsersStr = Ivy.cms().co("/Labels/AI/FoundUsersHeader")
+          .concat(System.lineSeparator());
+
       for (UserDTO user : foundUsers) {
         String userState = user.isEnabled()
             ? Ivy.cms().coLocale("/ch.ivy.addon.portalkit.ui.jsf/common/active",
@@ -185,9 +201,11 @@ public class AiService {
             : Ivy.cms().coLocale(
                 "/ch.ivy.addon.portalkit.ui.jsf/common/inactive",
                 Locale.ENGLISH);
-        foundUsersStr = foundUsersStr.concat(String.format(
-            FIND_USERS_AI_RESULT_DEFAULT_PATTERN,
-            user.getName(), user.getDisplayName(), user.getEmail(), userState))
+
+        foundUsersStr = foundUsersStr
+            .concat(Ivy.cms().co("/Labels/AI/FindUserAIResult",
+                Arrays.asList(user.getName(), user.getDisplayName(),
+                    user.getEmail(), userState)))
             .concat(System.lineSeparator());
       }
 
@@ -206,7 +224,8 @@ public class AiService {
 
   public AiResultDTO generateStartTasksAiResult(String taskId) {
     if (!NumberUtils.isDigits(taskId)) {
-      return AiAssistantAPI.generateErrorAiResult("Cannot start task");
+      return AiAssistantAPI.generateErrorAiResult(
+          Ivy.cms().co("/Labels/AI/Error/CannotStartTask"));
     }
     TaskQuery query = TaskQuery.create();
     query.where().taskId().isEqual(Long.valueOf(taskId));
@@ -219,7 +238,7 @@ public class AiService {
 
     if (foundTask == null) {
       return AiAssistantAPI.generateErrorAiResult(
-          "Cannot start task");
+          Ivy.cms().co("/Labels/AI/Error/CannotStartTask"));
     }
 
     result.setResult(PortalNavigatorAPI
@@ -229,5 +248,88 @@ public class AiService {
     result.setState(AIState.DONE);
     return result;
 
+  }
+
+  public static AiResultDTO generateAIResultForWebstartableInfoById(
+      String processId) {
+    Optional<IWebStartable> foundProcessOptional = ProcessService.getInstance()
+        .findAllProcesses().stream()
+        .filter(process -> process.getId().contentEquals(processId))
+        .findFirst();
+
+    // If cannot find process with the given ID, return error
+    if (foundProcessOptional.isEmpty()) {
+      return AiAssistantAPI.createSomethingWentWrongError();
+    }
+
+    AiResultDTO result = new AiResultDTO();
+    result.setIsMemory(false);
+    updateResultForWebstartableInfo(result, foundProcessOptional.get());
+    result.setState(AIState.DONE);
+    return result;
+  }
+
+  private static void updateResultForWebstartableInfo(AiResultDTO resultDTO,
+      IWebStartable process) {
+    List<Object> params = Arrays.asList(process.getDisplayName(),
+        process.getDescription());
+
+    if (CollectionUtils.isEmpty(process.parameters())) {
+      String resultStr = Ivy.cms().co("/Labels/AI/ProcessInfoHeader", params);
+      resultDTO.setResult(resultStr);
+      resultDTO.setResultForAI(resultStr);
+      return;
+    } else {
+      params.add(Integer.toString(process.parameters().size()));
+      String resultStr = Ivy.cms()
+          .co("/Labels/AI/ProcessInfoHeaderWithParameters", params);
+
+      String resultForAIStr = Ivy.cms()
+          .co("/Labels/AI/ProcessInfoHeaderWithParameters", params);
+
+      for (var param : process.parameters()) {
+        List<Object> subParams = Arrays.asList(param.name(),
+            param.description());
+
+        resultForAIStr = resultForAIStr.concat(
+            Ivy.cms().co("/Labels/AI/ProcessParameterInfoWithValue", subParams))
+            .concat(System.lineSeparator());
+
+        resultStr = resultStr
+            .concat(Ivy.cms().co("/Labels/AI/ProcessParameterInfo", subParams))
+            .concat(System.lineSeparator());
+
+        resultDTO.setResult(resultStr);
+        resultDTO.setResultForAI(resultForAIStr);
+      }
+    }
+  }
+
+  public static AiResultDTO generateAiResultForStartProcess(String processId,
+      String parameters) throws IOException {
+    if (StringUtils.isBlank(processId)) {
+      return AiAssistantAPI.createSomethingWentWrongError();
+    }
+
+    List<IvyToolParameter> params = new ArrayList<>();
+    if (StringUtils.isNotBlank(parameters)) {
+      params = BusinessEntityConverter.jsonValueToEntities(parameters,
+          IvyToolParameter.class);
+      if (CollectionUtils.isEmpty(params)) {
+        return AiAssistantAPI.createSomethingWentWrongError();
+      }
+    }
+
+    IWebStartable startable = ProcessService.getInstance().findAllProcesses()
+        .stream().filter(process -> process.getId().contentEquals(processId))
+        .findFirst().get();
+    AiResultDTO result = new AiResultDTO();
+    result.setState(AIState.DONE);
+    result.setResult(String.format(START_PROCESS_SUCCESSFULLY_FORMAT,
+        startable.getDisplayName()));
+    result.setResultForAI(AiAssistantAPI
+        .generateExecutableResult(startable.getLink().getAbsolute()));
+    result.setIsMemory(true);
+    return result;
   }
 }
