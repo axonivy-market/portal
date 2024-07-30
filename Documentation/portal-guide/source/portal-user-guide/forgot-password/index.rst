@@ -8,7 +8,8 @@ Forgot Password
   to display the "Forgot My Password" link.
   If you use an external security system, like Active Directory or Entra ID, 
   password management will need to be handled in that external system.
-You see the link on the bottm right of the login page.
+  
+  You see the link on the bottom right of the login page.
 
 |login-screen|
 
