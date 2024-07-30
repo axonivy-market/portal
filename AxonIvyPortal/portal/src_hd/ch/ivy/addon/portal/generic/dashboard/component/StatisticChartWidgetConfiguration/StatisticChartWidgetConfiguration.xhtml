@@ -12,6 +12,7 @@
 </cc:interface>
 
 <cc:implementation>
+  <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
   <c:set var="widget" value="#{cc.attrs.widget}" />
   <c:set var="isPublicDashboard" value="#{cc.attrs.isPublicDashboard}"/>
   <c:set var="componentToUpdate" value="#{cc.attrs.componentToUpdate}" />
@@ -71,7 +72,7 @@
         </div>
       </h:panelGroup>
       
-      <h:panelGroup id="fullscreen-mode-group" rendered="true"
+      <h:panelGroup id="fullscreen-mode-group" rendered="#{managedBean.displayFullscreenModeOption()}"
         styleClass="ui-g ui-g-12 u-padding-0 ui-fluid">
         <div class="ui-g-4">
           <p:outputLabel for="fullscreen-option"
