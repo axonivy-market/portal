@@ -33,7 +33,7 @@
 
         <li class="topbar-item search-item" jsf:rendered="#{showGlobalSearch}">
             
-          <a href="#" id="global-search-item">
+          <a href="#" id="global-search-item" aria-label="Select to open search input">
             <i class="topbar-icon si si-search"/>
           </a>
           <ic:ch.ivy.addon.portal.generic.GlobalSearch id="global-search-component"
@@ -41,7 +41,7 @@
         </li>
 
         <li class="topbar-item themeswitch-item">
-          <p:commandLink id="theme-switcher" disabled="#{!themeBean.enableSwitchThemeButton}"
+          <p:commandLink id="theme-switcher" disabled="#{!themeBean.enableSwitchThemeButton}" ariaLabel="theme switcher"
             onclick="PrimeFaces.FreyaConfigurator.changeLayout('ivy', '#{ivyFreyaTheme.mode == 'light' ? 'dark' : 'light'}');Portal.changePortalVariableTheme('#{ivyFreyaTheme.mode == 'light' ? 'dark' : 'light'}');">
             <i class="topbar-icon pi pi-#{ivyFreyaTheme.mode == 'light' ? 'moon' : 'sun'}" />
             <p:ajax onstart="PrimeFaces.FreyaConfigurator.beforeResourceChange();" oncomplete="changeThemeModeRefeshCharts();"

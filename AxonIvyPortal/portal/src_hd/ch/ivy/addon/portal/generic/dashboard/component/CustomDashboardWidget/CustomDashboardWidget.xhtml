@@ -40,7 +40,7 @@
               <c:forEach var="param" items="#{widget.data.params}">
                 <input type="hidden" name="#{dashboardCustomWidgetBean.generateParamName(param)}" value="#{param.value}" />
               </c:forEach>
-              <iframe id="id-custom-widget-iframe-#{index}" name="custom-widget-iframe-#{index}" class="dashboard-custom-iframe u-hidden" />
+              <iframe title="custom-widget-iframe-#{index}" id="id-custom-widget-iframe-#{index}" name="custom-widget-iframe-#{index}" class="dashboard-custom-iframe u-hidden" />
             </h:form>
             <script type="text/javascript">
                    $(function() {
@@ -72,7 +72,7 @@
         </ui:fragment>
 
         <ui:fragment rendered="#{empty widget.data.processPath}">
-          <iframe name="custom-widget-iframe-#{index}" src="#{widget.data.url}"
+          <iframe title="custom-widget-iframe-#{index}" name="custom-widget-iframe-#{index}" src="#{widget.data.url}"
             id="id-custom-widget-iframe-#{index}"
             class="dashboard-custom-iframe u-hidden" />
           <script type="text/javascript">
