@@ -693,7 +693,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   @SuppressWarnings("deprecation")
-  private void waitTaskAppearThenClick(int index) {
+  public void waitTaskAppearThenClick(int index) {
     WebElement taskListElement = findElementById(taskWidgetId + ":task-list-scroller");
     if (taskListElement.getAttribute(CLASS).contains("compact-mode")) {
       List<WebElement> taskItems = taskListElement.findElements(By.className("compact-task-start-link"));

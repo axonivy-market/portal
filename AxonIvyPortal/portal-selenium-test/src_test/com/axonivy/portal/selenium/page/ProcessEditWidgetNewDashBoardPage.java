@@ -424,4 +424,32 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   public SelenideElement getPreviewProcessElement(int index) {
     return $("div.compact-processes-container").findAll(".process-start-list-item").get(index);
   }
+
+  public SelenideElement getConfigurationFilterContainer() {
+    return $("div#new-widget-configuration-dialog").shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='filter-container']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement getExpandModeCheckbox() {
+    return getConfigurationFilterContainer().$("span[id$='fullscreen-mode-group']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='fullscreen-option']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void clickOnExpandModeCheckbox() {
+    getExpandModeCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public SelenideElement getWidgetInfoIconCheckbox() {
+    return getConfigurationFilterContainer().$("span[id$='widget-info-icon-group']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='widget-info']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[class*='ui-chkbox-box']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span");
+  }
+
+  public void clickOnWidgetInfoIconCheckbox() {
+    getWidgetInfoIconCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
 }

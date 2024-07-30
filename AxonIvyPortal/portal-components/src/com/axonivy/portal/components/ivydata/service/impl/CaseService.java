@@ -8,6 +8,7 @@ import com.axonivy.portal.components.enums.AdditionalProperty;
 import com.axonivy.portal.components.ivydata.dto.IvyCaseResultDTO;
 import com.axonivy.portal.components.ivydata.searchcriteria.CaseSearchCriteria;
 import com.axonivy.portal.components.ivydata.service.ICaseService;
+import com.axonivy.portal.components.util.PermissionUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.exec.Sudo;
@@ -38,7 +39,6 @@ public class CaseService implements ICaseService {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       CaseQuery finalQuery = extendQuery(criteria);
       result.setTotalCases(countCases(finalQuery));
-     
       return result;
     });
   }
@@ -78,11 +78,16 @@ public class CaseService implements ICaseService {
       caseQuery = CaseQuery.businessCases();
     }
 
-    caseQuery.where().or().currentUserIsInvolved();
     if (isCaseOwnerEnabled) {
       caseQuery.where().or().currentUserIsOwner();
     }
-    
+
+    if (PermissionUtils.checkCaseReadAllOwnRoleInvolvedPermission()) {
+      caseQuery.where().or().currentUserOrHisRolesAreInvolved();
+    } else {
+      caseQuery.where().or().currentUserIsInvolved();
+    }
+
     return caseQuery;
   }
 }

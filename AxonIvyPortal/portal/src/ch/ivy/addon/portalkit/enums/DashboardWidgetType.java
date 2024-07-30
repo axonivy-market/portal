@@ -19,6 +19,15 @@ public enum DashboardWidgetType {
   }
 
   public boolean canEnableQuickSearch() {
-    return name() == TASK.name() || name() == CASE.name();
+    return this == TASK || this == CASE;
+  }
+
+  public boolean canShowWidgetInfoOption() {
+    return this == TASK || this == CASE || this == PROCESS;
+  }
+
+  public boolean canShowFullscreenModeOption() {
+    return this == TASK || this == CASE || this == PROCESS || this == NEWS || this == CUSTOM || this == PROCESS_VIEWER
+        || this == STATISTIC;
   }
 }

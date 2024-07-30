@@ -104,7 +104,7 @@
       <h:panelGroup layout="block" id="empty-message-container"
         styleClass="empty-message-container #{!isPreviewMode and taskWidget.taskCount lt 1 and taskWidget.dataModel.countLoad lt 1 ? '' : 'u-display-none'}">
         <c:set var="noTasksWhenFilter"
-          value="#{taskWidget.userDefinedFiltersCount.isPresent()}" />
+          value="#{taskWidget.userDefinedFiltersCount.isPresent() or (not empty taskWidget.quickSearchKeyword)}" />
         <h:panelGroup layout="block" id="empty-message-when-filter"
           rendered="#{noTasksWhenFilter}">
           <i class="si si-filter-1 empty-message-icon" />

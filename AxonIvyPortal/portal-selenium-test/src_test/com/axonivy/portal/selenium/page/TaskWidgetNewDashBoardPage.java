@@ -6,6 +6,8 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import org.openqa.selenium.Keys;
+
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -80,11 +82,16 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     return getColumnOfTableWidget(index).get(startIndex);
   }
 
-  public void startFirstTask() {
-    $(".task-dashboard-widget__panel span.widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT);
-    WaitHelper.waitForNavigation(() -> getColumnOfTaskHasIndex(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click());
+  public void waitForFilterNotificationAppear() {
+    $(".task-dashboard-widget__panel span.widget__filter-noti-number")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
   }
-  
+
+  public void startFirstTask() {
+    WaitHelper.waitForNavigation(() -> getColumnOfTaskHasIndex(0, "Start")
+        .shouldBe(appear, DEFAULT_TIMEOUT).click());
+  }
+
   public void startFirstTaskAndWaitShowHomePageButton() {
     $(".task-dashboard-widget__panel span.widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT);
     getColumnOfTaskHasIndex(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click();
@@ -400,6 +407,10 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
         .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
   
+  public boolean isWidgetInfomationIconAppear() {
+    return getTaskWidgetHeader().$(".widget__info-sidebar-link").isDisplayed();
+  }
+
   public SelenideElement getExpiryTodayLabelInWidgetInfo() {
     return $("[id$='expiry-tab']").shouldBe(appear, DEFAULT_TIMEOUT).$("div div").shouldBe(appear, DEFAULT_TIMEOUT);
   }
@@ -438,6 +449,10 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
         .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
   
+  public boolean isExpandButtonAppear() {
+    return getTaskWidgetHeader().$(".expand-link").isDisplayed();
+  }
+
   public ElementsCollection getExpandedTaskWidget() {
     return $("div.expand-fullscreen").$$("div.widget__header").filter(text(taskWidgetName));
   }
@@ -501,5 +516,54 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     $("div.info-overlay-panel__footer")
     .$(".dashboard-excel-export-form").$("a")
     .shouldBe(getClickableCondition()).click();
+  }
+  
+  public boolean isQuickSearchInputShow(String widgetIndex) {
+    String taskWidgetIndex = String.format("div[id*='task-task_%s']", widgetIndex);
+    waitPageLoaded();
+    return $(taskWidgetIndex).$("form").$("input").exists();
+  }
+
+  public String getQuickSearchInput() {
+    return getQuickSearchForm().$("input").getValue();
+  }
+
+  public void setInputForQuickSearch(String input) {
+    getQuickSearchForm().$("input").sendKeys(input);
+    waitForPageLoad();
+  }
+
+  private SelenideElement getQuickSearchForm() {
+    return $("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
+  }
+
+  public void clearQuickSearchInput() {
+    getQuickSearchForm().$("input").clear();
+    waitForPageLoad();
+  }
+  
+  public void copyAndPasteOnQuickSearchInput() {
+    SelenideElement searchInput = getQuickSearchForm().$("input");
+    searchInput.click();
+    searchInput.sendKeys(Keys.HOME);
+    searchInput.sendKeys(Keys.LEFT_SHIFT, Keys.END);
+    searchInput.sendKeys(Keys.CONTROL, "C");
+    searchInput.sendKeys(Keys.DELETE);
+    searchInput.sendKeys(Keys.CONTROL, "V");
+    searchInput.sendKeys(Keys.ENTER);
+    waitForPageLoad();
+  }
+  
+  public void shiftAndArrowKeyOnQuickSearchInput() {
+    SelenideElement searchInput = getQuickSearchForm().$("input");
+    searchInput.click();
+    searchInput.sendKeys(Keys.HOME);
+    searchInput.sendKeys(Keys.LEFT_SHIFT, Keys.RIGHT, Keys.RIGHT, Keys.RIGHT, Keys.RIGHT);
+    searchInput.sendKeys(Keys.ENTER);
+    waitForPageLoad();
+  }
+  
+  public boolean isEmptyMessageAppear() {
+    return $("div[id$='empty-message-container']").exists();
   }
 }

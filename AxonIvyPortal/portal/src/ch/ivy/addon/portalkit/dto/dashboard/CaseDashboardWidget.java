@@ -10,6 +10,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.SortMeta;
 
+import com.axonivy.portal.dto.dashboard.WidgetInformationCategoryStatisticData;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardCaseLazyDataModel;
@@ -30,13 +31,18 @@ public class CaseDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private Map<CaseState, Long> caseByStateStatistic;
   @JsonIgnore
-  private Map<String, Long> caseByCategoryStatistic;
+  private List<WidgetInformationCategoryStatisticData> caseByCategoryStatistic;
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
+  private boolean enableQuickSearch;
+  private boolean showWidgetInfo;
+  private boolean showFullscreenMode;
 
   public CaseDashboardWidget() {
     dataModel = new DashboardCaseLazyDataModel();
     setColumns(new ArrayList<>());
+    setShowWidgetInfo(true);
+    setShowFullscreenMode(true);
   }
 
   @JsonIgnore
@@ -135,8 +141,16 @@ public class CaseDashboardWidget extends DashboardWidget {
   }
 
   @JsonIgnore
-  public Map<String, Long> getCaseByCategoryStatistic() {
+  public List<WidgetInformationCategoryStatisticData> getCaseByCategoryStatistic() {
     return caseByCategoryStatistic;
+  }
+
+  public boolean isEnableQuickSearch() {
+    return enableQuickSearch;
+  }
+
+  public void setEnableQuickSearch(boolean enableQuickSearch) {
+    this.enableQuickSearch = enableQuickSearch;
   }
 
   @Override
@@ -161,6 +175,22 @@ public class CaseDashboardWidget extends DashboardWidget {
 
   public void setRowsPerPage(int rowsPerPage) {
     this.rowsPerPage = rowsPerPage;
+  }
+
+  public void setShowWidgetInfo(boolean showWidgetInfo) {
+    this.showWidgetInfo = showWidgetInfo;
+  }
+
+  public boolean isShowWidgetInfo() {
+    return this.showWidgetInfo;
+  }
+
+  public void setShowFullscreenMode(boolean showFullscreenMode) {
+    this.showFullscreenMode = showFullscreenMode;
+  }
+
+  public boolean isShowFullscreenMode() {
+    return showFullscreenMode;
   }
 
   @Override

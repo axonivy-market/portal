@@ -19,6 +19,7 @@ public class NewsDashboardWidget extends DashboardWidget implements Serializable
   private static final long serialVersionUID = -5650954020648136966L;
   @JsonIgnore
   private List<News> newsList;
+  private boolean showFullscreenMode;
 
   public void buildDataFirstTime() {
     newsList = NewsService.getInstance().findAll();
@@ -42,6 +43,7 @@ public class NewsDashboardWidget extends DashboardWidget implements Serializable
     widget.getLayout().setHeight(6);
     widget.getLayout().setAxisX(0);
     widget.getLayout().setAxisY(0);
+    widget.setShowFullscreenMode(true);
     return widget;
   }
 
@@ -51,5 +53,13 @@ public class NewsDashboardWidget extends DashboardWidget implements Serializable
 
   public void setNewsList(List<News> newsList) {
     this.newsList = newsList;
+  }
+  
+  public void setShowFullscreenMode(boolean showFullscreenMode) {
+    this.showFullscreenMode = showFullscreenMode;
+  }
+
+  public boolean isShowFullscreenMode() {
+    return showFullscreenMode;
   }
 }

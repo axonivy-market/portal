@@ -12,10 +12,6 @@ Variables:
     # [file: json]
     Announcement:
 
-    # Client side timeout in minute, must be more than 1 and less than server side timeout (e.g. 25).
-    # Default value is 0, it means default client side timeout is applied. Default client side timeout is server side timeout minus 3 minutes.
-    ClientSideTimeout: 0
-
     # A feedback message will be displayed after user finishes or leaves a task.
     DisplayMessageAfterFinishTask: true
 
@@ -57,7 +53,11 @@ Variables:
 
     # For switch on/off the display legacy UI.
     ShowLegacyUI: false
-
+    
+    # You can define the application name via this JSON file.
+    # It will be shown with the page title
+    ApplicationName: Axon Ivy
+    
     # You can define the own user menu via this JSON file.
     # It will be shown as the your user menu in the user menu settings.
     # [file: json]
@@ -65,7 +65,7 @@ Variables:
       # If true, the logout button on top menu will be hidden, otherwise it will be shown.
       HideLogoutMenu: false
 
-      # Set to true, the change password option in top menu will be hidden, otherwise it will be shown.
+      # Set this variable to true to hide the "Change Password" option in the top menu and the "Forgotten Password" option on the login page. If set to false, these options will be shown.
       # [boolean]
       HideChangePasswordMenu: false
 
@@ -277,6 +277,8 @@ Variables:
       # Defining the fields that the global search will use to find matching cases beside case Id (this can influence the performance of the search)
       # [Enum: NAME, DESCRIPTION, CUSTOM]
       ByCaseFields: NAME,DESCRIPTION,CUSTOM
+    # Defining the types that the global search will search for
+    GlobalSearchScopeCategories: PROCESSES,TASKS,CASES
 
     # Additional menu items for the main menu of Portal. Could be an Ivy process or an external link.
     # [file: json]

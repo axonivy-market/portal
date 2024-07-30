@@ -77,6 +77,7 @@
 .dashboard-header__action {
   padding-right: 0;
   padding-top: 0;
+  white-space: nowrap;
 }
 
 .dashboard__body {
@@ -893,7 +894,7 @@ span.new-widget-dialog__icon.si {
 }
 
 .dashboard-compact-process-item.process-start-list-item-name-text {
-  width: calc(100% - 40px);
+  width: auto;
 }
 
 .dashboard-tasks--table .relevant-tasks__more {
@@ -1611,4 +1612,16 @@ span.new-widget-dialog__icon.si {
   .widget-header-quick-search {
     display: none;
   }
+}
+
+.quick-search-input-tooltip {
+  height: 2.5rem;
+}
+
+.quick-search-infor-icon {
+  padding-left: 5%;
+}
+
+body .ui-commandlink:hover, body .ui-link:active {
+  color: var(--ivy-primary-color-command-link-hover);
 }

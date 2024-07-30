@@ -265,6 +265,10 @@ function handleError(xhr, renderDetail, isShowErrorLog){
   if (xhr.statusText === 'abort') {
     return;
   }
+
+  // Hide AJAX loader that block the error dialog
+  $('.portal-ajax-loader').hide();
+
   if (renderDetail) {
     $("a[id$='ajax-indicator:ajax-indicator-show-more']").click(function() {
       $("[id$='ajax-indicator:error-code']").text(xhr.status);
@@ -414,21 +418,43 @@ function getWidgetVarById(id) {
   return null;
 }
 
+function handleKeyDown(event) {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+  }
+  if (isPressedSpecialKeys(event)) {
+    event.stopPropagation();
+  }
+}
+
+function shouldTriggerAjax(event) {
+  return !isPressedSpecialKeys(event);
+}
+
 function isPressedSpecialKeys(event) {
   const ctrlPressed = event.ctrlKey || event.metaKey;
+  const shiftPressed = event.shiftKey;
 
-  if (ctrlPressed && ((event.key === 'z') || (event.key === 'y') || (event.key === 'x') || (event.key === 'v'))) {
-    return false;
+  const ctrlKeyActions = ['z', 'y', 'x', 'c', 'v', 'a'];
+  const arrowKeys = [37, 38, 39, 40]; // Arrow Left, Arrow Up, Arrow Right, Arrow Down
+
+  if (ctrlPressed && ctrlKeyActions.includes(event.key.toLowerCase())) {
+      return true;
   }
 
-  const specialKeys = ['Enter', 'Control',
-  'Alt', 'Pause', 'CapsLock', 'Escape',
-  'PageUp', 'PageDown', 'End', 'Home',
-  'PrintScreen', 'Insert', 'Meta',
-  'ContextMenu', 'NumLock', 'ScrollLock'];
+  if (shiftPressed && arrowKeys.includes(event.keyCode)) {
+      return true;
+  }
 
-  if (specialKeys.includes(event.key)) {
+  if (arrowKeys.includes(event.keyCode)) {
     return true;
   }
-  return false;
+
+  const specialKeys = [
+    'Control', 'Alt', 'Pause', 'CapsLock', 'Escape',
+    'PageUp', 'PageDown', 'PrintScreen', 'Insert', 'Meta',
+    'ContextMenu', 'NumLock', 'ScrollLock', 'Home', 'End'
+  ];
+
+  return specialKeys.includes(event.key);
 }

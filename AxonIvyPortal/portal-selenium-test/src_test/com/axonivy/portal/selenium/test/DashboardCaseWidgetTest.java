@@ -4,6 +4,8 @@ import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -57,7 +59,8 @@ public class DashboardCaseWidgetTest extends BaseTest {
 	    taskWidget.openFilterWidget();
 	    taskWidget.filterTaskName(REPORT_HIDE_CASE);
 	    taskWidget.applyFilter();
-	    taskWidget.startFirstTask();
+      taskWidget.waitForFilterNotificationAppear();
+      taskWidget.startFirstTask();
 	    redirectToNewDashBoard();
 	    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
 	    caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
@@ -247,4 +250,74 @@ public class DashboardCaseWidgetTest extends BaseTest {
     dashboardPage.isDownloadCompleted();
   }
 
+  @Test
+  public void testCaseReadAllOwnRoleInvolved() {
+    redirectToRelativeLink(createTaskForRoleInvolved);
+    login(TestAccount.HR_ROLE_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForTaskListDisplay();
+
+    TaskWidgetNewDashBoardPage taskWidget = dashboardPage
+        .selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget.startFirstTask();
+    taskWidget.waitForPageLoad();
+
+    login(TestAccount.HR_ROLE_USER_2);
+    redirectToRelativeLink(grantCaseReadAllOwnRoleInvolvedPermission);
+    redirectToNewDashBoard();
+    dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForDashboardPageAvailable();
+    CaseWidgetNewDashBoardPage caseWidget = dashboardPage
+        .selectCaseWidget(YOUR_CASES_WIDGET);
+    caseWidget.countCases("Test Process: role involved").shouldHave(size(1),
+        DEFAULT_TIMEOUT);
+
+    redirectToRelativeLink(denyCaseReadAllOwnRoleInvolvedPermission);
+    redirectToNewDashBoard();
+    dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForDashboardPageAvailable();
+    caseWidget = dashboardPage
+        .selectCaseWidget(YOUR_CASES_WIDGET);
+    assertTrue(caseWidget.isEmptyMessageAppear());
+  }
+
+  @Test
+  public void testHideWidgetInfoIcon() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    CaseWidgetNewDashBoardPage caseWidget = dashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage =
+        modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    caseEditWidget.clickOnWidgetInfoIconCheckbox();
+    caseEditWidget.save();
+    newDashboardDetailsEditPage.backToConfigurationPage();
+    redirectToNewDashBoard();
+    assertFalse(caseWidget.isWidgetInfomationIconAppear());
+  }
+
+  @Test
+  public void testHideExpandMode() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    CaseWidgetNewDashBoardPage caseWidget = dashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage =
+        modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    caseEditWidget.clickOnExpandModeCheckbox();
+    caseEditWidget.save();
+    newDashboardDetailsEditPage.backToConfigurationPage();
+    redirectToNewDashBoard();
+    assertFalse(caseWidget.isExpandButtonAppear());
+  }
 }

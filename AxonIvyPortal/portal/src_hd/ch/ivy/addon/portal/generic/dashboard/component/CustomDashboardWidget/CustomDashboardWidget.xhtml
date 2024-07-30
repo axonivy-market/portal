@@ -18,7 +18,7 @@
     <ui:param name="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
     <ui:param name="isRenderFilter" value="false" />
     <ui:param name="isRenderInfo" value="#{empty widget.info ? 'false' : 'true'}" />
-    <ui:param name="isRenderExpandCollapse" value="true" />
+    <ui:param name="isRenderExpandCollapse" value="#{widget.isShowFullscreenMode()}" />
     <ui:param name="isHeaderHidden" value="#{empty widget.name and cc.attrs.isReadOnlyMode}" />
     <ui:param name="panelStyleClass" value="#{isHeaderHidden ? 'custom-widget-panel no-header' : 'custom-widget-panel'}" />
 

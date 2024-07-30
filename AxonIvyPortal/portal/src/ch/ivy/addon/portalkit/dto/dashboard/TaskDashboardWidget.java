@@ -10,6 +10,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.SortMeta;
 
+import com.axonivy.portal.dto.dashboard.WidgetInformationCategoryStatisticData;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
@@ -32,17 +33,22 @@ public class TaskDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private Map<TaskState, Long> taskByStateStatistic;
   @JsonIgnore
-  private Map<String, Long> taskByCategoryStatistic;
+  private List<WidgetInformationCategoryStatisticData> taskByCategoryStatistic;
   @JsonIgnore
   private Long numberOfTasksExpireThisWeek;
   @JsonIgnore
   private Long numberOfTasksExpireToday;
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
+  private boolean enableQuickSearch;
+  private boolean showWidgetInfo;
+  private boolean showFullscreenMode;
 
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
     setColumns(new ArrayList<>());
+    setShowWidgetInfo(true);
+    setShowFullscreenMode(true);
   }
 
   @Override
@@ -169,11 +175,11 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.numberOfTasksExpireToday = numberOfTasksExpireToday;
   }
 
-  public Map<String, Long> getTaskByCategoryStatistic() {
+  public List<WidgetInformationCategoryStatisticData> getTaskByCategoryStatistic() {
     return taskByCategoryStatistic;
   }
 
-  public void setTaskByCategoryStatistic(Map<String, Long> taskByCategoryStatistic) {
+  public void setTaskByCategoryStatistic(List<WidgetInformationCategoryStatisticData> taskByCategoryStatistic) {
     this.taskByCategoryStatistic = taskByCategoryStatistic;
   }
 
@@ -188,6 +194,14 @@ public class TaskDashboardWidget extends DashboardWidget {
     DashboardWidgetUtils.resetUserFilterOnColumns(getColumns());
   }
 
+  public boolean isEnableQuickSearch() {
+    return enableQuickSearch;
+  }
+
+  public void setEnableQuickSearch(boolean enableQuickSearch) {
+    this.enableQuickSearch = enableQuickSearch;
+  }
+
   @Override
   public DashboardWidgetType getType() {
     return DashboardWidgetType.TASK;
@@ -199,6 +213,22 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   public void setRowsPerPage(int rowsPerPage) {
     this.rowsPerPage = rowsPerPage;
+  }
+
+  public void setShowWidgetInfo(boolean showWidgetInfo) {
+    this.showWidgetInfo = showWidgetInfo;
+  }
+
+  public boolean isShowWidgetInfo() {
+    return showWidgetInfo;
+  }
+
+  public void setShowFullscreenMode(boolean showFullscreenMode) {
+    this.showFullscreenMode = showFullscreenMode;
+  }
+
+  public boolean isShowFullscreenMode() {
+    return showFullscreenMode;
   }
 
   @Override

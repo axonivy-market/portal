@@ -23,7 +23,8 @@
     <ui:param name="componentToUpdateOnApplyFilter" value="#{component.parent.namingContainer.clientId}:case-component:dashboard-cases #{component.parent.namingContainer.clientId}:case-component:empty-message-container" />
     <ui:param name="componentToUpdateOnResetFilter" value="#{cc.clientId}:case-component:dashboard-cases #{cc.clientId}:case-component:empty-message-container" />
     <ui:param name="onCompleteApplyFilters" value="PF('dashboard-cases-#{widget.id}').filter()" />
-    <ui:param name="isRenderExpandCollapse" value="true" />
+    <ui:param name="isRenderExpandCollapse" value="#{widget.isShowFullscreenMode()}" />
+    <ui:param name="isRenderInfo" value="#{widget.isShowWidgetInfo()}" />
     <ui:param name="widgetContentStyleClass" value="case-widget" />
 
     <ui:define name="widgetInformationContent">

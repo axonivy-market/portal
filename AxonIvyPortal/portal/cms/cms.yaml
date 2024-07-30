@@ -210,7 +210,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       behaviourWhenClickingOnLineInTaskList: For switch behaviours (run the task or access task details) when clicking on a line in task list, task widget of dashboard and related tasks  in case details page.
       chatMaxConnection: 'The set number controls the amount of tabs allowed with active chat. If more tabs are opened, the chat will be disabled in inactive tabs. Allowed values between 1-5 '
       chatResponseTimeout: Chat response timeout in seconds, default value is 0 and means no timeout. If chat messages go through the reverse proxy Nginx, chat response timeout must be less than the Nginx timeout, e.g. less than 60 seconds.
-      clientSideTimeoutNote: Client side timeout in minutes, must be more than 0 and less than the server side timeout (e.g. 25 seconds). Default value is 0, it means default client side timeout is applied. Default client side timeout is server side timeout minus 3 minutes.
       dateFilterWithTime: Set to true to enable date filtering with time. This setting affects on task list, case list, and statistics.
       defaultHomepage: To set the standard homepage which will be redirect to when clicking on home icon or logo. This setting also applies to the ends page after finished a task.
       defaultProcessImage: The standard setting of default image that will be displayed in the image process list.
@@ -233,7 +232,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableVirusScannerForUploadedDocumentNote: Set to true to enable virus scanner for uploaded document. Currently this function is using API VIRUSTOTAL.
       expressEndPageNote: Display the custom end page at the end of each Express process.
       hideCaseDocument: Set to true, the document section in case detail page will be hidden, otherwise it will be shown.
-      hideChangePasswordButtonNote: Set to true, the change password option in top menu will be hidden, otherwise it will be shown.
+      hideChangePasswordButtonNote: Set this variable to true to hide the "Change Password" option in the top menu and the "Forgotten Password" option on the login page. If set to false, these options will be shown.
       hideLogoutButtonNote: If true, the logout button on top menu will be hidden, otherwise it will be shown.
       hideRelatedCaseInfoFromHistory: If true, case history does not display the related case information in the history table.
       hideStatisticWidget: Set to true to hide Statistic widget from homepage and application menu.
@@ -795,7 +794,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       emptyProcess: You have not defined any processes.
       noMatchingProcess: No matching processes.
       noProcessSelected: Please select a process
-    removeWidgetHeader: Remove the "{0}" widget
+    removeWidgetHeader: Remove this widget
     removeWidgetMessage: Do you really want to remove it?
     reorder:
       dashboardType: Dashboard type
@@ -1304,8 +1303,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     myProfileTitle: My profile
     saveUserSettingsSuccessfully: User settings saved successfully.
   warningBeforeLostSession:
-    extend: Extend
-    warningMessage: Your session will expire in 1 minute. Would you like to extend it?
+    refreshSession: Refresh session
+    warningMessage: Your session may expire soon. Please refresh your session to continue using the application.
 Dialogs:
   Cases:
     EditWorkflow:

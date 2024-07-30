@@ -33,30 +33,35 @@
   <c:set var="renderFilter" value="#{isReadOnlyMode and (empty isRenderFilter ? 'true': isRenderFilter)}"/>
   <c:set var="renderInfo" value="#{isReadOnlyMode and (empty isRenderInfo ? 'true': isRenderInfo)}"/>
   <c:set var="renderExpandCollapse" value="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"/>
-
+  
+    <f:event listener="#{dashboardBean.setSearchScope(widget)}" type="preRenderComponent" />
+  
   <h:panelGroup layout="block" class="widget__header" rendered="#{not isHeaderHidden}">
     <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">#{widget.name}</h:panelGroup>
     <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
 
     <h:panelGroup id="widget-header-quick-search-#{index}" layout="block"
       styleClass="#{isReadOnlyMode ? 'u-mar-right-10' : 'u-mar-right-5'} widget-header-quick-search"
-      rendered="#{widget.canEnableQuickSearch()}">
+      rendered="#{dashboardBean.canEnableQuickSearch(widget) and widget.isEnableQuickSearch()}">
       <h:form onkeydown="if (isPressedSpecialKeys(event) == true) { return false; }">
       <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
       <p:inputText id="quick-search-input-#{index}" value="#{widget.quickSearchKeyword}"
-        placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}">
+        placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}"
+        onkeydown="handleKeyDown(event)">
+        <p:tooltip styleClass="quick-search-input-tooltip"  for="quick-search-input-#{index}" value="#{dashboardBean.searchScope}" position="top" />
+        
         <p:ajax delay="800" listener="#{widget.updateQuickSearchKeyword()}"
-          onstart="if (isPressedSpecialKeys(event) == true) { return false; }"
-          process="@(this)" partialSubmit="true" global="false"
-          event="keyup" update="#{p:resolveFirstComponentWithId(panelId, view).clientId}" />
+           onstart="return shouldTriggerAjax(event)"
+          event="keydown" process="@this"
+          update="#{componentToUpdateOnResetFilter}" />
 
         <p:ajax delay="100" listener="#{widget.updateQuickSearchKeyword()}"
-          process="@(this)" partialSubmit="true" global="false"
-          event="cut" update="#{p:resolveFirstComponentWithId(panelId, view).clientId}" />
+          event="cut" process="@this"
+          update="#{componentToUpdateOnResetFilter}" />
 
         <p:ajax delay="100" listener="#{widget.updateQuickSearchKeyword()}"
-          process="@(this)" partialSubmit="true" global="false"
-          event="paste" update="#{p:resolveFirstComponentWithId(panelId, view).clientId}" />
+          event="paste" process="@this"
+          update="#{componentToUpdateOnResetFilter}" />          
       </p:inputText>
       </h:form>
     </h:panelGroup>

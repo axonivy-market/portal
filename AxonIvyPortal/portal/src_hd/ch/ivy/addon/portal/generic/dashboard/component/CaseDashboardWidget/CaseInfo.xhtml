@@ -19,9 +19,10 @@
         <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="" state="#{entry.key}"
           alwaysShowState="true" responsiveStyleClass="" />
       </div>
-      <div class="ui-g-4">
-        <span>#{entry.value} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseWidgetInfo/numberOfCase')}</span>
-      </div>
+      <h:panelGroup styleClass="ui-g-4 p-text-right" id="case-by-state" layout="block">
+        <h:outputText styleClass="case-by-state" value="#{entry.value}"></h:outputText>
+      </h:panelGroup>
+      <p:tooltip for="case-by-state" value="#{entry.value} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseWidgetInfo/numberOfCase')}" trackMouse="true" />
     </ui:repeat>
   </h:panelGroup>
 </p:tab>
@@ -37,19 +38,21 @@
   </f:facet>
   <h:outputText styleClass="ui-g-12 js-loading-case-category-#{widget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
   <h:panelGroup id="case-category-statistic-#{widget.id}" layout="block" styleClass="js-statistic-case-category-#{widget.id} u-display-none">
-    <div class="ui-g" jsf:rendered="#{not empty widget.caseByCategoryStatistic.entrySet()}">
-      <ui:repeat value="#{widget.caseByCategoryStatistic.entrySet()}" var="entry" varStatus="status">
+    <div class="ui-g" jsf:rendered="#{not empty widget.caseByCategoryStatistic}">
+      <ui:repeat value="#{widget.caseByCategoryStatistic}" var="entry" varStatus="status">
         <div class="ui-g-8 u-truncate-text u-default-cursor">
-          <h:outputText id="category" value="#{empty entry.key ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noCategory') : entry.key}" />
+          <h:outputText id="category" value="#{empty entry.categoryDisplayName ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noCategory') : entry.categoryDisplayName}" />
         </div>
-        <p:tooltip for="category" value="#{empty entry.key ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noCategory') : entry.key}"
+        <p:tooltip for="category" value="#{empty entry.categoryDisplayPath ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noCategory') : entry.categoryDisplayPath}"
           trackMouse="true" />
-        <div class="ui-g-4">
-          <span>#{entry.value} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseWidgetInfo/numberOfCase')}</span>
-        </div>
+        <h:panelGroup styleClass="ui-g-4 p-text-right" id="case-summary" layout="block">
+          <h:outputText styleClass="case-summary" value="#{entry.summary}"></h:outputText>
+        </h:panelGroup>
+        <p:tooltip for="case-summary" value="#{entry.summary} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseWidgetInfo/numberOfCase')}" trackMouse="true" />
+        
       </ui:repeat>
     </div>
-    <div class="ui-g" jsf:rendered="#{empty widget.caseByCategoryStatistic.entrySet()}">
+    <div class="ui-g" jsf:rendered="#{empty widget.caseByCategoryStatistic}">
       <h:outputText styleClass="ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noCategory')}" />
     </div>
   </h:panelGroup>

@@ -47,8 +47,9 @@ function loadIframe(recheckIndicator) {
 }
 
 function processIFrameData(iframe) {
+    var appName = $('#application-name-for-title').get(0).value;
     var window = iframe.contentWindow;
-    checkUrl(iframe);
+    checkUrl(iframe, appName);
     if (invalidIFrameSrcPath) {
       invalidIFrameSrcPath = false;
       return;
@@ -98,14 +99,18 @@ function processIFrameData(iframe) {
     }]);
 }
 
-function checkUrl(iFrame) {
+function checkUrl(iFrame, appName) {
   const iframeDoc = iFrame.contentDocument;
   if (iframeDoc === undefined || iframeDoc === null) {
     console.log("The iframe content docment is undefined");
     invalidIFrameSrcPath = true;
     return;
   }
-  document.title = iframeDoc.title;
+
+  // Update title
+  const title = iframeDoc.title ? iframeDoc.title.concat(" - ", appName) : appName;
+  document.title = title; 
+
   var path = getPortalIframePath(iFrame);
   if (path === '' || invalidIFrameSrcPath) {
     return;
@@ -183,19 +188,8 @@ const convertProcessSteps = processSteps => {
   // If the process steps is a valid array, convert to JSON
   if (Array.isArray(processSteps)) {
     return JSON.stringify(processSteps);
+  } else { // Compatible with Portal 8, process steps could be String
+    let stepsCompatibleWithPortal8 = processSteps.split(',');
+    return JSON.stringify(stepsCompatibleWithPortal8);
   }
-
-  // Regex for "a,b,c"
-  const onlyCommaRegex = /^[a-zA-Z0-9\s]+(,[a-zA-Z0-9\s]+)*$/;
-
-  // If process steps is a String in "a,b,c" format, split to array
-  // Then convert to JSON
-  if (onlyCommaRegex.test(processSteps)) {
-    const steps = processSteps.split(',');
-    const trimmedSteps = steps.map(item => item.trim());
-    return JSON.stringify(trimmedSteps);
-  }
-
-  // Otherwise return JSON of the process step
-  return JSON.stringify(processSteps);
 }

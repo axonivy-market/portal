@@ -299,7 +299,15 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
   }
 
   public SortMeta getSortById() {
-    return SortFieldUtil.buildSortMeta("ID", false);
+    return SortFieldUtil.buildSortMeta("ID", true);
+  }
+
+  public SortMeta getSortByTimestamp() {
+    return SortFieldUtil.buildSortMeta("timestamp", true);
+  }
+
+  public SortMeta getSortByCreationTimestamp() {
+    return SortFieldUtil.buildSortMeta("creation.timestamp", true);
   }
 
   public String getCaseDetailsUrl() {

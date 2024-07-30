@@ -17,15 +17,18 @@
     <div class="ui-g-8">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/expireToday')}" />
     </div>
-    <div class="ui-g-4">
-      <span>#{widget.numberOfTasksExpireToday} #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks")}</span>
-    </div>
+    <h:panelGroup styleClass="ui-g-4 p-text-right" id="expire-today" layout="block">
+      <h:outputText styleClass="expire-today" value="#{widget.numberOfTasksExpireToday}"></h:outputText>
+    </h:panelGroup>
+    <p:tooltip for="expire-today" value="#{widget.numberOfTasksExpireToday} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks')}" trackMouse="true" />
+    
     <div class="ui-g-8">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/expiryThisWeek')}" />
     </div>
-    <div class="ui-g-4">
-      <span>#{widget.numberOfTasksExpireThisWeek} #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks")}</span>
-    </div>
+    <h:panelGroup styleClass="ui-g-4 p-text-right" id="expire-this-week" layout="block">
+      <h:outputText styleClass="expire-this-week" value="#{widget.numberOfTasksExpireThisWeek}"></h:outputText>
+    </h:panelGroup>
+    <p:tooltip for="expire-this-week" value="#{widget.numberOfTasksExpireThisWeek} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks')}" trackMouse="true" />
   </h:panelGroup>
 </p:tab>
 
@@ -45,9 +48,10 @@
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskState state="#{entry.key}"
           alwaysShowState="true" responsiveStyleClass="" />
       </div>
-      <div class="ui-g-4">
-        <span>#{entry.value} #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks")}</span>
-      </div>
+      <h:panelGroup styleClass="ui-g-4 p-text-right" id="tasks-by-state" layout="block">
+        <h:outputText styleClass="tasks-by-state" value="#{entry.value}"></h:outputText>
+      </h:panelGroup>
+      <p:tooltip for="tasks-by-state" value="#{entry.value} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks')}" trackMouse="true" />
     </ui:repeat>
   </h:panelGroup>
 </p:tab>
@@ -63,19 +67,20 @@
   </f:facet>
   <h:outputText styleClass="ui-g-12 js-loading-task-category-#{widget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
   <h:panelGroup id="task-category-statistic-#{widget.id}" layout="block" styleClass="js-statistic-task-category-#{widget.id} u-display-none">
-    <div class="ui-g" jsf:rendered="#{not empty widget.taskByCategoryStatistic.entrySet()}">
-      <ui:repeat value="#{widget.taskByCategoryStatistic.entrySet()}" var="entry" varStatus="status">
+    <div class="ui-g" jsf:rendered="#{not empty widget.taskByCategoryStatistic}">
+      <ui:repeat value="#{widget.taskByCategoryStatistic}" var="entry" varStatus="status">
         <div class="ui-g-8 u-truncate-text u-default-cursor">
-          <h:outputText id="category" value="#{empty entry.key ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noCategory') : entry.key}" />
+          <h:outputText id="category" value="#{empty entry.categoryDisplayName ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noCategory') : entry.categoryDisplayName}" />
         </div>
-        <p:tooltip for="category" value="#{empty entry.key ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noCategory') : entry.key}"
+        <p:tooltip for="category" value="#{empty entry.categoryDisplayPath ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noCategory') : entry.categoryDisplayPath}"
           trackMouse="true" />
-        <div class="ui-g-4">
-          <span>#{entry.value} #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks")}</span>
-        </div>
+        <h:panelGroup styleClass="ui-g-4 p-text-right" id="task-summary" layout="block">
+          <h:outputText styleClass="task-summary" value="#{entry.summary}"></h:outputText>
+        </h:panelGroup>
+        <p:tooltip for="task-summary" value="#{entry.summary} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks')}" trackMouse="true" />
       </ui:repeat>
     </div>
-    <div class="ui-g" jsf:rendered="#{empty widget.taskByCategoryStatistic.entrySet()}">
+    <div class="ui-g" jsf:rendered="#{empty widget.taskByCategoryStatistic}">
       <h:outputText styleClass="ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noCategory')}" />
     </div>
   </h:panelGroup>
