@@ -120,4 +120,8 @@ public class MasterDataBean implements Serializable {
     String applicationName = Ivy.var().get(APPLICATION_NAME);
     return applicationName.isBlank() ? DEFAULT_APPLICATION_NAME : applicationName;
   }
+
+  public String getLanguageCode() {
+    return Ivy.session().getContentLocale().toLanguageTag().toString();
+  }
 }
