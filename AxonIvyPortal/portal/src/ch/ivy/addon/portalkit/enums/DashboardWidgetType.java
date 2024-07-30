@@ -23,10 +23,11 @@ public enum DashboardWidgetType {
   }
 
   public boolean canShowWidgetInfoOption() {
-    return this == TASK || this == CASE;
+    return this == TASK || this == CASE || this == PROCESS;
   }
 
   public boolean canShowFullscreenModeOption() {
-    return this == TASK || this == CASE;
+    return this == TASK || this == CASE || this == PROCESS || this == NEWS || this == CUSTOM || this == PROCESS_VIEWER
+        || this == STATISTIC;
   }
 }

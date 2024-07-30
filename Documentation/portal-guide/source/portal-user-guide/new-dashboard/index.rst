@@ -225,6 +225,8 @@ There are four process widget modes available:
    - Full mode
    - Image mode
 
+In the widget configuration, you can choose the display mode, show or hide widget information and fullscreen mode icons.
+
 |process-widget-modes|
 
 **Combined mode**

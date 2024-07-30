@@ -24,7 +24,9 @@ The basic structure of the JSON of a process widget is as follows:
          ],
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
-         }
+         },
+         "showFullscreenMode" : true,
+         "showWidgetInfo" : true
       }
    ..
 
@@ -51,6 +53,12 @@ modes: ``compact-process`` (compact mode), ``combined-process`` (combined mode),
       ``styleClass`` (optional): add CSS Classes to HTML DOM of the widget
 
       ``style`` (optional): add inline style to HTML DOM of the widget
+      
+   ``showFullscreenMode``: visibility of the fullscreen mode icon. The default
+   value is ``true``, set to ``false`` to hide the icon.
+   
+   ``showWidgetInfo``: visibility of the widget information icon. The default
+   value is ``true``, set to ``false`` to hide the icon.
 
 Each mode has differences in its JSON definition. Refer to the below sections to
 understand how to define the process widget in these modes properly.
