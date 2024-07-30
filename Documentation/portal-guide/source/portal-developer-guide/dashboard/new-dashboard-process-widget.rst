@@ -55,10 +55,10 @@ modes: ``compact-process`` (compact mode), ``combined-process`` (combined mode),
       ``style`` (optional): add inline style to HTML DOM of the widget
       
    ``showFullscreenMode``: visibility of the fullscreen mode icon. The default
-   value is ``true``, set to ``false`` to hide the icon
+   value is ``true``, set to ``false`` to hide the icon.
    
    ``showWidgetInfo``: visibility of the widget information icon. The default
-   value is ``true``, set to ``false`` to hide the icon
+   value is ``true``, set to ``false`` to hide the icon.
 
 Each mode has differences in its JSON definition. Refer to the below sections to
 understand how to define the process widget in these modes properly.
