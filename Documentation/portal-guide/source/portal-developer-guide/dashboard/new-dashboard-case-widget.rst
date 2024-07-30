@@ -191,9 +191,15 @@ Portal supports creating custom action buttons for specific needs. By clicking o
 
 Follow these steps to implement it:
 
-   #. Create a new process that will be triggered after clicking on the custom action button. In this example, the process will destroy the case.
+   #. Create a new process that will be triggered after clicking on the custom action button. In this process, define a request start event that accepts the ``uuid`` parameter. 
+   When the ``Custom Action`` button on the case details page is clicked, Portal will call this process and pass the case UUID as 
+   the ``uuid`` parameter.
       
-      |custom-action-button-custom-field|
+      |custom-action-button-custom-field-start|
+
+   #. Design and implement the action/script for the custom action within this process.
+   
+      |custom-action-destroy-case|
 
    #. Describe the custom action button in ``custom-fields.yaml``. 
 
@@ -582,3 +588,5 @@ Below are the definition of these attributes:
 
 .. |custom-action-button-custom-field| image:: images/new-dashboard-case-widget/custom-action-button-custom-field.png
 .. |custom-action-button-process-demo| image:: images/new-dashboard-case-widget/custom-action-button-process-demo.png
+.. |custom-action-button-custom-field-start| image:: images/new-dashboard-case-widget/custom-action-button-custom-field-start.png
+.. |custom-action-destroy-case| image:: images/new-dashboard-case-widget/custom-action-destroy-case.png
