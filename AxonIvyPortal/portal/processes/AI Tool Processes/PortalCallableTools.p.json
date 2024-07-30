@@ -418,7 +418,7 @@
           "code" : [
             "import com.axonivy.portal.service.AiService;",
             "",
-            "in.result = AiService.generateAIResultForWebstartableInfoById(in.processId);"
+            "in.result = AiService.getInstance().generateAIResultForWebstartableInfoById(in.processId);"
           ]
         }
       },
