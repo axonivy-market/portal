@@ -1212,9 +1212,9 @@
     }, {
       "id" : "f28",
       "type" : "HtmlDialogMethodStart",
-      "name" : "saveChangesAnnoucement()",
+      "name" : "saveChangesAnnouncement()",
       "config" : {
-        "callSignature" : "saveChangesAnnoucement",
+        "callSignature" : "saveChangesAnnouncement",
         "guid" : "19106F30EBA7B3C8"
       },
       "visual" : {
