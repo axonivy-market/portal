@@ -146,6 +146,13 @@
               update="#{cc.clientId}:adminTabView:announcement-validation-messages action-group"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/disable')}">
             </p:commandButton>
+            <p:commandButton id="save-changes-announcement" widgetVar="save-changes-announcement"
+              process="announcement-form"
+              actionListener="#{logic.saveChangesAnnouncement()}"
+              icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
+              update="#{cc.clientId}:adminTabView:announcement-validation-messages action-group"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/saveChanges')}">
+            </p:commandButton>
           </div>
         </h:panelGroup>
 
