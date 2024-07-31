@@ -75,13 +75,12 @@
                 actionListener="#{userMenuBean.navigateToPortalManagementDisplayWorkingTaskWarning(isWorkingOnATask, task)}" />
             </li>
 
-            <li><p:commandLink id="absence-menu-item" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
-                  actionListener="#{userMenuBean.navigateToAbsencesOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"
-                  rendered="#{absenceManagementBean.ownAbsencesReadable}" /></li>
+            <li jsf:rendered="#{absenceManagementBean.ownAbsencesReadable}"><p:commandLink id="absence-menu-item" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
+                  actionListener="#{userMenuBean.navigateToAbsencesOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"/></li>
 
-            <li><p:commandLink id="change-password-menu-item"
+            <li jsf:rendered="#{not userMenuBean.hiddenChangePassword}"><p:commandLink id="change-password-menu-item"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}"
-                rendered="#{not userMenuBean.hiddenChangePassword}" oncomplete="PF('changePasswordDialog').show(); $('#user-setting-container').click()"
+                oncomplete="PF('changePasswordDialog').show(); $('#user-setting-container').click()"
                 resetValues="true" update="change-password-form">
                 <p:resetInput target=":change-password-dialog" />
               </p:commandLink></li>
