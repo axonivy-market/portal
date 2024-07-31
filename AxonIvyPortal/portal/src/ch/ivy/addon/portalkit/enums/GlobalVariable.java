@@ -85,8 +85,8 @@ public enum GlobalVariable {
       getSearchScopeCaseFields(), "SearchScopeCaseFields", getSearchScopeCaseFields()),
   GLOBAL_SEARCH_SCOPE_BY_CATEGORIES("Portal.GlobalSearchScopeCategories", GlobalVariableType.MULTI_EXTERNAL_SELECTIONS,
       getGlobalSearchScopeCategories(), "GlobalSearchScopeCategoriesNote", getGlobalSearchScopeCategories()),
-  APPLICATION_NAME(
-          "Portal.ApplicationName", GlobalVariableType.TEXT, "Axon Ivy", "ApplicationName");
+  APPLICATION_NAME("Portal.ApplicationName", GlobalVariableType.TEXT, "Axon Ivy", "ApplicationName"), HIDE_CASE_CREATOR(
+      "Portal.Cases.HideCaseCreator", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideCaseCreator");
 
   private String key;
   private GlobalVariableType type;
