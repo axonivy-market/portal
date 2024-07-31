@@ -516,6 +516,10 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
                                       CaseSortField.STATE.name(), 
                                       CaseSortField.CATEGORY.name());
     }
+    if (GlobalSettingService.getInstance().isHideCaseCreator()) {
+      portalDefaultColumns = portalDefaultColumns.stream()
+          .filter(column -> !column.contains(CaseSortField.CREATOR.name())).collect(Collectors.toList());
+    }
     if (CollectionUtils.isEmpty(allColumns)) {
       allColumns.addAll(getDefaultColumns());
       allColumns.add(CaseSortField.APPLICATION.name());
