@@ -20,7 +20,7 @@ public class VisibilityBean implements Serializable {
 
   @PostConstruct
   public void init() {
-    globalSettingService = new GlobalSettingService();
+    globalSettingService = GlobalSettingService.getInstance();
   }
 
   public boolean isShowButtonIcon() {
@@ -33,5 +33,9 @@ public class VisibilityBean implements Serializable {
 
   public boolean isShowLoginFooter() {
     return globalSettingService.findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_LOGIN_FOOTER);
+  }
+
+  public boolean isHideCaseCreator() {
+    return globalSettingService.isHideCaseCreator();
   }
 }
