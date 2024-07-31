@@ -39,7 +39,7 @@
             "import org.apache.commons.lang3.StringUtils;",
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
             "",
-            "String isEnableChatGlobalVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.ENABLE_PRIVATE_CHAT);",
+            "String isEnableChatGlobalVariable = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.ENABLE_PRIVATE_CHAT);",
             "boolean isEnableChat = StringUtils.isNotBlank(isEnableChatGlobalVariable) ? Boolean.parseBoolean(isEnableChatGlobalVariable) : true;",
             "if (isEnableChat) {",
             "  if (ChatReferencesContainer.getChatService() != null && ChatService.IS_STANDARD_MODE) {",

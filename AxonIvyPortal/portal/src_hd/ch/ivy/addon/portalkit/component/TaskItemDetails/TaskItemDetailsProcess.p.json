@@ -363,7 +363,7 @@
             "",
             "// Get the latest configuration of HIDE_TASK_DOCUMENT in GlobalSettingService",
             "// If null or empty, will return false",
-            "in.isHideTaskDocument = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_TASK_DOCUMENT);"
+            "in.isHideTaskDocument = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_TASK_DOCUMENT);"
           ]
         }
       },
