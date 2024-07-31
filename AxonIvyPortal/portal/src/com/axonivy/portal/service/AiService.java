@@ -18,7 +18,6 @@ import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.enums.AIState;
 import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;
 import com.axonivy.portal.components.publicapi.AiAssistantAPI;
-import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.components.util.UserUtils;
 import com.axonivy.portal.dto.IvyToolParameter;
@@ -30,6 +29,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardCaseService;
 import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;
+import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -39,6 +39,7 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class AiService {
   private static final String START_PROCESS_SUCCESSFULLY_FORMAT = "Process **%s** is started successfully";
+  private static final String START_TASK_SUCCESSFULLY_FORMAT = "Task **%s(#%s)** is started successfully";
 
   private static final String TASK_PROCESS_PATH = "/portal/AI Tool Processes/PortalTools/findTasksTool.ivp";
   private static final String CASE_PROCESS_PATH = "/portal/AI Tool Processes/PortalTools/findCasesTool.ivp";
@@ -236,22 +237,27 @@ public class AiService {
 
     AiResultDTO result = new AiResultDTO();
 
-    if (foundTask == null) {
+    if (foundTask == null || !foundTask
+        .canUserResumeTask(Ivy.session().getSessionUser().getUserToken())
+        .wasSuccessful()) {
       return AiAssistantAPI.generateErrorAiResult(
           Ivy.cms().co("/Labels/AI/Error/CannotStartTask"));
     }
 
-    result.setResult(PortalNavigatorAPI
-        .buildUrlToPortalTaskDetailsPageById(foundTask.getId()));
-    result.setResultForAI(null);
+    result.setResultForAI(
+        AiAssistantAPI.generateExecutableResult(
+            foundTask.getStartLinkEmbedded().getAbsolute()));
+
+    result.setResult(String.format(START_TASK_SUCCESSFULLY_FORMAT,
+        foundTask.getName(), Long.toString(foundTask.getId())));
+
     result.setIsMemory(false);
     result.setState(AIState.DONE);
     return result;
 
   }
 
-  public AiResultDTO generateAIResultForWebstartableInfoById(
-      String processId) {
+  public AiResultDTO generateAIResultForWebstartableInfoById(String processId) {
     Optional<IWebStartable> foundProcessOptional = ProcessService.getInstance()
         .findAllProcesses().stream()
         .filter(process -> process.getId().contentEquals(processId))
@@ -272,8 +278,8 @@ public class AiService {
   private void updateResultForWebstartableInfo(AiResultDTO resultDTO,
       IWebStartable process) {
     List<Object> params = new ArrayList<>();
-    params.addAll(Arrays.asList(process.getDisplayName(),
-        process.getDescription()));
+    params.addAll(
+        Arrays.asList(process.getDisplayName(), process.getDescription()));
 
     if (CollectionUtils.isEmpty(process.parameters())) {
       String resultStr = Ivy.cms().co("/Labels/AI/ProcessInfoHeader", params);
@@ -330,8 +336,20 @@ public class AiService {
     result.setState(AIState.DONE);
     result.setResult(String.format(START_PROCESS_SUCCESSFULLY_FORMAT,
         startable.getDisplayName()));
+
+    String startLink = startable.getLink().getAbsolute();
+    if (!startLink.contains("?")) {
+      startLink = startLink.concat("?");
+    }
+
+    Map<String, String> paramsMap = new HashMap<>();
+    for (var param : params) {
+      paramsMap.put(param.getName(), param.getValue());
+    }
+    startLink = startLink.concat(UrlUtils.buildUrlQueryString(paramsMap));
+
     result.setResultForAI(AiAssistantAPI
-        .generateExecutableResult(startable.getLink().getAbsolute()));
+        .generateExecutableResult(startLink));
     result.setIsMemory(true);
     return result;
   }
