@@ -209,6 +209,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       disable: Desactivar
       enable: Activar
       information: En esta área puede anunciar una información general (ej. mantenimiento, cambios en la aplicación, etc.). Este mensaje será visible para todos los usuarios.
+      saveChanges: Guardar cambios
       tabTitle: Avisos
     appDisplayName: Nombre para mostrar
     appDisplayNameRequiredMsg: Por favor ingrese el nombre para mostrar de la aplicación.

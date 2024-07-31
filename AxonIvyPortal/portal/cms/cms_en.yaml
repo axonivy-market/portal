@@ -209,6 +209,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       disable: Disable
       enable: Enable
       information: You can announce a general information (e.g. Downtime, Changes, etc.) in this area. This message can be seen by all portal users.
+      saveChanges: Save changes
       tabTitle: Announcements
     appDisplayName: Display name
     appDisplayNameRequiredMsg: Please enter application display name.
