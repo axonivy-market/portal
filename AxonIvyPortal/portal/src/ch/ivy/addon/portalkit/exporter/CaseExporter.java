@@ -29,7 +29,6 @@ public class CaseExporter extends Exporter{
   public CaseExporter(List<String> columnsVisibility) {
     List<String> columns = new ArrayList<>();
     for (String column : columnsVisibility) {
-      Ivy.log().error(column);
       if (CaseSortField.CREATOR.toString().equals(column) && GlobalSettingService.getInstance().isHideCaseCreator()) {
         continue;
       }
