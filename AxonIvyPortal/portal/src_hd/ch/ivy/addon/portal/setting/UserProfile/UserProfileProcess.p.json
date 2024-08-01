@@ -313,7 +313,7 @@
                 "import ch.ivy.addon.portalkit.bo.Guide;",
                 "",
                 "// Find Global setting for SHOW_USER_GUIDE",
-                "GlobalSettingService globalSettingService = new GlobalSettingService();",
+                "GlobalSettingService globalSettingService = GlobalSettingService.getInstance();",
                 "in.disableShowTutorial = !Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_USER_GUIDE));",
                 "",
                 "// Get isShowGuide from IUser",
