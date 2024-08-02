@@ -6108,3 +6108,11 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
 .task-status-banner-content {
   width: 100%;
 }
+
+/* AI result */
+
+.iframe-body.ai-result .layout-main,
+.iframe-body.ai-result .layout-content,
+.iframe-body.ai-result .grid-stack {
+  padding: 0;
+}

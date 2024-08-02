@@ -1,0 +1,4 @@
+FindCaseWidgetData #class
+ch.ivy.addon.portal.generic.ai.FindCaseWidget #namespace
+caseWidget ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget #field
+caseWidget PERSISTENT #fieldModifier
