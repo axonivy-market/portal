@@ -32,7 +32,7 @@ public class EscalationTaskTest extends BaseTest {
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
   private static final String TRIGGER_ESCALATION_CASE = "Create Test Data For Trigger Escalation";
 
-  static final String OPEN = "Open";
+  static final String SUSPENDED = "Suspended";
   static final String DESTROYED = "Destroyed ";
 
   @Override
@@ -106,7 +106,7 @@ public class EscalationTaskTest extends BaseTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
-    filterTaskByNameAndState(SICK_LEAVE_REQUEST, OPEN);
+    filterTaskByNameAndState(SICK_LEAVE_REQUEST, SUSPENDED);
     taskWidget.triggerEscalationTask(0);
     filterTaskByNameAndState(SICK_LEAVE_REQUEST, DESTROYED);
   }

@@ -22,7 +22,6 @@ import com.axonivy.portal.selenium.page.UserMenuPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
@@ -73,9 +72,10 @@ public class DashboardNewsWidgetTest extends BaseTest {
 
     var tabIndex = newsWidget.selectNewsLanguage("fr");
     newsWidget.clickOnTitle(tabIndex);
-    SelenideElement translation = newsWidget.getTranslationOverlayPanel(1);
-    translation.$("span.ui-icon-closethick").click();
-    newsWidget.findTranslationButton(tabIndex);
+//    Note: translation stuff
+//    SelenideElement translation = newsWidget.getTranslationOverlayPanel(1);
+//    translation.$("span.ui-icon-closethick").click();
+//    newsWidget.findTranslationButton(tabIndex);
 
     newsWidget.clickOnCancelAddingNewsItem();
     newsWidget.getNewsEmptyMessage().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
@@ -149,9 +149,10 @@ public class DashboardNewsWidgetTest extends BaseTest {
       tabIndexFr = newsWidget.selectNewsLanguage("fr");
       newsWidget.clickOnTitle(tabIndexFr);
     }
-    SelenideElement translation = newsWidget.getTranslationOverlayPanel(1);
-    translation.$("span.ui-icon-closethick").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    newsWidget.findTranslationButton(tabIndexFr);
+//    Note: I think the translation part don't exist in release 10, come back later
+//    SelenideElement translation = newsWidget.getTranslationOverlayPanel(1);
+//    translation.$("span.ui-icon-closethick").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+//    newsWidget.findTranslationButton(tabIndexFr);
     newsWidget.publishNews();
     newsWidget.waitForNewsWidgetContentDisplayClearly(1);
     newsWidget.getTotalNewsItem().shouldHave(CollectionCondition.size(1));

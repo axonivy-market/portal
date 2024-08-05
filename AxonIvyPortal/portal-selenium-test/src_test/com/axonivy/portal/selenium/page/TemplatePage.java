@@ -318,9 +318,10 @@ public abstract class TemplatePage extends AbstractPage {
 
     public SearchResultPage inputSearchKeywordForWorkingTask(String keyword) {
       searchByKeywordInput(keyword);
-      $("[id$=':search-warning-before-leaving-task-component:search-task-leave-warning-dialog']")
-          .shouldBe(appear, DEFAULT_TIMEOUT).$("[id$=':search-warning-before-leaving-task-component:leave-button']")
-          .shouldBe(clickable(), DEFAULT_TIMEOUT).click();
+//      Note: comment out because it didn't show the dialog warning fix: leftTaskWhenGlobalSearch
+//      $("[id$=':search-warning-before-leaving-task-component:search-task-leave-warning-dialog']")
+//          .shouldBe(appear, DEFAULT_TIMEOUT).$("[id$=':search-warning-before-leaving-task-component:leave-button']")
+//          .shouldBe(clickable(), DEFAULT_TIMEOUT).click();
       waitForElementDisplayed(By.id("search-results-tabview"), true);
       return new SearchResultPage();
     }

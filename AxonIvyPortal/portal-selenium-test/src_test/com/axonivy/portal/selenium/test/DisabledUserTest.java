@@ -60,6 +60,7 @@ public class DisabledUserTest extends BaseTest {
   public void testFilterByDisabledUserInCaseCreatorFilter() {
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(TASK_CASE_CREATION_FOR_DISABLED_USER_LINK);
+    redirectToNewDashBoard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     CaseWidgetPage caseWidgetPage = newDashboardPage.openCaseList();
     caseWidgetPage.openAdvancedFilter("Creator", "creator");

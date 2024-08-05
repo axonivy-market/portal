@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
-import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.NoteHistoryPage;
 
 @IvyWebTest
@@ -25,33 +25,31 @@ public class SystemTaskHistoryVisibilityTest extends BaseTest {
   @Test
   public void testSystemTaskVisibilityInCaseHistory() {
     updatePortalSetting(Variable.HIDE_SYSTEM_TASKS_FROM_HISTORY.getKey(), "true");
-    NewDashboardPage newDashboardPage = new NewDashboardPage();
-    CaseWidgetPage caseWidgetPage = newDashboardPage.openCaseList();
+    CaseWidgetPage caseWidgetPage = NavigationHelper.navigateToCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCaseDetailsFromActionMenuByCaseName("Create New Payment");
-    String caseUuid = caseDetailsPage.getCaseUuid();
-    assertFalse(noteAuthorsContainsUser(caseUuid));
+    String caseId = caseDetailsPage.getCaseId();
+    assertFalse(noteAuthorsContainsUser(caseId));
 
     updatePortalSetting(Variable.HIDE_SYSTEM_TASKS_FROM_HISTORY.getKey(), "false");
-    assertTrue(noteAuthorsContainsUser(caseUuid));
+    assertTrue(noteAuthorsContainsUser(caseId));
   }
 
   @Test
   public void testSystemTaskVisibilityInCaseHistoryForAdmin() {
     login(TestAccount.ADMIN_USER);
     updatePortalSetting(Variable.HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR.getKey(), "false");
-    NewDashboardPage newDashboardPage = new NewDashboardPage();
-    CaseWidgetPage caseWidgetPage = newDashboardPage.openCaseList();
+    CaseWidgetPage caseWidgetPage = NavigationHelper.navigateToCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCaseDetailsFromActionMenuByCaseName("Create New Payment");
-    String caseUuid = caseDetailsPage.getCaseUuid();
-    assertTrue(noteAuthorsContainsUser(caseUuid));
+    String caseId = caseDetailsPage.getCaseId();
+    assertTrue(noteAuthorsContainsUser(caseId));
 
     updatePortalSetting(Variable.HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR.getKey(), "true");
-    goToCaseNoteHistoryPage(caseUuid);
-    assertFalse(noteAuthorsContainsUser(caseUuid));
+    goToCaseNoteHistoryPage(caseId);
+    assertFalse(noteAuthorsContainsUser(caseId));
   }
 
-  private boolean noteAuthorsContainsUser(String caseUuid) {
-    goToCaseNoteHistoryPage(caseUuid);
+  private boolean noteAuthorsContainsUser(String caseId) {
+    goToCaseNoteHistoryPage(caseId);
     NoteHistoryPage noteHistoryPage = new NoteHistoryPage();
     return noteHistoryPage.getNoteAuthors().contains("System user");
 

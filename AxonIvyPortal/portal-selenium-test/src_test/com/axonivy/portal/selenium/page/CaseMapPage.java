@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Selenide.$;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
+import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -104,13 +105,13 @@ public class CaseMapPage extends TemplatePage {
     switchBackToParent();
     // return new NewDashboardPage();
     // $("button[id$='form:submit-button']").shouldBe(getClickableCondition()).click();
-    return new TaskWidgetPage();
+    return NavigationHelper.navigateToTaskList();
   }
 
   public TaskWidgetPage clickApproveButton() {
     waitForElementClickableThenClick("button[id$='form:approval-button']");
     switchToDefaultContent();
-    return new TaskWidgetPage();
+    return NavigationHelper.navigateToTaskList();
   }
 
   public UserExamplesEndPage clickSubmitContractButton() {
@@ -122,7 +123,8 @@ public class CaseMapPage extends TemplatePage {
   public TaskWidgetPage clickRejectButton() {
     waitForElementClickableThenClick("button[id$='form:rejected-button']");
     switchToDefaultContent();
-    return new TaskWidgetPage();
+//  Note: fix testCaseMapRejectedWorkflow
+    return NavigationHelper.navigateToTaskList();
   }
 
 }

@@ -43,6 +43,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
   private static final String EXPIRY = "Expiry";
   private static final String IN_PROGRESS = "In progress";
   private static final String OPEN = "Open";
+  private static final String SUSPENDED = "Suspended";
 
   private NewDashboardPage newDashboardPage;
 
@@ -138,7 +139,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskEditWidget.changeWidgetTitle(NEW_YOUR_TASK);
     taskEditWidget.filterTaskName(TASK_NUMBER);
     taskEditWidget.clickOnStateToShowDropdown();
-    taskEditWidget.selectState(OPEN);
+    taskEditWidget.selectState(SUSPENDED);
     taskEditWidget.preview();
     taskEditWidget.countAllTasks().shouldHave(size(12));
     taskEditWidget.save();
@@ -175,7 +176,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.clickOnButtonWidgetInformation();
     taskWidget.getExpiryTodayLabelInWidgetInfo().shouldHave(text(EXPIRE_TODAY));
     taskWidget.clickToExpandNumberOfTaskByState();
-    taskWidget.getFirstStateLabelInWidgetInfo().shouldHave(text(OPEN));
+    taskWidget.getFirstStateLabelInWidgetInfo().shouldHave(text(SUSPENDED));
     taskWidget.clickToExpandNumberOfTaskByCategory();
     taskWidget.clickToExpandPredefinedFilters();
     taskWidget.closeWidgetInformationDialog();

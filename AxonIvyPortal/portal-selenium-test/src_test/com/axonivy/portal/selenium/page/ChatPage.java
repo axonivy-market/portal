@@ -48,15 +48,18 @@ public class ChatPage extends TemplatePage {
           By.id("chat-assignee-selection-form:chat-role-selection-component:chat-role-selection_panel"), true);
       waitForElementClickableThenClick(
           "span[id='chat-assignee-selection-form:chat-role-selection-component:chat-role-selection_panel'] .gravatar");
+      waitForAjaxIndicatorDisplayNone();
     } else {
       $(By.cssSelector("input[id$='selection_input']")).sendKeys(responsible);
       waitForElementDisplayed(By.cssSelector("span[id$='chat-user-selection_panel']"), true);
       $(By.xpath(
           "//*[@id='chat-assignee-selection-form:chat-user-selection-component:chat-user-selection_panel']/table/tbody/tr"))
-              .shouldBe(getClickableCondition()).click();
+          .shouldBe(getClickableCondition()).click();
+      waitForAjaxIndicatorDisplayNone();
     }
     waitForElementEnabled(By.id("chat-assignee-selection-form:chat-add-assignee-button"), true);
     waitForElementClickableThenClick($(By.id("chat-assignee-selection-form:chat-add-assignee-button")));
+    waitForAjaxIndicatorDisplayNone();
   }
 
   private void selectRoleAssigneeCheckbox() {

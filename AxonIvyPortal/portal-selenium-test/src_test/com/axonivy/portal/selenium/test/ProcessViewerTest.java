@@ -98,6 +98,7 @@ public class ProcessViewerTest extends BaseTest {
   @Test
   public void testNotShowProcessViewerForTechnicalCase() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    redirectToNewDashBoard();
     gotoCaseList();
     caseWidgetPage.openActionStepMenu();
     var steps = caseWidgetPage.getAvailableActionSteps();

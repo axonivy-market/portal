@@ -33,7 +33,11 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void selectImageModeAndSaveWidget(String processName) {
     selectImageMode();
-    selectImageProcess(processName);
+    if ("Categoried Leave Request".equals(processName)) {
+      selectImageProcess(processName, 1);
+    } else {
+      selectImageProcess(processName);
+    }
     clickPreviewButton();
     clickSaveProcessWidget();
   }
@@ -43,6 +47,14 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     getImageModeProcessSelectedProcess().find("input").clear();
     getImageModeProcessSelectedProcess().find("input").sendKeys(processName);
     $("tr[data-item-label='" + processName + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  private void selectImageProcess(String processName, int index) {
+    getImageModeProcessSelectedProcess().click();
+    getImageModeProcessSelectedProcess().find("input").clear();
+    getImageModeProcessSelectedProcess().find("input").sendKeys(processName);
+    $("span[id$='selected-image-process_panel']").$$("table > tbody > tr").get(index).click();
+//    $("tr[data-item-label='" + processName + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void selectImageMode() {
@@ -56,7 +68,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void previewImageModeProcess(String processName) {
     selectImageMode();
-    selectImageProcess(processName);
+    selectImageProcess(processName, 1);
     getPreviewButton().click();
     getImageModeProcessPreview();
   }
@@ -93,7 +105,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public void previewFullModeProcess(String processName) {
     selectFullMode();
-    selectFullProcess(processName);
+    selectFullProcess(processName, 1);
     getPreviewButton().click();
     getFullModeProcessPreview();
   }
@@ -110,6 +122,15 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
 
   public SelenideElement getFullModeProcessSelectedProcess() {
     return $("span[id$=':selected-full-process']");
+  }
+  
+//  Note: we have 3 exactly same Categoried Leave Request processes so I use this way to get the right one
+  private void selectFullProcess(String processName, int index) {
+    getFullModeProcessSelectedProcess().click();
+    getFullModeProcessSelectedProcess().find("input").clear();
+    getFullModeProcessSelectedProcess().find("input").sendKeys(processName);
+    $("span[id$='selected-full-process_panel'").$$("table > tbody > tr").get(1).click();
+    waitUntilElementToBeClickable($("button[id='widget-configuration-save-button']"));
   }
 
   private void selectFullProcess(String processName) {
@@ -135,9 +156,15 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     return $("span[id$=':more-information']");
   }
 
+  // Note: some tests fail because I change this function but they using it
+  // so I make the if else
   public void selectFullModeProcessAndSaveWidget(String processName) {
     selectFullMode();
-    selectFullProcess(processName);
+    if ("Categoried Leave Request".equals(processName)) {
+      selectFullProcess(processName, 1);
+    } else {
+      selectFullProcess(processName);
+    }
     clickSaveProcessWidget();
   }
 

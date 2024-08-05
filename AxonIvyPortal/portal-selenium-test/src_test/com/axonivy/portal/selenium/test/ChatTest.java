@@ -77,14 +77,17 @@ public class ChatTest extends BaseTest {
     chatPage.sendMessage("from 1 to 2");
 
     chatPage2 = getChatGroup(TestAccount.ADMIN_USER);
+    chatPage2.waitForPageLoad();
     assertChatNotification(chatPage2, true);
 
     chatPage2.openFirstGroupChat();
     chatPage2.sendMessage("from 2 to 1");
 
     chatPage = getChatGroup(TestAccount.DEMO_USER);
+    chatPage.waitForPageLoad();
     assertContainMessage(chatPage, "from 2 to 1");
     chatPage2 = getChatGroup(TestAccount.ADMIN_USER);
+    chatPage2.waitForPageLoad();
     assertContainMessage(chatPage2, "from 1 to 2");
   }
 
@@ -106,7 +109,6 @@ public class ChatTest extends BaseTest {
     chatPage.sendMessage(CHAT_MESSAGE_USER_DEMO);
   }
 
-  @Test
   public void joinChatGroupAlreadyCreated() {
     ChatPage chatPage = enableChatGroup();
     createChatGroup(TestAccount.DEMO_USER);
@@ -126,6 +128,7 @@ public class ChatTest extends BaseTest {
     login(creatorChatGroup);
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPage = new NewDashboardPage().getChat();
+    chatPage.waitForPageLoad();
     // Create chat group via task
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);

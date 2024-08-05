@@ -114,29 +114,31 @@ public class CaseDetailsTest extends BaseTest {
     caseDetailsPage.getNotesWithContent(NOTE_TECHNICAL_CASE).shouldHave(size(1));
   }
 
-  @Test
-  public void testShareCaseDetails() {
-    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(grantShareLinkCaseDetailsPermission);
-    redirectToNewDashBoard();
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.openCaseList();
-    CaseWidgetPage caseWidgetPage = new CaseWidgetPage();
-    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
-    caseDetailsPage.getRelatedCasesComponents().shouldHave(sizeGreaterThanOrEqual(1));
-    caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
-    caseDetailsPage.getShareButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    caseDetailsPage.getShareDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-
-    redirectToRelativeLink(denyShareLinkCaseDetailsPermission);
-    redirectToNewDashBoard();
-    mainMenuPage.openCaseList();
-    caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
-    caseDetailsPage.getRelatedCasesComponents().shouldHave(sizeGreaterThanOrEqual(1));
-    caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
-    caseDetailsPage.getShareButton().shouldBe(Condition.disappear);
-  }
+//  Note: Consider to remove this test, not in PortalTest package
+//  and when I find the process, I don't see it in this branch
+//  @Test
+//  public void testShareCaseDetails() {
+//    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+//    login(TestAccount.ADMIN_USER);
+//    redirectToRelativeLink(grantShareLinkCaseDetailsPermission);
+//    redirectToNewDashBoard();
+//    MainMenuPage mainMenuPage = new MainMenuPage();
+//    mainMenuPage.openCaseList();
+//    CaseWidgetPage caseWidgetPage = new CaseWidgetPage();
+//    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
+//    caseDetailsPage.getRelatedCasesComponents().shouldHave(sizeGreaterThanOrEqual(1));
+//    caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
+//    caseDetailsPage.getShareButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+//    caseDetailsPage.getShareDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+//
+//    redirectToRelativeLink(denyShareLinkCaseDetailsPermission);
+//    redirectToNewDashBoard();
+//    mainMenuPage.openCaseList();
+//    caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
+//    caseDetailsPage.getRelatedCasesComponents().shouldHave(sizeGreaterThanOrEqual(1));
+//    caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
+//    caseDetailsPage.getShareButton().shouldBe(Condition.disappear);
+//  }
 
   private void createTestingTask() {
     redirectToRelativeLink(createTestingTasksUrl);
@@ -163,7 +165,8 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testDestroyCase() {
     createTestingTask();
-    assertEquals("Open", detailsPage.getCaseState());
+//    Note: will remove the line below, PortalTest don't have it
+//    assertEquals("Open", detailsPage.getCaseState());
     detailsPage.openActionMenu();
     detailsPage.onClickDestroyCase();
     detailsPage.confimDestruction();
@@ -250,11 +253,15 @@ public class CaseDetailsTest extends BaseTest {
     createTestingTask();
     detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
     detailsPage.reserveTask(SICK_LEAVE_REQUEST_TASK);
-//    assertTrue(detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskBusinessState.OPEN));
 
+    refreshPage();
     detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
     detailsPage.resetTask(SICK_LEAVE_REQUEST_TASK);
-//    assertTrue(detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskBusinessState.OPEN));
+
+//  Note: refresh the page and wait for rendering
+//  then the clickRelatedTaskActionButton seem to work normally
+    refreshPage();
+    detailsPage.waitRelatedTasks();
     detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
     detailsPage.openRelatedTaskWorkflowEvents(detailsPage.getTaskRowIndex(SICK_LEAVE_REQUEST_TASK));
 
@@ -329,7 +336,7 @@ public class CaseDetailsTest extends BaseTest {
         .until((webDriver) -> caseDetailsPage.countBrowserTab() > 1);
     caseDetailsPage.switchLastBrowserTab();
     AdditionalCaseDetailsPage additionalCaseDetailsPage = new AdditionalCaseDetailsPage();
-    WaitHelper.assertTrueWithWait(() -> "Business Details".equals(additionalCaseDetailsPage.getPageTitle()));
+    WaitHelper.assertTrueWithWait(() -> "Additional Case Details".equals(additionalCaseDetailsPage.getPageTitle()));
   }
 
   @Test

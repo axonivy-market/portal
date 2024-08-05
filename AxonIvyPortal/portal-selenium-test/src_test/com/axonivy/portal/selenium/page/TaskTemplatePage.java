@@ -206,7 +206,7 @@ public class TaskTemplatePage extends TemplatePage {
   public TaskWidgetPage finishIFrameReviewTask() {
     waitForCloseButtonDisplayAfterInputedAprrovalNote("1");
     closeReviewPage();
-    return new TaskWidgetPage();
+    return NavigationHelper.navigateToTaskList();
   }
 
   public boolean containsCaseDetails() {
@@ -243,9 +243,9 @@ public class TaskTemplatePage extends TemplatePage {
     $(cssSelector).sendKeys(value);
   }
 
-  public TaskWidgetPage clickSubmitButton() {
+  public void clickSubmitButton() {
     clickOnSubmitButton();
-    return new TaskWidgetPage();
+//    return NavigationHelper.navigateToTaskList();
   }
 
   public void clickOnSubmitButton() {
@@ -299,12 +299,14 @@ public class TaskTemplatePage extends TemplatePage {
   public void joinProcessChatAlreadyCreated() {
     waitForElementDisplayed(By.id("chat-group-join-form:chat-group-join-button"), true);
     waitForElementClickableThenClick($(By.id("chat-group-join-form:chat-group-join-button")));
+    waitForAjaxIndicatorDisplayNone();
     waitForElementDisplayed(By.id("chat-form:group-chat-container"), true);
   }
 
   public void clickCreateGroupChatBtn() {
     waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-group-create-button"), true);
     waitForElementClickableThenClick(By.id("chat-assignee-selection-form:chat-group-create-button"));
+    waitForAjaxIndicatorDisplayNone();
     waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-group-create-button"), false);
   }
 

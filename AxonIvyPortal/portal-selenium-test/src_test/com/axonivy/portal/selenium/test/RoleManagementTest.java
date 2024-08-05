@@ -165,7 +165,7 @@ public class RoleManagementTest extends BaseTest {
   public void testFilteringRoles() {
     grantSpecificPortalPermission(PortalPermission.ROLE_MANAGEMENT);
     accessToRoleManagement();
-    var roleName = "HR";
+    String roleName = "HR";
     roleManagementPage.filterRoleTreeTableByRoleName(roleName);
     assertTrue(roleManagementPage.getRoleNamesInRoleTreeTable().equalsIgnoreCase("Everybody;HR"),
         "Role tree does not contain (Everybody);(HR)");

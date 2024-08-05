@@ -269,6 +269,7 @@ public class TaskWidgetPage extends TemplatePage {
   public void reserveTask(int taskId) {
     String reserveCommandButton = String.format(
         taskWidgetId + ":task-list-scroller:%d:task-item:task-action:additional-options:task-reserve-command", taskId);
+//  Note: fix testReserveTask
     waitForElementClickableThenClick($(By.id(reserveCommandButton)));
   }
 
@@ -276,6 +277,7 @@ public class TaskWidgetPage extends TemplatePage {
     String resetButton = String.format(
         taskWidgetId + ":task-list-scroller:%d:task-item:task-action:additional-options:task-reset-command", taskId);
     waitForElementClickableThenClick($(By.id(resetButton)));
+    waitForAjaxIndicatorDisplayNone();
   }
 
   public void filterByResponsible(String text) {
@@ -290,6 +292,7 @@ public class TaskWidgetPage extends TemplatePage {
     waitForElementClickableThenClick($("span[id$='responsible-filter:filter-input-form:responsible_panel'] .gravatar"));
     waitForElementClickableThenClick(
         $(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']")));
+    waitForAjaxIndicatorDisplayNone();
   }
 
   public void openStateFilter() {
@@ -618,10 +621,12 @@ public class TaskWidgetPage extends TemplatePage {
     return new TaskTemplatePage();
   }
 
-  public boolean isTaskStateOpen(int index) {
+  public boolean isTaskStateSuspended(int index) {
     try {
       SelenideElement stateComponent = findElementById(String.format(TASK_STATE_COMPONENT_ID, index));
-      stateComponent.findElement(By.className("open-task-state"));
+//    Note: adapt task state for LTS - fix testLeaveWorkingTaskByClickingOnLogo
+//    and testResetTaskWhenStartSideStep
+      stateComponent.findElement(By.className("suspended-task-state"));
     } catch (NoSuchElementException e) {
       return false;
     }

@@ -24,10 +24,6 @@ public class ProcessInformationTest extends BaseTest {
   private static String PROCESS_DESCRIPTION =
       "Create task for a process with three process steps which can be show in Porcess Information page";
 
-  private static String CUSTOM_PROCESS_NAME = "Custom Process Information";
-  private static String CUSTOM_PROCESS_DESCRIPTION = "Click on More Information to see the customized process information page.";
-  private static String CUSTOM_PROCESS_INFORMATION_HEADER = "Hello world example";
-
   @BeforeEach
   @Override
   public void setup() {
@@ -60,11 +56,18 @@ public class ProcessInformationTest extends BaseTest {
   @Test
   public void testBackToCaseDetailsFromProcessInformationPage() {
     login(TestAccount.ADMIN_USER);
+    NewDashboardPage newDashboard = new NewDashboardPage();
     processWidget = NavigationHelper.navigateToProcessList();
-    processWidget.startProcess(PROCESS_NAME);
+    /**
+     * Note: I change the way we click on process
+     * the theme switcher is there to make sure the search completed
+     * before we start the process
+     */
+    processWidget.findProcess(PROCESS_NAME);
+    newDashboard.clickThemeSwitcher();
+    processWidget.clickStart();
 
-    newDashboardPage = new NewDashboardPage();
-    CaseWidgetPage caseWidget = newDashboardPage.openCaseList();
+    CaseWidgetPage caseWidget = NavigationHelper.navigateToCaseList();
     CaseDetailsPage caseDetails = caseWidget.openCaseDetailsFromActionMenuByCaseName(PROCESS_NAME);
     caseDetails.openActionMenu();
     caseDetails.openProcessOverviewPage();
@@ -87,22 +90,26 @@ public class ProcessInformationTest extends BaseTest {
     processInformationPage = new ProcessInformationPage();
   }
 
-  @Test
-  public void testClickOnCustomProcessInformationPage() {
-    navigateToCustomProcessInformationPage();
-    assertEquals(CUSTOM_PROCESS_NAME, processInformationPage.getProcessName());
-    assertEquals(CUSTOM_PROCESS_DESCRIPTION, processInformationPage.getProcessDescription());
-    assertEquals(CUSTOM_PROCESS_INFORMATION_HEADER, processInformationPage.getProcessInfoWrapperContent());
-
-    processInformationPage.back();
-  }
-  
-
-  private void navigateToCustomProcessInformationPage() {
-    String processName = CUSTOM_PROCESS_NAME;
-    processWidget = NavigationHelper.navigateToProcessList();
-
-    processWidget.clickMoreInformationLink(processName);
-    processInformationPage = new ProcessInformationPage();
-  }
+  /**
+   * Test below seems don't exist in LTS
+   */
+//  @Test
+//  public void testClickOnCustomProcessInformationPage() {
+//    navigateToCustomProcessInformationPage();
+//    assertEquals(CUSTOM_PROCESS_NAME, processInformationPage.getProcessName());
+//    assertEquals(CUSTOM_PROCESS_DESCRIPTION, processInformationPage.getProcessDescription());
+//    assertEquals(CUSTOM_PROCESS_INFORMATION_HEADER, processInformationPage.getProcessInfoWrapperContent());
+//
+//    processInformationPage.back();
+//  }
+//  
+//
+//  private void navigateToCustomProcessInformationPage() {
+//    String processName = CUSTOM_PROCESS_NAME;
+//    processWidget = NavigationHelper.navigateToProcessList();
+//
+//    processWidget.findProcess(CUSTOM_PROCESS_NAME);
+//    processWidget.clickMoreInformationLink(processName);
+//    processInformationPage = new ProcessInformationPage();
+//  }
 }

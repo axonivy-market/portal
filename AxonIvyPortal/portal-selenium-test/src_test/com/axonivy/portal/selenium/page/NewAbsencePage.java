@@ -70,6 +70,12 @@ public class NewAbsencePage extends TemplatePage {
     $(By.id("absence-dialog_title")).click();
     $("button[id*='save-absence']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
         .click();
+/**
+ * Note: wait for the proceed absence complete before continue
+ * with a new one, or else it could freeze since the code run
+ * faster than the UI rendering.
+ */
+    waitForAjaxIndicatorDisplayNone();
   }
 
   public void closeAddAbsenceDialog() {

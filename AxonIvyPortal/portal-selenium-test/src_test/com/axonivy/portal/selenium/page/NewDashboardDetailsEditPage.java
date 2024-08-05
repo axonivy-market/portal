@@ -57,8 +57,8 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     return new ProcessViewerWidgetNewDashBoardPage();
   }
 
-  public CustomWidgetNewDashBoardPage addNewCustomrWidget() {
-    addWidgetByName("Custom Widget");
+  public CustomWidgetNewDashBoardPage addNewCustomWidget() {
+    clickOnAddCustomWidget();
     return new CustomWidgetNewDashBoardPage();
   }
 
@@ -72,12 +72,6 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
         .filter(text(name)).first().$("button[id^='new-widget-dialog-content']").shouldBe(getClickableCondition())
         .click();
   }
-
-//  private void addCustomWidgetByName(String name) {
-//    $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT).$$("div.new-widget-dialog__item")
-//        .filter(text(name)).first().$("button[id^='new-custom-widget-dialog-content']")
-//        .shouldBe(getClickableCondition()).click();
-//  }
 
   public DashboardConfigurationPage backToConfigurationPage() {
     clickByJavaScript($("[id='back-to-configuration']"));

@@ -118,6 +118,14 @@ public class CaseWidgetPage extends TemplatePage {
 
   public String getCaseNameAt(int index) {
     waitForElementDisplayed(By.className("js-case-list"), true);
+    // Note: the id no longer correct so I changed it
+    SelenideElement rowInfoContainer = $(String.format("[id$='case-widget:case-list-scroller:%d:case-item:case-info-row']", index));
+    String name = rowInfoContainer.$("div > .case-header-name-cell").getText();
+    return name;
+  }
+  
+  public String getGlobalSearchCaseNameAt(int index) {
+    waitForElementDisplayed(By.className("js-case-list"), true);
     SelenideElement name =
         $("[id$='case-list-scroller:" + index + ":case-item:case-name-component:case-header-name-cell']");
     return name.getText();
@@ -451,7 +459,8 @@ public class CaseWidgetPage extends TemplatePage {
     for (SelenideElement caseItem : caseItems) {
       if (caseItem.$(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText().equals(caseName)) {
         SelenideElement caseInfoRow = caseItem.$(By.cssSelector("span[id*='case-info-row']")).scrollTo();
-        waitForElementClickableThenClick(caseInfoRow);
+        $(caseInfoRow).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+        waitForAjaxIndicatorDisplayNone();
         caseInfoRow.shouldBe(disappear, DEFAULT_TIMEOUT);
         return new CaseDetailsPage();
       }

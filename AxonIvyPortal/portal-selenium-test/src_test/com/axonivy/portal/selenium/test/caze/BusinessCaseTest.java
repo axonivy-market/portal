@@ -26,11 +26,13 @@ public class BusinessCaseTest extends BaseTest {
   public void setup() {
     super.setup();
     redirectToRelativeLink(businessCaseUrl);
+    // Note: don't know why but it's redirect to InternalSupport url
+    // then don't see the task/case it created, so I need to redirect to PORTAL_HOME_PAGE_URL
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
   }
 
   @Test
   public void testOnlyDisplayBusinessCaseOnCaseList() {
-
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
@@ -41,6 +43,9 @@ public class BusinessCaseTest extends BaseTest {
   @Test
   public void testOnlyDisplayBusinessCaseOnCaseListWithAdmin() {
     login(TestAccount.ADMIN_USER);
+    // Note: don't know why but it's redirect to PortalKitTestHelper url
+    // then don't see the task/case it created, so I need to redirect to PORTAL_HOME_PAGE_URL
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
 
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
@@ -56,7 +61,7 @@ public class BusinessCaseTest extends BaseTest {
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(BUSINESS_CASE_NAME);
     searchResultPage.openCaseTab();
     assertEquals(1, searchResultPage.countCase());
-    assertEquals(BUSINESS_CASE_NAME, searchResultPage.getCaseResult(0));
+    assertEquals(BUSINESS_CASE_NAME, searchResultPage.getGlobalSearchCaseResult(0));
   }
 
   @Test

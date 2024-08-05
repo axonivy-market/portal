@@ -992,6 +992,11 @@ public class NewDashboardPage extends TemplatePage {
     return $("[id='theme-switcher']").shouldBe(appear, DEFAULT_TIMEOUT).is(Condition.cssClass("ui-state-disabled"));
   }
 
+  public void clickThemeSwitcher() {
+    $("[id='theme-switcher']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    waitForAjaxIndicatorDisplayNone();
+  }
+
   public TaskWidgetPage openTaskList() {
     return openMainMenu().selectTaskMenu();
   }

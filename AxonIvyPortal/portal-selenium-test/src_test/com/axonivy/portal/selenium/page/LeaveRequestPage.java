@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
+import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -88,7 +89,8 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   public TaskWidgetPage clickApproveBtn() {
     waitForElementClickableThenClick(By.id("leave-request:approved-btn"));
     switchToDefaultContent();
-    return new TaskWidgetPage();
+//  Note: fix testApproveScenario
+    return NavigationHelper.navigateToTaskList();
   }
 
   public UserExamplesEndPage finishLeaveRequest() {
@@ -100,6 +102,7 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   public TaskWidgetPage clickRejectBtn() {
     waitForElementClickableThenClick(By.id("leave-request:rejected-btn"));
     switchToDefaultContent();
-    return new TaskWidgetPage();
+//  Note: fix testRejectScenario
+    return NavigationHelper.navigateToTaskList();
   }
 }

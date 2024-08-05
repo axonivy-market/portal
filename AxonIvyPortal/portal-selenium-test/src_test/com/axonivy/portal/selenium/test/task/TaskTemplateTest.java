@@ -76,7 +76,7 @@ public class TaskTemplateTest extends BaseTest {
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
     dialogPage.leaveTask();
     TaskWidgetPage taskWidget = NavigationHelper.navigateToTaskList();
-    assertTrue(taskWidget.isTaskStateOpen(0));
+    assertTrue(taskWidget.isTaskStateSuspended(0));
   }
 
   @Test
@@ -103,7 +103,7 @@ public class TaskTemplateTest extends BaseTest {
     taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.startSideStep();
     TaskWidgetPage taskWidget = NavigationHelper.navigateToTaskList();
-    assertTrue(taskWidget.isTaskStateOpen(0));
+    assertTrue(taskWidget.isTaskStateSuspended(0));
   }
 
   private void createTestData() {

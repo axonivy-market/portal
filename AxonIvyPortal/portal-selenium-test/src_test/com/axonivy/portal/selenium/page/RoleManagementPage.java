@@ -215,11 +215,12 @@ public class RoleManagementPage extends TemplatePage {
   }
 
   public void filterRoleTreeTableByRoleName(String roleName) {
-    var roleNames = getRoleNamesInRoleTreeTable();
-    var filterInput = getRoleTreeTable()
+    String roleNames = getRoleNamesInRoleTreeTable();
+    WebElement filterInput = getRoleTreeTable()
         .findElement(By.cssSelector("input[id$=':role-management-form:role-tree-table:global-filter']"));
     filterInput.clear();
     filterInput.sendKeys(roleName);
+    waitForAjaxIndicatorDisplayNone();
     WaitHelper.assertTrueWithWait(() -> {
       return !roleNames.equalsIgnoreCase(getRoleNamesInRoleTreeTable());
     });
@@ -235,6 +236,7 @@ public class RoleManagementPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':manage-role-details-form:users-of-role-table_data']"), true);
     if ($(By.cssSelector("a[id$=':delete-user-link']")).exists() && $$("a[id$=':delete-user-link']").size() > 0) {
       waitForElementClickableThenClick($$("a[id$=':delete-user-link']").get(index));
+      waitForAjaxIndicatorDisplayNone();
       removeUserOfRole(0);
     }
   }

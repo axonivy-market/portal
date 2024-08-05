@@ -451,6 +451,8 @@ public class CaseDetailsPage extends TemplatePage {
       relatedCaseCheckbox.findElement(By.cssSelector("span.ui-chkbox-label")).click();
       // Cannot identify when the ajax request of select checkbox is finished
       // So we need to wait for Ajax Indicator disappear
+      // Note: I added line below since on my local machine, the test didn't work without this
+      waitForAjaxIndicatorDisplayNone();
       clickOnRelatedCaseCheckbox(checkboxShouldBeChecked);
     }
   }
@@ -658,16 +660,17 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void reserveTask(String taskName) {
     Integer index = getTaskRowIndex(taskName);
-    String reserveCommandButton =
-        String.format("[id$='task-widget:related-tasks:%d:additional-options:task-reserve-command']", index);
-    waitForElementDisplayed(By.cssSelector(reserveCommandButton), true);
-    findElementByCssSelector(reserveCommandButton).click();
+    $(String.format("[id$='task-widget:related-tasks:%d:additional-options:task-reserve-command']", index))
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    clickByJavaScript($(String.format("[id$='task-widget:related-tasks:%d:additional-options:task-reserve-command']", index)));
   }
 
   public void clickRelatedTaskActionButton(String taskName) {
     Integer index = getTaskRowIndex(taskName);
     $(String.format("[id$=':related-tasks:%d:additional-options:task-side-steps-menu']", index))
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    // Note: because element obscure so I handle by clickByJavascript
+    clickByJavaScript($(String.format("[id$=':related-tasks:%d:additional-options:task-side-steps-menu']", index)));
     String actionPanel =
         String.format("[id$='task-widget:related-tasks:%d:additional-options:side-steps-panel']", index);
     waitForElementDisplayed(By.cssSelector(actionPanel), true);

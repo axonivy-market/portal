@@ -187,8 +187,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     taskAnalysisWidgetPage.filterByOwner("Demo");
     taskAnalysisWidgetPage.clickApplyFilter();
 
-    ElementsCollection results = taskAnalysisWidgetPage.getRowsInTaskTable();
-    assertEquals(2, results.size());
+    assertEquals(2, taskAnalysisWidgetPage.getNumberOfRowsInTaskTable());
     updatePortalSetting(ENABLE_CASE_OWNER_SETTING, "false");
   }
 

@@ -260,6 +260,7 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public SelenideElement openColumnManagementDialog() {
     $("div[id$='task-widget-preview:dashboard-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("a[id$='column-toggler']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    waitForAjaxIndicatorDisplayNone();
     return getColumnManagementDialog().shouldBe(appear, DEFAULT_TIMEOUT);
   }
 

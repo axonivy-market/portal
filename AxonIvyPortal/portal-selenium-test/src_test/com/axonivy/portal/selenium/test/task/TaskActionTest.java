@@ -80,8 +80,8 @@ public class TaskActionTest extends BaseTest {
     // In progress
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
     taskTemplatePage.clickCancelLink();
-    taskDetailsPage = new TaskDetailsPage();
-    taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
+//  Note: click back button make it stuck so I change the way to navigate
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     assertTaskActionsByTaskState(IN_PROGRESS,
         Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
@@ -94,13 +94,13 @@ public class TaskActionTest extends BaseTest {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     // Ready for Join
     assertTaskActionsByTaskState(READY_FOR_JOINING,
-        Arrays.asList(DETAILS, RESET, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
-    taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
+        Arrays.asList(DETAILS, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
 
     // Suspended
     assertTaskActionsByTaskState(SUSPENDED, Arrays.asList(DETAILS, DELEGATE, RESERVE, CLEAR_EXPIRY, DESTROY,
         WORKFLOW_EVENTS, TRIGGER_ESCALATION, PROCESS_VIEWER, ADD_AD_HOC_TASK));
-    taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
 
     // Reserved
     taskWidgetPage.clickOnTaskActionLink(0);
@@ -112,23 +112,24 @@ public class TaskActionTest extends BaseTest {
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
     taskTemplatePage.clickCancelLink();
     taskDetailsPage = new TaskDetailsPage();
-    taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
+
     assertTaskActionsByTaskState(IN_PROGRESS, Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, DESTROY,
         WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
-    taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
 
     // Done
     assertTaskActionsByTaskState(DONE, Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
-    taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
 
     // Delayed
     assertTaskActionsByTaskState(DELAYED,
         Arrays.asList(DETAILS, DELEGATE, CLEAR_DELAY, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
-    taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
 
     // Destroyed
     assertTaskActionsByTaskState(DESTROYED, Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
-    taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
   }
 
   @Test

@@ -7,11 +7,13 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.page.CustomWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage;
+import com.codeborne.selenide.Condition;
 
 @IvyWebTest
 public class DashboardCustomAndProcessWigetTest extends BaseTest {
@@ -31,9 +33,10 @@ public class DashboardCustomAndProcessWigetTest extends BaseTest {
   public void testTheProcessParamDisplayOnAddCustomWidgetPage() {
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
     newDashboardDetailsEditPage.addWidget();
-//    CustomWidgetNewDashBoardPage customWidgetNewDashBoardPage =
-//        newDashboardDetailsEditPage.addNewCustomrWidget(PROCESS_NAME);
-//    customWidgetNewDashBoardPage.processParam().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    CustomWidgetNewDashBoardPage customWidgetNewDashBoardPage = newDashboardDetailsEditPage.addNewCustomWidget();
+    customWidgetNewDashBoardPage.selectCustomWidgetTypeProcess();
+    customWidgetNewDashBoardPage.inputProcessName(PROCESS_NAME);
+    customWidgetNewDashBoardPage.processParam().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   @Test

@@ -285,6 +285,11 @@ public class TaskDetailsPage extends TemplatePage {
   public String getTaskUuid() {
     return $("a[id$='show-more-note-link']").getAttribute("href").split("uuid=")[1];
   }
+  
+  public String getTaskId() {
+    return findElementByCssSelector("span[id$='general-information:task-id']").getText();
+  }
+
 
   public List<String> getTaskNoteHasAuthors() {
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1600));

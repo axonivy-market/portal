@@ -101,7 +101,8 @@ public class AbsencePage extends TemplatePage {
       selectDeputy(fullName);
     }
     if (saveSelectedDeputies) {
-      waitForElementClickableThenClick("[id='deputy-selection-form:save-deputy-button']");
+      $("[id='deputy-selection-form:save-deputy-button']").shouldBe(getClickableCondition()).click();
+      waitForAjaxIndicatorDisplayNone();
       $(By.id("choose-deputy-dialog")).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
     }
   }
@@ -117,12 +118,14 @@ public class AbsencePage extends TemplatePage {
     $(deputiesSelector).shouldBe(appear, DEFAULT_TIMEOUT);
     waitForElementClickableThenClick(deputiesSelector);
     $(By.id("choose-deputy-dialog")).shouldBe(appear, DEFAULT_TIMEOUT);
+    waitForAjaxIndicatorDisplayNone();
   }
 
   private void selectDeputy(String responsible) {
     SelenideElement element = $(By.id("deputy-selection-form:user-selection-component:user-selection_input"));
     element.clear();
     element.sendKeys(responsible);
+    waitForAjaxIndicatorDisplayNone();
     SelenideElement selectionPanel = $(By.id("deputy-selection-form:user-selection-component:user-selection_panel"));
     selectionPanel.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     selectionPanel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);

@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.AbsencePage;
 import com.axonivy.portal.selenium.page.NewAbsencePage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -66,7 +67,7 @@ public class AbsenceTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     LocalDate chosenDay = LocalDate.now();
     LocalDate theNextDayOfChosenDay = chosenDay.plusDays(1);
-    AbsencePage absencePage = openAbsencePage(new NewDashboardPage());
+    AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(chosenDay, theNextDayOfChosenDay, "Just day off", absencePage);
     absencePage.countAbsences(1);
 
@@ -119,14 +120,13 @@ public class AbsenceTest extends BaseTest {
   @Test
   public void testIAmDeputyFor() {
     login(TestAccount.ADMIN_USER);
-    NewDashboardPage newDashboardPage = changeDateFormat();
-    AbsencePage absencePage = openAbsencePage(newDashboardPage);
+    AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(TOMORROW, TOMORROW, "For Family", absencePage);
 
     absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName()), 0);
     absencePage.saveSubstitute();
     login(TestAccount.DEMO_USER);
-    absencePage = openAbsencePage(new NewDashboardPage());
+    absencePage = openAbsencePage();
     assertEquals(absencePage.getIAMDeputyFor().contains(TestAccount.ADMIN_USER.getFullName()), true);
   }
 
@@ -135,6 +135,7 @@ public class AbsenceTest extends BaseTest {
   }
 
   private NewDashboardPage changeDateFormat() {
+    redirectToNewDashBoard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     return newDashboardPage;
   }
@@ -154,6 +155,7 @@ public class AbsenceTest extends BaseTest {
   }
 
   private AbsencePage openAbsencePage() {
+    redirectToNewDashBoard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     return newDashboardPage.openAbsencePage();
   }
@@ -163,6 +165,8 @@ public class AbsenceTest extends BaseTest {
     login(TestAccount.GUEST_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateAbsencePermission.ivp");
+//  Note: add line below to make openAbsencePage() function work properly
+    updateGlobalVariable(Variable.SHOW_LEGACY_UI.getKey(), "false");
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
 
@@ -181,6 +185,8 @@ public class AbsenceTest extends BaseTest {
   public void testReadAbsencesOfOtherUser() {
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
+//  Note: add line below to make openAbsencePage() function work properly
+    updateGlobalVariable(Variable.SHOW_LEGACY_UI.getKey(), "false");
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
 
@@ -245,6 +251,8 @@ public class AbsenceTest extends BaseTest {
   @Test
   public void testEditAbsenceOfOtherUser() {
     login(TestAccount.DEMO_USER);
+//  Note: add line below to make openAbsencePage() function work properly
+    updateGlobalVariable(Variable.SHOW_LEGACY_UI.getKey(), "false");
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(TODAY, TODAY, "For other reason", absencePage);

@@ -15,6 +15,7 @@ import com.axonivy.portal.selenium.common.DateTimePattern;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.ExpressFormDefinitionPage;
 import com.axonivy.portal.selenium.page.ExpressProcessPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
@@ -52,12 +53,15 @@ public class GlobalGrowlTest extends BaseTest {
 
   @Test
   public void testDisplayDefaultGrowlAfterFinishTask() {
+    updateGlobalVariable(Variable.SHOW_LEGACY_UI.getKey(), "true");
+    updateGlobalVariable(Variable.SHOW_USER_GUIDE.getKey(), "false");
     redirectToRelativeLink(createTestingTasksUrl);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    NavigationHelper.navigateToDeveloperExamplesTaskList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskTemplatePage.inputValue("Employee", today, today, "Representation");
-    taskWidgetPage = taskTemplatePage.clickSubmitButton();
+    taskTemplatePage.clickSubmitButton();
     assertGrowlMessage(taskWidgetPage, FINISH_MESSAGE_WITH_DETAILS);
   }
 
@@ -66,8 +70,11 @@ public class GlobalGrowlTest extends BaseTest {
 
   @Test
   public void testDisplayDefaultGrowlAfterCancelTask() {
+    updateGlobalVariable(Variable.SHOW_LEGACY_UI.getKey(), "true");
+    updateGlobalVariable(Variable.SHOW_USER_GUIDE.getKey(), "false");
     redirectToRelativeLink(createTestingTasksUrl);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    NavigationHelper.navigateToDeveloperExamplesTaskList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskWidgetPage = taskTemplatePage.clickCancelAndLeftButton();
     assertGrowlMessage(taskWidgetPage, CANCEL_MESSAGE_WITH_DETAILS);
@@ -133,7 +140,7 @@ public class GlobalGrowlTest extends BaseTest {
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     GlobalSearch globalSearch = expressProcessPage.getGlobalSearch();
     SearchResultPage searchResultPage = globalSearch.inputSearchKeywordForWorkingTask("a");
-    assertGrowlMessage(searchResultPage, CANCEL_MESSAGE);
+    assertGrowlMessage(searchResultPage , CANCEL_MESSAGE);
   }
 
   private void leftTaskWhenClickingOnMenu() {

@@ -51,6 +51,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   public void selectPublicDashboardType() {
     waitForDashboardConfigurationTypeSelectionAppear();
     $("a[id$='public-dashboard-type']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    waitForAjaxIndicatorDisplayNone();
     $(".dashboard-configuration__content.js-public-dashboard-configuration").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -58,6 +59,7 @@ public class DashboardConfigurationPage extends TemplatePage {
     waitForDashboardConfigurationTypeSelectionAppear();
     $("a[id$='private-dashboard-type']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
+    waitForAjaxIndicatorDisplayNone();
     $(".dashboard-configuration__content.js-private-dashboard-configuration").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -91,7 +93,7 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public void createPrivateDashboardFromScratch(String newName, String icon, String newDescription) {
     selectPrivateDashboardType();
-    $("button[id$='create-dashboard-action'].js-private-dashboard").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    $("a[id$='create-dashboard-action'].js-private-dashboard").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
     waitForCreateNewDashboardSectionAppear();
     $("a[id$=':create-from-scratch']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
@@ -339,7 +341,8 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   private SelenideElement findPublicDashboardRowByName(String dashboardName) {
-    return $("[id$=':dashboard-table_data']").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr[role='row']").asFixedIterable()
+//  Note: update id to make it work
+    return $("[id$=':public-dashboard-table_data']").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr[role='row']").asFixedIterable()
         .stream().filter(row -> row.getText().contains(dashboardName)).findFirst().get();
   }
 

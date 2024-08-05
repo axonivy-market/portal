@@ -72,11 +72,24 @@ public class MenuTest extends BaseTest {
 
   @Test
   public void testNavigateToThirdPartyApp() {
-    createThirdPartyApp();
+  /**
+   * I move the login demo first then set the language for it
+   * => it will have the session and language
+   * these additional steps to fix the line
+   * convertor.add(ivy.session.getSessionUser().getLanguage(), "Google");
+   * in createThirdPartyApp
+   * remove them, and we'll it could be fail constantly
+   */
     login(TestAccount.DEMO_USER);
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
+    userProfilePage.selectLanguage(1);
+    userProfilePage.save();
+    createThirdPartyApp();
+
     // to refresh cache
     login(TestAccount.ADMIN_USER);
-    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     mainMenuPage.clickThirdPartyApp();
     mainMenuPage.assertThirdPartyApp("https://www.google.com/");
