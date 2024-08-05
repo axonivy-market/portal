@@ -35,6 +35,7 @@ import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
