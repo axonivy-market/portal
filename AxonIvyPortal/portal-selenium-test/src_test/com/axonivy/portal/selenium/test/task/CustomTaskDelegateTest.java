@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
-import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
 @IvyWebTest
@@ -26,9 +26,7 @@ public class CustomTaskDelegateTest extends BaseTest {
   public void testCustomTaskDelegateOnlyToGroup() {
     login(TestAccount.HR_ROLE_USER);
     redirectToNewDashBoard();
-    MainMenuPage menu = new MainMenuPage();
-    menu.openTaskList();
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksBy(SICK_LEAVE_REQUEST);
     taskWidgetPage.waitTillOnlyOneTaskAppear();
     taskWidgetPage.clickOnTaskActionLink(0);
@@ -45,9 +43,7 @@ public class CustomTaskDelegateTest extends BaseTest {
   public void testCustomTaskDelegateOnlyToUser() {
     login(TestAccount.HR_ROLE_USER);
     redirectToNewDashBoard();
-    MainMenuPage menu = new MainMenuPage();
-    menu.openTaskList();
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksBy(MATERNITY_LEAVE_REQUEST);
     taskWidgetPage.waitTillOnlyOneTaskAppear();
     taskWidgetPage.clickOnTaskActionLink(0);
@@ -64,9 +60,7 @@ public class CustomTaskDelegateTest extends BaseTest {
   public void testCustomTaskDelegateNoDelegateOption() {
     login(TestAccount.GUEST_USER);
     redirectToNewDashBoard();
-    MainMenuPage menu = new MainMenuPage();
-    menu.openTaskList();
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksBy(MATERNITY_LEAVE_REQUEST);
     taskWidgetPage.waitTillOnlyOneTaskAppear();
     taskWidgetPage.clickOnTaskActionLink(0);
