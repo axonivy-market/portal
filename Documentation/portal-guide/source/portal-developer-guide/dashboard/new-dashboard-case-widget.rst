@@ -33,6 +33,8 @@ Below is a sample JSON definition of the case widget in the Portal dashboard.
       },
       "sortField": "name",
       "rowsPerPage": 20,
+      "showWidgetInfo": true,
+      "showExpandMode": true,
       "columns": [
          {
             "field": "start"
@@ -98,6 +100,10 @@ The basic JSON structure of the case widget
 
 -  ``rowsPerPage``: maximum number of cases that are displayed on one page of
    the case widget. The default is 10 rows per page
+
+-  ``showWidgetInfo``: visibility of the widget information icon. The default value is ``true``, set to ``false`` to hide the icon
+
+-  ``showExpandMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon
 
 -  ``columns``: column configurations for each column in the case widget. You
    can predefine filters, styles, visibility,... of columns and define custom

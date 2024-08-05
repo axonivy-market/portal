@@ -21,7 +21,7 @@ public class DateTimeGlobalSettingService {
   }
 
   public DateTimeGlobalSettingService() {
-    globalSettingService = new GlobalSettingService();
+    globalSettingService = GlobalSettingService.getInstance();
   }
 
   public String getGlobalDateTimePattern() {

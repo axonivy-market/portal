@@ -162,7 +162,7 @@ public class PortalMenuNavigator {
 
   private static List<SubMenuItem> getSubmenuList() {
     List<SubMenuItem> subMenuItems = new ArrayList<>();
-    GlobalSettingService globalSettingService = new GlobalSettingService();
+    GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
 
     if(PermissionUtils.checkAccessFullProcessListPermission()) {
       subMenuItems.add(new ProcessSubMenuItem());

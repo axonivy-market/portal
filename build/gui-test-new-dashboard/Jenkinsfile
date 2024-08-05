@@ -11,8 +11,8 @@ pipeline {
   }
 
   tools {
-    maven '3.8'
-    jdk '17'
+    maven '3.9'
+    jdk '21'
   }
 
   parameters {

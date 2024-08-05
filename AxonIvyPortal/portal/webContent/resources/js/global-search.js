@@ -13,6 +13,9 @@ if (document) {
   const startsWithProcess = 'process: ';
   const startsWithCase = 'case: ';
   const waitTime = 500;
+  const PROCESS_TAB = 'PROCESS_TAB';
+  const TASK_TAB = 'TASK_TAB';
+  const CASE_TAB = 'CASE_TAB';
   const requestInit = body => {
     return {
       method: "POST",
@@ -71,9 +74,16 @@ if (document) {
     } else {
       $(eleSearchId).removeClass('global-large-search-bar').addClass('global-small-search-bar');
     }
-    let activeTab = $("li.ui-tabs-header.search-bar[aria-selected='true']");
-    let tabIndex = activeTab.attr('data-index') * 1;
-    search(e.target.value, tabIndex);
+    let processTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].process-tab-title").length;
+    let taskTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].task-tab-title").length;
+    let caseTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].case-tab-title").length;
+    if (processTab) {
+      search(e.target.value, PROCESS_TAB);
+    } else if (taskTab) {
+      search(e.target.value, TASK_TAB);
+    } else if (caseTab) {
+      search(e.target.value, CASE_TAB);
+    }
   });
 
   function resetSearchBar() {
@@ -141,17 +151,17 @@ if (document) {
     let explicit = false;
     if (input.startsWith(startsWithProcess)) {
       keyword = input.slice(input.indexOf(':') + 1);
-      tabIndex = processTabIndex;
+      tabIndex = $("li.ui-tabs-header.search-bar.process-tab-title").attr('data-index') * 1
       explicit = true;
     }
     if (input.startsWith(startsWithTask)) {
       keyword = input.slice(input.indexOf(':') + 1);
-      tabIndex = taskTabIndex;
+      tabIndex = $("li.ui-tabs-header.search-bar.task-tab-title").attr('data-index') * 1;
       explicit = true;
     }
     if (input.startsWith(startsWithCase)) {
       keyword = input.slice(input.indexOf(':') + 1);
-      tabIndex = caseTabIndex;
+      tabIndex = $("li.ui-tabs-header.search-bar.case-tab-title").attr('data-index') * 1
       explicit = true;
     }
 
@@ -167,16 +177,26 @@ if (document) {
       let activeTab = $("li.ui-tabs-header.search-bar[data-index='" + tabIndex + "']");
       activeTab.click();
     } else {
-      search(keyword.trim(), tabIndex);
+      let processTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].process-tab-title").length;
+      let taskTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].task-tab-title").length;
+      let caseTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].case-tab-title").length;
+      if (processTab) {
+        search(keyword.trim(), PROCESS_TAB);
+      } else if (taskTab) {
+        search(keyword.trim(), TASK_TAB);
+      } else if (caseTab) {
+        search(keyword.trim(), CASE_TAB);
+      }
     }
   }
 
-  function search(keyword, tabIndex) {
-    if (processTabIndex === tabIndex) {
+  function search(keyword, tabCategory) {
+    console.log('tabCategory ', tabCategory)
+    if (PROCESS_TAB === tabCategory) {
       searchProcess(keyword);
-    } else if (taskTabIndex === tabIndex) {
+    } else if (TASK_TAB === tabCategory) {
       searchTask(keyword);
-    } else if (caseTabIndex === tabIndex) {
+    } else if (CASE_TAB === tabCategory) {
       searchCase(keyword);
     }
   }

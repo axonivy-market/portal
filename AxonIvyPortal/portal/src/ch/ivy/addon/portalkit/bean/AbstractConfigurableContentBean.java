@@ -67,7 +67,7 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
           .build();
     }
 
-    globalSettingService = new GlobalSettingService();
+    globalSettingService = GlobalSettingService.getInstance();
     isShowNotAvailableData = PermissionUtils.isSessionUserHasAdminRole();
   }
 

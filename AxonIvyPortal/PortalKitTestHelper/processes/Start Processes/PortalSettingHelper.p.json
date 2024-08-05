@@ -45,7 +45,7 @@
             "import ch.ivy.addon.portalkit.configuration.GlobalSetting;",
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
             "",
-            "GlobalSettingService globalSettingService = new GlobalSettingService();",
+            "GlobalSettingService globalSettingService = GlobalSettingService.getInstance();",
             "GlobalSetting globalSetting = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.valueOfKey(in.settingName));",
             "globalSetting.setValue(in.settingValue);",
             "globalSettingService.save(globalSetting);"

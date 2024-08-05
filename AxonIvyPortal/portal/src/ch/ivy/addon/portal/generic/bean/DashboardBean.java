@@ -1,12 +1,8 @@
 package ch.ivy.addon.portal.generic.bean;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -17,13 +13,11 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 
-import com.axonivy.portal.components.util.HtmlUtils;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.service.DeepLTranslationService;
 
 import ch.addon.portal.generic.menu.MenuView;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
@@ -34,14 +28,9 @@ import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
-import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
-import ch.ivy.addon.portalkit.enums.CaseEmptyMessage;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
@@ -52,13 +41,11 @@ import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.IUser;
-import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 
 @ViewScoped
@@ -75,10 +62,6 @@ public class DashboardBean implements Serializable {
   private int currentDashboardIndex;
   private List<WidgetFilterModel> widgetFilters;
   private List<WidgetFilterModel> deleteFilters;
-  private ITask selectedTask;
-  private boolean isRunningTaskWhenClickingOnTaskInList;
-  private CaseEmptyMessage noCasesMessage;
-  private TaskEmptyMessage noTasksMessage;
   private List<DashboardTemplate> dashboardTemplates;
   protected String translatedText;
   protected String warningText;
@@ -116,9 +99,6 @@ public class DashboardBean implements Serializable {
       }
     }
     buildWidgetModels(selectedDashboard);
-    isRunningTaskWhenClickingOnTaskInList = GlobalSettingService.getInstance()
-        .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
-        .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
 
     buildClientStatisticApiUri();
   }
@@ -185,38 +165,6 @@ public class DashboardBean implements Serializable {
     PortalNavigator.navigateToPortalTaskDetails(uuid);
   }
 
-  public void handleRowSelectEventOnTaskWidget(SelectEvent<Object> event) throws IOException {
-    ITask task = ((ITask) event.getObject());
-    handleSelectedTask(task);
-  }
-
-  private void handleSelectedTask(ITask task) throws IOException {
-    if (isRunningTaskWhenClickingOnTaskInList) {
-      handleStartTask(task);
-    } else {
-      navigateToSelectedTaskDetails(task);
-    }
-  }
-
-  public void handleStartTask(ITask task) throws IOException {
-    selectedTask = task;
-    TaskUtils.handleStartTask(task, PortalPage.HOME_PAGE, PortalConstants.RESET_TASK_CONFIRMATION_DIALOG);
-  }
-
-  public void navigateToSelectedTaskDetails(ITask task) {
-    PortalNavigator.navigateToPortalTaskDetails(task.uuid());
-  }
-
-  public void navigateToSelectedCaseDetails(SelectEvent<Object> event) {
-    String uuid = ((ICase) event.getObject()).uuid();
-    PortalNavigator.navigateToPortalCaseDetails(uuid);
-  }
-
-  public void resetAndOpenTask() throws IOException {
-    TaskUtils.resetTask(selectedTask);
-    FacesContext.getCurrentInstance().getExternalContext().redirect(selectedTask.getStartLinkEmbedded().getRelative());
-  }
-
   protected IUser currentUser() {
     return Ivy.session().getSessionUser();
   }
@@ -229,10 +177,6 @@ public class DashboardBean implements Serializable {
 
   public String createExtractedTextFromHtml(String text) {
     return HtmlParser.extractTextFromHtml(text);
-  }
-
-  public String createParseTextFromHtml (String text) {
-    return HtmlUtils.parseTextFromHtml(text);
   }
 
   public int getCurrentTabIndex() {
@@ -379,26 +323,6 @@ public class DashboardBean implements Serializable {
     this.deleteFilters = deleteFilters;
   }
 
-  public CaseEmptyMessage getNoCasesMessage() {
-    if (noCasesMessage == null) {
-      List<CaseEmptyMessage> messages = Stream.of(CaseEmptyMessage.values()).collect(Collectors.toList());
-      Random random = new Random();
-      int index = random.ints(0, messages.size()).findFirst().getAsInt();
-      noCasesMessage = messages.get(index);
-    }
-    return noCasesMessage;
-  }
-
-  public TaskEmptyMessage getNoTasksMessage() {
-    if (noTasksMessage == null) {
-      List<TaskEmptyMessage> messages = Stream.of(TaskEmptyMessage.values()).collect(Collectors.toList());
-      Random random = new Random();
-      int index = random.ints(0, messages.size()).findFirst().getAsInt();
-      noTasksMessage = messages.get(index);
-    }
-    return noTasksMessage;
-  }
-
   public List<DashboardTemplate> getDashboardTemplates() {
     if (CollectionUtils.isEmpty(dashboardTemplates)) {
       loadDashboardTemplate();
@@ -498,6 +422,14 @@ public class DashboardBean implements Serializable {
     return widget.getType().canEnableQuickSearch();
   }
   
+  public boolean canShowWidgetInfoIcon(DashboardWidget widget) {
+    return widget.getType().canShowWidgetInfoOption();
+  }
+  
+  public boolean canShowExpandMode(DashboardWidget widget) {
+    return widget.getType().canShowFullscreenMode();
+  }
+  
   public void setSelectedDashboardName(String dashboardName) {
     this.selectedDashboardName = dashboardName;
   }
@@ -507,5 +439,9 @@ public class DashboardBean implements Serializable {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/dashboard");
     }
     return selectedDashboardName;
+  }
+
+  public boolean isHideCaseCreator() {
+    return GlobalSettingService.getInstance().isHideCaseCreator();
   }
 }

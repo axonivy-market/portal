@@ -46,7 +46,6 @@ public class CaseDetailsTest extends BaseTest {
   private static final String TAKE_ORDER = "Take Order";
   private static final String TAKE_ORDER_AND_MAKE_PIZZA = "Take Order and Make Pizza";
 
-  private static final String ADDITIONAL_CASE_DETAILS_TITLE = "Additional Case Details - Portal - Axon Ivy";
   private static final String TASK_DETAILS_TITLE = "Task Details - Portal - Axon Ivy";
   private static final String CASE_DETAILS_TITLE = "Case Details - Portal - Axon Ivy";
   
@@ -302,6 +301,7 @@ public class CaseDetailsTest extends BaseTest {
   public void testRelatedTaskDisplayDelegateButton() {
     createTestingTask();
     redirectToRelativeLink(GRANT_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
+    redirectToNewDashBoard();
     // MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = NavigationHelper.navigateToCaseList();
     detailsPage = casePage.openDetailsOfCaseHasName(LEAVE_REQUEST_CASE_NAME);

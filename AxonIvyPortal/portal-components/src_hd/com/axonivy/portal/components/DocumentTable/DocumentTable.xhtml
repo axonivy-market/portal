@@ -98,7 +98,7 @@
           label="#{not empty cc.attrs.uploadText ? cc.attrs.uploadText : ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Upload')}"
           cancelLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/Cancel')}"
           onstart="#{logic.setFileLimit(cc.attrs.fileLimit)}" sizeLimit="#{documentUploadBean.fileUploadSizeLimit}"
-          styleClass="upload-button">
+          styleClass="upload-button" value="#{data.uploadedFile}">
         </p:fileUpload>
         <p:selectOneMenu id="type-selection" value="#{data.typeSelection}" rendered="#{cc.attrs.typeColumnRendered}" converter="pojoConverter" styleClass="type-selection">
           <p:ajax global="false" />

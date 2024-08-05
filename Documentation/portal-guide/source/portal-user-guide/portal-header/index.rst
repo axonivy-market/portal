@@ -167,9 +167,11 @@ As an administrator, you may want to limit fields which Global Search should be 
 Portal provides two variables to help you:
 
    - ``Portal.SearchScope.ByCaseFields``: Defining the fields that the global search
-     will use to find matching cases beside case Id (this can influence the performance of the search).
+     will use to find matching cases besides case Id (this can influence the performance of the search).
    - ``Portal.SearchScope.ByTaskFields``: Defining the fields that the global search
-     will use to find matching tasks beside task Id (this can influence the performance of the search)
+     will use to find matching tasks besides task Id (this can influence the performance of the search).
+   - ``Portal.GlobalSearchScopeCategories``: Defining the types that the global search will search for.
+     (this can influence the performance of the search).
 
 You can configure these variables by :ref:`settings-admin-settings`.
 

@@ -45,6 +45,8 @@ public class TaskDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
   private boolean enableQuickSearch;
+  private boolean showWidgetInfo;
+  private boolean showFullscreenMode;
 
   @JsonIgnore
   private List<String> errors;
@@ -54,6 +56,8 @@ public class TaskDashboardWidget extends DashboardWidget {
     setColumns(new ArrayList<>());
     setFilters(new ArrayList<>());
     setUserFilters(new ArrayList<>());
+    setShowWidgetInfo(true);
+    setShowFullscreenMode(true);
   }
 
   @Override
@@ -235,6 +239,22 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   public void setEnableQuickSearch(boolean enableQuickSearch) {
     this.enableQuickSearch = enableQuickSearch;
+  }
+  
+  public void setShowWidgetInfo(boolean showWidgetInfo) {
+    this.showWidgetInfo = showWidgetInfo;
+  }
+  
+  public boolean isShowWidgetInfo() {
+    return showWidgetInfo;
+  }
+  
+  public void setShowFullscreenMode(boolean showFullscreenMode) {
+    this.showFullscreenMode = showFullscreenMode;
+  }
+  
+  public boolean isShowFullscreenMode() {
+    return showFullscreenMode;
   }
 
   @JsonIgnore

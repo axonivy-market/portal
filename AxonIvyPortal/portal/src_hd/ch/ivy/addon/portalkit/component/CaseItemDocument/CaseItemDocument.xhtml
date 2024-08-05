@@ -46,7 +46,8 @@
           paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}"
-          styleClass="case-details-documents" lazy="false">
+          styleClass="case-details-documents" lazy="false"
+          sortBy="#{caseDetailsBean.sortByCreationTimestamp}">
           <p:ajax event="page" oncomplete="ResponsiveTable.init(':case-details-documents')"/>
           <p:ajax event="sort" oncomplete="ResponsiveTable.init(':case-details-documents')"/>
 
@@ -85,7 +86,7 @@
             headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}"
             styleClass="case-history-date js-column-priority-3"
             sortBy="#{document.creation.timestamp}"
-            width="150px">
+            width="150px" field="creation.timestamp" filterable="false">
             <h:outputText value="#{document.creation.timestamp}">
               <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
             </h:outputText>

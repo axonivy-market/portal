@@ -24,6 +24,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.jsf.primefaces.sort.SortMetaConverter;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
@@ -69,6 +70,13 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
 
   @Override
   public List<ITask> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
+    if (isOnlyShowOpenTask()) {
+      criteria.setIncludedStates(
+          new ArrayList<>(TaskState.WORKING_OR_SUSPENDED_STATES));
+    } else {
+      updateCriteria();
+    }
+
     SortMetaConverter sort = new SortMetaConverter(sortBy);
     criteria.setSortField(sort.toField());
     criteria.setSortDescending(sort.toOrder() == SortOrder.DESCENDING);
@@ -186,5 +194,13 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
       isAutoHideColumns = true;
     }
     setDisableSelectionCheckboxes(isAutoHideColumns);
+  }
+
+  public boolean isOnlyShowOpenTask() {
+    return this.criteria.isOnlyShowOpenTask();
+  }
+
+  public void setOnlyShowOpenTask(boolean isOnlyShowOpenTask) {
+    this.criteria.setOnlyShowOpenTask(isOnlyShowOpenTask);
   }
 }

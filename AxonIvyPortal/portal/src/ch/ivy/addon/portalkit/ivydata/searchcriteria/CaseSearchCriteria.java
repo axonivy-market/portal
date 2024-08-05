@@ -53,6 +53,7 @@ public class CaseSearchCriteria {
   private CaseQuery finalCaseQuery;
 
   private boolean isGlobalSearch;
+  private boolean isGlobalSearchScope;
   private List<SearchScopeCaseField> searchScopeCaseFields;
 
   public CaseQuery createQuery() {
@@ -433,6 +434,13 @@ public class CaseSearchCriteria {
 
   public void setGlobalSearch(boolean isGlobalSearch) {
     this.isGlobalSearch = isGlobalSearch;
+  }
+  public boolean isGlobalSearchScope() {
+    return isGlobalSearchScope;
+  }
+
+  public void setGlobalSearchScope(boolean isGlobalSearchScope) {
+    this.isGlobalSearchScope = isGlobalSearchScope;
   }
 
 }

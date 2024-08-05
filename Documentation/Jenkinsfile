@@ -22,20 +22,20 @@ pipeline {
           currentBuild.description = "On ${env.NODE_NAME}"
           def version = 'dev'
           docker.withRegistry('', 'docker.io') {
-            docker.image('maven:3.6.3-openjdk-17-slim').inside {
+            docker.image('maven:3.9.8-eclipse-temurin-21').inside('-u root:root') {
               version = getCurrentVersion()
             }
             sh "unzip /mnt/portal02/document-screenshots/portal-document-screenshots-selenide-${version}.zip -d Documentation/portal-guide/source/screenshots"
-            docker.image('maven:3.6.3-openjdk-17-slim').inside {
+            docker.image('maven:3.9.8-eclipse-temurin-21').inside('-u root:root') {
               maven cmd: 'clean process-resources -Divy.engine.version=[11.1.0,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip -f Documentation/public-api/pom.xml'
               maven cmd: 'clean generate-resources -f Documentation/pom.xml'
             }
             sh "chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${params.ivyVersion}"
-            docker.image('axonivy/build-container:read-the-docs-2').inside {
+            docker.image('axonivy/build-container:read-the-docs-2').inside('-u root:root') {
               sh "make -C /doc-build html BASEDIR='${env.WORKSPACE}/Documentation/portal-guide' VERSION=${version}"
             }
 
-            docker.image('maven:3.6.3-openjdk-17-slim').inside {
+            docker.image('maven:3.9.8-eclipse-temurin-21').inside('-u root:root') {
               def phase = version.contains('SNAPSHOT') ? 'install' : 'deploy'
               maven cmd: "clean ${phase} -f Documentation/pom.xml"
             }
@@ -44,6 +44,11 @@ pipeline {
         archiveArtifacts 'Documentation/*/build/html/**/*, Documentation/*/target/*.zip'
         recordIssues tools: [sphinxBuild()], unstableTotalAll: 1
       }
+    }
+  }
+  post {
+    always {
+      cleanWs()
     }
   }
 }

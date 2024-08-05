@@ -11,7 +11,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.enums.GlobalSearchScopeCategory;
 import com.axonivy.portal.enums.SearchScopeCaseField;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
@@ -21,6 +23,7 @@ import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
@@ -220,5 +223,19 @@ public class CaseWidgetBean implements Serializable {
       result = Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/GlobalSearchText", Arrays.asList(keyword, searchScopeCaseFieldsString));
     }
     return result;
+  }
+  
+  public boolean isShowGlobalSearchScope() {
+    String globalSearchScopeCategoriesString = Ivy.var().get(GlobalVariable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey());
+    if (StringUtils.isNotBlank(globalSearchScopeCategoriesString)) {
+      String[] fieldArray = globalSearchScopeCategoriesString.split(",");
+      for (String field : fieldArray) {
+        GlobalSearchScopeCategory fieldEnum = GlobalSearchScopeCategory.valueOf(field.toUpperCase());
+        if (fieldEnum != null && fieldEnum.equals(GlobalSearchScopeCategory.CASES)) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 }

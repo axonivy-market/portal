@@ -70,7 +70,7 @@ public final class GrowlMessageUtils {
   }
 
   private static boolean isMessageDisplayedAfterFinishTaskEnable() {
-    String variable = new GlobalSettingService().findGlobalSettingValue(DISPLAY_MESSAGE_AFTER_FINISH_TASK);
+    String variable = GlobalSettingService.getInstance().findGlobalSettingValue(DISPLAY_MESSAGE_AFTER_FINISH_TASK);
     return StringUtils.isNotBlank(variable) ? Boolean.parseBoolean(variable) : true;
   }
 }

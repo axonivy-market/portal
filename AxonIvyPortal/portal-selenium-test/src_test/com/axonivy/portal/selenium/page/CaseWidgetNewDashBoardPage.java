@@ -368,4 +368,12 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     $(getLoadedLocator()).shouldHave(Condition.cssClass("u-display-none"), DEFAULT_TIMEOUT);
     $(getLoadedLocator()).shouldNotHave(Condition.cssClass("u-display-none"), DEFAULT_TIMEOUT);
   }
+  
+  public boolean isExpandButtonAppear() {
+    return getCaseWidgetHeader().$(".expand-link").isDisplayed();
+  }
+  
+  public boolean isWidgetInfomationIconAppear() {
+    return getCaseWidgetHeader().$(".widget__info-sidebar-link").isDisplayed();
+  }
 }

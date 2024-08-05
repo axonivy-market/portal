@@ -24,13 +24,15 @@
                     responsiveStyleClass="u-hidden-sm-down" 
             		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" 
             		dataModel="#{caseView.dataModel}" sortable="true" sortedField="ID" />
-            
-            	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="creator-column-header" 
-            		responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down"
-            		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" 
-            		dataModel="#{caseView.dataModel}" sortable="true" sortedField="CREATOR" />
-                
-                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="owner-column-header" 
+					<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader
+						id="creator-column-header"
+						responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down"
+						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}"
+						dataModel="#{caseView.dataModel}" sortable="true"
+						sortedField="CREATOR"
+						rendered="#{!caseBean.hideCaseCreator}" />
+						
+				<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="owner-column-header" 
                   responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/OWNER')}" 
                   dataModel="#{caseView.dataModel}" sortable="true" sortedField="OWNER" rendered="#{caseBean.isCaseOwnerEnabled()}" />
@@ -101,7 +103,6 @@
 				<ic:ch.ivy.addon.portalkit.component.cases.filter.CaseFinishedDateFilter filter="#{filterContainer.caseFinishedDateFilter}" dataModel="#{caseView.dataModel}" />
 				<ic:ch.ivy.addon.portalkit.component.cases.filter.CaseDescriptionFilter filter="#{filterContainer.caseDescriptionFilter}" dataModel="#{caseView.dataModel}" />
 				<ic:ch.ivy.addon.portalkit.component.cases.filter.CaseStateFilter filter="#{filterContainer.stateFilter}" dataModel="#{caseView.dataModel}" />
-				<ic:ch.ivy.addon.portalkit.component.cases.filter.CaseCreatorFilter filter="#{filterContainer.caseCreatorFilter}" dataModel="#{caseView.dataModel}" />
                 <ic:ch.ivy.addon.portalkit.component.cases.filter.CaseOwnerFilter filter="#{filterContainer.caseOwnerFilter}"
                   dataModel="#{caseView.dataModel}" rendered="#{caseBean.isCaseOwnerEnabled()}" />
 

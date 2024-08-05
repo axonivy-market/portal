@@ -41,6 +41,7 @@ public class CaseSearchCriteria {
   private CaseQuery customCaseQuery;
   
   private CaseQuery finalCaseQuery;
+  private boolean isGlobalSearchScope;
 
   @SuppressWarnings("deprecation")
   public CaseQuery createQuery() {
@@ -394,4 +395,13 @@ public class CaseSearchCriteria {
   public void setCaseOwnerEnabled(boolean isCaseOwnerEnabled) {
     this.isCaseOwnerEnabled = isCaseOwnerEnabled;
   }
+
+  public boolean isGlobalSearchScope() {
+    return isGlobalSearchScope;
+  }
+
+  public void setGlobalSearchScope(boolean isGlobalSearchScope) {
+    this.isGlobalSearchScope = isGlobalSearchScope;
+  }
+
 }

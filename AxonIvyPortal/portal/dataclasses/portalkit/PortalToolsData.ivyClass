@@ -1,9 +1,13 @@
 PortalToolsData #class
 portalkit #namespace
-tool ch.ivy.addon.portalkit.dto.ai.IvyTool #field
 taskDashboardWidget ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget #field
 name String #field
 description String #field
 priority String #field
 state String #field
 caseDashboardWidget ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget #field
+processDashboardWidget ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget #field
+taskExpiryDateFrom String #field
+taskExpiryDateFrom PERSISTENT #fieldModifier
+taskExpiryDateTo String #field
+taskExpiryDateTo PERSISTENT #fieldModifier

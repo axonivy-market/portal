@@ -5,6 +5,8 @@ import static ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn.CATEGO
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -16,6 +18,7 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
@@ -154,20 +157,50 @@ public class CompactDashboardProcessBean
   }
 
   public void startProcessWithCompactMode(DashboardProcess process) throws IOException {
+    startProcessWithCompactMode(process, false);
+  }
+
+  public void startProcessWithCompactMode(DashboardProcess process,
+      boolean isAiResult) throws IOException {
     Objects.requireNonNull(process, "Process must not be null");
     String link = process.getStartLink();
+
+    if (isAiResult) {
+      handleNavigateAsAiResult(process, link);
+      return;
+    }
+
     if (dashboardProcessBean.isExternalLink(process)) {
       dashboardProcessBean.redirectToLink(link, false);
       return;
     }
 
-    if (dashboardProcessBean.isExpressProcess(process) && StringUtils.isNotBlank(process.getId())
+    if (dashboardProcessBean.isExpressProcess(process)
+        && StringUtils.isNotBlank(process.getId())
         && StringUtils.isNotBlank(getExpressStartLink())) {
-        dashboardProcessBean.redirectToLink(getExpressStartLink() + "?workflowID=" + process.getId(), false);
+      dashboardProcessBean.redirectToLink(
+          getExpressStartLink() + "?workflowID=" + process.getId(), false);
       return;
     }
 
     dashboardProcessBean.redirectToLink(link, true);
+  }
+
+  private void handleNavigateAsAiResult(DashboardProcess process, String link)
+      throws IOException {
+    if (dashboardProcessBean.isExternalLink(process)) {
+      link = dashboardProcessBean.getRedirectLink(link, false);
+    } else if (dashboardProcessBean.isExpressProcess(process)
+        && StringUtils.isNotBlank(process.getId())) {
+      link = dashboardProcessBean.getRedirectLink(
+          getExpressStartLink() + "?workflowID=" + process.getId(), false);
+    } else {
+      link = dashboardProcessBean.getRedirectLink(link, true);
+    }
+
+    String statement = "parent.parent.redirectToUrlCommand([{name: 'url', value: '"
+        + URLDecoder.decode(link, StandardCharsets.UTF_8) + "'}])";
+    PrimeFaces.current().executeScript(statement);
   }
 
   public boolean isBrokenLink(DashboardProcess dashboardProcess) {

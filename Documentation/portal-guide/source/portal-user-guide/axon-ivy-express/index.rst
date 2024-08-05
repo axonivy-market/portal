@@ -70,7 +70,7 @@ HowTo: Create an Express Workflow
    encourage you to use the description to provide details about your
    process.
 
-#. Click on the link ``Change`` beside :guilabel:`Icon` to select the icon best suited for your process.
+#. Click on the link ``Change`` besides :guilabel:`Icon` to select the icon best suited for your process.
 
    |express-workflow-process-properties|
 

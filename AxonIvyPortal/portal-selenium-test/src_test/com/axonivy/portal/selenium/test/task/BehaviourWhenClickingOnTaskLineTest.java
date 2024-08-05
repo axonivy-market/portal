@@ -77,7 +77,7 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
   }
 
   @Test
-  public void tesOpenTaskDetailsWhenClickingOnTaskLineInCaseDetails() {
+  public void testOpenTaskDetailsWhenClickingOnTaskLineInCaseDetails() {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.DEMO_USER);

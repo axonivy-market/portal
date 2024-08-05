@@ -13,6 +13,6 @@ public class AvatarBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public boolean isShowAvatar() {
-    return new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_AVATAR);
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_AVATAR);
   }
 }

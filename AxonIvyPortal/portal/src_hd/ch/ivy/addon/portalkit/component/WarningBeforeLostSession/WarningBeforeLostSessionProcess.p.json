@@ -105,7 +105,7 @@
         "at" : { "x" : 96, "y" : 384 }
       },
       "connect" : [
-        { "id" : "f13", "to" : "f12" }
+        { "id" : "f13", "to" : "f14" }
       ]
     }, {
       "id" : "f12",
@@ -113,5 +113,24 @@
       "visual" : {
         "at" : { "x" : 352, "y" : 384 }
       }
+    }, {
+      "id" : "f14",
+      "type" : "Script",
+      "name" : "Reset timeout",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.primefaces.PrimeFaces;",
+            "",
+            "PrimeFaces.current().executeScript(\"PortalSessionWarning.resetCounterAndTimeout();\");"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 384 }
+      },
+      "connect" : [
+        { "id" : "f15", "to" : "f12", "color" : "default" }
+      ]
     } ]
 }

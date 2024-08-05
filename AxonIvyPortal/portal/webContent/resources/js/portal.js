@@ -421,6 +421,14 @@ function getWidgetVarById(id) {
   return null;
 }
 
+
+function reloadIframes() {
+  var iframes = document.querySelectorAll('iframe');
+  iframes.forEach(function(iframe) {
+      iframe.contentWindow.location.reload();
+  });
+}
+
 function handleKeyDown(event) {
   if (event.key === 'Enter') {
     event.preventDefault();

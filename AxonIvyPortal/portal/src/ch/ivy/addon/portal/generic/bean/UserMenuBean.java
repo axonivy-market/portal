@@ -82,8 +82,10 @@ public class UserMenuBean implements Serializable {
         default -> String.format(fullDisplayFormat, userName, fullName);
       };
     }
-    isShowGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_GLOBAL_SEARCH);
-    isShowQuickGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_QUICK_GLOBAL_SEARCH);
+    boolean isDefinedSearchScope = StringUtils.isNotBlank(GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES));
+    isShowGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_GLOBAL_SEARCH)
+            && isDefinedSearchScope;
+    isShowQuickGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_QUICK_GLOBAL_SEARCH) && isDefinedSearchScope;
   }
 
   public boolean isShowCaseDurationTime() {
@@ -113,16 +115,6 @@ public class UserMenuBean implements Serializable {
 
   public boolean getIsShowQuickGlobalSearch() {
     return isShowQuickGlobalSearch;
-  }
-  public long getClientSideTimeout() {
-    String clientSideTimeoutInMinute = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT);
-    if (StringUtils.isNotBlank(clientSideTimeoutInMinute)) {
-      Long timeoutInMinute = Long.valueOf(clientSideTimeoutInMinute);
-      if (timeoutInMinute > 0) {
-        return timeoutInMinute * DateUtils.MILLIS_PER_MINUTE;
-      }
-    }
-    return getDefaultClientSideTimeout();
   }
 
   public String getLogoutPage() {
@@ -273,8 +265,8 @@ public class UserMenuBean implements Serializable {
     getExternalContext().redirect(getUserProfileUrl());
   }
 
-  public void navigateToChatbotDashboard() throws IOException {
-    getExternalContext().redirect(getChatbotUrl());
+  public void navigateToAssistantDashboard() throws IOException {
+    getExternalContext().redirect(getAssistantDashboardUrl());
   }
 
   private void navigateToTargetPage() throws IOException {
@@ -285,8 +277,8 @@ public class UserMenuBean implements Serializable {
     return PortalNavigator.buildUserProfileUrl();
   }
 
-  private String getChatbotUrl() {
-    return PortalNavigator.buildChatbotUrl();
+  private String getAssistantDashboardUrl() {
+    return PortalNavigator.buildAssistantDashboardUrl();
   }
 
   private void navigateToPortalManagement() throws IOException {
@@ -297,7 +289,7 @@ public class UserMenuBean implements Serializable {
     return PortalNavigator.buildPortalManagementUrl();
   }
 
-  private long getDefaultClientSideTimeout() {
+  public long getServerSideTimeout() {
     ExternalContext externalContext = getExternalContext();
     long serverSideTimeOutInMillisecond = externalContext.getSessionMaxInactiveInterval() * DateUtils.MILLIS_PER_SECOND;
     return serverSideTimeOutInMillisecond - TIME_BEFORE_LOST_SESSION;
@@ -409,10 +401,10 @@ public class UserMenuBean implements Serializable {
   public void navigateToChatBotOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {
       openTaskLosingConfirmationDialog();
-      targetPage = getChatbotUrl();
+      targetPage = getAssistantDashboardUrl();
     } else {
       executeJSResetPortalMenuState();
-      navigateToChatbotDashboard();
+      navigateToAssistantDashboard();
     }
   }
 }

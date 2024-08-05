@@ -87,10 +87,15 @@ see and how.
 
 |task-list-widget|
 
+On the widget configuration panel, you can define the widget name, enable the
+quick search function, show or hide the widget information and fullscreen
+mode icons, and manage columns and filters.
+
 **Filters panel**
 
-By clicking on the ``Filter`` button, you can configure the complex filter for your widget, enable quick search function and get a preview of it by clicking on the
-``apply`` button. Please refer to :ref:`Complex Filter <complex-filter>` for more details.
+By clicking on the ``Filter`` button, you can configure the complex filter for
+your widget and get a preview of it by clicking on the ``apply`` button. Please
+refer to :ref:`Complex Filter <complex-filter>` for more details.
 
 |task-widget-complex-filter-configuration|
 
@@ -158,10 +163,15 @@ see and how.
 
 |case-list-widget|
 
+On the widget configuration panel, you can define the widget name, enable the
+quick search function, show or hide the widget information and fullscreen
+mode icons, and manage columns and filters.
+
 **Filters panel**
 
-By clicking on the ``Filter`` button, you can define the configuration for your widget, enable quick search function and get a preview of it by clicking on the
-``apply`` button. Please refer to :ref:`Complex Filter <complex-filter>` for more details.
+By clicking on the ``Filter`` button, you can configure the complex filter for
+your widget and get a preview of it by clicking on the ``apply`` button. Please
+refer to :ref:`Complex Filter <complex-filter>` for more details.
 
 |case-list-widget-configuration|
 

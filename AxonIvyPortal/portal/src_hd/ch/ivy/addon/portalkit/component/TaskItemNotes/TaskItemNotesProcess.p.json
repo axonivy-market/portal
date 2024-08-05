@@ -159,7 +159,7 @@
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
             "import ch.ivy.addon.portalkit.util.PermissionUtils;",
             "",
-            "GlobalSettingService globalSettingService = new GlobalSettingService();",
+            "GlobalSettingService globalSettingService = GlobalSettingService.getInstance();",
             "out.showSystemNotesChkbox = !globalSettingService.findHideSystemNotesFromHistorySettingValue();",
             "out.showSystemNotes = PermissionUtils.isSessionUserHasAdminRole();"
           ]
