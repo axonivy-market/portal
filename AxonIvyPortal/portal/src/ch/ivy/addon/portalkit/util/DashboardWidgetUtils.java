@@ -231,8 +231,13 @@ public class DashboardWidgetUtils {
           .collect(Collectors.toList());
     }
     var enableCaseOwner = GlobalSettingService.getInstance().isCaseOwnerEnabled();
+    boolean disableCaseCreator = GlobalSettingService.getInstance().isHideCaseCreator();
     if (!enableCaseOwner) {
       filterableColumns.removeIf(col -> StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardCaseColumn.OWNER.toString()));
+    }
+    if (disableCaseCreator) {
+      filterableColumns
+          .removeIf(col -> StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardCaseColumn.CREATOR.name()));
     }
     return filterableColumns;
   }

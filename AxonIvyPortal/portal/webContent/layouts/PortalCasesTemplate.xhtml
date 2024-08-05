@@ -50,7 +50,7 @@
                   dataModel="#{caseView.getDataModel()}" />
                 
                 <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCreator componentId="case-creator-cell"
-                  case="#{case}" dataModel="#{caseView.getDataModel()}" />
+                  case="#{case}" dataModel="#{caseView.getDataModel()}" rendered="#{!caseBean.isHideCaseCreator()}" /> 
                 
                 <ic:ch.ivy.addon.portalkit.component.cases.column.CaseOwner componentId="case-owner-cell"
                   case="#{case}" dataModel="#{caseView.getDataModel()}" rendered="#{caseBean.isCaseOwnerEnabled()}"

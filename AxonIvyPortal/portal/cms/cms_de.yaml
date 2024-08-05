@@ -269,6 +269,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableUserFavorites: Wenn diese Einstellung deaktiviert ist, zeigen Sie den Benutzerfavoritenabschnitt der Prozessliste nicht in Portal Home an.
       enableVirusScannerForUploadedDocumentNote: Auf true setzen, um den Virenscanner für das hochgeladene Dokument zu aktivieren. Derzeit verwendet diese Funktion die API VIRUSTOTAL.
       expressEndPageNote: Anzeigen der angepassten Endseite nach dem Ende eines Express Prozesses.
+      hideCaseCreator: |
+        Auf true setzen, um den Fallersteller in der Fallliste, dem Fall-Widget und den Falldetails auszublenden.
+        Diese Einstellung wirkt sich auf alle Fallabfragen aus, z. B. für Fallliste, globale Suche, Statistik.
       hideCaseDocument: Auf "true" setzen, um die Dokumentensektion in Vorgangsdetails auszublenden.
       hideChangePasswordButtonNote: Setzen Sie diese Variable auf true, um die Option "Passwort ändern" im oberen Menü und die Option "Passwort vergessen" auf der Anmeldeseite auszublenden. Wenn sie auf false gesetzt ist, werden diese Optionen angezeigt.
       hideLogoutButtonNote: 'Auf "true" setzen, um die Logout Funktion im Top Menu zu deaktivieren. '
