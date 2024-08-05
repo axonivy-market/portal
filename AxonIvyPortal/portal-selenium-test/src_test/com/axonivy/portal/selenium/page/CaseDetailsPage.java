@@ -133,13 +133,21 @@ public class CaseDetailsPage extends TemplatePage {
 
   public SelenideElement getNameOfRelatedTask(int index) {
     getRelatedTasksPanel().shouldBe(appear, DEFAULT_TIMEOUT);
-    return $("div[id='case-details-related-task-table'] table tbody").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr")
+    /**
+     * Note: $ for pattern, or else we should we a correct specific id instead of a part of the id
+     * fix testTriggerEscalationTaskOnRelatedTasksOfCase
+     */
+    return $("div[id$='case-details-related-task-table'] table tbody").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr")
         .get(index).$$("td").findBy(Condition.attributeMatching("class", ".*related-task-name-column.*")).$("span");
   }
 
   public SelenideElement getStateOfRelatedTask(int index) {
     getRelatedTasksPanel().shouldBe(appear, DEFAULT_TIMEOUT);
-    return $("div[id='case-details-related-task-table'] table tbody").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr")
+    /**
+     * Note: $ for pattern, or else we should we a correct specific id instead of a part of the id
+     * fix testTriggerEscalationTaskOnRelatedTasksOfCase
+     */
+    return $("div[id$='case-details-related-task-table'] table tbody").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr")
         .get(index).$$("td").findBy(Condition.attributeMatching("class", ".*related-task-state-column.*"))
         .$("span span");
   }
@@ -147,14 +155,16 @@ public class CaseDetailsPage extends TemplatePage {
   public void clickRelatedTaskActionButton(int index) {
     $(String.format("[id$=':related-tasks:%d:additional-options:task-side-steps-menu']", index))
         .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    waitForAjaxIndicatorDisplayNone();
   }
 
   public void triggerEscalationTask(int index) {
-    $(String.format("[id$='task-widget:related-tasks:%d:additional-options:task-trigger-escalation-command']", index))
-        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    clickByJavaScript($(String.format("[id='case-item-details:case-details-container:widgets:3:task-widget:related-tasks:%d:additional-options:task-trigger-escalation-command']", index)));
+
     $("div[id$='\\:escalation-task-confirmation-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("button[id$='\\:confirm-escalation']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
+    waitForAjaxIndicatorDisplayNone();
   }
 
   public SelenideElement getCreatorAvatar() {
