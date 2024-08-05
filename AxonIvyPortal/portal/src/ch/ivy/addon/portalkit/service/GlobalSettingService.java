@@ -20,9 +20,16 @@ public class GlobalSettingService {
 
   private static GlobalSettingService instance;
 
+  private GlobalSettingService() {
+  }
+
   public static GlobalSettingService getInstance() {
-    if (instance == null) {
-      instance = new GlobalSettingService();
+    if (instance == null) { // First check (no locking)
+      synchronized (GlobalSettingService.class) {
+        if (instance == null) { // Second check (with locking)
+          instance = new GlobalSettingService();
+        }
+      }
     }
     return instance;
   }
@@ -76,6 +83,10 @@ public class GlobalSettingService {
     return findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_CASE_OWNER);
   }
   
+  public boolean isHideCaseCreator() {
+    return findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CASE_CREATOR);
+  }
+
   public GlobalSetting save(GlobalSetting entity) {
     if (entity.getIsPublic()) {
       Ivy.var().set(entity.getKey(), entity.getValue());
