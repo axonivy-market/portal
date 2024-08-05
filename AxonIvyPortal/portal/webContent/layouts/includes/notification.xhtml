@@ -85,15 +85,17 @@
                           </div>
                           <div class="flex notification-message-block flex-column">
                             <p:commandLink id="notification-message" styleClass="notification-message"
-                              actionListener="#{notificationBean.goToTaskDetail(notification)}" rendered="#{notification.infoAction != null}">
+                              actionListener="#{notificationBean.goToNotificationDetail(notification, isWorkingOnATask, task)}"
+                              rendered="#{notification.infoAction != null}">
                               <h:outputText value="#{htmlSanitizerBean.sanitize(notification.message)}" />
                             </p:commandLink>
                             <p:tooltip for="notification-message" value="#{notification.infoAction.title}" />
                             <h:outputText value="#{notification.timeSince}" styleClass="font-normal notifications-item-time-since" />
                           </div>
                           <div class="flex notification-action-block">
-                            <p:commandLink id="notification-start-task" styleClass="notification-start-task"
-                              actionListener="#{notificationBean.startTaskFromNoti(notification)}" rendered="#{notification.runAction != null}">
+                            <p:commandLink id="notification-start-task"
+                              styleClass="notification-start-task"
+                              actionListener="#{notificationBean.startTaskFromNotification(notification, isWorkingOnATask, task)}">
                               <i class="fa fa-play notification-start-task-icon" />
                             </p:commandLink>
                             <p:tooltip for="notification-start-task" value="#{notification.runAction.title}" />
@@ -112,6 +114,25 @@
 
       </div>
     </h:panelGroup>
+    
+    <p:remoteCommand id="notification-leave-task-rc" name="leaveTaskNotification"
+      actionListener="#{notificationBean.leaveTask()}" immediate="true"
+      process="@this" partialSubmit="true" />
+
+    <p:remoteCommand id="notification-reserve-task-rc"
+      name="reserveTaskNotification" actionListener="#{notificationBean.reserveTask()}"
+      immediate="true" process="@this" partialSubmit="true" />
+
+    <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask
+            id="notification-warning-before-leaving-task-component"
+            componentId="notification-task-leave-warning-dialog"
+            widgetVar="notification-task-losing-confirmation-dialog" rendered="#{isWorkingOnATask}"
+            taskState="#{task.state}"
+            leaveActionListener="fireEventClick();"
+            leaveOnComplete="leaveTaskNotification([{name: 'redirectType', value: redirectType}, {name: 'notificationId', value: notificationId}, {name: 'taskId', value: notiTaskId}]);"
+            reserveActionListener="fireEventClick();"
+            reserveOnComplete="reserveTaskNotification([{name: 'redirectType', value: redirectType}, {name: 'notificationId', value: notificationId}, {name: 'taskId', value: notiTaskId}]);">
+    </ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask>
 
   </ui:composition>
 </h:body>

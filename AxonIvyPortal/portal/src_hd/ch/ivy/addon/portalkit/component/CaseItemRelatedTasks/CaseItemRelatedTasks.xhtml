@@ -18,11 +18,20 @@
   <f:event listener="#{logic.initData(cc.attrs.case)}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass}">
     <div class="case-detail-section-title case-details-related-task-header-section ui-g-12">
-      <div class="ui-g-8 u-truncate-text u-padding-0 task-details-panel-title">
+      <div class="ui-g-6 u-truncate-text u-padding-0 task-details-panel-title">
         <i class="si si-task-list-edit" />
         #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader')}
       </div>
-      <h:panelGroup layout="block" styleClass="ui-g-4 related-task-section-header-actions" id="related-task-actions">
+      <h:panelGroup layout="block" styleClass="ui-g-6 related-task-section-header-actions" id="related-task-actions">
+        <div>
+        <p:selectBooleanCheckbox id="show-only-open-tasks" value="#{data.dataModel.onlyShowOpenTask}"
+          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/ShowOnlyOpenTasks')}"
+          itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/ShowOnlyOpenTasks')}"
+          styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
+          <p:ajax process="@this" partialSubmit="true"
+            update="case-details-related-task-table" />
+        </p:selectBooleanCheckbox>
+        </div>
         <h:form id="task-export-to-excel-form" styleClass="related-task-export-to-excel ui-sm-hidden">
           <p:commandLink ajax="false" id="related-task-export-to-excel" onclick="PrimeFaces.monitorDownload(startRelatedTaskExportToExcel, stopRelatedTaskExportToExcel);">
             <i class="si si-office-file-xls-1 u-mar-right-5" />
@@ -39,7 +48,7 @@
         </div>
       </h:panelGroup>
     </div>
-    <div class="ui-g-12 u-padding-0 case-details-related-task-table" id="case-details-related-task-table">
+    <h:panelGroup layout="block" styleClass="ui-g-12 u-padding-0 case-details-related-task-table" id="case-details-related-task-table">
       <p:dataTable id="related-tasks" lazy="true" value="#{data.dataModel}" var="task" paginator="true" rows="5"
         paginatorPosition="bottom" paginatorAlwaysVisible="false"
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" sortBy="#{caseDetailsBean.sortById}"
@@ -120,7 +129,7 @@
           </ui:include>
         </p:column>
       </p:dataTable>
-    </div>
+    </h:panelGroup>
   </div>
 
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
