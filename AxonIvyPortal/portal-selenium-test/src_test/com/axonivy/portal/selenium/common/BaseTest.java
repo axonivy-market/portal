@@ -132,9 +132,8 @@ public class BaseTest {
       "PortalKitTestHelper/14DE09882B540AD5/denyDashboardShareLinkPermission.ivp";
   protected String grantShareLinkCaseDetailsPermission =
       "PortalKitTestHelper/14DE09882B540AD5/grantCaseDetailsShareLinkPermission.ivp";
-//  Note: will delete since I search and don't see this process in this branch
-//  protected String denyShareLinkCaseDetailsPermission =
-//      "PortalKitTestHelper/14DE09882B540AD5/denyCaseDetailsShareLinkPermission.ivp";
+  protected String denyShareLinkCaseDetailsPermission =
+      "PortalKitTestHelper/14DE09882B540AD5/denyCaseDetailsShareLinkPermission.ivp";
   protected String grantShareLinkTaskDetailsPermission =
       "PortalKitTestHelper/14DE09882B540AD5/grantTaskDetailsShareLinkPermission.ivp";
   protected String denyShareLinkTaskDetailsPermission =

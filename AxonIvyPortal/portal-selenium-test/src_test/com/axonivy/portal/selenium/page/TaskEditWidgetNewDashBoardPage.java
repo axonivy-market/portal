@@ -159,12 +159,6 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
         DEFAULT_TIMEOUT);
   }
 
-  public void saveColumn() {
-    getColumnManagementDialog().$("button[id$='column-management-save-btn']").click();
-    $("div[id$=':column-management-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
-    waitPreviewTableLoaded();
-  }
-
   private SelenideElement getMultiLanguageDialogWhenAddWidget() {
     return $(
         "div[id='widget-configuration-form:new-widget-configuration-component:title-language-config:multiple-languages-dialog']");
@@ -253,10 +247,6 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
     return getColumnManagementDialog().$("span[id$='custom-field-selection'] button");
   }
 
-  private SelenideElement getCustomCaseFieldSelection() {
-    return getColumnManagementDialog().$("span[id$='custom-case-field-selection'] button");
-  }
-
   public SelenideElement openColumnManagementDialog() {
     $("div[id$='task-widget-preview:dashboard-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("a[id$='column-toggler']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
@@ -316,33 +306,32 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
         DEFAULT_TIMEOUT);
   }
 
+  public void returnToDashboardPage() {
+    $("div.layout-topbar-right").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span#breadcrumb-container")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("form nav a").click();
+  }
+
+  public SelenideElement getQuickSearchCheckBox() {
+    return $("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+  }
+
   public void clickOnQuickSearchCheckBox() {
     getQuickSearchCheckBox().click();
   }
 
-  public WebElement getQuickSearchCheckBox() {
-    return $("div[id$='filter-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
-  }
-
-  public void clickOnQuickSearchByField(String fieldName) {
-    getColumnManagementDialog().$("div[id$='column-management-datatable']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("table tbody").$$("tr").filter(text(fieldName)).first().$("div[id$='quick-search-checkbox-panel']")
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-  }
-
   public boolean isQuickSearchClicked(String fieldName) {
-    waitForPageLoad();
     return getColumnManagementDialog().$("div[id$='column-management-datatable']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("table tbody").$$("tr").filter(text(fieldName)).first()
         .$("div[id$='quick-search-checkbox-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a").$("span span")
-        .getAttribute("class").contains("ui-icon-check");
+        .getAttribute("class").contains("ui-chkbox-icon");
   }
 
-  public void returnToDashboardPage() {
-    $("div.layout-topbar-right").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span#breadcrumb-container")
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("form nav a").click();
+  public void clickOnQuickSearchByField(String fieldName) {
+    var quickSeatchChkbox = getColumnManagementDialog().$("div[id$='column-management-datatable']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("table tbody").$$("tr").filter(text(fieldName)).first().$("div[id$='quick-search-checkbox-panel']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    quickSeatchChkbox.click();
   }
 
   public void addCustomFieldByCustomTypeAndFieldName(String customType, String fieldName) {
@@ -366,4 +355,49 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
         .filter(text(fieldName)).first().click();
     getColumnManagementDialog().$("button[id$='field-add-btn']").click();
   }
+
+  private SelenideElement getCustomCaseFieldSelection() {
+    return getColumnManagementDialog().$("span[id$='custom-case-field-selection'] button");
+  }
+
+  public void saveColumn() {
+    getColumnManagementDialog().$("button[id$='column-management-save-btn']").click();
+    $("div[id$=':column-management-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    waitPreviewTableLoaded();
+  }
+
+  public SelenideElement getWidgetInfoIconCheckbox() {
+    return getConfigurationFilterContainer().$("span[id$='widget-info-icon-group']").shouldBe(Condition.appear,
+        DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("div[id$='widget-info']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[class*='ui-chkbox-box']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("span");
+  }
+
+  public void clickOnWidgetInfoIconCheckbox() {
+    getWidgetInfoIconCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public SelenideElement getConfigurationFilterContainer() {
+    return $("form#widget-configuration-form").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("div[id$='filter-container']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getExpandModeCheckbox() {
+    return getConfigurationFilterContainer().$("span[id$='fullscreen-mode-group']").shouldBe(Condition.appear,
+        DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("div[id$='fullscreen-option']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void clickOnExpandModeCheckbox() {
+    getExpandModeCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+  
+  public boolean isQuickSearchInputShow(String widgetIndex) {
+    String taskWidgetIndex = String.format("div[id*='task-task_%s']", widgetIndex);
+    waitPageLoaded();
+    return $(taskWidgetIndex).$("form").$("input").exists();
+  }
+
 }

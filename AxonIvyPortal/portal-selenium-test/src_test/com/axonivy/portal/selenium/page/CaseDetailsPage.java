@@ -99,7 +99,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void gotoTaskDetailsPageOfRelatedTask(String taskName) {
-    $$("div[id='case-details-related-task-table'] table tbody tr td span").filter(text(taskName)).first().click();
+    $$("div[id$='case-details-related-task-table'] table tbody tr td span")
+        .filter(text(taskName)).first().click();
   }
 
   public void gotoCaseDetailsPageOfRelatedCase(String caseName) {
@@ -394,7 +395,7 @@ public class CaseDetailsPage extends TemplatePage {
   private WebElement getRelatedCasesComponent() {
     return findElementByCssSelector(RELATED_CASES_COMPONENT_ID);
   }
-  
+
   public String getLatestHistoryContent() {
     return caseItem.findElement(By.cssSelector(LATEST_HISTORY_LIST_CSS_SELECTOR)).getText();
   }
@@ -626,6 +627,10 @@ public class CaseDetailsPage extends TemplatePage {
   public void clickRelatedTaskApplyButton() {
     $(By.cssSelector("button[id$='task-widget:task-columns-configuration:select-columns-form:update-command']"))
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void clickShowOnlyOpenTasks() {
+    $("div[id$=':show-only-open-tasks'] .ui-chkbox-box").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void clickExportToExcelLink(String linkId, String statusDialogId) {

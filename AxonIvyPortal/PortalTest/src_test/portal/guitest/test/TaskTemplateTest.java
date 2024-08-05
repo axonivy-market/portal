@@ -77,7 +77,7 @@ public class TaskTemplateTest extends BaseTest {
     TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
 
     getBrowser().getDriver().switchTo().defaultContent();
-    TaskDetailsPage taskDetailsPage = taskTemplatePage.openRelatedTaskInList(1);
+    TaskDetailsPage taskDetailsPage = taskTemplatePage.openRelatedTaskInList(2);
     assertEquals("Task: Annual Leave Request", taskDetailsPage.getTaskNameInDialog());
 
     taskDetailsPage.clickBackButton();

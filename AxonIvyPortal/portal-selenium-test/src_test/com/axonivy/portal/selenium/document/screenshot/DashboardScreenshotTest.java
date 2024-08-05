@@ -38,7 +38,6 @@ import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 public class DashboardScreenshotTest extends ScreenshotBaseTest {
   private NewDashboardPage homePage;
   private static final int SCREENSHOT_WIDTH = 1500;
-  private static final String EXTERNAL_URL = "https://developer.axonivy.com";
   private static final String INVESTMENT_LIST = "Investment List (Example for Custom Widget on Dashboard)";
   private static final String FOOTER_INFO = "Dev Team: Wawa, Env: Dev";
   private static final int SCREENSHOT_HD_WIDTH = 1920;

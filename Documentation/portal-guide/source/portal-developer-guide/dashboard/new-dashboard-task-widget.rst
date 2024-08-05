@@ -7,7 +7,7 @@ Define Task Widget
 ------------------
 
 The Task widget of the Portal dashboard is an interactive task list. Refer
-to (link to task widget of the dashboard) for details.
+to :ref:`new-dashboard-task-list-widget` for details.
 
 Below is a sample JSON definition of a task widget in the Portal dashboard
 
@@ -29,6 +29,8 @@ Below is a sample JSON definition of a task widget in the Portal dashboard
       },
       "sortField": "name",
       "rowsPerPage": 20,
+      "showWidgetInfo": true,
+      "showFullscreenMode": true,
       "columns": [
          {
             "field": "start"
@@ -90,10 +92,16 @@ The basic JSON structure of a Task widget
 
    ``sortField``: default sort field for the widget
 
-   ``sortDescending``: sort direction of the default sort field. The default value is "false" (sort ascending)
+   ``sortDescending``: sort direction of the default sort field. The default value is ``false`` (sort ascending)
 
    ``rowsPerPage``: maximum number of tasks can be displayed on one page of the task widget. 
    The default value is 10 rows per page
+
+   ``showWidgetInfo``: visibility of the widget information icon. The default
+   value is ``true``, set to ``false`` to hide the icon
+
+   ``showFullscreenMode``: visibility of the fullscreen mode icon. The default
+   value is ``true``, set to ``false`` to hide the icon
 
    ``columns``: column configurations for each of the columns in the widget. You
    can predefine filters, styles, visibility,... of columns and define custom

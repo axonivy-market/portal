@@ -33,7 +33,7 @@ public enum Variable {
   TASK_ANALYSIS_FILTER("Portal.TaskAnalysisFilters"), THIRD_PARTY_APP("Portal.ThirdPartyApplications"),
   STATISTIC_CHART("Portal.StatisticCharts"), EXTERNAL_LINK("Portal.Processes.ExternalLinks"),
   EXPRESS_PROCESS("Portal.Processes.ExpressProcesses"), TASK_COLUMN("Portal.Tasks.TaskColumn"),
-  TASK_FILTER("Portal.Tasks.TaskFilters"),
+  TASK_FILTER("Portal.Tasks.TaskFilters"), FAVORITE_PROCESS("Portal.Dashboard.FavoriteProcesses"),
   TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST("Portal.Tasks.BehaviourWhenClickingOnLineInTaskList"),
   TASK_DETAIL("Portal.TaskDetails"), CASE_COLUMN("Portal.Cases.CaseColumn"), CASE_FILTER("Portal.Cases.CaseFilters"),
   CASE_DETAIL("Portal.CaseDetails"), SHOW_AVATAR("Portal.ShowAvatar"),
@@ -43,7 +43,8 @@ public enum Variable {
   GLOBAL_FOOTER_INFO("Portal.GlobalFooterInfo"), USER_MENU("Portal.UserMenu"), DEFAULT_THEME_MODE("Portal.Theme.Mode"),
   ENABLE_SWITCH_THEME_BUTTON("Portal.Theme.EnableSwitchThemeModeButton"),
   SHOW_USER_GUIDE("Portal.Dashboard.ShowUserGuide"),
-  SHOW_LEGACY_UI("Portal.ShowLegacyUI"),
+    GLOBAL_SEARCH_SCOPE_BY_CATEGORIES("Portal.GlobalSearchScopeCategories"),
+  SHOW_LEGACY_UI("Portal.ShowLegacyUI"), APPLICATION_NAME("Portal.ApplicationName"),
   DASHBOARD_MAIN_MENU_ENTRY("Portal.Dashboard.MainMenuEntry");
 
   private String key;

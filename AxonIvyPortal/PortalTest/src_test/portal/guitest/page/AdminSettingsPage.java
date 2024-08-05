@@ -1,6 +1,5 @@
 package portal.guitest.page;
 
-import static portal.guitest.common.Variable.CLIENT_SIDE_TIMEOUT;
 import static portal.guitest.common.Variable.GLOBAL_FOOTER_INFO;
 import static portal.guitest.common.Variable.SHOW_LEGACY_UI;
 
@@ -113,12 +112,6 @@ public class AdminSettingsPage extends TemplatePage {
   public void clickOnbackToHomepageOnAdminSetting() {
     WebElement closeButton = findElementById("back-to-home-button");
     WaitHelper.waitForNavigation(this, () -> click(closeButton));
-  }
-
-  public void setClientSideTimeout(String timeout) {
-    openSettingTab();
-    editGlobalVariable(CLIENT_SIDE_TIMEOUT.getKey(), timeout, false);
-    closeConfirmationDialog();
   }
 
   public void closeConfirmationDialog() {

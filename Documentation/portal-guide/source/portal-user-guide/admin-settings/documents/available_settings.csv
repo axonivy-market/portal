@@ -13,9 +13,6 @@ Portal.Chat.MaxConnection,3,"| The set number controls the amount of tabs allowe
 | the chat will be disabled in inactive tabs. Allowed values are 1 to 5."
 Portal.Chat.ResponseTimeout,0,"| Chat response timeout in seconds, default value is 0 and means no timeout. If chat messages go through 
 | the reverse proxy Nginx, chat response timeout must be less than the Nginx timeout, e.g. less than 60 seconds."
-Portal.ClientSideTimeout,0,"| Client side timeout in minutes. Has to be more than 0 and less than the server side timeout (e.g. 25 minutes).
-| Default value is 0, which means that the default client side timeout is applied.
-| Default client side timeout is server side timeout minus 3 minutes."
 Portal.Dashboard.HideStatisticWidget,FALSE,"If true, hide Statistic widget from homepage and application menu."
 Portal.Dashboard.ShowUserFavorites,TRUE,"If true, display user favorites section of process list in Portal home."
 Portal.Dashboard.ShowUserGuide,TRUE,"If true, show interactive user guide ""first steps"" in the portal at first login."
@@ -63,12 +60,13 @@ Portal.ShowErrorLogToConsole,FALSE,"If true, write error log to browser console.
 Portal.ShowAvatar,TRUE,"If true, switch on the display of user/role avatars."
 Portal.StatisticChartScalingInterval,0,"Interval in seconds to do periodic statistic chart scaling requests. If the interval value is less than 10, periodic statistic chart scaling is disabled."
 Portal.RoleDirectChildrenLimit,50,"| Controls the number of direct child roles that are shown in the Role Management tab.
-| Valid numbers: 10, 50, 100"
+| Valid numbers: 10, 50, 100."
 Portal.RoleParentLimit,10,"| Controls the number of parent roles that are shown when filtering roles in the Role Management tab.
-| Valid numbers: 5, 10, 20"
+| Valid numbers: 5, 10, 20."
 Portal.LoginPage.ShowFooter,TRUE,Set to false to hide the footer on the login page.
 Portal.Theme.EnableSwitchThemeModeButton,TRUE,"If false, the Switch Theme Mode button is disabled."
 Portal.Theme.Mode,LIGHT,The default theme mode of the application.
-Portal.SearchScope.ByCaseFields,"NAME,DESCRIPTION,CUSTOM",Defining the fields that the global search will use to find matching cases beside case Id (this can influence the performance of the search)
-Portal.SearchScope.ByTaskFields,"NAME,DESCRIPTION",Defining the fields that the global search will use to find matching tasks beside task Id (this can influence the performance of the search)
-Portal.GlobalFooterInfo,"Default",Defining the global environment footer info
+Portal.SearchScope.ByCaseFields,"NAME,DESCRIPTION,CUSTOM",Defining the fields that the global search will use to find matching cases besides case Id (this can influence the performance of the search).
+Portal.SearchScope.ByTaskFields,"NAME,DESCRIPTION",Defining the fields that the global search will use to find matching tasks besides task Id (this can influence the performance of the search).
+Portal.GlobalFooterInfo,"Default",Defining the global environment footer info.
+Portal.GlobalSearchScopeCategories,"PROCESSES,TASKS,CASES",Defining the types that the global search will search for.
