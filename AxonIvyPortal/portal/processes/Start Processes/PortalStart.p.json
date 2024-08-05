@@ -2197,7 +2197,7 @@
         "dialog" : "ch.ivy.addon.portal.generic.ForgotPassword:start()"
       },
       "visual" : {
-        "at" : { "x" : 632, "y" : 2680 }
+        "at" : { "x" : 344, "y" : 2680 }
       }
     }, {
       "id" : "f109",
@@ -2229,7 +2229,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 632, "y" : 2840 }
+        "at" : { "x" : 344, "y" : 2840 }
       },
       "connect" : [
         { "id" : "f111", "to" : "f110" }
@@ -2250,7 +2250,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 776, "y" : 2840 }
+        "at" : { "x" : 488, "y" : 2840 }
       }
     }, {
       "id" : "f118",
@@ -2270,46 +2270,13 @@
         "size" : { "width" : 256 }
       }
     }, {
-      "id" : "f115",
-      "type" : "Alternative",
-      "name" : "isIvySecuritySystem?",
-      "config" : {
-        "conditions" : {
-          "f124" : "ch.ivy.addon.portalkit.util.SecuritySystemUtils.isIvySecuritySystem()"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 416, "y" : 2840 },
-        "labelOffset" : { "x" : 20, "y" : 34 }
-      },
-      "connect" : [
-        { "id" : "f124", "to" : "f109" },
-        { "id" : "f123", "to" : "f118" }
-      ]
-    }, {
-      "id" : "f121",
-      "type" : "Alternative",
-      "name" : "isIvySecuritySystem?",
-      "config" : {
-        "conditions" : {
-          "f113" : "ch.ivy.addon.portalkit.util.SecuritySystemUtils.isIvySecuritySystem()"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 416, "y" : 2680 },
-        "labelOffset" : { "x" : 24, "y" : -15 }
-      },
-      "connect" : [
-        { "id" : "f113", "to" : "f108" },
-        { "id" : "f117", "to" : "f118" }
-      ]
-    }, {
       "id" : "f125",
       "type" : "Alternative",
       "name" : "logged in?",
       "config" : {
         "conditions" : {
-          "f116" : "ivy.session.isSessionUserUnknown()"
+          "f116" : "ivy.session.isSessionUserUnknown()",
+          "f112" : ""
         }
       },
       "visual" : {
@@ -2317,8 +2284,8 @@
         "labelOffset" : { "x" : 64, "y" : 17 }
       },
       "connect" : [
-        { "id" : "f116", "to" : "f121" },
-        { "id" : "f112", "to" : "f118", "via" : [ { "x" : 160, "y" : 2760 } ] }
+        { "id" : "f112", "to" : "f118", "via" : [ { "x" : 160, "y" : 2760 } ] },
+        { "id" : "f116", "to" : "f108" }
       ]
     }, {
       "id" : "f127",
@@ -2326,7 +2293,8 @@
       "name" : "logged in?",
       "config" : {
         "conditions" : {
-          "f119" : "ivy.session.isSessionUserUnknown()"
+          "f119" : "ivy.session.isSessionUserUnknown()",
+          "f114" : ""
         }
       },
       "visual" : {
@@ -2334,8 +2302,8 @@
         "labelOffset" : { "x" : 59, "y" : 18 }
       },
       "connect" : [
-        { "id" : "f119", "to" : "f115" },
-        { "id" : "f114", "to" : "f118", "via" : [ { "x" : 160, "y" : 2760 } ] }
+        { "id" : "f114", "to" : "f118", "via" : [ { "x" : 160, "y" : 2760 } ] },
+        { "id" : "f119", "to" : "f109" }
       ]
     }, {
       "id" : "f120",
@@ -3151,7 +3119,7 @@
             "    finishedTasks.add(task);",
             "  }",
             "}",
-            "GlobalSettingService globalSettingService = new GlobalSettingService();",
+            "GlobalSettingService globalSettingService = GlobalSettingService.getInstance();",
             "boolean excludeSystemTasks = globalSettingService.findHideSystemTasksFromHistorySettingValue();",
             "boolean excludeSystemNotes = globalSettingService.findHideSystemNotesFromHistorySettingValue();",
             "",
@@ -3263,7 +3231,7 @@
             "import ch.ivy.addon.portalkit.comparator.NoteComparator;",
             "",
             "ICase iCase = in.taskSelected.getCase().getBusinessCase();",
-            "GlobalSettingService globalSettingService = new GlobalSettingService();",
+            "GlobalSettingService globalSettingService = GlobalSettingService.getInstance();",
             "boolean excludeSystemNotes = globalSettingService.findHideSystemNotesFromHistorySettingValue();",
             "in.notes = CaseUtils.findNotes(iCase, excludeSystemNotes);",
             "in.notes.sort(new NoteComparator());"

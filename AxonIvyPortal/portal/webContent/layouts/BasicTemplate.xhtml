@@ -140,7 +140,7 @@
         </div>
 
         <ic:ch.ivy.addon.portalkit.component.WarningBeforeLostSession id="warning-before-lost-session"
-          clientSideTimeOut="#{userMenuBean.clientSideTimeout}" task="#{not empty currentTask ? currentTask : task}" />
+          serverSideTimeout="#{userMenuBean.serverSideTimeout}" task="#{not empty currentTask ? currentTask : task}" />
       </div>
       
       <div id="portal-template-footer" class="js-portal-template-footer #{showMainArea eq true ? '' : 'u-invisibility'}">

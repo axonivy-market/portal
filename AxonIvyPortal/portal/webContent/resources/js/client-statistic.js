@@ -10,6 +10,7 @@ const MANIPULATE_BY = 'manipulateValueBy';
 let locale;
 let datePattern;
 var statisticApiURL = '';
+var refreshInfos = [];
 
 const chartColors = () => {
   return [getCssVariable('--statistics-1-color'),
@@ -136,7 +137,7 @@ async function refreshChart(chartInfo) {
   chartInfo.chart.update(data);
 }
 
-function initRefresh(refreshInfos) {
+function initRefresh() {
   for (let i = 0; i < refreshInfos.length; i++) {
     let refreshInfo = refreshInfos[i];
     if (refreshInfo.refreshInterval && refreshInfo.refreshInterval > 0) {
@@ -166,7 +167,6 @@ function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig) {
   }
  
   statisticApiURL = window.location.origin + statisticEndpoint;
-  let refreshInfos = [];
 
   // Use AJAX to call REST API to fetch data for each chart elements
   charts.forEach(async chart => {
@@ -199,8 +199,17 @@ function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig) {
     }
 
     // Init refresh routine for charts
-    initRefresh(refreshInfos);
+    initRefresh();
   });
+}
+
+function clearChartInterval() {
+  for (let i = 0; i < refreshInfos.length; i++) {
+    let refreshInfo = refreshInfos[i];
+    if (typeof refreshInfo.refreshIntervalId !== 'undefined') {
+      clearInterval(refreshInfo.refreshIntervalId);
+    }
+  }
 }
 
 // Function to genearte chart data by chart type

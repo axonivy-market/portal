@@ -1022,4 +1022,15 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         .map(DashboardWidgetType::canEnableQuickSearch)
         .orElse(false);
   }
+  
+  public boolean displayWidgetInfoOption() {
+    return Optional.ofNullable(this.widget).map(DashboardWidget::getType)
+        .map(DashboardWidgetType::canShowWidgetInfoOption).orElse(false);
+  }
+  
+  public boolean displayFullscreenMode() {
+    return Optional.ofNullable(this.widget).map(DashboardWidget::getType)
+        .map(DashboardWidgetType::canShowFullscreenMode).orElse(false);
+  }
+
 }
