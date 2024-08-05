@@ -71,7 +71,8 @@ public class DashboardProcessSearchCriteria {
   }
 
   private List<DashboardProcess> filterListByQuickSearchKeyword(List<DashboardProcess> processList) {
-    return processList.stream().filter(process -> process.getName().toLowerCase().contains(quickSearchKeyword))
+    return processList.stream()
+        .filter(process -> process.getName().toLowerCase().contains(quickSearchKeyword.toLowerCase()))
         .toList();
   }
 
