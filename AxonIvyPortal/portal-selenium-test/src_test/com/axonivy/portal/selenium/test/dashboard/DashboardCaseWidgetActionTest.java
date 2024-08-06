@@ -40,8 +40,7 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
     redirectToNewDashBoard();
     newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     // In progress
-    assertCaseActionsByCaseState("In progress",
-        Arrays.asList("Details", "Business details", "Process overview", "Process Viewer"));
+    assertCaseActionsByCaseState("In progress", Arrays.asList("Details", "Process overview", "Process Viewer"));
   }
 
   @Test
