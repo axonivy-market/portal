@@ -10,14 +10,13 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
-import com.axonivy.portal.enums.GlobalSearchScopeCategory;
+
+import com.axonivy.portal.service.GlobalSearchService;
 
 import ch.ivy.addon.portalkit.configuration.UserProcess;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ViewScoped
@@ -83,17 +82,7 @@ private static final long serialVersionUID = -5889375917550618261L;
   }
 
   private boolean isEnableGlobalSearchScopeProcesses() {
-    String globalSearchScopeCategoriesString = Ivy.var().get(GlobalVariable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey());
-    if (StringUtils.isNotBlank(globalSearchScopeCategoriesString)) {
-      String[] fieldArray = globalSearchScopeCategoriesString.split(",");
-      for(String field : fieldArray) {
-        GlobalSearchScopeCategory fieldEnum = GlobalSearchScopeCategory.valueOf(field.toUpperCase());
-        if (fieldEnum != null && fieldEnum.equals(GlobalSearchScopeCategory.PROCESSES)) {
-          return true;
-        }
-      }
-    }
-    return false;
+    return GlobalSearchService.getInstance().isShowGlobalSearchByProcesses();
   }
 
 }
