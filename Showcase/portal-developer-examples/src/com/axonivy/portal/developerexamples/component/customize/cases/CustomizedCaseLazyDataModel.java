@@ -44,7 +44,7 @@ public class CustomizedCaseLazyDataModel extends CaseLazyDataModel {
 
 	@Override
 	public List<String> getDefaultColumns() {
-    if (GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
+    if (new GlobalSettingService().isCaseOwnerEnabled()) {
       return Arrays.asList(CaseSortField.NAME.name(), CaseSortField.ID.name(), CaseSortField.CREATOR.name(),
           CaseSortField.OWNER.name(), CaseSortField.CREATION_TIME.name(), CaseSortField.FINISHED_TIME.name(),
           CUSTOM_CUSTOMER_NAME, CUSTOM_SHIPMENT_DATE);

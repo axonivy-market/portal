@@ -509,11 +509,11 @@ public class ChatService {
   }
 
   private String getChatResponseTimeoutValue() {
-    return GlobalSettingService.getInstance().findGlobalSettingValue(CHAT_RESPONSE_TIMEOUT);
+    return new GlobalSettingService().findGlobalSettingValue(CHAT_RESPONSE_TIMEOUT);
   }
 
   private int getMaxChatConnectionPerUser() {
-    String maxConnection = GlobalSettingService.getInstance().findGlobalSettingValue(CHAT_MAX_CONNECTION);
+    String maxConnection = new GlobalSettingService().findGlobalSettingValue(CHAT_MAX_CONNECTION);
     int maxConnectionNumber = 0;
     try {
       if (StringUtils.isNotBlank(maxConnection)) {

@@ -3,9 +3,7 @@ package ch.ivy.addon.portalkit.bean;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -22,20 +20,11 @@ import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 
 @ManagedBean(name = "caseBean")
-@ViewScoped
 public class CaseBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
   private static final String STATE_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/caseState/";
   private static final String OPEN_CASES_LIST = "Start Processes/PortalStart/CaseListPage.ivp";
-  private boolean isHideCaseCreator;
-  private boolean isCaseOwnerEnabled;
-
-  @PostConstruct
-  public void init() {
-    isCaseOwnerEnabled = GlobalSettingService.getInstance().isCaseOwnerEnabled();
-    isHideCaseCreator = GlobalSettingService.getInstance().isHideCaseCreator();
-  }
 
   /**
    * Get correspondence icon classes and color class for case state
@@ -101,6 +90,10 @@ public class CaseBean implements Serializable {
     }
   }
 
+  public boolean isCaseOwnerEnabled() {
+    return new GlobalSettingService().isCaseOwnerEnabled();
+  }
+
   public String getDurationOfCase(ICase iCase) {
     return iCase.getEndTimestamp() != null ? getElapsedTimeForDoneCase(iCase) : getElapsedTimeForRunningCase(iCase);
   }
@@ -129,21 +122,4 @@ public class CaseBean implements Serializable {
     long duration = TimesUtils.getDurationInSeconds(iCase.getStartTimestamp(), new Date());
     return DateTimeFormatterUtils.formatToExactTime(duration);
   }
-
-  public boolean isHideCaseCreator() {
-    return isHideCaseCreator;
-  }
-
-  public void setHideCaseCreator(boolean isHideCaseCreator) {
-    this.isHideCaseCreator = isHideCaseCreator;
-  }
-
-  public boolean isCaseOwnerEnabled() {
-    return isCaseOwnerEnabled;
-  }
-
-  public void setCaseOwnerEnabled(boolean isCaseOwnerEnabled) {
-    this.isCaseOwnerEnabled = isCaseOwnerEnabled;
-  }
-
 }

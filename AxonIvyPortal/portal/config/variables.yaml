@@ -164,10 +164,6 @@ Variables:
       # [enum: ASC, DESC]
       SortDirection: DESC
 
-      # Set to true to hide case creator in case list, case widget and case details.
-      # This setting affects all case queries, e.g. for case list, global search, statistic.
-      HideCaseCreator: false
-
     # You can configure the look and feel for case details according to your needs via this json file.
     # This setting will be taken over for all other case details.
     # [file: json]

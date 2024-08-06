@@ -659,7 +659,7 @@
             "  in.selectedSetting.setValue(combinedSettings);",
             "}",
             "",
-            "GlobalSettingService globalSettingService= GlobalSettingService.getInstance();",
+            "GlobalSettingService globalSettingService= new GlobalSettingService();",
             "in.selectedSetting = globalSettingService.save(in.selectedSetting) as GlobalSetting;",
             "",
             "// update related Setting",
@@ -765,7 +765,7 @@
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
-            "GlobalSettingService globalSettingService = GlobalSettingService.getInstance();",
+            "GlobalSettingService globalSettingService = new GlobalSettingService();",
             "globalSettingService.resetGlobalSetting(in.selectedSetting.getKey());",
             "in.selectedSetting.setValueToDefault();",
             "",
@@ -788,7 +788,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
-            "GlobalSettingService globalSettingService = GlobalSettingService.getInstance();",
+            "GlobalSettingService globalSettingService = new GlobalSettingService();",
             "int i = 0;",
             "for (GlobalVariable globalVariable : GlobalVariable.values()) {",
             "  globalSettingService.resetGlobalSetting(globalVariable.getKey());",
@@ -836,7 +836,7 @@
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
             "",
             "// Setting tab",
-            "GlobalSettingService globalSettingService = GlobalSettingService.getInstance();",
+            "GlobalSettingService globalSettingService = new GlobalSettingService();",
             "in.settingList = globalSettingService.findAll();",
             "in.filteredSettingList = in.settingList;"
           ]
