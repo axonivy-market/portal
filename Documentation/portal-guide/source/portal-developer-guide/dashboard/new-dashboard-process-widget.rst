@@ -66,7 +66,7 @@ understand how to define the process widget in these modes properly.
 Compact Mode
 ------------
 
-Below is a standard JSON definition of aProcess widget in compact mode
+Below is a standard JSON definition of a Process widget in compact mode
 
    .. code-block:: html
 
@@ -183,3 +183,43 @@ Below is a standard JSON definition of the Process widget in image mode
    ..
 
 .. |dashboard-process-sort-index| image:: images/new-dashboard-process-widget/process-sort-index.png
+
+Quick Search
+------------
+
+Quick search is a useful function for users to search quickly on the process widget. There is an attribute:
+
+   - ``enableQuickSearch``: enable the quick search feature for the widget.
+
+If you want to use the quick search function, set the attribute ``enableQuickSearch`` to ``true``. Otherwise, ``false`` value will deactivate the function.
+
+Below are the definition of these attributes:
+
+   - ``enableQuickSearch``: to enable/disable the quick search feature, set the ``enableQuickSearch`` field of the process widget as shown below.
+
+      .. code-block:: html
+      
+         {
+            ...
+
+            "type": "compact-process",
+            "id": "process_98ae4fc1c83f4f2e32rw44c8027ecf40"
+            
+            ...
+
+            "enableQuickSearch": "true",
+            
+            ...
+         }
+
+      ..
+
+      Valid values:
+
+      - ``true``: show the quick search text box.
+      - ``false``: hide the quick search text box.
+      - ``not defined``: hide the quick search text box.
+
+.. important::
+   - The function can only be used when process widget mode is ``Compact Mode``.
+   - The function identifies all processes whose ``names`` contain the given input.
