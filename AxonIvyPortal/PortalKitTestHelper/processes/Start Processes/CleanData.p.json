@@ -237,7 +237,7 @@
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
-            "GlobalSettingService globalSettingService = GlobalSettingService.getInstance();",
+            "GlobalSettingService globalSettingService = new GlobalSettingService();",
             "globalSettingService.resetAll();"
           ]
         }
@@ -374,7 +374,7 @@
             "",
             "SecurityUtils.updatePermissionsOfTestUsers();",
             "",
-            "GlobalSettingService globalSettingService = GlobalSettingService.getInstance();",
+            "GlobalSettingService globalSettingService = new GlobalSettingService();",
             "globalSettingService.resetAll();",
             "List excludedResetVars = [UserProcessService.getInstance().getConfigKey()];",
             "for (String varName : ivy.var.names()) {",

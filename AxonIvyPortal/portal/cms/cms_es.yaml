@@ -270,9 +270,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableUserFavorites: Si esta propiedad está desactivada, los favoritos de usurio serán ocultados
       enableVirusScannerForUploadedDocumentNote: Cambiar a "true" para habilitar el escáner de virus para el documento cargado. Actualmente esta función utiliza la API VIRUSTOTAL.
       expressEndPageNote: Mostrar la página de final de flujo de trabajo express propia.
-      hideCaseCreator: |-
-        Establecer a true para ocultar el creador de casos en la lista de casos, widget de casos y detalles de casos.
-        Este ajuste afecta a todas las consultas de casos, por ejemplo, para la lista de casos, la búsqueda global o la estadística.
       hideCaseDocument: Cambiar a "true" para ocultar el área de documentos en detalle de casos
       hideChangePasswordButtonNote: Establezca esta variable a true para ocultar la opción "Cambiar contraseña" en el menú superior y la opción "Contraseña olvidada" en la página de inicio de sesión. Si se establece en false, estas opciones se mostrarán.
       hideLogoutButtonNote: Cambiar a "true" para ocultar la opción de logout.

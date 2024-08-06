@@ -92,7 +92,7 @@ private static final long serialVersionUID = -5889375917550618261L;
   
   public void initProcesses() {
     String isUserFavoritesEnabledGlobalVariable =
-        GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.ENABLE_USER_FAVORITES);
+        new GlobalSettingService().findGlobalSettingValue(GlobalVariable.ENABLE_USER_FAVORITES);
     isUserFavoritesEnabled = StringUtils.isNotBlank(isUserFavoritesEnabledGlobalVariable) ? Boolean.parseBoolean(isUserFavoritesEnabledGlobalVariable) : true;
     ivyProcesses = findProcesses();
     expressProcesses = findExpressProcesses();

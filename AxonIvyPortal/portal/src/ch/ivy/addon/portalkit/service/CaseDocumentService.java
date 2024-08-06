@@ -114,7 +114,7 @@ public class CaseDocumentService {
   }
 
   public static List<String> getAllowedUploadFileType() {
-    GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
+    GlobalSettingService globalSettingService = new GlobalSettingService();
     GlobalSetting documentSetting =
         globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION);
     if (StringUtils.isBlank(documentSetting.getValue())) {

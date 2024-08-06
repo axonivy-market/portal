@@ -3,7 +3,6 @@ package ch.ivy.addon.portalkit.dto.dashboard.casecolumn;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
@@ -35,8 +34,7 @@ public class CaseColumnModel extends ColumnModel {
         column = new NameColumnModel();
       } else if (DashboardStandardCaseColumn.DESCRIPTION.getField().equalsIgnoreCase(field)) {
         column = new DescriptionColumnModel();
-      } else if (DashboardStandardCaseColumn.CREATOR.getField().equalsIgnoreCase(field)
-          && GlobalSettingService.getInstance().isHideCaseCreator()) {
+      } else if (DashboardStandardCaseColumn.CREATOR.getField().equalsIgnoreCase(field)) {
         column = new CreatorColumnModel();
       } else if (DashboardStandardCaseColumn.STATE.getField().equalsIgnoreCase(field)) {
         column = new StateColumnModel();
