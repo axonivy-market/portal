@@ -219,7 +219,3 @@ Below are the definition of these attributes:
       - ``true``: show the quick search text box.
       - ``false``: hide the quick search text box.
       - ``not defined``: hide the quick search text box.
-
-.. important::
-   - The function can only be used when process widget mode is ``Compact Mode``.
-   - The function identifies all processes whose ``names`` contain the given input.
