@@ -429,6 +429,7 @@ public abstract class TemplatePage extends AbstractPage {
 
   public AbsencePage openAbsencePage() {
     clickUserMenuItem("absence-menu-item");
+    waitForAjaxIndicatorDisplayNone();
     return new AbsencePage();
   }
 

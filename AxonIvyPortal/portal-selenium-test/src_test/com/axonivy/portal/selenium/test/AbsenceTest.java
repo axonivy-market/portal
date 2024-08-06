@@ -99,6 +99,7 @@ public class AbsenceTest extends BaseTest {
   public void testAddDeputyInPermanentToDuringAbsence() {
     login(TestAccount.ADMIN_USER);
     AbsencePage absencePage = openAbsencePage();
+    absencePage.waitPageLoaded();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     List<String> deputyNames = Arrays.asList(TestAccount.CASE_OWNER_USER.getFullName());
     absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_PERMANENT);
