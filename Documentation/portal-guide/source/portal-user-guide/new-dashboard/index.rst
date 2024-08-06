@@ -247,8 +247,8 @@ You can change your custom order by drag and drop the processes. You can enable 
 In view mode, when quick search function is enabled, a text box will appear to allow you to search.
 
   .. important::
-   - Quick search feature can only be used when process widget mode is ``Compact Mode``.
-   - The function supports searching by ``process name``.
+   - Quick search function can only be used when process widget mode is ``Compact Mode``.
+   - Quick search function supports searching by ``process name``.
 
 |process-quick-search-textbox|
 
