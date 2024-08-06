@@ -14,7 +14,7 @@ public class Guide {
   private GlobalSettingService globalSettingService;
 
   public Guide() {
-    globalSettingService = GlobalSettingService.getInstance();
+    globalSettingService = new GlobalSettingService();
     readShowGuideProperty();
   }
 
