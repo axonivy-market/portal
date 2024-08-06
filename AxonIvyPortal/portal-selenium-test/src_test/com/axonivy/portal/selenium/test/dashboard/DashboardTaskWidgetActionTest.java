@@ -18,7 +18,6 @@ import com.codeborne.selenide.ElementsCollection;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-// Note: this test class could be sometimes unstabled
 @IvyWebTest
 public class DashboardTaskWidgetActionTest extends BaseTest {
   static final String DONE = "Done";

@@ -1,4 +1,4 @@
-//Note: don't have any test here, consider to remove it completely
+//Note: don't have any test here, but ProcessViewerTest is using it, don't remove
 package com.axonivy.portal.selenium.test.express;
 
 import java.io.UnsupportedEncodingException;
