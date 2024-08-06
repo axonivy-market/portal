@@ -161,7 +161,7 @@ public class PortalMenuNavigator {
   private record PortalSubMenuItemWrapper(Locale loadedLocale, List<SubMenuItem> portalSubMenuItems) {};
   private static List<SubMenuItem> getSubmenuList() {
     List<SubMenuItem> subMenuItems = new ArrayList<>();
-    GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
+    GlobalSettingService globalSettingService = new GlobalSettingService();
 
     if(PermissionUtils.checkAccessFullProcessListPermission()) {
       subMenuItems.add(new ProcessSubMenuItem());

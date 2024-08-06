@@ -31,7 +31,7 @@ public class ChatRendererBean implements Serializable {
 
   public boolean getIsGroupChatRendered() {
     if (isGroupChatRendered == null) {
-      GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
+      GlobalSettingService globalSettingService = new GlobalSettingService();
       String enableGroupChatCreation = globalSettingService.findGlobalSettingValue(GlobalVariable.ENABLE_GROUP_CHAT);
       if (StringUtils.isBlank(enableGroupChatCreation)) {
         Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext("activateGroupChat()", null);
@@ -45,7 +45,7 @@ public class ChatRendererBean implements Serializable {
   
   public boolean getIsPrivateChatRendered() {
     if (isPrivateChatRendered == null) {
-      GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
+      GlobalSettingService globalSettingService = new GlobalSettingService();
       String enablePrivateChat = globalSettingService.findGlobalSettingValue(GlobalVariable.ENABLE_PRIVATE_CHAT);
       isPrivateChatRendered = Boolean.parseBoolean(enablePrivateChat);
     }

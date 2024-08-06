@@ -2980,7 +2980,7 @@
             "    finishedTasks.add(task);",
             "  }",
             "}",
-            "GlobalSettingService globalSettingService = GlobalSettingService.getInstance();",
+            "GlobalSettingService globalSettingService = new GlobalSettingService();",
             "boolean excludeSystemTasks = globalSettingService.findHideSystemTasksFromHistorySettingValue();",
             "boolean excludeSystemNotes = globalSettingService.findHideSystemNotesFromHistorySettingValue();",
             "",
@@ -3090,7 +3090,7 @@
             "import ch.ivy.addon.portalkit.comparator.NoteComparator;",
             "",
             "ICase iCase = in.taskSelected.getCase().getBusinessCase();",
-            "GlobalSettingService globalSettingService = GlobalSettingService.getInstance();",
+            "GlobalSettingService globalSettingService = new GlobalSettingService();",
             "boolean excludeSystemNotes = globalSettingService.findHideSystemNotesFromHistorySettingValue();",
             "in.notes = CaseUtils.findNotes(iCase, excludeSystemNotes);",
             "in.notes.sort(new NoteComparator());"

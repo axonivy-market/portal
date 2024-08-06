@@ -71,4 +71,3 @@ Portal.SearchScope.ByCaseFields,"NAME,DESCRIPTION,CUSTOM",Defining the fields th
 Portal.SearchScope.ByTaskFields,"NAME,DESCRIPTION",Defining the fields that the global search will use to find matching tasks besides task Id (this can influence the performance of the search).
 Portal.GlobalFooterInfo,"Default",Defining the global environment footer info.
 Portal.GlobalSearchScopeCategories,"PROCESSES,TASKS,CASES",Defining the types that the global search will search for.
-Portal.Cases.HideCaseCreator,FALSE,"Set to true to hide case creator in case list, case widget and case details.This setting affects all case queries, e.g. for case list, global search, statistic."

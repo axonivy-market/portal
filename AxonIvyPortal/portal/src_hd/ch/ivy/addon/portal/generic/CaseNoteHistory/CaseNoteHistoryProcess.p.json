@@ -46,7 +46,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
-            "GlobalSettingService service = GlobalSettingService.getInstance();",
+            "GlobalSettingService service = new GlobalSettingService();",
             "in.showRelatedCaseInfo = in.ivyCase.isBusinessCase() && !service.findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_RELATED_CASE_INFO_FROM_HISTORY);"
           ]
         }
