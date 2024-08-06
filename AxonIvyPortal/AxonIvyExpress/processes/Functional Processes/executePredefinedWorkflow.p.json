@@ -829,7 +829,7 @@
               "code" : [
                 "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
                 "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
-                "String useExpressEndPage = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.EXPRESS_END_PAGE);",
+                "String useExpressEndPage = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.EXPRESS_END_PAGE);",
                 "",
                 "in.useExpressEndPage = useExpressEndPage.isEmpty()? true : Boolean.valueOf(useExpressEndPage);"
               ]

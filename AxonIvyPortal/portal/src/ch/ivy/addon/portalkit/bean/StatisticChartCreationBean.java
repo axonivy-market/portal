@@ -393,7 +393,7 @@ public class StatisticChartCreationBean implements Serializable {
   }
   
   public long getStatisticChartScalingInterval() {
-    String statisticChartScalingInterval = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.STATISTIC_CHART_SCALING_INTERVAL);
+    String statisticChartScalingInterval = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.STATISTIC_CHART_SCALING_INTERVAL);
     return StringUtils.isNotBlank(statisticChartScalingInterval) ? Long.valueOf(statisticChartScalingInterval) : 0;
   }
 
