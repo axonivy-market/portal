@@ -1,27 +1,27 @@
-package com.axonivy.portal.selenium.test;
-
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import com.axonivy.ivy.webtest.IvyWebTest;
-import com.axonivy.portal.selenium.common.BaseTest;
-import com.axonivy.portal.selenium.common.DateTimePattern;
-import com.axonivy.portal.selenium.common.NavigationHelper;
-import com.axonivy.portal.selenium.common.TestAccount;
-import com.axonivy.portal.selenium.page.CaseDetailsPage;
-import com.axonivy.portal.selenium.page.LeaveRequestPage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
-import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
-
 /**
  * Note: these tests failed because the process for LEAVE_REQUEST_START_LINK not working
  * => ask team for the reason then adapt later
  */
+//package com.axonivy.portal.selenium.test;
+//
+//
+//import java.time.LocalDateTime;
+//import java.time.format.DateTimeFormatter;
+//import java.util.Locale;
+//
+//import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.Test;
+//
+//import com.axonivy.ivy.webtest.IvyWebTest;
+//import com.axonivy.portal.selenium.common.BaseTest;
+//import com.axonivy.portal.selenium.common.DateTimePattern;
+//import com.axonivy.portal.selenium.common.NavigationHelper;
+//import com.axonivy.portal.selenium.common.TestAccount;
+//import com.axonivy.portal.selenium.page.CaseDetailsPage;
+//import com.axonivy.portal.selenium.page.LeaveRequestPage;
+//import com.axonivy.portal.selenium.page.TaskWidgetPage;
+//import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
+//
 //@IvyWebTest
 //public class LeaveRequestTest extends BaseTest {
 //  private static final String LEAVE_REQUEST_START_LINK = "portal-user-examples/170321BD7F5539D6/start.ivp";

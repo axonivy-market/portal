@@ -1,7 +1,5 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
-import static com.axonivy.portal.selenium.common.Variable.DEEPL_AUTH_KEY;
-import static com.axonivy.portal.selenium.common.Variable.ENABLE_DEEPL_TRANSLATION;
 import static com.codeborne.selenide.CollectionCondition.size;
 
 import org.junit.jupiter.api.AfterEach;
@@ -44,8 +42,6 @@ public class DashboardNewsWidgetTest extends BaseTest {
     super.setup();
     newDashboardPage = new NewDashboardPage();
     resetLanguageOfCurrentUser();
-    updatePortalSetting(ENABLE_DEEPL_TRANSLATION.getKey(), "true");
-    updatePortalSetting(DEEPL_AUTH_KEY.getKey(), "deepLAuthKey");
   }
 
   @Test
@@ -63,27 +59,24 @@ public class DashboardNewsWidgetTest extends BaseTest {
     newsWidget.expand().shouldHave(size(1));
   }
 
+  /**
+   * Note: this test is copied from the removed test outside of the package with the same name
+   * original part of this has something related to DeepL translation for multiple languages
+   * which I think only available on LE
+   */
   @Test
   public void testAddNewsItemToWidget() {
-    int newsItemIndex = 0;
-    newsWidget = loginAsAdminAndPreDashboard();
-    newsWidget.openAddNewsFeedItemDialog();
-    newsWidget.enterNewsItemData(NEWS_ITEM_LANG, NEWS_ITEM_ICON, NEWS_ITEM_TITLE, NEWS_ITEM_CONTENT);
-
-    var tabIndex = newsWidget.selectNewsLanguage("fr");
-    newsWidget.clickOnTitle(tabIndex);
-//    Note: translation stuff
-//    SelenideElement translation = newsWidget.getTranslationOverlayPanel(1);
-//    translation.$("span.ui-icon-closethick").click();
-//    newsWidget.findTranslationButton(tabIndex);
-
-    newsWidget.clickOnCancelAddingNewsItem();
-    newsWidget.getNewsEmptyMessage().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    publishSampleNewsFeed(NEWS_ITEM_LANG);
-    newsWidget.getTotalNewsItem().shouldHave(CollectionCondition.size(1));
-    newsWidget.getNewsItemIcon(newsItemIndex).shouldHave(Condition.cssClass(NEWS_ITEM_ICON));
-    newsWidget.getNewsItemTitle(newsItemIndex).shouldHave(Condition.text(NEWS_ITEM_TITLE));
-    newsWidget.getNewsItemContent(newsItemIndex).shouldHave(Condition.text(NEWS_ITEM_CONTENT));
+  int newsItemIndex = 0;
+  newsWidget = loginAsAdminAndPreDashboard();
+  newsWidget.openAddNewsFeedItemDialog();
+  newsWidget.enterNewsItemData(NEWS_ITEM_LANG, NEWS_ITEM_ICON, NEWS_ITEM_TITLE, NEWS_ITEM_CONTENT);
+  newsWidget.clickOnCancelAddingNewsItem();
+  newsWidget.getNewsEmptyMessage().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  publishSampleNewsFeed(NEWS_ITEM_LANG);
+  newsWidget.getTotalNewsItem().shouldHave(CollectionCondition.size(1));
+  newsWidget.getNewsItemIcon(newsItemIndex).shouldHave(Condition.cssClass(NEWS_ITEM_ICON));
+  newsWidget.getNewsItemTitle(newsItemIndex).shouldHave(Condition.text(NEWS_ITEM_TITLE));
+  newsWidget.getNewsItemContent(newsItemIndex).shouldHave(Condition.text(NEWS_ITEM_CONTENT));
   }
 
   @Test
@@ -149,7 +142,7 @@ public class DashboardNewsWidgetTest extends BaseTest {
       tabIndexFr = newsWidget.selectNewsLanguage("fr");
       newsWidget.clickOnTitle(tabIndexFr);
     }
-//    Note: I think the translation part don't exist in release 10, come back later
+//    Note: related to multiple languages of DeepL
 //    SelenideElement translation = newsWidget.getTranslationOverlayPanel(1);
 //    translation.$("span.ui-icon-closethick").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
 //    newsWidget.findTranslationButton(tabIndexFr);

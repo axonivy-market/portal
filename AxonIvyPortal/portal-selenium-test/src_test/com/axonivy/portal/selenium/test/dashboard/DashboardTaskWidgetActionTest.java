@@ -73,7 +73,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   }
 
   @Test
-  public void testVisibilityTaskAcionFordminUser() {
+  public void testVisibilityTaskActionForAdminUser() {
     login(TestAccount.ADMIN_USER);
     createTasksForTesting();
 

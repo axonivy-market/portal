@@ -256,37 +256,36 @@ public class DashboardCaseWidgetTest extends BaseTest {
     dashboardPage.isDownloadCompleted();
   }
 
-//  Note: consider to remove since PortalTest don't have it
-//  @Test
-//  public void testCustomActionButton() {
-//    login(TestAccount.ADMIN_USER);
-//    redirectToNewDashBoard();
-//    newDashboardPage = new NewDashboardPage();
-//
-//    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
-//    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
-//    var modificationPage = configurationPage.openEditPublicDashboardsPage();
-//    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-//    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
-//    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
-//    caseEditWidget.preview();
-//    caseEditWidget.openColumnManagementDialog();
-//
-//    caseEditWidget.removeAddedField("id");
-//
-//    caseEditWidget.selectCustomType();
-//    String customColumn = caseEditWidget.addCustomColumnByName("DestroyCaseAction");
-//    caseEditWidget.getCustomField(customColumn).shouldNotBe(Condition.exist);
-//    caseEditWidget.saveColumn();
-//    caseEditWidget.save();
-//
-//    redirectToNewDashBoard();
-//    redirectToRelativeLink(createCustomActionCaseExampleUrl);
-//
-//    caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
-//    caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-//    caseWidget.clickOnCustomActionButton(0, customColumn);
-//    caseWidget.stateOfFirstCase().shouldHave(text("Destroyed"));
-//
-//  }
+  /**
+   *  Note: remove testCustomActionButton because not on LTS, just for LE
+   *  
+   *  This test moved from the redundant into this
+   */
+  @Test
+  public void testCaseReadAllOwnRoleInvolved() {
+    redirectToRelativeLink(createTaskForRoleInvolved);
+    login(TestAccount.HR_ROLE_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForTaskListDisplay();
+
+    TaskWidgetNewDashBoardPage taskWidget = dashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget.startFirstTask();
+    taskWidget.waitForPageLoad();
+
+    login(TestAccount.HR_ROLE_USER_2);
+    redirectToRelativeLink(grantCaseReadAllOwnRoleInvolvedPermission);
+    redirectToNewDashBoard();
+    dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForDashboardPageAvailable();
+    CaseWidgetNewDashBoardPage caseWidget = dashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    caseWidget.countCases("Test Process: role involved").shouldHave(size(1), DEFAULT_TIMEOUT);
+
+    redirectToRelativeLink(denyCaseReadAllOwnRoleInvolvedPermission);
+    redirectToNewDashBoard();
+    dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForDashboardPageAvailable();
+    caseWidget = dashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    assertTrue(caseWidget.isEmptyMessageAppear());
+  }
 }

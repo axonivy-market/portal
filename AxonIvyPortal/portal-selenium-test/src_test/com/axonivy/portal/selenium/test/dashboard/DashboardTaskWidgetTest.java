@@ -42,7 +42,6 @@ public class DashboardTaskWidgetTest extends BaseTest {
   private static final String TASK_PRIORITY = "Prio";
   private static final String EXPIRY = "Expiry";
   private static final String IN_PROGRESS = "In progress";
-  private static final String OPEN = "Open";
   private static final String SUSPENDED = "Suspended";
 
   private NewDashboardPage newDashboardPage;

@@ -1,4 +1,4 @@
-//Note: maybe don't have feature on LTS, check later
+//Note: this test is on LE only
 //package com.axonivy.portal.selenium.test;
 //
 //import org.junit.jupiter.api.BeforeEach;
