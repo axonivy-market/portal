@@ -39,6 +39,7 @@ public class ProcessDashboardWidget extends DashboardWidget {
     criteria = new DashboardProcessSearchCriteria();
     setShowFullscreenMode(true);
     setShowWidgetInfo(true);
+    setEnableQuickSearch(true);
   }
 
   public ProcessDashboardWidget(ProcessDashboardWidget widget) {
