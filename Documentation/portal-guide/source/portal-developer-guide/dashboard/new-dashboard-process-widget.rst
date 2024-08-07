@@ -84,7 +84,8 @@ Below is a standard JSON definition of a Process widget in compact mode
          },
          "processPaths": ["designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp", "designer/portal-developer-examples/Start Processes/Request/collectDataRequest.ivp"],
          "categories": ["/Categories/Showcase/Customized", "/Categories/Showcase/PortalDialogExample"],
-         "sorting": "SORTING_INDEX"
+         "sorting": "SORTING_INDEX",
+         "enableQuickSearch": true
       }
    ..
 
@@ -105,6 +106,14 @@ processes by default.
    If you want to order processes by Index, you must define a custom field name ``portalSortIndex`` with numeric value in process start.
 
    |dashboard-process-sort-index|
+
+``enableQuickSearch``: enable the quick search feature for the widget.
+
+      Valid values:
+
+      - ``true``: show the quick search text box.
+      - ``false``: hide the quick search text box.
+      - ``not defined``: hide the quick search text box.
 
 Combined Mode
 -------------
@@ -183,39 +192,3 @@ Below is a standard JSON definition of the Process widget in image mode
    ..
 
 .. |dashboard-process-sort-index| image:: images/new-dashboard-process-widget/process-sort-index.png
-
-Quick Search
-------------
-
-Quick search is a useful function for users to search quickly on the process widget. There is an attribute:
-
-   - ``enableQuickSearch``: enable the quick search feature for the widget.
-
-If you want to use the quick search function, set the attribute ``enableQuickSearch`` to ``true``. Otherwise, ``false`` value will deactivate the function.
-
-Below are the definition of these attributes:
-
-   - ``enableQuickSearch``: to enable/disable the quick search feature, set the ``enableQuickSearch`` field of the process widget as shown below.
-
-      .. code-block:: html
-      
-         {
-            ...
-
-            "type": "compact-process",
-            "id": "process_98ae4fc1c83f4f2e32rw44c8027ecf40"
-            
-            ...
-
-            "enableQuickSearch": "true",
-            
-            ...
-         }
-
-      ..
-
-      Valid values:
-
-      - ``true``: show the quick search text box.
-      - ``false``: hide the quick search text box.
-      - ``not defined``: hide the quick search text box.
