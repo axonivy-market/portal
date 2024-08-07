@@ -33,13 +33,11 @@ public class ProcessDashboardWidget extends DashboardWidget {
   protected DashboardProcessSearchCriteria criteria;
   private boolean showFullscreenMode;
   private boolean showWidgetInfo;
-  private boolean enableQuickSearch;
 
   public ProcessDashboardWidget() {
     criteria = new DashboardProcessSearchCriteria();
     setShowFullscreenMode(true);
     setShowWidgetInfo(true);
-    setEnableQuickSearch(true);
   }
 
   public ProcessDashboardWidget(ProcessDashboardWidget widget) {
@@ -49,7 +47,6 @@ public class ProcessDashboardWidget extends DashboardWidget {
     isPreview = widget.isPreview();
     showFullscreenMode = widget.showFullscreenMode;
     showWidgetInfo = widget.showWidgetInfo;
-    setEnableQuickSearch(widget.enableQuickSearch);
   }
 
   @Override
@@ -147,13 +144,5 @@ public class ProcessDashboardWidget extends DashboardWidget {
   @Override
   public void setQuickSearchKeyword() {
     this.criteria.setQuickSearchKeyword(this.getQuickSearchKeyword());
-  }
-
-  public boolean isEnableQuickSearch() {
-    return enableQuickSearch;
-  }
-
-  public void setEnableQuickSearch(boolean enableQuickSearch) {
-    this.enableQuickSearch = enableQuickSearch;
   }
 }
