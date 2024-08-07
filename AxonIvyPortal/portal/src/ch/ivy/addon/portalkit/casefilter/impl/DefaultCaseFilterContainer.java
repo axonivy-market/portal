@@ -24,10 +24,8 @@ public class DefaultCaseFilterContainer extends CaseFilterContainer {
     filters.add(idFilter);
     filters.add(nameFilter);
     filters.add(caseCreationDateFilter);
-    if (!GlobalSettingService.getInstance().isHideCaseCreator()) {
-      filters.add(caseCreatorFilter);
-    }
-    if (GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
+    filters.add(caseCreatorFilter);
+    if (new GlobalSettingService().isCaseOwnerEnabled()) {
       filters.add(caseOwnerFilter);
     }
     filters.add(caseDescriptionFilter);
