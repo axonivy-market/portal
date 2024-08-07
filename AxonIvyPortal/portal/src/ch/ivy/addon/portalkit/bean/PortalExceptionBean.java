@@ -80,7 +80,7 @@ public class PortalExceptionBean implements Serializable {
   }
 
   public boolean getIsShowErrorLogToConsole() {
-    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_ERROR_LOG_TO_CONSOLE);
+    return new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_ERROR_LOG_TO_CONSOLE);
   }
 
 }

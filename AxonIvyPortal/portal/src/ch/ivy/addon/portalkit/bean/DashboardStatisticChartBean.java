@@ -54,7 +54,7 @@ public class DashboardStatisticChartBean implements Serializable {
   }
 
   public void initSettings() {
-    var chartScalingSetting = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.STATISTIC_CHART_SCALING_INTERVAL);
+    var chartScalingSetting = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.STATISTIC_CHART_SCALING_INTERVAL);
     statisticChartScalingInterval = StringUtils.isNotBlank(chartScalingSetting) ? Long.valueOf(chartScalingSetting) : 0;
     isRenderedRefreshChartPoll = statisticChartScalingInterval > StatisticChartCreationBean.MINIMUM_STATISTIC_CHART_SCALING_INTERVAL
             && !Ivy.session().isSessionUserUnknown();

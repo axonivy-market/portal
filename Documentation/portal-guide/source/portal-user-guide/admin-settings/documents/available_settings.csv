@@ -78,4 +78,3 @@ Portal.UserMenu.BaseQRCodeUrl,"",Set Base URL for QR code to display.
 Portal.UserMenu.AppleStoreURL,"",Set URL to download Axon Ivy mobile app on Apple Store.
 Portal.UserMenu.GooglePlayURL,"",Set URL to download Axon Ivy mobile app on Google Play.
 Portal.GlobalSearchScopeCategories,"PROCESSES,TASKS,CASES",Defining the types that the global search will search for.
-Portal.Cases.HideCaseCreator,FALSE,"Set to true to hide case creator in case list, case widget and case details.This setting affects all case queries, e.g. for case list, global search, statistic."
