@@ -32,13 +32,13 @@ public class UploadDocumentUtils {
   }
 
   public static boolean enableVirusScannerForUploadedDocument() {
-    GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
+    GlobalSettingService globalSettingService = new GlobalSettingService();
     return globalSettingService
         .findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT);
   }
 
   public static boolean enableScriptCheckingForUploadedDocument() {
-    GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
+    GlobalSettingService globalSettingService = new GlobalSettingService();
     String enableScriptCheckingForUploadedDocument =
         globalSettingService.findGlobalSettingValue(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT);
     return Boolean.parseBoolean(enableScriptCheckingForUploadedDocument);

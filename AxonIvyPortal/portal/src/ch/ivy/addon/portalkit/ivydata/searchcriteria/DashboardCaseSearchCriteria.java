@@ -204,8 +204,7 @@ public class DashboardCaseSearchCriteria {
     }
 
     private void appendSortByCreatorIfSet(DashboardCaseSearchCriteria criteria) {
-      if (DashboardStandardCaseColumn.CREATOR.getField().equalsIgnoreCase(criteria.getSortField())
-          && !GlobalSettingService.getInstance().isHideCaseCreator()) {
+      if (DashboardStandardCaseColumn.CREATOR.getField().equalsIgnoreCase(criteria.getSortField())) {
         order = query.orderBy().creatorUserDisplayName();
         sortStandardColumn = true;
       }
