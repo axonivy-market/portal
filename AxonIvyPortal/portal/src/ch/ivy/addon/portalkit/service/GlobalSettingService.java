@@ -11,8 +11,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.configuration.GlobalSetting;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.enums.ProcessMode;
 import ch.ivy.addon.portalkit.enums.GlobalVariable.Option;
+import ch.ivy.addon.portalkit.enums.ProcessMode;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
@@ -22,7 +22,7 @@ public class GlobalSettingService {
 
   private static GlobalSettingService instance;
 
-  private GlobalSettingService() {
+  public GlobalSettingService() {
   }
 
   public static GlobalSettingService getInstance() {
