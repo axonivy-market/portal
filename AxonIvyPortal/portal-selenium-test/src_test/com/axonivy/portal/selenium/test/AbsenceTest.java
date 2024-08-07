@@ -158,6 +158,7 @@ public class AbsenceTest extends BaseTest {
   private AbsencePage openAbsencePage() {
     redirectToNewDashBoard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForDashboardPageAvailable();
     return newDashboardPage.openAbsencePage();
   }
 
