@@ -1234,7 +1234,7 @@
             "import javax.faces.context.FacesContext;",
             "import ch.ivy.addon.portalkit.service.AnnouncementService;",
             "AnnouncementService service = AnnouncementService.getInstance();",
-            "service.save(in.announcement);",
+            "service.saveValueChangeAnnouncement(in.announcement);",
             "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ",
             "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled\"), null));"
           ]
