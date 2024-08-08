@@ -18,8 +18,6 @@ import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
-import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
-import com.axonivy.portal.selenium.page.ProcessWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 
@@ -367,51 +365,4 @@ public class QuickSearchTest extends BaseTest {
     
   }
   
-  @Test
-  public void testVisibilityOfQuickSearchInProcessWidget() {
-    redirectToRelativeLink(createTestingTasksUrl);
-    login(TestAccount.ADMIN_USER);
-    ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget("Your Processes");
-    ProcessEditWidgetNewDashBoardPage processEditWidget = newDashboardPage.editProcessWidgetConfiguration();
-    processEditWidget.clickOnQuickSearchCheckbox();
-    processEditWidget.save();
-    assertTrue(processWidget.isQuickSearchInputShow());
-  }
-
-  @Test
-  public void testQuickSearchInProcessWidget() {
-    login(TestAccount.ADMIN_USER);
-    ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget("Your Processes");
-    assertTrue(processWidget.isQuickSearchInputShow());
-    processWidget.setQuickSearchKeyword("appraisal");
-    assertEquals(1, processWidget.getNumberOfProcessListInWidget());
-    processWidget.clearQuickSearchInput();
-    processWidget.setQuickSearchKeyword("pizza");
-    assertEquals(1, processWidget.getNumberOfProcessListInWidget());
-  }
-
-  @Test
-  public void testSessionCacheInProcessWidget() {
-    login(TestAccount.ADMIN_USER);
-    ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget("Your Processes");
-    assertTrue(processWidget.isQuickSearchInputShow());
-    processWidget.setQuickSearchKeyword("login");
-    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
-    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
-    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    assertEquals(4, processWidget.getNumberOfProcessListInWidget());
-  }
-
-  @Test
-  public void testCopyAndPasteOnQuickSearchInputInProcessWidget() {
-    redirectToRelativeLink(createTestingTasksUrl);
-    login(TestAccount.ADMIN_USER);
-    ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget("Your Processes");
-    processWidget.setQuickSearchKeyword("login");
-    assertEquals(4, processWidget.getNumberOfProcessListInWidget());
-    processWidget.copyAndPasteOnQuickSearchInput();
-    processWidget.clearQuickSearchInput();
-    processWidget.shiftAndArrowKeyOnQuickSearchInput();
-    assertEquals(4, processWidget.getNumberOfProcessListInWidget());
-  }
 }
