@@ -31,6 +31,7 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
   private List<DashboardProcess> originalDisplayProcesses;
   @JsonIgnore
   private List<DashboardProcess> processes;
+  private boolean enableQuickSearch;
 
   public CompactProcessDashboardWidget(CompactProcessDashboardWidget widget) {
     super(widget);
@@ -43,6 +44,7 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
     processes = widget.getProcesses();
     sorting = widget.getSorting();
     customIndexs = widget.getCustomIndexs();
+    setEnableQuickSearch(widget.enableQuickSearch);
   }
 
   public CompactProcessDashboardWidget(ProcessDashboardWidget widget) {
@@ -58,6 +60,7 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
     setDisplayMode(ProcessWidgetMode.COMPACT_MODE);
     filterableColumns = new ArrayList<>();
     processes = new ArrayList<>();
+    setEnableQuickSearch(true);
   }
 
   public List<DashboardProcess> getDisplayProcesses() {
@@ -162,5 +165,13 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
 
   public void setCustomIndexs(Map<String, Integer> customIndexs) {
     this.customIndexs = customIndexs;
+  }
+
+  public boolean isEnableQuickSearch() {
+    return enableQuickSearch;
+  }
+
+  public void setEnableQuickSearch(boolean enableQuickSearch) {
+    this.enableQuickSearch = enableQuickSearch;
   }
 }
