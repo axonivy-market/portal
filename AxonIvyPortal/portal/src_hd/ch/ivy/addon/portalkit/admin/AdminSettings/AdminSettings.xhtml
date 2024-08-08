@@ -144,6 +144,7 @@
               icon="#{visibilityBean.generateButtonIcon('si si-delete')}"
               disabled="#{not data.isAnnouncementActivated}"
               update="#{cc.clientId}:adminTabView:announcement-validation-messages action-group"
+              styleClass="u-mar-right-5"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/disable')}">
             </p:commandButton>
             <p:commandButton id="save-changes-announcement"
