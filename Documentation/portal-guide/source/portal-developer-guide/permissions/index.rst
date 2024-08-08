@@ -12,6 +12,9 @@ Portal Task Permissions
 - _`TaskReadAll`
     - Permission to see all tasks
 
+- _`SystemTaskReadAll`
+    - Permission to see system tasks
+
 - _`TaskReadOwnCaseTasks`
     - Permission to see related tasks
 
