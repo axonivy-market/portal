@@ -452,10 +452,4 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   public void clickOnWidgetInfoIconCheckbox() {
     getWidgetInfoIconCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
-
-  public void clickOnQuickSearchCheckbox() {
-    getConfigurationFilterContainer().$("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("div[id$='quick-search']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-  }
-
 }
