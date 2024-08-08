@@ -22,7 +22,7 @@ public class GlobalSettingService {
 
   private static GlobalSettingService instance;
 
-  private GlobalSettingService() {
+  public GlobalSettingService() {
   }
 
   public static GlobalSettingService getInstance() {
