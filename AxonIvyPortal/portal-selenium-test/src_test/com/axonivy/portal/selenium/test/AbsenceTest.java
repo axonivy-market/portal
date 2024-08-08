@@ -97,16 +97,14 @@ public class AbsenceTest extends BaseTest {
 
   @Test
   public void testAddDeputyInPermanentToDuringAbsence() {
-    login(TestAccount.ADMIN_USER);
     /**
-     * Note: I see some blank screen
-     * google around and they said it could be because many redirect
-     * so we need to wait a little bit between pages
-     * 2 line below is just for waiting purpose to make it a little bit stable
+     * This test so unstable so I make it independent with all functions inside this class
      */
+    redirectToNewDashBoard();
+    login(TestAccount.ADMIN_USER);
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForDashboardPageAvailable();
-    AbsencePage absencePage = openAbsencePage();
+    AbsencePage absencePage = newDashboardPage.openAbsencePage();
     absencePage.waitPageLoaded();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     List<String> deputyNames = Arrays.asList(TestAccount.CASE_OWNER_USER.getFullName());
