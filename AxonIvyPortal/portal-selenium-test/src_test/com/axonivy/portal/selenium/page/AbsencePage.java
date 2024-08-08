@@ -102,7 +102,6 @@ public class AbsencePage extends TemplatePage {
     }
     if (saveSelectedDeputies) {
       $("[id='deputy-selection-form:save-deputy-button']").shouldBe(getClickableCondition()).click();
-      waitForAjaxIndicatorDisplayNone();
       $(By.id("choose-deputy-dialog")).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
     }
   }
@@ -116,9 +115,8 @@ public class AbsencePage extends TemplatePage {
     String deputiesSelector =
         String.format("a[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
     $(deputiesSelector).shouldBe(appear, DEFAULT_TIMEOUT);
-    waitForElementClickableThenClick(deputiesSelector);
+    $(deputiesSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $(By.id("choose-deputy-dialog")).shouldBe(appear, DEFAULT_TIMEOUT);
-    waitForAjaxIndicatorDisplayNone();
   }
 
   private void selectDeputy(String responsible) {
@@ -129,7 +127,7 @@ public class AbsencePage extends TemplatePage {
     SelenideElement selectionPanel = $(By.id("deputy-selection-form:user-selection-component:user-selection_panel"));
     selectionPanel.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     selectionPanel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
-    waitForElementClickableThenClick("[id$='deputy-selection-form:add-deputy-button']");
+    $("[id$='deputy-selection-form:add-deputy-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public String getChooseDeputyDialogError() {
@@ -142,8 +140,7 @@ public class AbsencePage extends TemplatePage {
     SelenideElement substituted = $(selectedUserInput).shouldBe(appear, DEFAULT_TIMEOUT);
     substituted.clear();
     substituted.sendKeys(substitutedUser);
-    waitForElementClickableThenClick(
-        "[id='absences-management-form:user-absence-selection-component:user-absence_panel']");
+    $("[id='absences-management-form:user-absence-selection-component:user-absence_panel']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public String getSubstitutedByAdmin(int rowIndex) {
