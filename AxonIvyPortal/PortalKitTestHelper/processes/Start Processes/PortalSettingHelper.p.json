@@ -97,7 +97,8 @@
       "config" : {
         "callSignature" : "setLanguageOfCurrentUserToGerman",
         "outLink" : "setLanguageOfCurrentUserToGerman.ivp",
-        "startName" : "Set language of current user to German"
+        "startName" : "Set language of current user to German",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 296 },
