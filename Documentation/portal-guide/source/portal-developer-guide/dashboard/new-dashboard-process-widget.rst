@@ -66,7 +66,7 @@ understand how to define the process widget in these modes properly.
 Compact Mode
 ------------
 
-Below is a standard JSON definition of aProcess widget in compact mode
+Below is a standard JSON definition of a Process widget in compact mode
 
    .. code-block:: html
 
@@ -84,7 +84,8 @@ Below is a standard JSON definition of aProcess widget in compact mode
          },
          "processPaths": ["designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp", "designer/portal-developer-examples/Start Processes/Request/collectDataRequest.ivp"],
          "categories": ["/Categories/Showcase/Customized", "/Categories/Showcase/PortalDialogExample"],
-         "sorting": "SORTING_INDEX"
+         "sorting": "SORTING_INDEX",
+         "enableQuickSearch": true
       }
    ..
 
@@ -105,6 +106,14 @@ processes by default.
    If you want to order processes by Index, you must define a custom field name ``portalSortIndex`` with numeric value in process start.
 
    |dashboard-process-sort-index|
+
+``enableQuickSearch``: enable the quick search feature for the widget.
+
+      Valid values:
+
+      - ``true``: show the quick search text box.
+      - ``false``: hide the quick search text box.
+      - ``not defined``: hide the quick search text box.
 
 Combined Mode
 -------------
