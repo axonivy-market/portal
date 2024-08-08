@@ -20,8 +20,7 @@
             "out.settingValue" : "param.settingValue"
           }
         },
-        "outLink" : "updatePortalSetting.ivp",
-        "case" : { }
+        "outLink" : "updatePortalSetting.ivp"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
@@ -46,7 +45,7 @@
             "import ch.ivy.addon.portalkit.configuration.GlobalSetting;",
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
             "",
-            "GlobalSettingService globalSettingService = new GlobalSettingService();",
+            "GlobalSettingService globalSettingService = GlobalSettingService.getInstance();",
             "GlobalSetting globalSetting = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.valueOfKey(in.settingName));",
             "globalSetting.setValue(in.settingValue);",
             "globalSettingService.save(globalSetting);"
@@ -64,8 +63,7 @@
       "name" : "cleanSessionCache.ivp",
       "config" : {
         "callSignature" : "cleanSessionCache",
-        "outLink" : "cleanSessionCache.ivp",
-        "case" : { }
+        "outLink" : "cleanSessionCache.ivp"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 192 },
@@ -99,8 +97,7 @@
       "config" : {
         "callSignature" : "setLanguageOfCurrentUserToGerman",
         "outLink" : "setLanguageOfCurrentUserToGerman.ivp",
-        "startName" : "Set language of current user to German",
-        "case" : { }
+        "startName" : "Set language of current user to German"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 296 },
