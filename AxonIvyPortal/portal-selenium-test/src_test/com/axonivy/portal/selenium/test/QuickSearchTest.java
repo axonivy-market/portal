@@ -264,7 +264,7 @@ public class QuickSearchTest extends BaseTest {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditCaseWidget();
 
     caseEditWidget.clickOnQuickSearchCheckBox();
     caseEditWidget.save();
@@ -275,7 +275,7 @@ public class QuickSearchTest extends BaseTest {
     caseWidget.countAllCases().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
     caseWidget.clearQuickSearchInput();
 
-    caseWidget.openEditWidget();
+    caseWidget.openEditCaseWidget();
     caseEditWidget.clickOnQuickSearchCheckBox();
     caseEditWidget.save();
     assertFalse(caseWidget.isQuickSearchInputShow("0"));
@@ -292,7 +292,7 @@ public class QuickSearchTest extends BaseTest {
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     ScreenshotUtils.maximizeBrowser();
-    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditCaseWidget();
     caseEditWidget.openColumnManagementDialog();
 
     assertTrue(caseEditWidget.isQuickSearchClicked("name"));
@@ -310,7 +310,7 @@ public class QuickSearchTest extends BaseTest {
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     ScreenshotUtils.maximizeBrowser();
-    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditCaseWidget();
     caseEditWidget.clickOnQuickSearchCheckBox();
     caseEditWidget.openColumnManagementDialog();
     assertTrue(caseEditWidget.isQuickSearchClicked("name"));
@@ -351,7 +351,7 @@ public class QuickSearchTest extends BaseTest {
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     ScreenshotUtils.maximizeBrowser();
 
-    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditCaseWidget();
     caseEditWidget.clickOnQuickSearchCheckBox();
     caseEditWidget.save();
 
@@ -379,7 +379,7 @@ public class QuickSearchTest extends BaseTest {
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     ScreenshotUtils.maximizeBrowser();
-    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditCaseWidget();
     caseEditWidget.clickOnQuickSearchCheckBox();
     caseEditWidget.openColumnManagementDialog();
 

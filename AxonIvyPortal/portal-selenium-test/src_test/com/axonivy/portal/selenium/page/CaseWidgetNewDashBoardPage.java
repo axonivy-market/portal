@@ -116,15 +116,14 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     $$("div.table-widget-panel div.widget__header").filter(text(caseWidgetName)).first()
         .shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='edit-widget']")
         .shouldBe(getClickableCondition()).click();
-    /**
-     * Note: make sure after clicking, the CaseEditWidgetNewDashBoardPage have enough time
-     * to render - fix: testCaseQuickSearchStandardFields since the
-     * function clickOnQuickSearchCheckBox not work properly
-     */
-    waitForAjaxIndicatorDisplayNone();
-    CaseEditWidgetNewDashBoardPage caseEditWidgetNewDashBoardPage = new CaseEditWidgetNewDashBoardPage();
-    caseEditWidgetNewDashBoardPage.waitForPageLoad();
-    return caseEditWidgetNewDashBoardPage;
+    return new CaseEditWidgetNewDashBoardPage();
+  }
+
+  public CaseEditWidgetNewDashBoardPage openEditCaseWidget() {
+    $("div.case-dashboard-widget__panel").shouldBe(appear, DEFAULT_TIMEOUT).
+    $("div[id$='widget-header-actions']").$("[id*='edit-widget']")
+        .shouldBe(getClickableCondition()).click();
+    return new CaseEditWidgetNewDashBoardPage();
   }
 
   private SelenideElement getFilterInput(String inputField) {
