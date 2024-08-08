@@ -1317,19 +1317,6 @@
         "at" : { "x" : 1248, "y" : 1184 }
       }
     }, {
-      "id" : "f28",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "saveChangesAnnouncement()",
-      "config" : {
-        "callSignature" : "saveChangesAnnouncement",
-        "guid" : "19106F30EBA7B3C8"
-      },
-      "visual" : {
-        "at" : { "x" : 728, "y" : 1376 },
-        "labelOffset" : { "x" : 19, "y" : -13 }
-      },
-      "connect" : { "id" : "f78", "to" : "f38" }
-    }, {
       "id" : "f38",
       "type" : "Script",
       "name" : "save changes",
@@ -1341,7 +1328,7 @@
             "import javax.faces.context.FacesContext;",
             "import ch.ivy.addon.portalkit.service.AnnouncementService;",
             "AnnouncementService service = AnnouncementService.getInstance();",
-            "service.save(in.announcement);",
+            "service.saveValueChangeAnnouncement(in.announcement);",
             "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ",
             "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled\"), null));"
           ]
@@ -1350,7 +1337,24 @@
       "visual" : {
         "at" : { "x" : 728, "y" : 1472 }
       },
-      "connect" : { "id" : "f46", "to" : "f16", "via" : [ { "x" : 728, "y" : 1568 } ] }
+      "connect" : [
+        { "id" : "f78", "to" : "f16", "via" : [ { "x" : 728, "y" : 1568 } ] }
+      ]
+    }, {
+      "id" : "f28",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "saveChangesAnnouncement()",
+      "config" : {
+        "signature" : "saveChangesAnnouncement",
+        "guid" : "19131B2C06569468"
+      },
+      "visual" : {
+        "at" : { "x" : 728, "y" : 1376 },
+        "labelOffset" : { "x" : 11, "y" : -13 }
+      },
+      "connect" : [
+        { "id" : "f46", "to" : "f38" }
+      ]
     } ],
   "layout" : {
     "lanes" : [ {
