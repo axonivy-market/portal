@@ -601,7 +601,7 @@ public class DashboardWidgetUtils {
     List<DashboardProcess> processes = getCompactProcesses(processWidget);
     processWidget.setDisplayProcesses(processes);
     processWidget.setOriginalDisplayProcesses(processes);
-    if (!processWidget.getCriteria().isInConfiguration() || processWidget.isEnableQuickSearch()) {
+    if (!processWidget.getCriteria().isInConfiguration()) {
       processWidget.filterProcessesByUser();
     }
   }

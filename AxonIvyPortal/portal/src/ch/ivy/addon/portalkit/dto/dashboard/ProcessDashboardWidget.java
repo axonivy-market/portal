@@ -140,9 +140,4 @@ public class ProcessDashboardWidget extends DashboardWidget {
   public boolean isShowWidgetInfo() {
     return showWidgetInfo;
   }
-
-  @Override
-  public void setQuickSearchKeyword() {
-    this.criteria.setQuickSearchKeyword(this.getQuickSearchKeyword());
-  }
 }
