@@ -64,7 +64,7 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   }
 
   private void selectLeaveType(String leaveType) {
-    waitForElementClickableThenClick("#leave-request\\:leave-type_label");
+    $("#leave-request\\:leave-type_label").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     String leaveTypeSelector = "li[data-label='" + leaveType + "']";
     $(leaveTypeSelector).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $(leaveTypeSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();

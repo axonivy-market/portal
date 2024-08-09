@@ -113,6 +113,7 @@ public class LeaveRequestTest extends BaseTest {
   private LeaveRequestPage startLeaveRequestProcess() {
     redirectToRelativeLinkWithEmbedInFrame(LEAVE_REQUEST_START_LINK);
     leaveRequestPage = new LeaveRequestPage();
+    leaveRequestPage.waitForPageLoad();
     leaveRequestPage.switchToIFrameOfTask();
     return leaveRequestPage;
   }
