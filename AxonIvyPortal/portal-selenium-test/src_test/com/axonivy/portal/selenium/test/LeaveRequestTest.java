@@ -51,7 +51,6 @@ public class LeaveRequestTest extends BaseTest {
   @Test
   public void testApproveScenario() {
     leaveRequestPage = startLeaveRequestProcess();
-//    assertEquals("Create leave request", leaveRequestPage.getPageTitle());
     String today =
         LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
     String yesterday = LocalDateTime.now().minusDays(1)
@@ -65,7 +64,6 @@ public class LeaveRequestTest extends BaseTest {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.startTask(0);
     taskWidgetPage.switchToIFrameOfTask();
-//    leaveRequestPage.assertPageTitle("Approval");
     leaveRequestPage.enterApproverComment("Approved");
     leaveRequestPage.clickApproveBtn();
     leaveRequestPage.clickOnLogout();
@@ -73,8 +71,7 @@ public class LeaveRequestTest extends BaseTest {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy("Your leave request is approved");
     taskWidgetPage.startTask(0);
-    taskWidgetPage.switchToIFrameOfTask();
-//    leaveRequestPage.assertPageTitle("Approval Result");
+    taskWidgetPage.switchToIFrameOfTaskWithWaitHelper();
     UserExamplesEndPage userExamplesEndPage = leaveRequestPage.finishLeaveRequest();
     userExamplesEndPage.switchToDefaultContent();
     CaseDetailsPage caseDetailsPage = userExamplesEndPage.goToCaseDetail();
@@ -84,7 +81,6 @@ public class LeaveRequestTest extends BaseTest {
   @Test
   public void testRejectScenario() {
     leaveRequestPage = startLeaveRequestProcess();
-//    leaveRequestPage.assertPageTitle("Create leave request");
 
     String today =
         LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
@@ -98,7 +94,6 @@ public class LeaveRequestTest extends BaseTest {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.startTask(0);
     taskWidgetPage.switchToIFrameOfTask();
-//    leaveRequestPage.assertPageTitle("Approval");
 
     leaveRequestPage.enterApproverComment("Rejected");
     leaveRequestPage.clickRejectBtn();
@@ -108,7 +103,6 @@ public class LeaveRequestTest extends BaseTest {
     taskWidgetPage.filterTasksInExpandedModeBy("Your leave request is rejected");
     taskWidgetPage.startTask(0);
     taskWidgetPage.switchToIFrameOfTask();
-//    leaveRequestPage.assertPageTitle("Approval Result");
   }
 
   private LeaveRequestPage startLeaveRequestProcess() {

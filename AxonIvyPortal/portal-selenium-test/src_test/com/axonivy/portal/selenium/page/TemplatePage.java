@@ -193,7 +193,7 @@ public abstract class TemplatePage extends AbstractPage {
     switchToIframeWithId("iFrame");
   }
 
-  public void switchToIFrameOfTask2() {
+  public void switchToIFrameOfTaskWithWaitHelper() {
     driver.switchTo().defaultContent();
     WaitHelper.waitForIFrameAvailable(driver, "iFrame");
   }
