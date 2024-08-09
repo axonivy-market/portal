@@ -2,7 +2,6 @@ package com.axonivy.portal.selenium.test;
 
 import static com.codeborne.selenide.CollectionCondition.empty;
 import static com.codeborne.selenide.Selenide.$$;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,7 +35,7 @@ public class AvatarTest extends BaseTest {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     redirectToRelativeLink(createTestingTasksUrl);
 
-    // Check dashboard 
+    // Check dashboard
     NewDashboardPage dashboardPage = new NewDashboardPage();
     assertTrue(dashboardPage.getUserMenuAvatar().exists());
     TaskWidgetNewDashBoardPage taskWidgetNewDashBoardPage = new TaskWidgetNewDashBoardPage();

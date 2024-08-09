@@ -562,7 +562,4 @@
   --combined-button-tab-background-focus: rgba(144, 221, 233, 0.5);
   /* News Widget */
   --news-item-background: rgb(62, 71, 84);
-
-  /* Dashboard commandlink hover */
-  --ivy-primary-color-command-link-hover: var(--ivy-primary-color-white);
 }

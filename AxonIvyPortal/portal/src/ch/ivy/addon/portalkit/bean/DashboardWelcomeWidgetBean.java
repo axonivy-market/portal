@@ -3,8 +3,6 @@ package ch.ivy.addon.portalkit.bean;
 import static org.apache.commons.lang3.StringUtils.SPACE;
 
 import java.io.Serializable;
-import java.util.Base64;
-import java.util.List;
 import java.util.Optional;
 
 import javax.faces.bean.ManagedBean;
@@ -15,18 +13,11 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
-import ch.addon.portal.generic.menu.MenuView;
 import ch.ivy.addon.portalkit.dto.DisplayName;
-import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
-import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
-import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.WelcomeTextPosition;
 import ch.ivy.addon.portalkit.jsf.Attrs;
-import ch.ivy.addon.portalkit.jsf.ManagedBeans;
-import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.support.HtmlParser;
-import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -76,32 +67,9 @@ public class DashboardWelcomeWidgetBean implements Serializable {
     if (WelcomeWidgetUtils.isObsoleteImageData(widget.getImageLocation(), widget.getId())) {
       WelcomeWidgetUtils.migrateWelcomeWidget(widget.getId(), widget.getImageType(), widget.getImageLocation());
     }
-    ContentObject imageContent = WelcomeWidgetUtils.getImageContentObject(widget.getImageLocation(), widget.getImageType());
-    removeImageContentOfWidget(imageContent);
-    return imageContent;
+    return WelcomeWidgetUtils.getImageContentObject(widget.getImageLocation(), widget.getImageType());
   }
 
-  private void removeImageContentOfWidget(ContentObject imageContent) {
-    if (StringUtils.isNotBlank(widget.getImageContent())) {
-      WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageContent).write().bytes(Base64.getDecoder().decode(widget.getImageContent()));
-      List<Dashboard> dashboards = DashboardUtils.collectDashboards();
-      for (Dashboard dashboard :  dashboards) {
-        dashboard.getWidgets().stream()
-        .filter(item -> widget.getId().equals(item.getId()) && item.getType() == DashboardWidgetType.WELCOME)
-        .findFirst()
-        .ifPresent(item -> {
-          ((WelcomeDashboardWidget) item).setImageContent(null);
-        });
-      }
-      String dashboardJson = BusinessEntityConverter.entityToJsonValue(dashboards);
-      Ivy.var().set(PortalVariable.DASHBOARD.key, dashboardJson);
-      
-      MenuView menuView = (MenuView) ManagedBeans.get("menuView");
-      menuView.updateDashboardCache(DashboardUtils.collectDashboards());
-    }
-  }
-
-  
   public void updateWelcomeText(WelcomeDashboardWidget welcomeWidget) {
     int parseClientTime = WelcomeWidgetUtils.parseClientTime();
     String greetingTextCms = WelcomeWidgetUtils.generateGreetingTextByTime(parseClientTime);

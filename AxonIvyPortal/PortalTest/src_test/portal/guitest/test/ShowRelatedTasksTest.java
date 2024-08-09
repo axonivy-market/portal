@@ -29,7 +29,6 @@ import portal.guitest.page.TaskDetailsPage;
 
 public class ShowRelatedTasksTest extends BaseTest {
   
-  private static final String TASK_DETAILS_TITLE = "Task Details - Portal - Axon Ivy";
   private CaseDetailsPage detailsPage;
   private HomePage homePage;
   NoteHistoryPage caseHistoryPage;
@@ -92,7 +91,7 @@ public class ShowRelatedTasksTest extends BaseTest {
     detailsPage.clickRelatedTaskApplyButton();
     WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedTaskListColumnExist("related-task-name-column"));
     TaskDetailsPage taskDetailsPage = detailsPage.openTasksOfCasePage("Sick Leave Request");
-    assertEquals(TASK_DETAILS_TITLE, taskDetailsPage.getPageTitle());
+    assertEquals("Task Details", taskDetailsPage.getPageTitle());
   }
   
   @Test

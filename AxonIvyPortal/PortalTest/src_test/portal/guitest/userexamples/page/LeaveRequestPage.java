@@ -101,8 +101,4 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
     click(By.id("leave-request:button-submit"));
   }
   
-  public void fillComment(String comment) {
-    enterKeys(findElementById("leave-request:requester-comment"), comment);
-  }
-
 }
