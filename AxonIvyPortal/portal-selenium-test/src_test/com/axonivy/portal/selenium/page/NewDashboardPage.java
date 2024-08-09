@@ -1024,4 +1024,21 @@ public class NewDashboardPage extends TemplatePage {
     $("[id='notification-compact-form:notifications-scroller:0:notification-mark-as-read']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     return new NotificationCompactPage();
   }
+
+  public SelenideElement getProcessWidgetTable() {
+    return getProcessWidgetContainer().$("div[id$='process-list']");
+  }
+
+  public void checkDisplayedProcessWidgetContainer() {
+    getProcessWidgetContainer().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement getProcessWidgetContainer() {
+    return $("div[id*='dashboard-processes-container']");
+  }
+
+  public void waitForProcessWidgetLoaded() {
+    checkDisplayedCompactModeProcessContainer();
+    getProcessWidgetTable().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
 }
