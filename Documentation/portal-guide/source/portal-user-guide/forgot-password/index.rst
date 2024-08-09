@@ -4,11 +4,12 @@ Forgot Password
 ***************
 
 .. hint:: 
-  You will see the link only if your application uses the Ivy Security System.
-  If you use an external security system, like Active Directory or Novell 
-  eDirectory, you will need to manage your password in this external system.
-
-You see the link ``Forgot my password`` on the bottm right of the login page.
+  The admin will need to enable the change password feature for you to see the option
+  to display the "Forgot My Password" link.
+  If you use an external security system, like Active Directory or Entra ID, 
+  password management will need to be handled in that external system.
+  
+  You see the link on the bottom right of the login page.
 
 |login-screen|
 
