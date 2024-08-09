@@ -100,7 +100,10 @@ public class LeaveRequestTest extends BaseTest {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy("Your leave request is rejected");
     taskWidgetPage.startTask(0);
-    taskWidgetPage.switchToIFrameOfTask();
+    taskWidgetPage.switchToIFrameOfTaskWithWaitHelper();
+    UserExamplesEndPage userExamplesEndPage = leaveRequestPage.finishLeaveRequest();
+    CaseDetailsPage caseDetailsPage = userExamplesEndPage.goToCaseDetail();
+    assertEquals("Leave Request", caseDetailsPage.getCaseName());
   }
 
   private LeaveRequestPage startLeaveRequestProcess() {
