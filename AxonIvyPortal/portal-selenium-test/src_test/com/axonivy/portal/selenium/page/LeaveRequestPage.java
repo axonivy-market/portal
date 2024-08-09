@@ -67,8 +67,7 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
     $("div[id='leave-request:leave-type']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("div[id='leave-request:leave-type']").$("div.ui-selectonemenu-trigger")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    String leaveTypeSelector = "li[data-label='" + leaveType + "']";
-    $(leaveTypeSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("li[data-label='" + leaveType + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   private void closePanelDatePicker(WebElement element) {
@@ -97,6 +96,7 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   public UserExamplesEndPage finishLeaveRequest() {
     $("button[id='leave-request:finish-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     switchToDefaultContent();
+    $("div[id='main-area-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return new UserExamplesEndPage();
   }
 

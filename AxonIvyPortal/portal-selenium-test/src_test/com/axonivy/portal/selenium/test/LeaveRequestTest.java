@@ -18,7 +18,7 @@ import com.axonivy.portal.selenium.page.LeaveRequestPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class LeaveRequestTest extends BaseTest {
   private static final String LEAVE_REQUEST_START_LINK = "portal-user-examples/170321BD7F5539D6/start.ivp";
   private LeaveRequestPage leaveRequestPage;
@@ -73,7 +73,6 @@ public class LeaveRequestTest extends BaseTest {
     taskWidgetPage.startTask(0);
     taskWidgetPage.switchToIFrameOfTaskWithWaitHelper();
     UserExamplesEndPage userExamplesEndPage = leaveRequestPage.finishLeaveRequest();
-    userExamplesEndPage.switchToDefaultContent();
     CaseDetailsPage caseDetailsPage = userExamplesEndPage.goToCaseDetail();
     assertEquals("Leave Request", caseDetailsPage.getCaseName());
   }
