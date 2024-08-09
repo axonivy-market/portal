@@ -203,12 +203,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewApplication: Neue Drittanwendung hinzufügen
     announcement:
       announcement: Ankündigungen
+      announcementSaved: Ankündigungen werden gespeichert.
       announcementsDisabled: Ankündigungen sind deaktiviert
       announcementsEnabled: Ankündigungen sind aktiviert
       defaultLanguageRequiredMessage: Ein Ankündigungstext in der standard Applikationssprache ist notwendig
       disable: Deaktivieren
       enable: Aktivieren
       information: Sie können eine allgemeine Ankündigung in diesem Bereich machen (z.B. Wartungsankündigung). Diese Nachricht kann von allen Benutzern gesehen werden.
+      saveChanges: Änderungen speichern
       tabTitle: Ankündigungen
     appDisplayName: Anzeigename
     appDisplayNameRequiredMsg: Geben Sie einen Anzeigename an.
