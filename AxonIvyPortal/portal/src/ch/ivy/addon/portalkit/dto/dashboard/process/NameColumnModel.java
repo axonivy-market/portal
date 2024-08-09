@@ -16,10 +16,16 @@ public class NameColumnModel extends ProcessColumnModel implements Serializable 
     super.initDefaultValue();
     this.field = DashboardStandardProcessColumn.NAME.getField();
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-process__name");
+    this.quickSearch = defaultIfEmpty(this.quickSearch, true);
   }
 
   @Override
   public String getDefaultHeaderCMS() {
     return "/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName";
+  }
+  
+  @Override
+  public boolean canQuickSearch() {
+    return true;
   }
 }

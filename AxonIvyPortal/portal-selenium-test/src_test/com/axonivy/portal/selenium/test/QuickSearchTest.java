@@ -16,13 +16,16 @@ import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.ProcessWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 
 @IvyWebTest
 public class QuickSearchTest extends BaseTest {
 
-  private static final String YOUR_TASKS_WIDGET = "Your Tasks";
+  private static final String YOUR_PROCESSES = "Your Processes";
+	private static final String YOUR_TASKS_WIDGET = "Your Tasks";
   private static final String YOUR_CASES_WIDGET = "Your Cases";
 
   private NewDashboardPage newDashboardPage;
@@ -356,5 +359,59 @@ public class QuickSearchTest extends BaseTest {
     taskWidget.shiftAndArrowKeyOnQuickSearchInput();
     taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
     
+  }
+  
+  @Test
+  public void testVisibilityOfQuickSearchInProcessWidget() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget(YOUR_PROCESSES);
+    ProcessEditWidgetNewDashBoardPage processEditWidget = newDashboardPage.editProcessWidgetConfiguration();
+    processEditWidget.clickOnQuickSearchCheckbox();
+    processEditWidget.save();
+    assertTrue(processWidget.isQuickSearchInputShow());
+  }
+  
+
+  @Test
+  public void testQuickSearchInProcessWidget() {
+    login(TestAccount.ADMIN_USER);
+    ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget("Your Processes");
+    assertTrue(processWidget.isQuickSearchInputShow());
+    ScreenshotUtils.maximizeBrowser();
+    processWidget.setQuickSearchKeyword("appraisal");
+    assertEquals(1, processWidget.getNumberOfProcessListInWidget());
+    processWidget.clearQuickSearchInput();
+    processWidget.setQuickSearchKeyword("pizza");
+    assertEquals(1, processWidget.getNumberOfProcessListInWidget());
+  }
+  
+  @Test
+  public void testSessionCacheInProcessWidget() {
+    login(TestAccount.ADMIN_USER);
+    ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget("Your Processes");
+    assertTrue(processWidget.isQuickSearchInputShow());
+    ScreenshotUtils.maximizeBrowser();
+    processWidget.setQuickSearchKeyword("login");
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    assertEquals(3, processWidget.getNumberOfProcessListInWidget());
+  }
+  
+  @Test
+  public void testCopyAndPasteOnQuickSearchInputInProcessWidget() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget("Your Processes");
+    ScreenshotUtils.maximizeBrowser();
+    processWidget.setQuickSearchKeyword("login");
+    assertEquals(3, processWidget.getNumberOfProcessListInWidget());
+    
+    processWidget.copyAndPasteOnQuickSearchInput();
+    assertEquals(3, processWidget.getNumberOfProcessListInWidget());
+    
+    processWidget.shiftAndArrowKeyOnQuickSearchInput();
+    assertEquals(3, processWidget.getNumberOfProcessListInWidget());
   }
 }

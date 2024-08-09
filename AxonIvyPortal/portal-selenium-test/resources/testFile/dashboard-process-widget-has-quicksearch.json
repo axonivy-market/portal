@@ -1,0 +1,44 @@
+[
+    {
+        "id": "1",
+        "templateId": "default-portal-dashboard-template",
+        "titles": [
+            {
+                "locale": "en",
+                "value": "Dashboard"
+            },
+            {
+                "locale": "fr",
+                "value": "Dashboard"
+            },
+            {
+                "locale": "de",
+                "value": "Dashboard"
+            },
+            {
+                "locale": "es",
+                "value": "Dashboard"
+            }
+        ],
+        "icon": "si-pie-line-graph",
+        "widgets": [
+            {
+                "type": "compact-process",
+                "id": "process_1",
+                "enableQuickSearch": "true",
+                "names": [
+                    {
+                        "locale": "en",
+                        "value": "Your Processes"
+                    }
+                ],
+                "layout": {
+                    "w": 6,
+                    "h": 5,
+                    "x": 9,
+                    "y": 4
+                }
+            }
+        ]
+    }
+]
