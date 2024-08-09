@@ -203,6 +203,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewApplication: Ajouter une nouvelle application de tiers
     announcement:
       announcement: Annonce
+      announcementSaved: Les annonces sont sauvegardées.
       announcementsDisabled: Les annonces sont désactivées.
       announcementsEnabled: Les annonces sont activées.
       defaultLanguageRequiredMessage: L'annonce de la langue par défaut de l'application est requise.

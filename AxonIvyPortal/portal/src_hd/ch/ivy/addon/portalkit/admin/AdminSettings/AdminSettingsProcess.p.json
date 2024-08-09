@@ -1236,7 +1236,7 @@
             "AnnouncementService service = AnnouncementService.getInstance();",
             "service.saveValueChangeAnnouncement(in.announcement);",
             "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ",
-            "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled\"), null));"
+            "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementSaved\"), null));"
           ]
         }
       },
