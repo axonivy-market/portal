@@ -80,11 +80,11 @@ public class LeaveRequestTest extends BaseTest {
   @Test
   public void testRejectScenario() {
     leaveRequestPage = startLeaveRequestProcess();
-
     String today =
         LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
     String yesterday = LocalDateTime.now().minusDays(1)
         .format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
+    leaveRequestPage.waitForIFrameContentVisible();
     leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", yesterday, today,
         TestAccount.ADMIN_USER.getFullName(), "requester comment");
     leaveRequestPage.clickSubmitButton();
@@ -93,7 +93,6 @@ public class LeaveRequestTest extends BaseTest {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.startTask(0);
     taskWidgetPage.switchToIFrameOfTask();
-
     leaveRequestPage.enterApproverComment("Rejected");
     leaveRequestPage.clickRejectBtn();
     leaveRequestPage.clickOnLogout();
