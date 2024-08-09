@@ -203,12 +203,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewApplication: Add new third party application
     announcement:
       announcement: Announcement
+      announcementSaved: Announcements are saved.
       announcementsDisabled: Announcements are disabled.
       announcementsEnabled: Announcements are enabled.
       defaultLanguageRequiredMessage: Announcement for application default language is required.
       disable: Disable
       enable: Enable
       information: You can announce a general information (e.g. Downtime, Changes, etc.) in this area. This message can be seen by all portal users.
+      saveChanges: Save changes
       tabTitle: Announcements
     appDisplayName: Display name
     appDisplayNameRequiredMsg: Please enter application display name.
