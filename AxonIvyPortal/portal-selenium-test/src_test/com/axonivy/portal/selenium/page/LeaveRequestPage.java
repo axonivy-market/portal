@@ -66,8 +66,8 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   private void selectLeaveType(String leaveType) {
     waitForElementClickableThenClick("#leave-request\\:leave-type_label");
     String leaveTypeSelector = "li[data-label='" + leaveType + "']";
-    waitForElementDisplayed(By.cssSelector(leaveTypeSelector), true);
-    waitForElementClickableThenClick(leaveTypeSelector);
+    $(leaveTypeSelector).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $(leaveTypeSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   private void closePanelDatePicker(WebElement element) {

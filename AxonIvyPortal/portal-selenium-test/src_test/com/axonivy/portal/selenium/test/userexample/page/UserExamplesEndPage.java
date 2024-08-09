@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.test.userexample.page;
 
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.TemplatePage;
+import static com.codeborne.selenide.Selenide.$;
 
 public class UserExamplesEndPage extends TemplatePage {
 
@@ -11,7 +12,9 @@ public class UserExamplesEndPage extends TemplatePage {
   }
 
   public CaseDetailsPage goToCaseDetail() {
-    waitForElementClickableThenClick("[id$='form:go-to-case-detail']");
+    $("[id$='form:go-to-case-detail']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    waitForAjaxIndicatorDisplayNone();
+
     return new CaseDetailsPage();
   }
 
