@@ -64,9 +64,10 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   }
 
   private void selectLeaveType(String leaveType) {
-    $("#leave-request\\:leave-type_label").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div[id='leave-request:leave-type']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("div[id='leave-request:leave-type']").$("div.ui-selectonemenu-trigger")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     String leaveTypeSelector = "li[data-label='" + leaveType + "']";
-    $(leaveTypeSelector).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $(leaveTypeSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 

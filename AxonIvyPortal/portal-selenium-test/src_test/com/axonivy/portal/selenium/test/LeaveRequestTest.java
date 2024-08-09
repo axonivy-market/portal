@@ -76,6 +76,7 @@ public class LeaveRequestTest extends BaseTest {
     taskWidgetPage.switchToIFrameOfTask();
 //    leaveRequestPage.assertPageTitle("Approval Result");
     UserExamplesEndPage userExamplesEndPage = leaveRequestPage.finishLeaveRequest();
+    userExamplesEndPage.switchToDefaultContent();
     CaseDetailsPage caseDetailsPage = userExamplesEndPage.goToCaseDetail();
     assertEquals("Leave Request", caseDetailsPage.getCaseName());
   }
