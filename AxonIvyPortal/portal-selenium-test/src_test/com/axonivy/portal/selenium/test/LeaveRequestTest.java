@@ -85,8 +85,8 @@ public class LeaveRequestTest extends BaseTest {
     String yesterday = LocalDateTime.now().minusDays(1)
         .format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
     leaveRequestPage.waitForIFrameContentVisible();
-    leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", yesterday, today,
-        TestAccount.ADMIN_USER.getFullName(), "requester comment");
+    leaveRequestPage.enterMaternityLeaveRequestInformation(yesterday, today, TestAccount.ADMIN_USER.getFullName(),
+        "requester comment");
     leaveRequestPage.clickSubmitButton();
     leaveRequestPage.clickOnLogout();
     login(TestAccount.ADMIN_USER);
@@ -109,7 +109,6 @@ public class LeaveRequestTest extends BaseTest {
   private LeaveRequestPage startLeaveRequestProcess() {
     redirectToRelativeLinkWithEmbedInFrame(LEAVE_REQUEST_START_LINK);
     leaveRequestPage = new LeaveRequestPage();
-    leaveRequestPage.waitForPageLoad();
     leaveRequestPage.switchToIFrameOfTask();
     return leaveRequestPage;
   }

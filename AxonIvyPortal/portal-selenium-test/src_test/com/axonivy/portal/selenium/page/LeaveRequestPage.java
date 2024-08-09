@@ -70,6 +70,25 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
     $("li[data-label='" + leaveType + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
+  public void enterMaternityLeaveRequestInformation(String from, String to, String approver,
+      String requesterComment) {
+    selectMaternityLeaveType();
+    findElementById("leave-request:from_input").sendKeys(from);
+    closePanelDatePicker(findElementById("leave-request:from_panel"));
+    findElementById("leave-request:to_input").sendKeys(to);
+    closePanelDatePicker(findElementById("leave-request:to_panel"));
+    findElementById("leave-request:requester-comment").sendKeys(requesterComment);
+    selectApprover(approver);
+  }
+
+  private void selectMaternityLeaveType() {
+    $("div[id='leave-request:leave-type']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("div[id='leave-request:leave-type']").$("div.ui-selectonemenu-trigger")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("li[id='leave-request:leave-type_2']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    
+  }
+
   private void closePanelDatePicker(WebElement element) {
     JavascriptExecutor js = (JavascriptExecutor) driver;
     js.executeScript("arguments[0].style.display = 'none'", element);
