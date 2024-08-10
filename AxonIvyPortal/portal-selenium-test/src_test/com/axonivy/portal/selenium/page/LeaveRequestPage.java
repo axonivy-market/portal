@@ -115,7 +115,7 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   public UserExamplesEndPage finishLeaveRequest() {
     $("button[id='leave-request:finish-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     switchToDefaultContent();
-    $("div[id='main-area-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("[id$='form:go-to-case-detail']").shouldBe(Condition.visible);
     return new UserExamplesEndPage();
   }
 
