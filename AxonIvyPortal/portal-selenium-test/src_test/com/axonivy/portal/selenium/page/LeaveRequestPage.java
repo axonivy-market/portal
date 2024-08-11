@@ -112,11 +112,11 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
     return NavigationHelper.navigateToTaskList();
   }
 
-  public UserExamplesEndPage finishLeaveRequest() {
+  public void finishLeaveRequest() {
     $("button[id='leave-request:finish-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     switchToDefaultContent();
     $("[id$='form:go-to-case-detail']").shouldBe(Condition.visible);
-    return new UserExamplesEndPage();
+    clickByJavaScript($("[id$='form:go-to-case-detail']"));
   }
 
   public TaskWidgetPage clickRejectBtn() {
