@@ -113,7 +113,8 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   }
 
   public void finishLeaveRequest() {
-    $("button[id='leave-request:finish-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("button[id='leave-request:finish-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    clickByJavaScript($("button[id='leave-request:finish-btn']"));
     switchToDefaultContent();
     $("[id$='form:go-to-case-detail']").shouldBe(Condition.visible);
     clickByJavaScript($("[id$='form:go-to-case-detail']"));

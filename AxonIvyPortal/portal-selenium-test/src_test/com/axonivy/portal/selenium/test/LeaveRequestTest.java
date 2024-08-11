@@ -16,9 +16,8 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.LeaveRequestPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
-import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class LeaveRequestTest extends BaseTest {
   private static final String LEAVE_REQUEST_START_LINK = "portal-user-examples/170321BD7F5539D6/start.ivp";
   private LeaveRequestPage leaveRequestPage;
