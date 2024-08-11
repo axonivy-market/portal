@@ -51,7 +51,7 @@ public class AbsencePage extends TemplatePage {
       /**
        * should wait before it switch to counting line
        */
-      waitForAjaxIndicatorDisplayNone();
+      refreshAndWaitElement("td.absence-period");
     }
   }
 
