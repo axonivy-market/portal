@@ -48,6 +48,10 @@ public class AbsencePage extends TemplatePage {
     boolean checkBoxSelected = checkBox.isSelected();
     if (checkBoxSelected != shown) {
       waitForElementClickableThenClick("div[id*='show-absence-in-the-past'] div.ui-chkbox-box");
+      /**
+       * should wait before it switch to counting line
+       */
+      waitForAjaxIndicatorDisplayNone();
     }
   }
 

@@ -37,7 +37,8 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   }
 
   public void clickSubmitLeaveRequest() {
-    waitForElementClickableThenClick(By.id("leave-request:button-submit"));
+    $("button[id='leave-request:button-submit']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    clickByJavaScript($("button[id='leave-request:button-submit']"));
   }
 
   public String clickSubmitAndGetValidationMsg() {
