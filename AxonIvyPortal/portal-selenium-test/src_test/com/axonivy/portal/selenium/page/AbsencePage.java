@@ -114,7 +114,8 @@ public class AbsencePage extends TemplatePage {
       selectDeputy(fullName);
     }
     if (saveSelectedDeputies) {
-      $("[id='deputy-selection-form:save-deputy-button']").shouldBe(getClickableCondition()).click();
+      $("[id='deputy-selection-form:save-deputy-button']").shouldBe(getClickableCondition());
+      clickByJavaScript($("[id='deputy-selection-form:save-deputy-button']"));
       $(By.id("choose-deputy-dialog")).shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
     }
   }
@@ -128,7 +129,8 @@ public class AbsencePage extends TemplatePage {
     String deputiesSelector =
         String.format("a[id$='absences-management-form:substitute-table:%d:selected-deputies-link']", deputyRoleIndex);
     $(deputiesSelector).shouldBe(appear, DEFAULT_TIMEOUT);
-    $(deputiesSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(deputiesSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    clickByJavaScript($(deputiesSelector));
     $(By.id("choose-deputy-dialog")).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
