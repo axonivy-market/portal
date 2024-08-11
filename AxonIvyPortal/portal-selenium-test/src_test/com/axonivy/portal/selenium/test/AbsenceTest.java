@@ -73,7 +73,7 @@ public class AbsenceTest extends BaseTest {
 
     NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
     newAbsencePage.input(chosenDay, theNextDayOfChosenDay, "Overlapping absence");
-    newAbsencePage.proceed();
+    newAbsencePage.proceedWithoutWaitSuccessGrowlMessage();
 
     assertEquals(newAbsencePage.isErrorMessageDisplayed(), true);
     assertEquals("The absence is overlapping with another absence.", newAbsencePage.getErrorMessage());

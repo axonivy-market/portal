@@ -54,6 +54,15 @@ public class AbsencePage extends TemplatePage {
       refreshAndWaitElement("td.absence-period");
     }
   }
+  
+  public void showAbsencesInThePast() {
+    $("div[id*='show-absence-in-the-past'] div.ui-chkbox-box").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    /**
+     * should wait before it switch to counting line
+     */
+    refreshAndWaitElement("td.absence-period");
+  }
+
 
   public SelenideElement getMyDeputy(int deputyRoleIndex) {
     String deputiesSelector =
