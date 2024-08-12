@@ -348,9 +348,9 @@
   --case-header-action-cell-button-background-color: transparent;
   --header-action-action-left-border-color: var(--ivy-primary-color-grey-medium);
   --task-note-link-hover-color: var(--ivy-primary-color-grey-dark);
-  --case-list-unsortable-header-cell-text-color: var(--ivy-primary-color-grey-medium);
+  --case-list-unsortable-header-cell-text-color: var(--ivy-primary-color-grey-dark);
   --case-list-item-background-color: hsla(0, 0%, 100%, 0.2);
-  --case-item-description-cell: var(--ivy-primary-color-grey-medium);
+  --case-item-description-cell: var(--ivy-primary-color-grey-dark);
   /* Task Widget */
   --task-filter-selection-form-hover-background-color: var(--ivy-primary-color-grey-pale);
   --compact-task-start-list-item-hover-background-color: var(--item-background-hover);
