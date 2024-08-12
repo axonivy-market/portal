@@ -138,7 +138,6 @@ public class AbsencePage extends TemplatePage {
     SelenideElement element = $(By.id("deputy-selection-form:user-selection-component:user-selection_input"));
     element.clear();
     element.sendKeys(responsible);
-//    waitForAjaxIndicatorDisplayNone();
     SelenideElement selectionPanel = $(By.id("deputy-selection-form:user-selection-component:user-selection_panel"));
     selectionPanel.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     selectionPanel.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
