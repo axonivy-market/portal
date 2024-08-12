@@ -314,6 +314,7 @@ public class QuickSearchTest extends BaseTest {
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    caseEditWidget.clickOnQuickSearchCheckBox();
     caseEditWidget.openColumnManagementDialog();
 
     List<String> customFields = List.of("CustomerType", "SupportData");
@@ -410,7 +411,6 @@ public class QuickSearchTest extends BaseTest {
     processWidget.setQuickSearchKeyword("login");
     assertEquals(4, processWidget.getNumberOfProcessListInWidget());
     processWidget.copyAndPasteOnQuickSearchInput();
-    processWidget.clearQuickSearchInput();
     processWidget.shiftAndArrowKeyOnQuickSearchInput();
     assertEquals(4, processWidget.getNumberOfProcessListInWidget());
   }

@@ -244,7 +244,8 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private SelenideElement getQuickSearchForm() {
-    return $("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
+    return getCaseWidgetHeader().$("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("form");
   }
 
   public void clearQuickSearchInput() {

@@ -534,7 +534,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private SelenideElement getQuickSearchForm() {
-    return $("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
+    return getTaskWidgetHeader().$("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("form");
   }
 
   public void clearQuickSearchInput() {
