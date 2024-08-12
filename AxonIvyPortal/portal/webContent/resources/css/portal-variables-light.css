@@ -358,11 +358,11 @@
   --compact-task-start-info-color: var(--text-color);
   --compact-task-start-info-icon-color: var(--text-color);
   --task-widget-link-color: var(--ivy-primary-color-black);
-  --task-widget-header-column: var(--ivy-primary-color-grey-medium);
+  --task-widget-header-column: var(--ivy-primary-color-grey-dark);
   --menu-action-hover-text-color: var(--ivy-primary-color-dark);
   --task-filter-separator-border-bottom: var(--ivy-primary-color-grey-light);
   --task-view-container-data-scroller-content-background-color: transparent;
-  --task-start-list-description-cell: var(--ivy-primary-color-grey-medium);
+  --task-start-list-description-cell: var(--ivy-primary-color-grey-dark);
   --task-filter-delete-user-defined-icon-hover-color: var(--primary-color);
   --task-in-progress-checkbox-label-color: var(--primary-text-color);
   /* Task Detail */
