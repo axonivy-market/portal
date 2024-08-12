@@ -68,7 +68,7 @@ public class NewAbsencePage extends TemplatePage {
 
   public void proceed() {
     clickByJavaScript($(By.id("absence-dialog_title")));
-    waitForAjaxIndicatorDisplayNone();
+//    waitForAjaxIndicatorDisplayNone();
     $("button[id*='save-absence']").shouldBe(appear, DEFAULT_TIMEOUT);
     clickByJavaScript($(By.id("absence-form:save-absence")));
     $("div[id='absences-management-form:absences-management-info_container']").shouldBe(Condition.appear,
@@ -77,7 +77,7 @@ public class NewAbsencePage extends TemplatePage {
 
   public void proceedWithoutWaitSuccessGrowlMessage() {
     clickByJavaScript($(By.id("absence-dialog_title")));
-    waitForAjaxIndicatorDisplayNone();
+//    waitForAjaxIndicatorDisplayNone();
     $("button[id*='save-absence']").shouldBe(appear, DEFAULT_TIMEOUT);
     clickByJavaScript($(By.id("absence-form:save-absence")));
   }
