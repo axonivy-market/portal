@@ -18,7 +18,6 @@ import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
-import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
@@ -314,6 +313,7 @@ public class QuickSearchTest extends BaseTest {
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    caseEditWidget.clickOnQuickSearchCheckBox();
     caseEditWidget.openColumnManagementDialog();
 
     List<String> customFields = List.of("CustomerType", "SupportData");
@@ -366,17 +366,6 @@ public class QuickSearchTest extends BaseTest {
     taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
     
   }
-  
-  @Test
-  public void testVisibilityOfQuickSearchInProcessWidget() {
-    redirectToRelativeLink(createTestingTasksUrl);
-    login(TestAccount.ADMIN_USER);
-    ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget("Your Processes");
-    ProcessEditWidgetNewDashBoardPage processEditWidget = newDashboardPage.editProcessWidgetConfiguration();
-    processEditWidget.clickOnQuickSearchCheckbox();
-    processEditWidget.save();
-    assertTrue(processWidget.isQuickSearchInputShow());
-  }
 
   @Test
   public void testQuickSearchInProcessWidget() {
@@ -410,7 +399,6 @@ public class QuickSearchTest extends BaseTest {
     processWidget.setQuickSearchKeyword("login");
     assertEquals(4, processWidget.getNumberOfProcessListInWidget());
     processWidget.copyAndPasteOnQuickSearchInput();
-    processWidget.clearQuickSearchInput();
     processWidget.shiftAndArrowKeyOnQuickSearchInput();
     assertEquals(4, processWidget.getNumberOfProcessListInWidget());
   }
