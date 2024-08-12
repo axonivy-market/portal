@@ -352,6 +352,7 @@ public class QuickSearchTest extends BaseTest {
     ScreenshotUtils.maximizeBrowser();
 
     CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditCaseWidget();
+    caseEditWidget.waitForTableConfigurationRendered();
     caseEditWidget.clickOnQuickSearchCheckBox();
     caseEditWidget.save();
 
