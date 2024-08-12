@@ -266,6 +266,7 @@ public class QuickSearchTest extends BaseTest {
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditCaseWidget();
 
+    caseEditWidget.waitForTableConfigurationRendered();
     caseEditWidget.clickOnQuickSearchCheckBox();
     caseEditWidget.save();
     caseWidget.isQuickSearchInputShow("0");
@@ -276,6 +277,7 @@ public class QuickSearchTest extends BaseTest {
     caseWidget.clearQuickSearchInput();
 
     caseWidget.openEditCaseWidget();
+    caseEditWidget.waitForTableConfigurationRendered();
     caseEditWidget.clickOnQuickSearchCheckBox();
     caseEditWidget.save();
     assertFalse(caseWidget.isQuickSearchInputShow("0"));
@@ -311,6 +313,7 @@ public class QuickSearchTest extends BaseTest {
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     ScreenshotUtils.maximizeBrowser();
     CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditCaseWidget();
+    caseEditWidget.waitForTableConfigurationRendered();
     caseEditWidget.clickOnQuickSearchCheckBox();
     caseEditWidget.openColumnManagementDialog();
     assertTrue(caseEditWidget.isQuickSearchClicked("name"));
@@ -381,6 +384,7 @@ public class QuickSearchTest extends BaseTest {
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     ScreenshotUtils.maximizeBrowser();
     CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditCaseWidget();
+    caseEditWidget.waitForTableConfigurationRendered();
     caseEditWidget.clickOnQuickSearchCheckBox();
     caseEditWidget.openColumnManagementDialog();
 
