@@ -286,12 +286,12 @@
   --widget-advanced-filter-overlay-panel-footer: var(--ivy-primary-color-grey-light);
   --widget-advanced-filter-command-background-color: none;
   --widget-advanced-filter-background-color: none;
-  --widget-advanced-filter-icon-color: hsla(180, 1%, 61%, 0.5);
+  --widget-advanced-filter-icon-color: hsla(180, 1%, 0%, 0.7);
   --widget-advanced-filter-icon-color-hover: var(--accent-color);
   --widget-advanced-filter-hover-backround-color: var(--ivy-primary-color-grey-pale);
   --filter-name-label-color: var(--ivy-primary-color-grey-medium);
   --filter-selection-container-group-border-color: var(--ivy-primary-color-grey-medium);
-  --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-medium);
+  --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-dark);
 
   /* Item in Widget List */
   --item-widget-background-color: var(--ivy-primary-color-white);
