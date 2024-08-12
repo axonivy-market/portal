@@ -1,5 +1,5 @@
-name-template: 'v$RESOLVED_VERSION 🧪'
-tag-template: 'v$RESOLVED_VERSION'
+name-template: '$RESOLVED_VERSION 🧪'
+tag-template: '$RESOLVED_VERSION'
 categories:
   - title: '🚀 Features'
     labels:
@@ -21,7 +21,7 @@ categories:
       - documentation
 exclude-labels:
   - 'skip-changelog'
-change-template: '- $TITLE by @$AUTHOR (#$NUMBER)'
+change-template: '- $TITLE (#$NUMBER) by @$AUTHOR'
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
 version-resolver:
   major:
