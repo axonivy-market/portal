@@ -27,3 +27,7 @@ body.serenity .name-after-avatar {
   margin-top: .4rem;
   padding-left: 0;
 }
+
+.ui-avatar-text {
+  color: var(--avatar-text-color);
+}
