@@ -10,6 +10,7 @@ categories:
       - 'fix'
       - 'bugfix'
       - 'bug'
+      - 'fix bug'
   - title: '📦 Dependencies'
     label: 'dependencies'
   - title: ⚠️ Changes
