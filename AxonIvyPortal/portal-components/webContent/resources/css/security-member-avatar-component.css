@@ -28,6 +28,10 @@ body.serenity .name-after-avatar {
   padding-left: 0;
 }
 
-.ui-avatar-text {
-  color: var(--avatar-text-color);
+body.light .ui-avatar-text {
+  color: var(--avatar-text-color-light);
+}
+
+body.dark .ui-avatar-text {
+  color: var(--avatar-text-color-dark);
 }

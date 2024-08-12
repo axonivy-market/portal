@@ -52,5 +52,6 @@
 
 /* CSS variables for avatar component */
   --avatar-background-color: var(--ivy-primary-color-grey-light, hsl(180, 1%, 85%));
-  --avatar-text-color: var(--ivy-primary-color-grey-dark, hsl(0, 1%, 34%));
+  --avatar-text-color-light: var(--ivy-primary-color-grey-dark, hsl(0, 1%, 34%));
+  --avatar-text-color-dark: var(--ivy-primary-color-white);
 }
