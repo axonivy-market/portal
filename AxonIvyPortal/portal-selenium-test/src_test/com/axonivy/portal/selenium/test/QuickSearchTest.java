@@ -23,7 +23,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class QuickSearchTest extends BaseTest {
 
   // WIDGET
@@ -502,7 +502,6 @@ public class QuickSearchTest extends BaseTest {
     processWidget.setQuickSearchKeyword("login");
     assertEquals(4, processWidget.getNumberOfProcessListInWidget());
     processWidget.copyAndPasteOnQuickSearchInput();
-    processWidget.clearQuickSearchInput();
     processWidget.shiftAndArrowKeyOnQuickSearchInput();
     assertEquals(4, processWidget.getNumberOfProcessListInWidget());
   }
