@@ -30,6 +30,7 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.NoteHistoryPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
+import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -114,31 +115,29 @@ public class CaseDetailsTest extends BaseTest {
     caseDetailsPage.getNotesWithContent(NOTE_TECHNICAL_CASE).shouldHave(size(1));
   }
 
-//  Note: Consider to remove this test, not in PortalTest package
-//  and when I find the process, I don't see it in this branch
-//  @Test
-//  public void testShareCaseDetails() {
-//    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-//    login(TestAccount.ADMIN_USER);
-//    redirectToRelativeLink(grantShareLinkCaseDetailsPermission);
-//    redirectToNewDashBoard();
-//    MainMenuPage mainMenuPage = new MainMenuPage();
-//    mainMenuPage.openCaseList();
-//    CaseWidgetPage caseWidgetPage = new CaseWidgetPage();
-//    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
-//    caseDetailsPage.getRelatedCasesComponents().shouldHave(sizeGreaterThanOrEqual(1));
-//    caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
-//    caseDetailsPage.getShareButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-//    caseDetailsPage.getShareDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-//
-//    redirectToRelativeLink(denyShareLinkCaseDetailsPermission);
-//    redirectToNewDashBoard();
-//    mainMenuPage.openCaseList();
-//    caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
-//    caseDetailsPage.getRelatedCasesComponents().shouldHave(sizeGreaterThanOrEqual(1));
-//    caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
-//    caseDetailsPage.getShareButton().shouldBe(Condition.disappear);
-//  }
+  @Test
+  public void testShareCaseDetails() {
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(grantShareLinkCaseDetailsPermission);
+    redirectToNewDashBoard();
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    mainMenuPage.openCaseList();
+    CaseWidgetPage caseWidgetPage = new CaseWidgetPage();
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
+    caseDetailsPage.getRelatedCasesComponents().shouldHave(sizeGreaterThanOrEqual(1));
+    caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
+    caseDetailsPage.getShareButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    caseDetailsPage.getShareDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
+    redirectToRelativeLink(denyShareLinkCaseDetailsPermission);
+    redirectToNewDashBoard();
+    mainMenuPage.openCaseList();
+    caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
+    caseDetailsPage.getRelatedCasesComponents().shouldHave(sizeGreaterThanOrEqual(1));
+    caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(TAKE_ORDER_AND_MAKE_PIZZA);
+    caseDetailsPage.getShareButton().shouldBe(Condition.disappear);
+  }
 
   private void createTestingTask() {
     redirectToRelativeLink(createTestingTasksUrl);
@@ -241,12 +240,12 @@ public class CaseDetailsTest extends BaseTest {
     element2.shouldNotHave(Condition.cssClass("ui-state-disabled"));
   }
 
-//  @Test
-//  public void testRelatedTaskStartTask() {
-//    createTestingTask();
-//    TaskTemplatePage taskTemplate = detailsPage.startRelatedTask(SICK_LEAVE_REQUEST_TASK);
-//    assertEquals(SICK_LEAVE_REQUEST_TASK, taskTemplate.getTaskName());
-//  }
+  @Test
+  public void testRelatedTaskStartTask() {
+    createTestingTask();
+    TaskTemplatePage taskTemplate = detailsPage.startRelatedTask(SICK_LEAVE_REQUEST_TASK);
+    assertEquals(SICK_LEAVE_REQUEST_TASK, taskTemplate.getTaskName());
+  }
 
   @Test
   public void testRelatedTaskReserveTask() {
@@ -255,6 +254,7 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.reserveTask(SICK_LEAVE_REQUEST_TASK);
 
     refreshPage();
+    detailsPage.waitRelatedTasks();
     detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
     detailsPage.resetTask(SICK_LEAVE_REQUEST_TASK);
 

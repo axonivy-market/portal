@@ -341,6 +341,10 @@ public class TaskTemplatePage extends TemplatePage {
   
   public void waitForOverlayGuideRendered() {
     $("div[id$='welcome-portal-guide']").shouldBe(appear, DEFAULT_TIMEOUT);
-    
+  }
+  
+  public String getTaskName() {
+    $("#title").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("#title").getText();
   }
 }

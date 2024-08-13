@@ -30,22 +30,19 @@ public class ExampleOverviewTest extends BaseTest {
     exampleOverviewPage.switchToIFrameOfTask();
   }
 
-  /**
-   * Note: couldn't run the test due to PORTAL_EXAMPLES_PROCESS_CHAIN couldn't work properly
-   * something related to ElasticSearch
-   */
-//  @Test
-//  public void testOverviewLeaveRequest() {
-//    LeaveRequestOverviewPage leaveRequestOverview = exampleOverviewPage.openLeaveRequestOverview();
-//    leaveRequestOverview.getHearText().shouldBe(Condition.text("Leave Request"));
-//
-//    leaveRequestOverview.getStepName(0).shouldBe(Condition.text("Creation"));
-//    leaveRequestOverview.getStepName(1).shouldBe(Condition.text("Approval"));
-//    leaveRequestOverview.getStepName(2).shouldBe(Condition.text("Summary"));
-//
-//    LeaveRequestPage leaveRequest = leaveRequestOverview.start();
-//    assertEquals("Create leave request", leaveRequest.getPageTitle());
-//  }
+  @Test
+  public void testOverviewLeaveRequest() {
+    LeaveRequestOverviewPage leaveRequestOverview = exampleOverviewPage.openLeaveRequestOverview();
+    exampleOverviewPage.waitForIFrameContentVisible();
+    leaveRequestOverview.getHearText().shouldBe(Condition.text("Leave Request"));
+
+    leaveRequestOverview.getStepName(0).shouldBe(Condition.text("Creation"));
+    leaveRequestOverview.getStepName(1).shouldBe(Condition.text("Approval"));
+    leaveRequestOverview.getStepName(2).shouldBe(Condition.text("Summary"));
+
+    LeaveRequestPage leaveRequest = leaveRequestOverview.start();
+    assertEquals("Create leave request -", leaveRequest.getPageTitle());
+  }
 
   @Test
   public void testOverviewLending() {
