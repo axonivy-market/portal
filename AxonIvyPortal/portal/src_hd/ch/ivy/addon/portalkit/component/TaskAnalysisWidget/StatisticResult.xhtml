@@ -45,7 +45,7 @@
         </p:column>
 
         <p:column id="case-creator" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseCreator')}" sortable="false" width="200"
-          visible="#{taskAnalysisWidgetBean.columns['CASE_CREATOR']}" exportable="#{taskAnalysisWidgetBean.columns['CASE_CREATOR']}">
+          visible="#{taskAnalysisWidgetBean.columns['CASE_CREATOR']}" exportable="#{taskAnalysisWidgetBean.columns['CASE_CREATOR']}" rendered="#{not taskAnalysisWidgetBean.hideCaseCreator}">
           <pc:securityMemberNameAndAvatar
             displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.case.creatorUser, task.case.creatorUserName)}"
             securityMember="#{task.case.creatorUser}" />
