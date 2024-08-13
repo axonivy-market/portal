@@ -134,10 +134,14 @@ public class BaseTest {
       "PortalKitTestHelper/14DE09882B540AD5/grantCaseDetailsShareLinkPermission.ivp";
   protected String denyShareLinkCaseDetailsPermission =
       "PortalKitTestHelper/14DE09882B540AD5/denyCaseDetailsShareLinkPermission.ivp";
+  /**
+   * Note: fix TaskDetailsTest#testShareTaskDetails()
+   * the links are wrong, updated it as information of the process file
+   */
   protected String grantShareLinkTaskDetailsPermission =
-      "PortalKitTestHelper/14DE09882B540AD5/grantTaskDetailsShareLinkPermission.ivp";
+      "PortalKitTestHelper/14DE09882B540AD5/grantShareLinkTaskDetailsPermission.ivp?";
   protected String denyShareLinkTaskDetailsPermission =
-      "PortalKitTestHelper/14DE09882B540AD5/denyTaskDetailsShareLinkPermission.ivp";
+      "PortalKitTestHelper/14DE09882B540AD5/denyShareLinkTaskDetailsPermission.ivp?";
   protected String createSampleProcesses = "portalKitTestHelper/153CACC26D0D4C3D/createSampleProcesses.ivp";
   protected String showProcessViewerUrl = "portal/1549F58C18A6C562/PortalProcessViewer.ivp?caseId=%s&processKey=%s";
   protected String processViewerExampleInFrameUrl =
