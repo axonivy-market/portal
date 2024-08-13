@@ -1,0 +1,15 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
+  "simpleName" : "GlobalGrowlIFrame8Data",
+  "namespace" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "field",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isCustomized",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}
