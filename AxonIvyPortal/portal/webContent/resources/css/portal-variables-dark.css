@@ -275,12 +275,12 @@
   --widget-advanced-filter-overlay-panel-footer: var(--surface-d, rgb(84 91 103 / 50%));
   --widget-advanced-filter-command-background-color: none;
   --widget-advanced-filter-background-color: none;
-  --widget-advanced-filter-icon-color: hsla(180, 1%, 61%, 0.5);
+  --widget-advanced-filter-icon-color: hsl(0, 100%, 100%);
   --widget-advanced-filter-icon-color-hover: var(--accent-color);
   --widget-advanced-filter-hover-backround-color: transparent;
   --filter-name-label-color: var(--ivy-primary-color-grey-medium);
   --filter-selection-container-group-border-color: var(--ivy-primary-color-grey-medium);
-  --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-medium);
+  --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-white);
 
   /* Item in Widget List */
   --item-widget-background-color: #3E4754;
@@ -337,7 +337,7 @@
   --case-header-action-cell-button-background-color: transparent;
   --header-action-action-left-border-color: var(--ivy-primary-color-grey-medium);
   --task-note-link-hover-color: var(--ivy-primary-color-grey-dark);
-  --case-list-unsortable-header-cell-text-color: var(--ivy-primary-color-grey-medium);
+  --case-list-unsortable-header-cell-text-color: var(--ivy-primary-color-grey-light);
   --case-list-item-background-color: hsla(0, 0%, 100%, 0.2);
   --case-item-description-cell: var(--ivy-primary-color-grey-medium);
   /* Task Widget */
@@ -347,11 +347,11 @@
   --compact-task-start-info-color: var(--text-color);
   --compact-task-start-info-icon-color: var(--text-color);
   --task-widget-link-color: var(--ivy-primary-text-color);
-  --task-widget-header-column: var(--ivy-primary-color-grey-medium);
+  --task-widget-header-column: var(--ivy-primary-color-grey-light);
   --menu-action-hover-text-color: var(--ivy-primary-color-grey-light);
   --task-filter-separator-border-bottom: var(--ivy-primary-color-grey-dark);
   --task-view-container-data-scroller-content-background-color: transparent;
-  --task-start-list-description-cell: var(--ivy-primary-color-grey-medium);
+  --task-start-list-description-cell: var(--ivy-primary-color-grey-light);
   --task-filter-delete-user-defined-icon-hover-color: var(--primary-color);
   --task-in-progress-checkbox-label-color: var(--primary-text-color);
   /* Task Detail */
