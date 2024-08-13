@@ -1102,4 +1102,21 @@ public class NewDashboardPage extends TemplatePage {
     $("#search-results-tabview").shouldBe(appear, DEFAULT_TIMEOUT);
     return new GlobalSearchResultPage();
   }
+  
+  public SelenideElement getProcessWidgetTable() {
+    return getProcessWidgetContainer().$("div[id$='process-list']");
+  }
+
+  public void checkDisplayedProcessWidgetContainer() {
+    getProcessWidgetContainer().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement getProcessWidgetContainer() {
+    return $("div[id*='dashboard-processes-container']");
+  }
+
+  public void waitForProcessWidgetLoaded() {
+    checkDisplayedCompactModeProcessContainer();
+    getProcessWidgetTable().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
 }
