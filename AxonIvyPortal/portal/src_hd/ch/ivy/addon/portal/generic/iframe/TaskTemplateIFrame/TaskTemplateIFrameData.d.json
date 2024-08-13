@@ -1,0 +1,19 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
+  "simpleName" : "TaskTemplateIFrameData",
+  "namespace" : "ch.ivy.addon.portal.generic.iframe.TaskTemplateIFrame",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "url",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "task",
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "taskId",
+    "type" : "Number",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

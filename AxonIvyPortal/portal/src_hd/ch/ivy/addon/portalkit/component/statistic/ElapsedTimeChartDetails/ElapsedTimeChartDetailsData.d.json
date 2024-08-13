@@ -1,0 +1,39 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
+  "simpleName" : "ElapsedTimeChartDetailsData",
+  "namespace" : "ch.ivy.addon.portalkit.component.statistic.ElapsedTimeChartDetails",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "dataModel",
+    "type" : "ch.ivy.addon.portalkit.datamodel.internal.ElapsedTimeLazyDataModel",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "cases",
+    "type" : "List<ch.ivyteam.ivy.workflow.ICase>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "totalCases",
+    "type" : "Long",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "startIndex",
+    "type" : "Integer",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "count",
+    "type" : "Integer",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "caseSearchCriteria",
+    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "filterGroupId",
+    "type" : "Long",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "category",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}
