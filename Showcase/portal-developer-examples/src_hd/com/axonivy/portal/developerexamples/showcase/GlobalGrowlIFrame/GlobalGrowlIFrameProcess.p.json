@@ -3,7 +3,7 @@
   "id" : "178A0F7DD8A74A94",
   "kind" : "HTML_DIALOG",
   "config" : {
-    "data" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8.GlobalGrowlIFrame8Data"
+    "data" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame.GlobalGrowlIFrameData"
   },
   "elements" : [ {
       "id" : "f0",
@@ -44,7 +44,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 432, "y" : 192 }
+        "at" : { "x" : 224, "y" : 192 }
       },
       "connect" : [
         { "id" : "f19", "to" : "f11" }
@@ -61,49 +61,7 @@
         "labelOffset" : { "x" : 9, "y" : 35 }
       },
       "connect" : [
-        { "id" : "f17", "to" : "f6" }
-      ]
-    }, {
-      "id" : "f9",
-      "type" : "Script",
-      "name" : "Display growl",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.components.publicapi.PortalGlobalGrowInIFrameAPI;",
-            "if (in.isCustomized) {",
-            "  PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();",
-            "  api.displayCustomizedMessage(\"Task is cancelled\");",
-            "}"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 240, "y" : 192 }
-      },
-      "connect" : [
-        { "id" : "f18", "to" : "f13" }
-      ]
-    }, {
-      "id" : "f6",
-      "type" : "Script",
-      "name" : "Display growl",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.components.publicapi.PortalGlobalGrowInIFrameAPI;",
-            "if (in.isCustomized) {",
-            "  PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();",
-            "  api.displayCustomizedMessage(\"Task is finished\");",
-            "}"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 240, "y" : 128 }
-      },
-      "connect" : [
-        { "id" : "f14", "to" : "f10" }
+        { "id" : "f17", "to" : "f10" }
       ]
     }, {
       "id" : "f8",
@@ -117,7 +75,7 @@
         "labelOffset" : { "x" : 12, "y" : 35 }
       },
       "connect" : [
-        { "id" : "f15", "to" : "f9" }
+        { "id" : "f15", "to" : "f13" }
       ]
     }, {
       "id" : "f11",
@@ -136,7 +94,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 640, "y" : 192 },
+        "at" : { "x" : 424, "y" : 192 },
         "size" : { "width" : 128 }
       },
       "connect" : [
@@ -146,13 +104,13 @@
       "id" : "f12",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 800, "y" : 192 }
+        "at" : { "x" : 576, "y" : 192 }
       }
     }, {
       "id" : "f10",
       "type" : "HtmlDialogExit",
       "visual" : {
-        "at" : { "x" : 384, "y" : 128 }
+        "at" : { "x" : 224, "y" : 128 }
       }
     } ]
 }
