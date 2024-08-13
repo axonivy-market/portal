@@ -41,8 +41,6 @@ public class GlobalGrowlTest extends BaseTest {
       "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.";
   private static final String CANCEL_MESSAGE_WITH_DETAILS =
       "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.\nClick here for details.";
-  private static final String SKIP_TASK_LIST_URL =
-      "portal-developer-examples/16A7BB2ADC9580A8/frameStandardMessageAndSkipTasklist.ivp";
   private static final String GROWL_STANDARD_MESSAGE_URL =
       "portal-developer-examples/16A7BB2ADC9580A8/frameStandardMessage.ivp";
 
