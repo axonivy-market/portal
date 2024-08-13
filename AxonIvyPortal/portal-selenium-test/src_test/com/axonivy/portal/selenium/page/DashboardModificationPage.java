@@ -136,4 +136,15 @@ public class DashboardModificationPage extends TemplatePage {
     getDashboardShareLinkButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     $("div[id$=':share-dashboard-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
+  
+  /**
+   * Note: enhance QuickSearchTest
+   */
+  public void deleteProcessWidget() {
+    $("div[id='process-process_1:widget-header-actions']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("button[id='process-process_1:delete-widget-2']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("button[id='process-process_1:delete-widget-2']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div[id='remove-widget-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("button[id='remove-widget-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
 }

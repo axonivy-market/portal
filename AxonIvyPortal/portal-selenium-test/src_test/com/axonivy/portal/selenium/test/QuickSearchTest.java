@@ -23,7 +23,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class QuickSearchTest extends BaseTest {
 
   // WIDGET
@@ -97,6 +97,12 @@ public class QuickSearchTest extends BaseTest {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    /**
+     * Note: when input quickSearch below, it finding the form and the first result it found
+     * is the process widget (since we introduce quick search for processWidget)
+     * so I think we should remove the processWidget because it's no used in this test :)
+     */
+    modificationPage.deleteProcessWidget();
     ScreenshotUtils.maximizeBrowser();
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
     /**
@@ -136,6 +142,12 @@ public class QuickSearchTest extends BaseTest {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    /**
+     * Note: when input quickSearch below, it finding the form and the first result it found
+     * is the process widget (since we introduce quick search for processWidget)
+     * so I think we should remove the processWidget because it's no used in this test :)
+     */
+    modificationPage.deleteProcessWidget();
     ScreenshotUtils.maximizeBrowser();
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
     /**
@@ -212,6 +224,12 @@ public class QuickSearchTest extends BaseTest {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    /**
+     * Note: when input quickSearch below, it finding the form and the first result it found
+     * is the process widget (since we introduce quick search for processWidget)
+     * so I think we should remove the processWidget because it's no used in this test :)
+     */
+    modificationPage.deleteProcessWidget();
     ScreenshotUtils.maximizeBrowser();
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
     /**
