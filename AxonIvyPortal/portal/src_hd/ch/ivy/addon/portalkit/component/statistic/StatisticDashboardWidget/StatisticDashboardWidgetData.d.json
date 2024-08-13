@@ -1,0 +1,107 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
+  "simpleName" : "StatisticDashboardWidgetData",
+  "namespace" : "ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "selectedStatisticChart",
+    "type" : "ch.ivy.addon.portalkit.statistics.StatisticChart",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "statisticChartList",
+    "type" : "java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "taskQuery",
+    "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "caseQuery",
+    "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "hasStatistic",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "selectedItemOfDrilldown",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isDrilldownToTaskList",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "selectedCaseCategory",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "previousSelectedMonth",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "previousSelectedWeek",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "previousSelectedDay",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "showTaskListImmediately",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "taskListName",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isBackFromDrilldown",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isFinishLoadCharts",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isCompactMode",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "defaultCharts",
+    "type" : "java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isDrilldownExpiryChart",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isReloadChartContent",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "prevStatisticList",
+    "type" : "java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "chartNameOfCurrentLanguage",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "numberOfDefaultCharts",
+    "type" : "Integer",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "selectedCategoryOfDrilldown",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isDrilldownToCaseList",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "selectedCategories",
+    "type" : "java.util.List<String>",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

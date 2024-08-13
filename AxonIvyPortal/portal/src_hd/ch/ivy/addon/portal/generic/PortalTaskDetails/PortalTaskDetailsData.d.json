@@ -1,0 +1,36 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
+  "simpleName" : "PortalTaskDetailsData",
+  "namespace" : "ch.ivy.addon.portal.generic.PortalTaskDetails",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "task",
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "dataModel",
+    "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "portalPage",
+    "type" : "ch.ivy.addon.portalkit.enums.PortalPage",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isFromTaskList",
+    "type" : "Boolean",
+    "comment" : "true: opened from TASK_LIST or SEARCH_RESULTS; false: back from Task Start page",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isTaskStartedInDetails",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "dashboardDataModel",
+    "type" : "ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "showItemDetailsHeader",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}
