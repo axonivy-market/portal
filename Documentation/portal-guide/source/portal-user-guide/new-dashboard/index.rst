@@ -144,7 +144,7 @@ files and put them into a single zip file.
 
 **Quick search**
 
-In view mode, when quick search is enabled, a text box will appear to allow searching.
+In view mode, when quick search is enabled, a text box will appear to allow you to search.
 
 |task-quick-search-textbox|
 
@@ -215,7 +215,7 @@ files and put them into a single zip file.
 
 **Quick search**
 
-In the view mode, when quick search is enabled, a text box will appear to allow you to searching.
+In the view mode, when quick search is enabled, a text box will appear to allow you to search.
 
 |case-quick-search-textbox|
 
@@ -248,9 +248,18 @@ a particular process:
 
 **Compact mode**
 
-This widget displays a list of all selected process starts. You can sort your processes by index, alphabetical order or custom order. You can change your custom order by drag and drop the processes.
+This widget displays a list of all selected process starts. You can sort your processes by index, alphabetical order or custom order.
+You can change your custom order by drag and drop the processes and enable quick search by selecting the quick search checkbox.
 
 |process-widget-compact-mode|
+
+In view mode, when quick search function is enabled, a text box will appear to allow you to search.
+
+  .. important::
+   - Quick search function can only be used when process widget mode is ``Compact Mode``.
+   - Quick search function supports searching by ``process name``.
+
+|process-quick-search-textbox|
 
 **Full mode**
 
@@ -383,6 +392,7 @@ You can define a Notifications widget to display all Notifications based on your
 .. |process-widget-image-mode| image:: ../../screenshots/new-dashboard/process-widget-image-mode.png
 .. |process-viewer-widget| image:: ../../screenshots/new-dashboard/process-viewer-widget.png
 .. |process-viewer-widget-configuration| image:: ../../screenshots/new-dashboard/process-viewer-widget-configuration.png
+.. |process-quick-search-textbox| image:: ../../screenshots/new-dashboard/process-quick-search-textbox.png
 
 .. |welcome-widget-configuration| image:: ../../screenshots/new-dashboard/welcome-widget-configuration.png
 .. |news-feed-widget-configuration| image:: ../../screenshots/new-dashboard/news-feed-widget-configuration.png
