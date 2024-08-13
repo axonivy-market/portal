@@ -493,4 +493,8 @@ public class DashboardBean implements Serializable {
   public String getSearchScope() {
     return this.searchScope;
   }
+
+  public boolean isHideCaseCreator() {
+    return GlobalSettingService.getInstance().isHideCaseCreator();
+  }
 }

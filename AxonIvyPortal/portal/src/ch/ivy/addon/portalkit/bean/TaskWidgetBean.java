@@ -53,12 +53,12 @@ public class TaskWidgetBean implements Serializable {
   public TaskWidgetBean() {
     expandedTaskId = -1L;
     String taskListRefreshIntervalUserSetting =
-        new GlobalSettingService().findGlobalSettingValue(GlobalVariable.REFRESH_TASK_LIST_INTERVAL);
+        GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.REFRESH_TASK_LIST_INTERVAL);
     taskListRefreshInterval =
         StringUtils.isNumeric(taskListRefreshIntervalUserSetting) ? Long.parseLong(taskListRefreshIntervalUserSetting)
             : DEFAULT_TASK_LIST_REFRESH_INTERVAL;
     isShowFullTaskList = PermissionUtils.checkAccessFullTaskListPermission();
-    isRunningTaskWhenClickingOnTaskInList = new GlobalSettingService()
+    isRunningTaskWhenClickingOnTaskInList = GlobalSettingService.getInstance()
         .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
         .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
   }
