@@ -239,9 +239,14 @@ public class DashboardWidgetUtils {
           .collect(Collectors.toList());
     }
     var enableCaseOwner = GlobalSettingService.getInstance().isCaseOwnerEnabled();
+    boolean disableCaseCreator = GlobalSettingService.getInstance().isHideCaseCreator();
     if (!enableCaseOwner) {
       filterableColumns
           .removeIf(col -> StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardCaseColumn.OWNER.name()));
+    }
+    if (disableCaseCreator) {
+      filterableColumns
+          .removeIf(col -> StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardCaseColumn.CREATOR.name()));
     }
     return filterableColumns;
   }
@@ -579,7 +584,7 @@ public class DashboardWidgetUtils {
     List<DashboardProcess> processes = getCompactProcesses(processWidget);
     processWidget.setDisplayProcesses(processes);
     processWidget.setOriginalDisplayProcesses(processes);
-    if (!processWidget.getCriteria().isInConfiguration()) {
+    if (!processWidget.getCriteria().isInConfiguration() || processWidget.isEnableQuickSearch()) {
       processWidget.filterProcessesByUser();
     }
   }

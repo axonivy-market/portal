@@ -1,0 +1,23 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
+  "simpleName" : "CaseInformationInIFrameData",
+  "namespace" : "ch.ivy.addon.portal.component.iframe.CaseInformationInIFrame",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "currentCase",
+    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "showBackButton",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "readOnly",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "uuid",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

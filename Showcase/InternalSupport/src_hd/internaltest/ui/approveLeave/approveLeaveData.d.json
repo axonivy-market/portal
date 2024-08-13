@@ -1,0 +1,40 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
+  "simpleName" : "approveLeaveData",
+  "namespace" : "internaltest.ui.approveLeave",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "Mitarbeiter",
+    "type" : "String"
+  }, {
+    "name" : "Von",
+    "type" : "java.util.Date"
+  }, {
+    "name" : "Bis",
+    "type" : "java.util.Date"
+  }, {
+    "name" : "beantragt",
+    "type" : "Boolean"
+  }, {
+    "name" : "genehmigt",
+    "type" : "Boolean"
+  }, {
+    "name" : "Ablehnungsgrund",
+    "type" : "String"
+  }, {
+    "name" : "Vertretung",
+    "type" : "String"
+  }, {
+    "name" : "actualStepIndex",
+    "type" : "Number",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "steps",
+    "type" : "List<String>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "taskCategory",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}
