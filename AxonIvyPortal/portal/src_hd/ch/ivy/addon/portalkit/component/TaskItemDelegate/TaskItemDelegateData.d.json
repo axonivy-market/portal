@@ -1,0 +1,67 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
+  "simpleName" : "TaskItemDelegateData",
+  "namespace" : "ch.ivy.addon.portalkit.component.TaskItemDelegate",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "canDelegateTask",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "usersToDelegate",
+    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "rolesToDelegate",
+    "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "application",
+    "type" : "ch.ivyteam.ivy.application.IApplication",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "disabledDelegateButton",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isUserDelegated",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "delegatedSecurityMember",
+    "type" : "ch.ivyteam.ivy.security.ISecurityMember",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "delegateComment",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "queryAutoComplete",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "task",
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "selectedUser",
+    "type" : "com.axonivy.portal.components.dto.UserDTO",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "selectedRole",
+    "type" : "com.axonivy.portal.components.dto.RoleDTO",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "taskDelegationComment",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isEmptyUsers",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isEmptyRoles",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}
