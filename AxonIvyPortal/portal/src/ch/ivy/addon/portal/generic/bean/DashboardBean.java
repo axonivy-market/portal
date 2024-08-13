@@ -516,4 +516,8 @@ public class DashboardBean implements Serializable {
     }
     return selectedDashboardName;
   }
+
+  public boolean isHideCaseCreator() {
+    return GlobalSettingService.getInstance().isHideCaseCreator();
+  }
 }
