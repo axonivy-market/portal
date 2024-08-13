@@ -1,0 +1,67 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
+  "simpleName" : "StatisticWidgetData",
+  "namespace" : "ch.ivy.addon.portalkit.component.StatisticWidget",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "compactMode",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "username",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "jsonQuery",
+    "type" : "String",
+    "comment" : "Customized TaskQuery",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "createMode",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "statisticChartList",
+    "type" : "java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isDrilldownElapsedTime",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isDrilldownExpiryChart",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isBackFromDrilldown",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "defaultCharts",
+    "type" : "java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "canCreateNewCharts",
+    "type" : "Boolean",
+    "comment" : "Check user has permission to creating new charts",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "hasDefaultChart",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "canAnalyzeTask",
+    "type" : "Boolean",
+    "comment" : "Check user has permission to analyzing task",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isDisplayShowAllChartLink",
+    "type" : "Boolean",
+    "comment" : "Is show all chart link at home page",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isDrilldownCasesByCategory",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}
