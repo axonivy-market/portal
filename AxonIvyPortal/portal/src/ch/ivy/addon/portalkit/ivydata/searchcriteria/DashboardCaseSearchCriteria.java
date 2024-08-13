@@ -358,7 +358,8 @@ public class DashboardCaseSearchCriteria {
     }
 
     private void appendSortByCreatorIfSet(DashboardCaseSearchCriteria criteria) {
-      if (DashboardStandardCaseColumn.CREATOR.getField().equalsIgnoreCase(criteria.getSortField())) {
+      if (DashboardStandardCaseColumn.CREATOR.getField().equalsIgnoreCase(criteria.getSortField())
+          && !GlobalSettingService.getInstance().isHideCaseCreator()) {
         order = query.orderBy().creatorUserDisplayName();
         sortStandardColumn = true;
       }

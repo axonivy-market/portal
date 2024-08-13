@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -26,7 +27,14 @@ public class CaseExporter extends Exporter{
    * @param columnsVisibility list of columns to export
    */
   public CaseExporter(List<String> columnsVisibility) {
-    super(columnsVisibility);
+    List<String> columns = new ArrayList<>();
+    for (String column : columnsVisibility) {
+      if (CaseSortField.CREATOR.toString().equals(column) && GlobalSettingService.getInstance().isHideCaseCreator()) {
+        continue;
+      }
+      columns.add(column);
+    }
+    setColumnsVisibility(columns);
   }
 
   /**

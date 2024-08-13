@@ -271,6 +271,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableUserFavorites: Si la propriété est désactivée, n'affichez pas la section des favoris de l'utilisateur de la liste des processus dans la page d'accueil du portail.
       enableVirusScannerForUploadedDocumentNote: Définie sur true pour activer le scanner de virus pour le document téléchargé. Actuellement, cette fonction utilise l'API VIRUSTOTAL.
       expressEndPageNote: Affiche la page de fin personnalisée à la fin de chaque processus Express.
+      hideCaseCreator: |-
+        La valeur "true" permet de masquer le créateur du dossier dans la liste des dossiers, le widget du dossier et les détails du dossier.
+        Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
       hideCaseDocument: Si vous choisissez "true", la section du document dans la page de détail du cas sera invisible, sinon elle sera visible.
       hideChangePasswordButtonNote: Attribuez la valeur true à cette variable pour masquer l'option "Changer de mot de passe" dans le menu supérieur et l'option "Mot de passe oublié" sur la page de connexion. Si elle vaut false, ces options seront affichées.
       hideLogoutButtonNote: Si true, le bouton de déconnexion du menu supérieur sera masqué, sinon il sera affiché.
