@@ -1,0 +1,19 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
+  "simpleName" : "CustomFieldData",
+  "namespace" : "ch.ivy.addon.portalkit.component.statistic.CustomField",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "selectedCustomValue",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "tempSelectedCustomValues",
+    "type" : "java.util.List<String>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "selectedCustomValues",
+    "type" : "java.util.List<String>",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

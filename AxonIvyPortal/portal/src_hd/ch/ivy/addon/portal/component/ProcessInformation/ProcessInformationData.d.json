@@ -1,0 +1,27 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
+  "simpleName" : "ProcessInformationData",
+  "namespace" : "ch.ivy.addon.portal.component.ProcessInformation",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "processSteps",
+    "type" : "java.util.List<ch.ivy.addon.portalkit.bo.ProcessStep>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "processId",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "userProcesses",
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartable>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "selectedProcess",
+    "type" : "ch.ivy.addon.portalkit.configuration.UserProcess",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "portalProcessInformation",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

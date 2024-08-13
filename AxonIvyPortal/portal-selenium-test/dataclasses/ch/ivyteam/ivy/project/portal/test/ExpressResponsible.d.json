@@ -1,0 +1,13 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
+  "simpleName" : "ExpressResponsible",
+  "namespace" : "ch.ivyteam.ivy.project.portal.test",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "responsibleName",
+    "type" : "String"
+  }, {
+    "name" : "isGroup",
+    "type" : "Boolean"
+  } ]
+}
