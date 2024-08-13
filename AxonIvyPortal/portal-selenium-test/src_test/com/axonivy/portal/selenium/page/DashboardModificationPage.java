@@ -146,5 +146,6 @@ public class DashboardModificationPage extends TemplatePage {
     $("button[id='process-process_1:delete-widget-2']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id='remove-widget-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("button[id='remove-widget-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-  }
+    $(".ajax-status-position").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    }
 }
