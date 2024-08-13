@@ -37,17 +37,17 @@ public class SearchCaseTest extends BaseTest {
     assertTrue(searchResultPage.isCaseCategoryColumnDisplayed());
   }
 
-//  Note: somehow it doesn't work anymore
-//  @Test
-//  public void testFindCaseByNameWithSpecialCharacter() {
-//    GlobalSearch globalSearch = newDashboardPage.getGlobalSearch();
-//    assertTrue(globalSearch.isDisplayed());
-//
-//    String caseName = "\u00D6sterreich Resource with ID 1212";
-//    SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(caseName);
-//    searchResultPage.openCaseTab();
-//    assertEquals(caseName, searchResultPage.getCaseResult(0));
-//  }
+  @Test
+  public void testFindCaseByNameWithSpecialCharacter() {
+    redirectToNewDashBoard();
+    GlobalSearch globalSearch = newDashboardPage.getGlobalSearch();
+    assertTrue(globalSearch.isDisplayed());
+
+    String caseName = "\u00D6sterreich Resource with ID 1212";
+    SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(caseName);
+    searchResultPage.openCaseTab();
+    assertEquals(caseName, searchResultPage.getCaseResult(0));
+  }
 
   @Test
   public void testFindNotFoundOutData() {

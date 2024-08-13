@@ -91,7 +91,8 @@ public class ProcessInformationTest extends BaseTest {
   }
 
   /**
-   * Test below seems don't exist in LTS
+   * ticket: IVYPORTAL-16086-More Information Process Page
+   * fix version 11.3 -> not on LTS -> delete
    */
 //  @Test
 //  public void testClickOnCustomProcessInformationPage() {

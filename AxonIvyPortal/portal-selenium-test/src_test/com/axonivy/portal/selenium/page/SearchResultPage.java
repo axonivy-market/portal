@@ -56,7 +56,7 @@ public class SearchResultPage extends TemplatePage {
 
   public String getCaseResult(int index) {
     CaseWidgetPage caseWidgetPage = getCaseWidget();
-    return caseWidgetPage.getCaseNameAt(index);
+    return caseWidgetPage.getGlobalSearchCaseNameAt(index);
   }
   public String getGlobalSearchCaseResult(int index) {
     CaseWidgetPage caseWidgetPage = getCaseWidget();
