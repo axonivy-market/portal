@@ -986,7 +986,8 @@
           }
         },
         "outLink" : "DefaultEndPage.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 384 },
@@ -1095,7 +1096,8 @@
       "config" : {
         "callSignature" : "CaseListPage",
         "outLink" : "CaseListPage.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 624 },
@@ -1117,7 +1119,8 @@
           }
         },
         "outLink" : "CaseDetailsPage.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 864 },
@@ -1131,7 +1134,8 @@
       "config" : {
         "callSignature" : "DefaultTaskListPage",
         "outLink" : "DefaultTaskListPage.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 784 },
@@ -1215,7 +1219,8 @@
           }
         },
         "outLink" : "BackFromTaskDetails.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 464 },
@@ -1241,7 +1246,8 @@
       "config" : {
         "callSignature" : "StatisticPage",
         "outLink" : "StatisticPage.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 944 },
@@ -1269,7 +1275,8 @@
           }
         },
         "outLink" : "DefaultLoginPage.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 1024 },
@@ -1339,7 +1346,8 @@
           }
         },
         "outLink" : "RelatedTasksOfCasePage.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 1104 },
@@ -1361,7 +1369,8 @@
           }
         },
         "outLink" : "TaskDetailsPage.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 1184 },
@@ -1422,7 +1431,8 @@
           }
         },
         "outLink" : "GlobalSearchPage.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 1264 },
@@ -1447,7 +1457,8 @@
       "config" : {
         "callSignature" : "Error500Page",
         "outLink" : "Error500Page.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 1504 },
@@ -1461,7 +1472,8 @@
       "config" : {
         "callSignature" : "Error404Page",
         "outLink" : "Error404Page.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 1584 },
@@ -1475,7 +1487,8 @@
       "config" : {
         "callSignature" : "DefaultProcessStartListPage",
         "outLink" : "DefaultProcessStartListPage.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 1424 },
@@ -1560,7 +1573,8 @@
           }
         },
         "outLink" : "DefaultFramePage.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 1664 },
@@ -1777,7 +1791,8 @@
           }
         },
         "outLink" : "CaseDetailsInIFrame.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 1904 },
@@ -1832,7 +1847,8 @@
           }
         },
         "outLink" : "RelatedTasksOfCasePageInFrame.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 1984 },
@@ -1895,7 +1911,8 @@
           }
         },
         "outLink" : "TaskDetailsPageInFrame.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 2064 },
@@ -1909,7 +1926,8 @@
       "config" : {
         "callSignature" : "AbsenceManagement",
         "outLink" : "AbsenceManagement.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 2144 },
@@ -1952,7 +1970,8 @@
           }
         },
         "outLink" : "PasswordResetPage.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 2704 },
@@ -1966,7 +1985,8 @@
       "config" : {
         "callSignature" : "ForgotPasswordPage",
         "outLink" : "ForgotPasswordPage.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 2544 },
@@ -1982,7 +2002,7 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 672, "y" : 2544 }
+        "at" : { "x" : 384, "y" : 2544 }
       }
     }, {
       "id" : "f109",
@@ -2014,7 +2034,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 672, "y" : 2704 }
+        "at" : { "x" : 384, "y" : 2704 }
       },
       "connect" : { "id" : "f111", "to" : "f110" }
     }, {
@@ -2040,7 +2060,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 816, "y" : 2704 }
+        "at" : { "x" : 528, "y" : 2704 }
       }
     }, {
       "id" : "f118",
@@ -2060,30 +2080,6 @@
         "size" : { "width" : 256, "height" : 60 }
       }
     }, {
-      "id" : "f115",
-      "type" : "Alternative",
-      "name" : "isIvySecuritySystem?",
-      "visual" : {
-        "at" : { "x" : 456, "y" : 2704 },
-        "labelOffset" : { "x" : 20, "y" : 34 }
-      },
-      "connect" : [
-        { "id" : "f124", "to" : "f109", "condition" : "ch.ivy.addon.portalkit.util.SecuritySystemUtils.isIvySecuritySystem()" },
-        { "id" : "f123", "to" : "f118" }
-      ]
-    }, {
-      "id" : "f121",
-      "type" : "Alternative",
-      "name" : "isIvySecuritySystem?",
-      "visual" : {
-        "at" : { "x" : 456, "y" : 2544 },
-        "labelOffset" : { "x" : 24, "y" : -15 }
-      },
-      "connect" : [
-        { "id" : "f113", "to" : "f108", "condition" : "ch.ivy.addon.portalkit.util.SecuritySystemUtils.isIvySecuritySystem()" },
-        { "id" : "f117", "to" : "f118" }
-      ]
-    }, {
       "id" : "f125",
       "type" : "Alternative",
       "name" : "logged in?",
@@ -2092,8 +2088,8 @@
         "labelOffset" : { "x" : 64, "y" : 17 }
       },
       "connect" : [
-        { "id" : "f116", "to" : "f121", "condition" : "ivy.session.isSessionUserUnknown()" },
-        { "id" : "f112", "to" : "f118", "via" : [ { "x" : 200, "y" : 2624 } ] }
+        { "id" : "f116", "to" : "f108", "condition" : "ivy.session.isSessionUserUnknown()" },
+        { "id" : "f113", "to" : "f118", "via" : [ { "x" : 200, "y" : 2624 } ] }
       ]
     }, {
       "id" : "f127",
@@ -2104,8 +2100,8 @@
         "labelOffset" : { "x" : 59, "y" : 18 }
       },
       "connect" : [
-        { "id" : "f119", "to" : "f115", "condition" : "ivy.session.isSessionUserUnknown()" },
-        { "id" : "f114", "to" : "f118", "via" : [ { "x" : 200, "y" : 2624 } ] }
+        { "id" : "f112", "to" : "f109", "condition" : "ivy.session.isSessionUserUnknown()" },
+        { "id" : "f115", "to" : "f118", "via" : [ { "x" : 200, "y" : 2624 } ] }
       ]
     }, {
       "id" : "f120",
@@ -2122,7 +2118,8 @@
           }
         },
         "outLink" : "DefaultDashboardPage.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 144 },
@@ -2165,7 +2162,8 @@
           }
         },
         "outLink" : "CaseDetailsPageInFrame.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 2224 },
@@ -2187,7 +2185,8 @@
           }
         },
         "outLink" : "ProcessInformation.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 2304 },
@@ -3013,7 +3012,8 @@
           }
         },
         "outLink" : "showCaseNoteHistory.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 2784 },
@@ -3041,7 +3041,8 @@
           }
         },
         "outLink" : "showTaskNoteHistory.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 2864 },
@@ -3161,7 +3162,8 @@
           }
         },
         "outLink" : "showAdditionalCaseDetails.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 2944 },
@@ -3175,7 +3177,8 @@
       "config" : {
         "callSignature" : "showTaskAnalysis",
         "outLink" : "showTaskAnalysis.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 3024 },
@@ -3217,7 +3220,8 @@
           }
         },
         "outLink" : "DashboardDetails.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 2464 },
@@ -3259,7 +3263,8 @@
       "name" : "DefaultApplicationHomePageInTeams.ivp",
       "config" : {
         "callSignature" : "DefaultApplicationHomePageInTeams",
-        "outLink" : "DefaultApplicationHomePageInTeams.ivp"
+        "outLink" : "DefaultApplicationHomePageInTeams.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 304 },
@@ -3300,7 +3305,8 @@
       "name" : "DefaultCaseListPageInTeams.ivp",
       "config" : {
         "callSignature" : "DefaultCaseListPageInTeams",
-        "outLink" : "DefaultCaseListPageInTeams.ivp"
+        "outLink" : "DefaultCaseListPageInTeams.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 544 },
@@ -3351,7 +3357,8 @@
       "name" : "DefaultTaskListPageInTeams.ivp",
       "config" : {
         "callSignature" : "DefaultTaskListPageInTeams",
-        "outLink" : "DefaultTaskListPageInTeams.ivp"
+        "outLink" : "DefaultTaskListPageInTeams.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 704 },
@@ -3364,7 +3371,8 @@
       "name" : "DefaultProcessStartListPageInTeams.ivp",
       "config" : {
         "callSignature" : "DefaultProcessStartListPageInTeams",
-        "outLink" : "DefaultProcessStartListPageInTeams.ivp"
+        "outLink" : "DefaultProcessStartListPageInTeams.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 1344 },
@@ -3440,7 +3448,8 @@
           }
         },
         "outLink" : "PortalProcessViewer.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 3104 },
@@ -3462,7 +3471,8 @@
           }
         },
         "outLink" : "ShowTaskDocument.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 3184 },
@@ -3510,7 +3520,8 @@
           }
         },
         "outLink" : "ShowCaseDocument.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 3264 },
@@ -3550,7 +3561,8 @@
       "config" : {
         "callSignature" : "PortalManagement",
         "outLink" : "PortalManagement.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 3344 },
@@ -3601,7 +3613,8 @@
       "config" : {
         "callSignature" : "PortalDashboardConfiguration",
         "outLink" : "PortalDashboardConfiguration.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 2384 },
@@ -3899,7 +3912,8 @@
           }
         },
         "outLink" : "TaskDetailsLink.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 3456 },
@@ -3927,7 +3941,8 @@
           }
         },
         "outLink" : "CaseDetailsLink.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 3656 },
@@ -4117,7 +4132,8 @@
           }
         },
         "outLink" : "DashboardPage.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 136, "y" : 64 }
@@ -4293,7 +4309,8 @@
           }
         },
         "outLink" : "PortalDashboardConfigurationEditPage.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 144, "y" : 3784 },
