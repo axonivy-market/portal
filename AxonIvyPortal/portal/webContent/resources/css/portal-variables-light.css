@@ -383,7 +383,6 @@
   --task-normal-priority-color: #18727e;
   --task-high-priority-color: #12535c;
   --task-exception-priority-color: #C63C43;
-  --task-exception-priority-color-contrast: brightness(1.7);
   --task-state-suspended-background: #DADADA;
   --task-state-suspended-color: var(--ivy-primary-color-grey-dark);
   --task-state-resumed-background: #FFE896;
