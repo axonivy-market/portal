@@ -1,6 +1,0 @@
-DeleteDocumentItemData #class
-com.axonivy.portal.components #namespace
-document com.axonivy.portal.components.ivydata.bo.IvyDocument #field
-businessCase ch.ivyteam.ivy.workflow.ICase #field
-message String #field
-hasCustomProcess Boolean #field
