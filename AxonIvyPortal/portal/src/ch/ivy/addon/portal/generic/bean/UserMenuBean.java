@@ -17,6 +17,7 @@ import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.enums.PortalCustomSignature;
+import com.axonivy.portal.service.GlobalSearchService;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
@@ -77,7 +78,11 @@ public class UserMenuBean implements Serializable {
           break;
       }
     }
-    isShowGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_GLOBAL_SEARCH);
+    boolean isShowGlobalSearchByProcesses = GlobalSearchService.getInstance().isShowGlobalSearchByProcesses();
+    boolean isShowGlobalSearchByTasks = GlobalSearchService.getInstance().isShowGlobalSearchByTasks();
+    boolean isShowGlobalSearchByCases = GlobalSearchService.getInstance().isShowGlobalSearchByCases();
+    isShowGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_GLOBAL_SEARCH)
+        && (isShowGlobalSearchByProcesses || isShowGlobalSearchByCases || isShowGlobalSearchByTasks);
   }
 
   public boolean isShowCaseDurationTime() {
@@ -103,17 +108,6 @@ public class UserMenuBean implements Serializable {
   
   public boolean getIsShowGlobalSearch() {
     return isShowGlobalSearch;
-  }
-
-  public long getClientSideTimeout() {
-    String clientSideTimeoutInMinute = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT);
-    if (StringUtils.isNotBlank(clientSideTimeoutInMinute)) {
-      Long timeoutInMinute = Long.valueOf(clientSideTimeoutInMinute);
-      if (timeoutInMinute > 0) {
-        return timeoutInMinute * DateUtils.MILLIS_PER_MINUTE;
-      }
-    }
-    return getDefaultClientSideTimeout();
   }
 
   public String getLogoutPage() {
@@ -280,7 +274,7 @@ public class UserMenuBean implements Serializable {
     return PortalNavigator.buildPortalManagementUrl();
   }
 
-  private long getDefaultClientSideTimeout() {
+  public long getServerSideTimeout() {
     ExternalContext externalContext = getExternalContext();
     long serverSideTimeOutInMillisecond = externalContext.getSessionMaxInactiveInterval() * DateUtils.MILLIS_PER_SECOND;
     return serverSideTimeOutInMillisecond - TIME_BEFORE_LOST_SESSION;

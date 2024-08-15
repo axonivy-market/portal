@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.page.CaseDetailsPage;
+import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.userexamples.page.CaseMapPage;
@@ -35,6 +36,7 @@ public class CaseMapTest extends BaseTest {
     caseMapPage = new CaseMapPage();
     caseMapPage.inputFields("John", "Jack", "1.1.2019", "VN", "20000", "To buy a new car", "80000", "100000");
     caseMapPage.clickSubmitRequestButton();
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     startTaskByTaskName(VERIFY_PERSONAL_DATA);
     caseMapPage.switchToIFrameOfTask();
     assertInputData();

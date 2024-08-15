@@ -67,7 +67,7 @@ public class RelatedCaseLazyDataModel extends LazyDataModel7<ICase> {
   }
 
   public void initColumnsConfiguration() {
-    if (new GlobalSettingService().isCaseOwnerEnabled()) {
+    if (GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
       portalDefaultColumns = List.of(CaseSortField.NAME.name(), CaseSortField.ID.name(), CaseSortField.CREATOR.name(), CaseSortField.OWNER.name(), CaseSortField.CREATION_TIME.name(),
           CaseSortField.FINISHED_TIME.name(), CaseSortField.STATE.name(), CaseSortField.CATEGORY.name());
     } else {

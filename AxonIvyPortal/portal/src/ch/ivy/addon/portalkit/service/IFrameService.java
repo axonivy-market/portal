@@ -27,7 +27,7 @@ public class IFrameService {
       return isIFrameCustomField;
     }
     
-    return new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.EMBED_IN_FRAME);
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.EMBED_IN_FRAME);
   }
 
   /**

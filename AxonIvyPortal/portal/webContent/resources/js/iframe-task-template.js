@@ -108,12 +108,8 @@ function checkUrl(iFrame, appName) {
   }
 
   // Update title
-  const title = iframeDoc.title.concat(" - ", appName);
-  document.title = title;
-  
-  $(iFrame).on('load', function() {
-    document.title = "redirect";    
-  });
+  const title = iframeDoc.title ? iframeDoc.title.concat(" - ", appName) : appName;
+  document.title = title; 
 
   var path = getPortalIframePath(iFrame);
   if (path === '' || invalidIFrameSrcPath) {

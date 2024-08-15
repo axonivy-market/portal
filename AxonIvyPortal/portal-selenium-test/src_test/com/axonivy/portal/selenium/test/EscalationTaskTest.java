@@ -86,14 +86,14 @@ public class EscalationTaskTest extends BaseTest {
     MainMenuPage mainMenuPage = new MainMenuPage();
     CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(TRIGGER_ESCALATION_CASE);
-    caseDetailsPage.getNameOfRelatedTask(1).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
-    caseDetailsPage.clickRelatedTaskActionButton(1);
-    caseDetailsPage.triggerEscalationTask(1);
+    caseDetailsPage.getNameOfRelatedTask(0).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
+    caseDetailsPage.clickRelatedTaskActionButton(0);
+    caseDetailsPage.triggerEscalationTask(0);
     refreshPage();
     caseDetailsPage = new CaseDetailsPage();
-    caseDetailsPage.getNameOfRelatedTask(1).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
-    caseDetailsPage.getStateOfRelatedTask(1).shouldHave(Condition.text("Destroyed"));
-    caseDetailsPage.getNameOfRelatedTask(3).shouldHave(Condition.text(SICK_LEAVE_REQUEST_ESCALATED));
+    caseDetailsPage.getNameOfRelatedTask(0).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
+    caseDetailsPage.getStateOfRelatedTask(2).shouldHave(Condition.text("Destroyed"));
+    caseDetailsPage.getNameOfRelatedTask(0).shouldHave(Condition.text(SICK_LEAVE_REQUEST_ESCALATED));
   }
   
   @Test

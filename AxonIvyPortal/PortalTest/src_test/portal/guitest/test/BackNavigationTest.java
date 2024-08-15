@@ -22,10 +22,10 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class BackNavigationTest extends BaseTest {
 
-  private static final String CASE_LIST_TITLE = "Cases";
-  private static final String CASE_DETAILS_TITLE = "Case Details";
-  private static final String TASK_LIST_TITLE = "Tasks";
-  private static final String TASK_DETAILS_TITLE = "Task Details";
+  private static final String CASE_LIST_TITLE = "Cases - Portal - Axon Ivy";
+  private static final String CASE_DETAILS_TITLE = "Case Details - Portal - Axon Ivy";
+  private static final String TASK_LIST_TITLE = "Tasks - Portal - Axon Ivy";
+  private static final String TASK_DETAILS_TITLE = "Task Details - Portal - Axon Ivy";
 
   private static final String LEAVE_REQUEST_CASE_NAME = "Leave Request";
   private static final String PAYMENT_CASE_NAME = "Create New Payment";
@@ -120,17 +120,18 @@ public class BackNavigationTest extends BaseTest {
   @Test
   public void testNavigateAfterFinishedTaskToCaseDetails() {
     redirectToRelativeLink(simplePaymentUrl);
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     caseWidgetPage = homePage.openCaseList();
 
     caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName(PAYMENT_CASE_NAME);
     assertEquals(PAYMENT_CASE_NAME, caseDetailsPage.getCaseName());
 
-    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(1);
+    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(0);
     assertEquals(PAYMENT_TASK_NAME, taskDetailsPage.getTaskName());
     caseDetailsPage = taskDetailsPage.backToCaseDetails();
     assertEquals(PAYMENT_CASE_NAME, caseDetailsPage.getCaseName());
 
-    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(1);
+    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(0);
     assertEquals(PAYMENT_TASK_NAME, taskDetailsPage.getTaskName());
 
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
@@ -149,12 +150,13 @@ public class BackNavigationTest extends BaseTest {
   @Test
   public void testNavigateAfterCancelTaskToCaseDetails() {
     redirectToRelativeLink(simplePaymentUrl);
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     caseWidgetPage = homePage.openCaseList();
 
     caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName(PAYMENT_CASE_NAME);
     assertEquals(PAYMENT_CASE_NAME, caseDetailsPage.getCaseName());
 
-    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(1);
+    taskDetailsPage = caseDetailsPage.openTasksOfCasePage(0);
     assertEquals(PAYMENT_TASK_NAME, taskDetailsPage.getTaskName());
 
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();

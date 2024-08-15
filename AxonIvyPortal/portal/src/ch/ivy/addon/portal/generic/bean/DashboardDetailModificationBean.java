@@ -111,6 +111,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     selectedDashboardId = Attrs.currentContext().getAttribute("#{data.dashboardId}", String.class);
     isPublicDashboard = Attrs.currentContext().getAttribute("#{data.isPublicDashboard}", Boolean.class);
     isReadOnlyMode = false;
+    setResizable(true);
     super.init();
     ((DashboardProcessBean) ManagedBeans.get("dashboardProcessBean")).addPropertyChangeListener(this);
     if (getSelectedDashboard() != null) {
@@ -852,5 +853,15 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     return Optional.ofNullable(this.widget).map(DashboardWidget::getType)
         .map(DashboardWidgetType::canEnableQuickSearch)
         .orElse(false);
+  }
+
+  public boolean displayWidgetInfoOption() {
+    return Optional.ofNullable(this.widget).map(DashboardWidget::getType)
+        .map(DashboardWidgetType::canShowWidgetInfoOption).orElse(false);
+  }
+
+  public boolean displayFullscreenModeOption() {
+    return Optional.ofNullable(this.widget).map(DashboardWidget::getType)
+        .map(DashboardWidgetType::canShowFullscreenModeOption).orElse(false);
   }
 }

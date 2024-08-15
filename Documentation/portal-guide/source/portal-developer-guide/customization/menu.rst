@@ -110,7 +110,7 @@ Example of an external link:
 Portal variable
 +++++++++++++++
 
-Beside the callable subprocess approach, you can also define custom menu items in the Portal variable
+Besides the callable subprocess approach, you can also define custom menu items in the Portal variable
 ``Portal.CustomMenuItems``.
 
 Here's an example of custom menu items in the Portal.CustomMenuItems variable.

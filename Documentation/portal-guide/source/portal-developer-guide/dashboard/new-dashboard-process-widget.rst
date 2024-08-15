@@ -7,7 +7,7 @@ Define Process Widget
 ---------------------
 
 The Process widget of the Portal dashboard is a flexible Process list with three modes.
-Refer to (link to process widget of the dashboard) for details.
+Refer to :ref:`new-dashboard-process-list-widget` for details.
 
 The basic structure of the JSON of a process widget is as follows:
 
@@ -24,7 +24,9 @@ The basic structure of the JSON of a process widget is as follows:
          ],
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
-         }
+         },
+         "showFullscreenMode" : true,
+         "showWidgetInfo" : true
       }
    ..
 
@@ -51,6 +53,12 @@ modes: ``compact-process`` (compact mode), ``combined-process`` (combined mode),
       ``styleClass`` (optional): add CSS Classes to HTML DOM of the widget
 
       ``style`` (optional): add inline style to HTML DOM of the widget
+      
+   ``showFullscreenMode``: visibility of the fullscreen mode icon. The default
+   value is ``true``, set to ``false`` to hide the icon.
+   
+   ``showWidgetInfo``: visibility of the widget information icon. The default
+   value is ``true``, set to ``false`` to hide the icon.
 
 Each mode has differences in its JSON definition. Refer to the below sections to
 understand how to define the process widget in these modes properly.
@@ -58,7 +66,7 @@ understand how to define the process widget in these modes properly.
 Compact Mode
 ------------
 
-Below is a standard JSON definition of aProcess widget in compact mode
+Below is a standard JSON definition of a Process widget in compact mode
 
    .. code-block:: html
 
@@ -76,7 +84,8 @@ Below is a standard JSON definition of aProcess widget in compact mode
          },
          "processPaths": ["designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp", "designer/portal-developer-examples/Start Processes/Request/collectDataRequest.ivp"],
          "categories": ["/Categories/Showcase/Customized", "/Categories/Showcase/PortalDialogExample"],
-         "sorting": "SORTING_INDEX"
+         "sorting": "SORTING_INDEX",
+         "enableQuickSearch": true
       }
    ..
 
@@ -97,6 +106,14 @@ processes by default.
    If you want to order processes by Index, you must define a custom field name ``portalSortIndex`` with numeric value in process start.
 
    |dashboard-process-sort-index|
+
+``enableQuickSearch``: enable the quick search feature for the widget.
+
+      Valid values:
+
+      - ``true``: show the quick search text box.
+      - ``false``: hide the quick search text box.
+      - ``not defined``: hide the quick search text box.
 
 Combined Mode
 -------------

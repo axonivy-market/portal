@@ -279,6 +279,68 @@
       "visual" : {
         "at" : { "x" : 656, "y" : 448 }
       }
+    }, {
+      "id" : "f12",
+      "type" : "CallSubStart",
+      "name" : "findUsersWithRoles(String,Integer,Integer,List<String>,List<String>)",
+      "config" : {
+        "callSignature" : "findUsersWithRoles",
+        "input" : {
+          "params" : [
+            { "name" : "query", "type" : "String" },
+            { "name" : "startIndex", "type" : "Integer" },
+            { "name" : "count", "type" : "Integer" },
+            { "name" : "fromRoles", "type" : "java.util.List<String>" },
+            { "name" : "excludedUsernames", "type" : "java.util.List<String>" }
+          ],
+          "map" : {
+            "out.count" : "param.count",
+            "out.excludedUsernames" : "param.excludedUsernames",
+            "out.fromRoles" : "param.fromRoles",
+            "out.query" : "param.query",
+            "out.startIndex" : "param.startIndex"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "users", "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>" }
+          ],
+          "map" : {
+            "result.users" : "in.users"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 136, "y" : 552 },
+        "labelOffset" : { "x" : 112, "y" : 40 }
+      },
+      "connect" : { "id" : "f16", "to" : "f13" }
+    }, {
+      "id" : "f13",
+      "type" : "Script",
+      "name" : "Find users",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;",
+            "import ch.ivy.addon.portalkit.ivydata.dto.IvySecurityResultDTO;",
+            "",
+            "IvySecurityResultDTO dto = SecurityService.newInstance().findUsersWithRoles(in.query, in.startIndex, in.count, in.fromRoles, in.excludedUsernames);",
+            "out.users = dto.users;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 456, "y" : 552 }
+      },
+      "connect" : { "id" : "f15", "to" : "f14" }
+    }, {
+      "id" : "f14",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 648, "y" : 552 }
+      }
     } ],
   "layout" : {
     "lanes" : [ {

@@ -232,4 +232,100 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     addLanguageButton.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     return addLanguageButton;
   }
+  
+  public boolean isQuickSearchInputShow(String widgetIndex) {
+    String taskWidgetIndex = String.format("div[id*='case-case_%s']", widgetIndex);
+    waitPageLoaded();
+    return $(taskWidgetIndex).$("form").$("input").exists();
+  }
+
+  public String getQuickSearchInput() {
+    return getQuickSearchForm().$("input").getValue();
+  }
+
+  public void setInputForQuickSearch(String input) {
+    getQuickSearchForm().$("input").sendKeys(input);
+    waitForPageLoad();
+  }
+
+  private SelenideElement getQuickSearchForm() {
+    return $("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
+  }
+
+  public void clearQuickSearchInput() {
+    getQuickSearchForm().$("input").clear();
+    waitForPageLoad();
+  }
+  
+  public boolean isEmptyMessageAppear() {
+    return $("div[id$='empty-message-container']").exists();
+  }
+  
+  public void clickOnQuickSearchCheckBox() {
+    getQuickSearchCheckBox().click();
+  }
+
+  public SelenideElement getQuickSearchCheckBox() {
+    return $("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='quick-search']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+  }
+
+  public void clickOnQuickSearchByField(String fieldName) {
+    var quickSearchChkbox = getColumnManagementDialog().$("div[id$='column-management-datatable']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("table tbody").$$("tr").filter(text(fieldName)).first().$("div[id$='quick-search-checkbox-panel']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    quickSearchChkbox.click();
+  }
+
+  public boolean isQuickSearchClicked(String fieldName) {
+    return getColumnManagementDialog().$("div[id$='column-management-datatable']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("table tbody").$$("tr").filter(text(fieldName)).first()
+        .$("div[id$='quick-search-checkbox-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("a").$("span span")
+        .getAttribute("class").contains("ui-chkbox-icon");
+  }
+  
+  public String addCustomColumnByName(String columnName) {
+    selectCustomType();
+    getCustomFieldSelection().click();
+    $("span[id$='column-management-form:custom-field-selection_panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    SelenideElement result = $("span[id$='column-management-form:custom-field-selection_panel']").$$("li")
+        .filter(Condition.text(columnName)).first().shouldBe(getClickableCondition());
+    String field = result.getText();
+    result.click();
+    $("input[id$=':field-display-name'").shouldNot(Condition.empty, DEFAULT_TIMEOUT);
+
+    getColumnManagementDialog().$("button[id$='field-add-btn']").click();
+    getAddedFieldRemoveLink(field).shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+
+    return field;
+  }
+
+
+  public SelenideElement getWidgetInfoIconCheckbox() {
+    return getConfigurationFilterContainer().$("span[id$='widget-info-icon-group']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='widget-info']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[class*='ui-chkbox-box']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span");
+  }
+
+  public void clickOnWidgetInfoIconCheckbox() {
+    getWidgetInfoIconCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  private SelenideElement getConfigurationFilterContainer() {
+    return $("form#widget-configuration-form").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("div[id$='filter-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement getExpandModeCheckbox() {
+    return getConfigurationFilterContainer().$("span[id$='fullscreen-mode-group']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='fullscreen-option']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void clickOnExpandModeCheckbox() {
+    getExpandModeCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
 }
