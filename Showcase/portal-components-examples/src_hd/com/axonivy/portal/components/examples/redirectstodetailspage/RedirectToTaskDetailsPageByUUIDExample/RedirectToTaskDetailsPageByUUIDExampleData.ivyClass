@@ -1,8 +1,0 @@
-RedirectToTaskDetailsPageByUUIDExampleData #class
-com.axonivy.portal.components.examples.redirectstodetailspage.RedirectToTaskDetailsPageByUUIDExample #namespace
-uuid String #field
-uuid PERSISTENT #fieldModifier
-taskLink String #field
-taskLink PERSISTENT #fieldModifier
-isLinkEnable Boolean #field
-isLinkEnable PERSISTENT #fieldModifier
