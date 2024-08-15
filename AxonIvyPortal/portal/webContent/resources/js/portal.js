@@ -460,12 +460,13 @@ function isPressedSpecialKeys(event) {
 }
 const singleDashboardId = '[id="user-menu-required-login:main-navigator:main-menu__js__1-main-dashboard"]';
 const multipleDashboardId = '[id="user-menu-required-login:main-navigator:main-menu__js__DASHBOARD-main-dashboard"]';
-const processItemId = '[id="user-menu-required-login:main-navigator:main-menu_process_1"]';
-const taskItemId = '[id="user-menu-required-login:main-navigator:main-menu_task_2"]';
-const caseItemId = '[id="user-menu-required-login:main-navigator:main-menu_case_3"]';
-const statisticItemId = '[id="user-menu-required-login:main-navigator:main-menu_statistics_4"]';
+const processItemId = '[id^="user-menu-required-login:main-navigator:main-menu_process"]';
+const taskItemId = '[id^="user-menu-required-login:main-navigator:main-menu_task"]';
+const caseItemId = '[id^="user-menu-required-login:main-navigator:main-menu_case"]';
+const statisticItemId = '[id^="user-menu-required-login:main-navigator:main-menu_statistics"]';
 const searchIconId = 'a#global-search-item';
 const useSettingMenuId = 'a#user-settings-menu';
+
 $(document).ready(function() {
     var focusableElements = [
         $(singleDashboardId).length ? $(singleDashboardId).find('a') : $(multipleDashboardId).find('a')[0],
@@ -476,16 +477,31 @@ $(document).ready(function() {
         $(searchIconId),
         $(useSettingMenuId),
     ];
-    
-    $(document).on('keydown', function(event) {
-        if (event.altKey && !isNaN(event.key) && event.key >= '1' && event.key <= '9') {
-            var index = parseInt(event.key) - 1;
-            if (index >= 0 && index < focusableElements.length) {
-                event.preventDefault();
-                var focusedElement = $(focusableElements[index]);
-                focusedElement.focus();
-            }
+    function removeFocusedElements() {
+      focusableElements.forEach(function(el) {
+        $(el).removeClass('focused');
+      });
+    }
+     $(document).on('click', function(event) {
+        if (!$(event.target).closest('.focusable').length) {
+           removeFocusedElements();
         }
     });
+    $(document).on('keydown', function(event) {
+      if (event.key === 'Tab') {
+        removeFocusedElements();
+    }
+    if (event.altKey && !isNaN(event.key) && event.key >= '1' && event.key <= '9') {
+        var index = parseInt(event.key) - 1;
+        if (index >= 0 && index < focusableElements.length) {
+            event.preventDefault();
+            var focusedElement = $(focusableElements[index]);
+            removeFocusedElements();
+            
+            focusedElement.addClass('focused');
+            focusedElement.focus();
+        }
+	    }
+	});
     
 });
