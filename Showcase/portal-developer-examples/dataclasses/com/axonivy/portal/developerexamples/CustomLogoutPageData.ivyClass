@@ -1,5 +1,0 @@
-CustomLogoutPageData #class
-com.axonivy.portal.developerexamples #namespace
-logoutPage String #field
-isTaskReserve Boolean #field
-task ch.ivyteam.ivy.workflow.ITask #field

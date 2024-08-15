@@ -1,9 +1,0 @@
-LeaveRequestProcessData #class
-com.axonivy.portal.userexamples.leaverequest #namespace
-approver String #field
-approver PERSISTENT #fieldModifier
-isApproved Boolean #field
-isApproved PERSISTENT #fieldModifier
-taskName String #field
-requester String #field
-requester PERSISTENT #fieldModifier
