@@ -11,5 +11,17 @@ var ThemeChecker = {
     } else {
       $('body').removeClass('serenity light dark').addClass(theme.includes('-light') ? 'freya light' : 'freya dark');
     }
+
+    baseURI = $('body').get(0).baseURI;
+
+    if (this.isCaseListOrTaskListPage(baseURI) && theme.includes('-light')) {
+      $('body').addClass('ui-portal-background-color');
+    } else {
+      $('body').removeClass('ui-portal-background-color');
+    }
+},
+
+  isCaseListOrTaskListPage: function (baseURI) {
+    return baseURI.includes('Case') || baseURI.includes('Task');
   }
 }

@@ -6125,3 +6125,8 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
     max-width: 95%;
   }	
 }
+
+body.light {
+  background-color: var(--ivy-primary-color-white);
+  box-shadow: none !important;
+}

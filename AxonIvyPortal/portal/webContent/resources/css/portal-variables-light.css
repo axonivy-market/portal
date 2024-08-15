@@ -379,10 +379,11 @@
   --task-name-input-font-weight: bold;
   --task-highlighted-inplace-field-background-color: var(--ivy-primary-color-grey-pale);
   --task-highlighted-inplace-field-text-color: var(--ivy-primary-color-black);
-  --task-low-priority-color: #90DDE9;
-  --task-normal-priority-color: #49BAD6;
-  --task-high-priority-color: #007095;
-  --task-exception-priority-color: #EE4A52;
+  --task-low-priority-color: #1b7683;
+  --task-normal-priority-color: #18727e;
+  --task-high-priority-color: #12535c;
+  --task-exception-priority-color: #C63C43;
+  --task-exception-priority-color-contrast: brightness(1.7);
   --task-state-suspended-background: #DADADA;
   --task-state-suspended-color: var(--ivy-primary-color-grey-dark);
   --task-state-resumed-background: #FFE896;

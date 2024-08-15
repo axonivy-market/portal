@@ -666,19 +666,43 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 
 .priority-cell .low-priority,
 .case-detail-body .low-priority {
-  color: var(--task-low-priority-color); }
+  color: var(--task-low-priority-color);
+}
 
 .priority-cell .normal-priority,
 .case-detail-body .normal-priority {
-  color: var(--task-normal-priority-color); }
+  color: var(--task-normal-priority-color);
+}
 
 .priority-cell .high-priority,
 .case-detail-body .high-priority {
-  color: var(--task-high-priority-color); }
+  color: var(--task-high-priority-color);
+}
 
 .priority-cell .exception-priority,
 .case-detail-body .exception-priority {
-  color: var(--task-exception-priority-color); }
+  color: var(--task-exception-priority-color); 
+ }
+ 
+ body.light .priority-cell .low-priority,
+.case-detail-body .low-priority {
+  filter: brightness(1.7);
+}
+
+ body.light .priority-cell .normal-priority,
+.case-detail-body .normal-priority {
+  filter: brightness(1.5);
+}
+
+ body.light .priority-cell .exception-priority,
+.case-detail-body .exception-priority {
+  filter: brightness(1.7);
+ }
+ 
+  body.dark .priority-cell .low-priority,
+.case-detail-body .low-priority {
+  filter: brightness(0.7);
+}
 
 .state-cell .task-state,
 .state-column .case-state, .case-detail-body .task-state {
@@ -1598,6 +1622,14 @@ body.in-dialog .ui-widget-overlay {
 .ui-dialog-content .card,
 .search-results-tabview .process-group .card {
   border: 1px solid var(--card-dialog-border-color);
+}
+
+body.dark .ui-commandlink {
+  color: var(--ivy-portal-command-link);
+}
+
+body.dark .ui-link {
+  color: var(--ivy-portal-command-link);
 }
 
 /* Dashboard Excel export */
