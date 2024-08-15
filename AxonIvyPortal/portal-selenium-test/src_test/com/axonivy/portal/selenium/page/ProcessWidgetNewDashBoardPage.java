@@ -52,6 +52,7 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private SelenideElement getProcessWidgetHeader() {
+    $("div.table-widget-panel").shouldBe(appear, DEFAULT_TIMEOUT);
     return $$("div.table-widget-panel").filter(text(processWidgetName)).first();
   }
 
