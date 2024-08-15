@@ -36,7 +36,7 @@ public class DescriptionColumnModel extends CaseColumnModel implements Serializa
 
   @Override
   protected String initDefaultWidth() {
-    return "min-width: " + columnWidthOrDefault() + columnWidthUnitOrDefault();
+    return "width: " + columnWidthOrDefault() + columnWidthUnitOrDefault();
   }
 
   @Override

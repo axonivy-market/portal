@@ -16,7 +16,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.component.datatable.DataTable;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.primefaces.event.ColumnResizeEvent;
 import org.primefaces.event.SelectEvent;
 
@@ -25,7 +25,6 @@ import com.axonivy.portal.components.util.HtmlUtils;
 import ch.addon.portal.generic.menu.MenuView;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
-import ch.ivy.addon.portalkit.dto.dashboard.AbstractColumn;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
@@ -505,18 +504,12 @@ public class DashboardBean implements Serializable {
   public void onResizeColumn(ColumnResizeEvent event) {
     String widgetId = (String) event.getComponent().getAttributes()
         .getOrDefault("widgetId", "");
+    List<String> texts = Arrays
+        .asList(event.getColumn().getColumnKey().split("\\:"));
 
     if (StringUtils.isBlank(widgetId)) {
       return;
     }
-
-
-    DataTable table = (DataTable) event.getSource();
-    var x = table.getColumns().stream().filter(
-        col -> col.getColumnKey()
-            .contentEquals(event.getColumn().getColumnKey()))
-        .findFirst().get();
-    var y = x.getField();
 
     DashboardWidget widgetToChangeColumnWidth = selectedDashboard.getWidgets()
         .stream().filter(widget -> widget.getId().contentEquals(widgetId))
@@ -529,17 +522,16 @@ public class DashboardBean implements Serializable {
     if (widgetToChangeColumnWidth instanceof TaskDashboardWidget) {
       handleResizeColumnOfTaskWidget(
           (TaskDashboardWidget) widgetToChangeColumnWidth,
-          event.getColumn().getField(), event.getWidth());
+          NumberUtils.toInt(texts.get(texts.size() - 1), -1), event.getWidth());
     }
 
     selectedDashboard = DashboardService.getInstance().save(selectedDashboard);
   }
 
   private void handleResizeColumnOfTaskWidget(TaskDashboardWidget widget,
-      String field, int widthValue) {
-    widget.getColumns().stream()
-        .filter(col -> col.getField().contentEquals(field)).findFirst().get()
-        .setStyle("width: " + widthValue + "px !important");
+      int fieldPosition, int widthValue) {
+    widget.getColumns().get(fieldPosition)
+        .setWidth(Integer.toString(widthValue));
   }
 
   public boolean isResizable() {

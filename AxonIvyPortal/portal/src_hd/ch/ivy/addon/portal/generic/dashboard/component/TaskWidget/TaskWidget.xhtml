@@ -40,14 +40,14 @@
         lazy="true" scrollRows="25"
         disabledSelection="#{isPreviewMode}"
         liveScroll="true" scrollable="true" sortBy="#{taskWidget.sortBy}"
-        showGridlines="#{isResizable}" resizableColumns="#{isResizable}"
+        showGridlines="#{isResizable}" resizableColumns="#{isResizable}" resizeMode="expand"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and taskWidget.taskCount lt 1 ? 'u-display-none' : ''}"
         rowStyleClass="dashboard-table--row-style"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
         <p:ajax event="rowSelect" listener="#{dashboardBean.handleRowSelectEventOnTaskWidget}" disabled="#{!isReadOnlyMode}" />
-        <p:ajax event="colResize" update="dashboard-tasks" process="dashboard-tasks"
-          listener="#{dashboardBean.onResizeColumn}" global="false" disabled="#{!cc.attrs.isResizable}" />
+        <p:ajax event="colResize" process="dashboard-tasks" global="false"
+          listener="#{dashboardBean.onResizeColumn}" disabled="#{!cc.attrs.isResizable}" />
         <f:attribute name="widgetId" value="#{taskWidget.id}" />
 
         <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}" headerText="#{column.headerText}"

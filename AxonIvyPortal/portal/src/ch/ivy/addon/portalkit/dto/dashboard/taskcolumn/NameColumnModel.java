@@ -43,7 +43,7 @@ public class NameColumnModel extends TaskColumnModel implements Serializable {
 
   @Override
   protected String initDefaultWidth() {
-    return "min-width: " + columnWidthOrDefault() + columnWidthUnitOrDefault()
+    return "width: " + columnWidthOrDefault() + columnWidthUnitOrDefault()
         + ";";
   }
 
