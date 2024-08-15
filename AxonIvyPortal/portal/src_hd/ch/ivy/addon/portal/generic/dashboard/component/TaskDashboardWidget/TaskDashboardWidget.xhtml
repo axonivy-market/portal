@@ -6,12 +6,14 @@
   <cc:attribute name="widget" required="true" />
   <cc:attribute name="componentToUpdateOnEdit" />
   <cc:attribute name="isReadOnlyMode" default="false" />
+  <cc:attribute name="isResizable" default="false" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="index" value="#{cc.attrs.index}" />
   <c:set var="widget" value="#{cc.attrs.widget}" />
   <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}"/>
+  <c:set var="isResizable" value="#{cc.attrs.isResizable}"/>
 
   <ui:decorate template="/layouts/restricted/decorator/TableWidget.xhtml">
     <ui:param name="index" value="#{index}" />
@@ -40,7 +42,10 @@
     </ui:define>
 
     <ui:define name="widgetContent">
-      <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidget id="task-component" taskWidget="#{widget}" isReadOnlyMode="#{isReadOnlyMode}" componentToUpdateTaskWidget="@widgetVar(dashboard-tasks-#{widget.id})"/>
+      <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidget id="task-component"
+        taskWidget="#{widget}" isReadOnlyMode="#{isReadOnlyMode}"
+        isResizable="#{isResizable}"
+        componentToUpdateTaskWidget="@widgetVar(dashboard-tasks-#{widget.id})"/>
     </ui:define>
 
     <ui:define name="statisticPanelOtherAction">
