@@ -1568,6 +1568,7 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
+                  CustomWidgetIFrameTitle: '{0} Rahmen'
                 DashboardModification:
                   Share: Aktie
                 ProcessWidgetConfiguration:
@@ -1587,6 +1588,8 @@ Dialogs:
               ShowBusinessDetails: Business Details
               caseNameNotAvailable: '[Kein Vorgangsname verfügbar]'
               defaultEmptyMessage: Keine Vorgänge verfügbar
+            CustomIFrameWidget:
+              CustomWidgetIFrameTitle: Benutzerdefinierter Widget-Rahmen
             IconSelection:
               IconLinkTooltip: Zum Ändern des Symbols anklicken
   com:
@@ -1620,6 +1623,11 @@ Dialogs:
               NewsWidgetConfiguration: Konfiguration des Newsfeed-Widgets
               NewsWidgetDescription: Dieses Widget teilt relevante Informationen als News Feed in Axon Ivy.
               NewsWidgetTitle: News-Feed-Widget
+        layouts:
+          AbstractTaskTemplate:
+            CaseDetailsIFrameTitle: Falldetails Rahmen
+          IFrameTaskTemplate:
+            TaskIFrameTitle: Aufgabenrahmen
   components:
     CaseDocument:
       FileDate: Änderungsdatum
