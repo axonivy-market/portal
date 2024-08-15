@@ -644,6 +644,11 @@ body .dashboard__table--edit.ui-datatable tbody tr.ui-state-hover {
   cursor: move;
 }
 
+body .dashboard__table--edit.ui-datatable-resizable thead th,
+body .dashboard__table--edit.ui-datatable-resizable tbody td, .ui-datatable-resizable tfoot td {
+  white-space: normal;
+}
+
 body .dashboard__table--preview.ui-datatable tbody tr.ui-state-highlight,
 body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   cursor: auto;

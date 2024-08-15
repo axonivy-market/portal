@@ -477,7 +477,8 @@ public abstract class AbstractColumn implements Serializable {
 
   @JsonIgnore
   public String initDefaultStyle() {
-    return String.join(" ", StringUtils.defaultIfBlank(this.style, ""),
-        initDefaultWidth());
+    return StringUtils.isBlank(this.style) ? initDefaultWidth()
+        : String.join(";", StringUtils.defaultIfBlank(this.style, ""),
+            initDefaultWidth());
   }
 }
