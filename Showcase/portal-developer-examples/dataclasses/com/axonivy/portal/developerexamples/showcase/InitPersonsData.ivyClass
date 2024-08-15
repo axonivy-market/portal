@@ -1,4 +1,0 @@
-InitPersonsData #class
-com.axonivy.portal.developerexamples.showcase #namespace
-persons java.util.List<com.axonivy.portal.developerexamples.showcase.Person> #field
-persons PERSISTENT #fieldModifier
