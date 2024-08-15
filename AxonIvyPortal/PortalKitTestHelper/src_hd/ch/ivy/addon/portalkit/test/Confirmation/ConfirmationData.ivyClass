@@ -1,8 +1,0 @@
-ConfirmationData #class
-ch.ivy.addon.portalkit.test.Confirmation #namespace
-message String #field
-message PERSISTENT #fieldModifier
-title String #field
-title PERSISTENT #fieldModifier
-approved Boolean #field
-approved PERSISTENT #fieldModifier

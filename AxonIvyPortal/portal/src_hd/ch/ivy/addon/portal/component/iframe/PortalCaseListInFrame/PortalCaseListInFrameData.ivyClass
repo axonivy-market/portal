@@ -1,4 +1,0 @@
-PortalCaseListInFrameData #class
-ch.ivy.addon.portal.component.iframe.PortalCaseListInFrame #namespace
-caseView ch.ivy.addon.portal.generic.view.CaseView #field
-caseView PERSISTENT #fieldModifier

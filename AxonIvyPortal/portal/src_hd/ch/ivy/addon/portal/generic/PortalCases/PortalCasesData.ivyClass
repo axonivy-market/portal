@@ -1,4 +1,0 @@
-PortalCasesData #class
-ch.ivy.addon.portal.generic.PortalCases #namespace
-caseView ch.ivy.addon.portal.generic.view.CaseView #field
-caseView PERSISTENT #fieldModifier

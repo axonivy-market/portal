@@ -1,8 +1,0 @@
-LeaveRequestOverviewData #class
-com.axonivy.portal.userexamples.leaverequest.LeaveRequestOverview #namespace
-processSteps java.util.List<com.axonivy.portal.userexamples.dto.ProcessStep> #field
-processSteps PERSISTENT #fieldModifier
-userProcess com.axonivy.portal.userexamples.dto.UserProcess #field
-userProcess PERSISTENT #fieldModifier
-state com.axonivy.portal.userexamples.enums.RequestState #field
-state PERSISTENT #fieldModifier
