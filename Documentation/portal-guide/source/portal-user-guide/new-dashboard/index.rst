@@ -69,6 +69,8 @@ button and select one of the available widgets to add:
 
 |add-widget|
 
+.. _new-dashboard-task-list-widget:
+
 Task list widget
 ================
 
@@ -79,8 +81,10 @@ see and how.
 
 **Configuration panel**
 
-On the left side, define the widget name, establish the main configuration for
-your widget, enable quick search function and get a preview of it by clicking on the preview button.
+On the left side, define the widget name, enable quick search function,
+show or hide widget information and fullscreen mode icons, establish the main
+configuration for your widget and get a preview of it by clicking on the preview
+button.
 
 |task-list-widget-configuration|
 
@@ -132,7 +136,7 @@ files and put them into a single zip file.
 
 **Quick search**
 
-In view mode, when quick search is enabled, a text box will appear to allow searching.
+In view mode, when quick search is enabled, a text box will appear to allow you to search.
 
 |task-quick-search-textbox|
 
@@ -140,6 +144,8 @@ In view mode, when quick search is enabled, a text box will appear to allow sear
 
     #. The quick search function is unaffected by widget filters.
     #. You can define the scope of the quick search feature in the configuration panel.
+
+.. _new-dashboard-case-list-widget:
 
 Case list widget
 ================
@@ -151,9 +157,10 @@ see and how.
 
 **Configuration panel**
 
-On the left side, you can define the widget name, establish the main
-configuration for your widget, enable quick search function and get a preview of it by clicking on the
-preview button.
+On the left side, define the widget name, enable quick search function,
+show or hide widget information and fullscreen mode icons, establish the main
+configuration for your widget and get a preview of it by clicking on the preview
+button.
 
 |case-list-widget-configuration|
 
@@ -197,7 +204,7 @@ files and put them into a single zip file.
 
 **Quick search**
 
-In the view mode, when quick search is enabled, a text box will appear to allow you to searching.
+In the view mode, when quick search is enabled, a text box will appear to allow you to search.
 
 |case-quick-search-textbox|
 
@@ -218,6 +225,8 @@ There are four process widget modes available:
    - Full mode
    - Image mode
 
+In the widget configuration, you can choose the display mode, show or hide widget information and fullscreen mode icons.
+
 |process-widget-modes|
 
 **Combined mode**
@@ -230,9 +239,18 @@ a particular process:
 
 **Compact mode**
 
-This widget displays a list of all selected process starts. You can sort your processes by index, alphabetical order or custom order. You can change your custom order by drag and drop the processes.
+This widget displays a list of all selected process starts. You can sort your processes by index, alphabetical order or custom order.
+You can change your custom order by drag and drop the processes and enable quick search by selecting the quick search checkbox.
 
 |process-widget-compact-mode|
+
+In view mode, when quick search function is enabled, a text box will appear to allow you to search.
+
+  .. important::
+   - Quick search function can only be used when process widget mode is ``Compact Mode``.
+   - Quick search function supports searching by ``process name``.
+
+|process-quick-search-textbox|
 
 **Full mode**
 
@@ -350,6 +368,7 @@ After setting up everything, simply click on the :guilabel:`Share this dashboard
 .. |process-widget-image-mode| image:: ../../screenshots/new-dashboard/process-widget-image-mode.png
 .. |process-viewer-widget| image:: ../../screenshots/new-dashboard/process-viewer-widget.png
 .. |process-viewer-widget-configuration| image:: ../../screenshots/new-dashboard/process-viewer-widget-configuration.png
+.. |process-quick-search-textbox| image:: ../../screenshots/new-dashboard/process-quick-search-textbox.png
 
 .. |statistic-chart-widget-configuration| image:: ../../screenshots/new-dashboard/statistic-chart-widget-configuration.png
 .. |statistic-chart-widget| image:: ../../screenshots/new-dashboard/statistic-chart-widget.png

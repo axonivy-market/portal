@@ -203,12 +203,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewApplication: Crear nueva aplicación de terceros
     announcement:
       announcement: Aviso
+      announcementSaved: Los anuncios se guardan.
       announcementsDisabled: Los avisos están deactivados
       announcementsEnabled: Los avisos están activados
       defaultLanguageRequiredMessage: 'Texto requerido en el idioma estándard de la aplicación '
       disable: Desactivar
       enable: Activar
       information: En esta área puede anunciar una información general (ej. mantenimiento, cambios en la aplicación, etc.). Este mensaje será visible para todos los usuarios.
+      saveChanges: Guardar cambios
       tabTitle: Avisos
     appDisplayName: Nombre para mostrar
     appDisplayNameRequiredMsg: Por favor ingrese el nombre para mostrar de la aplicación.
@@ -235,8 +237,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     embedInFrame: Empezar un proceso o tarea en modo iFrames
     emptySupportedLanguages: No se admiten idiomas adicionales
     globalVariableNote:
+      ApplicationName: El nombre por defecto de la aplicación que se mostrará en el título de la página.
       DefaultThemeMode: El modo de tema por defecto de la aplicación
       EnableSwitchThemeModeButton: Establecer en true para habilitar el botón de cambio de tema.
+      GlobalSearchScopeCategoriesNote: Definición de los tipos que buscará la búsqueda global
       RoleDirectChildrenLimit: 'El número establecido controla la cantidad de roles hijos directos que se muestra en la pestaña de gestión de roles. Número válido: 10, 50, 100'
       RoleParentLimit: 'El número establecido controla la cantidad de roles padre que se muestra al filtrar los roles en la pestaña Gestión de roles. Número válido: 5, 10, 20'
       SearchScopeCaseFields: Definición de los campos que la búsqueda global utilizará para encontrar casos coincidentes además del Id de caso (esto puede influir en el rendimiento de la búsqueda)
@@ -246,8 +250,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       chatMaxConnection: 'El número establecido controla la cantidad de pestañas permitidas con el chat activo. Si se abren más pestañas, el chat se desactivará en las pestañas inactivas. Valores permitidos entre 1-5 '
       chatResponseTimeout: Tiempo de respuesta del chat en segundos, el valor por defecto es 0 y significa que no hay tiempo de espera. Si los mensajes de chat pasan por el proxy inverso Nginx, el tiempo de espera de la respuesta del chat debe ser menor que el tiempo de espera de Nginx, por ejemplo, menos
         de 60 segundos.
-      clientSideTimeoutNote: Tiempo de espera del lado del cliente en minutos, debe ser mayor que 0 y menor que el tiempo de espera del lado del servidor (por ejemplo, 25 segundos). El valor por defecto es 0, lo que significa que se aplica el tiempo de espera por defecto del lado del cliente. El tiempo
-        de espera por defecto del lado del cliente es el tiempo de espera del lado del servidor menos 3 minutos.
       dateFilterWithTime: Cambiar a "True" para activar filtros de fecha con tiempo. Esta configuración afectará la lista de tareas, de casos y estadísticas.
       defaultHomepage: Para establecer la página de inicio estándar a la que se redirigirá al hacer clic en el icono de inicio o en el logotipo. Esta configuración también se aplica a la página final después de terminar una tarea.
       defaultProcessImage: La configuración estándar de la imagen por defecto que se mostrará en la lista de procesos de imagen.
@@ -270,8 +272,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableUserFavorites: Si esta propiedad está desactivada, los favoritos de usurio serán ocultados
       enableVirusScannerForUploadedDocumentNote: Cambiar a "true" para habilitar el escáner de virus para el documento cargado. Actualmente esta función utiliza la API VIRUSTOTAL.
       expressEndPageNote: Mostrar la página de final de flujo de trabajo express propia.
+      hideCaseCreator: |-
+        Establecer a true para ocultar el creador de casos en la lista de casos, widget de casos y detalles de casos.
+        Este ajuste afecta a todas las consultas de casos, por ejemplo, para la lista de casos, la búsqueda global o la estadística.
       hideCaseDocument: Cambiar a "true" para ocultar el área de documentos en detalle de casos
-      hideChangePasswordButtonNote: Cambiar a "true" para ocultar la posibilidad de cambiar contraseña.
+      hideChangePasswordButtonNote: Establezca esta variable a true para ocultar la opción "Cambiar contraseña" en el menú superior y la opción "Contraseña olvidada" en la página de inicio de sesión. Si se establece en false, estas opciones se mostrarán.
       hideLogoutButtonNote: Cambiar a "true" para ocultar la opción de logout.
       hideRelatedCaseInfoFromHistory: Si es verdadero, el historial de casos no muestra la información de los casos relacionados en la tabla de historial.
       hideStatisticWidget: Cambiar a "true" para ocultar la estadística de la página principal y del menu lateral
@@ -296,7 +301,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showUserGuide: Activa la guía de usuario interactiva "primeros pasos" en el portal durante el primer acceso del usuario.
       statisticChartScalingInterval: Intervalo en segundos para realizar peticiones periódicas de escalado de gráficos estadísticos. Si el valor del intervalo es inferior a 10, se desactiva el escalado periódico de gráficos estadísticos.
       uploadDocumentWhiteListExtensionNote: 'Dejar libre, sie quiere permitir todos los anexos. Si quiere reducir los formatos permitidos, cree una lista separada por coma. Por ejemplo: pdf, txt, doc, docx.'
-      ApplicationName: El nombre por defecto de la aplicación que se mostrará en el título de la página.
     key: Llave
     link: Enlazar
     loading: CARGANDO
@@ -902,6 +906,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}_{1}.{2}
     field: Campo
     fieldIsAdded: El campo {0} está añadido
+    fullscreenMode: Modo de pantalla completa
     iconMessage:
       caseWidget:
         BEACH_PALM_SUNBED: Eres increíble - todos los casos están hechos. Recuéstate y disfruta.
@@ -937,7 +942,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       noMatchingProcess: No hay procesos que coincidan.
       noPermissionToSee: Usted no tiene el permiso necesario para iniciar este proceso.
       noProcessSelected: Seleccione un proceso
-    removeWidgetHeader: Eliminar el widget "{0}"
+    removeWidgetHeader: Eliminar este widget
     removeWidgetMessage: ¿Realmente quieres eliminarlo?
     reorder:
       dashboardType: Tipo de tablero
@@ -961,6 +966,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: Este widget muestra la información relevante de la tarea según la configuración definida.
     taskWidgetConfiguration: Configuración del widget de tareas
     widgetInfo: Información del widget
+    widgetInfoIcon: Icono de información del widget
     widgetTitle: Título del widget
     widgetType: Tipo de widget
     yourCases: Sus casos
@@ -1052,6 +1058,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   logoutSetting:
     logout: Cerrar sesión
   noteHistory:
+    ShowOnlyOpenTasks: Mostrar sólo las tareas abiertas
     author: Autor
     caseExportedFileNamePrefix: Historia_Notas_del_caso_ {0}
     caseHistoriesTitle: Historial
@@ -1471,8 +1478,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     myProfileTitle: Mi perfil
     saveUserSettingsSuccessfully: Propiedades de usuario guardadas con éxito.
   warningBeforeLostSession:
-    extend: Ampliar
-    warningMessage: Su sesión caducará en 1 minuto. ¿Le gustaría extenderla?
+    refreshSession: Sesión de actualización
+    warningMessage: Su sesión puede expirar pronto. Actualice su sesión para seguir utilizando la aplicación.
 Dialogs:
   Cases:
     EditWorkflow:
@@ -1732,6 +1739,10 @@ Labels:
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
   Enums:
+    GlobalSearchScopeCategory:
+      CASES: Casos
+      PROCESSES: Procesos
+      TASKS: Tareas
     SearchScopeCaseField:
       CUSTOM: Campos de cadena personalizados
       DESCRIPTION: Descripción

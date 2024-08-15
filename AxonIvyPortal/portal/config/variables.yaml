@@ -12,10 +12,6 @@ Variables:
     # [file: json]
     Announcement:
 
-    # Client side timeout in minute, must be more than 1 and less than server side timeout (e.g. 25).
-    # Default value is 0, it means default client side timeout is applied. Default client side timeout is server side timeout minus 3 minutes.
-    ClientSideTimeout: 0
-
     # A feedback message will be displayed after user finishes or leaves a task.
     DisplayMessageAfterFinishTask: true
 
@@ -69,7 +65,7 @@ Variables:
       # If true, the logout button on top menu will be hidden, otherwise it will be shown.
       HideLogoutMenu: false
 
-      # Set to true, the change password option in top menu will be hidden, otherwise it will be shown.
+      # Set this variable to true to hide the "Change Password" option in the top menu and the "Forgotten Password" option on the login page. If set to false, these options will be shown.
       # [boolean]
       HideChangePasswordMenu: false
 
@@ -167,6 +163,10 @@ Variables:
       # The standard sort direction of case list
       # [enum: ASC, DESC]
       SortDirection: DESC
+
+      # Set to true to hide case creator in case list, case widget and case details.
+      # This setting affects all case queries, e.g. for case list, global search, statistic.
+      HideCaseCreator: false
 
     # You can configure the look and feel for case details according to your needs via this json file.
     # This setting will be taken over for all other case details.
@@ -281,6 +281,8 @@ Variables:
       # Defining the fields that the global search will use to find matching cases beside case Id (this can influence the performance of the search)
       # [Enum: NAME, DESCRIPTION, CUSTOM]
       ByCaseFields: NAME,DESCRIPTION,CUSTOM
+    # Defining the types that the global search will search for
+    GlobalSearchScopeCategories: PROCESSES,TASKS,CASES
 
     # Additional menu items for the main menu of Portal. Could be an Ivy process or an external link.
     # [file: json]

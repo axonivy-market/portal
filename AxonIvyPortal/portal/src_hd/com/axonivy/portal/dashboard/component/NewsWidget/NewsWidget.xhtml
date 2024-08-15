@@ -29,6 +29,7 @@
     <ui:param name="widgetContentStyleClass" value="news-widget__content-panel" />
     <ui:param name="onClickExpandWidget" value="setupNewsWidgetContent('#{widget.id}', true)" />
     <ui:param name="onClickCollapseWidget" value="setupNewsWidgetContent('#{widget.id}', true)" />
+    <ui:param name="isRenderExpandCollapse" value="#{widget.isShowFullscreenMode()}" />
 
     <ui:define name="widgetContent">
       <p:remoteCommand id="rc-load-news-firsttime-#{widget.id}" autoRun="true"

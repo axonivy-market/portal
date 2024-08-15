@@ -788,6 +788,13 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   white-space: pre-wrap;
 }
 
+.case-history-component .case-details-note-add {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
 @media screen and (max-width: 40em) {
   .case-detail-body .card.case-history-component,
   .case-detail-body .card.case-related-task-component,
@@ -848,9 +855,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .case-detail-body .name-column .case-name-value,
-.case-detail-body .name-column .case-description-value,
-.case-detail-body .case-details-related-task-table .related-task-name-column .task-name-value,
-.case-detail-body .case-details-related-task-table .related-task-name-column .task-description-value {
+.case-detail-body .name-column .case-description-value {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -863,7 +868,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .case-detail-body .case-details-related-task-table .related-task-id-column,
 .case-detail-body .case-details-related-task-table .related-task-created-column,
 .case-detail-body .case-details-related-task-table .related-task-expiry-column {
-  width: 130px;
+  width: 105px;
   text-align: center;
 }
 
@@ -873,12 +878,12 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .case-detail-body .case-details-related-task-table .related-task-state-column {
-  width: 120px;
+  width: 110px;
   text-align: center;
 }
 
 .case-detail-body .case-details-related-task-table .related-task-more-column {
-  width: 196px;
+  width: 186px;
   text-align: center;
 }
 
@@ -929,13 +934,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   .case-detail-body .owner-column,
   .case-detail-body .expiry-column,
   .case-detail-body .category-column,
-  .case-detail-body .related-case-column-config,
   .case-detail-body .case-details-related-task-table .related-task-description-column,
   .case-detail-body .case-details-related-task-table .related-task-responsible-column,
   .case-detail-body .case-details-related-task-table .related-task-created-column,
   .case-detail-body .case-details-related-task-table .related-task-expiry-column,
-  .case-detail-body .case-details-related-task-table .related-task-complete-on-column,
-  .case-detail-body .related-task-column-config {
+  .case-detail-body .case-details-related-task-table .related-task-complete-on-column {
     display: none;
   }
 
@@ -2703,6 +2706,12 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   }
 }
 
+@media screen and (min-width: 64.062em) {
+  .project-info-dialog {
+    min-width: 1000px;
+  }
+}
+
 /******************************** PROJECT INFO DIALOG ******************************/
 .project-info-dialog {
   max-width: 1000px;
@@ -2750,6 +2759,10 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   margin: .5em 0;
 }
 
+.announcement-tab-action-buttons {
+  display: flex;
+}
+
 .admin-settings-form-input-label {
   float: right;
   padding-top: 5px;
@@ -2791,9 +2804,16 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .announcement-information {
-  max-width: calc(100% - 200px);
+  flex: 1;
   float: left;
   text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+.announcement-action {
+  display: flex;
+  gap: 3px;
 }
 
 .announcement-input {
@@ -4614,9 +4634,10 @@ _:-ms-fullscreen, :root .content-link-history {
   padding: 0 !important;
   position: relative;
   white-space: nowrap;
+  align-items: center;
 }
 
-.related-task-export-to-excel,
+.related-task-show-only-open-tasks,
 .related-case-export-to-excel {
   margin-left: auto;
 }
@@ -6040,6 +6061,7 @@ a.dashboard-action-container label {
   position: relative;
   display: flex;
   justify-content: center;
+  max-width: 500px;
 }
 
 .external-link-preview-image-panel .external-link-preview-image-overlay-panel {
@@ -6049,6 +6071,7 @@ a.dashboard-action-container label {
   background: linear-gradient(180deg, rgba(27, 27, 27, 0) 21.68%,
     rgba(27, 27, 27, 1) 100%);
   display: none;
+  object-fit: contain;
 }
 
 .external-link-preview-image-panel:hover .external-link-preview-image-overlay-panel{

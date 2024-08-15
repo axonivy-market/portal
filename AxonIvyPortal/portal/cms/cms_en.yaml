@@ -203,12 +203,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewApplication: Add new third party application
     announcement:
       announcement: Announcement
+      announcementSaved: Announcements are saved.
       announcementsDisabled: Announcements are disabled.
       announcementsEnabled: Announcements are enabled.
       defaultLanguageRequiredMessage: Announcement for application default language is required.
       disable: Disable
       enable: Enable
       information: You can announce a general information (e.g. Downtime, Changes, etc.) in this area. This message can be seen by all portal users.
+      saveChanges: Save changes
       tabTitle: Announcements
     appDisplayName: Display name
     appDisplayNameRequiredMsg: Please enter application display name.
@@ -235,8 +237,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     embedInFrame: Start a process/task in IFrame mode
     emptySupportedLanguages: No additional languages are supported
     globalVariableNote:
+      ApplicationName: The default application name that will be displayed on the page title.
       DefaultThemeMode: The default theme mode of the application
       EnableSwitchThemeModeButton: Set to true to enable the switch theme button.
+      GlobalSearchScopeCategoriesNote: Defining the types that the global search will search for
       RoleDirectChildrenLimit: 'The set number controls the amount of direct children roles that is shown in Role Management tab. Valid number: 10, 50, 100'
       RoleParentLimit: 'The set number controls the amount of parent roles that is shown when filtering roles in Role Management tab. Valid number: 5, 10, 20'
       SearchScopeCaseFields: Defining the fields that the global search will use to find matching cases beside case Id (this can influence the performance of the search)
@@ -245,7 +249,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       behaviourWhenClickingOnLineInTaskList: For switch behaviours (run the task or access task details) when clicking on a line in task list, task widget of dashboard and related tasks  in case details page.
       chatMaxConnection: 'The set number controls the amount of tabs allowed with active chat. If more tabs are opened, the chat will be disabled in inactive tabs. Allowed values between 1-5 '
       chatResponseTimeout: Chat response timeout in seconds, default value is 0 and means no timeout. If chat messages go through the reverse proxy Nginx, chat response timeout must be less than the Nginx timeout, e.g. less than 60 seconds.
-      clientSideTimeoutNote: Client side timeout in minutes, must be more than 0 and less than the server side timeout (e.g. 25 seconds). Default value is 0, it means default client side timeout is applied. Default client side timeout is server side timeout minus 3 minutes.
       dateFilterWithTime: Set to true to enable date filtering with time. This setting affects on task list, case list, and statistics.
       defaultHomepage: To set the standard homepage which will be redirect to when clicking on home icon or logo. This setting also applies to the ends page after finished a task.
       defaultProcessImage: The standard setting of default image that will be displayed in the image process list.
@@ -267,8 +270,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableUserFavorites: If this property is disabled, do not display user favorites section of process list in Portal home.
       enableVirusScannerForUploadedDocumentNote: Set to true to enable virus scanner for uploaded document. Currently this function is using API VIRUSTOTAL.
       expressEndPageNote: Display the custom end page at the end of each Express process.
+      hideCaseCreator: |-
+        Set to true to hide case creator in case list, case widget and case details.
+        This setting affects all case queries, e.g. for case list, global search, statistic.
       hideCaseDocument: Set to true, the document section in case detail page will be hidden, otherwise it will be shown.
-      hideChangePasswordButtonNote: Set to true, the change password option in top menu will be hidden, otherwise it will be shown.
+      hideChangePasswordButtonNote: Set this variable to true to hide the "Change Password" option in the top menu and the "Forgotten Password" option on the login page. If set to false, these options will be shown.
       hideLogoutButtonNote: If true, the logout button on top menu will be hidden, otherwise it will be shown.
       hideRelatedCaseInfoFromHistory: If true, case history does not display the related case information in the history table.
       hideStatisticWidget: Set to true to hide Statistic widget from homepage and application menu.
@@ -293,7 +299,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showUserGuide: 'Activates the interactive user guide "first steps" in the portal at first login. '
       statisticChartScalingInterval: Interval in seconds to do periodic statistic chart scaling requests. If the interval value is less than 10, periodic statistic chart scaling is disabled.
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
-      ApplicationName: The default application name that will be displayed on the page title.
     key: Key
     link: Link
     loading: LOADING
@@ -904,6 +909,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}_{1}.{2}
     field: Field
     fieldIsAdded: The {0} field is added
+    fullscreenMode: Fullscreen Mode
     iconMessage:
       caseWidget:
         BEACH_PALM_SUNBED: You are awesome - all cases are done. Lean back and enjoy.
@@ -939,7 +945,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       noMatchingProcess: No matching processes.
       noPermissionToSee: You do not have the required permission to start this process.
       noProcessSelected: Please select a process
-    removeWidgetHeader: Remove the "{0}" widget
+    removeWidgetHeader: Remove this widget
     removeWidgetMessage: Do you really want to remove it?
     reorder:
       dashboardType: Dashboard type
@@ -963,6 +969,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: This widget displays relevant task information according to defined settings.
     taskWidgetConfiguration: Task Widget Configuration
     widgetInfo: Widget information
+    widgetInfoIcon: Widget Information Icon
     widgetTitle: Widget Title
     widgetType: Widget type
     yourCases: Your Cases
@@ -1054,6 +1061,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   logoutSetting:
     logout: Logout
   noteHistory:
+    ShowOnlyOpenTasks: Show only open tasks
     author: Author
     caseExportedFileNamePrefix: Note_history_of_case_{0}
     caseHistoriesTitle: Histories
@@ -1469,8 +1477,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     myProfileTitle: My profile
     saveUserSettingsSuccessfully: User settings saved successfully.
   warningBeforeLostSession:
-    extend: Extend
-    warningMessage: Your session will expire in 1 minute. Would you like to extend it?
+    refreshSession: Refresh session
+    warningMessage: Your session may expire soon. Please refresh your session to continue using the application.
 Dialogs:
   Cases:
     EditWorkflow:
@@ -1733,6 +1741,10 @@ Labels:
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
   Enums:
+    GlobalSearchScopeCategory:
+      CASES: Cases
+      PROCESSES: Processes
+      TASKS: Tasks
     SearchScopeCaseField:
       CUSTOM: Custom string fields
       DESCRIPTION: Description

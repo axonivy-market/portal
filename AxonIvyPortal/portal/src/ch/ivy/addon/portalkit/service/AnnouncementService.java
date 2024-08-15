@@ -82,6 +82,12 @@ public class AnnouncementService {
     return entity;
   }
 
+  public void saveValueChangeAnnouncement(Announcement entity) {
+    Announcement announcement = getPublicConfig();
+    announcement.setContents(entity.getContents());
+    save(announcement);
+  }
+
   public boolean isAnnouncementActivated() {
     Announcement announcement = getAnnouncement();
     return announcement.isEnabled();
