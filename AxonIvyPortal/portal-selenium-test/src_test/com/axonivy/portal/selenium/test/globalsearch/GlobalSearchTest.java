@@ -97,4 +97,32 @@ public class GlobalSearchTest extends BaseTest {
     assertEquals("Cases contain the keyword \"" + customKeyword + "\" in Case Id, Custom string fields.",
         resultPage.getGlobalSearchByFieldTextForCaseTab());
   }
+  
+  /**
+   * Note: added from the deleted file
+   */
+  @Test
+  public void testConfigGlobalSearchScopeCategories() {
+    redirectToRelativeLink(CREATE_TESTING_TASK_PROCESS);
+    updatePortalSetting(Variable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey(), "");
+    redirectToNewDashBoard();
+    newDashboardPage = new NewDashboardPage();
+    boolean isHiddenSearchIcon = newDashboardPage.isInputGlobalSearchDisabled();
+    assertFalse(isHiddenSearchIcon);
+
+    updatePortalSetting(Variable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey(), "PROCESSES,TASKS");
+    redirectToNewDashBoard();
+    newDashboardPage = new NewDashboardPage();
+    isHiddenSearchIcon = newDashboardPage.isInputGlobalSearchDisabled();
+    assertTrue(isHiddenSearchIcon);
+
+    String taskName = "Testing Task for Global Search (Name)";
+    String nameKeyword = "(Name)";
+    GlobalSearchResultPage resultPage = newDashboardPage.inputGlobalSearchKeyword(nameKeyword);
+    resultPage.openTaskTab();
+    assertEquals(taskName, resultPage.getNameOfTask(0));
+    assertEquals("Tasks contain the keyword \"" + nameKeyword + "\" in Task Id, Name, Description.", resultPage.getGlobalSearchByFieldTextForTaskTab());
+
+    resultPage.caseTabShouldBeDisappear();
+  }
 }

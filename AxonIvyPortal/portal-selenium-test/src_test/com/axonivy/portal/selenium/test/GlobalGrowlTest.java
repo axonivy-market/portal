@@ -107,14 +107,18 @@ public class GlobalGrowlTest extends BaseTest {
     assertGrowlMessage(newDashboardPage, FINISH_MESSAGE);
   }
 
-  @Test
-  public void testTaskLeft() {
-    leftTaskWhenClickingOnLogo();
-    leftTaskWhenClickingOnMenu();
-    leftTaskWhenGlobalSearch();
-    leftExpressWorkflowDefinition();
-    leftExpressFormDefinition();
-  }
+  /**
+   * Note: I think we should split testTaskLeft into scenarios
+   * why do we need to do it in 1 scenario?
+   */
+//  @Test
+//  public void testTaskLeft() {
+//    leftTaskWhenClickingOnLogo();
+//    leftTaskWhenClickingOnMenu();
+//    leftTaskWhenGlobalSearch();
+//    leftExpressWorkflowDefinition();
+//    leftExpressFormDefinition();
+//  }
 
   private ExpressFormDefinitionPage configureExpressProcess(ExpressProcessPage expressProcessPage) {
     ExpressResponsible responsible = setExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
@@ -128,14 +132,16 @@ public class GlobalGrowlTest extends BaseTest {
     return formDefinition;
   }
 
-  private void leftExpressWorkflowDefinition() {
+  @Test
+  public void testLeftExpressWorkflowDefinitionScenario() {
     redirectToRelativeLink(expressStartLink);
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     NewDashboardPage newDashboardPage = expressProcessPage.cancelWorkflowDefinition();
     assertGrowlMessage(newDashboardPage, CANCEL_MESSAGE);
   }
 
-  private void leftTaskWhenGlobalSearch() {
+  @Test
+  public void testLeftTaskWhenGlobalSearchScenario() {
     redirectToRelativeLink(expressStartLink);
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     GlobalSearch globalSearch = expressProcessPage.getGlobalSearch();
@@ -143,7 +149,8 @@ public class GlobalGrowlTest extends BaseTest {
     assertGrowlMessage(searchResultPage , CANCEL_MESSAGE);
   }
 
-  private void leftTaskWhenClickingOnMenu() {
+  @Test
+  public void testLeftTaskWhenClickingOnMenuScenario() {
     redirectToRelativeLink(expressStartLink);
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     MainMenuPage mainMenuPage = expressProcessPage.openMainMenu();
@@ -152,7 +159,8 @@ public class GlobalGrowlTest extends BaseTest {
     assertGrowlMessage(newDashboardPage, CANCEL_MESSAGE);
   }
 
-  private void leftTaskWhenClickingOnLogo() {
+  @Test
+  public void testLeftTaskWhenClickingOnLogoScenario() {
     redirectToRelativeLink(expressStartLink);
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     expressProcessPage.clickOnLogo();
@@ -161,7 +169,9 @@ public class GlobalGrowlTest extends BaseTest {
     assertGrowlMessage(newDashboardPage, CANCEL_MESSAGE);
   }
 
-  private void leftExpressFormDefinition() {
+  @Test
+//  @RepeatedTest(10)
+  public void testLeftExpressFormDefinitionScenario() {
     redirectToRelativeLink(expressStartLink);
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");

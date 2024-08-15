@@ -481,12 +481,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public SelenideElement getGlobalGrowlMessage() {
-    /**
-     * Note: add waiting to stabilize the GlobalGrowlTest
-     * Sometimes it navigate and the growl not appear yet then the selector
-     * find the growl message causing error
-     */
-    return findElementById(PORTAL_GLOBAL_GROWL_ID).find(By.cssSelector(".ui-growl-message")).shouldBe(appear, DEFAULT_TIMEOUT);
+    return findElementById(PORTAL_GLOBAL_GROWL_ID).find(By.cssSelector(".ui-growl-message"));
   }
 
   public GlobalSearchResultPage inputGlobalSearchKeyword(String keyword) {
