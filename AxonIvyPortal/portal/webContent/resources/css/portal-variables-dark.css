@@ -377,7 +377,7 @@
   --task-state-resumed-background: #FFE896;
   --task-state-done-background: #D4EBA2;
   --task-state-parked-background: rgba(0, 112, 149, 0.2);
-  --task-state-failed-background: #EE4A52;
+  --task-state-failed-background: #dc3333;
   --task-state-failed-text-color: var(--ivy-primary-color-white);
   /* Task Action Item */
   --task-action-item-widget-header-color: var(--ivy-primary-color-white);

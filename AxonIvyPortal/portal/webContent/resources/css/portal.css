@@ -748,8 +748,9 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 .state-column .join_failed-task-state {
   background: var(--task-state-failed-background);
   border-color: var(--task-state-failed-background);
-  color: var(--task-state-failed-text-color) }
-
+  color: var(--task-state-failed-text-color);
+  filter: contrast(1.5);
+}
 /**Style for Absences and Debuty  --------------------------------------*/
 .substituted-user-text {
   font-size: var(--large-font-size); }
