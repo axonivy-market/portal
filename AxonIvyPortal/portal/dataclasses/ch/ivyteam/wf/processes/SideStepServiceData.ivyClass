@@ -1,4 +1,0 @@
-SideStepServiceData #class
-ch.ivyteam.wf.processes #namespace
-sideSteps java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySideStep> #field
-sideStepSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.SideStepSearchCriteria #field
