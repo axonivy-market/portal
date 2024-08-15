@@ -19,3 +19,4 @@ Developer Guide
    troubleshooting/index
    permissions/index
    public-api/index
+   accessibility/index
