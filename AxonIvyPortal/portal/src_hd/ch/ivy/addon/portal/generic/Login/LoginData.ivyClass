@@ -1,4 +1,0 @@
-LoginData #class
-ch.ivy.addon.portal.generic.Login #namespace
-callbackUrl String #field
-callbackUrl PERSISTENT #fieldModifier

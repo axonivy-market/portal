@@ -1,4 +1,0 @@
-BuildTaskQueryData #class
-ch.ivy.add.portalkit #namespace
-taskQuery ch.ivyteam.ivy.workflow.query.TaskQuery #field
-isQueryForHomePage Boolean #field

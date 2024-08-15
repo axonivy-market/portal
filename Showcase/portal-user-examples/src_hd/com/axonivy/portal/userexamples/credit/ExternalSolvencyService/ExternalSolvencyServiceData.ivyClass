@@ -1,4 +1,0 @@
-ExternalSolvencyServiceData #class
-com.axonivy.portal.userexamples.credit.ExternalSolvencyService #namespace
-dossier com.axonivy.portal.userexamples.credit.CreditDossier #field
-dossier PERSISTENT #fieldModifier
