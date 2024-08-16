@@ -1,0 +1,49 @@
+name-template: '$RESOLVED_VERSION'
+tag-template: '$RESOLVED_VERSION'
+filter-by-commitish: true
+commitish: master
+categories:
+  - title: '🚀 Features'
+    labels:
+      - 'feature'
+  - title: '✨ Enhancement'
+    labels:
+      - 'enhancement'
+  - title: '🐛 Bug Fixes'
+    labels:
+      - 'fix'
+      - 'bugfix'
+      - 'bug'
+  - title: 📄 Documentation
+    labels:
+      - docs
+      - documentation
+  - title: Deprecate
+    labels:
+      - deprecate 
+autolabeler:
+  - label: 'docs'
+    branch:
+      - '/document{0,1}\/.+/'
+  - label: 'fix-test'
+    branch:
+      - '/fixtest\/.+/'
+exclude-labels:
+  - 'skip-changelog'
+change-template: '- $TITLE (#$NUMBER) by @$AUTHOR'
+change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
+version-resolver:
+  major:
+    labels:
+      - 'major'
+  minor:
+    labels:
+      - 'minor'
+  patch:
+    labels:
+      - 'patch'
+  default: patch
+template: |
+  ## 🦾 Other Change
+
+  $CHANGES
