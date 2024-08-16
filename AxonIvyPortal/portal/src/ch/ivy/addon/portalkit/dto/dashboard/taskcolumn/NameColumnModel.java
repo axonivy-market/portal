@@ -42,12 +42,6 @@ public class NameColumnModel extends TaskColumnModel implements Serializable {
   }
 
   @Override
-  protected String initDefaultWidth() {
-    return "width: " + columnWidthOrDefault() + columnWidthUnitOrDefault()
-        + ";";
-  }
-
-  @Override
   public boolean canQuickSearch() {
     return true;
   }

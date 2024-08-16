@@ -6,14 +6,14 @@
   <cc:attribute name="widget" required="true" />
   <cc:attribute name="componentToUpdateOnEdit" />
   <cc:attribute name="isReadOnlyMode" default="false" />
-  <cc:attribute name="isResizable" default="false" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="index" value="#{cc.attrs.index}" />
   <c:set var="widget" value="#{cc.attrs.widget}" />
   <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}"/>
-  <c:set var="isResizable" value="#{cc.attrs.isResizable}"/>
+  <c:set var="isResizable" value="#{cc.attrs.widget.isResizable}"/>
+  <c:set var="isResizing" value="#{cc.attrs.widget.isResizing}"/>
 
   <ui:decorate template="/layouts/restricted/decorator/TableWidget.xhtml">
     <ui:param name="index" value="#{index}" />
@@ -29,6 +29,10 @@
     <ui:param name="isRenderExpandCollapse" value="#{widget.isShowFullscreenMode()}" />
     <ui:param name="isRenderInfo" value="#{widget.isShowWidgetInfo()}" />
     <ui:param name="widgetContentStyleClass" value="task-widget" />
+    <ui:param name="isShowContextMenu" value="true" />
+    <ui:param name="componentToUpdateInResizeMode" value="@widgetVar(dashboard-tasks-#{widget.id})" />
+    <ui:param name="onCompleteResizing" value="loadCaseAndTaskWidgetFirstTime('js-loading-#{widget.id}', 'js-dashboard-tasks-container-#{widget.id}');" />
+
     <ui:define name="widgetInformationContent">
       <ui:include src="TaskInfo.xhtml">
         <ui:param name="widget" value="#{widget}" />
@@ -44,7 +48,7 @@
     <ui:define name="widgetContent">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidget id="task-component"
         taskWidget="#{widget}" isReadOnlyMode="#{isReadOnlyMode}"
-        isResizable="#{isResizable}"
+        isResizable="#{isResizing}"
         componentToUpdateTaskWidget="@widgetVar(dashboard-tasks-#{widget.id})"/>
     </ui:define>
 

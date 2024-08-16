@@ -35,11 +35,6 @@ public class DescriptionColumnModel extends TaskColumnModel implements Serializa
   }
 
   @Override
-  protected String initDefaultWidth() {
-    return "width: " + columnWidthOrDefault() + columnWidthUnitOrDefault();
-  }
-
-  @Override
   public String getDefaultStyleClass() {
     return "dashboard-tasks__description widget-column";
   }

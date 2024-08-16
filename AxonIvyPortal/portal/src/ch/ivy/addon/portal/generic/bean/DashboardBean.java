@@ -85,7 +85,6 @@ public class DashboardBean implements Serializable {
   protected List<Dashboard> importedDashboards;
   public String selectedDashboardName;
   private String searchScope;
-  private boolean isResizable;
 
 
   @PostConstruct
@@ -524,21 +523,21 @@ public class DashboardBean implements Serializable {
           (TaskDashboardWidget) widgetToChangeColumnWidth,
           NumberUtils.toInt(texts.get(texts.size() - 1), -1), event.getWidth());
     }
-
-    selectedDashboard = DashboardService.getInstance().save(selectedDashboard);
   }
 
   private void handleResizeColumnOfTaskWidget(TaskDashboardWidget widget,
       int fieldPosition, int widthValue) {
     widget.getColumns().get(fieldPosition)
         .setWidth(Integer.toString(widthValue));
+    widget.getColumns().forEach(col -> col.initDefaultStyle());
   }
 
-  public boolean isResizable() {
-    return isResizable;
+  public void startResizeWidget(DashboardWidget widget) {
+    widget.setIsResizing(true);
   }
 
-  public void setResizable(boolean isResizable) {
-    this.isResizable = isResizable;
+  public void endResizeWidget(DashboardWidget widget) {
+    widget.setIsResizing(false);
+    selectedDashboard = DashboardService.getInstance().save(selectedDashboard);
   }
 }

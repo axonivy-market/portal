@@ -111,7 +111,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     selectedDashboardId = Attrs.currentContext().getAttribute("#{data.dashboardId}", String.class);
     isPublicDashboard = Attrs.currentContext().getAttribute("#{data.isPublicDashboard}", Boolean.class);
     isReadOnlyMode = false;
-    setResizable(true);
     super.init();
     ((DashboardProcessBean) ManagedBeans.get("dashboardProcessBean")).addPropertyChangeListener(this);
     if (getSelectedDashboard() != null) {

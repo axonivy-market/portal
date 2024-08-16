@@ -80,7 +80,6 @@ public abstract class AbstractColumn implements Serializable {
   protected Date userDateFilterTo;
   protected List<String> userFilterListOptions;
   protected String width;
-  protected String unit;
 
   @JsonIgnore
   protected String styleToDisplay;
@@ -349,14 +348,6 @@ public abstract class AbstractColumn implements Serializable {
     this.width = width;
   }
 
-  public String getUnit() {
-    return unit;
-  }
-
-  public void setUnit(String unit) {
-    this.unit = unit;
-  }
-
   @JsonIgnore
   public String getStyleToDisplay() {
     return styleToDisplay;
@@ -465,20 +456,13 @@ public abstract class AbstractColumn implements Serializable {
   }
 
   @JsonIgnore
-  protected String columnWidthUnitOrDefault() {
-    return StringUtils.isBlank(this.unit) ? DEFAULT_WIDTH_UNIT : this.unit;
-  }
-
-  @JsonIgnore
   protected String initDefaultWidth() {
-    return "width: " + columnWidthOrDefault() + columnWidthUnitOrDefault()
-        + ";";
+    return "width: " + columnWidthOrDefault() + "px";
   }
 
   @JsonIgnore
   public String initDefaultStyle() {
-    return StringUtils.isBlank(this.style) ? initDefaultWidth()
-        : String.join(";", StringUtils.defaultIfBlank(this.style, ""),
-            initDefaultWidth());
+    return String.join(";", initDefaultWidth(),
+        StringUtils.defaultIfBlank(this.style, ""));
   }
 }

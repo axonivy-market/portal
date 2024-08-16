@@ -55,15 +55,6 @@
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reorder')}" width="70" styleClass="u-text-align-center column-management-datatable__reorder">
           <i class="si si-move-expand-vertical" />
         </p:column>
-        <p:column headerText="Width" width="120" styleClass="u-text-align-center">
-          <p:inputText id="width-text" value="#{column.width}" style="width: 50px; margin-right: 0.3rem;" >
-             <p:ajax event="blur" partialSubmit="true" process="@this" global="false" />
-          </p:inputText>
-          <p:selectOneMenu id="unit" value="#{column.unit}" style="width: 50px; vertical-align: bottom;">
-              <f:selectItems value="#{columnManagementBean.units}" var="unitNe"/>
-              <p:ajax event="change" listener="#{columnManagementBean.handleUnit(column)}" partialSubmit="true" process="@this" global="false" />
-          </p:selectOneMenu>
-        </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}" width="70" styleClass="u-text-align-center js-column-field-#{column.field}">
           <p:commandLink id="remove-link" actionListener="#{columnManagementBean.remove(column)}" global="false" process="@this"
             update="column-management-datatable #{cc.clientId}:column-management-form:standard-field-selection #{cc.clientId}:column-management-form:custom-field-selection">

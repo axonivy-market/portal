@@ -35,11 +35,6 @@ public class DescriptionColumnModel extends CaseColumnModel implements Serializa
   }
 
   @Override
-  protected String initDefaultWidth() {
-    return "width: " + columnWidthOrDefault() + columnWidthUnitOrDefault();
-  }
-
-  @Override
   public String getDefaultStyleClass() {
     return "dashboard-cases__description";
   }
