@@ -20,6 +20,7 @@ import ch.ivy.addon.portalkit.enums.ApplicationType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
 import ch.ivy.addon.portalkit.masterdata.MasterData;
 import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
@@ -122,6 +123,7 @@ public class MasterDataBean implements Serializable {
   }
 
   public String getUserLanguage() {
-    return Ivy.session().getSessionUser().getLanguage().toLanguageTag();
+    Ivy.log().error(LanguageService.getInstance().getUserLanguage());
+    return LanguageService.getInstance().getUserLanguage();
   }
 }
