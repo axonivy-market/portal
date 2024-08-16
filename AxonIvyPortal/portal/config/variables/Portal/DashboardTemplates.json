@@ -1,5 +1,6 @@
 [
   {
+    "version": "11.4",
     "id": "default-portal-dashboard-template",
     "titles": [
       {
@@ -350,6 +351,7 @@
     }
   },
   {
+    "version": "11.4",
     "id": "two-task-widget-dashboard-template",
     "titles": [
       {
