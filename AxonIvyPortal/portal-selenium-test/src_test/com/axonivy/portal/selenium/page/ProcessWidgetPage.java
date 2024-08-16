@@ -139,7 +139,6 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public void clickStart() {
     $("[id='process-widget:image-process-group-alphabet:10:image-processes:8:process-item:start-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    waitForAjaxIndicatorDisplayNone();
   }
 
   public void waitForStartListShow() {
