@@ -29,9 +29,6 @@
     <ui:param name="isRenderExpandCollapse" value="#{widget.isShowFullscreenMode()}" />
     <ui:param name="isRenderInfo" value="#{widget.isShowWidgetInfo()}" />
     <ui:param name="widgetContentStyleClass" value="task-widget" />
-    <ui:param name="isShowContextMenu" value="true" />
-    <ui:param name="componentToUpdateInResizeMode" value="@widgetVar(dashboard-tasks-#{widget.id})" />
-    <ui:param name="onCompleteResizing" value="loadCaseAndTaskWidgetFirstTime('js-loading-#{widget.id}', 'js-dashboard-tasks-container-#{widget.id}');" />
 
     <ui:define name="widgetInformationContent">
       <ui:include src="TaskInfo.xhtml">
@@ -48,7 +45,6 @@
     <ui:define name="widgetContent">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidget id="task-component"
         taskWidget="#{widget}" isReadOnlyMode="#{isReadOnlyMode}"
-        isResizable="#{isResizing}"
         componentToUpdateTaskWidget="@widgetVar(dashboard-tasks-#{widget.id})"/>
     </ui:define>
 

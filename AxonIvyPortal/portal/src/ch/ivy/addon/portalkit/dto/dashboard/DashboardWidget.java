@@ -68,12 +68,6 @@ public abstract class DashboardWidget implements Serializable {
   @JsonIgnore
   private String quickSearchKeyword;
 
-  @JsonIgnore
-  private Boolean isResizable;
-
-  @JsonIgnore
-  private Boolean isResizing;
-
   public DashboardWidget() {}
 
   public DashboardWidget(DashboardWidget widget) {
@@ -324,25 +318,5 @@ public abstract class DashboardWidget implements Serializable {
   @JsonIgnore
   public void setQuickSearchKeyword(String quickSearchKeyword) {
     this.quickSearchKeyword = quickSearchKeyword;
-  }
-
-  @JsonIgnore
-  public Boolean getIsResizable() {
-    return isResizable;
-  }
-
-  @JsonIgnore
-  public void setIsResizable(Boolean isResizable) {
-    this.isResizable = isResizable;
-  }
-
-  @JsonIgnore
-  public Boolean getIsResizing() {
-    return isResizing;
-  }
-
-  @JsonIgnore
-  public void setIsResizing(Boolean isResizing) {
-    this.isResizing = isResizing;
   }
 }

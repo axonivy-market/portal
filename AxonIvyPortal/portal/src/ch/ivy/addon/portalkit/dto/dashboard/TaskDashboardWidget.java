@@ -49,8 +49,6 @@ public class TaskDashboardWidget extends DashboardWidget {
     setColumns(new ArrayList<>());
     setShowWidgetInfo(true);
     setShowFullscreenMode(true);
-    setIsResizable(true);
-    setIsResizing(false);
   }
 
   @Override

@@ -33,7 +33,9 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.primefaces.PrimeFaces;
+import org.primefaces.event.ColumnResizeEvent;
 
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.dto.News;
@@ -862,5 +864,43 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public boolean displayFullscreenModeOption() {
     return Optional.ofNullable(this.widget).map(DashboardWidget::getType)
         .map(DashboardWidgetType::canShowFullscreenModeOption).orElse(false);
+  }
+
+  public void onResizeColumn(ColumnResizeEvent event) {
+    String widgetId = (String) event.getComponent().getAttributes()
+        .getOrDefault("widgetId", "");
+
+    if (StringUtils.isBlank(widgetId)) {
+      return;
+    }
+
+    DashboardWidget targetWidget = selectedDashboard.getWidgets()
+        .stream().filter(widget -> widget.getId().contentEquals(widgetId))
+        .findFirst().orElse(null);
+
+    if (targetWidget == null) {
+      return;
+    }
+
+    if (targetWidget instanceof TaskDashboardWidget) {
+      handleResizeColumnOfTaskWidget(
+          (TaskDashboardWidget) targetWidget,
+          getColumnIndexFromColumnKey(event.getColumn().getColumnKey()),
+          event.getWidth());
+    }
+
+    selectedDashboard = DashboardService.getInstance().save(selectedDashboard);
+  }
+
+  private Integer getColumnIndexFromColumnKey(String columnKey) {
+    List<String> idParts = Arrays.asList(columnKey.split("\\:"));
+    return NumberUtils.toInt(idParts.get(idParts.size() - 1), -1);
+  }
+
+  private void handleResizeColumnOfTaskWidget(TaskDashboardWidget widget,
+      int fieldPosition, int widthValue) {
+    widget.getColumns().get(fieldPosition)
+        .setWidth(Integer.toString(widthValue));
+    widget.getColumns().forEach(col -> col.initDefaultStyle());
   }
 }
