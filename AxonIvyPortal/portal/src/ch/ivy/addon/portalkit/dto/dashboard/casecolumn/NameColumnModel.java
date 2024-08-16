@@ -34,11 +34,6 @@ public class NameColumnModel extends CaseColumnModel implements Serializable {
   }
 
   @Override
-  protected String initDefaultWidth() {
-    return "width: " + columnWidthOrDefault() + columnWidthUnitOrDefault();
-  }
-
-  @Override
   public Object display(ICase caze) {
     if (caze == null) {
       return null;

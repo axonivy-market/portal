@@ -13,14 +13,14 @@
   <cc:attribute name="isPreviewMode" default="false"/>
   <cc:attribute name="onCompleteLoadWidget" />
   <cc:attribute name="componentToUpdateTaskWidget" />
-  <cc:attribute name="isResizable" default="false" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="taskWidget" value="#{cc.attrs.taskWidget}" />
   <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
   <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}" />
-  <c:set var="isResizable" value="#{cc.attrs.isResizable}" />
+  <c:set var="isResizable" value="#{taskWidget.isResizable}" />
+  <c:set var="isResizing" value="#{taskWidget.isResizing}" />
 
   <p:remoteCommand id="rcLoadTaskFirstTime" autoRun="true" actionListener="#{taskWidget.dataModel.loadFirstTime()}"
                    update="dashboard-tasks-container" global="false" async="true" process="@this"
@@ -40,14 +40,14 @@
         lazy="true" scrollRows="25"
         disabledSelection="#{isPreviewMode}"
         liveScroll="true" scrollable="true" sortBy="#{taskWidget.sortBy}"
-        showGridlines="#{isResizable}" resizableColumns="#{isResizable}" resizeMode="expand"
+        showGridlines="#{isResizing}" resizableColumns="#{isResizing}" resizeMode="expand"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and taskWidget.taskCount lt 1 ? 'u-display-none' : ''}"
         rowStyleClass="dashboard-table--row-style"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
         <p:ajax event="rowSelect" listener="#{dashboardBean.handleRowSelectEventOnTaskWidget}" disabled="#{!isReadOnlyMode}" />
-        <p:ajax event="colResize" process="dashboard-tasks" global="false"
-          listener="#{dashboardBean.onResizeColumn}" disabled="#{!cc.attrs.isResizable}" />
+        <p:ajax event="colResize" process="dashboard-tasks" global="false" partialSubmit="true"
+          listener="#{dashboardBean.onResizeColumn}" disabled="#{!isResizing}" />
         <f:attribute name="widgetId" value="#{taskWidget.id}" />
 
         <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}" headerText="#{column.headerText}"
