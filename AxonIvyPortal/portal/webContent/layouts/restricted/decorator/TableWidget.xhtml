@@ -27,9 +27,6 @@
     * onFilterOverlayPanelShow: AJAX method to call when the filter overlay panel is shown on.
     * widgetContentStyleClass: styleClass for widget content div.
     * panelStyleClass: styleClass for the main panel.
-    * isShowContextMenu: parameter to show context menu.
-    * componentToUpdateInResizeMode: ID of component will be updated when resize table.
-    * onCompleteResizing: AJAX method will be called when enter the resize mode.
     -->
 
 <h:panelGroup id="#{panelId}" styleClass="table-widget-panel #{panelStyleClass}" layout="block">
@@ -277,16 +274,4 @@
       onclick="collapseFullscreen(#{index}, '#{widget.id}')" />
   </h:panelGroup>
 </h:panelGroup>
-
-<p:contextMenu id="#{panelId}-context-menu" for="#{panelId}"
-  rendered="#{!cc.attrs.isPreviewMode and isShowContextMenu}">
-  <p:menuitem value="Resize table" actionListener="#{dashboardBean.startResizeWidget(widget)}"
-    icon="si si-move-shrink-vertical" rendered="#{widget.isResizable and !widget.isResizing}"
-    update="#{componentToUpdateInResizeMode} #{panelId}-context-menu"
-    oncomplete="#{onCompleteResizing}"/>
-  <p:menuitem value="Finish resize" actionListener="#{dashboardBean.endResizeWidget(widget)}"
-    icon="si si-check-1" rendered="#{widget.isResizable and widget.isResizing}"
-    update="#{componentToUpdateInResizeMode} #{panelId}-context-menu"
-    oncomplete="#{onCompleteResizing}"/>
-</p:contextMenu>
 </html>

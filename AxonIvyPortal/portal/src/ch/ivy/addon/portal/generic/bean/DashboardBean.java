@@ -16,8 +16,6 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.NumberUtils;
-import org.primefaces.event.ColumnResizeEvent;
 import org.primefaces.event.SelectEvent;
 
 import com.axonivy.portal.components.util.HtmlUtils;
@@ -498,46 +496,5 @@ public class DashboardBean implements Serializable {
 
   public boolean isHideCaseCreator() {
     return GlobalSettingService.getInstance().isHideCaseCreator();
-  }
-
-  public void onResizeColumn(ColumnResizeEvent event) {
-    String widgetId = (String) event.getComponent().getAttributes()
-        .getOrDefault("widgetId", "");
-    List<String> texts = Arrays
-        .asList(event.getColumn().getColumnKey().split("\\:"));
-
-    if (StringUtils.isBlank(widgetId)) {
-      return;
-    }
-
-    DashboardWidget widgetToChangeColumnWidth = selectedDashboard.getWidgets()
-        .stream().filter(widget -> widget.getId().contentEquals(widgetId))
-        .findFirst().orElse(null);
-
-    if (widgetToChangeColumnWidth == null) {
-      return;
-    }
-    
-    if (widgetToChangeColumnWidth instanceof TaskDashboardWidget) {
-      handleResizeColumnOfTaskWidget(
-          (TaskDashboardWidget) widgetToChangeColumnWidth,
-          NumberUtils.toInt(texts.get(texts.size() - 1), -1), event.getWidth());
-    }
-  }
-
-  private void handleResizeColumnOfTaskWidget(TaskDashboardWidget widget,
-      int fieldPosition, int widthValue) {
-    widget.getColumns().get(fieldPosition)
-        .setWidth(Integer.toString(widthValue));
-    widget.getColumns().forEach(col -> col.initDefaultStyle());
-  }
-
-  public void startResizeWidget(DashboardWidget widget) {
-    widget.setIsResizing(true);
-  }
-
-  public void endResizeWidget(DashboardWidget widget) {
-    widget.setIsResizing(false);
-    selectedDashboard = DashboardService.getInstance().save(selectedDashboard);
   }
 }
