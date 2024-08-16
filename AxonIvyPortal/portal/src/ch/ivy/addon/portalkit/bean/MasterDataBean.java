@@ -123,7 +123,6 @@ public class MasterDataBean implements Serializable {
   }
 
   public String getUserLanguage() {
-    Ivy.log().error(LanguageService.getInstance().getUserLanguage());
     return LanguageService.getInstance().getUserLanguage();
   }
 }
