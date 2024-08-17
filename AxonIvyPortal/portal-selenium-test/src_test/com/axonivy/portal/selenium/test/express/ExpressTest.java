@@ -41,17 +41,15 @@ public class ExpressTest extends BaseTest {
     newDashboardPage = new NewDashboardPage();
   }
 
-//  Note: for this test: error because the process it trying to navigate to not exist in our code
-//  -> I think it deprecated and comment out
-//  @Test
-//  public void testAdhocMultiApprovalWhenMultiTask() {
-//    goToExpressCreationPage();
-//    ExpressProcessPage expressProcessPage = new ExpressProcessPage();
-//    expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
-//    ExpressFormDefinitionPage formDefinition = configureExpressProcessWhenMultiApproval(expressProcessPage);
-//    formDefinition.executeWorkflow();
-//    executeExpressProcessWhenMultiApproval();
-//  }
+  @Test
+  public void testAdhocMultiApprovalWhenMultiTask() {
+    goToExpressCreationPage();
+    ExpressProcessPage expressProcessPage = new ExpressProcessPage();
+    expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
+    ExpressFormDefinitionPage formDefinition = configureExpressProcessWhenMultiApproval(expressProcessPage);
+    formDefinition.executeWorkflow();
+    executeExpressProcessWhenMultiApproval();
+  }
 
   @Test
   public void testBreadCrumb() {
@@ -94,6 +92,7 @@ public class ExpressTest extends BaseTest {
   private void executeExpressProcessWhenMultiApproval() {
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.finish();
+    redirectToNewDashBoard();
     login(TestAccount.ADMIN_USER);
     newDashboardPage.waitPageLoaded();
     executeUserTask();
@@ -125,8 +124,15 @@ public class ExpressTest extends BaseTest {
     taskWidgetPage.filterByResponsible(TestAccount.ADMIN_USER.getFullName());
     taskWidgetPage.startTask(0);
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
+    expressTaskPage.waitForPageLoad();
     expressTaskPage.finish();
-    new TaskWidgetPage();
+    /**
+     * Note: after finish, it redirect to customization task widget page
+     * which I believe is deprecated so it's freeze and won't load anything
+     * we have to redirect to new dashboard then go to full task list
+     * to see the task
+     */
+    redirectToNewDashBoard();
   }
 
   private void executeApproval(String comment, String responsible) {

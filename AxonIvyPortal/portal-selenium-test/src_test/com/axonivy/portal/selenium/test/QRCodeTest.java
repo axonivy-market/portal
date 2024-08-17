@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
@@ -20,14 +21,14 @@ public class QRCodeTest extends BaseTest {
     updatePortalSetting(Variable.SHOW_QR_CODE.getKey(), "true");
   }
   
-//  Note: maybe not work on LTS
-//  @Test
-//  public void testOpenQRCode(){
-//    redirectToNewDashBoard();
-//    NewDashboardPage homePage = new NewDashboardPage();
-//    QRCodePage qrCodePage = homePage.openQRCode();
-//    qrCodePage.isQRCodeDisplayed();
-//    qrCodePage.closeQRCodeDialog();
-//  }
+  @Test
+  @Disabled("Only on LE, should remove")
+  public void testOpenQRCode(){
+    redirectToNewDashBoard();
+    NewDashboardPage homePage = new NewDashboardPage();
+    QRCodePage qrCodePage = homePage.openQRCode();
+    qrCodePage.isQRCodeDisplayed();
+    qrCodePage.closeQRCodeDialog();
+  }
 
 }

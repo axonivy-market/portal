@@ -172,6 +172,8 @@ public class ProcessViewerTest extends BaseTest {
   public void testCaseMapViewerPermissionInCaseAction() {
     redirectToRelativeLink(createTestingCaseMapUrl);
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForTaskListDisplay();
     gotoCaseList();
     caseWidgetPage.openActionStepMenu();
     var steps = caseWidgetPage.getAvailableActionSteps();

@@ -3,6 +3,8 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 
 import com.codeborne.selenide.SelenideElement;
@@ -28,6 +30,11 @@ public class ExpressTaskPage extends TemplatePage {
 
   public void finish() {
     $("[id='form:ok-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    /**
+     * Note: fix executeUserTask
+     * waiting for the task created after click
+     */
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
   }
 
   public boolean isDocumentTableVisible() {

@@ -135,10 +135,12 @@ public class ProcessWidgetPage extends TemplatePage {
   public void findProcess(String keyword) {
     $("input[id='process-widget:process-search:non-ajax-keyword-filter']").sendKeys(keyword);
     $("img[alt='" + keyword + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div[style='']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void clickStart() {
     $("[id='process-widget:image-process-group-alphabet:10:image-processes:8:process-item:start-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    waitForAjaxIndicatorDisplayNone();
   }
 
   public void waitForStartListShow() {
