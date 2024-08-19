@@ -55,14 +55,14 @@ public class AnnouncementService {
     if (locale != null) {
       language = locale.toLanguageTag();
     } else {
-      language = getDefaultEmailLanguage();
+      language = getDefaultLanguage();
     }
 
     Optional<LocalizationContent> displayNameOptional =
         contents.stream().filter(content -> language.equalsIgnoreCase(content.getLanguage())).findFirst();
     if (displayNameOptional.isEmpty() || StringUtils.isBlank(displayNameOptional.get().getValue())) {
       displayNameOptional = contents.stream()
-          .filter(content -> getDefaultEmailLanguage().equalsIgnoreCase(content.getLanguage())).findFirst();
+          .filter(content -> getDefaultLanguage().equalsIgnoreCase(content.getLanguage())).findFirst();
     }
     if (displayNameOptional.isEmpty()) {
       return EMPTY;
