@@ -525,9 +525,12 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     $("div[id='new-widget-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
   
-  public void clickOnQuickSearchCheckbox() {
-    getConfigurationFilterContainer().$("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .$("div[id$='quick-search']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  public void enableQuickSearchCheckbox() {
+     SelenideElement quickSearchCheckBox = getConfigurationFilterContainer().$("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("div[id$='quick-search']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+     if ($("input[id$='widget-configuration-form:new-widget-configuration-component:quick-search_input']").isSelected() == false) {
+       quickSearchCheckBox.click();
+     }
   }
   
   public SelenideElement getConfigurationFilterContainer() {
