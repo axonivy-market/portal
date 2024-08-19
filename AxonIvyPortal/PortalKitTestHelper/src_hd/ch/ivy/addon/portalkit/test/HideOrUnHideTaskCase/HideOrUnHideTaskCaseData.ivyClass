@@ -1,6 +1,0 @@
-HideOrUnHideTaskCaseData #class
-ch.ivy.addon.portalkit.test.HideOrUnHideTaskCase #namespace
-taskId Long #field
-taskId PERSISTENT #fieldModifier
-caseId Long #field
-caseId PERSISTENT #fieldModifier

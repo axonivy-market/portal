@@ -717,7 +717,7 @@
             "  in.selectedSetting.setValue(combinedSettings);",
             "}",
             "",
-            "GlobalSettingService globalSettingService= GlobalSettingService.getInstance();",
+            "GlobalSettingService globalSettingService= new GlobalSettingService();",
             "in.selectedSetting = globalSettingService.save(in.selectedSetting) as GlobalSetting;"
           ]
         }
@@ -832,7 +832,7 @@
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
-            "GlobalSettingService globalSettingService = GlobalSettingService.getInstance();",
+            "GlobalSettingService globalSettingService = new GlobalSettingService();",
             "globalSettingService.resetGlobalSetting(in.selectedSetting.getKey());",
             "in.selectedSetting.setValueToDefault();"
           ]
@@ -854,7 +854,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
-            "GlobalSettingService globalSettingService = GlobalSettingService.getInstance();",
+            "GlobalSettingService globalSettingService = new GlobalSettingService();",
             "int i = 0;",
             "for (GlobalVariable globalVariable : GlobalVariable.values()) {",
             "  globalSettingService.resetGlobalSetting(globalVariable.getKey());",
@@ -908,7 +908,7 @@
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
             "",
             "// Setting tab",
-            "GlobalSettingService globalSettingService = GlobalSettingService.getInstance();",
+            "GlobalSettingService globalSettingService = new GlobalSettingService();",
             "in.settingList = globalSettingService.findAll();",
             "in.filteredSettingList = in.settingList;"
           ]
@@ -1047,7 +1047,7 @@
         "guid" : "16A33CB19C2E90CF"
       },
       "visual" : {
-        "at" : { "x" : 704, "y" : 1376 },
+        "at" : { "x" : 920, "y" : 1384 },
         "labelOffset" : { "x" : 47, "y" : -16 }
       },
       "connect" : [
@@ -1057,7 +1057,7 @@
       "id" : "f89",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 704, "y" : 1552 }
+        "at" : { "x" : 920, "y" : 1560 }
       }
     }, {
       "id" : "f31",
@@ -1316,6 +1316,45 @@
       "visual" : {
         "at" : { "x" : 1248, "y" : 1184 }
       }
+    }, {
+      "id" : "f38",
+      "type" : "Script",
+      "name" : "save changes",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
+            "import javax.faces.application.FacesMessage;",
+            "import javax.faces.context.FacesContext;",
+            "import ch.ivy.addon.portalkit.service.AnnouncementService;",
+            "AnnouncementService service = AnnouncementService.getInstance();",
+            "service.saveValueChangeAnnouncement(in.announcement);",
+            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ",
+            "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled\"), null));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 728, "y" : 1472 }
+      },
+      "connect" : [
+        { "id" : "f78", "to" : "f16", "via" : [ { "x" : 728, "y" : 1568 } ] }
+      ]
+    }, {
+      "id" : "f28",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "saveChangesAnnouncement()",
+      "config" : {
+        "signature" : "saveChangesAnnouncement",
+        "guid" : "19131B2C06569468"
+      },
+      "visual" : {
+        "at" : { "x" : 728, "y" : 1376 },
+        "labelOffset" : { "x" : 11, "y" : -13 }
+      },
+      "connect" : [
+        { "id" : "f46", "to" : "f38" }
+      ]
     } ],
   "layout" : {
     "lanes" : [ {

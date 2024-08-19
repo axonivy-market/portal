@@ -1,0 +1,15 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
+  "simpleName" : "LogoutSettingData",
+  "namespace" : "ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "task",
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isWorkingOnATask",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

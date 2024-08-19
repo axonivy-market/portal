@@ -16,7 +16,7 @@
       "name" : "Update Global Variable",
       "config" : {
         "output" : {
-          "code" : "ivy.var.set(in.variableName, in.variableValue);"
+          "code" : "ivy.var.set(in.variableName,in.variableValue);"
         },
         "sudo" : true
       },

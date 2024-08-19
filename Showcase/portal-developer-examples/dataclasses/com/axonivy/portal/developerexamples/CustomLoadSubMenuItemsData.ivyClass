@@ -1,4 +1,0 @@
-CustomLoadSubMenuItemsData #class
-com.axonivy.portal.developerexamples #namespace
-subMenuItems java.util.List<com.axonivy.portal.components.configuration.CustomSubMenuItem> #field
-subMenuItems PERSISTENT #fieldModifier

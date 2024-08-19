@@ -15,7 +15,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.NoteHistoryPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class ShowRelatedTasksTest extends BaseTest {
 
   private static final String TASK_DETAILS_TITLE = "Task Details - Portal - Axon Ivy";

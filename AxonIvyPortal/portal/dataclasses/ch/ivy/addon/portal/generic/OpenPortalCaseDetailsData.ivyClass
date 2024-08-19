@@ -1,4 +1,0 @@
-OpenPortalCaseDetailsData #class
-ch.ivy.addon.portal.generic #namespace
-caseView ch.ivyteam.ivy.workflow.ICase #field
-isShowBackButton Boolean #field
