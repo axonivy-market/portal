@@ -15,12 +15,11 @@ var ThemeChecker = {
     baseURI = $('body').get(0).baseURI;
 
     if (this.isCaseListOrTaskListPage(baseURI) && theme.includes('-light')) {
-      $('body').addClass('ui-portal-background-color');
-    } else {
-      $('body').removeClass('ui-portal-background-color');
+      var bodyClass = "body[class*='freya light']";
+      $(bodyClass).css("background-color", "white");
     }
-},
 
+  },
   isCaseListOrTaskListPage: function (baseURI) {
     return baseURI.includes('Case') || baseURI.includes('Task');
   }
