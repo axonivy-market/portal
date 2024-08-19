@@ -5,8 +5,8 @@ Accessibility
 
 Introduction
 ^^^^^^^^^^^^
-Here is the Accessibility collection for the Axon Ivy Portal.
-It provides tools and settings designed to enhance your experience and make it more inclusive, regardless of your abilities.
+
+The Accessibility collection for the Axon Ivy Portal provides tools and settings designed to enhance your experience and make it more inclusive, regardless of your abilities.
 In this section, you will find features such as screen reader support, keyboard navigation via shortcuts, and text resizing.
 Explore the collection to optimize your use of the Axon Ivy Portal and enjoy a more comfortable user experience.
 
