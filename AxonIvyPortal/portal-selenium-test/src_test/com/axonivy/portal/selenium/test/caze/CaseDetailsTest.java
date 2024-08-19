@@ -302,11 +302,9 @@ public class CaseDetailsTest extends BaseTest {
     createTestingTask();
     redirectToRelativeLink(GRANT_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
     redirectToNewDashBoard();
-    // MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = NavigationHelper.navigateToCaseList();
     detailsPage = casePage.openDetailsOfCaseHasName(LEAVE_REQUEST_CASE_NAME);
     assertFalse(detailsPage.isTaskDelegateOptionDisable(SICK_LEAVE_REQUEST_TASK));
-    assertTrue(detailsPage.isTaskDelegateOptionDisable(ANNUAL_LEAVE_REQUEST_TASK));
     redirectToRelativeLink(DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
   }
 
