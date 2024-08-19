@@ -1,0 +1,40 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
+  "simpleName" : "TaskItemData",
+  "namespace" : "ch.ivy.addon.portalkit.component.TaskItem",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "task",
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "compactMode",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "expandedTask",
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "canUserResumeTask",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "callbackUrl",
+    "type" : "String",
+    "comment" : "Portal Task List url is used to be back after finish task",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "dataModel",
+    "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "currentPortalPage",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "inFrame",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

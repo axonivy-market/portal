@@ -1,0 +1,47 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
+  "simpleName" : "ChartCreationWidgetData",
+  "namespace" : "ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "statisticFilter",
+    "type" : "ch.ivy.addon.portalkit.statistics.StatisticFilter",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "chartType",
+    "type" : "ch.ivy.addon.portalkit.enums.StatisticChartType",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isChartNameExisted",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "statisticChartList",
+    "type" : "java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isAllowedToCreateChart",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "oldStatisticFilter",
+    "type" : "ch.ivy.addon.portalkit.statistics.StatisticFilter",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "customFields",
+    "type" : "java.util.List<String>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "chartNames",
+    "type" : "java.util.List<ch.ivy.addon.portalkit.dto.DisplayName>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isDefaultApplicationLanguage",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "language",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

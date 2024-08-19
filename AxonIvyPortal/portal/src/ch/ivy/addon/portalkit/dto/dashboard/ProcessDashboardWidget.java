@@ -122,4 +122,9 @@ public class ProcessDashboardWidget extends DashboardWidget {
 
   @Override
   public void cancelUserFilter() {}
+  
+  @Override
+  public void setQuickSearchKeyword() {
+    this.criteria.setQuickSearchKeyword(this.getQuickSearchKeyword());
+  }
 }

@@ -1,4 +1,0 @@
-PageFooterData #class
-ch.ivy.addon.portalkit.component.PageFooter #namespace
-content String #field
-content PERSISTENT #fieldModifier

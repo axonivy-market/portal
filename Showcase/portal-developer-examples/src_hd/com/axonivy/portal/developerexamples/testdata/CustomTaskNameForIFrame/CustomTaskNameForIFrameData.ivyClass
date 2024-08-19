@@ -1,4 +1,0 @@
-CustomTaskNameForIFrameData #class
-com.axonivy.portal.developerexamples.testdata.CustomTaskNameForIFrame #namespace
-taskName String #field
-taskName PERSISTENT #fieldModifier
