@@ -69,12 +69,15 @@ public class LanguageService {
   }
 
   private String loadLanguage(Function<IUser, Locale> userLocaleLoader) {
-    var languageTag = "";
+    String languageTag = "";
     if (Ivy.session().isSessionUserUnknown()) {
       languageTag = "";
     } else {
       Locale apply = userLocaleLoader.apply(Ivy.session().getSessionUser());
       languageTag = Objects.nonNull(apply) ? apply.toLanguageTag() : languageTag;
+      if (languageTag == StringUtils.EMPTY) {
+        return getDefaultLanguage().toLanguageTag();
+      }
     }
     return languageTag;
   }
@@ -160,14 +163,14 @@ public class LanguageService {
     return loader.apply(languageManager.languages(securityContext));
   }
 
-  public Locale getDefaultEmailLanguage() {
+  public Locale getDefaultLanguage() {
     return getLanguageConfigurator().content();
   }
 
   public Locale getDefaultFormattingLanguage() {
     return getLanguageConfigurator().formatting();
   }
-  
+
   private LanguageConfigurator getLanguageConfigurator() {
     return new LanguageConfigurator(ISecurityContext.current());
   }
