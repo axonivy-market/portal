@@ -1,4 +1,0 @@
-FindProcessWidgetData #class
-ch.ivy.addon.portal.generic.ai.FindProcessWidget #namespace
-processWidget ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget #field
-processWidget PERSISTENT #fieldModifier
