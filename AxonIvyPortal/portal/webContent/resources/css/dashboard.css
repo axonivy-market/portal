@@ -1614,6 +1614,12 @@ span.new-widget-dialog__icon.si {
   }
 }
 
+@container grid-stack-item (min-width: 400px) {
+  .quick-search-icon {
+    display: none;
+  }
+}
+
 .quick-search-input-tooltip {
   height: 2.5rem;
 }

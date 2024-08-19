@@ -35,11 +35,17 @@
   <c:set var="renderExpandCollapse" value="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"/>
   
     <f:event listener="#{dashboardBean.setSearchScope(widget)}" type="preRenderComponent" />
-  
-  <h:panelGroup layout="block" class="widget__header" rendered="#{not isHeaderHidden}">
+
+  <h:panelGroup layout="block" class="widget__header" styleClass="widget-header" rendered="#{not isHeaderHidden}">
     <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">#{widget.name}</h:panelGroup>
     <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
-
+    
+    <h:panelGroup layout="block" styleClass="quick-search-icon" rendered="#{dashboardBean.canEnableQuickSearch(widget) and widget.isEnableQuickSearch() and widget.type eq 'PROCESS'}">
+     <p:commandButton id="quick-search-icon-#{index}" icon="si si-search" styleClass="rounded-button ui-button-outlined u-mar-right-5"
+      onclick="showQuickSearchInput(#{index});" global="false">
+     </p:commandButton>
+    </h:panelGroup>
+    
     <h:panelGroup id="widget-header-quick-search-#{index}" layout="block"
       styleClass="#{isReadOnlyMode ? 'u-mar-right-10' : 'u-mar-right-5'} widget-header-quick-search"
       rendered="#{dashboardBean.canEnableQuickSearch(widget) and widget.isEnableQuickSearch()}">
@@ -63,9 +69,10 @@
           event="paste" process="@this"
           update="#{componentToUpdateOnResetFilter}" />          
       </p:inputText>
+
       </h:form>
     </h:panelGroup>
-    <h:panelGroup id="widget-header-actions" styleClass="widget__header-actions" layout="block">
+    <h:panelGroup id="widget-header-actions-#{index}" styleClass="widget__header-actions" layout="block">
       <!-- remote-command to load data for saved filter panel -->
       <p:remoteCommand id="load-user-filter-command-#{index}" name="loadUserFilters#{index}"
         actionListener="#{widget.loadUserFilter()}"
@@ -93,7 +100,7 @@
       <p:remoteCommand id="apply-widget-filter-command-#{index}"
         name="applyWidgetFilterCommand#{index}"
         oncomplete="PF('filter-overlay-panel-#{index}').hide(); #{onCompleteApplyFilters}; resizeTableBody()"
-        update="widget-header-actions #{componentToUpdateOnApplyFilter}"
+        update="widget-header-actions-#{index} #{componentToUpdateOnApplyFilter}"
         global="false" process="@this" partialSubmit="true" immediate="true"
         rendered="#{renderFilter}"/>
 
@@ -226,7 +233,7 @@
   
               <p:commandButton id="reset-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
                 styleClass="secondary-btn u-mar-right-5" partialSubmit="true"
-                update="filter-form-#{index} #{cc.clientId}:widget-header-actions #{componentToUpdateOnResetFilter}"
+                update="filter-form-#{index} #{cc.clientId}:widget-header-actions-#{index} #{componentToUpdateOnResetFilter}"
                 oncomplete="#{onCompleteResetFilters}; #{onCompleteApplyFilters}; PF('filter-overlay-panel-#{index}').hide(); resizeTableBody();"
                 actionListener="#{widget.onResetUserFilters()}"
                 icon="si si-button-refresh-arrows" resetValues="true"/>

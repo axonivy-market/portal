@@ -459,6 +459,35 @@ function isPressedSpecialKeys(event) {
   return specialKeys.includes(event.key);
 }
 
+function showQuickSearchInput(index) {
+  var widgetHeaderQuickSearch = "div[id$='widget-header-quick-search-" + index + "']";
+  var widgetHeaderActions = "div[id$='widget-header-actions-" + index + "']";
+  if ($(widgetHeaderActions).css("display") == "none") {
+    $(widgetHeaderActions).css("display","block");
+    $(widgetHeaderQuickSearch).css("display","none");
+  } else {
+    $(widgetHeaderActions).css("display","none");
+    $(widgetHeaderQuickSearch).css("display","block");
+  }
+  changeQuickSearchIcon(index);
+}
+
+function changeQuickSearchIcon(index) {
+  var spanId = "button[id$='quick-search-icon-" + index + "'] > span";
+  var quickSearchButton = "button[id$='quick-search-icon-" + index + "']";
+  var quickSearchInput = "input[id$='quick-search-input-" + index + "']";
+  if ($(spanId).hasClass("si-search")) {
+    $(spanId).removeClass("si-search");
+    $(spanId).addClass("si-remove");
+    console.log(document.activeElement);
+    $(quickSearchButton).blur();
+    $(quickSearchInput).focus();
+    $(quickSearchInput).click();  
+  } else {
+    $(spanId).removeClass("si-remove");
+    $(spanId).addClass("si-search");
+  }
+}
 /**
  * This constant and functions below are used for accessibility feature for shortcuts navigation.
  * User can press Alt + number to focus on left side menu item or search button, user setting
