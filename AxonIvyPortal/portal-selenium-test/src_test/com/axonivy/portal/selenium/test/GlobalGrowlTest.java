@@ -170,7 +170,6 @@ public class GlobalGrowlTest extends BaseTest {
   }
 
   @Test
-//  @RepeatedTest(10)
   public void testLeftExpressFormDefinitionScenario() {
     redirectToRelativeLink(expressStartLink);
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
