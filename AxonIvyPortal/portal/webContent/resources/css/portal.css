@@ -1938,3 +1938,13 @@ i.dashboard-icon-drag-drop {
 	max-width: 50%;
 	margin: -15px 0;
 }
+
+.focusable {
+  padding: 10px;
+  border: 1px solid black;
+  margin: 5px;
+  cursor: pointer;
+}
+.focused {
+  outline: 2px solid black;
+}
