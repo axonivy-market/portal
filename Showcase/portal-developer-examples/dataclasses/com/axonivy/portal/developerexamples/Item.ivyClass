@@ -1,8 +1,0 @@
-Item #class
-com.axonivy.portal.developerexamples #namespace
-id String #field
-id PERSISTENT #fieldModifier
-name String #field
-name PERSISTENT #fieldModifier
-quantity Integer #field
-quantity PERSISTENT #fieldModifier

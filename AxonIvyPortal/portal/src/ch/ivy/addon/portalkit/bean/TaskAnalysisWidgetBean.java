@@ -38,6 +38,7 @@ public class TaskAnalysisWidgetBean implements Serializable {
   public void init() {
     isCaseOwnerEnabled = GlobalSettingService.getInstance().isCaseOwnerEnabled();
     isHideCaseCreator = GlobalSettingService.getInstance().isHideCaseCreator();
+    Ivy.log().error(isHideCaseCreator);
     columns = new HashMap<>();
     for(TaskAndCaseAnalysisColumn column : TaskAndCaseAnalysisColumn.values()) {
       if (column.name().equals(TaskAndCaseAnalysisColumn.CASE_CREATOR.name())

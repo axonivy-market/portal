@@ -2703,6 +2703,12 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   }
 }
 
+@media screen and (min-width: 64.062em) {
+  .project-info-dialog {
+    min-width: 1000px;
+  }
+}
+
 /******************************** PROJECT INFO DIALOG ******************************/
 .project-info-dialog {
   max-width: 1000px;

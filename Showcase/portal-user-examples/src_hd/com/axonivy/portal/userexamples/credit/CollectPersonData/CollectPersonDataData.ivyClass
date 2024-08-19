@@ -1,4 +1,0 @@
-CollectPersonDataData #class
-com.axonivy.portal.userexamples.credit.CollectPersonData #namespace
-dossier com.axonivy.portal.userexamples.credit.CreditDossier #field
-dossier PERSISTENT #fieldModifier

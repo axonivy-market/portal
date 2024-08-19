@@ -524,4 +524,14 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     getConfigurationDialog().$(".ui-dialog-footer").$("a").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id='new-widget-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
+  
+  public void clickOnQuickSearchCheckbox() {
+    getConfigurationFilterContainer().$("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("div[id$='quick-search']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+  
+  public SelenideElement getConfigurationFilterContainer() {
+    return $("div#new-widget-configuration-dialog").shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='filter-container']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+  }
 }

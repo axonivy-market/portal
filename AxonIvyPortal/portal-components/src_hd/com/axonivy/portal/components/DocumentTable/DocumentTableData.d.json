@@ -1,0 +1,71 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
+  "simpleName" : "DocumentTableData",
+  "namespace" : "com.axonivy.portal.components.DocumentTable",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "documents",
+    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "event",
+    "type" : "org.primefaces.event.FileUploadEvent",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "fileLimit",
+    "type" : "Integer",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "ivyCase",
+    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "message",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "messageComponentId",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "selectedDocument",
+    "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "streamedContent",
+    "type" : "org.primefaces.model.StreamedContent",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "typeColumnRendered",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "typeSelection",
+    "type" : "com.axonivy.portal.components.enums.DocumentType",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "uploadDocumentCheckStatus",
+    "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "uploadedDocument",
+    "type" : "ch.ivyteam.ivy.workflow.document.IDocument",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "enableVirusScannerForUploadedDocument",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "enableScriptCheckingForUploadedDocument",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "allowedUploadFileTypes",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "uploadedFile",
+    "type" : "org.primefaces.model.file.UploadedFile",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}
