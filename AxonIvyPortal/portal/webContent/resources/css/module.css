@@ -6125,3 +6125,6 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
     max-width: 95%;
   }	
 }
+.ui-case-task-background-color {
+  background-color: var(--ui-background-color);
+}

@@ -11,5 +11,18 @@ var ThemeChecker = {
     } else {
       $('body').removeClass('serenity light dark').addClass(theme.includes('-light') ? 'freya light' : 'freya dark');
     }
+
+    baseURI = $('body').get(0).baseURI;
+    console.log(this.isCaseListOrTaskListPage(baseURI));
+    if (this.isCaseListOrTaskListPage(baseURI)) {
+      var whiteBackgroundClass = "ui-case-task-background-color";
+      $('body').addClass(whiteBackgroundClass);
+    }
+
+  },
+  isCaseListOrTaskListPage: function (baseURI) {
+    console.log(baseURI);
+    return baseURI.includes('com.axonivy.portal.developerexamples.customization.TaskWidget/TaskWidget.xhtml') || baseURI.includes('com.axonivy.portal.developerexamples.customization.CaseWidget/CaseWidget.xhtml');
+
   }
 }

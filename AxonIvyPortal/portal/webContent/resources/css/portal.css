@@ -1615,3 +1615,20 @@ body.in-dialog .ui-widget-overlay {
 .focused {
     outline: 2px solid black;
 }
+
+body.dark .ui-commandlink {
+  color: var(--ivy-portal-command-link);
+}
+
+body.dark .ui-link {
+  color: var(--ivy-portal-command-link);
+}
+
+body.dark .ui-button {
+  background: #007ca6;
+  filter: contrast(1.2);
+}
+
+body.light .ui-button-secondary {
+  background: #5b7784;
+}
