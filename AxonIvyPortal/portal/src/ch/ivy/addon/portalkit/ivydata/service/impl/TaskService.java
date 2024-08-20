@@ -39,6 +39,7 @@ import ch.ivyteam.ivy.persistence.query.IPagedResult;
 import ch.ivyteam.ivy.scripting.objects.Record;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.security.IRole;
+import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -94,6 +95,10 @@ public class TaskService {
     return Ivy.wf().getTaskQueryExecutor().getCount(query);
   }
   
+  protected TaskQuery queryExcludeSystemTasks() {
+    return TaskQuery.create().where().workerUserName().isNotEqual(ISecurityConstants.SYSTEM_USER_NAME);
+  }
+
   protected TaskQuery queryExcludeHiddenTasks() {
     return TaskQuery.create().where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull();
   }
@@ -105,6 +110,9 @@ public class TaskService {
       
       if (isHiddenTasksCasesExcluded()) {
         finalQuery.where().and(queryExcludeHiddenTasks());
+      }
+      if (!PermissionUtils.hasSystemTaskReadAllPermission()) {
+        finalQuery.where().and(queryExcludeSystemTasks());
       }
       finalQuery.where().and().category().isNotNull();
       result.setCategoryTree(CategoryTree.createFor(finalQuery));
@@ -247,6 +255,9 @@ public class TaskService {
     if (isHiddenTasksCasesExcluded()) {
       clonedQuery.where().and(queryExcludeHiddenTasks());
     }
+    if (!PermissionUtils.hasSystemTaskReadAllPermission()) {
+      clonedQuery.where().and(queryExcludeSystemTasks());
+    }
     return clonedQuery;
   }
 
@@ -269,6 +280,9 @@ public class TaskService {
     if (isHiddenTasksCasesExcluded()) {
       clonedQuery.where().and(queryExcludeHiddenTasks());
     }
+    if (!PermissionUtils.hasSystemTaskReadAllPermission()) {
+      clonedQuery.where().and(queryExcludeSystemTasks());
+    }
     return clonedQuery;
   }
   
@@ -279,6 +293,9 @@ public class TaskService {
     } 
     if (isHiddenTasksCasesExcluded()) {
       finalQuery.where().and(queryExcludeHiddenTasks());
+    }
+    if (!PermissionUtils.hasSystemTaskReadAllPermission()) {
+      finalQuery.where().and(queryExcludeSystemTasks());
     }
     return finalQuery;
   }
@@ -301,6 +318,9 @@ public class TaskService {
       if (isHiddenTasksCasesExcluded()) {
         taskQuery.where().and(queryExcludeHiddenTasks());
       }
+      if (!PermissionUtils.hasSystemTaskReadAllPermission()) {
+        taskQuery.where().and(queryExcludeSystemTasks());
+      }
       return taskQueryExecutor().getFirstResult(taskQuery);
     });
   }
@@ -318,6 +338,9 @@ public class TaskService {
       }
       if (isHiddenTasksCasesExcluded()) {
         taskQuery.where().and(queryExcludeHiddenTasks());
+      }
+      if (!PermissionUtils.hasSystemTaskReadAllPermission()) {
+        taskQuery.where().and(queryExcludeSystemTasks());
       }
       return taskQueryExecutor().getFirstResult(taskQuery);
     });
