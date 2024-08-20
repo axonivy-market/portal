@@ -34,6 +34,7 @@ public enum PortalPermission {
   TASK_DISPLAY_DESTROY_ACTION("TaskDisplayDestroyAction", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
   TASK_RESET_READY_FOR_JOIN("TaskResetReadyForJoin", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
   TASK_DETAILS_SHARE_LINK("ShareTaskDetailsLink", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
+  SYSTEM_TASK_READ_ALL("SystemTaskReadAll", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
   CREATE_PUBLIC_EXTERNAL_LINK("CreatePublicExternalLink", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   ROLE_MANAGEMENT("RoleManagement", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   NEWS_MANAGEMENT("NewsManagement", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),

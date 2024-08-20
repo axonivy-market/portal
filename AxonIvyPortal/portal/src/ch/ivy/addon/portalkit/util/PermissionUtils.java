@@ -242,6 +242,10 @@ public class PermissionUtils {
     return hasPortalPermission(PortalPermission.CASE_DETAILS_SHARE_LINK);
   }
 
+  public static boolean hasSystemTaskReadAllPermission() {
+    return hasPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
+  }
+
   public static String getCaseName(ICase iCase) {
     return Sudo.get(() -> {
       return iCase.names().current();
