@@ -462,24 +462,33 @@ function isPressedSpecialKeys(event) {
 function showQuickSearchInput(index) {
   var widgetHeaderQuickSearch = "div[id$='widget-header-quick-search-" + index + "']";
   var widgetHeaderActions = "div[id$='widget-header-actions-" + index + "']";
+  var quickSearchInput = "input[id$='quick-search-input-" + index + "']";
   if ($(widgetHeaderActions).css("display") == "none") {
-    $(widgetHeaderActions).css("display","block");
-    $(widgetHeaderQuickSearch).css("display","none");
+    showWidgetHeaderActions();
   } else {
-    $(widgetHeaderActions).css("display","none");
-    $(widgetHeaderQuickSearch).css("display","block");
+    hideWidgetHeaderActions();
   }
-  changeQuickSearchIcon(index);
+  changeQuickSearchIconButton(index);
+
+  function showWidgetHeaderActions() {
+    $(widgetHeaderActions).css("display","inline-flex");
+    $(widgetHeaderQuickSearch).removeClass("widget-header-quick-search-show");
+  }
+
+  function hideWidgetHeaderActions() {
+    $(widgetHeaderActions).css("display","none");
+    $(widgetHeaderQuickSearch).addClass("widget-header-quick-search-show");
+    $(quickSearchInput).css("width","100%");
+  }
 }
 
-function changeQuickSearchIcon(index) {
+function changeQuickSearchIconButton(index) {
   var spanId = "button[id$='quick-search-icon-" + index + "'] > span";
   var quickSearchButton = "button[id$='quick-search-icon-" + index + "']";
   var quickSearchInput = "input[id$='quick-search-input-" + index + "']";
   if ($(spanId).hasClass("si-search")) {
     $(spanId).removeClass("si-search");
     $(spanId).addClass("si-remove");
-    console.log(document.activeElement);
     $(quickSearchButton).blur();
     $(quickSearchInput).focus();
     $(quickSearchInput).click();  

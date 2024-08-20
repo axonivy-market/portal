@@ -42,7 +42,7 @@
     
     <h:panelGroup layout="block" styleClass="quick-search-icon" rendered="#{dashboardBean.canEnableQuickSearch(widget) and widget.isEnableQuickSearch() and widget.type eq 'PROCESS'}">
      <p:commandButton id="quick-search-icon-#{index}" icon="si si-search" styleClass="rounded-button ui-button-outlined u-mar-right-5"
-      onclick="showQuickSearchInput(#{index});" global="false">
+      onclick="showQuickSearchInput(#{index});" global="false" >
      </p:commandButton>
     </h:panelGroup>
     
@@ -72,7 +72,7 @@
 
       </h:form>
     </h:panelGroup>
-    <h:panelGroup id="widget-header-actions-#{index}" styleClass="widget__header-actions" layout="block">
+    <h:panelGroup id="widget-header-actions-#{index}" styleClass="widget__header-actions" layout="block" style="display: flex">
       <!-- remote-command to load data for saved filter panel -->
       <p:remoteCommand id="load-user-filter-command-#{index}" name="loadUserFilters#{index}"
         actionListener="#{widget.loadUserFilter()}"
