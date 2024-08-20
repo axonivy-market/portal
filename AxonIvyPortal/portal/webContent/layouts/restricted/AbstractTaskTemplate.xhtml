@@ -194,8 +194,10 @@
               styleClass="case-default-widget-container case-details case-details-panel">
               <div class="ui-g js-iframe-container">
                 <div class="ui-g-12 u-padding-0">
-                  <iframe id="i-frame-case-details" src="#{taskTemplateBean.caseDetailsLink}" onload="setupHeightForIFrame();"
-                    class="case-information-frame  js-iFrame-case-details" scrolling="no" frameborder="0"/>
+                  <iframe id="i-frame-case-details" src="#{taskTemplateBean.caseDetailsLink}"
+                    onload="setupHeightForIFrame();" class="case-information-frame  js-iFrame-case-details"
+                    scrolling="no" frameborder="0"
+                    title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/layouts/AbstractTaskTemplate/CaseDetailsIFrameTitle')}" />
                 </div>
               </div>
             </h:panelGroup>

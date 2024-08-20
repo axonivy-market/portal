@@ -1567,6 +1567,7 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
+                  CustomWidgetIFrameTitle: '{0} cadre'
                 ProcessWidgetConfiguration:
                   DragAndDropToChangeOrder: Glisser-déposer pour modifier l'ordre.
                   DragAndDropTooltip: Cliquer sur l'aperçu puis glisser-déposer pour modifier l'ordre
@@ -1586,6 +1587,8 @@ Dialogs:
               ShowBusinessDetails: Détails de la demande
               caseNameNotAvailable: '[Nom de cas pas disponible]'
               defaultEmptyMessage: Il n'y a pas de dossiers
+            CustomIFrameWidget:
+              CustomWidgetIFrameTitle: Cadre de widget personnalisé
             IconSelection:
               IconLinkTooltip: Cliquez pour changer d'icône
             TaskItemDetails:
@@ -1623,6 +1626,11 @@ Dialogs:
               NewsWidgetConfiguration: Configuration du widget de flux d'informations
               NewsWidgetDescription: Ce widget partage des informations pertinentes sous forme de fil d'actualité dans Axon Ivy.
               NewsWidgetTitle: Widget de flux d'informations
+        layouts:
+          AbstractTaskTemplate:
+            CaseDetailsIFrameTitle: Cadre des détails de l'affaire
+          IFrameTaskTemplate:
+            TaskIFrameTitle: Cadre de travail
   components:
     CaseDocument:
       FileDate: Modifié le
@@ -1736,6 +1744,10 @@ Labels:
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
   Enums:
+    GlobalSearchScopeCategory:
+      CASES: Cas
+      PROCESSES: Processus
+      TASKS: Tâches
     SearchScopeCaseField:
       CUSTOM: Champs de chaînes personnalisées
       DESCRIPTION: Description
@@ -1743,10 +1755,6 @@ Labels:
     SearchScopeTaskField:
       DESCRIPTION: Description
       NAME: Nom
-    GlobalSearchScopeCategory:
-      CASES: Cas
-      PROCESSES: Processus
-      TASKS: Tâches
     ThemeMode:
       DARK: Dark
       LIGHT: Lumière
