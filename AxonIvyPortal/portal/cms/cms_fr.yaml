@@ -187,6 +187,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       disable: Désactiver
       enable: Activer
       information: Vous pouvez annoncer une information générale (par exemple, temps d'arrêt, modifications, etc.) dans cette zone. Ce message peut être vu par tous les utilisateurs du portail.
+      saveChanges: Enregistrer les modifications
       tabTitle: Annonces
     appDisplayName: Nom d'affichage
     appDisplayNameRequiredMsg: Veuillez entrer le nom d'affichage de l'application
@@ -250,6 +251,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableScriptCheckingForUploadedDocumentNote: Défini sur true pour activer la vérification de script pour le document téléchargé. Actuellement, cette fonction prend en charge la vérification de PDF, Excel, Word.
       enableVirusScannerForUploadedDocumentNote: Définie sur true pour activer le scanner de virus pour le document téléchargé. Actuellement, cette fonction utilise l'API VIRUSTOTAL.
       expressEndPageNote: Affiche la page de fin personnalisée à la fin de chaque processus Express.
+      hideCaseCreator: |-
+        La valeur "true" permet de masquer le créateur du dossier dans la liste des dossiers, le widget du dossier et les détails du dossier.
+        Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
       hideCaseDocument: Si vous choisissez "true", la section du document dans la page de détail du cas sera invisible, sinon elle sera visible.
       hideChangePasswordButtonNote: Attribuez la valeur true à cette variable pour masquer l'option "Changer de mot de passe" dans le menu supérieur et l'option "Mot de passe oublié" sur la page de connexion. Si elle vaut false, ces options seront affichées.
       hideLogoutButtonNote: Si true, le bouton de déconnexion du menu supérieur sera masqué, sinon il sera affiché.

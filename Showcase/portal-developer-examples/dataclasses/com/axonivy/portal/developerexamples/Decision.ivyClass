@@ -1,6 +1,0 @@
-Decision #class
-com.axonivy.portal.developerexamples #namespace
-note String #field
-note PERSISTENT #fieldModifier
-isApproved Boolean #field
-isApproved PERSISTENT #fieldModifier

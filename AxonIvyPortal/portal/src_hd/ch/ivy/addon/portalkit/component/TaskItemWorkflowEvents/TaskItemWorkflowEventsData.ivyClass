@@ -1,6 +1,0 @@
-TaskItemWorkflowEventsData #class
-ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents #namespace
-workflowEvents java.util.List<ch.ivy.addon.portalkit.bo.History> #field
-workflowEvents PERSISTENT #fieldModifier
-task ch.ivyteam.ivy.workflow.ITask #field
-task PERSISTENT #fieldModifier

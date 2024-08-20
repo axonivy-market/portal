@@ -1,8 +1,0 @@
-PortalBreadcrumbData #class
-ch.ivy.addon.portal.generic.PortalBreadcrumb #namespace
-workingTask ch.ivyteam.ivy.workflow.ITask #field
-workingTask PERSISTENT #fieldModifier
-linkToNavigateWhenLeaveTask String #field
-linkToNavigateWhenLeaveTask PERSISTENT #fieldModifier
-isWorkingOnATask Boolean #field
-isWorkingOnATask PERSISTENT #fieldModifier

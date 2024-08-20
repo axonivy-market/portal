@@ -1,4 +1,0 @@
-CheckInternalSolvencyData #class
-com.axonivy.portal.userexamples.credit.CheckInternalSolvency #namespace
-dossier com.axonivy.portal.userexamples.credit.CreditDossier #field
-dossier PERSISTENT #fieldModifier

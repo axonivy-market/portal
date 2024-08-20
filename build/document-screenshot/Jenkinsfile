@@ -87,7 +87,7 @@ pipeline {
           utils.killUnnecessaryProcessesToRunTest()
 
           echo '====================Execute maven for testing===================='
-          bat "mvn clean install -f AxonIvyPortal/PortalTest/document_screenshot_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
+          bat "mvn clean install -f AxonIvyPortal/PortalTest/document_screenshot_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=120"
           utils.cleanDisk()
 
           echo '====================Copy ElasticSearch log===================='

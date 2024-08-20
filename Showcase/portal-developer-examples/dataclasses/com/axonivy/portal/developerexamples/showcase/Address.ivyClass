@@ -1,6 +1,0 @@
-Address #class
-com.axonivy.portal.developerexamples.showcase #namespace
-street String #field
-street PERSISTENT #fieldModifier
-country String #field
-country PERSISTENT #fieldModifier

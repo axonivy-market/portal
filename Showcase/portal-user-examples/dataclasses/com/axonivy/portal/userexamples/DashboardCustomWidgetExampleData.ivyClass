@@ -1,6 +1,0 @@
-DashboardCustomWidgetExampleData #class
-com.axonivy.portal.userexamples #namespace
-startDate String #field
-customer String #field
-email String #field
-note String #field
