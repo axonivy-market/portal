@@ -99,10 +99,9 @@
 
       <span class="u-mar-right-5">
         <c:set var="countFilter" value="#{widget.userDefinedFiltersCount.isPresent() ? widget.userDefinedFiltersCount.get():0}"/>
-        <p:badge value="#{countFilter}"
-          id="filter-sidebar-link-#{index}" visible="#{countFilter ne '0'}"
+        <p:badge value="#{countFilter}" visible="#{countFilter ne '0'}"
           rendered="#{renderFilter}" styleClass="widget__filter-noti-number">
-          <p:commandButton type="button" icon="si si-filter-1"
+          <p:commandButton id="filter-sidebar-link-#{index}" type="button" icon="si si-filter-1"
             styleClass="rounded-button widget__filter-sidebar-link ui-button-outlined" />
         </p:badge>
         <p:tooltip for="filter-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters')}"
