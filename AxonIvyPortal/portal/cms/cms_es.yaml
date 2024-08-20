@@ -1570,6 +1570,7 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: ¡No se pudo encontrar el proceso vinculado!
+                  CustomWidgetIFrameTitle: '{0} marco'
                 ProcessWidgetConfiguration:
                   DragAndDropToChangeOrder: Arrastrar y soltar para cambiar el orden.
                   DragAndDropTooltip: Haz clic en vista previa y arrastra y suelta para cambiar el orden
@@ -1589,6 +1590,8 @@ Dialogs:
               ShowBusinessDetails: detalles del negocio
               caseNameNotAvailable: '[Nombre del caso no disponible]'
               defaultEmptyMessage: No hay casos
+            CustomIFrameWidget:
+              CustomWidgetIFrameTitle: Marco de widgets personalizado
             IconSelection:
               IconLinkTooltip: Haga clic para cambiar el icono
             TaskItemDetails:
@@ -1626,6 +1629,11 @@ Dialogs:
               NewsWidgetConfiguration: Configuración del widget de noticias
               NewsWidgetDescription: Este widget comparte información relevante como un News Feed en Axon Ivy.
               NewsWidgetTitle: Widget de noticias
+        layouts:
+          AbstractTaskTemplate:
+            CaseDetailsIFrameTitle: Detalles del caso marco
+          IFrameTaskTemplate:
+            TaskIFrameTitle: Marco de tareas
   components:
     CaseDocument:
       FileDate: Modificado el

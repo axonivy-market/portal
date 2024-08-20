@@ -88,6 +88,7 @@ Dialogs:
               EXPRESS_PROCESS: Flujo de trabajo exprés
               EXTERNAL_LINK: Link externo
               IVY_PROCESS: Proceso de negocio
+            ProcessViewerIFrameTitle: Marco del visor de procesos
 Labels:
   DisabledUserPrefix: (inactivo)
   NoName: Sin nombre

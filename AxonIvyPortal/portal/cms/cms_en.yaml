@@ -1569,6 +1569,7 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Could not find the linked process!
+                  CustomWidgetIFrameTitle: '{0} frame'
                 ProcessWidgetConfiguration:
                   DragAndDropToChangeOrder: Drag and drop to change the order.
                   DragAndDropTooltip: Click Preview, then drag and drop to change the order
@@ -1588,6 +1589,8 @@ Dialogs:
               ShowBusinessDetails: Business details
               caseNameNotAvailable: '[Case name not available]'
               defaultEmptyMessage: There are no cases
+            CustomIFrameWidget:
+              CustomWidgetIFrameTitle: Custom widget frame
             IconSelection:
               IconLinkTooltip: Click to change icon
             TaskItemDetails:
@@ -1625,6 +1628,11 @@ Dialogs:
               NewsWidgetConfiguration: News feed widget configuration
               NewsWidgetDescription: This widget shares relevant information as a News Feed into Axon Ivy.
               NewsWidgetTitle: News feed widget
+        layouts:
+          AbstractTaskTemplate:
+            CaseDetailsIFrameTitle: Case details frame
+          IFrameTaskTemplate:
+            TaskIFrameTitle: Task frame
   components:
     CaseDocument:
       FileDate: Modified at
