@@ -1572,6 +1572,7 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: ¡No se pudo encontrar el proceso vinculado!
+                  CustomWidgetIFrameTitle: '{0} marco'
                 DashboardModification:
                   Share: Compartir
                 ProcessWidgetConfiguration:
@@ -1593,6 +1594,8 @@ Dialogs:
               ShowBusinessDetails: detalles del negocio
               caseNameNotAvailable: '[Nombre del caso no disponible]'
               defaultEmptyMessage: No hay casos
+            CustomIFrameWidget:
+              CustomWidgetIFrameTitle: Marco de widgets personalizado
             IconSelection:
               IconLinkTooltip: Haga clic para cambiar el icono
             TaskItemDetails:
@@ -1650,6 +1653,11 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Añadir filtro
               ResetFilter: Restablecer filtro
+        layouts:
+          AbstractTaskTemplate:
+            CaseDetailsIFrameTitle: Detalles del caso marco
+          IFrameTaskTemplate:
+            TaskIFrameTitle: Marco de tareas
   components:
     CaseDocument:
       FileDate: Modificado el

@@ -1571,6 +1571,7 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Could not find the linked process!
+                  CustomWidgetIFrameTitle: '{0} frame'
                 DashboardModification:
                   Share: Share
                 ProcessWidgetConfiguration:
@@ -1592,6 +1593,8 @@ Dialogs:
               ShowBusinessDetails: Business details
               caseNameNotAvailable: '[Case name not available]'
               defaultEmptyMessage: There are no cases
+            CustomIFrameWidget:
+              CustomWidgetIFrameTitle: Custom widget frame
             IconSelection:
               IconLinkTooltip: Click to change icon
             TaskItemDetails:
@@ -1649,6 +1652,11 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Add filter
               ResetFilter: Reset filter
+        layouts:
+          AbstractTaskTemplate:
+            CaseDetailsIFrameTitle: Case details frame
+          IFrameTaskTemplate:
+            TaskIFrameTitle: Task frame
   components:
     CaseDocument:
       FileDate: Modified at
