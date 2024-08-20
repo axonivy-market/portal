@@ -367,7 +367,7 @@ public class QuickSearchTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget(YOUR_PROCESSES);
     ProcessEditWidgetNewDashBoardPage processEditWidget = newDashboardPage.editProcessWidgetConfiguration();
-    processEditWidget.clickOnQuickSearchCheckbox();
+    processEditWidget.enableQuickSearchCheckbox();
     processEditWidget.save();
     assertTrue(processWidget.isQuickSearchInputShow());
   }

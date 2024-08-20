@@ -39,7 +39,7 @@ public class AnnouncementService {
   public boolean isDefaultApplicationLanguage(String language) {
     return Sudo.get(
         () -> {
-          Locale content = LanguageService.getInstance().getDefaultEmailLanguage();
+          Locale content = LanguageService.getInstance().getDefaultLanguage();
           return content.getLanguage().equalsIgnoreCase(language);
         });
   }
@@ -55,14 +55,14 @@ public class AnnouncementService {
     if (locale != null) {
       language = locale.toLanguageTag();
     } else {
-      language = getDefaultEmailLanguage();
+      language = getDefaultLanguage();
     }
 
     Optional<LocalizationContent> displayNameOptional =
         contents.stream().filter(content -> language.equalsIgnoreCase(content.getLanguage())).findFirst();
     if (displayNameOptional.isEmpty() || StringUtils.isBlank(displayNameOptional.get().getValue())) {
       displayNameOptional = contents.stream()
-          .filter(content -> getDefaultEmailLanguage().equalsIgnoreCase(content.getLanguage())).findFirst();
+          .filter(content -> getDefaultLanguage().equalsIgnoreCase(content.getLanguage())).findFirst();
     }
     if (displayNameOptional.isEmpty()) {
       return EMPTY;
@@ -122,8 +122,8 @@ public class AnnouncementService {
   }
 
 
-  private String getDefaultEmailLanguage() {
-    return LanguageService.getInstance().getDefaultEmailLanguage().toLanguageTag();
+  private String getDefaultLanguage() {
+    return LanguageService.getInstance().getDefaultLanguage().toLanguageTag();
   }
 
   private Announcement getAnnouncement() {
