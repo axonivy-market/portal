@@ -1624,11 +1624,15 @@ body.dark .ui-link {
   color: var(--ivy-portal-command-link);
 }
 
-body.dark .ui-button {
+body.dark button:not(.ui-button-flat, .ui-button-secondary, .ui-button-icon-only)  {
   background: #007ca6;
   filter: contrast(1.2);
 }
 
 body.light .ui-button-secondary {
   background: #5b7784;
+}
+
+body.dark .ui-button-secondary {
+  background: #63767e;
 }
