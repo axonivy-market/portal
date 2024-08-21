@@ -1087,10 +1087,6 @@ body .ui-widget.new-widget-dialog__introduction {
   overflow: auto;
 }
 
-.dashboard-processes-container--combined {
-  min-width: 600px;
-}
-
 @media screen and (max-width: 40em) {
   .dashboard-processes-container--combined .process-widget--combined {
     height: 30rem;
