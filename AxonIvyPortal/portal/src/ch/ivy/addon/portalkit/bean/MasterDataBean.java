@@ -123,6 +123,6 @@ public class MasterDataBean implements Serializable {
   }
 
   public String getUserLanguage() {
-    return LanguageService.getInstance().getUserLanguage();
+    return LanguageService.newInstance().getUserLanguage();
   }
 }
