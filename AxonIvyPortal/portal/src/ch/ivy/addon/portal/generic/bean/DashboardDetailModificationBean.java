@@ -94,6 +94,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private static final long serialVersionUID = -5272278165636659596L;
   private static final String DEFAULT_USER_FILTER_ID = "widget-configuration-form:new-widget-configuration-component:user-filter";
   private static final String DEFAULT_WIDGET_TITLE_ID = "widget-configuration-form:new-widget-configuration-component:widget-title-group";
+  
+  // When resize a column of Task widget or Case widget, should add the padding
+  // value to make the result correct
+  private static final int DEFAULT_RESIZABLE_COLUMN_PADDING_VALUE = 30;
 
   private List<WidgetSample> samples;
   private String newWidgetHeader;
@@ -886,12 +890,20 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       handleResizeColumnOfTaskWidget(
           (TaskDashboardWidget) targetWidget,
           getColumnIndexFromColumnKey(event.getColumn().getColumnKey()),
-          event.getWidth());
+          event.getWidth() + DEFAULT_RESIZABLE_COLUMN_PADDING_VALUE);
     }
 
     selectedDashboard = DashboardService.getInstance().save(selectedDashboard);
   }
 
+  /**
+   * Split the ID and get the last part to get the order of the column Example:
+   * ID = 'task-1:task-component:dashboard-tasks:dashboard-tasks-columns:1'
+   * Then, the result should be 1
+   * 
+   * @param columnKey
+   * @return
+   */
   private Integer getColumnIndexFromColumnKey(String columnKey) {
     List<String> idParts = Arrays.asList(columnKey.split("\\:"));
     return NumberUtils.toInt(idParts.get(idParts.size() - 1), -1);
