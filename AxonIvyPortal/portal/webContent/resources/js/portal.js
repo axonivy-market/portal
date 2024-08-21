@@ -480,23 +480,24 @@ function showQuickSearchInput(index) {
     $(widgetHeaderQuickSearch).addClass("widget-header-quick-search-show");
     $(quickSearchInput).css("width","100%");
   }
-}
 
-function changeQuickSearchIconButton(index) {
-  var spanId = "button[id$='quick-search-icon-" + index + "'] > span";
-  var quickSearchButton = "button[id$='quick-search-icon-" + index + "']";
-  var quickSearchInput = "input[id$='quick-search-input-" + index + "']";
-  if ($(spanId).hasClass("si-search")) {
-    $(spanId).removeClass("si-search");
-    $(spanId).addClass("si-remove");
-    $(quickSearchButton).blur();
-    $(quickSearchInput).focus();
-    $(quickSearchInput).click();  
-  } else {
-    $(spanId).removeClass("si-remove");
-    $(spanId).addClass("si-search");
+  function changeQuickSearchIconButton(index) {
+    var spanEl = "button[id$='quick-search-icon-" + index + "'] > span";
+    var quickSearchButton = "button[id$='quick-search-icon-" + index + "']";
+    if ($(spanEl).hasClass("si-search")) {
+      $(spanEl).removeClass("si-search");
+      $(spanEl).addClass("si-remove");
+      $(quickSearchButton).blur();
+      $(quickSearchInput).focus();
+      $(quickSearchInput).click();  
+    } else {
+      $(spanEl).removeClass("si-remove");
+      $(spanEl).addClass("si-search");
+    }
   }
 }
+
+
 /**
  * This constant and functions below are used for accessibility feature for shortcuts navigation.
  * User can press Alt + number to focus on left side menu item or search button, user setting
