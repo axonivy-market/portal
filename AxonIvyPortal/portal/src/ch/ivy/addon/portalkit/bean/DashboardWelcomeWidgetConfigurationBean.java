@@ -135,7 +135,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
   }
 
   public boolean isApplicationDefaultEmailLanguage(String language) {
-    Locale defaultLocale = LanguageService.newInstance().getDefaultEmailLanguage();
+    Locale defaultLocale = LanguageService.newInstance().getDefaultLanguage();
     return defaultLocale.toLanguageTag().equalsIgnoreCase(language);
   }
 

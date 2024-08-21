@@ -57,6 +57,7 @@
                         <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter"
                           value="#{filterData.filterName}" trackMouse="true" />
                         <p:commandLink id="delete-user-defined-filter-command"
+                          ariaLabel="#{ivy.cms.co('/Labels/delete')}"
                           rendered="#{caseWidgetBean.isDeleteFilterEnabledFor(filterData)}"
                           styleClass="si si-delete-2 delete-user-defined-filter-command"
                           actionListener="#{data.setFilterDataToBeDeleted(filterData)}"
@@ -79,6 +80,7 @@
                         <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter"
                           value="#{filterData.filterName}" trackMouse="true" />
                         <p:commandLink id="delete-user-defined-filter-command"
+                          ariaLabel="#{ivy.cms.co('/Labels/delete')}"
                           rendered="#{caseWidgetBean.isDeleteFilterEnabledFor(filterData)}"
                           styleClass="si si-delete-2 delete-user-defined-filter-command"
                           actionListener="#{logic.setFilterToBeDeleted(filterData)}"

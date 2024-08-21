@@ -71,13 +71,13 @@
           cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
             <f:facet name="output">
               <h:outputText styleClass="u-mar-right-5 external-link-edit-display-text" value="#{processWidgetBean.editedExternalLink.name}" />
-              <a href="#" class="si si-graphic-tablet-drawing-pen" />
+              <a href="#" class="si si-graphic-tablet-drawing-pen" aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"/>
             </f:facet>
             <div class="ui-fluid ui-inputgroup">
               <p:inputText id="external-link-name" value="#{processWidgetBean.editedExternalLink.name}" required="true"
                 maxlength="85" 
                 requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
-              <p:commandButton id="edit-name-language-button"  icon="si si-chat-translate" 
+              <p:commandButton id="edit-name-language-button" icon="si si-chat-translate" 
                 actionListener="#{processWidgetBean.updateNameByLocale()}"
                 process="#{cc.clientId}:edit-process-form:external-link-name"
                 update="#{cc.clientId}:edit-name-language-config:multiple-languages-dialog"
@@ -92,7 +92,7 @@
             cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
             <f:facet name="output">
               <h:outputText styleClass="u-mar-right-5 external-link-edit-display-text" value="#{processWidgetBean.editedExternalLink.link}" />
-              <a href="#" class="si si-graphic-tablet-drawing-pen" />
+              <a href="#" class="si si-graphic-tablet-drawing-pen" aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" />
             </f:facet>
             <p:inputText id="external-link" value="#{processWidgetBean.editedExternalLink.link}" required="true"
               requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
@@ -106,7 +106,7 @@
           cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
             <f:facet name="output">
               <h:outputText styleClass="u-mar-right-5" value="#{processWidgetBean.editedExternalLink.description}" />
-              <a href="#" class="si si-graphic-tablet-drawing-pen" />
+              <a href="#" class="si si-graphic-tablet-drawing-pen" aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"/>
             </f:facet>
             <div class="ui-fluid ui-inputgroup">
             <p:inputTextarea id="external-description" value="#{processWidgetBean.editedExternalLink.description}"
@@ -131,7 +131,7 @@
               process="@this" update="permission-for-editing-external-link" resetValues="true"/>
             <f:facet name="output">
               <h:outputText styleClass="u-mar-right-5" value="#{processWidgetBean.displayNameOfPermissionsWhenEditingExternalLink}" />
-              <a href="#" class="si si-graphic-tablet-drawing-pen" />
+              <a href="#" class="si si-graphic-tablet-drawing-pen" aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"/>
             </f:facet>
             <f:facet name="input">
               <h:panelGroup id="permission-for-editing-external-link" layout="block"
