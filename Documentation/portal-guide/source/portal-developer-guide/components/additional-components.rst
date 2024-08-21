@@ -83,22 +83,6 @@ After the user cancels a task, a growl message is displayed if ``Portal.DisplayM
 
 |example-global-growl-cancelled-task|
 
-Customize the Global Growl Message for a Task using IFrames
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-If ``Portal.DisplayMessageAfterFinishTask`` is true, before a task is finished
-or cancelled, you can trigger the display of a customized message by calling the
-API below:
-
-::
-
-   import com.axonivy.portal.components.publicapi.PortalGlobalGrowInIFrameAPI;
-
-   PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();
-   api.displayCustomizedMessage("Your customized message");
-
-Please refer to GlobalGrowl Start Process in the portal-developer-examples project for details.
-
 .. _components-additional-portal-dialog-with-icon:
 
 Portal Dialog with Icon
