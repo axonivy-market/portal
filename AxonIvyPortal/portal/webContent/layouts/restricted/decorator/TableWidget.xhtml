@@ -45,7 +45,7 @@
       <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
       <p:inputText id="quick-search-input-#{index}" value="#{widget.quickSearchKeyword}"
         placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}"
-        onkeydown="handleKeyDown(event)">
+        onkeydown="handleKeyDown(event)" disabled="#{!isReadOnlyMode and widget.type eq 'PROCESS'}">
         <p:ajax delay="800" listener="#{widget.updateQuickSearchKeyword()}"
           onstart="return shouldTriggerAjax(event)"
           event="keydown" process="@this"
@@ -60,6 +60,12 @@
           update="#{componentToUpdateOnResetFilter}" />
       </p:inputText>
       </h:form>
+    </h:panelGroup>
+    
+    <h:panelGroup layout="block" styleClass="quick-search-icon" rendered="#{dashboardBean.canEnableQuickSearch(widget) and widget.isEnableQuickSearch() and widget.type eq 'PROCESS'}">
+     <p:commandButton id="quick-search-icon-#{index}" icon="si si-search" styleClass="rounded-button ui-button-outlined u-mar-right-5"
+      onclick="showQuickSearchInput(#{index});" global="false" disabled="#{!isReadOnlyMode}" >
+     </p:commandButton>
     </h:panelGroup>
 
     <h:panelGroup id="widget-header-actions" styleClass="widget__header-actions" layout="block">
