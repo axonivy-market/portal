@@ -141,6 +141,10 @@
   margin-right: 15px;
 }
 
+.widget__header-actions {
+  display: flex;
+}
+
 .widget__header-title {
   flex: 1;
   display: inline-block;

@@ -36,7 +36,7 @@
   
     <f:event listener="#{dashboardBean.setSearchScope(widget)}" type="preRenderComponent" />
 
-  <h:panelGroup layout="block" class="widget__header" styleClass="widget-header" rendered="#{not isHeaderHidden}">
+  <h:panelGroup layout="block" class="widget__header" rendered="#{not isHeaderHidden}">
     <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">#{widget.name}</h:panelGroup>
     <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
     <h:panelGroup id="widget-header-quick-search-#{index}" layout="block"
@@ -72,7 +72,7 @@
      </p:commandButton>
     </h:panelGroup>
 
-    <h:panelGroup id="widget-header-actions" styleClass="widget__header-actions" layout="block" style="display: flex">
+    <h:panelGroup id="widget-header-actions" styleClass="widget__header-actions" layout="block">
       <!-- remote-command to load data for saved filter panel -->
       <p:remoteCommand id="load-user-filter-command-#{index}" name="loadUserFilters#{index}"
         actionListener="#{widget.loadUserFilter()}"
