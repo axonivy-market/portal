@@ -87,6 +87,7 @@ Dialogs:
               EXPRESS_PROCESS: Express Workflow
               EXTERNAL_LINK: External Link
               IVY_PROCESS: Geschäftsprozess
+            ProcessViewerIFrameTitle: Prozessbetrachterrahmen
 Labels:
   DisabledUserPrefix: (inaktiv)
   NoName: kein Name

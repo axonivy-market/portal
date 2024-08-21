@@ -203,12 +203,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewApplication: Neue Drittanwendung hinzufügen
     announcement:
       announcement: Ankündigungen
+      announcementSaved: Ankündigungen werden gespeichert.
       announcementsDisabled: Ankündigungen sind deaktiviert
       announcementsEnabled: Ankündigungen sind aktiviert
       defaultLanguageRequiredMessage: Ein Ankündigungstext in der standard Applikationssprache ist notwendig
       disable: Deaktivieren
       enable: Aktivieren
       information: Sie können eine allgemeine Ankündigung in diesem Bereich machen (z.B. Wartungsankündigung). Diese Nachricht kann von allen Benutzern gesehen werden.
+      saveChanges: Änderungen speichern
       tabTitle: Ankündigungen
     appDisplayName: Anzeigename
     appDisplayNameRequiredMsg: Geben Sie einen Anzeigename an.
@@ -269,6 +271,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableUserFavorites: Wenn diese Einstellung deaktiviert ist, zeigen Sie den Benutzerfavoritenabschnitt der Prozessliste nicht in Portal Home an.
       enableVirusScannerForUploadedDocumentNote: Auf true setzen, um den Virenscanner für das hochgeladene Dokument zu aktivieren. Derzeit verwendet diese Funktion die API VIRUSTOTAL.
       expressEndPageNote: Anzeigen der angepassten Endseite nach dem Ende eines Express Prozesses.
+      hideCaseCreator: |
+        Auf true setzen, um den Fallersteller in der Fallliste, dem Fall-Widget und den Falldetails auszublenden.
+        Diese Einstellung wirkt sich auf alle Fallabfragen aus, z. B. für Fallliste, globale Suche, Statistik.
       hideCaseDocument: Auf "true" setzen, um die Dokumentensektion in Vorgangsdetails auszublenden.
       hideChangePasswordButtonNote: Setzen Sie diese Variable auf true, um die Option "Passwort ändern" im oberen Menü und die Option "Passwort vergessen" auf der Anmeldeseite auszublenden. Wenn sie auf false gesetzt ist, werden diese Optionen angezeigt.
       hideLogoutButtonNote: 'Auf "true" setzen, um die Logout Funktion im Top Menu zu deaktivieren. '
@@ -1563,6 +1568,7 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
+                  CustomWidgetIFrameTitle: '{0} Rahmen'
                 DashboardModification:
                   Share: Aktie
                 ProcessWidgetConfiguration:
@@ -1582,6 +1588,8 @@ Dialogs:
               ShowBusinessDetails: Business Details
               caseNameNotAvailable: '[Kein Vorgangsname verfügbar]'
               defaultEmptyMessage: Keine Vorgänge verfügbar
+            CustomIFrameWidget:
+              CustomWidgetIFrameTitle: Benutzerdefinierter Widget-Rahmen
             IconSelection:
               IconLinkTooltip: Zum Ändern des Symbols anklicken
   com:
@@ -1615,6 +1623,11 @@ Dialogs:
               NewsWidgetConfiguration: Konfiguration des Newsfeed-Widgets
               NewsWidgetDescription: Dieses Widget teilt relevante Informationen als News Feed in Axon Ivy.
               NewsWidgetTitle: News-Feed-Widget
+        layouts:
+          AbstractTaskTemplate:
+            CaseDetailsIFrameTitle: Falldetails Rahmen
+          IFrameTaskTemplate:
+            TaskIFrameTitle: Aufgabenrahmen
   components:
     CaseDocument:
       FileDate: Änderungsdatum

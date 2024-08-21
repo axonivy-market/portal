@@ -2706,6 +2706,12 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   }
 }
 
+@media screen and (min-width: 64.062em) {
+  .project-info-dialog {
+    min-width: 1000px;
+  }
+}
+
 /******************************** PROJECT INFO DIALOG ******************************/
 .project-info-dialog {
   max-width: 1000px;
@@ -2753,6 +2759,10 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   margin: .5em 0;
 }
 
+.announcement-tab-action-buttons {
+  display: flex;
+}
+
 .admin-settings-form-input-label {
   float: right;
   padding-top: 5px;
@@ -2794,9 +2804,16 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .announcement-information {
-  max-width: calc(100% - 200px);
+  flex: 1;
   float: left;
   text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+.announcement-action {
+  display: flex;
+  gap: 3px;
 }
 
 .announcement-input {

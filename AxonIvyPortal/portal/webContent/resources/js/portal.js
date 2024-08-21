@@ -458,6 +458,12 @@ function isPressedSpecialKeys(event) {
 
   return specialKeys.includes(event.key);
 }
+
+/**
+ * This constant and functions below are used for accessibility feature for shortcuts navigation.
+ * User can press Alt + number to focus on left side menu item or search button, user setting
+ *
+ */
 const singleDashboardId = '[id="user-menu-required-login:main-navigator:main-menu__js__1-main-dashboard"]';
 const multipleDashboardId = '[id="user-menu-required-login:main-navigator:main-menu__js__DASHBOARD-main-dashboard"]';
 const processItemId = '[id^="user-menu-required-login:main-navigator:main-menu_process"]';
@@ -468,7 +474,7 @@ const searchIconId = 'a#global-search-item';
 const useSettingMenuId = 'a#user-settings-menu';
 
 $(document).ready(function() {
-    var focusableElements = [
+    let focusableElements = [
         $(singleDashboardId).length ? $(singleDashboardId).find('a') : $(multipleDashboardId).find('a')[0],
         $(processItemId).find('a'),
         $(taskItemId).find('a'),
@@ -505,3 +511,4 @@ $(document).ready(function() {
 	});
     
 });
+// End of accessibility for shortcuts navigation

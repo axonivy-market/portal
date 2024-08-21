@@ -203,12 +203,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewApplication: Ajouter une nouvelle application de tiers
     announcement:
       announcement: Annonce
+      announcementSaved: Les annonces sont sauvegardées.
       announcementsDisabled: Les annonces sont désactivées.
       announcementsEnabled: Les annonces sont activées.
       defaultLanguageRequiredMessage: L'annonce de la langue par défaut de l'application est requise.
       disable: Désactiver
       enable: Activer
       information: Vous pouvez annoncer une information générale (par exemple, temps d'arrêt, modifications, etc.) dans cette zone. Ce message peut être vu par tous les utilisateurs du portail.
+      saveChanges: Enregistrer les modifications
       tabTitle: Annonces
     appDisplayName: Nom d'affichage
     appDisplayNameRequiredMsg: Veuillez entrer le nom d'affichage de l'application
@@ -269,6 +271,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableUserFavorites: Si la propriété est désactivée, n'affichez pas la section des favoris de l'utilisateur de la liste des processus dans la page d'accueil du portail.
       enableVirusScannerForUploadedDocumentNote: Définie sur true pour activer le scanner de virus pour le document téléchargé. Actuellement, cette fonction utilise l'API VIRUSTOTAL.
       expressEndPageNote: Affiche la page de fin personnalisée à la fin de chaque processus Express.
+      hideCaseCreator: |-
+        La valeur "true" permet de masquer le créateur du dossier dans la liste des dossiers, le widget du dossier et les détails du dossier.
+        Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
       hideCaseDocument: Si vous choisissez "true", la section du document dans la page de détail du cas sera invisible, sinon elle sera visible.
       hideChangePasswordButtonNote: Attribuez la valeur true à cette variable pour masquer l'option "Changer de mot de passe" dans le menu supérieur et l'option "Mot de passe oublié" sur la page de connexion. Si elle vaut false, ces options seront affichées.
       hideLogoutButtonNote: Si true, le bouton de déconnexion du menu supérieur sera masqué, sinon il sera affiché.
@@ -1562,6 +1567,7 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
+                  CustomWidgetIFrameTitle: '{0} cadre'
                 ProcessWidgetConfiguration:
                   DragAndDropToChangeOrder: Glisser-déposer pour modifier l'ordre.
                   DragAndDropTooltip: Cliquer sur l'aperçu puis glisser-déposer pour modifier l'ordre
@@ -1581,6 +1587,8 @@ Dialogs:
               ShowBusinessDetails: Détails de la demande
               caseNameNotAvailable: '[Nom de cas pas disponible]'
               defaultEmptyMessage: Il n'y a pas de dossiers
+            CustomIFrameWidget:
+              CustomWidgetIFrameTitle: Cadre de widget personnalisé
             IconSelection:
               IconLinkTooltip: Cliquez pour changer d'icône
             TaskItemDetails:
@@ -1618,6 +1626,11 @@ Dialogs:
               NewsWidgetConfiguration: Configuration du widget de flux d'informations
               NewsWidgetDescription: Ce widget partage des informations pertinentes sous forme de fil d'actualité dans Axon Ivy.
               NewsWidgetTitle: Widget de flux d'informations
+        layouts:
+          AbstractTaskTemplate:
+            CaseDetailsIFrameTitle: Cadre des détails de l'affaire
+          IFrameTaskTemplate:
+            TaskIFrameTitle: Cadre de travail
   components:
     CaseDocument:
       FileDate: Modifié le
@@ -1731,6 +1744,10 @@ Labels:
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
   Enums:
+    GlobalSearchScopeCategory:
+      CASES: Cas
+      PROCESSES: Processus
+      TASKS: Tâches
     SearchScopeCaseField:
       CUSTOM: Champs de chaînes personnalisées
       DESCRIPTION: Description
@@ -1738,10 +1755,6 @@ Labels:
     SearchScopeTaskField:
       DESCRIPTION: Description
       NAME: Nom
-    GlobalSearchScopeCategory:
-      CASES: Cas
-      PROCESSES: Processus
-      TASKS: Tâches
     ThemeMode:
       DARK: Dark
       LIGHT: Lumière
