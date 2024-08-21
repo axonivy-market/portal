@@ -471,6 +471,7 @@ const taskItemId = '[id^="user-menu-required-login:main-navigator:main-menu_task
 const caseItemId = '[id^="user-menu-required-login:main-navigator:main-menu_case"]';
 const statisticItemId = '[id^="user-menu-required-login:main-navigator:main-menu_statistics"]';
 const searchIconId = 'a#global-search-item';
+const quickSearchInputId = '[id="quick-global-search-component:global-search-data"]'
 const useSettingMenuId = 'a#user-settings-menu';
 
 $(document).ready(function() {
@@ -480,7 +481,7 @@ $(document).ready(function() {
     $(taskItemId).find('a'),
     $(caseItemId).find('a'),
     $(statisticItemId).find('a'),
-    $(searchIconId),
+    $(searchIconId).length ? $(searchIconId) : $(quickSearchInputId),
     $(useSettingMenuId),
   ];
   function removeFocusedElements() {
