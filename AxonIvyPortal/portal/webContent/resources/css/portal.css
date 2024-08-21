@@ -1612,6 +1612,10 @@ body.in-dialog .ui-widget-overlay {
     margin: 5px;
     cursor: pointer;
 }
-.focused {
-    outline: 2px solid black;
+body.light .focused {
+  outline: 2px solid black;
+}
+
+body.dark .focused {
+  outline: 2px solid white;
 }
