@@ -312,6 +312,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     value: Wert
   applicationMenuHeader:
     MobileApp: Herunterladen und Verbinden mit der Axon Ivy Mobile App
+    ThemeSwitcher: Themenumschalter
     adminSettings: Administration
     changePassword: Passwort ändern
   businessCaseState:
@@ -409,6 +410,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processChatIsCreated: Gruppenchat - {0} - wurde erstellt
     processChatWasCreated: Gruppenchat - {0} - wurde bereits erstellt. Sie können keinen weiteren Chat erstellen.
     selectedAssignees: Ausgewählte Genehmiger
+    toggleChat: Chat-Panel umschalten
     typeMessage: Schreiben Sie hier eine Nachricht...
     viewParticipant: Teilnehmer anzeigen
   common:
@@ -721,6 +723,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       taskDescriptionNotAvailable: '[Keine Beschreibung]'
       taskNameNotAvailable: '[Kein Aufgabenname verfügbar]'
     taskView:
+      DeleteFilter: Filter löschen
       adminFilterSetWarning: Ihr Filter enthält Status, die nur von Administratoren gesehen werden können.
       appliedFilters: Angewendete Filter
       exportedTasksCasesFileName: AXONIVY_Dataset_Statistics_{0}.{1}
@@ -1199,6 +1202,8 @@ ch.ivy.addon.portalkit.ui.jsf:
         noPermission: You do not have the permission to send this request!
       expiryPeriod: Fristende
       loadingCharts: Bitte warten während die Diagramme geladen werden…
+      moveLeft: Nach links bewegen
+      moveRight: Nach rechts bewegen
       notAllowedToCreateChart: Sie haben die Filtereinstellungen geändert. Bitte aktualisieren Sie gesetzten Filter mit "Filter anwenden", um das Diagramm anschließend erstellen zu können
       other: Andere
       restoreDefaultChart: Wenn Sie fortfahren, werden alle selbsterstellten Diagramme gelöscht. Die Standardeinstellung wird angewendet.
@@ -1222,6 +1227,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       chartDetailsHeader: Diagrammdetails
       chartName: Diagrammname
       chartType: Diagrammtyp
+      name: Diagramm-Informationen
     chartType:
       caseByFinishedTask: Bearbeitete Vorgänge im Zeitraum
       caseByFinishedTaskDescription: Vorgänge, in denen eine Aufgabe in der ausgewählten Zeitspanne abgeschlossen wurde
@@ -1769,6 +1775,7 @@ Labels:
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
   CreateNewDashboard: Neues Dashboard erstellen
+  EditDescription: Beschreibung bearbeiten
   Enums:
     DashboardStandardCaseColumn:
       ACTIONS: Aktionen
@@ -1860,6 +1867,7 @@ Labels:
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails
   TaskUser-Explain: Kommaseparierte Liste von Benutzern
+  ToggleMenu: Menü umschalten
   ViewAllResults: Alle Ergebnisse anzeigen
   adhocTaskRequired: Zumindest eine Aufgabe ist erforderlich.
   disabledUserPrefix: (inaktiv)
