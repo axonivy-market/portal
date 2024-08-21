@@ -38,7 +38,7 @@
       <p:dataTable id="dashboard-tasks" widgetVar="dashboard-tasks-#{taskWidget.id}" value="#{taskWidget.dataModel}" var="task"
         lazy="true" scrollRows="25"
         disabledSelection="#{isPreviewMode}"
-        liveScroll="true" scrollable="true" sortBy="#{isResizing ? null : taskWidget.sortBy}"
+        liveScroll="true" scrollable="true" sortBy="#{(isResizing or isPreviewMode) ? null : taskWidget.sortBy}"
         showGridlines="#{isResizing}" resizableColumns="#{isResizing}" resizeMode="expand"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and taskWidget.taskCount lt 1 ? 'u-display-none' : ''} #{isResizing ? 'js-resizing' : ''}"
@@ -52,11 +52,14 @@
         <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}" headerText="#{column.headerText}"
           styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name' or column.field eq 'actions') ? '' : 'u-hidden-sm-down'}"
           visible="#{column.visible}" field="#{column.field}" filterable="false"
-          sortBy="#{column.field}" sortable="#{!isResizing and column.sortable}"
+          sortBy="#{column.field}" sortable="#{!isResizing and !isPreviewMode and column.sortable}"
           style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.styleToDisplay}">
 
           <h:panelGroup rendered="#{column.field eq 'start'}" styleClass="dashboard-tasks__start-container">
-            <ui:include src="StartCell.xhtml" />
+            <ui:include src="StartCell.xhtml">
+              <ui:param name="isResizing" value="#{isResizing}" />
+              <ui:param name="isPreviewMode" value="#{isPreviewMode}" />
+            </ui:include>
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.field eq 'priority'}">
