@@ -72,7 +72,7 @@
      </p:commandButton>
     </h:panelGroup>
 
-    <h:panelGroup id="widget-header-actions-#{index}" styleClass="widget__header-actions" layout="block" style="display: flex">
+    <h:panelGroup id="widget-header-actions" styleClass="widget__header-actions" layout="block" style="display: flex">
       <!-- remote-command to load data for saved filter panel -->
       <p:remoteCommand id="load-user-filter-command-#{index}" name="loadUserFilters#{index}"
         actionListener="#{widget.loadUserFilter()}"
@@ -100,7 +100,7 @@
       <p:remoteCommand id="apply-widget-filter-command-#{index}"
         name="applyWidgetFilterCommand#{index}"
         oncomplete="PF('filter-overlay-panel-#{index}').hide(); #{onCompleteApplyFilters}; resizeTableBody()"
-        update="widget-header-actions-#{index} #{componentToUpdateOnApplyFilter}"
+        update="widget-header-actions #{componentToUpdateOnApplyFilter}"
         global="false" process="@this" partialSubmit="true" immediate="true"
         rendered="#{renderFilter}"/>
 

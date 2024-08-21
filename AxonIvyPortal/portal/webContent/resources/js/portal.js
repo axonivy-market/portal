@@ -461,7 +461,7 @@ function isPressedSpecialKeys(event) {
 
 function showQuickSearchInput(index) {
   var widgetHeaderQuickSearch = "div[id$='widget-header-quick-search-" + index + "']";
-  var widgetHeaderActions = "div[id$='widget-header-actions-" + index + "']";
+  var widgetHeaderActions = "div[id$='process-panel-group-" + index + "'] div[id$='widget-header-actions']";
   var quickSearchInput = "input[id$='quick-search-input-" + index + "']";
   if ($(widgetHeaderActions).css("display") == "none") {
     showWidgetHeaderActions();
