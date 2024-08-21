@@ -196,6 +196,7 @@
 
 .widget__header-actions .widget__header-action:not(:last-child) {
   margin-right: 15px;
+  display: flex;
 }
 
 .widget__header-title {
@@ -807,6 +808,17 @@ span.new-widget-dialog__icon.si {
   .widget-header-quick-search {
     display: none;
   }
+}
+
+@container grid-stack-item (min-width: 400px) {
+  .quick-search-icon {
+    display: none;
+  }
+}
+
+.widget-header-quick-search-show {
+  display: grid;
+  width: 100%;
 }
 
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
