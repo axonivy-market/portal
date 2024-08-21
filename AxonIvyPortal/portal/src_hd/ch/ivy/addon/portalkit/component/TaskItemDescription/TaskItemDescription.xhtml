@@ -17,7 +17,7 @@
   <h:panelGroup layout="block" styleClass="ui-g task-details-description-title">
     <div class="task-detail-title #{cc.attrs.labelStyleClasses} text-ellipsis task-description-title">
       #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}
-      <p:commandLink onclick="showWidgetDescriptionInplaceEditor();"
+      <p:commandLink onclick="showWidgetDescriptionInplaceEditor();" ariaLabel="#{ivy.cms.co('/Labels/EditDescription')}"
         rendered="#{canChangeDescription and !cc.attrs.readOnly}" id="edit-description-link">
         <i class="si si-graphic-tablet-drawing-pen" />
       </p:commandLink>
@@ -45,10 +45,10 @@
               <h:outputText escape="false" styleClass="task-detail-description-output" value="#{taskWidgetBean.sanitizeHTML(task.descriptions().current())}" />
             </h:panelGroup>
           </div>
-          <p:commandLink onclick="displayMoreText()" id="icon-more-link" styleClass="icon-more-link" global="false" process="@this" partialSubmit="true">
+          <p:commandLink onclick="displayMoreText()" id="icon-more-link" styleClass="icon-more-link" global="false" process="@this" partialSubmit="true" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ExpandAll')}">
             <i class="si si-add-circle si-add-circle-task-description" />
           </p:commandLink>
-          <p:commandLink onclick="displayLessText()" id="icon-less-link" styleClass="icon-less-link" global="false" process="@this" partialSubmit="true">
+          <p:commandLink onclick="displayLessText()" id="icon-less-link" styleClass="icon-less-link" global="false" process="@this" partialSubmit="true" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/CollapseAll')}">
             <i class="si si-subtract-circle" />
           </p:commandLink>
         </div>

@@ -330,6 +330,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     usernameRequiredMsg: Bitte geben Sie den Benutzernamen an.
     value: Wert
   applicationMenuHeader:
+    ThemeSwitcher: Themenumschalter
     adminSettings: Administration
     changePassword: Passwort ändern
   caseDetails:
@@ -427,6 +428,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processChatIsCreated: Gruppenchat - {0} - wurde erstellt
     processChatWasCreated: Gruppenchat - {0} - wurde bereits erstellt. Sie können keinen weiteren Chat erstellen.
     selectedAssignees: Ausgewählte Genehmiger
+    toggleChat: Chat-Panel umschalten
     typeMessage: Schreiben Sie hier eine Nachricht...
     viewParticipant: Teilnehmer anzeigen
   common:
@@ -761,6 +763,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       taskDescriptionNotAvailable: '[Keine Beschreibung]'
       taskNameNotAvailable: '[Kein Aufgabenname verfügbar]'
     taskView:
+      DeleteFilter: Filter löschen
       adminFilterSetWarning: Ihr Filter enthält Status, die nur von Administratoren gesehen werden können.
       appliedFilters: Angewendete Filter
       exportedTasksCasesFileName: AXONIVY_Dataset_Statistics_{0}.{1}
@@ -1214,6 +1217,8 @@ ch.ivy.addon.portalkit.ui.jsf:
         defaultEmptyMessages: Es sind keine Auswertungen vorhanden.
       expiryPeriod: Fristende
       loadingCharts: Bitte warten während die Diagramme geladen werden…
+      moveLeft: Nach links bewegen
+      moveRight: Nach rechts bewegen
       notAllowedToCreateChart: Sie haben die Filtereinstellungen geändert. Bitte aktualisieren Sie gesetzten Filter mit "Filter anwenden", um das Diagramm anschließend erstellen zu können
       other: Andere
       restoreDefaultChart: Wenn Sie fortfahren, werden alle selbsterstellten Diagramme gelöscht. Die Standardeinstellung wird angewendet.
@@ -1237,6 +1242,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       chartDetailsHeader: Diagrammdetails
       chartName: Diagrammname
       chartType: Diagrammtyp
+      name: Diagramm-Informationen
     chartType:
       caseByFinishedTask: Bearbeitete Vorgänge im Zeitraum
       caseByFinishedTaskDescription: Vorgänge, in denen eine Aufgabe in der ausgewählten Zeitspanne abgeschlossen wurde
@@ -1740,6 +1746,7 @@ Labels:
   AdhocWorkflow: Beschreiben Sie Ihren Workflow
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
+  EditDescription: Beschreibung bearbeiten
   Enums:
     GlobalSearchScopeCategory:
       CASES: Fälle
@@ -1764,6 +1771,8 @@ Labels:
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails
   TaskUser-Explain: Kommaseparierte Liste von Benutzern
+  Toggle: Sichtbarkeit umschalten
+  ToggleMenu: Menü umschalten
   adhocTaskRequired: Zumindest eine Aufgabe ist erforderlich.
   disabledUserPrefix: (inaktiv)
   title: Self Service Ad-hoc Workflow

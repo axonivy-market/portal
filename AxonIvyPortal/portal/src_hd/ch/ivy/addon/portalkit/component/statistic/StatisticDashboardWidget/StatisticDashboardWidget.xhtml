@@ -41,17 +41,17 @@
                     <h:panelGroup styleClass="statistics-header-container ui-g-12">
                       <h:panelGroup id="chart-name-container" styleClass="chart-name-container" layout="block">
                         <h1 id="chart-name-#{chartStatus.index}" class="chart-name">#{chart.name}</h1>
-                        <p:commandLink rendered="#{chart.filter != null}" styleClass="si si-information-circle chart-info portal-icon"
+                        <p:commandLink rendered="#{chart.filter != null}" styleClass="si si-information-circle chart-info portal-icon" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartInfo/name')}"
                             actionListener="#{logic.selectChart(chart)}" update="#{p:resolveFirstComponentWithId('chart-details-dialog', view).clientId}" oncomplete="PF('chart-details-dialog').show();" />
                       </h:panelGroup>
 
                       <h:panelGroup layout="block" styleClass="chart-actions-container portal-icon-container" rendered="#{!cc.attrs.isDrilldownExpiryChart and !chart.isPublic and !cc.attrs.isDrilldownCasesByCategory}">
-                        <p:commandLink styleClass="si si-arrow-left-1 chart-action ui-sm-hidden" actionListener="#{logic.moveLeft(chart)}"
+                        <p:commandLink styleClass="si si-arrow-left-1 chart-action ui-sm-hidden" actionListener="#{logic.moveLeft(chart)}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/moveLeft')}"
                           update="@([id$='statistic-container'])" rendered="#{chartStatus.index > data.numberOfDefaultCharts}" />
-                        <p:commandLink styleClass="si si-arrow-right-1 chart-action ui-sm-hidden" actionListener="#{logic.moveRight(chart)}"
+                        <p:commandLink styleClass="si si-arrow-right-1 chart-action ui-sm-hidden" actionListener="#{logic.moveRight(chart)}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/moveRight')}"
                           update="@([id$='statistic-container'])" rendered="#{chartStatus.index != data.statisticChartList.size() -1 and data.isFinishLoadCharts}" />
 
-                        <p:commandLink id="delete-chart-link" styleClass="si si-remove chart-action">
+                        <p:commandLink id="delete-chart-link" styleClass="si si-remove chart-action" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
                           <p:ajax event="click" listener="#{logic.selectChart(chart)}" oncomplete="PF('delete-confirmation-dialog').show();" />
                         </p:commandLink>
                       </h:panelGroup>
