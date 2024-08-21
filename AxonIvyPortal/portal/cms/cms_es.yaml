@@ -331,6 +331,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     usernameRequiredMsg: Por favor ingrese nombre de usuario.
     value: Valor
   applicationMenuHeader:
+    ThemeSwitcher: Cambiador de temas
     adminSettings: Configuración de administrador
     changePassword: Cambiar contraseña
   caseDetails:
@@ -428,6 +429,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processChatIsCreated: 'Chat de grupo: {0} ha sido creado'
     processChatWasCreated: 'Chat de grupo: {0} ya ha sido creado. No puede crear otro chat.'
     selectedAssignees: Usuarios seleccionados
+    toggleChat: Panel de chat
     typeMessage: Escriba su texto aquí…
     viewParticipant: Mostrar participantes
   common:
@@ -760,6 +762,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       taskDescriptionNotAvailable: '[No hay descripción disponible]'
       taskNameNotAvailable: '[Nombre de la tarea no disponible]'
     taskView:
+      DeleteFilter: Borrar filtro
       adminFilterSetWarning: Su filtro contiene estados que sólo pueden ser vistos por los administradores.
       appliedFilters: Filtros aplicados
       exportedTasksCasesFileName: AXONIVY_Dataset_Statistics_{0}.{1}
@@ -1213,6 +1216,8 @@ ch.ivy.addon.portalkit.ui.jsf:
         defaultEmptyMessages: No hay tabla de estadísticas para mostrar.
       expiryPeriod: Período de caducidad
       loadingCharts: Por favor espere, los diagramas se están cargando
+      moveLeft: Muévete a la izquierda
+      moveRight: Muévete a la derecha
       notAllowedToCreateChart: Ha cambiado los filtros aplicados. Por favor aplique los filtros.
       other: Otros
       restoreDefaultChart: Si continúa, todos los diagramas hechos por usted serán borrados. Los valores iniciales serán reestablecidos.
@@ -1236,6 +1241,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       chartDetailsHeader: Detalles del gráfico
       chartName: Nombre del gráfico
       chartType: Tipo de gráfico
+      name: Información gráfica
     chartType:
       caseByFinishedTask: Caso por Tarea Terminada
       caseByFinishedTaskDescription: Casos en los que al menos una tarea ha sido finalizada en el tiempo seleccionado
@@ -1746,6 +1752,7 @@ Labels:
   AdhocWorkflow: Describe tu Flujo de Trabajo
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
+  EditDescription: Editar descripción
   Enums:
     GlobalSearchScopeCategory:
       CASES: Casos
@@ -1771,6 +1778,8 @@ Labels:
   Task: Tarea
   TaskItemDetail: Detalles de la tarea
   TaskUser-Explain: Lista de usuario separados por coma
+  Toggle: cambiar la visibilidad
+  ToggleMenu: Menú alternativo
   adhocTaskRequired: Deberá agregar al menos una tarea.
   disabledUserPrefix: (inactivo)
   title: Flujo de trabajo Ad-hoc de auto servicio

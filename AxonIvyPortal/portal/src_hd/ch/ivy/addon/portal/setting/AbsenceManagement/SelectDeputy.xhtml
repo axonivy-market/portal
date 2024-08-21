@@ -41,6 +41,7 @@
             </p:column>
             <p:column>
               <p:commandLink id="delete-deputy" styleClass="si si-bin-1 delete-deputy" actionListener="#{logic.removeDeputy(deputy)}"
+                ariaLabel="#{ivy.cms.co('/Labels/delete')}"
                 update="deputy-selection-form" />
             </p:column>
           </p:panelGrid>
