@@ -1570,6 +1570,7 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
+                  CustomWidgetIFrameTitle: '{0} Rahmen'
                 DashboardModification:
                   Share: Aktie
                 ProcessWidgetConfiguration:
@@ -1591,6 +1592,8 @@ Dialogs:
               ShowBusinessDetails: Business Details
               caseNameNotAvailable: '[Kein Vorgangsname verfügbar]'
               defaultEmptyMessage: Keine Vorgänge verfügbar
+            CustomIFrameWidget:
+              CustomWidgetIFrameTitle: Benutzerdefinierter Widget-Rahmen
             IconSelection:
               IconLinkTooltip: Zum Ändern des Symbols anklicken
             TaskItemDetails:
@@ -1648,6 +1651,11 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Filter hinzufügen
               ResetFilter: Filter zurücksetzen
+        layouts:
+          AbstractTaskTemplate:
+            CaseDetailsIFrameTitle: Falldetails Rahmen
+          IFrameTaskTemplate:
+            TaskIFrameTitle: Aufgabenrahmen
   components:
     CaseDocument:
       FileDate: Änderungsdatum

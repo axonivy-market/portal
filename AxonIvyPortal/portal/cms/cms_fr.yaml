@@ -1566,6 +1566,7 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
+                  CustomWidgetIFrameTitle: '{0} cadre'
                 DashboardModification:
                   Share: Partager
                 ProcessWidgetConfiguration:
@@ -1587,6 +1588,8 @@ Dialogs:
               ShowBusinessDetails: Détails de la demande
               caseNameNotAvailable: '[Nom de cas pas disponible]'
               defaultEmptyMessage: Il n'y a pas de dossiers
+            CustomIFrameWidget:
+              CustomWidgetIFrameTitle: Cadre de widget personnalisé
             IconSelection:
               IconLinkTooltip: Cliquez pour changer d'icône
             TaskItemDetails:
@@ -1644,6 +1647,11 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Ajouter un filtre
               ResetFilter: Réinitialiser le filtre
+        layouts:
+          AbstractTaskTemplate:
+            CaseDetailsIFrameTitle: Cadre des détails de l'affaire
+          IFrameTaskTemplate:
+            TaskIFrameTitle: Cadre de travail
   components:
     CaseDocument:
       FileDate: Modifié le
