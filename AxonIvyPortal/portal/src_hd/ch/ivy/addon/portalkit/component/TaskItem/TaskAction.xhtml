@@ -16,7 +16,7 @@
         <i class="si si-arrow-right-1 icon-compact-mode" />
       </p:commandLink>
 
-      <p:commandLink id="task-open-detail-command" styleClass="task-action-item u-hidden-lg-up"
+      <p:commandLink id="task-open-detail-command" styleClass="task-action-item u-hidden-lg-up" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}"
         actionListener="#{logic.openDetails(task, dataModel, cc.attrs.inFrame)}" rendered="#{taskWidgetBean.runningTaskWhenClickingOnTaskInList}">
         <i class="si si-information-circle icon-compact-mode" />
       </p:commandLink>

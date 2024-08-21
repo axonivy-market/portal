@@ -330,6 +330,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     usernameRequiredMsg: Veuillez rentrer le nom d'utilisateur
     value: Valeur
   applicationMenuHeader:
+    ThemeSwitcher: Changeur de thème
     adminSettings: Administration
     changePassword: Modifier le mot de passe
   caseDetails:
@@ -427,6 +428,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processChatIsCreated: 'Chat de processus : {0} est créé'
     processChatWasCreated: 'Chat de processus : {0} a été créé. Vous ne pouvez pas le créer à nouveau.'
     selectedAssignees: Cessionnaires sélectionnés
+    toggleChat: Afficher le panneau de discussion
     typeMessage: Tapez votre message ici…
     viewParticipant: Voir les participants
   common:
@@ -760,6 +762,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       taskDescriptionNotAvailable: '[Aucune description]'
       taskNameNotAvailable: '[Nom de la tâche non disponible ]'
     taskView:
+      DeleteFilter: Supprimer le filtre
       adminFilterSetWarning: Votre jeu de filtres contient des états qui ne peuvent être vus que par les administrateurs.
       appliedFilters: Filtres appliqués
       exportedTasksCasesFileName: AXONIVY_Dataset_Statistics_{0}.{1}
@@ -1213,6 +1216,8 @@ ch.ivy.addon.portalkit.ui.jsf:
         defaultEmptyMessages: Pas de diagrammes à afficher
       expiryPeriod: Période d'expiration
       loadingCharts: Veuillez patienter, les graphiques sont en cours de chargement …
+      moveLeft: Déplacer vers la gauche
+      moveRight: Déplacer vers la droite
       notAllowedToCreateChart: Vous n'êtes pas autorisé à créer un diagramme avant de cliquer sur le bouton Appliquer les filtres
       other: Outres
       restoreDefaultChart: Si vous continuez, vous perdrez tous les graphiques créés par vous-même. Les paramètres standard seront appliqués.
@@ -1236,6 +1241,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       chartDetailsHeader: Détails du diagramme
       chartName: Nom du diagramme
       chartType: Type du diagramme
+      name: Infos graphiques
     chartType:
       caseByFinishedTask: Cas traités en période de temps
       caseByFinishedTaskDescription: Cas où une tâche s'est terminée dans la période sélectionnée
@@ -1567,6 +1573,7 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
+                  CustomWidgetIFrameTitle: '{0} cadre'
                 ProcessWidgetConfiguration:
                   DragAndDropToChangeOrder: Glisser-déposer pour modifier l'ordre.
                   DragAndDropTooltip: Cliquer sur l'aperçu puis glisser-déposer pour modifier l'ordre
@@ -1586,6 +1593,8 @@ Dialogs:
               ShowBusinessDetails: Détails de la demande
               caseNameNotAvailable: '[Nom de cas pas disponible]'
               defaultEmptyMessage: Il n'y a pas de dossiers
+            CustomIFrameWidget:
+              CustomWidgetIFrameTitle: Cadre de widget personnalisé
             IconSelection:
               IconLinkTooltip: Cliquez pour changer d'icône
             TaskItemDetails:
@@ -1623,6 +1632,11 @@ Dialogs:
               NewsWidgetConfiguration: Configuration du widget de flux d'informations
               NewsWidgetDescription: Ce widget partage des informations pertinentes sous forme de fil d'actualité dans Axon Ivy.
               NewsWidgetTitle: Widget de flux d'informations
+        layouts:
+          AbstractTaskTemplate:
+            CaseDetailsIFrameTitle: Cadre des détails de l'affaire
+          IFrameTaskTemplate:
+            TaskIFrameTitle: Cadre de travail
   components:
     CaseDocument:
       FileDate: Modifié le
@@ -1735,7 +1749,12 @@ Labels:
   AdhocWorkflow: Décrivez votre workflow
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
+  EditDescription: Editer la description
   Enums:
+    GlobalSearchScopeCategory:
+      CASES: Cas
+      PROCESSES: Processus
+      TASKS: Tâches
     SearchScopeCaseField:
       CUSTOM: Champs de chaînes personnalisées
       DESCRIPTION: Description
@@ -1743,10 +1762,6 @@ Labels:
     SearchScopeTaskField:
       DESCRIPTION: Description
       NAME: Nom
-    GlobalSearchScopeCategory:
-      CASES: Cas
-      PROCESSES: Processus
-      TASKS: Tâches
     ThemeMode:
       DARK: Dark
       LIGHT: Lumière
@@ -1760,6 +1775,8 @@ Labels:
   Task: Tâche
   TaskItemDetail: Détails de la tâche
   TaskUser-Explain: Liste d’utilisateurs séparés par des virgules
+  Toggle: changer la visibilité
+  ToggleMenu: Menu à bascule
   adhocTaskRequired: Vous devez ajouter au moins une tâche.
   disabledUserPrefix: (désactivé)
   title: Workflow ad hoc Self Service
