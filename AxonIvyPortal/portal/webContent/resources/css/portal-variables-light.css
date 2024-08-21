@@ -580,4 +580,7 @@
   
   /* Case Task background color */
   --ui-background-color: var(--ivy-primary-color-white);
+  
+  /* Restore button of dashboard */
+  --dashboard-restore-button-background-color: rgba(91, 119, 132, 1);
 }

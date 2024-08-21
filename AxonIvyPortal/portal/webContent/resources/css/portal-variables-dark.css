@@ -568,4 +568,6 @@
   
   --ui-background-color: #3E4754;
   
+    /* Restore button of dashboard */
+  --dashboard-restore-button-background-color: rgba(99, 118, 126, 1);
 }
