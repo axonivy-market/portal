@@ -53,7 +53,8 @@
                     trackMouse="true" />
                   <p:commandLink id="delete-user-defined-filter-command"
                     rendered="#{taskAnalysisWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
-                    styleClass="si si-delete-2 delete-user-defined-filter-command"
+                    styleClass="si si-delete-2 delete-user-defined-filter-command" 
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/DeleteFilter')}"
                     actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
                     oncomplete="PF('delete-filter-confirmation-dialog').show();" />
                 </h:panelGroup>
@@ -75,7 +76,8 @@
                   <p:commandLink id="delete-user-defined-filter-command"
                     rendered="#{taskAnalysisWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
                     styleClass="si si-delete-2 delete-user-defined-filter-command"
-                    actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
+                    actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}" 
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/DeleteFilter')}"
                     oncomplete="PF('delete-filter-confirmation-dialog').show();" />
                 </h:panelGroup>
               </ui:repeat>
