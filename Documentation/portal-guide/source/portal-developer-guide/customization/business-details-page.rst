@@ -8,25 +8,26 @@ Business Details Page
 Introduction
 ------------
 
-The Business Details page shows all custom fields of a case. It is opened
-by clicking on ``Business details`` in Case detail.
+The default business details page shows all custom fields of a case. It is opened
+by clicking on ``Business details`` in the case details page.
 
-You can modify this page for each case by providing a relative URL to the case.
+Portal supports customzing this page for each case.
 
 .. _customization-additionalcasedetailspage.customization:
 
-How to
-------
+How to customize the business details page
+------------------------------------------
 
-#. Create a new business details page UI and a start process that will display
-   the new UI.
+#. Create a business details process. In this process, create a request start that has the parameter ``caseId``. The idea is when clicking on ``Business details`` in case details page,
+Portal will call this process and pass the case ID as parameter `caseId`. Create a UI for business details page in this process.
+   |customization-business-details-page-start-request|
 
-   |customization-business-details-page|
-
-
-#. Store path of the start process just created above when creating a task. There are 2 ways to perform this:
+#. Store the :dev-url:`IWebStartable ID </docs/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` 
+of the process to the string custom field ``businessDetails`` of the case. There are two ways to perform this:
    
-   * Use the ``SetBusinessDetailsPage.p.json`` callable process, and pass the friendly URL of this process as a parameter.
+   * Use the ``SetBusinessDetailsPage.p.json`` callable process, and pass the IWebStartable ID of the business details process as a 
+   parameter. To make it more flexible, Portal supports passing the end part of IWebStartable ID as the parameter 
+   but you need to make sure only one process in the security context has IWebStartable ID ending with the parameter.
 
       |set-business-details-page-callable-process|
 
@@ -36,7 +37,7 @@ How to
 
       .. tip:: 
          The business details page also supports external links in case the business details site is outside of |ivy|.
-         You can replace the path with any URL. The Portal will take care of the rest. E.g., ``BusinessDetailsAPI.create("https://google.com")``
+         You can replace the path with any URL. Portal will take care of the rest. E.g., ``BusinessDetailsAPI.create("https://google.com")``
 
 Customization
 -------------
@@ -60,10 +61,17 @@ Customization
 
    |start-business-details-page-iframe|
 
-- Behind the scene, the API will set the path for the ``String`` custom field ``businessDetails``. If you do a deep customization, follow the steps below:
+- Behind the scenes, the API will set the path for the string custom field ``businessDetails``. If you do a deep customization, 
+you can find the IWebStartable ID of the business details process, add URL query string then set it to the string custom 
+field ``businessDetails`` of the case.
 
-   - Use API ``ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(String)`` to find the process path.
-   - Set process path to a customfield in your specific case ``Ivy.wfCase().customFields().stringField("businessDetails").set(your-process-path-url)``
+.. note::
+
+   - Ensure the new UI aligns with the overall design and functionality requirements of your application.
+
+   - Test the integration thoroughly to confirm that the case information is accurately passed and displayed.
+
+   - When using external links, verify that the links are secure and accessible from your application environment.
 
 Permission Setting
 ------------------
@@ -71,11 +79,11 @@ Permission Setting
 Configure permissions in the :dev-url:`Engine Cockpit
 </doc/|version|/engine-guide/reference/engine-cockpit/security.html>`. In the security area, open PortalPermissions -> PortalCasePermissions -> ShowCaseDetails.
 
-Or search "ShowCaseDetails" in the permissions search bar.
+Or search :bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>` in the permissions search bar. By default, this permission is set to ``true`` for role ``Everybody``.
 
 
 .. |start-business-details-page-iframe| image:: images/business-details-page/start-business-details-page-iframe.png
 .. |customization-business-details-page-iframe| image:: images/business-details-page/customization-business-details-page-iframe.png
-.. |customization-business-details-page| image:: images/business-details-page/customization-business-details-page.png
 .. |set-business-details-page-callable-process| image:: images/business-details-page/set-business-details-page-callable-process.png
 .. |customize-business-details-with-public-api| image:: images/business-details-page/customize-business-details-with-public-api.png
+.. |customization-business-details-page-start-request| image:: images/business-details-page/customization-business-details-page-start-request.png
