@@ -9,7 +9,7 @@ Introduction
 ------------
 
 The default business details page shows all custom fields of a case. It is opened
-by clicking on ``Business details`` in case details page.
+by clicking on ``Business details`` in the case details page.
 
 Portal supports customzing this page for each case.
 
@@ -19,15 +19,15 @@ How to customize the business details page
 ------------------------------------------
 
 #. Create a business details process. In this process, create a request start that has the parameter ``caseId``. The idea is when clicking on ``Business details`` in case details page,
-Portal will call this process and pass the case UUID as parameter `caseId`. Create UI for business details page in this process.
+Portal will call this process and pass the case ID as parameter `caseId`. Create a UI for business details page in this process.
    |customization-business-details-page-start-request|
 
 #. Store the :dev-url:`IWebStartable ID </docs/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` 
-of the process to the string custom field ``businessDetails`` of the case. There are 2 ways to perform this:
+of the process to the string custom field ``businessDetails`` of the case. There are two ways to perform this:
    
    * Use the ``SetBusinessDetailsPage.p.json`` callable process, and pass the IWebStartable ID of the business details process as a 
    parameter. To make it more flexible, Portal supports passing the end part of IWebStartable ID as the parameter 
-   but you need to make sure only one process in the security context has IWebStartable ID ends with the parameter.
+   but you need to make sure only one process in the security context has IWebStartable ID ending with the parameter.
 
       |set-business-details-page-callable-process|
 
@@ -61,8 +61,8 @@ Customization
 
    |start-business-details-page-iframe|
 
-- Behind the scene, the API will set the path for the string custom field ``businessDetails``. If you do a deep customization, 
-you could find IWebStartable ID of the business details process, add URL query string then set it to the string custom 
+- Behind the scenes, the API will set the path for the string custom field ``businessDetails``. If you do a deep customization, 
+you can find the IWebStartable ID of the business details process, add URL query string then set it to the string custom 
 field ``businessDetails`` of the case.
 
 .. note::
