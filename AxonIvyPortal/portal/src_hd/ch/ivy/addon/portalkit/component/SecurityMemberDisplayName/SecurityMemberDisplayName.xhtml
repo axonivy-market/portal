@@ -59,6 +59,7 @@
         actionListener="#{logic.loadUsersOfRole(securityMember.getMemberName())}"
         oncomplete="PF('users-of-role').show('#{component.clientId}')"
         process="@this"
+        ariaLabel="#{securityMemberDisplayNameBean.getBriefDisplayName(securityMember, memberName)} - #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/tooltipHelper')}"
         immediate="true">
         <i class="si si-information-circle icon-compact-mode" />
       </p:commandLink>
