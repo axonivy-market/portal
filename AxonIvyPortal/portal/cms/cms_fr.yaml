@@ -310,6 +310,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     value: Valeur
   applicationMenuHeader:
     MobileApp: Télécharger et se connecter à l'application mobile Axon Ivy
+    ThemeSwitcher: Changeur de thème
     adminSettings: Administration
     changePassword: Modifier le mot de passe
   businessCaseState:
@@ -407,6 +408,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processChatIsCreated: 'Chat de processus : {0} est créé'
     processChatWasCreated: 'Chat de processus : {0} a été créé. Vous ne pouvez pas le créer à nouveau.'
     selectedAssignees: Cessionnaires sélectionnés
+    toggleChat: Afficher le panneau de discussion
     typeMessage: Tapez votre message ici…
     viewParticipant: Voir les participants
   common:
@@ -717,6 +719,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       taskDescriptionNotAvailable: '[Aucune description]'
       taskNameNotAvailable: '[Nom de la tâche non disponible ]'
     taskView:
+      DeleteFilter: Supprimer le filtre
       adminFilterSetWarning: Votre jeu de filtres contient des états qui ne peuvent être vus que par les administrateurs.
       appliedFilters: Filtres appliqués
       exportedTasksCasesFileName: AXONIVY_Dataset_Statistics_{0}.{1}
@@ -1195,6 +1198,8 @@ ch.ivy.addon.portalkit.ui.jsf:
         noPermission: You do not have the permission to send this request!
       expiryPeriod: Période d'expiration
       loadingCharts: Veuillez patienter, les graphiques sont en cours de chargement …
+      moveLeft: Déplacer vers la gauche
+      moveRight: Déplacer vers la droite
       notAllowedToCreateChart: Vous n'êtes pas autorisé à créer un diagramme avant de cliquer sur le bouton Appliquer les filtres
       other: Outres
       restoreDefaultChart: Si vous continuez, vous perdrez tous les graphiques créés par vous-même. Les paramètres standard seront appliqués.
@@ -1218,6 +1223,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       chartDetailsHeader: Détails du diagramme
       chartName: Nom du diagramme
       chartType: Type du diagramme
+      name: Infos graphiques
     chartType:
       caseByFinishedTask: Cas traités en période de temps
       caseByFinishedTaskDescription: Cas où une tâche s'est terminée dans la période sélectionnée
@@ -1765,6 +1771,7 @@ Labels:
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
   CreateNewDashboard: Créer un nouveau tableau de bord
+  EditDescription: Editer la description
   Enums:
     DashboardStandardCaseColumn:
       ACTIONS: Actions
@@ -1848,6 +1855,7 @@ Labels:
   Task: Tâche
   TaskItemDetail: Détails de la tâche
   TaskUser-Explain: Liste d’utilisateurs séparés par des virgules
+  ToggleMenu: Menu à bascule
   ViewAllResults: Voir tous les résultats
   adhocTaskRequired: Vous devez ajouter au moins une tâche.
   disabledUserPrefix: (désactivé)
