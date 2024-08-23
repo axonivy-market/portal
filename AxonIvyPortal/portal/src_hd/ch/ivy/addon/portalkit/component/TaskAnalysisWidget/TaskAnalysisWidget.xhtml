@@ -55,6 +55,7 @@
                     rendered="#{taskAnalysisWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
                     styleClass="si si-delete-2 delete-user-defined-filter-command"
                     actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/DeleteFilter')}"
                     oncomplete="PF('delete-filter-confirmation-dialog').show();" />
                 </h:panelGroup>
               </ui:repeat>
@@ -76,6 +77,7 @@
                     rendered="#{taskAnalysisWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
                     styleClass="si si-delete-2 delete-user-defined-filter-command"
                     actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/DeleteFilter')}"
                     oncomplete="PF('delete-filter-confirmation-dialog').show();" />
                 </h:panelGroup>
               </ui:repeat>
