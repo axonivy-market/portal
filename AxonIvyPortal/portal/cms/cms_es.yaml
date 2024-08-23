@@ -1764,7 +1764,7 @@ Labels:
       CannotStartTask: Cannot start task
       NoMatchingProcesses: No matching processes.
     FindCaseAIResult: 'ID: {0}, Name: {1}, Description: {2}, State: {3}'
-    FindProcessAIResult: 'ID: {0}, Name: {1}, Description: {2}'
+    FindProcessAIResult: '   - ID: {0}, Name: {1}, Description: {2}'
     FindTaskAIResult: 'ID: {0}, Name: {1}, Description: {2}, State: {3}, Priority {4}'
     FindUserAIResult: 'Username: {0}, Name: {1}, Email: {2}, State: {3}'
     FoundCaseHeader: 'Found cases:'
