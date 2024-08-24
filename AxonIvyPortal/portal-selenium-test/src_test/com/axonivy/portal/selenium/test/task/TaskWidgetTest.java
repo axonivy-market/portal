@@ -248,4 +248,6 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage = newDashboardPage.openTaskList();
     assertEquals("high", taskWidgetPage.getPriorityOfTask(0));
   }
+  
+  testStartATaskAtHomePage()
 }

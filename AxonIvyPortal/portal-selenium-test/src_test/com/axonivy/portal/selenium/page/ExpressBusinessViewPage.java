@@ -71,4 +71,9 @@ public class ExpressBusinessViewPage extends TemplatePage {
   public void clickTaskTitle() {
     $("[id='task-template-title']").should(appear, DEFAULT_TIMEOUT).click();
   }
+  
+//  public HomePage clickOnCloseButton() {
+//    $("[id$='express-view-form:cancel-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+//    return new HomePage();
+//
 }

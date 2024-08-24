@@ -249,6 +249,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void clickOnSubmitButton() {
+    $("button[id$=':button-submit']").shouldBe(appear, DEFAULT_TIMEOUT);
     clickByJavaScript($("button[id$=':button-submit']"));
   }
 

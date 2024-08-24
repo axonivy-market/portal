@@ -153,4 +153,16 @@ public class SearchResultPage extends TemplatePage {
   public void clickOnActionButton(String processName) {
     $(".express-workflow").$("button[id$=':process-action-button']").shouldBe(getClickableCondition()).click();
   }
+  
+  public void openEmployeeTab() {
+    $(By.xpath("//div[@id='search-results-tabview']/ul/li[4]")).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
+  }
+  
+  public int countNumberOfEmployee() {
+    waitForElementDisplayed(By.id("search-results-tabview:employee-table"), true);
+    WebElement employeeSearchResult = findElementById("search-results-tabview:employee-table");
+    return employeeSearchResult.findElements(By.cssSelector("tr.ui-widget-content")).size();
+  }
+  
 }

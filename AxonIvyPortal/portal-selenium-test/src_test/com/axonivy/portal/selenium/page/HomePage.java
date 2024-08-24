@@ -35,6 +35,10 @@ public class HomePage extends TemplatePage {
   public WebElement getProcessWidgetElement() {
     return findElementById("process-widget");
   }
+  
+  public ProcessWidgetPage getProcessWidget() {
+    return new ProcessWidgetPage();
+  }
 
   public WebElement getTaskWidgetElement() {
     waitForElementDisplayed(By.id("task-widget"), true);
@@ -78,5 +82,9 @@ public class HomePage extends TemplatePage {
     $("div[id$='statistic-carousel']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("div[id$='process-widget:default-user-processes-container']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("div[id$='process-widget:process-list']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public TaskWidgetPage getTaskWidget() {
+    return new TaskWidgetPage();
   }
 }

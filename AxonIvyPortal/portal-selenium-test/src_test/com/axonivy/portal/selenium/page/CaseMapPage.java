@@ -1,7 +1,12 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
@@ -126,5 +131,20 @@ public class CaseMapPage extends TemplatePage {
 //  Note: fix testCaseMapRejectedWorkflow
     return NavigationHelper.navigateToTaskList();
   }
+
+  public String getValidationMsg() {
+    $(".ui-messages-error-summary").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    List<SelenideElement> messages = $$(".ui-messages-error-summary");
+    System.out.println("Size: " + messages.size());
+    return StringUtils.join(messages.stream().map(SelenideElement::getText).collect(Collectors.toList()), ",");
+  }
+  
+  public String clickSubmitAndGetValidationMsg() {
+    $("button[id$='submit-request']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(".ui-messages-error-icon").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    waitForAjaxStatusPositionDisappear();
+    return getValidationMsg();
+  }
+
 
 }

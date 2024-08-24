@@ -4,10 +4,14 @@ import static com.axonivy.portal.selenium.common.Variable.CLIENT_SIDE_TIMEOUT;
 import static com.axonivy.portal.selenium.common.Variable.GLOBAL_FOOTER_INFO;
 import static com.codeborne.selenide.Selenide.$;
 
+import java.util.List;
+
+import org.apache.commons.collections.CollectionUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.Sleeper;
+import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -53,9 +57,9 @@ public class AdminSettingsPage extends TemplatePage {
 
   public void resetAllSettings() {
     openSettingTab();
-    waitForElementClickableThenClick("[id='admin-setting-component:adminTabView:restore-all-to-default-button']");
-    waitForElementClickableThenClick("[id='admin-setting-component:reset-settings']");
-    closeConfirmationDialog();
+    $("[id='admin-setting-component:adminTabView:restore-all-to-default-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='admin-setting-component:reset-settings']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div.ajax-status-position").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   private void saveGlobalVariable(String value, boolean isBooleanType) {
@@ -173,5 +177,41 @@ public class AdminSettingsPage extends TemplatePage {
         .$("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id='admin-setting-component:settingDialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
+  
+  public void setShowLegacyUI() {
+    openSettingTab();
+    editGlobalVariable(Variable.SHOW_LEGACY_UI.getKey(), "true", true);
+    clickOnbackToNewDashboardPageOnAdminSetting();
+  }
+  
+  public void resetShowLegacyUI() {
+    openSettingTab();
+    resetGlobalVariable(Variable.SHOW_LEGACY_UI.getKey());
+    closeConfirmationDialog();
+  }
+
+  private void resetGlobalVariable(String variableName) {
+    List<WebElement> tableRows = getAdminTable().findElements(By.tagName("tr"));
+    for (WebElement row : tableRows) {
+      List<WebElement> columns = row.findElements(By.tagName("td"));
+      if (!CollectionUtils.isEmpty(columns)) {
+        WebElement keyColumn = columns.get(0);
+        if (keyColumn.getText().equals(variableName)) {
+          WebElement editButton = row.findElement(By.cssSelector("a[id$=reset]"));
+          $(editButton).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+          $("[id$=':resetConfirmationDialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+          $("button[id='admin-setting-component:reset-setting']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+          waitForAjaxIndicatorDisplayNone();
+          $("div[id='portal-management-messages']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+          return;
+        }
+      }
+    }
+  }
+
+  private WebElement getAdminTable() {
+    return $("[id$=':adminTabView:settingTable']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
 }
 

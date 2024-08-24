@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.editable;
 import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.interactable;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -61,7 +62,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   protected Condition getClickableCondition() {
-    return and("should be clickable", visible, exist);
+    return and("should be clickable", visible, exist, interactable, enabled);
   }
 
   public WebDriver driver = WebDriverRunner.getWebDriver();
@@ -354,6 +355,14 @@ public abstract class TemplatePage extends AbstractPage {
     return NavigationHelper.navigateToTaskList();
   }
 
+  public TaskWidgetPage selectUserExampleTaskMenu() {
+    $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
+    WaitHelper.waitForNavigation(() -> $(By.cssSelector(".layout-menu li.sub-menu-item-task"))
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+    return new TaskWidgetPage();
+  }
+
+
   public NewDashboardPage goToHomeFromBreadcrumb() {
     waitForElementDisplayed(By.cssSelector(HOME_BREADCRUMB_SELECTOR), true);
     waitForElementClickableThenClick($(By.cssSelector(HOME_BREADCRUMB_SELECTOR)));
@@ -448,6 +457,10 @@ public abstract class TemplatePage extends AbstractPage {
     return openMainMenu().selectTaskMenu();
   }
 
+  public TaskWidgetPage openUserExampleTaskList() {
+    return openMainMenu().selectUserExampleTaskMenu();
+  }
+
   public void waitForIFrameContentVisible() {
     waitForIFrameScreenshotSizeGreaterThan(IFRAME_SCREENSHOT_FILE_SIZE_AT_MINIMUM);
   }
@@ -522,6 +535,10 @@ public abstract class TemplatePage extends AbstractPage {
   public void waitForAjaxIndicatorDisplayNone() {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
         .until(ExpectedConditions.attributeContains(By.cssSelector("div[id='ajax-indicator:ajax-indicator-ajax-indicator_start']"), "style", "display: none"));
+  }
+  
+  public void waitForAjaxStatusPositionDisappear() {
+    $("div.ajax-status-position").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
 
   public UserProfilePage openMyProfilePage() {

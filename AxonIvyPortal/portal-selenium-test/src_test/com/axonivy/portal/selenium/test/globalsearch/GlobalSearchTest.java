@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.test.globalsearch;
 
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,8 +9,10 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.GlobalSearchResultPage;
+import com.axonivy.portal.selenium.page.HomePage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
-
+import com.axonivy.portal.selenium.page.SearchResultPage;
+import com.axonivy.portal.selenium.page.TemplatePage.GlobalSearch;
 
 @IvyWebTest
 public class GlobalSearchTest extends BaseTest {
@@ -18,6 +21,9 @@ public class GlobalSearchTest extends BaseTest {
       "internalSupport/14B2FC03D2E87141/CreateTaskForGlobalSearchTest.ivp";
 
   private NewDashboardPage newDashboardPage;
+  private GlobalSearch globalSearch;
+  private SearchResultPage searchResultPage;
+
 
   @Override
   @BeforeEach
@@ -125,4 +131,24 @@ public class GlobalSearchTest extends BaseTest {
 
     resultPage.caseTabShouldBeDisappear();
   }
+  
+  @Test
+  public void testHideGlobalSearch() {
+    updatePortalSetting(Variable.SHOW_GLOBAL_SEARCH.getKey(), "false");
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    newDashboardPage = new NewDashboardPage();
+    globalSearch = newDashboardPage.getGlobalSearch();
+    assertTrue(!globalSearch.isPresent());
+  }
+  
+  @Test
+  public void testSearchCustomResult() {
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
+    newDashboardPage = new NewDashboardPage();
+    globalSearch = newDashboardPage.getGlobalSearch();
+    searchResultPage = globalSearch.inputSearchKeyword("Nam");
+    searchResultPage.openEmployeeTab();
+    assertTrue(2 == searchResultPage.countNumberOfEmployee());
+  }
+
 }

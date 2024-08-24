@@ -115,4 +115,6 @@ public class TaskTemplateIFrameTest extends BaseTest {
     resizeBrowserTo2kResolution();
     assertTrue(startTask.isCategoryColumnDisplayed());
   }
+  
+  testCustomParamsForTaskTemplate8()
 }

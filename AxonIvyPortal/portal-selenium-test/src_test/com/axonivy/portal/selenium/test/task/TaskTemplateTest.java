@@ -144,4 +144,6 @@ public class TaskTemplateTest extends BaseTest {
     numberOfNotes = caseHistoryPage.countNotes();
     assertEquals(1, numberOfNotes);
   }
+  
+  testNotShowStartAdhocWhenOpenImpersistedTask()
 }

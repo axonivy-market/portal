@@ -44,4 +44,17 @@ public class ExpressTaskPage extends TemplatePage {
   public boolean isDocumentUploadButtonVisible() {
     return isElementPresent(By.xpath("//div[contains(@id, 'fileUploadComponent:document-upload')]"));
   }
+  
+  public void openCaseInfo() {
+    clickByCssSelector("#horizontal-case-info");
+    waitForElementDisplayed(By.cssSelector("[id$='i-frame-case-details']"), true);
+  }
+  
+  public void clickOnAdditionalBusinessDetailLink() {
+    switchToIframeWithId("i-frame-case-details");
+    $("a[id$=':action-group:case-details-action-link']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id$=':action-group:action-steps-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("a[id$=':action-group:show-additional-case-details-link']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
 }

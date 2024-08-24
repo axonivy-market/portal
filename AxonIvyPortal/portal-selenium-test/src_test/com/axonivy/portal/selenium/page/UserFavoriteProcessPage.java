@@ -1,6 +1,8 @@
 package com.axonivy.portal.selenium.page;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -16,14 +18,18 @@ import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
 
 public class UserFavoriteProcessPage extends TemplatePage{
   private final String DEFAULT_ICON_CSS_SELECTOR = "span[id$='awesome-icon-display']";
+  private final String ICON_CSS_SELECTOR = "a[id$='awesome-icon']";
 
   @Override
   protected String getLoadedLocator() {
+    $("[id='process-widget:add-new-process-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
     return "[id='process-widget:add-new-process-dialog']";
   }
 
   public void submitForm() {
-    $(By.id("process-widget:add-process-command")).shouldBe(getClickableCondition()).click();
+    $("button[id='process-widget:add-process-command']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("button[id='process-widget:add-process-command']").shouldBe(getClickableCondition()).click();
+    waitForAjaxIndicatorDisplayNone();
   }
 
   public void selectProcessByName(String ivyProcessName) {
@@ -36,13 +42,12 @@ public class UserFavoriteProcessPage extends TemplatePage{
   }
 
   public boolean isIvyProcessByNameSearchable(String ivyProcessName) {
-    $(By.cssSelector("class*=['.ui-autocomplete-dropdown']")).shouldBe(getClickableCondition()).click();
+    $(".ui-autocomplete-dropdown").shouldBe(getClickableCondition()).click();
     String processSelector = "tr[data-item-label='" + ivyProcessName + "']";
     return isElementPresent(By.cssSelector(processSelector));
   }
 
   public void clickChangeIconButton() {
-
     $(By.cssSelector("a[class*='select-awesome-icon-button']")).shouldBe(getClickableCondition()).click();
   }
   
@@ -51,8 +56,8 @@ public class UserFavoriteProcessPage extends TemplatePage{
   }
   
   public int getDisplayedIconAmount() {
-    List<SelenideElement> icons = $$("div[id$='awesome-icon']");
-    return icons.size();
+    List<SelenideElement> icons = $$(ICON_CSS_SELECTOR);
+    return icons.stream().filter(icon -> !icon.getCssValue("display").equals("none")).collect(Collectors.toList()).size();
   }
   
   public boolean isDefaultIcon() {
@@ -61,8 +66,9 @@ public class UserFavoriteProcessPage extends TemplatePage{
   }
 
   public SettingProcessLanguageDialog openAddlanguageDialog() {
-    $("button[id$='process-widget:add-languages']").shouldBe(getClickableCondition()).click();
     $("button[id$='process-widget:add-languages']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("button[id$='process-widget:add-languages']").shouldBe(getClickableCondition()).click();
+    $("span[id$='process-widget:favorite-process-name_title']").shouldBe(appear, DEFAULT_TIMEOUT);
     
     return new SettingProcessLanguageDialog();
   }
@@ -73,7 +79,7 @@ public class UserFavoriteProcessPage extends TemplatePage{
 
     @Override
     protected String getLoadedLocator() {
-      return "id('process-widget:favorite-process-name')";
+      return "[id='process-widget:favorite-process-name']";
     }
     
     public void fillProcessNamesByLocaleName() {

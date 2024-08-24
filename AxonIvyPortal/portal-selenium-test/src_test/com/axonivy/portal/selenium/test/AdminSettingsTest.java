@@ -13,10 +13,13 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.AdminSettingsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.HomePage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
 import ch.ivy.addon.portalkit.enums.SortDirection;
@@ -92,4 +95,49 @@ public class AdminSettingsTest extends BaseTest {
     assertEquals("TestCase", caseWidgetPage.getCaseNameAt(0));
   }
 
+  /**
+   * Note: added missing tests
+   */
+  @Test
+  public void testShowLegacyUISetting() {
+    login(TestAccount.ADMIN_USER);
+    NewDashboardPage homePage = new NewDashboardPage();
+    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
+    adminSettingsPage.setShowLegacyUI();
+    updateGlobalVariable(Variable.SHOW_USER_GUIDE.getKey(), "false");
+    HomePage oldHomePage = new HomePage();
+    MainMenuPage mainMenuPage = oldHomePage.openMainMenu();
+    ProcessWidgetPage processWidgetPage = mainMenuPage.selectProcessesMenu();
+    String currentView = processWidgetPage.getCurrentViewMode();
+    assertTrue("COMPACT".equalsIgnoreCase(currentView));
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    oldHomePage = new HomePage();
+    oldHomePage.waitForPageLoad();
+    assertTrue(oldHomePage.isDisplayed());
+
+    adminSettingsPage = oldHomePage.openAdminSettings();
+    adminSettingsPage.resetShowLegacyUI();
+    mainMenuPage = new MainMenuPage();
+    processWidgetPage = mainMenuPage.selectProcessesMenu();
+    currentView = processWidgetPage.getCurrentViewMode();
+    assertTrue("IMAGE".equalsIgnoreCase(currentView));
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    assertTrue(newDashboardPage.isDisplayed());
+
+    adminSettingsPage = newDashboardPage.openAdminSettings();
+    adminSettingsPage.setShowLegacyUI();
+    oldHomePage = new HomePage();
+    assertTrue(oldHomePage.isDisplayed());
+    adminSettingsPage = homePage.openAdminSettings();
+    adminSettingsPage.resetAllSettings();
+    mainMenuPage = new MainMenuPage();
+    processWidgetPage = mainMenuPage.selectProcessesMenu();
+    currentView = processWidgetPage.getCurrentViewMode();
+    assertTrue("IMAGE".equalsIgnoreCase(currentView));
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    newDashboardPage = new NewDashboardPage();
+    assertTrue(newDashboardPage.isDisplayed());
+  }
+  
 }

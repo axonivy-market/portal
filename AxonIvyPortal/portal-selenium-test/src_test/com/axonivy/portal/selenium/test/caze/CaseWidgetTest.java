@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.test.caze;
 
+
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,7 @@ import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.AdditionalCaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.HomePage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
@@ -323,4 +325,35 @@ public class CaseWidgetTest extends BaseTest {
     WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_CREATED_COLUMN));
     WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedCaseListColumnNotExist(RELATED_CASE_STATE_COLUMN));
   }
+  
+  @Test
+  public void testCaseReadAllOwnRoleInvolved() {
+    redirectToRelativeLink(createTaskForRoleInvolved);
+    updateGlobalVariable(Variable.SHOW_LEGACY_UI.getKey(), "true");
+    updateGlobalVariable(Variable.SHOW_USER_GUIDE.getKey(), "false");
+    login(TestAccount.HR_ROLE_USER);
+    redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
+    HomePage homePage = new HomePage();
+    homePage.waitForPageLoad();
+    TaskWidgetPage taskWidgetPage = homePage.openUserExampleTaskList();
+    taskWidgetPage.waitForPageLoad();
+    taskWidgetPage.filterTasksInExpandedModeBy("Task for role involved", 1);
+    taskWidgetPage.startTaskWithoutWaitTaskActionRendered(0);
+
+    login(TestAccount.HR_ROLE_USER_2);
+    redirectToRelativeLink(grantCaseReadAllOwnRoleInvolvedPermission);
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    homePage = new HomePage();
+    CaseWidgetPage casePage = homePage.openCaseList();
+    casePage.waitForPageLoad();
+    assertTrue(casePage.isCaseDisplayed("Test Process: role involved"));
+
+    redirectToRelativeLink(denyCaseReadAllOwnRoleInvolvedPermission);
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    homePage = new HomePage();
+    casePage = homePage.openCaseList();
+    casePage.waitForPageLoad();
+    assertFalse(casePage.isCaseDisplayed("Test Process: role involved"));
+  }
+
 }

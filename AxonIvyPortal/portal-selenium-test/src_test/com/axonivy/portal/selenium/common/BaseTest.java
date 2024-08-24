@@ -414,4 +414,8 @@ public class BaseTest {
     assertTrue(!Objects.equals(a, b));
   }
 
+  public void updateLegacyUIConfiguration() {
+    updateGlobalVariable(Variable.SHOW_LEGACY_UI.getKey(), "true");
+    updateGlobalVariable(Variable.SHOW_USER_GUIDE.getKey(), "false");
+  }
 }

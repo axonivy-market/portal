@@ -9,6 +9,7 @@ import java.util.Date;
 import org.apache.commons.codec.binary.StringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
@@ -18,10 +19,11 @@ import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.HomePage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class CaseFilterTest extends BaseTest {
 
   private static final String EMPTY = "";
@@ -165,4 +167,30 @@ public class CaseFilterTest extends BaseTest {
 
     assertTrue(casePage.getFilterName().contains("No Selection"));
   }
+  
+  @Test
+  @RepeatedTest(10)
+  public void testSaveCaseFilterOnDifferentCaseList() {
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
+
+    String filterName = "MyFilter";
+
+    casePage.openAdvancedFilter("Description", "description");
+    casePage.filterByDescription("Sick");
+    casePage.saveFilter(filterName);
+
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    casePage = mainMenuPage.selectCaseMenu();
+
+    assertTrue(casePage.getFilterName().contains("Default filter"));
+
+    casePage.filterByDescription("Leave");
+    casePage.saveFilter(filterName);
+
+    mainMenuPage.selectTaskMenu();
+    casePage = mainMenuPage.openCaseList();
+    assertEquals(filterName, casePage.getFilterName()); 
+  }
+
 }

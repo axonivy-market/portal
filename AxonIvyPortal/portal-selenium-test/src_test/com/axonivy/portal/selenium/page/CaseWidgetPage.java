@@ -368,8 +368,9 @@ public class CaseWidgetPage extends TemplatePage {
   }
 
   public void clickApplyButton() {
-    waitForElementClickableThenClick($(APPLY_BUTTON_CSS_SELECTOR));
-    $(APPLY_BUTTON_CSS_SELECTOR).shouldBe(disappear);
+    $(APPLY_BUTTON_CSS_SELECTOR).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    waitForAjaxStatusPositionDisappear();
+    $(APPLY_BUTTON_CSS_SELECTOR).shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void waitUntilCaseCountDifferentThanZero() {
@@ -493,5 +494,9 @@ public class CaseWidgetPage extends TemplatePage {
   public String getCreatorAt(int index) {
     List<SelenideElement> creators = $$(".case-header-creator-cell .name-after-avatar");
     return creators.get(index).getText();
+  }
+
+  public String getCaseListFirstCustomCellValue() {
+    return $("div[id$=':0\\:case-item\\:case-item-container'] span.customized-case-header-column").getText();
   }
 }
