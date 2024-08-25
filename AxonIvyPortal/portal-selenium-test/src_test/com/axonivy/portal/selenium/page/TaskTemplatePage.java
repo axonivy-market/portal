@@ -348,4 +348,8 @@ public class TaskTemplatePage extends TemplatePage {
     $("#title").shouldBe(appear, DEFAULT_TIMEOUT);
     return $("#title").getText();
   }
+  
+  public void waitForIFrameContentVisible() {
+    $("div[id='content-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
 }

@@ -5,18 +5,14 @@ import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter.DEFAULT;
 
 import org.apache.commons.lang3.StringUtils;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -120,6 +116,18 @@ public class TaskWidgetPage extends TemplatePage {
   public SelenideElement getFilterTasksByKeyword() {
     return $("input[id='task-widget:expanded-mode-filter-form:expanded-mode-filter-container:ajax-keyword-filter']");
   }
+  
+  public SelenideElement getFilterTasksOnHomePage() {
+   return $(By.id("task-widget:filter-form:filter-container:ajax-keyword-filter"));
+  }
+  
+  public void filterTasksByOnHomePage(String keyword) {
+    getFilterTasksOnHomePage().shouldBe(appear, DEFAULT_TIMEOUT).clear();
+    getFilterTasksOnHomePage().sendKeys(keyword);
+    getFilterTasksOnHomePage().sendKeys(Keys.ENTER);
+    $("div[id$='task-widget:task-view-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
 
   public void filterTasksBy(String keyword) {
     getFilterTasksByKeyword().shouldBe(appear, DEFAULT_TIMEOUT).clear();
@@ -310,9 +318,8 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void openStateFilter() {
-    waitForElementClickableThenClick(
-        $(By.cssSelector("button[id$='state-filter:filter-open-form:advanced-filter-command']")));
-    waitForElementDisplayed(By.cssSelector("[id$='state-filter:filter-input-form:state-selection']"), true);
+    $("button[id$='state-filter:filter-open-form:advanced-filter-command']").shouldBe(getClickableCondition()).click();
+    $("[id$='state-filter:filter-input-form:state-selection']").shouldBe(appear);
   }
 
   private SelenideElement getStateFilterPanel() {
@@ -648,6 +655,13 @@ public class TaskWidgetPage extends TemplatePage {
     waitTaskAppearThenClick(index);
     return new TaskTemplatePage();
   }
+  
+  public TaskTemplatePage startTaskOnHomePage(int index) {
+    $("div[id='task-widget:task-list-scroller']").shouldBe(appear);
+    $$("div.task-start-list-item").get(index).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    waitForAjaxIndicatorDisplayNone();
+    return new TaskTemplatePage();
+  }
 
   public boolean isTaskStateSuspended(int index) {
     try {
@@ -864,8 +878,133 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public boolean isAdvancedFilterDisplayed(String filterIdName) {
-    return $("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']").shouldBe(appear, DEFAULT_TIMEOUT)
+    return $("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']").shouldBe(appear)
         .isDisplayed();
   }
 
+  public void saveFilter(String filterName) {
+    SelenideElement saveFilterDialog = getSaveFilterDialog();
+    $(saveFilterDialog).$(By.tagName("input")).sendKeys(filterName);
+    $(saveFilterDialog).$(By.tagName("input")).sendKeys(Keys.ENTER);
+    waitForAjaxIndicatorDisplayNone();
+    $(saveFilterDialog).$(By.tagName("input")).shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public void saveFilterForAllAdministrators(String filterName) {
+    SelenideElement saveFilterDialog = getSaveFilterDialog();
+    $$(".ui-radiobutton-box").get(1).shouldBe(getClickableCondition()).click();
+    $(saveFilterDialog).$(By.tagName("input")).sendKeys(filterName);
+    $(saveFilterDialog).$(By.tagName("input")).sendKeys(Keys.ENTER);
+    waitForAjaxIndicatorDisplayNone();
+    $(saveFilterDialog).$(By.tagName("input")).shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+
+  public void openSavedFilters(String filterName) {
+    $("a[id$='task-widget:filter-selection-form:filter-name']").shouldBe(appear).click();
+    waitForAjaxIndicatorDisplayNone();
+    $("span[id$='private-filters']")
+    .shouldBe(appear, DEFAULT_TIMEOUT);
+    List<SelenideElement> saveFilters = $$("a[id$='user-defined-filter']");
+    for (SelenideElement filter : saveFilters) {
+      if (filter.getText().equals(filterName)) {
+        $(filter)
+        .shouldBe(getClickableCondition())
+        .click();
+        $(".filter-name").shouldHave(text(filterName), DEFAULT_TIMEOUT);
+        return;
+      }
+    }
+  }
+  
+  public void openSavedPublicFilters(String filterName) {
+    $("a[id$='task-widget:filter-selection-form:filter-name']").shouldBe(appear).click();
+    waitForAjaxIndicatorDisplayNone();
+    List<SelenideElement> saveFilters = $$("a[id$='user-defined-filter']");
+    for (SelenideElement filter : saveFilters) {
+      if (filter.getText().equals(filterName)) {
+        $(filter)
+        .shouldBe(getClickableCondition())
+        .click();
+        waitForAjaxIndicatorDisplayNone();
+        $(".filter-name").shouldHave(text(filterName), DEFAULT_TIMEOUT);
+        return;
+      }
+    }
+  }
+
+
+  public void removeResponsibleFilter() {
+    $("button[id$='responsible-filter:filter-open-form:advanced-filter-command']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("button[id$='responsible-filter:filter-open-form:advanced-filter-command']").shouldBe(getClickableCondition())
+        .click();
+    $("input[id$='responsible-filter:filter-input-form:responsible_input']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("input[id$='responsible-filter:filter-input-form:responsible_input']").click();
+    $("input[id$='responsible-filter:filter-input-form:responsible_input']").clear();
+    $("button[id$='responsible-filter:filter-input-form:update-command']").shouldBe(getClickableCondition()).click();
+    waitForAjaxIndicatorDisplayNone();
+  }
+
+  public String getResponsible() {
+    $("button[id$='responsible-filter:filter-open-form:advanced-filter-command']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("button[id$='responsible-filter:filter-open-form:advanced-filter-command'] > span")
+        .shouldBe(appear, DEFAULT_TIMEOUT).getText();
+  }
+  
+  public boolean isExistedFilter(String filterName) {
+    $("a[id$=':filter-selection-form:filter-name']")
+    .shouldBe(getClickableCondition()).click();
+    List<SelenideElement> saveFilters = $$("a[id$='user-defined-filter']");
+    return saveFilters.stream().anyMatch(filter -> StringUtils.equals(filter.getText(), filterName));
+  }
+
+  public void filterByCustomerName(String text) {
+    $("button[id$='" + taskWidgetId + ":customer-name-filter:filter-open-form:advanced-filter-command']")
+    .shouldBe(getClickableCondition()).click();
+    $("input[id$='customer-name-filter:filter-input-form:customVarChar5']")
+    .sendKeys(text);
+    $("input[id$='customer-name-filter:filter-input-form:customVarChar5']")
+    .sendKeys(Keys.ENTER);
+    waitForAjaxIndicatorDisplayNone();
+$("input[id$='customer-name-filter:filter-input-form:customVarChar5']")
+.shouldBe(disappear, DEFAULT_TIMEOUT);
+
+  }
+
+  
+  public List<String> getListStateFilterSelection() {
+    List<SelenideElement> stateFilterSelectionElementList = $$("label[for*=':state-filter:filter-input-form:state-selection:']");
+    return stateFilterSelectionElementList.stream().map(WebElement::getText).collect(Collectors.toList());
+  }
+
+  public void openNoActivatorFilter(String filterName) {
+    $("[id$='filter-add-action']").shouldBe(getClickableCondition()).click();
+    $(".filter-add-panel.ui-connected-overlay-enter-done").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement filterSelectionElement = $(By.id(taskWidgetId + ":filter-add-form:filter-selection"));
+    List<SelenideElement> elements = filterSelectionElement.$$(By.tagName("Label"));
+    for (SelenideElement element : elements) {
+      if (element.getText().equals(filterName)) {
+        element.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+        $("[id$='task-widget:filter-add-form:update-filter-selected-command']")
+            .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+        break;
+      }
+    }
+  }
+
+  public void filterByUnavailableActivator(boolean waitForNumberOfTask) {
+    $("button[id$='available-activator-filter:filter-open-form:advanced-filter-command']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+
+    $("[id$='available-activator-filter:filter-input-form:available-activator']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement displayOnlyUnavailableTaskCheckbox = $(
+        "[id$='available-activator-filter:filter-input-form:available-activator']");
+    displayOnlyUnavailableTaskCheckbox.shouldBe(getClickableCondition()).click();
+    $("button[id$='available-activator-filter:filter-input-form:update-command']").shouldBe(getClickableCondition())
+        .click();
+    if (waitForNumberOfTask) {
+      waitForNumberOfTasks(1);
+    }
+  }
+  
 }

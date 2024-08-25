@@ -9,6 +9,7 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
+import com.axonivy.portal.selenium.page.HomePage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
@@ -116,5 +117,19 @@ public class TaskTemplateIFrameTest extends BaseTest {
     assertTrue(startTask.isCategoryColumnDisplayed());
   }
   
-  testCustomParamsForTaskTemplate8()
+  @Test
+  public void testCustomParamsForTaskTemplate8() {
+    updateLegacyUIConfiguration();
+    redirectToRelativeLink(CUSTOM_PARAMS_TEMPLATE_TASK_URL);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.filterTasksByOnHomePage("Task template 8 with custom params");
+    taskWidgetPage.waitTillOnlyOneTaskAppear();
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTaskOnHomePage(0);
+    taskTemplatePage .waitForIFrameContentVisible();
+    assertFalse(taskTemplatePage.isTaskNameDisplayed());
+    assertFalse(taskTemplatePage.isTaskActionDisplayed());
+    assertFalse(taskTemplatePage.isCaseInfoButtonDisplayed());
+    
+  }
 }
