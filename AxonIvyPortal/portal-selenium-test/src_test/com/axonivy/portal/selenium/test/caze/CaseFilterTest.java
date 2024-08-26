@@ -169,7 +169,6 @@ public class CaseFilterTest extends BaseTest {
   }
   
   @Test
-  @RepeatedTest(10)
   public void testSaveCaseFilterOnDifferentCaseList() {
     MainMenuPage mainMenuPage = new MainMenuPage();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();

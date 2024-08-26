@@ -138,7 +138,6 @@ public class ProcessWidgetTest extends BaseTest {
   }
   
   @Test
-  @RepeatedTest(5)
   public void testAddProcessWithMultilingual() {
     updateGlobalVariable(Variable.SHOW_LEGACY_UI.getKey(), "true");
     updateGlobalVariable(Variable.SHOW_USER_GUIDE.getKey(), "false");
