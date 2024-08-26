@@ -8,7 +8,7 @@
     <ui:fragment rendered="#{!isPortalInTeams}">
       <!-- Exception Handler for ViewExpiredExceptions -->
       <p:ajaxExceptionHandler type="javax.faces.application.ViewExpiredException" update="view-expired-exception-dialog"
-        onexception="PF('timeout-warning-dialog').hide();PF('view-expired-exception-dialog').show();" />
+        onexception="PF('timeout-warning-dialog').hide();setLanguageWhenNoSession([{name: 'lang', value: document.documentElement.lang}]);PF('view-expired-exception-dialog').show();" />
 
       <!-- Error Dialog shown if a view or session has expired -->
       <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
@@ -18,7 +18,7 @@
         <ui:param name="iconClass" value="si si-road-sign-warning" />
         <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
         <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" />
-        <ui:param name="dialogContent" value="#{ivy.session.isSessionUserUnknown() ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpried') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/viewExpired')}" />
+        <ui:param name="dialogContent" value="#{ivy.session.isSessionUserUnknown() ? ivy.cms.coLocale('/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpried', languageBean.lang) : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/viewExpired')}" />
         
         <ui:define name="dialogFooter">
           <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
@@ -52,6 +52,7 @@
     <h:form prependId="false">
       <p:remoteCommand id="portal-on-show-more-exception-cmd" name="onShowMoreExceptionDialog"
         update="exception-dialog:exception-dialog" oncomplete="PF('exception-dialog').show();" process="@this" global="false" partialSubmit="true"/>
+      <p:remoteCommand id="setLanguageWhenNoSession" actionListener="#{languageBean.init}" />
     </h:form>
 
     <script type="text/javascript">
