@@ -1,7 +1,7 @@
 {
   "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
-  "simpleName" : "GlobalGrowlIFrame8Data",
-  "namespace" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8",
+  "simpleName" : "GlobalGrowlIFrameData",
+  "namespace" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame",
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "field",
