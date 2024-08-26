@@ -100,11 +100,13 @@
             },
             {
               "field": "state",
-              "visible": false
+              "visible": false,
+              "quickSearch": false
             },
             {
               "field": "startTimestamp",
-              "visible": false
+              "visible": false,
+              "quickSearch": false
             },
             {
               "field": "expiryTimestamp"
@@ -187,7 +189,8 @@
             },
             {
               "field": "endTimestamp",
-              "visible": false
+              "visible": false,
+              "quickSearch": false
             },
             {
               "field": "category",
@@ -427,11 +430,13 @@
             },
             {
               "field": "description",
-              "visible": false
+              "visible": false,
+              "quickSearch": false
             },
             {
               "field": "activator",
-              "visible": false
+              "visible": false,
+              "quickSearch": false
             },
             {
               "field": "state",
@@ -444,11 +449,13 @@
             },
             {
               "field": "expiryTimestamp",
-              "visible": false
+              "visible": false,
+              "quickSearch": false
             },
             {
               "field": "category",
-              "visible": false
+              "visible": false,
+              "quickSearch": false
             },
             {
               "field": "actions"
@@ -489,11 +496,13 @@
             },
             {
               "field": "description",
-              "visible": false
+              "visible": false,
+              "quickSearch": false
             },
             {
               "field": "activator",
-              "visible": false
+              "visible": false,
+              "quickSearch": false
             },
             {
               "field": "state",
@@ -507,11 +516,13 @@
             },
             {
               "field": "expiryTimestamp",
-              "visible": false
+              "visible": false,
+              "quickSearch": false
             },
             {
               "field": "category",
-              "visible": false
+              "visible": false,
+              "quickSearch": false
             },
             {
               "field": "actions"

@@ -63,7 +63,8 @@
           },
           {
             "field": "id",
-            "visible": false
+            "visible": false,
+            "quickSearch": false
           },
           {
             "field": "name"
@@ -86,14 +87,16 @@
           },
           {
             "field": "startTimestamp",
-            "visible": false
+            "visible": false,
+            "quickSearch": false
           },
           {
             "field": "expiryTimestamp"
           },
           {
             "field": "category",
-            "visible": false
+            "visible": false,
+            "quickSearch": false
           },
           {
             "field": "actions"
@@ -139,7 +142,8 @@
           },
           {
             "field": "description",
-            "visible": false
+            "visible": false,
+            "quickSearch": false
           },
           {
             "field": "state",
@@ -155,11 +159,13 @@
           },
           {
             "field": "endTimestamp",
-            "visible": false
+            "visible": false,
+            "quickSearch": false
           },
           {
             "field": "category",
-            "visible": false
+            "visible": false,
+            "quickSearch": false
           },
           {
             "field": "actions"

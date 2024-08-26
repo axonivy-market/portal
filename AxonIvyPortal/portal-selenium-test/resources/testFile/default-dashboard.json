@@ -70,7 +70,7 @@
           {
             "field": "description",
             "visible": false,
-            "quickSearch": true
+            "quickSearch": false
           },
           {
             "field": "activator",
@@ -78,11 +78,13 @@
           },
           {
             "field": "state",
-            "visible": false
+            "visible": false,
+            "quickSearch": false
           },
           {
             "field": "startTimestamp",
-            "visible": false
+            "visible": false,
+            "quickSearch": false
           },
           {
             "field": "expiryTimestamp"
@@ -152,7 +154,7 @@
           {
             "field": "description",
             "visible": false,
-            "quickSearch": true
+            "quickSearch": false
           },
           {
             "field": "state"
@@ -166,7 +168,8 @@
           },
           {
             "field": "endTimestamp",
-            "visible": false
+            "visible": false,
+            "quickSearch": false
           },
           {
             "field": "category",

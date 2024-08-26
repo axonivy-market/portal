@@ -79,11 +79,13 @@
           },
           {
             "field": "state",
-            "visible": false
+            "visible": false,
+            "quickSearch": false
           },
           {
             "field": "startTimestamp",
-            "visible": false
+            "visible": false,
+            "quickSearch": false
           },
           {
             "field": "expiryTimestamp"
@@ -167,7 +169,8 @@
           },
           {
             "field": "endTimestamp",
-            "visible": false
+            "visible": false,
+            "quickSearch": false
           },
           {
             "field": "category",
