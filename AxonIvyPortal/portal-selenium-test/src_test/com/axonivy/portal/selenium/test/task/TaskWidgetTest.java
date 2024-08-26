@@ -1,9 +1,11 @@
 package com.axonivy.portal.selenium.test.task;
 
+
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
@@ -14,8 +16,10 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.TestRole;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
+import com.axonivy.portal.selenium.page.HomePage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
+import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 import com.codeborne.selenide.CollectionCondition;
@@ -249,5 +253,54 @@ public class TaskWidgetTest extends BaseTest {
     assertEquals("high", taskWidgetPage.getPriorityOfTask(0));
   }
   
-  testStartATaskAtHomePage()
+  
+  @Test
+  @RepeatedTest(10)
+  public void testStartATaskAtHomePage() {
+    updateLegacyUIConfiguration();
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(createTestingCaseMapUrl);
+    HomePage homePage = new HomePage();
+    redirectToRelativeLink(simplePaymentUrl);
+    final String NEW_PAYMENT = "Do New Payment";
+    final String LEAVE_REQUEST = "Case Map Leave Request";
+
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    homePage = new HomePage();
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    //Start first task
+    assertFalse(taskWidgetPage.isResumedTask(0));
+    taskWidgetPage.startTaskInLegacyMode(0);
+    TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
+    taskTemplatePage.clickCancelAndLeftButton();
+    
+    //First task is resumed
+    taskWidgetPage = homePage.getTaskWidget();
+    assertTrue(taskWidgetPage.isResumedTask(0));
+    taskWidgetPage.startTaskInLegacyMode(0);
+    taskWidgetPage.resetResumedTask();
+    taskTemplatePage = new TaskTemplatePage();
+    assertEquals(NEW_PAYMENT, taskTemplatePage.getTaskName());
+    taskTemplatePage.clickCancelAndLeftButton();
+    
+    taskWidgetPage = homePage.getTaskWidget();
+    //Start second task
+    assertFalse(taskWidgetPage.isResumedTask(1));
+    taskWidgetPage.startTaskInLegacyMode(1);
+    taskTemplatePage.waitForMainAreaPanelRendered();
+    assertEquals(LEAVE_REQUEST, taskTemplatePage.getTaskName());
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    homePage = new HomePage();
+    taskTemplatePage = new TaskTemplatePage();
+
+    //Second task is resumed
+    taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.waitForPageLoad();
+    assertTrue(taskWidgetPage.isResumedTask(1));
+    taskWidgetPage.startTaskInLegacyMode(1);
+    taskWidgetPage.resetResumedTask();
+    taskTemplatePage = new TaskTemplatePage();
+    assertEquals(LEAVE_REQUEST, taskTemplatePage.getTaskName());
+  }
+
 }

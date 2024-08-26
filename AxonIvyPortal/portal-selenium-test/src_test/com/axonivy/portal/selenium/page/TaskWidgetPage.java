@@ -282,7 +282,7 @@ public class TaskWidgetPage extends TemplatePage {
       waitForElementClickableThenClick($(cssSelector));
     }
   }
-
+  
   public void resetResumedTask() {
     waitForElementDisplayed(By.cssSelector("[id$=':reset-task-dialog_content']"), true);
     waitForElementClickableThenClick($("[id$=':reset-task-form:reset-task-button']"));
@@ -405,8 +405,6 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void startTaskInLegacyMode(int index) {
-//    String taskId = "a[id='task-widget:task-list-scroller:" + index + ":task-item:compact-task-start-link']";
-//    $(taskId).shouldBe(appear, DEFAULT_TIMEOUT);
     $$("div.task-start-list-item").get(index).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
@@ -1007,4 +1005,16 @@ $("input[id$='customer-name-filter:filter-input-form:customVarChar5']")
     }
   }
   
+  public boolean isResumedTask(int index) {
+    List<SelenideElement> taskItems;
+    SelenideElement taskListElement = $(By.id(taskWidgetId + ":task-list-scroller"));
+    if (taskListElement.getAttribute(CLASS).contains("compact-mode")) {
+      taskItems = taskListElement.$$(By.className("compact-task-start-link"));
+      return taskItems.get(index).getAttribute("id").contains("compact-resumed-task-start-link");
+    }
+
+    taskItems = taskListElement.$$(By.className("task-start-list-item"));
+    return taskItems.get(index).getAttribute("id").contains(":task-action:resume-task-action-component");
+  }
+
 }

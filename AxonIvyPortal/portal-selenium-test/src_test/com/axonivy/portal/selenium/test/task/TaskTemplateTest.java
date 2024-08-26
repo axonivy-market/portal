@@ -17,10 +17,11 @@ import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.WorkingTaskDialogPage;
 import com.codeborne.selenide.WebDriverRunner;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class TaskTemplateTest extends BaseTest {
 
   private static final String ANNUAL_LEAVE_REQUEST_TASK = "Annual Leave Request";
+  private String createImpersistentTaskUrl = "portal-developer-examples/169BDE2F368D6EC4/ApplicationShowcase.ivp";
 
   @Override
   @BeforeEach
@@ -145,5 +146,11 @@ public class TaskTemplateTest extends BaseTest {
     assertEquals(1, numberOfNotes);
   }
   
-  testNotShowStartAdhocWhenOpenImpersistedTask()
+  @Test
+  public void testNotShowStartAdhocWhenOpenImpersistedTask() {
+    redirectToRelativeLink(createImpersistentTaskUrl);
+    TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
+    taskTemplatePage.clickTaskActionMenu();
+    assertEquals(true, taskTemplatePage.isStartAdhocBtnNotExist());
+  }
 }
