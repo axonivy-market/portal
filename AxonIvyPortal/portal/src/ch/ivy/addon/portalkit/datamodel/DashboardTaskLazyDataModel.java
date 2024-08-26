@@ -15,6 +15,7 @@ import org.primefaces.model.SortMeta;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardTaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.util.threadcontext.IvyThreadContext;
 
@@ -63,6 +64,7 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
           }
         }
       }
+      Ivy.log().warn("Not a loadFirstTime");
       foundTasks = DashboardTaskService.getInstance().findByTaskQuery(criteria.buildQuery(), first, pageSize);
       addDistict(tasks, foundTasks);
       mapTasks.putAll(foundTasks.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
@@ -79,6 +81,7 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
   }
 
   public void loadFirstTime() {
+    Ivy.log().warn("loadFirstTime");
     Object memento = IvyThreadContext.saveToMemento();
     future = CompletableFuture.runAsync(() -> {
       IvyThreadContext.restoreFromMemento(memento);

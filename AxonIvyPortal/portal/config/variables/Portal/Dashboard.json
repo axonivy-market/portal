@@ -59,7 +59,8 @@
           },
           {
             "field": "id",
-            "visible": false
+            "visible": false,
+            "quickSearch": false
           },
           {
             "field": "name"
@@ -73,6 +74,7 @@
           {
             "field": "state",
             "visible": false,
+            "quickSearch": false,
             "filterList": [
               "CREATED",
               "DONE",
@@ -83,14 +85,16 @@
           },
           {
             "field": "startTimestamp",
-            "visible": false
+            "visible": false,
+            "quickSearch": false
           },
           {
             "field": "expiryTimestamp"
           },
           {
             "field": "category",
-            "visible": false
+            "visible": false,
+            "quickSearch": false
           },
           {
             "field": "actions"
@@ -155,11 +159,13 @@
           },
           {
             "field": "endTimestamp",
-            "visible": false
+            "visible": false,
+            "quickSearch": false
           },
           {
             "field": "category",
-            "visible": false
+            "visible": false,
+            "quickSearch": false
           },
           {
             "field": "actions"
