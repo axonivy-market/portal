@@ -79,8 +79,7 @@
             },
             {
               "field": "id",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "name"
@@ -94,7 +93,6 @@
             {
               "field": "state",
               "visible": false,
-              "quickSearch": false,
               "filterList": [
                 "CREATED",
                 "DONE",
@@ -105,16 +103,14 @@
             },
             {
               "field": "startTimestamp",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "expiryTimestamp"
             },
             {
               "field": "category",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "actions"
@@ -179,13 +175,11 @@
             },
             {
               "field": "endTimestamp",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "category",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "actions"
@@ -347,8 +341,7 @@
             },
             {
               "field": "activator",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "state",
@@ -361,13 +354,11 @@
             },
             {
               "field": "expiryTimestamp",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "category",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "actions"
@@ -413,8 +404,7 @@
             },
             {
               "field": "activator",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "state",
@@ -428,13 +418,11 @@
             },
             {
               "field": "expiryTimestamp",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "category",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "actions"

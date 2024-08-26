@@ -49,8 +49,7 @@
           },
           {
             "field": "id",
-            "visible": false,
-            "quickSearch": false
+            "visible": false
           },
           {
             "field": "name"
@@ -73,8 +72,7 @@
           },
           {
             "field": "category",
-            "visible": false,
-            "quickSearch": false
+            "visible": false
           },
           {
             "field": "actions"
@@ -122,13 +120,11 @@
           },
           {
             "field": "endTimestamp",
-            "visible": false,
-            "quickSearch": false
+            "visible": false
           },
           {
             "field": "category",
-            "visible": false,
-            "quickSearch": false
+            "visible": false
           },
           {
             "field": "actions"
