@@ -1017,4 +1017,16 @@ $("input[id$='customer-name-filter:filter-input-form:customVarChar5']")
     return taskItems.get(index).getAttribute("id").contains(":task-action:resume-task-action-component");
   }
 
+  public boolean isTaskListColumnExist(String columnHeaderText) {
+    String taskListHeaderSelector = taskWidgetId + ":task-widget-sort-menu";
+    $(By.id(taskListHeaderSelector)).shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement taskListHeader = $(By.id(taskListHeaderSelector));
+    for (SelenideElement  column : taskListHeader.$$(By.tagName("a"))) {
+      if (columnHeaderText.equals(column.getText())) {
+        return true;
+      }
+    }
+    return false;
+  }
+
 }
