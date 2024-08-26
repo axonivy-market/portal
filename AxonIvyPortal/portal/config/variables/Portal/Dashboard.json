@@ -71,7 +71,7 @@
           {
             "field": "description",
             "visible": false,
-            "quickSearch": true
+            "quickSearch": false
           },
           {
             "field": "activator",
@@ -153,7 +153,7 @@
           {
             "field": "description",
             "visible": false,
-            "quickSearch": true
+            "quickSearch": false
           },
           {
             "field": "state"
