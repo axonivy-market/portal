@@ -100,13 +100,11 @@
             },
             {
               "field": "state",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "startTimestamp",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "expiryTimestamp"
@@ -189,8 +187,7 @@
             },
             {
               "field": "endTimestamp",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "category",
@@ -435,8 +432,7 @@
             },
             {
               "field": "activator",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "state",
@@ -449,13 +445,11 @@
             },
             {
               "field": "expiryTimestamp",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "category",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "actions"
@@ -501,8 +495,7 @@
             },
             {
               "field": "activator",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "state",
@@ -516,13 +509,11 @@
             },
             {
               "field": "expiryTimestamp",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "category",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "actions"
