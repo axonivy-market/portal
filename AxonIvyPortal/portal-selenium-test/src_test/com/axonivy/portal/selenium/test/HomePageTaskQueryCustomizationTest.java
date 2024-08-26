@@ -10,7 +10,7 @@ import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.HomePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class HomePageTaskQueryCustomizationTest extends BaseTest {
 
   @Override

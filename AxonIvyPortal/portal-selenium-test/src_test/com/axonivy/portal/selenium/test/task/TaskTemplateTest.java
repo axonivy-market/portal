@@ -17,7 +17,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.WorkingTaskDialogPage;
 import com.codeborne.selenide.WebDriverRunner;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class TaskTemplateTest extends BaseTest {
 
   private static final String ANNUAL_LEAVE_REQUEST_TASK = "Annual Leave Request";
