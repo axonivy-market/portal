@@ -38,8 +38,7 @@ public class JsonDashboardTemplateMigrator {
    */
   private static AbstractJsonVersion readVersion(JsonNode node) {
     return Optional.ofNullable(node)
-        .map(jsonNode -> jsonNode.get("dashboard"))
-        .map(dashboard -> dashboard.get(AbstractJsonVersion.VERSION_FIELD_NAME))
+        .map(template -> template.get(AbstractJsonVersion.VERSION_FIELD_NAME))
         .map(field -> new DashboardTemplateJsonVersion(field.asText()))
         .orElse(DashboardTemplateJsonVersion.OLDEST_VERSION);
   }

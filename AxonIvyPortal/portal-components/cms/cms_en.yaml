@@ -86,6 +86,7 @@ Dialogs:
               EXPRESS_PROCESS: Express Workflow
               EXTERNAL_LINK: External Link
               IVY_PROCESS: Business Process
+            ProcessViewerIFrameTitle: Process viewer frame
 Labels:
   AI:
     Error:

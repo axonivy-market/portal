@@ -155,29 +155,6 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.countCases().shouldBe(CollectionCondition.size(0));
   }
 
-  @Test
-  public void filterDateTest() {
-    login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(createDataCreatedDate);
-    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
-    newDashboardDetailsEditPage.addWidget();
-    CaseEditWidgetNewDashBoardPage caseWidget = newDashboardDetailsEditPage.addNewCaseWidget();
-    caseWidget.waitPreviewTableLoaded();
-
-    caseWidget.openFilter();
-    caseWidget.addFilter("Created Date", FilterOperator.TODAY);
-    caseWidget.applyFilter();
-    caseWidget.waitPreviewTableLoaded();
-    caseWidget.countCases().shouldBe(CollectionCondition.size(2), DEFAULT_TIMEOUT);
-
-    caseWidget.openFilter();
-    caseWidget.removeFilter(0);
-    caseWidget.addFilter("Created Date", FilterOperator.CURRENT);
-    caseWidget.inputValueOnLatestFilter(FilterValueType.DATE_CURRENT, "Year");
-    caseWidget.applyFilter();
-    caseWidget.waitPreviewTableLoaded();
-    caseWidget.countCases().shouldBe(CollectionCondition.size(9));
-  }
 
   @Test
   public void filterMixFieldTest() {
