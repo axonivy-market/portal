@@ -63,13 +63,11 @@
           },
           {
             "field": "endTimestamp",
-            "visible": false,
-            "quickSearch": false
+            "visible": false
           },
           {
             "field": "category",
-            "visible": false,
-            "quickSearch": false
+            "visible": false
           },
           {
             "field": "actions"
