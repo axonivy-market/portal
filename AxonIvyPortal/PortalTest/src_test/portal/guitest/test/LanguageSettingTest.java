@@ -43,6 +43,7 @@ public class LanguageSettingTest extends BaseTest {
     assertEquals("Prozesse", mainMenuPage.getProcessMenuItemText());
     userProfilePage = homePage.openMyProfilePage();
     userProfilePage.selectLanguage(1);
+    userProfilePage.inputFormattingLanguage("English");
     userProfilePage.save();
     mainMenuPage = userProfilePage.openMainMenu();
     assertEquals("Processes", mainMenuPage.getProcessMenuItemText());
