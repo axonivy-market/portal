@@ -5,6 +5,7 @@
 
 <p:commandLink id="start-task" actionListener="#{dashboardTaskWidgetBean.handleStartTask(task)}" onclick="event.stopPropagation();"
   disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}" oncomplete="resetPortalLeftMenuState()"
+  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/startATask')}"
   process="@this">
   <span class="si si-controls-play" />
 </p:commandLink>

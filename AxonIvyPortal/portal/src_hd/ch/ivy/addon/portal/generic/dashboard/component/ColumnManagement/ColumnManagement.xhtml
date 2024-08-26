@@ -20,7 +20,7 @@
         <p:ajax event="rowReorder" global="false" />
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/visible')}" width="70" styleClass="u-text-align-center">
           <p:commandLink id="toggle-visibility" styleClass="ui-selectbooleancheckbox ui-chkbox ui-widget" process="@this"
-            actionListener="#{columnManagementBean.handleVisibility(column)}"
+            actionListener="#{columnManagementBean.handleVisibility(column)}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/visible')}"
             update="column-management-datatable" partialSubmit="true" immediate="true" global="false" >
             <h:panelGroup styleClass="ui-chkbox-box ui-widget ui-corner-all ui-state-default #{column.visible ? 'ui-state-active':''}">
               <span class="ui-chkbox-icon ui-icon ui-c #{column.visible ? 'ui-icon-check':'ui-icon-blank'}"></span>
@@ -37,6 +37,7 @@
           <h:panelGroup layout="block" id="quick-search-checkbox-panel"
             rendered="#{column.canQuickSearch()}">
             <p:commandLink id="toggle-quick-search" styleClass="ui-selectbooleancheckbox ui-chkbox ui-widget" process="@this"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}"
               actionListener="#{columnManagementBean.handleQuickSearch(column)}"
               global="false" update="column-management-datatable" partialSubmit="true" immediate="true">
               <h:panelGroup styleClass="ui-chkbox-box ui-widget ui-corner-all ui-state-default #{column.quickSearch ? 'ui-state-active':''}">
@@ -49,7 +50,7 @@
           <i class="si si-move-expand-vertical" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}" width="70" styleClass="u-text-align-center js-column-field-#{column.field}">
-          <p:commandLink id="remove-link" actionListener="#{columnManagementBean.remove(column)}" global="false" process="@this"
+          <p:commandLink id="remove-link" actionListener="#{columnManagementBean.remove(column)}" global="false" process="@this" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
             update="column-management-datatable #{cc.clientId}:column-management-form:standard-field-selection #{cc.clientId}:column-management-form:custom-field-selection">
             <i class="si si-bin-1" />
           </p:commandLink>
