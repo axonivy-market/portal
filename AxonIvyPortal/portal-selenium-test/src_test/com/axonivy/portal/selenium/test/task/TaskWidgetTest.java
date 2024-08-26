@@ -255,7 +255,6 @@ public class TaskWidgetTest extends BaseTest {
   
   
   @Test
-  @RepeatedTest(10)
   public void testStartATaskAtHomePage() {
     updateLegacyUIConfiguration();
     login(TestAccount.ADMIN_USER);

@@ -315,7 +315,6 @@ public class TaskFilterTest extends BaseTest {
   
   
   @Test
-  @RepeatedTest(8)
   public void testSaveTaskFilterOnDifferentTaskList() {
     updateLegacyUIConfiguration();
     redirectToRelativeLink(createTestingTasksUrl);
