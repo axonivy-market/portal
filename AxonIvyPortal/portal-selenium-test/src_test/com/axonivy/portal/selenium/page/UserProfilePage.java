@@ -36,6 +36,8 @@ public class UserProfilePage extends TemplatePage {
   
   private static String MAIL_NOTI_ON_TASK_ASSIGNMENT_SELECTOR = "div[id$=':mail-notification-on-task-assign']";
   private static String FURTHER_EMAIL_FROM_APP_SELECTOR = "div[id$=':further-mails-from-application']";
+  private static String SHOW_TUTORIAL_XPATH = "//*[@id='my-profile-form:general-show-tutorial']/div[2]";
+
 
   @Override
   protected String getLoadedLocator() {
@@ -210,6 +212,20 @@ public class UserProfilePage extends TemplatePage {
   public boolean isCaseListSettingDisplayed() {
     String locator = "div[id='my-profile-form:case-sort-field-selection']";
     return isElementPresent(By.cssSelector(locator)) && findElementByCssSelector(locator).isDisplayed();
+  }
+
+  public boolean isDisableShowTutorialCheckbox() {
+    SelenideElement checkbox = $("[id$=':general-show-tutorial']").shouldBe(appear);
+    return checkbox.getAttribute("class").contains("ui-state-disabled");
+  }
+  
+  public void checkShowTutorial() {
+    SelenideElement checkbox = $(By.xpath(SHOW_TUTORIAL_XPATH));
+    if (!checkbox.getAttribute("class").contains("ui-state-active")) {
+      checkbox.$(By.cssSelector("span[class='ui-chkbox-label']")).shouldBe(getClickableCondition()).click();
+      $(By.xpath(SHOW_TUTORIAL_XPATH + "/span[@class='ui-chkbox-icon ui-icon ui-c ui-icon-check']")).shouldBe(appear,
+          DEFAULT_TIMEOUT);
+    }
   }
 
 }
