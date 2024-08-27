@@ -26,11 +26,12 @@
     "type" : "ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget"
   }, {
     "name" : "taskExpiryDateFrom",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "String"
   }, {
     "name" : "taskExpiryDateTo",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "String"
+  }, {
+    "name" : "onlyMyTask",
+    "type" : "String"
   } ]
 }
