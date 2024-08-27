@@ -45,7 +45,6 @@ public class PortalPermissionTest extends BaseTest {
     grantShowHideNotePermissions();
     grantDocumentOfInvolvedCaseWritePemissionToCurrentUser();
     grantCasePermissions();
-    grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
   }
 
   @Test
