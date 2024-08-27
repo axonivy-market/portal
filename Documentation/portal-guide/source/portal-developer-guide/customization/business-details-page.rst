@@ -21,7 +21,6 @@ How to customize the business details page
 #. Create a business details process. In this process, create a request start that has the parameter ``caseId``. The idea is when clicking on ``Business details`` in case details page,
 Portal will call this process and pass the case ID as parameter `caseId`. Create a UI for business details page in this process.
 
-
    |customization-business-details-page-start-request|
 
 #. Store the :dev-url:`IWebStartable ID </docs/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` 
