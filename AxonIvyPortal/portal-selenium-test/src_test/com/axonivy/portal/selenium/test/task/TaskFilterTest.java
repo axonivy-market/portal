@@ -45,6 +45,8 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.openAdvancedFilter("Application", "application");
     taskWidgetPage.filterFirstApp();
     int after = taskWidgetPage.countTasks().size();
+    System.out.println("Before " + before);
+    System.out.println("After " + after);
     Assertions.assertEquals(before, after);
   }
 
@@ -222,7 +224,9 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.openSavedFilters(filterMaternity);
     taskWidgetPage.openSavedFilters(filterResponsible);
 
-    assertTrue(taskWidgetPage.getResponsible().contains("Everybody"));
+    String responsible = taskWidgetPage.getResponsible();
+    System.out.println(responsible);
+    assertTrue(responsible.contains("Everybody"));
   }
   
   @Test
@@ -267,8 +271,11 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.saveFilter(filterResponsible);
     // Change filter and verify responsible changed
     taskWidgetPage.openSavedFilters(filterMaternity);
+    String responsible = taskWidgetPage.getResponsible();
 
-    assertTrue(taskWidgetPage.getResponsible().contains("Everybody"));
+    System.out.println(responsible);
+    System.out.println(responsible.contains("Everybody"));
+    assertTrue(responsible.contains("Everybody"));
   }
 
   @Test
@@ -337,6 +344,8 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.filterByCustomerName("Anh");
     taskWidgetPage.saveFilter(filterName);
 
+    System.out.println(filterName);
+    System.out.println(taskWidgetPage.getFilterName());
     assertEquals(filterName, taskWidgetPage.getFilterName());
   }
 
