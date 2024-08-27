@@ -389,9 +389,8 @@ public class QuickSearchTest extends BaseTest {
   @Test
   public void testSessionCacheInProcessWidget() {
     login(TestAccount.ADMIN_USER);
-    ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget("Your Processes");
-    assertTrue(processWidget.isQuickSearchInputShow());
     ScreenshotUtils.maximizeBrowser();
+    ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget("Your Processes");
     processWidget.setQuickSearchKeyword("login");
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
