@@ -57,11 +57,7 @@ public class LanguageSettingTest extends BaseTest {
   }
   
   @AfterEach
-  public void resetFormattingLanguage() {
-    NewDashboardPage newDashboardPage = new NewDashboardPage();
-    UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
-    userProfilePage.inputFormattingLanguage("English (United Kingdom)");
-    newDashboardPage = userProfilePage.save();
+  public void resetDefaultFormattingLanguage() {
+    resetFormattingLanguage();
   }
-
 }
