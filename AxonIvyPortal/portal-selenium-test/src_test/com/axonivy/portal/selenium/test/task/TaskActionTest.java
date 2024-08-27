@@ -18,7 +18,7 @@ import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class TaskActionTest extends BaseTest {
 
   private TaskWidgetPage taskWidgetPage;
