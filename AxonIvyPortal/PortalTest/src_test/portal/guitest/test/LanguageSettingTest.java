@@ -50,11 +50,8 @@ public class LanguageSettingTest extends BaseTest {
   }
 
   @After
-  public void resetFormattingLanguage() {
-    HomePage homePage = new HomePage();
-    UserProfilePage userProfilePage = homePage.openMyProfilePage();
-    userProfilePage.inputFormattingLanguage("English (United Kingdom)");
-    homePage = userProfilePage.save();
+  public void resetDefaultFormattingLanguage() {
+    resetFormattingLanguage();
   }
 
   private void createTestData() {

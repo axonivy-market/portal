@@ -21,7 +21,6 @@ import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.TemplatePage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
-import portal.guitest.page.UserProfilePage;
 import portal.guitest.page.WorkingTaskDialogPage;
 import portal.guitest.page.WorkingTaskDialogPageOfApplicationMenu;
 
@@ -37,11 +36,8 @@ public class GlobalGrowlTest extends BaseTest {
   private static final String SKIP_TASK_LIST_URL = "portal-developer-examples/16FA8B451814E32A/start.ivp";
   
   @Before
-  public void resetFormattingLanguage() {
-    HomePage homePage = new HomePage();
-    UserProfilePage userProfilePage = homePage.openMyProfilePage();
-    userProfilePage.inputFormattingLanguage("English (United Kingdom)");
-    homePage = userProfilePage.save();
+  public void resetDefaultFormattingLanguage() {
+    resetFormattingLanguage();
   }
 
   @Test
