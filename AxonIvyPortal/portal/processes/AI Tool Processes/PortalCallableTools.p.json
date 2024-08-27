@@ -65,7 +65,7 @@
     }, {
       "id" : "f5",
       "type" : "CallSubStart",
-      "name" : "findTasks(String,String,String,String,String,String)",
+      "name" : "findTasks(String,String,String,String,String,String,String,String)",
       "config" : {
         "signature" : "findTasks",
         "input" : {
@@ -75,11 +75,13 @@
             { "name" : "taskPriority", "type" : "String", "desc" : "" },
             { "name" : "taskState", "type" : "String", "desc" : "" },
             { "name" : "taskExpiryDateFrom", "type" : "String", "desc" : "" },
-            { "name" : "taskExpiryDateTo", "type" : "String", "desc" : "" }
+            { "name" : "taskExpiryDateTo", "type" : "String", "desc" : "" },
+            { "name" : "onlyMyTask", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "out.dateFrom" : "param.taskExpiryDateFrom",
             "out.dateTo" : "param.taskExpiryDateTo",
+            "out.onlyMyTask" : "param.onlyMyTask",
             "out.taskDescription" : "param.taskDescription",
             "out.taskName" : "param.taskName",
             "out.taskPriority" : "param.taskPriority",
@@ -128,7 +130,7 @@
             "if(StringUtils.isNotBlank(in.validationError)) {",
             "  in.result = AiAssistantAPI.generateErrorAiResult(in.validationError);",
             "} else {",
-            "  in.result = AiService.getInstance().generateFindTasksAiResult(in.taskName, in.taskDescription, in.taskState, in.taskPriority, in.dateFrom, in.dateTo);",
+            "  in.result = AiService.getInstance().generateFindTasksAiResult(in.taskName, in.taskDescription, in.taskState, in.taskPriority, in.dateFrom, in.dateTo, in.onlyMyTask);",
             "}"
           ]
         }
