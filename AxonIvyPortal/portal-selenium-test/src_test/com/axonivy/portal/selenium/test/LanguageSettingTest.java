@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.test;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -45,7 +46,6 @@ public class LanguageSettingTest extends BaseTest {
     assertEquals("Prozesse", mainMenuPage.getProcessMenuItemText());
     userProfilePage = newDashboardPage.openMyProfilePage();
     userProfilePage.selectLanguage(1);
-    userProfilePage.inputFormattingLanguage("English");
     userProfilePage.save();
     mainMenuPage = userProfilePage.openMainMenu();
     mainMenuPage.waitPageLoaded();
@@ -54,6 +54,14 @@ public class LanguageSettingTest extends BaseTest {
 
   private void createTestData() {
     redirectToRelativeLink(createTestingTasksUrl);
+  }
+  
+  @AfterEach
+  public void resetFormattingLanguage() {
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
+    userProfilePage.inputFormattingLanguage("English (United Kingdom)");
+    newDashboardPage = userProfilePage.save();
   }
 
 }
