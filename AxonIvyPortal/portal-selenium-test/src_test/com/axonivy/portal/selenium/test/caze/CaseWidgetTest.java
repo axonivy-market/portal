@@ -275,6 +275,7 @@ public class CaseWidgetTest extends BaseTest {
   @Test
   public void testStickySortCaseList() {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
+    redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     CaseWidgetPage caseWidgetPage = newDashboardPage.openCaseList();
     caseWidgetPage
