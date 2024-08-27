@@ -388,8 +388,7 @@ public class TaskDetailsPage extends TemplatePage {
         foundRoles.get(0).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
       }
       $("button[id$=':task-escalation-activator-form:assign-task-command']").shouldBe(getClickableCondition()).click();
-      $("div[id$='task-escalation-activator-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
-      waitForAjaxIndicatorDisplayNone();
+      $("div[id$='task-escalation-activator-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
     }
   }
   
@@ -438,7 +437,7 @@ public class TaskDetailsPage extends TemplatePage {
     SelenideElement editor = $("[id$=':expiry-form:edit-inplace_editor']");
     SelenideElement saveButton = editor.$(UI_INPLACE_SAVE);
     saveButton.shouldBe(getClickableCondition()).click();
-    $("[id$=':expiry-form:edit-inplace_editor']").shouldBe(appear);
+    $("[id$=':expiry-form:edit-inplace_editor']").shouldBe(disappear);
   }
 
   public String getExpiryOfTaskAt() {
@@ -519,8 +518,7 @@ public class TaskDetailsPage extends TemplatePage {
   
   public void clickOnClearDeadlineTime() {
     $("a[id$=':additional-options:task-clear-expiry-command']").shouldBe(getClickableCondition()).click();
-    $("[id$=':additional-options:side-steps-panel']").shouldBe(appear);
-    waitForAjaxIndicatorDisplayNone();
+    $("[id$=':additional-options:side-steps-panel']").shouldBe(disappear);
   }
 
   public String getDurationTimeText() {
