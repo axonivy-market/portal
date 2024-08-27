@@ -215,16 +215,15 @@ public class QuickSearchTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
-
+    boolean isQuickSearchInputAvailable = caseWidget.isQuickSearchInputShow("0");
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
-
-    caseEditWidget.clickOnQuickSearchCheckBox();
+    if (!isQuickSearchInputAvailable) {
+      caseEditWidget.clickOnQuickSearchCheckBox();
+    }
     caseEditWidget.save();
-    caseWidget.isQuickSearchInputShow("0");
-
     refreshPage();
     caseWidget.setInputForQuickSearch("Create 12 cases with");
     caseWidget.countAllCases().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
