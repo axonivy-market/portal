@@ -36,7 +36,8 @@ public class PortalPermissionTest extends BaseTest {
     grantAccessFullListPermissions();
     newDashboardPage = new NewDashboardPage();
   }
-
+  
+  @Override
   @AfterEach
   public void tearDown() {
     grantTaskActionsPermissions();
