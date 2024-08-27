@@ -23,7 +23,7 @@ import com.codeborne.selenide.WebDriverRunner;
 
 
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class ChatTest extends BaseTest {
   private static final String ADMIN1_2 = "admin1-2";
   private static final String ADMIN1_1 = "admin1-1";
