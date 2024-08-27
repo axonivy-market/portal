@@ -97,8 +97,8 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public ElementsCollection countTasks() {
-    $("div[id$='task-widget:task-view-container'] ul li").shouldBe(appear);
-    return $$("div[id$='task-widget:task-view-container'] ul li");
+    ElementsCollection taskElements = $$("div[class*='task-start-list-item']");
+    return taskElements;
   }
 
   public void runTaskWithRunTheTaskBehaviour(int position) {
