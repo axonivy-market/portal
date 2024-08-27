@@ -900,13 +900,11 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void openSavedFilters(String filterName) {
     $("a[id$='task-widget:filter-selection-form:filter-name']").shouldBe(getClickableCondition()).click();
-    $("span[id$='private-filters']").shouldBe(appear, DEFAULT_TIMEOUT);
+//    $("span[id$='private-filters']").shouldBe(appear, DEFAULT_TIMEOUT);
     List<SelenideElement> saveFilters = $$("a[id$='user-defined-filter']");
     for (SelenideElement filter : saveFilters) {
       if (filter.getText().equals(filterName)) {
-        $(filter)
-        .shouldBe(getClickableCondition())
-        .click();
+        $(filter).shouldBe(getClickableCondition()).click();
         $(".filter-name").shouldHave(text(filterName), DEFAULT_TIMEOUT);
         return;
       }

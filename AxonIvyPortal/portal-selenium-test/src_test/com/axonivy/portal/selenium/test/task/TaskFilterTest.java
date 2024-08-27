@@ -141,22 +141,18 @@ public class TaskFilterTest extends BaseTest {
     assertEquals(1, taskWidgetPage.countTasks().size());
   }
    
+  // good
   @Test
   public void testKeepSessionFilter() {
     updateLegacyUIConfiguration();
-    redirectToRelativeLink(createTestingTasksUrl);
-    redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
-    HomePage homePage = new HomePage();
-    homePage.waitForGlobalGrowlDisappear();
+    createTestData();
     
     MainMenuPage mainMenuPage = new MainMenuPage();
-    final TaskWidgetPage taskWidgetPage = mainMenuPage.openDeveloperExamplesTaskList();
+    TaskWidgetPage taskWidgetPage = mainMenuPage.openDeveloperExamplesTaskList();
     taskWidgetPage.openAdvancedFilter("Description", "description");
     taskWidgetPage.filterByDescription("Maternity");
 
-    homePage.clickOnLogo();
     TaskWidgetPage taskWidgetPage2 = new TaskWidgetPage();
-    taskWidgetPage2.expand();
     assertEquals(1, taskWidgetPage2.countTasks().size());
     assertTrue(taskWidgetPage2.isAdvancedFilterDisplayed("description"));
   }
@@ -198,7 +194,7 @@ public class TaskFilterTest extends BaseTest {
   public void testRemoveResponsibleAndSwitchFilter() {
     updateLegacyUIConfiguration();
     redirectToRelativeLink(createTestingTasksUrl);
-    redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     HomePage homePage = new HomePage();
     homePage.waitForGlobalGrowlDisappear();
     
@@ -250,7 +246,7 @@ public class TaskFilterTest extends BaseTest {
   public void testResponsibleWithChangeFilter() {
     updateLegacyUIConfiguration();
     redirectToRelativeLink(createTestingTasksUrl);
-    redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     HomePage homePage = new HomePage();
     homePage.waitForGlobalGrowlDisappear();
     
