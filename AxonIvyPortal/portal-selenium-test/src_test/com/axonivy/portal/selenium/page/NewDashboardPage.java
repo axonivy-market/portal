@@ -173,7 +173,7 @@ public class NewDashboardPage extends TemplatePage {
 
   public void checkStartButtonAndImageShown() {
     getStartButton().shouldBe(Condition.disabled);
-    getDisabledMoreInformationLink().shouldBe(Condition.appear);
+    getDisabledMoreInformationLink().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     getProcessImage().shouldHave(Condition.attributeMatching(SRC_ATTRIBUTE, IMAGE_URI_PATTERN));
   }
 

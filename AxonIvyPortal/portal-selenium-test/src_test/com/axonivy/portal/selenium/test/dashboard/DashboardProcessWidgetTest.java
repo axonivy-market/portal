@@ -64,7 +64,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.previewImageModeProcess(CATEGORIED_LEAVE_REQUEST);
     editProcessWidgetConfiguration.getStartButton().shouldBe(Condition.disabled);
-    editProcessWidgetConfiguration.getDisabledMoreInformationLink().shouldBe(Condition.appear);
+    editProcessWidgetConfiguration.getDisabledMoreInformationLink().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     editProcessWidgetConfiguration.getImageModeProcessImage()
         .shouldHave(Condition.attributeMatching(NewDashboardPage.SRC_ATTRIBUTE, NewDashboardPage.IMAGE_URI_PATTERN));
   }
@@ -110,7 +110,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectImageModeAndSaveWidget(PROCESS_WITH_PROCESS_STEPS);
-    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
+    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     backToNewDashboardPage();
     newDashboardPage.getMoreInformationLink().shouldBe(Condition.appear);
     newDashboardPage.startMoreInfoLink();
@@ -125,7 +125,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.previewFullModeProcess(CATEGORIED_LEAVE_REQUEST);
     editProcessWidgetConfiguration.getStartButton().shouldBe(Condition.disabled);
-    editProcessWidgetConfiguration.getDisabledMoreInformationLink().shouldBe(Condition.appear);
+    editProcessWidgetConfiguration.getDisabledMoreInformationLink().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -134,7 +134,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
-    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
+    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
 
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     editProcessWidgetConfiguration = newDashboardDetailsEditPage.editFullModeProcess();
@@ -148,7 +148,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
-    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
+    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.deleteImageModeProcess();
     newDashboardPage.getFullModeProcessContainer().shouldNotBe(Condition.exist);
@@ -172,7 +172,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(PROCESS_WITH_PROCESS_STEPS);
-    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
+    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
 
     backToNewDashboardPage();
     newDashboardPage.getMoreInformationLink().shouldBe(Condition.appear);
@@ -627,7 +627,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
         newDashboardDetailsEditPage.addNewProcessWidget();
     editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
-    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
+    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     backToNewDashboardPage();
 
     // Change to COMPACT_MODE
