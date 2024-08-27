@@ -50,6 +50,7 @@ public class TaskFilterTest extends BaseTest {
 
   private TaskWidgetPage createTestData() {
     redirectToRelativeLink(createTestingTasksUrl);
+    redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
     login(TestAccount.ADMIN_USER);
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.waitForGrowlMessageDisappear();
@@ -144,6 +145,7 @@ public class TaskFilterTest extends BaseTest {
   public void testKeepSessionFilter() {
     updateLegacyUIConfiguration();
     redirectToRelativeLink(createTestingTasksUrl);
+    redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
     HomePage homePage = new HomePage();
     homePage.waitForGlobalGrowlDisappear();
     
@@ -196,6 +198,7 @@ public class TaskFilterTest extends BaseTest {
   public void testRemoveResponsibleAndSwitchFilter() {
     updateLegacyUIConfiguration();
     redirectToRelativeLink(createTestingTasksUrl);
+    redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
     HomePage homePage = new HomePage();
     homePage.waitForGlobalGrowlDisappear();
     
@@ -247,6 +250,7 @@ public class TaskFilterTest extends BaseTest {
   public void testResponsibleWithChangeFilter() {
     updateLegacyUIConfiguration();
     redirectToRelativeLink(createTestingTasksUrl);
+    redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
     HomePage homePage = new HomePage();
     homePage.waitForGlobalGrowlDisappear();
     
