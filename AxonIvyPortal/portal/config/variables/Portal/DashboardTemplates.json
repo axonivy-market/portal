@@ -157,7 +157,8 @@
             },
             {
               "field": "description",
-              "visible": false
+              "visible": false,
+              "quickSearch": false
             },
             {
               "field": "state",
@@ -335,7 +336,8 @@
             },
             {
               "field": "description",
-              "visible": false
+              "visible": false,
+              "quickSearch": false
             },
             {
               "field": "activator",
@@ -397,7 +399,8 @@
             },
             {
               "field": "description",
-              "visible": false
+              "visible": false,
+              "quickSearch": false
             },
             {
               "field": "activator",

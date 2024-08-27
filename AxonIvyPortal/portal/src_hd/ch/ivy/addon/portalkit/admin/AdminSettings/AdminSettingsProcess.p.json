@@ -962,7 +962,7 @@
         "guid" : "16A33CB19C2E90CF"
       },
       "visual" : {
-        "at" : { "x" : 704, "y" : 1376 },
+        "at" : { "x" : 920, "y" : 1384 },
         "labelOffset" : { "x" : 47, "y" : -16 }
       },
       "connect" : { "id" : "f90", "to" : "f89" }
@@ -970,7 +970,7 @@
       "id" : "f89",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 704, "y" : 1552 }
+        "at" : { "x" : 920, "y" : 1560 }
       }
     }, {
       "id" : "f31",
@@ -1209,6 +1209,41 @@
       "visual" : {
         "at" : { "x" : 1248, "y" : 1184 }
       }
+    }, {
+      "id" : "f28",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "saveChangesAnnouncement()",
+      "config" : {
+        "callSignature" : "saveChangesAnnouncement",
+        "guid" : "19106F30EBA7B3C8"
+      },
+      "visual" : {
+        "at" : { "x" : 728, "y" : 1376 },
+        "labelOffset" : { "x" : 19, "y" : -13 }
+      },
+      "connect" : { "id" : "f78", "to" : "f38" }
+    }, {
+      "id" : "f38",
+      "type" : "Script",
+      "name" : "save changes",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
+            "import javax.faces.application.FacesMessage;",
+            "import javax.faces.context.FacesContext;",
+            "import ch.ivy.addon.portalkit.service.AnnouncementService;",
+            "AnnouncementService service = AnnouncementService.getInstance();",
+            "service.saveValueChangeAnnouncement(in.announcement);",
+            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ",
+            "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementSaved\"), null));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 728, "y" : 1472 }
+      },
+      "connect" : { "id" : "f46", "to" : "f16", "via" : [ { "x" : 728, "y" : 1568 } ] }
     } ],
   "layout" : {
     "lanes" : [ {

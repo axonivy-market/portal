@@ -137,7 +137,8 @@
           },
           {
             "field": "description",
-            "visible": false
+            "visible": false,
+            "quickSearch": false
           },
           {
             "field": "state",

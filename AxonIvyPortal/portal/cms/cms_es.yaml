@@ -203,12 +203,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewApplication: Crear nueva aplicación de terceros
     announcement:
       announcement: Aviso
+      announcementSaved: Los anuncios se guardan.
       announcementsDisabled: Los avisos están deactivados
       announcementsEnabled: Los avisos están activados
       defaultLanguageRequiredMessage: 'Texto requerido en el idioma estándard de la aplicación '
       disable: Desactivar
       enable: Activar
       information: En esta área puede anunciar una información general (ej. mantenimiento, cambios en la aplicación, etc.). Este mensaje será visible para todos los usuarios.
+      saveChanges: Guardar cambios
       tabTitle: Avisos
     appDisplayName: Nombre para mostrar
     appDisplayNameRequiredMsg: Por favor ingrese el nombre para mostrar de la aplicación.
@@ -270,6 +272,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableUserFavorites: Si esta propiedad está desactivada, los favoritos de usurio serán ocultados
       enableVirusScannerForUploadedDocumentNote: Cambiar a "true" para habilitar el escáner de virus para el documento cargado. Actualmente esta función utiliza la API VIRUSTOTAL.
       expressEndPageNote: Mostrar la página de final de flujo de trabajo express propia.
+      hideCaseCreator: |-
+        Establecer a true para ocultar el creador de casos en la lista de casos, widget de casos y detalles de casos.
+        Este ajuste afecta a todas las consultas de casos, por ejemplo, para la lista de casos, la búsqueda global o la estadística.
       hideCaseDocument: Cambiar a "true" para ocultar el área de documentos en detalle de casos
       hideChangePasswordButtonNote: Establezca esta variable a true para ocultar la opción "Cambiar contraseña" en el menú superior y la opción "Contraseña olvidada" en la página de inicio de sesión. Si se establece en false, estas opciones se mostrarán.
       hideLogoutButtonNote: Cambiar a "true" para ocultar la opción de logout.
@@ -326,6 +331,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     usernameRequiredMsg: Por favor ingrese nombre de usuario.
     value: Valor
   applicationMenuHeader:
+    ThemeSwitcher: Cambiador de temas
     adminSettings: Configuración de administrador
     changePassword: Cambiar contraseña
   caseDetails:
@@ -423,6 +429,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processChatIsCreated: 'Chat de grupo: {0} ha sido creado'
     processChatWasCreated: 'Chat de grupo: {0} ya ha sido creado. No puede crear otro chat.'
     selectedAssignees: Usuarios seleccionados
+    toggleChat: Panel de chat
     typeMessage: Escriba su texto aquí…
     viewParticipant: Mostrar participantes
   common:
@@ -755,6 +762,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       taskDescriptionNotAvailable: '[No hay descripción disponible]'
       taskNameNotAvailable: '[Nombre de la tarea no disponible]'
     taskView:
+      DeleteFilter: Borrar filtro
       adminFilterSetWarning: Su filtro contiene estados que sólo pueden ser vistos por los administradores.
       appliedFilters: Filtros aplicados
       exportedTasksCasesFileName: AXONIVY_Dataset_Statistics_{0}.{1}
@@ -1208,6 +1216,8 @@ ch.ivy.addon.portalkit.ui.jsf:
         defaultEmptyMessages: No hay tabla de estadísticas para mostrar.
       expiryPeriod: Período de caducidad
       loadingCharts: Por favor espere, los diagramas se están cargando
+      moveLeft: Muévete a la izquierda
+      moveRight: Muévete a la derecha
       notAllowedToCreateChart: Ha cambiado los filtros aplicados. Por favor aplique los filtros.
       other: Otros
       restoreDefaultChart: Si continúa, todos los diagramas hechos por usted serán borrados. Los valores iniciales serán reestablecidos.
@@ -1231,6 +1241,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       chartDetailsHeader: Detalles del gráfico
       chartName: Nombre del gráfico
       chartType: Tipo de gráfico
+      name: Información gráfica
     chartType:
       caseByFinishedTask: Caso por Tarea Terminada
       caseByFinishedTaskDescription: Casos en los que al menos una tarea ha sido finalizada en el tiempo seleccionado
@@ -1565,6 +1576,7 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: ¡No se pudo encontrar el proceso vinculado!
+                  CustomWidgetIFrameTitle: '{0} marco'
                 ProcessWidgetConfiguration:
                   DragAndDropToChangeOrder: Arrastrar y soltar para cambiar el orden.
                   DragAndDropTooltip: Haz clic en vista previa y arrastra y suelta para cambiar el orden
@@ -1584,6 +1596,8 @@ Dialogs:
               ShowBusinessDetails: detalles del negocio
               caseNameNotAvailable: '[Nombre del caso no disponible]'
               defaultEmptyMessage: No hay casos
+            CustomIFrameWidget:
+              CustomWidgetIFrameTitle: Marco de widgets personalizado
             IconSelection:
               IconLinkTooltip: Haga clic para cambiar el icono
             TaskItemDetails:
@@ -1621,6 +1635,11 @@ Dialogs:
               NewsWidgetConfiguration: Configuración del widget de noticias
               NewsWidgetDescription: Este widget comparte información relevante como un News Feed en Axon Ivy.
               NewsWidgetTitle: Widget de noticias
+        layouts:
+          AbstractTaskTemplate:
+            CaseDetailsIFrameTitle: Detalles del caso marco
+          IFrameTaskTemplate:
+            TaskIFrameTitle: Marco de tareas
   components:
     CaseDocument:
       FileDate: Modificado el
@@ -1733,6 +1752,7 @@ Labels:
   AdhocWorkflow: Describe tu Flujo de Trabajo
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
+  EditDescription: Editar descripción
   Enums:
     GlobalSearchScopeCategory:
       CASES: Casos
@@ -1758,6 +1778,8 @@ Labels:
   Task: Tarea
   TaskItemDetail: Detalles de la tarea
   TaskUser-Explain: Lista de usuario separados por coma
+  Toggle: cambiar la visibilidad
+  ToggleMenu: Menú alternativo
   adhocTaskRequired: Deberá agregar al menos una tarea.
   disabledUserPrefix: (inactivo)
   title: Flujo de trabajo Ad-hoc de auto servicio

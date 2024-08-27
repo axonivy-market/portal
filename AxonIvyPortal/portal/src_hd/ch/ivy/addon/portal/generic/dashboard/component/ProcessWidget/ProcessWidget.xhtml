@@ -88,7 +88,7 @@
       </h:panelGroup>
 
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noMatchingProcess')}"
-        rendered="#{not cc.attrs.isInConfiguration and displayMode eq 'COMPACT_MODE' and empty widget.displayProcesses}" styleClass="dashboard-processes--empty-message" />
+        rendered="#{displayMode eq 'COMPACT_MODE' and empty widget.displayProcesses}" styleClass="dashboard-processes--empty-message" />
     </h:panelGroup>
   </div>
 </cc:implementation>

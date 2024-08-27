@@ -1605,3 +1605,17 @@ body.in-dialog .ui-widget-overlay {
   float: left;
   display: inline;
 }
+
+.focusable {
+    padding: 10px;
+    border: 1px solid black;
+    margin: 5px;
+    cursor: pointer;
+}
+body.light .focused {
+  outline: 2px solid black;
+}
+
+body.dark .focused {
+  outline: 2px solid white;
+}
