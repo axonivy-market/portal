@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.bean.ExpressResponsible;
@@ -34,6 +35,11 @@ public class GlobalGrowlTest extends BaseTest {
   private static final String CUSTOM_GROWL_URL = "portal-developer-examples/16A7BB2ADC9580A8/start.ivp";
   private static final String SKIP_TASK_LIST_URL = "portal-developer-examples/16FA8B451814E32A/start.ivp";
   
+  @Before
+  public void resetDefaultFormattingLanguage() {
+    resetFormattingLanguage();
+  }
+
   @Test
   public void testDisplayCustomGrowlAfterFinishTask() {
     redirectToRelativeLink(CUSTOM_GROWL_URL);

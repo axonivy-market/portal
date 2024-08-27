@@ -19,6 +19,7 @@ import com.jayway.awaitility.Duration;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import portal.guitest.page.HomePage;
+import portal.guitest.page.UserProfilePage;
 import vn.wawa.guitest.base.client.Browser;
 import vn.wawa.guitest.base.enums.BrowserType;
 
@@ -326,6 +327,13 @@ public class BaseTest {
 
   public void updatePortalSettingToShowLegacyUI() {
     updatePortalSetting(SHOW_LEGACY_UI.getKey(), "true");
+  }
+
+  public void resetFormattingLanguage() {
+    HomePage homePage = new HomePage();
+    UserProfilePage userProfilePage = homePage.openMyProfilePage();
+    userProfilePage.inputFormattingLanguage("English (United Kingdom)");
+    homePage = userProfilePage.save();
   }
 
   protected void showNewDashboard() {

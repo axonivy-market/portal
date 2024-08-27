@@ -13,8 +13,10 @@ import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseDetailsPage;
+import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.TaskWidgetPage;
+import portal.guitest.page.UserProfilePage;
 import portal.guitest.userexamples.page.LeaveRequestPage;
 import portal.guitest.userexamples.page.UserExamplesEndPage;
 
@@ -30,6 +32,10 @@ public class LeaveRequestTest extends BaseTest {
   @Override
   public void setup() {
     super.setup();
+    HomePage homePage = new HomePage();
+    UserProfilePage userProfilePage = homePage.openMyProfilePage();
+    userProfilePage.inputFormattingLanguage("English (United Kingdom)");
+    homePage = userProfilePage.save();
   }
   
   @Test
