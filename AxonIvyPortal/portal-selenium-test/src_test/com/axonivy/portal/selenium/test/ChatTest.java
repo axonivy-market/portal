@@ -22,7 +22,8 @@ import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.codeborne.selenide.WebDriverRunner;
 
 
-@IvyWebTest
+
+@IvyWebTest(headless = false)
 public class ChatTest extends BaseTest {
   private static final String ADMIN1_2 = "admin1-2";
   private static final String ADMIN1_1 = "admin1-1";
@@ -33,17 +34,17 @@ public class ChatTest extends BaseTest {
   private static final String ENABLE_GROUP_CHAT_SETTING = Variable.ENABLE_GROUP_CHAT.getKey();
   private static final String CHAT_MESSAGE_USER_DEMO = "Hi i'm demo user";
   private static final String CHAT_MESSAGE_USER_ADMIN = "Hi i'm admin user";
+  
+  private static final int CHAT_PAGE_DEMO_1_BROWSER = 0;
+  private static final int CHAT_PAGE_DEMO_2_BROWSER = 1;
+  private static final int CHAT_PAGE_ADMIN_1_BROWSER = 2;
+  private static final int CHAT_PAGE_ADMIN_2_BROWSER = 3;
 
   @Override
   @BeforeEach
   public void setup() {
     super.setup();
   }
-
-  // Currently still not have any idea how to open two browser with difference session to test chat between multiple
-  // user
-  // Tests that still not implement
-  // TODO chatGroupMultiTabs, chatGroupOnTwoInstanceOfBrowser
 
   @Test
   public void chatAddGroup() {
@@ -70,9 +71,6 @@ public class ChatTest extends BaseTest {
     assertEquals(2, chatPage.refreshAndCountGroupChat());
   }
 
-/**
- * Note: need more time for this test
- */
   @Test
   public void chatGroupOnTwoInstanceOfBrowser() {
     ChatPage chatPage = enableChatGroup();
@@ -94,10 +92,11 @@ public class ChatTest extends BaseTest {
     chatPage2.openFirstGroupChat();
     chatPage2.sendMessage("from 2 to 1");
 
-    chatPage = getChatGroup(TestAccount.DEMO_USER);
+    chatPage = openChatGroup(TestAccount.DEMO_USER);
     chatPage.waitForPageLoad();
     assertContainMessage(chatPage, "from 2 to 1");
-    chatPage2 = getChatGroup(TestAccount.ADMIN_USER);
+
+    chatPage2 = openChatGroup(TestAccount.ADMIN_USER);
     chatPage2.waitForPageLoad();
     assertContainMessage(chatPage2, "from 1 to 2");
   }
@@ -137,7 +136,7 @@ public class ChatTest extends BaseTest {
   private ChatPage createChatGroup(TestAccount creatorChatGroup, ExpressResponsible... participants) {
     redirectToRelativeLink(createTestingCaseUrlForDefaultAdditionalCaseDetails);
     login(creatorChatGroup);
-    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+//    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPage = new NewDashboardPage().getChat();
     chatPage.waitForPageLoad();
     // Create chat group via task
@@ -191,7 +190,7 @@ public class ChatTest extends BaseTest {
 
   private ChatPage getChatGroup(TestAccount chatUser) {
     login(chatUser);
-    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+//    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     return new NewDashboardPage().getChat();
   }
 

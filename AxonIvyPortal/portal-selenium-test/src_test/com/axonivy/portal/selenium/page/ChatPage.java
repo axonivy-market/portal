@@ -94,6 +94,11 @@ public class ChatPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector(".js-close-message-list"), true);
     waitForElementClickableThenClick(By.cssSelector(".js-close-message-list"));
   }
+  
+  public void switchToBrowser(int index) {
+    Object[] windowHandles = driver.getWindowHandles().toArray();
+    driver.switchTo().window((String) windowHandles[index]);
+  }
 
   public void isNotificationBadgeChat() {
     waitForElementDisplayed(By.cssSelector("a.notification-badge"), true);
