@@ -137,15 +137,13 @@ public class TaskFilterTest extends BaseTest {
      * so I do it to buy some time for the rendering
      */
     taskWidgetPage.filterTasksBy("Maternity");
-    homePage.clickOnLogo();
-    new TaskWidgetPage().expand();
+    taskWidgetPage.waitTillOnlyOneTaskAppear();
     System.out.println("AXON NOTE");
     System.out.println(taskWidgetPage.countTasks().size());
     assertEquals(1, taskWidgetPage.countTasks().size());
 
     taskWidgetPage.filterTasksBy("Sick Leave Request Description");
-    homePage.clickOnLogo();
-    new TaskWidgetPage().expand();
+    taskWidgetPage.waitTillOnlyOneTaskAppear();
     System.out.println("AXON NOTE");
     System.out.println(taskWidgetPage.countTasks().size());
     assertEquals(1, taskWidgetPage.countTasks().size());
@@ -349,6 +347,7 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.saveFilter(filterName);
 
     login(TestAccount.DEMO_USER);
+    taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
     assertTrue(taskWidgetPage.getFilterName().contains("Default filter"));
 
