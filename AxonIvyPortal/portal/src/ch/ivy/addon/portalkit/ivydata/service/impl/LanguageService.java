@@ -59,7 +59,11 @@ public class LanguageService implements ILanguageService {
   }
 
   public String getUserLanguage() {
-    return loadLanguage(IUser::getLanguage);
+    String languageTag = loadLanguage(IUser::getLanguage);
+    if (languageTag == StringUtils.EMPTY) {
+    return getDefaultLanguage().toLanguageTag();
+    }
+    return languageTag;
   }
   
   public String getUserFormatLanguage() {
@@ -73,9 +77,6 @@ public class LanguageService implements ILanguageService {
     } else {
       Locale apply = userLocaleLoader.apply(Ivy.session().getSessionUser());
       languageTag = Objects.nonNull(apply) ? apply.toLanguageTag() : languageTag;
-      if (languageTag == StringUtils.EMPTY) {
-        return getDefaultLanguage().toLanguageTag();
-      }
     }
     return languageTag;
   }
