@@ -271,7 +271,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST,
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST_NO_RESPONSIBLE,
         TEST_FOR_IVYPORTAL_3369);
 
     backToNewDashboardPage();
@@ -288,7 +288,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST,
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST_NO_RESPONSIBLE,
         TEST_FOR_IVYPORTAL_3369);
 
     backToNewDashboardPage();
@@ -305,7 +305,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     createCategoriedLeaveRequestTask();
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST,
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST_NO_RESPONSIBLE,
         TEST_FOR_IVYPORTAL_3369);
 
     backToNewDashboardPage();
@@ -341,7 +341,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST,
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST_NO_RESPONSIBLE,
         TEST_FOR_IVYPORTAL_3369);
 
     backToNewDashboardPage();
@@ -358,7 +358,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST,
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST_NO_RESPONSIBLE,
         TEST_FOR_IVYPORTAL_3369);
 
     backToNewDashboardPage();
@@ -377,7 +377,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST,
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST_NO_RESPONSIBLE,
         TEST_FOR_IVYPORTAL_3369);
 
     backToNewDashboardPage();
