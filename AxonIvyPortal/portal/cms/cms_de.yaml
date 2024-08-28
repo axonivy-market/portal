@@ -107,7 +107,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       RUN_TASK: Ausführen der Aufgabe
     DashboardCustomWidgetType:
       EXTERNAL_URL: Externe URL
-      PROCESS: Axon Ivy Prozess
+      PROCESS: Benutzerdefinierter Dashboard-Widget-Prozess
     DashboardWidgetType:
       CASE: Vorfall-Widget
       CUSTOM: Benutzerdefiniertes Widget
