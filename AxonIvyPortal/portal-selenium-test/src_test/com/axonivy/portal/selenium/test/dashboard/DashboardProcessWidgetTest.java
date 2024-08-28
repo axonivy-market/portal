@@ -37,6 +37,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
   private static final String LEAVE_REQUEST_TEST_FOR_IVYPORTAL_3369 = "Leave Request Test For IVYPORTAL-3369";
   private static final String TEST_FOR_IVYPORTAL_3369 = "Test for IVYPORTAL-3369";
   private static final String CATEGORIED_LEAVE_REQUEST = "Categoried Leave Request";
+  private static final String CATEGORIED_LEAVE_REQUEST_NO_RESPONSIBLE = "Categoried Leave Request with no Responsible";
   private static final String PROCESS_WITH_PROCESS_STEPS = "Process With Process Steps";
   private static final String SHOWCASE = "Showcase";
   private static final String SHOWCASE_APPLICATION = "Showcase Application";
@@ -188,7 +189,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.previewCombinedModeProcess(CATEGORIED_LEAVE_REQUEST, TEST_FOR_IVYPORTAL_3369);
+    editProcessWidgetConfiguration.previewCombinedModeProcess(CATEGORIED_LEAVE_REQUEST_NO_RESPONSIBLE, TEST_FOR_IVYPORTAL_3369);
     editProcessWidgetConfiguration.getStartButton().is(Condition.disabled);
 
     editProcessWidgetConfiguration.getSelectedTasksTab().shouldBe(Condition.appear);
