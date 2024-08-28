@@ -2,7 +2,6 @@ package portal.guitest.test;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -48,11 +47,6 @@ public class LanguageSettingTest extends BaseTest {
     userProfilePage.save();
     mainMenuPage = userProfilePage.openMainMenu();
     assertEquals("Processes", mainMenuPage.getProcessMenuItemText());
-  }
-
-  @After
-  public void resetDefaultFormattingLanguage() {
-    resetFormattingLanguage();
   }
 
   private void createTestData() {
