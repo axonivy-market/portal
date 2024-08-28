@@ -125,6 +125,8 @@ public class TaskFilterTest extends BaseTest {
 
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
+    System.out.println("AXON NOTE");
+    System.out.println(taskWidgetPage.countTasks().size());
     assertEquals(3, taskWidgetPage.countTasks().size());
 
     /**
@@ -137,11 +139,15 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.filterTasksBy("Maternity");
     homePage.clickOnLogo();
     new TaskWidgetPage().expand();
+    System.out.println("AXON NOTE");
+    System.out.println(taskWidgetPage.countTasks().size());
     assertEquals(1, taskWidgetPage.countTasks().size());
 
     taskWidgetPage.filterTasksBy("Sick Leave Request Description");
     homePage.clickOnLogo();
     new TaskWidgetPage().expand();
+    System.out.println("AXON NOTE");
+    System.out.println(taskWidgetPage.countTasks().size());
     assertEquals(1, taskWidgetPage.countTasks().size());
   }
    
@@ -228,6 +234,7 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.openSavedFilters(filterResponsible);
 
     String responsible = taskWidgetPage.getResponsible();
+    System.out.println("AXON NOTE");
     System.out.println(responsible);
     assertTrue(responsible.contains("Everybody"));
   }
@@ -276,8 +283,8 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.openSavedFilters(filterMaternity);
     String responsible = taskWidgetPage.getResponsible();
 
+    System.out.println("AXON NOTE");
     System.out.println(responsible);
-    System.out.println(responsible.contains("Everybody"));
     assertTrue(responsible.contains("Everybody"));
   }
 
@@ -347,6 +354,7 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.filterByCustomerName("Anh");
     taskWidgetPage.saveFilter(filterName);
 
+    System.out.println("AXON NOTE");
     System.out.println(filterName);
     System.out.println(taskWidgetPage.getFilterName());
     assertEquals(filterName, taskWidgetPage.getFilterName());

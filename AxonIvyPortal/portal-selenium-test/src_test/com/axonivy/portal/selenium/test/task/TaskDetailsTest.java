@@ -242,11 +242,22 @@ public class TaskDetailsTest extends BaseTest {
     homePage = new HomePage();
 
     openDelayTask();
-    assertEquals(TaskState.DELAYED.getValue(),taskDetailsPage.getTaskState());
+    System.out.println("Axon NOTE");
+    System.out.println(taskDetailsPage.getTaskState());
+    assertEquals(TaskState.DELAYED.getValue(), taskDetailsPage.getTaskState());
     taskDetailsPage.openActionPanel();
+
+    System.out.println("Axon NOTE");
+    System.out.println(taskDetailsPage.isClearDelayTimeDisplayed());
     assertTrue(taskDetailsPage.isClearDelayTimeDisplayed());
     taskDetailsPage.clickOnClearDelayTime();
-    assertEquals(TaskState.SUSPENDED.getValue(),taskDetailsPage.getTaskState());
+
+    System.out.println("Axon NOTE");
+    System.out.println(taskDetailsPage.getTaskState());
+    assertEquals(TaskState.SUSPENDED.getValue(), taskDetailsPage.getTaskState());
+
+    System.out.println("Axon NOTE");
+    System.out.println(taskDetailsPage.getTaskDelayTime());
     assertEquals("N/A", taskDetailsPage.getTaskDelayTime());
   }
 
