@@ -41,6 +41,7 @@ public class AiToolUtils {
 
   private static final String DEFAULT_AI_WIDGET_ID = "ai-result";
   private static final String DEFAULT_MAX_WIDTH_STYLE = "max-width: 150px;";
+  private static final String DEFAULT_NAME_MIN_WITH_STYLE = "min-width: 200px;";
 
   public static TaskDashboardWidget convertIvyToolToTaskDashboardWidget(
       String name, String description, String priority, String state,
@@ -66,6 +67,7 @@ public class AiToolUtils {
         if (StringUtils.isNotBlank(name)) {
           result.getFilters().add(initTaskNameFilter(name));
         }
+        col.setStyle(DEFAULT_NAME_MIN_WITH_STYLE);
       }
       case DESCRIPTION -> {
         if (StringUtils.isNotBlank(description)) {
