@@ -135,7 +135,6 @@ public class CaseMapPage extends TemplatePage {
   public String getValidationMsg() {
     $(".ui-messages-error-summary").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     List<SelenideElement> messages = $$(".ui-messages-error-summary");
-    System.out.println("Size: " + messages.size());
     return StringUtils.join(messages.stream().map(SelenideElement::getText).collect(Collectors.toList()), ",");
   }
   

@@ -27,7 +27,6 @@ public class HomePageTaskQueryCustomizationTest extends BaseTest {
     redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
 
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    System.out.println("NOTE: URL currently: " + taskWidgetPage.getURL());
     assertEquals(1, taskWidgetPage.countTasks().size());
   }
 }

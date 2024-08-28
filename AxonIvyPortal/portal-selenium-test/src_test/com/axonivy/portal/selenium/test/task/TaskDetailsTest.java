@@ -237,6 +237,7 @@ public class TaskDetailsTest extends BaseTest {
   @Test
   public void testClearTheDelayTimestampOfTask() {
     updateLegacyUIConfiguration();
+    login(TestAccount.DEMO_USER);
     createTestingTasks();
     homePage = new HomePage();
 

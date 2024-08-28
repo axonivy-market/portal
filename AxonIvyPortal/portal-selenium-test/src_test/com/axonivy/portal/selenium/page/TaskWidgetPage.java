@@ -827,8 +827,10 @@ public class TaskWidgetPage extends TemplatePage {
   public void filterByDescription(String text) {
     $("button[id$='description-filter:filter-open-form:advanced-filter-command']").shouldBe(getClickableCondition())
         .click();
+    waitForAjaxIndicatorDisplayNone();
     $("input[id$='description-filter:filter-input-form:description']").sendKeys(text);
     $("button[id$='description-filter:filter-input-form:update-command']").shouldBe(getClickableCondition()).click();
+    waitForAjaxIndicatorDisplayNone();
     $("[id$=':description-filter:filter-open-form:advanced-filter-command']").shouldBe(appear, DEFAULT_TIMEOUT)
         .getText().contains(text);
     /**

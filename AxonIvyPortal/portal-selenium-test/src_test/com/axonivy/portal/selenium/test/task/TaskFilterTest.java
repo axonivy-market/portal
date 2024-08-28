@@ -117,7 +117,9 @@ public class TaskFilterTest extends BaseTest {
   @Test
   public void testFilterTask() {
     updateLegacyUIConfiguration();
+    login(TestAccount.DEMO_USER);
     redirectToRelativeLink(createTestingTasksUrl);
+    redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
     HomePage homePage = new HomePage();
     homePage.waitForGlobalGrowlDisappear();
 
@@ -195,8 +197,9 @@ public class TaskFilterTest extends BaseTest {
   @Test
   public void testRemoveResponsibleAndSwitchFilter() {
     updateLegacyUIConfiguration();
+    login(TestAccount.DEMO_USER);
     redirectToRelativeLink(createTestingTasksUrl);
-    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
+    redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
     HomePage homePage = new HomePage();
     homePage.waitForGlobalGrowlDisappear();
     
