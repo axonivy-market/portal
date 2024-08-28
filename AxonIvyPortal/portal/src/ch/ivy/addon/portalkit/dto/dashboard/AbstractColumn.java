@@ -45,6 +45,8 @@ public abstract class AbstractColumn implements Serializable {
   public static final int NORMAL_WIDTH = 120;
   @JsonIgnore
   public static final int EXTRA_WIDTH = 150;
+  @JsonIgnore
+  public static final int LARGE_WIDTH = 200;
 
   @Deprecated(since = "10.0", forRemoval = true)
   @JsonProperty(access = Access.WRITE_ONLY)
@@ -451,13 +453,13 @@ public abstract class AbstractColumn implements Serializable {
   }
 
   @JsonIgnore
-  protected int columnWidthOrDefault() {
+  protected int resolveColumnWidth() {
     return NumberUtils.toInt(this.width, getDefaultColumnWidth());
   }
 
   @JsonIgnore
   protected String initDefaultWidth() {
-    return "width: " + columnWidthOrDefault() + "px";
+    return "width: " + resolveColumnWidth() + "px";
   }
 
   @JsonIgnore
