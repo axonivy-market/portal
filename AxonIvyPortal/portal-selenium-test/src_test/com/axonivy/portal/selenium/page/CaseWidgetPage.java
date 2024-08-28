@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.refresh;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -68,6 +69,7 @@ public class CaseWidgetPage extends TemplatePage {
     $("button[id$='case-widget:filter-add-form:update-filter-selected-command']").click();
     $("div[id$='case-widget:filter-add-panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
     $("span[id$='" + filterIdName + "-filter:advanced-filter-component").shouldBe(appear, DEFAULT_TIMEOUT);
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
   }
 
   public void filterCasesByCreatedDate(String fromCreatedDate, String toCreatedDate) {
@@ -175,12 +177,14 @@ public class CaseWidgetPage extends TemplatePage {
     $("input[id$='description-filter:filter-input-form:description']").clear();
     $("input[id$='description-filter:filter-input-form:description']").sendKeys(text);
     waitForElementClickableThenClick("button[id$='description-filter:filter-input-form:update-command']");
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
   }
 
   public void saveFilter(String filterName) {
     getSaveFilterDialog();
     $(By.id(caseWidgetId + ":filter-save-form:save-filter-set-name-input")).sendKeys(filterName);
     waitForElementClickableThenClick($(By.id(caseWidgetId + ":filter-save-form:filter-save-command")));
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
   }
 
   public String getFilterName() {

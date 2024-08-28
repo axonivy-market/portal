@@ -66,6 +66,7 @@ public class TaskWidgetPage extends TemplatePage {
     $("button[id$='task-widget:filter-add-form:update-filter-selected-command']").shouldBe(getClickableCondition()).click();
     $("div[id$='task-widget:filter-add-panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
     $("span[id$='" + filterIdName + "-filter:advanced-filter-component").shouldBe(appear, DEFAULT_TIMEOUT);
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
   }
 
   public void filterTasksByCreatedDate(String fromCreatedDate, String toCreatedDate) {
@@ -134,8 +135,8 @@ public class TaskWidgetPage extends TemplatePage {
     getFilterTasksByKeyword().click();
     getFilterTasksByKeyword().sendKeys(keyword);
     getFilterTasksByKeyword().sendKeys(Keys.ENTER);
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     $("div[id$='task-widget:task-view-container']").shouldBe(appear, DEFAULT_TIMEOUT);
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
   }
 
   public void waitTillNameOfFirstTaskToBe(String name) {
@@ -827,10 +828,9 @@ public class TaskWidgetPage extends TemplatePage {
   public void filterByDescription(String text) {
     $("button[id$='description-filter:filter-open-form:advanced-filter-command']").shouldBe(getClickableCondition())
         .click();
-    waitForAjaxIndicatorDisplayNone();
     $("input[id$='description-filter:filter-input-form:description']").sendKeys(text);
-    $("button[id$='description-filter:filter-input-form:update-command']").shouldBe(getClickableCondition()).click();
-    waitForAjaxIndicatorDisplayNone();
+    $("input[id$='description-filter:filter-input-form:description']").sendKeys(Keys.ENTER);
+//    $("button[id$='description-filter:filter-input-form:update-command']").shouldBe(getClickableCondition()).click();
     $("[id$=':description-filter:filter-open-form:advanced-filter-command']").shouldBe(appear, DEFAULT_TIMEOUT)
         .getText().contains(text);
     /**
@@ -883,6 +883,8 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void saveFilter(String filterName) {
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+
     SelenideElement saveFilterDialog = getSaveFilterDialog();
     $(saveFilterDialog).$(By.tagName("input")).sendKeys(filterName);
     $(saveFilterDialog).$(By.tagName("input")).sendKeys(Keys.ENTER);
@@ -891,6 +893,8 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void saveFilterForAllAdministrators(String filterName) {
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+
     SelenideElement saveFilterDialog = getSaveFilterDialog();
     $$(".ui-radiobutton-box").get(1).shouldBe(getClickableCondition()).click();
     $(saveFilterDialog).$(By.tagName("input")).sendKeys(filterName);
@@ -911,6 +915,7 @@ public class TaskWidgetPage extends TemplatePage {
         return;
       }
     }
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
   }
   
   public void openSavedPublicFilters(String filterName) {

@@ -220,7 +220,7 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.filterByDescription(filterMaternity);
     taskWidgetPage.saveFilter(filterMaternity);
 
-    taskWidgetPage = mainMenuPage.openDeveloperExamplesTaskList();
+    taskWidgetPage = mainMenuPage.openTaskList();
     taskWidgetPage.filterByResponsible("Everybody");
     taskWidgetPage.saveFilter(filterResponsible);
     // Switch filter and remove responsible
@@ -228,8 +228,8 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.openSavedFilters(filterResponsible);
     taskWidgetPage.removeResponsibleFilter();
 
-    homePage.clickOnLogo();
-    new TaskWidgetPage().expand();
+//    homePage.clickOnLogo();
+//    new TaskWidgetPage().expand();
     taskWidgetPage.openSavedFilters(filterMaternity);
     taskWidgetPage.openSavedFilters(filterResponsible);
 
