@@ -135,8 +135,12 @@ public class TaskWidgetPage extends TemplatePage {
     getFilterTasksByKeyword().click();
     getFilterTasksByKeyword().sendKeys(keyword);
     getFilterTasksByKeyword().sendKeys(Keys.ENTER);
+    /**
+     * I put the key up to let Primefaces trigger the event
+     * key down only not trigger anything
+     */
+    getFilterTasksByKeyword().sendKeys(Keys.UP);
     $("div[id$='task-widget:task-view-container']").shouldBe(appear, DEFAULT_TIMEOUT);
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
   }
 
   public void waitTillNameOfFirstTaskToBe(String name) {

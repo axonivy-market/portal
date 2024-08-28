@@ -259,6 +259,7 @@ public class TaskFilterTest extends BaseTest {
   @Test
   public void testResponsibleWithChangeFilter() {
     updateLegacyUIConfiguration();
+    login(TestAccount.DEMO_USER);
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     HomePage homePage = new HomePage();
@@ -333,6 +334,7 @@ public class TaskFilterTest extends BaseTest {
   @Test
   public void testSaveTaskFilterOnDifferentTaskList() {
     updateLegacyUIConfiguration();
+    login(TestAccount.DEMO_USER);
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     HomePage homePage = new HomePage();
