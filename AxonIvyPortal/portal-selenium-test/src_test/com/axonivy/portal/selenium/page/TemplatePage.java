@@ -563,4 +563,7 @@ public abstract class TemplatePage extends AbstractPage {
     return and("should be clickable", visible, enabled);
   }
   
+  public String getURL() {
+    return driver.getCurrentUrl();
+  }
 }

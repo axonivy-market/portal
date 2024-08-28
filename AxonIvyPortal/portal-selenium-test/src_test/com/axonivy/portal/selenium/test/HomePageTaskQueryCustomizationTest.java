@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
 @IvyWebTest
@@ -18,10 +19,12 @@ public class HomePageTaskQueryCustomizationTest extends BaseTest {
 
   @Test
   public void testShowHideTaskDetailOnExpandedMode() {
-    updateLegacyUIConfiguration();
+    updateGlobalVariable(Variable.SHOW_LEGACY_UI.getKey(), "true");
+    updateGlobalVariable(Variable.SHOW_USER_GUIDE.getKey(), "false");
     redirectToRelativeLink(createTestingTasksUrl);
 
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    System.out.println("NOTE: URL currently: " + taskWidgetPage.getURL());
     assertEquals(1, taskWidgetPage.countTasks().size());
   }
 }
