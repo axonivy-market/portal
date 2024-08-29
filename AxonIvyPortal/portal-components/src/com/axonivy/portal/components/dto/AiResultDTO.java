@@ -6,7 +6,6 @@ public class AiResultDTO {
   private String result;
   private String resultForAI;
   private AIState state;
-  private Boolean isMemory;
 
   public String getResult() {
     return result;
@@ -30,13 +29,5 @@ public class AiResultDTO {
 
   public void setState(AIState state) {
     this.state = state;
-  }
-
-  public Boolean getIsMemory() {
-    return isMemory;
-  }
-
-  public void setIsMemory(Boolean isMemory) {
-    this.isMemory = isMemory;
   }
 }
