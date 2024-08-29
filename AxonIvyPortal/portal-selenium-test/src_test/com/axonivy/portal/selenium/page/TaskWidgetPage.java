@@ -960,17 +960,12 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void filterByCustomerName(String text) {
     $("button[id$='" + taskWidgetId + ":customer-name-filter:filter-open-form:advanced-filter-command']")
-    .shouldBe(getClickableCondition()).click();
-    $("input[id$='customer-name-filter:filter-input-form:customVarChar5']")
-    .sendKeys(text);
-    $("input[id$='customer-name-filter:filter-input-form:customVarChar5']")
-    .sendKeys(Keys.ENTER);
+        .shouldBe(getClickableCondition()).click();
+    $("input[id$='customer-name-filter:filter-input-form:customVarChar5']").sendKeys(text);
+    $("input[id$='customer-name-filter:filter-input-form:customVarChar5']").sendKeys(Keys.ENTER);
     waitForAjaxIndicatorDisplayNone();
-$("input[id$='customer-name-filter:filter-input-form:customVarChar5']")
-.shouldBe(disappear, DEFAULT_TIMEOUT);
-
+    $("input[id$='customer-name-filter:filter-input-form:customVarChar5']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
-
   
   public List<String> getListStateFilterSelection() {
     List<SelenideElement> stateFilterSelectionElementList = $$("label[for*=':state-filter:filter-input-form:state-selection:']");
