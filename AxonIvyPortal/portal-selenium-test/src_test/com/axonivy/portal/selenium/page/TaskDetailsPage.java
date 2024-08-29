@@ -459,8 +459,7 @@ public class TaskDetailsPage extends TemplatePage {
   
   public void clickOnClearDelayTime() {
     $("a[id$=':additional-options:task-clear-delay-command']").shouldBe(getClickableCondition()).click();
-    $("[id$=':additional-options:side-steps-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
-    waitForAjaxIndicatorDisplayNone();
+    $("[id$=':additional-options:side-steps-panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public String getTaskDelayTime() {
