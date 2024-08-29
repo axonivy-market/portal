@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
@@ -40,10 +41,11 @@ public class AiToolUtils {
 
   private static final String DEFAULT_AI_WIDGET_ID = "ai-result";
   private static final String DEFAULT_MAX_WIDTH_STYLE = "max-width: 150px;";
+  private static final String DEFAULT_NAME_MIN_WITH_STYLE = "min-width: 200px;";
 
   public static TaskDashboardWidget convertIvyToolToTaskDashboardWidget(
       String name, String description, String priority, String state,
-      String taskExpiryDateFrom, String taskExpiryDateTo) {
+      String taskExpiryDateFrom, String taskExpiryDateTo, String onlyMyTask) {
 
     TaskDashboardWidget result = DashboardWidgetUtils
         .buildDefaultTaskWidget(DEFAULT_AI_WIDGET_ID, DEFAULT_AI_WIDGET_ID);
@@ -65,6 +67,7 @@ public class AiToolUtils {
         if (StringUtils.isNotBlank(name)) {
           result.getFilters().add(initTaskNameFilter(name));
         }
+        col.setStyle(DEFAULT_NAME_MIN_WITH_STYLE);
       }
       case DESCRIPTION -> {
         if (StringUtils.isNotBlank(description)) {
@@ -90,6 +93,20 @@ public class AiToolUtils {
       }
       default -> {}
       }
+    }
+    
+    if (StringUtils.isNotBlank(onlyMyTask)
+        && BooleanUtils.toBoolean(onlyMyTask)) {
+      DashboardFilter filter = new DashboardFilter();
+      filter.setField(DashboardStandardTaskColumn.RESPONSIBLE.getField());
+      filter.setFilterType(DashboardColumnType.STANDARD);
+
+      FilterField field = TaskFilterFieldFactory
+          .findBy(DashboardStandardTaskColumn.RESPONSIBLE.getField());
+      filter.setFilterField(field);
+      field.addNewFilter(filter);
+      filter.setValues(Arrays.asList(Ivy.session().getSessionUserName()));
+      result.getFilters().add(filter);
     }
 
     result.buildFilterableColumns(columns);
