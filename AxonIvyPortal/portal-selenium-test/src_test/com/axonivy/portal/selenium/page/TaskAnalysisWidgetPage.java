@@ -219,7 +219,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   }
 
   public void loadFilterSet(String filterSetName, boolean isPersonalFilter) {
-    waitPageLoaded();
     waitForElementDisplayed($("a[id$='task-widget:filter-selection-form:filter-name']"), true);
     waitForElementClickableThenClick("a[id$='task-widget:filter-selection-form:filter-name']");
     waitForElementDisplayed(findElementById("task-widget:filter-selection-form:filter-name-overlay-panel"), true);
