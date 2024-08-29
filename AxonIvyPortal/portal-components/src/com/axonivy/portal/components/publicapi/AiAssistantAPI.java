@@ -45,7 +45,6 @@ public class AiAssistantAPI {
   public static AiResultDTO generateErrorAiResult(Throwable error,
       String errorDescription) {
     AiResultDTO result = new AiResultDTO();
-    result.setIsMemory(false);
     result.setResult(errorDescription.concat("\n")
         .concat(ExceptionUtil.getAllMessages(error)));
     result.setState(AIState.ERROR);
@@ -55,7 +54,6 @@ public class AiAssistantAPI {
 
   public static AiResultDTO generateErrorAiResult(String error) {
     AiResultDTO result = new AiResultDTO();
-    result.setIsMemory(false);
     result.setResult(error);
     result.setResultForAI(error);
     result.setState(AIState.ERROR);
@@ -65,7 +63,6 @@ public class AiAssistantAPI {
 
   public static AiResultDTO createSomethingWentWrongError() {
     AiResultDTO result = new AiResultDTO();
-    result.setIsMemory(false);
     result.setResult(Ivy.cms().co("/Labels/AI/Error/SomethingWentWrong"));
     result.setState(AIState.ERROR);
     return result;

@@ -96,7 +96,6 @@ public class AiService {
     }
 
     result.setResultForAI(foundTasksStr);
-    result.setIsMemory(true);
     result.setState(AIState.DONE);
     return result;
   }
@@ -141,7 +140,6 @@ public class AiService {
     }
 
     result.setResultForAI(foundCasesStr);
-    result.setIsMemory(true);
     result.setState(AIState.DONE);
     return result;
   }
@@ -179,7 +177,6 @@ public class AiService {
           .concat(System.lineSeparator());
     }
     result.setResultForAI(foundProcessStr);
-    result.setIsMemory(true);
     result.setState(AIState.DONE);
     return result;
   }
@@ -213,7 +210,6 @@ public class AiService {
       AiResultDTO result = new AiResultDTO();
       result.setResultForAI(foundUsersStr);
       result.setResult(foundUsersStr);
-      result.setIsMemory(true);
       result.setState(AIState.DONE);
       return result;
 
@@ -251,7 +247,6 @@ public class AiService {
     result.setResult(String.format(START_TASK_SUCCESSFULLY_FORMAT,
         foundTask.getName(), Long.toString(foundTask.getId())));
 
-    result.setIsMemory(false);
     result.setState(AIState.DONE);
     return result;
 
@@ -269,7 +264,6 @@ public class AiService {
     }
 
     AiResultDTO result = new AiResultDTO();
-    result.setIsMemory(false);
     updateResultForWebstartableInfo(result, foundProcessOptional.get());
     result.setState(AIState.DONE);
     return result;
@@ -350,7 +344,6 @@ public class AiService {
 
     result.setResultForAI(AiAssistantAPI
         .generateExecutableResult(startLink));
-    result.setIsMemory(true);
     return result;
   }
 }
