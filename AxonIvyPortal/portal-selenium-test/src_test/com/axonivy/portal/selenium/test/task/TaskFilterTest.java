@@ -334,7 +334,7 @@ public class TaskFilterTest extends BaseTest {
     updateLegacyUIConfiguration();
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink(createTestingTasksUrl);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     HomePage homePage = new HomePage();
     homePage.waitForGlobalGrowlDisappear();
     
