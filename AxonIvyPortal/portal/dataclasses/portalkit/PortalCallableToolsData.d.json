@@ -48,5 +48,8 @@
   }, {
     "name" : "parameters",
     "type" : "String"
+  }, {
+    "name" : "onlyMyTask",
+    "type" : "String"
   } ]
 }
