@@ -184,7 +184,6 @@ public class CaseWidgetPage extends TemplatePage {
     getSaveFilterDialog();
     $(By.id(caseWidgetId + ":filter-save-form:save-filter-set-name-input")).sendKeys(filterName);
     waitForElementClickableThenClick($(By.id(caseWidgetId + ":filter-save-form:filter-save-command")));
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
   }
 
   public String getFilterName() {
