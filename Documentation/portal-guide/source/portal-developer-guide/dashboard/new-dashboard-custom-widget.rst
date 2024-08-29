@@ -4,7 +4,7 @@ Configure Custom Widget
 =======================
 
 Portal offers a variety of widgets, such as task, case, and process widgets. But what if you need a widget like a 
-weather widget? Fortunately, the Portal allows you to create custom widgets as well. These custom widgets utilize 
+weather widget? Fortunately, Portal allows you to create custom widgets as well. These custom widgets utilize 
 an IFrame to display content, which you can define. The content can be an Ivy process or the URL of an external 
 webpage.
 
