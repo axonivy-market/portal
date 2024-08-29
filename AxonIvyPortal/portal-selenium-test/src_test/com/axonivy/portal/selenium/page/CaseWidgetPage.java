@@ -292,7 +292,7 @@ public class CaseWidgetPage extends TemplatePage {
     waitForElementClickableThenClick($("button[id$='creator-filter:filter-open-form:advanced-filter-command']"));
     waitForElementDisplayed(
         By.cssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']"), true);
-    findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']")
+    findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']").shouldBe(appear, DEFAULT_TIMEOUT)
         .clear();
     waitForElementClickableThenClick($("button[id$='creator-filter:filter-input-form:update-command']"));
     waitForElementDisplayed($("button[id$='creator-filter:filter-input-form:update-command']"), false);

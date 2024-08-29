@@ -105,6 +105,7 @@ public class CaseFilterTest extends BaseTest {
 
   @Test
   public void testCategory() {
+    login(TestAccount.DEMO_USER);
     CaseWidgetPage casePage = NavigationHelper.navigateToCaseList();
 
     String caseCategoryId = "case-category";
@@ -122,6 +123,7 @@ public class CaseFilterTest extends BaseTest {
 
   @Test
   public void testRemoveResponsibleAndSwitchFilter() {
+    login(TestAccount.DEMO_USER);
     // Prepare 2 filter
     String filterResponsible = "Responsible";
     String filterMaternity = "Maternity";
@@ -150,12 +152,14 @@ public class CaseFilterTest extends BaseTest {
 
   @Test
   public void testDefaultFilter() {
+    login(TestAccount.DEMO_USER);
     CaseWidgetPage casePage = NavigationHelper.navigateToCaseList();
     assertTrue(casePage.getFilterName().contains("Default filter"));
   }
 
   @Test
   public void testNoSelectionWhenChangeFilter() {
+    login(TestAccount.DEMO_USER);
     String filterMaternity = "Maternity";
     CaseWidgetPage casePage = NavigationHelper.navigateToCaseList();
     casePage.openAdvancedFilter("Description", "description");
@@ -169,6 +173,7 @@ public class CaseFilterTest extends BaseTest {
   
   @Test
   public void testSaveCaseFilterOnDifferentCaseList() {
+    login(TestAccount.DEMO_USER);
     MainMenuPage mainMenuPage = new MainMenuPage();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
 
@@ -178,9 +183,12 @@ public class CaseFilterTest extends BaseTest {
     casePage.filterByDescription("Sick");
     casePage.saveFilter(filterName);
 
+    login(TestAccount.DEMO_USER);
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     casePage = mainMenuPage.selectCaseMenu();
 
+    System.out.println("AXON NOTE");
+    System.out.println(casePage.getFilterName());
     assertTrue(casePage.getFilterName().contains("Default filter"));
 
     casePage.filterByDescription("Leave");
@@ -188,6 +196,9 @@ public class CaseFilterTest extends BaseTest {
 
     mainMenuPage.selectTaskMenu();
     casePage = mainMenuPage.openCaseList();
+    System.out.println("AXON NOTE");
+    System.out.println(casePage.getFilterName());
+
     assertEquals(filterName, casePage.getFilterName()); 
   }
 
