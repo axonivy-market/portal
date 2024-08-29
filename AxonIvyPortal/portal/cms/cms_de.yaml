@@ -913,20 +913,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     fullscreenMode: Vollbildmodus
     iconMessage:
       caseWidget:
-        BEACH_PALM_SUNBED: Sie sind großartig - alle Vorgänge sind erledigt. Lehnen Sie sich zurück und genießen Sie.
-        CHARGING_BATTERY_FULL_1: Zurzeit gibt es keine Vorgänge. Zeit, die Batterien ein wenig aufzuladen.
-        COFFEE_OF_HOT: Wahnsinn! Gut gemacht! Alle Vorgänge sind abgeschlossen. Wie wäre es mit einer kurzen Kaffeepause?
-        RANKING_WINNER_MEDAL: Spiel, Satz und Sieg! Du hast es geschafft, alle Vorgänge sind abgeschlossen!
-        SOCCER_PLAYER: Ziel erreicht! Du hast es geschafft, alle Vorgänge sind abgeschlossen. Kurze Halbzeitpause.
-        YOGA_MEDITATE: Gut gemacht! Alle Vorgänge sind erledigt. Einatmen, ausatmen, entspannen.
+        EMPTY_MESSAGE: Aktuell sind keine weiteren Cases vorhanden.
         noCasesFoundWhenFilter: Derzeit gibt es keine Vorgänge nach dem angewandten Filter.
       taskWidget:
-        BEACH_PALM_SUNBED: Sie sind großartig - alle Aufgaben sind erledigt. Lehnen Sie sich zurück und genießen Sie.
-        CHARGING_BATTERY_FULL_1: Derzeit gibt es keine Aufgaben. Zeit, die Batterien ein wenig aufzuladen.
-        COFFEE_OF_HOT: Wahnsinn! Gut gemacht! Alle Aufgaben sind erledigt. Wie wäre es mit einer kurzen Kaffeepause?
-        RANKING_WINNER_MEDAL: Spiel, Satz und Sieg! Du hast es geschafft, alle Aufgaben sind erledigt!
-        SOCCER_PLAYER: Ziel erreicht! Du hast es geschafft, alle Aufgaben sind erledigt. Kurze Halbzeitpause.
-        YOGA_MEDITATE: Gut gemacht! Alle Aufgaben sind erledigt. Einatmen, ausatmen, entspannen.
+        EMPTY_MESSAGE: Aktuell sind keine weiteren Aufgaben vorhanden.
         noTasksFoundWhenFilter: Derzeit gibt es keine Aufgaben nach dem angewandten Filter.
     loading: Laden...
     noCategory: Es gibt keine Kategorien
