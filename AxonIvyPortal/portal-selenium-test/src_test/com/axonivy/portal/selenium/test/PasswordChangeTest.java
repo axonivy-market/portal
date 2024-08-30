@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.ChangePasswordPage;
 import com.axonivy.portal.selenium.page.LoginPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -22,6 +23,7 @@ public class PasswordChangeTest extends BaseTest {
 
   @Test
   public void passwordChangeTest() {
+    updateGlobalVariable(Variable.SHOW_LEGACY_UI.getKey(), "false");
     NewDashboardPage newDashboardPage = new NewDashboardPage();
 
     String newPassword = "abc";
