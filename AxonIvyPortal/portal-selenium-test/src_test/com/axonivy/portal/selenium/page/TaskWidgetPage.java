@@ -908,6 +908,7 @@ public class TaskWidgetPage extends TemplatePage {
     for (SelenideElement filter : saveFilters) {
       if (filter.getText().equals(filterName)) {
         $(filter).shouldBe(getClickableCondition()).click();
+        $("div[id$=':filter-name-overlay-panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
         $(".filter-name").shouldHave(text(filterName), DEFAULT_TIMEOUT);
         return;
       }
