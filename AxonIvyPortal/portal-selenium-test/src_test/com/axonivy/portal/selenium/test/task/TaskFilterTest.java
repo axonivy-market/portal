@@ -256,7 +256,6 @@ public class TaskFilterTest extends BaseTest {
   }
   
   @Test
-  @RepeatedTest(10)
   public void testResponsibleWithChangeFilter() {
     updateLegacyUIConfiguration();
     login(TestAccount.DEMO_USER);
@@ -274,24 +273,22 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.expand();
     taskWidgetPage.openAdvancedFilter("Description", "description");
     taskWidgetPage.filterByResponsible("Everybody");
-    System.out.println("AXON NOTE, filter maternity");
-    System.out.println(taskWidgetPage.getURL());
     taskWidgetPage.filterByDescription(filterMaternity);
     taskWidgetPage.saveFilter(filterMaternity);
+    taskWidgetPage.openSavedFilters(filterMaternity);
+    taskWidgetPage.waitForDesiredResponsibleRendered("Responsible: \"Everybody (Everybody)\"");
 
-    taskWidgetPage = mainMenuPage.openDeveloperExamplesTaskList();
+    mainMenuPage.clickOnLogo();
+    taskWidgetPage.expand();
     taskWidgetPage.filterByResponsible("Demo");
-    System.out.println("AXON NOTE, filter responsible");
-    System.out.println(taskWidgetPage.getURL());
     taskWidgetPage.saveFilter(filterResponsible);
+    taskWidgetPage.waitForDesiredResponsibleRendered("Responsible: \"Portal Demo User (demo)\"");
+
     // Change filter and verify responsible changed
     taskWidgetPage.openSavedFilters(filterMaternity);
     taskWidgetPage.waitForDesiredResponsibleRendered("Responsible: \"Everybody (Everybody)\"");
-    String responsible = taskWidgetPage.getResponsible();
 
-    System.out.println("AXON NOTE");
-    System.out.println(responsible);
-    System.out.println(taskWidgetPage.getURL());
+    String responsible = taskWidgetPage.getResponsible();
     assertTrue(responsible.contains("Everybody"));
   }
 
