@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
@@ -255,6 +256,7 @@ public class TaskFilterTest extends BaseTest {
   }
   
   @Test
+  @RepeatedTest(10)
   public void testResponsibleWithChangeFilter() {
     updateLegacyUIConfiguration();
     login(TestAccount.DEMO_USER);
@@ -273,12 +275,14 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.openAdvancedFilter("Description", "description");
     taskWidgetPage.filterByResponsible("Everybody");
     System.out.println("AXON NOTE, filter maternity");
+    System.out.println(taskWidgetPage.getURL());
     taskWidgetPage.filterByDescription(filterMaternity);
     taskWidgetPage.saveFilter(filterMaternity);
 
     taskWidgetPage = mainMenuPage.openDeveloperExamplesTaskList();
     taskWidgetPage.filterByResponsible("Demo");
     System.out.println("AXON NOTE, filter responsible");
+    System.out.println(taskWidgetPage.getURL());
     taskWidgetPage.saveFilter(filterResponsible);
     // Change filter and verify responsible changed
     taskWidgetPage.openSavedFilters(filterMaternity);
@@ -287,6 +291,7 @@ public class TaskFilterTest extends BaseTest {
 
     System.out.println("AXON NOTE");
     System.out.println(responsible);
+    System.out.println(taskWidgetPage.getURL());
     assertTrue(responsible.contains("Everybody"));
   }
 
@@ -348,12 +353,14 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.openAdvancedFilter("Description", "description");
     taskWidgetPage.filterByDescription("Sick");
     taskWidgetPage.saveFilter(filterName);
+    System.out.println(taskWidgetPage.getURL());
 
     login(TestAccount.DEMO_USER);
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
     System.out.println("AXON NOTE, expect Default filter");
     System.out.println(taskWidgetPage.getFilterName());
+    System.out.println(taskWidgetPage.getURL());
     assertTrue(taskWidgetPage.getFilterName().contains("Default filter"));
 
     taskWidgetPage.openAdvancedFilter("Customer name", "customer-name");
@@ -363,6 +370,7 @@ public class TaskFilterTest extends BaseTest {
     System.out.println("AXON NOTE");
     System.out.println(filterName);
     System.out.println(taskWidgetPage.getFilterName());
+    System.out.println(taskWidgetPage.getURL());
     assertEquals(filterName, taskWidgetPage.getFilterName());
   }
 
