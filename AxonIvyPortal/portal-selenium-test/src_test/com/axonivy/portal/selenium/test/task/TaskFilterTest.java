@@ -355,6 +355,7 @@ public class TaskFilterTest extends BaseTest {
     System.out.println(taskWidgetPage.getURL());
 
     login(TestAccount.DEMO_USER);
+    redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
     System.out.println(taskWidgetPage.getURL());
