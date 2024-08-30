@@ -485,21 +485,20 @@ public class TaskDetailsPage extends TemplatePage {
       waitForAjaxIndicatorDisplayNone();
       $("input[id$='group-activator-select_input']").shouldBe(appear);
       $("input[id$='group-activator-select_input']").sendKeys(responsibleName);
-      $("span[id$='group-activator-select_panel']").shouldBe(appear);
+      $("tr[data-item-label='" + responsibleName + "']").shouldBe(appear, DEFAULT_TIMEOUT);
       List<SelenideElement> foundRoles = $$("span[id$='group-activator-select_panel'] .name-after-avatar");
       foundRoles.get(0).shouldBe(getClickableCondition()).click();
     }
     else {
       $("input[id$='user-activator-select_input']").shouldBe(appear);
       $("input[id$='user-activator-select_input']").sendKeys(responsibleName);
-      $("span[id$='user-activator-select_panel']").shouldBe(appear);
+      $("tr[data-item-label='" + responsibleName + "']").shouldBe(appear, DEFAULT_TIMEOUT);
       List<SelenideElement> foundUsers = $$("span[id$='user-activator-select_panel'] .name-after-avatar");
       foundUsers.get(0).shouldBe(getClickableCondition()).click();
     }
     waitForAjaxIndicatorDisplayNone();
     $("button[id$='proceed-task-delegate-command']").shouldBe(getClickableCondition()).click();
-    $("div[id$='task-delegate-dialog']").shouldBe(appear);
-    waitForAjaxIndicatorDisplayNone();
+    $("div[id$='task-delegate-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void addCommentOnTaskDelegationDialog(String comment) {
