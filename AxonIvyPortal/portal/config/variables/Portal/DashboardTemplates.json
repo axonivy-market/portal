@@ -1,6 +1,6 @@
 [
   {
-    "version": "11.4",
+    "version": "11.4.0",
     "id": "default-portal-dashboard-template",
     "titles": [
       {
@@ -351,7 +351,7 @@
     }
   },
   {
-    "version": "11.4",
+    "version": "11.4.0",
     "id": "two-task-widget-dashboard-template",
     "titles": [
       {
