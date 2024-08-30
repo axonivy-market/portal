@@ -882,13 +882,12 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void saveFilter(String filterName) {
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-
     SelenideElement saveFilterDialog = getSaveFilterDialog();
     $(saveFilterDialog).$(By.tagName("input")).sendKeys(filterName);
     $(saveFilterDialog).$(By.tagName("input")).sendKeys(Keys.ENTER);
     waitForAjaxIndicatorDisplayNone();
     $(saveFilterDialog).$(By.tagName("input")).shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("form[id='task-widget:filter-selection-form']").$("a[id$=':filter-name']").shouldHave(text(filterName), DEFAULT_TIMEOUT);
   }
 
   public void saveFilterForAllAdministrators(String filterName) {
@@ -905,7 +904,6 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void openSavedFilters(String filterName) {
     $("a[id$='task-widget:filter-selection-form:filter-name']").shouldBe(getClickableCondition()).click();
-//    $("span[id$='private-filters']").shouldBe(appear, DEFAULT_TIMEOUT);
     List<SelenideElement> saveFilters = $$("a[id$='user-defined-filter']");
     for (SelenideElement filter : saveFilters) {
       if (filter.getText().equals(filterName)) {
@@ -914,7 +912,6 @@ public class TaskWidgetPage extends TemplatePage {
         return;
       }
     }
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
   }
   
   public void openSavedPublicFilters(String filterName) {
@@ -949,6 +946,12 @@ public class TaskWidgetPage extends TemplatePage {
     $("button[id$='responsible-filter:filter-open-form:advanced-filter-command']").shouldBe(appear, DEFAULT_TIMEOUT);
     return $("button[id$='responsible-filter:filter-open-form:advanced-filter-command'] > span")
         .shouldBe(appear, DEFAULT_TIMEOUT).getText();
+  }
+  
+  public void waitForDesiredResponsibleRendered(String desiredResponsible) {
+    $("button[id$='responsible-filter:filter-open-form:advanced-filter-command']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("button[id$='responsible-filter:filter-open-form:advanced-filter-command'] > span")
+        .shouldHave(text(desiredResponsible), DEFAULT_TIMEOUT);
   }
   
   public boolean isExistedFilter(String filterName) {

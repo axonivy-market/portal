@@ -272,14 +272,17 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.expand();
     taskWidgetPage.openAdvancedFilter("Description", "description");
     taskWidgetPage.filterByResponsible("Everybody");
+    System.out.println("AXON NOTE, filter maternity");
     taskWidgetPage.filterByDescription(filterMaternity);
     taskWidgetPage.saveFilter(filterMaternity);
 
     taskWidgetPage = mainMenuPage.openDeveloperExamplesTaskList();
     taskWidgetPage.filterByResponsible("Demo");
+    System.out.println("AXON NOTE, filter responsible");
     taskWidgetPage.saveFilter(filterResponsible);
     // Change filter and verify responsible changed
     taskWidgetPage.openSavedFilters(filterMaternity);
+    taskWidgetPage.waitForDesiredResponsibleRendered("Responsible: \"Everybody (Everybody)\"");
     String responsible = taskWidgetPage.getResponsible();
 
     System.out.println("AXON NOTE");
@@ -349,6 +352,8 @@ public class TaskFilterTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
+    System.out.println("AXON NOTE, expect Default filter");
+    System.out.println(taskWidgetPage.getFilterName());
     assertTrue(taskWidgetPage.getFilterName().contains("Default filter"));
 
     taskWidgetPage.openAdvancedFilter("Customer name", "customer-name");
