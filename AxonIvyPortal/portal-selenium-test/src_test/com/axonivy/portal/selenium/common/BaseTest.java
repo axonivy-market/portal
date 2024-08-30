@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.common;
 
 import static com.codeborne.selenide.Condition.exist;
+
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.refresh;
@@ -17,8 +18,6 @@ import org.openqa.selenium.WindowType;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.ivy.webtest.engine.EngineUrl;
-import com.axonivy.portal.selenium.page.NewDashboardPage;
-import com.axonivy.portal.selenium.page.UserProfilePage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -347,13 +346,6 @@ public class BaseTest {
     redirectToRelativeLink(String.format(createJSonFileUrl, filepath, key));
   }
   
-  public void resetFormattingLanguage() {
-    NewDashboardPage newDashboardPage = new NewDashboardPage();
-    UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
-    userProfilePage.inputFormattingLanguage("English (United Kingdom)");
-    newDashboardPage = userProfilePage.save();
-  }
-
   protected void showNewDashboard() {
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
   }
