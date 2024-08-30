@@ -902,12 +902,10 @@ public class TaskWidgetPage extends TemplatePage {
 
 
   public void openSavedFilters(String filterName) {
-    System.out.println("AXON NOTE - opening filter: " + filterName);
     $("a[id$='task-widget:filter-selection-form:filter-name']").shouldBe(getClickableCondition()).click();
 
     List<SelenideElement> saveFilters = $$("a[id$='user-defined-filter']");
     for (SelenideElement filter : saveFilters) {
-      System.out.println("Filter list - filter name : " + filter.getText());
       if (filter.getText().equals(filterName)) {
         $(filter).shouldBe(getClickableCondition()).click();
         $(".filter-name").shouldHave(text(filterName), DEFAULT_TIMEOUT);
