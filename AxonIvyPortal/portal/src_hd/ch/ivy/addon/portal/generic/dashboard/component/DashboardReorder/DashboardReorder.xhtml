@@ -83,7 +83,7 @@
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/visible')}" width="150"
           styleClass="u-text-align-center">
-          <p:commandLink id="toggle-visibility" styleClass="ui-selectbooleancheckbox ui-chkbox ui-widget"
+          <p:commandLink id="toggle-visibility" styleClass="ui-selectbooleancheckbox ui-chkbox ui-widget" ariaLabel="#{ivy.cms.co('/Labels/Toggle')}"
             actionListener="#{dashboardReorderBean.handleActivation(dashboard)}" update="dashboard-table" process="@this">
             <h:panelGroup id="visible-state" rendered="#{dashboard.visible}"
               class="ui-chkbox-box ui-widget ui-corner-all ui-state-default ui-state-active">
