@@ -343,6 +343,7 @@ public class TaskFilterTest extends BaseTest {
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     HomePage homePage = new HomePage();
     homePage.waitForGlobalGrowlDisappear();
+    System.out.println(homePage.getURL());
     
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
@@ -356,8 +357,6 @@ public class TaskFilterTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
-    System.out.println("AXON NOTE, expect Default filter");
-    System.out.println(taskWidgetPage.getFilterName());
     System.out.println(taskWidgetPage.getURL());
     assertTrue(taskWidgetPage.getFilterName().contains("Default filter"));
 
@@ -365,9 +364,6 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.filterByCustomerName("Anh");
     taskWidgetPage.saveFilter(filterName);
 
-    System.out.println("AXON NOTE");
-    System.out.println(filterName);
-    System.out.println(taskWidgetPage.getFilterName());
     System.out.println(taskWidgetPage.getURL());
     assertEquals(filterName, taskWidgetPage.getFilterName());
   }
