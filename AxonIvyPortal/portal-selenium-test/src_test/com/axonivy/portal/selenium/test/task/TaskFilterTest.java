@@ -282,6 +282,7 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.expand();
     taskWidgetPage.filterByResponsible("Demo");
     taskWidgetPage.saveFilter(filterResponsible);
+    taskWidgetPage.openSavedFilters(filterResponsible);
     taskWidgetPage.waitForDesiredResponsibleRendered("Responsible: \"Portal Demo User (demo)\"");
 
     // Change filter and verify responsible changed
