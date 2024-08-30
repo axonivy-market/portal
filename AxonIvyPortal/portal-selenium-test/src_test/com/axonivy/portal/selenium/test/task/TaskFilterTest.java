@@ -263,6 +263,7 @@ public class TaskFilterTest extends BaseTest {
     redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     HomePage homePage = new HomePage();
     homePage.waitForGlobalGrowlDisappear();
+    System.out.println(homePage.getURL());
     
     // Prepare 2 filter
     String filterResponsible = "Responsible";
@@ -275,6 +276,7 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.filterByResponsible("Everybody");
     taskWidgetPage.filterByDescription(filterMaternity);
     taskWidgetPage.saveFilter(filterMaternity);
+    System.out.println(homePage.getURL());
     taskWidgetPage.openSavedFilters(filterMaternity);
     taskWidgetPage.waitForDesiredResponsibleRendered("Responsible: \"Everybody (Everybody)\"");
 
@@ -282,6 +284,7 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.expand();
     taskWidgetPage.filterByResponsible("Demo");
     taskWidgetPage.saveFilter(filterResponsible);
+    System.out.println(homePage.getURL());
     taskWidgetPage.openSavedFilters(filterResponsible);
     taskWidgetPage.waitForDesiredResponsibleRendered("Responsible: \"Portal Demo User (demo)\"");
 
@@ -289,6 +292,7 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.openSavedFilters(filterMaternity);
     taskWidgetPage.waitForDesiredResponsibleRendered("Responsible: \"Everybody (Everybody)\"");
 
+    System.out.println(homePage.getURL());
     String responsible = taskWidgetPage.getResponsible();
     assertTrue(responsible.contains("Everybody"));
   }
