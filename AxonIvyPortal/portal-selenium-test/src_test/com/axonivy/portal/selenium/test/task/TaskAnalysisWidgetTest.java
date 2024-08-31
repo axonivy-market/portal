@@ -222,11 +222,10 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     addFilters(taskAnalysisWidgetPage);
     taskAnalysisWidgetPage.saveFilterSet(filterSetName, false);
     taskAnalysisWidgetPage.countSavedFilter(2);
-    statisticWidgetPage = taskAnalysisWidgetPage.navigateToStatisticPage();
-    TaskAnalysisWidgetPage secondTaskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
-    secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, false);
-    secondTaskAnalysisWidgetPage.waitForTaskDataChangeToSpecificSize(1);
-    List<WebElement> resultCells = secondTaskAnalysisWidgetPage.getRowsInTaskTable().get(0)
+    refreshPage();
+    taskAnalysisWidgetPage.loadFilterSet(filterSetName, false);
+    taskAnalysisWidgetPage.waitForTaskDataChangeToSpecificSize(1);
+    List<WebElement> resultCells = taskAnalysisWidgetPage.getRowsInTaskTable().get(0)
         .findElements(By.cssSelector("td:not([class='ui-helper-hidden'])"));
     assertTrue(resultCells.get(0).getText().toLowerCase().contains("request"));
     assertTrue(resultCells.get(1).getText().equals("RUNNING"));
@@ -241,12 +240,10 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     addFilters(taskAnalysisWidgetPage);
     taskAnalysisWidgetPage.saveFilterSet(filterSetName, true);
     taskAnalysisWidgetPage.countSavedFilter(2);
-    statisticWidgetPage = taskAnalysisWidgetPage.navigateToStatisticPage();
-    TaskAnalysisWidgetPage secondTaskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
-    secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, true);
-    secondTaskAnalysisWidgetPage.waitForTaskDataChangeToSpecificSize(1);
-
-    List<WebElement> resultCells = secondTaskAnalysisWidgetPage.getRowsInTaskTable().get(0)
+    refreshPage();
+    taskAnalysisWidgetPage.loadFilterSet(filterSetName, true);
+    taskAnalysisWidgetPage.waitForTaskDataChangeToSpecificSize(1);
+    List<WebElement> resultCells = taskAnalysisWidgetPage.getRowsInTaskTable().get(0)
         .findElements(By.cssSelector("td:not([class='ui-helper-hidden'])"));
     assertTrue(resultCells.get(0).getText().toLowerCase().contains("request"));
     assertTrue(resultCells.get(1).getText().equals("RUNNING"));
