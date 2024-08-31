@@ -279,8 +279,8 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.openSavedFilters(filterMaternity);
     taskWidgetPage.waitForDesiredResponsibleRendered("Responsible: \"Everybody (Everybody)\"");
 
-    mainMenuPage.clickOnLogo();
-    taskWidgetPage.expand();
+//    mainMenuPage.clickOnLogo();
+//    taskWidgetPage.expand();
     taskWidgetPage.filterByResponsible("Demo");
     taskWidgetPage.saveFilter(filterResponsible);
     taskWidgetPage.openSavedFilters(filterResponsible);
