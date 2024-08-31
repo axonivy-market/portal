@@ -187,7 +187,9 @@ public class CaseFilterTest extends BaseTest {
     casePage.filterByDescription("Sick");
     casePage.saveFilter(filterName);
 
+    login(TestAccount.DEMO_USER);
     redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
+    mainMenuPage = new MainMenuPage();
     casePage = mainMenuPage.selectCaseMenu();
 
     System.out.println("AXON NOTE");
