@@ -48,13 +48,16 @@ function TaskWidget() {
                               - taskViewPadding
                               - compactTaskWidgetPadding - compactProcessWidgetHeight - backlinkHeight;
 
+        var isGlobalSearchResult = $('#search-results-tabview').length > 0;
         if (PortalGlobalSearch.isSearchPageOpened()) {
           availableHeight = availableHeight - PortalGlobalSearch.getAvailableHeight(':task-tab');
         } else {
           needShowScrollbar = (childElements.length * $(childElements[0]).outerHeight(true)||1) > availableHeight;
           if (needShowScrollbar && !isMobileDevices()) {
             PortalLayout.removeLayoutContentPaddingBottom();
-            $('.js-task-list-container').css('margin-right', '-' + PortalLayout.getPaddingRightLayoutContent());
+            if (isGlobalSearchResult) {
+              $('.js-task-list-container').css('margin-right', '-' + PortalLayout.getPaddingRightLayoutContent());
+            }
           }
         }
 
@@ -64,6 +67,7 @@ function TaskWidget() {
           } else {
             availableHeight = availableHeight - PortalLayout.getYPaddingLayoutContent();
             container.outerHeight(availableHeight);
+
           }
           if (container.outerHeight(true) > availableHeight) {
             var taskStartItemMarginRight = $('.task-start-list-item').css("margin-right");
@@ -72,7 +76,15 @@ function TaskWidget() {
               container.css("margin-right", taskStartItemMarginRight);
             }
           }
+          var cardContainerPaddingHeight = 0;
+          if (!isGlobalSearchResult) {
+            var cardContainer = $('.js-task-list-container.task-list-container.card');
+            cardContainerPaddingHeight = parseInt(cardContainer.css('padding-top'), 10) + parseInt(cardContainer.css('padding-bottom'), 10);
+          }
+          container.outerHeight(availableHeight - cardContainerPaddingHeight);
         }
+        console.log(container.outerHeight(true));
+
 
         // show mobile title after calculate
         if (mobileTitle.length > 0) {

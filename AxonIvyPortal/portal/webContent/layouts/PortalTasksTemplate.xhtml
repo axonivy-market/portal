@@ -15,7 +15,7 @@
     <ui:param name="announcementContainerStyleClass" value="announcement-container-in-task-list" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</ui:define>
     <ui:define name="pageContent">
-    <div class="task-list-container js-task-list-container">
+    <div class="task-list-container js-task-list-container card">
       <div>
         <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" keyword="#{taskView.dataModel.criteria.keyword}"
           hideTaskFilter="#{taskView.hideTaskFilter}" dataModel="#{taskView.dataModel}" filterGroupId="#{filterGroupId}"

@@ -46,18 +46,26 @@ function CaseWidget() {
                               - (caseWidgetSortMenuContainer.outerHeight(true) || 0)
                               - (announcementMessageContainer.outerHeight(true) || 0) - layoutContentMarginPadding - backlinkHeight;
 
+        var isGlobalSearchResult = $('#search-results-tabview').length > 0;
         if (PortalGlobalSearch.isSearchPageOpened()) {
           availableHeight = availableHeight - PortalGlobalSearch.getAvailableHeight(':task-tab');
         } else {
           needShowScrollbar = (childElements.length * $(childElements[0]).outerHeight(true) || 1) > availableHeight;
           if (needShowScrollbar && !isMobileDevices()) {
             PortalLayout.removeLayoutContentPaddingBottom();
-            $('.js-case-default-widget-container').css('margin-right', '-' + PortalLayout.getPaddingRightLayoutContent());
+            if (isGlobalSearchResult) {
+              $('.js-case-default-widget-container').css('margin-right', '-' + PortalLayout.getPaddingRightLayoutContent());
+            }
           }
         }
 
         if (!!availableHeight) {
-          container.outerHeight(availableHeight);
+          var cardContainerPaddingHeight = 0;
+          if (!isGlobalSearchResult) {
+            var cardContainer = $('.js-case-default-widget-container .case-main-container.card');
+            cardContainerPaddingHeight = parseInt(cardContainer.css('padding-top'), 10) + parseInt(cardContainer.css('padding-bottom'), 10);
+          }
+          container.outerHeight(availableHeight - cardContainerPaddingHeight);
         }
 
         // show mobile title after calculate
