@@ -36,7 +36,7 @@ public class DashboardCustomAndProcessWigetTest extends BaseTest {
     newDashboardDetailsEditPage.addWidget();
     CustomWidgetNewDashBoardPage customWidgetNewDashBoardPage =
         newDashboardDetailsEditPage.addNewCustomrWidget();
-    customWidgetNewDashBoardPage.selectWidgetType("Axon Ivy process");
+    customWidgetNewDashBoardPage.selectWidgetType("Custom Dashboard Widget Process");
     customWidgetNewDashBoardPage.selectProcess(PROCESS_NAME);
     customWidgetNewDashBoardPage.getProcessList().shouldHave(size(1));
   }

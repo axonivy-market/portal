@@ -141,6 +141,10 @@
   margin-right: 15px;
 }
 
+.widget__header-actions {
+  display: flex;
+}
+
 .widget__header-title {
   flex: 1;
   display: inline-block;
@@ -1612,6 +1616,17 @@ span.new-widget-dialog__icon.si {
   .widget-header-quick-search {
     display: none;
   }
+}
+
+@container grid-stack-item (min-width: 400px) {
+  .quick-search-icon {
+    display: none;
+  }
+}
+
+.widget-header-quick-search-show {
+  display: grid;
+  width: 100%;
 }
 
 .quick-search-input-tooltip {

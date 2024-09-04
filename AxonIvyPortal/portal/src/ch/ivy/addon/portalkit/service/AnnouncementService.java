@@ -39,7 +39,7 @@ public class AnnouncementService {
   public boolean isDefaultApplicationLanguage(String language) {
     return Sudo.get(
         () -> {
-          Locale content = LanguageService.newInstance().getDefaultEmailLanguage();
+          Locale content = LanguageService.newInstance().getDefaultLanguage();
           return content.getLanguage().equalsIgnoreCase(language);
         });
   }
@@ -82,6 +82,12 @@ public class AnnouncementService {
     return entity;
   }
 
+  public void saveValueChangeAnnouncement(Announcement entity) {
+    Announcement announcement = getPublicConfig();
+    announcement.setContents(entity.getContents());
+    save(announcement);
+  }
+
   public boolean isAnnouncementActivated() {
     Announcement announcement = getAnnouncement();
     return announcement.isEnabled();
@@ -117,7 +123,7 @@ public class AnnouncementService {
 
 
   private String getDefaultEmailLanguage() {
-    return LanguageService.newInstance().getDefaultEmailLanguage().toLanguageTag();
+    return LanguageService.newInstance().getDefaultLanguage().toLanguageTag();
   }
 
   private Announcement getAnnouncement() {

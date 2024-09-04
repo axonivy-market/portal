@@ -466,6 +466,10 @@ public class DashboardBean implements Serializable {
     if (widget instanceof CaseDashboardWidget caseWidget) {
       this.searchScope = getSearchScopeFromWidget(caseWidget.getFilterableColumns());
     }
+
+    if (widget instanceof CompactProcessDashboardWidget caseWidget) {
+      this.searchScope = getSearchScopeFromWidget(caseWidget.getFilterableColumns());
+    }
   }
 
   private String getSearchScopeFromWidget(List<ColumnModel> filterableColumns) {
@@ -488,5 +492,9 @@ public class DashboardBean implements Serializable {
 
   public String getSearchScope() {
     return this.searchScope;
+  }
+
+  public boolean isHideCaseCreator() {
+    return GlobalSettingService.getInstance().isHideCaseCreator();
   }
 }
