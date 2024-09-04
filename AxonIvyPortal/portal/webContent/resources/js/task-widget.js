@@ -83,7 +83,6 @@ function TaskWidget() {
           }
           container.outerHeight(availableHeight - cardContainerPaddingHeight);
         }
-        console.log(container.outerHeight(true));
 
 
         // show mobile title after calculate
