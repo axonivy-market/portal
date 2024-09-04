@@ -107,7 +107,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       RUN_TASK: Run the task
     DashboardCustomWidgetType:
       EXTERNAL_URL: External URL
-      PROCESS: Axon Ivy process
+      PROCESS: Custom Dashboard Widget Process
     DashboardWidgetType:
       CASE: Case widget
       CUSTOM: Custom widget
@@ -203,12 +203,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewApplication: Add new third party application
     announcement:
       announcement: Announcement
+      announcementSaved: Announcements are saved.
       announcementsDisabled: Announcements are disabled.
       announcementsEnabled: Announcements are enabled.
       defaultLanguageRequiredMessage: Announcement for application default language is required.
       disable: Disable
       enable: Enable
       information: You can announce a general information (e.g. Downtime, Changes, etc.) in this area. This message can be seen by all portal users.
+      saveChanges: Save changes
       tabTitle: Announcements
     appDisplayName: Display name
     appDisplayNameRequiredMsg: Please enter application display name.
@@ -268,6 +270,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableUserFavorites: If this property is disabled, do not display user favorites section of process list in Portal home.
       enableVirusScannerForUploadedDocumentNote: Set to true to enable virus scanner for uploaded document. Currently this function is using API VIRUSTOTAL.
       expressEndPageNote: Display the custom end page at the end of each Express process.
+      hideCaseCreator: |-
+        Set to true to hide case creator in case list, case widget and case details.
+        This setting affects all case queries, e.g. for case list, global search, statistic.
       hideCaseDocument: Set to true, the document section in case detail page will be hidden, otherwise it will be shown.
       hideChangePasswordButtonNote: Set this variable to true to hide the "Change Password" option in the top menu and the "Forgotten Password" option on the login page. If set to false, these options will be shown.
       hideLogoutButtonNote: If true, the logout button on top menu will be hidden, otherwise it will be shown.
@@ -324,6 +329,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     usernameRequiredMsg: Please input username.
     value: Value
   applicationMenuHeader:
+    ThemeSwitcher: Theme Switcher
     adminSettings: Admin settings
     changePassword: Change password
   caseDetails:
@@ -421,6 +427,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processChatIsCreated: 'Process Chat: {0} is created'
     processChatWasCreated: 'Process Chat: {0} was created. You can not create it again.'
     selectedAssignees: Selected assignees
+    toggleChat: Toggle chat panel
     typeMessage: Type your message here...
     viewParticipant: View participants
   common:
@@ -758,6 +765,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       taskDescriptionNotAvailable: '[No description is available]'
       taskNameNotAvailable: '[Task name not available]'
     taskView:
+      DeleteFilter: Delete filter
       adminFilterSetWarning: Your filter set contains states which can only be seen by administrators.
       appliedFilters: Applied filters
       exportedTasksCasesFileName: AXONIVY_Dataset_Statistics_{0}.{1}
@@ -1211,6 +1219,8 @@ ch.ivy.addon.portalkit.ui.jsf:
         defaultEmptyMessages: No statistic chart to display.
       expiryPeriod: Expiry period
       loadingCharts: Please wait, charts are loading...
+      moveLeft: Move left
+      moveRight: Move right
       notAllowedToCreateChart: You are not allowed to create a chart before clicking Apply Filters button
       other: Others
       restoreDefaultChart: If you proceed, you will loose all charts created by yourself. The standard settings will be applied.
@@ -1234,6 +1244,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       chartDetailsHeader: Chart Details
       chartName: Chart Name
       chartType: Chart Type
+      name: Chart info
     chartType:
       caseByFinishedTask: Processed cases in time period
       caseByFinishedTaskDescription: Cases where a task was finished in the selected time period
@@ -1564,6 +1575,7 @@ Dialogs:
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Could not find the linked process!
+                  CustomWidgetIFrameTitle: '{0} frame'
                 ProcessWidgetConfiguration:
                   DragAndDropToChangeOrder: Drag and drop to change the order.
                   DragAndDropTooltip: Click Preview, then drag and drop to change the order
@@ -1583,6 +1595,8 @@ Dialogs:
               ShowBusinessDetails: Business details
               caseNameNotAvailable: '[Case name not available]'
               defaultEmptyMessage: There are no cases
+            CustomIFrameWidget:
+              CustomWidgetIFrameTitle: Custom widget frame
             IconSelection:
               IconLinkTooltip: Click to change icon
             TaskItemDetails:
@@ -1620,6 +1634,11 @@ Dialogs:
               NewsWidgetConfiguration: News feed widget configuration
               NewsWidgetDescription: This widget shares relevant information as a News Feed into Axon Ivy.
               NewsWidgetTitle: News feed widget
+        layouts:
+          AbstractTaskTemplate:
+            CaseDetailsIFrameTitle: Case details frame
+          IFrameTaskTemplate:
+            TaskIFrameTitle: Task frame
   components:
     CaseDocument:
       FileDate: Modified at
@@ -1735,6 +1754,7 @@ Labels:
   AdhocWorkflow: Describe your Workflow
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
+  EditDescription: Edit description
   Enums:
     GlobalSearchScopeCategory:
       CASES: Cases
@@ -1760,6 +1780,8 @@ Labels:
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users
+  Toggle: toggle visibility
+  ToggleMenu: Toggle menu
   adhocTaskRequired: You must add at least one new task.
   disabledUserPrefix: (disabled)
   title: Self Service Ad-hoc Workflow

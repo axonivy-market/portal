@@ -164,7 +164,7 @@ HowTo: Create new filter
 |                                   | keywords within the task          |
 |                                   | description.                      |
 +-----------------------------------+-----------------------------------+
-| Expiry (from / to)                | Thisfilter lets you specify in    |
+| Expiry (from / to)                | This filter lets you specify in   |
 |                                   | which time period the task will   |
 |                                   | expire.                           |
 +-----------------------------------+-----------------------------------+

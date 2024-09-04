@@ -17,6 +17,7 @@ import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.enums.PortalCustomSignature;
+import com.axonivy.portal.service.GlobalSearchService;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
@@ -77,8 +78,11 @@ public class UserMenuBean implements Serializable {
           break;
       }
     }
+    boolean isShowGlobalSearchByProcesses = GlobalSearchService.getInstance().isShowGlobalSearchByProcesses();
+    boolean isShowGlobalSearchByTasks = GlobalSearchService.getInstance().isShowGlobalSearchByTasks();
+    boolean isShowGlobalSearchByCases = GlobalSearchService.getInstance().isShowGlobalSearchByCases();
     isShowGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_GLOBAL_SEARCH)
-        && StringUtils.isNotBlank(GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES));
+        && (isShowGlobalSearchByProcesses || isShowGlobalSearchByCases || isShowGlobalSearchByTasks);
   }
 
   public boolean isShowCaseDurationTime() {

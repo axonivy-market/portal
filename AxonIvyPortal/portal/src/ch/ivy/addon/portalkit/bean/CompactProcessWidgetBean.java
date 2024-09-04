@@ -22,7 +22,7 @@ import org.apache.commons.collections4.map.HashedMap;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.service.impl.ProcessService;
-import com.axonivy.portal.enums.GlobalSearchScopeCategory;
+import com.axonivy.portal.service.GlobalSearchService;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
@@ -103,17 +103,7 @@ private static final long serialVersionUID = -5889375917550618261L;
   }
   
   private boolean isEnableGlobalSearchScopeProcesses() {
-    String globalSearchScopeCategoriesString = Ivy.var().get(GlobalVariable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey());
-    if (StringUtils.isNotBlank(globalSearchScopeCategoriesString)) {
-      String[] fieldArray = globalSearchScopeCategoriesString.split(",");
-      for(String field : fieldArray) {
-        GlobalSearchScopeCategory fieldEnum = GlobalSearchScopeCategory.valueOf(field.toUpperCase());
-        if (fieldEnum != null && fieldEnum.equals(GlobalSearchScopeCategory.PROCESSES)) {
-          return true;
-        }
-      }
-    }
-    return false;
+    return GlobalSearchService.getInstance().isShowGlobalSearchByProcesses();
   }
   
   private void createDummyDataForGuide() {

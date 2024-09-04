@@ -85,6 +85,7 @@
                         <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter"
                           value="#{taskFilterData.filterName}" trackMouse="true" />
                         <p:commandLink id="delete-user-defined-filter-command"
+                          ariaLabel="#{ivy.cms.co('/Labels/delete')}"
                           rendered="#{taskWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
                           styleClass="si si-delete-2 delete-user-defined-filter-command"
                           actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
@@ -107,6 +108,7 @@
                         <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter"
                           value="#{taskFilterData.filterName}" trackMouse="true" />
                         <p:commandLink id="delete-user-defined-filter-command"
+                          ariaLabel="#{ivy.cms.co('/Labels/delete')}"
                           rendered="#{taskWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
                           styleClass="si si-delete-2 delete-user-defined-filter-command"
                           actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"

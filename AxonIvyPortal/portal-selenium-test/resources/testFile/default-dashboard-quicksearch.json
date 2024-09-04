@@ -89,7 +89,7 @@
           }
         ],
         "layout": {
-          "w": 9,
+          "w": 6,
           "h": 5,
           "x": 0,
           "y": 4
@@ -106,7 +106,8 @@
           },
           {
             "field": "description",
-            "visible": false
+            "visible": false,
+            "quickSearch": false
           },
           {
             "field": "state"
@@ -133,6 +134,7 @@
       {
         "type": "compact-process",
         "id": "process_1",
+        "enableQuickSearch": true,
         "names": [
           {
             "locale": "en",
@@ -140,9 +142,9 @@
           }
         ],
         "layout": {
-          "w": 3,
+          "w": 6,
           "h": 5,
-          "x": 9,
+          "x": 6,
           "y": 4
         }
       },

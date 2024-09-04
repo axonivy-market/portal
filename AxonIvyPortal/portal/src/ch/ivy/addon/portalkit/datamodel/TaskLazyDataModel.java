@@ -164,7 +164,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    * @hidden
    */
   public void updateDisableTaskCount() {
-    disableTaskCount = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.DISABLE_TASK_COUNT);
+    disableTaskCount = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.DISABLE_TASK_COUNT);
   }
 
   /**
@@ -381,7 +381,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   private String getDefaultSortField() {
    String defaultSortField = UserSettingService.newInstance().getDefaultSortFieldOfTaskList();
    if (StringUtils.isBlank(defaultSortField) || UserSettingService.DEFAULT.equals(defaultSortField)) {
-     GlobalSettingService globalSettingService = new GlobalSettingService();
+     GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
      defaultSortField = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_FIELD_OF_TASK_LIST);
    }
    return defaultSortField;
@@ -390,7 +390,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   private boolean isSortedDescendingByDefault() {
     String defaultSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfTaskList();
     if (StringUtils.isBlank(defaultSortDirection) || UserSettingService.DEFAULT.equals(defaultSortDirection)) {
-      GlobalSettingService globalSettingService = new GlobalSettingService();
+      GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
       defaultSortDirection =
           globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST);
     }

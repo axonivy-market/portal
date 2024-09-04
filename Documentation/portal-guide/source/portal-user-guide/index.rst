@@ -21,3 +21,4 @@ User Guide
    axon-ivy-express/index
    portal-chat/index
    demo-processes/index
+   accessibility/index
