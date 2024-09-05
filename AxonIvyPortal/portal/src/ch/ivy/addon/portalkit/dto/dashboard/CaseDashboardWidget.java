@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang.BooleanUtils;
+import org.apache.commons.lang.StringUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.SortMeta;
 
@@ -195,6 +197,10 @@ public class CaseDashboardWidget extends DashboardWidget {
 
   @Override
   public void setQuickSearchKeyword() {
-    this.dataModel.getCriteria().setQuickSearchKeyword(this.getQuickSearchKeyword());
+    if (BooleanUtils.isTrue(this.enableQuickSearch)) {
+      this.dataModel.getCriteria().setQuickSearchKeyword(this.getQuickSearchKeyword());
+    } else {
+      this.setQuickSearchKeyword(StringUtils.EMPTY);
+    }
   }
 }
