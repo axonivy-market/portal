@@ -192,8 +192,6 @@ public class CaseFilterTest extends BaseTest {
     mainMenuPage = new MainMenuPage();
     casePage = mainMenuPage.selectCaseMenu();
 
-    System.out.println("AXON NOTE");
-    System.out.println(casePage.getFilterName());
     assertTrue(casePage.getFilterName().contains("Default filter"));
 
     /**
@@ -210,8 +208,6 @@ public class CaseFilterTest extends BaseTest {
     mainMenuPage.selectTaskMenu();
     casePage = mainMenuPage.openCaseList();
     casePage.openSavedFilters(secondFilterName);
-    System.out.println("AXON NOTE");
-    System.out.println(casePage.getFilterName());
 
     assertEquals(secondFilterName, casePage.getFilterName()); 
   }

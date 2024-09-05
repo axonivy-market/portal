@@ -1,6 +1,9 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
+import static com.codeborne.selenide.CollectionCondition.size;
+
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
@@ -62,6 +65,18 @@ public class DashboardCustomAndProcessWigetTest extends BaseTest {
     var configurationPage = new DashboardConfigurationPage();
     var modificationPage = configurationPage.openEditPublicDashboardsPage();
     return modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+  }
+  
+  @Test
+  @Disabled("Disable until merge new code, this test work on latest release 10")
+  public void testTheProcessDisplayOnAddCustomWidgetPage() {
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
+    newDashboardDetailsEditPage.addWidget();
+    CustomWidgetNewDashBoardPage customWidgetNewDashBoardPage =
+        newDashboardDetailsEditPage.addNewCustomrWidget();
+    customWidgetNewDashBoardPage.selectWidgetType("Custom Dashboard Widget Process");
+    customWidgetNewDashBoardPage.selectProcess(PROCESS_NAME);
+    customWidgetNewDashBoardPage.getProcessList().shouldHave(size(1));
   }
 
 }

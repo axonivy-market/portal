@@ -61,6 +61,11 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     clickOnAddCustomWidget();
     return new CustomWidgetNewDashBoardPage();
   }
+  
+  public CustomWidgetNewDashBoardPage addNewCustomrWidget() {
+    addWidgetByName("Custom Widget");
+    return new CustomWidgetNewDashBoardPage();
+  }
 
   public CustomWidgetNewDashBoardPage addExternalPageWidget() {
     addWidgetByName("External Page");

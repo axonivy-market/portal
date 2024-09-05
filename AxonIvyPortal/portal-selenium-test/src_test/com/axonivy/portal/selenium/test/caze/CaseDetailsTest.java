@@ -550,4 +550,20 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage = casePage.openDetailsOfCaseHasName(ORDER_PIZZA);
     assertFalse(detailsPage.isShowRelatedCaseCheckbox());
   }
+  
+  @Test
+  public void testShowOnlyOpenTasks() {
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    mainMenuPage.openCaseList();
+    CaseWidgetPage caseWidgetPage = new CaseWidgetPage();
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
+    caseDetailsPage.clickShowOnlyOpenTasks();
+    caseDetailsPage.countRelatedTasks().shouldBe(size(2));
+    caseDetailsPage.clickShowOnlyOpenTasks();
+    caseDetailsPage.countRelatedTasks().shouldBe(size(3));
+
+  }
 }

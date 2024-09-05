@@ -142,4 +142,15 @@ public class CustomWidgetNewDashBoardPage extends TemplatePage {
     $("[id='widget-configuration-form:new-widget-configuration-component:parammeters:2:param-string-']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT)
     .sendKeys(name);
   }
+  
+  public void selectWidgetType(String type) {
+    getWidgetType().shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("label[id$=':custom-widget-type_label']")
+        .shouldBe(getClickableCondition()).click();
+    $("li[data-label='" + type + "']").click();
+  }
+  
+  private SelenideElement getWidgetType() {
+    return $("div[id$=':custom-widget-type']");
+  }
+
 }

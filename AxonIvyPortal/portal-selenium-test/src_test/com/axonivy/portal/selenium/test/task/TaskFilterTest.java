@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
@@ -46,8 +45,6 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.openAdvancedFilter("Application", "application");
     taskWidgetPage.filterFirstApp();
     int after = taskWidgetPage.countTasks().size();
-    System.out.println("Before " + before);
-    System.out.println("After " + after);
     Assertions.assertEquals(before, after);
   }
 
@@ -126,8 +123,6 @@ public class TaskFilterTest extends BaseTest {
 
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
-    System.out.println("AXON NOTE");
-    System.out.println(taskWidgetPage.countTasks().size());
     assertEquals(3, taskWidgetPage.countTasks().size());
 
     /**
@@ -139,14 +134,10 @@ public class TaskFilterTest extends BaseTest {
      */
     taskWidgetPage.filterTasksBy("Maternity");
     taskWidgetPage.waitTillOnlyOneTaskAppear();
-    System.out.println("AXON NOTE");
-    System.out.println(taskWidgetPage.countTasks().size());
     assertEquals(1, taskWidgetPage.countTasks().size());
 
     taskWidgetPage.filterTasksBy("Sick Leave Request Description");
     taskWidgetPage.waitTillOnlyOneTaskAppear();
-    System.out.println("AXON NOTE");
-    System.out.println(taskWidgetPage.countTasks().size());
     assertEquals(1, taskWidgetPage.countTasks().size());
   }
    
@@ -234,8 +225,6 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.openSavedFilters(filterResponsible);
 
     String responsible = taskWidgetPage.getResponsible();
-    System.out.println("AXON NOTE");
-    System.out.println(responsible);
     assertTrue(responsible.contains("Everybody"));
   }
   
@@ -351,7 +340,6 @@ public class TaskFilterTest extends BaseTest {
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     HomePage homePage = new HomePage();
     homePage.waitForGlobalGrowlDisappear();
-    System.out.println(homePage.getURL());
     
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
@@ -360,20 +348,17 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.openAdvancedFilter("Description", "description");
     taskWidgetPage.filterByDescription("Sick");
     taskWidgetPage.saveFilter(filterName);
-    System.out.println(taskWidgetPage.getURL());
 
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
-    System.out.println(taskWidgetPage.getURL());
     assertTrue(taskWidgetPage.getFilterName().contains("Default filter"));
 
     taskWidgetPage.openAdvancedFilter("Customer name", "customer-name");
     taskWidgetPage.filterByCustomerName("Anh");
     taskWidgetPage.saveFilter(filterName);
 
-    System.out.println(taskWidgetPage.getURL());
     assertEquals(filterName, taskWidgetPage.getFilterName());
   }
 
