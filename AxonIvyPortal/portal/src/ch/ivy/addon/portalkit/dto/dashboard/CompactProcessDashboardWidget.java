@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.BooleanUtils;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -176,4 +178,11 @@ public class CompactProcessDashboardWidget extends ProcessDashboardWidget {
   public void setEnableQuickSearch(boolean enableQuickSearch) {
      this.enableQuickSearch = enableQuickSearch;
     }
+  
+  @Override
+  public void setQuickSearchKeyword(String quickSearchKeyword) {
+    if (BooleanUtils.isTrue(this.enableQuickSearch)) {
+      super.setQuickSearchKeyword(quickSearchKeyword);
+    }
+  }
 }
