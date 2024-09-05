@@ -72,6 +72,7 @@
         headerText="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/FileFunction')}">
         <p:commandLink id="document-download" styleClass="#{cc.attrs.downloadStyleClass}"
           immediate="true" ajax="false" process="@none" title="#{cc.attrs.downloadTitle}"
+          ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Download')}"
           rendered="#{cc.attrs.downloadRendered}">
           <i class="fa #{cc.attrs.downloadIcon}" />
           <p:fileDownload value="#{logic.download(document)}" />
@@ -82,6 +83,7 @@
         <p:commandLink id="document-delete" styleClass="#{cc.attrs.deleteStyleClass}"
           actionListener="#{data.setSelectedDocument(document)}" rendered="#{cc.attrs.deleteRendered}"
           update="#{cc.attrs.updatedComponentAfterDeleted}" immediate="true" title="#{cc.attrs.deleteTitle}"
+          ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Delete')}"
           oncomplete="PF('document-delete-dialog').show()">
           <i class="fa #{cc.attrs.deleteIcon}" />
         </p:commandLink>

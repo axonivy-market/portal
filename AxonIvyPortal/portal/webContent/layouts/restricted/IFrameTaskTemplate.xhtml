@@ -84,7 +84,8 @@
           oncomplete="PortalSessionWarning.resetCounterAndTimeout();" />
       </h:form>
 
-      <iframe id="iFrame" src="#{url}" class="task-frame" />
+      <iframe id="iFrame" src="#{url}" class="task-frame" 
+        title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/layouts/IFrameTaskTemplate/TaskIFrameTitle')}" />
     </ui:define>
 
     <ui:define name="javascript">

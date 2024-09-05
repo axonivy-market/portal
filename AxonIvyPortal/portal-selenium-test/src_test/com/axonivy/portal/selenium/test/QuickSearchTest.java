@@ -16,14 +16,13 @@ import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
-import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class QuickSearchTest extends BaseTest {
 
   // WIDGET
@@ -48,22 +47,18 @@ public class QuickSearchTest extends BaseTest {
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
 
-    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
-    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
-    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
 /**
- * Note: disable line below since in the test already enable quickSearch
+ * Note: default quick search is already enabled, and we couldn't search on edit mode anymore so I change the order
+ * of the functions
  */
-//    taskEditWidget.clickOnQuickSearchCheckBox();
-    taskEditWidget.save();
-    taskWidget.isQuickSearchInputShow("0");
-
     taskWidget.setInputForQuickSearch("Task number 10");
     taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
     taskWidget.clearQuickSearchInput();
 
-    taskWidget.openEditTaskWidget();
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
     taskEditWidget.clickOnQuickSearchCheckBox();
     taskEditWidget.save();
     assertFalse(taskWidget.isQuickSearchInputShow("0"));
@@ -73,16 +68,14 @@ public class QuickSearchTest extends BaseTest {
   public void testTaskQuickSearchDefaultFields() {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     login(TestAccount.ADMIN_USER);
-    redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
 
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    ScreenshotUtils.maximizeBrowser();
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
     taskEditWidget.openColumnManagementDialog();
-
+    
     assertTrue(taskEditWidget.isQuickSearchClicked("name"));
     assertTrue(taskEditWidget.isQuickSearchClicked("description"));
 
@@ -97,40 +90,37 @@ public class QuickSearchTest extends BaseTest {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    /**
-     * Note: when input quickSearch below, it finding the form and the first result it found
-     * is the process widget (since we introduce quick search for processWidget)
-     * so I think we should remove the processWidget because it's no used in this test :)
-     */
-    modificationPage.deleteProcessWidget();
-    ScreenshotUtils.maximizeBrowser();
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
-    /**
-     * Note: disable line below since in the test already enable quickSearch
-     */
-//    taskEditWidget.clickOnQuickSearchCheckBox();
     taskEditWidget.openColumnManagementDialog();
+    
+    assertTrue(taskEditWidget.isQuickSearchClicked("name"));
+    assertTrue(taskEditWidget.isQuickSearchClicked("description"));
+
     taskEditWidget.addFirstStandardField();
     taskEditWidget.clickOnQuickSearchByField("id");
     taskEditWidget.clickOnQuickSearchByField("activator");
     taskEditWidget.clickOnQuickSearchByField("category");
     taskEditWidget.clickOnQuickSearchByField("application");
 
-    taskEditWidget.saveColumnMangement();
+    taskEditWidget.saveColumn();
     taskEditWidget.save();
-
     taskWidget.waitPageLoaded();
-
+    /**
+     * Note: after apply quick search we need to get out of edit mode to search
+     * so I redirect to the homepage
+     */
+    redirectToNewDashBoard();
     taskWidget.setInputForQuickSearch("engine");
     assertTrue(taskWidget.isEmptyMessageAppear());
+
     redirectToNewDashBoard();
     taskWidget.clearQuickSearchInput();
-    taskWidget.setInputForQuickSearch("TestCase1");
-    taskWidget.countAllTasks().shouldHave(size(3), DEFAULT_TIMEOUT);
+    taskWidget.setInputForQuickSearch("Task number 10");
+    taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
     taskWidget.clickOnButtonExpandTaskWidget();
-    taskWidget.countAllTasks().shouldHave(size(3), DEFAULT_TIMEOUT);
+    taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
     taskWidget.clickOnButtonCollapseTaskWidget();
-    taskWidget.countAllTasks().shouldHave(size(3), DEFAULT_TIMEOUT);
+    taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -142,22 +132,10 @@ public class QuickSearchTest extends BaseTest {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    /**
-     * Note: when input quickSearch below, it finding the form and the first result it found
-     * is the process widget (since we introduce quick search for processWidget)
-     * so I think we should remove the processWidget because it's no used in this test :)
-     */
-    modificationPage.deleteProcessWidget();
-    ScreenshotUtils.maximizeBrowser();
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
-    /**
-     * Note: disable line below since in the test already enable quickSearch
-     */
-//    taskEditWidget.clickOnQuickSearchCheckBox();
     taskEditWidget.save();
-
     taskWidget.waitPageLoaded();
-    refreshPage();
+    redirectToNewDashBoard();
     taskWidget.setInputForQuickSearch("Task number 10");
     taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
 
@@ -280,24 +258,21 @@ public class QuickSearchTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
-
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditCaseWidget();
-
-    caseEditWidget.waitForTableConfigurationRendered();
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
     caseEditWidget.clickOnQuickSearchCheckBox();
     caseEditWidget.save();
-    caseWidget.isQuickSearchInputShow("0");
-
-    refreshPage();
+    redirectToNewDashBoard();
     caseWidget.setInputForQuickSearch("Create 12 cases with");
     caseWidget.countAllCases().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
     caseWidget.clearQuickSearchInput();
 
-    caseWidget.openEditCaseWidget();
-    caseEditWidget.waitForTableConfigurationRendered();
+    newDashboardPage.openDashboardConfigurationPage();
+    modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    caseWidget.openEditWidget();
     caseEditWidget.clickOnQuickSearchCheckBox();
     caseEditWidget.save();
     assertFalse(caseWidget.isQuickSearchInputShow("0"));
@@ -331,9 +306,7 @@ public class QuickSearchTest extends BaseTest {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    ScreenshotUtils.maximizeBrowser();
-    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditCaseWidget();
-    caseEditWidget.waitForTableConfigurationRendered();
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
     caseEditWidget.clickOnQuickSearchCheckBox();
     caseEditWidget.openColumnManagementDialog();
     assertTrue(caseEditWidget.isQuickSearchClicked("name"));
@@ -347,13 +320,11 @@ public class QuickSearchTest extends BaseTest {
 
     caseEditWidget.saveColumn();
     caseEditWidget.save();
-
     caseWidget.waitPageLoaded();
-    refreshPage();
+    redirectToNewDashBoard();
 
     caseWidget.setInputForQuickSearch("engine");
     assertTrue(caseWidget.isEmptyMessageAppear());
-    redirectToNewDashBoard();
     caseWidget.clearQuickSearchInput();
     caseWidget.setInputForQuickSearch("TestCase1");
     caseWidget.countAllCases().shouldHave(size(3), DEFAULT_TIMEOUT);
@@ -372,21 +343,15 @@ public class QuickSearchTest extends BaseTest {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    ScreenshotUtils.maximizeBrowser();
 
-    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditCaseWidget();
-    caseEditWidget.waitForTableConfigurationRendered();
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
     caseEditWidget.clickOnQuickSearchCheckBox();
     caseEditWidget.save();
-
     caseWidget.waitPageLoaded();
+    redirectToNewDashBoard();
 
     caseWidget.setInputForQuickSearch("Create 12 cases");
     caseWidget.countAllCases().shouldHave(size(1), DEFAULT_TIMEOUT);
-
-    redirectToNewDashBoard();
-    newDashboardPage = new NewDashboardPage();
-    newDashboardPage.waitForCaseWidgetLoaded();
 
     caseWidget = new CaseWidgetNewDashBoardPage();
     assertEquals("Create 12 cases", caseWidget.getQuickSearchInput());
@@ -457,17 +422,6 @@ public class QuickSearchTest extends BaseTest {
     taskWidget.shiftAndArrowKeyOnQuickSearchInput();
     taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
 
-  }
-  
-  @Test
-  public void testVisibilityOfQuickSearchInProcessWidget() {
-    redirectToRelativeLink(createTestingTasksUrl);
-    login(TestAccount.ADMIN_USER);
-    ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget("Your Processes");
-    ProcessEditWidgetNewDashBoardPage processEditWidget = newDashboardPage.editProcessWidgetConfiguration();
-    processEditWidget.clickOnQuickSearchCheckbox();
-    processEditWidget.save();
-    assertTrue(processWidget.isQuickSearchInputShow());
   }
 
   @Test

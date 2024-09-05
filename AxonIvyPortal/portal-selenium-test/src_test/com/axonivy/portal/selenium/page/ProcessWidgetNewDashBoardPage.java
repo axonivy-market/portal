@@ -74,7 +74,8 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getQuickSearchForm() {
-    return $("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
+    return getProcessWidgetHeader().$("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("form");
   }
 
   public int getNumberOfProcessListInWidget() {
