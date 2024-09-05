@@ -46,7 +46,7 @@
       <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
       <p:inputText id="quick-search-input-#{index}" value="#{widget.quickSearchKeyword}"
         placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}"
-        onkeydown="handleKeyDown(event)" disabled="#{!isReadOnlyMode and widget.type eq 'PROCESS'}">
+        onkeydown="handleKeyDown(event)" disabled="#{!isReadOnlyMode}">
         <p:tooltip styleClass="quick-search-input-tooltip"  for="quick-search-input-#{index}" value="#{dashboardBean.searchScope}" position="top" />
         
         <p:ajax delay="800" listener="#{widget.updateQuickSearchKeyword()}"
