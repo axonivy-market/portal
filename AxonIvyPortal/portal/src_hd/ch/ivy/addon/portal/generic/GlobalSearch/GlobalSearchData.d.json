@@ -16,7 +16,7 @@
     "type" : "Boolean",
     "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "iCase",
+    "name" : "caze",
     "type" : "ch.ivyteam.ivy.workflow.ICase",
     "modifiers" : [ "PERSISTENT" ]
   }, {
