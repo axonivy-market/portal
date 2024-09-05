@@ -228,10 +228,9 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
   
 
-  public boolean isQuickSearchInputShow(String widgetIndex) {
-    String taskWidgetIndex = String.format("div[id*='case-case_%s']", widgetIndex);
+  public boolean isQuickSearchInputShow() {
     waitPageLoaded();
-    return $(taskWidgetIndex).$("form").$("input").exists();
+    return getQuickSearchForm().exists();
   }
 
   public String getQuickSearchInput() {
