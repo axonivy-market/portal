@@ -12,6 +12,7 @@
 </cc:interface>
 
 <cc:implementation>
+  <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
   <c:set var="widget" value="#{cc.attrs.widget}" />
   <c:set var="isPublicDashboard" value="#{cc.attrs.isPublicDashboard}"/>
   <c:set var="componentToUpdate" value="#{cc.attrs.componentToUpdate}" />
@@ -70,6 +71,23 @@
           <p:messages id="statistic-widget-validation-messages" closable="true" styleClass="ui-g-12"/>
         </div>
       </h:panelGroup>
+      
+      <h:panelGroup id="fullscreen-mode-group" rendered="#{managedBean.displayFullscreenModeOption()}"
+        styleClass="ui-g ui-g-12 u-padding-0 ui-fluid">
+        <div class="ui-g-4">
+          <p:outputLabel for="fullscreen-option"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/fullscreenMode')}"
+            styleClass="u-mar-right-5" />
+        </div>
+        <div class="ui-g-6 ui-inputgroup">
+          <p:selectBooleanCheckbox id="fullscreen-option"
+            value="#{widget.showFullscreenMode}">
+            <p:ajax process="fullscreen-mode-group"
+              update="fullscreen-mode-group" partialSubmit="true"/>
+          </p:selectBooleanCheckbox>
+        </div>
+      </h:panelGroup>
+      
     </div>
   </h:panelGroup>
 
