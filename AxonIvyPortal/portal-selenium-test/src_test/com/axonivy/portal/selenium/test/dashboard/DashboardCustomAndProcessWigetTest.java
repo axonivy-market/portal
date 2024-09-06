@@ -68,7 +68,6 @@ public class DashboardCustomAndProcessWigetTest extends BaseTest {
   }
   
   @Test
-  @Disabled("Disable until merge new code, this test work on latest release 10")
   public void testTheProcessDisplayOnAddCustomWidgetPage() {
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = gotoEditPublicDashboardPage();
     newDashboardDetailsEditPage.addWidget();
