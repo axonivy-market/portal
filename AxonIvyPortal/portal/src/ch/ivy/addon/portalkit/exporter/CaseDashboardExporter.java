@@ -54,14 +54,14 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
 
   /**
    * Get header text from the custom column
-   * Custom column format: fieldType__fieldName__header
+   * Custom column format: fieldFormat__fieldName__header__fieldType
    * 
    * @param column
    * @return
    */
   private String getCustomColumnName(String column) {
     String[] columnParts = getCustomColumnParts(column);
-    if (columnParts.length != 3) {
+    if (columnParts.length != 4) {
       return "";
     }
     return columnParts[2];
@@ -97,7 +97,7 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
 
   /**
    * Get custom column value
-   * Custom column format: fieldType__fieldName__header
+   * Custom column format: fieldFormat__fieldName__header__fieldType
    * 
    * @param column
    * @param caseItem
@@ -105,7 +105,7 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
    */
   private Object getCustomColumnValue(String column, ICase caseItem) {
     String[] columnParts = getCustomColumnParts(column);
-    if (columnParts.length != 3) {
+    if (columnParts.length != 4) {
       return "";
     }
 
