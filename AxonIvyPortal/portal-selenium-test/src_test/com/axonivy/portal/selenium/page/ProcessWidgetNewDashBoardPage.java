@@ -70,7 +70,7 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void setQuickSearchKeyword(String keyword) {
-    getQuickSearchForm().$("input").setValue(keyword);
+    getQuickSearchForm().$("input").sendKeys(keyword);
   }
 
   public SelenideElement getQuickSearchForm() {
