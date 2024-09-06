@@ -60,12 +60,7 @@ function CaseWidget() {
         }
 
         if (!!availableHeight) {
-          var cardContainerPaddingHeight = 0;
-          if (!isGlobalSearchResult) {
-            var cardContainer = $('.js-case-default-widget-container .case-main-container.card');
-            cardContainerPaddingHeight = parseInt(cardContainer.css('padding-top'), 10) + parseInt(cardContainer.css('padding-bottom'), 10);
-          }
-          container.outerHeight(availableHeight - cardContainerPaddingHeight);
+          container.outerHeight(availableHeight);
         }
 
         // show mobile title after calculate
@@ -133,6 +128,10 @@ function CaseListToolKit() {
     },
 
     setupScrollbar: function () {
+
+      // Init style for main container
+      $('.js-layout-content.portal-layout-container').addClass('portal-flex-layout-container');
+
       var caseWidget = new CaseWidget();
       caseWidget.setUpScrollbar();
     },

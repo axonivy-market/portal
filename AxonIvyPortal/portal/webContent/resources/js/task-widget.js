@@ -76,12 +76,8 @@ function TaskWidget() {
               container.css("margin-right", taskStartItemMarginRight);
             }
           }
-          var cardContainerPaddingHeight = 0;
-          if (!isGlobalSearchResult) {
-            var cardContainer = $('.js-task-list-container.task-list-container.card');
-            cardContainerPaddingHeight = parseInt(cardContainer.css('padding-top'), 10) + parseInt(cardContainer.css('padding-bottom'), 10);
-          }
-          container.outerHeight(availableHeight - cardContainerPaddingHeight);
+
+          container.outerHeight(availableHeight);
         }
 
 
@@ -166,6 +162,10 @@ function TaskListToolKit() {
     },
 
     setupScrollbar: function() {
+
+      // Init style for main container
+      $('.js-layout-content.portal-layout-container').addClass('portal-flex-layout-container');
+
       var taskWidget = new TaskWidget();
       taskWidget.setupScrollbar();
     },
