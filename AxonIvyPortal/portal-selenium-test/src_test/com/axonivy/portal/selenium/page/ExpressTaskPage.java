@@ -3,7 +3,6 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
 
-import java.time.Duration;
 
 import org.openqa.selenium.By;
 
@@ -34,7 +33,6 @@ public class ExpressTaskPage extends TemplatePage {
      * Note: fix executeUserTask
      * waiting for the task created after click
      */
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
   }
 
   public boolean isDocumentTableVisible() {

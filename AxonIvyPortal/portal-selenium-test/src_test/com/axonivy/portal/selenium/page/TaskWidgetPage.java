@@ -6,7 +6,6 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -66,7 +65,6 @@ public class TaskWidgetPage extends TemplatePage {
     $("button[id$='task-widget:filter-add-form:update-filter-selected-command']").shouldBe(getClickableCondition()).click();
     $("div[id$='task-widget:filter-add-panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
     $("span[id$='" + filterIdName + "-filter:advanced-filter-component").shouldBe(appear, DEFAULT_TIMEOUT);
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
   }
 
   public void filterTasksByCreatedDate(String fromCreatedDate, String toCreatedDate) {
@@ -887,7 +885,6 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void saveFilterForAllAdministrators(String filterName) {
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 
     SelenideElement saveFilterDialog = getSaveFilterDialog();
     $$(".ui-radiobutton-box").get(1).shouldBe(getClickableCondition()).click();

@@ -1,6 +1,5 @@
 package com.axonivy.portal.selenium.test;
 
-import java.time.Duration;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +18,6 @@ import com.axonivy.portal.selenium.page.HomePage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
-import com.codeborne.selenide.WebDriverRunner;
 
 
 
@@ -35,11 +33,6 @@ public class ChatTest extends BaseTest {
   private static final String CHAT_MESSAGE_USER_DEMO = "Hi i'm demo user";
   private static final String CHAT_MESSAGE_USER_ADMIN = "Hi i'm admin user";
   
-  private static final int CHAT_PAGE_DEMO_1_BROWSER = 0;
-  private static final int CHAT_PAGE_DEMO_2_BROWSER = 1;
-  private static final int CHAT_PAGE_ADMIN_1_BROWSER = 2;
-  private static final int CHAT_PAGE_ADMIN_2_BROWSER = 3;
-
   @Override
   @BeforeEach
   public void setup() {
@@ -254,7 +247,6 @@ public class ChatTest extends BaseTest {
     ChatPage chatPageDemo4 = openChatGroup(TestAccount.DEMO_USER);
     chatPageAdmin1.sendMessage(ADMIN1_2);
     //TODO need to be fixed - Workaround for wait message render
-    WebDriverRunner.getWebDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 
     assertContainMessage(chatPageDemo1, ADMIN1_2);
     assertContainMessage(chatPageDemo2, ADMIN1_2);
