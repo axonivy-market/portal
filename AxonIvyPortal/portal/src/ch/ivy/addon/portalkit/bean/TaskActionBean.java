@@ -140,24 +140,24 @@ public class TaskActionBean implements Serializable {
    * @return condition whether the user can change expiry time
    */
   public boolean canChangeExpiry(ITask task) {
-    List<TaskState> cannotChangeExpiryDateTaskStates = Arrays
-        .asList(TaskState.DONE, TaskState.DESTROYED);
+    List<TaskState> nonChangeableExpiryStates = Arrays.asList(TaskState.DONE,
+        TaskState.DESTROYED);
 
-    if (task == null
-        || cannotChangeExpiryDateTaskStates.contains(task.getState())) {
+    if (task == null || nonChangeableExpiryStates.contains(task.getState())) {
       return false;
     }
 
-    boolean isDeleteTaskAfterExpired = StringUtils
+    boolean isAutoDeleteAfterExpiry = StringUtils
         .isBlank(task.getExpiryActivatorName())
         && StringUtils.isBlank(task.getExpiryTaskStartElementPid());
-    
-    boolean hasExpityHandlerAfterExpired = StringUtils
+
+    boolean hasExpiryHandler = StringUtils
         .isNotBlank(task.getExpiryTaskStartElementPid());
 
-    return (hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP)
-        && (isDeleteTaskAfterExpired || hasExpityHandlerAfterExpired));
+    return hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP)
+        && (isAutoDeleteAfterExpiry || hasExpiryHandler);
   }
+
   
   public boolean canChangeDelayTimestamp(ITask task) {
     if (TaskState.DELAYED != task.getState()) {
