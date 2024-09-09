@@ -176,6 +176,7 @@ public class ExpressManagementTest extends BaseTest {
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.waitForExpressFieldSetDisplay();
     expressTaskPage.enterRequiredInputFieldByLabel("Comment", "Mr.David to axon");
+    expressTaskPage.enterRequiredInputFieldByLabel("Approval date", "01/09/2023 10:35");
     expressTaskPage.finish();
   }
 
@@ -184,6 +185,7 @@ public class ExpressManagementTest extends BaseTest {
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.waitForExpressFieldSetDisplay();
     expressTaskPage.enterRequiredInputFieldByLabel("Welcome", "Welcome Mr.David to axon");
+    expressTaskPage.enterRequiredInputFieldByLabel("Start date", "01/09/2023 10:35");
 
     UserTaskWithMailFormPage userTaskWithMail = new UserTaskWithMailFormPage();
     userTaskWithMail.selectEmailTab();
@@ -288,6 +290,7 @@ public class ExpressManagementTest extends BaseTest {
 
   @Test
   public void testViewExpressBusinessData() {
+    updateLegacyUIConfiguration();
     setupForLegacyExpressTests();
     prepareExpressWorkflowStepForLegacy();
 
