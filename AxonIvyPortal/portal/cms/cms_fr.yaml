@@ -912,20 +912,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     fullscreenMode: Mode plein écran
     iconMessage:
       caseWidget:
-        BEACH_PALM_SUNBED: Vous êtes géniale - toutes les affaires sont réglées. Détendez-vous et profitez-en.
-        CHARGING_BATTERY_FULL_1: Il n'y a actuellement aucun cas. Il est temps de recharger un peu les batteries.
-        COFFEE_OF_HOT: Wow ! Bon travail ! Toutes les affaires sont terminées. Que diriez-vous d'une petite pause café ?
-        RANKING_WINNER_MEDAL: Jeu, set et match ! Vous avez réussi, toutes les affaires sont terminées !
-        SOCCER_PLAYER: But ! Vous avez réussi, toutes les affaires sont terminées. Petite pause à la mi-temps.
-        YOGA_MEDITATE: Bien joué ! Tous les cas sont terminés. Inspirez, expirez, détendez-vous.
+        EMPTY_MESSAGE: Actuellement, il n'y a pas de cas supplémentaires disponibles.
         noCasesFoundWhenFilter: Il n'y a actuellement aucun cas après le filtre appliqué.
       taskWidget:
-        BEACH_PALM_SUNBED: Vous êtes génial - toutes les tâches sont terminées. Détendez-vous et profitez-en.
-        CHARGING_BATTERY_FULL_1: Il n'y a actuellement aucune tâche. Il est temps de recharger un peu les batteries.
-        COFFEE_OF_HOT: Ouah ! Bon travail ! Toutes les tâches sont terminées. Que diriez-vous d'une petite pause café ?
-        RANKING_WINNER_MEDAL: Jeu, set et match ! Vous avez réussi, toutes les tâches sont terminées !
-        SOCCER_PLAYER: But ! Vous avez réussi, toutes les tâches sont terminées. Petite pause à la mi-temps.
-        YOGA_MEDITATE: Bien joué ! Toutes les tâches sont terminées. Inspirez, expirez, détendez-vous.
+        EMPTY_MESSAGE: Actuellement, il n'y a pas de tâches supplémentaires disponibles.
         noTasksFoundWhenFilter: Il n'y a actuellement aucune tâche après le filtre appliqué.
     loading: Chargement...
     noCategory: Il n'y a pas de catégories

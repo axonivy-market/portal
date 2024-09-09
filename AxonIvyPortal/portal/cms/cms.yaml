@@ -761,20 +761,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     fieldIsAdded: The {0} field is added
     iconMessage:
       caseWidget:
-        BEACH_PALM_SUNBED: You are awesome - all cases are done. Lean back and enjoy.
-        CHARGING_BATTERY_FULL_1: There are currently no cases. Time to recharge the batteries a little.
-        COFFEE_OF_HOT: Wow! Good job! All cases are completed. How about a quick coffee break?
-        RANKING_WINNER_MEDAL: Game, set and match! You did it, all cases are completed!
-        SOCCER_PLAYER: Goal! You did it, all cases completed. Short half-time break.
-        YOGA_MEDITATE: Well done! All cases are done. Inhale, exhale, relax.
+        EMPTY_MESSAGE: Currently, there are no cases available.
         noCasesFoundWhenFilter: There are currently no cases considering the applied filter.
       taskWidget:
-        BEACH_PALM_SUNBED: You are awesome - all tasks are done. Lean back and enjoy.
-        CHARGING_BATTERY_FULL_1: There are currently no tasks. Time to recharge the batteries a little.
-        COFFEE_OF_HOT: Wow! Good job! All tasks are completed. How about a quick coffee break?
-        RANKING_WINNER_MEDAL: Game, set and match! You did it, all tasks are completed!
-        SOCCER_PLAYER: Goal! You did it, all tasks completed. Short half-time break.
-        YOGA_MEDITATE: Well done! All tasks are done. Inhale, exhale, relax.
+        EMPTY_MESSAGE: Currently, there are no tasks available.
         noTasksFoundWhenFilter: There are currently no tasks after applied filter.
     loading: Loading...
     noCategory: There are no categories
