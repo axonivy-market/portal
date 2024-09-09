@@ -136,7 +136,6 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void resetFilter() {
     $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='reset-button']")
         .filter(text("Reset")).first().shouldBe(getClickableCondition()).click();
-    waitForAjaxIndicatorDisplayNone();
   }
 
   public void filterPriority(String... priorities) {
@@ -392,7 +391,6 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     $$("div.table-widget-panel div.widget__header").filter(text(taskWidgetName)).first()
         .shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='edit-widget']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    waitForAjaxIndicatorDisplayNone();
     return new TaskEditWidgetNewDashBoardPage();
   }
 

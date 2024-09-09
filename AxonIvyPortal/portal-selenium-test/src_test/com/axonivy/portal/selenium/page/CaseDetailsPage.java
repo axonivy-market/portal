@@ -155,7 +155,6 @@ public class CaseDetailsPage extends TemplatePage {
   public void clickRelatedTaskActionButton(int index) {
     $(String.format("[id$=':related-tasks:%d:additional-options:task-side-steps-menu']", index))
         .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    waitForAjaxIndicatorDisplayNone();
   }
 
   public void triggerEscalationTask(int index) {
@@ -164,7 +163,6 @@ public class CaseDetailsPage extends TemplatePage {
     $("div[id$='\\:escalation-task-confirmation-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("button[id$='\\:confirm-escalation']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
-    waitForAjaxIndicatorDisplayNone();
   }
 
   public SelenideElement getCreatorAvatar() {
@@ -468,7 +466,6 @@ public class CaseDetailsPage extends TemplatePage {
       // Cannot identify when the ajax request of select checkbox is finished
       // So we need to wait for Ajax Indicator disappear
       // Note: I added line below since on my local machine, the test didn't work without this
-      waitForAjaxIndicatorDisplayNone();
       clickOnRelatedCaseCheckbox(checkboxShouldBeChecked);
     }
   }

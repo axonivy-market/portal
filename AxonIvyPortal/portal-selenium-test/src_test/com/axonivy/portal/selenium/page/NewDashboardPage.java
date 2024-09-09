@@ -998,7 +998,6 @@ public class NewDashboardPage extends TemplatePage {
 
   public void clickThemeSwitcher() {
     $("[id='theme-switcher']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    waitForAjaxIndicatorDisplayNone();
   }
 
   public TaskWidgetPage openTaskList() {

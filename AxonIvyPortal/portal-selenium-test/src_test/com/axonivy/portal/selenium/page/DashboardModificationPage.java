@@ -41,7 +41,6 @@ public class DashboardModificationPage extends TemplatePage {
     if (dashboardRow != null) {
       dashboardRow.$("button[id$='dashboard-modification-component:dashboard-table:0:configure-dashboard']")
           .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-      waitForAjaxIndicatorDisplayNone();
       NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
       return newDashboardDetailsEditPage;
     }

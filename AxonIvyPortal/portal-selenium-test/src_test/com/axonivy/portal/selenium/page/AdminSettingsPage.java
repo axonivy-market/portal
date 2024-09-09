@@ -36,7 +36,6 @@ public class AdminSettingsPage extends TemplatePage {
   public void openSettingTab() {
     waitForElementClickableThenClick("a[href$='#admin-setting-component:adminTabView:setting-tab']");
     waitForElementDisplayed(By.cssSelector("[id$=':adminTabView:settingForm']"), true);
-    waitForAjaxIndicatorDisplayNone();
   }
 
   private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
@@ -201,7 +200,6 @@ public class AdminSettingsPage extends TemplatePage {
           $(editButton).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
           $("[id$=':resetConfirmationDialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
           $("button[id='admin-setting-component:reset-setting']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-          waitForAjaxIndicatorDisplayNone();
           $("div[id='portal-management-messages']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
           return;
         }

@@ -464,7 +464,6 @@ public class CaseWidgetPage extends TemplatePage {
       if (caseItem.$(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText().equals(caseName)) {
         SelenideElement caseInfoRow = caseItem.$(By.cssSelector("span[id*='case-info-row']")).scrollTo();
         $(caseInfoRow).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-        waitForAjaxIndicatorDisplayNone();
         caseInfoRow.shouldBe(disappear, DEFAULT_TIMEOUT);
         return new CaseDetailsPage();
       }

@@ -51,7 +51,6 @@ public class DashboardConfigurationPage extends TemplatePage {
   public void selectPublicDashboardType() {
     waitForDashboardConfigurationTypeSelectionAppear();
     $("a[id$='public-dashboard-type']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    waitForAjaxIndicatorDisplayNone();
     $(".dashboard-configuration__content.js-public-dashboard-configuration").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -59,7 +58,6 @@ public class DashboardConfigurationPage extends TemplatePage {
     waitForDashboardConfigurationTypeSelectionAppear();
     $("a[id$='private-dashboard-type']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
-    waitForAjaxIndicatorDisplayNone();
     $(".dashboard-configuration__content.js-private-dashboard-configuration").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 

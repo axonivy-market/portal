@@ -20,7 +20,6 @@ public class AnnouncementPage extends TemplatePage {
 
   public void publish() {
     waitForElementClickableThenClick("button[id$='publish-announcement']");
-    waitForAjaxIndicatorDisplayNone();
   }
 
   public void dePublish() {

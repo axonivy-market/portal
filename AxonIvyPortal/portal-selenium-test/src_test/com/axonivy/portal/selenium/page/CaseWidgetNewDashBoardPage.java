@@ -184,7 +184,6 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     /**
      * Note: fix DashboardCaseWidgetActionTest
      */
-    waitForAjaxIndicatorDisplayNone();
   }
 
   public void selectState(String state) {
@@ -215,7 +214,6 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   private void confirmDestroy() {
     $("div[id$='destroy-case-confirmation-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$("button[id$='confirm-destruction-dashboard-cases']").shouldBe(getClickableCondition()).click();
-    waitForAjaxIndicatorDisplayNone();
   }
 
   public SelenideElement getCreatorAvatar() {
@@ -264,7 +262,6 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public void setInputForQuickSearch(String input) {
     getQuickSearchForm().$("input").sendKeys(input);
 //  Note: stabilize testCaseQuickSearchKeywordSessionCache
-    waitForAjaxIndicatorDisplayNone();
     waitForPageLoad();
   }
 

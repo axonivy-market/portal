@@ -299,7 +299,6 @@ public class TaskWidgetPage extends TemplatePage {
     String resetButton = String.format(
         taskWidgetId + ":task-list-scroller:%d:task-item:task-action:additional-options:task-reset-command", taskId);
     waitForElementClickableThenClick($(By.id(resetButton)));
-    waitForAjaxIndicatorDisplayNone();
   }
 
   public void filterByResponsible(String text) {
@@ -314,7 +313,6 @@ public class TaskWidgetPage extends TemplatePage {
     waitForElementClickableThenClick($("span[id$='responsible-filter:filter-input-form:responsible_panel'] .gravatar"));
     waitForElementClickableThenClick(
         $(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']")));
-    waitForAjaxIndicatorDisplayNone();
   }
 
   public void openStateFilter() {
@@ -657,7 +655,6 @@ public class TaskWidgetPage extends TemplatePage {
   public TaskTemplatePage startTaskOnHomePage(int index) {
     $("div[id='task-widget:task-list-scroller']").shouldBe(appear);
     $$("div.task-start-list-item").get(index).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    waitForAjaxIndicatorDisplayNone();
     return new TaskTemplatePage();
   }
 
@@ -896,7 +893,6 @@ public class TaskWidgetPage extends TemplatePage {
     $$(".ui-radiobutton-box").get(1).shouldBe(getClickableCondition()).click();
     $(saveFilterDialog).$(By.tagName("input")).sendKeys(filterName);
     $(saveFilterDialog).$(By.tagName("input")).sendKeys(Keys.ENTER);
-    waitForAjaxIndicatorDisplayNone();
     $(saveFilterDialog).$(By.tagName("input")).shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
@@ -917,14 +913,12 @@ public class TaskWidgetPage extends TemplatePage {
   
   public void openSavedPublicFilters(String filterName) {
     $("a[id$='task-widget:filter-selection-form:filter-name']").shouldBe(appear).click();
-    waitForAjaxIndicatorDisplayNone();
     List<SelenideElement> saveFilters = $$("a[id$='user-defined-filter']");
     for (SelenideElement filter : saveFilters) {
       if (filter.getText().equals(filterName)) {
         $(filter)
         .shouldBe(getClickableCondition())
         .click();
-        waitForAjaxIndicatorDisplayNone();
         $(".filter-name").shouldHave(text(filterName), DEFAULT_TIMEOUT);
         return;
       }
@@ -940,7 +934,6 @@ public class TaskWidgetPage extends TemplatePage {
     $("input[id$='responsible-filter:filter-input-form:responsible_input']").click();
     $("input[id$='responsible-filter:filter-input-form:responsible_input']").clear();
     $("button[id$='responsible-filter:filter-input-form:update-command']").shouldBe(getClickableCondition()).click();
-    waitForAjaxIndicatorDisplayNone();
   }
 
   public String getResponsible() {
@@ -967,7 +960,6 @@ public class TaskWidgetPage extends TemplatePage {
         .shouldBe(getClickableCondition()).click();
     $("input[id$='customer-name-filter:filter-input-form:customVarChar5']").sendKeys(text);
     $("input[id$='customer-name-filter:filter-input-form:customVarChar5']").sendKeys(Keys.ENTER);
-    waitForAjaxIndicatorDisplayNone();
     $("input[id$='customer-name-filter:filter-input-form:customVarChar5']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
   

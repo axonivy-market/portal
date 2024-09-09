@@ -150,7 +150,6 @@ public class StatisticWidgetPage extends TemplatePage {
 
     inputNameForSupportedLanguages(CASE_BY_FINISHED_TASK_CHART_NAME);
     waitForElementClickableThenClick($(By.cssSelector("button[id$='chart-save-command']")));
-    waitForAjaxIndicatorDisplayNone();
     waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), false);
     waitForElementExisted(By.cssSelector("span[class='ui-growl-title']"), true);
   }

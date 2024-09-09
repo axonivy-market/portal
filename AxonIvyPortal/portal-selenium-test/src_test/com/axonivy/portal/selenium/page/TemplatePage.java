@@ -532,11 +532,6 @@ public abstract class TemplatePage extends AbstractPage {
     action.sendKeys(Keys.ESCAPE).build().perform();
   }
   
-  public void waitForAjaxIndicatorDisplayNone() {
-    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
-        .until(ExpectedConditions.attributeContains(By.cssSelector("div[id='ajax-indicator:ajax-indicator-ajax-indicator_start']"), "style", "display: none"));
-  }
-  
   public void waitForAjaxStatusPositionDisappear() {
     $("div.ajax-status-position").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }

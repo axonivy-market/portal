@@ -475,14 +475,12 @@ public class TaskDetailsPage extends TemplatePage {
     $("a[id$=':task-delegate-command']").shouldBe(appear);
     $("a[id$=':task-delegate-command']").shouldBe(getClickableCondition()).click();
     $("div[id$='task-delegate-dialog']").shouldBe(appear);
-    waitForAjaxIndicatorDisplayNone();
   }
   
   public void selectDelegateResponsible(String responsibleName, boolean isRole) {
     if(isRole) {
       List<SelenideElement> radioButtonLabels = $$("table[id$='activator-type-select'] label");
       radioButtonLabels.get(1).shouldBe(getClickableCondition()).click();
-      waitForAjaxIndicatorDisplayNone();
       $("input[id$='group-activator-select_input']").shouldBe(appear);
       $("input[id$='group-activator-select_input']").sendKeys(responsibleName);
       $("tr[data-item-label='" + responsibleName + "']").shouldBe(appear, DEFAULT_TIMEOUT);
@@ -496,7 +494,6 @@ public class TaskDetailsPage extends TemplatePage {
       List<SelenideElement> foundUsers = $$("span[id$='user-activator-select_panel'] .name-after-avatar");
       foundUsers.get(0).shouldBe(getClickableCondition()).click();
     }
-    waitForAjaxIndicatorDisplayNone();
     $("button[id$='proceed-task-delegate-command']").shouldBe(getClickableCondition()).click();
     $("div[id$='task-delegate-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }

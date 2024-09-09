@@ -142,7 +142,6 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public void clickStart() {
     $("[id='process-widget:image-process-group-alphabet:10:image-processes:8:process-item:start-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    waitForAjaxIndicatorDisplayNone();
   }
 
   public void waitForStartListShow() {
@@ -557,7 +556,6 @@ public class ProcessWidgetPage extends TemplatePage {
      * to buy some time for the sorting work before assert happens
      */
     $("i.pi-moon").shouldBe(getClickableCondition()).click();
-    waitForAjaxIndicatorDisplayNone();
     $("i.pi-sun").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -569,7 +567,6 @@ public class ProcessWidgetPage extends TemplatePage {
      * to buy some time for the sorting work before assert happens
      */
     $("i.pi-moon").shouldBe(getClickableCondition()).click();
-    waitForAjaxIndicatorDisplayNone();
     $("i.pi-sun").shouldBe(appear, DEFAULT_TIMEOUT);
 
   }

@@ -238,7 +238,6 @@ public class RoleManagementPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':manage-role-details-form:users-of-role-table_data']"), true);
     if ($(By.cssSelector("a[id$=':delete-user-link']")).exists() && $$("a[id$=':delete-user-link']").size() > 0) {
       waitForElementClickableThenClick($$("a[id$=':delete-user-link']").get(index));
-      waitForAjaxIndicatorDisplayNone();
       removeUserOfRole(0);
     }
   }

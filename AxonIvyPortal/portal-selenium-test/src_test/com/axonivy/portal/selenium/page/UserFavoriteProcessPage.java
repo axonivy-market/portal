@@ -29,7 +29,6 @@ public class UserFavoriteProcessPage extends TemplatePage{
   public void submitForm() {
     $("button[id='process-widget:add-process-command']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("button[id='process-widget:add-process-command']").shouldBe(getClickableCondition()).click();
-    waitForAjaxIndicatorDisplayNone();
   }
 
   public void selectProcessByName(String ivyProcessName) {

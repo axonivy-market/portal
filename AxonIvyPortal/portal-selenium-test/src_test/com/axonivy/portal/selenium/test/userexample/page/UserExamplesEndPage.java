@@ -13,7 +13,6 @@ public class UserExamplesEndPage extends TemplatePage {
 
   public CaseDetailsPage goToCaseDetail() {
     $("[id$='form:go-to-case-detail']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    waitForAjaxIndicatorDisplayNone();
 
     return new CaseDetailsPage();
   }
