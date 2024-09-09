@@ -129,11 +129,34 @@ public class TaskActionBean implements Serializable {
     return isNotDone(task) && hasPermission(task, IPermission.TASK_WRITE_ORIGINAL_PRIORITY);
   }
 
+  /**
+   * Logic to check if user can change task expiry date:
+   * - Task not null
+   * - Task state is different from DONE, DESTROYED
+   * - User has permission TaskWriteExpiryTimestamp
+   * - The task has expiry handler or has expiry option 'Nobody & delete'
+   * 
+   * @param task
+   * @return condition whether the user can change expiry time
+   */
   public boolean canChangeExpiry(ITask task) {
-    List<TaskState> taskStates = Arrays.asList(TaskState.DONE, TaskState.DESTROYED);
+    List<TaskState> cannotChangeExpiryDateTaskStates = Arrays
+        .asList(TaskState.DONE, TaskState.DESTROYED);
+
+    if (task == null
+        || cannotChangeExpiryDateTaskStates.contains(task.getState())) {
+      return false;
+    }
+
+    boolean isDeleteTaskAfterExpired = StringUtils
+        .isBlank(task.getExpiryActivatorName())
+        && StringUtils.isBlank(task.getExpiryTaskStartElementPid());
+    
+    boolean hasExpityHandlerAfterExpired = StringUtils
+        .isNotBlank(task.getExpiryTaskStartElementPid());
+
     return (hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP)
-        || (task != null && StringUtils.isNotBlank(task.getExpiryTaskStartElementPid())))
-        && !taskStates.contains(task.getState());
+        && (isDeleteTaskAfterExpired || hasExpityHandlerAfterExpired));
   }
   
   public boolean canChangeDelayTimestamp(ITask task) {
