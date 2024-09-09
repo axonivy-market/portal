@@ -135,6 +135,8 @@ public class ExpressManagementTest extends BaseTest {
     taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Suspended"));
     executeSendEmailTask();
     executeReviewTask();
+    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.waitForGlobalGrowlDisappear();
     taskWidgetPage.resetFilter();
     taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Suspended"));
     executeApprovalTask(firstComment);
@@ -290,7 +292,6 @@ public class ExpressManagementTest extends BaseTest {
 
   @Test
   public void testViewExpressBusinessData() {
-    updateLegacyUIConfiguration();
     setupForLegacyExpressTests();
     prepareExpressWorkflowStepForLegacy();
 
