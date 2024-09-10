@@ -2759,6 +2759,10 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   margin: .5em 0;
 }
 
+.announcement-tab-action-buttons {
+  display: flex;
+}
+
 .admin-settings-form-input-label {
   float: right;
   padding-top: 5px;
@@ -2800,9 +2804,16 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .announcement-information {
-  max-width: calc(100% - 200px);
+  flex: 1;
   float: left;
   text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+.announcement-action {
+  display: flex;
+  gap: 3px;
 }
 
 .announcement-input {

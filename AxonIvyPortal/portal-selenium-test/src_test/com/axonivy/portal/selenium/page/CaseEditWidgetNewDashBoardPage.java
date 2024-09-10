@@ -294,7 +294,18 @@ clickByJavaScript($(caseEditWidgetId).$("button[id$='widget-configuration-save-b
   }
 
   public void clickOnQuickSearchCheckBox() {
-    getQuickSearchCheckBox().click();
+    $("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("div[id='widget-configuration-form:new-widget-configuration-component:quick-search']").shouldBe(Condition.appear,
+        DEFAULT_TIMEOUT);
+    $("div[id='widget-configuration-form:new-widget-configuration-component:quick-search']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void waitForTableConfigurationRendered() {
+    $("div[id='widget-configuration-form:new-widget-configuration-component:widget-preview']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("div[id='widget-configuration-form:new-widget-configuration-component:case-widget-preview:dashboard-cases-container']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getQuickSearchCheckBox() {

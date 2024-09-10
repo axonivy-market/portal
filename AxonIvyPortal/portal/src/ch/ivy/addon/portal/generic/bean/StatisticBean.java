@@ -20,7 +20,7 @@ public class StatisticBean implements Serializable {
 
   @PostConstruct
   public void init() {
-    GlobalSettingService globalSettingService = new GlobalSettingService();
+    GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
     isHideStatisticWidget =
         globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET);
   }

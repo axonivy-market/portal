@@ -18,7 +18,9 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
-import org.primefaces.model.SortOrder;
+import org.primefaces.model.FilterMeta;
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortMeta;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.CaseColumnsConfiguration;
@@ -41,7 +43,6 @@ import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.jsf.primefaces.legazy.LazyDataModel7;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -53,7 +54,7 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
  * Lazy data model for case. Only override method which is mentioned in Portal document
  *
  */
-public class CaseLazyDataModel extends LazyDataModel7<ICase> {
+public class CaseLazyDataModel extends LazyDataModel<ICase> {
   /**
    * @hidden
    */
@@ -148,15 +149,14 @@ public class CaseLazyDataModel extends LazyDataModel7<ICase> {
    * @hidden
    */
   public void updateDisableCaseCount() {
-    disableCaseCount = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.DISABLE_CASE_COUNT);
+    disableCaseCount = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.DISABLE_CASE_COUNT);
   }
 
   /**
    * @hidden
    */
   @Override
-  public List<ICase> load(int first, int pageSize, String sortField, SortOrder sortOrder,
-      Map<String, Object> filters) {
+  public List<ICase> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
     if (first == 0) {
       initializedDataModel();
       if (!disableCaseCount) {
@@ -522,7 +522,7 @@ public class CaseLazyDataModel extends LazyDataModel7<ICase> {
   private String getDefaultSortField() {
     String defaultSortField = UserSettingService.newInstance().getDefaultSortFieldOfCaseList();
     if (StringUtils.isBlank(defaultSortField) || UserSettingService.DEFAULT.equals(defaultSortField)) {
-      GlobalSettingService globalSettingService = new GlobalSettingService();
+      GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
       defaultSortField = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_FIELD_OF_CASE_LIST);
     }
     return defaultSortField;
@@ -531,7 +531,7 @@ public class CaseLazyDataModel extends LazyDataModel7<ICase> {
   private boolean isSortedDescendingByDefault() {
     String defaultSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfCaseList();
     if (StringUtils.isBlank(defaultSortDirection) || UserSettingService.DEFAULT.equals(defaultSortDirection)) {
-      GlobalSettingService globalSettingService = new GlobalSettingService();
+      GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
       defaultSortDirection =
           globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST);
     }
@@ -572,7 +572,7 @@ public class CaseLazyDataModel extends LazyDataModel7<ICase> {
    * @hidden
    */
   public void initColumnsConfiguration() {
-    if (new GlobalSettingService().isCaseOwnerEnabled()) {
+    if (GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
       portalDefaultColumns = List.of(CaseSortField.NAME.name(), 
                                       CaseSortField.ID.name(), 
                                       CaseSortField.CREATOR.name(), 
@@ -589,6 +589,10 @@ public class CaseLazyDataModel extends LazyDataModel7<ICase> {
                                       CaseSortField.FINISHED_TIME.name(),
                                       CaseSortField.STATE.name(), 
                                       CaseSortField.CATEGORY.name());
+    }
+    if (GlobalSettingService.getInstance().isHideCaseCreator()) {
+      portalDefaultColumns = portalDefaultColumns.stream()
+          .filter(column -> !column.contains(CaseSortField.CREATOR.name())).collect(Collectors.toList());
     }
     if (CollectionUtils.isEmpty(allColumns)) {
       allColumns.addAll(getDefaultColumns());
@@ -1012,5 +1016,11 @@ public class CaseLazyDataModel extends LazyDataModel7<ICase> {
    */
   public void onSelectedFilter() {
     isSelectedAllFilters = selectedFilters.size() == filters.size();
+  }
+
+  @Override
+  public int count(Map<String, FilterMeta> filterBy) {
+    // TODO Auto-generated method stub
+    return 0;
   }
 }

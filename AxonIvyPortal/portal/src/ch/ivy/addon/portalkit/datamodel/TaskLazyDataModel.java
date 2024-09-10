@@ -18,7 +18,9 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
-import org.primefaces.model.SortOrder;
+import org.primefaces.model.FilterMeta;
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortMeta;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
@@ -44,7 +46,6 @@ import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.jsf.primefaces.legazy.LazyDataModel7;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -56,7 +57,7 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
  * Lazy data model for task. Only override method which is mentioned in Portal document
  *
  */
-public class TaskLazyDataModel extends LazyDataModel7<ITask> {
+public class TaskLazyDataModel extends LazyDataModel<ITask> {
   /**
    * @hidden
    */
@@ -163,7 +164,7 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
    * @hidden
    */
   public void updateDisableTaskCount() {
-    disableTaskCount = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.DISABLE_TASK_COUNT);
+    disableTaskCount = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.DISABLE_TASK_COUNT);
   }
 
   /**
@@ -266,7 +267,7 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
    * Lazy load task
    */
   @Override
-  public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+  public List<ITask> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
     if (isGuide && compactMode) {
       return createDummyDataForGuide();
     } else {
@@ -380,7 +381,7 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   private String getDefaultSortField() {
    String defaultSortField = UserSettingService.newInstance().getDefaultSortFieldOfTaskList();
    if (StringUtils.isBlank(defaultSortField) || UserSettingService.DEFAULT.equals(defaultSortField)) {
-     GlobalSettingService globalSettingService = new GlobalSettingService();
+     GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
      defaultSortField = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_FIELD_OF_TASK_LIST);
    }
    return defaultSortField;
@@ -389,7 +390,7 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   private boolean isSortedDescendingByDefault() {
     String defaultSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfTaskList();
     if (StringUtils.isBlank(defaultSortDirection) || UserSettingService.DEFAULT.equals(defaultSortDirection)) {
-      GlobalSettingService globalSettingService = new GlobalSettingService();
+      GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
       defaultSortDirection =
           globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST);
     }
@@ -1298,4 +1299,11 @@ public class TaskLazyDataModel extends LazyDataModel7<ITask> {
   public void onSelectedFilter() {
     isSelectedAllFilters = selectedFilters.size() == filters.size();
   }
+
+  @Override
+  public int count(Map<String, FilterMeta> filterBy) {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
 }

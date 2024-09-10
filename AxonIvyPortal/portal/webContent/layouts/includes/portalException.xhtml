@@ -7,7 +7,7 @@
     <c:set var="isPortalInTeams" value="#{masterDataBean.portalInTeams}" />
     <ui:fragment rendered="#{!isPortalInTeams}">
       <!-- Exception Handler for ViewExpiredExceptions -->
-      <p:ajaxExceptionHandler type="javax.faces.application.ViewExpiredException" update="view-expired-exception-dialog"
+      <p:ajaxExceptionHandler type="javax.faces.application.ViewExpiredException"
         onexception="PF('timeout-warning-dialog').hide();PF('view-expired-exception-dialog').show();" />
 
       <!-- Error Dialog shown if a view or session has expired -->

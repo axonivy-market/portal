@@ -147,4 +147,8 @@ public class CategoryColumnModel extends ProcessColumnModel implements Serializa
   public void setUserSelectionCategoryNodes(CheckboxTreeNode<CategoryNode>[] userSelectionCategoryNodes) {
     this.userSelectionCategoryNodes = userSelectionCategoryNodes;
   }
+  
+  public void initCategoryTree() {
+    this.userCategoryTree = ProcessTreeUtils.buildRoot();
+  }
 }

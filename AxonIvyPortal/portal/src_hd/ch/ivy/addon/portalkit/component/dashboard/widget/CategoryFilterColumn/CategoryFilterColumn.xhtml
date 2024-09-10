@@ -18,7 +18,7 @@
 
 <cc:implementation>
   <h:panelGroup rendered="#{cc.attrs.field.field eq 'category'}">
-    <f:event listener="#{cc.attrs.field.loadCategories(cc.attrs.configurationMode)}" type="preRenderComponent"/>
+    <f:event listener="#{cc.attrs.field.initCategoryTree()}" type="preRenderComponent"/>
     <p:remoteCommand id="reload-categories-rc" name="reloadCategories"
       actionListener="#{cc.attrs.field.loadCategories(cc.attrs.configurationMode)}"
       process="@this" partialSubmit="true" global="false" immediate="true"/>

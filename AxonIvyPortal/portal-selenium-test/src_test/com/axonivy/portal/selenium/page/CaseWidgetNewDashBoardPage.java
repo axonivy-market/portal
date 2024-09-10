@@ -119,6 +119,13 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     return new CaseEditWidgetNewDashBoardPage();
   }
 
+  public CaseEditWidgetNewDashBoardPage openEditCaseWidget() {
+    $("div.case-dashboard-widget__panel").shouldBe(appear, DEFAULT_TIMEOUT).
+    $("div[id$='widget-header-actions']").$("[id*='edit-widget']")
+        .shouldBe(getClickableCondition()).click();
+    return new CaseEditWidgetNewDashBoardPage();
+  }
+
   private SelenideElement getFilterInput(String inputField) {
     return $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$("div.widget-filter-panel div.ui-g").filter(text(inputField)).first().$("input.ui-inputfield");
@@ -251,11 +258,13 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   public void setInputForQuickSearch(String input) {
     getQuickSearchForm().$("input").sendKeys(input);
+//  Note: stabilize testCaseQuickSearchKeywordSessionCache
     waitForPageLoad();
   }
 
   private SelenideElement getQuickSearchForm() {
-    return $("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT).$("form");
+    return getCaseWidgetHeader().$("div[class*='widget-header-quick-search']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("form");
   }
 
   public void clearQuickSearchInput() {

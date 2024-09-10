@@ -85,8 +85,10 @@ After the user cancels a task, a growl message is displayed if ``Portal.DisplayM
 
 .. _components-additional-component-global-growl-display-growl-after-cancel-task:
 
-Customize the Global Growl Message for a Task without using IFrames
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Customize the Global Growl Message for a Task without using IFrames  (Deprecated)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 For each task, you can turn the growl message display off or override it.
 Initially, when you submit the form to the interacting task, you need to set the
@@ -124,8 +126,10 @@ The message could contain HTML code. To prevent XSS attacks, you need to sanitiz
    flash.setRedirect(true);
    flash.setKeepMessages(true);
 
-Customize the Global Growl Message for a Task using IFrames
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Customize the Global Growl Message for a Task using IFrames (Deprecated)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. warning:: Deprecated: This feature is marked for removal in version LTS 12.
 
 If ``Portal.DisplayMessageAfterFinishTask`` is true, before a task is finished
 or cancelled, you can trigger the display of a customized message by calling the
