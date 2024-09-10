@@ -9,6 +9,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.model.FilterMeta;
+import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
@@ -19,6 +21,7 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.jsf.primefaces.sort.SortMetaConverter;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -72,7 +75,7 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
   }
 
   @Override
-  public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+  public List<ITask> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
     if (isOnlyShowOpenTask()) {
       criteria.setIncludedStates(
           new ArrayList<>(TaskSearchCriteria.OPEN_STATES));
@@ -80,8 +83,9 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
       updateCriteria();
     }
 
-    criteria.setSortField(sortField);
-    criteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
+    SortMetaConverter sort = new SortMetaConverter(sortBy);
+    criteria.setSortField(sort.toField());
+    criteria.setSortDescending(sort.toOrder() == SortOrder.DESCENDING);
 
     if (first == 0) {
       initializedDataModel();

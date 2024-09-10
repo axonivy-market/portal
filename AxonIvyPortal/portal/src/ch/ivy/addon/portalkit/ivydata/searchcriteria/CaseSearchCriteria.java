@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
-import com.axonivy.portal.enums.GlobalSearchScopeCategory;
 import com.axonivy.portal.enums.SearchScopeCaseField;
 
 import ch.ivy.addon.portalkit.enums.CaseSortField;
