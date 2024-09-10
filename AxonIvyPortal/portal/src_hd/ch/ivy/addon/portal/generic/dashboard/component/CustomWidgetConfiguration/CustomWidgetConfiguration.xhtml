@@ -63,24 +63,6 @@
       </div>
     </h:panelGroup>
 
-    <div class="ui-g-12 u-padding-0">
-      <div class="ui-g-4">
-        <p:outputLabel
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetType')}"
-          for="custom-widget-type" />
-      </div>
-      <div class="ui-g-8 ui-fluid">
-        <p:selectOneMenu id="custom-widget-type"
-          value="#{widget.data.type}">
-          <f:selectItems
-            value="#{dashboardCustomWidgetBean.customWidgetTypes}"
-            var="type" itemLabel="#{type.label}" itemValue="#{type}" />
-          <p:ajax event="itemSelect" process="@this widget-title"
-            partialSubmit="true" update="user-filter"
-            listener="#{dashboardCustomWidgetBean.onChangeType(widget)}" />
-        </p:selectOneMenu>
-      </div>
-    </div>
     <c:set var="isIvyProcess" value="#{widget.data.type == 'PROCESS'}" />
     <h:panelGroup id="external-url-panel"
       styleClass="ui-g-12 u-padding-0" rendered="#{!isIvyProcess}">

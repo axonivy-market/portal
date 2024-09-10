@@ -28,6 +28,6 @@ public enum DashboardWidgetType {
 
   public boolean canShowFullscreenModeOption() {
     return this == TASK || this == CASE || this == PROCESS || this == NEWS || this == CUSTOM || this == PROCESS_VIEWER
-        || this == STATISTIC;
+        || this == CLIENT_STATISTIC || this == NOTIFICATION;
   }
 }

@@ -85,7 +85,9 @@ Below is a standard JSON definition of a Process widget in compact mode
          "processPaths": ["designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp", "designer/portal-developer-examples/Start Processes/Request/collectDataRequest.ivp"],
          "categories": ["/Categories/Showcase/Customized", "/Categories/Showcase/PortalDialogExample"],
          "sorting": "SORTING_INDEX",
-         "enableQuickSearch": true
+         "enableQuickSearch": true,
+         "showFullscreenMode" : true,
+         "showWidgetInfo" : true
       }
    ..
 
@@ -135,7 +137,9 @@ Below is a standard JSON definition of a Process widget in combined mode
             "x": 10, "y": 0, "w": 2, "h": 4
          },
          "processPath": "designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp",
-         "rowsPerPage": 5
+         "rowsPerPage": 5,
+         "showFullscreenMode" : true,
+         "showWidgetInfo" : true
       }
    ..
 
@@ -164,7 +168,9 @@ Below is a standard JSON definition of a Process widget in full mode
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
          },
-         "processPath": "designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp"
+         "processPath": "designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp",
+         "showFullscreenMode" : true,
+         "showWidgetInfo" : true
       }
    ..
 
@@ -187,7 +193,9 @@ Below is a standard JSON definition of the Process widget in image mode
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
          },
-         "processPath": "designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp"
+         "processPath": "designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp",
+         "showFullscreenMode" : true,
+         "showWidgetInfo" : true
       }
    ..
 
