@@ -12,11 +12,15 @@ public class GlobalGrowlIframeTemplatePage extends TemplatePage {
   }
 
   public TaskWidgetPage clickCancel() {
-    return clickButton("content-form:cancel");
+    TaskWidgetPage taskWidgetPage = clickButton("content-form:cancel");
+    waitForPageLoad();
+    return taskWidgetPage;
   }
 
   public TaskWidgetPage clickProceed() {
-    return clickButton("content-form:proceed");
+    TaskWidgetPage taskWidgetPage = clickButton("content-form:proceed");
+    waitForPageLoad();
+    return taskWidgetPage;
   }
 
   private TaskWidgetPage clickButton(String idSelector) {
