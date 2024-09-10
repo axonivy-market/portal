@@ -56,7 +56,7 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
   
   /**
    * Get header text from the custom column
-   * Custom column format: fieldType__fieldName__header
+   * Custom column format: fieldFormat__fieldName__header__fieldType
    * 
    * @param column
    * @return customColumnName
