@@ -141,7 +141,6 @@ public class CaseMapPage extends TemplatePage {
   public String clickSubmitAndGetValidationMsg() {
     $("button[id$='submit-request']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $(".ui-messages-error-icon").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    waitForAjaxStatusPositionDisappear();
     return getValidationMsg();
   }
 

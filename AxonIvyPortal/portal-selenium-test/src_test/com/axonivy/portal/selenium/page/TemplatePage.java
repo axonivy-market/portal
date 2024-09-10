@@ -532,10 +532,6 @@ public abstract class TemplatePage extends AbstractPage {
     action.sendKeys(Keys.ESCAPE).build().perform();
   }
   
-  public void waitForAjaxStatusPositionDisappear() {
-    $("div.ajax-status-position").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
-  }
-
   public UserProfilePage openMyProfilePage() {
     clickUserMenuItem("user-profile");
     return new UserProfilePage();

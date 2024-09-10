@@ -369,7 +369,6 @@ public class CaseWidgetPage extends TemplatePage {
 
   public void clickApplyButton() {
     $(APPLY_BUTTON_CSS_SELECTOR).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    waitForAjaxStatusPositionDisappear();
     $(APPLY_BUTTON_CSS_SELECTOR).shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
