@@ -168,4 +168,8 @@ public class CategoryColumnModel extends TaskColumnModel {
   public boolean canQuickSearch() {
     return true;
   }
+  
+  public void initCategoryTree() {
+    this.userCategoryTree = TaskTreeUtils.buildRoot();
+  }
 }

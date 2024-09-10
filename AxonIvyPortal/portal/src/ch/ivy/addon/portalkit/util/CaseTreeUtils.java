@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.CheckboxTreeNode;
 import org.primefaces.model.TreeNode;
 
@@ -16,17 +15,17 @@ import com.axonivy.portal.components.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.bo.CategoryNode;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-public class CaseTreeUtils {
+public class CaseTreeUtils extends TreeUtils {
 
   public static final String DELIMITER = "/";
 
-  private CaseTreeUtils() {}
+  private CaseTreeUtils() {
+    super();}
 
   public static CheckboxTreeNode<CategoryNode> buildCaseCategoryCheckboxTreeRoot() {
     CheckboxTreeNode<CategoryNode> root = buildRoot();
@@ -92,34 +91,5 @@ public class CaseTreeUtils {
     nodeData.setValue(name);
     nodeData.setCategory(category);
     return nodeData;
-  }
-
-  public static CheckboxTreeNode<CategoryNode> buildRoot() {
-    CategoryNode nodeData = new CategoryNode();
-    nodeData.setValue(StringUtils.EMPTY);
-    nodeData.setCategory(StringUtils.EMPTY);
-    CheckboxTreeNode<CategoryNode> checkboxTreeNode = new CheckboxTreeNode<>(StringUtils.EMPTY, nodeData, null);
-    checkboxTreeNode.setExpanded(true);
-    checkboxTreeNode.setSelected(true);
-    buildAllCategoriesNode(checkboxTreeNode);
-    return checkboxTreeNode;
-  }
-
-  private static void buildAllCategoriesNode(CheckboxTreeNode<CategoryNode> parent) {
-    CategoryNode nodeData = new CategoryNode();
-    nodeData.setValue(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/allCategories"));
-    nodeData.setCategory(StringUtils.EMPTY);
-    CheckboxTreeNode<CategoryNode> checkboxTreeNode = new CheckboxTreeNode<>(nodeData, parent);
-    checkboxTreeNode.setExpanded(true);
-    checkboxTreeNode.setSelected(true);
-    buildNoCategoryNode(checkboxTreeNode);
-  }
-
-  private static void buildNoCategoryNode(CheckboxTreeNode<CategoryNode> parent) {
-    CategoryNode nodeData = new CategoryNode();
-    nodeData.setValue(Ivy.cms().co(CategoryUtils.NO_CATEGORY_CMS));
-    nodeData.setCategory(CategoryUtils.NO_CATEGORY);
-    CheckboxTreeNode<CategoryNode> checkboxTreeNode = new CheckboxTreeNode<>(nodeData, parent);
-    checkboxTreeNode.setSelected(true);
   }
 }
