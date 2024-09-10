@@ -537,17 +537,23 @@ $(document).ready(function() {
         removeFocusedElements();
     }
     if (event.altKey && !isNaN(event.key) && event.key >= '1' && event.key <= '9') {
-        var index = parseInt(event.key) - 1;
-        if (index >= 0 && index < focusableElements.length) {
-            event.preventDefault();
-            var focusedElement = $(focusableElements[index]);
-            removeFocusedElements();
-            
-            focusedElement.addClass('focused');
-            focusedElement.focus();
-        }
-	    }
-	});
-    
+      var index = parseInt(event.key) - 1;
+      if (index >= 0 && index < focusableElements.length) {
+          event.preventDefault();
+          var focusedElement = $(focusableElements[index]);
+          removeFocusedElements();
+          
+          focusedElement.addClass('focused');
+          focusedElement.focus();
+      }
+    }
+
+    if (event.key === 'Escape') {
+      var collapseWidgetBtn = $('[id*="collapse-link"]:visible');
+      if (collapseWidgetBtn) {
+        collapseWidgetBtn.click();
+      }
+    }
+  }); 
 });
 // End of accessibility for shortcuts navigation
