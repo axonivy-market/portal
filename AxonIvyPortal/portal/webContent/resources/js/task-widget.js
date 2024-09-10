@@ -48,13 +48,16 @@ function TaskWidget() {
                               - taskViewPadding
                               - compactTaskWidgetPadding - compactProcessWidgetHeight - backlinkHeight;
 
+        var isGlobalSearchResult = $('#search-results-tabview').length > 0;
         if (PortalGlobalSearch.isSearchPageOpened()) {
           availableHeight = availableHeight - PortalGlobalSearch.getAvailableHeight(':task-tab');
         } else {
           needShowScrollbar = (childElements.length * $(childElements[0]).outerHeight(true)||1) > availableHeight;
           if (needShowScrollbar && !isMobileDevices()) {
             PortalLayout.removeLayoutContentPaddingBottom();
-            $('.js-task-list-container').css('margin-right', '-' + PortalLayout.getPaddingRightLayoutContent());
+            if (isGlobalSearchResult) {
+              $('.js-task-list-container').css('margin-right', '-' + PortalLayout.getPaddingRightLayoutContent());
+            }
           }
         }
 
@@ -64,6 +67,7 @@ function TaskWidget() {
           } else {
             availableHeight = availableHeight - PortalLayout.getYPaddingLayoutContent();
             container.outerHeight(availableHeight);
+
           }
           if (container.outerHeight(true) > availableHeight) {
             var taskStartItemMarginRight = $('.task-start-list-item').css("margin-right");
@@ -72,7 +76,10 @@ function TaskWidget() {
               container.css("margin-right", taskStartItemMarginRight);
             }
           }
+
+          container.outerHeight(availableHeight);
         }
+
 
         // show mobile title after calculate
         if (mobileTitle.length > 0) {
@@ -155,6 +162,10 @@ function TaskListToolKit() {
     },
 
     setupScrollbar: function() {
+
+      // Init style for main container
+      $('.js-layout-content.portal-layout-container').addClass('portal-flex-layout-container');
+
       var taskWidget = new TaskWidget();
       taskWidget.setupScrollbar();
     },
