@@ -12,6 +12,8 @@ import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
+import org.primefaces.model.FilterMeta;
+import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
@@ -35,6 +37,7 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.jsf.primefaces.sort.SortMetaConverter;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -87,10 +90,10 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   }
 
   @Override
-  public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder,
-      Map<String, Object> filters) {
-    criteria.setSortField(sortField);
-    criteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
+  public List<ITask> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
+    SortMetaConverter sort = new SortMetaConverter(sortBy);
+    criteria.setSortField(sort.toField());
+    criteria.setSortDescending(sort.toOrder() == SortOrder.DESCENDING);
 
     if (first == 0) {
       initializedDataModel(criteria);
