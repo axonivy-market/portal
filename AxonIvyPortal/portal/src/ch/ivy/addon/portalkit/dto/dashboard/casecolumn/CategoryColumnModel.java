@@ -167,4 +167,8 @@ public class CategoryColumnModel extends CaseColumnModel {
   public boolean canQuickSearch() {
     return true;
   }
+  
+  public void initCategoryTree() {
+    this.userCategoryTree = CaseTreeUtils.buildRoot();
+  }
 }
