@@ -46,13 +46,16 @@ function CaseWidget() {
                               - (caseWidgetSortMenuContainer.outerHeight(true) || 0)
                               - (announcementMessageContainer.outerHeight(true) || 0) - layoutContentMarginPadding - backlinkHeight;
 
+        var isGlobalSearchResult = $('#search-results-tabview').length > 0;
         if (PortalGlobalSearch.isSearchPageOpened()) {
           availableHeight = availableHeight - PortalGlobalSearch.getAvailableHeight(':task-tab');
         } else {
           needShowScrollbar = (childElements.length * $(childElements[0]).outerHeight(true) || 1) > availableHeight;
           if (needShowScrollbar && !isMobileDevices()) {
             PortalLayout.removeLayoutContentPaddingBottom();
-            $('.js-case-default-widget-container').css('margin-right', '-' + PortalLayout.getPaddingRightLayoutContent());
+            if (isGlobalSearchResult) {
+              $('.js-case-default-widget-container').css('margin-right', '-' + PortalLayout.getPaddingRightLayoutContent());
+            }
           }
         }
 
@@ -125,6 +128,10 @@ function CaseListToolKit() {
     },
 
     setupScrollbar: function () {
+
+      // Init style for main container
+      $('.js-layout-content.portal-layout-container').addClass('portal-flex-layout-container');
+
       var caseWidget = new CaseWidget();
       caseWidget.setUpScrollbar();
     },

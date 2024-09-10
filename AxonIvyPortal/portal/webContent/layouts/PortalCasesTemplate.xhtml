@@ -16,7 +16,7 @@
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}</ui:define>
     <ui:define name="pageContent">
       <div class="js-case-default-widget-container case-default-widget-container">
-        <div class="case-main-container">
+        <div class="case-main-container card">
           <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-widget"
             title="#{caseView.getTitle() != '' ? caseView.getTitle() : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}"
             titleOnMobile="#{caseView.getTitleOnMobile() != '' ? caseView.getTitleOnMobile() : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}"

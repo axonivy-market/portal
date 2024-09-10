@@ -78,7 +78,7 @@ var PortalLayout = {
   },
 
   removeLayoutContentPaddingBottom: function () {
-    $(".js-layout-content").css({ "padding-bottom": 0 });
+    $(".js-layout-content").not('.portal-flex-layout-container').css({ "padding-bottom": 0 });
   },
 
   removeJsStyleOnLayoutContent: function () {
