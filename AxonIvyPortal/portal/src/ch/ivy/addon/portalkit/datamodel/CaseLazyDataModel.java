@@ -18,7 +18,9 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
-import org.primefaces.model.SortOrder;
+import org.primefaces.model.FilterMeta;
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortMeta;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.CaseColumnsConfiguration;
@@ -41,7 +43,6 @@ import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.jsf.primefaces.legazy.LazyDataModel7;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -53,7 +54,7 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
  * Lazy data model for case. Only override method which is mentioned in Portal document
  *
  */
-public class CaseLazyDataModel extends LazyDataModel7<ICase> {
+public class CaseLazyDataModel extends LazyDataModel<ICase> {
   /**
    * @hidden
    */
@@ -155,8 +156,7 @@ public class CaseLazyDataModel extends LazyDataModel7<ICase> {
    * @hidden
    */
   @Override
-  public List<ICase> load(int first, int pageSize, String sortField, SortOrder sortOrder,
-      Map<String, Object> filters) {
+  public List<ICase> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
     if (first == 0) {
       initializedDataModel();
       if (!disableCaseCount) {
@@ -1016,5 +1016,11 @@ public class CaseLazyDataModel extends LazyDataModel7<ICase> {
    */
   public void onSelectedFilter() {
     isSelectedAllFilters = selectedFilters.size() == filters.size();
+  }
+
+  @Override
+  public int count(Map<String, FilterMeta> filterBy) {
+    // TODO Auto-generated method stub
+    return 0;
   }
 }
