@@ -704,11 +704,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       titlePage: Validación de contraseñas
     processChain:
       currentStepIsNotDefined: El paso ({0}) de la cadena de proceso no está definido
-    statisticWidget:
-      chartDeletionConfirmation: ¿Seguro que quiere eliminar esta tabla de estadísticas?
-      contextMenuDrilldown: Drilldown
-      contextMenuToCaseList: Ir a la lista de casos
-      contextMenuToTaskList: Ir a la lista de tareas
     taskStart:
       cannotDelegateTaskMessage: Esta tarea no se puede delegar a ningún otro usuario o grupo.
       cannotStartMessages:
@@ -786,7 +781,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       FilterChartText: Filtrar un gráfico por nombre
       PlaceholderChartOption: Seleccione un gráfico
       PleaseSelectChart: Seleccione un gráfico
-      PreviewText: Seleccione un gráfico para ver los datos del lienzo
     WelcomeWidgetIntroduction: Este widget muestra un texto y una imagen de bienvenida en el panel de control.
     WelcomeWidgetNotFoundMessage: No podemos encontrar la imagen del widget, por favor reconfigure su imagen.
     WidgetFilterName: Nombre del filtro del widget
@@ -1144,7 +1138,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     addAdhocTask: Añadir tarea Ad-hoc
   statistic:
     chart:
-      ExpandOrCollapseColumn: Abrir/Cerrar columnas
       addChart: Agregar nueva grafica
       addChartDialogHeader: Agregar grafica estadística al tablero
       backToDashboard: Regresar al tablero
@@ -1201,8 +1194,6 @@ ch.ivy.addon.portalkit.ui.jsf:
         noPermission: You do not have the permission to send this request!
       expiryPeriod: Período de caducidad
       loadingCharts: Por favor espere, los diagramas se están cargando
-      moveLeft: Muévete a la izquierda
-      moveRight: Muévete a la derecha
       notAllowedToCreateChart: Ha cambiado los filtros aplicados. Por favor aplique los filtros.
       other: Otros
       restoreDefaultChart: Si continúa, todos los diagramas hechos por usted serán borrados. Los valores iniciales serán reestablecidos.
@@ -1224,9 +1215,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       taskExpiry: Vencimiento de tareas
     chartInfo:
       chartDetailsHeader: Detalles del gráfico
-      chartName: Nombre del gráfico
-      chartType: Tipo de gráfico
-      name: Información gráfica
     chartType:
       caseByFinishedTask: Caso por Tarea Terminada
       caseByFinishedTaskDescription: Casos en los que al menos una tarea ha sido finalizada en el tiempo seleccionado
@@ -1243,48 +1231,20 @@ ch.ivy.addon.portalkit.ui.jsf:
       tasksByPriority: Tareas por prioridad
     filter:
       affectedCharts: Diagramas afectados
-      allSelected: Todos
-      caseCategoriesLabel: Categorías de casos
       caseCategoryFilterDescription: Puede encontrar todos las categorias disponibles aqui. Solo las categorías seleccionadas serán consideradas en los diagramas creados
       caseStateFilterDescription: Solo los estados seleccionados serán considerados en los diagramas
       filter: Filtros
       noRoles: No hay Roles
       noSelectionCustomVarChar: Sin selección
-      noneSelected: Ninguno
       roleFilterDescription: Puede encontra todos los roles disponibles aquí. Solo los roles seleccionados serán considerados en los diagramas
-      rolesLabel: Roles
       selectAll: Seleccionar todo
-      taskPrioritiesLabel: Prioridades de tareas
       taskPriorityFilterDescription: Puede filtrar tareas por prioridad.
-      timePeriod: Periodo de tiempo
       timePeriodFilterDescription: Restringir el periodo de tiempo para casos y tareas
-      workflowStatesLabel: Estados de flujo de trabajo
     taskAnalysis:
-      applyFilter: Aplicar filtros
-      caseCategory: Categoría de caso
-      caseCreator: Creador del caso
-      caseDescription: Descripción del caso
-      caseFilter: Filtros del caso
-      caseID: ID del caso
-      caseName: Nombre del caso
-      caseOwner: Propietario del caso
-      caseState: Estado del caso
       downloadZipFileExplanation: |-
         El número de tareas excede el Límite de Excel. Por ello se crearán varios archivos y se comprimirán en un archivo Zip.
 
         El número de tareas excede el Límite de Excel. Por ello se crearán varios archivos y se comprimirán en un archivo Zip.
-      taskAnalysis: Análisis de tareas
-      taskCategory: Categoría de la tarea
-      taskCreationTime: Tarea creada
-      taskDescription: Descripción de la tarea
-      taskExpiryTime: Fecha de expiración de la tarea
-      taskFilter: Filtros de tareas
-      taskFinishedTime: Tarea completada
-      taskID: ID de la tarea
-      taskPriority: Prioridad de tarea
-      taskResponsible: Resonsable de tarea
-      taskState: Estado de tarea
-      taskWorker: Editor de tareas
       waitingDownloadMessage: 'Estamos creando su exporte, esto puede tardar unos minutos. '
     timePeriod:
       custom: Personalizado

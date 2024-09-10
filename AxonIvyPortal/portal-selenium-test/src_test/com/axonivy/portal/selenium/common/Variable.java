@@ -30,7 +30,7 @@ public enum Variable {
   SHOW_BUTTON_ICON("Portal.ShowButtonIcon"), DEFAULT_HOMEPAGE("Portal.Homepage"),
   HIDE_RELATED_CASE_INFO_FROM_HISTORY("Portal.Histories.HideRelatedCaseInfo"),
   DISPLAY_USERS_OF_TASK_ACTIVATOR("Portal.DisplayUsersOfRole"), ANNOUNCEMENT("Portal.Announcement"),
-  TASK_ANALYSIS_FILTER("Portal.TaskAnalysisFilters"), THIRD_PARTY_APP("Portal.ThirdPartyApplications"),
+  THIRD_PARTY_APP("Portal.ThirdPartyApplications"),
   STATISTIC_CHART("Portal.StatisticCharts"), EXTERNAL_LINK("Portal.Processes.ExternalLinks"),
   EXPRESS_PROCESS("Portal.Processes.ExpressProcesses"), TASK_COLUMN("Portal.Tasks.TaskColumn"),
   TASK_FILTER("Portal.Tasks.TaskFilters"),

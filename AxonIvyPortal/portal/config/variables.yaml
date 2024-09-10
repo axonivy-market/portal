@@ -41,11 +41,6 @@ Variables:
     # If set to true, icon info is shown beside the role name.
     DisplayUsersOfRole: false
 
-    # The standard sets of filters that Portal used to define the public filters set in the task analysis page.
-    # It will be shown as the public filters in the task analysis page.
-    # [file: json]
-    TaskAnalysisFilters:
-
     # You can define your custom menu item via this JSON file.
     # It will be included to the left menu.
     # [file: json]

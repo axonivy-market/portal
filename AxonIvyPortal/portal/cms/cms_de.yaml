@@ -703,11 +703,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       titlePage: Passwort-Überprüfung
     processChain:
       currentStepIsNotDefined: Aktueller Schritt ({0}) der Prozesskette ist nicht definiert
-    statisticWidget:
-      chartDeletionConfirmation: Wollen Sie dieses Diagramm wirklich löschen?
-      contextMenuDrilldown: Drilldown
-      contextMenuToCaseList: Zur Fallliste gehen
-      contextMenuToTaskList: Zur Aufgabenliste
     taskStart:
       cannotDelegateTaskMessage: Diese Aufgabe kann an keinen anderen Benutzer oder keine andere Gruppe delegiert werden.
       cannotStartMessages:
@@ -787,7 +782,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       FilterChartText: Filtern eines Diagramms nach Name
       PlaceholderChartOption: Wählen Sie ein Diagramm
       PleaseSelectChart: Bitte wählen Sie ein Diagramm aus
-      PreviewText: Bitte wählen Sie ein Diagramm aus, um die Canvas-Daten zu sehen
     WelcomeWidgetIntroduction: Dieses Widget zeigt einen Willkommenstext und ein Bild auf dem Dashboard an.
     WelcomeWidgetNotFoundMessage: Wir können das Bild des Widgets nicht finden, bitte konfigurieren Sie Ihr Bild neu!
     WidgetFilterName: Name des Widget-Filters
@@ -1145,7 +1139,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     addAdhocTask: Ad-hoc Aufgabe hinzufügen
   statistic:
     chart:
-      ExpandOrCollapseColumn: Spalten auf-/zuklappen
       addChart: Neues Diagramm hinzufügen
       addChartDialogHeader: Diagramm zum Dashboard hinzufügen
       backToDashboard: Zurück zum Dashboard
@@ -1202,8 +1195,6 @@ ch.ivy.addon.portalkit.ui.jsf:
         noPermission: You do not have the permission to send this request!
       expiryPeriod: Fristende
       loadingCharts: Bitte warten während die Diagramme geladen werden…
-      moveLeft: Nach links bewegen
-      moveRight: Nach rechts bewegen
       notAllowedToCreateChart: Sie haben die Filtereinstellungen geändert. Bitte aktualisieren Sie gesetzten Filter mit "Filter anwenden", um das Diagramm anschließend erstellen zu können
       other: Andere
       restoreDefaultChart: Wenn Sie fortfahren, werden alle selbsterstellten Diagramme gelöscht. Die Standardeinstellung wird angewendet.
@@ -1225,9 +1216,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       taskExpiry: Aufgabenfristen
     chartInfo:
       chartDetailsHeader: Diagrammdetails
-      chartName: Diagrammname
-      chartType: Diagrammtyp
-      name: Diagramm-Informationen
     chartType:
       caseByFinishedTask: Bearbeitete Vorgänge im Zeitraum
       caseByFinishedTaskDescription: Vorgänge, in denen eine Aufgabe in der ausgewählten Zeitspanne abgeschlossen wurde
@@ -1244,45 +1232,17 @@ ch.ivy.addon.portalkit.ui.jsf:
       tasksByPriority: Aufgaben nach Priorität
     filter:
       affectedCharts: Betroffene Diagramme
-      allSelected: Alle
-      caseCategoriesLabel: Vorgangskategorien
       caseCategoryFilterDescription: Hier sehen Sie alle verfügbaren Vorgangskategorien. Nur ausgewählte Vorgangskategorien werden in den betroffenen Diagrammen berücksichtigt.
       caseStateFilterDescription: Nur ausgewählte Status werden in den betroffenen Diagrammen berücksichtigt.
       filter: Filter
       noRoles: Keine Rollen vorhanden
       noSelectionCustomVarChar: Keine Auswahl
-      noneSelected: Keine
       roleFilterDescription: Hier sehen Sie alle verfügbaren Prozessrollen. Nur ausgewählte Rollen werden in den betroffenen Diagrammen berücksichtigt.
-      rolesLabel: Rollen
       selectAll: Alle selektieren
-      taskPrioritiesLabel: Aufgabenprioritäten
       taskPriorityFilterDescription: Aufgaben können nach Ihrer Priorität gefiltert werden.
-      timePeriod: Zeitspanne
       timePeriodFilterDescription: 'Schränkt den Zeitraum der Vorgänge und Aufgaben ein. '
-      workflowStatesLabel: Workflowstatus
     taskAnalysis:
-      applyFilter: Filter anwenden
-      caseCategory: Vorgangskategorie
-      caseCreator: Ersteller
-      caseDescription: Vorgangsbeschreibung
-      caseFilter: Vorgangsfilter
-      caseID: Vorgangs Id
-      caseName: Vorgangsname
-      caseOwner: Vorgangs Owner
-      caseState: Vorgangsstatus
       downloadZipFileExplanation: Die Anzahl der zu exportierenden Aufgaben überschreitet die Grenze der Excel-Zeilen. Daher werden die Daten in mehrere Excel-Dateien aufgeteilt und dann in einer ZIP-Datei zum Herunterladen komprimiert.
-      taskAnalysis: Aufgabenanalyse
-      taskCategory: Aufgabenkategorie
-      taskCreationTime: Aufgabe erstellt
-      taskDescription: Aufgabenbeschreibung
-      taskExpiryTime: Aufgabenfälligkeit
-      taskFilter: Aufgabenfilter
-      taskFinishedTime: Aufgabe abgeschlossen am
-      taskID: Aufgabe Id
-      taskPriority: Aufgabenpriorität
-      taskResponsible: Aufgabenverantwortlicher
-      taskState: Aufgabenstatus
-      taskWorker: Aufgabenbearbeiter
       waitingDownloadMessage: Bitte um Geduld. Wir erstellen gerade den Export. Das kann einige Minuten dauern.
     timePeriod:
       custom: Benutzerdefiniert

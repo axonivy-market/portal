@@ -16,7 +16,6 @@ public enum PortalPermission {
   TASK_WRITE_ACTIVATOR_OWN_TASKS("TaskWriteActivatorOwnTasks", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
   TASK_DISPLAY_ADDITIONAL_OPTIONS("TaskDisplayAdditionalOptions", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
   STATISTIC_ADD_DASHBOARD_CHART("StatisticAddDashboardChart", PortalPermissionGroup.STATISTIC_GROUP),
-  STATISTIC_ANALYZE_TASK("StatisticAnalyzeTask", PortalPermissionGroup.STATISTIC_GROUP),
   EXPRESS_CREATE_WORKFLOW("ExpressCreateWorkflow", PortalPermissionGroup.EXPRESS_GROUP),
   ACCESS_FULL_PROCESS_LIST("AccessFullProcessList", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   ACCESS_FULL_TASK_LIST("AccessFullTaskList", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),

@@ -701,11 +701,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       titlePage: Validation du mot de passe
     processChain:
       currentStepIsNotDefined: L'étape actuelle ({0}) de la chaîne de processus n'est pas définie
-    statisticWidget:
-      chartDeletionConfirmation: Êtes-vous sûr de vouloir supprimer cette statistique?
-      contextMenuDrilldown: Drilldown
-      contextMenuToCaseList: Aller à la liste des affaires
-      contextMenuToTaskList: Aller à la liste des tâches
     taskStart:
       cannotDelegateTaskMessage: Cette tâche ne peut pas être déléguée ä un autre utilisateur ou une autre groupe.
       cannotStartMessages:
@@ -783,7 +778,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       FilterChartText: Filtrer un graphique par nom
       PlaceholderChartOption: Sélectionnez un graphique
       PleaseSelectChart: Veuillez sélectionner un graphique
-      PreviewText: Veuillez sélectionner un graphique pour voir les données du canevas
     WelcomeWidgetIntroduction: Ce widget affiche un texte et une image de bienvenue sur le tableau de bord.
     WelcomeWidgetNotFoundMessage: Nous ne pouvons pas trouver l'image du widget, veuillez reconfigurer votre image !
     WidgetFilterName: Nom du filtre du widget
@@ -1141,7 +1135,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     addAdhocTask: Ajouter une Ad-hoc tâche
   statistic:
     chart:
-      ExpandOrCollapseColumn: Agrandir/réduire les colonnes
       addChart: Ajouter un nouveau diagramme
       addChartDialogHeader: Ajouter un diagramme au tableau de bord
       backToDashboard: Retour au tableau de bord
@@ -1198,8 +1191,6 @@ ch.ivy.addon.portalkit.ui.jsf:
         noPermission: You do not have the permission to send this request!
       expiryPeriod: Période d'expiration
       loadingCharts: Veuillez patienter, les graphiques sont en cours de chargement …
-      moveLeft: Déplacer vers la gauche
-      moveRight: Déplacer vers la droite
       notAllowedToCreateChart: Vous n'êtes pas autorisé à créer un diagramme avant de cliquer sur le bouton Appliquer les filtres
       other: Outres
       restoreDefaultChart: Si vous continuez, vous perdrez tous les graphiques créés par vous-même. Les paramètres standard seront appliqués.
@@ -1221,9 +1212,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       taskExpiry: Expiration de la tâche
     chartInfo:
       chartDetailsHeader: Détails du diagramme
-      chartName: Nom du diagramme
-      chartType: Type du diagramme
-      name: Infos graphiques
     chartType:
       caseByFinishedTask: Cas traités en période de temps
       caseByFinishedTaskDescription: Cas où une tâche s'est terminée dans la période sélectionnée
@@ -1240,45 +1228,17 @@ ch.ivy.addon.portalkit.ui.jsf:
       tasksByPriority: Tãches par priorité
     filter:
       affectedCharts: Diagrammes concernés
-      allSelected: Tous
-      caseCategoriesLabel: Catégories de cas
       caseCategoryFilterDescription: Vous pouvez trouver toutes les catégories de cas disponibles ici. Seules les catégories de cas sélectionnées sont prises en compte dans les diagrammes concernés.
       caseStateFilterDescription: Seuls les états sélectionnés sont pris en compte dans les diagrammes concernés.
       filter: Filtres
       noRoles: Aucun rôle disponible
       noSelectionCustomVarChar: Pas de choix.
-      noneSelected: Aucun
       roleFilterDescription: Vous pouvez trouver tous les rôles de processus disponibles ici. Seuls les rôles sélectionnés sont pris en compte dans le diagramme concerné
-      rolesLabel: Rôle
       selectAll: Tout sélectionner
-      taskPrioritiesLabel: Priorités de tâches
       taskPriorityFilterDescription: Les tâches peuvent être sélectionnées en fonction de leur priorité.
-      timePeriod: Période de temps
       timePeriodFilterDescription: Limite la période de temps pour les cas et les tâches.
-      workflowStatesLabel: État de flux de travail
     taskAnalysis:
-      applyFilter: Appliquer les filtres
-      caseCategory: Catégorie de cas
-      caseCreator: Créateur de cas
-      caseDescription: Description du cas
-      caseFilter: Filtres de cas
-      caseID: ID de cas
-      caseName: Nom de cas
-      caseOwner: Propriétaire du cas
-      caseState: État du cas
       downloadZipFileExplanation: Le nombre de tâches à exporter dépasse la limite des lignes Excel. Par conséquent, les données seront divisées en plusieurs fichiers Excel, puis compressées dans un fichier ZIP à télécharger.
-      taskAnalysis: Analyse des tâches
-      taskCategory: Catégorie de tâche
-      taskCreationTime: Tâche créée
-      taskDescription: Description de la tâche
-      taskExpiryTime: Expiration de la tâche
-      taskFilter: Filtres de la tâche
-      taskFinishedTime: Tâche terminée le
-      taskID: Id de tâche
-      taskPriority: Priorité de la tâche
-      taskResponsible: Tâche responsable
-      taskState: État de la tâche
-      taskWorker: Éditeur de tâche
       waitingDownloadMessage: Nous créons l'export, cela peut prendre quelques minutes
     timePeriod:
       custom: Coutume
