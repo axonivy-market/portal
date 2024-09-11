@@ -15,6 +15,7 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
+import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
@@ -350,12 +351,10 @@ public class QuickSearchTest extends BaseTest {
 
     caseWidget.setInputForQuickSearch("Create 12 cases");
     caseWidget.countAllCases().shouldHave(size(1), DEFAULT_TIMEOUT);
-
-    caseWidget = new CaseWidgetNewDashBoardPage();
-    caseWidget.setInputForQuickSearch("Test");
-
-    caseWidget.setInputForQuickSearch("Create 12 cases");
-    caseWidget.countAllCases().shouldHave(size(1), DEFAULT_TIMEOUT);
+    
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.openTaskList();
+    new MainMenuPage().clickOnLogo();
 
     caseWidget = new CaseWidgetNewDashBoardPage();
     assertEquals("Create 12 cases", caseWidget.getQuickSearchInput());
