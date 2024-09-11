@@ -19,7 +19,7 @@
   <ui:param name="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
   <ui:param name="isRenderFilter" value="false" />
   <ui:param name="isRenderInfo" value="false" />
-  <ui:param name="isRenderExpandCollapse" value="true" />
+  <ui:param name="isRenderExpandCollapse" value="#{widget.isShowFullscreenMode()}" />
   <ui:param name="panelStyleClass" value="process-viewer-widget-panel" />
 
   <ui:define name="widgetContent">

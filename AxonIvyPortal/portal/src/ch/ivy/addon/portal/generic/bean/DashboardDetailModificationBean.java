@@ -1028,9 +1028,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         .map(DashboardWidgetType::canShowWidgetInfoOption).orElse(false);
   }
   
-  public boolean displayFullscreenMode() {
+  public boolean displayFullscreenModeOption() {
     return Optional.ofNullable(this.widget).map(DashboardWidget::getType)
-        .map(DashboardWidgetType::canShowFullscreenMode).orElse(false);
+        .map(DashboardWidgetType::canShowFullscreenModeOption).orElse(false);
   }
 
 }
