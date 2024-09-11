@@ -339,7 +339,6 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   private SelenideElement findPublicDashboardRowByName(String dashboardName) {
-//  Note: update id to make it work
     return $("[id$=':public-dashboard-table_data']").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr[role='row']").asFixedIterable()
         .stream().filter(row -> row.getText().contains(dashboardName)).findFirst().get();
   }

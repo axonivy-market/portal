@@ -48,10 +48,6 @@ public class QuickSearchTest extends BaseTest {
     redirectToNewDashBoard();
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
 
-/**
- * Note: default quick search is already enabled, and we couldn't search on edit mode anymore so I change the order
- * of the functions
- */
     taskWidget.setInputForQuickSearch("Task number 10");
     taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
     taskWidget.clearQuickSearchInput();
@@ -106,10 +102,6 @@ public class QuickSearchTest extends BaseTest {
     taskEditWidget.saveColumn();
     taskEditWidget.save();
     taskWidget.waitPageLoaded();
-    /**
-     * Note: after apply quick search we need to get out of edit mode to search
-     * so I redirect to the homepage
-     */
     redirectToNewDashBoard();
     taskWidget.setInputForQuickSearch("engine");
     assertTrue(taskWidget.isEmptyMessageAppear());
@@ -159,10 +151,6 @@ public class QuickSearchTest extends BaseTest {
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     ScreenshotUtils.maximizeBrowser();
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
-    /**
-     * Note: disable line below since in the test already enable quickSearch
-     */
-//    taskEditWidget.clickOnQuickSearchCheckBox();
     taskEditWidget.openColumnManagementDialog();
 
     List<String> customCaseFields = List.of("CustomerName", "CustomerType", "SupportData");
@@ -202,18 +190,9 @@ public class QuickSearchTest extends BaseTest {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    /**
-     * Note: when input quickSearch below, it finding the form and the first result it found
-     * is the process widget (since we introduce quick search for processWidget)
-     * so I think we should remove the processWidget because it's no used in this test :)
-     */
     modificationPage.deleteProcessWidget();
     ScreenshotUtils.maximizeBrowser();
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
-    /**
-     * Note: disable line below since in the test already enable quickSearch
-     */
-//    taskEditWidget.clickOnQuickSearchCheckBox();
     taskEditWidget.openColumnManagementDialog();
 
     List<String> customFields = List.of("CustomerName", "CustomerType", "CustomerAddress", "CustomerEmail");

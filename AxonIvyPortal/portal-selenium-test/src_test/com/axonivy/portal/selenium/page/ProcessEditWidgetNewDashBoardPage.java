@@ -124,7 +124,6 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     return $("span[id$=':selected-full-process']");
   }
   
-//  Note: we have 3 exactly same Categoried Leave Request processes so I use this way to get the right one
   private void selectFullProcess(String processName, int index) {
     getFullModeProcessSelectedProcess().click();
     getFullModeProcessSelectedProcess().find("input").clear();
@@ -156,8 +155,6 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     return $("span[id$=':more-information']");
   }
 
-  // Note: some tests fail because I change this function but they using it
-  // so I make the if else
   public void selectFullModeProcessAndSaveWidget(String processName) {
     selectFullMode();
     if ("Categoried Leave Request".equals(processName)) {

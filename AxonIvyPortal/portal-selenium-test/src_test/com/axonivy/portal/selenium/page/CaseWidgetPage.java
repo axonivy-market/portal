@@ -118,7 +118,6 @@ public class CaseWidgetPage extends TemplatePage {
 
   public String getCaseNameAt(int index) {
     waitForElementDisplayed(By.className("js-case-list"), true);
-    // Note: the id no longer correct so I changed it
     SelenideElement rowInfoContainer = $(String.format("[id$='case-widget:case-list-scroller:%d:case-item:case-info-row']", index));
     String name = rowInfoContainer.$("div > .case-header-name-cell").getText();
     return name;

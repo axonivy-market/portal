@@ -57,9 +57,6 @@ public class DashboardSupportMultiLanguageTest extends BaseTest {
 
     elementsInput.get(2).setValue(updatedName);
     elementsInput.get(1).click();
-//    Note: related to multiple languages of DeepL
-//    SelenideElement translation = configurationPage.getTranslationOverlayPanel(1);
-//    translation.$("span.ui-icon-closethick").click();
 
     multipleLanguageDialog.$("button[type='submit']").click();
     multipleLanguageDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
@@ -99,9 +96,6 @@ public class DashboardSupportMultiLanguageTest extends BaseTest {
 
     elementsInput.get(2).setValue(updatedName);
     elementsInput.get(1).click();
-//  Note: related to multiple languages of DeepL
-//    SelenideElement translation = configurationPage.getTranslationOverlayPanel(1);
-//    translation.$("span.ui-icon-closethick").click();
 
     multipleLanguageDialog.$("button[type='submit']").click();
     multipleLanguageDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);

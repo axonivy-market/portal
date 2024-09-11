@@ -72,8 +72,6 @@ public class CaseWidgetTest extends BaseTest {
     casePage = mainMenuPage.selectCaseMenu();
     casePage.clickDestroyButton();
     casePage.confimDestruction();
-    // Note: in full case list don't see the state column anymore
-    // -> navigate to dashboard and check the state from widget
     redirectToNewDashBoard();
     CaseState caseState = casePage.getCaseState(0);
     assertEquals(CaseState.DESTROYED, caseState);
@@ -100,7 +98,6 @@ public class CaseWidgetTest extends BaseTest {
   public void testOpenRelatedCasesOfCase() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     initNewDashboardPage(TestAccount.DEMO_USER);
-    // Note: make it navigate to portal app
     redirectToNewDashBoard();
     mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
@@ -125,7 +122,6 @@ public class CaseWidgetTest extends BaseTest {
   @Test
   public void testEnableAndDisableColumnsInCaseWidget() {
     initNewDashboardPage(TestAccount.DEMO_USER);
-    // Note: navigation problem
     redirectToNewDashBoard();
     mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
@@ -234,7 +230,6 @@ public class CaseWidgetTest extends BaseTest {
   @Test
   public void testChangeCaseSortingOptions() {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
-    // Note: navigate to the right app (portal)
     redirectToNewDashBoard();
 
     NewDashboardPage newDashboardPage = new NewDashboardPage();
@@ -294,7 +289,6 @@ public class CaseWidgetTest extends BaseTest {
     newDashboardPage = userProfilePage.save();
 
     // Check result
-    // Note: because it's navigate to portal-developer-examples so line below make the navigation to portal app
     redirectToNewDashBoard();
     caseWidgetPage = newDashboardPage.openCaseList();
     selectedSortColumn = caseWidgetPage.getSelectedSortColumn();
@@ -305,7 +299,6 @@ public class CaseWidgetTest extends BaseTest {
   @Test
   public void testRelatedCaseEnableAndDisableColumns() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    // Note: navigation problem
     redirectToNewDashBoard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitPageLoaded();

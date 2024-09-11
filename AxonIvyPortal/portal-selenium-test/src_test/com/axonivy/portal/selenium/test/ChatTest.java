@@ -196,9 +196,6 @@ public class ChatTest extends BaseTest {
     chatPage.isNotificationContactChat();
   }
 
-  /**
-   * Note: need more time for this test
-   */
   @Test
   public void chatGroupMultiTabs() {
     enableChatGroup();
@@ -246,7 +243,6 @@ public class ChatTest extends BaseTest {
     launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPageDemo4 = openChatGroup(TestAccount.DEMO_USER);
     chatPageAdmin1.sendMessage(ADMIN1_2);
-    //TODO need to be fixed - Workaround for wait message render
 
     assertContainMessage(chatPageDemo1, ADMIN1_2);
     assertContainMessage(chatPageDemo2, ADMIN1_2);

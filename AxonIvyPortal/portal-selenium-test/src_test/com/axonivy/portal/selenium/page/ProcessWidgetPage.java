@@ -551,10 +551,6 @@ public class ProcessWidgetPage extends TemplatePage {
   public void clickSortDefaultProcessByName() {
     $("[id$='default-process-name-sort-command']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("[id$='default-process-name-sort-command']").shouldBe(getClickableCondition()).click();
-    /**
-     * Note: click theme switcher and wait for the animation ending
-     * to buy some time for the sorting work before assert happens
-     */
     $("i.pi-moon").shouldBe(getClickableCondition()).click();
     $("i.pi-sun").shouldBe(appear, DEFAULT_TIMEOUT);
   }
@@ -562,10 +558,6 @@ public class ProcessWidgetPage extends TemplatePage {
   public void clickSortFavoriteProcessByName() {
     $("[id$='name-sort-command']").shouldBe(appear, DEFAULT_TIMEOUT);
     $("[id$='name-sort-command']").shouldBe(getClickableCondition()).click();
-    /**
-     * Note: click theme switcher and wait for the animation ending
-     * to buy some time for the sorting work before assert happens
-     */
     $("i.pi-moon").shouldBe(getClickableCondition()).click();
     $("i.pi-sun").shouldBe(appear, DEFAULT_TIMEOUT);
 

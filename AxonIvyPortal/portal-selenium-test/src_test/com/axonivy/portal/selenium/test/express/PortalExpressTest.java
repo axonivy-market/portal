@@ -488,9 +488,6 @@ public class PortalExpressTest extends BaseTest {
     userTaskWithMailFormPage.finish();
     new NewDashboardPage();
     executeApproval("Approved at first level", 0);
-//  Note: currently I don't know how to fix
-//  when it's in the task list, you have to refresh then the task will show up
-//  but you have to do it manually!! will come back later
     executeUserTask();
     String approvalResult = executeReview("Test approval: Final Review");
     assertEquals("Portal Demo User,Approved at first level,Yes", approvalResult);

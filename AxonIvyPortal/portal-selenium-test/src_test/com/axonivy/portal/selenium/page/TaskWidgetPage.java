@@ -289,7 +289,6 @@ public class TaskWidgetPage extends TemplatePage {
   public void reserveTask(int taskId) {
     String reserveCommandButton = String.format(
         taskWidgetId + ":task-list-scroller:%d:task-item:task-action:additional-options:task-reserve-command", taskId);
-//  Note: fix testReserveTask
     waitForElementClickableThenClick($(By.id(reserveCommandButton)));
   }
 
@@ -658,8 +657,6 @@ public class TaskWidgetPage extends TemplatePage {
   public boolean isTaskStateSuspended(int index) {
     try {
       SelenideElement stateComponent = findElementById(String.format(TASK_STATE_COMPONENT_ID, index));
-//    Note: adapt task state for LTS - fix testLeaveWorkingTaskByClickingOnLogo
-//    and testResetTaskWhenStartSideStep
       stateComponent.findElement(By.className("suspended-task-state"));
     } catch (NoSuchElementException e) {
       return false;
@@ -826,11 +823,6 @@ public class TaskWidgetPage extends TemplatePage {
 //    $("button[id$='description-filter:filter-input-form:update-command']").shouldBe(getClickableCondition()).click();
     $("[id$=':description-filter:filter-open-form:advanced-filter-command']").shouldBe(appear, DEFAULT_TIMEOUT)
         .getText().contains(text);
-    /**
-     * Note: stabilize this function, if we don't wait for
-     * the engine to proceed the filter, it couldn't have
-     * enough time to render the task we want
-     */
 
     $("button[id$='description-filter:filter-input-form:update-command']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }

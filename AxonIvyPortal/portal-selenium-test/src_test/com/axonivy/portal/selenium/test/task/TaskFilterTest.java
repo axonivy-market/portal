@@ -63,9 +63,6 @@ public class TaskFilterTest extends BaseTest {
     updateLegacyUIConfiguration();
     redirectToRelativeLink(createTestingTasksUrl);
     HomePage homePage = new HomePage();
-    /**
-     * Note: stabilize the expand() function
-     */
     homePage.waitForGlobalGrowlDisappear();
 
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
@@ -125,13 +122,6 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.expand();
     assertEquals(3, taskWidgetPage.countTasks().size());
 
-    /**
-     * Note: filterTasksBy is unstable because when enter the 
-     * text we don't have enough time to see it filtering the 
-     * task. I see that it still keeps the filter option after
-     * we go back to home and go back to full task list again
-     * so I do it to buy some time for the rendering
-     */
     taskWidgetPage.filterTasksBy("Maternity");
     taskWidgetPage.waitTillOnlyOneTaskAppear();
     assertEquals(1, taskWidgetPage.countTasks().size());
@@ -268,20 +258,12 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.openSavedFilters(filterMaternity);
     taskWidgetPage.waitForDesiredResponsibleRendered("Responsible: \"Everybody (Everybody)\"");
 
-//    mainMenuPage.clickOnLogo();
-//    taskWidgetPage.expand();
     taskWidgetPage.filterByResponsible("Demo");
     taskWidgetPage.saveFilter(filterResponsible);
     taskWidgetPage.openSavedFilters(filterResponsible);
     taskWidgetPage.waitForDesiredResponsibleRendered("Responsible: \"Portal Demo User (demo)\"");
 
     // Change filter and verify responsible changed
-    /**
-     * Note: I refresh, because Selenide code continue to proceed
-     * when the save not finish, on the UI we can see 2 saved filters
-     * but it couldn't see any filter on the code, so it's stay at the responsible filter
-     * => make the test failed
-     */
     refreshPage();
     taskWidgetPage.openSavedFilters(filterMaternity);
     taskWidgetPage.waitForDesiredResponsibleRendered("Responsible: \"Everybody (Everybody)\"");

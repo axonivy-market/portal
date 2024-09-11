@@ -58,7 +58,6 @@ public class BaseTest {
   protected String businessCaseUrl = "internalSupport/15B1EA24CCF377E8/updateCheckInTime.ivp";
   protected String hideCaseUrl = "portal-developer-examples/16583F0F73864543/createHiddenTechnicalCase.ivp";
   protected String createTestingCaseMapUrl = "internalSupport/764871e4-cf70-401f-83fb-9e99fa897fc4.icm";
-  // Note: link below is updated since different id
   protected String createTestingCaseUrlForCustomizationAdditionalCaseDetails =
       "portal-components-examples/1624D1F5CBEA5332/createInvestmentRequest.ivp";
   protected String createTestingCaseUrlForDefaultAdditionalCaseDetails =
@@ -130,17 +129,10 @@ public class BaseTest {
       "PortalKitTestHelper/14DE09882B540AD5/grantDashboardShareLinkPermission.ivp";
   protected String denyDashboardShareLinkPermissionUrl =
       "PortalKitTestHelper/14DE09882B540AD5/denyDashboardShareLinkPermission.ivp";
-  /**
-   * Note: fix CaseDetailsTest#testShareCaseDetails
-   */
   protected String grantShareLinkCaseDetailsPermission =
       "PortalKitTestHelper/14DE09882B540AD5/grantShareLinkCaseDetailsPermission.ivp";
   protected String denyShareLinkCaseDetailsPermission =
       "PortalKitTestHelper/14DE09882B540AD5/denyShareLinkCaseDetailsPermission.ivp";
-  /**
-   * Note: fix TaskDetailsTest#testShareTaskDetails()
-   * the links are wrong, updated it as information of the process file
-   */
   protected String grantShareLinkTaskDetailsPermission =
       "PortalKitTestHelper/14DE09882B540AD5/grantShareLinkTaskDetailsPermission.ivp?";
   protected String denyShareLinkTaskDetailsPermission =

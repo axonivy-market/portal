@@ -200,7 +200,6 @@ public class AbsenceTest extends BaseTest {
     login(TestAccount.GUEST_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateAbsencePermission.ivp");
-//  Note: add line below to make openAbsencePage() function work properly
     updateGlobalVariable(Variable.SHOW_LEGACY_UI.getKey(), "false");
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
@@ -220,7 +219,6 @@ public class AbsenceTest extends BaseTest {
   public void testReadAbsencesOfOtherUser() {
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
-//  Note: add line below to make openAbsencePage() function work properly
     updateGlobalVariable(Variable.SHOW_LEGACY_UI.getKey(), "false");
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
@@ -286,7 +284,6 @@ public class AbsenceTest extends BaseTest {
   @Test
   public void testEditAbsenceOfOtherUser() {
     login(TestAccount.DEMO_USER);
-//  Note: add line below to make openAbsencePage() function work properly
     updateGlobalVariable(Variable.SHOW_LEGACY_UI.getKey(), "false");
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
     AbsencePage absencePage = openAbsencePage();

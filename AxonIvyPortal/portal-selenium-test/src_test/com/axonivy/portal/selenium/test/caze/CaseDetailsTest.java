@@ -164,8 +164,6 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testDestroyCase() {
     createTestingTask();
-//    Note: will remove the line below, PortalTest don't have it
-//    assertEquals("Open", detailsPage.getCaseState());
     detailsPage.openActionMenu();
     detailsPage.onClickDestroyCase();
     detailsPage.confimDestruction();
@@ -258,8 +256,6 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
     detailsPage.resetTask(SICK_LEAVE_REQUEST_TASK);
 
-//  Note: refresh the page and wait for rendering
-//  then the clickRelatedTaskActionButton seem to work normally
     refreshPage();
     detailsPage.waitRelatedTasks();
     detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
@@ -277,11 +273,9 @@ public class CaseDetailsTest extends BaseTest {
     assertTrue(detailsPage.isRelatedTaskDestroyEnabled(SICK_LEAVE_REQUEST_TASK));
     detailsPage.destroyTask(SICK_LEAVE_REQUEST_TASK);
     detailsPage.confimRelatedTaskDestruction();
-//    assertTrue(detailsPage.isTaskState(SICK_LEAVE_REQUEST_TASK, TaskBusinessState.DESTROYED));
   }
 
   @Test
-  // unstable test
   public void testRelatedTaskDelegateTask() {
     createTestingTask();
     ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));

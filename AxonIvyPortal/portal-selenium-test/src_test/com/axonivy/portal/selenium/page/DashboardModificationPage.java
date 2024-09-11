@@ -136,9 +136,6 @@ public class DashboardModificationPage extends TemplatePage {
     $("div[id$=':share-dashboard-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
   
-  /**
-   * Note: enhance QuickSearchTest
-   */
   public void deleteProcessWidget() {
     $("div[id='process-process_1:widget-header-actions']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("button[id='process-process_1:delete-widget-2']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);

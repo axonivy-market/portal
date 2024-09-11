@@ -29,10 +29,6 @@ public class ExpressTaskPage extends TemplatePage {
 
   public void finish() {
     $("[id='form:ok-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    /**
-     * Note: fix executeUserTask
-     * waiting for the task created after click
-     */
   }
 
   public boolean isDocumentTableVisible() {

@@ -49,7 +49,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
 
   public void clickApplyFilter() {
     $("button[id$='task-widget:apply-filter']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-//    Note: to fix testApplyCaseOwnerFilter
   }
 
   private SelenideElement findTaskFilterButton() {
@@ -103,7 +102,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     return findElementById("task-widget:statistic-result-form:task-table_data").$$(By.cssSelector("tr[role='row']"));
   }
   
-//  Note: to fix testApplyCaseOwnerFilter
   public int getNumberOfRowsInTaskTable() {
     List<SelenideElement> elements = findElementById("task-widget:statistic-result-form:task-table_data").$$(By.cssSelector("tr[role='row']"));
     return elements.size();

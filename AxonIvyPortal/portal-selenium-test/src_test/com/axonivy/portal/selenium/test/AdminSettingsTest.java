@@ -95,9 +95,6 @@ public class AdminSettingsTest extends BaseTest {
     assertEquals("TestCase", caseWidgetPage.getCaseNameAt(0));
   }
 
-  /**
-   * Note: added missing tests
-   */
   @Test
   public void testShowLegacyUISetting() {
     login(TestAccount.ADMIN_USER);

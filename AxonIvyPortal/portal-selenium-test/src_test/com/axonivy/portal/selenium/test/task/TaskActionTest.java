@@ -80,7 +80,6 @@ public class TaskActionTest extends BaseTest {
     // In progress
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
     taskTemplatePage.clickCancelLink();
-//  Note: click back button make it stuck so I change the way to navigate
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     assertTaskActionsByTaskState(IN_PROGRESS,
         Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));

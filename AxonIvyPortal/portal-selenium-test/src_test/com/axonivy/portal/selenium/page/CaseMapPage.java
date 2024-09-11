@@ -128,7 +128,6 @@ public class CaseMapPage extends TemplatePage {
   public TaskWidgetPage clickRejectButton() {
     waitForElementClickableThenClick("button[id$='form:rejected-button']");
     switchToDefaultContent();
-//  Note: fix testCaseMapRejectedWorkflow
     return NavigationHelper.navigateToTaskList();
   }
 

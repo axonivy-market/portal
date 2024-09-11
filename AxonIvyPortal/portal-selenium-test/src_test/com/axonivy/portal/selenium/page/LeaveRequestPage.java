@@ -108,7 +108,6 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   public TaskWidgetPage clickApproveBtn() {
     $("button[id='leave-request:approved-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     switchToDefaultContent();
-//  Note: fix testApproveScenario
     return NavigationHelper.navigateToTaskList();
   }
 
@@ -123,7 +122,6 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   public TaskWidgetPage clickRejectBtn() {
     $("button[id='leave-request:rejected-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     switchToDefaultContent();
-//  Note: fix testRejectScenario
     return NavigationHelper.navigateToTaskList();
   }
 }

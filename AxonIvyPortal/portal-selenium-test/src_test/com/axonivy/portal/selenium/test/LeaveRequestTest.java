@@ -28,9 +28,6 @@ public class LeaveRequestTest extends BaseTest {
   public void setup() {
     super.setup();
   }
-  /**
-   * Note: pageTittle only for version 12
-   */
 
   @Test
   public void testLeaveRequestValidation() {

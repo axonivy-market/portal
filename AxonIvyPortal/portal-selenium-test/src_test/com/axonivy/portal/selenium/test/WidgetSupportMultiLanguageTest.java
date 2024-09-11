@@ -59,9 +59,6 @@ public class WidgetSupportMultiLanguageTest extends BaseTest {
 
     elementsInput.get(2).setValue(updatedTitle);
     elementsInput.get(1).click();
-//    Note: remove DeepL part
-//    SelenideElement translation = newCaseWidget.getTranslationOverlayPanel(1);
-//    translation.shouldBe(Condition.visible, DEFAULT_TIMEOUT).$("span.ui-icon-closethick").click();
 
     multipleLanguageDialog.$("button[type='submit']").shouldBe(Condition.visible, DEFAULT_TIMEOUT).click();
     multipleLanguageDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
@@ -93,9 +90,6 @@ public class WidgetSupportMultiLanguageTest extends BaseTest {
 
     elementsInput.get(2).setValue(updatedTitle);
     elementsInput.get(1).click();
-//    Note: remove DeepL part
-//    SelenideElement translation = newTaskWidget.getTranslationOverlayPanel(1);
-//    translation.$("span.ui-icon-closethick").click();
 
     multipleLanguageDialog.$("button[type='submit']").click();
     multipleLanguageDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
@@ -127,9 +121,6 @@ public class WidgetSupportMultiLanguageTest extends BaseTest {
 
     elementsInput.get(2).setValue(updatedTitle);
     elementsInput.get(1).click();
-//    Note: remove DeepL part
-//    SelenideElement translation = newProcessWidget.getTranslationOverlayPanel(1);
-//    translation.$("span.ui-icon-closethick").click();
 
     multipleLanguageDialog.$("button[type='submit']").click();
     multipleLanguageDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);

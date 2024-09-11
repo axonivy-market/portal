@@ -47,9 +47,6 @@ public class CaseOwnerTest extends BaseTest {
 
   @Test
   public void testRoleIsOwner() {
-    // Note: I move login to top, so we'll have user we need first
-    // then do others step normally in portal app, or else if login at the old
-    // position, we'll navigate to developer-example -> error
     login(TestAccount.CASE_OWNER_USER);
     redirectToRelativeLink(ROLE_IS_OWNER_URL);
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);

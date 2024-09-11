@@ -157,18 +157,6 @@ public class GlobalGrowlTest extends BaseTest {
     assertGrowlMessage(newDashboardPage, FINISH_MESSAGE);
   }
 
-  /**
-   * Note: I think we should split testTaskLeft into scenarios
-   * why do we need to do it in 1 scenario?
-   */
-//  @Test
-//  public void testTaskLeft() {
-//    leftTaskWhenClickingOnLogo();
-//    leftTaskWhenClickingOnMenu();
-//    leftTaskWhenGlobalSearch();
-//    leftExpressWorkflowDefinition();
-//    leftExpressFormDefinition();
-//  }
 
   private ExpressFormDefinitionPage configureExpressProcess(ExpressProcessPage expressProcessPage) {
     ExpressResponsible responsible = setExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);

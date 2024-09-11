@@ -365,11 +365,6 @@ public class TaskDetailsTest extends BaseTest {
     assertFalse(taskDetailsPage.isDelayTimeDisplayed());
   }
   
-  /**
-   * Note: experience gained from the test
-   * the order of login could also make the test fail
-   * or success
-   */
   @Test
   public void testShowTaskWorkflowEvent() {
     updateLegacyUIConfiguration();

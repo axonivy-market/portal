@@ -256,11 +256,6 @@ public class DashboardCaseWidgetTest extends BaseTest {
     dashboardPage.isDownloadCompleted();
   }
 
-  /**
-   *  Note: remove testCustomActionButton because not on LTS, just for LE
-   *  
-   *  This test moved from the redundant into this
-   */
   @Test
   public void testCaseReadAllOwnRoleInvolved() {
     redirectToRelativeLink(createTaskForRoleInvolved);

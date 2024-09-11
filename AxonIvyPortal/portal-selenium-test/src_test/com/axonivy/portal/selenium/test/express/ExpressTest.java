@@ -126,12 +126,6 @@ public class ExpressTest extends BaseTest {
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.waitForPageLoad();
     expressTaskPage.finish();
-    /**
-     * Note: after finish, it redirect to customization task widget page
-     * which I believe is deprecated so it's freeze and won't load anything
-     * we have to redirect to new dashboard then go to full task list
-     * to see the task
-     */
     redirectToNewDashBoard();
   }
 

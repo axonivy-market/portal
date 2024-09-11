@@ -104,9 +104,6 @@ public class GlobalSearchTest extends BaseTest {
         resultPage.getGlobalSearchByFieldTextForCaseTab());
   }
   
-  /**
-   * Note: added from the deleted file
-   */
   @Test
   public void testConfigGlobalSearchScopeCategories() {
     redirectToRelativeLink(CREATE_TESTING_TASK_PROCESS);

@@ -59,11 +59,6 @@ public class DashboardNewsWidgetTest extends BaseTest {
     newsWidget.expand().shouldHave(size(1));
   }
 
-  /**
-   * Note: this test is copied from the removed test outside of the package with the same name
-   * original part of this has something related to DeepL translation for multiple languages
-   * which I think only available on LE
-   */
   @Test
   public void testAddNewsItemToWidget() {
   int newsItemIndex = 0;
@@ -142,10 +137,6 @@ public class DashboardNewsWidgetTest extends BaseTest {
       tabIndexFr = newsWidget.selectNewsLanguage("fr");
       newsWidget.clickOnTitle(tabIndexFr);
     }
-//    Note: related to multiple languages of DeepL
-//    SelenideElement translation = newsWidget.getTranslationOverlayPanel(1);
-//    translation.$("span.ui-icon-closethick").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-//    newsWidget.findTranslationButton(tabIndexFr);
     newsWidget.publishNews();
     newsWidget.waitForNewsWidgetContentDisplayClearly(1);
     newsWidget.getTotalNewsItem().shouldHave(CollectionCondition.size(1));

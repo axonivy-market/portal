@@ -194,12 +194,6 @@ public class CaseFilterTest extends BaseTest {
 
     assertTrue(casePage.getFilterName().contains("Default filter"));
 
-    /**
-     * TODO
-     * Note: this is my work around
-     * don't know why but re-apply the filter causing Exception
-     * will ask and fix later
-     */
     String secondFilterName = "MyFilter2";
     casePage.openAdvancedFilter("Creator", "creator");
     casePage.filterByCreator("Demo");
