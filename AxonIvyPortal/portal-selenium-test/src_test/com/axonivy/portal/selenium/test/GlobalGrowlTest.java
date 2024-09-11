@@ -31,7 +31,7 @@ import com.codeborne.selenide.Condition;
 
 import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class GlobalGrowlTest extends BaseTest {
 
   private static final String FINISH_MESSAGE = "You have finished the task successfully";
