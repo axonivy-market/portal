@@ -16,10 +16,12 @@ public class UserMenuPage extends TemplatePage {
   }
 
   public SelenideElement findMenu(String title) {
-    return $(USER_SETTING_CONTAINER_SELECTOR).shouldBe(appear, DEFAULT_TIMEOUT).$$("li").filter(Condition.text(title)).first();
+    return $(USER_SETTING_CONTAINER_SELECTOR).shouldBe(appear, DEFAULT_TIMEOUT).$$("li").filter(Condition.text(title))
+        .first();
   }
-  
+
   public void accessMenu(String title) {
+    waitForGlobalGrowlDisappear();
     findMenu(title).shouldBe(getClickableCondition()).click();
   }
 }

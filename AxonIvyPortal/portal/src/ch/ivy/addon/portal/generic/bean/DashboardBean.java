@@ -79,7 +79,6 @@ public class DashboardBean implements Serializable {
   private List<DashboardTemplate> dashboardTemplates;
   protected String dashboardUrl;
   protected List<Dashboard> importedDashboards;
-  public String selectedDashboardName;
   private String searchScope;
 
 
@@ -97,11 +96,6 @@ public class DashboardBean implements Serializable {
       selectedDashboardId = readDashboardFromSession();
       currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
       selectedDashboard = dashboards.get(currentDashboardIndex);
-      String selectedDashboardName = selectedDashboard.getTitles().stream()
-          .filter(displayName -> displayName.getLocale().equals(Ivy.session().getContentLocale())).findFirst()
-          .orElseGet(() -> selectedDashboard.getTitles().get(0))
-          .getValue();
-      setSelectedDashboardName(selectedDashboardName);
       initShareDashboardLink(selectedDashboard);
       // can not find dashboard by dashboard id session in view mode
       if (StringUtils.isBlank(selectedDashboardId)
@@ -116,17 +110,6 @@ public class DashboardBean implements Serializable {
     isRunningTaskWhenClickingOnTaskInList = GlobalSettingService.getInstance()
         .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
         .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
-  }
-
-  public String getSelectedDashboardName() {
-    if (StringUtils.isBlank(selectedDashboardName)) {
-      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/dashboard");
-    }
-    return selectedDashboardName;
-  }
-
-  public void setSelectedDashboardName(String name) {
-    this.selectedDashboardName = name;
   }
 
   protected List<Dashboard> collectDashboards() {

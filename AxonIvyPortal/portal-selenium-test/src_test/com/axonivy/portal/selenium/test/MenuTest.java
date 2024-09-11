@@ -1,22 +1,29 @@
 package com.axonivy.portal.selenium.test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
-import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.StatisticWidgetPage;
+import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
 public class MenuTest extends BaseTest {
+
+  @Override
+  @BeforeEach
+  public void setup() {
+    super.setup();
+    login(TestAccount.ADMIN_USER);
+  }
 
   @Test
   public void testLoadCustomMenuItems() {
@@ -31,11 +38,63 @@ public class MenuTest extends BaseTest {
     home.waitForCaseWidgetLoaded();
 
     MainMenuPage mainMenuPage = new MainMenuPage();
-    String expected = "Dashboard,Processes,Tasks,Cases,Statistics,User example guide,Google,Testing link google,Testing example,A link,B link";
+    String expected =
+        "Dashboard,Processes,Tasks,Cases,Statistics,User example guide,Google,Testing link google,Testing example,A link,B link";
     assertEquals(expected, mainMenuPage.getMenuItemsAsString());
   }
 
   @Test
+  public void testKeepOpenStateWhenNavigateToAnotherPage() {
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    login(TestAccount.ADMIN_USER);
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitPageLoaded();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
+    TaskWidgetPage taskWidgetPage = mainMenuPage.selectTaskMenu();
+    assertTrue(taskWidgetPage.isMainMenuOpen());
+  }
+
+  @Test
+  public void testKeepClosedStateWhenNavigateToAnotherPage() {
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    login(TestAccount.ADMIN_USER);
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitPageLoaded();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
+    StatisticWidgetPage dashboardPage = mainMenuPage.selectStatisticDashboard();
+    dashboardPage.waitForPageLoad();
+
+    dashboardPage.closeMainMenu();
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    newDashboardPage = new NewDashboardPage();
+    assertFalse(newDashboardPage.isMainMenuOpen());
+  }
+
+  @Test
+  public void testNavigateToThirdPartyApp() {
+  /**
+   * I move the login demo first then set the language for it
+   * => it will have the session and language
+   * these additional steps to fix the line
+   * convertor.add(ivy.session.getSessionUser().getLanguage(), "Google");
+   * in createThirdPartyApp
+   * remove them, and we'll it could be fail constantly
+   */
+    login(TestAccount.DEMO_USER);
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
+    userProfilePage.selectLanguage(1);
+    userProfilePage.save();
+    createThirdPartyApp();
+
+    // to refresh cache
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
+    mainMenuPage.clickThirdPartyApp();
+    mainMenuPage.assertThirdPartyApp("https://www.google.com/");
+  }
+
   public void testCustomizeIconMainMenuEntry() {
     redirectToRelativeLink(cleanupDataLink);
     createJSonFile("custom-main-menu-entry.json", PortalVariable.DASHBOARD_MAIN_MENU_ENTRY.key);
@@ -80,24 +139,6 @@ public class MenuTest extends BaseTest {
     // Set English
     setUserLanguage(newDashboardPage, 1);
     Assertions.assertEquals("Dashboard Test EN", mainMenuPage.getMainMenuName());
-  }
-
-  @Test
-  public void testBrowserTitleChangeFollowPage() {
-    redirectToRelativeLink(cleanupDataLink);
-    createJSonFile("application-name.json", Variable.APPLICATION_NAME.getKey());
-    login(TestAccount.DEMO_USER);
-    NewDashboardPage newDashboardPage = new NewDashboardPage();
-    assertEquals("Dashboard - Portal - Axon Ivy", newDashboardPage.getPageTitle());
-
-    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
-    String processesPageTitle = mainMenuPage.openProcessList().getPageTitle();
-    String taskListPageTitle = mainMenuPage.openTaskList().getPageTitle();
-    String caseListPageTitle = mainMenuPage.openCaseList().getPageTitle();
-
-    assertEquals("Processes - Portal - Axon Ivy", processesPageTitle);
-    assertEquals("Tasks - Portal - Axon Ivy", taskListPageTitle);
-    assertEquals("Cases - Portal - Axon Ivy", caseListPageTitle);
   }
 
   private void setUserLanguage(NewDashboardPage newDashboardPage, int index) {

@@ -299,7 +299,7 @@ public enum GlobalVariable {
 
     return result;
   }
-  
+
   public static GlobalVariable valueOfKey(String key) {
     return keyToVariable.get(key);
   }
