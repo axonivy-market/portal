@@ -55,16 +55,8 @@
   --current-circle-vertical-step-title-font-weight: bold;
 
   /* Statistic widget */
-  --statistic-panel-header: var(--ivy-primary-color-white);
-  --statistic-panel-header-border: var(--ivy-primary-color-white);
   --statistic-filter-accordion-panel-border: var(--ivy-primary-color-grey-light);
-  --chart-info-header-font-weight: bold;
-  --chart-name-font-weight: bold;
-  --chart-name-font-size: 1.6rem;
-  --chart-name-line-height: 2rem;
   --chart-filter-header-font-size: 2rem;
-  --statistic-carousel-header-button-hover-color: var(--ivy-primary-color-grey-dark);
-  --statistic-carousel-header-button-color: var(--ivy-primary-color-grey-medium);
   --statistic-carousel-header-color: var(--ivy-portal-color-black);
   --statistic-link-hover-backround-color: var(--ivy-primary-color-grey-pale);
   --statistic-link-hover-border: var(--ivy-primary-color-grey-light);
