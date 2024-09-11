@@ -8,6 +8,7 @@
   <properties>
     <build.plugin.version>11.4.0-SNAPSHOT</build.plugin.version>
     <ivy.engine.version>11.4.0</ivy.engine.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
     <dependency>

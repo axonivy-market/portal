@@ -28,12 +28,12 @@ public final class PortalNavigatorInFrameAPI extends BaseNavigator {
 		PrimeFaces.current().executeScript(statement);
 	}
 
-	/**
-	 * Navigate to portal home
-	 */
-	public static void navigateToPortalHome() {
-		navigateToUrl(Ivy.html().applicationHomeRef());
-	}
+  /**
+   * Navigate to portal home
+   */
+  public static void navigateToPortalHome() {
+    navigateToUrl(Ivy.html().applicationHomeLink().getAbsoluteEncoded());
+  }
 
 	/**
 	 * Navigate to PortalEndPage without finishing a task, e.g. clicking on Cancel
