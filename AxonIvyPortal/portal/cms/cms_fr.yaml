@@ -772,13 +772,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ShareThisDashboard: Partager ce tableau de bord
     StandardWidgets: Widgets standard
     StatisticWidget:
-      AvailableCharts: Graphiques de statistiques disponibles
-      Charts: 'Graphique(s) : {0}'
-      ConfigurationDescription: Vous pouvez configurer votre widget dans cette zone de configuration. Veuillez définir le graphique qui sera affiché sur votre tableau de bord.
       EmptyChartDataMessage: Nous n'avons pas assez de données pour créer un beau graphique !
-      FilterChartText: Filtrer un graphique par nom
-      PlaceholderChartOption: Sélectionnez un graphique
-      PleaseSelectChart: Veuillez sélectionner un graphique
     WelcomeWidgetIntroduction: Ce widget affiche un texte et une image de bienvenue sur le tableau de bord.
     WelcomeWidgetNotFoundMessage: Nous ne pouvons pas trouver l'image du widget, veuillez reconfigurer votre image !
     WidgetFilterName: Nom du filtre du widget

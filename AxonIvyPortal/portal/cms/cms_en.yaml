@@ -778,13 +778,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ShareThisDashboard: Share this dashboard
     StandardWidgets: Standard Widgets
     StatisticWidget:
-      AvailableCharts: Available statistics charts
-      Charts: 'Chart(s): {0}'
-      ConfigurationDescription: You can configure your widget in this configuration area. Please define the chart which will be shown on  your dashboard.
       EmptyChartDataMessage: We do not have enough data to create a nice chart!
-      FilterChartText: Filter a chart by name
-      PlaceholderChartOption: Select a chart
-      PleaseSelectChart: Please select a chart
     WelcomeWidgetIntroduction: This widget displays a welcome text and image on dashboard.
     WelcomeWidgetNotFoundMessage: We cannot find the image of widget, please reconfigure your image!
     WidgetFilterName: Widget filter name
