@@ -61,6 +61,7 @@ Below is a standard JSON definition of the custom widget in the Portal dashboard
       {
          "type": "custom",
          "id": "custom-widget",
+         "showFullscreenMode": true,
          "names": [
             {
                "locale": "en",
@@ -88,6 +89,8 @@ The basic JSON structure of the custom widget
    ``data``: data for customization. Please refer to the following sections to
    understand how to use this field.
 
+   ``showFullscreenMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon
+
 Define Ivy Process
 ------------------
 
@@ -100,6 +103,7 @@ JSON structure
       {
          "type": "custom",
          "id": "custom-widget",
+         "showFullscreenMode": true,
          "names": [
             {
                "locale": "en",
