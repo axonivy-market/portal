@@ -29,7 +29,9 @@ public class ReorderDashboardTest extends BaseTest {
     redirectToRelativeLink(createSampleDashboardUrl);
     LinkNavigator.redirectToPortalDashboardConfiguration();
     DashboardConfigurationPage configurationpage = new DashboardConfigurationPage();
+    configurationpage.reorderPrivateDashboard();
     configurationpage.reorderPrivateDashboard("private 2", "private 1");
+    configurationpage.saveSetting();
     NewDashboardPage dashboardPage = configurationpage.backToHomePageBottom();
     ElementsCollection dashboardCollection = dashboardPage.getDashboardCollection();
     dashboardCollection.get(0).shouldBe(Condition.text("public 1"));
@@ -45,7 +47,9 @@ public class ReorderDashboardTest extends BaseTest {
     LinkNavigator.redirectToPortalDashboardConfiguration();
     DashboardConfigurationPage configurationpage = new DashboardConfigurationPage();
     configurationpage.selectPublicDashboardType();
+    configurationpage.reorderPublicDashboard();
     configurationpage.reorderPublicDashboard("public 2", "public 1");
+    configurationpage.saveSetting();
     NewDashboardPage dashboardPage = configurationpage.backToHomePageBottom();
     ElementsCollection dashboardCollection = dashboardPage.getDashboardCollection();
     dashboardCollection.get(0).shouldBe(Condition.text("public 2"));

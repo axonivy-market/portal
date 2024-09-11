@@ -3,6 +3,7 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
 
+
 import org.openqa.selenium.By;
 
 import com.codeborne.selenide.SelenideElement;
@@ -28,6 +29,10 @@ public class ExpressTaskPage extends TemplatePage {
 
   public void finish() {
     $("[id='form:ok-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    /**
+     * Note: fix executeUserTask
+     * waiting for the task created after click
+     */
   }
 
   public boolean isDocumentTableVisible() {
@@ -37,4 +42,17 @@ public class ExpressTaskPage extends TemplatePage {
   public boolean isDocumentUploadButtonVisible() {
     return isElementPresent(By.xpath("//div[contains(@id, 'fileUploadComponent:document-upload')]"));
   }
+  
+  public void openCaseInfo() {
+    clickByCssSelector("#horizontal-case-info");
+    waitForElementDisplayed(By.cssSelector("[id$='i-frame-case-details']"), true);
+  }
+  
+  public void clickOnAdditionalBusinessDetailLink() {
+    switchToIframeWithId("i-frame-case-details");
+    $("a[id$=':action-group:case-details-action-link']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id$=':action-group:action-steps-panel']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("a[id$=':action-group:show-additional-case-details-link']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
 }

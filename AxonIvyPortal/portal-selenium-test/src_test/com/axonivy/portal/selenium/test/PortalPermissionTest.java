@@ -15,6 +15,7 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.UserProfilePage;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
@@ -202,5 +203,25 @@ public class PortalPermissionTest extends BaseTest {
         String.format(denySpecificPortalPermissionLink, PortalPermission.TASK_CASE_ADD_NOTE.getValue()));
     redirectToRelativeLink(
         String.format(denySpecificPortalPermissionLink, PortalPermission.TASK_CASE_SHOW_MORE_NOTE.getValue()));
+  }
+  
+  @Test
+  public void testShowHideMyProfileItems() {
+    denyAccessFullListPermissions();
+    showNewDashboard();
+    NewDashboardPage dashboard = new NewDashboardPage();
+    UserProfilePage userProfilePage = dashboard.openMyProfilePage();
+
+    assertFalse(userProfilePage.isProcessSettingDisplayed());
+    assertFalse(userProfilePage.isTaskListSettingDisplayed());
+    assertFalse(userProfilePage.isCaseListSettingDisplayed());
+
+    grantAccessFullListPermissions();
+    dashboard = new NewDashboardPage();
+    userProfilePage = dashboard.openMyProfilePage();
+
+    assertTrue(userProfilePage.isProcessSettingDisplayed());
+    assertTrue(userProfilePage.isTaskListSettingDisplayed());
+    assertTrue(userProfilePage.isCaseListSettingDisplayed());
   }
 }

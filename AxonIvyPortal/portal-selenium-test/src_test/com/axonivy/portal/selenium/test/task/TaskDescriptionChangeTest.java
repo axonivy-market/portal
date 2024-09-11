@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.test.task;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
@@ -9,6 +10,7 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
+import com.axonivy.portal.selenium.page.HomePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 
@@ -58,12 +60,55 @@ public class TaskDescriptionChangeTest extends BaseTest {
   public void changeLanguage(int index) {
     UserProfilePage userProfilePage = taskWidgetPage.openMyProfilePage();
     userProfilePage.selectLanguage(index);
-    userProfilePage.save();
-    taskWidgetPage = NavigationHelper.navigateToTaskList();
+    userProfilePage.saveAndGoToHomePage();
+    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.expand();
+  }
+
+  /**
+   * Note: commit Id: 05805eb9247ae0fafd3488a411a2302aa7fd422f and 3ac1a13297902a94218850373362d5f3cd504a52
+   */
+  @Test
+  @Disabled("This test is ignored because it need specific configuration on engine to run correctly")
+  public void testChangeTaskDescriptionInMultiLanguage() {
+    updateGlobalVariable(Variable.SHOW_LEGACY_UI.getKey(), "true");
+    updateGlobalVariable(Variable.SHOW_USER_GUIDE.getKey(), "false");
+    redirectToNewDashBoard();
+    login(TestAccount.ADMIN_USER);
+    int firstTask = 0;
+    var taskNameEn = "Maternity Leave Request";
+    var taskNameGer = "Antrag auf Mutterschaftsurlaub";
+    var taskDescriptionEn = "Hello World! - English";
+    var taskDescriptionGer = "Hello World! - German";
+    HomePage homePage = new HomePage();
+    taskWidgetPage = homePage .getTaskWidget();
+    taskWidgetPage.expand();
+    taskWidgetPage.filterTasksInExpandedModeBy(taskNameEn);
+    taskWidgetPage.openTaskDetails(firstTask);
+    testChangeTaskDescription(taskDescriptionEn, taskDescriptionEn, taskWidgetPage);
+    
+    // Change language to German then change description
+    changeLanguage(3);
+    taskWidgetPage.filterTasksInExpandedModeBy(taskNameGer);
+    taskWidgetPage.openTaskDetails(firstTask);
+    testChangeTaskDescription(taskDescriptionGer, taskDescriptionGer, taskWidgetPage);
+
+    // Change to English then verify description
+    changeLanguage(1);
+    taskWidgetPage.filterTasksInExpandedModeBy(taskNameEn);
+    taskWidgetPage.openTaskDetails(firstTask);
+    assertEquals(taskWidgetPage.getTaskDescription(), taskDescriptionEn);
+
+    // Change to German then verify description
+    changeLanguage(3);
+    taskWidgetPage.filterTasksInExpandedModeBy(taskNameGer);
+    taskWidgetPage.openTaskDetails(firstTask);
+    assertEquals(taskWidgetPage.getTaskDescription(), taskDescriptionGer);
   }
 
   @AfterEach
   public void resetlanguage() {
     resetLanguageOfCurrentUser();
   }
+  
 }

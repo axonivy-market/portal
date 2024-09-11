@@ -173,7 +173,7 @@ public class NewDashboardPage extends TemplatePage {
 
   public void checkStartButtonAndImageShown() {
     getStartButton().shouldBe(Condition.disabled);
-    getDisabledMoreInformationLink().shouldBe(Condition.appear);
+    getDisabledMoreInformationLink().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     getProcessImage().shouldHave(Condition.attributeMatching(SRC_ATTRIBUTE, IMAGE_URI_PATTERN));
   }
 
@@ -994,6 +994,10 @@ public class NewDashboardPage extends TemplatePage {
 
   public boolean isSwitchThemeLinkIconDisabled() {
     return $("[id='theme-switcher']").shouldBe(appear, DEFAULT_TIMEOUT).is(Condition.cssClass("ui-state-disabled"));
+  }
+
+  public void clickThemeSwitcher() {
+    $("[id='theme-switcher']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public TaskWidgetPage openTaskList() {

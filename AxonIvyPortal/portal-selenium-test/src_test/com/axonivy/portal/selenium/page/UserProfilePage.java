@@ -3,6 +3,9 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -33,6 +36,8 @@ public class UserProfilePage extends TemplatePage {
   
   private static String MAIL_NOTI_ON_TASK_ASSIGNMENT_SELECTOR = "div[id$=':mail-notification-on-task-assign']";
   private static String FURTHER_EMAIL_FROM_APP_SELECTOR = "div[id$=':further-mails-from-application']";
+  private static String SHOW_TUTORIAL_XPATH = "//*[@id='my-profile-form:general-show-tutorial']/div[2]";
+
 
   @Override
   protected String getLoadedLocator() {
@@ -49,6 +54,12 @@ public class UserProfilePage extends TemplatePage {
     WaitHelper.waitForNavigation(() -> save.click());
     return new NewDashboardPage();
   }
+  
+  public HomePage saveAndGoToHomePage() {
+    saveWithoutWaitingNavigation();
+    return new HomePage();
+  }
+
 
   public void selectCaseSortField(String selectValue) {
     waitForElementDisplayed(By.id(CASE_SORT_FIELD_SELECTION), true);
@@ -141,6 +152,80 @@ public class UserProfilePage extends TemplatePage {
   public void switchOnFurtherEmailFromAppSetting() {
     switchOnSetting(FURTHER_EMAIL_FROM_APP_SELECTOR);
     $("div[id$='my-profile-form:further-mails-from-application']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void selectDaysForDailySummary(List<Integer> indices) {
+    List<SelenideElement> selectDays = $("div[id='my-profile-form:daily-summary']").$$(".ui-chkbox-box");
+    for (int index : indices) {
+      WebElement selectedDayCheckbox = selectDays.get(index);
+      if (!selectedDayCheckbox.getAttribute("class").contains("ui-state-active")) {
+        $(selectedDayCheckbox).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+      }
+    }
+  }
+  
+  public int getSelectedDaySummary() {
+    List<SelenideElement> selectDays = $("div[id='my-profile-form:daily-summary']").$$("div > div");
+    int size = selectDays.stream().filter(checkbox -> checkbox.getAttribute("class").contains("ui-state-active")).collect(Collectors.toList()).size();
+
+    return size;
+  }
+
+  public boolean isEmailOnTaskAssignmentSettingSwitchedOn() {
+    return isSettingSwitchedOn(MAIL_NOTI_ON_TASK_ASSIGNMENT_SELECTOR);
+  }
+
+  public boolean isSettingSwitchedOn(String cssSelector) {
+    WebElement inputSwitch = findElementByCssSelector(cssSelector);
+    return inputSwitch != null ? inputSwitch.getAttribute("class").contains("ui-inputswitch-checked") : false;
+  }
+
+  public boolean isFurtherEmailFromAppSettingSwitchedOn() {
+    return isSettingSwitchedOn(FURTHER_EMAIL_FROM_APP_SELECTOR);
+  }
+
+  public void switchOffFurtherEmailFromAppSetting() {
+    switchOffSetting(FURTHER_EMAIL_FROM_APP_SELECTOR);
+  }
+  
+  private void switchOffSetting(String cssSelector) {
+    WebElement inputSwitch = findElementByCssSelector(cssSelector);
+    if (inputSwitch.getAttribute("class").contains("ui-inputswitch-checked")) {
+      $(inputSwitch).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    }
+  }
+
+  public void switchOffEmailOnTaskAssignmentSetting() {
+    switchOffSetting(MAIL_NOTI_ON_TASK_ASSIGNMENT_SELECTOR);
+  }
+
+  public boolean isProcessSettingDisplayed() {
+    String locator = "div[id='my-profile-form:process-mode-selection']";
+    return isElementPresent(By.cssSelector(locator)) && findElementByCssSelector(locator).isDisplayed();
+  }
+
+  public boolean isTaskListSettingDisplayed() {
+    String locator = "div[id='my-profile-form:task-sort-field-selection']";
+    return isElementPresent(By.cssSelector(locator)) && findElementByCssSelector(locator).isDisplayed();
+  }
+
+  public boolean isCaseListSettingDisplayed() {
+    String locator = "div[id='my-profile-form:case-sort-field-selection']";
+    return isElementPresent(By.cssSelector(locator)) && findElementByCssSelector(locator).isDisplayed();
+  }
+
+  public boolean isDisableShowTutorialCheckbox() {
+    SelenideElement checkbox = $("[id$=':general-show-tutorial']").shouldBe(appear);
+    return checkbox.getAttribute("class").contains("ui-state-disabled");
+  }
+  
+  public void checkShowTutorial() {
+    SelenideElement checkbox = $(By.xpath(SHOW_TUTORIAL_XPATH));
+    if (!checkbox.getAttribute("class").contains("ui-state-active")) {
+      checkbox.$(By.cssSelector("span[class='ui-chkbox-label']")).shouldBe(getClickableCondition()).click();
+      $(By.xpath(SHOW_TUTORIAL_XPATH + "/span[@class='ui-chkbox-icon ui-icon ui-c ui-icon-check']")).shouldBe(appear,
+          DEFAULT_TIMEOUT);
+    }
   }
 
 }

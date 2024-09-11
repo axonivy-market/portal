@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import org.openqa.selenium.WebElement;
 
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.SelenideElement;
 
 public class ExpressManagementPage extends TemplatePage {
 
@@ -58,5 +59,15 @@ public class ExpressManagementPage extends TemplatePage {
 
   public WebElement getExportExpressDialog() {
     return $("[id$=':express-management-component:export-express-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void deployExpressFile() {
+    clickOnDeployExpress();
+    clickOnCloseButton();
+  }
+
+  public String getUploadMessage() {
+    SelenideElement messageContainer = $("div[class$='ui-fileupload-messages'] span[class$='ui-messages-error-summary']").shouldBe(appear, DEFAULT_TIMEOUT);
+    return messageContainer.getText();
   }
 }

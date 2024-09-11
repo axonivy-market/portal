@@ -11,7 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
-import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
+import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -36,7 +36,8 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   }
 
   public void clickSubmitLeaveRequest() {
-    waitForElementClickableThenClick(By.id("leave-request:button-submit"));
+    $("button[id='leave-request:button-submit']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    clickByJavaScript($("button[id='leave-request:button-submit']"));
   }
 
   public String clickSubmitAndGetValidationMsg() {
@@ -53,20 +54,39 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
 
   public void enterLeaveRequestInformation(String leaveType, String from, String to, String approver,
       String requesterComment) {
-    selectLeaveType(leaveType);
     findElementById("leave-request:from_input").sendKeys(from);
     closePanelDatePicker(findElementById("leave-request:from_panel"));
     findElementById("leave-request:to_input").sendKeys(to);
     closePanelDatePicker(findElementById("leave-request:to_panel"));
     findElementById("leave-request:requester-comment").sendKeys(requesterComment);
     selectApprover(approver);
+    selectLeaveType(leaveType);
   }
 
   private void selectLeaveType(String leaveType) {
-    waitForElementClickableThenClick("#leave-request\\:leave-type_label");
-    String leaveTypeSelector = "li[data-label='" + leaveType + "']";
-    waitForElementDisplayed(By.cssSelector(leaveTypeSelector), true);
-    waitForElementClickableThenClick(leaveTypeSelector);
+    $("div[id='leave-request:leave-type']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("div[id='leave-request:leave-type']").$("div.ui-selectonemenu-trigger")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("li[data-label='" + leaveType + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void enterMaternityLeaveRequestInformation(String from, String to, String approver,
+      String requesterComment) {
+    findElementById("leave-request:from_input").sendKeys(from);
+    closePanelDatePicker(findElementById("leave-request:from_panel"));
+    findElementById("leave-request:to_input").sendKeys(to);
+    closePanelDatePicker(findElementById("leave-request:to_panel"));
+    findElementById("leave-request:requester-comment").sendKeys(requesterComment);
+    selectApprover(approver);
+    selectMaternityLeaveType();
+  }
+
+  private void selectMaternityLeaveType() {
+    $("div[id='leave-request:leave-type']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("div[id='leave-request:leave-type']").$("div.ui-selectonemenu-trigger")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("li[id='leave-request:leave-type_2']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    
   }
 
   private void closePanelDatePicker(WebElement element) {
@@ -86,20 +106,24 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   }
 
   public TaskWidgetPage clickApproveBtn() {
-    waitForElementClickableThenClick(By.id("leave-request:approved-btn"));
+    $("button[id='leave-request:approved-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     switchToDefaultContent();
-    return new TaskWidgetPage();
+//  Note: fix testApproveScenario
+    return NavigationHelper.navigateToTaskList();
   }
 
-  public UserExamplesEndPage finishLeaveRequest() {
-    waitForElementClickableThenClick(By.id("leave-request:finish-btn"));
+  public void finishLeaveRequest() {
+    $("button[id='leave-request:finish-btn']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    clickByJavaScript($("button[id='leave-request:finish-btn']"));
     switchToDefaultContent();
-    return new UserExamplesEndPage();
+    $("[id$='form:go-to-case-detail']").shouldBe(Condition.visible);
+    clickByJavaScript($("[id$='form:go-to-case-detail']"));
   }
 
   public TaskWidgetPage clickRejectBtn() {
-    waitForElementClickableThenClick(By.id("leave-request:rejected-btn"));
+    $("button[id='leave-request:rejected-btn']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     switchToDefaultContent();
-    return new TaskWidgetPage();
+//  Note: fix testRejectScenario
+    return NavigationHelper.navigateToTaskList();
   }
 }

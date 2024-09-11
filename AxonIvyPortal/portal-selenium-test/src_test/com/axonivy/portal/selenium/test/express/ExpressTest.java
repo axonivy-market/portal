@@ -21,6 +21,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.codeborne.selenide.ElementsCollection;
 
 
+
 @IvyWebTest
 public class ExpressTest extends BaseTest {
   private static final int USER_TASK_INDEX = 0;
@@ -91,6 +92,7 @@ public class ExpressTest extends BaseTest {
   private void executeExpressProcessWhenMultiApproval() {
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.finish();
+    redirectToNewDashBoard();
     login(TestAccount.ADMIN_USER);
     newDashboardPage.waitPageLoaded();
     executeUserTask();
@@ -122,8 +124,15 @@ public class ExpressTest extends BaseTest {
     taskWidgetPage.filterByResponsible(TestAccount.ADMIN_USER.getFullName());
     taskWidgetPage.startTask(0);
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
+    expressTaskPage.waitForPageLoad();
     expressTaskPage.finish();
-    new TaskWidgetPage();
+    /**
+     * Note: after finish, it redirect to customization task widget page
+     * which I believe is deprecated so it's freeze and won't load anything
+     * we have to redirect to new dashboard then go to full task list
+     * to see the task
+     */
+    redirectToNewDashBoard();
   }
 
   private void executeApproval(String comment, String responsible) {

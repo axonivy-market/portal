@@ -49,6 +49,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
 
   public void clickApplyFilter() {
     $("button[id$='task-widget:apply-filter']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+//    Note: to fix testApplyCaseOwnerFilter
   }
 
   private SelenideElement findTaskFilterButton() {
@@ -93,10 +94,21 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     $("input[id$='task-name-filter:filter-input-form:name']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(text);
     waitForElementClickableThenClick($("[id$='task-name-filter:filter-input-form:update-command']"));
   }
+  
+  public void waitForRowDisplayed() {
+    waitForElementDisplayed(By.cssSelector("tr[role='row']"), true);
+  }
 
   public ElementsCollection getRowsInTaskTable() {
     return findElementById("task-widget:statistic-result-form:task-table_data").$$(By.cssSelector("tr[role='row']"));
   }
+  
+//  Note: to fix testApplyCaseOwnerFilter
+  public int getNumberOfRowsInTaskTable() {
+    List<SelenideElement> elements = findElementById("task-widget:statistic-result-form:task-table_data").$$(By.cssSelector("tr[role='row']"));
+    return elements.size();
+  }
+
 
   private SelenideElement findCaseFilterButton() {
     String caseFilterButtonId = "task-widget:case-filter-add-action";
@@ -206,7 +218,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   }
 
   public void loadFilterSet(String filterSetName, boolean isPersonalFilter) {
-    waitPageLoaded();
     waitForElementDisplayed($("a[id$='task-widget:filter-selection-form:filter-name']"), true);
     waitForElementClickableThenClick("a[id$='task-widget:filter-selection-form:filter-name']");
     waitForElementDisplayed(findElementById("task-widget:filter-selection-form:filter-name-overlay-panel"), true);

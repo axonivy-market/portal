@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.editable;
 import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.interactable;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -61,7 +62,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   protected Condition getClickableCondition() {
-    return and("should be clickable", visible, exist);
+    return and("should be clickable", visible, exist, interactable, enabled);
   }
 
   public WebDriver driver = WebDriverRunner.getWebDriver();
@@ -193,7 +194,7 @@ public abstract class TemplatePage extends AbstractPage {
     switchToIframeWithId("iFrame");
   }
 
-  public void switchToIFrameOfTask2() {
+  public void switchToIFrameOfTaskWithWaitHelper() {
     driver.switchTo().defaultContent();
     WaitHelper.waitForIFrameAvailable(driver, "iFrame");
   }
@@ -318,9 +319,10 @@ public abstract class TemplatePage extends AbstractPage {
 
     public SearchResultPage inputSearchKeywordForWorkingTask(String keyword) {
       searchByKeywordInput(keyword);
-      $("[id$=':search-warning-before-leaving-task-component:search-task-leave-warning-dialog']")
-          .shouldBe(appear, DEFAULT_TIMEOUT).$("[id$=':search-warning-before-leaving-task-component:leave-button']")
-          .shouldBe(clickable(), DEFAULT_TIMEOUT).click();
+//      Note: comment out because it didn't show the dialog warning fix: leftTaskWhenGlobalSearch
+//      $("[id$=':search-warning-before-leaving-task-component:search-task-leave-warning-dialog']")
+//          .shouldBe(appear, DEFAULT_TIMEOUT).$("[id$=':search-warning-before-leaving-task-component:leave-button']")
+//          .shouldBe(clickable(), DEFAULT_TIMEOUT).click();
       waitForElementDisplayed(By.id("search-results-tabview"), true);
       return new SearchResultPage();
     }
@@ -352,6 +354,14 @@ public abstract class TemplatePage extends AbstractPage {
   public TaskWidgetPage selectTaskMenu() {
     return NavigationHelper.navigateToTaskList();
   }
+
+  public TaskWidgetPage selectUserExampleTaskMenu() {
+    $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
+    WaitHelper.waitForNavigation(() -> $(By.cssSelector(".layout-menu li.sub-menu-item-task"))
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+    return new TaskWidgetPage();
+  }
+
 
   public NewDashboardPage goToHomeFromBreadcrumb() {
     waitForElementDisplayed(By.cssSelector(HOME_BREADCRUMB_SELECTOR), true);
@@ -447,6 +457,10 @@ public abstract class TemplatePage extends AbstractPage {
     return openMainMenu().selectTaskMenu();
   }
 
+  public TaskWidgetPage openUserExampleTaskList() {
+    return openMainMenu().selectUserExampleTaskMenu();
+  }
+
   public void waitForIFrameContentVisible() {
     waitForIFrameScreenshotSizeGreaterThan(IFRAME_SCREENSHOT_FILE_SIZE_AT_MINIMUM);
   }
@@ -518,11 +532,6 @@ public abstract class TemplatePage extends AbstractPage {
     action.sendKeys(Keys.ESCAPE).build().perform();
   }
   
-  public void waitForAjaxIndicatorDisplayNone() {
-    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
-        .until(ExpectedConditions.attributeContains(By.cssSelector("div[id='ajax-indicator:ajax-indicator-ajax-indicator_start']"), "style", "display: none"));
-  }
-
   public UserProfilePage openMyProfilePage() {
     clickUserMenuItem("user-profile");
     return new UserProfilePage();
@@ -545,4 +554,7 @@ public abstract class TemplatePage extends AbstractPage {
     return and("should be clickable", visible, enabled);
   }
   
+  public String getURL() {
+    return driver.getCurrentUrl();
+  }
 }

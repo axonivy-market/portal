@@ -206,7 +206,7 @@ public class TaskTemplatePage extends TemplatePage {
   public TaskWidgetPage finishIFrameReviewTask() {
     waitForCloseButtonDisplayAfterInputedAprrovalNote("1");
     closeReviewPage();
-    return new TaskWidgetPage();
+    return NavigationHelper.navigateToTaskList();
   }
 
   public boolean containsCaseDetails() {
@@ -243,12 +243,13 @@ public class TaskTemplatePage extends TemplatePage {
     $(cssSelector).sendKeys(value);
   }
 
-  public TaskWidgetPage clickSubmitButton() {
+  public void clickSubmitButton() {
     clickOnSubmitButton();
-    return new TaskWidgetPage();
+//    return NavigationHelper.navigateToTaskList();
   }
 
   public void clickOnSubmitButton() {
+    $("button[id$=':button-submit']").shouldBe(appear, DEFAULT_TIMEOUT);
     clickByJavaScript($("button[id$=':button-submit']"));
   }
 
@@ -339,6 +340,14 @@ public class TaskTemplatePage extends TemplatePage {
   
   public void waitForOverlayGuideRendered() {
     $("div[id$='welcome-portal-guide']").shouldBe(appear, DEFAULT_TIMEOUT);
-    
+  }
+  
+  public String getTaskName() {
+    $("#title").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("#title").getText();
+  }
+  
+  public void waitForIFrameContentVisible() {
+    $("div[id='content-container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 }

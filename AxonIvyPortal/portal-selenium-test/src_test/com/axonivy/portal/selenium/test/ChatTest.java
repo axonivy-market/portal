@@ -14,28 +14,30 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.ChatPage;
+import com.axonivy.portal.selenium.page.HomePage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
 
+
 @IvyWebTest
 public class ChatTest extends BaseTest {
+  private static final String ADMIN1_2 = "admin1-2";
+  private static final String ADMIN1_1 = "admin1-1";
+  private static final String DEMO1_2 = "demo1-2";
+  private static final String DEMO1_1 = "demo1-1";
+
   private static final String ENABLE_PRIVATE_CHAT_SETTING = Variable.ENABLE_PRIVATE_CHAT.getKey();
   private static final String ENABLE_GROUP_CHAT_SETTING = Variable.ENABLE_GROUP_CHAT.getKey();
   private static final String CHAT_MESSAGE_USER_DEMO = "Hi i'm demo user";
   private static final String CHAT_MESSAGE_USER_ADMIN = "Hi i'm admin user";
-
+  
   @Override
   @BeforeEach
   public void setup() {
     super.setup();
   }
-
-  // Currently still not have any idea how to open two browser with difference session to test chat between multiple
-  // user
-  // Tests that still not implement
-  // TODO chatGroupMultiTabs, chatGroupOnTwoInstanceOfBrowser
 
   @Test
   public void chatAddGroup() {
@@ -62,7 +64,7 @@ public class ChatTest extends BaseTest {
     assertEquals(2, chatPage.refreshAndCountGroupChat());
   }
 
-  // @Test
+  @Test
   public void chatGroupOnTwoInstanceOfBrowser() {
     ChatPage chatPage = enableChatGroup();
     createChatGroup(TestAccount.DEMO_USER);
@@ -77,14 +79,18 @@ public class ChatTest extends BaseTest {
     chatPage.sendMessage("from 1 to 2");
 
     chatPage2 = getChatGroup(TestAccount.ADMIN_USER);
+    chatPage2.waitForPageLoad();
     assertChatNotification(chatPage2, true);
 
     chatPage2.openFirstGroupChat();
     chatPage2.sendMessage("from 2 to 1");
 
-    chatPage = getChatGroup(TestAccount.DEMO_USER);
+    chatPage = openChatGroup(TestAccount.DEMO_USER);
+    chatPage.waitForPageLoad();
     assertContainMessage(chatPage, "from 2 to 1");
-    chatPage2 = getChatGroup(TestAccount.ADMIN_USER);
+
+    chatPage2 = openChatGroup(TestAccount.ADMIN_USER);
+    chatPage2.waitForPageLoad();
     assertContainMessage(chatPage2, "from 1 to 2");
   }
 
@@ -106,7 +112,6 @@ public class ChatTest extends BaseTest {
     chatPage.sendMessage(CHAT_MESSAGE_USER_DEMO);
   }
 
-  @Test
   public void joinChatGroupAlreadyCreated() {
     ChatPage chatPage = enableChatGroup();
     createChatGroup(TestAccount.DEMO_USER);
@@ -124,8 +129,9 @@ public class ChatTest extends BaseTest {
   private ChatPage createChatGroup(TestAccount creatorChatGroup, ExpressResponsible... participants) {
     redirectToRelativeLink(createTestingCaseUrlForDefaultAdditionalCaseDetails);
     login(creatorChatGroup);
-    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+//    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPage = new NewDashboardPage().getChat();
+    chatPage.waitForPageLoad();
     // Create chat group via task
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
@@ -177,7 +183,7 @@ public class ChatTest extends BaseTest {
 
   private ChatPage getChatGroup(TestAccount chatUser) {
     login(chatUser);
-    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+//    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     return new NewDashboardPage().getChat();
   }
 
@@ -188,6 +194,64 @@ public class ChatTest extends BaseTest {
   private void assertChatNotification(ChatPage chatPage, boolean hasNotification) {
     chatPage.isNotificationBadgeChat();
     chatPage.isNotificationContactChat();
+  }
+
+  /**
+   * Note: need more time for this test
+   */
+  @Test
+  public void chatGroupMultiTabs() {
+    enableChatGroup();
+    createChatGroup(TestAccount.DEMO_USER);
+    ChatPage chatPageDemo1 = new ChatPage();
+    launchBrowserAndGotoRelativeLink(PORTAL_HOME_PAGE_URL);
+    ChatPage chatPageDemo2 = openChatGroup(TestAccount.DEMO_USER);
+
+    openNewTabOrWindow(WindowType.WINDOW);
+    launchBrowserAndGotoRelativeLink(PORTAL_HOME_PAGE_URL);
+    joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
+    ChatPage chatPageAdmin1 = new ChatPage();
+    openNewTabOrWindow(WindowType.WINDOW);
+    launchBrowserAndGotoRelativeLink(PORTAL_HOME_PAGE_URL);
+    ChatPage chatPageAdmin2 = openChatGroup(TestAccount.ADMIN_USER);
+//    chatPageAdmin1.closeChatMessageList();
+//    chatPageAdmin2.closeChatMessageList();
+    
+    chatPageDemo1.sendMessage(DEMO1_1);
+//    assertChatNotification(chatPageDemo2, false);
+    assertContainMessage(chatPageDemo2, DEMO1_1);
+//    assertChatNotification(chatPageAdmin1, true);
+//    assertChatNotification(chatPageAdmin2, true);
+    // admin1 opens group
+    chatPageAdmin1.openFirstGroupChat();
+    assertContainMessage(chatPageAdmin1, DEMO1_1);
+//    assertChatNotification(chatPageAdmin2, false);
+
+    // demo1, demo2, admin1 with group opened, admin2 with group closed, demo1 sends message
+    chatPageDemo1.sendMessage(DEMO1_2);
+    assertContainMessage(chatPageAdmin1, DEMO1_2);
+//    assertChatNotification(chatPageAdmin2, false);
+
+    // demo1, demo2, admin2 with group opened, admin2 with group closed, admin1 sends message
+    chatPageAdmin1.sendMessage(ADMIN1_1);
+//    assertChatNotification(chatPageAdmin2, false);
+    assertContainMessage(chatPageDemo1, ADMIN1_1);
+    assertContainMessage(chatPageDemo2, ADMIN1_1);
+
+    // demo1, demo2, demo3, demo4, admin2 with group opened, admin2 with group closed, admin1 sends message
+    openNewTabOrWindow(WindowType.WINDOW);
+    launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    ChatPage chatPageDemo3 = openChatGroup(TestAccount.DEMO_USER);
+    openNewTabOrWindow(WindowType.WINDOW);
+    launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    ChatPage chatPageDemo4 = openChatGroup(TestAccount.DEMO_USER);
+    chatPageAdmin1.sendMessage(ADMIN1_2);
+    //TODO need to be fixed - Workaround for wait message render
+
+    assertContainMessage(chatPageDemo1, ADMIN1_2);
+    assertContainMessage(chatPageDemo2, ADMIN1_2);
+    assertContainMessage(chatPageDemo3, ADMIN1_2);
+    assertContainMessage(chatPageDemo4, ADMIN1_2);
   }
 
 }

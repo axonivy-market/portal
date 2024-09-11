@@ -119,8 +119,13 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void openTaskWithRunTheTaskBehaviour(String taskName) {
     getRelatedTasksPanel().shouldBe(appear, DEFAULT_TIMEOUT);
-    var taskItem = $$("div[id='case-details-related-task-table'] table tbody tr td span.task-name-value")
-        .filter(text(taskName)).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    /**
+     * Note: change function to fix 2 tests using it
+     * I think the updated line is more stable
+     */
+//    var taskItem = $$("div[id='case-details-related-task-table'] table tbody tr td span.task-name-value")
+//        .filter(text(taskName)).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    var taskItem = $(By.cssSelector("[title='" + taskName + "']")).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     waitUntilElementToBeClickable(taskItem);
     waitUntilElementToBeClickable(taskItem.parent());
     taskItem.parent().click();
@@ -128,13 +133,21 @@ public class CaseDetailsPage extends TemplatePage {
 
   public SelenideElement getNameOfRelatedTask(int index) {
     getRelatedTasksPanel().shouldBe(appear, DEFAULT_TIMEOUT);
-    return $("div[id='case-details-related-task-table'] table tbody").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr")
+    /**
+     * Note: $ for pattern, or else we should we a correct specific id instead of a part of the id
+     * fix testTriggerEscalationTaskOnRelatedTasksOfCase
+     */
+    return $("div[id$='case-details-related-task-table'] table tbody").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr")
         .get(index).$$("td").findBy(Condition.attributeMatching("class", ".*related-task-name-column.*")).$("span");
   }
 
   public SelenideElement getStateOfRelatedTask(int index) {
     getRelatedTasksPanel().shouldBe(appear, DEFAULT_TIMEOUT);
-    return $("div[id='case-details-related-task-table'] table tbody").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr")
+    /**
+     * Note: $ for pattern, or else we should we a correct specific id instead of a part of the id
+     * fix testTriggerEscalationTaskOnRelatedTasksOfCase
+     */
+    return $("div[id$='case-details-related-task-table'] table tbody").shouldBe(appear, DEFAULT_TIMEOUT).$$("tr")
         .get(index).$$("td").findBy(Condition.attributeMatching("class", ".*related-task-state-column.*"))
         .$("span span");
   }
@@ -145,8 +158,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void triggerEscalationTask(int index) {
-    $(String.format("[id$='task-widget:related-tasks:%d:additional-options:task-trigger-escalation-command']", index))
-        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    clickByJavaScript($(String.format("[id='case-item-details:case-details-container:widgets:3:task-widget:related-tasks:%d:additional-options:task-trigger-escalation-command']", index)));
+
     $("div[id$='\\:escalation-task-confirmation-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("button[id$='\\:confirm-escalation']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
@@ -452,6 +465,7 @@ public class CaseDetailsPage extends TemplatePage {
       relatedCaseCheckbox.findElement(By.cssSelector("span.ui-chkbox-label")).click();
       // Cannot identify when the ajax request of select checkbox is finished
       // So we need to wait for Ajax Indicator disappear
+      // Note: I added line below since on my local machine, the test didn't work without this
       clickOnRelatedCaseCheckbox(checkboxShouldBeChecked);
     }
   }
@@ -663,16 +677,17 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void reserveTask(String taskName) {
     Integer index = getTaskRowIndex(taskName);
-    String reserveCommandButton =
-        String.format("[id$='task-widget:related-tasks:%d:additional-options:task-reserve-command']", index);
-    waitForElementDisplayed(By.cssSelector(reserveCommandButton), true);
-    findElementByCssSelector(reserveCommandButton).click();
+    $(String.format("[id$='task-widget:related-tasks:%d:additional-options:task-reserve-command']", index))
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    clickByJavaScript($(String.format("[id$='task-widget:related-tasks:%d:additional-options:task-reserve-command']", index)));
   }
 
   public void clickRelatedTaskActionButton(String taskName) {
     Integer index = getTaskRowIndex(taskName);
     $(String.format("[id$=':related-tasks:%d:additional-options:task-side-steps-menu']", index))
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    // Note: because element obscure so I handle by clickByJavascript
+    clickByJavaScript($(String.format("[id$=':related-tasks:%d:additional-options:task-side-steps-menu']", index)));
     String actionPanel =
         String.format("[id$='task-widget:related-tasks:%d:additional-options:side-steps-panel']", index);
     waitForElementDisplayed(By.cssSelector(actionPanel), true);

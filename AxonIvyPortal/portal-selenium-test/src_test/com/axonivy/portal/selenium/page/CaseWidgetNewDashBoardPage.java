@@ -181,6 +181,9 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public void resetFilter() {
     $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='reset-button']")
         .filter(text("Reset")).first().shouldBe(getClickableCondition()).click();
+    /**
+     * Note: fix DashboardCaseWidgetActionTest
+     */
   }
 
   public void selectState(String state) {

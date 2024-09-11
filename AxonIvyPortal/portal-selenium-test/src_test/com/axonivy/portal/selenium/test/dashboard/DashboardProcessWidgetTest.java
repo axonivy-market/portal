@@ -15,6 +15,7 @@ import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.ProcessInformationPage;
+import com.axonivy.portal.selenium.page.ProcessWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
@@ -37,6 +38,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
   private static final String LEAVE_REQUEST_TEST_FOR_IVYPORTAL_3369 = "Leave Request Test For IVYPORTAL-3369";
   private static final String TEST_FOR_IVYPORTAL_3369 = "Test for IVYPORTAL-3369";
   private static final String CATEGORIED_LEAVE_REQUEST = "Categoried Leave Request";
+  private static final String CATEGORIED_LEAVE_REQUEST_NO_RESPONSIBLE = "Categoried Leave Request with no Responsible";
   private static final String PROCESS_WITH_PROCESS_STEPS = "Process With Process Steps";
   private static final String SHOWCASE = "Showcase";
   private static final String SHOWCASE_APPLICATION = "Showcase Application";
@@ -47,6 +49,8 @@ public class DashboardProcessWidgetTest extends BaseTest {
   private static final String ALPHABETICALLY_SORTING = "Alphabetically";
   private static final String SORTING_INDEX = "Sorting index";
   private static final String CUSTOM_ORDER = "Custom order";
+  private static final String YOUR_PROCESSES = "Your Processes";
+
   private NewDashboardPage newDashboardPage;
 
   @Override
@@ -64,7 +68,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.previewImageModeProcess(CATEGORIED_LEAVE_REQUEST);
     editProcessWidgetConfiguration.getStartButton().shouldBe(Condition.disabled);
-    editProcessWidgetConfiguration.getDisabledMoreInformationLink().shouldBe(Condition.appear);
+    editProcessWidgetConfiguration.getDisabledMoreInformationLink().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     editProcessWidgetConfiguration.getImageModeProcessImage()
         .shouldHave(Condition.attributeMatching(NewDashboardPage.SRC_ATTRIBUTE, NewDashboardPage.IMAGE_URI_PATTERN));
   }
@@ -110,7 +114,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectImageModeAndSaveWidget(PROCESS_WITH_PROCESS_STEPS);
-    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
+    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     backToNewDashboardPage();
     newDashboardPage.getMoreInformationLink().shouldBe(Condition.appear);
     newDashboardPage.startMoreInfoLink();
@@ -125,7 +129,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.previewFullModeProcess(CATEGORIED_LEAVE_REQUEST);
     editProcessWidgetConfiguration.getStartButton().shouldBe(Condition.disabled);
-    editProcessWidgetConfiguration.getDisabledMoreInformationLink().shouldBe(Condition.appear);
+    editProcessWidgetConfiguration.getDisabledMoreInformationLink().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -134,7 +138,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
-    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
+    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
 
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     editProcessWidgetConfiguration = newDashboardDetailsEditPage.editFullModeProcess();
@@ -148,7 +152,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
-    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
+    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.deleteImageModeProcess();
     newDashboardPage.getFullModeProcessContainer().shouldNotBe(Condition.exist);
@@ -172,7 +176,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(PROCESS_WITH_PROCESS_STEPS);
-    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
+    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
 
     backToNewDashboardPage();
     newDashboardPage.getMoreInformationLink().shouldBe(Condition.appear);
@@ -188,7 +192,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.previewCombinedModeProcess(CATEGORIED_LEAVE_REQUEST, TEST_FOR_IVYPORTAL_3369);
+    editProcessWidgetConfiguration.previewCombinedModeProcess(CATEGORIED_LEAVE_REQUEST_NO_RESPONSIBLE, TEST_FOR_IVYPORTAL_3369);
     editProcessWidgetConfiguration.getStartButton().is(Condition.disabled);
 
     editProcessWidgetConfiguration.getSelectedTasksTab().shouldBe(Condition.appear);
@@ -270,7 +274,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST,
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST_NO_RESPONSIBLE,
         TEST_FOR_IVYPORTAL_3369);
 
     backToNewDashboardPage();
@@ -287,7 +291,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST,
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST_NO_RESPONSIBLE,
         TEST_FOR_IVYPORTAL_3369);
 
     backToNewDashboardPage();
@@ -304,7 +308,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     createCategoriedLeaveRequestTask();
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST,
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST_NO_RESPONSIBLE,
         TEST_FOR_IVYPORTAL_3369);
 
     backToNewDashboardPage();
@@ -322,7 +326,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST,
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST_NO_RESPONSIBLE,
         TEST_FOR_IVYPORTAL_3369);
 
     backToNewDashboardPage();
@@ -340,7 +344,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST,
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST_NO_RESPONSIBLE,
         TEST_FOR_IVYPORTAL_3369);
 
     backToNewDashboardPage();
@@ -357,7 +361,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST,
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST_NO_RESPONSIBLE,
         TEST_FOR_IVYPORTAL_3369);
 
     backToNewDashboardPage();
@@ -376,7 +380,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
 
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST,
+    editProcessWidgetConfiguration.selectCombinedModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST_NO_RESPONSIBLE,
         TEST_FOR_IVYPORTAL_3369);
 
     backToNewDashboardPage();
@@ -627,7 +631,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
         newDashboardDetailsEditPage.addNewProcessWidget();
     editProcessWidgetConfiguration.selectFullModeProcessAndSaveWidget(CATEGORIED_LEAVE_REQUEST);
     newDashboardPage.getStartButton().shouldBe(Condition.disabled);
-    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
+    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     backToNewDashboardPage();
 
     // Change to COMPACT_MODE
@@ -703,5 +707,27 @@ public class DashboardProcessWidgetTest extends BaseTest {
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     return modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+  }
+  
+  @Test
+  public void testHideExpandMode() {
+    ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
+        newDashboardPage.editProcessWidgetConfiguration();
+    editProcessWidgetConfiguration.clickOnExpandModeCheckbox();;
+    editProcessWidgetConfiguration.save();
+    backToNewDashboardPage();
+    ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget(YOUR_PROCESSES);
+    assertFalse(processWidget.isExpandButtonAppear());
+  }
+  
+  @Test
+  public void testHideWidgetInfoIcon() {
+    ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
+        newDashboardPage.editProcessWidgetConfiguration();
+    editProcessWidgetConfiguration.clickOnWidgetInfoIconCheckbox();
+    editProcessWidgetConfiguration.save();
+    backToNewDashboardPage();
+    ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget(YOUR_PROCESSES);
+    assertFalse(processWidget.isWidgetInfoIconAppear());
   }
 }

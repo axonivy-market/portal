@@ -33,12 +33,13 @@ public class SearchCaseTest extends BaseTest {
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(caseName);
     searchResultPage.waitForFirstTabFinishedLoading();
     searchResultPage.openCaseTab();
-    assertEquals(caseName, searchResultPage.getCaseResult(0));
+    assertEquals(caseName, searchResultPage.getGlobalSearchCaseResult(0));
     assertTrue(searchResultPage.isCaseCategoryColumnDisplayed());
   }
 
   @Test
   public void testFindCaseByNameWithSpecialCharacter() {
+    redirectToNewDashBoard();
     GlobalSearch globalSearch = newDashboardPage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 

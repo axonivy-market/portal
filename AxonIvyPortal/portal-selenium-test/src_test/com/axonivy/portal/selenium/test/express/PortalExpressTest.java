@@ -37,6 +37,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
 
+
 @IvyWebTest
 public class PortalExpressTest extends BaseTest {
   protected static final int USER_TASK_INDEX = 0;
@@ -414,7 +415,7 @@ public class PortalExpressTest extends BaseTest {
   }
 
   protected String executeReview() {
-    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.startTask(0);
     ExpressReviewPage reviewPage = new ExpressReviewPage();
     String approvalResult = reviewPage.getApprovalResult();
@@ -426,7 +427,8 @@ public class PortalExpressTest extends BaseTest {
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.finish();
     new NewDashboardPage().waitPageLoaded();
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    NavigationHelper.navigateToTaskList();
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.countTasks().shouldBe(CollectionCondition.size(1));
     rejectApproval("Rejected at first level");
     String approvalResult = executeReview();
@@ -435,7 +437,7 @@ public class PortalExpressTest extends BaseTest {
   }
 
   protected void rejectApproval(String comment) {
-    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.startTask(0);
     ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
     approvalPage1.comment(comment);
@@ -486,6 +488,9 @@ public class PortalExpressTest extends BaseTest {
     userTaskWithMailFormPage.finish();
     new NewDashboardPage();
     executeApproval("Approved at first level", 0);
+//  Note: currently I don't know how to fix
+//  when it's in the task list, you have to refresh then the task will show up
+//  but you have to do it manually!! will come back later
     executeUserTask();
     String approvalResult = executeReview("Test approval: Final Review");
     assertEquals("Portal Demo User,Approved at first level,Yes", approvalResult);
@@ -493,7 +498,7 @@ public class PortalExpressTest extends BaseTest {
   }
 
   protected void executeUserTask() {
-    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
     refreshPage();
     taskWidgetPage.countTasks().shouldBe(CollectionCondition.size(1));
     taskWidgetPage.startTask(0);

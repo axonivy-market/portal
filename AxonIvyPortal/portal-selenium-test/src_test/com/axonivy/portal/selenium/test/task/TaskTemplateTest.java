@@ -21,6 +21,7 @@ import com.codeborne.selenide.WebDriverRunner;
 public class TaskTemplateTest extends BaseTest {
 
   private static final String ANNUAL_LEAVE_REQUEST_TASK = "Annual Leave Request";
+  private String createImpersistentTaskUrl = "portal-developer-examples/169BDE2F368D6EC4/ApplicationShowcase.ivp";
 
   @Override
   @BeforeEach
@@ -76,7 +77,7 @@ public class TaskTemplateTest extends BaseTest {
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
     dialogPage.leaveTask();
     TaskWidgetPage taskWidget = NavigationHelper.navigateToTaskList();
-    assertTrue(taskWidget.isTaskStateOpen(0));
+    assertTrue(taskWidget.isTaskStateSuspended(0));
   }
 
   @Test
@@ -103,7 +104,7 @@ public class TaskTemplateTest extends BaseTest {
     taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.startSideStep();
     TaskWidgetPage taskWidget = NavigationHelper.navigateToTaskList();
-    assertTrue(taskWidget.isTaskStateOpen(0));
+    assertTrue(taskWidget.isTaskStateSuspended(0));
   }
 
   private void createTestData() {
@@ -143,5 +144,13 @@ public class TaskTemplateTest extends BaseTest {
     int numberOfNotes = 0;
     numberOfNotes = caseHistoryPage.countNotes();
     assertEquals(1, numberOfNotes);
+  }
+  
+  @Test
+  public void testNotShowStartAdhocWhenOpenImpersistedTask() {
+    redirectToRelativeLink(createImpersistentTaskUrl);
+    TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
+    taskTemplatePage.clickTaskActionMenu();
+    assertEquals(true, taskTemplatePage.isStartAdhocBtnNotExist());
   }
 }

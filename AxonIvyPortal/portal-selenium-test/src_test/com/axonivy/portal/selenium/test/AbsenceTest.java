@@ -2,6 +2,8 @@ package com.axonivy.portal.selenium.test;
 
 import static com.axonivy.portal.selenium.common.Variable.GLOBAL_FOOTER_INFO;
 import static com.axonivy.portal.selenium.common.Variable.HIDE_YEAR;
+import static com.axonivy.portal.selenium.common.Variable.SHOW_LEGACY_UI;
+import static com.axonivy.portal.selenium.common.Variable.SHOW_USER_GUIDE;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -13,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.AbsencePage;
 import com.axonivy.portal.selenium.page.NewAbsencePage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -32,6 +35,8 @@ public class AbsenceTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setupWithAlternativeLinkAndAccount(cleanUpAbsencesAndSubstituesLink, TestAccount.DEMO_USER);
+    updatePortalSetting(SHOW_USER_GUIDE.getKey(), "false");
+    updatePortalSetting(SHOW_LEGACY_UI.getKey(), "false");
     updatePortalSetting(HIDE_YEAR.getKey(), "false");
     updatePortalSetting(GLOBAL_FOOTER_INFO.getKey(), "");
   }
@@ -66,13 +71,13 @@ public class AbsenceTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     LocalDate chosenDay = LocalDate.now();
     LocalDate theNextDayOfChosenDay = chosenDay.plusDays(1);
-    AbsencePage absencePage = openAbsencePage(new NewDashboardPage());
+    AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(chosenDay, theNextDayOfChosenDay, "Just day off", absencePage);
     absencePage.countAbsences(1);
 
     NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
     newAbsencePage.input(chosenDay, theNextDayOfChosenDay, "Overlapping absence");
-    newAbsencePage.proceed();
+    newAbsencePage.proceedWithoutWaitSuccessGrowlMessage();
 
     assertEquals(newAbsencePage.isErrorMessageDisplayed(), true);
     assertEquals("The absence is overlapping with another absence.", newAbsencePage.getErrorMessage());
@@ -93,11 +98,41 @@ public class AbsenceTest extends BaseTest {
     absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_PERMANENT))
         .shouldBe(Condition.text(joinDeputyNames(personalTaskPermanentDeputyNames)));;
   }
+  
+  @Test
+  public void testDeputyAsAdminUser() {
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForDashboardPageAvailable();
+    AbsencePage absencePage = newDashboardPage.openAbsencePage();
+    absencePage.waitPageLoaded();
+    absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
+
+    List<String> personalTaskDuringAbsenceDeputyNames = Arrays.asList(TestAccount.CASE_OWNER_USER.getFullName(), TestAccount.GUEST_USER.getFullName());
+    absencePage.setDeputy(personalTaskDuringAbsenceDeputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
+
+    List<String> personalTaskPermanentDeputyNames = Arrays.asList(TestAccount.ADMIN_USER.getFullName(), TestAccount.HR_ROLE_USER.getFullName());
+    absencePage.setDeputy(personalTaskPermanentDeputyNames, DeputyRoleType.PERSONAL_TASK_PERMANENT);
+    absencePage.saveSubstitute();
+
+    absencePage.waitForAbsencesGrowlMessageDisplay();
+    absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
+    absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE)).shouldBe(Condition.text(joinDeputyNames(personalTaskDuringAbsenceDeputyNames)));
+    absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_PERMANENT)).shouldBe(Condition.text(joinDeputyNames(personalTaskPermanentDeputyNames)));
+  }
 
   @Test
   public void testAddDeputyInPermanentToDuringAbsence() {
+    /**
+     * This test so unstable so I make it independent with all functions inside this class
+     */
+    redirectToNewDashBoard();
     login(TestAccount.ADMIN_USER);
-    AbsencePage absencePage = openAbsencePage();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForDashboardPageAvailable();
+    AbsencePage absencePage = newDashboardPage.openAbsencePage();
+    absencePage.waitPageLoaded();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     List<String> deputyNames = Arrays.asList(TestAccount.CASE_OWNER_USER.getFullName());
     absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_PERMANENT);
@@ -119,14 +154,13 @@ public class AbsenceTest extends BaseTest {
   @Test
   public void testIAmDeputyFor() {
     login(TestAccount.ADMIN_USER);
-    NewDashboardPage newDashboardPage = changeDateFormat();
-    AbsencePage absencePage = openAbsencePage(newDashboardPage);
+    AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(TOMORROW, TOMORROW, "For Family", absencePage);
 
     absencePage.setDeputy(Arrays.asList(TestAccount.DEMO_USER.getFullName()), 0);
     absencePage.saveSubstitute();
     login(TestAccount.DEMO_USER);
-    absencePage = openAbsencePage(new NewDashboardPage());
+    absencePage = openAbsencePage();
     assertEquals(absencePage.getIAMDeputyFor().contains(TestAccount.ADMIN_USER.getFullName()), true);
   }
 
@@ -135,6 +169,7 @@ public class AbsenceTest extends BaseTest {
   }
 
   private NewDashboardPage changeDateFormat() {
+    redirectToNewDashBoard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     return newDashboardPage;
   }
@@ -154,7 +189,9 @@ public class AbsenceTest extends BaseTest {
   }
 
   private AbsencePage openAbsencePage() {
+    redirectToNewDashBoard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForDashboardPageAvailable();
     return newDashboardPage.openAbsencePage();
   }
 
@@ -163,6 +200,8 @@ public class AbsenceTest extends BaseTest {
     login(TestAccount.GUEST_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateAbsencePermission.ivp");
+//  Note: add line below to make openAbsencePage() function work properly
+    updateGlobalVariable(Variable.SHOW_LEGACY_UI.getKey(), "false");
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
 
@@ -181,6 +220,8 @@ public class AbsenceTest extends BaseTest {
   public void testReadAbsencesOfOtherUser() {
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
+//  Note: add line below to make openAbsencePage() function work properly
+    updateGlobalVariable(Variable.SHOW_LEGACY_UI.getKey(), "false");
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
 
@@ -245,6 +286,8 @@ public class AbsenceTest extends BaseTest {
   @Test
   public void testEditAbsenceOfOtherUser() {
     login(TestAccount.DEMO_USER);
+//  Note: add line below to make openAbsencePage() function work properly
+    updateGlobalVariable(Variable.SHOW_LEGACY_UI.getKey(), "false");
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(TODAY, TODAY, "For other reason", absencePage);

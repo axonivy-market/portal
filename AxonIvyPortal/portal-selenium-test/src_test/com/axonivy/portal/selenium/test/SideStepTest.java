@@ -27,6 +27,7 @@ public class SideStepTest extends BaseTest {
 
   @Test
   public void testSideStepInCaseList() {
+    redirectToNewDashBoard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();

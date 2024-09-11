@@ -118,6 +118,14 @@ public class CaseWidgetPage extends TemplatePage {
 
   public String getCaseNameAt(int index) {
     waitForElementDisplayed(By.className("js-case-list"), true);
+    // Note: the id no longer correct so I changed it
+    SelenideElement rowInfoContainer = $(String.format("[id$='case-widget:case-list-scroller:%d:case-item:case-info-row']", index));
+    String name = rowInfoContainer.$("div > .case-header-name-cell").getText();
+    return name;
+  }
+  
+  public String getGlobalSearchCaseNameAt(int index) {
+    waitForElementDisplayed(By.className("js-case-list"), true);
     SelenideElement name =
         $("[id$='case-list-scroller:" + index + ":case-item:case-name-component:case-header-name-cell']");
     return name.getText();
@@ -280,7 +288,7 @@ public class CaseWidgetPage extends TemplatePage {
     waitForElementClickableThenClick($("button[id$='creator-filter:filter-open-form:advanced-filter-command']"));
     waitForElementDisplayed(
         By.cssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']"), true);
-    findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']")
+    findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']").shouldBe(appear, DEFAULT_TIMEOUT)
         .clear();
     waitForElementClickableThenClick($("button[id$='creator-filter:filter-input-form:update-command']"));
     waitForElementDisplayed($("button[id$='creator-filter:filter-input-form:update-command']"), false);
@@ -360,8 +368,8 @@ public class CaseWidgetPage extends TemplatePage {
   }
 
   public void clickApplyButton() {
-    waitForElementClickableThenClick($(APPLY_BUTTON_CSS_SELECTOR));
-    $(APPLY_BUTTON_CSS_SELECTOR).shouldBe(disappear);
+    $(APPLY_BUTTON_CSS_SELECTOR).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(APPLY_BUTTON_CSS_SELECTOR).shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void waitUntilCaseCountDifferentThanZero() {
@@ -451,7 +459,7 @@ public class CaseWidgetPage extends TemplatePage {
     for (SelenideElement caseItem : caseItems) {
       if (caseItem.$(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText().equals(caseName)) {
         SelenideElement caseInfoRow = caseItem.$(By.cssSelector("span[id*='case-info-row']")).scrollTo();
-        waitForElementClickableThenClick(caseInfoRow);
+        $(caseInfoRow).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
         caseInfoRow.shouldBe(disappear, DEFAULT_TIMEOUT);
         return new CaseDetailsPage();
       }
@@ -484,5 +492,9 @@ public class CaseWidgetPage extends TemplatePage {
   public String getCreatorAt(int index) {
     List<SelenideElement> creators = $$(".case-header-creator-cell .name-after-avatar");
     return creators.get(index).getText();
+  }
+
+  public String getCaseListFirstCustomCellValue() {
+    return $("div[id$=':0\\:case-item\\:case-item-container'] span.customized-case-header-column").getText();
   }
 }

@@ -116,5 +116,19 @@ public class CaseMapTest extends BaseTest {
     caseMapPage.getOtherCredits().shouldHave(Condition.value("100000"));
   }
 
+  @Test
+  public void testCollectPersonalDataValidation() {
+    caseMapPage = new CaseMapPage();
+    caseMapPage.switchToIFrameOfTask();
+    caseMapPage.inputFields("", "", "", "", "", "", "", "");
+
+    assertEquals(
+            "First name: Value is required.," 
+            + "Country: Value is required.," 
+            + "Amount (SFr.): Value is required.,"
+            + "Yearly salary: Value is required.," 
+            + "Amount of other open credits (SFr.): Value is required.",
+        caseMapPage.clickSubmitAndGetValidationMsg());
+  }
 
 }

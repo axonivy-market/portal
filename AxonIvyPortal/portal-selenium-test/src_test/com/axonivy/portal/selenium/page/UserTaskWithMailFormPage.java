@@ -15,6 +15,8 @@ public class UserTaskWithMailFormPage extends TemplatePage {
   }
 
   public void selectEmailTab() {
+    boolean alignToTop = false;
+    $("a[href*='mail-tab']").shouldBe(appear, DEFAULT_TIMEOUT).scrollIntoView(alignToTop);
     $("a[href*='mail-tab']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id$='information-email:email-content_editor']").shouldBe(appear, DEFAULT_TIMEOUT);
   }

@@ -8,9 +8,12 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -22,7 +25,9 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
+
 public class TaskDetailsPage extends TemplatePage {
+  private static final String UI_INPLACE_SAVE = ".ui-inplace-save";
 
   @Override
   protected String getLoadedLocator() {
@@ -162,7 +167,7 @@ public class TaskDetailsPage extends TemplatePage {
         $(By.cssSelector(String.format("[id$=':task-detail-%s-container']", destinationName))).shouldBe(appear,
             DEFAULT_TIMEOUT);
     Actions actions = new Actions(WebDriverRunner.getWebDriver());
-    Action moveWidget = actions.dragAndDrop(sourceElement, destinationElement).build();
+    Action moveWidget = actions.clickAndHold(sourceElement).moveToElement(destinationElement).release().build();
     moveWidget.perform();
   }
 
@@ -285,6 +290,11 @@ public class TaskDetailsPage extends TemplatePage {
   public String getTaskUuid() {
     return $("a[id$='show-more-note-link']").getAttribute("href").split("uuid=")[1];
   }
+  
+  public String getTaskId() {
+    return findElementByCssSelector("span[id$='general-information:task-id']").getText();
+  }
+
 
   public List<String> getTaskNoteHasAuthors() {
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1600));
@@ -356,6 +366,166 @@ public class TaskDetailsPage extends TemplatePage {
 
   public void clickTaskListBreadCrumb() {
     waitForElementClickableThenClick(By.cssSelector(".portal-breadcrumb ol li:nth-of-type(2) .ui-menuitem-link"));
+  }
+
+  public void changeEscaltionActivatorTo(String activatorName, boolean isUser) {
+    boolean canEditExpiryActivator = canChangeEscalationActivator();
+    if (canEditExpiryActivator) {
+      clickOnEditEscaltionEditIcon();
+      if (isUser) {
+        $("input[id$=':user-expiry-activator-select_input']").shouldBe(appear, DEFAULT_TIMEOUT);
+        $("input[id$=':user-expiry-activator-select_input']").sendKeys(activatorName);
+        $("span[id$=':user-expiry-activator-select_panel']").shouldBe(appear, DEFAULT_TIMEOUT);
+        List<SelenideElement> foundUsers = $$("span[id$=':user-expiry-activator-select_panel'] .name-after-avatar");
+        foundUsers.get(0).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+      } else {
+        List<SelenideElement> radioButtonLabels = $$("table[id$='task-escalation-activator-form:activator-type-select'] label");
+        radioButtonLabels.get(1).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+        $("input[id$=':group-expiry-activator-select_input']").shouldBe(appear, DEFAULT_TIMEOUT);
+        $("input[id$=':group-expiry-activator-select_input']").sendKeys(activatorName);
+        $("span[id$=':group-expiry-activator-select_panel']").shouldBe(appear, DEFAULT_TIMEOUT);
+        List<SelenideElement> foundRoles = $$("span[id$=':group-expiry-activator-select_panel'] .name-after-avatar");
+        foundRoles.get(0).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+      }
+      $("button[id$=':task-escalation-activator-form:assign-task-command']").shouldBe(getClickableCondition()).click();
+      $("div[id$='task-escalation-activator-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    }
+  }
+  
+  private void clickOnEditEscaltionEditIcon() {
+    $(".task-expiry-activator-edit").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("a[class$='task-expiry-activator-edit']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("form[id$=':task-escalation-activator-form']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public boolean canChangeEscalationActivator() {
+    try {
+      return $(".task-expiry-activator-edit").isDisplayed();
+    } catch (NoSuchElementException ex) {
+      return false;
+    }
+  }
+
+  public String getTaskState() {
+    $("[id$=':general-information:task-detail-state']").shouldBe(appear, DEFAULT_TIMEOUT);;
+    String taskStateClasses = $("i[class*='task-state']").getAttribute("class");
+    String taskState = Stream.of(taskStateClasses.trim().split(" ")).filter(style -> style.endsWith("-task-state")).findFirst().orElse("");
+    return taskState;
+  }
+
+  public String updateDelayTimestamp(String tomorrow, String tomorrowWithLocale) {
+    $("span[id$='general-information:delay-form:delay-date_display']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id$='general-information:delay-form:delay-date-calendar_panel']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id$='delay-form:delay-date-calendar_input']").sendKeys(Keys.chord(Keys.CONTROL, "a"));
+    $("[id$='delay-form:delay-date-calendar_input']").sendKeys(Keys.BACK_SPACE);
+    $("[id$='delay-form:delay-date-calendar_input']").sendKeys(tomorrow);
+    $("[id$='delay-form:delay-date_editor']").$(".ui-inplace-save").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    
+    $("span[id$=':delay-form:delay-date_display']").shouldBe(appear, DEFAULT_TIMEOUT);
+    String result = $("span[id$=':delay-form:delay-date_display']").getText();
+    return result;
+  }
+  
+  public void changeExpiryOfTaskAt(String dateStringLiteral) {
+    $("[id$=':expiry-form:edit-inplace_display']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    
+    $("[id$=':expiry-form:expiry-calendar']").shouldBe(appear);
+    SelenideElement taskExpiryInlineEdit = $("[id$=':expiry-form:expiry-calendar_input']");
+    taskExpiryInlineEdit.sendKeys(dateStringLiteral);
+
+    SelenideElement editor = $("[id$=':expiry-form:edit-inplace_editor']");
+    SelenideElement saveButton = editor.$(UI_INPLACE_SAVE);
+    saveButton.shouldBe(getClickableCondition()).click();
+    $("[id$=':expiry-form:edit-inplace_editor']").shouldBe(disappear);
+  }
+
+  public String getExpiryOfTaskAt() {
+    $("[id$=':expiry-form:edit-inplace_display']").shouldBe(appear);
+    return $("[id$=':expiry-form:edit-inplace_display']").getText();
+  }
+
+  public String getFirstTaskNoteComment() {
+    return $("a[id$=':task-notes:task-note-table:0:note-message']").getText();
+  }
+
+  public String getAfterEscalation() {
+    return $(".task-expiry-activator-name").shouldBe(appear).getText();
+  }
+
+  public boolean isClearDelayTimeDisplayed() {
+    return $("[id$=':additional-options:task-clear-delay-command']").shouldBe(appear).isDisplayed();
+  }
+  
+  public void clickOnClearDelayTime() {
+    $("a[id$=':additional-options:task-clear-delay-command']").shouldBe(getClickableCondition()).click();
+    $("[id$=':additional-options:side-steps-panel']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public String getTaskDelayTime() {
+    return $("span[id$='general-information:delay-form:delay-date_display']").shouldBe(appear).getText();
+  }
+
+  public String getTaskResponsible() {
+    return $(".role-and-user-information .task-activator").shouldBe(appear).getText();
+  }
+
+  public void openTaskDelegateDialog() {
+    openActionPanel();
+    $("a[id$=':task-delegate-command']").shouldBe(appear);
+    $("a[id$=':task-delegate-command']").shouldBe(getClickableCondition()).click();
+    $("div[id$='task-delegate-dialog']").shouldBe(appear);
+  }
+  
+  public void selectDelegateResponsible(String responsibleName, boolean isRole) {
+    if(isRole) {
+      List<SelenideElement> radioButtonLabels = $$("table[id$='activator-type-select'] label");
+      radioButtonLabels.get(1).shouldBe(getClickableCondition()).click();
+      $("input[id$='group-activator-select_input']").shouldBe(appear);
+      $("input[id$='group-activator-select_input']").sendKeys(responsibleName);
+      $("tr[data-item-label='" + responsibleName + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+      List<SelenideElement> foundRoles = $$("span[id$='group-activator-select_panel'] .name-after-avatar");
+      foundRoles.get(0).shouldBe(getClickableCondition()).click();
+    }
+    else {
+      $("input[id$='user-activator-select_input']").shouldBe(appear);
+      $("input[id$='user-activator-select_input']").sendKeys(responsibleName);
+      $("tr[data-item-label='" + responsibleName + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+      List<SelenideElement> foundUsers = $$("span[id$='user-activator-select_panel'] .name-after-avatar");
+      foundUsers.get(0).shouldBe(getClickableCondition()).click();
+    }
+    $("button[id$='proceed-task-delegate-command']").shouldBe(getClickableCondition()).click();
+    $("div[id$='task-delegate-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public void addCommentOnTaskDelegationDialog(String comment) {
+    $("textarea[id$=':task-item-delegate-component:task-delegate-form:input-text-area-delegate-message']").shouldBe(appear);
+    $("textarea[id$=':task-item-delegate-component:task-delegate-form:input-text-area-delegate-message']").sendKeys(comment);
+  }
+
+  public void waitForResetButtonDisplayed() {
+    $("[id$=':reset-details-settings-button']").shouldBe(appear);
+  }
+
+  public boolean isClearDeadlineDisplayed() {
+    return $("[id$=':additional-options:task-clear-expiry-command']").shouldBe(appear).exists();
+  }
+  
+  public void clickOnClearDeadlineTime() {
+    $("a[id$=':additional-options:task-clear-expiry-command']").shouldBe(getClickableCondition()).click();
+    $("[id$=':additional-options:side-steps-panel']").shouldBe(disappear);
+  }
+
+  public String getDurationTimeText() {
+    return $("span[id$='duration-time']").shouldBe(appear).getText();
+  }
+
+  public boolean isDelayTimeDisplayed() {
+    try {
+      return $("[id$=':delay-form:delay-date']").isDisplayed();
+    } catch (NoSuchElementException ex) {
+      return false;
+    }
   }
 
 }

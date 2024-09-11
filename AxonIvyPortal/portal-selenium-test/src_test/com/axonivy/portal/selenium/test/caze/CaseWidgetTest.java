@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.test.caze;
 
+
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,7 @@ import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.AdditionalCaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.HomePage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
@@ -70,9 +72,11 @@ public class CaseWidgetTest extends BaseTest {
     casePage = mainMenuPage.selectCaseMenu();
     casePage.clickDestroyButton();
     casePage.confimDestruction();
+    // Note: in full case list don't see the state column anymore
+    // -> navigate to dashboard and check the state from widget
+    redirectToNewDashBoard();
     CaseState caseState = casePage.getCaseState(0);
     assertEquals(CaseState.DESTROYED, caseState);
-
   }
 
   @Test
@@ -96,6 +100,8 @@ public class CaseWidgetTest extends BaseTest {
   public void testOpenRelatedCasesOfCase() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     initNewDashboardPage(TestAccount.DEMO_USER);
+    // Note: make it navigate to portal app
+    redirectToNewDashBoard();
     mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     caseDetailsPage = casePage.openDetailsOfCaseHasName(ORDER_PIZZA);
@@ -113,12 +119,14 @@ public class CaseWidgetTest extends BaseTest {
   public void testOpenCustomizationAdditionalCaseDetailsPage() throws Exception {
     openAdditionalCaseDetailsPage(createTestingCaseUrlForCustomizationAdditionalCaseDetails,
         INVESTMENT_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME);
-    validateAdditionalCaseDetailsPage(4, "Apartment A", true);
+    validateAdditionalCaseDetailsPage(5, "Apartment A", true);
   }
 
   @Test
   public void testEnableAndDisableColumnsInCaseWidget() {
     initNewDashboardPage(TestAccount.DEMO_USER);
+    // Note: navigation problem
+    redirectToNewDashBoard();
     mainMenuPage = newDashboardPage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     assertTrue(casePage.isCaseListColumnExist(CREATED_COLUMN_HEADER));
@@ -226,6 +234,8 @@ public class CaseWidgetTest extends BaseTest {
   @Test
   public void testChangeCaseSortingOptions() {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
+    // Note: navigate to the right app (portal)
+    redirectToNewDashBoard();
 
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
@@ -265,10 +275,11 @@ public class CaseWidgetTest extends BaseTest {
   @Test
   public void testStickySortCaseList() {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
+    redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     CaseWidgetPage caseWidgetPage = newDashboardPage.openCaseList();
     caseWidgetPage
-        .sortCaseListByColumn("case-widget:case-list-header:created-date-column-header:created-date-column-header");
+        .sortCaseListByColumn("case-widget:created-date-column-header:created-date-column-header");
     caseWidgetPage.clickOnLogo();
     newDashboardPage = new NewDashboardPage();
     caseWidgetPage = newDashboardPage.openCaseList();
@@ -283,6 +294,8 @@ public class CaseWidgetTest extends BaseTest {
     newDashboardPage = userProfilePage.save();
 
     // Check result
+    // Note: because it's navigate to portal-developer-examples so line below make the navigation to portal app
+    redirectToNewDashBoard();
     caseWidgetPage = newDashboardPage.openCaseList();
     selectedSortColumn = caseWidgetPage.getSelectedSortColumn();
     assertTrue(StringUtils.equalsIgnoreCase("State", selectedSortColumn));
@@ -292,6 +305,8 @@ public class CaseWidgetTest extends BaseTest {
   @Test
   public void testRelatedCaseEnableAndDisableColumns() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    // Note: navigation problem
+    redirectToNewDashBoard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitPageLoaded();
     CaseWidgetPage casePage = newDashboardPage.openCaseList();
@@ -311,4 +326,35 @@ public class CaseWidgetTest extends BaseTest {
     WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedCaseListColumnExist(RELATED_CASE_CREATED_COLUMN));
     WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedCaseListColumnNotExist(RELATED_CASE_STATE_COLUMN));
   }
+  
+  @Test
+  public void testCaseReadAllOwnRoleInvolved() {
+    redirectToRelativeLink(createTaskForRoleInvolved);
+    updateGlobalVariable(Variable.SHOW_LEGACY_UI.getKey(), "true");
+    updateGlobalVariable(Variable.SHOW_USER_GUIDE.getKey(), "false");
+    login(TestAccount.HR_ROLE_USER);
+    redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
+    HomePage homePage = new HomePage();
+    homePage.waitForPageLoad();
+    TaskWidgetPage taskWidgetPage = homePage.openUserExampleTaskList();
+    taskWidgetPage.waitForPageLoad();
+    taskWidgetPage.filterTasksInExpandedModeBy("Task for role involved", 1);
+    taskWidgetPage.startTaskWithoutWaitTaskActionRendered(0);
+
+    login(TestAccount.HR_ROLE_USER_2);
+    redirectToRelativeLink(grantCaseReadAllOwnRoleInvolvedPermission);
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    homePage = new HomePage();
+    CaseWidgetPage casePage = homePage.openCaseList();
+    casePage.waitForPageLoad();
+    assertTrue(casePage.isCaseDisplayed("Test Process: role involved"));
+
+    redirectToRelativeLink(denyCaseReadAllOwnRoleInvolvedPermission);
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    homePage = new HomePage();
+    casePage = homePage.openCaseList();
+    casePage.waitForPageLoad();
+    assertFalse(casePage.isCaseDisplayed("Test Process: role involved"));
+  }
+
 }

@@ -1,8 +1,5 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
-import static com.axonivy.portal.selenium.common.Variable.DEEPL_AUTH_KEY;
-import static com.axonivy.portal.selenium.common.Variable.ENABLE_DEEPL_TRANSLATION;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -37,8 +34,6 @@ public class DashboardSupportMultiLanguageTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
     resetLanguageOfCurrentUser();
-    updatePortalSetting(ENABLE_DEEPL_TRANSLATION.getKey(), "true");
-    updatePortalSetting(DEEPL_AUTH_KEY.getKey(), "deepLAuthKey");
   }
 
   @Test
@@ -62,8 +57,9 @@ public class DashboardSupportMultiLanguageTest extends BaseTest {
 
     elementsInput.get(2).setValue(updatedName);
     elementsInput.get(1).click();
-    SelenideElement translation = configurationPage.getTranslationOverlayPanel(1);
-    translation.$("span.ui-icon-closethick").click();
+//    Note: related to multiple languages of DeepL
+//    SelenideElement translation = configurationPage.getTranslationOverlayPanel(1);
+//    translation.$("span.ui-icon-closethick").click();
 
     multipleLanguageDialog.$("button[type='submit']").click();
     multipleLanguageDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
@@ -103,8 +99,9 @@ public class DashboardSupportMultiLanguageTest extends BaseTest {
 
     elementsInput.get(2).setValue(updatedName);
     elementsInput.get(1).click();
-    SelenideElement translation = configurationPage.getTranslationOverlayPanel(1);
-    translation.$("span.ui-icon-closethick").click();
+//  Note: related to multiple languages of DeepL
+//    SelenideElement translation = configurationPage.getTranslationOverlayPanel(1);
+//    translation.$("span.ui-icon-closethick").click();
 
     multipleLanguageDialog.$("button[type='submit']").click();
     multipleLanguageDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);

@@ -33,6 +33,7 @@ public class ExampleOverviewTest extends BaseTest {
   @Test
   public void testOverviewLeaveRequest() {
     LeaveRequestOverviewPage leaveRequestOverview = exampleOverviewPage.openLeaveRequestOverview();
+    exampleOverviewPage.waitForIFrameContentVisible();
     leaveRequestOverview.getHearText().shouldBe(Condition.text("Leave Request"));
 
     leaveRequestOverview.getStepName(0).shouldBe(Condition.text("Creation"));
@@ -40,7 +41,7 @@ public class ExampleOverviewTest extends BaseTest {
     leaveRequestOverview.getStepName(2).shouldBe(Condition.text("Summary"));
 
     LeaveRequestPage leaveRequest = leaveRequestOverview.start();
-    assertEquals("Create leave request", leaveRequest.getPageTitle());
+    assertEquals("Create leave request -", leaveRequest.getPageTitle());
   }
 
   @Test

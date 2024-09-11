@@ -36,7 +36,7 @@ public class NewAbsencePage extends TemplatePage {
     inputDate(absenceFrom, "input[id*='absence-start-date']");
     inputDate(absenceTill, "input[id*='absence-end-date']");
     $("textarea[id*='comment']").sendKeys(comment);
-    $(By.id("absence-dialog_title")).click();
+    clickByJavaScript($(By.id("absence-dialog_title")));
     if (StringUtils.isNotEmpty(fullName)) {
       WebElement usernameInput = $("input[id*='absence-username']").shouldBe(appear, DEFAULT_TIMEOUT);
       usernameInput.clear();
@@ -67,9 +67,17 @@ public class NewAbsencePage extends TemplatePage {
   }
 
   public void proceed() {
-    $(By.id("absence-dialog_title")).click();
-    $("button[id*='save-absence']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
-        .click();
+    clickByJavaScript($(By.id("absence-dialog_title")));
+    $("button[id*='save-absence']").shouldBe(appear, DEFAULT_TIMEOUT);
+    clickByJavaScript($(By.id("absence-form:save-absence")));
+    $("div[id='absences-management-form:absences-management-info_container']").shouldBe(Condition.appear,
+        DEFAULT_TIMEOUT);
+  }
+
+  public void proceedWithoutWaitSuccessGrowlMessage() {
+    clickByJavaScript($(By.id("absence-dialog_title")));
+    $("button[id*='save-absence']").shouldBe(appear, DEFAULT_TIMEOUT);
+    clickByJavaScript($(By.id("absence-form:save-absence")));
   }
 
   public void closeAddAbsenceDialog() {

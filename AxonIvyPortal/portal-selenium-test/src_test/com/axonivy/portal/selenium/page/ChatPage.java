@@ -53,7 +53,7 @@ public class ChatPage extends TemplatePage {
       waitForElementDisplayed(By.cssSelector("span[id$='chat-user-selection_panel']"), true);
       $(By.xpath(
           "//*[@id='chat-assignee-selection-form:chat-user-selection-component:chat-user-selection_panel']/table/tbody/tr"))
-              .shouldBe(getClickableCondition()).click();
+          .shouldBe(getClickableCondition()).click();
     }
     waitForElementEnabled(By.id("chat-assignee-selection-form:chat-add-assignee-button"), true);
     waitForElementClickableThenClick($(By.id("chat-assignee-selection-form:chat-add-assignee-button")));
@@ -90,6 +90,11 @@ public class ChatPage extends TemplatePage {
   public void closeChatMessageList() {
     waitForElementDisplayed(By.cssSelector(".js-close-message-list"), true);
     waitForElementClickableThenClick(By.cssSelector(".js-close-message-list"));
+  }
+  
+  public void switchToBrowser(int index) {
+    Object[] windowHandles = driver.getWindowHandles().toArray();
+    driver.switchTo().window((String) windowHandles[index]);
   }
 
   public void isNotificationBadgeChat() {

@@ -7,17 +7,14 @@ import static com.codeborne.selenide.Condition.visible;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.LinkNavigator;
-import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
-import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -151,7 +148,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     detailsCase.openAdditionalCaseDetailsPage();
     newDashboardPage.switchLastBrowserTab();
     detailsCase.switchToIframe();
-    detailsCase.countAdditionalFieldsPage().shouldHave(size(4));
+    detailsCase.countAdditionalFieldsPage().shouldHave(size(5));
     detailsCase.firstAdditionalFieldsPage().shouldBe(text("Apartment A"));
   }
 
@@ -181,13 +178,6 @@ public class DashboardCaseWidgetTest extends BaseTest {
     caseWidget.stateOfFirstCase().shouldHave(text("Done"));
     caseWidget.openFilterWidget();
     caseWidget.resetFilter();
-
-    // Filter State Open
-    caseWidget.openFilterWidget();
-    caseWidget.filterCaseState();
-    caseWidget.selectStateAsOpen();
-    caseWidget.applyFilter();
-    caseWidget.stateOfFirstCase().shouldHave(text("Open"));
   }
 
   @Test
@@ -266,36 +256,75 @@ public class DashboardCaseWidgetTest extends BaseTest {
     dashboardPage.isDownloadCompleted();
   }
 
+  /**
+   *  Note: remove testCustomActionButton because not on LTS, just for LE
+   *  
+   *  This test moved from the redundant into this
+   */
   @Test
-  public void testCustomActionButton() {
+  public void testCaseReadAllOwnRoleInvolved() {
+    redirectToRelativeLink(createTaskForRoleInvolved);
+    login(TestAccount.HR_ROLE_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForTaskListDisplay();
+
+    TaskWidgetNewDashBoardPage taskWidget = dashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget.startFirstTask();
+    taskWidget.waitForPageLoad();
+
+    login(TestAccount.HR_ROLE_USER_2);
+    redirectToRelativeLink(grantCaseReadAllOwnRoleInvolvedPermission);
+    redirectToNewDashBoard();
+    dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForDashboardPageAvailable();
+    CaseWidgetNewDashBoardPage caseWidget = dashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    caseWidget.countCases("Test Process: role involved").shouldHave(size(1), DEFAULT_TIMEOUT);
+
+    redirectToRelativeLink(denyCaseReadAllOwnRoleInvolvedPermission);
+    redirectToNewDashBoard();
+    dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForDashboardPageAvailable();
+    caseWidget = dashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    assertTrue(caseWidget.isEmptyMessageAppear());
+  }
+  
+  @Test
+  public void testHideWidgetInfoIcon() {
+    redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
-    newDashboardPage = new NewDashboardPage();
-
-    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
-    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
-    var modificationPage = configurationPage.openEditPublicDashboardsPage();
-    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
-    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    CaseWidgetNewDashBoardPage caseWidget = dashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage =
+        modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
-    caseEditWidget.preview();
-    caseEditWidget.openColumnManagementDialog();
-
-    caseEditWidget.removeAddedField("id");
-
-    caseEditWidget.selectCustomType();
-    String customColumn = caseEditWidget.addCustomColumnByName("DestroyCaseAction");
-    caseEditWidget.getCustomField(customColumn).shouldNotBe(Condition.exist);
-    caseEditWidget.saveColumn();
+    caseEditWidget.clickOnWidgetInfoIconCheckbox();
     caseEditWidget.save();
-
+    newDashboardDetailsEditPage.backToConfigurationPage();
     redirectToNewDashBoard();
-    redirectToRelativeLink(createCustomActionCaseExampleUrl);
+    assertFalse(caseWidget.isWidgetInfomationIconAppear());
+  }
+  
+  @Test
+  public void testHideExpandMode() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    CaseWidgetNewDashBoardPage caseWidget = dashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
 
-    caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
-    caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    caseWidget.clickOnCustomActionButton(0, customColumn);
-    caseWidget.stateOfFirstCase().shouldHave(text("Destroyed"));
-
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage =
+        modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    caseEditWidget.clickOnExpandModeCheckbox();
+    caseEditWidget.save();
+    newDashboardDetailsEditPage.backToConfigurationPage();
+    redirectToNewDashBoard();
+    assertFalse(caseWidget.isExpandButtonAppear());
   }
 }

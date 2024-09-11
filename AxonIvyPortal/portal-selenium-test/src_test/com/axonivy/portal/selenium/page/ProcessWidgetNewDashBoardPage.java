@@ -42,8 +42,7 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
   public void startProcessByName(String processName) {
     var startProcess = $(processWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("span.process-start-list-item")
         .filter(text(processName)).first().$("a");
-    waitUntilElementToBeClickable(startProcess);
-    startProcess.click();
+    $(startProcess).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void deleteProcessWidget() {
@@ -53,6 +52,7 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private SelenideElement getProcessWidgetHeader() {
+    $("div.table-widget-panel").shouldBe(appear, DEFAULT_TIMEOUT);
     return $$("div.table-widget-panel").filter(text(processWidgetName)).first();
   }
 
@@ -70,7 +70,7 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void setQuickSearchKeyword(String keyword) {
-    getQuickSearchForm().$("input").setValue(keyword);
+    getQuickSearchForm().$("input").sendKeys(keyword);
   }
 
   public SelenideElement getQuickSearchForm() {

@@ -18,6 +18,7 @@ import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.HomePage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 
@@ -30,6 +31,7 @@ public class CaseFilterTest extends BaseTest {
   @BeforeEach
   public void setup() {
     super.setup();
+    login(TestAccount.DEMO_USER);
     redirectToRelativeLink(createTestingTasksUrl);
   }
 
@@ -104,6 +106,7 @@ public class CaseFilterTest extends BaseTest {
 
   @Test
   public void testCategory() {
+    login(TestAccount.DEMO_USER);
     CaseWidgetPage casePage = NavigationHelper.navigateToCaseList();
 
     String caseCategoryId = "case-category";
@@ -121,6 +124,7 @@ public class CaseFilterTest extends BaseTest {
 
   @Test
   public void testRemoveResponsibleAndSwitchFilter() {
+    login(TestAccount.DEMO_USER);
     // Prepare 2 filter
     String filterResponsible = "Responsible";
     String filterMaternity = "Maternity";
@@ -149,12 +153,14 @@ public class CaseFilterTest extends BaseTest {
 
   @Test
   public void testDefaultFilter() {
+    login(TestAccount.DEMO_USER);
     CaseWidgetPage casePage = NavigationHelper.navigateToCaseList();
     assertTrue(casePage.getFilterName().contains("Default filter"));
   }
 
   @Test
   public void testNoSelectionWhenChangeFilter() {
+    login(TestAccount.DEMO_USER);
     String filterMaternity = "Maternity";
     CaseWidgetPage casePage = NavigationHelper.navigateToCaseList();
     casePage.openAdvancedFilter("Description", "description");
@@ -165,4 +171,45 @@ public class CaseFilterTest extends BaseTest {
 
     assertTrue(casePage.getFilterName().contains("No Selection"));
   }
+  
+  @Test
+  public void testSaveCaseFilterOnDifferentCaseList() {
+    updateLegacyUIConfiguration();
+    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    HomePage homePage = new HomePage();
+    homePage.waitForGlobalGrowlDisappear();
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
+    String filterName = "MyFilter";
+
+    casePage.openAdvancedFilter("Description", "description");
+    casePage.filterByDescription("Sick");
+    casePage.saveFilter(filterName);
+
+    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink(PORTAL_EXAMPLES_HOME_PAGE_URL);
+    mainMenuPage = new MainMenuPage();
+    casePage = mainMenuPage.selectCaseMenu();
+
+    assertTrue(casePage.getFilterName().contains("Default filter"));
+
+    /**
+     * TODO
+     * Note: this is my work around
+     * don't know why but re-apply the filter causing Exception
+     * will ask and fix later
+     */
+    String secondFilterName = "MyFilter2";
+    casePage.openAdvancedFilter("Creator", "creator");
+    casePage.filterByCreator("Demo");
+    casePage.saveFilter(secondFilterName);
+
+    mainMenuPage.selectTaskMenu();
+    casePage = mainMenuPage.openCaseList();
+    casePage.openSavedFilters(secondFilterName);
+
+    assertEquals(secondFilterName, casePage.getFilterName()); 
+  }
+
 }

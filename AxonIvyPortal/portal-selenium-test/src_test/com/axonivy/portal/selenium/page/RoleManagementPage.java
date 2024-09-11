@@ -15,6 +15,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import static com.codeborne.selenide.Condition.text;
 
 public class RoleManagementPage extends TemplatePage {
 
@@ -215,11 +216,13 @@ public class RoleManagementPage extends TemplatePage {
   }
 
   public void filterRoleTreeTableByRoleName(String roleName) {
-    var roleNames = getRoleNamesInRoleTreeTable();
-    var filterInput = getRoleTreeTable()
+    String roleNames = getRoleNamesInRoleTreeTable();
+    WebElement filterInput = getRoleTreeTable()
         .findElement(By.cssSelector("input[id$=':role-management-form:role-tree-table:global-filter']"));
     filterInput.clear();
     filterInput.sendKeys(roleName);
+    // Note: 0 index is everybody role, 1 is the role after we filtering out
+    $$(".role-username").get(1).shouldHave(text(roleName), DEFAULT_TIMEOUT);
     WaitHelper.assertTrueWithWait(() -> {
       return !roleNames.equalsIgnoreCase(getRoleNamesInRoleTreeTable());
     });

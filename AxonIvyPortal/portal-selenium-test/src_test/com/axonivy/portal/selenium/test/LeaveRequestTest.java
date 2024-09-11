@@ -16,7 +16,6 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.LeaveRequestPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
-import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
 
 @IvyWebTest
 public class LeaveRequestTest extends BaseTest {
@@ -29,6 +28,9 @@ public class LeaveRequestTest extends BaseTest {
   public void setup() {
     super.setup();
   }
+  /**
+   * Note: pageTittle only for version 12
+   */
 
   @Test
   public void testLeaveRequestValidation() {
@@ -48,7 +50,6 @@ public class LeaveRequestTest extends BaseTest {
   @Test
   public void testApproveScenario() {
     leaveRequestPage = startLeaveRequestProcess();
-    assertEquals("Create leave request", leaveRequestPage.getPageTitle());
     String today =
         LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
     String yesterday = LocalDateTime.now().minusDays(1)
@@ -62,7 +63,6 @@ public class LeaveRequestTest extends BaseTest {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.startTask(0);
     taskWidgetPage.switchToIFrameOfTask();
-    leaveRequestPage.assertPageTitle("Approval");
     leaveRequestPage.enterApproverComment("Approved");
     leaveRequestPage.clickApproveBtn();
     leaveRequestPage.clickOnLogout();
@@ -70,32 +70,30 @@ public class LeaveRequestTest extends BaseTest {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy("Your leave request is approved");
     taskWidgetPage.startTask(0);
-    taskWidgetPage.switchToIFrameOfTask();
-    leaveRequestPage.assertPageTitle("Approval Result");
-    UserExamplesEndPage userExamplesEndPage = leaveRequestPage.finishLeaveRequest();
-    CaseDetailsPage caseDetailsPage = userExamplesEndPage.goToCaseDetail();
+    taskWidgetPage.switchToIFrameOfTaskWithWaitHelper();
+//    UserExamplesEndPage userExamplesEndPage = leaveRequestPage.finishLeaveRequest();
+//    CaseDetailsPage caseDetailsPage = userExamplesEndPage.goToCaseDetail();
+    leaveRequestPage.finishLeaveRequest();
+    CaseDetailsPage caseDetailsPage = new CaseDetailsPage();
     assertEquals("Leave Request", caseDetailsPage.getCaseName());
   }
 
   @Test
   public void testRejectScenario() {
     leaveRequestPage = startLeaveRequestProcess();
-    leaveRequestPage.assertPageTitle("Create leave request");
-
     String today =
         LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
     String yesterday = LocalDateTime.now().minusDays(1)
         .format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN, new Locale("en")));
-    leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", yesterday, today,
-        TestAccount.ADMIN_USER.getFullName(), "requester comment");
+    leaveRequestPage.waitForIFrameContentVisible();
+    leaveRequestPage.enterMaternityLeaveRequestInformation(yesterday, today, TestAccount.ADMIN_USER.getFullName(),
+        "requester comment");
     leaveRequestPage.clickSubmitButton();
     leaveRequestPage.clickOnLogout();
     login(TestAccount.ADMIN_USER);
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.startTask(0);
     taskWidgetPage.switchToIFrameOfTask();
-    leaveRequestPage.assertPageTitle("Approval");
-
     leaveRequestPage.enterApproverComment("Rejected");
     leaveRequestPage.clickRejectBtn();
     leaveRequestPage.clickOnLogout();
@@ -103,8 +101,14 @@ public class LeaveRequestTest extends BaseTest {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.filterTasksInExpandedModeBy("Your leave request is rejected");
     taskWidgetPage.startTask(0);
-    taskWidgetPage.switchToIFrameOfTask();
-    leaveRequestPage.assertPageTitle("Approval Result");
+    taskWidgetPage.switchToIFrameOfTaskWithWaitHelper();
+//    UserExamplesEndPage userExamplesEndPage = leaveRequestPage.finishLeaveRequest();
+//    CaseDetailsPage caseDetailsPage = userExamplesEndPage.goToCaseDetail();
+//    = userExamplesEndPage.goToCaseDetail();
+//    assertEquals("Leave Request", caseDetailsPage.getCaseName());
+    leaveRequestPage.finishLeaveRequest();
+    CaseDetailsPage caseDetailsPage = new CaseDetailsPage();
+    assertEquals("Leave Request", caseDetailsPage.getCaseName());
   }
 
   private LeaveRequestPage startLeaveRequestProcess() {

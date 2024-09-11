@@ -324,6 +324,8 @@ public class DashboardConfigurationTest extends BaseTest {
 
   private DashboardModificationPage navigateToConfigurationAndOpenDashboardModificationPage() {
     LinkNavigator.redirectToPortalDashboardConfiguration();
+    DashboardConfigurationPage dashboardConfigurationPage = new DashboardConfigurationPage();
+    dashboardConfigurationPage.openEditPrivateDashboardsPage();
     return new DashboardModificationPage();
   }
 
@@ -405,10 +407,9 @@ public class DashboardConfigurationTest extends BaseTest {
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    configurationPage.closeAddDashboardDialog();
+    configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.appear);
     configurationPage.openCreatePrivateDashboardMenu();
-    configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.disappear);
   }
 
   @Test
@@ -418,10 +419,9 @@ public class DashboardConfigurationTest extends BaseTest {
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
-    configurationPage.closeAddDashboardDialog();
+    configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.disappear);
     configurationPage.openCreatePrivateDashboardMenu();
-    configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    configurationPage.getDashboardImportButtonOfDashboard().shouldBe(Condition.appear);
   }
 
   @Test

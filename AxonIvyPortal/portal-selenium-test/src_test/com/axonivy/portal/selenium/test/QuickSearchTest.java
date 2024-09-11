@@ -114,7 +114,6 @@ public class QuickSearchTest extends BaseTest {
     assertTrue(taskWidget.isEmptyMessageAppear());
 
     redirectToNewDashBoard();
-    taskWidget.clearQuickSearchInput();
     taskWidget.setInputForQuickSearch("Task number 10");
     taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
     taskWidget.clickOnButtonExpandTaskWidget();
@@ -251,7 +250,6 @@ public class QuickSearchTest extends BaseTest {
     taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
   }
 
-  // Case
   @Test
   public void testVisibilityOfQuickSearchOnCaseWidget() {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
@@ -349,6 +347,12 @@ public class QuickSearchTest extends BaseTest {
     caseEditWidget.save();
     caseWidget.waitPageLoaded();
     redirectToNewDashBoard();
+
+    caseWidget.setInputForQuickSearch("Create 12 cases");
+    caseWidget.countAllCases().shouldHave(size(1), DEFAULT_TIMEOUT);
+
+    caseWidget = new CaseWidgetNewDashBoardPage();
+    caseWidget.setInputForQuickSearch("Test");
 
     caseWidget.setInputForQuickSearch("Create 12 cases");
     caseWidget.countAllCases().shouldHave(size(1), DEFAULT_TIMEOUT);

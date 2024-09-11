@@ -11,6 +11,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.FileHelper;
 import com.axonivy.portal.selenium.common.WaitHelper;
@@ -134,9 +136,12 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public void findProcess(String keyword) {
     $("input[id='process-widget:process-search:non-ajax-keyword-filter']").sendKeys(keyword);
-    $("div.js-external-link-process-item").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("img[alt='" + keyword + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div[style='']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
 
-    System.out.println($("i[id='icon']").getAttribute("class"));
+  public void clickStart() {
+    $("[id='process-widget:image-process-group-alphabet:10:image-processes:8:process-item:start-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void waitForStartListShow() {
@@ -470,13 +475,100 @@ public class ProcessWidgetPage extends TemplatePage {
         }
       }
 
-      // refresh();
     }
     return new ExpressProcessPage();
   }
 
   public boolean hasCreateNewExpressWorkflowLink() {
     return isElementPresent(By.id("process-widget:create-express-workflow"));
+  }
+
+  public void expand() {
+    $("a[id='process-widget:process-link:process-link']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition()).click();
+    $(".js-loading-process-list").shouldBe(disappear, DEFAULT_TIMEOUT);
+    $(".js-process-start-list-container").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void openNewProcessDialog() {
+    $("div[id='process-widget:process-widget-action']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div[id='process-widget:process-widget-action']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void openAddNewUserProcess() {
+    $("a[id='process-widget:user-process-action-form:show-adding-dialog-commmand']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("a[id='process-widget:user-process-action-form:show-adding-dialog-commmand']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public boolean isCompactMode() {
+    List<WebElement> findElements = driver.findElements(By.id(processWidgetId + ":process-search:non-ajax-keyword-filter"));
+    return findElements.isEmpty();
+  }
+  
+  public String getProcessStartListItem(int index){
+    $(".process-start-list-item-name").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $$(".process-start-list-item-name").get(index).getText();
+  }
+  
+  public void clickEditSwitchLink() {
+    $("[id$='editing-switch-command']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id$='editing-switch-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void moveFavoriteProcess(int processToMoveIndex, int destinationProcessIndex) {
+    String editProcessItemFormId = "form[id$=':edit-process-item-form']";
+    $(editProcessItemFormId).shouldBe(appear, DEFAULT_TIMEOUT);
+    List<SelenideElement> processItems = $(editProcessItemFormId).$$(".ui-orderlist-item");
+    WebElement processToMove = processItems.get(processToMoveIndex - 1);
+    WebElement destinationProcess = processItems.get(destinationProcessIndex - 1);
+    
+    Actions builder = new Actions(driver);
+    Action dragAndDrop = builder.clickAndHold(processToMove)
+        .moveToElement(destinationProcess)
+        .release()
+        .build();
+    dragAndDrop.perform();
+  }
+
+  public void clickSaveProcess() {
+    $("[id$='save-process-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public String getProcessNameFromFavoriteProcessList(int index) {
+    String id = index + ":process-item-form:process-name";
+    WebElement favoriteProcessList = findElementById(processWidgetId + ":process-list");
+    String name = $(favoriteProcessList).$("span[id*='" + id + "']").getText();
+    return name;
+  }
+
+  public String getProcessNameFromDefaultProcessList(int index) {
+    String defaultProcessListIdSelector = processWidgetId + ":user-default-process-list";
+    SelenideElement defaultProcessList = $("div[id='" + defaultProcessListIdSelector + "']");
+    String id = index + ":process-item-form:process-name";
+    return defaultProcessList.$("span[id*='" + id + "']").getText();
+  }
+
+  public void clickSortDefaultProcessByName() {
+    $("[id$='default-process-name-sort-command']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id$='default-process-name-sort-command']").shouldBe(getClickableCondition()).click();
+    /**
+     * Note: click theme switcher and wait for the animation ending
+     * to buy some time for the sorting work before assert happens
+     */
+    $("i.pi-moon").shouldBe(getClickableCondition()).click();
+    $("i.pi-sun").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void clickSortFavoriteProcessByName() {
+    $("[id$='name-sort-command']").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id$='name-sort-command']").shouldBe(getClickableCondition()).click();
+    /**
+     * Note: click theme switcher and wait for the animation ending
+     * to buy some time for the sorting work before assert happens
+     */
+    $("i.pi-moon").shouldBe(getClickableCondition()).click();
+    $("i.pi-sun").shouldBe(appear, DEFAULT_TIMEOUT);
+
   }
 
 }
