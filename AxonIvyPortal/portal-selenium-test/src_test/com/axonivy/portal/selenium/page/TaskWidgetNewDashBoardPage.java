@@ -518,10 +518,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     .shouldBe(getClickableCondition()).click();
   }
   
-  public boolean isQuickSearchInputShow(String widgetIndex) {
-    String taskWidgetIndex = String.format("div[id*='task-task_%s']", widgetIndex);
+  public boolean isQuickSearchInputShow() {
     waitPageLoaded();
-    return $(taskWidgetIndex).$("form").$("input").exists();
+    return getQuickSearchForm().exists();
   }
 
   public String getQuickSearchInput() {
