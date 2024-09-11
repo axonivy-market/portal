@@ -100,7 +100,7 @@
       <p:remoteCommand id="apply-widget-filter-command-#{index}"
         name="applyWidgetFilterCommand#{index}"
         oncomplete="PF('filter-overlay-panel-#{index}').hide(); #{onCompleteApplyFilters}; resizeTableBody()"
-        update="widget-header-actions #{componentToUpdateOnApplyFilter}"
+        update="widget-header-actions"
         global="false" process="@this" partialSubmit="true" immediate="true"
         rendered="#{renderFilter}"/>
 
@@ -232,16 +232,16 @@
   
               <p:commandButton id="reset-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
                 styleClass="secondary-btn u-mar-right-5" partialSubmit="true"
-                update="filter-form-#{index} #{cc.clientId}:widget-header-actions #{componentToUpdateOnResetFilter}"
-                oncomplete="#{onCompleteResetFilters}; #{onCompleteApplyFilters}; PF('filter-overlay-panel-#{index}').hide(); resizeTableBody();"
+                update="#{cc.clientId}:widget-header-actions #{componentToUpdateOnResetFilter}"
+                oncomplete="PF('filter-overlay-panel-#{index}').hide(); resizeTableBody();"
                 actionListener="#{widget.onResetUserFilters()}"
                 icon="si si-button-refresh-arrows" resetValues="true"/>
   
               <p:commandButton id="apply-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
                 partialSubmit="true"
-                update="filter-form-#{index}"
+                update="#{componentToUpdateOnApplyFilter} #{cc.clientId}:widget-header-actions"
                 process="filter-form-#{index}"
-                oncomplete="if (args &amp;&amp; !args.validationFailed) {applyWidgetFilterCommand#{index}();} initWidgetFilterHtml('#{widget.id}');"
+                oncomplete="initWidgetFilterHtml('#{widget.id}'); PF('filter-overlay-panel-#{index}').hide();"
                 actionListener="#{widget.onApplyUserFilters()}"
                 icon="si si-check-1"
                 styleClass="u-mar-right-5" />
