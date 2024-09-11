@@ -188,11 +188,12 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
     setupCustomWidgetByJSONFile("custom-case-details-with-url.json");
     ScreenshotUtils.executeDecorateJs("highlightCustomWidgetInCaseDetails()");
     /**
-     * Note: temporary make the build passed
+     * Note: temporary make the build passed by change url to /designer/casemap/InternalSupport/764871e4-cf70-401f-83fb-9e99fa897fc4.icm
+     * in custom-case-details-with-url.json
      * don't know how to handle this.
      * reference link: https://support.mozilla.org/en-US/kb/xframe-neterror-page
      */
-//    detailsPage.waitForIFrameURLWidgetLoad();
+    detailsPage.waitForIFrameURLWidgetLoad();
     ScreenshotUtils
         .capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-customized-iframe-url");
   }

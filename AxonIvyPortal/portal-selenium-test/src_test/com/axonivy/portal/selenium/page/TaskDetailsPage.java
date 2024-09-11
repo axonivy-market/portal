@@ -276,7 +276,8 @@ public class TaskDetailsPage extends TemplatePage {
 
   public void waitForIFrameURLWidgetLoad() {
     switchToIframeWithNameOrId("custom-widget-iframe-url");
-    $("a[href='https://www.axonivy.com']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+//    $("a[href='https://www.axonivy.com']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    $(".js-dashboard__wrapper").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
     switchBackToParent();
 
   }
