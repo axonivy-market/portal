@@ -3659,6 +3659,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   .confirm-save-setting-button, .cancel-save-setting-button {
     min-width: 125px !important;
   }
+}
 
 .select-all-checkbox {
   padding-left: 3px;
