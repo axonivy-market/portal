@@ -110,10 +110,6 @@ public class UserMenuBean implements Serializable {
 	  return Ivy.session().getSessionUser() != null && Ivy.session().getSessionUser().getExternalId() != null;
   }
 
-  public boolean isHiddenStatisticWidget() {
-    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_STATISTIC_WIDGET);
-  }
-  
   public boolean getIsShowGlobalSearch() {
     return isShowGlobalSearch;
   }

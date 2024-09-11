@@ -439,6 +439,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     backgroundColor: Couleur de fond
     cancel: Annuler
     case: Dossier
+    caseCategory: Catégorie des cas
     caseInformation: Information sur le cas
     caseName: Nom de cas
     categories: Catégories
@@ -931,7 +932,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourNotifications: Vos notifications
     yourProcessViewer: Votre visualisateur de processus
     yourProcesses: Vos processus
-    yourStatistics: Vos statistiques
     yourTasks: Vos tâches
   documentFiles:
     deleteDocumentNote: '{0} a supprimé(e) {1}'
@@ -1133,120 +1133,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     searchResultsFor: '{0} résultats pour "{1}"'
   sidestep:
     addAdhocTask: Ajouter une Ad-hoc tâche
-  statistic:
-    chart:
-      addChart: Ajouter un nouveau diagramme
-      addChartDialogHeader: Ajouter un diagramme au tableau de bord
-      backToDashboard: Retour au tableau de bord
-      barchart:
-        Percentage: Pourcentage
-        daysOfWeek:
-          friday: Vendredi
-          monday: Lundi
-          saturday: samedi
-          sunday: dimanche
-          thursday: Jeudi
-          tuesday: Mardi
-          wednesday: Mercredi
-        expired: Expiré
-        in2Days: Dans 2 jours
-        in3Days: Dans 3 jours
-        monthsOfYear:
-          April: avril
-          August: août
-          December: décembre
-          February: février
-          January: janvier
-          July: juillet
-          June: juin
-          March: Mars
-          May: Mai
-          November: novembre
-          October: octobre
-          September: septembre
-        today: Aujourd'hui
-        tomorrow: Demain
-        weeksOfMonth:
-          fifthWeek: Cinquième semaine
-          firstWeek: Première semaine
-          fourthWeek: Quatrième semaine
-          secondWeek: Deuxième semaine
-          sixthWeek: Sixième semaine
-          thirdWeek: Troisième semaine
-      caseCategory: Catégorie des cas
-      chartCreationSuccessDetailMsg: Diagramme avec le nom {0} a été créé avec succès
-      chartCreationSuccessTitle: Diagramme a été créé avec succès
-      elapsedTime: Temps écoulé
-      elapsedTimeChart:
-        compareButton: Comparer
-        compareRole: Comparer les rôles
-        elapsedTimeInHours: Temps écoulé en heures
-        noEntriesFound: Aucun critère correspondant trouvé
-        taskCategory: Catégorie de tâche
-        withRole: 'Avec rôle:'
-      emptystate:
-        defaultEmptyMessages: Pas de diagrammes à afficher
-      exception:
-        idNotFound: 'Chart Id not found with id: {0}'
-        noPermission: You do not have the permission to send this request!
-      expiryPeriod: Période d'expiration
-      loadingCharts: Veuillez patienter, les graphiques sont en cours de chargement …
-      notAllowedToCreateChart: Vous n'êtes pas autorisé à créer un diagramme avant de cliquer sur le bouton Appliquer les filtres
-      other: Outres
-      restoreDefaultChart: Si vous continuez, vous perdrez tous les graphiques créés par vous-même. Les paramètres standard seront appliqués.
-      second: sec
-      showAllCharts: Voir tous les diagrammes
-      statisticCarousel: Carrousel de statistiques
-      statistics: Statistiques
-      taskByExpiry:
-        hour: (Heure)
-        thisMonth: Ce mois
-        thisWeek: Cette semaine
-        thisYear: Cette année
-      taskByPriority:
-        addToDashboardLink: Ajouter au tableau de bord
-        exception: Exception
-        high: Haute
-        low: Basse
-        normal: Normale
-      taskExpiry: Expiration de la tâche
-    chartInfo:
-      chartDetailsHeader: Détails du diagramme
-    chartType:
-      caseByFinishedTask: Cas traités en période de temps
-      caseByFinishedTaskDescription: Cas où une tâche s'est terminée dans la période sélectionnée
-      caseByFinishedTime: Cas traités dans le temps
-      caseByFinishedTimeDescription: Cas qui se font dans la période sélectionnée
-      caseByState: Cas par état
-      casesByCategory: Affaires par catégorie
-      elapsedTimeByCaseCategory: Temps écoulé des cas accomplis
-      elapsedTimeByCaseCategoryDescription: Temps écoulé des cas finis par catégorie
-      taskByExpiry: Tâche par échéance
-      taskByPriority: Tâche par priorité
-    defaultChart:
-      newChart: Nouveau diagramme
-      tasksByPriority: Tãches par priorité
-    filter:
-      affectedCharts: Diagrammes concernés
-      caseCategoryFilterDescription: Vous pouvez trouver toutes les catégories de cas disponibles ici. Seules les catégories de cas sélectionnées sont prises en compte dans les diagrammes concernés.
-      caseStateFilterDescription: Seuls les états sélectionnés sont pris en compte dans les diagrammes concernés.
-      filter: Filtres
-      noRoles: Aucun rôle disponible
-      noSelectionCustomVarChar: Pas de choix.
-      roleFilterDescription: Vous pouvez trouver tous les rôles de processus disponibles ici. Seuls les rôles sélectionnés sont pris en compte dans le diagramme concerné
-      selectAll: Tout sélectionner
-      taskPriorityFilterDescription: Les tâches peuvent être sélectionnées en fonction de leur priorité.
-      timePeriodFilterDescription: Limite la période de temps pour les cas et les tâches.
-    taskAnalysis:
-      downloadZipFileExplanation: Le nombre de tâches à exporter dépasse la limite des lignes Excel. Par conséquent, les données seront divisées en plusieurs fichiers Excel, puis compressées dans un fichier ZIP à télécharger.
-      waitingDownloadMessage: Nous créons l'export, cela peut prendre quelques minutes
-    timePeriod:
-      custom: Coutume
-      last6Month: Six derniers mois
-      lastMonth: Dernier Mois
-      lastWeek: Dernière semaine
-    validationErrors:
-      nameIsExisted: Un diagramme avec ce nom existe déjà
   taskActivator:
     assign: Assigner
     cannotAssignTask: Cette tâche ne peut être assignée à aucun autre utilisateur ou groupe.
@@ -1578,6 +1464,7 @@ Dialogs:
             CaseWidgetConfiguration:
               AddFilter: Ajouter un filtre
             ClientStatisticWidget:
+              IdNotFound: 'Chart Id not found with id: {0}'
               NoPermissionChartMessage: Vous n'avez pas l'autorisation requise pour consulter ce graphique.
             DashboardImportDetails:
               FileInfomation: Informations sur le fichier

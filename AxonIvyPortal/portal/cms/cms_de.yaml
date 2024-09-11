@@ -441,6 +441,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     backgroundColor: Hintergrundfarbe
     cancel: Abbrechen
     case: Vorgang
+    caseCategory: Vorgangskategorie
     caseInformation: Vorgangsinformationen
     caseName: Vorgangsname
     categories: Kategorien
@@ -935,7 +936,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourNotifications: Ihre Benachrichtigungen
     yourProcessViewer: Ihr Prozessbetrachter
     yourProcesses: Ihre Prozesse
-    yourStatistics: Ihre Statistiken
     yourTasks: Ihre Aufgaben
   documentFiles:
     deleteDocumentNote: '{0} hat folgendes gelöscht: {1}'
@@ -1137,120 +1137,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     searchResultsFor: '{0} Suchresultate für "{1}"'
   sidestep:
     addAdhocTask: Ad-hoc Aufgabe hinzufügen
-  statistic:
-    chart:
-      addChart: Neues Diagramm hinzufügen
-      addChartDialogHeader: Diagramm zum Dashboard hinzufügen
-      backToDashboard: Zurück zum Dashboard
-      barchart:
-        Percentage: Prozent
-        daysOfWeek:
-          friday: Freitag
-          monday: Montag
-          saturday: Samstag
-          sunday: Sonntag
-          thursday: Donnerstag
-          tuesday: Dienstag
-          wednesday: Mittwoch
-        expired: Abgelaufen
-        in2Days: In 2 Tagen
-        in3Days: In 3 Tagen
-        monthsOfYear:
-          April: April
-          August: August
-          December: Dezember
-          February: Februar
-          January: Januar
-          July: Juli
-          June: Juni
-          March: März
-          May: Mai
-          November: November
-          October: Oktober
-          September: September
-        today: Heute
-        tomorrow: Morgen
-        weeksOfMonth:
-          fifthWeek: Fünfte Woche
-          firstWeek: Erste Woche
-          fourthWeek: Vierte Woche
-          secondWeek: Zweite Woche
-          sixthWeek: Sechste Woche
-          thirdWeek: Dritte Woche
-      caseCategory: Vorgangskategorie
-      chartCreationSuccessDetailMsg: Diagramm mit Name {0} wurde erfolgreich erstellt
-      chartCreationSuccessTitle: Diagramm wurde erfolgreich erstellt
-      elapsedTime: Verstrichene Zeit
-      elapsedTimeChart:
-        compareButton: Vergleichen
-        compareRole: Rollen vergleichen
-        elapsedTimeInHours: Laufzeit in Std.
-        noEntriesFound: Keine übereinstimmende Kriterien gefunden
-        taskCategory: Aufgabenkategorie
-        withRole: 'Mit Rolle:'
-      emptystate:
-        defaultEmptyMessages: Es sind keine Auswertungen vorhanden.
-      exception:
-        idNotFound: 'Chart Id not found with id: {0}'
-        noPermission: You do not have the permission to send this request!
-      expiryPeriod: Fristende
-      loadingCharts: Bitte warten während die Diagramme geladen werden…
-      notAllowedToCreateChart: Sie haben die Filtereinstellungen geändert. Bitte aktualisieren Sie gesetzten Filter mit "Filter anwenden", um das Diagramm anschließend erstellen zu können
-      other: Andere
-      restoreDefaultChart: Wenn Sie fortfahren, werden alle selbsterstellten Diagramme gelöscht. Die Standardeinstellung wird angewendet.
-      second: sek
-      showAllCharts: Alle Diagramme anzeigen
-      statisticCarousel: Statistik-Karussell
-      statistics: Statistiken
-      taskByExpiry:
-        hour: (Stunde)
-        thisMonth: Diesen Monat
-        thisWeek: Diese Woche
-        thisYear: Dieses Jahr
-      taskByPriority:
-        addToDashboardLink: Zum Dashboard hinzufügen
-        exception: Ausnahme
-        high: Hoch
-        low: Niedrig
-        normal: Normal
-      taskExpiry: Aufgabenfristen
-    chartInfo:
-      chartDetailsHeader: Diagrammdetails
-    chartType:
-      caseByFinishedTask: Bearbeitete Vorgänge im Zeitraum
-      caseByFinishedTaskDescription: Vorgänge, in denen eine Aufgabe in der ausgewählten Zeitspanne abgeschlossen wurde
-      caseByFinishedTime: Abgeschlossene Vorgänge im Zeitraum
-      caseByFinishedTimeDescription: Vorgänge die in der ausgewählten Zeitspanne abgeschlossen wurden
-      caseByState: Vorgänge nach Status
-      casesByCategory: Vorgänge nach Kategorie
-      elapsedTimeByCaseCategory: Durchlaufzeit abgeschlossener Vorgänge
-      elapsedTimeByCaseCategoryDescription: Durchlaufszeit (Start bis Ende des Vorgangs) abgeschlossener Vorgänge nach Kategorie
-      taskByExpiry: Aufgaben nach Ablaufdatum
-      taskByPriority: Aufgaben nach Priorität
-    defaultChart:
-      newChart: Neues Diagramm
-      tasksByPriority: Aufgaben nach Priorität
-    filter:
-      affectedCharts: Betroffene Diagramme
-      caseCategoryFilterDescription: Hier sehen Sie alle verfügbaren Vorgangskategorien. Nur ausgewählte Vorgangskategorien werden in den betroffenen Diagrammen berücksichtigt.
-      caseStateFilterDescription: Nur ausgewählte Status werden in den betroffenen Diagrammen berücksichtigt.
-      filter: Filter
-      noRoles: Keine Rollen vorhanden
-      noSelectionCustomVarChar: Keine Auswahl
-      roleFilterDescription: Hier sehen Sie alle verfügbaren Prozessrollen. Nur ausgewählte Rollen werden in den betroffenen Diagrammen berücksichtigt.
-      selectAll: Alle selektieren
-      taskPriorityFilterDescription: Aufgaben können nach Ihrer Priorität gefiltert werden.
-      timePeriodFilterDescription: 'Schränkt den Zeitraum der Vorgänge und Aufgaben ein. '
-    taskAnalysis:
-      downloadZipFileExplanation: Die Anzahl der zu exportierenden Aufgaben überschreitet die Grenze der Excel-Zeilen. Daher werden die Daten in mehrere Excel-Dateien aufgeteilt und dann in einer ZIP-Datei zum Herunterladen komprimiert.
-      waitingDownloadMessage: Bitte um Geduld. Wir erstellen gerade den Export. Das kann einige Minuten dauern.
-    timePeriod:
-      custom: Benutzerdefiniert
-      last6Month: Letzte 6 Monate
-      lastMonth: Letzter Monat
-      lastWeek: Letzte Woche
-    validationErrors:
-      nameIsExisted: Ein Diagramm mit dem selben Namen existiert bereits
   taskActivator:
     assign: Zuweisen
     cannotAssignTask: Diese Aufgabe kann keinem anderen Benutzer oder keiner anderen Gruppe zugewiesen werden.
@@ -1582,6 +1468,7 @@ Dialogs:
             CaseWidgetConfiguration:
               AddFilter: Filter hinzufügen
             ClientStatisticWidget:
+              IdNotFound: 'Chart Id not found with id: {0}'
               NoPermissionChartMessage: Sie haben nicht die erforderliche Berechtigung, um diese Karte zu sehen.
             DashboardImportDetails:
               FileInfomation: Dateiinformationen

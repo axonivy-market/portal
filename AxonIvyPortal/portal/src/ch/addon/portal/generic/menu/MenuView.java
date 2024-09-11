@@ -1,7 +1,6 @@
 package ch.addon.portal.generic.menu;
 
 import static ch.ivy.addon.portalkit.util.DashboardUtils.DASHBOARD_MENU_ITEM_PATTERN;
-
 import static ch.ivy.addon.portalkit.util.DashboardUtils.DASHBOARD_MENU_JS_CLASS;
 import static ch.ivy.addon.portalkit.util.DashboardUtils.DASHBOARD_MENU_PATTERN;
 import static ch.ivy.addon.portalkit.util.DashboardUtils.DASHBOARD_PAGE_URL;
@@ -48,7 +47,6 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.service.MainMenuEntryService;
-import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
@@ -178,7 +176,7 @@ public class MenuView implements Serializable {
 
           String defaultTitle = (String) dashboardMenu.getValue();
           String title = board.getTitles().stream()
-              .filter(name -> StatisticService.equalsLanguageLocale(name, currentLanguage)
+              .filter(name -> StringUtils.equalsIgnoreCase(name.getLocale().toString(), currentLanguage)
                   && StringUtils.isNotBlank(name.getValue()))
               .map(DisplayName::getValue).findFirst().orElse(defaultTitle);
           dashboardMenu.setValue(title);
@@ -274,7 +272,6 @@ public class MenuView implements Serializable {
       case TECHNICAL_CASE -> buildBreadCrumbForTechnicalCaseList(userCase);
       case RELATED_TASK -> buildBreadCrumbForRelatedTask(userCase);
       case PROCESS -> buildBreadCrumbForProcess();
-      case STATISTICS -> buildBreadCrumbForStatistic();
       case TASK_DETAIL -> buildBreadCrumbForTaskDetails(userTask);
       case CASE_DETAIL -> buildBreadCrumbForCaseDetails(userCase);
       case EXPRESS -> buildBreadCrumbForExpress();
@@ -358,14 +355,6 @@ public class MenuView implements Serializable {
     breadcrumbModel.getElements().add(processListSubmenuItem);
   }
 
-  private void buildBreadCrumbForStatistic() {
-    setPortalHomeMenuToBreadcrumbModel();
-
-    DefaultMenuItem statisticListSubmenuItem = buildStatisticListMenuItem();
-    statisticListSubmenuItem.setDisabled(true);
-    breadcrumbModel.getElements().add(statisticListSubmenuItem);
-  }
-
   private void buildBreadCrumbForTaskDetails(ITask userTask) {
     setPortalHomeMenuToBreadcrumbModel();
     breadcrumbModel.getElements().add(buildTaskListMenuItem());
@@ -431,11 +420,6 @@ public class MenuView implements Serializable {
   private DefaultMenuItem buildProcessListMenuItem() {
     ProcessSubMenuItem processSubMenuItem = new ProcessSubMenuItem();
     return buildMenuItemFromPortalSubMenuItem(processSubMenuItem);
-  }
-
-  private DefaultMenuItem buildStatisticListMenuItem() {
-    StatisticSubMenuItem statisticSubMenuItem = new StatisticSubMenuItem();
-    return buildMenuItemFromPortalSubMenuItem(statisticSubMenuItem);
   }
 
   private MenuItem buildTaskDetailsMenuItem(ITask userTask) {

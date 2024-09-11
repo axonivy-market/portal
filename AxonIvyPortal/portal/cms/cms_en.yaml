@@ -440,6 +440,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     backgroundColor: Background color
     cancel: Cancel
     case: Case
+    caseCategory: Case category
     caseInformation: Case Information
     caseName: Case name
     categories: Categories
@@ -937,7 +938,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourNotifications: Your Notifications
     yourProcessViewer: Your Process Viewer
     yourProcesses: Your Processes
-    yourStatistics: Your Statistics
     yourTasks: Your Tasks
   documentFiles:
     deleteDocumentNote: '{0} has deleted {1}'
@@ -1139,120 +1139,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     searchResultsFor: '{0} search results for "{1}"'
   sidestep:
     addAdhocTask: Add Ad-hoc Task
-  statistic:
-    chart:
-      addChart: Add new chart
-      addChartDialogHeader: Add statistic chart to dashboard
-      backToDashboard: Back to dashboard
-      barchart:
-        Percentage: Percentage
-        daysOfWeek:
-          friday: Friday
-          monday: Monday
-          saturday: Saturday
-          sunday: Sunday
-          thursday: Thursday
-          tuesday: Tuesday
-          wednesday: Wednesday
-        expired: Expired
-        in2Days: In 2 days
-        in3Days: In 3 days
-        monthsOfYear:
-          April: April
-          August: August
-          December: December
-          February: February
-          January: January
-          July: July
-          June: June
-          March: March
-          May: May
-          November: November
-          October: October
-          September: September
-        today: Today
-        tomorrow: Tomorrow
-        weeksOfMonth:
-          fifthWeek: Fifth week
-          firstWeek: First week
-          fourthWeek: Fourth week
-          secondWeek: Second week
-          sixthWeek: Sixth week
-          thirdWeek: Third week
-      caseCategory: Case category
-      chartCreationSuccessDetailMsg: Chart with name {0} was created successfully
-      chartCreationSuccessTitle: Chart was created successfully
-      elapsedTime: Elapsed Time
-      elapsedTimeChart:
-        compareButton: Compare
-        compareRole: 'Compare Role:'
-        elapsedTimeInHours: Elapsed time in hours
-        noEntriesFound: No entries found with given criteria
-        taskCategory: Task category
-        withRole: 'With Role:'
-      emptystate:
-        defaultEmptyMessages: No statistic chart to display.
-      exception:
-        idNotFound: 'Chart Id not found with id: {0}'
-        noPermission: You do not have the permission to send this request!
-      expiryPeriod: Expiry period
-      loadingCharts: Please wait, charts are loading...
-      notAllowedToCreateChart: You are not allowed to create a chart before clicking Apply Filters button
-      other: Others
-      restoreDefaultChart: If you proceed, you will loose all charts created by yourself. The standard settings will be applied.
-      second: sec
-      showAllCharts: Show all charts
-      statisticCarousel: Statistics Carousel
-      statistics: Statistics
-      taskByExpiry:
-        hour: (Hour)
-        thisMonth: This Month
-        thisWeek: This Week
-        thisYear: This Year
-      taskByPriority:
-        addToDashboardLink: Add to dashboard
-        exception: Exception
-        high: High
-        low: Low
-        normal: Normal
-      taskExpiry: Task expiry
-    chartInfo:
-      chartDetailsHeader: Chart Details
-    chartType:
-      caseByFinishedTask: Processed cases in time period
-      caseByFinishedTaskDescription: Cases where a task was finished in the selected time period
-      caseByFinishedTime: Done cases in time period
-      caseByFinishedTimeDescription: Cases which are done in the selected time period
-      caseByState: Case by state
-      casesByCategory: Cases by category
-      elapsedTimeByCaseCategory: Elapsed time of done cases
-      elapsedTimeByCaseCategoryDescription: Elapsed time of finished cases by category
-      taskByExpiry: Task by expiry
-      taskByPriority: Task by priority
-    defaultChart:
-      newChart: New chart
-      tasksByPriority: Tasks by Priority
-    filter:
-      affectedCharts: Affected charts
-      caseCategoryFilterDescription: You can find all available case categories here. Only selected Case Categories are considered in the affected charts.
-      caseStateFilterDescription: Only selected States are considered in the affected charts.
-      filter: Filters
-      noRoles: There are no roles
-      noSelectionCustomVarChar: No selection.
-      roleFilterDescription: You can find all available process roles here. Only selected roles are considered in the affected charts
-      selectAll: Select All
-      taskPriorityFilterDescription: Tasks can be selected depending on their priority.
-      timePeriodFilterDescription: Restricts the time period for cases and tasks.
-    taskAnalysis:
-      downloadZipFileExplanation: The number of tasks to export exceeds the limit of Excel rows. Therefore, data will be split to multiple Excel files, then compressed in a Zip file to download.
-      waitingDownloadMessage: We are creating the Export, this can take a few minutes
-    timePeriod:
-      custom: Custom
-      last6Month: Last 6 month
-      lastMonth: Last month
-      lastWeek: Last week
-    validationErrors:
-      nameIsExisted: A chart with this name already exists
   taskActivator:
     assign: Assign
     cannotAssignTask: This task cannot be assigned to any other user or group.
@@ -1583,6 +1469,7 @@ Dialogs:
             CaseWidgetConfiguration:
               AddFilter: Add filter
             ClientStatisticWidget:
+              IdNotFound: 'Chart Id not found with id: {0}'
               NoPermissionChartMessage: You do not have the required permission to see this chart.
             DashboardImportDetails:
               FileInfomation: File Infomation

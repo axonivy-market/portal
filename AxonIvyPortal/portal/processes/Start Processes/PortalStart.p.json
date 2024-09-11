@@ -887,64 +887,6 @@
         { "id" : "f210", "to" : "f65" }
       ]
     }, {
-      "id" : "S00",
-      "type" : "EmbeddedProcess",
-      "name" : "Authorize",
-      "elements" : [ {
-          "id" : "S00-f281",
-          "type" : "TaskEnd",
-          "visual" : {
-            "at" : { "x" : 152, "y" : 232 }
-          }
-        }, {
-          "id" : "S00-f279",
-          "type" : "Alternative",
-          "name" : "Authorized?",
-          "config" : {
-            "conditions" : {
-              "S00-f1" : "ch.ivy.addon.portalkit.util.PermissionUtils.checkAccessFullStatisticsListPermission()"
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 152, "y" : 144 },
-            "labelOffset" : { "y" : -16 }
-          },
-          "connect" : [
-            { "id" : "S00-f1", "to" : "S00-g1", "label" : {
-                "name" : "Yes"
-              } },
-            { "id" : "S00-f282", "to" : "S00-f281", "label" : {
-                "name" : "No",
-                "segment" : 0.56
-              } }
-          ]
-        }, {
-          "id" : "S00-g0",
-          "type" : "EmbeddedStart",
-          "name" : "in 1",
-          "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
-          },
-          "parentConnector" : "f26",
-          "connect" : [
-            { "id" : "S00-f0", "to" : "S00-f279" }
-          ]
-        }, {
-          "id" : "S00-g1",
-          "type" : "EmbeddedEnd",
-          "name" : "out 1",
-          "visual" : {
-            "at" : { "x" : 320, "y" : 144 }
-          },
-          "parentConnector" : "f27"
-        } ],
-      "visual" : {
-        "at" : { "x" : 200, "y" : 960 }
-      },
-      "connect" : [
-        { "id" : "f27", "to" : "f32" }
-      ]
-    }, {
       "id" : "S90",
       "type" : "EmbeddedProcess",
       "name" : "Authorize",
@@ -997,7 +939,7 @@
           "parentConnector" : "f209"
         } ],
       "visual" : {
-        "at" : { "x" : 344, "y" : 880 }
+        "at" : { "x" : 344, "y" : 960 }
       },
       "connect" : [
         { "id" : "f209", "to" : "f274" }
@@ -1080,7 +1022,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 400 },
+        "at" : { "x" : 96, "y" : 480 },
         "labelOffset" : { "x" : -23, "y" : 41 }
       },
       "connect" : [
@@ -1144,7 +1086,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 488, "y" : 400 }
+        "at" : { "x" : 488, "y" : 480 }
       },
       "connect" : [
         { "id" : "f2", "to" : "f1" }
@@ -1174,7 +1116,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 240 },
+        "at" : { "x" : 96, "y" : 320 },
         "labelOffset" : { "x" : -55, "y" : 41 }
       },
       "connect" : [
@@ -1184,7 +1126,7 @@
       "id" : "f57",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 592, "y" : 640 }
+        "at" : { "x" : 592, "y" : 720 }
       }
     }, {
       "id" : "f58",
@@ -1197,7 +1139,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 640 },
+        "at" : { "x" : 96, "y" : 720 },
         "labelOffset" : { "x" : -15, "y" : 41 }
       },
       "connect" : [
@@ -1222,7 +1164,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 880 },
+        "at" : { "x" : 96, "y" : 960 },
         "labelOffset" : { "x" : -23, "y" : 33 }
       },
       "connect" : [
@@ -1239,7 +1181,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 800 },
+        "at" : { "x" : 96, "y" : 880 },
         "labelOffset" : { "x" : -31, "y" : 41 }
       },
       "connect" : [
@@ -1249,13 +1191,13 @@
       "id" : "f105",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 736, "y" : 880 }
+        "at" : { "x" : 736, "y" : 960 }
       }
     }, {
       "id" : "f64",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 592, "y" : 800 }
+        "at" : { "x" : 592, "y" : 880 }
       }
     }, {
       "id" : "f1",
@@ -1267,18 +1209,18 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 592, "y" : 400 }
+        "at" : { "x" : 592, "y" : 480 }
       },
       "connect" : [
         { "id" : "f30", "to" : "f22" },
         { "id" : "f36", "to" : "S70" },
-        { "id" : "f19", "to" : "f5", "via" : [ { "x" : 592, "y" : 448 }, { "x" : 1008, "y" : 448 } ] }
+        { "id" : "f19", "to" : "f5", "via" : [ { "x" : 592, "y" : 528 }, { "x" : 1008, "y" : 528 } ] }
       ]
     }, {
       "id" : "f0",
       "type" : "Alternative",
       "visual" : {
-        "at" : { "x" : 1008, "y" : 240 }
+        "at" : { "x" : 1008, "y" : 320 }
       },
       "connect" : [
         { "id" : "f92", "to" : "S60" }
@@ -1292,7 +1234,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1008, "y" : 400 }
+        "at" : { "x" : 1008, "y" : 480 }
       },
       "connect" : [
         { "id" : "f20", "to" : "f0" },
@@ -1318,48 +1260,12 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 480 },
+        "at" : { "x" : 96, "y" : 560 },
         "labelOffset" : { "x" : -39, "y" : 41 }
       },
       "connect" : [
-        { "id" : "f13", "to" : "f4", "via" : [ { "x" : 344, "y" : 480 } ] }
+        { "id" : "f13", "to" : "f4", "via" : [ { "x" : 344, "y" : 560 } ] }
       ]
-    }, {
-      "id" : "f32",
-      "type" : "DialogCall",
-      "name" : "Statistic",
-      "config" : {
-        "dialog" : "ch.ivy.addon.portal.generic.admin.PortalDashBoard:start()"
-      },
-      "visual" : {
-        "at" : { "x" : 344, "y" : 960 }
-      },
-      "connect" : [
-        { "id" : "f35", "to" : "f34" }
-      ]
-    }, {
-      "id" : "f70",
-      "type" : "RequestStart",
-      "name" : "StatisticPage.ivp",
-      "config" : {
-        "signature" : "StatisticPage",
-        "request" : {
-          "isVisibleOnStartList" : false
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 960 },
-        "labelOffset" : { "x" : -15, "y" : 33 }
-      },
-      "connect" : [
-        { "id" : "f26", "to" : "S00" }
-      ]
-    }, {
-      "id" : "f34",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 448, "y" : 960 }
-      }
     }, {
       "id" : "f39",
       "type" : "RequestStart",
@@ -1809,7 +1715,7 @@
         "homepage if you have"
       ],
       "visual" : {
-        "at" : { "x" : 1240, "y" : 240 },
+        "at" : { "x" : 1240, "y" : 320 },
         "size" : { "width" : 144, "height" : 44 }
       }
     }, {
@@ -1831,7 +1737,7 @@
       "id" : "f22",
       "type" : "Alternative",
       "visual" : {
-        "at" : { "x" : 592, "y" : 240 }
+        "at" : { "x" : 592, "y" : 320 }
       },
       "connect" : [
         { "id" : "f141", "to" : "f0" }
@@ -1845,7 +1751,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 344, "y" : 400 }
+        "at" : { "x" : 344, "y" : 480 }
       },
       "connect" : [
         { "id" : "f29", "to" : "f31" },
@@ -1864,7 +1770,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 344, "y" : 240 }
+        "at" : { "x" : 344, "y" : 320 }
       },
       "connect" : [
         { "id" : "f49", "to" : "f31" },
@@ -1889,7 +1795,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 344, "y" : 320 }
+        "at" : { "x" : 344, "y" : 400 }
       }
     }, {
       "id" : "f12",
@@ -2245,11 +2151,11 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 160 },
+        "at" : { "x" : 96, "y" : 240 },
         "labelOffset" : { "x" : -39, "y" : 33 }
       },
       "connect" : [
-        { "id" : "f47", "to" : "f21", "via" : [ { "x" : 344, "y" : 160 } ] }
+        { "id" : "f47", "to" : "f21", "via" : [ { "x" : 344, "y" : 240 } ] }
       ]
     }, {
       "id" : "f122",
@@ -2361,7 +2267,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 488, "y" : 241 },
+        "at" : { "x" : 488, "y" : 321 },
         "size" : { "height" : 62 }
       },
       "connect" : [
@@ -2462,7 +2368,7 @@
           }
         } ],
       "visual" : {
-        "at" : { "x" : 1096, "y" : 240 }
+        "at" : { "x" : 1096, "y" : 320 }
       }
     }, {
       "id" : "S10",
@@ -2686,7 +2592,7 @@
           }
         } ],
       "visual" : {
-        "at" : { "x" : 1165, "y" : 399 },
+        "at" : { "x" : 1165, "y" : 479 },
         "size" : { "width" : 251, "height" : 65 }
       }
     }, {
@@ -2785,7 +2691,7 @@
           "parentConnector" : "f25"
         } ],
       "visual" : {
-        "at" : { "x" : 488, "y" : 640 }
+        "at" : { "x" : 488, "y" : 720 }
       },
       "connect" : [
         { "id" : "f25", "to" : "f57" }
@@ -2884,7 +2790,7 @@
           "parentConnector" : "f17"
         } ],
       "visual" : {
-        "at" : { "x" : 488, "y" : 800 }
+        "at" : { "x" : 488, "y" : 880 }
       },
       "connect" : [
         { "id" : "f17", "to" : "f64" }
@@ -2984,7 +2890,7 @@
           "parentConnector" : "f40"
         } ],
       "visual" : {
-        "at" : { "x" : 848, "y" : 400 },
+        "at" : { "x" : 848, "y" : 480 },
         "size" : { "width" : 248, "height" : 64 }
       },
       "connect" : [
@@ -3298,7 +3204,7 @@
         "signature" : "DefaultApplicationHomePageInTeams"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 320 },
+        "at" : { "x" : 96, "y" : 400 },
         "labelOffset" : { "x" : -79, "y" : 41 }
       },
       "connect" : [
@@ -3320,7 +3226,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 200, "y" : 320 }
+        "at" : { "x" : 200, "y" : 400 }
       },
       "connect" : [
         { "id" : "f205", "to" : "f203" }
@@ -3329,7 +3235,7 @@
       "id" : "f203",
       "type" : "Alternative",
       "visual" : {
-        "at" : { "x" : 200, "y" : 240 }
+        "at" : { "x" : 200, "y" : 320 }
       },
       "connect" : [
         { "id" : "f43", "to" : "f21" }
@@ -3342,7 +3248,7 @@
         "signature" : "DefaultCaseListPageInTeams"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 560 },
+        "at" : { "x" : 96, "y" : 640 },
         "labelOffset" : { "x" : -55, "y" : 41 }
       },
       "connect" : [
@@ -3364,10 +3270,10 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 200, "y" : 560 }
+        "at" : { "x" : 200, "y" : 640 }
       },
       "connect" : [
-        { "id" : "f61", "to" : "S71", "via" : [ { "x" : 344, "y" : 560 } ] }
+        { "id" : "f61", "to" : "S71", "via" : [ { "x" : 344, "y" : 640 } ] }
       ]
     }, {
       "id" : "f214",
@@ -3385,10 +3291,10 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 200, "y" : 720 }
+        "at" : { "x" : 200, "y" : 800 }
       },
       "connect" : [
-        { "id" : "f24", "to" : "S80", "via" : [ { "x" : 344, "y" : 720 } ] }
+        { "id" : "f24", "to" : "S80", "via" : [ { "x" : 344, "y" : 800 } ] }
       ]
     }, {
       "id" : "f215",
@@ -3398,7 +3304,7 @@
         "signature" : "DefaultTaskListPageInTeams"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 720 },
+        "at" : { "x" : 96, "y" : 800 },
         "labelOffset" : { "x" : -55, "y" : 41 }
       },
       "connect" : [
@@ -3706,7 +3612,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 200, "y" : 880 }
+        "at" : { "x" : 200, "y" : 960 }
       },
       "connect" : [
         { "id" : "f15", "to" : "S90" }
@@ -3725,7 +3631,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 560, "y" : 880 },
+        "at" : { "x" : 560, "y" : 960 },
         "size" : { "width" : 256 }
       },
       "connect" : [
@@ -3795,7 +3701,7 @@
           "parentConnector" : "f176"
         } ],
       "visual" : {
-        "at" : { "x" : 344, "y" : 640 }
+        "at" : { "x" : 344, "y" : 720 }
       },
       "connect" : [
         { "id" : "f176", "to" : "S30" }
@@ -3863,7 +3769,7 @@
           "parentConnector" : "f179"
         } ],
       "visual" : {
-        "at" : { "x" : 344, "y" : 800 }
+        "at" : { "x" : 344, "y" : 880 }
       },
       "connect" : [
         { "id" : "f179", "to" : "S20" }
@@ -4261,7 +4167,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 72 }
+        "at" : { "x" : 96, "y" : 152 }
       },
       "connect" : [
         { "id" : "f212", "to" : "f170" }
@@ -4288,10 +4194,10 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 216, "y" : 72 }
+        "at" : { "x" : 216, "y" : 152 }
       },
       "connect" : [
-        { "id" : "f218", "to" : "f21", "via" : [ { "x" : 344, "y" : 72 } ] }
+        { "id" : "f218", "to" : "f21", "via" : [ { "x" : 344, "y" : 152 } ] }
       ]
     }, {
       "id" : "f219",
