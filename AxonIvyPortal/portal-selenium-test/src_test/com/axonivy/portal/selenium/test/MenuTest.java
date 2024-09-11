@@ -1,19 +1,18 @@
 package com.axonivy.portal.selenium.test;
 
 import org.junit.jupiter.api.Assertions;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.Variable;
+import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
-import com.axonivy.portal.selenium.page.StatisticWidgetPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
-import com.axonivy.portal.selenium.common.Variable;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
@@ -69,7 +68,7 @@ public class MenuTest extends BaseTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitPageLoaded();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
-    StatisticWidgetPage dashboardPage = mainMenuPage.selectStatisticDashboard();
+    CaseWidgetPage dashboardPage = mainMenuPage.openCaseList();
     dashboardPage.waitForPageLoad();
 
     dashboardPage.closeMainMenu();

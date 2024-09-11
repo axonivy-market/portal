@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
-
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -39,10 +38,6 @@ public class MainMenuPage extends TemplatePage {
 
   public ProcessWidgetPage openProcessList() {
     return NavigationHelper.navigateToProcessList();
-  }
-
-  public StatisticWidgetPage openStatisticPage() {
-    return NavigationHelper.navigateToStatisticPage();
   }
 
   public void openUserSettingMenu() {
@@ -90,12 +85,6 @@ public class MainMenuPage extends TemplatePage {
     WaitHelper.waitForNavigation(() -> $(By.cssSelector(".layout-menu li.sub-menu-item-case"))
         .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
     return new CaseWidgetPage();
-  }
-
-  public StatisticWidgetPage selectStatisticDashboard() {
-    WaitHelper
-        .waitForNavigation(() -> waitForElementClickableThenClick($(".layout-menu li[role='menuitem'] a.STATISTICS")));
-    return new StatisticWidgetPage();
   }
 
   private void waitForProcessesPageAfterSelectProcessesCategory() {

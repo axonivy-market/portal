@@ -779,10 +779,6 @@ public class NewDashboardPage extends TemplatePage {
     selectDashboard.parent().shouldBe(Condition.cssClass("active-menuitem"), DEFAULT_TIMEOUT);
   }
 
-  public StatisticWidgetDashboardPage selectStatisticWidget() {
-    return new StatisticWidgetDashboardPage();
-  }
-
   public void checkDisplayedCaseWidgetContainer() {
     getCaseWidgetContainer().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
