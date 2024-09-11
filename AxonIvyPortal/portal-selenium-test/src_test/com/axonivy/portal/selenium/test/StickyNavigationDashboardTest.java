@@ -31,6 +31,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
   public void setup() {
     super.setup();
     login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(grantPortalPermission);
     newDashboardPage = new NewDashboardPage();
   }
 
@@ -56,9 +57,8 @@ public class StickyNavigationDashboardTest extends BaseTest {
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"));
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     configurationPage.reorderPublicDashboard();
-    ReorderDashboardPage reorderDashboardPage = new ReorderDashboardPage();
-    reorderDashboardPage.reorderPublicDashboard("New public dashboard 1", "New public dashboard");
-    reorderDashboardPage.saveSetting();
+    configurationPage.reorderPublicDashboard("New public dashboard 1", "New public dashboard");
+    configurationPage.saveSetting();
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard"));
