@@ -71,8 +71,9 @@ public class GlobalGrowlTest extends BaseTest {
     taskWidgetPage.filterTasksInExpandedModeBy("Growl Standard Message", 1);
     taskWidgetPage.startTaskIFrame(0);
     GlobalGrowlIframeTemplatePage taskPage = new GlobalGrowlIframeTemplatePage();
-    TaskWidgetPage returnedTaskWidgetPage = taskPage.clickProceed();
-    assertGrowlMessage(returnedTaskWidgetPage, FINISH_MESSAGE_WITH_DETAILS);
+    taskWidgetPage = taskPage.clickProceed();
+    taskWidgetPage.waitTillNameOfFirstTaskToBe("Growl Standard Message");
+    assertGrowlMessage(taskWidgetPage, FINISH_MESSAGE_WITH_DETAILS);
   }
 
   @Test
@@ -95,8 +96,9 @@ public class GlobalGrowlTest extends BaseTest {
     taskWidgetPage.filterTasksInExpandedModeBy("Growl Standard Message", 1);
     taskWidgetPage.startTaskIFrame(0);
     GlobalGrowlIframeTemplatePage taskPage = new GlobalGrowlIframeTemplatePage();
-    TaskWidgetPage returnedTaskWidgetPage = taskPage.clickCancel();
-    assertGrowlMessage(returnedTaskWidgetPage, CANCEL_MESSAGE_WITH_DETAILS);
+    taskWidgetPage = taskPage.clickCancel();
+    taskWidgetPage.waitTillNameOfFirstTaskToBe("Growl Standard Message");
+    assertGrowlMessage(taskWidgetPage, CANCEL_MESSAGE_WITH_DETAILS);
   }
 
   public void waitForTemplateRender() {
