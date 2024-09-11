@@ -248,6 +248,12 @@ body .ui-dialog .ui-dialog-footer .ui-button.dashboard__edit-global-dashboard {
   margin-right: 0;
 }
 
+
+body .ui-button.dashboard__restore-button {
+  background: var(--dashboard-restore-button-background-color);
+  border-color: var(--dashboard-restore-button-background-color);
+}
+
 @media screen and (max-width: 991px) {
   .dashboard__restore-button {
     margin-right: 0;
