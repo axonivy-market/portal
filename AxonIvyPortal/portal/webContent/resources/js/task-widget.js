@@ -76,7 +76,10 @@ function TaskWidget() {
               container.css("margin-right", taskStartItemMarginRight);
             }
           }
-
+          var globalFooterInfo = $('#portal-template-footer');
+          if (globalFooterInfo.length > 0 && globalFooterInfo.outerHeight(true) > 0) {
+            availableHeight = availableHeight - globalFooterInfo.outerHeight(true);
+          }
           container.outerHeight(availableHeight);
         }
 
