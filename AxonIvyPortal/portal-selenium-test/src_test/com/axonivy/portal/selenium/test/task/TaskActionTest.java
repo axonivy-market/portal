@@ -68,21 +68,21 @@ public class TaskActionTest extends BaseTest {
 
     // Suspended
     assertTaskActionsByTaskState(SUSPENDED,
-        Arrays.asList(DETAILS, DELEGATE, RESERVE, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        Arrays.asList(DETAILS, DELEGATE, RESERVE, PROCESS_VIEWER, ADD_AD_HOC_TASK));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Reserved
     taskWidgetPage.clickOnTaskActionLink(0);
     taskWidgetPage.reserveTask(0);
     assertTaskActionsByTaskState(RESERVED,
-        Arrays.asList(DETAILS, DELEGATE, RESET, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        Arrays.asList(DETAILS, DELEGATE, RESET, PROCESS_VIEWER, ADD_AD_HOC_TASK));
 
     // In progress
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
     taskTemplatePage.clickCancelLink();
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     assertTaskActionsByTaskState(IN_PROGRESS,
-        Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        Arrays.asList(DETAILS, RESERVE, RESET, PROCESS_VIEWER, ADD_AD_HOC_TASK));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
   }
 
@@ -97,14 +97,14 @@ public class TaskActionTest extends BaseTest {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
 
     // Suspended
-    assertTaskActionsByTaskState(SUSPENDED, Arrays.asList(DETAILS, DELEGATE, RESERVE, CLEAR_EXPIRY, DESTROY,
+    assertTaskActionsByTaskState(SUSPENDED, Arrays.asList(DETAILS, DELEGATE, RESERVE, DESTROY,
         WORKFLOW_EVENTS, TRIGGER_ESCALATION, PROCESS_VIEWER, ADD_AD_HOC_TASK));
     taskWidgetPage = NavigationHelper.navigateToTaskList();
 
     // Reserved
     taskWidgetPage.clickOnTaskActionLink(0);
     taskWidgetPage.reserveTask(0);
-    assertTaskActionsByTaskState(RESERVED, Arrays.asList(DETAILS, DELEGATE, RESET, CLEAR_EXPIRY, DESTROY,
+    assertTaskActionsByTaskState(RESERVED, Arrays.asList(DETAILS, DELEGATE, RESET, DESTROY,
         WORKFLOW_EVENTS, TRIGGER_ESCALATION, PROCESS_VIEWER, ADD_AD_HOC_TASK));
 
     // In progress
@@ -113,7 +113,7 @@ public class TaskActionTest extends BaseTest {
     taskDetailsPage = new TaskDetailsPage();
     taskWidgetPage = NavigationHelper.navigateToTaskList();
 
-    assertTaskActionsByTaskState(IN_PROGRESS, Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, DESTROY,
+    assertTaskActionsByTaskState(IN_PROGRESS, Arrays.asList(DETAILS, RESERVE, RESET, DESTROY,
         WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
     taskWidgetPage = NavigationHelper.navigateToTaskList();
 
