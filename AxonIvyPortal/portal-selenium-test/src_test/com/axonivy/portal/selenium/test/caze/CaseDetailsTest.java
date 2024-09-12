@@ -215,7 +215,7 @@ public class CaseDetailsTest extends BaseTest {
     // open related case detail - technical case detail
     detailsPage.clickRelatedCaseActionButton(0);
     CaseDetailsPage technicalCaseDetailsPage = detailsPage.openCasesOfCasePageViaDetailsAction(0);
-    WaitHelper.assertTrueWithWait(() -> "Case Details".equals(technicalCaseDetailsPage.getPageTitle()));
+    WaitHelper.assertTrueWithWait(() -> "Case Details - Portal - Axon Ivy".equals(technicalCaseDetailsPage.getPageTitle()));
 
     // check business case information is displayed in technical case
     WaitHelper.assertTrueWithWait(() -> detailsPage.isBusinessCaseInformationSectionDisplayed());
@@ -310,7 +310,7 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
     int index = detailsPage.getTaskRowIndexFromDetailPage(SICK_LEAVE_REQUEST_TASK);
     TaskDetailsPage taskDetailsPage = detailsPage.openTasksOfCasePageViaDetailsAction(index);
-    WaitHelper.assertTrueWithWait(() -> "Task Details".equals(taskDetailsPage.getPageTitle()));
+    WaitHelper.assertTrueWithWait(() -> "Task Details - Portal - Axon Ivy".equals(taskDetailsPage.getPageTitle()));
   }
 
   @Test
@@ -318,7 +318,7 @@ public class CaseDetailsTest extends BaseTest {
     createTestingCaseContainTechnicalCases();
     detailsPage.clickRelatedCaseActionButton(0);
     CaseDetailsPage caseDetailsPage = detailsPage.openCasesOfCasePageViaDetailsAction(0);
-    WaitHelper.assertTrueWithWait(() -> "Case Details".equals(caseDetailsPage.getPageTitle()));
+    WaitHelper.assertTrueWithWait(() -> "Case Details - Portal - Axon Ivy".equals(caseDetailsPage.getPageTitle()));
   }
 
   @Test
@@ -330,7 +330,7 @@ public class CaseDetailsTest extends BaseTest {
         .until((webDriver) -> caseDetailsPage.countBrowserTab() > 1);
     caseDetailsPage.switchLastBrowserTab();
     AdditionalCaseDetailsPage additionalCaseDetailsPage = new AdditionalCaseDetailsPage();
-    WaitHelper.assertTrueWithWait(() -> "Additional Case Details".equals(additionalCaseDetailsPage.getPageTitle()));
+    WaitHelper.assertTrueWithWait(() -> "Additional Case Details - Portal - Axon Ivy".equals(additionalCaseDetailsPage.getPageTitle()));
   }
 
   @Test
@@ -513,7 +513,7 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.clickRelatedCaseActionButton(0);
     var relatedCaseDetailsPage = detailsPage.openCasesOfCasePageViaDetailsAction(0);
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
-        .until((webDriver) -> "Case Details".equals(relatedCaseDetailsPage.getPageTitle()));
+        .until((webDriver) -> "Case Details - Portal - Axon Ivy".equals(relatedCaseDetailsPage.getPageTitle()));
     relatedCaseDetailsPage.addNote("The first note of sub-case");
     relatedCaseDetailsPage.addNote("The second note of sub-case");
     var subCaseId = relatedCaseDetailsPage.getCaseId();
