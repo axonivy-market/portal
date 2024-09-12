@@ -171,5 +171,6 @@ public class CategoryColumnModel extends TaskColumnModel {
   
   public void initCategoryTree() {
     this.userCategoryTree = TaskTreeUtils.buildRoot();
+    this.categoryTree = TaskTreeUtils.buildRoot();
   }
 }
