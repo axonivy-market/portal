@@ -260,7 +260,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideChangePasswordButtonNote: Setzen Sie diese Variable auf true, um die Option "Passwort ändern" im oberen Menü und die Option "Passwort vergessen" auf der Anmeldeseite auszublenden. Wenn sie auf false gesetzt ist, werden diese Optionen angezeigt.
       hideLogoutButtonNote: 'Auf "true" setzen, um die Logout Funktion im Top Menu zu deaktivieren. '
       hideRelatedCaseInfoFromHistory: Wenn diese Option auf "true" gesetzt ist, werden die zugehörigen Fallinformationen nicht in der Tabelle "Historie" angezeigt.
-      hideStatisticWidget: Setzen Sie den Wert auf "true", um das Statistik-Widget auf der Startseite und im Anwendungsmenü auszublenden.
       hideSystemNotesFromHistory: Wenn diese Option aktiviert ist, werden in den Vorgangs-/Aufgabennotizen keine Systemnotizen für Benutzer ohne Administratorrechte angezeigt.
       hideSystemNotesFromHistoryAdministrator: Wenn diese Option aktiviert ist, werden in den Vorgangs-/Aufgabennotizen keine Systemnotizen für Administratoren angezeigt.
       hideSystemTasksFromHistory: Wenn diese Option aktiviert ist, zeigt die Vorgangs- / Aufgabennotiz keine technischen Verlaufseinträge für Benutzer ohne Administratorrechte an.
@@ -279,7 +278,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: Auf "false" setzen, um die Verknüpfung zu Informationen des Prozesses auf der Seite Prozesse (Gittermodus) und Falldetails anzeigen zu deaktivieren.
       showQuickGlobalSearch: Zum Ein-/Ausschalten der Anzeige der globalen Schnellsuche.
       showTaskDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Aufgabendetailseite.
-      statisticChartScalingInterval: Intervall in Sekunden, in dem die Skalierung des statistischen Diagramms regelmäßig angefordert wird. Ist der Intervallwert kleiner als 10, wird die periodische Skalierung des statistischen Diagramms deaktiviert.
       uploadDocumentWhiteListExtensionNote: 'Leer lassen, falls Sie alle Formate erlauben. Falls Sie nur eine geringe Anzahl an Formate erlauben möchten (White list), können Sie diese hier, mit Komma getrennt, aufführen. Z.B.: pdf, txt, doc, docx.'
     key: Schlüssel
     link: Link
