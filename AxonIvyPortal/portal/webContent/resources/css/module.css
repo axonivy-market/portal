@@ -6115,6 +6115,12 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
   width: 100%;
 }
 
+/* AI logo */
+.layout-topbar-light .layout-topbar .layout-topbar-wrapper .layout-topbar-right .layout-topbar-actions > li > a:hover img.topbar-item-image {
+  background-color: #E8EDF0;
+  transition: background-color 0.2s;
+}
+
 /* AI result */
 
 .iframe-body.ai-result .layout-main,
