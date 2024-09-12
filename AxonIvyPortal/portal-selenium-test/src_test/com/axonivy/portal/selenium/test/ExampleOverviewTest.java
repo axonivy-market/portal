@@ -41,7 +41,7 @@ public class ExampleOverviewTest extends BaseTest {
     leaveRequestOverview.getStepName(2).shouldBe(Condition.text("Summary"));
 
     LeaveRequestPage leaveRequest = leaveRequestOverview.start();
-    assertEquals("Create leave request -", leaveRequest.getPageTitle());
+    assertEquals("Create leave request - Axon Ivy", leaveRequest.getPageTitle());
   }
 
   @Test
