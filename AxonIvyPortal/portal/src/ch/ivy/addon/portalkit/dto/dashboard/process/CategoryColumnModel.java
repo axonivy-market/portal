@@ -150,5 +150,6 @@ public class CategoryColumnModel extends ProcessColumnModel implements Serializa
   
   public void initCategoryTree() {
     this.userCategoryTree = ProcessTreeUtils.buildRoot();
+    this.categoryTree = ProcessTreeUtils.buildRoot();
   }
 }
