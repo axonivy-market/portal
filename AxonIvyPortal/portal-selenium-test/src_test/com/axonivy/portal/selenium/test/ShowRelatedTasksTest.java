@@ -74,7 +74,7 @@ public class ShowRelatedTasksTest extends BaseTest {
     detailsPage.waitPageLoaded();
     WaitHelper.waitForNavigation(() -> detailsPage.openTasksOfCasePage("Sick Leave Request"));
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
-    WaitHelper.assertTrueWithWait(() -> "Task Details".equals(taskDetailsPage.getPageTitle()));
+    WaitHelper.assertTrueWithWait(() -> "Task Details - Portal - Axon Ivy".equals(taskDetailsPage.getPageTitle()));
   }
 
   @Test
