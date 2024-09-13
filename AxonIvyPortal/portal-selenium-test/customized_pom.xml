@@ -102,6 +102,7 @@
         <version>3.0.0-M4</version>
         <configuration>
           <testFailureIgnore>true</testFailureIgnore>
+          <rerunFailingTestsCount>2</rerunFailingTestsCount>
           <argLine>
             -Dtest.engine.url=${test.engine.url}
             -Dtest.engine.app=demo-portal

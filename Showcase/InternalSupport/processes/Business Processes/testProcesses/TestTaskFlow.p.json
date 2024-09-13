@@ -130,7 +130,8 @@
       "name" : "CreateTaskWithSpecialCharacter.ivp",
       "config" : {
         "callSignature" : "CreateTaskWithSpecialCharacter",
-        "outLink" : "CreateTaskWithSpecialCharacter.ivp"
+        "outLink" : "CreateTaskWithSpecialCharacter.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 1072, "y" : 64 },
@@ -264,7 +265,7 @@
         },
         "outLink" : "TestRelatedTaskWithNoResponsible.ivp",
         "startDescription" : "Test for IVYPORTAL-3369",
-        "startName" : "Categoried Leave Request"
+        "startName" : "Categoried Leave Request with no Responsible"
       },
       "visual" : {
         "at" : { "x" : 1510, "y" : 52 },
@@ -344,7 +345,8 @@
       "config" : {
         "callSignature" : "CategoriedPersonalRequest",
         "outLink" : "CategoriedPersonalRequest.ivp",
-        "startName" : "Categoried Personal Request"
+        "startName" : "Categoried Personal Request",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 192, "y" : 512 },
@@ -810,7 +812,8 @@
       "config" : {
         "callSignature" : "createTaskWithNotExistedActivator",
         "outLink" : "createTaskWithNotExistedActivator.ivp",
-        "startName" : "Create task with not existed activator"
+        "startName" : "Create task with not existed activator",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 208, "y" : 1136 },
@@ -1158,7 +1161,8 @@
       "name" : "LeaveRequest.ivp",
       "config" : {
         "callSignature" : "leaveRequest",
-        "outLink" : "leaveRequest.ivp"
+        "outLink" : "leaveRequest.ivp",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 544, "y" : 512 }
@@ -1388,7 +1392,8 @@
         "callSignature" : "ProcessWithProcessSteps",
         "outLink" : "ProcessWithProcessSteps.ivp",
         "startDescription" : "Create task for a process with three process steps which can be show in Porcess Information page",
-        "startName" : "Process With Process Steps"
+        "startName" : "Process With Process Steps",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 192, "y" : 1472 },
@@ -1448,7 +1453,8 @@
       "config" : {
         "callSignature" : "CreateTaskForGlobalSearchTest",
         "outLink" : "CreateTaskForGlobalSearchTest.ivp",
-        "startName" : "Create tasks for Global Search Test"
+        "startName" : "Create tasks for Global Search Test",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 1936, "y" : 48 },
