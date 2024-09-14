@@ -18,12 +18,6 @@ import com.codeborne.selenide.ElementsCollection;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-/**
- * Note: this test failed because latest change on release 10
- * I adapt just to make the test passed, should revert the change after
- * failed on release 10 are fixed
- * see: http://portal01.server.ivy-cloud.com:8080/view/10.0/job/portal-selenium-test/job/release%252F10.0/645/
- */
 @IvyWebTest
 public class DashboardTaskWidgetActionTest extends BaseTest {
   static final String DONE = "Done";
@@ -73,9 +67,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     assertTaskActionsByTaskState("Ready for joining", Arrays.asList(DETAILS, PROCESS_VIEWER));
     // TaskState : Suspended <=> TaskBusinessState : Open
     assertTaskActionsByTaskState("Suspended",
-        Arrays.asList(DETAILS, DELEGATE, RESERVE, PROCESS_VIEWER, ADD_AD_HOC_TASK));
-//    assertTaskActionsByTaskState("Suspended",
-//        Arrays.asList(DETAILS, DELEGATE, RESERVE, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        Arrays.asList(DETAILS, DELEGATE, RESERVE, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));
     // TaskState : Done <=> TaskBusinessState : Done
     assertTaskActionsByTaskState("Done", Arrays.asList(DETAILS, PROCESS_VIEWER));
   }
@@ -91,9 +83,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
     // Suspended
     assertTaskActionsByTaskStateAndName(SUSPENDED, "Sick Leave Request", Arrays.asList(DETAILS, DELEGATE, RESERVE,
-        DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
-//    assertTaskActionsByTaskStateAndName(SUSPENDED, "Sick Leave Request", Arrays.asList(DETAILS, DELEGATE, RESERVE,
-//        CLEAR_EXPIRY, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        CLEAR_EXPIRY, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
 
     // Done
     assertTaskActionsByTaskStateAndName(DONE, "Categoried Leave Request",
@@ -120,10 +110,8 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
     // In progress for admin user
     newDashboardPage.waitForGrowlMessageDisappear();
-    assertTaskActionsByTaskState(IN_PROGRESS, Arrays.asList(DETAILS, RESERVE, RESET, DESTROY,
+    assertTaskActionsByTaskState(IN_PROGRESS, Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, DESTROY,
         WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
-//    assertTaskActionsByTaskState(IN_PROGRESS, Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, DESTROY,
-//        WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
 
     login(TestAccount.DEMO_USER);
     createTasksForTesting();
@@ -134,9 +122,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     // In progress for normal user
     newDashboardPage.waitForGrowlMessageDisappear();
     assertTaskActionsByTaskState(IN_PROGRESS,
-        Arrays.asList(DETAILS, RESERVE, RESET, PROCESS_VIEWER, ADD_AD_HOC_TASK));
-//    assertTaskActionsByTaskState(IN_PROGRESS,
-//        Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));
   }
 
   private void filterTaskByNameAndState(String name, String state) {
@@ -161,10 +147,8 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     refreshPage();
 
     // Reserved for admin user
-    assertTaskActionsByTaskState(RESERVED, Arrays.asList(DETAILS, DELEGATE, RESET, DESTROY,
+    assertTaskActionsByTaskState(RESERVED, Arrays.asList(DETAILS, DELEGATE, RESET, CLEAR_EXPIRY, DESTROY,
         TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
-//    assertTaskActionsByTaskState(RESERVED, Arrays.asList(DETAILS, DELEGATE, RESET, CLEAR_EXPIRY, DESTROY,
-//        TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
 
     login(TestAccount.DEMO_USER);
     createTasksForTesting();

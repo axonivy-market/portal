@@ -18,6 +18,8 @@ import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
+import ch.ivy.addon.portalkit.enums.PortalPermission;
+
 @IvyWebTest
 public class TaskActionTest extends BaseTest {
 
@@ -68,27 +70,28 @@ public class TaskActionTest extends BaseTest {
 
     // Suspended
     assertTaskActionsByTaskState(SUSPENDED,
-        Arrays.asList(DETAILS, DELEGATE, RESERVE, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        Arrays.asList(DETAILS, DELEGATE, RESERVE, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Reserved
     taskWidgetPage.clickOnTaskActionLink(0);
     taskWidgetPage.reserveTask(0);
     assertTaskActionsByTaskState(RESERVED,
-        Arrays.asList(DETAILS, DELEGATE, RESET, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        Arrays.asList(DETAILS, DELEGATE, RESET, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));
 
     // In progress
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
     taskTemplatePage.clickCancelLink();
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     assertTaskActionsByTaskState(IN_PROGRESS,
-        Arrays.asList(DETAILS, RESERVE, RESET, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
   }
 
   @Test
   public void testVisibilityTaskActionForAdminUser() {
     login(TestAccount.ADMIN_USER);
+    grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
     redirectToRelativeLink(createTaskWithSystemState);
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     // Ready for Join
@@ -97,14 +100,14 @@ public class TaskActionTest extends BaseTest {
     taskWidgetPage = NavigationHelper.navigateToTaskList();
 
     // Suspended
-    assertTaskActionsByTaskState(SUSPENDED, Arrays.asList(DETAILS, DELEGATE, RESERVE, DESTROY,
+    assertTaskActionsByTaskState(SUSPENDED, Arrays.asList(DETAILS, DELEGATE, RESERVE, CLEAR_EXPIRY, DESTROY,
         WORKFLOW_EVENTS, TRIGGER_ESCALATION, PROCESS_VIEWER, ADD_AD_HOC_TASK));
     taskWidgetPage = NavigationHelper.navigateToTaskList();
 
     // Reserved
     taskWidgetPage.clickOnTaskActionLink(0);
     taskWidgetPage.reserveTask(0);
-    assertTaskActionsByTaskState(RESERVED, Arrays.asList(DETAILS, DELEGATE, RESET, DESTROY,
+    assertTaskActionsByTaskState(RESERVED, Arrays.asList(DETAILS, DELEGATE, RESET, CLEAR_EXPIRY, DESTROY,
         WORKFLOW_EVENTS, TRIGGER_ESCALATION, PROCESS_VIEWER, ADD_AD_HOC_TASK));
 
     // In progress
@@ -113,7 +116,7 @@ public class TaskActionTest extends BaseTest {
     taskDetailsPage = new TaskDetailsPage();
     taskWidgetPage = NavigationHelper.navigateToTaskList();
 
-    assertTaskActionsByTaskState(IN_PROGRESS, Arrays.asList(DETAILS, RESERVE, RESET, DESTROY,
+    assertTaskActionsByTaskState(IN_PROGRESS, Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, DESTROY,
         WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
     taskWidgetPage = NavigationHelper.navigateToTaskList();
 
@@ -134,6 +137,7 @@ public class TaskActionTest extends BaseTest {
   @Test
   public void testVisibleTaskActionsWhenTaskStatusIsDoneAndDestroyed() {
     login(TestAccount.ADMIN_USER);
+    grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
     redirectToRelativeLink(createTaskWithSystemState);
     taskWidgetPage = NavigationHelper.navigateToTaskList();
 
@@ -162,6 +166,7 @@ public class TaskActionTest extends BaseTest {
   @Test
   public void testVisibilityTaskActionForTechnicalStates() {
     login(TestAccount.ADMIN_USER);
+    grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
     redirectToRelativeLink(createTechnicalStateUrl);
     taskWidgetPage = NavigationHelper.navigateToTaskList();
 
