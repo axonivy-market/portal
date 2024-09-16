@@ -1,0 +1,16 @@
+name: Release Drafter
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  build:
+    uses: axonivy-market/github-workflows/.github/workflows/release-drafter.yml@v4

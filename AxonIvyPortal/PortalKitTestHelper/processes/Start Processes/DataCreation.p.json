@@ -1299,6 +1299,27 @@
           "visual" : {
             "at" : { "x" : 640, "y" : 160 }
           }
+        }, {
+          "id" : "S10-f8",
+          "type" : "ErrorStartEvent",
+          "name" : "test:expiry",
+          "config" : {
+            "errorCode" : "test:expiry"
+          },
+          "visual" : {
+            "at" : { "x" : 64, "y" : 464 },
+            "labelOffset" : { "x" : 13, "y" : 33 }
+          },
+          "connect" : [
+            { "id" : "S10-f9", "to" : "S10-f12" }
+          ]
+        }, {
+          "id" : "S10-f12",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 544, "y" : 464 },
+            "labelOffset" : { "x" : 13, "y" : 33 }
+          }
         } ],
       "visual" : {
         "at" : { "x" : 256, "y" : 1152 },
