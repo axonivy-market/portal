@@ -27,11 +27,13 @@ import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.CaseEmptyMessage;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPage;
+import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
+import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
@@ -61,7 +63,8 @@ public class TaskListBean implements Serializable {
 
   @PostConstruct
   public void init() {
-
+    String taskListJson = Ivy.var().get(PortalVariable.TASK_LIST_DASHBOARD.key);
+    selectedDashboard = DashboardUtils.jsonToDashboards(taskListJson)taskListJson;
     buildWidgetModels(selectedDashboard);
     isRunningTaskWhenClickingOnTaskInList = GlobalSettingService.getInstance()
         .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
