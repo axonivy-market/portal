@@ -437,7 +437,8 @@ public class TaskDetailsPage extends TemplatePage {
     SelenideElement editor = $("[id$=':expiry-form:edit-inplace_editor']");
     SelenideElement saveButton = editor.$(UI_INPLACE_SAVE);
     saveButton.shouldBe(getClickableCondition()).click();
-    $("[id$=':expiry-form:edit-inplace_editor']").shouldBe(disappear);
+    $("[id$=':expiry-form:edit-inplace_editor']").shouldBe(disappear,
+        DEFAULT_TIMEOUT);
   }
 
   public String getExpiryOfTaskAt() {
