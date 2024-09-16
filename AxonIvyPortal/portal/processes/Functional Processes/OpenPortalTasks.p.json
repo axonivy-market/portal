@@ -38,12 +38,7 @@
       "type" : "DialogCall",
       "name" : "PortalTasks",
       "config" : {
-        "dialog" : "ch.ivy.addon.portal.generic.PortalTasks:useTaskView(ch.ivy.addon.portal.generic.view.TaskView)",
-        "call" : {
-          "map" : {
-            "param.taskView" : "in.taskView"
-          }
-        }
+        "dialog" : "ch.ivy.addon.portal.generic.PortalTaskList:start()"
       },
       "visual" : {
         "at" : { "x" : 368, "y" : 112 }
