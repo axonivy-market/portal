@@ -54,5 +54,4 @@ public class LanguageSettingTest extends BaseTest {
   private void createTestData() {
     redirectToRelativeLink(createTestingTasksUrl);
   }
-
 }

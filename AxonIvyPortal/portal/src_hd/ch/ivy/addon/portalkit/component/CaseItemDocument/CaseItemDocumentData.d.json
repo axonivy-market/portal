@@ -16,7 +16,7 @@
     "type" : "org.primefaces.event.FileUploadEvent",
     "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "iCase",
+    "name" : "caze",
     "type" : "ch.ivyteam.ivy.workflow.ICase",
     "modifiers" : [ "PERSISTENT" ]
   }, {
