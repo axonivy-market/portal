@@ -77,8 +77,6 @@ public class DashboardBean implements Serializable {
   private List<WidgetFilterModel> deleteFilters;
   private ITask selectedTask;
   private boolean isRunningTaskWhenClickingOnTaskInList;
-  private CaseEmptyMessage noCasesMessage;
-  private TaskEmptyMessage noTasksMessage;
   private List<DashboardTemplate> dashboardTemplates;
   protected String translatedText;
   protected String warningText;
@@ -380,23 +378,11 @@ public class DashboardBean implements Serializable {
   }
 
   public CaseEmptyMessage getNoCasesMessage() {
-    if (noCasesMessage == null) {
-      List<CaseEmptyMessage> messages = Stream.of(CaseEmptyMessage.values()).collect(Collectors.toList());
-      Random random = new Random();
-      int index = random.ints(0, messages.size()).findFirst().getAsInt();
-      noCasesMessage = messages.get(index);
-    }
-    return noCasesMessage;
+    return CaseEmptyMessage.EMPTY_MESSAGE;
   }
 
   public TaskEmptyMessage getNoTasksMessage() {
-    if (noTasksMessage == null) {
-      List<TaskEmptyMessage> messages = Stream.of(TaskEmptyMessage.values()).collect(Collectors.toList());
-      Random random = new Random();
-      int index = random.ints(0, messages.size()).findFirst().getAsInt();
-      noTasksMessage = messages.get(index);
-    }
-    return noTasksMessage;
+    return TaskEmptyMessage.EMPTY_MESSAGE;
   }
 
   public List<DashboardTemplate> getDashboardTemplates() {
@@ -503,7 +489,7 @@ public class DashboardBean implements Serializable {
   }
   
   public boolean canShowExpandMode(DashboardWidget widget) {
-    return widget.getType().canShowFullscreenMode();
+    return widget.getType().canShowFullscreenModeOption();
   }
   
   public void setSelectedDashboardName(String dashboardName) {
