@@ -135,10 +135,6 @@ public class MainMenuPage extends TemplatePage {
     return isMenuItemDisplayed("Cases");
   }
 
-  public boolean isStatisticsDisplayed() {
-    return isMenuItemDisplayed("Statistics");
-  }
-
   public WorkingTaskDialogPageOfApplicationMenu selectDashboardMenu() {
     waitForElementClickableThenClick(".layout-menu li[role='menuitem'] a.DASHBOARD");
     return new WorkingTaskDialogPageOfApplicationMenu();

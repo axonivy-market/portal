@@ -54,14 +54,12 @@ public class PortalPermissionTest extends BaseTest {
     assertFalse(mainMenuPage.isProcessesDisplayed());
     assertFalse(mainMenuPage.isTasksDisplayed());
     assertFalse(mainMenuPage.isCasesDisplayed());
-    assertFalse(mainMenuPage.isStatisticsDisplayed());
 
     grantAccessFullListPermissions();
     newDashboardPage = new NewDashboardPage();
     WaitHelper.assertTrueWithWait(() -> mainMenuPage.isProcessesDisplayed());
     assertTrue(mainMenuPage.isTasksDisplayed());
     assertTrue(mainMenuPage.isCasesDisplayed());
-    assertTrue(mainMenuPage.isStatisticsDisplayed());
   }
 
   @Test
