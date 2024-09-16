@@ -15,7 +15,6 @@ import java.util.Locale;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
@@ -87,7 +86,6 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   @Test
-  @Ignore("Due to feature of 10, will fix later - id: IVYPORTAL-17553")
   public void testChangeTaskDeadlineWithAfterEscalationIsNA() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTestingCaseMapUrl);
