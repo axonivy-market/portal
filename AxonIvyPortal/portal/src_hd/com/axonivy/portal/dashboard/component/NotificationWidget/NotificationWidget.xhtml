@@ -23,6 +23,7 @@
     <ui:param name="panelId" value="notification-widget-#{widget.id}-panel" />
     <ui:param name="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
     <ui:param name="isRenderInfo" value="false" />
+    <ui:param name="isRenderExpandCollapse" value="#{widget.isShowFullscreenMode()}" />
     <ui:param name="widgetContentStyleClass" value="notification-widget__content-panel" />
     <ui:param name="unreadNotificationsId" value="#{p:resolveFirstComponentWithId('topbar-unread-notifications-container', view).clientId}" />
 

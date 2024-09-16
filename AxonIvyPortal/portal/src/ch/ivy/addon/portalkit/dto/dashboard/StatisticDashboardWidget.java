@@ -23,12 +23,16 @@ public class StatisticDashboardWidget extends DashboardWidget {
   private StatisticChart chart;
   @JsonIgnore
   private boolean isChartEmpty;
+  private boolean showFullscreenMode;
 
-  public StatisticDashboardWidget() {}
+  public StatisticDashboardWidget() {
+    setShowFullscreenMode(true);
+  }
 
   public StatisticDashboardWidget(StatisticDashboardWidget widget) {
     super(widget);
     chart = widget.getChart();
+    showFullscreenMode = widget.showFullscreenMode;
   }
 
   @JsonIgnore
@@ -113,4 +117,12 @@ public class StatisticDashboardWidget extends DashboardWidget {
 
   @Override
   public void cancelUserFilter() {}
+
+  public void setShowFullscreenMode(boolean showFullscreenMode) {
+    this.showFullscreenMode = showFullscreenMode;
+  }
+
+  public boolean isShowFullscreenMode() {
+    return showFullscreenMode;
+  }
 }

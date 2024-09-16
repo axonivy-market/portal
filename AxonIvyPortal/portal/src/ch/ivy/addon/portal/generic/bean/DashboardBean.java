@@ -62,6 +62,8 @@ public class DashboardBean implements Serializable {
   private int currentDashboardIndex;
   private List<WidgetFilterModel> widgetFilters;
   private List<WidgetFilterModel> deleteFilters;
+  private ITask selectedTask;
+  private boolean isRunningTaskWhenClickingOnTaskInList;
   private List<DashboardTemplate> dashboardTemplates;
   protected String translatedText;
   protected String warningText;
@@ -323,6 +325,14 @@ public class DashboardBean implements Serializable {
     this.deleteFilters = deleteFilters;
   }
 
+  public CaseEmptyMessage getNoCasesMessage() {
+    return CaseEmptyMessage.EMPTY_MESSAGE;
+  }
+
+  public TaskEmptyMessage getNoTasksMessage() {
+    return TaskEmptyMessage.EMPTY_MESSAGE;
+  }
+
   public List<DashboardTemplate> getDashboardTemplates() {
     if (CollectionUtils.isEmpty(dashboardTemplates)) {
       loadDashboardTemplate();
@@ -427,7 +437,7 @@ public class DashboardBean implements Serializable {
   }
   
   public boolean canShowExpandMode(DashboardWidget widget) {
-    return widget.getType().canShowFullscreenMode();
+    return widget.getType().canShowFullscreenModeOption();
   }
   
   public void setSelectedDashboardName(String dashboardName) {

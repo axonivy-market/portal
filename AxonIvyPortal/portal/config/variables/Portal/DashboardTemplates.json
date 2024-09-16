@@ -1,6 +1,6 @@
 [
   {
-    "version": "11.4",
+    "version": "11.4.0",
     "id": "default-portal-dashboard-template",
     "titles": [
       {
@@ -92,7 +92,7 @@
             {
               "field": "description",
               "visible": false,
-              "quickSearch": true
+              "quickSearch": false
             },
             {
               "field": "activator",
@@ -143,7 +143,7 @@
             },
             {
               "locale": "de",
-              "value": "Ihre Fälle"
+              "value": "Ihre Vorgänge"
             },
             {
               "locale": "fr",
@@ -173,7 +173,7 @@
             {
               "field": "description",
               "visible": false,
-              "quickSearch": true
+              "quickSearch": false
             },
             {
               "field": "state"
@@ -351,7 +351,7 @@
     }
   },
   {
-    "version": "11.4",
+    "version": "11.4.0",
     "id": "two-task-widget-dashboard-template",
     "titles": [
       {
@@ -427,7 +427,8 @@
             },
             {
               "field": "description",
-              "visible": false
+              "visible": false,
+              "quickSearch": false
             },
             {
               "field": "activator",
@@ -489,7 +490,8 @@
             },
             {
               "field": "description",
-              "visible": false
+              "visible": false,
+              "quickSearch": false
             },
             {
               "field": "activator",

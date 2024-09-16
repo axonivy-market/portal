@@ -18,6 +18,8 @@ Now users can interact with multiple systems from the Portal dashboard.
 
    ``External URL``: External page link
 
+   ``showFullscreenMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon
+
 Define An External Page Widget Using JSON
 -----------------------------------------
 
@@ -28,6 +30,7 @@ The JSON structure is the following:
       {
          "type": "custom",
          "id": "custom-widget",
+         "showFullscreenMode": true,
          "names": [
             {
                "locale": "en",
@@ -46,6 +49,8 @@ The JSON structure is the following:
 Attribute explanation:
 
    ``url``: the URL of the external webpage you want to show.
+
+   ``showFullscreenMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon
 
 .. warning::
    Some external websites do not allow to be loaded in IFrames. You have to make sure 
