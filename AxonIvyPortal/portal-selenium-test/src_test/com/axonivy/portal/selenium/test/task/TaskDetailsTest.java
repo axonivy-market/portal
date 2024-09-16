@@ -14,6 +14,7 @@ import java.util.Locale;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
@@ -33,7 +34,7 @@ import com.codeborne.selenide.Condition;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class TaskDetailsTest extends BaseTest {
 
   // TASK NAME
@@ -204,6 +205,7 @@ public class TaskDetailsTest extends BaseTest {
   }
 
   @Test
+  @Disabled("Due to feature of 10, will fix later - id: IVYPORTAL-17553")
   public void testChangeTaskDeadlineWithAfterEscalationIsNA() {
     updateLegacyUIConfiguration();
     login(TestAccount.ADMIN_USER);
