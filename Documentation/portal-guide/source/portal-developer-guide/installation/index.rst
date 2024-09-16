@@ -481,6 +481,11 @@ Release notes
 This part lists all relevant changes since the last official product
 releases of |ivy|.
 
+Changes in 12
+-------------
+
+- The old statistic chart is removed, use new :ref:`statistic-chart` instead.
+
 Changes in 11.2.0
 -----------------
 
