@@ -1,0 +1,9 @@
+# Conversion log for project 'InternalSupport'
+# Convert project version from 114005 to 114006
+# Using Axon Ivy Designer version 11.4.0.2409130132
+# Created on 13.09.2024 16:57:15
+13.09.2024 16:57:15 : New Task  : Converting project InternalSupport.
+13.09.2024 16:57:15 : Info      : Log is stored in 'logs/convert-project-version-114005-114006.log'
+13.09.2024 16:57:15 : New Task  : Remove UserDialog XML interface descriptor
+13.09.2024 16:57:15 : New Task  : Update project version to actual version 114006.
+13.09.2024 16:57:15 : New Task  : Finished conversion of project InternalSupport.
