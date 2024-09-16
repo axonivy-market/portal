@@ -71,7 +71,7 @@
           "code" : [
             "import com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI;",
             "ivy.task.reset();",
-            "PortalNavigatorInFrameAPI.navigateToUrl(ivy.html.applicationHomeRef());"
+            "PortalNavigatorInFrameAPI.navigateToUrl(ivy.html.applicationHomeLink().getAbsoluteEncoded());"
           ]
         },
         "sudo" : true
