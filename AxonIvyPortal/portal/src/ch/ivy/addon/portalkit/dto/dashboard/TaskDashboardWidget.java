@@ -9,7 +9,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.SortMeta;
@@ -213,12 +212,8 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   @Override
   public void setQuickSearchKeyword() {
-    if (BooleanUtils.isTrue(this.enableQuickSearch)) {
-      this.dataModel.getCriteria().setQuickSearchKeyword(this.getQuickSearchKeyword());
-    }
-      else {
-        this.setQuickSearchKeyword(StringUtils.EMPTY);
-  }}
+    this.dataModel.getCriteria().setQuickSearchKeyword(this.getQuickSearchKeyword());
+  }
 
   public List<DashboardFilter> getFilters() {
     return this.dataModel.getCriteria().getFilters();

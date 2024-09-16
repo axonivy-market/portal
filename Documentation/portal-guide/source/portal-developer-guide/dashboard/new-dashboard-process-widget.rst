@@ -24,9 +24,7 @@ The basic structure of the JSON of a process widget is as follows:
          ],
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
-         },
-         "showFullscreenMode" : true,
-         "showWidgetInfo" : true
+         }
       }
    ..
 
@@ -53,12 +51,6 @@ modes: ``compact-process`` (compact mode), ``combined-process`` (combined mode),
       ``styleClass`` (optional): add CSS Classes to HTML DOM of the widget
 
       ``style`` (optional): add inline style to HTML DOM of the widget
-      
-   ``showFullscreenMode``: visibility of the fullscreen mode icon. The default
-   value is ``true``, set to ``false`` to hide the icon.
-   
-   ``showWidgetInfo``: visibility of the widget information icon. The default
-   value is ``true``, set to ``false`` to hide the icon.
 
 Each mode has differences in its JSON definition. Refer to the below sections to
 understand how to define the process widget in these modes properly.
@@ -85,9 +77,7 @@ Below is a standard JSON definition of a Process widget in compact mode
          "processPaths": ["designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp", "designer/portal-developer-examples/Start Processes/Request/collectDataRequest.ivp"],
          "categories": ["/Categories/Showcase/Customized", "/Categories/Showcase/PortalDialogExample"],
          "sorting": "SORTING_INDEX",
-         "enableQuickSearch": true,
-         "showFullscreenMode" : true,
-         "showWidgetInfo" : true
+         "enableQuickSearch": true
       }
    ..
 
@@ -137,9 +127,7 @@ Below is a standard JSON definition of a Process widget in combined mode
             "x": 10, "y": 0, "w": 2, "h": 4
          },
          "processPath": "designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp",
-         "rowsPerPage": 5,
-         "showFullscreenMode" : true,
-         "showWidgetInfo" : true
+         "rowsPerPage": 5
       }
    ..
 
@@ -168,9 +156,7 @@ Below is a standard JSON definition of a Process widget in full mode
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
          },
-         "processPath": "designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp",
-         "showFullscreenMode" : true,
-         "showWidgetInfo" : true
+         "processPath": "designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp"
       }
    ..
 
@@ -193,9 +179,7 @@ Below is a standard JSON definition of the Process widget in image mode
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
          },
-         "processPath": "designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp",
-         "showFullscreenMode" : true,
-         "showWidgetInfo" : true
+         "processPath": "designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp"
       }
    ..
 

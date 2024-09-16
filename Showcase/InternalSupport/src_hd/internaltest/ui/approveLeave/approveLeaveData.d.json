@@ -4,13 +4,13 @@
   "namespace" : "internaltest.ui.approveLeave",
   "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "mitarbeiter",
+    "name" : "Mitarbeiter",
     "type" : "String"
   }, {
-    "name" : "von",
+    "name" : "Von",
     "type" : "java.util.Date"
   }, {
-    "name" : "bis",
+    "name" : "Bis",
     "type" : "java.util.Date"
   }, {
     "name" : "beantragt",
@@ -19,10 +19,10 @@
     "name" : "genehmigt",
     "type" : "Boolean"
   }, {
-    "name" : "ablehnungsgrund",
+    "name" : "Ablehnungsgrund",
     "type" : "String"
   }, {
-    "name" : "vertretung",
+    "name" : "Vertretung",
     "type" : "String"
   }, {
     "name" : "actualStepIndex",

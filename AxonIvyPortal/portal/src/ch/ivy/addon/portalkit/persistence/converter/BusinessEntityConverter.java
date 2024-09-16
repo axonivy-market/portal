@@ -56,7 +56,8 @@ public class BusinessEntityConverter {
   }
 
   public static <T> T inputStreamToEntity(InputStream inputStream, Class<T> classType) {
-    try (InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
+    try {
+      new InputStreamReader(inputStream, StandardCharsets.UTF_8);
       return getObjectMapper().readValue(inputStream, classType);
     } catch (IOException e) {
       throw new PortalException(e);

@@ -42,8 +42,7 @@ Below is a sample JSON definition of a notification widget in the Portal dashboa
          "style": "text-color: blue;",
          "styleClass": "your-widget-class"
       },
-      "onlyUnread": true,
-      "showFullscreenMode": true
+      "onlyUnread": true
    }
 ..
 
@@ -70,5 +69,3 @@ The basic JSON structure of a Notifications widget
       ``style`` (optional): add inline style to HTML DOM of the widget
 
    ``onlyUnread``: filter only unread notifications. The default value is "false"
-
-   ``showFullscreenMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon

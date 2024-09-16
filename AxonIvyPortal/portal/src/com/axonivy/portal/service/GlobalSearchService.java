@@ -62,6 +62,7 @@ public class GlobalSearchService {
     criteria.setKeyword(payload.getQuery());
     criteria.setSortField(TaskSortField.EXPIRY_TIME.toString());
     criteria.setSortDescending(true);
+    criteria.setQuickGlobalSearch(true);
     criteria.setTaskAssigneeType(TaskAssigneeType.ALL);
     criteria.setIncludedStates(new ArrayList<>(TaskSearchCriteria.STANDARD_STATES));
     boolean isAdminQuery = PermissionUtils.checkReadAllTasksPermission();

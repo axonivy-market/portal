@@ -8,7 +8,7 @@
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "caze",
+    "name" : "iCase",
     "type" : "ch.ivyteam.ivy.workflow.ICase",
     "modifiers" : [ "PERSISTENT" ]
   }, {

@@ -17,7 +17,6 @@ import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.ProcessInformationPage;
-import com.axonivy.portal.selenium.page.ProcessWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
@@ -26,7 +25,6 @@ import com.codeborne.selenide.Condition;
 
 @IvyWebTest
 public class DashboardProcessWidgetTest extends BaseTest {
-  private static final String YOUR_PROCESSES = "Your Processes";
   private static final String EXPRESS_PROCESS = "EXPRESS_PROCESS";
   private static final String CASE_LEAVE_REQUEST_TEST_FOR_IVYPORTAL_3369 =
       "Case: Leave Request Test For IVYPORTAL-3369";
@@ -700,28 +698,6 @@ public class DashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.selectFullMode();
     editProcessWidgetConfiguration.getFullModeProcessSelectedProcessInput()
         .shouldNotHave(Condition.value(CATEGORIED_LEAVE_REQUEST));
-  }
-
-  @Test
-  public void testHideExpandMode() {
-    ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
-        newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.clickOnExpandModeCheckbox();;
-    editProcessWidgetConfiguration.save();
-    backToNewDashboardPage();
-    ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget(YOUR_PROCESSES);
-    assertFalse(processWidget.isExpandButtonAppear());
-  }
-
-  @Test
-  public void testHideWidgetInfoIcon() {
-    ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
-        newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.clickOnWidgetInfoIconCheckbox();
-    editProcessWidgetConfiguration.save();
-    backToNewDashboardPage();
-    ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget(YOUR_PROCESSES);
-    assertFalse(processWidget.isWidgetInfoIconAppear());
   }
 
   private void backToNewDashboardPage() {

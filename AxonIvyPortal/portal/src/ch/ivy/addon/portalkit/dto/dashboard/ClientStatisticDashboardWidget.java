@@ -10,11 +10,8 @@ public class ClientStatisticDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = 1L;
   private String chartId;
-  private boolean showFullscreenMode;
 
-  public ClientStatisticDashboardWidget() {
-    setShowFullscreenMode(true);
-  }
+  public ClientStatisticDashboardWidget() {}
 
   @JsonIgnore
   @Override
@@ -36,14 +33,6 @@ public class ClientStatisticDashboardWidget extends DashboardWidget {
   @JsonIgnore
   @Override
   public void cancelUserFilter() {    
-  }
-
-  public boolean isShowFullscreenMode() {
-    return showFullscreenMode;
-  }
-
-  public void setShowFullscreenMode(boolean showFullscreenMode) {
-    this.showFullscreenMode = showFullscreenMode;
   }
 
 }

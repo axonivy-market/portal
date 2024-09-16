@@ -250,7 +250,7 @@
     "descriptions": [
       {
         "locale": "de",
-        "value": "Dieses Diagramm zeigt die durchschnittliche Bearbeitungszeit der Vorgänge nach Kategorien."
+        "value": "Dieses Diagramm zeigt die durchschnittliche Bearbeitungszeit der Fälle nach Kategorien."
       },
       {
         "locale": "en",
@@ -376,7 +376,7 @@
       "yTitles": [
         {
           "locale": "de",
-          "value": "Anzahl der Vorgänge"
+          "value": "Anzahl der Fälle"
         },
         {
           "locale": "en",
@@ -405,7 +405,7 @@
     "names": [
       {
         "locale": "de",
-        "value": "Abgeschlossene Vorgänge pro Tag"
+        "value": "Abgeschlossene Fälle pro Tag"
       },
       {
         "locale": "en",
@@ -423,7 +423,7 @@
     "descriptions": [
       {
         "locale": "de",
-        "value": "Diese Grafik zeigt die Anzahl der abgeschlossenen Vorgänge pro Tag für die letzten 5 Tage."
+        "value": "Diese Grafik zeigt die Anzahl der abgeschlossenen Fälle pro Tag für die letzten 5 Tage."
       },
       {
         "locale": "en",
@@ -462,7 +462,7 @@
       "yTitles": [
         {
           "locale": "de",
-          "value": "Abgeschlossene Vorgänge"
+          "value": "Abgeschlossene Fälle"
         },
         {
           "locale": "en",
