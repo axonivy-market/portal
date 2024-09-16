@@ -58,6 +58,16 @@ public class CaseDocumentService {
   }
 
   /**
+   * We make it as deprecated from 8.0
+   * Please refer to sub-function process DeleteDocument
+   * @param document
+   */
+  @Deprecated
+  public void delete(IDocument document) {
+    documentsOf(iCase).delete(document);
+  }
+
+  /**
    * @param document
    * @return streamed content
    */

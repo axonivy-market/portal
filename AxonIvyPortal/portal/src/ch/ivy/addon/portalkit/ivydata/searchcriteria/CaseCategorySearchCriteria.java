@@ -12,6 +12,11 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 
 public class CaseCategorySearchCriteria {
 
+  /**
+   * @deprecated not used anymore, will get current login user for query
+   */
+  @Deprecated(since = "9.2", forRemoval = true)
+  private String involvedUsername;
   private boolean isAdminQuery;
   private List<CaseState> includedStates;
   
@@ -52,6 +57,24 @@ public class CaseCategorySearchCriteria {
       this.includedStates = new ArrayList<>();
     }
     this.includedStates.addAll(includedStates);
+  }
+
+  /**
+   * @return String
+   * @deprecated not used anymore, will get current login user for query
+   */
+  @Deprecated(since = "9.2", forRemoval = true)
+  public String getInvolvedUsername() {
+    return involvedUsername;
+  }
+  
+  /**
+   * @param involvedUsername 
+   * @deprecated not used anymore, will get current login user for query
+   */
+  @Deprecated(since = "9.2", forRemoval = true)
+  public void setInvolvedUsername(String involvedUsername) {
+    this.involvedUsername = involvedUsername;
   }
 
   public CaseQuery getCustomCaseQuery() {

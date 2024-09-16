@@ -2,7 +2,6 @@ package com.axonivy.portal.selenium.test;
 
 
 import java.time.LocalDateTime;
-
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 

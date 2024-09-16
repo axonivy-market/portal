@@ -605,8 +605,7 @@
               "level" : "HIGH"
             },
             "expiry" : {
-              "timeout" : "new Duration(\"1D\")",
-              "error" : "f88"
+              "timeout" : "new Duration(\"1D\")"
             },
             "customFields" : [
               { "name" : "AccountNumber", "type" : "NUMBER", "value" : "14" },
@@ -625,8 +624,7 @@
               "activator" : "\"demo\""
             },
             "expiry" : {
-              "timeout" : "new Duration(\"3H\")",
-              "error" : "f88"
+              "timeout" : "new Duration(\"3H\")"
             },
             "customFields" : [
               { "name" : "AccountNumber", "type" : "NUMBER", "value" : "7" },
@@ -644,8 +642,7 @@
               "level" : "LOW"
             },
             "expiry" : {
-              "timeout" : "new Duration(\"2D\")",
-              "error" : "f88"
+              "timeout" : "new Duration(\"2D\")"
             },
             "customFields" : [
               { "name" : "AccountNumber", "type" : "NUMBER", "value" : "13" },

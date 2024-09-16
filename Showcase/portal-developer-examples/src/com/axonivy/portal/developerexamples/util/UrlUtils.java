@@ -12,7 +12,7 @@ public class UrlUtils {
   public static String getServerUrl() {
     URL url;
     try {
-      url = Ivy.html().applicationHomeLink().toAbsoluteUri().toURL();
+      url = new URL(Ivy.html().applicationHomeRef());
     } catch (MalformedURLException e) {
       throw new PortalException(e);
     }

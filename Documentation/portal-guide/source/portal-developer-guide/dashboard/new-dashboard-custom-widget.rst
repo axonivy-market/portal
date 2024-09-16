@@ -1,12 +1,7 @@
 .. _configure-new-dashboard-custom-widget:
 
 Configure Custom Widget
-=======================
-
-Portal offers a variety of widgets, such as task, case, and process widgets. But what if you need a widget like a 
-weather widget? Fortunately, Portal allows you to create custom widgets as well. These custom widgets utilize 
-an IFrame to display content, which you can define. The content can be an Ivy process or the URL of an external 
-webpage.
+========================
 
 .. _define-an-ivy-process-for-the-custom-widget:
 
@@ -61,7 +56,6 @@ Below is a standard JSON definition of the custom widget in the Portal dashboard
       {
          "type": "custom",
          "id": "custom-widget",
-         "showFullscreenMode": true,
          "names": [
             {
                "locale": "en",
@@ -89,8 +83,6 @@ The basic JSON structure of the custom widget
    ``data``: data for customization. Please refer to the following sections to
    understand how to use this field.
 
-   ``showFullscreenMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon
-
 Define Ivy Process
 ------------------
 
@@ -103,7 +95,6 @@ JSON structure
       {
          "type": "custom",
          "id": "custom-widget",
-         "showFullscreenMode": true,
          "names": [
             {
                "locale": "en",

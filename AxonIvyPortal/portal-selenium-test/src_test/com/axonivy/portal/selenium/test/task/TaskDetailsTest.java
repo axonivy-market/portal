@@ -105,7 +105,6 @@ public class TaskDetailsTest extends BaseTest {
   public void testShowTaskStatusBannerOnTaskDetails() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
-    grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openTaskList();

@@ -162,7 +162,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel;",
             "",
-            "in.caseLazyDataModel = new RelatedCaseLazyDataModel(in.caze.getId());"
+            "in.caseLazyDataModel = new RelatedCaseLazyDataModel(in.iCase.getId());"
           ]
         }
       },
@@ -187,10 +187,10 @@
         "signature" : "initData",
         "input" : {
           "params" : [
-            { "name" : "caze", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
+            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
           ],
           "map" : {
-            "out.caze" : "param.caze"
+            "out.iCase" : "param.iCase"
           }
         },
         "guid" : "177F659A0ABC7738"

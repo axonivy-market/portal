@@ -28,16 +28,16 @@
     }, {
       "id" : "f3",
       "type" : "HtmlDialogMethodStart",
-      "name" : "openDetails(caze)",
+      "name" : "openDetails(iCase)",
       "config" : {
         "signature" : "openDetails",
         "input" : {
           "params" : [
-            { "name" : "caze", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
+            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
             { "name" : "inFrame", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
-            "out.caze" : "param.caze",
+            "out.iCase" : "param.iCase",
             "out.inFrame" : "param.inFrame"
           }
         },
@@ -58,7 +58,7 @@
         "processCall" : "Functional Processes/OpenPortalCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean)",
         "call" : {
           "map" : {
-            "param.caseData" : "in.caze",
+            "param.caseData" : "in.iCase",
             "param.isShowBackButton" : "true"
           }
         }
@@ -90,7 +90,7 @@
         "processCall" : "Functional Processes/OpenPortalCaseDetailsHook:callForIFrame(ch.ivyteam.ivy.workflow.ICase,Boolean)",
         "call" : {
           "map" : {
-            "param.caseData" : "in.caze",
+            "param.caseData" : "in.iCase",
             "param.isShowBackButton" : "true"
           }
         }

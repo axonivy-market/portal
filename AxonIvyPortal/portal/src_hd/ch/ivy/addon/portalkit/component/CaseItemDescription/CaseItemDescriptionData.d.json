@@ -2,5 +2,10 @@
   "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
   "simpleName" : "CaseItemDescriptionData",
   "namespace" : "ch.ivy.addon.portalkit.component.CaseItemDescription",
-  "isBusinessCaseData" : false
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "iCase",
+    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
 }

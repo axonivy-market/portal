@@ -39,7 +39,7 @@ import ch.ivyteam.ivy.persistence.query.IPagedResult;
 import ch.ivyteam.ivy.scripting.objects.Record;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.security.IRole;
-import ch.ivyteam.ivy.security.ISecurityContext;
+import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -96,7 +96,7 @@ public class TaskService {
   }
   
   protected TaskQuery queryExcludeSystemTasks() {
-    return TaskQuery.create().where().workerId().isNotEqual(ISecurityContext.current().users().system().getSecurityMemberId());
+    return TaskQuery.create().where().workerUserName().isNotEqual(ISecurityConstants.SYSTEM_USER_NAME);
   }
 
   protected TaskQuery queryExcludeHiddenTasks() {

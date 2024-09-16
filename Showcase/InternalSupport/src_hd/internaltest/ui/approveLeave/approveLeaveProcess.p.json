@@ -13,34 +13,34 @@
         "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "mitarbeiter", "type" : "String", "desc" : "" },
-            { "name" : "von", "type" : "Date", "desc" : "" },
-            { "name" : "bis", "type" : "Date", "desc" : "" },
+            { "name" : "Mitarbeiter", "type" : "String", "desc" : "" },
+            { "name" : "Von", "type" : "Date", "desc" : "" },
+            { "name" : "Bis", "type" : "Date", "desc" : "" },
             { "name" : "beantragt", "type" : "Boolean", "desc" : "" },
-            { "name" : "vertretung", "type" : "String", "desc" : "" },
+            { "name" : "Vertretung", "type" : "String", "desc" : "" },
             { "name" : "processStatus", "type" : "internalPortal.ProcessStatus", "desc" : "" }
           ],
           "map" : {
             "out.actualStepIndex" : "param.processStatus.actualStepIndex",
             "out.beantragt" : "param.beantragt",
-            "out.bis" : "param.bis",
-            "out.mitarbeiter" : "param.mitarbeiter",
+            "out.Bis" : "param.Bis",
+            "out.Mitarbeiter" : "param.Mitarbeiter",
             "out.steps" : "param.processStatus.steps",
-            "out.vertretung" : "param.vertretung",
-            "out.von" : "param.von"
+            "out.Vertretung" : "param.Vertretung",
+            "out.Von" : "param.Von"
           }
         },
         "result" : {
           "params" : [
-            { "name" : "mitarbeiter", "type" : "String", "desc" : "" },
+            { "name" : "Mitarbeiter", "type" : "String", "desc" : "" },
             { "name" : "genehmigt", "type" : "Boolean", "desc" : "" },
-            { "name" : "ablehnungsgrund", "type" : "String", "desc" : "" },
+            { "name" : "Ablehnungsgrund", "type" : "String", "desc" : "" },
             { "name" : "processStatus", "type" : "internalPortal.ProcessStatus", "desc" : "" }
           ],
           "map" : {
-            "result.mitarbeiter" : "in.mitarbeiter",
+            "result.Mitarbeiter" : "in.Mitarbeiter",
             "result.genehmigt" : "in.genehmigt",
-            "result.ablehnungsgrund" : "in.ablehnungsgrund",
+            "result.Ablehnungsgrund" : "in.Ablehnungsgrund",
             "result.processStatus.actualStepIndex" : "in.actualStepIndex",
             "result.processStatus.steps" : "in.steps"
           }
