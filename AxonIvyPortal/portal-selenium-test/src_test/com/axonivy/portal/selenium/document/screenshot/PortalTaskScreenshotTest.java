@@ -230,12 +230,7 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest {
 
     setupCustomWidgetByJSONFile("task-details-custom-iframe.json");
     ScreenshotUtils.executeDecorateJs("highlightIFrameWidgetTaskDetails()");
-    /**
-     * Note: Bug in Portal, out of ticket's scope
-     * temporary comment this line to make test pass
-     * reference link: https://support.mozilla.org/en-US/kb/xframe-neterror-page
-     */
-    // taskDetails.waitForIFrameURLWidgetLoad();
+    taskDetails.waitForIFrameURLWidgetLoad();
     ScreenshotUtils
         .capturePageScreenshot(ScreenshotUtils.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-iframe-url");
 
