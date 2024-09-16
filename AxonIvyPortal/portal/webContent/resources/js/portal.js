@@ -560,6 +560,13 @@ $(document).ready(function() {
         focusedElement.focus();
       }
     }
+
+    if (event.key === 'Escape') {
+      var collapseWidgetBtn = $('[id*="collapse-link"]:visible');
+      if (collapseWidgetBtn) {
+        collapseWidgetBtn.click();
+      }
+    }
   });
 
 });

@@ -43,16 +43,6 @@ public class GlobalSettingService {
     return Optional.ofNullable(Ivy.var().get(variable.getKey())).map(Boolean::parseBoolean).orElse(false);
   }
 
-  /**
-   * @param name
-   * @return global setting value
-   * @deprecated use {@link #findGlobalSettingValue(GlobalVariable)} instead
-   */
-  @Deprecated(forRemoval = true, since = "9.3")
-  public String findGlobalSettingValue(String name) {
-    return findGlobalSettingValue(GlobalVariable.valueOf(name));
-  }
-
   public GlobalSetting findGlobalSettingByGlobalVariable(GlobalVariable variable) {
     return new GlobalSetting(variable.getKey(), findGlobalSettingValue(variable));
   }

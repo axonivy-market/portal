@@ -83,7 +83,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EXTERNAL_URL: Externe URL
       PROCESS: Axon Ivy Prozess
     DashboardWidgetType:
-      CASE: Vorfall-Widget
+      CASE: Vorgangs-Widget
       CLIENT_STATISTIC: Statistik-Widget
       CUSTOM: Benutzerdefiniertes Widget
       NEW: Neues Widget
@@ -150,7 +150,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Rubrik 3
       NORMAL_TEXT: Normaler Text
   MyProfile:
-    CaseList: Liste der Fälle
+    CaseList: Liste der Vorgänge
     DateFormat: Datum Format
     FormattingLanguage: Sprache der Formatierung
     General: Allgemeine
@@ -223,7 +223,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       GooglePlayURL: Legen Sie die URL fest, um die Axon Ivy-Mobilanwendung auf Google Play herunterzuladen.
       RoleDirectChildrenLimit: 'Die eingestellte Zahl steuert die Anzahl der direkten untergeordneten Rollen, die auf der Registerkarte Rollenverwaltung angezeigt werden. Gültige Zahl: 10, 50, 100'
       RoleParentLimit: 'Die eingestellte Zahl steuert die Anzahl der übergeordneten Rollen, die beim Filtern von Rollen auf der Registerkarte Rollenverwaltung angezeigt werden. Gültige Zahl: 5, 10, 20'
-      SearchScopeCaseFields: Festlegung der Felder, die bei der globalen Suche verwendet werden sollen, um neben der Fallnummer übereinstimmende Fälle zu finden (dies kann die Leistung der Suche beeinflussen)
+      SearchScopeCaseFields: Festlegung der Felder, die bei der globalen Suche verwendet werden sollen, um neben der Fallnummer übereinstimmende Vorgänge zu finden (dies kann die Leistung der Suche beeinflussen)
       SearchScopeTaskFields: Festlegung der Felder, die die globale Suche neben der Aufgabenkennung verwendet, um passende Aufgaben zu finden (dies kann die Leistung der Suche beeinflussen)
       ShowLoginPageFooter: Zum Ein-/Ausschalten der Anzeige der Fußzeile auf der Anmeldeseite.
       ShowQRCode: Zum Ein- und Ausschalten der Anzeige des QR-Codes.
@@ -369,7 +369,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     destroyCaseMessage: Diese Operation kann nicht rückgängig gemacht werden. Sind Sie sicher, dass dieser komplette Vorgang gelöscht werden soll?
     destroyfail: Beim Löschen des Vorgangs ist ein Fehler aufgetreten.
     destroysucceed: Vorgang wurde erfolgreich gelöscht.
-    downloadZipFileExplanation: Die Anzahl der zu exportierenden Fälle überschreitet die Grenze der Excel-Zeilen. Daher werden die Daten in mehrere Excel-Dateien aufgeteilt und dann in einer ZIP-Datei zum Herunterladen komprimiert.
+    downloadZipFileExplanation: Die Anzahl der zu exportierenden Vorgänge überschreitet die Grenze der Excel-Zeilen. Daher werden die Daten in mehrere Excel-Dateien aufgeteilt und dann in einer ZIP-Datei zum Herunterladen komprimiert.
     error: Fehler
     exportedCasesFileName: AXONIVY_Dataset_Cases_{0}.{1}
     headerTitle:
@@ -800,15 +800,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     caseList: Vorfall-Liste
     caseListIntroduction: Dieses Widget zeigt relevante Vorgangsinformationen entsprechend einiger definierter Parameter an
     caseWidgetInfo:
-      casesByCategory: Anzahl der Fälle nach Kategorie
-      casesByState: Anzahl der Fälle nach Bundesland
+      casesByCategory: Anzahl der Vorgänge nach Kategorie
+      casesByState: Anzahl der Vorgänge nach Status
       numberOfCase: Vorfälle
     category: Kategorie
     columnManagement: Spaltenverwaltung
     columnType:
       CUSTOM: Benutzerdefiniertes Feld
       CUSTOM_CASE: Benutzerdefiniertes Fallfeld
-      STANDARD: Standard-Säule
+      STANDARD: Standard-Feld
     configuration:
       CustomWidgetExternalLinkWarning: Einige Websites sind aufgrund von Sicherheitsbedenken nicht mit iframe kompatibel. Bitte wenden Sie sich an Ihren Administrator, wenn die externe Website nicht ordnungsgemäß funktioniert.
       CustomWidgetTitlePlaceholder: Lassen Sie es leer, um die Kopfzeile des Widgets auszublenden
@@ -875,26 +875,16 @@ ch.ivy.addon.portalkit.ui.jsf:
     fullscreenMode: Vollbildmodus
     iconMessage:
       caseWidget:
-        BEACH_PALM_SUNBED: Sie sind großartig - alle Vorgänge sind erledigt. Lehnen Sie sich zurück und genießen Sie.
-        CHARGING_BATTERY_FULL_1: Zurzeit gibt es keine Vorgänge. Zeit, die Batterien ein wenig aufzuladen.
-        COFFEE_OF_HOT: Wahnsinn! Gut gemacht! Alle Vorgänge sind abgeschlossen. Wie wäre es mit einer kurzen Kaffeepause?
-        RANKING_WINNER_MEDAL: Spiel, Satz und Sieg! Du hast es geschafft, alle Vorgänge sind abgeschlossen!
-        SOCCER_PLAYER: Ziel erreicht! Du hast es geschafft, alle Vorgänge sind abgeschlossen. Kurze Halbzeitpause.
-        YOGA_MEDITATE: Gut gemacht! Alle Vorgänge sind erledigt. Einatmen, ausatmen, entspannen.
+        EMPTY_MESSAGE: Aktuell sind keine weiteren Cases vorhanden.
         noCasesFoundWhenFilter: Derzeit gibt es keine Vorgänge nach dem angewandten Filter.
       taskWidget:
-        BEACH_PALM_SUNBED: Sie sind großartig - alle Aufgaben sind erledigt. Lehnen Sie sich zurück und genießen Sie.
-        CHARGING_BATTERY_FULL_1: Derzeit gibt es keine Aufgaben. Zeit, die Batterien ein wenig aufzuladen.
-        COFFEE_OF_HOT: Wahnsinn! Gut gemacht! Alle Aufgaben sind erledigt. Wie wäre es mit einer kurzen Kaffeepause?
-        RANKING_WINNER_MEDAL: Spiel, Satz und Sieg! Du hast es geschafft, alle Aufgaben sind erledigt!
-        SOCCER_PLAYER: Ziel erreicht! Du hast es geschafft, alle Aufgaben sind erledigt. Kurze Halbzeitpause.
-        YOGA_MEDITATE: Gut gemacht! Alle Aufgaben sind erledigt. Einatmen, ausatmen, entspannen.
+        EMPTY_MESSAGE: Aktuell sind keine weiteren Aufgaben vorhanden.
         noTasksFoundWhenFilter: Derzeit gibt es keine Aufgaben nach dem angewandten Filter.
     loading: Laden...
     noCategory: Es gibt keine Kategorien
     noDashboard: Keine Dashboards vorhanden. Fügen Sie mindestens ein Dashboard und anschließend Widgets hinzu.
     noPermission: Sie haben keine Berechtigung, Dashboards zu sehen.
-    noWidget: Es sind keine Widgets für dieses Dashboard vorgesehen
+    noWidget: Es sind aktuell keine Widgets auf diesem Dashboard vorhanden
     numberPattern: Zahlen-Muster
     preview: Vorschau
     processList: Prozessliste
@@ -1234,7 +1224,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       caseByFinishedTime: Abgeschlossene Vorgänge im Zeitraum
       caseByFinishedTimeDescription: Vorgänge die in der ausgewählten Zeitspanne abgeschlossen wurden
       caseByState: Vorgänge nach Status
-      casesByCategory: Fälle nach Kategorie
+      casesByCategory: Vorgänge nach Kategorie
       elapsedTimeByCaseCategory: Durchlaufzeit abgeschlossener Vorgänge
       elapsedTimeByCaseCategoryDescription: Durchlaufszeit (Start bis Ende des Vorgangs) abgeschlossener Vorgänge nach Kategorie
       taskByExpiry: Aufgaben nach Ablaufdatum
@@ -1594,7 +1584,7 @@ Dialogs:
                 destroyCase: Vorgang löschen
               CaseOwner: Prozessverantwortlicher
               Finished: Erledigt
-              GlobalSearchText: Die Fälle enthalten das Schlüsselwort "{0}" in Vorgangs Id{1}.
+              GlobalSearchText: Die Vorgänge enthalten das Schlüsselwort "{0}" in Vorgangs Id{1}.
               ShowBusinessDetails: Business Details
               caseNameNotAvailable: '[Kein Vorgangsname verfügbar]'
               defaultEmptyMessage: Keine Vorgänge verfügbar
@@ -1829,7 +1819,7 @@ Labels:
       APPLICATION: Anmeldung
       CATEGORY: Kategorie
       CREATED: Erstellt am
-      CREATOR: Schöpfer
+      CREATOR: Ersteller
       DESCRIPTION: Beschreibung
       FINISHED: Beendetes Datum
       ID: Id
@@ -1891,7 +1881,7 @@ Labels:
       WEEK: Woche
       YEAR: Jahr
     GlobalSearchScopeCategory:
-      CASES: Fälle
+      CASES: Vorgänge
       PROCESSES: Prozesse
       TASKS: Aufgaben
     SearchScopeCaseField:

@@ -4,7 +4,7 @@
   "namespace" : "ch.ivy.addon.portalkit.component.ActionStep",
   "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "iCase",
+    "name" : "caze",
     "type" : "ch.ivyteam.ivy.workflow.ICase",
     "modifiers" : [ "PERSISTENT" ]
   }, {
