@@ -21,8 +21,6 @@ import com.axonivy.portal.selenium.page.UserProfilePage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
-import ch.ivy.addon.portalkit.enums.PortalPermission;
-
 @IvyWebTest
 public class TaskWidgetTest extends BaseTest {
 
@@ -115,7 +113,6 @@ public class TaskWidgetTest extends BaseTest {
   @Test
   public void testDestroyTask() {
     login(TestAccount.ADMIN_USER);
-    grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
     redirectToRelativeLink(GRANT_DESTROY_TASK_URL);
 
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();

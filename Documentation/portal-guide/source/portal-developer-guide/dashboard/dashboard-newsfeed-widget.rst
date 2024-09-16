@@ -24,8 +24,7 @@ Below is a sample JSON definition of a news widget in the Portal dashboard
          "h": 6,
          "x": 0,
          "y": 0
-      },
-      "showFullscreenMode": true
+      }
    }
 ..
 
@@ -50,5 +49,3 @@ The basic JSON structure of a news widget
       ``styleClass`` (optional): add CSS Classes to HTML DOM of the widget
 
       ``style`` (optional): add inline style to HTML DOM of the widget
-
-   ``showFullscreenMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon

@@ -23,13 +23,11 @@ public class NotificationDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private long countUnread;
   private boolean onlyUnread;
-  private boolean showFullscreenMode;
 
   public NotificationDashboardWidget() {
     this.webNotifications = WebNotifications.current();
     this.countAll = webNotifications.countAll();
     this.countUnread = webNotifications.countUnread();
-    setShowFullscreenMode(true);
   }
 
   @JsonIgnore
@@ -93,14 +91,6 @@ public class NotificationDashboardWidget extends DashboardWidget {
   public void goToTaskDetail(NotificationDto dto) {
     markAsRead(dto);
     PortalNavigator.redirect(dto.getInfoAction().getLink().getRelative());
-  }
-
-  public boolean isShowFullscreenMode() {
-    return showFullscreenMode;
-  }
-
-  public void setShowFullscreenMode(boolean showFullscreenMode) {
-    this.showFullscreenMode = showFullscreenMode;
   }
 
 }

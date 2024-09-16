@@ -3,7 +3,6 @@ package com.axonivy.portal.selenium.test;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +12,6 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
-import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
@@ -22,7 +20,6 @@ import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
-import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 
 @IvyWebTest
 public class QuickSearchTest extends BaseTest {
@@ -52,6 +49,10 @@ public class QuickSearchTest extends BaseTest {
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
     assertTrue(taskWidget.isQuickSearchInputShow());
+    taskWidget.setInputForQuickSearch("Task number 10");
+    taskWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
+    taskWidget.clearQuickSearchInput();
+
     TaskEditWidgetNewDashBoardPage taskEditWidget = taskWidget.openEditTaskWidget();
     taskEditWidget.clickOnQuickSearchCheckBox();
     taskEditWidget.save();
@@ -84,7 +85,11 @@ public class QuickSearchTest extends BaseTest {
     taskEditWidget.save();
 
     taskWidget.waitPageLoaded();
+
+    taskWidget.setInputForQuickSearch("engine");
+    assertTrue(taskWidget.isEmptyMessageAppear());
     redirectToNewDashBoard();
+    taskWidget.clearQuickSearchInput();
     taskWidget.setInputForQuickSearch("TestCase1");
     taskWidget.countAllTasks().shouldHave(size(3), DEFAULT_TIMEOUT);
     taskWidget.clickOnButtonExpandTaskWidget();
@@ -98,13 +103,22 @@ public class QuickSearchTest extends BaseTest {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     login(TestAccount.ADMIN_USER);
     TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
-    taskWidget.setInputForQuickSearch("Task number 10");
-    taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
-    
+
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     ScreenshotUtils.maximizeBrowser();
+
+    taskWidget.waitPageLoaded();
+    taskWidget.setInputForQuickSearch("Task number 10");
+    taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
+
+    redirectToNewDashBoard();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForCaseWidgetLoaded();
+
+    taskWidget = new TaskWidgetNewDashBoardPage();
+    taskWidget.setInputForQuickSearch("Task number 10");
     taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
   }
 
@@ -211,6 +225,14 @@ public class QuickSearchTest extends BaseTest {
 
     caseEditWidget.clickOnQuickSearchCheckBox();
     caseEditWidget.save();
+
+    caseWidget.setInputForQuickSearch("case");
+    caseWidget.countAllCases().shouldHave(sizeGreaterThanOrEqual(1), DEFAULT_TIMEOUT);
+    caseWidget.clearQuickSearchInput();
+
+    caseWidget.openEditWidget();
+    caseEditWidget.clickOnQuickSearchCheckBox();
+    caseEditWidget.save();
     assertFalse(caseWidget.isQuickSearchInputShow("0"));
   }
 
@@ -252,17 +274,26 @@ public class QuickSearchTest extends BaseTest {
   }
 
   @Test
-  public void testCaseQuickSearchKeywordSessionCache() throws IOException {
-    ConfigurationJsonUtils.updateJSONSetting("dashboard-case-widget-has-quicksearch.json", Variable.DASHBOARD);
+  public void testCaseQuickSearchKeywordSessionCache() {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
+    login(TestAccount.ADMIN_USER);
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
-    caseWidget.setInputForQuickSearch("TestCase");
 
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     ScreenshotUtils.maximizeBrowser();
+
+    caseWidget.waitPageLoaded();
+    CaseEditWidgetNewDashBoardPage caseEditWidget = caseWidget.openEditWidget();
+    caseEditWidget.clickOnQuickSearchCheckBox();
+    caseEditWidget.save();
+    caseWidget.setInputForQuickSearch("TestCase");
+    caseWidget.countAllCases().shouldHave(size(12), DEFAULT_TIMEOUT);
+
+    redirectToNewDashBoard();
     assertEquals("TestCase", caseWidget.getQuickSearchInput());
+    caseWidget.countAllCases().shouldHave(size(12), DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -358,8 +389,9 @@ public class QuickSearchTest extends BaseTest {
   @Test
   public void testSessionCacheInProcessWidget() {
     login(TestAccount.ADMIN_USER);
-    ScreenshotUtils.maximizeBrowser();
     ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget("Your Processes");
+    assertTrue(processWidget.isQuickSearchInputShow());
+    ScreenshotUtils.maximizeBrowser();
     processWidget.setQuickSearchKeyword("login");
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();

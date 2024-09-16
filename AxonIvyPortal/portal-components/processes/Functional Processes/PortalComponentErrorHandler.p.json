@@ -43,12 +43,11 @@
       "config" : {
         "output" : {
           "code" : [
-            "import org.apache.log4j.Level;",
             "import com.axonivy.portal.components.ivydata.exception.PortalIvyDataException;",
             "import com.axonivy.portal.components.util.ErrorHandler;",
             "",
             "for (PortalIvyDataException exception : in.exceptions) {",
-            "  ErrorHandler.addError(exception);",
+            "  ErrorHandler.addError(org.apache.log4j.Priority.ERROR, exception);",
             "}"
           ]
         }

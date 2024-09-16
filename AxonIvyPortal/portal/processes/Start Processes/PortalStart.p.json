@@ -3029,7 +3029,7 @@
             "call" : {
               "map" : {
                 "param.isTaskFinished" : "in.isTaskFinished",
-                "param.caze" : "in.caseSelected"
+                "param.iCase" : "in.caseSelected"
               }
             }
           },

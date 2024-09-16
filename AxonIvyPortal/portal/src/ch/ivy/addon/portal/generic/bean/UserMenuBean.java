@@ -239,6 +239,11 @@ public class UserMenuBean implements Serializable {
     return RequestUtils.isMobileDevice();
   }
 
+  /**
+   * We moved this method to PortalExceptionBean#getErrorDetailToEndUser
+   * @return system configuration of ErrorDetailToEndUser
+   */
+  @Deprecated
   public boolean getErrorDetailToEndUser() {
     try {
       PortalExceptionBean portalExceptionBean = (PortalExceptionBean) ManagedBeans.find("portalExceptionBean").get();

@@ -8,16 +8,16 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start(isTaskFinished, caze)",
+      "name" : "start(isTaskFinished, iCase)",
       "config" : {
         "signature" : "start",
         "input" : {
           "params" : [
             { "name" : "isTaskFinished", "type" : "Boolean", "desc" : "" },
-            { "name" : "caze", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
+            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
           ],
           "map" : {
-            "out.caze" : "param.caze",
+            "out.iCase" : "param.iCase",
             "out.isTaskFinished" : "param.isTaskFinished"
           }
         },
@@ -48,7 +48,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.util.GrowlMessageUtils;",
             "",
-            "GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, in.caze);"
+            "GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, in.iCase);"
           ]
         }
       },
