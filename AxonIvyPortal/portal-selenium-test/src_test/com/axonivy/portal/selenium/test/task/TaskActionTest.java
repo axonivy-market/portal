@@ -18,6 +18,8 @@ import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
+import ch.ivy.addon.portalkit.enums.PortalPermission;
+
 @IvyWebTest
 public class TaskActionTest extends BaseTest {
 
@@ -90,6 +92,7 @@ public class TaskActionTest extends BaseTest {
   @Test
   public void testVisibilityTaskActionForAdminUser() {
     login(TestAccount.ADMIN_USER);
+    grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
     redirectToRelativeLink(createTaskWithSystemState);
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     // Ready for Join
@@ -134,6 +137,7 @@ public class TaskActionTest extends BaseTest {
   @Test
   public void testVisibleTaskActionsWhenTaskStatusIsDoneAndDestroyed() {
     login(TestAccount.ADMIN_USER);
+    grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
     redirectToRelativeLink(createTaskWithSystemState);
     taskWidgetPage = NavigationHelper.navigateToTaskList();
 
@@ -162,6 +166,7 @@ public class TaskActionTest extends BaseTest {
   @Test
   public void testVisibilityTaskActionForTechnicalStates() {
     login(TestAccount.ADMIN_USER);
+    grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
     redirectToRelativeLink(createTechnicalStateUrl);
     taskWidgetPage = NavigationHelper.navigateToTaskList();
 

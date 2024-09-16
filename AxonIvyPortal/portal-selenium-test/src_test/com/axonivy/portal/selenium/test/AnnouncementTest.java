@@ -67,7 +67,7 @@ public class AnnouncementTest extends BaseTest {
   }
 
   @Test
-  public void testDepulishNotification() {
+  public void testDepublishNotification() {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     AdminSettingsPage adminSettingsPage = newDashboardPage.openAdminSettings();
     AnnouncementPage announcementPage = adminSettingsPage.openAnnouncementTab();

@@ -5,8 +5,8 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import org.openqa.selenium.Keys;import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
+import org.openqa.selenium.Keys;
+
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
@@ -100,5 +100,13 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
     searchInput.sendKeys(Keys.LEFT_SHIFT, Keys.RIGHT, Keys.RIGHT, Keys.RIGHT, Keys.RIGHT);
     searchInput.sendKeys(Keys.ENTER);
     waitForPageLoad();
+  }
+
+  public boolean isExpandButtonAppear() {
+    return getProcessWidgetHeader().$(".expand-link").isDisplayed();
+  }
+
+  public boolean isWidgetInfoIconAppear() {
+    return getProcessWidgetHeader().$(".widget__info-sidebar-link").isDisplayed();
   }
 }

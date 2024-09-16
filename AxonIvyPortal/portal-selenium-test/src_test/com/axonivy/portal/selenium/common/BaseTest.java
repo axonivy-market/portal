@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.common;
 
 import static com.codeborne.selenide.Condition.exist;
+
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.refresh;
@@ -344,7 +345,7 @@ public class BaseTest {
     }
     redirectToRelativeLink(String.format(createJSonFileUrl, filepath, key));
   }
-
+  
   protected void showNewDashboard() {
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
   }
