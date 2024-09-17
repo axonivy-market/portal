@@ -1765,8 +1765,9 @@ Dialogs:
 Labels:
   AI:
     Error:
-      CannotStartTask: Cannot start task
+      CannotStartTask: Cannot start task has ID {0}
       NoMatchingProcesses: No matching processes.
+      NoMatchingTask: No se encontró ninguna tarea que coincida con su solicitud.
     FindCaseAIResult: 'ID: {0}, Name: {1}, Description: {2}, State: {3}'
     FindProcessAIResult: '   - ID: {0}, Name: {1}, Description: {2}'
     FindTaskAIResult: 'ID: {0}, Name: {1}, Description: {2}, State: {3}, Priority {4}'
@@ -1788,6 +1789,9 @@ Labels:
       - Name: {0}
         Description: {1}
         Value:
+    TaskDetailsResult: |-
+      Details of task **{0} (#{1})**:
+      {2}
   AdhocWorkflow: Describe tu Flujo de Trabajo
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
