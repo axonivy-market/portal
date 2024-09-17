@@ -86,6 +86,11 @@ public class AiService {
     List<ITask> foundTasks = DashboardTaskService.getInstance().findByTaskQuery(
         taskWidget.getDataModel().getCriteria().buildQuery(), 0, 10);
 
+    if (CollectionUtils.isEmpty(foundTasks)) {
+      return AiAssistantAPI.generateErrorAiResult(
+          Ivy.cms().co("/Labels/AI/Error/NoMatchingTask"));
+    }
+
     // Create result for AI based on found tasks
     String foundTasksStr = "Found tasks:".concat(System.lineSeparator());
     for (ITask task : foundTasks) {
