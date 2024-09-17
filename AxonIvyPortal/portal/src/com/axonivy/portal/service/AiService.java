@@ -233,23 +233,55 @@ public class AiService {
         DashboardTaskService.getInstance().findByTaskQuery(query, 0, 1).get(0))
         .orElse(null);
 
-    AiResultDTO result = new AiResultDTO();
-
     if (foundTask == null || !foundTask
         .canUserResumeTask(Ivy.session().getSessionUser().getUserToken())
         .wasSuccessful()) {
       return AiAssistantAPI.generateErrorAiResult(
-          Ivy.cms().co("/Labels/AI/Error/CannotStartTask"));
+          Ivy.cms().co("/Labels/AI/Error/CannotStartTask",
+              Arrays.asList(Long.toString(foundTask.getId()))));
     }
+
+    AiResultDTO result = new AiResultDTO();
 
     result.setResultForAI(
         AiAssistantAPI.generateExecutableResult(
-            foundTask.getStartLinkEmbedded().getAbsolute()));
+            foundTask.getStartLinkEmbedded().getRelative()));
 
     result.setResult(String.format(START_TASK_SUCCESSFULLY_FORMAT,
         foundTask.getName(), Long.toString(foundTask.getId())));
 
     result.setState(AIState.DONE);
+    return result;
+
+  }
+
+  public AiResultDTO generateFindTaskDetailsAiResult(String taskId) {
+    if (!NumberUtils.isDigits(taskId)) {
+      return AiAssistantAPI.generateErrorAiResult(
+          Ivy.cms().co("/Labels/AI/Error/NoMatchingTask"));
+    }
+    TaskQuery query = TaskQuery.create();
+    query.where().taskId().isEqual(Long.valueOf(taskId));
+
+    ITask foundTask = Optional.ofNullable(
+        DashboardTaskService.getInstance().findByTaskQuery(query, 0, 1).get(0))
+        .orElse(null);
+
+
+    if (foundTask == null) {
+      return AiAssistantAPI.generateErrorAiResult(
+          Ivy.cms().co("/Labels/AI/Error/NoMatchingTask"));
+    }
+
+    AiResultDTO result = new AiResultDTO();
+
+    result.setResultForAI(Ivy.cms().co("/Labels/AI/TaskDetailsResult",
+        Arrays.asList(foundTask.getName(), Long.toString(foundTask.getId()),
+            foundTask.getDetailLink().getAbsolute())));
+
+    result.setResult(result.getResultForAI());
+    result.setState(AIState.DONE);
+
     return result;
 
   }
