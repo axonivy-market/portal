@@ -31,7 +31,7 @@
   <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}"/>
 
   <p:link id="#{cc.attrs.actionLinkId}" onclick="event.stopPropagation(); return false;"
-    styleClass="#{isPreviewMode ? '' : cc.attrs.actionLinkStyleClass} #{cc.attrs.taskId} action-link portal-icon" disabled="#{cc.attrs.readOnly or isPreviewMode}">
+    styleClass="#{isPreviewMode ? '' : cc.attrs.actionLinkStyleClass} #{cc.attrs.taskId} action-link portal-icon ui-sidestep-action" disabled="#{cc.attrs.readOnly or isPreviewMode}">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" styleClass="task-action-item-label" />
     <i class="si si-arrow-down-1" />
   </p:link>

@@ -6129,3 +6129,12 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
 .task-status-banner-content {
   width: 100%;
 }
+
+body .ui-button.ui-button-outlined.ui-no-outlined-icon {
+  border-color: rgba(0, 0, 0, 0) ;
+  color: var(--widget-header-icon);
+}
+
+body .ui-link.ui-sidestep-action {
+  color: var(--sidestep-action-text-color);
+}

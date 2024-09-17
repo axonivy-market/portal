@@ -31,7 +31,11 @@
   --widget-sort-menu-border-bottom-color: var(--ivy-primary-color-grey-medium);
   --widget-header-input-field-background-color: transparent;
   --widget-header-input-hover-background-color: transparent;
-
+  --widget-header-icon: var(--ivy-primary-color-white);
+  
+  /* Side step */
+  --sidestep-action-text-color: var(--ivy-primary-color-white);
+  
   /* Announcement panel color */
   --announcement-background-color: var(--ivy-tertinary-color-yellow-light);
   --announcement-border-color: var(--ivy-tertinary-color-red-medium);

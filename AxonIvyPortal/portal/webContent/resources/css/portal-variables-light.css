@@ -32,6 +32,7 @@
   --widget-sort-menu-border-bottom-color: var(--ivy-primary-color-grey-light);
   --widget-header-input-field-background-color: transparent;
   --widget-header-input-hover-background-color: transparent;
+  --widget-header-icon: var(--ivy-primary-color-black);
 
   /* Announcement panel color */
   --announcement-background-color: var(--ivy-tertinary-color-yellow-light);
@@ -276,7 +277,9 @@
   --menuitem-active-text-color: var(--ivy-primary-color-white);
   --menuitem-hover-bg-color: var(--ivy-primary-color-grey-light);
   --menuitem-hover-text-color: var(--primary-color);
-
+  
+  /* Side step */
+  --sidestep-action-text-color: var(--ivy-primary-color-black);
 
   /* Filter Widget */
   --advanced-filter-error-color: var(--ivy-tertinary-color-red-medium);

@@ -133,16 +133,15 @@ body .layout-wrapper .menu-wrapper .sidebar-logo .portal-home-logo-small img {
 /*Style For Color Header --------------------------------------------------------------------------------------*/
 .first-header-bar {
   width: 70%;
-  background-color: var(--first-header-bar-color); }
+}
 
 .second-header-bar {
   width: 15%;
-  background-color: var(--second-header-bar-color); }
+}
 
 .third-header-bar {
   width: 15%;
-  background-color: var(--third-header-bar-color); }
-
+}
 /*Style for Top bar -------------------------------------------------------------------------------------- */
 @media screen and (max-width: 40em) {
   .task-template-container {
