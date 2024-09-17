@@ -1057,7 +1057,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     caseHistoriesTitle: Historial
     caseHistoryPageTitle: Historia de la nota de caso
     columnContent: Contenido
-    curentReportOf: del
+    curentReportOf: de
     eventType: Tipo de evento
     exportButton: Exportar a Excel
     relatedCase: Caso relacionado
