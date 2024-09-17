@@ -1148,7 +1148,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .process-start-list-item {
   height: 50px;
   max-width: 100%;
-  border-radius: 5px;
+  border-radius: 10px;
   display: flex;
   position: relative;
 }

@@ -296,12 +296,12 @@
   --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-medium);
 
   /* Item in Widget List */
-  --item-widget-background-color: var(--ivy-primary-color-white);
+  --item-widget-background-color: var(--ivy-primary-color-grey-pale);
   --item-widget-box-shadow: 0px 2px 8px var(--box-shadow-color);
   --item-widget-text-color: var(--ivy-primary-color-black);
 
   /* Process */
-  --process-navigator-item-color: var(--ivy-portal-color-gray-dark);
+  --process-navigator-item-color: var(--ivy-portal-color-black);
   --process-item-color-hover: var(--ivy-primary-color);
   --process-start-list-item-hover-background-color: var(--item-background-hover);
   --process-start-list-item-hover-border: var(--item-border-hover);

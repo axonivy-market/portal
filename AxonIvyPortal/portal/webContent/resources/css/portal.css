@@ -165,13 +165,11 @@ body .portal-breadcrumb.ui-breadcrumb ul li .ui-menuitem-link.ui-state-disabled 
 .process-start-list-item,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item,
 a.compact-task-start-link .task-start-list-item {
-  box-shadow: var(--item-widget-box-shadow);
   border: 1px solid transparent; }
 
 .dashboard-widget-panel-container .process-start-list-item,
 .ui-fieldset-content .process-start-list-item {
   background-color: var(--item-widget-background-color);
-  box-shadow: var(--item-widget-box-shadow);
 }
 
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item {
