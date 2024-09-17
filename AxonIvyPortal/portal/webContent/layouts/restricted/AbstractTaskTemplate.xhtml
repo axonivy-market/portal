@@ -141,7 +141,7 @@
                   icon="si si-move-to-bottom" onclick="PF('adhoc-task-reset-confirmation-dialog').show()" />
     
                 <p:menuitem id="chat-group" icon="si si-messages-bubble-add" action="#{chatAssigneeBean.createGroupChatForConfiguredRoleList(currentTask)}"
-                  rendered="#{chatRendererBean.isGroupChatRendered and !(currentTask.state eq 'CREATED') and !chatRendererBean.isExpressCreationTask()}"
+                  rendered="#{chatRendererBean.isGroupChatRendered and !(currentTask.state eq 'CREATED')}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/createProcessChat')}" update="chat-assignee-dialog" />
     
                 <p:divider styleClass="separator"
