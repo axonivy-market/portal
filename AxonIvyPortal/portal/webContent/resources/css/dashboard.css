@@ -1754,6 +1754,22 @@ body .ui-widget.new-widget-dialog__introduction {
   container-type: size;
 }
 
+.chart-number-container {
+  color: var(--chart-container-number-color);
+  background-color: var(--chart-container-background-color);
+  border-radius: 10px;
+  width: fit-content;
+  margin: auto;
+}
+
+.chart-number-container > span {
+  padding: 0.2em;
+}
+.chart-border {
+  border: 1px solid var(--ivy-primary-color-grey-light);
+  height: 75%;
+}
+
 .chart-number-animation {
   -webkit-transition: font-size .3s ease;
   -moz-transition: font-size .3s ease;

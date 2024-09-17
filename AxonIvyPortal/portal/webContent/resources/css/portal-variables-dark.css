@@ -69,7 +69,9 @@
   --statistic-link-hover-backround-color: var(--ivy-primary-color-grey-pale);
   --statistic-link-hover-border: var(--ivy-primary-color-grey-light);
   --chart-container-separator-border-top: 2px solid #F4F4F4;
-  
+  --chart-container-background-color: hsl(0,0.6%,30.8%);
+  --chart-container-number-color: var(--ivy-primary-color-white);
+
   /* Statistic chart Task by priority*/
   --chart-label-default-exception-priority-color: var(--ivy-primary-color-white);
   --chart-label-default-high-priority-color: var(--ivy-primary-color-white);
