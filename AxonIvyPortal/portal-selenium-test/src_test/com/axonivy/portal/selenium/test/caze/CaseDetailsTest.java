@@ -468,7 +468,7 @@ public class CaseDetailsTest extends BaseTest {
 
     setupCaseDetailsWithIFrameURL();
     String url = detailsPage.getIFrameURLOfCustomWidget();
-    assertTrue(url.contains("www.axonivy.com"));
+    assertTrue(url.contains("www.example.com"));
 
     setupCaseDetailsWith2Panels();
     assertTrue(detailsPage.isCustomMiddlePanelDisplay());
