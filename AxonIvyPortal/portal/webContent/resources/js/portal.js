@@ -513,6 +513,14 @@ const searchIconId = 'a#global-search-item';
 const useSettingMenuId = 'a#user-settings-menu';
 
 $(document).ready(function() {
+    // This function is to enhance accessibility feature for search icon
+    $(searchIconId).on('click', function() {
+      const searchInput = $('[id="global-search-component:global-search-data"]');
+      if (searchInput) {
+        searchInput.focus();
+      }
+    })
+    
     let focusableElements = [
         $(singleDashboardId).length ? $(singleDashboardId).find('a') : $(multipleDashboardId).find('a')[0],
         $(processItemId).find('a'),
