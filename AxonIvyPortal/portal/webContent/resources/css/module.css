@@ -5415,6 +5415,7 @@ border-top: 0.14rem dashed;
   top: -20px;
   width: 100%;
   height: 16px;
+  padding-right: 25px;
 }
 
 .image-view-form .more-information-image-widget {
@@ -5456,7 +5457,7 @@ border-top: 0.14rem dashed;
 .process-action-group {
   position: absolute;
   right: 0;
-  top: -500px;
+  top: -495px;
   padding: 16px;
   width: 100%;
   display: inline-flex;
@@ -5473,28 +5474,39 @@ border-top: 0.14rem dashed;
   font-size: 16px;
   line-height: 20px;
   height: 40px;
-  color: var(--ivy-primary-color-white);
-  word-break: break-word;
+  word-break: break-all;
   vertical-align: middle;
   
 }
 
 .image-view-form .process-description {
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 1.7rem;
   overflow: hidden;
   position: absolute;
-  top: -202px;
+  top: -150px;
   left: 0;
 }
 
 .image-view-form .start-process{
-  padding: 32px 24px 16px 24px;
+  padding-left: 180px;
   overflow: hidden;
   position: absolute;
-  top: -106px;
+  top: -37px;
   left: 0;
   width: 100%;
   text-align: center;
+}
+
+@media screen and (min-width: 150em) {
+.image-view-form .start-process{
+  padding-left: 350px;
+  overflow: hidden;
+  position: absolute;
+  top: -37px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
 }
 
 .image-view-form .start-process-image-widget {
@@ -5605,16 +5617,19 @@ border-top: 0.14rem dashed;
   border-radius: 24px;
 }
 
+.image-process-item .image-process-item-image-bgc {
+  background-color: grey;
+}
+
 .image-process-item .overlay-title {
   position: relative;
-  top: -204px;
+  top: -130px;
   left: 0;
   width: 100%;
   height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  background: linear-gradient(180deg, rgba(27, 27, 27, 0) 21.68%, rgba(27, 27, 27, 1) 100%);
   background-size: 100% 50%;
   background-position: 0 100%;
   background-repeat: no-repeat;
