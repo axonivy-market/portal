@@ -45,7 +45,13 @@
           "description" : "Case Map: Leave Request"
         },
         "task" : {
-          "name" : "Case Map Leave Request"
+          "name" : "Case Map Leave Request",
+          "expiry" : {
+            "timeout" : "new Duration(\"1D\")",
+            "responsible" : {
+              "deleteTask" : true
+            }
+          }
         }
       },
       "visual" : {

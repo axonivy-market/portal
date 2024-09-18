@@ -170,5 +170,6 @@ public class CategoryColumnModel extends CaseColumnModel {
   
   public void initCategoryTree() {
     this.userCategoryTree = CaseTreeUtils.buildRoot();
+    this.categoryTree = CaseTreeUtils.buildRoot();
   }
 }
