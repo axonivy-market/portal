@@ -2,13 +2,12 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <ui:composition>
-  <c:set var="isExpress" value="#{dashboardProcessBean.isExpressProcess(process)}" />
   <c:set var="isExternalLink" value="#{dashboardProcessBean.isExternalLink(process)}" />
   <c:set var="isCaseMap" value="#{dashboardProcessBean.isCaseMap(process)}" />
   <c:set var="isDefaultProcessImage" value="#{dashboardProcessBean.isDefaultProcessImage(process.imageUrl)}" />
 
   <h:panelGroup layout="block" styleClass=" widget-content image-process-item widget-height-100" rendered="#{not empty process}" >
-    <div class="card-item card image-widget-mode js-image-widget-mode ui-g-12 u-padding-0 #{isExpress ? 'express-workflow' : ''} ">
+    <div class="card-item card image-widget-mode js-image-widget-mode ui-g-12 u-padding-0 ">
       <div class="image-process-item-container js-image-process-item-container">
         <h:form id="image-view-action-group-form" styleClass="image-view-action-group-form">
           <ic:ch.ivy.addon.portalkit.component.process.ProcessItemAction id="image-process-action-component" process="#{process}"
@@ -47,7 +46,7 @@
         <p:tooltip for="process-item-name" value="#{process.getName()}" position="top" trackMouse="true" hideEvent="mouseleave click" styleClass="process-tooltip"/>
       </div>
 
-     <h:form id="process-item" target="#{dashboardProcessBean.targetToStartProcess(process)}" styleClass="image-view-form #{isExpress ? 'is-express' : ''} #{isExternalLink ? 'is-external-link' : ''}">
+     <h:form id="process-item" target="#{dashboardProcessBean.targetToStartProcess(process)}" styleClass="image-view-form #{isExternalLink ? 'is-external-link' : ''}">
          <div class="process-description js-process-description">
           <h:outputText id="process-description" value="#{not empty process.description ? process.description : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noProcessDescription')}"
             styleClass="process-item-description js-process-item-description line-clamp-text-3" />
@@ -67,7 +66,7 @@
               styleClass="process-more-info-link"
               href="#{dashboardProcessBean.getProcessInformationPageUrl(process)}"
               disabled="#{!isReadOnlyMode or isInConfiguration}"
-              rendered="#{dashboardProcessBean.isShowInformationLink(process) and !isExternalLink and !isExpress and !isCaseMap}"
+              rendered="#{dashboardProcessBean.isShowInformationLink(process) and !isExternalLink and !isCaseMap}"
               />
           </div>
         </div>

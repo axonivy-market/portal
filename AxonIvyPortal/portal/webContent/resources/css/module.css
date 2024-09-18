@@ -1185,15 +1185,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   padding-right: 50px;
 }
 
-.process-start-list .process-start-list-item-name.is-express,
-.process-in-search .process-start-list-item-name.is-express {
-  padding-right: 120px;
-}
-
-.process-start-list-item-name.is-express {
-  width: calc(100% - 130px);
-}
-
 .process-start-list-item-name.is-external-link {
    width: calc(100% - 105px);
 }
@@ -1240,21 +1231,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .toggle-processes-link .si,
 .compact-toggle-tasks-link .si {
   font-weight: bold !important;
-}
-
-.process-start-list-item-action.is-express {
-  right: 50px;
-  flex: 1 0 auto;
-}
-
-.process-start-list-item-action .express-workflow {
-  cursor: pointer;
-}
-
-@media (max-width: 991px) {
-  .process-start-list-item-action .express-workflow.process-item {
-    display: none !important;
-  }
 }
 
 .process-item-action-container {

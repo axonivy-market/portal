@@ -113,10 +113,6 @@ public abstract class AbstractProcessBean implements Serializable {
     return !Objects.isNull(process) && process.getType() == ProcessType.IVY_PROCESS;
   }
 
-  public boolean isExpressProcess(Process process) {
-    return !Objects.isNull(process) && process.getType() == ProcessType.EXPRESS_PROCESS;
-  }
-
   public boolean isExternalLink(Process process) {
     return !Objects.isNull(process) && process.getType() == ProcessType.EXTERNAL_LINK;
   }

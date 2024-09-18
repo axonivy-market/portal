@@ -1068,7 +1068,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewProcess: Agregar nuevo proceso
     addNewProcessDialogHeader: Agregar nuevo proceso de usuario
     backToOverview: De regreso a la visión general
-    deleteExpressWorkflowTooltip: Eliminar Express Workflow
     deleteExternalLinkTooltip: Borrar enlace externo
     deleteProcess: Eliminar proceso
     deleteProcessItemConfirmation: ¿Seguro que quiere eliminar el siguiente proceso?
@@ -1079,9 +1078,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dialogEditInfoTitle: '{0} Información'
       dialogHeaderDescription: Aqui puede configurar parámetros relacionados con el proceso seleccionado.
       dialogHeaderTitle: Editar información para {0}
-    editExpressWorkflowTooltip: Editar Express Workflow
     editProcesses: Editar procesos
-    expressWorkflow: Workflow Express
     externalLink: Enlace externo
     externalLinkVisibility: Visibilidad
     goTo: 'Ir a:'
@@ -1711,7 +1708,6 @@ Dialogs:
       UserTask: Tarea
       UserTaskWithEmail: 'Tarea con E-Mail '
     WorkflowDefinition:
-      AbleToStart: Permiso de ejecución
       AddProcessStep: Agregar paso de proceso
       ChooseAssignee:
         AddUserOrRole: 'Selecione un grupo o usuario porfavor:'
@@ -1724,7 +1720,6 @@ Dialogs:
       EndStep: Terminar
       FormDefinitionStep: Definición de formulario
       ProcessNameExists: Este nombre para el flujo de trabajo ya ha sido seleccionado
-      ProcessOwner: Responsable del proceso
       Processdescription: Descripción de proceso
       Processdetails: Propiedades del proceso
       Processflow: Flujo de proceso
