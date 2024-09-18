@@ -4466,17 +4466,6 @@ _:-ms-fullscreen, :root .content-link-history {
 }
 /* =================== END ENHANCEMENT ====================== */
 
-/* =================== ADHOC ============================= */
-.adhoc-task-history-dialog .ui-dialog-content.ui-widget-content {
-  max-height: 50vh;
-  width: 35vw;
-}
-
-.adhoc-task-history-author {
-  display: inline;
-}
-/* ===================== END ADHOC ======================= */
-
 /* =================== ADD CHAT ============================= */
 .chat-assignee-dialog {
   width: 600px !important;
@@ -4741,10 +4730,6 @@ _:-ms-fullscreen, :root .content-link-history {
     max-width: 96vw;
   }
 
-  .adhoc-task-history-dialog .ui-dialog-content.ui-widget-content {
-    margin: 0 !important;
-    width: calc(100vw - 40px) !important;
-  }
   .case-details-data-1st-column {
     padding-right: 10px;
     text-align: left;
@@ -4759,13 +4744,6 @@ _:-ms-fullscreen, :root .content-link-history {
     overflow-x: hidden;
     word-break: break-all;
     margin-top: 0.2em;
-  }
-}
-
-@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
-  .adhoc-task-history-dialog .ui-dialog-content.ui-widget-content {
-    margin: 0 !important;
-    width: calc(80vw - 40px) !important;
   }
 }
 

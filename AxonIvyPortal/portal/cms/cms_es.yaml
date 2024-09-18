@@ -11,16 +11,11 @@ ch.ivy.addon.portal.generic:
     requestTabTitle: Solicitud
     statusTabTitle: Información del caso
   OpenTaskTemplate:
-    adhocHistory: Historial del proceso AdHoc
-    adhocHistoryTooltip: Mostrar historial del proceso AdHoc
     browserTabClosingWarning: Puede perder su trabajo en progreso. ¿Quiere continuar?
     goToAdhocWarning: Puede perder su trabajo en progreso e iniciar el proceso Ad-hoc. ¿Quiere continuar?
     goToSidestepWarning: Sus modificaciones actuales no se guardarán cuando se inicie un proceso de paso lateral directamente desde una tarea. ¿Quiere continuar?
-    noteOfResultFromAdhocProcess: 'Nota: podrá encontrar este historial también en el historial del caso.'
     reCreateAdhocWarning: Ya existe un proceso AdHoc para esta tarea. ¿Desea crear un proceso nuevo?
     resultFromAdhocProcess: Resultados del proceso AdHoc
-    startAdHoc: Comenzar Adhoc
-    startAdHocTooltip: Redirija este proceso usando pasos ad-hoc
   PortalName:
     PortalName: Portal
 ch.ivy.addon.portalkit.ui.jsf:
@@ -111,7 +106,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       BY_CUSTOM_ORDER: Pedido personalizado
       BY_INDEX: Índice de clasificación
     ProcessType:
-      EXPRESS_PROCESS: Flujo de trabajo exprés
       EXTERNAL_LINK: Link externo
       IVY_PROCESS: Proceso de negocio
     ProcessWidgetMode:
