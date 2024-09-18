@@ -6,3 +6,6 @@ Alt + 4,Focus on the Case
 Alt + 5,Focus on the Statistics
 Alt + 6,Focus on the Search icon
 Alt + 7,Focus on the User Settings
+Alt + w,Focus on the first start element within the Task widget's list
+Alt + q,Focus on the first Action element within the Case widget's list
+Alt + a,Focus on the the first row within the Process widget’s list
