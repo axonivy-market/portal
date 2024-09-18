@@ -56,6 +56,12 @@
           actionListener="#{cc.attrs.actionListenerOnDeleteProcess}"
           update="#{cc.attrs.componentToUpdateOnDeleteProcess}"
           rendered="#{canModify}" />
+        <p:menuitem id="more-information"
+          icon="si si-information-circle"
+          url="#{processWidgetBean.getProcessInformationPageUrl(process)}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}"
+          rendered="#{processWidgetBean.isShowInformationLink(process) and !isExpress and !isExternalLink and !isCaseMap}" />
+        
       </p:menu>
     </h:panelGroup>
   </div>
