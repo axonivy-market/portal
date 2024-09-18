@@ -180,13 +180,13 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 1100));
     redirectToRelativeLink(createEventTestUrl);
     CaseDetailsPage detailsPage = setupCustomWidgetByJSONFile("custom-case-details.json");
-//    ScreenshotUtils.executeDecorateJs("highlightCustomWidgetInCaseDetails()");
+    ScreenshotUtils.executeDecorateJs("highlightCustomWidgetInCaseDetails()");
     detailsPage.waitForIFrameWidgetLoad();
     ScreenshotUtils
         .capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-customized-iframe-process");
     refreshPage();
     setupCustomWidgetByJSONFile("custom-case-details-with-url.json");
-//    ScreenshotUtils.executeDecorateJs("highlightCustomWidgetInCaseDetails()");
+    ScreenshotUtils.executeDecorateJs("highlightCustomWidgetInCaseDetails()");
      detailsPage.waitForIFrameURLWidgetLoad();
     ScreenshotUtils
         .capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-customized-iframe-url");
