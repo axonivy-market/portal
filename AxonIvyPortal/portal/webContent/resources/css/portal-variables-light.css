@@ -17,7 +17,7 @@
   /* Color and border radius of Portal button e.g Add, Close, New, Save, OK .. */
   --cancel-button-background-color: var(--ivy-primary-color-grey-light);
   --cancel-button-state-hover-or-focus-background-color: var(--ivy-primary-color-grey-pale);
-  
+  --portal-button-color: var(--ivy-primary-color-black);
   /* Color of secondary button */
   --button-secondary-bg-color: var(--ivy-primary-color-white);
   --button-secondary-text-color: var(--primary-color);
@@ -32,7 +32,6 @@
   --widget-sort-menu-border-bottom-color: var(--ivy-primary-color-grey-light);
   --widget-header-input-field-background-color: transparent;
   --widget-header-input-hover-background-color: transparent;
-  --widget-header-icon: var(--ivy-primary-color-black);
 
   /* Announcement panel color */
   --announcement-background-color: var(--ivy-tertinary-color-yellow-light);
@@ -561,6 +560,7 @@
   --image-process-header-background-color: hsla(0, 0%, 96%, 1);
   --image-process-header-background-color-hover: hsla(0, 0%, 86%, 1);
   --image-process-header-color: hsla(0, 0%, 49%, 1);
+  --image-process-start-button-text-color: var(--ivy-portal-blue-dark);
   /* Process information page */
   --process-info-step-icon-font-color: var(--primary-color);
   /* Widget header */

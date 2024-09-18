@@ -17,6 +17,7 @@
   /* Color and border radius of Portal button e.g Add, Close, New, Save, OK .. */
   --cancel-button-background-color: var(--ivy-primary-color-grey-light);
   --cancel-button-state-hover-or-focus-background-color: var(--ivy-primary-color-grey-pale);
+  --portal-button-color: var(--ivy-primary-color-white);
   
   /* Color of secondary button */
   --button-secondary-bg-color: var(--ivy-primary-color-white);
@@ -31,7 +32,6 @@
   --widget-sort-menu-border-bottom-color: var(--ivy-primary-color-grey-medium);
   --widget-header-input-field-background-color: transparent;
   --widget-header-input-hover-background-color: transparent;
-  --widget-header-icon: var(--ivy-primary-color-white);
   
   /* Side step */
   --sidestep-action-text-color: var(--ivy-primary-color-white);

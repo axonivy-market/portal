@@ -5488,7 +5488,7 @@ border-top: 0.14rem dashed;
 }
 
 .image-view-form .start-process{
-  padding-left: 180px;
+  padding-left: 150px;
   overflow: hidden;
   position: absolute;
   top: -37px;
@@ -5497,9 +5497,14 @@ border-top: 0.14rem dashed;
   text-align: center;
 }
 
+.image-view-form .start-process > button > span{
+  color: var(--image-process-start-button-text-color);
+  font-weight: bold;
+}
+
 @media screen and (min-width: 150em) {
 .image-view-form .start-process{
-  padding-left: 350px;
+  padding-left: 300px;
   overflow: hidden;
   position: absolute;
   top: -37px;
@@ -6130,11 +6135,17 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
   width: 100%;
 }
 
-body .ui-button.ui-button-outlined.ui-no-outlined-icon {
-  border-color: rgba(0, 0, 0, 0) ;
-  color: var(--widget-header-icon);
-}
-
 body .ui-link.ui-sidestep-action {
   color: var(--sidestep-action-text-color);
 }
+
+body .ui-button.ui-button-outlined.ui-no-outlined-portal-icon-button, .ui-button.ui-widget.ui-no-outlined-portal-icon-button {
+  border: transparent ;
+  background: transparent;
+}
+
+body .ui-button.ui-widget.ui-no-outlined-portal-icon-button {
+  color: var(--widget-header-icon);
+  box-shadow: none;
+}
+
