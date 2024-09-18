@@ -22,8 +22,6 @@ public class ExpressProcessService extends JsonConfigurationService<ExpressProce
   private static final String EXPRESS_PROCESSES = PortalVariable.EXPRESS_PROCESS.key;
   private static final String EXPRESS_CREATE_FRIENDLY_REQUEST_PATH =
       "Start Processes/CreateWorkflow/AxonIvyExpressWF.ivp";
-  private static final String EXPRESS_ADHOC_WF_FRIENDLY_REQUEST_PATH =
-      "Start Processes/CreateWorkflow/AxonIvyExpressAdhocWF.ivp";
   private static final String EXPRESS_WORKFLOW_FRIENDLY_REQUEST_PATH =
       "Start Processes/GenericPredefinedWorkflowStart/GenericPredefinedProcessStart.ivp";
   private static final String EXPRESS_WORKFLOW_EDIT_REQUEST_PATH =
@@ -94,10 +92,6 @@ public class ExpressProcessService extends JsonConfigurationService<ExpressProce
     .filter(process -> (process.getProcessType() == ProcessType.EXPRESS_PROCESS) && StringUtils.isNoneBlank(process.getProcessId()) && process.getProcessId().equals(expressProcess.getId()))
     .findFirst()
     .isPresent();
-  }
-  
-  public String findExpressAdhocWFLink() {
-    return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(EXPRESS_ADHOC_WF_FRIENDLY_REQUEST_PATH);
   }
 
   public String findExpressWorkflowStartLink() {

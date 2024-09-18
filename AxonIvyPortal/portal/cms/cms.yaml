@@ -1,6 +1,4 @@
 Categories:
-  AdhocExpressTasks:
-    name: Adhoc Express Tasks
   CreateExpressWorkflow:
     name: Create Express Workflow
   ExpressWorkflow:
@@ -12,10 +10,7 @@ ch.ivy.addon.portal.generic:
     statusTabTitle: Case Information
   OpenTaskTemplate:
     browserTabClosingWarning: You may lose your work in progress. Do you want to continue?
-    goToAdhocWarning: You may lose your work in progress and start the Ad-hoc process. Do you want to continue?
     goToSidestepWarning: Your current modifications will not be saved, when a sidestep process is started directly from a task. Do you want to continue?
-    reCreateAdhocWarning: There is already an adhoc process for this task, do you want to create another one?
-    resultFromAdhocProcess: Results from the Ad-Hoc Process
 ch.ivy.addon.portalkit.ui.jsf:
   AbsenceAndDeputy:
     Messages:
@@ -361,7 +356,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     add: Add
     addDocument: Add document
     addNote: Add note
-    adhoc: Adhoc
     allCategories: All Categories
     allowPng: Only png types allowed
     apply: Apply
@@ -905,8 +899,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     process: Process
     searchResults: Search Results
     searchResultsFor: '{0} search results for "{1}"'
-  sidestep:
-    addAdhocTask: Add Ad-hoc Task
   statistic:
     chart:
       ExpandOrCollapseColumn: Expand/Collapse Columns
@@ -1092,7 +1084,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     expiry: Expiry
     failedDelayValidation: Task delay timestamp cannot be an empty value or invalid date format
     failedExpiryValidation: Task expiry timestamp cannot be in the past.
-    noAdhoc: No Adhoc available
     noDescription: No description
     noNotes: No notes
     processingTime: Processing Time
@@ -1253,8 +1244,6 @@ Dialogs:
     FormDefinition:
       TaskDescription: Please define the form!
       TaskName: Form creation!
-    ProcessLoaded:
-      TaskName: AdHoc Configuration Task
     SaveWorkflow:
       TaskName: Express workflow creation in progress
     TaskDetail:
@@ -1293,7 +1282,6 @@ Dialogs:
   agileBPM:
     TooltipForOriginalTask: Your current task will return once previous steps of the ad hoc workflow are finished.
     define_WF:
-      AdhocWorkflowTasks: Workflow Tasks
       ErrorSelectInvalidAssignee: Assignee is already selected or invalid
       ListOfSelectedUser: List of selected users
       ResponsibleDialogHeader: Responsible Users
@@ -1385,7 +1373,6 @@ Dialogs:
     MaxLabelLenght: '35'
     maxOptionsLength: '20'
   workflowCreation:
-    AdhocProcessName: AdHoc Process for Task {0} - {1}
     FormDefinition:
       AddCheckboxField: Add new field
       AddOptionboxField: Append new option
@@ -1467,7 +1454,6 @@ Dialogs:
       Processflow: Process flow
       Processstep: Process step
       Processtype: Type of process
-      ProcesstypeAdHoc: One time
       ProcesstypeRepeating: Repeatable
       TaskType: Task Type
       UntilDaysTooltip: After expiry, the task will be assigned to Everybody and its priority becomes High.
@@ -1481,7 +1467,6 @@ Dialogs:
         ReqMsgGeneric: ' is a required field!'
     processStep: Process Step
 Labels:
-  AdhocWorkflow: Describe your Workflow
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
   CreateNewDashboard: Create new dashboard
@@ -1496,7 +1481,6 @@ Labels:
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users
   ViewAllResults: View all results
-  adhocTaskRequired: You must add at least one new task.
   disabledUserPrefix: (disabled)
   title: Self Service Ad-hoc Workflow
 patterns:
@@ -1529,17 +1513,8 @@ Processes:
   portalHome: Portal Home
   portalSettingSaved: Portal settings are saved
 ProcessPages:
-  selfServiceAdhocProcess: Axon Ivy Self Service
   selfServiceDescription: 'Self Service Prozess: Launch an ad-hoc Workflow based on a predefined flow pattern.'
 Texts:
-  Adhoc-Explain: |+
-    <P>
-
-    <B>Enter your comment </B>and press <B>Send</B> to proceed the workflow.
-
-    </P>
-
-  AdhocWF-Explain: "<P>\n\nDefine and launch a Workflow at your fingertip: Select a flow pattern, add some tasks and start the Workflow. \n\n</P>\n\n<P>\n\n\n\n</P>\n\n"
   Approval-Explain: |+
     <P>
 

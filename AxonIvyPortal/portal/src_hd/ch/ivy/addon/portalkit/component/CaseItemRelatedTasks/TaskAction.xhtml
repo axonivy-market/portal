@@ -27,7 +27,7 @@
 
       <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-side-steps-menu"
         isDisabled="#{cc.attrs.readOnly or cc.attrs.inFrame}" inFrame="#{inFrame}"
-        panelWidgetVar="task-side-steps-panel-#{rowIndex}" isAdhocExcluded="false" renderedAdditionalAction="#{taskActionBean.showAdditionalOptions(task)}"
+        panelWidgetVar="task-side-steps-panel-#{rowIndex}" renderedAdditionalAction="#{taskActionBean.showAdditionalOptions(task)}"
         task="#{task}" componentToUpdate="#{p:resolveFirstComponentWithId('related-tasks', view).clientId}" currentPortalPage="#{currentPortalPage}" showDetailOption="#{true}" dataModel="#{dataModel}"
         buttonStyleClass="ui-sm-hidden" onDestroyComplete="#{onDestroyComplete}"
         onDelegateComplete="#{onDelegateComplete}"

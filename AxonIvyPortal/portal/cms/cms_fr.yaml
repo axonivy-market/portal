@@ -1,6 +1,4 @@
 Categories:
-  AdhocExpressTasks:
-    name: Tâches Adhoc Express
   CreateExpressWorkflow:
     name: Créer un workflow express
   ExpressWorkflow:
@@ -12,10 +10,7 @@ ch.ivy.addon.portal.generic:
     statusTabTitle: Informations sur le dossier
   OpenTaskTemplate:
     browserTabClosingWarning: Votre travail risque d'être perdu. Souhaitez-vous continuer ?
-    goToAdhocWarning: En démarrant un processus ad hoc, vos données non sauvegardées seront perdues. Voulez-vous continuer?
     goToSidestepWarning: En démarrant un processus sidestep, vos données non sauvegardées seront perdues. Voulez-vous continuer?
-    reCreateAdhocWarning: Il existe déjà un processus ad hoc pour cette tâche, voulez-vous en créer un autre ?
-    resultFromAdhocProcess: Résultats du processus ad hoc
   PortalName:
     PortalName: Portal
 ch.ivy.addon.portalkit.ui.jsf:
@@ -422,7 +417,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     add: Ajouter
     addDocument: Ajouter un document
     addNote: Ajouter une note
-    adhoc: Adhoc
     allCategories: Toutes les catégories
     allowPng: Seulement les types .png autorisés
     apply: Utiliser
@@ -1121,8 +1115,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     process: Processus
     searchResults: Résultats de la recherche
     searchResultsFor: '{0} résultats pour "{1}"'
-  sidestep:
-    addAdhocTask: Ajouter une Ad-hoc tâche
   statistic:
     chart:
       ExpandOrCollapseColumn: Agrandir/réduire les colonnes
@@ -1315,7 +1307,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     expiry: Expiration
     failedDelayValidation: L'horodatage du délai des tâches ne peut pas être une valeur vide ou un format de date non valide
     failedExpiryValidation: L'horodatage de l'expiration des tâches ne peut pas être dans le passé.
-    noAdhoc: Pas d'Adhoc disponible
     noDescription: Aucune description
     noNotes: Aucune note
     processingTime: Durée de traitement
@@ -1480,8 +1471,6 @@ Dialogs:
     FormDefinition:
       TaskDescription: Veuillez définir le formulaire !
       TaskName: Création du formulaire!
-    ProcessLoaded:
-      TaskName: Tâche pour la configuration Adhoc
     SaveWorkflow:
       TaskName: Création de workflow express en cours
     TaskDetail:
@@ -1520,7 +1509,6 @@ Dialogs:
   agileBPM:
     TooltipForOriginalTask: 'Votre tâche actuelle réapparaîtra dès que le workflow ad hoc sera terminé. '
     define_WF:
-      AdhocWorkflowTasks: Tâches du workflow
       ErrorSelectInvalidAssignee: Le destinataire est déjà sélectionné ou invalide
       ListOfSelectedUser: Liste des utilisateurs sélectionnés
       ResponsibleDialogHeader: Utilisateurs responsables
@@ -1655,7 +1643,6 @@ Dialogs:
       invalidSizeMessage: Le fichier est trop volumineux !
       maximumFileUploadElement: Il existe déjà un élément de téléchargement de fichiers
   workflowCreation:
-    AdhocProcessName: AdHoc processues pour tâche {0} - {1}
     FormDefinition:
       AddCheckboxField: Ajouter un nouveau champs
       AddOptionboxField: Ajouter une nouvelle option
@@ -1737,7 +1724,6 @@ Dialogs:
       Processflow: Flux du processus
       Processstep: Étape de processus
       Processtype: Type de processus
-      ProcesstypeAdHoc: Une fois
       ProcesstypeRepeating: Rrépétitif
       TaskType: Type de tâche
       UntilDaysTooltip: Après expiration, la tâche sera assignée au role “Everybody” et sa priorité sera passée en “haute”.
@@ -1751,7 +1737,6 @@ Dialogs:
         ReqMsgGeneric: est un champ obligatoire !
     processStep: Étape du processus
 Labels:
-  AdhocWorkflow: Décrivez votre workflow
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
   CreateNewDashboard: Créer un nouveau tableau de bord
@@ -1841,7 +1826,6 @@ Labels:
   TaskUser-Explain: Liste d’utilisateurs séparés par des virgules
   ToggleMenu: Menu à bascule
   ViewAllResults: Voir tous les résultats
-  adhocTaskRequired: Vous devez ajouter au moins une tâche.
   disabledUserPrefix: (désactivé)
   title: Workflow ad hoc Self Service
 patterns:
@@ -1874,11 +1858,8 @@ Processes:
   portalHome: Page d'accueil
   portalSettingSaved: Les paramètres du portail sont enregistrés
 ProcessPages:
-  selfServiceAdhocProcess: Axon Ivy Self Service
   selfServiceDescription: 'Processus en libre service: lance un workflow ad hoc basé sur un modèle prédéfini. '
 Texts:
-  Adhoc-Explain: '<P>  <B>Rentrez votre commentaire </B>et cliquez sur <B>Envoyer</B> afin de poursuivre.  </P>  '
-  AdhocWF-Explain: "<P>\n\nDéfinir et démarrer un workflow en un clic. \n\n</P>"
   Approval-Explain: "<P>\n\n<B>Veuillez choisir</B> et cliquez sur <B>Envoyer </B>pour poursuivre. \n\n</P>"
   QA-Explain: |-
     <P>

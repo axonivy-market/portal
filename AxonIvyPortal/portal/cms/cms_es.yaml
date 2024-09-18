@@ -1,6 +1,4 @@
 Categories:
-  AdhocExpressTasks:
-    name: Tareas Adhoc de Express
   CreateExpressWorkflow:
     name: Crear Express Workflow
   ExpressWorkflow:
@@ -12,10 +10,7 @@ ch.ivy.addon.portal.generic:
     statusTabTitle: Información del caso
   OpenTaskTemplate:
     browserTabClosingWarning: Puede perder su trabajo en progreso. ¿Quiere continuar?
-    goToAdhocWarning: Puede perder su trabajo en progreso e iniciar el proceso Ad-hoc. ¿Quiere continuar?
     goToSidestepWarning: Sus modificaciones actuales no se guardarán cuando se inicie un proceso de paso lateral directamente desde una tarea. ¿Quiere continuar?
-    reCreateAdhocWarning: Ya existe un proceso AdHoc para esta tarea. ¿Desea crear un proceso nuevo?
-    resultFromAdhocProcess: Resultados del proceso AdHoc
   PortalName:
     PortalName: Portal
 ch.ivy.addon.portalkit.ui.jsf:
@@ -425,7 +420,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     add: Añadir
     addDocument: Agregar documento
     addNote: Agregar nota
-    adhoc: Adhoc
     allCategories: Todas las categorias
     allowPng: Solo se permiten los tipos png
     apply: Aplicar
@@ -1124,8 +1118,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     process: Proceso
     searchResults: Resultados de la búsqueda
     searchResultsFor: '{0} resultados de búsqueda para "{1}"'
-  sidestep:
-    addAdhocTask: Añadir tarea Ad-hoc
   statistic:
     chart:
       ExpandOrCollapseColumn: Abrir/Cerrar columnas
@@ -1321,7 +1313,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     expiry: Expiración
     failedDelayValidation: La marca de tiempo del retraso de la tarea no puede ser un valor vacío o un formato de fecha inválido
     failedExpiryValidation: La fecha de vencimiento de la tarea no puede estar en el pasado.
-    noAdhoc: Proceso AdHoc no disponible
     noDescription: Sin descripción
     noNotes: Sin notas
     processingTime: Tiempo de procesado
@@ -1486,8 +1477,6 @@ Dialogs:
     FormDefinition:
       TaskDescription: ¡Por favor define el formulario!
       TaskName: ¡Creación de formulario!
-    ProcessLoaded:
-      TaskName: Tarea para configurar el proceso Adhoc
     SaveWorkflow:
       TaskName: El flujo de trabajo express en tramitación
     TaskDetail:
@@ -1526,7 +1515,6 @@ Dialogs:
   agileBPM:
     TooltipForOriginalTask: Su tarea actual volverá a evaluarse cuando estén completados los flujos de trabajo ad hoc previos.
     define_WF:
-      AdhocWorkflowTasks: Tareas del flujo de trabajo
       ErrorSelectInvalidAssignee: El destinatario ya está seleccionado o es inválido
       ListOfSelectedUser: Lista de usuarios seleccionados
       ResponsibleDialogHeader: Usuarios responsables
@@ -1661,7 +1649,6 @@ Dialogs:
       invalidSizeMessage: ¡El archivo es muy grande!
       maximumFileUploadElement: Ya existe un elemento de subir documentos
   workflowCreation:
-    AdhocProcessName: Proceso adHoc para la tarea {0} - {1}
     FormDefinition:
       AddCheckboxField: Agregar nuevo campo
       AddOptionboxField: Anexar nueva opción
@@ -1743,7 +1730,6 @@ Dialogs:
       Processflow: Flujo de proceso
       Processstep: Paso del proceso
       Processtype: Tipo de proceso
-      ProcesstypeAdHoc: Una vez
       ProcesstypeRepeating: Recurrente
       TaskType: Tipo de tarea
       UntilDaysTooltip: Después de la fecha de caducidad, esta tarea será asignada al grupo "todos" y su prioridad será alta
@@ -1757,7 +1743,6 @@ Dialogs:
         ReqMsgGeneric: ¡Es un campo requerido!
     processStep: Paso del proceso
 Labels:
-  AdhocWorkflow: Describe tu Flujo de Trabajo
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
   CreateNewDashboard: Crear un nuevo cuadro de mandos
@@ -1855,7 +1840,6 @@ Labels:
   TaskUser-Explain: Lista de usuario separados por coma
   ToggleMenu: Menú alternativo
   ViewAllResults: Ver todos los resultados
-  adhocTaskRequired: Deberá agregar al menos una tarea.
   disabledUserPrefix: (inactivo)
   title: Flujo de trabajo Ad-hoc de auto servicio
 patterns:
@@ -1888,17 +1872,8 @@ Processes:
   portalHome: Portal Principal
   portalSettingSaved: Ajustes del portal guardados
 ProcessPages:
-  selfServiceAdhocProcess: Auto servicio Axon Ivy
   selfServiceDescription: 'Proceso de auto servicio: Lanzar un flujo de trabajo ad-hoc basado en un patrón de flujo predefinido'
 Texts:
-  Adhoc-Explain: |+
-    <P>
-
-    <B>Introduzca sus comentarios </B>y presione <B>Enviar</B> para proceder al flujo de trabajo.
-
-    </P>
-
-  AdhocWF-Explain: "<P>\n\nDefinir y lanzar un flujo de trabajo es muy sencillo: seleccione un patrón de flujo, agregue algunas tareas y empieze el flujo de trabajo. \n\n</P>\n\n<P>\n\n\n\n</P>\n\n"
   Approval-Explain: |+
     <P>
 
