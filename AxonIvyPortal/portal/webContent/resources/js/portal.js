@@ -562,6 +562,9 @@ $(document).ready(function() {
           event.preventDefault();
           var focusedElement = $(focusableElements[index]);
           removeFocusedElements();
+          taskIndex = 0;
+          caseIndex = 0;
+          processIndex = 0;
           
           focusedElement.addClass('focused');
           focusedElement.focus();
@@ -577,11 +580,8 @@ $(document).ready(function() {
         }
 
         removeFocusedElements();
-
-        // taskList.each(function() {
-        //   $(this).removeClass('focused');
-        //   $(this).blur();
-        // });
+        caseIndex = 0;
+        processIndex = 0;
 
         focusedTask = $(taskList[taskIndex]);
         focusedTask.addClass('focused');
@@ -591,7 +591,6 @@ $(document).ready(function() {
 
       //Short cuts for Case widget
       if (event.key == 'q') {
-        //var caseList = $('[id$="case-component:dashboard-cases"]').find('table tr').find('td.dashboard-cases__name');
         var caseList = $('[id$="case-component:dashboard-cases"]').find('[id$=":dashboard-case-side-steps-menu"]');
         
         if(caseIndex >= caseList.length) {
@@ -599,11 +598,8 @@ $(document).ready(function() {
         }
 
         removeFocusedElements();
-
-        // caseList.each(function() {
-        //   $(this).removeClass('focused');
-        //   $(this).blur();
-        // });
+        taskIndex = 0;
+        processIndex = 0;
 
         focusedCase = $(caseList[caseIndex]);
         focusedCase.addClass('focused');
@@ -620,11 +616,8 @@ $(document).ready(function() {
         }
 
         removeFocusedElements();
-
-        // processList.each(function() {
-        //   $(this).removeClass('focused');
-        //   $(this).blur();
-        // });
+        taskIndex = 0;
+        caseIndex = 0;
 
         focusedProcess = $(processList[processIndex]);
         focusedProcess.addClass('focused');
@@ -639,12 +632,12 @@ $(document).ready(function() {
         collapseWidgetBtn.click();
       }
 
-      var sideActionCloseBtn = $('[id*="action-steps-panel"]:visible').find('.ui-overlaypanel-close');  
+      var sideActionCloseBtn = $('[id*="action-steps-panel"]:visible').find('.ui-overlaypanel-close');
       if (sideActionCloseBtn) {
         sideActionCloseBtn.click();
       }
 
-      var sideStepCloseBtn = $('[id*="side-steps-panel"]:visible').find('.ui-overlaypanel-close');  
+      var sideStepCloseBtn = $('[id*="side-steps-panel"]:visible').find('.ui-overlaypanel-close');
       if (sideStepCloseBtn) {
         sideStepCloseBtn.click();
       }
