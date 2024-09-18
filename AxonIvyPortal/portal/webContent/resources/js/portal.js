@@ -522,10 +522,30 @@ $(document).ready(function() {
         $(searchIconId),
         $(useSettingMenuId),
     ];
+
+    let taskIndex = 0;
+    let caseIndex = 0;
+    let processIndex = 0;
+    let focusedTask;
+    let focusedCase;
+    let focusedProcess;
+
     function removeFocusedElements() {
       focusableElements.forEach(function(el) {
         $(el).removeClass('focused');
       });
+      if(focusedTask) {
+        focusedTask.removeClass('focused');
+        focusedTask.blur();
+      }
+      if(focusedCase) {
+        focusedCase.removeClass('focused');
+        focusedCase.blur();
+      }
+      if(focusedProcess) {
+        focusedProcess.removeClass('focused');
+        focusedProcess.blur();
+      }
     }
      $(document).on('click', function(event) {
         if (!$(event.target).closest('.focusable').length) {
@@ -548,10 +568,85 @@ $(document).ready(function() {
       }
     }
 
+    if (event.altKey) {
+      //Short cuts for Task widget
+      if (event.key == 'w') {
+        var taskList = $('[id$=":start-task"]');
+        if(taskIndex >= taskList.length) {
+          taskIndex = 0;
+        }
+
+        removeFocusedElements();
+
+        // taskList.each(function() {
+        //   $(this).removeClass('focused');
+        //   $(this).blur();
+        // });
+
+        focusedTask = $(taskList[taskIndex]);
+        focusedTask.addClass('focused');
+        focusedTask.focus();
+        taskIndex++;
+      }
+
+      //Short cuts for Case widget
+      if (event.key == 'q') {
+        //var caseList = $('[id$="case-component:dashboard-cases"]').find('table tr').find('td.dashboard-cases__name');
+        var caseList = $('[id$="case-component:dashboard-cases"]').find('[id$=":dashboard-case-side-steps-menu"]');
+        
+        if(caseIndex >= caseList.length) {
+          caseIndex = 0;
+        }
+
+        removeFocusedElements();
+
+        // caseList.each(function() {
+        //   $(this).removeClass('focused');
+        //   $(this).blur();
+        // });
+
+        focusedCase = $(caseList[caseIndex]);
+        focusedCase.addClass('focused');
+        focusedCase.focus();
+        caseIndex++;
+      }
+
+      //Short cuts for Process widget
+      if (event.key == 'a') {
+        var processList = $('[id$=":process-component:process-list"]').find('a');
+        
+        if(processIndex >= processList.length) {
+          processIndex = 0;
+        }
+
+        removeFocusedElements();
+
+        // processList.each(function() {
+        //   $(this).removeClass('focused');
+        //   $(this).blur();
+        // });
+
+        focusedProcess = $(processList[processIndex]);
+        focusedProcess.addClass('focused');
+        focusedProcess.focus();
+        processIndex++;
+      }
+    }
+
     if (event.key === 'Escape') {
       var collapseWidgetBtn = $('[id*="collapse-link"]:visible');
       if (collapseWidgetBtn) {
         collapseWidgetBtn.click();
+      }
+
+      var sideActionCloseBtn = $('[id*="action-steps-panel"]:visible').find('.ui-overlaypanel-close');  
+      if (sideActionCloseBtn) {
+        sideActionCloseBtn.click();
+      }
+
+      var sideStepCloseBtn = $('[id*="side-steps-panel"]:visible').find('.ui-overlaypanel-close');  
+      if (sideStepCloseBtn) {
+        sideStepCloseBtn.click();
       }
     }
   }); 
