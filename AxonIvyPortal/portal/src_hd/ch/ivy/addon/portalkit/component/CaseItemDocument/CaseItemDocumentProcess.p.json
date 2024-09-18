@@ -129,7 +129,7 @@
       "id" : "f24",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 416, "y" : 448 }
+        "at" : { "x" : 664, "y" : 448 }
       }
     }, {
       "id" : "f3",
@@ -393,7 +393,7 @@
         "at" : { "x" : 256, "y" : 448 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f25", "to" : "f24" }
+      "connect" : { "id" : "f37", "to" : "f17" }
     }, {
       "id" : "f5",
       "type" : "SubProcessCall",
@@ -437,5 +437,29 @@
         "at" : { "x" : 976, "y" : 288 }
       },
       "connect" : { "id" : "f34", "to" : "f51" }
+    }, {
+      "id" : "f17",
+      "type" : "Script",
+      "name" : "can preview file?",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.util.Arrays;",
+            "",
+            "",
+            "if (in.streamedContent != null){",
+            "  ivy.log.error(\"===========:\" + in.streamedContent.getContentType());",
+            "  List<String> supportedPreview = Arrays.asList(\"image/png\", \"application/pdf\", \"text/plain\");",
+            "  in.canPreview = supportedPreview.contains(in.streamedContent.getContentType());",
+            "} else {",
+            "  in.canPreview = false;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 440, "y" : 448 }
+      },
+      "connect" : { "id" : "f25", "to" : "f24" }
     } ]
 }
