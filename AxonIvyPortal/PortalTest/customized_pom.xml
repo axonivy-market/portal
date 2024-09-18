@@ -7,8 +7,8 @@
   <packaging>iar</packaging>
   <properties>
     <powermock.version>2.0.2</powermock.version>
-    <build.plugin.version>11.4.0-SNAPSHOT</build.plugin.version>
-    <ivy.engine.version>11.4.0</ivy.engine.version>
+    <build.plugin.version>12.0.0-SNAPSHOT</build.plugin.version>
+    <ivy.engine.version>12.0.0</ivy.engine.version>
   </properties>
   <dependencies>
     <dependency>
