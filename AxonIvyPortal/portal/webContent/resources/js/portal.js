@@ -573,7 +573,8 @@ $(document).ready(function() {
 
     if (event.altKey) {
       //Short cuts for Task widget
-      if (event.key == 'w') {
+      var key = event.key.toLowerCase();
+      if (key == 'w') {
         var taskList = $('[id$=":start-task"]');
         if(taskIndex >= taskList.length) {
           taskIndex = 0;
@@ -590,7 +591,7 @@ $(document).ready(function() {
       }
 
       //Short cuts for Case widget
-      if (event.key == 'q') {
+      if (key == 'q') {
         var caseList = $('[id$="case-component:dashboard-cases"]').find('[id$=":dashboard-case-side-steps-menu"]');
         
         if(caseIndex >= caseList.length) {
@@ -608,7 +609,7 @@ $(document).ready(function() {
       }
 
       //Short cuts for Process widget
-      if (event.key == 'a') {
+      if (key == 'a') {
         var processList = $('[id$=":process-component:process-list"]').find('a');
         
         if(processIndex >= processList.length) {
