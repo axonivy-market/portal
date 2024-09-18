@@ -100,7 +100,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CONTRACT: Contrat
       DOCUMENTATION: Documentation
       EMAIL: Courriel electronique
-      INFORMATION: nformation
+      INFORMATION: Information
       OTHERS: Autres
     BehaviourWhenClickingOnLineInTaskList:
       ACCESS_TASK_DETAILS: Accéder aux détails de la tâche
@@ -401,7 +401,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     DESTROYED_UPPERCASE: SUPPRIMÉ
     DONE: Terminé
     DONE_UPPERCASE: TERMINEE
-    FAILED: Échoué
+    FAILED: ÉCHEC
     INPROGRESS: EN COURS
     OPEN: Ouverte
     OPEN_UPPERCASE: OUVERTE
@@ -441,7 +441,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ResetToDefaultHeaderText: Réinitialiser les paramètres par défaut ?
     RoleUserInformation: Informations sur le rôle et l'utilisateur
     TaskCaseInformation: Informations sur les tâches et les cas
-    Update: Update
+    Update: Mettre à jour
     action: Actions
     active: Activé
     add: Ajouter
@@ -473,7 +473,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     continue: Continuer
     create: Créé
     creationDate: Date de création
-    dashboard: Dashboard
+    dashboard: Tableau de bord
     data: Données
     dateFromBiggerThanTo: '"Au" doit être ultérieur à "Depuis"'
     dateRequired: La date doit être remplie
@@ -810,9 +810,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     QuickSearchInfo: Vous pouvez personnaliser la portée de la recherche rapide dans la gestion des colonnes des widgets. La recherche se fait sur la base du critère "contient", mais soyez attentif à la performance lorsque vous ajoutez de nombreuses colonnes.
     QuickSearchScope: 'Étendue de la recherche: {0}'
     RestoreDefaultDashboardMessage: Si vous procédez ainsi, vous perdrez tous les widgets que vous avez créés. Les paramètres standard de <span class="dashboard-template-name-message">{0}</span> seront appliqués.
-    SaveNewWidgetFilterHeader: Save a new widget filter
-    SavedFilterHeader: Saved filters
-    SearchForFilter: Search for filter
+    SaveNewWidgetFilterHeader: Enregistrer un nouveau filtre de widget
+    SavedFilterHeader: Filtres enregistrés
+    SearchForFilter: Rechercher un filtre
     ShareThisDashboard: Partager ce tableau de bord
     StatisticWidget:
       AvailableCharts: Graphiques de statistiques disponibles
@@ -1071,7 +1071,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   passwordSetting:
     changePasswordWSError: Une error s'est produite lors du changement de mot de passe. Veuillez contacter votre administrateur si le problème persiste après plusieurs essais.
     confirmNewPassword: Confirmer le nouveau mot de passe
-    confirmPasswordHaveMatch: The entered new password did not match with confirmed password.
+    confirmPasswordHaveMatch: Le nouveau mot de passe saisi ne correspond pas au mot de passe confirmé.
     currentPassword: Mot de passe actuel
     minCharacterRequired: être d'au moins {0} caractères
     minLowercaseCharacterRequired: contenir au moins {0} caractère minuscule
@@ -1441,7 +1441,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     READY_FOR_JOIN: Prêt pour la jonction
     READY_FOR_JOINING: Prêt pour la jonction
     READY_FOR_JOINING_UPPERCASE: PRÊT POUR LA JONCTION
-    READY_FOR_JOIN_UPPERCASE: READY FOR JOIN
+    READY_FOR_JOIN_UPPERCASE: PRÊT À REJOINDRE
     RESERVED: RESERVEE
     RESUMED: En cours
     SUSPENDED: Affecté
@@ -1595,7 +1595,7 @@ Dialogs:
         component:
           ShareLinkDialog:
             CopyLink: Copier le lien
-            LinkCopied: Lien copié !
+            LinkCopied: Lien copié
         dashboard:
           component:
             DashboardImportDetails:
@@ -1779,7 +1779,7 @@ patterns:
   timestampPattern: HH:mm:ss.SSS
 Processes:
   Cases:
-    PortalCategory: Portail
+    PortalCategory: Portal
     PortalInternalProcess:
       PortalInternalProcessDescription: Ceci est un processus interne du portail
     SynchronizeDataProcess:

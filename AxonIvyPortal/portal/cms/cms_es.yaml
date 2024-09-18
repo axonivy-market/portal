@@ -474,7 +474,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     continue: Continuar
     create: Creado
     creationDate: Fecha de creación
-    dashboard: Tablero
+    dashboard: Dashboard
     data: Datos
     dateFromBiggerThanTo: Hasta' debe ser después de 'Desde'
     dateRequired: La fecha no puede estar vacía.
@@ -693,7 +693,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         startDeployLog: Empezando el despliegue de los procesos del documento {0}
         status:
           error: Error
-          failed: Error
+          failed: Fallido
           info: Info
           successful: Éxito
           warning: Atención
@@ -812,7 +812,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     RestoreDefaultDashboardMessage: Si continúa, perderá todos los widgets creados por usted. Se aplicará la configuración estándar de <span class="dashboard-template-name-message">{0}</span>.
     SaveNewWidgetFilterHeader: Guardar un nuevo filtro de widget
     SavedFilterHeader: Filtros guardados
-    SearchForFilter: Búsqueda del filtro
+    SearchForFilter: Buscar un filtro
     ShareThisDashboard: Comparte este panel
     StatisticWidget:
       AvailableCharts: Gráficos estadísticos disponibles
@@ -1071,7 +1071,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   passwordSetting:
     changePasswordWSError: Se produjo un error al cambiar su contraseña. Póngase en contacto con su administrador si este problema persiste.
     confirmNewPassword: Confirmar nueva contraseña
-    confirmPasswordHaveMatch: La contraseña introducida, no coincide con la contraseña confirmada
+    confirmPasswordHaveMatch: La nueva contraseña introducida no coincide con la contraseña confirmada.
     currentPassword: Contraseña actual
     minCharacterRequired: tener al menos {0} caracteres
     minLowercaseCharacterRequired: contienen al menos {0} caracteres en minúscula
@@ -1443,8 +1443,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     PARKED: Reservado
     READY_FOR_JOIN: Listo para unirse
     READY_FOR_JOINING: Listo para unirse
-    READY_FOR_JOINING_UPPERCASE: Listo para unirse
-    READY_FOR_JOIN_UPPERCASE: READY FOR JOIN
+    READY_FOR_JOINING_UPPERCASE: LISTO PARA UNIRSE
+    READY_FOR_JOIN_UPPERCASE: LISTO PARA UNIRSE
     RESERVED: Resevardo
     RESUMED: En progreso
     SUSPENDED: Suspendido
@@ -1597,8 +1597,8 @@ Dialogs:
       portal:
         component:
           ShareLinkDialog:
-            CopyLink: Copiar link
-            LinkCopied: ¡Enlace copiado!
+            CopyLink: Copiar enlace
+            LinkCopied: Enlace copiado
         dashboard:
           component:
             DashboardImportDetails:
