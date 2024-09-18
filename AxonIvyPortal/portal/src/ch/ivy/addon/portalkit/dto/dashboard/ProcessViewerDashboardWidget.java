@@ -16,6 +16,7 @@ public class ProcessViewerDashboardWidget extends DashboardWidget {
   private String processPath;
   @JsonIgnore
   private DashboardProcess process;
+  private boolean showFullscreenMode;
 
   @Override
   public DashboardWidgetType getType() {
@@ -39,6 +40,7 @@ public class ProcessViewerDashboardWidget extends DashboardWidget {
     result.getLayout().setHeight(6);
     result.getLayout().setAxisX(0);
     result.getLayout().setAxisY(0);
+    result.setShowFullscreenMode(true);
     return result;
   }
 
@@ -69,4 +71,13 @@ public class ProcessViewerDashboardWidget extends DashboardWidget {
 
   @Override
   public void cancelUserFilter() {}
+
+  public void setShowFullscreenMode(boolean showFullscreenMode) {
+    this.showFullscreenMode = showFullscreenMode;
+  }
+
+  public boolean isShowFullscreenMode() {
+    return showFullscreenMode;
+  }
+
 }
