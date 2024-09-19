@@ -1187,8 +1187,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       emptystate:
         defaultEmptyMessages: No hay tabla de estadísticas para mostrar.
       exception:
-        idNotFound: 'Chart Id not found with id: {0}'
-        noPermission: You do not have the permission to send this request!
+        idNotFound: 'Grafico ID no encontrado con id: {0}'
+        noPermission: ¡No tienes permiso para enviar esta solicitud!
       expiryPeriod: Período de caducidad
       loadingCharts: Por favor espere, los diagramas se están cargando
       moveLeft: Muévete a la izquierda
@@ -1587,7 +1587,7 @@ Dialogs:
               CaseOwner: Responsable del proceso
               Finished: Terminado
               GlobalSearchText: Los casos contienen la palabra clave "{0}" en ID del caso{1}.
-              ShowBusinessDetails: detalles del negocio
+              ShowBusinessDetails: Detalles del negocio
               caseNameNotAvailable: '[Nombre del caso no disponible]'
               defaultEmptyMessage: No hay casos
             CustomIFrameWidget:
@@ -1608,7 +1608,7 @@ Dialogs:
         component:
           ShareLinkDialog:
             CopyLink: Copiar enlace
-            LinkCopied: Enlace copiado
+            LinkCopied: ¡Enlace copiado
         dashboard:
           component:
             CaseWidgetConfiguration:
@@ -1806,13 +1806,13 @@ Labels:
       END_WITH: Termina con
       EQUAL: Igualdad
       GREATER: Greater
-      GREATER_OR_EQUAL: Greater or equal
+      GREATER_OR_EQUAL: Mayor o igual
       IN: En
       IS: Es
       IS_NOT: No es
       LAST: En los últimos
       LESS: Less
-      LESS_OR_EQUAL: Less or equal
+      LESS_OR_EQUAL: Menor o igual
       NEXT: En los próximos
       NOT_BETWEEN: No entre
       NOT_CONTAINS: No contiene
