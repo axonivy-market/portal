@@ -562,6 +562,9 @@ $(document).ready(function() {
       if (event.key === 'Tab') {
         removeFocusedElements();
     }
+    var caseActionStepsPanel = $('[id*="action-steps-panel"]:visible');
+    var caseActionStepsPanelVisible = caseActionStepsPanel.length > 0;
+
     if (event.altKey && !isNaN(event.key) && event.key >= '1' && event.key <= '9') {
       var index = parseInt(event.key) - 1;
       if (index >= 0 && index < focusableElements.length) {
@@ -569,9 +572,12 @@ $(document).ready(function() {
           var focusedElement = $(focusableElements[index]);
           removeFocusedElements();
           taskIndex = 0;
-          caseIndex = 0;
           processIndex = 0;
-          caseSideStepIndex = 0;
+          if(caseActionStepsPanelVisible) {
+            caseSideStepIndex = 0;
+          } else {
+            caseIndex = 0;
+          }
           
           focusedElement.addClass('focused');
           focusedElement.focus();
@@ -588,9 +594,12 @@ $(document).ready(function() {
         }
 
         removeFocusedElements();
-        caseIndex = 0;
         processIndex = 0;
-        caseSideStepIndex = 0;
+        if(caseActionStepsPanelVisible) {
+          caseSideStepIndex = 0;
+        } else {
+          caseIndex = 0;
+        }
 
         focusedTaskEl = $(taskList[taskIndex]);
         focusedTaskEl.addClass('focused');
@@ -600,8 +609,7 @@ $(document).ready(function() {
 
       //Short cuts for Case widget
       if (key == 'q') {
-        var caseActionStepsPanel = $('[id*="action-steps-panel"]:visible');
-        if(caseActionStepsPanel.length > 0) {
+        if(caseActionStepsPanelVisible) {
           var steps = caseActionStepsPanel.find('div.ui-overlaypanel-content a');
           
           if(caseSideStepIndex >= steps.length) {
@@ -643,8 +651,11 @@ $(document).ready(function() {
 
         removeFocusedElements();
         taskIndex = 0;
-        caseIndex = 0;
-        caseSideStepIndex = 0;
+        if(caseActionStepsPanelVisible) {
+          caseSideStepIndex = 0;
+        } else {
+          caseIndex = 0;
+        }
 
         focusedProcessEl = $(processList[processIndex]);
         focusedProcessEl.addClass('focused');
@@ -662,6 +673,11 @@ $(document).ready(function() {
       var caseSideActionCloseBtn = $('[id*="action-steps-panel"]:visible').find('.ui-overlaypanel-close');
       if (caseSideActionCloseBtn.length > 0) {
         caseSideActionCloseBtn.click();
+
+        if(focusedCaseEl) {
+          focusedCaseEl.addClass('focused');
+          focusedCaseEl.focus();
+        }
       }
 
       var taskSideActionCloseBtn = $('[id*="side-steps-panel"]:visible').find('.ui-overlaypanel-close');
