@@ -7,7 +7,6 @@ public enum PortalVariable {
   STATISTIC_CHART("Portal.StatisticCharts"),
   WIDGET_FILTER("Portal.Dashboard.WidgetFilters"),
   EXTERNAL_LINK("Portal.Processes.ExternalLinks"),
-  EXPRESS_PROCESS("Portal.Processes.ExpressProcesses"),
   TASK_DETAIL("Portal.TaskDetails"),
   CASE_DETAIL("Portal.CaseDetails"),
   DASHBOARD("Portal.Dashboard"),

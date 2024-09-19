@@ -1,8 +1,3 @@
-Categories:
-  CreateExpressWorkflow:
-    name: Express Workflow erstellen
-  ExpressWorkflow:
-    name: Express-Workflow
 ch.ivy.addon.portal.generic:
   CaseDetailsTemplate:
     noCaseId: Keine Vorgangs-ID spezifiziert
@@ -241,7 +236,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableProcessViewer: Setzen Sie diese Einstellung auf true, um die Prozess-Viewer-Option in Aufgaben-/Vorgang-Aktionen zu aktivieren
       enableScriptCheckingForUploadedDocumentNote: 'Auf "true" setzen, um die Skriptüberprüfung zu aktivieren. Es werden die Formate PDF, Excel und Word unterstützt. '
       enableVirusScannerForUploadedDocumentNote: Auf true setzen, um den Virenscanner für das hochgeladene Dokument zu aktivieren. Derzeit verwendet diese Funktion die API VIRUSTOTAL.
-      expressEndPageNote: Anzeigen der angepassten Endseite nach dem Ende eines Express Prozesses.
       hideCaseCreator: |
         Auf true setzen, um den Fallersteller in der Fallliste, dem Fall-Widget und den Falldetails auszublenden.
         Diese Einstellung wirkt sich auf alle Fallabfragen aus, z. B. für Fallliste, globale Suche, Statistik.
@@ -640,45 +634,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       noUser: Es sind keine Benutzer vorhanden.
       tooltipHelper: Klicken Sie hier, um alle Benutzer anzuzeigen, die diese Rolle direkt oder indirekt besitzen
       userOfRoleTitle: Benutzer der Gruppe {0}
-    expressManagement:
-      deployButton: Hochladen
-      deployMessage: Prozesse werden deployt
-      exportExpress: Export Express
-      exportExpressProcessTitle: Export Express Prozesse
-      expressExportName: AXONIVY_Dataset_ExpressWorkflow_{0}.json
-      expressManagement: Express Management
-      expressMessages:
-        deployErrorLog: Fehler beim Deployen {0}
-        deploymentFinishedLog: Prozess(e) der Datei {0} erfolgreich im Portal deployt in {1}ms
-        endDeployLog: Express Deployment beendet
-        invalidVersionLog: Nicht unterstützte Version {0} von Express
-        process:
-          duplicateProcessNameLog: '- Duplizierter Prozessname {0}'
-          installProcessFailedLog: '- Prozessdeployment {0} fehlgeschlagen'
-          installProcessFinishedLog: Installation von Prozess {0} erfolgreich
-          installedProcessLog: Prozess installiert {0}
-          startDeployProcessLog: Start des Deployments von Prozess {0}
-        startDeployLog: Start des Deployments des/der Express-Prozesses(e) der Datei {0} ins Portal
-        status:
-          error: Fehler
-          failed: Fehlgeschlagen
-          info: Info
-          successful: Erfolg
-          warning: Warnung
-        validate:
-          validateExpressVersion: Die Variable Express-Version konnte im System nicht gefunden werden. Bitte kontaktieren Sie Ihren Administrator.
-          validateProcessCoOwnerLog: '- Validierung des Prozesses Co-Owner von {0}, Benutzer {1} ist nicht im System verfügbar'
-          validateProcessOwnerLog: '- Validierung des Prozesses Owner von {0}, Benutzer {1} ist nicht im System verfügbar, ändern Sie den Prozesseigner auf {2}'
-          validateProcessPermissionLog: '- Validierung der Prozessberechtigung von {0}, Benutzer {1} ist im System nicht verfügbar'
-          validateTaskDefUserLog: '- Validierung der Task-Definition Verantwortliche von {0},Benutzer {1} ist im System nicht verfügbar'
-        versionLog: 'Express Version: {0}'
-      fileEmptyMessage: Datei ist leer
-      importDialogHeaderTitle: Wählen Sie ein Dataset für den Express-Workflow, es sollte eine JSON-Datei sein.
-      importExpress: Express importieren
-      importExpressProcessTitle: Express Prozess importieren
-      importHeaderTitle: 'Liste von Express Prozessen werden exportiert:'
-      processCount: Prozess(e)
-      waitingMessage: Daten werden gesammelt…
     passwordValidation:
       criteria: Kriterien
       enablePasswordValidation: Kennwortüberprüfung einschalten
@@ -961,6 +916,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processElementId: Prozesselement Id
     stackTrace: StackTrace
   forgotPassword:
+    EmailAddress: E-Mail Adresse
     empty: Leer
     forgotPassword: Ich habe mein Passwort vergessen.
     forgotPasswordError: Bei der Bearbeitung Ihrer Anfrage ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.
@@ -1459,54 +1415,11 @@ Dialogs:
       CaseDescription: Bearbeiten eines existierenden Workflows
       CaseName: Workflow editieren
   Tasks:
-    CreateWorkflow:
-      TaskDescription: Workflow wurde angelegt
-      TaskName: Workflow wurde angelegt
-    EditWorkflow:
-      TaskDescription: Ein Prozess wurde bearbeitet
-      TaskName: Prozess bearbeitet
-    FinalReview:
-      TaskName: Schlusskontrolle
-    FinalWorkflowTask:
-      taskDescription: Der Prozess {0} wurde beendet!
-    FormDefinition:
-      TaskDescription: Bitte definieren Sie das Formular!
-      TaskName: Formulardefinition!
-    SaveWorkflow:
-      TaskName: Ein Express Workflowprozess ist gerade am Entstehen
     TaskDetail:
       DataDescription: Daten und Beschreibung
       restoreToDefaultSettings: Standardeinstellungen wiederherstellen
       switchToEditMode: Bearbeiten
       switchToViewMode: Speichern
-    WorkflowProperties:
-      TaskDescription: Bitte definieren Sie die Workfloweigenschaften!
-      TaskName: Workflow Einstellungen
-  WorkflowExecution:
-    ApprovalForm:
-      Approve: Genehmigen!
-      ApproveComment: Genehmigen
-      CommentLabel: Kommentar des Genehmigers
-      FieldSetApplicant: Antragssteller
-      FieldSetForm: Formular
-      FinishedTasks: Erledigte Aufgaben
-      Fullname: vollständiger Name
-      Reject: Ablehnen!
-      RejectComment: Ablehnen
-    FinalReviewForm:
-      approvalStatus: Freigabestatus
-      approver: Genehmiger
-      noticed: Zur Kenntnis genommen!
-    FinishedTasksForm:
-      Applicant: Antragssteller
-      ApprovalResult: Freigabestatus
-      FinishedTasks: Erledigte Aufgaben
-      FormDetails: Formulardetails
-    UserTaskForm:
-      ApprovalResult:
-        Approved: Genehmigt
-        Rejected: Abgelehnt
-      Formular: Formular
   agileBPM:
     TooltipForOriginalTask: Ihre aktuelle Aufgabe wird wieder auftauchen sobald der Ad hoc Workflow fertiggestellt ist.
     define_WF:
@@ -1526,14 +1439,6 @@ Dialogs:
   ch:
     ivy:
       addon:
-        express:
-          generic:
-            endpage:
-              subtitle: Die letzte Aufgabe wurde erfolgreich abgeschlossen
-              title: Aufgabe erfolgreich abgeschlossen!
-            expressNoItem: Es gibt noch keine abgeschlossene Express Aufgabe
-            expressNoItemDescription: Hier werden die Ergebnisse der abgeschlossenen Aufgaben angezeigt
-            expressWorkflowName: 'Business Details des Vorgangs: #{0}'
         portal:
           generic:
             GlobalSearch:
@@ -1643,98 +1548,6 @@ Dialogs:
       invalidFileMessage: Dateityp nicht gültig!
       invalidSizeMessage: Datei zu groß!
       maximumFileUploadElement: Es gibt bereits ein Datei-Upload-Element
-  workflowCreation:
-    FormDefinition:
-      AddCheckboxField: Neues Feld hinzufügen
-      AddOptionboxField: Neue Option hinzufügen
-      AllowedFiletypes: Erlaubte Dateiformate
-      BroadFooterArea: Breiter Footer Bereich
-      BroadHeaderArea: Breiter Header Bereich
-      CheckboxFields: Auswahlfelder
-      CreateField: Erstellen
-      DataProvider: Datenanbieter
-      DragAndDropTooltip: Ziehen Sie per Drag and Drop die verfügbaren Elemente in den Header, die linke Spalte, die rechte Spalte oder in den Footer um sie zu platzieren!
-      ElementLabel: Label
-      ElementName: Elementbezeichnung
-      Email:
-        Attachment: Anhang
-        EmailAddress: E-Mail Adresse
-        EmailText: Emailnachricht
-        ResponseTo: Antwort an
-        Subject: Betreff
-      ExecuteWorkflow: Workflow direkt ausführen
-      ExecuteWorkflowWarning: Sie müssen alle Aufgaben ausführen, bevor Sie diesen Workflow ausführen können
-      FieldSetAvailableFormelements: Formularelemente
-      FieldSetFormelements: Formularelemente erstellen
-      FieldSetFormelementsPlacing: Platzierung der Formularelemente
-      FieldSetPreviewArea: Formularvorschau
-      FinishWorkflow: Workflowende
-      InputArea: Eingabebereich
-      InputCheckbox: Auswahlfeld
-      InputField: Eingabefeld
-      InputFileUpload: Dateiupload
-      InputOptions: Optionsfeld
-      InputType: Eingabe-Typ
-      InputTypes:
-        DateSelection: Datumsauswahl
-        NumberField: Nummernfeld
-        TextBox: Textfeld
-      LeftColumn: Linke Spalte
-      NoCheckboxFieldYet: Bisher keine Auswahlfelder angelegt
-      NoDataProvider: 'Daten Provider '
-      NoFormelementsAvailable: Keine Formularelemente verfügbar!
-      NoOptionboxFieldsYet: Bisher keine Auswahloptionen angelegt
-      NumberOfFiles: Dateianzahl
-      NumberOfRows: Zeilenanzahl
-      OptionboxFields: Optionsfelder
-      OptionboxPlaceholder: Option
-      Preview: Vorschau
-      RightColumn: Rechte Spalte
-      SaveWorkflow: Workflow speichern
-      UploadFileFormat:
-        Excel: Excel (xls/xlsx)
-        OtherFormats: Andere Dateiformate
-        PDF: PDF (pdf)
-        Word: Word (doc/docx)
-      cancelCreateForm: Wollen Sie wirklich abbrechen? Alle  Daten gehen verloren!
-      otherFiletype: Andere Dateiformate
-    ProcessName: Express Workflow erstellen
-    TaskType:
-      Approval: Genehmigung
-      Email: Information E-Mail
-      Review: Überprüfung
-      UserTask: Aufgabe
-      UserTaskWithEmail: Aufgabe mit E-Mail Schritt
-    WorkflowDefinition:
-      AddProcessStep: Prozessschritt hinzufügen
-      ChooseAssignee:
-        AddUserOrRole: 'Wählen Sie eine Gruppe oder Benutzer aus, bitte:'
-        SelectedAssigneesFieldSet: Ausgewählte Genehmiger
-        UserTooltip: Benutzer
-      DefaultTemplateDescription: Unten befindet sich das Standard Template
-      DeleteProcessStep: Prozessschritt löschen
-      Description: Beschriben Sie Ihren Prozess
-      DueTimeInDays: Fälligkeitsfrist in Tagen
-      EndStep: Ende
-      FormDefinitionStep: Formular-definition
-      ProcessNameExists: Dieser Prozessname wurde bereits benutzt
-      Processdescription: Prozessbeschreibung
-      Processdetails: Prozesseigenschaften
-      Processflow: Prozessfluss
-      Processstep: Prozessschritt
-      Processtype: Prozessart
-      ProcesstypeRepeating: Wiederkehrend
-      TaskType: Aufgabentyp
-      UntilDaysTooltip: Nach Ablauf wird die Aufgabe an die Rolle Everybody zugeteilt, und ihre Priorität auf Hoch gesetzt.
-      UserInterface:
-        ChangeSettingWarning: Alle definierten Aufgaben werden gelöscht. Sind Sie sicher?
-        CreateOwn: Erstellen
-        UseDefault: Standardoberfläche
-        UserInterface: Benutzeroberfläche
-      WorkflowPropertiesStep: Workfloweigenschaften
-      requiredMsgs:
-        ReqMsgGeneric: ' ist ein erforderliches Feld!'
-    processStep: Prozessschritt
 Labels:
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen

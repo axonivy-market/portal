@@ -1355,30 +1355,6 @@ ul.users-in-role {
   .import-express-dialog .import-status.Failed {
     color: var(--express-import-status-failed); }
 
-.express-workflow-summary-table .ui-paginator.ui-paginator-top {
-  background-color: var(--express-import-paginator-background-color);
-  border-color: var(--express-import-paginator-background-color);
-  color: var(--express-import-paginator-text-color); }
-  .express-workflow-summary-table .ui-paginator.ui-paginator-top a {
-    color: var(--express-import-paginator-text-color); }
-    .express-workflow-summary-table .ui-paginator.ui-paginator-top a.ui-state-hover {
-      background-color: var(--express-import-paginator-hover-button-background-color); }
-  .express-workflow-summary-table .ui-paginator.ui-paginator-top .ui-paginator-pages {
-    color: var(--express-import-paginator-text-color); }
-    .express-workflow-summary-table .ui-paginator.ui-paginator-top .ui-paginator-pages a.ui-paginator-page.ui-state-active {
-      background-color: var(--express-import-paginator-hover-button-background-color); }
-    .express-workflow-summary-table .ui-paginator.ui-paginator-top .ui-paginator-pages a.ui-paginator-page.ui-state-hover {
-      background-color: var(--express-import-paginator-hover-button-background-color); }
-
-.express-workflow-summary-table tr.ui-datatable-selectable.ui-state-highlight td,
-.express-workflow-summary-table tr.ui-datatable-selectable.ui-state-hover td {
-  border-bottom-color: var(--ivy-primary-color-grey-medium); }
-
-.express-workflow-summary-table tr.ui-datatable-selectable.ui-state-highlight th:not(:last-child), .express-workflow-summary-table tr.ui-datatable-selectable.ui-state-highlight td:not(:last-child),
-.express-workflow-summary-table tr.ui-datatable-selectable.ui-state-hover th:not(:last-child),
-.express-workflow-summary-table tr.ui-datatable-selectable.ui-state-hover td:not(:last-child) {
-  border-right-color: var(--ivy-primary-color-grey-medium); }
-
 .express-helper-loading-container .si-lg {
   font-size: var(--express-helper-loading-container-si-lg-font-size);
 }

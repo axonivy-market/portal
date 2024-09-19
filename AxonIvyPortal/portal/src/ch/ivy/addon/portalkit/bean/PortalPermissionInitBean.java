@@ -68,14 +68,11 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
         createPermissionsGroup(portalPermissionGroup, PortalPermissionGroup.ABSENCE_AND_SUBSTITUTE_GROUP);
     IPermissionGroup statisticsPermissionGroup =
         createPermissionsGroup(portalPermissionGroup, PortalPermissionGroup.STATISTIC_GROUP);
-    IPermissionGroup expressPermissionGroup =
-        createPermissionsGroup(portalPermissionGroup, PortalPermissionGroup.EXPRESS_GROUP);
     initSystemPermission(taskPermissionGroup, getTaskPermissions());
     initSystemPermission(casePermissionGroup, getCasePermissions());
     initSystemPermission(generalPermissionGroup, getGeneralPermissions());
     initSystemPermission(absenceAndSubPermissionGroup, getAbsenceAndSubstitutePermissions());
     initSystemPermission(statisticsPermissionGroup, getPortalPermissionsByGroup(PortalPermissionGroup.STATISTIC_GROUP));
-    initSystemPermission(expressPermissionGroup, getPortalPermissionsByGroup(PortalPermissionGroup.EXPRESS_GROUP));
   }
 
   private void initSystemPermission(IPermissionGroup permissionGroup, List<IPermission> permissions) {

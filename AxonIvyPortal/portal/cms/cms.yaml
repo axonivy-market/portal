@@ -1,8 +1,3 @@
-Categories:
-  CreateExpressWorkflow:
-    name: Create Express Workflow
-  ExpressWorkflow:
-    name: Express Workflow
 ch.ivy.addon.portal.generic:
   CaseDetailsTemplate:
     noCaseId: No case-Id specified
@@ -193,7 +188,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableProcessViewer: Set this property to true to enable process viewer option in Task/Case actions
       enableScriptCheckingForUploadedDocumentNote: Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
       enableVirusScannerForUploadedDocumentNote: Set to true to enable virus scanner for uploaded document. Currently this function is using API VIRUSTOTAL.
-      expressEndPageNote: Display the custom end page at the end of each Express process.
       hideCaseDocument: Set to true, the document section in case detail page will be hidden, otherwise it will be shown.
       hideChangePasswordButtonNote: Set this variable to true to hide the "Change Password" option in the top menu and the "Forgotten Password" option on the login page. If set to false, these options will be shown.
       hideLogoutButtonNote: If true, the logout button on top menu will be hidden, otherwise it will be shown.
@@ -537,45 +531,6 @@ ch.ivy.addon.portalkit.ui.jsf:
         <ul style="margin: auto; {1}">{2}</ul>
       tooltipHelper: Click to show all users which own this role directly or indirectly
       userOfRoleTitle: User of {0} group
-    expressManagement:
-      deployButton: Deploy
-      deployMessage: 'Deploying processes  ... '
-      exportExpress: Export Express
-      exportExpressProcessTitle: Export Express Processes
-      expressExportName: AXONIVY_Dataset_ExpressWorkflow_{0}.json
-      expressManagement: Express Management
-      expressMessages:
-        deployErrorLog: Error while deploying {0}
-        deploymentFinishedLog: Process(es) of file {0} successful deployed into Portal in {1}ms
-        endDeployLog: Deployment Express finished
-        invalidVersionLog: Non supported version  {0} of Express
-        process:
-          duplicateProcessNameLog: '- Duplicate process name {0}'
-          installProcessFailedLog: '- Deploy process {0} failed'
-          installProcessFinishedLog: Installing process {0} successfully
-          installedProcessLog: Process installed {0}
-          startDeployProcessLog: Start deploying process {0}
-        startDeployLog: Start deploying the Express process(es) of file {0} to Portal
-        status:
-          error: Error
-          failed: Failed
-          info: Info
-          successful: Success
-          warning: Warning
-        validate:
-          validateExpressVersion: Could not find the Express Version variable in System. Please contact your adminstrator.
-          validateProcessCoOwnerLog: '- Validate Process Co-Owner of {0}, user {1} is not available in system'
-          validateProcessOwnerLog: '- Validate Process Owner of {0}, user {1} is not available in system, change process owner to {2}'
-          validateProcessPermissionLog: '- Validate Process Permission of {0}, user {1} is not available in system'
-          validateTaskDefUserLog: '- Validate Task Definition Responsibles of {0}, user {1} is not available in system'
-        versionLog: 'Version of Express: {0}'
-      fileEmptyMessage: File is empty
-      importDialogHeaderTitle: Choose a Dataset of Express workflow, it should be a JSON file.
-      importExpress: Import Express
-      importExpressProcessTitle: Import Express Processes
-      importHeaderTitle: 'List of Express processes will be exported:'
-      processCount: process(es)
-      waitingMessage: 'Data is collecting ... '
     processChain:
       currentStepIsNotDefined: Current step ({0}) of process chain is not defined
     statisticWidget:
@@ -784,6 +739,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processElementId: Process element Id
     stackTrace: StackTrace
   forgotPassword:
+    EmailAddress: E-Mail address
     empty: Empty
     forgotPassword: Forgot my password
     forgotPasswordError: An error occurred while processing your request. Please try again later.
@@ -1228,54 +1184,11 @@ Dialogs:
       CaseDescription: Edit an existing workflow
       CaseName: Edit workflow
   Tasks:
-    CreateWorkflow:
-      TaskDescription: Workflow has been created
-      TaskName: Workflow has been created
-    EditWorkflow:
-      TaskDescription: A process has been edited.
-      TaskName: Process edited
-    FinalReview:
-      TaskName: Final Review
-    FinalWorkflowTask:
-      taskDescription: The workflow {0} has been finished!
-    FormDefinition:
-      TaskDescription: Please define the form!
-      TaskName: Form creation!
-    SaveWorkflow:
-      TaskName: Express workflow creation in progress
     TaskDetail:
       DataDescription: Data and Description
       restoreToDefaultSettings: Restore to default settings
       switchToEditMode: Edit
       switchToViewMode: Save
-    WorkflowProperties:
-      TaskDescription: Please configure the workflow properties!
-      TaskName: Workflow properties
-  WorkflowExecution:
-    ApprovalForm:
-      Approve: Approve!
-      ApproveComment: Approved
-      CommentLabel: Comment of approver
-      FieldSetApplicant: Requester
-      FieldSetForm: Form
-      FinishedTasks: Finished Tasks
-      Fullname: Full name
-      Reject: Reject!
-      RejectComment: Rejected
-    FinalReviewForm:
-      approvalStatus: Approval status
-      approver: Approver
-      noticed: Acknowledged!
-    FinishedTasksForm:
-      Applicant: Applicant
-      ApprovalResult: Approval result
-      FinishedTasks: Finished Tasks
-      FormDetails: Form Details
-    UserTaskForm:
-      ApprovalResult:
-        Approved: Approved
-        Rejected: Rejected
-      Formular: Form
   agileBPM:
     TooltipForOriginalTask: Your current task will return once previous steps of the ad hoc workflow are finished.
     define_WF:
@@ -1295,14 +1208,6 @@ Dialogs:
   ch:
     ivy:
       addon:
-        express:
-          generic:
-            endpage:
-              subtitle: The last task was completed successfully
-              title: Task completed successfully!
-            expressNoItem: There is no completed Express Task yet
-            expressNoItemDescription: The results of completed tasks are displayed here
-            expressWorkflowName: 'Business Details of Case #{0}'
         portal:
           generic:
             GlobalSearch:
@@ -1369,98 +1274,6 @@ Dialogs:
   general:
     MaxLabelLenght: '35'
     maxOptionsLength: '20'
-  workflowCreation:
-    FormDefinition:
-      AddCheckboxField: Add new field
-      AddOptionboxField: Append new option
-      AllowedFiletypes: Allowed file types
-      BroadFooterArea: Wide footer
-      BroadHeaderArea: Wide Header
-      CheckboxFields: Checkbox fields
-      CreateField: Create
-      DataProvider: Data provider
-      DragAndDropTooltip: Drag and Drop the available elements to the Header, left column, right column or to the Footer!
-      ElementLabel: Label
-      ElementName: Name of element
-      Email:
-        Attachment: Attachment
-        EmailAddress: E-Mail address
-        EmailText: Email text
-        ResponseTo: Response to
-        Subject: Subject
-      ExecuteWorkflow: Execute workflow directly
-      ExecuteWorkflowWarning: You have to fulfil all tasks before execute this workflow
-      FieldSetAvailableFormelements: Form elements
-      FieldSetFormelements: Create form element
-      FieldSetFormelementsPlacing: Placement of form elements
-      FieldSetPreviewArea: Preview of the defined form
-      FinishWorkflow: Finish Workflow
-      InputArea: Input area
-      InputCheckbox: Checkbox
-      InputField: Input field
-      InputFileUpload: File upload
-      InputOptions: Radio button
-      InputType: Input type
-      InputTypes:
-        DateSelection: Date picker
-        NumberField: Number field
-        TextBox: Text field
-      LeftColumn: left column
-      NoCheckboxFieldYet: No checkbox field types are defined yet
-      NoDataProvider: Special static data provider
-      NoFormelementsAvailable: No form elements are available!
-      NoOptionboxFieldsYet: No checkbox types are defined yet
-      NumberOfFiles: Number of files
-      NumberOfRows: Number of rows
-      OptionboxFields: Radio buttons
-      OptionboxPlaceholder: Option
-      Preview: Preview
-      RightColumn: right column
-      SaveWorkflow: Save Workflow
-      UploadFileFormat:
-        Excel: Excel (xls/xlsx)
-        OtherFormats: Other file formats
-        PDF: PDF (pdf)
-        Word: Word (doc/docx)
-      cancelCreateForm: Do you really want to cancel? All your data will be lost!
-      otherFiletype: Other file types
-    ProcessName: Create Express Workflow
-    TaskType:
-      Approval: Approval
-      Email: Information E-mail
-      Review: Review
-      UserTask: User task
-      UserTaskWithEmail: User task with E-mail
-    WorkflowDefinition:
-      AddProcessStep: Add process step
-      ChooseAssignee:
-        AddUserOrRole: 'Select a group or a user, please:'
-        SelectedAssigneesFieldSet: Selected assignees
-        UserTooltip: User
-      DefaultTemplateDescription: Below is the default template
-      DeleteProcessStep: Remove process step
-      Description: Describe your process
-      DueTimeInDays: Expiry in days
-      EndStep: End
-      FormDefinitionStep: Form definition
-      ProcessNameExists: This process name was used before
-      Processdescription: Process description
-      Processdetails: Process properties
-      Processflow: Process flow
-      Processstep: Process step
-      Processtype: Type of process
-      ProcesstypeRepeating: Repeatable
-      TaskType: Task Type
-      UntilDaysTooltip: After expiry, the task will be assigned to Everybody and its priority becomes High.
-      UserInterface:
-        ChangeSettingWarning: All defined tasks will be deleted. Are you sure?
-        CreateOwn: Create own
-        UseDefault: Use default
-        UserInterface: User Interface
-      WorkflowPropertiesStep: Workflow properties
-      requiredMsgs:
-        ReqMsgGeneric: ' is a required field!'
-    processStep: Process Step
 Labels:
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
