@@ -120,7 +120,7 @@
           <ui:repeat id="process-group-alphabet" var="entryProcess" value="#{processWidgetBean.processesByAlphabet.entrySet().toArray()}">
             <p:fieldset id="alphabet-process-index-fieldset"
               legend="#{entryProcess.key eq 'SPECIAL_CHARACTER' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/specialCharacterGroup') : entryProcess.key}"
-              toggleable="true" styleClass="process-group js-process-index-group js-process-group-#{entryProcess.key}">
+              styleClass="process-group js-process-index-group js-process-group-#{entryProcess.key} process-compact-mode">
               <h:panelGroup id="process-container" layout="block" styleClass="ui-g">
                 <ui:repeat id="processes" varStatus="status" var="process" value="#{entryProcess.value}">
                   <ui:fragment id="list-view">

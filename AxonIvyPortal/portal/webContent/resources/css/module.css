@@ -1296,6 +1296,9 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   padding: 0 5px;
   max-width: 100%;
   flex: 1;
+  background-color: var(--process-list-item-background-color);
+  border-radius: 10px;
+  border: 1px solid var(--process-list-item-border-color);
 }
 
 .process-start-list-item:hover,
@@ -5453,6 +5456,17 @@ border-top: 0.14rem dashed;
 
 .process-group.grid-process-container .process-grid-item .process-grid-view-icon {
   padding: 2rem;
+}
+
+.process-group.process-compact-mode, .process-group.process-compact-mode > legend {
+  background-color: var(--process-list-compact-mode-background-color);
+  border-color: var(--process-list-compact-mode-background-color);
+  padding: 3px 0;
+}
+
+body .ui-fieldset-content {
+  border-top: 1px solid var(--ivy-primary-color-grey-light) ;
+  padding: 25px 0;
 }
 
 .process-action-group {

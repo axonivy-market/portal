@@ -319,6 +319,9 @@
   --hovered-process-start-list-item-i-con-color: var(--primary-color);
   --hovered-user-process-start-list-item-icon-color: var(--primary-color);
   --process-warning-icon-color: var(--ivy-tertinary-color-red-medium);
+  --process-list-item-background-color: var(--ivy-primary-color-white);
+  --process-list-compact-mode-background-color: var(--ivy-primary-color-grey-pale);
+  --process-list-item-border-color: #EBEBEB;
 
   /* Case Detail */
   --case-related-task-color: var(--ivy-primary-color-black);
