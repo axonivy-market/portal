@@ -39,10 +39,6 @@
       "name" : "Load menu items",
       "config" : {
         "output" : {
-          "map" : {
-            "out" : "in",
-            "out.subMenuItems" : "in.subMenuItems"
-          },
           "code" : [
             "import com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI;",
             "import com.axonivy.portal.components.configuration.CustomSubMenuItem;",
