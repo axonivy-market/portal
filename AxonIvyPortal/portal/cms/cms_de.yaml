@@ -1579,7 +1579,7 @@ Dialogs:
               CaseOwner: Prozessverantwortlicher
               Finished: Erledigt
               GlobalSearchText: Die Vorgänge enthalten das Schlüsselwort "{0}" in Vorgangs Id{1}.
-              ShowBusinessDetails: Business Details
+              ShowBusinessDetails: Geschäftsinformationen anzeigen
               caseNameNotAvailable: '[Kein Vorgangsname verfügbar]'
               defaultEmptyMessage: Keine Vorgänge verfügbar
             CustomIFrameWidget:

@@ -1583,7 +1583,7 @@ Dialogs:
               CaseOwner: Responsable del proceso
               Finished: Terminado
               GlobalSearchText: Los casos contienen la palabra clave "{0}" en ID del caso{1}.
-              ShowBusinessDetails: detalles del negocio
+              ShowBusinessDetails: Detalles del negocio
               caseNameNotAvailable: '[Nombre del caso no disponible]'
               defaultEmptyMessage: No hay casos
             CustomIFrameWidget:
@@ -1598,7 +1598,7 @@ Dialogs:
         component:
           ShareLinkDialog:
             CopyLink: Copiar enlace
-            LinkCopied: Enlace copiado
+            LinkCopied: ¡Enlace copiado
         dashboard:
           component:
             DashboardImportDetails:
