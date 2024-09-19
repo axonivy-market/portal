@@ -525,26 +525,32 @@ $(document).ready(function() {
 
     let taskIndex = 0;
     let caseIndex = 0;
+    let caseSideStepIndex = 0;
     let processIndex = 0;
-    let focusedTask;
-    let focusedCase;
-    let focusedProcess;
+    let focusedTaskEl;
+    let focusedCaseEl;
+    let focusedCaseSideStepEl;
+    let focusedProcessEl;
 
     function removeFocusedElements() {
       focusableElements.forEach(function(el) {
         $(el).removeClass('focused');
       });
-      if(focusedTask) {
-        focusedTask.removeClass('focused');
-        focusedTask.blur();
+      if(focusedTaskEl) {
+        focusedTaskEl.removeClass('focused');
+        focusedTaskEl.blur();
       }
-      if(focusedCase) {
-        focusedCase.removeClass('focused');
-        focusedCase.blur();
+      if(focusedCaseEl) {
+        focusedCaseEl.removeClass('focused');
+        focusedCaseEl.blur();
       }
-      if(focusedProcess) {
-        focusedProcess.removeClass('focused');
-        focusedProcess.blur();
+      if(focusedProcessEl) {
+        focusedProcessEl.removeClass('focused');
+        focusedProcessEl.blur();
+      }
+      if(focusedCaseSideStepEl) {
+        focusedCaseSideStepEl.removeClass('focused');
+        focusedCaseSideStepEl.blur();
       }
     }
      $(document).on('click', function(event) {
@@ -565,6 +571,7 @@ $(document).ready(function() {
           taskIndex = 0;
           caseIndex = 0;
           processIndex = 0;
+          caseSideStepIndex = 0;
           
           focusedElement.addClass('focused');
           focusedElement.focus();
@@ -583,29 +590,47 @@ $(document).ready(function() {
         removeFocusedElements();
         caseIndex = 0;
         processIndex = 0;
+        caseSideStepIndex = 0;
 
-        focusedTask = $(taskList[taskIndex]);
-        focusedTask.addClass('focused');
-        focusedTask.focus();
+        focusedTaskEl = $(taskList[taskIndex]);
+        focusedTaskEl.addClass('focused');
+        focusedTaskEl.focus();
         taskIndex++;
       }
 
       //Short cuts for Case widget
       if (key == 'q') {
-        var caseList = $('[id$="case-component:dashboard-cases"]').find('[id$=":dashboard-case-side-steps-menu"]');
-        
-        if(caseIndex >= caseList.length) {
-          caseIndex = 0;
+        var caseActionStepsPanel = $('[id*="action-steps-panel"]:visible');
+        if(caseActionStepsPanel.length > 0) {
+          var steps = caseActionStepsPanel.find('div.ui-overlaypanel-content a');
+          
+          if(caseSideStepIndex >= steps.length) {
+            caseSideStepIndex = 0;
+          }
+  
+          removeFocusedElements();
+  
+          focusedCaseSideStepEl = $(steps[caseSideStepIndex]);
+          focusedCaseSideStepEl.addClass('focused');
+          focusedCaseSideStepEl.focus();
+          caseSideStepIndex++;
+        } else {
+          var caseList = $('[id$="case-component:dashboard-cases"]').find('[id$=":dashboard-case-side-steps-menu"]');
+          
+          if(caseIndex >= caseList.length) {
+            caseIndex = 0;
+          }
+
+          removeFocusedElements();
+          taskIndex = 0;
+          processIndex = 0;
+          caseSideStepIndex = 0;
+
+          focusedCaseEl = $(caseList[caseIndex]);
+          focusedCaseEl.addClass('focused');
+          focusedCaseEl.focus();
+          caseIndex++;
         }
-
-        removeFocusedElements();
-        taskIndex = 0;
-        processIndex = 0;
-
-        focusedCase = $(caseList[caseIndex]);
-        focusedCase.addClass('focused');
-        focusedCase.focus();
-        caseIndex++;
       }
 
       //Short cuts for Process widget
@@ -619,28 +644,29 @@ $(document).ready(function() {
         removeFocusedElements();
         taskIndex = 0;
         caseIndex = 0;
+        caseSideStepIndex = 0;
 
-        focusedProcess = $(processList[processIndex]);
-        focusedProcess.addClass('focused');
-        focusedProcess.focus();
+        focusedProcessEl = $(processList[processIndex]);
+        focusedProcessEl.addClass('focused');
+        focusedProcessEl.focus();
         processIndex++;
       }
     }
 
     if (event.key === 'Escape') {
       var collapseWidgetBtn = $('[id*="collapse-link"]:visible');
-      if (collapseWidgetBtn) {
+      if (collapseWidgetBtn.length > 0) {
         collapseWidgetBtn.click();
       }
 
-      var sideActionCloseBtn = $('[id*="action-steps-panel"]:visible').find('.ui-overlaypanel-close');
-      if (sideActionCloseBtn) {
-        sideActionCloseBtn.click();
+      var caseSideActionCloseBtn = $('[id*="action-steps-panel"]:visible').find('.ui-overlaypanel-close');
+      if (caseSideActionCloseBtn.length > 0) {
+        caseSideActionCloseBtn.click();
       }
 
-      var sideStepCloseBtn = $('[id*="side-steps-panel"]:visible').find('.ui-overlaypanel-close');
-      if (sideStepCloseBtn) {
-        sideStepCloseBtn.click();
+      var taskSideActionCloseBtn = $('[id*="side-steps-panel"]:visible').find('.ui-overlaypanel-close');
+      if (taskSideActionCloseBtn.length > 0) {
+        taskSideActionCloseBtn.click();
       }
     }
   }); 
