@@ -18,7 +18,7 @@ header you find two useful features:
 |portal-header|
 
 User Settings in the |ivy| Portal
----------------------------------
+------------------------------------
 
 When you click on your username in the top right of the |ivy| Portal,
 a menu is shown allowing you to configure the Portal to your personal
