@@ -99,8 +99,13 @@
       <!-- remote-command to apply widget filter -->
       <p:remoteCommand id="apply-widget-filter-command-#{index}"
         name="applyWidgetFilterCommand#{index}"
-        oncomplete="PF('filter-overlay-panel-#{index}').hide(); #{onCompleteApplyFilters}; resizeTableBody()"
-        update="widget-header-actions"
+                update="#{componentToUpdateOnApplyFilter} #{cc.clientId}:widget-header-actions"
+        oncomplete="PF('filter-overlay-panel-#{index}').hide();"
+        global="false" process="@this" partialSubmit="true" immediate="true"
+        rendered="#{renderFilter}"/>
+
+       <p:remoteCommand id="apply-widget-filter-command2-#{index}"
+        name="applyInvalidWidgetFilterCommand#{index}"
         global="false" process="@this" partialSubmit="true" immediate="true"
         rendered="#{renderFilter}"/>
 
@@ -239,9 +244,14 @@
   
               <p:commandButton id="apply-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
                 partialSubmit="true"
-                update="#{componentToUpdateOnApplyFilter} #{cc.clientId}:widget-header-actions"
+                update="filter-form-#{index}"
                 process="filter-form-#{index}"
-                oncomplete="initWidgetFilterHtml('#{widget.id}'); PF('filter-overlay-panel-#{index}').hide();"
+                oncomplete="if (args &amp;&amp; !args.validationFailed) {
+                    applyWidgetFilterCommand#{index}();
+                  } else {
+                    applyInvalidWidgetFilterCommand#{index}();
+                  }
+                  initWidgetFilterHtml('#{widget.id}');"
                 actionListener="#{widget.onApplyUserFilters()}"
                 icon="si si-check-1"
                 styleClass="u-mar-right-5" />
