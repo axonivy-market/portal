@@ -1058,7 +1058,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     caseHistoriesTitle: Historie
     caseHistoryPageTitle: Verlauf Vorgangsnotizen
     columnContent: Inhalte
-    curentReportOf: vom
+    curentReportOf: von
     eventType: Ereignis-Typ
     exportButton: Nach Excel exportieren
     relatedCase: Zugehöriger Vorgang
