@@ -413,7 +413,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ResetToDefaultHeaderText: Auf Standard-Einstellungen zurücksetzen?
     RoleUserInformation: Rollen- und Benutzerinformationen
     TaskCaseInformation: Informationen zu Aufgabe und Vorgang
-    Update: Update
+    Update: Aktualisieren
     action: Aktionen
     active: Aktiviert
     add: Hinzufügen
@@ -762,9 +762,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     QuickSearch: Schnellsuche
     QuickSearchInfo: Sie können den Bereich der Schnellsuche in der Spaltenverwaltung der Widgets anpassen. Die Suche erfolgt nach dem Kriterium "enthält", aber achten Sie darauf, die Leistung nicht zu beeinträchtigen, wenn Sie viele Spalten hinzufügen.
     RestoreDefaultDashboardMessage: Wenn Sie fortfahren, verlieren Sie alle von Ihnen erstellten Widgets. Es werden die Standardeinstellungen von <span class="dashboard-template-name-message">{0}</span> wiederhergestellt.
-    SaveNewWidgetFilterHeader: Speichere neuen Widget-Filter
+    SaveNewWidgetFilterHeader: Einen neuen Widget-Filter speichern
     SavedFilterHeader: Gespeicherte Filter
-    SearchForFilter: Suche nach Filter
+    SearchForFilter: Nach Filter suchen
     ShareThisDashboard: Teilen Sie dieses Dashboard
     StandardWidgets: Standard-Widgets
     StatisticWidget:
@@ -1016,7 +1016,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     caseHistoriesTitle: Historie
     caseHistoryPageTitle: Verlauf Vorgangsnotizen
     columnContent: Inhalte
-    curentReportOf: vom
+    curentReportOf: von
     eventType: Ereignis-Typ
     exportButton: Nach Excel exportieren
     relatedCase: Zugehöriger Vorgang
@@ -1046,7 +1046,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   passwordSetting:
     changePasswordWSError: Ein Fehler ist während der Passwortänderung aufgetreten. Bitte, kontaktieren Sie Ihren Administrator falls das Problem nach mehreren Versuchen besteht.
     confirmNewPassword: Neues Password bestätigen
-    confirmPasswordHaveMatch: Das eingegebene Passwort stimmt nicht mit dem Bestätigungspasswort überein.
+    confirmPasswordHaveMatch: Das eingegebene neue Passwort stimmt nicht mit dem bestätigten Passwort überein.
     currentPassword: Aktuelles Passwort
     minCharacterRequired: mindestens {0} Zeichen lang sein
     minLowercaseCharacterRequired: mindestens {0} Kleinbuchstaben enthalten
@@ -1420,10 +1420,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     OPEN: Offen
     OPEN_UPPERCASE: OFFEN
     PARKED: Reserviert
-    READY_FOR_JOIN: Bereit für Zusammenführung
+    READY_FOR_JOIN: Bereit zum Beitritt
     READY_FOR_JOINING: Bereit für Zusammenführung
     READY_FOR_JOINING_UPPERCASE: BEREIT FÜR ZUSAMMENFÜHRUNG
-    READY_FOR_JOIN_UPPERCASE: READY FOR JOIN
+    READY_FOR_JOIN_UPPERCASE: BEREIT ZUM BEITRITT
     RESERVED: RESERVIERT
     RESUMED: In Bearbeitung
     SUSPENDED: Zugewiesen
@@ -1554,7 +1554,7 @@ Dialogs:
         portalkit:
           component:
             CaseItemDetails:
-              ShareCaseDetails: Teilen Sie Falldetails mit
+              ShareCaseDetails: Falldetails teilen
             CaseWidget:
               CaseCategory: Vorgangskategorie
               CaseDetail:
@@ -1585,7 +1585,7 @@ Dialogs:
         component:
           ShareLinkDialog:
             CopyLink: Link kopieren
-            LinkCopied: Link kopiert!
+            LinkCopied: Link kopiert
         dashboard:
           component:
             CaseWidgetConfiguration:
