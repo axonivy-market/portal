@@ -1188,8 +1188,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       emptystate:
         defaultEmptyMessages: Es sind keine Auswertungen vorhanden.
       exception:
-        idNotFound: 'Chart Id not found with id: {0}'
-        noPermission: You do not have the permission to send this request!
+        idNotFound: 'Diagramm-ID mit der ID: {0} nicht gefunden'
+        noPermission: Sie haben keine Berechtigung, diese Anfrage zu senden!
       expiryPeriod: Fristende
       loadingCharts: Bitte warten während die Diagramme geladen werden…
       moveLeft: Nach links bewegen
@@ -1585,7 +1585,7 @@ Dialogs:
               CaseOwner: Prozessverantwortlicher
               Finished: Erledigt
               GlobalSearchText: Die Vorgänge enthalten das Schlüsselwort "{0}" in Vorgangs Id{1}.
-              ShowBusinessDetails: Business Details
+              ShowBusinessDetails: Geschäftsinformationen anzeigen
               caseNameNotAvailable: '[Kein Vorgangsname verfügbar]'
               defaultEmptyMessage: Keine Vorgänge verfügbar
             CustomIFrameWidget:
@@ -1804,13 +1804,13 @@ Labels:
       END_WITH: Endet mit
       EQUAL: Gleichberechtigt
       GREATER: Greater
-      GREATER_OR_EQUAL: Greater or equal
+      GREATER_OR_EQUAL: Größer oder gleich
       IN: Unter
       IS: Ist
       IS_NOT: Ist nicht
       LAST: In den letzten
       LESS: Less
-      LESS_OR_EQUAL: Less or equal
+      LESS_OR_EQUAL: Kleiner oder gleich
       NEXT: Innerhalb der nächsten
       NOT_BETWEEN: Nicht zwischen
       NOT_CONTAINS: Enthält nicht
@@ -1822,7 +1822,7 @@ Labels:
       NO_CATEGORY: Keine Kategorie
       START_WITH: Beginnt mit
       TODAY: Heute
-      YESTERDAY: Yesterday
+      YESTERDAY: Gestern
     FilterPeriodType:
       DAY: Tag
       MONTH: Monat
