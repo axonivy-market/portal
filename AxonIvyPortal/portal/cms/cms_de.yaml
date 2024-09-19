@@ -575,7 +575,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showSystemNotes: Systemhinweise
     showSystemTasks: Systemaufgaben
     sorting: Sortierung
-    start: Start
+    start: Prozess starten
     state: Status
     status: Status
     switchToDesktopVersion: Zur Desktop-Version wechseln

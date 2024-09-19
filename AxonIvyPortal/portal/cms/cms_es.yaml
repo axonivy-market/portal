@@ -576,7 +576,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showSystemNotes: Notas del sistema
     showSystemTasks: Tareas del sistema
     sorting: Sorting
-    start: Abrir
+    start: Iniciar el proceso
     state: Estatus
     status: Estado
     switchToDesktopVersion: 'Cambiar al modo escritorio '

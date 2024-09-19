@@ -573,7 +573,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showSystemNotes: Notes du système
     showSystemTasks: Tâches du système
     sorting: triage
-    start: Démarrage
+    start: Démarrer le processus
     state: Etat
     status: Etat
     switchToDesktopVersion: Passer à la version de bureau

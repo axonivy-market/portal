@@ -49,11 +49,6 @@
           <p:tooltip id="info-workflow-tooltip" for="process-description" value="#{process.description}" position="top" trackMouse="true" hideEvent="mouseleave click"
             styleClass="js-process-start-list-item-description process-tooltip" />
         </div>
-        <!-- Start process -->
-        <div class="start-process" id="start-button-wrap-#{status.index}">
-          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" id="start-button" actionListener="#{processWidgetBean.startProcess(process)}" styleClass="ui-no-outlined-portal-icon-button"
-            icon="si si-arrow-right-1" iconPos="right" ajax="#{!isExternalLink}" />
-        </div>
 
       </h:form>
     </div>

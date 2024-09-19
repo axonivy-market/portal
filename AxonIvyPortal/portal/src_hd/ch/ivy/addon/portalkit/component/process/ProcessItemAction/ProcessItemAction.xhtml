@@ -19,7 +19,7 @@
   <c:set var="canModify" value="#{cc.attrs.canModify}" />
   <c:set var="showProcessViewer" value="#{processItemActionBean.isShowProcessViewer(process)}"/>
   <c:set var="hideActionButton" value="#{cc.attrs.hideActionButton or (!canModify and !showProcessViewer)}"/>
-  <c:set var="buttonStyle" value="#{cc.attrs.outlinedButtonStyle ? 'ui-button-outlined':'ui-button-raised ui-button-secondary'}"/>
+  <c:set var="buttonStyle" value="#{cc.attrs.outlinedButtonStyle ? 'ui-button-outlined':'ui-button-raised '}"/>
 
   <div id="process-action-group" class="process-action-group">
     <p:commandButton id="process-category" rendered="#{processItemActionBean.isRenderedCategory(process.category)}"
@@ -64,6 +64,10 @@
         
       </p:menu>
     </h:panelGroup>
+    <div class="start-process" id="start-button-wrap-#{status.index}">
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" id="start-button" actionListener="#{processWidgetBean.startProcess(process)}" styleClass="ui-no-outlined-portal-icon-button"
+            icon="si si-arrow-right-1" iconPos="right" ajax="#{!isExternalLink}" />
+    </div>
   </div>
 </cc:implementation>
 

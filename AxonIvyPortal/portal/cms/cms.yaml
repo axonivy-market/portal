@@ -508,7 +508,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showRelatedCaseInfo: Related case
     showSystemNotes: System notes
     showSystemTasks: System tasks
-    start: Start
+    start: Start process
     state: State
     status: Status
     switchToDesktopVersion: Switch to desktop version

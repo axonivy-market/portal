@@ -117,6 +117,7 @@
 
 .filter-widget-input {
   flex: 1;
+  padding-left: 2em !important ;
 }
 
 .filter-category-checkbox-tree .ui-tree-container {
@@ -5457,11 +5458,11 @@ border-top: 0.14rem dashed;
 .process-action-group {
   position: absolute;
   right: 0;
-  top: -495px;
+  top: -50px;
   padding: 16px;
   width: 100%;
   display: inline-flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .process-action-group .process-category.has-menu-button,
@@ -5488,13 +5489,9 @@ border-top: 0.14rem dashed;
 }
 
 .image-view-form .start-process{
-  padding-left: 150px;
   overflow: hidden;
-  position: absolute;
-  top: -37px;
-  left: 0;
   width: 100%;
-  text-align: center;
+  text-align: end;
 }
 
 .image-view-form .start-process > button > span{
@@ -5502,23 +5499,10 @@ border-top: 0.14rem dashed;
   font-weight: bold;
 }
 
-@media screen and (min-width: 150em) {
-.image-view-form .start-process{
-  padding-left: 300px;
-  overflow: hidden;
-  position: absolute;
-  top: -37px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-}
-}
-
 .image-view-form .start-process-image-widget {
   padding: 32px 24px 16px 24px;
   overflow: hidden;
   position: absolute;
-  top: -45px;
   left: 0;
   width: 100%;
   text-align: center;
