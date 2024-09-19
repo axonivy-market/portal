@@ -111,10 +111,6 @@ You can customize the Portal styles in ``custom.css``.
 .. warning::
    - Do not change ``font-family`` property values.
 
-   - Limitation: the task priority color customization hasn't changed the task priority colors in statistic.
-
-   If you want to custom color of statistics please refer to :ref:`Override Statistic color <override-Statistic-colors>`
-
 .. |css_variable| raw:: html
 
    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties" target="_blank">CSS Variable</a>

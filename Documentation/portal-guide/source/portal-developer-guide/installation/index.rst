@@ -354,7 +354,6 @@ Migrate 9.2 To 9.3
       * Run migration process only once
 
 #. We changed the way to navigate to Task Analysis component. Process ``Start Processes/TaskAnalysis/start.ivp`` is moved to new place ``Start Processes/PortalStart/showTaskAnalysis.ivp``.
-   Refer to :ref:`Task Analysis call<components-additional-component-task-analysis-how-to-use>` for details.
 
 #. We moved the configuration of announcement, thirdparty applications, default statistic charts, application favorite processes, public external links and express processes from the BusinessData tovariables.
 

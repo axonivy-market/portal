@@ -18,7 +18,7 @@ header you find two useful features:
 |portal-header|
 
 User Settings in the |ivy| Portal
-------------------------------------
+---------------------------------
 
 When you click on your username in the top right of the |ivy| Portal,
 a menu is shown allowing you to configure the Portal to your personal
@@ -27,7 +27,7 @@ needs. These features are described in the following sections below.
 Admin Settings
 --------------
 
-Menu entry :ref:`admin-settings` is only available for users have role AXONIVY_PORTAL_ADMIN.
+Menu entry :ref:`Admin Settings <admin-settings>` is only available for users have role AXONIVY_PORTAL_ADMIN.
 
 My profile
 ----------
