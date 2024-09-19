@@ -262,11 +262,7 @@ public class TaskService {
   }
 
   protected TaskQuery queryInvolvedTasks() {
-    FilterLink currentUserIsInvolved = TaskQuery.create().where().or().currentUserIsInvolved();
-    IUser user = Ivy.session().getSessionUser();
-    for (IRole role : user.getRoles()) {
-      currentUserIsInvolved.where().or().roleIsInvolved(role);
-    }
+    FilterLink currentUserIsInvolved = TaskQuery.create().where().or().currentUserOrHisRolesAreInvolved();
     return currentUserIsInvolved;
   }
 
