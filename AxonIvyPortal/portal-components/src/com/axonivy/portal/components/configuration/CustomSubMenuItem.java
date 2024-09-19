@@ -9,6 +9,7 @@ public class CustomSubMenuItem {
   private String icon;
   private String label;
   private Integer index;
+  private String name;
 
   @JsonProperty("isExternal")
   private Boolean isExternalLink; 
@@ -61,5 +62,13 @@ public class CustomSubMenuItem {
 
   public void setVersion(String version) {
     this.version = version;
+  }
+  
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 }
