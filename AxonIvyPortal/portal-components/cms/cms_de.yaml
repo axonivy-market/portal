@@ -82,7 +82,6 @@ Dialogs:
             ProcessNotFound: Der definierte Process kann nicht gefunden werden.
             ProcessType:
               CASE_MAP: Fall Karte
-              EXPRESS_PROCESS: Express Workflow
               EXTERNAL_LINK: External Link
               IVY_PROCESS: Geschäftsprozess
             ProcessViewerIFrameTitle: Prozessbetrachterrahmen
