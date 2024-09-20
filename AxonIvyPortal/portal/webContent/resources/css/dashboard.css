@@ -1368,10 +1368,6 @@ body .ui-widget.new-widget-dialog__introduction {
   border-color: var(--widget-advanced-filter-overlay-panel-footer);
 }
 
-.total-available-charts {
-  font-weight: bold;
-}
-
 .has-avatar .case-info-avatar {
   float: unset;
 }

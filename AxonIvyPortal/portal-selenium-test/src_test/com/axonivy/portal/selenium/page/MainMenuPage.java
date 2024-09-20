@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
-
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -39,10 +38,6 @@ public class MainMenuPage extends TemplatePage {
 
   public ProcessWidgetPage openProcessList() {
     return NavigationHelper.navigateToProcessList();
-  }
-
-  public StatisticWidgetPage openStatisticPage() {
-    return NavigationHelper.navigateToStatisticPage();
   }
 
   public void openUserSettingMenu() {
@@ -92,12 +87,6 @@ public class MainMenuPage extends TemplatePage {
     return new CaseWidgetPage();
   }
 
-  public StatisticWidgetPage selectStatisticDashboard() {
-    WaitHelper
-        .waitForNavigation(() -> waitForElementClickableThenClick($(".layout-menu li[role='menuitem'] a.STATISTICS")));
-    return new StatisticWidgetPage();
-  }
-
   private void waitForProcessesPageAfterSelectProcessesCategory() {
     waitForElementDisplayed(By.id("process-widget:process-search:non-ajax-keyword-filter"), true);
   }
@@ -144,10 +133,6 @@ public class MainMenuPage extends TemplatePage {
 
   public boolean isCasesDisplayed() {
     return isMenuItemDisplayed("Cases");
-  }
-
-  public boolean isStatisticsDisplayed() {
-    return isMenuItemDisplayed("Statistics");
   }
 
   public WorkingTaskDialogPageOfApplicationMenu selectDashboardMenu() {
