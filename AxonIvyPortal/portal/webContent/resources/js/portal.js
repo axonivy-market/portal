@@ -552,7 +552,7 @@ $(document).ready(function() {
 
     function removeFocusedElements() {
       focusableElements.forEach(function(el) {
-        removeFocusClass(el);
+        removeFocusClass($(el));
       });
       removeFocusClass(focusedTaskEl);
       removeFocusClass(focusedCaseEl);
@@ -599,7 +599,6 @@ $(document).ready(function() {
     }
 
     if (event.altKey) {
-      console.log('ENTER...');
       //Short cuts for Task widget
       var key = event.key.toLowerCase();
       if (key == 'w') {
