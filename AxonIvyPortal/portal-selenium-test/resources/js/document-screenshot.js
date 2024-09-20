@@ -157,16 +157,12 @@ function highlightProcessItems() {
   createRedMediumOutline(processSearch);
   appendStepAnnotation(processSearch, "1", -5, processSearch.width() - 40);
   
-  var expressLogo = $('.express-workflow .image-process-icon:eq(0)');
-  createRedMediumOutline(expressLogo);
-  appendStepAnnotation(expressLogo, "2", -15, -30);
-  
   var externalLink = $('.js-external-link-process-item .image-process-icon:eq(0)');
   createRedMediumOutline(externalLink);
-  appendStepAnnotation(externalLink, "3", -15, -30);
+  appendStepAnnotation(externalLink, "2", -15, -30);
   
   createRedMediumOutline($('[id$="process-widget:process-view-mode:view-mode-selection"]'));
-  appendStepAnnotation($("[id$='process-widget:process-view-mode:view-mode-selection'] div[class$='ui-state-active']"), "4", -10, -40);
+  appendStepAnnotation($("[id$='process-widget:process-view-mode:view-mode-selection'] div[class$='ui-state-active']"), "3", -10, -40);
 }
 
 function highlightEditProcessIcon() {
