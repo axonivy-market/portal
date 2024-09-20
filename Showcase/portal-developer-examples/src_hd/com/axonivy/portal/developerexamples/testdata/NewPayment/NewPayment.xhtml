@@ -5,10 +5,11 @@
 <h:body>
   <ui:composition template="/layouts/frame-10-full-width.xhtml">
     <ui:define name="title">NewPayment</ui:define>
-    <ui:param name="actualStepIndex" value="#{data.actualStepIndex}" />
-    <ui:param name="steps" value="#{data.steps}" />
 
     <ui:define name="content">
+      <script>
+        window.viewName="TASK_DETAIL";
+      </script>
       <h:form id="payment-request" styleClass="container ui-g">
         <p:focus for="payment-request" />
         <p:messages redisplay="false" showIcon="false" styleClass="ui-g-12">
