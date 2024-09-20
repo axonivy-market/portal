@@ -5460,7 +5460,7 @@ border-top: 0.14rem dashed;
   padding: 3px 0;
 }
 
-body .process-compact-mode.ui-fieldset-content {
+body .process-compact-mode > .ui-fieldset-content {
   border-top: 1px solid var(--ivy-primary-color-grey-light) ;
   padding: 25px 0;
 }
