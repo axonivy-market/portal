@@ -189,15 +189,6 @@ public class PermissionUtils {
   }
 
   /**
-   * Check if current user has permission to see full statistic list
-   *
-   * @return true if current user has permission to see full statistic list
-   */
-  public static boolean checkAccessFullStatisticsListPermission() {
-    return hasPortalPermission(PortalPermission.ACCESS_FULL_STATISTICS_LIST);
-  }
-
-  /**
    * Check if current user has permission to create public external link
    *
    * @return true if current user has permission to create public external link

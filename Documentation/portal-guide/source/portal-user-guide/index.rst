@@ -14,7 +14,6 @@ User Guide
    process-information/index
    full-task-list/index
    full-case-list/index
-   full-statistic-list/index
    my-profile/index
    admin-settings/index
    axon-ivy-express/index

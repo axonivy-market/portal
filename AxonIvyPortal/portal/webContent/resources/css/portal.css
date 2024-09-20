@@ -312,44 +312,8 @@ body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
   line-height: var(--task-item-name-line-height); }
 
 /*Style For Statistic Widget -----------------------------------------------------------------------------*/
-body .statistic-carousel .ui-widget-header.ui-carousel-header {
-  background-color: var(--statistic-panel-header) !important;
-  border-color: var(--statistic-panel-header-border); }
-
-.statistic-carousel .ui-carousel-header .ui-carousel-button.ui-icon {
-  color: var(--statistic-carousel-header-button-color); }
-
-.statistic-carousel .ui-carousel-header .ui-carousel-next-button:hover,
-.statistic-carousel .ui-carousel-header .ui-carousel-prev-button:hover {
-  color: var(--statistic-carousel-header-button-hover-color); }
-
-.statistic-carousel .ui-carousel-header .ui-carousel-header-title .chart-info,
-.dashboard-chart-panel .chart-actions-container .chart-action,
-.dashboard-chart-panel .chart-info {
-  font-size: 1.5rem !important; }
-
-.statistic-carousel .ui-carousel-header .ui-carousel-header-title .chart-info:hover,
-.dashboard-chart-panel .chart-info:hover,
-.dashboard-chart-panel .chart-actions-container .chart-action:hover {
-  color: var(--statistic-carousel-header-button-hover-color); }
-
-.chart-filter-header-text,
-.statistic-carousel .ui-carousel-header-title .chart-name,
-.dashboard-chart-panel .chart-name,
-.edit-statistic-container .chart-list .chart-container .label {
-  font-size: var(--chart-name-font-size);
-  font-weight: var(--chart-name-font-weight);
-  line-height: var(--chart-name-line-height); }
-
 .ui-columntoggler[id$='task-table-toggler'] .ui-columntoggler-item label {
   font-size: var(--default-font-size); }
-
-.chart-info-header {
-  font-size: var(--large-font-size);
-  font-weight: var(--chart-info-header-font-weight); }
-
-.chart-info-container label {
-  font-weight: var(--chart-name-font-weight); }
 
 .statistic-filter-accordion-panel .ui-accordion-content {
   border: solid 1px var(--statistic-filter-accordion-panel-border); }
@@ -1572,16 +1536,6 @@ body.in-dialog .ui-widget-overlay {
 
 #reorder-button:hover {
   cursor: move;
-}
-
-.statistic-chart-cases-by-category {
-  width: 100%;
-  height: 340px;
-}
-
-.dashboard-statistic-chart-cases-by-category {
-  width: 100%;
-  height: 400px;
 }
 
 .option-item-long-label {

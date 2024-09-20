@@ -5,9 +5,10 @@
 <h:body>
   <ui:composition template="/layouts/frame-10-full-width.xhtml">
     <ui:define name="title">Task: #{ivy.task.names().current()}</ui:define>
-    <ui:param name="isNotRequiredLogin" value="false" />
-    <ui:param name="task" value="#{ivy.task}" />
     <ui:define name="content">
+      <script>
+        window.viewName="TASK_DETAIL";
+      </script>
       <h3>This is private page for Sale employees</h3>
 
       <h:form id="form">
