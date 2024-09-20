@@ -524,6 +524,8 @@ $(document).ready(function() {
     ];
 
     let taskIndex = 0;
+    let resetTaskFormIndex = 0;
+    let taskSideStepIndex = 0;
     let caseIndex = 0;
     let caseSideStepIndex = 0;
     let processIndex = 0;
@@ -531,27 +533,33 @@ $(document).ready(function() {
     let focusedCaseEl;
     let focusedCaseSideStepEl;
     let focusedProcessEl;
+    let focusedResetTaskFormEl = 0;
+    let focusedTaskSideStepEl;
+
+    function removeFocusClass(element) {
+      if(element) {
+        element.removeClass('focused');
+        element.blur();
+      }
+    }
+    
+    function addFocusClass(element) {
+      if(element) {
+        element.addClass('focused');
+        element.focus();
+      }
+    }
 
     function removeFocusedElements() {
       focusableElements.forEach(function(el) {
-        $(el).removeClass('focused');
+        removeFocusClass(el);
       });
-      if(focusedTaskEl) {
-        focusedTaskEl.removeClass('focused');
-        focusedTaskEl.blur();
-      }
-      if(focusedCaseEl) {
-        focusedCaseEl.removeClass('focused');
-        focusedCaseEl.blur();
-      }
-      if(focusedProcessEl) {
-        focusedProcessEl.removeClass('focused');
-        focusedProcessEl.blur();
-      }
-      if(focusedCaseSideStepEl) {
-        focusedCaseSideStepEl.removeClass('focused');
-        focusedCaseSideStepEl.blur();
-      }
+      removeFocusClass(focusedTaskEl);
+      removeFocusClass(focusedCaseEl);
+      removeFocusClass(focusedProcessEl);
+      removeFocusClass(focusedCaseSideStepEl);
+      removeFocusClass(focusedResetTaskFormEl);
+      removeFocusClass(focusedTaskSideStepEl);
     }
      $(document).on('click', function(event) {
         if (!$(event.target).closest('.focusable').length) {
@@ -565,6 +573,13 @@ $(document).ready(function() {
     var caseActionStepsPanel = $('[id*="action-steps-panel"]:visible');
     var caseActionStepsPanelVisible = caseActionStepsPanel.length > 0;
 
+    var resetTaskConfirmForm = $('[id$="task-component:reset-task-confirmation-form"]:visible');
+    var resetTaskConfirmFormVisible = resetTaskConfirmForm.length > 0;
+
+    var taskActionStepsPanel = $('[id$=":side-steps-panel"]:visible');
+    var taskActionStepsPanelVisible = taskActionStepsPanel.length > 0;
+    
+
     if (event.altKey && !isNaN(event.key) && event.key >= '1' && event.key <= '9') {
       var index = parseInt(event.key) - 1;
       if (index >= 0 && index < focusableElements.length) {
@@ -572,15 +587,14 @@ $(document).ready(function() {
           var focusedElement = $(focusableElements[index]);
           removeFocusedElements();
           taskIndex = 0;
+          taskSideStepIndex = 0;
           processIndex = 0;
           if(caseActionStepsPanelVisible) {
             caseSideStepIndex = 0;
           } else {
             caseIndex = 0;
           }
-          
-          focusedElement.addClass('focused');
-          focusedElement.focus();
+          addFocusClass(focusedElement);
       }
     }
 
@@ -588,23 +602,52 @@ $(document).ready(function() {
       //Short cuts for Task widget
       var key = event.key.toLowerCase();
       if (key == 'w') {
-        var taskList = $('[id$=":start-task"]');
-        if(taskIndex >= taskList.length) {
-          taskIndex = 0;
-        }
+        if(resetTaskConfirmFormVisible) {
+          var cancelOk = [
+            resetTaskConfirmForm.find('a:first'),
+            resetTaskConfirmForm.find('button:first')
+          ];
 
-        removeFocusedElements();
-        processIndex = 0;
-        if(caseActionStepsPanelVisible) {
-          caseSideStepIndex = 0;
+          if(resetTaskFormIndex >= cancelOk.length) {
+            resetTaskFormIndex = 0;
+          }
+
+          removeFocusedElements();
+  
+          focusedResetTaskFormEl = $(cancelOk[resetTaskFormIndex]);
+          addFocusClass(focusedResetTaskFormEl);
+          resetTaskFormIndex++;
+        } else if(taskActionStepsPanelVisible) {
+
+          var steps = taskActionStepsPanel.find('div.ui-overlaypanel-content a');
+          if(taskSideStepIndex >= steps.length) {
+            taskSideStepIndex = 0;
+          }
+  
+          removeFocusedElements();
+  
+          focusedTaskSideStepEl = $(steps[taskSideStepIndex]);
+          addFocusClass(focusedTaskSideStepEl);
+          taskSideStepIndex++;
         } else {
-          caseIndex = 0;
+          var taskList = $('[id$=":start-task"]');
+          if(taskIndex >= taskList.length) {
+            taskIndex = 0;
+          }
+  
+          removeFocusedElements();
+          processIndex = 0;
+          taskSideStepIndex = 0;
+          if(caseActionStepsPanelVisible) {
+            caseSideStepIndex = 0;
+          } else {
+            caseIndex = 0;
+          }
+  
+          focusedTaskEl = $(taskList[taskIndex]);
+          addFocusClass(focusedTaskEl);
+          taskIndex++;
         }
-
-        focusedTaskEl = $(taskList[taskIndex]);
-        focusedTaskEl.addClass('focused');
-        focusedTaskEl.focus();
-        taskIndex++;
       }
 
       //Short cuts for Case widget
@@ -619,8 +662,7 @@ $(document).ready(function() {
           removeFocusedElements();
   
           focusedCaseSideStepEl = $(steps[caseSideStepIndex]);
-          focusedCaseSideStepEl.addClass('focused');
-          focusedCaseSideStepEl.focus();
+          addFocusClass(focusedCaseSideStepEl);
           caseSideStepIndex++;
         } else {
           var caseList = $('[id$="case-component:dashboard-cases"]').find('[id$=":dashboard-case-side-steps-menu"]');
@@ -631,12 +673,12 @@ $(document).ready(function() {
 
           removeFocusedElements();
           taskIndex = 0;
+          taskSideStepIndex = 0;
           processIndex = 0;
           caseSideStepIndex = 0;
 
           focusedCaseEl = $(caseList[caseIndex]);
-          focusedCaseEl.addClass('focused');
-          focusedCaseEl.focus();
+          addFocusClass(focusedCaseEl);
           caseIndex++;
         }
       }
@@ -651,6 +693,7 @@ $(document).ready(function() {
 
         removeFocusedElements();
         taskIndex = 0;
+        taskSideStepIndex = 0;
         if(caseActionStepsPanelVisible) {
           caseSideStepIndex = 0;
         } else {
@@ -658,8 +701,7 @@ $(document).ready(function() {
         }
 
         focusedProcessEl = $(processList[processIndex]);
-        focusedProcessEl.addClass('focused');
-        focusedProcessEl.focus();
+        addFocusClass(focusedProcessEl);
         processIndex++;
       }
     }
