@@ -57,6 +57,8 @@
 
   /* Statistic widget */
   --statistic-filter-accordion-panel-border: var(--ivy-primary-color-grey-light);
+  --chart-container-background-color: #e6f1f5;
+  --chart-container-number-color: var(--ivy-primary-color);
   
   /* Sidebar */
   --sidebar-app-text-color: var(--menuitem-text-color);
