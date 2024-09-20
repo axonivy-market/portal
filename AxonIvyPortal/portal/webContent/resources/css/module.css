@@ -1296,7 +1296,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   padding: 0 5px;
   max-width: 100%;
   flex: 1;
-
 }
 
 .process-start-list-item:hover,
@@ -5506,8 +5505,7 @@ body .process-compact-mode.ui-fieldset-content {
 }
 
 .image-view-form .start-process > button > span{
-  color: var(--image-process-start-button-text-color);
-  font-weight: bold;
+  color: var(--ivy-primary-light-color);
 }
 
 .image-view-form .start-process-image-widget {

@@ -1070,7 +1070,7 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .empty-message-container .empty-message-icon,
 .empty-message-container .empty-message-text {
-  color: var(--primary-color);
+  color: var(--dashboard-widget-empty-message);
 }
 
 .widget-preview--process .dashboard-processes--empty-message {

@@ -581,4 +581,7 @@
 
   /* Dashboard commandlink hover */
   --ivy-primary-color-command-link-hover: var(--ivy-primary-color-white);
+  
+    /* Dashboard widgets empty message*/
+  --dashboard-widget-empty-message: var(--ivy-primary-color-grey-pale);
 }
