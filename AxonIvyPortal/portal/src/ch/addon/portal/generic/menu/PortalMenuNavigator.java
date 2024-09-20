@@ -26,10 +26,8 @@ import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -63,9 +61,6 @@ public class PortalMenuNavigator {
         break;
       case CASE:
         PortalNavigator.navigateToPortalCase();
-        break;
-      case STATISTICS:
-        PortalNavigator.navigateToPortalStatistic();
         break;
       default:
         break;
@@ -162,7 +157,6 @@ public class PortalMenuNavigator {
 
   private static List<SubMenuItem> getSubmenuList() {
     List<SubMenuItem> subMenuItems = new ArrayList<>();
-    GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
 
     if(PermissionUtils.checkAccessFullProcessListPermission()) {
       subMenuItems.add(new ProcessSubMenuItem());
@@ -174,11 +168,6 @@ public class PortalMenuNavigator {
 
     if(PermissionUtils.checkAccessFullCaseListPermission()) {
       subMenuItems.add(new CaseSubMenuItem());
-    }
-
-    if(PermissionUtils.checkAccessFullStatisticsListPermission()
-        && !globalSettingService.findBooleanGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET)) {
-      subMenuItems.add(new StatisticSubMenuItem());
     }
 
     subMenuItems.addAll(CustomSubMenuItemService.findAll());

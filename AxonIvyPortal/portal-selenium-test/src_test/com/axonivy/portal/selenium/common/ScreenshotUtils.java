@@ -38,7 +38,6 @@ public class ScreenshotUtils {
   public static final String CASE_DETAIL_FOLDER = "/case-detail/";
   public static final String CASE_DETAIL_CUSTOMIZATION_FOLDER = "/case-detail/customization/";
   public static final String STATISTIC_WIDGET_FOLDER = "/statistic/";
-  public static final String TASK_ANALYSIS_FOLDER = "/statistic/task-analysis/";
   public static final String SEARCH_FOLDER = "/search/";
   public static final String SETTINGS_FOLDER = "/settings/";
   public static final String MY_PROFILE_FOLDER = "/my-profile/";

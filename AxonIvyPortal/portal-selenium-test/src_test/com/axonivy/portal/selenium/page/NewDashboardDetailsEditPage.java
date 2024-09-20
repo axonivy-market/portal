@@ -17,7 +17,6 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   public static final String PROCESS_WIDGET = "Process List";
   public static final String PROCESS_VIEWER_WIDGET = "Process Viewer";
   public static final String CUSTOM_WIDGET = "Custom Widget";
-  public static final String STATISTIC_WIDGET = "Statistic chart";
   public static final String WELCOME_WIDGET = "Welcome widget";
   public static final String NEWS_WIDGET = "News feed widget";
   public static final String TASK_BY_PRIORITY = "Tasks by Priority";
@@ -159,10 +158,6 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   public StatisticEditWidgetNewDashboardPage addNewStatisticWidget() {
     addWidgetByName("Statistic chart");
     return new StatisticEditWidgetNewDashboardPage();
-  }
-
-  public StatisticWidgetDashboardPage selectStatisticWidget() {
-    return new StatisticWidgetDashboardPage();
   }
 
   public SelenideElement getTitleByIndex(int index) {

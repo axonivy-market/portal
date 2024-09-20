@@ -88,7 +88,6 @@ public class HomepageUtils {
       case PROCESS -> findRelativeUrlByKeywork(PortalNavigator.PORTAL_PROCESS_START);
       case TASK -> findRelativeUrlByKeywork(PortalNavigator.PORTAL_TASK_START);
       case CASE -> findRelativeUrlByKeywork(PortalNavigator.PORTAL_CASE_START);
-      case STATISTICS -> findRelativeUrlByKeywork(PortalNavigator.PORTAL_STATISTIC_START);
       default -> "";
     };
     if (StringUtils.isNotEmpty(relativeUrl)) {
