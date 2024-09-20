@@ -599,6 +599,7 @@ $(document).ready(function() {
     }
 
     if (event.altKey) {
+      console.log('ENTER...');
       //Short cuts for Task widget
       var key = event.key.toLowerCase();
       if (key == 'w') {
