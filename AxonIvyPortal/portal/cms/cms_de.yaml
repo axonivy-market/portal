@@ -441,7 +441,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ResetToDefaultHeaderText: Auf Standard-Einstellungen zurücksetzen?
     RoleUserInformation: Rollen- und Benutzerinformationen
     TaskCaseInformation: Informationen zu Aufgabe und Vorgang
-    Update: Update
+    Update: Aktualisieren
     action: Aktionen
     active: Aktiviert
     add: Hinzufügen
@@ -754,9 +754,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         cannotStartTask: Sie können Aufgabe {0} nicht starten.
         isAnotherUserWorking: Sie können nicht an der Aufgabe ''{0}'' mit der Identifikation ''{1}'' arbeiten, weil Benutzer ''{2}'' momentan daran arbeitet.
         noPermission: Sie können die Aufgabe {0} nicht starten, weil Ihnen die Berechtigung fehlt.
-        taskDone: |+
-          Sie können die Aufgabe {0} nicht starten, da sie bereits abgeschlossen wurde.
-
+        taskDone: Sie können die Aufgabe {0} nicht starten, da sie bereits abgeschlossen wurde.
       created: Erstellt am
       expired: Ablaufdatum
       showDetailsHint: Mehr Details anzeigen
@@ -811,9 +809,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     QuickSearchInfo: Sie können den Bereich der Schnellsuche in der Spaltenverwaltung der Widgets anpassen. Die Suche erfolgt nach dem Kriterium "enthält", aber achten Sie darauf, die Leistung nicht zu beeinträchtigen, wenn Sie viele Spalten hinzufügen.
     QuickSearchScope: 'Suchbereich : {0}'
     RestoreDefaultDashboardMessage: Wenn Sie fortfahren, verlieren Sie alle von Ihnen erstellten Widgets. Es werden die Standardeinstellungen von <span class="dashboard-template-name-message">{0}</span> wiederhergestellt.
-    SaveNewWidgetFilterHeader: Speichere neuen Widget-Filter
+    SaveNewWidgetFilterHeader: Einen neuen Widget-Filter speichern
     SavedFilterHeader: Gespeicherte Filter
-    SearchForFilter: Suche nach Filter
+    SearchForFilter: Nach Filter suchen
     ShareThisDashboard: Teilen Sie dieses Dashboard
     StatisticWidget:
       AvailableCharts: Verfügbare Statistikdiagramme
@@ -1072,7 +1070,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   passwordSetting:
     changePasswordWSError: Ein Fehler ist während der Passwortänderung aufgetreten. Bitte, kontaktieren Sie Ihren Administrator falls das Problem nach mehreren Versuchen besteht.
     confirmNewPassword: Neues Password bestätigen
-    confirmPasswordHaveMatch: Das eingegebene Passwort stimmt nicht mit dem Bestätigungspasswort überein.
+    confirmPasswordHaveMatch: Das eingegebene neue Passwort stimmt nicht mit dem bestätigten Passwort überein.
     currentPassword: Aktuelles Passwort
     minCharacterRequired: mindestens {0} Zeichen lang sein
     minLowercaseCharacterRequired: mindestens {0} Kleinbuchstaben enthalten
@@ -1439,10 +1437,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     OPEN: Offen
     OPEN_UPPERCASE: OFFEN
     PARKED: Reserviert
-    READY_FOR_JOIN: Bereit für Zusammenführung
+    READY_FOR_JOIN: Bereit zum Beitritt
     READY_FOR_JOINING: Bereit für Zusammenführung
     READY_FOR_JOINING_UPPERCASE: BEREIT FÜR ZUSAMMENFÜHRUNG
-    READY_FOR_JOIN_UPPERCASE: READY FOR JOIN
+    READY_FOR_JOIN_UPPERCASE: BEREIT ZUM BEITRITT
     RESERVED: RESERVIERT
     RESUMED: In Bearbeitung
     SUSPENDED: Zugewiesen
@@ -1565,13 +1563,13 @@ Dialogs:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
                   CustomWidgetIFrameTitle: '{0} Rahmen'
-                DashboardModification:
-                  Share: Aktie
                 ProcessWidgetConfiguration:
                   DragAndDropToChangeOrder: ziehen und ablegen zum ändern der Reihenfolge.
                   DragAndDropTooltip: Klicken Sie auf die Vorschau und ändern Sie die Reihenfolge durch Ziehen und Ableg
         portalkit:
           component:
+            CaseItemDetails:
+              ShareCaseDetails: Falldetails teilen
             CaseWidget:
               CaseCategory: Vorgangskategorie
               CaseDetail:
@@ -1581,16 +1579,22 @@ Dialogs:
               CaseOwner: Prozessverantwortlicher
               Finished: Erledigt
               GlobalSearchText: Die Vorgänge enthalten das Schlüsselwort "{0}" in Vorgangs Id{1}.
-              ShowBusinessDetails: Business Details
+              ShowBusinessDetails: Geschäftsinformationen anzeigen
               caseNameNotAvailable: '[Kein Vorgangsname verfügbar]'
               defaultEmptyMessage: Keine Vorgänge verfügbar
             CustomIFrameWidget:
               CustomWidgetIFrameTitle: Benutzerdefinierter Widget-Rahmen
             IconSelection:
-              IconLinkTooltip: Zum Ändern des Symbols anklicken
+              IconLinkTooltip: Klicken Sie hier, um das Symbol zu ändern
+            TaskItemDetails:
+              ShareTaskDetails: Aufgabendetails teilen
   com:
     axonivy:
       portal:
+        component:
+          ShareLinkDialog:
+            CopyLink: Link kopieren
+            LinkCopied: Link kopiert
         dashboard:
           component:
             DashboardImportDetails:
@@ -1599,9 +1603,7 @@ Dialogs:
               ImportPublic: Öffentliches Dashboard importieren
               chooseAJsonFile: Wählen Sie eine JSON-Datei
             DashboardSharing:
-              CopyLink: Link kopieren
-              LinkCopied: Link kopiert!
-              ShareDashboard: Dashboard teilen
+              ShareDashboard: Dashboard freigeben
             NewsWidget:
               NewsContentPlaceHolder: Nachrichteninhalt eingeben
               NewsContentValidateMessage: Nachrichteninhalt in {0} ist erforderlich
@@ -1758,6 +1760,7 @@ Labels:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Permissions: Berechtigungen
+  Share: Share
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails
   TaskUser-Explain: Kommaseparierte Liste von Benutzern
