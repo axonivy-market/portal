@@ -411,10 +411,6 @@ public class TaskWidgetPage extends TemplatePage {
     return isTaskActionDisplayed("task-reserve-command", 0, expected);
   }
 
-  public boolean isAdhocSideStepDisplayed(boolean expected) {
-    return isElementDisplayed(By.cssSelector("a[id$='adhoc-side-step-item']"), expected);
-  }
-
   public void sideStepMenuOnActionButton(int index) {
     String actionButton =
         String.format("[id$='%d\\:task-item\\:task-action\\:additional-options\\:task-side-steps-menu']", index);
@@ -753,13 +749,6 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement cell = findElementById(
         String.format(taskWidgetId + ":task-list-scroller:%d:task-item:%s-component:%s", index, columnId, columnId));
     return cell.getText();
-  }
-
-  public AdhocPage addAdhoc(int taskIndex) {
-    waitForElementClickableThenClick("[id$=':task-side-steps-menu']");
-    waitForElementClickableThenClick("[id$=':adhoc-side-step-item']");
-    waitForElementPresent(By.id(TASK_ACTION), true);
-    return new AdhocPage();
   }
 
   public void clearFilterInput() {

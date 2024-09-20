@@ -1423,7 +1423,6 @@ Dialogs:
       switchToEditMode: Editar
       switchToViewMode: Guardar
   agileBPM:
-    TooltipForOriginalTask: Su tarea actual volverá a evaluarse cuando estén completados los flujos de trabajo ad hoc previos.
     define_WF:
       ErrorSelectInvalidAssignee: El destinatario ya está seleccionado o es inválido
       ListOfSelectedUser: Lista de usuarios seleccionados
@@ -1649,7 +1648,6 @@ Labels:
   ToggleMenu: Menú alternativo
   ViewAllResults: Ver todos los resultados
   disabledUserPrefix: (inactivo)
-  title: Flujo de trabajo Ad-hoc de auto servicio
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm
@@ -1679,8 +1677,6 @@ Processes:
       SynchronizeServerConfigurationCaseName: Sincronizar configuración del servidor
   portalHome: Portal Principal
   portalSettingSaved: Ajustes del portal guardados
-ProcessPages:
-  selfServiceDescription: 'Proceso de auto servicio: Lanzar un flujo de trabajo ad-hoc basado en un patrón de flujo predefinido'
 Texts:
   Approval-Explain: |+
     <P>

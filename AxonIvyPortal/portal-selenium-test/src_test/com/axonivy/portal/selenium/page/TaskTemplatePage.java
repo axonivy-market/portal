@@ -18,7 +18,6 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
 
 public class TaskTemplatePage extends TemplatePage {
-  private static final String ADHOC_HISTORY_TABLE_CSS_SELECTOR = "div[id*='adhoc-task-history-table'] table>tbody>tr";
 
   @Override
   protected String getLoadedLocator() {
@@ -235,16 +234,6 @@ public class TaskTemplatePage extends TemplatePage {
   public void clickOnSubmitButton() {
     clickByJavaScript($("button[id$=':button-submit']"));
     switchBackToParent();
-  }
-
-  public String getTaskNameOfAdhocHistoryRow(int index) {
-    SelenideElement elem = $$(By.cssSelector(ADHOC_HISTORY_TABLE_CSS_SELECTOR)).get(index);
-    return elem.findAll(By.xpath("td")).get(2).getText();
-  }
-
-  public String getCommentOfAdhocHistoryRow(int index) {
-    SelenideElement elem = $$(By.cssSelector(ADHOC_HISTORY_TABLE_CSS_SELECTOR)).get(index);
-    return elem.findAll(By.xpath("td")).get(3).getText();
   }
 
   // moved

@@ -20,7 +20,6 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
 public class TaskIFrameTemplatePage extends TemplatePage {
-  private static final String ADHOC_HISTORY_TABLE_CSS_SELECTOR = "div[id*='adhoc-task-history-table'] table>tbody>tr";
 
   @Override
   protected String getLoadedLocator() {
@@ -78,12 +77,6 @@ public class TaskIFrameTemplatePage extends TemplatePage {
   public void clickActionButton() {
     $("[id='horizontal-task-actions']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id$='horizontal-task-action-form:horizontal-task-action-menu']").shouldBe(appear, DEFAULT_TIMEOUT);
-  }
-
-  public void clickOnStartAdhocLink() {
-    $("div[id$='horizontal-task-action-form:horizontal-task-action-menu']").$("a[id$='start-adhoc']")
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("div[id$='adhoc-task-reset-confirmation-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   // moved

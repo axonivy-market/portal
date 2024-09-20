@@ -1421,7 +1421,6 @@ Dialogs:
       switchToEditMode: Bearbeiten
       switchToViewMode: Speichern
   agileBPM:
-    TooltipForOriginalTask: Ihre aktuelle Aufgabe wird wieder auftauchen sobald der Ad hoc Workflow fertiggestellt ist.
     define_WF:
       ErrorSelectInvalidAssignee: Der Beauftragte ist bereits ausgewählt oder ungültig
       ListOfSelectedUser: Liste ausgewählter Benutzer
@@ -1647,7 +1646,6 @@ Labels:
   ToggleMenu: Menü umschalten
   ViewAllResults: Alle Ergebnisse anzeigen
   disabledUserPrefix: (inaktiv)
-  title: Self Service Ad-hoc Workflow
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm
@@ -1677,8 +1675,6 @@ Processes:
       SynchronizeServerConfigurationCaseName: Server Konfiguration synchronisieren
   portalHome: Portal Home
   portalSettingSaved: Portaleinstellungen sind gespeichert
-ProcessPages:
-  selfServiceDescription: 'Self Service Prozess: ein ad-hoc Workflow starten'
 Texts:
   Approval-Explain: "<P>\n\n<B>Treffen Sie Ihre Entscheidung</B> und klicken Sie auf <B>Senden </B>um weiterzufahren. \n\n</P>\n\n"
   QA-Explain: |+
