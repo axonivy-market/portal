@@ -1441,7 +1441,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     OPEN: Open
     OPEN_UPPERCASE: OPEN
     PARKED: Reserved
-    READY_FOR_JOIN: Ready for joining
+    READY_FOR_JOIN: Ready for join
     READY_FOR_JOINING: Ready for joining
     READY_FOR_JOINING_UPPERCASE: READY FOR JOINING
     READY_FOR_JOIN_UPPERCASE: READY FOR JOIN
@@ -1597,7 +1597,7 @@ Dialogs:
         component:
           ShareLinkDialog:
             CopyLink: Copy link
-            LinkCopied: Link copied!
+            LinkCopied: Link copied
         dashboard:
           component:
             DashboardImportDetails:
