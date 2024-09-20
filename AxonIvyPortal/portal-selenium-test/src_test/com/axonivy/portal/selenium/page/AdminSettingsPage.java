@@ -104,13 +104,6 @@ public class AdminSettingsPage extends TemplatePage {
     return new AnnouncementPage();
   }
 
-  public ExpressManagementPage openExpressManagementTab() {
-    waitForElementClickableThenClick(
-        $(By.xpath(("//a[@href='#admin-setting-component:adminTabView:express-management-tab']"))));
-    waitForElementPresent(By.id("admin-setting-component:adminTabView:express-management-tab"), true);
-    return new ExpressManagementPage();
-  }
-
   public RoleManagementPage openRoleManagementTab() {
     waitForElementDisplayed(By.cssSelector("[id$='admin-setting-component:adminTabView']"), true);
     waitForElementClickableThenClick("a[href='#admin-setting-component:adminTabView:role-management-tab']");

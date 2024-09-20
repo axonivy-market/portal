@@ -17,7 +17,7 @@ import com.axonivy.portal.selenium.page.ExpressTaskPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
-import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
+import ch.ivyteam.ivy.project.portal.test.Responsible;
 
 @IvyWebTest
 public class ChatTest extends BaseTest {
@@ -39,7 +39,7 @@ public class ChatTest extends BaseTest {
 
   @Test
   public void chatAddGroup() {
-    ExpressResponsible chatUser1 = setExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
+    Responsible chatUser1 = setResponsible(TestAccount.ADMIN_USER.getUsername(), false);
     ChatPage chatPage = enableChatGroup();
     createChatGroup(TestAccount.DEMO_USER);
     joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
@@ -52,7 +52,7 @@ public class ChatTest extends BaseTest {
     openNewTabOrWindow(WindowType.WINDOW);
     launchBrowserAndGotoRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
 
-    ExpressResponsible chatGroupEveryBody = setExpressResponsible("Everybody", true);
+    Responsible chatGroupEveryBody = setResponsible("Everybody", true);
     createChatGroup(TestAccount.GUEST_USER, chatUser1, chatGroupEveryBody);
 
     login(TestAccount.ADMIN_USER);
@@ -121,7 +121,7 @@ public class ChatTest extends BaseTest {
     new NewDashboardPage().getChat().isNotificationContactChat();
   }
 
-  private ChatPage createChatGroup(TestAccount creatorChatGroup, ExpressResponsible... participants) {
+  private ChatPage createChatGroup(TestAccount creatorChatGroup, Responsible... participants) {
     redirectToRelativeLink(createTestingCaseUrlForDefaultAdditionalCaseDetails);
     login(creatorChatGroup);
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);

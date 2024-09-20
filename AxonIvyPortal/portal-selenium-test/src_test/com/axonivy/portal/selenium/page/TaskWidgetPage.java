@@ -372,12 +372,6 @@ public class TaskWidgetPage extends TemplatePage {
     return !$(".action-link").getAttribute("class").contains("ui-state-disabled");
   }
 
-  public ExpressTaskPage startExpressTask(int index) {
-    waitTaskAppearThenClick(index);
-    $(By.id(TASK_ACTION)).shouldBe(appear, DEFAULT_TIMEOUT);
-    return new ExpressTaskPage();
-  }
-
   public TaskIFrameTemplatePage startTaskIFrame(int index) {
     waitTaskAppearThenClick(index);
     $(By.id(TASK_ACTION)).shouldBe(appear, DEFAULT_TIMEOUT);

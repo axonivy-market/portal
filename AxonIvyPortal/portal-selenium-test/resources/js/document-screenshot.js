@@ -374,44 +374,6 @@ function highlightResetToDefault() {
   createRedMediumOutline($("[id$=':reset-details-settings-button']"));
 }
 
-function highlightShowWorkflowEvents() {
-  createRedMediumOutline($("a[id$=':task-workflow-event-command']"));
-}
-
-function highlightCreateExpressWorkflow() {
-  createRedMediumOutline($("[id$='process-widget:create-express-link']"));
-}
-
-function highlightExpressTaskResponsible(stepNumber) {
-  var taskResponsible = '.task-responsible:eq(' + stepNumber + ')';
-  createRedMediumOutline($(taskResponsible));
-}
-
-function highlightManagementExpressTab() {
-  $("a[href$=':adminTabView:express-management-tab']").parent().addClass("red-medium-border");
-}
-
-function highlightDeployExpress() {
-  createRedMediumOutline($(".ui-fileupload-upload"));
-}
-
-function highlightExportExpress() {
-  var expressTable = $("[id$=':express-management-component:express-management-form:express-workflow-summary-table']");
-  var checkAll = expressTable.find(".express-selection-column:eq(0)").find(".ui-chkbox-box");
-  createRedMediumOutline(checkAll);
-  appendStepAnnotation(checkAll, 1, -10, checkAll.width() + 10);
-  
-  var exportButton = $("[id$=':express-management-component:express-management-form:export-express-btn']");
-  appendStepAnnotation(exportButton, 2, -10, exportButton.width() + 15);
-}
-
-function cleanHighlightExportExpress() {
-  var expressTable = $("[id$=':express-management-component:express-management-form:express-workflow-summary-table']");
-  var checkAll = expressTable.find(".express-selection-column:eq(0)").find(".ui-chkbox-box");
-  checkAll.removeClass("red-medium-outline");
-  $('.marker').remove();
-}
-
 function scrollToMiddleOfLayoutContent() {
   window.scrollTo(0, document.body.scrollHeight/2);
 }
@@ -492,10 +454,6 @@ function highlightTaskActionItem(taskIndex, actionIndex) {
 
 function highlightShowAllProcesses() {
   createRedThickOutlineWithOffset($('.layout-menu .PROCESS'));
-}
-
-function highlightShowAdditionalLink() {
-  createRedMediumOutline($("[id$='case-item:case-item-action-form:action-step-component:show-additional-case-details-link']"));
 }
 
 function highlightTaskExportToExcelButton() {

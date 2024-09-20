@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.common;
 
 import static com.codeborne.selenide.Condition.exist;
-
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.refresh;
@@ -23,7 +22,7 @@ import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
-import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
+import ch.ivyteam.ivy.project.portal.test.Responsible;
 
 /**
  * A base test that other tests extend it. It will test on browser IE by default. It provides feature to take screenshot
@@ -362,8 +361,8 @@ public class BaseTest {
     return new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT);
   }
 
-  public ExpressResponsible setExpressResponsible(String userName, boolean isGroup) {
-    ExpressResponsible user = new ExpressResponsible();
+  public Responsible setResponsible(String userName, boolean isGroup) {
+    Responsible user = new Responsible();
     user.setResponsibleName(userName);
     user.setIsGroup(isGroup);
     return user;
