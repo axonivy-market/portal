@@ -1184,8 +1184,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       emptystate:
         defaultEmptyMessages: Pas de diagrammes à afficher
       exception:
-        idNotFound: 'Chart Id not found with id: {0}'
-        noPermission: You do not have the permission to send this request!
+        idNotFound: "Identifiant du diagramme non trouvé avec l'identifiant : {0}"
+        noPermission: Vous n'avez pas la permission d'envoyer cette demande !
       expiryPeriod: Période d'expiration
       loadingCharts: Veuillez patienter, les graphiques sont en cours de chargement …
       moveLeft: Déplacer vers la gauche
@@ -1581,7 +1581,7 @@ Dialogs:
               CaseOwner: Responsable de processus
               Finished: Terminé
               GlobalSearchText: Les cas contiennent le mot-clé "{0}" dans Id du dossier{1}.
-              ShowBusinessDetails: Détails de la demande
+              ShowBusinessDetails: Détails de l'entreprise
               caseNameNotAvailable: '[Nom de cas pas disponible]'
               defaultEmptyMessage: Il n'y a pas de dossiers
             CustomIFrameWidget:
@@ -1799,13 +1799,13 @@ Labels:
       EMPTY: Est vide
       END_WITH: Se termine par
       EQUAL: Égalité
-      GREATER_OR_EQUAL: Greater or equal
+      GREATER_OR_EQUAL: Supérieur ou égal
       IN: En
       IS: Est
       IS_NOT: N'est pas
       LAST: Au cours des dernières
       LESS: Less
-      LESS_OR_EQUAL: Less or equal
+      LESS_OR_EQUAL: Inférieur ou égal
       NEXT: Dans les prochains
       NOT_BETWEEN: Pas entre
       NOT_CONTAINS: Ne contient pas
