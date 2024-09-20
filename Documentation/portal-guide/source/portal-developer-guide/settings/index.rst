@@ -247,13 +247,6 @@ Other Permissions
  | Express   | Create Express workflow         | :bdg-ref-warning:`🔑ExpressCreateWorkflow <ExpressCreateWorkflow>`                    |
  |           |                                 | (assigned to role Everybody by default)                                               |
  +-----------+---------------------------------+---------------------------------------------------------------------------------------+
- | Statistics| Add dashboard                   | :bdg-ref-warning:`🔑StatisticAddDashboardChart <StatisticAddDashboardChart>`          |
- |           |                                 | (assigned to role Everybody by default)                                               |
- |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Analyze, filter tasks           | :bdg-ref-warning:`🔑StatisticAnalyzeTask <StatisticAnalyzeTask>`                      |
- |           | and export data to excel        |                                                                                       |
- |           | for advanced analysis           |                                                                                       |
- +-----------+---------------------------------+---------------------------------------------------------------------------------------+
  | Portal    | Access to full process          | :bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>`                    |
  | permission| list, it's "Processes" on the   |                                                                                       |
  |           | left menu and link "Show all    |                                                                                       |
@@ -266,11 +259,6 @@ Other Permissions
  |           +---------------------------------+---------------------------------------------------------------------------------------+
  |           | Access to full case list, it's  | :bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>`                          |
  |           | "Cases" on the left menu        |                                                                                       |
- |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Access to statistics it's       | :bdg-ref-warning:`🔑AccessFullStatisticsList <AccessFullStatisticsList>`              |
- |           | "Statistics" on the left menu   |                                                                                       |
- |           | and link "Show all charts" on   |                                                                                       |
- |           | Dashboard                       |                                                                                       |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
  |           | Add note to task/case           | :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`                                |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
