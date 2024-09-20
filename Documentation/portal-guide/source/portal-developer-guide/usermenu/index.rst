@@ -16,8 +16,6 @@ These types of user items are available:
 
 - Start Ivy Process
 
-- Start the Portal Express process
-
 You can predefine user menu items and details of each item
 by configuring variable **Portal.UserMenu**.
 
@@ -44,12 +42,6 @@ Below is a JSON example for the configuration of user items.
           "title" : "|ivy|",
           "permissions": ["#demo"],
           "url" : "https://www.axonivy.com/"
-      },
-      {
-          "id" : "express",
-          "title" : "Portal Express process",
-          "permissions": ["Everybody"],
-          "url" : "Portal Express process"
       },
       {
           "id" : "re-order-dashboard",
@@ -84,16 +76,12 @@ Structure of JSON for each user item:
     .. tip::
        If you don't define ``permissions`` for a user item, every user can see it.
 
-    ``url``: the URL of the external webpage, Ivy process start, or the name of the Portal Express process you want to redirect to.
+    ``url``: the URL of the external webpage or Ivy process start you want to redirect to.
 
     .. tip::
         Ivy process start URLs are a **relative link** to the process.
 
           - e.g: ``Start Processes/CreateTestData/CreateTestDataForCustomizedDashboard.ivp``
-
-        Express process start URLs are the **name** of the Portal Express process.
-
-          - e.g: ``Portal Express process``
 
     ``params``: parameters for the Ivy process defined above. Each parameter can
     be defined as a key-value pair as follows:
@@ -102,6 +90,6 @@ Structure of JSON for each user item:
       - value: predefined value for the parameter.
 
     .. tip::
-       Params are not required if the URL denotes an external webpage or an Express process.
+       Params are not required if the URL denotes an external webpage.
 
 .. |user-menu-configuration| image:: ../../screenshots/settings/user-menu-configuration.png

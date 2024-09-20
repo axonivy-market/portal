@@ -97,7 +97,7 @@ Setup Portal multi applications
 
 All applications are in the same security context and the **portal-components** should be the only part being deployed in the other applications. See :ref:`The Portal multi applications <multi-app-structure>` overview.
 
--  Create a new application. Deploy Portal (portal, portal-components, optionally AxonIvyExpress) to this application.
+-  Create a new application. Deploy Portal (portal, portal-components, optionally axonivy-express) to this application.
 
 -  Create new applications: App 1, App 2,... Deploy your projects to the new applications.
 
