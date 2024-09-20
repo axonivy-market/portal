@@ -480,6 +480,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     detail: Detalles
     display: Mostrar
     displayName: Nombre de pantalla
+    dragAndDrop: 'Arrastre y suelte una imagen o '
     edit: Editar
     errorAjaxMessage: Error general
     errorFileUploadSize: El tamaño deberá ser inferior a {0}
@@ -563,7 +564,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     second: segundo
     seconds: segundos
     seeDetail: Mostrar detalles
-    select: Seleccionar
     selectAll: Seleccionar todo
     selectUsers: Seleccione usuario(s)
     selectedDay: '{0} Día(s) selecionados'
@@ -593,6 +593,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: Todos los administradores
     typeAllUsers: Todos los usuarios
     typeOnlyMe: Solo yo
+    uploadOneHere: Seleccionar
     user: '{0} usuario'
     users: Usuarios
     via: vía

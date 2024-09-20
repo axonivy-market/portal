@@ -168,8 +168,8 @@ a.compact-task-start-link .task-start-list-item {
 
 .dashboard-widget-panel-container .process-start-list-item,
 .ui-fieldset-content .process-start-list-item {
-  background-color: var(--item-widget-background-color);
-}
+  background-color: var(--process-list-item-background-color);
+  border: 1px solid var(--process-list-item-border-color);}
 
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item {
   background-color: var(--item-widget-background-color); }
@@ -244,8 +244,7 @@ body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
   font-weight: var(--widget-header-font-weight);
   font-size: var(--large-font-size); }
 
-.edit-process-icon-group .awesome-icon-selection-panel span,
-.external-process-icon .awesome-icon-selection-panel span {
+.edit-process-icon-group .awesome-icon-selection-panel span {
   font-size: var(--process-grid-icon-font-size); }
 
 .edit-process-info-group .edit-process-detail-1st-cell,

@@ -496,7 +496,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     second: second
     seconds: seconds
     seeDetail: See details
-    select: Select
     selectAll: Select All
     selectUsers: Select user(s)
     selectedDay: '{0} selected day(s)'
@@ -524,6 +523,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: All administrators
     typeAllUsers: All users
     typeOnlyMe: Only me
+    uploadOneHere: Upload one here
     user: '{0} user'
     users: Users
     via: via

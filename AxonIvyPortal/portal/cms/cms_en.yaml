@@ -478,6 +478,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     detail: Details
     display: Display
     displayName: Display name
+    dragAndDrop: 'Drag and drop an image or '
     edit: Edit
     errorAjaxMessage: There is a general exception.
     errorFileUploadSize: The file size must be lower than {0}
@@ -561,7 +562,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     second: second
     seconds: seconds
     seeDetail: See details
-    select: Select
     selectAll: Select All
     selectUsers: Select user(s)
     selectedDay: '{0} selected day(s)'
@@ -591,6 +591,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: All administrators
     typeAllUsers: All users
     typeOnlyMe: Only me
+    uploadOneHere: Upload one here
     user: '{0} user'
     users: Users
     via: via

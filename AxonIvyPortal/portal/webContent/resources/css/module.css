@@ -1365,7 +1365,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .compact-processes-container .process-start-list-item, .compact-default-processes-container .process-start-list-item {
   margin: auto;
   margin-bottom: 12px;
-  padding-right: 15px;
 }
 
 .add-external-link-icon {
@@ -5464,7 +5463,7 @@ border-top: 0.14rem dashed;
   padding: 3px 0;
 }
 
-body .ui-fieldset-content {
+body .process-compact-mode.ui-fieldset-content {
   border-top: 1px solid var(--ivy-primary-color-grey-light) ;
   padding: 25px 0;
 }
@@ -6012,7 +6011,8 @@ a.dashboard-action-container label {
 
 /* =================== ADD EXTERNAL LINK PROCESS DIALOG ====================== */
 .external-link-preview-image {
-  width: inherit;
+  width: 100%;
+  height: 70%;
 }
 
 .external-link-preview-image-panel {
@@ -6042,6 +6042,32 @@ a.dashboard-action-container label {
   top: 7px;
   z-index: 1;
   border-radius: 50%;
+}
+
+.ui-external-link-preview-image-panel {
+  width: 100%;
+  border: 1px solid var(--process-list-item-border-color);
+  background-color: var(--process-list-item-background-color);
+  height: 150px;
+  border-radius: 10px;
+  align-items: center;
+  display: flex;
+}
+
+.ui-external-link-preview-image-panel > .ui-external-link-preview-image-label {
+  width: 42%;
+  display: block;
+  text-align: center;
+  margin: auto;
+  position: relative;
+  top: 12px;
+}
+
+.ui-external-link-preview-image-label > #ui-external-link-preview-image-icon {
+  width: 100%;
+  font-size: 2em;
+  top: -20px;
+  position: relative;
 }
 
 .language-icon-padding-right {
