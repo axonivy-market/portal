@@ -18,8 +18,6 @@ You find ``portal-developer-examples`` in the engine demo mode or import them in
    task-delegation
    task-item-details
    case-item-details
-   default-chart
-   default-chart-colors
    change-password-process
    logout-process
    navigate-back
