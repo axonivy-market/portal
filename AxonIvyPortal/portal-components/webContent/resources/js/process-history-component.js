@@ -205,8 +205,7 @@ var MainMenu = {
       ["CaseWidget.xhtml", "CASE"],
       ["PortalCaseDetails.xhtml", "CASE"],
       ["CaseItemDetails.xhtml", "CASE"],
-      ["PortalDashBoard.xhtml", "DASHBOARD"],
-      ["TaskAnalysis.xhtml", "DASHBOARD"]],
+      ["PortalDashBoard.xhtml", "DASHBOARD"]],
 
   init : function(responsiveToolkit) {
     this.highlightMenuItem();
@@ -219,11 +218,6 @@ var MainMenu = {
     var $this = this;
     this.$mainMenuToggle.on('click', function(e) {
       $this.responsiveToolkit.updateLayoutWithAnimation();
-
-      var statisticContainer = $('.js-statistic-widget-container.compact-mode');
-      if (statisticContainer.length > 0) {
-        updateStatisticCarousel();
-      }
     });
   },
 

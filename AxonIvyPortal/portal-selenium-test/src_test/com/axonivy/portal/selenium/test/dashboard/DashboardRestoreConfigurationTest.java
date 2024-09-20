@@ -73,7 +73,7 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
   @Test
   public void testCannotRestoreDashboardWhenTemplateNotFound() {
     var dashboardName = "Dashboard";
-    createJSonFile("dashboard-has-one-chart-example.json", PortalVariable.DASHBOARD.key);
+    createJSonFile("dashboard-has-newsfeed.json", PortalVariable.DASHBOARD.key);
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     var modificationPage = configurationPage.openEditPublicDashboardsPage();

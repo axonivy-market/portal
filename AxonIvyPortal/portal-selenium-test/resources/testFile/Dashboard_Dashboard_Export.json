@@ -533,65 +533,6 @@
         }
       },
       {
-        "type": "statistic",
-        "id": "statistic_ff821a63a24d49c6a310fb83ce818a46",
-        "names": [
-          {
-            "locale": "en",
-            "value": "Tasks by Priority"
-          },
-          {
-            "locale": "fr",
-            "value": "Tasks by Priority"
-          },
-          {
-            "locale": "de",
-            "value": "Tasks by Priority"
-          },
-          {
-            "locale": "es",
-            "value": "Tasks by Priority"
-          }
-        ],
-        "layout": {
-          "w": 4,
-          "h": 8,
-          "x": 5,
-          "y": 15
-        },
-        "chart": {
-          "id": "0",
-          "names": [
-            {
-              "locale": "de",
-              "value": "Aufgaben nach Priorität"
-            },
-            {
-              "locale": "en",
-              "value": "Tasks by Priority"
-            },
-            {
-              "locale": "fr",
-              "value": "Tãches par priorité"
-            },
-            {
-              "locale": "es",
-              "value": "Tareas por prioridad"
-            }
-          ],
-          "type": "TASK_BY_PRIORITY",
-          "filter": {
-            "timePeriodSelection": "CUSTOM",
-            "isAllCategoriesSelected": false,
-            "isAllRolesSelected": true,
-            "isAllCaseStatesSelected": true,
-            "isAllTaskPrioritiesSelected": true
-          },
-          "position": 0
-        },
-        "chartEmpty": true
-      },
-      {
         "type": "news",
         "id": "news_bc977a31c02a446fb2f2cb68a6118344",
         "names": [
