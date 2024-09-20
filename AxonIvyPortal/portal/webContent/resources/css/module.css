@@ -1296,9 +1296,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   padding: 0 5px;
   max-width: 100%;
   flex: 1;
-  background-color: var(--process-list-item-background-color);
-  border-radius: 10px;
-  border: 1px solid var(--process-list-item-border-color);
+
 }
 
 .process-start-list-item:hover,
