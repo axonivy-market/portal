@@ -151,7 +151,7 @@ The basic JSON structure of a custom menu item
 Hide default menu items
 -----------------------
 
-You can hide four default menu items: Processes, Tasks and Cases from the main menu
+You can hide three default menu items: Processes, Tasks and Cases from the main menu
 by using :ref:`Portal permissions <settings-permission-settings-others>`.
 
 .. |default-menu-items| image:: ../../screenshots/dashboard/expanded-left-menu.png
