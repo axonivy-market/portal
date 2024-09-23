@@ -337,6 +337,10 @@ function highlightResetToDefault() {
   createRedMediumOutline($("[id$=':reset-details-settings-button']"));
 }
 
+function highlightShowWorkflowEvents() {
+  createRedMediumOutline($("a[id$=':task-workflow-event-command']"));
+}
+
 function scrollToMiddleOfLayoutContent() {
   window.scrollTo(0, document.body.scrollHeight/2);
 }
