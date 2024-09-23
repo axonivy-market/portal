@@ -31,7 +31,7 @@ public class TaskActionTest extends BaseTest {
   private static final String DONE = "Done";
   private static final String SUSPENDED = "Suspended";
   private static final String IN_PROGRESS = "In progress";
-  private static final String READY_FOR_JOINING = "Ready for joining";
+  private static final String READY_FOR_JOIN = "Ready for join";
   private static final String RESERVED = "Reserved";
   private static final String DELAYED = "Delayed";
   private static final String DESTROYED = "Destroyed";
@@ -65,7 +65,7 @@ public class TaskActionTest extends BaseTest {
     redirectToRelativeLink(createTaskWithSystemState);
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     // Ready for Join
-    assertTaskActionsByTaskState(READY_FOR_JOINING, Arrays.asList(DETAILS, PROCESS_VIEWER));
+    assertTaskActionsByTaskState(READY_FOR_JOIN, Arrays.asList(DETAILS, PROCESS_VIEWER));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Suspended
@@ -95,7 +95,7 @@ public class TaskActionTest extends BaseTest {
     redirectToRelativeLink(createTaskWithSystemState);
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     // Ready for Join
-    assertTaskActionsByTaskState(READY_FOR_JOINING,
+    assertTaskActionsByTaskState(READY_FOR_JOIN,
         Arrays.asList(DETAILS, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
     taskWidgetPage = NavigationHelper.navigateToTaskList();
 
