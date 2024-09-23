@@ -5052,7 +5052,7 @@ body .process-compact-mode > .ui-fieldset-content {
   position: relative;
   object-fit: cover;
   width: inherit;
-  border-radius: 24px;
+  border-radius: 10px;
 }
 
 .image-process-item .image-process-item-image-bgc {
@@ -5447,8 +5447,8 @@ a.dashboard-action-container label {
 
 /* =================== ADD EXTERNAL LINK PROCESS DIALOG ====================== */
 .external-link-preview-image {
-  width: 100%;
-  height: 70%;
+  width: inherit;
+  height: inherit;
 }
 
 .external-link-preview-image-panel {
@@ -5484,8 +5484,8 @@ a.dashboard-action-container label {
   width: 100%;
   border: 1px solid var(--process-list-item-border-color);
   background-color: var(--process-list-item-background-color);
-  height: 150px;
   border-radius: 10px;
+  height: 10em;
   align-items: center;
   display: flex;
 }

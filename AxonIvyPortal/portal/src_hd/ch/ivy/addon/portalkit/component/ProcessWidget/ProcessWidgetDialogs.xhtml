@@ -408,7 +408,7 @@
         icon="#{visibilityBean.generateButtonIcon('si si-add-small')}" process="#{cc.clientId}:add-external-link-form"
         form="#{cc.clientId}:add-external-link-form" actionListener="#{processWidgetBean.createNewExternalLink()}"
         update="#{cc.clientId}:add-external-link-form"
-        oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide(); updateProcessListOnSaveSuccessful();}" />
+        oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide(); updateProcessListOnSaveSuccessful();} else {hideExtendLinkPreviewLabel();}" />
     </f:facet>
   </p:dialog>
   <!-- End External Link Dialogs -->
