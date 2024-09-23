@@ -38,11 +38,6 @@ Variables:
     # If set to true, icon info is shown beside the role name.
     DisplayUsersOfRole: false
 
-    # The standard sets of filters that Portal used to define the public filters set in the task analysis page.
-    # It will be shown as the public filters in the task analysis page.
-    # [file: json]
-    TaskAnalysisFilters:
-
     # You can define your custom menu item via this JSON file.
     # It will be included to the left menu.
     # [file: json]
@@ -81,9 +76,6 @@ Variables:
     # This setting will be taken over for all other dashboard.
     # [file: json]
     Dashboard:
-      # Set to true to hide Statistic widget from homepage and application menu.
-      HideStatisticWidget: false
-      
       # You can customize the name and icon of the main menu entry for Portal dashboards via this JSON file.
       # [file: json]
       MainMenuEntry:      
@@ -240,10 +232,6 @@ Variables:
 
     # For switch on/off the display of user/role avatars.
     ShowAvatar: true
-    
-    # Interval in seconds to do periodic statistic chart scaling requests.
-    # If the interval value is less than 10, periodic statistic chart scaling is disabled.
-    StatisticChartScalingInterval: 0
 
     # The set number controls the amount of direct children roles that is shown in Role Management tab.
     # [enum: 10, 50, 100]

@@ -21,6 +21,8 @@ public class CategoryUtils {
   public static final String NO_CATEGORY_CMS = "/ch.ivy.addon.portalkit.ui.jsf/common/noCategory";
   public static final String CATEGORY_SEPARATOR = ", ";
   public static final String CATEGORY_PATH_DELIMITER = "/";
+  public static final String PARENT_CATEGORY_DELIMITER = "\\\\";
+  public static final String CHILD_CATEGORY_DELIMITER = "\\";
 
   private CategoryUtils() {}
 

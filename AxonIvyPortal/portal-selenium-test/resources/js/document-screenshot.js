@@ -36,7 +36,6 @@ function createRedThickOutlineWithOffset($element) {
 /***IMPLEMENTATION TO DECORATE PAGES - WHICH ARE CALLED IN SELENIUM****/
 function highlightDashboardWidget() {
   createRedMediumOutline($("#task-widget"));
-  createRedMediumOutline($("#statistic-widget-container"));
   createRedMediumOutline($("#process-widget"));
 }
 
@@ -47,9 +46,6 @@ function highlightAndNumberingDashboardSections() {
   var taskWidget = $("#task-widget");
   createRedMediumOutline(taskWidget);
   appendStepAnnotation(taskWidget, "2", 0, taskWidget.width()/2);
-  var statisticWidget = $("#statistic-widget-container");
-  createRedMediumOutline(statisticWidget);
-  appendStepAnnotation(statisticWidget, "3", 0, statisticWidget.width()/2);
 }
 
 function numberingTaskFilter() {
@@ -186,14 +182,6 @@ function highlightProcessMoreMenuButton() {
   appendStepAnnotation(processMoreMenuButton, "1", -10, -40);
 }
 
-function numberingStatisticWidget() {
-  var chartInfo = $('.chart-info:eq(0)');
-  appendStepAnnotation(chartInfo, "1", -10, 25);
-  var chartCanvas = $('.ui-carousel-items-content');
-  appendStepAnnotation(chartCanvas, "2", chartCanvas.width()/4, chartCanvas.height()/2 + 10);
-  appendStepAnnotation(chartCanvas, "3", 15, chartCanvas.width()*0.75);
-}
-
 function highlightAdminSettings() {
   createRedMediumOutline($("#adminui-menu-item"));
 }
@@ -209,26 +197,6 @@ function highlightCaseMenuItem() {
 
 function highlightShowMoreNoteLink() {
   createRedMediumOutline($('a.js-note-show-more-link'));
-}
-
-function highlightStatisticNavigation() {
-   createRedThickOutlineWithOffset($('.layout-menu .STATISTICS'));
-}
-
-function highlightTaskAnalysisNavigationLink() {
-  createRedMediumOutline($("a[id$=':task-analysis-page-navigation-link']"));
-}
-
-function numberingChartPanel() {
-  var chartName = $('.chart-name:eq(1)');
-  appendStepAnnotation(chartName, "1", -30, -25);
-  var chartInfo = $('.chart-info:eq(1)');
-  appendStepAnnotation(chartInfo, "2", -20, 25);
-  var chartActions = $('.chart-actions-container:eq(0)');
-  appendStepAnnotation(chartActions, "3", -20, 0);
-  var chartCanvas = $('.statistic-chart:eq(1)');
-  appendStepAnnotation(chartCanvas, "4", chartCanvas.width()/4, chartCanvas.height()/2 + 10);
-  appendStepAnnotation(chartCanvas, "5", 15, chartCanvas.width()*0.8);
 }
 
 function highlightCustomCaseList() {

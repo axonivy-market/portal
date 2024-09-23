@@ -211,7 +211,6 @@
             "import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;",
             "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
             "import ch.ivy.addon.portalkit.enums.GlobalVariableType;",
-            "import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;",
             "import java.util.Arrays;",
             "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
             "",

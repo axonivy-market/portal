@@ -31,7 +31,7 @@ public class TaskActionTest extends BaseTest {
   private static final String DONE = "Done";
   private static final String SUSPENDED = "Suspended";
   private static final String IN_PROGRESS = "In progress";
-  private static final String READY_FOR_JOINING = "Ready for joining";
+  private static final String READY_FOR_JOINING = "Ready for join";
   private static final String RESERVED = "Reserved";
   private static final String DELAYED = "Delayed";
   private static final String DESTROYED = "Destroyed";
