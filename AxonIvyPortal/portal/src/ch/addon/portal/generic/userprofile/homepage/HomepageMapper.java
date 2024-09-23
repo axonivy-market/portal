@@ -23,8 +23,6 @@ public class HomepageMapper {
       homepage.setType(HomepageType.TASK);
     } else if (menuItem.getMenuKind() == MenuKind.CASE) {
       homepage.setType(HomepageType.CASE);
-    } else if (menuItem.getMenuKind() == MenuKind.STATISTICS) {
-      homepage.setType(HomepageType.STATISTICS);
     } else if (menuItem.getMenuKind() == MenuKind.CUSTOM) {
       homepage.setType(HomepageType.CUSTOM);
     } else {

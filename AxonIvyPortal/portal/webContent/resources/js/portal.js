@@ -181,8 +181,6 @@ var MainMenu = {
       ["CaseWidget.xhtml", "CASE"],
       ["PortalCaseDetails.xhtml", "CASE"],
       ["CaseItemDetails.xhtml", "CASE"],
-      ["PortalDashBoard.xhtml", "STATISTICS"],
-      ["TaskAnalysis.xhtml", "STATISTICS"],
       ["PortalDashboard.xhtml", "DASHBOARD"]],
 
   init : function(responsiveToolkit) {
@@ -197,11 +195,6 @@ var MainMenu = {
     var $this = this;
     this.$mainMenuToggle.on('click', function(e) {
       $this.responsiveToolkit.updateLayoutWithAnimation();
-
-      var statisticContainer = $('.js-statistic-widget-container.compact-mode');
-      if (statisticContainer.length > 0) {
-        updateStatisticCarousel();
-      }
     });
   },
 
@@ -379,38 +372,6 @@ function deactivateMenuItemOnLeftMenu(menuId) {
   }
 }
 
-function changeThemeModeRefeshCharts() {
-  let charts = $("div[id*='task_by_priority_chart-']");
-  updateChartLegendLabelColor(charts);
-
-  charts = $("div[id*='chart-statistic']");
-  updateChartLegendLabelColor(charts);
-
-  charts = $("div[id*='statistics-widget']");
-  updateChartLegendLabelColor(charts);
-}
-
-function updateChartLegendLabelColor(charts) {
-  for (const chart of charts) {
-    let widgetVar = getWidgetVarById(chart.id);
-    if(widgetVar && widgetVar.cfg && widgetVar.cfg.config && widgetVar.cfg.config.options) {
-      let options = jQuery.extend(true, {}, widgetVar.cfg.config.options);
-        options = {
-          plugins: {
-              legend: {    
-                labels: {
-                  color: getColor('--chart-default-legend-color')
-                }
-              }
-          }
-        };
-
-        jQuery.extend(true, widgetVar.cfg.config.options, options);
-        widgetVar.refresh(widgetVar.cfg);
-    }
-  }
-}
-
 function getWidgetVarById(id) {
   for (var propertyName in PrimeFaces.widgets) {
     var widget = PrimeFaces.widgets[propertyName];
@@ -520,7 +481,6 @@ const multipleDashboardId = '[id="user-menu-required-login:main-navigator:main-m
 const processItemId = '[id^="user-menu-required-login:main-navigator:main-menu_process"]';
 const taskItemId = '[id^="user-menu-required-login:main-navigator:main-menu_task"]';
 const caseItemId = '[id^="user-menu-required-login:main-navigator:main-menu_case"]';
-const statisticItemId = '[id^="user-menu-required-login:main-navigator:main-menu_statistics"]';
 const searchIconId = 'a#global-search-item';
 const quickSearchInputId = '[id="quick-global-search-component:global-search-data"]'
 const useSettingMenuId = 'a#user-settings-menu';
@@ -531,7 +491,6 @@ $(document).ready(function() {
     $(processItemId).find('a'),
     $(taskItemId).find('a'),
     $(caseItemId).find('a'),
-    $(statisticItemId).find('a'),
     $(searchIconId).length ? $(searchIconId) : $(quickSearchInputId),
     $(useSettingMenuId),
   ];

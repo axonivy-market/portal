@@ -328,7 +328,6 @@ Migrate 9.3 To 9.4
 
 #. The ``DefaultChartColor.p.json`` subprocess has been removed, in case you use it in your project, please remove override this subprocess and switch to using
    :dev-url:`Engine Branding </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>` to customize chart, data labels, legend color.
-   Refer to :ref:`Default chart colors <customization-default-chart-colors>`.
 
 #. Deploy :download:`portal-migration-9.4.0.iar <documents/portal-migration-9.4-9.4.0.iar>` project to your Ivy application and run it by access link
    ``your_host/your_application/pro/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp``
@@ -355,7 +354,6 @@ Migrate 9.2 To 9.3
       * Run migration process only once
 
 #. We changed the way to navigate to Task Analysis component. Process ``Start Processes/TaskAnalysis/start.ivp`` is moved to new place ``Start Processes/PortalStart/showTaskAnalysis.ivp``.
-   Refer to :ref:`Task Analysis call<components-additional-component-task-analysis-how-to-use>` for details.
 
 #. We moved the configuration of announcement, thirdparty applications, default statistic charts, application favorite processes, public external links and express processes from the BusinessData tovariables.
 
@@ -482,6 +480,11 @@ Release notes
 This part lists all relevant changes since the last official product
 releases of |ivy|.
 
+Changes in 12
+-------------
+
+- The old statistic chart is removed, use the new :ref:`statistic-chart` instead.
+
 Changes in 11.2.0
 -----------------
 
@@ -525,7 +528,7 @@ Changes in 9.4
 
 - Introduced the ``Formatting language setting`` to format values, for example the decimal separator is displayed differently in different regions of the world.
 
-- Removed subprocess ``DefaultChartColor.p.json``, introduced some Portal variables for customizing the default chart color. See details: :ref:`Default chart colors <customization-default-chart-colors>`.
+- Removed subprocess ``DefaultChartColor.p.json``, introduced some Portal variables for customizing the default chart color.
 
 - Introduce some components in new ``portal-components`` project.
 
