@@ -1043,15 +1043,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   left: 5px;
 }
 
-.process-header .create-express-link {
-  display: inline-block;
-  margin-left: 12px;
-}
-
-.process-header .create-express-link a:hover i {
-  opacity: 1;
-}
-
 .expand-collapse-btns {
   float: left;
 }
@@ -2726,7 +2717,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .setting-tab-action-buttons, .application-tab-action-buttons, .application-selection-action-buttons,
-.announcement-tab-action-buttons, .express-workflow-summary-actions-container,
+.announcement-tab-action-buttons,
 .create-role-container {
   text-align: right;
   margin: .5em 0;
@@ -4193,62 +4184,6 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
     display: none !important;
   }
 }
-
-/*=================== EXPRESS MANAGEMENT START ===================*/
-.express-helper-loading-container,
-.express-process-upload.ui-fileupload .ui-fileupload-progress {
-  display: none;
-}
-
-body .ui-dialog.ui-widget.import-express-dialog,
-body .ui-dialog.ui-widget.export-express-dialog {
-  min-width: 450px;
-  max-width: 1000px;
-}
-
-body .ui-dialog.ui-widget.import-express-dialog .ui-dialog-titlebar.ui-widget-header,
-body .ui-dialog.ui-widget.export-express-dialog .ui-dialog-titlebar.ui-widget-header {
-  padding-left: 1.5em;
-  padding-right: 1.5em;
-}
-
-@media screen and (max-width: 40em) {
-  body .ui-dialog.ui-widget.import-express-dialog,
-  body .ui-dialog.ui-widget.export-express-dialog {
-    min-width: 85vw;
-    max-width: 95%;
-  }	
-}
-
-.import-express-dialog .express-import-result {
-  overflow: auto;
-  max-height: 400px;
-  width: 100%;
-}
-
-.import-express-dialog .import-header-title,
-.export-express-dialog .import-header-title {
-  margin: 0;
-}
-
-.export-express-dialog .express-export-selected {
-  max-height: 250px;
-  overflow: auto;
-  width: 100%;
-}
-
-.express-helper-loading {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.express-management-form {
-  position: relative;
-  overflow: hidden;
-}
-
-/*=================== EXPRESS MANAGEMENT END ===================*/
 
 /*=================== BREADCRUMB ===================*/
 body .ui-widget-header.portal-breadcrumb a {

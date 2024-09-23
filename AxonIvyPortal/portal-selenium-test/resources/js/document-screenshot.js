@@ -188,7 +188,6 @@ function highlightAdminSettings() {
 
 function highlightUserMenuConfiguration() {
   createRedMediumOutline($("a[id$='menu-configuration-0']"));
-  createRedMediumOutline($("a[id$='menu-configuration-1']"));
 }
 
 function highlightCaseMenuItem() {
