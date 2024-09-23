@@ -470,19 +470,18 @@ const multipleDashboardId = '[id="user-menu-required-login:main-navigator:main-m
 const processItemId = '[id^="user-menu-required-login:main-navigator:main-menu_process"]';
 const taskItemId = '[id^="user-menu-required-login:main-navigator:main-menu_task"]';
 const caseItemId = '[id^="user-menu-required-login:main-navigator:main-menu_case"]';
-const statisticItemId = '[id^="user-menu-required-login:main-navigator:main-menu_statistics"]';
 const searchIconId = 'a#global-search-item';
+const quickSearchInputId = '[id="quick-global-search-component:global-search-data"]'
 const useSettingMenuId = 'a#user-settings-menu';
 
 $(document).ready(function() {
     let focusableElements = [
-        $(singleDashboardId).length ? $(singleDashboardId).find('a') : $(multipleDashboardId).find('a')[0],
-        $(processItemId).find('a'),
-        $(taskItemId).find('a'),
-        $(caseItemId).find('a'),
-        $(statisticItemId).find('a'),
-        $(searchIconId),
-        $(useSettingMenuId),
+      $(singleDashboardId).length ? $(singleDashboardId).find('a') : $(multipleDashboardId).find('a')[0],
+      $(processItemId).find('a'),
+      $(taskItemId).find('a'),
+      $(caseItemId).find('a'),
+      $(searchIconId).length ? $(searchIconId) : $(quickSearchInputId),
+      $(useSettingMenuId),
     ];
 
     let taskIndex = 0;
