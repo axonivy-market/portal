@@ -11,7 +11,7 @@ HowTo: Enable the translation
 
 To use DeepL powered translations:
 
-- Open :ref:`admin-settings`, set :guilabel:`Portal.DeepL.Enable` to true.
+- Open :ref:`Admin Settings <admin-settings>`, set :guilabel:`Portal.DeepL.Enable` to true.
 
 - Get a `free developer account <https://www.deepl.com/pro#developer/>`__ from DeepL.com, then copy the API-Key of your account into this Portal setting: :guilabel:`Portal.DeepL.AuthKey`.
 
