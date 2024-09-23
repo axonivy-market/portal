@@ -261,7 +261,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideChangePasswordButtonNote: Establezca esta variable a true para ocultar la opción "Cambiar contraseña" en el menú superior y la opción "Contraseña olvidada" en la página de inicio de sesión. Si se establece en false, estas opciones se mostrarán.
       hideLogoutButtonNote: Cambiar a "true" para ocultar la opción de logout.
       hideRelatedCaseInfoFromHistory: Si es verdadero, el historial de casos no muestra la información de los casos relacionados en la tabla de historial.
-      hideStatisticWidget: Cambiar a "true" para ocultar la estadística de la página principal y del menu lateral
       hideSystemNotesFromHistory: Si esto es cierto, no se muestran notas del sistema para los usuarios en las notas de tarea/tarea.
       hideSystemNotesFromHistoryAdministrator: Si esto es cierto, no se muestran notas de sistema para los administradores en las notas de tarea/tarea.
       hideSystemTasksFromHistory: Cambiar a "true" para ocultar notas técnicas del historial de tareas del caso para usuarios
@@ -280,7 +279,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: Cambiar a falso para desactivar el enlace "Más información" en la página de Procesos (modo cuadrícula) y Detalles del caso.
       showQuickGlobalSearch: Para activar/desactivar la visualización de la búsqueda global rápida.
       showTaskDurationTime: Activar o desactivar la visibilidad de la duración de la tarea en detalles de tarea.
-      statisticChartScalingInterval: Intervalo en segundos para realizar peticiones periódicas de escalado de gráficos estadísticos. Si el valor del intervalo es inferior a 10, se desactiva el escalado periódico de gráficos estadísticos.
       uploadDocumentWhiteListExtensionNote: 'Dejar libre, sie quiere permitir todos los anexos. Si quiere reducir los formatos permitidos, cree una lista separada por coma. Por ejemplo: pdf, txt, doc, docx.'
     key: Llave
     link: Enlazar
@@ -387,7 +385,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     DESTROYED_UPPERCASE: Destruido
     DONE: Hecho
     DONE_UPPERCASE: Hecho
-    FAILED: Ha fallado
+    FAILED: Fallido
     INPROGRESS: En Progreso
     OPEN: Pendiente
     OPEN_UPPERCASE: Pendiente
@@ -442,6 +440,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     backgroundColor: Color de fondo
     cancel: Cancelar
     case: Caso
+    caseCategory: Categoría de caso
     caseInformation: Informaciones del caso
     caseName: Nombre del caso
     categories: Categorias
@@ -457,7 +456,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     continue: Continuar
     create: Creado
     creationDate: Fecha de creación
-    dashboard: Tablero
+    dashboard: Dashboard
     data: Datos
     dateFromBiggerThanTo: Hasta' debe ser después de 'Desde'
     dateRequired: La fecha no puede estar vacía.
@@ -704,11 +703,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       titlePage: Validación de contraseñas
     processChain:
       currentStepIsNotDefined: El paso ({0}) de la cadena de proceso no está definido
-    statisticWidget:
-      chartDeletionConfirmation: ¿Seguro que quiere eliminar esta tabla de estadísticas?
-      contextMenuDrilldown: Drilldown
-      contextMenuToCaseList: Ir a la lista de casos
-      contextMenuToTaskList: Ir a la lista de tareas
     taskStart:
       cannotDelegateTaskMessage: Esta tarea no se puede delegar a ningún otro usuario o grupo.
       cannotStartMessages:
@@ -775,18 +769,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     RestoreDefaultDashboardMessage: Si continúa, perderá todos los widgets creados por usted. Se aplicará la configuración estándar de <span class="dashboard-template-name-message">{0}</span>.
     SaveNewWidgetFilterHeader: Guardar un nuevo filtro de widget
     SavedFilterHeader: Filtros guardados
-    SearchForFilter: Búsqueda del filtro
+    SearchForFilter: Buscar un filtro
     ShareThisDashboard: Comparte este panel
     StandardWidgets: Widgets estándar
     StatisticWidget:
-      AvailableCharts: Gráficos estadísticos disponibles
-      Charts: 'Gráfico(s): {0}'
-      ConfigurationDescription: Puede configurar su widget en esta área de configuración. Por favor, defina el gráfico que se mostrará en su panel de control.
       EmptyChartDataMessage: No tenemos suficientes datos para crear un buen gráfico.
-      FilterChartText: Filtrar un gráfico por nombre
-      PlaceholderChartOption: Seleccione un gráfico
-      PleaseSelectChart: Seleccione un gráfico
-      PreviewText: Seleccione un gráfico para ver los datos del lienzo
     WelcomeWidgetIntroduction: Este widget muestra un texto y una imagen de bienvenida en el panel de control.
     WelcomeWidgetNotFoundMessage: No podemos encontrar la imagen del widget, por favor reconfigure su imagen.
     WidgetFilterName: Nombre del filtro del widget
@@ -930,7 +917,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourNotifications: Sus notificaciones
     yourProcessViewer: Su visor de procesos
     yourProcesses: Sus procesos
-    yourStatistics: Sus estadísticas
     yourTasks: Sus tareas
   documentFiles:
     deleteDocumentNote: '{0} ha eliminado {1}'
@@ -1027,7 +1013,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     caseHistoriesTitle: Historial
     caseHistoryPageTitle: Historia de la nota de caso
     columnContent: Contenido
-    curentReportOf: del
+    curentReportOf: de
     eventType: Tipo de evento
     exportButton: Exportar a Excel
     relatedCase: Caso relacionado
@@ -1057,7 +1043,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   passwordSetting:
     changePasswordWSError: Se produjo un error al cambiar su contraseña. Póngase en contacto con su administrador si este problema persiste.
     confirmNewPassword: Confirmar nueva contraseña
-    confirmPasswordHaveMatch: La contraseña introducida, no coincide con la contraseña confirmada
+    confirmPasswordHaveMatch: La nueva contraseña introducida no coincide con la contraseña confirmada.
     currentPassword: Contraseña actual
     minCharacterRequired: tener al menos {0} caracteres
     minLowercaseCharacterRequired: contienen al menos {0} caracteres en minúscula
@@ -1132,157 +1118,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     searchResultsFor: '{0} resultados de búsqueda para "{1}"'
   sidestep:
     addAdhocTask: Añadir tarea Ad-hoc
-  statistic:
-    chart:
-      ExpandOrCollapseColumn: Abrir/Cerrar columnas
-      addChart: Agregar nueva grafica
-      addChartDialogHeader: Agregar grafica estadística al tablero
-      backToDashboard: Regresar al tablero
-      barchart:
-        Percentage: Porcentaje
-        daysOfWeek:
-          friday: Viernes
-          monday: Lunes
-          saturday: Sábado
-          sunday: Domingo
-          thursday: Jueves
-          tuesday: Martes
-          wednesday: Miércoles
-        expired: Vencido
-        in2Days: En 2 días
-        in3Days: En 3 días
-        monthsOfYear:
-          April: Abril
-          August: Agosto
-          December: Diciembre
-          February: Febrero
-          January: Enero
-          July: Julio
-          June: Junio
-          March: Marzo
-          May: Mayo
-          November: Noviembre
-          October: Octubre
-          September: Septiembre
-        today: Hoy
-        tomorrow: Mañana
-        weeksOfMonth:
-          fifthWeek: Quinta semana
-          firstWeek: Primera semana
-          fourthWeek: Cuarta semana
-          secondWeek: Segunda semana
-          sixthWeek: Sexta semana
-          thirdWeek: Tercera semana
-      caseCategory: Categoría de caso
-      chartCreationSuccessDetailMsg: El gráfico con el nombre {0} se creó con éxito
-      chartCreationSuccessTitle: El gráfico fue creado con éxito
-      elapsedTime: Tiempo transcurrido
-      elapsedTimeChart:
-        compareButton: Comparar
-        compareRole: 'Comparar el rol:'
-        elapsedTimeInHours: Tiempo transcurrido en horas
-        noEntriesFound: No se encontraron entradas con los criterios dados
-        taskCategory: Categoría de tarea
-        withRole: 'Con Rol:'
-      emptystate:
-        defaultEmptyMessages: No hay tabla de estadísticas para mostrar.
-      exception:
-        idNotFound: 'Chart Id not found with id: {0}'
-        noPermission: You do not have the permission to send this request!
-      expiryPeriod: Período de caducidad
-      loadingCharts: Por favor espere, los diagramas se están cargando
-      moveLeft: Muévete a la izquierda
-      moveRight: Muévete a la derecha
-      notAllowedToCreateChart: Ha cambiado los filtros aplicados. Por favor aplique los filtros.
-      other: Otros
-      restoreDefaultChart: Si continúa, todos los diagramas hechos por usted serán borrados. Los valores iniciales serán reestablecidos.
-      second: segundo
-      showAllCharts: Mostrar todas las estadísticas
-      statisticCarousel: Tiovivo de estadísticas
-      statistics: Estadísticas
-      taskByExpiry:
-        hour: (Hora)
-        thisMonth: Este mes
-        thisWeek: Esta semana
-        thisYear: Este año
-      taskByPriority:
-        addToDashboardLink: Agregar al tablero
-        exception: Excepción
-        high: Alto
-        low: Bajo
-        normal: Normal
-      taskExpiry: Vencimiento de tareas
-    chartInfo:
-      chartDetailsHeader: Detalles del gráfico
-      chartName: Nombre del gráfico
-      chartType: Tipo de gráfico
-      name: Información gráfica
-    chartType:
-      caseByFinishedTask: Caso por Tarea Terminada
-      caseByFinishedTaskDescription: Casos en los que al menos una tarea ha sido finalizada en el tiempo seleccionado
-      caseByFinishedTime: Caso por tiempo finalizado
-      caseByFinishedTimeDescription: Casos terminados en el periodo de tiempo seleccionado
-      caseByState: Caso por estado
-      casesByCategory: Casos por categoría
-      elapsedTimeByCaseCategory: Tiempo transcurrido por categoría de caso
-      elapsedTimeByCaseCategoryDescription: Tiempo de duración para casos terminados por categoría
-      taskByExpiry: Tarea por vencimiento
-      taskByPriority: Tarea por prioridad
-    defaultChart:
-      newChart: Diagrama nuevo
-      tasksByPriority: Tareas por prioridad
-    filter:
-      affectedCharts: Diagramas afectados
-      allSelected: Todos
-      caseCategoriesLabel: Categorías de casos
-      caseCategoryFilterDescription: Puede encontrar todos las categorias disponibles aqui. Solo las categorías seleccionadas serán consideradas en los diagramas creados
-      caseStateFilterDescription: Solo los estados seleccionados serán considerados en los diagramas
-      filter: Filtros
-      noRoles: No hay Roles
-      noSelectionCustomVarChar: Sin selección
-      noneSelected: Ninguno
-      roleFilterDescription: Puede encontra todos los roles disponibles aquí. Solo los roles seleccionados serán considerados en los diagramas
-      rolesLabel: Roles
-      selectAll: Seleccionar todo
-      taskPrioritiesLabel: Prioridades de tareas
-      taskPriorityFilterDescription: Puede filtrar tareas por prioridad.
-      timePeriod: Periodo de tiempo
-      timePeriodFilterDescription: Restringir el periodo de tiempo para casos y tareas
-      workflowStatesLabel: Estados de flujo de trabajo
-    taskAnalysis:
-      applyFilter: Aplicar filtros
-      caseCategory: Categoría de caso
-      caseCreator: Creador del caso
-      caseDescription: Descripción del caso
-      caseFilter: Filtros del caso
-      caseID: ID del caso
-      caseName: Nombre del caso
-      caseOwner: Propietario del caso
-      caseState: Estado del caso
-      downloadZipFileExplanation: |-
-        El número de tareas excede el Límite de Excel. Por ello se crearán varios archivos y se comprimirán en un archivo Zip.
-
-        El número de tareas excede el Límite de Excel. Por ello se crearán varios archivos y se comprimirán en un archivo Zip.
-      taskAnalysis: Análisis de tareas
-      taskCategory: Categoría de la tarea
-      taskCreationTime: Tarea creada
-      taskDescription: Descripción de la tarea
-      taskExpiryTime: Fecha de expiración de la tarea
-      taskFilter: Filtros de tareas
-      taskFinishedTime: Tarea completada
-      taskID: ID de la tarea
-      taskPriority: Prioridad de tarea
-      taskResponsible: Resonsable de tarea
-      taskState: Estado de tarea
-      taskWorker: Editor de tareas
-      waitingDownloadMessage: 'Estamos creando su exporte, esto puede tardar unos minutos. '
-    timePeriod:
-      custom: Personalizado
-      last6Month: Último 6 meses
-      lastMonth: El mes pasado
-      lastWeek: La semana pasada
-    validationErrors:
-      nameIsExisted: Ya existe una tabla con este nombre
   taskActivator:
     assign: Asignar
     cannotAssignTask: Esta tarea no puede ser asignada a otro usuario o grupo.
@@ -1443,7 +1278,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     READY_FOR_JOIN: Listo para unirse
     READY_FOR_JOINING: Listo para unirse
     READY_FOR_JOINING_UPPERCASE: Listo para unirse
-    READY_FOR_JOIN_UPPERCASE: READY FOR JOIN
+    READY_FOR_JOIN_UPPERCASE: LISTO PARA UNIRSE
     RESERVED: Resevardo
     RESUMED: En progreso
     SUSPENDED: Suspendido
@@ -1587,7 +1422,7 @@ Dialogs:
               CaseOwner: Responsable del proceso
               Finished: Terminado
               GlobalSearchText: Los casos contienen la palabra clave "{0}" en ID del caso{1}.
-              ShowBusinessDetails: detalles del negocio
+              ShowBusinessDetails: Detalles del negocio
               caseNameNotAvailable: '[Nombre del caso no disponible]'
               defaultEmptyMessage: No hay casos
             CustomIFrameWidget:
@@ -1607,13 +1442,14 @@ Dialogs:
       portal:
         component:
           ShareLinkDialog:
-            CopyLink: Copiar link
-            LinkCopied: ¡Enlace copiado!
+            CopyLink: Copiar enlace
+            LinkCopied: ¡Enlace copiado
         dashboard:
           component:
             CaseWidgetConfiguration:
               AddFilter: Añadir filtro
             ClientStatisticWidget:
+              IdNotFound: 'Chart Id not found with id: {0}'
               NoPermissionChartMessage: No tiene permiso para ver este gráfico.
             DashboardImportDetails:
               FileInfomation: Informacion del archivo
@@ -1826,13 +1662,13 @@ Labels:
       END_WITH: Termina con
       EQUAL: Igualdad
       GREATER: Greater
-      GREATER_OR_EQUAL: Greater or equal
+      GREATER_OR_EQUAL: Mayor o igual
       IN: En
       IS: Es
       IS_NOT: No es
       LAST: En los últimos
       LESS: Less
-      LESS_OR_EQUAL: Less or equal
+      LESS_OR_EQUAL: Menor o igual
       NEXT: En los próximos
       NOT_BETWEEN: No entre
       NOT_CONTAINS: No contiene

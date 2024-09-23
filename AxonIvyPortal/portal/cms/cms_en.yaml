@@ -259,7 +259,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideChangePasswordButtonNote: Set this variable to true to hide the "Change Password" option in the top menu and the "Forgotten Password" option on the login page. If set to false, these options will be shown.
       hideLogoutButtonNote: If true, the logout button on top menu will be hidden, otherwise it will be shown.
       hideRelatedCaseInfoFromHistory: If true, case history does not display the related case information in the history table.
-      hideStatisticWidget: Set to true to hide Statistic widget from homepage and application menu.
       hideSystemNotesFromHistory: If true, case/task note does not display any system notes for non-administrator users.
       hideSystemNotesFromHistoryAdministrator: If true, case/task note does not display any system notes for administrator.
       hideSystemTasksFromHistory: If true, case note does not display any system tasks for non-administrator users.
@@ -278,7 +277,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: Set to false to disable link to Show Information of process on Processes page (grid mode) and Case Details.
       showQuickGlobalSearch: For switch on/off the display of the quick global search.
       showTaskDurationTime: For switch on/off the display of the duration time in task details page.
-      statisticChartScalingInterval: Interval in seconds to do periodic statistic chart scaling requests. If the interval value is less than 10, periodic statistic chart scaling is disabled.
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
     key: Key
     link: Link
@@ -440,6 +438,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     backgroundColor: Background color
     cancel: Cancel
     case: Case
+    caseCategory: Case category
     caseInformation: Case Information
     caseName: Case name
     categories: Categories
@@ -707,11 +706,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       titlePage: Password Validation
     processChain:
       currentStepIsNotDefined: Current step ({0}) of process chain is not defined
-    statisticWidget:
-      chartDeletionConfirmation: Are you sure you want to delete this statistic chart?
-      contextMenuDrilldown: Drilldown
-      contextMenuToCaseList: Go to case list
-      contextMenuToTaskList: Go to task list
     taskStart:
       cannotDelegateTaskMessage: This task cannot be delegated to any other user or group.
       cannotStartMessages:
@@ -782,14 +776,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ShareThisDashboard: Share this dashboard
     StandardWidgets: Standard Widgets
     StatisticWidget:
-      AvailableCharts: Available statistics charts
-      Charts: 'Chart(s): {0}'
-      ConfigurationDescription: You can configure your widget in this configuration area. Please define the chart which will be shown on  your dashboard.
       EmptyChartDataMessage: We do not have enough data to create a nice chart!
-      FilterChartText: Filter a chart by name
-      PlaceholderChartOption: Select a chart
-      PleaseSelectChart: Please select a chart
-      PreviewText: Please select a chart to see the canvas data
     WelcomeWidgetIntroduction: This widget displays a welcome text and image on dashboard.
     WelcomeWidgetNotFoundMessage: We cannot find the image of widget, please reconfigure your image!
     WidgetFilterName: Widget filter name
@@ -933,7 +920,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourNotifications: Your Notifications
     yourProcessViewer: Your Process Viewer
     yourProcesses: Your Processes
-    yourStatistics: Your Statistics
     yourTasks: Your Tasks
   documentFiles:
     deleteDocumentNote: '{0} has deleted {1}'
@@ -1135,154 +1121,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     searchResultsFor: '{0} search results for "{1}"'
   sidestep:
     addAdhocTask: Add Ad-hoc Task
-  statistic:
-    chart:
-      ExpandOrCollapseColumn: Expand/Collapse Columns
-      addChart: Add new chart
-      addChartDialogHeader: Add statistic chart to dashboard
-      backToDashboard: Back to dashboard
-      barchart:
-        Percentage: Percentage
-        daysOfWeek:
-          friday: Friday
-          monday: Monday
-          saturday: Saturday
-          sunday: Sunday
-          thursday: Thursday
-          tuesday: Tuesday
-          wednesday: Wednesday
-        expired: Expired
-        in2Days: In 2 days
-        in3Days: In 3 days
-        monthsOfYear:
-          April: April
-          August: August
-          December: December
-          February: February
-          January: January
-          July: July
-          June: June
-          March: March
-          May: May
-          November: November
-          October: October
-          September: September
-        today: Today
-        tomorrow: Tomorrow
-        weeksOfMonth:
-          fifthWeek: Fifth week
-          firstWeek: First week
-          fourthWeek: Fourth week
-          secondWeek: Second week
-          sixthWeek: Sixth week
-          thirdWeek: Third week
-      caseCategory: Case category
-      chartCreationSuccessDetailMsg: Chart with name {0} was created successfully
-      chartCreationSuccessTitle: Chart was created successfully
-      elapsedTime: Elapsed Time
-      elapsedTimeChart:
-        compareButton: Compare
-        compareRole: 'Compare Role:'
-        elapsedTimeInHours: Elapsed time in hours
-        noEntriesFound: No entries found with given criteria
-        taskCategory: Task category
-        withRole: 'With Role:'
-      emptystate:
-        defaultEmptyMessages: No statistic chart to display.
-      exception:
-        idNotFound: 'Chart Id not found with id: {0}'
-        noPermission: You do not have the permission to send this request!
-      expiryPeriod: Expiry period
-      loadingCharts: Please wait, charts are loading...
-      moveLeft: Move left
-      moveRight: Move right
-      notAllowedToCreateChart: You are not allowed to create a chart before clicking Apply Filters button
-      other: Others
-      restoreDefaultChart: If you proceed, you will loose all charts created by yourself. The standard settings will be applied.
-      second: sec
-      showAllCharts: Show all charts
-      statisticCarousel: Statistics Carousel
-      statistics: Statistics
-      taskByExpiry:
-        hour: (Hour)
-        thisMonth: This Month
-        thisWeek: This Week
-        thisYear: This Year
-      taskByPriority:
-        addToDashboardLink: Add to dashboard
-        exception: Exception
-        high: High
-        low: Low
-        normal: Normal
-      taskExpiry: Task expiry
-    chartInfo:
-      chartDetailsHeader: Chart Details
-      chartName: Chart Name
-      chartType: Chart Type
-      name: Chart info
-    chartType:
-      caseByFinishedTask: Processed cases in time period
-      caseByFinishedTaskDescription: Cases where a task was finished in the selected time period
-      caseByFinishedTime: Done cases in time period
-      caseByFinishedTimeDescription: Cases which are done in the selected time period
-      caseByState: Case by state
-      casesByCategory: Cases by category
-      elapsedTimeByCaseCategory: Elapsed time of done cases
-      elapsedTimeByCaseCategoryDescription: Elapsed time of finished cases by category
-      taskByExpiry: Task by expiry
-      taskByPriority: Task by priority
-    defaultChart:
-      newChart: New chart
-      tasksByPriority: Tasks by Priority
-    filter:
-      affectedCharts: Affected charts
-      allSelected: All
-      caseCategoriesLabel: Case Categories
-      caseCategoryFilterDescription: You can find all available case categories here. Only selected Case Categories are considered in the affected charts.
-      caseStateFilterDescription: Only selected States are considered in the affected charts.
-      filter: Filters
-      noRoles: There are no roles
-      noSelectionCustomVarChar: No selection.
-      noneSelected: None
-      roleFilterDescription: You can find all available process roles here. Only selected roles are considered in the affected charts
-      rolesLabel: Roles
-      selectAll: Select All
-      taskPrioritiesLabel: Task Priorities
-      taskPriorityFilterDescription: Tasks can be selected depending on their priority.
-      timePeriod: Time period
-      timePeriodFilterDescription: Restricts the time period for cases and tasks.
-      workflowStatesLabel: Workflow States
-    taskAnalysis:
-      applyFilter: Apply filters
-      caseCategory: Case category
-      caseCreator: Case creator
-      caseDescription: Case description
-      caseFilter: Case filters
-      caseID: Case ID
-      caseName: Case name
-      caseOwner: Case owner
-      caseState: Case state
-      downloadZipFileExplanation: The number of tasks to export exceeds the limit of Excel rows. Therefore, data will be split to multiple Excel files, then compressed in a Zip file to download.
-      taskAnalysis: Task Analysis
-      taskCategory: Task category
-      taskCreationTime: Task created
-      taskDescription: Task description
-      taskExpiryTime: Task expiry
-      taskFilter: Task filters
-      taskFinishedTime: Task completed on
-      taskID: Task ID
-      taskPriority: Task priority
-      taskResponsible: Task responsible
-      taskState: Task state
-      taskWorker: Task editor
-      waitingDownloadMessage: We are creating the Export, this can take a few minutes
-    timePeriod:
-      custom: Custom
-      last6Month: Last 6 month
-      lastMonth: Last month
-      lastWeek: Last week
-    validationErrors:
-      nameIsExisted: A chart with this name already exists
   taskActivator:
     assign: Assign
     cannotAssignTask: This task cannot be assigned to any other user or group.
@@ -1440,7 +1278,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     OPEN: Open
     OPEN_UPPERCASE: OPEN
     PARKED: Reserved
-    READY_FOR_JOIN: Ready for joining
+    READY_FOR_JOIN: Ready for join
     READY_FOR_JOINING: Ready for joining
     READY_FOR_JOINING_UPPERCASE: READY FOR JOINING
     READY_FOR_JOIN_UPPERCASE: READY FOR JOIN
@@ -1612,7 +1450,7 @@ Dialogs:
             WelcomeText: We are delighted to have you on board. The Axon Ivy Portal is your gateway to a seamless and efficient experience. Whether you are a new user exploring the features or a returning visitor, we're here to assist you every step of the way.
           ShareLinkDialog:
             CopyLink: Copy link
-            LinkCopied: Link copied!
+            LinkCopied: Link copied
           ToolList:
             Attributes: Attributes
             Collection: Collection
@@ -1622,6 +1460,7 @@ Dialogs:
             CaseWidgetConfiguration:
               AddFilter: Add filter
             ClientStatisticWidget:
+              IdNotFound: 'Chart Id not found with id: {0}'
               NoPermissionChartMessage: You do not have the required permission to see this chart.
             DashboardImportDetails:
               FileInfomation: File Infomation

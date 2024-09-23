@@ -109,7 +109,6 @@ public class PortalMenuItem extends DefaultMenuItem {
       case PROCESS:
       case TASK:
       case CASE:
-      case STATISTICS:
       case CUSTOM:
         menuFormat = SUB_MENU_ID_FORMAT;
         break;
