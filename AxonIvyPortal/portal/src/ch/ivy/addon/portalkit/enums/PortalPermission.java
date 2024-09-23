@@ -15,7 +15,6 @@ public enum PortalPermission {
   DASHBOARD_SHARE_LINK("ShareDashboardLink", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   TASK_WRITE_ACTIVATOR_OWN_TASKS("TaskWriteActivatorOwnTasks", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
   TASK_DISPLAY_ADDITIONAL_OPTIONS("TaskDisplayAdditionalOptions", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
-  EXPRESS_CREATE_WORKFLOW("ExpressCreateWorkflow", PortalPermissionGroup.EXPRESS_GROUP)
   ACCESS_FULL_PROCESS_LIST("AccessFullProcessList", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   ACCESS_FULL_TASK_LIST("AccessFullTaskList", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   ACCESS_FULL_CASE_LIST("AccessFullCaseList", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
