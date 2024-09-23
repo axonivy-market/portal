@@ -1765,33 +1765,24 @@ Dialogs:
 Labels:
   AI:
     Error:
-      CannotStartTask: Cannot start task has ID {0}
-      NoMatchingProcesses: No matching processes.
-      NoMatchingTask: No se encontró ninguna tarea que coincida con su solicitud.
-    FindCaseAIResult: 'ID: {0}, Name: {1}, Description: {2}, State: {3}'
-    FindProcessAIResult: '   - ID: {0}, Name: {1}, Description: {2}'
-    FindTaskAIResult: 'ID: {0}, Name: {1}, Description: {2}, State: {3}, Priority {4}'
-    FindUserAIResult: 'Username: {0}, Name: {1}, Email: {2}, State: {3}'
-    FoundCaseHeader: 'Found cases:'
-    FoundProcessesHeader: 'Found processes:'
-    FoundUsersHeader: 'Found users:'
-    ProcessInfoHeader: |-
-      **Process name:** {0}
-      **Process description:** {1}
-    ProcessInfoHeaderWithParameters: |-
-      **Process name:** {0}
-      **Process description:** {1}
-      **Number of parameters: ** {2}
-    ProcessParameterInfo: |-
-      - Name: {0}
-        Description: {1}
-    ProcessParameterInfoWithValue: |-
-      - Name: {0}
-        Description: {1}
-        Value:
-    TaskDetailsResult: |-
-      Details of task **{0} (#{1})**:
-      {2}
+      CannotFindUser: ''
+      CannotStartTask: ''
+      InvalidTaskPriority: ''
+      InvalidTaskState: ''
+      NoMatchingProcesses: ''
+      NoMatchingTask: ''
+    FindCaseAIResult: ''
+    FindProcessAIResult: ''
+    FindTaskAIResult: ''
+    FindUserAIResult: ''
+    FoundCaseHeader: ''
+    FoundProcessesHeader: ''
+    FoundUsersHeader: ''
+    ProcessInfoHeader: ''
+    ProcessInfoHeaderWithParameters: ''
+    ProcessParameterInfo: ''
+    ProcessParameterInfoWithValue: ''
+    TaskDetailsResult: ''
   AdhocWorkflow: Describe tu Flujo de Trabajo
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
