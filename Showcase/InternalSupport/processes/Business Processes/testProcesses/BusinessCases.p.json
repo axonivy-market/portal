@@ -321,10 +321,7 @@
           "description" : "Task with UI and trigger signal"
         },
         "case" : {
-          "name" : "Sale and inform",
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
-          ]
+          "name" : "Sale and inform"
         }
       },
       "visual" : {
@@ -342,15 +339,7 @@
         "dialog" : "internaltest.ui.SaleDepartment:start()",
         "task" : {
           "name" : "Work with sale department",
-          "category" : "SALE/SIGNCONTRACT",
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
-          ]
-        },
-        "case" : {
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
-          ]
+          "category" : "SALE/SIGNCONTRACT"
         }
       },
       "visual" : {
