@@ -39,9 +39,6 @@ pipeline {
           utils.stopAllEngines()
           utils.extractEngine(env.engineDir, params.engineDownloadURL)
 
-          utils.downloadExpress()
-          def expressFile = findFiles(glob: 'archive/**/axonivy-express*.iar')[0].path
-
           echo '====================Build Portal modules===================='
           def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples', 'AxonIvyPortal/PortalApp', 'Showcase/portal-demo-app']
           for (module in modules) {
@@ -55,7 +52,6 @@ pipeline {
             Copy-Item Showcase/portal-demo-app/target/*zip -Destination \$DEPLOYMENT
             Copy-Item Showcase/portal-developer-examples/target/*iar -Destination \$DEPLOYMENT
             Copy-Item Showcase/portal-components-examples/target/*iar -Destination \$DEPLOYMENT
-            Copy-Item ${expressFile} -Destination \$DEPLOYMENT
           """
           utils.killUnnecessaryProcessesToRunTest()
 
