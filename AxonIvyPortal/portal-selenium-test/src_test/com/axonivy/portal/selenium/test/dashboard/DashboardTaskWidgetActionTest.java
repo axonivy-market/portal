@@ -23,7 +23,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   static final String DONE = "Done";
   static final String SUSPENDED = "Suspended";
   static final String IN_PROGRESS = "In progress";
-  static final String READY_FOR_JOINING = "Ready for joining";
+  static final String READY_FOR_JOIN = "Ready for join";
   static final String RESERVED = "Reserved";
   static final String DELAYED = "Delayed";
   static final String DESTROYED = "Destroyed";
@@ -64,12 +64,12 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     createTasksForTesting();
     // TaskState : Ready for Join <=> TaskBusinessState : Done
-    assertTaskActionsByTaskState("Ready for joining", Arrays.asList(DETAILS, PROCESS_VIEWER));
+    assertTaskActionsByTaskState(READY_FOR_JOIN, Arrays.asList(DETAILS, PROCESS_VIEWER));
     // TaskState : Suspended <=> TaskBusinessState : Open
-    assertTaskActionsByTaskState("Suspended",
+    assertTaskActionsByTaskState(SUSPENDED,
         Arrays.asList(DETAILS, DELEGATE, RESERVE, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));
     // TaskState : Done <=> TaskBusinessState : Done
-    assertTaskActionsByTaskState("Done", Arrays.asList(DETAILS, PROCESS_VIEWER));
+    assertTaskActionsByTaskState(DONE, Arrays.asList(DETAILS, PROCESS_VIEWER));
   }
 
   @Test
@@ -78,7 +78,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     createTasksForTesting();
 
     // Ready for Join
-    assertTaskActionsByTaskStateAndName(READY_FOR_JOINING, "Task Switch A",
+    assertTaskActionsByTaskStateAndName(READY_FOR_JOIN, "Task Switch A",
         Arrays.asList(DETAILS, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
     // Suspended

@@ -356,7 +356,7 @@ public class TaskFilterTest extends BaseTest {
     assertEquals(3, taskWidgetPage.countTasks().size());
 
     String stateFilterValue = taskWidgetPage.getFilterValue("state-filter");
-    assertEquals("State: Created, Suspended, In progress, Reserved, Ready for joining", stateFilterValue);
+    assertEquals("State: Created, Suspended, In progress, Reserved, Ready for join", stateFilterValue);
 
     taskWidgetPage.openStateFilter();
     assertTrue(taskWidgetPage.getListStateFilterSelection().contains("Done"));
@@ -370,7 +370,7 @@ public class TaskFilterTest extends BaseTest {
     HomePage homePage = new HomePage();
     homePage.waitForGlobalGrowlDisappear();
     
-    List<String> adminStates = Arrays.asList("Created", "Ready for joining", "Suspended", "In progress", "Reserved",
+    List<String> adminStates = Arrays.asList("Created", "Ready for join", "Suspended", "In progress", "Reserved",
         "Delayed", "Done", "Destroyed", "Failed", "Join failed", "Waiting for event");
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
