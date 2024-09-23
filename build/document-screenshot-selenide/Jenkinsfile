@@ -41,8 +41,8 @@ pipeline {
           utils.init()
           utils.stopAllEngines()
 
-          utils.downloadExpress()
-          def expressFile = findFiles(glob: 'archive/**/axonivy-express*.iar')[0].path
+          // utils.downloadExpress()
+          // def expressFile = findFiles(glob: 'archive/**/axonivy-express*.iar')[0].path
 
           if (params.checkoutCodeFromLatestReleaseTag) {
             downloadPortalRelease()
@@ -64,8 +64,8 @@ pipeline {
                 copy -path ../patch/master -recurse -force -destination .
               }
             '''
-            downloadExpressIntegration()
-            expressFile = findFiles(glob: 'archive/**/axonivy-express*.iar')[0].path
+            // downloadExpressIntegration()
+            // expressFile = findFiles(glob: 'archive/**/axonivy-express*.iar')[0].path
           }
 
 
@@ -87,7 +87,6 @@ pipeline {
             Copy-Item Showcase/portal-demo-app/target/*zip -Destination \$DEPLOYMENT
             Copy-Item Showcase/portal-developer-examples/target/*iar -Destination \$DEPLOYMENT
             Copy-Item Showcase/portal-components-examples/target/*iar -Destination \$DEPLOYMENT
-            Copy-Item ${expressFile} -Destination \$DEPLOYMENT
           """
 
           utils.killUnnecessaryProcessesToRunTest()
