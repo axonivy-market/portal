@@ -22,11 +22,8 @@ import com.codeborne.selenide.Condition;
 @IvyWebTest
 public class GlobalGrowlTest extends BaseTest {
 
-  private static final String FINISH_MESSAGE = "You have finished the task successfully";
   private static final String FINISH_MESSAGE_WITH_DETAILS =
       "You have finished the task successfully.\nClick here for details.";
-  private static final String CANCEL_MESSAGE =
-      "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.";
   private static final String CANCEL_MESSAGE_WITH_DETAILS =
       "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.\nClick here for details.";
   private static final String GROWL_STANDARD_MESSAGE_URL =

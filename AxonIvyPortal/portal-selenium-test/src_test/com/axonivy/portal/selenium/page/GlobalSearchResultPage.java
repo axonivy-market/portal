@@ -142,10 +142,6 @@ public class GlobalSearchResultPage extends TemplatePage {
     waitForElementDisplayed(By.className("js-process-start-list-container"), true);
   }
 
-  public void clickOnActionButton(String processName) {
-    $(".express-workflow").$("button[id$=':process-action-button']").shouldBe(getClickableCondition()).click();
-  }
-  
   public void caseTabShouldBeDisappear() {
     $("li[class*='case-tab-title']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
