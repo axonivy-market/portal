@@ -13,6 +13,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.NoteHistoryPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
+import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.WorkingTaskDialogPage;
 
@@ -95,7 +96,7 @@ public class TaskTemplateTest extends BaseTest {
     redirectToRelativeLink(createTestingCaseMapUrl);
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     int latestTask = taskWidgetPage.countTasks().size() - 1;
-    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(latestTask);
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(latestTask);
     taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.startSideStep();
     TaskWidgetPage taskWidget = NavigationHelper.navigateToTaskList();
