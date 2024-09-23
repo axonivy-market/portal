@@ -1058,8 +1058,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     process: Prozess
     searchResults: Suchresultate
     searchResultsFor: '{0} Suchresultate für "{1}"'
-  sidestep:
-    addAdhocTask: Ad-hoc Aufgabe hinzufügen
   taskActivator:
     assign: Zuweisen
     cannotAssignTask: Diese Aufgabe kann keinem anderen Benutzer oder keiner anderen Gruppe zugewiesen werden.
