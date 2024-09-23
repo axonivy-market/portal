@@ -28,7 +28,6 @@ public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_PROCESS = "Start Processes/PortalStart/DefaultProcessStartListPage.ivp";
   private static final String PORTAL_TASK = "Start Processes/PortalStart/DefaultTaskListPage.ivp";
   private static final String PORTAL_CASE = "Start Processes/PortalStart/CaseListPage.ivp";
-  private static final String PORTAL_STATISTIC = "Start Processes/PortalStart/StatisticPage.ivp";
   private static final String PORTAL_CASE_DETAILS = "Start Processes/PortalStart/DefaultCaseDetailPage.ivp";
   private static final String PORTAL_RELATED_TASKS_OF_CASE = "Start Processes/PortalStart/RelatedTasksOfCasePage.ivp";
   private static final String PORTAL_RELATED_TASKS_OF_CASE_IN_FRAME = "Start Processes/PortalStart/RelatedTasksOfCasePageInFrame.ivp";
@@ -49,7 +48,6 @@ public final class PortalNavigator extends BaseNavigator{
   public static final String PORTAL_PROCESS_START = "/DefaultProcessStartListPage.ivp";
   public static final String PORTAL_TASK_START = "/DefaultTaskListPage.ivp";
   public static final String PORTAL_CASE_START = "/CaseListPage.ivp";
-  public static final String PORTAL_STATISTIC_START = "/StatisticPage.ivp";
   public static final String PORTAL_USER_PROFILE_START =  "/UserProfile.ivp";
   public static final String PORTAL_CASE_DETAILS_IN_IFRAME_START = "/CaseDetailsInIFrame.ivp";
   private static final String UUID = "uuid";
@@ -103,7 +101,6 @@ public final class PortalNavigator extends BaseNavigator{
       case PROCESS -> PORTAL_PROCESS;
       case TASK -> PORTAL_TASK;
       case CASE -> PORTAL_CASE;
-      case STATISTICS -> PORTAL_STATISTIC;
       default -> StringUtils.EMPTY;
     };
     return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(subMenuUrl);
@@ -127,10 +124,6 @@ public final class PortalNavigator extends BaseNavigator{
     navigateByKeyword(PORTAL_TASK_START, PORTAL_TASK, new HashMap<>());
   }
 
-  public static void navigateToPortalStatistic() {
-    navigateByKeyword(PORTAL_STATISTIC_START, PORTAL_STATISTIC, new HashMap<>());
-  }
-  
   public static void navigateToPortalCaseDetails(String uuid) {
     Map<String, String> params = new HashMap<>();
     params.put(ID, uuid);
