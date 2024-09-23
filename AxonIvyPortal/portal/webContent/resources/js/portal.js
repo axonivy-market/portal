@@ -522,10 +522,44 @@ $(document).ready(function() {
         $(searchIconId),
         $(useSettingMenuId),
     ];
+
+    let taskIndex = 0;
+    let resetTaskFormIndex = 0;
+    let taskSideStepIndex = 0;
+    let caseIndex = 0;
+    let caseSideStepIndex = 0;
+    let processIndex = 0;
+    let focusedTaskEl;
+    let focusedCaseEl;
+    let focusedCaseSideStepEl;
+    let focusedProcessEl;
+    let focusedResetTaskFormEl = 0;
+    let focusedTaskSideStepEl;
+
+    function removeFocusClass(element) {
+      if(element) {
+        element.removeClass('focused');
+        element.blur();
+      }
+    }
+    
+    function addFocusClass(element) {
+      if(element) {
+        element.addClass('focused');
+        element.focus();
+      }
+    }
+
     function removeFocusedElements() {
       focusableElements.forEach(function(el) {
-        $(el).removeClass('focused');
+        removeFocusClass($(el));
       });
+      removeFocusClass(focusedTaskEl);
+      removeFocusClass(focusedCaseEl);
+      removeFocusClass(focusedProcessEl);
+      removeFocusClass(focusedCaseSideStepEl);
+      removeFocusClass(focusedResetTaskFormEl);
+      removeFocusClass(focusedTaskSideStepEl);
     }
      $(document).on('click', function(event) {
         if (!$(event.target).closest('.focusable').length) {
@@ -536,22 +570,161 @@ $(document).ready(function() {
       if (event.key === 'Tab') {
         removeFocusedElements();
     }
+    var caseActionStepsPanel = $('[id*="action-steps-panel"]:visible');
+    var caseActionStepsPanelVisible = caseActionStepsPanel.length > 0;
+
+    var resetTaskConfirmForm = $('[id$="task-component:reset-task-confirmation-form"]:visible');
+    var resetTaskConfirmFormVisible = resetTaskConfirmForm.length > 0;
+
+    var taskActionStepsPanel = $('[id$=":side-steps-panel"]:visible');
+    var taskActionStepsPanelVisible = taskActionStepsPanel.length > 0;
+    
+
     if (event.altKey && !isNaN(event.key) && event.key >= '1' && event.key <= '9') {
       var index = parseInt(event.key) - 1;
       if (index >= 0 && index < focusableElements.length) {
           event.preventDefault();
           var focusedElement = $(focusableElements[index]);
           removeFocusedElements();
+          taskIndex = 0;
+          taskSideStepIndex = 0;
+          processIndex = 0;
+          if(caseActionStepsPanelVisible) {
+            caseSideStepIndex = 0;
+          } else {
+            caseIndex = 0;
+          }
+          addFocusClass(focusedElement);
+      }
+    }
+
+    if (event.altKey) {
+      //Short cuts for Task widget
+      var key = event.key.toLowerCase();
+      if (key == 'w') {
+        if(resetTaskConfirmFormVisible) {
+          var cancelOk = [
+            resetTaskConfirmForm.find('a:first'),
+            resetTaskConfirmForm.find('button:first')
+          ];
+
+          if(resetTaskFormIndex >= cancelOk.length) {
+            resetTaskFormIndex = 0;
+          }
+
+          removeFocusedElements();
+  
+          focusedResetTaskFormEl = $(cancelOk[resetTaskFormIndex]);
+          addFocusClass(focusedResetTaskFormEl);
+          resetTaskFormIndex++;
+        } else if(taskActionStepsPanelVisible) {
+
+          var steps = taskActionStepsPanel.find('div.ui-overlaypanel-content a');
+          if(taskSideStepIndex >= steps.length) {
+            taskSideStepIndex = 0;
+          }
+  
+          removeFocusedElements();
+  
+          focusedTaskSideStepEl = $(steps[taskSideStepIndex]);
+          addFocusClass(focusedTaskSideStepEl);
+          taskSideStepIndex++;
+        } else {
+          var taskList = $('[id$=":start-task"]');
+          if(taskIndex >= taskList.length) {
+            taskIndex = 0;
+          }
+  
+          removeFocusedElements();
+          processIndex = 0;
+          taskSideStepIndex = 0;
+          if(caseActionStepsPanelVisible) {
+            caseSideStepIndex = 0;
+          } else {
+            caseIndex = 0;
+          }
+  
+          focusedTaskEl = $(taskList[taskIndex]);
+          addFocusClass(focusedTaskEl);
+          taskIndex++;
+        }
+      }
+
+      //Short cuts for Case widget
+      if (key == 'q') {
+        if(caseActionStepsPanelVisible) {
+          var steps = caseActionStepsPanel.find('div.ui-overlaypanel-content a');
           
-          focusedElement.addClass('focused');
-          focusedElement.focus();
+          if(caseSideStepIndex >= steps.length) {
+            caseSideStepIndex = 0;
+          }
+  
+          removeFocusedElements();
+  
+          focusedCaseSideStepEl = $(steps[caseSideStepIndex]);
+          addFocusClass(focusedCaseSideStepEl);
+          caseSideStepIndex++;
+        } else {
+          var caseList = $('[id$="case-component:dashboard-cases"]').find('[id$=":dashboard-case-side-steps-menu"]');
+          
+          if(caseIndex >= caseList.length) {
+            caseIndex = 0;
+          }
+
+          removeFocusedElements();
+          taskIndex = 0;
+          taskSideStepIndex = 0;
+          processIndex = 0;
+          caseSideStepIndex = 0;
+
+          focusedCaseEl = $(caseList[caseIndex]);
+          addFocusClass(focusedCaseEl);
+          caseIndex++;
+        }
+      }
+
+      //Short cuts for Process widget
+      if (key == 'a') {
+        var processList = $('[id$=":process-component:process-list"]').find('a');
+        
+        if(processIndex >= processList.length) {
+          processIndex = 0;
+        }
+
+        removeFocusedElements();
+        taskIndex = 0;
+        taskSideStepIndex = 0;
+        if(caseActionStepsPanelVisible) {
+          caseSideStepIndex = 0;
+        } else {
+          caseIndex = 0;
+        }
+
+        focusedProcessEl = $(processList[processIndex]);
+        addFocusClass(focusedProcessEl);
+        processIndex++;
       }
     }
 
     if (event.key === 'Escape') {
       var collapseWidgetBtn = $('[id*="collapse-link"]:visible');
-      if (collapseWidgetBtn) {
+      if (collapseWidgetBtn.length > 0) {
         collapseWidgetBtn.click();
+      }
+
+      var caseSideActionCloseBtn = $('[id*="action-steps-panel"]:visible').find('.ui-overlaypanel-close');
+      if (caseSideActionCloseBtn.length > 0) {
+        caseSideActionCloseBtn.click();
+
+        if(focusedCaseEl) {
+          focusedCaseEl.addClass('focused');
+          focusedCaseEl.focus();
+        }
+      }
+
+      var taskSideActionCloseBtn = $('[id*="side-steps-panel"]:visible').find('.ui-overlaypanel-close');
+      if (taskSideActionCloseBtn.length > 0) {
+        taskSideActionCloseBtn.click();
       }
     }
   }); 
