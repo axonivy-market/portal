@@ -30,7 +30,7 @@
 
     <h:panelGroup layout="block" rendered="#{!hideActionButton}">
       <p:commandButton id="process-action-button" icon="si si-navigation-menu-horizontal"
-        styleClass="rounded-button icon-more-menu-button #{buttonStyle} ui-no-outlined-portal-icon-button" type="button"/>
+        styleClass="rounded-button icon-more-menu-button #{buttonStyle} ui-no-rounded-button-process-page" type="button"/>
 
       <p:menu id="process-action-menu" overlay="true"
         trigger="process-action-button"
@@ -65,7 +65,7 @@
       </p:menu>
     </h:panelGroup>
     <div class="start-process" id="start-button-wrap-#{status.index}">
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" id="start-button" actionListener="#{processWidgetBean.startProcess(process)}" styleClass="ui-no-outlined-portal-icon-button"
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" id="start-button" actionListener="#{processWidgetBean.startProcess(process)}" styleClass="ui-no-rounded-button-process-page"
             icon="si si-arrow-right-1" iconPos="right" ajax="#{!isExternalLink}" />
     </div>
   </div>

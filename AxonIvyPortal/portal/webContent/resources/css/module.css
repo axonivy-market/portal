@@ -1166,9 +1166,8 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .process-start-list-item-icon {
   display: flex;
   align-items: center;
-  padding-left: 15px;
-  padding-right: 15px;
-  width: 4.4rem;
+  padding-left: 12px;
+  width: 4.2rem;
 }
 
 .process-start-list-item-icon .fa {
@@ -1264,6 +1263,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   vertical-align: middle;
   height: 100%;
   right: 18px;
+  padding-right: 12px;
 }
 
 .process-start-list-item .process-item-action-container .open-icon {
@@ -5599,13 +5599,24 @@ body .ui-link.ui-sidestep-action {
   color: var(--sidestep-action-text-color);
 }
 
-body .ui-button.ui-button-outlined.ui-no-outlined-portal-icon-button, .ui-button.ui-widget.ui-no-outlined-portal-icon-button {
-  border: transparent ;
+body .ui-button.ui-button-outlined.ui-no-bg-button-widget, .ui-button.ui-widget.ui-no-bg-button-widget {
+  border-color: var(--widget-header-icon);
   background: transparent;
 }
 
-body .ui-button.ui-widget.ui-no-outlined-portal-icon-button {
+body .ui-button.ui-widget.ui-no-bg-button-widget {
   color: var(--widget-header-icon);
   box-shadow: none;
+}
+
+body .ui-button.ui-widget.ui-no-rounded-button-process-page {
+  border: transparent ;
+  background: transparent;
+  box-shadow: none;
+}
+
+body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-button {
+  color: var(--widget-header-icon);
+  
 }
 

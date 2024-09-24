@@ -182,6 +182,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-left: 6px;
 }
 
 .widget__header .widget__header-title,
@@ -1066,6 +1067,7 @@ body .ui-widget.new-widget-dialog__introduction {
 .empty-message-container .empty-message-icon {
   font-size: var(--dashboard-table-empty-message-icon-font-size);
   margin-bottom: 10px;
+  font-size: 3.2em;
 }
 
 .empty-message-container .empty-message-icon,
@@ -1522,8 +1524,8 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .welcome-text.HEADING_3 {
-  font-size: 2.5rem;
-  line-height: 2.5rem;
+  font-size: 1.8rem;
+  line-height: 1.8rem;
 }
 
 .preview-text.welcome-text.NORMAL_TEXT {
@@ -1786,11 +1788,11 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .chart-content-card .chart-name-font-size {
-  font-size: max(1.5rem, 1rem + 5cqh);
+  font-size: max(1.5rem, 1rem + 4cqh);
 }
 
 .chart-content-card .chart-number-font-size {
-    font-size: max(7rem, 1.5rem + 20cqh);
+    font-size: max(4rem, 1.5rem + 10cqh);
 }
 
 @container (max-width: 200px) {

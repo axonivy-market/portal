@@ -194,7 +194,7 @@ a.compact-task-start-link .task-start-list-item {
 }
 
 .process-start-list-item-icon {
-  font-size: 2rem; }
+  font-size: var(--large-font-size); }
 
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-icon {
   color: var(--hovered-user-process-start-list-item-icon-color); }
