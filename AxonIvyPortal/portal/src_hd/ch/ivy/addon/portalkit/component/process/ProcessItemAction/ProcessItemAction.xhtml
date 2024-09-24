@@ -20,6 +20,9 @@
   <c:set var="showProcessViewer" value="#{processItemActionBean.isShowProcessViewer(process)}"/>
   <c:set var="hideActionButton" value="#{cc.attrs.hideActionButton or (!canModify and !showProcessViewer)}"/>
   <c:set var="buttonStyle" value="#{cc.attrs.outlinedButtonStyle ? 'ui-button-outlined':'ui-button-raised '}"/>
+  <c:set var="isExpress" value="#{dashboardProcessBean.isExpressProcess(process)}" />
+  <c:set var="isExternalLink" value="#{dashboardProcessBean.isExternalLink(process)}" />
+  <c:set var="isCaseMap" value="#{dashboardProcessBean.isCaseMap(process)}" />
 
   <div id="process-action-group" class="process-action-group">
     <p:commandButton id="process-category" rendered="#{processItemActionBean.isRenderedCategory(process.category)}"
