@@ -1354,13 +1354,29 @@ body .ui-widget.new-widget-dialog__introduction {
   width: 100%;
   position: relative;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: space-evenly;
   align-items: center;
   flex-direction: row;
   gap: 30px;
   cursor: default;
 }
+
+@container (max-width: 200px) {
+  .statistic-chart-widget__canvas {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    cursor: default;
+    padding: 14px 14px;
+    }
+    
+    .statistic-chart-widget__canvas > .chart-border {
+    display: none;}
+  }
 
 .chart-information-container {
   padding: 1em 1.5em;
@@ -1825,6 +1841,7 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .chart-content-card {
   position: relative;
+  width: 100%;
 }
 
 .order-list-items .ui-widget-content.ui-orderlist-list.ui-corner-all.ui-sortable{

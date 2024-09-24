@@ -614,7 +614,7 @@ class ClientNumberChart extends ClientChart {
   }
 
   generateItemHtml(label, number, suffixSymbol, index) {
-    let border = '<div class="u-text-align-center chart-content-card chart-border">' + '</div>';
+    let border = '<div class="chart-border">' + '</div>';
     label = this.data.chartConfig.hideLabel === true ? '' : this.formatChartLabel(label) ;
     let html =
       '<div class="u-text-align-center chart-content-card">' +
