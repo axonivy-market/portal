@@ -59,7 +59,7 @@ pipeline {
           utils.cleanDisk()
           
           echo '====================Archive consoleText file===================='
-          wget ${env.BUILD_URL}/consoleText
+          bat "curl ${env.BUILD_URL/consoleText}"
         }
       }
     }
