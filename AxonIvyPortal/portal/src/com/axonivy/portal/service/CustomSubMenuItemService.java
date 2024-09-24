@@ -17,6 +17,7 @@ import com.axonivy.portal.components.configuration.CustomSubMenuItem;
 import com.axonivy.portal.enums.PortalCustomSignature;
 
 import ch.addon.portal.generic.menu.SubMenuItem;
+import ch.addon.portal.generic.userprofile.homepage.HomepageType;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
@@ -75,7 +76,7 @@ public class CustomSubMenuItemService {
       SubMenuItem result = new SubMenuItem();
       result.setLink(customMenu.getLink());
       result.setLabel(customMenu.getLabel());
-      result.setName(customMenu.getLabel());
+      result.setName(HomepageType.CUSTOM.name());
       result.setIcon(StringUtils.defaultIfBlank(customMenu.getIcon(), DEFAULT_ICON));
 
       result.setMenuKind(Optional.ofNullable(customMenu)
