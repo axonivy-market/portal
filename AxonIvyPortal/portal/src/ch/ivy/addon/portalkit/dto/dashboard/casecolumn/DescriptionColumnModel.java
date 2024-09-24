@@ -13,7 +13,7 @@ public class DescriptionColumnModel extends CaseColumnModel implements Serializa
   public void initDefaultValue() {
     super.initDefaultValue();
     this.field = DashboardStandardCaseColumn.DESCRIPTION.getField();
-    this.style = defaultIfEmpty(this.style, getDefaultStyle());
+    this.styleToDisplay = initDefaultStyle();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.sortable = defaultIfEmpty(this.sortable, getDefaultSortable());
     this.quickSearch = defaultIfEmpty(this.quickSearch, true);
@@ -30,8 +30,8 @@ public class DescriptionColumnModel extends CaseColumnModel implements Serializa
   }
 
   @Override
-  public String getDefaultStyle() {
-    return "width: 200px";
+  protected int getDefaultColumnWidth() {
+    return 200;
   }
 
   @Override

@@ -32,7 +32,7 @@ public class ApplicationColumnModel extends ProcessColumnModel implements Serial
   public void initDefaultValue() {
     super.initDefaultValue();
     this.field = DashboardStandardProcessColumn.APPLICATION.getField();
-    this.style = defaultIfEmpty(this.style, TINY_WIDTH);
+    this.styleToDisplay = initDefaultStyle();
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__priority u-text-align-center");
     this.format = DashboardColumnFormat.CUSTOM;
   }

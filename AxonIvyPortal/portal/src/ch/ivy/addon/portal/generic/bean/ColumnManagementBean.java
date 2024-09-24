@@ -100,6 +100,7 @@ public class ColumnManagementBean implements Serializable {
 
   public void save() {
     if (widget.getType() == DashboardWidgetType.TASK) {
+//      handleWidth();
       TaskDashboardWidget taskWidget = (TaskDashboardWidget) this.widget;
       List<TaskColumnModel> taskColumns = new ArrayList<>();
       columnsBeforeSave.forEach(column -> taskColumns.add((TaskColumnModel) column));

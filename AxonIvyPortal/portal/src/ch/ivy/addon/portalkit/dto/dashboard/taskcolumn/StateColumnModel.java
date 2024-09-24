@@ -23,7 +23,7 @@ public class StateColumnModel extends TaskColumnModel implements Serializable {
   public void initDefaultValue() {
     super.initDefaultValue();
     this.field = DashboardStandardTaskColumn.STATE.getField();
-    this.style = defaultIfEmpty(this.style, getDefaultStyle());
+    this.styleToDisplay = initDefaultStyle();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.fieldStyleClass = defaultIfEmpty(this.fieldStyleClass, StringUtils.EMPTY);
     this.format = getDefaultFormat();
@@ -40,13 +40,13 @@ public class StateColumnModel extends TaskColumnModel implements Serializable {
   }
 
   @Override
-  public String getDefaultStyle() {
+  protected int getDefaultColumnWidth() {
     return NORMAL_WIDTH;
   }
 
   @Override
   public String getDefaultStyleClass() {
-    return "dashboard-tasks__state u-text-align-center";
+    return "dashboard-tasks__state u-text-align-center widget-column";
   }
 
   @Override

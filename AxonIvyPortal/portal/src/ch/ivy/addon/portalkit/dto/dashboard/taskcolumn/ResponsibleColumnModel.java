@@ -28,7 +28,7 @@ public class ResponsibleColumnModel extends TaskColumnModel implements Serializa
   public void initDefaultValue() {
     super.initDefaultValue();
     this.field = DashboardStandardTaskColumn.RESPONSIBLE.getField();
-    this.style = defaultIfEmpty(this.style, getDefaultStyle());
+    this.styleToDisplay = initDefaultStyle();
     this.format = getDefaultFormat();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.quickSearch = defaultIfEmpty(this.quickSearch, false);
@@ -45,13 +45,13 @@ public class ResponsibleColumnModel extends TaskColumnModel implements Serializa
   }
 
   @Override
-  public String getDefaultStyle() {
+  protected int getDefaultColumnWidth() {
     return EXTRA_WIDTH;
   }
 
   @Override
   public String getDefaultStyleClass() {
-    return "dashboard-tasks__responsible";
+    return "dashboard-tasks__responsible widget-column";
   }
 
   @Override
