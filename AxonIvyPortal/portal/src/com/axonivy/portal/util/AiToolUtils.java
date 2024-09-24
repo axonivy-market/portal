@@ -12,6 +12,7 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
@@ -222,6 +223,7 @@ public class AiToolUtils {
     filter.setFromDate(fromDate);
     filter.setTo(expiryDateTo);
     filter.setToDate(toDate);
+    filter.setOperator(FilterOperator.BETWEEN);
     return filter;
   }
 
