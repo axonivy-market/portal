@@ -1449,7 +1449,7 @@ Dialogs:
             CaseWidgetConfiguration:
               AddFilter: Añadir filtro
             ClientStatisticWidget:
-              IdNotFound: 'Chart Id not found with id: {0}'
+              IdNotFound: 'Grafico con ID {0} no encontrado'
               NoPermissionChartMessage: No tiene permiso para ver este gráfico.
             DashboardImportDetails:
               FileInfomation: Informacion del archivo
