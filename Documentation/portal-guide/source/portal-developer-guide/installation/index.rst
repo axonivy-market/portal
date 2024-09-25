@@ -20,7 +20,6 @@ on each module, refer to :ref:`architecture`.
 
 -  portal-components
 -  portal
--  axonivy-express
 
 The deployment of Ivy projects is described in :dev-url:`project
 deployment </doc/|version|/engine-guide/deployment/index.html>`
@@ -33,8 +32,6 @@ Designer
 ^^^^^^^^
 
 Import Portal modules to Designer.
-axonivy-express is excluded from the Portal application. If you want to use axonivy-express, you should import it from Axon Ivy Market.
-
 
 Engine Without License (Demo Mode)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -97,7 +94,7 @@ Setup Portal multi applications
 
 All applications are in the same security context and the **portal-components** should be the only part being deployed in the other applications. See :ref:`The Portal multi applications <multi-app-structure>` overview.
 
--  Create a new application. Deploy Portal (portal, portal-components, optionally axonivy-express) to this application.
+-  Create a new application. Deploy Portal (portal, portal-components) to this application.
 
 -  Create new applications: App 1, App 2,... Deploy your projects to the new applications.
 
