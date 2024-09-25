@@ -59,7 +59,7 @@ pipeline {
           utils.cleanDisk()
           
           echo '====================Archive consoleText file===================='
-          bat "curl ${env.BUILD_URL/consoleText}"
+          bat "curl ${env.JENKINS_URL}/job/portal-selenium-test/job/${branchName}/${env.BUILD_NUMBER}/consoleText"
         }
       }
     }
