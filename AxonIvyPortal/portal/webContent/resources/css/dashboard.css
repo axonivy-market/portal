@@ -1774,6 +1774,7 @@ body .ui-widget.new-widget-dialog__introduction {
   border-radius: 10px;
   width: fit-content;
   margin: auto;
+  padding: 5px 5px;
 }
 
 .chart-number-container > span {
@@ -1797,6 +1798,7 @@ body .ui-widget.new-widget-dialog__introduction {
 .chart-content-card .chart-label-container {
   word-break: break-word;
   height: 2em;
+  padding-top: 10px;
 }
 
 .chart-content-card .chart-icon-font-size {
@@ -1831,7 +1833,7 @@ body .ui-widget.new-widget-dialog__introduction {
   }
 
   .chart-content-card .chart-name-font-size {
-    font-size: max(1.5rem, 1rem + 2cqw);
+    font-size: max(0.5rem, 1rem + 1cqw);
   }
 
   .chart-content-card .chart-number-font-size {
