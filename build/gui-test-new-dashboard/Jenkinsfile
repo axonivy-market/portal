@@ -65,12 +65,6 @@ pipeline {
               curl --user ${credentials} ${env.JENKINS_URL}job/portal-selenium-test/job/${branchName}/lastSuccessfulBuild/consoleText --output consoleText
               move consoleText AxonIvyPortal/portal-selenium-test/target
             """
-            bat """
-              cd AxonIvyPortal/portal-selenium-test/target
-              findstr /I "\[WARNING\] Flakes:" consoleText > flaky-tests-log
-              findstr /I "com.axonivy.portal.selenium" flaky-tests-log > flakyTestsReport
-              sed '/Time elapsed/s/.*//' flakyTestsReport
-            """
           }
         }
       }
