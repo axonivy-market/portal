@@ -475,12 +475,6 @@ const quickSearchInputId = '[id="quick-global-search-component:global-search-dat
 const useSettingMenuId = 'a#user-settings-menu';
 
 $(document).ready(function() {
-    $(searchIconId).on('click', function() {
-      const searchInput = $('[id="global-search-component:global-search-data"]');
-      if (searchInput) {
-        searchInput.focus();
-      }
-    });
 
     let focusableElements = [
       $(singleDashboardId).length ? $(singleDashboardId).find('a') : $(multipleDashboardId).find('a')[0],
@@ -529,11 +523,17 @@ $(document).ready(function() {
       removeFocusClass(focusedResetTaskFormEl);
       removeFocusClass(focusedTaskSideStepEl);
     }
-     $(document).on('click', function(event) {
-        if (!$(event.target).closest('.focusable').length) {
-           removeFocusedElements();
+
+    $(document).on('click', function(event) {
+      var target = $(event.target);
+      if (!target.closest('.focusable').length) {
+        removeFocusedElements();
+        if(target.is('input')) {
+          target.focus();
         }
+      }
     });
+
     $(document).on('keydown', function(event) {
       if (event.key === 'Tab') {
         removeFocusedElements();
