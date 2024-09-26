@@ -16,7 +16,7 @@ import com.axonivy.portal.selenium.page.UserProfilePage;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class MenuTest extends BaseTest {
 
   private static final String CASES_PAGE_TITLE = "Cases - Portal - Axon Ivy";
