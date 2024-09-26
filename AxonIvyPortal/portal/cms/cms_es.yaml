@@ -944,7 +944,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     select: Seleccione
     selectEditAction: Con qué acción quiere proceder?
     showFullWidget: Mostrar el widget completo
-    startATask: Iniciar tarea
     statisticChartIntroduction: Este widget muestra los gráficos estadísticos disponibles.
     statisticChartWidget: Gráfico estadístico
     switchToViewMode: Modo de visualización
@@ -957,6 +956,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       predefinedFilters: Filtros predefinidos
     taskList: Lista de tareas
     taskListIntroduction: Este widget muestra la información relevante de la tarea según la configuración definida.
+    taskStart: Iniciar tarea
     taskWidgetConfiguration: Configuración del widget de tareas
     widgetInfo: Información del widget
     widgetInfoIcon: Icono de información del widget
