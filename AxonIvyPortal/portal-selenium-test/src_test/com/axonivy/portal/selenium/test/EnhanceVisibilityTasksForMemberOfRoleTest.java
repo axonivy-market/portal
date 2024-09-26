@@ -71,7 +71,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     assertEquals(countTasksReserved, taskWidgetPageGuest.countTasks().size());
     assertFalse(taskWidgetPageGuest.isTaskStartEnabled(0));
     assertFalseTaskActionsByTaskState("Reserved",
-        Arrays.asList("Delegate", "Reset", "Clear expiry", "Add Ad-hoc Task"));
+        Arrays.asList("Delegate", "Reset", "Clear expiry"));
   }
 
   @Test

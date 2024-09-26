@@ -56,9 +56,9 @@ public class CombinedProcessDashboardWidget extends SingleProcessDashboardWidget
     super.setProcess(process);
     if (getProcess() != null) {
       this.taskDataModel =
-          new DashboardProcessTaskLazyDataModel(getProcess().getProcessStartId(), getProcess().getName());
+          new DashboardProcessTaskLazyDataModel(getProcess().getProcessStartId());
       this.caseDataModel =
-          new DashboardProcessCaseLazyDataModel(getProcess().getProcessStartId(), getProcess().getName());
+          new DashboardProcessCaseLazyDataModel(getProcess().getProcessStartId());
     }
   }
 

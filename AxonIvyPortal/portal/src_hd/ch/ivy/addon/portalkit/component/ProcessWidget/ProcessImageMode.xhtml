@@ -2,13 +2,12 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <ui:composition>
-  <c:set var="isExpress" value="#{processWidgetBean.isExpressProcess(process)}" />
   <c:set var="isExternalLink" value="#{processWidgetBean.isExternalLink(process)}" />
   <c:set var="isCaseMap" value="#{processWidgetBean.isCaseMap(process)}" />
   <c:set var="isDefaultProcessImage" value="#{processWidgetBean.isDefaultProcessImage(process.imageUrl)}" />
 
   <h:panelGroup layout="block" styleClass="js-process-start-list-item ui-g-2 ui-xl-2 ui-lg-3 ui-md-6 ui-sm-12 image-process-item #{groupCode}">
-    <div class="card-item card ui-g-12 u-padding-0 #{isExpress ? 'express-workflow' : ''} #{isExternalLink ? 'js-external-link-process-item' : ''}">
+    <div class="card-item card ui-g-12 u-padding-0 #{isExternalLink ? 'js-external-link-process-item' : ''}">
       <!-- Process Image -->
       <h:panelGroup rendered="#{isDefaultProcessImage}">
         <img class="image-process-item-image" alt="#{process.getName()}"
@@ -34,7 +33,7 @@
       </div>
       <p:tooltip for="process-item-name" value="#{process.getName()}" position="top" trackMouse="true" hideEvent="mouseleave click" styleClass="process-tooltip"/>
 
-      <h:form id="process-item" target="#{processWidgetBean.targetToStartProcess(process)}" styleClass="image-view-form #{isExpress ? 'is-express' : ''} #{isExternalLink ? 'is-external-link' : ''}">
+      <h:form id="process-item" target="#{processWidgetBean.targetToStartProcess(process)}" styleClass="image-view-form #{isExternalLink ? 'is-external-link' : ''}">
         <!-- Process actions -->
         <ic:ch.ivy.addon.portalkit.component.process.ProcessItemAction id="image-process-action-component" process="#{process}"
           actionListenerOnEditProcess="#{processWidgetBean.setEditedProcess(process)}"
@@ -61,7 +60,7 @@
         <!-- More Information Link -->
         <div class="more-information" id="more-information">
           <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}" href="#{processWidgetBean.getProcessInformationPageUrl(process)}"
-            rendered="#{processWidgetBean.isShowInformationLink(process) and !isExpress and !isExternalLink and !isCaseMap}" />
+            rendered="#{processWidgetBean.isShowInformationLink(process) and !isExternalLink and !isCaseMap}" />
         </div>
       </h:form>
     </div>

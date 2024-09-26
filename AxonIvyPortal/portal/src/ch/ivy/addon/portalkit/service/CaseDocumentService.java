@@ -25,7 +25,6 @@ import ch.ivyteam.ivy.workflow.document.Path;
 
 public class CaseDocumentService {
 
-  public static final String EXPRESS_UPLOAD_FOLDER = "AxonIvyExpress";
   private ICase iCase;
 
   private CaseDocumentService(ICase iCase) {
@@ -46,15 +45,7 @@ public class CaseDocumentService {
   }
 
   public List<IDocument> getAll() {
-    List<IDocument> documents = new ArrayList<>(getAllDocumentsOf(iCase));
-    List<IDocument> expressDocs = new ArrayList<>();
-    for (IDocument doc : documents) {
-      if (doc.getPath().asString().contains(EXPRESS_UPLOAD_FOLDER)) {
-        expressDocs.add(doc);
-      }
-    }
-    documents.removeAll(expressDocs);
-    return new ArrayList<>(documents);
+    return getAllDocumentsOf(iCase);
   }
 
   /**
@@ -73,7 +64,7 @@ public class CaseDocumentService {
 
   public boolean doesDocumentExist(String filename) {
     IDocument document = documentsOf(iCase).get(new Path(filename));
-    return document != null && !document.getPath().asString().contains(EXPRESS_UPLOAD_FOLDER);
+    return document != null;
   }
 
   public static boolean isDocumentTypeValid(String filename) {

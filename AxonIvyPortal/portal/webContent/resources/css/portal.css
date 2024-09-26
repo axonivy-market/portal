@@ -352,25 +352,6 @@ body .portal-cancel-button.ui-widget.ui-button .ui-icon,
 .ui-widget.ui-button.context-button.ui-state-focus {
   background-color: var(--context-button-state-hover-or-focus-background-color); }
 
-/*Style for table --------------------------------------------------------------------------------------*/
-.express-many-checkbox-options.ui-datatable tbody tr ui-datatable tbody tr td:last-child {
-  border-top: 1px solid var(--top-border-body-express-many-checkbox-table-color); }
-
-/*Style for express --------------------------------------------------------------------------------------*/
-.process-start-list-item .process-start-list-item-action .ui-commandlink.express-workflow:hover {
-  color: var(--hovered-process-start-list-item-i-con-color); }
-
-.ui-widget.ui-button.defined-task-button.active,
-.ui-widget.ui-button.defined-task-button.visited {
-  border: solid 2px var(--defined-task-button-actived-border-color);
-  background-color: var(--defined-task-button-actived-or-hover-background-color); }
-
-.ui-widget.ui-button.defined-task-button.active:before {
-  border-color: var(--defined-task-button-actived-border-color); }
-
-.ui-widget.ui-button.defined-task-button.ui-state-hover {
-  background-color: var(--defined-task-button-actived-or-hover-background-color); }
-
 /*Style for stages breadcrumb --------------------------------------------------------------------------------------*/
 .stages-chain .current i {
   color: var(--stages-chain-current-icon-color); }
@@ -895,14 +876,6 @@ body .ui-inputfield.case-detail-name-input {
   font-family: var(--icon-font-family);
   font-size: var(--large-font-size); }
 
-.process-header .create-express-workflow-icon {
-  font-size: 1.6rem !important; }
-
-.process-header .create-express-workflow-icon {
-  padding-right: 2px;
-  margin-top: -1px;
-}
-
 .process-item-action-container .si {
   font-size: var(--large-font-size); }
 
@@ -1060,94 +1033,19 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .message .message-header {
   color: var(--error-message-header-color); }
 
-/* Express */
-.ui-widget.ui-button.defined-task-button {
-  border: solid 2px var(--defined-task-button-border-color);
-  background-color: var(--defined-task-button-background-color); }
-
-.ui-widget.ui-button.defined-task-button span {
-  color: var(--defined-task-button-text-color); }
-
-.ui-widget.ui-button.defined-task-button.ui-state-hover span,
-.ui-widget.ui-button.defined-task-button.active span {
-  color: var(--active-defined-task-button-text-color); }
-
-.express-work-flow .express-input-switch-selection,
-.ui-inputswitch.ui-widget.ui-widget-content.express-input-switch-selection.ui-inputswitch-checked,
-.process-widget .process-input-switch-selection,
-.ui-inputswitch.ui-widget.ui-widget-content.process-input-switch-selection.ui-inputswitch-checked {
-  background-color: var(--express-input-switch-selection-background-color);
-  border-color: var(--express-input-switch-selection-border); }
-
-.ui-inputswitch.ui-widget.ui-widget-content.express-input-switch-selection.ui-inputswitch-checked .ui-inputswitch-handle {
-  background: var(--ivy-primary-color-white);
-}
-
-.available-elements-action-btn button:hover, .available-elements-action-btn button:focus, .express-add-option-panel button:hover, .express-add-option-panel button:focus {
-  background-color:transparent;}
-
-.task-responsible-label.ui-state-error {
-  color: var(--task-responsible-label-state-error-color); }
-
-.selected-formelements-panel.hover-drop-section {
-  background-color: var(--form-elements-panel-hover-drop-section-background-color); }
-
-.review-content-title {
-  font-weight: var(--express-review-content-title-font-weight);
-  border-bottom: 1px solid var(--express-review-content-title-border-color); }
-
-.defined-task-label {
-  background: var(--defined-task-label-background-color); }
-
-.defined-task-label label {
-  font-size: var(--small-font-size);
-  color: var(--defined-task-label-text-color); }
-
-.defined-task-label.active label {
-  color: var(--defined-task-label-text-color); }
-
-.defined-task-button-container .ui-state-hover ~ span.defined-task-label,
-.defined-task-button-container .active ~ span.defined-task-label,
-.defined-task-button-container .visited ~ span.defined-task-label {
-  background: var(--defined-task-button-container-background-color); }
-
-.defined-task-button-container .ui-state-hover ~ span.defined-task-label label,
-.defined-task-button-container .active ~ span.defined-task-label label,
-.defined-task-button-container .visited ~ span.defined-task-label label {
-  color: var(--active-defined-task-label-text-color); }
-
-.form-definition-table .ui-state-highlight,
-.form-definition-table .hover-drop-section {
-  color: var(--form-elements-panel-hover-drop-section-label-color); }
-
-.form-definition-table .selected-formelements-panel {
-  border: dashed 2px var(--form-definition-table-selected-panel-border); }
-
-.form-definition-table .selected-formelements-panel .ui-datagrid {
-  background: var(--form-definition-table-selected-panel-background-color); }
-
-.email-attachment .ui-fileupload-buttonbar.ui-widget-header.ui-corner-top {
-  background-color: var(--email-file-upload-corner-top-background-color); }
-
+/* Absence */
 .task-responsible-link {
   font-size: var(--large-font-size); }
 
 .task-responsible-link:after {
   font-family: var(--icon-font-family); }
 
-.express-work-flow label.switch-active,
 .process-widget label.switch-active {
-  font-weight: var(--express-workflow-active-switch-label-font-weight);
+  font-weight: var(--active-switch-label-font-weight);
   color: var(--primary-color); }
 
 .process-widget label.switch-off {
   color: var(--ivy-primary-color-grey-medium);}
-
-.finished-task-label {
-  font-weight: var(--express-finished-task-label-font-weight); }
-
-.ui-widget.ui-button.defined-task-button.active {
-  font-weight: var(--express-active-defined-task-button-font-weight); }
 
 /* Chat*/
 .layout-wrapper .layout-topbar .topbar-menu > li > a.notification-badge i.fa.fa-comment {
@@ -1263,7 +1161,12 @@ ul.users-in-role {
 .options-panel .option-item:hover {
   text-decoration: none;
   color: var(--menu-action-hover-text-color);
-  background-color: var(--item-background-hover);}
+  background-color: var(--item-background-hover);
+}
+
+.options-panel .pointer-event-none {
+  pointer-events: none;
+}
 
 .process-widget-action .name-sort-command,
 .process-widget-action .editing-switch-command,
@@ -1303,44 +1206,6 @@ ul.users-in-role {
 
 .upload-container .ui-widget.ui-fileupload .ui-fileupload-content .ui-fileupload-messages {
   margin-top: 30px; }
-
-/* Express Management */
-.import-express-dialog .import-status {
-  font-weight: var(--express-import-status-font-weight); }
-  .import-express-dialog .import-status.Success {
-    color: var(--express-import-status-success); }
-  .import-express-dialog .import-status.Warning {
-    color: var(--express-import-status-warning); }
-  .import-express-dialog .import-status.Failed {
-    color: var(--express-import-status-failed); }
-
-.express-workflow-summary-table .ui-paginator.ui-paginator-top {
-  background-color: var(--express-import-paginator-background-color);
-  border-color: var(--express-import-paginator-background-color);
-  color: var(--express-import-paginator-text-color); }
-  .express-workflow-summary-table .ui-paginator.ui-paginator-top a {
-    color: var(--express-import-paginator-text-color); }
-    .express-workflow-summary-table .ui-paginator.ui-paginator-top a.ui-state-hover {
-      background-color: var(--express-import-paginator-hover-button-background-color); }
-  .express-workflow-summary-table .ui-paginator.ui-paginator-top .ui-paginator-pages {
-    color: var(--express-import-paginator-text-color); }
-    .express-workflow-summary-table .ui-paginator.ui-paginator-top .ui-paginator-pages a.ui-paginator-page.ui-state-active {
-      background-color: var(--express-import-paginator-hover-button-background-color); }
-    .express-workflow-summary-table .ui-paginator.ui-paginator-top .ui-paginator-pages a.ui-paginator-page.ui-state-hover {
-      background-color: var(--express-import-paginator-hover-button-background-color); }
-
-.express-workflow-summary-table tr.ui-datatable-selectable.ui-state-highlight td,
-.express-workflow-summary-table tr.ui-datatable-selectable.ui-state-hover td {
-  border-bottom-color: var(--ivy-primary-color-grey-medium); }
-
-.express-workflow-summary-table tr.ui-datatable-selectable.ui-state-highlight th:not(:last-child), .express-workflow-summary-table tr.ui-datatable-selectable.ui-state-highlight td:not(:last-child),
-.express-workflow-summary-table tr.ui-datatable-selectable.ui-state-hover th:not(:last-child),
-.express-workflow-summary-table tr.ui-datatable-selectable.ui-state-hover td:not(:last-child) {
-  border-right-color: var(--ivy-primary-color-grey-medium); }
-
-.express-helper-loading-container .si-lg {
-  font-size: var(--express-helper-loading-container-si-lg-font-size);
-}
 
 body .ui-slider .ui-slider-handle {
   background-color: var(--accent-light-color);

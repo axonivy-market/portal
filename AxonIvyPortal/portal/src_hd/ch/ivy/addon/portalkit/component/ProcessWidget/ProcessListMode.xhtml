@@ -3,43 +3,23 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <ui:composition>
-  <c:set var="isExpress" value="#{processWidgetBean.isExpressProcess(process)}" />
   <c:set var="isExternalLink" value="#{processWidgetBean.isExternalLink(process)}" />
 
   <div class="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12 u-no-padding-top u-no-padding-left js-process-start-list-item">
     <h:form id="process-item-form"
-      styleClass="process-start-list-item #{isExpress ? 'express-workflow' : ''} #{isExternalLink ? 'js-external-link-process-item' : ''}">
+      styleClass="process-start-list-item #{isExternalLink ? 'js-external-link-process-item' : ''}">
         <h:panelGroup id="compact-process-category" styleClass="js-process-category compact-process-category">
           <h:panelGroup id="grid-process-category-content" styleClass="grid-process-category-content u-truncate-text" layout="block">#{processWidgetBean.getDisplayProcessCategory(process)}</h:panelGroup>
         </h:panelGroup>
       <p:commandLink id="process-item" actionListener="#{processWidgetBean.startProcess(process)}" styleClass="process-item"
         target="#{processWidgetBean.targetToStartProcess(process)}" ajax="#{!isExternalLink}">
 
-        <div class="process-start-list-item-name #{isExpress ? 'is-express' : ''} #{isExternalLink ? 'is-external-link' : ''}">
+        <div class="process-start-list-item-name #{isExternalLink ? 'is-external-link' : ''}">
           <h:outputText id="process-name" value="#{process.name}"
             styleClass="process-start-list-item-name-text u-truncate-text js-process-start-list-item-name" />
           <p:tooltip for="process-name" value="#{process.name}" trackMouse="true" hideEvent="mouseleave click" styleClass="process-tooltip"/>
         </div>
         <div class="process-item-action-container">
-          <h:panelGroup styleClass="process-start-list-item-action #{isExpress ? 'is-express' : ''} u-padding-0" rendered="#{isExpress}"
-            layout="block">
-            <h:outputText id="express-process-logo" styleClass="express-process-logo si si-startup-launch" />
-            <p:tooltip id="express-process-logo-tooltip" for="express-process-logo"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/expressWorkflow')}" position="top" trackMouse="true"
-              hideEvent="mouseleave click" />
-            <ui:fragment rendered="#{process.getProcess().ableToEdit}">
-              <p:commandLink id="delete-express-workflow" styleClass="si si-bin-1 express-workflow process-item"
-                actionListener="#{processWidgetBean.setDeletedProcess(process)}" oncomplete="PF('remove-process-workflow-dialog').show();"
-                update="#{cc.clientId}:remove-process-workflow-dialog" />
-              <p:tooltip id="delete-express-workflow-tooltip" for="delete-express-workflow" trackMouse="true" hideEvent="mouseleave click"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExpressWorkflowTooltip')}" position="top" />
-
-              <p:commandLink id="edit-express-workflow" styleClass="si si-graphic-tablet-drawing-pen express-workflow process-item"
-                actionListener="#{processWidgetBean.editExpressWorkflow(process.getProcess())}" target="_self" />
-              <p:tooltip id="edit-express-workflow-tooltip" for="edit-express-workflow" trackMouse="true" hideEvent="mouseleave click"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editExpressWorkflowTooltip')}" position="top" />
-            </ui:fragment>
-          </h:panelGroup>
           <h:panelGroup rendered="#{isExternalLink}" layout="block"
             styleClass="process-start-list-item-action #{isExternalLink ? 'is-external-link' : ''} u-padding-0">
             <h:panelGroup id="external-link-icon"
