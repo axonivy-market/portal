@@ -174,7 +174,7 @@ public class DashboardProcess implements Process {
   @Override
   public String getImageUrl() {
     if (StringUtils.isEmpty(imageUrl)) {
-      imageUrl = getContentImageUrl(DefaultImage.PROCESSMODELING.getPath());
+      imageUrl = getContentImageUrl( DefaultImage.PROCESSMODELING.getPath());
     }
     return imageUrl;
   }

@@ -13,6 +13,7 @@ public class IvyProcess implements Process {
   private IWebStartable process;
   private String application;
   private String imageUrl;
+  private String defaultImageDarkLink;
   private String index;
   private String portalProcessInformation;
 
@@ -76,6 +77,10 @@ public class IvyProcess implements Process {
       imageUrl = getContentImageUrl(DefaultImage.PROCESSMODELING.getPath());
     }
     return imageUrl;
+  }
+  
+  public String getDefaultImageDarkLink() {
+    return getContentImageUrl(DefaultImage.PROCESSMODELINGDARK.getPath());
   }
 
   @Override

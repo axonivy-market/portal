@@ -4947,6 +4947,25 @@ body .process-compact-mode > .ui-fieldset-content {
   top: -24px;
 }
 
+.image-process-item .process-category-and-icon-container {
+  display: flex;
+  justify-content: flex-end;
+  height: 0px;
+  z-index: 1;
+  position: relative;
+  bottom: -10px;
+  padding-right: 15px;
+  column-gap: 10px;
+}
+
+.image-process-item .process-category-and-icon-container > .process-category, .image-process-item .process-category-and-icon-container > .image-process-icon {
+  background: var(--process-list-item-background-color);
+  color: var(--process-list-item-text);
+  border: 1px solid var(--process-list-item-border-color);
+  height: fit-content;
+  border-radius: 10px;
+}
+
 .image-process-item .overlay-title .process-icon-and-name .process-name {
   margin: 4px 0;
 }
@@ -4966,13 +4985,23 @@ body .process-compact-mode > .ui-fieldset-content {
 
 .image-process-icon .process-image-view-icon {
   width: 24px;
-  font-size: 24px;
-  margin: 12px;
+  font-size: 20px;
+  margin: 6px;
   text-align: center;
 }
 
 .image-process-item .card-item.card {
   margin-bottom: 0px;
+}
+ 
+.layout-topbar-light .image-process-item .default-process-image, 
+.layout-topbar-dark .image-process-item .default-process-image-dark {
+  display: block;
+}
+
+.layout-topbar-dark .image-process-item .default-process-image, 
+.layout-topbar-light .image-process-item .default-process-image-dark {
+  display: none;
 }
 
 .process-group.image-process-container .image-process-item .card-item.card {

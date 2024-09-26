@@ -1511,12 +1511,16 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .layout-topbar-light .welcome-text-container .default-welcome-image,
-.layout-topbar-dark .welcome-text-container .default-welcome-image-dark {
+.layout-topbar-dark .welcome-text-container .default-welcome-image-dark, 
+.layout-topbar-light .image-process-item > .default-process-image, 
+.layout-topbar-dark .image-process-item > .default-process-image-dark {
   display: block;
 }
 
 .layout-topbar-dark .welcome-text-container .default-welcome-image,
-.layout-topbar-light .welcome-text-container .default-welcome-image-dark {
+.layout-topbar-light .welcome-text-container .default-welcome-image-dark, 
+.layout-topbar-dark .image-process-item > .default-process-image, 
+.layout-topbar-light .image-process-item > .default-process-image-dark {
   display: none;
 }
 

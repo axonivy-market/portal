@@ -106,6 +106,7 @@
   --process-list-compact-mode-background-color: hsl(0, 0%, 13%);
   --process-list-item-border-color: #545B67;
   --process-list-widget-item-background-color:  var(--ivy-primary-color-grey-dark);
+  --process-list-item-text: var(--ivy-primary-color-white);
 
   --active-switch-label-font-weight: 700;
   /* Case Detail */

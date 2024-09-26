@@ -116,6 +116,7 @@
   --process-list-compact-mode-background-color: var(--ivy-primary-color-grey-pale);
   --process-list-item-border-color: #EBEBEB;
   --process-list-widget-item-background-color:  var(--ivy-primary-color-grey-pale);
+  --process-list-item-text: var(--ivy-primary-color-black);
 
   /* Case Detail */
   --case-related-task-color: var(--ivy-primary-color-black);
