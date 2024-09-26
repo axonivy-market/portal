@@ -475,6 +475,12 @@ const quickSearchInputId = '[id="quick-global-search-component:global-search-dat
 const useSettingMenuId = 'a#user-settings-menu';
 
 $(document).ready(function() {
+    $(searchIconId).on('click', function() {
+      const searchInput = $('[id="global-search-component:global-search-data"]');
+      if (searchInput) {
+        searchInput.focus();
+      }
+    });
 
     let focusableElements = [
       $(singleDashboardId).length ? $(singleDashboardId).find('a') : $(multipleDashboardId).find('a')[0],
