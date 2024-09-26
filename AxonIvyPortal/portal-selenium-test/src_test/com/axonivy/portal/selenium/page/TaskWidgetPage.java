@@ -372,12 +372,6 @@ public class TaskWidgetPage extends TemplatePage {
     return !$(".action-link").getAttribute("class").contains("ui-state-disabled");
   }
 
-  public ExpressTaskPage startExpressTask(int index) {
-    waitTaskAppearThenClick(index);
-    $(By.id(TASK_ACTION)).shouldBe(appear, DEFAULT_TIMEOUT);
-    return new ExpressTaskPage();
-  }
-
   public TaskIFrameTemplatePage startTaskIFrame(int index) {
     waitTaskAppearThenClick(index);
     $(By.id(TASK_ACTION)).shouldBe(appear, DEFAULT_TIMEOUT);
@@ -415,10 +409,6 @@ public class TaskWidgetPage extends TemplatePage {
 
   public boolean isTaskReserverDisplayed(boolean expected) {
     return isTaskActionDisplayed("task-reserve-command", 0, expected);
-  }
-
-  public boolean isAdhocSideStepDisplayed(boolean expected) {
-    return isElementDisplayed(By.cssSelector("a[id$='adhoc-side-step-item']"), expected);
   }
 
   public void sideStepMenuOnActionButton(int index) {
@@ -759,13 +749,6 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement cell = findElementById(
         String.format(taskWidgetId + ":task-list-scroller:%d:task-item:%s-component:%s", index, columnId, columnId));
     return cell.getText();
-  }
-
-  public AdhocPage addAdhoc(int taskIndex) {
-    waitForElementClickableThenClick("[id$=':task-side-steps-menu']");
-    waitForElementClickableThenClick("[id$=':adhoc-side-step-item']");
-    waitForElementPresent(By.id(TASK_ACTION), true);
-    return new AdhocPage();
   }
 
   public void clearFilterInput() {

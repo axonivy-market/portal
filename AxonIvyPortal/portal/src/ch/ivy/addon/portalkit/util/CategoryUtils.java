@@ -11,10 +11,7 @@ import org.primefaces.model.CheckboxTreeNode;
 import com.axonivy.portal.bo.ItemByCategoryStatistic;
 
 import ch.ivy.addon.portalkit.bo.CategoryNode;
-import ch.ivyteam.ivy.cm.exec.LocalizedTextResolverFactory;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.workflow.category.Category;
-import ch.ivyteam.ivy.workflow.category.CategoryPath;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
 
 public class CategoryUtils {
@@ -147,19 +144,6 @@ public class CategoryUtils {
     node.getChildren().forEach(child -> filterSelectedNode((CheckboxTreeNode<CategoryNode>) child, selectedNodeValues));
   }
 
-  public static Category buildExpressCategory(String processName) {
-    String categoryName = processName;
-    if (processName.contains(CATEGORY_PATH_DELIMITER)) {
-      String[] processNameArray = processName.split(CATEGORY_PATH_DELIMITER);
-      categoryName = processNameArray[processNameArray.length - 1];
-    }
-
-    CategoryPath rootExpress = new CategoryPath("ExpressWorkflow");
-    CategoryPath process = rootExpress.append(categoryName.trim());
-    return Category.createFor(process,
-        new LocalizedTextResolverFactory().createFor("Categories", Ivy.request().getProcessModelVersion()));
-  }
-  
   private static ItemByCategoryStatistic getNoCategoryCase(CategoryTree category) {
     var nonEmptyChildrenCount = category.getChildren().stream().map(CategoryTree::count).mapToInt(Long::intValue).sum();
     var emptyChildrenCount = category.count() - nonEmptyChildrenCount;

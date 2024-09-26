@@ -24,8 +24,6 @@ public class ScreenshotUtils {
   public static final String FORGOT_PASSWORD = "/forgot-password/";
   public static final String DASHBOARD_FOLDER = "/dashboard/";
   public static final String NEW_DASHBOARD_FOLDER = "/new-dashboard/";
-  public static final String EXPRESS_FOLDER = "/express/";
-  public static final String EXPRESS_MANAGEMENT_FOLDER = "/express-management/";
   public static final String PROCESSES_WIDGET_FOLDER = "/process/";
   public static final String PROCESSES_INFORMATION_WIDGET_FOLDER = "/process/information/";
   public static final String PROCESSES_PROCESS_IMAGE_FOLDER = "/process-image/customization/";

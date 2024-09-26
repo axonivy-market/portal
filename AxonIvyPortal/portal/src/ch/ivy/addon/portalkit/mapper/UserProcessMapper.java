@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.configuration.UserProcess;
@@ -47,18 +46,6 @@ public class UserProcessMapper {
     userProcess.setLink(process.getStartLink());
     userProcess.setDescription(process.getDescription());
     userProcess.setIcon(process.getIcon());
-    return userProcess;
-  }
-
-  public static UserProcess toUserProcess(ExpressProcess expressProcess, String expressStartLink) {
-    String startLink = expressStartLink + "?workflowID=" + expressProcess.getId();
-    UserProcess userProcess = new UserProcess();
-    userProcess.setProcessId(expressProcess.getId());
-    userProcess.setProcessType(ProcessType.EXPRESS_PROCESS);
-    userProcess.setProcessName(stripHtmlTags(expressProcess.getProcessName()));
-    userProcess.setLink(startLink);
-    userProcess.setDescription(expressProcess.getProcessDescription());
-    userProcess.setIcon(expressProcess.getIcon());
     return userProcess;
   }
 
