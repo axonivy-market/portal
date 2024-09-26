@@ -7,9 +7,5 @@
     "name" : "processes",
     "type" : "java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartable>",
     "modifiers" : [ "PERSISTENT" ]
-  }, {
-    "name" : "expressProcesses",
-    "type" : "java.util.List<ch.ivy.addon.portalkit.bo.ExpressProcess>",
-    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

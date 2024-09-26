@@ -271,3 +271,5 @@ Processes:
         name: Pizza Order
     description: Create 3 tasks, each task has CustomerName and ShipmentDate
     name: Create Tasks For Task List Customization
+  UserExampleGuide: User Example Guide
+  google: Google

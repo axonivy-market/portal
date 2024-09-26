@@ -1044,15 +1044,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   left: 5px;
 }
 
-.process-header .create-express-link {
-  display: inline-block;
-  margin-left: 12px;
-}
-
-.process-header .create-express-link a:hover i {
-  opacity: 1;
-}
-
 .expand-collapse-btns {
   float: left;
 }
@@ -1185,15 +1176,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   padding-right: 50px;
 }
 
-.process-start-list .process-start-list-item-name.is-express,
-.process-in-search .process-start-list-item-name.is-express {
-  padding-right: 120px;
-}
-
-.process-start-list-item-name.is-express {
-  width: calc(100% - 130px);
-}
-
 .process-start-list-item-name.is-external-link {
    width: calc(100% - 105px);
 }
@@ -1240,21 +1222,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .toggle-processes-link .si,
 .compact-toggle-tasks-link .si {
   font-weight: bold !important;
-}
-
-.process-start-list-item-action.is-express {
-  right: 50px;
-  flex: 1 0 auto;
-}
-
-.process-start-list-item-action .express-workflow {
-  cursor: pointer;
-}
-
-@media (max-width: 991px) {
-  .process-start-list-item-action .express-workflow.process-item {
-    display: none !important;
-  }
 }
 
 .process-item-action-container {
@@ -2750,7 +2717,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .setting-tab-action-buttons, .application-tab-action-buttons, .application-selection-action-buttons,
-.announcement-tab-action-buttons, .express-workflow-summary-actions-container,
+.announcement-tab-action-buttons,
 .create-role-container {
   text-align: right;
   margin: .5em 0;
@@ -3906,17 +3873,6 @@ _:-ms-fullscreen, :root .content-link-history {
 }
 /* =================== END ENHANCEMENT ====================== */
 
-/* =================== ADHOC ============================= */
-.adhoc-task-history-dialog .ui-dialog-content.ui-widget-content {
-  max-height: 50vh;
-  width: 35vw;
-}
-
-.adhoc-task-history-author {
-  display: inline;
-}
-/* ===================== END ADHOC ======================= */
-
 /* =================== ADD CHAT ============================= */
 .chat-assignee-dialog {
   width: 600px !important;
@@ -4181,10 +4137,6 @@ _:-ms-fullscreen, :root .content-link-history {
     max-width: 96vw;
   }
 
-  .adhoc-task-history-dialog .ui-dialog-content.ui-widget-content {
-    margin: 0 !important;
-    width: calc(100vw - 40px) !important;
-  }
   .case-details-data-1st-column {
     padding-right: 10px;
     text-align: left;
@@ -4199,13 +4151,6 @@ _:-ms-fullscreen, :root .content-link-history {
     overflow-x: hidden;
     word-break: break-all;
     margin-top: 0.2em;
-  }
-}
-
-@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
-  .adhoc-task-history-dialog .ui-dialog-content.ui-widget-content {
-    margin: 0 !important;
-    width: calc(80vw - 40px) !important;
   }
 }
 
@@ -4239,86 +4184,6 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
     display: none !important;
   }
 }
-
-/*=================== EXPRESS MANAGEMENT START ===================*/
-.express-helper-loading-container,
-.express-process-upload.ui-fileupload .ui-fileupload-progress {
-  display: none;
-}
-
-body .ui-dialog.ui-widget.import-express-dialog,
-body .ui-dialog.ui-widget.export-express-dialog {
-  min-width: 450px;
-  max-width: 1000px;
-}
-
-body .ui-dialog.ui-widget.import-express-dialog .ui-dialog-titlebar.ui-widget-header,
-body .ui-dialog.ui-widget.export-express-dialog .ui-dialog-titlebar.ui-widget-header {
-  padding-left: 1.5em;
-  padding-right: 1.5em;
-}
-
-@media screen and (max-width: 40em) {
-  body .ui-dialog.ui-widget.import-express-dialog,
-  body .ui-dialog.ui-widget.export-express-dialog {
-    min-width: 85vw;
-    max-width: 95%;
-  }	
-}
-
-.import-express-dialog .express-import-result {
-  overflow: auto;
-  max-height: 400px;
-  width: 100%;
-}
-
-.import-express-dialog .import-header-title,
-.export-express-dialog .import-header-title {
-  margin: 0;
-}
-
-.export-express-dialog .express-export-selected {
-  max-height: 250px;
-  overflow: auto;
-  width: 100%;
-}
-
-.express-helper-loading {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.express-workflow-summary-table .ui-paginator.ui-paginator-top,
-.express-workflow-summary-table tbody tr td {
-  padding: 4px 10px !important;
-}
-
-.express-workflow-summary-table .ui-selection-column.express-selection-column {
-  text-align: center;
-}
-
-.express-workflow-summary-table td.ui-selection-column.express-selection-column .ui-chkbox.ui-widget {
-  margin: auto;
-  margin-top: 4px;
-}
-
-.express-workflow-summary-table .express-selection-column {
-  width: 50px !important;
-  text-align:center; 
-}
-
-.express-workflow-summary-table tbody tr td,
-.express-process-upload .ui-fileupload-row>div {
-  word-break: break-all;
-}
-
-.express-management-form {
-  position: relative;
-  overflow: hidden;
-}
-
-/*=================== EXPRESS MANAGEMENT END ===================*/
 
 /*=================== BREADCRUMB ===================*/
 body .ui-widget-header.portal-breadcrumb a {

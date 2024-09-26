@@ -107,11 +107,6 @@ function ProcessWidget() {
             $(this).hide();
           }
         }
-        var expressKeyToSearch = "express";
-        if (expressKeyToSearch.toLowerCase() === keyword.trim().toLowerCase()
-        		&& $(this.children).hasClass("express-workflow")) {
-        	$(this).show();
-        }
 
         var externalLinkKeyToSearch = "link";
         if (externalLinkKeyToSearch.toLowerCase() === keyword.trim().toLowerCase()

@@ -7,10 +7,8 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.constant.CustomFields;
 import com.axonivy.portal.components.dto.ProcessViewerDTO;
 import com.axonivy.portal.components.service.impl.ProcessService;
 
@@ -132,11 +130,6 @@ public class ProcessViewerUtils {
     return Optional.ofNullable(webStartables).orElse(new ArrayList<>());
   }
 
-  public static boolean isExpressCase(ICase iCase) {
-    return iCase != null
-        && BooleanUtils.toBoolean(iCase.customFields().stringField(CustomFields.IS_EXPRESS_PROCESS).getOrNull());
-  }
-
   public static ICaseMap findCaseMapByCase(ICase caze) {
     if (Objects.isNull(caze)) {
       return null;
@@ -149,7 +142,7 @@ public class ProcessViewerUtils {
   }
 
   public static boolean isViewerAllowed(ICase caze) {
-    if (caze == null || isExpressCase(caze) || !caze.isBusinessCase()) {
+    if (caze == null || !caze.isBusinessCase()) {
       return false;
     } else if (hasCaseMap(caze.getBusinessCase())) {
       return true;

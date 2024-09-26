@@ -154,7 +154,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public WelcomeEditWidgetNewDashboardPage editWelcomeWidgetConfiguration(String widgetId) {
-    var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
+    var configurationPage = openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 

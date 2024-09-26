@@ -111,6 +111,7 @@
   --hovered-process-start-list-item-i-con-color: var(--primary-color);
   --hovered-user-process-start-list-item-icon-color: var(--primary-color);
   --process-warning-icon-color: var(--ivy-tertinary-color-red-medium);
+  --active-switch-label-font-weight: 700;
   --process-list-item-background-color: var(--ivy-primary-color-white);
   --process-list-compact-mode-background-color: var(--ivy-primary-color-grey-pale);
   --process-list-item-border-color: #EBEBEB;
@@ -222,49 +223,6 @@
   /* Error Page */
   --error-container-color: #546e7a;
   --error-message-header-color: #e67163;
-  /* Express */
-  --express-input-switch-selection-background-color: var(--primary-color);
-  --task-responsible-label-state-error-color: #e62a10;
-  --defined-task-button-background-color: var(--ivy-primary-color-white);
-  --form-elements-panel-hover-drop-section-background-color: var(--ivy-primary-color-light);
-  --form-elements-checkbox-fields-color: var(--ivy-primary-color-black);
-  --defined-task-label-background-color: var(--ivy-primary-color-grey-dark);
-  --defined-task-button-container-background-color: var(--ivy-primary-color-white);
-  --defined-task-button-actived-or-hover-background-color: var(--primary-color);
-  --defined-task-button-actived-border-color: var(--primary-color);
-  --defined-task-button-border-color: var(--primary-color);
-  --defined-task-button-text-color: var(--ivy-primary-color-black);
-  --active-defined-task-button-text-color: var(--ivy-primary-color-white);
-  --defined-task-label-text-color: var(--ivy-primary-color-white);
-  --active-defined-task-label-text-color: var(--ivy-primary-color-black);
-  --form-elements-panel-hover-drop-section-label-color: var(--ivy-primary-color-white);
-  --autocomplete-more-text-state-highlight-background-color: white;
-  --express-input-switch-selection-border: var(--primary-color);
-  --express-available-elements-action-button-background-color: transparent;
-  --express-available-elements-action-button-shadow: none;
-  --express-available-elements-action-button-icon-color: var(--ivy-primary-color-black);
-  --form-definition-table-border: var(--ivy-primary-color-grey-light);
-  --form-definition-table-selected-panel-border: var(--ivy-primary-color-grey-light);
-  --form-definition-table-selected-panel-background-color: transparent;
-  --email-file-upload-corner-top-background-color: transparent;
-  --express-table-no-header-border: var(--ivy-primary-color-grey-light);
-  --express-table-no-header-background-color: transparent;
-  --expand-collapse-button-color: var(--ivy-primary-color-black);
-  --express-workflow-active-switch-label-font-weight: 700;
-  --express-review-content-title-font-weight: 700;
-  --express-finished-task-label-font-weight: 700;
-  --express-active-defined-task-button-font-weight: bold;
-  --collapse-button-background-color: var(--ivy-primary-color-grey-pale);
-  --collapse-button-hover-background-color: var(--ivy-primary-color-grey-light) ;
-  --express-assignee-icon-color: var(--ivy-primary-color-black);
-  --express-review-content-title-border-color: hsla(180, 1%, 61%, 0.5);
-  --express-import-status-success: var(--ivy-tertinary-color-green-medium);
-  --express-import-status-warning: var(--ivy-tertinary-color-yellow-medium);
-  --express-import-status-failed: var(--ivy-tertinary-color-red-medium);
-  --express-import-status-font-weight: bold;
-  --express-import-paginator-background-color: hsla(180, 1%, 85%,0.5);
-  --express-import-paginator-hover-button-background-color: hsla(180, 1%, 85%,0.5);
-  --express-import-paginator-text-color: var(--ivy-primary-color-black);
   /* Chat */
   --chat-panel-background-color: #F7FAFF;
   --chat-panel-box-shadow: 0px 10px 40px rgb(41 50 65 / 6%);
@@ -319,7 +277,6 @@
 
   /* Others */
   --card-dialog-border-color: transparent;
-  --top-border-body-express-many-checkbox-table-color: hsla(180, 1%, 61%, 0.5);
   --hovered-item-select-one-menu-text-color: var(--ivy-primary-color-black);
   --hovered-item-select-one-list-box-text-color: var(--ivy-primary-color-black);
   --auto-complete-hover-color: var(--ivy-primary-color-black);

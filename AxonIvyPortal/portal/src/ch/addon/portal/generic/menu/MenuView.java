@@ -274,9 +274,7 @@ public class MenuView implements Serializable {
       case PROCESS -> buildBreadCrumbForProcess();
       case TASK_DETAIL -> buildBreadCrumbForTaskDetails(userTask);
       case CASE_DETAIL -> buildBreadCrumbForCaseDetails(userCase);
-      case EXPRESS -> buildBreadCrumbForExpress();
       case USER_PROFILE -> buildBreadCrumbForUserProfile();
-      case EXPRESS_BUSINESS -> buildBreadCrumbForExpressBusiness(userCase);
       case ABSENCES_MANAGEMENT -> buildBreadCrumbForAbsences();
       case DASHBOARD_CONFIGURATION -> buildBreadCrumbForDashboardConfiguration();
       case EDIT_DASHBOARD_DETAILS -> buildBreadCrumbForEditDashboardDetail();
@@ -367,16 +365,6 @@ public class MenuView implements Serializable {
     breadcrumbModel.getElements().add(buildCaseDetailsMenuItem(userCase));
   }
 
-  private void buildBreadCrumbForExpress() {
-    setPortalHomeMenuToBreadcrumbModel();
-    breadcrumbModel.getElements().add(buildGenericMenuItem("/Categories/ExpressWorkflow/name"));
-  }
-
-  private void buildBreadCrumbForExpressBusiness(ICase userCase) {
-    setPortalHomeMenuToBreadcrumbModel();
-    breadcrumbModel.getElements().add(buildExpressBusinessMenuItem(Long.toString(userCase.getId())));
-  }
-
   private void buildBreadCrumbForDashboardConfiguration() {
     setPortalHomeMenuToBreadcrumbModel();
     breadcrumbModel.getElements()
@@ -434,14 +422,6 @@ public class MenuView implements Serializable {
   private MenuItem buildCaseDetailsMenuItem(ICase userCase) {
     return DefaultMenuItem.builder()
       .value(String.join(": ", Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/case"), userCase.names().current()))
-      .url("#")
-      .disabled(true)
-      .build();
-  }
-
-  private MenuItem buildExpressBusinessMenuItem(String caseId) {
-    return DefaultMenuItem.builder()
-      .value(Ivy.cms().co("/Dialogs/ch/ivy/addon/express/generic/expressWorkflowName", Arrays.asList(caseId)))
       .url("#")
       .disabled(true)
       .build();

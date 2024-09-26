@@ -8,7 +8,6 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="processListStyleClass" />
   <cc:attribute name="hideHeader" default="false" type="java.lang.Boolean" />
-  <cc:attribute name="hideExpressCreation" default="false" />
   <cc:attribute name="hideProcessNavigation" default="false" />
 </cc:interface>
 
@@ -29,15 +28,6 @@
               styleClass="js-filter-process-widget-list-item" />
           </div>
           <div class="ui-sm-hidden ui-md-hidden ui-lg-4 ui-xl-4 process-widget-creation-actions">
-            <h:panelGroup id="create-express-link"
-              rendered="#{!cc.attrs.hideExpressCreation and processWidgetBean.canCreateExpessWorkflow()}"
-              styleClass="create-express-link u-mar-right-10">
-              <p:commandLink id="create-express-workflow"
-                actionListener="#{processWidgetBean.startExpressWorkflowCreationLink()}">
-                <i class="si si-startup-launch" />
-                <span class="process-widget-header-link">#{processWidgetBean.createExpressWorkflowProcessStart.name}</span>
-              </p:commandLink>
-            </h:panelGroup>
             <h:panelGroup styleClass="add-external-link-command">
               <p:commandLink id="add-external-link-command"
                 actionListener="#{externalLinkBean.addNewExternalLink(cc.clientId)}"

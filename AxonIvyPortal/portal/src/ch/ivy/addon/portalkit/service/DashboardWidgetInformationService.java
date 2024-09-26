@@ -205,19 +205,15 @@ public class DashboardWidgetInformationService {
     }
     Map<ProcessType, Long> processByTypeStatistic = new HashMap<>();
     Long numberOfIvyProcesses = 0l;
-    Long numberOfExpressProcesses = 0l;
     Long numberOfExternalLink = 0l;
     for (var process : processes) {
       if (process.getType().equals(ProcessType.IVY_PROCESS)) {
         numberOfIvyProcesses++;
-      } else if (process.getType().equals(ProcessType.EXPRESS_PROCESS)) {
-        numberOfExpressProcesses++;
       } else {
         numberOfExternalLink++;
       }
     }
     processByTypeStatistic.put(ProcessType.IVY_PROCESS, numberOfIvyProcesses);
-    processByTypeStatistic.put(ProcessType.EXPRESS_PROCESS, numberOfExpressProcesses);
     processByTypeStatistic.put(ProcessType.EXTERNAL_LINK, numberOfExternalLink);
     return processByTypeStatistic;
   }
