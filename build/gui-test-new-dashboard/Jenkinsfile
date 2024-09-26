@@ -61,12 +61,15 @@ pipeline {
           echo '====================Archive consoleText file===================='
           withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
             def branchName = env.BRANCH_NAME.replaceAll("/", "%%2F")
-            bat """curl --user ${credentials} ${env.JENKINS_URL}job/portal-selenium-test/job/${branchName}/lastSuccessfulBuild/consoleText --output consoleText
-                move consoleText AxonIvyPortal/portal-selenium-test/target
-                cd AxonIvyPortal/portal-selenium-test/resources
-                move extractFlakyTests.bat ../target
-                cd ../target
-                ./extractFlakyTests.bat
+            bat """
+              curl --user ${credentials} ${env.JENKINS_URL}job/portal-selenium-test/job/${branchName}/lastSuccessfulBuild/consoleText --output consoleText
+              move consoleText AxonIvyPortal/portal-selenium-test/target
+            """
+            bat """
+              cd AxonIvyPortal/portal-selenium-test/target
+              findstr /I "\[WARNING\] Flakes:" consoleText > flaky-tests-log
+              findstr /I "com.axonivy.portal.selenium" flaky-tests-log > flakyTestsReport
+              sed '/Time elapsed/s/.*//' flakyTestsReport
             """
           }
         }
