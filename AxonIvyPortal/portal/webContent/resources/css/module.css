@@ -4809,7 +4809,7 @@ body .process-compact-mode > .ui-fieldset-content {
   text-align: end;
 }
 
-.image-view-form .start-process > button > span{
+.image-view-form .start-process > button > span, .image-process-actions > button > span{
   color: var(--ivy-primary-light-color);
 }
 
