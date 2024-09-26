@@ -16,11 +16,6 @@ public class IFrameService {
     if (task == null) {
       return true;
     }
-    boolean isExpress = Boolean
-        .parseBoolean(task.getCase().customFields().stringField(CustomFields.IS_EXPRESS_PROCESS).getOrDefault("false"));
-    if (isExpress) {
-      return false;
-    }
     
     Boolean isIFrameCustomField = getEmbedInIFrameCustomField(task);
     if (isIFrameCustomField != null) {
@@ -34,11 +29,6 @@ public class IFrameService {
     ITask task = Ivy.wf().findTask(taskUUID);
     if (task == null) {
       return true;
-    }
-    boolean isExpress = Boolean
-        .parseBoolean(task.getCase().customFields().stringField(CustomFields.IS_EXPRESS_PROCESS).getOrDefault("false"));
-    if (isExpress) {
-      return false;
     }
     
     Boolean isIFrameCustomField = getEmbedInIFrameCustomField(task);

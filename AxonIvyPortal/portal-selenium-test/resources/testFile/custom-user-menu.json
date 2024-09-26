@@ -8,14 +8,6 @@
         "url": "https://www.example.com"
     },
     {
-        "id": "express",
-        "title": "Portal Express process",
-        "permissions": [
-            "Everybody"
-        ],
-        "url": "Portal Express process"
-    },
-    {
         "id": "create-invesment",
         "title": "Create Investment",
         "permissions": [

@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
-
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
@@ -433,11 +432,6 @@ public class CaseWidgetPage extends TemplatePage {
         index);
     $(menuSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return $(menuPanelSelector).shouldBe(appear, DEFAULT_TIMEOUT);
-  }
-
-  public void openAdditionalCaseDetails(SelenideElement actionMenu) {
-    actionMenu.$("[id$=':show-additional-case-details-link']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
-        .click();
   }
 
   public SelenideElement getSaveFilterDialog() {
