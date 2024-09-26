@@ -4866,10 +4866,10 @@ border-top: 0.14rem dashed;
   height: 16px;
 }
 
-.image-process-actions {
+.image-process-actions, .start-process {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: end;
   margin-bottom: 0.5rem;
 }
 
@@ -4912,7 +4912,7 @@ body .process-compact-mode > .ui-fieldset-content {
   padding: 16px;
   width: 100%;
   display: inline-flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
 }
 
 .process-action-group .process-category.has-menu-button,
@@ -5000,7 +5000,7 @@ body .process-compact-mode > .ui-fieldset-content {
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .overlay-title {
   position: absolute;
-  top: auto;
+  top: 31%;
   bottom: 0px;
 }
 
@@ -5019,6 +5019,7 @@ body .process-compact-mode > .ui-fieldset-content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-top: 5%;
 }
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description,
@@ -5092,6 +5093,10 @@ body .process-compact-mode > .ui-fieldset-content {
   border-radius: 50%;
   background-color: var(--ivy-primary-color-white);
   color: var(--ivy-primary-color-black);
+}
+
+.image-process-item .card.image-widget-mode .process-name {
+  padding: 0 24px;
 }
 
 .image-process-icon .process-image-view-icon {

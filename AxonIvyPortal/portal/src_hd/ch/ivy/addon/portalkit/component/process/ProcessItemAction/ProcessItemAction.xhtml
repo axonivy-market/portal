@@ -12,6 +12,8 @@
   <cc:attribute name="onCompleteDeleteProcess"/>
   <cc:attribute name="componentToUpdateOnDeleteProcess"/>
   <cc:attribute name="outlinedButtonStyle" default="true"/>
+  <cc:attribute name="isProcessGridMode" default="false"/>
+  <cc:attribute name="isDashboardProcessWidget" default="false"/>
 </cc:interface>
 
 <cc:implementation>
@@ -67,9 +69,9 @@
         
       </p:menu>
     </h:panelGroup>
-    <div class="start-process" id="start-button-wrap-#{status.index}">
+    <div class="start-process" id="start-button-wrap-#{status.index}" >
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" id="start-button" actionListener="#{processWidgetBean.startProcess(process)}" styleClass="ui-no-rounded-button-process-page"
-            icon="si si-arrow-right-1" iconPos="right" ajax="#{!isExternalLink}" />
+            icon="si si-arrow-right-1" iconPos="right" ajax="#{!isExternalLink}" rendered="#{!cc.attrs.isProcessGridMode and !cc.attrs.isDashboardProcessWidget}" />
     </div>
   </div>
 </cc:implementation>
