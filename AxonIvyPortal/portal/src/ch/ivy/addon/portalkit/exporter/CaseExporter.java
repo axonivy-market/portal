@@ -67,7 +67,7 @@ public class CaseExporter extends Exporter{
    */
   protected String getSpecialColumnName(String column) {
     if (CaseSortField.NAME.name().equals(column)) {
-      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseName");
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/caseName");
     } else if (CaseLazyDataModel.DESCRIPTION.equals(column)) {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/description");
     }

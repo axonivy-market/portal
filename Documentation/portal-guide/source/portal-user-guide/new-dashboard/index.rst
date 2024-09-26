@@ -26,10 +26,6 @@ The following default widgets are available:
 
 #. **Process viewer widget**: This widget provides a visual representation of the process flow.
 
-#. **Legacy statistic chart widget**: This widget provides graphical display of legacy statistical data.
-
-#. **Statistic chart widget**: This widget provides graphical display of statistical data.
-
 #. **Client Statistic chart widget**: This widget provides graphical display of client statistical data.
 
 #. **Welcome widget**: This widget greets the user based on the local time and enables a friendlier approach.

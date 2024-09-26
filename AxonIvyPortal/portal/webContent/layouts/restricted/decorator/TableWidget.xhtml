@@ -95,8 +95,13 @@
       <!-- remote-command to apply widget filter -->
       <p:remoteCommand id="apply-widget-filter-command-#{index}"
         name="applyWidgetFilterCommand#{index}"
-        oncomplete="PF('filter-overlay-panel-#{index}').hide(); #{onCompleteApplyFilters}; resizeTableBody()"
-        update="widget-header-actions #{componentToUpdateOnApplyFilter}"
+        update="#{componentToUpdateOnApplyFilter} #{cc.clientId}:widget-header-actions"
+        oncomplete="PF('filter-overlay-panel-#{index}').hide();"
+        global="false" process="@this" partialSubmit="true" immediate="true"
+        rendered="#{renderFilter}"/>
+        
+       <p:remoteCommand id="apply-widget-filter-command2-#{index}"
+        name="applyInvalidWidgetFilterCommand#{index}"
         global="false" process="@this" partialSubmit="true" immediate="true"
         rendered="#{renderFilter}"/>
 
@@ -232,8 +237,8 @@
               <p:commandButton id="reset-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
                 styleClass="secondary-btn u-mar-right-5" partialSubmit="true"
                 process="filter-form-#{index}"
-                update="filter-form-#{index} #{componentToUpdateOnResetFilter}"
-                oncomplete="#{onCompleteResetFilters}; {applyWidgetFilterCommand#{index}();} initWidgetFilterHtml('#{widget.id}');"
+                update="#{componentToUpdateOnResetFilter} #{cc.clientId}:widget-header-actions"
+                oncomplete="PF('filter-overlay-panel-#{index}').hide(); initWidgetFilterHtml('#{widget.id}');"
                 actionListener="#{widget.onResetUserFilters()}"
                 icon="si si-button-refresh-arrows" resetValues="true"/>
   
@@ -241,7 +246,12 @@
                 partialSubmit="true"
                 update="filter-form-#{index}"
                 process="filter-form-#{index}"
-                oncomplete="if (args &amp;&amp; !args.validationFailed) {applyWidgetFilterCommand#{index}();} initWidgetFilterHtml('#{widget.id}');"
+                oncomplete="if (args &amp;&amp; !args.validationFailed) {
+	                  applyWidgetFilterCommand#{index}();
+	                } else {
+	                  applyInvalidWidgetFilterCommand#{index}();
+	                }
+	                initWidgetFilterHtml('#{widget.id}');"
                 actionListener="#{widget.onApplyUserFilters()}"
                 icon="si si-check-1"
                 styleClass="u-mar-right-5" />
