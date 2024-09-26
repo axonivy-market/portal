@@ -47,8 +47,8 @@
 			<div class="card">
 				<ic:ch.ivy.addon.portal.generic.dashboard.component.TaskDashboardWidget
 					widget="#{taskListBean.widget}"
-					isReadOnlyMode="#{taskListBean.isReadOnlyMode}"
-					index="#{status.index}" id="task-list" isTaskList="true"/>
+					isReadOnlyMode="#{managedBean.isReadOnlyMode}"
+					index="#{0}" id="task-list" isTaskList="true"/>
 
 			</div>
 			<h:outputScript library="js" name="dashboard.js" />
