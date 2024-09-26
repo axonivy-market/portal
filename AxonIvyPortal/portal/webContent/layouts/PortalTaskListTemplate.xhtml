@@ -1,0 +1,94 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<h:body>
+	<ui:composition template="/layouts/BasicTemplate.xhtml">
+
+		<ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</ui:define>
+		<ui:define name="css">
+			<h:outputStylesheet library="css" name="dashboard.css" />
+		</ui:define>
+		<div class="dashboard__header js-dashboard__header ui-g">
+			<h:panelGroup id="dashboard-title-container"
+				rendered="#{!managedBean.isReadOnlyMode}"
+				styleClass="u-hidden-sm-down dashboard__title-container--flex ui-lg-8 ui-md-7 ui-sm-12 dashboard__title-container">
+				<ui:insert name="headerTitle" />
+			</h:panelGroup>
+
+			<h:panelGroup id="dashboard-header-action"
+				rendered="#{!managedBean.isReadOnlyMode}"
+				class="dashboard-header__action ui-lg-4 ui-md-5 ui-sm-12">
+				<ui:insert name="headerAction" />
+			</h:panelGroup>
+		</div>
+
+		<h:form id="dashboard-remote-command-form" prependId="false">
+			<h:inputHidden id="dashboard-view-mode"
+				value="#{managedBean.isReadOnlyMode}" />
+			<p:remoteCommand name="updateDashboardWidget" update="grid-stack"
+				oncomplete="loadGrid();dashboardToolKit.responsive(); initStatistics('#{managedBean.clientStatisticApiUri}');" />
+			<p:remoteCommand name="loadAllWidgetSavedFilters"
+				actionListener="#{managedBean.loadAllWidgetSavedFilters()}"
+				global="false" process="@this" immediate="true" partialSubmit="true"
+				update="delete-saved-filter-form:quick-filter-table"
+				oncomplete="PF('quick-filter-table').clearFilters(); PF('manage-filter-dialog').initPosition();" />
+
+			<ui:insert name="additionalRemoteCommand" />
+		</h:form>
+
+		<ui:define name="pageContent">
+
+			<div class="card">
+				<ic:ch.ivy.addon.portal.generic.dashboard.component.TaskDashboardWidget
+					widget="#{taskListBean.widget}"
+					isReadOnlyMode="#{taskListBean.isReadOnlyMode}"
+					index="#{status.index}" id="task-list" isTaskList="true"/>
+
+			</div>
+			<h:outputScript library="js" name="dashboard.js" />
+
+			<p:dialog id="save-widget-filter-dialog"
+				widgetVar="save-widget-filter-dialog" appendTo="@(body)"
+				header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/SaveNewWidgetFilterHeader')}"
+				modal="true" fitViewport="true" dynamic="true" closable="false"
+				width="450">
+				<h:form id="save-filter-form" styleClass="ui-g">
+					<p:messages styleClass="ui-g-12" redisplay="false"
+						for="save-filter-form" />
+					<h:outputLabel styleClass="ui-g-12" for="save-filter-name"
+						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/WidgetFilterName')}" />
+					<div class="ui-fluid ui-g-12">
+						<p:inputText id="save-filter-name"
+							value="#{widgetFilterHelperBean.saveFilter.name}" required="true"
+							maxlength="30"
+							requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
+						<p:message for="save-filter-name" />
+					</div>
+					<div class="ui-g-12 u-text-align-right">
+						<p:commandLink
+							value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+							oncomplete="PF('save-widget-filter-dialog').hide();"
+							styleClass="u-mar-right-10" process="@this"
+							update="save-filter-form" resetValues="true" partialSubmit="true"
+							immediate="true" global="false" />
+						<p:commandButton id="save-widget-filter-button"
+							value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+							actionListener="#{widgetFilterHelperBean.saveNewWidgetFilter()}"
+							icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
+							oncomplete="if (!args.validationFailed) { #{widgetFilterHelperBean.loadWidgetFilters}; PF('save-widget-filter-dialog').hide();}"
+							update="save-filter-form" process="save-filter-form" />
+					</div>
+				</h:form>
+			</p:dialog>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

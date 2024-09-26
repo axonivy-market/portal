@@ -6,6 +6,7 @@
   <cc:attribute name="widget" required="true" />
   <cc:attribute name="componentToUpdateOnEdit" />
   <cc:attribute name="isReadOnlyMode" default="false" />
+  <cc:attribute name="isTaskList" default="false" />
 </cc:interface>
 
 <cc:implementation>
@@ -26,6 +27,7 @@
     <ui:param name="onCompleteApplyFilters" value="PF('dashboard-tasks-#{widget.id}').filter()" />
     <ui:param name="isRenderExpandCollapse" value="#{widget.isShowFullscreenMode()}" />
     <ui:param name="isRenderInfo" value="#{widget.isShowWidgetInfo()}" />
+    <ui:param name="isTaskList" value="#{cc.attrs.isTaskList}"/>
     <ui:param name="widgetContentStyleClass" value="task-widget" />
     <ui:define name="widgetInformationContent">
       <ui:include src="TaskInfo.xhtml">
