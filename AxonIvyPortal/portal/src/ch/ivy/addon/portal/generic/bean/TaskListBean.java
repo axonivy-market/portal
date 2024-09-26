@@ -14,7 +14,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
 
-import com.axonivy.portal.components.util.HtmlUtils;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.service.DeepLTranslationService;
 
@@ -25,7 +24,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
-import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
@@ -38,12 +36,9 @@ import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
-import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
-import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
@@ -59,8 +54,6 @@ public class TaskListBean implements Serializable {
 
   private static final long serialVersionUID = -4224901891867040688L;
 
-  protected List<Dashboard> dashboards;
-  protected Dashboard selectedDashboard;
   private String selectedDashboardId;
   protected DashboardWidget widget;
   protected boolean isReadOnlyMode = true;
@@ -69,17 +62,14 @@ public class TaskListBean implements Serializable {
   private List<WidgetFilterModel> deleteFilters;
   private ITask selectedTask;
   private boolean isRunningTaskWhenClickingOnTaskInList;
-  private List<DashboardTemplate> dashboardTemplates;
   protected String translatedText;
   protected String warningText;
   protected String dashboardUrl;
-  protected List<Dashboard> importedDashboards;
   private String clientStatisticApiUri;
-  private String selectedDashboardName;
 
   @PostConstruct
   public void init() {
-    this.widget = DashboardWidgetUtils.buildDefaultTaskWidget("ID", selectedDashboardName);
+    this.widget = DashboardWidgetUtils.buildDefaultTaskWidget("ID", "Your Task");
   }
 
 
@@ -87,9 +77,6 @@ public class TaskListBean implements Serializable {
     return DashboardUtils.collectDashboards();
   }
 
-  public void loadDashboardTemplate() {
-    this.dashboardTemplates = DashboardUtils.getDashboardTemplates();
-  }
 
   protected List<Dashboard> jsonToDashboards(String dashboardJSON) {
     List<Dashboard> mappingDashboards = BusinessEntityConverter.jsonValueToEntities(dashboardJSON, Dashboard.class);
@@ -129,10 +116,6 @@ public class TaskListBean implements Serializable {
 
   private void setDashboardAsPublic(List<Dashboard> visibleDashboards) {
     visibleDashboards.stream().forEach(dashboard -> dashboard.setIsPublic(true));
-  }
-
-  public List<Dashboard> getDashboards() {
-    return dashboards;
   }
 
   public void navigateToSelectedTaskDetails(SelectEvent<Object> event) {
@@ -176,24 +159,6 @@ public class TaskListBean implements Serializable {
     return Ivy.session().getSessionUser();
   }
 
-  public void onDashboardChange(int index) {
-    currentDashboardIndex = index;
-    selectedDashboard = dashboards.get(index);
-    buildWidgetModels(selectedDashboard);
-  }
-
-  public String createExtractedTextFromHtml(String text) {
-    return HtmlParser.extractTextFromHtml(text);
-  }
-
-  public String createParseTextFromHtml(String text) {
-    return HtmlUtils.parseTextFromHtml(text);
-  }
-
-  public int getCurrentTabIndex() {
-    return dashboards.indexOf(getSelectedDashboard());
-  }
-
   public DashboardWidget getWidget() {
     return widget;
   }
@@ -230,10 +195,6 @@ public class TaskListBean implements Serializable {
     return Ivy.cms().co(cms, params);
   }
 
-  public Dashboard getSelectedDashboard() {
-    return selectedDashboard;
-  }
-
   public String getSelectedDashboardId() {
     return selectedDashboardId;
   }
@@ -246,17 +207,9 @@ public class TaskListBean implements Serializable {
     widgetFilters = new ArrayList<>();
     deleteFilters = new ArrayList<>();
     widgetFilters.addAll(WidgetFilterService.getInstance().findAll());
-
-    // Update latest widget name
-    widgetFilters.forEach(filter -> {
-      var selectedWidget = selectedDashboard.getWidgets().stream()
-          .filter(widget -> widget.getId().equals(filter.getWidgetId())).findFirst().orElse(null);
-      if (selectedWidget != null) {
-        filter.setWidgetName(selectedWidget.getName());
-      }
-    });
   }
 
+  // Update latest widget name
   public void onClickSavedFilterItem(WidgetFilterModel filter, DashboardWidget widget) {
     if (filter == null || widget == null) {
       return;
@@ -337,16 +290,6 @@ public class TaskListBean implements Serializable {
     return TaskEmptyMessage.EMPTY_MESSAGE;
   }
 
-  public List<DashboardTemplate> getDashboardTemplates() {
-    if (CollectionUtils.isEmpty(dashboardTemplates)) {
-      loadDashboardTemplate();
-    }
-    return dashboardTemplates;
-  }
-
-  public void setDashboardTemplates(List<DashboardTemplate> dashboardTemplates) {
-    this.dashboardTemplates = dashboardTemplates;
-  }
 
   public int getMaxRowNumberInExcel() {
     return Exporter.MAX_ROW_NUMBER_IN_EXCEL;
@@ -397,19 +340,6 @@ public class TaskListBean implements Serializable {
     setDashboardUrl(UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId()));
   }
 
-  public boolean isShowShareButtonOnDashboard() {
-    return PermissionUtils.hasShareDashboardPermission() && selectedDashboard != null && !getIsEditMode()
-        && selectedDashboard.getIsPublic();
-  }
-
-  public List<Dashboard> getImportedDashboards() {
-    return importedDashboards;
-  }
-
-  public void setImportedDashboards(List<Dashboard> importedDashboards) {
-    this.importedDashboards = importedDashboards;
-  }
-
   public String getClientStatisticApiUri() {
     return this.clientStatisticApiUri;
   }
@@ -426,18 +356,4 @@ public class TaskListBean implements Serializable {
     return widget.getType().canShowFullscreenModeOption();
   }
 
-  public void setSelectedDashboardName(String dashboardName) {
-    this.selectedDashboardName = dashboardName;
-  }
-
-  public String getSelectedDashboardName() {
-    if (selectedDashboardName.isBlank()) {
-      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/dashboard");
-    }
-    return selectedDashboardName;
-  }
-
-  public boolean isHideCaseCreator() {
-    return GlobalSettingService.getInstance().isHideCaseCreator();
-  }
 }

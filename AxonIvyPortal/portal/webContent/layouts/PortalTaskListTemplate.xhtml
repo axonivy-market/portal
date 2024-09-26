@@ -11,6 +11,8 @@
 	<ui:composition template="/layouts/BasicTemplate.xhtml">
 
 		<ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</ui:define>
+		<ui:param name="loadGridStack" value="true" />
+
 		<ui:define name="css">
 			<h:outputStylesheet library="css" name="dashboard.css" />
 		</ui:define>
@@ -33,7 +35,6 @@
 				value="#{managedBean.isReadOnlyMode}" />
 			<p:remoteCommand name="updateDashboardWidget" update="grid-stack"
 				oncomplete="loadGrid();dashboardToolKit.responsive(); initStatistics('#{managedBean.clientStatisticApiUri}');" />
-			<p:remoteCommand name="loadAllWidgetSavedFilters"
 				actionListener="#{managedBean.loadAllWidgetSavedFilters()}"
 				global="false" process="@this" immediate="true" partialSubmit="true"
 				update="delete-saved-filter-form:quick-filter-table"
@@ -43,14 +44,25 @@
 		</h:form>
 
 		<ui:define name="pageContent">
+			<h:panelGroup id="grid-stack" layout="block"
+				styleClass="grid-stack ui-g-12 u-no-padding-left">
 
-			<div class="card">
-				<ic:ch.ivy.addon.portal.generic.dashboard.component.TaskDashboardWidget
-					widget="#{taskListBean.widget}"
-					isReadOnlyMode="#{managedBean.isReadOnlyMode}"
-					index="#{0}" id="task-list" isTaskList="true"/>
+				<div class="grid-stack-item" default-y="#{widget.layout.axisY}"
+					default-x="#{widget.layout.axisX}" gs-x="0" gs-y="0"
+					gs-id="#{widget.id}" gs-w="12" gs-h="12"
+					gs-autoPosition="#{widget.autoPosition}"
+					gs-no-resize="#{managedBean.isReadOnlyMode}"
+					gs-no-move="#{managedBean.isReadOnlyMode}">
+					<div
+						class="grid-stack-item-content card dashboard-card dashboard__widget js-dashboard-widget-#{widget.id}">
+						<ic:ch.ivy.addon.portal.generic.dashboard.component.TaskDashboardWidget
+							widget="#{taskListBean.widget}"
+							isReadOnlyMode="#{managedBean.isReadOnlyMode}" index="#{0}"
+							id="task-list" isTaskList="true" />
+					</div>
+				</div>
 
-			</div>
+			</h:panelGroup>
 			<h:outputScript library="js" name="dashboard.js" />
 
 			<p:dialog id="save-widget-filter-dialog"
