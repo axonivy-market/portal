@@ -35,13 +35,13 @@
 
      <h:form id="process-item" target="#{dashboardProcessBean.targetToStartProcess(process)}" styleClass="image-view-form #{isExpress ? 'is-express' : ''} #{isExternalLink ? 'is-external-link' : ''}">
             <div class="process-name js-process-start-list-item-name">
-              <h:outputText id="process-item-name" value="#{process.getName()}" styleClass="line-clamp-text-2 process-image-view-name" />
+              <h:outputText id="process-item-name" value="#{process.getName()}" styleClass=" process-image-view-name" />
             </div>
             <p:tooltip for="process-item-name" value="#{process.getName()}" position="top" trackMouse="true" hideEvent="mouseleave click" styleClass="process-tooltip"/>
 
          <div class="process-description js-process-description">
           <h:outputText id="process-description" value="#{not empty process.description ? process.description : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noProcessDescription')}"
-            styleClass="process-item-description js-process-item-description line-clamp-text-2" />
+            styleClass="process-item-description js-process-item-description" />
           <p:tooltip id="info-workflow-tooltip" for="process-description" value="#{process.description}" position="top" trackMouse="true" hideEvent="mouseleave click"
             styleClass="js-process-start-list-item-description process-tooltip" />
         </div>
