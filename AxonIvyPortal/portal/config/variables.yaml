@@ -58,6 +58,9 @@ Variables:
     
     # [file: json]
     PasswordValidation:
+    
+    # [file: json]
+    TaskListDashBoard:
 
     # You can define the own user menu via this JSON file.
     # It will be shown as the your user menu in the user menu settings.

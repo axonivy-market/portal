@@ -1,6 +1,6 @@
 {
   "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
-  "id" : "191FDC1A3C0B90FB",
+  "id" : "191C022B07DA7487",
   "kind" : "HTML_DIALOG",
   "config" : {
     "data" : "ch.ivy.addon.portal.generic.PortalTaskList.PortalTaskListData"
@@ -11,7 +11,7 @@
       "name" : "start()",
       "config" : {
         "signature" : "start",
-        "guid" : "191FDC1A3C1F1510"
+        "guid" : "191C022B0825A293"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
@@ -31,7 +31,7 @@
       "type" : "HtmlDialogEventStart",
       "name" : "close",
       "config" : {
-        "guid" : "191FDC1A3C4E3654"
+        "guid" : "191C022B08A81198"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }
