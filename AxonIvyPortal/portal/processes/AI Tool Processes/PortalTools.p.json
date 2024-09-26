@@ -197,7 +197,8 @@
             "",
             "in.processDashboardWidget = AiToolUtils.convertIvyToolToProcessDashboardWidget(in.name, in.description);"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 336 }
