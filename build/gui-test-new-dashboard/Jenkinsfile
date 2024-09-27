@@ -77,7 +77,7 @@ pipeline {
       archiveArtifacts artifacts: 'consoleText.txt', allowEmptyArchive: true
       bat """
         cd AxonIvyPortal/portal-selenium-test/target
-        findstr /l "\[WARNING\] Flakes:" consoleText > flaky-tests-log
+        findstr /l "/[WARNING/] Flakes:" consoleText > flaky-tests-log
         findstr /l "com.axonivy.portal.selenium" flaky-tests-log > flakyTestsReport
         sed '/Time elapsed/s/.*//' flakyTestsReport > report
       """
