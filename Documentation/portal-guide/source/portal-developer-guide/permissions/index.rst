@@ -256,10 +256,3 @@ Portal Absence And Substitute Permissions
 - _`UserReadSubstitutes`
     - Permission to read substitutes of all users
 
-Portal Express Permissions
---------------------------
-
-- _`ExpressCreateWorkflow`
-    - Permission to create Express workflows
-
-    - Granted to role Everybody by default
