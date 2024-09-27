@@ -62,9 +62,9 @@ pipeline {
           withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
             def branchName = env.BRANCH_NAME.replaceAll("/", "%%2F")
             bat """
-              curl --user ${credentials} ${env.JENKINS_URL}job/portal-selenium-test/job/${branchName}/lastSuccessfulBuild/consoleText --output consoleText
-              move consoleText AxonIvyPortal/portal-selenium-test/target
-              curl --user ${credentials} ${env.JENKINS_URL}job/portal-selenium-test/job/${branchName}/lastSuccessfulBuild/consoleText --output consoleText.txt
+              curl --user ${credentials} ${env.JENKINS_URL}job/portal-selenium-test/job/${branchName}/lastSuccessfulBuild/consoleText --output logText
+              move logText AxonIvyPortal/portal-selenium-test/target
+              curl --user ${credentials} ${env.JENKINS_URL}job/portal-selenium-test/job/${branchName}/lastSuccessfulBuild/consoleText --output logText.txt
               cd AxonIvyPortal/portal-selenium-test/resources
               move extractFlakyTests.bat ../target
             """
@@ -76,7 +76,7 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: 'consoleText.txt', allowEmptyArchive: true
+      archiveArtifacts artifacts: 'logText.txt', allowEmptyArchive: true
       bat """
         cd AxonIvyPortal/portal-selenium-test/target
         extractFlakyTests.bat
