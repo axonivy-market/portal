@@ -11,7 +11,7 @@ pipeline {
   }
 
   parameters {
-    string(name: 'testPatternToRun', defaultValue: 'com.axonivy.portal.selenium.test.ChatTest#chatAddGroup', description: 'Test pattern to run')
+    string(name: 'testPatternToRun', defaultValue: 'com.axonivy.portal.selenium.test.**.*Test', description: 'Test pattern to run')
     string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip for nightly master
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine-windows.zip for dev master
@@ -55,7 +55,7 @@ pipeline {
           utils.killUnnecessaryProcessesToRunTest()
 
           echo '====================Execute maven for testing===================='
-          bat "mvn clean test -f AxonIvyPortal/portal-selenium-test/customized_pom.xml %engineDownloadURL% -Dtest=com.axonivy.portal.selenium.test.ChatTest#chatAddGroup -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2"
+          bat "mvn clean test -f AxonIvyPortal/portal-selenium-test/customized_pom.xml %engineDownloadURL% -Dtest=%testPatternToRun% -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2"
           utils.cleanDisk()
           
           echo '====================Archive consoleText file===================='
