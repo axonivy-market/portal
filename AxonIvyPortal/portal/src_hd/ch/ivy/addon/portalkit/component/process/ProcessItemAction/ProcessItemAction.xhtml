@@ -14,6 +14,8 @@
   <cc:attribute name="outlinedButtonStyle" default="true"/>
   <cc:attribute name="isProcessGridMode" default="false"/>
   <cc:attribute name="isDashboardProcessWidget" default="false"/>
+  <cc:attribute name="status"/>
+  <cc:attribute name="readOnlyMode"/>
 </cc:interface>
 
 <cc:implementation>
@@ -58,11 +60,12 @@
           icon="si si-information-circle"
           url="#{processWidgetBean.getProcessInformationPageUrl(process)}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}"
-          rendered="#{processWidgetBean.isShowInformationLink(process) and !isExternalLink and !isCaseMap}" />
+          rendered="#{processWidgetBean.isShowInformationLink(process) and !isExternalLink and !isCaseMap}"
+          disabled="#{cc.attrs.readOnlyMode}" />
         
       </p:menu>
     </h:panelGroup>
-    <div class="start-process" id="start-button-wrap-#{status.index}" >
+    <div class="start-process" id="start-button-wrap-#{cc.attrs.status.index}" >
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" id="start-button" actionListener="#{processWidgetBean.startProcess(process)}" styleClass="ui-no-rounded-button-process-page"
             icon="si si-arrow-right-1" iconPos="right" ajax="#{!isExternalLink}" rendered="#{!cc.attrs.isProcessGridMode and !cc.attrs.isDashboardProcessWidget}" />
     </div>
