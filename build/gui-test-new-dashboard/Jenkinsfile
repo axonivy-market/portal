@@ -62,19 +62,9 @@ pipeline {
           withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
             def branchName = env.BRANCH_NAME.replaceAll("/", "%%2F")
             bat """
-              curl --user ${credentials} ${env.JENKINS_URL}job/portal-selenium-test/job/${branchName}/lastSuccessfulBuild/consoleText --output logText
-              move logText AxonIvyPortal/portal-selenium-test/target
               curl --user ${credentials} ${env.JENKINS_URL}job/portal-selenium-test/job/${branchName}/lastSuccessfulBuild/consoleText --output logText.txt
-              echo Flaky tests: >> flakyReport.txt
+              ls AxonIvyPortal/portal-selenium-test/target/selenide/reports/* >> flakyReport.txt
             """
-            def lines = readFile("AxonIvyPortal/portal-selenium-test/target/logText").readLines()
-            for (currentLine in lines){
-              if(currentLine.contains("[WARNING] com.axonivy.portal.selenium.test")){
-                flakyReport << currentLine
-              } else {
-                echo 'not working'
-              }
-            }
           }
         }
       }
@@ -83,8 +73,7 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: 'logText.txt', allowEmptyArchive: true
-      archiveArtifacts artifacts: 'AxonIvyPortal/portal-selenium-test/target/selenide/reports/**/*.*, AxonIvyPortal/portal-selenium-test/target/testEngineOut.log, flakyReport.txt', allowEmptyArchive: true
+      archiveArtifacts artifacts: 'AxonIvyPortal/portal-selenium-test/target/selenide/reports/**/*.*, AxonIvyPortal/portal-selenium-test/target/testEngineOut.log, flakyReport.txt, logText.txt', allowEmptyArchive: true
       junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
     }
   }
