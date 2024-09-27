@@ -65,6 +65,8 @@ pipeline {
               curl --user ${credentials} ${env.JENKINS_URL}job/portal-selenium-test/job/${branchName}/lastSuccessfulBuild/consoleText --output consoleText
               move consoleText AxonIvyPortal/portal-selenium-test/target
               curl --user ${credentials} ${env.JENKINS_URL}job/portal-selenium-test/job/${branchName}/lastSuccessfulBuild/consoleText --output consoleText.txt
+              cd AxonIvyPortal/portal-selenium-test/resources
+              move extractFlakyTests.bat ../target
             """
           }
         }
@@ -77,9 +79,7 @@ pipeline {
       archiveArtifacts artifacts: 'consoleText.txt', allowEmptyArchive: true
       bat """
         cd AxonIvyPortal/portal-selenium-test/target
-        findstr /l "/[WARNING/] Flakes:" consoleText > flaky-tests-log
-        findstr /l "com.axonivy.portal.selenium" flaky-tests-log > flakyTestsReport
-        sed '/Time elapsed/s/.*//' flakyTestsReport > report
+        extractFlakyTests.bat
       """
       archiveArtifacts artifacts: 'AxonIvyPortal/portal-selenium-test/target/selenide/reports/**/*.*, AxonIvyPortal/portal-selenium-test/target/testEngineOut.log, AxonIvyPortal/portal-selenium-test/target/report', allowEmptyArchive: true
       junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
