@@ -166,7 +166,7 @@ body .portal-breadcrumb.ui-breadcrumb ul li .ui-menuitem-link.ui-state-disabled 
 a.compact-task-start-link .task-start-list-item {
   border: 1px solid transparent; }
 
-.dashboard-widget-panel-container .process-start-list-item {
+.dashboard-widget-panel-container .process-start-list-item, .process-start-list-item {
   background-color: var(--process-list-widget-item-background-color);
 }
 .ui-fieldset-content .process-start-list-item {
