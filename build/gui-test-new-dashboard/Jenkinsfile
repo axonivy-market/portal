@@ -63,6 +63,7 @@ pipeline {
             def branchName = env.BRANCH_NAME.replaceAll("/", "%%2F")
             bat """
               curl --user ${credentials} ${env.JENKINS_URL}job/portal-selenium-test/job/${branchName}/lastSuccessfulBuild/consoleText --output logText.txt
+              echo Flakes: >> flakyReport.txt
               ls AxonIvyPortal/portal-selenium-test/target/selenide/reports/* >> flakyReport.txt
             """
           }
