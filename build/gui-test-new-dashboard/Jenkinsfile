@@ -65,12 +65,14 @@ pipeline {
               curl --user ${credentials} ${env.JENKINS_URL}job/portal-selenium-test/job/${branchName}/lastSuccessfulBuild/consoleText --output logText
               move logText AxonIvyPortal/portal-selenium-test/target
               curl --user ${credentials} ${env.JENKINS_URL}job/portal-selenium-test/job/${branchName}/lastSuccessfulBuild/consoleText --output logText.txt
+              echo Flaky tests: >> flakyReport.txt
             """
             def lines = readFile("AxonIvyPortal/portal-selenium-test/target/logText").readLines()
-            File flakyReport = new File("flakyReport.txt")
             for (currentLine in lines){
               if(currentLine.contains("[WARNING] com.axonivy.portal.selenium.test")){
                 flakyReport << currentLine
+              } else {
+                echo 'not working'
               }
             }
           }
