@@ -217,7 +217,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getDisabledMoreInformationLink() {
-    return getProcessActionMenu().$("ul[class*='ui-helper-reset']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li > a > span").filter(Condition.exactText("More Information")).first();
+    return $("span[id$=':more-information']");
   }
   
   private SelenideElement getProcessActionMenu() {
