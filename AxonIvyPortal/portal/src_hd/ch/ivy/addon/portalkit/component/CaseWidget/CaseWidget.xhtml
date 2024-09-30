@@ -58,6 +58,7 @@
                           value="#{filterData.filterName}" trackMouse="true" />
                         <p:commandLink id="delete-user-defined-filter-command"
                           rendered="#{caseWidgetBean.isDeleteFilterEnabledFor(filterData)}"
+                          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
                           styleClass="si si-delete-2 delete-user-defined-filter-command"
                           actionListener="#{data.setFilterDataToBeDeleted(filterData)}"
                           oncomplete="PF('delete-filter-confirmation-dialog').show();" />
@@ -80,6 +81,7 @@
                           value="#{filterData.filterName}" trackMouse="true" />
                         <p:commandLink id="delete-user-defined-filter-command"
                           rendered="#{caseWidgetBean.isDeleteFilterEnabledFor(filterData)}"
+                          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
                           styleClass="si si-delete-2 delete-user-defined-filter-command"
                           actionListener="#{logic.setFilterToBeDeleted(filterData)}"
                           oncomplete="PF('delete-filter-confirmation-dialog').show();" />

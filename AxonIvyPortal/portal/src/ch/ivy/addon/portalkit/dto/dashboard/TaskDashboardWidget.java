@@ -9,6 +9,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.SortMeta;
@@ -45,12 +46,16 @@ public class TaskDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
   private boolean enableQuickSearch;
+  private boolean showWidgetInfo;
+  private boolean showFullscreenMode;
 
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
     setColumns(new ArrayList<>());
     setFilters(new ArrayList<>());
     setUserFilters(new ArrayList<>());
+    setShowWidgetInfo(true);
+    setShowFullscreenMode(true);
   }
 
   @Override
@@ -205,8 +210,12 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   @Override
   public void setQuickSearchKeyword() {
-    this.dataModel.getCriteria().setQuickSearchKeyword(this.getQuickSearchKeyword());
-  }
+    if (BooleanUtils.isTrue(this.enableQuickSearch)) {
+      this.dataModel.getCriteria().setQuickSearchKeyword(this.getQuickSearchKeyword());
+    }
+      else {
+        this.setQuickSearchKeyword(StringUtils.EMPTY);
+  }}
 
   public List<DashboardFilter> getFilters() {
     return this.dataModel.getCriteria().getFilters();
@@ -232,6 +241,22 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   public void setEnableQuickSearch(boolean enableQuickSearch) {
     this.enableQuickSearch = enableQuickSearch;
+  }
+  
+  public void setShowWidgetInfo(boolean showWidgetInfo) {
+    this.showWidgetInfo = showWidgetInfo;
+  }
+  
+  public boolean isShowWidgetInfo() {
+    return showWidgetInfo;
+  }
+  
+  public void setShowFullscreenMode(boolean showFullscreenMode) {
+    this.showFullscreenMode = showFullscreenMode;
+  }
+  
+  public boolean isShowFullscreenMode() {
+    return showFullscreenMode;
   }
 
   @JsonIgnore

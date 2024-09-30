@@ -20,7 +20,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class ChatRendererBean implements Serializable {
 
   private static final long serialVersionUID = 4691697531600235758L;
-  private static final String EXPRESS_CREATION_TASK = "isExpressCreationTask";
   
   private Boolean isGroupChatRendered;
   private Boolean isPrivateChatRendered;
@@ -31,7 +30,7 @@ public class ChatRendererBean implements Serializable {
 
   public boolean getIsGroupChatRendered() {
     if (isGroupChatRendered == null) {
-      GlobalSettingService globalSettingService = new GlobalSettingService();
+      GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
       String enableGroupChatCreation = globalSettingService.findGlobalSettingValue(GlobalVariable.ENABLE_GROUP_CHAT);
       if (StringUtils.isBlank(enableGroupChatCreation)) {
         Map<String, Object> response = IvyAdapterService.startSubProcessInSecurityContext("activateGroupChat()", null);
@@ -45,7 +44,7 @@ public class ChatRendererBean implements Serializable {
   
   public boolean getIsPrivateChatRendered() {
     if (isPrivateChatRendered == null) {
-      GlobalSettingService globalSettingService = new GlobalSettingService();
+      GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
       String enablePrivateChat = globalSettingService.findGlobalSettingValue(GlobalVariable.ENABLE_PRIVATE_CHAT);
       isPrivateChatRendered = Boolean.parseBoolean(enablePrivateChat);
     }
@@ -55,9 +54,5 @@ public class ChatRendererBean implements Serializable {
   public void getGroupChatName() {
     String groupChatName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/case") + "-{caseId}" + " {caseName}";
     PrimeFaces.current().executeScript("var groupChatFormat = '" + groupChatName + "'");
-  }
-
-  public boolean isExpressCreationTask() {
-    return Ivy.wfTask().customFields().stringField(EXPRESS_CREATION_TASK).get().isPresent();
   }
 }

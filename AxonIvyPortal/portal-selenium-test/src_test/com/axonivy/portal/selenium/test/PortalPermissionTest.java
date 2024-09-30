@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,7 +36,8 @@ public class PortalPermissionTest extends BaseTest {
     grantAccessFullListPermissions();
     newDashboardPage = new NewDashboardPage();
   }
-
+  
+  @Override
   @AfterEach
   public void tearDown() {
     grantTaskActionsPermissions();
@@ -51,14 +54,50 @@ public class PortalPermissionTest extends BaseTest {
     assertFalse(mainMenuPage.isProcessesDisplayed());
     assertFalse(mainMenuPage.isTasksDisplayed());
     assertFalse(mainMenuPage.isCasesDisplayed());
-    assertFalse(mainMenuPage.isStatisticsDisplayed());
 
     grantAccessFullListPermissions();
     newDashboardPage = new NewDashboardPage();
     WaitHelper.assertTrueWithWait(() -> mainMenuPage.isProcessesDisplayed());
     assertTrue(mainMenuPage.isTasksDisplayed());
     assertTrue(mainMenuPage.isCasesDisplayed());
-    assertTrue(mainMenuPage.isStatisticsDisplayed());
+  }
+
+  @Test
+  public void testShowHideSystemTaskByPermission() {
+    // TEST SHOW SYSTEM TASK
+    login(TestAccount.ADMIN_USER);
+    grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
+    redirectToRelativeLink(createSystemTaskUrl);
+
+    // Navigate full task list to check system task
+    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    taskWidgetPage.waitPageLoaded();
+    taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Delayed"));
+    boolean systemTaskAppear = taskWidgetPage.checkNameOfTaskAt(0, "I'm a system task with delay");
+    assertTrue(systemTaskAppear);
+
+    // Navigate to Dashboard widget to check system task
+    CaseWidgetPage caseWidgetPage = NavigationHelper.navigateToCaseList();
+    caseWidgetPage.waitPageLoaded();
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase("Create System Task");
+    caseDetailsPage.waitPageLoaded();
+    int countTask = caseDetailsPage.countRelatedTasks().size();
+    assertTrue(countTask == 3);
+
+    // TEST HIDE SYSTEM TASK
+    denySpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
+    taskWidgetPage.waitPageLoaded();
+    taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Delayed"));
+    countTask = taskWidgetPage.countTasks().size();
+    assertEquals(countTask, 0);
+
+    caseWidgetPage = NavigationHelper.navigateToCaseList();
+    caseWidgetPage.waitPageLoaded();
+    caseDetailsPage = caseWidgetPage.openCase("Create System Task");
+    caseDetailsPage.waitPageLoaded();
+    countTask = caseDetailsPage.countRelatedTasks().size();
+    assertTrue(countTask == 1);
   }
 
   @Test
@@ -70,7 +109,6 @@ public class PortalPermissionTest extends BaseTest {
     assertTrue(taskWidgetPage.isTaskResetDisplayed(false));
     assertTrue(taskWidgetPage.isTaskDelegateDisplayed(false));
     assertTrue(taskWidgetPage.isTaskReserverDisplayed(false));
-    assertTrue(taskWidgetPage.isAdhocSideStepDisplayed(false));
 
     grantTaskActionsPermissions();
     taskWidgetPage = NavigationHelper.navigateToTaskList();
@@ -78,7 +116,6 @@ public class PortalPermissionTest extends BaseTest {
     assertTrue(taskWidgetPage.isTaskResetDisplayed(true));
     assertTrue(taskWidgetPage.isTaskDelegateDisplayed(true));
     assertTrue(taskWidgetPage.isTaskReserverDisplayed(true));
-    assertTrue(taskWidgetPage.isAdhocSideStepDisplayed(true));
   }
 
   @Test
@@ -161,8 +198,6 @@ public class PortalPermissionTest extends BaseTest {
         String.format(grantSpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_CASE_LIST.getValue()));
     redirectToRelativeLink(
         String.format(grantSpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_TASK_LIST.getValue()));
-    redirectToRelativeLink(
-        String.format(grantSpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_STATISTICS_LIST.getValue()));
   }
 
   private void denyAccessFullListPermissions() {
@@ -172,8 +207,6 @@ public class PortalPermissionTest extends BaseTest {
         String.format(denySpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_CASE_LIST.getValue()));
     redirectToRelativeLink(
         String.format(denySpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_TASK_LIST.getValue()));
-    redirectToRelativeLink(
-        String.format(denySpecificPortalPermissionLink, PortalPermission.ACCESS_FULL_STATISTICS_LIST.getValue()));
   }
 
   private void grantTaskActionsPermissions() {

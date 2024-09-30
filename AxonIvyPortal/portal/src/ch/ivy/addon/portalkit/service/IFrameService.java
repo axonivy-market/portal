@@ -16,18 +16,13 @@ public class IFrameService {
     if (task == null) {
       return true;
     }
-    boolean isExpress = Boolean
-        .parseBoolean(task.getCase().customFields().stringField(CustomFields.IS_EXPRESS_PROCESS).getOrDefault("false"));
-    if (isExpress) {
-      return false;
-    }
     
     Boolean isIFrameCustomField = getEmbedInIFrameCustomField(task);
     if (isIFrameCustomField != null) {
       return isIFrameCustomField;
     }
     
-    return new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.EMBED_IN_FRAME);
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.EMBED_IN_FRAME);
   }
   
   public static boolean embedInFrame(String taskUUID) {
@@ -35,18 +30,13 @@ public class IFrameService {
     if (task == null) {
       return true;
     }
-    boolean isExpress = Boolean
-        .parseBoolean(task.getCase().customFields().stringField(CustomFields.IS_EXPRESS_PROCESS).getOrDefault("false"));
-    if (isExpress) {
-      return false;
-    }
     
     Boolean isIFrameCustomField = getEmbedInIFrameCustomField(task);
     if (isIFrameCustomField != null) {
       return isIFrameCustomField;
     }
     
-    return new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.EMBED_IN_FRAME);
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.EMBED_IN_FRAME);
   }
 
   /**

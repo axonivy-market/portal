@@ -52,6 +52,18 @@ public class QuickSearchScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.executeDecorateJs("highlightQuickSearchTextbox()");
     ScreenshotUtils.captureElementScreenshot($(".dashboard__widget").shouldBe(Condition.appear, DEFAULT_TIMEOUT),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-quick-search-textbox");
+  }
+  
+  @Test
+  public void screenshotForQuickSearchConfigurationOnProcessWidget() throws IOException {
+    ConfigurationJsonUtils.updateJSONSetting("dashboard-process-widget-has-quicksearch.json", Variable.DASHBOARD);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForProcessWidgetLoaded();
 
+    ScreenshotUtils.executeDecorateJs("highlightQuickSearchTextbox()");
+    ScreenshotUtils.captureElementScreenshot($(".dashboard__widget").shouldBe(Condition.appear, DEFAULT_TIMEOUT),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "process-quick-search-textbox");
   }
 }

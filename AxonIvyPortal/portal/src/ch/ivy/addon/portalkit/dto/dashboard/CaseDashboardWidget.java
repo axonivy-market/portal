@@ -9,6 +9,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.SortMeta;
@@ -40,12 +41,16 @@ public class CaseDashboardWidget extends DashboardWidget {
   @JsonIgnore
   private List<ColumnModel> filterableColumns;
   private boolean enableQuickSearch;
-
+  private boolean showWidgetInfo;
+  private boolean showFullscreenMode;
+  
   public CaseDashboardWidget() {
     dataModel = new DashboardCaseLazyDataModel();
     setColumns(new ArrayList<>());
     setFilters(new ArrayList<>());
     setUserFilters(new ArrayList<>());
+    setShowWidgetInfo(true);
+    setShowFullscreenMode(true);
   }
 
   @JsonIgnore
@@ -202,6 +207,22 @@ public class CaseDashboardWidget extends DashboardWidget {
   public void setFilters(List<DashboardFilter> filters) {
     this.dataModel.getCriteria().setFilters(filters);
   }
+  
+  public void setShowWidgetInfo(boolean showWidgetInfo) {
+    this.showWidgetInfo = showWidgetInfo;
+  }
+  
+  public boolean isShowWidgetInfo() {
+    return showWidgetInfo;
+  }
+  
+  public void setShowFullscreenMode(boolean showFullscreenMode) {
+    this.showFullscreenMode = showFullscreenMode;
+  }
+  
+  public boolean isShowFullscreenMode() {
+    return showFullscreenMode;
+  }
 
   @JsonIgnore
   public List<DashboardFilter> getUserFilters() {
@@ -228,6 +249,11 @@ public class CaseDashboardWidget extends DashboardWidget {
 
   @Override
   public void setQuickSearchKeyword() {
-    this.dataModel.getCriteria().setQuickSearchKeyword(this.getQuickSearchKeyword());
+    if (BooleanUtils.isTrue(enableQuickSearch)) {
+      this.dataModel.getCriteria().setQuickSearchKeyword(this.getQuickSearchKeyword());
+    } 
+    else {
+      this.setQuickSearchKeyword(StringUtils.EMPTY);
+    }
   }
 }

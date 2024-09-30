@@ -8,7 +8,7 @@ Menu And Default Homepage In User Profile
 Introduction
 ------------
 
-The Portal main menu has five default items: Dashboard, Processes, Tasks, Cases and Statistics.
+The Portal main menu has four default items: Dashboard, Processes, Tasks and Cases.
 
 |default-menu-items|
 
@@ -110,7 +110,7 @@ Example of an external link:
 Portal variable
 +++++++++++++++
 
-Beside the callable subprocess approach, you can also define custom menu items in the Portal variable
+Besides the callable subprocess approach, you can also define custom menu items in the Portal variable
 ``Portal.CustomMenuItems``.
 
 Here's an example of custom menu items in the Portal.CustomMenuItems variable.
@@ -151,7 +151,7 @@ The basic JSON structure of a custom menu item
 Hide default menu items
 -----------------------
 
-You can hide four default menu items: Processes, Tasks, Cases and Statistics from the main menu
+You can hide three default menu items: Processes, Tasks and Cases from the main menu
 by using :ref:`Portal permissions <settings-permission-settings-others>`.
 
 .. |default-menu-items| image:: ../../screenshots/dashboard/expanded-left-menu.png

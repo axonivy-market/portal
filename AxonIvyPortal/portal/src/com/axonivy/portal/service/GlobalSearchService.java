@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.service.impl.ProcessService;
+import com.axonivy.portal.enums.GlobalSearchScopeCategory;
 import com.axonivy.portal.enums.SearchScopeCaseField;
 import com.axonivy.portal.enums.SearchScopeTaskField;
 import com.axonivy.portal.payload.SearchPayload;
@@ -61,7 +62,6 @@ public class GlobalSearchService {
     criteria.setKeyword(payload.getQuery());
     criteria.setSortField(TaskSortField.EXPIRY_TIME.toString());
     criteria.setSortDescending(true);
-    criteria.setQuickGlobalSearch(true);
     criteria.setTaskAssigneeType(TaskAssigneeType.ALL);
     criteria.setIncludedStates(new ArrayList<>(TaskSearchCriteria.STANDARD_STATES));
     boolean isAdminQuery = PermissionUtils.checkReadAllTasksPermission();
@@ -95,7 +95,58 @@ public class GlobalSearchService {
     List<ProcessData> results = processes.isEmpty() ? processes : processes.subList(0, Math.min(processes.size(), PAGE_SIZE));
     return new GlobalSearchResponse(results, processes.size());
   }
+  
+  public boolean isShowGlobalSearchByProcesses() {
+    boolean isShowFullProcessList = PermissionUtils.checkAccessFullProcessListPermission();
+    String globalSearchScopeCategoriesString = Ivy.var().get(GlobalVariable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey());
+    boolean isHasSearchScope = false;
+    if (StringUtils.isNotBlank(globalSearchScopeCategoriesString)) {
+      String[] fieldArray = globalSearchScopeCategoriesString.split(",");
+      for (String field : fieldArray) {
+        GlobalSearchScopeCategory fieldEnum = GlobalSearchScopeCategory.valueOf(field.toUpperCase());
+        if (fieldEnum != null && fieldEnum.equals(GlobalSearchScopeCategory.PROCESSES)) {
+          isHasSearchScope = true;
+          break;
+        }
+      }
+    }
+    return isShowFullProcessList && isHasSearchScope;
+  }
 
+  public boolean isShowGlobalSearchByCases() {
+    boolean isShowFullCaseList = PermissionUtils.checkAccessFullCaseListPermission();
+    String globalSearchScopeCategoriesString = Ivy.var().get(GlobalVariable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey());
+    boolean isHasSearchScope = false;
+    if (StringUtils.isNotBlank(globalSearchScopeCategoriesString)) {
+      String[] fieldArray = globalSearchScopeCategoriesString.split(",");
+      for (String field : fieldArray) {
+        GlobalSearchScopeCategory fieldEnum = GlobalSearchScopeCategory.valueOf(field.toUpperCase());
+        if (fieldEnum != null && fieldEnum.equals(GlobalSearchScopeCategory.CASES)) {
+          isHasSearchScope = true;
+          break;
+        }
+      }
+    }
+    return isShowFullCaseList && isHasSearchScope;
+  }
+  
+  public boolean isShowGlobalSearchByTasks() {
+    boolean isShowFullTaskList = PermissionUtils.checkAccessFullTaskListPermission();
+    String globalSearchScopeCategoriesString = Ivy.var().get(GlobalVariable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey());
+    boolean isHasSearchScope = false;
+    if (StringUtils.isNotBlank(globalSearchScopeCategoriesString)) {
+      String[] fieldArray = globalSearchScopeCategoriesString.split(",");
+      for (String field : fieldArray) {
+        GlobalSearchScopeCategory fieldEnum = GlobalSearchScopeCategory.valueOf(field.toUpperCase());
+        if (fieldEnum != null && fieldEnum.equals(GlobalSearchScopeCategory.TASKS)) {
+          isHasSearchScope = true;
+          break;
+        }
+      }
+    }
+    return isShowFullTaskList && isHasSearchScope;
+  }
+  
   private List<SearchScopeTaskField> getSearchScopeTaskFields() {
     String searchScopeTaskFieldsString = Ivy.var().get(GlobalVariable.SEARCH_SCOPE_BY_TASK_FIELDS.getKey());
     if (StringUtils.isNotBlank(searchScopeTaskFieldsString)) {

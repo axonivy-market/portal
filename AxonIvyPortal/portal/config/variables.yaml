@@ -12,10 +12,6 @@ Variables:
     # [file: json]
     Announcement:
 
-    # Client side timeout in minute, must be more than 1 and less than server side timeout (e.g. 25).
-    # Default value is 0, it means default client side timeout is applied. Default client side timeout is server side timeout minus 3 minutes.
-    ClientSideTimeout: 0
-
     # You can define the standard client statistic via this JSON file.
     # You can configure dashboards to show the statistics to dashboards.
     # [file: json]
@@ -37,18 +33,10 @@ Variables:
     # For switch on/off the display icon in button.
     ShowButtonIcon: true
 
-    # Display the custom end page at the end of each Express process.
-    ExpressEndPage: true
-
     # This setting is using for SecurityMemberDisplayName component.
     # If the SecurityMember is a role, set this setting to true to list out all users of this role.
     # If set to true, icon info is shown beside the role name.
     DisplayUsersOfRole: false
-
-    # The standard sets of filters that Portal used to define the public filters set in the task analysis page.
-    # It will be shown as the public filters in the task analysis page.
-    # [file: json]
-    TaskAnalysisFilters:
 
     # You can define your custom menu item via this JSON file.
     # It will be included to the left menu.
@@ -70,7 +58,7 @@ Variables:
       # If true, the logout button on top menu will be hidden, otherwise it will be shown.
       HideLogoutMenu: false
 
-      # Set to true, the change password option in top menu will be hidden, otherwise it will be shown.
+      # Set this variable to true to hide the "Change Password" option in the top menu and the "Forgotten Password" option on the login page. If set to false, these options will be shown.
       # [boolean]
       HideChangePasswordMenu: false
       
@@ -88,9 +76,6 @@ Variables:
     # This setting will be taken over for all other dashboard.
     # [file: json]
     Dashboard:
-      # Set to true to hide Statistic widget from homepage and application menu.
-      HideStatisticWidget: false
-      
       # You can customize the name and icon of the main menu entry for Portal dashboards via this JSON file.
       # [file: json]
       MainMenuEntry:      
@@ -109,10 +94,6 @@ Variables:
       # The standard external links of Portal.
       # [file: json]
       ExternalLinks:
-
-      # The standard express processes of Portal.
-      # [file: json]
-      ExpressProcesses:
 
       # Set to true to disable link to Show Information of process on Processes page (grid mode) and Case Details.
       ShowInformation: true
@@ -169,6 +150,10 @@ Variables:
       # The standard sort direction of case list
       # [enum: ASC, DESC]
       SortDirection: DESC
+
+      # Set to true to hide case creator in case list, case widget and case details.
+      # This setting affects all case queries, e.g. for case list, global search, statistic.
+      HideCaseCreator: false
 
     # You can configure the look and feel for case details according to your needs via this json file.
     # This setting will be taken over for all other case details.
@@ -247,10 +232,6 @@ Variables:
 
     # For switch on/off the display of user/role avatars.
     ShowAvatar: true
-    
-    # Interval in seconds to do periodic statistic chart scaling requests.
-    # If the interval value is less than 10, periodic statistic chart scaling is disabled.
-    StatisticChartScalingInterval: 0
 
     # The set number controls the amount of direct children roles that is shown in Role Management tab.
     # [enum: 10, 50, 100]
@@ -283,6 +264,8 @@ Variables:
       # Defining the fields that the global search will use to find matching cases beside case Id (this can influence the performance of the search)
       # [Enum: NAME, DESCRIPTION, CUSTOM]
       ByCaseFields: NAME,DESCRIPTION,CUSTOM
+    # Defining the types that the global search will search for
+    GlobalSearchScopeCategories: PROCESSES,TASKS,CASES
 
     # Additional menu items for the main menu of Portal. Could be an Ivy process or an external link.
     # [file: json]

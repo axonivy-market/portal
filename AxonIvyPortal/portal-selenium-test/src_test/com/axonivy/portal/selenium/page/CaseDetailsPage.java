@@ -270,7 +270,7 @@ public class CaseDetailsPage extends TemplatePage {
   public void waitForIFrameURLWidgetLoad() {
     $("[name='custom-widget-iframe-url']").shouldBe(appear, DEFAULT_TIMEOUT);
     switchToIframeWithNameOrId("custom-widget-iframe-url");
-    $("a[href='https://www.axonivy.com']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    $("a[href='https://www.iana.org/domains/example']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
     switchBackToParent();
   }
 
@@ -674,14 +674,6 @@ public class CaseDetailsPage extends TemplatePage {
     String actionPanel =
         String.format("[id$='task-widget:related-tasks:%d:additional-options:side-steps-panel']", index);
     waitForElementDisplayed(By.cssSelector(actionPanel), true);
-  }
-
-  public ExpressProcessPage addAdHocTask(int index) {
-    String commandButton =
-        String.format("[id$='task-widget:related-tasks:%d:additional-options:task-additional-actions']", index);
-    waitForElementDisplayed(By.cssSelector(commandButton), true);
-    findElementByCssSelector(commandButton).click();
-    return new ExpressProcessPage();
   }
 
   public int getTaskRowIndexFromDetailPage(String taskName) {

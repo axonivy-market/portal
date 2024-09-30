@@ -17,6 +17,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.enums.SearchScopeTaskField;
+import com.axonivy.portal.service.GlobalSearchService;
 
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
@@ -51,12 +52,12 @@ public class TaskWidgetBean implements Serializable {
   public TaskWidgetBean() {
     expandedTaskId = -1L;
     String taskListRefreshIntervalUserSetting =
-        new GlobalSettingService().findGlobalSettingValue(GlobalVariable.REFRESH_TASK_LIST_INTERVAL);
+        GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.REFRESH_TASK_LIST_INTERVAL);
     taskListRefreshInterval =
         StringUtils.isNumeric(taskListRefreshIntervalUserSetting) ? Long.parseLong(taskListRefreshIntervalUserSetting)
             : DEFAULT_TASK_LIST_REFRESH_INTERVAL;
     isShowFullTaskList = PermissionUtils.checkAccessFullTaskListPermission();
-    isRunningTaskWhenClickingOnTaskInList = new GlobalSettingService()
+    isRunningTaskWhenClickingOnTaskInList = GlobalSettingService.getInstance()
         .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
         .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
   }
@@ -206,5 +207,9 @@ public class TaskWidgetBean implements Serializable {
       result = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskView/GlobalSearchText", Arrays.asList(keyword, searchScopeTaskFieldsString));
     }
     return result;
+  }
+  
+  public boolean isShowGlobalSearchScope() {
+    return GlobalSearchService.getInstance().isShowGlobalSearchByTasks();
   }
 }

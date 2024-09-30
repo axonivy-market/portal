@@ -11,8 +11,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
-
 import com.axonivy.portal.enums.SearchScopeCaseField;
+import com.axonivy.portal.service.GlobalSearchService;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData;
@@ -220,5 +220,9 @@ public class CaseWidgetBean implements Serializable {
       result = Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/GlobalSearchText", Arrays.asList(keyword, searchScopeCaseFieldsString));
     }
     return result;
+  }
+  
+  public boolean isShowGlobalSearchScope() {
+    return GlobalSearchService.getInstance().isShowGlobalSearchByCases();
   }
 }

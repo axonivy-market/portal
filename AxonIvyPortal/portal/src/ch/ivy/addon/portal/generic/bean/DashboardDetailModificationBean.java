@@ -7,7 +7,6 @@ import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NEWS;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NOTIFICATION;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS_VIEWER;
-import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.STATISTIC;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.TASK;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.WELCOME;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
@@ -70,7 +69,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.ImageProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessViewerDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
-import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetSample;
@@ -84,7 +82,6 @@ import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.DashboardService;
-import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.CustomWidgetUtils;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
@@ -274,11 +271,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         widget = getDefaultCustomDashboardWidget();
         ((CustomDashboardWidget) widget).getData().setType(DashboardCustomWidgetType.EXTERNAL_URL);
       }
-      case STATISTIC -> {
-        newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
-            Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticChartWidget")));
-        widget = getDefaultStatisticDashboardWidget();
-      }
       case PROCESS_VIEWER -> {
         newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
             Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText")));
@@ -382,12 +374,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     return (ProcessDashboardWidget) DashboardWidgetUtils.buildDefaultWidget(widgetId, widgetName, PROCESS);
   }
 
-  private StatisticDashboardWidget getDefaultStatisticDashboardWidget() {
-    String widgetId = DashboardWidgetUtils.generateNewWidgetId(STATISTIC);
-    String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourStatistics");
-    return (StatisticDashboardWidget) DashboardWidgetUtils.buildDefaultWidget(widgetId, widgetName, STATISTIC);
-  }
-
   private ClientStatisticDashboardWidget getDefaultClientStatisticDashboardWidget(String widgetName, String chartId) {
     String widgetId = DashboardWidgetUtils.generateNewWidgetId(CLIENT_STATISTIC);
     ClientStatisticDashboardWidget widget = null;
@@ -479,9 +465,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         CustomDashboardWidget customWidget =  (CustomDashboardWidget) widget;
         unifyCustomWidgetData(customWidget);
       }
-      case STATISTIC -> {
-        updateStatisticWidgetData(widget);
-      }
       case WELCOME -> {
         updateWelcomeWidget(widget);
       }
@@ -538,14 +521,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
     if (processWidget.getLayout().getWidth() == -1) {
       processWidget.getLayout().setWidth(width);
-    }
-  }
-
-  private void updateStatisticWidgetData(DashboardWidget widget) {
-    var statisticWidget = (StatisticDashboardWidget) widget;
-    var displayName = StatisticService.getInstance().getDisplayNameInUserLanguageForChart(statisticWidget.getChart());
-    if (displayName != null) {
-      statisticWidget.setName(displayName.getValue());
     }
   }
 
@@ -814,11 +789,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         };
         setWidget(clonedWidget);
       }
-      case STATISTIC -> {
-        var statisticDashboardWidget = new StatisticDashboardWidget((StatisticDashboardWidget) widget);
-        setWidget(statisticDashboardWidget);
-      }
-
       default -> {
         setWidget(editWidget);
       }
@@ -1022,4 +992,15 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         .map(DashboardWidgetType::canEnableQuickSearch)
         .orElse(false);
   }
+  
+  public boolean displayWidgetInfoOption() {
+    return Optional.ofNullable(this.widget).map(DashboardWidget::getType)
+        .map(DashboardWidgetType::canShowWidgetInfoOption).orElse(false);
+  }
+  
+  public boolean displayFullscreenModeOption() {
+    return Optional.ofNullable(this.widget).map(DashboardWidget::getType)
+        .map(DashboardWidgetType::canShowFullscreenModeOption).orElse(false);
+  }
+
 }

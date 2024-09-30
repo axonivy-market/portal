@@ -23,8 +23,10 @@
       <ui:param name="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
       <ui:param name="widgetContentStyleClass" value="process-widget" />
       <ui:param name="componentToProcessOnApplyFilter" value="filter-container" />
-      <ui:param name="componentToUpdateOnApplyFilter" value="#{component.parent.namingContainer.clientId}:widget-content" />
+      <ui:param name="componentToUpdateOnApplyFilter" value="#{cc.clientId}:widget-content" />
       <ui:param name="componentToUpdateOnResetFilter" value="#{cc.clientId}:widget-content" />
+      <ui:param name="isRenderExpandCollapse" value="#{widget.isShowFullscreenMode()}" />
+      <ui:param name="isRenderInfo" value="#{widget.isShowWidgetInfo()}" />
     
       <ui:define name="widgetInformationContent">
         <ui:include src="ProcessInfo.xhtml">

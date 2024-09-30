@@ -25,7 +25,6 @@ import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.AdditionalCaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
-import com.axonivy.portal.selenium.page.ExpressProcessPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.NoteHistoryPage;
@@ -302,11 +301,9 @@ public class CaseDetailsTest extends BaseTest {
     createTestingTask();
     redirectToRelativeLink(GRANT_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
     redirectToNewDashBoard();
-    // MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = NavigationHelper.navigateToCaseList();
     detailsPage = casePage.openDetailsOfCaseHasName(LEAVE_REQUEST_CASE_NAME);
     assertFalse(detailsPage.isTaskDelegateOptionDisable(SICK_LEAVE_REQUEST_TASK));
-    assertTrue(detailsPage.isTaskDelegateOptionDisable(ANNUAL_LEAVE_REQUEST_TASK));
     redirectToRelativeLink(DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
   }
 
@@ -369,15 +366,6 @@ public class CaseDetailsTest extends BaseTest {
     int index = detailsPage.getTaskRowIndexFromDetailPage(SICK_LEAVE_REQUEST_TASK);
     detailsPage.openRelatedTaskWorkflowEvents(index);
     WaitHelper.assertTrueWithWait(() -> detailsPage.isRelatedTaskWorkflowEventsOpened());
-  }
-
-  @Test
-  public void testRelatedTaskAddAdHocTask() {
-    createTestingTask();
-    detailsPage.clickRelatedTaskActionButton(SICK_LEAVE_REQUEST_TASK);
-    ExpressProcessPage expressProcessPage =
-        detailsPage.addAdHocTask(detailsPage.getTaskRowIndex(SICK_LEAVE_REQUEST_TASK));
-    assertTrue(expressProcessPage.getProcessName().endsWith(SICK_LEAVE_REQUEST_TASK));
   }
 
   @Test
@@ -474,7 +462,7 @@ public class CaseDetailsTest extends BaseTest {
 
     setupCaseDetailsWithIFrameURL();
     String url = detailsPage.getIFrameURLOfCustomWidget();
-    assertTrue(url.contains("www.axonivy.com"));
+    assertTrue(url.contains("www.example.com"));
 
     setupCaseDetailsWith2Panels();
     assertTrue(detailsPage.isCustomMiddlePanelDisplay());

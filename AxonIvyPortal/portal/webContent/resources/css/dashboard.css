@@ -196,6 +196,7 @@
 
 .widget__header-actions .widget__header-action:not(:last-child) {
   margin-right: 15px;
+  display: flex;
 }
 
 .widget__header-title {
@@ -809,6 +810,17 @@ span.new-widget-dialog__icon.si {
   }
 }
 
+@container grid-stack-item (min-width: 400px) {
+  .quick-search-icon {
+    display: none;
+  }
+}
+
+.widget-header-quick-search-show {
+  display: grid;
+  width: 100%;
+}
+
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
   .new-widget-dialog__image {
   width: 75px;
@@ -1087,10 +1099,6 @@ body .ui-widget.new-widget-dialog__introduction {
   overflow: auto;
 }
 
-.dashboard-processes-container--combined {
-  min-width: 600px;
-}
-
 @media screen and (max-width: 40em) {
   .dashboard-processes-container--combined .process-widget--combined {
     height: 30rem;
@@ -1358,10 +1366,6 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .chart-information-container .ui-panelgrid tbody tr.ui-widget-content {
   border-color: var(--widget-advanced-filter-overlay-panel-footer);
-}
-
-.total-available-charts {
-  font-weight: bold;
 }
 
 .has-avatar .case-info-avatar {

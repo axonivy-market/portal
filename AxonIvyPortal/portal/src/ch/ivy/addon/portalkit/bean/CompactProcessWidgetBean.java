@@ -9,11 +9,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import org.apache.commons.lang3.StringUtils;
+import com.axonivy.portal.service.GlobalSearchService;
 
 import ch.ivy.addon.portalkit.configuration.UserProcess;
 import ch.ivy.addon.portalkit.enums.ProcessType;
-import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 
 @ManagedBean
@@ -23,11 +22,13 @@ public class CompactProcessWidgetBean implements Serializable {
 private static final long serialVersionUID = -5889375917550618261L;
 
   private boolean isDisplayShowAllProcessesLink;
+  private boolean isGlobalSearchScope;
   
   @PostConstruct
   public void init() {
     // used in global search page
     isDisplayShowAllProcessesLink = PermissionUtils.checkAccessFullProcessListPermission();
+    setGlobalSearchScope(isEnableGlobalSearchScopeProcesses());
   }
   
   public void startProcess(UserProcess userProcess) throws IOException {
@@ -36,15 +37,6 @@ private static final long serialVersionUID = -5889375917550618261L;
     if (isExternalLink(userProcess)) {
       FacesContext.getCurrentInstance().getExternalContext().redirect(link);
       return;
-    }
-
-    if (isExpressProcess(userProcess) && StringUtils.isNotBlank(userProcess.getProcessId())) {
-      String expressStartLink = ExpressProcessService.getInstance().findExpressWorkflowStartLink();
-      if (StringUtils.isNotBlank(expressStartLink)) {
-        FacesContext.getCurrentInstance().getExternalContext()
-            .redirect(expressStartLink + "?workflowID=" + userProcess.getProcessId());
-        return;
-      }
     }
 
     link += link.contains("?") ? "&" : "?";
@@ -61,11 +53,20 @@ private static final long serialVersionUID = -5889375917550618261L;
     this.isDisplayShowAllProcessesLink = isDisplayShowAllProcessesLink;
   }
 
+  public boolean isGlobalSearchScope() {
+    return isGlobalSearchScope;
+  }
+
+  public void setGlobalSearchScope(boolean isGlobalSearchScope) {
+    this.isGlobalSearchScope = isGlobalSearchScope;
+  }
+
   private boolean isExternalLink(UserProcess process) {
     return process != null && process.getProcessType() == ProcessType.EXTERNAL_LINK;
   }
 
-  private boolean isExpressProcess(UserProcess process) {
-    return process != null && process.getProcessType() == ProcessType.EXPRESS_PROCESS;
+  private boolean isEnableGlobalSearchScopeProcesses() {
+    return GlobalSearchService.getInstance().isShowGlobalSearchByProcesses();
   }
+
 }

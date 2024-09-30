@@ -64,7 +64,7 @@ public class UserProfileBean implements Serializable {
     List<String> sortFieldNames = Stream.of(TaskSortField.values()).map(Enum::name).collect(Collectors.toList());
 
     if (StringUtils.equals(sortField, DEFAULT)) {
-      GlobalSettingService globalSettingService = new GlobalSettingService();
+      GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
       String defaultSortField = globalSettingService
           .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_FIELD_OF_TASK_LIST).getValue();
 
@@ -80,7 +80,7 @@ public class UserProfileBean implements Serializable {
   public String getDisplayNameOfCaseSortField(String sortField) {
     List<String> sortFieldNames = Stream.of(CaseSortField.values()).map(Enum::name).collect(Collectors.toList());
     if (StringUtils.equals(sortField, DEFAULT)) {
-      GlobalSettingService globalSettingService = new GlobalSettingService();
+      GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
       String defaultSortField = globalSettingService
           .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_FIELD_OF_CASE_LIST).getValue();
 
@@ -96,7 +96,7 @@ public class UserProfileBean implements Serializable {
   public String getDisplayNameOfTaskSortDirection(String sortDirection) {
     List<String> sortDirectionNames = Stream.of(SortDirection.values()).map(Enum::name).collect(Collectors.toList());
     if (StringUtils.equals(sortDirection, DEFAULT)) {
-      GlobalSettingService globalSettingService = new GlobalSettingService();
+      GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
       String defaultDirection = globalSettingService
           .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST).getValue();
 
@@ -111,7 +111,7 @@ public class UserProfileBean implements Serializable {
   public String getDisplayNameOfCaseSortDirection(String sortDirection) {
     List<String> sortDirectionNames = Stream.of(SortDirection.values()).map(Enum::name).collect(Collectors.toList());
     if (StringUtils.equals(sortDirection, DEFAULT)) {
-      GlobalSettingService globalSettingService = new GlobalSettingService();
+      GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
       String defaultDirection = globalSettingService
           .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST).getValue();
 

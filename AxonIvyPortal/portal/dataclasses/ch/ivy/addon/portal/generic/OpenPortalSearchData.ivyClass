@@ -1,5 +1,0 @@
-OpenPortalSearchData #class
-ch.ivy.addon.portal.generic #namespace
-keyword String #field
-searchResultsDataModel ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel #field
-activeTabIndex Number #field

@@ -3,52 +3,6 @@
 Additional Components
 =====================
 
-.. _components-additional-component-task-analysis:
-
-Task Analysis
--------------
-
-.. _components-additional-component-task-analysis-introduction:
-
-Introduction
-^^^^^^^^^^^^
-
-The Portal's Task Analysis component provides features in accordance with the
-user's permission :bdg-ref-warning:`🔑StatisticAnalyzeTask <StatisticAnalyzeTask>`. Refer to
-:dev-url:`Security section in Cockpit
-</doc/|version|/engine-guide/reference/engine-cockpit/security.html>` to
-analyze not only tasks but also cases. These features are:
-
-#. Sets of filters for both tasks and cases which allow to filter
-   and find tasks and cases easier. Additionally, user can create and
-   manage their own filter sets.
-
-#. Dynamic result table with lots of information for both task and case.
-
-#. Export results into an Excel files (currently we only support .xlsx
-   extension).
-
-|task-analysis|
-
-.. _components-additional-component-task-analysis-how-to-use:
-
-How to Use
-^^^^^^^^^^
-
-The Task Analysis component is integrated into the Statistics widget. You can
-use this component directly when opening the Statistics widget. If you want to
-use this component, you only have to redirect to the Task Analysis component
-with the following code:
-
-.. code-block:: java
-
-      import com.axonivy.portal.components.publicapi.ProcessStartAPI;
-      import java.util.HashMap;
-      import javax.faces.context.FacesContext;
-
-      String taskAnalysisUrl = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath("Start Processes/PortalStart/showTaskAnalysis.ivp");
-      FacesContext.getCurrentInstance().getExternalContext().redirect(taskAnalysisUrl);
-
 .. _components-additional-component-global-growl:
 
 Global Growl
@@ -82,22 +36,6 @@ Display Growl After Leaving a Task
 After the user cancels a task, a growl message is displayed if ``Portal.DisplayMessageAfterFinishTask`` is true.
 
 |example-global-growl-cancelled-task|
-
-Customize the Global Growl Message for a Task using IFrames
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-If ``Portal.DisplayMessageAfterFinishTask`` is true, before a task is finished
-or cancelled, you can trigger the display of a customized message by calling the
-API below:
-
-::
-
-   import com.axonivy.portal.components.publicapi.PortalGlobalGrowInIFrameAPI;
-
-   PortalGlobalGrowInIFrameAPI api = new PortalGlobalGrowInIFrameAPI();
-   api.displayCustomizedMessage("Your customized message");
-
-Please refer to GlobalGrowl Start Process in the portal-developer-examples project for details.
 
 .. _components-additional-portal-dialog-with-icon:
 
@@ -152,6 +90,5 @@ This decorator offers the following parameters:
   :widths: 20 10 25 45
 
 
-.. |task-analysis| image:: ../../screenshots/components/task-analysis.png
 .. |example-global-growl-finished-task| image:: ../../screenshots/components/example-global-growl-finished-task.png
 .. |example-global-growl-cancelled-task| image:: ../../screenshots/components/example-global-growl-cancelled-task.png

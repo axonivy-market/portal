@@ -35,7 +35,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
-import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
@@ -239,9 +238,14 @@ public class DashboardWidgetUtils {
           .collect(Collectors.toList());
     }
     var enableCaseOwner = GlobalSettingService.getInstance().isCaseOwnerEnabled();
+    boolean disableCaseCreator = GlobalSettingService.getInstance().isHideCaseCreator();
     if (!enableCaseOwner) {
       filterableColumns
           .removeIf(col -> StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardCaseColumn.OWNER.name()));
+    }
+    if (disableCaseCreator) {
+      filterableColumns
+          .removeIf(col -> StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardCaseColumn.CREATOR.name()));
     }
     return filterableColumns;
   }
@@ -380,8 +384,7 @@ public class DashboardWidgetUtils {
       case TASK -> buildDefaultTaskWidget(id, name);
       case CASE -> buildDefaultCaseWidget(id, name);
       case PROCESS -> buildDefaultProcessWidget(id, name);
-      case STATISTIC, 
-           CLIENT_STATISTIC -> buildDefaultStatisticWidget(id, name, type);
+      case CLIENT_STATISTIC -> buildDefaultStatisticWidget(id, name, type);
       default -> null;
     };
   }
@@ -389,12 +392,7 @@ public class DashboardWidgetUtils {
 
   private static DashboardWidget buildDefaultStatisticWidget(String id, String name, DashboardWidgetType widgetType) {
     DashboardWidget widget = null;
-    if (widgetType == DashboardWidgetType.CLIENT_STATISTIC) {
-      widget = new ClientStatisticDashboardWidget();
-    } else {
-      widget = new StatisticDashboardWidget();
-      widget.setName(name);
-    }
+    widget = new ClientStatisticDashboardWidget();
     widget.setId(id);
     var layout = new WidgetLayout();
     layout.setWidth(5);
@@ -579,7 +577,7 @@ public class DashboardWidgetUtils {
     List<DashboardProcess> processes = getCompactProcesses(processWidget);
     processWidget.setDisplayProcesses(processes);
     processWidget.setOriginalDisplayProcesses(processes);
-    if (!processWidget.getCriteria().isInConfiguration()) {
+    if (!processWidget.getCriteria().isInConfiguration() || processWidget.isEnableQuickSearch()) {
       processWidget.filterProcessesByUser();
     }
   }

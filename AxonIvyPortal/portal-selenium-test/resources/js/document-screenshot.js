@@ -36,7 +36,6 @@ function createRedThickOutlineWithOffset($element) {
 /***IMPLEMENTATION TO DECORATE PAGES - WHICH ARE CALLED IN SELENIUM****/
 function highlightDashboardWidget() {
   createRedMediumOutline($("#task-widget"));
-  createRedMediumOutline($("#statistic-widget-container"));
   createRedMediumOutline($("#process-widget"));
 }
 
@@ -47,9 +46,6 @@ function highlightAndNumberingDashboardSections() {
   var taskWidget = $("#task-widget");
   createRedMediumOutline(taskWidget);
   appendStepAnnotation(taskWidget, "2", 0, taskWidget.width()/2);
-  var statisticWidget = $("#statistic-widget-container");
-  createRedMediumOutline(statisticWidget);
-  appendStepAnnotation(statisticWidget, "3", 0, statisticWidget.width()/2);
 }
 
 function numberingTaskFilter() {
@@ -157,16 +153,12 @@ function highlightProcessItems() {
   createRedMediumOutline(processSearch);
   appendStepAnnotation(processSearch, "1", -5, processSearch.width() - 40);
   
-  var expressLogo = $('.express-workflow .image-process-icon:eq(0)');
-  createRedMediumOutline(expressLogo);
-  appendStepAnnotation(expressLogo, "2", -15, -30);
-  
   var externalLink = $('.js-external-link-process-item .image-process-icon:eq(0)');
   createRedMediumOutline(externalLink);
-  appendStepAnnotation(externalLink, "3", -15, -30);
+  appendStepAnnotation(externalLink, "2", -15, -30);
   
   createRedMediumOutline($('[id$="process-widget:process-view-mode:view-mode-selection"]'));
-  appendStepAnnotation($("[id$='process-widget:process-view-mode:view-mode-selection'] div[class$='ui-state-active']"), "4", -10, -40);
+  appendStepAnnotation($("[id$='process-widget:process-view-mode:view-mode-selection'] div[class$='ui-state-active']"), "3", -10, -40);
 }
 
 function highlightEditProcessIcon() {
@@ -190,21 +182,12 @@ function highlightProcessMoreMenuButton() {
   appendStepAnnotation(processMoreMenuButton, "1", -10, -40);
 }
 
-function numberingStatisticWidget() {
-  var chartInfo = $('.chart-info:eq(0)');
-  appendStepAnnotation(chartInfo, "1", -10, 25);
-  var chartCanvas = $('.ui-carousel-items-content');
-  appendStepAnnotation(chartCanvas, "2", chartCanvas.width()/4, chartCanvas.height()/2 + 10);
-  appendStepAnnotation(chartCanvas, "3", 15, chartCanvas.width()*0.75);
-}
-
 function highlightAdminSettings() {
   createRedMediumOutline($("#adminui-menu-item"));
 }
 
 function highlightUserMenuConfiguration() {
   createRedMediumOutline($("a[id$='menu-configuration-0']"));
-  createRedMediumOutline($("a[id$='menu-configuration-1']"));
 }
 
 function highlightCaseMenuItem() {
@@ -213,26 +196,6 @@ function highlightCaseMenuItem() {
 
 function highlightShowMoreNoteLink() {
   createRedMediumOutline($('a.js-note-show-more-link'));
-}
-
-function highlightStatisticNavigation() {
-   createRedThickOutlineWithOffset($('.layout-menu .STATISTICS'));
-}
-
-function highlightTaskAnalysisNavigationLink() {
-  createRedMediumOutline($("a[id$=':task-analysis-page-navigation-link']"));
-}
-
-function numberingChartPanel() {
-  var chartName = $('.chart-name:eq(1)');
-  appendStepAnnotation(chartName, "1", -30, -25);
-  var chartInfo = $('.chart-info:eq(1)');
-  appendStepAnnotation(chartInfo, "2", -20, 25);
-  var chartActions = $('.chart-actions-container:eq(0)');
-  appendStepAnnotation(chartActions, "3", -20, 0);
-  var chartCanvas = $('.statistic-chart:eq(1)');
-  appendStepAnnotation(chartCanvas, "4", chartCanvas.width()/4, chartCanvas.height()/2 + 10);
-  appendStepAnnotation(chartCanvas, "5", 15, chartCanvas.width()*0.8);
 }
 
 function highlightCustomCaseList() {
@@ -378,40 +341,6 @@ function highlightShowWorkflowEvents() {
   createRedMediumOutline($("a[id$=':task-workflow-event-command']"));
 }
 
-function highlightCreateExpressWorkflow() {
-  createRedMediumOutline($("[id$='process-widget:create-express-link']"));
-}
-
-function highlightExpressTaskResponsible(stepNumber) {
-  var taskResponsible = '.task-responsible:eq(' + stepNumber + ')';
-  createRedMediumOutline($(taskResponsible));
-}
-
-function highlightManagementExpressTab() {
-  $("a[href$=':adminTabView:express-management-tab']").parent().addClass("red-medium-border");
-}
-
-function highlightDeployExpress() {
-  createRedMediumOutline($(".ui-fileupload-upload"));
-}
-
-function highlightExportExpress() {
-  var expressTable = $("[id$=':express-management-component:express-management-form:express-workflow-summary-table']");
-  var checkAll = expressTable.find(".express-selection-column:eq(0)").find(".ui-chkbox-box");
-  createRedMediumOutline(checkAll);
-  appendStepAnnotation(checkAll, 1, -10, checkAll.width() + 10);
-  
-  var exportButton = $("[id$=':express-management-component:express-management-form:export-express-btn']");
-  appendStepAnnotation(exportButton, 2, -10, exportButton.width() + 15);
-}
-
-function cleanHighlightExportExpress() {
-  var expressTable = $("[id$=':express-management-component:express-management-form:express-workflow-summary-table']");
-  var checkAll = expressTable.find(".express-selection-column:eq(0)").find(".ui-chkbox-box");
-  checkAll.removeClass("red-medium-outline");
-  $('.marker').remove();
-}
-
 function scrollToMiddleOfLayoutContent() {
   window.scrollTo(0, document.body.scrollHeight/2);
 }
@@ -492,10 +421,6 @@ function highlightTaskActionItem(taskIndex, actionIndex) {
 
 function highlightShowAllProcesses() {
   createRedThickOutlineWithOffset($('.layout-menu .PROCESS'));
-}
-
-function highlightShowAdditionalLink() {
-  createRedMediumOutline($("[id$='case-item:case-item-action-form:action-step-component:show-additional-case-details-link']"));
 }
 
 function highlightTaskExportToExcelButton() {

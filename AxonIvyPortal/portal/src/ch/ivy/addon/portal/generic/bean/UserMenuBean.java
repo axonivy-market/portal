@@ -18,18 +18,17 @@ import org.primefaces.PrimeFaces;
 import com.axonivy.portal.bo.QRCodeData;
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.enums.PortalCustomSignature;
+import com.axonivy.portal.service.GlobalSearchService;
 import com.google.gson.Gson;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bean.PortalExceptionBean;
-import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.dto.UserMenu;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
-import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -48,7 +47,6 @@ public class UserMenuBean implements Serializable {
 
   public static final long TIME_BEFORE_LOST_SESSION = 3 * DateUtils.MILLIS_PER_MINUTE; // 3 minutes
   public static final String TASK_LEAVE_WARNING_COMPONENT = "task-leave-warning-component";
-  private static String expressStartLink;
   private String targetPage = StringUtils.EMPTY;
   private String loggedInUser;
   private boolean isShowGlobalSearch;
@@ -82,8 +80,14 @@ public class UserMenuBean implements Serializable {
         default -> String.format(fullDisplayFormat, userName, fullName);
       };
     }
-    isShowGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_GLOBAL_SEARCH);
-    isShowQuickGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_QUICK_GLOBAL_SEARCH);
+    boolean isShowGlobalSearchByProcesses = GlobalSearchService.getInstance().isShowGlobalSearchByProcesses();
+    boolean isShowGlobalSearchByTasks = GlobalSearchService.getInstance().isShowGlobalSearchByTasks();
+    boolean isShowGlobalSearchByCases = GlobalSearchService.getInstance().isShowGlobalSearchByCases();
+    isShowGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_GLOBAL_SEARCH)
+        && (isShowGlobalSearchByProcesses || isShowGlobalSearchByCases || isShowGlobalSearchByTasks);;
+    isShowQuickGlobalSearch = GlobalSettingService.getInstance()
+        .findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_QUICK_GLOBAL_SEARCH)
+        && (isShowGlobalSearchByProcesses || isShowGlobalSearchByCases || isShowGlobalSearchByTasks);
   }
 
   public boolean isShowCaseDurationTime() {
@@ -103,26 +107,12 @@ public class UserMenuBean implements Serializable {
 	  return Ivy.session().getSessionUser() != null && Ivy.session().getSessionUser().getExternalId() != null;
   }
 
-  public boolean isHiddenStatisticWidget() {
-    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_STATISTIC_WIDGET);
-  }
-  
   public boolean getIsShowGlobalSearch() {
     return isShowGlobalSearch;
   }
 
   public boolean getIsShowQuickGlobalSearch() {
     return isShowQuickGlobalSearch;
-  }
-  public long getClientSideTimeout() {
-    String clientSideTimeoutInMinute = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT);
-    if (StringUtils.isNotBlank(clientSideTimeoutInMinute)) {
-      Long timeoutInMinute = Long.valueOf(clientSideTimeoutInMinute);
-      if (timeoutInMinute > 0) {
-        return timeoutInMinute * DateUtils.MILLIS_PER_MINUTE;
-      }
-    }
-    return getDefaultClientSideTimeout();
   }
 
   public String getLogoutPage() {
@@ -242,11 +232,6 @@ public class UserMenuBean implements Serializable {
     return RequestUtils.isMobileDevice();
   }
 
-  /**
-   * We moved this method to PortalExceptionBean#getErrorDetailToEndUser
-   * @return system configuration of ErrorDetailToEndUser
-   */
-  @Deprecated
   public boolean getErrorDetailToEndUser() {
     try {
       PortalExceptionBean portalExceptionBean = (PortalExceptionBean) ManagedBeans.find("portalExceptionBean").get();
@@ -289,7 +274,7 @@ public class UserMenuBean implements Serializable {
     return PortalNavigator.buildPortalManagementUrl();
   }
 
-  private long getDefaultClientSideTimeout() {
+  public long getServerSideTimeout() {
     ExternalContext externalContext = getExternalContext();
     long serverSideTimeOutInMillisecond = externalContext.getSessionMaxInactiveInterval() * DateUtils.MILLIS_PER_SECOND;
     return serverSideTimeOutInMillisecond - TIME_BEFORE_LOST_SESSION;
@@ -323,25 +308,11 @@ public class UserMenuBean implements Serializable {
       if (menuUrl.contains("http")) {
         return menuUrl;
       }
-      if (StringUtils.isNotBlank(getExpressStartLink())) {
-        ExpressProcess workflow = ExpressProcessService.getInstance().findExpressProcessByName(menuUrl);
-        if (workflow != null && PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(workflow)
-            && StringUtils.isNotBlank(workflow.getId())) {
-          menu.setUrl(getExpressStartLink() + "?workflowID=" + workflow.getId());
-        }
-      }
       return menu.getUrl();
     }
     return "";
   }
 
-  private static String getExpressStartLink() {
-    if (StringUtils.isEmpty(expressStartLink)) {
-      expressStartLink = ExpressProcessService.getInstance().findExpressWorkflowStartLink();
-    }
-    return expressStartLink;
-  }
-  
   public void navigateToNotificationOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) {
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {
       openTaskLosingConfirmationDialog();

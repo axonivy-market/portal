@@ -1,5 +1,6 @@
 package com.axonivy.portal.selenium.page;
 
+import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
 
 import org.openqa.selenium.By;
@@ -14,8 +15,7 @@ public class AnnouncementPage extends TemplatePage {
   }
 
   public String getInfoSummary() {
-    return WebDriverRunner.getWebDriver().findElement(By.cssSelector("div[id$='messages'] span[class$='summary']"))
-        .getText();
+    return $("div[id$='announcement-tab']").shouldBe(appear, DEFAULT_TIMEOUT).$("span.ui-messages-error-summary").shouldBe(appear, DEFAULT_TIMEOUT).getText();
   }
 
   public void publish() {

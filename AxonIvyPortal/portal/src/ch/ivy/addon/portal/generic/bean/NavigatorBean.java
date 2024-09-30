@@ -28,8 +28,5 @@ public class NavigatorBean implements Serializable {
   public String getCasePage() {
     return MenuKind.CASE.toString();
   }
-  
-  public String getStatisticPage() {
-    return MenuKind.STATISTICS.toString();
-  }
+
 }

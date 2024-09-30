@@ -110,7 +110,7 @@
           },
           {
             "locale": "de",
-            "value": "Ihre Fälle"
+            "value": "Ihre Vorgänge"
           },
           {
             "locale": "fr",
@@ -139,7 +139,8 @@
           },
           {
             "field": "description",
-            "visible": false
+            "visible": false,
+            "quickSearch": false
           },
           {
             "field": "state",
@@ -530,65 +531,6 @@
         "data": {
           "url": "https://www.google.com/search?q=danang&sca_esv=566561006&sxsrf=AM9HkKlUBz__VtVTES7NouybfOXwwRRccA%3A1695119592162&source=hp&ei=6HgJZZXzBpfj2roPnry2wAo&iflsig=AO6bgOgAAAAAZQmG-HMK6OQuwxM5-TaUgojXdqYC8KL4&oq=da&gs_lp=Egdnd3Mtd2l6IgJkYSoCCAAyBxAjGIoFGCcyBxAjGIoFGCcyBBAjGCcyBxAuGIoFGEMyCxAAGIAEGLEDGIMBMgsQABiABBixAxiDATILEAAYgAQYsQMYgwEyBBAAGAMyBBAAGAMyCxAAGIAEGLEDGIMBSNEKUABYZHAAeACQAQCYAZQBoAGlAqoBAzAuMrgBA8gBAPgBAcICDBAjGIoFGBMYgAQYJw&sclient=gws-wiz"
         }
-      },
-      {
-        "type": "statistic",
-        "id": "statistic_ff821a63a24d49c6a310fb83ce818a46",
-        "names": [
-          {
-            "locale": "en",
-            "value": "Tasks by Priority"
-          },
-          {
-            "locale": "fr",
-            "value": "Tasks by Priority"
-          },
-          {
-            "locale": "de",
-            "value": "Tasks by Priority"
-          },
-          {
-            "locale": "es",
-            "value": "Tasks by Priority"
-          }
-        ],
-        "layout": {
-          "w": 4,
-          "h": 8,
-          "x": 5,
-          "y": 15
-        },
-        "chart": {
-          "id": "0",
-          "names": [
-            {
-              "locale": "de",
-              "value": "Aufgaben nach Priorität"
-            },
-            {
-              "locale": "en",
-              "value": "Tasks by Priority"
-            },
-            {
-              "locale": "fr",
-              "value": "Tãches par priorité"
-            },
-            {
-              "locale": "es",
-              "value": "Tareas por prioridad"
-            }
-          ],
-          "type": "TASK_BY_PRIORITY",
-          "filter": {
-            "timePeriodSelection": "CUSTOM",
-            "isAllCategoriesSelected": false,
-            "isAllRolesSelected": true,
-            "isAllCaseStatesSelected": true,
-            "isAllTaskPrioritiesSelected": true
-          },
-          "position": 0
-        },
-        "chartEmpty": true
       },
       {
         "type": "news",

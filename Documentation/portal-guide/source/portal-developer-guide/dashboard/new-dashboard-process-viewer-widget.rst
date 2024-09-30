@@ -24,7 +24,8 @@ Below is a sample JSON definition of a process viewer widget in the Portal dashb
       "layout": {
          "x": 0, "y": 0, "w": 12, "h": 6
       }, 
-      "processPath": "designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp"
+      "processPath": "designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp",
+      "showFullscreenMode": true
    }
 
 The basic JSON structure of a process viewer widget
@@ -50,3 +51,5 @@ The basic JSON structure of a process viewer widget
       ``style`` (optional): add inline style to HTML DOM of the widget
 
    ``processPath``: the :dev-url:`|ivy| IWebStartable </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` identifier of the process you want to display
+
+   ``showFullscreenMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon

@@ -524,4 +524,40 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
     getConfigurationDialog().$(".ui-dialog-footer").$("a").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id='new-widget-configuration-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
+  
+  public void enableQuickSearchCheckbox() {
+     SelenideElement quickSearchCheckBox = getConfigurationFilterContainer().$("span[id$='quick-search-group']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$("div[id$='quick-search']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+     if ($("input[id$='widget-configuration-form:new-widget-configuration-component:quick-search_input']").isSelected() == false) {
+       quickSearchCheckBox.click();
+     }
+  }
+  
+  public SelenideElement getConfigurationFilterContainer() {
+    return $("div#new-widget-configuration-dialog").shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='filter-container']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement getExpandModeCheckbox() {
+    return getConfigurationFilterContainer().$("span[id$='fullscreen-mode-group']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='fullscreen-option']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void clickOnExpandModeCheckbox() {
+    getExpandModeCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public SelenideElement getWidgetInfoIconCheckbox() {
+    return getConfigurationFilterContainer().$("span[id$='widget-info-icon-group']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[class*='ui-inputgroup']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[id$='widget-info']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("div[class*='ui-chkbox-box']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span");
+  }
+
+  public void clickOnWidgetInfoIconCheckbox() {
+    getWidgetInfoIconCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
 }

@@ -12,6 +12,9 @@ Portal Task Permissions
 - _`TaskReadAll`
     - Permission to see all tasks
 
+- _`SystemTaskReadAll`
+    - Permission to see system tasks
+
 - _`TaskReadOwnCaseTasks`
     - Permission to see related tasks
 
@@ -174,11 +177,6 @@ Portal General Permissions
 
     - Granted to role Everybody by default
 
-- _`AccessFullStatisticsList`
-    - Permission to access the statistics section. See :ref:`full-statistic-list`.
-
-    - Granted to role Everybody by default
-
 - _`TaskCaseAddNote`
     - Permission to add notes to a task/case
 
@@ -258,23 +256,3 @@ Portal Absence And Substitute Permissions
 - _`UserReadSubstitutes`
     - Permission to read substitutes of all users
 
-
-Portal Statistic Permissions
-----------------------------
-
-- _`StatisticAddDashboardChart`
-    - Permission to add dashboard charts
-
-    - Granted to role Everybody by default
-
-- _`StatisticAnalyzeTask`
-    - Permission to analyze, filter tasks and export data to excel for advanced analysis
-
-
-Portal Express Permissions
---------------------------
-
-- _`ExpressCreateWorkflow`
-    - Permission to create Express workflows
-
-    - Granted to role Everybody by default

@@ -30,11 +30,6 @@ public class CaseSearchCriteria {
   public final static List<CaseBusinessState> STANDARD_BUSINESS_STATES = Arrays.asList(CaseBusinessState.OPEN);
   public final static List<CaseBusinessState> ADVANCE_BUSINESS_STATES = Arrays.asList(CaseBusinessState.DONE, CaseBusinessState.DESTROYED);
 
-  /**
-   * @deprecated not used anymore, will get current login user for query
-   */
-  @Deprecated(since = "9.2", forRemoval = true)
-  private String involvedUsername;
   private List<CaseState> includedStates;
   private String keyword;
   private Long caseId;
@@ -53,6 +48,7 @@ public class CaseSearchCriteria {
   private CaseQuery finalCaseQuery;
 
   private boolean isGlobalSearch;
+  private boolean isGlobalSearchScope;
   private List<SearchScopeCaseField> searchScopeCaseFields;
 
   public CaseQuery createQuery() {
@@ -318,24 +314,6 @@ public class CaseSearchCriteria {
     this.category = category;
   }
 
-  /**
-   * @return String
-   * @deprecated not used anymore, will get current login user for query
-   */
-  @Deprecated(since = "9.2", forRemoval = true)
-  public String getInvolvedUsername() {
-    return involvedUsername;
-  }
-
-  /**
-   * @param involvedUsername 
-   * @deprecated not used anymore, will get current login user for query
-   */
-  @Deprecated(since = "9.2", forRemoval = true)
-  public void setInvolvedUsername(String involvedUsername) {
-    this.involvedUsername = involvedUsername;
-  }
-
   public boolean isBusinessCase() {
     return isBusinessCase;
   }
@@ -433,6 +411,13 @@ public class CaseSearchCriteria {
 
   public void setGlobalSearch(boolean isGlobalSearch) {
     this.isGlobalSearch = isGlobalSearch;
+  }
+  public boolean isGlobalSearchScope() {
+    return isGlobalSearchScope;
+  }
+
+  public void setGlobalSearchScope(boolean isGlobalSearchScope) {
+    this.isGlobalSearchScope = isGlobalSearchScope;
   }
 
 }

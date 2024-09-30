@@ -1,6 +1,7 @@
 [
   {
     "id": "1",
+    "version": "11.4.0",
     "templateId": "default-portal-dashboard-template",
     "titles": [
       {
@@ -70,7 +71,7 @@
           {
             "field": "description",
             "visible": false,
-            "quickSearch": true
+            "quickSearch": false
           },
           {
             "field": "activator",
@@ -122,7 +123,7 @@
           },
           {
             "locale": "de",
-            "value": "Ihre Fälle"
+            "value": "Ihre Vorgänge"
           },
           {
             "locale": "fr",
@@ -152,7 +153,7 @@
           {
             "field": "description",
             "visible": false,
-            "quickSearch": true
+            "quickSearch": false
           },
           {
             "field": "state"

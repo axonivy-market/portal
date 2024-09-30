@@ -26,10 +26,6 @@ The following default widgets are available:
 
 #. **Process viewer widget**: This widget provides a visual representation of the process flow.
 
-#. **Legacy statistic chart widget**: This widget provides graphical display of legacy statistical data.
-
-#. **Statistic chart widget**: This widget provides graphical display of statistical data.
-
 #. **Client Statistic chart widget**: This widget provides graphical display of client statistical data.
 
 #. **Welcome widget**: This widget greets the user based on the local time and enables a friendlier approach.
@@ -87,10 +83,15 @@ see and how.
 
 |task-list-widget|
 
+On the widget configuration panel, you can define the widget name, enable the
+quick search function, show or hide the widget information and fullscreen
+mode icons, and manage columns and filters.
+
 **Filters panel**
 
-By clicking on the ``Filter`` button, you can configure the complex filter for your widget, enable quick search function and get a preview of it by clicking on the
-``apply`` button. Please refer to :ref:`Complex Filter <complex-filter>` for more details.
+By clicking on the ``Filter`` button, you can configure the complex filter for
+your widget and get a preview of it by clicking on the ``apply`` button. Please
+refer to :ref:`Complex Filter <complex-filter>` for more details.
 
 |task-widget-complex-filter-configuration|
 
@@ -139,7 +140,7 @@ files and put them into a single zip file.
 
 **Quick search**
 
-In view mode, when quick search is enabled, a text box will appear to allow searching.
+In view mode, when quick search is enabled, a text box will appear to allow you to search.
 
 |task-quick-search-textbox|
 
@@ -158,10 +159,15 @@ see and how.
 
 |case-list-widget|
 
+On the widget configuration panel, you can define the widget name, enable the
+quick search function, show or hide the widget information and fullscreen
+mode icons, and manage columns and filters.
+
 **Filters panel**
 
-By clicking on the ``Filter`` button, you can define the configuration for your widget, enable quick search function and get a preview of it by clicking on the
-``apply`` button. Please refer to :ref:`Complex Filter <complex-filter>` for more details.
+By clicking on the ``Filter`` button, you can configure the complex filter for
+your widget and get a preview of it by clicking on the ``apply`` button. Please
+refer to :ref:`Complex Filter <complex-filter>` for more details.
 
 |case-list-widget-configuration|
 
@@ -205,7 +211,7 @@ files and put them into a single zip file.
 
 **Quick search**
 
-In the view mode, when quick search is enabled, a text box will appear to allow you to searching.
+In the view mode, when quick search is enabled, a text box will appear to allow you to search.
 
 |case-quick-search-textbox|
 
@@ -226,6 +232,8 @@ There are four process widget modes available:
    - Full mode
    - Image mode
 
+In the widget configuration, you can choose the display mode, show or hide widget information and fullscreen mode icons.
+
 |process-widget-modes|
 
 **Combined mode**
@@ -238,9 +246,18 @@ a particular process:
 
 **Compact mode**
 
-This widget displays a list of all selected process starts. You can sort your processes by index, alphabetical order or custom order. You can change your custom order by drag and drop the processes.
+This widget displays a list of all selected process starts. You can sort your processes by index, alphabetical order or custom order.
+You can change your custom order by drag and drop the processes and enable quick search by selecting the quick search checkbox.
 
 |process-widget-compact-mode|
+
+In view mode, when quick search function is enabled, a text box will appear to allow you to search.
+
+  .. important::
+   - Quick search function can only be used when process widget mode is ``Compact Mode``.
+   - Quick search function supports searching by ``process name``.
+
+|process-quick-search-textbox|
 
 **Full mode**
 
@@ -373,6 +390,7 @@ You can define a Notifications widget to display all Notifications based on your
 .. |process-widget-image-mode| image:: ../../screenshots/new-dashboard/process-widget-image-mode.png
 .. |process-viewer-widget| image:: ../../screenshots/new-dashboard/process-viewer-widget.png
 .. |process-viewer-widget-configuration| image:: ../../screenshots/new-dashboard/process-viewer-widget-configuration.png
+.. |process-quick-search-textbox| image:: ../../screenshots/new-dashboard/process-quick-search-textbox.png
 
 .. |welcome-widget-configuration| image:: ../../screenshots/new-dashboard/welcome-widget-configuration.png
 .. |news-feed-widget-configuration| image:: ../../screenshots/new-dashboard/news-feed-widget-configuration.png

@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions" xmlns:jsf="http://xmlns.jcp.org/jsf"
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <h:body>
@@ -97,15 +97,6 @@
                         id="process-#{widget.id}"
                         isPublicDashboard="#{managedBean.selectedDashboard.isPublic}"
                         isInConfiguration="#{isInConfiguration}" />
-                    </c:if>
-
-                    <!-- Statistic widget -->
-                    <c:if test="#{widget.type eq 'STATISTIC'}">
-                      <ic:ch.ivy.addon.portal.generic.dashboard.component.StatisticChartWidget id="chart-#{widget.id}"
-                        chart="#{widget.chart}"
-                        widget="#{widget}"
-                        index="#{status.index}"
-                        isReadOnlyMode="#{managedBean.isReadOnlyMode}"/>
                     </c:if>
 
                     <!-- Custom widget -->

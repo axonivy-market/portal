@@ -6,8 +6,8 @@ pipeline {
   }
 
   tools { 
-      maven '3.8' 
-      jdk '17' 
+      maven '3.9' 
+      jdk '21' 
   }
 
   parameters {
@@ -35,9 +35,6 @@ pipeline {
           elasticSearchDataDir = 'C:\\tools\\external-elastic-search\\elasticsearch-master-cluster\\data'
           def utils = load 'build\\common\\utils.groovy'
           utils.stopAllEngines()
-
-          utils.downloadExpress()
-          def expressFile = findFiles(glob: 'archive/**/axonivy-express*.iar')[0].path
           
           configs.each{k, v ->
             utils.extractEngine(v['engineDir'], params.engineDownloadURL)
@@ -80,7 +77,6 @@ pipeline {
             Copy-Item AxonIvyPortal\\PortalKitTestHelper\\target\\*iar -Destination \$DEPLOYMENT
             Start-Sleep 2
             Copy-Item Showcase\\InternalSupport\\target\\*iar -Destination \$DEPLOYMENT
-            Copy-Item ${expressFile} -Destination \$DEPLOYMENT
           """)
 
           bat """

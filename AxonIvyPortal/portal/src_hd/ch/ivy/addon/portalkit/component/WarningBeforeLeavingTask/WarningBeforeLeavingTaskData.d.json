@@ -1,0 +1,15 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
+  "simpleName" : "WarningBeforeLeavingTaskData",
+  "namespace" : "ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "isTaskFinished",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "caze",
+    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

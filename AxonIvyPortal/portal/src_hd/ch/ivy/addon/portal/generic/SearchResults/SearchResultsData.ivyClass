@@ -1,7 +1,0 @@
-SearchResultsData #class
-ch.ivy.addon.portal.generic.SearchResults #namespace
-dataModel ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel #field
-dataModel 'For customization: change this attribute''s type to <YOUR_CUSTOMIZED_DATA_MODEL>, for example: CustomizedSearchResultsDataModel' #fieldComment
-dataModel PERSISTENT #fieldModifier
-activeTabIndex Number #field
-activeTabIndex PERSISTENT #fieldModifier

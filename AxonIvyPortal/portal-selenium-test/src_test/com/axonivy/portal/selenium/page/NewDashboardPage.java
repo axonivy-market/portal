@@ -15,7 +15,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.LinkNavigator;
-import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -132,17 +131,6 @@ public class NewDashboardPage extends TemplatePage {
     return new MainMenuPage();
   }
 
-  public WebElement waitAndGetStatisticChart(int index) {
-    var widget = $$(".statistic-chart-widget").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT)
-        .get(index).shouldBe(appear, DEFAULT_TIMEOUT);
-    widget.$("[id$='loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
-    waitForWidgetLoadedByExpandThenCollapse(widget);
-    // We use Sleeper here to wait for chart render completely, because the
-    // statistic dialog was render with an animation by canvas.
-    Sleeper.sleep(1000);
-    return widget.ancestor(".grid-stack-item");
-  }
-
   public SelenideElement waitAndGetClientStatisticChart(int index) {
     var widget = $$("[id^='client-statistic-client_statistic']").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT)
         .get(index)
@@ -166,7 +154,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public WelcomeEditWidgetNewDashboardPage editWelcomeWidgetConfiguration(String widgetId) {
-    var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
+    var configurationPage = openDashboardConfigurationPage();
     DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
@@ -779,10 +767,6 @@ public class NewDashboardPage extends TemplatePage {
     selectDashboard.parent().shouldBe(Condition.cssClass("active-menuitem"), DEFAULT_TIMEOUT);
   }
 
-  public StatisticWidgetDashboardPage selectStatisticWidget() {
-    return new StatisticWidgetDashboardPage();
-  }
-
   public void checkDisplayedCaseWidgetContainer() {
     getCaseWidgetContainer().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
@@ -864,6 +848,7 @@ public class NewDashboardPage extends TemplatePage {
     $("#search-results-tabview").shouldBe(appear, DEFAULT_TIMEOUT);
     return new GlobalSearchResultPage();
   }
+
 
   public void waitForCaseWidgetLoaded() {
     checkDisplayedCaseWidgetContainer();
@@ -1075,5 +1060,47 @@ public class NewDashboardPage extends TemplatePage {
   
   public ClientStatisticWidgetNewDashboardPage selectClientStatisticChartWidget(String chartName) {
     return new ClientStatisticWidgetNewDashboardPage(chartName);
+  }
+  
+  public boolean isInputGlobalSearchDisabled() {
+    return $(".topbar-item.search-item").isDisplayed();
+  }
+  
+  public SelenideElement getQuickGlobalSearchInput() {
+    return $("input[id='quick-global-search-component:global-search-data']");
+  }
+  
+  public void clickOnQuickGlobalSearchInput() {
+    getQuickGlobalSearchInput().shouldBe(appear, DEFAULT_TIMEOUT).click();
+  }
+  
+  public SelenideElement getGlobalQuickSearchPanel() {
+    return $("[id='quick-global-search-component:global-search-form']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public GlobalSearchResultPage inputQuickGlobalSearchKeyword(String keyword) {
+    SelenideElement searchInput = getQuickGlobalSearchInput();
+    searchInput.shouldBe(appear, DEFAULT_TIMEOUT).click();
+    searchInput.sendKeys(keyword);
+    searchInput.sendKeys(Keys.RETURN);
+    $("#search-results-tabview").shouldBe(appear, DEFAULT_TIMEOUT);
+    return new GlobalSearchResultPage();
+  }
+  
+  public SelenideElement getProcessWidgetTable() {
+    return getProcessWidgetContainer().$("div[id$='process-list']");
+  }
+
+  public void checkDisplayedProcessWidgetContainer() {
+    getProcessWidgetContainer().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  private SelenideElement getProcessWidgetContainer() {
+    return $("div[id*='dashboard-processes-container']");
+  }
+
+  public void waitForProcessWidgetLoaded() {
+    checkDisplayedCompactModeProcessContainer();
+    getProcessWidgetTable().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 }

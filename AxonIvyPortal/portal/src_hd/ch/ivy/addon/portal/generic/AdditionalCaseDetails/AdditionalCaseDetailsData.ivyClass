@@ -1,4 +1,0 @@
-AdditionalCaseDetailsData #class
-ch.ivy.addon.portal.generic.AdditionalCaseDetails #namespace
-selectedCase ch.ivyteam.ivy.workflow.ICase #field
-selectedCase PERSISTENT #fieldModifier

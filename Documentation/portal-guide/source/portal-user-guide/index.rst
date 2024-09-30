@@ -14,10 +14,8 @@ User Guide
    process-information/index
    full-task-list/index
    full-case-list/index
-   full-statistic-list/index
    my-profile/index
    admin-settings/index
-   axon-ivy-express/index
    portal-chat/index
    notification/index
    demo-processes/index
@@ -25,3 +23,4 @@ User Guide
    qr-code/index
    complex-filter/index
    statistic-chart/index
+   accessibility/index

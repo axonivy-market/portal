@@ -11,8 +11,8 @@ pipeline {
   }
 
   tools {
-    maven '3.8'
-    jdk '17'
+    maven '3.9'
+    jdk '21'
   }
 
   parameters {
@@ -39,9 +39,6 @@ pipeline {
           utils.stopAllEngines()
           utils.extractEngine(env.engineDir, params.engineDownloadURL)
 
-          utils.downloadExpress()
-          def expressFile = findFiles(glob: 'archive/**/axonivy-express*.iar')[0].path
-
           echo '====================Build Portal modules===================='
           def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples', 'AxonIvyPortal/PortalApp', 'Showcase/portal-demo-app']
           for (module in modules) {
@@ -55,12 +52,11 @@ pipeline {
             Copy-Item Showcase/portal-demo-app/target/*zip -Destination \$DEPLOYMENT
             Copy-Item Showcase/portal-developer-examples/target/*iar -Destination \$DEPLOYMENT
             Copy-Item Showcase/portal-components-examples/target/*iar -Destination \$DEPLOYMENT
-            Copy-Item ${expressFile} -Destination \$DEPLOYMENT
           """
           utils.killUnnecessaryProcessesToRunTest()
 
           echo '====================Execute maven for testing===================='
-          bat "mvn clean test -f AxonIvyPortal/portal-selenium-test/customized_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
+          bat "mvn clean test -f AxonIvyPortal/portal-selenium-test/customized_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2"
           utils.cleanDisk()
         }
       }

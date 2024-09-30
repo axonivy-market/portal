@@ -88,7 +88,6 @@ public class HomepageUtils {
       case PROCESS -> findRelativeUrlByKeywork(PortalNavigator.PORTAL_PROCESS_START);
       case TASK -> findRelativeUrlByKeywork(PortalNavigator.PORTAL_TASK_START);
       case CASE -> findRelativeUrlByKeywork(PortalNavigator.PORTAL_CASE_START);
-      case STATISTICS -> findRelativeUrlByKeywork(PortalNavigator.PORTAL_STATISTIC_START);
       default -> "";
     };
     if (StringUtils.isNotEmpty(relativeUrl)) {
@@ -112,7 +111,7 @@ public class HomepageUtils {
   }
 
   private static String findHomepageSetting() {
-    return new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DEFAULT_HOMEPAGE);
+    return GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.DEFAULT_HOMEPAGE);
   }
   
   public static Map<String, String> getHomepageOptionsForAdminSettings() {
