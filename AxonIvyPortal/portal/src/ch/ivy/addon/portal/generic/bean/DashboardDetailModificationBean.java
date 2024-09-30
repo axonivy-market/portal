@@ -120,8 +120,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private Optional<DashboardTemplate> foundTemplate;
   private List<DashboardProcess> customWidgets;
   private List<ClientStatistic> statisticWidgets;
-  private String widgetId;
-  
 
   @PostConstruct
   public void initConfigration() {
@@ -498,10 +496,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     if (widget.getType() != DashboardWidgetType.CLIENT_STATISTIC) {
       initMultipleLanguagesForWidgetName(this.widget.getName());
     }
-    
-    if (widget.getId().endsWith("_temp")) {
-      widget.setId(widgetId);
-    }
 
     if (widgets.contains(this.widget)) {
       widgets.set(widgets.indexOf(this.widget), this.widget);
@@ -807,7 +801,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   public void prepareEditWidget(DashboardWidget widget) {
-    this.widgetId = widget.getId();
     DashboardWidget editWidget = findWidgetByIdInSelectedDashboard(widget);
     switch (widget.getType()) {
       case PROCESS -> {
@@ -841,7 +834,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         .filter(dashboardWidget -> dashboardWidget.getId().equals(widget.getId()))
         .findAny().orElse(widget);
     DashboardWidgetUtils.buildWidgetColumns(foundWidget);
-    foundWidget.setId(widget.getId().concat("_temp"));
     return foundWidget;
   }
 
