@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.By.ByCssSelector;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -216,7 +217,12 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getDisabledMoreInformationLink() {
-    return $("span[id$=':more-information']");
+    return getProcessActionMenu().$("ul[class*='ui-helper-reset']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li > a > span").filter(Condition.exactText("More Information")).first();
+  }
+  
+  private SelenideElement getProcessActionMenu() {
+    $("div#process-action-group").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return $("div[id$='process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getMoreInformationLink() {
