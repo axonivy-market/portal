@@ -3,6 +3,7 @@
 Accessibility
 *************
 
+
 Why is Accessibility Important?
 ===============================
 .. raw:: html
@@ -64,8 +65,13 @@ Advanced Features
 ^^^^^^^^^^^^^^^^^
 
 Task Widget Navigation:
-- You can also use Task widget navigation to jump directly to the pop-ups for canceled tasks.
+^^^^^^^^^^^^^^^^^^^^^^
+
+You can also use Task widget navigation to jump directly to the pop-ups for canceled tasks.
+------Picture1------
+
 Additionally, it is possible to navigate to the actions within the widget.
+------Picture2------
 By pressing the Tab key, the focus can be set to the actions of a task. Once you are in the desired row, pressing Enter will open the context menu. You can then use the keyboard shortcut again to navigate through the menu. The Esc key can be used to exit the context menu at any time.
 
 Example for Task Navigation
@@ -77,6 +83,8 @@ Case Widget Navigation
 ^^^^^^^^^^^^^^^^
 
 With the Case widget navigation, you can also navigate into the actions of a case.
+
+------Picture3------
 Press the keyboard shortcut to focus on the case, and pressing Enter will open the context menu. You can navigate through it by pressing the shortcut again, and exit the menu by pressing Esc.
 
 Example for Case Navigation
@@ -92,7 +100,7 @@ These shortcuts are available in Chrome, Firefox, and Edge and work seamlessly w
 Show Case:
 ^^^^^^^^^^
 
-Place for Gif
+ -----Place for Gif4-----
 
 Extended Descriptive Elements in the Task and Case List
 -------------------------------------------------------
@@ -149,6 +157,33 @@ Accessibility Dashboard Templates
 .. raw:: html
   
    <p style="margin-top: 20px;"></p>
-To further enhance usability, We have created an Accessibility Dashboard that simplifies navigation for users with disabilities. This dashboard features a dedicated element that displays available shortcuts. When the screen is opened, this element is automatically focused and read aloud by the screen reader.
-Additionally, We have enriched the task and case elements with metadata such as name, assignee, and other relevant details. These are included as descriptive elements, allowing screen readers to provide immediate feedback upon focusing on these items.
+To further enhance usability, we have created an **Accessibility Dashboard** that simplifies navigation for users with disabilities. This dashboard features a dedicated element that displays available shortcuts. When the screen is opened, this element is automatically focused and read aloud by the screen reader. Each time the dashboard is accessed, the shortcuts are read aloud to ensure accessibility.
+
+Additionally, we have enriched the **task** and **case** elements with metadata such as name, assignee, and other relevant details. These are included as descriptive elements, allowing screen readers to provide immediate feedback upon focusing on these items.
+
+Integrating the Accessibility Dashboard
+-------------------------------------------
+
+You can easily integrate this feature by selecting the **"Accessibility Dashboard"** template when creating a dashboard.
+------Picture5------
+The dashboard contains the following elements:
+
+- A **Shortcuts Widget** that displays and reads the available shortcuts aloud via a screen reader.
+- A **Process List Widget** to display the ongoing processes.
+- A **Task List Widget** to show tasks.
+- A **Case List Widget** for managing cases.
+
+These widgets are optimized for use with accessibility features and for displaying them on the dashboard.
+
+Adding the Shortcut Widget to any Dashboard
+-------------------------------------------
+
+The **Shortcut Widget** can also be integrated into any other dashboard. 
+Follow these steps:
+
+1. Create a custom dashboard widget.
+2. Select the widget type: **"Custom Dashboard Widget"**.
+3. Choose the **Accessibility Shortcut Widget**.
+4. Add it to the screen.
+
 
