@@ -28,7 +28,7 @@ While AxonIvyExpress is optional, all other modules are mandatory.
 
 |process-module-structure|
 
-.. warning:: We highly recommend only running one portal per security context.
+.. warning:: We highly recommend running only one portal per security context.
 
 .. _architecture-portal-components:
 
