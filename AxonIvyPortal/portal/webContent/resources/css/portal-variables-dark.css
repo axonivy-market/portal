@@ -104,7 +104,7 @@
   --process-warning-icon-color: var(--ivy-tertinary-color-red-medium);
   --process-list-item-background-color: hsl(0, 0%, 20%);
   --process-list-compact-mode-background-color: hsl(0, 0%, 13%);
-  --process-list-item-border-color: #545B67;
+  --process-list-item-border-color: hsl(217.9,10.2%,36.7%);
   --process-list-widget-item-background-color:  var(--ivy-primary-color-grey-dark);
   --process-list-item-text: var(--ivy-primary-color-white);
 

@@ -13,7 +13,6 @@ public class IvyProcess implements Process {
   private IWebStartable process;
   private String application;
   private String imageUrl;
-  private String defaultImageDarkLink;
   private String index;
   private String portalProcessInformation;
 

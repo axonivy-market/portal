@@ -34,7 +34,7 @@
           name="#{process.imageUrl}" />
       </div>
 
-     <h:form id="process-item" target="#{dashboardProcessBean.targetToStartProcess(process)}" styleClass="image-view-form #{isExpress ? 'is-express' : ''} #{isExternalLink ? 'is-external-link' : ''}">
+     <h:form id="process-item" target="#{dashboardProcessBean.targetToStartProcess(process)}" styleClass="image-view-form #{isExternalLink ? 'is-external-link' : ''}">
             <div class="process-name js-process-start-list-item-name">
               <h:outputText id="process-item-name" value="#{process.getName()}" styleClass=" process-image-view-name" />
             </div>

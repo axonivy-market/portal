@@ -114,7 +114,7 @@
   --active-switch-label-font-weight: 700;
   --process-list-item-background-color: var(--ivy-primary-color-white);
   --process-list-compact-mode-background-color: var(--ivy-primary-color-grey-pale);
-  --process-list-item-border-color: #EBEBEB;
+  --process-list-item-border-color: hsl(0,0%,92.2%);
   --process-list-widget-item-background-color:  var(--ivy-primary-color-grey-pale);
   --process-list-item-text: var(--ivy-primary-color-black);
 
