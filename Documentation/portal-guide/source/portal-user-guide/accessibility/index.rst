@@ -9,7 +9,7 @@ Why is Accessibility Important?
 .. raw:: html
   
    <p style="margin-top: 20px;"></p>
-In today's digital landscape, ensuring that front-end UIs are accessible to all users is not just a nice-to-have—it's essential. At Axon Ivy, we recognize the importance of making our portal available to everyone, regardless of their abilities or disabilities. With this in mind, we've put significant thought into enhancing the accessibility features within the Axon Ivy Portal. This is only the beginning, and we are committed to continually improving these features. To ensure the highest quality, we have used tools such as the Microsoft Lighthouse Accessibility Checker and adhered to the guidelines of the WCAG 2.1 standard to evaluate and refine our UI. Currently, our portal boasts a rating of XX, reflecting our commitment to accessibility.
+In today's digital landscape, ensuring that front-end UIs are accessible to all users is not just a nice-to-have—it's essential. At Axon Ivy, we recognize the importance of making our portal available to everyone, regardless of their abilities or disabilities. With this in mind, we've put significant thought into enhancing the accessibility features within the Axon Ivy Portal. This is only the beginning, and we are committed to continually improving these features. To ensure the highest quality, we have used tools such as the Microsoft Lighthouse Accessibility Checker and adhered to the guidelines of the WCAG 2.1 standard to evaluate and refine our UI.
 
 Accessibility Approach in the Axon Ivy Portal
 =============================================
@@ -68,10 +68,10 @@ Task Widget Navigation:
 ^^^^^^^^^^^^^^^^^^^^^^
 
 You can also use Task widget navigation to jump directly to the pop-ups for canceled tasks.
-------Picture1------
+<-Picture1->
 
 Additionally, it is possible to navigate to the actions within the widget.
-------Picture2------
+<-Picture2->
 By pressing the Tab key, the focus can be set to the actions of a task. Once you are in the desired row, pressing Enter will open the context menu. You can then use the keyboard shortcut again to navigate through the menu. The Esc key can be used to exit the context menu at any time.
 
 Example for Task Navigation
@@ -84,7 +84,7 @@ Case Widget Navigation
 
 With the Case widget navigation, you can also navigate into the actions of a case.
 
-------Picture3------
+<-Picture3->
 Press the keyboard shortcut to focus on the case, and pressing Enter will open the context menu. You can navigate through it by pressing the shortcut again, and exit the menu by pressing Esc.
 
 Example for Case Navigation
@@ -100,7 +100,7 @@ These shortcuts are available in Chrome, Firefox, and Edge and work seamlessly w
 Show Case:
 ^^^^^^^^^^
 
- -----Place for Gif4-----
+ <-Gif4->
 
 Extended Descriptive Elements in the Task and Case List
 -------------------------------------------------------
@@ -165,7 +165,7 @@ Integrating the Accessibility Dashboard
 -------------------------------------------
 
 You can easily integrate this feature by selecting the **"Accessibility Dashboard"** template when creating a dashboard.
-------Picture5------
+<-Picture5->
 The dashboard contains the following elements:
 
 - A **Shortcuts Widget** that displays and reads the available shortcuts aloud via a screen reader.
