@@ -296,7 +296,6 @@ function initTableWidget(table) {
   }
 
   setTimeout(function(){
-    console.log('overhere')
     var $table = $(document.getElementById(table.id));
     table.cfg.scrollHeight = $table.height().toString();
     table.init(table.cfg);
