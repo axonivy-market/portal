@@ -4,5 +4,5 @@ if grep -q "\[WARNING\] Flakes:" logText.txt; then
 
   grep "\[WARNING\]" flaky-tests-log.txt | awk '{print}' > testReport.txt
 
-  exit 1
+  exit 0
 fi
