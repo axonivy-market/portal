@@ -68,11 +68,8 @@ pipeline {
             def branchName = env.BRANCH_NAME.replaceAll("/", "%%2F")
             bat """
               curl --user ${credentials} ${env.JENKINS_URL}job/portal-selenium-test/job/${branchName}/${env.BUILD_NUMBER}/consoleText --output logText.txt
-              if grep -q "\[WARNING\] Flakes:" logText.txt; then
-                awk '/^\[WARNING\] Flakes:.*$/{flag=1}/^\[ERROR\] Tests run:.*Flakes: [0-9]*$/{print;flag=0}flag' logText.txt > flaky-tests-log.txt
-                grep "\[WARNING\]" flaky-tests-log.txt | awk '{print}' > testReport.txt
-                exit 1
-              fi
+              copy build/gui-test-new-dashboard/extractFlakyTests.sh ./
+              extractFlakyTests.sh
             """
           }
         }
