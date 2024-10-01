@@ -24,13 +24,13 @@
 <h:panelGroup id="process-action-read-only" rendered="#{isReadOnlyMode}" styleClass="process-grid-item__action--combined">
   <p:commandButton id="expand-link" type="button"
         icon="si si-expand-1"
-        styleClass="rounded-button ui-button-outlined expand-link ui-no-bg-button-widget"
+        styleClass="rounded-button ui-button-outlined expand-link ui-button-widget"
         rendered="#{isReadOnlyMode}"
         onclick="expandFullscreen(#{index}, '#{widget.id}')" />
   
   <p:commandButton id="collapse-link" type="button"
         icon="si si-shrink-1"
-        styleClass="rounded-button ui-button-outlined collapse-link ui-no-bg-button-widget"
+        styleClass="rounded-button ui-button-outlined collapse-link ui-button-widget"
         rendered="#{isReadOnlyMode}"
         onclick="collapseFullscreen(#{index}, '#{widget.id}')" />
 </h:panelGroup>

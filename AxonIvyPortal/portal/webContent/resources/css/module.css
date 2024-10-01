@@ -5510,14 +5510,12 @@ body .ui-link.ui-sidestep-action {
   color: var(--sidestep-action-text-color);
 }
 
-body .ui-button.ui-button-outlined.ui-no-bg-button-widget, .ui-button.ui-widget.ui-no-bg-button-widget {
+body .ui-button.ui-button-outlined.ui-button-widget, .ui-button.ui-widget.ui-button-widget {
   border-color: var(--widget-header-icon);
-  background: transparent;
 }
 
-body .ui-button.ui-widget.ui-no-bg-button-widget {
+body .ui-button.ui-widget.ui-button-widget {
   color: var(--widget-header-icon);
-  box-shadow: none;
 }
 
 body .ui-button.ui-widget.ui-no-rounded-button-process-page {
