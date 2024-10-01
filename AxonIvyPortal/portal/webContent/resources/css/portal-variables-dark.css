@@ -280,7 +280,7 @@
   --widget-advanced-filter-hover-backround-color: transparent;
   --filter-name-label-color: var(--ivy-primary-color-grey-medium);
   --filter-selection-container-group-border-color: var(--ivy-primary-color-grey-medium);
-  --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-medium);
+  --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-light);
 
   /* Item in Widget List */
   --item-widget-background-color: #3E4754;
@@ -337,9 +337,9 @@
   --case-header-action-cell-button-background-color: transparent;
   --header-action-action-left-border-color: var(--ivy-primary-color-grey-medium);
   --task-note-link-hover-color: var(--ivy-primary-color-grey-dark);
-  --case-list-unsortable-header-cell-text-color: var(--ivy-primary-color-grey-medium);
+  --case-list-unsortable-header-cell-text-color: var(--ivy-primary-color-grey-light);
   --case-list-item-background-color: hsla(0, 0%, 100%, 0.2);
-  --case-item-description-cell: var(--ivy-primary-color-grey-medium);
+  --case-item-description-cell: var(--ivy-primary-color-grey-light);
   /* Task Widget */
   --task-filter-selection-form-hover-background-color: var(--item-background-hover);
   --compact-task-start-list-item-hover-background-color: var(--item-background-hover);
@@ -347,11 +347,11 @@
   --compact-task-start-info-color: var(--text-color);
   --compact-task-start-info-icon-color: var(--text-color);
   --task-widget-link-color: var(--ivy-primary-text-color);
-  --task-widget-header-column: var(--ivy-primary-color-grey-medium);
+  --task-widget-header-column: var(--ivy-primary-color-grey-light);
   --menu-action-hover-text-color: var(--ivy-primary-color-grey-light);
   --task-filter-separator-border-bottom: var(--ivy-primary-color-grey-dark);
   --task-view-container-data-scroller-content-background-color: transparent;
-  --task-start-list-description-cell: var(--ivy-primary-color-grey-medium);
+  --task-start-list-description-cell: var(--ivy-primary-color-grey-light);
   --task-filter-delete-user-defined-icon-hover-color: var(--primary-color);
   --task-in-progress-checkbox-label-color: var(--primary-text-color);
   /* Task Detail */
@@ -565,4 +565,7 @@
 
   /* Dashboard commandlink hover */
   --ivy-primary-color-command-link-hover: var(--ivy-primary-color-white);
+  
+    /* Restore button of dashboard */
+  --dashboard-restore-button-background-color: rgba(99, 118, 126, 1);
 }

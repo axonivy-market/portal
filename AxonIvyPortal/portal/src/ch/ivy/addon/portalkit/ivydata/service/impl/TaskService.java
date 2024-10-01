@@ -37,8 +37,6 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Record;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
-import ch.ivyteam.ivy.security.IRole;
-import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -233,11 +231,8 @@ public class TaskService implements ITaskService {
   }
 
   protected TaskQuery queryInvolvedTasks() {
-    FilterLink currentUserIsInvolved = TaskQuery.create().where().or().currentUserIsInvolved();
-    IUser user = Ivy.session().getSessionUser();
-    for (IRole role : user.getRoles()) {
-      currentUserIsInvolved.where().or().roleIsInvolved(role);
-    }
+    FilterLink currentUserIsInvolved = TaskQuery.create().where().or()
+        .currentUserOrHisRolesAreInvolved();
     return currentUserIsInvolved;
   }
 

@@ -9,7 +9,6 @@ import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
-import com.axonivy.portal.selenium.page.ReorderDashboardPage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 
@@ -26,31 +25,32 @@ public class ReorderDashboardTest extends BaseTest {
   // Private dashboard order: private 1, private 2
   @Test
   public void testReorderMyDashboard() {
-	redirectToNewDashBoard();
+    redirectToNewDashBoard();
     redirectToRelativeLink(createSampleDashboardUrl);
-    DashboardConfigurationPage configurationpage = navigateToReorderDashboard(false);
-    ReorderDashboardPage reorderDashboardPage = new ReorderDashboardPage();
-    reorderDashboardPage.toggleVisibility("public 2");
-    reorderDashboardPage.toggleVisibility("public 2");
-    reorderDashboardPage.toggleVisibility("private 1");
-    reorderDashboardPage.reorderPrivateDashboard("private 2", "public 1");
-    reorderDashboardPage.saveSetting();
-    NewDashboardPage dashboardPage = configurationpage.backToHomePage();
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    DashboardConfigurationPage configurationpage = new DashboardConfigurationPage();
+    configurationpage.reorderPrivateDashboard();
+    configurationpage.reorderPrivateDashboard("private 2", "private 1");
+    configurationpage.saveSetting();
+    NewDashboardPage dashboardPage = configurationpage.backToHomePageBottom();
     ElementsCollection dashboardCollection = dashboardPage.getDashboardCollection();
-    dashboardCollection.get(0).shouldBe(Condition.text("private 2"));
-    dashboardCollection.get(1).shouldBe(Condition.text("public 1"));
-    dashboardCollection.get(2).shouldBe(Condition.text("public 2"));
+    dashboardCollection.get(0).shouldBe(Condition.text("public 1"));
+    dashboardCollection.get(1).shouldBe(Condition.text("public 2"));
+    dashboardCollection.get(2).shouldBe(Condition.text("private 2"));
+    dashboardCollection.get(3).shouldBe(Condition.text("private 1"));
   }
 
   @Test
   public void testReorderPublicDashboard() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createSampleDashboardUrl);
-    DashboardConfigurationPage configurationpage = navigateToReorderDashboard(true);
-    ReorderDashboardPage reorderDashboardPage = new ReorderDashboardPage();
-    reorderDashboardPage.reorderPublicDashboard("public 2", "public 1");
-    reorderDashboardPage.saveSetting();
-    NewDashboardPage dashboardPage = configurationpage.backToHomePage();
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    DashboardConfigurationPage configurationpage = new DashboardConfigurationPage();
+    configurationpage.selectPublicDashboardType();
+    configurationpage.reorderPublicDashboard();
+    configurationpage.reorderPublicDashboard("public 2", "public 1");
+    configurationpage.saveSetting();
+    NewDashboardPage dashboardPage = configurationpage.backToHomePageBottom();
     ElementsCollection dashboardCollection = dashboardPage.getDashboardCollection();
     dashboardCollection.get(0).shouldBe(Condition.text("public 2"));
     dashboardCollection.get(1).shouldBe(Condition.text("public 1"));
@@ -58,14 +58,4 @@ public class ReorderDashboardTest extends BaseTest {
     dashboardCollection.get(3).shouldBe(Condition.text("private 2"));
   }
 
-  private DashboardConfigurationPage navigateToReorderDashboard(boolean isPublic) {
-    LinkNavigator.redirectToPortalDashboardConfiguration();
-    var configurationPage = new DashboardConfigurationPage();
-    if (isPublic) {
-      configurationPage.reorderPublicDashboard();
-      return configurationPage;
-    }
-    configurationPage.reorderPrivateDashboard();
-    return configurationPage;
-  }
 }

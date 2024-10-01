@@ -110,7 +110,7 @@
           },
           {
             "locale": "de",
-            "value": "Ihre Fälle"
+            "value": "Ihre Vorgänge"
           },
           {
             "locale": "fr",
@@ -137,7 +137,8 @@
           },
           {
             "field": "description",
-            "visible": false
+            "visible": false,
+            "quickSearch": false
           },
           {
             "field": "state",

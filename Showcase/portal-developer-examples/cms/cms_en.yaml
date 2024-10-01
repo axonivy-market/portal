@@ -146,6 +146,7 @@ Dialogs:
                   Representation: Representation
                   To: To
 Labels:
+  UserExampleGuide: User Example Guide
   address: Street/No.
   cancel: Cancel
   caseId: Case ID
@@ -154,6 +155,7 @@ Labels:
   delete: Delete
   email: E-Mail
   firstName: First name
+  google: Google
   id: ID
   personalData: Personal data
   phoneNumber: Phone number

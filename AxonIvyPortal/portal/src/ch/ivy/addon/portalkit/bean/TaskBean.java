@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumSet;
@@ -12,6 +13,7 @@ import javax.faces.bean.ManagedBean;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.SortMeta;
 
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
@@ -212,5 +214,22 @@ public class TaskBean implements Serializable {
 
   public SortMeta getTaskWorkflowEventSortByTimestamp() {
     return SortFieldUtil.buildSortMeta("timestamp", true);
+  }
+  
+  public String getAriaLabel(ITask task) {
+    String ariaLabel = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskStart");
+    ariaLabel += " - " + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/taskName") + ": " + task.getName();
+    ariaLabel += " - " + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PRIORITY") + ": "
+        + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/" + task.getPriority().name());
+    ariaLabel += " - " + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE") + ": "
+        + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + task.getState().name());
+
+    if (task.getExpiryTimestamp() != null) {
+      String expiryDateString = new SimpleDateFormat(
+          DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(task.getExpiryTimestamp());
+      ariaLabel += " - " + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME") + ": "
+          + expiryDateString;
+    }
+    return ariaLabel;
   }
 }

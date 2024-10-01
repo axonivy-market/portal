@@ -9,6 +9,9 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.primefaces.model.FilterMeta;
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
@@ -17,11 +20,11 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.jsf.primefaces.legazy.LazyDataModel7;
+import ch.ivyteam.ivy.jsf.primefaces.sort.SortMetaConverter;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 
-public class RelatedCaseLazyDataModel extends LazyDataModel7<ICase> {
+public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
 
   private static final long serialVersionUID = 1L;
 
@@ -48,9 +51,10 @@ public class RelatedCaseLazyDataModel extends LazyDataModel7<ICase> {
   }
 
   @Override
-  public List<ICase> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-    criteria.setSortField(sortField);
-    criteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
+  public List<ICase> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
+    SortMetaConverter sort = new SortMetaConverter(sortBy);
+    criteria.setSortField(sort.toField());
+    criteria.setSortDescending(sort.toOrder() == SortOrder.DESCENDING);
 
     if (first == 0) {
       initializedDataModel();
@@ -202,5 +206,11 @@ public class RelatedCaseLazyDataModel extends LazyDataModel7<ICase> {
       }
     }
     return null;
+  }
+
+  @Override
+  public int count(Map<String, FilterMeta> filterBy) {
+    // TODO Auto-generated method stub
+    return 0;
   }
 }
