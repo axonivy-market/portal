@@ -177,3 +177,5 @@ Processes:
         name: Pizza bestellen
     description: 3 Aufgaben erstellen, jede Aufgabe hat CustomerName und ShipmentDate
     name: Aufgaben für die Anpassung der Aufgabenliste erstellen
+  UserExampleGuide: Anleitung mit Benutzerbeispielen
+  google: GE Google

@@ -1,26 +1,11 @@
-Categories:
-  AdhocExpressTasks:
-    name: Tareas Adhoc de Express
-  CreateExpressWorkflow:
-    name: Crear Express Workflow
-  ExpressWorkflow:
-    name: Flujo de trabajo exprés
 ch.ivy.addon.portal.generic:
   CaseDetailsTemplate:
     noCaseId: No hay ID de caso especificado
     requestTabTitle: Solicitud
     statusTabTitle: Información del caso
   OpenTaskTemplate:
-    adhocHistory: Historial del proceso AdHoc
-    adhocHistoryTooltip: Mostrar historial del proceso AdHoc
     browserTabClosingWarning: Puede perder su trabajo en progreso. ¿Quiere continuar?
-    goToAdhocWarning: Puede perder su trabajo en progreso e iniciar el proceso Ad-hoc. ¿Quiere continuar?
     goToSidestepWarning: Sus modificaciones actuales no se guardarán cuando se inicie un proceso de paso lateral directamente desde una tarea. ¿Quiere continuar?
-    noteOfResultFromAdhocProcess: 'Nota: podrá encontrar este historial también en el historial del caso.'
-    reCreateAdhocWarning: Ya existe un proceso AdHoc para esta tarea. ¿Desea crear un proceso nuevo?
-    resultFromAdhocProcess: Resultados del proceso AdHoc
-    startAdHoc: Comenzar Adhoc
-    startAdHocTooltip: Redirija este proceso usando pasos ad-hoc
   PortalName:
     PortalName: Portal
 ch.ivy.addon.portalkit.ui.jsf:
@@ -111,7 +96,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       BY_CUSTOM_ORDER: Pedido personalizado
       BY_INDEX: Índice de clasificación
     ProcessType:
-      EXPRESS_PROCESS: Flujo de trabajo exprés
       EXTERNAL_LINK: Link externo
       IVY_PROCESS: Proceso de negocio
     ProcessWidgetMode:
@@ -253,7 +237,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableProcessViewer: Defina esta propiedad como true para habilitar la opción de visor de procesos en las acciones de Tarea/Caso
       enableScriptCheckingForUploadedDocumentNote: 'Cambiar a "True" para activar el control de anexos permitidos. De momento se pueden controlar archivos en PDF, word y excel. '
       enableVirusScannerForUploadedDocumentNote: Cambiar a "true" para habilitar el escáner de virus para el documento cargado. Actualmente esta función utiliza la API VIRUSTOTAL.
-      expressEndPageNote: Mostrar la página de final de flujo de trabajo express propia.
       hideCaseCreator: |-
         Establecer a true para ocultar el creador de casos en la lista de casos, widget de casos y detalles de casos.
         Este ajuste afecta a todas las consultas de casos, por ejemplo, para la lista de casos, la búsqueda global o la estadística.
@@ -429,7 +412,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     add: Añadir
     addDocument: Agregar documento
     addNote: Agregar nota
-    adhoc: Adhoc
     allCategories: Todas las categorias
     allowPng: Solo se permiten los tipos png
     apply: Aplicar
@@ -652,45 +634,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       noUser: No hay usuarios
       tooltipHelper: Click para ver todos los usuarios que tienen este rol de forma directa o indirecta
       userOfRoleTitle: 'Usuarios del rol {0} '
-    expressManagement:
-      deployButton: Desplegar
-      deployMessage: Desplegando procesos
-      exportExpress: Export Express
-      exportExpressProcessTitle: 'Exportar procesos Express '
-      expressExportName: AXONIVY_Dataset_ExpressWorkflow_{0}.json
-      expressManagement: Gestionar Express
-      expressMessages:
-        deployErrorLog: Error durante el despliegue {0}
-        deploymentFinishedLog: Proceso(s) del archivo {0} han sido desplegados con éxito en {1}ms
-        endDeployLog: Despliegue Express finalizado
-        invalidVersionLog: Versión de Express {0} no apoyada
-        process:
-          duplicateProcessNameLog: Nombre de proceso duplicado {0}
-          installProcessFailedLog: Error al desplegar proceso {0}
-          installProcessFinishedLog: Instalación de proceso {0} con éxito.
-          installedProcessLog: Procesos instalados {0}
-          startDeployProcessLog: Comienzo de la instalación del proceso {0}
-        startDeployLog: Empezando el despliegue de los procesos del documento {0}
-        status:
-          error: Error
-          failed: Error
-          info: Info
-          successful: Éxito
-          warning: Atención
-        validate:
-          validateExpressVersion: La variable "Version Express" no ha sido encontrada. Por favor contacte a su administrador.
-          validateProcessCoOwnerLog: '- Validación del copropietario del proceso {0}. Usuario {1} no existe en el sistema'
-          validateProcessOwnerLog: '- Validación del propietario del proceso {0}. Usuario {1} no existe en el sistema. Cambie el propietario a {2}'
-          validateProcessPermissionLog: '- Validación del permiso para el proceso {0}. Usuario {1} no existe en el sistema'
-          validateTaskDefUserLog: '- Validación del responsable de tarea {0}. Usuario {1} no existe en el sistema'
-        versionLog: 'Versión de Express: {0}'
-      fileEmptyMessage: Archivo está vacío
-      importDialogHeaderTitle: Seleccione un archivo de procesos Express. El formato tiene que ser JSON.
-      importExpress: Importar Express
-      importExpressProcessTitle: Importar procesos Express
-      importHeaderTitle: 'Lista de procesos Express será exportada:'
-      processCount: proceso(s)
-      waitingMessage: Coleccionando datos…
     passwordValidation:
       criteria: Criterios
       enablePasswordValidation: Activar la validación de contraseñas
@@ -893,7 +836,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     select: Seleccione
     selectEditAction: Con qué acción quiere proceder?
     showFullWidget: Mostrar el widget completo
-    startATask: Iniciar tarea
     statisticChartIntroduction: Este widget muestra los gráficos estadísticos disponibles.
     statisticChartWidget: Gráfico estadístico
     statisticWidgets: Widgets estadísticos
@@ -907,6 +849,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       predefinedFilters: Filtros predefinidos
     taskList: Lista de tareas
     taskListIntroduction: Este widget muestra la información relevante de la tarea según la configuración definida.
+    taskStart: Iniciar tarea
     taskWidgetConfiguration: Configuración del widget de tareas
     widgetInfo: Información del widget
     widgetInfoIcon: Icono de información del widget
@@ -958,6 +901,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processElementId: ID del elemento del proceso
     stackTrace: Conjunto de trazas
   forgotPassword:
+    EmailAddress: Dirección de E-Mail
     empty: Vacío
     forgotPassword: Olvidé mi contraseña
     forgotPasswordError: Ha habido un error mientras se procesaba su solicitud. Por favor inténtelo más tarde.
@@ -1066,7 +1010,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewProcess: Agregar nuevo proceso
     addNewProcessDialogHeader: Agregar nuevo proceso de usuario
     backToOverview: De regreso a la visión general
-    deleteExpressWorkflowTooltip: Eliminar Express Workflow
     deleteExternalLinkTooltip: Borrar enlace externo
     deleteProcess: Eliminar proceso
     deleteProcessItemConfirmation: ¿Seguro que quiere eliminar el siguiente proceso?
@@ -1077,9 +1020,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dialogEditInfoTitle: '{0} Información'
       dialogHeaderDescription: Aqui puede configurar parámetros relacionados con el proceso seleccionado.
       dialogHeaderTitle: Editar información para {0}
-    editExpressWorkflowTooltip: Editar Express Workflow
     editProcesses: Editar procesos
-    expressWorkflow: Workflow Express
     externalLink: Enlace externo
     externalLinkVisibility: Visibilidad
     goTo: 'Ir a:'
@@ -1116,8 +1057,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     process: Proceso
     searchResults: Resultados de la búsqueda
     searchResultsFor: '{0} resultados de búsqueda para "{1}"'
-  sidestep:
-    addAdhocTask: Añadir tarea Ad-hoc
   taskActivator:
     assign: Asignar
     cannotAssignTask: Esta tarea no puede ser asignada a otro usuario o grupo.
@@ -1162,7 +1101,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     expiry: Expiración
     failedDelayValidation: La marca de tiempo del retraso de la tarea no puede ser un valor vacío o un formato de fecha inválido
     failedExpiryValidation: La fecha de vencimiento de la tarea no puede estar en el pasado.
-    noAdhoc: Proceso AdHoc no disponible
     noDescription: Sin descripción
     noNotes: Sin notas
     processingTime: Tiempo de procesado
@@ -1314,60 +1252,13 @@ Dialogs:
       CaseDescription: Editar un flujo de trabajo existente
       CaseName: Editar flujo de trabajo
   Tasks:
-    CreateWorkflow:
-      TaskDescription: Flujo de trabajo ha sido creado
-      TaskName: Flujo de trabajo ha sido creado
-    EditWorkflow:
-      TaskDescription: Un flujo de trabajo ha sido editado
-      TaskName: Flujo de trabajo editado
-    FinalReview:
-      TaskName: Control final
-    FinalWorkflowTask:
-      taskDescription: ¡El flujo de trabajo {0} ha sido {1}!
-    FormDefinition:
-      TaskDescription: ¡Por favor define el formulario!
-      TaskName: ¡Creación de formulario!
-    ProcessLoaded:
-      TaskName: Tarea para configurar el proceso Adhoc
-    SaveWorkflow:
-      TaskName: El flujo de trabajo express en tramitación
     TaskDetail:
       DataDescription: Datos y Descripción
       restoreToDefaultSettings: 'Restablecer la configuración por defecto '
       switchToEditMode: Editar
       switchToViewMode: Guardar
-    WorkflowProperties:
-      TaskDescription: ¡Por favor configure las propiedades del flujo de trabajo!
-      TaskName: Propiedades del flujo de trabajo
-  WorkflowExecution:
-    ApprovalForm:
-      Approve: Aprobar
-      ApproveComment: Aprobar
-      CommentLabel: Comentario del aprobador
-      FieldSetApplicant: Solicitante
-      FieldSetForm: Formulario
-      FinishedTasks: Tareas terminadas
-      Fullname: Nombre completo
-      Reject: Rechazar
-      RejectComment: Rechazar
-    FinalReviewForm:
-      approvalStatus: Estado del aprobado
-      approver: Aprovador
-      noticed: Verificado
-    FinishedTasksForm:
-      Applicant: Solicitante
-      ApprovalResult: Estado del aprobado
-      FinishedTasks: Tareas terminadas
-      FormDetails: Detalles del formulario
-    UserTaskForm:
-      ApprovalResult:
-        Approved: Aprobado
-        Rejected: Rechazado
-      Formular: Formulario
   agileBPM:
-    TooltipForOriginalTask: Su tarea actual volverá a evaluarse cuando estén completados los flujos de trabajo ad hoc previos.
     define_WF:
-      AdhocWorkflowTasks: Tareas del flujo de trabajo
       ErrorSelectInvalidAssignee: El destinatario ya está seleccionado o es inválido
       ListOfSelectedUser: Lista de usuarios seleccionados
       ResponsibleDialogHeader: Usuarios responsables
@@ -1384,14 +1275,6 @@ Dialogs:
   ch:
     ivy:
       addon:
-        express:
-          generic:
-            endpage:
-              subtitle: La última tarea se completó con éxito.
-              title: ¡Tarea completada con éxito!
-            expressNoItem: Aún no se ha completado ninguna Tarea Express
-            expressNoItemDescription: Aquí se mostrarán los resultados de las tareas completadas
-            expressWorkflowName: 'Detalles de negocio del caso #{0}'
         portal:
           generic:
             GlobalSearch:
@@ -1449,7 +1332,7 @@ Dialogs:
             CaseWidgetConfiguration:
               AddFilter: Añadir filtro
             ClientStatisticWidget:
-              IdNotFound: 'Chart Id not found with id: {0}'
+              IdNotFound: 'Grafico con ID {0} no encontrado'
               NoPermissionChartMessage: No tiene permiso para ver este gráfico.
             DashboardImportDetails:
               FileInfomation: Informacion del archivo
@@ -1502,104 +1385,7 @@ Dialogs:
       invalidFileMessage: Tipo de archivo no permitido
       invalidSizeMessage: ¡El archivo es muy grande!
       maximumFileUploadElement: Ya existe un elemento de subir documentos
-  workflowCreation:
-    AdhocProcessName: Proceso adHoc para la tarea {0} - {1}
-    FormDefinition:
-      AddCheckboxField: Agregar nuevo campo
-      AddOptionboxField: Anexar nueva opción
-      AllowedFiletypes: Tipos de Archivo permitidos
-      BroadFooterArea: Pie de pagina amplio
-      BroadHeaderArea: Encabezado amplio
-      CheckboxFields: Campos de casillas de verificación
-      CreateField: Crear
-      DataProvider: Proveedor de datos
-      DragAndDropTooltip: Arrastre y suelte los elementos disponibles al encabezado, columna de la izquierda o de la derecha o al pie de página
-      ElementLabel: Etiqueta
-      ElementName: Nombre del elemento
-      Email:
-        Attachment: Anexo
-        EmailAddress: Dirección de E-Mail
-        EmailText: Texto de E-Mail
-        ResponseTo: Respuesta a
-        Subject: Asunto
-      ExecuteWorkflow: Ejecutar flujo de trabajo directamente
-      ExecuteWorkflowWarning: Tiene que procesar todas las tareas antes de poder ejecutar este processo
-      FieldSetAvailableFormelements: Elementos del formulario
-      FieldSetFormelements: Crear elementos de formulario
-      FieldSetFormelementsPlacing: Ubicación de elementos de formulario
-      FieldSetPreviewArea: Vista previa del formulario definido
-      FinishWorkflow: Fin del flujo de trabajo
-      InputArea: Área de entrada
-      InputCheckbox: Casilla de verificación
-      InputField: Campo de entrada
-      InputFileUpload: Carga de archivo
-      InputOptions: Botón Radial
-      InputType: Tipo de Entrada
-      InputTypes:
-        DateSelection: Seleccionador de Fecha
-        NumberField: Campo de numero
-        TextBox: Campo de texto
-      LeftColumn: Columna izquierda
-      NoCheckboxFieldYet: No hay campos de verificación definidos todavía
-      NoDataProvider: Proveedor de datos
-      NoFormelementsAvailable: ¡No hay elementos de formulario disponibles!
-      NoOptionboxFieldsYet: No hay tipos de casillas de verificación definidos todavía
-      NumberOfFiles: Numero de archivos
-      NumberOfRows: Numero de filas
-      OptionboxFields: Botones Radiales
-      OptionboxPlaceholder: Opción
-      Preview: Vista previa
-      RightColumn: Columna derecha
-      SaveWorkflow: Guardar Flujo de trabajo
-      UploadFileFormat:
-        Excel: Excel (xls/xlsx)
-        OtherFormats: Otros formatos de archivo
-        PDF: PDF (pdf)
-        Word: Word (doc/docx)
-      cancelCreateForm: 'Seguro que quiere cancelar? Perderá todos los datos. '
-      otherFiletype: Otros tipos de archivos
-    ProcessName: Crear Flujo de Trabajo Express
-    TaskType:
-      Approval: Aprobado
-      Email: E-Mail de información
-      Review: Comprobación
-      UserTask: Tarea
-      UserTaskWithEmail: 'Tarea con E-Mail '
-    WorkflowDefinition:
-      AbleToStart: Permiso de ejecución
-      AddProcessStep: Agregar paso de proceso
-      ChooseAssignee:
-        AddUserOrRole: 'Selecione un grupo o usuario porfavor:'
-        SelectedAssigneesFieldSet: Usuarios seleccionados
-        UserTooltip: Usuario
-      DefaultTemplateDescription: Abajo verá el patrón estandard
-      DeleteProcessStep: Retirar paso del proceso
-      Description: Describa su proceso
-      DueTimeInDays: Expiración en días
-      EndStep: Terminar
-      FormDefinitionStep: Definición de formulario
-      ProcessNameExists: Este nombre para el flujo de trabajo ya ha sido seleccionado
-      ProcessOwner: Responsable del proceso
-      Processdescription: Descripción de proceso
-      Processdetails: Propiedades del proceso
-      Processflow: Flujo de proceso
-      Processstep: Paso del proceso
-      Processtype: Tipo de proceso
-      ProcesstypeAdHoc: Una vez
-      ProcesstypeRepeating: Recurrente
-      TaskType: Tipo de tarea
-      UntilDaysTooltip: Después de la fecha de caducidad, esta tarea será asignada al grupo "todos" y su prioridad será alta
-      UserInterface:
-        ChangeSettingWarning: Todas las tareas definidas serán borradas, desea proceder?
-        CreateOwn: Crear propia
-        UseDefault: Usar patrón estandard
-        UserInterface: Interfaz de usuario
-      WorkflowPropertiesStep: Propiedades del flujo de trabajo
-      requiredMsgs:
-        ReqMsgGeneric: ¡Es un campo requerido!
-    processStep: Paso del proceso
 Labels:
-  AdhocWorkflow: Describe tu Flujo de Trabajo
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
   CreateNewDashboard: Crear un nuevo cuadro de mandos
@@ -1697,9 +1483,7 @@ Labels:
   TaskUser-Explain: Lista de usuario separados por coma
   ToggleMenu: Menú alternativo
   ViewAllResults: Ver todos los resultados
-  adhocTaskRequired: Deberá agregar al menos una tarea.
   disabledUserPrefix: (inactivo)
-  title: Flujo de trabajo Ad-hoc de auto servicio
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm
@@ -1729,18 +1513,7 @@ Processes:
       SynchronizeServerConfigurationCaseName: Sincronizar configuración del servidor
   portalHome: Portal Principal
   portalSettingSaved: Ajustes del portal guardados
-ProcessPages:
-  selfServiceAdhocProcess: Auto servicio Axon Ivy
-  selfServiceDescription: 'Proceso de auto servicio: Lanzar un flujo de trabajo ad-hoc basado en un patrón de flujo predefinido'
 Texts:
-  Adhoc-Explain: |+
-    <P>
-
-    <B>Introduzca sus comentarios </B>y presione <B>Enviar</B> para proceder al flujo de trabajo.
-
-    </P>
-
-  AdhocWF-Explain: "<P>\n\nDefinir y lanzar un flujo de trabajo es muy sencillo: seleccione un patrón de flujo, agregue algunas tareas y empieze el flujo de trabajo. \n\n</P>\n\n<P>\n\n\n\n</P>\n\n"
   Approval-Explain: |+
     <P>
 

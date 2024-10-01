@@ -5,10 +5,10 @@
 
 <p:commandLink id="start-task" actionListener="#{dashboardBean.handleStartTask(task)}" onclick="event.stopPropagation();"
   disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}" oncomplete="resetPortalLeftMenuState()"
-  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/startATask')}"
+  ariaLabel="#{taskBean.getAriaLabel(task)}"
   process="@this">
   <span class="si si-controls-play" />
 </p:commandLink>
-<p:tooltip for="start-task" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/startATask')}" trackMouse="true"
+<p:tooltip for="start-task" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskStart')}" trackMouse="true"
   hideEvent="mouseleave click" />
 </html>

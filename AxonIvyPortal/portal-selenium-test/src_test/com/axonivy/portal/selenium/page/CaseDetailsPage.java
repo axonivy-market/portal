@@ -676,14 +676,6 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector(actionPanel), true);
   }
 
-  public ExpressProcessPage addAdHocTask(int index) {
-    String commandButton =
-        String.format("[id$='task-widget:related-tasks:%d:additional-options:task-additional-actions']", index);
-    waitForElementDisplayed(By.cssSelector(commandButton), true);
-    findElementByCssSelector(commandButton).click();
-    return new ExpressProcessPage();
-  }
-
   public int getTaskRowIndexFromDetailPage(String taskName) {
     List<SelenideElement> taskNames = $$(".task-name-value");
     int taskIndex = IntStream.range(0, taskNames.size()).filter(i -> taskNames.get(i).getText().equals(taskName))

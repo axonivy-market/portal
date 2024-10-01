@@ -110,10 +110,6 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
     this.displayModes = displayModes;
   }
 
-  public boolean isExpressProcess(DashboardProcess process) {
-    return process != null && process.getType() == ProcessType.EXPRESS_PROCESS;
-  }
-
   public boolean isExternalLink(DashboardProcess process) {
     return process != null && process.getType() == ProcessType.EXTERNAL_LINK;
   }
