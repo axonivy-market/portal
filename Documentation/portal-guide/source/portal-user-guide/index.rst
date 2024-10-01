@@ -25,3 +25,4 @@ User Guide
    complex-filter/index
    statistic-chart/index
    accessibility/index
+   ai-assistant/index
