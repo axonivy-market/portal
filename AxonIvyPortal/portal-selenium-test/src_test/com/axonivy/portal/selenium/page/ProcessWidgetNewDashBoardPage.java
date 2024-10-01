@@ -34,18 +34,17 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
     this.processWidgetId = processWidgetId;
     this.processWidgetName = processWidgetName;
   }
-  
+
   public ElementsCollection expand() {
     return $$("div.widget__header").filter(text(processWidgetName));
   }
-  
+
   public void startProcessByName(String processName) {
-    var startProcess = $(processWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("span.process-start-list-item").filter(text(processName))
-        .first().$("a");
-    waitUntilElementToBeClickable(startProcess);
-    startProcess.click();
+    var startProcess = $(processWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("span.process-start-list-item")
+        .filter(text(processName)).first().$("a");
+    $(startProcess).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
-  
+
   public void deleteProcessWidget() {
     $$("div.table-widget-panel div.widget__header").filter(text(processWidgetName)).first()
         .shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='widget-header-actions']").$("[id*='delete-widget']")
@@ -53,6 +52,7 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private SelenideElement getProcessWidgetHeader() {
+    $("div.table-widget-panel").shouldBe(appear, DEFAULT_TIMEOUT);
     return $$("div.table-widget-panel").filter(text(processWidgetName)).first();
   }
 
@@ -70,7 +70,7 @@ public class ProcessWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void setQuickSearchKeyword(String keyword) {
-    getQuickSearchForm().$("input").setValue(keyword);
+    getQuickSearchForm().$("input").sendKeys(keyword);
   }
 
   public SelenideElement getQuickSearchForm() {

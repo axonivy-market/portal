@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.test;
 
 import static com.codeborne.selenide.CollectionCondition.size;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +35,7 @@ public class DashboardCustomAndProcessWigetTest extends BaseTest {
     newDashboardDetailsEditPage.addWidget();
     CustomWidgetNewDashBoardPage customWidgetNewDashBoardPage =
         newDashboardDetailsEditPage.addNewCustomrWidget();
-    customWidgetNewDashBoardPage.selectWidgetType("Axon Ivy process");
+    customWidgetNewDashBoardPage.selectWidgetType("Custom Dashboard Widget Process");
     customWidgetNewDashBoardPage.selectProcess(PROCESS_NAME);
     customWidgetNewDashBoardPage.getProcessList().shouldHave(size(1));
   }

@@ -107,7 +107,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       RUN_TASK: Run the task
     DashboardCustomWidgetType:
       EXTERNAL_URL: External URL
-      PROCESS: Axon Ivy process
+      PROCESS: Custom Dashboard Widget Process
     DashboardWidgetType:
       CASE: Case widget
       CUSTOM: Custom widget
@@ -915,20 +915,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     fullscreenMode: Fullscreen Mode
     iconMessage:
       caseWidget:
-        BEACH_PALM_SUNBED: You are awesome - all cases are done. Lean back and enjoy.
-        CHARGING_BATTERY_FULL_1: There are currently no cases. Time to recharge the batteries a little.
-        COFFEE_OF_HOT: Wow! Good job! All cases are completed. How about a quick coffee break?
-        RANKING_WINNER_MEDAL: Game, set and match! You did it, all cases are completed!
-        SOCCER_PLAYER: Goal! You did it, all cases completed. Short half-time break.
-        YOGA_MEDITATE: Well done! All cases are done. Inhale, exhale, relax.
+        EMPTY_MESSAGE: Currently, there are no cases available.
         noCasesFoundWhenFilter: There are currently no cases after applied filter.
       taskWidget:
-        BEACH_PALM_SUNBED: You are awesome - all tasks are done. Lean back and enjoy.
-        CHARGING_BATTERY_FULL_1: There are currently no tasks. Time to recharge the batteries a little.
-        COFFEE_OF_HOT: Wow! Good job! All tasks are completed. How about a quick coffee break?
-        RANKING_WINNER_MEDAL: Game, set and match! You did it, all tasks are completed!
-        SOCCER_PLAYER: Goal! You did it, all tasks completed. Short half-time break.
-        YOGA_MEDITATE: Well done! All tasks are done. Inhale, exhale, relax.
+        EMPTY_MESSAGE: Currently, there are no tasks available.
         noTasksFoundWhenFilter: There are currently no tasks after applied filter.
     loading: Loading...
     noCategory: There are no categories
@@ -957,7 +947,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     select: Select
     selectEditAction: Which action do you want to procced?
     showFullWidget: Show full widget
-    startATask: Start task
     statisticChartIntroduction: This widget displays available statistic charts.
     statisticChartWidget: Statistic chart
     switchToViewMode: View Mode
@@ -970,6 +959,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       predefinedFilters: Predefined filters
     taskList: Task List
     taskListIntroduction: This widget displays relevant task information according to defined settings.
+    taskStart: Task start
     taskWidgetConfiguration: Task Widget Configuration
     widgetInfo: Widget information
     widgetInfoIcon: Widget Information Icon
@@ -1451,7 +1441,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     OPEN: Open
     OPEN_UPPERCASE: OPEN
     PARKED: Reserved
-    READY_FOR_JOIN: Ready for joining
+    READY_FOR_JOIN: Ready for join
     READY_FOR_JOINING: Ready for joining
     READY_FOR_JOINING_UPPERCASE: READY FOR JOINING
     READY_FOR_JOIN_UPPERCASE: READY FOR JOIN
@@ -1607,7 +1597,7 @@ Dialogs:
         component:
           ShareLinkDialog:
             CopyLink: Copy link
-            LinkCopied: Link copied!
+            LinkCopied: Link copied
         dashboard:
           component:
             DashboardImportDetails:

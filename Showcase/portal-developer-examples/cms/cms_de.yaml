@@ -146,6 +146,7 @@ Dialogs:
                   Representation: Vertretung
                   To: Bis
 Labels:
+  UserExampleGuide: Anleitung mit Benutzerbeispielen
   address: Strasse/Hausnr.
   cancel: Abbrechen
   caseId: Vorgangs Id
@@ -154,6 +155,7 @@ Labels:
   delete: Löschen
   email: E-Mail
   firstName: Vorname
+  google: GE Google
   personalData: Personendaten
   phoneNumber: Telefonnummer
   proceed: Weiter

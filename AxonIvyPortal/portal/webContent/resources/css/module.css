@@ -2001,6 +2001,25 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 .task-item-body .task-detail-general-card .state-cell.default-task-cell {
   display: flex;
 }
+
+.portal-layout-container.portal-flex-layout-container {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+
+.portal-layout-container.portal-flex-layout-container .case-default-widget-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.portal-layout-container.portal-flex-layout-container .task-list-container,
+.portal-layout-container.portal-flex-layout-container .case-main-container {
+  flex: 1;
+  padding: 0;
+}
+
 /********************************** END TASK WIDGET **********************************/
 
 /********************************** TASK DETAIL **********************************/
@@ -6123,5 +6142,5 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
   .share-dialog {
     min-width: 85vw;
     max-width: 95%;
-  }	
+  }
 }

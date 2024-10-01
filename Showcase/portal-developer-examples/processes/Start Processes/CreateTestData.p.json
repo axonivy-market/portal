@@ -256,7 +256,8 @@
         "callSignature" : "createTasksForTaskListCustomization",
         "outLink" : "createTasksForTaskListCustomization.ivp",
         "startDescription" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/description\")%>",
-        "startName" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/name\")%>"
+        "startName" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/name\")%>",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 96 },
@@ -570,7 +571,8 @@
               "userFromAttribute" : "\"demo\""
             },
             "expiry" : {
-              "timeout" : "new Duration(\"3H\")"
+              "timeout" : "new Duration(\"3H\")",
+              "error" : "f88"
             },
             "customFields" : [
               { "name" : "AccountNumber", "type" : "Number", "value" : "7" },
@@ -586,7 +588,8 @@
             "category" : "OtherLeave/SickLeave/Long",
             "priority" : "HIGH",
             "expiry" : {
-              "timeout" : "new Duration(\"1D\")"
+              "timeout" : "new Duration(\"1D\")",
+              "error" : "f88"
             },
             "customFields" : [
               { "name" : "AccountNumber", "type" : "Number", "value" : "14" },
@@ -602,7 +605,8 @@
             "category" : "OtherLeave/Maternity",
             "priority" : "LOW",
             "expiry" : {
-              "timeout" : "new Duration(\"2D\")"
+              "timeout" : "new Duration(\"2D\")",
+              "error" : "f88"
             },
             "customFields" : [
               { "name" : "AccountNumber", "type" : "Number", "value" : "13" },
@@ -1066,7 +1070,8 @@
         "callSignature" : "CreateTaskForEscalation",
         "outLink" : "CreateTaskForEscalation.ivp",
         "startDescription" : "This is the process to create data for trigger escalation task",
-        "startName" : "Create Test Data For Trigger Escalation"
+        "startName" : "Create Test Data For Trigger Escalation",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1360 },
@@ -1147,7 +1152,8 @@
         "callSignature" : "CreateCasesByCategory",
         "outLink" : "CreateCasesByCategory.ivp",
         "startDescription" : "This is the process to create data for statistic chart cases by category",
-        "startName" : "Create Test Data For Statistic Chart Cases By Category"
+        "startName" : "Create Test Data For Statistic Chart Cases By Category",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 16, "y" : 1792 },
