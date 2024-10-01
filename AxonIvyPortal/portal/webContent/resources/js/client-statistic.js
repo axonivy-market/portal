@@ -601,11 +601,10 @@ class ClientNumberChart extends ClientChart {
   renderMultipleNumberChartInHTML(result, suffixSymbold) {
     let multipleNumberChartInHTML = '';
     if (result?.length > 0) {
-      for (let i = 0; i < result.length; i++) {
-        let item = result[i];
-        let htmlString = this.generateItemHtml(item.key, item.count, suffixSymbold, i);
-        multipleNumberChartInHTML += htmlString;
-      }
+        result.forEach((item, index) => {
+          let htmlString = this.generateItemHtml(item.key, item.count, suffixSymbold, index);
+          multipleNumberChartInHTML += htmlString;
+        })
 
     } else {
       multipleNumberChartInHTML = this.generateItemHtml('', '0', suffixSymbold, 0);
