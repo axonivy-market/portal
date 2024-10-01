@@ -146,6 +146,7 @@ Dialogs:
                   Representation: Représentation
                   To: À l'adresse suivante
 Labels:
+  UserExampleGuide: Guide d'exemple d'utilisation
   address: Rue/No.
   cancel: Annuler
   caseId: Identification du cas
@@ -154,6 +155,7 @@ Labels:
   delete: Supprimer
   email: Courriel
   firstName: Nom
+  google: FR Google
   personalData: Données personnelles
   phoneNumber: Numéro de téléphone
   proceed: Poursuivre

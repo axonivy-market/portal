@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
@@ -13,6 +14,7 @@ import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.util.ProcessStartUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.DateTimeFormatterUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -20,6 +22,7 @@ import ch.ivy.addon.portalkit.util.TimesUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean(name = "caseBean")
 @ViewScoped
@@ -144,6 +147,27 @@ public class CaseBean implements Serializable {
 
   public void setCaseOwnerEnabled(boolean isCaseOwnerEnabled) {
     this.isCaseOwnerEnabled = isCaseOwnerEnabled;
+  }
+  
+  public String getAriaLabel(ICase icase) {
+    String ariaLabel = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/caseName") + ": " + icase.getName();
+    ariaLabel += " - " + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/state") + ": " + getDisplayState(icase.getState());
+
+    if (icase.getStartTimestamp() != null) {
+      String createdDateString = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(icase.getStartTimestamp());
+      ariaLabel += " - " + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME") + ": " + createdDateString;
+    }
+
+    if (icase.getEndTimestamp() != null) {
+      String finishedDateString = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(icase.getEndTimestamp());
+      ariaLabel += " - " + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME") + ": " + finishedDateString;
+    }
+
+    if (icase.getOwner() != null) {
+      ariaLabel += " - " + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/OWNER") + ": " + icase.getOwner().getDisplayName();
+    }
+
+    return ariaLabel;
   }
 
 }

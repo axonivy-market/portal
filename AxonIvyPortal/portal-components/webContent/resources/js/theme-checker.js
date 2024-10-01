@@ -11,5 +11,5 @@ var ThemeChecker = {
     } else {
       $('body').removeClass('serenity light dark').addClass(theme.includes('-light') ? 'freya light' : 'freya dark');
     }
-  }
+  },
 }
