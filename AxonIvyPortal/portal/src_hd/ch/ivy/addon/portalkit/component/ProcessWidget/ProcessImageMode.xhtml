@@ -38,17 +38,24 @@
             <div class="overlay-title">
                 <div class="process-icon-and-name">
                     <!-- Process Name -->
-                    <div
-                        class="process-name js-process-start-list-item-name">
+                    <div class="process-name js-process-start-list-item-name">
                         <h:outputText id="process-item-name"
                             value="#{process.name}"
                             styleClass="line-clamp-text-2 process-image-view-name" />
                     </div>
+            <!-- Process Description -->
+            <div class="process-description js-process-start-list-item-description">
+              <h:outputText id="process-description" value="#{not empty process.description ? process.description : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noProcessDescription')}"
+                styleClass="process-item-description line-clamp-text-3" />
+              <p:tooltip id="info-workflow-tooltip" for="process-description" value="#{process.description}" position="top" trackMouse="true" hideEvent="mouseleave click"
+                styleClass="js-process-start-list-item-description process-tooltip" />
+            </div>
                 </div>
             </div>
             <p:tooltip for="process-item-name" value="#{process.getName()}" position="top" trackMouse="true" hideEvent="mouseleave click" styleClass="process-tooltip"/>
 
       <h:form id="process-item" target="#{processWidgetBean.targetToStartProcess(process)}" styleClass="image-view-form #{isExternalLink ? 'is-external-link' : ''}">
+        
         <!-- Process actions -->
         <ic:ch.ivy.addon.portalkit.component.process.ProcessItemAction id="image-process-action-component" process="#{process}"
           actionListenerOnEditProcess="#{processWidgetBean.setEditedProcess(process)}"
@@ -61,14 +68,6 @@
           outlinedButtonStyle="false"
           status="#{status}"
           />
-
-        <!-- Process Description -->
-        <div class="process-description js-process-start-list-item-description">
-          <h:outputText id="process-description" value="#{not empty process.description ? process.description : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noProcessDescription')}"
-            styleClass="process-item-description line-clamp-text-3" />
-          <p:tooltip id="info-workflow-tooltip" for="process-description" value="#{process.description}" position="top" trackMouse="true" hideEvent="mouseleave click"
-            styleClass="js-process-start-list-item-description process-tooltip" />
-        </div>
 
       </h:form>
     </div>

@@ -4706,7 +4706,7 @@ border-top: 0.14rem dashed;
 }
 
 .process-action-group .ui-button.icon-more-menu-button {
-  margin: 0 0 0 .5rem;
+  margin: 0;
   min-width: 2.357rem;
 }
 
@@ -4773,8 +4773,8 @@ body .process-compact-mode > .ui-fieldset-content {
 .process-action-group {
   position: absolute;
   right: 0;
-  top: -50px;
-  padding: 16px;
+  top: -100px;
+  padding: 8px;
   width: 100%;
   display: inline-flex;
   justify-content: flex-end;
@@ -4796,7 +4796,7 @@ body .process-compact-mode > .ui-fieldset-content {
 }
 
 .image-view-form .process-description {
-  padding: 0.5rem 1.7rem;
+  padding: 0.5rem 0.6rem;
   overflow: hidden;
   position: absolute;
   top: -150px;
@@ -4940,11 +4940,12 @@ body .process-compact-mode > .ui-fieldset-content {
 }
 
 .image-process-item .overlay-title .process-icon-and-name {
-  display: inline-flex;
+  display: block;
   width: 100%;
-  padding: 0 24px;
+  height: 40%;
+  max-height: 100%;
+  padding: 8px 8px;
   position: relative;
-  top: -24px;
 }
 
 .image-process-item .process-category-and-icon-container {
@@ -4953,7 +4954,7 @@ body .process-compact-mode > .ui-fieldset-content {
   height: 0px;
   z-index: 1;
   position: relative;
-  bottom: -10px;
+  bottom: -18px;
   padding-right: 15px;
   column-gap: 10px;
 }
@@ -4997,6 +4998,7 @@ body .process-compact-mode > .ui-fieldset-content {
 .layout-topbar-light .image-process-item .default-process-image, 
 .layout-topbar-dark .image-process-item .default-process-image-dark {
   display: block;
+  padding: 8px;
 }
 
 .layout-topbar-dark .image-process-item .default-process-image, 
@@ -5006,6 +5008,7 @@ body .process-compact-mode > .ui-fieldset-content {
 
 .process-group.image-process-container .image-process-item .card-item.card {
   padding-bottom: 1rem !important;
+  height: 100%
 }
 
 .compact-process-category {
@@ -5035,10 +5038,19 @@ body .process-compact-mode > .ui-fieldset-content {
   margin-top: -1rem;
 }
 
+@media screen and (min-width: 64.063em) {
+  .process-group.image-process-container .image-process-item,
+  .process-group.grid-process-container .process-grid-item {
+    width: 25%;
+    height: 33em;
+  }
+}
+
 @media screen and (min-width: 90.063em) {
   .process-group.image-process-container .image-process-item,
   .process-group.grid-process-container .process-grid-item {
     width: 20%;
+    height: 33em;
   }
 }
 

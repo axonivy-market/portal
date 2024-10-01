@@ -557,7 +557,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     showSystemNotes: Notas del sistema
     showSystemTasks: Tareas del sistema
     sorting: Sorting
-    start: Iniciar el proceso
+    start: Abrir
+    startProcess: Iniciar el proceso
     state: Estatus
     status: Estado
     switchToDesktopVersion: 'Cambiar al modo escritorio '
@@ -1333,7 +1334,7 @@ Dialogs:
             CaseWidgetConfiguration:
               AddFilter: Añadir filtro
             ClientStatisticWidget:
-              IdNotFound: 'Grafico con ID {0} no encontrado'
+              IdNotFound: Grafico con ID {0} no encontrado
               NoPermissionChartMessage: No tiene permiso para ver este gráfico.
             DashboardImportDetails:
               FileInfomation: Informacion del archivo

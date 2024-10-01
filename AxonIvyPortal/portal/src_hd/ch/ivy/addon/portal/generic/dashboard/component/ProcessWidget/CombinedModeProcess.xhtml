@@ -24,13 +24,13 @@
 <h:panelGroup id="process-action-read-only" rendered="#{isReadOnlyMode}" styleClass="process-grid-item__action--combined">
   <p:commandButton id="expand-link" type="button"
         icon="si si-expand-1"
-        styleClass="rounded-button ui-button-outlined expand-link"
+        styleClass="rounded-button ui-button-outlined expand-link ui-no-bg-button-widget"
         rendered="#{isReadOnlyMode}"
         onclick="expandFullscreen(#{index}, '#{widget.id}')" />
   
   <p:commandButton id="collapse-link" type="button"
         icon="si si-shrink-1"
-        styleClass="rounded-button ui-button-outlined collapse-link"
+        styleClass="rounded-button ui-button-outlined collapse-link ui-no-bg-button-widget"
         rendered="#{isReadOnlyMode}"
         onclick="collapseFullscreen(#{index}, '#{widget.id}')" />
 </h:panelGroup>
@@ -54,7 +54,7 @@
         </div>
         <!-- Start process -->
         <div class="ui-g-12 MarTop10 u-no-padding-left u-no-padding-right" id="start-button-container">
-          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" id="start-button"
+          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/startProcess')}" id="start-button"
             actionListener="#{dashboardProcessBean.startProcess(widget.process)}" icon="si si-arrow-right-1"
             disabled="#{!isReadOnlyMode or isInConfiguration}" process="process-item" partialSubmit="true" />
         </div>

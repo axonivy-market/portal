@@ -555,7 +555,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     showSystemNotes: System notes
     showSystemTasks: System tasks
     sorting: Sorting
-    start: Start process
+    start: Start
+    startProcess: Start process
     state: State
     status: Status
     switchToDesktopVersion: Switch to desktop version
@@ -1335,7 +1336,7 @@ Dialogs:
             CaseWidgetConfiguration:
               AddFilter: Add filter
             ClientStatisticWidget:
-              IdNotFound: 'Chart with ID {0} not found'
+              IdNotFound: Chart with ID {0} not found
               NoPermissionChartMessage: You do not have the required permission to see this chart.
             DashboardImportDetails:
               FileInfomation: File Infomation
