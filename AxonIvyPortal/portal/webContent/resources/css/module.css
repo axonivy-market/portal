@@ -4981,7 +4981,7 @@ body .process-compact-mode > .ui-fieldset-content {
 }
 
 .image-process-item .card.image-widget-mode .process-name {
-  padding: 0 24px;
+  padding: 0.5rem 0.6rem;
 }
 
 .image-process-icon .process-image-view-icon {
