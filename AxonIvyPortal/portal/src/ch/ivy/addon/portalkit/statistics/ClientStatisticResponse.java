@@ -2,8 +2,7 @@ package ch.ivy.addon.portalkit.statistics;
 
 import com.axonivy.portal.bo.ClientStatistic;
 
-
-import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
+import ch.ivyteam.ivy.elasticsearch.client.agg.AggregationResult;
 
 public class ClientStatisticResponse {
   private AggregationResult result;
