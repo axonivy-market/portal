@@ -19,7 +19,8 @@
         "startCustomFields" : [
           { "name" : "isDashboardProcess", "value" : "true" }
         ],
-        "startName" : "Accessibility shortcut process",
+        "showInStartList" : false,
+        "startName" : "<%=ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AccessibilityShortcuts/processName\")%>",
         "case" : { }
       },
       "visual" : {

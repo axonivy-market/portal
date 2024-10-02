@@ -81,6 +81,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     nextAbsence: Absence à venir
     selectedDeputyFor: L'utilisateur sélectionné est un substitut de
     selectedUser: Utilisateur sélectionné
+  AccessibilityShortcuts:
+    processName: Raccourcis d'accessibilité Widgets
   AllTasks:
     caseDescription: Description du dossier
     taskDescription: Description de la tâche
@@ -1608,7 +1610,7 @@ Dialogs:
                       <span class="shortcut-key">Alt + 5</span>Se focaliser sur l’onglet des statistiques
                    </div>
                    <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + P</span>Se focaliser sur le premier processus
+                      <span class="shortcut-key">Alt + A</span>Se focaliser sur le premier processus
                    </div>
                    <div class="ui-g-3 shortcut-content ">
                       <span class="shortcut-key">Tab</span>Navigation séquentielle entre les éléments
@@ -1620,7 +1622,7 @@ Dialogs:
                       <span class="shortcut-key">Alt + 6</span>Se focaliser sur la recherche
                    </div>
                    <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + T</span>Se focaliser sur la première tâche
+                      <span class="shortcut-key">Alt + W</span>Se focaliser sur la première tâche
                    </div>
                    <div class="ui-g-3 shortcut-content ">
                       <span class="shortcut-key">Esc</span>Fermer les widgets agrandis/Fermer les menus contextuels
@@ -1632,7 +1634,7 @@ Dialogs:
                       <span class="shortcut-key">Alt + 7</span>Se focaliser sur les paramètres utilisateur
                    </div>
                    <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + C</span>Se focaliser sur le premier cas
+                      <span class="shortcut-key">Alt + Q</span>Se focaliser sur le premier cas
                    </div>
                    <div class="ui-g-3 shortcut-content ">
                       <span class="shortcut-key">Enter</span>Confirmer la sélection
