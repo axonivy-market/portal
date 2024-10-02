@@ -460,6 +460,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     detail: Details
     display: Anzeigen
     displayName: Name anzeigen
+    dragAndDrop: 'Ziehen und Ablegen eines Bildes oder '
     edit: Bearbeiten
     errorAjaxMessage: Es gibt einen allgemeinen Fehler!
     errorFileUploadSize: Die Dateigrösse muss kleiner als {0} sein.
@@ -543,7 +544,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     second: Sekunde
     seconds: Sekunden
     seeDetail: Details anzeigen
-    select: Auswählen
     selectAll: Alle selektieren
     selectUsers: Benutzer auswählen
     selectedDay: '{0} ausgewählte Tag(e)'
@@ -557,6 +557,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showSystemTasks: Systemaufgaben
     sorting: Sortierung
     start: Start
+    startProcess: Prozess starten
     state: Status
     status: Status
     switchToDesktopVersion: Zur Desktop-Version wechseln
@@ -573,6 +574,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: Alle Administratoren
     typeAllUsers: Alle Benutzer
     typeOnlyMe: Nur für mich
+    uploadOneHere: Auswählen
     user: '{0} Benutzer'
     users: Benutzer
     via: schrieb
@@ -1333,7 +1335,7 @@ Dialogs:
             CaseWidgetConfiguration:
               AddFilter: Filter hinzufügen
             ClientStatisticWidget:
-              IdNotFound: 'Diagramm mit ID {0} nicht gefunden'
+              IdNotFound: Diagramm mit ID {0} nicht gefunden
               NoPermissionChartMessage: Sie haben nicht die erforderliche Berechtigung, um diese Karte zu sehen.
             DashboardImportDetails:
               FileInfomation: Dateiinformationen
