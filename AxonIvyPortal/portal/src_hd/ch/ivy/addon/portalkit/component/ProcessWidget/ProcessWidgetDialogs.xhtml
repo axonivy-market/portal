@@ -342,18 +342,30 @@
       <h:panelGroup id="file-upload-panel" layout="block"
         styleClass="#{empty externalLinkBean.externalLink.imageLocation ? 'ui-g-12 ':'ui-g-12 ui-fluid u-padding-0 MarTop10 external-link-preview-image-panel'}">
         <p:fileUpload id="external-link-image-upload"
+          style="display: none;"
+          widgetVar="externalLinkUpload"
           rendered="#{empty externalLinkBean.externalLink.imageLocation}"
           listener="#{externalLinkBean.handleImageUpload}"
           chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
           dragDropSupport="true" auto="true" update="file-upload-panel"
           allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
           accept=".png,.jpg,.jpeg,.svg"
-          label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
-          invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}" />
-        <p:graphicImage id="external-link-preview-image"
-          rendered="#{not empty externalLinkBean.externalLink.imageLocation}"
-          styleClass="external-link-preview-image" library="ivy-cms"
-          name="#{externalLinkBean.externalLink.imageLocation}" />
+          invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
+          dropZone="external-link-preview-image-panel" oncomplete="hideExtendLinkPreviewLabel();"/>
+          
+        <p:outputPanel id="external-link-preview-image-panel" styleClass="ui-external-link-preview-image-panel" >
+            <span class="ui-external-link-preview-image-label">
+            <i class="si si-file-code-upload-1" id="ui-external-link-preview-image-icon" />
+            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dragAndDrop')}">
+            <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/uploadOneHere')}" onclick="PF('externalLinkUpload').show();return false"/>
+            </p:outputLabel>
+            </span>
+            <p:graphicImage id="external-link-preview-image"
+               rendered="#{not empty externalLinkBean.externalLink.imageLocation}"
+               styleClass="external-link-preview-image" library="ivy-cms"
+               name="#{externalLinkBean.externalLink.imageLocation}" />
+        </p:outputPanel>
+
         <h:panelGroup class="external-link-preview-image-overlay-panel"
           rendered="#{not empty externalLinkBean.externalLink.imageLocation}">
           <p:commandButton id="external-link-delete-image-button"
@@ -377,7 +389,7 @@
         icon="#{visibilityBean.generateButtonIcon('si si-add-small')}" process="#{cc.clientId}:add-external-link-form"
         form="#{cc.clientId}:add-external-link-form" actionListener="#{processWidgetBean.createNewExternalLink()}"
         update="#{cc.clientId}:add-external-link-form"
-        oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide(); updateProcessListOnSaveSuccessful();}" />
+        oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide(); updateProcessListOnSaveSuccessful();} else {hideExtendLinkPreviewLabel();}" />
     </f:facet>
   </p:dialog>
   <!-- End External Link Dialogs -->

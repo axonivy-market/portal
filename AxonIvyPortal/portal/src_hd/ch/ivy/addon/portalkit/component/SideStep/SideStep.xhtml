@@ -32,7 +32,7 @@
   <f:event listener="#{data.setCurrentPortalPage(cc.attrs.currentPortalPage)}" type="preRenderComponent" />
 
   <p:link id="#{cc.attrs.actionLinkId}" disabled="#{cc.attrs.isDisabled or cc.attrs.isPreviewMode}" onclick="event.stopPropagation(); return false;"
-    styleClass="action-link #{cc.attrs.buttonStyleClass} portal-icon">
+    styleClass="action-link #{cc.attrs.buttonStyleClass} portal-icon ui-sidestep-action">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" styleClass="task-action-item-label" />
     <i class="si si-arrow-down-1" />
   </p:link>

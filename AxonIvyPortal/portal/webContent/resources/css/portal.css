@@ -133,16 +133,15 @@ body .layout-wrapper .menu-wrapper .sidebar-logo .portal-home-logo-small img {
 /*Style For Color Header --------------------------------------------------------------------------------------*/
 .first-header-bar {
   width: 70%;
-  background-color: var(--first-header-bar-color); }
+}
 
 .second-header-bar {
   width: 15%;
-  background-color: var(--second-header-bar-color); }
+}
 
 .third-header-bar {
   width: 15%;
-  background-color: var(--third-header-bar-color); }
-
+}
 /*Style for Top bar -------------------------------------------------------------------------------------- */
 @media screen and (max-width: 40em) {
   .task-template-container {
@@ -165,14 +164,14 @@ body .portal-breadcrumb.ui-breadcrumb ul li .ui-menuitem-link.ui-state-disabled 
 .process-start-list-item,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item,
 a.compact-task-start-link .task-start-list-item {
-  box-shadow: var(--item-widget-box-shadow);
   border: 1px solid transparent; }
 
-.dashboard-widget-panel-container .process-start-list-item,
-.ui-fieldset-content .process-start-list-item {
-  background-color: var(--item-widget-background-color);
-  box-shadow: var(--item-widget-box-shadow);
+.dashboard-widget-panel-container .process-start-list-item, .process-start-list-item {
+  background-color: var(--process-list-widget-item-background-color);
 }
+.ui-fieldset-content .process-start-list-item {
+  background-color: var(--process-list-item-background-color);
+  border: 1px solid var(--process-list-item-border-color);}
 
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item {
   background-color: var(--item-widget-background-color); }
@@ -195,7 +194,7 @@ a.compact-task-start-link .task-start-list-item {
 }
 
 .process-start-list-item-icon {
-  font-size: 2rem; }
+  font-size: var(--large-font-size); }
 
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-icon {
   color: var(--hovered-user-process-start-list-item-icon-color); }
@@ -247,8 +246,7 @@ body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
   font-weight: var(--widget-header-font-weight);
   font-size: var(--large-font-size); }
 
-.edit-process-icon-group .awesome-icon-selection-panel span,
-.external-process-icon .awesome-icon-selection-panel span {
+.edit-process-icon-group .awesome-icon-selection-panel span {
   font-size: var(--process-grid-icon-font-size); }
 
 .edit-process-info-group .edit-process-detail-1st-cell,
