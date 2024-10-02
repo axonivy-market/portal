@@ -145,6 +145,18 @@ In view mode, when quick search is enabled, a text box will appear to allow you 
     #. The quick search function is unaffected by widget filters.
     #. You can define the scope of the quick search feature in the configuration panel.
 
+**Adjust columns width**
+
+In edit mode, you can adjust the width of each column directly within the widget table.
+
+|task-widget-table-edit-mode|
+
+You may also notice gridlines on the table which implemented by Portal to help you adjust the column widths more efficiently.
+
+  .. important::
+
+    If the total width of the columns is less than the widget's width, the Portal will automatically adjust the column widths to match the widget.
+
 .. _new-dashboard-case-list-widget:
 
 Case list widget
@@ -212,6 +224,18 @@ In the view mode, when quick search is enabled, a text box will appear to allow 
 
     #. The quick search function is unaffected by widget filters.
     #. You can define the scope of the quick search feature in the configuration panel.
+
+**Adjust columns width**
+
+In edit mode, you can adjust the width of each column directly within the widget table.
+
+|case-widget-table-edit-mode|
+
+You may also notice gridlines on the table which implemented by Portal to help you adjust the column widths more efficiently.
+
+  .. important::
+
+    If the total width of the columns is less than the widget's width, the Portal will automatically adjust the column widths to match the widget.
 
 .. _new-dashboard-process-list-widget:
 
@@ -355,11 +379,13 @@ After setting up everything, simply click on the :guilabel:`Share this dashboard
 .. |task-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-table-configuration.png
 .. |task-column-field-type-configuration| image:: ../../screenshots/new-dashboard/task-column-field-type-configuration.png
 .. |task-quick-search-textbox| image:: ../../screenshots/new-dashboard/task-quick-search-textbox.png
+.. |task-widget-table-edit-mode| image:: ../../screenshots/new-dashboard/task-widget-table-edit-mode.png
 
 .. |case-list-widget| image:: ../../screenshots/new-dashboard/case-list-widget.png
 .. |case-list-widget-configuration| image:: ../../screenshots/new-dashboard/case-list-widget-configuration.png
 .. |case-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/case-list-widget-table-configuration.png
 .. |case-quick-search-textbox| image:: ../../screenshots/new-dashboard/case-quick-search-textbox.png
+.. |case-widget-table-edit-mode| image:: ../../screenshots/new-dashboard/case-widget-table-edit-mode.png
 
 .. |process-widget-modes| image:: ../../screenshots/new-dashboard/process-widget-modes.png
 .. |process-widget-combined-mode| image:: ../../screenshots/new-dashboard/process-widget-combined-mode.png

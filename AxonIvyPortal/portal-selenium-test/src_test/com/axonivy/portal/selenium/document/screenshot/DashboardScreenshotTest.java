@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.document.screenshot;
 
+import static com.codeborne.selenide.Selenide.$;
+
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -33,6 +35,7 @@ import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
+import com.codeborne.selenide.Condition;
 
 @IvyWebTest
 public class DashboardScreenshotTest extends ScreenshotBaseTest {
@@ -407,6 +410,46 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     new MainMenuPage().openTaskList();
 
     ScreenshotUtils.resizeBrowserAndCaptureWholeScreen(ScreenshotUtils.DASHBOARD_FOLDER + "page-header-footer", new Dimension(SCREENSHOT_WIDTH, 900));
+  }
+
+  @Test
+  public void screenshotTaskWidgetTableEditMode() throws IOException {
+    ConfigurationJsonUtils.updateJSONSetting(
+        "dashboard-task-widget-has-quicksearch.json", Variable.DASHBOARD);
+    login(TestAccount.ADMIN_USER);
+    redirectToDashboardConfiguration();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    configPage.openEditPublicDashboardsPage();
+    DashboardModificationPage editPage = new DashboardModificationPage();
+    NewDashboardDetailsEditPage detailsEditPage = editPage
+        .navigateToEditDashboardDetailsByName("Dashboard");
+
+    detailsEditPage.waitForPageLoad();
+    detailsEditPage.waitForTaskWidgetLoaded();
+    ScreenshotUtils.captureElementScreenshot(
+        $(".dashboard__widget").shouldBe(Condition.appear, DEFAULT_TIMEOUT),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-widget-table-edit-mode");
+  }
+
+  @Test
+  public void screenshotCaseWidgetTableEditMode() throws IOException {
+    ConfigurationJsonUtils.updateJSONSetting(
+        "dashboard-case-widget-has-quicksearch.json", Variable.DASHBOARD);
+    login(TestAccount.ADMIN_USER);
+    redirectToDashboardConfiguration();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    configPage.openEditPublicDashboardsPage();
+    DashboardModificationPage editPage = new DashboardModificationPage();
+    NewDashboardDetailsEditPage detailsEditPage = editPage
+        .navigateToEditDashboardDetailsByName("Dashboard");
+
+    detailsEditPage.waitForPageLoad();
+    detailsEditPage.waitForCaseWidgetLoaded();
+    ScreenshotUtils.captureElementScreenshot(
+        $(".dashboard__widget").shouldBe(Condition.appear, DEFAULT_TIMEOUT),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-widget-table-edit-mode");
   }
 
   private void showNewCustomizedDashboard() {

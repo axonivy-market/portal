@@ -41,13 +41,15 @@ Below is a sample JSON definition of the case widget in the Portal dashboard.
          },
          {
             "field": "priority",
-            "visible": "false"
+            "visible": "false",
+            "width": "120"
          },
          {
             "field": "id"
          },
          {
-            "field": "name"
+            "field": "name",
+            "width": "400"
          },
          {
             "field": "state",
@@ -141,6 +143,8 @@ The basic JSON structure of the case widget
 
    -  ``quickSearch``: apply search condition for the column when using the quick search feature. The default value is ``false``.
       Set to ``true`` to apply search condition for the column.
+   
+   -  ``width``: the width of the column, measured in pixels.
 
    -  ``headers``: multilingual header of the column.
 
@@ -161,7 +165,8 @@ You can predefine which column to show, and other attributes such as filter, for
          {
             "type": "CUSTOM",
             "field": "supplier",
-            "style": "width: 110px"
+            "style": "color: red",
+            "width": "120"
          }
       ]
    }

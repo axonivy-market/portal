@@ -201,6 +201,12 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
   
+  public void waitForTaskWidgetLoaded() {
+    $("div[id$='dashboard-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("div[id$='dashboard-tasks']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
   public void clickOnAddCustomWidget() {
     waitForElementDisplayed(By.id("new-widget-dialog"), Boolean.TRUE);
     waitForElementClickableThenClick(By.id("new-widget-dialog-content:1:add-widget"));
