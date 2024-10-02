@@ -68,10 +68,13 @@ Task Widget Navigation:
 ^^^^^^^^^^^^^^^^^^^^^^
 
 You can also use Task widget navigation to jump directly to the pop-ups for canceled tasks.
-<-Picture1->
+
+|reset-task-dialog|
 
 Additionally, it is possible to navigate to the actions within the widget.
-<-Picture2->
+
+|task-actions-popup|
+
 By pressing the Tab key, the focus can be set to the actions of a task. Once you are in the desired row, pressing Enter will open the context menu. You can then use the keyboard shortcut again to navigate through the menu. The Esc key can be used to exit the context menu at any time.
 
 Example for Task Navigation
@@ -84,7 +87,8 @@ Case Widget Navigation
 
 With the Case widget navigation, you can also navigate into the actions of a case.
 
-<-Picture3->
+|case-actions-popup|
+
 Press the keyboard shortcut to focus on the case, and pressing Enter will open the context menu. You can navigate through it by pressing the shortcut again, and exit the menu by pressing Esc.
 
 Example for Case Navigation
@@ -100,7 +104,7 @@ These shortcuts are available in Chrome, Firefox, and Edge and work seamlessly w
 Show Case:
 ^^^^^^^^^^
 
- <-Gif4->
+|accessibility-showcase|
 
 Extended Descriptive Elements in the Task and Case List
 -------------------------------------------------------
@@ -165,7 +169,9 @@ Integrating the Accessibility Dashboard
 -------------------------------------------
 
 You can easily integrate this feature by selecting the **"Accessibility Dashboard"** template when creating a dashboard.
-<-Picture5->
+
+|accessibility-dashboard-creation|
+
 The dashboard contains the following elements:
 
 - A **Shortcuts Widget** that displays and reads the available shortcuts aloud via a screen reader.
@@ -185,5 +191,11 @@ Follow these steps:
 2. Select the widget type: **"Custom Dashboard Widget"**.
 3. Choose the **Accessibility Shortcut Widget**.
 4. Add it to the screen.
+
+.. |reset-task-dialog| image:: ../../screenshots/accessibility/reset-task-dialog.png
+.. |task-actions-popup| image:: ../../screenshots/accessibility/task-actions-popup.png
+.. |case-actions-popup| image:: ../../screenshots/accessibility/case-actions-popup.png
+.. |accessibility-showcase| image:: ../../screenshots/accessibility/accessibility-showcase.gif
+.. |accessibility-dashboard-creation| image:: ../../screenshots/accessibility/accessibility-dashboard-creation.png
 
 
