@@ -17,6 +17,7 @@
   /* Color and border radius of Portal button e.g Add, Close, New, Save, OK .. */
   --cancel-button-background-color: var(--ivy-primary-color-grey-light);
   --cancel-button-state-hover-or-focus-background-color: var(--ivy-primary-color-grey-pale);
+  --portal-button-color: var(--ivy-primary-color-white);
   
   /* Color of secondary button */
   --button-secondary-bg-color: var(--ivy-primary-color-white);
@@ -31,7 +32,10 @@
   --widget-sort-menu-border-bottom-color: var(--ivy-primary-color-grey-medium);
   --widget-header-input-field-background-color: transparent;
   --widget-header-input-hover-background-color: transparent;
-
+  
+  /* Side step */
+  --sidestep-action-text-color: var(--ivy-primary-color-white);
+  
   /* Announcement panel color */
   --announcement-background-color: var(--ivy-tertinary-color-yellow-light);
   --announcement-border-color: var(--ivy-tertinary-color-red-medium);
@@ -56,6 +60,8 @@
 
   /* Statistic widget */
   --statistic-filter-accordion-panel-border: var(--ivy-primary-color-grey-light);
+  --chart-container-background-color: var(--ivy-primary-color-grey-light);
+  --chart-container-number-color: var(--ivy-primary-color);
   
   /* Filter Widget */
   --advanced-filter-error-color: var(--ivy-tertinary-color-red-medium);
@@ -75,12 +81,12 @@
   --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-medium);
 
   /* Item in Widget List */
-  --item-widget-background-color: #3E4754;
+  --item-widget-background-color: var(--ivy-primary-color-grey-dark);
   --item-widget-box-shadow: 0px 2px 8px var(--box-shadow-color);
   --item-widget-text-color: var(--ivy-primary-color-black);
 
   /* Process */
-  --process-navigator-item-color: var(--ivy-primary-color-grey-light);
+  --process-navigator-item-color: var(--ivy-primary-color-white);
   --process-item-color-hover: var(--ivy-primary-color-white);
   --process-start-list-item-hover-background-color: var(--item-background-hover);
   --process-start-list-item-hover-border: var(--item-border-hover);
@@ -96,6 +102,12 @@
   --hovered-process-start-list-item-i-con-color: var(--primary-color);
   --hovered-user-process-start-list-item-icon-color: var(--primary-color);
   --process-warning-icon-color: var(--ivy-tertinary-color-red-medium);
+  --process-list-item-background-color: hsl(0, 0%, 20%);
+  --process-list-compact-mode-background-color: hsl(0, 0%, 13%);
+  --process-list-item-border-color: hsl(217.9,10.2%,36.7%);
+  --process-list-widget-item-background-color:  var(--ivy-primary-color-grey-dark);
+  --process-list-item-text: var(--ivy-primary-color-white);
+
   --active-switch-label-font-weight: 700;
   /* Case Detail */
   --case-related-task-color: var(--ivy-primary-color-black);
@@ -298,6 +310,7 @@
   /* Widget header */
   --widget-filter-noti-background-color: var(--ivy-tertinary-color-red-medium);
   --widget-filter-noti-color: var(--ivy-primary-color-white);
+  --widget-header-icon: var(--ivy-primary-color-white);
   /* New Dashboard */
   --dashboard-table-column-small-screen-description-color: var(--ivy-primary-color-grey-medium);
   --new-widget-dialog-title-color: var(--ivy-primary-color-black);
@@ -321,4 +334,7 @@
 
   /* Dashboard commandlink hover */
   --ivy-primary-color-command-link-hover: var(--ivy-primary-color-white);
+  
+    /* Dashboard widgets empty message*/
+  --dashboard-widget-empty-message: var(--ivy-primary-color-grey-pale);
 }

@@ -335,3 +335,7 @@ function showLoadingText() {
 function hideLoadingText() {
   $('.js-loading-text').hide();
 }
+
+function hideExtendLinkPreviewLabel() {
+  $('span.ui-external-link-preview-image-label').css('display', 'none');
+}
