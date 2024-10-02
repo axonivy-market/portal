@@ -94,10 +94,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private static final long serialVersionUID = -5272278165636659596L;
   private static final String DEFAULT_USER_FILTER_ID = "widget-configuration-form:new-widget-configuration-component:user-filter";
   private static final String DEFAULT_WIDGET_TITLE_ID = "widget-configuration-form:new-widget-configuration-component:widget-title-group";
-  
-  // When resize a column of Task widget or Case widget, should add the padding
-  // value to make the result correct
-  private static final int DEFAULT_RESIZABLE_COLUMN_PADDING_VALUE = 30;
 
   private List<WidgetSample> samples;
   private String newWidgetHeader;
@@ -886,11 +882,16 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       return;
     }
 
-    if (targetWidget instanceof TaskDashboardWidget) {
-      handleResizeColumnOfTaskWidget(
-          (TaskDashboardWidget) targetWidget,
-          getColumnIndexFromColumnKey(event.getColumn().getColumnKey()),
-          event.getWidth() + DEFAULT_RESIZABLE_COLUMN_PADDING_VALUE);
+    switch (targetWidget.getType()) {
+      case TASK ->
+        handleResizeColumnOfTaskWidget((TaskDashboardWidget) targetWidget,
+            getColumnIndexFromColumnKey(event.getColumn().getColumnKey()),
+            event.getWidth());
+      case CASE ->
+        handleResizeColumnOfCaseWidget((CaseDashboardWidget) targetWidget,
+            getColumnIndexFromColumnKey(event.getColumn().getColumnKey()),
+            event.getWidth());
+      default -> {}
     }
 
     selectedDashboard = DashboardService.getInstance().save(selectedDashboard);
@@ -910,6 +911,13 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
 
   private void handleResizeColumnOfTaskWidget(TaskDashboardWidget widget,
+      int fieldPosition, int widthValue) {
+    widget.getColumns().get(fieldPosition)
+        .setWidth(Integer.toString(widthValue));
+    widget.getColumns().forEach(col -> col.initDefaultStyle());
+  }
+
+  private void handleResizeColumnOfCaseWidget(CaseDashboardWidget widget,
       int fieldPosition, int widthValue) {
     widget.getColumns().get(fieldPosition)
         .setWidth(Integer.toString(widthValue));
