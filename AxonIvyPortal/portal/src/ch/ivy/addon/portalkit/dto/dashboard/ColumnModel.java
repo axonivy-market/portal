@@ -20,8 +20,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 @JsonIgnoreProperties({"format", "filterType", "filterListOptions", "dateFilterFrom", "dateFilterTo", "userFilter",
     "userFilterList", "userFilterFrom", "userFilterTo", "userDateFilterFrom", "userDateFilterTo",
     "userFilterListOptions"})
-public class ColumnModel extends AbstractColumn
-    implements Serializable {
+public class ColumnModel extends AbstractColumn implements Serializable {
 
   private static final long serialVersionUID = -4315469062114036720L;
 
