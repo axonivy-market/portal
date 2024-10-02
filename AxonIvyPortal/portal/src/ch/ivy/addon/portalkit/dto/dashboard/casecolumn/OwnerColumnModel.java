@@ -28,7 +28,7 @@ public class OwnerColumnModel extends CaseColumnModel implements Serializable {
   public void initDefaultValue() {
     super.initDefaultValue();
     this.field = DashboardStandardCaseColumn.OWNER.getField();
-    this.style = defaultIfEmpty(this.style, getDefaultStyle());
+    this.styleToDisplay = initDefaultStyle();
     this.format = getDefaultFormat();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
   }
@@ -44,7 +44,7 @@ public class OwnerColumnModel extends CaseColumnModel implements Serializable {
   }
 
   @Override
-  public String getDefaultStyle() {
+  protected int getDefaultColumnWidth() {
     return EXTRA_WIDTH;
   }
 

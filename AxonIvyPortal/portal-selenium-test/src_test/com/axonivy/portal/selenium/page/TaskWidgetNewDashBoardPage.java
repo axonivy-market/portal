@@ -466,8 +466,12 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     getTaskWidgetHeader().$(".collapse-link").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
         .click();
   }
-
-  /*
+  
+  public boolean isTableResizable() {
+    return $(taskWidgetId).has(Condition.cssClass("ui-datatable-resizable"));
+  }
+  
+  /* 
    * return descending or ascending
    */
   public SelenideElement getTaskWidgetHeaderSorted() {
