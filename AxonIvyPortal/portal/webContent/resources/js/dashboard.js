@@ -290,6 +290,18 @@ function loadCaseAndTaskWidgetFirstTime(loadingClass, widgetClass) {
   }, 50);
 }
 
+function initTableWidget(table) {
+  if (table === undefined || table.cfg === undefined) {
+    return;
+  }
+
+  setTimeout(function(){
+    var $table = $(document.getElementById(table.id));
+    table.cfg.scrollHeight = $table.height().toString();
+    table.init(table.cfg);
+  }, 500);
+}
+
 function hideAllDashboardOverlayPanels() {
   var openingOverlayPanel = $(".js-dashboard-overlay-panel");
   if (openingOverlayPanel.length > 0) {
