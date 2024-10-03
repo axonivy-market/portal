@@ -143,6 +143,10 @@
   visibility: hidden;
 }
 
+.u-mar-right-2 {
+  margin-right: 2px !important;
+}
+
 .u-mar-right-5 {
   margin-right: 5px !important;
 }

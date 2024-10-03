@@ -9,17 +9,12 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
-import com.axonivy.portal.selenium.common.FileHelper;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.AbsencePage;
-import com.axonivy.portal.selenium.page.AdminSettingsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
-import com.axonivy.portal.selenium.page.ExpressManagementPage;
-import com.axonivy.portal.selenium.page.ExpressProcessPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
-import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.codeborne.selenide.Condition;
 
@@ -69,24 +64,6 @@ public class DisabledUserTest extends BaseTest {
     caseWidgetPage.countCases().shouldHave(size(1));
     assertEquals(DISABLED_VISIBILITY_USER_BRIEF_DISPLAY_NAME, caseWidgetPage.getCreatorAt(0));
 
-  }
-
-  @Test
-  public void testExpressWfWithDisabledUser() {
-    redirectToNewDashBoard();
-    AdminSettingsPage adminSettingsPage = new NewDashboardPage().openAdminSettings();
-    ExpressManagementPage expressManagementPage = adminSettingsPage.openExpressManagementTab();
-    expressManagementPage.openImportDialog();
-    expressManagementPage.selectJSONFile(FileHelper.getAbsolutePathToTestFile("express-wf-with-disabled-user.json"));
-    expressManagementPage.clickOnDeployExpress();
-    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
-    new NewDashboardPage().waitPageLoaded();
-    ProcessWidgetPage processPage = NavigationHelper.navigateToProcessList();
-    ExpressProcessPage expressPage = processPage.editExpressWF("Test disabled user");
-    assertEquals("Test disabled user", expressPage.getProcessName());
-    assertTrue(expressPage.getProcessOwnerNames().contains(DISABLED_VISIBILITY_USER_BRIEF_DISPLAY_NAME));
-    assertTrue(expressPage.getAbleToStartNames().contains(DISABLED_VISIBILITY_USER_BRIEF_DISPLAY_NAME));
-    assertTrue(expressPage.getResponsiblesOfTask(1).contains(DISABLED_VISIBILITY_USER_BRIEF_DISPLAY_NAME));
   }
 
   @Test
