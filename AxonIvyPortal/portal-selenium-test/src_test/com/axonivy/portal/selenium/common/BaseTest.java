@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.common;
 
 import static com.codeborne.selenide.Condition.exist;
-
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.refresh;
@@ -23,7 +22,7 @@ import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
-import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
+import ch.ivyteam.ivy.project.portal.test.Responsible;
 
 /**
  * A base test that other tests extend it. It will test on browser IE by default. It provides feature to take screenshot
@@ -66,7 +65,6 @@ public class BaseTest {
   protected String createTaskWithNotExistedActivatorUrl =
       "internalSupport/14B2FC03D2E87141/createTaskWithNotExistedActivator.ivp";
   protected String createTaskForRoleInvolved = "InternalSupport/171E2BB0DB49C362/roleInvolved.ivp";
-  protected String expressStartLink = "axonivy-express/15798655494F25E1/AxonIvyExpressWF.ivp";
   protected String cleanupDataLink = "portalKitTestHelper/1511A66AF619A768/cleanData.ivp";
   protected String complexPaymentUrl = "portal-developer-examples/162511D2577DBA88/complexPayment.ivp";
   protected String createAlphaCompanyUrl = "portal-components-examples/1818977D467E3129/createAlphaCompany.ivp";
@@ -362,8 +360,8 @@ public class BaseTest {
     return new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT);
   }
 
-  public ExpressResponsible setExpressResponsible(String userName, boolean isGroup) {
-    ExpressResponsible user = new ExpressResponsible();
+  public Responsible setResponsible(String userName, boolean isGroup) {
+    Responsible user = new Responsible();
     user.setResponsibleName(userName);
     user.setIsGroup(isGroup);
     return user;

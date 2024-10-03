@@ -28,7 +28,6 @@ import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
-import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 @ManagedBean
 @ViewScoped
@@ -38,7 +37,7 @@ public class TaskActionBean implements Serializable {
   private boolean isShowResetTask;
   private boolean isShowReserveTask;
   private boolean isShowDelegateTask;
-  //This variable control display of side step and create adhoc
+  //This variable control display of side step
   private boolean isShowAdditionalOptions;
   private boolean isShowDestroyTask;
   private boolean isShowReadWorkflowEvent;

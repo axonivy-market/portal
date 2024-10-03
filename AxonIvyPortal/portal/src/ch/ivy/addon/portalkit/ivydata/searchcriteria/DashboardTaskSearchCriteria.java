@@ -194,6 +194,7 @@ public class DashboardTaskSearchCriteria {
       appendSortByNameIfSet(criteria);
       appendSortByResponsibleIfSet(criteria);
       appendSortByIdIfSet(criteria);
+      appendSortByCreatedDateIfSet(criteria);
       appendSortByExpiryDateIfSet(criteria);
       appendSortByStateIfSet(criteria);
       appendSortByPriorityIfSet(criteria);
@@ -245,6 +246,12 @@ public class DashboardTaskSearchCriteria {
       }
     }
 
+    private void appendSortByCreatedDateIfSet(DashboardTaskSearchCriteria criteria) {
+      if (DashboardStandardTaskColumn.CREATED.getField().equalsIgnoreCase(criteria.getSortField())) {
+        order = query.orderBy().startTimestamp();
+        sortStandardColumn = true;
+      }
+    }
   }
 
   public boolean getCanWorkOn() {

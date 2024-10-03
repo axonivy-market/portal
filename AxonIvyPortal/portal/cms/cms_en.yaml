@@ -1,26 +1,11 @@
-Categories:
-  AdhocExpressTasks:
-    name: Adhoc Express Tasks
-  CreateExpressWorkflow:
-    name: Create Express Workflow
-  ExpressWorkflow:
-    name: Express Workflow
 ch.ivy.addon.portal.generic:
   CaseDetailsTemplate:
     noCaseId: No case-Id specified
     requestTabTitle: Request
     statusTabTitle: Case Information
   OpenTaskTemplate:
-    adhocHistory: Adhoc history
-    adhocHistoryTooltip: Show adhoc history
     browserTabClosingWarning: You may lose your work in progress. Do you want to continue?
-    goToAdhocWarning: You may lose your work in progress and start the Ad-hoc process. Do you want to continue?
     goToSidestepWarning: Your current modifications will not be saved, when a sidestep process is started directly from a task. Do you want to continue?
-    noteOfResultFromAdhocProcess: 'Note: You will find all these entries also in the process history'
-    reCreateAdhocWarning: There is already an adhoc process for this task, do you want to create another one?
-    resultFromAdhocProcess: Results from the Ad-Hoc Process
-    startAdHoc: Start Adhoc
-    startAdHocTooltip: Reroute this process using ad-hoc steps
   PortalName:
     PortalName: Portal
 ch.ivy.addon.portalkit.ui.jsf:
@@ -111,7 +96,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       BY_CUSTOM_ORDER: Custom order
       BY_INDEX: Sorting index
     ProcessType:
-      EXPRESS_PROCESS: Express Workflow
       EXTERNAL_LINK: External Link
       IVY_PROCESS: Business Process
     ProcessWidgetMode:
@@ -251,7 +235,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableProcessViewer: Set this property to true to enable process viewer option in Task/Case actions
       enableScriptCheckingForUploadedDocumentNote: Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
       enableVirusScannerForUploadedDocumentNote: Set to true to enable virus scanner for uploaded document. Currently this function is using API VIRUSTOTAL.
-      expressEndPageNote: Display the custom end page at the end of each Express process.
       hideCaseCreator: |-
         Set to true to hide case creator in case list, case widget and case details.
         This setting affects all case queries, e.g. for case list, global search, statistic.
@@ -427,7 +410,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     add: Add
     addDocument: Add document
     addNote: Add note
-    adhoc: Adhoc
     allCategories: All Categories
     allowPng: Only png types allowed
     apply: Apply
@@ -477,6 +459,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     detail: Details
     display: Display
     displayName: Display name
+    dragAndDrop: 'Drag and drop an image or '
     edit: Edit
     errorAjaxMessage: There is a general exception.
     errorFileUploadSize: The file size must be lower than {0}
@@ -560,7 +543,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     second: second
     seconds: seconds
     seeDetail: See details
-    select: Select
     selectAll: Select All
     selectUsers: Select user(s)
     selectedDay: '{0} selected day(s)'
@@ -574,6 +556,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showSystemTasks: System tasks
     sorting: Sorting
     start: Start
+    startProcess: Start process
     state: State
     status: Status
     switchToDesktopVersion: Switch to desktop version
@@ -590,6 +573,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: All administrators
     typeAllUsers: All users
     typeOnlyMe: Only me
+    uploadOneHere: Upload one here
     user: '{0} user'
     users: Users
     via: via
@@ -655,45 +639,6 @@ ch.ivy.addon.portalkit.ui.jsf:
         <ul style="margin: auto; {1}">{2}</ul>
       tooltipHelper: Click to show all users which own this role directly or indirectly
       userOfRoleTitle: User of {0} group
-    expressManagement:
-      deployButton: Deploy
-      deployMessage: 'Deploying processes  ... '
-      exportExpress: Export Express
-      exportExpressProcessTitle: Export Express Processes
-      expressExportName: AXONIVY_Dataset_ExpressWorkflow_{0}.json
-      expressManagement: Express Management
-      expressMessages:
-        deployErrorLog: Error while deploying {0}
-        deploymentFinishedLog: Process(es) of file {0} successful deployed into Portal in {1}ms
-        endDeployLog: Deployment Express finished
-        invalidVersionLog: Non supported version  {0} of Express
-        process:
-          duplicateProcessNameLog: '- Duplicate process name {0}'
-          installProcessFailedLog: '- Deploy process {0} failed'
-          installProcessFinishedLog: Installing process {0} successfully
-          installedProcessLog: Process installed {0}
-          startDeployProcessLog: Start deploying process {0}
-        startDeployLog: Start deploying the Express process(es) of file {0} to Portal
-        status:
-          error: Error
-          failed: Failed
-          info: Info
-          successful: Success
-          warning: Warning
-        validate:
-          validateExpressVersion: Could not find the Express Version variable in System. Please contact your adminstrator.
-          validateProcessCoOwnerLog: '- Validate Process Co-Owner of {0}, user {1} is not available in system'
-          validateProcessOwnerLog: '- Validate Process Owner of {0}, user {1} is not available in system, change process owner to {2}'
-          validateProcessPermissionLog: '- Validate Process Permission of {0}, user {1} is not available in system'
-          validateTaskDefUserLog: '- Validate Task Definition Responsibles of {0}, user {1} is not available in system'
-        versionLog: 'Version of Express: {0}'
-      fileEmptyMessage: File is empty
-      importDialogHeaderTitle: Choose a Dataset of Express workflow, it should be a JSON file.
-      importExpress: Import Express
-      importExpressProcessTitle: Import Express Processes
-      importHeaderTitle: 'List of Express processes will be exported:'
-      processCount: process(es)
-      waitingMessage: 'Data is collecting ... '
     passwordValidation:
       criteria: Criteria
       enablePasswordValidation: Enable password validation
@@ -896,7 +841,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     select: Select
     selectEditAction: Which action do you want to procced?
     showFullWidget: Show full widget
-    startATask: Start task
     statisticChartIntroduction: This widget displays available statistic charts.
     statisticChartWidget: Statistic chart
     statisticWidgets: Statistic Widgets
@@ -910,6 +854,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       predefinedFilters: Predefined filters
     taskList: Task List
     taskListIntroduction: This widget displays relevant task information according to defined settings.
+    taskStart: Task start
     taskWidgetConfiguration: Task Widget Configuration
     widgetInfo: Widget information
     widgetInfoIcon: Widget Information Icon
@@ -961,6 +906,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processElementId: Process element Id
     stackTrace: StackTrace
   forgotPassword:
+    EmailAddress: E-Mail address
     empty: Empty
     forgotPassword: Forgot my password
     forgotPasswordError: An error occurred while processing your request. Please try again later.
@@ -1069,7 +1015,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewProcess: Add new process
     addNewProcessDialogHeader: Add new user process
     backToOverview: Back to overview
-    deleteExpressWorkflowTooltip: Delete Express Workflow
     deleteExternalLinkTooltip: Delete external link
     deleteProcess: Delete Process
     deleteProcessItemConfirmation: Are you sure you want to delete the following process?
@@ -1080,9 +1025,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dialogEditInfoTitle: '{0} Information'
       dialogHeaderDescription: In this area you can edit some information related to the selected process.
       dialogHeaderTitle: Edit information for {0}
-    editExpressWorkflowTooltip: Edit Express Workflow
     editProcesses: Edit processes
-    expressWorkflow: Express workflow
     externalLink: External link
     externalLinkVisibility: Visibility
     goTo: 'Go to: '
@@ -1119,8 +1062,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     process: Process
     searchResults: Search Results
     searchResultsFor: '{0} search results for "{1}"'
-  sidestep:
-    addAdhocTask: Add Ad-hoc Task
   taskActivator:
     assign: Assign
     cannotAssignTask: This task cannot be assigned to any other user or group.
@@ -1165,7 +1106,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     expiry: Expiry
     failedDelayValidation: Task delay timestamp cannot be an empty value or invalid date format
     failedExpiryValidation: Task expiry timestamp cannot be in the past.
-    noAdhoc: No Adhoc available
     noDescription: No description
     noNotes: No notes
     processingTime: Processing Time
@@ -1316,60 +1256,13 @@ Dialogs:
       CaseDescription: Edit an existing workflow
       CaseName: Edit workflow
   Tasks:
-    CreateWorkflow:
-      TaskDescription: Workflow has been created
-      TaskName: Workflow has been created
-    EditWorkflow:
-      TaskDescription: A process has been edited.
-      TaskName: Process edited
-    FinalReview:
-      TaskName: Final Review
-    FinalWorkflowTask:
-      taskDescription: The workflow {0} has been finished!
-    FormDefinition:
-      TaskDescription: Please define the form!
-      TaskName: Form creation!
-    ProcessLoaded:
-      TaskName: AdHoc Configuration Task
-    SaveWorkflow:
-      TaskName: Express workflow creation in progress
     TaskDetail:
       DataDescription: Data and Description
       restoreToDefaultSettings: Restore to default settings
       switchToEditMode: Edit
       switchToViewMode: Save
-    WorkflowProperties:
-      TaskDescription: Please configure the workflow properties!
-      TaskName: Workflow properties
-  WorkflowExecution:
-    ApprovalForm:
-      Approve: Approve!
-      ApproveComment: Approved
-      CommentLabel: Comment of approver
-      FieldSetApplicant: Requester
-      FieldSetForm: Form
-      FinishedTasks: Finished Tasks
-      Fullname: Full name
-      Reject: Reject!
-      RejectComment: Rejected
-    FinalReviewForm:
-      approvalStatus: Approval status
-      approver: Approver
-      noticed: Acknowledged!
-    FinishedTasksForm:
-      Applicant: Applicant
-      ApprovalResult: Approval result
-      FinishedTasks: Finished Tasks
-      FormDetails: Form Details
-    UserTaskForm:
-      ApprovalResult:
-        Approved: Approved
-        Rejected: Rejected
-      Formular: Form
   agileBPM:
-    TooltipForOriginalTask: Your current task will return once previous steps of the ad hoc workflow are finished.
     define_WF:
-      AdhocWorkflowTasks: Workflow Tasks
       ErrorSelectInvalidAssignee: Assignee is already selected or invalid
       ListOfSelectedUser: List of selected users
       ResponsibleDialogHeader: Responsible Users
@@ -1386,14 +1279,6 @@ Dialogs:
   ch:
     ivy:
       addon:
-        express:
-          generic:
-            endpage:
-              subtitle: The last task was completed successfully
-              title: Task completed successfully!
-            expressNoItem: There is no completed Express Task yet
-            expressNoItemDescription: The results of completed tasks are displayed here
-            expressWorkflowName: 'Business Details of Case #{0}'
         portal:
           generic:
             GlobalSearch:
@@ -1451,7 +1336,7 @@ Dialogs:
             CaseWidgetConfiguration:
               AddFilter: Add filter
             ClientStatisticWidget:
-              IdNotFound: 'Chart Id not found with id: {0}'
+              IdNotFound: Chart with ID {0} not found
               NoPermissionChartMessage: You do not have the required permission to see this chart.
             DashboardImportDetails:
               FileInfomation: File Infomation
@@ -1507,104 +1392,7 @@ Dialogs:
   general:
     MaxLabelLenght: '35'
     maxOptionsLength: '20'
-  workflowCreation:
-    AdhocProcessName: AdHoc Process for Task {0} - {1}
-    FormDefinition:
-      AddCheckboxField: Add new field
-      AddOptionboxField: Append new option
-      AllowedFiletypes: Allowed file types
-      BroadFooterArea: Wide footer
-      BroadHeaderArea: Wide Header
-      CheckboxFields: Checkbox fields
-      CreateField: Create
-      DataProvider: Data provider
-      DragAndDropTooltip: Drag and Drop the available elements to the Header, left column, right column or to the Footer!
-      ElementLabel: Label
-      ElementName: Name of element
-      Email:
-        Attachment: Attachment
-        EmailAddress: E-Mail address
-        EmailText: Email text
-        ResponseTo: Response to
-        Subject: Subject
-      ExecuteWorkflow: Execute workflow directly
-      ExecuteWorkflowWarning: You have to fulfil all tasks before execute this workflow
-      FieldSetAvailableFormelements: Form elements
-      FieldSetFormelements: Create form element
-      FieldSetFormelementsPlacing: Placement of form elements
-      FieldSetPreviewArea: Preview of the defined form
-      FinishWorkflow: Finish Workflow
-      InputArea: Input area
-      InputCheckbox: Checkbox
-      InputField: Input field
-      InputFileUpload: File upload
-      InputOptions: Radio button
-      InputType: Input type
-      InputTypes:
-        DateSelection: Date picker
-        NumberField: Number field
-        TextBox: Text field
-      LeftColumn: left column
-      NoCheckboxFieldYet: No checkbox field types are defined yet
-      NoDataProvider: Special static data provider
-      NoFormelementsAvailable: No form elements are available!
-      NoOptionboxFieldsYet: No checkbox types are defined yet
-      NumberOfFiles: Number of files
-      NumberOfRows: Number of rows
-      OptionboxFields: Radio buttons
-      OptionboxPlaceholder: Option
-      Preview: Preview
-      RightColumn: right column
-      SaveWorkflow: Save Workflow
-      UploadFileFormat:
-        Excel: Excel (xls/xlsx)
-        OtherFormats: Other file formats
-        PDF: PDF (pdf)
-        Word: Word (doc/docx)
-      cancelCreateForm: Do you really want to cancel? All your data will be lost!
-      otherFiletype: Other file types
-    ProcessName: Create Express Workflow
-    TaskType:
-      Approval: Approval
-      Email: Information E-mail
-      Review: Review
-      UserTask: User task
-      UserTaskWithEmail: User task with E-mail
-    WorkflowDefinition:
-      AbleToStart: Able to Start
-      AddProcessStep: Add process step
-      ChooseAssignee:
-        AddUserOrRole: 'Select a group or a user, please:'
-        SelectedAssigneesFieldSet: Selected assignees
-        UserTooltip: User
-      DefaultTemplateDescription: Below is the default template
-      DeleteProcessStep: Remove process step
-      Description: Describe your process
-      DueTimeInDays: Expiry in days
-      EndStep: End
-      FormDefinitionStep: Form definition
-      ProcessNameExists: This process name was used before
-      ProcessOwner: Process Owner
-      Processdescription: Process description
-      Processdetails: Process properties
-      Processflow: Process flow
-      Processstep: Process step
-      Processtype: Type of process
-      ProcesstypeAdHoc: One time
-      ProcesstypeRepeating: Repeatable
-      TaskType: Task Type
-      UntilDaysTooltip: After expiry, the task will be assigned to Everybody and its priority becomes High.
-      UserInterface:
-        ChangeSettingWarning: All defined tasks will be deleted. Are you sure?
-        CreateOwn: Create own
-        UseDefault: Use default
-        UserInterface: User Interface
-      WorkflowPropertiesStep: Workflow properties
-      requiredMsgs:
-        ReqMsgGeneric: ' is a required field!'
-    processStep: Process Step
 Labels:
-  AdhocWorkflow: Describe your Workflow
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
   CreateNewDashboard: Create new dashboard
@@ -1702,9 +1490,7 @@ Labels:
   TaskUser-Explain: Comma separated list of users
   ToggleMenu: Toggle menu
   ViewAllResults: View all results
-  adhocTaskRequired: You must add at least one new task.
   disabledUserPrefix: (disabled)
-  title: Self Service Ad-hoc Workflow
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm
@@ -1734,18 +1520,7 @@ Processes:
       SynchronizeServerConfigurationCaseName: Synchronize server configuration
   portalHome: Portal Home
   portalSettingSaved: Portal settings are saved
-ProcessPages:
-  selfServiceAdhocProcess: Axon Ivy Self Service
-  selfServiceDescription: 'Self Service Prozess: Launch an ad-hoc Workflow based on a predefined flow pattern.'
 Texts:
-  Adhoc-Explain: |+
-    <P>
-
-    <B>Enter your comment </B>and press <B>Send</B> to proceed the workflow.
-
-    </P>
-
-  AdhocWF-Explain: "<P>\n\nDefine and launch a Workflow at your fingertip: Select a flow pattern, add some tasks and start the Workflow. \n\n</P>\n\n<P>\n\n\n\n</P>\n\n"
   Approval-Explain: |+
     <P>
 

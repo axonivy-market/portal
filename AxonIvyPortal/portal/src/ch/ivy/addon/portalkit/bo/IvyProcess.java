@@ -77,6 +77,10 @@ public class IvyProcess implements Process {
     }
     return imageUrl;
   }
+  
+  public String getDefaultImageDarkLink() {
+    return getContentImageUrl(DefaultImage.PROCESSMODELINGDARK.getPath());
+  }
 
   @Override
   public String getApplication() {
