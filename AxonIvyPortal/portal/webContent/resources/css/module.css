@@ -117,6 +117,7 @@
 
 .filter-widget-input {
   flex: 1;
+  padding-left: 2em !important ;
 }
 
 .filter-category-checkbox-tree .ui-tree-container {
@@ -1043,15 +1044,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   left: 5px;
 }
 
-.process-header .create-express-link {
-  display: inline-block;
-  margin-left: 12px;
-}
-
-.process-header .create-express-link a:hover i {
-  opacity: 1;
-}
-
 .expand-collapse-btns {
   float: left;
 }
@@ -1148,7 +1140,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .process-start-list-item {
   height: 50px;
   max-width: 100%;
-  border-radius: 5px;
+  border-radius: 10px;
   display: flex;
   position: relative;
 }
@@ -1165,9 +1157,8 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .process-start-list-item-icon {
   display: flex;
   align-items: center;
-  padding-left: 15px;
-  padding-right: 15px;
-  width: 4.4rem;
+  padding-left: 12px;
+  width: 4.2rem;
 }
 
 .process-start-list-item-icon .fa {
@@ -1183,15 +1174,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .process-start-list .process-start-list-item-name, .process-in-search .process-start-list-item-name {
   padding-left: 15px;
   padding-right: 50px;
-}
-
-.process-start-list .process-start-list-item-name.is-express,
-.process-in-search .process-start-list-item-name.is-express {
-  padding-right: 120px;
-}
-
-.process-start-list-item-name.is-express {
-  width: calc(100% - 130px);
 }
 
 .process-start-list-item-name.is-external-link {
@@ -1242,27 +1224,13 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   font-weight: bold !important;
 }
 
-.process-start-list-item-action.is-express {
-  right: 50px;
-  flex: 1 0 auto;
-}
-
-.process-start-list-item-action .express-workflow {
-  cursor: pointer;
-}
-
-@media (max-width: 991px) {
-  .process-start-list-item-action .express-workflow.process-item {
-    display: none !important;
-  }
-}
-
 .process-item-action-container {
   display: flex;
   align-items: center;
   vertical-align: middle;
   height: 100%;
   right: 18px;
+  padding-right: 12px;
 }
 
 .process-start-list-item .process-item-action-container .open-icon {
@@ -1361,7 +1329,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .compact-processes-container .process-start-list-item, .compact-default-processes-container .process-start-list-item {
   margin: auto;
   margin-bottom: 12px;
-  padding-right: 15px;
 }
 
 .add-external-link-icon {
@@ -2750,7 +2717,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .setting-tab-action-buttons, .application-tab-action-buttons, .application-selection-action-buttons,
-.announcement-tab-action-buttons, .express-workflow-summary-actions-container,
+.announcement-tab-action-buttons,
 .create-role-container {
   text-align: right;
   margin: .5em 0;
@@ -3906,17 +3873,6 @@ _:-ms-fullscreen, :root .content-link-history {
 }
 /* =================== END ENHANCEMENT ====================== */
 
-/* =================== ADHOC ============================= */
-.adhoc-task-history-dialog .ui-dialog-content.ui-widget-content {
-  max-height: 50vh;
-  width: 35vw;
-}
-
-.adhoc-task-history-author {
-  display: inline;
-}
-/* ===================== END ADHOC ======================= */
-
 /* =================== ADD CHAT ============================= */
 .chat-assignee-dialog {
   width: 600px !important;
@@ -4181,10 +4137,6 @@ _:-ms-fullscreen, :root .content-link-history {
     max-width: 96vw;
   }
 
-  .adhoc-task-history-dialog .ui-dialog-content.ui-widget-content {
-    margin: 0 !important;
-    width: calc(100vw - 40px) !important;
-  }
   .case-details-data-1st-column {
     padding-right: 10px;
     text-align: left;
@@ -4199,13 +4151,6 @@ _:-ms-fullscreen, :root .content-link-history {
     overflow-x: hidden;
     word-break: break-all;
     margin-top: 0.2em;
-  }
-}
-
-@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
-  .adhoc-task-history-dialog .ui-dialog-content.ui-widget-content {
-    margin: 0 !important;
-    width: calc(80vw - 40px) !important;
   }
 }
 
@@ -4239,86 +4184,6 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
     display: none !important;
   }
 }
-
-/*=================== EXPRESS MANAGEMENT START ===================*/
-.express-helper-loading-container,
-.express-process-upload.ui-fileupload .ui-fileupload-progress {
-  display: none;
-}
-
-body .ui-dialog.ui-widget.import-express-dialog,
-body .ui-dialog.ui-widget.export-express-dialog {
-  min-width: 450px;
-  max-width: 1000px;
-}
-
-body .ui-dialog.ui-widget.import-express-dialog .ui-dialog-titlebar.ui-widget-header,
-body .ui-dialog.ui-widget.export-express-dialog .ui-dialog-titlebar.ui-widget-header {
-  padding-left: 1.5em;
-  padding-right: 1.5em;
-}
-
-@media screen and (max-width: 40em) {
-  body .ui-dialog.ui-widget.import-express-dialog,
-  body .ui-dialog.ui-widget.export-express-dialog {
-    min-width: 85vw;
-    max-width: 95%;
-  }	
-}
-
-.import-express-dialog .express-import-result {
-  overflow: auto;
-  max-height: 400px;
-  width: 100%;
-}
-
-.import-express-dialog .import-header-title,
-.export-express-dialog .import-header-title {
-  margin: 0;
-}
-
-.export-express-dialog .express-export-selected {
-  max-height: 250px;
-  overflow: auto;
-  width: 100%;
-}
-
-.express-helper-loading {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.express-workflow-summary-table .ui-paginator.ui-paginator-top,
-.express-workflow-summary-table tbody tr td {
-  padding: 4px 10px !important;
-}
-
-.express-workflow-summary-table .ui-selection-column.express-selection-column {
-  text-align: center;
-}
-
-.express-workflow-summary-table td.ui-selection-column.express-selection-column .ui-chkbox.ui-widget {
-  margin: auto;
-  margin-top: 4px;
-}
-
-.express-workflow-summary-table .express-selection-column {
-  width: 50px !important;
-  text-align:center; 
-}
-
-.express-workflow-summary-table tbody tr td,
-.express-process-upload .ui-fileupload-row>div {
-  word-break: break-all;
-}
-
-.express-management-form {
-  position: relative;
-  overflow: hidden;
-}
-
-/*=================== EXPRESS MANAGEMENT END ===================*/
 
 /*=================== BREADCRUMB ===================*/
 body .ui-widget-header.portal-breadcrumb a {
@@ -4841,7 +4706,7 @@ border-top: 0.14rem dashed;
 }
 
 .process-action-group .ui-button.icon-more-menu-button {
-  margin: 0 0 0 .5rem;
+  margin: 0;
   min-width: 2.357rem;
 }
 
@@ -4855,6 +4720,7 @@ border-top: 0.14rem dashed;
   top: -20px;
   width: 100%;
   height: 16px;
+  padding-right: 25px;
 }
 
 .image-view-form .more-information-image-widget {
@@ -4865,10 +4731,10 @@ border-top: 0.14rem dashed;
   height: 16px;
 }
 
-.image-process-actions {
+.image-process-actions, .start-process {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: end;
   margin-bottom: 0.5rem;
 }
 
@@ -4893,11 +4759,22 @@ border-top: 0.14rem dashed;
   padding: 2rem;
 }
 
+.process-group.process-compact-mode, .process-group.process-compact-mode > legend {
+  background-color: var(--process-list-compact-mode-background-color);
+  border-color: var(--process-list-compact-mode-background-color);
+  padding: 3px 0;
+}
+
+body .process-compact-mode > .ui-fieldset-content {
+  border-top: 1px solid var(--ivy-primary-color-grey-light) ;
+  padding: 25px 0;
+}
+
 .process-action-group {
   position: absolute;
   right: 0;
-  top: -500px;
-  padding: 16px;
+  top: -100px;
+  padding: 8px;
   width: 100%;
   display: inline-flex;
   justify-content: flex-end;
@@ -4913,35 +4790,33 @@ border-top: 0.14rem dashed;
   font-size: 16px;
   line-height: 20px;
   height: 40px;
-  color: var(--ivy-primary-color-white);
   word-break: break-word;
   vertical-align: middle;
   
 }
 
 .image-view-form .process-description {
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 0.6rem;
   overflow: hidden;
   position: absolute;
-  top: -202px;
+  top: -150px;
   left: 0;
 }
 
 .image-view-form .start-process{
-  padding: 32px 24px 16px 24px;
   overflow: hidden;
-  position: absolute;
-  top: -106px;
-  left: 0;
   width: 100%;
-  text-align: center;
+  text-align: end;
+}
+
+.image-view-form .start-process > button > span, .image-process-actions > button > span{
+  color: var(--ivy-primary-light-color);
 }
 
 .image-view-form .start-process-image-widget {
   padding: 32px 24px 16px 24px;
   overflow: hidden;
   position: absolute;
-  top: -45px;
   left: 0;
   width: 100%;
   text-align: center;
@@ -4990,7 +4865,7 @@ border-top: 0.14rem dashed;
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .overlay-title {
   position: absolute;
-  top: auto;
+  top: 31%;
   bottom: 0px;
 }
 
@@ -5009,6 +4884,7 @@ border-top: 0.14rem dashed;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-top: 5%;
 }
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description,
@@ -5042,30 +4918,53 @@ border-top: 0.14rem dashed;
   position: relative;
   object-fit: cover;
   width: inherit;
-  border-radius: 24px;
+  border-radius: 10px;
+}
+
+.image-process-item .image-process-item-image-bgc {
+  background-color: grey;
 }
 
 .image-process-item .overlay-title {
   position: relative;
-  top: -204px;
+  top: -130px;
   left: 0;
   width: 100%;
   height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  background: linear-gradient(180deg, rgba(27, 27, 27, 0) 21.68%, rgba(27, 27, 27, 1) 100%);
   background-size: 100% 50%;
   background-position: 0 100%;
   background-repeat: no-repeat;
 }
 
 .image-process-item .overlay-title .process-icon-and-name {
-  display: inline-flex;
+  display: block;
   width: 100%;
-  padding: 0 24px;
+  height: 40%;
+  max-height: 100%;
+  padding: 8px 8px;
   position: relative;
-  top: -24px;
+}
+
+.image-process-item .process-category-and-icon-container {
+  display: flex;
+  justify-content: flex-end;
+  height: 0px;
+  z-index: 1;
+  position: relative;
+  bottom: -18px;
+  padding-right: 15px;
+  column-gap: 10px;
+}
+
+.image-process-item .process-category-and-icon-container > .process-category, .image-process-item .process-category-and-icon-container > .image-process-icon {
+  background: var(--process-list-item-background-color);
+  color: var(--process-list-item-text);
+  border: 1px solid var(--process-list-item-border-color);
+  height: fit-content;
+  border-radius: 10px;
 }
 
 .image-process-item .overlay-title .process-icon-and-name .process-name {
@@ -5081,19 +4980,35 @@ border-top: 0.14rem dashed;
   color: var(--ivy-primary-color-black);
 }
 
+.image-process-item .card.image-widget-mode .process-name {
+  padding: 0.5rem 0.6rem;
+}
+
 .image-process-icon .process-image-view-icon {
   width: 24px;
-  font-size: 24px;
-  margin: 12px;
+  font-size: 20px;
+  margin: 6px;
   text-align: center;
 }
 
 .image-process-item .card-item.card {
   margin-bottom: 0px;
 }
+ 
+.layout-topbar-light .image-process-item .default-process-image, 
+.layout-topbar-dark .image-process-item .default-process-image-dark {
+  display: block;
+  padding: 8px;
+}
+
+.layout-topbar-dark .image-process-item .default-process-image, 
+.layout-topbar-light .image-process-item .default-process-image-dark {
+  display: none;
+}
 
 .process-group.image-process-container .image-process-item .card-item.card {
   padding-bottom: 1rem !important;
+  height: 100%
 }
 
 .compact-process-category {
@@ -5123,10 +5038,19 @@ border-top: 0.14rem dashed;
   margin-top: -1rem;
 }
 
+@media screen and (min-width: 64.063em) {
+  .process-group.image-process-container .image-process-item,
+  .process-group.grid-process-container .process-grid-item {
+    width: 25%;
+    height: 33em;
+  }
+}
+
 @media screen and (min-width: 90.063em) {
   .process-group.image-process-container .image-process-item,
   .process-group.grid-process-container .process-grid-item {
     width: 20%;
+    height: 33em;
   }
 }
 
@@ -5435,6 +5359,7 @@ a.dashboard-action-container label {
 /* =================== ADD EXTERNAL LINK PROCESS DIALOG ====================== */
 .external-link-preview-image {
   width: inherit;
+  height: inherit;
 }
 
 .external-link-preview-image-panel {
@@ -5464,6 +5389,32 @@ a.dashboard-action-container label {
   top: 7px;
   z-index: 1;
   border-radius: 50%;
+}
+
+.ui-external-link-preview-image-panel {
+  width: 100%;
+  border: 1px solid var(--process-list-item-border-color);
+  background-color: var(--process-list-item-background-color);
+  border-radius: 10px;
+  height: 10em;
+  align-items: center;
+  display: flex;
+}
+
+.ui-external-link-preview-image-panel > .ui-external-link-preview-image-label {
+  width: 42%;
+  display: block;
+  text-align: center;
+  margin: auto;
+  position: relative;
+  top: 12px;
+}
+
+.ui-external-link-preview-image-label > #ui-external-link-preview-image-icon {
+  width: 100%;
+  font-size: 2em;
+  top: -20px;
+  position: relative;
 }
 
 .language-icon-padding-right {
@@ -5554,3 +5505,27 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
 .task-status-banner-content {
   width: 100%;
 }
+
+body .ui-link.ui-sidestep-action {
+  color: var(--sidestep-action-text-color);
+}
+
+body .ui-button.ui-button-outlined.ui-button-widget, .ui-button.ui-widget.ui-button-widget {
+  border-color: var(--widget-header-icon);
+}
+
+body .ui-button.ui-widget.ui-button-widget {
+  color: var(--widget-header-icon);
+}
+
+body .ui-button.ui-widget.ui-no-rounded-button-process-page {
+  border: transparent ;
+  background: transparent;
+  box-shadow: none;
+}
+
+body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-button {
+  color: var(--widget-header-icon);
+  
+}
+
