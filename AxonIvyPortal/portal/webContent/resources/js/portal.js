@@ -529,11 +529,17 @@ $(document).ready(function() {
       removeFocusClass(focusedResetTaskFormEl);
       removeFocusClass(focusedTaskSideStepEl);
     }
-     $(document).on('click', function(event) {
-        if (!$(event.target).closest('.focusable').length) {
-           removeFocusedElements();
+
+    $(document).on('click', function(event) {
+      var target = $(event.target);
+      if (!target.closest('.focusable').length) {
+        removeFocusedElements();
+        if(target.is('input')) {
+          target.focus();
         }
+      }
     });
+
     $(document).on('keydown', function(event) {
       if (event.key === 'Tab') {
         removeFocusedElements();

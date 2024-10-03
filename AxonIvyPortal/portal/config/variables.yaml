@@ -33,9 +33,6 @@ Variables:
     # For switch on/off the display icon in button.
     ShowButtonIcon: true
 
-    # Display the custom end page at the end of each Express process.
-    ExpressEndPage: true
-
     # This setting is using for SecurityMemberDisplayName component.
     # If the SecurityMember is a role, set this setting to true to list out all users of this role.
     # If set to true, icon info is shown beside the role name.
@@ -100,10 +97,6 @@ Variables:
       # The standard external links of Portal.
       # [file: json]
       ExternalLinks:
-
-      # The standard express processes of Portal.
-      # [file: json]
-      ExpressProcesses:
 
       # Set to true to disable link to Show Information of process on Processes page (grid mode) and Case Details.
       ShowInformation: true

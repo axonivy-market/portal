@@ -15,7 +15,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
@@ -24,7 +23,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
 import ch.ivy.addon.portalkit.enums.ProcessSorting;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
-import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 
 @ManagedBean
@@ -35,7 +33,6 @@ public class CompactDashboardProcessBean
   private static final long serialVersionUID = 1L;
   private List<DashboardProcess> portalCompactProcesses;
   private DashboardProcessBean dashboardProcessBean;
-  private static String expressStartLink;
 
   public CompactProcessDashboardWidget getWidget() {
     return (CompactProcessDashboardWidget) dashboardProcessBean.getWidget();
@@ -161,12 +158,6 @@ public class CompactDashboardProcessBean
       return;
     }
 
-    if (dashboardProcessBean.isExpressProcess(process) && StringUtils.isNotBlank(process.getId())
-        && StringUtils.isNotBlank(getExpressStartLink())) {
-        dashboardProcessBean.redirectToLink(getExpressStartLink() + "?workflowID=" + process.getId(), false);
-      return;
-    }
-
     dashboardProcessBean.redirectToLink(link, true);
   }
 
@@ -202,13 +193,6 @@ public class CompactDashboardProcessBean
   @Override
   public void onChangeApplications(List<String> applications) {
     dashboardProcessBean.setApplications(applications);
-  }
-
-  private static String getExpressStartLink() {
-    if (StringUtils.isEmpty(expressStartLink)) {
-      expressStartLink = ExpressProcessService.getInstance().findExpressWorkflowStartLink();
-    }
-    return expressStartLink;
   }
 
   public ProcessSorting[] getProcessSorting() {

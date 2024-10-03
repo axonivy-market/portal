@@ -44,7 +44,6 @@ public class TaskActionTest extends BaseTest {
   private static final String CLEAR_EXPIRY = "Clear expiry";
   private static final String DELEGATE = "Delegate";
   private static final String RESERVE = "Reserve";
-  private static final String ADD_AD_HOC_TASK = "Add Ad-hoc Task";
   private static final String RESET = "Reset";
   private static final String DESTROY = "Destroy";
   private static final String WORKFLOW_EVENTS = "Workflow Events";
@@ -70,14 +69,14 @@ public class TaskActionTest extends BaseTest {
 
     // Suspended
     assertTaskActionsByTaskState(SUSPENDED,
-        Arrays.asList(DETAILS, DELEGATE, RESERVE, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        Arrays.asList(DETAILS, DELEGATE, RESERVE, CLEAR_EXPIRY, PROCESS_VIEWER));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Reserved
     taskWidgetPage.clickOnTaskActionLink(0);
     taskWidgetPage.reserveTask(0);
     assertTaskActionsByTaskState(RESERVED,
-        Arrays.asList(DETAILS, DELEGATE, RESET, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        Arrays.asList(DETAILS, DELEGATE, RESET, CLEAR_EXPIRY, PROCESS_VIEWER));
 
     // In progress
     TaskIFrameTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
@@ -85,7 +84,7 @@ public class TaskActionTest extends BaseTest {
     taskDetailsPage = new TaskDetailsPage();
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
     assertTaskActionsByTaskState(IN_PROGRESS,
-        Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, PROCESS_VIEWER));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
   }
 
@@ -102,14 +101,14 @@ public class TaskActionTest extends BaseTest {
 
     // Suspended
     assertTaskActionsByTaskState(SUSPENDED, Arrays.asList(DETAILS, DELEGATE, RESERVE, CLEAR_EXPIRY, DESTROY,
-        WORKFLOW_EVENTS, TRIGGER_ESCALATION, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        WORKFLOW_EVENTS, TRIGGER_ESCALATION, PROCESS_VIEWER));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Reserved
     taskWidgetPage.clickOnTaskActionLink(0);
     taskWidgetPage.reserveTask(0);
     assertTaskActionsByTaskState(RESERVED, Arrays.asList(DETAILS, DELEGATE, RESET, CLEAR_EXPIRY, DESTROY,
-        WORKFLOW_EVENTS, TRIGGER_ESCALATION, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        WORKFLOW_EVENTS, TRIGGER_ESCALATION, PROCESS_VIEWER));
 
     // In progress
     TaskIFrameTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
@@ -117,7 +116,7 @@ public class TaskActionTest extends BaseTest {
     taskDetailsPage = new TaskDetailsPage();
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
     assertTaskActionsByTaskState(IN_PROGRESS, Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, DESTROY,
-        WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        WORKFLOW_EVENTS, PROCESS_VIEWER));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Done
@@ -126,7 +125,7 @@ public class TaskActionTest extends BaseTest {
 
     // Delayed
     assertTaskActionsByTaskState(DELAYED,
-        Arrays.asList(DETAILS, DELEGATE, CLEAR_DELAY, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER, ADD_AD_HOC_TASK));
+        Arrays.asList(DETAILS, DELEGATE, CLEAR_DELAY, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
     // Destroyed

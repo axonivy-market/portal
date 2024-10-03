@@ -9,13 +9,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.axonivy.portal.service.GlobalSearchService;
 
 import ch.ivy.addon.portalkit.configuration.UserProcess;
 import ch.ivy.addon.portalkit.enums.ProcessType;
-import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 
 @ManagedBean
@@ -42,15 +39,6 @@ private static final long serialVersionUID = -5889375917550618261L;
       return;
     }
 
-    if (isExpressProcess(userProcess) && StringUtils.isNotBlank(userProcess.getProcessId())) {
-      String expressStartLink = ExpressProcessService.getInstance().findExpressWorkflowStartLink();
-      if (StringUtils.isNotBlank(expressStartLink)) {
-        FacesContext.getCurrentInstance().getExternalContext()
-            .redirect(expressStartLink + "?workflowID=" + userProcess.getProcessId());
-        return;
-      }
-    }
-
     link += link.contains("?") ? "&" : "?";
     // Put the "embedInIFrame" param to the process link to open it in the DefaultFramePage process
     // Then this process will open task in IFrame or not based on its "embedInIFrame" String custom field
@@ -75,10 +63,6 @@ private static final long serialVersionUID = -5889375917550618261L;
 
   private boolean isExternalLink(UserProcess process) {
     return process != null && process.getProcessType() == ProcessType.EXTERNAL_LINK;
-  }
-
-  private boolean isExpressProcess(UserProcess process) {
-    return process != null && process.getProcessType() == ProcessType.EXPRESS_PROCESS;
   }
 
   private boolean isEnableGlobalSearchScopeProcesses() {
