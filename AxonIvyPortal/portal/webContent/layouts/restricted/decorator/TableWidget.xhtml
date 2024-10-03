@@ -139,7 +139,7 @@
         global="false"
         actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
         update="new-widget-configuration-dialog"
-        rendered="#{!isReadOnlyMode}"
+        rendered="#{!isReadOnlyMode or isTaskList}"
         process="@this"
         partialSubmit="true" />
       <p:tooltip for="edit-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}" trackMouse="true"

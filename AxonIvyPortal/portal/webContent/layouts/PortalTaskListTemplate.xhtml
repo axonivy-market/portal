@@ -118,7 +118,7 @@
                   class="grid-stack-item-content card dashboard-card dashboard__widget js-dashboard-widget-#{widget.id}"
                 >
                   <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskDashboardWidget
-                    widget="#{taskListBean.widget}"
+                    widget="#{managedBean.widget}"
                     isReadOnlyMode="#{managedBean.isReadOnlyMode}"
                     index="#{0}"
                     id="task-list"
@@ -199,8 +199,8 @@
                   oncomplete="PF('escalation-task-dialog').hide();loadGrid();initStatistics();"
                   update="grid-stack dashboard-title-container"
                 />
-              </ui:define> </ui:decorate
-            >\
+              </ui:define> 
+             </ui:decorate>
             <!-- Delegate Task Dialog -->
             <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate
               id="dashboard-tasks-item-delegate"
@@ -361,7 +361,47 @@
               </h:form>
             </p:dialog>
 
-            <h:outputScript library="js" name="dashboard.js" />
+					<p:dialog id="new-widget-configuration-dialog"
+					
+						widgetVar="new-widget-configuration-dialog"
+						styleClass="new-widget-configuration-dialog" closable="false"
+						appendTo="@(body)" closeOnEscape="true" fitViewport="true"
+						responsive="true" modal="true" resizable="false" draggable="false">
+						<c:set var="widget" value="#{taskListBean.widget}" />
+
+						<!-- <h:form id="widget-configuration-form" styleClass="ui-g"
+							onkeypress="if (event.keyCode == 13) { return false; }">
+							<ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidgetConfiguration
+								id="new-widget-configuration-component" taskWidget="#{widget}"
+								managedBean="#{taskListBean}"
+								componentToUpdate="widget-configuration-form" />
+						</h:form> -->
+
+						<f:facet name="footer">
+							<div class="widget-configuration-footer-panel">
+
+								<p:commandLink id="task-configuration-cancel-link"
+									value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+									styleClass="u-mar-right-10"
+									rendered="#{widgetType ne 'WELCOME'}"
+									onclick="PF('new-widget-configuration-dialog').hide(); return false;">
+									<p:resetInput target="widget-configuration-form" />
+								</p:commandLink>
+
+								<!-- <p:commandButton id="widget-configuration-save-button"
+									value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+									actionListener="#{taskListBean.saveWidget()}"
+									icon="si si-floppy-disk"
+									oncomplete="if (args &amp;&amp; !args.validationFailed){PF('new-widget-configuration-dialog').hide();loadGridAfterAddedNewWidget(); initStatistics();}"
+									process="#{taskListBean.componentToProcessOnSave}"
+									partialSubmit="true"
+									update="widget-configuration-form load-grid-after-added-new-widget-cmd"
+									disabled="#{widget eq null}" /> -->
+							</div>
+						</f:facet>
+					</p:dialog>
+
+					<h:outputScript library="js" name="dashboard.js" />
 
             <script type="text/javascript">
             var dashboardToolKit = new DashboardToolKit();

@@ -172,7 +172,7 @@ var MainMenu = {
   urlToMenu : [["PortalHome.xhtml", "DASHBOARD"],
       ["Processes.xhtml", "PROCESS"],
       ["PortalTasks.xhtml", "TASK"],
-      ["TaskWidget.xhtml", "TASK"],
+      ["PortalTaskList.xhtml", "TASK"],
       ["PortalTaskDetails.xhtml", "TASK"],
       ["PortalCases.xhtml", "CASE"],
       ["CaseWidget.xhtml", "CASE"],

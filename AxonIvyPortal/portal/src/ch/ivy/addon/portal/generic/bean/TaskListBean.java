@@ -1,5 +1,10 @@
 package ch.ivy.addon.portal.generic.bean;
 
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CASE;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NEWS;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.TASK;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -39,8 +44,8 @@ import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
-import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
@@ -53,6 +58,15 @@ import ch.ivyteam.ivy.workflow.ITask;
 public class TaskListBean implements Serializable {
 
   private static final long serialVersionUID = -4224901891867040688L;
+
+  private static final String DEFAULT_COMPLEX_USER_FILTER_ID =
+      "widget-configuration-form:new-widget-configuration-component:predefined-filter";
+  private static final String DEFAULT_USER_FILTER_ID =
+      "widget-configuration-form:new-widget-configuration-component:user-filter";
+  private static final String DEFAULT_WIDGET_TITLE_ID =
+      "widget-configuration-form:new-widget-configuration-component:widget-title-group";
+  private static final String PROCESS_ICON_CUSTOM_FIELD = "cssIcon";
+  private static final String DEFAULT_PROCESS_ICON = "si si-hierarchy-6 si-rotate-270";
 
   private String selectedDashboardId;
   protected DashboardWidget widget;
@@ -328,18 +342,6 @@ public class TaskListBean implements Serializable {
     return warningText;
   }
 
-  public String getDashboardUrl() {
-    return dashboardUrl;
-  }
-
-  public void setDashboardUrl(String dashboardUrl) {
-    this.dashboardUrl = dashboardUrl;
-  }
-
-  public void initShareDashboardLink(Dashboard dashboard) {
-    setDashboardUrl(UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId()));
-  }
-
   public String getClientStatisticApiUri() {
     return this.clientStatisticApiUri;
   }
@@ -353,7 +355,32 @@ public class TaskListBean implements Serializable {
   }
 
   public boolean canShowExpandMode(DashboardWidget widget) {
-    return widget.getType().canShowFullscreenModeOption();
+    return false;
+  }
+
+  public boolean hasAdminPermission() {
+    return PermissionUtils.isSessionUserHasAdminRole();
+  }
+
+
+  public String getComponentToProcessOnSave() {
+    var componentId = "@this";
+    DashboardWidget processWidget = getWidget();
+    if (processWidget != null) {
+      componentId = DEFAULT_WIDGET_TITLE_ID;
+      if (NEWS != processWidget.getType() && CASE != processWidget.getType() && TASK != processWidget.getType()) {
+        String userFilterId = String.format(DEFAULT_USER_FILTER_ID, processWidget.getId());
+        componentId = componentId.concat(" ").concat(userFilterId);
+      }
+      if (PROCESS == processWidget.getType()) {
+        componentId = componentId.concat(" widget-configuration-form");
+      }
+      if (CASE == processWidget.getType() || TASK == processWidget.getType()) {
+        String userFilterId = String.format(DEFAULT_COMPLEX_USER_FILTER_ID, processWidget.getId());
+        componentId = componentId.concat(" ").concat(userFilterId);
+      }
+    }
+    return componentId;
   }
 
 }
