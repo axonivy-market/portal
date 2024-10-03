@@ -27,6 +27,8 @@ The Portal App consists of the following modules: portal-components, portal.
 
 |process-module-structure|
 
+.. warning:: We highly recommend running only one portal per security context.
+
 .. _architecture-portal-components:
 
 portal-components
