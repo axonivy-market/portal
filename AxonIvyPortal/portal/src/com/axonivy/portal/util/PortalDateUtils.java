@@ -95,4 +95,20 @@ public class PortalDateUtils {
   private static Date toDate(LocalDate localDate) {
     return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
   }
+  
+  public static Date getEndOfMinute(Date date) {
+    if (date == null) {
+      return null;
+    }
+
+    return DateUtils.addMilliseconds(DateUtils.ceiling(date, Calendar.MINUTE), -1);
+  }
+  
+  public static Date getStartOfMinute(Date date) {
+    if (date == null) {
+      return null;
+    }
+
+    return DateUtils.truncate(date, Calendar.MINUTE);
+  }
 }

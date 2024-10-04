@@ -35,9 +35,9 @@
   <h:panelGroup id="is-date-panel" layout="block" rendered="#{filter.operator == 'IS'}"
     styleClass="ui-fluid md-inputfield date-picker-panel">
     <p:datePicker id="is-date" value="#{filter.fromDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
-      onkeypress="if (event.keyCode == 13) { return false; }"
+      onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}">
-      <p:ajax event="dateSelect" update="is-date-panel" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
+      <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
       <f:attribute name="filter" value="#{filter}" />
@@ -50,9 +50,9 @@
   <h:panelGroup id="is-not-date-panel" layout="block" rendered="#{filter.operator == 'IS_NOT'}"
     styleClass="ui-fluid md-inputfield date-picker-panel">
     <p:datePicker id="is-not-date" value="#{filter.fromDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
-      onkeypress="if (event.keyCode == 13) { return false; }"
+      onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}">
-      <p:ajax event="change" update="@this" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
+      <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
       <f:attribute name="filter" value="#{filter}" />
