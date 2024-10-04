@@ -46,7 +46,7 @@ public class LeaveRequestIFramePage extends TaskTemplateIFramePage {
   }
 
   public String getValidationMsg() {
-    List<SelenideElement> messages = $$("span.ui-messages-error-summary");
+    List<SelenideElement> messages = (List<SelenideElement>) $$("span.ui-messages-error-summary");
     return StringUtils.join(messages.stream().map(WebElement::getText).collect(Collectors.toList()), ",");
   }
 

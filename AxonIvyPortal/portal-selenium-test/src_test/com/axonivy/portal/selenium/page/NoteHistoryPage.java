@@ -60,7 +60,7 @@ public class NoteHistoryPage extends TemplatePage {
   }
 
   public List<String> getNoteAuthors() {
-    List<SelenideElement> noteAuthorElements = $$("td.note-history-fullname-column .name-after-avatar")
+    List<SelenideElement> noteAuthorElements = (List<SelenideElement>) $$("td.note-history-fullname-column .name-after-avatar")
         .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT);
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }

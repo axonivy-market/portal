@@ -34,9 +34,10 @@ public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
     ElementsCollection welcomeTextInputs = configDialog.findAll(".js-welcome-text-input");
     welcomeTextInputs.asDynamicIterable().forEach(elem -> {
       elem.clear();
-      elem.sendKeys(welcomeTexts.stream().filter(text -> welcomeTexts.indexOf(text) == welcomeTextInputs.indexOf(elem))
-          .findFirst().orElse(""));
     });
+    for (int i = 0; i < welcomeTexts.size(); i++) {
+      $("input[id$='welcome-text-list:" + i + ":welcome-text-input']").sendKeys(welcomeTexts.get(i));
+    }
   }
 
   public void selectTextSize(String value) {

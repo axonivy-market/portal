@@ -66,13 +66,13 @@ public class AbsencePage extends TemplatePage {
   }
 
   public String getIAMDeputyFor() {
-    List<SelenideElement> noteAuthorElements = $$("tbody[id*='substitution-table_data'] > tr > td");
+    List<SelenideElement> noteAuthorElements = (List<SelenideElement>) $$("tbody[id*='substitution-table_data'] > tr > td");
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.joining());
   }
 
   public int indexOfDeputyRole(DeputyRoleType deputyRoleType) {
     String deputyRoleTypeSelector = ".substitute-table .substition-role-type";
-    List<SelenideElement> elements = $$(deputyRoleTypeSelector);
+    List<SelenideElement> elements = (List<SelenideElement>) $$(deputyRoleTypeSelector);
     if (CollectionUtils.isNotEmpty(elements)) {
       for (int index = 0; index < elements.size(); index++) {
         SelenideElement element = elements.get(index);

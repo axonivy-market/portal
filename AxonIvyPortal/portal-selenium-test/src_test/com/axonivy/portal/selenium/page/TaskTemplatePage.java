@@ -169,7 +169,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public Integer getTaskRowIndex(String taskName) {
-    List<SelenideElement> taskNames = $$(".task-name-value");
+    List<SelenideElement> taskNames = (List<SelenideElement>) $$(".task-name-value");
     int taskIndex = IntStream.range(0, taskNames.size()).filter(i -> taskNames.get(i).getText().equals(taskName))
         .findFirst().getAsInt();
     return taskIndex;

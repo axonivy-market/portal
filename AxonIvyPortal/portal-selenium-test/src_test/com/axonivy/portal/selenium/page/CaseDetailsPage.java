@@ -403,7 +403,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public boolean isBusinessCaseInformationSectionDisplayed() {
-    List<SelenideElement> elements = $$("[id$='business-case-information']");
+    List<SelenideElement> elements = (List<SelenideElement>) $$("[id$='business-case-information']");
     return !elements.isEmpty();
   }
 
@@ -653,7 +653,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public Integer getTaskRowIndex(String taskName) {
-    List<SelenideElement> taskNames = $$(".task-name-value");
+    List<SelenideElement> taskNames = (List<SelenideElement>) $$(".task-name-value");
     int taskIndex = IntStream.range(0, taskNames.size()).filter(i -> taskNames.get(i).getText().equals(taskName))
         .findFirst().getAsInt();
     return taskIndex;
@@ -677,7 +677,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public int getTaskRowIndexFromDetailPage(String taskName) {
-    List<SelenideElement> taskNames = $$(".task-name-value");
+    List<SelenideElement> taskNames = (List<SelenideElement>) $$(".task-name-value");
     int taskIndex = IntStream.range(0, taskNames.size()).filter(i -> taskNames.get(i).getText().equals(taskName))
         .findFirst().getAsInt();
     return taskIndex;
@@ -761,14 +761,14 @@ public class CaseDetailsPage extends TemplatePage {
       $(By.cssSelector("input[id$='group-activator-select_input']")).click();
       $(By.cssSelector("input[id$='group-activator-select_input']")).sendKeys(responsibleName);
       waitForElementDisplayed(By.cssSelector("span[id$='group-activator-select_panel']"), true);
-      List<SelenideElement> foundRoles = $$("span[id$='group-activator-select_panel'] .name-after-avatar");
+      List<SelenideElement> foundRoles = (List<SelenideElement>) $$("span[id$='group-activator-select_panel'] .name-after-avatar");
       foundRoles.get(0).click();
     } else {
       waitForElementDisplayed(By.cssSelector("input[id$='user-activator-select_input']"), true);
       $(By.cssSelector("input[id$='user-activator-select_input']")).click();
       $(By.cssSelector("input[id$='user-activator-select_input']")).sendKeys(responsibleName);
       waitForElementDisplayed(By.cssSelector("span[id$='user-activator-select_panel']"), true);
-      List<SelenideElement> foundUsers = $$("span[id$='user-activator-select_panel'] .name-after-avatar");
+      List<SelenideElement> foundUsers = (List<SelenideElement>) $$("span[id$='user-activator-select_panel'] .name-after-avatar");
       foundUsers.get(0).click();
     }
     waitForElementClickableThenClick($(By.cssSelector("button[id$='proceed-task-delegate-command']")));
@@ -897,7 +897,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public boolean isRelatedCaseListColumnNotExist(String columnClass) {
-    List<SelenideElement> columns = $$(".related-cases-container th." + columnClass);
+    List<SelenideElement> columns = (List<SelenideElement>) $$(".related-cases-container th." + columnClass);
     return !columns.isEmpty() && !columns.get(0).isDisplayed();
   }
 
@@ -992,13 +992,13 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public boolean hasDoneTask() {
-    List<SelenideElement> doneTasks = $$(DONE_TASKS_SELECTOR);
+    List<SelenideElement> doneTasks = (List<SelenideElement>) $$(DONE_TASKS_SELECTOR);
     return CollectionUtils.isNotEmpty(doneTasks);
   }
 
   public List<String> getCaseNoteAuthors() {
     List<SelenideElement> noteAuthorElements =
-        $$("span.history-fullname").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT);
+        (List<SelenideElement>) $$("span.history-fullname").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT);
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
 

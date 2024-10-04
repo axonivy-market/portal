@@ -300,12 +300,12 @@ public class TaskDetailsPage extends TemplatePage {
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1600));
     $("th.task-document-author").shouldBe(appear);
     List<SelenideElement> noteAuthorElements =
-        $$("td.task-document-author .name-after-avatar").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(1));
+        (List<SelenideElement>) $$("td.task-document-author .name-after-avatar").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(1));
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
 
   public List<String> getTaskNoteAuthors() {
-    List<SelenideElement> noteAuthorElements = $$("td.task-document-author .name-after-avatar")
+    List<SelenideElement> noteAuthorElements = (List<SelenideElement>) $$("td.task-document-author .name-after-avatar")
         .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT);
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }

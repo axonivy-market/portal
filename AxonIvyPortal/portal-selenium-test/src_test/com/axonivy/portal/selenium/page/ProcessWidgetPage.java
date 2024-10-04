@@ -206,7 +206,7 @@ public class ProcessWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$='process-widget:process-view-mode:view-mode-selection']"), true);
     SelenideElement viewModeElement =
         findElementByCssSelector("[id$='process-widget:process-view-mode:view-mode-selection']");
-    List<SelenideElement> webElements = viewModeElement.$$(By.cssSelector("span.ui-button-text.ui-c"));
+    List<SelenideElement> webElements = (List<SelenideElement>) viewModeElement.$$(By.cssSelector("span.ui-button-text.ui-c"));
     if (CollectionUtils.isNotEmpty(webElements)) {
       for (SelenideElement webElement : webElements) {
         if (webElement.getText().equalsIgnoreCase(viewMode)) {
@@ -235,7 +235,7 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public SelenideElement getStartImageProcess(String processName, SelenideElement processListElement) {
     SelenideElement startProcessItemElement = null;
-    List<SelenideElement> processItems = processListElement.$$(".js-process-start-list-item");
+    List<SelenideElement> processItems = (List<SelenideElement>) processListElement.$$(".js-process-start-list-item");
     for (SelenideElement process : processItems) {
       SelenideElement processNameElement = process.$(".js-process-start-list-item-name");
       if (processNameElement.isDisplayed() && processName.equalsIgnoreCase(processNameElement.getText())) {
@@ -255,7 +255,7 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public boolean isImageModeActivated() {
-    List<SelenideElement> findElements = $$(By.cssSelector("[id$=':image-process-container']"));
+    List<SelenideElement> findElements = (List<SelenideElement>) $$(By.cssSelector("[id$=':image-process-container']"));
     return !findElements.isEmpty();
   }
 
@@ -269,12 +269,12 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public boolean isProcessGroupDisplay(String processGroupCharacter) {
     if (isImageModeActivated()) {
-      List<SelenideElement> webElements = $$(".js-grid-process-index-group");
+      List<SelenideElement> webElements = (List<SelenideElement>) $$(".js-grid-process-index-group");
       return webElements.stream().anyMatch(processItem -> processItem.isDisplayed()
           && processItem.getAttribute("class").endsWith(processGroupCharacter));
     }
     List<SelenideElement> indexGroup =
-        $$(By.xpath("//legend[@class='ui-fieldset-legend ui-corner-all ui-state-default']"));
+        (List<SelenideElement>) $$(By.xpath("//legend[@class='ui-fieldset-legend ui-corner-all ui-state-default']"));
     return indexGroup.stream().anyMatch(item -> processGroupCharacter.equals(item.getText()));
   }
 
@@ -368,7 +368,7 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public SelenideElement getProcessItem(String processName) {
     SelenideElement processItemElement = null;
-    List<SelenideElement> processItems = $$(".js-process-start-list-item");
+    List<SelenideElement> processItems = (List<SelenideElement>) $$(".js-process-start-list-item");
     for (SelenideElement process : processItems) {
       processItemElement = process.$(".js-process-start-list-item-name");
       if (processItemElement.getText().equalsIgnoreCase(processName)) {
@@ -402,7 +402,7 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public SelenideElement getProcessItemForm(String processName) {
     SelenideElement processItemElement = null;
-    List<SelenideElement> processItems = $$(".js-process-start-list-item form");
+    List<SelenideElement> processItems = (List<SelenideElement>) $$(".js-process-start-list-item form");
     for (SelenideElement process : processItems) {
       processItemElement = process.$(".js-process-start-list-item-name");
       if (processItemElement.getText().equalsIgnoreCase(processName)) {

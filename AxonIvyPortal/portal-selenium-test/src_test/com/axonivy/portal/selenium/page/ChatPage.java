@@ -84,7 +84,7 @@ public class ChatPage extends TemplatePage {
     refresh();
     getChat();
     waitForElementDisplayed(By.id("chat-form:group-chat-container"), true);
-    List<SelenideElement> chatGroups = findElementById("chat-form:group-chat-container").findAll(".js-group-card-name");
+    List<SelenideElement> chatGroups = (List<SelenideElement>) findElementById("chat-form:group-chat-container").findAll(".js-group-card-name");
     return chatGroups.size();
   }
 

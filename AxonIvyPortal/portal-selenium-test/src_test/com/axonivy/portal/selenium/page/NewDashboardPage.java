@@ -966,7 +966,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public int findNumberOfNotificationsItem(WebElement notificationsPanel) {
-    List<SelenideElement> item = $$(".ui-datascroller-item");
+    List<SelenideElement> item = (List<SelenideElement>) $$(".ui-datascroller-item");
     return item.size();
   }
 

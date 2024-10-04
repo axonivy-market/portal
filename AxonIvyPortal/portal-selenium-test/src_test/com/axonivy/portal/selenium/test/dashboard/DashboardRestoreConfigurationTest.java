@@ -16,6 +16,7 @@ import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.WebElementsCondition;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
@@ -84,7 +85,7 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
     restoreButton.shouldHave(Condition.cssClass("ui-state-disabled"));
   }
 
-  private void verifyEditingDashboardContent(String dashboardName, CollectionCondition collectionCondition) {
+  private void verifyEditingDashboardContent(String dashboardName, WebElementsCondition collectionCondition) {
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(dashboardName));
     newDashboardDetailsEditPage.getWidgets().shouldBe(collectionCondition);
