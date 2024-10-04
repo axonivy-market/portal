@@ -24,7 +24,7 @@ public class ExpiryDateAfterOperatorHandler {
     }
 
     TaskQuery query = TaskQuery.create();
-    Date endDate  = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? filter.getToDate() : PortalDateUtils.getEndOfDate(filter.getToDate());
+    Date endDate  = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getEndOfMinute(filter.getToDate()) : PortalDateUtils.getEndOfDate(filter.getToDate());
     query.where().expiryTimestamp().isGreaterThan(endDate);
 
     return query;
