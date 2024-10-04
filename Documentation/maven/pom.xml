@@ -4,7 +4,7 @@
     <groupId>com.axonivy.portal</groupId>
     <artifactId>doc-config</artifactId>
     <packaging>pom</packaging>
-    <version>${revision}</version>
+    <version>12.0.0-m265</version>
 
     <properties>
         <revision>9.1.0.0-SNAPSHOT</revision>
