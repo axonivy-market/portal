@@ -20,8 +20,8 @@ public class CreatedDateBetweenOperatorHandler {
   }
 
   public TaskQuery buildBetweenQuery(DashboardFilter filter) {
-    Date from = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? filter.getFromDate() : PortalDateUtils.getStartOfDate(filter.getFromDate());
-    Date to = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? filter.getToDate() : PortalDateUtils.getEndOfDate(filter.getToDate());
+    Date from = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getStartOfMinute(filter.getFromDate()) : PortalDateUtils.getStartOfDate(filter.getFromDate());
+    Date to = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getEndOfMinute(filter.getToDate()) : PortalDateUtils.getEndOfDate(filter.getToDate());
 
     if (from == null && to == null) {
       return null;
@@ -39,8 +39,8 @@ public class CreatedDateBetweenOperatorHandler {
   }
 
   public TaskQuery buildNotBetweenQuery(DashboardFilter filter) {
-    Date from = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? filter.getFromDate() : PortalDateUtils.getStartOfDate(filter.getFromDate());
-    Date to = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? filter.getToDate() : PortalDateUtils.getEndOfDate(filter.getToDate());
+    Date from = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getStartOfMinute(filter.getFromDate()) : PortalDateUtils.getStartOfDate(filter.getFromDate());
+    Date to = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getEndOfMinute(filter.getToDate()) : PortalDateUtils.getEndOfDate(filter.getToDate());
 
     TaskQuery subQuery = TaskQuery.create();
     if (from != null && to != null) {
