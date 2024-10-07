@@ -476,8 +476,8 @@ public class DashboardConfigurationTest extends BaseTest {
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.createAccessibilityPublicDashboard(name, icon, description, permissions);
-
+    configurationPage.createPublicDashboardFromTemplate(name, icon, description, permissions, 2);
+    
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
     newDashboardDetailsEditPage.getIconByIndex(0, icon).shouldBe(Condition.appear);
