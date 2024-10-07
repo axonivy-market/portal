@@ -50,7 +50,7 @@ We have introduced basic keyboard shortcuts to streamline the user experience in
 - **Alt + 7**: Jump to User Settings.
 
 Widget Navigation
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^
 
 - **Task Widget**: Pressing Alt + W will focus on the first task in the Task widget. Pressing it again moves the focus to the next task in the list.
 - **Case Widget**: Pressing Alt + Q focuses on the first case in the Case widget, and subsequent presses cycle through the list of cases.
@@ -64,7 +64,7 @@ If there are two Task or Case widgets on the screen, the focus will cycle throug
 Advanced Features
 ^^^^^^^^^^^^^^^^^
 
-Task Widget Navigation:
+Task Widget Navigation
 ^^^^^^^^^^^^^^^^^^^^^^
 
 You can also use Task widget navigation to jump directly to the pop-ups for canceled tasks.
@@ -83,7 +83,7 @@ Example for Task Navigation
 If you want to select a specific task, press **Alt + W** to focus on the first task. To access the associated actions, press the **Tab** key and then **Enter**. This opens the context menu. You can navigate through the menu by pressing the combination repeatedly to move from top to bottom. To exit the menu, press **Esc**.
 
 Case Widget Navigation
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 With the Case widget navigation, you can also navigate into the actions of a case.
 
@@ -92,17 +92,17 @@ With the Case widget navigation, you can also navigate into the actions of a cas
 Press the keyboard shortcut to focus on the case, and pressing Enter will open the context menu. You can navigate through it by pressing the shortcut again, and exit the menu by pressing Esc.
 
 Example for Case Navigation
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To select a specific case, press **Alt + Q** to reach the desired case. To access the associated actions, press **Enter** to open the context menu. Navigate through the menu by pressing the shortcut repeatedly, and press **Esc** to close it.
 
 Browser & Keyboard Compatibility
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 These shortcuts are available in Chrome, Firefox, and Edge and work seamlessly with European, Asian, and American keyboard layouts.
 
-Show Case:
-^^^^^^^^^^
+Show Case
+^^^^^^^^^
 
 |accessibility-showcase|
 
@@ -114,7 +114,7 @@ Extended Descriptive Elements in the Task and Case List
 To improve navigation and accessibility in the portal, we have not only implemented shortcuts for quick access to processes, tasks, and cases, but also added more descriptive elements to the widgets. These enhancements provide a clearer and more detailed display of key information, ensuring optimal support for screen readers.
 
 Descriptive Elements in the Task Widget
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The first highlighted element in the task list, which is activated by the shortcut, includes the following information:
 
@@ -127,7 +127,7 @@ When a user focuses on the first task element using a keyboard shortcut, the scr
 "Task Start - Task Name: `<task name>` - Priority: `<priority>` - Status: `<status>` - Expiry Date: `<expiry date>`."
 
 Descriptive Elements in the Case Widget
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the case list, additional information is also integrated into the highlighted action field:
 
@@ -142,17 +142,17 @@ When a user jumps to the first case element using a shortcut, the screen reader 
 If the selected task or case is not in the "Completed" state, all relevant details are read aloud to inform the user of the current status.
 
 Integration of Microsoft Narrator Screen Reader
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We rely on Microsoft Narrator to support screen readers. It can be activated via the keyboard shortcut **Ctrl + Windows key + Enter**. This ensures that users with visual impairments can easily navigate through the portal and understand the information provided.
 
 Language Support for Screen Readers
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To ensure screen readers function correctly, we have incorporated language settings directly into the HTML page element. These settings respect the user's language preferences, allowing the screen reader to read the content in the user's preferred language. These adjustments ensure full accessibility for visually impaired users and greatly enhance their experience with the portal.
 
 Text Alternatives for Buttons
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We have implemented ARIA (Accessible Rich Internet Applications) attributes across many elements, including buttons, to ensure they are easily identifiable by screen readers. This allows users who rely on assistive technologies to interact with the portal more effectively.
 
@@ -166,7 +166,7 @@ To further enhance usability, we have created an **Accessibility Dashboard** tha
 Additionally, we have enriched the **task** and **case** elements with metadata such as name, assignee, and other relevant details. These are included as descriptive elements, allowing screen readers to provide immediate feedback upon focusing on these items.
 
 Integrating the Accessibility Dashboard
--------------------------------------------
+---------------------------------------
 
 You can easily integrate this feature by selecting the **"Accessibility Dashboard"** template when creating a dashboard.
 
@@ -197,5 +197,3 @@ Follow these steps:
 .. |case-actions-popup| image:: ../../screenshots/accessibility/case-actions-popup.png
 .. |accessibility-showcase| image:: ../../screenshots/accessibility/accessibility-showcase.gif
 .. |accessibility-dashboard-creation| image:: ../../screenshots/accessibility/accessibility-dashboard-creation.png
-
-
