@@ -108,12 +108,6 @@ public class DashboardConfigurationPage extends TemplatePage {
     $("a[id$=':create-from-scratch']").shouldBe(getClickableCondition()).click();
     inputCreateDashboardDialog(newName, icon, newDescription, permissions);
   }
-  
-  public void createAccessibilityPublicDashboard(String newName, String icon, String newDescription,
-      List<String> permissions) {
-    $("a.accessibility-dashboard-template").shouldBe(getClickableCondition()).click();
-    inputCreateDashboardDialog(newName, icon, newDescription, permissions);
-  }
 
   public void createPublicDashboardFromTemplate(String newName, String icon, String newDescription,
       List<String> permissions, int templateIndex) {
