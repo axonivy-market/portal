@@ -18,6 +18,7 @@ public class CaseFilterFieldState extends FilterField {
     super(DashboardStandardCaseColumn.STATE.getField());
   }
 
+  @Override
   public String getLabel() {
     return DashboardStandardCaseColumn.STATE.getLabel();
   }
