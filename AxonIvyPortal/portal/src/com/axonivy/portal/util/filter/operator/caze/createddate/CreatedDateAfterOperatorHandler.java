@@ -1,8 +1,11 @@
 package com.axonivy.portal.util.filter.operator.caze.createddate;
 
+import java.util.Date;
+
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.PortalDateUtils;
 
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public class CreatedDateAfterOperatorHandler {
@@ -21,7 +24,8 @@ public class CreatedDateAfterOperatorHandler {
     }
 
     CaseQuery query = CaseQuery.create();
-    query.where().startTimestamp().isGreaterThan(PortalDateUtils.getEndOfDate(filter.getToDate()));
+    Date endDate = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getEndOfMinute(filter.getToDate()) : PortalDateUtils.getEndOfDate(filter.getToDate());
+    query.where().startTimestamp().isGreaterThan(endDate);
 
     return query;
   }

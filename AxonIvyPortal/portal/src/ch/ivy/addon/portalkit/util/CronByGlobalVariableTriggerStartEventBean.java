@@ -7,8 +7,6 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
 import ch.ivyteam.ivy.process.eventstart.IProcessStartEventBeanRuntime;
 import ch.ivyteam.ivy.process.extension.ProgramConfig;
-import ch.ivyteam.ivy.process.extension.ui.ExtensionUiBuilder;
-import ch.ivyteam.ivy.process.extension.ui.UiEditorExtension;
 import ch.ivyteam.ivy.request.RequestException;
 import ch.ivyteam.ivy.vars.Variable;
 import ch.ivyteam.ivy.vars.Variables;
@@ -52,14 +50,6 @@ public class CronByGlobalVariableTriggerStartEventBean extends AbstractProcessSt
           .withReason("Time elapsed or reached cron pattern " + getConfig().get(VARIABLE)).start();
     } catch (RequestException ex) {
       throw new IvyRuntimeException("Cannot start process", ex);
-    }
-  }
-
-  public static class Editor extends UiEditorExtension {
-
-    @Override
-    public void initUiFields(ExtensionUiBuilder ui) {
-      ui.textField(VARIABLE).create();
     }
   }
 }

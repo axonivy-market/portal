@@ -19,6 +19,7 @@ public class CaseFilterFieldCreator extends FilterField {
     super(DashboardStandardCaseColumn.CREATOR.getField());
   }
 
+  @Override
   public String getLabel() {
     return DashboardStandardCaseColumn.CREATOR.getLabel();
   }
