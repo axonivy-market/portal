@@ -62,7 +62,7 @@
         </h:panelGroup>
         <ui:repeat var="template" value="#{dashboardTemplateSelectionBean.dashboardTemplates}" varStatus="status">
           <div class="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12">
-            <p:commandLink id="template" styleClass="dashboard-action-container"
+            <p:commandLink id="template" styleClass="dashboard-action-container #{template.id}"
               actionListener="#{dashboardTemplateSelectionBean.onSelectTemplate(template, isPublicDashboard)}"
               oncomplete="PF('dashboard-creation-details-dialog').show()"
               update="#{cc.clientId}:dashboard-creation-component:dashboard-creation-details-dialog"
