@@ -25,6 +25,7 @@ public class TaskFilterFieldExpiryDate extends FilterField {
     super(DashboardStandardTaskColumn.EXPIRY.getField());
   }
 
+  @Override
   public String getLabel() {
     return DashboardStandardTaskColumn.EXPIRY.getLabel();
   }
