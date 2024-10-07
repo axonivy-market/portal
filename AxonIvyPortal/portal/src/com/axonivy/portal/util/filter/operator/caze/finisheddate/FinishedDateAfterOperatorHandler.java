@@ -24,7 +24,7 @@ public class FinishedDateAfterOperatorHandler {
     }
 
     CaseQuery query = CaseQuery.create();
-    Date endDate  = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getEndOfMinute(filter.getToDate()) : PortalDateUtils.getEndOfDate(filter.getToDate());
+    Date endDate = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getEndOfMinute(filter.getToDate()) : PortalDateUtils.getEndOfDate(filter.getToDate());
     query.where().endTimestamp().isGreaterThan(endDate);
 
     return query;
