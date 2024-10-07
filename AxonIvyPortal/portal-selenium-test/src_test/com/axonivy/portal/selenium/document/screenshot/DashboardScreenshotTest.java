@@ -1,5 +1,8 @@
 package com.axonivy.portal.selenium.document.screenshot;
 
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+import static com.codeborne.selenide.Selenide.$;
+
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -30,9 +33,11 @@ import com.axonivy.portal.selenium.page.ProcessViewerWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.StatisticEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
+import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
+import com.codeborne.selenide.Condition;
 
 @IvyWebTest
 public class DashboardScreenshotTest extends ScreenshotBaseTest {
@@ -64,7 +69,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
         new Dimension(1800, 1400));
 
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
-    ScreenshotUtils.executeDecorateJs("highlightLogo();");
+    ScreenshotUtils.executeDecorateJs("createRedMediumOutline($('.portal-home-logo.portal-home-logo-small'));");
     ScreenshotUtils.captureHalfLeftPageScreenShot(ScreenshotUtils.DASHBOARD_FOLDER + "left-menu");
 
     MainMenuPage mainMenuPage = new MainMenuPage();
@@ -413,5 +418,62 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     updatePortalSetting(Variable.SHOW_LEGACY_UI.getKey(), "false");
     redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
   }
+  
+  @Test
+  public void screenshotForQuickSearchConfigurationOnTaskWidget() throws IOException {
+    ConfigurationJsonUtils.updateJSONSetting("dashboard-task-widget-has-quicksearch.json", Variable.DASHBOARD);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForTaskWidgetLoaded();
+    newDashboardPage.clickOnFirstTaskAction();
+    ScreenshotUtils.executeDecorateJs("createBlackMediumOutline($($('.task-action-item-label')[0]));");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot($(".dashboard__widget").shouldBe(Condition.appear, DEFAULT_TIMEOUT),
+        ScreenshotUtils.ACCESSIBILITY_DASHBOARD_FOLDER + "task-actions-popup",
+        new ScreenshotMargin(20, 20, 20, 120));
+  }
+  
+  @Test
+  public void screenshotForQuickSearchConfigurationOnCasaWidget() throws IOException {
+    ConfigurationJsonUtils.updateJSONSetting("dashboard-case-widget-has-quicksearch.json", Variable.DASHBOARD);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForCaseWidgetLoaded();
+    newDashboardPage.clickOnFirstCaseAction();
+    ScreenshotUtils.executeDecorateJs("createBlackMediumOutline($($('.task-action-item-label')[0]));");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot($(".dashboard__widget").shouldBe(Condition.appear, DEFAULT_TIMEOUT),
+        ScreenshotUtils.ACCESSIBILITY_DASHBOARD_FOLDER + "case-actions-popup",
+        new ScreenshotMargin(20, 20, 20, 120));
+  }
+  
+  @Test
+  public void screenshotActionWarningDialogWhenStartTask() throws IOException {
+    ConfigurationJsonUtils.updateJSONSetting("dashboard-task-widget-has-quicksearch.json", Variable.DASHBOARD);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForTaskWidgetLoaded();
+    String taskName = "Sick Leave Request";
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+    taskWidget.openFilterWidget();
+    taskWidget.resetFilter();
+    taskWidget.openFilterWidget();
+    taskWidget.filterTaskName(taskName);
+    taskWidget.applyFilter();
+    
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.startTask(0);
+    newDashboardPage.clickOnCancelTask();
+    newDashboardPage.waitForTaskWidgetLoaded();
+    newDashboardPage.startTask(0);
+    newDashboardPage.focusOnWarningResetTaskDiaglo();
+    ScreenshotUtils.executeDecorateJs("createBlackThinOutline($(\"[id$=':reset-task-confirmation-dialog']\").find('a'));");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot($("[id$='reset-task-confirmation-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT),
+        ScreenshotUtils.ACCESSIBILITY_DASHBOARD_FOLDER + "reset-task-dialog",
+        new ScreenshotMargin(20, 20, 20, 20));
+  }
+  
 
 }
