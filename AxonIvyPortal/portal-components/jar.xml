@@ -1,0 +1,18 @@
+<assembly xmlns="https://maven.apache.org/xsd/assembly-2.1.1.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/xsd/assembly-2.1.1.xsd">
+  <id>jar</id>
+  <includeBaseDirectory>false</includeBaseDirectory>
+
+  <formats>
+    <format>jar</format>
+  </formats>
+
+  <fileSets>
+    <fileSet>
+      <directory>./target/classes</directory>
+      <excludes>
+        <exclude>META-INF/</exclude>
+      </excludes>
+      <outputDirectory></outputDirectory>
+    </fileSet>
+  </fileSets>
+</assembly>
