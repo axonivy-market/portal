@@ -26,7 +26,7 @@ public class CustomTimestampBeforeOperatorHandler {
     }
 
     TaskQuery query = TaskQuery.create();
-    Date fromDate  = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getStartOfMinute(filter.getFromDate()) : PortalDateUtils.getStartOfDate(filter.getFromDate());
+    Date fromDate = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getStartOfMinute(filter.getFromDate()) : PortalDateUtils.getStartOfDate(filter.getFromDate());
     query.where().customField().timestampField(filter.getField())
         .isLowerThan(fromDate);
 

@@ -24,7 +24,7 @@ public class CreatedDateAfterOperatorHandler {
     }
 
     TaskQuery query = TaskQuery.create();
-    Date endDate  = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getEndOfMinute(filter.getToDate()) : PortalDateUtils.getEndOfDate(filter.getToDate());
+    Date endDate = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getEndOfMinute(filter.getToDate()) : PortalDateUtils.getEndOfDate(filter.getToDate());
     query.where().startTimestamp().isGreaterThan(endDate);
 
     return query;
