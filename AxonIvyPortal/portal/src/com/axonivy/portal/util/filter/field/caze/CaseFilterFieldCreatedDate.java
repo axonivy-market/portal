@@ -24,6 +24,7 @@ public class CaseFilterFieldCreatedDate extends FilterField {
     super(DashboardStandardCaseColumn.CREATED.getField());
   }
 
+  @Override
   public String getLabel() {
     return DashboardStandardCaseColumn.CREATED.getLabel();
   }

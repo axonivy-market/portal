@@ -90,7 +90,7 @@ public enum GlobalVariable {
           "googlePlayURL"),
   APPLICATION_NAME("Portal.ApplicationName", GlobalVariableType.TEXT, "Axon Ivy", "ApplicationName"), HIDE_CASE_CREATOR(
       "Portal.Cases.HideCaseCreator", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideCaseCreator");
-;
+
 
 
   private String key;

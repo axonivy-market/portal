@@ -1,10 +1,12 @@
 package com.axonivy.portal.util.filter.operator.task.customfield;
 
+import java.util.Date;
+
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.PortalDateUtils;
 
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
-
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CustomTimestampBeforeOperatorHandler {
@@ -24,8 +26,9 @@ public class CustomTimestampBeforeOperatorHandler {
     }
 
     TaskQuery query = TaskQuery.create();
+    Date fromDate = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getStartOfMinute(filter.getFromDate()) : PortalDateUtils.getStartOfDate(filter.getFromDate());
     query.where().customField().timestampField(filter.getField())
-        .isLowerThan(PortalDateUtils.getStartOfDate(filter.getFromDate()));
+        .isLowerThan(fromDate);
 
     return query;
   }
