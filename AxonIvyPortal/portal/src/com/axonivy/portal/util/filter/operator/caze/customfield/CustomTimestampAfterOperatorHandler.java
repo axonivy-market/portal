@@ -1,8 +1,11 @@
 package com.axonivy.portal.util.filter.operator.caze.customfield;
 
+import java.util.Date;
+
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.PortalDateUtils;
 
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public class CustomTimestampAfterOperatorHandler {
@@ -21,8 +24,9 @@ public class CustomTimestampAfterOperatorHandler {
     }
 
     CaseQuery query = CaseQuery.create();
+    Date endDate = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getEndOfMinute(filter.getToDate()) : PortalDateUtils.getEndOfDate(filter.getToDate());
     query.where().customField().timestampField(filter.getField())
-        .isGreaterThan(PortalDateUtils.getEndOfDate(filter.getToDate()));
+        .isGreaterThan(endDate);
 
     return query;
   }

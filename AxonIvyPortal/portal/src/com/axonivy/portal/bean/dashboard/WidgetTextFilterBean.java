@@ -21,7 +21,7 @@ public class WidgetTextFilterBean implements Serializable {
     return operators;
   }
 
-  public void onChangeOperator(DashboardFilter filter) {
+  public void onChangeOperator(@SuppressWarnings("unused") DashboardFilter filter) {
   }
 
   public boolean isShowTextListPanel(DashboardFilter filter) {
