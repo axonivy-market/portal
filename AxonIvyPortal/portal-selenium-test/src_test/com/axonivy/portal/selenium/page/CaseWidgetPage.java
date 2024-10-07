@@ -125,8 +125,8 @@ public class CaseWidgetPage extends TemplatePage {
 
   public boolean isCaseDisplayed(String name) {
     waitForElementDisplayed(By.cssSelector("div[id='case-widget:case-list-scroller']"), true);
-    List<SelenideElement> caseNameElements = (List<SelenideElement>) $$(".case-header-name-cell");
-    return caseNameElements.stream().anyMatch(caseNameElement -> name.equals(caseNameElement.getText()));
+    ElementsCollection caseNameElements = $$(".case-header-name-cell");
+    return caseNameElements.asFixedIterable().stream().anyMatch(caseNameElement -> name.equals(caseNameElement.getText()));
   }
 
   public ElementsCollection getCasesList() {
@@ -134,7 +134,7 @@ public class CaseWidgetPage extends TemplatePage {
   }
 
   public CaseState getCaseState(int caseIndex) {
-    List<SelenideElement> caseStateCells = (List<SelenideElement>) $$("span[id$=':case-state-cell']");
+    ElementsCollection caseStateCells = $$("span[id$=':case-state-cell']");
     String stateClass = caseStateCells.get(caseIndex).findElement(By.className("case-state")).getAttribute("class");
     String[] stateClasses = stateClass.trim().split(" ");
     String state = Stream.of(stateClasses).filter(clazz -> clazz.endsWith("-case-state")).findFirst().orElse("");
@@ -142,7 +142,7 @@ public class CaseWidgetPage extends TemplatePage {
   }
 
   public CaseDetailsPage openCaseDetailsFromActionMenuByCaseName(String caseName) {
-    List<SelenideElement> caseItems = (List<SelenideElement>) $$(CASE_ITEM_LIST_SELECTOR);
+    ElementsCollection caseItems = $$(CASE_ITEM_LIST_SELECTOR);
     for (SelenideElement caseItem : caseItems) {
       if (caseItem.findElement(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText().equals(caseName)) {
         caseItem.findElement(By.cssSelector("a[id*='action-steps-menu']")).click();
@@ -209,7 +209,7 @@ public class CaseWidgetPage extends TemplatePage {
   }
 
   public void toggleNoCategory() {
-    List<SelenideElement> categories = (List<SelenideElement>) $$(".filter-category-checkbox-tree .ui-tree-selectable");
+    ElementsCollection categories = $$(".filter-category-checkbox-tree .ui-tree-selectable");
     for (WebElement category : categories) {
       if (category.getText().equals("[No Category]")) {
         category.click();
@@ -252,8 +252,8 @@ public class CaseWidgetPage extends TemplatePage {
     refreshAndWaitElement("a[id$='case-widget:filter-selection-form:filter-name']");
     waitForElementClickableThenClick($(By.id(("case-widget:filter-selection-form:filter-name"))));
     waitForElementDisplayed(By.cssSelector(".filter-name-overlay-panel.ui-connected-overlay-enter-done"), true);
-    List<SelenideElement> saveFilters =
-        (List<SelenideElement>) $$("a[id$='user-defined-filter']").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT);
+    ElementsCollection saveFilters = $$("a[id$='user-defined-filter']")
+        .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT);
     for (SelenideElement filter : saveFilters) {
       if (filter.getText().equals(filterName)) {
         $(By.id("case-widget:filter-selection-form:filter-name-overlay-panel")).shouldBe(appear, DEFAULT_TIMEOUT);
@@ -442,7 +442,7 @@ public class CaseWidgetPage extends TemplatePage {
   }
 
   public CaseDetailsPage openDetailsOfCaseHasName(String caseName) {
-    List<SelenideElement> caseItems = (List<SelenideElement>) $$(CASE_ITEM_LIST_SELECTOR);
+    ElementsCollection caseItems = $$(CASE_ITEM_LIST_SELECTOR);
     for (SelenideElement caseItem : caseItems) {
       if (caseItem.$(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText().equals(caseName)) {
         SelenideElement caseInfoRow = caseItem.$(By.cssSelector("span[id*='case-info-row']")).scrollTo();
@@ -455,7 +455,7 @@ public class CaseWidgetPage extends TemplatePage {
   }
 
   public int getNumberOfCases() {
-    List<SelenideElement> caseItems = (List<SelenideElement>) $$(CASE_ITEM_LIST_SELECTOR);
+    ElementsCollection caseItems = $$(CASE_ITEM_LIST_SELECTOR);
     return caseItems.size();
   }
 
@@ -477,7 +477,7 @@ public class CaseWidgetPage extends TemplatePage {
   }
 
   public String getCreatorAt(int index) {
-    List<SelenideElement> creators = (List<SelenideElement>) $$(".case-header-creator-cell .name-after-avatar");
+    ElementsCollection creators = $$(".case-header-creator-cell .name-after-avatar");
     return creators.get(index).getText();
   }
 }

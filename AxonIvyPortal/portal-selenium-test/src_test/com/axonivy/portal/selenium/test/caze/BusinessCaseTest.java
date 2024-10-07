@@ -30,7 +30,6 @@ public class BusinessCaseTest extends BaseTest {
 
   @Test
   public void testOnlyDisplayBusinessCaseOnCaseList() {
-
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
@@ -41,7 +40,6 @@ public class BusinessCaseTest extends BaseTest {
   @Test
   public void testOnlyDisplayBusinessCaseOnCaseListWithAdmin() {
     login(TestAccount.ADMIN_USER);
-
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();

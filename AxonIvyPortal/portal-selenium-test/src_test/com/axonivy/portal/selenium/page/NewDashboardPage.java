@@ -6,10 +6,8 @@ import static com.codeborne.selenide.Condition.editable;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.By.ByCssSelector;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -220,10 +218,11 @@ public class NewDashboardPage extends TemplatePage {
     return $("span[id$=':more-information']");
   }
   
-  private SelenideElement getProcessActionMenu() {
-    $("div#process-action-group").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    return $("div[id$='process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-  }
+//  COMMENT OUT SINCE NO USAGE FOUND IN THE SOURCE
+//  private SelenideElement getProcessActionMenu() {
+//    $("div#process-action-group").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+//    return $("div[id$='process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+//  }
 
   public SelenideElement getMoreInformationLink() {
     return $("a[id$=':more-information']");
@@ -966,7 +965,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public int findNumberOfNotificationsItem(WebElement notificationsPanel) {
-    List<SelenideElement> item = (List<SelenideElement>) $$(".ui-datascroller-item");
+    ElementsCollection item = $$(".ui-datascroller-item");
     return item.size();
   }
 

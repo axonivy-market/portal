@@ -146,8 +146,8 @@ public class RoleManagementPage extends TemplatePage {
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
-  private List<SelenideElement> getRolesOnTheTreeTable() {
-    return (List<SelenideElement>) getRoleTreeTable().$$(By.cssSelector("tbody tr.role"));
+  private ElementsCollection getRolesOnTheTreeTable() {
+    return getRoleTreeTable().$$(By.cssSelector("tbody tr.role"));
   }
 
   private SelenideElement getRoleTreeTable() {
