@@ -357,9 +357,6 @@ public class AiService {
     if (StringUtils.isNotBlank(parameters)) {
       params = BusinessEntityConverter.jsonValueToEntities(parameters,
           IvyToolParameter.class);
-      if (CollectionUtils.isEmpty(params)) {
-        return AiAssistantAPI.createSomethingWentWrongError();
-      }
     }
 
     IWebStartable startable = ProcessService.getInstance().findAllProcesses()
