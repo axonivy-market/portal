@@ -24,13 +24,11 @@ import com.google.gson.Gson;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bean.PortalExceptionBean;
-import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.dto.UserMenu;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
-import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -49,7 +47,6 @@ public class UserMenuBean implements Serializable {
 
   public static final long TIME_BEFORE_LOST_SESSION = 3 * DateUtils.MILLIS_PER_MINUTE; // 3 minutes
   public static final String TASK_LEAVE_WARNING_COMPONENT = "task-leave-warning-component";
-  private static String expressStartLink;
   private String targetPage = StringUtils.EMPTY;
   private String loggedInUser;
   private boolean isShowGlobalSearch;
@@ -87,7 +84,7 @@ public class UserMenuBean implements Serializable {
     boolean isShowGlobalSearchByTasks = GlobalSearchService.getInstance().isShowGlobalSearchByTasks();
     boolean isShowGlobalSearchByCases = GlobalSearchService.getInstance().isShowGlobalSearchByCases();
     isShowGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_GLOBAL_SEARCH)
-        && (isShowGlobalSearchByProcesses || isShowGlobalSearchByCases || isShowGlobalSearchByTasks);;
+        && (isShowGlobalSearchByProcesses || isShowGlobalSearchByCases || isShowGlobalSearchByTasks);
     isShowQuickGlobalSearch = GlobalSettingService.getInstance()
         .findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_QUICK_GLOBAL_SEARCH)
         && (isShowGlobalSearchByProcesses || isShowGlobalSearchByCases || isShowGlobalSearchByTasks);
@@ -319,25 +316,11 @@ public class UserMenuBean implements Serializable {
       if (menuUrl.contains("http")) {
         return menuUrl;
       }
-      if (StringUtils.isNotBlank(getExpressStartLink())) {
-        ExpressProcess workflow = ExpressProcessService.getInstance().findExpressProcessByName(menuUrl);
-        if (workflow != null && PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(workflow)
-            && StringUtils.isNotBlank(workflow.getId())) {
-          menu.setUrl(getExpressStartLink() + "?workflowID=" + workflow.getId());
-        }
-      }
       return menu.getUrl();
     }
     return "";
   }
 
-  private static String getExpressStartLink() {
-    if (StringUtils.isEmpty(expressStartLink)) {
-      expressStartLink = ExpressProcessService.getInstance().findExpressWorkflowStartLink();
-    }
-    return expressStartLink;
-  }
-  
   public void navigateToNotificationOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) {
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {
       openTaskLosingConfirmationDialog();

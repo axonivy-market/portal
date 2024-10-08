@@ -6,14 +6,12 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
-import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessViewerPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.component.ProcessViewerComponentPage;
-import com.axonivy.portal.selenium.test.express.ExpressManagementTest;
 
 @IvyWebTest
 public class ProcessViewerTest extends BaseTest {
@@ -106,24 +104,6 @@ public class ProcessViewerTest extends BaseTest {
     var caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Order Pizza");
     caseDetailsPage.clickRelatedCaseActionButton(0);
     var detailPageSteps = caseDetailsPage.getAvailableActionStepsOfTechnicalCase(0);
-    assertTrue(!detailPageSteps.contains(PROCESS_VIEWER), PROCESS_VIEWER_IS_FOUND_ON_CASE_DETAILS_PAGE);
-  }
-
-  @Test
-  public void testNotShowProcessViewerForExpressCase() {
-    login(TestAccount.ADMIN_USER);
-    var expressManagementTest = new ExpressManagementTest();
-    expressManagementTest.prepareExpressWorkflowStep();
-    expressManagementTest.executePromoteResourceTask();
-    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
-    gotoCaseList();
-    caseWidgetPage.openActionStepMenu();
-    var steps = caseWidgetPage.getAvailableActionSteps();
-    assertTrue(!steps.contains(PROCESS_VIEWER), PROCESS_VIEWER_IS_FOUND_IN_CASE_LIST);
-
-    var caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Request new Resources - Express process");
-    caseDetailsPage.openActionMenu();
-    var detailPageSteps = caseDetailsPage.getAvailableActionSteps();
     assertTrue(!detailPageSteps.contains(PROCESS_VIEWER), PROCESS_VIEWER_IS_FOUND_ON_CASE_DETAILS_PAGE);
   }
 

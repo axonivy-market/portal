@@ -4,7 +4,6 @@ public class IvySideStep {
 
   private String name;
   private String startLink;
-  private boolean isAdhoc;
 
   public String getName() {
     return name;
@@ -20,14 +19,6 @@ public class IvySideStep {
 
   public void setStartLink(String startLink) {
     this.startLink = startLink;
-  }
-
-  public boolean isAdhoc() {
-    return isAdhoc;
-  }
-
-  public void setAdhoc(boolean isAdhoc) {
-    this.isAdhoc = isAdhoc;
   }
 
 }

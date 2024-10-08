@@ -29,6 +29,7 @@ public class TaskFilterFieldCustomText extends CustomFilterField {
     this.customField = customField;
   }
 
+  @Override
   public String getLabel() {
     return customField.label();
   }

@@ -262,6 +262,7 @@ public class TaskDashboardWidget extends DashboardWidget {
     return showFullscreenMode;
   }
 
+  @Override
   @JsonIgnore
   public void loadUserFilter() {
     updateSavedFiltersSelection();

@@ -24,6 +24,7 @@ public class DashboardSelectableListFilterValidator implements Validator {
   private static final String MESSAGE_PREFIX_PATTERN = "%s(%d)";
   private static final String PRIORITY = "priority";
 
+  @Override
   public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
     DashboardFilter filter = (DashboardFilter) component.getAttributes().get("filter");
     Integer filterIndex = Optional.ofNullable((Integer)component.getAttributes().get("filterIndex")).orElse(0);
