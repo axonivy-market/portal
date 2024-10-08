@@ -33,7 +33,7 @@
         <li class="topbar-item search-item" jsf:rendered="#{showGlobalSearch and !showQuickGlobalSearch}">
 
           <a href="#" id="global-search-item" aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}">
-            <i class="topbar-icon pi pi-search"/>
+            <i class="topbar-icon si si-search"/>
           </a>
           <ic:ch.ivy.addon.portal.generic.GlobalSearch id="global-search-component" 
             showQuickGlobalSearch="#{showQuickGlobalSearch}" isWorkingOnATask="#{isWorkingOnATask}" case="#{case}" task="#{task}"/>
@@ -46,7 +46,7 @@
           <p:commandLink id="theme-switcher" disabled="#{!themeBean.enableSwitchThemeButton}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/ThemeSwitcher')}"
             onclick="PrimeFaces.FreyaConfigurator.changeLayout('ivy', '#{ivyFreyaTheme.mode == 'light' ? 'dark' : 'light'}');Portal.changePortalVariableTheme('#{ivyFreyaTheme.mode == 'light' ? 'dark' : 'light'}');">
             <i class="topbar-icon pi pi-#{ivyFreyaTheme.mode == 'light' ? 'moon' : 'sun'}" />
-            <p:ajax onstart="PrimeFaces.FreyaConfigurator.beforeResourceChange();" oncomplete="changeThemeModeRefeshCharts(); reloadIframes();"
+            <p:ajax onstart="PrimeFaces.FreyaConfigurator.beforeResourceChange();" oncomplete="reloadIframes();"
               listener="#{themeBean.toggleTheme()}" update="theme-switcher #{p:resolveFirstComponentWithId('content-container:iFrame', view).clientId}" />
           </p:commandLink>
         </li>
