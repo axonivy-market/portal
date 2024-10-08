@@ -2672,27 +2672,29 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 @media screen and (min-width: 64.062em) {
   .project-info-dialog {
-    min-width: 1000px;
+    min-width: 600px;
   }
 }
 
 /******************************** PROJECT INFO DIALOG ******************************/
 .project-info-dialog {
-  max-width: 1000px;
+  max-width: 600px;
 }
 
 .project-info-dialog .project-version-table .project-version {
-  width: 180px;
+  width: 150px;
 }
 
 .project-info-dialog .project-version-table .project-state {
-  width: 120px;
+  width: 80px;
 }
 
 @media screen and (max-width: 64.062em) {
-  .project-info-dialog .project-version-table .project-version,
-  .project-info-dialog .project-version-table .project-state {
+  .project-info-dialog .project-version-table .project-version {
     width: auto;
+  }
+  .project-info-dialog .project-version-table .project-state {
+    width: 80px;
   }
 }
 /******************************** END PROJECT INFO DIALOG **************************/
