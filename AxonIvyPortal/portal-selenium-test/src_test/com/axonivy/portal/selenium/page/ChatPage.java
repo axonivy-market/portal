@@ -15,7 +15,6 @@ import org.openqa.selenium.WebElement;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
 
 import ch.ivyteam.ivy.project.portal.test.Responsible;
 
@@ -84,7 +83,7 @@ public class ChatPage extends TemplatePage {
     refresh();
     getChat();
     waitForElementDisplayed(By.id("chat-form:group-chat-container"), true);
-    List<SelenideElement> chatGroups = findElementById("chat-form:group-chat-container").findAll(".js-group-card-name");
+    ElementsCollection chatGroups = findElementById("chat-form:group-chat-container").findAll(".js-group-card-name");
     return chatGroups.size();
   }
 
