@@ -33,11 +33,15 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.ProcessViewerWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+import static com.codeborne.selenide.Selenide.$;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
@@ -523,6 +527,68 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseWidget.getConfigurationFilter(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "complex-filter-example", new ScreenshotMargin(10));
   }
+  
+  @Test
+  public void screenshotForQuickSearchConfigurationOnTaskWidget() throws IOException {
+    ConfigurationJsonUtils.updateJSONSetting("dashboard-task-widget-has-quicksearch.json", Variable.DASHBOARD);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForTaskWidgetLoaded();
+    newDashboardPage.clickOnFirstTaskAction();
+    ScreenshotUtils.executeDecorateJs("createBlackMediumOutline($($('.task-action-item-label')[0]));");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot($(".dashboard__widget").shouldBe(Condition.appear, DEFAULT_TIMEOUT),
+        ScreenshotUtils.ACCESSIBILITY_DASHBOARD_FOLDER + "task-actions-popup",
+        new ScreenshotMargin(20, 20, 20, 120));
+  }
+
+  @Test
+  public void screenshotForQuickSearchConfigurationOnCasaWidget() throws IOException {
+    ConfigurationJsonUtils.updateJSONSetting("dashboard-case-widget-has-quicksearch.json", Variable.DASHBOARD);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForCaseWidgetLoaded();
+    newDashboardPage.clickOnFirstCaseAction();
+    ScreenshotUtils.executeDecorateJs("createBlackMediumOutline($($('.task-action-item-label')[0]));");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot($(".dashboard__widget").shouldBe(Condition.appear, DEFAULT_TIMEOUT),
+        ScreenshotUtils.ACCESSIBILITY_DASHBOARD_FOLDER + "case-actions-popup",
+        new ScreenshotMargin(20, 20, 20, 120));
+  }
+
+  @Test
+  public void screenshotActionWarningDialogWhenStartTask() throws IOException {
+    ConfigurationJsonUtils.updateJSONSetting("dashboard-task-widget-has-quicksearch.json", Variable.DASHBOARD);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForTaskWidgetLoaded();
+    String taskName = "Sick Leave Request";
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
+    taskWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+    taskWidget.openFilterWidget();
+    taskWidget.resetFilter();
+    taskWidget.openFilterWidget();
+    taskWidget.filterTaskName(taskName, FilterOperator.IS);
+    taskWidget.applyFilter();
+
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.startTask(0);
+    TaskTemplatePage taskIframePage = new TaskTemplatePage();
+    taskIframePage.switchToIFrameOfTask();
+    taskIframePage.clickCancelAndLeftButton();
+    taskIframePage.switchBackToParent();
+    
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForTaskWidgetLoaded();
+    newDashboardPage.startTask(0);
+    newDashboardPage.focusOnWarningResetTaskDialog();
+    ScreenshotUtils.executeDecorateJs("createBlackThinOutline($(\"[id$=':reset-task-confirmation-dialog']\").find('a'));");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot($("[id$='reset-task-confirmation-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT),
+        ScreenshotUtils.ACCESSIBILITY_DASHBOARD_FOLDER + "reset-task-dialog",
+        new ScreenshotMargin(20, 20, 20, 20));
+  }
+
 
   private void redirectToDashboardConfiguration() {
     redirectToRelativeLink("portal/1549F58C18A6C562/PortalDashboardConfiguration.ivp");
