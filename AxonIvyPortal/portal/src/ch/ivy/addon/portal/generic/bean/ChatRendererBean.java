@@ -24,7 +24,6 @@ import ch.ivyteam.ivy.workflow.IProcessStart;
 public class ChatRendererBean implements Serializable {
 
   private static final long serialVersionUID = 4691697531600235758L;
-  private static final String EXPRESS_CREATION_TASK = "isExpressCreationTask";
   
   private Boolean isGroupChatRendered;
   private Boolean isPrivateChatRendered;
@@ -60,10 +59,6 @@ public class ChatRendererBean implements Serializable {
   public void getGroupChatName() {
     String groupChatName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/case") + "-{caseId}" + " {caseName}";
     PrimeFaces.current().executeScript("var groupChatFormat = '" + groupChatName + "'");
-  }
-
-  public boolean isExpressCreationTask() {
-    return Ivy.wfTask().customFields().stringField(EXPRESS_CREATION_TASK).get().isPresent();
   }
 
   public boolean getIsAssistantDashboardRendered() {

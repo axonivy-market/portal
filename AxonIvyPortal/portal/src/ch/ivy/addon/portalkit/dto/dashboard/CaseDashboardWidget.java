@@ -234,6 +234,7 @@ public class CaseDashboardWidget extends DashboardWidget {
     this.dataModel.getCriteria().setUserFilters(userFilters);
   }
 
+  @Override
   @JsonIgnore
   public void loadUserFilter() {
     updateSavedFiltersSelection();

@@ -27,7 +27,6 @@ public class CustomTimestampTodayOperatorHandler {
   }
 
   private void buildQuery(CaseQuery query, Date from, Date to, DashboardFilter filter) {
-    ;
     CaseQuery subQuery = CaseQuery.create();
     subQuery.where().customField().timestampField(filter.getField()).isGreaterOrEqualThan(from);
     subQuery.where().customField().timestampField(filter.getField()).isLowerOrEqualThan(to);

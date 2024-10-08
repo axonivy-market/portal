@@ -503,7 +503,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
   }
   
-  public void onReset(DashboardWidget widget) {
+  public void onReset(@SuppressWarnings("unused") DashboardWidget widget) {
     resetUserFilter();
   }
 

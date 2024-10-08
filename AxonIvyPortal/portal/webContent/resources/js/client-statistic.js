@@ -600,25 +600,23 @@ class ClientNumberChart extends ClientChart {
 
   renderMultipleNumberChartInHTML(result, suffixSymbold) {
     let multipleNumberChartInHTML = '';
-
     if (result?.length > 0) {
-      result.forEach((item) => {
-        let htmlString = this.generateItemHtml(item.key, item.count, suffixSymbold);
-        multipleNumberChartInHTML += htmlString;
-      });
+        result.forEach((item, index) => {
+          let htmlString = this.generateItemHtml(item.key, item.count, suffixSymbold, index);
+          multipleNumberChartInHTML += htmlString;
+        })
+
     } else {
-      multipleNumberChartInHTML = this.generateItemHtml('', '0', suffixSymbold);
+      multipleNumberChartInHTML = this.generateItemHtml('', '0', suffixSymbold, 0);
     }
     return multipleNumberChartInHTML;
   }
 
-  generateItemHtml(label, number, suffixSymbol) {
+  generateItemHtml(label, number, suffixSymbol, index) {
+    let border = '<div class="chart-border">' + '</div>';
     label = this.data.chartConfig.hideLabel === true ? '' : this.formatChartLabel(label) ;
     let html =
       '<div class="u-text-align-center chart-content-card">' +
-      '    <div class="chart-icon-font-size chart-number-animation">' +
-      '        <i class="fa-solid fa-chart-line"></i>' +
-      '    </div>' +
       '    <div class="chart-number-container">' +
       '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
       '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +
@@ -627,7 +625,7 @@ class ClientNumberChart extends ClientChart {
       '        <span class="card-name chart-name-font-size chart-number-animation">' + label + '</span>' +
       '    </div>' +
       '</div>';
-    return html;
+    return index > 0 ? border + html : html;
   };
 
   // Method to format chart label.

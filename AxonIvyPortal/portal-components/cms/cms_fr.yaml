@@ -83,7 +83,6 @@ Dialogs:
             ProcessNotFound: Le processus défini est introuvable.
             ProcessType:
               CASE_MAP: Carte de cas
-              EXPRESS_PROCESS: Flux de travail express
               EXTERNAL_LINK: Lien externe
               IVY_PROCESS: Processus d'entreprise
             ProcessViewerIFrameTitle: Cadre de visualisation du processus
