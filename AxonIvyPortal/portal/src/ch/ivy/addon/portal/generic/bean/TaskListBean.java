@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
+import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
@@ -34,7 +35,9 @@ public class TaskListBean extends DashboardBean {
     Dashboard taskListDashBoard = new Dashboard();
     if (StringUtils.isEmpty(dashboardJson)) {
       List<DashboardWidget> widgets = new List<DashboardWidget>();
-      DashboardWidget defaultTaskList = DashboardWidgetUtils.buildDefaultTaskWidget("ID", "Your Task");
+      DashboardWidget defaultTaskList =
+          DashboardWidgetUtils
+              .buildDefaultTaskWidget(DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.TASK), "Your Task");
       widgets.add(defaultTaskList);
       taskListDashBoard.setId(DashboardUtils.generateId());
       taskListDashBoard.setWidgets(widgets);
