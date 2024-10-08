@@ -21,6 +21,6 @@ public class WidgetIdFilterBean implements Serializable {
     return operators;
   }
 
-  public void onChangeOperator(DashboardFilter filter) {
+  public void onChangeOperator(@SuppressWarnings("unused") DashboardFilter filter) {
   }
 }

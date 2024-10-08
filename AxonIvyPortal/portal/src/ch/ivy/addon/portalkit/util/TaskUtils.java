@@ -120,6 +120,7 @@ public final class TaskUtils {
    * @param iTask task need to delegate
    * @param iSecurityMember
    */
+  @SuppressWarnings("deprecation")
   public static void delegateTask(final ITask iTask, final ISecurityMember iSecurityMember) {
     Sudo.get(() -> {
       iTask.setActivator(iSecurityMember);

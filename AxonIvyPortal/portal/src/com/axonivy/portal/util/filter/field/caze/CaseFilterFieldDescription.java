@@ -3,8 +3,8 @@ package com.axonivy.portal.util.filter.field.caze;
 import java.util.ArrayList;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
+import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.operator.caze.description.DescriptionContainsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.description.DescriptionEndWithOperatorHandler;
@@ -23,6 +23,7 @@ public class CaseFilterFieldDescription extends FilterField {
     super(DashboardStandardCaseColumn.DESCRIPTION.getField());
   }
 
+  @Override
   public String getLabel() {
     return DashboardStandardCaseColumn.DESCRIPTION.getLabel();
   }

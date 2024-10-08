@@ -44,7 +44,7 @@ public class ApplicationColumnModel extends ProcessColumnModel implements Serial
 
   @JsonIgnore
   public List<String> getApplications() {
-    return ListUtilities.transformList(IApplicationRepository.instance().allOf(ISecurityContext.current()), IApplication::getName);
+    return ListUtilities.transformList(IApplicationRepository.of(ISecurityContext.current()).all(), IApplication::getName);
   }
   
   @JsonIgnore
@@ -89,10 +89,10 @@ public class ApplicationColumnModel extends ProcessColumnModel implements Serial
 
     if (widget instanceof CompactProcessDashboardWidget) {
       ((CompactProcessDashboardWidget) widget).setProcesses(null);
-      final List<ColumnModel> filterableColumns = ((CompactProcessDashboardWidget) widget).getFilterableColumns();
+      final List<ColumnModel> filterableColumns = widget.getFilterableColumns();
       for (ColumnModel column : filterableColumns) {
         if (column instanceof CategoryColumnModel) {
-          ((CategoryColumnModel) column).setFilterList(new ArrayList<>());
+          column.setFilterList(new ArrayList<>());
           ((CategoryColumnModel) column).setSelectionCategoryNodes(null);
         }
       }
