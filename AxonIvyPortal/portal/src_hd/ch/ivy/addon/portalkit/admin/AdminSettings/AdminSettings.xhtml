@@ -13,7 +13,17 @@
     <span class="si si-alert-circle" />
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/permission/noPermission')}" />
   </p:outputPanel>
-
+  <h:panelGroup styleClass="ui-g-12" layout="block">
+    <div class="flex justify-content-between flex-wrap">
+      <div class="flex align-items-center justify-content-center admin-setting-header">
+         <h3>Admin Settings</h3>
+      </div>
+      <div class="flex align-items-center justify-content-center">
+        <h:outputText id="applications-setting-info" styleClass="applications-setting-info si si-information-circle" />
+        <p:tooltip for="applications-setting-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationHint')}" />
+      </div>
+    </div>
+  </h:panelGroup>
   <!-- TAB VIEW -->
   <p:tabView id="adminTabView" rendered="#{permissionBean.hasAdminPermission()}" activeIndex="0" dynamic="true">
     <f:event listener="#{adminSettingBean.initAdminTabViewConfig()}" type="preRenderComponent"/>
@@ -22,20 +32,6 @@
     <!-- APPLICATION TAB -->
     <p:tab id="application-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applications')}">
       <h:form prependId="false" id="applicationForm">
-        <p:outputPanel styleClass="ui-messages ui-widget">
-          <p:outputPanel styleClass="ui-messages-info ui-corner-all">
-            <span class="ui-messages-info-icon" />
-            <h:outputText styleClass="ui-messages-info-summary"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationHint')}" />
-          </p:outputPanel>
-        </p:outputPanel>
-
-        <h:panelGroup layout="block" styleClass="application-tab-action-buttons">
-          <p:commandButton id="add-application-btn" actionListener="#{logic.addNewApp}" oncomplete="PF('appDialog').show()" resetValues="true"
-            styleClass="new-app" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/new')}" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
-            update=":#{p:resolveFirstComponentWithId('appDialog', view).clientId}" />
-        </h:panelGroup>
-
         <!-- Applications Table -->
         <h:panelGroup id="applicationPanel" layout="block">
           <p:dataTable value="#{data.applicationList}" var="app" id="applicationTable" draggableRows="true"
@@ -54,20 +50,35 @@
 
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
               styleClass="u-text-align-center settings-table-action-buttons">
-              <p:commandLink id="edit" oncomplete="PF('appDialog').show()" styleClass="action-column-icon-button"
-                actionListener="#{logic.editApplication(app)}" process="@this"
-                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
-                update="@this :#{p:resolveFirstComponentWithId('appDialog', view).clientId}">
-                <span class="si si-graphic-tablet-drawing-pen" />
-              </p:commandLink>
-              <p:commandLink id="delete" process="@this" styleClass="action-column-icon-button"
-                actionListener="#{logic.submitDeleteApp(app)}" update=":#{p:resolveFirstComponentWithId('deleteConfirmationDialog', view).clientId}"
-                oncomplete="PF('deleteConfirmation').show()"
-                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
-                <span class="si si-bin-1" />
-              </p:commandLink>
+              <p:commandButton id="applications-action-button" icon="si si-navigation-menu-horizontal"
+                styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page" type="button"/>
+              <p:menu id="applications-action-menu" overlay="true"
+                trigger="applications-action-button"
+                my="right top" at="right bottom"
+                styleClass="applications-action-menu">
+                <p:menuitem id="edit-application"
+                  styleClass=""
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
+                  icon="si si-graphic-tablet-drawing-pen"
+                  oncomplete="PF('appDialog').show()"
+                  actionListener="#{logic.editApplication(app)}"
+                  update="@this :#{p:resolveFirstComponentWithId('appDialog', view).clientId}"
+                  process="@this" />
+                <p:menuitem id="delete-application"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+                  icon="si si-bin-1"
+                  oncomplete="PF('deleteConfirmation').show()"
+                  actionListener="#{logic.submitDeleteApp(app)}"
+                  update=":#{p:resolveFirstComponentWithId('deleteConfirmationDialog', view).clientId}"
+                  process="@this"/>
+              </p:menu>
             </p:column>
           </p:dataTable>
+        </h:panelGroup>
+        <h:panelGroup layout="block" styleClass="application-tab-action-buttons">
+          <p:commandButton id="add-application-btn" actionListener="#{logic.addNewApp}" oncomplete="PF('appDialog').show()" resetValues="true"
+            styleClass="new-app-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/new')}" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
+            update=":#{p:resolveFirstComponentWithId('appDialog', view).clientId}" />
         </h:panelGroup>
       </h:form>
     </p:tab>

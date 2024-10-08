@@ -2700,6 +2700,25 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 /******************************** END PROJECT INFO DIALOG **************************/
 
 /********************************** ADMIN SETTING **********************************/
+.admin-setting-card {
+  padding: 30px;
+}
+
+.admin-setting-card .admin-setting-header h2{
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.admin-setting-card .applications-setting-info {
+  color: var(--ivy-primary-color);
+  font-size: large;
+}
+
+.admin-setting-card .application-table {
+  margin-bottom: 2rem;
+  margin-top: 0.5rem;
+}
+
 .admin-ui-dialog {
   max-width: 80vw;
 }
@@ -2723,6 +2742,30 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 .create-role-container {
   text-align: right;
   margin: .5em 0;
+}
+
+.application-tab-action-buttons .new-app-btn{
+  width: 100%;
+  height: 3rem;
+}
+
+.application-tab-action-buttons .new-app-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.application-tab-action-buttons .new-app-btn.ui-button .ui-icon{
+  position: relative;
+  top: auto;
+  left: auto;
+  margin: 0 0.25rem 0 0;
+}
+
+.application-tab-action-buttons .new-app-btn.ui-button .ui-button-text{
+  padding: 0
 }
 
 .admin-settings-form-input-label {
@@ -2798,7 +2841,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   margin: 10px !important;
 }
 
-.new-app, .ui-dialog-footer button {
+.ui-dialog-footer button {
   min-width: 90px;
   margin-bottom: 6px;
 }
