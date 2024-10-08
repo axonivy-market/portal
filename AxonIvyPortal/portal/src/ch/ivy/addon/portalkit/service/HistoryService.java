@@ -14,7 +14,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.History;
 import ch.ivy.addon.portalkit.bo.History.HistoryType;
-import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -69,13 +68,11 @@ public class HistoryService {
   }
 
   private List<History> createHistoriesFromITasks(List<ITask> tasks, boolean excludeSystemTasks, long selectedCaseId) {
-    List<ITask> refineTasks = new ArrayList<>();
-    refineTasks = tasks.stream().filter(isNotExpressTask()).collect(Collectors.toList());
     if (excludeSystemTasks) {
-      refineTasks = refineTasks.stream().filter(isNotSystemTaskNote()).collect(Collectors.toList());
+      tasks = tasks.stream().filter(isNotSystemTaskNote()).collect(Collectors.toList());
     }
     var histories = new ArrayList<History>();
-    CollectionUtils.emptyIfNull(refineTasks).forEach(task -> {
+    CollectionUtils.emptyIfNull(tasks).forEach(task -> {
       var history = createHistoryFrom(task);
       buildDisplayCaseNameForNote(selectedCaseId, task.getCase(), history);
       histories.add(history);
@@ -94,11 +91,9 @@ public class HistoryService {
 
   private List<History> createHistoriesFromITasks(List<ITask> tasks, boolean excludeSystemTasks) {
     if (excludeSystemTasks) {
-      return tasks.stream().filter(isNotSystemTaskNote()).filter(isNotExpressTask())
-          .map(this::createHistoryFrom).collect(Collectors.toList());
+      return tasks.stream().filter(isNotSystemTaskNote()).map(this::createHistoryFrom).collect(Collectors.toList());
     }
-    return tasks.stream().filter(isNotExpressTask())
-        .map(this::createHistoryFrom).collect(Collectors.toList());
+    return tasks.stream().map(this::createHistoryFrom).collect(Collectors.toList());
   }
 
   public List<History> createHistoriesFromINotes(List<INote> notes, boolean excludeSystemNotes) {
@@ -111,10 +106,6 @@ public class HistoryService {
 
   private Predicate<? super ITask> isNotSystemTaskNote() {
     return task -> !StringUtils.equals(task.getWorkerUserName(), ISecurityConstants.SYSTEM_USER_NAME);
-  }
-
-  private Predicate<? super ITask> isNotExpressTask() {
-    return task -> task.customFields().stringField(AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).getOrNull() == null;
   }
 
   private boolean isNotSystemNote(INote note) {

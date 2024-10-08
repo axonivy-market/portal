@@ -20,8 +20,8 @@ import com.axonivy.portal.enums.AdditionalChartConfig;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.service.JsonConfigurationService;
 import ch.ivy.addon.portalkit.statistics.ClientStatisticResponse;
-import ch.ivyteam.ivy.elasticsearch.client.agg.AggregationResult;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
 import ch.ivyteam.ivy.workflow.stats.WorkflowStats;
 
 public class ClientStatisticService extends JsonConfigurationService<ClientStatistic> {

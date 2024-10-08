@@ -3,8 +3,8 @@ package com.axonivy.portal.util.filter.field.task;
 import java.util.ArrayList;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
+import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.operator.task.name.NameContainsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.task.name.NameEndWithOperatorHandler;
@@ -23,6 +23,7 @@ public class TaskFilterFieldName extends FilterField {
     super(DashboardStandardTaskColumn.NAME.getField());
   }
 
+  @Override
   public String getLabel() {
     return DashboardStandardTaskColumn.NAME.getLabel();
   }

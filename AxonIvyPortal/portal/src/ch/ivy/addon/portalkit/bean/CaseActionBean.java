@@ -16,13 +16,10 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-import ch.ivy.addon.portalkit.constant.CustomFields;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -51,14 +48,7 @@ public class CaseActionBean implements Serializable {
   }
 
   public String getAdditionalCaseDetailsPageUri(ICase iCase) {
-    String additionalCaseDetailsPageUri = EMPTY;
-    if (isExpressCase(iCase)) {
-      additionalCaseDetailsPageUri =
-          ExpressProcessService.getInstance().findExpressBusinessViewStartLink() + "?uuid=" + iCase.uuid();
-    } else {
-      additionalCaseDetailsPageUri = getBusinessDetailUrlFromCustomField(iCase);
-    }
-    return additionalCaseDetailsPageUri;
+    return getBusinessDetailUrlFromCustomField(iCase);
   }
 
 
@@ -197,13 +187,8 @@ public class CaseActionBean implements Serializable {
     return PortalProcessViewerUtils.getStartProcessViewerPageUri(selectedCase);
   }
 
-  private boolean isExpressCase(ICase iCase) {
-    return BooleanUtils.toBoolean(iCase.customFields().stringField(CustomFields.IS_EXPRESS_PROCESS).getOrNull());
-  }
-
-  public boolean showProcessOverviewLink(ICase iCase) {
-    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_PROCESS_INFORMATION)
-        && !isExpressCase(iCase) && iCase.isBusinessCase();
+  public boolean showProcessOverviewLink(@SuppressWarnings("unused") ICase iCaze) {
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_PROCESS_INFORMATION);
   }
 
   public String getProcessOverviewPageUri(ICase iCase) {

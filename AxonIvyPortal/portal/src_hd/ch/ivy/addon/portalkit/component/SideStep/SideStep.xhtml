@@ -8,12 +8,11 @@
   <cc:attribute name="actionLinkId" />
   <cc:attribute name="panelWidgetVar" />
   <cc:attribute name="sideStepsPanelStyleClass" />
-  <cc:attribute name="isAdhocExcluded" default="false" type="java.lang.Boolean" shortDescription="exclude adhoc from side steps" />
   <cc:attribute name="isDisabled" default="false" type="java.lang.Boolean" />
   <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
   <cc:attribute name="componentToUpdate" default="" />
   <cc:attribute name="buttonStyleClass" />
-  <cc:attribute name="renderedAdditionalAction" shortDescription="Control display adhoc and side steps" />
+  <cc:attribute name="renderedAdditionalAction" shortDescription="Control display side steps" />
   <cc:attribute name="currentPortalPage" default="TASK_LIST" />
   <cc:attribute name="showDetailOption" default="false" shortDescription="Display go to task detail option" />
   <cc:attribute name="dataModel" shortDescription="Data model of task list" />
@@ -33,7 +32,7 @@
   <f:event listener="#{data.setCurrentPortalPage(cc.attrs.currentPortalPage)}" type="preRenderComponent" />
 
   <p:link id="#{cc.attrs.actionLinkId}" disabled="#{cc.attrs.isDisabled or cc.attrs.isPreviewMode}" onclick="event.stopPropagation(); return false;"
-    styleClass="action-link #{cc.attrs.buttonStyleClass} portal-icon">
+    styleClass="action-link #{cc.attrs.buttonStyleClass} portal-icon ui-sidestep-action">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" styleClass="task-action-item-label" />
     <i class="si si-arrow-down-1" />
   </p:link>
@@ -115,18 +114,12 @@
     </p:link>
 
     <h:panelGroup id="task-additional-actions" layout="block" rendered="#{cc.attrs.renderedAdditionalAction}">
-      <f:event listener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId(), cc.attrs.isAdhocExcluded)}" type="preRenderComponent" />
+      <f:event listener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId())}" type="preRenderComponent" />
       <p:divider styleClass="task-action-separator" />
-      <p:commandLink rendered="#{empty sideStepBean.currentSideSteps}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}"
-        styleClass="option-item" />
+      <h:outputText rendered="#{empty sideStepBean.currentSideSteps}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}" styleClass="option-item pointer-event-none" />
       <ui:repeat var="sideStep" value="#{sideStepBean.currentSideSteps}">
-        <p:commandLink id="adhoc-side-step-item" styleClass="option-item" global="false" rendered="#{sideStep.isAdhoc()}"
-          actionListener="#{sideStepBean.startAdhoc(sideStep, task.getId())}" process="@this">
-          <i class="option-action-icon si si-add u-mar-right-5" />
-          <span class="option-item-label option-item-long-label"><h:outputText value="#{sideStep.name}" /></span>
-        </p:commandLink>
   
-        <p:commandLink id="option-item" styleClass="option-item" value="#{sideStep.name}" global="false" rendered="#{not sideStep.isAdhoc()}"
+        <p:commandLink id="option-item" styleClass="option-item" value="#{sideStep.name}" global="false"
           actionListener="#{sideStepBean.startSideStep(sideStep)}" process="@this" />
       </ui:repeat>
     </h:panelGroup>

@@ -71,7 +71,6 @@ public class PortalProcessesScreenshotTest extends ScreenshotBaseTest {
     login(TestAccount.ADMIN_USER);
     MainMenuPage mainMenuPage = new MainMenuPage();
     processWidget = mainMenuPage.openProcessList();
-    processWidget.navigateToProcessIndex("A");
     ScreenshotUtils.executeDecorateJs("highlightProcessMoreMenuButton()");
 
     processWidget.clickMoreButtonOfFirstImageProcess();

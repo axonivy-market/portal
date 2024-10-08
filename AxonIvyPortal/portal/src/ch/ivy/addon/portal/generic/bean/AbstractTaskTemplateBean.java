@@ -7,15 +7,9 @@ import java.util.List;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-import ch.ivy.addon.portalkit.bo.AdhocHistory;
-import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-import ch.ivy.addon.portalkit.service.AdhocHistoryService;
-import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
@@ -36,7 +30,6 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
 
   protected List<IStartableSideStep> sideStepList;
   protected IStartableSideStep selectedSideStep;
-  protected List<AdhocHistory> adhocHistories;
   protected String caseDetailsLink;
   protected ITask task;
   protected ITask currentTask;
@@ -49,21 +42,10 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
     this.selectedSideStep = selectedSideStep;
   }
 
-  public void startAdhoc(Long taskId) {
-    String url = ExpressProcessService.getInstance().findExpressAdhocWFLink();
-    url = url + "?originalTaskId=" + taskId;
-    PortalNavigator.redirect(url);
-  }
-
   public void startSideStep(ITask task) {
     TaskUtils.resetTask(task);
     String link = UrlUtils.formatLinkWithEmbedInFrameParam(selectedSideStep.getStartLink().getRelativeEncoded());
     PortalNavigator.redirect(link);
-  }
-
-  public boolean hasExpressAdhocWF() {
-    String adhocUrl = ExpressProcessService.getInstance().findExpressAdhocWFLink();
-    return !adhocUrl.isEmpty();
   }
 
   public List<IStartableSideStep> generateSideStepList(ICase iCase) {
@@ -85,37 +67,6 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
 
   private boolean isSkippingTaskList() {
     return task != null && currentTask != null && currentTask.getId() != task.getId();
-  }
-
-  public boolean hasAdhocTasks(ITask task) {
-    if (task == null) {
-      return false;
-    }
-    boolean isFirstTimeOpenOriginalAdhocTask = AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString()
-        .equals(task.customFields().stringField(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString()).getOrNull());
-    if (isFirstTimeOpenOriginalAdhocTask) {
-      PrimeFaces.current().executeScript("PF('adhoc-task-history-dialog').show()");
-    }
-    return AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString().equals(task.customFields().stringField(AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString()).getOrNull());
-  }
-
-  public void onCloseAdhocTaskHistoryDialog(ITask task) {
-    task.customFields().stringField(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString()).delete();
-  }
-
-  public String getAdhocCreationMessage(Long taskId) {
-    AdhocHistoryService adhocHistoryService = new AdhocHistoryService();
-    boolean hasAdhocHistory = adhocHistoryService.hasAdhocHistory(taskId);
-    return hasAdhocHistory ? Ivy.cms().co("/ch.ivy.addon.portal.generic/OpenTaskTemplate/reCreateAdhocWarning") : Ivy.cms().co("/ch.ivy.addon.portal.generic/OpenTaskTemplate/goToAdhocWarning");
-  }
-
-  public List<AdhocHistory> getAllAdhocHistories(ITask task) {
-    if (adhocHistories == null && task != null) {
-      AdhocHistoryService adhocHistoryService = new AdhocHistoryService();
-      adhocHistories = adhocHistoryService.getHistoriesByTaskID(task.getId());
-      adhocHistories.sort((first, second) -> second.getTimestamp().compareTo(first.getTimestamp()));
-    }
-    return adhocHistories;
   }
 
   public static String getUserByUsernameAndExternalName(String username, String externalId) {
@@ -232,13 +183,6 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
 
   public void setTask(ITask task) {
     this.task = task;
-  }
-
-  public boolean canStartAdhoc(String isShowStartAdhocButton,
-      Boolean isCurrentTaskPersistent) {
-    return StringUtils.isBlank(isShowStartAdhocButton)
-        ? (hasExpressAdhocWF() && isCurrentTaskPersistent)
-        : BooleanUtils.toBoolean(isShowStartAdhocButton);
   }
 
   public void doNothing() {

@@ -16,12 +16,10 @@ the |ivy| Portal menu.
 
 On the **Full Process List** page, you see a list of all processes. They
 are sorted alphabetically and grouped by their initial character. 
-Express workflows are described in detail in :ref:`axon-ivy-express`.
 
 |portal-full-process-list-page|
 
    #. Search for a process, input your keyword here
-   #. Express workflow icon
    #. External link icon
    #. Change view mode
 

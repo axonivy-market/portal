@@ -27,8 +27,8 @@ public class DashboardProcessTaskLazyDataModel extends LazyDataModel7<ITask> {
   private List<ITask> tasks;
   private CompletableFuture<Void> future;
 
-  public DashboardProcessTaskLazyDataModel(Long processStartId, String expressProcessName) {
-    criteria = new DashboardProcessTaskSearchCriteria(processStartId, expressProcessName);
+  public DashboardProcessTaskLazyDataModel(Long processStartId) {
+    criteria = new DashboardProcessTaskSearchCriteria(processStartId);
     tasks = new ArrayList<>();
   }
 

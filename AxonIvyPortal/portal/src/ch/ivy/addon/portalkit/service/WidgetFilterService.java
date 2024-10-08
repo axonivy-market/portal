@@ -155,7 +155,7 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
         case PROCESS:
           var processWidget = (ProcessDashboardWidget) widget;
           if (ProcessWidgetMode.COMPACT_MODE == processWidget.getDisplayMode()) {
-            widgetFilterableColumns.addAll(((CompactProcessDashboardWidget) processWidget).getFilterableColumns());
+            widgetFilterableColumns.addAll(processWidget.getFilterableColumns());
           }
           break;
         default:

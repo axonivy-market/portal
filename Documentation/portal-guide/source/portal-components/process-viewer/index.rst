@@ -47,7 +47,7 @@ You can integrate the Process Viewer component in any page by including followin
       <ic:com.axonivy.portal.components.ProcessViewer processLink="/designer/pro/portal-components-examples/182E92730FF57035/start.ivp" containerStyleClass="process-viewer-container" />
 
    .. warning::
-      Sub Case (Technical Case) or Express Workflow Process is not supported.
+      Sub Case (Technical Case) is not supported.
 
 #. You can customize the container style by using parameter ``containerStyleClass``
 

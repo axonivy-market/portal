@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "1549F58C18A6C562",
   "config" : {
     "data" : "ch.ivy.addon.portal.generic.PortalStartData"
@@ -1067,10 +1067,6 @@
             "    in.portalPage = taskEndInfo.portalPage;",
             "    if (!in.isTaskStartedInDetails || in.backFromTaskDetails) {",
             "      SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);",
-            "    }",
-            "    ",
-            "    if (in.isTaskFinished) {",
-            "      in.callbackUrl = taskWithTaskEndInfo.customFields().stringField(CustomFields.EXPRESS_END_PAGE_URL.toString()).getOrDefault(\"\");",
             "    }",
             "  }",
             "  in.caseSelected = task.getCase();",
@@ -2501,11 +2497,7 @@
             "at" : { "x" : 224, "y" : 96 }
           },
           "connect" : [
-            { "id" : "S10-f8", "to" : "S10-f7", "label" : {
-                "name" : "Express end page",
-                "segment" : 0.47,
-                "offset" : { "y" : -11 }
-              } },
+            { "id" : "S10-f8", "to" : "S10-f7" },
             { "id" : "S10-f2", "to" : "S10-f68", "via" : [ { "x" : 288, "y" : 192 } ] },
             { "id" : "S10-f3", "to" : "S10-f17", "via" : [ { "x" : 288, "y" : 288 } ] },
             { "id" : "S10-f4", "to" : "S10-f19", "via" : [ { "x" : 256, "y" : 384 } ] },
