@@ -53,6 +53,10 @@ public abstract class AbstractPage {
     ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript("arguments[0].click();", element);
 
   }
+  
+  public void focusByJavascript(SelenideElement element) {
+    ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript("arguments[0].focus();", element);
+  }
 
   public SelenideElement findElementByCssSelector(String cssSelector) {
     return $(cssSelector).shouldBe(appear, DEFAULT_TIMEOUT);

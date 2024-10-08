@@ -1,0 +1,57 @@
+{
+  "format" : "10.0.0",
+  "id" : "19223B05D7DC53D7",
+  "config" : {
+    "data" : "ch.ivy.add.portalkit.AccessibilityShortcutWidgetData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "accessibilityShortcut.ivp",
+      "config" : {
+        "callSignature" : "accessibilityShortcut",
+        "input" : {
+          "map" : {
+            "out.isAccessibilityWidget" : "\"true\""
+          }
+        },
+        "outLink" : "accessibilityShortcut.ivp",
+        "startCustomFields" : [
+          { "name" : "isDashboardProcess", "value" : "true" }
+        ],
+        "showInStartList" : false,
+        "startName" : "<%=ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/AccessibilityShortcuts/processName\")%>",
+        "case" : { }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 368, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "AccessibilityShortcut",
+      "config" : {
+        "dialogId" : "ch.ivy.addon.portal.generic.dashboard.component.AccessibilityShortcut",
+        "startMethod" : "start(Boolean)",
+        "call" : {
+          "params" : [
+            { "name" : "isAccessibilityWidget", "type" : "Boolean" }
+          ],
+          "map" : {
+            "param.isAccessibilityWidget" : "true"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

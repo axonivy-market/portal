@@ -1045,4 +1045,37 @@ public class NewDashboardPage extends TemplatePage {
     checkDisplayedCompactModeProcessContainer();
     getProcessWidgetTable().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
+  
+  public void clickOnFirstTaskAction() {
+    $$("[id$='dashboard-task-side-steps-menu']")
+    .get(0).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+    .click();
+    
+    $("[id$='dashboard-actions-task-task_1:side-steps-panel']")
+    .shouldBe(appear, DEFAULT_TIMEOUT);
+    focusByJavascript($("[id$=':task-open-detail-command']"));
+    $("[id$=':task-open-detail-command']").sendKeys(Keys.TAB);
+  }
+  
+  public void clickOnFirstCaseAction() {
+    $$("[id$='dashboard-case-side-steps-menu']")
+    .get(0).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+    .click();
+    
+    $("[id$=':action-steps-panel']")
+    .shouldBe(appear, DEFAULT_TIMEOUT);
+    focusByJavascript($("[id$=':case-item-open-detail-link']"));
+    $("[id$=':case-item-open-detail-link']").sendKeys(Keys.TAB);
+  }
+  
+  public void clickOnCancelTask() {
+    $("[id='leave-request:button-cancel']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+  }
+  
+  public void focusOnWarningResetTaskDiaglo() {
+    $("[id$=':reset-task-confirmation-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement element = $("[id$=':reset-task-confirmation-dialog']").$("a");
+    focusByJavascript(element);
+    element.pressTab();
+  }
 }
