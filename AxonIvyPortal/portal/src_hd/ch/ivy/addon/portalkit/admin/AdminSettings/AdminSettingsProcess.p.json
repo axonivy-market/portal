@@ -939,87 +939,6 @@
         { "id" : "f70", "to" : "f190" }
       ]
     }, {
-      "id" : "f64",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "publishAnnouncement()",
-      "config" : {
-        "signature" : "publishAnnouncement",
-        "guid" : "16A29A0E1F97DE40"
-      },
-      "visual" : {
-        "at" : { "x" : 320, "y" : 1376 },
-        "labelOffset" : { "x" : 15, "y" : -15 }
-      },
-      "connect" : [
-        { "id" : "f82", "to" : "f81" }
-      ]
-    }, {
-      "id" : "f65",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "depublishAnnouncement()",
-      "config" : {
-        "signature" : "depublishAnnouncement",
-        "guid" : "16A29A0F2F82745C"
-      },
-      "visual" : {
-        "at" : { "x" : 512, "y" : 1376 },
-        "labelOffset" : { "x" : 15, "y" : -15 }
-      },
-      "connect" : [
-        { "id" : "f86", "to" : "f85" }
-      ]
-    }, {
-      "id" : "f81",
-      "type" : "Script",
-      "name" : "publish",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.components.util.FacesMessageUtils;",
-            "import javax.faces.application.FacesMessage;",
-            "import javax.faces.context.FacesContext;",
-            "import ch.ivy.addon.portalkit.service.AnnouncementService;",
-            "AnnouncementService service = AnnouncementService.getInstance();",
-            "in.announcement.setEnabled(true);",
-            "service.save(in.announcement);",
-            "out.isAnnouncementActivated = true;",
-            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ",
-            "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled\"), null));"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 320, "y" : 1472 }
-      },
-      "connect" : [
-        { "id" : "f27", "to" : "f16", "via" : [ { "x" : 320, "y" : 1568 } ] }
-      ]
-    }, {
-      "id" : "f85",
-      "type" : "Script",
-      "name" : "depublish",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.components.util.FacesMessageUtils;",
-            "import javax.faces.application.FacesMessage;",
-            "import javax.faces.context.FacesContext;",
-            "import ch.ivy.addon.portalkit.service.AnnouncementService;",
-            "AnnouncementService service = AnnouncementService.getInstance();",
-            "service.deactivateAnnouncement();",
-            "out.isAnnouncementActivated = false;",
-            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ",
-            "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsDisabled\"), null));"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 512, "y" : 1472 }
-      },
-      "connect" : [
-        { "id" : "f58", "to" : "f16" }
-      ]
-    }, {
       "id" : "f87",
       "type" : "HtmlDialogMethodStart",
       "name" : "isApplicationDefaultEmailLanguage(String)",
@@ -1229,7 +1148,7 @@
         "labelOffset" : { "x" : 17, "y" : -11 }
       },
       "connect" : [
-        { "id" : "f52", "to" : "f56" }
+        { "id" : "f27", "to" : "f56" }
       ]
     }, {
       "id" : "f83",
@@ -1274,7 +1193,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 512, "y" : 1568 }
+        "at" : { "x" : 544, "y" : 1568 }
       },
       "connect" : [
         { "id" : "f25", "to" : "f24" }
@@ -1283,7 +1202,7 @@
       "id" : "f24",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 512, "y" : 1664 }
+        "at" : { "x" : 544, "y" : 1664 }
       }
     }, {
       "id" : "f61",
@@ -1353,6 +1272,62 @@
       },
       "connect" : [
         { "id" : "f46", "to" : "f38" }
+      ]
+    }, {
+      "id" : "f79",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "toggleAnnouncement(boolean)",
+      "config" : {
+        "signature" : "toggleAnnouncement",
+        "input" : {
+          "params" : [
+            { "name" : "event", "type" : "boolean", "desc" : "" }
+          ],
+          "map" : { },
+          "code" : "ivy.log.info(param.event);"
+        },
+        "guid" : "1927094660EB84F3"
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 1384 },
+        "labelOffset" : { "x" : 15, "y" : -15 }
+      },
+      "connect" : [
+        { "id" : "f91", "to" : "f94" }
+      ]
+    }, {
+      "id" : "f94",
+      "type" : "Script",
+      "name" : "Toggle Announcement",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.application.FacesMessage;",
+            "import javax.faces.context.FacesContext;",
+            "import ch.ivy.addon.portalkit.service.AnnouncementService;",
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
+            "",
+            "AnnouncementService service = AnnouncementService.getInstance();",
+            "if (in.isAnnouncementActivated) {",
+            "  in.announcement.setEnabled(true);",
+            "  service.save(in.announcement);",
+            "  out.isAnnouncementActivated = true;",
+            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ",
+            "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled\"), null));",
+            "} else {",
+            "  service.deactivateAnnouncement();",
+            "  out.isAnnouncementActivated = false;",
+            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ",
+            "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsDisabled\"), null));",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 1472 }
+      },
+      "connect" : [
+        { "id" : "f95", "to" : "f16", "via" : [ { "x" : 352, "y" : 1568 } ], "color" : "default" }
       ]
     } ],
   "layout" : {

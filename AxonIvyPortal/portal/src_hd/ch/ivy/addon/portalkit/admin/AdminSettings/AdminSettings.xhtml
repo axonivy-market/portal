@@ -142,32 +142,6 @@
         styleClass="ui-g">
         <h:panelGroup id="action-group" styleClass="announcement-tab-action-buttons ui-g-12 u-padding-0" layout="block">
           <div class="announcement-information">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/information")}</div>
-          <div class="announcement-action">
-            <p:commandButton id="publish-announcement"
-              process="announcement-form"
-              disabled="#{data.isAnnouncementActivated}"
-              icon="#{visibilityBean.generateButtonIcon('si si-check-circle-1')}"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/enable')}"
-              actionListener="#{logic.publishAnnouncement()}"
-              update="#{cc.clientId}:adminTabView:announcement-table #{cc.clientId}:adminTabView:announcement-validation-messages action-group"
-              styleClass="u-mar-right-5"/>
-            <p:commandButton id="delete-announcement"
-              process="announcement-form"
-              actionListener="#{logic.depublishAnnouncement()}"
-              icon="#{visibilityBean.generateButtonIcon('si si-delete')}"
-              disabled="#{not data.isAnnouncementActivated}"
-              update="#{cc.clientId}:adminTabView:announcement-validation-messages action-group"
-              styleClass="u-mar-right-5"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/disable')}">
-            </p:commandButton>
-            <p:commandButton id="save-changes-announcement"
-              process="announcement-form"
-              actionListener="#{logic.saveChangesAnnouncement()}"
-              icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
-              update="#{cc.clientId}:adminTabView:announcement-validation-messages action-group"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/saveChanges')}">
-            </p:commandButton>
-          </div>
         </h:panelGroup>
 
         <p:dataTable id="announcement-table"
@@ -186,6 +160,20 @@
               requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/defaultLanguageRequiredMessage')}" />
           </p:column>
         </p:dataTable>
+        <div class="announcement-action flex justify-content-end gap-5 mt-6 w-full">
+          <div class="announcement-toggle flex align-content-center flex-wrap gap-2">
+            <h:outputText id="announcement-toggle-status" class="flex align-items-center justify-content-center font-medium" value="#{data.isAnnouncementActivated ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/enabled') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/disabled')}" />
+            <p:toggleSwitch value="#{data.isAnnouncementActivated}" styleClass="flex align-items-center justify-content-center">
+              <p:ajax listener="#{logic.toggleAnnouncement(data.isAnnouncementActivated)}"
+                update="#{cc.clientId}:adminTabView:announcement-table #{cc.clientId}:adminTabView:announcement-validation-messages action-group announcement-toggle-status"
+                process="announcement-form" />
+            </p:toggleSwitch>
+          </div>
+          <p:commandButton id="save-changes-announcement" process="announcement-form" actionListener="#{logic.saveChangesAnnouncement()}"
+            update="#{cc.clientId}:adminTabView:announcement-validation-messages action-group"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/saveChanges')}">
+          </p:commandButton>
+        </div>
       </h:form>
     </p:tab>
 

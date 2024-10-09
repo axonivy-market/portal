@@ -168,8 +168,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       announcementsDisabled: Ankündigungen sind deaktiviert
       announcementsEnabled: Ankündigungen sind aktiviert
       defaultLanguageRequiredMessage: Ein Ankündigungstext in der standard Applikationssprache ist notwendig
-      disable: Deaktivieren
-      enable: Aktivieren
+      disabled: Deaktiviert
+      enabled: Aktiviert
       information: Sie können eine allgemeine Ankündigung in diesem Bereich machen (z.B. Wartungsankündigung). Diese Nachricht kann von allen Benutzern gesehen werden.
       saveChanges: Änderungen speichern
       tabTitle: Ankündigungen
