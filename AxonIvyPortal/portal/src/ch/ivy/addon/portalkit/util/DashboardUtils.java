@@ -4,8 +4,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.function.Consumer;
+
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
@@ -30,6 +35,8 @@ public class DashboardUtils {
 
   public final static String DASHBOARD_MENU_PREFIX = "_js__";
   public final static String DASHBOARD_MENU_POSTFIX  = "-main-dashboard";
+  public final static String DASHBOARD_ITEM_POSTFIX = "-menu-item-dashboard";
+  public final static String MENU_ITEM_DASHBOARD_PATTERN = DASHBOARD_MENU_PREFIX + "%s" + DASHBOARD_ITEM_POSTFIX;
   public final static String DASHBOARD_MENU_ITEM_POSTFIX = "-sub-dashboard";
   public final static String DASHBOARD_MENU_PATTERN = DASHBOARD_MENU_PREFIX + "%s" + DASHBOARD_MENU_POSTFIX;
   public final static String DASHBOARD_MENU_ITEM_PATTERN = DASHBOARD_MENU_PREFIX + "%s" + DASHBOARD_MENU_ITEM_POSTFIX;
@@ -155,20 +162,30 @@ public class DashboardUtils {
     return collectedDashboards;
   }
 
+  public static List<Dashboard> collectMenuItemDashboard() {
+    return collectDashboards().stream().filter(dashboard -> dashboard.getIsMenuItem()).toList();
+  }
+
   public static void highlightDashboardMenuItem(String selectedDashboardId) {
     PrimeFaces.current().executeScript(String.format(HIGHLIGHT_DASHBOARD_ITEM_METHOD_PATTERN, selectedDashboardId));
   }
 
   public static void updateSelectedDashboardToSession(String selectedMenuItemId) {
-    if (StringUtils.endsWithAny(selectedMenuItemId, DASHBOARD_MENU_POSTFIX, DASHBOARD_MENU_ITEM_POSTFIX)) {
+    if (selectedMenuItemId != null && (selectedMenuItemId.contains(DASHBOARD_MENU_POSTFIX)
+        || selectedMenuItemId.contains(DASHBOARD_MENU_ITEM_POSTFIX)
+        || selectedMenuItemId.contains(DASHBOARD_ITEM_POSTFIX))) {
+
       String[] menuIds = selectedMenuItemId.split(":");
+
       String[] dashboardIds = menuIds[menuIds.length - 1].split(DASHBOARD_MENU_PREFIX);
-      String dashboardId = dashboardIds[dashboardIds.length - 1]
-              .replace(DASHBOARD_MENU_POSTFIX, "")
-              .replace(DASHBOARD_MENU_ITEM_POSTFIX, "");
+
+      String dashboardId = dashboardIds[dashboardIds.length - 1].replace(DASHBOARD_MENU_POSTFIX, "")
+          .replace(DASHBOARD_MENU_ITEM_POSTFIX, "").replace(DASHBOARD_ITEM_POSTFIX, "");
+
       Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), dashboardId);
     }
   }
+
 
   public static List<Dashboard> convertDashboardsToLatestVersion(String json) {
     try {
