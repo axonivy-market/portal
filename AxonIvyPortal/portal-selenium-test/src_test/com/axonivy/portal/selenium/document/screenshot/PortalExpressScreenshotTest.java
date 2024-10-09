@@ -30,7 +30,6 @@ import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.axonivy.portal.selenium.page.UserTaskWithMailFormPage;
 import com.codeborne.selenide.SelenideElement;
 
-
 @IvyWebTest
 public class PortalExpressScreenshotTest extends ScreenshotBaseTest {
 
@@ -178,6 +177,7 @@ public class PortalExpressScreenshotTest extends ScreenshotBaseTest {
     expressManagementPage.selectJSONFile(FileHelper.getAbsolutePathToTestFile("express-wf-request-resource.json"));
     expressManagementPage.clickOnDeployExpress();
     expressManagementPage.clickOnCloseButton();
+    expressManagementPage.clickOnExpandDashboardItems();
 
     MainMenuPage mainMenu = new MainMenuPage();
     ProcessWidgetPage processWidget = mainMenu.openProcessList();

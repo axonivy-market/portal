@@ -1608,7 +1608,7 @@ Dialogs:
                 \ class=\"shortcut-key\">Alt + Q</span>Fokus auf den ersten Fall\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Enter</span>Auswahl bestätigen\t\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt\
                 \ + 4</span>Fokus auf die Fälle\n   </div>\n</div>"
               title: 'Barrierefreiheitskürzel. Alt + 1: Se focaliser sur l’onglet du Dashboard. Alt + 2: Se focaliser sur l’onglet des processus. Alt + 3: Se focaliser sur l’onglet des tâches. Alt + 4: Se focaliser sur l’onglet des cas. Alt + 5: Se focaliser sur l’onglet des statistiques. Alt + 6: Se
-                focaliser sur la recherche. Alt + 7: Se focaliser sur les paramètres utilisateur. Alt + P: Se focaliser sur le premier processus. Alt + T: Se focaliser sur la première tâche. Alt + C: Se focaliser sur le premier cas. Tab: Navigation séquentielle entre les éléments. Esc: Fermer les widgets
+                focaliser sur la recherche. Alt + 7: Se focaliser sur les paramètres utilisateur. Alt + A: Se focaliser sur le premier processus. Alt + W: Se focaliser sur la première tâche. Alt + Q: Se focaliser sur le premier cas. Tab: Navigation séquentielle entre les éléments. Esc: Fermer les widgets
                 agrandis/Fermer les menus contextuels. Enter: Confirmer la sélection'
             DashboardImportDetails:
               FileInfomation: Dateiinformationen
