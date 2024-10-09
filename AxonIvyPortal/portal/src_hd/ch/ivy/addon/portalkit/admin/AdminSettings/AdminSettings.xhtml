@@ -132,7 +132,9 @@
         </p:dataTable>
       </h:form>
     </p:tab>
-    <p:tab id="announcement-tab"
+    
+    <!-- ANNOUNCEMENT TAB -->
+    <p:tab id="announcement-tab" 
       title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/tabTitle')}">
       <p:messages id="announcement-validation-messages" redisplay="false" />
 
@@ -203,7 +205,7 @@
   <!-- APPLICATION DIALOG-->
   <p:dialog header="#{data.dialogTitle}" id="appDialog" onShow="$('body').css({overflow:'hidden'})"
     styleClass="app-dialog" onHide="$('body').css({overflow:'inherit'})" widgetVar="appDialog" dynamic="true"
-    modal="true" resizable="false" appendTo="@(body)" width="50vw"
+    modal="true" resizable="false" appendTo="@(body)" closeOnEscape="true" width="500px" height="35vh"
     responsive="true" fitViewport="true" position="center center" positionType="absolute">
     <h:form prependId="false" id="appDialogForm">
       <p:messages id="messages" closable="true" />
@@ -214,7 +216,7 @@
             <p:column styleClass="u-no-border u-padding-0">
               <!-- Application Type -->
               <div class="ui-g">
-                <p:outputLabel styleClass="app-icon ui-g-2"
+                <p:outputLabel styleClass="app-icon ui-g-12 admin-settings-application-icon"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/menuIcon')}" />
                 <div class="ui-g-10">
                   <ic:ch.ivy.addon.portalkit.component.IconSelection value="#{data.selectedApp.menuIcon}" />
@@ -223,57 +225,48 @@
 
               <!-- 3rd application view -->
               <h:panelGroup id="applicationDisplayName3rd" styleClass="ui-g" layout="block">
-                <p:outputLabel styleClass="ui-g-2 admin-settings-display-name-3rd-label"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/appDisplayName')}"
-                  for="appDisplayName3rd" />
-                <div class="ui-g-7">
-                  <p:inputText value="#{data.displayNameInCurrentLanguage}" id="appDisplayName3rd"
-                    styleClass="admin-settings-form-input" required="true">
-                    <f:converter converterId="applicationDisplayNameConverter" />
-                    <f:validator validatorId="applicationDisplayNameValidator" />
-                  </p:inputText>
-                </div>
-                <div class="ui-g-3">
-                  <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
-                    icon="#{visibilityBean.generateButtonIcon('si si-chat-translate')}" process="appDisplayName3rd "
-                    styleClass="app-setting-button"
-                    update=":#{p:resolveFirstComponentWithId('appDisplayName3rd', view).clientId} :#{p:resolveFirstComponentWithId('applicationName', view).clientId} messages"
-                    actionListener="#{logic.getLanguageList}"
-                    oncomplete="if (!args.validationFailed)PF('applicationName').show();">
-                    <f:param name="skipDisplayNameInputValidation" value="true" />
-                  </p:commandButton>
+                <p:outputLabel styleClass="ui-g-12 admin-settings-display-name-3rd-label"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/appDisplayName')}" for="appDisplayName3rd" />
+                <div class="ui-g-12">
+                  <div class="flex gap-3">
+                    <div class="flex flex-1">
+                      <p:inputText value="#{data.displayNameInCurrentLanguage}" id="appDisplayName3rd"
+                        styleClass="admin-settings-form-input w-full" required="true">
+                        <f:converter converterId="applicationDisplayNameConverter" />
+                        <f:validator validatorId="applicationDisplayNameValidator" />
+                      </p:inputText>
+                    </div>
+                    <div class="flex flex-none">
+                      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}" process="appDisplayName3rd"
+                        styleClass="app-setting-button"
+                        update=":#{p:resolveFirstComponentWithId('appDisplayName3rd', view).clientId} :#{p:resolveFirstComponentWithId('applicationName', view).clientId} messages"
+                        actionListener="#{logic.getLanguageList}" oncomplete="if (!args.validationFailed)PF('applicationName').show();">
+                        <f:param name="skipDisplayNameInputValidation" value="true" />
+                      </p:commandButton>
+                    </div>
+                  </div>
                 </div>
               </h:panelGroup>
-
               <!-- link 3rd application view -->
               <h:panelGroup id="portalLink3rdApp" styleClass="ui-g" layout="block">
-                <p:outputLabel styleClass="ui-g-2 admin-settings-portal-link-label"
+                <p:outputLabel styleClass="ui-g-12 admin-settings-portal-link-label"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/link')}" for="portalLink3rd" />
-                <div class="ui-g-10">
-                  <p:inputText value="#{data.selectedApp.link}" id="portalLink3rd" required="true"
-                    styleClass="admin-settings-form-input" />
+                <div class="ui-g-12">
+                  <p:inputText value="#{data.selectedApp.link}" id="portalLink3rd" required="true" styleClass="admin-settings-form-input" />
                 </div>
               </h:panelGroup>
             </p:column>
           </p:row>
         </p:panelGrid>
-
-        <!-- Two buttons OK, Cancel -->
-        <h:panelGroup layout="block" styleClass="u-text-align-right ui-g-12 MarTop10">
-            <p:commandLink
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-              type="button" onclick="PF('appDialog').hide()" />
-            <p:spacer width="15px" />
-            <p:commandButton
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-              icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
-              actionListener="#{logic.saveApplication}"
-              oncomplete="if (!args.validationFailed){ PF('appDialog').hide()}"
-              update="#{p:resolveFirstComponentWithId('applicationTable', view).clientId} appDialogForm"
-              process="@form" />
-        </h:panelGroup>
       </p:outputPanel>
     </h:form>
+    <f:facet name="footer">
+      <h:panelGroup id="dialogFooter">
+        <p:commandButton form="appDialogForm" styleClass="w-full" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+          actionListener="#{logic.saveApplication}" oncomplete="if (!args.validationFailed){ PF('appDialog').hide()}"
+          update="#{p:resolveFirstComponentWithId('applicationTable', view).clientId} appDialogForm" process="appDialogForm" />
+      </h:panelGroup>
+    </f:facet>
   </p:dialog>
 
   <!-- SETTING DIALOG-->
@@ -400,34 +393,33 @@
   </ui:decorate>
 
 
-  <p:dialog appendTo="@(body)" styleClass="application-name-language"
+  <p:dialog appendTo="@(body)" styleClass="application-name-language" width="500px" height="30vh"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingApplicationName')}" resizable="false"
     id="applicationName" widgetVar="applicationName" dynamic="true" modal="true" responsive="true">
-    <h:form>
+    <h:form prependId="false" id="applicationNameDialogForm">
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/emptySupportedLanguages')}"
         rendered="#{data.supportedLanguages.isEmpty()}" />
-      <h:dataTable value="#{data.supportedLanguages}" rendered="#{data.supportedLanguages.isEmpty() eq 'false'}"
+      <h:dataTable value="#{data.supportedLanguages}" rendered="#{data.supportedLanguages.isEmpty() eq 'false'}" width="100%"
         var="supportedLanguage">
         <h:column>
-          <h:outputText styleClass="ui-g-12" value="#{supportedLanguage.locale.getDisplayName()}" />
-        </h:column>
-        <h:column>
+          <h:outputText styleClass="ui-g-12 font-medium" value="#{supportedLanguage.locale.getDisplayName()}" />
           <div class="ui-g-12 ui-fluid">
             <p:inputText value="#{supportedLanguage.value}" />
           </div>
         </h:column>
       </h:dataTable>
-
-      <div class="u-dialog-footer-actions-group">
-        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('applicationName').hide();"/>
-        <p:spacer width="15px" rendered="#{!data.supportedLanguages.isEmpty()}" />
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-          icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
-          process="@form" update="#{cc.clientId}:appDisplayName3rd"
-          oncomplete="PF('applicationName').hide();" actionListener="#{logic.processLanguage}"
-          rendered="#{!data.supportedLanguages.isEmpty()}" />
-      </div>
     </h:form>
+    <f:facet name="footer">
+      <h:panelGroup id="applicationNameDialogFooter">
+        <p:commandButton form="applicationNameDialogForm" styleClass="w-full" 
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+          process="applicationNameDialogForm" 
+          update="#{p:resolveFirstComponentWithId('appDisplayName3rd', view).clientId}"
+          oncomplete="PF('applicationName').hide();" 
+          actionListener="#{logic.processLanguage}"
+          rendered="#{!data.supportedLanguages.isEmpty()}" />
+      </h:panelGroup>
+    </f:facet>
   </p:dialog>
 </cc:implementation>
 </html>

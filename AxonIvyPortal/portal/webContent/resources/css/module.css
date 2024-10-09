@@ -2773,9 +2773,14 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   padding-top: 5px;
 }
 
-.admin-settings-portal-link-label, .admin-settings-display-name-3rd-label {
-  float: right;
-  padding-top: 2px;
+.admin-settings-portal-link-label, .admin-settings-display-name-3rd-label,
+.admin-settings-application-icon {
+  font-weight: 500;
+}
+
+
+.application-name-language.ui-dialog .ui-dialog-titlebar,.app-dialog.ui-dialog .ui-dialog-titlebar {
+  padding-bottom: 1rem;
 }
 
 .app-icon {
