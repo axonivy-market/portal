@@ -4,8 +4,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.function.Consumer;
+
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
@@ -36,18 +41,34 @@ public class DashboardUtils {
   public final static String DASHBOARD_PAGE_URL = "/ch.ivy.addon.portal.generic.dashboard.PortalDashboard/PortalDashboard.xhtml";
   public final static String DASHBOARD_MENU_JS_CLASS = "js-dashboard-group";
   public final static String HIGHLIGHT_DASHBOARD_ITEM_METHOD_PATTERN = "highlightDashboardItem('%s')";
+  public final static String DASHBOARD_MENU_ITEM_ID_FORMAT = "dashboard-menu-item-%s";
 
-  public static List<Dashboard> getVisibleDashboards(String dashboardJson) {
+
+  public static List<Dashboard> getDashboardsByMenuItem(String dashboardJson, boolean isMenuItem) {
     List<Dashboard> dashboards = jsonToDashboards(dashboardJson);
+
     dashboards.removeIf(dashboard -> {
-      List<String> permissions = dashboard.getPermissions();
-      if (permissions == null) {
-        return false;
+      if (dashboard.getIsMenuItem() != isMenuItem) {
+        return true;
       }
-      return permissions.stream().noneMatch(DashboardUtils::isSessionUserHasPermisson);
+      List<String> permissions = dashboard.getPermissions();
+      if (permissions != null) {
+        return permissions.stream().noneMatch(DashboardUtils::isSessionUserHasPermisson);
+      }
+      return false;
     });
+
     return dashboards;
   }
+
+  public static List<Dashboard> getVisibleDashboards(String dashboardJson) {
+    return getDashboardsByMenuItem(dashboardJson, false);
+  }
+
+  public static List<Dashboard> getMenuItemDashboards(String dashboardJson) {
+    return getDashboardsByMenuItem(dashboardJson, true);
+  }
+
 
   private static boolean isSessionUserHasPermisson(String permission) {
     return StringUtils.startsWith(permission, "#") ? StringUtils.equals(currentUser().getMemberName(), permission)
@@ -96,6 +117,13 @@ public class DashboardUtils {
     List<Dashboard> visibleDashboards = getVisibleDashboards(dashboardJson);
     setDashboardAsPublic(visibleDashboards);
     return visibleDashboards;
+  }
+
+  public static List<Dashboard> collectMenuItemDashboard() {
+    String dashboardJson = Ivy.var().get(PortalVariable.DASHBOARD.key);
+    List<Dashboard> menuItemDashboard = getMenuItemDashboards(dashboardJson);
+    setDashboardAsPublic(menuItemDashboard);
+    return menuItemDashboard;
   }
 
   public static List<Dashboard> getPublicDashboards() {

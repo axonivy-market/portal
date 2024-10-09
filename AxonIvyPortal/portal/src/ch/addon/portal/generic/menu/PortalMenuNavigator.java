@@ -49,6 +49,7 @@ public class PortalMenuNavigator {
 
     switch (selectedMenuKind) {
       case DASHBOARD:
+      case DASHBOARD_MENU_ITEM:
       case CUSTOM:
       case EXTERNAL_LINK:
         redirectToSelectedMenuUrl(params);
@@ -122,9 +123,8 @@ public class PortalMenuNavigator {
       cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_MENU, sessionUserId);
     }
 
-    if (portalSubMenuItemWrapper == null
-        || !requestLocale.equals(portalSubMenuItemWrapper.loadedLocale)) {
-      synchronized(PortalSubMenuItemWrapper.class) {
+    if (portalSubMenuItemWrapper == null || !requestLocale.equals(portalSubMenuItemWrapper.loadedLocale)) {
+      synchronized (PortalSubMenuItemWrapper.class) {
         List<SubMenuItem> subMenuItems = new ArrayList<>();
         try {
           subMenuItems = getSubmenuList();
@@ -134,6 +134,38 @@ public class PortalMenuNavigator {
 
         portalSubMenuItemWrapper = new PortalSubMenuItemWrapper(requestLocale, subMenuItems);
         cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_MENU, sessionUserId, portalSubMenuItemWrapper);
+      }
+    }
+    return portalSubMenuItemWrapper.portalSubMenuItems;
+  }
+
+  public static List<SubMenuItem> callCustomSubMenuItemsProcess() {
+    Locale requestLocale = Ivy.session().getContentLocale();
+    String sessionIdAttribute = SessionAttribute.SESSION_IDENTIFIER.toString();
+    if (Ivy.session().getAttribute(sessionIdAttribute) == null) {
+      Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
+    }
+    String sessionUserId = (String) Ivy.session().getAttribute(sessionIdAttribute);
+    IvyCacheService cacheService = IvyCacheService.getInstance();
+    PortalSubMenuItemWrapper portalSubMenuItemWrapper = null;
+    try {
+      portalSubMenuItemWrapper = (PortalSubMenuItemWrapper) cacheService
+          .getSessionCacheValue(IvyCacheIdentifier.PORTAL_CUSTOM_MENU, sessionUserId).orElse(null);
+    } catch (ClassCastException e) {
+      cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_CUSTOM_MENU, sessionUserId);
+    }
+
+    if (portalSubMenuItemWrapper == null || !requestLocale.equals(portalSubMenuItemWrapper.loadedLocale)) {
+      synchronized (PortalSubMenuItemWrapper.class) {
+        List<SubMenuItem> subMenuItems = new ArrayList<>();
+        try {
+          subMenuItems = getCustomSubMenuItemList();
+        } catch (Exception e) {
+          Ivy.log().error("Cannot load CustomSubMenuItems {0}", e.getMessage());
+        }
+
+        portalSubMenuItemWrapper = new PortalSubMenuItemWrapper(requestLocale, subMenuItems);
+        cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_CUSTOM_MENU, sessionUserId, portalSubMenuItemWrapper);
       }
     }
     return portalSubMenuItemWrapper.portalSubMenuItems;
@@ -169,7 +201,11 @@ public class PortalMenuNavigator {
     if(PermissionUtils.checkAccessFullCaseListPermission()) {
       subMenuItems.add(new CaseSubMenuItem());
     }
+    return subMenuItems;
+  }
 
+  private static List<SubMenuItem> getCustomSubMenuItemList() {
+    List<SubMenuItem> subMenuItems = new ArrayList<>();
     subMenuItems.addAll(CustomSubMenuItemService.findAll());
     return subMenuItems;
   }
