@@ -77,9 +77,7 @@ public class MenuView implements Serializable {
 
   public void onClickMenuItem(ActionEvent event) throws IOException {
     this.params = PortalMenuNavigator.extractMenuParams(event);
-    Ivy.log().error(params);
     if (PortalMenuNavigator.showWarningDialog(params)) {
-      Ivy.log().error(params);
       return;
     }
     PortalMenuNavigator.navigateToTargetPage(params);
@@ -176,12 +174,13 @@ public class MenuView implements Serializable {
       singleDashboard.setIcon(singleDashboard.getIsPublic() ? "si-network-share" : "si-single-neutral-shield");
     }
     var iconClass = (singleDashboard.getIcon().startsWith("fa") ? "fa " : "si ") + singleDashboard.getIcon();
-    var menuItem = new PortalMenuBuilder(title, MenuKind.DASHBOARD, this.isWorkingOnATask)
+    var menuItem = new PortalMenuBuilder(title, MenuKind.DASHBOARD_MENU_ITEM, this.isWorkingOnATask)
         .icon(iconClass)
         .url(dashboardLink)
         .workingTaskId(this.workingTaskId)
         .menuIndex(menuIndex)
         .build();
+    menuItem.setId(String.format(DashboardUtils.MENU_ITEM_DASHBOARD_PATTERN, singleDashboard.getId()));
     return menuItem;
   }
 
@@ -217,7 +216,7 @@ public class MenuView implements Serializable {
           var dashboardMenu = new PortalMenuBuilder(board.getTitle(), MenuKind.DASHBOARD, this.isWorkingOnATask)
               .icon(iconClass).url(dashboardLink).workingTaskId(this.workingTaskId).build();
           dashboardMenu.setId(String.format(DASHBOARD_MENU_ITEM_PATTERN, board.getId()));
-
+          dashboardMenu.setRendered(!board.getIsMenuItem());
           String defaultTitle = (String) dashboardMenu.getValue();
           String title = board.getTitles().stream()
               .filter(name -> StringUtils.equalsIgnoreCase(name.getLocale().toString(), currentLanguage)
@@ -226,7 +225,13 @@ public class MenuView implements Serializable {
           dashboardMenu.setValue(title);
           dashboardGroupMenu.getElements().add(dashboardMenu);
         }
-        if (StringUtils.endsWith(Ivy.request().getRootRequest().getRequestPath(), DASHBOARD_PAGE_URL)) {
+        String activeDashboardId = (String) session().getAttribute(SELECTED_MENU_ID);
+        boolean isMenuItemDashboard = false;
+        if (StringUtils.isNotEmpty(activeDashboardId)) {
+          isMenuItemDashboard = activeDashboardId.endsWith(DashboardUtils.DASHBOARD_ITEM_POSTFIX);
+        }
+        if (StringUtils.endsWith(Ivy.request().getRootRequest().getRequestPath(), DASHBOARD_PAGE_URL)
+            && !isMenuItemDashboard) {
           dashboardGroupMenu.setExpanded(true);
         }
         return dashboardGroupMenu;

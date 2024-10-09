@@ -35,40 +35,26 @@ public class DashboardUtils {
 
   public final static String DASHBOARD_MENU_PREFIX = "_js__";
   public final static String DASHBOARD_MENU_POSTFIX  = "-main-dashboard";
+  public final static String DASHBOARD_ITEM_POSTFIX = "-menu-item-dashboard";
+  public final static String MENU_ITEM_DASHBOARD_PATTERN = DASHBOARD_MENU_PREFIX + "%s" + DASHBOARD_ITEM_POSTFIX;
   public final static String DASHBOARD_MENU_ITEM_POSTFIX = "-sub-dashboard";
   public final static String DASHBOARD_MENU_PATTERN = DASHBOARD_MENU_PREFIX + "%s" + DASHBOARD_MENU_POSTFIX;
   public final static String DASHBOARD_MENU_ITEM_PATTERN = DASHBOARD_MENU_PREFIX + "%s" + DASHBOARD_MENU_ITEM_POSTFIX;
   public final static String DASHBOARD_PAGE_URL = "/ch.ivy.addon.portal.generic.dashboard.PortalDashboard/PortalDashboard.xhtml";
   public final static String DASHBOARD_MENU_JS_CLASS = "js-dashboard-group";
   public final static String HIGHLIGHT_DASHBOARD_ITEM_METHOD_PATTERN = "highlightDashboardItem('%s')";
-  public final static String DASHBOARD_MENU_ITEM_ID_FORMAT = "dashboard-menu-item-%s";
-
-
-  public static List<Dashboard> getDashboardsByMenuItem(String dashboardJson, boolean isMenuItem) {
-    List<Dashboard> dashboards = jsonToDashboards(dashboardJson);
-
-    dashboards.removeIf(dashboard -> {
-      if (dashboard.getIsMenuItem() != isMenuItem) {
-        return true;
-      }
-      List<String> permissions = dashboard.getPermissions();
-      if (permissions != null) {
-        return permissions.stream().noneMatch(DashboardUtils::isSessionUserHasPermisson);
-      }
-      return false;
-    });
-
-    return dashboards;
-  }
 
   public static List<Dashboard> getVisibleDashboards(String dashboardJson) {
-    return getDashboardsByMenuItem(dashboardJson, false);
+    List<Dashboard> dashboards = jsonToDashboards(dashboardJson);
+    dashboards.removeIf(dashboard -> {
+      List<String> permissions = dashboard.getPermissions();
+      if (permissions == null) {
+        return false;
+      }
+      return permissions.stream().noneMatch(DashboardUtils::isSessionUserHasPermisson);
+    });
+    return dashboards;
   }
-
-  public static List<Dashboard> getMenuItemDashboards(String dashboardJson) {
-    return getDashboardsByMenuItem(dashboardJson, true);
-  }
-
 
   private static boolean isSessionUserHasPermisson(String permission) {
     return StringUtils.startsWith(permission, "#") ? StringUtils.equals(currentUser().getMemberName(), permission)
@@ -117,13 +103,6 @@ public class DashboardUtils {
     List<Dashboard> visibleDashboards = getVisibleDashboards(dashboardJson);
     setDashboardAsPublic(visibleDashboards);
     return visibleDashboards;
-  }
-
-  public static List<Dashboard> collectMenuItemDashboard() {
-    String dashboardJson = Ivy.var().get(PortalVariable.DASHBOARD.key);
-    List<Dashboard> menuItemDashboard = getMenuItemDashboards(dashboardJson);
-    setDashboardAsPublic(menuItemDashboard);
-    return menuItemDashboard;
   }
 
   public static List<Dashboard> getPublicDashboards() {
@@ -183,20 +162,30 @@ public class DashboardUtils {
     return collectedDashboards;
   }
 
+  public static List<Dashboard> collectMenuItemDashboard() {
+    return collectDashboards().stream().filter(dashboard -> dashboard.getIsMenuItem()).toList();
+  }
+
   public static void highlightDashboardMenuItem(String selectedDashboardId) {
     PrimeFaces.current().executeScript(String.format(HIGHLIGHT_DASHBOARD_ITEM_METHOD_PATTERN, selectedDashboardId));
   }
 
   public static void updateSelectedDashboardToSession(String selectedMenuItemId) {
-    if (StringUtils.endsWithAny(selectedMenuItemId, DASHBOARD_MENU_POSTFIX, DASHBOARD_MENU_ITEM_POSTFIX)) {
+    if (selectedMenuItemId != null && (selectedMenuItemId.contains(DASHBOARD_MENU_POSTFIX)
+        || selectedMenuItemId.contains(DASHBOARD_MENU_ITEM_POSTFIX)
+        || selectedMenuItemId.contains(DASHBOARD_ITEM_POSTFIX))) {
+
       String[] menuIds = selectedMenuItemId.split(":");
+
       String[] dashboardIds = menuIds[menuIds.length - 1].split(DASHBOARD_MENU_PREFIX);
-      String dashboardId = dashboardIds[dashboardIds.length - 1]
-              .replace(DASHBOARD_MENU_POSTFIX, "")
-              .replace(DASHBOARD_MENU_ITEM_POSTFIX, "");
+
+      String dashboardId = dashboardIds[dashboardIds.length - 1].replace(DASHBOARD_MENU_POSTFIX, "")
+          .replace(DASHBOARD_MENU_ITEM_POSTFIX, "").replace(DASHBOARD_ITEM_POSTFIX, "");
+
       Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), dashboardId);
     }
   }
+
 
   public static List<Dashboard> convertDashboardsToLatestVersion(String json) {
     try {
