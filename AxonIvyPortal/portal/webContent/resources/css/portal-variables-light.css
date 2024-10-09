@@ -583,5 +583,5 @@
   
   --accessibility-shortcut-bg-color: var(--ivy-primary-color-grey-pale);
   --accessibility-bg-color: var(--ivy-primary-color-white);
-    --accessibility-shortcut-text-color: var(--ivy-primary-color-black);
+  --accessibility-shortcut-text-color: var(--ivy-primary-color-black);
 }
