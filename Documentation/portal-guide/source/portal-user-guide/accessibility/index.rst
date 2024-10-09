@@ -101,11 +101,6 @@ Browser & Keyboard Compatibility
 
 These shortcuts are available in Chrome, Firefox, and Edge and work seamlessly with European, Asian, and American keyboard layouts.
 
-Show Case
-^^^^^^^^^
-
-|accessibility-showcase|
-
 Extended Descriptive Elements in the Task and Case List
 -------------------------------------------------------
 .. raw:: html
@@ -195,5 +190,4 @@ Follow these steps:
 .. |reset-task-dialog| image:: ../../screenshots/accessibility/reset-task-dialog.png
 .. |task-actions-popup| image:: ../../screenshots/accessibility/task-actions-popup.png
 .. |case-actions-popup| image:: ../../screenshots/accessibility/case-actions-popup.png
-.. |accessibility-showcase| image:: ../../screenshots/accessibility/accessibility-showcase.gif
 .. |accessibility-dashboard-creation| image:: ../../screenshots/accessibility/accessibility-dashboard-creation.png
