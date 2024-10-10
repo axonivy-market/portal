@@ -383,22 +383,20 @@
     <ui:param name="dialogContent" value="#{data.confirmMsg}" />
     
     <ui:define name="dialogFooter">
-      <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
-        onclick="PF('resetConfirmation').hide()" styleClass="u-mar-right-15"/>
       <c:if test="#{data.resetAllSettings}">
         <p:commandButton id="reset-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
-          icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
-          actionListener="#{logic.resetValues}"
+          actionListener="#{logic.resetValues}" styleClass="w-full ui-button-warning"
           oncomplete="PF('resetConfirmation').hide(); PF('settingTable').clearFilters();"
           update="@(.admin-table.global-setting-table)" />
       </c:if>
       <c:if test="#{!data.resetAllSettings}">
         <p:commandButton id="reset-setting" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
-          icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
-          actionListener="#{logic.resetValue}"
+          actionListener="#{logic.resetValue}" styleClass="w-full ui-button-warning"
           oncomplete="PF('resetConfirmation').hide();"
           update="@(.admin-table.global-setting-table)" />
       </c:if>
+      <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
+        onclick="PF('resetConfirmation').hide()" styleClass="text-center block pt-3 w-full"/>
     </ui:define>
   </ui:decorate>
 
