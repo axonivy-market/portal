@@ -59,3 +59,15 @@
 .red-topbottomright-medium-border {
   border-left: 0;
 }
+
+.black-medium-outline {
+  outline-style: solid !important;
+  outline-color: black !important;
+  outline-width: medium !important;
+}
+
+.black-thin-outline {
+  outline-style: solid;
+  outline-color: black;
+  outline-width: thin;
+}
