@@ -177,7 +177,6 @@ public class PortalExpressScreenshotTest extends ScreenshotBaseTest {
     expressManagementPage.selectJSONFile(FileHelper.getAbsolutePathToTestFile("express-wf-request-resource.json"));
     expressManagementPage.clickOnDeployExpress();
     expressManagementPage.clickOnCloseButton();
-    expressManagementPage.clickOnExpandDashboardItems();
 
     MainMenuPage mainMenu = new MainMenuPage();
     ProcessWidgetPage processWidget = mainMenu.openProcessList();
