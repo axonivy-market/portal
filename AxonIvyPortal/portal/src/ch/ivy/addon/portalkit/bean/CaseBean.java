@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -152,28 +153,28 @@ public class CaseBean implements Serializable {
   }
   
   public String getAriaLabel(ICase icase, List<CaseColumnModel> columns) {
-    String ariaLabel = "";
+    List<String> displayTexts = new ArrayList<>();
     for (CaseColumnModel col : columns) {
       if (col.getVisible()) {
         if (DashboardStandardCaseColumn.STATE.getField().equalsIgnoreCase(col.getField())) {
-          ariaLabel += " - " + col.getHeaderText() + ": " + getDisplayState(icase.getState());
+          displayTexts.add(col.getHeaderText() + ": " + getDisplayState(icase.getState()));
         } else if (DashboardStandardCaseColumn.CREATED.getField().equalsIgnoreCase(col.getField())) {
           String createdDateString = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(icase.getStartTimestamp());
-          ariaLabel += " - " + col.getHeaderText() + ": " + createdDateString;
+          displayTexts.add(col.getHeaderText() + ": " + createdDateString);
         } else if (DashboardStandardCaseColumn.FINISHED.getField().equalsIgnoreCase(col.getField())) {
           if (icase.getEndTimestamp() != null) {
             String finishDateString = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(icase.getEndTimestamp());
-            ariaLabel += " - " + col.getHeaderText() + ": " + finishDateString;
+            displayTexts.add(col.getHeaderText() + ": " + finishDateString);
           }
         } else {
           Object displayObject = col.display(icase);
           if (displayObject != null && StringUtils.isNotEmpty(displayObject.toString())) {
-            ariaLabel += " - " + col.getHeaderText() + ": " + displayObject.toString();
+            displayTexts.add(col.getHeaderText() + ": " + displayObject.toString());
           }
         }
       }
     }
-    return StringUtils.isNotBlank(ariaLabel) ? ariaLabel.substring(ariaLabel.indexOf(" - ") + 2).trim() : "";
+    return String.join(" - ", displayTexts);
   }
 
 }

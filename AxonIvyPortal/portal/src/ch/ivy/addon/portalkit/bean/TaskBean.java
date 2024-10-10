@@ -219,39 +219,31 @@ public class TaskBean implements Serializable {
   }
   
   public String getAriaLabel(ITask task, List<TaskColumnModel> columns) {
-    String ariaLabel = "";
+    List<String> displayTexts = new ArrayList<>();
     for (TaskColumnModel col : columns) {
       if (col.getVisible()) {
         if (DashboardStandardTaskColumn.START.getField().equalsIgnoreCase(col.getField())) {
-          ariaLabel = col.getHeaderText();
+          displayTexts.add(cms("/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskStart"));
         } else if (DashboardStandardTaskColumn.PRIORITY.getField().equalsIgnoreCase(col.getField())) {
-          ariaLabel += " - " + col.getHeaderText() + ": " + getPriority(task.getPriority());
-        } else if (DashboardStandardTaskColumn.ID.getField().equalsIgnoreCase(col.getField())) {
-          ariaLabel += " - " + col.getHeaderText() + ": " + task.getId();
-        } else if (DashboardStandardTaskColumn.NAME.getField().equalsIgnoreCase(col.getField())) {
-          ariaLabel += " - " + col.getHeaderText() + ": " + task.getName();
+          displayTexts.add(col.getHeaderText() + ": " + getPriority(task.getPriority()));
         } else if (DashboardStandardTaskColumn.STATE.getField().equalsIgnoreCase(col.getField())) {
-          ariaLabel += " - " + col.getHeaderText() + ": " + shortenTaskState(task.getState());
+          displayTexts.add(col.getHeaderText() + ": " + shortenTaskState(task.getState()));
         } else if (DashboardStandardTaskColumn.CREATED.getField().equalsIgnoreCase(col.getField())) {
           String createdDateString = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(task.getStartTimestamp());
-          ariaLabel += " - " + col.getHeaderText() + ": " + createdDateString;
+          displayTexts.add(col.getHeaderText() + ": " + createdDateString);
         } else if (DashboardStandardTaskColumn.EXPIRY.getField().equalsIgnoreCase(col.getField())) {
           if (task.getExpiryTimestamp() != null) {
             String expiryDateString = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(task.getExpiryTimestamp());
-            ariaLabel += " - " + col.getHeaderText() + ": " + expiryDateString;
-          }
-        } else if (DashboardStandardTaskColumn.CATEGORY.getField().equalsIgnoreCase(col.getField())) {
-          if (StringUtils.isNoneBlank(task.getCategoryPath())) {
-            ariaLabel += " - " + col.getHeaderText() + ": " + col.display(task);
+            displayTexts.add(col.getHeaderText() + ": " + expiryDateString);
           }
         } else {
-          String displayText = (String) col.display(task);
-          if (StringUtils.isNoneBlank(displayText)) {
-            ariaLabel += " - " + col.getHeaderText() + ": " + displayText;
+          Object displayObject = col.display(task);
+          if (displayObject != null && StringUtils.isNotEmpty(displayObject.toString())) {
+            displayTexts.add(col.getHeaderText() + ": " + displayObject.toString());
           }
         }
       }
     }
-    return ariaLabel;
+    return String.join(" - ", displayTexts);
   }
 }
