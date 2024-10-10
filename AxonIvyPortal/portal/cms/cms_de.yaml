@@ -527,6 +527,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processes: Prozesse
     public: Öffentlich
     remove: Entfernen
+    removeSelection: Selektion entfernen
     reorder: Neu anordnen
     requiredFieldMessage: Dies ist ein Pflichtfeld
     reserve: Reservieren

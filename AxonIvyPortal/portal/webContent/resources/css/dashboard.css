@@ -1213,7 +1213,11 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .manage-filter-dialog {
-  max-width: 80vh;
+  max-width: 50vw;
+}
+
+.manage-filter-dialog .ui-dialog-titlebar {
+  padding-bottom: 0.5rem !important;
 }
 
 .expand-fullscreen {

@@ -460,6 +460,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processes: Processes
     public: Public
     remove: Remove
+    removeSelection: Remove selection
     reorder: Reorder
     requiredFieldMessage: This field is required
     reserve: Reserve

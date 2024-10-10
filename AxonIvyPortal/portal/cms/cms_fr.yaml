@@ -525,6 +525,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processes: Processus
     public: Publique
     remove: Retirer
+    removeSelection: Retirer la sélection
     reorder: Réorganiser
     requiredFieldMessage: Ce champ est obligatoire
     reserve: Enregistrer
