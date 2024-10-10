@@ -515,7 +515,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     note: NOTE
     numberFromBiggerThanTo: L'adresse de destination doit être plus grande que l'adresse de départ.
     numberOfSelectedFilter: filtres sélectionnés
-    ok: Ok
+    ok: OK
     'on': le
     pleaseAddDocument: Veuillez ajouter un document avec le lien ci-dessus.
     pleaseAddNote: Veuillez ajouter une note avec le lien ci-dessus.
@@ -579,7 +579,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewExpired: Votre vue actuelle a expiré. Vous allez être redirigé vers la page d'accueil.
     viewMode: Mode d'affichage
     visible: Visible
-    warning: Attention
+    warning: Attention!
     welcomeToPortal: Bienvenue, veuillez vous connecter
     wrongDateFormat: Veuillez entrer une date valide
     year: an

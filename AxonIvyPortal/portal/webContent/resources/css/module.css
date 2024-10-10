@@ -4480,6 +4480,15 @@ border-top: 0.14rem dashed;
   padding: 6px 0;
 }
 
+.portal-exception-dialog-content {
+  font-size: 1.3rem;
+}
+
+.view-expired-exception-button {
+  background: var(--yellow-500)!important;
+  color: var(--ivy-primary-color-black)!important;
+}
+
 .message-details {
   display: none;
 }
