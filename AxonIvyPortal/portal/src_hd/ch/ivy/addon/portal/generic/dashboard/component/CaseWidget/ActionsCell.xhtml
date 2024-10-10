@@ -8,6 +8,7 @@
        update="#{cc.attrs.componentToUpdateCaseWidget}" onDestroyComplete="PF('destroy-case-dialog').show()"
        actionLinkStyleClass="ui-inplace-editor" isAdhocExcluded="true"
        stepsPanelStyleClass="js-case-side-steps-panel-#{cc.attrs.caseWidget.id}-#{rowIndex}"
-       isPreviewMode="#{cc.attrs.isPreviewMode}" />
+       isPreviewMode="#{cc.attrs.isPreviewMode}"
+       ariaLabel="#{ariaLabel}"/>
   </div>
 </html>
