@@ -258,6 +258,9 @@
           "showFullscreenMode": false,
           "columns": [
             {
+              "field": "start"
+            },
+            {
               "field": "actions"
             },
             {
