@@ -236,4 +236,9 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   public void scrollToStatistic() {
     $(byText("Statistic Widgets")).shouldBe(Condition.appear, DEFAULT_TIMEOUT).scrollIntoView("{block: \"start\", inline: \"start\"}");
   }
+  
+  public SelenideElement getAccessibilityWidget() {
+    return $("[id^='id-custom-widget-iframe']");
+  }
+  
 }
