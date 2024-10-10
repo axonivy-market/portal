@@ -87,7 +87,8 @@
     <p:tab id="setting-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/setting')}">
       <h:form prependId="false" id="settingForm">
         <h:panelGroup layout="block" styleClass="setting-tab-action-buttons">
-          <p:commandButton id="restore-all-to-default-button" icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
+          <p:commandButton id="restore-all-to-default-button" icon="#{visibilityBean.generateButtonIcon('si si-undo')}"
+            styleClass="ui-button-flat font-medium"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreAllToDefault')}"
             actionListener="#{logic.submitResetAllSettings}" oncomplete="PF('resetConfirmation').show()"
             update=":#{p:resolveFirstComponentWithId('resetConfirmationDialog', view).clientId}" />
@@ -116,18 +117,28 @@
           <p:column id="settings-table-action-buttons"
             headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
             styleClass="u-text-align-center settings-table-action-buttons">
-            <p:commandLink styleClass="action-column-icon-button" id="edit" oncomplete="PF('settingDialog').show()"
-              actionListener="#{logic.editSetting(setting)}" process="@this"
-              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
-              update="@this :#{p:resolveFirstComponentWithId('settingDialog', view).clientId}">
-              <span class="si si-graphic-tablet-drawing-pen" />
-            </p:commandLink>
-            <p:commandLink id="reset" process="@this" update=":#{p:resolveFirstComponentWithId('resetConfirmationDialog', view).clientId}"
-              actionListener="#{logic.submitResetSetting(setting)}" oncomplete="PF('resetConfirmation').show()"
-              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}"
-              styleClass="action-column-icon-button">
-              <span class="si si-undo" />
-            </p:commandLink>
+            <p:commandButton id="settings-action-button" icon="si si-navigation-menu-horizontal"
+              styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page" type="button"/>
+            <p:menu id="settings-action-menu" overlay="true"
+              trigger="settings-action-button"
+              my="right top" at="right bottom"
+              styleClass="settings-action-menu">
+              <p:menuitem id="edit-application"
+                styleClass=""
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
+                icon="si si-graphic-tablet-drawing-pen"
+                oncomplete="PF('settingDialog').show()"
+                actionListener="#{logic.editSetting(setting)}"
+                update=":#{p:resolveFirstComponentWithId('settingDialog', view).clientId}"
+                process="@this" />
+              <p:menuitem id="restore-default"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}"
+                icon="si si-undo"
+                oncomplete="PF('resetConfirmation').show()"
+                actionListener="#{logic.submitResetSetting(setting)}"
+                update=":#{p:resolveFirstComponentWithId('resetConfirmationDialog', view).clientId}"
+                process="@this"/>
+            </p:menu>
           </p:column>
         </p:dataTable>
       </h:form>
@@ -163,10 +174,14 @@
         <div class="announcement-action flex justify-content-end gap-5 mt-6 w-full">
           <div class="announcement-toggle flex align-content-center flex-wrap gap-2">
             <h:outputText id="announcement-toggle-status" class="flex align-items-center justify-content-center font-medium" value="#{data.isAnnouncementActivated ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/enabled') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/disabled')}" />
-            <p:toggleSwitch value="#{data.isAnnouncementActivated}" styleClass="flex align-items-center justify-content-center">
+            <p:toggleSwitch id="announcement-toggle-switch" value="#{data.isAnnouncementActivated}" styleClass="flex align-items-center justify-content-center" widgetVar="announcementToggleSwitch" >
               <p:ajax listener="#{logic.toggleAnnouncement(data.isAnnouncementActivated)}"
+                form="announcement-form"
                 update="#{cc.clientId}:adminTabView:announcement-table #{cc.clientId}:adminTabView:announcement-validation-messages action-group announcement-toggle-status"
-                process="announcement-form" />
+                process="announcement-form"
+                oncomplete="handleAnnouncementToggleComplete(args)"
+                global="false"
+                />
             </p:toggleSwitch>
           </div>
           <p:commandButton id="save-changes-announcement" process="announcement-form" actionListener="#{logic.saveChangesAnnouncement()}"
@@ -175,6 +190,19 @@
           </p:commandButton>
         </div>
       </h:form>
+      <h:outputScript>
+        var isFail = false;
+        function handleAnnouncementToggleComplete(args) {
+            if (isFail) {
+              isFail = false;
+              return;
+            }
+            if (args.validationFailed) {
+                PF('announcementToggleSwitch').uncheck();
+                isFail = true;
+            }
+        }
+      </h:outputScript>
     </p:tab>
 
     <!-- ROLE MANAGEMENT  -->
@@ -258,22 +286,22 @@
   </p:dialog>
 
   <!-- SETTING DIALOG-->
-  <p:dialog header="#{data.dialogTitle}" id="settingDialog" onShow="$('body').css({overflow:'hidden'})" width="60%"
+  <p:dialog header="#{data.dialogTitle}" id="settingDialog" onShow="$('body').css({overflow:'hidden'})" width="500px"
     onHide="$('body').css({overflow:'inherit'})" widgetVar="settingDialog" dynamic="true" modal="true" resizable="false"
     appendTo="@(body)" styleClass="setting-dialog"
     responsive="true" fitViewport="true">
     <h:form prependId="false" id="settingDialogForm">
       <p:messages />
       <p:outputPanel id="settingOverview">
-        <p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-10"
+        <p:panelGrid columns="1" layout="grid" columnClasses="ui-grid-col-12"
           styleClass="u-no-border admin-settings-container ui-fluid">
           <!-- KEY -->
-          <p:outputLabel styleClass="admin-settings-form-input-label"
+          <p:outputLabel styleClass="admin-settings-form-input-labe font-medium pt-2"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/key')}" for="keySetting" />
           <p:inputText value="#{data.selectedSetting.key}" id="keySetting" readonly="true" />
 
           <!-- VALUE -->
-          <p:outputLabel styleClass="admin-settings-form-input-label"
+          <p:outputLabel styleClass="admin-settings-form-input-label font-medium"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/value')}" for="valueSetting" />
           <c:if test="#{data.settingInputType.toString() == 'TEXT'}">
             <p:inputText value="#{data.selectedSetting.value}" id="valueSetting" />
@@ -307,21 +335,15 @@
           </c:if>
 
           <!-- NOTE -->
-          <p:outputLabel styleClass="Fright" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}"
+          <p:outputLabel styleClass="Fright pt-2 font-medium" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}"
             for="noteSetting" />
           <p:inputTextarea value="#{data.selectedSetting.note}" id="noteSetting" disabled="true" />
         </p:panelGrid>
 
         <!-- Two buttons OK, Cancel -->
         <h:panelGroup layout="block" styleClass="u-text-align-right MarTop10 ui-g-12">
-          <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"  
-            process="@this"
-            oncomplete="PF('settingDialog').hide()" 
-            global="false"/>
-          <p:spacer width="15px" />
-          <p:commandButton id="save-setting" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-            icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
-            actionListener="#{logic.saveSetting}" styleClass="confirm-save-setting-button"
+          <p:commandButton id="save-setting" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+            actionListener="#{logic.saveSetting}" styleClass="confirm-save-setting-button w-full"
             oncomplete="if (!args.validationFailed){ PF('settingDialog').hide();}"
             update=":#{p:resolveFirstComponentWithId('settingForm', view).clientId} @form" process="@form" widgetVar="saveSettingButton"
             onclick="PF('saveSettingButton').disable();" />
