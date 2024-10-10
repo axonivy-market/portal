@@ -543,3 +543,15 @@ function removeHighlightShowFilterButton() {
 function highlightQuickSearchTextbox() {
   createRedMediumOutline($(".widget__header .widget-header-quick-search > form"));
 }
+
+function createBlackThinOutline($element) {
+  $element.addClass("black-thin-outline");
+}
+
+function createBlackMediumOutline($element) {
+  $element.addClass("black-medium-outline");
+}
+
+function highlightElement(elementSelector) {
+  createRedMediumOutline($(elementSelector));
+}
