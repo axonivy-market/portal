@@ -1611,8 +1611,8 @@ Dialogs:
                 \   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 3</span>Enfocar en la pestaña de Tareas\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 7</span>Enfocar en la pestaña del Panel de Control\n\
                 \   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + Q</span>Enfocar en el primer caso\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Enter</span>Confirmar selección\n   </div>\n   <div class=\"ui-g-3\
                 \ shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 4</span>Enfocar en la pestaña de Casos\n   </div>\n</div>"
-              title: 'Atajos de accesibilidad. Alt + 1: Enfocar en la pestaña del Panel de Control. Alt + 2: Enfocar en la pestaña de Procesos. Alt + 3: Enfocar en la pestaña de Tareas. Alt + 4: Enfocar en la pestaña de Casos. Alt + 5: Enfocar en la pestaña de Estadísticas. Alt + P: Enfocar en el primer
-                proceso. Alt + T: Enfocar en la primera tarea. Alt + C: Enfocar en el primer caso. Alt + 6: Enfocar en la búsqueda. Alt + 7: Enfocar en la pestaña del Panel de Control. Tab: Tabbing secuencial a través de elementos. Esc: Cerrar widgets expandidos/Cerrar menús contextuales. Enter: Confirmar
+              title: 'Atajos de accesibilidad. Alt + 1: Enfocar en la pestaña del Panel de Control. Alt + 2: Enfocar en la pestaña de Procesos. Alt + 3: Enfocar en la pestaña de Tareas. Alt + 4: Enfocar en la pestaña de Casos. Alt + 5: Enfocar en la pestaña de Estadísticas. Alt + 6: Enfocar en la búsqueda.
+                Alt + 7: Enfocar en la pestaña del Panel de Control. Alt + A: Enfocar en el primer proceso. Alt + W: Enfocar en la primera tarea. Alt + Q: Enfocar en el primer caso. Tab: Tabbing secuencial a través de elementos. Esc: Cerrar widgets expandidos/Cerrar menús contextuales. Enter: Confirmar
                 selección'
             DashboardImportDetails:
               FileInfomation: Informacion del archivo
