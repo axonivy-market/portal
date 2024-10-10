@@ -51,7 +51,7 @@ public abstract class AbstractProcessBean implements Serializable {
     if (nestedProcess instanceof IWebStartable) {
       processId = ((IWebStartable) nestedProcess).getId();
     }
-    return PortalNavigator.buildProcessInfoUrl(processId);
+    return PortalNavigator.buildProcessInfoUrl(processId.isEmpty() ? process.getId() : processId );
   }
 
   protected abstract List<Process> findProcesses();

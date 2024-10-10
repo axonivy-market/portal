@@ -4857,16 +4857,19 @@ body .process-compact-mode > .ui-fieldset-content {
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-container {
   width: inherit;
   position: relative;
-  height: 100% !important;
-  max-height: 296px;
+  height: 45% !important;
+  max-height: 155px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-image {
-  max-height: 296px;
-  height: 0px;
+  height: 135%;
+}
+
+.card.widget-preview .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-image {
+  height: 185%;
 }
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .overlay-title {
@@ -4883,14 +4886,17 @@ body .process-compact-mode > .ui-fieldset-content {
   top: 0px;
   z-index: 1;
 }
-
+.card.widget-preview .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form {
+  padding-top: 17%;
+}
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form {
   min-height: 25%;
-  height: 100%;
+  height: 75%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-top: 5%;
+  bottom: -40px;
+  padding-bottom: 40px;
 }
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description,
@@ -4898,6 +4904,17 @@ body .process-compact-mode > .ui-fieldset-content {
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .more-information-image-widget {
   position: static;
   top: 0px;
+}
+
+body.light .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-image.default-image-mode-process,
+body.dark .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-image.default-image-mode-process-dark {
+  display: block;
+  padding: 8px;
+}
+
+body.dark .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-image.default-image-mode-process,
+body.light .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-image.default-image-mode-process-dark {
+  display: none;
 }
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description {
@@ -5002,13 +5019,21 @@ body .process-compact-mode > .ui-fieldset-content {
 }
  
 .layout-topbar-light .image-process-item .default-process-image, 
-.layout-topbar-dark .image-process-item .default-process-image-dark {
+.layout-topbar-dark .image-process-item .default-process-image-dark,
+.layout-topbar-light .image-process-item-container > .default-image-mode-process,
+.layout-topbar-dark .image-process-item-container > .default-image-mode-process-dark,
+.layout-topbar-light .card.widget-preview.widget-preview--process .image-process-item-container > .default-image-mode-process,
+.layout-topbar-dark .card.widget-preview.widget-preview--process .image-process-item-container > .default-image-mode-process-dark {
   display: block;
   padding: 8px;
 }
 
 .layout-topbar-dark .image-process-item .default-process-image, 
-.layout-topbar-light .image-process-item .default-process-image-dark {
+.layout-topbar-light .image-process-item .default-process-image-dark,
+.layout-topbar-dark .image-process-item-container > .default-image-mode-process,
+.layout-topbar-light .image-process-item-container > .default-image-mode-process-dark,
+.layout-topbar-dark .card.widget-preview.widget-preview--process .image-process-item-container > .default-image-mode-process,
+.layout-topbar-light .card.widget-preview.widget-preview--process .image-process-item-container > .default-image-mode-process-dark {
   display: none;
 }
 
