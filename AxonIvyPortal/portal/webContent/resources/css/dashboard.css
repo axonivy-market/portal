@@ -531,7 +531,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 }
 
 .filter-overlay-panel.ui-widget-content>.ui-overlaypanel-content {
-  max-width: 1100px;
+  max-width: max-content;
   padding: 0;
 }
 
@@ -575,7 +575,6 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 
 .filter-overlay-panel__header,
 .filter-overlay-panel__content,
-.filter-overlay-panel__footer,
 .info-overlay-panel__footer,
 .statistic-filter-accordion-panel.widget-info-panel,
 .saved-filter__items {
@@ -583,10 +582,17 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   padding-bottom: 1rem;
 }
 
+.filter-overlay-panel {
+  max-width: 75rem !important;
+}
+
+.filter-overlay-panel__footer > div#manage-filter {
+  border-right: 1px solid var(--widget-advanced-filter-overlay-panel-footer);
+}
+
 .filter-overlay-panel__footer,
 .info-overlay-panel__footer {
   text-align: right;
-  border-top: solid 1px var(--widget-advanced-filter-overlay-panel-footer);
 }
 
 @media screen and (max-width: 40em) {
@@ -1168,14 +1174,12 @@ body .ui-widget.new-widget-dialog__introduction {
 .saved-filter-node {
   text-align: center;
   width: 100%;
-  padding: 5px;
-  margin-bottom: 5px;
-  border: 1px solid var(--primary-color);
+  padding: 9px;
   border-radius: 4px;
-  box-shadow: 0 1px 2.5px 0 rgb(0 0 0 / 26%), 0 1px 5px 0 rgb(0 0 0 / 16%);
   cursor: pointer;
-  transition: background-color 0.3s, 
-              color 0.3s;
+  margin-bottom: 14px;
+  transition: background-color 0.3s,color 0.3s;
+  background: var(--widget-filter-background-color);
 
 /*note: lines below to handle name too long when save filter will remove after verified*/
   white-space: nowrap;
@@ -1186,12 +1190,13 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .saved-filter-node.selected, 
 .saved-filter-node:active {
-  background: var(--accent-color);
-  border-color: var(--accent-color);
+  border: 2px solid var(--ivy-primary-color);
+  color: var(--ivy-primary-color);
+  background: var(--saved-filter-button-background-color);
 }
 
 .saved-filter-node:hover {
-  color: var(--primary-dark-color);
+  color: var(--accent-color);
   border-color: var(--accent-color);
   font-weight: bold;
 }
@@ -1946,7 +1951,6 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .dashboard-widget-filter__filter-wrapper {
   padding: 10px 0;
-  border-bottom: solid 1px var(--ivy-primary-color-grey-light);
 }
 
 .dashboard-widget-filter__read-only-panel .dashboard-widget-filter__filter-panel:last-child {
@@ -1968,7 +1972,7 @@ body .ui-widget.new-widget-dialog__introduction {
   display: flex;
   align-items: flex-start;
   min-width: 8vw;
-  max-width: 10vw;
+  max-width: 16vw;
   overflow-wrap: anywhere;
 }
 
@@ -2060,4 +2064,10 @@ body .ui-button.rounded-button.dashboard-widget-filter__remove-filter .ui-icon {
 
 body .ui-commandlink:hover, body .ui-link:active {
   color: var(--ivy-primary-color-command-link-hover);
+}
+
+body .ui-button.ui-widget.ui-widget-filter-btn {
+  background: var(--widget-filter-background-color);
+  color: var(--text-color);
+  border: none;
 }

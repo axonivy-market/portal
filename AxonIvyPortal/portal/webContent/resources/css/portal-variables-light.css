@@ -18,6 +18,8 @@
   --cancel-button-background-color: var(--ivy-primary-color-grey-light);
   --cancel-button-state-hover-or-focus-background-color: var(--ivy-primary-color-grey-pale);
   --portal-button-color: var(--ivy-primary-color-black);
+  --saved-filter-button-background-color: var(--widget-filter-background-color);
+
   /* Color of secondary button */
   --button-secondary-bg-color: var(--ivy-primary-color-white);
   --button-secondary-text-color: var(--primary-color);
@@ -88,6 +90,7 @@
   --filter-name-label-color: var(--ivy-primary-color-grey-medium);
   --filter-selection-container-group-border-color: var(--ivy-primary-color-grey-medium);
   --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-medium);
+  --widget-filter-background-color: var(--ivy-primary-color-grey-pale);
 
   /* Item in Widget List */
   --item-widget-background-color: var(--ivy-primary-color-grey-pale);
