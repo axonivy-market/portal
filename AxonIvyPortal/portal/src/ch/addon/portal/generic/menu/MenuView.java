@@ -159,11 +159,11 @@ public class MenuView implements Serializable {
 
   private MenuElement buildDashboardMenuItem(Dashboard singleDashboard, int menuIndex) {
     String dashboardLink = getDefaultPortalStartUrl();
-    // String defaultHomepageConfig = HomepageUtils.getHomepageName();
-    // HomepageType configHomepageType = HomepageType.getType(defaultHomepageConfig);
-    // if (HomepageType.DASHBOARD != configHomepageType) {
-    // dashboardLink = getDefaultDashboardUrl();
-    // }
+    String defaultHomepageConfig = HomepageUtils.getHomepageName();
+    HomepageType configHomepageType = HomepageType.getType(defaultHomepageConfig);
+    if (HomepageType.DASHBOARD_MENU_ITEM != configHomepageType) {
+      dashboardLink = PortalNavigator.getDashboardPageUrl(singleDashboard.getId());;
+    }
     String currentLanguage = UserUtils.getUserLanguage();
     String defaultTitle = singleDashboard.getTitle();
     String title = singleDashboard.getTitles().stream()
@@ -200,14 +200,14 @@ public class MenuView implements Serializable {
     String mainMenuIcon = mainMenuEntryService.getMenuIcon();
     
     var dashboards = getDashboardCache().dashboards;
+    var subItemDashboards = dashboards.stream().filter(dashboard -> !dashboard.getIsMenuItem()).toList();
     if (CollectionUtils.isNotEmpty(dashboards)) {
       DefaultSubMenu dashboardGroupMenu = DefaultSubMenu.builder()
-        .label(StringUtils.isBlank(mainMenuDisplayName) ? dashboardTitle : mainMenuDisplayName)
-        .icon(StringUtils.isBlank(mainMenuIcon) ? PortalMenuItem.DEFAULT_DASHBOARD_ICON : mainMenuIcon)
-        .id(String.format(DASHBOARD_MENU_PATTERN, MenuKind.DASHBOARD.name()))
-        .styleClass(DASHBOARD_MENU_JS_CLASS)
-        .build();
-      if (dashboards.size() > 1) {
+          .label(StringUtils.isBlank(mainMenuDisplayName) ? dashboardTitle : mainMenuDisplayName)
+          .icon(StringUtils.isBlank(mainMenuIcon) ? PortalMenuItem.DEFAULT_DASHBOARD_ICON : mainMenuIcon)
+          .id(String.format(DASHBOARD_MENU_PATTERN, MenuKind.DASHBOARD.name())).styleClass(DASHBOARD_MENU_JS_CLASS)
+          .build();
+      if (subItemDashboards.size() > 1) {
         for (var board : dashboards) {
           if (StringUtils.isBlank(board.getIcon())) {
             board.setIcon(board.getIsPublic() ? "si-network-share" : "si-single-neutral-shield");
@@ -532,7 +532,8 @@ public class MenuView implements Serializable {
     var isOpenOnNewTab =  Optional.ofNullable(requestParamMap.get(IS_OPEN_NEW_TAB)).map(BooleanUtils::toBoolean).orElse(false);
     session().setAttribute(SELECTED_MENU_ID, selectedMenuItemId);
     DashboardUtils.updateSelectedDashboardToSession(selectedMenuItemId);
-
+    Ivy.log().error("store session menu id" + session().getAttribute(SELECTED_MENU_ID));
+    Ivy.log().error("store session pre menu id" + session().getAttribute(PREV_SELECTED_MENU_ID));
     if (!isWorkingOnATask && !isOpenOnNewTab) {
       session().setAttribute(PREV_SELECTED_MENU_ID, selectedMenuItemId);
     }
@@ -544,6 +545,7 @@ public class MenuView implements Serializable {
       }
       PrimeFaces.current().executeScript(String.format(CLICK_ON_MENU_ITEM_PATTERN,
             prevSelectedMenuItemId, session().getAttribute(SELECTED_MENU_ID)));
+
     }
   }
 
@@ -564,6 +566,8 @@ public class MenuView implements Serializable {
   public void resetSelectedMenuItems() {
     session().setAttribute(SELECTED_MENU_ID, null);
     session().setAttribute(PREV_SELECTED_MENU_ID, null);
+    Ivy.log().error("session menu id" + session().getAttribute(SELECTED_MENU_ID));
+    Ivy.log().error("session pre menu id" + session().getAttribute(PREV_SELECTED_MENU_ID));
   }
 
   private IWorkflowSession session() {

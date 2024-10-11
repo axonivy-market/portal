@@ -181,8 +181,16 @@ public class DashboardUtils {
 
       String dashboardId = dashboardIds[dashboardIds.length - 1].replace(DASHBOARD_MENU_POSTFIX, "")
           .replace(DASHBOARD_MENU_ITEM_POSTFIX, "").replace(DASHBOARD_ITEM_POSTFIX, "");
-
+      
+      if (selectedMenuItemId.endsWith(DASHBOARD_ITEM_POSTFIX)) {
+        String prevDashboardId = Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString()).toString();
+        Ivy.session().setAttribute(SessionAttribute.PREV_SELECTED_DASHBOARD_ID.toString(), prevDashboardId);
+        Ivy.log().error("prev dashboard session id"
+            + Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString()));
+      }
       Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), dashboardId);
+      Ivy.log().error(
+          "dashboard session id" + Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString()));
     }
   }
 
