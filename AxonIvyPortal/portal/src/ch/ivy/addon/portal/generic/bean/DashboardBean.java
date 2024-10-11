@@ -503,4 +503,11 @@ public class DashboardBean implements Serializable {
   public boolean isHideCaseCreator() {
     return GlobalSettingService.getInstance().isHideCaseCreator();
   }
+  
+  public String getScreenReaderNotificationContent() {
+    if (this.selectedDashboard.isAccessibility()) {
+      return Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/AccessibilityShortcuts/title");
+    }
+    return StringUtils.EMPTY;
+   }
 }
