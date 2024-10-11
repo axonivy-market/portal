@@ -1,7 +1,0 @@
-[
-  {
-    "id" : "assistant-1",
-    "name" : "Portal Assistant",
-    "tools" : ["find-tasks", "portal-support"]
-  }
-]

@@ -10,6 +10,6 @@
     <h:outputText value="#{empty column.display(caseItem) ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable') : column.display(caseItem)}" 
       title="#{column.display(caseItem)}" 
       styleClass="dashboard-cases__column-small-screen-name"/>
-    <h:outputText value="#{dashboardBean.createExtractedTextFromHtml(caseItem.descriptions().current())}" styleClass="dashboard-cases__column-small-screen-description"/>
+    <h:outputText value="#{dashboardCaseWidgetBean.createExtractedTextFromHtml(caseItem.descriptions().current())}" styleClass="dashboard-cases__column-small-screen-description"/>
   </h:panelGroup>
 </html>

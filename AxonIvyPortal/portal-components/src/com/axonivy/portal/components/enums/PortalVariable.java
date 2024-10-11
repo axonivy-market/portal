@@ -13,8 +13,7 @@ public enum PortalVariable {
     DASHBOARD("Portal.Dashboard"),
     DASHBOARD_ORDER("Portal.Dashboard.Order"),
     DASHBOARD_TEMPLATES("Portal.DashboardTemplates"),
-    USER_MENU("Portal.UserMenu"),
-    CHATBOT_ENDPOINT("PortalAiUrl");
+    USER_MENU("Portal.UserMenu");
 
     public String key;
 

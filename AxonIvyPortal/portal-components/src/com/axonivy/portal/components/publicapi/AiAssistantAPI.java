@@ -1,26 +1,27 @@
-package com.axonivy.portal.components.util;
+package com.axonivy.portal.components.publicapi;
 
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.enums.ai.IvyToolResultType;
 import com.axonivy.portal.components.service.impl.ProcessService;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
-public class AssistantUtils {
+public class AiAssistantAPI {
+  private static final String IFRAME_RESULT_PATTERN = "<iframe>%s</iframe>";
+  private static final String ERROR_RESULT_PATTERN = "<error>%s</error>";
 
   public static String generateLinkToIvyProcess(String link,
       Map<String, String> params) {
     try {
       IWebStartable process = initWebStartable(link);
-      return IvyToolResultType.IFRAME
-          .format(process.getLink().queryParams(params).getRelative());
+      return String.format(IFRAME_RESULT_PATTERN,
+          process.getLink().queryParams(params).getRelative());
     } catch (Exception e) {
-      return IvyToolResultType.ERROR
-          .format(Ivy.cms().co("/Labels/AI/Error/ErrorWhenProceedRequest"));
+      return String.format(ERROR_RESULT_PATTERN,
+          Ivy.cms().co("/Labels/AI/Error/ErrorWhenProceedRequest"));
     }
   }
 
@@ -38,6 +39,6 @@ public class AssistantUtils {
     if (StringUtils.isBlank(error)) {
       return "";
     }
-    return IvyToolResultType.ERROR.format(error);
+    return String.format(ERROR_RESULT_PATTERN, error);
   }
 }
