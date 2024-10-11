@@ -363,7 +363,7 @@ public class ProcessWidgetPage extends TemplatePage {
   private SelenideElement getProcessActionMenu(String processName) {
     SelenideElement processItem = getProcessItem(processName);
     processItem.$("button[id*=':process-action-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    return $$("div[id$='process-action-menu']").filter(Condition.appear).first();  
+    return $$("div[id$='process-action-menu']").filter(Condition.appear).first();
   }
 
   public SelenideElement getProcessItem(String processName) {

@@ -183,8 +183,10 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public ProcessEditWidgetNewDashBoardPage editImageModeProcess() {
-    $("button[id$='image-process-action-component:process-action-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .click();
+    if (!$("[id$=':image-process-action-component:process-action-menu']").isDisplayed()) {
+      $("button[id$='image-process-action-component:process-action-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+      .click();
+    }
     $("[id$=':image-process-action-component:process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("span.si-graphic-tablet-drawing-pen").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     $("div[id='new-widget-configuration-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
@@ -216,16 +218,19 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getDisabledMoreInformationLink() {
-    return $("span[id$=':more-information']");
+    return getProcessActionMenu().$$("span[class$='ui-menuitem-text']").filter(Condition.text("More Information")).first();
   }
   
   private SelenideElement getProcessActionMenu() {
-    $("div#process-action-group").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    if (!$("[id$=':image-process-action-component:process-action-menu']").isDisplayed()) {
+      $("button[id$=':process-action-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+      .click();
+    }
     return $("div[id$='process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getMoreInformationLink() {
-    return $("a[id$=':more-information']");
+    return getProcessActionMenu().$$("span[class$='ui-menuitem-text']").filter(Condition.text("More Information")).first();
   }
 
   public SelenideElement getFullModeProcessName() {
