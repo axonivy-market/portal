@@ -214,7 +214,8 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void startMoreInfoLink() {
-    getMoreInformationLink().click();
+    $("div[id$='process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$$("span[class$='ui-menuitem-text']").filter(Condition.text("More Information")).first().click();
   }
 
   public SelenideElement getDisabledMoreInformationLink() {
@@ -658,8 +659,8 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void closeCompactModeProcessManagerFilters() {
-    getManageWidgetFilterDialogCloseLink().shouldBe(Condition.appear).click();
-    getManageWidgetFilterDialog().shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("div[id$='manage-filter-dialog']").shouldBe(appear, DEFAULT_TIMEOUT).$("a.ui-dialog-titlebar-close")
+        .shouldBe(appear, DEFAULT_TIMEOUT).click();
   }
 
   public void removeCompactModeProcessFilter() {
