@@ -13,7 +13,6 @@ public class ActionsColumnModel extends TaskColumnModel implements Serializable 
   public void initDefaultValue() {
     super.initDefaultValue();
     this.field = DashboardStandardTaskColumn.ACTIONS.getField();
-    this.style = defaultIfEmpty(this.style, getDefaultStyle());
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.sortable = defaultIfEmpty(this.sortable, getDefaultSortable());
     this.format = getDefaultFormat();
@@ -35,12 +34,7 @@ public class ActionsColumnModel extends TaskColumnModel implements Serializable 
   }
 
   @Override
-  public String getDefaultStyle() {
-    return SMALL_WIDTH;
-  }
-
-  @Override
   public String getDefaultStyleClass() {
-    return "dashboard-tasks__actions u-text-align-center";
+    return "dashboard-tasks__actions u-text-align-center widget-column";
   }
 }
