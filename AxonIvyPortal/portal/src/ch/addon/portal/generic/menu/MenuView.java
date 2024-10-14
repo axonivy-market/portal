@@ -159,11 +159,11 @@ public class MenuView implements Serializable {
 
   private MenuElement buildDashboardMenuItem(Dashboard singleDashboard, int menuIndex) {
     String dashboardLink = getDefaultPortalStartUrl();
-    String defaultHomepageConfig = HomepageUtils.getHomepageName();
-    HomepageType configHomepageType = HomepageType.getType(defaultHomepageConfig);
-    if (HomepageType.DASHBOARD_MENU_ITEM != configHomepageType) {
-      dashboardLink = PortalNavigator.getDashboardPageUrl(singleDashboard.getId());;
-    }
+    // String defaultHomepageConfig = HomepageUtils.getHomepageName();
+    // HomepageType configHomepageType = HomepageType.getType(defaultHomepageConfig);
+    // if (HomepageType.DASHBOARD != configHomepageType) {
+    // dashboardLink = getDefaultDashboardUrl();
+    // }
     String currentLanguage = UserUtils.getUserLanguage();
     String defaultTitle = singleDashboard.getTitle();
     String title = singleDashboard.getTitles().stream()
@@ -532,8 +532,6 @@ public class MenuView implements Serializable {
     var isOpenOnNewTab =  Optional.ofNullable(requestParamMap.get(IS_OPEN_NEW_TAB)).map(BooleanUtils::toBoolean).orElse(false);
     session().setAttribute(SELECTED_MENU_ID, selectedMenuItemId);
     DashboardUtils.updateSelectedDashboardToSession(selectedMenuItemId);
-    Ivy.log().error("store session menu id" + session().getAttribute(SELECTED_MENU_ID));
-    Ivy.log().error("store session pre menu id" + session().getAttribute(PREV_SELECTED_MENU_ID));
     if (!isWorkingOnATask && !isOpenOnNewTab) {
       session().setAttribute(PREV_SELECTED_MENU_ID, selectedMenuItemId);
     }
@@ -566,8 +564,6 @@ public class MenuView implements Serializable {
   public void resetSelectedMenuItems() {
     session().setAttribute(SELECTED_MENU_ID, null);
     session().setAttribute(PREV_SELECTED_MENU_ID, null);
-    Ivy.log().error("session menu id" + session().getAttribute(SELECTED_MENU_ID));
-    Ivy.log().error("session pre menu id" + session().getAttribute(PREV_SELECTED_MENU_ID));
   }
 
   private IWorkflowSession session() {
