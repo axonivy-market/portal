@@ -517,7 +517,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     note: NOTIZ
     numberFromBiggerThanTo: Nach" muss größer sein als "Von".
     numberOfSelectedFilter: Ausgewählte Filter
-    ok: Ok
+    ok: OK
     'on': am
     pleaseAddDocument: Verwenden Sie bitte den Link oben, um Dokumente hochzuladen
     pleaseAddNote: Verwenden Sie bitte den Link oben, um Notizen hochzuladen
@@ -581,7 +581,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewExpired: Ihre aktuelle Bearbeitungsmaske ist abgelaufen und kann nicht weiter bearbeitet werden. Sie werden auf die Startseite umgeleitet.
     viewMode: Ansichtsmodus
     visible: Sichtbar
-    warning: Warnung
+    warning: Warnung!
     welcomeToPortal: Willkommen, bitte melden Sie sich an
     wrongDateFormat: Bitte geben Sie ein gültiges Datum ein.
     year: Jahr

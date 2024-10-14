@@ -2975,7 +2975,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .choose-deputy-dialog .deputy-selection-panel .add-deputy-button {
   float: right;
-  margin-top: 15px;
 }
 
 .choose-deputy-dialog .deputy-selection-panel .selected-deputy-panel .deputy-selection {
@@ -4478,6 +4477,15 @@ border-top: 0.14rem dashed;
 .portal-exception-detail-group .error-label,
 .portal-exception-detail-group .error-value {
   padding: 6px 0;
+}
+
+.portal-exception-dialog-content {
+  font-size: 1.3rem;
+}
+
+.view-expired-exception-button {
+  background: var(--yellow-500)!important;
+  color: var(--ivy-primary-color-black)!important;
 }
 
 .message-details {

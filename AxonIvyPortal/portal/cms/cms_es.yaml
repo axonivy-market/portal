@@ -518,7 +518,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     note: Nota
     numberFromBiggerThanTo: Para" debe ser mayor que "De".
     numberOfSelectedFilter: Filtros seleccionados
-    ok: Ok
+    ok: OK
     'on': en
     pleaseAddDocument: Por favor agregue documentos usando el enlace superior
     pleaseAddNote: Por favor agregue notas usando el enlace superior
@@ -582,7 +582,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewExpired: Su vista actual expiró. Serás redirigido a la página de inicio.
     viewMode: Modo de visualización
     visible: Visible
-    warning: Advertencia
+    warning: Advertencia!
     welcomeToPortal: Bienvenido, por favor inicie su sesión
     wrongDateFormat: Por favor ingrese una fecha válida.
     year: Año
