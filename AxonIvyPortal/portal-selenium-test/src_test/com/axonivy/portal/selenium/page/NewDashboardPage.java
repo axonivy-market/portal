@@ -223,7 +223,7 @@ public class NewDashboardPage extends TemplatePage {
   }
   
   private SelenideElement getProcessActionMenu() {
-    if (!$("[id$=':image-process-action-component:process-action-menu']").isDisplayed()) {
+    if (!$("[id$=':process-action-menu']").isDisplayed()) {
       $("button[id$=':process-action-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
       .click();
     }
