@@ -14,6 +14,7 @@
   <h:form id="role-management-form" styleClass="ui-g">
     <div class="ui-g-12 u-text-align-right u-padding-0 create-role-container">
       <p:commandButton id="create-role-button"
+        styleClass="create-role-btn"
         icon="si si-add"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/CreateRole')}"
         actionListener="#{roleManagementBean.prepareAddingNewRole()}"
@@ -25,7 +26,7 @@
         rendered="#{roleManagementBean.canCreateRole}"/>
     </div>
     <div class="ui-g-12 u-padding-0">
-      <p:treeTable id="role-tree-table" widgetVar="role-tree-table"
+      <p:treeTable id="role-tree-table" widgetVar="role-tree-table" 
         value="#{roleManagementBean.roleTreeModel.tree}"
         var="role"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/RoleNotFound')}"
@@ -156,13 +157,13 @@
     <c:set var="selectedRoleName" value="#{creationMode ? '' : roleManagementBean.selectedRole.name}" scope="request"/>
 
     <f:facet name="header">
-      <h:outputText styleClass="role-details-header" value="#{roleManagementBean.roleInformationHeaderDialog}"/>
+      <h4 styleClass="role-details-header">#{roleManagementBean.roleInformationHeaderDialog}</h4>
     </f:facet>
 
-    <h:form id="manage-role-details-form" styleClass=" manage-role-details-form MarTop5">
-      <h:panelGroup styleClass="card ui-g" layout="block" rendered="#{roleManagementBean.canModifyRoleInformation}">
+    <h:form id="manage-role-details-form" styleClass="manage-role-details-form MarTop5">
+      <h:panelGroup styleClass="ui-g" layout="block" rendered="#{roleManagementBean.canModifyRoleInformation}">
         <div class="ui-g-12">
-          <h4 class="role-management-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/RoleInformation')}</h4>
+          <h5 class="role-management-title" >#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/RoleInformation')}</h5>
         </div>
 
         <div class="ui-g-12 u-no-padding-top u-no-padding-bottom">
@@ -176,15 +177,15 @@
             isRequired="#{roleManagementBean.canMoveRole}"
             isDisabled="#{!roleManagementBean.canMoveRole}"
             label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/ParentRole')}"
-            labelPanelStyleClass="ui-g-4 ui-lg-3 ui-md-4 ui-sm-12 role-management-label"
-            autoCompletePanelStyleClass="ui-g-8 ui-lg-9 ui-md-8 ui-sm-12 role-management-value ui-fluid"
+            labelPanelStyleClass="ui-g-12 role-management-label font-medium"
+            autoCompletePanelStyleClass="ui-g-12 role-management-value ui-fluid"
             requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/Messages/ParentRoleIsRequired')}"
             isRenderedMessage="false" displayNameInSelectionListStyleClass="u-truncate-text" />
         </h:panelGroup>
 
         <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" for="role-name"
-          styleClass="ui-g-4 ui-lg-3 ui-md-4 ui-sm-12 role-management-label" />
-        <div class="ui-g-8 ui-lg-9 ui-md-8 ui-sm-12 role-management-value ui-fluid">
+          styleClass="ui-g-12 role-management-label font-medium" />
+        <div class="ui-g-12 role-management-value ui-fluid">
           <p:inputText id="role-name"
             value="#{roleManagementBean.selectedRole.name}"
             disabled="#{!creationMode}"
@@ -194,50 +195,54 @@
         </div>
 
         <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}"
-          for="role-display-name" styleClass="ui-g-4 ui-lg-3 ui-md-4 ui-sm-12 role-management-label" />
-        <div class="ui-g-8 ui-lg-9 ui-md-8 ui-sm-12 role-management-value ui-fluid">
+          for="role-display-name" styleClass="ui-g-12 role-management-label font-medium" />
+        <div class="ui-g-12 role-management-value ui-fluid">
           <p:inputText id="role-display-name" value="#{roleManagementBean.selectedRole.displayName}" maxlength="200" />
         </div>
 
         <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" for="role-description"
-          styleClass="ui-g-4 ui-lg-3 ui-md-4 ui-sm-12 role-management-label" />
-        <div class="ui-g-8 ui-lg-9 ui-md-8 ui-sm-12 role-management-value ui-fluid">
+          styleClass="ui-g-12 role-management-label font-medium" />
+        <div class="ui-g-12 role-management-value ui-fluid">
           <p:inputText id="role-description" value="#{roleManagementBean.selectedRole.description}" />
         </div>
       </h:panelGroup>
 
-      <h:panelGroup styleClass="card ui-g" rendered="#{roleManagementBean.canModifyUserAssignment}">
+      <h:panelGroup styleClass="ui-g mt-2" rendered="#{roleManagementBean.canModifyUserAssignment}">
         <div class="ui-g-12">
-          <h4 class="role-management-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/UserAssignment')}</h4>
+          <h5 class="role-management-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/UserAssignment')}</h5>
         </div>
-
-        <h:panelGroup id="user-assignment-group" layout="block" styleClass="ui-g-12 u-padding-0 user-assignment-group">
-          <ic:com.axonivy.portal.components.UserSelection id="user-assignment-selection"
-            selectedUser="#{roleManagementBean.selectedUser}"
-            label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/AvailableUsers')}"
-            labelPanelStyleClass="ui-g-4 ui-lg-3 ui-md-4 ui-sm-12 role-management-label"
-            autoCompletePanelStyleClass="ui-g-8 ui-lg-9 ui-md-8 ui-sm-12 role-management-value ui-fluid"
-            excludedUsernames="#{roleManagementBean.distinctExcludedUsernames}"
-            isRenderedMessage="false" hasCustomizedSelectionList="true">
-            <p:column styleClass="ui-g-12">
-              <pc:securityMemberNameAndAvatar securityMember="#{user}"
-                displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
-                displayNameStyleClass="u-truncate-text" />
-            </p:column>
-            <f:facet name="event">
-              <p:ajax event="itemSelect" oncomplete="PF('add-new-user-button').enable()" />
-            </f:facet>
-          </ic:com.axonivy.portal.components.UserSelection>
-
-          <div class="user-assign-actions ui-g-12 u-no-padding-top u-text-align-right">
-            <p:commandButton id="add-new-user"
-              widgetVar="add-new-user-button"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
-              icon="si si-add"
-              actionListener="#{roleManagementBean.assignUserToRole()}"
-              update="users-of-role-table user-assignment-group"
-              process="user-assignment-group"
-              disabled="#{empty roleManagementBean.selectedUser}" />
+        
+        <p:outputLabel styleClass="ui-g-12 admin-settings-display-name-3rd-label"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/AvailableUsers')}" for="user-assignment-selection" />
+        <h:panelGroup id="user-assignment-group" layout="block" styleClass="ui-g-12 role-management-label">
+          <div class="flex gap-3">
+            <div class="flex flex-1">
+              <ic:com.axonivy.portal.components.UserSelection id="user-assignment-selection"
+                selectedUser="#{roleManagementBean.selectedUser}"
+                autoCompletePanelStyleClass="w-full role-management-value ui-fluid"
+                excludedUsernames="#{roleManagementBean.distinctExcludedUsernames}"
+                isRenderedMessage="false" hasCustomizedSelectionList="true">
+                <p:column styleClass="ui-g-12">
+                  <pc:securityMemberNameAndAvatar securityMember="#{user}"
+                    displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
+                    displayNameStyleClass="u-truncate-text" />
+                </p:column>
+                <f:facet name="event">
+                  <p:ajax event="itemSelect" oncomplete="PF('add-new-user-button').enable()" />
+                </f:facet>
+              </ic:com.axonivy.portal.components.UserSelection>
+            </div>
+  
+            <div class="flex flex-none">
+              <p:commandButton id="add-new-user"
+                widgetVar="add-new-user-button"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
+                icon="si si-add"
+                actionListener="#{roleManagementBean.assignUserToRole()}"
+                update="users-of-role-table user-assignment-group"
+                process="user-assignment-group"
+                disabled="#{empty roleManagementBean.selectedUser}" />
+            </div>
           </div>
         </h:panelGroup>
 
@@ -251,12 +256,6 @@
           styleClass="ui-g-12 users-of-role-table"
           lazy="true"
           rowKey="#{user.name}">
-          <f:facet name="header">
-            <div class="u-text-align-left">
-              <h:outputText styleClass="u-font-bold"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/ListUsers', [selectedRoleName])}" />
-            </div>
-          </f:facet>
 
           <c:set var="showInheritedMembership" value="#{!user.directlyAssignedRole and !roleManagementBean.creationMode}"/>
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}"

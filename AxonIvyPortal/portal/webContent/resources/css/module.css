@@ -2744,12 +2744,9 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   margin: .5em 0;
 }
 
-.application-tab-action-buttons .new-app-btn{
+.application-tab-action-buttons .new-app-btn, .create-role-container .create-role-btn {
   width: 100%;
   height: 3rem;
-}
-
-.application-tab-action-buttons .new-app-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2757,14 +2754,16 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   padding: 0.5rem;
 }
 
-.application-tab-action-buttons .new-app-btn.ui-button .ui-icon{
+.application-tab-action-buttons .new-app-btn.ui-button .ui-icon, 
+.create-role-container .create-role-btn.ui-button .ui-icon {
   position: relative;
   top: auto;
   left: auto;
   margin: 0 0.25rem 0 0;
 }
 
-.application-tab-action-buttons .new-app-btn.ui-button .ui-button-text{
+.application-tab-action-buttons .new-app-btn.ui-button .ui-button-text, 
+.create-role-container .create-role-btn.ui-button .ui-button-text {
   padding: 0
 }
 
@@ -2779,7 +2778,8 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 
-.application-name-language.ui-dialog .ui-dialog-titlebar,.app-dialog.ui-dialog .ui-dialog-titlebar {
+.application-name-language.ui-dialog .ui-dialog-titlebar,.app-dialog.ui-dialog .ui-dialog-titlebar,
+.role-details-dialog.ui-dialog .ui-dialog-titlebar {
   padding-bottom: 1rem;
 }
 

@@ -32,6 +32,11 @@
     <!-- APPLICATION TAB -->
     <p:tab id="application-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applications')}">
       <h:form prependId="false" id="applicationForm">
+        <h:panelGroup layout="block" styleClass="application-tab-action-buttons">
+          <p:commandButton id="add-application-btn" actionListener="#{logic.addNewApp}" oncomplete="PF('appDialog').show()" resetValues="true"
+            styleClass="new-app-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/new')}" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
+            update=":#{p:resolveFirstComponentWithId('appDialog', view).clientId}" />
+        </h:panelGroup>
         <!-- Applications Table -->
         <h:panelGroup id="applicationPanel" layout="block">
           <p:dataTable value="#{data.applicationList}" var="app" id="applicationTable" draggableRows="true"
@@ -74,11 +79,6 @@
               </p:menu>
             </p:column>
           </p:dataTable>
-        </h:panelGroup>
-        <h:panelGroup layout="block" styleClass="application-tab-action-buttons">
-          <p:commandButton id="add-application-btn" actionListener="#{logic.addNewApp}" oncomplete="PF('appDialog').show()" resetValues="true"
-            styleClass="new-app-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/new')}" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
-            update=":#{p:resolveFirstComponentWithId('appDialog', view).clientId}" />
         </h:panelGroup>
       </h:form>
     </p:tab>
@@ -173,16 +173,9 @@
         </p:dataTable>
         <div class="announcement-action flex justify-content-end gap-5 mt-6 w-full">
           <div class="announcement-toggle flex align-content-center flex-wrap gap-2">
-            <h:outputText id="announcement-toggle-status" class="flex align-items-center justify-content-center font-medium" value="#{data.isAnnouncementActivated ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/enabled') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/disabled')}" />
-            <p:toggleSwitch id="announcement-toggle-switch" value="#{data.isAnnouncementActivated}" styleClass="flex align-items-center justify-content-center" widgetVar="announcementToggleSwitch" >
-              <p:ajax listener="#{logic.toggleAnnouncement(data.isAnnouncementActivated)}"
-                form="announcement-form"
-                update="#{cc.clientId}:adminTabView:announcement-table #{cc.clientId}:adminTabView:announcement-validation-messages action-group announcement-toggle-status"
-                process="announcement-form"
-                oncomplete="handleAnnouncementToggleComplete(args)"
-                global="false"
-                />
-            </p:toggleSwitch>
+            <h:outputText id="announcement-toggle-status" class="flex align-items-center justify-content-center font-medium" 
+              value="#{data.isAnnouncementActivated ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/enabled') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/disabled')}" />
+            <p:toggleSwitch id="announcement-toggle-switch" value="#{data.isAnnouncementActivated}" styleClass="flex align-items-center justify-content-center" widgetVar="announcementToggleSwitch" />
           </div>
           <p:commandButton id="save-changes-announcement" process="announcement-form" actionListener="#{logic.saveChangesAnnouncement()}"
             update="#{cc.clientId}:adminTabView:announcement-validation-messages action-group"
@@ -190,19 +183,6 @@
           </p:commandButton>
         </div>
       </h:form>
-      <h:outputScript>
-        var isFail = false;
-        function handleAnnouncementToggleComplete(args) {
-            if (isFail) {
-              isFail = false;
-              return;
-            }
-            if (args.validationFailed) {
-                PF('announcementToggleSwitch').uncheck();
-                isFail = true;
-            }
-        }
-      </h:outputScript>
     </p:tab>
 
     <!-- ROLE MANAGEMENT  -->
