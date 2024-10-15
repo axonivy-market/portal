@@ -23,9 +23,9 @@
                 <!-- General Setting -->
                 <h:panelGroup layout="block" class="w-full my-profile-block">
                   <div class="setting-header">
-                    <h5>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/General')}</h5>
+                    <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/General')}</h5>
                   </div>
-                  <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage')}</span>
+                  <div class="user-profile-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage')}</div>
                   <div class="ui-fluid">
                     <p:selectOneMenu id="homepage" value="#{data.selectedHomepage}" converter="pojoConverter">
                       <f:selectItems value="#{data.homepages}" var="homepage" itemValue="#{homepage}" itemLabel="#{homepage.label}" />
@@ -36,9 +36,9 @@
                 <!-- Process List Setting -->
                 <h:panelGroup layout="block" styleClass="w-full my-profile-block" rendered="#{userProfileBean.canAccessProcessList()}">
                   <div class="setting-header">
-                    <h5>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/ProcessList')}</h5>
+                    <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/ProcessList')}</h5>
                   </div>
-                  <span>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultViewMode")}</span>
+                  <div class="user-profile-setting-title">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultViewMode")}</div>
                   <div class="ui-fluid">
                     <p:selectOneMenu id="process-mode-selection" value="#{data.selectedProcessMode}">
                       <f:selectItems value="#{data.processModes}" var="mode" itemValue="#{mode}" itemLabel="#{mode}" />
@@ -49,10 +49,10 @@
                 <!-- Task List Setting -->
                 <h:panelGroup layout="block" styleClass="w-full my-profile-block" rendered="#{userProfileBean.canAccessTaskList()}">
                   <div class="setting-header">
-                    <h5>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/TaskList')}</h5>
+                    <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/TaskList')}</h5>
                   </div>
                   <div class="ui-fluid">
-                    <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/SortFieldSelections/defaultSortFieldLabel')}</span>
+                    <div class="user-profile-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/SortFieldSelections/defaultSortFieldLabel')}</div>
                     <div class="flex flex-wrap justify-content-between gap-2">
                       <div class="flex flex-1">
                         <p:selectOneMenu id="task-sort-field-selection" value="#{data.selectedTaskListSortField}"
@@ -75,10 +75,10 @@
                 <!-- Case List Setting -->
                 <h:panelGroup layout="block" styleClass="w-full my-profile-block" rendered="#{userProfileBean.canAccessCaseList()}">
                   <div class="setting-header">
-                    <h5>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/CaseList')}</h5>
+                    <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/CaseList')}</h5>
                   </div>
                   <div class="ui-fluid">
-                    <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/SortFieldSelections/defaultSortFieldLabel')}</span>
+                    <div class="user-profile-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/SortFieldSelections/defaultSortFieldLabel')}</div>
                     <div class="flex flex-wrap justify-content-between gap-2">
                       <div class="flex flex-1">
                         <p:selectOneMenu id="case-sort-field-selection" value="#{data.selectedCaseListSortField}"
@@ -100,15 +100,14 @@
               </div>
               <p:divider layout="vertical" />
 
-              <div class="ui-g-6 pl-5">
+              <div class="ui-g-6 pl-5 relative">
                 <h:panelGroup id="language-setting-container" layout="block" styleClass="w-full my-profile-block">
                   <div class="setting-header">
-                    <h5 id="language-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Language')}</h5>
+                    <h5 id="language-setting-title" class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Language')}</h5>
                   </div>
                   <!-- Language Setting -->
                   <div class="language-selection w-full">
-                    <h:outputText id="language-selection-label" styleClass="language-selection-label"
-                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Language')}" />
+                    <div id="language-selection-label" class="language-selection-label user-profile-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Language')}</div>
                     <div class="ui-fluid">
                       <p:selectOneMenu id="language-selection" value="#{data.language.userLanguage}">
                         <f:selectItems value="#{data.language.languages}" />
@@ -117,8 +116,7 @@
                   </div>
                   <!-- Format language Setting -->
                   <div class="language-selection w-full">
-                    <h:outputText id="format-language-selection-label" styleClass="language-selection-label"
-                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/FormattingLanguage')}" />
+                    <div id="format-language-selection-label" class="language-selection-label user-profile-setting-title mt-3">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/FormattingLanguage')}</div>
                     <div class="ui-fluid">
                       <p:autoComplete id="format-language-selection" scrollHeight="210" dropdown="true" size="35"
                         completeMethod="#{logic.completeFormattingLanguage}" value="#{data.language.itemFormattingLanguage}" var="language"
@@ -137,7 +135,7 @@
                     </p:growl>
                   </div>
                   <div class="setting-header">
-                    <h5>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/notificationChannels')}</h5>
+                    <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/notificationChannels')}</h5>
                   </div>
                   <div class="w-full">
                     <p:dataTable paginator="true" rows="10" paginatorPosition="bottom" paginatorAlwaysVisible="false" var="event"

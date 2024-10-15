@@ -3049,8 +3049,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .user-profile-footer {
-  margin-top: 25px;
   text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 1rem;
 }
 
 .user-profile-footer .ui-button {
@@ -3089,6 +3091,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   height: auto;
   float: left;
   width: 100%;
+  padding: 2.25rem;
 }
 
 .my-profile-container .portal-section-container.general-section-container {
@@ -3136,8 +3139,12 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   }
 }
 
-.my-profile-block {
-  margin-bottom: 2rem;
+.my-profile-block:not(:last-child) {
+  margin-bottom: 2.25rem;
+}
+
+.user-profile-setting-title {
+  margin-bottom: 0.5rem;
 }
 
 /********************************** END USER PROFILE SETTING **********************************/
