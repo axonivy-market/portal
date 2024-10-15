@@ -35,10 +35,7 @@
 					<h:outputText id="last-name" value="#{data.employee.lastName}" />
 				</div>
 			</div>
-			<script>
-				window.isHideCaseInfo = false;
-				window.caseId = "#{employeeDetailsBean.findCaseByEmployeeId(data.employee.id).getId()}";
-			</script>
+      <ic:com.axonivy.portal.components.IFrameTaskConfig isHideCaseInfo="false" caseId="#{employeeDetailsBean.findCaseByEmployeeId(data.employee.id).getId()}" />
 		</ui:define>
   </ui:composition>
 </h:body>
