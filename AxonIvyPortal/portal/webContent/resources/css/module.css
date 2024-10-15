@@ -2863,7 +2863,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 .absences-table-action-column,
 .ui-datatable thead th.absences-table-action-column {
   text-align: center;
-  width: 130px;
+  width: 90px;
 }
 
 @media (max-width: 768px) {
@@ -3151,6 +3151,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .absences-management-form .add-absence-panel {
   text-align: right;
+/*   height equals with Selected user panel */
+  height: 48px;
 }
 
 .deputy-for-next-absence {
@@ -3166,6 +3168,12 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .absences-management-container .substitution-table tbody.ui-datatable-data .substition-role-display-name {
   white-space: normal;
   line-break: anywhere;
+}
+
+.primary-color-light-button {
+  background: var(--ivy-primary-color-light) !important; 
+  color: var(--ivy-primary-color) !important;
+  font-weight: 600;
 }
 
 @media screen and (max-width: 40em) {

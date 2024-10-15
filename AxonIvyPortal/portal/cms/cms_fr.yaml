@@ -537,6 +537,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: Rétablir les graphiques par défaut ?
     role: Rôle
     save: Enregistrer
+    saveAll: Enregistrer tout
     saveSuccessfully: Les données ont été correctement enregistrées
     search: Recherche
     second: seconde
