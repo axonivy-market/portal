@@ -180,6 +180,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationHint: Use arrastrar y soltar para reordenar.
     applicationLinkRequiredMsg: Por favor, introduzca el enlace al portal
     applicationList:
+      addNewApplication: Add new application
       applicationSelectionHeader: Seleccionar aplicación
       menuIcon: Icono de menú
     applications: Aplicaciones

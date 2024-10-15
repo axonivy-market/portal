@@ -180,6 +180,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationHint: Use drag & drop to reorder.
     applicationLinkRequiredMsg: Please enter portal link.
     applicationList:
+      addNewApplication: Add new application
       applicationSelectionHeader: Select application
       menuIcon: Menu icon
     applications: Applications
