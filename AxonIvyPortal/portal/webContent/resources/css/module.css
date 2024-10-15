@@ -2733,8 +2733,9 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   text-align: left !important;
 }
 
-.action-column-icon-button {
+.action-column-icon-button i {
   margin: 0 5px;
+  color: var(--portal-button-color)
 }
 
 .setting-tab-action-buttons, .application-tab-action-buttons, .application-selection-action-buttons,
@@ -3133,6 +3134,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   .my-profile-container .sort-field-selection {
     width: 100%;
   }
+}
+
+.my-profile-block {
+  margin-bottom: 2rem;
 }
 
 /********************************** END USER PROFILE SETTING **********************************/
