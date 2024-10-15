@@ -104,15 +104,18 @@
           <p:commandButton id="home-btn" value="Back to Home" actionListener="#{logic.home}" immediate="true" />
         </div>
       </h:form>
-      <script>
-        window.processSteps = ["Create Investment Request", "Approve Investment Request", "Review Request" ];
-        window.currentProcessStep = 1;
-        window.isShowAllSteps = true;
-        window.isWorkingOnATask = false;
-        window.announcementInvisible = false;
-        window.viewName="TASK_DETAIL";
-        window.taskIcon = "fa fa-anchor";
-      </script>
+      <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps='["Create Investment Request", "Approve Investment Request", "Review Request" ]'
+        currentProcessStep="1" isShowAllSteps="true" isWorkingOnATask="false" announcementInvisible="false" viewName="TASK_DETAIL" taskIcon="fa fa-anchor"/>
+      <!-- You could also configure by Javascript -->
+      <!-- <script> -->
+      <!--   window.processSteps = ["Create Investment Request", "Approve Investment Request", "Review Request" ]; -->
+      <!--   window.currentProcessStep = 1; -->
+      <!--   window.isShowAllSteps = true; -->
+      <!--   window.isWorkingOnATask = false; -->
+      <!--   window.announcementInvisible = false; -->
+      <!--   window.viewName="TASK_DETAIL"; -->
+      <!--   window.taskIcon = "fa fa-anchor"; -->
+      <!-- </script> -->
     </ui:define>
   </ui:composition>
 </h:body>

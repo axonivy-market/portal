@@ -68,10 +68,7 @@
           styleClass="Fright MarTop10" partialSubmit="true" id="finish-btn" actionListener="#{logic.close}"
           process=":leave-request" update=":leave-request" style="width: auto" />
       </h:form>
-      <script>
-        window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)};
-        window.currentProcessStep = 2;
-      </script>
+      <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="2" />
 
     </ui:define>
   </ui:composition>

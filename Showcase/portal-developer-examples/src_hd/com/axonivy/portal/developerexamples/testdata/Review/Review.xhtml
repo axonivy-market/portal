@@ -99,6 +99,7 @@
           <p:commandButton id="close-btn" value="Close" actionListener="#{logic.close}" update="@(form)" />
         </h:panelGroup>
       </h:form>
+
       <script>
         window.processSteps = ["Create Investment Request", "Approve Investment Request", "Review Request"];
         window.currentProcessStep = 2;
@@ -108,6 +109,10 @@
         window.viewName="TASK_DETAIL";
         window.taskIcon = "si si-module";
       </script>
+      <!-- Actually, using IFrameTaskConfig is recommended to configure IFrame tasks. Above configuration is just an another way to configure IFrame tasks. -->
+      <!-- <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps='["Create Investment Request", "Approve Investment Request", "Review Request" ]' -->
+      <!--   currentProcessStep="2" isShowAllSteps="true" isWorkingOnATask="true" announcementInvisible="false" viewName="TASK_DETAIL" taskIcon="si si-module"/> -->
+      
     </ui:define>
   </ui:composition>
 </h:body>
