@@ -21,7 +21,7 @@
         <ui:param name="dialogContent" value="#{ivy.session.isSessionUserUnknown()? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpried') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/viewExpired')}" />
         
         <ui:define name="dialogFooter">
-          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" styleClass="w-full view-expired-exception-button"
+          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" styleClass="w-full"
             onclick="redirectDefaultPage();" type="button" />
         </ui:define>
       </ui:decorate>
