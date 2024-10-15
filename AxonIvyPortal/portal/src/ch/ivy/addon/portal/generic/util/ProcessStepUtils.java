@@ -39,7 +39,7 @@ public class ProcessStepUtils {
 
     return Sudo.get(() -> {
       IProcessModelVersion releasedProcessModelVersion = null;
-      List<IApplication> applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
+      List<IApplication> applicationsInSecurityContext = IApplicationRepository.of(ISecurityContext.current()).all();
       for (IApplication app : applicationsInSecurityContext) {
         IProcessModel findProcessModel = app.findProcessModel(processModelName);
         if (findProcessModel != null) {

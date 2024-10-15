@@ -20,6 +20,7 @@ public class CaseFilterFieldCategory extends FilterField {
     super(DashboardStandardCaseColumn.CATEGORY.getField());
   }
 
+  @Override
   public String getLabel() {
     return DashboardStandardCaseColumn.CATEGORY.getLabel();
   }

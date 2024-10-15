@@ -44,7 +44,7 @@ public class ApplicationColumnModel extends CaseColumnModel implements Serializa
   
   @JsonIgnore
   public List<String> getApplications() {
-    return ListUtilities.transformList(IApplicationRepository.instance().allOf(ISecurityContext.current()), IApplication::getName);
+    return ListUtilities.transformList(IApplicationRepository.of(ISecurityContext.current()).all(), IApplication::getName);
   }
   
   @JsonIgnore

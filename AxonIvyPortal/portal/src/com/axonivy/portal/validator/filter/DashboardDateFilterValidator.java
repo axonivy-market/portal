@@ -23,6 +23,7 @@ public class DashboardDateFilterValidator implements Validator {
   private static final String MESSAGE_PREFIX_PATTERN = "%s(%d)";
   private static final String EXPIRY_TIMESTAMP = "expiryTimestamp";
 
+  @Override
   public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
   
     DashboardFilter filter = (DashboardFilter) component.getAttributes().get("filter");
@@ -33,7 +34,7 @@ public class DashboardDateFilterValidator implements Validator {
       case BETWEEN -> validateBetweenOperator((Date)value, filter, filterIndex, component, messageComponentId);
       case NOT_BETWEEN -> validateBetweenOperator((Date)value, filter, filterIndex, component, messageComponentId);
       default -> validateDefaultOperator((Date)value, filter, filterIndex, component, messageComponentId);
-    };
+    }
   }
 
   private void validateBetweenOperator(Date value, DashboardFilter filter, int filterIndex, UIComponent component, String messageComponentId) {
