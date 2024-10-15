@@ -46,8 +46,6 @@ Customization
 -------------
 -  If your custom Business Details page uses an IFrame, you could configure the UI accordingly. Refer to :ref:`iframe-configure-template` for more information.
 
-   |customization-business-details-page-iframe|
-
 -  Using the Public API, you can control whether the business details page will start inside IFrame or not by setting the ``BusinessDetailsDTO.builder().isEmbedInFrame(Boolean)`` value to 
    
    	- ``true``: start inside IFrame (default value)
@@ -79,7 +77,6 @@ Or search :bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>` in the permis
 
 
 .. |start-business-details-page-iframe| image:: images/business-details-page/start-business-details-page-iframe.png
-.. |customization-business-details-page-iframe| image:: images/business-details-page/customization-business-details-page-iframe.png
 .. |set-business-details-page-callable-process| image:: images/business-details-page/set-business-details-page-callable-process.png
 .. |customize-business-details-with-public-api| image:: images/business-details-page/customize-business-details-with-public-api.png
 .. |customization-business-details-page-start-request| image:: images/business-details-page/customization-business-details-page-start-request.png
