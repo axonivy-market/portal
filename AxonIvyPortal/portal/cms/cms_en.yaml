@@ -538,6 +538,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: Restore to default charts?
     role: Role
     save: Save
+    saveAll: Save all
     saveSuccessfully: Data saved successfully.
     search: Search
     second: second
