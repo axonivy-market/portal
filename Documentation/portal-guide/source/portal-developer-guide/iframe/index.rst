@@ -57,6 +57,8 @@ Follow these steps to use the IFrame approach:
        ``Portal.EmbedInFrame`` Portal setting. refer to
        :ref:`update-portal-settings`
 
+.. _iframe-configure-template:
+
 Configure template
 ==================
 
@@ -72,7 +74,7 @@ Configure template
 
 You could configure UI in either of these two ways:
 
-#. Using component IFrameTaskConfig, this way is recommended.
+#. Using the component IFrameTaskConfig, this way is recommended.
 
    .. code-block:: xml
 
@@ -83,9 +85,9 @@ You could configure UI in either of these two ways:
                taskName="Approve Investment" 
                taskIcon="si si-bulb"
                isHideTaskName="false"
-               caseId="123456" 
+               caseId="123456"
                isHideCaseInfo="false"
-               currentProcessStep="1"
+               currentProcessStep="0"
                processSteps='["Create Investment Request", "Approve Investment Request"]'
                isShowAllSteps="true"
                processChainDirection="VERTICAL"
@@ -111,7 +113,7 @@ You could configure UI in either of these two ways:
                window.taskName = "Approve Investment";
                window.taskIcon = "si si-bulb";
                window.isHideTaskName = false;
-               window.caseId = 123456;
+               window.caseId = "123456";
                window.isHideCaseInfo = false;
                window.currentProcessStep = 0;
                window.currentProcessStep = #{data.currentProcessStep};
@@ -124,7 +126,7 @@ You could configure UI in either of these two ways:
                window.isShowAllSteps = true;
                window.processChainDirection = "VERTICAL";
                window.processChainShape = "LINE";
-               window.isHideTaskAction = false;
+               window.isHideTaskAction = true;
                window.isWorkingOnATask = false;
                window.announcementInvisible = false;
                window.isCardFrame = true;
@@ -147,16 +149,16 @@ Options for ``Task name``
   :header-rows: 1
   :class: longtable
 
-Example:
+Example using IFrameTaskConfig:
 
 .. code-block:: xml
 
    <h:body>
       <ui:composition template="/layouts/frame-10.xhtml">
          ...
-         <script>
-            window.taskName = "Your New Task Name";
-         </script>
+         <ic:com.axonivy.portal.components.IFrameTaskConfig 
+            taskName="Approve Investment"
+         />
          ...
       </ui:composition>
    </h:body>
@@ -178,16 +180,16 @@ Options for ``Show Information``
   :header-rows: 1
   :class: longtable
 
-Example:
+Example using IFrameTaskConfig:
 
 .. code-block:: xml
 
    <h:body>
       <ui:composition template="/layouts/frame-10.xhtml">
          ...
-         <script>
-            window.caseId = "Case-Id";
-         </script>
+         <ic:com.axonivy.portal.components.IFrameTaskConfig 
+            caseId="123456"
+         />
          ...
       </ui:composition>
    </h:body>
@@ -211,19 +213,19 @@ Options for ``Process steps``
        When defining parameter ``processSteps``, please make sure that you add this JSP function tag to your HTML dialog:
        ``xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"``
 
-Example:
+Example using IFrameTaskConfig:
 
 .. code-block:: xml
 
    <h:body>
       <ui:composition template="/layouts/frame-10.xhtml">
          ...
-         <script>
-            window.currentProcessStep = 0;
-            window.processSteps = ["Create Investment Request", "Approve Investment Request"];
-            window.processChainDirection = "VERTICAL";
-            window.processChainShape = "LINE";
-         </script>
+         <ic:com.axonivy.portal.components.IFrameTaskConfig 
+            currentProcessStep="0"
+            processSteps='["Create Investment Request", "Approve Investment Request"]'
+            processChainDirection="VERTICAL"
+            processChainShape="LINE"
+         />
          ...
       </ui:composition>
    </h:body>
@@ -239,17 +241,19 @@ Various options can affect functions and layout.
   :header-rows: 1
   :class: longtable
 
-Example:
+Example using IFrameTaskConfig:
 
 .. code-block:: xml
 
    <h:body>
       <ui:composition template="/layouts/frame-10.xhtml">
          ...
-         <script>
-            window.isHideTaskAction = true;
-            window.isWorkingOnATask = false;
-         </script>
+         <ic:com.axonivy.portal.components.IFrameTaskConfig 
+            isHideTaskAction="true"
+            isWorkingOnATask="false"
+            announcementInvisible="false"
+            isCardFrame="true"
+         />
          ...
       </ui:composition>
    </h:body>
