@@ -461,7 +461,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     detail: Details
     display: Display
     displayName: Display name
-    dragAndDrop: 'Drag and drop an image or '
+    dragAndDropFile: 'Drag and drop a file or '
+    dragAndDropImage: 'Drag and drop an image or '
     edit: Edit
     errorAjaxMessage: There is a general exception.
     errorFileUploadSize: The file size must be lower than {0}
@@ -795,6 +796,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardIcon: Dashboard icon
       dashboardPermission: Dashboard permission
       dashboardTitle: Dashboard title
+      deleteDashboardMessage: Are you sure you want to delete the "{0}" dashboard?
       editDashboard: Edit dashboard
       manageDashboard: Manage dashboard
       removeDashboardHeader: Remove the "{0}" dashboard

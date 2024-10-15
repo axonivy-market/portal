@@ -1275,6 +1275,10 @@ color: var(--button-text-color);
   color: var(--primary-color);
 }
 
+.dasboard-configuration-action-menu-icon {
+  color: white;
+}
+
 .portal-dialog-warning-icon {
   color: var(--ivy-tertinary-color-yellow-dark);
 }
@@ -1374,8 +1378,7 @@ body.in-dialog .ui-widget-overlay {
 }
 
 .dashboard-action-container {
-  box-shadow:  var(--item-widget-box-shadow);
-  background-color: var(--item-widget-background-color);
+  border: 1px solid var(--dashboard-action-container-border-color);
 }
 
 .dashboard-action-container:hover {
@@ -1384,15 +1387,15 @@ body.in-dialog .ui-widget-overlay {
 }
 
 .dashboard-action-container-label {
-  color: var(--primary-dark-text-color);
+  color: var(--dashboard-action-container-text-color);
 }
 
 .dashboard-action-container-description {
-  color: var(--primary-dark-text-color);
+  color: var(--dashboard-action-container-description-color);
 }
 
 .dashboard-action-container-icon {
-  color: var(--primary-dark-text-color);
+  color: var(--dashboard-action-container-text-color);
 }
 
 .dashboard-type-list li a {

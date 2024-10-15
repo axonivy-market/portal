@@ -463,7 +463,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     detail: Detalles
     display: Mostrar
     displayName: Nombre de pantalla
-    dragAndDrop: 'Arrastre y suelte una imagen o '
+    dragAndDropFile: 'Arrastre y suelte un archivo o '
+    dragAndDropImage: 'Arrastre y suelte una imagen o '
     edit: Editar
     errorAjaxMessage: Error general
     errorFileUploadSize: El tamaño deberá ser inferior a {0}
@@ -792,6 +793,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardIcon: Icono del panel de control
       dashboardPermission: Permiso de tablero
       dashboardTitle: Título del tablero
+      deleteDashboardMessage: ¿Está seguro de que desea eliminar el "{0}" cuadro de mandos?
       editDashboard: Editar tablero
       manageDashboard: Administrar tablero
       removeDashboardHeader: Borrar el tablero "{0}"

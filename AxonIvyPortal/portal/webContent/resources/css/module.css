@@ -1923,8 +1923,8 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   color: var(--text-color);
 }
 
-.options-panel .option-item.color-destroy, .action-steps-panel .action-step-item.color-destroy {
-  color: var(--ivy-tertinary-color-red-medium);
+.options-panel .option-item.color-destroy, .action-steps-panel .action-step-item.color-destroy, .ui-menu-list .ui-menuitem > .ui-menuitem-link.color-destroy > span {
+  color: var(--ivy-tertinary-color-red-medium) !important;
 }
 
 .options-panel .ui-state-disabled.option-item {
@@ -3246,6 +3246,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   white-space: normal;
   padding-right: .5em;}
 
+.ui-dialog .ui-dialog-titlebar > .ui-dialog-title {
+  padding-left: 7px;
+}
+
 .process-widget .process-input-switch-selection,
 .ui-inputswitch.ui-widget.ui-widget-content.process-input-switch-selection.ui-inputswitch-checked {
   top: 3px;
@@ -4230,6 +4234,10 @@ body .ui-widget-header.portal-breadcrumb .ui-menuitem-link.ui-state-disabled .ui
   overflow: hidden;
 }
 
+body .ui-menu .ui-menu-list .ui-menuitem .ui-menuitem-link .ui-menuitem-icon {
+  color: var(--text-color);
+}
+
 body .portal-breadcrumb.ui-breadcrumb ul li {
   line-height: 2rem;
 }
@@ -5184,7 +5192,8 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
 }
 
 .dashboard-configuration__export-button-form .export-dashboard {
-  margin-left: 0.1em;
+  left: -6px;
+  color: var(--text-color);
 }
 
 .dashboard-configuration__content {
@@ -5422,7 +5431,7 @@ a.dashboard-action-container label {
   border-radius: 50%;
 }
 
-.ui-external-link-preview-image-panel {
+.ui-external-link-preview-image-panel, .ui-dashboard-upload-file-panel {
   width: 100%;
   border: 1px solid var(--process-list-item-border-color);
   background-color: var(--process-list-item-background-color);
@@ -5432,7 +5441,7 @@ a.dashboard-action-container label {
   display: flex;
 }
 
-.ui-external-link-preview-image-panel > .ui-external-link-preview-image-label {
+.ui-external-link-preview-image-panel > .ui-external-link-preview-image-label, .ui-dashboard-upload-file-panel > .ui-dashboard-upload-file-label {
   width: 42%;
   display: block;
   text-align: center;
@@ -5441,7 +5450,7 @@ a.dashboard-action-container label {
   top: 12px;
 }
 
-.ui-external-link-preview-image-label > #ui-external-link-preview-image-icon {
+.ui-external-link-preview-image-label > #ui-external-link-preview-image-icon, .ui-dashboard-upload-file-label > #ui-dashboard-upload-file-icon {
   width: 100%;
   font-size: 2em;
   top: -20px;
@@ -5473,14 +5482,14 @@ a.dashboard-action-container label {
 
 /* ============ DASHBOARD ======== */
 body .ui-dialog.ui-widget.import-dashboard-dialog{
-  min-width: 450px;
-  max-width: 1000px;
+  min-width: 10rem;
+  max-width: 40rem;
 }
 
 @media screen and (max-width: 40em) {
   body .ui-dialog.ui-widget.import-dashboard-dialog {
     min-width: 85vw;
-    max-width: 95%;
+    max-width: 35rem;
   }	
 }
 
@@ -5563,6 +5572,3 @@ body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-butto
 /* =================== PORTAL BUTTON END ====================== */
 
 /* =================== MENU ITEMS ====================== */
-.ui-menu-items {
-  border-bottom: 1px solid var(--user-menu-items-border-color);
-}

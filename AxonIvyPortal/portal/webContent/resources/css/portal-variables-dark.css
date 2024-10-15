@@ -345,4 +345,9 @@
   --accessibility-shortcut-bg-color: var(--ivy-primary-color-grey-dark);
   --accessibility-bg-color: var(--task-state-system-color);
   --accessibility-shortcut-text-color: var(--ivy-primary-color-black);
+
+    /* Dashboard configuration*/
+  --dashboard-action-container-text-color: var(--ivy-primary-color-white);
+  --dashboard-action-container-border-color: var(--ivy-primary-color-grey-medium);
+  --dashboard-action-container-description-color: var(--ivy-primary-color-grey-medium);
 }
