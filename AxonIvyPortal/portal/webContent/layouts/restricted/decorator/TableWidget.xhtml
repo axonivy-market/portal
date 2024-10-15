@@ -215,7 +215,7 @@
   
             <h:panelGroup id="widget-filter-content" styleClass="ui-g-9 u-padding-0 ui-sm-12"
               layout="block">
-              <div class="ui-g-12 filter-overlay-panel__header">
+              <div class="ui-g-12 filter-overlay-panel__header pt-3">
                 <strong class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterOptionHeader')}</strong>
               </div>
               <h:panelGroup layout="block" styleClass="ui-g-12 filter-overlay-panel__content">
@@ -230,7 +230,7 @@
                     styleClass="ui-sm-hidden saved-filter__manage-filter absolute bottom-0 mb-4 ui-button-flat" global="false"
                     onclick="hideAllDashboardOverlayPanels(); PF('manage-filter-dialog').show();" />
             </div>
-            <div class="ui-g-9 u-text-align-right mt-6 p-3">
+            <div class="ui-g-9 u-text-align-right mt-6">
               <div class="ui-g-6">
               <p:commandButton id="save-filter" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}"
                 partialSubmit="true"

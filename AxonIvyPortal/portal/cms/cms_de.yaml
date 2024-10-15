@@ -1291,7 +1291,7 @@ Dialogs:
               noResultsText: Es liegen keine Ergebnisse vor.
             dashboard:
               PortalDashboardConfiguration:
-                NewDashboard: Neues Dashboard
+                NewDashboard: Neues Dashboard hinzufügen
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
@@ -1335,6 +1335,7 @@ Dialogs:
         component:
           ShareLinkDialog:
             CopyLink: Link kopieren
+            Link: Link
             LinkCopied: Link kopiert
         dashboard:
           component:

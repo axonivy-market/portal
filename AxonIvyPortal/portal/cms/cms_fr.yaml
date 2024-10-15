@@ -1287,7 +1287,7 @@ Dialogs:
               noResultsText: Il n'y a pas de résultats.
             dashboard:
               PortalDashboardConfiguration:
-                NewDashboard: Nouveau tableau de bord
+                NewDashboard: Ajouter un nouveau tableau de bord
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
@@ -1331,6 +1331,7 @@ Dialogs:
         component:
           ShareLinkDialog:
             CopyLink: Copier le lien
+            Link: Lien
             LinkCopied: Lien copié
         dashboard:
           component:
