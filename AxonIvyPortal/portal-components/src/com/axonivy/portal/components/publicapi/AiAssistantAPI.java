@@ -45,7 +45,7 @@ public class AiAssistantAPI {
   public static AiResultDTO generateErrorAiResult(Throwable error,
       String errorDescription) {
     AiResultDTO result = new AiResultDTO();
-    result.setResult(errorDescription.concat("\n")
+    result.setResult(errorDescription.concat(StringUtils.LF)
         .concat(ExceptionUtil.getAllMessages(error)));
     result.setState(AIState.ERROR);
 
