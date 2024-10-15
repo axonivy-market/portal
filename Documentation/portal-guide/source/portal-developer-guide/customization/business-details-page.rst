@@ -44,14 +44,7 @@ How to customize the business details page
 
 Customization
 -------------
--  If your custom Business Details page uses an IFrame, you may want to set some additional
-   Window properties on your page: 
-
-   - window.isHideCaseInfo = true;
-   - window.isHideTaskAction = true;
-   - window.isHideTaskName = true;
-   - window.isWorkingOnATask = false;
-   - window.viewName = '';
+-  If your custom Business Details page uses an IFrame, you could configure the UI accordingly. Refer to :ref:`iframe-configure-template` for more information.
 
    |customization-business-details-page-iframe|
 
