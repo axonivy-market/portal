@@ -96,6 +96,7 @@ public class DashboardBean implements Serializable {
       selectedDashboardId = readDashboardFromSession();
       currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
       selectedDashboard = dashboards.get(currentDashboardIndex);
+
       String selectedDashboardName = selectedDashboard.getTitles().stream()
           .filter(displayName -> displayName.getLocale().equals(Ivy.session().getContentLocale())).findFirst()
           .orElseGet(() -> selectedDashboard.getTitles().get(0)).getValue();
@@ -114,6 +115,11 @@ public class DashboardBean implements Serializable {
     isRunningTaskWhenClickingOnTaskInList = GlobalSettingService.getInstance()
         .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
         .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
+
+    if (selectedDashboard.getIsMenuItem()) {
+      String preSelectedDashboardId = readPreDashboardFromSession();
+      storeDashboardInSession(preSelectedDashboardId);
+    }
 
     buildClientStatisticApiUri();
   }
@@ -395,6 +401,10 @@ public class DashboardBean implements Serializable {
 
   private String readDashboardFromSession() {
     return (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString());
+  }
+
+  private String readPreDashboardFromSession() {
+    return (String) Ivy.session().getAttribute(SessionAttribute.PREV_SELECTED_DASHBOARD_ID.toString());
   }
 
   private void storeDashboardInSession(String id) {
