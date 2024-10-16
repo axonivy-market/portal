@@ -13,7 +13,7 @@
     <span class="si si-alert-circle" />
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/permission/noPermission')}" />
   </p:outputPanel>
-  <h:panelGroup styleClass="ui-g-12" layout="block">
+  <h:panelGroup styleClass="w-full pt-2 pb-2" layout="block">
     <div class="flex justify-content-between flex-wrap">
       <div class="flex align-items-center justify-content-center admin-setting-header">
          <h3>Admin Settings</h3>
@@ -25,7 +25,7 @@
     </div>
   </h:panelGroup>
   <!-- TAB VIEW -->
-  <p:tabView id="adminTabView" rendered="#{permissionBean.hasAdminPermission()}" activeIndex="0" dynamic="true">
+  <p:tabView id="adminTabView" rendered="#{permissionBean.hasAdminPermission()}" activeIndex="0" dynamic="true" styleClass="admin-setting-tab">
     <f:event listener="#{adminSettingBean.initAdminTabViewConfig()}" type="preRenderComponent"/>
     <p:ajax event="tabChange" listener="#{adminSettingBean.onTabChange}"/>
 
@@ -174,11 +174,11 @@
         <div class="announcement-action flex justify-content-end gap-5 mt-6 w-full">
           <div class="announcement-toggle flex align-content-center flex-wrap gap-2">
             <h:outputText id="announcement-toggle-status" class="flex align-items-center justify-content-center font-medium" 
-              value="#{data.isAnnouncementActivated ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/enabled') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/disabled')}" />
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/enable')}" />
             <p:toggleSwitch id="announcement-toggle-switch" value="#{data.isAnnouncementActivated}" styleClass="flex align-items-center justify-content-center" widgetVar="announcementToggleSwitch" />
           </div>
           <p:commandButton id="save-changes-announcement" process="announcement-form" actionListener="#{logic.saveChangesAnnouncement()}"
-            update="#{cc.clientId}:adminTabView:announcement-validation-messages action-group"
+            update="#{cc.clientId}:adminTabView:announcement-validation-messages action-group" 
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/saveChanges')}">
           </p:commandButton>
         </div>

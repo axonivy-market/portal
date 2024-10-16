@@ -2723,6 +2723,11 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   max-width: 80vw;
 }
 
+.admin-setting-tab .ui-tabs-panel.ui-widget-content.ui-corner-bottom {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 @media screen and (max-height: 615px) {
   .admin-ui-dialog .ui-dialog-content {
     height: 55vh !important;

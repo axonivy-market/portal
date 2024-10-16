@@ -180,8 +180,8 @@
                 <div class="user-profile-footer ui-g-12">
                   <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15"
                     actionListener="#{logic.backToHome}" />
-                  <p:commandButton id="save-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-                    icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" actionListener="#{userProfileBean.saveAllChannel}"
+                  <p:commandButton id="save-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveAll')}"
+                    actionListener="#{userProfileBean.saveAllChannel}"
                     action="#{logic.save}" update="errors-message" />
                 </div>
               </div>
