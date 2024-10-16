@@ -212,18 +212,18 @@
             <p:column styleClass="u-no-border u-padding-0">
               <!-- Application Type -->
               <div class="ui-g">
-                <p:outputLabel styleClass="app-icon ui-g-12 admin-settings-application-icon"
+                <p:outputLabel styleClass="app-icon w-full admin-settings-application-icon"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/menuIcon')}" />
-                <div class="ui-g-10">
+                <div class="w-full mt-2 mb-3">
                   <ic:ch.ivy.addon.portalkit.component.IconSelection value="#{data.selectedApp.menuIcon}" />
                 </div>
               </div>
 
               <!-- 3rd application view -->
               <h:panelGroup id="applicationDisplayName3rd" styleClass="ui-g" layout="block">
-                <p:outputLabel styleClass="ui-g-12 admin-settings-display-name-3rd-label"
+                <p:outputLabel styleClass="w-full admin-settings-display-name-3rd-label"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/appDisplayName')}" for="appDisplayName3rd" />
-                <div class="ui-g-12">
+                <div class="w-full mt-2 mb-3">
                   <div class="flex gap-3">
                     <div class="flex flex-1">
                       <p:inputText value="#{data.displayNameInCurrentLanguage}" id="appDisplayName3rd"
@@ -245,9 +245,9 @@
               </h:panelGroup>
               <!-- link 3rd application view -->
               <h:panelGroup id="portalLink3rdApp" styleClass="ui-g" layout="block">
-                <p:outputLabel styleClass="ui-g-12 admin-settings-portal-link-label"
+                <p:outputLabel styleClass="w-full admin-settings-portal-link-label"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/link')}" for="portalLink3rd" />
-                <div class="ui-g-12">
+                <div class="w-full mt-2 mb-3">
                   <p:inputText value="#{data.selectedApp.link}" id="portalLink3rd" required="true" styleClass="admin-settings-form-input" />
                 </div>
               </h:panelGroup>
