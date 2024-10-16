@@ -42,13 +42,13 @@ public class DashboardNumberFilterValidator implements Validator {
     default -> {
     }
     }
-    ;
+    
   }
 
   private void validateBetweenOperator(BigDecimal value, DashboardFilter filter, int filterIndex, UIComponent component,
       String messageComponentId) {
     if (component.getId().contentEquals("to-number")) {
-      BigDecimal fromNumber = BigDecimal.valueOf(NumberUtils.toDouble((String) filter.getFrom()));
+      BigDecimal fromNumber = BigDecimal.valueOf(NumberUtils.toDouble(filter.getFrom()));
       FacesMessage error = validateFromToValues(fromNumber, value, filter.getField(), filterIndex);
       if (error != null) {
         FacesContext.getCurrentInstance().addMessage(messageComponentId, error);

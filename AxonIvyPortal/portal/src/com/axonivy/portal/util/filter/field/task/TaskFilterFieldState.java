@@ -18,6 +18,7 @@ public class TaskFilterFieldState extends FilterField {
     super(DashboardStandardTaskColumn.STATE.getField());
   }
 
+  @Override
   public String getLabel() {
     return DashboardStandardTaskColumn.STATE.getLabel();
   }

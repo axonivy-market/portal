@@ -24,7 +24,7 @@ public class TaskApplicationFilter extends TaskFilter {
   private boolean isSelectedAll;
   
   public TaskApplicationFilter() {
-    this.filteredApplications = IApplicationRepository.instance().allOf(ISecurityContext.current()).stream().map(IApplication::getName).collect(Collectors.toList());
+    this.filteredApplications = IApplicationRepository.of(ISecurityContext.current()).all().stream().map(IApplication::getName).collect(Collectors.toList());
     this.selectedFilteredApplications = new ArrayList<>();
   }
 
@@ -60,7 +60,7 @@ public class TaskApplicationFilter extends TaskFilter {
     TaskQuery query = TaskQuery.create();
     IFilterQuery filterQuery = query.where();
     selectedFilteredApplications.forEach(applicationName -> {
-      final List<IApplication> allApps = IApplicationRepository.instance().allOf(ISecurityContext.current());
+      final List<IApplication> allApps = IApplicationRepository.of(ISecurityContext.current()).all();
       for (IApplication app : allApps) {
         if (app.getName().equals(applicationName)) {
           filterQuery.or().applicationId().isEqual(app.getId());

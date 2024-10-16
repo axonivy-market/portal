@@ -24,6 +24,7 @@ public class TaskFilterFieldCreatedDate extends FilterField {
     super(DashboardStandardTaskColumn.CREATED.getField());
   }
 
+  @Override
   public String getLabel() {
     return DashboardStandardTaskColumn.CREATED.getLabel();
   }

@@ -22,6 +22,7 @@ public class DashboardTextFilterValidator implements Validator {
 
   private static final String MESSAGE_PREFIX_PATTERN = "%s(%d)";
 
+  @Override
   public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
     DashboardFilter filter = (DashboardFilter) component.getAttributes().get("filter");
     Integer filterIndex = Optional.ofNullable((Integer)component.getAttributes().get("filterIndex")).orElse(0);

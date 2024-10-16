@@ -5,6 +5,7 @@ import java.util.Date;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.PortalDateUtils;
 
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public class CreatedDateBetweenOperatorHandler {
@@ -19,8 +20,8 @@ public class CreatedDateBetweenOperatorHandler {
   }
 
   public CaseQuery buildBetweenQuery(DashboardFilter filter) {
-    Date from = PortalDateUtils.getStartOfDate(filter.getFromDate());
-    Date to = PortalDateUtils.getEndOfDate(filter.getToDate());
+    Date from = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getStartOfMinute(filter.getFromDate()) : PortalDateUtils.getStartOfDate(filter.getFromDate());
+    Date to = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getEndOfMinute(filter.getToDate()) : PortalDateUtils.getEndOfDate(filter.getToDate());
 
     if (from == null && to == null) {
       return null;
@@ -38,8 +39,8 @@ public class CreatedDateBetweenOperatorHandler {
   }
 
   public CaseQuery buildNotBetweenQuery(DashboardFilter filter) {
-    Date from = PortalDateUtils.getStartOfDate(filter.getFromDate());
-    Date to = PortalDateUtils.getEndOfDate(filter.getToDate());
+    Date from = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getStartOfMinute(filter.getFromDate()) : PortalDateUtils.getStartOfDate(filter.getFromDate());
+    Date to = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getEndOfMinute(filter.getToDate()) : PortalDateUtils.getEndOfDate(filter.getToDate());
 
     CaseQuery subQuery = CaseQuery.create();
     if (from != null && to != null) {
