@@ -639,7 +639,7 @@
             "y": 0
           },
           "data": {
-            "processPath": "designer/portal/Functional Processes/AccessibilityShortcutCustomWidget/accessibilityShortcut.ivp"
+            "processPath": "Functional Processes/AccessibilityShortcutCustomWidget/accessibilityShortcut.ivp"
           },
           "showFullscreenMode": false
         },
