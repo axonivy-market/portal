@@ -523,6 +523,19 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseWidget.getConfigurationFilter(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "complex-filter-example", new ScreenshotMargin(10));
   }
+  
+  @Test
+  public void screenshotResizeColumnWidth() throws IOException {
+    redirectToDashboardConfiguration();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    DashboardModificationPage editPage = new DashboardModificationPage();
+    NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
+    detailsEditPage.waitForCaseWidgetLoaded();
+    ScreenshotUtils.executeDecorateJs("highlightColumnResize();");
+    
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "edit-widget-column-width");
+  }
 
   private void redirectToDashboardConfiguration() {
     redirectToRelativeLink("portal/1549F58C18A6C562/PortalDashboardConfiguration.ivp");
