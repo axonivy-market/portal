@@ -50,11 +50,11 @@ public class DashboardModificationPage extends TemplatePage {
     if (isActionMenuNotDisplayed()) {
       dashboardRow.$("div#dashboard-configuration-action-group").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("button[id$='dashboard-configuration-action-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     }
-    return $("div[id$='dasboard-configuration-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $("div[id$='dashboard-configuration-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   private boolean isActionMenuNotDisplayed() {
-    return !$("div[id$='dasboard-configuration-action-menu']").isDisplayed();
+    return !$("div[id$='dashboard-configuration-action-menu']").isDisplayed();
   }
   
   private void clickButtonInDashboardConfigurationActionMenu(String buttonName, SelenideElement dashboardRow) {
@@ -63,7 +63,7 @@ public class DashboardModificationPage extends TemplatePage {
 
   public void clickEditDashboardByName(String dashboardName) {
     SelenideElement dashboardRow = getDashboardRowByName(dashboardName);
-    dashboardRow.$("[id$=':edit']").click();
+    clickButtonInDashboardConfigurationActionMenu("Edit", dashboardRow);
     getEditDashboardDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
@@ -142,11 +142,13 @@ public class DashboardModificationPage extends TemplatePage {
   }
 
   public SelenideElement getDashboardShareLinkButton() {
-    return $("button[id$='share-dashboard']");
+    SelenideElement dashboardRow = getDashboardRowByName("Dashboard");
+    return getDashboardConfigurationActionMenu(dashboardRow).$$("span").filter(Condition.text("Share")).first();
   }
 
   public void getDashboardShareLinkDialog() {
-    getDashboardShareLinkButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    SelenideElement dashboard = getDashboardRowByName("Dashboard");
+    clickButtonInDashboardConfigurationActionMenu("Share", dashboard);
     $("div[id$=':share-dashboard-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 }
