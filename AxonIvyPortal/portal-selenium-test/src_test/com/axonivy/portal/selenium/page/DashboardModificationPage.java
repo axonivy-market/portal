@@ -39,12 +39,26 @@ public class DashboardModificationPage extends TemplatePage {
   public NewDashboardDetailsEditPage navigateToEditDashboardDetailsByName(String dashboardName) {
     SelenideElement dashboardRow = getDashboardRowByName(dashboardName);
     if (dashboardRow != null) {
-      dashboardRow.$("button[id$='dashboard-modification-component:dashboard-table:0:configure-dashboard']")
-          .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+      clickButtonInDashboardConfigurationActionMenu("Configuration", dashboardRow);
       NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
       return newDashboardDetailsEditPage;
     }
     return null;
+  }
+  
+  private SelenideElement getDashboardConfigurationActionMenu(SelenideElement dashboardRow) {
+    if (isActionMenuNotDisplayed()) {
+      dashboardRow.$("div#dashboard-configuration-action-group").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("button[id$='dashboard-configuration-action-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    }
+    return $("div[id$='dasboard-configuration-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  private boolean isActionMenuNotDisplayed() {
+    return !$("div[id$='dasboard-configuration-action-menu']").isDisplayed();
+  }
+  
+  private void clickButtonInDashboardConfigurationActionMenu(String buttonName, SelenideElement dashboardRow) {
+    getDashboardConfigurationActionMenu(dashboardRow).$$("span").filter(Condition.text(buttonName)).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void clickEditDashboardByName(String dashboardName) {
@@ -55,7 +69,7 @@ public class DashboardModificationPage extends TemplatePage {
 
   public void clickDeleteDashboardByName(String dashboardName) {
     SelenideElement dashboardRow = getDashboardRowByName(dashboardName);
-    dashboardRow.$("[id$=':delete-dashboard']").click();
+    clickButtonInDashboardConfigurationActionMenu("Delete", dashboardRow);
     SelenideElement deleteConfirmDialog = $("[id$=':remove-dashboard-dialog']").shouldBe(Condition.appear,
         DEFAULT_TIMEOUT);
     deleteConfirmDialog.$("button[id$=':remove-dashboard-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)

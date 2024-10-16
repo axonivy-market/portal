@@ -43,9 +43,14 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public DashboardModificationPage openEditPublicDashboardsPage() {
     selectPublicDashboardType();
-    $("button[id$='dashboard-modification-component:dashboard-table:0:edit']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition());
+    getDashboardConfigurationActionMenu().$$("span").filter(Condition.text("Edit")).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     return new DashboardModificationPage();
+  }
+  
+  public SelenideElement getDashboardConfigurationActionMenu() {
+    $("button[id*='dashboard-modification-component:dashboard-table:0:dashboard-configuration-action-button']").shouldBe(appear, DEFAULT_TIMEOUT)
+    .shouldBe(getClickableCondition()).click();
+    return $("div[id$='dasboard-configuration-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public void selectPublicDashboardType() {
@@ -236,7 +241,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public NewDashboardPage backToHomePage() {
-    $("[id$='back-to-home-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("span[class*='si si-house-chimney-2']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     return new NewDashboardPage();
   }
 

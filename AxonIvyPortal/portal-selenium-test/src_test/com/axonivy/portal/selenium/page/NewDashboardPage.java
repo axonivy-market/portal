@@ -880,7 +880,7 @@ public class NewDashboardPage extends TemplatePage {
 
   public void closeWidgetFilter(int index) {
     var widgetFilterPanel = $("div[id$=':filter-overlay-panel-" + index + "']").shouldBe(appear, DEFAULT_TIMEOUT);
-    widgetFilterPanel.$(".ui-overlaypanel-footer__cancel").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    widgetFilterPanel.$("div[id*='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT).$("div[class*='filter-overlay-panel__header']").shouldBe(appear, DEFAULT_TIMEOUT).$("button[id*='filter-form-" + index + "']").should(getClickableCondition(), DEFAULT_TIMEOUT).click();
     widgetFilterPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
@@ -1035,8 +1035,7 @@ public class NewDashboardPage extends TemplatePage {
   }
   
   public void clickOnManageFilterLink() {
-    var savedFilterContainer = $("[id$=':saved-filters-container']").shouldBe(appear, DEFAULT_TIMEOUT);
-    savedFilterContainer.$(".ui-commandlink.saved-filter__manage-filter").shouldBe(getClickableCondition()).click();
+    $("div[class*='filter-overlay-panel__footer']").shouldBe(appear, DEFAULT_TIMEOUT).$("div#manage-filter").shouldBe(appear, DEFAULT_TIMEOUT).$("button[class*='saved-filter__manage-filter']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id$='manage-filter-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
@@ -1051,7 +1050,9 @@ public class NewDashboardPage extends TemplatePage {
   }
   
   public void closeManageFilterDialog() {
-    $("[id$=':manage-filter-action']").$("a").shouldBe(getClickableCondition()).click();
+    $("div[id*='manage-filter-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    .$("div[class*='ui-widget-header']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    .$("a[class*='ui-dialog-titlebar-close']").shouldBe(getClickableCondition()).click();
     $("[id$='manage-filter-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
