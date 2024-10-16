@@ -14,7 +14,7 @@
   <f:event listener="#{dashboardModificationBean.initConfigration(isPublicDashboard)}" type="preRenderComponent" />
   <h:panelGroup id="dashboard-modification-container" styleClass="ui-g-12">
 
-    <p:dataTable id="dashboard-table" lazy="false" draggableRows="true" rowDragSelector="i.si-move-expand-vertical"
+    <p:dataTable id="dashboard-table" lazy="false" draggableRows="true" rowDragSelector="i.si-navigation-menu"
       value="#{dashboardModificationBean.dashboards}" var="dashboard"
       styleClass="ui-g-12 u-no-padding-left u-no-padding-right"
       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
@@ -40,11 +40,10 @@
         </h:panelGroup>
       </p:column>
       
-      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" width="#{dashboardModificationBean.hasExportDashboardPermission() ? '100' : '210'}"
-        styleClass="u-text-align-center">
+      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" width="#{dashboardModificationBean.hasExportDashboardPermission() ? '100' : '210'}">
         <div id="dashboard-configuration-action-group" class="dashboard-configuration-action-group">
             <h:panelGroup layout="block">
-                <p:commandButton id="dashboard-configuration-action-button" icon="fa fa-ellipsis-h" styleClass="rounded-button icon-more-menu-button #{buttonStyle} ui-no-rounded-button-process-page"
+                <p:commandButton id="dashboard-configuration-action-button" icon="fa fa-ellipsis-h" styleClass="rounded-button icon-more-menu-button #{buttonStyle} ui-no-rounded-button-process-page mr-3"
                      type="button"/>
                 <p:menu id="dasboard-configuration-action-menu" styleClass="w-10rem" overlay="true" trigger="dashboard-configuration-action-button" my="right top" at="right bottom">
                     <p:menuitem id="edit" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(dashboard)}"
@@ -79,8 +78,8 @@
                           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
                 </p:menu>
               </h:panelGroup>
-              <h:panelGroup styleClass="rounded-button ui-button-outlined action-column-icon-button u-mar-right-5">
-                <i id="reorder-button-#{dashboard.id}" class="si si-move-expand-vertical dashboard-icon-drag-drop" />
+              <h:panelGroup styleClass=" ui-button-outlined action-column-icon-button u-mar-right-5">
+                <i id="reorder-button-#{dashboard.id}" class="si si-navigation-menu dashboard-icon-drag-drop" />
                </h:panelGroup>
         </div>
       </p:column>
