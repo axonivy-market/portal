@@ -41,12 +41,6 @@ public class DashboardConfigurationPage extends TemplatePage {
     waitForDashboardConfigurationTypeSelectionAppear();
     return $("a[id$='public-dashboard-type']");
   }
-
-  public DashboardModificationPage openEditPublicDashboardsPage() {
-    selectPublicDashboardType();
-    getDashboardConfigurationActionMenu().$$("span").filter(Condition.text("Edit")).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
-    return new DashboardModificationPage();
-  }
   
   public SelenideElement getDashboardConfigurationActionMenu() {
     if (isActionMenuNotDisplayed()) {
@@ -81,6 +75,18 @@ public class DashboardConfigurationPage extends TemplatePage {
   public DashboardModificationPage openEditPrivateDashboardPage(String buttonName) {
     selectPrivateDashboardType();
     clickButtonInDashboardConfigurationActionMenu(buttonName);
+    return new DashboardModificationPage();
+  }
+  
+  public DashboardModificationPage openEditPublicDashboardsPage(String buttonName) {
+    selectPublicDashboardType();
+    clickButtonInDashboardConfigurationActionMenu(buttonName);
+    return new DashboardModificationPage();
+  }
+  
+  public DashboardModificationPage openEditPublicDashboardsPage() {
+    selectPublicDashboardType();
+    getDashboardConfigurationActionMenu().$$("span").filter(Condition.text("Edit")).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     return new DashboardModificationPage();
   }
   
@@ -338,8 +344,8 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public void reorderPrivateDashboard(String fromDashboardName, String toDashboardName) {
-    var toRow = findPrivateDashboardRowByName(toDashboardName).$("i.si-move-expand-vertical");
-    var fromRow = findPrivateDashboardRowByName(fromDashboardName).$("i.si-move-expand-vertical");
+    var toRow = findPrivateDashboardRowByName(toDashboardName).$("i.si-navigation-menu");
+    var fromRow = findPrivateDashboardRowByName(fromDashboardName).$("i.si-navigation-menu");
     dragAndDropTo(toRow, fromRow);
   }
 

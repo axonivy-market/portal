@@ -24,7 +24,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class DashboardSupportMultiLanguageTest extends BaseTest {
   private UserProfilePage userProfilePage;
   private MainMenuPage mainMenuPage;
@@ -78,7 +78,7 @@ public class DashboardSupportMultiLanguageTest extends BaseTest {
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage2 = new DashboardConfigurationPage();
 
-    DashboardModificationPage modificationPage = configurationPage2.openEditPublicDashboardsPage();
+    DashboardModificationPage modificationPage = configurationPage2.openEditPublicDashboardsPage("Bearbeiten");
     SelenideElement dashboard = modificationPage.getDashboardRowByName(updatedName);
     dashboard.shouldBe(Condition.appear);
   }
