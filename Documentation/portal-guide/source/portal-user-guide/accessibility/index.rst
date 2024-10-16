@@ -9,21 +9,21 @@ Why is Accessibility Important?
 .. raw:: html
   
    <p style="margin-top: 20px;"></p>
-In today's digital landscape, ensuring that front-end UIs are accessible to all users is not just a nice-to-have—it's essential. At Axon Ivy, we recognize the importance of making our portal available to everyone, regardless of their abilities or disabilities. With this in mind, we've put significant thought into enhancing the accessibility features within the Axon Ivy Portal. This is only the beginning, and we are committed to continually improving these features. To ensure the highest quality, we have used tools such as the Microsoft Lighthouse Accessibility Checker and adhered to the guidelines of the WCAG 2.1 standard to evaluate and refine our UI.
+In today's digital landscape, ensuring that front-end UIs are accessible to all users is not just a nice-to-have — it's essential. At Axon Ivy, we recognize the importance of making our portal available to everyone, regardless of their abilities or disabilities. With this in mind, we've put significant thought into enhancing the accessibility features within the Axon Ivy Portal. This is only the beginning, and we are committed to continually improving these features. To ensure the highest quality, we have used tools such as the Microsoft Lighthouse Accessibility Checker and adhered to the guidelines of the WCAG 2.1 standard to evaluate and refine our UI.
 
 Accessibility Approach in the Axon Ivy Portal
 =============================================
 .. raw:: html
   
    <p style="margin-top: 20px;"></p>
-We have taken a comprehensive approach to accessibility, addressing the most crucial aspects to create a more inclusive experience. Below are the key areas we have evaluated and implemented improvements.
+We have taken a comprehensive approach to accessibility, addressing the most crucial aspects to create a more inclusive experience. Below are the key areas where we have evaluated and implemented improvements.
 
 Contrast
 --------
 .. raw:: html
   
    <p style="margin-top: 20px;"></p>
-The contrast between text, buttons, and background elements is vital for users with visual impairments. We have optimized the UI for both Dark Mode and Light Mode in line with the contrast ratios set by WCAG 2.1 standards. This ensures that all components—buttons, widgets, and backgrounds—meet the necessary contrast thresholds to enhance visibility and readability.
+The contrast between text, buttons, and background elements is vital for users with visual impairments. We have optimized the UI for both Dark Mode and Light Mode in line with the contrast ratios set by WCAG 2.1 standards. This ensures that all components — buttons, widgets, and backgrounds — meet the necessary contrast thresholds to enhance visibility and readability.
 
 Zoom Capabilities
 -----------------
@@ -41,7 +41,7 @@ We have introduced basic keyboard shortcuts to streamline the user experience in
 
 
 - **Alt + 1**: Jump to the Dashboard.
-- **Sub-navigation in the Dashboard**: If multiple dashboards are available in the navigation bar, users can use the Tab key to cycle through them. Once the desired dashboard is highlighted, pressing Enter will open it.
+- **Sub-navigation in the Dashboard**: If multiple dashboards are available in the navigation bar, users can use the **Tab key** to cycle through them. Once the desired dashboard is highlighted, pressing **Enter** will open it.
 - **Alt + 2**: Jump to the Process section.
 - **Alt + 3**: Jump to the Task section.
 - **Alt + 4**: Jump to the Case section.
@@ -55,6 +55,9 @@ Widget Navigation
 - **Task Widget**: Pressing Alt + W will focus on the first task in the Task widget. Pressing it again moves the focus to the next task in the list.
 - **Case Widget**: Pressing Alt + Q focuses on the first case in the Case widget, and subsequent presses cycle through the list of cases.
 - **Process Widget**: Pressing Alt + A focuses on the first process in the Process widget and cycles through the other processes sequentially.
+
+Once you reach the last visible item in the list, the portal will scroll down if you press the shortcut.
+If you are on the very last item in the list, the focus will jump to the first item if you press the shortcut.
 
 Navigation for Multiple Task or Case Widgets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -89,12 +92,12 @@ With the Case widget navigation, you can also navigate into the actions of a cas
 
 |case-actions-popup|
 
-Press the keyboard shortcut to focus on the case, and pressing Enter will open the context menu. You can navigate through it by pressing the shortcut again, and exit the menu by pressing Esc.
+Press the keyboard shortcut to focus on the case, then press Enter to open the context menu. You can navigate through it by pressing the shortcut again, or exit the menu by pressing Esc.
 
 Example for Case Navigation
 ^^^^^^^^^^^^^^^^
 
-To select a specific case, press **Alt + Q** to reach the desired case. To access the associated actions, press **Enter** to open the context menu. Navigate through the menu by pressing the shortcut repeatedly, and press **Esc** to close it.
+To select a specific case, press **Alt + Q** to reach the desired case. To access the associated actions, press **Enter** to open the context menu. Navigate through the menu by pressing the shortcut repeatedly, or press **Esc** to close it.
 
 Browser & Keyboard Compatibility
 ^^^^^^^^^^^^^^^^
@@ -104,7 +107,7 @@ These shortcuts are available in Chrome, Firefox, and Edge and work seamlessly w
 Show Case:
 ^^^^^^^^^^
 
-|accessibility-showcase|
+
 
 Extended Descriptive Elements in the Task and Case List
 -------------------------------------------------------
@@ -112,6 +115,11 @@ Extended Descriptive Elements in the Task and Case List
   
    <p style="margin-top: 20px;"></p>
 To improve navigation and accessibility in the portal, we have not only implemented shortcuts for quick access to processes, tasks, and cases, but also added more descriptive elements to the widgets. These enhancements provide a clearer and more detailed display of key information, ensuring optimal support for screen readers.
+
+Support for the Microsoft Narrator Screen Reader
+^^^^^^^^^^^^^^^^
+
+We rely on Microsoft Narrator to support screen readers. You can activate it via the keyboard shortcut **Ctrl + Windows key + Enter**. This ensures that users with visual impairments can easily navigate through the portal and understand the information provided.
 
 Descriptive Elements in the Task Widget
 ^^^^^^^^^^^^^^^^
@@ -140,11 +148,6 @@ In the case list, additional information is also integrated into the highlighted
 When a user jumps to the first case element using a shortcut, the screen reader reads the information in the following format:
 "Case Name: `<case name>` - State: `<state>` - Created On: `<creation date>` - Finished On: `<finish date>` - Owner: `<owner name>`."
 If the selected task or case is not in the "Completed" state, all relevant details are read aloud to inform the user of the current status.
-
-Integration of Microsoft Narrator Screen Reader
-^^^^^^^^^^^^^^^^
-
-We rely on Microsoft Narrator to support screen readers. It can be activated via the keyboard shortcut **Ctrl + Windows key + Enter**. This ensures that users with visual impairments can easily navigate through the portal and understand the information provided.
 
 Language Support for Screen Readers
 ^^^^^^^^^^^^^^^^
