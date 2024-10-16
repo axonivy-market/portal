@@ -110,16 +110,16 @@ public class DashboardBean implements Serializable {
       if (isReadOnlyMode) {
         DashboardUtils.highlightDashboardMenuItem(selectedDashboard.getId());
       }
+
+      if (selectedDashboard.getIsMenuItem()) {
+        String preSelectedDashboardId = readPreDashboardFromSession();
+        storeDashboardInSession(preSelectedDashboardId);
+      }
     }
     buildWidgetModels(selectedDashboard);
     isRunningTaskWhenClickingOnTaskInList = GlobalSettingService.getInstance()
         .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
         .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
-
-    if (selectedDashboard.getIsMenuItem()) {
-      String preSelectedDashboardId = readPreDashboardFromSession();
-      storeDashboardInSession(preSelectedDashboardId);
-    }
 
     buildClientStatisticApiUri();
   }

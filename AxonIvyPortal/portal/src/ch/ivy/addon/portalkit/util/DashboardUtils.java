@@ -43,6 +43,7 @@ public class DashboardUtils {
   public final static String DASHBOARD_PAGE_URL = "/ch.ivy.addon.portal.generic.dashboard.PortalDashboard/PortalDashboard.xhtml";
   public final static String DASHBOARD_MENU_JS_CLASS = "js-dashboard-group";
   public final static String HIGHLIGHT_DASHBOARD_ITEM_METHOD_PATTERN = "highlightDashboardItem('%s')";
+  public final static String DASHBOARD_TASK_TEMPLATE_ID = "dashboard-task-template";
 
   public static List<Dashboard> getVisibleDashboards(String dashboardJson) {
     List<Dashboard> dashboards = jsonToDashboards(dashboardJson);
@@ -69,6 +70,24 @@ public class DashboardUtils {
     List<Dashboard> mappingDashboards = convertDashboardsToLatestVersion(dashboardJSON);
     mappingDashboards.forEach(dashboard -> initDefaultPermission());
     return mappingDashboards;
+  }
+
+  public static Dashboard jsonToDashboard(String dashboardJson) {
+    if (StringUtils.isBlank(dashboardJson)) {
+      return null;
+    }
+
+    ObjectMapper objectMapper = new ObjectMapper();
+    Dashboard dashboard = null;
+
+    try {
+      dashboard = objectMapper.readValue(dashboardJson, Dashboard.class);
+      initDefaultPermission();
+    } catch (IOException e) {
+      Ivy.log().error("Failed to read dashboard from JSON {0}", e, dashboardJson);
+    }
+
+    return dashboard;
   }
 
   private static Consumer<Dashboard> initDefaultPermission() {
@@ -148,6 +167,7 @@ public class DashboardUtils {
     List<DashboardOrder> dashboardOrders = getDashboardOrdersOfSessionUser();
     Map<String, Dashboard> idToDashboard = createMapIdToDashboard(visibleDashboards);
     List<Dashboard> collectedDashboards = new ArrayList<>();
+    Dashboard taskTemplateDashboard = getTaskTemplateDashboard();
     for (DashboardOrder dashboardOrder : dashboardOrders) {
       if (dashboardOrder.getDashboardId() == null) {
         continue;
@@ -158,6 +178,10 @@ public class DashboardUtils {
       }
     }
     collectedDashboards.addAll(idToDashboard.values());
+
+    if (!collectedDashboards.contains(taskTemplateDashboard)) {
+      collectedDashboards.addFirst(taskTemplateDashboard);
+    }
 
     return collectedDashboards;
   }
@@ -240,5 +264,10 @@ public class DashboardUtils {
   
   public static void storeDashboardInSession(String id) {
     Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), id);
+  }
+
+  public static Dashboard getTaskTemplateDashboard() {
+    String dashboardTaskTemplate = Ivy.var().get(PortalVariable.TASK_TEMPLATE_DASHBOARD.key);
+    return jsonToDashboard(dashboardTaskTemplate);
   }
 }

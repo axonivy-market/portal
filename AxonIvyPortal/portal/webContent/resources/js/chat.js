@@ -339,7 +339,7 @@ function Chat(uri, view) {
     }
 
     this.loadChatGroup = function(caseId, isInputMessageKept) {
-      var $groupNotification = $(".js-case-id:hidden[value='" + caseId + "']").closest(".js-show-group-chat-message").find(".js-notification");;
+      var $groupNotification = $(".js-case-id:hidden[value='" + caseId + "']").closest(".js-show-group-chat-message").find(".js-notification");
       if (!$groupNotification.hasClass("u-hidden")) {
         $groupNotification.addClass("u-hidden");
       }

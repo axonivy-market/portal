@@ -159,11 +159,6 @@ public class MenuView implements Serializable {
 
   private MenuElement buildDashboardMenuItem(Dashboard singleDashboard, int menuIndex) {
     String dashboardLink = getDefaultPortalStartUrl();
-    // String defaultHomepageConfig = HomepageUtils.getHomepageName();
-    // HomepageType configHomepageType = HomepageType.getType(defaultHomepageConfig);
-    // if (HomepageType.DASHBOARD != configHomepageType) {
-    // dashboardLink = getDefaultDashboardUrl();
-    // }
     String currentLanguage = UserUtils.getUserLanguage();
     String defaultTitle = singleDashboard.getTitle();
     String title = singleDashboard.getTitles().stream()
