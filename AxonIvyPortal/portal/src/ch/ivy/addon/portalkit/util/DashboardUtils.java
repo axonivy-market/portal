@@ -207,7 +207,7 @@ public class DashboardUtils {
           .replace(DASHBOARD_MENU_ITEM_POSTFIX, "").replace(DASHBOARD_ITEM_POSTFIX, "");
       
       if (selectedMenuItemId.endsWith(DASHBOARD_ITEM_POSTFIX)) {
-        String prevDashboardId = Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString()).toString();
+        String prevDashboardId = (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString());
         Ivy.session().setAttribute(SessionAttribute.PREV_SELECTED_DASHBOARD_ID.toString(), prevDashboardId);
 
       }
