@@ -543,12 +543,3 @@ function removeHighlightShowFilterButton() {
 function highlightQuickSearchTextbox() {
   createRedMediumOutline($(".widget__header .widget-header-quick-search > form"));
 }
-
-function createRedThinOutline($element) {
-  $element.addClass("red-thin-border");
-}
-
-function highlightColumnResize() {
-  const element = $('[id="task-task_1:task-component:dashboard-tasks:dashboard-tasks-columns:1"]').find('.ui-column-resizer.ui-draggable.ui-draggable-handle');
-  createRedThinOutline(element);
-}
