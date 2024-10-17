@@ -9,7 +9,6 @@ import static com.codeborne.selenide.Selenide.$$;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.By.ByCssSelector;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -1108,5 +1107,34 @@ public class NewDashboardPage extends TemplatePage {
   public void waitForProcessWidgetLoaded() {
     checkDisplayedCompactModeProcessContainer();
     getProcessWidgetTable().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void clickOnFirstTaskAction() {
+    $$("[id$='dashboard-task-side-steps-menu']")
+    .get(0).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+    .click();
+
+    $("[id$='dashboard-actions-task-task_1:side-steps-panel']")
+    .shouldBe(appear, DEFAULT_TIMEOUT);
+    focusByJavascript($("[id$=':task-open-detail-command']"));
+    $("[id$=':task-open-detail-command']").sendKeys(Keys.TAB);
+  }
+
+  public void clickOnFirstCaseAction() {
+    $$("[id$='dashboard-case-side-steps-menu']")
+    .get(0).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+    .click();
+
+    $("[id$=':action-steps-panel']")
+    .shouldBe(appear, DEFAULT_TIMEOUT);
+    focusByJavascript($("[id$=':case-item-open-detail-link']"));
+    $("[id$=':case-item-open-detail-link']").sendKeys(Keys.TAB);
+  }
+
+  public void focusOnWarningResetTaskDialog() {
+    $("[id$=':reset-task-confirmation-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement element = $("[id$=':reset-task-confirmation-dialog']").$("a");
+    focusByJavascript(element);
+    element.pressTab();
   }
 }

@@ -63,4 +63,9 @@ public abstract class AbstractPage {
         .until((ExpectedCondition<Boolean>) wd -> ((JavascriptExecutor) wd).executeScript("return document.readyState")
             .equals("complete"));
   }
+  
+  public void focusByJavascript(SelenideElement element) {
+    ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript("arguments[0].focus();", element);
+  }
+  
 }
