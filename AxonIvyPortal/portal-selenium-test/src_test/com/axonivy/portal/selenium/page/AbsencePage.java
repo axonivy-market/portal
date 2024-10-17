@@ -24,6 +24,8 @@ public class AbsencePage extends TemplatePage {
 
   private static final String DELETE_ABSENCE__LINK_ID_PATTERN =
       "absences-management-form:absence-table:%d:delete-absence";
+  private static final String ABSENCE_ACTION_BUTTON_PATTERN = 
+      "absences-management-form:absence-table:%d:absence-action-button";
   private static final String EDIT_ABSENCE__LINK_ID_PATTERN = "absences-management-form:absence-table:%d:edit-absence";
 
   @Override
@@ -44,10 +46,10 @@ public class AbsencePage extends TemplatePage {
   }
 
   public void showAbsencesInThePast(boolean shown) {
-    SelenideElement checkBox = $("input[id*='show-absence-in-the-past']");
+    SelenideElement checkBox = $(".show-absence-in-the-past-panel");
     boolean checkBoxSelected = checkBox.isSelected();
     if (checkBoxSelected != shown) {
-      waitForElementClickableThenClick("div[id*='show-absence-in-the-past'] div.ui-chkbox-box");
+      waitForElementClickableThenClick(checkBox);
     }
   }
 
@@ -171,8 +173,14 @@ public class AbsencePage extends TemplatePage {
     $(growlMessage.findElement(By.className("ui-growl-item-container"))).shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  public void clickOnAbsenceAction(int index) {
+    $(By.id(String.format(ABSENCE_ACTION_BUTTON_PATTERN, index))).click();
+  }
   public void canDeleteAbsence(int index) {
+    clickOnAbsenceAction(index);
     waitForElementDisplayed($(By.id(String.format(DELETE_ABSENCE__LINK_ID_PATTERN, index))), true);
+    //Click to close
+    clickOnAbsenceAction(index);
   }
 
   public void canEditAbsence(int index) {
