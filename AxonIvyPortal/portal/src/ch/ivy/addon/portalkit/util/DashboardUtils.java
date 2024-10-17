@@ -163,11 +163,11 @@ public class DashboardUtils {
   }
 
   public static List<Dashboard> collectDashboards() {
+    Dashboard taskTemplateDashboard = getTaskTemplateDashboard();
     List<Dashboard> visibleDashboards = getAllVisibleDashboardsOfSessionUser();
     List<DashboardOrder> dashboardOrders = getDashboardOrdersOfSessionUser();
     Map<String, Dashboard> idToDashboard = createMapIdToDashboard(visibleDashboards);
     List<Dashboard> collectedDashboards = new ArrayList<>();
-    Dashboard taskTemplateDashboard = getTaskTemplateDashboard();
     for (DashboardOrder dashboardOrder : dashboardOrders) {
       if (dashboardOrder.getDashboardId() == null) {
         continue;
@@ -178,17 +178,18 @@ public class DashboardUtils {
       }
     }
     collectedDashboards.addAll(idToDashboard.values());
-
     if (!collectedDashboards.contains(taskTemplateDashboard)) {
-      collectedDashboards.addFirst(taskTemplateDashboard);
+      collectedDashboards.add(0, taskTemplateDashboard);
     }
-
     return collectedDashboards;
   }
 
   public static List<Dashboard> collectMenuItemDashboard() {
-    return collectDashboards().stream().filter(dashboard -> dashboard.getIsMenuItem()).toList();
+    List<Dashboard> collectedDashboards =
+        new ArrayList<>(collectDashboards().stream().filter(dashboard -> dashboard.getIsMenuItem()).toList());
+    return collectedDashboards;
   }
+
 
   public static void highlightDashboardMenuItem(String selectedDashboardId) {
     PrimeFaces.current().executeScript(String.format(HIGHLIGHT_DASHBOARD_ITEM_METHOD_PATTERN, selectedDashboardId));
@@ -270,4 +271,10 @@ public class DashboardUtils {
     String dashboardTaskTemplate = Ivy.var().get(PortalVariable.TASK_TEMPLATE_DASHBOARD.key);
     return jsonToDashboard(dashboardTaskTemplate);
   }
+
+  public static List<Dashboard> getSubItemDashboards() {
+    var dashboards = collectDashboards();
+    return dashboards.stream().filter(dashboard -> !dashboard.getIsMenuItem()).toList();
+  }
+
 }

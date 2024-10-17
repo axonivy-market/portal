@@ -20,7 +20,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
@@ -182,71 +181,113 @@ public class MenuView implements Serializable {
   private MenuElement buildDashboardItem() {
     var dashboardTitle = translate(DASHBOARD);
     var dashboardId = "";
-    String dashboardLink = getDefaultPortalStartUrl();
-    String defaultHomepageConfig = HomepageUtils.getHomepageName();
+    String dashboardLink = determineDashboardLink();
     String currentLanguage = UserUtils.getUserLanguage();
-    HomepageType configHomepageType = HomepageType.getType(defaultHomepageConfig);
-    if (HomepageType.DASHBOARD != configHomepageType) {
-      dashboardLink = getDefaultDashboardUrl();
-    }
-    
+
     MainMenuEntryService mainMenuEntryService = new MainMenuEntryService();
     String mainMenuDisplayName = mainMenuEntryService.getNameInCurrentLocale();
     String mainMenuIcon = mainMenuEntryService.getMenuIcon();
-    
-    var dashboards = getDashboardCache().dashboards;
-    var subItemDashboards = dashboards.stream().filter(dashboard -> !dashboard.getIsMenuItem()).toList();
-    if (CollectionUtils.isNotEmpty(dashboards)) {
-      DefaultSubMenu dashboardGroupMenu = DefaultSubMenu.builder()
-          .label(StringUtils.isBlank(mainMenuDisplayName) ? dashboardTitle : mainMenuDisplayName)
-          .icon(StringUtils.isBlank(mainMenuIcon) ? PortalMenuItem.DEFAULT_DASHBOARD_ICON : mainMenuIcon)
-          .id(String.format(DASHBOARD_MENU_PATTERN, MenuKind.DASHBOARD.name())).styleClass(DASHBOARD_MENU_JS_CLASS)
-          .build();
-      if (subItemDashboards.size() > 1) {
-        for (var board : dashboards) {
-          if (StringUtils.isBlank(board.getIcon())) {
-            board.setIcon(board.getIsPublic() ? "si-network-share" : "si-single-neutral-shield");
-          }
-          var iconClass = (board.getIcon().startsWith("fa") ? "fa " : "si ") + board.getIcon();
-          var dashboardMenu = new PortalMenuBuilder(board.getTitle(), MenuKind.DASHBOARD, this.isWorkingOnATask)
-              .icon(iconClass).url(dashboardLink).workingTaskId(this.workingTaskId).build();
-          dashboardMenu.setId(String.format(DASHBOARD_MENU_ITEM_PATTERN, board.getId()));
-          dashboardMenu.setRendered(!board.getIsMenuItem());
-          String defaultTitle = (String) dashboardMenu.getValue();
-          String title = board.getTitles().stream()
-              .filter(name -> StringUtils.equalsIgnoreCase(name.getLocale().toString(), currentLanguage)
-                  && StringUtils.isNotBlank(name.getValue()))
-              .map(DisplayName::getValue).findFirst().orElse(defaultTitle);
-          dashboardMenu.setValue(title);
-          dashboardGroupMenu.getElements().add(dashboardMenu);
-        }
-        String activeDashboardId = (String) session().getAttribute(SELECTED_MENU_ID);
-        boolean isMenuItemDashboard = false;
-        if (StringUtils.isNotEmpty(activeDashboardId)) {
-          isMenuItemDashboard = activeDashboardId.endsWith(DashboardUtils.DASHBOARD_ITEM_POSTFIX);
-        }
-        if (StringUtils.endsWith(Ivy.request().getRootRequest().getRequestPath(), DASHBOARD_PAGE_URL)
-            && !isMenuItemDashboard) {
-          dashboardGroupMenu.setExpanded(true);
-        }
-        return dashboardGroupMenu;
-      } else {
-        dashboardTitle = dashboards.get(0).getTitle();
-        dashboardId = dashboards.get(0).getId();
-      }
+
+    var subItemDashboards = getSubItemDashboards();
+    if (subItemDashboards.size() > 1) {
+      return buildDashboardGroupMenu(subItemDashboards, dashboardTitle, mainMenuDisplayName, mainMenuIcon,
+          currentLanguage, dashboardLink);
     }
 
+    return buildSingleDashboardMenu(dashboardTitle, dashboardId, dashboardLink);
+  }
+
+  private String determineDashboardLink() {
+    String defaultHomepageConfig = HomepageUtils.getHomepageName();
+    HomepageType configHomepageType = HomepageType.getType(defaultHomepageConfig);
+
+    if (HomepageType.DASHBOARD != configHomepageType) {
+      return getDefaultDashboardUrl();
+    }
+
+    return getDefaultPortalStartUrl();
+  }
+
+  private List<Dashboard> getSubItemDashboards() {
+    var dashboards = getDashboardCache().dashboards;
+    return dashboards.stream().filter(dashboard -> !dashboard.getIsMenuItem()).toList();
+  }
+
+  private MenuElement buildDashboardGroupMenu(List<Dashboard> subItemDashboards, String defaultTitle,
+      String mainMenuDisplayName, String mainMenuIcon, String currentLanguage, String dashboardLink) {
+
+    DefaultSubMenu dashboardGroupMenu = createDashboardGroupMenu(defaultTitle, mainMenuDisplayName, mainMenuIcon);
+
+    for (Dashboard board : subItemDashboards) {
+      String iconClass = determineIconClass(board);
+      var dashboardMenu = createDashboardMenu(board, dashboardLink, iconClass);
+
+      String localizedTitle =
+          getLocalizedTitle(board, currentLanguage, (String) ((DefaultMenuItem) dashboardMenu).getValue());
+      ((DefaultMenuItem) dashboardMenu).setValue(localizedTitle);
+
+      dashboardGroupMenu.getElements().add(dashboardMenu);
+    }
+
+    setMenuExpansion(dashboardGroupMenu);
+    return dashboardGroupMenu;
+  }
+
+  private DefaultSubMenu createDashboardGroupMenu(String defaultTitle, String mainMenuDisplayName,
+      String mainMenuIcon) {
+    return DefaultSubMenu.builder().label(StringUtils.isBlank(mainMenuDisplayName) ? defaultTitle : mainMenuDisplayName)
+        .icon(StringUtils.isBlank(mainMenuIcon) ? PortalMenuItem.DEFAULT_DASHBOARD_ICON : mainMenuIcon)
+        .id(String.format(DASHBOARD_MENU_PATTERN, MenuKind.DASHBOARD.name())).styleClass(DASHBOARD_MENU_JS_CLASS)
+        .build();
+  }
+
+  private String determineIconClass(Dashboard board) {
+    if (StringUtils.isBlank(board.getIcon())) {
+      board.setIcon(board.getIsPublic() ? "si-network-share" : "si-single-neutral-shield");
+    }
+    return (board.getIcon().startsWith("fa") ? "fa " : "si ") + board.getIcon();
+  }
+
+  private MenuElement createDashboardMenu(Dashboard board, String dashboardLink, String iconClass) {
+    var dashboardMenu = new PortalMenuBuilder(board.getTitle(), MenuKind.DASHBOARD, this.isWorkingOnATask)
+        .icon(iconClass).url(dashboardLink).workingTaskId(this.workingTaskId).build();
+
+    dashboardMenu.setId(String.format(DASHBOARD_MENU_ITEM_PATTERN, board.getId()));
+    dashboardMenu.setRendered(!board.getIsMenuItem());
+
+    return dashboardMenu;
+  }
+
+  private String getLocalizedTitle(Dashboard board, String currentLanguage, String defaultTitle) {
+    return board.getTitles().stream()
+        .filter(name -> StringUtils.equalsIgnoreCase(name.getLocale().toString(), currentLanguage)
+            && StringUtils.isNotBlank(name.getValue()))
+        .map(DisplayName::getValue).findFirst().orElse(defaultTitle);
+  }
+
+  private void setMenuExpansion(DefaultSubMenu dashboardGroupMenu) {
+    String activeDashboardId = (String) session().getAttribute(SELECTED_MENU_ID);
+    boolean isMenuItemDashboard =
+        StringUtils.isNotEmpty(activeDashboardId) && activeDashboardId.endsWith(DashboardUtils.DASHBOARD_ITEM_POSTFIX);
+
+    if (StringUtils.endsWith(Ivy.request().getRootRequest().getRequestPath(), DASHBOARD_PAGE_URL)
+        && !isMenuItemDashboard) {
+      dashboardGroupMenu.setExpanded(true);
+    }
+  }
+
+  private MenuElement buildSingleDashboardMenu(String dashboardTitle, String dashboardId, String dashboardLink) {
     var dashboardMenu = new PortalMenuBuilder(dashboardTitle, MenuKind.DASHBOARD, this.isWorkingOnATask)
-            .icon(PortalMenuItem.DEFAULT_DASHBOARD_ICON)
-            .url(dashboardLink)
-            .workingTaskId(this.workingTaskId).build();
+        .icon(PortalMenuItem.DEFAULT_DASHBOARD_ICON).url(dashboardLink).workingTaskId(this.workingTaskId).build();
 
     if (StringUtils.isBlank(dashboardId)) {
       dashboardId = dashboardMenu.getId();
     }
     dashboardMenu.setId(String.format(DASHBOARD_MENU_PATTERN, dashboardId));
+
     return dashboardMenu;
   }
+
 
   public PortalDashboardItemWrapper getDashboardCache() {
     String sessionUserId = getSessionUserId();
