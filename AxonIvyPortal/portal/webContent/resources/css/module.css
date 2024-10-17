@@ -4509,6 +4509,10 @@ border-top: 0.14rem dashed;
 .portal-dialog-content {
   margin:20px 0;
 }
+
+.portal-dialog .ui-dialog-titlebar {
+ padding: 1.5rem 1.5rem 0.5rem 1.5rem !important; 
+}
 /** Portal dialog ---- end-----**/
 
 /* =================== START EXCEPTION ===================== */
