@@ -5572,3 +5572,6 @@ body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-butto
 /* =================== PORTAL BUTTON END ====================== */
 
 /* =================== MENU ITEMS ====================== */
+.ui-menu-items, body .ui-menu .ui-menu-list .ui-menuitem:not(:last-child) {
+  border-bottom: 1px solid var(--user-menu-items-border-color);
+}

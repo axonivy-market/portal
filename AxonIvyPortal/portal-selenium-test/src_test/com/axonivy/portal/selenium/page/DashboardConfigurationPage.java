@@ -43,15 +43,9 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
   
   public SelenideElement getDashboardConfigurationActionMenu() {
-    if (isActionMenuNotDisplayed()) {
-      $("button[id*='dashboard-modification-component:dashboard-table:0:dashboard-configuration-action-button']").shouldBe(appear, DEFAULT_TIMEOUT)
-      .shouldBe(getClickableCondition()).click();
-    }
+    $("button[id*='dashboard-modification-component:dashboard-table:0:dashboard-configuration-action-button']").shouldBe(appear, DEFAULT_TIMEOUT)
+    .shouldBe(getClickableCondition()).click();
     return $$("div[id$='dashboard-configuration-action-menu']").filter(Condition.appear).first();
-  }
-  
-  private boolean isActionMenuNotDisplayed() {
-    return !$("div[id$='dashboard-configuration-action-menu']").isDisplayed();
   }
 
   public void selectPublicDashboardType() {
@@ -73,13 +67,13 @@ public class DashboardConfigurationPage extends TemplatePage {
   
   public DashboardModificationPage openEditPrivateDashboardPage(String buttonName) {
     selectPrivateDashboardType();
-    clickButtonInDashboardConfigurationActionMenu(buttonName);
+    clickButtonOnDashboardConfigurationActionMenu(buttonName);
     return new DashboardModificationPage();
   }
   
   public DashboardModificationPage openEditPublicDashboardsPage(String buttonName) {
     selectPublicDashboardType();
-    clickButtonInDashboardConfigurationActionMenu(buttonName);
+    clickButtonOnDashboardConfigurationActionMenu(buttonName);
     return new DashboardModificationPage();
   }
   
@@ -88,7 +82,7 @@ public class DashboardConfigurationPage extends TemplatePage {
     return new DashboardModificationPage();
   }
   
-  public void clickButtonInDashboardConfigurationActionMenu(String buttonName) {
+  public void clickButtonOnDashboardConfigurationActionMenu(String buttonName) {
     getDashboardConfigurationActionMenu().$$("span").filter(Condition.text(buttonName)).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
@@ -424,7 +418,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public SelenideElement getShareDashboardDialog() {
-    clickButtonInDashboardConfigurationActionMenu("Share");
+    clickButtonOnDashboardConfigurationActionMenu("Share");
     return $("div[id$=':share-dashboard-dialog']");
   }
 

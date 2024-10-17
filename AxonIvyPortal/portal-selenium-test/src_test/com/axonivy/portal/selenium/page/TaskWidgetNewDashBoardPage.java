@@ -649,4 +649,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public boolean isWidgetInfomationIconAppear() {
     return getTaskWidgetHeader().$(".widget__info-sidebar-link").isDisplayed();
   }
+  
+  public void clickOnWidgetFilterHeader() {
+    $$("strong").filter(Condition.text("Filter options")).first().click();
+  }
 }

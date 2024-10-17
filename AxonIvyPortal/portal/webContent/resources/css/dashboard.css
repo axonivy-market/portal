@@ -215,6 +215,10 @@
   width:100%;
 }
 
+.widget__content.process-widget {
+  max-height: calc(100% - 55px);
+}
+
 .table-widget-panel.task-dashboard-widget__panel .widget__content,
 .table-widget-panel.case-dashboard-widget__panel .widget__content {
   padding: 0;

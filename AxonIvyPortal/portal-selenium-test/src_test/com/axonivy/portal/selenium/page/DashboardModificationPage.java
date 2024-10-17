@@ -40,7 +40,7 @@ public class DashboardModificationPage extends TemplatePage {
   public NewDashboardDetailsEditPage navigateToEditDashboardDetailsByName(String dashboardName) {
     SelenideElement dashboardRow = getDashboardRowByName(dashboardName);
     if (dashboardRow != null) {
-      clickButtonInDashboardConfigurationActionMenu("Configuration", dashboardRow);
+      clickButtonOnDashboardConfigurationActionMenu("Configuration", dashboardRow);
       NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
       return newDashboardDetailsEditPage;
     }
@@ -48,29 +48,24 @@ public class DashboardModificationPage extends TemplatePage {
   }
   
   private SelenideElement getDashboardConfigurationActionMenu(SelenideElement dashboardRow) {
-    if (isActionMenuNotDisplayed()) {
-      dashboardRow.$("div#dashboard-configuration-action-group").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("button[id$='dashboard-configuration-action-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    }
+    dashboardRow.$("div#dashboard-configuration-action-group").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    .$("button[id$='dashboard-configuration-action-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return $$("div[id$='dashboard-configuration-action-menu']").filter(Condition.appear).first();
   }
-
-  private boolean isActionMenuNotDisplayed() {
-    return !$("div[id$='dashboard-configuration-action-menu']").isDisplayed();
-  }
   
-  private void clickButtonInDashboardConfigurationActionMenu(String buttonName, SelenideElement dashboardRow) {
+  private void clickButtonOnDashboardConfigurationActionMenu(String buttonName, SelenideElement dashboardRow) {
     getDashboardConfigurationActionMenu(dashboardRow).$$("span").filter(Condition.text(buttonName)).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void clickEditDashboardByName(String dashboardName) {
     SelenideElement dashboardRow = getDashboardRowByName(dashboardName);
-    clickButtonInDashboardConfigurationActionMenu("Edit", dashboardRow);
+    clickButtonOnDashboardConfigurationActionMenu("Edit", dashboardRow);
     getEditDashboardDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public void clickDeleteDashboardByName(String dashboardName) {
     SelenideElement dashboardRow = getDashboardRowByName(dashboardName);
-    clickButtonInDashboardConfigurationActionMenu("Delete", dashboardRow);
+    clickButtonOnDashboardConfigurationActionMenu("Delete", dashboardRow);
     SelenideElement deleteConfirmDialog = $("[id$=':remove-dashboard-dialog']").shouldBe(Condition.appear,
         DEFAULT_TIMEOUT);
     deleteConfirmDialog.$("button[id$=':remove-dashboard-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
@@ -150,7 +145,7 @@ public class DashboardModificationPage extends TemplatePage {
 
   public void getDashboardShareLinkDialog() {
     SelenideElement dashboard = getDashboardRowByName("Dashboard");
-    clickButtonInDashboardConfigurationActionMenu("Share", dashboard);
+    clickButtonOnDashboardConfigurationActionMenu("Share", dashboard);
     $("div[id$=':share-dashboard-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 }
