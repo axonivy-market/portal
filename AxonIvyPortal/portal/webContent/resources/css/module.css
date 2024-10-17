@@ -2789,7 +2789,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 
 .application-name-language.ui-dialog .ui-dialog-titlebar,.app-dialog.ui-dialog .ui-dialog-titlebar,
-.role-details-dialog.ui-dialog .ui-dialog-titlebar {
+.role-details-dialog.ui-dialog .ui-dialog-titlebar, .setting-dialog.ui-dialog .ui-dialog-titlebar {
   padding-bottom: 1rem;
 }
 
@@ -5393,9 +5393,15 @@ a.dashboard-action-container label {
 
 .role-management-title {
   margin: auto;
+  font-size: 16px;
+}
+
+.role-details-header {
+  font-size: large;
 }
 
 .role-details-dialog {
+  min-width: 450px;
   max-width: 750px;
 }
 

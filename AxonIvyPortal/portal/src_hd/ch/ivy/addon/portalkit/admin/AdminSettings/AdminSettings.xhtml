@@ -18,10 +18,6 @@
       <div class="flex align-items-center justify-content-center admin-setting-header">
          <h3>Admin Settings</h3>
       </div>
-      <div class="flex align-items-center justify-content-center">
-        <h:outputText id="applications-setting-info" styleClass="applications-setting-info si si-information-circle" />
-        <p:tooltip for="applications-setting-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationHint')}" />
-      </div>
     </div>
   </h:panelGroup>
   <!-- TAB VIEW -->
@@ -273,57 +269,61 @@
     <h:form prependId="false" id="settingDialogForm">
       <p:messages />
       <p:outputPanel id="settingOverview">
-        <p:panelGrid columns="1" layout="grid" columnClasses="ui-grid-col-12"
-          styleClass="u-no-border admin-settings-container ui-fluid">
+        <h:panelGroup layout="block" styleClass="w-full admin-settings-container ui-fluid">
+          
           <!-- KEY -->
-          <p:outputLabel styleClass="admin-settings-form-input-labe font-medium pt-2"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/key')}" for="keySetting" />
-          <p:inputText value="#{data.selectedSetting.key}" id="keySetting" readonly="true" />
-
+          <div class="field">
+            <p:outputLabel styleClass="font-medium"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/key')}" for="keySetting" />
+            <p:inputText value="#{data.selectedSetting.key}" id="keySetting" readonly="true" />
+          </div>
           <!-- VALUE -->
-          <p:outputLabel styleClass="admin-settings-form-input-label font-medium"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/value')}" for="valueSetting" />
-          <c:if test="#{data.settingInputType.toString() == 'TEXT'}">
-            <p:inputText value="#{data.selectedSetting.value}" id="valueSetting" />
-          </c:if>
-          
-          <c:if test="#{data.settingInputType.toString() == 'NUMBER'}">
-            <p:inputText value="#{data.selectedSetting.value}" id="valueSetting"
-              onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" />
-          </c:if>
-          
-          <c:if test="#{data.settingInputType.toString() == 'SELECTION'}">
-            <p:selectOneMenu value="#{data.selectedSetting.value}" id="valueSetting" styleClass="value-setting-dropdown">
-              <f:selectItems value="#{data.dropDownValues}" var="value" itemLabel="#{adminSettingBean.getDropdownItemlabel(value)}" />
-            </p:selectOneMenu>
-          </c:if>
-          
-          <c:if test="#{data.settingInputType.toString() == 'EXTERNAL_SELECTION'}">
-            <p:selectOneMenu value="#{data.selectedSetting.value}" id="valueSetting" styleClass="value-setting-dropdown">
-              <f:selectItems value="#{data.externalDropDownValues.entrySet()}" var="entry" itemValue="#{entry.key}" itemLabel="#{data.selectedSetting.key eq 'Portal.Homepage' ? entry.value : entry.value.getLabel()}" />
-            </p:selectOneMenu>
-          </c:if>
-          
-          <c:if test="#{data.settingInputType.toString() == 'MULTI_EXTERNAL_SELECTIONS'}">
-            <p:selectManyCheckbox value="#{data.selectedMultiSettings}" id="valueSetting">
-              <f:selectItems value="#{data.externalDropDownValues.entrySet()}" var="entry" itemValue="#{entry.key}" itemLabel="#{entry.value.getLabel()}" />
-            </p:selectManyCheckbox>
-          </c:if>
-          
-          <c:if test="#{data.settingInputType.toString() == 'PASSWORD'}">
-            <p:inputText value="#{data.selectedSetting.value}" id="valueSetting" type="password"/>
-          </c:if>
-
+          <div class="field">
+            <p:outputLabel styleClass="font-medium"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/value')}" for="valueSetting" />
+            <c:if test="#{data.settingInputType.toString() == 'TEXT'}">
+              <p:inputText value="#{data.selectedSetting.value}" id="valueSetting" />
+            </c:if>
+            
+            <c:if test="#{data.settingInputType.toString() == 'NUMBER'}">
+              <p:inputText value="#{data.selectedSetting.value}" id="valueSetting"
+                onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" />
+            </c:if>
+            
+            <c:if test="#{data.settingInputType.toString() == 'SELECTION'}">
+              <p:selectOneMenu value="#{data.selectedSetting.value}" id="valueSetting" styleClass="value-setting-dropdown">
+                <f:selectItems value="#{data.dropDownValues}" var="value" itemLabel="#{adminSettingBean.getDropdownItemlabel(value)}" />
+              </p:selectOneMenu>
+            </c:if>
+            
+            <c:if test="#{data.settingInputType.toString() == 'EXTERNAL_SELECTION'}">
+              <p:selectOneMenu value="#{data.selectedSetting.value}" id="valueSetting" styleClass="value-setting-dropdown">
+                <f:selectItems value="#{data.externalDropDownValues.entrySet()}" var="entry" itemValue="#{entry.key}" itemLabel="#{data.selectedSetting.key eq 'Portal.Homepage' ? entry.value : entry.value.getLabel()}" />
+              </p:selectOneMenu>
+            </c:if>
+            
+            <c:if test="#{data.settingInputType.toString() == 'MULTI_EXTERNAL_SELECTIONS'}">
+              <p:selectManyCheckbox value="#{data.selectedMultiSettings}" id="valueSetting">
+                <f:selectItems value="#{data.externalDropDownValues.entrySet()}" var="entry" itemValue="#{entry.key}" itemLabel="#{entry.value.getLabel()}" />
+              </p:selectManyCheckbox>
+            </c:if>
+            
+            <c:if test="#{data.settingInputType.toString() == 'PASSWORD'}">
+              <p:inputText value="#{data.selectedSetting.value}" id="valueSetting" type="password"/>
+            </c:if>
+          </div>
           <!-- NOTE -->
-          <p:outputLabel styleClass="Fright pt-2 font-medium" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}"
-            for="noteSetting" />
-          <p:inputTextarea value="#{data.selectedSetting.note}" id="noteSetting" disabled="true" />
-        </p:panelGrid>
+          <div class="field">
+            <p:outputLabel styleClass="font-medium" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}"
+              for="noteSetting" />
+            <p:inputTextarea value="#{data.selectedSetting.note}" id="noteSetting" disabled="true" />
+          </div>
+        </h:panelGroup>
 
         <!-- Two buttons OK, Cancel -->
-        <h:panelGroup layout="block" styleClass="u-text-align-right MarTop10 ui-g-12">
+        <h:panelGroup layout="block" styleClass="w-full">
           <p:commandButton id="save-setting" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-            actionListener="#{logic.saveSetting}" styleClass="confirm-save-setting-button w-full"
+            actionListener="#{logic.saveSetting}" styleClass="confirm-save-setting-button w-full mt-2"
             oncomplete="if (!args.validationFailed){ PF('settingDialog').hide();}"
             update=":#{p:resolveFirstComponentWithId('settingForm', view).clientId} @form" process="@form" widgetVar="saveSettingButton"
             onclick="PF('saveSettingButton').disable();" />
