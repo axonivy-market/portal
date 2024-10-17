@@ -2867,6 +2867,9 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   width: 90px;
 }
 
+.absence-table .ui-datatable-empty-message td {
+  padding-left: 0 !important;
+}
 @media (max-width: 768px) {
   .absences-table-action-column-icon-button {
     margin: 0 5px !important;
@@ -2978,6 +2981,11 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   float: right;
 }
 
+.choose-deputy-dialog .deputy-selection-panel .selected-deputy-panel {
+  border: none;
+  padding: 1rem 0;
+}
+
 .choose-deputy-dialog .deputy-selection-panel .selected-deputy-panel .deputy-selection {
   width: 100%;
   border: none;
@@ -3002,6 +3010,9 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   margin-top: 10px;
 }
 
+.choose-deputy-dialog .ui-dialog-titlebar {
+  padding: 1.5rem 1.5rem 1rem 28px !important;
+}
 /**********************************END ABSENCES AND DEPUTY **********************************/
 .application-language-header {
   width: 20%;
@@ -3173,6 +3184,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .substitute-table .substition-role-type {
   display: none;
+}
+
+.substitution-table .ui-datatable-empty-message td {
+  padding-left: 0 !important;
 }
 
 .absences-management-container .substitute-table tbody.ui-datatable-data .substition-role-display-name,
