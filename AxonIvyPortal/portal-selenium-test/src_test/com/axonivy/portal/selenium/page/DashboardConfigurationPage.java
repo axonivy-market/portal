@@ -394,7 +394,8 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public void cancelCreateDashboard() {
-    $("a[id$='dashboard-creation-component:dashboard-detail-close-button']").shouldBe(getClickableCondition()).click();
+    $("div[id$='dashboard-creation-details-dialog']").shouldBe(appear, DEFAULT_TIMEOUT).
+    $("div[class*='ui-corner-top']").shouldBe(appear, DEFAULT_TIMEOUT).$$("a").filter(Condition.attribute("aria-label", "Close")).first().click();
     closeAddDashboardDialog();
   }
 
@@ -425,13 +426,13 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public SelenideElement getShareDashboardDialog() {
-    $("button[id$=':share-dashboard']").click();
-    $("div[id$=':share-dashboard-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    clickButtonInDashboardConfigurationActionMenu("Share");
     return $("div[id$=':share-dashboard-dialog']");
   }
 
   public void cancelImportDashboard() {
-    $("a[id$=':dashboard-import-close-button']").shouldBe(getClickableCondition()).click();
+    $("div[id$='dashboard-import-dialog']").shouldBe(appear, DEFAULT_TIMEOUT).
+    $("div[class*='ui-corner-top']").shouldBe(appear, DEFAULT_TIMEOUT).$$("a").filter(Condition.attribute("aria-label", "Close")).first().click();
     closeAddDashboardDialog();
   }
 
