@@ -211,19 +211,19 @@
           <p:row>
             <p:column styleClass="u-no-border u-padding-0">
               <!-- Application Type -->
-              <div class="ui-g">
+              <div class="field">
                 <p:outputLabel styleClass="app-icon w-full admin-settings-application-icon"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/menuIcon')}" />
-                <div class="w-full mt-2 mb-3">
+                <div class="w-full">
                   <ic:ch.ivy.addon.portalkit.component.IconSelection value="#{data.selectedApp.menuIcon}" />
                 </div>
               </div>
 
               <!-- 3rd application view -->
-              <h:panelGroup id="applicationDisplayName3rd" styleClass="ui-g" layout="block">
+              <h:panelGroup id="applicationDisplayName3rd" styleClass="field" layout="block">
                 <p:outputLabel styleClass="w-full admin-settings-display-name-3rd-label"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/appDisplayName')}" for="appDisplayName3rd" />
-                <div class="w-full mt-2 mb-3">
+                <div class="w-full">
                   <div class="flex gap-3">
                     <div class="flex flex-1">
                       <p:inputText value="#{data.displayNameInCurrentLanguage}" id="appDisplayName3rd"
@@ -244,10 +244,10 @@
                 </div>
               </h:panelGroup>
               <!-- link 3rd application view -->
-              <h:panelGroup id="portalLink3rdApp" styleClass="ui-g" layout="block">
+              <h:panelGroup id="portalLink3rdApp" styleClass="field" layout="block">
                 <p:outputLabel styleClass="w-full admin-settings-portal-link-label"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/link')}" for="portalLink3rd" />
-                <div class="w-full mt-2 mb-3">
+                <div class="w-full">
                   <p:inputText value="#{data.selectedApp.link}" id="portalLink3rd" required="true" styleClass="admin-settings-form-input" />
                 </div>
               </h:panelGroup>
