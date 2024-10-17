@@ -21,7 +21,7 @@
             <div class="portal-section-container card flex">
               <div class="ui-g-6 absence-management ui-md-12 ui-lg-6">
                 <div class="setting-header ui-g-12 u-no-padding-bottom">
-                  <h2 id="absence">#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/allAbsences' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myAbsences')}</h2>
+                  <h3 id="absence">#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/allAbsences' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myAbsences')}</h3>
                 </div>
 
                 <div class="ui-g-12 u-no-padding-top">
@@ -147,7 +147,7 @@
                 <!-- Deputy setting card ============ -->
                 <div id="deputy-setting" jsf:rendered="#{absenceManagementBean.canReadSubstitute(data.selectedAbsenceUser)}">
                   <div class="setting-header ui-g-12 u-no-padding-bottom">
-                    <h2>#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/definedDeputies' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myDeputies')}</h2>
+                    <h3>#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/definedDeputies' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myDeputies')}</h3>
                   </div>
                   <div id="username-deputy" class="ui-g-12 u-no-padding-top pl-0">
                     <div class="ui-g-12 pl-0">
@@ -190,7 +190,7 @@
                 <!-- Deputy-For setting card -->
                 <div id="deputy-for-container" class="ui-g-12" jsf:rendered="#{absenceManagementBean.substitutionCapable}">
                   <div class="setting-header ui-g-12 u-no-padding-bottom pl-0">
-                    <h2>#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/selectedDeputyFor' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/deputyFor')}</h2>
+                    <h3>#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/selectedDeputyFor' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/deputyFor')}</h3>
                   </div>
 
                   <div class="ui-g-12 u-no-padding-bottom pl-0">

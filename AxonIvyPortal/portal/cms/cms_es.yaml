@@ -1242,8 +1242,8 @@ ch.ivy.addon.portalkit.ui.jsf:
   taskWarning:
     createdTaskLeave: 'Va a salir de esta página. Por favor selecione una de las siguientes opciones:<UL><LI>&nbsp; &nbsp; Salir: No guardará sus cambios y navegará a la página seleccionada<LI>&nbsp; &nbsp; Cancelar: Continue trabajando en esta tarea.</UL>'
     createdTaskLogout: 'Va a salir de esta página. Por favor selecione una de las siguientes opciones:<UL><LI>&nbsp; &nbsp; Cerrar sesión: No guardará sus cambios y se cerrará la sesión.<LI>&nbsp;Cancelar: Continue trabajando en esta tarea.</UL>'
-    resetParkTaskBeforeLeave: 'Va a salir de esta página. Por favor selecione una de las siguientes opciones:<UL><LI>Salir: No guardará sus cambios y navegará a la página seleccionada<LI>Reservar: No guardará sus cambios y esta tarea quedara reservada para usted.<LI>Cancelar: Continue trabajando en esta
-      tarea.</UL>'
+    resetParkTaskBeforeLeave: '<h4>Va a salir de esta página.<br/>Por favor selecione una de las siguientes opciones:</h4><UL><LI>Salir: No guardará sus cambios y navegará a la página seleccionada<LI>Reservar: No guardará sus cambios y esta tarea quedara reservada para usted.<LI>Cancelar: Continue trabajando
+      en esta tarea.</UL>'
     resetParkTaskBeforeLogout: 'Va a salir de esta página. Por favor selecione una de las siguientes opciones:<UL><LI>Salir: no guardará sus cambios y volverá a la página anterior.<LI>Reservar: No guardará sus cambios, volverá a la página anterior pero la tarea quedara reservada para usted.<LI>Cancelar:
       Continue trabajando en esta tarea.</UL>'
     taskNotFound: La tarea no existe o no los tiene derechos suficientes para ver esta tarea.

@@ -1243,8 +1243,8 @@ ch.ivy.addon.portalkit.ui.jsf:
   taskWarning:
     createdTaskLeave: 'Sie verlassen die aktuelle Seite. Bitte wählen Sie eine der folgenden Optionen:<UL><LI>&nbsp; &nbsp; Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>&nbsp; &nbsp; Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
     createdTaskLogout: 'Sie verlassen die aktuelle Seite. Bitte wählen Sie eine der folgenden Optionen:<UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    resetParkTaskBeforeLeave: 'Sie verlassen die aktuelle Aufgabe. Bitte wählen Sie eine der folgenden Optionen:<UL><LI> Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI> Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre Aufgabenliste verschieben<LI> Abbrechen: Die
-      Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    resetParkTaskBeforeLeave: '<h4>Sie verlassen die aktuelle Aufgabe.<br/>Bitte wählen Sie eine der folgenden Optionen:</h4><UL><LI> Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI> Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre Aufgabenliste verschieben<LI>
+      Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
     resetParkTaskBeforeLogout: 'Sie verlassen die aktuelle Aufgabe. Bitte wählen Sie eine der folgenden Optionen:<UL><LI>&nbsp; &nbsp; Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>&nbsp; &nbsp; Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre persönliche Aufgabenliste verschieben.
       Dann abmelden.<LI>&nbsp; &nbsp; Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
     taskNotFound: Die Aufgabe existiert nicht oder Sie haben ungenügende Rechte, um diese Aufgabe zu sehen.

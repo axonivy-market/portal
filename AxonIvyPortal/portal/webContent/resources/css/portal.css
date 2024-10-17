@@ -1780,3 +1780,17 @@ body.dark .focused {
     clip: rect(0, 0, 0, 0);
     border: 0;
 }
+
+/* ============== DIALOG FOOTER - CONFIRMATION DIALOG ============================  **/
+.ui-leave-button {
+  color: var(--text-color) !important;
+  background-color: var(--ui-leave-button-color) !important;
+  border: 1px solid var(--ui-leave-button-color) !important;
+}
+.ui-leave-button,
+.ui-reserve-task-button,
+.ui-cancel-button {
+  font-weight: 600;
+}
+/* ====END OF==== DIALOG FOOTER - CONFIRMATION DIALOG ============================  **/
+
