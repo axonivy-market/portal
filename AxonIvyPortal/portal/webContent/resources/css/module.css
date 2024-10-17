@@ -2764,19 +2764,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   padding: 0.5rem;
 }
 
-.application-tab-action-buttons .new-app-btn.ui-button .ui-icon, 
-.create-role-container .create-role-btn.ui-button .ui-icon {
-  position: relative;
-  top: auto;
-  left: auto;
-  margin: 0 0.25rem 0 0;
-}
-
-.application-tab-action-buttons .new-app-btn.ui-button .ui-button-text, 
-.create-role-container .create-role-btn.ui-button .ui-button-text {
-  padding: 0
-}
-
 .admin-settings-form-input-label {
   float: right;
   padding-top: 5px;

@@ -182,7 +182,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationHint: L'ordre peut être modifié par glisser/déposer
     applicationLinkRequiredMsg: Veuillez rentrer le lien vers le Portail
     applicationList:
-      addNewApplication: Add new application
+      addNewApplication: Ajouter une nouvelle application
       applicationSelectionHeader: Sélectionner une application
       menuIcon: Icône de menu
     applications: Applications

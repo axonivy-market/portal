@@ -182,7 +182,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationHint: Die Reihenfolge kann mit Drag & Drop geändert werden.
     applicationLinkRequiredMsg: Geben Sie den Portal Link an.
     applicationList:
-      addNewApplication: Add new application
+      addNewApplication: Neue Anwendung hinzufügen
       applicationSelectionHeader: Anwendung auswählen
       menuIcon: Menü Symbol
     applications: Anwendungen

@@ -16,7 +16,7 @@
   <h:panelGroup styleClass="w-full pt-2 pb-2" layout="block">
     <div class="flex justify-content-between flex-wrap">
       <div class="flex align-items-center justify-content-center admin-setting-header">
-         <h3>Admin Settings</h3>
+         <h3>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}</h3>
       </div>
     </div>
   </h:panelGroup>
@@ -30,7 +30,7 @@
       <h:form prependId="false" id="applicationForm">
         <h:panelGroup layout="block" styleClass="application-tab-action-buttons">
           <p:commandButton id="add-application-btn" actionListener="#{logic.addNewApp}" oncomplete="PF('appDialog').show()" resetValues="true"
-            styleClass="new-app-btn primary-color-light-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/addNewApplication')}" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
+            styleClass="new-app-btn primary-color-light-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/addNewApplication')}"
             update=":#{p:resolveFirstComponentWithId('appDialog', view).clientId}" />
         </h:panelGroup>
         <!-- Applications Table -->
