@@ -1178,7 +1178,8 @@ ul.users-in-role {
   font-size: var(--header-font-size); }
 
 .action-link span {
-  font-weight: var(--task-action-item-label-font-weight); }
+  font-weight: var(--task-action-item-label-font-weight);
+}
 
 .task-action-item.start-task-action .task-action-item-label {
   font-weight: var(--task-start-action-font-weight);
@@ -1610,8 +1611,7 @@ body .notification-checkbox .ui-chkbox-box {
 }
 
 i.dashboard-icon-drag-drop {
-    border: 1px solid var(--ivy-primary-color);
-    color: var(--ivy-primary-color);
+    color: var(--dashboard-icon-drag-drop-color);
     width: 2.357rem;
     border-radius: 50%;
     text-align: center;

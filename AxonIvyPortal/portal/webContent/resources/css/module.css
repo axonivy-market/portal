@@ -656,6 +656,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   box-sizing: content-box;
   text-align: left;
   color: var(--text-color);
+  width: 87%;
 }
 
 .case-detail-header {
@@ -5547,7 +5548,7 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
 }
 
 /* =================== PORTAL BUTTON ====================== */
-body .ui-link.ui-sidestep-action {
+body .ui-link.ui-sidestep-action, .action-container > .ui-sidestep-action {
   color: var(--sidestep-action-text-color);
 }
 
@@ -5572,6 +5573,6 @@ body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-butto
 /* =================== PORTAL BUTTON END ====================== */
 
 /* =================== MENU ITEMS ====================== */
-.ui-menu-items, body .ui-menu .ui-menu-list .ui-menuitem:not(:last-child) {
+.ui-menu-items, body .ui-menu .ui-menu-list .ui-menuitem:not(:last-child), .action-step-item:not(:last-child) {
   border-bottom: 1px solid var(--user-menu-items-border-color);
 }

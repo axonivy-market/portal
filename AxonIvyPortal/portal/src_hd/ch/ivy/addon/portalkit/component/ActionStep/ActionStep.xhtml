@@ -30,7 +30,7 @@
   <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}"/>
 
   <p:commandLink id="#{cc.attrs.actionLinkId}" onclick="event.stopPropagation(); return false;" ariaLabel="#{caseBean.getAriaLabel(case)}"
-    styleClass="#{isPreviewMode ? '' : cc.attrs.actionLinkStyleClass} #{cc.attrs.taskId} action-link portal-icon" disabled="#{cc.attrs.readOnly or isPreviewMode}">
+    styleClass="#{isPreviewMode ? '' : cc.attrs.actionLinkStyleClass} #{cc.attrs.taskId} action-link portal-icon ui-sidestep-action" disabled="#{cc.attrs.readOnly or isPreviewMode}">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" styleClass="task-action-item-label" />
     <i class="si si-arrow-down-1" />
   </p:commandLink>
@@ -72,8 +72,6 @@
       <i class="action-icon si si-hierarchy-6 si-rotate-270" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText')}" />
     </p:link>
-
-    <p:divider styleClass="case-action-separator" rendered="#{showSeparator}" />
 
     <h:panelGroup id="side-steps">
       <f:event listener="#{sideStepBean.getSideSteps(cc.attrs.taskId, case.id)}" type="preRenderComponent" />

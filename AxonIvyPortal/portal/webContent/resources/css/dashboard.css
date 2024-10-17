@@ -1671,6 +1671,7 @@ body .ui-widget.new-widget-dialog__introduction {
   display: flex;
   flex-direction: column;
   height: 100%;
+  position: relative;
 }
 
 .news-widget__content {
