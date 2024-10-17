@@ -18,12 +18,26 @@
       <div class="flex align-items-center justify-content-center admin-setting-header">
          <h3>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}</h3>
       </div>
+      <h:panelGroup layout="block" class="applications-setting-info-circle" style="margin: auto 0;">
+        <h:outputText id="applications-setting-info" styleClass="applications-setting-info si si-information-circle" />
+        <p:tooltip for="applications-setting-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationHint')}" />
+      </h:panelGroup>
     </div>
   </h:panelGroup>
   <!-- TAB VIEW -->
-  <p:tabView id="adminTabView" rendered="#{permissionBean.hasAdminPermission()}" activeIndex="0" dynamic="true" styleClass="admin-setting-tab">
+    <script>
+      function onTabChange() {
+        var tabIndex = PF('adminTabView').getActiveIndex();
+        if(tabIndex !== 0) {
+          $('.applications-setting-info-circle').hide();
+        } else {
+          $('.applications-setting-info-circle').show();
+        }
+      }
+    </script>
+  <p:tabView id="adminTabView" rendered="#{permissionBean.hasAdminPermission()}" activeIndex="0" dynamic="true" styleClass="admin-setting-tab" widgetVar="adminTabView">
     <f:event listener="#{adminSettingBean.initAdminTabViewConfig()}" type="preRenderComponent"/>
-    <p:ajax event="tabChange" listener="#{adminSettingBean.onTabChange}"/>
+    <p:ajax event="tabChange" listener="#{adminSettingBean.onTabChange}" oncomplete="onTabChange()"/>
 
     <!-- APPLICATION TAB -->
     <p:tab id="application-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applications')}">
