@@ -4,7 +4,7 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <p:commandLink id="start-task" actionListener="#{dashboardBean.handleStartTask(task)}" onclick="event.stopPropagation();" 
-  ariaLabel="#{taskBean.getAriaLabel(task)}"
+  ariaLabel="#{ariaLabel}"
   disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}" oncomplete="resetPortalLeftMenuState()">
   <span class="si si-controls-play" />
 </p:commandLink>

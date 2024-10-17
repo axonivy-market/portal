@@ -17,6 +17,7 @@
   <cc:attribute name="readOnly" default="false" />
   <cc:attribute name="inFrame" default="false"/>
   <cc:attribute name="isPreviewMode" default="false" type="java.lang.Boolean"/>
+  <cc:attribute name="ariaLabel" />
 </cc:interface>
 
 <cc:implementation>
@@ -30,7 +31,7 @@
   <c:set var="showSeparator" value="#{renderDestroyAction or showAdditionalCaseDetails or showOpenCaseDetail or showProcessOverview or showProcessViewer}"/>
   <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}"/>
 
-  <p:commandLink id="#{cc.attrs.actionLinkId}" onclick="event.stopPropagation(); return false;" ariaLabel="#{caseBean.getAriaLabel(case)}"
+  <p:commandLink id="#{cc.attrs.actionLinkId}" onclick="event.stopPropagation(); return false;" ariaLabel="#{cc.attrs.ariaLabel}"
     styleClass="#{isPreviewMode ? '' : cc.attrs.actionLinkStyleClass} #{cc.attrs.taskId} action-link portal-icon" disabled="#{cc.attrs.readOnly or isPreviewMode}">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" styleClass="task-action-item-label" />
     <i class="si si-arrow-down-1" />
