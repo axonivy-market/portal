@@ -46,6 +46,7 @@ public final class PortalNavigator extends BaseNavigator{
   public static final String PORTAL_CASE_START = "/CaseListPage.ivp";
   public static final String PORTAL_USER_PROFILE_START =  "/UserProfile.ivp";
   public static final String PORTAL_CASE_DETAILS_IN_IFRAME_START = "/CaseDetailsInIFrame.ivp";
+  public static final String PORTAL_DASHBOARD_PAGE_START = "/DashboardPage.ivp";
   private static final String UUID = "uuid";
   private static final String ID = "id";
   private static final String PORTAL_DASHBOARD_PAGE = "Start Processes/PortalStart/DashboardPage.ivp";
@@ -117,7 +118,9 @@ public final class PortalNavigator extends BaseNavigator{
   }
 
   public static void navigateToPortalTask() {
-    navigateByKeyword(PORTAL_TASK_START, PORTAL_TASK, new HashMap<>());
+    Map<String, String> params = new HashMap<>();
+    params.put("dashboardId", "386301385bfb469f833f80e6d14baf27");
+    navigateByKeyword(PORTAL_DASHBOARD_PAGE_START, PORTAL_DASHBOARD_PAGE, params);
   }
 
   public static void navigateToPortalCaseDetails(String uuid) {
