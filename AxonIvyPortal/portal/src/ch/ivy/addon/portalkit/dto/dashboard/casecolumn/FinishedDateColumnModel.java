@@ -28,6 +28,7 @@ public class FinishedDateColumnModel  extends CaseColumnModel implements Seriali
     this.field = DashboardStandardCaseColumn.FINISHED.getField();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.format = getDefaultFormat();
+    this.styleToDisplay = initDefaultStyle();
   }
 
   @Override

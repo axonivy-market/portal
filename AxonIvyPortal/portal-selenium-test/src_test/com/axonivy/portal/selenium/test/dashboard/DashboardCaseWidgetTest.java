@@ -335,4 +335,20 @@ public class DashboardCaseWidgetTest extends BaseTest {
     redirectToNewDashBoard();
     assertFalse(caseWidget.isExpandButtonAppear());
   }
+  
+  @Test
+  public void testResizeColumnWidth() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    int oldSize = modificationPage.getPriorityColumnSize();
+    modificationPage.resizeColumn();
+    int newSize = modificationPage.getPriorityColumnSize();
+    assertTrue(newSize > oldSize);
+    redirectToNewDashBoard();
+    
+  }
 }

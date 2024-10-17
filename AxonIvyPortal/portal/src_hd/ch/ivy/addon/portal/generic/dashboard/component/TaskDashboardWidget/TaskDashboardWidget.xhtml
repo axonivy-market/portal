@@ -6,6 +6,8 @@
   <cc:attribute name="widget" required="true" />
   <cc:attribute name="componentToUpdateOnEdit" />
   <cc:attribute name="isReadOnlyMode" default="false" />
+  <c:set var="isResizable" value="#{cc.attrs.widget.isResizable}"/>
+  <c:set var="isResizing" value="#{cc.attrs.widget.isResizing}"/>
 </cc:interface>
 
 <cc:implementation>
