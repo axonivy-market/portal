@@ -100,7 +100,8 @@ public class DashboardBean implements Serializable {
 
 
       String selectedDashboardName = selectedDashboard.getTitles().stream()
-          .filter(displayName -> displayName.getLocale().equals(Ivy.session().getContentLocale())).findFirst()
+          .filter(displayName -> displayName.getLocale().equals(Ivy.session().getContentLocale()))
+          .findFirst()
           .orElseGet(() -> selectedDashboard.getTitles().get(0)).getValue();
       setSelectedDashboardName(selectedDashboardName);
       initShareDashboardLink(selectedDashboard);
@@ -409,21 +410,23 @@ public class DashboardBean implements Serializable {
     return (String) Ivy.session().getAttribute(SessionAttribute.PREV_SELECTED_DASHBOARD_ID.toString());
   }
 
-  private void storeDashboardInSession(String id) {
+  protected void storeDashboardInSession(String id) {
     Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), id);
   }
 
   private int findIndexOfDashboardById(String selectedDashboardId) {
-    int currentDashboardIndex = 1;
-    if (StringUtils.isNotBlank(selectedDashboardId)) {
-      currentDashboardIndex = dashboards.indexOf(dashboards.stream()
-          .filter(dashboard -> dashboard.getId().contentEquals(selectedDashboardId)).findFirst().orElse(null));
-      if (currentDashboardIndex == -1) {
-        currentDashboardIndex = 0;
-      }
+    if (DashboardUtils.DASHBOARD_TASK_TEMPLATE_ID.equalsIgnoreCase(selectedDashboardId)) {
+      return 0;
     }
-    return currentDashboardIndex;
+
+    if (StringUtils.isNotBlank(selectedDashboardId)) {
+      return dashboards.stream().filter(dashboard -> dashboard.getId().contentEquals(selectedDashboardId)).findFirst()
+          .map(dashboards::indexOf).orElse(1);
+    }
+
+    return 1;
   }
+
 
   public int getMaxRowNumberInExcel() {
     return Exporter.MAX_ROW_NUMBER_IN_EXCEL;
