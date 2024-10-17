@@ -38,8 +38,7 @@ public class ProcessStartUtils {
         return processStart;
       }
 
-      List<IApplication> applicationsInSecurityContext =
-          IApplicationRepository.instance().allOf(ISecurityContext.current());
+      List<IApplication> applicationsInSecurityContext = IApplicationRepository.of(ISecurityContext.current()).all();
 
       List<IProcessModel> processModels = applicationsInSecurityContext.stream()
           .map(IApplication::getProcessModelsSortedByName).flatMap(List::stream).collect(Collectors.toList());
@@ -78,7 +77,7 @@ public class ProcessStartUtils {
     if (portalStartPmvId == null) {
       return findFriendlyRequestPathContainsKeywordInPMV(keyword, Ivy.wfTask().getProcessModelVersion());
     } else {
-      List<IApplication> applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
+      List<IApplication> applicationsInSecurityContext = IApplicationRepository.of(ISecurityContext.current()).all();
       for (IApplication app : applicationsInSecurityContext) {
         IProcessModelVersion findProcessModelVersion = app.findProcessModelVersion(portalStartPmvId);
         if (findProcessModelVersion != null) {

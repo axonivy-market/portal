@@ -187,7 +187,7 @@ public class CaseActionBean implements Serializable {
     return PortalProcessViewerUtils.getStartProcessViewerPageUri(selectedCase);
   }
 
-  public boolean showProcessOverviewLink(ICase iCase) {
+  public boolean showProcessOverviewLink(@SuppressWarnings("unused") ICase iCaze) {
     return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_PROCESS_INFORMATION);
   }
 

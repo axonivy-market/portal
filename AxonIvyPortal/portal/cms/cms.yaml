@@ -136,7 +136,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       announcementsEnabled: Announcements are enabled.
       defaultLanguageRequiredMessage: Announcement for application default language is required.
       disabled: Disabled
-      enabled: Enabled
+      enable: Enable
       information: You can announce a general information (e.g. Downtime, Changes, etc.) in this area. This message can be seen by all portal users.
       tabTitle: Announcements
     appDisplayName: Display name

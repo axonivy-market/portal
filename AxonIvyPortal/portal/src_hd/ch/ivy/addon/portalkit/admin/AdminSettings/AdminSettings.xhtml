@@ -13,7 +13,7 @@
     <span class="si si-alert-circle" />
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/permission/noPermission')}" />
   </p:outputPanel>
-  <h:panelGroup styleClass="ui-g-12" layout="block">
+  <h:panelGroup styleClass="w-full pt-2 pb-2" layout="block">
     <div class="flex justify-content-between flex-wrap">
       <div class="flex align-items-center justify-content-center admin-setting-header">
          <h3>Admin Settings</h3>
@@ -25,7 +25,7 @@
     </div>
   </h:panelGroup>
   <!-- TAB VIEW -->
-  <p:tabView id="adminTabView" rendered="#{permissionBean.hasAdminPermission()}" activeIndex="0" dynamic="true">
+  <p:tabView id="adminTabView" rendered="#{permissionBean.hasAdminPermission()}" activeIndex="0" dynamic="true" styleClass="admin-setting-tab">
     <f:event listener="#{adminSettingBean.initAdminTabViewConfig()}" type="preRenderComponent"/>
     <p:ajax event="tabChange" listener="#{adminSettingBean.onTabChange}"/>
 
@@ -174,11 +174,11 @@
         <div class="announcement-action flex justify-content-end gap-5 mt-6 w-full">
           <div class="announcement-toggle flex align-content-center flex-wrap gap-2">
             <h:outputText id="announcement-toggle-status" class="flex align-items-center justify-content-center font-medium" 
-              value="#{data.isAnnouncementActivated ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/enabled') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/disabled')}" />
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/enable')}" />
             <p:toggleSwitch id="announcement-toggle-switch" value="#{data.isAnnouncementActivated}" styleClass="flex align-items-center justify-content-center" widgetVar="announcementToggleSwitch" />
           </div>
           <p:commandButton id="save-changes-announcement" process="announcement-form" actionListener="#{logic.saveChangesAnnouncement()}"
-            update="#{cc.clientId}:adminTabView:announcement-validation-messages action-group"
+            update="#{cc.clientId}:adminTabView:announcement-validation-messages action-group" 
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/saveChanges')}">
           </p:commandButton>
         </div>
@@ -212,18 +212,18 @@
             <p:column styleClass="u-no-border u-padding-0">
               <!-- Application Type -->
               <div class="ui-g">
-                <p:outputLabel styleClass="app-icon ui-g-12 admin-settings-application-icon"
+                <p:outputLabel styleClass="app-icon w-full admin-settings-application-icon"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/menuIcon')}" />
-                <div class="ui-g-10">
+                <div class="w-full mt-2 mb-3">
                   <ic:ch.ivy.addon.portalkit.component.IconSelection value="#{data.selectedApp.menuIcon}" />
                 </div>
               </div>
 
               <!-- 3rd application view -->
               <h:panelGroup id="applicationDisplayName3rd" styleClass="ui-g" layout="block">
-                <p:outputLabel styleClass="ui-g-12 admin-settings-display-name-3rd-label"
+                <p:outputLabel styleClass="w-full admin-settings-display-name-3rd-label"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/appDisplayName')}" for="appDisplayName3rd" />
-                <div class="ui-g-12">
+                <div class="w-full mt-2 mb-3">
                   <div class="flex gap-3">
                     <div class="flex flex-1">
                       <p:inputText value="#{data.displayNameInCurrentLanguage}" id="appDisplayName3rd"
@@ -245,9 +245,9 @@
               </h:panelGroup>
               <!-- link 3rd application view -->
               <h:panelGroup id="portalLink3rdApp" styleClass="ui-g" layout="block">
-                <p:outputLabel styleClass="ui-g-12 admin-settings-portal-link-label"
+                <p:outputLabel styleClass="w-full admin-settings-portal-link-label"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/link')}" for="portalLink3rd" />
-                <div class="ui-g-12">
+                <div class="w-full mt-2 mb-3">
                   <p:inputText value="#{data.selectedApp.link}" id="portalLink3rd" required="true" styleClass="admin-settings-form-input" />
                 </div>
               </h:panelGroup>
