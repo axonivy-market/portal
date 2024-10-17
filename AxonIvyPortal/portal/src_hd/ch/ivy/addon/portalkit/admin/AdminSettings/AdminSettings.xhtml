@@ -365,13 +365,13 @@
     <ui:define name="dialogFooter">
       <c:if test="#{data.resetAllSettings}">
         <p:commandButton id="reset-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
-          actionListener="#{logic.resetValues}" styleClass="w-full ui-button-warning"
+          actionListener="#{logic.resetValues}" styleClass="w-full"
           oncomplete="PF('resetConfirmation').hide(); PF('settingTable').clearFilters();"
           update="@(.admin-table.global-setting-table)" />
       </c:if>
       <c:if test="#{!data.resetAllSettings}">
         <p:commandButton id="reset-setting" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
-          actionListener="#{logic.resetValue}" styleClass="w-full ui-button-warning"
+          actionListener="#{logic.resetValue}" styleClass="w-full"
           oncomplete="PF('resetConfirmation').hide();"
           update="@(.admin-table.global-setting-table)" />
       </c:if>
