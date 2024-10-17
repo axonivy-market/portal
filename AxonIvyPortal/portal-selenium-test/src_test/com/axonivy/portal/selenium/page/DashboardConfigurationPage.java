@@ -47,7 +47,7 @@ public class DashboardConfigurationPage extends TemplatePage {
       $("button[id*='dashboard-modification-component:dashboard-table:0:dashboard-configuration-action-button']").shouldBe(appear, DEFAULT_TIMEOUT)
       .shouldBe(getClickableCondition()).click();
     }
-    return $("div[id$='dashboard-configuration-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $$("div[id$='dashboard-configuration-action-menu']").filter(Condition.appear).first();
   }
   
   private boolean isActionMenuNotDisplayed() {
@@ -68,7 +68,6 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public DashboardModificationPage openEditPrivateDashboardsPage() {
     selectPrivateDashboardType();
-    getDashboardConfigurationActionMenu().$$("span").filter(Condition.text("Edit")).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     return new DashboardModificationPage();
   }
   
@@ -86,7 +85,6 @@ public class DashboardConfigurationPage extends TemplatePage {
   
   public DashboardModificationPage openEditPublicDashboardsPage() {
     selectPublicDashboardType();
-    getDashboardConfigurationActionMenu().$$("span").filter(Condition.text("Edit")).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     return new DashboardModificationPage();
   }
   

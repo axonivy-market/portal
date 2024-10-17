@@ -12,7 +12,7 @@ public class ReorderDashboardPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "i.si-navigation-menu";
+    return "i.dashboard-icon-drag-drop";
   }
 
   public void toggleVisibility(String dashboardName) {

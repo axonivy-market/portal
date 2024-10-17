@@ -40,26 +40,26 @@
         </h:panelGroup>
       </p:column>
       
-      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" width="#{dashboardModificationBean.hasExportDashboardPermission() ? '100' : '210'}">
+      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" width="#{dashboardModificationBean.hasExportDashboardPermission() ? '120' : '210'}">
         <div id="dashboard-configuration-action-group" class="dashboard-configuration-action-group">
             <h:panelGroup layout="block">
                 <p:commandButton id="dashboard-configuration-action-button" icon="fa fa-ellipsis-h" styleClass="rounded-button icon-more-menu-button #{buttonStyle} ui-no-rounded-button-process-page mr-3"
                      type="button"/>
-                <p:menu id="dashboard-configuration-action-menu" styleClass="w-10rem" overlay="true" trigger="dashboard-configuration-action-button" my="right top" at="right bottom">
+                <p:menu id="dashboard-configuration-action-menu" styleClass="w-12rem" overlay="true" trigger="dashboard-configuration-action-button" my="right top" at="right bottom">
                     <p:menuitem id="edit" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(dashboard)}"
                         icon="si si-graphic-tablet-drawing-pen" styleClass="dashboard-configuration-action-menu-icon" update="#{cc.clientId}:configuration-dashboard-detail-component:dashboard-detail-form"
                         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" oncomplete="PF('configuration-dashboard-detail-dialog').show()"
-                        target="_blank" resetValues="true"
+                        target="_blank" resetValues="true" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
                         rendered="true" />
                     <p:menuitem id="configure-dashboard" process="@this" actionListener="#{dashboardModificationBean.navigateToDashboardDetailsPage(dashboard.id)}"
                         icon="si si-cog" update="@this" styleClass="dashboard-configuration-action-menu-icon"
                         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}"
                         rendered="true" />
-                     <p:menuitem id="export-dashboard" styleClass="pr-0 pt-0 pb-0">
+                     <p:menuitem id="export-dashboard" styleClass="pr-0 pt-0 pb-0" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportDashboard')}">
                        <h:form styleClass="dashboard-configuration__export-button-form w-full" rendered="#{dashboardModificationBean.hasExportDashboardPermission()}">
                          <p:commandButton id="export-dashboard" styleClass=" action-column-icon-button export-dashboard ui-no-rounded-button-process-page flex w-full" icon="si si-download-bottom"
                            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportDashboard')}"
-                           process="@this" update="@this" immediate="true" ajax="false" value="Export file">
+                           process="@this" update="@this" immediate="true" ajax="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportDashboard')}">
                            <p:fileDownload value="#{dashboardModificationBean.exportToJsonFile(dashboard)}" />
                          </p:commandButton>
                         </h:form>

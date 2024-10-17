@@ -8,6 +8,7 @@ import java.util.List;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.ElementsCollection.SelenideElementIterable;
 import com.codeborne.selenide.SelenideElement;
 
 public class DashboardModificationPage extends TemplatePage {
@@ -50,7 +51,7 @@ public class DashboardModificationPage extends TemplatePage {
     if (isActionMenuNotDisplayed()) {
       dashboardRow.$("div#dashboard-configuration-action-group").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("button[id$='dashboard-configuration-action-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     }
-    return $("div[id$='dashboard-configuration-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $$("div[id$='dashboard-configuration-action-menu']").filter(Condition.appear).first();
   }
 
   private boolean isActionMenuNotDisplayed() {
@@ -138,7 +139,8 @@ public class DashboardModificationPage extends TemplatePage {
   public SelenideElement getDashboardExportButtonOfDashboard(String dashboardName) {
     SelenideElement dashboard = getDashboardRowByName(dashboardName);
     dashboard.shouldBe(Condition.appear);
-    return dashboard.$("td:last-child button[id $=':export-dashboard']");
+    return getDashboardConfigurationActionMenu(dashboard)
+    .$$("ul > li > a").filter(Condition.attribute("title", "Export dashboard")).first();
   }
 
   public SelenideElement getDashboardShareLinkButton() {
