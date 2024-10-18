@@ -86,7 +86,6 @@ public class HomepageUtils {
   private static void adjustHomepageStartLink(Homepage homepage) {
     String relativeUrl = switch (homepage.getType()) {
       case PROCESS -> findRelativeUrlByKeywork(PortalNavigator.PORTAL_PROCESS_START);
-      case TASK -> PortalNavigator.getDashboardPageUrl("386301385bfb469f833f80e6d14baf27");
       case CASE -> findRelativeUrlByKeywork(PortalNavigator.PORTAL_CASE_START);
       default -> "";
     };

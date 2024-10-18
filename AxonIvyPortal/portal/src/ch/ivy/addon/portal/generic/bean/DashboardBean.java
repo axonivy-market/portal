@@ -95,6 +95,7 @@ public class DashboardBean implements Serializable {
 
     if (CollectionUtils.isNotEmpty(DashboardUtils.getSubItemDashboards())) {
       selectedDashboardId = readDashboardFromSession();
+      Ivy.log().error(selectedDashboardId);
       currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
       selectedDashboard = dashboards.get(currentDashboardIndex);
 
@@ -415,16 +416,16 @@ public class DashboardBean implements Serializable {
   }
 
   private int findIndexOfDashboardById(String selectedDashboardId) {
-    if (DashboardUtils.DASHBOARD_TASK_TEMPLATE_ID.equalsIgnoreCase(selectedDashboardId)) {
-      return 0;
-    }
+
 
     if (StringUtils.isNotBlank(selectedDashboardId)) {
       return dashboards.stream().filter(dashboard -> dashboard.getId().contentEquals(selectedDashboardId)).findFirst()
-          .map(dashboards::indexOf).orElse(1);
+          .map(dashboards::indexOf).orElse(dashboards.stream().filter(dashboard -> !dashboard.getIsMenuItem())
+              .findFirst().map(dashboards::indexOf).orElse(0));
     }
 
-    return 1;
+    return dashboards.stream().filter(dashboard -> !dashboard.getIsMenuItem()).findFirst().map(dashboards::indexOf)
+        .orElse(0);
   }
 
 

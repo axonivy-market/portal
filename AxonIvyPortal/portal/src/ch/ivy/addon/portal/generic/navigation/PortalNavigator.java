@@ -14,6 +14,7 @@ import com.axonivy.portal.components.util.ProcessStartUtils;
 
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.IHttpRequest;
@@ -119,7 +120,7 @@ public final class PortalNavigator extends BaseNavigator{
 
   public static void navigateToPortalTask() {
     Map<String, String> params = new HashMap<>();
-    params.put("dashboardId", "386301385bfb469f833f80e6d14baf27");
+    params.put("dashboardId", DashboardUtils.DASHBOARD_TASK_TEMPLATE_ID);
     navigateByKeyword(PORTAL_DASHBOARD_PAGE_START, PORTAL_DASHBOARD_PAGE, params);
   }
 
