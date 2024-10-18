@@ -37,13 +37,16 @@ public class AdminSettingsPage extends TemplatePage {
     $("button[id$='admin-setting-component:adminTabView:restore-all-to-default-button']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition());
     waitForElementDisplayed(By.id("admin-setting-component:adminTabView:settingTable"), true);
-
     var variableRow = $("[id='admin-setting-component:adminTabView:settingTable']").$$(".setting-key")
         .filter(Condition.text(variableName)).get(0);
 
     if (variableRow != null) {
-      SelenideElement editButton = variableRow.ancestor("tr").$(By.cssSelector("a[id$=edit]"));
-      editButton.shouldBe(clickable(), DEFAULT_TIMEOUT).click();
+      variableRow.ancestor("tr").scrollTo();
+      SelenideElement actionButton = variableRow.ancestor("tr").$(By.cssSelector("button[id$=settings-action-button]"));
+      actionButton.shouldBe(getClickableCondition()).click();
+      String currentElementId = actionButton.attr("id");
+      String editButtonId = currentElementId.replace("settings-action-button", "edit-application");
+      $("a[id='" + editButtonId + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     }
     waitForElementDisplayed(By.cssSelector("[id$=':settingDialogForm']"), true);
     saveGlobalVariable(variableValue, isBooleanType);
