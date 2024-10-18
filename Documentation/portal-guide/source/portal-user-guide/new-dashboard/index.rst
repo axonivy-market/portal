@@ -65,6 +65,8 @@ In edit mode, you can:
 
    - **Reset to the standard dashboard**: Do you want to undo your changes? Just reset to the default dashboard.
 
+   - **Resize column width (Task list/Case list widget)**: click on the gridlines of header which you want to resize, then drop again. Helper lines will support you.
+
 Add a new widget
 ----------------
 
