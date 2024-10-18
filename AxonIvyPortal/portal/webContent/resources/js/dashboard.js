@@ -321,10 +321,7 @@ function hideAllDashboardOverlayPanels() {
 
 // Start Process Dashboard Widget
 function respondProcessWidget(displayMode) {
-  if (displayMode === 'IMAGE_MODE') {
-    setupImageProcessWidget();
-  }
-  else if (displayMode === 'FULL_MODE') {
+ if (displayMode === 'FULL_MODE') {
     setupGridProcessWidget();
   }
 }

@@ -34,7 +34,7 @@ public class ExampleHomeBean implements Serializable {
       UserProcess userProcess = new UserProcess();
       userProcess.setLink(leaveRequestStartLink);
       userProcess.setProcessName(Ivy.cms().co("/Processes/LeaveRequest/leaveRequest"));
-      userProcess.setIcon("/Images/user-logout");
+      userProcess.setIcon("si si-user-logout");
       userProcess.setDescription(Ivy.cms().co("/Processes/LeaveRequest/description"));
       processes.add(userProcess);
     }
@@ -44,26 +44,26 @@ public class ExampleHomeBean implements Serializable {
           var userProcess = new UserProcess();
           userProcess.setLink(lendingCaseMap.getLink().getRelativeEncoded());
           userProcess.setProcessName(Ivy.cms().co("/Processes/CaseMap/name"));
-          userProcess.setIcon("/Images/monetization-approve");
+          userProcess.setIcon("si si-monetization-approve");
           userProcess.setDescription(Ivy.cms().co("/Processes/CaseMap/description"));
           processes.add(userProcess);
         });
 
     var procurementProcess = new UserProcess();
     procurementProcess.setProcessName(Ivy.cms().co("/Processes/Procurement/name"));
-    procurementProcess.setIcon("/Images/shopping-cart-check");
+    procurementProcess.setIcon("si si-shopping-cart-check");
     procurementProcess.setDescription(Ivy.cms().co("/Processes/UserExampleGuide/comingSoon"));
     processes.add(procurementProcess);
 
     var contractNegotiationProcess = new UserProcess();
     contractNegotiationProcess.setProcessName(Ivy.cms().co("/Processes/ContractNegotiation/name"));
-    contractNegotiationProcess.setIcon("/Images/business-contract-handshake-sign");
+    contractNegotiationProcess.setIcon("si si-business-contract-handshake-sign");
     contractNegotiationProcess.setDescription(Ivy.cms().co("/Processes/UserExampleGuide/comingSoon"));
     processes.add(contractNegotiationProcess);
 
     var marketingProcess = new UserProcess();
     marketingProcess.setProcessName(Ivy.cms().co("/Processes/MarketingCampaign/name"));
-    marketingProcess.setIcon("/Images/advertising-megaphone");
+    marketingProcess.setIcon("si si-advertising-megaphone");
     marketingProcess.setDescription(Ivy.cms().co("/Processes/UserExampleGuide/comingSoon"));
     processes.add(marketingProcess);
   }

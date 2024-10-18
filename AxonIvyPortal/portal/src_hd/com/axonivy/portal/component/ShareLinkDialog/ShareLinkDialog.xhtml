@@ -21,24 +21,21 @@
     widgetVar="#{cc.attrs.shareDialogId}"
     styleClass="share-dialog"
     header="#{cc.attrs.title}" appendTo="@(body)" closeOnEscape="true"
-    draggable="false" fitViewport="true" responsive="true" modal="true" closable="false" 
+    draggable="false" fitViewport="true" responsive="true" modal="true" closable="true" 
     width="auto" focus="@(none)" onShow="checkCopyFeature()">
-
-    <div class="ui-fluid ui-inputgroup">
+    <p:outputLabel styleClass="text-xl pl-2 pb-2 font-semibold" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/ShareLinkDialog/Link')}" />
+    <div class="ui-fluid ui-inputgroup pl-2 mt-3">
       <p:inputText id="url"
         value="#{cc.attrs.url}" readonly="true"
         styleClass="manage-dashboard__input" />
     </div>
     <f:facet name="footer">
-      <h:panelGroup layout="block" styleClass="u-text-align-right">
-        <p:link id="share-link-close-button"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-          onclick="PF('#{cc.attrs.shareDialogId}').hide(); return false;"/>
+      <h:panelGroup layout="block" styleClass="u-text-align-right p-1">
         <p:spacer width="15" />
         <p:commandButton id="share-link-copy-button" 
           value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/ShareLinkDialog/CopyLink')}"
           onclick="copyToClipboard('#{cc.attrs.url}')" 
-          actionListener="#{masterDataBean.showLinkCopiedMessage()}" global="false"/>
+          actionListener="#{masterDataBean.showLinkCopiedMessage()}" global="false" styleClass="w-full"/>
       </h:panelGroup>
     </f:facet>
   </p:dialog>

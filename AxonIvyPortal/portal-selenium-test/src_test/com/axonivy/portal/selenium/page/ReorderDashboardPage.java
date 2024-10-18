@@ -12,7 +12,7 @@ public class ReorderDashboardPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "i.si-move-expand-vertical";
+    return "i.dashboard-icon-drag-drop";
   }
 
   public void toggleVisibility(String dashboardName) {
@@ -22,8 +22,8 @@ public class ReorderDashboardPage extends TemplatePage {
   }
 
   public void reorderPrivateDashboard(String fromDashboardName, String toDashboardName) {
-    var toRow = findPrivateDashboardRowByName(toDashboardName).$("i.si-move-expand-vertical");
-    var fromRow = findPrivateDashboardRowByName(fromDashboardName).$("i.si-move-expand-vertical");
+    var toRow = findPrivateDashboardRowByName(toDashboardName).$("i.si-navigation-menu");
+    var fromRow = findPrivateDashboardRowByName(fromDashboardName).$("i.si-navigation-menu");
     dragAndDropTo(toRow, fromRow);
   }
 
@@ -33,8 +33,8 @@ public class ReorderDashboardPage extends TemplatePage {
   }
 
   public void reorderPublicDashboard(String fromDashboardName, String toDashboardName) {
-    var toRow = findPublicDashboardRowByName(toDashboardName).$("i.si-move-expand-vertical");
-    var fromRow = findPublicDashboardRowByName(fromDashboardName).$("i.si-move-expand-vertical");
+    var toRow = findPublicDashboardRowByName(toDashboardName).$("i.si-navigation-menu");
+    var fromRow = findPublicDashboardRowByName(fromDashboardName).$("i.si-navigation-menu");
     dragAndDropTo(toRow, fromRow);
   }
 

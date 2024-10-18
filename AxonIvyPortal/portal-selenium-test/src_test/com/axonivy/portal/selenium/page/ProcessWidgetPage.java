@@ -351,8 +351,9 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public void clickMoreInformationLinkImage(String processName) {
-    SelenideElement processItem = getProcessItem(processName);
-    processItem.$(By.cssSelector(".more-information-wrapper")).click();
+    getProcessActionMenu(processName)
+    .$("ul[class*='ui-helper-reset']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    .$$("li > a > span").filter(Condition.exactText("More Information")).first().click();;
   }
 
   public void clickMoreInformationLink(String processName) {
@@ -363,7 +364,7 @@ public class ProcessWidgetPage extends TemplatePage {
   private SelenideElement getProcessActionMenu(String processName) {
     SelenideElement processItem = getProcessItem(processName);
     processItem.$("button[id*=':process-action-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    return $$("div[id$='process-action-menu']").filter(Condition.appear).first();  
+    return $$("div[id$='process-action-menu']").filter(Condition.appear).first();
   }
 
   public SelenideElement getProcessItem(String processName) {

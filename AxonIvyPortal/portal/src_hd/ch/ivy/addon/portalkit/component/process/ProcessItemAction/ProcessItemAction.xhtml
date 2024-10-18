@@ -16,6 +16,8 @@
   <cc:attribute name="isDashboardProcessWidget" default="false"/>
   <cc:attribute name="status"/>
   <cc:attribute name="isInProcessList" default="true" />
+  <cc:attribute name="isReadOnlyMode" default="true"/>
+  <cc:attribute name="isInConfiguration" default="false" />
 </cc:interface>
 
 <cc:implementation>
@@ -60,7 +62,8 @@
           icon="si si-information-circle"
           url="#{processWidgetBean.getProcessInformationPageUrl(process)}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}"
-          rendered="#{processWidgetBean.isShowInformationLink(process) and !isExternalLink and !isCaseMap and cc.attrs.isInProcessList}"/>
+          disabled="#{!cc.attrs.isReadOnlyMode or cc.attrs.isInConfiguration}"
+          rendered="#{processWidgetBean.isShowInformationLink(process) and !isExternalLink and !isCaseMap}"/>
       </p:menu>
     </h:panelGroup>
     <div class="start-process" id="start-button-wrap-#{cc.attrs.status.index}" >

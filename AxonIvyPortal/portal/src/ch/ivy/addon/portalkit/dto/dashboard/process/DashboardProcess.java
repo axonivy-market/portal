@@ -210,4 +210,8 @@ public class DashboardProcess implements Process {
   public String getPortalProcessInformation() {
     return portalProcessInformation;
   }
+  
+  public String getDefaultImageDarkLink() {
+    return getContentImageUrl(DefaultImage.PROCESSMODELINGDARK.getPath());
+  }
 }

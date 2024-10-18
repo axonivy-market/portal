@@ -132,7 +132,12 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public SelenideElement getDisabledMoreInformationLink() {
-    return $("span[id$=':more-information']");
+    return getProcessActionMenu().$$("span[class$='ui-menuitem-text']").filter(Condition.text("More Information")).first();
+  }
+  
+  private SelenideElement getProcessActionMenu() {
+    $("div[class*='image-process-item-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("button[id$='process-action-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return $("div[id$='process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public void selectFullModeProcessAndSaveWidget(String processName) {
