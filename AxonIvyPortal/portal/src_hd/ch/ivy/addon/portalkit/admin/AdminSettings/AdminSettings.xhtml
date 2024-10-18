@@ -18,12 +18,26 @@
       <div class="flex align-items-center justify-content-center admin-setting-header">
          <h3>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}</h3>
       </div>
+      <h:panelGroup layout="block" class="applications-setting-info-circle">
+        <h:outputText id="applications-setting-info" styleClass="applications-setting-info si si-information-circle" />
+        <p:tooltip for="applications-setting-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationHint')}" />
+      </h:panelGroup>
     </div>
   </h:panelGroup>
   <!-- TAB VIEW -->
-  <p:tabView id="adminTabView" rendered="#{permissionBean.hasAdminPermission()}" activeIndex="0" dynamic="true" styleClass="admin-setting-tab">
+    <script>
+      function onTabChange() {
+        var tabIndex = PF('adminTabView').getActiveIndex();
+        if(tabIndex !== 0) {
+          $('.applications-setting-info-circle').hide();
+        } else {
+          $('.applications-setting-info-circle').show();
+        }
+      }
+    </script>
+  <p:tabView id="adminTabView" rendered="#{permissionBean.hasAdminPermission()}" activeIndex="0" dynamic="true" styleClass="admin-setting-tab" widgetVar="adminTabView">
     <f:event listener="#{adminSettingBean.initAdminTabViewConfig()}" type="preRenderComponent"/>
-    <p:ajax event="tabChange" listener="#{adminSettingBean.onTabChange}"/>
+    <p:ajax event="tabChange" listener="#{adminSettingBean.onTabChange}" oncomplete="onTabChange()"/>
 
     <!-- APPLICATION TAB -->
     <p:tab id="application-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applications')}">
@@ -365,13 +379,13 @@
     <ui:define name="dialogFooter">
       <c:if test="#{data.resetAllSettings}">
         <p:commandButton id="reset-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
-          actionListener="#{logic.resetValues}" styleClass="w-full ui-button-warning"
+          actionListener="#{logic.resetValues}" styleClass="w-full"
           oncomplete="PF('resetConfirmation').hide(); PF('settingTable').clearFilters();"
           update="@(.admin-table.global-setting-table)" />
       </c:if>
       <c:if test="#{!data.resetAllSettings}">
         <p:commandButton id="reset-setting" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
-          actionListener="#{logic.resetValue}" styleClass="w-full ui-button-warning"
+          actionListener="#{logic.resetValue}" styleClass="w-full"
           oncomplete="PF('resetConfirmation').hide();"
           update="@(.admin-table.global-setting-table)" />
       </c:if>

@@ -2742,6 +2742,10 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   text-align: left !important;
 }
 
+.applications-setting-info-circle {
+  margin: auto 0;
+}
+
 .action-column-icon-button i {
   margin: 0 5px;
   color: var(--portal-button-color)
@@ -3063,7 +3067,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   text-align: right;
   position: absolute;
   bottom: 0;
-  right: 1rem;
+  right: 0.5rem;
 }
 
 .user-profile-footer .ui-button {

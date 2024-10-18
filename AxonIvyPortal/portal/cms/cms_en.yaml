@@ -533,7 +533,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     requiredFieldMessage: This field is required
     reserve: Reserve
     reset: Reset
-    resetSettingHeaderText: Reset setting?
+    resetSettingHeaderText: Reset setting
     resetTaskHeaderText: Reset this task?
     resetToDefaultMessage: This operation cannot be undone. Are you sure you want to reset to default settings?
     resetToStandardFilterHeaderText: 'Reset to standard filter? '
