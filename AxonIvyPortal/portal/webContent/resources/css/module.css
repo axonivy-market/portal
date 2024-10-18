@@ -4825,7 +4825,8 @@ body .process-compact-mode > .ui-fieldset-content {
 }
 
 .image-view-form .start-process > button > span, .image-process-actions > button > span{
-  color: var(--ivy-primary-light-color);
+  color: var(--primary-color);
+  font-weight: 500;
 }
 
 .image-view-form .start-process-image-widget {
