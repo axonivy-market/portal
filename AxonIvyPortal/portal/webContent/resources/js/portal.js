@@ -169,63 +169,69 @@ function searchIconByName(element) {
 }
 
 var MainMenu = {
-  urlToMenu : [["PortalHome.xhtml", "DASHBOARD"],
-      ["Processes.xhtml", "PROCESS"],
-      ["PortalTasks.xhtml", "TASK"],
-      ["TaskWidget.xhtml", "TASK"],
-      ["PortalTaskDetails.xhtml", "TASK"],
-      ["PortalCases.xhtml", "CASE"],
-      ["CaseWidget.xhtml", "CASE"],
-      ["PortalCaseDetails.xhtml", "CASE"],
-      ["CaseItemDetails.xhtml", "CASE"],
-      ["PortalDashboard.xhtml", "DASHBOARD"]],
+  urlToMenu: [
+    ["PortalHome.xhtml", "DASHBOARD"],
+    ["Processes.xhtml", "PROCESS"],
+    ["PortalTasks.xhtml", "TASK_DASHBOARD_MENU_ITEM"],
+    ["TaskWidget.xhtml", "TASK_DASHBOARD_MENU_ITEM"],
+    ["PortalTaskDetails.xhtml", "TASK_DASHBOARD_MENU_ITEM"],
+    ["PortalCases.xhtml", "CASE"],
+    ["CaseWidget.xhtml", "CASE"],
+    ["PortalCaseDetails.xhtml", "CASE"],
+    ["CaseItemDetails.xhtml", "CASE"],
+    ["PortalDashboard.xhtml", "DASHBOARD"],
+  ],
 
-  init : function(responsiveToolkit) {
-    this.highlightMenuItem();
+  init: function (responsiveToolkit) {
     this.responsiveToolkit = responsiveToolkit;
-    this.$mainMenuToggle = $('.sidebar-pin');
-    this.menulinks = $('.layout-sidebar .layout-menu a');
+    this.$mainMenuToggle = $(".sidebar-pin");
+    this.menulinks = $(".layout-sidebar .layout-menu a");
     this.bindEvents();
+    this.restoreActiveMenuOnPageLoad(); // Restore active menu item on page load
   },
-  
-  bindEvents : function() {
+
+  bindEvents: function () {
     var $this = this;
-    this.$mainMenuToggle.on('click', function(e) {
+    this.$mainMenuToggle.on("click", function (e) {
       $this.responsiveToolkit.updateLayoutWithAnimation();
     });
   },
 
-  highlightMenuItem : function() {
+  highlightMenuItem: function () {
     let $currentPageMenu = this.getMenuItemByCurrentPage();
     let activeMenuItemList = this.getActiveMenu();
 
     if ($currentPageMenu.length > 0) {
-      var $dashboardGroup = $(".js-dashboard-group");
-      if ($currentPageMenu.hasClass("DASHBOARD") && $dashboardGroup.length > 0) {
-        $.each( activeMenuItemList, function( i, menuItem ) {
-            if (!(menuItem.id.includes('-main-dashboard'))) {
-              deactivateMenuItemOnLeftMenu(menuItem.id);
-            }
-        });
-        return;
-      }
-
-      if ($currentPageMenu.parent().hasClass('active-menuitem') && activeMenuItemList.length === 1) {
-        return;
-      }
+      // Deactivate all other active menu items first
       this.removeActiveMenu(activeMenuItemList);
-      $currentPageMenu.parent().addClass('active-menuitem');
-      PF('main-menu').addMenuitem($currentPageMenu.parent().attr('id'));
+
+      // Check if the menu is a dashboard group
+      var $dashboardGroup = $(".js-dashboard-group");
+      if (
+        $currentPageMenu.hasClass("DASHBOARD") &&
+        $dashboardGroup.length > 0
+      ) {
+        // Only activate dashboard-related items
+        $.each(activeMenuItemList, function (i, menuItem) {
+          if (!menuItem.id.includes("-main-dashboard")) {
+            deactivateMenuItemOnLeftMenu(menuItem.id);
+          }
+        });
+      } else {
+        // Add the active class to the current page menu
+        $currentPageMenu.parent().addClass("active-menuitem");
+        PF("main-menu").addMenuitem($currentPageMenu.parent().attr("id"));
+      }
     }
   },
 
-  removeActiveMenu : function(activeMenuItems) {
-    $.each( activeMenuItems, function( i, menuItem ) {
+  removeActiveMenu: function (activeMenuItems) {
+    $.each(activeMenuItems, function (i, menuItem) {
       deactivateMenuItemOnLeftMenu(menuItem.id);
     });
   },
 
-  getCurentPageByPageUrl : function() {
+  getCurentPageByPageUrl: function () {
     let pageUrl = window.location.pathname;
     for (var i = 0; i < MainMenu.urlToMenu.length; i++) {
       if (pageUrl.indexOf(MainMenu.urlToMenu[i][0]) > -1) {
@@ -234,23 +240,97 @@ var MainMenu = {
     }
   },
 
-  getMenuItemByCurrentPage : function() {
+  getMenuItemByCurrentPage: function () {
     let currentPage = this.getCurentPageByPageUrl();
-    return $(".layout-menu").find('li[role="menuitem"] a.' + currentPage);
+    // Ensure we're not treating converted dashboard items as dashboards
+    return $(".layout-menu").find(
+      'li[role="menuitem"] a.' + currentPage + ":not(.DASHBOARD)"
+    );
   },
 
-  getActiveMenu : function() {
+  getActiveMenu: function () {
     return $(".layout-menu li.active-menuitem");
   },
 
-  isThirdPartyMenu : function(e) {
+  restoreActiveMenuOnPageLoad: function () {
+    // Try to highlight the current menu item on page load
+    this.highlightMenuItem();
+  },
+
+  isThirdPartyMenu: function (e) {
     let menuClass = e.currentTarget.className;
-    if (menuClass && (menuClass.indexOf('THIRD_PARTY') !== -1 || menuClass.indexOf('EXTERNAL_LINK') !== -1)) {
+    if (
+      menuClass &&
+      (menuClass.indexOf("THIRD_PARTY") !== -1 ||
+        menuClass.indexOf("EXTERNAL_LINK") !== -1)
+    ) {
       return true;
     }
     return false;
+  },
+};
+
+// Convert dashboard item to menu item
+function convertDashboardToMenuItem(menuId) {
+  var $dashboardItem = $("#" + menuId);
+  // Remove the DASHBOARD class and add MENUITEM class
+  if ($dashboardItem.hasClass("DASHBOARD")) {
+    $dashboardItem.removeClass("DASHBOARD");
+    $dashboardItem.addClass("MENUITEM");
   }
 }
+
+// Activate a menu item
+function activeMenuItemOnLeftMenu(menuId) {
+  PF("main-menu").addMenuitem(menuId);
+  let $selectedMenu = $("[id$='" + menuId + "']");
+  if (!$selectedMenu.hasClass("active-menuitem")) {
+    $selectedMenu.addClass("active-menuitem");
+  }
+}
+
+// Deactivate a menu item
+function deactivateMenuItemOnLeftMenu(menuId) {
+  PF("main-menu").removeMenuitem(menuId);
+  let $removedMenu = $("[id$='" + menuId + "']");
+  if ($removedMenu.hasClass("active-menuitem")) {
+    $removedMenu.removeClass("active-menuitem");
+  }
+}
+
+// Ensure the script runs after the page is fully loaded
+$(document).ready(function () {
+  MainMenu.init();
+});
+
+// Convert dashboard item to menu item
+function convertDashboardToMenuItem(menuId) {
+  var $dashboardItem = $("#" + menuId);
+  // Remove the DASHBOARD class and add MENUITEM class
+  if ($dashboardItem.hasClass("DASHBOARD")) {
+    $dashboardItem.removeClass("DASHBOARD");
+    $dashboardItem.addClass("MENUITEM");
+  }
+}
+
+// Activate a menu item
+function activeMenuItemOnLeftMenu(menuId) {
+  PF("main-menu").addMenuitem(menuId);
+  let $selectedMenu = $("[id$='" + menuId + "']");
+  if (!$selectedMenu.hasClass("active-menuitem")) {
+    $selectedMenu.addClass("active-menuitem");
+  }
+}
+
+// Deactivate a menu item
+function deactivateMenuItemOnLeftMenu(menuId) {
+  PF("main-menu").removeMenuitem(menuId);
+  let $removedMenu = $("[id$='" + menuId + "']");
+  if ($removedMenu.hasClass("active-menuitem")) {
+    $removedMenu.removeClass("active-menuitem");
+  }
+}
+
 
 function handleError(xhr, renderDetail, isShowErrorLog){
   //From PF 7.0 with new jQuery version, when we call ajax by remote command then navigate when remote command still executing, this request HTML status is abort
