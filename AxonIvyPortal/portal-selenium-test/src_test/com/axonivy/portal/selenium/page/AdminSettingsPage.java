@@ -144,7 +144,8 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   public WebElement getEditSettingDialogOfFirstRow() {
-    waitForElementClickableThenClick($(By.id("admin-setting-component:adminTabView:settingTable:0:edit")));
+    waitForElementClickableThenClick($(By.id("admin-setting-component:adminTabView:settingTable:0:settings-action-button")));
+    $("a[id='admin-setting-component:adminTabView:settingTable:0:edit-application']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     waitForElementDisplayed(By.id("admin-setting-component:settingDialog"), true);
     Sleeper.sleep(300);// Wait a bit focus effects, just only use this for capture screenshot
     return findElementById("admin-setting-component:settingDialog");
