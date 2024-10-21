@@ -3393,8 +3393,25 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 /********************************** AWESOME ICON SELECTION **********************************/
 .select-awesome-icon-button {
-  margin-left: 10px;
-  text-decoration: underline !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  text-decoration: none !important;
+}
+
+.menu-icon-container {
+  display: flex;
+  align-items: center;
+}
+
+.custom-array-icon {
+    width: 100%;
+    height: 35px;
+    margin-right: 15px;
+    display: flex;
+    flex-flow: column wrap;
+    overflow: hidden;
 }
 
 /********************************** STATISTIC WIDGET **********************************/

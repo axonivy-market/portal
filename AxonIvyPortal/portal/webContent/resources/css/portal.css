@@ -965,9 +965,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   font-size: var(--delete-deputy-icon-font-size); }
 
 /*Awesome Icon Selection--------------------------*/
-.ui-commandlink.select-awesome-icon-button {
-  font-weight: var(--select-awesome-icon-button-font-weight);
-  font-size: var(--small-font-size); }
 
 .icon-selection-dialog-selecting-icon:hover {
   border: solid 1px; }
@@ -1793,4 +1790,3 @@ body.dark .focused {
   font-weight: 600;
 }
 /* ====END OF==== DIALOG FOOTER - CONFIRMATION DIALOG ============================  **/
-
