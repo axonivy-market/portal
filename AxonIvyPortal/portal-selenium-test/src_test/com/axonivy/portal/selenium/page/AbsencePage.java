@@ -184,7 +184,9 @@ public class AbsencePage extends TemplatePage {
   }
 
   public void canEditAbsence(int index) {
+    clickOnAbsenceAction(index);
     waitForElementDisplayed($(By.id(String.format(EDIT_ABSENCE__LINK_ID_PATTERN, index))), true);
+    clickOnAbsenceAction(index);
   }
 
   public void isDeputySettingSectionDisplayed(boolean isDisplay) {
