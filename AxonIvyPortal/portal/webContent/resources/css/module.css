@@ -3414,6 +3414,15 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
     overflow: hidden;
 }
 
+.icon-color {
+    color: var(--icon-color) !important;
+}
+
+.highlight-selected-icon {
+    background-color: var(--selected-icon-bg-color) !important;
+    border-radius: 3px;
+}
+
 /********************************** STATISTIC WIDGET **********************************/
 
 .ui-carousel-item .ui-dialog-content .ui-panelgrid, .ui-carousel-item .ui-dialog-content .ui-panelgrid tbody tr .ui-panelgrid-cell

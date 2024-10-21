@@ -20,7 +20,7 @@
   <h:panelGroup id="awesome-icon-selection" styleClass="awesome-icon-selection-panel">
     <h:panelGroup rendered="#{!hideIconArray}" id="menu-icon-container" styleClass="menu-icon-container" layout="block">
       <h:panelGroup id="custom-array-icon" styleClass="custom-array-icon" layout="block"/>
-      <p:commandLink id="change-icon-link" styleClass="select-awesome-icon-button" tabindex="#{tabindex}"
+      <p:commandLink id="change-icon-link" styleClass="select-awesome-icon-button icon-color" tabindex="#{tabindex}"
         process="@this"
         onclick="PF('#{cc.clientId}-select-icon-dialog').show();" oncomplete="loadStreamlineIcon('#{cc.clientId}');"
         rendered="#{!readOnly}">
@@ -29,7 +29,7 @@
     </h:panelGroup>
     <h:panelGroup rendered="#{hideIconArray}">
       <p:commandLink id="icon-link" tabindex="#{tabindex}"
-        styleClass="select-icon-link"
+        styleClass="select-icon-link icon-color"
         process="@this" rendered="#{!readOnly}"
         onclick="PF('#{cc.clientId}-select-icon-dialog').show();"
         oncomplete="loadStreamlineIcon('#{cc.clientId}');">
@@ -61,7 +61,7 @@
       </p:fieldset>
       <p:fieldset legend="Awesome" id="awesome-icon" styleClass="MarTop20">
         <ui:repeat var="icon" value="#{masterDataBean.awesomeIcons}">
-          <h:link id="awesome-icon" styleClass="icon-selection-dialog-selecting-icon"
+          <h:link id="awesome-icon" styleClass="icon-selection-dialog-selecting-icon icon-color"
             onclick="updateSelectedIconDisplay('#{icon.iconCode}', 'awesome', '#{cc.clientId}'); createAwesomeTag('#{icon.iconCode}', '#{cc.clientId}');PF('#{cc.clientId}-select-icon-dialog').hide();return false;">
             <span class="fa #{icon.iconCode} fa-lg" />
           </h:link>
@@ -87,26 +87,40 @@
         return;
       }
       iconDisplayJQ.removeClass();
-      iconDisplayJQ.toggleClass(type === "awesome" ? "fa fa-lg" : "si si-lg");
+      iconDisplayJQ.toggleClass(type === "awesome" ? "fa fa-2x" : "si si-lg");
       iconDisplayJQ.toggleClass("u-vertical-align-center");
       iconDisplayJQ.addClass(iconCode);
+    }
+
+    function resetIconArrayStyle(arrayIconContainer) {
+      if(arrayIconContainer) {
+        $(arrayIconContainer).find('a').addClass('opacity-40');
+        $(arrayIconContainer).find('a').removeClass('highlight-selected-icon');
+      }
+    }
+
+    function highlightSelectedIcon(iconEl) {
+      if(iconEl) {
+        $(iconEl).removeClass('opacity-40');
+        $(iconEl).addClass('highlight-selected-icon');
+      }
     }
 
     function createAwesomeTag(iconCode, clientId) {
         var container = document.getElementById(clientId + ":custom-array-icon");
         if(container) {
-          $(container).find('a').addClass('opacity-40');
+          resetIconArrayStyle(container);
           var iconImage = document.createElement("span");
           iconImage.className = "fa " + iconCode + " fa-lg";
 
           var iconAnchor = document.createElement("a");
-          iconAnchor.className = "icon-selection-dialog-selecting-icon";
+          iconAnchor.className = "icon-selection-dialog-selecting-icon icon-color highlight-selected-icon";
           iconAnchor.appendChild(iconImage);
           iconAnchor.title = iconCode;
           iconAnchor.onclick = function() {
             updateSelectedIconDisplay(iconCode, "awesome", clientId);
-            $(container).find('a').addClass('opacity-40');
-            $(this).removeClass('opacity-40');
+            resetIconArrayStyle(container);
+            highlightSelectedIcon(this);
           };
           $(container).prepend(iconAnchor);
         }
@@ -136,7 +150,7 @@
         iconImage.className = "si " + iconCode + " si-lg";
 
         var iconAnchor = document.createElement("a");
-        iconAnchor.className = "icon-selection-dialog-selecting-icon";
+        iconAnchor.className = "icon-selection-dialog-selecting-icon icon-color";
         iconAnchor.appendChild(iconImage);
         iconAnchor.title = iconCode;
         iconAnchor.onclick = function() {
@@ -168,9 +182,9 @@
           
           var iconAnchor = document.createElement("a");
           if(currentIconCode == iconCode) {
-            iconAnchor.className = "icon-selection-dialog-selecting-icon";
+            iconAnchor.className = "icon-selection-dialog-selecting-icon icon-color highlight-selected-icon";
           } else {
-            iconAnchor.className = "icon-selection-dialog-selecting-icon opacity-40";
+            iconAnchor.className = "icon-selection-dialog-selecting-icon icon-color opacity-40";
           }
 
           iconAnchor.appendChild(iconImage);
@@ -178,9 +192,8 @@
 
           iconAnchor.onclick = function() {
             updateSelectedIconDisplay(iconCode, "streamline", clientId);
-            $(container).find('a').addClass('opacity-40');
-            $(this).removeClass('opacity-40');
-            return false;
+            resetIconArrayStyle(container);
+            highlightSelectedIcon(this);
           };
           container.appendChild(iconAnchor);
         });
