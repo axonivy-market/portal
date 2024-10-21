@@ -172,9 +172,9 @@ var MainMenu = {
   urlToMenu: [
     ["PortalHome.xhtml", "DASHBOARD"],
     ["Processes.xhtml", "PROCESS"],
-    ["PortalTasks.xhtml", "TASK_DASHBOARD_MENU_ITEM"],
-    ["TaskWidget.xhtml", "TASK_DASHBOARD_MENU_ITEM"],
-    ["PortalTaskDetails.xhtml", "TASK_DASHBOARD_MENU_ITEM"],
+    ["PortalTasks.xhtml", "TASK"],
+    ["TaskWidget.xhtml", "TASK"],
+    ["PortalTaskDetails.xhtml", "TASK"],
     ["PortalCases.xhtml", "CASE"],
     ["CaseWidget.xhtml", "CASE"],
     ["PortalCaseDetails.xhtml", "CASE"],
@@ -183,11 +183,11 @@ var MainMenu = {
   ],
 
   init: function (responsiveToolkit) {
+    this.highlightMenuItem();
     this.responsiveToolkit = responsiveToolkit;
     this.$mainMenuToggle = $(".sidebar-pin");
     this.menulinks = $(".layout-sidebar .layout-menu a");
     this.bindEvents();
-    this.restoreActiveMenuOnPageLoad(); // Restore active menu item on page load
   },
 
   bindEvents: function () {
@@ -202,26 +202,33 @@ var MainMenu = {
     let activeMenuItemList = this.getActiveMenu();
 
     if ($currentPageMenu.length > 0) {
-      // Deactivate all other active menu items first
-      this.removeActiveMenu(activeMenuItemList);
-
-      // Check if the menu is a dashboard group
       var $dashboardGroup = $(".js-dashboard-group");
+
+      // Check if it's a dashboard item that hasn't been converted to a menu item
       if (
         $currentPageMenu.hasClass("DASHBOARD") &&
+        !$currentPageMenu.hasClass("MENUITEM") &&
         $dashboardGroup.length > 0
       ) {
-        // Only activate dashboard-related items
         $.each(activeMenuItemList, function (i, menuItem) {
           if (!menuItem.id.includes("-main-dashboard")) {
             deactivateMenuItemOnLeftMenu(menuItem.id);
           }
         });
-      } else {
-        // Add the active class to the current page menu
-        $currentPageMenu.parent().addClass("active-menuitem");
-        PF("main-menu").addMenuitem($currentPageMenu.parent().attr("id"));
+        return;
       }
+
+      // Prevent duplicate activation
+      if (
+        $currentPageMenu.parent().hasClass("active-menuitem") &&
+        activeMenuItemList.length === 1
+      ) {
+        return;
+      }
+
+      this.removeActiveMenu(activeMenuItemList);
+      $currentPageMenu.parent().addClass("active-menuitem");
+      PF("main-menu").addMenuitem($currentPageMenu.parent().attr("id"));
     }
   },
 
@@ -242,7 +249,7 @@ var MainMenu = {
 
   getMenuItemByCurrentPage: function () {
     let currentPage = this.getCurentPageByPageUrl();
-    // Ensure we're not treating converted dashboard items as dashboards
+    // Ensure not treating converted dashboard items as dashboards
     return $(".layout-menu").find(
       'li[role="menuitem"] a.' + currentPage + ":not(.DASHBOARD)"
     );
@@ -250,11 +257,6 @@ var MainMenu = {
 
   getActiveMenu: function () {
     return $(".layout-menu li.active-menuitem");
-  },
-
-  restoreActiveMenuOnPageLoad: function () {
-    // Try to highlight the current menu item on page load
-    this.highlightMenuItem();
   },
 
   isThirdPartyMenu: function (e) {
@@ -269,39 +271,6 @@ var MainMenu = {
     return false;
   },
 };
-
-// Convert dashboard item to menu item
-function convertDashboardToMenuItem(menuId) {
-  var $dashboardItem = $("#" + menuId);
-  // Remove the DASHBOARD class and add MENUITEM class
-  if ($dashboardItem.hasClass("DASHBOARD")) {
-    $dashboardItem.removeClass("DASHBOARD");
-    $dashboardItem.addClass("MENUITEM");
-  }
-}
-
-// Activate a menu item
-function activeMenuItemOnLeftMenu(menuId) {
-  PF("main-menu").addMenuitem(menuId);
-  let $selectedMenu = $("[id$='" + menuId + "']");
-  if (!$selectedMenu.hasClass("active-menuitem")) {
-    $selectedMenu.addClass("active-menuitem");
-  }
-}
-
-// Deactivate a menu item
-function deactivateMenuItemOnLeftMenu(menuId) {
-  PF("main-menu").removeMenuitem(menuId);
-  let $removedMenu = $("[id$='" + menuId + "']");
-  if ($removedMenu.hasClass("active-menuitem")) {
-    $removedMenu.removeClass("active-menuitem");
-  }
-}
-
-// Ensure the script runs after the page is fully loaded
-$(document).ready(function () {
-  MainMenu.init();
-});
 
 // Convert dashboard item to menu item
 function convertDashboardToMenuItem(menuId) {
