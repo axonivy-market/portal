@@ -1,8 +1,0 @@
-LoginData #class
-portal.migration.Login #namespace
-username String #field
-username PERSISTENT #fieldModifier
-password String #field
-password PERSISTENT #fieldModifier
-loginOk Boolean #field
-loginOk PERSISTENT #fieldModifier
