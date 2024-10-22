@@ -35,8 +35,8 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.util.Strings;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.apache.logging.log4j.util.Strings;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.ColumnResizeEvent;
 
@@ -105,9 +105,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private static final String DEFAULT_WIDGET_TITLE_ID = "widget-configuration-form:new-widget-configuration-component:widget-title-group";
   private static final String PROCESS_ICON_CUSTOM_FIELD = "cssIcon";
   private static final String DEFAULT_PROCESS_ICON = "si si-hierarchy-6 si-rotate-270";
-  // When resize a column of Task widget or Case widget, should add the padding
-  // value to make the result correct
-  private static final int DEFAULT_RESIZABLE_COLUMN_PADDING_VALUE = 30;
 
   private List<WidgetSample> samples;
   private String newWidgetHeader;
@@ -1028,14 +1025,14 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       handleResizeColumnOfTaskWidget(
           (TaskDashboardWidget) targetWidget,
           getColumnIndexFromColumnKey(event.getColumn().getColumnKey()),
-          event.getWidth() + DEFAULT_RESIZABLE_COLUMN_PADDING_VALUE);
+          event.getWidth());
     }
     
     if (targetWidget instanceof CaseDashboardWidget) {
       handleResizeColumnOfCaseWidget(
           (CaseDashboardWidget) targetWidget,
           getColumnIndexFromColumnKey(event.getColumn().getColumnKey()),
-          event.getWidth() + DEFAULT_RESIZABLE_COLUMN_PADDING_VALUE);
+          event.getWidth());
     }
 
     selectedDashboard = DashboardService.getInstance().save(selectedDashboard);
