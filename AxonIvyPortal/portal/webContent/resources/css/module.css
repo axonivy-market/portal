@@ -3202,7 +3202,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .primary-color-light-button {
-  background: var(--ivy-primary-color-grey-basic) !important; 
+  background: var(--portal-accessibility-bg-color) !important; 
   color: var(--ivy-primary-color) !important;
   font-weight: 600;
 }

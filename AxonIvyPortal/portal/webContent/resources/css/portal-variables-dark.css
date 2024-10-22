@@ -345,5 +345,8 @@
 
   /* Confirmation dialog footer button*/
   --ui-leave-button-color: var(--ivy-primary-color-grey-dark);
-)
+
+  /* Admin settings add-application-btn */
+  --portal-accessibility-bg-color: var(--ivy-primary-color-grey-basic);
+
 }
