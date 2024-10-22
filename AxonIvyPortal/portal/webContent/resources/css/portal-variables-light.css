@@ -580,4 +580,8 @@
   
   /* Restore button of dashboard */
   --dashboard-restore-button-background-color: rgba(91, 119, 132, 1);
+  
+  --accessibility-shortcut-bg-color: var(--ivy-primary-color-grey-pale);
+  --accessibility-bg-color: var(--ivy-primary-color-white);
+  --accessibility-shortcut-text-color: var(--ivy-primary-color-black);
 }

@@ -211,4 +211,9 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     waitForElementDisplayed(By.id("new-widget-dialog"), Boolean.TRUE);
     waitForElementClickableThenClick(By.id("new-widget-dialog-content:1:add-widget"));
   }
+  
+
+  public SelenideElement getAccessibilityWidget() {
+    return $("[id^='id-custom-widget-iframe']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
 }

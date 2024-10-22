@@ -1,0 +1,3 @@
+AccessibilityShortcutData #class
+ch.ivy.addon.portal.generic.dashboard.component.AccessibilityShortcut #namespace
+isAccessibilityWidget Boolean #field
