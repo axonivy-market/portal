@@ -245,7 +245,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
   
   public SelenideElement getAccessibilityWidget() {
-    return $("[id^='id-custom-widget-iframe']");
+    return $("[id^='id-custom-widget-iframe']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
   
 }

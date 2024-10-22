@@ -24,7 +24,7 @@ import ch.ivy.addon.portalkit.util.TimesUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
-import ch.ivyteam.ivy.workflow.caze.owner.ICaseOwner;
+import ch.ivyteam.ivy.workflow.caze.owner.CaseOwner;
 
 @ManagedBean(name = "caseBean")
 @ViewScoped
@@ -129,7 +129,7 @@ public class CaseBean implements Serializable {
       ariaLabel += " - " + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME") + ": " + finishedDateString;
     }
 
-    List<ICaseOwner> owners = icase.owners().all();
+    List<CaseOwner> owners = icase.owners().all();
     if (CollectionUtils.isNotEmpty(owners)) {
       ariaLabel += " - " + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/OWNER") + ": " + owners.getFirst().member().getDisplayName();
     }
