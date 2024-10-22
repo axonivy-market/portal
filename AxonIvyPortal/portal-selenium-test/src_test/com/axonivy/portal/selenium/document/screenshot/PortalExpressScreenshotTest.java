@@ -30,7 +30,6 @@ import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.axonivy.portal.selenium.page.UserTaskWithMailFormPage;
 import com.codeborne.selenide.SelenideElement;
 
-
 @IvyWebTest
 public class PortalExpressScreenshotTest extends ScreenshotBaseTest {
 

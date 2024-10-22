@@ -108,6 +108,9 @@ public abstract class AbstractColumn implements Serializable {
     if (isNull(this.userFilterList)) {
       this.userFilterList = new ArrayList<>();
     }
+    if (isNull(this.style)) {
+      this.style = getDefaultStyle();
+    }
   }
 
   @JsonIgnore
@@ -132,6 +135,11 @@ public abstract class AbstractColumn implements Serializable {
 
   @JsonIgnore
   public String getDefaultHeaderCMS() {
+    return "";
+  }
+
+  @JsonIgnore
+  public String getDefaultStyle() {
     return "";
   }
 
