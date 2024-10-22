@@ -102,7 +102,7 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
     }
     ICustomFields customFields;
     if (type.equals(DashboardColumnFormat.CUSTOM_CASE.name())) {
-      customFields = taskItem.getCase().customFields();
+      customFields = taskItem.getCase().getBusinessCase().customFields();
     } else {
       customFields = taskItem.customFields();
     }

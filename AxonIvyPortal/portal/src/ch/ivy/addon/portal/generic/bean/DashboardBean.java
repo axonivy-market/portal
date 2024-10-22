@@ -14,6 +14,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.util.Strings;
 import org.primefaces.event.SelectEvent;
 
 import com.axonivy.portal.components.util.HtmlUtils;
@@ -480,5 +481,12 @@ public class DashboardBean implements Serializable {
 
   public boolean isHideCaseCreator() {
     return GlobalSettingService.getInstance().isHideCaseCreator();
+  }
+  
+  public String getScreenReaderNotificationContent() {
+   if (this.selectedDashboard.isAccessibility()) {
+     return Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/AccessibilityShortcuts/title");
+   }
+   return Strings.EMPTY;
   }
 }
