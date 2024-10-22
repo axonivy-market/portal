@@ -10,7 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.WebDriverRunner;
 
 public class NoteHistoryPage extends TemplatePage {
@@ -60,9 +60,9 @@ public class NoteHistoryPage extends TemplatePage {
   }
 
   public List<String> getNoteAuthors() {
-    List<SelenideElement> noteAuthorElements = $$("td.note-history-fullname-column .name-after-avatar")
+    ElementsCollection noteAuthorElements = $$("td.note-history-fullname-column .name-after-avatar")
         .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT);
-    return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
+    return noteAuthorElements.asFixedIterable().stream().map(w -> w.getText()).collect(Collectors.toList());
   }
 
   public void clickOnCheckboxShowSystemNotes() {

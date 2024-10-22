@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebElementCondition;
 
 public class DashboardNewsWidgetPage extends TemplatePage {
 
@@ -111,7 +112,7 @@ public class DashboardNewsWidgetPage extends TemplatePage {
     manageNewsDialogShouldBe(disappear);
   }
 
-  private SelenideElement manageNewsDialogShouldBe(Condition expectCondition) {
+  private SelenideElement manageNewsDialogShouldBe(WebElementCondition expectCondition) {
     return $("[id$=':manage-news-dialog']").shouldBe(expectCondition, DEFAULT_TIMEOUT);
   }
 

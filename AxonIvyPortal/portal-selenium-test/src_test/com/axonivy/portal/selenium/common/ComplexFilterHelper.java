@@ -15,6 +15,7 @@ import java.util.Arrays;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebElementCondition;
 
 public class ComplexFilterHelper {
   protected final static Duration DEFAULT_TIMEOUT = Duration.ofSeconds(45);
@@ -219,7 +220,7 @@ public class ComplexFilterHelper {
         .$$("li.ui-selectcheckboxmenu-item").filter(text(value)).first().$("div.ui-chkbox-box");
   }
 
-  protected static Condition getClickableCondition() {
+  protected static WebElementCondition getClickableCondition() {
     return and("should be clickable", visible, exist);
   }
 
