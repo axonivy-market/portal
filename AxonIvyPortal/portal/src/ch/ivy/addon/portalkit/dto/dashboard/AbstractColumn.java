@@ -139,6 +139,11 @@ public abstract class AbstractColumn implements Serializable {
   }
 
   @JsonIgnore
+  public String getDefaultStyle() {
+    return "";
+  }
+
+  @JsonIgnore
   public String getDefaultStyleClass() {
     return "";
   }
