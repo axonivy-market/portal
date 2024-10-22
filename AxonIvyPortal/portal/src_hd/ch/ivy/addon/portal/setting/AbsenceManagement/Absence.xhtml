@@ -12,7 +12,7 @@
     modal="true"
     dynamic="true"
     resizable="false"
-    closable="false"
+    closable="true"
     appendTo="@(body)"
     position="center"
     responsive="true"
@@ -92,7 +92,6 @@
 
         <p:commandButton process="@form" id="save-absence" disabled="#{data.validationError}"
           oncomplete="if (args &amp;&amp; !args.validationFailed)PF('absence-dialog').hide();"
-          icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.saveAbsence}"
           update="@(.absence-table) absence-messages @(.substitute-table) @(.substitution-table)" />
       </div>
