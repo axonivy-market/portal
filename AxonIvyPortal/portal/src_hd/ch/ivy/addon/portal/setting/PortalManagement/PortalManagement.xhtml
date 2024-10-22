@@ -9,11 +9,8 @@
     <ui:define name="pageContent">
 
       <h:panelGroup id="portal-management-container" styleClass=" ui-g">
-        <div class="ui-g-12">
-          <p:messages redisplay="false" for="portal-management-messages-information" closable="false" id="portal-management-messages"/>
-        </div>
-
-        <p:commandButton id="back-to-home-button" styleClass="ui-button-flat ml-2"
+        <p:messages redisplay="false" for="portal-management-messages-information" closable="false" id="portal-management-messages"/>
+        <p:commandButton id="back-to-home-button" styleClass="ui-button-flat ml-2 pt-0"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"
           icon="si si-arrow-left-1"
           actionListener="#{logic.backToHome}"
