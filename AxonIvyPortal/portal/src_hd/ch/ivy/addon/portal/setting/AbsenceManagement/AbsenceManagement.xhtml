@@ -31,15 +31,15 @@
                 </div>
 
                 <div class="ui-g-12 u-no-padding-top">
-                  <div class="ui-g-8 ui-xl-8 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0 display-flex-center" jsf:rendered="#{data.isSupervisor}">
+                  <div class="w-full ui-sm-12 u-padding-0 display-flex-center" jsf:rendered="#{data.isSupervisor}">
                     <ic:com.axonivy.portal.components.UserSelection id="user-absence-selection-component"
                       componentId="user-absence"
                       selectedUser="#{data.selectedAbsenceUser}"
                       completeMethod="#{logic.autoCompleteForUserOnApp}"
                       isRenderedMessage="false"
                       label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/selectedUser')}"
-                      labelPanelStyleClass="ui-g-2 ui-sm-12 ui-fluid px-0"
-                      autoCompletePanelStyleClass="ui-g-8 ui-sm-12 ui-fluid"
+                      labelPanelStyleClass="ui-sm-12 ui-fluid pr-3"
+                      autoCompletePanelStyleClass="w-full ui-fluid"
                       autoCompleteStyleClass="absence-user-selection"
                       scrollHeight="200"
                       hasCustomizedSelectionList="true"
@@ -54,8 +54,8 @@
                       </f:facet>
                     </ic:com.axonivy.portal.components.UserSelection>
                   </div>
-                  <div class="#{data.isSupervisor ? 'ui-g-4 ui-xl-4 ui-lg-12 ui-md-12 ui-sm-12' : 'ui-g-12'} add-absence-panel pl-0">
-                    <div class="ui-fluid flex justify-content-between align-items-center h-full">
+                  <div class="#{data.isSupervisor ? 'w-full ui-md-12 ui-sm-12' : 'ui-g-12'} add-absence-panel pl-0">
+                    <div class="ui-fluid flex justify-content-start gap-3 align-items-center h-full">
                       <h:panelGroup layout="block">
                         <p:outputLabel id="show-absence-in-the-past-label"
                           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/showAbsencesInThePast')}" 
