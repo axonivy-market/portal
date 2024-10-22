@@ -228,6 +228,11 @@ function resizeTableBody() {
       const widget = PF(widgetName);
       if (widget) {
         widget.cfg.scrollHeight = tableBody.parents('.ui-datatable-scrollable').height().toString();
+
+        if (tableBody.parents('.js-resizing').length > 0) {
+          widget.init(widget.cfg);
+        }
+
         widget.setupScrolling();
       }
     });
