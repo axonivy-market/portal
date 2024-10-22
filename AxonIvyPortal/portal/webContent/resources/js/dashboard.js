@@ -473,6 +473,6 @@ function initTableWidget(table) {
   setTimeout(function(){
     var $table = $(document.getElementById(table.id));
     table.cfg.scrollHeight = $table.height().toString();
-    table.init(table.cfg);
+    table.renderDeferred(table.cfg);
   }, 500);
 }
