@@ -138,7 +138,11 @@
             title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/TaskWidgetConfiguration/ResetFilter')}">
               <f:param name="skipValidator" value="true" />
           </p:commandButton>
-            
+          <p:commandLink id="cancel-filter" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+            styleClass="Fright u-mar-right-5 ui-overlaypanel-footer__cancel"
+            onclick="closeFilterPanel();return false;"
+            update="predefined-filter"
+            immediate="true" global="false"/> 
         </div>
       </div>
       <div class="ui-g-12 filter-area" >
