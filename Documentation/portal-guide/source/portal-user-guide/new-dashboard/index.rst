@@ -145,7 +145,7 @@ In view mode, when quick search is enabled, a text box will appear to allow you 
     #. The quick search function is unaffected by widget filters.
     #. You can define the scope of the quick search feature in the configuration panel.
 
-**Adjust columns width**
+**Adjust column width**
 
 In edit mode, you can adjust the width of each column directly within the widget table.
 
@@ -155,7 +155,7 @@ You may also notice gridlines on the table which implemented by Portal to help y
 
   .. important::
 
-    If the total width of the columns is less than the widget's width, the Portal will automatically adjust the column widths to match the widget.
+    If the total width of the columns is less than the widget's width, the Portal will automatically adjust the column widths to match the widget's width.
 
 .. _new-dashboard-case-list-widget:
 
@@ -225,7 +225,7 @@ In the view mode, when quick search is enabled, a text box will appear to allow 
     #. The quick search function is unaffected by widget filters.
     #. You can define the scope of the quick search feature in the configuration panel.
 
-**Adjust columns width**
+**Adjust column  width**
 
 In edit mode, you can adjust the width of each column directly within the widget table.
 
@@ -235,7 +235,7 @@ You may also notice gridlines on the table which implemented by Portal to help y
 
   .. important::
 
-    If the total width of the columns is less than the widget's width, the Portal will automatically adjust the column widths to match the widget.
+    If the total width of the columns is less than the widget's width, the Portal will automatically adjust the column widths to match the widget's width.
 
 .. _new-dashboard-process-list-widget:
 
