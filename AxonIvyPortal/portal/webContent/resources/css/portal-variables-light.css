@@ -207,6 +207,7 @@
   --admin-setting-no-permission-message-color: #e53935;
   --user-setting-container-box-shadow: rgba(43, 59, 93, 0.6);
   --email-setting-widget-header: var(--ivy-primary-color-white);
+  --portal-accessibility-bg-color: var(--primary-lighter-color);
   /* Absences and Deputy */
   --substituted-user-text-color: var(--ivy-primary-color-black);
   /* Awesome Icon Selection */

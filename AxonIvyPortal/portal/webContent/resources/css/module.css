@@ -3217,6 +3217,12 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
     -webkit-box-orient: vertical;
     margin: auto;
   }
+  
+  .primary-color-light-button {
+  background: var(--portal-accessibility-bg-color) !important; 
+  color: var(--ivy-primary-color) !important;
+  font-weight: 600;
+}
 
   .line-clamp-text-5 {
     overflow:hidden;
