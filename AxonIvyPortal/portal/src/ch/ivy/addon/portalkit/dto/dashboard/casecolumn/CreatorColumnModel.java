@@ -30,7 +30,7 @@ public class CreatorColumnModel extends CaseColumnModel implements Serializable 
     this.setVisible(!GlobalSettingService.getInstance().isHideCaseCreator());
     super.initDefaultValue();
     this.field = DashboardStandardCaseColumn.CREATOR.getField();
-    this.style = defaultIfEmpty(this.style, getDefaultStyle());
+    this.styleToDisplay = initDefaultStyle();
     this.format = getDefaultFormat();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.quickSearch = defaultIfEmpty(this.quickSearch, false);
@@ -46,8 +46,8 @@ public class CreatorColumnModel extends CaseColumnModel implements Serializable 
     return DashboardColumnFormat.CUSTOM;
   }
 
-  @Override
-  public String getDefaultStyle() {
+  @JsonIgnore
+  protected int getDefaultColumnWidth() {
     return EXTRA_WIDTH;
   }
 

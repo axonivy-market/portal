@@ -26,7 +26,7 @@ public class CreatedDateColumnModel extends CaseColumnModel implements Serializa
   public void initDefaultValue() {
     super.initDefaultValue();
     this.field = DashboardStandardCaseColumn.CREATED.getField();
-    this.style = defaultIfEmpty(this.style, getDefaultStyle());
+    this.styleToDisplay = initDefaultStyle();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.format = getDefaultFormat();
   }
@@ -39,11 +39,6 @@ public class CreatedDateColumnModel extends CaseColumnModel implements Serializa
   @Override
   public DashboardColumnFormat getDefaultFormat() {
     return DashboardColumnFormat.TIMESTAMP;
-  }
-
-  @Override
-  public String getDefaultStyle() {
-    return SMALL_WIDTH;
   }
 
   @Override

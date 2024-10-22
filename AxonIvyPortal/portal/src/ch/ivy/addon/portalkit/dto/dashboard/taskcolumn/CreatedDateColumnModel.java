@@ -26,7 +26,7 @@ public class CreatedDateColumnModel extends TaskColumnModel implements Serializa
   public void initDefaultValue() {
     super.initDefaultValue();
     this.field = DashboardStandardTaskColumn.CREATED.getField();
-    this.style = defaultIfEmpty(this.style, getDefaultStyle());
+    this.styleToDisplay = initDefaultStyle();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.format = getDefaultFormat();
   }
@@ -42,13 +42,13 @@ public class CreatedDateColumnModel extends TaskColumnModel implements Serializa
   }
 
   @Override
-  public String getDefaultStyle() {
+  protected int getDefaultColumnWidth() {
     return SMALL_WIDTH;
   }
 
   @Override
   public String getDefaultStyleClass() {
-    return "dashboard-tasks__created-date u-text-align-center";
+    return "dashboard-tasks__created-date u-text-align-center widget-column";
   }
 
   @Override

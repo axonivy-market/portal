@@ -77,6 +77,7 @@
                     <c:if test="#{widget.type eq 'TASK'}">
                       <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskDashboardWidget widget="#{widget}"
                         isReadOnlyMode="#{managedBean.isReadOnlyMode}"
+                        isResizable="#{managedBean.resizable}"
                         index="#{status.index}"
                         id="task-#{widget.id}" />
                     </c:if>
@@ -85,6 +86,7 @@
                     <c:if test="#{widget.type eq 'CASE'}">
                       <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseDashboardWidget widget="#{widget}"
                         isReadOnlyMode="#{managedBean.isReadOnlyMode}"
+                        isResizable="#{managedBean.resizable}"
                         index="#{status.index}"
                         id="case-#{widget.id}" />
                     </c:if>
