@@ -466,7 +466,7 @@ function removeStyle(element) {
 }
 
 function initTableWidget(table) {
-  if (table === undefined || table.cfg === undefined) {
+  if (table?.cfg === undefined) {
     return;
   }
 
