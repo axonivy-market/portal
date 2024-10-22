@@ -194,13 +194,12 @@ public class PortalMenuNavigator {
       subMenuItems.add(new ProcessSubMenuItem());
     }
 
-    if(PermissionUtils.checkAccessFullTaskListPermission()) {
-      subMenuItems.add(new TaskSubMenuItem());
-    }
-
     if(PermissionUtils.checkAccessFullCaseListPermission()) {
       subMenuItems.add(new CaseSubMenuItem());
     }
+    
+    
+
     return subMenuItems;
   }
 
@@ -209,4 +208,5 @@ public class PortalMenuNavigator {
     subMenuItems.addAll(CustomSubMenuItemService.findAll());
     return subMenuItems;
   }
+
 }

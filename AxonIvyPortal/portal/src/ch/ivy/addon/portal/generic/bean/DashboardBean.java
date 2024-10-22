@@ -95,7 +95,6 @@ public class DashboardBean implements Serializable {
 
     if (CollectionUtils.isNotEmpty(DashboardUtils.getSubItemDashboards())) {
       selectedDashboardId = readDashboardFromSession();
-      Ivy.log().error(selectedDashboardId);
       currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
       selectedDashboard = dashboards.get(currentDashboardIndex);
 

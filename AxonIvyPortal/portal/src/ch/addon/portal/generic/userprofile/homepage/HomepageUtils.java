@@ -50,7 +50,7 @@ public class HomepageUtils {
     String newDashboardLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(friendlyRequestPath);
     return newDashboardLink;
   }
-  
+
   public static Homepage findHomepageInMyProfile() {
     Homepage homepage = new Homepage();
     String homepageName = Ivy.session().getSessionUser().getProperty(UserProperty.HOMEPAGE);
@@ -58,7 +58,7 @@ public class HomepageUtils {
       homepage.setName(StringUtils.EMPTY);
       return homepage;
     }
-    
+
     List<Homepage> homepages = loadHomepages();
     homepage.setName(homepageName);
     return homepages.get(homepages.indexOf(homepage));
@@ -66,10 +66,12 @@ public class HomepageUtils {
 
   public static Homepage findHomepage() {
     List<Homepage> homepages = loadHomepages();
-    Boolean isPortalInTeams = (Boolean) SecurityServiceUtils.getSessionAttribute(SessionAttribute.PORTAL_IN_TEAMS.toString());
+    Boolean isPortalInTeams =
+        (Boolean) SecurityServiceUtils.getSessionAttribute(SessionAttribute.PORTAL_IN_TEAMS.toString());
     Homepage homepage = new Homepage();
     if (BooleanUtils.isTrue(isPortalInTeams)) {
-      String homePageName = SecurityServiceUtils.getSessionAttribute(SessionAttribute.DEFAULT_PAGE_IN_TEAMS.toString()).toString();
+      String homePageName =
+          SecurityServiceUtils.getSessionAttribute(SessionAttribute.DEFAULT_PAGE_IN_TEAMS.toString()).toString();
       homepage.setName(homePageName);
     } else {
       homepage.setName(getHomepageName());
@@ -77,6 +79,7 @@ public class HomepageUtils {
     if (homepages.contains(homepage)) {
       Homepage seletedHomepage = homepages.get(homepages.indexOf(homepage));
       adjustHomepageStartLink(seletedHomepage);
+      Ivy.log().error(seletedHomepage.getLink());
       return seletedHomepage;
     } else {
       return homepage;
@@ -87,6 +90,7 @@ public class HomepageUtils {
     String relativeUrl = switch (homepage.getType()) {
       case PROCESS -> findRelativeUrlByKeywork(PortalNavigator.PORTAL_PROCESS_START);
       case CASE -> findRelativeUrlByKeywork(PortalNavigator.PORTAL_CASE_START);
+      case TASK -> findRelativeUrlByKeywork(PortalNavigator.getPortalStartUrl());
       default -> "";
     };
     if (StringUtils.isNotEmpty(relativeUrl)) {
@@ -101,7 +105,7 @@ public class HomepageUtils {
     }
     return homepageName;
   }
-  
+
   public static Homepage findDefaultHomepage() {
     List<Homepage> homepages = loadHomepages();
     Homepage homepage = new Homepage();
@@ -112,7 +116,7 @@ public class HomepageUtils {
   private static String findHomepageSetting() {
     return GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.DEFAULT_HOMEPAGE);
   }
-  
+
   public static Map<String, String> getHomepageOptionsForAdminSettings() {
     Map<String, String> result = new LinkedHashMap<>();
     for (Homepage homepage : HomepageUtils.loadHomepages()) {
@@ -120,9 +124,13 @@ public class HomepageUtils {
     }
     return result;
   }
-  
+
   public static boolean isShowDashboard(Homepage homepage, boolean isClickOnDashboard) {
     return homepage == null || homepage.getType() == HomepageType.DASHBOARD || isClickOnDashboard;
+  }
+
+  public static boolean isShowTaskDashboard(Homepage homepage) {
+    return homepage.getType() == HomepageType.TASK;
   }
 
 }

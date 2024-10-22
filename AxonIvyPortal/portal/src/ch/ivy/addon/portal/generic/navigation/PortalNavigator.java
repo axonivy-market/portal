@@ -23,7 +23,6 @@ import ch.ivyteam.ivy.workflow.StandardProcessType;
 public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_DASHBOARD = "Start Processes/PortalStart/DefaultDashboardPage.ivp";
   private static final String PORTAL_PROCESS = "Start Processes/PortalStart/DefaultProcessStartListPage.ivp";
-  private static final String PORTAL_TASK = "Start Processes/PortalStart/DefaultTaskListPage.ivp";
   private static final String PORTAL_CASE = "Start Processes/PortalStart/CaseListPage.ivp";
   private static final String PORTAL_CASE_DETAILS = "Start Processes/PortalStart/DefaultCaseDetailPage.ivp";
   private static final String PORTAL_RELATED_TASKS_OF_CASE = "Start Processes/PortalStart/RelatedTasksOfCasePage.ivp";
@@ -43,7 +42,6 @@ public final class PortalNavigator extends BaseNavigator{
 
   public static final String PORTAL_DASHBOARD_START = "/DefaultDashboardPage.ivp";
   public static final String PORTAL_PROCESS_START = "/DefaultProcessStartListPage.ivp";
-  public static final String PORTAL_TASK_START = "/DefaultTaskListPage.ivp";
   public static final String PORTAL_CASE_START = "/CaseListPage.ivp";
   public static final String PORTAL_USER_PROFILE_START =  "/UserProfile.ivp";
   public static final String PORTAL_CASE_DETAILS_IN_IFRAME_START = "/CaseDetailsInIFrame.ivp";
@@ -97,7 +95,6 @@ public final class PortalNavigator extends BaseNavigator{
   public static String getSubMenuItemUrlOfCurrentApplication(MenuKind menuKind) {
     String subMenuUrl = switch (menuKind) {
       case PROCESS -> PORTAL_PROCESS;
-      case TASK -> PORTAL_TASK;
       case CASE -> PORTAL_CASE;
       default -> StringUtils.EMPTY;
     };

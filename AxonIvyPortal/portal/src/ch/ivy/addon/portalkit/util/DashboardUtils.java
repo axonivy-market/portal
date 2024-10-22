@@ -34,13 +34,14 @@ import ch.ivyteam.ivy.security.IUser;
 public class DashboardUtils {
 
   public final static String DASHBOARD_MENU_PREFIX = "_js__";
-  public final static String DASHBOARD_MENU_POSTFIX  = "-main-dashboard";
+  public final static String DASHBOARD_MENU_POSTFIX = "-main-dashboard";
   public final static String DASHBOARD_ITEM_POSTFIX = "-menu-item-dashboard";
   public final static String MENU_ITEM_DASHBOARD_PATTERN = DASHBOARD_MENU_PREFIX + "%s" + DASHBOARD_ITEM_POSTFIX;
   public final static String DASHBOARD_MENU_ITEM_POSTFIX = "-sub-dashboard";
   public final static String DASHBOARD_MENU_PATTERN = DASHBOARD_MENU_PREFIX + "%s" + DASHBOARD_MENU_POSTFIX;
   public final static String DASHBOARD_MENU_ITEM_PATTERN = DASHBOARD_MENU_PREFIX + "%s" + DASHBOARD_MENU_ITEM_POSTFIX;
-  public final static String DASHBOARD_PAGE_URL = "/ch.ivy.addon.portal.generic.dashboard.PortalDashboard/PortalDashboard.xhtml";
+  public final static String DASHBOARD_PAGE_URL =
+      "/ch.ivy.addon.portal.generic.dashboard.PortalDashboard/PortalDashboard.xhtml";
   public final static String DASHBOARD_MENU_JS_CLASS = "js-dashboard-group";
   public final static String HIGHLIGHT_DASHBOARD_ITEM_METHOD_PATTERN = "highlightDashboardItem('%s')";
   public final static String DASHBOARD_TASK_TEMPLATE_ID = "dashboard-task-template";
@@ -206,7 +207,7 @@ public class DashboardUtils {
 
       String dashboardId = dashboardIds[dashboardIds.length - 1].replace(DASHBOARD_MENU_POSTFIX, "")
           .replace(DASHBOARD_MENU_ITEM_POSTFIX, "").replace(DASHBOARD_ITEM_POSTFIX, "");
-      
+
       if (selectedMenuItemId.endsWith(DASHBOARD_ITEM_POSTFIX)) {
         String prevDashboardId = (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString());
         Ivy.session().setAttribute(SessionAttribute.PREV_SELECTED_DASHBOARD_ID.toString(), prevDashboardId);
@@ -229,7 +230,8 @@ public class DashboardUtils {
     return null;
   }
 
-  public static List<Dashboard> convertDashboardsFromUploadFileToLatestVersion(InputStream inputStream) throws IOException {
+  public static List<Dashboard> convertDashboardsFromUploadFileToLatestVersion(InputStream inputStream)
+      throws IOException {
     try (InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
       ObjectMapper mapper = new ObjectMapper();
       JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(reader));
@@ -261,8 +263,8 @@ public class DashboardUtils {
     }
     return null;
   }
-  
-  
+
+
   public static void storeDashboardInSession(String id) {
     Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), id);
   }

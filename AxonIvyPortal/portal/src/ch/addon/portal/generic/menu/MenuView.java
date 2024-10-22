@@ -102,7 +102,6 @@ public class MenuView implements Serializable {
     }
 
     List<Dashboard> menuItemDashboad = getDashboardMenuItemCache().dashboards();
-
     for (Dashboard dashboard : menuItemDashboad) {
       mainMenuModel.getElements().add(buildDashboardMenuItem(dashboard, menuIndex));
       menuIndex++;
@@ -168,6 +167,12 @@ public class MenuView implements Serializable {
       singleDashboard.setIcon(singleDashboard.getIsPublic() ? "si-network-share" : "si-single-neutral-shield");
     }
     var iconClass = (singleDashboard.getIcon().startsWith("fa") ? "fa " : "si ") + singleDashboard.getIcon();
+    if (DashboardUtils.DASHBOARD_TASK_TEMPLATE_ID.equalsIgnoreCase(singleDashboard.getId())) {
+      var menuItem = new PortalMenuBuilder(title, MenuKind.TASK, this.isWorkingOnATask).icon(iconClass)
+          .url(dashboardLink).workingTaskId(this.workingTaskId).menuIndex(menuIndex).build();
+      menuItem.setId(String.format(DashboardUtils.MENU_ITEM_DASHBOARD_PATTERN, singleDashboard.getId()));
+      return menuItem;
+    }
     var menuItem = new PortalMenuBuilder(title, MenuKind.DASHBOARD_MENU_ITEM, this.isWorkingOnATask)
         .icon(iconClass)
         .url(dashboardLink)
@@ -385,7 +390,6 @@ public class MenuView implements Serializable {
     }
     BreadCrumbKind breadCrumbKind = BreadCrumbKind.valueOf(viewName);
     switch (breadCrumbKind) {
-      case TASK -> buildBreadCrumbForTaskList();
       case CASE -> buildBreadCrumbForCaseList();
       case TECHNICAL_CASE -> buildBreadCrumbForTechnicalCaseList(userCase);
       case RELATED_TASK -> buildBreadCrumbForRelatedTask(userCase);
@@ -428,13 +432,6 @@ public class MenuView implements Serializable {
   private void buildBreadCrumbForAbsences() {
     setPortalHomeMenuToBreadcrumbModel();
     breadcrumbModel.getElements().add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/absenceAndDeputy"));
-  }
-
-  private void buildBreadCrumbForTaskList() {
-    setPortalHomeMenuToBreadcrumbModel();
-    DefaultMenuItem taskListSubmenuItem = buildTaskListMenuItem();
-    taskListSubmenuItem.setDisabled(true);
-    breadcrumbModel.getElements().add(taskListSubmenuItem);
   }
 
   private void buildBreadCrumbForCaseList() {

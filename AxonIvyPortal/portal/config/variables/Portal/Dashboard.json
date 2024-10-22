@@ -328,5 +328,117 @@
     "permissions": [
       "Everybody"
     ]
+  },
+  {
+    "id": "dashboard-task-template",
+    "version": "11.4.0",
+    "templateId": "create-from-scratch",
+    "titles": [
+      {
+        "locale": "en",
+        "value": "My Tasks"
+      },
+      {
+        "locale": "fr",
+        "value": "Mes tâches"
+      },
+      {
+        "locale": "de",
+        "value": "Meine Aufgaben"
+      },
+      {
+        "locale": "es",
+        "value": "Mis tareas"
+      }
+    ],
+    "icon": "si-task-list-edit",
+    "description": "Default Task List Dashboard",
+    "widgets": [
+      {
+        "type": "task",
+        "id": "task_e16cbee90a244f4a857d0a8c875b7b34",
+        "names": [
+          {
+            "locale": "en",
+            "value": "Your Tasks"
+          },
+          {
+            "locale": "fr",
+            "value": "Your Tasks"
+          },
+          {
+            "locale": "de",
+            "value": "Your Tasks"
+          },
+          {
+            "locale": "es",
+            "value": "Your Tasks"
+          }
+        ],
+        "layout": {
+          "w": 12,
+          "h": 12,
+          "x": 0,
+          "y": 0
+        },
+        "rowsPerPage": 5,
+        "enableQuickSearch": true,
+        "showWidgetInfo": true,
+        "showFullscreenMode": true,
+        "columns": [
+          {
+            "field": "start"
+          },
+          {
+            "field": "priority"
+          },
+          {
+            "field": "id",
+            "quickSearch": false
+          },
+          {
+            "field": "name",
+            "quickSearch": true
+          },
+          {
+            "field": "description",
+            "quickSearch": true
+          },
+          {
+            "field": "activator",
+            "quickSearch": false
+          },
+          {
+            "field": "state"
+          },
+          {
+            "field": "startTimestamp"
+          },
+          {
+            "field": "expiryTimestamp"
+          },
+          {
+            "field": "category",
+            "quickSearch": false
+          },
+          {
+            "field": "application",
+            "styleClass": "dashboard-tasks__priority u-text-align-center",
+            "style": "width: 80px",
+            "quickSearch": false
+          },
+          {
+            "field": "actions"
+          }
+        ],
+        "canWorkOn": false,
+        "sortField": "id",
+        "sortDescending": true
+      }
+    ],
+    "permissions": [
+      "Everybody"
+    ],
+    "isMenuItem": true
   }
 ]
