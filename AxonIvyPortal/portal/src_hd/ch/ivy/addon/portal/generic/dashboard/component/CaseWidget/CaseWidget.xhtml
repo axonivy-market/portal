@@ -11,6 +11,7 @@
   <cc:attribute name="isPreviewMode" default="false"/>
   <cc:attribute name="onCompleteLoadWidget" />
   <cc:attribute name="componentToUpdateCaseWidget" />
+  <cc:attribute name="caseWidgetVar" default="dashboard-cases" />
 </cc:interface>
 
 <cc:implementation>
@@ -22,7 +23,7 @@
   <p:remoteCommand id="rcLoadCaseFirstTime" autoRun="true" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
     update="dashboard-cases-container" global="false" async="true" process="@this"
     oncomplete="loadCaseAndTaskWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); #{cc.attrs.onCompleteLoadWidget}" />
-  <p:inputText type="hidden" value="dashboard-cases-#{caseWidget.id}" styleClass="js-table-widget-var" />
+  <p:inputText type="hidden" value="#{cc.attrs.caseWidgetVar}-#{caseWidget.id}" styleClass="js-table-widget-var" />
   <div class="ui-g">
     <h:outputText id="loading" styleClass="js-loading-#{caseWidget.id} case-dashboard-widget__loading-message" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
     <h:panelGroup id="dashboard-cases-container" layout="block"
@@ -36,7 +37,7 @@
         </p:commandLink>
       </h:panelGroup>
 
-      <p:dataTable id="dashboard-cases" widgetVar="dashboard-cases-#{caseWidget.id}" value="#{caseWidget.dataModel}" var="caseItem"
+      <p:dataTable id="dashboard-cases" widgetVar="#{cc.attrs.caseWidgetVar}-#{caseWidget.id}" value="#{caseWidget.dataModel}" var="caseItem"
         lazy="true" scrollRows="25"
         disabledSelection="#{isPreviewMode}"
         liveScroll="true" scrollable="true" sortBy="#{(isResizing or isPreviewMode) ? null : caseWidget.sortBy}"
