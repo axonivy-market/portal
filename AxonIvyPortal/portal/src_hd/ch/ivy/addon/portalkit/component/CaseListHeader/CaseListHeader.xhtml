@@ -15,7 +15,7 @@
 
   <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="id-column-header" 
     styleClass="u-text-align-center"
-        responsiveStyleClass="u-hidden-sm-down" 
+    responsiveStyleClass="u-hidden-sm-down" 
     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" 
     dataModel="#{dataModel}" sortedField="ID" />
 
@@ -23,7 +23,7 @@
       id="creator-column-header"
       responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}"
-      dataModel="#{caseView.dataModel}" sortable="true"
+      dataModel="#{dataModel}" sortable="true"
       sortedField="CREATOR" 
       rendered="#{!caseBean.hideCaseCreator}"/>
 
