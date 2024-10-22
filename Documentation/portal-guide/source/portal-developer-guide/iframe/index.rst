@@ -74,7 +74,7 @@ Configure template
 
 You could configure UI in either of these two ways:
 
-#. Using the component IFrameTaskConfig, this way is recommended.
+#. Using the component IFrameTaskConfig (recommended)
 
    .. code-block:: xml
 
