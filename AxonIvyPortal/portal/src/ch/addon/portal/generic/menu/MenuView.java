@@ -287,6 +287,8 @@ public class MenuView implements Serializable {
       cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId,
           new PortalDashboardItemWrapper(dashboards));
     }
+
+    cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_MENU, sessionUserId);
   }
 
   private String getSessionUserId() {
