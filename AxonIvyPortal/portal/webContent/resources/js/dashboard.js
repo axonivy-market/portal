@@ -228,6 +228,11 @@ function resizeTableBody() {
       const widget = PF(widgetName);
       if (widget) {
         widget.cfg.scrollHeight = tableBody.parents('.ui-datatable-scrollable').height().toString();
+
+        if (tableBody.parents('.js-resizing').length > 0) {
+          widget.init(widget.cfg);
+        }
+
         widget.setupScrolling();
       }
     });
@@ -463,4 +468,16 @@ function setLineClamp(element, number) {
 
 function removeStyle(element) {
   $(element).removeAttr('style');
+}
+
+function initTableWidget(table) {
+  if (table?.cfg === undefined) {
+    return;
+  }
+
+  setTimeout(function(){
+    var $table = $(document.getElementById(table.id));
+    table.cfg.scrollHeight = $table.height().toString();
+    table.renderDeferred(table.cfg);
+  }, 500);
 }

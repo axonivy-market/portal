@@ -1643,9 +1643,8 @@ Dialogs:
                       <span class="shortcut-key">Alt + 4</span>Se focaliser sur l’onglet des cas
                    </div>
                 </div>
-              title: |-
-                Raccourcis d’accessibilité. Alt + 1: Fokus auf die Dashboards. Alt + 2: Fokus auf die Prozesse
-                Alt + 3: Fokus auf die Aufgaben. Alt + 4: Fokus auf die Fälle. Alt + 5: Fokus auf die Statistik. Alt + 6: Fokus auf die Suche. Alt + 7: Fokus auf die User Einstellungen. Alt + P: Fokus auf den ersten Prozess. Alt + T: Fokus auf die erste Aufgabe. Alt + C: Fokus auf den ersten Fall. Tab: Sequentielles Durchlaufen von Elementen. Esc: Erweiterte Widgets schließen/Kontext Menüs schließen. Enter: Auswahl bestätigen
+              title: 'Raccourcis d’accessibilité. Alt + 1: Fokus auf die Dashboards. Alt + 2: Fokus auf die Prozesse. Alt + 3: Fokus auf die Aufgaben. Alt + 4: Fokus auf die Fälle. Alt + 5: Fokus auf die Statistik. Alt + 6: Fokus auf die Suche. Alt + 7: Fokus auf die User Einstellungen. Alt + A: Fokus
+                auf den ersten Prozess. Alt + W: Fokus auf die erste Aufgabe. Alt + Q: Fokus auf den ersten Fall. Tab: Sequentielles Durchlaufen von Elementen. Esc: Erweiterte Widgets schließen/Kontext Menüs schließen. Enter: Auswahl bestätigen'
             DashboardImportDetails:
               FileInfomation: Informations sur le fichier
               ImportPrivate: Importer un tableau de bord privé
