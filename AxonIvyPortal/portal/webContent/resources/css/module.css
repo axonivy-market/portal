@@ -655,6 +655,8 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   line-height: 1.4rem;
   box-sizing: content-box;
   text-align: left;
+  color: var(--text-color);
+  width: 87%;
 }
 
 .case-detail-header {
@@ -1915,10 +1917,15 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   align-items: center;
   clear: both;
   float: left;
-  padding: 10px 18px 10px 20px;
+  padding: 10px 18px 10px 0px;
   margin: 0;
   width: 160px;
   box-sizing: content-box;
+  color: var(--text-color);
+}
+
+.options-panel .option-item.color-destroy, .action-steps-panel .action-step-item.color-destroy, .ui-menu-list .ui-menuitem > .ui-menuitem-link.color-destroy > span {
+  color: var(--ivy-tertinary-color-red-medium) !important;
 }
 
 .options-panel .ui-state-disabled.option-item {
@@ -3210,6 +3217,12 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
     -webkit-box-orient: vertical;
     margin: auto;
   }
+  
+  .primary-color-light-button {
+  background: var(--portal-accessibility-bg-color) !important; 
+  color: var(--ivy-primary-color) !important;
+  font-weight: 600;
+}
 
   .line-clamp-text-5 {
     overflow:hidden;
@@ -3239,6 +3252,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   text-overflow: ellipsis;
   white-space: normal;
   padding-right: .5em;}
+
+.ui-dialog .ui-dialog-titlebar > .ui-dialog-title {
+  padding-left: 7px;
+}
 
 .process-widget .process-input-switch-selection,
 .ui-inputswitch.ui-widget.ui-widget-content.process-input-switch-selection.ui-inputswitch-checked {
@@ -4224,6 +4241,10 @@ body .ui-widget-header.portal-breadcrumb .ui-menuitem-link.ui-state-disabled .ui
   overflow: hidden;
 }
 
+body .ui-menu .ui-menu-list .ui-menuitem .ui-menuitem-link .ui-menuitem-icon {
+  color: var(--text-color);
+}
+
 body .portal-breadcrumb.ui-breadcrumb ul li {
   line-height: 2rem;
 }
@@ -4810,7 +4831,8 @@ body .process-compact-mode > .ui-fieldset-content {
 }
 
 .image-view-form .start-process > button > span, .image-process-actions > button > span{
-  color: var(--ivy-primary-light-color);
+  color: var(--primary-color);
+  font-weight: 500;
 }
 
 .image-view-form .start-process-image-widget {
@@ -4851,16 +4873,19 @@ body .process-compact-mode > .ui-fieldset-content {
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-container {
   width: inherit;
   position: relative;
-  height: 100% !important;
-  max-height: 296px;
+  height: 45% !important;
+  max-height: 155px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-image {
-  max-height: 296px;
-  height: 0px;
+  height: 135%;
+}
+
+.card.widget-preview .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-image {
+  height: 185%;
 }
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .overlay-title {
@@ -4877,14 +4902,17 @@ body .process-compact-mode > .ui-fieldset-content {
   top: 0px;
   z-index: 1;
 }
-
+.card.widget-preview .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form {
+  padding-top: 17%;
+}
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form {
   min-height: 25%;
-  height: 100%;
+  height: 75%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-top: 5%;
+  bottom: -40px;
+  padding-bottom: 40px;
 }
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description,
@@ -4892,6 +4920,17 @@ body .process-compact-mode > .ui-fieldset-content {
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .more-information-image-widget {
   position: static;
   top: 0px;
+}
+
+body.light .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-image.default-image-mode-process,
+body.dark .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-image.default-image-mode-process-dark {
+  display: block;
+  padding: 8px;
+}
+
+body.dark .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-image.default-image-mode-process,
+body.light .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-image.default-image-mode-process-dark {
+  display: none;
 }
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description {
@@ -4996,13 +5035,21 @@ body .process-compact-mode > .ui-fieldset-content {
 }
  
 .layout-topbar-light .image-process-item .default-process-image, 
-.layout-topbar-dark .image-process-item .default-process-image-dark {
+.layout-topbar-dark .image-process-item .default-process-image-dark,
+.layout-topbar-light .image-process-item-container > .default-image-mode-process,
+.layout-topbar-dark .image-process-item-container > .default-image-mode-process-dark,
+.layout-topbar-light .card.widget-preview.widget-preview--process .image-process-item-container > .default-image-mode-process,
+.layout-topbar-dark .card.widget-preview.widget-preview--process .image-process-item-container > .default-image-mode-process-dark {
   display: block;
   padding: 8px;
 }
 
 .layout-topbar-dark .image-process-item .default-process-image, 
-.layout-topbar-light .image-process-item .default-process-image-dark {
+.layout-topbar-light .image-process-item .default-process-image-dark,
+.layout-topbar-dark .image-process-item-container > .default-image-mode-process,
+.layout-topbar-light .image-process-item-container > .default-image-mode-process-dark,
+.layout-topbar-dark .card.widget-preview.widget-preview--process .image-process-item-container > .default-image-mode-process,
+.layout-topbar-light .card.widget-preview.widget-preview--process .image-process-item-container > .default-image-mode-process-dark {
   display: none;
 }
 
@@ -5153,7 +5200,8 @@ body .process-compact-mode > .ui-fieldset-content {
 }
 
 .dashboard-configuration__export-button-form .export-dashboard {
-  margin-left: 0.1em;
+  left: -6px;
+  color: var(--text-color);
 }
 
 .dashboard-configuration__content {
@@ -5391,7 +5439,7 @@ a.dashboard-action-container label {
   border-radius: 50%;
 }
 
-.ui-external-link-preview-image-panel {
+.ui-external-link-preview-image-panel, .ui-dashboard-upload-file-panel {
   width: 100%;
   border: 1px solid var(--process-list-item-border-color);
   background-color: var(--process-list-item-background-color);
@@ -5401,7 +5449,7 @@ a.dashboard-action-container label {
   display: flex;
 }
 
-.ui-external-link-preview-image-panel > .ui-external-link-preview-image-label {
+.ui-external-link-preview-image-panel > .ui-external-link-preview-image-label, .ui-dashboard-upload-file-panel > .ui-dashboard-upload-file-label {
   width: 42%;
   display: block;
   text-align: center;
@@ -5410,7 +5458,7 @@ a.dashboard-action-container label {
   top: 12px;
 }
 
-.ui-external-link-preview-image-label > #ui-external-link-preview-image-icon {
+.ui-external-link-preview-image-label > #ui-external-link-preview-image-icon, .ui-dashboard-upload-file-label > #ui-dashboard-upload-file-icon {
   width: 100%;
   font-size: 2em;
   top: -20px;
@@ -5442,14 +5490,14 @@ a.dashboard-action-container label {
 
 /* ============ DASHBOARD ======== */
 body .ui-dialog.ui-widget.import-dashboard-dialog{
-  min-width: 450px;
-  max-width: 1000px;
+  min-width: 10rem;
+  max-width: 40rem;
 }
 
 @media screen and (max-width: 40em) {
   body .ui-dialog.ui-widget.import-dashboard-dialog {
     min-width: 85vw;
-    max-width: 95%;
+    max-width: 35rem;
   }	
 }
 
@@ -5506,7 +5554,8 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
   width: 100%;
 }
 
-body .ui-link.ui-sidestep-action {
+/* =================== PORTAL BUTTON ====================== */
+body .ui-link.ui-sidestep-action, .action-container > .ui-sidestep-action {
   color: var(--sidestep-action-text-color);
 }
 
@@ -5526,6 +5575,11 @@ body .ui-button.ui-widget.ui-no-rounded-button-process-page {
 
 body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-button {
   color: var(--widget-header-icon);
-  
 }
 
+/* =================== PORTAL BUTTON END ====================== */
+
+/* =================== MENU ITEMS ====================== */
+.ui-menu-items, body .ui-menu .ui-menu-list .ui-menuitem:not(:last-child), .action-step-item:not(:last-child) {
+  border-bottom: 1px solid var(--user-menu-items-border-color);
+}

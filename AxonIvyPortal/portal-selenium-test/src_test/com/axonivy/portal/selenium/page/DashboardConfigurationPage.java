@@ -13,6 +13,7 @@ import org.openqa.selenium.WebElement;
 import com.axonivy.portal.selenium.common.FileHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.DragAndDropOptions;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class DashboardConfigurationPage extends TemplatePage {
@@ -40,12 +41,11 @@ public class DashboardConfigurationPage extends TemplatePage {
     waitForDashboardConfigurationTypeSelectionAppear();
     return $("a[id$='public-dashboard-type']");
   }
-
-  public DashboardModificationPage openEditPublicDashboardsPage() {
-    selectPublicDashboardType();
-    $("button[id$='dashboard-modification-component:dashboard-table:0:edit']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition());
-    return new DashboardModificationPage();
+  
+  public SelenideElement getDashboardConfigurationActionMenu() {
+    $("button[id*='dashboard-modification-component:dashboard-table:0:dashboard-configuration-action-button']").shouldBe(appear, DEFAULT_TIMEOUT)
+    .shouldBe(getClickableCondition()).click();
+    return $$("div[id$='dashboard-configuration-action-menu']").filter(Condition.appear).first();
   }
 
   public void selectPublicDashboardType() {
@@ -62,9 +62,28 @@ public class DashboardConfigurationPage extends TemplatePage {
 
   public DashboardModificationPage openEditPrivateDashboardsPage() {
     selectPrivateDashboardType();
-    $("button[id$='dashboard-modification-component:dashboard-table:0:edit']").shouldBe(appear, DEFAULT_TIMEOUT)
-        .shouldBe(getClickableCondition()).click();
     return new DashboardModificationPage();
+  }
+  
+  public DashboardModificationPage openEditPrivateDashboardPage(String buttonName) {
+    selectPrivateDashboardType();
+    clickButtonOnDashboardConfigurationActionMenu(buttonName);
+    return new DashboardModificationPage();
+  }
+  
+  public DashboardModificationPage openEditPublicDashboardsPage(String buttonName) {
+    selectPublicDashboardType();
+    clickButtonOnDashboardConfigurationActionMenu(buttonName);
+    return new DashboardModificationPage();
+  }
+  
+  public DashboardModificationPage openEditPublicDashboardsPage() {
+    selectPublicDashboardType();
+    return new DashboardModificationPage();
+  }
+  
+  public void clickButtonOnDashboardConfigurationActionMenu(String buttonName) {
+    getDashboardConfigurationActionMenu().$$("span").filter(Condition.text(buttonName)).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void openCreatePublicDashboardMenu() {
@@ -236,12 +255,12 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public NewDashboardPage backToHomePage() {
-    $("[id$='back-to-home-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("span[class*='si si-house-chimney-2']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     return new NewDashboardPage();
   }
 
   public NewDashboardPage backToHomePageBottom() {
-    $("[id$='back-to-home-button']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    $("span[class*='si si-house-chimney-2']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
     return new NewDashboardPage();
   }
 
@@ -317,8 +336,8 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public void reorderPrivateDashboard(String fromDashboardName, String toDashboardName) {
-    var toRow = findPrivateDashboardRowByName(toDashboardName).$("i.si-move-expand-vertical");
-    var fromRow = findPrivateDashboardRowByName(fromDashboardName).$("i.si-move-expand-vertical");
+    var toRow = findPrivateDashboardRowByName(toDashboardName).$("i.si-navigation-menu");
+    var fromRow = findPrivateDashboardRowByName(fromDashboardName).$("i.si-navigation-menu");
     dragAndDropTo(toRow, fromRow);
   }
 
@@ -328,8 +347,8 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public void reorderPublicDashboard(String fromDashboardName, String toDashboardName) {
-    var toRow = findPublicDashboardRowByName(toDashboardName).$("i.si-move-expand-vertical");
-    var fromRow = findPublicDashboardRowByName(fromDashboardName).$("i.si-move-expand-vertical");
+    var toRow = findPublicDashboardRowByName(toDashboardName).$("i.si-navigation-menu");
+    var fromRow = findPublicDashboardRowByName(fromDashboardName).$("i.si-navigation-menu");
     dragAndDropTo(toRow, fromRow);
   }
 
@@ -367,7 +386,8 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public void cancelCreateDashboard() {
-    $("a[id$='dashboard-creation-component:dashboard-detail-close-button']").shouldBe(getClickableCondition()).click();
+    $("div[id$='dashboard-creation-details-dialog']").shouldBe(appear, DEFAULT_TIMEOUT).
+    $("div[class*='ui-corner-top']").shouldBe(appear, DEFAULT_TIMEOUT).$$("a").filter(Condition.attribute("aria-label", "Close")).first().click();
     closeAddDashboardDialog();
   }
 
@@ -398,13 +418,13 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public SelenideElement getShareDashboardDialog() {
-    $("button[id$=':share-dashboard']").click();
-    $("div[id$=':share-dashboard-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    clickButtonOnDashboardConfigurationActionMenu("Share");
     return $("div[id$=':share-dashboard-dialog']");
   }
 
   public void cancelImportDashboard() {
-    $("a[id$=':dashboard-import-close-button']").shouldBe(getClickableCondition()).click();
+    $("div[id$='dashboard-import-dialog']").shouldBe(appear, DEFAULT_TIMEOUT).
+    $("div[class*='ui-corner-top']").shouldBe(appear, DEFAULT_TIMEOUT).$$("a").filter(Condition.attribute("aria-label", "Close")).first().click();
     closeAddDashboardDialog();
   }
 
