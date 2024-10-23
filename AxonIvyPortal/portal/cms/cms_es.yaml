@@ -464,7 +464,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     display: Mostrar
     displayAsMenuItem: Mostrar como opción de menú
     displayName: Nombre de pantalla
-    dragAndDrop: 'Arrastre y suelte una imagen o '
+    dragAndDropFile: 'Arrastre y suelte un archivo o '
+    dragAndDropImage: 'Arrastre y suelte una imagen o '
     edit: Editar
     errorAjaxMessage: Error general
     errorFileUploadSize: El tamaño deberá ser inferior a {0}
@@ -531,10 +532,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     processes: Procesos
     public: Público
     remove: Retirar
+    removeSelection: Eliminar selección
     reorder: Reordenar
     requiredFieldMessage: este campo es obligatorio
     reserve: Reservar
     reset: Reiniciar
+    resetFilters: Restablecer filtros
     resetSettingHeaderText: ¿Resetear la configuración?
     resetTaskHeaderText: ¿Reiniciar esta tarea?
     resetToDefaultMessage: Esta operación no se puede deshacer. ¿Estás seguro de que quieres restablecer la configuración por defecto?
@@ -791,6 +794,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardIcon: Icono del panel de control
       dashboardPermission: Permiso de tablero
       dashboardTitle: Título del tablero
+      deleteDashboardMessage: ¿Está seguro de que desea eliminar el "{0}" cuadro de mandos?
       editDashboard: Editar tablero
       manageDashboard: Administrar tablero
       removeDashboardHeader: Borrar el tablero "{0}"
@@ -1287,7 +1291,7 @@ Dialogs:
               noResultsText: No hay resultados.
             dashboard:
               PortalDashboardConfiguration:
-                NewDashboard: Nuevo panel de control
+                NewDashboard: Añadir un nuevo cuadro de mandos
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: ¡No se pudo encontrar el proceso vinculado!
@@ -1331,6 +1335,7 @@ Dialogs:
         component:
           ShareLinkDialog:
             CopyLink: Copiar enlace
+            Link: Enlace
             LinkCopied: ¡Enlace copiado
         dashboard:
           component:
