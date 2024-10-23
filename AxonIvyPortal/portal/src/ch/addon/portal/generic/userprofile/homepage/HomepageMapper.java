@@ -11,7 +11,7 @@ public class HomepageMapper {
   public static List<Homepage> toHomepages(List<SubMenuItem> menuItems) {
     return menuItems.stream().map(HomepageMapper::toHomepage).collect(Collectors.toList());
   }
-
+  
   public static Homepage toHomepage(SubMenuItem menuItem) {
     Homepage homepage = new Homepage();
     homepage.setName(menuItem.getName());
@@ -21,8 +21,9 @@ public class HomepageMapper {
       homepage.setType(HomepageType.PROCESS);
     } else if (menuItem.getMenuKind() == MenuKind.TASK) {
       homepage.setType(HomepageType.TASK);
-    } else if (menuItem.getMenuKind() == MenuKind.DASHBOARD_MENU_ITEM) {
-      homepage.setType(HomepageType.DASHBOARD_MENU_ITEM);
+      /*
+       * } else if (menuItem.getMenuKind() == MenuKind.DASHBOARD_MENU_ITEM) { homepage.setType(HomepageType.DASHBOARD);
+       */
     } else if (menuItem.getMenuKind() == MenuKind.CUSTOM) {
       homepage.setType(HomepageType.CUSTOM);
     } else {

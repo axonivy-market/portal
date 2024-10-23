@@ -103,7 +103,6 @@ public final class PortalNavigator extends BaseNavigator{
     String subMenuUrl = switch (menuKind) {
       case PROCESS -> PORTAL_PROCESS;
       case CASE -> PORTAL_CASE;
-      case DASHBOARD_MENU_ITEM -> PORTAL_DASHBOARD_PAGE;
       default -> StringUtils.EMPTY;
     };
     return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(subMenuUrl);
