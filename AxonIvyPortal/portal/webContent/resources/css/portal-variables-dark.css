@@ -18,6 +18,7 @@
   --cancel-button-background-color: var(--ivy-primary-color-grey-light);
   --cancel-button-state-hover-or-focus-background-color: var(--ivy-primary-color-grey-pale);
   --portal-button-color: var(--ivy-primary-color-white);
+  --saved-filter-button-background-color: var(--ivy-primary-color-grey-light);
   
   /* Color of secondary button */
   --button-secondary-bg-color: var(--ivy-primary-color-white);
@@ -79,6 +80,7 @@
   --filter-name-label-color: var(--ivy-primary-color-grey-medium);
   --filter-selection-container-group-border-color: var(--ivy-primary-color-grey-medium);
   --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-medium);
+  --widget-filter-background-color: var(--ivy-primary-color-grey-dark);
 
   /* Item in Widget List */
   --item-widget-background-color: var(--ivy-primary-color-grey-dark);
@@ -200,6 +202,7 @@
   --substituted-user-text-color: var(--ivy-primary-color-black);
   /* Awesome Icon Selection */
   --content-link-change-awesome-icon-color: var(--primary-color);
+  --select-awesome-icon-button-font-weight: bold;
   --selected-icon-bg-color: var(--ivy-portal-color-gray-dark);
   --icon-color: var(--ivy-primary-color-white);
   /* Start Notification */
@@ -293,6 +296,8 @@
   --place-holder-text-color: var(--ivy-primary-color-grey-medium);
   --text-tab-default-color: var(--ivy-primary-color-grey-medium);
   --no-item-icon-color: var(--ivy-primary-color-grey-light);
+  --user-menu-items-border-color: var(--ivy-portal-color-gray-dark);
+  
   /* Portal breadcrumb */
   --breadcrumb-background-color: transparent;
   --breadcrumb-home-icon-color: var(--primary-color);
@@ -347,4 +352,9 @@
   /* Confirmation dialog footer button*/
   --ui-leave-button-color: var(--ivy-primary-color-grey-dark);
 
+  /* Dashboard configuration*/
+  --dashboard-action-container-text-color: var(--ivy-primary-color-white);
+  --dashboard-action-container-border-color: var(--ivy-primary-color-grey-medium);
+  --dashboard-action-container-description-color: var(--ivy-primary-color-grey-medium);
+  --dashboard-icon-drag-drop-color: var(--ivy-primary-color-grey-dark);
 }

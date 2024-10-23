@@ -34,15 +34,23 @@
         </div>
         <div class="ui-g-12">
           <p:fileUpload id="dashboard-upload" chooseIcon="#{visibilityBean.generateButtonIcon('si si-touchpad-finger')}"
-            dragDropSupport="true" fileLimit="1"
+            dragDropSupport="true" fileLimit="1" widgetVar="dashboardUpload" style="display: none;"
             label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
             styleClass="dashboard-upload" mode="advanced"
             listener="#{managedBean.loadImportedFile}"
             allowTypes="/(\.|\/)(json)$/i"
             update="import-dashboard-form import-dashboard-dialog-message #{p:resolveFirstComponentWithId('footer-button-container', view).clientId}"
-            value="#{managedBean.importFile}" auto="true" 
+            value="#{managedBean.importFile}" auto="true" dropZone="dashboard-upload-file-panel"
             requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" oncomplete="PF('#{cc.attrs.importDialogId}').initPosition();">
           </p:fileUpload>
+          <p:outputPanel id="dashboard-upload-file-panel" styleClass="ui-dashboard-upload-file-panel" >
+              <span class="ui-dashboard-upload-file-label">
+              <i class="si si-file-code-upload-1" id="ui-dashboard-upload-file-icon" />
+              <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dragAndDropFile')}">
+              <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/uploadOneHere')}" onclick="PF('dashboardUpload').show();return false"/>
+              </p:outputLabel>
+              </span>
+          </p:outputPanel>
         </div>  
 
         <div class="ui-g-12">
@@ -51,10 +59,10 @@
       </h:panelGroup>
 
       <h:panelGroup styleClass="ui-g" rendered="#{managedBean.loaded and not managedBean.isError}">
-        <div class="ui-g-2 import-dashboard-label mb-2">
+        <div class="ui-g-3 import-dashboard-label mb-2">
           <p:outputLabel value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardImportDetails/FileInfomation')}" />
         </div>
-        <div class="ui-g-10 ui-fluid">
+        <div class="ui-g-9 ui-fluid">
           <h:outputText>#{managedBean.importFile.getFileName()} | #{managedBean.fileSize}</h:outputText>
         </div>
 
@@ -157,16 +165,11 @@
     <f:facet name="footer">
       <h:panelGroup layout="block" styleClass="u-text-align-right"
         id="footer-button-container">
-        <p:commandLink id="dashboard-import-close-button"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          onclick="PF('#{cc.attrs.importDialogId}').hide(); return false;" />
-        <p:spacer width="15" />
         <p:commandButton id="dashboard-detail-save-button"
-          disabled="#{!managedBean.loaded}"
+          disabled="#{!managedBean.loaded}" styleClass="w-full"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/CreateDashboard')}"
           actionListener="#{managedBean.createDashboard()}"
           process="import-dashboard-form" partialSubmit="true"
-          icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
           update="import-dashboard-form #{cc.attrs.componentToUpdate}"
           oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.attrs.importDialogId}').hide();}" />
       </h:panelGroup>

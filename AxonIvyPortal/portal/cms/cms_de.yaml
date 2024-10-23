@@ -463,7 +463,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     detail: Details
     display: Anzeigen
     displayName: Name anzeigen
-    dragAndDrop: 'Ziehen und Ablegen eines Bildes oder '
+    dragAndDropFile: 'Ziehen und Ablegen einer Datei oder '
+    dragAndDropImage: 'Ziehen und Ablegen eines Bildes oder '
     edit: Bearbeiten
     errorAjaxMessage: Es gibt einen allgemeinen Fehler!
     errorFileUploadSize: Die Dateigrösse muss kleiner als {0} sein.
@@ -530,11 +531,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     processes: Prozesse
     public: Öffentlich
     remove: Entfernen
+    removeSelection: Selektion entfernen
     reorder: Neu anordnen
     requiredFieldMessage: Dies ist ein Pflichtfeld
     reserve: Reservieren
     reset: Zurücksetzen
-    resetSettingHeaderText: Einstellung zurücksetzen
+    resetFilters: Filter zurücksetzen
+    resetSettingHeaderText: Einstellung zurücksetzen?
     resetTaskHeaderText: Diese Aufgabe zurücksetzen?
     resetToDefaultMessage: Dieser Vorgang kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie auf die Standard-Einstellungen zurücksetzen möchten?
     resetToStandardFilterHeaderText: Auf Standardfilter zurücksetzen?
@@ -793,6 +796,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardIcon: Dashboard-Symbol
       dashboardPermission: Dashboard Berechtigung
       dashboardTitle: Dashboard Titel
+      deleteDashboardMessage: Sind Sie sicher, dass Sie die "{0}" dashboard?
       editDashboard: Dashboard editieren
       manageDashboard: Dashboard verwalten
       removeDashboardHeader: Dashboard "{0}" entfernen
@@ -1289,7 +1293,7 @@ Dialogs:
               noResultsText: Es liegen keine Ergebnisse vor.
             dashboard:
               PortalDashboardConfiguration:
-                NewDashboard: Neues Dashboard
+                NewDashboard: Neues Dashboard hinzufügen
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
@@ -1333,6 +1337,7 @@ Dialogs:
         component:
           ShareLinkDialog:
             CopyLink: Link kopieren
+            Link: Link
             LinkCopied: Link kopiert
         dashboard:
           component:
