@@ -262,11 +262,12 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void openManageFiltersDialog() {
-    $("a[id*='case-case_1:filter-form-1']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("div#manage-filter").shouldBe(appear, DEFAULT_TIMEOUT).$("button").shouldBe(getClickableCondition()).click();
   }
 
   public void closeManageFilterDialog() {
-    $("a[id*='delete-saved-filter-form']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("div[id$='manage-filter-dialog']").shouldBe(appear, DEFAULT_TIMEOUT).$("a.ui-dialog-titlebar-close")
+        .shouldBe(appear, DEFAULT_TIMEOUT).click();
   }
 
   public ElementsCollection getSavedFilterItemsByFilterNameOnWidgetManagement() {

@@ -130,7 +130,7 @@
             actionListener="#{taskWidgetConfigurationFilterBean.updateWidgetFilterBeforeApply(widget)}"
             styleClass="Fright preview-button u-hidden-sm-down" icon="si si-check-1"
             update="predefined-filter configuration-filter-messages-panel"
-            oncomplete="closeFilterPanel(); if (args &amp;&amp; !args.validationFailed) { updateComponentOnPreviewCmd(); }" />
+            oncomplete="closeFilterPanelWithValidation(); if (args &amp;&amp; !args.validationFailed) { updateComponentOnPreviewCmd(); }" />
           <p:commandButton id="reset-filter" icon="si si-button-refresh-arrows"
             update="predefined-filter configuration-filter-messages-panel" process="predefined-filter" styleClass="Fright ui-button-secondary preview-button u-hidden-sm-down u-mar-right-5"
             actionListener="#{taskWidgetConfigurationFilterBean.resetFilter(widget)}"
@@ -138,7 +138,11 @@
             title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/TaskWidgetConfiguration/ResetFilter')}">
               <f:param name="skipValidator" value="true" />
           </p:commandButton>
-            
+          <p:commandLink id="cancel-filter" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+            styleClass="Fright u-mar-right-5 ui-overlaypanel-footer__cancel"
+            onclick="closeFilterPanel();return false;"
+            update="predefined-filter"
+            immediate="true" global="false"/> 
         </div>
       </div>
       <div class="ui-g-12 filter-area" >
