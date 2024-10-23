@@ -363,7 +363,7 @@ function highlightDashboardItem(menuId) {
 function activeMenuItemOnLeftMenu(menuId) {
   PF('main-menu').addMenuitem(menuId);
   let $selectedMenu = $("[id$='" + menuId + "']");
-  if (!$selectedMenu.hasClass('active-menuitem')) {
+  if (!$selectedMenu.hasClass('active-menuitem') && !$selectedMenu.siblings('.active-menuitem').length) {
     $selectedMenu.addClass('active-menuitem');
   }
 }
