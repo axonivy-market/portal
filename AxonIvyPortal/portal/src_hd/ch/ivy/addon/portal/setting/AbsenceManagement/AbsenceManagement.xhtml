@@ -9,12 +9,6 @@
     <ui:define name="pageContent">
 
       <h:form id="absences-management-form" styleClass="absences-management-form ">
-        <p:commandButton id="back-to-home-button"
-          styleClass="ui-button-flat ml-2"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"
-          icon="si si-arrow-left-1" actionListener="#{logic.backToHome}"
-          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}" />
-
         <div id="absences-management-container" class="ui-g absences-management-container">
           <div class="ui-g-12">
             <p:growl id="absences-management-info" showDetail="true" severity="info" for="absences-management-message" sticky="true" redisplay="false">
