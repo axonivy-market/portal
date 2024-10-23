@@ -38,6 +38,7 @@ import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -228,38 +229,73 @@ public class PortalMenuNavigator {
     String currentLanguage = UserUtils.getUserLanguage();
     List<SubMenuItem> subMenuItems = new ArrayList<>();
 
-    if(PermissionUtils.checkAccessFullProcessListPermission()) {
-      subMenuItems.add(new ProcessSubMenuItem());
-    }
+    // Add default submenu items based on permissions
+    addDefaultSubmenuItems(subMenuItems);
 
-    if(PermissionUtils.checkAccessFullCaseListPermission()) {
-      subMenuItems.add(new CaseSubMenuItem());
-    }
-    
+    // Add dashboard submenu items
     List<Dashboard> dashboardMenuItemList = DashboardUtils.getSubItemDashboards();
     for (Dashboard dashboard : dashboardMenuItemList) {
-      SubMenuItem item = new SubMenuItem();
-      String defaultTitle = dashboard.getTitle();
-      if (StringUtils.isBlank(dashboard.getIcon())) {
-        dashboard.setIcon(dashboard.getIsPublic() ? "si-network-share" : "si-single-neutral-shield");
-      }
-      item.icon = (dashboard.getIcon().startsWith("fa") ? "fa " : "si ") + dashboard.getIcon();
-      item.name =
-          dashboard.getTitles().stream()
-              .filter(name -> StringUtils.equalsIgnoreCase(name.getLocale().toString(), currentLanguage)
-                  && StringUtils.isNotBlank(name.getValue()))
-              .map(DisplayName::getValue).findFirst().orElse(defaultTitle);
-      item.menuKind = MenuKind.DASHBOARD_MENU_ITEM;
-      item.label = item.getName();
+      // Check if it's the task dashboard
       if (DashboardUtils.DASHBOARD_TASK_TEMPLATE_ID.equalsIgnoreCase(dashboard.getId())) {
-        item.label = ApplicationMultiLanguageAPI.getCmsValueByUserLocale("/ch.ivy.addon.portalkit.ui.jsf/common/tasks");
-      }
-      item.link = PortalNavigator.getSubMenuItemUrlOfCurrentApplication(MenuKind.DASHBOARD_MENU_ITEM);
-      subMenuItems.add(item);
+        // Only add the task dashboard if the user has permission
+        if (PermissionUtils.checkAccessFullTaskListPermission()) {
+          subMenuItems.add(convertDashboardToSubMenuItem(dashboard, currentLanguage));
+        }
+        continue; // Skip adding this dashboard if no permission
+        }
+
+      // Add other dashboards
+        subMenuItems.add(convertDashboardToSubMenuItem(dashboard, currentLanguage));
     }
 
     return subMenuItems;
-  }
+}
+
+
+private static void addDefaultSubmenuItems(List<SubMenuItem> subMenuItems) {
+    // Add Process submenu item if the user has permission
+    if (PermissionUtils.checkAccessFullProcessListPermission()) {
+        subMenuItems.add(new ProcessSubMenuItem());
+    }
+
+    // Add Case submenu item if the user has permission
+    if (PermissionUtils.checkAccessFullCaseListPermission()) {
+        subMenuItems.add(new CaseSubMenuItem());
+    }
+}
+
+private static SubMenuItem convertDashboardToSubMenuItem(Dashboard dashboard, String currentLanguage) {
+    SubMenuItem item = new SubMenuItem();
+    String defaultTitle = dashboard.getTitle();
+
+    // Set default icon if it's blank
+    if (StringUtils.isBlank(dashboard.getIcon())) {
+        dashboard.setIcon(dashboard.getIsPublic() ? "si-network-share" : "si-single-neutral-shield");
+    }
+
+    // Set icon with the appropriate prefix
+    item.icon = (dashboard.getIcon().startsWith("fa") ? "fa " : "si ") + dashboard.getIcon();
+
+    // Set the name of the submenu item based on the current language or use default title
+    item.name = dashboard.getTitles().stream()
+        .filter(name -> StringUtils.equalsIgnoreCase(name.getLocale().toString(), currentLanguage)
+            && StringUtils.isNotBlank(name.getValue()))
+        .map(DisplayName::getValue).findFirst().orElse(defaultTitle);
+
+    // Set other properties
+    item.menuKind = MenuKind.DASHBOARD_MENU_ITEM;
+    item.label = item.getName();
+    item.link = UrlUtils.getServerUrl() + PortalNavigator.getDashboardAsMenuPageUrl(dashboard.getId());
+
+    // Special case for a specific dashboard ID
+    if (DashboardUtils.DASHBOARD_TASK_TEMPLATE_ID.equalsIgnoreCase(dashboard.getId())) {
+        item.label = ApplicationMultiLanguageAPI.getCmsValueByUserLocale(
+            "/ch.ivy.addon.portalkit.ui.jsf/common/tasks");
+    }
+
+    return item;
+}
+
 
   private static List<SubMenuItem> getCustomSubMenuItemList() {
     List<SubMenuItem> subMenuItems = new ArrayList<>();
