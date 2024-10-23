@@ -156,7 +156,7 @@ public class MenuView implements Serializable {
   }
 
   private MenuElement buildDashboardMenuItem(Dashboard singleDashboard, int menuIndex) {
-    String dashboardLink = getDefaultPortalStartUrl();
+    String dashboardLink = UrlUtils.getServerUrl() + PortalNavigator.getDashboardAsMenuPageUrl(singleDashboard.getId());
     String currentLanguage = UserUtils.getUserLanguage();
     String defaultTitle = singleDashboard.getTitle();
     String title = singleDashboard.getTitles().stream()
