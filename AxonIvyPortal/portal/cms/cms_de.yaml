@@ -23,6 +23,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     editAbsence: Abwesenheiten bearbeiten
     from: Von
     noDeputy: Kein Stellvertreter
+    noPermissionToSeeThisArea: Sie haben nicht die erforderliche Erlaubnis, dieses Gebiet zu sehen.
     period: Zeitraum
     personalTaskDuringAbsenceDeputies: Vertretungen für persönlich zugewiesene Aufgaben während der Abwesenheit
     personalTaskPermanentDeputies: Ständige Stellvertreter für persönlich zugewiesene Aufgaben

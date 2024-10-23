@@ -21,6 +21,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     editAbsence: Edit absence
     from: From
     noDeputy: No substitute
+    noPermissionToSeeThisArea: You do not have the required permission to see this area.
     period: Period
     personalTaskDuringAbsenceDeputies: Substitutes for personally assigned tasks during the absence
     personalTaskPermanentDeputies: Permanent substitutes for personally assigned tasks
