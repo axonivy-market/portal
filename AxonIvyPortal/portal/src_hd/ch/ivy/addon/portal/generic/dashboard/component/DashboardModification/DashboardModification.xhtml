@@ -45,7 +45,7 @@
             <h:panelGroup layout="block">
                 <p:commandButton id="dashboard-configuration-action-button" icon="fa fa-ellipsis-h" styleClass="rounded-button icon-more-menu-button #{buttonStyle} ui-no-rounded-button-process-page mr-3"
                      type="button"/>
-                <p:menu id="dashboard-configuration-action-menu" styleClass="w-12rem" overlay="true" trigger="dashboard-configuration-action-button" my="right top" at="right bottom">
+                <p:menu id="dashboard-configuration-action-menu" styleClass="w-13rem" overlay="true" trigger="dashboard-configuration-action-button" my="right top" at="right bottom">
                     <p:menuitem id="edit" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(dashboard)}"
                         icon="si si-graphic-tablet-drawing-pen" styleClass="dashboard-configuration-action-menu-icon" update="#{cc.clientId}:configuration-dashboard-detail-component:dashboard-detail-form"
                         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" oncomplete="PF('configuration-dashboard-detail-dialog').show()"
