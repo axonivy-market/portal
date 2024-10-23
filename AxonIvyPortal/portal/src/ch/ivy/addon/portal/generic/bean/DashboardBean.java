@@ -107,7 +107,8 @@ public class DashboardBean implements Serializable {
       initShareDashboardLink(selectedDashboard);
       // can not find dashboard by dashboard id session in view mode
       if (StringUtils.isBlank(selectedDashboardId)
-          || (!selectedDashboardId.equalsIgnoreCase(selectedDashboard.getId()) && dashboards.size() > 1)) {
+          || (!selectedDashboardId.equalsIgnoreCase(selectedDashboard.getId())
+              && DashboardUtils.getDashboardsWithoutMenuItem().size() > 1)) {
         storeDashboardInSession(selectedDashboard.getId());
       }
       if (isReadOnlyMode) {
