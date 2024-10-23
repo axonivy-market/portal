@@ -78,7 +78,7 @@ public class DashboardSupportMultiLanguageTest extends BaseTest {
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage2 = new DashboardConfigurationPage();
 
-    DashboardModificationPage modificationPage = configurationPage2.openEditPublicDashboardsPage();
+    DashboardModificationPage modificationPage = configurationPage2.openEditPublicDashboardsPage("Bearbeiten");
     SelenideElement dashboard = modificationPage.getDashboardRowByName(updatedName);
     dashboard.shouldBe(Condition.appear);
   }
@@ -118,7 +118,7 @@ public class DashboardSupportMultiLanguageTest extends BaseTest {
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage2 = new DashboardConfigurationPage();
 
-    DashboardModificationPage modificationPage = configurationPage2.openEditPrivateDashboardsPage();
+    DashboardModificationPage modificationPage = configurationPage2.openEditPrivateDashboardPage("Bearbeiten");
     SelenideElement dashboard = modificationPage.getDashboardRowByName(updatedName);
     dashboard.shouldBe(Condition.appear);
   }
