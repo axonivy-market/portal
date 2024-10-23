@@ -85,11 +85,7 @@
           <div class="ui-g-12 ui-md-12 ui-lg-1 ui-xl-3"></div>
         </h:panelGroup>
       </h:form>
-
-      <script>
-        window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)};
-        window.currentProcessStep = 0;
-      </script>
+      <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="0" />
 
     </ui:define>
   </ui:composition>
