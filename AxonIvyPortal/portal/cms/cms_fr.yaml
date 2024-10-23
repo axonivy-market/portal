@@ -23,6 +23,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     editAbsence: Editer les absences
     from: Du
     noDeputy: Aucun substitut
+    noPermissionToSeeThisArea: Vous n'avez pas l'autorisation requise pour visiter cette zone.
     period: Période
     personalTaskDuringAbsenceDeputies: Remplacer les tâches assignées personnellement pendant l'absence
     personalTaskPermanentDeputies: Remplacement permanent des tâches confiées personnellement

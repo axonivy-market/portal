@@ -9,12 +9,6 @@
     <ui:define name="pageContent">
 
       <h:form id="absences-management-form" styleClass="absences-management-form ">
-        <p:commandButton id="back-to-home-button"
-          styleClass="ui-button-flat ml-2"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"
-          icon="si si-arrow-left-1" actionListener="#{logic.backToHome}"
-          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}" />
-
         <div id="absences-management-container" class="ui-g absences-management-container">
           <div class="ui-g-12">
             <p:growl id="absences-management-info" showDetail="true" severity="info" for="absences-management-message" sticky="true" redisplay="false">
@@ -151,13 +145,16 @@
 
               <div class="ui-g-6 ui-lg-6 ui-md-12">
                 <!-- Deputy setting card ============ -->
-                <div id="deputy-setting" jsf:rendered="#{absenceManagementBean.canReadSubstitute(data.selectedAbsenceUser)}">
+                <div id="deputy-setting" >
                   <div class="setting-header ui-g-12 u-no-padding-bottom">
                     <h3>#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/definedDeputies' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myDeputies')}</h3>
                   </div>
                   <div id="username-deputy" class="ui-g-12 u-no-padding-top pl-0">
+                    <div class="ui-g-12 deputy-no-permission" jsf:rendered="#{!absenceManagementBean.canReadSubstitute(data.selectedAbsenceUser)}">
+                      <i class="si si-view-off" /> #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noPermissionToSeeThisArea")}
+                    </div>
                     <div class="ui-g-12 pl-0">
-                      <p:dataTable id="substitute-table"
+                      <p:dataTable id="substitute-table" rendered="#{absenceManagementBean.canReadSubstitute(data.selectedAbsenceUser)}"
                         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
                         styleClass="substitute-table" reflow="true" value="#{data.deputyRoles}" var="deputyRole"
                         paginator="true" rows="4" paginatorAlwaysVisible="false" paginatorPosition="bottom" pageLinks="3"
@@ -194,13 +191,17 @@
                 <!-- END OF Deputy setting card -->
 
                 <!-- Deputy-For setting card -->
-                <div id="deputy-for-container" class="ui-g-12" jsf:rendered="#{absenceManagementBean.substitutionCapable}">
+                <div id="deputy-for-container" class="ui-g-12" >
                   <div class="setting-header ui-g-12 u-no-padding-bottom pl-0">
                     <h3>#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/selectedDeputyFor' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/deputyFor')}</h3>
                   </div>
 
+                  <div class="ui-g-12 pl-0 substitute-no-permission" jsf:rendered="#{!absenceManagementBean.substitutionCapable}" >
+                      <i class="si si-view-off" /> #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noPermissionToSeeThisArea")}
+                  </div>
                   <div class="ui-g-12 u-no-padding-bottom pl-0">
                     <p:dataTable id="substitution-table"
+                      rendered="#{absenceManagementBean.substitutionCapable}"
                       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
                       styleClass="substitution-table ui-g-12 u-no-padding-top pl-0"
                       reflow="true"

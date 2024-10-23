@@ -3344,7 +3344,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   white-space: normal;
   padding-right: .5em;}
 
-.ui-dialog .ui-dialog-titlebar > .ui-dialog-title {
+.ui-dialog .ui-dialog-titlebar > span[id*=':share-dashboard-dialog_title'], span[id*=':configuration-dashboard-detail-dialog_title'] {
   padding-left: 7px;
 }
 

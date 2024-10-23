@@ -23,8 +23,8 @@
           </f:facet>
         </ic:com.axonivy.portal.components.UserSelection>
 
-        <p:commandButton id="add-deputy-button" styleClass="add-deputy-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
-          disabled="#{data.selectedDeputy == null}" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}" actionListener="#{logic.addDeputy()}" global="false"
+        <p:commandButton id="add-deputy-button" styleClass="add-deputy-button px-2" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
+          disabled="#{data.selectedDeputy == null}" actionListener="#{logic.addDeputy()}" global="false"
           update="error-message selected-deputy-fieldset" ignoreAutoUpdate="true" />
       </h:panelGroup>
 
