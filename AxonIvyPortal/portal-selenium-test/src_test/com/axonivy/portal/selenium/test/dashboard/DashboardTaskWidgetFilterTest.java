@@ -193,6 +193,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Shipment date", FilterOperator.BETWEEN);
     taskWidget.inputValueOnLatestFilter(FilterValueType.DATE_BETWEEN, "01/01/2024","12/12/2024");
+    taskWidget.clickOnWidgetFilterHeader();
     taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(2));
   }

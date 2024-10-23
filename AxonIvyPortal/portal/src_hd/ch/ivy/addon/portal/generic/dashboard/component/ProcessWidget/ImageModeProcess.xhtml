@@ -8,7 +8,7 @@
 
   <h:panelGroup layout="block" styleClass=" widget-content image-process-item widget-height-100" rendered="#{not empty process}" >
     <div class="card-item card image-widget-mode js-image-widget-mode ui-g-12 u-padding-0 ">
-      <div class="image-process-item-container js-image-process-item-container ui-process-image-mode">
+      <div class="image-process-item-container js-image-process-item-container">
         <h:form id="image-view-action-group-form" styleClass="image-view-action-group-form">
           <ic:ch.ivy.addon.portalkit.component.process.ProcessItemAction id="image-process-action-component" process="#{process}"
             canModify="#{!isInConfiguration and !isReadOnlyMode}"
@@ -20,20 +20,26 @@
             componentToUpdateOnDeleteProcess="remove-widget-dialog"
             outlinedButtonStyle="false"
             hideActionButton="#{isInConfiguration}"
+            isInConfiguration="#{isInConfiguration}"
+            isReadOnlyMode="#{isReadOnlyMode}"
             isDashboardProcessWidget="true"
             isInProcessList="false"/>
         </h:form>
 
         <h:panelGroup rendered="#{isDefaultProcessImage}">
-          <img class="image-process-item-image"
+          <img class="image-process-item-image default-image-mode-process"
             alt="#{process.getName()}" src="#{process.imageUrl}" />
+           <p:graphicImage 
+              styleClass="image-process-item-image default-image-mode-process-dark"
+              alt="#{process.getName()}"
+              name="#{process.imageUrl}" srcset="#{process.defaultImageDarkLink}"/>
         </h:panelGroup>
         <p:graphicImage rendered="#{!isDefaultProcessImage}"
           cache="true" styleClass="image-process-item-image"
           alt="#{process.getName()}" library="ivy-cms"
           name="#{process.imageUrl}" />
       </div>
-
+    
      <h:form id="process-item" target="#{dashboardProcessBean.targetToStartProcess(process)}" styleClass="image-view-form #{isExternalLink ? 'is-external-link' : ''}">
             <div class="process-name js-process-start-list-item-name">
               <h:outputText id="process-item-name" value="#{process.getName()}" styleClass=" process-image-view-name" />
@@ -53,15 +59,6 @@
             id="start-button" actionListener="#{dashboardProcessBean.startProcess(process)}" icon="si si-arrow-right-1"
             ajax="#{!isExternalLink}" iconPos="right"
             disabled="#{!isReadOnlyMode or isInConfiguration}" />
-          <div class="more-information-wrapper" >
-            <p:link id="more-information"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}"
-              styleClass="process-more-info-link"
-              href="#{dashboardProcessBean.getProcessInformationPageUrl(process)}"
-              disabled="#{!isReadOnlyMode or isInConfiguration}"
-              rendered="#{dashboardProcessBean.isShowInformationLink(process) and !isExternalLink and !isCaseMap}"
-              />
-          </div>
         </div>
         
       </h:form>
