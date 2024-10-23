@@ -79,7 +79,6 @@ public class HomepageUtils {
     if (homepages.contains(homepage)) {
       Homepage seletedHomepage = homepages.get(homepages.indexOf(homepage));
       adjustHomepageStartLink(seletedHomepage);
-      Ivy.log().error(seletedHomepage.getLink());
       return seletedHomepage;
     } else {
       return homepage;

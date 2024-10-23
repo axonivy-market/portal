@@ -276,7 +276,7 @@ public class DashboardUtils {
 
   public static List<Dashboard> getSubItemDashboards() {
     var dashboards = collectDashboards();
-    return dashboards.stream().filter(dashboard -> !dashboard.getIsMenuItem()).toList();
+    return dashboards.stream().filter(dashboard -> dashboard.getIsMenuItem()).toList();
   }
 
 }
