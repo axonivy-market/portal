@@ -56,7 +56,7 @@
 
   <h:panelGroup id="#{cc.attrs.componentId}-label-panel" layout="block"
     rendered="#{not empty cc.attrs.label and !cc.attrs.floatingLabel}"
-    styleClass="#{cc.attrs.labelPanelStyleClass}">
+    styleClass="#{cc.attrs.labelPanelStyleClass} ui-g-6 pl-0">
     <p:outputLabel id="#{cc.attrs.componentId}-label" value="#{cc.attrs.label}" for="#{cc.attrs.componentId}"
       styleClass="#{cc.attrs.labelStyleClass}" />
   </h:panelGroup>
@@ -68,7 +68,7 @@
       for="#{cc.attrs.componentId}" rendered="#{cc.attrs.isRenderedMessage}"/>
   </h:panelGroup>
   <h:panelGroup id="#{cc.attrs.componentId}-autocomplete-panel" layout="block"
-    styleClass="user-selection-panel #{cc.attrs.autoCompletePanelStyleClass} #{cc.attrs.floatingLabel and ivyPrimefacesThemeResolver.sessionTheme.contains('serenity') ? 'md-inputfield' : ''} #{cc.attrs.floatingLabel and ivyPrimefacesThemeResolver.sessionTheme.contains('freya') ? 'ui-float-label' : ''}">
+    styleClass="ui-g-6 pl-0 user-selection-panel #{cc.attrs.autoCompletePanelStyleClass} #{cc.attrs.floatingLabel and ivyPrimefacesThemeResolver.sessionTheme.contains('serenity') ? 'md-inputfield' : ''} #{cc.attrs.floatingLabel and ivyPrimefacesThemeResolver.sessionTheme.contains('freya') ? 'ui-float-label' : ''}">
     <p:autoComplete id="#{cc.attrs.componentId}"
       value="#{cc.attrs.selectedUser}"
       scrollHeight="#{cc.attrs.scrollHeight}"

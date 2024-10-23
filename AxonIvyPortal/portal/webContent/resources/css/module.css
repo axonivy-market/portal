@@ -3184,9 +3184,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .absences-management-form .add-absence-panel {
-  text-align: right;
-/*   height equals with Selected user panel */
-  height: 48px;
+  position: relative;
+  top: 38px;
 }
 
 .deputy-for-next-absence {
