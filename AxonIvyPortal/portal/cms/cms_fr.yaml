@@ -460,7 +460,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     detail: Détails
     display: Présenter
     displayName: Affichez le nom
-    dragAndDrop: 'Glisser-déposer une image ou '
+    dragAndDropFile: 'Glisser-déposer un fichier ou '
+    dragAndDropImage: 'Glisser-déposer une image ou '
     edit: Editer
     errorAjaxMessage: Il y a une exception générale.
     errorFileUploadSize: La taille du fichier doit être inférieure à {0}.
@@ -527,10 +528,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     processes: Processus
     public: Publique
     remove: Retirer
+    removeSelection: Retirer la sélection
     reorder: Réorganiser
     requiredFieldMessage: Ce champ est obligatoire
     reserve: Enregistrer
     reset: Réinitialiser
+    resetFilters: Réinitialiser les filtres
     resetSettingHeaderText: Rétablir le réglage ?
     resetTaskHeaderText: Réinitialiser cette tâche ?
     resetToDefaultMessage: Cette opération ne peut pas être annulée. Êtes-vous sûr de vouloir rétablir les paramètres par défaut ?
@@ -787,6 +790,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardIcon: Icône du tableau de bord
       dashboardPermission: Autorisation du tableau de bord
       dashboardTitle: Titre du tableau de bord
+      deleteDashboardMessage: Êtes-vous sûr de vouloir supprimer le "{0}" tableau de bord?
       editDashboard: Modifier le tableau de bord
       manageDashboard: Gérer le tableau de bord
       removeDashboardHeader: Supprimez le tableau de bord "{0}".
@@ -1283,7 +1287,7 @@ Dialogs:
               noResultsText: Il n'y a pas de résultats.
             dashboard:
               PortalDashboardConfiguration:
-                NewDashboard: Nouveau tableau de bord
+                NewDashboard: Ajouter un nouveau tableau de bord
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
@@ -1332,6 +1336,7 @@ Dialogs:
             WelcomeText: Nous sommes ravis de vous compter parmi nous. Le portail Axon Ivy est votre porte d'entrée pour une expérience transparente et efficace. Que vous soyez un nouvel utilisateur qui explore les fonctionnalités ou un visiteur habituel, nous sommes là pour vous aider à chaque étape.
           ShareLinkDialog:
             CopyLink: Copier le lien
+            Link: Lien
             LinkCopied: Lien copié
           ToolList:
             Attributes: Attributs

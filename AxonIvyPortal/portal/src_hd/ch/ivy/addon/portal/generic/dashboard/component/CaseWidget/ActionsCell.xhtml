@@ -8,7 +8,8 @@
        update="#{cc.attrs.componentToUpdateCaseWidget}" onDestroyComplete="PF('destroy-case-dialog').show()"
        actionLinkStyleClass="ui-inplace-editor"
        stepsPanelStyleClass="js-case-side-steps-panel-#{cc.attrs.caseWidget.id}-#{rowIndex}"
-       isPreviewMode="#{cc.attrs.isPreviewMode}" />
+       isPreviewMode="#{cc.attrs.isPreviewMode}"
+       ariaLabel="#{ariaLabel}"/>
   </h:panelGroup>
   <h:panelGroup styleClass="action-container" rendered="#{cc.attrs.isAIResult}">
     <p:link disabled="#{!cc.attrs.isAIResult}" target="_blank"

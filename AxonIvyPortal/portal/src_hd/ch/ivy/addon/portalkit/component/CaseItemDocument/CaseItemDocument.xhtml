@@ -31,7 +31,7 @@
           <p:commandLink id="add-document-command"
             styleClass="case-details-document-add-link u-mar-right-10"
             rendered="#{caseTaskDocumentBean.canWriteDocument(case)}"
-            actionListener="#{data.setICase(case)}" oncomplete="PF('document-upload-dialog').show()">
+            onclick="PF('document-upload-dialog').show()">
             <span class="si si-common-file-add" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
