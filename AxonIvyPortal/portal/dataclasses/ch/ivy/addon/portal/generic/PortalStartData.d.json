@@ -120,5 +120,8 @@
   }, {
     "name" : "id",
     "type" : "String"
+  }, {
+    "name" : "isDashboardAsMenu",
+    "type" : "Boolean"
   } ]
 }
