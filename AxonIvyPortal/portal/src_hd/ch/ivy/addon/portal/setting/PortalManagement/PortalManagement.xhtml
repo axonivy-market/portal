@@ -10,11 +10,6 @@
 
       <h:panelGroup id="portal-management-container" styleClass=" ui-g">
         <p:messages redisplay="false" for="portal-management-messages-information" closable="false" id="portal-management-messages"/>
-        <p:commandButton id="back-to-home-button" styleClass="ui-button-flat ml-2 pt-0"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"
-          icon="si si-arrow-left-1"
-          actionListener="#{logic.backToHome}"
-          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"/>
         <div id="admin-settings-container" class="admin-settings-container ui-g-12">
           <div class="card ui-g admin-setting-card">
             <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="admin-setting-component" />
