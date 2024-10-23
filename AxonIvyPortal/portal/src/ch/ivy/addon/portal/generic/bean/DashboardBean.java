@@ -93,7 +93,7 @@ public class DashboardBean implements Serializable {
       menuView.updateDashboardCache(dashboards);
     }
 
-    if (CollectionUtils.isNotEmpty(DashboardUtils.getSubItemDashboards())) {
+    if (CollectionUtils.isNotEmpty(DashboardUtils.getDashboardsWithoutMenuItem())) {
       selectedDashboardId = readDashboardFromSession();
       currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
       selectedDashboard = dashboards.get(currentDashboardIndex);

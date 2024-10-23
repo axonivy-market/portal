@@ -233,7 +233,7 @@ public class PortalMenuNavigator {
     addDefaultSubmenuItems(subMenuItems);
 
     // Add dashboard submenu items
-    List<Dashboard> dashboardMenuItemList = DashboardUtils.getSubItemDashboards();
+    List<Dashboard> dashboardMenuItemList = DashboardUtils.collectMenuItemDashboard();
     for (Dashboard dashboard : dashboardMenuItemList) {
       // Check if it's the task dashboard
       if (DashboardUtils.DASHBOARD_TASK_TEMPLATE_ID.equalsIgnoreCase(dashboard.getId())) {
