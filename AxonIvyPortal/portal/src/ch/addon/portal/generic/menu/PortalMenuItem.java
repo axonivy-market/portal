@@ -25,6 +25,7 @@ public class PortalMenuItem extends DefaultMenuItem {
   public final static String SUB_MENU_ID_FORMAT = "sub-menu-item-%s";
   public final static String THIRD_PARTY_MENU_ID_FORMAT = "thirdparty-menu-item-%s";
   public final static String EXTERNAL_MENU_ID_FORMAT = "external-menu-item-%s";
+  public final static String DASHBOARD_MENU_ITEM_ID_FORMAT = "dashboard-menu-item-%s";
   public final static String MENU_CLASS_FORMAT = "%s %s";
   public final static String MENU_CLASS_SUFFIX = "-menu-js";
   
@@ -112,6 +113,8 @@ public class PortalMenuItem extends DefaultMenuItem {
       case CUSTOM:
         menuFormat = SUB_MENU_ID_FORMAT;
         break;
+      case DASHBOARD_MENU_ITEM:
+        menuFormat = DASHBOARD_MENU_ITEM_ID_FORMAT;
       case EXTERNAL_LINK:
         menuFormat = EXTERNAL_MENU_ID_FORMAT;
         break;

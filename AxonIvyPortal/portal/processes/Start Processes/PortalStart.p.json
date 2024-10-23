@@ -2282,22 +2282,28 @@
           "config" : {
             "conditions" : {
               "S60-f7" : "ch.addon.portal.generic.userprofile.homepage.HomepageUtils.isShowDashboard(in.#homepage, in.#isShowDashboard)",
+              "S60-f3" : "ch.addon.portal.generic.userprofile.homepage.HomepageUtils.isShowTaskDashboard(in.#homepage)",
               "S60-f5" : ""
             }
           },
           "visual" : {
-            "at" : { "x" : 284, "y" : 160 }
+            "at" : { "x" : 288, "y" : 160 }
           },
           "connect" : [
-            { "id" : "S60-f5", "to" : "S60-f4", "via" : [ { "x" : 284, "y" : 256 } ], "label" : {
+            { "id" : "S60-f5", "to" : "S60-f4", "via" : [ { "x" : 288, "y" : 256 } ], "label" : {
                 "name" : "others",
                 "segment" : 1.43,
-                "offset" : { "y" : -10 }
+                "offset" : { "x" : 2, "y" : -10 }
               } },
             { "id" : "S60-f7", "to" : "S60-f12", "label" : {
                 "name" : "dashboard",
                 "segment" : 0.41,
                 "offset" : { "y" : -12 }
+              } },
+            { "id" : "S60-f3", "to" : "S60-f2", "via" : [ { "x" : 288, "y" : 360 } ], "label" : {
+                "name" : "task",
+                "segment" : 0.89,
+                "offset" : { "x" : 40, "y" : 4 }
               } }
           ]
         }, {
@@ -2349,7 +2355,7 @@
             }
           },
           "visual" : {
-            "at" : { "x" : 404, "y" : 256 },
+            "at" : { "x" : 432, "y" : 256 },
             "size" : { "width" : 128 }
           }
         }, {
@@ -2360,7 +2366,23 @@
             "dialog" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboard:start()"
           },
           "visual" : {
-            "at" : { "x" : 440, "y" : 160 }
+            "at" : { "x" : 432, "y" : 160 }
+          }
+        }, {
+          "id" : "S60-f2",
+          "type" : "Script",
+          "name" : "Redirect to Task Homepage",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portal.generic.navigation.PortalNavigator;",
+                "PortalNavigator.navigateToPortalTask();"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 432, "y" : 360 },
+            "size" : { "width" : 128, "height" : 62 }
           }
         } ],
       "visual" : {
