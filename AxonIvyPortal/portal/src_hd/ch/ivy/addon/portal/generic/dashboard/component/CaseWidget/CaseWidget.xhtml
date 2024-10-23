@@ -102,7 +102,9 @@
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'actions'}" id="action-cell-item">
-            <ui:include src="ActionsCell.xhtml" />
+            <ui:include src="ActionsCell.xhtml">
+              <ui:param name="ariaLabel" value="#{caseBean.getAriaLabel(caseItem, caseWidget.columns)}"></ui:param>
+            </ui:include>
           </h:panelGroup>
         </p:columns>
       </p:dataTable>

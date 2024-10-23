@@ -2,7 +2,9 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -14,6 +16,8 @@ import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.util.ProcessStartUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
+import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.DateTimeFormatterUtils;
@@ -22,7 +26,6 @@ import ch.ivy.addon.portalkit.util.TimesUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean(name = "caseBean")
 @ViewScoped
@@ -149,25 +152,29 @@ public class CaseBean implements Serializable {
     this.isCaseOwnerEnabled = isCaseOwnerEnabled;
   }
   
-  public String getAriaLabel(ICase icase) {
-    String ariaLabel = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/caseName") + ": " + icase.getName();
-    ariaLabel += " - " + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/state") + ": " + getDisplayState(icase.getState());
-
-    if (icase.getStartTimestamp() != null) {
-      String createdDateString = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(icase.getStartTimestamp());
-      ariaLabel += " - " + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME") + ": " + createdDateString;
+  public String getAriaLabel(ICase icase, List<CaseColumnModel> columns) {
+    List<String> displayTexts = new ArrayList<>();
+    for (CaseColumnModel col : columns) {
+      if (col.getVisible()) {
+        if (DashboardStandardCaseColumn.STATE.getField().equalsIgnoreCase(col.getField())) {
+          displayTexts.add(col.getHeaderText() + ": " + getDisplayState(icase.getState()));
+        } else if (DashboardStandardCaseColumn.CREATED.getField().equalsIgnoreCase(col.getField())) {
+          String createdDateString = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(icase.getStartTimestamp());
+          displayTexts.add(col.getHeaderText() + ": " + createdDateString);
+        } else if (DashboardStandardCaseColumn.FINISHED.getField().equalsIgnoreCase(col.getField())) {
+          if (icase.getEndTimestamp() != null) {
+            String finishDateString = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(icase.getEndTimestamp());
+            displayTexts.add(col.getHeaderText() + ": " + finishDateString);
+          }
+        } else {
+          Object displayObject = col.display(icase);
+          if (displayObject != null && StringUtils.isNotEmpty(displayObject.toString())) {
+            displayTexts.add(col.getHeaderText() + ": " + displayObject.toString());
+          }
+        }
+      }
     }
-
-    if (icase.getEndTimestamp() != null) {
-      String finishedDateString = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(icase.getEndTimestamp());
-      ariaLabel += " - " + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME") + ": " + finishedDateString;
-    }
-
-    if (icase.getOwner() != null) {
-      ariaLabel += " - " + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/OWNER") + ": " + icase.getOwner().getDisplayName();
-    }
-
-    return ariaLabel;
+    return String.join(" - ", displayTexts);
   }
 
 }
