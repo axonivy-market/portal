@@ -1,9 +1,9 @@
 {
   "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
-  "id" : "19265E3ADA5829FF",
+  "id" : "19274BA8B8973F00",
   "kind" : "HTML_DIALOG",
   "config" : {
-    "data" : "ch.ivy.addon.portalkit.component.AccessibilityShortcut.AccessibilityShortcutData"
+    "data" : "com.axonivy.portal.components.IFrameTaskConfig.IFrameTaskConfigData"
   },
   "elements" : [ {
       "id" : "f0",
@@ -11,7 +11,7 @@
       "name" : "start()",
       "config" : {
         "signature" : "start",
-        "guid" : "19265E3ADAA2B902"
+        "guid" : "19274BA8B8C633D4"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
@@ -31,7 +31,7 @@
       "type" : "HtmlDialogEventStart",
       "name" : "close",
       "config" : {
-        "guid" : "19265E3ADB2C6DEB"
+        "guid" : "19274BA8B8F47AD0"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }

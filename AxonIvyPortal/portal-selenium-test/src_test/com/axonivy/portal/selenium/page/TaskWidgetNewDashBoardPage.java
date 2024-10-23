@@ -183,8 +183,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnManageFilterLink() {
-    var savedFilterContainer = getSavedFilterContainer();
-    savedFilterContainer.$(".ui-commandlink.saved-filter__manage-filter").shouldBe(getClickableCondition()).click();
+    $("div#manage-filter").shouldBe(appear, DEFAULT_TIMEOUT).$("button").shouldBe(getClickableCondition()).click();
     $("[id$='manage-filter-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -531,8 +530,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void openManageFiltersDialog() {
-    $("div.saved-filter-content").shouldBe(appear, DEFAULT_TIMEOUT)
-    .$("a[class*='saved-filter__manage-filter']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("div#manage-filter").shouldBe(appear, DEFAULT_TIMEOUT).$("button").shouldBe(getClickableCondition()).click();
   }
   
   public void removeAllFilterItems() {
@@ -650,5 +648,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   
   public boolean isWidgetInfomationIconAppear() {
     return getTaskWidgetHeader().$(".widget__info-sidebar-link").isDisplayed();
+  }
+  
+  public void clickOnWidgetFilterHeader() {
+    $$("strong").filter(Condition.text("Filter options")).first().click();
   }
 }
