@@ -3208,9 +3208,13 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .primary-color-light-button {
-  background: var(--portal-accessibility-bg-color) !important; 
+  background: var(--ivy-primary-text-color) !important; 
   color: var(--ivy-primary-color) !important;
   font-weight: 600;
+}
+
+.primary-color-light-button:hover {
+  background: var(--portal-accessibility-bg-color) !important;
 }
 
 .add-absence-dialog .ui-dialog-titlebar {
@@ -3310,10 +3314,14 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   }
   
   .primary-color-light-button {
-  background: var(--portal-accessibility-bg-color) !important; 
-  color: var(--ivy-primary-color) !important;
-  font-weight: 600;
-}
+    background: var(--ivy-primary-text-color) !important; 
+    color: var(--ivy-primary-color) !important;
+    font-weight: 600;
+  }
+
+  .primary-color-light-button:hover {
+    background: var(--portal-accessibility-bg-color) !important;
+  }
 
   .line-clamp-text-5 {
     overflow:hidden;
