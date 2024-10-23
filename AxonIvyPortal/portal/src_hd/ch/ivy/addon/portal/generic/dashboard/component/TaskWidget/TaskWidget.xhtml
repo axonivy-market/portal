@@ -58,6 +58,7 @@
 
           <h:panelGroup rendered="#{column.field eq 'start'}" styleClass="dashboard-tasks__start-container">
             <ui:include src="StartCell.xhtml">
+              <ui:param name="ariaLabel" value="#{taskBean.getAriaLabel(task, taskWidget.columns)}" />
               <ui:param name="isResizing" value="#{isResizing}" />
               <ui:param name="isPreviewMode" value="#{isPreviewMode}" />
             </ui:include>
