@@ -648,10 +648,6 @@
               "field": "expiryTimestamp"
             },
             {
-              "field": "start",
-              "visible": false
-            },
-            {
               "field": "id",
               "visible": false,
               "quickSearch": false
