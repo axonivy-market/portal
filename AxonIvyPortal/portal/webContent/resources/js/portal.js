@@ -667,7 +667,7 @@ $(document).ready(function() {
             addFocusClass(focusedTaskSideStepEl);
             taskSideStepIndex++;
           } else {
-            var taskList = $('[id$=":start-task"]');
+            var taskList = $('[id$=":task-component:dashboard-tasks"] table tr td:visible [id$=":start-task"]');
             if(taskIndex >= taskList.length) {
               taskIndex = 0;
             }
@@ -700,7 +700,7 @@ $(document).ready(function() {
             addFocusClass(focusedCaseSideStepEl);
             caseSideStepIndex++;
           } else {
-            var caseList = $('[id$="case-component:dashboard-cases"]').find('[id$=":dashboard-case-side-steps-menu"]');
+            var caseList = $('[id$="case-component:dashboard-cases"] table tr td:visible [id$=":dashboard-case-side-steps-menu"]');
             
             if(caseIndex >= caseList.length) {
               caseIndex = 0;
