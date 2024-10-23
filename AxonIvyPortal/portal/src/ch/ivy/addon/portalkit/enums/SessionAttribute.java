@@ -10,5 +10,6 @@ public enum SessionAttribute {
   HELP_URL_LINK,
   PORTAL_IN_TEAMS,
   DEFAULT_PAGE_IN_TEAMS,
-  SELECTED_DASHBOARD_ID;
+  SELECTED_DASHBOARD_ID,
+  PREV_SELECTED_DASHBOARD_ID; // use for navigate back to dashboard if last tab is dashboard menu item;
 }

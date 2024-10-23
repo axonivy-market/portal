@@ -87,17 +87,21 @@ public class DashboardBean implements Serializable {
     currentDashboardIndex = 0;
     dashboards = collectDashboards();
 
+
     if (isReadOnlyMode) {
       MenuView menuView = (MenuView) ManagedBeans.get("menuView");
       menuView.updateDashboardCache(dashboards);
     }
 
-    if (CollectionUtils.isNotEmpty(dashboards)) {
+    if (CollectionUtils.isNotEmpty(DashboardUtils.getSubItemDashboards())) {
       selectedDashboardId = readDashboardFromSession();
       currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
       selectedDashboard = dashboards.get(currentDashboardIndex);
+
+
       String selectedDashboardName = selectedDashboard.getTitles().stream()
-          .filter(displayName -> displayName.getLocale().equals(Ivy.session().getContentLocale())).findFirst()
+          .filter(displayName -> displayName.getLocale().equals(Ivy.session().getContentLocale()))
+          .findFirst()
           .orElseGet(() -> selectedDashboard.getTitles().get(0)).getValue();
       setSelectedDashboardName(selectedDashboardName);
       initShareDashboardLink(selectedDashboard);
@@ -108,6 +112,11 @@ public class DashboardBean implements Serializable {
       }
       if (isReadOnlyMode) {
         DashboardUtils.highlightDashboardMenuItem(selectedDashboard.getId());
+      }
+
+      if (selectedDashboard.getIsMenuItem()) {
+        String preSelectedDashboardId = readPreDashboardFromSession();
+        storeDashboardInSession(preSelectedDashboardId);
       }
     }
     buildWidgetModels(selectedDashboard);
@@ -226,7 +235,7 @@ public class DashboardBean implements Serializable {
     return HtmlParser.extractTextFromHtml(text);
   }
 
-  public String createParseTextFromHtml (String text) {
+  public String createParseTextFromHtml(String text) {
     return HtmlUtils.parseTextFromHtml(text);
   }
 
@@ -324,7 +333,7 @@ public class DashboardBean implements Serializable {
       caseWidget.setUserFilters(savedFilters);
       return;
     }
-    
+
     if (widget.getType() == DashboardWidgetType.TASK) {
       TaskDashboardWidget taskWidget = ((TaskDashboardWidget) widget);
 
@@ -397,21 +406,27 @@ public class DashboardBean implements Serializable {
     return (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString());
   }
 
-  private void storeDashboardInSession(String id) {
+  private String readPreDashboardFromSession() {
+    return (String) Ivy.session().getAttribute(SessionAttribute.PREV_SELECTED_DASHBOARD_ID.toString());
+  }
+
+  protected void storeDashboardInSession(String id) {
     Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), id);
   }
 
   private int findIndexOfDashboardById(String selectedDashboardId) {
-    int currentDashboardIndex = 0;
-    if(StringUtils.isNotBlank(selectedDashboardId)) {
-      currentDashboardIndex = dashboards.indexOf(dashboards.stream()
-          .filter(dashboard -> dashboard.getId().contentEquals(selectedDashboardId)).findFirst().orElse(null));
-      if(currentDashboardIndex == -1) {
-        currentDashboardIndex = 0;
-      }
+
+
+    if (StringUtils.isNotBlank(selectedDashboardId)) {
+      return dashboards.stream().filter(dashboard -> dashboard.getId().contentEquals(selectedDashboardId)).findFirst()
+          .map(dashboards::indexOf).orElse(dashboards.stream().filter(dashboard -> !dashboard.getIsMenuItem())
+              .findFirst().map(dashboards::indexOf).orElse(0));
     }
-    return currentDashboardIndex;
+
+    return dashboards.stream().filter(dashboard -> !dashboard.getIsMenuItem()).findFirst().map(dashboards::indexOf)
+        .orElse(0);
   }
+
 
   public int getMaxRowNumberInExcel() {
     return Exporter.MAX_ROW_NUMBER_IN_EXCEL;
@@ -449,6 +464,7 @@ public class DashboardBean implements Serializable {
   public String getWarningText() {
     return warningText;
   }
+
   public String getDashboardUrl() {
     return dashboardUrl;
   }
@@ -480,19 +496,19 @@ public class DashboardBean implements Serializable {
   public boolean canEnableQuickSearch(DashboardWidget widget) {
     return widget.getType().canEnableQuickSearch();
   }
-  
+
   public boolean canShowWidgetInfoIcon(DashboardWidget widget) {
     return widget.getType().canShowWidgetInfoOption();
   }
-  
+
   public boolean canShowExpandMode(DashboardWidget widget) {
     return widget.getType().canShowFullscreenModeOption();
   }
-  
+
   public void setSelectedDashboardName(String dashboardName) {
     this.selectedDashboardName = dashboardName;
   }
-  
+
   public String getSelectedDashboardName() {
     if (selectedDashboardName.isBlank()) {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/dashboard");
@@ -503,11 +519,11 @@ public class DashboardBean implements Serializable {
   public boolean isHideCaseCreator() {
     return GlobalSettingService.getInstance().isHideCaseCreator();
   }
-  
+
   public String getScreenReaderNotificationContent() {
     if (this.selectedDashboard.isAccessibility()) {
       return Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/AccessibilityShortcuts/title");
     }
     return StringUtils.EMPTY;
-   }
+  }
 }

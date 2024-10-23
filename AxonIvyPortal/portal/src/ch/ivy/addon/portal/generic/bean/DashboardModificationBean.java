@@ -68,10 +68,14 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
 
   protected void collectDashboardsForManagement() {
+    Dashboard taskTemplateDashboard = DashboardUtils.getTaskTemplateDashboard();
     this.dashboards = new ArrayList<>();
     String dashboardInUserProperty = readDashboardBySessionUser();
     if (isPublicDashboard) {
       this.dashboards = DashboardUtils.getPublicDashboards();
+      if (!this.dashboards.contains(taskTemplateDashboard)) {
+        this.dashboards.addFirst(taskTemplateDashboard);
+      }
     } else if (StringUtils.isNoneEmpty(dashboardInUserProperty)) {
       List<Dashboard> myDashboards = getVisibleDashboards(dashboardInUserProperty);
       this.dashboards.addAll(myDashboards);
@@ -189,6 +193,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
 
   public void navigateToDashboardDetailsPage(String dashboardId) {
+    Ivy.log().error(dashboardId);
     PortalNavigator.navigateToDashboardDetailsPage(dashboardId, isPublicDashboard);
   }
 
