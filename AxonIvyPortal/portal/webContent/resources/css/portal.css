@@ -1178,7 +1178,8 @@ ul.users-in-role {
   font-size: var(--header-font-size); }
 
 .action-link span {
-  font-weight: var(--task-action-item-label-font-weight); }
+  font-weight: var(--task-action-item-label-font-weight);
+}
 
 .task-action-item.start-task-action .task-action-item-label {
   font-weight: var(--task-start-action-font-weight);
@@ -1273,6 +1274,10 @@ color: var(--button-text-color);
 
 .portal-dialog-info-icon {
   color: var(--primary-color);
+}
+
+.dasboard-configuration-action-menu-icon {
+  color: white;
 }
 
 .portal-dialog-warning-icon {
@@ -1374,8 +1379,7 @@ body.in-dialog .ui-widget-overlay {
 }
 
 .dashboard-action-container {
-  box-shadow:  var(--item-widget-box-shadow);
-  background-color: var(--item-widget-background-color);
+  border: 1px solid var(--dashboard-action-container-border-color);
 }
 
 .dashboard-action-container:hover {
@@ -1384,15 +1388,15 @@ body.in-dialog .ui-widget-overlay {
 }
 
 .dashboard-action-container-label {
-  color: var(--primary-dark-text-color);
+  color: var(--dashboard-action-container-text-color);
 }
 
 .dashboard-action-container-description {
-  color: var(--primary-dark-text-color);
+  color: var(--dashboard-action-container-description-color);
 }
 
 .dashboard-action-container-icon {
-  color: var(--primary-dark-text-color);
+  color: var(--dashboard-action-container-text-color);
 }
 
 .dashboard-type-list li a {
@@ -1607,8 +1611,7 @@ body .notification-checkbox .ui-chkbox-box {
 }
 
 i.dashboard-icon-drag-drop {
-    border: 1px solid var(--ivy-primary-color);
-    color: var(--ivy-primary-color);
+    color: var(--dashboard-icon-drag-drop-color);
     width: 2.357rem;
     border-radius: 50%;
     text-align: center;
@@ -1768,4 +1771,15 @@ body.light .focused {
 
 body.dark .focused {
   outline: 2px solid white;
+}
+
+.screenreader-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
 }

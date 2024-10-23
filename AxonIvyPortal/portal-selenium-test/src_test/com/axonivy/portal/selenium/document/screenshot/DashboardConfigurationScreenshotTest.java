@@ -68,6 +68,11 @@ public class DashboardConfigurationScreenshotTest extends ScreenshotBaseTest {
     dashboardConfigurationPage.openCreatePublicDashboardMenu();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardTemplates(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "dashboard-templates", new ScreenshotMargin(10));
+    // screenshot highlight for accessibility template
+    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
+    ScreenshotUtils.executeDecorateJs("createBlackMediumOutline($($('.dashboard-action-container')[4]));");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardTemplates(),
+            ScreenshotUtils.ACCESSIBILITY_DASHBOARD_FOLDER + "accessibility-dashboard-creation", new ScreenshotMargin(10));
     dashboardConfigurationPage.openImportPublicDashboards();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getImportDialog(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "import-public-dashboard-dialog", new ScreenshotMargin(10));

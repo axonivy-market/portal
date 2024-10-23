@@ -102,12 +102,19 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   public void deleteImageModeProcess() {
-    $("button[id$=':process-action-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("[id$=':process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span.si-bin-1")
+    getProcessActionMenu().shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span.si-bin-1")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     getRemoveWidgetDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     getRemoveWidgetButton().click();
     getRemoveWidgetDialog().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+  
+  private SelenideElement getProcessActionMenu() {
+    if (!$("[id$=':process-action-menu']").isDisplayed()) {
+      $("button[id$=':process-action-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+      .click();
+    }
+    return $("div[id$='process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public void deleteFullModeProcess() {
@@ -140,7 +147,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   public ProcessEditWidgetNewDashBoardPage editFullModeProcess() {
-    $("button[id$=':process-action-button']").shouldBe(Condition.appear).click();
+    getProcessActionMenu();
     $("[id$=':process-item:grid-process-action-component:edit-process']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("span.si-graphic-tablet-drawing-pen").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     $("div[id='new-widget-configuration-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
@@ -236,4 +243,9 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   public void scrollToStatistic() {
     $(byText("Statistic Widgets")).shouldBe(Condition.appear, DEFAULT_TIMEOUT).scrollIntoView("{block: \"start\", inline: \"start\"}");
   }
+  
+  public SelenideElement getAccessibilityWidget() {
+    return $("[id^='id-custom-widget-iframe']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
 }

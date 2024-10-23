@@ -9,7 +9,6 @@ import static com.codeborne.selenide.Selenide.$$;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.By.ByCssSelector;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -184,8 +183,10 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public ProcessEditWidgetNewDashBoardPage editImageModeProcess() {
-    $("button[id$='image-process-action-component:process-action-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .click();
+    if (!$("[id$=':image-process-action-component:process-action-menu']").isDisplayed()) {
+      $("button[id$='image-process-action-component:process-action-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+      .click();
+    }
     $("[id$=':image-process-action-component:process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("span.si-graphic-tablet-drawing-pen").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     $("div[id='new-widget-configuration-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
@@ -213,20 +214,24 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void startMoreInfoLink() {
-    getMoreInformationLink().click();
+    $("div[id$='process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .$$("span[class$='ui-menuitem-text']").filter(Condition.text("More Information")).first().click();
   }
 
   public SelenideElement getDisabledMoreInformationLink() {
-    return $("span[id$=':more-information']");
+    return getProcessActionMenu().$$("span[class$='ui-menuitem-text']").filter(Condition.text("More Information")).first();
   }
   
   private SelenideElement getProcessActionMenu() {
-    $("div#process-action-group").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    if (!$("[id$=':process-action-menu']").isDisplayed()) {
+      $("button[id$=':process-action-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+      .click();
+    }
     return $("div[id$='process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getMoreInformationLink() {
-    return $("a[id$=':more-information']");
+    return getProcessActionMenu().$$("span[class$='ui-menuitem-text']").filter(Condition.text("More Information")).first();
   }
 
   public SelenideElement getFullModeProcessName() {
@@ -654,8 +659,8 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public void closeCompactModeProcessManagerFilters() {
-    getManageWidgetFilterDialogCloseLink().shouldBe(Condition.appear).click();
-    getManageWidgetFilterDialog().shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("div[id$='manage-filter-dialog']").shouldBe(appear, DEFAULT_TIMEOUT).$("a.ui-dialog-titlebar-close")
+        .shouldBe(appear, DEFAULT_TIMEOUT).click();
   }
 
   public void removeCompactModeProcessFilter() {
@@ -875,7 +880,7 @@ public class NewDashboardPage extends TemplatePage {
 
   public void closeWidgetFilter(int index) {
     var widgetFilterPanel = $("div[id$=':filter-overlay-panel-" + index + "']").shouldBe(appear, DEFAULT_TIMEOUT);
-    widgetFilterPanel.$(".ui-overlaypanel-footer__cancel").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    widgetFilterPanel.$("div[id*='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT).$("div[class*='filter-overlay-panel__header']").shouldBe(appear, DEFAULT_TIMEOUT).$("button[id*='filter-form-" + index + "']").should(getClickableCondition(), DEFAULT_TIMEOUT).click();
     widgetFilterPanel.shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
@@ -1030,8 +1035,7 @@ public class NewDashboardPage extends TemplatePage {
   }
   
   public void clickOnManageFilterLink() {
-    var savedFilterContainer = $("[id$=':saved-filters-container']").shouldBe(appear, DEFAULT_TIMEOUT);
-    savedFilterContainer.$(".ui-commandlink.saved-filter__manage-filter").shouldBe(getClickableCondition()).click();
+    $("div[class*='filter-overlay-panel__footer']").shouldBe(appear, DEFAULT_TIMEOUT).$("div#manage-filter").shouldBe(appear, DEFAULT_TIMEOUT).$("button[class*='saved-filter__manage-filter']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id$='manage-filter-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
@@ -1046,7 +1050,9 @@ public class NewDashboardPage extends TemplatePage {
   }
   
   public void closeManageFilterDialog() {
-    $("[id$=':manage-filter-action']").$("a").shouldBe(getClickableCondition()).click();
+    $("div[id*='manage-filter-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    .$("div[class*='ui-widget-header']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    .$("a[class*='ui-dialog-titlebar-close']").shouldBe(getClickableCondition()).click();
     $("[id$='manage-filter-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
@@ -1108,5 +1114,34 @@ public class NewDashboardPage extends TemplatePage {
   public void waitForProcessWidgetLoaded() {
     checkDisplayedCompactModeProcessContainer();
     getProcessWidgetTable().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void clickOnFirstTaskAction() {
+    $$("[id$='dashboard-task-side-steps-menu']")
+    .get(0).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+    .click();
+
+    $("[id$='dashboard-actions-task-task_1:side-steps-panel']")
+    .shouldBe(appear, DEFAULT_TIMEOUT);
+    focusByJavascript($("[id$=':task-open-detail-command']"));
+    $("[id$=':task-open-detail-command']").sendKeys(Keys.TAB);
+  }
+
+  public void clickOnFirstCaseAction() {
+    $$("[id$='dashboard-case-side-steps-menu']")
+    .get(0).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+    .click();
+
+    $("[id$=':action-steps-panel']")
+    .shouldBe(appear, DEFAULT_TIMEOUT);
+    focusByJavascript($("[id$=':case-item-open-detail-link']"));
+    $("[id$=':case-item-open-detail-link']").sendKeys(Keys.TAB);
+  }
+
+  public void focusOnWarningResetTaskDialog() {
+    $("[id$=':reset-task-confirmation-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement element = $("[id$=':reset-task-confirmation-dialog']").$("a");
+    focusByJavascript(element);
+    element.pressTab();
   }
 }

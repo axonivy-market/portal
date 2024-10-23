@@ -48,6 +48,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     nextAbsence: Absence à venir
     selectedDeputyFor: L'utilisateur sélectionné est un substitut de
     selectedUser: Utilisateur sélectionné
+  AccessibilityShortcuts:
+    processName: Raccourcis d'accessibilité Widgets
   AllTasks:
     caseDescription: Description du dossier
     taskDescription: Description de la tâche
@@ -458,7 +460,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     detail: Détails
     display: Présenter
     displayName: Affichez le nom
-    dragAndDrop: 'Glisser-déposer une image ou '
+    dragAndDropFile: 'Glisser-déposer un fichier ou '
+    dragAndDropImage: 'Glisser-déposer une image ou '
     edit: Editer
     errorAjaxMessage: Il y a une exception générale.
     errorFileUploadSize: La taille du fichier doit être inférieure à {0}.
@@ -525,10 +528,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     processes: Processus
     public: Publique
     remove: Retirer
+    removeSelection: Retirer la sélection
     reorder: Réorganiser
     requiredFieldMessage: Ce champ est obligatoire
     reserve: Enregistrer
     reset: Réinitialiser
+    resetFilters: Réinitialiser les filtres
     resetSettingHeaderText: Rétablir le réglage ?
     resetTaskHeaderText: Réinitialiser cette tâche ?
     resetToDefaultMessage: Cette opération ne peut pas être annulée. Êtes-vous sûr de vouloir rétablir les paramètres par défaut ?
@@ -785,6 +790,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardIcon: Icône du tableau de bord
       dashboardPermission: Autorisation du tableau de bord
       dashboardTitle: Titre du tableau de bord
+      deleteDashboardMessage: Êtes-vous sûr de vouloir supprimer le "{0}" tableau de bord?
       editDashboard: Modifier le tableau de bord
       manageDashboard: Gérer le tableau de bord
       removeDashboardHeader: Supprimez le tableau de bord "{0}".
@@ -1281,7 +1287,7 @@ Dialogs:
               noResultsText: Il n'y a pas de résultats.
             dashboard:
               PortalDashboardConfiguration:
-                NewDashboard: Nouveau tableau de bord
+                NewDashboard: Ajouter un nouveau tableau de bord
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
@@ -1325,9 +1331,52 @@ Dialogs:
         component:
           ShareLinkDialog:
             CopyLink: Copier le lien
+            Link: Lien
             LinkCopied: Lien copié
         dashboard:
           component:
+            AccessibilityShortcuts:
+              content: |-
+                <div class="ui-g">
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + 1</span>Se focaliser sur l’onglet du Dashboard
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + 4</span>Se focaliser sur l’onglet des cas
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + A</span>Se focaliser sur le premier processus
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Tab</span>Navigation séquentielle entre les éléments
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + 2</span>Se focaliser sur l’onglet des processus
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + 5</span>Se focaliser sur la recherche
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + W</span>Se focaliser sur la première tâche
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Esc</span>Fermer les widgets agrandis/Fermer les menus contextuels
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + 3</span>Se focaliser sur l’onglet des tâches
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + 6</span>Se focaliser sur les paramètres utilisateur
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + Q</span>Se focaliser sur le premier cas
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Enter</span>Confirmer la sélection
+                   </div>
+                </div>
+              title: 'Raccourcis d’accessibilité. Alt + 1: Fokus auf die Dashboards. Alt + 2: Fokus auf die Prozesse. Alt + 3: Fokus auf die Aufgaben. Alt + 4: Fokus auf die Fälle. Alt + 5: Fokus auf die Suche. Alt + 6: Fokus auf die User Einstellungen. Alt + A: Fokus auf den ersten Prozess. Alt + W:
+                Fokus auf die erste Aufgabe. Alt + Q: Fokus auf den ersten Fall. Tab: Sequentielles Durchlaufen von Elementen. Esc: Erweiterte Widgets schließen/Kontext Menüs schließen. Enter: Auswahl bestätigen'
             CaseWidgetConfiguration:
               AddFilter: Ajouter un filtre
             ClientStatisticWidget:
