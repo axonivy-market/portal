@@ -213,7 +213,7 @@ public class DashboardUtils {
         Ivy.session().setAttribute(SessionAttribute.PREV_SELECTED_DASHBOARD_ID.toString(), prevDashboardId);
 
       }
-      Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), dashboardId);
+      DashboardUtils.storeDashboardAndDashboardAsMenuInSession(dashboardId);
 
     }
   }
@@ -267,6 +267,11 @@ public class DashboardUtils {
 
   public static void storeDashboardInSession(String id) {
     Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), id);
+  }
+
+  public static void storeDashboardAndDashboardAsMenuInSession(String id) {
+    Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), id);
+    Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_OR_DASHBOARD_AS_MENU_ID.toString(), id);
   }
 
   public static Dashboard getTaskTemplateDashboard() {

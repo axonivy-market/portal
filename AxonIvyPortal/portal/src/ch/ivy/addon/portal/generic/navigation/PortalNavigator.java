@@ -125,6 +125,7 @@ public final class PortalNavigator extends BaseNavigator{
   public static void navigateToPortalTask() {
     Map<String, String> params = new HashMap<>();
     params.put("dashboardId", DashboardUtils.DASHBOARD_TASK_TEMPLATE_ID);
+    params.put("isDashboardAsMenu", Boolean.TRUE.toString());
     navigateByKeyword(PORTAL_DASHBOARD_PAGE_START, PORTAL_DASHBOARD_PAGE, params);
   }
 

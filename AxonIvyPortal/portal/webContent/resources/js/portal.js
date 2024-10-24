@@ -173,7 +173,6 @@ var MainMenu = {
       ["Processes.xhtml", "PROCESS"],
       ["PortalTasks.xhtml", "TASK"],
       ["TaskWidget.xhtml", "TASK"],
-      ["PortalTaskDetails.xhtml", "TASK"],
       ["PortalCases.xhtml", "CASE"],
       ["CaseWidget.xhtml", "CASE"],
       ["PortalCaseDetails.xhtml", "CASE"],
