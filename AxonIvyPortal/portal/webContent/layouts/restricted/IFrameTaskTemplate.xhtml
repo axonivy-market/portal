@@ -9,51 +9,69 @@
     <!-- THIS TEMPLATE IS ONLY USED BY PORTAL. DON'T USE IT. -->
     <!-- Follow the comments to know how to pass the params in your HTML dialog to Portal area outside IFrame. -->
     
-    <!-- AVAILABLE PARAMS in this template: -->
-    <!-- currentProcessStep: current process step -->
-    <!-- processSteps: list of process steps -->
-    <!-- isShowAllSteps: shows all of steps on large resolution, false (default) or true -->
-    <!-- isHideCaseInfo: hide case info button, false (default) or true -->
-    <!-- isHideTaskName: hide task name, false (default) or true -->
-    <!-- isHideTaskAction: hide task action button, false (default) or true -->
-    <!-- isWorkingOnATask: working on a task in order to display warning if leave page, false or true (default) -->
+    <!-- Available params in this template: -->
+    <!-- taskName: Custom text for task name -->
+    <!-- taskIcon: Task icon to be displayed, using Streamline or Awesome font, e.g., `si si-arrow-right` -->
+    <!-- isHideTaskName: Hide task name, false (default) or true -->
+    <!-- caseId: ID of case to be displayed in case information dialog -->
+    <!-- isHideCaseInfo: Hide `Show Information` button, false (default) or true -->
+    <!-- currentProcessStep: Current process step, could be the index of the step or the step name -->
+    <!-- processSteps: List of process steps, e.g., `[&quot;Create Investment Request&quot;, &quot;Approve Investment Reques&quot;]` -->
+    <!--   or `#{portalComponentUtilsBean.convertToJSON(data.steps)}` -->
+    <!-- isShowAllSteps: Shows all steps on large screens, false (default) or true -->
     <!-- processChainDirection: VERTICAL or HORIZONTAL (default) -->
     <!-- processChainShape: LINE or CIRCLE (default) -->
-    <!-- announcementInvisible: false or true (default) -->
-    <!-- caseId: ID of case to be displayed in case information -->
-    <!-- taskName: a custom task name -->
-    <!-- isCardFrame: display content of the IFrame inside a card style -->
-    <!-- PASS PARAMS TO THIS TEMPLATE VIA JAVASCRIPT IN YOUR HTML DIALOG: -->
-    <!-- <script> -->
-    <!--   // Set process steps directly as Array. -->
-    <!--   window.processSteps = ["Create Investment Request", "Approve Investment Request"]; -->
-    
-    <!--   // If process steps are set in HTML dialog logic or java code, convert it to JSON format -->
-    <!--   // Use this code if process steps are a java String list -->
-    <!--   window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)}; -->
-    
-    <!--   // Current process step could be a number or String: -->
-    <!--   window.currentProcessStep = 0; -->
-    <!--   window.currentProcessStep = #{data.currentProcessStep}; -->
-    <!--   window.currentProcessStep = "#{data.currentProcessStep}"; -->
-    
-    <!--   window.isShowAllSteps = true; -->
-    <!--   window.isHideCaseInfo = false; -->
-    <!--   window.isHideTaskName = false; -->
-    <!--   window.isHideTaskAction = false; -->
-    <!--   window.isWorkingOnATask = false; -->
-    <!--   window.processChainDirection = "VERTICAL"; -->
-    <!--   window.processChainShape = "LINE"; -->
-    <!--   window.announcementInvisible = false; -->
-    <!--   window.taskName = "Task Name"; -->
+    <!-- isHideTaskAction: Hide task action button, false (default) or true -->
+    <!-- isWorkingOnATask: Working on a task in order to display warning when leaving page, false or true (default) -->
+    <!-- announcementInvisible: Make announcement invisible, false or true (default) -->
+    <!-- isCardFrame: Display content of the IFrame inside a card style -->
+    <!-- viewName: Custom breadcrum, value could be HOME, PROCESS, TASK, TASK_DETAIL, CASE_DETAIL, CASE, TECHNICAL_CASE, RELATED_TASK, USER_PROFILE, -->
+    <!--   ABSENCES_MANAGEMENT, DASHBOARD_CONFIGURATION, EDIT_DASHBOARD_DETAILS, PROCESS_VIEWER, PORTAL_MANAGEMENT, NOTIFICATION -->
 
-    <!--   Use this code to show case details of a case different from current case of working task
-           by send the case ID of that case. -->
-    <!--   window.caseId = 123456; -->
+    <!-- You could configure UI in either of these two ways -->
+    <!-- 1. Using component IFrameTaskConfig, this way is recommended -->
+    <!--   <ic:com.axonivy.portal.components.IFrameTaskConfig  -->
+    <!--     taskName="Approve Investment"  -->
+    <!--     taskIcon="si si-bulb" -->
+    <!--     isHideTaskName="false" -->
+    <!--     caseId="123456"  -->
+    <!--     isHideCaseInfo="false" -->
+    <!--     currentProcessStep="0" -->
+    <!--     processSteps='["Create Investment Request", "Approve Investment Request"]' -->
+    <!--     isShowAllSteps="true" -->
+    <!--     processChainDirection="VERTICAL" -->
+    <!--     processChainShape="LINE" -->
+    <!--     isHideTaskAction="true" -->
+    <!--     isWorkingOnATask="false" -->
+    <!--     announcementInvisible="false" -->
+    <!--     isCardFrame="true" -->
+    <!--     viewName="TASK_DETAIL" -->
+    <!--   /> -->
 
-    <!--   // If the variable is set to true, the dialog will be displayed with a card -->
-    <!--   window.isCardFrame = true; -->
-    <!-- </script> -->
+    <!-- 2. Using Javascript -->
+    <!--   <script> -->
+    <!--     window.taskName = "Approve Investment"; -->
+    <!--     window.taskIcon = "si bulb"; -->
+    <!--     window.isHideTaskName = false; -->
+    <!--     window.caseId = "123456"; -->
+    <!--     window.isHideCaseInfo = false; -->
+    <!--     window.currentProcessStep = 0; -->
+    <!--     window.currentProcessStep = #{data.currentProcessStep}; -->
+    <!--     window.currentProcessStep = "#{data.currentProcessStep}"; -->
+    <!--     // Set process steps directly as Array. -->
+    <!--     window.processSteps = ["Create Investment Request", "Approve Investment Request"]; -->
+    <!--     // If process steps are set in HTML dialog logic or java code, convert it to JSON format -->
+    <!--     // Use this code if process steps are a java String list -->
+    <!--     window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)}; -->
+    <!--     window.isShowAllSteps = true; -->
+    <!--     window.processChainDirection = "VERTICAL"; -->
+    <!--     window.processChainShape = "LINE"; -->
+    <!--     window.isHideTaskAction = false; -->
+    <!--     window.isWorkingOnATask = false; -->
+    <!--     window.announcementInvisible = false; -->
+    <!--     window.isCardFrame = true; -->
+    <!--     window.viewName = TASK_DETAIL; -->
+    <!--   </script> -->
 
     <ui:param name="contentContainerStyleClass" value="task-frame-container js-task-frame-container" />
     <ui:param name="layoutContentStyleClass" value="frame-container" />

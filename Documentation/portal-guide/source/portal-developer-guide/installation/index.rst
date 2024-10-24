@@ -481,6 +481,7 @@ Changes in 12
 -------------
 
 - The old statistic chart is removed, use the new :ref:`statistic-chart` instead.
+- Introduce the component IFrameTaskConfig to configure IFrame tasks. Refer to :ref:`iframe-configure-template` for more information.
 
 Changes in 11.2.0
 -----------------
