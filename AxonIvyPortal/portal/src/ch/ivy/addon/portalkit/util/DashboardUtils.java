@@ -279,7 +279,7 @@ public class DashboardUtils {
     return jsonToDashboard(dashboardTaskTemplate);
   }
 
-  public static List<Dashboard> getSubItemDashboards() {
+  public static List<Dashboard> getDashboardsWithoutMenuItem() {
     var dashboards = collectDashboards();
     return dashboards.stream().filter(dashboard -> !dashboard.getIsMenuItem()).toList();
   }

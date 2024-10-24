@@ -74,7 +74,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     if (isPublicDashboard) {
       this.dashboards = DashboardUtils.getPublicDashboards();
       if (!this.dashboards.contains(taskTemplateDashboard)) {
-        this.dashboards.addFirst(taskTemplateDashboard);
+        this.dashboards.add(0, taskTemplateDashboard);
       }
     } else if (StringUtils.isNoneEmpty(dashboardInUserProperty)) {
       List<Dashboard> myDashboards = getVisibleDashboards(dashboardInUserProperty);
