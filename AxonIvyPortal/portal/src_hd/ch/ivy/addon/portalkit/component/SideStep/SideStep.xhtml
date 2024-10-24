@@ -80,14 +80,6 @@
       <span class="option-item-label option-item-long-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/clearExpiry')}</span>
     </p:commandLink>
     
-    <p:commandLink id="task-destroy-command" disabled="#{!taskActionBean.canDestroyTask(task)}" rendered="#{taskActionBean.showDestroyTask}"
-      styleClass="option-item color-destroy ui-menu-items" update="@parent #{cc.attrs.componentToUpdate}"
-      actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
-      oncomplete="#{cc.attrs.onDestroyComplete}" process="@this" global="false">
-      <i class="option-action-icon pi pi-trash" />
-      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}</span>
-    </p:commandLink>
-    
     <p:commandLink id="task-trigger-escalation-command" disabled="#{!taskActionBean.canExpiry(task)}"
       styleClass="option-item ui-menu-items" update="@parent #{cc.attrs.componentToUpdate}"
       actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
@@ -112,6 +104,14 @@
       <i class="option-action-icon si si-hierarchy-6 si-rotate-270" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText')}</span>
     </p:link>
+
+    <p:commandLink id="task-destroy-command" disabled="#{!taskActionBean.canDestroyTask(task)}" rendered="#{taskActionBean.showDestroyTask}"
+      styleClass="option-item color-destroy ui-menu-items" update="@parent #{cc.attrs.componentToUpdate}"
+      actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
+      oncomplete="#{cc.attrs.onDestroyComplete}" process="@this" global="false">
+      <i class="option-action-icon pi pi-trash" />
+      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}</span>
+    </p:commandLink>
 
     <h:panelGroup id="task-additional-actions" layout="block" rendered="#{cc.attrs.renderedAdditionalAction}">
       <f:event listener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId())}" type="preRenderComponent" />
