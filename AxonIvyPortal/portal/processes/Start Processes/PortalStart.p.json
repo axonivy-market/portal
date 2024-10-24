@@ -1035,6 +1035,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivy.addon.portalkit.util.DashboardUtils;",
             "import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;",
             "import ch.ivy.addon.portalkit.constant.CustomFields;",
             "import ch.ivy.addon.portalkit.dto.TaskEndInfo;",
@@ -1065,6 +1066,10 @@
             "    in.dataModel = taskEndInfo.dataModel;",
             "    in.isTaskStartedInDetails = taskEndInfo.isStartedInTaskDetails;",
             "    in.portalPage = taskEndInfo.portalPage;",
+            "    if (StringUtils.isNotBlank(taskEndInfo.getDashboardId())) {",
+            "      DashboardUtils.storeDashboardInSession(taskEndInfo.getDashboardId());",
+            "      in.isDashboardAsMenu = true;",
+            "    }",
             "    if (!in.isTaskStartedInDetails || in.backFromTaskDetails) {",
             "      SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);",
             "    }",
@@ -2281,23 +2286,28 @@
           "type" : "Alternative",
           "config" : {
             "conditions" : {
-              "S60-f7" : "ch.addon.portal.generic.userprofile.homepage.HomepageUtils.isShowDashboard(in.#homepage, in.#isShowDashboard)",
-              "S60-f5" : ""
+              "S60-f7" : "in.isDashboardAsMenu",
+              "S60-f5" : "ch.addon.portal.generic.userprofile.homepage.HomepageUtils.isShowDashboard(in.#homepage, in.#isShowDashboard)"
             }
           },
           "visual" : {
-            "at" : { "x" : 284, "y" : 160 }
+            "at" : { "x" : 288, "y" : 160 }
           },
           "connect" : [
-            { "id" : "S60-f5", "to" : "S60-f4", "via" : [ { "x" : 284, "y" : 256 } ], "label" : {
-                "name" : "others",
-                "segment" : 1.43,
-                "offset" : { "y" : -10 }
+            { "id" : "S60-f7", "to" : "S60-f2", "via" : [ { "x" : 288, "y" : 57 } ], "label" : {
+                "name" : "dashboard as menu",
+                "segment" : 0.88,
+                "offset" : { "x" : 49, "y" : -22 }
               } },
-            { "id" : "S60-f7", "to" : "S60-f12", "label" : {
+            { "id" : "S60-f5", "to" : "S60-f12", "label" : {
                 "name" : "dashboard",
-                "segment" : 0.41,
-                "offset" : { "y" : -12 }
+                "segment" : 0.65,
+                "offset" : { "x" : -50, "y" : -10 }
+              } },
+            { "id" : "S60-f3", "to" : "S60-f4", "via" : [ { "x" : 288, "y" : 256 } ], "label" : {
+                "name" : "others",
+                "segment" : 1.13,
+                "offset" : { "x" : 24, "y" : -10 }
               } }
           ]
         }, {
@@ -2349,7 +2359,7 @@
             }
           },
           "visual" : {
-            "at" : { "x" : 404, "y" : 256 },
+            "at" : { "x" : 488, "y" : 256 },
             "size" : { "width" : 128 }
           }
         }, {
@@ -2360,7 +2370,18 @@
             "dialog" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboard:start()"
           },
           "visual" : {
-            "at" : { "x" : 440, "y" : 160 }
+            "at" : { "x" : 488, "y" : 160 }
+          }
+        }, {
+          "id" : "S60-f2",
+          "type" : "DialogCall",
+          "name" : "PortalDashboardAsMenu",
+          "config" : {
+            "dialog" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboardAsMenu:start()"
+          },
+          "visual" : {
+            "at" : { "x" : 488, "y" : 57 },
+            "size" : { "width" : 160, "height" : 62 }
           }
         } ],
       "visual" : {
@@ -4147,10 +4168,12 @@
         "input" : {
           "params" : [
             { "name" : "dashboardId", "type" : "String", "desc" : "" },
-            { "name" : "openWithoutMenu", "type" : "Boolean", "desc" : "" }
+            { "name" : "openWithoutMenu", "type" : "Boolean", "desc" : "" },
+            { "name" : "isDashboardAsMenu", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
             "out.dashboardId" : "param.dashboardId",
+            "out.isDashboardAsMenu" : "param.isDashboardAsMenu",
             "out.isOpenWithoutMenu" : "param.openWithoutMenu"
           }
         },

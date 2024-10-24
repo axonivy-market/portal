@@ -462,6 +462,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     destroyTaskHeaderText: ¿Destruir esta tarea?
     detail: Detalles
     display: Mostrar
+    displayAsMenuItem: Mostrar como opción de menú
     displayName: Nombre de pantalla
     dragAndDropFile: 'Arrastre y suelte un archivo o '
     dragAndDropImage: 'Arrastre y suelte una imagen o '
