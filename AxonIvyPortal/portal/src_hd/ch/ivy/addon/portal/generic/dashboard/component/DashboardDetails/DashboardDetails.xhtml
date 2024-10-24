@@ -82,18 +82,7 @@
           <p:inputText id="dashboard-description" value="#{managedBean.selectedDashboard.description}"
             required="false" styleClass="manage-dashboard__input " />
         </div>
-				<c:if test="#{isPublicDashboard}">
-					<div class="ui-g-4 manage-dashboard__label">
-						<p:outputLabel for="dashboard-description"
-							value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayAsMenuItem')}" />
-					</div>
-					<div class="ui-g-8 ui-fluid">
-						<p:selectBooleanCheckbox id="dashboard-menu-item"
-							value="#{managedBean.selectedDashboard.isMenuItem}"
-							required="false" />
-					</div>
-				</c:if>
-			</div>
+      </div>
     </h:form>
     <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="title-language-config"
       titles="#{managedBean.getTitles()}" 
