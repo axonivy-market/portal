@@ -460,6 +460,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     destroyTaskHeaderText: Destroy this task?
     detail: Details
     display: Display
+    displayAsMenuItem: Display as menu item
     displayName: Display name
     dragAndDropFile: 'Drag and drop a file or '
     dragAndDropImage: 'Drag and drop an image or '

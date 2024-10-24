@@ -124,6 +124,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     selectedDashboardId = Attrs.currentContext().getAttribute("#{data.dashboardId}", String.class);
     isPublicDashboard = Attrs.currentContext().getAttribute("#{data.isPublicDashboard}", Boolean.class);
     isReadOnlyMode = false;
+    this.dashboards = collectDashboards();
+    storeDashboardInSession(selectedDashboardId);
     super.init();
     ((DashboardProcessBean) ManagedBeans.get("dashboardProcessBean")).addPropertyChangeListener(this);
     if (getSelectedDashboard() != null) {
@@ -168,6 +170,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   @Override
   protected List<Dashboard> collectDashboards() {
     List<Dashboard> collectedDashboards = new ArrayList<>();
+    Dashboard taskTemplateDashboard = DashboardUtils.getTaskTemplateDashboard();
     try {
       if (isPublicDashboard) {
         collectedDashboards = DashboardUtils.getPublicDashboards();
@@ -176,8 +179,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         collectedDashboards = getVisibleDashboards(dashboardInUserProperty);
       }
     } catch (PortalException e) {
-      // If errors like parsing JSON errors, ignore them
       Ivy.log().error(e);
+    }
+    if (!collectedDashboards.contains(taskTemplateDashboard)) {
+      collectedDashboards.add(0, taskTemplateDashboard);
     }
     return collectedDashboards.stream()
         .filter(dashboard -> dashboard.getId().equals(selectedDashboardId)).collect(Collectors.toList());

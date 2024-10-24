@@ -461,6 +461,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     destroyTaskHeaderText: Diese Aufgabe löschen?
     detail: Details
     display: Anzeigen
+    displayAsMenuItem: Anzeige als Menüpunkt
     displayName: Name anzeigen
     dragAndDropFile: 'Ziehen und Ablegen einer Datei oder '
     dragAndDropImage: 'Ziehen und Ablegen eines Bildes oder '

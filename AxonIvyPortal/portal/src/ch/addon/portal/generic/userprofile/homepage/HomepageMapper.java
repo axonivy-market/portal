@@ -21,8 +21,9 @@ public class HomepageMapper {
       homepage.setType(HomepageType.PROCESS);
     } else if (menuItem.getMenuKind() == MenuKind.TASK) {
       homepage.setType(HomepageType.TASK);
-    } else if (menuItem.getMenuKind() == MenuKind.CASE) {
-      homepage.setType(HomepageType.CASE);
+      /*
+       * } else if (menuItem.getMenuKind() == MenuKind.DASHBOARD_MENU_ITEM) { homepage.setType(HomepageType.DASHBOARD);
+       */
     } else if (menuItem.getMenuKind() == MenuKind.CUSTOM) {
       homepage.setType(HomepageType.CUSTOM);
     } else {

@@ -35,6 +35,7 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
   private String displayedPermission;
   @JsonIgnore
   private boolean isAccessibility;
+  private Boolean isMenuItem = false;
 
   public Dashboard() {}
 
@@ -51,6 +52,7 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
     permissions = dashboard.permissions;
     permissionDTOs = dashboard.permissionDTOs;
     displayedPermission = dashboard.displayedPermission;
+    isMenuItem = dashboard.isMenuItem;
   }
   
   public boolean isAccessibility() {
@@ -141,6 +143,14 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
 
   public void setTemplateId(String templateId) {
     this.templateId = templateId;
+  }
+
+  public Boolean getIsMenuItem() {
+    return isMenuItem;
+  }
+
+  public void setIsMenuItem(Boolean isMenuItem) {
+    this.isMenuItem = isMenuItem;
   }
 
   @Override
