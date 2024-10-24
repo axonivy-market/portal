@@ -5,7 +5,7 @@
 
 <p:commandLink id="start-task" actionListener="#{dashboardBean.handleStartTask(task)}" onclick="event.stopPropagation();"
   disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}" oncomplete="resetPortalLeftMenuState()"
-  ariaLabel="#{taskBean.getAriaLabel(task)}"
+  ariaLabel="#{ariaLabel}"
   process="@this">
   <span class="si si-controls-play" />
 </p:commandLink>
