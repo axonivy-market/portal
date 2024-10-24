@@ -2279,21 +2279,6 @@ _:-ms-fullscreen, :root .additional-case-details-link {
 }
 
 /* Override Primefaces styles */
-.icon-selection-dialog-selecting-icon {
-  display: inline-flex;
-  width: 35px;
-  height: 35px;
-  cursor: pointer;
-}
-
-.icon-selection-dialog-selecting-icon .fa, .icon-selection-dialog-selecting-icon .si {
-  margin: auto;
-}
-
-_:-ms-input-placeholder, :root .icon-selection-dialog-selecting-icon .fa {
-  top: 50%;
-  transform: translateY(25%);
-}
 
 a[id*=application-menu-item]>span.ui-menuitem-text {
   min-width: 5ex !important;
@@ -3409,11 +3394,34 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 /********************************** END TASK INFORMATION **********************************/
 
 /********************************** AWESOME ICON SELECTION **********************************/
+.icon-selection-dialog-selecting-icon {
+  display: inline-flex;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.icon-selection-dialog-selecting-icon .fa, .icon-selection-dialog-selecting-icon .si, .icon-selection-array-selecting-icon .fa, .icon-selection-array-selecting-icon .si {
+  margin: auto;
+}
+
+_:-ms-input-placeholder, :root .icon-selection-dialog-selecting-icon .fa {
+  top: 50%;
+  transform: translateY(25%);
+}
+
+.icon-selection-array-selecting-icon {
+  display: inline-flex;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
 .select-awesome-icon-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 35px;
+  width: 25px;
   text-decoration: none !important;
 }
 
@@ -3424,9 +3432,9 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .custom-array-icon {
     width: 100%;
-    height: 35px;
-    margin-right: 15px;
+    height: 25px;
     display: flex;
+    justify-content: space-between;
     flex-flow: column wrap;
     overflow: hidden;
 }
