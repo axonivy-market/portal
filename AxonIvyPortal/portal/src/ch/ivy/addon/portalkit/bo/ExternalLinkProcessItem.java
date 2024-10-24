@@ -17,7 +17,7 @@ import ch.ivyteam.ivy.workflow.category.Category;
  */
 public class ExternalLinkProcessItem implements Process {
 
-  public static final String DEFAULT_ICON = "si si-hyperlink-3";
+  public static final String DEFAULT_ICON = "si-hyperlink-3";
   private ExternalLink externalLink;
   
   public ExternalLinkProcessItem(ExternalLink externalLink) {

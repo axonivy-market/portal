@@ -311,11 +311,16 @@ a.left-sidebar-menu-icon {
 }
 
 .ui-confirm-dialog-message li {
-  list-style-type: circle;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .ui-confirm-dialog-message ul {
   line-height: 19px
+}
+
+.ui-confirm-dialog-message h4 {
+  text-align: center;
 }
 /******** CHAT ********/
 .chat-add-assignee-button-grid, .chat-action-container {

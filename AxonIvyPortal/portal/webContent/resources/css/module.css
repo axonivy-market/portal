@@ -2279,21 +2279,6 @@ _:-ms-fullscreen, :root .additional-case-details-link {
 }
 
 /* Override Primefaces styles */
-.icon-selection-dialog-selecting-icon {
-  display: inline-flex;
-  width: 35px;
-  height: 35px;
-  cursor: pointer;
-}
-
-.icon-selection-dialog-selecting-icon .fa, .icon-selection-dialog-selecting-icon .si {
-  margin: auto;
-}
-
-_:-ms-input-placeholder, :root .icon-selection-dialog-selecting-icon .fa {
-  top: 50%;
-  transform: translateY(25%);
-}
 
 a[id*=application-menu-item]>span.ui-menuitem-text {
   min-width: 5ex !important;
@@ -2679,34 +2664,64 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 @media screen and (min-width: 64.062em) {
   .project-info-dialog {
-    min-width: 1000px;
+    min-width: 600px;
   }
 }
 
 /******************************** PROJECT INFO DIALOG ******************************/
 .project-info-dialog {
-  max-width: 1000px;
+  max-width: 600px;
 }
 
 .project-info-dialog .project-version-table .project-version {
-  width: 180px;
+  width: 150px;
 }
 
 .project-info-dialog .project-version-table .project-state {
-  width: 120px;
+  width: 80px;
+}
+
+.project-info-dialog .project-version-table .ui-datatable-header {
+  padding-left: 0;
 }
 
 @media screen and (max-width: 64.062em) {
-  .project-info-dialog .project-version-table .project-version,
-  .project-info-dialog .project-version-table .project-state {
+  .project-info-dialog .project-version-table .project-version {
     width: auto;
+  }
+  .project-info-dialog .project-version-table .project-state {
+    width: 80px;
   }
 }
 /******************************** END PROJECT INFO DIALOG **************************/
 
 /********************************** ADMIN SETTING **********************************/
+.admin-setting-card {
+  padding: 30px;
+}
+
+.admin-setting-card .admin-setting-header h2{
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.admin-setting-card .applications-setting-info {
+  color: var(--ivy-primary-color);
+  font-size: large;
+}
+
+.admin-setting-card .application-table {
+  margin-bottom: 2rem;
+  margin-top: 0.5rem;
+}
+
 .admin-ui-dialog {
   max-width: 80vw;
+}
+
+.admin-setting-tab .ui-tabs-panel.ui-widget-content.ui-corner-bottom {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 @media screen and (max-height: 615px) {
@@ -2719,8 +2734,13 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   text-align: left !important;
 }
 
-.action-column-icon-button {
+.applications-setting-info-circle {
+  margin: auto 0;
+}
+
+.action-column-icon-button i {
   margin: 0 5px;
+  color: var(--portal-button-color)
 }
 
 .setting-tab-action-buttons, .application-tab-action-buttons, .application-selection-action-buttons,
@@ -2730,14 +2750,30 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   margin: .5em 0;
 }
 
+.application-tab-action-buttons .new-app-btn, .create-role-container .create-role-btn {
+  width: 100%;
+  height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.5rem;
+}
+
 .admin-settings-form-input-label {
   float: right;
   padding-top: 5px;
 }
 
-.admin-settings-portal-link-label, .admin-settings-display-name-3rd-label {
-  float: right;
-  padding-top: 2px;
+.admin-settings-portal-link-label, .admin-settings-display-name-3rd-label,
+.admin-settings-application-icon {
+  font-weight: 500;
+}
+
+
+.application-name-language.ui-dialog .ui-dialog-titlebar,.app-dialog.ui-dialog .ui-dialog-titlebar,
+.role-details-dialog.ui-dialog .ui-dialog-titlebar, .setting-dialog.ui-dialog .ui-dialog-titlebar {
+  padding-bottom: 1rem;
 }
 
 .app-icon {
@@ -2803,7 +2839,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   margin: 10px !important;
 }
 
-.new-app, .ui-dialog-footer button {
+.ui-dialog-footer button {
   min-width: 90px;
   margin-bottom: 6px;
 }
@@ -2820,9 +2856,12 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 .absences-table-action-column,
 .ui-datatable thead th.absences-table-action-column {
   text-align: center;
-  width: 130px;
+  width: 90px;
 }
 
+.absence-table .ui-datatable-empty-message td {
+  padding-left: 0 !important;
+}
 @media (max-width: 768px) {
   .absences-table-action-column-icon-button {
     margin: 0 5px !important;
@@ -2932,7 +2971,11 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .choose-deputy-dialog .deputy-selection-panel .add-deputy-button {
   float: right;
-  margin-top: 15px;
+}
+
+.choose-deputy-dialog .deputy-selection-panel .selected-deputy-panel {
+  border: none;
+  padding: 1rem 0;
 }
 
 .choose-deputy-dialog .deputy-selection-panel .selected-deputy-panel .deputy-selection {
@@ -2959,6 +3002,9 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   margin-top: 10px;
 }
 
+.choose-deputy-dialog .ui-dialog-titlebar {
+  padding: 1.5rem 1.5rem 1rem 28px !important;
+}
 /**********************************END ABSENCES AND DEPUTY **********************************/
 .application-language-header {
   width: 20%;
@@ -2984,6 +3030,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   width: 300px;
 }
 
+.change-password-dialog .ui-dialog-titlebar {
+  padding: 1.5rem 1.5rem 18px 1.5rem !important;
+}
+
 @media screen and (max-width: 40em) {
   .change-password-dialog {
     max-width: 96vw;
@@ -3006,8 +3056,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .user-profile-footer {
-  margin-top: 25px;
   text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0.5rem;
 }
 
 .user-profile-footer .ui-button {
@@ -3046,6 +3098,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   height: auto;
   float: left;
   width: 100%;
+  padding: 2.25rem;
 }
 
 .my-profile-container .portal-section-container.general-section-container {
@@ -3093,6 +3146,14 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   }
 }
 
+.my-profile-block:not(:last-child) {
+  margin-bottom: 2.25rem;
+}
+
+.user-profile-setting-title {
+  margin-bottom: 0.5rem;
+}
+
 /********************************** END USER PROFILE SETTING **********************************/
 
 /********************************** ABSENCES SETTING *********************************************/
@@ -3107,16 +3168,16 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   height: 100%;
 }
 
-.absences-management-form .add-absence-panel {
-  text-align: right;
-}
-
 .deputy-for-next-absence {
   width: inherit;
 }
 
 .substitute-table .substition-role-type {
   display: none;
+}
+
+.substitution-table .ui-datatable-empty-message td {
+  padding-left: 0 !important;
 }
 
 .absences-management-container .substitute-table tbody.ui-datatable-data .substition-role-display-name,
@@ -3126,13 +3187,21 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   line-break: anywhere;
 }
 
+.primary-color-light-button {
+  background: var(--portal-button-bg-color) !important; 
+  color: var(--portal-button-text-color) !important;
+  font-weight: 600;
+}
+
+.primary-color-light-button:hover {
+  background: var(--portal-accessibility-bg-color) !important;
+}
+
+.add-absence-dialog .ui-dialog-titlebar {
+  padding: 1.5rem 1.5rem 0 1.5rem !important;
+}
+
 @media screen and (max-width: 40em) {
-  .absences-management-form .add-absence-panel {
-    text-align: left;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 
   .add-absence-dialog {
     max-width: 98vw;
@@ -3219,10 +3288,14 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   }
   
   .primary-color-light-button {
-  background: var(--portal-accessibility-bg-color) !important; 
-  color: var(--ivy-primary-color) !important;
-  font-weight: 600;
-}
+    background: var(--portal-button-bg-color) !important; 
+    color: var(--portal-button-text-color) !important;
+    font-weight: 600;
+  }
+
+  .primary-color-light-button:hover {
+    background: var(--portal-accessibility-bg-color) !important;
+  }
 
   .line-clamp-text-5 {
     overflow:hidden;
@@ -3253,7 +3326,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   white-space: normal;
   padding-right: .5em;}
 
-.ui-dialog .ui-dialog-titlebar > .ui-dialog-title {
+.ui-dialog .ui-dialog-titlebar > span[id*=':share-dashboard-dialog_title'], span[id*=':configuration-dashboard-detail-dialog_title'] {
   padding-left: 7px;
 }
 
@@ -3321,9 +3394,58 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 /********************************** END TASK INFORMATION **********************************/
 
 /********************************** AWESOME ICON SELECTION **********************************/
+.icon-selection-dialog-selecting-icon {
+  display: inline-flex;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.icon-selection-dialog-selecting-icon .fa, .icon-selection-dialog-selecting-icon .si, .icon-selection-array-selecting-icon .fa, .icon-selection-array-selecting-icon .si {
+  margin: auto;
+}
+
+_:-ms-input-placeholder, :root .icon-selection-dialog-selecting-icon .fa {
+  top: 50%;
+  transform: translateY(25%);
+}
+
+.icon-selection-array-selecting-icon {
+  display: inline-flex;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
 .select-awesome-icon-button {
-  margin-left: 10px;
-  text-decoration: underline !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  text-decoration: none !important;
+}
+
+.menu-icon-container {
+  display: flex;
+  align-items: center;
+}
+
+.custom-array-icon {
+    width: 100%;
+    height: 25px;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: column wrap;
+    overflow: hidden;
+}
+
+.icon-color {
+    color: var(--icon-color) !important;
+}
+
+.highlight-selected-icon {
+    background-color: var(--selected-icon-bg-color) !important;
+    border-radius: 3px;
 }
 
 /********************************** STATISTIC WIDGET **********************************/
@@ -3562,7 +3684,8 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   white-space: nowrap;
 }
 
-.change-password-column input {
+.change-password-column input, 
+.change-password-column button {
   width: 100%;
 }
 
@@ -4432,6 +4555,10 @@ border-top: 0.14rem dashed;
 .portal-dialog-content {
   margin:20px 0;
 }
+
+.portal-dialog .ui-dialog-titlebar {
+ padding: 1.5rem 1.5rem 0.5rem 1.5rem !important; 
+}
 /** Portal dialog ---- end-----**/
 
 /* =================== START EXCEPTION ===================== */
@@ -4448,6 +4575,10 @@ border-top: 0.14rem dashed;
 .portal-exception-detail-group .error-label,
 .portal-exception-detail-group .error-value {
   padding: 6px 0;
+}
+
+.portal-exception-dialog-content {
+  font-size: 1.3rem;
 }
 
 .message-details {
@@ -5339,9 +5470,15 @@ a.dashboard-action-container label {
 
 .role-management-title {
   margin: auto;
+  font-size: 16px;
+}
+
+.role-details-header {
+  font-size: large;
 }
 
 .role-details-dialog {
+  min-width: 450px;
   max-width: 750px;
 }
 
@@ -5578,8 +5715,3 @@ body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-butto
 }
 
 /* =================== PORTAL BUTTON END ====================== */
-
-/* =================== MENU ITEMS ====================== */
-.ui-menu-items, body .ui-menu .ui-menu-list .ui-menuitem:not(:last-child), .action-step-item:not(:last-child) {
-  border-bottom: 1px solid var(--user-menu-items-border-color);
-}

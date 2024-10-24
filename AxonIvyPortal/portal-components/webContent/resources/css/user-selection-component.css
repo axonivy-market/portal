@@ -2,6 +2,11 @@
   width: 100%;
 }
 
+.ui-fluid.user-selection-panel {
+  display: inline-block;
+  width: 85%;
+}
+
 .message-for-floating-label {
   padding-left: 2px;
 }
