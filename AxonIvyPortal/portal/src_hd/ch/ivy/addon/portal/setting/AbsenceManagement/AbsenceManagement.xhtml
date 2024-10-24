@@ -9,108 +9,99 @@
     <ui:define name="pageContent">
 
       <h:form id="absences-management-form" styleClass="absences-management-form ">
-        <div id="absences-management-container" class="ui-g absences-management-container">
+        <div id="absences-management-container" class="ui-g-12 absences-management-container">
           <div class="ui-g-12">
-            <p:growl id="absences-management-info" showDetail="true" severity="info" for="absences-management-message" sticky="true" redisplay="false">
-              <p:autoUpdate/>
+            <p:growl id="absences-management-info" showDetail="true"
+              severity="info" for="absences-management-message"
+              sticky="true" redisplay="false">
+              <p:autoUpdate />
             </p:growl>
           </div>
 
           <!-- Absences setting card -->
           <div class="ui-g-12">
-            <div class="portal-section-container card flex">
-              <div class="ui-g-6 absence-management ui-md-12 ui-lg-6">
+            <div class="ui-g portal-section-container card">
+              <div class="ui-g-12 absence-management">
                 <div class="setting-header ui-g-12 u-no-padding-bottom">
-                  <h3 id="absence">#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/allAbsences' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myAbsences')}</h3>
+                  <h2 id="absence">#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/allAbsences' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myAbsences')}</h2>
                 </div>
 
                 <div class="ui-g-12 u-no-padding-top">
-                  <div class="ui-g-6 ui-sm-12 u-padding-0 " jsf:rendered="#{data.isSupervisor}">
-                    <ic:com.axonivy.portal.components.UserSelection id="user-absence-selection-component"
-                      componentId="user-absence"
-                      selectedUser="#{data.selectedAbsenceUser}"
-                      completeMethod="#{logic.autoCompleteForUserOnApp}"
-                      isRenderedMessage="false"
-                      label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/selectedUser')}"
-                      labelPanelStyleClass="ui-sm-12 ui-fluid pr-3"
-                      autoCompletePanelStyleClass="w-full ui-fluid"
-                      autoCompleteStyleClass="absence-user-selection"
-                      scrollHeight="200"
-                      hasCustomizedSelectionList="true"
-                      size="35">
-                      <p:column>
-                        <pc:securityMemberNameAndAvatar displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
-                          securityMember="#{user}" />
-                      </p:column>
-                      <f:facet name="event">
-                        <p:ajax event="itemSelect" listener="#{logic.findAbsencesAndSubstitutes}" partialSubmit="true"
-                          update="@(.absence-table) @(.substitute-table) @(.substitution-table) absences-management-form" />
-                      </f:facet>
-                    </ic:com.axonivy.portal.components.UserSelection>
-                  </div>
-                  <div class="#{data.isSupervisor ? ' ui-sm-12 ui-g-6' : 'ui-g-6'} add-absence-panel pl-5">
-                    <div class="ui-fluid flex justify-content-start gap-3 align-items-center h-full">
-                      <h:panelGroup layout="block">
-                        <p:outputLabel id="show-absence-in-the-past-label"
-                          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/showAbsencesInThePast')}" 
-                          for="show-absence-in-the-past"/>
-                      </h:panelGroup>
-                      <p:toggleSwitch id="show-absence-in-the-past"
-                        value="#{data.absenceInThePastShown}"
-                        styleClass="show-absence-in-the-past-panel" >
-                        <p:ajax event="change"
-                          listener="#{logic.findAbsencesAndSubstitutes()}"
-                          update="@(.absence-table)"
-                          partialSubmit="true" />
-                      </p:toggleSwitch>
+                  <div class="flex flex-wrap align-items-end">
+                    <div class="ui-g-6 ui-sm-12 u-padding-0 ui-g-4 ui-xl-4 ui-lg-4 ui-md-12" jsf:rendered="#{data.isSupervisor}">
+                      <ic:com.axonivy.portal.components.UserSelection id="user-absence-selection-component"
+                        componentId="user-absence"
+                        selectedUser="#{data.selectedAbsenceUser}"
+                        completeMethod="#{logic.autoCompleteForUserOnApp}"
+                        isRenderedMessage="false"
+                        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/selectedUser')}"
+                        labelPanelStyleClass="ui-g-4 ui-sm-12 pr-3"
+                        autoCompletePanelStyleClass="ui-g-8 ui-sm-12 ui-fluid"
+                        autoCompleteStyleClass="absence-user-selection"
+                        scrollHeight="200"
+                        hasCustomizedSelectionList="true" size="35">
+                        <p:column>
+                          <pc:securityMemberNameAndAvatar
+                            displayName="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
+                            securityMember="#{user}" />
+                        </p:column>
+                        <f:facet name="event">
+                          <p:ajax event="itemSelect" listener="#{logic.findAbsencesAndSubstitutes}" partialSubmit="true"
+                            update="@(.absence-table) @(.substitute-table) @(.substitution-table) absences-management-form" />
+                        </f:facet>
+                      </ic:com.axonivy.portal.components.UserSelection>
+                    </div>
+                    <div class="#{data.isSupervisor ? ' ui-sm-12 ui-g-6' : 'ui-g-6'} add-absence-panel pl-0">
+                      <div class="ui-fluid flex justify-content-start gap-3 align-items-center h-full">
+                        <h:panelGroup layout="block">
+                          <p:outputLabel id="show-absence-in-the-past-label"
+                            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/showAbsencesInThePast')}"
+                            for="show-absence-in-the-past" />
+                        </h:panelGroup>
+                        <p:toggleSwitch id="show-absence-in-the-past" value="#{data.absenceInThePastShown}"
+                          styleClass="show-absence-in-the-past-panel">
+                          <p:ajax event="change" listener="#{logic.findAbsencesAndSubstitutes()}"
+                            update="@(.absence-table)" partialSubmit="true" />
+                        </p:toggleSwitch>
+                      </div>
                     </div>
                   </div>
 
                   <div class="ui-g-12 u-no-padding-top mb-2 pl-0">
-                    <p:dataTable id="absence-table"
-                      styleClass="absence-table pl-0"
+                    <p:dataTable id="absence-table" styleClass="absence-table pl-0"
                       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-                      reflow="true"
-                      value="#{data.displayedAbsences}"
-                      var="absence"
-                      paginator="true"
-                      rows="4"
-                      paginatorAlwaysVisible="false"
-                      paginatorPosition="bottom"
-                      pageLinks="3"
+                      reflow="true" value="#{data.displayedAbsences}" var="absence" paginator="true" rows="4"
+                      paginatorAlwaysVisible="false" paginatorPosition="bottom" pageLinks="3"
                       paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                      currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}" lazy="false">
+                      currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}"
+                      lazy="false">
                       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/period')}"
                         sortBy="#{absence.period}" styleClass="absence-period pl-0">
-                        <h:outputText value="#{absence.period}" styleClass="absence-column-value"/>
+                        <h:outputText value="#{absence.period}" styleClass="absence-column-value" />
                       </p:column>
                       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}"
-                        sortBy="#{absence.comment}"
-                        styleClass="u-truncate-text">
-                        <h:outputText value="#{absence.comment}" title="#{absence.comment}" styleClass="absence-column-value"/>
+                        sortBy="#{absence.comment}" styleClass="u-truncate-text">
+                        <h:outputText value="#{absence.comment}" title="#{absence.comment}"
+                          styleClass="absence-column-value" />
                       </p:column>
                       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
                         styleClass="absences-table-action-column">
                         <p:commandButton id="absence-action-button" icon="si si-navigation-menu-horizontal"
-                          styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page" type="button" />
-                        <p:menu class="absence-column-value" overlay="true"
-                          trigger="absence-action-button" my="right top" 
-                          at="right bottom" styleClass="settings-action-menu">
+                          styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page"
+                          type="button" />
+                        <p:menu class="absence-column-value" overlay="true" trigger="absence-action-button"
+                          my="right top" at="right bottom" styleClass="settings-action-menu">
                           <p:menuitem id="edit-absence"
                             actionListener="#{logic.editAbsence(absence)}"
-                            oncomplete="PF('absence-dialog').show()"
-                            update="@widgetVar(absence-dialog)"
+                            oncomplete="PF('absence-dialog').show()" update="@widgetVar(absence-dialog)"
                             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
-                            icon="si si-graphic-tablet-drawing-pen"
-                            process="@this"
+                            icon="si si-graphic-tablet-drawing-pen" process="@this"
                             rendered="#{absenceManagementBean.isAbsenceEditable(absence) }">
                           </p:menuitem>
-                          <p:menuitem id="delete-absence"
-                            actionListener="#{logic.preDelete(absence)}"
+                          <p:menuitem id="delete-absence" actionListener="#{logic.preDelete(absence)}"
                             oncomplete="PF('deleteAbsenceConfirmation').show();"
                             rendered="#{absenceManagementBean.isAbsenceDeletable(absence)}"
-                            icon="si si-bin-1"
-                            process="@this"
+                            icon="si si-bin-1" process="@this"
                             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
                           </p:menuitem>
                         </p:menu>
@@ -139,116 +130,114 @@
                   </div>
                 </div>
               </div>
-              <!--     END OF ABSENCE CARD     ============ -->
-              
-              <div id="my-profile-form:j_id_s_2_ar" role="separator" class="ui-divider ui-widget ui-divider-vertical ui-divider-solid ui-divider-center"></div>
+              <!--     END OF ABSENCE    ============ -->
 
-              <div class="ui-g-6 ui-lg-6 ui-md-12">
-                <!-- Deputy setting card ============ -->
-                <div id="deputy-setting" >
-                  <div class="setting-header ui-g-12 u-no-padding-bottom">
-                    <h3>#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/definedDeputies' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myDeputies')}</h3>
-                  </div>
-                  <div id="username-deputy" class="ui-g-12 u-no-padding-top pl-0">
-                    <div class="ui-g-12 deputy-no-permission" jsf:rendered="#{!absenceManagementBean.canReadSubstitute(data.selectedAbsenceUser)}">
-                      <i class="si si-view-off" /> #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noPermissionToSeeThisArea")}
-                    </div>
-                    <div class="ui-g-12 pl-0">
-                      <p:dataTable id="substitute-table" rendered="#{absenceManagementBean.canReadSubstitute(data.selectedAbsenceUser)}"
-                        emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-                        styleClass="substitute-table" reflow="true" value="#{data.deputyRoles}" var="deputyRole"
-                        paginator="true" rows="4" paginatorAlwaysVisible="false" paginatorPosition="bottom" pageLinks="3"
-                        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                        currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}"
-                        lazy="false">
-                        <p:column
-                          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/applicationAndRole')}"
-                          sortBy="#{deputyRole.deputyRoleDisplayName}" sortOrder="ASC">
-                          <h:outputText value="#{deputyRole.deputyRoleDisplayName}"
-                            styleClass="substition-role-display-name absence-column-value" />
-                          <span class="substition-role-type" deputy-role-type="#{deputyRole.deputyRoleType.toString()}" />
-                        </p:column>
-                        <p:column
-                          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/deputies')}"
-                          styleClass="ui-fluid">
-                          <div class="absence-column-value">
-                            <c:set var="deputiesDisplayNames"
-                              value="#{securityMemberDisplayNameFormatBean.joinSecurityMemberNames(deputyRole.deputies)}" />
-                            <p:commandLink id="selected-deputies-link"
-                              immediate="true" styleClass="task-responsible-link"
-                              value="#{not empty deputiesDisplayNames ? deputiesDisplayNames : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
-                              actionListener="#{logic.initSelectedDeputies(deputyRole)}" oncomplete="PF('choose-deputy-dialog').show();"
-                              update="deputy-selection-form:deputy-selection-panel" global="false"
-                              disabled="#{!absenceManagementBean.canCreateSubstitute(data.selectedAbsenceUser)}">
-                              <i class="si si-notes-quill" />
-                            </p:commandLink>
-                          </div>
-                        </p:column>
-                      </p:dataTable>
-                    </div>
-                  </div>
+              <!-- Deputy setting ============ -->
+              <div id="deputy-setting" class="ui-g-12" jsf:rendered="#{absenceManagementBean.canReadSubstitute(data.selectedAbsenceUser)}">
+                <div class="setting-header ui-g-12 u-no-padding-bottom">
+                  <h3 class="mb-0">#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/definedDeputies'
+                    : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myDeputies')}</h3>
                 </div>
-                <!-- END OF Deputy setting card -->
-
-                <!-- Deputy-For setting card -->
-                <div id="deputy-for-container" class="ui-g-12" >
-                  <div class="setting-header ui-g-12 u-no-padding-bottom pl-0">
-                    <h3>#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/selectedDeputyFor' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/deputyFor')}</h3>
-                  </div>
-
-                  <div class="ui-g-12 pl-0 substitute-no-permission" jsf:rendered="#{!absenceManagementBean.substitutionCapable}" >
-                      <i class="si si-view-off" /> #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noPermissionToSeeThisArea")}
-                  </div>
-                  <div class="ui-g-12 u-no-padding-bottom pl-0">
-                    <p:dataTable id="substitution-table"
-                      rendered="#{absenceManagementBean.substitutionCapable}"
+                <div id="username-deputy" class="ui-g-12 u-no-padding-top">
+                  <div class="ui-g-12 pl-0">
+                    <p:dataTable id="substitute-table"
+                      rendered="#{absenceManagementBean.canReadSubstitute(data.selectedAbsenceUser)}"
                       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-                      styleClass="substitution-table ui-g-12 u-no-padding-top pl-0"
-                      reflow="true"
-                      value="#{data.substitutions}"
-                      var="substitution"
-                      paginator="true"
-                      rows="4"
+                      styleClass="substitute-table" reflow="true"
+                      value="#{data.deputyRoles}" var="deputyRole"
+                      paginator="true" rows="4"
                       paginatorAlwaysVisible="false"
-                      paginatorPosition="bottom"
-                      pageLinks="3"
-                      sortMode="single"
+                      paginatorPosition="bottom" pageLinks="3"
                       paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                      currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}" lazy="false">
-                      <p:column headerText="#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/selectedDeputyFor' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/deputyFor')}"
-                        styleClass="pl-0"
-                        sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(substitution.ownerUser, substitution.ownerUser.name)}">
-                        <pc:securityMemberNameAndAvatar
-                            displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(substitution.ownerUser, substitution.ownerUser.name)}"
-                            securityMember="#{substitution.ownerUser}" />
-                      </p:column>
+                      currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}"
+                      lazy="false">
                       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/applicationAndRole')}"
-                        sortBy="#{substitution.substitionRoleDisplayName}">
-                        <h:outputText value="#{substitution.substitionRoleDisplayName}" styleClass="substition-role-display-name absence-column-value"/>
+                        styleClass="pl-0" sortBy="#{deputyRole.deputyRoleDisplayName}" sortOrder="ASC">
+                        <h:outputText value="#{deputyRole.deputyRoleDisplayName}"
+                          styleClass="substition-role-display-name absence-column-value" />
+                        <span class="substition-role-type" deputy-role-type="#{deputyRole.deputyRoleType.toString()}" />
                       </p:column>
-                      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/nextAbsence')}"
-                        styleClass="deputy-for-next-absence"
-                        sortBy="#{absenceManagementBean.findNextAbsence(substitution.ownerUser)}">
-                        <h:outputText value="#{absenceManagementBean.findNextAbsence(substitution.ownerUser)}" styleClass="absence-column-value"/>
+                      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/deputies')}" styleClass="ui-fluid">
+                        <div class="absence-column-value">
+                          <c:set var="deputiesDisplayNames"
+                            value="#{securityMemberDisplayNameFormatBean.joinSecurityMemberNames(deputyRole.deputies)}" />
+                          <p:commandLink id="selected-deputies-link" immediate="true"
+                            styleClass="task-responsible-link"
+                            value="#{not empty deputiesDisplayNames ? deputiesDisplayNames : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
+                            actionListener="#{logic.initSelectedDeputies(deputyRole)}"
+                            oncomplete="PF('choose-deputy-dialog').show();"
+                            update="deputy-selection-form:deputy-selection-panel" global="false"
+                            disabled="#{!absenceManagementBean.canCreateSubstitute(data.selectedAbsenceUser)}">
+                            <i class="si si-notes-quill" />
+                          </p:commandLink>
+                        </div>
                       </p:column>
                     </p:dataTable>
                   </div>
                 </div>
-                <!-- END OF Deputy-For setting card -->
-                <div class="user-profile-footer ui-g-12 relative">
-                  <p:commandLink id="cancel-subsitute"
-                    rendered="#{absenceManagementBean.substitutionCapable}"
-                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                    actionListener="#{logic.backToHome()}"
-                    styleClass="u-mar-right-15" />
+              </div>
+              <!--     END OF DEPUTY ============ -->
 
-                  <p:commandButton id="save-substitute" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveAll')}"
-                    rendered="#{absenceManagementBean.substitutionCapable}"
-                    actionListener="#{logic.saveSubstitutes}"
-                    process="absences-management-form"
-                    partialSubmit="true" update="absences-management-form"
-                    styleClass="u-mar-right-5" />
+              <!-- Deputy-For setting-->
+              <div id="deputy-for-container" class="ui-g-12" jsf:rendered="#{absenceManagementBean.substitutionCapable}">
+                <div class="setting-header ui-g-12 u-no-padding-bottom">
+                  <h3 class="mb-0">#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/selectedDeputyFor'
+                    : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/deputyFor')}</h3>
                 </div>
+                <div class="ui-g-12 u-no-padding-bottom">
+                  <p:dataTable id="substitution-table" rendered="#{absenceManagementBean.substitutionCapable}"
+                    emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
+                    styleClass="substitution-table ui-g-12 u-no-padding-top pl-0"
+                    reflow="true" value="#{data.substitutions}"
+                    var="substitution" paginator="true" rows="4"
+                    paginatorAlwaysVisible="false" paginatorPosition="bottom" pageLinks="3"
+                    sortMode="single"
+                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                    currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}"
+                    lazy="false">
+                    <p:column
+                      headerText="#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/selectedDeputyFor' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/deputyFor')}"
+                      styleClass="pl-0"
+                      sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(substitution.ownerUser, substitution.ownerUser.name)}">
+                      <pc:securityMemberNameAndAvatar
+                        displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(substitution.ownerUser, substitution.ownerUser.name)}"
+                        securityMember="#{substitution.ownerUser}" />
+                    </p:column>
+                    <p:column
+                      headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/applicationAndRole')}"
+                      sortBy="#{substitution.substitionRoleDisplayName}">
+                      <h:outputText
+                        value="#{substitution.substitionRoleDisplayName}"
+                        styleClass="substition-role-display-name absence-column-value" />
+                    </p:column>
+                    <p:column
+                      headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/nextAbsence')}"
+                      styleClass="deputy-for-next-absence"
+                      sortBy="#{absenceManagementBean.findNextAbsence(substitution.ownerUser)}">
+                      <h:outputText
+                        value="#{absenceManagementBean.findNextAbsence(substitution.ownerUser)}"
+                        styleClass="absence-column-value" />
+                    </p:column>
+                  </p:dataTable>
+                </div>
+              </div>
+              <!-- END OF Deputy-For setting card -->
+
+              <!-- FOOTER BUTTONS -->
+              <div class="user-profile-footer ui-g-12 relative">
+                <p:commandLink id="cancel-subsitute"
+                  rendered="#{absenceManagementBean.substitutionCapable}"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                  actionListener="#{logic.backToHome()}"
+                  styleClass="u-mar-right-15" />
+
+                <p:commandButton id="save-substitute"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveAll')}"
+                  rendered="#{absenceManagementBean.substitutionCapable}"
+                  actionListener="#{logic.saveSubstitutes}"
+                  process="absences-management-form"
+                  partialSubmit="true" update="absences-management-form"
+                  styleClass="u-mar-right-5" />
               </div>
             </div>
           </div>

@@ -3183,11 +3183,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   height: 100%;
 }
 
-.absences-management-form .add-absence-panel {
-  position: relative;
-  top: 30px;
-}
-
 .deputy-for-next-absence {
   width: inherit;
 }
@@ -3222,12 +3217,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 @media screen and (max-width: 40em) {
-  .absences-management-form .add-absence-panel {
-    text-align: left;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 
   .add-absence-dialog {
     max-width: 98vw;

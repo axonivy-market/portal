@@ -671,17 +671,9 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 .substituted-user-text {
   font-size: var(--large-font-size); }
 
-.not-display-result-tab-view,
-.substitute-no-permission,
-.deputy-no-permission {
+.not-display-result-tab-view {
   font-size: var(--default-font-size); }
   
-.substitute-no-permission,
-.deputy-no-permission {
-  color: var(--task-start-list-description-cell);
-}
-  
-
 /** Style for Task Template * --------------------------------------*/
 .task-template-title {
   font-size: var(--large-font-size);
