@@ -93,7 +93,7 @@ public class DashboardBean implements Serializable {
       menuView.updateDashboardCache(dashboards);
     }
 
-    if (CollectionUtils.isNotEmpty(DashboardUtils.getSubItemDashboards())) {
+    if (CollectionUtils.isNotEmpty(DashboardUtils.getDashboardsWithoutMenuItem())) {
       if (Ivy.request().getRequestPath().endsWith("/PortalDashboardAsMenu.xhtml")) {
         // TODO z1 refactor
         selectedDashboardId =
@@ -112,7 +112,8 @@ public class DashboardBean implements Serializable {
       initShareDashboardLink(selectedDashboard);
       // can not find dashboard by dashboard id session in view mode
       if (StringUtils.isBlank(selectedDashboardId)
-          || (!selectedDashboardId.equalsIgnoreCase(selectedDashboard.getId()) && dashboards.size() > 1)) {
+          || (!selectedDashboardId.equalsIgnoreCase(selectedDashboard.getId())
+              && DashboardUtils.getDashboardsWithoutMenuItem().size() > 1)) {
         storeDashboardInSession(selectedDashboard.getId());
       }
       if (isReadOnlyMode) {

@@ -79,7 +79,6 @@ public class HomepageUtils {
     if (homepages.contains(homepage)) {
       Homepage seletedHomepage = homepages.get(homepages.indexOf(homepage));
       adjustHomepageStartLink(seletedHomepage);
-      Ivy.log().error(seletedHomepage.getLink());
       return seletedHomepage;
     } else {
       return homepage;
@@ -90,7 +89,6 @@ public class HomepageUtils {
     String relativeUrl = switch (homepage.getType()) {
       case PROCESS -> findRelativeUrlByKeywork(PortalNavigator.PORTAL_PROCESS_START);
       case CASE -> findRelativeUrlByKeywork(PortalNavigator.PORTAL_CASE_START);
-      case TASK -> findRelativeUrlByKeywork(PortalNavigator.getPortalStartUrl());
       default -> "";
     };
     if (StringUtils.isNotEmpty(relativeUrl)) {
