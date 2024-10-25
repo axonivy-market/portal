@@ -25,9 +25,11 @@
           <p:commandButton actionListener="#{logic.close}" value="Proceed" update="form" icon="ui-icon-check" />
         </p:panelGrid>
       </h:form>
-      <script>
-          window.taskName = '#{data.taskName}';
-      </script>
+      <ic:com.axonivy.portal.components.IFrameTaskConfig taskName='#{data.taskName}' />
+      <!-- You could also configure by Javascript -->
+      <!-- <script> -->
+      <!--    window.taskName = '#{data.taskName}'; -->
+      <!--</script> -->
     </ui:define>
   </ui:composition>
 </h:body>
