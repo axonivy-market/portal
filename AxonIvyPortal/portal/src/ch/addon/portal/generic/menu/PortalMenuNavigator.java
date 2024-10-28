@@ -285,7 +285,7 @@ private static SubMenuItem convertDashboardToSubMenuItem(Dashboard dashboard, St
     // Set other properties
     item.menuKind = MenuKind.DASHBOARD_MENU_ITEM;
     item.label = item.getName();
-    item.link = UrlUtils.getServerUrl() + PortalNavigator.getDashboardAsMenuPageUrl(dashboard.getId());
+    item.link = UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId());
 
     // Special case for a specific dashboard ID
     if (DashboardUtils.DASHBOARD_TASK_TEMPLATE_ID.equalsIgnoreCase(dashboard.getId())) {
