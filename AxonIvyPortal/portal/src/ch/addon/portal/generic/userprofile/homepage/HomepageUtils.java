@@ -27,7 +27,7 @@ public class HomepageUtils {
   public static List<Homepage> loadHomepages() {
     List<Homepage> homepages = new ArrayList<>();
     List<SubMenuItem> subMenuItems = PortalMenuNavigator.callSubMenuItemsProcess();
-    homepages.add(initDashboard());
+    homepages.add(defaultHompage());
     for (SubMenuItem item : subMenuItems) {
       if (item.getMenuKind() != MenuKind.EXTERNAL_LINK) {
         homepages.add(HomepageMapper.toHomepage(item));
@@ -36,7 +36,7 @@ public class HomepageUtils {
     return homepages;
   }
 
-  private static Homepage initDashboard() {
+  private static Homepage defaultHompage() {
     Homepage dashboard = new Homepage();
     dashboard.setName(HomepageType.DASHBOARD.name());
     dashboard.setLabel(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/dashboard"));
@@ -61,7 +61,11 @@ public class HomepageUtils {
 
     List<Homepage> homepages = loadHomepages();
     homepage.setName(homepageName);
-    return homepages.get(homepages.indexOf(homepage));
+    int index = homepages.indexOf(homepage);
+    if (index == -1) {
+      index = 0;
+    }
+    return homepages.get(index);
   }
 
   public static Homepage findHomepage() {
@@ -81,7 +85,7 @@ public class HomepageUtils {
       adjustHomepageStartLink(seletedHomepage);
       return seletedHomepage;
     } else {
-      return homepage;
+      return defaultHompage();
     }
   }
 
@@ -108,7 +112,11 @@ public class HomepageUtils {
     List<Homepage> homepages = loadHomepages();
     Homepage homepage = new Homepage();
     homepage.setName(findHomepageSetting());
-    return homepages.get(homepages.indexOf(homepage));
+    int index = homepages.indexOf(homepage);
+    if (index == -1) {
+      index = 0;
+    }
+    return homepages.get(index);
   }
 
   private static String findHomepageSetting() {
