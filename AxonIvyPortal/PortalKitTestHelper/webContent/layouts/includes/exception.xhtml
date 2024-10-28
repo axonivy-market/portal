@@ -12,7 +12,7 @@
       <p:ajaxExceptionHandler
         type="javax.faces.application.ViewExpiredException"
         update="viewExpiredExceptionDialog"
-        onexception="PF('viewExpiredExceptionDialog').show();" />
+        onexception="parent.PF &amp;&amp; parent.PF('view-expired-exception-dialog') ? parent.PF('view-expired-exception-dialog').show() : PF('viewExpiredExceptionDialog').show()" />
 
       <!-- Error Dialog shown if a view or session has expired -->
       <p:dialog id="viewExpiredExceptionDialog"
