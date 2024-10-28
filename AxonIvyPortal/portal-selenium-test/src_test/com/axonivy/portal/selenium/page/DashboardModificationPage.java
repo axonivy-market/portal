@@ -5,6 +5,8 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import java.util.List;
 
+import org.openqa.selenium.interactions.Actions;
+
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -147,5 +149,29 @@ public class DashboardModificationPage extends TemplatePage {
     SelenideElement dashboard = getDashboardRowByName("Dashboard");
     clickButtonOnDashboardConfigurationActionMenu("Share", dashboard);
     $("div[id$=':share-dashboard-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement getElementBorder() {
+    ElementsCollection elements = $("[id=\"task-task_1:task-component:dashboard-tasks:dashboard-tasks-columns:1\"]")
+        .$$(".ui-column-resizer.ui-draggable.ui-draggable-handle");
+    return elements.get(0);
+}
+  
+  public void resizeColumn() {
+    $("[id='task-task_1:task-component:dashboard-tasks-container']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    ElementsCollection elements = $("[id=\"task-task_1:task-component:dashboard-tasks:dashboard-tasks-columns:1\"]")
+    .$$(".ui-column-resizer.ui-draggable.ui-draggable-handle");
+    ElementsCollection targets = $("[id='task-task_1:task-component:dashboard-tasks:dashboard-tasks-columns:3']")
+        .$$(".ui-column-resizer.ui-draggable.ui-draggable-handle");
+        
+    new Actions(driver)
+    .dragAndDrop(elements.get(0), targets.get(0))
+    .perform();
+  }
+  
+  public int getPriorityColumnSize() {
+    return $("[id=\"task-task_1:task-component:dashboard-tasks:dashboard-tasks-columns:1\"]")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .getSize().getWidth();
   }
 }
