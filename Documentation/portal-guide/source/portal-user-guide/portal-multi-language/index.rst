@@ -6,6 +6,8 @@ Portal Multi Language
 The document translation shows how easy it has become, to translate from the pure text, into the language of your end user.
 Say goodbye to language barriers in process automation with Axon Ivy's translation service powered by DeepL.
 
+.. _enable-translation:
+
 HowTo: Enable the translation
 -----------------------------
 

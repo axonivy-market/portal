@@ -38,7 +38,7 @@ The following default widgets are available:
 
 In addition, a developer can provide custom widgets to add relevant project information to your dashboard.
 
-**Task list widget, Case list widget, Process list widget (compact mode)** has the following standard features:
+**Task list widget, Case list widget, Process list widget (compact mode)** have the following standard features:
 
    - Saved filters and Filter options
 
@@ -57,7 +57,7 @@ In edit mode, you can:
 
    - **Move widgets using drag-and-drop**: click on the widget you want to move and drop again. Helper lines will support you.
 
-   - **Edit existing widgets**: the configuration panel for a specific widget will open to edit it.
+   - **Edit existing widgets**: open the configuration panel to edit widget by clicking on the edit button.
 
    - **Delete existing widgets**: the widget will be deleted.
 
@@ -85,29 +85,25 @@ see and how.
 
 On the widget configuration panel, you can define the widget name, enable the
 quick search function, show or hide the widget information and fullscreen
-mode icons, and manage columns and filters.
+mode icons, manage columns and filters, edit the default sort order of the table columns by clicking on the column headers.
 
 **Filters panel**
 
 By clicking on the ``Filter`` button, you can configure the complex filter for
-your widget and get a preview of it by clicking on the ``apply`` button. Please
+your widget and get a preview of it by clicking on the ``Apply`` button. Please
 refer to :ref:`Complex Filter <complex-filter>` for more details.
 
-|task-widget-complex-filter-configuration|
+|task-list-widget-configuration|
 
 **Column Management**
 
-This panel allows you to:
-
--  Edit the default sort order of the table rows by clicking on the column headers
--  Define the order of the columns 
--  Define the displayed set of columns by clicking on the link ``Manage Columns`` at the top right. You get the following dialog:
+By clicking on the ``Manage Columns`` button at the top right of the configuration panel. You get the following dialog:
 
 |task-list-widget-table-configuration|
 
-In the table configuration panel, you find two sections:
+In the column management dialog, you find two sections to configure the table columns:
 
-   #. Add field section: add any available field to your widget table
+   #. Add field section: add any available fields to your widget table
    #. Columns section: configure the widget table itself as follows:
  
       - Enable visibility
@@ -131,7 +127,7 @@ Portal supports to display **custom case fields** within the task list.
 
 **Excel export**
 
-You can export all data of the task widget by clicking on the link ``Export to Excel`` at the bottom left corner of the widget information panel.
+In view mode, you can export all data of the task widget by clicking on the link ``Export to Excel`` at the bottom left corner of the widget information panel.
 
 |task-export-excel|
 
@@ -146,9 +142,8 @@ In view mode, when quick search is enabled, a text box will appear to allow you 
 
   .. important::
 
-    #. The quick search function is unaffected by widget filters.
     #. You can define the scope of the quick search feature in the configuration panel.
-
+    #. The result of the quick search function may be affected if you apply a complex filter on the widget.
 .. _new-dashboard-case-list-widget:
 
 Case list widget
@@ -161,27 +156,23 @@ see and how.
 
 On the widget configuration panel, you can define the widget name, enable the
 quick search function, show or hide the widget information and fullscreen
-mode icons, and manage columns and filters.
+mode icons, manage columns and filters, edit the default sort order of the table columns by clicking on the column headers.
 
 **Filters panel**
 
 By clicking on the ``Filter`` button, you can configure the complex filter for
-your widget and get a preview of it by clicking on the ``apply`` button. Please
+your widget and get a preview of it by clicking on the ``Apply`` button. Please
 refer to :ref:`Complex Filter <complex-filter>` for more details.
 
 |case-list-widget-configuration|
 
 **Column Management**
 
-This panel allows you to:
-
--  Edit the default sort order of the table rows by clicking on the column headers
--  define the order of the columns 
--  define the displayed set of columns by clicking on the link ``Manage Columns`` at the top right. You get the following dialog:
+By clicking on the ``Manage Columns`` button at the top right of the configuration panel. You get the following dialog:
 
 |case-list-widget-table-configuration|
 
-In the table configuration panel, you find two sections:
+In the column management dialog, you find two sections to configure the table columns:
 
    #. Add field section: add any available field to your widget table
    #. Columns section: configure the widget table itself as follows:
@@ -202,7 +193,7 @@ In the table configuration panel, you find two sections:
 
 **Excel export**
 
-You can export all data of the case widget by clicking on the link ``Export to Excel`` at the end of the widget information panel.
+In view mode, you can export all data of the case widget by clicking on the link ``Export to Excel`` at the end of the widget information panel.
 
 |case-export-excel|
 
@@ -211,14 +202,14 @@ files and put them into a single zip file.
 
 **Quick search**
 
-In the view mode, when quick search is enabled, a text box will appear to allow you to search.
+In view mode, when quick search is enabled, a text box will appear to allow you to search.
 
 |case-quick-search-textbox|
 
   .. important::
 
-    #. The quick search function is unaffected by widget filters.
     #. You can define the scope of the quick search feature in the configuration panel.
+    #. The result of the quick search function may be affected if you apply a complex filter on the widget.
 
 .. _new-dashboard-process-list-widget:
 
@@ -333,13 +324,13 @@ In manage news, the user can:
 
 #. Create one entry in multiple languages. When creating the entry, the user can switch between the available languages with a click on the tab view header.
 
-#. Translate the title by clicking on the input label. Translate the content by clicking on the |translate-icon| icon.
+#. Translate the title by clicking on the input label. Translate the content by clicking on the |translate-icon| icon. If you see something wrong with the translation, please prefer to :ref:`enable-translation`
 
 #. Choose an icon for the news by clicking directly on the icon, the :guilabel:`Icon browser` browser will be shown.
 
 #. Define the news title. Its length is limited to 200 characters.
 
-#. Provide news content, i.e., the main information for the newsfeed. The content is limited to 1000 characters, max.
+#. Provide news content, i.e., the main information for the news feed. The content is limited to a maximum of 1,000 characters.
 
 After setting up everything, simply click on the :guilabel:`Share this dashboard` link at the bottom of your dashboard to share it with colleagues.
 

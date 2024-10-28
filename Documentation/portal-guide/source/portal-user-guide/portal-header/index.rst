@@ -32,7 +32,7 @@ Menu entry :ref:`Admin Settings <admin-settings>` is only available for users wh
 My profile
 ----------
 
-Menu entry :ref:`my-profile` contains general setting, user language and email settings.
+Menu entry :ref:`my-profile` contains general setting, user language and notification channels subscription settings.
 
 Dashboard Configuration
 -----------------------
