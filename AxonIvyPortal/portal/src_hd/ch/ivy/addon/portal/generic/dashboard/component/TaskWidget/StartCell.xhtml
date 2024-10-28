@@ -5,9 +5,8 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <p:commandLink id="start-task" actionListener="#{dashboardBean.handleStartTask(task)}" onclick="event.stopPropagation();"
-  disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)} or isPreviewMode or isResizing"
-  oncomplete="resetPortalLeftMenuState()"
-  ariaLabel="#{taskBean.getAriaLabel(task)}"
+  disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)} or isPreviewMode or isResizing" oncomplete="resetPortalLeftMenuState()"
+  ariaLabel="#{ariaLabel}"
   process="@this">
   <span class="si si-controls-play" />
 </p:commandLink>

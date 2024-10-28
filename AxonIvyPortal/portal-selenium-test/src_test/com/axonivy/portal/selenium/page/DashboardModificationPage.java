@@ -10,6 +10,7 @@ import org.openqa.selenium.interactions.Actions;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.ElementsCollection.SelenideElementIterable;
 import com.codeborne.selenide.SelenideElement;
 
 public class DashboardModificationPage extends TemplatePage {
@@ -41,23 +42,32 @@ public class DashboardModificationPage extends TemplatePage {
   public NewDashboardDetailsEditPage navigateToEditDashboardDetailsByName(String dashboardName) {
     SelenideElement dashboardRow = getDashboardRowByName(dashboardName);
     if (dashboardRow != null) {
-      dashboardRow.$("button[id$='dashboard-modification-component:dashboard-table:0:configure-dashboard']")
-          .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+      clickButtonOnDashboardConfigurationActionMenu("Configuration", dashboardRow);
       NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
       return newDashboardDetailsEditPage;
     }
     return null;
   }
+  
+  private SelenideElement getDashboardConfigurationActionMenu(SelenideElement dashboardRow) {
+    dashboardRow.$("div#dashboard-configuration-action-group").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    .$("button[id$='dashboard-configuration-action-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return $$("div[id$='dashboard-configuration-action-menu']").filter(Condition.appear).first();
+  }
+  
+  private void clickButtonOnDashboardConfigurationActionMenu(String buttonName, SelenideElement dashboardRow) {
+    getDashboardConfigurationActionMenu(dashboardRow).$$("span").filter(Condition.text(buttonName)).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
 
   public void clickEditDashboardByName(String dashboardName) {
     SelenideElement dashboardRow = getDashboardRowByName(dashboardName);
-    dashboardRow.$("[id$=':edit']").click();
+    clickButtonOnDashboardConfigurationActionMenu("Edit", dashboardRow);
     getEditDashboardDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public void clickDeleteDashboardByName(String dashboardName) {
     SelenideElement dashboardRow = getDashboardRowByName(dashboardName);
-    dashboardRow.$("[id$=':delete-dashboard']").click();
+    clickButtonOnDashboardConfigurationActionMenu("Delete", dashboardRow);
     SelenideElement deleteConfirmDialog = $("[id$=':remove-dashboard-dialog']").shouldBe(Condition.appear,
         DEFAULT_TIMEOUT);
     deleteConfirmDialog.$("button[id$=':remove-dashboard-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
@@ -126,15 +136,18 @@ public class DashboardModificationPage extends TemplatePage {
   public SelenideElement getDashboardExportButtonOfDashboard(String dashboardName) {
     SelenideElement dashboard = getDashboardRowByName(dashboardName);
     dashboard.shouldBe(Condition.appear);
-    return dashboard.$("td:last-child button[id $=':export-dashboard']");
+    return getDashboardConfigurationActionMenu(dashboard)
+    .$$("ul > li > a").filter(Condition.attribute("title", "Export dashboard")).first();
   }
 
   public SelenideElement getDashboardShareLinkButton() {
-    return $("button[id$='share-dashboard']");
+    SelenideElement dashboardRow = getDashboardRowByName("Dashboard");
+    return getDashboardConfigurationActionMenu(dashboardRow).$$("span").filter(Condition.text("Share")).first();
   }
 
   public void getDashboardShareLinkDialog() {
-    getDashboardShareLinkButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
+    SelenideElement dashboard = getDashboardRowByName("Dashboard");
+    clickButtonOnDashboardConfigurationActionMenu("Share", dashboard);
     $("div[id$=':share-dashboard-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
   

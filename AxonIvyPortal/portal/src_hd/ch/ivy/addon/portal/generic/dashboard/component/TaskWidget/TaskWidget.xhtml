@@ -55,7 +55,7 @@
         <p:ajax event="colResize" process="dashboard-tasks" global="false" partialSubmit="true"
           listener="#{dashboardDetailModificationBean.onResizeColumn}" disabled="#{!isResizing}" />
         <f:attribute name="widgetId" value="#{taskWidget.id}" />
-        
+
         <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name' or column.field eq 'actions') ? '' : 'u-hidden-sm-down'}"
           visible="#{column.visible}" field="#{column.field}" filterable="false"
           sortBy="#{column.field}" sortable="#{!isResizing and !isPreviewMode and column.sortable}"
@@ -65,6 +65,7 @@
             <ui:include src="StartCell.xhtml">
               <ui:param name="isResizing" value="#{isResizing}" />
               <ui:param name="isPreviewMode" value="#{isPreviewMode}" />
+              <ui:param name="ariaLabel" value="#{taskBean.getAriaLabel(task, taskWidget.columns)}" />
             </ui:include>
           </h:panelGroup>
 
