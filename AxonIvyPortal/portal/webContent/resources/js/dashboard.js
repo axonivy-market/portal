@@ -294,6 +294,7 @@ function loadCaseAndTaskWidgetFirstTime(loadingClass, widgetClass) {
       widget.removeClass('u-display-none');
       widget.removeClass('u-invisibility');
     }
+    $('.js-resizing').find('table[role="grid"]').addClass('w-fit');
   }, 50);
 }
 
