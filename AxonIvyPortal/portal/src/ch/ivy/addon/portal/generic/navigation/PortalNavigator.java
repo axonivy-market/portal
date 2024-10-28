@@ -85,13 +85,6 @@ public final class PortalNavigator extends BaseNavigator{
   public static void redirect(String url) {
     redirectURL(url);
   }
-  
-  public static String getDashboardAsMenuPageUrl(String dashboardId) {
-    Map<String, String> params = new HashMap<>();
-    params.put("dashboardId", dashboardId);
-    params.put("isDashboardAsMenu", Boolean.TRUE.toString());
-    return buildUrl(PORTAL_DASHBOARD_PAGE, params);
-  }
 
   public static String getDashboardPageUrl(String dashboardId) {
     Map<String, String> params = new HashMap<>();
@@ -126,7 +119,6 @@ public final class PortalNavigator extends BaseNavigator{
   public static void navigateToPortalTask() {
     Map<String, String> params = new HashMap<>();
     params.put("dashboardId", DashboardUtils.DASHBOARD_TASK_TEMPLATE_ID);
-    params.put("isDashboardAsMenu", Boolean.TRUE.toString());
     navigateByKeyword(PORTAL_DASHBOARD_PAGE_START, PORTAL_DASHBOARD_PAGE, params);
   }
 

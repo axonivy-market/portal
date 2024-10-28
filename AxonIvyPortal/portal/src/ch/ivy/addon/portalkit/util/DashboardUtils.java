@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Consumer;
 
@@ -20,12 +21,15 @@ import com.axonivy.portal.migration.dashboardtemplate.migrator.JsonDashboardTemp
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import ch.addon.portal.generic.menu.MenuView.PortalDashboardItemWrapper;
+import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
@@ -208,13 +212,7 @@ public class DashboardUtils {
       String dashboardId = dashboardIds[dashboardIds.length - 1].replace(DASHBOARD_MENU_POSTFIX, "")
           .replace(DASHBOARD_MENU_ITEM_POSTFIX, "").replace(DASHBOARD_ITEM_POSTFIX, "");
 
-      if (selectedMenuItemId.endsWith(DASHBOARD_ITEM_POSTFIX)) {
-        String prevDashboardId = (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString());
-        Ivy.session().setAttribute(SessionAttribute.PREV_SELECTED_DASHBOARD_ID.toString(), prevDashboardId);
-
-      }
-      DashboardUtils.storeDashboardAndDashboardAsMenuInSession(dashboardId);
-
+      DashboardUtils.storeDashboardInSession(dashboardId);
     }
   }
 
@@ -264,22 +262,15 @@ public class DashboardUtils {
     return null;
   }
 
-
   public static void storeDashboardInSession(String id) {
-    Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), id);
+    storeDashboardInSession(id, isDashboardAsMenu(id));
   }
 
   public static void storeDashboardInSession(String id, boolean isDashboardAsMenu) {
-    if (isDashboardAsMenu) {
-      storeDashboardAndDashboardAsMenuInSession(id);
-    } else {
-      storeDashboardInSession(id);
-    }
-  }
-
-  public static void storeDashboardAndDashboardAsMenuInSession(String id) {
-    Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), id);
     Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_OR_DASHBOARD_AS_MENU_ID.toString(), id);
+    if (!isDashboardAsMenu) {
+      Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), id);
+    }
   }
 
   public static Dashboard getTaskTemplateDashboard() {
@@ -295,4 +286,23 @@ public class DashboardUtils {
   public static String getSelectedDashboardAsMenuIdFromSession() {
     return (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_OR_DASHBOARD_AS_MENU_ID.toString());
   }
+
+  private static PortalDashboardItemWrapper getPortalDashboardItemWrapper() {
+    String sessionUserId = UserUtils.getSessionIdentifierAttribteWithInitIfEmpty();
+    return (PortalDashboardItemWrapper) IvyCacheService.getInstance()
+        .getSessionCacheValue(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId).orElse(null);
+  }
+
+  public static boolean isDashboardAsMenu(String dashboardId) {
+    if (StringUtils.isEmpty(dashboardId)) {
+      return false;
+    }
+    boolean isDashboardAsMenu = Optional.ofNullable(getPortalDashboardItemWrapper())
+        .map(wrapper -> wrapper.dashboards()).orElse(new ArrayList<>()).stream()
+        .filter(dashboard -> dashboardId.equals(dashboard.getId())).map(dashboard -> dashboard.getIsMenuItem())
+        .findFirst().orElse(true);
+    // default is true because we need extra handling for not dashboard as menu like updating selected dashboard in
+    // session attribute
+    return isDashboardAsMenu;
+   }
 }

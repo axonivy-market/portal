@@ -1066,10 +1066,8 @@
             "    in.dataModel = taskEndInfo.dataModel;",
             "    in.isTaskStartedInDetails = taskEndInfo.isStartedInTaskDetails;",
             "    in.portalPage = taskEndInfo.portalPage;",
-            "    if (StringUtils.isNotBlank(taskEndInfo.getDashboardId())) {",
-            "      DashboardUtils.storeDashboardInSession(taskEndInfo.getDashboardId(), in.isDashboardAsMenu);",
-            "      in.isDashboardAsMenu = true;",
-            "    }",
+            "    in.isDashboardAsMenu = DashboardUtils.isDashboardAsMenu(taskEndInfo.getDashboardId());",
+            "    DashboardUtils.storeDashboardInSession(taskEndInfo.getDashboardId(), in.isDashboardAsMenu);",
             "    if (!in.isTaskStartedInDetails || in.backFromTaskDetails) {",
             "      SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);",
             "    }",
@@ -4168,12 +4166,10 @@
         "input" : {
           "params" : [
             { "name" : "dashboardId", "type" : "String", "desc" : "" },
-            { "name" : "openWithoutMenu", "type" : "Boolean", "desc" : "" },
-            { "name" : "isDashboardAsMenu", "type" : "Boolean", "desc" : "" }
+            { "name" : "openWithoutMenu", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
             "out.dashboardId" : "param.dashboardId",
-            "out.isDashboardAsMenu" : "param.isDashboardAsMenu",
             "out.isOpenWithoutMenu" : "param.openWithoutMenu"
           }
         },
@@ -4199,6 +4195,7 @@
             "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
             "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
             "",
+            "in.isDashboardAsMenu = DashboardUtils.isDashboardAsMenu(in.dashboardId);",
             "DashboardUtils.storeDashboardInSession(in.dashboardId, in.isDashboardAsMenu);",
             "in.isOpenDashboardFromLink = true;",
             "if (in.isOpenWithoutMenu) {",
