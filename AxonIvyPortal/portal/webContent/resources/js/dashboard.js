@@ -227,6 +227,9 @@ function resizeTableBody() {
       // Update scrolling of the Primefaces widget
       const widget = PF(widgetName);
       widget.cfg.scrollHeight = tableBody.parents('.ui-datatable-scrollable').height().toString();
+	  if (tableBody.parents('.js-resizing').length > 0) {
+        widget.init(widget.cfg);
+      }
       widget.setupScrolling();
     });
     setTimeout(function() {
@@ -287,6 +290,7 @@ function loadCaseAndTaskWidgetFirstTime(loadingClass, widgetClass) {
       widget.removeClass('u-display-none');
       widget.removeClass('u-invisibility');
     }
+    $('.js-resizing').find('table[role="grid"]').addClass('w-fit');
   }, 50);
 }
 
