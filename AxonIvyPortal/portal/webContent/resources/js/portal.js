@@ -197,6 +197,11 @@ var MainMenu = {
   highlightMenuItem : function() {
     let $currentPageMenu = this.getMenuItemByCurrentPage();
     let activeMenuItemList = this.getActiveMenu();
+    // TODO z1 think about other scenarios, maybe refactor
+    if ($currentPageMenu.length == 0 && window.location.pathname.indexOf("PortalDashboardAsMenu.xhtml") > -1) {
+      let selectedDashboardAsMenuId = $("#user-menu-required-login").attr("data-selected-menu");
+      $currentPageMenu = $("li[id$='" + selectedDashboardAsMenuId + "-menu-item-dashboard'] > a");
+    }
 
     if ($currentPageMenu.length > 0) {
       var $dashboardGroup = $(".js-dashboard-group");

@@ -269,6 +269,14 @@ public class DashboardUtils {
     Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), id);
   }
 
+  public static void storeDashboardInSession(String id, boolean isDashboardAsMenu) {
+    if (isDashboardAsMenu) {
+      storeDashboardAndDashboardAsMenuInSession(id);
+    } else {
+      storeDashboardInSession(id);
+    }
+  }
+
   public static void storeDashboardAndDashboardAsMenuInSession(String id) {
     Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), id);
     Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_OR_DASHBOARD_AS_MENU_ID.toString(), id);
@@ -284,4 +292,7 @@ public class DashboardUtils {
     return dashboards.stream().filter(dashboard -> !dashboard.getIsMenuItem()).toList();
   }
 
+  public static String getSelectedDashboardAsMenuIdFromSession() {
+    return (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_OR_DASHBOARD_AS_MENU_ID.toString());
+  }
 }
