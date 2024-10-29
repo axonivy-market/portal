@@ -3,7 +3,7 @@
 Error Handling
 ==============
 
-In this section, we introduce two kinds of errors, and describe when and how to
+In this section, we introduce some kinds of errors, and describe when and how to
 handle them in Portal.
 
 -  Ajax error: this kind of error occurs during a JSF ajax request,
@@ -15,6 +15,9 @@ handle them in Portal.
    from a URL that could not be handled successfully by the server side, or
    being navigated by a corrupt URL. For example, when the user clicks
    on a link to start a task that does not exist.
+
+-  View expire error: this kind of errors occurs when a user submits a request for a page 
+   that no longer has an active view in the session or user session has expired.
 
 .. _components-error-handling-ajax-error-handling:
 
@@ -95,6 +98,31 @@ HTTP 500 Error
 Example testing URL: 500
 
 |500|
+
+
+View Expire Dialog in Iframe
+----------------------------
+
+When a ``ViewExpiredException`` occurs, a warning will appear. By default, Ivy already has a handler for this exception, and you can customize the dialog in ``webContent\layouts\includes\exception.xhtml``.
+
+If you're using the Portal, the Portal also provides a customized dialog for this exception. To use it, please change the ``onexception`` callback to:
+
+.. code-block:: javascript
+
+    parent.PF('view-expired-exception-dialog').show()
+
+If your application uses both with and without the Portal, and your default dialog is ``viewExpiredExceptionDialog``, here is an example code snippet:
+
+.. code-block:: xml
+
+    <p:ajaxExceptionHandler
+        type="javax.faces.application.ViewExpiredException"
+        update="viewExpiredExceptionDialog"
+        onexception="parent.PF &amp;&amp; parent.PF('view-expired-exception-dialog') ? 
+            parent.PF('view-expired-exception-dialog').show() : 
+            PF('viewExpiredExceptionDialog').show()" 
+    />
+
 
 .. |portal-ajax-error-handler| image:: ../../screenshots/error-handling/portal-ajax-error-handler.png
 .. |default-ivy-error| image:: ../../screenshots/error-handling/default-ivy-error.png
