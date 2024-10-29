@@ -11,6 +11,8 @@
   <c:set var="index" value="#{cc.attrs.index}" />
   <c:set var="widget" value="#{cc.attrs.widget}" />
   <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
+  <c:set var="isResizable" value="#{cc.attrs.widget.isResizable}"/>
+  <c:set var="isResizing" value="#{cc.attrs.widget.isResizing}"/>
 
   <ui:decorate template="/layouts/restricted/decorator/TableWidget.xhtml">
     <ui:param name="index" value="#{index}" />

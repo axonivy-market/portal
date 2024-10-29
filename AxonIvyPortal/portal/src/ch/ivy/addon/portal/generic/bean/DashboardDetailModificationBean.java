@@ -35,8 +35,10 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.logging.log4j.util.Strings;
 import org.primefaces.PrimeFaces;
+import org.primefaces.event.ColumnResizeEvent;
 
 import com.axonivy.portal.bo.ClientStatistic;
 import com.axonivy.portal.components.dto.UserDTO;
@@ -1008,4 +1010,63 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         .map(DashboardWidgetType::canShowFullscreenModeOption).orElse(false);
   }
 
+  public void onResizeColumn(ColumnResizeEvent event) {
+    String widgetId = (String) event.getComponent().getAttributes()
+        .getOrDefault("widgetId", "");
+
+    if (StringUtils.isBlank(widgetId)) {
+      return;
+    }
+
+    DashboardWidget targetWidget = selectedDashboard.getWidgets()
+        .stream().filter(widget -> widget.getId().contentEquals(widgetId))
+        .findFirst().orElse(null);
+
+    if (targetWidget == null) {
+      return;
+    }
+
+    if (targetWidget instanceof TaskDashboardWidget) {
+      handleResizeColumnOfTaskWidget(
+          (TaskDashboardWidget) targetWidget,
+          getColumnIndexFromColumnKey(event.getColumn().getColumnKey()),
+          event.getWidth());
+    }
+    
+    if (targetWidget instanceof CaseDashboardWidget) {
+      handleResizeColumnOfCaseWidget(
+          (CaseDashboardWidget) targetWidget,
+          getColumnIndexFromColumnKey(event.getColumn().getColumnKey()),
+          event.getWidth());
+    }
+
+    selectedDashboard = DashboardService.getInstance().save(selectedDashboard);
+  }
+
+  /**
+   * Split the ID and get the last part to get the order of the column Example:
+   * ID = 'task-1:task-component:dashboard-tasks:dashboard-tasks-columns:1'
+   * Then, the result should be 1
+   * 
+   * @param columnKey
+   * @return
+   */
+  private Integer getColumnIndexFromColumnKey(String columnKey) {
+    List<String> idParts = Arrays.asList(columnKey.split("\\:"));
+    return NumberUtils.toInt(idParts.get(idParts.size() - 1), -1);
+  }
+
+  private void handleResizeColumnOfTaskWidget(TaskDashboardWidget widget,
+      int fieldPosition, int widthValue) {
+    widget.getColumns().get(fieldPosition)
+        .setWidth(Integer.toString(widthValue));
+    widget.getColumns().forEach(col -> col.initDefaultStyle());
+  }
+  
+  private void handleResizeColumnOfCaseWidget(CaseDashboardWidget widget,
+      int fieldPosition, int widthValue) {
+    widget.getColumns().get(fieldPosition)
+        .setWidth(Integer.toString(widthValue));
+    widget.getColumns().forEach(col -> col.initDefaultStyle());
+  }
 }
