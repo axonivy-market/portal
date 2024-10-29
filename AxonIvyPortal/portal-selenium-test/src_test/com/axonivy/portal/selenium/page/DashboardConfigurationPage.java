@@ -31,6 +31,12 @@ public class DashboardConfigurationPage extends TemplatePage {
     waitForDashboardConfigurationTypeSelectionAppear();
     return $("div[id$='configuration-group']");
   }
+  
+  public SelenideElement getDashboardConfigurationPageWithActionsMenu() {
+    waitForDashboardConfigurationTypeSelectionAppear();
+    getDashboardConfigurationActionMenu();
+    return $("div[id$='configuration-group']"); 
+  }
 
   public SelenideElement getPrivateDashboardConfigurationTypeSelection() {
     waitForDashboardConfigurationTypeSelectionAppear();
