@@ -101,13 +101,6 @@ public class MenuView implements Serializable {
       menuIndex++;
     }
 
-    List<SubMenuItem> customSubMenuItems = PortalMenuNavigator.callCustomSubMenuItemsProcess();
-    for (SubMenuItem subMenu : customSubMenuItems) {
-      DefaultMenuItem item = buildSubMenuItem(subMenu, menuIndex);
-      mainMenuModel.getElements().add(item);
-      menuIndex++;
-    }
-
     List<Application> thirdPartyApps = PortalMenuNavigator.getThirdPartyApps();
     for (Application app : thirdPartyApps) {
       DefaultMenuItem item = buildThirdPartyItem(app, menuIndex);

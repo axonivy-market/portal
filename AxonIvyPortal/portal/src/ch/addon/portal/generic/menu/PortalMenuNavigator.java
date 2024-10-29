@@ -146,38 +146,6 @@ public class PortalMenuNavigator {
     return portalSubMenuItemWrapper.portalSubMenuItems;
   }
 
-  public static List<SubMenuItem> callCustomSubMenuItemsProcess() {
-    Locale requestLocale = Ivy.session().getContentLocale();
-    String sessionIdAttribute = SessionAttribute.SESSION_IDENTIFIER.toString();
-    if (Ivy.session().getAttribute(sessionIdAttribute) == null) {
-      Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
-    }
-    String sessionUserId = (String) Ivy.session().getAttribute(sessionIdAttribute);
-    IvyCacheService cacheService = IvyCacheService.getInstance();
-    PortalSubMenuItemWrapper portalSubMenuItemWrapper = null;
-    try {
-      portalSubMenuItemWrapper = (PortalSubMenuItemWrapper) cacheService
-          .getSessionCacheValue(IvyCacheIdentifier.PORTAL_CUSTOM_MENU, sessionUserId).orElse(null);
-    } catch (ClassCastException e) {
-      cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_CUSTOM_MENU, sessionUserId);
-    }
-
-    if (portalSubMenuItemWrapper == null || !requestLocale.equals(portalSubMenuItemWrapper.loadedLocale)) {
-      synchronized (PortalSubMenuItemWrapper.class) {
-        List<SubMenuItem> subMenuItems = new ArrayList<>();
-        try {
-          subMenuItems = getCustomSubMenuItemList();
-        } catch (Exception e) {
-          Ivy.log().error("Cannot load CustomSubMenuItems {0}", e.getMessage());
-        }
-
-        portalSubMenuItemWrapper = new PortalSubMenuItemWrapper(requestLocale, subMenuItems);
-        cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_CUSTOM_MENU, sessionUserId, portalSubMenuItemWrapper);
-      }
-    }
-    return portalSubMenuItemWrapper.portalSubMenuItems;
-  }
-
   public static void navigateToTargetPage(boolean isClickOnBreadcrumb, String destinationPage, Map<String, List<String>> params) throws IOException {
     if (isClickOnBreadcrumb) {
       if (BreadCrumbKind.TASK.name().equals(destinationPage)) {
@@ -266,13 +234,5 @@ private static SubMenuItem convertDashboardToSubMenuItem(Dashboard dashboard, St
 
     return item;
 }
-
-
-  private static List<SubMenuItem> getCustomSubMenuItemList() {
-    List<SubMenuItem> subMenuItems = new ArrayList<>();
-    subMenuItems.addAll(CustomSubMenuItemService.findAll());
-    return subMenuItems;
-  }
-
 
 }
