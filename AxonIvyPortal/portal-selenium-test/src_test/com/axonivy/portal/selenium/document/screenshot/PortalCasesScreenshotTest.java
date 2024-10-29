@@ -223,6 +223,7 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
     CaseWidgetPage caseWidget = mainMenuPage.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Process With Process Steps");
     caseDetailsPage.waitForCaseDetailsDisplay();
+    caseDetailsPage.openActionPanel();
 
     ScreenshotUtils.executeDecorateJs("highlightProcessOverviewLink()");
     ScreenshotUtils
