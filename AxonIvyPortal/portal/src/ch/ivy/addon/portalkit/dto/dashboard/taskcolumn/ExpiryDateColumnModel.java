@@ -26,7 +26,7 @@ public class ExpiryDateColumnModel extends TaskColumnModel implements Serializab
   public void initDefaultValue() {
     super.initDefaultValue();
     this.field = DashboardStandardTaskColumn.EXPIRY.getField();
-    this.style = defaultIfEmpty(this.style, getDefaultStyle());
+    this.styleToDisplay = initDefaultStyle();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.format = getDefaultFormat();
   }
@@ -42,13 +42,13 @@ public class ExpiryDateColumnModel extends TaskColumnModel implements Serializab
   }
 
   @Override
-  public String getDefaultStyle() {
+  protected int getDefaultColumnWidth() {
     return NORMAL_WIDTH;
   }
 
   @Override
   public String getDefaultStyleClass() {
-    return "dashboard-tasks__expiry-date u-text-align-center u-padding-0";
+    return "dashboard-tasks__expiry-date u-text-align-center widget-column";
   }
 
   @Override
