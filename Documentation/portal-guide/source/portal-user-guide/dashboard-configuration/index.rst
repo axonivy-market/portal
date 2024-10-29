@@ -29,9 +29,9 @@ add or edit your private dashboards, and reorder all dashboards visible to you.
 How to: add private dashboard
 =============================
 
-#. Select |add-icon| New Dashboard.
+#. Select :guilabel:`Add New Dashboard` button
 
-#. Select one of the available templates to add  (see Available dashboard templates).
+#. Select one of the available templates to add  (see :ref:`Available dashboard templates <private-available-dashboard-template>`).
 
 #. The :guilabel:`Create new private dashboard` dialog is opened.
 
@@ -47,7 +47,12 @@ How to: add private dashboard
 
 To set multi languages for the dashboard title, see at :ref:`portal-multi-language`:
 
-Available dashboard templates:
+.. _private-available-dashboard-template:
+
+Available dashboard templates 
+=============================
+
+:guilabel:`Default Template`, :guilabel:`Two Task list dashboard` template and :guilabel:`Accessiblity dashboard` template. Please see the image below for more details.
 
 |dashboard-templates|
 
@@ -57,17 +62,17 @@ Available dashboard templates:
 How to: import private dashboards
 =================================
 
-#. Select |add-icon| New Dashboard.
+#. Select :guilabel:`Add new Dashboard` button.
 
 #. Select |import-icon| Import.
 
 #. The :guilabel:`Import Private Dashboard` dialog is opened.
 
-#. Press the Select button and choose the JSON file that contains the dashboard you want to import.
+#. Drag and drop, or click on the :guilabel:`Upload one here` link to select the JSON file containing the dashboard you want to import.
 
 #. Edit the mandatory title and the optional description for the private dashboard.
 
-#. Import the dashboard by selecting the Create Dashboard button.
+#. Import the dashboard by selecting :guilabel:`Create Dashboard` button.
 
 #. Configuration your private dashboard (see: :ref:`Dashboard <new-dashboard>`).
 
@@ -82,19 +87,17 @@ How to: import private dashboards
 
 How to: edit private dashboards
 ===============================
-
-You can edit your private dashboards by selecting |edit-icon| Edit. The :guilabel:`Edit private dashboard` section shows
-your private dashboards.
-
+The :guilabel:`Edit private dashboard` section shows your private dashboards.
 A table of private dashboards is shown with the following information:
 
 #. Dashboard title
 
 #. Dashboard description
 
-#. :guilabel:`Actions` for further actions: |move-expand-vertical| reorder, |edit-icon| edit (name, description), |settings-icon| configure
-   (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| export dashboard,
-   and |trash-icon| delete a private dashboard.
+#. Actions: click on |actions-menu-icon| to get :guilabel:`Actions` menu for further actions: |edit-icon| Edit (name, description), |settings-icon| Configuration
+   (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| Export dashboard, |trash-icon| Delete a private dashboard.
+
+You can edit your private dashboards by selecting |edit-icon| Edit.
 
 .. note::
 
@@ -107,17 +110,7 @@ A table of private dashboards is shown with the following information:
 How to: reorder private dashboards
 ==================================
 
-You re-arrange dashboards by drag and drop using |move-expand-vertical| Reorder.
-
-A table of private dashboards is shown with the following information:
-
-#. Dashboard title
-
-#. Dashboard description
-
-#. :guilabel:`Actions` for further actions: |move-expand-vertical| reorder, |edit-icon| edit (name, description), |settings-icon| configure
-   (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| export dashboard,
-   and |trash-icon| delete a private dashboard.
+You can rearrange dashboards by dragging and dropping |reorder-dashboard-icon| icon.
 
 |reorder-your-dashboards|
 
@@ -141,9 +134,9 @@ add, edit, and reorder public dashboards.
 How to: add public dashboard
 ============================
 
-#. Select |add-icon| New Dashboard.
+#. Select :guilabel:`Add New Dashboard` button.
 
-#. Select one of the available templates to add  (see Available dashboard templates).
+#. Select one of the available templates to add  (see :ref:`Available dashboard templates <public-available-dashboard-template>`).
 
 #. The :guilabel:`Create new public dashboard` dialog is opened.
 
@@ -159,7 +152,12 @@ How to: add public dashboard
 
 To set multi languages for the dashboard title, see at :ref:`portal-multi-language`:
 
-Available dashboard templates:
+.. _public-available-dashboard-template:
+
+Available dashboard templates 
+=============================
+
+:guilabel:`Default Template`, :guilabel:`Two Task list dashboard` template and :guilabel:`Accessiblity dashboard` template.
 
 |dashboard-templates|
 
@@ -171,17 +169,17 @@ Available dashboard templates:
 How to: import public dashboard
 ===============================
 
-#. Select |add-icon| New Dashboard.
+#. Select :guilabel:`Add New Dashboard` button.
 
 #. Select |import-icon| Import.
 
 #. The :guilabel:`Import Public Dashboard` dialog is opened.
 
-#. Press the Select button and choose the JSON file that contains the dashboard you want to import.
+#. Drag and drop, or click on the :guilabel:`Upload one here` link to select the JSON file containing the dashboard you want to import.
 
 #. Edit the mandatory title, permissions to see the public dashboard and the optional description for the public dashboard.
 
-#. Import the dashboard by selecting the Create Dashboard button.
+#. Import the dashboard by selecting :guilabel:`Create Dashboard` button.
 
 #. Configuration public dashboard (see: :ref:`Dashboard <new-dashboard>`).
 
@@ -195,10 +193,7 @@ How to: import public dashboard
 
 How to: edit public dashboards
 ==============================
-
-You can edit public dashboards by selecting |edit-icon| Edit. The :guilabel:`Edit public dashboards` section shows
-you the public dashboards.
-
+The :guilabel:`Edit public dashboards` section shows you the public dashboards.
 A table of public dashboards is shown with the following information:
 
 #. Dashboard title
@@ -207,9 +202,11 @@ A table of public dashboards is shown with the following information:
 
 #. Dashboard description
 
-#. :guilabel:`Actions` for further actions: |move-expand-vertical| reorder, |edit-icon| edit (name, description), |settings-icon| configure
-   (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| export dashboard, |share-icon| share,
-   and |trash-icon| delete a public dashboard.
+#. Actions: click on |actions-menu-icon| to get :guilabel:`Actions` menu for further actions: |edit-icon| Edit (name, description), |settings-icon| Configuration
+   (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| Export dashboard, |share-icon| Share,
+   and |trash-icon| Delete a public dashboard.
+
+You can edit public dashboards by selecting |edit-icon| Edit. 
 
 .. note::
 
@@ -221,7 +218,7 @@ A table of public dashboards is shown with the following information:
 How to: share public dashboards
 ===============================
 
-To generate a public dashboard link, simply click on the |share-icon| Share in the :guilabel:`Edit public dashboards` section.
+To generate a public dashboard link, simply click on the |share-icon| Share in the :guilabel:`Actions` menu of the dashboard.
 
 |share-public-dashboards|
 
@@ -232,19 +229,7 @@ To generate a public dashboard link, simply click on the |share-icon| Share in t
 How to: reorder public dashboards
 =================================
 
-You can re-arrange them by drag and drop using |move-expand-vertical| Reorder.
-
-A table of public dashboards is shown with the following information:
-
-#. Dashboard title
-
-#. Dashboard permissions
-
-#. Dashboard description
-
-#. :guilabel:`Actions` for further actions: |move-expand-vertical| reorder, |edit-icon| edit (name, description), |settings-icon| configure
-   (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| export dashboard, |share-icon| share
-   and |trash-icon| delete a public dashboard.
+You can rearrange dashboards by dragging and dropping |reorder-dashboard-icon| icon.
 
 |reorder-public-dashboards|
 

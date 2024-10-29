@@ -56,3 +56,7 @@
    :width: 15px
 .. |remove-filter-icon| image:: ../includes/images/subtract-circle.svg
    :width: 15px
+.. |actions-menu-icon| image:: ../includes/images/actions-menu.svg
+   :width: 15px
+.. |reorder-dashboard-icon| image:: ../includes/images/reorder.svg
+   :width: 15px

@@ -49,7 +49,7 @@ In addition, a developer can provide custom widgets to add relevant project info
    |widget-info|
 
 If you have the permission, you can re-size, re-arrange, create, or delete widgets
-using the **Edit** button in the upper right corner of your dashboard:
+using :guilabel:`Edit` button in the upper right corner of your dashboard:
 
 |edit-widget|
 
@@ -57,7 +57,7 @@ In edit mode, you can:
 
    - **Move widgets using drag-and-drop**: click on the widget you want to move and drop again. Helper lines will support you.
 
-   - **Edit existing widgets**: open the configuration panel to edit widget by clicking on the edit button.
+   - **Edit existing widgets**: open the configuration panel to edit widget by clicking on :guilabel:`Edit` button.
 
    - **Delete existing widgets**: the widget will be deleted.
 
@@ -89,15 +89,15 @@ mode icons, manage columns and filters, edit the default sort order of the table
 
 **Filters panel**
 
-By clicking on the ``Filter`` button, you can configure the complex filter for
-your widget and get a preview of it by clicking on the ``Apply`` button. Please
+By clicking on the :guilabel:`Filter` button, you can configure the complex filter for
+your widget and get a preview of it by clicking on the :guilabel:`Apply` button. Please
 refer to :ref:`Complex Filter <complex-filter>` for more details.
 
 |task-list-widget-configuration|
 
 **Column Management**
 
-By clicking on the ``Manage Columns`` button at the top right of the configuration panel. You get the following dialog:
+By clicking on the :guilabel:`Manage Columns` button at the top right of the configuration panel. You get the following dialog:
 
 |task-list-widget-table-configuration|
 
@@ -160,15 +160,15 @@ mode icons, manage columns and filters, edit the default sort order of the table
 
 **Filters panel**
 
-By clicking on the ``Filter`` button, you can configure the complex filter for
-your widget and get a preview of it by clicking on the ``Apply`` button. Please
+By clicking on the :guilabel:`Filter` button, you can configure the complex filter for
+your widget and get a preview of it by clicking on the :guilabel:`Apply` button. Please
 refer to :ref:`Complex Filter <complex-filter>` for more details.
 
 |case-list-widget-configuration|
 
 **Column Management**
 
-By clicking on the ``Manage Columns`` button at the top right of the configuration panel. You get the following dialog:
+By clicking on the :guilabel:`Manage Columns` button at the top right of the configuration panel. You get the following dialog:
 
 |case-list-widget-table-configuration|
 
