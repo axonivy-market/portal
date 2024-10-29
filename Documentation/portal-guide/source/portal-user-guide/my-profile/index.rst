@@ -13,6 +13,8 @@ General settings
 **General settings** allows you to configure some settings according to your requirements. This area
 contains :guilabel:`Selected homepage` and :guilabel:`Show Welcome Tour`.
 
+.. _process-list-configuration:
+
 Process list configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
