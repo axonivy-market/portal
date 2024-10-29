@@ -100,8 +100,10 @@ Example testing URL: 500
 |500|
 
 
-View Expire Dialog in Iframe
-----------------------------
+Customize View Expired Dialog
+-----------------------------
+
+.. _components-error-handling-customize-view-expired-dialog:
 
 When a ``ViewExpiredException`` occurs, a warning will appear. By default, Ivy already has a handler for this exception, and you can customize the dialog in ``webContent\layouts\includes\exception.xhtml``.
 
