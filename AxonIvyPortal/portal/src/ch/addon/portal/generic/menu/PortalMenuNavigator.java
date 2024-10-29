@@ -217,6 +217,8 @@ public class PortalMenuNavigator {
         subMenuItems.add(convertDashboardToSubMenuItem(dashboard, currentLanguage));
     }
 
+    subMenuItems.addAll(CustomSubMenuItemService.findAll());
+
     return subMenuItems;
 }
 
