@@ -9,9 +9,9 @@ Portal supports process chat related to a case or private chat between two users
 HowTo: Activate chat
 --------------------
 
-You can turn on private chat with this Portal setting: Portal.Chat.EnablePrivate.
+You can turn on private chat with this Portal setting: :guilabel:`Portal.Chat.EnablePrivate`.
 
-You can turn on process chat with this Portal setting: Portal.Chat.EnableGroup.
+You can turn on process chat with this Portal setting: :guilabel:`Portal.Chat.EnableGroup`.
 
 See :ref:`Update Portal settings <update-portal-settings>`.
 

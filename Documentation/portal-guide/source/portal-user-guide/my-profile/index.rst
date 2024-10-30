@@ -102,6 +102,8 @@ Portal:
    application specific dialogs will
    still be shown in English.    
 
+.. _notification-channels:
+
 Notification Channels
 ---------------------
 

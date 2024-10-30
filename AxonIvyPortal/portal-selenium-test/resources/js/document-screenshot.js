@@ -522,14 +522,18 @@ function highlightAndNumberingTaskTemplate() {
   appendStepAnnotation(other, "3", 27, -20);
 }
 
-function highlightNotificationFullPageIcon(){
-  var icon = $("#notification-full-page");
-  icon.addClass("red-medium-border");
-}
-
 function highlightNotificationIcon(){
   var icon = $("#open-notifications-panel");
   icon.addClass("red-medium-border");
+  appendStepAnnotation(icon, "1", 20, -20);
+
+  var moreOptionsIcon = $("button[id$=':notification-more-option_button']");
+  icon.addClass("red-medium-border");
+  appendStepAnnotation(moreOptionsIcon, "2", 20, -20);
+
+  var fullPageOption = $("a[id$=':notification-full-page']");
+  icon.addClass("red-medium-border");
+  appendStepAnnotation(fullPageOption, "3", 20, -20);
 }
 
 function highlightMobileApp() {
