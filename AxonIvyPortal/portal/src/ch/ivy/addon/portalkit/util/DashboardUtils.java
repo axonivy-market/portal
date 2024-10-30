@@ -130,8 +130,12 @@ public class DashboardUtils {
   }
 
   public static List<Dashboard> getPublicDashboards() {
+    Dashboard taskTemplateDashboard = DashboardUtils.getTaskTemplateDashboard();
     String dashboardJson = Ivy.var().get(PortalVariable.DASHBOARD.key);
     List<Dashboard> visibleDashboards = jsonToDashboards(dashboardJson);
+    if (!visibleDashboards.contains(taskTemplateDashboard)) {
+      visibleDashboards.add(0, taskTemplateDashboard);
+    }
     setDashboardAsPublic(visibleDashboards);
     return visibleDashboards;
   }
