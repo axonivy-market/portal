@@ -23,6 +23,7 @@ import com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.service.CustomSubMenuItemService;
 
+import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;
 import ch.ivy.addon.portalkit.configuration.Application;
@@ -216,14 +217,14 @@ private static SubMenuItem convertDashboardToSubMenuItem(Dashboard dashboard, St
     item.icon = (dashboard.getIcon().startsWith("fa") ? "fa " : "si ") + dashboard.getIcon();
 
     // Set the name of the submenu item based on the current language or use default title
-    item.name = dashboard.getTitles().stream()
+    item.label = dashboard.getTitles().stream()
         .filter(name -> StringUtils.equalsIgnoreCase(name.getLocale().toString(), currentLanguage)
             && StringUtils.isNotBlank(name.getValue()))
         .map(DisplayName::getValue).findFirst().orElse(defaultTitle);
 
     // Set other properties
     item.menuKind = MenuKind.DASHBOARD_MENU_ITEM;
-    item.label = item.getName();
+    item.name = HomepageUtils.generateHomepageId(MenuKind.DASHBOARD_MENU_ITEM, dashboard.getId());
     item.link = UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId());
 
     // Special case for a specific dashboard ID
