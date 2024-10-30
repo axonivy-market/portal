@@ -15,6 +15,7 @@ public class NameColumnModel extends TaskColumnModel implements Serializable {
     this.field = DashboardStandardTaskColumn.NAME.getField();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.quickSearch = defaultIfEmpty(this.quickSearch, true);
+    this.styleToDisplay = initDefaultStyle();
   }
 
   @Override
@@ -24,9 +25,14 @@ public class NameColumnModel extends TaskColumnModel implements Serializable {
 
   @Override
   public String getDefaultStyleClass() {
-    return "dashboard-tasks__name";
+    return "dashboard-tasks__name widget-column";
   }
-
+  
+  @Override
+  protected int getDefaultColumnWidth() {
+    return 200;
+  }
+  
   @Override
   public Object display(ITask task) {
     if (task == null) {
