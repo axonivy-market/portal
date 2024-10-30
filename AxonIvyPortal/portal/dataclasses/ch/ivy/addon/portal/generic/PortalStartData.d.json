@@ -121,7 +121,7 @@
     "name" : "id",
     "type" : "String"
   }, {
-    "name" : "isDashboardAsMenu",
+    "name" : "isMainDashboard",
     "type" : "Boolean"
   } ]
 }

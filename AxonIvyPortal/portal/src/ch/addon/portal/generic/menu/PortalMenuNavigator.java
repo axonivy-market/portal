@@ -171,8 +171,8 @@ public class PortalMenuNavigator {
     addDefaultSubmenuItems(subMenuItems);
 
     // Add dashboard submenu items
-    List<Dashboard> dashboardMenuItemList = DashboardUtils.collectMenuItemDashboard();
-    for (Dashboard dashboard : dashboardMenuItemList) {
+    List<Dashboard> mainDashboards = DashboardUtils.collectMainDashboards();
+    for (Dashboard dashboard : mainDashboards) {
       // Check if it's the task dashboard
       if (DashboardUtils.DASHBOARD_TASK_TEMPLATE_ID.equalsIgnoreCase(dashboard.getId())) {
         // Only add the task dashboard if the user has permission
