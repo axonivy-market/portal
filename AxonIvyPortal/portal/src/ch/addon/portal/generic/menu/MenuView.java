@@ -101,13 +101,6 @@ public class MenuView implements Serializable {
       menuIndex++;
     }
 
-    List<SubMenuItem> customSubMenuItems = PortalMenuNavigator.callCustomSubMenuItemsProcess();
-    for (SubMenuItem subMenu : customSubMenuItems) {
-      DefaultMenuItem item = buildSubMenuItem(subMenu, menuIndex);
-      mainMenuModel.getElements().add(item);
-      menuIndex++;
-    }
-
     List<Application> thirdPartyApps = PortalMenuNavigator.getThirdPartyApps();
     for (Application app : thirdPartyApps) {
       DefaultMenuItem item = buildThirdPartyItem(app, menuIndex);
@@ -224,7 +217,7 @@ public class MenuView implements Serializable {
         .icon(iconClass).url(dashboardLink).workingTaskId(this.workingTaskId).build();
 
     dashboardMenu.setId(String.format(DASHBOARD_MENU_ITEM_PATTERN, board.getId()));
-    dashboardMenu.setRendered(!board.getIsMenuItem());
+    dashboardMenu.setRendered(!board.getIsMenuItem()); // TODO z1 consider
 
     return dashboardMenu;
   }
@@ -539,7 +532,8 @@ public class MenuView implements Serializable {
     return Ivy.session();
   }
 
-  private record PortalDashboardItemWrapper(List<Dashboard> dashboards) {}
+  public record PortalDashboardItemWrapper(List<Dashboard> dashboards) {
+  }
 
   private void buildBreadCrumbForNotification() {
     setPortalHomeMenuToBreadcrumbModel();

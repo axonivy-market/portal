@@ -19,15 +19,18 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class HomepageUtils {
 
+  public static final String HOMEPAGE_ID_PATTERN = "%s_%s";
+
   public static List<Homepage> loadHomepages() {
     List<Homepage> homepages = new ArrayList<>();
     List<SubMenuItem> subMenuItems = PortalMenuNavigator.callSubMenuItemsProcess();
-    homepages.add(initDashboard());
+    homepages.add(defaultHompage());
     for (SubMenuItem item : subMenuItems) {
       if (item.getMenuKind() != MenuKind.EXTERNAL_LINK) {
         homepages.add(HomepageMapper.toHomepage(item));
@@ -36,7 +39,7 @@ public class HomepageUtils {
     return homepages;
   }
 
-  private static Homepage initDashboard() {
+  private static Homepage defaultHompage() {
     Homepage dashboard = new Homepage();
     dashboard.setName(HomepageType.DASHBOARD.name());
     dashboard.setLabel(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/dashboard"));
@@ -53,7 +56,7 @@ public class HomepageUtils {
 
   public static Homepage findHomepageInMyProfile() {
     Homepage homepage = new Homepage();
-    String homepageName = Ivy.session().getSessionUser().getProperty(UserProperty.HOMEPAGE);
+    String homepageName = getHomepageId();
     if (StringUtils.isBlank(homepageName)) {
       homepage.setName(StringUtils.EMPTY);
       return homepage;
@@ -61,7 +64,23 @@ public class HomepageUtils {
 
     List<Homepage> homepages = loadHomepages();
     homepage.setName(homepageName);
-    return homepages.get(homepages.indexOf(homepage));
+    int index = homepages.indexOf(homepage);
+    if (index == -1) {
+      index = 0;
+    }
+    return homepages.get(index);
+  }
+
+  public static String generateHomepageId(MenuKind menuKind, String dashboardId) {
+    return String.format(HOMEPAGE_ID_PATTERN, menuKind.name(), dashboardId);
+  }
+
+  private static String getHomepageId() {
+    String originHomepage = Ivy.session().getSessionUser().getProperty(UserProperty.HOMEPAGE);
+    if (MenuKind.TASK.name().equals(originHomepage)) {
+      return generateHomepageId(MenuKind.DASHBOARD_MENU_ITEM, DashboardUtils.DASHBOARD_TASK_TEMPLATE_ID);
+    }
+    return originHomepage;
   }
 
   public static Homepage findHomepage() {
@@ -81,7 +100,7 @@ public class HomepageUtils {
       adjustHomepageStartLink(seletedHomepage);
       return seletedHomepage;
     } else {
-      return homepage;
+      return defaultHompage();
     }
   }
 
@@ -97,7 +116,7 @@ public class HomepageUtils {
   }
 
   public static String getHomepageName() {
-    String homepageName = Ivy.session().getSessionUser().getProperty(UserProperty.HOMEPAGE);
+    String homepageName = getHomepageId();
     if (StringUtils.isBlank(homepageName)) {
       homepageName = findHomepageSetting();
     }
@@ -108,7 +127,11 @@ public class HomepageUtils {
     List<Homepage> homepages = loadHomepages();
     Homepage homepage = new Homepage();
     homepage.setName(findHomepageSetting());
-    return homepages.get(homepages.indexOf(homepage));
+    int index = homepages.indexOf(homepage);
+    if (index == -1) {
+      index = 0;
+    }
+    return homepages.get(index);
   }
 
   private static String findHomepageSetting() {

@@ -472,7 +472,7 @@ function showQuickSearchInput(index) {
 const singleDashboardId = '[id="user-menu-required-login:main-navigator:main-menu__js__1-main-dashboard"]';
 const multipleDashboardId = '[id="user-menu-required-login:main-navigator:main-menu__js__DASHBOARD-main-dashboard"]';
 const processItemId = '[id^="user-menu-required-login:main-navigator:main-menu_process"]';
-const taskItemId = '[id^="user-menu-required-login:main-navigator:main-menu_task"]';
+const taskItemId = '[id^="user-menu-required-login:main-navigator:main-menu__js__dashboard-task-template-menu-item-dashboard"]';
 const caseItemId = '[id^="user-menu-required-login:main-navigator:main-menu_case"]';
 const searchIconId = 'a#global-search-item';
 const quickSearchInputId = '[id="quick-global-search-component:global-search-data"]'

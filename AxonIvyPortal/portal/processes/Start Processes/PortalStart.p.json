@@ -1067,8 +1067,8 @@
             "    in.isTaskStartedInDetails = taskEndInfo.isStartedInTaskDetails;",
             "    in.portalPage = taskEndInfo.portalPage;",
             "    if (StringUtils.isNotBlank(taskEndInfo.getDashboardId())) {",
+            "      in.isDashboardAsMenu = DashboardUtils.isDashboardAsMenu(taskEndInfo.getDashboardId());",
             "      DashboardUtils.storeDashboardInSession(taskEndInfo.getDashboardId(), in.isDashboardAsMenu);",
-            "      in.isDashboardAsMenu = true;",
             "    }",
             "    if (!in.isTaskStartedInDetails || in.backFromTaskDetails) {",
             "      SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);",
@@ -1186,19 +1186,13 @@
         "labelOffset" : { "x" : -31, "y" : 41 }
       },
       "connect" : [
-        { "id" : "f178", "to" : "S80" }
+        { "id" : "f178", "to" : "f64" }
       ]
     }, {
       "id" : "f105",
       "type" : "TaskEnd",
       "visual" : {
         "at" : { "x" : 736, "y" : 960 }
-      }
-    }, {
-      "id" : "f64",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 592, "y" : 880 }
       }
     }, {
       "id" : "f1",
@@ -2710,105 +2704,6 @@
         { "id" : "f25", "to" : "f57" }
       ]
     }, {
-      "id" : "S20",
-      "type" : "UserBpmnElement",
-      "name" : "Task List Page",
-      "elements" : [ {
-          "id" : "S20-f69",
-          "type" : "Script",
-          "name" : [
-            "build data model ",
-            "and task view"
-          ],
-          "config" : {
-            "output" : {
-              "code" : [
-                "import ch.ivy.addon.portalkit.enums.TaskAssigneeType;",
-                "import ch.ivy.addon.portal.generic.view.TaskView;",
-                "import ch.ivy.addon.portalkit.util.PermissionUtils;",
-                "",
-                "boolean hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();",
-                "in.dataModel.setAdminQuery(hasReadAllTasksPermisson);",
-                "in.dataModel.setTaskAssigneeType(TaskAssigneeType.ALL);",
-                "",
-                "in.taskView = TaskView.create().dataModel(in.dataModel).noTaskFoundMessage(\"\").showHeaderToolbar(false).createNewTaskView();"
-              ]
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 352, "y" : 160 },
-            "size" : { "height" : 48 }
-          },
-          "connect" : [
-            { "id" : "S20-f67", "to" : "S20-f84" }
-          ]
-        }, {
-          "id" : "S20-f84",
-          "type" : "SubProcessCall",
-          "name" : "OpenPortalTasks",
-          "config" : {
-            "processCall" : "Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)",
-            "call" : {
-              "map" : {
-                "param.taskView" : "in.taskView"
-              }
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 544, "y" : 160 },
-            "size" : { "width" : 104, "height" : 40 }
-          },
-          "connect" : [
-            { "id" : "S20-f1", "to" : "S20-g1" }
-          ]
-        }, {
-          "id" : "S20-f73",
-          "type" : "SubProcessCall",
-          "name" : "Init data model",
-          "config" : {
-            "processCall" : "Functional Processes/InitializeTaskDataModel:call()",
-            "output" : {
-              "map" : {
-                "out" : "in",
-                "out.dataModel" : "result.dataModel"
-              }
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 192, "y" : 160 }
-          },
-          "connect" : [
-            { "id" : "S20-f118", "to" : "S20-f69" }
-          ]
-        }, {
-          "id" : "S20-g0",
-          "type" : "EmbeddedStart",
-          "name" : "in 1",
-          "visual" : {
-            "at" : { "x" : 64, "y" : 160 },
-            "labelOffset" : { "x" : 18, "y" : 25 }
-          },
-          "parentConnector" : "f179",
-          "connect" : [
-            { "id" : "S20-f0", "to" : "S20-f73" }
-          ]
-        }, {
-          "id" : "S20-g1",
-          "type" : "EmbeddedEnd",
-          "name" : "out 1",
-          "visual" : {
-            "at" : { "x" : 672, "y" : 160 },
-            "labelOffset" : { "x" : 21, "y" : 25 }
-          },
-          "parentConnector" : "f17"
-        } ],
-      "visual" : {
-        "at" : { "x" : 488, "y" : 880 }
-      },
-      "connect" : [
-        { "id" : "f17", "to" : "f64" }
-      ]
-    }, {
       "id" : "S70",
       "type" : "ServiceBpmnElement",
       "name" : "Init data and display growl msg after finish task",
@@ -3307,7 +3202,7 @@
         "at" : { "x" : 200, "y" : 800 }
       },
       "connect" : [
-        { "id" : "f24", "to" : "S80", "via" : [ { "x" : 344, "y" : 800 } ] }
+        { "id" : "f24", "to" : "f64", "via" : [ { "x" : 344, "y" : 800 } ] }
       ]
     }, {
       "id" : "f215",
@@ -3720,74 +3615,6 @@
         { "id" : "f176", "to" : "S30" }
       ]
     }, {
-      "id" : "S80",
-      "type" : "EmbeddedProcess",
-      "name" : "Authorize",
-      "elements" : [ {
-          "id" : "S80-f212",
-          "type" : "Alternative",
-          "name" : "Authorized?",
-          "config" : {
-            "conditions" : {
-              "S80-f2" : "ch.ivy.addon.portalkit.util.PermissionUtils.checkAccessFullTaskListPermission()"
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 152, "y" : 144 },
-            "labelOffset" : { "y" : -24 }
-          },
-          "connect" : [
-            { "id" : "S80-f2", "to" : "S80-g2", "label" : {
-                "name" : "Yes"
-              } },
-            { "id" : "S80-f271", "to" : "S80-f270", "label" : {
-                "name" : "No"
-              } }
-          ]
-        }, {
-          "id" : "S80-f270",
-          "type" : "TaskEnd",
-          "visual" : {
-            "at" : { "x" : 152, "y" : 224 }
-          }
-        }, {
-          "id" : "S80-g0",
-          "type" : "EmbeddedStart",
-          "name" : "in 1",
-          "visual" : {
-            "at" : { "x" : 72, "y" : 64 }
-          },
-          "parentConnector" : "f24",
-          "connect" : [
-            { "id" : "S80-f0", "to" : "S80-f212", "via" : [ { "x" : 152, "y" : 64 } ] }
-          ]
-        }, {
-          "id" : "S80-g1",
-          "type" : "EmbeddedStart",
-          "name" : "in 2",
-          "visual" : {
-            "at" : { "x" : 72, "y" : 144 }
-          },
-          "parentConnector" : "f178",
-          "connect" : [
-            { "id" : "S80-f1", "to" : "S80-f212" }
-          ]
-        }, {
-          "id" : "S80-g2",
-          "type" : "EmbeddedEnd",
-          "name" : "out 1",
-          "visual" : {
-            "at" : { "x" : 232, "y" : 144 }
-          },
-          "parentConnector" : "f179"
-        } ],
-      "visual" : {
-        "at" : { "x" : 344, "y" : 880 }
-      },
-      "connect" : [
-        { "id" : "f179", "to" : "S20" }
-      ]
-    }, {
       "id" : "f79",
       "type" : "Script",
       "name" : "Find case",
@@ -4168,12 +3995,10 @@
         "input" : {
           "params" : [
             { "name" : "dashboardId", "type" : "String", "desc" : "" },
-            { "name" : "openWithoutMenu", "type" : "Boolean", "desc" : "" },
-            { "name" : "isDashboardAsMenu", "type" : "Boolean", "desc" : "" }
+            { "name" : "openWithoutMenu", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
             "out.dashboardId" : "param.dashboardId",
-            "out.isDashboardAsMenu" : "param.isDashboardAsMenu",
             "out.isOpenWithoutMenu" : "param.openWithoutMenu"
           }
         },
@@ -4185,7 +4010,7 @@
         "at" : { "x" : 96, "y" : 152 }
       },
       "connect" : [
-        { "id" : "f212", "to" : "f170" }
+        { "id" : "f212", "to" : "f26" }
       ]
     }, {
       "id" : "f170",
@@ -4199,6 +4024,7 @@
             "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
             "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
             "",
+            "in.isDashboardAsMenu = DashboardUtils.isDashboardAsMenu(in.dashboardId);",
             "DashboardUtils.storeDashboardInSession(in.dashboardId, in.isDashboardAsMenu);",
             "in.isOpenDashboardFromLink = true;",
             "if (in.isOpenWithoutMenu) {",
@@ -4209,7 +4035,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 216, "y" : 152 }
+        "at" : { "x" : 248, "y" : 152 }
       },
       "connect" : [
         { "id" : "f218", "to" : "f21", "via" : [ { "x" : 344, "y" : 152 } ] }
@@ -4679,6 +4505,57 @@
       },
       "connect" : [
         { "id" : "f294", "to" : "f271" }
+      ]
+    }, {
+      "id" : "f26",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f27" : "\"dashboard-task-template\".equals(in.dashboardId) && !ch.ivy.addon.portalkit.util.PermissionUtils.checkAccessFullTaskListPermission()"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 152, "y" : 152 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f27", "to" : "f17" },
+        { "id" : "f35", "to" : "f170" }
+      ]
+    }, {
+      "id" : "f32",
+      "type" : "Script",
+      "name" : "Init data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.DashboardUtils;",
+            "in.dashboardId = DashboardUtils.DASHBOARD_TASK_TEMPLATE_ID;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 488, "y" : 880 }
+      },
+      "connect" : [
+        { "id" : "f34", "to" : "f26", "via" : [ { "x" : 1560, "y" : 880 }, { "x" : 1560, "y" : 64 }, { "x" : 152, "y" : 64 } ] }
+      ]
+    }, {
+      "id" : "f17",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 152, "y" : 200 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f64",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 344, "y" : 880 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f70", "to" : "f32" }
       ]
     } ]
 }

@@ -114,15 +114,10 @@ public class DashboardBean implements Serializable {
       if (StringUtils.isBlank(selectedDashboardId)
           || (!selectedDashboardId.equalsIgnoreCase(selectedDashboard.getId())
               && DashboardUtils.getDashboardsWithoutMenuItem().size() > 1)) {
-        storeDashboardInSession(selectedDashboard.getId());
+        DashboardUtils.storeDashboardInSession(selectedDashboard.getId());
       }
       if (isReadOnlyMode) {
         DashboardUtils.highlightDashboardMenuItem(selectedDashboard.getId());
-      }
-
-      if (selectedDashboard.getIsMenuItem()) {
-        String preSelectedDashboardId = readPreDashboardFromSession();
-        storeDashboardInSession(preSelectedDashboardId);
       }
     }
     buildWidgetModels(selectedDashboard);
@@ -418,14 +413,6 @@ public class DashboardBean implements Serializable {
     return (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString());
   }
 
-  private String readPreDashboardFromSession() {
-    return (String) Ivy.session().getAttribute(SessionAttribute.PREV_SELECTED_DASHBOARD_ID.toString());
-  }
-
-  protected void storeDashboardInSession(String id) {
-    DashboardUtils.storeDashboardInSession(id);
-  }
-
   private int findIndexOfDashboardById(String selectedDashboardId) {
 
 
@@ -537,5 +524,9 @@ public class DashboardBean implements Serializable {
       return Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/AccessibilityShortcuts/title");
     }
     return StringUtils.EMPTY;
+  }
+
+  public boolean isMenuItem() {
+    return DashboardUtils.isDashboardAsMenu(selectedDashboardId);
   }
 }
