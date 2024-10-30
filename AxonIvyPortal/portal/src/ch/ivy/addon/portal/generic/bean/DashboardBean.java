@@ -526,7 +526,7 @@ public class DashboardBean implements Serializable {
     return StringUtils.EMPTY;
   }
 
-  public boolean isMenuItem() {
+  public boolean isMainDashboardSelected() {
     return DashboardUtils.isMainDashboard(selectedDashboardId);
   }
 }

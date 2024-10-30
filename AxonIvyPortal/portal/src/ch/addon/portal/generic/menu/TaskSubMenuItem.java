@@ -9,7 +9,7 @@ import ch.ivy.addon.portalkit.util.DashboardUtils;
 
 public class TaskSubMenuItem extends SubMenuItem {
   public TaskSubMenuItem() {
-    Dashboard taskDashboard = DashboardUtils.getTaskTemplateDashboard();
+    Dashboard taskDashboard = DashboardUtils.getDefaultTaskListDashboard();
     this.icon = taskDashboard.getIcon();
     this.menuKind = MenuKind.TASK;
     this.label = ApplicationMultiLanguageAPI.getCmsValueByUserLocale("/ch.ivy.addon.portalkit.ui.jsf/common/tasks");

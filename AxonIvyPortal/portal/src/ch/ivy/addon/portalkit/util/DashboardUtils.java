@@ -48,7 +48,7 @@ public class DashboardUtils {
       "/ch.ivy.addon.portal.generic.dashboard.PortalDashboard/PortalDashboard.xhtml";
   public final static String DASHBOARD_MENU_JS_CLASS = "js-dashboard-group";
   public final static String HIGHLIGHT_DASHBOARD_ITEM_METHOD_PATTERN = "highlightDashboardItem('%s')";
-  public final static String DASHBOARD_TASK_TEMPLATE_ID = "dashboard-task-template";
+  public final static String DASHBOARD_TASK_TEMPLATE_ID = "default-task-list-dashboard";
 
   public static List<Dashboard> getVisibleDashboards(String dashboardJson) {
     List<Dashboard> dashboards = jsonToDashboards(dashboardJson);
@@ -168,7 +168,7 @@ public class DashboardUtils {
   }
 
   public static List<Dashboard> collectDashboards() {
-    Dashboard taskTemplateDashboard = getTaskTemplateDashboard();
+    Dashboard defaultTaskListDashboard = getDefaultTaskListDashboard();
     List<Dashboard> visibleDashboards = getAllVisibleDashboardsOfSessionUser();
     List<DashboardOrder> dashboardOrders = getDashboardOrdersOfSessionUser();
     Map<String, Dashboard> idToDashboard = createMapIdToDashboard(visibleDashboards);
@@ -183,8 +183,8 @@ public class DashboardUtils {
       }
     }
     collectedDashboards.addAll(idToDashboard.values());
-    if (!collectedDashboards.contains(taskTemplateDashboard)) {
-      collectedDashboards.add(0, taskTemplateDashboard);
+    if (!collectedDashboards.contains(defaultTaskListDashboard)) {
+      collectedDashboards.add(0, defaultTaskListDashboard);
     }
     return collectedDashboards;
   }
@@ -273,7 +273,7 @@ public class DashboardUtils {
     }
   }
 
-  public static Dashboard getTaskTemplateDashboard() {
+  public static Dashboard getDefaultTaskListDashboard() {
     String dashboardTaskTemplate = Ivy.var().get(PortalVariable.TASK_TEMPLATE_DASHBOARD.key);
     return jsonToDashboard(dashboardTaskTemplate);
   }

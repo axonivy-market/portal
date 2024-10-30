@@ -4543,7 +4543,7 @@
           "type" : "Alternative",
           "config" : {
             "conditions" : {
-              "S74-f27" : "\"dashboard-task-template\".equals(in.dashboardId) && !ch.ivy.addon.portalkit.util.PermissionUtils.checkAccessFullTaskListPermission()"
+              "S74-f27" : "\"default-task-list-dashboard\".equals(in.dashboardId) && !ch.ivy.addon.portalkit.util.PermissionUtils.checkAccessFullTaskListPermission()"
             }
           },
           "visual" : {

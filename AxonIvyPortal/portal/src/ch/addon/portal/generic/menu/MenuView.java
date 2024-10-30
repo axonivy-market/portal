@@ -231,11 +231,11 @@ public class MenuView implements Serializable {
 
   private void setMenuExpansion(DefaultSubMenu dashboardGroupMenu) {
     String activeDashboardId = (String) session().getAttribute(SELECTED_MENU_ID);
-    boolean isMenuItemDashboard =
+    boolean isMainDashboardMenu =
         StringUtils.isNotEmpty(activeDashboardId) && activeDashboardId.endsWith(DashboardUtils.MAIN_DASHBOARD_MENU_POSTFIX);
 
     if (StringUtils.endsWith(Ivy.request().getRootRequest().getRequestPath(), DASHBOARD_PAGE_URL)
-        && !isMenuItemDashboard) {
+        && !isMainDashboardMenu) {
       dashboardGroupMenu.setExpanded(true);
     }
   }
