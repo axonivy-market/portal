@@ -61,7 +61,7 @@
                     "visible": true,
                     "sortable": false,
                     "type": "standard",
-                    "width": "20"
+                    "width": "50"
                 },
                 {
                     "field": "priority",
@@ -69,7 +69,7 @@
                     "visible": true,
                     "sortable": true,
                     "type": "standard",
-                    "width": "20"
+                    "width": "60"
                 },
                 {
                     "field": "id",
@@ -78,7 +78,7 @@
                     "quickSearch": false,
                     "sortable": true,
                     "type": "standard",
-                    "width": "20"
+                    "width": "80"
                 },
                 {
                     "field": "name",
@@ -87,7 +87,7 @@
                     "quickSearch": true,
                     "sortable": true,
                     "type": "standard",
-                    "width": "20"
+                    "width": "180"
                 },
                 {
                     "field": "description",
@@ -96,7 +96,7 @@
                     "quickSearch": true,
                     "sortable": false,
                     "type": "standard",
-                    "width": "20"
+                    "width": "250"
                 },
                 {
                     "field": "activator",
@@ -105,7 +105,7 @@
                     "quickSearch": false,
                     "sortable": true,
                     "type": "standard",
-                    "width": "20"
+                    "width": "125"
                 },
                 {
                     "field": "state",
@@ -113,7 +113,7 @@
                     "visible": true,
                     "sortable": true,
                     "type": "standard",
-                    "width": "20"
+                    "width": "70"
                 },
                 {
                     "field": "startTimestamp",
@@ -121,7 +121,7 @@
                     "visible": true,
                     "sortable": true,
                     "type": "standard",
-                    "width": "20"
+                    "width": "95"
                 },
                 {
                     "field": "expiryTimestamp",
@@ -129,7 +129,7 @@
                     "visible": true,
                     "sortable": true,
                     "type": "standard",
-                    "width": "20"
+                    "width": "105"
                 },
                 {
                     "field": "category",
@@ -138,7 +138,7 @@
                     "quickSearch": false,
                     "sortable": false,
                     "type": "standard",
-                    "width": "20"
+                    "width": "110"
                 },
                 {
                     "field": "application",
@@ -147,14 +147,14 @@
                     "quickSearch": false,
                     "sortable": false,
                     "type": "standard",
-                    "width": "20"
+                    "width": "95"
                 },
                 {
                     "field": "actions",
                     "visible": true,
                     "sortable": false,
                     "type": "standard",
-                    "width": "20"
+                    "width": "85"
                 }
             ],
             "canWorkOn": false,
