@@ -111,7 +111,7 @@ If you're using the Portal, the Portal also provides a customized dialog for thi
 
 .. code-block:: javascript
 
-    parent.PF('view-expired-exception-dialog').show()
+    parent.PF('portal-view-expired-exception-dialog').show()
 
 If your application uses both with and without the Portal, and your default dialog is ``viewExpiredExceptionDialog``, here is an example code snippet:
 
@@ -120,8 +120,8 @@ If your application uses both with and without the Portal, and your default dial
     <p:ajaxExceptionHandler
         type="javax.faces.application.ViewExpiredException"
         update="viewExpiredExceptionDialog"
-        onexception="parent.PF &amp;&amp; parent.PF('view-expired-exception-dialog') ? 
-            parent.PF('view-expired-exception-dialog').show() : 
+        onexception="parent.PF &amp;&amp; parent.PF('portal-view-expired-exception-dialog') ? 
+            parent.PF('portal-view-expired-exception-dialog').show() :
             PF('viewExpiredExceptionDialog').show()" 
     />
 
