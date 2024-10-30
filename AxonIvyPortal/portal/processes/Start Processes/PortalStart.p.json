@@ -1067,8 +1067,8 @@
             "    in.isTaskStartedInDetails = taskEndInfo.isStartedInTaskDetails;",
             "    in.portalPage = taskEndInfo.portalPage;",
             "    if (StringUtils.isNotBlank(taskEndInfo.getDashboardId())) {",
-            "      in.isDashboardAsMenu = DashboardUtils.isDashboardAsMenu(taskEndInfo.getDashboardId());",
-            "      DashboardUtils.storeDashboardInSession(taskEndInfo.getDashboardId(), in.isDashboardAsMenu);",
+            "      in.isMainDashboard = DashboardUtils.isMainDashboard(taskEndInfo.getDashboardId());",
+            "      DashboardUtils.storeDashboardInSession(taskEndInfo.getDashboardId(), in.isMainDashboard);",
             "    }",
             "    if (!in.isTaskStartedInDetails || in.backFromTaskDetails) {",
             "      SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);",
@@ -2280,7 +2280,7 @@
           "type" : "Alternative",
           "config" : {
             "conditions" : {
-              "S60-f7" : "in.isDashboardAsMenu",
+              "S60-f7" : "in.isMainDashboard",
               "S60-f5" : "ch.addon.portal.generic.userprofile.homepage.HomepageUtils.isShowDashboard(in.#homepage, in.#isShowDashboard)"
             }
           },
@@ -2289,7 +2289,7 @@
           },
           "connect" : [
             { "id" : "S60-f7", "to" : "S60-f2", "via" : [ { "x" : 288, "y" : 57 } ], "label" : {
-                "name" : "dashboard as menu",
+                "name" : "main menu",
                 "segment" : 0.88,
                 "offset" : { "x" : 49, "y" : -22 }
               } },
@@ -2369,9 +2369,9 @@
         }, {
           "id" : "S60-f2",
           "type" : "DialogCall",
-          "name" : "PortalDashboardAsMenu",
+          "name" : "PortalMainDashboard",
           "config" : {
-            "dialog" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboardAsMenu:start()"
+            "dialog" : "ch.ivy.addon.portal.generic.dashboard.PortalMainDashboard:start()"
           },
           "visual" : {
             "at" : { "x" : 488, "y" : 57 },
@@ -4010,7 +4010,7 @@
         "at" : { "x" : 96, "y" : 152 }
       },
       "connect" : [
-        { "id" : "f212", "to" : "f26" }
+        { "id" : "f115", "to" : "S74" }
       ]
     }, {
       "id" : "f170",
@@ -4024,8 +4024,8 @@
             "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
             "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
             "",
-            "in.isDashboardAsMenu = DashboardUtils.isDashboardAsMenu(in.dashboardId);",
-            "DashboardUtils.storeDashboardInSession(in.dashboardId, in.isDashboardAsMenu);",
+            "in.isMainDashboard = DashboardUtils.isMainDashboard(in.dashboardId);",
+            "DashboardUtils.storeDashboardInSession(in.dashboardId, in.isMainDashboard);",
             "in.isOpenDashboardFromLink = true;",
             "if (in.isOpenWithoutMenu) {",
             "  SecurityServiceUtils.setSessionAttribute(SessionAttribute.PORTAL_IN_TEAMS.toString(), true);",
@@ -4035,10 +4035,10 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 248, "y" : 152 }
+        "at" : { "x" : 344, "y" : 152 }
       },
       "connect" : [
-        { "id" : "f218", "to" : "f21", "via" : [ { "x" : 344, "y" : 152 } ] }
+        { "id" : "f218", "to" : "f21" }
       ]
     }, {
       "id" : "f219",
@@ -4507,22 +4507,6 @@
         { "id" : "f294", "to" : "f271" }
       ]
     }, {
-      "id" : "f26",
-      "type" : "Alternative",
-      "config" : {
-        "conditions" : {
-          "f27" : "\"dashboard-task-template\".equals(in.dashboardId) && !ch.ivy.addon.portalkit.util.PermissionUtils.checkAccessFullTaskListPermission()"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 152, "y" : 152 },
-        "labelOffset" : { "x" : 14, "y" : 34 }
-      },
-      "connect" : [
-        { "id" : "f27", "to" : "f17" },
-        { "id" : "f35", "to" : "f170" }
-      ]
-    }, {
       "id" : "f32",
       "type" : "Script",
       "name" : "Init data",
@@ -4538,15 +4522,8 @@
         "at" : { "x" : 488, "y" : 880 }
       },
       "connect" : [
-        { "id" : "f34", "to" : "f26", "via" : [ { "x" : 1560, "y" : 880 }, { "x" : 1560, "y" : 64 }, { "x" : 152, "y" : 64 } ] }
+        { "id" : "f113", "to" : "S74", "via" : [ { "x" : 1560, "y" : 880 }, { "x" : 1560, "y" : 56 }, { "x" : 200, "y" : 56 } ] }
       ]
-    }, {
-      "id" : "f17",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 152, "y" : 200 },
-        "labelOffset" : { "x" : 13, "y" : 33 }
-      }
     }, {
       "id" : "f64",
       "type" : "Alternative",
@@ -4556,6 +4533,73 @@
       },
       "connect" : [
         { "id" : "f70", "to" : "f32" }
+      ]
+    }, {
+      "id" : "S74",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S74-f26",
+          "type" : "Alternative",
+          "config" : {
+            "conditions" : {
+              "S74-f27" : "\"default-task-list-dashboard\".equals(in.dashboardId) && !ch.ivy.addon.portalkit.util.PermissionUtils.checkAccessFullTaskListPermission()"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 152, "y" : 144 },
+            "labelOffset" : { "x" : 14, "y" : 34 }
+          },
+          "connect" : [
+            { "id" : "S74-f27", "to" : "S74-f17" },
+            { "id" : "S74-f2", "to" : "S74-g2" }
+          ]
+        }, {
+          "id" : "S74-f17",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 152, "y" : 192 },
+            "labelOffset" : { "x" : 13, "y" : 33 }
+          }
+        }, {
+          "id" : "S74-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 256, "y" : 64 },
+            "labelOffset" : { "x" : 3, "y" : 23 }
+          },
+          "parentConnector" : "f113",
+          "connect" : [
+            { "id" : "S74-f0", "to" : "S74-f26", "via" : [ { "x" : 152, "y" : 64 } ] }
+          ]
+        }, {
+          "id" : "S74-g1",
+          "type" : "EmbeddedStart",
+          "name" : "in 2",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 144 },
+            "labelOffset" : { "x" : 3, "y" : 23 }
+          },
+          "parentConnector" : "f115",
+          "connect" : [
+            { "id" : "S74-f1", "to" : "S74-f26" }
+          ]
+        }, {
+          "id" : "S74-g2",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 256, "y" : 144 },
+            "labelOffset" : { "x" : 3, "y" : 23 }
+          },
+          "parentConnector" : "f117"
+        } ],
+      "visual" : {
+        "at" : { "x" : 200, "y" : 152 }
+      },
+      "connect" : [
+        { "id" : "f117", "to" : "f170" }
       ]
     } ]
 }

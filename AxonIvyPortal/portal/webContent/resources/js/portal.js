@@ -198,16 +198,16 @@ var MainMenu = {
     let $currentPageMenu = this.getMenuItemByCurrentPage();
     let activeMenuItemList = this.getActiveMenu();
     // TODO z1 think about other scenarios, maybe refactor
-    if ($currentPageMenu.length == 0 && window.location.pathname.indexOf("PortalDashboardAsMenu.xhtml") > -1) {
-      let selectedDashboardAsMenuId = $("#user-menu-required-login").attr("data-selected-menu");
-      $currentPageMenu = $("li[id$='" + selectedDashboardAsMenuId + "-menu-item-dashboard'] > a");
+    if ($currentPageMenu.length == 0 && window.location.pathname.indexOf("PortalMainDashboard.xhtml") > -1) {
+      let selectedMainDashboardId = $("#user-menu-required-login").attr("data-selected-menu");
+      $currentPageMenu = $("li[id$='" + selectedMainDashboardId + "-main-dashboard'] > a");
     }
 
     if ($currentPageMenu.length > 0) {
       var $dashboardGroup = $(".js-dashboard-group");
       if ($currentPageMenu.hasClass("DASHBOARD") && $dashboardGroup.length > 0) {
         $.each( activeMenuItemList, function( i, menuItem ) {
-            if (!(menuItem.id.includes('-main-dashboard'))) {
+            if (!(menuItem.id.includes('-parent-dashboard'))) {
               deactivateMenuItemOnLeftMenu(menuItem.id);
             }
         });
@@ -469,10 +469,10 @@ function showQuickSearchInput(index) {
  * User can press Alt + number to focus on left side menu item or search button, user setting
  *
  */
-const singleDashboardId = '[id="user-menu-required-login:main-navigator:main-menu__js__1-main-dashboard"]';
-const multipleDashboardId = '[id="user-menu-required-login:main-navigator:main-menu__js__DASHBOARD-main-dashboard"]';
+const singleDashboardId = '[id="user-menu-required-login:main-navigator:main-menu__js__1-parent-dashboard"]';
+const multipleDashboardId = '[id="user-menu-required-login:main-navigator:main-menu__js__DASHBOARD-parent-dashboard"]';
 const processItemId = '[id^="user-menu-required-login:main-navigator:main-menu_process"]';
-const taskItemId = '[id^="user-menu-required-login:main-navigator:main-menu__js__dashboard-task-template-menu-item-dashboard"]';
+const taskItemId = '[id^="user-menu-required-login:main-navigator:main-menu__js__default-task-list-dashboard-main-dashboard"]';
 const caseItemId = '[id^="user-menu-required-login:main-navigator:main-menu_case"]';
 const searchIconId = 'a#global-search-item';
 const quickSearchInputId = '[id="quick-global-search-component:global-search-data"]'

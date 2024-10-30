@@ -94,10 +94,10 @@ public class DashboardBean implements Serializable {
     }
 
     if (CollectionUtils.isNotEmpty(DashboardUtils.getDashboardsWithoutMenuItem())) {
-      if (Ivy.request().getRequestPath().endsWith("/PortalDashboardAsMenu.xhtml")) {
+      if (Ivy.request().getRequestPath().endsWith("/PortalMainDashboard.xhtml")) {
         // TODO z1 refactor
         selectedDashboardId =
-            (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_OR_DASHBOARD_AS_MENU_ID.toString());
+            (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString());
       } else {
         selectedDashboardId = readDashboardFromSession();
       }
@@ -410,7 +410,7 @@ public class DashboardBean implements Serializable {
   }
 
   private String readDashboardFromSession() {
-    return (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString());
+    return (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_SUB_DASHBOARD_ID.toString());
   }
 
   private int findIndexOfDashboardById(String selectedDashboardId) {
@@ -526,7 +526,7 @@ public class DashboardBean implements Serializable {
     return StringUtils.EMPTY;
   }
 
-  public boolean isMenuItem() {
-    return DashboardUtils.isDashboardAsMenu(selectedDashboardId);
+  public boolean isMainDashboardSelected() {
+    return DashboardUtils.isMainDashboard(selectedDashboardId);
   }
 }

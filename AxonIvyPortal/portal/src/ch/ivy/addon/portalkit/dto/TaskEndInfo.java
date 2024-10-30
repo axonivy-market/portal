@@ -10,7 +10,7 @@ public class TaskEndInfo {
   private NavigationHistory navigationHistory;
   private PortalPage portalPage;
   private Boolean isStartedInTaskDetails;
-  private String dashboardId; // used if dashboard as menu
+  private String dashboardId; // used if main menu
 
   public TaskLazyDataModel getDataModel() {
     return dataModel;

@@ -1,5 +1,6 @@
 package ch.addon.portal.generic.menu;
 
+import static ch.ivy.addon.portal.generic.navigation.PortalNavigator.DASHBOARD_ID;
 import static java.util.Objects.isNull;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
@@ -58,12 +59,12 @@ public class PortalMenuItem extends DefaultMenuItem {
 
         for (String pair : pairs) {
           String[] keyValue = pair.split("=");
-          if ("dashboardId".equals(keyValue[0])) { // TODO z1 make constant
+          if (DASHBOARD_ID.equals(keyValue[0])) {
             dashboardId = keyValue.length > 1 ? keyValue[1] : "";
             break;
           }
         }
-        this.setId(String.format(DashboardUtils.MENU_ITEM_DASHBOARD_PATTERN, dashboardId));
+        this.setId(String.format(DashboardUtils.MAIN_DASHBOARD_MENU_PATTERN, dashboardId));
 
       } catch (URISyntaxException e) {
         // Just ignore
